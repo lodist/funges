@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-    const langParam = new URLSearchParams(window.location.search).get("lang") || "en";
-    document.write(`<link rel="canonical" href="https://www.fung.es/species.html?lang=${langParam}">`);
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    const langParam = new URLSearchParams(window.location.search).get("lang") || document.documentElement.lang || "en";
+    document.write(`<link rel="canonical" href="https://www.fung.es/species.html?lang=${langParam}">`);
+  </script>
   <title>Wild Edibles & Foraging Items</title>
   <style>
     body {
