@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
-    window.currentLang = params.get("lang") || document.documentElement.lang || "en"; 
-    console.log("🌍 Language detected:", window.currentLang);
-    const t = translations[window.currentLang] || translations["en"];
+    const langParam = new URLSearchParams(window.location.search).get("lang") || document.documentElement.lang || "en";
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.href = `https://www.fung.es/species.html?lang=${langParam}`;
+    }
   </script>
   <title>Wild Edibles & Foraging Items</title>
   <style>
