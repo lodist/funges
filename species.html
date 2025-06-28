@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<script>
+  const params = new URLSearchParams(window.location.search);
+  window.currentLang = params.get("lang") || document.documentElement.lang || "en";
+</script>
 <head>
   <link rel="canonical" href="https://www.fung.es/species.html">
   <meta charset="UTF-8">
@@ -65,115 +69,212 @@
   </script>
   <div class="container">
     <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/logo_funges.webp" alt="Logo" class="logo">
-    <h1>Wild Edibles on Funges</h1>
-    <p>These are the wild plants, berries, nuts and mushrooms currently featured on the map. Each has specific growing conditions, and their presence is inferred from environmental data.</p>
+    <h1 id="species-title"></h1>
+    <p id="species-intro"></p>
 
-    <div class="item"><h3>Amaranth (<em>Amaranthus retroflexus</em>)</h3>
-      <p>A highly versatile plant with vibrant green or red leaves and tiny protein-rich seeds. The young leaves can be used like spinach, while the seeds are a traditional grain substitute packed with nutrients. Foragers prize it for its dual use — leafy greens and pseudo-cereal — often thriving in disturbed soils and open sunny areas.</p>
-      <p><strong>🔪 How To:</strong> Cook the young leaves as you would spinach. Rinse thoroughly to remove grit. The seeds can be lightly toasted and used like quinoa or in porridge.</p>
+    <div class="item" id="amaranth">
+      <h3 class="species-name"></h3>
+      <p class="species-desc"></p>
+      <p><strong class="how-to-label"></strong> <span class="how-to-text"></span></p>
     </div>
     
-    <div class="item"><h3>Artichoke (<em>Cynara cardunculus</em>)</h3>
-      <p>Thistle-like plant with edible flower buds and stems. Wild forms grow in Mediterranean climates, often along rocky paths and abandoned fields.</p>
-      <p><strong>🔪 How To:</strong> Remove tough outer leaves, trim the tips, and boil or steam the hearts. Can also be grilled or preserved in oil.</p>
+    <div class="item" id="artichoke">
+      <h3 class="species-name"></h3>
+      <p class="species-desc"></p>
+      <p><strong class="how-to-label"></strong> <span class="how-to-text"></span></p>
     </div>
     
     <div class="item"><h3>Asparagus (<em>Asparagus acutifolius</em>)</h3>
       <p>Slender green spears pushing through the soil in early spring mark the arrival of wild asparagus. Unlike its cultivated cousin, it grows among shrubs and hedges, especially near trails. Its tender shoots offer a concentrated flavor and are one of the earliest foraged vegetables of the year.</p>
-      <p><strong>🔪 How To:</strong> Snap off young spears and steam, sauté, or grill them. Avoid tough, woody stems.</p>
+      <p><strong class="how-to-label"></strong> Snap off young spears and steam, sauté, or grill them. Avoid tough, woody stems.</p>
     </div>
 
     <div class="item"><h3>Chanterelle (<em>Cantharellus cibarius</em>)</h3>
       <p>Golden-yellow mushrooms with a fruity aroma, found in mossy forests during summer and autumn. Known for their firm texture and subtle peppery flavor.</p>
-      <p><strong>🔪 How To:</strong> Clean with a brush, not water. Sauté gently with butter or add to creamy sauces. Avoid overpowering spices.</p>
+      <p><strong class="how-to-label"></strong> Clean with a brush, not water. Sauté gently with butter or add to creamy sauces. Avoid overpowering spices.</p>
     </div>
     
     <div class="item"><h3>Chanterelle Black (<em>Craterellus cornucopioides</em>)</h3>
       <p>Nicknamed “horn of plenty,” this elusive mushroom has a smoky black hue and trumpet shape. It thrives in damp leaf litter under beech and oak trees. With a rich aroma and excellent shelf life when dried, it's a prized ingredient in broths and sauces.</p>
-      <p><strong>🔪 How To:</strong> Clean gently and cook thoroughly. Best sautéed or dried for long-term storage. Pairs well with pasta and risotto.</p>
+      <p><strong class="how-to-label"></strong> Clean gently and cook thoroughly. Best sautéed or dried for long-term storage. Pairs well with pasta and risotto.</p>
     </div>
     
     <div class="item"><h3>Chestnut (<em>Castanea sativa</em>)</h3>
       <p>Sweet, starchy nuts encased in spiky husks, dropping from towering chestnut trees in autumn. They’ve been a staple in mountain diets for centuries — eaten roasted, milled into flour, or boiled.</p>
-      <p><strong>🔪 How To:</strong> Always cook before eating. Roast over an open flame, bake, or boil. Score the shell first to prevent bursting.</p>
+      <p><strong class="how-to-label"></strong> Always cook before eating. Roast over an open flame, bake, or boil. Score the shell first to prevent bursting.</p>
     </div>
     
     <div class="item"><h3>Chickweed (<em>Stellaria media</em>)</h3>
       <p>A delicate green carpet of edible leaves and starry white flowers. Chickweed grows almost year-round in moist soil. Its mild flavor makes it a go-to wild salad green.</p>
-      <p><strong>🔪 How To:</strong> Eat raw in salads or lightly wilt in soups. Wash well to remove dirt.</p>
+      <p><strong class="how-to-label"></strong> Eat raw in salads or lightly wilt in soups. Wash well to remove dirt.</p>
     </div>
     
     <div class="item"><h3>Dandelion (<em>Taraxacum officinale</em>)</h3>
       <p>One of the most widespread and versatile wild plants. Every part — leaf, flower, and root — is edible and medicinal.</p>
-      <p><strong>🔪 How To:</strong> Young leaves for salads, older ones cooked to reduce bitterness. Flowers for syrups or fritters. Roast roots for tea or coffee substitute.</p>
+      <p><strong class="how-to-label"></strong> Young leaves for salads, older ones cooked to reduce bitterness. Flowers for syrups or fritters. Roast roots for tea or coffee substitute.</p>
     </div>
     
     <div class="item"><h3>Garlic (<em>Allium ursinum</em>)</h3>
       <p>Aromatic green leaves and white blossoms carpeting forest floors in spring. Also known as ramsons, this plant emits a strong garlic scent.</p>
-      <p><strong>🔪 How To:</strong> Use fresh leaves in pestos, oils, or omelets. Flowers are edible too. Do not confuse with toxic lookalikes (e.g., lily of the valley).</p>
+      <p><strong class="how-to-label"></strong> Use fresh leaves in pestos, oils, or omelets. Flowers are edible too. Do not confuse with toxic lookalikes (e.g., lily of the valley).</p>
     </div>
     
     <div class="item"><h3>Lingonberry (<em>Vaccinium vitis-idaea</em>)</h3>
       <p>Tiny ruby-red berries growing low in boreal forests and alpine heaths. Tart and high in antioxidants.</p>
-      <p><strong>🔪 How To:</strong> Best cooked into jam or sauce. Too sour to eat raw in quantity. Often used with meat dishes.</p>
+      <p><strong class="how-to-label"></strong> Best cooked into jam or sauce. Too sour to eat raw in quantity. Often used with meat dishes.</p>
     </div>
     
     <div class="item"><h3>Masterwort (<em>Peucedanum ostruthium</em>)</h3>
       <p>Aromatic perennial from mountainous regions, used historically as food and medicine.</p>
-      <p><strong>🔪 How To:</strong> Leaves can be infused into liqueurs or herbal teas. Use sparingly due to strong flavor.</p>
+      <p><strong class="how-to-label"></strong> Leaves can be infused into liqueurs or herbal teas. Use sparingly due to strong flavor.</p>
     </div>
     
     <div class="item"><h3>Morel (<em>Morchella esculenta</em>)</h3>
       <p>Highly sought-after mushroom with honeycomb cap. Appears in spring after rain.</p>
-      <p><strong>🔪 How To:</strong> Always cook — never eat raw. Slice and sauté in butter or cream sauces. Excellent with meat and pasta.</p>
+      <p><strong class="how-to-label"></strong> Always cook — never eat raw. Slice and sauté in butter or cream sauces. Excellent with meat and pasta.</p>
     </div>
     
     <div class="item"><h3>Porcino (<em>Boletus edulis</em>)</h3>
       <p>Also called “king bolete,” this robust mushroom grows under conifers and oaks. Rich in umami.</p>
-      <p><strong>🔪 How To:</strong> Clean and slice before sautéing. Can be dried and rehydrated for sauces and stews. Avoid bitter or spongy specimens.</p>
+      <p><strong class="how-to-label"></strong> Clean and slice before sautéing. Can be dried and rehydrated for sauces and stews. Avoid bitter or spongy specimens.</p>
     </div>
     
     <div class="item"><h3>Nettle (<em>Urtica dioica</em>)</h3>
       <p>Known for its sting, but rich in iron and vitamins. Grows near streams and barns.</p>
-      <p><strong>🔪 How To:</strong> Always cook or dry to remove sting. Ideal for soups, pesto, or tea. Wear gloves when harvesting.</p>
+      <p><strong class="how-to-label"></strong> Always cook or dry to remove sting. Ideal for soups, pesto, or tea. Wear gloves when harvesting.</p>
     </div>
     
     <div class="item"><h3>Parasol (<em>Macrolepiota procera</em>)</h3>
       <p>Tall mushroom with snakeskin-patterned stem and scaly cap. Found in grasslands and forest edges.</p>
-      <p><strong>🔪 How To:</strong> Slice and pan-fry like schnitzel. Remove tough stem. Cook thoroughly.</p>
+      <p><strong class="how-to-label"></strong> Slice and pan-fry like schnitzel. Remove tough stem. Cook thoroughly.</p>
     </div>
     
     <div class="item"><h3>Raspberry (<em>Rubus idaeus</em>)</h3>
       <p>Sweet red fruits on thorny canes in summer. Grows along forest margins and hedgerows.</p>
-      <p><strong>🔪 How To:</strong> Eat fresh or use in desserts, jams, or teas (leaves). Wash before use.</p>
+      <p><strong class="how-to-label"></strong> Eat fresh or use in desserts, jams, or teas (leaves). Wash before use.</p>
     </div>
     
     <div class="item"><h3>Sorrel (<em>Rumex acetosa</em>)</h3>
       <p>Arrow-shaped leaves with lemony taste due to oxalates. Found in meadows and pastures.</p>
-      <p><strong>🔪 How To:</strong> Use raw in salads or cooked into soups and sauces. Avoid large amounts if prone to kidney stones.</p>
+      <p><strong class="how-to-label"></strong> Use raw in salads or cooked into soups and sauces. Avoid large amounts if prone to kidney stones.</p>
     </div>
     
     <div class="item"><h3>St. George's Mushroom (<em>Calocybe gambosa</em>)</h3>
       <p>Early spring mushroom with a floury scent, often growing in grasslands or along paths. Named for its typical appearance around St. George’s Day in April.</p>
-      <p><strong>🔪 How To:</strong> Cook thoroughly to enhance its dense, nutty flavor. Ideal for omelets, pies, or sautés. Avoid raw consumption.</p>
+      <p><strong class="how-to-label"></strong> Cook thoroughly to enhance its dense, nutty flavor. Ideal for omelets, pies, or sautés. Avoid raw consumption.</p>
     </div>
     
     <div class="item"><h3>Strawberry (<em>Fragaria vesca</em>)</h3>
       <p>Small, aromatic berries found in forest clearings. More flavorful than cultivated varieties.</p>
-      <p><strong>🔪 How To:</strong> Eat raw, add to desserts, or dry for tea. Leaves can also be brewed into herbal tea.</p>
+      <p><strong class="how-to-label"></strong> Eat raw, add to desserts, or dry for tea. Leaves can also be brewed into herbal tea.</p>
     </div>
     
     <div class="item"><h3>Truffle Black (<em>Tuber melanosporum</em>)</h3>
       <p>Subterranean fungus found in Mediterranean oak and hazel groves. Collected with dogs or pigs.</p>
-      <p><strong>🔪 How To:</strong> Shave raw over warm dishes like pasta, eggs, or risotto. Use sparingly for strong flavor impact.</p>
+      <p><strong class="how-to-label"></strong> Shave raw over warm dishes like pasta, eggs, or risotto. Use sparingly for strong flavor impact.</p>
     </div>
     
     <div class="item"><h3>Walnut (<em>Juglans regia</em>)</h3>
       <p>Tree producing thick-husked nuts in autumn. Found in valleys and old estates.</p>
-      <p><strong>🔪 How To:</strong> Crack open and use raw or toasted in baking, sauces, or as a snack. Husk may stain hands.</p>
+      <p><strong class="how-to-label"></strong> Crack open and use raw or toasted in baking, sauces, or as a snack. Husk may stain hands.</p>
     </div>
 
 
   </div>
+
+
+<script>
+  const translations = {
+    en: {
+      title: "Wild Edibles on Funges",
+      intro: "These are the wild plants, berries, nuts and mushrooms currently featured on the map. Each has specific growing conditions, and their presence is inferred from environmental data.",
+      howTo: "🔪 How To:",
+      species: {
+        amaranth: {
+          name: "Amaranth (Amaranthus retroflexus)",
+          desc: "A highly versatile plant with vibrant green or red leaves and tiny protein-rich seeds. The young leaves can be used like spinach, while the seeds are a traditional grain substitute packed with nutrients. Foragers prize it for its dual use — leafy greens and pseudo-cereal — often thriving in disturbed soils and open sunny areas.",
+          howto: "Cook the young leaves as you would spinach. Rinse thoroughly to remove grit. The seeds can be lightly toasted and used like quinoa or in porridge."
+        },
+        artichoke: {
+          name: "Artichoke (Cynara cardunculus)",
+          desc: "Thistle-like plant with edible flower buds and stems. Wild forms grow in Mediterranean climates, often along rocky paths and abandoned fields.",
+          howto: "Remove tough outer leaves, trim the tips, and boil or steam the hearts. Can also be grilled or preserved in oil."
+        }
+      }
+    },
+    es: {
+      title: "Comestibles silvestres en Funges",
+      intro: "Estas son las plantas, bayas, nueces y setas silvestres actualmente visibles en el mapa. Cada una tiene condiciones específicas de crecimiento, y su presencia se infiere a partir de datos ambientales.",
+      howTo: "🔪 Cómo prepararlo:",
+      species: {
+        amaranth: {
+          name: "Amaranto (Amaranthus retroflexus)",
+          desc: "Planta muy versátil con hojas verdes o rojizas y diminutas semillas ricas en proteínas. Las hojas jóvenes se pueden cocinar como las espinacas, y las semillas son un sustituto tradicional del cereal, lleno de nutrientes. Los recolectores la valoran por su doble uso: hojas verdes y pseudocereal, prosperando en suelos removidos y soleados.",
+          howto: "Cocina las hojas jóvenes como espinacas. Lávalas bien para eliminar tierra. Las semillas se pueden tostar ligeramente y usar como la quinoa o en gachas."
+        },
+        artichoke: {
+          name: "Alcachofa (Cynara cardunculus)",
+          desc: "Planta parecida al cardo con capullos florales y tallos comestibles. En estado silvestre crece en climas mediterráneos, a menudo en caminos rocosos y campos abandonados.",
+          howto: "Quita las hojas externas duras, recorta las puntas y hierve o cuece al vapor los corazones. También se puede asar o conservar en aceite."
+        }
+      }
+    },
+    it: {
+      title: "Commestibili selvatici su Funges",
+      intro: "Queste sono le piante, bacche, noci e funghi selvatici attualmente visibili sulla mappa. Ognuno ha condizioni di crescita specifiche, e la presenza è dedotta da dati ambientali.",
+      howTo: "🔪 Come prepararlo:",
+      species: {
+        amaranth: {
+          name: "Amaranto (Amaranthus retroflexus)",
+          desc: "Pianta estremamente versatile con foglie verdi o rosse e minuscoli semi ricchi di proteine. Le foglie giovani si usano come gli spinaci, mentre i semi sono un sostituto tradizionale dei cereali, ricchi di nutrienti. I raccoglitori la apprezzano per il doppio utilizzo — foglie verdi e pseudocereale — spesso presente in terreni disturbati e soleggiati.",
+          howto: "Cuoci le foglie giovani come gli spinaci. Lavale accuratamente per rimuovere la sabbia. I semi si possono tostare leggermente e usare come la quinoa o nel porridge."
+        },
+        artichoke: {
+          name: "Carciofo (Cynara cardunculus)",
+          desc: "Pianta simile al cardo con boccioli e gambi commestibili. Nella forma selvatica cresce nei climi mediterranei, spesso lungo sentieri rocciosi e campi abbandonati.",
+          howto: "Rimuovi le foglie esterne dure, taglia le punte e fai bollire o cuoci a vapore i cuori. Può anche essere grigliato o conservato sott'olio."
+        }  
+      }
+    },
+    fr: {
+      title: "Comestibles sauvages sur Funges",
+      intro: "Voici les plantes, baies, noix et champignons sauvages actuellement affichés sur la carte. Chacun a des conditions de croissance spécifiques, et leur présence est déduite à partir de données environnementales.",
+      howTo: "🔪 Préparation :",
+      species: {
+        amaranth: {
+          name: "Amarante (Amaranthus retroflexus)",
+          desc: "Plante très polyvalente aux feuilles vertes ou rouges et aux minuscules graines riches en protéines. Les jeunes feuilles se cuisinent comme des épinards, tandis que les graines sont un substitut traditionnel aux céréales, riche en nutriments. Les cueilleurs l’apprécient pour ses deux usages : feuilles vertes et pseudo-céréale, souvent présente dans les sols perturbés et ensoleillés.",
+          howto: "Cuisinez les jeunes feuilles comme des épinards. Rincez-les soigneusement pour enlever le sable. Les graines peuvent être légèrement grillées et utilisées comme du quinoa ou en bouillie."
+        },
+        artichoke: {
+          name: "Artichaut (Cynara cardunculus)",
+          desc: "Plante ressemblant au chardon avec des bourgeons floraux et des tiges comestibles. À l'état sauvage, elle pousse dans les climats méditerranéens, souvent le long des sentiers rocheux et des champs abandonnés.",
+          howto: "Retirez les feuilles extérieures dures, coupez les pointes, et faites bouillir ou cuire à la vapeur les cœurs. Peut aussi être grillé ou conservé dans l’huile."
+        }
+      }
+    },
+  };
+</script>
+<script>
+  const t = translations[window.currentLang] || translations["en"];
+  document.getElementById("species-title").innerText = t.title;
+  document.getElementById("species-intro").innerText = t.intro;
+  document.querySelectorAll("#amaranth").forEach(el => {
+    el.querySelector(".species-name").innerText = t.species.amaranth.name;
+    el.querySelector(".species-desc").innerText = t.species.amaranth.desc;
+    el.querySelector(".how-to-text").innerText = t.species.amaranth.howto;
+  });
+  document.querySelectorAll("#artichoke").forEach(el => {
+    el.querySelector(".species-name").innerText = t.species.artichoke.name;
+    el.querySelector(".species-desc").innerText = t.species.artichoke.desc;
+    el.querySelector(".how-to-text").innerText = t.species.artichoke.howto;
+  });
+
+
+  document.querySelectorAll(".how-to-label").forEach(el => {
+    el.innerText = t.howTo;
+  });
+</script>
+  
 </body>
 </html>
