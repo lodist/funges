@@ -3,7 +3,9 @@
 <script>
   const params = new URLSearchParams(window.location.search);
   window.currentLang = params.get("lang") || document.documentElement.lang || "en";
+  const t = translations[window.currentLang];
 </script>
+
 <head>
   <link rel="canonical" href="https://www.fung.es/species.html">
   <meta charset="UTF-8">
