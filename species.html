@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     const url = new URL(window.location.href);
-    const lang = url.searchParams.get("lang") || document.documentElement.lang || "en";
+    let lang = url.searchParams.get("lang");
   
-    if (!url.searchParams.get("lang")) {
+    if (!lang) {
+      lang = localStorage.getItem("preferredLanguage") || "en";
       url.searchParams.set("lang", lang);
-      window.location.href = url.toString();
+      window.location.replace(url.toString());  // redirect with ?lang
     }
   
     window.currentLang = lang;
