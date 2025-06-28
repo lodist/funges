@@ -2572,7 +2572,8 @@
     }
     
     document.addEventListener("DOMContentLoaded", () => {
-      const lang = localStorage.getItem("preferredLanguage") || "en";
+      const urlLang = new URLSearchParams(window.location.search).get("lang");
+      const lang = urlLang || localStorage.getItem("preferredLanguage") || "en";
       window.currentLang = lang;
       renderLanguageSelector(lang);
       applyTranslations(lang);
