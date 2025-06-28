@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
-    const currentUrl = new URL(window.location.href);
-    const langParam = currentUrl.searchParams.get("lang") || document.documentElement.lang || "en";
-    // Redirect to the same page with lang=... if not present
-    if (!currentUrl.searchParams.has("lang")) {
-      currentUrl.searchParams.set("lang", langParam);
-      window.location.replace(currentUrl.toString());
+    const url = new URL(window.location.href);
+    const lang = url.searchParams.get("lang") || document.documentElement.lang || "en";
+  
+    if (!url.searchParams.get("lang")) {
+      url.searchParams.set("lang", lang);
+      window.location.href = url.toString();
     }
+  
+    window.currentLang = lang;
   </script>
   <title>Wild Edibles & Foraging Items</title>
   <style>
