@@ -216,11 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const a = document.getElementById(`topbar-${page}`);
     if (a) a.href = `${page}.html?lang=${lang}`;
   });
-});
-</script>
 
-
-<script>
   const translations = {
     en: {
       title: "Wild Edibles on Funges",
@@ -671,8 +667,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
   };
-</script>
-<script>
+
   const params = new URLSearchParams(window.location.search);
   window.currentLang = params.get("lang") || document.documentElement.lang || "en";
   const t = translations[window.currentLang] || translations["en"];
