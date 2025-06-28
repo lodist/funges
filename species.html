@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="canonical" href="https://www.fung.es/species.html">
   <script>
-    const langParam = new URLSearchParams(window.location.search).get("lang") || document.documentElement.lang || "en";
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.href = `https://www.fung.es/species.html?lang=${langParam}`;
-    }
+    const langParam = new URLSearchParams(window.location.search).get("lang") || "en";
+    document.write(`<link rel="canonical" href="https://www.fung.es/species.html?lang=${langParam}">`);
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
