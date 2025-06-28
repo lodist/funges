@@ -4,20 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://www.fung.es/species.html">
-  <script>
-    const langParam = new URLSearchParams(window.location.search).get("lang") || document.documentElement.lang || "en";
-    console.log("Detected langParam:", langParam);
-  
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      const newHref = `https://www.fung.es/species.html?lang=${langParam}`;
-      console.log("Updating canonical href to:", newHref);
-      canonical.href = newHref;
-    } else {
-      console.warn("Canonical link not found.");
-    }
-  </script>
-
   <title>Wild Edibles & Foraging Items</title>
   <style>
     body {
@@ -208,6 +194,30 @@
       <p><strong class="how-to-label"></strong> <span class="how-to-text"></span></p>
     </div>
   </div>
+  
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. grab the lang
+  const lang = new URLSearchParams(window.location.search).get("lang")
+              || document.documentElement.lang
+              || "en";
+
+  // 2. patch the <link rel="canonical">
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) {
+    canonical.setAttribute(
+      "href",
+      `https://www.fung.es/species.html?lang=${lang}`
+    );
+  }
+
+  // 3. (optional) carry lang= across your top-bar links
+  ["instructions","species","recipes"].forEach(page => {
+    const a = document.getElementById(`topbar-${page}`);
+    if (a) a.href = `${page}.html?lang=${lang}`;
+  });
+});
+</script>
 
 
 <script>
