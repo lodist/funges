@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" href="https://www.fung.es/species.html">
+  <script>
+    window.currentLang = params.get("lang") || document.documentElement.lang || "en"; 
+    console.log("🌍 Language detected:", window.currentLang);
+    const t = translations[window.currentLang] || translations["en"];
+  </script>
   <title>Wild Edibles & Foraging Items</title>
   <style>
     body {
@@ -194,29 +198,9 @@
       <p><strong class="how-to-label"></strong> <span class="how-to-text"></span></p>
     </div>
   </div>
-  
+
+
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  // 1. grab the lang
-  window.currentLang = params.get("lang") || document.documentElement.lang || "en"; 
-  console.log("🌍 Language detected:", window.currentLang);
-  const t = translations[window.currentLang] || translations["en"];
-
-  // 2. patch the <link rel="canonical">
-  const canonical = document.querySelector('link[rel="canonical"]');
-  if (canonical) {
-    canonical.setAttribute(
-      "href",
-      `https://www.fung.es/species.html?lang=${lang}`
-    );
-  }
-
-  // 3. (optional) carry lang= across your top-bar links
-  ["instructions","species","recipes"].forEach(page => {
-    const a = document.getElementById(`topbar-${page}`);
-    if (a) a.href = `${page}.html?lang=${lang}`;
-  });
-
   const translations = {
     en: {
       title: "Wild Edibles on Funges",
@@ -667,7 +651,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
   };
-
+</script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  window.currentLang = params.get("lang") || document.documentElement.lang || "en";
+  const t = translations[window.currentLang] || translations["en"];
   document.getElementById("species-title").innerText = t.title;
   document.getElementById("species-intro").innerText = t.intro;
   document.querySelectorAll("#amaranth").forEach(el => {
