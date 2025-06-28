@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
-    const langParam = new URLSearchParams(window.location.search).get("lang") || document.documentElement.lang || "en";
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.href = `https://www.fung.es/species.html?lang=${langParam}`;
+    const currentUrl = new URL(window.location.href);
+    const langParam = currentUrl.searchParams.get("lang") || document.documentElement.lang || "en";
+    // Redirect to the same page with lang=... if not present
+    if (!currentUrl.searchParams.has("lang")) {
+      currentUrl.searchParams.set("lang", langParam);
+      window.location.replace(currentUrl.toString());
     }
   </script>
   <title>Wild Edibles & Foraging Items</title>
