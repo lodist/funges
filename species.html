@@ -3,10 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://www.fung.es/species.html">
   <script>
     const langParam = new URLSearchParams(window.location.search).get("lang") || document.documentElement.lang || "en";
-    document.write(`<link rel="canonical" href="https://www.fung.es/species.html?lang=${langParam}">`);
+    console.log("Detected langParam:", langParam);
+  
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      const newHref = `https://www.fung.es/species.html?lang=${langParam}`;
+      console.log("Updating canonical href to:", newHref);
+      canonical.href = newHref;
+    } else {
+      console.warn("Canonical link not found.");
+    }
   </script>
+
   <title>Wild Edibles & Foraging Items</title>
   <style>
     body {
