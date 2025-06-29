@@ -177,27 +177,15 @@
       <p id="predict-3"></p>
     </div>
 
+      <h4 id="data-methodology-title"></h4>
+      <p id="data-methodology-1"></p>
+      <p id="data-methodology-2"></p>      
+      <h4 id="key-datasets-title"></h4>
 
-      <h4>Data Sources & Methodology</h4>
-      
-      <p>Funges uses a combination of environmental, meteorological, and geospatial datasets to forecast the best locations and times for foraging wild edibles.</p>
-      
-      <p>These include satellite imagery, terrain models, weather APIs, and ecological indicators—all analyzed over time to simulate nature’s cycles and identify real-time hotspots.</p>
-      
-      <h4>Key Datasets</h4>
-
-      <p><strong>1. CORINE Land Cover (CLC)</strong><br>
-      Provided by the European Environment Agency (EEA), CORINE Land Cover offers detailed maps of vegetation and land use across Europe. This helps determine suitable ecosystems for different mushroom and plant species.<br>
-      <em>Source:</em> European Environment Agency (EEA)  
-      <br><em>Citation:</em> Bossard, M., Feranec, J., & Otahel, J. (2000). <u>CORINE Land Cover Technical Guide – Addendum 2000</u>.</p>
-
-      <p><strong>2. Soil pH in Europe</strong><br>
-      Created by the Joint Research Centre (JRC) of the European Commission, this dataset maps soil acidity using over 12,000 samples across 25 countries, modeled via Regression-Kriging with 54 environmental covariates.<br>
-      <em>Source:</em> European Soil Data Centre (ESDAC), Joint Research Centre (JRC)  
-      <br><em>Citation:</em> Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). <u>Map of Soil pH in Europe</u>. JRC, ESDAC.</p>
-      
-      <p>Additional sources such as meteorological APIs, remote sensing layers, and slope/aspect models are integrated to continuously improve prediction accuracy.</p>
-
+      <p id="dataset-1"></p>
+      <p id="dataset-2"></p>
+      <p id="dataset-3"></p>
+    
     </div>
   </div>
   <script>
@@ -242,7 +230,20 @@
       predictVar4: "Topography and elevation",
       predictVar5: "Time-series trends",
       predict3: "The goal is to simulate the behavior of experienced foragers—amplified by data. In other words, respectfully trying to hack nature to make wild harvesting more accessible, precise and sustainable.",
-    
+      dataMethodologyTitle: "Data Sources & Methodology",
+      dataMethodology1: "Funges uses a combination of environmental, meteorological, and geospatial datasets to forecast the best locations and times for foraging wild edibles.",
+      dataMethodology2: "These include satellite imagery, terrain models, weather APIs, and ecological indicators—all analyzed over time to simulate nature’s cycles and identify real-time hotspots.",
+      keyDatasetsTitle: "Key Datasets",
+      dataset1: `<strong>1. CORINE Land Cover (CLC)</strong><br>
+      Provided by the European Environment Agency (EEA), CORINE Land Cover offers detailed maps of vegetation and land use across Europe. This helps determine suitable ecosystems for different mushroom and plant species.<br>
+      <em>Source:</em> European Environment Agency (EEA)<br>
+      <em>Citation:</em> Bossard, M., Feranec, J., & Otahel, J. (2000). <u>CORINE Land Cover Technical Guide – Addendum 2000</u>.`,
+      dataset2: `<strong>2. Soil pH in Europe</strong><br>
+      Created by the Joint Research Centre (JRC) of the European Commission, this dataset maps soil acidity using over 12,000 samples across 25 countries, modeled via Regression-Kriging with 54 environmental covariates.<br>
+      <em>Source:</em> European Soil Data Centre (ESDAC), Joint Research Centre (JRC)<br>
+      <em>Citation:</em> Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). <u>Map of Soil pH in Europe</u>. JRC, ESDAC.`,
+      dataset3: `Additional sources such as meteorological APIs, remote sensing layers, and slope/aspect models are integrated to continuously improve prediction accuracy.`,
+
     },
     es: {
       map1: "El mapa resalta zonas geográficas con condiciones favorables para recolectar hongos silvestres y plantas comestibles.",
@@ -284,7 +285,20 @@
       predictVar4: "Topografía y altitud",
       predictVar5: "Tendencias temporales",
       predict3: "El objetivo es simular el comportamiento de recolectores experimentados, amplificado por los datos. En otras palabras, intentar hackear la naturaleza con respeto para que la recolección sea más accesible, precisa y sostenible.",
-    
+      dataMethodologyTitle: "Fuentes de datos y metodología",
+      dataMethodology1: "Funges utiliza una combinación de datos ambientales, meteorológicos y geoespaciales para predecir los mejores lugares y momentos para recolectar alimentos silvestres.",
+      dataMethodology2: "Esto incluye imágenes satelitales, modelos del terreno, APIs meteorológicas e indicadores ecológicos, todos analizados a lo largo del tiempo para simular los ciclos naturales e identificar los puntos calientes en tiempo real.",
+      keyDatasetsTitle: "Conjuntos de datos clave",
+      dataset1: `<strong>1. CORINE Land Cover (CLC)</strong><br>
+      Proporcionado por la Agencia Europea de Medio Ambiente (EEA), CORINE Land Cover ofrece mapas detallados de vegetación y uso del suelo en toda Europa. Esto ayuda a determinar ecosistemas adecuados para distintas especies de hongos y plantas.<br>
+      <em>Fuente:</em> Agencia Europea de Medio Ambiente (EEA)<br>
+      <em>Citación:</em> Bossard, M., Feranec, J., & Otahel, J. (2000). <u>Guía Técnica de CORINE Land Cover – Adenda 2000</u>.`,
+      dataset2: `<strong>2. pH del Suelo en Europa</strong><br>
+      Creado por el Centro Común de Investigación (JRC) de la Comisión Europea, este conjunto de datos mapea la acidez del suelo usando más de 12,000 muestras en 25 países, modelado mediante Regression-Kriging con 54 variables ambientales.<br>
+      <em>Fuente:</em> Centro Europeo de Datos del Suelo (ESDAC), Centro Común de Investigación (JRC)<br>
+      <em>Citación:</em> Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). <u>Mapa del pH del suelo en Europa</u>. JRC, ESDAC.`,
+      dataset3: `Se integran otras fuentes como APIs meteorológicas, capas de sensores remotos y modelos de pendiente/orientación para mejorar continuamente la precisión de las predicciones.`,
+      
     },
     it: {
       map1: "La mappa evidenzia le aree geografiche con condizioni favorevoli alla raccolta di funghi selvatici e piante commestibili.",
@@ -326,7 +340,20 @@
       predictVar4: "Topografia e altitudine",
       predictVar5: "Andamenti temporali",
       predict3: "L’obiettivo è simulare il comportamento dei raccoglitori esperti — potenziato dai dati. In altre parole, cercare di hackerare la natura con rispetto per rendere la raccolta più accessibile, precisa e sostenibile.",
-          
+      dataMethodologyTitle: "Fonti di Dati e Metodologia",
+      dataMethodology1: "Funges utilizza una combinazione di dati ambientali, meteorologici e geospaziali per prevedere i migliori luoghi e tempi per la raccolta di alimenti selvatici.",
+      dataMethodology2: "Questi includono immagini satellitari, modelli del terreno, API meteorologiche e indicatori ecologici, tutti analizzati nel tempo per simulare i cicli naturali e identificare le aree calde in tempo reale.",
+      keyDatasetsTitle: "Set di Dati Principali",
+      dataset1: `<strong>1. CORINE Land Cover (CLC)</strong><br>
+      Fornito dall'Agenzia Europea dell'Ambiente (EEA), CORINE Land Cover offre mappe dettagliate della vegetazione e dell'uso del suolo in tutta Europa. Questo aiuta a determinare gli ecosistemi adatti per diverse specie di funghi e piante.<br>
+      <em>Fonte:</em> Agenzia Europea dell'Ambiente (EEA)<br>
+      <em>Citazione:</em> Bossard, M., Feranec, J., & Otahel, J. (2000). <u>Guida tecnica di CORINE Land Cover – Addendum 2000</u>.`,
+      dataset2: `<strong>2. pH del Suolo in Europa</strong><br>
+      Creato dal Centro Comune di Ricerca (JRC) della Commissione Europea, questo set di dati mappa l'acidità del suolo utilizzando oltre 12.000 campioni in 25 paesi, modellato tramite Regression-Kriging con 54 covariate ambientali.<br>
+      <em>Fonte:</em> Centro Europeo dei Dati del Suolo (ESDAC), Centro Comune di Ricerca (JRC)<br>
+      <em>Citazione:</em> Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). <u>Mappa del pH del suolo in Europa</u>. JRC, ESDAC.`,      
+      dataset3: `Altre fonti come API meteorologiche, dati da telerilevamento e modelli di pendenza/esposizione vengono integrate per migliorare continuamente la precisione delle previsioni.`,
+
     },
     fr: {
       map1: "La carte met en évidence les zones géographiques offrant des conditions favorables à la cueillette de champignons sauvages et de plantes comestibles.",
@@ -368,7 +395,20 @@
       predictVar4: "Topographie et altitude",
       predictVar5: "Tendances temporelles",
       predict3: "L’objectif est de simuler le comportement des cueilleurs expérimentés — amplifié par les données. En d’autres termes, essayer de hacker la nature avec respect pour rendre la cueillette plus accessible, précise et durable.",
-    
+      dataMethodologyTitle: "Sources de données et méthodologie",
+      dataMethodology1: "Funges utilise une combinaison de données environnementales, météorologiques et géospatiales pour prévoir les meilleurs lieux et moments pour la cueillette des aliments sauvages.",
+      dataMethodology2: "Cela inclut des images satellites, des modèles de terrain, des APIs météo et des indicateurs écologiques — tous analysés dans le temps pour simuler les cycles naturels et identifier les points chauds en temps réel.",
+      keyDatasetsTitle: "Jeux de données clés",
+      dataset1: `<strong>1. CORINE Land Cover (CLC)</strong><br>
+      Fournie par l'Agence européenne pour l'environnement (EEA), CORINE Land Cover propose des cartes détaillées de la végétation et de l'utilisation des sols à travers l'Europe. Cela aide à déterminer les écosystèmes adaptés aux différentes espèces de champignons et de plantes.<br>
+      <em>Source :</em> Agence européenne pour l'environnement (EEA)<br>
+      <em>Citation :</em> Bossard, M., Feranec, J., & Otahel, J. (2000). <u>Guide technique CORINE Land Cover – Addendum 2000</u>.`,
+      dataset2: `<strong>2. pH des sols en Europe</strong><br>
+      Créé par le Centre Commun de Recherche (JRC) de la Commission européenne, cet ensemble de données cartographie l'acidité du sol en utilisant plus de 12 000 échantillons à travers 25 pays, modélisé par Regression-Kriging avec 54 covariables environnementales.<br>
+      <em>Source :</em> Centre européen des données sur les sols (ESDAC), Centre Commun de Recherche (JRC)<br>
+      <em>Citation :</em> Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). <u>Carte du pH des sols en Europe</u>. JRC, ESDAC.`,
+      dataset3: `D'autres sources telles que les API météorologiques, les couches de télédétection et les modèles de pente/orientation sont intégrées pour améliorer continuellement la précision des prédictions.`,
+
     }
   };
 
@@ -413,8 +453,13 @@
   document.getElementById("predict-var4").innerText = t.predictVar4;
   document.getElementById("predict-var5").innerText = t.predictVar5;
   document.getElementById("predict-3").innerText = t.predict3;
-
-    
+  document.getElementById("data-methodology-title").innerText = t.dataMethodologyTitle;
+  document.getElementById("data-methodology-1").innerText = t.dataMethodology1;
+  document.getElementById("data-methodology-2").innerText = t.dataMethodology2;
+  document.getElementById("key-datasets-title").innerText = t.keyDatasetsTitle;
+  document.getElementById("dataset-1").innerHTML = t.dataset1;
+  document.getElementById("dataset-2").innerHTML = t.dataset2;
+  document.getElementById("dataset-3").innerHTML = t.dataset3;
   </script>
 
 </body>
