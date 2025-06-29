@@ -181,7 +181,9 @@
       #button-bar {
         height: calc(100vh - 40px); /* Adjust height for mobile */
       }
+      
     }
+    
     .button {
       margin: 12px 0; /* Adjust spacing between buttons */
       cursor: pointer;
@@ -356,7 +358,7 @@
       max-width: 360px;
       z-index: 9999;
       font-size: 16px;
-      max-height: 65vh; 
+      max-height: 60vh; 
       overflow-y: auto; 
     }
     /* Center filter input cleanly */
@@ -604,6 +606,46 @@
     #spontaneous-message.show {
       opacity: 1;
     }
+
+    #language-dropup {
+      position: fixed;
+      bottom: 55px;
+      right: 20px;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      z-index: 9999;
+    }
+    
+    #selected-language,
+    #language-options div {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      line-height: 38px;
+      text-align: center;
+      font-size: 20px;
+      cursor: pointer;
+      margin-bottom: 6px;
+      user-select: none;
+    }
+    
+    #selected-language {
+      background: rgba(12, 12, 12, 0.3);
+      color: white;
+      font-weight: bold;
+    }
+    
+    #language-options {
+      display: none;
+      flex-direction: column;
+    }
+    
+    #language-options div {
+      background: rgba(255, 252, 239, 0.3);
+    }
+
+
     
   </style>
 </head>
@@ -611,18 +653,18 @@
   
   <!-- Top Navigation Bar -->
   <div id="topbar">
-    <a href="instructions.html">How It Works</a>
-    <a href="species.html">Wild Species</a>
-    <a href="recipes.html">Recipes</a>
+  <a href="instructions.html" id="topbar-instructions"></a>
+  <a href="species.html" id="topbar-species"></a>
+  <a href="recipes.html" id="topbar-recipes"></a>
   </div>
-  
+
   <div id="species-selector">
     <div id="species-display" onclick="toggleSpeciesDropdown()">
       <span id="current-species-label"></span> ▼
     </div>
     <div id="custom-species-dropdown">
       <div class="filter-wrapper">
-        <input type="text" id="species-filter" placeholder="🔍 Type to filter..." 
+        <input type="text" id="species-filter" placeholder="🔍 ..." 
                oninput="filterSpeciesOptions()">
       </div>
       <div style="text-align: center; margin-bottom: 8px;">
@@ -685,13 +727,13 @@
     <!-- Image Upload Mask (Popup) -->
     <div id="image-mask">
         <div id="image-mask-content">
-            <p>Drag an image here or use the camera</p>
+            <p id="upload-drag-text"></p>
             <!-- Hidden File Input for Manual Upload -->
             <input type="file" id="fileInput" accept="image/*" capture="environment" onchange="handleImage(event)" style="display: none;">
             <!-- Button to trigger File Selection -->
             <button onclick="document.getElementById('fileInput').click()" style="font-size: 24px;">📷</button>
             <!-- Drop Zone -->
-            <div id="drop-zone">Drop Image Here</div>
+            <div id="drop-zone"></div>
             <!-- Result Display -->
             <div id="result" style="margin-top: 15px; font-size: 12px; font-weight: bold;"></div>
         </div>
@@ -705,12 +747,17 @@
       <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/gmaps_1.webp" alt="Google Maps Button" loading="lazy">
     </div>
   </div>
+  
+  <div id="language-dropup">
+    <div id="language-options"></div>
+    <div id="selected-language"></div>
+  </div>
 
   <!-- Footer -->
   <div id="footer">
-    <a href="impressum.html">Impressum</a>
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="termsuse.html">Terms of Use</a>
+    <a href="impressum.html" id="footer-impressum"></a>
+    <a href="privacy-policy.html" id="footer-privacy"></a>
+    <a href="termsuse.html" id="footer-terms"></a>
   </div>
 
     <!-- Loading Spinner -->
@@ -720,40 +767,34 @@
   
   <!-- Prediction Result Box -->
   <div id="prediction-box">
-      <p id="prediction-text">Prediction will appear here</p>
+    <p id="prediction-text"></p>
   </div>
   
   <div id="nearby-modal" class="modal-overlay" style="display: none;">
     <div class="modal-content">
       <button class="close-button" onclick="toggleNearbyModal()">×</button>
-      <h3>Nearby Edibles</h3>
+      <h3 id="nearby-title"></h3>
       <ul id="nearby-edibles-list" style="list-style: none; padding: 0;"></ul>
     </div>
   </div>
-    
+
   <!-- OSM Limit Notice -->
   <div id="osm-limit-notice" style="display: none;">
     <div class="osm-notice-content">
       <button id="close-osm-notice">✖</button>
-      <p>Dear Forager,<br></p>
-      <p>
-        We’re currently unable to load the map tiles. This may be due to a poor internet connection or because we’ve reached our monthly usage limit.
-        <br><br>
-        If you'd like to help keep the project running and improve availability, please consider <strong>supporting the project</strong>.
-      </p>
-      <!-- Support Button -->
+      <p id="osm-line-1"></p>
+      <p id="osm-line-2"></p>
       <div style="margin: 15px 0;">
         <a href="https://www.patreon.com/Funges" target="_blank">
           <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/support_1.webp" alt="Support Button" style="width: 50px; height: auto; cursor: pointer;">
         </a>
       </div>
-      <p>In the meantime, enjoy this slightly less-than-perfect Boletus map — at least until we hit the threshold for this map as well 😅</p>
+      <p id="osm-line-3"></p>
     </div>
   </div>
+
   
-  <div id="spontaneous-message">
-    📢 Appears Spontaneously and Sparsely in Season
-  </div>
+  <div id="spontaneous-message"></div>
 
   <!-- Class Names -->
   <script src="https://pub-92765923660e431daff3170fbef6471d.r2.dev/class_names.js"></script>
@@ -761,7 +802,6 @@
   <!-- TensorFlow.js & TFLite -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite"></script>
-
   
   
   <script>
@@ -781,37 +821,8 @@
     let isLongPressActive = false;
     let activeCoordinates = null;
     let longPressTimeout;
-
-    const speciesOptions = {
-      "🍄 Porcino (Boletus edulis)": "mushroom",
-      "🌱 Amaranth (Amaranthus retroflexus)": "amaranth",
-      "🌱 Artichoke (Cynara cardunculus)": "artichoke",
-      "🌱 Asparagus (Asparagus acutifolius)": "asparagus",
-      "🍄 Chanterelle (Cantharellus cibarius)": "chant",
-      "🍄 Chanterelle Black (Craterellus cornucopioides)": "black_chant",
-      "🌰 Chestnut (Castanea sativa)": "chestnut",
-      "🌱 Chickweed (Stellaria media)": "chickweed",
-      "🌸 Dandelion (Taraxacum officinale)": "dandelion",
-      "🌱 Garlic (Allium ursinum)": "garlic",
-      "🍇 Lingonberry (Vaccinium vitis-idaea)": "lingonb",
-      "🌱 Masterwort (Peucedanum ostruthium)": "masterwort",
-      "🍄 Morel (Morchella esculenta)": "morel",
-      "🌱 Nettle (Urtica dioica)": "nettle",
-      "🍄 Parasol (Macrolepiota procera)": "parasol",
-      "🍇 Raspberry (Rubus idaeus)": "raspberry",
-      "🌱 Sorrel (Rumex acetosa)": "sorrel",
-      "🍄 St. George's (Calocybe gambosa)": "st_george",
-      "🍇 Strawberry (Fragaria vesca)": "strawberry",
-      "🍄 Truffle Black (Tuber melanosporum)": "truffle_b",
-      "🌰 Walnut (Juglans regia)": "walnut"
-    };
-    // 🍄  🌱  🌸 🌰 🍇
-    
-    const speciesDisplayMap = Object.entries(speciesOptions).reduce((acc, [label, code]) => {
-      acc[code] = label;
-      return acc;
-    }, {});
-
+    let speciesOptions = {};
+    let speciesDisplayMap = {};
   </script>
   
   <script>
@@ -833,30 +844,495 @@
   </script>
     
   <!-- Load script.js AFTER TensorFlow -->
-  <script src="script.js"></script>
+  <!-- <script src="script.js"></script> -->
+ 
+  <script>
+    
+  if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/service-worker.js")
+          .then(() => console.log("✅ Service Worker Registered"))
+          .catch((error) => console.error("❌ Service Worker Registration Failed", error));
+  }
+  
+  
+  // ✅ Set the WASM path before using TFLite
+  tflite.setWasmPath("https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite/dist/");
+  
+  console.log("Checking TFLite WASM Features:", tflite.getWasmFeatures());
+  
+  let models = [];
+  let modelsLoaded = false;
+  const modelUrls = [
+      "https://pub-92765923660e431daff3170fbef6471d.r2.dev/mushroom_classification_model_0.tflite",
+      "https://pub-92765923660e431daff3170fbef6471d.r2.dev/mushroom_classification_model_1.tflite",
+      "https://pub-92765923660e431daff3170fbef6471d.r2.dev/mushroom_classification_model_2.tflite",
+      "https://pub-92765923660e431daff3170fbef6471d.r2.dev/mushroom_classification_model_3.tflite"
+  ];
+  
+  // ✅ Ensure TFLite WASM is initialized before loading models
+  (async function() {
+      console.log("🔍 Checking cache before loading TFLite model...");
+      try {
+          let response = await fetch(modelUrls[0]); // Uses Service Worker cache if available
+          if (!response.ok) {
+              throw new Error(`❌ Failed to fetch model: ${modelUrls[0]}`);
+          }
+          let model = await tflite.loadTFLiteModel(modelUrls[0]);
+          console.log("✅ Model loaded successfully from cache or R2!", model);
+      } catch (error) {
+          console.error("❌ Error loading model:", error);
+      }
+  })();
+  
+  
+  
+  // ========== OPEN IMAGE MASK ==========
+  function openImageMask() {
+      document.getElementById('image-mask').style.display = 'flex';
+  
+      // ✅ Reset file input field when opening the mask
+      document.getElementById('fileInput').value = "";
+  }
+  
+  // Close mask if user clicks outside
+  document.getElementById('image-mask').addEventListener('click', function (event) {
+      if (event.target.id === 'image-mask') {
+          document.getElementById('image-mask').style.display = 'none';
+      }
+  });
+  
+  // ========== HANDLE IMAGE UPLOAD ==========
+  function handleImage(event) {
+      const fileInput = event.target;
+      
+      if (!fileInput.files || fileInput.files.length === 0) {
+          console.error("❌ No file selected.");
+          return;
+      }
+  
+      const file = fileInput.files[0];
+  
+      // ✅ Reset input field so same file can be selected again
+      fileInput.value = "";
+  
+      processImage(file);
+  }
+  
+  
+  // ========== HANDLE DRAG & DROP ==========
+  const dropZone = document.getElementById('drop-zone');
+  
+  dropZone.addEventListener('dragover', (event) => {
+      event.preventDefault();
+      dropZone.style.border = '2px dashed #007BFF';
+  });
+  
+  dropZone.addEventListener('dragleave', () => {
+      dropZone.style.border = '2px dashed #ccc';
+  });
+  
+  dropZone.addEventListener('drop', (event) => {
+      event.preventDefault();
+      dropZone.style.border = '2px dashed #ccc';
+      const file = event.dataTransfer.files[0];
+      processImage(file);
+  });
+  
+  // ========== PROCESS IMAGE ==========
+  function processImage(file) {
+      if (!file) {
+          console.error("❌ No file selected.");
+          return;
+      }
+  
+      console.log("📂 File selected:", file.name);
+      document.getElementById('image-mask').style.display = 'none';
+  
+      const reader = new FileReader();
+      
+      reader.onload = function (e) {
+          console.log("📸 Image loaded into memory!");
+  
+          let img = new Image();
+          img.src = e.target.result;
+  
+          img.onload = function () {
+              console.log("✅ Image fully loaded:", img);
+              predict(img);
+          };
+  
+          img.onerror = function () {
+              console.error("❌ Error loading image!");
+          };
+      };
+  
+      reader.onerror = function () {
+          console.error("❌ FileReader failed to read the file!");
+      };
+  
+      reader.readAsDataURL(file);
+  }
+  
+  
+  // ========== MODEL LOADING ==========
+  
+  async function ensureTFLiteLoaded() {
+      return new Promise((resolve, reject) => {
+          let checkInterval = setInterval(() => {
+              if (tflite && tflite.loadTFLiteModel) {
+                  clearInterval(checkInterval);
+                  resolve();
+              }
+          }, 200);
+          setTimeout(() => {
+              clearInterval(checkInterval);
+              reject("❌ TFLite failed to load in time.");
+          }, 5000);
+      });
+  }
+  
+  async function loadModels() {
+      console.log("📢 Starting model loading process...");
+      try {
+          await ensureTFLiteLoaded();
+      } catch (error) {
+          console.error(error);
+          alert(error);
+          return;
+      }
+  
+      try {
+          const cache = await caches.open("model-cache-v1");
+          for (let url of modelUrls) {
+              console.log(`🔍 Checking cache for model: ${url}`);
+  
+              let cachedResponse = await cache.match(url);
+              if (cachedResponse) {
+                  console.log(`✅ Model found in cache: ${url}`);
+                  let model = await tflite.loadTFLiteModel(url); // Load from cache
+                  models.push(model);
+                  continue; // Skip fetching from R2
+              }
+  
+              console.log(`📥 Fetching model from R2: ${url}`);
+              let response = await fetch(url);
+              if (!response.ok) {
+                  throw new Error(`❌ Failed to fetch model: ${url}`);
+              }
+  
+              let model = await tflite.loadTFLiteModel(url);
+              console.log(`✅ Model loaded: ${url}`, model);
+              models.push(model);
+          }
+  
+          modelsLoaded = true;
+          console.log("✅ All models loaded successfully!");
+      } catch (error) {
+          console.error("❌ Error loading models:", error);
+          alert("❌ Failed to load models. Check CORS, network, and file integrity.");
+      }
+  }
+  
+  
+  loadModels();
+  
+  // ========== IMAGE PREPROCESSING ==========
+  function preprocessImage(image) {
+      return tf.browser.fromPixels(image)
+          .resizeNearestNeighbor([224, 224])
+          .toFloat()
+          .div(tf.scalar(255.0)) 
+          .expandDims();
+  }
+  
+  // ========== PREDICTION ==========
+  async function predict(image) {
+      console.log("🚀 Starting prediction...");
+  
+      if (!modelsLoaded) {
+          console.error("❌ Models are NOT loaded.");
+          alert("⏳ Please wait... Models are still loading.");
+          return;
+      }
+  
+      if (Object.keys(CLASS_NAMES).length === 0) {
+          console.error("❌ Class names are NOT loaded.");
+          alert("⏳ Please wait... Class names are still loading.");
+          return;
+      }
+  
+      console.log("✅ Models & Class Names Loaded!");
+      
+      try {
+          console.log("🖼 Preprocessing image...");
+          let tensor = preprocessImage(image);
+          console.log("📊 Tensor shape:", tensor.shape);
+  
+          let allPredictions = [];
+  
+          for (let i = 0; i < models.length; i++) {
+              console.log(`🔍 Running inference on model ${i + 1}...`);
+  
+              let outputTensor = await models[i].predict(tensor);
+              console.log(`📤 Model ${i + 1} output:`, outputTensor);
+  
+              let predictions = await outputTensor.data();
+              console.log(`📈 Model ${i + 1} predictions:`, predictions);
+  
+              // ✅ Store predictions with their model index
+              predictions.forEach((prob, classIndex) => {
+                  allPredictions.push([classIndex, prob, i]); 
+              });
+              
+              // ✅ Ensure all predictions include the model index
+              console.log("📊 Raw predictions with model indices:", allPredictions);
+  
+          }
+  
+          console.log("📊 Combining predictions...");
+  
+          // ✅ Sort predictions by probability
+          let sortedPredictions = allPredictions.sort((a, b) => b[1] - a[1]);
+  
+          console.log("📊 Final sorted predictions:", sortedPredictions);
+  
+          displayResults(sortedPredictions);
+  
+      } catch (error) {
+          console.error("❌ Prediction Error:", error);
+          alert("❌ Something went wrong during prediction.");
+      }
+  }
+  
+  
+  // ========== DISPLAY RESULTS ==========
+  function displayResults(predictions) {
+      console.log("📢 Displaying results...");
+      console.log("📊 Sorted Predictions:", predictions);
+  
+      let predictionBox = document.getElementById('prediction-box');
+      let predictionText = document.getElementById('prediction-text');
+  
+      if (!predictionBox || !predictionText) {
+          console.error("❌ Error: Prediction box elements not found!");
+          return;
+      }
+  
+      predictionBox.style.display = "block"; // Show the box
+  
+      if (predictions.length === 0) {
+          console.error("❌ No predictions to display!");
+          const tError = translations[window.currentLang]?.error || translations["en"].error;
+          predictionText.innerText = tError.display;
+          return;
+      }
+  
+      // ✅ Ensure at least 3 predictions exist
+      let topPredictions = predictions.slice(0, 3);
+      const t = translations[window.currentLang]?.resultbox || translations["en"].resultbox;
+      let resultHTML = `<strong style="color: #aa1100 !important;">${t.warning}</strong><br><br>
+                        <strong>${t.top}</strong><br><br>`;
 
+  
+      try {
+          topPredictions.forEach((pred, rank) => {
+              let classIndex = parseInt(pred[0]);
+              let modelIndex = parseInt(pred[2]);
+              let probability = (pred[1] * 100).toFixed(2); // Convert to %
+  
+              // ✅ Check if model and class exist
+              if (!CLASS_NAMES[modelIndex] || !CLASS_NAMES[modelIndex][classIndex]) {
+                  console.error(`❌ ERROR: CLASS_NAMES[${modelIndex}][${classIndex}] does not exist!`, { modelIndex, classIndex });
+                  const tError = translations[window.currentLang]?.error || translations["en"].error;
+                  predictionText.innerText = tError.display;
+                  return;
+              }
+  
+              let className = CLASS_NAMES[modelIndex][classIndex];
+              let searchURL = `https://duckduckgo.com/?q=${encodeURIComponent(className)}`;
+  
+              const t = translations[window.currentLang] || translations["en"];
+              // ✅ Add prediction with DuckDuckGo search link
+              resultHTML += `${rank + 1}. <strong>${className}</strong> (${probability}%)<br>`;
+              resultHTML += `<a href="${searchURL}" target="_blank" style="color: #aa1100; text-decoration: underline;">${t.search.link}</a><br><br>`;
+  
+              console.log(`📌 Rank ${rank + 1}: ${className} (${probability}%)`);
+          });
+  
+          console.log("📢 Final Prediction Output:\n" + resultHTML);
+          
+          // ✅ Display predictions in UI
+          predictionText.innerHTML = resultHTML; // Use `innerHTML` to allow links
+  
+      } catch (error) {
+          console.error("❌ ERROR in displayResults:", error);
+          const tError = translations[window.currentLang]?.error || translations["en"].error;
+          predictionText.innerText = tError.display;
+      }
+  }
+  
+  // ========== NEARBY EDIBLES MODAL ==========
+  
+  function toggleNearbyModal() {
+    console.log("🟢 toggleNearbyModal() was called");
+  
+    const modal = document.getElementById('nearby-modal');
+    const listContainer = document.getElementById('nearby-edibles-list');
+  
+    // Close modal if open
+    if (modal.style.display !== 'none') {
+      console.log("🧪 Closing nearby modal.");
+      modal.style.display = 'none';
+      return;
+    }
+  
+    document.getElementById('loading-spinner').style.display = 'flex';
+    console.log("📡 Requesting location...");
+  
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const coords = [position.coords.longitude, position.coords.latitude];
+        console.log("📍 Location acquired:", coords);
+  
+        map.flyTo({
+          center: coords,
+          zoom: 8,
+          speed: 1.2,
+          essential: true
+        });
+  
+        // Wait for map to fully finish rendering
+        map.once('idle', () => {
+          console.log("🗺️ Map idle. Starting polygon scan...");
+  
+          const center = map.getCenter();
+          const point = map.project(center);
+          const box = [
+            [point.x - 250, point.y - 250],
+            [point.x + 250, point.y + 250]
+          ];
+  
+          const features = map.queryRenderedFeatures(box);
+  
+          const foundItems = {};
+          features.forEach((f, i) => {
+            if (!f.properties) return;
+            const scores = Object.entries(f.properties)
+              .filter(([k, v]) => k.endsWith('_score') && typeof v === 'number' && v > 6); // limit for finding species. CHange here
+  
+            if (scores.length) {
+              console.log(`🍄 Feature ${i + 1} with scores:`, scores);
+              scores.forEach(([key, value]) => {
+                  
+                const speciesCode = key.replace('_score', '');
+                const edibleName = speciesDisplayMap[speciesCode] || speciesCode.replace(/_/g, ' ');
+  
+                if (!foundItems[edibleName] || value > foundItems[edibleName]) {
+                  foundItems[edibleName] = value;
+                }
+              });
+            }
+          });
+  
+          document.getElementById('loading-spinner').style.display = 'none';
+          listContainer.innerHTML = '';
+  
+          const sortedItems = Object.entries(foundItems).sort((a, b) => b[1] - a[1]);
+          const intro = document.createElement("p");
+          intro.style.marginBottom = "12px";
+  
+          const t = translations[window.currentLang]?.nearby || translations["en"].nearby;
+          if (sortedItems.length === 0) {
+            intro.innerHTML = t.none;
+            listContainer.appendChild(intro);
+          } else {
+            intro.innerHTML = t.some;
+            listContainer.appendChild(intro);
+          
+            sortedItems.forEach(([item, score]) => {
+              const li = document.createElement("li");
+              li.innerHTML = `<strong>${speciesDisplayMap[item] || item}</strong>`;
+              listContainer.appendChild(li);
+            });
+          
+            // Build URL with selected species as query string
+            const selectedKeys = sortedItems.map(([item]) => Object.entries(speciesDisplayMap).find(([code, name]) => name === item)?.[0] || item);
+            const url = new URL("https://fung.es/recipes.html");
+            url.searchParams.set("ingredients", selectedKeys.join(","));
+            url.searchParams.set("lang", window.currentLang);
+
+              
+            // 👉 Add "Go to recipes" link
+            const recipeLink = document.createElement("a");
+            recipeLink.innerText = t.recipes;
+            recipeLink.style.display = "inline-block";
+            recipeLink.style.marginTop = "17px";
+            recipeLink.style.textDecoration = "underline";
+            recipeLink.style.color = "#01796F";
+            recipeLink.style.fontWeight = "bold"; // Make it bold
+              
+            recipeLink.href = url.toString();
+            listContainer.appendChild(recipeLink);
+          }
+  
+          console.log("✅ Modal ready with:", sortedItems);
+          modal.style.display = 'flex';
+        });
+      },
+      (err) => {
+        document.getElementById('loading-spinner').style.display = 'none';
+        console.error("❌ Location error:", err);
+        alert('📍 Unable to retrieve your location.');
+      },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+    );
+  }
+  
+  
+  // Allow closing the Nearby Edibles modal when clicking outside
+  document.addEventListener('DOMContentLoaded', () => {
+    const predictionBox = document.getElementById('prediction-box');
+    document.addEventListener('click', (event) => {
+      if (predictionBox && predictionBox.style.display === "block" && !predictionBox.contains(event.target)) {
+        predictionBox.style.display = "none";
+      }
+    });
+  
+    const nearbyModal = document.getElementById('nearby-modal');
+    if (nearbyModal) {
+      nearbyModal.addEventListener('click', (e) => {
+        if (e.target === nearbyModal) {
+          toggleNearbyModal();
+        }
+      });
+    }
+  });
+  </script>
+
+            
   <!-- Support Modal -->
   <div id="support-modal" class="modal-overlay" style="display: none;">
     <div class="modal-content">
       <button class="close-button" onclick="toggleSupportModal()">✖</button>
-      <h2>Support the Project</h2>
+      <h2 id="support-title"></h2>
   
-      <!-- Patreon Button -->
+      <!-- Patreon and Buy Me a Coffee Buttons -->
       <div class="support-buttons">
         <!-- Patreon Button -->
         <a href="https://www.patreon.com/Funges" target="_blank" class="patreon-button" aria-label="Support Funges on Patreon">
           <img src="https://raw.githubusercontent.com/lodist/funges/main/QR/patreon.webp" alt="Support on Patreon" loading="lazy">
-          Support on Patreon
+          <span id="support-patreon"></span>
         </a>
-      
+  
         <!-- Buy Me a Coffee Button -->
         <a href="https://buymeacoffee.com/lorisdisteq" target="_blank" class="bmc-button" aria-label="Support Funges on Buy Me a Coffee">
           <img src="https://raw.githubusercontent.com/lodist/funges/main/QR/buymeacoffee.webp" alt="Buy Me a Coffee" loading="lazy">
-          Buy Me a Coffee
+          <span id="support-coffee"></span>
         </a>
       </div>
+  
       <!-- Donate Heading -->
-      <p style="margin-top: 10px; font-weight: bold;">Donate:</p>
+      <p id="support-donate" style="margin-top: 10px; font-weight: bold;"></p>
       
       <!-- Desktop QR Section -->
       <div class="qr-row" id="qr-section">
@@ -878,18 +1354,18 @@
       <div class="mobile-crypto" id="crypto-section">
         <div class="crypto-item">
           <p><strong>BTC:</strong> bc1q0j9yf0w4a5zp45u4lsk0xjq6gfefxcuhsvy2p0</p>
-          <button onclick="copyToClipboard('bc1q0j9yf0w4a5zp45u4lsk0xjq6gfefxcuhsvy2p0')">📋 Copy</button>
-          <button onclick="openQR('bitcoin_qr.webp')">🖼 Show QR</button>
+          <button onclick="copyToClipboard('bc1q0j9yf0w4a5zp45u4lsk0xjq6gfefxcuhsvy2p0')">📋</button>
+          <button onclick="openQR('bitcoin_qr.webp')">QR</button>
         </div>
         <div class="crypto-item">
           <p><strong>IOTA:</strong> iota1qp24tfmlscaj9u34k64ma2hh7<br>lhgj93srmtsysqmh6a85lm4dn02vdg6t67</p>
-          <button onclick="copyToClipboard('iota1qp24tfmlscaj9u34k64ma2hh7lhgj93srmtsysqmh6a85lm4dn02vdg6t67')">📋 Copy</button>
-          <button onclick="openQR('iota_qr.webp')">🖼 Show QR</button>
+          <button onclick="copyToClipboard('iota1qp24tfmlscaj9u34k64ma2hh7lhgj93srmtsysqmh6a85lm4dn02vdg6t67')">📋</button>
+          <button onclick="openQR('iota_qr.webp')">QR</button>
         </div>
         <div class="crypto-item">
           <p><strong>ETH:</strong> 0xa8134D63F689b08ab227EE935bB43ba5526f9D4C</p>
-          <button onclick="copyToClipboard('0xa8134D63F689b08ab227EE935bB43ba5526f9D4C')">📋 Copy</button>
-          <button onclick="openQR('ethereum_qr.webp')">🖼 Show QR</button>
+          <button onclick="copyToClipboard('0xa8134D63F689b08ab227EE935bB43ba5526f9D4C')">📋</button>
+          <button onclick="openQR('ethereum_qr.webp')">QR</button>
         </div>
       </div>
     </div>
@@ -1712,6 +2188,409 @@
         });
       }
     };
+
+
+
+
+    
+    const translations = {
+      en: {
+        flag: "🇬🇧",
+        topbar: {
+          instructions: "How It Works",
+          species: "Wild Species",
+          recipes: "Recipes"
+        },
+        upload: {
+          dragText: "Drag an image here or use the camera",
+          dropZone: "Drop Image Here"
+        },
+        footer: {
+          impressum: "Impressum",
+          privacy: "Privacy Policy",
+          terms: "Terms of Use"
+        },
+        resultbox: {
+          prediction: "Prediction will appear here",
+          nearby: "Nearby Edibles"
+        },
+        osm: {
+          line1: "Dear Forager,<br>",
+          line2: `We’re currently unable to load the map tiles. This may be due to a poor internet connection or because we’ve reached our monthly usage limit.<br><br>
+                  If you'd like to help keep the project running and improve availability, please consider <strong>supporting the project</strong>.`,
+          line3: "In the meantime, enjoy this slightly less-than-perfect Boletus map — at least until we hit the threshold for this map as well 😅"
+        },
+        support: {
+          title: "Support the Project",
+          patreon: "Support on Patreon",
+          coffee: "Buy Me a Coffee",
+          donate: "Donate:",
+        },
+        spontaneous: "📢 Appears Spontaneously and Sparsely in Season",
+        resultbox: {
+          prediction: "Prediction will appear here",
+          nearby: "Nearby Edibles",
+          warning: "⚠️ Always seek professional advice before consuming wild edibles",
+          top: "🍄 Top Predictions:"
+        },
+        search: {
+          link: "🔍 Search"
+        },
+        error: {
+          display: "❌ Error displaying predictions!"
+        },
+        nearby: {
+          none: "🍃 Dear forager, the season is tough at the moment—nothing seems to be growing around you. But don't worry, better times will come. Stay tuned for more edibles to be added soon!",
+          some: "🌿 Hey fellow forager! Following edibles could be growing in your proximity:",
+          recipes: "Go to Recipes"
+        },
+        species: {
+        "🍄 Porcino (Boletus edulis)": "mushroom",
+        "🌱 Amaranth (Amaranthus retroflexus)": "amaranth",
+        "🌱 Artichoke (Cynara cardunculus)": "artichoke",
+        "🌱 Asparagus (Asparagus acutifolius)": "asparagus",
+        "🍄 Chanterelle (Cantharellus cibarius)": "chant",
+        "🍄 Chanterelle Black (Craterellus cornucopioides)": "black_chant",
+        "🌰 Chestnut (Castanea sativa)": "chestnut",
+        "🌱 Chickweed (Stellaria media)": "chickweed",
+        "🌸 Dandelion (Taraxacum officinale)": "dandelion",
+        "🌱 Garlic (Allium ursinum)": "garlic",
+        "🍇 Lingonberry (Vaccinium vitis-idaea)": "lingonb",
+        "🌱 Masterwort (Peucedanum ostruthium)": "masterwort",
+        "🍄 Morel (Morchella esculenta)": "morel",
+        "🌱 Nettle (Urtica dioica)": "nettle",
+        "🍄 Parasol (Macrolepiota procera)": "parasol",
+        "🍇 Raspberry (Rubus idaeus)": "raspberry",
+        "🌱 Sorrel (Rumex acetosa)": "sorrel",
+        "🍄 St. George's (Calocybe gambosa)": "st_george",
+        "🍇 Strawberry (Fragaria vesca)": "strawberry",
+        "🍄 Truffle Black (Tuber melanosporum)": "truffle_b",
+        "🌰 Walnut (Juglans regia)": "walnut"
+        }
+      },
+      es: {
+        flag: "🇪🇸",
+        topbar: {
+          instructions: "Cómo funciona",
+          species: "Especies silvestres",
+          recipes: "Recetas"
+        },
+        upload: {
+          dragText: "Arrastra una imagen aquí o usa la cámara",
+          dropZone: "Suelta la imagen aquí"
+        },
+        footer: {
+          impressum: "Aviso legal",
+          privacy: "Política de privacidad",
+          terms: "Términos de uso"
+        },
+        resultbox: {
+          prediction: "El resultado aparecerá aquí",
+          nearby: "Comestibles cercanos"
+        },
+        osm: {
+          line1: "Querido recolector:<br>",
+          line2: `Actualmente no podemos cargar los mapas. Puede deberse a una mala conexión o a que hemos alcanzado nuestro límite mensual de uso.<br><br>
+                  Si quieres ayudar a que el proyecto siga activo y mejorar su disponibilidad, por favor considera <strong>apoyar el proyecto</strong>.`,
+          line3: "Mientras tanto, disfruta de este mapa de Boletus un poco imperfecto — al menos hasta que lleguemos al límite de este también 😅"
+        },
+        support: {
+          title: "Apoya el proyecto",
+          patreon: "Apoya en Patreon",
+          coffee: "Invítame a un café",
+          donate: "Donar:",
+        },
+        spontaneous: "📢 Aparece espontáneamente y con poca frecuencia en temporada",
+        resultbox: {
+          prediction: "El resultado aparecerá aquí",
+          nearby: "Comestibles cercanos",
+          warning: "⚠️ Consulta siempre a un experto antes de consumir alimentos silvestres",
+          top: "🍄 Principales resultados:"
+        },
+        search: {
+          link: "🔍 Buscar"
+        },
+        error: {
+          display: "❌ Error al mostrar los resultados!"
+        },
+        nearby: {
+        none: "🍃 Querido recolector, la temporada está difícil en este momento: no parece que esté creciendo nada a tu alrededor. Pero no te preocupes, llegarán tiempos mejores. ¡Pronto se añadirán más especies comestibles!",
+        some: "🌿 ¡Hola recolector! Podrían estar creciendo los siguientes comestibles cerca de ti:",
+        recipes: "Ver recetas"
+        },
+        species: {
+        "🍄 Boleto (Boletus edulis)": "mushroom",
+        "🌱 Amaranto (Amaranthus retroflexus)": "amaranth",
+        "🌱 Alcachofa (Cynara cardunculus)": "artichoke",
+        "🌱 Espárrago (Asparagus acutifolius)": "asparagus",
+        "🍄 Rebozuelo (Cantharellus cibarius)": "chant",
+        "🍄 Trompeta negra (Craterellus cornucopioides)": "black_chant",
+        "🌰 Castaña (Castanea sativa)": "chestnut",
+        "🌱 Pamplina (Stellaria media)": "chickweed",
+        "🌸 Diente de león (Taraxacum officinale)": "dandelion",
+        "🌱 Ajo de oso (Allium ursinum)": "garlic",
+        "🍇 Arándano rojo (Vaccinium vitis-idaea)": "lingonb",
+        "🌱 Imperatoria (Peucedanum ostruthium)": "masterwort",
+        "🍄 Colmenilla (Morchella esculenta)": "morel",
+        "🌱 Ortiga (Urtica dioica)": "nettle",
+        "🍄 Matacandil (Macrolepiota procera)": "parasol",
+        "🍇 Frambuesa (Rubus idaeus)": "raspberry",
+        "🌱 Acedera (Rumex acetosa)": "sorrel",
+        "🍄 Perretxiko (Calocybe gambosa)": "st_george",
+        "🍇 Fresa silvestre (Fragaria vesca)": "strawberry",
+        "🍄 Trufa negra (Tuber melanosporum)": "truffle_b",
+        "🌰 Nuez (Juglans regia)": "walnut"
+        }
+      },
+      it: {
+        flag: "🇮🇹",
+        topbar: {
+          instructions: "Come funziona",
+          species: "Specie selvatiche",
+          recipes: "Ricette"
+        },
+        upload: {
+          dragText: "Trascina un'immagine qui o usa la fotocamera",
+          dropZone: "Rilascia l'immagine qui"
+        },
+        footer: {
+          impressum: "Note legali",
+          privacy: "Informativa sulla privacy",
+          terms: "Termini di utilizzo"
+        },
+        resultbox: {
+          prediction: "Il risultato apparirà qui",
+          nearby: "Commestibili nelle vicinanze"
+        },
+        osm: {
+          line1: "Caro cercatore,<br>",
+          line2: `Attualmente non riusciamo a caricare le mappe. Potrebbe essere per una connessione scarsa o perché abbiamo raggiunto il limite mensile.<br><br>
+                  Se vuoi contribuire al progetto e migliorarne la disponibilità, considera di <strong>sostenere il progetto</strong>.`,
+          line3: "Nel frattempo, goditi questa mappa dei porcini non perfetta — almeno finché non raggiungiamo il limite anche qui 😅"
+        },
+        support: {
+          title: "Supporta il progetto",
+          patreon: "Supporta su Patreon",
+          coffee: "Offrimi un caffè",
+          donate: "Dona:",
+          },
+        spontaneous: "📢 Appare spontaneamente e raramente durante la stagione",
+        resultbox: {
+          prediction: "Il risultato apparirà qui",
+          nearby: "Commestibili nelle vicinanze",
+          warning: "⚠️ Consulta sempre un esperto prima di consumare piante o funghi selvatici",
+          top: "🍄 Principali risultati:"
+        },
+        search: {
+          link: "🔍 Cerca"
+        },
+        error: {
+          display: "❌ Errore nella visualizzazione dei risultati!"
+        },
+        nearby: {
+          none: "🍃 Caro cercatore, la stagione è dura al momento—sembra che non stia crescendo nulla intorno a te. Ma non preoccuparti, arriveranno tempi migliori. Presto aggiungeremo nuovi commestibili!",
+          some: "🌿 Ehi cercatore! I seguenti commestibili potrebbero crescere nelle tue vicinanze:",
+          recipes: "Vai alle ricette"
+        },
+        species: {
+        "🍄 Porcino (Boletus edulis)": "mushroom",
+        "🌱 Amaranto (Amaranthus retroflexus)": "amaranth",
+        "🌱 Carciofo (Cynara cardunculus)": "artichoke",
+        "🌱 Asparago (Asparagus acutifolius)": "asparagus",
+        "🍄 Finferlo (Cantharellus cibarius)": "chant",
+        "🍄 Trombetta dei morti (Craterellus cornucopioides)": "black_chant",
+        "🌰 Castagna (Castanea sativa)": "chestnut",
+        "🌱 Centocchio (Stellaria media)": "chickweed",
+        "🌸 Tarassaco (Taraxacum officinale)": "dandelion",
+        "🌱 Aglio orsino (Allium ursinum)": "garlic",
+        "🍇 Mirtillo rosso (Vaccinium vitis-idaea)": "lingonb",
+        "🌱 Imperatoria (Peucedanum ostruthium)": "masterwort",
+        "🍄 Spugnola (Morchella esculenta)": "morel",
+        "🌱 Ortica (Urtica dioica)": "nettle",
+        "🍄 Mazza di tamburo (Macrolepiota procera)": "parasol",
+        "🍇 Lampone (Rubus idaeus)": "raspberry",
+        "🌱 Acetosa (Rumex acetosa)": "sorrel",
+        "🍄 Prugnolo (Calocybe gambosa)": "st_george",
+        "🍇 Fragolina di bosco (Fragaria vesca)": "strawberry",
+        "🍄 Tartufo nero (Tuber melanosporum)": "truffle_b",
+        "🌰 Noce (Juglans regia)": "walnut"
+        }
+      },
+      fr: {
+        flag: "🇫🇷",
+        topbar: {
+          instructions: "Comment ça marche",
+          species: "Espèces sauvages",
+          recipes: "Recettes"
+        },
+        upload: {
+          dragText: "Faites glisser une image ici ou utilisez la caméra",
+          dropZone: "Déposez l'image ici"
+        },
+        footer: {
+          impressum: "Mentions légales",
+          privacy: "Politique de confidentialité",
+          terms: "Conditions d'utilisation"
+        },
+        resultbox: {
+          prediction: "Le résultat apparaîtra ici",
+          nearby: "Comestibles à proximité"
+        },
+        osm: {
+          line1: "Cher cueilleur,<br>",
+          line2: `Nous ne pouvons actuellement pas charger les cartes. Cela peut être dû à une mauvaise connexion ou à une limite mensuelle atteinte.<br><br>
+                  Si vous souhaitez aider à maintenir le projet actif et améliorer sa disponibilité, merci de <strong>soutenir le projet</strong>.`,
+          line3: "En attendant, profitez de cette carte des bolets un peu imparfaite — du moins jusqu'à ce qu’on atteigne la limite ici aussi 😅"
+        },
+        support: {
+          title: "Soutenir le projet",
+          patreon: "Soutenir sur Patreon",
+          coffee: "Offrez-moi un café",
+          donate: "Faire un don :",
+          },
+        spontaneous: "📢 Apparaît spontanément et rarement en saison",
+        resultbox: {
+          prediction: "Le résultat apparaîtra ici",
+          nearby: "Comestibles à proximité",
+          warning: "⚠️ Demandez toujours conseil à un expert avant de consommer des plantes ou champignons sauvages",
+          top: "🍄 Résultats principaux :"
+        },
+        search: {
+          link: "🔍 Rechercher"
+        },
+        error: {
+          display: "❌ Erreur lors de l'affichage des résultats !"
+        },
+        nearby: {
+          none: "🍃 Cher cueilleur, la saison est difficile en ce moment—rien ne semble pousser autour de toi. Mais ne t’inquiète pas, des jours meilleurs arrivent. D'autres comestibles seront ajoutés bientôt !",
+          some: "🌿 Salut cueilleur ! Les comestibles suivants pourraient pousser près de toi :",
+          recipes: "Voir les recettes"
+        },
+        species: {
+        "🍄 Cèpe (Boletus edulis)": "mushroom",
+        "🌱 Amarante (Amaranthus retroflexus)": "amaranth",
+        "🌱 Artichaut (Cynara cardunculus)": "artichoke",
+        "🌱 Asperge (Asparagus acutifolius)": "asparagus",
+        "🍄 Girolle (Cantharellus cibarius)": "chant",
+        "🍄 Trompette de la mort (Craterellus cornucopioides)": "black_chant",
+        "🌰 Châtaigne (Castanea sativa)": "chestnut",
+        "🌱 Mouron des oiseaux (Stellaria media)": "chickweed",
+        "🌸 Pissenlit (Taraxacum officinale)": "dandelion",
+        "🌱 Ail des ours (Allium ursinum)": "garlic",
+        "🍇 Airelle rouge (Vaccinium vitis-idaea)": "lingonb",
+        "🌱 Peucédan (Peucedanum ostruthium)": "masterwort",
+        "🍄 Morille (Morchella esculenta)": "morel",
+        "🌱 Ortie (Urtica dioica)": "nettle",
+        "🍄 Coulemelle (Macrolepiota procera)": "parasol",
+        "🍇 Framboise (Rubus idaeus)": "raspberry",
+        "🌱 Oseille (Rumex acetosa)": "sorrel",
+        "🍄 Tricholome de la Saint-Georges (Calocybe gambosa)": "st_george",
+        "🍇 Fraise des bois (Fragaria vesca)": "strawberry",
+        "🍄 Truffe noire (Tuber melanosporum)": "truffle_b",
+        "🌰 Noyer (Juglans regia)": "walnut"
+        }
+      }
+    };
+
+
+    function applyTranslations(lang) {
+      const t = translations[lang];
+    
+      speciesOptions = translations[lang].species;
+      speciesDisplayMap = Object.entries(speciesOptions).reduce((acc, [label, code]) => {
+        acc[code] = label;
+        return acc;
+      }, {});
+    
+      // Topbar
+      document.getElementById("topbar-instructions").textContent = t.topbar.instructions;
+      document.getElementById("topbar-species").textContent = t.topbar.species;
+      document.getElementById("topbar-recipes").textContent = t.topbar.recipes;
+      // Upload section
+      document.getElementById("upload-drag-text").textContent = t.upload.dragText;
+      document.getElementById("drop-zone").textContent = t.upload.dropZone;
+      // Footer
+      document.getElementById("footer-impressum").textContent = t.footer.impressum;
+      document.getElementById("footer-privacy").textContent = t.footer.privacy;
+      document.getElementById("footer-terms").textContent = t.footer.terms;
+      // Prediction box and modal
+      document.getElementById("prediction-text").textContent = t.resultbox.prediction;
+      document.getElementById("nearby-title").textContent = t.resultbox.nearby;
+      // OSM notice
+      document.getElementById("osm-line-1").innerHTML = t.osm.line1;
+      document.getElementById("osm-line-2").innerHTML = t.osm.line2;
+      document.getElementById("osm-line-3").innerHTML = t.osm.line3;
+      // Support
+      document.getElementById("support-title").innerHTML = t.support.title;
+      document.getElementById("support-patreon").innerHTML = t.support.patreon;
+      document.getElementById("support-coffee").innerHTML = t.support.coffee;
+      document.getElementById("support-donate").innerHTML = t.support.donate;
+      // Predictions
+      document.getElementById("prediction-text").textContent = t.resultbox.prediction;
+      document.getElementById("nearby-title").textContent = t.resultbox.nearby;
+      document.getElementById("support-title").innerHTML = t.support.title;
+      document.getElementById("support-donate").innerHTML = t.support.donate;
+
+      
+      // Species dropdown label
+      if (selectedSpecies && speciesDisplayMap[selectedSpecies]) {
+        document.getElementById("current-species-label").textContent = speciesDisplayMap[selectedSpecies];
+      }
+    }
+    
+    function renderLanguageSelector(currentLang) {
+      const optionsDiv = document.getElementById("language-options");
+      const selectedDiv = document.getElementById("selected-language");
+    
+      optionsDiv.innerHTML = "";
+      Object.keys(translations).forEach(lang => {
+        if (lang !== currentLang) {
+          const el = document.createElement("div");
+          el.textContent = translations[lang].flag;
+          el.onclick = () => setLanguage(lang);
+          optionsDiv.appendChild(el);
+        }
+      });
+    
+      selectedDiv.textContent = translations[currentLang].flag;
+      selectedDiv.onclick = toggleLanguageDropup;
+    }
+    
+    function setLanguage(lang) {
+      localStorage.setItem("preferredLanguage", lang);
+      window.currentLang = lang;
+      renderLanguageSelector(lang);
+      applyTranslations(lang);
+      document.getElementById("language-options").style.display = "none";
+      document.getElementById("topbar-recipes").href = `recipes.html?lang=${window.currentLang}`;
+    }
+    
+    function toggleLanguageDropup() {
+      const menu = document.getElementById("language-options");
+      const currentDisplay = window.getComputedStyle(menu).display;
+      menu.style.display = (currentDisplay === "none") ? "flex" : "none";
+    }
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlLang = new URLSearchParams(window.location.search).get("lang");
+      const lang = urlLang || localStorage.getItem("preferredLanguage") || "en";
+      window.currentLang = lang;
+      renderLanguageSelector(lang);
+      applyTranslations(lang);
+      document.getElementById("topbar-recipes").href = `recipes.html?lang=${window.currentLang}`;
+    });
+    
+    // Close language flag dropup when clicking outside
+    document.addEventListener("click", function (event) {
+      const languageOptions = document.getElementById("language-options");
+      const selectedLanguage = document.getElementById("selected-language");
+      if (
+        languageOptions && languageOptions.style.display === "flex" && !languageOptions.contains(event.target) && !selectedLanguage.contains(event.target)
+      ) {
+        languageOptions.style.display = "none";
+      }
+    });
+    
     
   </script>
 </body>
