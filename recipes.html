@@ -789,7 +789,8 @@ instructions: `Nettoyer les champignons : Brosser délicatement les girolles ou 
       window.currentLang = params.get("lang") || document.documentElement.lang || "en"; 
       console.log("🌍 Language detected:", window.currentLang);
       const t = translations[window.currentLang] || translations["en"];
-          
+      document.getElementById("foraging-warning").innerHTML = t.foragingWarning;
+
       if (!ingredients) return;
       selectedSpecies = ingredients.split(",").map(s => s.trim());
     }
@@ -814,7 +815,6 @@ instructions: `Nettoyer les champignons : Brosser délicatement les girolles ou 
 
     getQuerySpecies();
     document.getElementById("dropdown-toggle").innerHTML = translations[window.currentLang].selectIngredients;
-    document.getElementById("foraging-warning").innerHTML = t.foragingWarning;
     renderRecipes(); 
     renderSpeciesOptions();
     filterRecipes();
