@@ -117,9 +117,7 @@
   <div class="container">
     <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/logo_funges.webp" alt="Logo" class="logo">
     
-    <p style="background: #fff3cd; color: #856404; padding: 12px 16px; border-left: 5px solid #ffa726; border-radius: 6px; margin-bottom: 20px; font-size: 15px;">
-      ⚠️ <strong>Foraging Safety:</strong> Always ensure proper identification before foraging. When in doubt, consult a local expert. Some wild foods can have toxic lookalikes or cause adverse reactions in sensitive individuals.
-    </p>
+    <p id="foraging-warning" style="background: #fff3cd; color: #856404; padding: 12px 16px; border-left: 5px solid #ffa726; border-radius: 6px; margin-bottom: 20px; font-size: 15px;"></p>
         
     <div class="dropdown-wrapper">
       <div id="dropdown-toggle" onclick="toggleDropdown(event)"></div>
@@ -142,49 +140,146 @@
 
   <script>
     const speciesOptions = {
-      "🍄 Porcino (Boletus edulis)": "mushroom",
-      "🌱 Amaranth (Amaranthus retroflexus)": "amaranth",
-      "🌱 Artichoke (Cynara cardunculus)": "artichoke",
-      "🌱 Asparagus (Asparagus acutifolius)": "asparagus",
-      "🍄 Chanterelle (Cantharellus cibarius)": "chant",
-      "🍄 Chanterelle Black (Craterellus cornucopioides)": "black_chant",
-      "🌰 Chestnut (Castanea sativa)": "chestnut",
-      "🌱 Chickweed (Stellaria media)": "chickweed",
-      "🌸 Dandelion (Taraxacum officinale)": "dandelion",
-      "🌱 Garlic (Allium ursinum)": "garlic",
-      "🍇 Lingonberry (Vaccinium vitis-idaea)": "lingonb",
-      "🌱 Masterwort (Peucedanum ostruthium)": "masterwort",
-      "🍄 Morel (Morchella esculenta)": "morel",
-      "🌱 Nettle (Urtica dioica)": "nettle",
-      "🍄 Parasol (Macrolepiota procera)": "parasol",
-      "🍇 Raspberry (Rubus idaeus)": "raspberry",
-      "🌱 Sorrel (Rumex acetosa)": "sorrel",
-      "🍄 St. George's (Calocybe gambosa)": "st_george",
-      "🍇 Strawberry (Fragaria vesca)": "strawberry",
-      "🍄 Truffle Black (Tuber melanosporum)": "truffle_b",
-      "🌰 Walnut (Juglans regia)": "walnut"
+      porcino: "mushroom",
+      amaranth: "amaranth",
+      artichoke: "artichoke",
+      asparagus: "asparagus",
+      chant: "chant",
+      black_chant: "black_chant",
+      chestnut: "chestnut",
+      chickweed: "chickweed",
+      dandelion: "dandelion",
+      garlic: "garlic",
+      lingonb: "lingonb",
+      masterwort: "masterwort",
+      morel: "morel",
+      nettle: "nettle",
+      parasol: "parasol",
+      raspberry: "raspberry",
+      sorrel: "sorrel",
+      st_george: "st_george",
+      strawberry: "strawberry",
+      truffle_b: "truffle_b",
+      walnut: "walnut"
     };
+
     
     const translations = {
       en: {
         selectIngredients: "Select Ingredients ▼",
         ingredients: "Ingredients:",
-        instructions: "Instructions:"
+        instructions: "Instructions:",
+        foragingWarning: "⚠️ <strong>Foraging Safety:</strong> Always ensure proper identification before foraging. When in doubt, consult a local expert. Some wild foods can have toxic lookalikes or cause adverse reactions in sensitive individuals.",
+        speciesLabels: {
+        porcino: "🍄 Porcino (Boletus edulis)",
+        amaranth: "🌱 Amaranth",
+        artichoke: "🌱 Artichoke",
+        asparagus: "🌱 Asparagus",
+        chant: "🍄 Chanterelle",
+        black_chant: "🍄 Black Chanterelle",
+        chestnut: "🌰 Chestnut",
+        chickweed: "🌱 Chickweed",
+        dandelion: "🌸 Dandelion",
+        garlic: "🌱 Garlic",
+        lingonb: "🍇 Lingonberry",
+        masterwort: "🌱 Masterwort",
+        morel: "🍄 Morel",
+        nettle: "🌱 Nettle",
+        parasol: "🍄 Parasol",
+        raspberry: "🍇 Raspberry",
+        sorrel: "🌱 Sorrel",
+        st_george: "🍄 St. George's",
+        strawberry: "🍇 Strawberry",
+        truffle_b: "🍄 Truffle Black",
+        walnut: "🌰 Walnut"
+        }
       },
       it: {
         selectIngredients: "Seleziona ingredienti ▼",
         ingredients: "Ingredienti:",
-        instructions: "Istruzioni:"
+        instructions: "Istruzioni:",
+        foragingWarning: "⚠️ <strong>Sicurezza nella raccolta:</strong> Assicurati sempre di identificare correttamente le specie. In caso di dubbio, consulta un esperto locale. Alcuni alimenti selvatici possono avere sosia tossici o causare reazioni indesiderate.",
+        speciesLabels: {
+          porcino: "🍄 Porcino",
+          amaranth: "🌱 Amaranto",
+          artichoke: "🌱 Carciofo selvatico",
+          asparagus: "🌱 Asparago",
+          chant: "🍄 Finferlo",
+          black_chant: "🍄 Trombetta dei morti",
+          chestnut: "🌰 Castagna",
+          chickweed: "🌱 Centocchio",
+          dandelion: "🌸 Tarassaco",
+          garlic: "🌱 Aglio orsino",
+          lingonb: "🍇 Mirtillo rosso",
+          masterwort: "🌱 Imperatoria",
+          morel: "🍄 Spugnola",
+          nettle: "🌱 Ortica",
+          parasol: "🍄 Mazza di tamburo",
+          raspberry: "🍇 Lampone",
+          sorrel: "🌱 Acetosa",
+          st_george: "🍄 Prugnolo",
+          strawberry: "🍇 Fragolina",
+          truffle_b: "🍄 Tartufo nero",
+          walnut: "🌰 Noce"
+        }
       },
       es: {
         selectIngredients: "Selecciona ingredientes ▼",
         ingredients: "Ingredientes:",
-        instructions: "Instrucciones:"
+        instructions: "Instrucciones:",
+        foragingWarning: "⚠️ <strong>Seguridad en la recolección:</strong> Asegúrate siempre de identificar correctamente las especies. Si tienes dudas, consulta a un experto local. Algunos alimentos silvestres pueden tener parecidos tóxicos o causar reacciones adversas.",
+        speciesLabels: {
+          porcino: "🍄 Boleto (Boletus edulis)",
+          amaranth: "🌱 Amaranto",
+          artichoke: "🌱 Alcachofa silvestre",
+          asparagus: "🌱 Espárrago silvestre",
+          chant: "🍄 Rebozuelo",
+          black_chant: "🍄 Trompeta negra",
+          chestnut: "🌰 Castaña",
+          chickweed: "🌱 Pamplina",
+          dandelion: "🌸 Diente de león",
+          garlic: "🌱 Ajo silvestre",
+          lingonb: "🍇 Arándano rojo",
+          masterwort: "🌱 Masterwort",
+          morel: "🍄 Colmenilla",
+          nettle: "🌱 Ortiga",
+          parasol: "🍄 Macrolepiota",
+          raspberry: "🍇 Frambuesa silvestre",
+          sorrel: "🌱 Acedera",
+          st_george: "🍄 Seta de San Jorge",
+          strawberry: "🍇 Fresa silvestre",
+          truffle_b: "🍄 Trufa negra",
+          walnut: "🌰 Nuez"
+        }
       },
       fr: {
         selectIngredients: "Sélectionnez les ingrédients ▼",
         ingredients: "Ingrédients :",
-        instructions: "Instructions :"
+        instructions: "Instructions :",
+        foragingWarning: "⚠️ <strong>Sécurité de cueillette :</strong> Assurez-vous toujours d’une identification correcte. En cas de doute, consultez un expert local. Certains aliments sauvages peuvent avoir des sosies toxiques ou provoquer des réactions chez certaines personnes.",
+        speciesLabels: {
+          porcino: "🍄 Cèpe (Boletus edulis)",
+          amaranth: "🌱 Amarante",
+          artichoke: "🌱 Artichaut sauvage",
+          asparagus: "🌱 Asperge sauvage",
+          chant: "🍄 Girolle",
+          black_chant: "🍄 Trompette de la mort",
+          chestnut: "🌰 Châtaigne",
+          chickweed: "🌱 Mouron des oiseaux",
+          dandelion: "🌸 Pissenlit",
+          garlic: "🌱 Ail des ours",
+          lingonb: "🍇 Airelle rouge",
+          masterwort: "🌱 Livèche (ou impératoire)",
+          morel: "🍄 Morille",
+          nettle: "🌱 Ortie",
+          parasol: "🍄 Lépiote élevée",
+          raspberry: "🍇 Framboise sauvage",
+          sorrel: "🌱 Oseille",
+          st_george: "🍄 Mousseron de la Saint-Georges",
+          strawberry: "🍇 Fraise des bois",
+          truffle_b: "🍄 Truffe noire",
+          walnut: "🌰 Noix"
+        }
       }
     };
 
@@ -195,13 +290,13 @@ en: [
   species: "amaranth,chickweed,sorrel,dandelion",
   title: "Amaranth & Wild Greens Patties",
   ingredients: `½ cup amaranth seeds<br>1 cup water<br>1 cup mixed wild greens (chickweed, sorrel, dandelion), finely chopped<br>1 small egg<br>2 tbsp flour or breadcrumbs<br>Salt, pepper, olive oil`,
-  instructions: `Cook amaranth: Simmer amaranth seeds in water until fully absorbed (15–20 min). Let cool slightly.<br>Mix: Combine cooked amaranth with greens, egg, flour, salt, and pepper.<br>Form: Shape small patties with wet hands.<br>Pan-fry: Cook in a pan with oil for 3–4 min on each side until golden.<br>Serve: With yogurt sauce, pesto, or as a veggie burger alternative.`
+  instructions: `Cook amaranth: Simmer amaranth seeds in water until fully absorbed (15–20 min). Let cool slightly.<br>Mix: Combine cooked amaranth with greens, egg, flour, salt, and pepper.<br>Form: Shape small patties with wet hands.<br>Pan-fry: Cook in a pan with oil for 3–4 min on each side until golden.<br>Serve: With yogurt sauce, pesto, or as a veggie burger alternative.`,
 },
 {
   species: "black_chant",
   title: "Black Chanterelle Cream Sauce",
   ingredients: `100 g black chanterelles (fresh or 30 g dried)<br>1 small shallot, finely chopped<br>1 garlic clove, minced<br>1 tbsp butter<br>100 ml white wine (optional)<br>200 ml cream<br>Salt and black pepper to taste<br>Fresh thyme (optional)`,
-  instructions: `Prepare the mushrooms: If using dried chanterelles, soak in warm water for 20 min, then drain and squeeze.<br>Sauté aromatics: Melt butter in a pan, cook shallot and garlic until soft.<br>Add mushrooms: Stir in chanterelles and sauté 5–7 min.<br>Deglaze (optional): Add white wine and reduce by half.<br>Add cream: Pour in cream, simmer 5 min until slightly thickened. Season with salt, pepper, thyme.<br>Serve: Great over fresh pasta, polenta, or roasted potatoes.`
+  instructions: `Prepare the mushrooms: If using dried chanterelles, soak in warm water for 20 min, then drain and squeeze.<br>Sauté aromatics: Melt butter in a pan, cook shallot and garlic until soft.<br>Add mushrooms: Stir in chanterelles and sauté 5–7 min.<br>Deglaze (optional): Add white wine and reduce by half.<br>Add cream: Pour in cream, simmer 5 min until slightly thickened. Season with salt, pepper, thyme.<br>Serve: Great over fresh pasta, polenta, or roasted potatoes.`,
 },
 {
 species: "chant",
@@ -639,7 +734,8 @@ instructions: `Nettoyer les champignons : Brosser délicatement les girolles ou 
     function renderSpeciesOptions() {
       const container = document.getElementById("species-options");
       container.innerHTML = "";
-      for (const [label, value] of Object.entries(speciesOptions)) {
+      for (const [labelKey, value] of Object.entries(speciesOptions)) {
+        const label = translations[window.currentLang].speciesLabels[labelKey] || labelKey;
         if (emojiFilter === "" || label.includes(emojiFilter)) {
           const option = document.createElement("div");
           option.className = "species-option";
@@ -718,6 +814,7 @@ instructions: `Nettoyer les champignons : Brosser délicatement les girolles ou 
 
     getQuerySpecies();
     document.getElementById("dropdown-toggle").innerHTML = translations[window.currentLang].selectIngredients;
+    document.getElementById("foraging-warning").innerHTML = t.foragingWarning;
     renderRecipes(); 
     renderSpeciesOptions();
     filterRecipes();
