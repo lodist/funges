@@ -33,6 +33,6 @@ jobs:
         with:
           commit_message: "Update visitor count"
           file_pattern: "visitors.json"
-          # Add these lines to set the commit author to github-actions[bot]
+
           commit_user_name: "github-actions[bot]"
           commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
