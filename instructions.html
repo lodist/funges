@@ -409,11 +409,11 @@
 
 
   const t = translations[window.currentLang] || translations["en"];
-  document.getElementById("map-1").innerText = t.map1;
+  document.getElementById("map-1").innerHTML = "<strong>" + t.map1 + "</strong>";
   document.getElementById("map-2").innerText = t.map2;
   document.getElementById("map-3").innerText = t.map3;
   document.getElementById("map-4").innerText = t.map4;
-  document.getElementById("map-5").innerText = t.map5;
+  document.getElementById("map-5").innerHTML = "<strong>" + t.map5 + "</strong>";
   document.getElementById("functions-title").innerText = t.functionsTitle;
   document.getElementById("func-2").innerText = t.func2;
   document.getElementById("func-3").innerText = t.func3;
