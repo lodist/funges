@@ -1,0 +1,2597 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#3d7e40" />
+  <link rel="canonical" href="https://www.fung.es/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Fung.es – Find Mushrooms and Wild Edible Plants Near You",
+    "url": "https://fung.es",
+    "description": "Fung.es is a free, real-time foraging map that helps you discover wild edible mushrooms and plants near you using weather, soil, and ecological data.",
+    "author": {
+      "@type": "Person",
+      "name": "Loris Di Stefano"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "Fung.es",
+      "url": "https://fung.es"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Fung.es",
+      "url": "https://fung.es"
+    },
+    "applicationCategory": "NatureApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "EUR"
+    },
+    "screenshot": "https://fung.es/screenshot.png",
+    "softwareVersion": "1.0",
+    "datePublished": "2025-03-06",
+    "dateModified": "2025-03-06"
+  }
+  </script>
+  <!--
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="a5b94f7b-052a-4c20-ad48-7d6609a12279" type="text/javascript"></script> 
+   -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find mushrooms & edible plants near you with our real-time foraging map. Discover wild food hotspots using weather and geospatial data for successful foraging.">
+  <meta name="keywords" content="real-time mushroom map, mushroom foraging Europe, boletus hotspot finder, porcini mushroom map, chanterelle mushroom season map, morel mushroom forecast, wild garlic picking locations, where to find truffles in Europe, best places to forage mushrooms near me, edible wild plants map, seasonal mushroom guide, forest edible plant identification, mushroom and herb hotspot viewer, foraging map Spain France Italy Germany, mushroom season prediction tool, mushroom forecast by weather and soil, boletus edulis growth areas, real-time porcini map, wild asparagus habitat map, truffle hunting locations Europe, mushroom foraging near forests and rivers, edible plant hotspot explorer, wild food geospatial viewer, mushroom growth data map, mushroom habitat analyzer, top foraging zones Europe, find mushrooms by region and species, wild herbs and mushrooms locator, edible forest food discovery tool, spring mushroom growth zones, autumn mushroom abundance forecast, wild edible map with climate data, mushroom foraging using weather and terrain, best mushroom season finder, high-probability mushroom areas, edible mushroom and herb scoring map, species-specific mushroom zone finder, where to forage porcini black chanterelles and morels, real-time wild edibles explorer, mushroom hunting zone based on AI weather analysis, interactive mushroom zone forecast, map for edible plants and mushrooms based on soil temperature and pH, mushroom distribution map based on elevation and slope, forest edible food map overlay, open map for wild food in Europe, mushroom field guide integrated with map, best months to forage mushrooms in Europe, predictive mushroom map with geolocation, foraging near me mushrooms and herbs map, mushroom hunting trip planning map">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Fung.es – Real-Time Map for Mushrooms & Edible Plants in Europe">
+  <meta property="og:description" content="Discover porcini, chanterelles, truffles, wild garlic & more across Europe. Explore real-time foraging hotspots powered by weather, soil & forest data.">
+  <meta property="og:image" content="https://fung.es/icons/logo_1.png">
+  <meta property="og:url" content="https://fung.es">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fung.es – Real-Time Foraging Map for Mushrooms & Wild Plants">
+  <meta name="twitter:description" content="Live maps for porcini, truffles, black chanterelles & herbs. Find edible hotspots using soil, weather & terrain data.">
+  <meta name="twitter:image" content="https://fung.es/icons/logo_1.png">
+  
+  <!-- iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Fung.es">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="https://fung.es/icons/logo_1.png">
+
+  <title>Fung.es – Find Mushrooms and Wild Edible Plants Near You</title>
+  <link rel="icon" type="image/png" href="https://fung.es/icons/logo_1.png">
+
+  <!-- Mapbox CSS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100dvh; /* Use dynamic viewport height where supported */
+      overflow: hidden; /* Disable scrolling */
+    }
+    /* Splash Screen */
+    #splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 252, 239, 0.90); /* Same white halo color */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000; /* Ensure it stays on top */
+        animation: fadeOut 1.5s ease-out forwards;
+    }
+    /* Make the splash screen logo smaller */
+    #splash-screen img {
+        width: 60vw; /* 60% of the viewport width */
+        max-width: 550px; /* Optional: prevent it from getting too big on large screens */
+        height: auto; /* Maintain aspect ratio */
+    }
+    /* Fade out animation */
+    @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; visibility: hidden; }
+    }
+    /* Ensure the map does not overlap the sidebar */
+    #map {
+        height: calc(100dvh - 40px); /* Maintain full height minus footer */
+        width: calc(100% - 80px); /* Subtract sidebar width */
+        position: absolute; /* Keep it positioned correctly */
+        left: 80px; /* Offset by the sidebar width */
+        top: 50px;
+        bottom: 0;
+        z-index: 0;
+    }
+    #button-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: calc(100dvh - 40px); /* Same height as the map */
+      width: 80px;
+      background-color: rgba(255, 252, 239, 0.90);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+      overflow-x: visible;
+    }
+    #footer {
+      height: 40px; /* Footer height */
+      background-color: rgba(255, 252, 239, 1); /* Footer background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 0 0 0 0px;
+    }
+    #footer a {
+      font-size: 12px; /* Smaller text size */
+      margin: 0 10px; /* Reduced spacing between links */
+      text-decoration: none;
+      color: #333; /* Text color */
+      font-weight: normal; /* Make the font weight normal */
+    }
+    #footer a:hover {
+      text-decoration: underline; /* Underline on hover */
+    }
+    #loading-spinner {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000; /* Ensures it's above all other elements */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: none; /* Remove background color */
+      padding: 0; /* Remove padding around the spinner */
+      border-radius: 0; /* No border radius */
+    }
+    #loading-spinner img {
+      width: 260px; /* Adjust spinner size */
+      height: auto;
+    }
+    /* Adjustments for mobile devices */
+    @media (max-width: 768px) {
+      #map {
+        height: calc(100vh - 40px); /* Fallback for mobile browsers that don't support dynamic viewport units */
+        margin-bottom: 35px; /* Add spacing below the map if needed */
+      }
+      
+      #button-bar {
+        height: calc(100vh - 40px); /* Adjust height for mobile */
+      }
+      
+    }
+    
+    .button {
+      margin: 12px 0; /* Adjust spacing between buttons */
+      cursor: pointer;
+    }
+    .logo {
+      margin-bottom: 18px; /* Adjust spacing below the logo */
+    }
+    .button img {
+      width: 40px;
+      height: auto;
+    }
+    .logo img {
+      width: 65px;
+      height: auto;
+    }
+    .mapboxgl-ctrl-top-right {
+      top: 70px; /* Moves the controls down from the top */
+      right: 9px; /* Keeps them px away from the right edge */
+    }
+    /* Image Upload Mask (Popup) */
+    #image-mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    #image-mask-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        width: 80%;
+        max-width: 400px;
+    }
+    #drop-zone {
+        width: 100%;
+        height: 150px;
+        border: 2px dashed #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        font-size: 16px;
+        color: #555;
+    }
+    #prediction-box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 252, 239, 0.90); /* Same color as the halo */
+        padding: 12px;
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        display: none; /* Hidden by default */
+        z-index: 1000;
+        min-width: 50%;
+    }
+    .button-container {
+        position: relative;
+    }
+    #region-dropdown {
+        display: none; /* Hidden by default */
+        position: fixed; /* Ensures it's placed outside the sidebar */
+        background: rgba(255, 252, 239, 0.90); /* Same color as button bar */
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Stronger halo effect */
+        padding: 5px;
+        z-index: 99999; /* Ensures it appears above other elements */
+        min-width: 170px;
+        white-space: nowrap;
+    }
+    /* Style the dropdown buttons */
+    #region-dropdown button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background: none;
+        text-align: left;
+        cursor: pointer;
+        font-size: 14px;
+        color: black; /* Ensure good readability */
+        background: rgba(255, 252, 239, 0.90); /* Matches sidebar color */
+        border-radius: 6px;
+    }
+    /* Hover effect */
+    #region-dropdown button:hover {
+        background: rgba(255, 252, 239, 1); /* Slightly stronger background on hover */
+    }
+    #osm-limit-notice {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .osm-notice-content {
+      background: #fffdf6;
+      border-radius: 12px;
+      padding: 25px 30px;
+      max-width: 500px;
+      font-size: 15px;
+      color: #333;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      position: relative;
+      text-align: center;
+    }
+    
+    #close-osm-notice {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    #species-selector {
+      position: fixed;
+      top: 75px;
+      left: calc(50% + 40px); 
+      transform: translateX(-50%);
+      z-index: 9999;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: none; /* keep none, the container shouldn't have background */
+      font-size: 16px;
+    }
+    #species-display {
+      padding: 6px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: rgba(255, 252, 239, 0.9);
+      cursor: pointer;
+      min-width: 260px;
+      width: fit-content; /* Shrinks/grows to fit content */
+      max-width: 360px;
+      text-align: center;
+      margin: 0 auto; /* Optional: center inside parent */
+      font-size: 16px;
+    }
+    /* Limit dropdown width and match to content */
+    #custom-species-dropdown {
+      display: none; /* Ensure it's hidden by default */
+      position: absolute;
+      top: 100%;
+      left: 50% !important;
+      transform: translateX(-50%);
+      margin-top: 5px;
+      background: rgba(255, 252, 239, 0.95); 
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+      width: max-content !important;
+      min-width: 260px;
+      max-width: 360px;
+      z-index: 9999;
+      font-size: 16px;
+      max-height: 60vh; 
+      overflow-y: auto; 
+    }
+    /* Center filter input cleanly */
+    #custom-species-dropdown .filter-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    #species-filter {
+      font-size: 16px; 
+    }
+    .species-option {
+      font-size: 16px;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .species-option:hover {
+      background: #fff4dd;
+    }
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+    }
+    .modal-content {
+      background: rgba(255, 252, 239, 0.9);
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+    }
+    .close-button {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .patreon-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #ff424d;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      margin: 10px 0 20px;
+    }
+    .patreon-button img {
+      width: 24px;
+      height: auto;
+    }
+    .bmc-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #FFDD00; /* Buy Me a Coffee yellow */
+      color: #000; /* Black text for contrast */
+      font-weight: bold;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      margin: 0 0 20px; /* Some bottom margin */
+      justify-content: center;
+    }
+    .bmc-button img {
+      width: 24px;
+      height: auto;
+    }
+    .support-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .support-buttons a {
+      margin: 6px 0; /* Add spacing between buttons */
+    }
+    /* QR Row for Desktop */
+    .qr-row {
+      display: flex;
+      justify-content: space-around;
+      gap: 10px;
+    }
+    .qr-item {
+      text-align: center;
+    }
+    .qr-item img {
+      width: 100px;
+      height: auto;
+      border-radius: 8px;
+    }
+    .crypto-item {
+      margin-bottom: 15px;
+    }
+    .crypto-item button {
+      margin: 4px;
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+    .emoji-filter {
+      font-size: 20px;
+      padding: 4px 8px;
+      cursor: pointer;
+      border-radius: 6px;
+      margin: 0 4px;
+      transition: background 0.2s ease;
+    }
+    .emoji-filter:hover {
+      background: #ffe;
+    }
+
+    /* Mobile only */
+    @media (max-width: 768px) {
+      #qr-section {
+        display: none;
+      }
+    }
+    
+    /* Desktop only */
+    @media (min-width: 769px) {
+      #crypto-section {
+        display: none;
+      }
+    }
+        
+    @media (max-width: 768px) {
+      body {
+        font-size: 14px;
+      }
+      .species-option {
+        font-size: 11px;
+      }
+    
+      #custom-species-dropdown {
+        font-size: 11px;
+      }
+    
+      #species-filter {
+        font-size: 11px; /* optional: smaller filter input */
+      }
+      .patreon-button {
+        font-size: 13px;
+        padding: 8px 12px;
+      }
+      #support-modal h2 {
+        font-size: 16px;
+      }
+      .modal-content p,
+      .qr-item p,
+      .crypto-item p {
+        font-size: 12px;
+      }
+      .crypto-item button {
+        font-size: 13px;
+        padding: 5px 8px;
+      }
+      #prediction-box {
+        font-size: 13px;
+      }
+      #footer a {
+        font-size: 11px;
+      }
+      .modal-content {
+      width: 85%;
+      max-width: 320px;
+      padding: 15px;
+      }
+      #topbar a {
+        font-size: 12px !important;
+        padding: 4px 2px !important;      
+      }
+      #topbar {
+        gap: 1rem !important;
+      }
+      #spontaneous-message {
+        font-size: 11px !important;
+        padding: 8px 12px;
+        left: calc(80px + 6px);
+        right: 6px;
+      }
+    }
+    
+    #topbar {
+      position: fixed;
+      top: 0;
+      left: 80px; /* adjust to avoid sidebar overlap */
+      right: 0;
+      height: 50px;
+      background-color: rgba(255, 252, 239, 0.95); /* match your design */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
+      z-index: 9999;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    #topbar a {
+      color: #333;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 8px 30px;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }    
+    #topbar a:hover {
+      background-color: #f0eada;
+    }
+    
+    #spontaneous-message {
+      display: none;
+      position: fixed;
+      bottom: 45px;
+      left: calc(80px + ((100% - 80px) / 2)); /* Center between sidebar and right edge */
+      transform: translateX(-50%);
+      background: #fff4dd;
+      padding: 10px 16px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      font-size: 14px;
+      z-index: 99999;
+      color: #333;
+      font-weight: bold;
+      text-align: center;
+      width: max-content;
+      max-width: calc(100% - 130px); /* Avoid overflow */
+    }
+
+    #spontaneous-message.show {
+      opacity: 1;
+    }
+
+    #language-dropup {
+      position: fixed;
+      bottom: 55px;
+      right: 20px;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      z-index: 9998;
+    }
+    
+    #selected-language,
+    #language-options div {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      line-height: 38px;
+      text-align: center;
+      font-size: 20px;
+      cursor: pointer;
+      margin-bottom: 6px;
+      user-select: none;
+    }
+    
+    #selected-language {
+      background: rgba(12, 12, 12, 0.3);
+      color: white;
+      font-weight: bold;
+    }
+    
+    #language-options {
+      display: none;
+      flex-direction: column;
+    }
+    
+    #language-options div {
+      background: rgba(255, 252, 239, 0.3);
+    }
+
+
+    
+  </style>
+</head>
+  <body>
+  
+  <!-- Top Navigation Bar -->
+  <div id="topbar">
+  <a href="instructions.html" id="topbar-instructions"></a>
+  <a href="species.html" id="topbar-species"></a>
+  <a href="recipes.html" id="topbar-recipes"></a>
+  </div>
+
+  <div id="species-selector">
+    <div id="species-display" onclick="toggleSpeciesDropdown()">
+      <span id="current-species-label"></span> ▼
+    </div>
+    <div id="custom-species-dropdown">
+      <div class="filter-wrapper">
+        <input type="text" id="species-filter" placeholder="🔍 ..." 
+               oninput="filterSpeciesOptions()">
+      </div>
+      <div style="text-align: center; margin-bottom: 8px;">
+        <span class="emoji-filter" onclick="setEmojiFilter('🍄')">🍄</span>
+        <span class="emoji-filter" onclick="setEmojiFilter('🌱')">🌱</span>
+        <span class="emoji-filter" onclick="setEmojiFilter('🌰')">🌰</span>
+        <span class="emoji-filter" onclick="setEmojiFilter('🍇')">🍇</span>
+        <span class="emoji-filter" onclick="setEmojiFilter('🌸')">🌸</span>
+        <span class="emoji-filter" onclick="setEmojiFilter('')">✖️</span>
+      </div>
+      <div id="custom-species-list"></div>
+    </div>
+  </div>
+
+  <div id="map"></div>
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+      <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/logo_funges.webp" alt="Funges Logo - Natural Resources Map" loading="lazy">
+  </div>
+    
+  <!-- Button Bar -->
+  <div id="button-bar">
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/logo_1.webp" alt="Logo" loading="lazy">
+    </div>
+    <!-- Picture Button -->
+    <div class="button" onclick="openImageMask()">
+        <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/id_mushroom.webp" alt="Mushroom ID Button" loading="lazy">
+    </div>
+
+    <div class="button-container">
+        <div class="button" id="region-button" onclick="toggleRegionDropdown(event)">
+            <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/region_1.webp" alt="Region Button" loading="lazy">
+        </div>
+    </div>
+    
+    <!-- Move dropdown outside of #button-bar -->
+    <div id="region-dropdown" class="dropdown-menu">
+        <button onclick="loadRegion('WE_north')">West Europe North</button>
+        <button onclick="loadRegion('WE_south')">West Europe South</button>
+        <button onclick="loadRegion('NE_north')">North Europe North</button>
+        <button onclick="loadRegion('NE_south')">North Europe South</button>
+        <button onclick="loadRegion('EE_north')">East Europe North</button>
+        <button onclick="loadRegion('EE_south')">East Europe South</button>
+    </div>    
+
+    <div class="button">
+      <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/cooking_1.webp" alt="Nearby Edibles" loading="lazy" onclick="toggleNearbyModal()">
+    </div>
+    <div class="button" onclick="locateUser()">
+      <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/location_1.webp" alt="Locate Me Button" loading="lazy">
+    </div>
+    <div class="button" onclick="toggleDarkLayers()">
+      <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/darkmode_1.webp" alt="Sun/Moon Button" loading="lazy">
+    </div>
+    <div class="button" onclick="toggleNumbersLayers()">
+      <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/numbers_1.webp" alt="Numbers Button" loading="lazy">
+    </div>
+
+    <!-- Image Upload Mask (Popup) -->
+    <div id="image-mask">
+        <div id="image-mask-content">
+            <p id="upload-drag-text"></p>
+            <!-- Hidden File Input for Manual Upload -->
+            <input type="file" id="fileInput" accept="image/*" capture="environment" onchange="handleImage(event)" style="display: none;">
+            <!-- Button to trigger File Selection -->
+            <button onclick="document.getElementById('fileInput').click()" style="font-size: 24px;">📷</button>
+            <!-- Drop Zone -->
+            <div id="drop-zone"></div>
+            <!-- Result Display -->
+            <div id="result" style="margin-top: 15px; font-size: 12px; font-weight: bold;"></div>
+        </div>
+    </div>
+    
+    <div class="button">
+      <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/support_1.webp" alt="Support Button" loading="lazy" onclick="toggleSupportModal()">
+    </div>
+    
+    <div class="button">
+      <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/gmaps_1.webp" alt="Google Maps Button" loading="lazy">
+    </div>
+  </div>
+  
+  <div id="language-dropup">
+    <div id="language-options"></div>
+    <div id="selected-language"></div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer">
+    <a href="impressum.html" id="footer-impressum"></a>
+    <a href="privacy-policy.html" id="footer-privacy"></a>
+    <a href="termsuse.html" id="footer-terms"></a>
+  </div>
+
+    <!-- Loading Spinner -->
+  <div id="loading-spinner" style="display: none;">
+    <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/loading_1.gif" alt="Loading" loading="lazy">
+  </div>
+  
+  <!-- Prediction Result Box -->
+  <div id="prediction-box">
+    <p id="prediction-text"></p>
+  </div>
+  
+  <div id="nearby-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <button class="close-button" onclick="toggleNearbyModal()">×</button>
+      <h3 id="nearby-title"></h3>
+      <ul id="nearby-edibles-list" style="list-style: none; padding: 0;"></ul>
+    </div>
+  </div>
+
+  <!-- OSM Limit Notice -->
+  <div id="osm-limit-notice" style="display: none;">
+    <div class="osm-notice-content">
+      <button id="close-osm-notice">✖</button>
+      <p id="osm-line-1"></p>
+      <p id="osm-line-2"></p>
+      <div style="margin: 15px 0;">
+        <a href="https://www.patreon.com/Funges" target="_blank">
+          <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/support_1.webp" alt="Support Button" style="width: 50px; height: auto; cursor: pointer;">
+        </a>
+      </div>
+      <p id="osm-line-3"></p>
+    </div>
+  </div>
+
+  
+  <div id="spontaneous-message"></div>
+
+  <!-- Class Names -->
+  <script src="https://pub-92765923660e431daff3170fbef6471d.r2.dev/class_names.js"></script>
+
+  <!-- TensorFlow.js & TFLite -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite"></script>
+  
+  
+  <script>
+    let layersVisible = false;
+    let flagpoleMarker = null;
+    let geoJsonLayer = null; 
+    let cachedRegions = {}; 
+    let firstLoad = true; 
+    let userMarker = null;
+    let cachedCoordinates = null; 
+    let cacheTimestamp = null; 
+    let selectedSpecies = localStorage.getItem("selectedSpecies") || "mushroom";
+    let emojiFilter = "";
+    let darkLayersVisible = false;
+    let isDragging = false;
+    let isZooming = false;
+    let isLongPressActive = false;
+    let activeCoordinates = null;
+    let longPressTimeout;
+    let speciesOptions = {};
+    let speciesDisplayMap = {};
+  </script>
+  
+  <script>
+  
+  const spontaneousSpecies = ["amaranth", "chickweed", "dandelion", "nettle"];
+  
+  function showSpontaneousMessageIfNeeded(code) {
+    const msg = document.getElementById('spontaneous-message');
+    if (spontaneousSpecies.includes(code)) {
+      msg.classList.add('show');
+      msg.style.display = 'block';
+      clearTimeout(msg.dataset.timeout);
+      msg.dataset.timeout = setTimeout(() => {
+        msg.classList.remove('show');
+        setTimeout(() => { msg.style.display = 'none'; }, 400); // wait for fade-out
+      }, 7000);
+    }
+  }
+  </script>
+    
+  <!-- Load script.js AFTER TensorFlow -->
+  <!-- <script src="script.js"></script> -->
+ 
+  <script>
+    
+  if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/service-worker.js")
+          .then(() => console.log("✅ Service Worker Registered"))
+          .catch((error) => console.error("❌ Service Worker Registration Failed", error));
+  }
+  
+  
+  // ✅ Set the WASM path before using TFLite
+  tflite.setWasmPath("https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite/dist/");
+  
+  console.log("Checking TFLite WASM Features:", tflite.getWasmFeatures());
+  
+  let models = [];
+  let modelsLoaded = false;
+  const modelUrls = [
+      "https://pub-92765923660e431daff3170fbef6471d.r2.dev/mushroom_classification_model_0.tflite",
+      "https://pub-92765923660e431daff3170fbef6471d.r2.dev/mushroom_classification_model_1.tflite",
+      "https://pub-92765923660e431daff3170fbef6471d.r2.dev/mushroom_classification_model_2.tflite",
+      "https://pub-92765923660e431daff3170fbef6471d.r2.dev/mushroom_classification_model_3.tflite"
+  ];
+  
+  // ✅ Ensure TFLite WASM is initialized before loading models
+  (async function() {
+      console.log("🔍 Checking cache before loading TFLite model...");
+      try {
+          let response = await fetch(modelUrls[0]); // Uses Service Worker cache if available
+          if (!response.ok) {
+              throw new Error(`❌ Failed to fetch model: ${modelUrls[0]}`);
+          }
+          let model = await tflite.loadTFLiteModel(modelUrls[0]);
+          console.log("✅ Model loaded successfully from cache or R2!", model);
+      } catch (error) {
+          console.error("❌ Error loading model:", error);
+      }
+  })();
+  
+  
+  
+  // ========== OPEN IMAGE MASK ==========
+  function openImageMask() {
+      document.getElementById('image-mask').style.display = 'flex';
+  
+      // ✅ Reset file input field when opening the mask
+      document.getElementById('fileInput').value = "";
+  }
+  
+  // Close mask if user clicks outside
+  document.getElementById('image-mask').addEventListener('click', function (event) {
+      if (event.target.id === 'image-mask') {
+          document.getElementById('image-mask').style.display = 'none';
+      }
+  });
+  
+  // ========== HANDLE IMAGE UPLOAD ==========
+  function handleImage(event) {
+      const fileInput = event.target;
+      
+      if (!fileInput.files || fileInput.files.length === 0) {
+          console.error("❌ No file selected.");
+          return;
+      }
+  
+      const file = fileInput.files[0];
+  
+      // ✅ Reset input field so same file can be selected again
+      fileInput.value = "";
+  
+      processImage(file);
+  }
+  
+  
+  // ========== HANDLE DRAG & DROP ==========
+  const dropZone = document.getElementById('drop-zone');
+  
+  dropZone.addEventListener('dragover', (event) => {
+      event.preventDefault();
+      dropZone.style.border = '2px dashed #007BFF';
+  });
+  
+  dropZone.addEventListener('dragleave', () => {
+      dropZone.style.border = '2px dashed #ccc';
+  });
+  
+  dropZone.addEventListener('drop', (event) => {
+      event.preventDefault();
+      dropZone.style.border = '2px dashed #ccc';
+      const file = event.dataTransfer.files[0];
+      processImage(file);
+  });
+  
+  // ========== PROCESS IMAGE ==========
+  function processImage(file) {
+      if (!file) {
+          console.error("❌ No file selected.");
+          return;
+      }
+  
+      console.log("📂 File selected:", file.name);
+      document.getElementById('image-mask').style.display = 'none';
+  
+      const reader = new FileReader();
+      
+      reader.onload = function (e) {
+          console.log("📸 Image loaded into memory!");
+  
+          let img = new Image();
+          img.src = e.target.result;
+  
+          img.onload = function () {
+              console.log("✅ Image fully loaded:", img);
+              predict(img);
+          };
+  
+          img.onerror = function () {
+              console.error("❌ Error loading image!");
+          };
+      };
+  
+      reader.onerror = function () {
+          console.error("❌ FileReader failed to read the file!");
+      };
+  
+      reader.readAsDataURL(file);
+  }
+  
+  
+  // ========== MODEL LOADING ==========
+  
+  async function ensureTFLiteLoaded() {
+      return new Promise((resolve, reject) => {
+          let checkInterval = setInterval(() => {
+              if (tflite && tflite.loadTFLiteModel) {
+                  clearInterval(checkInterval);
+                  resolve();
+              }
+          }, 200);
+          setTimeout(() => {
+              clearInterval(checkInterval);
+              reject("❌ TFLite failed to load in time.");
+          }, 5000);
+      });
+  }
+  
+  async function loadModels() {
+      console.log("📢 Starting model loading process...");
+      try {
+          await ensureTFLiteLoaded();
+      } catch (error) {
+          console.error(error);
+          alert(error);
+          return;
+      }
+  
+      try {
+          const cache = await caches.open("model-cache-v1");
+          for (let url of modelUrls) {
+              console.log(`🔍 Checking cache for model: ${url}`);
+  
+              let cachedResponse = await cache.match(url);
+              if (cachedResponse) {
+                  console.log(`✅ Model found in cache: ${url}`);
+                  let model = await tflite.loadTFLiteModel(url); // Load from cache
+                  models.push(model);
+                  continue; // Skip fetching from R2
+              }
+  
+              console.log(`📥 Fetching model from R2: ${url}`);
+              let response = await fetch(url);
+              if (!response.ok) {
+                  throw new Error(`❌ Failed to fetch model: ${url}`);
+              }
+  
+              let model = await tflite.loadTFLiteModel(url);
+              console.log(`✅ Model loaded: ${url}`, model);
+              models.push(model);
+          }
+  
+          modelsLoaded = true;
+          console.log("✅ All models loaded successfully!");
+      } catch (error) {
+          console.error("❌ Error loading models:", error);
+          alert("❌ Failed to load models. Check CORS, network, and file integrity.");
+      }
+  }
+  
+  
+  loadModels();
+  
+  // ========== IMAGE PREPROCESSING ==========
+  function preprocessImage(image) {
+      return tf.browser.fromPixels(image)
+          .resizeNearestNeighbor([224, 224])
+          .toFloat()
+          .div(tf.scalar(255.0)) 
+          .expandDims();
+  }
+  
+  // ========== PREDICTION ==========
+  async function predict(image) {
+      console.log("🚀 Starting prediction...");
+  
+      if (!modelsLoaded) {
+          console.error("❌ Models are NOT loaded.");
+          alert("⏳ Please wait... Models are still loading.");
+          return;
+      }
+  
+      if (Object.keys(CLASS_NAMES).length === 0) {
+          console.error("❌ Class names are NOT loaded.");
+          alert("⏳ Please wait... Class names are still loading.");
+          return;
+      }
+  
+      console.log("✅ Models & Class Names Loaded!");
+      
+      try {
+          console.log("🖼 Preprocessing image...");
+          let tensor = preprocessImage(image);
+          console.log("📊 Tensor shape:", tensor.shape);
+  
+          let allPredictions = [];
+  
+          for (let i = 0; i < models.length; i++) {
+              console.log(`🔍 Running inference on model ${i + 1}...`);
+  
+              let outputTensor = await models[i].predict(tensor);
+              console.log(`📤 Model ${i + 1} output:`, outputTensor);
+  
+              let predictions = await outputTensor.data();
+              console.log(`📈 Model ${i + 1} predictions:`, predictions);
+  
+              // ✅ Store predictions with their model index
+              predictions.forEach((prob, classIndex) => {
+                  allPredictions.push([classIndex, prob, i]); 
+              });
+              
+              // ✅ Ensure all predictions include the model index
+              console.log("📊 Raw predictions with model indices:", allPredictions);
+  
+          }
+  
+          console.log("📊 Combining predictions...");
+  
+          // ✅ Sort predictions by probability
+          let sortedPredictions = allPredictions.sort((a, b) => b[1] - a[1]);
+  
+          console.log("📊 Final sorted predictions:", sortedPredictions);
+  
+          displayResults(sortedPredictions);
+  
+      } catch (error) {
+          console.error("❌ Prediction Error:", error);
+          alert("❌ Something went wrong during prediction.");
+      }
+  }
+  
+  
+  // ========== DISPLAY RESULTS ==========
+  function displayResults(predictions) {
+      console.log("📢 Displaying results...");
+      console.log("📊 Sorted Predictions:", predictions);
+  
+      let predictionBox = document.getElementById('prediction-box');
+      let predictionText = document.getElementById('prediction-text');
+  
+      if (!predictionBox || !predictionText) {
+          console.error("❌ Error: Prediction box elements not found!");
+          return;
+      }
+  
+      predictionBox.style.display = "block"; // Show the box
+  
+      if (predictions.length === 0) {
+          console.error("❌ No predictions to display!");
+          const tError = translations[window.currentLang]?.error || translations["en"].error;
+          predictionText.innerText = tError.display;
+          return;
+      }
+  
+      // ✅ Ensure at least 3 predictions exist
+      let topPredictions = predictions.slice(0, 3);
+      const t = translations[window.currentLang]?.resultbox || translations["en"].resultbox;
+      let resultHTML = `<strong style="color: #aa1100 !important;">${t.warning}</strong><br><br>
+                        <strong>${t.top}</strong><br><br>`;
+
+  
+      try {
+          topPredictions.forEach((pred, rank) => {
+              let classIndex = parseInt(pred[0]);
+              let modelIndex = parseInt(pred[2]);
+              let probability = (pred[1] * 100).toFixed(2); // Convert to %
+  
+              // ✅ Check if model and class exist
+              if (!CLASS_NAMES[modelIndex] || !CLASS_NAMES[modelIndex][classIndex]) {
+                  console.error(`❌ ERROR: CLASS_NAMES[${modelIndex}][${classIndex}] does not exist!`, { modelIndex, classIndex });
+                  const tError = translations[window.currentLang]?.error || translations["en"].error;
+                  predictionText.innerText = tError.display;
+                  return;
+              }
+  
+              let className = CLASS_NAMES[modelIndex][classIndex];
+              let searchURL = `https://duckduckgo.com/?q=${encodeURIComponent(className)}`;
+  
+              const t = translations[window.currentLang] || translations["en"];
+              // ✅ Add prediction with DuckDuckGo search link
+              resultHTML += `${rank + 1}. <strong>${className}</strong> (${probability}%)<br>`;
+              resultHTML += `<a href="${searchURL}" target="_blank" style="color: #aa1100; text-decoration: underline;">${t.search.link}</a><br><br>`;
+  
+              console.log(`📌 Rank ${rank + 1}: ${className} (${probability}%)`);
+          });
+  
+          console.log("📢 Final Prediction Output:\n" + resultHTML);
+          
+          // ✅ Display predictions in UI
+          predictionText.innerHTML = resultHTML; // Use `innerHTML` to allow links
+  
+      } catch (error) {
+          console.error("❌ ERROR in displayResults:", error);
+          const tError = translations[window.currentLang]?.error || translations["en"].error;
+          predictionText.innerText = tError.display;
+      }
+  }
+  
+  // ========== NEARBY EDIBLES MODAL ==========
+  
+  function toggleNearbyModal() {
+    console.log("🟢 toggleNearbyModal() was called");
+  
+    const modal = document.getElementById('nearby-modal');
+    const listContainer = document.getElementById('nearby-edibles-list');
+  
+    // Close modal if open
+    if (modal.style.display !== 'none') {
+      console.log("🧪 Closing nearby modal.");
+      modal.style.display = 'none';
+      return;
+    }
+  
+    document.getElementById('loading-spinner').style.display = 'flex';
+    console.log("📡 Requesting location...");
+  
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const coords = [position.coords.longitude, position.coords.latitude];
+        console.log("📍 Location acquired:", coords);
+  
+        map.flyTo({
+          center: coords,
+          zoom: 8,
+          speed: 1.2,
+          essential: true
+        });
+  
+        // Wait for map to fully finish rendering
+        map.once('idle', () => {
+          console.log("🗺️ Map idle. Starting polygon scan...");
+  
+          const center = map.getCenter();
+          const point = map.project(center);
+          const box = [
+            [point.x - 250, point.y - 250],
+            [point.x + 250, point.y + 250]
+          ];
+  
+          const features = map.queryRenderedFeatures(box);
+  
+          const foundItems = {};
+          features.forEach((f, i) => {
+            if (!f.properties) return;
+            const scores = Object.entries(f.properties)
+              .filter(([k, v]) => k.endsWith('_score') && typeof v === 'number' && v > 6); // limit for finding species. CHange here
+  
+            if (scores.length) {
+              console.log(`🍄 Feature ${i + 1} with scores:`, scores);
+              scores.forEach(([key, value]) => {
+                  
+                const speciesCode = key.replace('_score', '');
+                const edibleName = speciesDisplayMap[speciesCode] || speciesCode.replace(/_/g, ' ');
+  
+                if (!foundItems[edibleName] || value > foundItems[edibleName]) {
+                  foundItems[edibleName] = value;
+                }
+              });
+            }
+          });
+  
+          document.getElementById('loading-spinner').style.display = 'none';
+          listContainer.innerHTML = '';
+  
+          const sortedItems = Object.entries(foundItems).sort((a, b) => b[1] - a[1]);
+          const intro = document.createElement("p");
+          intro.style.marginBottom = "12px";
+  
+          const t = translations[window.currentLang]?.nearby || translations["en"].nearby;
+          if (sortedItems.length === 0) {
+            intro.innerHTML = t.none;
+            listContainer.appendChild(intro);
+          } else {
+            intro.innerHTML = t.some;
+            listContainer.appendChild(intro);
+          
+            sortedItems.forEach(([item, score]) => {
+              const li = document.createElement("li");
+              li.innerHTML = `<strong>${speciesDisplayMap[item] || item}</strong>`;
+              listContainer.appendChild(li);
+            });
+          
+            // Build URL with selected species as query string
+            const selectedKeys = sortedItems.map(([item]) => Object.entries(speciesDisplayMap).find(([code, name]) => name === item)?.[0] || item);
+            const url = new URL("https://fung.es/recipes.html");
+            url.searchParams.set("ingredients", selectedKeys.join(","));
+            url.searchParams.set("lang", window.currentLang);
+
+              
+            // 👉 Add "Go to recipes" link
+            const recipeLink = document.createElement("a");
+            recipeLink.innerText = t.recipes;
+            recipeLink.style.display = "inline-block";
+            recipeLink.style.marginTop = "17px";
+            recipeLink.style.textDecoration = "underline";
+            recipeLink.style.color = "#01796F";
+            recipeLink.style.fontWeight = "bold"; // Make it bold
+              
+            recipeLink.href = url.toString();
+            listContainer.appendChild(recipeLink);
+          }
+  
+          console.log("✅ Modal ready with:", sortedItems);
+          modal.style.display = 'flex';
+        });
+      },
+      (err) => {
+        document.getElementById('loading-spinner').style.display = 'none';
+        console.error("❌ Location error:", err);
+        alert('📍 Unable to retrieve your location.');
+      },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+    );
+  }
+  
+  
+  // Allow closing the Nearby Edibles modal when clicking outside
+  document.addEventListener('DOMContentLoaded', () => {
+    const predictionBox = document.getElementById('prediction-box');
+    document.addEventListener('click', (event) => {
+      if (predictionBox && predictionBox.style.display === "block" && !predictionBox.contains(event.target)) {
+        predictionBox.style.display = "none";
+      }
+    });
+  
+    const nearbyModal = document.getElementById('nearby-modal');
+    if (nearbyModal) {
+      nearbyModal.addEventListener('click', (e) => {
+        if (e.target === nearbyModal) {
+          toggleNearbyModal();
+        }
+      });
+    }
+  });
+  </script>
+
+            
+  <!-- Support Modal -->
+  <div id="support-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <button class="close-button" onclick="toggleSupportModal()">✖</button>
+      <h2 id="support-title"></h2>
+  
+      <!-- Patreon and Buy Me a Coffee Buttons -->
+      <div class="support-buttons">
+        <!-- Patreon Button -->
+        <a href="https://www.patreon.com/Funges" target="_blank" class="patreon-button" aria-label="Support Funges on Patreon">
+          <img src="https://raw.githubusercontent.com/lodist/funges/main/QR/patreon.webp" alt="Support on Patreon" loading="lazy">
+          <span id="support-patreon"></span>
+        </a>
+  
+        <!-- Buy Me a Coffee Button -->
+        <a href="https://buymeacoffee.com/lorisdisteq" target="_blank" class="bmc-button" aria-label="Support Funges on Buy Me a Coffee">
+          <img src="https://raw.githubusercontent.com/lodist/funges/main/QR/buymeacoffee.webp" alt="Buy Me a Coffee" loading="lazy">
+          <span id="support-coffee"></span>
+        </a>
+      </div>
+  
+      <!-- Donate Heading -->
+      <p id="support-donate" style="margin-top: 10px; font-weight: bold;"></p>
+      
+      <!-- Desktop QR Section -->
+      <div class="qr-row" id="qr-section">
+        <div class="qr-item">
+          <img src="https://raw.githubusercontent.com/lodist/funges/main/QR/bitcoin_qr.webp" alt="Bitcoin QR" loading="lazy">
+          <p>BTC</p>
+        </div>
+        <div class="qr-item">
+          <img src="https://raw.githubusercontent.com/lodist/funges/main/QR/iota_qr.webp" alt="IOTA QR" loading="lazy">
+          <p>IOTA</p>
+        </div>
+        <div class="qr-item">
+          <img src="https://raw.githubusercontent.com/lodist/funges/main/QR/ethereum_qr.webp" alt="Ethereum QR" loading="lazy">
+          <p>ETH</p>
+        </div>
+      </div>
+  
+      <!-- Mobile Text Section -->
+      <div class="mobile-crypto" id="crypto-section">
+        <div class="crypto-item">
+          <p><strong>BTC:</strong> bc1q0j9yf0w4a5zp45u4lsk0xjq6gfefxcuhsvy2p0</p>
+          <button onclick="copyToClipboard('bc1q0j9yf0w4a5zp45u4lsk0xjq6gfefxcuhsvy2p0')">📋</button>
+          <button onclick="openQR('bitcoin_qr.webp')">QR</button>
+        </div>
+        <div class="crypto-item">
+          <p><strong>IOTA:</strong> iota1qp24tfmlscaj9u34k64ma2hh7<br>lhgj93srmtsysqmh6a85lm4dn02vdg6t67</p>
+          <button onclick="copyToClipboard('iota1qp24tfmlscaj9u34k64ma2hh7lhgj93srmtsysqmh6a85lm4dn02vdg6t67')">📋</button>
+          <button onclick="openQR('iota_qr.webp')">QR</button>
+        </div>
+        <div class="crypto-item">
+          <p><strong>ETH:</strong> 0xa8134D63F689b08ab227EE935bB43ba5526f9D4C</p>
+          <button onclick="copyToClipboard('0xa8134D63F689b08ab227EE935bB43ba5526f9D4C')">📋</button>
+          <button onclick="openQR('ethereum_qr.webp')">QR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- START of hidden SEO content -->
+  <div style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+  <h1>Fung.es – Real-Time Map for Wild Mushrooms and Edible Plants</h1>
+  <p>Fung.es is an interactive foraging map to find wild mushrooms and edible plants near you. Discover morels, porcini (Boletus edulis), chanterelles, black trumpets, truffles, parasol mushrooms, and seasonal plants like wild garlic, nettle, dandelion, amaranth, and sorrel. The map uses live weather, soil, terrain, and land cover data to predict hotspots across Europe.</p>
+  <h2>How to Use the Foraging Map</h2>
+  <p>1. Choose your species (mushrooms or edible plants)<br>2. Select a region (Italy, Spain, France, Germany, etc.)<br>3. View real-time growth predictions and explore high-probability areas</p>
+  <h2>Best Places for Foraging</h2>
+  <p>Explore edible species in top foraging regions like the Black Forest, Alps, Pyrenees, Dolomites, Apennines, Scandinavian woodlands, and Mediterranean oak forests. Our prediction layer highlights peak locations based on weather and ecological factors.</p>
+  <h2>Best Season to Find Mushrooms</h2>
+  <p>Spring and fall are ideal seasons to find mushrooms in Europe, especially after rainfall. Fung.es uses forecast models and environmental indicators to tell you the best time to go mushroom hunting.</p>
+  <h2>Frequently Asked Questions</h2>
+  <p><strong>Where can I find morels or porcini near me?</strong><br>Use Fung.es to see active zones near your location using environmental data. Updated daily.</p>
+  <p><strong>Can I identify mushrooms with a photo?</strong><br>Yes. Use the built-in identification tool or explore the <a href="/species.html">full list of edible species</a>.</p>
+  <p><strong>Does the map work everywhere?</strong><br>Yes. Fung.es covers forests and wild areas near cities like Vienna, Geneva, Barcelona, Berlin, Munich, Ljubljana, and beyond.</p>
+  <p><strong>Which wild foods can I forage?</strong><br>Popular species include porcini, morels, black trumpets, chanterelles, truffles, parasol mushrooms, wild garlic, stinging nettle, sorrel, dandelion, and wild amaranth.</p>
+  <p>Start foraging smarter with our <a href="/instructions.html">how-to guide</a> or try seasonal <a href="/recipes.html">recipes using foraged ingredients</a>.</p>
+  </div>
+  <!-- END of hidden SEO content -->
+
+  <!-- Mapbox JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <script>
+    
+    // Mapbox Access Token
+    function getMapboxToken() {
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://raw.githubusercontent.com/lodist/funges/main/visitors.json', false); // `false` makes it synchronous
+        request.send(null);
+
+        if (request.status === 200) {
+            try {
+                var response = JSON.parse(request.responseText);
+                var visitorCount = response.count || 0;
+
+                console.log("Visitor count:", visitorCount);
+                console.log(`Successfully fetched visitors.json`);
+
+                // Define tokens based on visitor count
+                if (visitorCount > 45000) {
+                    return "pk.Nothing";
+                } else {
+                    return "pk.eyJ1IjoibG9kaXN0IiwiYSI6ImNtM3g3dTVuaTE2dW8yaXM1eDE1dXVmZG4ifQ.xrGoky5Mzc6gwO5z8n6CoQ";  // pk.eyJ1IjoibG9kaXN0IiwiYSI6ImNtM3g3dTVuaTE2dW8yaXM1eDE1dXVmZG4ifQ.xrGoky5Mzc6gwO5z8n6CoQ
+                }
+            } catch (error) {
+                console.error("Error parsing visitors.json:", error);
+                return "pk.eyJ1IjoibG9kaXN0IiwiYSI6ImNtM3g3dTVuaTE2dW8yaXM1eDE1dXVmZG4ifQ.xrGoky5Mzc6gwO5z8n6CoQ"; // Fallback in case of JSON error
+            }
+        } else {
+            console.error("Failed to load visitors.json, using default token.");
+            return "pk.eyJ1IjoibG9kaXN0IiwiYSI6ImNtM3g3dTVuaTE2dW8yaXM1eDE1dXVmZG4ifQ.xrGoky5Mzc6gwO5z8n6CoQ"; // Fallback if request fails
+        }
+    }
+
+    // Set the Mapbox token
+    mapboxgl.accessToken = getMapboxToken();
+
+    
+    function initializeMapbox() {
+        try {
+            const map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/lodist/clzo3ivsk007d01piaoah1dfy?optimize=true',
+                center: [7.3359, 47.7508], 
+                zoom: 5,
+                maxZoom: 12,
+                minZoom: 5,
+                collectResourceTiming: false,
+                touchZoomRotate: true,
+                trackResize: false,
+                attributionControl: false,
+                localIdeographFontFamily: 'sans-serif',
+                performanceMetricsCollection: false
+            });
+    
+            // Hide the region button when Mapbox is active
+            document.getElementById("region-button").style.display = "none";
+    
+            // Handle WebGL failure
+            map.on('error', () => {
+                console.error('Mapbox failed to load, switching to OSM.');
+                switchToOSM();
+            });
+    
+            return map;
+        } catch (error) {
+            console.error('Error loading Mapbox:', error);
+            switchToOSM();
+        }
+    }
+    let map = initializeMapbox();
+    map.touchZoomRotate.disableRotation();
+
+    function switchToOSM() {
+        document.getElementById('map').innerHTML = '';
+        // Show the region button when switching to OSM
+        document.getElementById("region-button").style.display = "block";
+        // Hide unnecessary buttons
+        document.querySelector('.button img[alt="Numbers Button"]').parentElement.style.display = 'none';
+        document.querySelector('.button img[alt="Sun/Moon Button"]').parentElement.style.display = 'none';
+        document.querySelector('.button img[alt="Locate Me Button"]').parentElement.style.display = 'none';
+    
+        // Load Leaflet dynamically
+        const leafletCSS = document.createElement('link');
+        leafletCSS.rel = 'stylesheet';
+        leafletCSS.href = 'https://unpkg.com/leaflet/dist/leaflet.css';
+        document.head.appendChild(leafletCSS);
+    
+        const leafletJS = document.createElement('script');
+        leafletJS.src = 'https://unpkg.com/leaflet/dist/leaflet.js';
+        leafletJS.onload = function () {
+            console.log('Leaflet loaded, initializing OSM map.');
+    
+            osmMap = L.map('map', {
+                center: [47.7508, 7.3359], 
+                zoom: 5,
+                minZoom: 5,
+                maxZoom: 20
+            });
+          
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+              attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+            }).addTo(osmMap);
+
+            setTimeout(() => {
+                osmMap.invalidateSize();
+            }, 500);
+    
+            // Load the last selected region **only after Leaflet is ready**
+            setTimeout(() => {
+                const lastRegion = localStorage.getItem('selectedRegion') || 'WE_south';
+                loadRegion(lastRegion);
+            }, 1000);
+        };
+    
+        document.body.appendChild(leafletJS);
+      
+      setTimeout(() => {
+      const notice = document.getElementById('osm-limit-notice');
+      if (notice) notice.style.display = 'flex';
+    }, 1500);  // message appears after 1.5 seconds
+    }
+
+    document.getElementById('close-osm-notice').addEventListener('click', () => {
+      const notice = document.getElementById('osm-limit-notice');
+      if (notice) notice.style.display = 'none';
+    });
+        
+    function getColor(score) {
+        if (score <= 0.5) return '#ffffcc'; 
+        if (score <= 1) return '#ffffcc'; 
+        if (score <= 2) return '#ffe4b5';
+        if (score <= 3) return '#ffdab9';
+        if (score <= 4) return '#fbae7e';
+        if (score <= 5) return '#fa733d';
+        if (score <= 7) return '#fb6d51';
+        if (score <= 8) return '#fb4646';
+        if (score <= 9) return '#a60310';
+        if (score <= 10) return '#800020';
+        return '#800020'; // Dark red (default)
+    }
+    
+    function toggleRegionDropdown(event) {
+        if (event) event.stopPropagation();
+    
+        const dropdown = document.getElementById("region-dropdown");
+        const button = document.getElementById("region-button");
+    
+        if (!dropdown || !button) {
+            console.error("Dropdown or button not found!");
+            return;
+        }
+    
+        // Get absolute position of the button
+        const rect = button.getBoundingClientRect();
+    
+        // Toggle dropdown visibility
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+            // Ensure dropdown is positioned **to the right of the button**
+            dropdown.style.position = "fixed";  // Detach from sidebar constraints
+            dropdown.style.top = `${rect.top}px`; // Align with button
+            dropdown.style.left = `${rect.right + 30}px`; // Move 10px to the right of the button
+            dropdown.style.zIndex = "99999";  // Ensure it appears above all elements
+        }
+    }
+    
+    // Close region and species dropdowns when clicking outside
+    document.addEventListener("click", function (event) {
+      // Region dropdown
+      const regionDropdown = document.getElementById("region-dropdown");
+      const regionButton = document.getElementById("region-button");
+    
+      if (
+        regionDropdown &&
+        regionDropdown.style.display === "block" &&
+        event.target !== regionButton &&
+        !regionDropdown.contains(event.target)
+      ) {
+        regionDropdown.style.display = "none";
+      }
+    
+      // Species dropdown
+      const speciesDropdown = document.getElementById("custom-species-dropdown");
+      const speciesSelector = document.getElementById("species-selector");
+    
+      if (
+        speciesDropdown &&
+        speciesDropdown.style.display === "block" &&
+        !speciesSelector.contains(event.target)
+      ) {
+        closeSpeciesDropdown();
+      }
+    });
+
+    function loadRegion(region) {
+        console.log(`🔄 Loading region: ${region}`);
+    
+        const currentRegion = localStorage.getItem('selectedRegion');
+    
+        // Show loading spinner only if switching to a new region (not on first load)
+        if (!firstLoad && currentRegion !== region) {
+            console.log(`⏳ Switching regions, showing loading spinner...`);
+            document.getElementById("loading-spinner").style.display = "flex";
+            setTimeout(() => {
+                document.getElementById("loading-spinner").style.display = "none";
+            }, 2000);
+        }
+    
+        firstLoad = false; // Mark first load as done
+        localStorage.setItem('selectedRegion', region); // Store selection
+    
+        const geojsonUrls = {
+            EE_north: 'https://pub-92765923660e431daff3170fbef6471d.r2.dev/EE_mushroom_data_north.geojson',
+            EE_south: 'https://pub-92765923660e431daff3170fbef6471d.r2.dev/EE_mushroom_data_south.geojson',
+            NE_north: 'https://pub-92765923660e431daff3170fbef6471d.r2.dev/NE_mushroom_data_north.geojson',
+            NE_south: 'https://pub-92765923660e431daff3170fbef6471d.r2.dev/NE_mushroom_data_south.geojson',
+            WE_north: 'https://pub-92765923660e431daff3170fbef6471d.r2.dev/WE_mushroom_data_north.geojson',
+            WE_south: 'https://pub-92765923660e431daff3170fbef6471d.r2.dev/WE_mushroom_data_south.geojson',
+        };
+    
+        if (!geojsonUrls[region]) {
+            console.error(`Invalid region requested: ${region}`);
+            return;
+        }
+    
+        //  1. Check in-memory cache first
+        if (cachedRegions[region]) {
+            console.log(`Retrieved "${region}" from in-memory cache.`);
+            updateMapWithGeoJSON(cachedRegions[region]);
+            return;
+        }
+    
+        //  2. Fetch from R2 if not cached
+        console.log(` Fetching "${region}" from R2 (network request)...`);
+    
+        fetch(geojsonUrls[region])
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(`Successfully retrieved "${region}" from R2. Caching now.`);
+                cachedRegions[region] = data; // Store in memory cache
+                updateMapWithGeoJSON(data);
+            })
+            .catch(error => {
+                console.error(`Error loading GeoJSON for "${region}":`, error);
+                alert("Failed to load region data. Please try again.");
+            });
+    
+        document.getElementById("region-dropdown").style.display = "none";
+    }
+    
+    function updateMapWithGeoJSON(data) {
+        console.log(`Updating map with new GeoJSON data.`);
+        if (geoJsonLayer) {
+            osmMap.removeLayer(geoJsonLayer);
+        }
+        geoJsonLayer = L.geoJSON(data, {
+            style: feature => ({
+                fillColor: getColor(feature.properties.mushroom_score || 0),
+                fillOpacity: 0.85,
+                color: "none",
+                weight: 0
+            }),
+            onEachFeature: (feature, layer) => {
+                layer.bindPopup(`<b>Mushroom Score:</b> ${feature.properties.mushroom_score.toFixed(2)}`);
+            }
+        }).addTo(osmMap);
+        console.log(`Map update complete.`);
+    }
+    
+    function updateVisibleLayers() {
+      const layers = map.getStyle().layers;
+      if (!layers) {
+        console.warn("No layers found in map style.");
+        return;
+      }
+    
+      const visibleLayerIds = [];
+    
+      layers.forEach(layer => {
+        const id = layer.id;
+    
+        const isSpeciesLayer = Object.values(speciesOptions).some(speciesCode => id.startsWith(speciesCode));
+        const isRelevantSpecies = id.startsWith(selectedSpecies);
+        const isNumbersLayer = id.includes("numbers");
+    
+        if (isSpeciesLayer) {
+          if (isRelevantSpecies) {
+            // Set visibility based on whether it's a numbers layer and the global toggle
+            const visibility = isNumbersLayer ? (layersVisible ? "visible" : "none") : "visible";
+            map.setLayoutProperty(id, "visibility", visibility);
+            console.log(`SHOWING layer: ${id} | isNumbers: ${isNumbersLayer} | visibility: ${visibility}`);
+            if (visibility === "visible") visibleLayerIds.push(id);
+          } else {
+            map.setLayoutProperty(id, "visibility", "none");
+            console.log(`HIDING unrelated species layer: ${id}`);
+          }
+        }
+      });
+    
+      console.log("Species selected:", selectedSpecies);
+      console.log("Numbers visible:", layersVisible);
+      console.log("Final visible layers:", visibleLayerIds);
+    }
+    
+    // Resize the map on visibility change to handle mobile-specific issues
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        map.resize();
+      }
+    });
+    
+    // Load saved map state when the page loads
+    window.addEventListener('load', () => {
+      try {
+        // Remove any existing flagpole and hide the GMaps button
+        if (flagpoleMarker) {
+          flagpoleMarker.remove(); // Remove the flagpole from the map
+          flagpoleMarker = null; // Reset the flagpole variable
+        }
+        gmapsButton.style.display = 'none'; // Ensure the GMaps button is hidden
+        localStorage.removeItem('flagpoleState'); // Clear flagpole state
+        localStorage.removeItem('gmapsVisible'); // Clear GMaps visibility state
+        console.log('Flagpole and GMaps button cleared on load.');
+    
+        // Restore map state
+        const savedState = JSON.parse(localStorage.getItem('mapState'));
+        if (savedState) {
+          map.setCenter(savedState.center);
+          map.setZoom(5); // Always reset zoom to 5
+          map.setBearing(savedState.bearing);
+          map.setPitch(savedState.pitch);
+          console.log('Map state restored.');
+        }
+    
+        // Restore numbers layers visibility
+        const numbersLayersVisible = localStorage.getItem('numbersLayersVisible') === 'true';
+        if (numbersLayersVisible !== layersVisible) {
+          toggleNumbersLayers(); // Update layers visibility to match the stored state
+          console.log(`Numbers layers visibility restored: ${numbersLayersVisible}`);
+        }
+    
+        // Restore dark layers visibility
+        const darkLayersState = localStorage.getItem('darkLayersVisible') === 'true';
+        if (darkLayersState !== darkLayersVisible) {
+          toggleDarkLayers(); // Update layers visibility to match the stored state
+          console.log(`Dark layers visibility restored: ${darkLayersState}`);
+        }
+    
+        map.resize(); // Ensure the map resizes correctly
+      } catch (error) {
+        console.error('Failed to load map state:', error);
+      }
+    });
+
+    // Save the map state before the user leaves the page
+    window.addEventListener('beforeunload', () => {
+      const mapState = {
+        center: map.getCenter(),
+        zoom: map.getZoom(),
+        bearing: map.getBearing(),
+        pitch: map.getPitch(),
+        timestamp: Date.now(), // Save the current timestamp
+      };
+      localStorage.setItem('mapState', JSON.stringify(mapState));
+    
+      // Reset userMarker and gmapsButton on unload
+      if (userMarker) {
+        userMarker.remove();
+        userMarker = null; // Reset the marker state
+        console.log('User marker reset on page unload.');
+      }
+      gmapsButton.style.display = 'none'; // Hide Google Maps button on page unload
+    });
+    
+    function locateUser() {
+        const now = Date.now();
+        const spinner = document.getElementById('loading-spinner'); // Get the spinner element
+        const timeoutDuration = 20000; // Reduced timeout to 15 seconds
+        let timeoutId;
+    
+        // If the marker exists, remove it and stop further execution
+        if (userMarker) {
+            userMarker.remove(); // Remove the marker
+            userMarker = null;
+            console.log('User marker removed');
+            spinner.style.display = 'none'; // Hide spinner if displayed
+            return;
+        }
+    
+        // Use cached location if valid
+        if (cachedCoordinates && cacheTimestamp && now - cacheTimestamp < 60000) {
+            console.log('Using cached location');
+            toggleUserMarker(cachedCoordinates);
+            return;
+        }
+    
+        // Show spinner only if fetching a new location
+        spinner.style.display = 'flex';
+    
+        // Timeout to handle location retrieval failure
+        timeoutId = setTimeout(() => {
+            spinner.style.display = 'none'; // Hide the spinner
+            alert('Location retrieval timed out. Please try again.');
+            console.error('Location retrieval timed out.');
+        }, timeoutDuration);
+    
+        // Fetch new location
+        console.log('Fetching new location');
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                cachedCoordinates = [position.coords.longitude, position.coords.latitude];
+                cacheTimestamp = Date.now(); // Update cache timestamp
+                toggleUserMarker(cachedCoordinates);
+                spinner.style.display = 'none'; // Hide the spinner
+                clearTimeout(timeoutId); // Clear the timeout
+            },
+            () => {
+                spinner.style.display = 'none'; // Hide the spinner
+                clearTimeout(timeoutId); // Clear the timeout
+                alert('Unable to retrieve your location.');
+            },
+            { enableHighAccuracy: true, timeout: timeoutDuration, maximumAge: 0 } // Optimize geolocation options
+        );
+    }
+    
+    // Function to toggle the marker
+    function toggleUserMarker(coordinates) {
+        if (userMarker) {
+            userMarker.remove(); // Remove the marker if it exists
+            userMarker = null;
+            console.log('User marker removed');
+        } else {
+            const pinElement = document.createElement('img');
+            pinElement.src = 'https://raw.githubusercontent.com/lodist/funges/main/icons/pin_1.webp';
+            pinElement.style.width = '40px';
+            pinElement.style.height = 'auto';
+    
+            userMarker = new mapboxgl.Marker({ element: pinElement })
+                .setLngLat(coordinates)
+                .addTo(map);
+    
+            console.log('User marker added:', coordinates);
+        }
+    
+        // Center the map on the user's location
+        map.flyTo({ center: coordinates, zoom: 8, speed: 2 });
+    }
+
+    // Function to ensure pin is added and map is focused on location
+    function ensurePinAndFocus(coordinates) {
+      if (userMarker) {
+        userMarker.remove(); // Remove existing marker
+        userMarker = null;
+        console.log('User marker removed');
+      }
+    
+      // Create and drop a new marker
+      const pinElement = document.createElement('img');
+      pinElement.src = 'https://raw.githubusercontent.com/lodist/funges/main/icons/pin_1.webp';
+      pinElement.style.width = '40px';
+      pinElement.style.height = 'auto';
+    
+      userMarker = new mapboxgl.Marker({ element: pinElement })
+        .setLngLat(coordinates)
+        .addTo(map);
+    
+      // Center the map on the user's location
+      map.flyTo({ center: coordinates, zoom: 8 });
+      console.log('User marker added at:', coordinates);
+    }
+
+    // Function to show and hide loading spinner
+    function showLoadingSpinner() {
+        const loadingElement = document.getElementById('loading-spinner');
+        loadingElement.style.display = 'flex'; // Show spinner
+        setTimeout(() => {
+            loadingElement.style.display = 'none'; // Hide after 2 seconds
+        }, 2000);
+    }  
+    
+    // Function to toggle numbers layers
+    function toggleNumbersLayers() {
+      layersVisible = !layersVisible;
+    
+      if (layersVisible) {
+        showLoadingSpinner(); //Show spinner when enabling
+      }
+      updateVisibleLayers(); // will now hide/show based on state
+    
+      localStorage.setItem('numbersLayersVisible', layersVisible);
+      console.log(`🔢 Numbers layers are now ${layersVisible ? 'visible' : 'hidden'}`);
+    }
+  
+    // Function to toggle dark layers
+    function toggleDarkLayers() {
+        darkLayersVisible = !darkLayersVisible;
+        const layers = map.getStyle().layers;
+    
+        layers.forEach(layer => {
+            const layerId = layer.id;
+            if (layerId.endsWith(' dark')) {
+                map.setLayoutProperty(layerId, 'visibility', darkLayersVisible ? 'visible' : 'none');
+            }
+        });
+    
+        if (darkLayersVisible) showLoadingSpinner(); // Show loading only when enabling layers
+
+        localStorage.setItem('darkLayersVisible', darkLayersVisible); // Save state
+        console.log(`Dark layers are now ${darkLayersVisible ? 'visible' : 'hidden'}`);
+    } 
+
+    // Called to update the visible dropdown list (with optional filtering)
+    function populateSpeciesDropdown(filterText = "") {
+      const listDiv = document.getElementById("custom-species-list");
+      if (!listDiv) return;
+    
+      listDiv.innerHTML = "";
+    
+      for (const [label, code] of Object.entries(speciesOptions)) {
+        if (
+          label.toLowerCase().includes(filterText.toLowerCase()) &&
+          (emojiFilter === "" || label.includes(emojiFilter))
+        ) {
+          const item = document.createElement("div");
+          item.className = "species-option";
+          item.textContent = label;
+          item.onclick = () => {
+            selectedSpecies = code;
+            localStorage.setItem("selectedSpecies", selectedSpecies);
+            updateSpeciesDisplay();
+            updateVisibleLayers();
+            closeSpeciesDropdown();
+            showSpontaneousMessageIfNeeded(code);
+          };
+          listDiv.appendChild(item);
+        }
+      }
+    }
+    
+    // Called on input in the filter box
+    function filterSpeciesOptions() {
+      const filter = document.getElementById("species-filter").value;
+      populateSpeciesDropdown(filter);
+    }
+    
+    // Called when the user selects an item (via dropdown)
+    function handleSpeciesChange(event) {
+      selectedSpecies = event.target.value;
+      localStorage.setItem("selectedSpecies", selectedSpecies);
+      updateVisibleLayers(); // ← this now respects layersVisible state
+    }
+    
+    // Show selected species in closed dropdown
+    function updateSpeciesDisplay() {
+      const label = Object.keys(speciesOptions).find(
+        (key) => speciesOptions[key] === selectedSpecies
+      );
+      const display = document.getElementById("current-species-label");
+      if (display) display.textContent = label;
+    }
+
+    
+    // Open or close the dropdown panel
+    function toggleSpeciesDropdown() {
+      const dropdown = document.getElementById("custom-species-dropdown");
+      const isOpen = dropdown.style.display === "block";
+      dropdown.style.display = isOpen ? "none" : "block";
+    
+      if (!isOpen) {
+        emojiFilter = "";
+        document.getElementById("species-filter").value = "";
+        populateSpeciesDropdown();
+      }
+    }
+    
+    // Set an emoji category filter
+    function setEmojiFilter(emoji) {
+      emojiFilter = emoji;
+      const filterInput = document.getElementById("species-filter");
+    
+      if (emoji === "") {
+        filterInput.value = ""; // ✅ Clear the text too
+      }
+      populateSpeciesDropdown(filterInput.value);
+    }
+    
+    // Hide the dropdown panel
+    function closeSpeciesDropdown() {
+      const dropdown = document.getElementById("custom-species-dropdown");
+      dropdown.style.display = "none";
+    }
+    
+    // Initial setup
+    populateSpeciesDropdown();
+    updateSpeciesDisplay();
+    
+    map.on("load", () => {
+      updateVisibleLayers(); // ← call only when map is ready
+    });
+    
+    // Function to create and return a flagpole marker
+    function createFlagpoleMarker(lng, lat) {
+      const flagpoleIcon = document.createElement('img');
+      flagpoleIcon.src = 'https://raw.githubusercontent.com/lodist/funges/main/icons/flagpole_1.webp';
+      flagpoleIcon.style.width = '30px'; // Set flagpole width
+      flagpoleIcon.style.height = '30px'; // Set flagpole height
+    
+      return new mapboxgl.Marker({ element: flagpoleIcon }).setLngLat([lng, lat]);
+    }
+    
+    // Function to place or update the flagpole
+    function placeFlagpole(lng, lat) {
+      if (!flagpoleMarker) {
+        // Create and add the marker for the first time
+        const flagpoleIcon = document.createElement('img');
+        flagpoleIcon.src = 'https://raw.githubusercontent.com/lodist/funges/main/icons/flagpole_1.webp';
+        flagpoleIcon.style.width = '30px'; // Set flagpole width
+        flagpoleIcon.style.height = '30px'; // Set flagpole height
+    
+        flagpoleMarker = new mapboxgl.Marker({ element: flagpoleIcon }).setLngLat([lng, lat]).addTo(map);
+      } else {
+        // Update the position of the existing marker
+        flagpoleMarker.setLngLat([lng, lat]);
+      }
+    
+      // Save the flagpole position in localStorage
+      localStorage.setItem('flagpoleState', JSON.stringify({ lng, lat }));
+      console.log('Flagpole position saved.');
+    }
+
+    // Function to hide the flagpole and the gmaps button
+    function hideFlagpoleAndGmaps() {
+      if (flagpoleMarker) {
+        flagpoleMarker.remove(); // Remove the flagpole from the map
+        flagpoleMarker = null; // Reset the marker variable
+      }
+    
+      // Hide the Google Maps button
+      gmapsButton.style.display = 'none';
+    
+      // Remove the flagpole state from localStorage
+      localStorage.removeItem('flagpoleState');
+      console.log('Flagpole state cleared.');
+    }
+
+    // Select the gmaps button
+    const gmapsButton = document.querySelector('.button img[alt="Google Maps Button"]').parentElement;
+
+    gmapsButton.style.display = 'none'; // Add this line to hide the button initially
+    
+    function toggleSupportModal() {
+      const modal = document.getElementById('support-modal');
+      modal.style.display = modal.style.display === 'none' ? 'flex' : 'none';
+    }
+    
+    // Copy to clipboard
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard!");
+      });
+    }
+    
+    // Open a QR full-screen (for mobile)
+    function openQR(filename) {
+      const qrWindow = window.open("", "_blank");
+      qrWindow.document.write(`<img src="https://raw.githubusercontent.com/lodist/funges/main/QR/${filename}" style="width: 100%; height: auto;">`);
+    }
+    
+    // Handle right-click on desktop
+    map.on('contextmenu', (e) => {
+      e.preventDefault(); // Prevent the default context menu
+    
+      const { lng, lat } = e.lngLat;
+    
+      // Store the clicked coordinates
+      activeCoordinates = { lng, lat };
+    
+      // Place the flagpole immediately
+      placeFlagpole(lng, lat);
+    
+      // Show the gmaps button
+      gmapsButton.style.display = 'block';
+    });
+    
+
+    // Listen for drag events on the map
+    map.on('dragstart', () => {
+      isDragging = true;
+    
+      // If the user starts dragging, cancel any active long press
+      if (isLongPressActive) {
+        clearTimeout(longPressTimeout);
+        isLongPressActive = false; // Reset the long press state
+        console.log('Long press canceled due to dragging.');
+      }
+    });
+    
+    map.on('dragend', () => {
+      // Reset dragging state after dragging stops
+      isDragging = false;
+    });
+    
+    // Listen for zoom events
+    map.on('zoomstart', () => {
+      isZooming = true;
+    
+      // Cancel any active long press during zoom
+      if (isLongPressActive) {
+        clearTimeout(longPressTimeout);
+        isLongPressActive = false; // Reset the long press state
+        console.log('Long press canceled due to zooming.');
+      }
+    });
+    
+    map.on('zoomend', () => {
+      // Reset zooming state after zooming stops
+      isZooming = false;
+    });
+    
+    // Handle long press on mobile
+    map.on('touchstart', (e) => {
+      if (e.points.length === 1) { // Ensure it's a single touch
+        const { lng, lat } = map.unproject([e.points[0].x, e.points[0].y]);
+    
+        // Start the long press timer
+        isLongPressActive = true; // Mark the long press as active
+        longPressTimeout = setTimeout(() => {
+          // Only place the pole if the map was not dragged or zoomed
+          if (!isDragging && !isZooming) {
+            // Store the coordinates
+            activeCoordinates = { lng, lat };
+    
+            placeFlagpole(lng, lat);
+    
+            // Show the gmaps button
+            gmapsButton.style.display = 'block';
+            console.log('Flagpole placed on long press.');
+          } else {
+            console.log('Flagpole placement prevented due to dragging or zooming.');
+          }
+          isLongPressActive = false; // Reset the long press state
+        }, 1200); // Long press duration (1.2 seconds)
+      }
+    });
+    
+    // Cancel long press if touch ends early or dragging begins
+    map.on('touchend', () => {
+      clearTimeout(longPressTimeout);
+      isLongPressActive = false; // Reset the long press state
+    });
+
+    
+    // Add single left-click and quick tap handling to remove PNGs
+    map.on('click', () => {
+      hideFlagpoleAndGmaps();
+    });
+    
+    map.on('touchstart', (e) => {
+      if (e.points.length === 1) {
+        hideFlagpoleAndGmaps();
+      }
+    });
+    
+    // Add click event listener to the Google Maps button
+    gmapsButton.addEventListener('click', () => {
+      if (activeCoordinates) {
+        const { lng, lat } = activeCoordinates;
+    
+        // Redirect to Google Maps
+        window.open(`https://www.google.com/maps?q=${lat},${lng}`, '_blank');
+      }
+    });
+
+    // Splash screen fade-out and removal
+    window.onload = function() {
+      const splashScreen = document.getElementById('splash-screen');
+      splashScreen.addEventListener('animationend', () => {
+        splashScreen.remove();
+      });
+    
+      // Allow modal close on outside click
+      const supportModal = document.getElementById('support-modal');
+      if (supportModal) {
+        supportModal.addEventListener('click', (e) => {
+          if (e.target === supportModal) {
+            toggleSupportModal();
+          }
+        });
+      }
+    };
+
+
+
+
+    
+    const translations = {
+      en: {
+        flag: "🇬🇧",
+        topbar: {
+          instructions: "How It Works",
+          species: "Wild Species",
+          recipes: "Recipes"
+        },
+        upload: {
+          dragText: "Drag an image here or use the camera",
+          dropZone: "Drop Image Here"
+        },
+        footer: {
+          impressum: "Impressum",
+          privacy: "Privacy Policy",
+          terms: "Terms of Use"
+        },
+        resultbox: {
+          prediction: "Prediction will appear here",
+          nearby: "Nearby Edibles"
+        },
+        osm: {
+          line1: "Dear Forager,<br>",
+          line2: `We’re currently unable to load the map tiles. This may be due to a poor internet connection or because we’ve reached our monthly usage limit.<br><br>
+                  If you'd like to help keep the project running and improve availability, please consider <strong>supporting the project</strong>.`,
+          line3: "In the meantime, enjoy this slightly less-than-perfect Boletus map — at least until we hit the threshold for this map as well 😅"
+        },
+        support: {
+          title: "Support the Project",
+          patreon: "Support on Patreon",
+          coffee: "Buy Me a Coffee",
+          donate: "Donate:",
+        },
+        spontaneous: "📢 Appears Spontaneously and Sparsely in Season",
+        resultbox: {
+          prediction: "Prediction will appear here",
+          nearby: "Nearby Edibles",
+          warning: "⚠️ Always seek professional advice before consuming wild edibles",
+          top: "🍄 Top Predictions:"
+        },
+        search: {
+          link: "🔍 Search"
+        },
+        error: {
+          display: "❌ Error displaying predictions!"
+        },
+        nearby: {
+          none: "🍃 Dear forager, the season is tough at the moment—nothing seems to be growing around you. But don't worry, better times will come. Stay tuned for more edibles to be added soon!",
+          some: "🌿 Hey fellow forager! Following edibles could be growing in your proximity:",
+          recipes: "Go to Recipes"
+        },
+        species: {
+        "🍄 Porcino (Boletus edulis)": "mushroom",
+        "🌱 Amaranth (Amaranthus retroflexus)": "amaranth",
+        "🌱 Artichoke (Cynara cardunculus)": "artichoke",
+        "🌱 Asparagus (Asparagus acutifolius)": "asparagus",
+        "🍄 Chanterelle (Cantharellus cibarius)": "chant",
+        "🍄 Chanterelle Black (Craterellus cornucopioides)": "black_chant",
+        "🌰 Chestnut (Castanea sativa)": "chestnut",
+        "🌱 Chickweed (Stellaria media)": "chickweed",
+        "🌸 Dandelion (Taraxacum officinale)": "dandelion",
+        "🌱 Garlic (Allium ursinum)": "garlic",
+        "🍇 Lingonberry (Vaccinium vitis-idaea)": "lingonb",
+        "🌱 Masterwort (Peucedanum ostruthium)": "masterwort",
+        "🍄 Morel (Morchella esculenta)": "morel",
+        "🌱 Nettle (Urtica dioica)": "nettle",
+        "🍄 Parasol (Macrolepiota procera)": "parasol",
+        "🍇 Raspberry (Rubus idaeus)": "raspberry",
+        "🌱 Sorrel (Rumex acetosa)": "sorrel",
+        "🍄 St. George's (Calocybe gambosa)": "st_george",
+        "🍇 Strawberry (Fragaria vesca)": "strawberry",
+        "🍄 Truffle Black (Tuber melanosporum)": "truffle_b",
+        "🌰 Walnut (Juglans regia)": "walnut"
+        }
+      },
+      es: {
+        flag: "🇪🇸",
+        topbar: {
+          instructions: "Cómo funciona",
+          species: "Especies silvestres",
+          recipes: "Recetas"
+        },
+        upload: {
+          dragText: "Arrastra una imagen aquí o usa la cámara",
+          dropZone: "Suelta la imagen aquí"
+        },
+        footer: {
+          impressum: "Aviso legal",
+          privacy: "Política de privacidad",
+          terms: "Términos de uso"
+        },
+        resultbox: {
+          prediction: "El resultado aparecerá aquí",
+          nearby: "Comestibles cercanos"
+        },
+        osm: {
+          line1: "Querido recolector:<br>",
+          line2: `Actualmente no podemos cargar los mapas. Puede deberse a una mala conexión o a que hemos alcanzado nuestro límite mensual de uso.<br><br>
+                  Si quieres ayudar a que el proyecto siga activo y mejorar su disponibilidad, por favor considera <strong>apoyar el proyecto</strong>.`,
+          line3: "Mientras tanto, disfruta de este mapa de Boletus un poco imperfecto — al menos hasta que lleguemos al límite de este también 😅"
+        },
+        support: {
+          title: "Apoya el proyecto",
+          patreon: "Apoya en Patreon",
+          coffee: "Invítame a un café",
+          donate: "Donar:",
+        },
+        spontaneous: "📢 Aparece espontáneamente y con poca frecuencia en temporada",
+        resultbox: {
+          prediction: "El resultado aparecerá aquí",
+          nearby: "Comestibles cercanos",
+          warning: "⚠️ Consulta siempre a un experto antes de consumir alimentos silvestres",
+          top: "🍄 Principales resultados:"
+        },
+        search: {
+          link: "🔍 Buscar"
+        },
+        error: {
+          display: "❌ Error al mostrar los resultados!"
+        },
+        nearby: {
+        none: "🍃 Querido recolector, la temporada está difícil en este momento: no parece que esté creciendo nada a tu alrededor. Pero no te preocupes, llegarán tiempos mejores. ¡Pronto se añadirán más especies comestibles!",
+        some: "🌿 ¡Hola recolector! Podrían estar creciendo los siguientes comestibles cerca de ti:",
+        recipes: "Ver recetas"
+        },
+        species: {
+        "🍄 Boleto (Boletus edulis)": "mushroom",
+        "🌱 Amaranto (Amaranthus retroflexus)": "amaranth",
+        "🌱 Alcachofa (Cynara cardunculus)": "artichoke",
+        "🌱 Espárrago (Asparagus acutifolius)": "asparagus",
+        "🍄 Rebozuelo (Cantharellus cibarius)": "chant",
+        "🍄 Trompeta negra (Craterellus cornucopioides)": "black_chant",
+        "🌰 Castaña (Castanea sativa)": "chestnut",
+        "🌱 Pamplina (Stellaria media)": "chickweed",
+        "🌸 Diente de león (Taraxacum officinale)": "dandelion",
+        "🌱 Ajo de oso (Allium ursinum)": "garlic",
+        "🍇 Arándano rojo (Vaccinium vitis-idaea)": "lingonb",
+        "🌱 Imperatoria (Peucedanum ostruthium)": "masterwort",
+        "🍄 Colmenilla (Morchella esculenta)": "morel",
+        "🌱 Ortiga (Urtica dioica)": "nettle",
+        "🍄 Matacandil (Macrolepiota procera)": "parasol",
+        "🍇 Frambuesa (Rubus idaeus)": "raspberry",
+        "🌱 Acedera (Rumex acetosa)": "sorrel",
+        "🍄 Perretxiko (Calocybe gambosa)": "st_george",
+        "🍇 Fresa silvestre (Fragaria vesca)": "strawberry",
+        "🍄 Trufa negra (Tuber melanosporum)": "truffle_b",
+        "🌰 Nuez (Juglans regia)": "walnut"
+        }
+      },
+      it: {
+        flag: "🇮🇹",
+        topbar: {
+          instructions: "Come funziona",
+          species: "Specie selvatiche",
+          recipes: "Ricette"
+        },
+        upload: {
+          dragText: "Trascina un'immagine qui o usa la fotocamera",
+          dropZone: "Rilascia l'immagine qui"
+        },
+        footer: {
+          impressum: "Note legali",
+          privacy: "Informativa sulla privacy",
+          terms: "Termini di utilizzo"
+        },
+        resultbox: {
+          prediction: "Il risultato apparirà qui",
+          nearby: "Commestibili nelle vicinanze"
+        },
+        osm: {
+          line1: "Caro cercatore,<br>",
+          line2: `Attualmente non riusciamo a caricare le mappe. Potrebbe essere per una connessione scarsa o perché abbiamo raggiunto il limite mensile.<br><br>
+                  Se vuoi contribuire al progetto e migliorarne la disponibilità, considera di <strong>sostenere il progetto</strong>.`,
+          line3: "Nel frattempo, goditi questa mappa dei porcini non perfetta — almeno finché non raggiungiamo il limite anche qui 😅"
+        },
+        support: {
+          title: "Supporta il progetto",
+          patreon: "Supporta su Patreon",
+          coffee: "Offrimi un caffè",
+          donate: "Dona:",
+          },
+        spontaneous: "📢 Appare spontaneamente e raramente durante la stagione",
+        resultbox: {
+          prediction: "Il risultato apparirà qui",
+          nearby: "Commestibili nelle vicinanze",
+          warning: "⚠️ Consulta sempre un esperto prima di consumare piante o funghi selvatici",
+          top: "🍄 Principali risultati:"
+        },
+        search: {
+          link: "🔍 Cerca"
+        },
+        error: {
+          display: "❌ Errore nella visualizzazione dei risultati!"
+        },
+        nearby: {
+          none: "🍃 Caro cercatore, la stagione è dura al momento—sembra che non stia crescendo nulla intorno a te. Ma non preoccuparti, arriveranno tempi migliori. Presto aggiungeremo nuovi commestibili!",
+          some: "🌿 Ehi cercatore! I seguenti commestibili potrebbero crescere nelle tue vicinanze:",
+          recipes: "Vai alle ricette"
+        },
+        species: {
+        "🍄 Porcino (Boletus edulis)": "mushroom",
+        "🌱 Amaranto (Amaranthus retroflexus)": "amaranth",
+        "🌱 Carciofo (Cynara cardunculus)": "artichoke",
+        "🌱 Asparago (Asparagus acutifolius)": "asparagus",
+        "🍄 Finferlo (Cantharellus cibarius)": "chant",
+        "🍄 Trombetta dei morti (Craterellus cornucopioides)": "black_chant",
+        "🌰 Castagna (Castanea sativa)": "chestnut",
+        "🌱 Centocchio (Stellaria media)": "chickweed",
+        "🌸 Tarassaco (Taraxacum officinale)": "dandelion",
+        "🌱 Aglio orsino (Allium ursinum)": "garlic",
+        "🍇 Mirtillo rosso (Vaccinium vitis-idaea)": "lingonb",
+        "🌱 Imperatoria (Peucedanum ostruthium)": "masterwort",
+        "🍄 Spugnola (Morchella esculenta)": "morel",
+        "🌱 Ortica (Urtica dioica)": "nettle",
+        "🍄 Mazza di tamburo (Macrolepiota procera)": "parasol",
+        "🍇 Lampone (Rubus idaeus)": "raspberry",
+        "🌱 Acetosa (Rumex acetosa)": "sorrel",
+        "🍄 Prugnolo (Calocybe gambosa)": "st_george",
+        "🍇 Fragolina di bosco (Fragaria vesca)": "strawberry",
+        "🍄 Tartufo nero (Tuber melanosporum)": "truffle_b",
+        "🌰 Noce (Juglans regia)": "walnut"
+        }
+      },
+      fr: {
+        flag: "🇫🇷",
+        topbar: {
+          instructions: "Comment ça marche",
+          species: "Espèces sauvages",
+          recipes: "Recettes"
+        },
+        upload: {
+          dragText: "Faites glisser une image ici ou utilisez la caméra",
+          dropZone: "Déposez l'image ici"
+        },
+        footer: {
+          impressum: "Mentions légales",
+          privacy: "Politique de confidentialité",
+          terms: "Conditions d'utilisation"
+        },
+        resultbox: {
+          prediction: "Le résultat apparaîtra ici",
+          nearby: "Comestibles à proximité"
+        },
+        osm: {
+          line1: "Cher cueilleur,<br>",
+          line2: `Nous ne pouvons actuellement pas charger les cartes. Cela peut être dû à une mauvaise connexion ou à une limite mensuelle atteinte.<br><br>
+                  Si vous souhaitez aider à maintenir le projet actif et améliorer sa disponibilité, merci de <strong>soutenir le projet</strong>.`,
+          line3: "En attendant, profitez de cette carte des bolets un peu imparfaite — du moins jusqu'à ce qu’on atteigne la limite ici aussi 😅"
+        },
+        support: {
+          title: "Soutenir le projet",
+          patreon: "Soutenir sur Patreon",
+          coffee: "Offrez-moi un café",
+          donate: "Faire un don :",
+          },
+        spontaneous: "📢 Apparaît spontanément et rarement en saison",
+        resultbox: {
+          prediction: "Le résultat apparaîtra ici",
+          nearby: "Comestibles à proximité",
+          warning: "⚠️ Demandez toujours conseil à un expert avant de consommer des plantes ou champignons sauvages",
+          top: "🍄 Résultats principaux :"
+        },
+        search: {
+          link: "🔍 Rechercher"
+        },
+        error: {
+          display: "❌ Erreur lors de l'affichage des résultats !"
+        },
+        nearby: {
+          none: "🍃 Cher cueilleur, la saison est difficile en ce moment—rien ne semble pousser autour de toi. Mais ne t’inquiète pas, des jours meilleurs arrivent. D'autres comestibles seront ajoutés bientôt !",
+          some: "🌿 Salut cueilleur ! Les comestibles suivants pourraient pousser près de toi :",
+          recipes: "Voir les recettes"
+        },
+        species: {
+        "🍄 Cèpe (Boletus edulis)": "mushroom",
+        "🌱 Amarante (Amaranthus retroflexus)": "amaranth",
+        "🌱 Artichaut (Cynara cardunculus)": "artichoke",
+        "🌱 Asperge (Asparagus acutifolius)": "asparagus",
+        "🍄 Girolle (Cantharellus cibarius)": "chant",
+        "🍄 Trompette de la mort (Craterellus cornucopioides)": "black_chant",
+        "🌰 Châtaigne (Castanea sativa)": "chestnut",
+        "🌱 Mouron des oiseaux (Stellaria media)": "chickweed",
+        "🌸 Pissenlit (Taraxacum officinale)": "dandelion",
+        "🌱 Ail des ours (Allium ursinum)": "garlic",
+        "🍇 Airelle rouge (Vaccinium vitis-idaea)": "lingonb",
+        "🌱 Peucédan (Peucedanum ostruthium)": "masterwort",
+        "🍄 Morille (Morchella esculenta)": "morel",
+        "🌱 Ortie (Urtica dioica)": "nettle",
+        "🍄 Coulemelle (Macrolepiota procera)": "parasol",
+        "🍇 Framboise (Rubus idaeus)": "raspberry",
+        "🌱 Oseille (Rumex acetosa)": "sorrel",
+        "🍄 Tricholome de la Saint-Georges (Calocybe gambosa)": "st_george",
+        "🍇 Fraise des bois (Fragaria vesca)": "strawberry",
+        "🍄 Truffe noire (Tuber melanosporum)": "truffle_b",
+        "🌰 Noyer (Juglans regia)": "walnut"
+        }
+      }
+    };
+
+
+    function applyTranslations(lang) {
+      const t = translations[lang];
+    
+      speciesOptions = translations[lang].species;
+      speciesDisplayMap = Object.entries(speciesOptions).reduce((acc, [label, code]) => {
+        acc[code] = label;
+        return acc;
+      }, {});
+    
+      // Topbar
+      document.getElementById("topbar-instructions").textContent = t.topbar.instructions;
+      document.getElementById("topbar-species").textContent = t.topbar.species;
+      document.getElementById("topbar-recipes").textContent = t.topbar.recipes;
+      // Upload section
+      document.getElementById("upload-drag-text").textContent = t.upload.dragText;
+      document.getElementById("drop-zone").textContent = t.upload.dropZone;
+      // Footer
+      document.getElementById("footer-impressum").textContent = t.footer.impressum;
+      document.getElementById("footer-privacy").textContent = t.footer.privacy;
+      document.getElementById("footer-terms").textContent = t.footer.terms;
+      // Prediction box and modal
+      document.getElementById("prediction-text").textContent = t.resultbox.prediction;
+      document.getElementById("nearby-title").textContent = t.resultbox.nearby;
+      // OSM notice
+      document.getElementById("osm-line-1").innerHTML = t.osm.line1;
+      document.getElementById("osm-line-2").innerHTML = t.osm.line2;
+      document.getElementById("osm-line-3").innerHTML = t.osm.line3;
+      // Support
+      document.getElementById("support-title").innerHTML = t.support.title;
+      document.getElementById("support-patreon").innerHTML = t.support.patreon;
+      document.getElementById("support-coffee").innerHTML = t.support.coffee;
+      document.getElementById("support-donate").innerHTML = t.support.donate;
+      // Predictions
+      document.getElementById("prediction-text").textContent = t.resultbox.prediction;
+      document.getElementById("nearby-title").textContent = t.resultbox.nearby;
+      document.getElementById("support-title").innerHTML = t.support.title;
+      document.getElementById("spontaneous-message").textContent = t.spontaneous;
+
+      
+      // Species dropdown label
+      if (selectedSpecies && speciesDisplayMap[selectedSpecies]) {
+        document.getElementById("current-species-label").textContent = speciesDisplayMap[selectedSpecies];
+      }
+    }
+    
+    function renderLanguageSelector(currentLang) {
+      const optionsDiv = document.getElementById("language-options");
+      const selectedDiv = document.getElementById("selected-language");
+    
+      optionsDiv.innerHTML = "";
+      Object.keys(translations).forEach(lang => {
+        if (lang !== currentLang) {
+          const el = document.createElement("div");
+          el.textContent = translations[lang].flag;
+          el.onclick = () => setLanguage(lang);
+          optionsDiv.appendChild(el);
+        }
+      });
+    
+      selectedDiv.textContent = translations[currentLang].flag;
+      selectedDiv.onclick = toggleLanguageDropup;
+    }
+    
+    function setLanguage(lang) {
+      localStorage.setItem("preferredLanguage", lang);
+      window.currentLang = lang;
+      renderLanguageSelector(lang);
+      applyTranslations(lang);
+      document.getElementById("language-options").style.display = "none";
+      document.getElementById("topbar-recipes").href = `recipes.html?lang=${window.currentLang}`;
+    }
+    
+    function toggleLanguageDropup() {
+      const menu = document.getElementById("language-options");
+      const currentDisplay = window.getComputedStyle(menu).display;
+      menu.style.display = (currentDisplay === "none") ? "flex" : "none";
+    }
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlLang = new URLSearchParams(window.location.search).get("lang");
+      const lang = urlLang || localStorage.getItem("preferredLanguage") || "en";
+      window.currentLang = lang;
+      renderLanguageSelector(lang);
+      applyTranslations(lang);
+      document.getElementById("topbar-recipes").href = `recipes.html?lang=${window.currentLang}`;
+    });
+    
+    // Close language flag dropup when clicking outside
+    document.addEventListener("click", function (event) {
+      const languageOptions = document.getElementById("language-options");
+      const selectedLanguage = document.getElementById("selected-language");
+      if (
+        languageOptions && languageOptions.style.display === "flex" && !languageOptions.contains(event.target) && !selectedLanguage.contains(event.target)
+      ) {
+        languageOptions.style.display = "none";
+      }
+    });
+    
+    
+  </script>
+</body>
+</html>
