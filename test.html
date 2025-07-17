@@ -690,10 +690,6 @@
     <div class="logo">
       <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/logo_1.webp" alt="Logo" loading="lazy">
     </div>
-    <!-- Picture Button -->
-    <div class="button" onclick="openImageMask()">
-        <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/id_mushroom.webp" alt="Mushroom ID Button" loading="lazy">
-    </div>
 
     <div class="button-container">
         <div class="button" id="region-button" onclick="toggleRegionDropdown(event)">
@@ -722,21 +718,6 @@
     </div>
     <div class="button" onclick="toggleNumbersLayers()">
       <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/numbers_1.webp" alt="Numbers Button" loading="lazy">
-    </div>
-
-    <!-- Image Upload Mask (Popup) -->
-    <div id="image-mask">
-        <div id="image-mask-content">
-            <p id="upload-drag-text"></p>
-            <!-- Hidden File Input for Manual Upload -->
-            <input type="file" id="fileInput" accept="image/*" capture="environment" onchange="handleImage(event)" style="display: none;">
-            <!-- Button to trigger File Selection -->
-            <button onclick="document.getElementById('fileInput').click()" style="font-size: 24px;">📷</button>
-            <!-- Drop Zone -->
-            <div id="drop-zone"></div>
-            <!-- Result Display -->
-            <div id="result" style="margin-top: 15px; font-size: 12px; font-weight: bold;"></div>
-        </div>
     </div>
     
     <div class="button">
