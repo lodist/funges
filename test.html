@@ -223,17 +223,6 @@
         width: 80%;
         max-width: 400px;
     }
-    #drop-zone {
-        width: 100%;
-        height: 150px;
-        border: 2px dashed #ccc;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 10px;
-        font-size: 16px;
-        color: #555;
-    }
     #prediction-box {
         position: fixed;
         top: 50%;
@@ -726,6 +715,10 @@
             <p id="upload-drag-text"></p>
             <!-- Hidden File Input for Manual Upload -->
             <input type="file" id="fileInput" accept="image/*" capture="environment" onchange="handleImage(event)" style="display: none;">
+            <!-- Button to trigger File Selection -->
+            <button onclick="document.getElementById('fileInput').click()" style="font-size: 24px;">📷</button>
+            <!-- Result Display -->
+            <div id="result" style="margin-top: 15px; font-size: 12px; font-weight: bold;"></div>
         </div>
     </div>
     
@@ -2168,7 +2161,6 @@
       document.getElementById("topbar-recipes").textContent = t.topbar.recipes;
       // Upload section
       document.getElementById("upload-drag-text").textContent = t.upload.dragText;
-      document.getElementById("drop-zone").textContent = t.upload.dropZone;
       // Footer
       document.getElementById("footer-impressum").textContent = t.footer.impressum;
       document.getElementById("footer-privacy").textContent = t.footer.privacy;
