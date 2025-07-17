@@ -203,6 +203,37 @@
       top: 70px; /* Moves the controls down from the top */
       right: 9px; /* Keeps them px away from the right edge */
     }
+    /* Image Upload Mask (Popup) */
+    #image-mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    #image-mask-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        width: 80%;
+        max-width: 400px;
+    }
+    #drop-zone {
+        width: 100%;
+        height: 150px;
+        border: 2px dashed #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        font-size: 16px;
+        color: #555;
+    }
     #prediction-box {
         position: fixed;
         top: 50%;
@@ -506,9 +537,6 @@
       #footer a {
         font-size: 11px;
       }
-      #prediction-box {
-        font-size: 13px;
-      }
       .modal-content {
       width: 85%;
       max-width: 320px;
@@ -662,6 +690,10 @@
     <div class="logo">
       <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/logo_1.webp" alt="Logo" loading="lazy">
     </div>
+    <!-- Picture Button -->
+    <div class="button" onclick="openImageMask()">
+        <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/id_mushroom.webp" alt="Mushroom ID Button" loading="lazy">
+    </div>
 
     <div class="button-container">
         <div class="button" id="region-button" onclick="toggleRegionDropdown(event)">
@@ -691,6 +723,21 @@
     <div class="button" onclick="toggleNumbersLayers()">
       <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/numbers_1.webp" alt="Numbers Button" loading="lazy">
     </div>
+
+    <!-- Image Upload Mask (Popup) -->
+    <div id="image-mask">
+        <div id="image-mask-content">
+            <p id="upload-drag-text"></p>
+            <!-- Hidden File Input for Manual Upload -->
+            <input type="file" id="fileInput" accept="image/*" capture="environment" onchange="handleImage(event)" style="display: none;">
+            <!-- Button to trigger File Selection -->
+            <button onclick="document.getElementById('fileInput').click()" style="font-size: 24px;">📷</button>
+            <!-- Drop Zone -->
+            <div id="drop-zone"></div>
+            <!-- Result Display -->
+            <div id="result" style="margin-top: 15px; font-size: 12px; font-weight: bold;"></div>
+        </div>
+    </div>
     
     <div class="button">
       <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/support_1.webp" alt="Support Button" loading="lazy" onclick="toggleSupportModal()">
@@ -717,7 +764,7 @@
   <div id="loading-spinner" style="display: none;">
     <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/loading_1.gif" alt="Loading" loading="lazy">
   </div>
-    
+  
   <!-- Prediction Result Box -->
   <div id="prediction-box">
     <p id="prediction-text"></p>
@@ -748,10 +795,7 @@
 
   
   <div id="spontaneous-message"></div>
-
-  <!-- Class Names -->
-  <script src="https://pub-92765923660e431daff3170fbef6471d.r2.dev/class_names.js"></script>
- 
+  
   
   <script>
     let layersVisible = false;
@@ -792,9 +836,11 @@
   }
   </script>
     
+  <!-- Load script.js AFTER TensorFlow -->
+  <!-- <script src="script.js"></script> -->
  
   <script>
-
+    
   // ========== NEARBY EDIBLES MODAL ==========
   
   function toggleNearbyModal() {
@@ -911,7 +957,8 @@
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
     );
   }
-
+  
+  
   // Allow closing the Nearby Edibles modal when clicking outside
   document.addEventListener('DOMContentLoaded', () => {
     const predictionBox = document.getElementById('prediction-box');
@@ -1613,6 +1660,10 @@
       dropdown.style.display = "none";
     }
     
+    // Initial setup
+    populateSpeciesDropdown();
+    updateSpeciesDisplay();
+    
     map.on("load", () => {
       updateVisibleLayers(); // ← call only when map is ready
     });
@@ -2155,8 +2206,6 @@
       if (selectedSpecies && speciesDisplayMap[selectedSpecies]) {
         document.getElementById("current-species-label").textContent = speciesDisplayMap[selectedSpecies];
       }
-      populateSpeciesDropdown();
-      updateSpeciesDisplay();
     }
     
     function renderLanguageSelector(currentLang) {
@@ -2176,7 +2225,6 @@
       selectedDiv.textContent = translations[currentLang].flag;
       selectedDiv.onclick = toggleLanguageDropup;
     }
-
     
     function setLanguage(lang) {
       localStorage.setItem("preferredLanguage", lang);
