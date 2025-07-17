@@ -1613,10 +1613,6 @@
       dropdown.style.display = "none";
     }
     
-    // Initial setup
-    populateSpeciesDropdown();
-    updateSpeciesDisplay();
-    
     map.on("load", () => {
       updateVisibleLayers(); // ← call only when map is ready
     });
@@ -2159,6 +2155,8 @@
       if (selectedSpecies && speciesDisplayMap[selectedSpecies]) {
         document.getElementById("current-species-label").textContent = speciesDisplayMap[selectedSpecies];
       }
+      populateSpeciesDropdown();
+      updateSpeciesDisplay();
     }
     
     function renderLanguageSelector(currentLang) {
@@ -2178,6 +2176,7 @@
       selectedDiv.textContent = translations[currentLang].flag;
       selectedDiv.onclick = toggleLanguageDropup;
     }
+
     
     function setLanguage(lang) {
       localStorage.setItem("preferredLanguage", lang);
