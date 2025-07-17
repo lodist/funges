@@ -203,37 +203,6 @@
       top: 70px; /* Moves the controls down from the top */
       right: 9px; /* Keeps them px away from the right edge */
     }
-    /* Image Upload Mask (Popup) */
-    #image-mask {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        display: none;
-        justify-content: center;
-        align-items: center;
-    }
-    #image-mask-content {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        text-align: center;
-        width: 80%;
-        max-width: 400px;
-    }
-    #drop-zone {
-        width: 100%;
-        height: 150px;
-        border: 2px dashed #ccc;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 10px;
-        font-size: 16px;
-        color: #555;
-    }
     #prediction-box {
         position: fixed;
         top: 50%;
@@ -537,6 +506,9 @@
       #footer a {
         font-size: 11px;
       }
+      #prediction-box {
+        font-size: 13px;
+      }
       .modal-content {
       width: 85%;
       max-width: 320px;
@@ -690,10 +662,6 @@
     <div class="logo">
       <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/logo_1.webp" alt="Logo" loading="lazy">
     </div>
-    <!-- Picture Button -->
-    <div class="button" onclick="openImageMask()">
-        <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/id_mushroom.webp" alt="Mushroom ID Button" loading="lazy">
-    </div>
 
     <div class="button-container">
         <div class="button" id="region-button" onclick="toggleRegionDropdown(event)">
@@ -723,21 +691,6 @@
     <div class="button" onclick="toggleNumbersLayers()">
       <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/numbers_1.webp" alt="Numbers Button" loading="lazy">
     </div>
-
-    <!-- Image Upload Mask (Popup) -->
-    <div id="image-mask">
-        <div id="image-mask-content">
-            <p id="upload-drag-text"></p>
-            <!-- Hidden File Input for Manual Upload -->
-            <input type="file" id="fileInput" accept="image/*" capture="environment" onchange="handleImage(event)" style="display: none;">
-            <!-- Button to trigger File Selection -->
-            <button onclick="document.getElementById('fileInput').click()" style="font-size: 24px;">📷</button>
-            <!-- Drop Zone -->
-            <div id="drop-zone"></div>
-            <!-- Result Display -->
-            <div id="result" style="margin-top: 15px; font-size: 12px; font-weight: bold;"></div>
-        </div>
-    </div>
     
     <div class="button">
       <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/support_1.webp" alt="Support Button" loading="lazy" onclick="toggleSupportModal()">
@@ -764,7 +717,7 @@
   <div id="loading-spinner" style="display: none;">
     <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/loading_1.gif" alt="Loading" loading="lazy">
   </div>
-  
+    
   <!-- Prediction Result Box -->
   <div id="prediction-box">
     <p id="prediction-text"></p>
@@ -798,11 +751,7 @@
 
   <!-- Class Names -->
   <script src="https://pub-92765923660e431daff3170fbef6471d.r2.dev/class_names.js"></script>
-
-  <!-- TensorFlow.js & TFLite -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite"></script>
-  
+ 
   
   <script>
     let layersVisible = false;
@@ -843,334 +792,9 @@
   }
   </script>
     
-  <!-- Load script.js AFTER TensorFlow -->
-  <!-- <script src="script.js"></script> -->
  
   <script>
-    
-  if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/service-worker.js")
-          .then(() => console.log("✅ Service Worker Registered"))
-          .catch((error) => console.error("❌ Service Worker Registration Failed", error));
-  }
-  
-  
-  // ✅ Set the WASM path before using TFLite
-  tflite.setWasmPath("https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite/dist/");
-  
-  console.log("Checking TFLite WASM Features:", tflite.getWasmFeatures());
-  
-  let models = [];
-  let modelsLoaded = false;
-  const modelUrls = [
-      "https://pub-92765923660e431daff3170fbef6471d.r2.dev/mushroom_classification_model_0.tflite",
-      "https://pub-92765923660e431daff3170fbef6471d.r2.dev/mushroom_classification_model_1.tflite",
-      "https://pub-92765923660e431daff3170fbef6471d.r2.dev/mushroom_classification_model_2.tflite",
-      "https://pub-92765923660e431daff3170fbef6471d.r2.dev/mushroom_classification_model_3.tflite"
-  ];
-  
-  // ✅ Ensure TFLite WASM is initialized before loading models
-  (async function() {
-      console.log("🔍 Checking cache before loading TFLite model...");
-      try {
-          let response = await fetch(modelUrls[0]); // Uses Service Worker cache if available
-          if (!response.ok) {
-              throw new Error(`❌ Failed to fetch model: ${modelUrls[0]}`);
-          }
-          let model = await tflite.loadTFLiteModel(modelUrls[0]);
-          console.log("✅ Model loaded successfully from cache or R2!", model);
-      } catch (error) {
-          console.error("❌ Error loading model:", error);
-      }
-  })();
-  
-  
-  
-  // ========== OPEN IMAGE MASK ==========
-  function openImageMask() {
-      document.getElementById('image-mask').style.display = 'flex';
-  
-      // ✅ Reset file input field when opening the mask
-      document.getElementById('fileInput').value = "";
-  }
-  
-  // Close mask if user clicks outside
-  document.getElementById('image-mask').addEventListener('click', function (event) {
-      if (event.target.id === 'image-mask') {
-          document.getElementById('image-mask').style.display = 'none';
-      }
-  });
-  
-  // ========== HANDLE IMAGE UPLOAD ==========
-  function handleImage(event) {
-      const fileInput = event.target;
-      
-      if (!fileInput.files || fileInput.files.length === 0) {
-          console.error("❌ No file selected.");
-          return;
-      }
-  
-      const file = fileInput.files[0];
-  
-      // ✅ Reset input field so same file can be selected again
-      fileInput.value = "";
-  
-      processImage(file);
-  }
-  
-  
-  // ========== HANDLE DRAG & DROP ==========
-  const dropZone = document.getElementById('drop-zone');
-  
-  dropZone.addEventListener('dragover', (event) => {
-      event.preventDefault();
-      dropZone.style.border = '2px dashed #007BFF';
-  });
-  
-  dropZone.addEventListener('dragleave', () => {
-      dropZone.style.border = '2px dashed #ccc';
-  });
-  
-  dropZone.addEventListener('drop', (event) => {
-      event.preventDefault();
-      dropZone.style.border = '2px dashed #ccc';
-      const file = event.dataTransfer.files[0];
-      processImage(file);
-  });
-  
-  // ========== PROCESS IMAGE ==========
-  function processImage(file) {
-      if (!file) {
-          console.error("❌ No file selected.");
-          return;
-      }
-  
-      console.log("📂 File selected:", file.name);
-      document.getElementById('image-mask').style.display = 'none';
-  
-      const reader = new FileReader();
-      
-      reader.onload = function (e) {
-          console.log("📸 Image loaded into memory!");
-  
-          let img = new Image();
-          img.src = e.target.result;
-  
-          img.onload = function () {
-              console.log("✅ Image fully loaded:", img);
-              predict(img);
-          };
-  
-          img.onerror = function () {
-              console.error("❌ Error loading image!");
-          };
-      };
-  
-      reader.onerror = function () {
-          console.error("❌ FileReader failed to read the file!");
-      };
-  
-      reader.readAsDataURL(file);
-  }
-  
-  
-  // ========== MODEL LOADING ==========
-  
-  async function ensureTFLiteLoaded() {
-      return new Promise((resolve, reject) => {
-          let checkInterval = setInterval(() => {
-              if (tflite && tflite.loadTFLiteModel) {
-                  clearInterval(checkInterval);
-                  resolve();
-              }
-          }, 200);
-          setTimeout(() => {
-              clearInterval(checkInterval);
-              reject("❌ TFLite failed to load in time.");
-          }, 5000);
-      });
-  }
-  
-  async function loadModels() {
-      console.log("📢 Starting model loading process...");
-      try {
-          await ensureTFLiteLoaded();
-      } catch (error) {
-          console.error(error);
-          alert(error);
-          return;
-      }
-  
-      try {
-          const cache = await caches.open("model-cache-v1");
-          for (let url of modelUrls) {
-              console.log(`🔍 Checking cache for model: ${url}`);
-  
-              let cachedResponse = await cache.match(url);
-              if (cachedResponse) {
-                  console.log(`✅ Model found in cache: ${url}`);
-                  let model = await tflite.loadTFLiteModel(url); // Load from cache
-                  models.push(model);
-                  continue; // Skip fetching from R2
-              }
-  
-              console.log(`📥 Fetching model from R2: ${url}`);
-              let response = await fetch(url);
-              if (!response.ok) {
-                  throw new Error(`❌ Failed to fetch model: ${url}`);
-              }
-  
-              let model = await tflite.loadTFLiteModel(url);
-              console.log(`✅ Model loaded: ${url}`, model);
-              models.push(model);
-          }
-  
-          modelsLoaded = true;
-          console.log("✅ All models loaded successfully!");
-      } catch (error) {
-          console.error("❌ Error loading models:", error);
-          alert("❌ Failed to load models. Check CORS, network, and file integrity.");
-      }
-  }
-  
-  
-  loadModels();
-  
-  // ========== IMAGE PREPROCESSING ==========
-  function preprocessImage(image) {
-      return tf.browser.fromPixels(image)
-          .resizeNearestNeighbor([224, 224])
-          .toFloat()
-          .div(tf.scalar(255.0)) 
-          .expandDims();
-  }
-  
-  // ========== PREDICTION ==========
-  async function predict(image) {
-      console.log("🚀 Starting prediction...");
-  
-      if (!modelsLoaded) {
-          console.error("❌ Models are NOT loaded.");
-          alert("⏳ Please wait... Models are still loading.");
-          return;
-      }
-  
-      if (Object.keys(CLASS_NAMES).length === 0) {
-          console.error("❌ Class names are NOT loaded.");
-          alert("⏳ Please wait... Class names are still loading.");
-          return;
-      }
-  
-      console.log("✅ Models & Class Names Loaded!");
-      
-      try {
-          console.log("🖼 Preprocessing image...");
-          let tensor = preprocessImage(image);
-          console.log("📊 Tensor shape:", tensor.shape);
-  
-          let allPredictions = [];
-  
-          for (let i = 0; i < models.length; i++) {
-              console.log(`🔍 Running inference on model ${i + 1}...`);
-  
-              let outputTensor = await models[i].predict(tensor);
-              console.log(`📤 Model ${i + 1} output:`, outputTensor);
-  
-              let predictions = await outputTensor.data();
-              console.log(`📈 Model ${i + 1} predictions:`, predictions);
-  
-              // ✅ Store predictions with their model index
-              predictions.forEach((prob, classIndex) => {
-                  allPredictions.push([classIndex, prob, i]); 
-              });
-              
-              // ✅ Ensure all predictions include the model index
-              console.log("📊 Raw predictions with model indices:", allPredictions);
-  
-          }
-  
-          console.log("📊 Combining predictions...");
-  
-          // ✅ Sort predictions by probability
-          let sortedPredictions = allPredictions.sort((a, b) => b[1] - a[1]);
-  
-          console.log("📊 Final sorted predictions:", sortedPredictions);
-  
-          displayResults(sortedPredictions);
-  
-      } catch (error) {
-          console.error("❌ Prediction Error:", error);
-          alert("❌ Something went wrong during prediction.");
-      }
-  }
-  
-  
-  // ========== DISPLAY RESULTS ==========
-  function displayResults(predictions) {
-      console.log("📢 Displaying results...");
-      console.log("📊 Sorted Predictions:", predictions);
-  
-      let predictionBox = document.getElementById('prediction-box');
-      let predictionText = document.getElementById('prediction-text');
-  
-      if (!predictionBox || !predictionText) {
-          console.error("❌ Error: Prediction box elements not found!");
-          return;
-      }
-  
-      predictionBox.style.display = "block"; // Show the box
-  
-      if (predictions.length === 0) {
-          console.error("❌ No predictions to display!");
-          const tError = translations[window.currentLang]?.error || translations["en"].error;
-          predictionText.innerText = tError.display;
-          return;
-      }
-  
-      // ✅ Ensure at least 3 predictions exist
-      let topPredictions = predictions.slice(0, 3);
-      const t = translations[window.currentLang]?.resultbox || translations["en"].resultbox;
-      let resultHTML = `<strong style="color: #aa1100 !important;">${t.warning}</strong><br><br>
-                        <strong>${t.top}</strong><br><br>`;
 
-  
-      try {
-          topPredictions.forEach((pred, rank) => {
-              let classIndex = parseInt(pred[0]);
-              let modelIndex = parseInt(pred[2]);
-              let probability = (pred[1] * 100).toFixed(2); // Convert to %
-  
-              // ✅ Check if model and class exist
-              if (!CLASS_NAMES[modelIndex] || !CLASS_NAMES[modelIndex][classIndex]) {
-                  console.error(`❌ ERROR: CLASS_NAMES[${modelIndex}][${classIndex}] does not exist!`, { modelIndex, classIndex });
-                  const tError = translations[window.currentLang]?.error || translations["en"].error;
-                  predictionText.innerText = tError.display;
-                  return;
-              }
-  
-              let className = CLASS_NAMES[modelIndex][classIndex];
-              let searchURL = `https://duckduckgo.com/?q=${encodeURIComponent(className)}`;
-  
-              const t = translations[window.currentLang] || translations["en"];
-              // ✅ Add prediction with DuckDuckGo search link
-              resultHTML += `${rank + 1}. <strong>${className}</strong> (${probability}%)<br>`;
-              resultHTML += `<a href="${searchURL}" target="_blank" style="color: #aa1100; text-decoration: underline;">${t.search.link}</a><br><br>`;
-  
-              console.log(`📌 Rank ${rank + 1}: ${className} (${probability}%)`);
-          });
-  
-          console.log("📢 Final Prediction Output:\n" + resultHTML);
-          
-          // ✅ Display predictions in UI
-          predictionText.innerHTML = resultHTML; // Use `innerHTML` to allow links
-  
-      } catch (error) {
-          console.error("❌ ERROR in displayResults:", error);
-          const tError = translations[window.currentLang]?.error || translations["en"].error;
-          predictionText.innerText = tError.display;
-      }
-  }
-  
   // ========== NEARBY EDIBLES MODAL ==========
   
   function toggleNearbyModal() {
@@ -1287,8 +911,7 @@
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
     );
   }
-  
-  
+
   // Allow closing the Nearby Edibles modal when clicking outside
   document.addEventListener('DOMContentLoaded', () => {
     const predictionBox = document.getElementById('prediction-box');
