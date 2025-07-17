@@ -709,11 +709,10 @@
       <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/numbers_1.webp" alt="Numbers Button" loading="lazy">
     </div>
 
+    <!--###########################################################################################################################################-->
     <!-- Image Upload Mask (Popup) -->
     <div id="image-mask">
         <div id="image-mask-content">
-            <p id="upload-drag-text"></p>
-            <!-- Hidden File Input for Manual Upload -->
             <input type="file" id="fileInput" accept="image/*" capture="environment" onchange="handleImage(event)" style="display: none;">
             <!-- Button to trigger File Selection -->
             <button onclick="document.getElementById('fileInput').click()" style="font-size: 24px;">📷</button>
@@ -2159,8 +2158,6 @@
       document.getElementById("topbar-instructions").textContent = t.topbar.instructions;
       document.getElementById("topbar-species").textContent = t.topbar.species;
       document.getElementById("topbar-recipes").textContent = t.topbar.recipes;
-      // Upload section
-      document.getElementById("upload-drag-text").textContent = t.upload.dragText;
       // Footer
       document.getElementById("footer-impressum").textContent = t.footer.impressum;
       document.getElementById("footer-privacy").textContent = t.footer.privacy;
