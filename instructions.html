@@ -179,7 +179,9 @@
 
       <h4 id="data-methodology-title"></h4>
       <p id="data-methodology-1"></p>
-      <p id="data-methodology-2"></p>      
+      <p id="data-methodology-2"></p>     
+      <p id="data-methodology-3"></p>      
+    
       <h4 id="key-datasets-title"></h4>
 
       <p id="dataset-1"></p>
@@ -232,6 +234,7 @@
       dataMethodologyTitle: "Data Sources & Methodology",
       dataMethodology1: "Funges uses a combination of environmental, meteorological, and geospatial datasets to forecast the best locations and times for foraging wild edibles.",
       dataMethodology2: "These include satellite imagery, terrain models, weather APIs, and ecological indicators—all analyzed over time to simulate nature’s cycles and identify real-time hotspots.",
+      dataMethodology3: `Fung.es also publishes a <a href="https://raw.githubusercontent.com/lodist/funges/main/data/EU_foraging_scores.csv" target="_blank">daily-updated dataset</a> of environmental suitability scores for mushrooms and edible wild plants across Europe.`,
       keyDatasetsTitle: "Key Datasets",
       dataset1: `<strong>1. CORINE Land Cover (CLC)</strong><br>
       Provided by the European Environment Agency (EEA), CORINE Land Cover offers detailed maps of vegetation and land use across Europe. This helps determine suitable ecosystems for different mushroom and plant species.<br>
@@ -286,6 +289,7 @@
       dataMethodologyTitle: "Fuentes de datos y metodología",
       dataMethodology1: "Funges utiliza una combinación de datos ambientales, meteorológicos y geoespaciales para predecir los mejores lugares y momentos para recolectar alimentos silvestres.",
       dataMethodology2: "Esto incluye imágenes satelitales, modelos del terreno, APIs meteorológicas e indicadores ecológicos, todos analizados a lo largo del tiempo para simular los ciclos naturales e identificar los puntos calientes en tiempo real.",
+      dataMethodology3: `Fung.es también publica un <a href="https://raw.githubusercontent.com/lodist/funges/main/data/EU_foraging_scores.csv" target="_blank">conjunto de datos actualizado a diario</a> con puntuaciones de idoneidad ambiental para setas y plantas silvestres comestibles en toda Europa.`,
       keyDatasetsTitle: "Conjuntos de datos clave",
       dataset1: `<strong>1. CORINE Land Cover (CLC)</strong><br>
       Proporcionado por la Agencia Europea de Medio Ambiente (EEA), CORINE Land Cover ofrece mapas detallados de vegetación y uso del suelo en toda Europa. Esto ayuda a determinar ecosistemas adecuados para distintas especies de hongos y plantas.<br>
@@ -340,6 +344,7 @@
       dataMethodologyTitle: "Fonti di Dati e Metodologia",
       dataMethodology1: "Funges utilizza una combinazione di dati ambientali, meteorologici e geospaziali per prevedere i migliori luoghi e tempi per la raccolta di alimenti selvatici.",
       dataMethodology2: "Questi includono immagini satellitari, modelli del terreno, API meteorologiche e indicatori ecologici, tutti analizzati nel tempo per simulare i cicli naturali e identificare le aree calde in tempo reale.",
+      dataMethodology3: `Fung.es pubblica anche un <a href="https://raw.githubusercontent.com/lodist/funges/main/data/EU_foraging_scores.csv" target="_blank">dataset aggiornato quotidianamente</a> con punteggi di idoneità ambientale per funghi e piante selvatiche commestibili in tutta Europa.`,
       keyDatasetsTitle: "Set di Dati Principali",
       dataset1: `<strong>1. CORINE Land Cover (CLC)</strong><br>
       Fornito dall'Agenzia Europea dell'Ambiente (EEA), CORINE Land Cover offre mappe dettagliate della vegetazione e dell'uso del suolo in tutta Europa. Questo aiuta a determinare gli ecosistemi adatti per diverse specie di funghi e piante.<br>
@@ -394,6 +399,7 @@
       dataMethodologyTitle: "Sources de données et méthodologie",
       dataMethodology1: "Funges utilise une combinaison de données environnementales, météorologiques et géospatiales pour prévoir les meilleurs lieux et moments pour la cueillette des aliments sauvages.",
       dataMethodology2: "Cela inclut des images satellites, des modèles de terrain, des APIs météo et des indicateurs écologiques — tous analysés dans le temps pour simuler les cycles naturels et identifier les points chauds en temps réel.",
+      dataMethodology3: `Fung.es publie également un <a href="https://raw.githubusercontent.com/lodist/funges/main/data/EU_foraging_scores.csv" target="_blank">jeu de données mis à jour quotidiennement</a> avec des scores d’adéquation environnementale pour les champignons et les plantes sauvages comestibles en Europe.`,
       keyDatasetsTitle: "Jeux de données clés",
       dataset1: `<strong>1. CORINE Land Cover (CLC)</strong><br>
       Fournie par l'Agence européenne pour l'environnement (EEA), CORINE Land Cover fournit des cartes détaillées de la végétation et de l'utilisation des sols à travers l'Europe. Cela permet de déterminer les écosystèmes adaptés à différentes espèces de champignons et de plantes.<br>
@@ -451,6 +457,7 @@
   document.getElementById("data-methodology-title").innerText = t.dataMethodologyTitle;
   document.getElementById("data-methodology-1").innerText = t.dataMethodology1;
   document.getElementById("data-methodology-2").innerText = t.dataMethodology2;
+  document.getElementById("data-methodology-3").innerHTML = t.dataMethodology3;
   document.getElementById("key-datasets-title").innerText = t.keyDatasetsTitle;
   document.getElementById("dataset-1").innerHTML = t.dataset1;
   document.getElementById("dataset-2").innerHTML = t.dataset2;
