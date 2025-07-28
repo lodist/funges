@@ -410,22 +410,6 @@
       font-size: 20px;
       cursor: pointer;
     }
-    .patreon-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background-color: #ff424d;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      margin: 10px 0 20px;
-    }
-    .patreon-button img {
-      width: 24px;
-      height: auto;
-    }
     .bmc-button {
       display: inline-flex;
       align-items: center;
@@ -514,10 +498,6 @@
     
       #species-filter {
         font-size: 11px; /* optional: smaller filter input */
-      }
-      .patreon-button {
-        font-size: 13px;
-        padding: 8px 12px;
       }
       #support-modal h2 {
         font-size: 16px;
@@ -769,7 +749,7 @@
       <p id="osm-line-1"></p>
       <p id="osm-line-2"></p>
       <div style="margin: 15px 0;">
-        <a href="https://www.patreon.com/Funges" target="_blank">
+        <a href="https://buymeacoffee.com/lorisdisteq" target="_blank">
           <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/support_1.webp" alt="Support Button" style="width: 50px; height: auto; cursor: pointer;">
         </a>
       </div>
@@ -970,13 +950,8 @@
       <button class="close-button" onclick="toggleSupportModal()">✖</button>
       <h2 id="support-title"></h2>
   
-      <!-- Patreon and Buy Me a Coffee Buttons -->
+      <!-- Buy Me a Coffee Buttons -->
       <div class="support-buttons">
-        <!-- Patreon Button -->
-        <a href="https://www.patreon.com/Funges" target="_blank" class="patreon-button" aria-label="Support Funges on Patreon">
-          <img src="https://raw.githubusercontent.com/lodist/funges/main/QR/patreon.webp" alt="Support on Patreon" loading="lazy">
-          <span id="support-patreon"></span>
-        </a>
   
         <!-- Buy Me a Coffee Button -->
         <a href="https://buymeacoffee.com/lorisdisteq" target="_blank" class="bmc-button" aria-label="Support Funges on Buy Me a Coffee">
@@ -1882,7 +1857,6 @@
         },
         support: {
           title: "Support the Project",
-          patreon: "Support on Patreon",
           coffee: "Buy Me a Coffee",
           donate: "Donate:",
         },
@@ -1956,7 +1930,6 @@
         },
         support: {
           title: "Apoya el proyecto",
-          patreon: "Apoya en Patreon",
           coffee: "Invítame a un café",
           donate: "Donar:",
         },
@@ -2030,7 +2003,6 @@
         },
         support: {
           title: "Supporta il progetto",
-          patreon: "Supporta su Patreon",
           coffee: "Offrimi un caffè",
           donate: "Dona:",
           },
@@ -2104,7 +2076,6 @@
         },
         support: {
           title: "Soutenir le projet",
-          patreon: "Soutenir sur Patreon",
           coffee: "Offrez-moi un café",
           donate: "Faire un don :",
           },
@@ -2179,7 +2150,6 @@
       document.getElementById("osm-line-3").innerHTML = t.osm.line3;
       // Support
       document.getElementById("support-title").innerHTML = t.support.title;
-      document.getElementById("support-patreon").innerHTML = t.support.patreon;
       document.getElementById("support-coffee").innerHTML = t.support.coffee;
       document.getElementById("support-donate").innerHTML = t.support.donate;
       // Predictions
