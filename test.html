@@ -410,22 +410,6 @@
       font-size: 20px;
       cursor: pointer;
     }
-    .patreon-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background-color: #ff424d;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      margin: 10px 0 20px;
-    }
-    .patreon-button img {
-      width: 24px;
-      height: auto;
-    }
     .bmc-button {
       display: inline-flex;
       align-items: center;
@@ -514,10 +498,6 @@
     
       #species-filter {
         font-size: 11px; /* optional: smaller filter input */
-      }
-      .patreon-button {
-        font-size: 13px;
-        padding: 8px 12px;
       }
       #support-modal h2 {
         font-size: 16px;
@@ -769,7 +749,7 @@
       <p id="osm-line-1"></p>
       <p id="osm-line-2"></p>
       <div style="margin: 15px 0;">
-        <a href="https://www.patreon.com/Funges" target="_blank">
+        <a href="https://buymeacoffee.com/lorisdisteq" target="_blank">
           <img src="https://raw.githubusercontent.com/lodist/funges/main/icons/support_1.webp" alt="Support Button" style="width: 50px; height: auto; cursor: pointer;">
         </a>
       </div>
@@ -970,13 +950,8 @@
       <button class="close-button" onclick="toggleSupportModal()">✖</button>
       <h2 id="support-title"></h2>
   
-      <!-- Patreon and Buy Me a Coffee Buttons -->
+      <!-- Buy Me a Coffee Buttons -->
       <div class="support-buttons">
-        <!-- Patreon Button -->
-        <a href="https://www.patreon.com/Funges" target="_blank" class="patreon-button" aria-label="Support Funges on Patreon">
-          <img src="https://raw.githubusercontent.com/lodist/funges/main/QR/patreon.webp" alt="Support on Patreon" loading="lazy">
-          <span id="support-patreon"></span>
-        </a>
   
         <!-- Buy Me a Coffee Button -->
         <a href="https://buymeacoffee.com/lorisdisteq" target="_blank" class="bmc-button" aria-label="Support Funges on Buy Me a Coffee">
@@ -1066,15 +1041,15 @@
                 if (visitorCount > 45000) {
                     return "pk.Nothing";
                 } else {
-                    return "pk.Nothing.xrGoky5Mzc6gwO5z8n6CoQ";  // pk.eyJ1IjoibG9kaXN0IiwiYSI6ImNtM3g3dTVuaTE2dW8yaXM1eDE1dXVmZG4ifQ.xrGoky5Mzc6gwO5z8n6CoQ
+                    return "pk.eyJ1IjoibG9kaXN0IiwiYSI6ImNtM3g3dTVuaTE2dW8yaXM1eDE1dXVmZG4ifQ.xrGoky5Mzc6gwO5z8n6CoQ";  // pk.eyJ1IjoibG9kaXN0IiwiYSI6ImNtM3g3dTVuaTE2dW8yaXM1eDE1dXVmZG4ifQ.xrGoky5Mzc6gwO5z8n6CoQ
                 }
             } catch (error) {
                 console.error("Error parsing visitors.json:", error);
-                return "pk.Nothing.xrGoky5Mzc6gwO5z8n6CoQ"; // Fallback in case of JSON error
+                return "pk.eyJ1IjoibG9kaXN0IiwiYSI6ImNtM3g3dTVuaTE2dW8yaXM1eDE1dXVmZG4ifQ.xrGoky5Mzc6gwO5z8n6CoQ"; // Fallback in case of JSON error
             }
         } else {
             console.error("Failed to load visitors.json, using default token.");
-            return "pk.Nothing.xrGoky5Mzc6gwO5z8n6CoQ"; // Fallback if request fails
+            return "pk.eyJ1IjoibG9kaXN0IiwiYSI6ImNtM3g3dTVuaTE2dW8yaXM1eDE1dXVmZG4ifQ.xrGoky5Mzc6gwO5z8n6CoQ"; // Fallback if request fails
         }
     }
 
@@ -1144,13 +1119,14 @@
                 maxZoom: 20
             });
           
+
             L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+              attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
             }).addTo(osmMap);
             
             // Add the labels layer on top
             L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
-                attribution: 'Esri, Garmin, FAO, NOAA, USGS, © OpenStreetMap contributors, and the GIS User Community'
+              attribution: 'Esri, Garmin, FAO, NOAA, USGS, © OpenStreetMap contributors, and the GIS User Community'
             }).addTo(osmMap);
 
             setTimeout(() => {
@@ -1848,6 +1824,9 @@
       }
     };
 
+
+
+
     
     const translations = {
       en: {
@@ -1878,11 +1857,10 @@
         },
         support: {
           title: "Support the Project",
-          patreon: "Support on Patreon",
           coffee: "Buy Me a Coffee",
           donate: "Donate:",
         },
-        spontaneous: "📢 Appears Spontaneously and Sparsely in Season",
+        spontaneous: "📢 Appears spontaneously and widely during the season",
         resultbox: {
           prediction: "Prediction will appear here",
           nearby: "Nearby Edibles",
@@ -1952,11 +1930,10 @@
         },
         support: {
           title: "Apoya el proyecto",
-          patreon: "Apoya en Patreon",
           coffee: "Invítame a un café",
           donate: "Donar:",
         },
-        spontaneous: "📢 Aparece espontáneamente y con poca frecuencia en temporada",
+        spontaneous: "📢 Aparece espontáneamente y de forma generalizada durante la temporada",
         resultbox: {
           prediction: "El resultado aparecerá aquí",
           nearby: "Comestibles cercanos",
@@ -2026,11 +2003,10 @@
         },
         support: {
           title: "Supporta il progetto",
-          patreon: "Supporta su Patreon",
           coffee: "Offrimi un caffè",
           donate: "Dona:",
           },
-        spontaneous: "📢 Appare spontaneamente e raramente durante la stagione",
+        spontaneous: "📢 Appare spontaneamente e in modo diffuso durante la stagione",
         resultbox: {
           prediction: "Il risultato apparirà qui",
           nearby: "Commestibili nelle vicinanze",
@@ -2100,11 +2076,10 @@
         },
         support: {
           title: "Soutenir le projet",
-          patreon: "Soutenir sur Patreon",
           coffee: "Offrez-moi un café",
           donate: "Faire un don :",
           },
-        spontaneous: "📢 Apparaît spontanément et rarement en saison",
+        spontaneous: "📢 Apparaît spontanément et de manière répandue pendant la saison",
         resultbox: {
           prediction: "Le résultat apparaîtra ici",
           nearby: "Comestibles à proximité",
@@ -2175,7 +2150,6 @@
       document.getElementById("osm-line-3").innerHTML = t.osm.line3;
       // Support
       document.getElementById("support-title").innerHTML = t.support.title;
-      document.getElementById("support-patreon").innerHTML = t.support.patreon;
       document.getElementById("support-coffee").innerHTML = t.support.coffee;
       document.getElementById("support-donate").innerHTML = t.support.donate;
       // Predictions
