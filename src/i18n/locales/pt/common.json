@@ -1,0 +1,77 @@
+{
+  "common": {
+    "appName": "Funges",
+    "appDescription": "Guia de Cogumelos",
+    "loading": "Carregando...",
+    "error": "Ocorreu um erro",
+    "success": "Sucesso",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "close": "Fechar",
+    "submit": "Enviar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "clear": "Limpar",
+    "select": "Selecionar",
+    "upload": "Enviar",
+    "download": "Baixar",
+    "view": "Ver",
+    "add": "Adicionar",
+    "remove": "Remover",
+    "confirm": "Confirmar",
+    "yes": "Sim",
+    "no": "Não",
+    "retry": "Tentar novamente",
+    "language": "Idioma",
+    "theme": "Tema",
+    "dark": "Escuro",
+    "light": "Claro",
+    "system": "Sistema",
+    "sort": "Ordenar",
+    "email": "E-mail",
+    "score": "Pontuação"
+  },
+  "offline": {
+    "mode": "Modo offline",
+    "updateAvailable": "Atualização disponível",
+    "installApp": "Instalar aplicativo",
+    "reloadForUpdate": "Recarregar para atualizar"
+  },
+  "home": {
+    "title": "Bem-vindo ao Fung.es",
+    "subtitle": "Seu companheiro de coleta com IA",
+    "description": "Descubra e aprenda sobre alimentos selvagens com a ajuda da inteligência artificial",
+    "getStarted": "Começar",
+    "learnMore": "Saiba mais"
+  },
+  "errors": {
+    "general": "Algo deu errado. Por favor, tente novamente.",
+    "network": "Erro de rede. Verifique sua conexão.",
+    "upload": "Falha ao enviar imagem. Por favor, tente novamente.",
+    "notFound": "Página não encontrada.",
+    "unauthorized": "Você não está autorizado a acessar este recurso."
+  },
+  "html": {
+    "title": "Fung.es - Encontre Cogumelos e Plantas Comestíveis Perto de Você",
+    "description": "Encontre cogumelos e plantas comestíveis perto de você com nosso mapa de coleta em tempo real. Descubra pontos de alimentos selvagens usando dados meteorológicos e geoespaciais para uma coleta bem-sucedida.",
+    "keywords": "cogumelos, coleta, plantas comestíveis selvagens, mapa de coleta, alimentos selvagens, plantas comestíveis, caça aos cogumelos, pontos de coleta, cogumelos selvagens",
+    "author": "Fung.es",
+    "ogTitle": "Fung.es - Encontre Cogumelos e Plantas Comestíveis Perto de Você",
+    "ogDescription": "Encontre cogumelos e plantas comestíveis perto de você com nosso mapa de coleta em tempo real. Descubra pontos de alimentos selvagens usando dados meteorológicos e geoespaciais para uma coleta bem-sucedida.",
+    "ogType": "website",
+    "ogImage": "/icons/logo_funges.png",
+    "twitterCard": "summary_large_image",
+    "twitterTitle": "Fung.es - Encontre Cogumelos e Plantas Comestíveis Perto de Você",
+    "twitterDescription": "Encontre cogumelos e plantas comestíveis perto de você com nosso mapa de coleta em tempo real. Descubra pontos de alimentos selvagens usando dados meteorológicos e geoespaciais para uma coleta bem-sucedida.",
+    "twitterImage": "/icons/logo_funges.png"
+  },
+  "splash": {
+    "title": "Fung.es",
+    "subtitle": "App de Coleta de Cogumelos"
+  }
+}

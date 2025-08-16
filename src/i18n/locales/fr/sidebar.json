@@ -1,0 +1,14 @@
+{
+  "appName": "Funges",
+  "appDescription": "Guide des champignons",
+  "map": "Carte",
+  "species": "Espèces",
+  "recipes": "Recettes",
+  "instructions": "Instructions",
+  "offlineMaps": "Offline Maps",
+  "support": "Support",
+  "impressum": "Mentions légales",
+  "privacyPolicy": "Politique de confidentialité",
+  "termsOfUse": "Conditions d'utilisation",
+  "settings": "Paramètres"
+}

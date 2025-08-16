@@ -1,0 +1,77 @@
+{
+  "common": {
+    "appName": "Funges",
+    "appDescription": "Pilzführer",
+    "loading": "Lädt...",
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Erfolg",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "submit": "Absenden",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "search": "Suchen",
+    "filter": "Filtern",
+    "clear": "Löschen",
+    "select": "Auswählen",
+    "upload": "Hochladen",
+    "download": "Herunterladen",
+    "view": "Anzeigen",
+    "add": "Hinzufügen",
+    "remove": "Entfernen",
+    "confirm": "Bestätigen",
+    "yes": "Ja",
+    "no": "Nein",
+    "retry": "Erneut versuchen",
+    "language": "Sprache",
+    "theme": "Thema",
+    "dark": "Dunkel",
+    "light": "Hell",
+    "system": "System",
+    "sort": "Sortieren",
+    "email": "E-Mail",
+    "score": "Bewertung"
+  },
+  "offline": {
+    "mode": "Offline-Modus",
+    "updateAvailable": "Update verfügbar",
+    "installApp": "App installieren",
+    "reloadForUpdate": "Zum Aktualisieren neu laden"
+  },
+  "home": {
+    "title": "Willkommen bei Fung.es",
+    "subtitle": "Dein KI-gestützter Sammelbegleiter",
+    "description": "Entdecke und lerne essbare Wildpflanzen mit Hilfe künstlicher Intelligenz kennen",
+    "getStarted": "Loslegen",
+    "learnMore": "Mehr erfahren"
+  },
+  "errors": {
+    "general": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "network": "Netzwerkfehler. Bitte überprüfe deine Verbindung.",
+    "upload": "Bild konnte nicht hochgeladen werden. Bitte versuche es erneut.",
+    "notFound": "Seite nicht gefunden.",
+    "unauthorized": "Du bist nicht berechtigt, auf diese Ressource zuzugreifen."
+  },
+  "html": {
+    "title": "Fung.es - Finde Pilze und essbare Wildpflanzen in deiner Nähe",
+    "description": "Finde Pilze & essbare Pflanzen in deiner Nähe mit unserer Echtzeit-Sammelkarte. Entdecke Hotspots für Wildnahrung mithilfe von Wetter- und Geodaten für erfolgreiches Sammeln.",
+    "keywords": "Pilze, Sammeln, essbare Wildpflanzen, Sammelkarte, Wildnahrung, essbare Pflanzen, Pilzsuche, Sammelstellen, Wildpilze",
+    "author": "Fung.es",
+    "ogTitle": "Fung.es - Finde Pilze und essbare Wildpflanzen in deiner Nähe",
+    "ogDescription": "Finde Pilze & essbare Pflanzen in deiner Nähe mit unserer Echtzeit-Sammelkarte. Entdecke Hotspots für Wildnahrung mithilfe von Wetter- und Geodaten für erfolgreiches Sammeln.",
+    "ogType": "website",
+    "ogImage": "/icons/logo_funges.png",
+    "twitterCard": "summary_large_image",
+    "twitterTitle": "Fung.es - Finde Pilze und essbare Wildpflanzen in deiner Nähe",
+    "twitterDescription": "Finde Pilze & essbare Pflanzen in deiner Nähe mit unserer Echtzeit-Sammelkarte. Entdecke Hotspots für Wildnahrung mithilfe von Wetter- und Geodaten für erfolgreiches Sammeln.",
+    "twitterImage": "/icons/logo_funges.png"
+  },
+  "splash": {
+    "title": "Fung.es",
+    "subtitle": "Pilz-Sammel-App"
+  }
+}

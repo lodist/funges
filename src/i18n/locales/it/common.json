@@ -1,0 +1,89 @@
+{
+  "offline": {
+    "mode": "Modalità Offline",
+    "updateAvailable": "Aggiornamento Disponibile",
+    "installApp": "Installa App",
+    "reloadForUpdate": "Ricarica per Aggiornare"
+  },
+  "home": {
+    "title": "Benvenuto su Fung.es",
+    "subtitle": "Il tuo compagno di raccolta alimentato dall'IA",
+    "description": "Scopri e impara sui cibi selvatici con l'aiuto dell'intelligenza artificiale",
+    "getStarted": "Inizia",
+    "learnMore": "Scopri di più"
+  },
+  "errors": {
+    "general": "Qualcosa è andato storto. Riprova.",
+    "network": "Errore di rete. Controlla la tua connessione.",
+    "upload": "Caricamento immagine fallito. Riprova.",
+    "notFound": "Pagina non trovata.",
+    "unauthorized": "Non sei autorizzato ad accedere a questa risorsa."
+  },
+  "common": {
+    "appName": "Funges",
+    "appDescription": "Guida ai Funghi",
+    "loading": "Caricamento...",
+    "error": "Si è verificato un errore",
+    "retry": "Riprova",
+    "close": "Chiudi",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "view": "Visualizza",
+    "search": "Cerca",
+    "filter": "Filtra",
+    "sort": "Ordina",
+    "language": "Lingua",
+    "theme": "Tema",
+    "dark": "Scuro",
+    "light": "Chiaro",
+    "system": "Sistema",
+    "email": "Email",
+    "success": "Successo",
+    "submit": "Invia",
+    "back": "Indietro",
+    "next": "Avanti",
+    "previous": "Precedente",
+    "clear": "Cancella",
+    "select": "Seleziona",
+    "upload": "Carica",
+    "download": "Scarica",
+    "add": "Aggiungi",
+    "remove": "Rimuovi",
+    "confirm": "Conferma",
+    "yes": "Sì",
+    "no": "No",
+    "score": "Punteggio"
+  },
+  "html": {
+    "title": "Fung.es - Trova Funghi e Piante Commestibili Vicino a Te",
+    "description": "Trova funghi e piante commestibili vicino a te con la nostra mappa di raccolta in tempo reale. Scopri punti caldi di cibo selvatico utilizzando dati meteorologici e geospaziali per una raccolta di successo.",
+    "keywords": "funghi, raccolta, piante commestibili selvatiche, mappa raccolta, cibo selvatico, piante commestibili, caccia ai funghi, punti di raccolta, funghi selvatici",
+    "author": "Fung.es",
+    "ogTitle": "Fung.es - Trova Funghi e Piante Commestibili Vicino a Te",
+    "ogDescription": "Trova funghi e piante commestibili vicino a te con la nostra mappa di raccolta in tempo reale. Scopri punti caldi di cibo selvatico utilizzando dati meteorologici e geospaziali per una raccolta di successo.",
+    "ogType": "website",
+    "ogImage": "/icons/logo_funges.png",
+    "twitterCard": "summary_large_image",
+    "twitterTitle": "Fung.es - Trova Funghi e Piante Commestibili Vicino a Te",
+    "twitterDescription": "Trova funghi e piante commestibili vicino a te con la nostra mappa di raccolta in tempo reale. Scopri punti caldi di cibo selvatico utilizzando dati meteorologici e geospaziali per una raccolta di successo.",
+    "twitterImage": "/icons/logo_funges.png"
+  },
+  "splash": {
+    "title": "Fung.es",
+    "subtitle": "App di Raccolta Funghi"
+  },
+  "pwa": {
+    "installTitle": "Installa Fung.es",
+    "installDescription": "Installa Fung.es sul tuo dispositivo per accesso rapido e funzionalità offline.",
+    "installButton": "Installa App",
+    "laterButton": "Più tardi"
+  },
+  "close": "Chiudi",
+  "sidebar": {
+    "title": "Barra laterale",
+    "description": "Mostra la barra laterale mobile.",
+    "toggle": "Attiva/Disattiva barra laterale"
+  }
+}

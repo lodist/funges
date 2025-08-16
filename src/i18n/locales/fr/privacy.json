@@ -1,0 +1,43 @@
+{
+  "title": "Politique de confidentialité",
+  "subtitle": "Votre vie privée et la protection de vos données personnelles sont d'une importance capitale. Cette politique de confidentialité explique comment vos informations sont gérées et apporte de la transparence sur les services tiers susceptibles de collecter des données.",
+  "scope": {
+    "title": "Champ d'application de cette politique de confidentialité",
+    "content": "Cette politique de confidentialité s'applique aux services fournis. Elle ne couvre pas les sites web, services ou produits tiers qui ne sont pas gérés par l'administrateur."
+  },
+  "collection": {
+    "title": "Collecte et utilisation des informations",
+    "content": "Nous nous engageons à respecter les principes d'anonymat et de protection des données. Ce service ne collecte, ne stocke ni ne traite aucune information personnelle directement. Notre conception privilégie la fourniture d'informations sans exiger de données en retour, reflétant notre forte conviction en la valeur de l'anonymat.",
+    "cookiebot": "Pour garantir davantage votre vie privée, nous utilisons Cookiebot en arrière-plan afin de surveiller activement qu'aucun service non strictement nécessaire ne fonctionne. Des contrôles réguliers et stricts sont effectués pour s'assurer que les données des utilisateurs ne sont pas partagées au-delà de ce qui est essentiel au fonctionnement de ce service."
+  },
+  "rights": {
+    "title": "Vos droits",
+    "intro": "Même si ce service ne collecte pas de données directement, vous devez être informé de vos droits selon la Loi fédérale suisse sur la protection des données (LPD) et le Règlement général sur la protection des données (RGPD) lors de l'utilisation de services tiers :",
+    "access": "Accès : Demander l'accès à vos données auprès de tout service tiers.",
+    "rectification": "Rectification : Corriger les données inexactes détenues par des services tiers.",
+    "erasure": "Effacement : Demander la suppression de vos données si elles ne sont plus nécessaires.",
+    "restriction": "Limitation : Demander la limitation du traitement dans certaines circonstances.",
+    "objection": "Opposition : S'opposer au traitement de vos données, y compris à des fins de marketing.",
+    "portability": "Portabilité des données : Demander vos données dans un format structuré et lisible par machine.",
+    "exercise": "Pour exercer ces droits, veuillez contacter directement le service tiers concerné."
+  },
+  "protection": {
+    "title": "Protection des données",
+    "content": "L'administrateur ne traite pas directement de données personnelles. Les services tiers sont responsables de la sécurité des données qu'ils collectent.",
+    "security": "Bien que tous les efforts soient faits pour n'intégrer que des services fiables, aucune méthode de transmission ou de stockage n'est totalement sécurisée."
+  },
+  "transfers": {
+    "title": "Transferts internationaux",
+    "content": "Les services tiers intégrés peuvent traiter des données dans des pays hors de votre juridiction. Ces services sont responsables de la mise en place de garanties appropriées pour protéger vos données."
+  },
+  "changes": {
+    "title": "Modifications de cette politique de confidentialité",
+    "content": "Cette politique de confidentialité peut être mise à jour périodiquement pour refléter les changements de réglementation ou l'utilisation de services tiers. Toute modification importante sera communiquée sur cette page et la « Date d'effet » sera mise à jour."
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Pour toute question ou préoccupation concernant cette politique de confidentialité, veuillez contacter :",
+    "email": "lorisdistefano@pm.me"
+  },
+  "lastUpdated": "Dernière mise à jour : 15.01.2025"
+}

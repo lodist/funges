@@ -1,0 +1,69 @@
+---
+description:
+globs: TASKS.md
+alwaysApply: false
+---
+
+# TASKS.md Execution Guidelines
+
+This file defines the technical roadmap for transforming the project. Cursor must use it as the single source of truth for implementation progress.
+
+## Purpose
+
+To track and manage the structured migration of the project through clearly defined, sequential tasks — **one task at a time**.
+
+## Structure
+
+- Organize tasks into thematic sections (e.g., Project Setup, Styling, Routing)
+- Each section should use standard markdown checkboxes:
+
+  ```markdown
+  ## Section Name
+
+  - [ ] Task to do
+  - [x] Completed task
+  ```
+
+## Execution Rules for Cursor
+
+### 1. Task Execution
+
+- ✅ Always work on **exactly one `[ ]` task at a time**
+- 🔁 Do **not skip ahead** unless explicitly instructed
+- 🧠 Before executing a task, **read the task text carefully**
+- 🤔 If anything is unclear (e.g., requirements, files, business logic), **ask the user before continuing**
+
+### 2. After Each Task
+
+- [x] Mark the task as complete by changing `[ ]` to `[x]`
+- 📁 If new files or folders were created, list them in a "Relevant Files" section
+- 📌 If the task uncovers additional subtasks, append them under the correct section
+
+### 3. File Maintenance
+
+- Always keep `TASKS.md` up to date with:
+  - Task completion
+  - Additional discovered tasks
+  - Clarifications or changes in scope
+
+### 4. Implementation Logging (optional but encouraged)
+
+- At the end of each section or complex task, add a note under an `## Notes` or `## Decisions` subsection explaining:
+  - Why certain libraries or patterns were chosen
+  - Key architecture decisions
+  - Technical constraints or trade-offs
+
+---
+
+## AI Summary
+
+When using this file, Cursor must:
+
+1. Work through tasks **sequentially**, not in parallel
+2. Ask for user input before acting if unclear
+3. Mark tasks as `[x]` once complete
+4. Only move to the next `[ ]` task after updating the file
+5. Add any missing tasks discovered during implementation
+6. Keep the file clean and readable at all times
+
+This allows full visibility, traceability, and repeatability of the implementation process.

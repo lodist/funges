@@ -1,0 +1,233 @@
+{
+  "title": "Banco de Dados de Espécies",
+  "subtitle": "Aprenda sobre alimentos silvestres",
+  "search_placeholder": "Buscar por uma espécie",
+  "description": "Explore nosso banco de dados completo de espécies comestíveis",
+  "search": {
+    "placeholder": "Buscar por uma espécie",
+    "found": "Encontrado",
+    "species": "espécies",
+    "clear": "Limpar"
+  },
+  "filterByType": "Filtrar por Tipo",
+  "allTypes": "Todos os Tipos",
+  "mushrooms": "Cogumelos",
+  "mushroom": "Cogumelo",
+  "plants": "Plantas",
+  "plant": "Planta",
+  "berries": "Frutas silvestres",
+  "berry": "Fruta silvestre",
+  "herbs": "Ervas",
+  "herb": "Erva",
+  "nuts": "Nozes",
+  "nut": "Noz",
+  "flowers": "Flores",
+  "flower": "Flor",
+  "scientificName": "Nome Científico",
+  "commonName": "Nome Comum",
+  "edibility": "Comestibilidade",
+  "season": "Estação",
+  "habitat": "Habitat",
+  "howTo": "Instruções de Coleta",
+  "cookingTips": "Dicas de Culinária",
+  "safetyNotes": "Notas de Segurança",
+  "preparation": "Preparo",
+  "found": "Encontrado",
+  "species": "espécies",
+  "noResults": "Nenhuma espécie encontrada",
+  "noResultsDescription": "Tente ajustar sua busca ou critérios de filtro",
+  "safetyWarning": "Sempre consulte um especialista antes de consumir qualquer alimento silvestre. Esta informação é apenas para fins educativos.",
+  "viewOnMap": "Ver no mapa",
+  "seasons": {
+    "spring": "Primavera",
+    "summer": "Verão",
+    "fall": "Outono",
+    "winter": "Inverno",
+    "spring-summer": "Primavera-Verão",
+    "summer-fall": "Verão-Outono",
+    "fall-winter": "Outono-Inverno",
+    "winter-spring": "Inverno-Primavera",
+    "spring-fall": "Primavera e Outono"
+  },
+  "habitats": {
+    "forest": "Floresta",
+    "meadow": "Prado",
+    "hedgerow": "Cerca viva",
+    "woodland": "Bosque",
+    "grassland": "Campo",
+    "wetland": "Área úmida",
+    "urban": "Urbano"
+  },
+  "list_of_species": {
+    "chant": {
+      "name": "Cantarelo",
+      "description": "Um cogumelo amarelo-dourado com formato de funil distinto e aroma frutado",
+      "howTo": "Procure em florestas decíduas, especialmente perto de carvalhos e faias"
+    },
+    "mushroom": {
+      "name": "Porcini",
+      "description": "Também conhecido como Boleto, este cogumelo valorizado tem chapéu marrom e poros brancos ou amarelos",
+      "howTo": "Encontrado em florestas de coníferas e decíduas, frequentemente perto de pinheiros"
+    },
+    "morel": {
+      "name": "Morchela",
+      "description": "Cogumelo distinto com chapéu em formato de colmeia que aparece na primavera",
+      "howTo": "Procure em áreas perturbadas, florestas queimadas e perto de árvores mortas na primavera"
+    },
+    "blackberry": {
+      "name": "Amora",
+      "description": "Frutas doces e roxas-escuras que crescem em arbustos espinhosos",
+      "howTo": "Encontrada em cercas vivas, bordas de bosques e áreas perturbadas no final do verão"
+    },
+    "elderberry": {
+      "name": "Sabugueiro",
+      "description": "Pequenas bagas roxas-escuras que crescem em cachos em árvores de sabugueiro",
+      "howTo": "Procure árvores de sabugueiro em cercas vivas e bordas de bosques no outono"
+    },
+    "nettle": {
+      "name": "Urtiga",
+      "description": "Planta verde nutritiva com pelos urticantes que deve ser cozida",
+      "howTo": "Encontrada em áreas perturbadas, cercas vivas e bordas de bosques na primavera e verão"
+    },
+    "dandelion": {
+      "name": "Dente-de-leão",
+      "description": "Erva comum com flores amarelas brilhantes e folhas comestíveis",
+      "howTo": "Encontrado em prados, campos e áreas perturbadas durante a estação de crescimento"
+    },
+    "hazelnut": {
+      "name": "Avelã",
+      "description": "Nozes doces e arredondadas que crescem em aveleiras",
+      "howTo": "Procure aveleiras em cercas vivas e bordas de bosques no outono"
+    },
+    "garlic": {
+      "name": "Alho-selvagem",
+      "description": "Erva de aroma forte com folhas largas e flores brancas",
+      "howTo": "Encontrado em bosques decíduos na primavera, frequentemente formando grandes tapetes"
+    },
+    "chickenOfTheWoods": {
+      "name": "Frango-da-mata",
+      "description": "Fungo de prateleira amarelo-alaranjado brilhante que cresce em árvores",
+      "howTo": "Procure crescendo em árvores mortas ou moribundas, especialmente carvalhos"
+    },
+    "oysterMushroom": {
+      "name": "Cogumelo-ostra",
+      "description": "Cogumelo branco-acinzentado com chapéu em forma de leque que cresce em grupos sobre madeira morta",
+      "howTo": "Procure crescendo em árvores mortas, especialmente faia e carvalho, no outono e inverno"
+    },
+    "shiitake": {
+      "name": "Shiitake",
+      "description": "Cogumelo com chapéu marrom e lâminas brancas, muito valorizado na culinária asiática",
+      "howTo": "Encontrado crescendo em madeira dura morta, especialmente carvalho e faia, na primavera e outono"
+    },
+    "raspberry": {
+      "name": "Framboesa-selvagem",
+      "description": "Frutas vermelhas doces que crescem em caules espinhosos com folhas compostas",
+      "howTo": "Procure caules de framboesa em cercas vivas, bordas de bosques e áreas perturbadas no verão"
+    },
+    "blueberry": {
+      "name": "Mirtilo-selvagem",
+      "description": "Pequenas frutas azuis doces que crescem em arbustos baixos em solo ácido",
+      "howTo": "Encontrado em charnecas, turfeiras e florestas ácidas no verão e início do outono"
+    },
+    "strawberry": {
+      "name": "Morangos-silvestres",
+      "description": "Pequenos morangos vermelhos de sabor intenso, com flores brancas e folhas trifoliadas",
+      "howTo": "Procure em prados, bordas de bosques e áreas gramadas na primavera e verão"
+    },
+    "wildMint": {
+      "name": "Hortelã-selvagem",
+      "description": "Erva aromática com caules quadrados e folhas opostas que liberam aroma de menta ao serem esmagadas",
+      "howTo": "Encontrada em áreas úmidas, ao longo de riachos e prados úmidos na primavera e verão"
+    },
+    "chickweed": {
+      "name": "Mourão",
+      "description": "Planta rasteira com pequenas flores brancas e folhas ovais, muito nutritiva",
+      "howTo": "Comum em jardins, áreas perturbadas e prados durante a estação de crescimento"
+    },
+    "plantain": {
+      "name": "Tanchagem",
+      "description": "Planta rasteira com folhas ovais largas e longas hastes florais",
+      "howTo": "Encontrada em gramados, prados e áreas perturbadas durante a estação de crescimento"
+    },
+    "walnut": {
+      "name": "Noz",
+      "description": "Nozes grandes e redondas com casca dura e sabor rico e oleoso",
+      "howTo": "Procure nogueiras em parques, jardins e bordas de bosques no outono"
+    },
+    "chestnut": {
+      "name": "Castanha",
+      "description": "Grandes castanhas doces envoltas em ouriços verdes espinhosos que se abrem quando maduras",
+      "howTo": "Encontrada em castanheiras e florestas mistas no outono, frequentemente perto de trilhas"
+    },
+    "elderflower": {
+      "name": "Flor de sabugueiro",
+      "description": "Flores brancas cremosas que crescem em grandes cachos planos em árvores de sabugueiro",
+      "howTo": "Procure árvores de sabugueiro em cercas vivas e bordas de bosques no final da primavera e início do verão"
+    },
+    "daisy": {
+      "name": "Margarida-comum",
+      "description": "Pequenas flores brancas com centros amarelos que crescem rente ao solo",
+      "howTo": "Comum em gramados, prados e áreas gramadas durante a primavera e verão"
+    },
+    "violets": {
+      "name": "Violeta-doce",
+      "description": "Pequenas flores roxas com folhas em formato de coração e fragrância adocicada",
+      "howTo": "Encontrada em bordas de bosques, cercas vivas e áreas sombreadas no início da primavera"
+    },
+    "maitake": {
+      "name": "Grifola frondosa",
+      "description": "Um cogumelo em forma de prateleira, de cor laranja-amarelo brilhante, que cresce em árvores.",
+      "howTo": "Procure-o crescendo em árvores mortas ou moribundas, especialmente carvalhos."
+    },
+    "amaranth": {
+      "name": "Amaranto",
+      "description": "Planta herbácea com folhas e sementes comestíveis, rica em nutrientes.",
+      "howTo": "Cresce em solos perturbados, hortas e campos durante o verão. Colha as folhas jovens antes da floração."
+    },
+    "artichoke": {
+      "name": "Alcachofra-silvestre",
+      "description": "Planta espinhosa semelhante à alcachofra cultivada, com capítulos e caules comestíveis.",
+      "howTo": "Encontrada em prados e campos; colha os capítulos jovens e os caules tenros na primavera e no início do verão."
+    },
+    "asparagus": {
+      "name": "Espargo-silvestre",
+      "description": "Planta perene com rebentos finos e comestíveis que aparecem na primavera.",
+      "howTo": "Procure os rebentos jovens em campos abertos, prados e ao longo das sebes na primavera."
+    },
+    "black_chant": {
+      "name": "Trombeta-da-morte",
+      "description": "Cogumelo escuro em forma de trombeta, de sabor intenso, muito apreciado na culinária.",
+      "howTo": "Encontra-se em florestas de folhas largas, especialmente sob carvalhos e faias, do fim do verão ao outono."
+    },
+    "lingonb": {
+      "name": "Mirtilo-vermelho",
+      "description": "Pequenas bagas vermelhas e ácidas que crescem em arbustos perenes em solos ácidos.",
+      "howTo": "Procure em florestas de coníferas, charnecas e turfeiras do fim do verão ao outono."
+    },
+    "masterwort": {
+      "name": "Imperatória",
+      "description": "Erva perene com folhas aromáticas e umbelas de flores brancas, usada na medicina tradicional e como especiaria.",
+      "howTo": "Encontrada em prados de montanha e clareiras florestais; colha folhas e raízes na primavera e no verão."
+    },
+    "parasol": {
+      "name": "Guarda-sol",
+      "description": "Grande cogumelo com chapéu largo e escamoso, semelhante a um guarda-sol, comestível quando jovem.",
+      "howTo": "Procure em prados, pastagens e nas bordas das florestas do fim do verão ao outono."
+    },
+    "sorrel": {
+      "name": "Azedinha-comum",
+      "description": "Planta de sabor ácido e cítrico, utilizada em saladas e sopas.",
+      "howTo": "Colha as folhas jovens em prados, pastagens e ao longo dos caminhos na primavera e no verão."
+    },
+    "st_george": {
+      "name": "Cogumelo-de-São-Jorge",
+      "description": "Cogumelo branco e firme com cheiro de farinha, que surge por volta da festa de São Jorge na primavera.",
+      "howTo": "Encontra-se em prados, pastagens e nas bordas das florestas na primavera."
+    },
+    "truffle_b": {
+      "name": "Trufa-preta",
+      "description": "Cogumelo subterrâneo muito apreciado, de aroma intenso, usado na culinária gourmet.",
+      "howTo": "Encontra-se debaixo da terra, próximo às raízes de carvalhos e aveleiras, colhido com animais treinados no inverno."
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Support the Project",
+  "subtitle": "Help us keep Fung.es free and improve its availability",
+  "description": "If you'd like to help keep the project running and improve availability, please consider supporting the project. Your contributions help us maintain the service and add new features.",
+  "donate": "Donate:",
+  "bitcoin": {
+    "name": "Bitcoin (BTC)",
+    "description": "Support with Bitcoin cryptocurrency"
+  },
+  "ethereum": {
+    "name": "Ethereum (ETH)",
+    "description": "Support with Ethereum cryptocurrency"
+  },
+  "iota": {
+    "name": "IOTA",
+    "description": "Support with IOTA cryptocurrency"
+  },
+  "patreon": {
+    "name": "Patreon",
+    "description": "Support with Patreon membership"
+  },
+  "buymeacoffee": {
+    "name": "Buy Me a Coffee",
+    "description": "Support with Buy Me a Coffee"
+  },
+  "copyAddress": "Copy",
+  "showQR": "QR",
+  "copied": "Copied!",
+  "whySupport": {
+    "title": "Why Support Fung.es?",
+    "reasons": [
+      "Keep the service free for everyone",
+      "Improve map availability and performance",
+      "Add new features and species",
+      "Maintain server costs and infrastructure",
+      "Support ongoing development and updates"
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "For questions about support or donations, please contact us:",
+    "email": "lorisdistefano@pm.me"
+  },
+  "platformSupport": "Platform Support",
+  "address": "Address",
+  "close": "Close",
+  "thankYou": "Thank you for your support! 🍄",
+  "qrCode": "QR Code"
+}

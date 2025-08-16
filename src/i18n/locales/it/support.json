@@ -1,0 +1,49 @@
+{
+  "title": "Supporta il Progetto",
+  "subtitle": "Aiutaci a mantenere Fung.es gratuito e migliorarne la disponibilità",
+  "description": "Se vuoi contribuire al progetto e migliorarne la disponibilità, considera di sostenere il progetto. I tuoi contributi ci aiutano a mantenere il servizio e ad aggiungere nuove funzionalità.",
+  "donate": "Dona:",
+  "bitcoin": {
+    "name": "Bitcoin (BTC)",
+    "description": "Supporta con la criptovaluta Bitcoin"
+  },
+  "ethereum": {
+    "name": "Ethereum (ETH)",
+    "description": "Supporta con la criptovaluta Ethereum"
+  },
+  "iota": {
+    "name": "IOTA",
+    "description": "Supporta con la criptovaluta IOTA"
+  },
+  "patreon": {
+    "name": "Patreon",
+    "description": "Supporta con l'abbonamento Patreon"
+  },
+  "buymeacoffee": {
+    "name": "Buy Me a Coffee",
+    "description": "Supporta con Buy Me a Coffee"
+  },
+  "copyAddress": "Copia",
+  "showQR": "QR",
+  "copied": "Copiato!",
+  "whySupport": {
+    "title": "Perché Supportare Fung.es?",
+    "reasons": [
+      "Mantenere il servizio gratuito per tutti",
+      "Migliorare la disponibilità e le prestazioni della mappa",
+      "Aggiungere nuove funzionalità e specie",
+      "Mantenere i costi dei server e l'infrastruttura",
+      "Supportare lo sviluppo e gli aggiornamenti continui"
+    ]
+  },
+  "contact": {
+    "title": "Contatto",
+    "description": "Per domande su supporto o donazioni, contattaci:",
+    "email": "lorisdistefano@pm.me"
+  },
+  "platformSupport": "Supporto tramite piattaforme",
+  "address": "Indirizzo",
+  "close": "Chiudi",
+  "thankYou": "Grazie per il tuo supporto! 🍄",
+  "qrCode": "Codice QR"
+}

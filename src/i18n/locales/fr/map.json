@@ -1,0 +1,67 @@
+{
+  "title": "Carte interactive de cueillette",
+  "description": "Explorez les lieux de cueillette et les données en temps réel",
+  "loading": "Chargement de la carte...",
+  "error": {
+    "title": "Erreur de carte",
+    "retry": "Réessayer",
+    "reload": "Recharger la page",
+    "offline": "Vous êtes hors ligne",
+    "offlineMessage": "Veuillez vérifier votre connexion internet et réessayer.",
+    "generic": "Une erreur s'est produite lors du chargement de la carte.",
+    "waitingForConnection": "En attente de connexion..."
+  },
+
+  "noSpotsFound": "Aucun site de cueillette trouvé à proximité",
+  "spotsFound": "{{count}} site{{count > 1 ? 's' : ''}} de cueillette trouvé{{count > 1 ? 's' : ''}} à proximité !",
+  "tryMovingMap": "Essayez de déplacer la carte ou d'obtenir votre position",
+  "geolocation": {
+    "enable": "Activer la localisation",
+    "finding": "Recherche de votre position...",
+    "found": "Position trouvée",
+    "error": "Impossible d'obtenir la position"
+  },
+  "overlays": {
+    "title": "Couches de la carte",
+    "polygons": "Afficher les zones de cueillette",
+    "realtime": "Afficher les données en temps réel"
+  },
+  "region": {
+    "title": "Sélectionner une région",
+    "select": "Sélectionner une région",
+    "loading": "Chargement de la région..."
+  },
+  "fallback": {
+    "title": "Carte temporairement indisponible",
+    "message": "La carte interactive est actuellement indisponible. Vous pouvez toujours voir votre position et les informations de cueillette.",
+    "retryMap": "Recharger la carte",
+    "getLocation": "Obtenir la position",
+    "currentLocation": "Position actuelle",
+    "coordinates": "Lat : {{lat}}, Lng : {{lng}}",
+    "spotsFound": "Sites de cueillette",
+    "support": "Soutenir le projet",
+    "limit_hit_message": "Cher Forager,<br>\nNous ne pouvons pas charger les tuiles de la carte car nous avons atteint notre limite mensuelle d'utilisation.<br><br>\nPour aider à maintenir les cartes disponibles, veuillez envisager de <strong>soutenir le projet</strong>.<br>\nEn attendant, profitez de cette carte de Boletus pas tout à fait parfaite… jusqu'à ce qu'elle atteigne sa propre limite 😅",
+
+    "tips": {
+      "title": "Conseils de dépannage",
+      "checkConnection": "Vérifiez votre connexion internet",
+      "refreshPage": "Rafraîchissez la page",
+      "tryLater": "Réessayez dans quelques minutes"
+    }
+  },
+  "species": {
+    "select": "Sélectionner une espèce",
+    "search": "Rechercher une espèce...",
+    "clear": "Effacer la sélection",
+    "noResults": "Aucune espèce trouvée",
+    "notAvailableOffline": "Not available offline. Download on the Offline Maps page."
+  },
+  "getLocation": "Obtenir ma position",
+  "toggleNumbers": "Afficher/masquer les notes",
+  "toggleDarkMode": "Basculer en mode sombre",
+  "featureInfo": {
+    "title": "Détails de la fonctionnalité",
+    "getDirections": "Obtenir l'itinéraire",
+    "location": "Emplacement"
+  }
+}

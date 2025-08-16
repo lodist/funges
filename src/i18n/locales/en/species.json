@@ -1,0 +1,233 @@
+{
+  "title": "Species Database",
+  "subtitle": "Learn about wild foods",
+  "search_placeholder": "Search for a species",
+  "description": "Explore our complete database of edible species",
+  "search": {
+    "placeholder": "Search for a species",
+    "found": "Found",
+    "species": "species",
+    "clear": "Clear"
+  },
+  "filterByType": "Filter by Type",
+  "allTypes": "All Types",
+  "mushrooms": "Mushrooms",
+  "mushroom": "Mushroom",
+  "plants": "Plants",
+  "plant": "Plant",
+  "berries": "Berries",
+  "berry": "Berry",
+  "herbs": "Herbs",
+  "herb": "Herb",
+  "nuts": "Nuts",
+  "nut": "Nut",
+  "flowers": "Flowers",
+  "flower": "Flower",
+  "scientificName": "Scientific Name",
+  "commonName": "Common Name",
+  "edibility": "Edibility",
+  "season": "Season",
+  "habitat": "Habitat",
+  "howTo": "Foraging Instructions",
+  "cookingTips": "Cooking Tips",
+  "safetyNotes": "Safety Notes",
+  "preparation": "Preparation",
+  "found": "Found",
+  "species": "species",
+  "noResults": "No species found",
+  "noResultsDescription": "Try adjusting your search or filter criteria",
+  "safetyWarning": "Always consult an expert before consuming any wild food. This information is for educational purposes only.",
+  "viewOnMap": "View on map",
+  "seasons": {
+    "spring": "Spring",
+    "summer": "Summer",
+    "fall": "Autumn",
+    "winter": "Winter",
+    "spring-summer": "Spring-Summer",
+    "summer-fall": "Summer-Fall",
+    "fall-winter": "Fall-Winter",
+    "winter-spring": "Winter-Spring",
+    "spring-fall": "Spring and Fall"
+  },
+  "habitats": {
+    "forest": "Forest",
+    "meadow": "Meadow",
+    "hedgerow": "Hedgerow",
+    "woodland": "Woodland",
+    "grassland": "Grassland",
+    "wetland": "Wetland",
+    "urban": "Urban"
+  },
+  "list_of_species": {
+    "chant": {
+      "name": "Chanterelle",
+      "description": "A golden yellow mushroom with a distinctive funnel shape and fruity aroma",
+      "howTo": "Look for them in deciduous forests, especially near oak and beech trees"
+    },
+    "mushroom": {
+      "name": "Porcini",
+      "description": "Also known as King Bolete, this prized mushroom has a brown cap and white or yellow pores",
+      "howTo": "Found in coniferous and deciduous forests, often near pine trees"
+    },
+    "morel": {
+      "name": "Morel",
+      "description": "A distinctive mushroom with a honeycomb cap that appears in spring",
+      "howTo": "Look in disturbed areas, burned forests, and near dead trees in spring"
+    },
+    "blackberry": {
+      "name": "Blackberry",
+      "description": "Sweet, dark purple berries that grow on thorny bushes",
+      "howTo": "Found in hedgerows, woodland edges, and disturbed areas in late summer"
+    },
+    "elderberry": {
+      "name": "Elderberry",
+      "description": "Small dark purple berries that grow in clusters on elder trees",
+      "howTo": "Look for elder trees in hedgerows and woodland edges in autumn"
+    },
+    "nettle": {
+      "name": "Nettle",
+      "description": "A nutritious green plant with stinging hairs that must be cooked",
+      "howTo": "Found in disturbed areas, hedgerows, and woodland edges in spring and summer"
+    },
+    "dandelion": {
+      "name": "Dandelion",
+      "description": "A common weed with bright yellow flowers and edible leaves",
+      "howTo": "Found in meadows, grasslands, and disturbed areas during growing season"
+    },
+    "hazelnut": {
+      "name": "Hazelnut",
+      "description": "Sweet, round nuts that grow on hazel trees",
+      "howTo": "Look for hazel trees in hedgerows and woodland edges in autumn"
+    },
+    "garlic": {
+      "name": "Wild Garlic",
+      "description": "A pungent herb with broad leaves and white flowers",
+      "howTo": "Found in deciduous woodlands in spring, often forming large patches"
+    },
+    "chickenOfTheWoods": {
+      "name": "Chicken of the Woods",
+      "description": "A bright orange-yellow bracket fungus that grows on trees",
+      "howTo": "Look for it growing on dead or dying trees, especially oaks"
+    },
+    "maitake": {
+      "name": "Hen of the Woods (Maitake)",
+      "description": "A clustered, gray-brown polypore mushroom with frond-like caps, highly prized for its flavor and medicinal properties",
+      "howTo": "Look for it growing at the base of dead or dying hardwood trees, especially oaks, in late summer and autumn"
+    },
+    "amaranth": {
+      "name": "Amaranth",
+      "description": "A leafy green plant, often considered a weed, with edible leaves and seeds rich in nutrients.",
+      "howTo": "Look for it in disturbed soils, gardens, and fields during summer. Young leaves are best harvested before flowering."
+    },
+    "artichoke": {
+      "name": "Wild Artichoke",
+      "description": "A thistle-like plant with edible flower buds and stems, related to the cultivated artichoke.",
+      "howTo": "Found in meadows and fields, harvest young flower buds and tender stems in spring and early summer."
+    },
+    "asparagus": {
+      "name": "Wild Asparagus",
+      "description": "A perennial plant with slender, edible shoots that appear in spring.",
+      "howTo": "Look for young shoots in open fields, meadows, and along hedgerows in spring."
+    },
+    "black_chant": {
+      "name": "Black Trumpet (Horn of Plenty)",
+      "description": "A dark, funnel-shaped mushroom with a rich, smoky flavor, prized in gourmet cooking.",
+      "howTo": "Found in deciduous forests, especially under oak and beech, in late summer and autumn."
+    },
+    "lingonb": {
+      "name": "Lingonberry",
+      "description": "Small, red, tart berries that grow on low evergreen shrubs in acidic soils.",
+      "howTo": "Look for them in coniferous forests, moorlands, and heathlands in late summer and autumn."
+    },
+    "masterwort": {
+      "name": "Masterwort",
+      "description": "A perennial herb with aromatic leaves and white flower clusters, used in traditional medicine and as a spice.",
+      "howTo": "Found in mountain meadows and forest clearings, harvest leaves and roots in spring and summer."
+    },
+    "parasol": {
+      "name": "Parasol Mushroom",
+      "description": "A large, tall mushroom with a broad, scaly cap resembling a parasol, edible when young.",
+      "howTo": "Look for it in meadows, grasslands, and forest edges from late summer to autumn."
+    },
+    "sorrel": {
+      "name": "Common Sorrel",
+      "description": "A tangy, lemon-flavored leafy plant often used in salads and soups.",
+      "howTo": "Harvest young leaves in meadows, grasslands, and along paths in spring and summer."
+    },
+    "st_george": {
+      "name": "St. George's Mushroom",
+      "description": "A white, firm mushroom with a mealy scent, appearing around St. George's Day in spring.",
+      "howTo": "Found in grassy areas, meadows, and along woodland edges in spring."
+    },
+    "truffle_b": {
+      "name": "Black Truffle",
+      "description": "A highly prized underground fungus with a strong aroma, used in gourmet cuisine.",
+      "howTo": "Found underground near the roots of oaks and hazelnuts, typically harvested with trained animals in winter."
+    },
+    "oysterMushroom": {
+      "name": "Oyster Mushroom",
+      "description": "A white-grey mushroom with fan-shaped cap that grows in clusters on dead wood",
+      "howTo": "Look for them growing on dead trees, especially beech and oak, in autumn and winter"
+    },
+    "shiitake": {
+      "name": "Shiitake",
+      "description": "A mushroom with brown cap and white gills, highly prized in Asian cuisine",
+      "howTo": "Found growing on dead hardwood trees, especially oak and beech, in spring and autumn"
+    },
+    "raspberry": {
+      "name": "Wild Raspberry",
+      "description": "Sweet red berries that grow on thorny canes with distinctive compound leaves",
+      "howTo": "Look for raspberry canes in hedgerows, woodland edges, and disturbed areas in summer"
+    },
+    "blueberry": {
+      "name": "Wild Blueberry",
+      "description": "Small sweet blue berries that grow on low shrubs in acidic soil",
+      "howTo": "Found in heaths, moors, and acidic forests in summer and early autumn"
+    },
+    "strawberry": {
+      "name": "Wild Strawberry",
+      "description": "Small red berries with intense flavor, with white flowers and trifoliate leaves",
+      "howTo": "Look for them in meadows, woodland edges, and grassy areas in spring and summer"
+    },
+    "wildMint": {
+      "name": "Wild Mint",
+      "description": "Aromatic herb with square stems and opposite leaves that release mint scent when crushed",
+      "howTo": "Found in wet areas, along streams, and in wet meadows in spring and summer"
+    },
+    "chickweed": {
+      "name": "Chickweed",
+      "description": "A low-growing plant with small white flowers and oval leaves, very nutritious",
+      "howTo": "Common in gardens, disturbed areas, and meadows during growing season"
+    },
+    "plantain": {
+      "name": "Common Plantain",
+      "description": "A low-growing plant with broad oval leaves and tall flower spikes",
+      "howTo": "Found in lawns, meadows, and disturbed areas during growing season"
+    },
+    "walnut": {
+      "name": "Walnut",
+      "description": "Large round nuts with hard shells and rich, oily flavor",
+      "howTo": "Look for walnut trees in parks, gardens, and woodland edges in autumn"
+    },
+    "chestnut": {
+      "name": "Chestnut",
+      "description": "Large sweet nuts encased in spiny green husks that split open when ripe",
+      "howTo": "Found in chestnut groves and mixed forests in autumn, often near paths"
+    },
+    "elderflower": {
+      "name": "Elderflower",
+      "description": "Creamy white flowers that grow in large flat clusters on elder trees",
+      "howTo": "Look for elder trees in hedgerows and woodland edges in late spring and early summer"
+    },
+    "daisy": {
+      "name": "Common Daisy",
+      "description": "Small white flowers with yellow centers that grow close to the ground",
+      "howTo": "Common in lawns, meadows, and grassy areas during spring and summer"
+    },
+    "violets": {
+      "name": "Sweet Violet",
+      "description": "Small purple flowers with heart-shaped leaves and a sweet fragrance",
+      "howTo": "Found in woodland edges, hedgerows, and shady areas in early spring"
+    }
+  }
+}

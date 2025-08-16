@@ -1,0 +1,43 @@
+{
+  "title": "Política de Privacidade",
+  "subtitle": "Sua privacidade e a proteção dos seus dados pessoais são de extrema importância. Esta Política de Privacidade explica como suas informações são gerenciadas e traz transparência sobre serviços de terceiros que podem coletar dados.",
+  "scope": {
+    "title": "Escopo desta Política de Privacidade",
+    "content": "Esta Política de Privacidade se aplica aos serviços fornecidos. Não cobre sites, serviços ou produtos de terceiros que não sejam gerenciados pelo administrador."
+  },
+  "collection": {
+    "title": "Coleta e Uso de Informações",
+    "content": "Estamos comprometidos com os princípios de anonimato e proteção de dados. Este serviço não coleta, armazena ou processa nenhuma informação pessoal diretamente. Nossa proposta prioriza fornecer informações sem exigir dados em troca, refletindo nossa forte crença no valor do anonimato.",
+    "cookiebot": "Para garantir ainda mais sua privacidade, utilizamos o Cookiebot em segundo plano para monitorar ativamente que nenhum serviço não estritamente necessário esteja em funcionamento. Verificações regulares e rigorosas são realizadas para garantir que os dados dos usuários não sejam compartilhados além do essencial para o funcionamento deste serviço."
+  },
+  "rights": {
+    "title": "Seus Direitos",
+    "intro": "Mesmo que este serviço não colete dados diretamente, você deve estar ciente dos seus direitos segundo a Lei Federal Suíça de Proteção de Dados (FADP) e o Regulamento Geral de Proteção de Dados (GDPR) ao interagir com serviços de terceiros:",
+    "access": "Acesso: Solicitar acesso aos seus dados junto a qualquer serviço de terceiros.",
+    "rectification": "Retificação: Corrigir dados incorretos mantidos por serviços de terceiros.",
+    "erasure": "Eliminação: Solicitar a exclusão dos seus dados se não forem mais necessários.",
+    "restriction": "Restrição: Solicitar restrições ao processamento em circunstâncias específicas.",
+    "objection": "Oposição: Opor-se ao processamento dos seus dados, inclusive para fins de marketing.",
+    "portability": "Portabilidade de Dados: Solicitar seus dados em formato estruturado e legível por máquina.",
+    "exercise": "Para exercer esses direitos, entre em contato diretamente com o serviço de terceiros relevante."
+  },
+  "protection": {
+    "title": "Proteção de Dados",
+    "content": "O administrador não processa dados pessoais diretamente. Serviços de terceiros são responsáveis por garantir a segurança dos dados que coletam.",
+    "security": "Embora todos os esforços sejam feitos para integrar apenas serviços confiáveis, nenhum método de transmissão ou armazenamento é totalmente seguro."
+  },
+  "transfers": {
+    "title": "Transferências Internacionais",
+    "content": "Serviços de terceiros integrados podem processar dados em países fora da sua jurisdição. Esses serviços são responsáveis por garantir salvaguardas adequadas para proteger seus dados."
+  },
+  "changes": {
+    "title": "Alterações nesta Política de Privacidade",
+    "content": "Esta Política de Privacidade pode ser atualizada periodicamente para refletir mudanças nas regulamentações ou no uso de serviços de terceiros. Quaisquer alterações significativas serão comunicadas nesta página e a \"Data de Vigência\" será atualizada."
+  },
+  "contact": {
+    "title": "Contato",
+    "intro": "Para quaisquer dúvidas ou preocupações sobre esta Política de Privacidade, entre em contato:",
+    "email": "lorisdistefano@pm.me"
+  },
+  "lastUpdated": "Última atualização em: 15.01.2025"
+}

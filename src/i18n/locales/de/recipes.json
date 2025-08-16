@@ -1,0 +1,976 @@
+{
+  "title": "Rezepte",
+  "subtitle": "Köstliche Rezepte mit Wildpflanzen",
+  "filterByIngredient": "Nach Zutat filtern",
+  "allIngredients": "Alle Zutaten",
+  "difficulty": "Schwierigkeitsgrad",
+  "prepTime": "Vorbereitungszeit",
+  "cookTime": "Kochzeit",
+  "servings": "Portionen",
+  "ingredients": "Zutaten",
+  "instructions": "Anleitung",
+  "tips": "Tipps",
+  "warnings": "Warnhinweise",
+  "description": "Entdecke köstliche Rezepte mit gesammelten Zutaten",
+  "filterBy": "Zutat",
+  "filters": "Filter",
+  "clear": "Löschen",
+  "apply": "Anwenden",
+  "all": "Alle",
+  "mushroom": "Pilz",
+  "berry": "Beere",
+  "plant": "Pflanze",
+  "nut": "Nuss",
+  "more": "mehr",
+  "search": {
+    "placeholder": "Suche nach Rezepten, Zutaten oder Tags",
+    "no_results": "Kein Rezept gefunden",
+    "found_one": "{{count}} Rezept gefunden",
+    "found_other": "{{count}} Rezepte gefunden",
+    "try_adjusting": "Versuche, die Suchbegriffe oder Filter zu ändern, um mehr Rezepte zu finden."
+  },
+  "view_recipe": "Rezept anzeigen",
+  "species": {
+    "amaranth": "Amarant",
+    "black_chant": "Totentrompete",
+    "chant": "Pfifferling",
+    "chickweed": "Vogelmiere",
+    "sorrel": "Sauerampfer",
+    "dandelion": "Löwenzahn",
+    "chestnut": "Esskastanie",
+    "mushroom": "Pilz",
+    "nettle": "Brennnessel",
+    "parasol": "Parasol",
+    "masterwort": "Meisterwurz",
+    "morel": "Morchel",
+    "st_george": "Georgsritterling",
+    "walnut": "Walnuss",
+    "lingonb": "Preiselbeere",
+    "garlic": "Knoblauch",
+    "garlic_wild": "Bärlauch",
+    "artichoke": "Wilder Artischocke",
+    "asparagus": "Wilder Spargel",
+    "strawberry": "Wald-Erdbeere"
+  },
+  "tags": {
+    "vegetarian": "Vegetarisch",
+    "vegan": "Vegan",
+    "gluten-free": "Glutenfrei",
+    "quick": "Schnell",
+    "easy": "Einfach",
+    "medium": "Mittel",
+    "hard": "Schwierig",
+    "soup": "Suppe",
+    "pasta": "Pasta",
+    "salad": "Salat",
+    "dessert": "Dessert",
+    "drink": "Getränk",
+    "sauce": "Sauce",
+    "main": "Hauptgericht",
+    "side": "Beilage",
+    "appetizer": "Vorspeise",
+    "breakfast": "Frühstück",
+    "lunch": "Mittagessen",
+    "dinner": "Abendessen",
+    "snack": "Snack",
+    "beverage": "Getränk"
+  },
+  "list_of_recipes": {
+    "amaranth-wild-greens-patties": {
+      "title": "Amarant-Wildkräuter-Puffer",
+      "ingredients": [
+        "½ Tasse Amarantkörner",
+        "1 Tasse Wasser",
+        "1 Tasse gemischte Wildkräuter (Vogelmiere, Sauerampfer, Löwenzahn), fein gehackt",
+        "1 kleines Ei",
+        "2 Esslöffel Mehl oder Paniermehl",
+        "Salz, Pfeffer, Olivenöl"
+      ],
+      "instructions": [
+        "Amarant kochen: Amarantkörner im Wasser kochen, bis das Wasser vollständig aufgenommen ist (15–20 Min.). Abkühlen lassen.",
+        "Mischen: Gekochten Amarant mit Kräutern, Ei, Mehl, Salz und Pfeffer vermengen.",
+        "Formen: Mit feuchten Händen kleine Puffer formen.",
+        "Braten: In einer Pfanne mit Öl 3–4 Min. pro Seite goldbraun braten.",
+        "Servieren: Mit Joghurtsoße, Pesto oder als vegetarische Burger-Alternative servieren."
+      ],
+      "species": ["amaranth", "chickweed", "sorrel", "dandelion"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Amarant kochen: Amarantkörner im Wasser kochen, bis das Wasser vollständig aufgenommen ist (15–20 Min.). Abkühlen lassen."
+        },
+        {
+          "step": 2,
+          "instruction": "Mischen: Gekochten Amarant mit Kräutern, Ei, Mehl, Salz und Pfeffer vermengen."
+        },
+        {
+          "step": 3,
+          "instruction": "Formen: Mit feuchten Händen kleine Puffer formen."
+        },
+        {
+          "step": 4,
+          "instruction": "Braten: In einer Pfanne mit Öl 3–4 Min. pro Seite goldbraun braten."
+        },
+        {
+          "step": 5,
+          "instruction": "Servieren: Mit Joghurtsoße, Pesto oder als vegetarische Burger-Alternative servieren."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 Min.",
+      "cookTime": "25 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": []
+    },
+    "black-chanterelle-cream-sauce": {
+      "title": "Cremige Totentrompeten-Sauce",
+      "ingredients": [
+        "100 g Totentrompeten (frisch oder 30 g getrocknet)",
+        "1 kleine Schalotte, fein gehackt",
+        "1 Knoblauchzehe, gehackt",
+        "1 Esslöffel Butter",
+        "100 ml Weißwein (optional)",
+        "200 ml Sahne",
+        "Salz und schwarzer Pfeffer nach Geschmack",
+        "Frischer Thymian (optional)"
+      ],
+      "instructions": [
+        "Pilze vorbereiten: Getrocknete Pilze 20 Min. in heißem Wasser einweichen, dann abgießen und ausdrücken.",
+        "Aromen anbraten: Butter in der Pfanne schmelzen, Schalotte und Knoblauch weich dünsten.",
+        "Pilze zugeben: Totentrompeten hinzufügen und 5–7 Min. anbraten.",
+        "Ablöschen (optional): Mit Wein ablöschen und auf die Hälfte einkochen lassen.",
+        "Sahne zugeben: Sahne einrühren, 5 Min. köcheln lassen, bis die Sauce leicht eindickt. Mit Salz, Pfeffer, Thymian abschmecken.",
+        "Servieren: Perfekt zu frischer Pasta, Polenta oder Bratkartoffeln."
+      ],
+      "species": ["black_chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pilze vorbereiten: Getrocknete Pilze 20 Min. in heißem Wasser einweichen, dann abgießen und ausdrücken."
+        },
+        {
+          "step": 2,
+          "instruction": "Aromen anbraten: Butter in der Pfanne schmelzen, Schalotte und Knoblauch weich dünsten."
+        },
+        {
+          "step": 3,
+          "instruction": "Pilze zugeben: Totentrompeten hinzufügen und 5–7 Min. anbraten."
+        },
+        {
+          "step": 4,
+          "instruction": "Ablöschen (optional): Mit Wein ablöschen und auf die Hälfte einkochen lassen."
+        },
+        {
+          "step": 5,
+          "instruction": "Sahne zugeben: Sahne einrühren, 5 Min. köcheln lassen, bis die Sauce leicht eindickt. Mit Salz, Pfeffer, Thymian abschmecken."
+        },
+        {
+          "step": 6,
+          "instruction": "Servieren: Perfekt zu frischer Pasta, Polenta oder Bratkartoffeln."
+        }
+      ],
+      "warnings": [
+        "Keine Wildpilze essen, wenn sie nicht von einem Experten bestimmt wurden."
+      ],
+      "difficulty": "easy",
+      "prepTime": "20 Min.",
+      "cookTime": "15 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "easy"],
+      "safetyNotes": ["Sichere Bestimmung der gesammelten Pilze gewährleisten."]
+    },
+    "chanterelle-herb-tart": {
+      "title": "Pfifferling-Kräuter-Tarte",
+      "ingredients": [
+        "200 g frische Pfifferlinge",
+        "1 kleiner Lauch, in feine Scheiben geschnitten",
+        "2 Eier",
+        "100 ml Sahne",
+        "1 Esslöffel Olivenöl",
+        "Frischer Thymian und Petersilie, gehackt",
+        "Salz und Pfeffer nach Geschmack",
+        "1 Rolle Blätterteig"
+      ],
+      "instructions": [
+        "Pilze putzen: Pfifferlinge mit Pinsel oder feuchtem Tuch reinigen.",
+        "Basis anbraten: Öl in der Pfanne erhitzen, Lauch weich dünsten. Pfifferlinge zugeben und 5 Min. braten. Salzen.",
+        "Füllung vorbereiten: Eier mit Sahne, Kräutern, Salz und Pfeffer verquirlen.",
+        "Zusammenstellen: Blätterteig in eine Form legen, Pilze und Lauch darauf verteilen, Eiermasse darüber gießen.",
+        "Backen: Bei 180°C 25–30 Min. goldbraun backen.",
+        "Servieren: Warm oder kalt, ideal für ein Wald-Brunch."
+      ],
+      "species": ["chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pilze putzen: Pfifferlinge mit Pinsel oder feuchtem Tuch reinigen."
+        },
+        {
+          "step": 2,
+          "instruction": "Basis anbraten: Öl in der Pfanne erhitzen, Lauch weich dünsten. Pfifferlinge zugeben und 5 Min. braten. Salzen."
+        },
+        {
+          "step": 3,
+          "instruction": "Füllung vorbereiten: Eier mit Sahne, Kräutern, Salz und Pfeffer verquirlen."
+        },
+        {
+          "step": 4,
+          "instruction": "Zusammenstellen: Blätterteig in eine Form legen, Pilze und Lauch darauf verteilen, Eiermasse darüber gießen."
+        },
+        {
+          "step": 5,
+          "instruction": "Backen: Bei 180°C 25–30 Min. goldbraun backen."
+        },
+        {
+          "step": 6,
+          "instruction": "Servieren: Warm oder kalt, ideal für ein Wald-Brunch."
+        }
+      ],
+      "warnings": [
+        "Keine Wildpilze essen, wenn sie nicht von einem Experten bestimmt wurden."
+      ],
+      "difficulty": "medium",
+      "prepTime": "20 Min.",
+      "cookTime": "30 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": ["Sichere Bestimmung der gesammelten Pilze gewährleisten."]
+    },
+    "chickweed-sorrel-salad-with-walnut-vinaigrette": {
+      "title": "Vogelmiere-Sauerampfer-Salat mit Walnuss-Vinaigrette",
+      "ingredients": [
+        "2 Handvoll frische Vogelmiereblätter",
+        "1 Handvoll Sauerampferblätter, gehackt",
+        "1 kleine Handvoll Walnüsse, geröstet und gehackt",
+        "2 Teelöffel Walnussöl (oder Olivenöl)",
+        "1 Teelöffel Apfelessig",
+        "1 Teelöffel Honig",
+        "Salz und Pfeffer nach Geschmack"
+      ],
+      "instructions": [
+        "Walnüsse rösten: In einer Pfanne ohne Öl 3–4 Min. rösten, bis sie duften. Abkühlen lassen.",
+        "Kräuter waschen: Vogelmiere und Sauerampfer waschen, vorsichtig mit einem sauberen Tuch trocknen.",
+        "Vinaigrette zubereiten: In einer kleinen Schüssel Öl, Essig, Honig, Salz und Pfeffer verrühren.",
+        "Salat mischen: In einer großen Schüssel Vogelmiere, Sauerampfer und Walnüsse vermengen. Mit Vinaigrette beträufeln und leicht mischen.",
+        "Servieren: Sofort als frischen, leicht säuerlichen Salat genießen."
+      ],
+      "species": ["chickweed", "sorrel", "walnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Walnüsse rösten: In einer Pfanne ohne Öl 3–4 Min. rösten, bis sie duften. Abkühlen lassen."
+        },
+        {
+          "step": 2,
+          "instruction": "Kräuter waschen: Vogelmiere und Sauerampfer waschen, vorsichtig mit einem sauberen Tuch trocknen."
+        },
+        {
+          "step": 3,
+          "instruction": "Vinaigrette zubereiten: In einer kleinen Schüssel Öl, Essig, Honig, Salz und Pfeffer verrühren."
+        },
+        {
+          "step": 4,
+          "instruction": "Salat mischen: In einer großen Schüssel Vogelmiere, Sauerampfer und Walnüsse vermengen. Mit Vinaigrette beträufeln und leicht mischen."
+        },
+        {
+          "step": 5,
+          "instruction": "Servieren: Sofort als frischen, leicht säuerlichen Salat genießen."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 Min.",
+      "cookTime": "5 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "salad", "easy"],
+      "safetyNotes": []
+    },
+    "chestnut-mushroom-soup": {
+      "title": "Kastanien-Pilz-Suppe",
+      "ingredients": [
+        "200 g geröstete Kastanien (geschält)",
+        "150 g Wildpilze (am besten Steinpilze oder Totentrompeten)",
+        "1 kleine Zwiebel, gehackt",
+        "1 Knoblauchzehe, gehackt",
+        "500 ml Gemüsebrühe",
+        "1 Esslöffel Butter",
+        "1 Zweig Thymian",
+        "100 ml Sahne (optional)",
+        "Salz und Pfeffer nach Geschmack"
+      ],
+      "instructions": [
+        "Basis anbraten: Butter in einem Topf schmelzen, Zwiebel und Knoblauch weich dünsten.",
+        "Pilze zugeben: Wildpilze schneiden und 5 Min. anbraten.",
+        "Kastanien und Brühe zugeben: Kastanien hinzufügen, Brühe angießen. Thymian zugeben.",
+        "Kochen: Zum Kochen bringen, dann Hitze reduzieren und 20 Min. köcheln lassen.",
+        "Pürieren: Thymian entfernen. Mit Stabmixer fein pürieren.",
+        "Abschließen: Nach Wunsch Sahne zugeben, mit Salz und Pfeffer abschmecken.",
+        "Heiß servieren, dazu rustikales Brot oder etwas Trüffelöl."
+      ],
+      "species": ["chestnut", "mushroom", "black_chant", "chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Basis anbraten: Butter in einem Topf schmelzen, Zwiebel und Knoblauch weich dünsten."
+        },
+        {
+          "step": 2,
+          "instruction": "Pilze zugeben: Wildpilze schneiden und 5 Min. anbraten."
+        },
+        {
+          "step": 3,
+          "instruction": "Kastanien und Brühe zugeben: Kastanien hinzufügen, Brühe angießen. Thymian zugeben."
+        },
+        {
+          "step": 4,
+          "instruction": "Kochen: Zum Kochen bringen, dann Hitze reduzieren und 20 Min. köcheln lassen."
+        },
+        {
+          "step": 5,
+          "instruction": "Pürieren: Thymian entfernen. Mit Stabmixer fein pürieren."
+        },
+        {
+          "step": 6,
+          "instruction": "Abschließen: Nach Wunsch Sahne zugeben, mit Salz und Pfeffer abschmecken."
+        },
+        {
+          "step": 7,
+          "instruction": "Heiß servieren, dazu rustikales Brot oder etwas Trüffelöl."
+        }
+      ],
+      "warnings": [
+        "Keine Wildpilze essen, wenn sie nicht von einem Experten bestimmt wurden."
+      ],
+      "difficulty": "medium",
+      "prepTime": "10 Min.",
+      "cookTime": "25 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "medium"],
+      "safetyNotes": ["Sichere Bestimmung der gesammelten Pilze gewährleisten."]
+    },
+    "dandelion-flower-syrup": {
+      "title": "Löwenzahnblüten-Sirup",
+      "ingredients": [
+        "100 Löwenzahnblüten (nur die gelben Blütenblätter)",
+        "500 ml Wasser",
+        "300 g Zucker",
+        "Saft von 1 Zitrone"
+      ],
+      "instructions": [
+        "Blüten reinigen: Gelbe Blütenblätter von grünen Teilen (bitter) trennen. Vorsichtig abspülen.",
+        "Aufguss zubereiten: Wasser in einem Topf aufkochen, Blütenblätter zugeben und 10 Min. köcheln lassen.",
+        "Ziehen lassen: Vom Herd nehmen und abgedeckt über Nacht ziehen lassen.",
+        "Abseihen: Flüssigkeit abseihen, Blüten entfernen. Zitronensaft und Zucker zugeben.",
+        "Einkochen: Bei niedriger Hitze 20–30 Min. köcheln lassen, bis ein Sirup entsteht.",
+        "Abfüllen: In sterilisierte Gläser füllen. Lecker zu Pfannkuchen, Käse oder im Tee."
+      ],
+      "species": ["dandelion"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Blüten reinigen: Gelbe Blütenblätter von grünen Teilen (bitter) trennen. Vorsichtig abspülen."
+        },
+        {
+          "step": 2,
+          "instruction": "Aufguss zubereiten: Wasser in einem Topf aufkochen, Blütenblätter zugeben und 10 Min. köcheln lassen."
+        },
+        {
+          "step": 3,
+          "instruction": "Ziehen lassen: Vom Herd nehmen und abgedeckt über Nacht ziehen lassen."
+        },
+        {
+          "step": 4,
+          "instruction": "Abseihen: Flüssigkeit abseihen, Blüten entfernen. Zitronensaft und Zucker zugeben."
+        },
+        {
+          "step": 5,
+          "instruction": "Einkochen: Bei niedriger Hitze 20–30 Min. köcheln lassen, bis ein Sirup entsteht."
+        },
+        {
+          "step": 6,
+          "instruction": "Abfüllen: In sterilisierte Gläser füllen. Lecker zu Pfannkuchen, Käse oder im Tee."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 Min.",
+      "cookTime": "30 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "dessert", "medium"],
+      "safetyNotes": []
+    },
+    "nettle-soup": {
+      "title": "Brennnesselsuppe",
+      "ingredients": [
+        "1 mittlere Zwiebel, gehackt",
+        "1 Knoblauchzehe, gehackt",
+        "1 Esslöffel Butter oder Olivenöl",
+        "2 mittlere Kartoffeln, geschält und gewürfelt",
+        "1 L Gemüsebrühe",
+        "2 große Handvoll frische Brennnesselblätter (mit Handschuhen pflücken!)",
+        "100 ml Sahne oder Hafermilch (optional)",
+        "Salz und Pfeffer nach Geschmack"
+      ],
+      "instructions": [
+        "Aromen anbraten: Butter in einem Topf erhitzen, Zwiebel und Knoblauch weich dünsten.",
+        "Kartoffeln zugeben: Kartoffeln zugeben und 5 Min. anbraten.",
+        "Brühe zugeben: Gemüsebrühe angießen und aufkochen.",
+        "Brennnesseln zugeben: Nach 10 Min. Brennnesseln zugeben und weitere 5–7 Min. köcheln lassen.",
+        "Pürieren: Suppe mit Stabmixer fein pürieren.",
+        "Abschließen: Nach Wunsch Sahne oder Hafermilch zugeben. Mit Salz und Pfeffer abschmecken.",
+        "Heiß servieren, mit etwas Öl oder Croûtons."
+      ],
+      "species": ["nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Aromen anbraten: Butter in einem Topf erhitzen, Zwiebel und Knoblauch weich dünsten."
+        },
+        {
+          "step": 2,
+          "instruction": "Kartoffeln zugeben: Kartoffeln zugeben und 5 Min. anbraten."
+        },
+        {
+          "step": 3,
+          "instruction": "Brühe zugeben: Gemüsebrühe angießen und aufkochen."
+        },
+        {
+          "step": 4,
+          "instruction": "Brennnesseln zugeben: Nach 10 Min. Brennnesseln zugeben und weitere 5–7 Min. köcheln lassen."
+        },
+        {
+          "step": 5,
+          "instruction": "Pürieren: Suppe mit Stabmixer fein pürieren."
+        },
+        {
+          "step": 6,
+          "instruction": "Abschließen: Nach Wunsch Sahne oder Hafermilch zugeben. Mit Salz und Pfeffer abschmecken."
+        },
+        {
+          "step": 7,
+          "instruction": "Heiß servieren, mit etwas Öl oder Croûtons."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "10 Min.",
+      "cookTime": "20 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "medium"],
+      "safetyNotes": [
+        "Beim Umgang mit frischen Brennnesseln Handschuhe tragen."
+      ]
+    },
+    "parasol-mushroom-schnitzel": {
+      "title": "Parasol-Schnitzel",
+      "ingredients": [
+        "2–4 große Parasolhüte",
+        "1 Ei",
+        "4 Esslöffel Paniermehl",
+        "2 Esslöffel geriebener Parmesan (optional)",
+        "Salz und Pfeffer",
+        "Öl oder Butter zum Braten"
+      ],
+      "instructions": [
+        "Pilze putzen: Hüte mit feuchtem Tuch reinigen. Nicht unter Wasser waschen.",
+        "Panade vorbereiten: Ei in einer Schüssel verquirlen. In einer anderen Schüssel Paniermehl, Salz, Pfeffer und Parmesan mischen.",
+        "Panieren: Jeden Hut erst im Ei, dann in der Paniermehlmischung wenden.",
+        "Braten: Öl oder Butter in der Pfanne erhitzen. Hüte bei mittlerer Hitze ca. 3 Min. pro Seite goldbraun braten.",
+        "Servieren: Mit Zitronenspalten und frischem Salat servieren. Ein vegetarischer Klassiker."
+      ],
+      "species": ["parasol"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pilze putzen: Hüte mit feuchtem Tuch reinigen. Nicht unter Wasser waschen."
+        },
+        {
+          "step": 2,
+          "instruction": "Panade vorbereiten: Ei in einer Schüssel verquirlen. In einer anderen Schüssel Paniermehl, Salz, Pfeffer und Parmesan mischen."
+        },
+        {
+          "step": 3,
+          "instruction": "Panieren: Jeden Hut erst im Ei, dann in der Paniermehlmischung wenden."
+        },
+        {
+          "step": 4,
+          "instruction": "Braten: Öl oder Butter in der Pfanne erhitzen. Hüte bei mittlerer Hitze ca. 3 Min. pro Seite goldbraun braten."
+        },
+        {
+          "step": 5,
+          "instruction": "Servieren: Mit Zitronenspalten und frischem Salat servieren. Ein vegetarischer Klassiker."
+        }
+      ],
+      "warnings": [
+        "Keine Wildpilze essen, wenn sie nicht von einem Experten bestimmt wurden."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 Min.",
+      "cookTime": "6 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": ["Sichere Bestimmung der gesammelten Pilze gewährleisten."]
+    },
+    "masterwort-infused-honey-glaze": {
+      "title": "Meisterwurz-Honigglasur",
+      "ingredients": [
+        "1 TL getrocknete Meisterwurz-Wurzel oder 2 TL frisch, gerieben",
+        "150 ml Honig",
+        "1 Esslöffel Wasser",
+        "Schale von ½ Zitrone"
+      ],
+      "instructions": [
+        "Honig erwärmen: Honig und Wasser in einem kleinen Topf bei niedriger Hitze vorsichtig erwärmen.",
+        "Ziehen lassen: Meisterwurz und Zitronenschale zugeben. 5–10 Min. bei sehr niedriger Hitze ziehen lassen (nicht kochen).",
+        "Abseihen: Vom Herd nehmen und durch ein feines Sieb oder Mull abseihen.",
+        "Abfüllen: In ein sauberes Glas füllen.",
+        "Verwendung: Perfekt zu geröstetem Gemüse, gegrilltem Obst oder Wild. Im Kühlschrank wochenlang haltbar."
+      ],
+      "species": ["masterwort"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Honig erwärmen: Honig und Wasser in einem kleinen Topf bei niedriger Hitze vorsichtig erwärmen."
+        },
+        {
+          "step": 2,
+          "instruction": "Ziehen lassen: Meisterwurz und Zitronenschale zugeben. 5–10 Min. bei sehr niedriger Hitze ziehen lassen (nicht kochen)."
+        },
+        {
+          "step": 3,
+          "instruction": "Abseihen: Vom Herd nehmen und durch ein feines Sieb oder Mull abseihen."
+        },
+        {
+          "step": 4,
+          "instruction": "Abfüllen: In ein sauberes Glas füllen."
+        },
+        {
+          "step": 5,
+          "instruction": "Verwendung: Perfekt zu geröstetem Gemüse, gegrilltem Obst oder Wild. Im Kühlschrank wochenlang haltbar."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "5 Min.",
+      "cookTime": "10 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "medium"],
+      "safetyNotes": []
+    },
+    "morel-chestnut-stuffing": {
+      "title": "Morchel-Kastanien-Füllung",
+      "ingredients": [
+        "100 g Morcheln (frisch oder eingeweicht)",
+        "150 g geröstete Kastanien, gehackt",
+        "1 kleine Zwiebel, gewürfelt",
+        "2 Knoblauchzehen, gehackt",
+        "3 Scheiben rustikales Brot, gewürfelt",
+        "100 ml Gemüsebrühe",
+        "1 Esslöffel Butter",
+        "Frischer Thymian, Salz und Pfeffer"
+      ],
+      "instructions": [
+        "Basis anbraten: Butter in einer Pfanne schmelzen, Zwiebel und Knoblauch weich dünsten.",
+        "Pilze und Kastanien zugeben: Morcheln und Kastanien zugeben, 5 Min. braten.",
+        "Brot zugeben: Brotwürfel zugeben und vorsichtig mischen. Brühe angießen und vermengen.",
+        "Abschmecken: Thymian, Salz und Pfeffer zugeben. Flüssigkeit aufnehmen lassen.",
+        "Backen: In eine Auflaufform geben und bei 180°C 20 Min. goldbraun backen.",
+        "Als Beilage zu Braten oder als vegetarisches Hauptgericht servieren."
+      ],
+      "species": ["morel", "chestnut", "garlic", "bread"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Basis anbraten: Butter in einer Pfanne schmelzen, Zwiebel und Knoblauch weich dünsten."
+        },
+        {
+          "step": 2,
+          "instruction": "Pilze und Kastanien zugeben: Morcheln und Kastanien zugeben, 5 Min. braten."
+        },
+        {
+          "step": 3,
+          "instruction": "Brot zugeben: Brotwürfel zugeben und vorsichtig mischen. Brühe angießen und vermengen."
+        },
+        {
+          "step": 4,
+          "instruction": "Abschmecken: Thymian, Salz und Pfeffer zugeben. Flüssigkeit aufnehmen lassen."
+        },
+        {
+          "step": 5,
+          "instruction": "Backen: In eine Auflaufform geben und bei 180°C 20 Min. goldbraun backen."
+        },
+        {
+          "step": 6,
+          "instruction": "Als Beilage zu Braten oder als vegetarisches Hauptgericht servieren."
+        }
+      ],
+      "warnings": [
+        "Keine Wildpilze essen, wenn sie nicht von einem Experten bestimmt wurden."
+      ],
+      "difficulty": "medium",
+      "prepTime": "15 Min.",
+      "cookTime": "25 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "side", "medium"],
+      "safetyNotes": ["Sichere Bestimmung der gesammelten Pilze gewährleisten."]
+    },
+    "nettle-potato-frittata": {
+      "title": "Brennnessel-Kartoffel-Frittata",
+      "ingredients": [
+        "1 Tasse blanchierte Brennnesseln",
+        "2 mittlere Kartoffeln, in dünne Scheiben geschnitten",
+        "1 Zwiebel, in Scheiben",
+        "5 Eier",
+        "Salz und Pfeffer",
+        "1 Esslöffel Olivenöl"
+      ],
+      "instructions": [
+        "Brennnesseln blanchieren: Brennnesseln 2 Min. kurz kochen, abgießen und hacken.",
+        "Kartoffeln braten: Kartoffeln und Zwiebel in Olivenöl in der Pfanne goldbraun braten.",
+        "Brennnesseln zugeben: Gehackte Brennnesseln zugeben und 2 Min. mitbraten.",
+        "Eier zugeben: Eier mit Salz und Pfeffer verquirlen, in die Pfanne geben.",
+        "Stocken lassen: Bei niedriger Hitze stocken lassen, dann unter dem Grill fertig garen oder wenden.",
+        "Warm oder kalt servieren, perfekt für Picknick oder Frühstück."
+      ],
+      "species": ["nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Brennnesseln blanchieren: Brennnesseln 2 Min. kurz kochen, abgießen und hacken."
+        },
+        {
+          "step": 2,
+          "instruction": "Kartoffeln braten: Kartoffeln und Zwiebel in Olivenöl in der Pfanne goldbraun braten."
+        },
+        {
+          "step": 3,
+          "instruction": "Brennnesseln zugeben: Gehackte Brennnesseln zugeben und 2 Min. mitbraten."
+        },
+        {
+          "step": 4,
+          "instruction": "Eier zugeben: Eier mit Salz und Pfeffer verquirlen, in die Pfanne geben."
+        },
+        {
+          "step": 5,
+          "instruction": "Stocken lassen: Bei niedriger Hitze stocken lassen, dann unter dem Grill fertig garen oder wenden."
+        },
+        {
+          "step": 6,
+          "instruction": "Warm oder kalt servieren, perfekt für Picknick oder Frühstück."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 Min.",
+      "cookTime": "20 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Beim Umgang mit frischen Brennnesseln Handschuhe tragen."
+      ]
+    },
+    "st-george-s-mushroom-spring-frittata": {
+      "title": "Frühlingsfrittata mit Georgsritterling und Brennnesseln",
+      "ingredients": [
+        "150 g Georgsritterlinge (Calocybe gambosa), in Scheiben",
+        "1 kleine Zwiebel, gehackt",
+        "1 Tasse blanchierte Brennnesseln oder Spinat",
+        "6 Eier",
+        "2 Esslöffel geriebener Käse (z.B. Pecorino oder Parmesan)",
+        "Salz und Pfeffer",
+        "1 Esslöffel Olivenöl oder Butter"
+      ],
+      "instructions": [
+        "Pilze vorbereiten: Sorgfältig reinigen und in Scheiben schneiden.",
+        "Anbraten: Zwiebel im Öl weich dünsten, Pilze zugeben und 5–7 Min. braten. Brennnesseln zugeben.",
+        "Eier verquirlen: Eier mit Käse, Salz und Pfeffer in einer Schüssel verquirlen.",
+        "Kombinieren: Eier über die Pilze in der Pfanne geben. Bei niedriger Hitze stocken lassen.",
+        "Fertigstellen: Im Ofen oder unter dem Grill 5 Min. goldbraun backen (oder vorsichtig wenden).",
+        "Servieren: Warm oder bei Zimmertemperatur – perfekt für Frühlingspicknick oder Brunch."
+      ],
+      "species": ["st_george", "nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pilze vorbereiten: Sorgfältig reinigen und in Scheiben schneiden."
+        },
+        {
+          "step": 2,
+          "instruction": "Anbraten: Zwiebel im Öl weich dünsten, Pilze zugeben und 5–7 Min. braten. Brennnesseln zugeben."
+        },
+        {
+          "step": 3,
+          "instruction": "Eier verquirlen: Eier mit Käse, Salz und Pfeffer in einer Schüssel verquirlen."
+        },
+        {
+          "step": 4,
+          "instruction": "Kombinieren: Eier über die Pilze in der Pfanne geben. Bei niedriger Hitze stocken lassen."
+        },
+        {
+          "step": 5,
+          "instruction": "Fertigstellen: Im Ofen oder unter dem Grill 5 Min. goldbraun backen (oder vorsichtig wenden)."
+        },
+        {
+          "step": 6,
+          "instruction": "Servieren: Warm oder bei Zimmertemperatur – perfekt für Frühlingspicknick oder Brunch."
+        }
+      ],
+      "warnings": [
+        "Keine Wildpilze essen, wenn sie nicht von einem Experten bestimmt wurden."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 Min.",
+      "cookTime": "20 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Beim Umgang mit frischen Brennnesseln Handschuhe tragen.",
+        "Sichere Bestimmung der gesammelten Pilze gewährleisten."
+      ]
+    },
+    "walnut-lingonberry-wild-tapenade": {
+      "title": "Wilde Tapenade mit Walnüssen und Preiselbeeren",
+      "ingredients": [
+        "100 g Walnüsse",
+        "2 Esslöffel Preiselbeermarmelade oder frische Preiselbeeren",
+        "1 Knoblauchzehe",
+        "1 Esslöffel Bärlauch oder gehackte Petersilie",
+        "2 Esslöffel Olivenöl",
+        "Salz und Pfeffer nach Geschmack"
+      ],
+      "instructions": [
+        "Walnüsse rösten: Walnüsse in der Pfanne leicht rösten, bis sie goldbraun sind. Abkühlen lassen.",
+        "Pürieren: Alle Zutaten in einen Mixer geben: Walnüsse, Knoblauch, Preiselbeeren, Kräuter und Öl.",
+        "Abschmecken: Mit Salz und Pfeffer würzen. Pulsierend mixen, bis eine grobe, streichfähige Paste entsteht.",
+        "Servieren: Ideal auf Brot, als Dip oder zu Käse und gegrilltem Gemüse."
+      ],
+      "species": ["walnut", "lingonb", "garlic", "masterwort"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Walnüsse rösten: Walnüsse in der Pfanne leicht rösten, bis sie goldbraun sind. Abkühlen lassen."
+        },
+        {
+          "step": 2,
+          "instruction": "Pürieren: Alle Zutaten in einen Mixer geben: Walnüsse, Knoblauch, Preiselbeeren, Kräuter und Öl."
+        },
+        {
+          "step": 3,
+          "instruction": "Abschmecken: Mit Salz und Pfeffer würzen. Pulsierend mixen, bis eine grobe, streichfähige Paste entsteht."
+        },
+        {
+          "step": 4,
+          "instruction": "Servieren: Ideal auf Brot, als Dip oder zu Käse und gegrilltem Gemüse."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "5 Min.",
+      "cookTime": "5 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "appetizer", "easy"],
+      "safetyNotes": []
+    },
+    "wild-artichoke-lemon-pasta": {
+      "title": "Pasta mit Wildartischocken und Zitrone",
+      "ingredients": [
+        "2–3 Herzen von Wildartischocken, geputzt und in Scheiben",
+        "2 Knoblauchzehen, in feine Scheiben",
+        "Schale und Saft von 1 Zitrone",
+        "2 Esslöffel Olivenöl",
+        "200 g Pasta (Linguine oder Tagliatelle)",
+        "Salz und schwarzer Pfeffer",
+        "Minze oder frische Petersilie zum Garnieren"
+      ],
+      "instructions": [
+        "Artischocken vorbereiten: Äußere Blätter und Heu entfernen. Herzen in feine Scheiben schneiden.",
+        "Anbraten: Knoblauch und Artischocken 10 Min. sanft in Öl braten, bis sie weich sind.",
+        "Pasta kochen: Pasta in Salzwasser al dente kochen. ½ Tasse Kochwasser aufbewahren.",
+        "Vermengen: Pasta mit Artischocken, Zitronensaft und -schale sowie Kochwasser mischen.",
+        "Servieren: Mit Salz, Pfeffer und frischen Kräutern garnieren. Frisch, wild, mediterran."
+      ],
+      "species": ["artichoke", "garlic"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Artischocken vorbereiten: Äußere Blätter und Heu entfernen. Herzen in feine Scheiben schneiden."
+        },
+        {
+          "step": 2,
+          "instruction": "Anbraten: Knoblauch und Artischocken 10 Min. sanft in Öl braten, bis sie weich sind."
+        },
+        {
+          "step": 3,
+          "instruction": "Pasta kochen: Pasta in Salzwasser al dente kochen. ½ Tasse Kochwasser aufbewahren."
+        },
+        {
+          "step": 4,
+          "instruction": "Vermengen: Pasta mit Artischocken, Zitronensaft und -schale sowie Kochwasser mischen."
+        },
+        {
+          "step": 5,
+          "instruction": "Servieren: Mit Salz, Pfeffer und frischen Kräutern garnieren. Frisch, wild, mediterran."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 Min.",
+      "cookTime": "20 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "pasta", "main", "easy"],
+      "safetyNotes": []
+    },
+    "wild-asparagus-dandelion-stir-fry": {
+      "title": "Wilder Spargel-Löwenzahn-Pfanne",
+      "ingredients": [
+        "200 g wilder Spargel, geputzt",
+        "1 Handvoll junge Löwenzahnblätter, gewaschen und gehackt",
+        "2 Knoblauchzehen, in Scheiben",
+        "1 Esslöffel Olivenöl",
+        "1 Teelöffel Zitronenschale",
+        "Salz und Pfeffer nach Geschmack",
+        "Optional: eine Prise Chili"
+      ],
+      "instructions": [
+        "Spargel blanchieren: Spargel 1 Min. kochen, abgießen und in kaltem Wasser abschrecken.",
+        "Knoblauch anbraten: Öl in der Pfanne erhitzen, Knoblauch und ggf. Chili zugeben, bis es duftet.",
+        "Gemüse zugeben: Spargel und Löwenzahn zugeben, 2–3 Min. anbraten, bis sie zart und leuchtend sind.",
+        "Abschmecken: Mit Salz, Pfeffer und Zitronenschale würzen.",
+        "Servieren: Lecker auf geröstetem Brot, Getreide oder als wilde Beilage."
+      ],
+      "species": ["asparagus", "dandelion", "garlic"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Spargel blanchieren: Spargel 1 Min. kochen, abgießen und in kaltem Wasser abschrecken."
+        },
+        {
+          "step": 2,
+          "instruction": "Knoblauch anbraten: Öl in der Pfanne erhitzen, Knoblauch und ggf. Chili zugeben, bis es duftet."
+        },
+        {
+          "step": 3,
+          "instruction": "Gemüse zugeben: Spargel und Löwenzahn zugeben, 2–3 Min. anbraten, bis sie zart und leuchtend sind."
+        },
+        {
+          "step": 4,
+          "instruction": "Abschmecken: Mit Salz, Pfeffer und Zitronenschale würzen."
+        },
+        {
+          "step": 5,
+          "instruction": "Servieren: Lecker auf geröstetem Brot, Getreide oder als wilde Beilage."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 Min.",
+      "cookTime": "5 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": []
+    },
+    "wild-garlic-pesto": {
+      "title": "Bärlauch-Walnuss-Pesto",
+      "ingredients": [
+        "50 g Bärlauchblätter",
+        "30 g Walnüsse oder Pinienkerne",
+        "50 g geriebener Parmesan",
+        "100 ml Olivenöl",
+        "1 Teelöffel Zitronensaft",
+        "Salz nach Geschmack"
+      ],
+      "instructions": [
+        "Blätter vorbereiten: Bärlauch gründlich waschen und trocknen.",
+        "Walnüsse rösten: Walnüsse in der Pfanne leicht rösten. Abkühlen lassen.",
+        "Pürieren: Bärlauch, Walnüsse, Parmesan und Zitronensaft in einen Mixer geben. Grob pürieren.",
+        "Öl zugeben: Öl langsam einfließen lassen und weiter pürieren, bis eine Creme entsteht.",
+        "Abschmecken: Mit Salz würzen.",
+        "Aufbewahren: In einem verschlossenen Glas im Kühlschrank eine Woche haltbar. Lecker zu Pasta, Sandwiches oder Ofengemüse."
+      ],
+      "species": ["garlic", "walnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Blätter vorbereiten: Bärlauch gründlich waschen und trocknen."
+        },
+        {
+          "step": 2,
+          "instruction": "Walnüsse rösten: Walnüsse in der Pfanne leicht rösten. Abkühlen lassen."
+        },
+        {
+          "step": 3,
+          "instruction": "Pürieren: Bärlauch, Walnüsse, Parmesan und Zitronensaft in einen Mixer geben. Grob pürieren."
+        },
+        {
+          "step": 4,
+          "instruction": "Öl zugeben: Öl langsam einfließen lassen und weiter pürieren, bis eine Creme entsteht."
+        },
+        {
+          "step": 5,
+          "instruction": "Abschmecken: Mit Salz würzen."
+        },
+        {
+          "step": 6,
+          "instruction": "Aufbewahren: In einem verschlossenen Glas im Kühlschrank eine Woche haltbar. Lecker zu Pasta, Sandwiches oder Ofengemüse."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 Min.",
+      "cookTime": "5 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "easy"],
+      "safetyNotes": []
+    },
+    "wild-strawberry-sorrel-cooler": {
+      "title": "Wald-Erdbeer-Sauerampfer-Getränk",
+      "ingredients": [
+        "1 Handvoll Walderdbeeren",
+        "6 Sauerampferblätter, zerrupft",
+        "1 Esslöffel Honig (oder nach Geschmack)",
+        "300 ml kaltes Sprudelwasser",
+        "Saft von ½ Zitrone",
+        "Eiswürfel"
+      ],
+      "instructions": [
+        "Zerdrücken: In einem Glas oder Shaker Erdbeeren, Sauerampfer und Honig leicht zerdrücken.",
+        "Zitrone zugeben: Zitronensaft zugeben und umrühren.",
+        "Auffüllen: Glas mit Eis füllen, dann Sprudelwasser aufgießen.",
+        "Abseihen (optional): Für ein klares Getränk abseihen oder mit Fruchtfleisch servieren.",
+        "Garnieren: Mit Erdbeere und Sauerampferblatt dekorieren. Perfektes Sommergetränk."
+      ],
+      "species": ["strawberry", "sorrel"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Zerdrücken: In einem Glas oder Shaker Erdbeeren, Sauerampfer und Honig leicht zerdrücken."
+        },
+        {
+          "step": 2,
+          "instruction": "Zitrone zugeben: Zitronensaft zugeben und umrühren."
+        },
+        {
+          "step": 3,
+          "instruction": "Auffüllen: Glas mit Eis füllen, dann Sprudelwasser aufgießen."
+        },
+        {
+          "step": 4,
+          "instruction": "Abseihen (optional): Für ein klares Getränk abseihen oder mit Fruchtfleisch servieren."
+        },
+        {
+          "step": 5,
+          "instruction": "Garnieren: Mit Erdbeere und Sauerampferblatt dekorieren. Perfektes Sommergetränk."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "5 Min.",
+      "cookTime": "0 Min.",
+      "servings": "2–4",
+      "tags": ["vegetarian", "drink", "easy"],
+      "safetyNotes": []
+    }
+  }
+}

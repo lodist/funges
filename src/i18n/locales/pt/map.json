@@ -1,0 +1,67 @@
+{
+  "title": "Mapa Interativo de Coleta",
+  "description": "Explore locais de coleta e dados em tempo real",
+  "loading": "Carregando mapa...",
+  "error": {
+    "title": "Erro no Mapa",
+    "retry": "Tentar novamente",
+    "reload": "Recarregar página",
+    "offline": "Você está offline",
+    "offlineMessage": "Por favor, verifique sua conexão com a internet e tente novamente.",
+    "generic": "Algo deu errado ao carregar o mapa.",
+    "waitingForConnection": "Aguardando conexão..."
+  },
+
+  "noSpotsFound": "Nenhum ponto de coleta encontrado nas proximidades",
+  "spotsFound": "{{count}} ponto{{count > 1 ? 's' : ''}} de coleta encontrado{{count > 1 ? 's' : ''}} nas proximidades!",
+  "tryMovingMap": "Tente mover o mapa ou obter sua localização",
+  "geolocation": {
+    "enable": "Ativar localização",
+    "finding": "Localizando...",
+    "found": "Localização encontrada",
+    "error": "Não foi possível obter a localização"
+  },
+  "overlays": {
+    "title": "Camadas do Mapa",
+    "polygons": "Mostrar áreas de coleta",
+    "realtime": "Mostrar dados em tempo real"
+  },
+  "region": {
+    "title": "Selecionar Região",
+    "select": "Selecionar Região",
+    "loading": "Carregando região..."
+  },
+  "fallback": {
+    "title": "Mapa Temporariamente Indisponível",
+    "message": "O mapa interativo está temporariamente indisponível. Você ainda pode ver sua localização e informações de coleta.",
+    "retryMap": "Recarregar mapa",
+    "getLocation": "Obter localização",
+    "currentLocation": "Localização atual",
+    "coordinates": "Lat: {{lat}}, Lng: {{lng}}",
+    "spotsFound": "Pontos de coleta",
+    "support": "Apoiar o projeto",
+    "limit_hit_message": "Caro Colecionador,<br>\nNão podemos carregar os mosaicos do mapa porque atingimos o nosso limite mensal de uso.<br><br>\nPara ajudar a manter os mapas disponíveis, por favor considere <strong>apoiar o projeto</strong>.<br>\nAguarde, aproveite este mapa de Boletus não tão perfeito… até que atinja seu próprio limite 😅",
+
+    "tips": {
+      "title": "Dicas de solução de problemas",
+      "checkConnection": "Verifique sua conexão com a internet",
+      "refreshPage": "Recarregue a página",
+      "tryLater": "Tente novamente em alguns minutos"
+    }
+  },
+  "species": {
+    "select": "Selecionar Espécie",
+    "search": "Buscar espécie...",
+    "clear": "Limpar seleção",
+    "noResults": "Nenhuma espécie encontrada",
+    "notAvailableOffline": "Not available offline. Download on the Offline Maps page."
+  },
+  "getLocation": "Obter minha localização",
+  "toggleNumbers": "Alternar números",
+  "toggleDarkMode": "Alternar modo escuro",
+  "featureInfo": {
+    "title": "Detalhes da funcionalidade",
+    "getDirections": "Obter direções",
+    "location": "Localização"
+  }
+}

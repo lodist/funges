@@ -1,0 +1,79 @@
+{
+  "title": "Anleitung",
+  "subtitle": "Lerne, wie du Fung.es sicher und effektiv nutzt",
+  "downloadDataset": "Täglichen Datensatz herunterladen (CSV)",
+  "mapDescription": {
+    "intro": "Die Karte hebt geografische Gebiete mit günstigen Bedingungen zum Sammeln von Wildpilzen und essbaren Pflanzen hervor.",
+    "selection": "Wähle deine bevorzugte Art über das Dropdown-Menü oben auf der Seite aus.",
+    "colorCoding": "Jedes Gebiet ist farblich von blassem Gelb bis Dunkelrot abgestuft, was die Wahrscheinlichkeit für gute Sammelbedingungen anhand von Umweltdaten anzeigt.",
+    "scale": "Die Skala wird durch eine numerische Bewertung von 0 bis 10 ergänzt, wie unten dargestellt.",
+    "polygons": "Polygone und Marker werden nur angezeigt, wenn sie sinnvolle saisonale Informationen bieten, um die Karte übersichtlich und fokussiert zu halten. Falls etwas nicht angezeigt wird, ist es möglicherweise zu früh oder zu spät in der Saison."
+  },
+  "functions": {
+    "title": "Funktionen:",
+    "recipes": "Zeigt essbare Arten in der Nähe und schlägt Rezepte vor",
+    "location": "Zentriert die Karte auf den Standort des Nutzers",
+    "theme": "Wechsel zwischen Hell- und Dunkelmodus",
+    "numbers": "Zeigt numerische Bewertung an"
+  },
+  "mapInteraction": {
+    "title": "Klicke auf eine Zone, um Arten und ihren Fundprozentsatz zu sehen:",
+    "maps": "Ziel in Karten öffnen"
+  },
+  "about": {
+    "title": "Über Funges",
+    "description": "Funges ist eine datenbasierte Plattform, die geografische und Umweltdaten nutzt, um Echtzeit-Einblicke für das Sammeln von Wildpilzen und essbaren Pflanzen zu liefern.",
+    "dataCombination": "Durch die Kombination verschiedener Datensätze – Klimamodelle, Satellitenbilder, Geländedaten und ökologische Indikatoren – prognostiziert Funges optimale Bedingungen für das Wachstum natürlicher Ressourcen wie Pilze und Pflanzen.",
+    "climateChange": "Da sich Ökosysteme durch den Klimawandel verändern, unterstützen Tools wie Funges nachhaltiges Sammeln und naturbasierte Ernährung.",
+    "currentStatus": "Derzeit bietet Funges Echtzeit-Einblicke für eine begrenzte Anzahl von Arten, weitere Wildpflanzen folgen bald.",
+    "keyFeatures": {
+      "title": "Hauptfunktionen",
+      "environmentalData": "Integration von Umweltdaten: Nutzt Geolokalisierung, Klimamodelle und meteorologische Daten.",
+      "probabilityModels": "Wahrscheinlichkeitsmodelle: Prognostiziert das Vorkommen natürlicher Ressourcen.",
+      "climateAdaptation": "Klimawandel-Anpassung: Bietet Echtzeit-Einblicke in sich verändernde Ökosysteme.",
+      "scalability": "Skalierbarkeit & Zugänglichkeit: Offener Zugang für Nutzer ohne Angabe persönlicher Daten."
+    }
+  },
+  "mission": {
+    "title": "Unsere Mission",
+    "commitment": "Funges setzt sich dafür ein, Technologie und Umweltdaten zu nutzen, um Einzelpersonen und Organisationen beim nachhaltigen Sammeln und Ressourcenschutz zu unterstützen.",
+    "goal": "Durch Echtzeit-Einblicke und prädiktive Analysen wollen wir Ressourcenverschwendung reduzieren, uns an den Klimawandel anpassen und die Geschenke der Natur für alle zugänglicher machen.",
+    "sustainability": "Sammeln ist am nachhaltigsten, wenn es dem natürlichen Rhythmus der Umwelt folgt – geleitet von Saisonalität, Lokalität und ökologischem Gleichgewicht. Die Natur gibt, was gebraucht wird, wenn es gebraucht wird; verantwortungsvolles Sammeln beginnt mit Aufmerksamkeit für diese Zyklen.",
+    "community": "Durch Innovation und offenen Zugang soll eine Gemeinschaft verantwortungsvoller Sammler entstehen, die Nachhaltigkeit und Biodiversität schätzen.",
+    "openAccess": "Offener Zugang zu Informationen fördert eine tiefere Verbindung zu Ort und Zeit und unterstützt Entscheidungen, die die Biodiversität und die Regenerationsfähigkeit von Ökosystemen respektieren."
+  },
+  "prediction": {
+    "title": "Wie Wildpflanzen vorhergesagt werden",
+    "description": "Funges analysiert eine Vielzahl von Umweltvariablen, um die vielversprechendsten Gebiete zum Sammeln von Wildpilzen und essbaren Pflanzen zu identifizieren. Unsere Modelle berücksichtigen mehrere Schichten ökologischer Daten – über die Zeit verfolgt und kombiniert –, um natürliche Zyklen zu erkennen und den optimalen Zeitpunkt und Ort für die Ernte zu bestimmen.",
+    "monitorTitle": "überwacht und integriert:",
+    "variables": {
+      "temperature": "Temperatur, Luftfeuchtigkeit und Niederschlag",
+      "soil": "Boden-pH und geologische Merkmale",
+      "vegetation": "Bodenbedeckung und Vegetationstypen",
+      "topography": "Topografie und Höhenlage",
+      "trends": "Zeitreihen-Trends"
+    },
+    "goal": "Das Ziel ist es, das Verhalten erfahrener Sammler zu simulieren – verstärkt durch Daten. Anders gesagt: Wir versuchen respektvoll, die Natur zu „hacken“, um wildes Sammeln zugänglicher, präziser und nachhaltiger zu machen.",
+    "methodology": {
+      "title": "Datenquellen & Methodik",
+      "description": "Funges nutzt eine Kombination aus Umwelt-, Wetter- und Geodaten, um die besten Orte und Zeiten für das Sammeln von Wildpflanzen vorherzusagen.",
+      "datasets": "Dazu gehören Satellitenbilder, Geländemodelle, Wetter-APIs und ökologische Indikatoren – alle werden über die Zeit analysiert, um natürliche Zyklen zu simulieren und Echtzeit-Hotspots zu identifizieren."
+    },
+    "keyDatasets": {
+      "title": "Wichtige Datensätze",
+      "corine": {
+        "title": "1. CORINE Land Cover (CLC)",
+        "description": "Bereitgestellt von der Europäischen Umweltagentur (EEA), bietet CORINE Land Cover detaillierte Karten zur Vegetation und Landnutzung in Europa. Dies hilft, geeignete Ökosysteme für verschiedene Pilz- und Pflanzenarten zu bestimmen.",
+        "source": "Quelle: Europäische Umweltagentur (EEA)",
+        "citation": "Zitat: Bossard, M., Feranec, J., & Otahel, J. (2000). CORINE Land Cover Technical Guide – Addendum 2000."
+      },
+      "soilPh": {
+        "title": "2. Boden-pH in Europa",
+        "description": "Erstellt vom Joint Research Centre (JRC) der Europäischen Kommission, kartiert dieser Datensatz die Bodenazidität anhand von über 12.000 Proben aus 25 Ländern, modelliert mittels Regression-Kriging mit 54 Umweltvariablen.",
+        "source": "Quelle: European Soil Data Centre (ESDAC), Joint Research Centre (JRC)",
+        "citation": "Zitat: Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
+      },
+      "additional": "Weitere Quellen wie Wetter-APIs, Fernerkundungsdaten und Hang-/Expositionsmodelle werden integriert, um die Prognosegenauigkeit kontinuierlich zu verbessern."
+    }
+  }
+}

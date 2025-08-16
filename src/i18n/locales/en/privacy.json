@@ -1,0 +1,43 @@
+{
+  "title": "Privacy Policy",
+  "subtitle": "Your privacy and the protection of your personal data are of utmost importance. This Privacy Policy explains how your information is managed and provides transparency about third-party services that may collect data.",
+  "scope": {
+    "title": "Scope of This Privacy Policy",
+    "content": "This Privacy Policy applies to the services provided. It does not cover third-party websites, services, or products not managed by the administrator."
+  },
+  "collection": {
+    "title": "Information Collection and Use",
+    "content": "We are committed to upholding the principles of anonymity and data protection. This service does not collect, store, or process any personal information directly. Our design prioritizes providing information to you without requiring any data in return, reflecting our strong belief in the value of anonymity.",
+    "cookiebot": "To further ensure your privacy, we deploy Cookiebot in the background to actively monitor that no service which is not strictly necessary is operating. Regular and strict checks are performed to ensure that users' data is not shared beyond what is essential for the functioning of this service."
+  },
+  "rights": {
+    "title": "Your Rights",
+    "intro": "Even though this service does not collect data directly, you should be aware of your rights under the Swiss Federal Act on Data Protection (FADP) and General Data Protection Regulation (GDPR) when interacting with third-party services:",
+    "access": "Access: Request access to your data from any third-party service.",
+    "rectification": "Rectification: Correct inaccurate data held by third-party services.",
+    "erasure": "Erasure: Request the deletion of your data if it is no longer necessary.",
+    "restriction": "Restriction: Request restrictions on processing under specific circumstances.",
+    "objection": "Objection: Object to the processing of your data, including for marketing purposes.",
+    "portability": "Data Portability: Request your data in a structured, machine-readable format.",
+    "exercise": "To exercise these rights, please contact the relevant third-party service directly."
+  },
+  "protection": {
+    "title": "Data Protection",
+    "content": "The administrator does not directly process personal data. Third-party services are responsible for ensuring the security of any data they collect.",
+    "security": "While all efforts are made to integrate only reliable services, no method of transmission or storage is completely secure."
+  },
+  "transfers": {
+    "title": "International Transfers",
+    "content": "Third-party services integrated may process data in countries outside your jurisdiction. These services are responsible for ensuring appropriate safeguards to protect your data."
+  },
+  "changes": {
+    "title": "Changes to This Privacy Policy",
+    "content": "This Privacy Policy may be updated periodically to reflect changes in regulations or the use of third-party services. Any significant changes will be communicated through this page, and the \"Effective Date\" will be updated."
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "For any questions or concerns regarding this Privacy Policy, please contact:",
+    "email": "lorisdistefano@pm.me"
+  },
+  "lastUpdated": "Last updated on: 15.01.2025"
+}

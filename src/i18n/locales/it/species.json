@@ -1,0 +1,233 @@
+{
+  "title": "Database delle Specie",
+  "subtitle": "Impara sui cibi selvatici",
+  "description": "Esplora il nostro database completo di specie commestibili",
+  "search": {
+    "placeholder": "Cerca una specie",
+    "found": "Trovate",
+    "species": "specie",
+    "clear": "Cancella"
+  },
+  "filterByType": "Filtra per tipo",
+  "allTypes": "Tutti i Tipi",
+  "mushrooms": "Funghi",
+  "mushroom": "Fungo",
+  "plants": "Piante",
+  "plant": "Pianta",
+  "berries": "Bacche",
+  "berry": "Bacca",
+  "herbs": "Erbe",
+  "herb": "Erba",
+  "nuts": "Noci",
+  "nut": "Noce",
+  "flowers": "Fiori",
+  "flower": "Fiore",
+  "scientificName": "Nome Scientifico",
+  "commonName": "Nome Comune",
+  "edibility": "Commestibilità",
+  "season": "Stagione",
+  "habitat": "Habitat",
+  "howTo": "Istruzioni di Raccolta",
+  "cookingTips": "Consigli di Cucina",
+  "safetyNotes": "Note di Sicurezza",
+  "preparation": "Preparazione",
+  "found": "Trovati",
+  "species": "specie",
+  "noResults": "Nessuna specie trovata",
+  "noResultsDescription": "Prova a modificare la tua ricerca o i criteri di filtro",
+  "safetyWarning": "Consulta sempre un esperto prima di consumare qualsiasi cibo selvatico. Queste informazioni sono solo a scopo educativo.",
+  "viewOnMap": "Mostra sulla mappa",
+  "seasons": {
+    "spring": "Primavera",
+    "summer": "Estate",
+    "fall": "Autunno",
+    "winter": "Inverno",
+    "spring-summer": "Primavera-Estate",
+    "summer-fall": "Estate-Autunno",
+    "fall-winter": "Autunno-Inverno",
+    "winter-spring": "Inverno-Primavera",
+    "spring-fall": "Primavera e Autunno"
+  },
+  "habitats": {
+    "forest": "Foresta",
+    "meadow": "Pianura",
+    "hedgerow": "Altobosco",
+    "woodland": "Bosco",
+    "grassland": "Prato",
+    "wetland": "Palude",
+    "urban": "Città"
+  },
+  "list_of_species": {
+    "chant": {
+      "name": "Galletti",
+      "description": "Un fungo giallo dorato con una forma a imbuto distintiva e aroma fruttato",
+      "howTo": "Cercali nelle foreste decidue, specialmente vicino a querce e faggi"
+    },
+    "mushroom": {
+      "name": "Porcini",
+      "description": "Conosciuto anche come Boleto Reale, questo fungo pregiato ha un cappello marrone e pori bianchi o gialli",
+      "howTo": "Trovato nelle foreste di conifere e decidue, spesso vicino ai pini"
+    },
+    "morel": {
+      "name": "Spugnole",
+      "description": "Un fungo distintivo con cappello a nido d'ape che appare in primavera",
+      "howTo": "Cerca in aree disturbate, foreste bruciate e vicino ad alberi morti in primavera"
+    },
+    "blackberry": {
+      "name": "More",
+      "description": "Bacche dolci, viola scuro che crescono su cespugli spinosi",
+      "howTo": "Trovate in siepi, bordi boschivi e aree disturbate in tarda estate"
+    },
+    "elderberry": {
+      "name": "Sambuco",
+      "description": "Piccole bacche viola scuro che crescono in grappoli sui sambuchi",
+      "howTo": "Cerca alberi di sambuco in siepi e bordi boschivi in autunno"
+    },
+    "nettle": {
+      "name": "Ortica",
+      "description": "Una pianta verde nutriente con peli urticanti che deve essere cotta",
+      "howTo": "Trovata in aree disturbate, siepi e bordi boschivi in primavera ed estate"
+    },
+    "dandelion": {
+      "name": "Tarassaco",
+      "description": "Un'erbaccia comune con fiori gialli brillanti e foglie commestibili",
+      "howTo": "Trovato in prati, praterie e aree disturbate durante la stagione di crescita"
+    },
+    "hazelnut": {
+      "name": "Nocciola",
+      "description": "Noci dolci e rotonde che crescono sui noccioli",
+      "howTo": "Cerca noccioli in siepi e bordi boschivi in autunno"
+    },
+    "garlic": {
+      "name": "Aglio Orsino",
+      "description": "Un'erba pungente con foglie larghe e fiori bianchi",
+      "howTo": "Trovato in boschi decidui in primavera, spesso forma grandi macchie"
+    },
+    "chickenOfTheWoods": {
+      "name": "Grifola Frondosa",
+      "description": "Un fungo a mensola arancione-giallo brillante che cresce sugli alberi",
+      "howTo": "Cercalo che cresce su alberi morti o morenti, specialmente querce"
+    },
+    "oysterMushroom": {
+      "name": "Pleurotus ostreatus",
+      "description": "Un fungo bianco-grigio con cappello a ventaglio che cresce in grappoli su legno morto",
+      "howTo": "Cercali che crescono su alberi morti, specialmente faggi e querce, in autunno e inverno"
+    },
+    "shiitake": {
+      "name": "Shiitake",
+      "description": "Un fungo con cappello marrone e lamelle bianche, molto apprezzato nella cucina asiatica",
+      "howTo": "Trovato che cresce su alberi di legno duro morti, specialmente querce e faggi, in primavera e autunno"
+    },
+    "raspberry": {
+      "name": "Lampone Selvatico",
+      "description": "Bacche rosse dolci che crescono su canne spinose con foglie composte distintive",
+      "howTo": "Cerca canne di lampone in siepi, bordi boschivi e aree disturbate in estate"
+    },
+    "blueberry": {
+      "name": "Mirtillo Selvatico",
+      "description": "Piccole bacche blu dolci che crescono su arbusti bassi in terreno acido",
+      "howTo": "Trovato in brughiere, lande e foreste acide in estate e inizio autunno"
+    },
+    "strawberry": {
+      "name": "Fragola Selvatica",
+      "description": "Piccole bacche rosse dal sapore intenso con fiori bianchi e foglie trifogliate",
+      "howTo": "Cercale in praterie, bordi boschivi e aree erbose in primavera ed estate"
+    },
+    "wildMint": {
+      "name": "Menta Selvatica",
+      "description": "Erba aromatica con steli quadrati e foglie opposte che rilasciano profumo di menta quando schiacciate",
+      "howTo": "Trovata in aree umide, lungo i ruscelli e in praterie umide in primavera ed estate"
+    },
+    "chickweed": {
+      "name": "Centocchio",
+      "description": "Una pianta bassa con piccoli fiori bianchi e foglie ovali, molto nutriente",
+      "howTo": "Comune in giardini, aree disturbate e praterie durante la stagione di crescita"
+    },
+    "plantain": {
+      "name": "Piantaggine Comune",
+      "description": "Una pianta bassa con foglie larghe e ovali e alte spighe di fiori",
+      "howTo": "Trovata in prati, praterie e aree disturbate durante la stagione di crescita"
+    },
+    "walnut": {
+      "name": "Noce",
+      "description": "Noci grandi e rotonde con guscio duro e sapore ricco e oleoso",
+      "howTo": "Cerca alberi di noce in parchi, giardini e bordi boschivi in autunno"
+    },
+    "chestnut": {
+      "name": "Castagna",
+      "description": "Noci grandi e dolci racchiuse in bucce verdi spinose che si aprono quando mature",
+      "howTo": "Trovate in castagneti e foreste miste in autunno, spesso vicino ai sentieri"
+    },
+    "elderflower": {
+      "name": "Fiori di Sambuco",
+      "description": "Fiori bianco crema che crescono in grandi grappoli piatti sui sambuchi",
+      "howTo": "Cerca alberi di sambuco in siepi e bordi boschivi in tarda primavera e inizio estate"
+    },
+    "daisy": {
+      "name": "Margherita Comune",
+      "description": "Piccoli fiori bianchi con centri gialli che crescono vicino al terreno",
+      "howTo": "Comune in prati, praterie e aree erbose durante primavera ed estate"
+    },
+    "violets": {
+      "name": "Viola Mammola",
+      "description": "Piccoli fiori viola con foglie a forma di cuore e un profumo dolce",
+      "howTo": "Trovata in bordi boschivi, siepi e aree ombreggiate all'inizio della primavera"
+    },
+    "maitake": {
+      "name": "Grifola Frondosa",
+      "description": "Un fungo a mensola arancione-giallo brillante che cresce sugli alberi",
+      "howTo": "Cercalo che cresce su alberi morti o morenti, specialmente querce"
+    },
+    "amaranth": {
+      "name": "Amaranto",
+      "description": "Una pianta erbacea con foglie e semi commestibili, ricca di nutrienti.",
+      "howTo": "Cresce in terreni disturbati, orti e campi durante l'estate. Raccogli le foglie giovani prima della fioritura."
+    },
+    "artichoke": {
+      "name": "Carciofo Selvatico",
+      "description": "Pianta spinosa simile al carciofo coltivato, con capolini e gambi commestibili.",
+      "howTo": "Si trova in prati e campi; raccogli i capolini giovani e i gambi teneri in primavera e inizio estate."
+    },
+    "asparagus": {
+      "name": "Asparago Selvatico",
+      "description": "Pianta perenne con germogli sottili e commestibili che compaiono in primavera.",
+      "howTo": "Cerca i giovani germogli in campi aperti, prati e lungo le siepi in primavera."
+    },
+    "black_chant": {
+      "name": "Trombetta dei Morti",
+      "description": "Un fungo scuro a forma di trombetta, dal sapore intenso e molto apprezzato in cucina.",
+      "howTo": "Si trova nei boschi di latifoglie, specialmente sotto querce e faggi, tra fine estate e autunno."
+    },
+    "lingonb": {
+      "name": "Mirtillo Rosso",
+      "description": "Piccole bacche rosse e acidule che crescono su arbusti sempreverdi in suoli acidi.",
+      "howTo": "Cerca nei boschi di conifere, brughiere e lande tra fine estate e autunno."
+    },
+    "masterwort": {
+      "name": "Imperatoria",
+      "description": "Erba perenne con foglie aromatiche e ombrelle di fiori bianchi, usata in medicina tradizionale e come spezia.",
+      "howTo": "Si trova in prati montani e radure boschive; raccogli foglie e radici in primavera ed estate."
+    },
+    "parasol": {
+      "name": "Mazza di Tamburo",
+      "description": "Grande fungo con cappello ampio e squamoso simile a un ombrello, commestibile da giovane.",
+      "howTo": "Cerca in prati, pascoli e ai margini dei boschi da fine estate ad autunno."
+    },
+    "sorrel": {
+      "name": "Acetosa Comune",
+      "description": "Pianta dal sapore acidulo e limonato, usata in insalate e zuppe.",
+      "howTo": "Raccogli le foglie giovani in prati, pascoli e lungo i sentieri in primavera ed estate."
+    },
+    "st_george": {
+      "name": "Prugnolo (Fungo di San Giorgio)",
+      "description": "Fungo bianco e sodo con odore di farina, compare intorno alla festa di San Giorgio in primavera.",
+      "howTo": "Si trova in prati, pascoli e ai margini dei boschi in primavera."
+    },
+    "truffle_b": {
+      "name": "Tartufo Nero Pregiato",
+      "description": "Fungo ipogeo molto pregiato dal profumo intenso, usato in cucina gourmet.",
+      "howTo": "Si trova sottoterra vicino alle radici di querce e noccioli, raccolto con animali addestrati in inverno."
+    }
+  },
+  "search_placeholder": "Cerca una specie"
+}

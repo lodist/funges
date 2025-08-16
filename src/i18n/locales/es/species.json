@@ -1,0 +1,233 @@
+{
+  "title": "Base de datos de especies",
+  "subtitle": "Aprende sobre alimentos silvestres",
+  "search_placeholder": "Buscar una especie",
+  "description": "Explora nuestra base de datos completa de especies comestibles",
+  "search": {
+    "placeholder": "Buscar una especie",
+    "found": "Encontrado",
+    "species": "especies",
+    "clear": "Limpiar"
+  },
+  "filterByType": "Filtrar por tipo",
+  "allTypes": "Todos los tipos",
+  "mushrooms": "Hongos",
+  "mushroom": "Hongo",
+  "plants": "Plantas",
+  "plant": "Planta",
+  "berries": "Bayas",
+  "berry": "Baya",
+  "herbs": "Hierbas",
+  "herb": "Hierba",
+  "nuts": "Frutos secos",
+  "nut": "Fruto seco",
+  "flowers": "Flores",
+  "flower": "Flor",
+  "scientificName": "Nombre científico",
+  "commonName": "Nombre común",
+  "edibility": "Comestibilidad",
+  "season": "Temporada",
+  "habitat": "Hábitat",
+  "howTo": "Instrucciones de recolección",
+  "cookingTips": "Consejos de cocina",
+  "safetyNotes": "Notas de seguridad",
+  "preparation": "Preparación",
+  "found": "Encontrado",
+  "species": "especies",
+  "noResults": "No se encontraron especies",
+  "noResultsDescription": "Intenta ajustar tu búsqueda o los criterios de filtro",
+  "safetyWarning": "Consulta siempre a un experto antes de consumir cualquier alimento silvestre. Esta información es solo para fines educativos.",
+  "viewOnMap": "Ver en el mapa",
+  "seasons": {
+    "spring": "Primavera",
+    "summer": "Verano",
+    "fall": "Otoño",
+    "winter": "Invierno",
+    "spring-summer": "Primavera-Verano",
+    "summer-fall": "Verano-Otoño",
+    "fall-winter": "Otoño-Invierno",
+    "winter-spring": "Invierno-Primavera",
+    "spring-fall": "Primavera y Otoño"
+  },
+  "habitats": {
+    "forest": "Bosque",
+    "meadow": "Pradera",
+    "hedgerow": "Seto",
+    "woodland": "Bosque mixto",
+    "grassland": "Pastizal",
+    "wetland": "Humedal",
+    "urban": "Urbano"
+  },
+  "list_of_species": {
+    "chant": {
+      "name": "Rebozuelo",
+      "description": "Un hongo amarillo dorado con forma de embudo distintiva y aroma afrutado",
+      "howTo": "Búscalos en bosques caducifolios, especialmente cerca de robles y hayas"
+    },
+    "mushroom": {
+      "name": "Boletus/Porcini",
+      "description": "También conocido como hongo rey, este apreciado hongo tiene un sombrero marrón y poros blancos o amarillos",
+      "howTo": "Se encuentra en bosques de coníferas y caducifolios, a menudo cerca de pinos"
+    },
+    "morel": {
+      "name": "Colmenilla",
+      "description": "Un hongo distintivo con sombrero en forma de panal que aparece en primavera",
+      "howTo": "Busca en áreas alteradas, bosques quemados y cerca de árboles muertos en primavera"
+    },
+    "blackberry": {
+      "name": "Mora",
+      "description": "Bayas dulces de color púrpura oscuro que crecen en arbustos espinosos",
+      "howTo": "Se encuentran en setos, bordes de bosques y áreas alteradas a finales del verano"
+    },
+    "elderberry": {
+      "name": "Saúco",
+      "description": "Pequeñas bayas oscuras que crecen en racimos en árboles de saúco",
+      "howTo": "Busca árboles de saúco en setos y bordes de bosques en otoño"
+    },
+    "nettle": {
+      "name": "Ortiga",
+      "description": "Planta verde nutritiva con pelos urticantes que debe cocinarse",
+      "howTo": "Se encuentra en áreas alteradas, setos y bordes de bosques en primavera y verano"
+    },
+    "dandelion": {
+      "name": "Diente de león",
+      "description": "Maleza común con flores amarillas brillantes y hojas comestibles",
+      "howTo": "Se encuentra en praderas, pastizales y áreas alteradas durante la temporada de crecimiento"
+    },
+    "hazelnut": {
+      "name": "Avellana",
+      "description": "Frutos secos dulces y redondos que crecen en avellanos",
+      "howTo": "Busca avellanos en setos y bordes de bosques en otoño"
+    },
+    "garlic": {
+      "name": "Ajo silvestre",
+      "description": "Hierba de olor fuerte con hojas anchas y flores blancas",
+      "howTo": "Se encuentra en bosques caducifolios en primavera, a menudo formando grandes parches"
+    },
+    "chickenOfTheWoods": {
+      "name": "Pollo de los bosques",
+      "description": "Un hongo de color naranja-amarillo brillante que crece en los árboles",
+      "howTo": "Búscalo creciendo en árboles muertos o moribundos, especialmente robles"
+    },
+    "oysterMushroom": {
+      "name": "Seta de ostra",
+      "description": "Hongo blanco-grisáceo con sombrero en forma de abanico que crece en racimos sobre madera muerta",
+      "howTo": "Búscalas creciendo en árboles muertos, especialmente hayas y robles, en otoño e invierno"
+    },
+    "shiitake": {
+      "name": "Shiitake",
+      "description": "Hongo con sombrero marrón y láminas blancas, muy apreciado en la cocina asiática",
+      "howTo": "Se encuentra creciendo en maderas duras muertas, especialmente roble y haya, en primavera y otoño"
+    },
+    "raspberry": {
+      "name": "Frambuesa silvestre",
+      "description": "Bayas rojas dulces que crecen en cañas espinosas con hojas compuestas",
+      "howTo": "Busca cañas de frambuesa en setos, bordes de bosques y áreas alteradas en verano"
+    },
+    "blueberry": {
+      "name": "Arándano silvestre",
+      "description": "Pequeñas bayas azules dulces que crecen en arbustos bajos en suelos ácidos",
+      "howTo": "Se encuentra en brezales, turberas y bosques ácidos en verano y principios de otoño"
+    },
+    "strawberry": {
+      "name": "Fresa silvestre",
+      "description": "Pequeñas bayas rojas de sabor intenso, con flores blancas y hojas trifoliadas",
+      "howTo": "Búscalas en praderas, bordes de bosques y áreas herbosas en primavera y verano"
+    },
+    "wildMint": {
+      "name": "Menta silvestre",
+      "description": "Hierba aromática con tallos cuadrados y hojas opuestas que desprenden aroma a menta al frotarlas",
+      "howTo": "Se encuentra en zonas húmedas, a lo largo de arroyos y en praderas húmedas en primavera y verano"
+    },
+    "chickweed": {
+      "name": "Pamplina",
+      "description": "Planta rastrera con pequeñas flores blancas y hojas ovaladas, muy nutritiva",
+      "howTo": "Común en jardines, áreas alteradas y praderas durante la temporada de crecimiento"
+    },
+    "plantain": {
+      "name": "Llantén común",
+      "description": "Planta baja con hojas ovaladas anchas y espigas florales altas",
+      "howTo": "Se encuentra en céspedes, praderas y áreas alteradas durante la temporada de crecimiento"
+    },
+    "walnut": {
+      "name": "Nuez",
+      "description": "Frutos grandes y redondos con cáscara dura y sabor rico y aceitoso",
+      "howTo": "Busca nogales en parques, jardines y bordes de bosques en otoño"
+    },
+    "chestnut": {
+      "name": "Castaña",
+      "description": "Grandes frutos dulces encerrados en cáscaras verdes espinosas que se abren al madurar",
+      "howTo": "Se encuentra en castañares y bosques mixtos en otoño, a menudo cerca de senderos"
+    },
+    "elderflower": {
+      "name": "Flor de saúco",
+      "description": "Flores blancas cremosas que crecen en grandes racimos planos en árboles de saúco",
+      "howTo": "Busca árboles de saúco en setos y bordes de bosques a finales de primavera y principios de verano"
+    },
+    "daisy": {
+      "name": "Margarita común",
+      "description": "Pequeñas flores blancas con centro amarillo que crecen cerca del suelo",
+      "howTo": "Común en céspedes, praderas y áreas herbosas durante primavera y verano"
+    },
+    "violets": {
+      "name": "Violeta dulce",
+      "description": "Pequeñas flores moradas con hojas en forma de corazón y fragancia dulce",
+      "howTo": "Se encuentra en bordes de bosques, setos y zonas sombrías a principios de primavera"
+    },
+    "maitake": {
+      "name": "Grifola frondosa",
+      "description": "Un hongo en forma de repisa, de color naranja-amarillo brillante, que crece sobre los árboles.",
+      "howTo": "Búscalo creciendo en árboles muertos o moribundos, especialmente robles."
+    },
+    "amaranth": {
+      "name": "Amaranto",
+      "description": "Planta herbácea con hojas y semillas comestibles, rica en nutrientes.",
+      "howTo": "Crece en suelos alterados, huertos y campos durante el verano. Recolecta las hojas jóvenes antes de la floración."
+    },
+    "artichoke": {
+      "name": "Alcachofa silvestre",
+      "description": "Planta espinosa similar a la alcachofa cultivada, con cabezuelas y tallos comestibles.",
+      "howTo": "Se encuentra en praderas y campos; recolecta las cabezuelas jóvenes y los tallos tiernos en primavera y a comienzos del verano."
+    },
+    "asparagus": {
+      "name": "Espárrago silvestre",
+      "description": "Planta perenne con brotes delgados y comestibles que aparecen en primavera.",
+      "howTo": "Busca los brotes jóvenes en campos abiertos, praderas y a lo largo de setos en primavera."
+    },
+    "black_chant": {
+      "name": "Trompeta de los muertos",
+      "description": "Hongo oscuro con forma de trompeta, de sabor intenso y muy apreciado en la cocina.",
+      "howTo": "Se encuentra en bosques de frondosas, especialmente bajo robles y hayas, desde finales del verano hasta el otoño."
+    },
+    "lingonb": {
+      "name": "Arándano rojo",
+      "description": "Pequeñas bayas rojas y ácidas que crecen en arbustos perennes en suelos ácidos.",
+      "howTo": "Búscalo en bosques de coníferas, brezales y páramos desde finales del verano hasta el otoño."
+    },
+    "masterwort": {
+      "name": "Imperatoria",
+      "description": "Hierba perenne con hojas aromáticas y umbelas de flores blancas, usada en medicina tradicional y como especia.",
+      "howTo": "Se encuentra en praderas de montaña y claros de bosque; recolecta hojas y raíces en primavera y verano."
+    },
+    "parasol": {
+      "name": "Parasol",
+      "description": "Hongo grande con sombrero ancho y escamoso parecido a un paraguas, comestible cuando es joven.",
+      "howTo": "Búscalo en praderas, pastizales y bordes de bosques desde finales del verano hasta el otoño."
+    },
+    "sorrel": {
+      "name": "Acedera común",
+      "description": "Planta de sabor ácido y cítrico, utilizada en ensaladas y sopas.",
+      "howTo": "Recolecta las hojas jóvenes en praderas, pastizales y a lo largo de los senderos en primavera y verano."
+    },
+    "st_george": {
+      "name": "Seta de San Jorge",
+      "description": "Hongo blanco y firme con olor a harina, que aparece alrededor de la festividad de San Jorge en primavera.",
+      "howTo": "Se encuentra en praderas, pastizales y bordes de bosques en primavera."
+    },
+    "truffle_b": {
+      "name": "Trufa negra",
+      "description": "Hongo subterráneo muy apreciado, de aroma intenso, utilizado en la cocina gourmet.",
+      "howTo": "Se encuentra bajo tierra cerca de las raíces de robles y avellanos, recolectado con animales adiestrados en invierno."
+    }
+  }
+}

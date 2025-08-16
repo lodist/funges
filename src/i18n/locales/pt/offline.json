@@ -1,0 +1,22 @@
+{
+  "title": "Offline Maps",
+  "description": "Manage offline map data",
+  "offlineBanner": "You're offline — cached species will still load.",
+  "storage": {
+    "title": "Storage",
+    "summary": "{{used}} MB / {{quota}} MB",
+    "purge": "Purge expired now",
+    "ttl": "Caches expire after 14 days"
+  },
+  "species": {
+    "title": "Species",
+    "name": "Species",
+    "status": "Status",
+    "cached": "Cached",
+    "notCached": "Not cached",
+    "download": "Make available offline",
+    "remove": "Remove offline data",
+    "downloadAll": "Download all",
+    "removeAll": "Remove all"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "title": "Instrucciones",
+  "subtitle": "Aprende a usar Fung.es de forma segura y efectiva",
+  "downloadDataset": "Descargar conjunto de datos diario (CSV)",
+  "mapDescription": {
+    "intro": "El mapa resalta áreas geográficas con condiciones favorables para recolectar hongos silvestres y plantas comestibles.",
+    "selection": "Selecciona tu especie preferida usando el menú desplegable en la parte superior de la página.",
+    "colorCoding": "Cada área está codificada por colores en un gradiente de amarillo pálido a rojo oscuro, indicando la probabilidad de encontrar buenas condiciones de recolección según los datos ambientales.",
+    "scale": "La escala se acompaña de una calificación numérica de 0 a 10, ilustrada abajo.",
+    "polygons": "Los polígonos y marcadores solo se muestran cuando aportan información estacional relevante, manteniendo el mapa ligero y enfocado. Si algo no aparece, puede que sea demasiado pronto o tarde en la temporada."
+  },
+  "functions": {
+    "title": "Funciones:",
+    "recipes": "Muestra especies comestibles cercanas y sugiere recetas",
+    "location": "Centra el mapa en la ubicación del usuario",
+    "theme": "Cambia entre modo claro y oscuro",
+    "numbers": "Muestra la calificación numérica"
+  },
+  "mapInteraction": {
+    "title": "Haz clic en una zona para ver las especies y su porcentaje de hallazgo:",
+    "maps": "Abrir el destino en Mapas"
+  },
+  "about": {
+    "title": "Sobre Funges",
+    "description": "Funges es una plataforma impulsada por datos que utiliza información geográfica y ambiental para ofrecer perspectivas en tiempo real sobre la recolección de hongos silvestres y plantas comestibles.",
+    "dataCombination": "Combinando diversos conjuntos de datos —modelos climáticos, imágenes satelitales, relieve e indicadores ecológicos— Funges predice las condiciones óptimas para el crecimiento de recursos naturales como hongos y plantas.",
+    "climateChange": "A medida que los ecosistemas cambian por el cambio climático, herramientas como Funges apoyan la recolección sostenible y la alimentación basada en la naturaleza.",
+    "currentStatus": "Actualmente, Funges ofrece información en tiempo real para un número limitado de especies, con más plantas silvestres próximamente.",
+    "keyFeatures": {
+      "title": "Características clave",
+      "environmentalData": "Integración de datos ambientales: utiliza geolocalización, modelos climáticos y datos meteorológicos.",
+      "probabilityModels": "Modelos de probabilidad: predice la presencia de recursos naturales.",
+      "climateAdaptation": "Adaptación al cambio climático: ofrece perspectivas en tiempo real sobre ecosistemas cambiantes.",
+      "scalability": "Escalabilidad y accesibilidad: acceso abierto para usuarios sin requerir datos personales."
+    }
+  },
+  "mission": {
+    "title": "Nuestra misión",
+    "commitment": "Funges está comprometido a aprovechar la tecnología y los datos ambientales para empoderar a individuos y organizaciones en la recolección sostenible y el aprovechamiento de recursos.",
+    "goal": "Al proporcionar información en tiempo real y análisis predictivos, nuestro objetivo es reducir el desperdicio de recursos, adaptarnos al cambio climático y hacer que los regalos de la naturaleza sean más accesibles para todos.",
+    "sustainability": "La recolección es más sostenible cuando sigue el ritmo natural del entorno —guiada por la estacionalidad, la localidad y el equilibrio ecológico. La naturaleza provee lo necesario, cuando es necesario; la cosecha responsable comienza con la atención a estos ciclos.",
+    "community": "A través de la innovación y el acceso abierto, el objetivo es crear una comunidad de recolectores responsables que valoren la sostenibilidad y la biodiversidad.",
+    "openAccess": "El acceso abierto a la información fomenta una conexión más profunda con el lugar y el tiempo, promoviendo decisiones que respeten la biodiversidad y la capacidad regenerativa de los ecosistemas."
+  },
+  "prediction": {
+    "title": "Cómo se predicen las plantas silvestres comestibles",
+    "description": "Funges analiza una amplia gama de variables ambientales para identificar las áreas más prometedoras para recolectar hongos silvestres y plantas comestibles. Nuestros modelos consideran múltiples capas de datos ecológicos —seguimiento y combinación a lo largo del tiempo— para inferir ciclos naturales y determinar el momento y lugar óptimos para la recolección.",
+    "monitorTitle": "monitorea e integra:",
+    "variables": {
+      "temperature": "Temperatura, humedad y precipitaciones",
+      "soil": "pH del suelo y características geológicas",
+      "vegetation": "Cobertura del suelo y tipos de vegetación",
+      "topography": "Topografía y altitud",
+      "trends": "Tendencias de series temporales"
+    },
+    "goal": "El objetivo es simular el comportamiento de recolectores experimentados —amplificado por datos. En otras palabras, intentar respetuosamente 'hackear' la naturaleza para hacer la recolección silvestre más accesible, precisa y sostenible.",
+    "methodology": {
+      "title": "Fuentes de datos y metodología",
+      "description": "Funges utiliza una combinación de conjuntos de datos ambientales, meteorológicos y geoespaciales para predecir los mejores lugares y momentos para recolectar plantas silvestres comestibles.",
+      "datasets": "Estos incluyen imágenes satelitales, modelos de relieve, APIs meteorológicas e indicadores ecológicos —todos analizados a lo largo del tiempo para simular los ciclos de la naturaleza e identificar puntos calientes en tiempo real."
+    },
+    "keyDatasets": {
+      "title": "Conjuntos de datos clave",
+      "corine": {
+        "title": "1. CORINE Land Cover (CLC)",
+        "description": "Proporcionado por la Agencia Europea de Medio Ambiente (EEA), CORINE Land Cover ofrece mapas detallados de vegetación y uso del suelo en Europa. Esto ayuda a determinar ecosistemas adecuados para diferentes especies de hongos y plantas.",
+        "source": "Fuente: Agencia Europea de Medio Ambiente (EEA)",
+        "citation": "Cita: Bossard, M., Feranec, J., & Otahel, J. (2000). CORINE Land Cover Technical Guide – Addendum 2000."
+      },
+      "soilPh": {
+        "title": "2. pH del suelo en Europa",
+        "description": "Creado por el Centro Común de Investigación (JRC) de la Comisión Europea, este conjunto de datos mapea la acidez del suelo usando más de 12,000 muestras en 25 países, modeladas mediante Regression-Kriging con 54 covariables ambientales.",
+        "source": "Fuente: Centro Europeo de Datos del Suelo (ESDAC), Centro Común de Investigación (JRC)",
+        "citation": "Cita: Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
+      },
+      "additional": "Se integran fuentes adicionales como APIs meteorológicas, capas de teledetección y modelos de pendiente/orientación para mejorar continuamente la precisión de las predicciones."
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Avviso Legale",
+  "subtitle": "Impressum",
+  "responsibleEntity": {
+    "title": "Ente Responsabile (Responsabile Legale):",
+    "name": "Dario Lutz",
+    "address": "Hardturmstrasse 102",
+    "city": "8005 Zurigo",
+    "country": "Svizzera"
+  },
+  "administrator": {
+    "title": "Amministratore (Responsabilità Operativa):",
+    "name": "Loris Di Stefano",
+    "address": "C/ del Músic Jarque Cualladó 6",
+    "city": "46009 Valencia",
+    "country": "Spagna",
+    "email": "lorisdistefano@pm.me"
+  },
+  "disclaimer": {
+    "title": "Disclaimer",
+    "content": "L'autore non si assume alcuna responsabilità per la correttezza, accuratezza, tempestività, affidabilità e completezza delle informazioni. Sono escluse le richieste di risarcimento danni contro l'autore per danni materiali o immateriali derivanti dall'accesso, dall'uso o dal non utilizzo delle informazioni pubblicate, dall'uso improprio della connessione o da malfunzionamenti tecnici."
+  },
+  "disclaimerContent": {
+    "title": "Disclaimer per Contenuti e Link",
+    "content": "I riferimenti e i link a siti web di terze parti sono al di fuori della nostra area di responsabilità. Si rifiuta qualsiasi responsabilità per tali siti web. L'accesso e l'uso di tali siti web è a rischio dell'utente."
+  },
+  "attribution": {
+    "content": "Le icone in questa app sono state fornite da flaticon.com, con la dovuta attribuzione come richiesto dai loro termini di licenza."
+  },
+  "lastUpdated": "Ultimo aggiornamento: 22.05.2025"
+}

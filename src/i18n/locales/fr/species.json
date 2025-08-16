@@ -1,0 +1,233 @@
+{
+  "title": "Base de données des espèces",
+  "subtitle": "Apprenez sur les aliments sauvages",
+  "search_placeholder": "Rechercher une espèce",
+  "description": "Explorez notre base de données complète des espèces comestibles",
+  "search": {
+    "placeholder": "Rechercher une espèce",
+    "found": "Trouvé",
+    "species": "espèce(s)",
+    "clear": "Effacer"
+  },
+  "filterByType": "Filtrer par type",
+  "allTypes": "Tous les types",
+  "mushrooms": "Champignons",
+  "mushroom": "Champignon",
+  "plants": "Plantes",
+  "plant": "Plante",
+  "berries": "Baies",
+  "berry": "Baie",
+  "herbs": "Herbes",
+  "herb": "Herbe",
+  "nuts": "Noix",
+  "nut": "Noix",
+  "flowers": "Fleurs",
+  "flower": "Fleur",
+  "scientificName": "Nom scientifique",
+  "commonName": "Nom commun",
+  "edibility": "Comestibilité",
+  "season": "Saison",
+  "habitat": "Habitat",
+  "howTo": "Conseils de cueillette",
+  "cookingTips": "Conseils de cuisine",
+  "safetyNotes": "Notes de sécurité",
+  "preparation": "Préparation",
+  "found": "Trouvé",
+  "species": "espèce(s)",
+  "noResults": "Aucune espèce trouvée",
+  "noResultsDescription": "Essayez d'ajuster vos critères de recherche ou de filtre",
+  "safetyWarning": "Consultez toujours un expert avant de consommer un aliment sauvage. Ces informations sont à but éducatif uniquement.",
+  "viewOnMap": "Voir sur la carte",
+  "seasons": {
+    "spring": "Printemps",
+    "summer": "Été",
+    "fall": "Automne",
+    "winter": "Hiver",
+    "spring-summer": "Printemps-Été",
+    "summer-fall": "Été-Automne",
+    "fall-winter": "Automne-Hiver",
+    "winter-spring": "Hiver-Printemps",
+    "spring-fall": "Printemps et Automne"
+  },
+  "habitats": {
+    "forest": "Forêt",
+    "meadow": "Prairie",
+    "hedgerow": "Haie",
+    "woodland": "Bois",
+    "grassland": "Pelouse",
+    "wetland": "Zone humide",
+    "urban": "Urbain"
+  },
+  "list_of_species": {
+    "chant": {
+      "name": "Girolle",
+      "description": "Un champignon jaune doré en forme d'entonnoir avec un arôme fruité distinctif",
+      "howTo": "Cherchez-les dans les forêts de feuillus, surtout près des chênes et des hêtres"
+    },
+    "mushroom": {
+      "name": "Cèpe",
+      "description": "Aussi appelé cèpe de Bordeaux, ce champignon prisé a un chapeau brun et des pores blancs ou jaunes",
+      "howTo": "Se trouve dans les forêts de conifères et de feuillus, souvent près des pins"
+    },
+    "morel": {
+      "name": "Morille",
+      "description": "Un champignon distinctif avec un chapeau alvéolé qui apparaît au printemps",
+      "howTo": "Cherchez dans les zones perturbées, les forêts brûlées et près des arbres morts au printemps"
+    },
+    "blackberry": {
+      "name": "Mûre",
+      "description": "Baies sucrées, pourpre foncé, poussant sur des buissons épineux",
+      "howTo": "Se trouve dans les haies, lisières de bois et zones perturbées à la fin de l'été"
+    },
+    "elderberry": {
+      "name": "Sureau noir",
+      "description": "Petites baies pourpre foncé poussant en grappes sur les sureaux",
+      "howTo": "Cherchez les sureaux dans les haies et lisières de bois en automne"
+    },
+    "nettle": {
+      "name": "Ortie",
+      "description": "Plante verte nutritive avec des poils urticants, à cuire avant consommation",
+      "howTo": "Se trouve dans les zones perturbées, haies et lisières de bois au printemps et en été"
+    },
+    "dandelion": {
+      "name": "Pissenlit",
+      "description": "Mauvaise herbe commune à fleurs jaunes vives et feuilles comestibles",
+      "howTo": "Se trouve dans les prairies, pelouses et zones perturbées pendant la saison de croissance"
+    },
+    "hazelnut": {
+      "name": "Noisette",
+      "description": "Noix rondes et sucrées poussant sur les noisetiers",
+      "howTo": "Cherchez les noisetiers dans les haies et lisières de bois en automne"
+    },
+    "garlic": {
+      "name": "Ail des ours",
+      "description": "Herbe à l'odeur forte, larges feuilles et fleurs blanches",
+      "howTo": "Se trouve dans les forêts de feuillus au printemps, souvent en grandes colonies"
+    },
+    "chickenOfTheWoods": {
+      "name": "Polypore soufré",
+      "description": "Champignon en console jaune orangé vif poussant sur les arbres",
+      "howTo": "Cherchez-le sur les arbres morts ou mourants, surtout les chênes"
+    },
+    "oysterMushroom": {
+      "name": "Pleurote",
+      "description": "Champignon blanc-gris à chapeau en éventail poussant en touffes sur le bois mort",
+      "howTo": "Cherchez-les sur les arbres morts, surtout hêtre et chêne, en automne et hiver"
+    },
+    "shiitake": {
+      "name": "Shiitaké",
+      "description": "Champignon à chapeau brun et lames blanches, très prisé en cuisine asiatique",
+      "howTo": "Se trouve sur le bois mort de feuillus, surtout chêne et hêtre, au printemps et en automne"
+    },
+    "raspberry": {
+      "name": "Framboise sauvage",
+      "description": "Baies rouges sucrées poussant sur des tiges épineuses à feuilles composées",
+      "howTo": "Cherchez les framboisiers dans les haies, lisières de bois et zones perturbées en été"
+    },
+    "blueberry": {
+      "name": "Myrtille sauvage",
+      "description": "Petites baies bleues sucrées poussant sur des arbustes bas en sol acide",
+      "howTo": "Se trouve dans les landes, tourbières et forêts acides en été et début d'automne"
+    },
+    "strawberry": {
+      "name": "Fraise des bois",
+      "description": "Petites fraises rouges au goût intense, fleurs blanches et feuilles trifoliées",
+      "howTo": "Cherchez-les dans les prairies, lisières de bois et zones herbeuses au printemps et en été"
+    },
+    "wildMint": {
+      "name": "Menthe sauvage",
+      "description": "Herbe aromatique à tiges carrées et feuilles opposées dégageant une odeur de menthe quand on les froisse",
+      "howTo": "Se trouve dans les zones humides, le long des ruisseaux et prairies humides au printemps et en été"
+    },
+    "chickweed": {
+      "name": "Mouron des oiseaux",
+      "description": "Plante basse à petites fleurs blanches et feuilles ovales, très nutritive",
+      "howTo": "Commune dans les jardins, zones perturbées et prairies pendant la saison de croissance"
+    },
+    "plantain": {
+      "name": "Plantain majeur",
+      "description": "Plante basse à larges feuilles ovales et longues hampes florales",
+      "howTo": "Se trouve dans les pelouses, prairies et zones perturbées pendant la saison de croissance"
+    },
+    "walnut": {
+      "name": "Noyer",
+      "description": "Grosses noix rondes à coque dure et saveur riche et huileuse",
+      "howTo": "Cherchez les noyers dans les parcs, jardins et lisières de bois en automne"
+    },
+    "chestnut": {
+      "name": "Châtaigne",
+      "description": "Grosses châtaignes sucrées dans des bogues vertes épineuses qui s'ouvrent à maturité",
+      "howTo": "Se trouve dans les châtaigneraies et forêts mixtes en automne, souvent près des sentiers"
+    },
+    "elderflower": {
+      "name": "Fleur de sureau",
+      "description": "Fleurs blanches crémeuses en larges ombelles sur les sureaux",
+      "howTo": "Cherchez les sureaux dans les haies et lisières de bois à la fin du printemps et au début de l'été"
+    },
+    "daisy": {
+      "name": "Pâquerette",
+      "description": "Petites fleurs blanches à cœur jaune poussant près du sol",
+      "howTo": "Commune dans les pelouses, prairies et zones herbeuses au printemps et en été"
+    },
+    "violets": {
+      "name": "Violette odorante",
+      "description": "Petites fleurs violettes à feuilles en cœur et parfum doux",
+      "howTo": "Se trouve en lisière de bois, haies et zones ombragées au début du printemps"
+    },
+    "maitake": {
+      "name": "Grifola frondosa",
+      "description": "Un champignon en forme d'étagère, d'un orange-jaune vif, qui pousse sur les arbres.",
+      "howTo": "Cherche-le sur des arbres morts ou mourants, en particulier les chênes."
+    },
+    "amaranth": {
+      "name": "Amarante",
+      "description": "Plante herbacée aux feuilles et graines comestibles, riche en nutriments.",
+      "howTo": "Pousse sur sols perturbés, potagers et champs pendant l'été. Récolte les jeunes feuilles avant la floraison."
+    },
+    "artichoke": {
+      "name": "Artichaut sauvage",
+      "description": "Plante épineuse ressemblant à l'artichaut cultivé, avec capitules et tiges comestibles.",
+      "howTo": "Se trouve dans les prairies et champs ; récolte les jeunes capitules et les tiges tendres au printemps et au début de l'été."
+    },
+    "asparagus": {
+      "name": "Asperge sauvage",
+      "description": "Plante vivace aux pousses fines et comestibles apparaissant au printemps.",
+      "howTo": "Cherche les jeunes pousses dans les champs ouverts, prairies et le long des haies au printemps."
+    },
+    "black_chant": {
+      "name": "Trompette de la mort",
+      "description": "Champignon sombre en forme de trompette, au goût intense, très apprécié en cuisine.",
+      "howTo": "Se trouve dans les forêts de feuillus, surtout sous les chênes et les hêtres, de la fin de l'été à l'automne."
+    },
+    "lingonb": {
+      "name": "Airelle rouge",
+      "description": "Petites baies rouges et acidulées poussant sur des arbustes persistants dans les sols acides.",
+      "howTo": "Cherche dans les forêts de conifères, landes et tourbières de la fin de l'été à l'automne."
+    },
+    "masterwort": {
+      "name": "Impératoire",
+      "description": "Plante vivace aux feuilles aromatiques et ombelles de fleurs blanches, utilisée en médecine traditionnelle et comme épice.",
+      "howTo": "Se trouve dans les prairies de montagne et les clairières forestières ; récolte feuilles et racines au printemps et en été."
+    },
+    "parasol": {
+      "name": "Coulemelle",
+      "description": "Grand champignon au large chapeau écailleux semblable à un parapluie, comestible lorsqu'il est jeune.",
+      "howTo": "Cherche dans les prairies, pâturages et lisières de forêt de la fin de l'été à l'automne."
+    },
+    "sorrel": {
+      "name": "Oseille commune",
+      "description": "Plante au goût acidulé et citronné, utilisée dans les salades et les soupes.",
+      "howTo": "Récolte les jeunes feuilles dans les prairies, pâturages et le long des sentiers au printemps et en été."
+    },
+    "st_george": {
+      "name": "Tricholome de la Saint-Georges",
+      "description": "Champignon blanc et ferme à odeur de farine, apparaissant autour de la Saint-Georges au printemps.",
+      "howTo": "Se trouve dans les prairies, pâturages et lisières de forêt au printemps."
+    },
+    "truffle_b": {
+      "name": "Truffe noire du Périgord",
+      "description": "Champignon souterrain très recherché au parfum intense, utilisé en cuisine gastronomique.",
+      "howTo": "Se trouve sous terre près des racines de chênes et de noisetiers, récolté avec des animaux dressés en hiver."
+    }
+  }
+}
