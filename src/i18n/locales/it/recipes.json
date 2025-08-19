@@ -1,0 +1,986 @@
+{
+  "title": "Ricette",
+  "subtitle": "Deliziose ricette usando cibi selvatici",
+  "filterByIngredient": "Filtra per ingrediente",
+  "allIngredients": "Tutti gli Ingredienti",
+  "difficulty": "Difficoltà",
+  "prepTime": "Tempo di Preparazione",
+  "cookTime": "Tempo di Cottura",
+  "servings": "Porzioni",
+  "ingredients": "Ingredienti",
+  "instructions": "Istruzioni",
+  "tips": "Consigli",
+  "warnings": "Avvertimenti",
+  "description": "Scopri deliziose ricette usando ingredienti raccolti",
+  "filterBy": "Ingrediente",
+  "filters": "Filtri",
+  "clear": "Cancella",
+  "apply": "Applica",
+  "all": "Tutti",
+  "mushroom": "Fungo",
+  "berry": "Bacca",
+  "plant": "Pianta",
+  "nut": "Noce",
+  "more": "altro",
+  "search": {
+    "placeholder": "Cerca ricette, ingredienti o tag",
+    "no_results": "Nessuna ricetta trovata",
+    "found_one": "Trovata {{count}} ricetta",
+    "found_other": "Trovate {{count}} ricette",
+    "try_adjusting": "Prova a modificare i termini di ricerca o i filtri per trovare più ricette."
+  },
+  "view_recipe": "Visualizza ricetta",
+  "species": {
+    "amaranth": "Amaranto",
+    "black_chant": "Trombetta dei Morti",
+    "chant": "Finferlo",
+    "chickweed": "Centocchio",
+    "sorrel": "Acetosa",
+    "dandelion": "Tarassaco",
+    "chestnut": "Castagna",
+    "mushroom": "Fungo",
+    "nettle": "Ortica",
+    "parasol": "Mazza di Tamburo",
+    "masterwort": "Imperatoria",
+    "morel": "Spugnola",
+    "st_george": "Prugnolo",
+    "walnut": "Noce",
+    "lingonb": "Mirtillo Rosso",
+    "garlic": "Aglio",
+    "garlic_wild": "Aglio Selvatico",
+    "artichoke": "Carciofo Selvatico",
+    "asparagus": "Asparago Selvatico",
+    "strawberry": "Fragola di Bosco"
+  },
+  "tags": {
+    "vegetarian": "Vegetariano",
+    "vegan": "Vegano",
+    "gluten-free": "Senza Glutine",
+    "quick": "Veloce",
+    "easy": "Facile",
+    "medium": "Medio",
+    "hard": "Difficile",
+    "soup": "Zuppa",
+    "pasta": "Pasta",
+    "salad": "Insalata",
+    "dessert": "Dolce",
+    "drink": "Bevanda",
+    "sauce": "Salsa",
+    "main": "Piatto Principale",
+    "side": "Contorno",
+    "appetizer": "Antipasto",
+    "breakfast": "Colazione",
+    "lunch": "Pranzo",
+    "dinner": "Cena",
+    "snack": "Spuntino",
+    "beverage": "Bevanda"
+  },
+  "list_of_recipes": {
+    "amaranth-wild-greens-patties": {
+      "title": "Frittelle di Amaranto e Erbe Selvatiche",
+      "ingredients": [
+        "½ tazza di semi di amaranto",
+        "1 tazza d'acqua",
+        "1 tazza di erbe selvatiche miste (centocchio, acetosa, tarassaco), tritate finemente",
+        "1 uovo piccolo",
+        "2 cucchiai di farina o pangrattato",
+        "Sale, pepe, olio d'oliva"
+      ],
+      "instructions": [
+        "Cuocere l’amaranto: Cuocere i semi di amaranto in acqua finché completamente assorbita (15–20 min). Lasciar intiepidire.",
+        "Mescolare: Unire amaranto cotto con erbe, uovo, farina, sale e pepe.",
+        "Formare: Creare piccole frittelle con le mani umide.",
+        "Saltare: Cuocere in padella con olio per 3–4 min per lato fino a doratura.",
+        "Servire: Con salsa allo yogurt, pesto o come alternativa vegetariana al burger."
+      ],
+      "species": ["amaranth", "chickweed", "sorrel", "dandelion"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Cuocere l’amaranto: Cuocere i semi di amaranto in acqua finché completamente assorbita (15–20 min). Lasciar intiepidire."
+        },
+        {
+          "step": 2,
+          "instruction": "Mescolare: Unire amaranto cotto con erbe, uovo, farina, sale e pepe."
+        },
+        {
+          "step": 3,
+          "instruction": "Formare: Creare piccole frittelle con le mani umide."
+        },
+        {
+          "step": 4,
+          "instruction": "Saltare: Cuocere in padella con olio per 3–4 min per lato fino a doratura."
+        },
+        {
+          "step": 5,
+          "instruction": "Servire: Con salsa allo yogurt, pesto o come alternativa vegetariana al burger."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": []
+    },
+    "black-chanterelle-cream-sauce": {
+      "title": "Salsa Cremosa di Trombetta dei Morti",
+      "ingredients": [
+        "100 g di trombette dei morti (fresche o 30 g secche)",
+        "1 piccola scalogna, tritata finemente",
+        "1 spicchio d'aglio, tritato",
+        "1 cucchiaio di burro",
+        "100 ml di vino bianco (opzionale)",
+        "200 ml di panna",
+        "Sale e pepe nero q.b.",
+        "Timo fresco (opzionale)"
+      ],
+      "instructions": [
+        "Preparare i funghi: Se secchi, ammollare in acqua calda per 20 min, poi scolare e strizzare.",
+        "Soffriggere gli aromi: Sciogliere il burro in padella, cuocere scalogna e aglio fino a morbidezza.",
+        "Aggiungere i funghi: Unire le trombette e saltare 5–7 min.",
+        "Sfumare (opzionale): Aggiungere vino e far ridurre della metà.",
+        "Aggiungere panna: Versare la panna, cuocere 5 min fino a leggero addensamento. Regolare di sale, pepe, timo.",
+        "Servire: Perfetta con pasta fresca, polenta o patate arrosto."
+      ],
+      "species": ["black_chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparare i funghi: Se secchi, ammollare in acqua calda per 20 min, poi scolare e strizzare."
+        },
+        {
+          "step": 2,
+          "instruction": "Soffriggere gli aromi: Sciogliere il burro in padella, cuocere scalogna e aglio fino a morbidezza."
+        },
+        {
+          "step": 3,
+          "instruction": "Aggiungere i funghi: Unire le trombette e saltare 5–7 min."
+        },
+        {
+          "step": 4,
+          "instruction": "Sfumare (opzionale): Aggiungere vino e far ridurre della metà."
+        },
+        {
+          "step": 5,
+          "instruction": "Aggiungere panna: Versare la panna, cuocere 5 min fino a leggero addensamento. Regolare di sale, pepe, timo."
+        },
+        {
+          "step": 6,
+          "instruction": "Servire: Perfetta con pasta fresca, polenta o patate arrosto."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "easy"],
+      "safetyNotes": [
+        "Assicurarsi del riconoscimento sicuro dei funghi raccolti."
+      ]
+    },
+    "chanterelle-herb-tart": {
+      "title": "Tarte di Finferli e Erbe",
+      "ingredients": [
+        "200 g di finferli freschi",
+        "1 piccolo porro, affettato sottile",
+        "2 uova",
+        "100 ml di panna",
+        "1 cucchiaio di olio d'oliva",
+        "Timo e prezzemolo freschi, tritati",
+        "Sale e pepe q.b.",
+        "1 rotolo di pasta sfoglia"
+      ],
+      "instructions": [
+        "Pulisci i funghi: Pulisci i finferli con un pennello o un panno umido.",
+        "Base saltata: Scalda l'olio in padella, cuoci il porro fino a che diventa morbido. Aggiungi i finferli e salta per 5 minuti. Aggiusta di sale.",
+        "Prepara il ripieno: Sbatti le uova con la panna, le erbe, sale e pepe.",
+        "Assembla: Disponi la pasta sfoglia in uno stampo, aggiungi funghi e porri, versa sopra il composto di uova.",
+        "Cottura: Inforna a 180°C per 25–30 minuti fino a doratura.",
+        "Servi: Calda o fredda, ideale per un brunch nei boschi."
+      ],
+      "species": ["chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pulisci i funghi: Pulisci i finferli con un pennello o un panno umido."
+        },
+        {
+          "step": 2,
+          "instruction": "Base saltata: Scalda l'olio in padella, cuoci il porro fino a che diventa morbido. Aggiungi i finferli e salta per 5 minuti. Aggiusta di sale."
+        },
+        {
+          "step": 3,
+          "instruction": "Prepara il ripieno: Sbatti le uova con la panna, le erbe, sale e pepe."
+        },
+        {
+          "step": 4,
+          "instruction": "Assembla: Disponi la pasta sfoglia in uno stampo, aggiungi funghi e porri, versa sopra il composto di uova."
+        },
+        {
+          "step": 5,
+          "instruction": "Cottura: Inforna a 180°C per 25–30 minuti fino a doratura."
+        },
+        {
+          "step": 6,
+          "instruction": "Servi: Calda o fredda, ideale per un brunch nei boschi."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": [
+        "Assicurarsi del riconoscimento sicuro dei funghi raccolti."
+      ]
+    },
+    "chickweed-sorrel-salad-with-walnut-vinaigrette": {
+      "title": "Insalata di Centocchio e Acetosa con Vinaigrette alle Noci",
+      "ingredients": [
+        "2 manciate di foglie fresche di centocchio",
+        "1 manciata di foglie di acetosa, tritate",
+        "1 piccola manciata di noci, tostate e tritate",
+        "2 cucchiaini di olio di noci (o olio d'oliva)",
+        "1 cucchiaino di aceto di mele",
+        "1 cucchiaino di miele",
+        "Sale e pepe a piacere"
+      ],
+      "instructions": [
+        "Tostare le noci: In una padella senza olio, tostare le noci per 3–4 minuti finché non risultano fragranti. Lasciar raffreddare.",
+        "Lavare le erbe: Sciacquare centocchio e acetosa, poi asciugarle delicatamente con un panno pulito.",
+        "Preparare la vinaigrette: In una ciotola piccola, sbattere olio, aceto, miele, sale e pepe.",
+        "Mescolare l’insalata: In una ciotola grande, unire centocchio, acetosa e noci. Condire con la vinaigrette e mescolare leggermente.",
+        "Servire: Gustare subito come insalata fresca e leggermente acidula."
+      ],
+      "species": ["chickweed", "sorrel", "walnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Tostare le noci: In una padella senza olio, tostare le noci per 3–4 minuti finché non risultano fragranti. Lasciar raffreddare."
+        },
+        {
+          "step": 2,
+          "instruction": "Lavare le erbe: Sciacquare centocchio e acetosa, poi asciugarle delicatamente con un panno pulito."
+        },
+        {
+          "step": 3,
+          "instruction": "Preparare la vinaigrette: In una ciotola piccola, sbattere olio, aceto, miele, sale e pepe."
+        },
+        {
+          "step": 4,
+          "instruction": "Mescolare l’insalata: In una ciotola grande, unire centocchio, acetosa e noci. Condire con la vinaigrette e mescolare leggermente."
+        },
+        {
+          "step": 5,
+          "instruction": "Servire: Gustare subito come insalata fresca e leggermente acidula."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "salad", "easy"],
+      "safetyNotes": []
+    },
+    "chestnut-mushroom-soup": {
+      "title": "Zuppa di Castagne e Funghi",
+      "ingredients": [
+        "200 g di castagne arrostite (sbucciate)",
+        "150 g di funghi selvatici (porcini o trombette dei morti ideali)",
+        "1 cipolla piccola, tritata",
+        "1 spicchio d'aglio, tritato",
+        "500 ml di brodo vegetale",
+        "1 cucchiaio di burro",
+        "1 rametto di timo",
+        "100 ml di panna (opzionale)",
+        "Sale e pepe q.b."
+      ],
+      "instructions": [
+        "Soffriggere la base: In una pentola, sciogliere il burro e cuocere cipolla e aglio finché morbidi.",
+        "Aggiungere i funghi: Unire i funghi selvatici tagliati e saltare per 5 minuti.",
+        "Aggiungere castagne e brodo: Unire le castagne e versare il brodo vegetale. Aggiungere il timo.",
+        "Cuocere: Portare a ebollizione, poi abbassare la fiamma e cuocere a fuoco lento per 20 minuti.",
+        "Frullare: Rimuovere il timo. Frullare con un mixer a immersione fino a ottenere una crema liscia.",
+        "Finire: Aggiungere la panna se desiderato, regolare di sale e pepe.",
+        "Servire caldo, accompagnato da pane rustico o un filo d'olio al tartufo."
+      ],
+      "species": ["chestnut", "mushroom", "black_chant", "chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Soffriggere la base: In una pentola, sciogliere il burro e cuocere cipolla e aglio finché morbidi."
+        },
+        {
+          "step": 2,
+          "instruction": "Aggiungere i funghi: Unire i funghi selvatici tagliati e saltare per 5 minuti."
+        },
+        {
+          "step": 3,
+          "instruction": "Aggiungere castagne e brodo: Unire le castagne e versare il brodo vegetale. Aggiungere il timo."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuocere: Portare a ebollizione, poi abbassare la fiamma e cuocere a fuoco lento per 20 minuti."
+        },
+        {
+          "step": 5,
+          "instruction": "Frullare: Rimuovere il timo. Frullare con un mixer a immersione fino a ottenere una crema liscia."
+        },
+        {
+          "step": 6,
+          "instruction": "Finire: Aggiungere la panna se desiderato, regolare di sale e pepe."
+        },
+        {
+          "step": 7,
+          "instruction": "Servire caldo, accompagnato da pane rustico o un filo d'olio al tartufo."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "medium",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "medium"],
+      "safetyNotes": [
+        "Assicurarsi del riconoscimento sicuro dei funghi raccolti."
+      ]
+    },
+    "dandelion-flower-syrup": {
+      "title": "Sciroppo di Fiori di Tarassaco",
+      "ingredients": [
+        "100 fiori di tarassaco (solo i petali gialli)",
+        "500 ml d'acqua",
+        "300 g di zucchero",
+        "Succo di 1 limone"
+      ],
+      "instructions": [
+        "Pulire i petali: Separare i petali gialli dalle parti verdi (che sono amare). Sciacquare delicatamente.",
+        "Preparare l'infuso: In una pentola portare l'acqua a ebollizione, aggiungere i petali e far sobbollire per 10 minuti.",
+        "Lasciare in infusione: Togliere dal fuoco e lasciare in infusione coperto per tutta la notte.",
+        "Filtrare: Filtrare il liquido ed eliminare i petali. Aggiungere succo di limone e zucchero al liquido.",
+        "Cuocere: Far sobbollire a fuoco basso fino a che si addensa in uno sciroppo (20–30 minuti).",
+        "Conservare: Versare in vasetti sterilizzati. Ottimo su pancakes, formaggi o nel tè."
+      ],
+      "species": ["dandelion"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pulire i petali: Separare i petali gialli dalle parti verdi (che sono amare). Sciacquare delicatamente."
+        },
+        {
+          "step": 2,
+          "instruction": "Preparare l'infuso: In una pentola portare l'acqua a ebollizione, aggiungere i petali e far sobbollire per 10 minuti."
+        },
+        {
+          "step": 3,
+          "instruction": "Lasciare in infusione: Togliere dal fuoco e lasciare in infusione coperto per tutta la notte."
+        },
+        {
+          "step": 4,
+          "instruction": "Filtrare: Filtrare il liquido ed eliminare i petali. Aggiungere succo di limone e zucchero al liquido."
+        },
+        {
+          "step": 5,
+          "instruction": "Cuocere: Far sobbollire a fuoco basso fino a che si addensa in uno sciroppo (20–30 minuti)."
+        },
+        {
+          "step": 6,
+          "instruction": "Conservare: Versare in vasetti sterilizzati. Ottimo su pancakes, formaggi o nel tè."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "dessert", "medium"],
+      "safetyNotes": []
+    },
+    "nettle-soup": {
+      "title": "Zuppa di Ortiche",
+      "ingredients": [
+        "1 cipolla media, tritata",
+        "1 spicchio d'aglio, tritato",
+        "1 cucchiaio di burro o olio d'oliva",
+        "2 patate medie, pelate e a cubetti",
+        "1 L di brodo vegetale",
+        "2 grandi manciate di foglie fresche di ortica (usare i guanti!)",
+        "100 ml di panna o latte d'avena (opzionale)",
+        "Sale e pepe q.b."
+      ],
+      "instructions": [
+        "Soffriggere gli aromi: In una pentola, scaldare il burro e soffriggere cipolla e aglio finché morbidi.",
+        "Aggiungere le patate: Unire le patate e cuocere per 5 minuti.",
+        "Aggiungere il brodo: Versare il brodo vegetale e portare a ebollizione.",
+        "Aggiungere le ortiche: Dopo 10 minuti, aggiungere le ortiche e far sobbollire per altri 5–7 minuti.",
+        "Frullare: Frullare la zuppa con un mixer a immersione fino a renderla liscia.",
+        "Finire: Aggiungere panna o latte d'avena se desiderato. Regolare di sale e pepe.",
+        "Servire calda, con un filo d'olio o crostini."
+      ],
+      "species": ["nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Soffriggere gli aromi: In una pentola, scaldare il burro e soffriggere cipolla e aglio finché morbidi."
+        },
+        {
+          "step": 2,
+          "instruction": "Aggiungere le patate: Unire le patate e cuocere per 5 minuti."
+        },
+        {
+          "step": 3,
+          "instruction": "Aggiungere il brodo: Versare il brodo vegetale e portare a ebollizione."
+        },
+        {
+          "step": 4,
+          "instruction": "Aggiungere le ortiche: Dopo 10 minuti, aggiungere le ortiche e far sobbollire per altri 5–7 minuti."
+        },
+        {
+          "step": 5,
+          "instruction": "Frullare: Frullare la zuppa con un mixer a immersione fino a renderla liscia."
+        },
+        {
+          "step": 6,
+          "instruction": "Finire: Aggiungere panna o latte d'avena se desiderato. Regolare di sale e pepe."
+        },
+        {
+          "step": 7,
+          "instruction": "Servire calda, con un filo d'olio o crostini."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "medium"],
+      "safetyNotes": [
+        "Usare guanti durante la manipolazione delle ortiche fresche."
+      ]
+    },
+    "parasol-mushroom-schnitzel": {
+      "title": "Cotoletta di Mazza di Tamburo",
+      "ingredients": [
+        "2–4 grandi cappelli di mazza di tamburo",
+        "1 uovo",
+        "4 cucchiai di pangrattato",
+        "2 cucchiai di Parmigiano grattugiato (opzionale)",
+        "Sale e pepe",
+        "Olio o burro per friggere"
+      ],
+      "instructions": [
+        "Pulire i funghi: Pulire i cappelli con un panno umido. Non lavarli sotto acqua.",
+        "Preparare la panatura: Sbattere l'uovo in una ciotola. In un'altra mescolare pangrattato, sale, pepe e Parmigiano.",
+        "Impanare: Passare ogni cappello nell'uovo, poi nel mix di pangrattato.",
+        "Friggere: Scaldare olio o burro in padella. Friggere i cappelli a fuoco medio finché dorati e croccanti (circa 3 minuti per lato).",
+        "Servire: Con spicchi di limone e insalata fresca. Un classico vegetariano."
+      ],
+      "species": ["parasol"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pulire i funghi: Pulire i cappelli con un panno umido. Non lavarli sotto acqua."
+        },
+        {
+          "step": 2,
+          "instruction": "Preparare la panatura: Sbattere l'uovo in una ciotola. In un'altra mescolare pangrattato, sale, pepe e Parmigiano."
+        },
+        {
+          "step": 3,
+          "instruction": "Impanare: Passare ogni cappello nell'uovo, poi nel mix di pangrattato."
+        },
+        {
+          "step": 4,
+          "instruction": "Friggere: Scaldare olio o burro in padella. Friggere i cappelli a fuoco medio finché dorati e croccanti (circa 3 minuti per lato)."
+        },
+        {
+          "step": 5,
+          "instruction": "Servire: Con spicchi di limone e insalata fresca. Un classico vegetariano."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "6 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Assicurarsi del riconoscimento sicuro dei funghi raccolti."
+      ]
+    },
+    "masterwort-infused-honey-glaze": {
+      "title": "Glassa di Miele alla Radice di Imperatoria",
+      "ingredients": [
+        "1 cucchiaino di radice di imperatoria essiccata o 2 cucchiaini fresca, grattugiata",
+        "150 ml di miele",
+        "1 cucchiaio d'acqua",
+        "Scorza di ½ limone"
+      ],
+      "instructions": [
+        "Scaldare il miele: In un pentolino, scaldare delicatamente miele e acqua a fuoco basso.",
+        "Infondere: Aggiungere imperatoria e scorza di limone. Mescolare e mantenere su fuoco molto basso per 5–10 minuti (senza bollire).",
+        "Filtrare: Togliere dal fuoco e filtrare con un colino fine o una garza.",
+        "Imbottigliare: Versare in un vasetto pulito.",
+        "Uso: Perfetto su verdure arrostite, frutta grigliata o selvaggina. Si conserva in frigo per settimane."
+      ],
+      "species": ["masterwort"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Scaldare il miele: In un pentolino, scaldare delicatamente miele e acqua a fuoco basso."
+        },
+        {
+          "step": 2,
+          "instruction": "Infondere: Aggiungere imperatoria e scorza di limone. Mescolare e mantenere su fuoco molto basso per 5–10 minuti (senza bollire)."
+        },
+        {
+          "step": 3,
+          "instruction": "Filtrare: Togliere dal fuoco e filtrare con un colino fine o una garza."
+        },
+        {
+          "step": 4,
+          "instruction": "Imbottigliare: Versare in un vasetto pulito."
+        },
+        {
+          "step": 5,
+          "instruction": "Uso: Perfetto su verdure arrostite, frutta grigliata o selvaggina. Si conserva in frigo per settimane."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "5 min",
+      "cookTime": "10 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "medium"],
+      "safetyNotes": []
+    },
+    "morel-chestnut-stuffing": {
+      "title": "Ripieno di Spugnole e Castagne",
+      "ingredients": [
+        "100 g di spugnole (fresche o reidratate)",
+        "150 g di castagne arrosto, tritate",
+        "1 cipolla piccola, a dadini",
+        "2 spicchi d'aglio, tritati",
+        "3 fette di pane rustico, a cubetti",
+        "100 ml di brodo vegetale",
+        "1 cucchiaio di burro",
+        "Timo fresco, sale e pepe"
+      ],
+      "instructions": [
+        "Soffriggere la base: In una padella sciogliere il burro e cuocere cipolla e aglio fino a morbidezza.",
+        "Aggiungere funghi e castagne: Unire le spugnole e le castagne, cuocere per 5 minuti.",
+        "Unire il pane: Aggiungere i cubetti di pane e mescolare delicatamente. Versare il brodo e mescolare.",
+        "Insaporire: Aggiungere timo, sale e pepe. Lasciar assorbire il liquido.",
+        "Cuocere in forno: Trasferire in una teglia e cuocere a 180°C per 20 minuti fino a doratura.",
+        "Servire come contorno per carni arrosto o come piatto vegetariano principale."
+      ],
+      "species": ["morel", "chestnut", "garlic", "bread"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Soffriggere la base: In una padella sciogliere il burro e cuocere cipolla e aglio fino a morbidezza."
+        },
+        {
+          "step": 2,
+          "instruction": "Aggiungere funghi e castagne: Unire le spugnole e le castagne, cuocere per 5 minuti."
+        },
+        {
+          "step": 3,
+          "instruction": "Unire il pane: Aggiungere i cubetti di pane e mescolare delicatamente. Versare il brodo e mescolare."
+        },
+        {
+          "step": 4,
+          "instruction": "Insaporire: Aggiungere timo, sale e pepe. Lasciar assorbire il liquido."
+        },
+        {
+          "step": 5,
+          "instruction": "Cuocere in forno: Trasferire in una teglia e cuocere a 180°C per 20 minuti fino a doratura."
+        },
+        {
+          "step": 6,
+          "instruction": "Servire come contorno per carni arrosto o come piatto vegetariano principale."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "medium",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "side", "medium"],
+      "safetyNotes": [
+        "Assicurarsi del riconoscimento sicuro dei funghi raccolti."
+      ]
+    },
+    "nettle-potato-frittata": {
+      "title": "Frittata di Ortiche e Patate",
+      "ingredients": [
+        "1 tazza di ortiche sbollentate",
+        "2 patate medie, tagliate a fettine sottili",
+        "1 cipolla, affettata",
+        "5 uova",
+        "Sale e pepe",
+        "1 cucchiaio di olio d'oliva"
+      ],
+      "instructions": [
+        "Sbollentare le ortiche: Bollire brevemente le ortiche per 2 minuti. Scolare e tritare.",
+        "Cuocere le patate: In padella, soffriggere patate e cipolla in olio d'oliva fino a doratura.",
+        "Aggiungere le ortiche: Unire le ortiche tritate e cuocere per altri 2 minuti.",
+        "Aggiungere le uova: Sbattere le uova con sale e pepe, versare in padella.",
+        "Cuocere: Cuocere a fuoco basso fino a che si rapprende sotto, poi finire sotto il grill o capovolgere per cuocere sopra.",
+        "Servire calda o fredda, perfetta per picnic o colazione."
+      ],
+      "species": ["nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sbollentare le ortiche: Bollire brevemente le ortiche per 2 minuti. Scolare e tritare."
+        },
+        {
+          "step": 2,
+          "instruction": "Cuocere le patate: In padella, soffriggere patate e cipolla in olio d'oliva fino a doratura."
+        },
+        {
+          "step": 3,
+          "instruction": "Aggiungere le ortiche: Unire le ortiche tritate e cuocere per altri 2 minuti."
+        },
+        {
+          "step": 4,
+          "instruction": "Aggiungere le uova: Sbattere le uova con sale e pepe, versare in padella."
+        },
+        {
+          "step": 5,
+          "instruction": "Cuocere: Cuocere a fuoco basso fino a che si rapprende sotto, poi finire sotto il grill o capovolgere per cuocere sopra."
+        },
+        {
+          "step": 6,
+          "instruction": "Servire calda o fredda, perfetta per picnic o colazione."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Usare guanti durante la manipolazione delle ortiche fresche."
+      ]
+    },
+    "st-george-s-mushroom-spring-frittata": {
+      "title": "Frittata Primaverile con Prugnoli e Ortiche",
+      "ingredients": [
+        "150 g di prugnoli (Calocybe gambosa), affettati",
+        "1 cipolla piccola, tritata",
+        "1 tazza di ortiche sbollentate o spinaci",
+        "6 uova",
+        "2 cucchiai di formaggio grattugiato (es. Pecorino o Parmigiano)",
+        "Sale e pepe",
+        "1 cucchiaio di olio d'oliva o burro"
+      ],
+      "instructions": [
+        "Preparare i funghi: Pulire accuratamente e affettare.",
+        "Soffriggere: Cuocere la cipolla nell'olio fino a morbidezza, aggiungere i funghi e cuocere per 5–7 minuti. Unire le ortiche sbollentate.",
+        "Sbattere le uova: In una ciotola, sbattere le uova con formaggio, sale e pepe.",
+        "Combinare: Versare le uova sui funghi nella padella. Cuocere a fuoco basso finché quasi rappreso.",
+        "Finire: Passare in forno o sotto il grill per 5 minuti per dorare (oppure girare con attenzione).",
+        "Servire: Calda o a temperatura ambiente — perfetta per picnic di primavera o brunch."
+      ],
+      "species": ["st_george", "nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparare i funghi: Pulire accuratamente e affettare."
+        },
+        {
+          "step": 2,
+          "instruction": "Soffriggere: Cuocere la cipolla nell'olio fino a morbidezza, aggiungere i funghi e cuocere per 5–7 minuti. Unire le ortiche sbollentate."
+        },
+        {
+          "step": 3,
+          "instruction": "Sbattere le uova: In una ciotola, sbattere le uova con formaggio, sale e pepe."
+        },
+        {
+          "step": 4,
+          "instruction": "Combinare: Versare le uova sui funghi nella padella. Cuocere a fuoco basso finché quasi rappreso."
+        },
+        {
+          "step": 5,
+          "instruction": "Finire: Passare in forno o sotto il grill per 5 minuti per dorare (oppure girare con attenzione)."
+        },
+        {
+          "step": 6,
+          "instruction": "Servire: Calda o a temperatura ambiente — perfetta per picnic di primavera o brunch."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Usare guanti durante la manipolazione delle ortiche fresche.",
+        "Assicurarsi del riconoscimento sicuro dei funghi raccolti."
+      ]
+    },
+    "walnut-lingonberry-wild-tapenade": {
+      "title": "Tapenade Selvatica di Noci e Lingonberry",
+      "ingredients": [
+        "100 g di noci",
+        "2 cucchiai di marmellata di lingonberry o lingonberry freschi",
+        "1 spicchio d'aglio",
+        "1 cucchiaio di aglio selvatico o prezzemolo tritato",
+        "2 cucchiai di olio d'oliva",
+        "Sale e pepe q.b."
+      ],
+      "instructions": [
+        "Tostare le noci: Tostare leggermente le noci in padella finché dorate. Far raffreddare.",
+        "Frullare: Unire tutti gli ingredienti in un mixer: noci, aglio, lingonberry, erbe e olio.",
+        "Condire: Aggiustare di sale e pepe. Frullare a impulsi fino a ottenere una pasta grossolana e spalmabile.",
+        "Servire: Ideale su pane, come salsa o con formaggi e verdure grigliate."
+      ],
+      "species": ["walnut", "lingonb", "garlic", "masterwort"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Tostare le noci: Tostare leggermente le noci in padella finché dorate. Far raffreddare."
+        },
+        {
+          "step": 2,
+          "instruction": "Frullare: Unire tutti gli ingredienti in un mixer: noci, aglio, lingonberry, erbe e olio."
+        },
+        {
+          "step": 3,
+          "instruction": "Condire: Aggiustare di sale e pepe. Frullare a impulsi fino a ottenere una pasta grossolana e spalmabile."
+        },
+        {
+          "step": 4,
+          "instruction": "Servire: Ideale su pane, come salsa o con formaggi e verdure grigliate."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "5 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "appetizer", "easy"],
+      "safetyNotes": []
+    },
+    "wild-artichoke-lemon-pasta": {
+      "title": "Pasta con Carciofi Selvatici e Limone",
+      "ingredients": [
+        "2–3 cuori di carciofi selvatici, puliti e affettati",
+        "2 spicchi d'aglio, a fettine sottili",
+        "Scorza e succo di 1 limone",
+        "2 cucchiai di olio d'oliva",
+        "200 g di pasta (linguine o tagliatelle)",
+        "Sale e pepe nero",
+        "Mentuccia o prezzemolo fresco per guarnire"
+      ],
+      "instructions": [
+        "Preparare i carciofi: Eliminare le foglie esterne e il fieno. Affettare sottilmente i cuori.",
+        "Soffriggere: Cuocere delicatamente aglio e carciofi in olio per 10 minuti fino a tenerezza.",
+        "Cuocere la pasta: Bollire la pasta in acqua salata fino al dente. Tenere da parte ½ tazza di acqua di cottura.",
+        "Condire: Mescolare la pasta con carciofi, succo e scorza di limone, e l'acqua di cottura.",
+        "Servire: Aggiungere sale, pepe e guarnire con erbe fresche. Fresca, selvatica, mediterranea."
+      ],
+      "species": ["artichoke", "garlic"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparare i carciofi: Eliminare le foglie esterne e il fieno. Affettare sottilmente i cuori."
+        },
+        {
+          "step": 2,
+          "instruction": "Soffriggere: Cuocere delicatamente aglio e carciofi in olio per 10 minuti fino a tenerezza."
+        },
+        {
+          "step": 3,
+          "instruction": "Cuocere la pasta: Bollire la pasta in acqua salata fino al dente. Tenere da parte ½ tazza di acqua di cottura."
+        },
+        {
+          "step": 4,
+          "instruction": "Condire: Mescolare la pasta con carciofi, succo e scorza di limone, e l'acqua di cottura."
+        },
+        {
+          "step": 5,
+          "instruction": "Servire: Aggiungere sale, pepe e guarnire con erbe fresche. Fresca, selvatica, mediterranea."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "pasta", "main", "easy"],
+      "safetyNotes": []
+    },
+    "wild-asparagus-dandelion-stir-fry": {
+      "title": "Saltato di Asparagi Selvatici e Tarassaco",
+      "ingredients": [
+        "200 g di asparagi selvatici, puliti",
+        "1 manciata di foglie giovani di tarassaco, lavate e tritate",
+        "2 spicchi d'aglio, a fettine",
+        "1 cucchiaio di olio d'oliva",
+        "1 cucchiaino di scorza di limone",
+        "Sale e pepe q.b.",
+        "Opzionale: un pizzico di peperoncino"
+      ],
+      "instructions": [
+        "Sbollentare gli asparagi: Bollire gli asparagi per 1 minuto. Scolare e raffreddare in acqua fredda.",
+        "Soffriggere l'aglio: In padella scaldare l'olio, aggiungere aglio e peperoncino opzionale, cuocere fino a profumo.",
+        "Aggiungere le verdure: Unire asparagi e tarassaco, saltare 2–3 minuti finché teneri e brillanti.",
+        "Completare: Condire con sale, pepe e scorza di limone.",
+        "Servire: Ottimo su pane tostato, cereali o come contorno selvatico."
+      ],
+      "species": ["asparagus", "dandelion", "garlic"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sbollentare gli asparagi: Bollire gli asparagi per 1 minuto. Scolare e raffreddare in acqua fredda."
+        },
+        {
+          "step": 2,
+          "instruction": "Soffriggere l'aglio: In padella scaldare l'olio, aggiungere aglio e peperoncino opzionale, cuocere fino a profumo."
+        },
+        {
+          "step": 3,
+          "instruction": "Aggiungere le verdure: Unire asparagi e tarassaco, saltare 2–3 minuti finché teneri e brillanti."
+        },
+        {
+          "step": 4,
+          "instruction": "Completare: Condire con sale, pepe e scorza di limone."
+        },
+        {
+          "step": 5,
+          "instruction": "Servire: Ottimo su pane tostato, cereali o come contorno selvatico."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": []
+    },
+    "wild-garlic-pesto": {
+      "title": "Pesto di Aglio Selvatico e Noci",
+      "ingredients": [
+        "50 g di foglie di aglio selvatico",
+        "30 g di noci o pinoli",
+        "50 g di Parmigiano grattugiato",
+        "100 ml di olio d'oliva",
+        "1 cucchiaino di succo di limone",
+        "Sale q.b."
+      ],
+      "instructions": [
+        "Preparare le foglie: Lavare accuratamente l'aglio selvatico e asciugarlo.",
+        "Tostare le noci: Tostare leggermente le noci in padella. Lasciar raffreddare.",
+        "Frullare: Mettere in un mixer aglio selvatico, noci, Parmigiano e succo di limone. Frullare a grana grossolana.",
+        "Aggiungere olio: Versare l'olio a filo continuando a frullare fino a ottenere una crema.",
+        "Condire: Aggiustare di sale.",
+        "Conservare: In vasetto chiuso in frigo per una settimana. Ottimo per pasta, panini o verdure arrosto."
+      ],
+      "species": ["garlic", "walnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparare le foglie: Lavare accuratamente l'aglio selvatico e asciugarlo."
+        },
+        {
+          "step": 2,
+          "instruction": "Tostare le noci: Tostare leggermente le noci in padella. Lasciar raffreddare."
+        },
+        {
+          "step": 3,
+          "instruction": "Frullare: Mettere in un mixer aglio selvatico, noci, Parmigiano e succo di limone. Frullare a grana grossolana."
+        },
+        {
+          "step": 4,
+          "instruction": "Aggiungere olio: Versare l'olio a filo continuando a frullare fino a ottenere una crema."
+        },
+        {
+          "step": 5,
+          "instruction": "Condire: Aggiustare di sale."
+        },
+        {
+          "step": 6,
+          "instruction": "Conservare: In vasetto chiuso in frigo per una settimana. Ottimo per pasta, panini o verdure arrosto."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "easy"],
+      "safetyNotes": []
+    },
+    "wild-strawberry-sorrel-cooler": {
+      "title": "Bibita Fresca di Fragoline di Bosco e Acetosa",
+      "ingredients": [
+        "1 manciata di fragoline di bosco",
+        "6 foglie di acetosa, spezzettate",
+        "1 cucchiaio di miele (o a piacere)",
+        "300 ml di acqua frizzante fredda",
+        "Succo di ½ limone",
+        "Cubetti di ghiaccio"
+      ],
+      "instructions": [
+        "Pestare: In un bicchiere o shaker, schiacciare delicatamente fragoline, acetosa e miele.",
+        "Aggiungere limone: Unire il succo di limone e mescolare.",
+        "Completare: Riempire il bicchiere con ghiaccio, poi versare l'acqua frizzante.",
+        "Filtrare (opzionale): Filtrare per una bevanda limpida oppure servire con la polpa.",
+        "Guarnire: Decorare con fragolina e foglia di acetosa. Bevanda estiva perfetta."
+      ],
+      "species": ["strawberry", "sorrel"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pestare: In un bicchiere o shaker, schiacciare delicatamente fragoline, acetosa e miele."
+        },
+        {
+          "step": 2,
+          "instruction": "Aggiungere limone: Unire il succo di limone e mescolare."
+        },
+        {
+          "step": 3,
+          "instruction": "Completare: Riempire il bicchiere con ghiaccio, poi versare l'acqua frizzante."
+        },
+        {
+          "step": 4,
+          "instruction": "Filtrare (opzionale): Filtrare per una bevanda limpida oppure servire con la polpa."
+        },
+        {
+          "step": 5,
+          "instruction": "Guarnire: Decorare con fragolina e foglia di acetosa. Bevanda estiva perfetta."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "5 min",
+      "cookTime": "0 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "drink", "easy"],
+      "safetyNotes": []
+    }
+  }
+}

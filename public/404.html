@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Funges - Loading...</title>
+    <script>
+      // SPA routing fix for GitHub Pages
+      // Dynamically determine the base URL from the current location
+      (function () {
+        // Get the base path from the current URL
+        const path = window.location.pathname;
+        const segments = path.split('/').filter(Boolean);
+
+        if (segments.length === 0) {
+          // Root domain deployment (VITE_BASE_URL=/)
+          // Just reload the current page to let the app handle routing
+          console.debug('🔄 Root domain deployment, reloading...');
+          window.location.reload();
+        } else if (segments.length === 1) {
+          // Subdirectory deployment (VITE_BASE_URL=/funges/)
+          // Redirect to the base subdirectory
+          const basePath = '/' + segments[0] + '/';
+          console.debug(
+            '🔄 Subdirectory deployment, redirecting to:',
+            basePath
+          );
+          window.location.href = basePath;
+        } else {
+          // Deep route in subdirectory (e.g., /funges/recipes)
+          // Extract the base subdirectory and redirect there
+          const basePath = '/' + segments[0] + '/';
+          console.debug('🔄 Deep route, redirecting to base:', basePath);
+          window.location.href = basePath;
+        }
+      })();
+    </script>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #3d7e40 0%, #16a34a 100%);
+        color: white;
+      }
+      .container {
+        text-align: center;
+        padding: 2rem;
+      }
+      .spinner {
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top: 4px solid white;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1rem;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="spinner"></div>
+      <h1>Loading Funges...</h1>
+      <p>Redirecting to your foraging adventure...</p>
+    </div>
+  </body>
+</html>

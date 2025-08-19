@@ -1,0 +1,79 @@
+{
+  "title": "Instructions",
+  "subtitle": "Apprenez à utiliser Fung.es en toute sécurité et efficacité",
+  "downloadDataset": "Télécharger l'ensemble de données quotidien (CSV)",
+  "mapDescription": {
+    "intro": "La carte met en évidence les zones géographiques présentant des conditions favorables à la cueillette de champignons sauvages et de plantes comestibles.",
+    "selection": "Sélectionnez votre espèce préférée à l'aide du menu déroulant en haut de la page.",
+    "colorCoding": "Chaque zone est colorée selon un dégradé du jaune pâle au rouge foncé, indiquant la probabilité de bonnes conditions de cueillette, basée sur des données environnementales.",
+    "scale": "L'échelle est accompagnée d'une note numérique de 0 à 10, illustrée ci-dessous.",
+    "polygons": "Les polygones et marqueurs ne s'affichent que lorsqu'ils apportent une information saisonnière pertinente, pour garder la carte légère et claire. Si rien n'apparaît, il est peut-être trop tôt ou trop tard dans la saison."
+  },
+  "functions": {
+    "title": "Fonctions :",
+    "recipes": "Affiche les espèces comestibles poussant à proximité et suggère des recettes",
+    "location": "Centre la carte sur la position de l'utilisateur",
+    "theme": "Bascule entre le mode clair et le mode sombre",
+    "numbers": "Affiche la note numérique"
+  },
+  "mapInteraction": {
+    "title": "Cliquez sur une zone pour voir les espèces et leur pourcentage de découverte :",
+    "maps": "Ouvre la destination dans Maps"
+  },
+  "about": {
+    "title": "À propos de Funges",
+    "description": "Funges est une plateforme alimentée par les données qui utilise des informations géographiques et environnementales pour fournir des analyses en temps réel sur la cueillette de champignons sauvages et de plantes comestibles.",
+    "dataCombination": "En combinant divers jeux de données — modèles climatiques, images satellites, relief et indicateurs écologiques — Funges prédit les conditions optimales pour la croissance de ressources naturelles comme les champignons et les plantes.",
+    "climateChange": "À mesure que les écosystèmes évoluent avec le changement climatique, des outils comme Funges soutiennent une cueillette durable et une alimentation issue de la nature.",
+    "currentStatus": "Actuellement, Funges propose des analyses en temps réel pour un nombre limité d'espèces, avec davantage de comestibles sauvages à venir.",
+    "keyFeatures": {
+      "title": "Fonctionnalités clés",
+      "environmentalData": "Intégration de données environnementales : utilise la géolocalisation, des modèles climatiques et des données météorologiques.",
+      "probabilityModels": "Modèles de probabilité : prédit la présence de ressources naturelles.",
+      "climateAdaptation": "Adaptation au changement climatique : fournit des analyses en temps réel sur l'évolution des écosystèmes.",
+      "scalability": "Scalabilité & accessibilité : accès ouvert sans nécessité de données personnelles."
+    }
+  },
+  "mission": {
+    "title": "Notre mission",
+    "commitment": "Funges s'engage à exploiter la technologie et les données environnementales pour permettre aux individus et organisations de pratiquer une cueillette durable et responsable.",
+    "goal": "En fournissant des analyses en temps réel et des prédictions, notre objectif est de réduire le gaspillage de ressources, de s'adapter au changement climatique et de rendre les dons de la nature plus accessibles à tous.",
+    "sustainability": "La cueillette est la plus durable lorsqu'elle suit le rythme naturel de l'environnement — guidée par la saisonnalité, la localité et l'équilibre écologique. La nature fournit ce qui est nécessaire, quand c'est nécessaire ; une récolte responsable commence par l'attention à ces cycles.",
+    "community": "Grâce à l'innovation et à l'accès ouvert, l'objectif est de créer une communauté de cueilleurs responsables, attachés à la durabilité et à la biodiversité.",
+    "openAccess": "L'accès ouvert à l'information favorise un lien plus profond avec le lieu et le temps, encourageant des décisions qui respectent la biodiversité et la capacité régénératrice des écosystèmes."
+  },
+  "prediction": {
+    "title": "Comment les comestibles sauvages sont prédits",
+    "description": "Funges analyse un large éventail de variables environnementales pour identifier les zones les plus prometteuses pour la cueillette de champignons sauvages et de plantes comestibles. Nos modèles prennent en compte plusieurs couches de données écologiques — suivies et combinées dans le temps — pour déduire les cycles naturels et déterminer le meilleur moment et lieu de récolte.",
+    "monitorTitle": "surveille et intègre :",
+    "variables": {
+      "temperature": "Température, humidité et précipitations",
+      "soil": "pH du sol et caractéristiques géologiques",
+      "vegetation": "Occupation du sol et types de végétation",
+      "topography": "Topographie et altitude",
+      "trends": "Tendances temporelles"
+    },
+    "goal": "L'objectif est de simuler le comportement de cueilleurs expérimentés — amplifié par les données. Autrement dit, essayer respectueusement de « hacker » la nature pour rendre la cueillette sauvage plus accessible, précise et durable.",
+    "methodology": {
+      "title": "Sources de données & méthodologie",
+      "description": "Funges utilise une combinaison de jeux de données environnementaux, météorologiques et géospatiaux pour prévoir les meilleurs lieux et moments pour la cueillette de comestibles sauvages.",
+      "datasets": "Cela inclut des images satellites, des modèles de terrain, des API météo et des indicateurs écologiques — tous analysés dans le temps pour simuler les cycles naturels et identifier les points chauds en temps réel."
+    },
+    "keyDatasets": {
+      "title": "Jeux de données clés",
+      "corine": {
+        "title": "1. CORINE Land Cover (CLC)",
+        "description": "Fournie par l'Agence européenne pour l'environnement (AEE), CORINE Land Cover propose des cartes détaillées de la végétation et de l'utilisation des sols en Europe. Cela aide à déterminer les écosystèmes adaptés à chaque espèce de champignon ou de plante.",
+        "source": "Source : Agence européenne pour l'environnement (AEE)",
+        "citation": "Citation : Bossard, M., Feranec, J., & Otahel, J. (2000). CORINE Land Cover Technical Guide – Addendum 2000."
+      },
+      "soilPh": {
+        "title": "2. pH des sols en Europe",
+        "description": "Créé par le Centre commun de recherche (JRC) de la Commission européenne, ce jeu de données cartographie l'acidité des sols à partir de plus de 12 000 échantillons dans 25 pays, modélisés par régression-krigeage avec 54 covariables environnementales.",
+        "source": "Source : European Soil Data Centre (ESDAC), Joint Research Centre (JRC)",
+        "citation": "Citation : Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
+      },
+      "additional": "D'autres sources comme les API météorologiques, les couches de télédétection et les modèles de pente/orientation sont intégrées pour améliorer continuellement la précision des prédictions."
+    }
+  }
+}

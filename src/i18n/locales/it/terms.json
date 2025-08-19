@@ -1,0 +1,59 @@
+{
+  "title": "Termini di Utilizzo",
+  "welcome": {
+    "title": "Benvenuto nel servizio (denominato \"il Servizio\"). Accedendo o utilizzando il Servizio, accetti di rispettare questi Termini di Servizio (\"Termini\"). Se non sei d'accordo, ti preghiamo di interrompere l'uso del Servizio."
+  },
+  "safetyWarning": {
+    "title": "Avviso di Sicurezza Importante",
+    "content": "Questo Servizio utilizza un modello di machine learning per l'identificazione dei funghi, ma non è affidabile al 100%. Molti funghi si assomigliano e l'errata identificazione può causare avvelenamento grave o morte. Non fare affidamento su questo Servizio per determinare se un fungo è sicuro da mangiare. Consulta sempre un micologo professionista o un esperto locale prima di consumare o maneggiare funghi selvatici."
+  },
+  "useOfService": {
+    "title": "Utilizzo del Servizio",
+    "content": "Il Servizio fornisce informazioni sulle condizioni degli alimenti selvatici basate su vari fattori. Le informazioni sono solo a scopo di orientamento generale e non sono garantite come accurate, complete o aggiornate."
+  },
+  "foragingDisclaimer": {
+    "title": "Disclaimer per la Raccolta",
+    "content": "Il Servizio include ricette e informazioni su piante selvatiche commestibili, bacche, noci e funghi. Sebbene si faccia ogni sforzo per garantire l'accuratezza, il consumo sicuro di alimenti selvatici dipende interamente dall'identificazione corretta, dalla preparazione appropriata e dalle condizioni di salute individuali.",
+    "misidentification": "L'errata identificazione di piante o funghi selvatici può portare a reazioni allergiche, avvelenamento o altre gravi conseguenze per la salute. Alcune specie commestibili hanno sosia tossici. Consulta sempre un esperto locale o usa una guida autorevole quando identifichi alimenti selvatici, e non consumare nulla a meno che non sia sicuro al 100%.",
+    "preparation": "Inoltre, alcuni alimenti selvatici dovrebbero essere consumati solo in piccole quantità o dopo metodi di preparazione specifici per neutralizzare i composti naturalmente presenti. Le ricette fornite dal Servizio sono a scopo educativo e presuppongono l'identificazione corretta e la gestione appropriata degli ingredienti."
+  },
+  "disclaimer": {
+    "title": "Disclaimer di Responsabilità",
+    "content": "Utilizzi il Servizio a tuo rischio. L'amministratore non si assume alcuna responsabilità per incidenti, lesioni, danni o altri eventi derivanti dall'affidamento alle informazioni del Servizio. Le condizioni negli ambienti naturali possono cambiare inaspettatamente, e sei responsabile di esercitare cautela e giudizio quando pianifichi o intraprendi attività basate sulle informazioni fornite dal Servizio.",
+    "predictions": "Una varietà di funghi e frutti cresce in natura, e alcuni possono essere tossici o dannosi se identificati erroneamente. Le previsioni fornite da questo Servizio sono generate da un modello di machine learning e dovrebbero essere considerate solo come strumento consultivo. Questo modello non è perfetto e può produrre classificazioni errate. Identificare erroneamente i funghi può portare ad avvelenamento grave o morte. Consulta sempre un esperto qualificato prima di consumare o maneggiare qualsiasi fungo o frutto."
+  },
+  "noProfessionalAdvice": {
+    "title": "Nessun Consiglio Professionale",
+    "content": "Le informazioni fornite dal Servizio non sono destinate a sostituire consigli professionali, inclusi ma non limitati a orientamenti su sicurezza, salute o ambiente. Consulta sempre le autorità locali o esperti prima di intraprendere attività all'aperto."
+  },
+  "thirdParty": {
+    "title": "Contenuti e Servizi di Terze Parti",
+    "content": "Il Servizio può visualizzare pubblicità o integrare servizi di terze parti. L'amministratore non è responsabile per il contenuto, l'accuratezza o le pratiche di qualsiasi servizio di terze parti. La tua interazione con tali servizi è regolata dai loro rispettivi termini e politiche."
+  },
+  "intellectualProperty": {
+    "title": "Proprietà Intellettuale",
+    "content": "Tutti i contenuti, le funzionalità e le funzioni fornite dal Servizio, inclusi testi, grafica e altri materiali, sono di proprietà dell'amministratore salvo diversamente indicato. Non puoi riprodurre, distribuire o modificare alcuna parte del Servizio senza previa autorizzazione scritta."
+  },
+  "prohibitedUse": {
+    "title": "Utilizzo Proibito",
+    "intro": "Accetti di non:",
+    "items": [
+      "Utilizzare il Servizio in qualsiasi modo illegale.",
+      "Tentare di interferire con la funzionalità o la sicurezza del Servizio."
+    ]
+  },
+  "changes": {
+    "title": "Modifiche ai Termini",
+    "content": "L'amministratore si riserva il diritto di modificare questi Termini in qualsiasi momento. Qualsiasi modifica sarà efficace immediatamente dopo la pubblicazione sul Servizio. L'uso continuato del Servizio costituisce accettazione dei Termini aggiornati."
+  },
+  "governingLaw": {
+    "title": "Legge Applicabile",
+    "content": "Questi Termini sono regolati e interpretati in conformità con le leggi della Svizzera. Qualsiasi controversia derivante da o relativa all'uso del Servizio sarà soggetta alla giurisdizione esclusiva dei tribunali della Svizzera."
+  },
+  "contact": {
+    "title": "Contatto",
+    "intro": "Per domande o preoccupazioni riguardo questi Termini, contatta:",
+    "email": "lorisdistefano@pm.me"
+  },
+  "lastUpdated": "Ultimo aggiornamento: 02.04.2025"
+}

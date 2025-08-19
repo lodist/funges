@@ -1,0 +1,986 @@
+{
+  "title": "Recettes",
+  "subtitle": "Délicieuses recettes utilisant des aliments sauvages",
+  "filterByIngredient": "Filtrer par ingrédient",
+  "allIngredients": "Tous les ingrédients",
+  "difficulty": "Difficulté",
+  "prepTime": "Temps de préparation",
+  "cookTime": "Temps de cuisson",
+  "servings": "Portions",
+  "ingredients": "Ingrédients",
+  "instructions": "Instructions",
+  "tips": "Astuces",
+  "warnings": "Avertissements",
+  "description": "Découvrez de délicieuses recettes utilisant des ingrédients cueillis",
+  "filterBy": "Ingrédient",
+  "filters": "Filtres",
+  "clear": "Effacer",
+  "apply": "Appliquer",
+  "all": "Tous",
+  "mushroom": "Champignon",
+  "berry": "Baie",
+  "plant": "Plante",
+  "nut": "Noix",
+  "more": "plus",
+  "search": {
+    "placeholder": "Rechercher des recettes, ingrédients ou tags",
+    "no_results": "Aucune recette trouvée",
+    "found_one": "Trouvée {{count}} recette",
+    "found_other": "Trouvées {{count}} recettes",
+    "try_adjusting": "Essayez de modifier les termes de recherche ou les filtres pour trouver plus de recettes."
+  },
+  "view_recipe": "Voir la recette",
+  "species": {
+    "amaranth": "Amarante",
+    "black_chant": "Trompette de la mort",
+    "chant": "Girolle",
+    "chickweed": "Mouron des oiseaux",
+    "sorrel": "Oseille",
+    "dandelion": "Pissenlit",
+    "chestnut": "Châtaigne",
+    "mushroom": "Champignon",
+    "nettle": "Ortie",
+    "parasol": "Coulemelle",
+    "masterwort": "Impératoire",
+    "morel": "Morille",
+    "st_george": "Tricholome de la Saint-Georges",
+    "walnut": "Noix",
+    "lingonb": "Airelle rouge",
+    "garlic": "Ail",
+    "garlic_wild": "Ail des ours",
+    "artichoke": "Artichaut sauvage",
+    "asparagus": "Asperge sauvage",
+    "strawberry": "Fraise des bois"
+  },
+  "tags": {
+    "vegetarian": "Végétarien",
+    "vegan": "Végan",
+    "gluten-free": "Sans gluten",
+    "quick": "Rapide",
+    "easy": "Facile",
+    "medium": "Moyen",
+    "hard": "Difficile",
+    "soup": "Soupe",
+    "pasta": "Pâtes",
+    "salad": "Salade",
+    "dessert": "Dessert",
+    "drink": "Boisson",
+    "sauce": "Sauce",
+    "main": "Plat principal",
+    "side": "Accompagnement",
+    "appetizer": "Apéritif",
+    "breakfast": "Petit-déjeuner",
+    "lunch": "Déjeuner",
+    "dinner": "Dîner",
+    "snack": "En-cas",
+    "beverage": "Boisson"
+  },
+  "list_of_recipes": {
+    "amaranth-wild-greens-patties": {
+      "title": "Galettes d'amarante et d'herbes sauvages",
+      "ingredients": [
+        "½ tasse de graines d'amarante",
+        "1 tasse d'eau",
+        "1 tasse de mélange d'herbes sauvages (mouron, oseille, pissenlit), finement hachées",
+        "1 petit œuf",
+        "2 cuillères à soupe de farine ou chapelure",
+        "Sel, poivre, huile d'olive"
+      ],
+      "instructions": [
+        "Cuire l’amarante : Cuire les graines d'amarante dans l'eau jusqu'à absorption complète (15–20 min). Laisser tiédir.",
+        "Mélanger : Mélanger l'amarante cuite avec les herbes, l'œuf, la farine, le sel et le poivre.",
+        "Former : Façonner de petites galettes avec les mains humides.",
+        "Sauter : Cuire à la poêle avec de l'huile 3–4 min de chaque côté jusqu'à ce qu'elles soient dorées.",
+        "Servir : Avec une sauce au yaourt, du pesto ou comme alternative végétarienne au burger."
+      ],
+      "species": ["amaranth", "chickweed", "sorrel", "dandelion"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Cuire l’amarante : Cuire les graines d'amarante dans l'eau jusqu'à absorption complète (15–20 min). Laisser tiédir."
+        },
+        {
+          "step": 2,
+          "instruction": "Mélanger : Mélanger l'amarante cuite avec les herbes, l'œuf, la farine, le sel et le poivre."
+        },
+        {
+          "step": 3,
+          "instruction": "Former : Façonner de petites galettes avec les mains humides."
+        },
+        {
+          "step": 4,
+          "instruction": "Sauter : Cuire à la poêle avec de l'huile 3–4 min de chaque côté jusqu'à ce qu'elles soient dorées."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir : Avec une sauce au yaourt, du pesto ou comme alternative végétarienne au burger."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": []
+    },
+    "black-chanterelle-cream-sauce": {
+      "title": "Sauce crémeuse aux trompettes de la mort",
+      "ingredients": [
+        "100 g de trompettes de la mort (fraîches ou 30 g séchées)",
+        "1 petite échalote, finement hachée",
+        "1 gousse d'ail, hachée",
+        "1 cuillère à soupe de beurre",
+        "100 ml de vin blanc (optionnel)",
+        "200 ml de crème",
+        "Sel et poivre noir au goût",
+        "Thym frais (optionnel)"
+      ],
+      "instructions": [
+        "Préparer les champignons : Si séchés, les faire tremper dans l'eau chaude 20 min, puis égoutter et presser.",
+        "Faire revenir les aromates : Faire fondre le beurre dans une poêle, cuire l'échalote et l'ail jusqu'à tendreté.",
+        "Ajouter les champignons : Ajouter les trompettes et faire sauter 5–7 min.",
+        "Déglacer (optionnel) : Ajouter le vin et laisser réduire de moitié.",
+        "Ajouter la crème : Verser la crème, cuire 5 min jusqu'à léger épaississement. Rectifier sel, poivre, thym.",
+        "Servir : Parfait avec des pâtes fraîches, de la polenta ou des pommes de terre rôties."
+      ],
+      "species": ["black_chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Préparer les champignons : Si séchés, les faire tremper dans l'eau chaude 20 min, puis égoutter et presser."
+        },
+        {
+          "step": 2,
+          "instruction": "Faire revenir les aromates : Faire fondre le beurre dans une poêle, cuire l'échalote et l'ail jusqu'à tendreté."
+        },
+        {
+          "step": 3,
+          "instruction": "Ajouter les champignons : Ajouter les trompettes et faire sauter 5–7 min."
+        },
+        {
+          "step": 4,
+          "instruction": "Déglacer (optionnel) : Ajouter le vin et laisser réduire de moitié."
+        },
+        {
+          "step": 5,
+          "instruction": "Ajouter la crème : Verser la crème, cuire 5 min jusqu'à léger épaississement. Rectifier sel, poivre, thym."
+        },
+        {
+          "step": 6,
+          "instruction": "Servir : Parfait avec des pâtes fraîches, de la polenta ou des pommes de terre rôties."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "easy"],
+      "safetyNotes": [
+        "Assurez-vous d'une identification sûre des champignons cueillis."
+      ]
+    },
+    "chanterelle-herb-tart": {
+      "title": "Tarte aux girolles et herbes",
+      "ingredients": [
+        "200 g de girolles fraîches",
+        "1 petit poireau, finement émincé",
+        "2 œufs",
+        "100 ml de crème",
+        "1 cuillère à soupe d'huile d'olive",
+        "Thym et persil frais, hachés",
+        "Sel et poivre au goût",
+        "1 rouleau de pâte feuilletée"
+      ],
+      "instructions": [
+        "Nettoyer les champignons : Nettoyer les girolles avec un pinceau ou un chiffon humide.",
+        "Base sautée : Chauffer l'huile dans une poêle, cuire le poireau jusqu'à tendreté. Ajouter les girolles et faire sauter 5 min. Saler.",
+        "Préparer l'appareil : Battre les œufs avec la crème, les herbes, sel et poivre.",
+        "Assembler : Disposer la pâte feuilletée dans un moule, ajouter champignons et poireaux, verser le mélange d'œufs.",
+        "Cuisson : Enfourner à 180°C pendant 25–30 min jusqu'à doré.",
+        "Servir : Chaud ou froid, idéal pour un brunch en forêt."
+      ],
+      "species": ["chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Nettoyer les champignons : Nettoyer les girolles avec un pinceau ou un chiffon humide."
+        },
+        {
+          "step": 2,
+          "instruction": "Base sautée : Chauffer l'huile dans une poêle, cuire le poireau jusqu'à tendreté. Ajouter les girolles et faire sauter 5 min. Saler."
+        },
+        {
+          "step": 3,
+          "instruction": "Préparer l'appareil : Battre les œufs avec la crème, les herbes, sel et poivre."
+        },
+        {
+          "step": 4,
+          "instruction": "Assembler : Disposer la pâte feuilletée dans un moule, ajouter champignons et poireaux, verser le mélange d'œufs."
+        },
+        {
+          "step": 5,
+          "instruction": "Cuisson : Enfourner à 180°C pendant 25–30 min jusqu'à doré."
+        },
+        {
+          "step": 6,
+          "instruction": "Servir : Chaud ou froid, idéal pour un brunch en forêt."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": [
+        "Assurez-vous d'une identification sûre des champignons cueillis."
+      ]
+    },
+    "chickweed-sorrel-salad-with-walnut-vinaigrette": {
+      "title": "Salade de mouron et oseille, vinaigrette aux noix",
+      "ingredients": [
+        "2 poignées de feuilles fraîches de mouron",
+        "1 poignée de feuilles d'oseille, hachées",
+        "1 petite poignée de noix, grillées et hachées",
+        "2 cuillères à café d'huile de noix (ou huile d'olive)",
+        "1 cuillère à café de vinaigre de cidre",
+        "1 cuillère à café de miel",
+        "Sel et poivre à volonté"
+      ],
+      "instructions": [
+        "Griller les noix : Dans une poêle sans huile, griller les noix 3–4 min jusqu'à ce qu'elles soient parfumées. Laisser refroidir.",
+        "Laver les herbes : Rincer le mouron et l'oseille, puis les sécher délicatement avec un linge propre.",
+        "Préparer la vinaigrette : Dans un petit bol, fouetter l'huile, le vinaigre, le miel, le sel et le poivre.",
+        "Mélanger la salade : Dans un grand saladier, réunir mouron, oseille et noix. Assaisonner avec la vinaigrette et mélanger légèrement.",
+        "Servir : Déguster immédiatement comme salade fraîche et légèrement acidulée."
+      ],
+      "species": ["chickweed", "sorrel", "walnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Griller les noix : Dans une poêle sans huile, griller les noix 3–4 min jusqu'à ce qu'elles soient parfumées. Laisser refroidir."
+        },
+        {
+          "step": 2,
+          "instruction": "Laver les herbes : Rincer le mouron et l'oseille, puis les sécher délicatement avec un linge propre."
+        },
+        {
+          "step": 3,
+          "instruction": "Préparer la vinaigrette : Dans un petit bol, fouetter l'huile, le vinaigre, le miel, le sel et le poivre."
+        },
+        {
+          "step": 4,
+          "instruction": "Mélanger la salade : Dans un grand saladier, réunir mouron, oseille et noix. Assaisonner avec la vinaigrette et mélanger légèrement."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir : Déguster immédiatement comme salade fraîche et légèrement acidulée."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "salad", "easy"],
+      "safetyNotes": []
+    },
+    "chestnut-mushroom-soup": {
+      "title": "Soupe de châtaignes et champignons",
+      "ingredients": [
+        "200 g de châtaignes grillées (épluchées)",
+        "150 g de champignons sauvages (cèpes ou trompettes de la mort idéaux)",
+        "1 petit oignon, haché",
+        "1 gousse d'ail, hachée",
+        "500 ml de bouillon de légumes",
+        "1 cuillère à soupe de beurre",
+        "1 branche de thym",
+        "100 ml de crème (optionnel)",
+        "Sel et poivre au goût"
+      ],
+      "instructions": [
+        "Faire revenir la base : Dans une casserole, faire fondre le beurre et cuire l'oignon et l'ail jusqu'à tendreté.",
+        "Ajouter les champignons : Ajouter les champignons sauvages coupés et faire sauter 5 min.",
+        "Ajouter les châtaignes et le bouillon : Ajouter les châtaignes et verser le bouillon de légumes. Ajouter le thym.",
+        "Cuire : Porter à ébullition, puis baisser le feu et laisser mijoter 20 min.",
+        "Mixer : Retirer le thym. Mixer avec un mixeur plongeant jusqu'à obtenir une crème lisse.",
+        "Finir : Ajouter la crème si désiré, rectifier le sel et le poivre.",
+        "Servir chaud, accompagné de pain rustique ou d'un filet d'huile de truffe."
+      ],
+      "species": ["chestnut", "mushroom", "black_chant", "chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Faire revenir la base : Dans une casserole, faire fondre le beurre et cuire l'oignon et l'ail jusqu'à tendreté."
+        },
+        {
+          "step": 2,
+          "instruction": "Ajouter les champignons : Ajouter les champignons sauvages coupés et faire sauter 5 min."
+        },
+        {
+          "step": 3,
+          "instruction": "Ajouter les châtaignes et le bouillon : Ajouter les châtaignes et verser le bouillon de légumes. Ajouter le thym."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuire : Porter à ébullition, puis baisser le feu et laisser mijoter 20 min."
+        },
+        {
+          "step": 5,
+          "instruction": "Mixer : Retirer le thym. Mixer avec un mixeur plongeant jusqu'à obtenir une crème lisse."
+        },
+        {
+          "step": 6,
+          "instruction": "Finir : Ajouter la crème si désiré, rectifier le sel et le poivre."
+        },
+        {
+          "step": 7,
+          "instruction": "Servir chaud, accompagné de pain rustique ou d'un filet d'huile de truffe."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "medium",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "medium"],
+      "safetyNotes": [
+        "Assurez-vous d'une identification sûre des champignons cueillis."
+      ]
+    },
+    "dandelion-flower-syrup": {
+      "title": "Sirop de fleurs de pissenlit",
+      "ingredients": [
+        "100 fleurs de pissenlit (seulement les pétales jaunes)",
+        "500 ml d'eau",
+        "300 g de sucre",
+        "Jus d'1 citron"
+      ],
+      "instructions": [
+        "Nettoyer les pétales : Séparer les pétales jaunes des parties vertes (amères). Rincer délicatement.",
+        "Préparer l'infusion : Porter l'eau à ébullition dans une casserole, ajouter les pétales et laisser frémir 10 min.",
+        "Laisser infuser : Retirer du feu et laisser infuser couvert toute la nuit.",
+        "Filtrer : Filtrer le liquide et jeter les pétales. Ajouter le jus de citron et le sucre au liquide.",
+        "Cuire : Laisser frémir à feu doux jusqu'à ce que le mélange épaississe en sirop (20–30 min).",
+        "Conserver : Verser dans des bocaux stérilisés. Délicieux sur des pancakes, fromages ou dans le thé."
+      ],
+      "species": ["dandelion"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Nettoyer les pétales : Séparer les pétales jaunes des parties vertes (amères). Rincer délicatement."
+        },
+        {
+          "step": 2,
+          "instruction": "Préparer l'infusion : Porter l'eau à ébullition dans une casserole, ajouter les pétales et laisser frémir 10 min."
+        },
+        {
+          "step": 3,
+          "instruction": "Laisser infuser : Retirer du feu et laisser infuser couvert toute la nuit."
+        },
+        {
+          "step": 4,
+          "instruction": "Filtrer : Filtrer le liquide et jeter les pétales. Ajouter le jus de citron et le sucre au liquide."
+        },
+        {
+          "step": 5,
+          "instruction": "Cuire : Laisser frémir à feu doux jusqu'à ce que le mélange épaississe en sirop (20–30 min)."
+        },
+        {
+          "step": 6,
+          "instruction": "Conserver : Verser dans des bocaux stérilisés. Délicieux sur des pancakes, fromages ou dans le thé."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "dessert", "medium"],
+      "safetyNotes": []
+    },
+    "nettle-soup": {
+      "title": "Soupe d'orties",
+      "ingredients": [
+        "1 oignon moyen, haché",
+        "1 gousse d'ail, hachée",
+        "1 cuillère à soupe de beurre ou d'huile d'olive",
+        "2 pommes de terre moyennes, pelées et en dés",
+        "1 L de bouillon de légumes",
+        "2 grandes poignées de feuilles d'ortie fraîches (utiliser des gants !)",
+        "100 ml de crème ou lait d'avoine (optionnel)",
+        "Sel et poivre au goût"
+      ],
+      "instructions": [
+        "Faire revenir les aromates : Dans une casserole, chauffer le beurre et faire revenir l'oignon et l'ail jusqu'à tendreté.",
+        "Ajouter les pommes de terre : Ajouter les pommes de terre et cuire 5 min.",
+        "Ajouter le bouillon : Verser le bouillon de légumes et porter à ébullition.",
+        "Ajouter les orties : Après 10 min, ajouter les orties et laisser frémir encore 5–7 min.",
+        "Mixer : Mixer la soupe avec un mixeur plongeant jusqu'à lisse.",
+        "Finir : Ajouter la crème ou le lait d'avoine si désiré. Rectifier le sel et le poivre.",
+        "Servir chaud, avec un filet d'huile ou des croûtons."
+      ],
+      "species": ["nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Faire revenir les aromates : Dans une casserole, chauffer le beurre et faire revenir l'oignon et l'ail jusqu'à tendreté."
+        },
+        {
+          "step": 2,
+          "instruction": "Ajouter les pommes de terre : Ajouter les pommes de terre et cuire 5 min."
+        },
+        {
+          "step": 3,
+          "instruction": "Ajouter le bouillon : Verser le bouillon de légumes et porter à ébullition."
+        },
+        {
+          "step": 4,
+          "instruction": "Ajouter les orties : Après 10 min, ajouter les orties et laisser frémir encore 5–7 min."
+        },
+        {
+          "step": 5,
+          "instruction": "Mixer : Mixer la soupe avec un mixeur plongeant jusqu'à lisse."
+        },
+        {
+          "step": 6,
+          "instruction": "Finir : Ajouter la crème ou le lait d'avoine si désiré. Rectifier le sel et le poivre."
+        },
+        {
+          "step": 7,
+          "instruction": "Servir chaud, avec un filet d'huile ou des croûtons."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "medium"],
+      "safetyNotes": [
+        "Utiliser des gants lors de la manipulation des orties fraîches."
+      ]
+    },
+    "parasol-mushroom-schnitzel": {
+      "title": "Escalope de coulemelle",
+      "ingredients": [
+        "2–4 grands chapeaux de coulemelle",
+        "1 œuf",
+        "4 cuillères à soupe de chapelure",
+        "2 cuillères à soupe de parmesan râpé (optionnel)",
+        "Sel et poivre",
+        "Huile ou beurre pour la friture"
+      ],
+      "instructions": [
+        "Nettoyer les champignons : Nettoyer les chapeaux avec un chiffon humide. Ne pas laver sous l'eau.",
+        "Préparer la panure : Battre l'œuf dans un bol. Dans un autre, mélanger la chapelure, le sel, le poivre et le parmesan.",
+        "Paner : Passer chaque chapeau dans l'œuf, puis dans le mélange de chapelure.",
+        "Frire : Chauffer l'huile ou le beurre dans une poêle. Frire les chapeaux à feu moyen jusqu'à dorés et croustillants (environ 3 min de chaque côté).",
+        "Servir : Avec des quartiers de citron et une salade fraîche. Un classique végétarien."
+      ],
+      "species": ["parasol"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Nettoyer les champignons : Nettoyer les chapeaux avec un chiffon humide. Ne pas laver sous l'eau."
+        },
+        {
+          "step": 2,
+          "instruction": "Préparer la panure : Battre l'œuf dans un bol. Dans un autre, mélanger la chapelure, le sel, le poivre et le parmesan."
+        },
+        {
+          "step": 3,
+          "instruction": "Paner : Passer chaque chapeau dans l'œuf, puis dans le mélange de chapelure."
+        },
+        {
+          "step": 4,
+          "instruction": "Frire : Chauffer l'huile ou le beurre dans une poêle. Frire les chapeaux à feu moyen jusqu'à dorés et croustillants (environ 3 min de chaque côté)."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir : Avec des quartiers de citron et une salade fraîche. Un classique végétarien."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "6 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Assurez-vous d'une identification sûre des champignons cueillis."
+      ]
+    },
+    "masterwort-infused-honey-glaze": {
+      "title": "Glaçage au miel et racine d'impératoire",
+      "ingredients": [
+        "1 cuillère à café de racine d'impératoire séchée ou 2 cuillères à café fraîche, râpée",
+        "150 ml de miel",
+        "1 cuillère à soupe d'eau",
+        "Zeste d'½ citron"
+      ],
+      "instructions": [
+        "Chauffer le miel : Dans une petite casserole, chauffer doucement le miel et l'eau à feu doux.",
+        "Infuser : Ajouter l'impératoire et le zeste de citron. Mélanger et maintenir à feu très doux 5–10 min (sans bouillir).",
+        "Filtrer : Retirer du feu et filtrer à travers une passoire fine ou une étamine.",
+        "Mettre en pot : Verser dans un pot propre.",
+        "Utilisation : Parfait sur des légumes rôtis, fruits grillés ou gibier. Se conserve au réfrigérateur plusieurs semaines."
+      ],
+      "species": ["masterwort"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Chauffer le miel : Dans une petite casserole, chauffer doucement le miel et l'eau à feu doux."
+        },
+        {
+          "step": 2,
+          "instruction": "Infuser : Ajouter l'impératoire et le zeste de citron. Mélanger et maintenir à feu très doux 5–10 min (sans bouillir)."
+        },
+        {
+          "step": 3,
+          "instruction": "Filtrer : Retirer du feu et filtrer à travers une passoire fine ou une étamine."
+        },
+        {
+          "step": 4,
+          "instruction": "Mettre en pot : Verser dans un pot propre."
+        },
+        {
+          "step": 5,
+          "instruction": "Utilisation : Parfait sur des légumes rôtis, fruits grillés ou gibier. Se conserve au réfrigérateur plusieurs semaines."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "5 min",
+      "cookTime": "10 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "medium"],
+      "safetyNotes": []
+    },
+    "morel-chestnut-stuffing": {
+      "title": "Farce aux morilles et châtaignes",
+      "ingredients": [
+        "100 g de morilles (fraîches ou réhydratées)",
+        "150 g de châtaignes grillées, hachées",
+        "1 petit oignon, en dés",
+        "2 gousses d'ail, hachées",
+        "3 tranches de pain rustique, en cubes",
+        "100 ml de bouillon de légumes",
+        "1 cuillère à soupe de beurre",
+        "Thym frais, sel et poivre"
+      ],
+      "instructions": [
+        "Faire revenir la base : Dans une poêle, faire fondre le beurre et cuire l'oignon et l'ail jusqu'à tendreté.",
+        "Ajouter champignons et châtaignes : Ajouter les morilles et les châtaignes, cuire 5 min.",
+        "Ajouter le pain : Ajouter les cubes de pain et mélanger délicatement. Verser le bouillon et mélanger.",
+        "Assaisonner : Ajouter le thym, le sel et le poivre. Laisser absorber le liquide.",
+        "Cuire au four : Transférer dans un plat et cuire à 180°C pendant 20 min jusqu'à doré.",
+        "Servir en accompagnement de viandes rôties ou comme plat végétarien principal."
+      ],
+      "species": ["morel", "chestnut", "garlic", "bread"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Faire revenir la base : Dans une poêle, faire fondre le beurre et cuire l'oignon et l'ail jusqu'à tendreté."
+        },
+        {
+          "step": 2,
+          "instruction": "Ajouter champignons et châtaignes : Ajouter les morilles et les châtaignes, cuire 5 min."
+        },
+        {
+          "step": 3,
+          "instruction": "Ajouter le pain : Ajouter les cubes de pain et mélanger délicatement. Verser le bouillon et mélanger."
+        },
+        {
+          "step": 4,
+          "instruction": "Assaisonner : Ajouter le thym, le sel et le poivre. Laisser absorber le liquide."
+        },
+        {
+          "step": 5,
+          "instruction": "Cuire au four : Transférer dans un plat et cuire à 180°C pendant 20 min jusqu'à doré."
+        },
+        {
+          "step": 6,
+          "instruction": "Servir en accompagnement de viandes rôties ou comme plat végétarien principal."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "medium",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "side", "medium"],
+      "safetyNotes": [
+        "Assurez-vous d'une identification sûre des champignons cueillis."
+      ]
+    },
+    "nettle-potato-frittata": {
+      "title": "Omelette d'orties et pommes de terre",
+      "ingredients": [
+        "1 tasse d'orties blanchies",
+        "2 pommes de terre moyennes, coupées en fines tranches",
+        "1 oignon, émincé",
+        "5 œufs",
+        "Sel et poivre",
+        "1 cuillère à soupe d'huile d'olive"
+      ],
+      "instructions": [
+        "Blanchir les orties : Faire bouillir brièvement les orties 2 min. Égoutter et hacher.",
+        "Cuire les pommes de terre : Dans une poêle, faire revenir pommes de terre et oignon dans l'huile d'olive jusqu'à doré.",
+        "Ajouter les orties : Ajouter les orties hachées et cuire encore 2 min.",
+        "Ajouter les œufs : Battre les œufs avec sel et poivre, verser dans la poêle.",
+        "Cuire : Cuire à feu doux jusqu'à ce que le dessous soit pris, puis finir sous le gril ou retourner pour cuire le dessus.",
+        "Servir chaud ou froid, parfait pour un pique-nique ou le petit-déjeuner."
+      ],
+      "species": ["nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Blanchir les orties : Faire bouillir brièvement les orties 2 min. Égoutter et hacher."
+        },
+        {
+          "step": 2,
+          "instruction": "Cuire les pommes de terre : Dans une poêle, faire revenir pommes de terre et oignon dans l'huile d'olive jusqu'à doré."
+        },
+        {
+          "step": 3,
+          "instruction": "Ajouter les orties : Ajouter les orties hachées et cuire encore 2 min."
+        },
+        {
+          "step": 4,
+          "instruction": "Ajouter les œufs : Battre les œufs avec sel et poivre, verser dans la poêle."
+        },
+        {
+          "step": 5,
+          "instruction": "Cuire : Cuire à feu doux jusqu'à ce que le dessous soit pris, puis finir sous le gril ou retourner pour cuire le dessus."
+        },
+        {
+          "step": 6,
+          "instruction": "Servir chaud ou froid, parfait pour un pique-nique ou le petit-déjeuner."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Utiliser des gants lors de la manipulation des orties fraîches."
+      ]
+    },
+    "st-george-s-mushroom-spring-frittata": {
+      "title": "Omelette printanière aux tricholomes de la Saint-Georges et orties",
+      "ingredients": [
+        "150 g de tricholomes de la Saint-Georges (Calocybe gambosa), émincés",
+        "1 petit oignon, haché",
+        "1 tasse d'orties blanchies ou d'épinards",
+        "6 œufs",
+        "2 cuillères à soupe de fromage râpé (ex. Pecorino ou Parmesan)",
+        "Sel et poivre",
+        "1 cuillère à soupe d'huile d'olive ou de beurre"
+      ],
+      "instructions": [
+        "Préparer les champignons : Nettoyer soigneusement et émincer.",
+        "Faire revenir : Cuire l'oignon dans l'huile jusqu'à tendreté, ajouter les champignons et cuire 5–7 min. Ajouter les orties blanchies.",
+        "Battre les œufs : Dans un bol, battre les œufs avec le fromage, le sel et le poivre.",
+        "Assembler : Verser les œufs sur les champignons dans la poêle. Cuire à feu doux jusqu'à presque pris.",
+        "Finir : Passer au four ou sous le gril 5 min pour dorer (ou retourner délicatement).",
+        "Servir : Chaud ou à température ambiante — parfait pour un pique-nique de printemps ou un brunch."
+      ],
+      "species": ["st_george", "nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Préparer les champignons : Nettoyer soigneusement et émincer."
+        },
+        {
+          "step": 2,
+          "instruction": "Faire revenir : Cuire l'oignon dans l'huile jusqu'à tendreté, ajouter les champignons et cuire 5–7 min. Ajouter les orties blanchies."
+        },
+        {
+          "step": 3,
+          "instruction": "Battre les œufs : Dans un bol, battre les œufs avec le fromage, le sel et le poivre."
+        },
+        {
+          "step": 4,
+          "instruction": "Assembler : Verser les œufs sur les champignons dans la poêle. Cuire à feu doux jusqu'à presque pris."
+        },
+        {
+          "step": 5,
+          "instruction": "Finir : Passer au four ou sous le gril 5 min pour dorer (ou retourner délicatement)."
+        },
+        {
+          "step": 6,
+          "instruction": "Servir : Chaud ou à température ambiante — parfait pour un pique-nique de printemps ou un brunch."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Utiliser des gants lors de la manipulation des orties fraîches.",
+        "Assurez-vous d'une identification sûre des champignons cueillis."
+      ]
+    },
+    "walnut-lingonberry-wild-tapenade": {
+      "title": "Tapenade sauvage aux noix et airelles rouges",
+      "ingredients": [
+        "100 g de noix",
+        "2 cuillères à soupe de confiture d'airelles rouges ou airelles fraîches",
+        "1 gousse d'ail",
+        "1 cuillère à soupe d'ail des ours ou de persil haché",
+        "2 cuillères à soupe d'huile d'olive",
+        "Sel et poivre au goût"
+      ],
+      "instructions": [
+        "Griller les noix : Faire griller légèrement les noix dans une poêle jusqu'à doré. Laisser refroidir.",
+        "Mixer : Mettre tous les ingrédients dans un mixeur : noix, ail, airelles, herbes et huile.",
+        "Assaisonner : Rectifier le sel et le poivre. Mixer par impulsions jusqu'à obtenir une pâte grossière et tartinable.",
+        "Servir : Idéal sur du pain, comme sauce ou avec des fromages et légumes grillés."
+      ],
+      "species": ["walnut", "lingonb", "garlic", "masterwort"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Griller les noix : Faire griller légèrement les noix dans une poêle jusqu'à doré. Laisser refroidir."
+        },
+        {
+          "step": 2,
+          "instruction": "Mixer : Mettre tous les ingrédients dans un mixeur : noix, ail, airelles, herbes et huile."
+        },
+        {
+          "step": 3,
+          "instruction": "Assaisonner : Rectifier le sel et le poivre. Mixer par impulsions jusqu'à obtenir une pâte grossière et tartinable."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir : Idéal sur du pain, comme sauce ou avec des fromages et légumes grillés."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "5 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "appetizer", "easy"],
+      "safetyNotes": []
+    },
+    "wild-artichoke-lemon-pasta": {
+      "title": "Pâtes aux artichauts sauvages et citron",
+      "ingredients": [
+        "2–3 cœurs d'artichauts sauvages, nettoyés et tranchés",
+        "2 gousses d'ail, en fines tranches",
+        "Zeste et jus d'1 citron",
+        "2 cuillères à soupe d'huile d'olive",
+        "200 g de pâtes (linguine ou tagliatelles)",
+        "Sel et poivre noir",
+        "Menthe sauvage ou persil frais pour garnir"
+      ],
+      "instructions": [
+        "Préparer les artichauts : Retirer les feuilles extérieures et le foin. Trancher finement les cœurs.",
+        "Faire revenir : Cuire doucement l'ail et les artichauts dans l'huile 10 min jusqu'à tendreté.",
+        "Cuire les pâtes : Faire bouillir les pâtes dans l'eau salée jusqu'à al dente. Garder ½ tasse d'eau de cuisson.",
+        "Assaisonner : Mélanger les pâtes avec les artichauts, le jus et le zeste de citron, et l'eau de cuisson.",
+        "Servir : Ajouter sel, poivre et garnir d'herbes fraîches. Frais, sauvage, méditerranéen."
+      ],
+      "species": ["artichoke", "garlic"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Préparer les artichauts : Retirer les feuilles extérieures et le foin. Trancher finement les cœurs."
+        },
+        {
+          "step": 2,
+          "instruction": "Faire revenir : Cuire doucement l'ail et les artichauts dans l'huile 10 min jusqu'à tendreté."
+        },
+        {
+          "step": 3,
+          "instruction": "Cuire les pâtes : Faire bouillir les pâtes dans l'eau salée jusqu'à al dente. Garder ½ tasse d'eau de cuisson."
+        },
+        {
+          "step": 4,
+          "instruction": "Assaisonner : Mélanger les pâtes avec les artichauts, le jus et le zeste de citron, et l'eau de cuisson."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir : Ajouter sel, poivre et garnir d'herbes fraîches. Frais, sauvage, méditerranéen."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "pasta", "main", "easy"],
+      "safetyNotes": []
+    },
+    "wild-asparagus-dandelion-stir-fry": {
+      "title": "Sauté d'asperges sauvages et pissenlit",
+      "ingredients": [
+        "200 g d'asperges sauvages, nettoyées",
+        "1 poignée de jeunes feuilles de pissenlit, lavées et hachées",
+        "2 gousses d'ail, en tranches",
+        "1 cuillère à soupe d'huile d'olive",
+        "1 cuillère à café de zeste de citron",
+        "Sel et poivre au goût",
+        "Optionnel : une pincée de piment"
+      ],
+      "instructions": [
+        "Blanchir les asperges : Faire bouillir les asperges 1 min. Égoutter et refroidir dans l'eau froide.",
+        "Faire revenir l'ail : Dans une poêle, chauffer l'huile, ajouter l'ail et le piment optionnel, cuire jusqu'à parfum.",
+        "Ajouter les légumes : Ajouter asperges et pissenlit, sauter 2–3 min jusqu'à tendreté et couleur vive.",
+        "Finaliser : Assaisonner avec sel, poivre et zeste de citron.",
+        "Servir : Délicieux sur du pain grillé, des céréales ou comme accompagnement sauvage."
+      ],
+      "species": ["asparagus", "dandelion", "garlic"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Blanchir les asperges : Faire bouillir les asperges 1 min. Égoutter et refroidir dans l'eau froide."
+        },
+        {
+          "step": 2,
+          "instruction": "Faire revenir l'ail : Dans une poêle, chauffer l'huile, ajouter l'ail et le piment optionnel, cuire jusqu'à parfum."
+        },
+        {
+          "step": 3,
+          "instruction": "Ajouter les légumes : Ajouter asperges et pissenlit, sauter 2–3 min jusqu'à tendreté et couleur vive."
+        },
+        {
+          "step": 4,
+          "instruction": "Finaliser : Assaisonner avec sel, poivre et zeste de citron."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir : Délicieux sur du pain grillé, des céréales ou comme accompagnement sauvage."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": []
+    },
+    "wild-garlic-pesto": {
+      "title": "Pesto d'ail des ours et noix",
+      "ingredients": [
+        "50 g de feuilles d'ail des ours",
+        "30 g de noix ou pignons",
+        "50 g de parmesan râpé",
+        "100 ml d'huile d'olive",
+        "1 cuillère à café de jus de citron",
+        "Sel au goût"
+      ],
+      "instructions": [
+        "Préparer les feuilles : Laver soigneusement l'ail des ours et le sécher.",
+        "Griller les noix : Faire griller légèrement les noix dans une poêle. Laisser refroidir.",
+        "Mixer : Mettre dans un mixeur l'ail des ours, les noix, le parmesan et le jus de citron. Mixer grossièrement.",
+        "Ajouter l'huile : Verser l'huile en filet en continuant de mixer jusqu'à obtenir une crème.",
+        "Assaisonner : Rectifier le sel.",
+        "Conserver : Dans un bocal fermé au frigo une semaine. Parfait pour les pâtes, sandwichs ou légumes rôtis."
+      ],
+      "species": ["garlic", "walnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Préparer les feuilles : Laver soigneusement l'ail des ours et le sécher."
+        },
+        {
+          "step": 2,
+          "instruction": "Griller les noix : Faire griller légèrement les noix dans une poêle. Laisser refroidir."
+        },
+        {
+          "step": 3,
+          "instruction": "Mixer : Mettre dans un mixeur l'ail des ours, les noix, le parmesan et le jus de citron. Mixer grossièrement."
+        },
+        {
+          "step": 4,
+          "instruction": "Ajouter l'huile : Verser l'huile en filet en continuant de mixer jusqu'à obtenir une crème."
+        },
+        {
+          "step": 5,
+          "instruction": "Assaisonner : Rectifier le sel."
+        },
+        {
+          "step": 6,
+          "instruction": "Conserver : Dans un bocal fermé au frigo une semaine. Parfait pour les pâtes, sandwichs ou légumes rôtis."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "easy"],
+      "safetyNotes": []
+    },
+    "wild-strawberry-sorrel-cooler": {
+      "title": "Boisson fraîche à la fraise des bois et oseille",
+      "ingredients": [
+        "1 poignée de fraises des bois",
+        "6 feuilles d'oseille, déchirées",
+        "1 cuillère à soupe de miel (ou selon goût)",
+        "300 ml d'eau gazeuse froide",
+        "Jus d'½ citron",
+        "Glaçons"
+      ],
+      "instructions": [
+        "Écraser : Dans un verre ou un shaker, écraser délicatement fraises, oseille et miel.",
+        "Ajouter le citron : Ajouter le jus de citron et mélanger.",
+        "Compléter : Remplir le verre de glaçons, puis verser l'eau gazeuse.",
+        "Filtrer (optionnel) : Filtrer pour une boisson limpide ou servir avec la pulpe.",
+        "Décorer : Garnir d'une fraise et d'une feuille d'oseille. Boisson estivale parfaite."
+      ],
+      "species": ["strawberry", "sorrel"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Écraser : Dans un verre ou un shaker, écraser délicatement fraises, oseille et miel."
+        },
+        {
+          "step": 2,
+          "instruction": "Ajouter le citron : Ajouter le jus de citron et mélanger."
+        },
+        {
+          "step": 3,
+          "instruction": "Compléter : Remplir le verre de glaçons, puis verser l'eau gazeuse."
+        },
+        {
+          "step": 4,
+          "instruction": "Filtrer (optionnel) : Filtrer pour une boisson limpide ou servir avec la pulpe."
+        },
+        {
+          "step": 5,
+          "instruction": "Décorer : Garnir d'une fraise et d'une feuille d'oseille. Boisson estivale parfaite."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "5 min",
+      "cookTime": "0 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "drink", "easy"],
+      "safetyNotes": []
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "title": "Instructions",
+  "subtitle": "Learn how to use Fung.es safely and effectively",
+  "downloadDataset": "Download daily dataset (CSV)",
+  "mapDescription": {
+    "intro": "The map highlights geographic areas with favorable conditions for foraging wild mushrooms and edible plants.",
+    "selection": "Select your preferred species using the dropdown at the top of the page.",
+    "colorCoding": "Each area is color-coded on a gradient from pale yellow to dark red, indicating the likelihood of encountering good foraging conditions, based on environmental data.",
+    "scale": "The scale is accompanied by a numerical rating from 0 to 10, illustrated below.",
+    "polygons": "Polygons and markers are only shown when they provide meaningful seasonal information, keeping the map lightweight and focused. If something's not showing, it might just be too early or too late in the season."
+  },
+  "functions": {
+    "title": "Functions:",
+    "recipes": "Displays Edible Species Growing Nearby and Suggests Recipes",
+    "location": "Centres the Map on the User's Location",
+    "theme": "Switch between Light- and Dark-mode",
+    "numbers": "Displays Numeric Rating"
+  },
+  "mapInteraction": {
+    "title": "Click on a zone to see species and their finding percentage:",
+    "maps": "Open the destination in Maps"
+  },
+  "about": {
+    "title": "About Funges",
+    "description": "Funges is a data-powered platform that uses geographical and environmental data to deliver real-time insights for foraging wild mushrooms and edible plants.",
+    "dataCombination": "By combining diverse datasets—climate models, satellite imagery, terrain and ecological indicators—Funges predicts optimal conditions for the growth of natural resources like mushrooms and plants.",
+    "climateChange": "As ecosystems shift due to climate change, tools like Funges support sustainable foraging and nature-based food gathering practices.",
+    "currentStatus": "Currently, Funges offers real-time insights for a limited number of species, with more wild edibles coming soon.",
+    "keyFeatures": {
+      "title": "Key Features",
+      "environmentalData": "Environmental Data Integration: Uses geolocation, climate models and meteorological data.",
+      "probabilityModels": "Probability Models: Predicts the likelihood of natural resource presence.",
+      "climateAdaptation": "Climate Change Adaptation: Offers real-time insights into shifting ecosystems.",
+      "scalability": "Scalability & Accessibility: Open access for users without requiring personal data."
+    }
+  },
+  "mission": {
+    "title": "Our Mission",
+    "commitment": "Funges is committed to leveraging technology and environmental data to empower individuals and organizations in sustainable foraging and resource collection.",
+    "goal": "By providing real-time insights and predictive analytics, our goal is to reduce resource waste, adapt to climate change and make nature's gifts more accessible to everyone.",
+    "sustainability": "Foraging is most sustainable when it follows the natural rhythm of the environment — guided by seasonality, locality, and ecological balance. Nature provides what is needed, when it is needed; responsible harvesting begins with attentiveness to these cycles.",
+    "community": "Through innovation and open access, the goal is to create a community of responsible foragers who value sustainability and biodiversity.",
+    "openAccess": "Open access to information fosters a deeper connection to place and time, encouraging decisions that respect biodiversity and the regenerative capacity of ecosystems."
+  },
+  "prediction": {
+    "title": "How Wild Edibles Are Predicted",
+    "description": "Funges analyzes a wide range of environmental variables to identify the most promising areas for foraging wild mushrooms and edible plants. Our models consider multiple layers of ecological data—tracked and combined over time—to infer natural cycles and determine optimal timing and locations for collection.",
+    "monitorTitle": "monitor and integrate:",
+    "variables": {
+      "temperature": "Temperature, humidity and rainfall",
+      "soil": "Soil pH and geological features",
+      "vegetation": "Land cover and vegetation types",
+      "topography": "Topography and elevation",
+      "trends": "Time-series trends"
+    },
+    "goal": "The goal is to simulate the behavior of experienced foragers—amplified by data. In other words, respectfully trying to hack nature to make wild harvesting more accessible, precise and sustainable.",
+    "methodology": {
+      "title": "Data Sources & Methodology",
+      "description": "Funges uses a combination of environmental, meteorological, and geospatial datasets to forecast the best locations and times for foraging wild edibles.",
+      "datasets": "These include satellite imagery, terrain models, weather APIs, and ecological indicators—all analyzed over time to simulate nature's cycles and identify real-time hotspots."
+    },
+    "keyDatasets": {
+      "title": "Key Datasets",
+      "corine": {
+        "title": "1. CORINE Land Cover (CLC)",
+        "description": "Provided by the European Environment Agency (EEA), CORINE Land Cover offers detailed maps of vegetation and land use across Europe. This helps determine suitable ecosystems for different mushroom and plant species.",
+        "source": "Source: European Environment Agency (EEA)",
+        "citation": "Citation: Bossard, M., Feranec, J., & Otahel, J. (2000). CORINE Land Cover Technical Guide – Addendum 2000."
+      },
+      "soilPh": {
+        "title": "2. Soil pH in Europe",
+        "description": "Created by the Joint Research Centre (JRC) of the European Commission, this dataset maps soil acidity using over 12,000 samples across 25 countries, modeled via Regression-Kriging with 54 environmental covariates.",
+        "source": "Source: European Soil Data Centre (ESDAC), Joint Research Centre (JRC)",
+        "citation": "Citation: Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
+      },
+      "additional": "Additional sources such as meteorological APIs, remote sensing layers, and slope/aspect models are integrated to continuously improve prediction accuracy."
+    }
+  }
+}

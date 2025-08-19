@@ -1,0 +1,233 @@
+{
+  "title": "Arten-Datenbank",
+  "subtitle": "Lerne Wildnahrung kennen",
+  "search_placeholder": "Suche nach einer Art",
+  "description": "Entdecke unsere vollständige Datenbank essbarer Arten",
+  "search": {
+    "placeholder": "Suche nach einer Art",
+    "found": "Gefunden",
+    "species": "Arten",
+    "clear": "Zurücksetzen"
+  },
+  "filterByType": "Nach Typ filtern",
+  "allTypes": "Alle Typen",
+  "mushrooms": "Pilze",
+  "mushroom": "Pilz",
+  "plants": "Pflanzen",
+  "plant": "Pflanze",
+  "berries": "Beeren",
+  "berry": "Beere",
+  "herbs": "Kräuter",
+  "herb": "Kraut",
+  "nuts": "Nüsse",
+  "nut": "Nuss",
+  "flowers": "Blüten",
+  "flower": "Blüte",
+  "scientificName": "Wissenschaftlicher Name",
+  "commonName": "Trivialname",
+  "edibility": "Essbarkeit",
+  "season": "Saison",
+  "habitat": "Lebensraum",
+  "howTo": "Sammelanleitung",
+  "cookingTips": "Koch-Tipps",
+  "safetyNotes": "Sicherheitshinweise",
+  "preparation": "Zubereitung",
+  "found": "Gefunden",
+  "species": "Arten",
+  "noResults": "Keine Arten gefunden",
+  "noResultsDescription": "Versuche, deine Such- oder Filterkriterien anzupassen",
+  "safetyWarning": "Konsultiere immer eine Expertin oder einen Experten, bevor du Wildpflanzen isst. Diese Informationen dienen nur zu Bildungszwecken.",
+  "viewOnMap": "Auf der Karte anzeigen",
+  "seasons": {
+    "spring": "Frühling",
+    "summer": "Sommer",
+    "fall": "Herbst",
+    "winter": "Winter",
+    "spring-summer": "Frühling-Sommer",
+    "summer-fall": "Sommer-Herbst",
+    "fall-winter": "Herbst-Winter",
+    "winter-spring": "Winter-Frühling",
+    "spring-fall": "Frühling und Herbst"
+  },
+  "habitats": {
+    "forest": "Wald",
+    "meadow": "Wiese",
+    "hedgerow": "Hecke",
+    "woodland": "Gehölz",
+    "grassland": "Grasland",
+    "wetland": "Feuchtgebiet",
+    "urban": "Städtisch"
+  },
+  "list_of_species": {
+    "chant": {
+      "name": "Pfifferling",
+      "description": "Ein goldgelber Pilz mit charakteristischer Trichterform und fruchtigem Aroma",
+      "howTo": "Suche in Laubwäldern, besonders in der Nähe von Eichen und Buchen"
+    },
+    "mushroom": {
+      "name": "Steinpilz",
+      "description": "Auch als Herrenpilz bekannt, geschätzter Pilz mit braunem Hut und weißen oder gelben Röhren",
+      "howTo": "Kommt in Nadel- und Laubwäldern vor, oft in der Nähe von Kiefern"
+    },
+    "morel": {
+      "name": "Morchel",
+      "description": "Charakteristischer Pilz mit wabenförmigem Hut, erscheint im Frühling",
+      "howTo": "Suche in gestörten Gebieten, verbrannten Wäldern und bei toten Bäumen im Frühling"
+    },
+    "blackberry": {
+      "name": "Brombeere",
+      "description": "Süße, dunkelviolette Beeren, die an dornigen Sträuchern wachsen",
+      "howTo": "Zu finden in Hecken, Waldrändern und gestörten Gebieten im Spätsommer"
+    },
+    "elderberry": {
+      "name": "Holunderbeere",
+      "description": "Kleine, dunkelviolette Beeren, die in Dolden an Holunderbäumen wachsen",
+      "howTo": "Suche Holunderbäume in Hecken und Waldrändern im Herbst"
+    },
+    "nettle": {
+      "name": "Brennnessel",
+      "description": "Nährstoffreiche grüne Pflanze mit Brennhaaren, muss gekocht werden",
+      "howTo": "Zu finden in gestörten Gebieten, Hecken und Waldrändern im Frühling und Sommer"
+    },
+    "dandelion": {
+      "name": "Löwenzahn",
+      "description": "Häufiges Wildkraut mit leuchtend gelben Blüten und essbaren Blättern",
+      "howTo": "Zu finden auf Wiesen, Grasflächen und gestörten Gebieten während der Wachstumszeit"
+    },
+    "hazelnut": {
+      "name": "Haselnuss",
+      "description": "Süße, runde Nüsse, die an Haselsträuchern wachsen",
+      "howTo": "Suche Haselsträucher in Hecken und Waldrändern im Herbst"
+    },
+    "garlic": {
+      "name": "Bärlauch",
+      "description": "Kräftig duftendes Kraut mit breiten Blättern und weißen Blüten",
+      "howTo": "Zu finden in Laubwäldern im Frühling, oft in großen Beständen"
+    },
+    "chickenOfTheWoods": {
+      "name": "Schwefelporling",
+      "description": "Leuchtend orange-gelber Baumpilz, der an Bäumen wächst",
+      "howTo": "Suche an toten oder sterbenden Bäumen, besonders Eichen"
+    },
+    "oysterMushroom": {
+      "name": "Austernpilz",
+      "description": "Weiß-grauer Pilz mit fächerförmigem Hut, wächst in Büscheln an Totholz",
+      "howTo": "Zu finden an totem Holz, besonders Buche und Eiche, im Herbst und Winter"
+    },
+    "shiitake": {
+      "name": "Shiitake",
+      "description": "Pilz mit braunem Hut und weißen Lamellen, in der asiatischen Küche sehr geschätzt",
+      "howTo": "Wächst an totem Laubholz, besonders Eiche und Buche, im Frühling und Herbst"
+    },
+    "raspberry": {
+      "name": "Waldhimbeere",
+      "description": "Süße rote Beeren an dornigen Ruten mit charakteristischen gefiederten Blättern",
+      "howTo": "Suche Himbeersträucher in Hecken, Waldrändern und gestörten Gebieten im Sommer"
+    },
+    "blueberry": {
+      "name": "Waldheidelbeere",
+      "description": "Kleine, süße blaue Beeren an niedrigen Sträuchern auf saurem Boden",
+      "howTo": "Zu finden in Heiden, Mooren und sauren Wäldern im Sommer und Frühherbst"
+    },
+    "strawberry": {
+      "name": "Walderdbeere",
+      "description": "Kleine, aromatische rote Beeren mit weißen Blüten und dreiteiligen Blättern",
+      "howTo": "Zu finden auf Wiesen, Waldrändern und Grasflächen im Frühling und Sommer"
+    },
+    "wildMint": {
+      "name": "Wilde Minze",
+      "description": "Aromatisches Kraut mit vierkantigen Stängeln und gegenständigen Blättern, verströmt Minzduft beim Zerreiben",
+      "howTo": "Zu finden in feuchten Gebieten, an Bächen und in nassen Wiesen im Frühling und Sommer"
+    },
+    "chickweed": {
+      "name": "Vogelmiere",
+      "description": "Niedrig wachsende Pflanze mit kleinen weißen Blüten und ovalen Blättern, sehr nahrhaft",
+      "howTo": "Häufig in Gärten, gestörten Gebieten und Wiesen während der Wachstumszeit"
+    },
+    "plantain": {
+      "name": "Breitwegerich",
+      "description": "Niedrig wachsende Pflanze mit breiten, ovalen Blättern und hohen Blütenständen",
+      "howTo": "Zu finden auf Rasenflächen, Wiesen und gestörten Gebieten während der Wachstumszeit"
+    },
+    "walnut": {
+      "name": "Walnuss",
+      "description": "Große, runde Nüsse mit harter Schale und aromatischem, ölhaltigem Kern",
+      "howTo": "Suche Walnussbäume in Parks, Gärten und Waldrändern im Herbst"
+    },
+    "chestnut": {
+      "name": "Esskastanie",
+      "description": "Große, süße Nüsse in stacheligen grünen Hüllen, die bei Reife aufplatzen",
+      "howTo": "Zu finden in Kastanienhainen und Mischwäldern im Herbst, oft in der Nähe von Wegen"
+    },
+    "elderflower": {
+      "name": "Holunderblüte",
+      "description": "Cremeweiße Blüten in großen, flachen Dolden an Holunderbäumen",
+      "howTo": "Suche Holunderbäume in Hecken und Waldrändern im späten Frühling und Frühsommer"
+    },
+    "daisy": {
+      "name": "Gänseblümchen",
+      "description": "Kleine weiße Blüten mit gelber Mitte, wachsen bodennah",
+      "howTo": "Häufig auf Rasenflächen, Wiesen und Grasflächen im Frühling und Sommer"
+    },
+    "violets": {
+      "name": "Duftveilchen",
+      "description": "Kleine violette Blüten mit herzförmigen Blättern und süßem Duft",
+      "howTo": "Zu finden an Waldrändern, in Hecken und schattigen Bereichen im zeitigen Frühling"
+    },
+    "maitake": {
+      "name": "Grifola frondosa",
+      "description": "Ein leuchtend orange-gelber Konsolenpilz, der auf Bäumen wächst.",
+      "howTo": "Suche ihn an toten oder absterbenden Bäumen, besonders an Eichen."
+    },
+    "amaranth": {
+      "name": "Amarant",
+      "description": "Eine krautige Pflanze mit essbaren Blättern und Samen, reich an Nährstoffen.",
+      "howTo": "Wächst in gestörten Böden, Gärten und Feldern im Sommer. Pflücke die jungen Blätter vor der Blüte."
+    },
+    "artichoke": {
+      "name": "Wilder Artischocke",
+      "description": "Dornige Pflanze ähnlich der kultivierten Artischocke, mit essbaren Blütenköpfen und Stängeln.",
+      "howTo": "Findet man auf Wiesen und Feldern; sammle junge Blütenköpfe und zarte Stängel im Frühling und Frühsommer."
+    },
+    "asparagus": {
+      "name": "Wilder Spargel",
+      "description": "Mehrjährige Pflanze mit dünnen, essbaren Trieben, die im Frühling erscheinen.",
+      "howTo": "Suche die jungen Triebe auf offenen Feldern, Wiesen und entlang von Hecken im Frühling."
+    },
+    "black_chant": {
+      "name": "Totentrompete",
+      "description": "Ein dunkler trompetenförmiger Pilz mit intensivem Geschmack, sehr geschätzt in der Küche.",
+      "howTo": "Findet man in Laubwäldern, besonders unter Eichen und Buchen, von Spätsommer bis Herbst."
+    },
+    "lingonb": {
+      "name": "Preiselbeere",
+      "description": "Kleine rote, säuerliche Beeren, die auf immergrünen Sträuchern in saurem Boden wachsen.",
+      "howTo": "Suche in Nadelwäldern, Heideflächen und Mooren von Spätsommer bis Herbst."
+    },
+    "masterwort": {
+      "name": "Meisterwurz",
+      "description": "Mehrjährige Pflanze mit aromatischen Blättern und weißen Doldenblüten, verwendet in der traditionellen Medizin und als Gewürz.",
+      "howTo": "Findet man auf Bergwiesen und in lichten Waldlichtungen; sammle Blätter und Wurzeln im Frühling und Sommer."
+    },
+    "parasol": {
+      "name": "Parasolpilz",
+      "description": "Großer Pilz mit breitem, schuppigem Hut, der einem Regenschirm ähnelt, jung essbar.",
+      "howTo": "Suche auf Wiesen, Weiden und an Waldrändern von Spätsommer bis Herbst."
+    },
+    "sorrel": {
+      "name": "Gewöhnlicher Sauerampfer",
+      "description": "Pflanze mit säuerlich-zitronigem Geschmack, verwendet in Salaten und Suppen.",
+      "howTo": "Pflücke die jungen Blätter auf Wiesen, Weiden und entlang von Wegen im Frühling und Sommer."
+    },
+    "st_george": {
+      "name": "Georgsritterling",
+      "description": "Fester, weißer Pilz mit mehlartigem Geruch, erscheint um den Georgstag im Frühling.",
+      "howTo": "Findet man auf Wiesen, Weiden und an Waldrändern im Frühling."
+    },
+    "truffle_b": {
+      "name": "Schwarzer Trüffel",
+      "description": "Sehr geschätzter unterirdischer Pilz mit intensivem Aroma, in der Gourmetküche verwendet.",
+      "howTo": "Wächst unterirdisch in der Nähe der Wurzeln von Eichen und Haseln, wird im Winter mit ausgebildeten Tieren gesammelt."
+    }
+  }
+}

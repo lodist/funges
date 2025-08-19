@@ -1,0 +1,67 @@
+{
+  "title": "Interaktive Sammelkarte",
+  "description": "Erkunde Sammelorte und Echtzeitdaten",
+  "loading": "Karte wird geladen...",
+  "error": {
+    "title": "Kartenfehler",
+    "retry": "Erneut versuchen",
+    "reload": "Seite neu laden",
+    "offline": "Du bist offline",
+    "offlineMessage": "Bitte überprüfe deine Internetverbindung und versuche es erneut.",
+    "generic": "Beim Laden der Karte ist ein Fehler aufgetreten.",
+    "waitingForConnection": "Warte auf Verbindung..."
+  },
+
+  "noSpotsFound": "Keine Sammelstellen in der Nähe gefunden",
+  "spotsFound": "{{count}} Sammelstelle{{count > 1 ? 'n' : ''}} in der Nähe gefunden!",
+  "tryMovingMap": "Bewege die Karte oder ermittle deinen Standort",
+  "geolocation": {
+    "enable": "Standort aktivieren",
+    "finding": "Standort wird ermittelt...",
+    "found": "Standort gefunden",
+    "error": "Standort konnte nicht ermittelt werden"
+  },
+  "overlays": {
+    "title": "Karten-Overlays",
+    "polygons": "Sammelgebiete anzeigen",
+    "realtime": "Echtzeitdaten anzeigen"
+  },
+  "region": {
+    "title": "Region auswählen",
+    "select": "Region auswählen",
+    "loading": "Region wird geladen..."
+  },
+  "fallback": {
+    "title": "Karte vorübergehend nicht verfügbar",
+    "message": "Die interaktive Karte ist derzeit nicht verfügbar. Du kannst trotzdem deinen Standort und Sammelinformationen ansehen.",
+    "retryMap": "Karte neu laden",
+    "getLocation": "Standort ermitteln",
+    "currentLocation": "Aktueller Standort",
+    "coordinates": "Breite: {{lat}}, Länge: {{lng}}",
+    "spotsFound": "Sammelstellen",
+    "support": "Projekt unterstützen",
+    "limit_hit_message": "Liebere Forager,<br>\nWir können die Kartenkacheln nicht laden, da wir unser monatliches Nutzungslimit erreicht haben.<br><br>\nUm die Karten weiterhin verfügbar zu halten, erwägen Sie bitte, <strong>das Projekt zu unterstützen</strong>.<br>\nIn der Zwischenzeit genießen Sie diese nicht ganz perfekte Boletus-Karte – bis sie ihr eigenes Limit erreicht 😅",
+
+    "tips": {
+      "title": "Fehlerbehebung",
+      "checkConnection": "Überprüfe deine Internetverbindung",
+      "refreshPage": "Seite neu laden",
+      "tryLater": "Versuche es in ein paar Minuten erneut"
+    }
+  },
+  "species": {
+    "select": "Art auswählen",
+    "search": "Art suchen...",
+    "clear": "Auswahl löschen",
+    "noResults": "Keine Art gefunden",
+    "notAvailableOffline": "Not available offline. Download on the Offline Maps page."
+  },
+  "getLocation": "Meinen Standort ermitteln",
+  "toggleNumbers": "Zahlen ein-/ausblenden",
+  "toggleDarkMode": "Dunkelmodus umschalten",
+  "featureInfo": {
+    "title": "Feature-Details",
+    "getDirections": "Route abrufen",
+    "location": "Standort"
+  }
+}

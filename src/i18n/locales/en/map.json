@@ -1,0 +1,66 @@
+{
+  "title": "Interactive Foraging Map",
+  "description": "Explore foraging locations and real-time data",
+  "loading": "Loading map...",
+  "error": {
+    "title": "Map Error",
+    "retry": "Retry",
+    "reload": "Reload Page",
+    "offline": "You're Offline",
+    "offlineMessage": "Please check your internet connection and try again.",
+    "generic": "Something went wrong while loading the map.",
+    "waitingForConnection": "Waiting for connection..."
+  },
+
+  "noSpotsFound": "No foraging spots found nearby",
+  "spotsFound": "Found {{count}} foraging spot{{count > 1 ? 's' : ''}} nearby!",
+  "tryMovingMap": "Try moving the map or getting your location",
+  "geolocation": {
+    "enable": "Enable location",
+    "finding": "Finding your location...",
+    "found": "Location found",
+    "error": "Unable to get location"
+  },
+  "overlays": {
+    "title": "Map Overlays",
+    "polygons": "Show foraging areas"
+  },
+  "region": {
+    "title": "Select Region",
+    "select": "Select Region",
+    "loading": "Loading region..."
+  },
+  "fallback": {
+    "title": "Map Temporarily Unavailable",
+    "message": "The interactive map is currently unavailable. You can still view your location and foraging information.",
+    "retryMap": "Reload Map",
+    "getLocation": "Get Location",
+    "currentLocation": "Current Location",
+    "coordinates": "Lat: {{lat}}, Lng: {{lng}}",
+    "spotsFound": "Foraging Spots",
+    "support": "Support the project",
+    "limit_hit_message": "Dear Forager,<br>\nWe’re unable to load the map tiles as we’ve reached our monthly usage limit.<br><br>\nTo help keep maps available, please consider <strong>supporting the project</strong>.<br>\nMeanwhile, enjoy this not-quite-perfect Boletus map — until it hits its own limit 😅",
+
+    "tips": {
+      "title": "Troubleshooting Tips",
+      "checkConnection": "Check your internet connection",
+      "refreshPage": "Refresh the page",
+      "tryLater": "Try again in a few minutes"
+    }
+  },
+  "species": {
+    "select": "Select Species",
+    "search": "Search species...",
+    "clear": "Clear Selection",
+    "noResults": "No species found",
+    "notAvailableOffline": "Not available offline. Download on the Offline Maps page."
+  },
+  "getLocation": "Get My Location",
+  "toggleNumbers": "Toggle Numbers",
+  "toggleDarkMode": "Toggle Dark Mode",
+  "featureInfo": {
+    "title": "Feature Details",
+    "getDirections": "Get Directions",
+    "location": "Location"
+  }
+}

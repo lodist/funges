@@ -1,0 +1,14 @@
+{
+  "appName": "Funges",
+  "appDescription": "Mushroom Guide",
+  "map": "Map",
+  "species": "Species",
+  "recipes": "Recipes",
+  "instructions": "Instructions",
+  "offlineMaps": "Offline Maps",
+  "support": "Support",
+  "impressum": "Legal Notice",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfUse": "Terms of Use",
+  "settings": "Settings"
+}

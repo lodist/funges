@@ -1,0 +1,59 @@
+{
+  "title": "Términos de uso",
+  "welcome": {
+    "title": "Bienvenido al servicio (en adelante, \"el Servicio\"). Al acceder o utilizar el Servicio, aceptas cumplir con estos Términos de Servicio (\"Términos\"). Si no estás de acuerdo, por favor deja de usar el Servicio."
+  },
+  "safetyWarning": {
+    "title": "Advertencia importante de seguridad",
+    "content": "Este Servicio utiliza un modelo de aprendizaje automático para la identificación de hongos, pero no es 100% fiable. Muchos hongos se parecen y una identificación incorrecta puede resultar en intoxicaciones graves o la muerte. No confíes en este Servicio para determinar si un hongo es seguro para el consumo. Consulta siempre a un micólogo profesional o a un experto local antes de consumir o manipular hongos silvestres."
+  },
+  "useOfService": {
+    "title": "Uso del Servicio",
+    "content": "El Servicio proporciona información sobre las condiciones de alimentos silvestres basada en diversos factores. La información es solo orientativa y no se garantiza que sea precisa, completa o actualizada."
+  },
+  "foragingDisclaimer": {
+    "title": "Aviso sobre recolección",
+    "content": "El Servicio incluye recetas e información sobre plantas silvestres comestibles, bayas, frutos secos y hongos. Aunque se hace todo lo posible para garantizar la exactitud, el consumo seguro de alimentos silvestres depende totalmente de la correcta identificación, preparación adecuada y condiciones de salud individuales.",
+    "misidentification": "La identificación incorrecta de plantas o hongos silvestres puede provocar reacciones alérgicas, intoxicaciones u otras consecuencias graves para la salud. Algunas especies comestibles tienen parecidas tóxicas. Consulta siempre a un experto local o utiliza una guía autorizada al identificar alimentos silvestres, y no consumas nada a menos que estés 100% seguro de su seguridad.",
+    "preparation": "Además, algunos alimentos silvestres solo deben consumirse en pequeñas cantidades o tras métodos de preparación específicos para neutralizar compuestos naturales. Las recetas proporcionadas por el Servicio son solo con fines educativos y asumen la correcta identificación y manipulación de los ingredientes."
+  },
+  "disclaimer": {
+    "title": "Exención de responsabilidad",
+    "content": "Utilizas el Servicio bajo tu propio riesgo. El administrador no asume ninguna responsabilidad por accidentes, lesiones, daños u otros incidentes derivados de la confianza en la información del Servicio. Las condiciones en entornos naturales pueden cambiar inesperadamente, y eres responsable de actuar con precaución y criterio al planificar o realizar actividades basadas en la información proporcionada por el Servicio.",
+    "predictions": "En la naturaleza crecen diversas setas y frutos, y algunos pueden ser tóxicos o peligrosos si se identifican mal. Las predicciones proporcionadas por este Servicio son generadas por un modelo de aprendizaje automático y deben considerarse solo como una herramienta orientativa. Este modelo no es perfecto y puede producir clasificaciones incorrectas. Identificar mal los hongos puede causar intoxicaciones graves o la muerte. Consulta siempre a un experto calificado antes de consumir o manipular cualquier hongo o fruto."
+  },
+  "noProfessionalAdvice": {
+    "title": "Sin asesoramiento profesional",
+    "content": "La información proporcionada por el Servicio no pretende sustituir el asesoramiento profesional, incluyendo pero no limitado a la seguridad, salud o recomendaciones medioambientales. Consulta siempre a las autoridades locales o expertos antes de realizar actividades al aire libre."
+  },
+  "thirdParty": {
+    "title": "Contenido y servicios de terceros",
+    "content": "El Servicio puede mostrar anuncios o integrar servicios de terceros. El administrador no es responsable del contenido, exactitud o prácticas de dichos servicios de terceros. Tu interacción con estos servicios se rige por sus propios términos y políticas."
+  },
+  "intellectualProperty": {
+    "title": "Propiedad intelectual",
+    "content": "Todo el contenido, características y funcionalidades proporcionadas por el Servicio, incluyendo textos, gráficos y otros materiales, son propiedad del administrador salvo que se indique lo contrario. No puedes reproducir, distribuir o modificar ninguna parte del Servicio sin permiso previo por escrito."
+  },
+  "prohibitedUse": {
+    "title": "Uso prohibido",
+    "intro": "Aceptas no:",
+    "items": [
+      "Utilizar el Servicio de manera ilegal.",
+      "Intentar interferir con la funcionalidad o seguridad del Servicio."
+    ]
+  },
+  "changes": {
+    "title": "Cambios en los Términos",
+    "content": "El administrador se reserva el derecho de modificar estos Términos en cualquier momento. Cualquier cambio será efectivo inmediatamente tras su publicación en el Servicio. El uso continuado del Servicio implica la aceptación de los Términos actualizados."
+  },
+  "governingLaw": {
+    "title": "Ley aplicable",
+    "content": "Estos Términos se rigen e interpretan de acuerdo con las leyes de Suiza. Cualquier disputa derivada del uso del Servicio estará sujeta a la jurisdicción exclusiva de los tribunales de Suiza."
+  },
+  "contact": {
+    "title": "Contacto",
+    "intro": "Para preguntas o inquietudes sobre estos Términos, por favor contacta a:",
+    "email": "lorisdistefano@pm.me"
+  },
+  "lastUpdated": "Última actualización: 02.04.2025"
+}

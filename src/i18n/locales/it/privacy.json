@@ -1,0 +1,43 @@
+{
+  "title": "Informativa sulla Privacy",
+  "subtitle": "La tua privacy e la protezione dei tuoi dati personali sono di massima importanza. Questa Informativa sulla Privacy spiega come vengono gestite le tue informazioni e fornisce trasparenza sui servizi di terze parti che potrebbero raccogliere dati.",
+  "scope": {
+    "title": "Ambito di Applicazione di Questa Informativa",
+    "content": "Questa Informativa sulla Privacy si applica ai servizi forniti. Non copre siti web, servizi o prodotti di terze parti non gestiti dall'amministratore."
+  },
+  "collection": {
+    "title": "Raccolta e Utilizzo delle Informazioni",
+    "content": "Ci impegniamo a rispettare i principi di anonimato e protezione dei dati. Questo servizio non raccoglie, memorizza o elabora direttamente alcuna informazione personale. Il nostro design privilegia il fornire informazioni senza richiedere dati in cambio, riflettendo la nostra forte convinzione nel valore dell'anonimato.",
+    "cookiebot": "Per garantire ulteriormente la tua privacy, utilizziamo Cookiebot in background per monitorare attivamente che nessun servizio non strettamente necessario sia in funzione. Vengono effettuati controlli regolari e rigorosi per assicurare che i dati degli utenti non vengano condivisi oltre a quanto è essenziale per il funzionamento di questo servizio."
+  },
+  "rights": {
+    "title": "I Tuoi Diritti",
+    "intro": "Anche se questo servizio non raccoglie dati direttamente, dovresti essere consapevole dei tuoi diritti ai sensi della Legge federale svizzera sulla protezione dei dati (LPD) e del Regolamento generale sulla protezione dei dati (GDPR) quando interagisci con servizi di terze parti:",
+    "access": "Accesso: Richiedere l'accesso ai tuoi dati da qualsiasi servizio di terze parti.",
+    "rectification": "Rettifica: Correggere dati inaccurati detenuti da servizi di terze parti.",
+    "erasure": "Cancellazione: Richiedere la cancellazione dei tuoi dati se non sono più necessari.",
+    "restriction": "Limitazione: Richiedere limitazioni al trattamento in circostanze specifiche.",
+    "objection": "Opposizione: Opporsi al trattamento dei tuoi dati, incluso per scopi di marketing.",
+    "portability": "Portabilità dei Dati: Richiedere i tuoi dati in un formato strutturato e leggibile da macchina.",
+    "exercise": "Per esercitare questi diritti, contatta direttamente il servizio di terze parti pertinente."
+  },
+  "protection": {
+    "title": "Protezione dei Dati",
+    "content": "L'amministratore non elabora direttamente dati personali. I servizi di terze parti sono responsabili di garantire la sicurezza di qualsiasi dato che raccolgono.",
+    "security": "Sebbene si facciano tutti gli sforzi per integrare solo servizi affidabili, nessun metodo di trasmissione o memorizzazione è completamente sicuro."
+  },
+  "transfers": {
+    "title": "Trasferimenti Internazionali",
+    "content": "I servizi di terze parti integrati potrebbero elaborare dati in paesi al di fuori della tua giurisdizione. Questi servizi sono responsabili di garantire salvaguardie appropriate per proteggere i tuoi dati."
+  },
+  "changes": {
+    "title": "Modifiche a Questa Informativa",
+    "content": "Questa Informativa sulla Privacy può essere aggiornata periodicamente per riflettere cambiamenti nelle normative o nell'uso di servizi di terze parti. Qualsiasi modifica significativa sarà comunicata attraverso questa pagina e la \"Data di Effetto\" sarà aggiornata."
+  },
+  "contact": {
+    "title": "Contatti",
+    "intro": "Per qualsiasi domanda o preoccupazione riguardo questa Informativa sulla Privacy, contatta:",
+    "email": "lorisdistefano@pm.me"
+  },
+  "lastUpdated": "Ultimo aggiornamento: 15.01.2025"
+}

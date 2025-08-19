@@ -1,0 +1,59 @@
+{
+  "title": "Termos de Uso",
+  "welcome": {
+    "title": "Bem-vindo ao serviço (referido como \"o Serviço\"). Ao acessar ou utilizar o Serviço, você concorda em cumprir estes Termos de Serviço (\"Termos\"). Se você não concorda, por favor, interrompa o uso do Serviço."
+  },
+  "safetyWarning": {
+    "title": "Aviso Importante de Segurança",
+    "content": "Este Serviço utiliza um modelo de aprendizado de máquina para identificação de cogumelos, mas não é 100% confiável. Muitos cogumelos são semelhantes, e uma identificação incorreta pode resultar em intoxicação grave ou morte. Não confie neste Serviço para determinar se um cogumelo é seguro para consumo. Sempre consulte um micologista profissional ou um especialista local antes de consumir ou manusear cogumelos silvestres."
+  },
+  "useOfService": {
+    "title": "Uso do Serviço",
+    "content": "O Serviço fornece informações sobre condições de alimentos silvestres com base em diversos fatores. As informações são apenas para orientação geral e não são garantidas como precisas, completas ou atualizadas."
+  },
+  "foragingDisclaimer": {
+    "title": "Aviso sobre Coleta",
+    "content": "O Serviço inclui receitas e informações sobre plantas, frutas silvestres, nozes e cogumelos comestíveis. Embora todo esforço seja feito para garantir a precisão, o consumo seguro de alimentos silvestres depende inteiramente da identificação correta, preparo adequado e condições de saúde individuais.",
+    "misidentification": "A identificação incorreta de plantas ou fungos silvestres pode causar reações alérgicas, intoxicação ou outras consequências graves à saúde. Algumas espécies comestíveis possuem sósias tóxicas. Sempre consulte um especialista local ou utilize um guia confiável ao identificar alimentos silvestres, e não consuma nada a menos que tenha 100% de certeza de sua segurança.",
+    "preparation": "Além disso, alguns alimentos silvestres só devem ser consumidos em pequenas quantidades ou após métodos específicos de preparo para neutralizar compostos naturais. As receitas fornecidas pelo Serviço são para fins educativos e pressupõem identificação correta e manuseio adequado dos ingredientes."
+  },
+  "disclaimer": {
+    "title": "Isenção de Responsabilidade",
+    "content": "Você utiliza o Serviço por sua conta e risco. O administrador não assume responsabilidade por acidentes, lesões, danos ou outros incidentes resultantes da confiança nas informações do Serviço. As condições em ambientes naturais podem mudar inesperadamente, e você é responsável por agir com cautela e bom senso ao planejar ou realizar atividades com base nas informações fornecidas pelo Serviço.",
+    "predictions": "Diversos fungos e frutas crescem na natureza, e alguns podem ser tóxicos ou prejudiciais se identificados incorretamente. As previsões fornecidas por este Serviço são geradas por um modelo de aprendizado de máquina e devem ser consideradas apenas como ferramenta de apoio. Este modelo não é perfeito e pode produzir classificações incorretas. Identificar cogumelos de forma errada pode causar intoxicação grave ou morte. Sempre consulte um especialista qualificado antes de consumir ou manusear qualquer fungo ou fruta."
+  },
+  "noProfessionalAdvice": {
+    "title": "Sem Orientação Profissional",
+    "content": "As informações fornecidas pelo Serviço não substituem aconselhamento profissional, incluindo, mas não se limitando a, orientações de segurança, saúde ou ambientais. Sempre consulte autoridades locais ou especialistas antes de realizar atividades ao ar livre."
+  },
+  "thirdParty": {
+    "title": "Conteúdo e Serviços de Terceiros",
+    "content": "O Serviço pode exibir anúncios ou integrar serviços de terceiros. O administrador não se responsabiliza pelo conteúdo, precisão ou práticas de quaisquer serviços de terceiros. Sua interação com esses serviços é regida por seus respectivos termos e políticas."
+  },
+  "intellectualProperty": {
+    "title": "Propriedade Intelectual",
+    "content": "Todo o conteúdo, funcionalidades e recursos fornecidos pelo Serviço, incluindo textos, gráficos e outros materiais, são propriedade do administrador, salvo indicação em contrário. Você não pode reproduzir, distribuir ou modificar qualquer parte do Serviço sem permissão prévia por escrito."
+  },
+  "prohibitedUse": {
+    "title": "Uso Proibido",
+    "intro": "Você concorda em não:",
+    "items": [
+      "Utilizar o Serviço de forma ilegal.",
+      "Tentar interferir na funcionalidade ou segurança do Serviço."
+    ]
+  },
+  "changes": {
+    "title": "Alterações nos Termos",
+    "content": "O administrador reserva-se o direito de modificar estes Termos a qualquer momento. Quaisquer alterações terão efeito imediato após serem publicadas no Serviço. O uso contínuo do Serviço constitui aceitação dos Termos atualizados."
+  },
+  "governingLaw": {
+    "title": "Legislação Aplicável",
+    "content": "Estes Termos são regidos e interpretados de acordo com as leis da Suíça. Quaisquer disputas decorrentes do uso do Serviço estarão sujeitas à jurisdição exclusiva dos tribunais da Suíça."
+  },
+  "contact": {
+    "title": "Contato",
+    "intro": "Para dúvidas ou preocupações sobre estes Termos, entre em contato:",
+    "email": "lorisdistefano@pm.me"
+  },
+  "lastUpdated": "Última atualização em: 02.04.2025"
+}

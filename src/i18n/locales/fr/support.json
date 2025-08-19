@@ -1,0 +1,49 @@
+{
+  "title": "Soutenir le projet",
+  "subtitle": "Aidez-nous à garder Fung.es gratuit et à améliorer sa disponibilité",
+  "description": "Si vous souhaitez aider à maintenir le projet et à améliorer sa disponibilité, merci d’envisager de le soutenir. Vos contributions nous aident à maintenir le service et à ajouter de nouvelles fonctionnalités.",
+  "donate": "Faire un don :",
+  "bitcoin": {
+    "name": "Bitcoin (BTC)",
+    "description": "Soutenir avec la cryptomonnaie Bitcoin"
+  },
+  "ethereum": {
+    "name": "Ethereum (ETH)",
+    "description": "Soutenir avec la cryptomonnaie Ethereum"
+  },
+  "iota": {
+    "name": "IOTA",
+    "description": "Soutenir avec la cryptomonnaie IOTA"
+  },
+  "patreon": {
+    "name": "Patreon",
+    "description": "Soutenir via un abonnement Patreon"
+  },
+  "buymeacoffee": {
+    "name": "Buy Me a Coffee",
+    "description": "Soutenir via Buy Me a Coffee"
+  },
+  "copyAddress": "Copier",
+  "showQR": "QR",
+  "copied": "Copié !",
+  "whySupport": {
+    "title": "Pourquoi soutenir Fung.es ?",
+    "reasons": [
+      "Garder le service gratuit pour tous",
+      "Améliorer la disponibilité et la performance de la carte",
+      "Ajouter de nouvelles fonctionnalités et espèces",
+      "Couvrir les coûts des serveurs et de l’infrastructure",
+      "Soutenir le développement continu et les mises à jour"
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Pour toute question concernant le soutien ou les dons, veuillez nous contacter :",
+    "email": "lorisdistefano@pm.me"
+  },
+  "platformSupport": "Soutien de la plateforme",
+  "address": "Adresse",
+  "close": "Fermer",
+  "thankYou": "Merci pour votre soutien ! 🍄",
+  "qrCode": "Code QR"
+}

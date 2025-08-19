@@ -1,0 +1,59 @@
+{
+  "title": "Conditions d'utilisation",
+  "welcome": {
+    "title": "Bienvenue sur le service (ci-après « le Service »). En accédant ou en utilisant le Service, vous acceptez de respecter ces Conditions d'utilisation (« Conditions »). Si vous n'êtes pas d'accord, veuillez cesser d'utiliser le Service."
+  },
+  "safetyWarning": {
+    "title": "Avertissement de sécurité important",
+    "content": "Ce Service utilise un modèle d'apprentissage automatique pour l'identification des champignons, mais il n'est pas fiable à 100 %. De nombreux champignons se ressemblent, et une mauvaise identification peut entraîner une intoxication grave, voire la mort. Ne vous fiez pas à ce Service pour déterminer si un champignon est comestible. Consultez toujours un mycologue professionnel ou un expert local avant de consommer ou de manipuler des champignons sauvages."
+  },
+  "useOfService": {
+    "title": "Utilisation du Service",
+    "content": "Le Service fournit des informations sur les conditions des aliments sauvages en fonction de divers facteurs. Ces informations sont données à titre indicatif uniquement et ne sont pas garanties comme étant exactes, complètes ou à jour."
+  },
+  "foragingDisclaimer": {
+    "title": "Avertissement sur la cueillette",
+    "content": "Le Service inclut des recettes et des informations sur les plantes, baies, noix et champignons sauvages comestibles. Bien que tous les efforts soient faits pour garantir l'exactitude, la consommation sûre d'aliments sauvages dépend entièrement d'une identification correcte, d'une préparation appropriée et de l'état de santé individuel.",
+    "misidentification": "Une mauvaise identification des plantes ou champignons sauvages peut entraîner des réactions allergiques, des intoxications ou d'autres conséquences graves pour la santé. Certaines espèces comestibles ont des sosies toxiques. Consultez toujours un expert local ou utilisez un guide fiable pour identifier les aliments sauvages, et ne consommez rien à moins d'être absolument certain de sa sécurité.",
+    "preparation": "De plus, certains aliments sauvages ne doivent être consommés qu'en petites quantités ou après des méthodes de préparation spécifiques pour neutraliser certains composés naturels. Les recettes fournies par le Service sont à but éducatif et supposent une identification correcte et une manipulation appropriée des ingrédients."
+  },
+  "disclaimer": {
+    "title": "Exclusion de responsabilité",
+    "content": "Vous utilisez le Service à vos propres risques. L'administrateur n'assume aucune responsabilité pour les accidents, blessures, dommages ou autres incidents résultant de la confiance accordée aux informations du Service. Les conditions dans la nature peuvent changer de façon inattendue, et il vous incombe de faire preuve de prudence et de discernement lors de la planification ou de la réalisation d'activités basées sur les informations fournies par le Service.",
+    "predictions": "De nombreux champignons et fruits poussent à l'état sauvage, et certains peuvent être toxiques ou dangereux en cas de mauvaise identification. Les prédictions fournies par ce Service sont générées par un modèle d'apprentissage automatique et doivent être considérées uniquement comme un outil de conseil. Ce modèle n'est pas parfait et peut produire des classifications incorrectes. Une mauvaise identification des champignons peut entraîner une intoxication grave, voire la mort. Consultez toujours un expert qualifié avant de consommer ou de manipuler des champignons ou des fruits."
+  },
+  "noProfessionalAdvice": {
+    "title": "Aucun conseil professionnel",
+    "content": "Les informations fournies par le Service ne remplacent pas les conseils professionnels, y compris mais sans s'y limiter en matière de sécurité, de santé ou d'environnement. Consultez toujours les autorités locales ou des experts avant d'entreprendre des activités en plein air."
+  },
+  "thirdParty": {
+    "title": "Contenus et services tiers",
+    "content": "Le Service peut afficher des publicités ou intégrer des services tiers. L'administrateur n'est pas responsable du contenu, de l'exactitude ou des pratiques de ces services tiers. Votre interaction avec ces services est régie par leurs propres conditions et politiques."
+  },
+  "intellectualProperty": {
+    "title": "Propriété intellectuelle",
+    "content": "Tout le contenu, les fonctionnalités et les éléments fournis par le Service, y compris les textes, graphiques et autres matériaux, sont la propriété de l'administrateur sauf indication contraire. Vous ne pouvez pas reproduire, distribuer ou modifier une partie du Service sans autorisation écrite préalable."
+  },
+  "prohibitedUse": {
+    "title": "Utilisation interdite",
+    "intro": "Vous vous engagez à ne pas :",
+    "items": [
+      "Utiliser le Service de manière illégale.",
+      "Tenter d'interférer avec la fonctionnalité ou la sécurité du Service."
+    ]
+  },
+  "changes": {
+    "title": "Modifications des Conditions",
+    "content": "L'administrateur se réserve le droit de modifier ces Conditions à tout moment. Toute modification prendra effet immédiatement après sa publication sur le Service. L'utilisation continue du Service vaut acceptation des Conditions mises à jour."
+  },
+  "governingLaw": {
+    "title": "Droit applicable",
+    "content": "Ces Conditions sont régies et interprétées conformément au droit suisse. Tout litige découlant de l'utilisation du Service sera soumis à la juridiction exclusive des tribunaux suisses."
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Pour toute question ou préoccupation concernant ces Conditions, veuillez contacter :",
+    "email": "lorisdistefano@pm.me"
+  },
+  "lastUpdated": "Dernière mise à jour : 02.04.2025"
+}

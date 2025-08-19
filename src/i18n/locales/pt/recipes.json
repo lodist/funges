@@ -1,0 +1,982 @@
+{
+  "title": "Receitas",
+  "subtitle": "Deliciosas receitas usando alimentos selvagens",
+  "filterByIngredient": "Filtrar por ingrediente",
+  "allIngredients": "Todos os Ingredientes",
+  "difficulty": "difficulty",
+  "prepTime": "Tempo de preparo",
+  "cookTime": "Tempo de cozimento",
+  "servings": "Porções",
+  "ingredients": "Ingredientes",
+  "instructions": "Instruções",
+  "tips": "Dicas",
+  "warnings": "Avisos",
+  "description": "Descubra deliciosas receitas usando ingredientes colhidos",
+  "filterBy": "Ingrediente",
+  "filters": "Filtros",
+  "clear": "Limpar",
+  "apply": "Aplicar",
+  "all": "Todos",
+  "mushroom": "Cogumelo",
+  "berry": "Baga",
+  "plant": "Planta",
+  "nut": "Noz",
+  "more": "mais",
+  "search": {
+    "placeholder": "Buscar receitas, ingredientes ou tags",
+    "no_results": "Nenhuma receita encontrada",
+    "found_one": "Encontrada {{count}} receita",
+    "found_other": "Encontradas {{count}} receitas",
+    "try_adjusting": "Tente ajustar os termos de busca ou filtros para encontrar mais receitas."
+  },
+  "view_recipe": "Ver receita",
+  "species": {
+    "amaranth": "Amaranto",
+    "black_chant": "Trombeta dos Mortos",
+    "chant": "Cantharellus",
+    "chickweed": "Mourão",
+    "sorrel": "Azedinha",
+    "dandelion": "Dente-de-leão",
+    "chestnut": "Castanha",
+    "mushroom": "Cogumelo",
+    "nettle": "Urtiga",
+    "parasol": "Cogumelo Guarda-sol",
+    "masterwort": "Imperatória",
+    "morel": "Morchela",
+    "st_george": "Cogumelo de São Jorge",
+    "walnut": "Noz",
+    "lingonb": "Mirtilo-vermelho",
+    "garlic": "Alho",
+    "garlic_wild": "Alho-selvagem",
+    "artichoke": "Alcachofra-selvagem",
+    "asparagus": "Aspargo-selvagem",
+    "strawberry": "Morangos-silvestres"
+  },
+  "tags": {
+    "vegetarian": "Vegetariano",
+    "vegan": "Vegano",
+    "gluten-free": "Sem glúten",
+    "quick": "Rápido",
+    "easy": "Fácil",
+    "medium": "Médio",
+    "hard": "Difícil",
+    "soup": "Sopa",
+    "pasta": "Massa",
+    "salad": "Salada",
+    "dessert": "Sobremesa",
+    "drink": "Bebida",
+    "sauce": "Molho",
+    "main": "Prato principal",
+    "side": "Acompanhamento",
+    "appetizer": "Aperitivo",
+    "breakfast": "Café da manhã",
+    "lunch": "Almoço",
+    "dinner": "Jantar",
+    "snack": "Lanche",
+    "beverage": "Bebida"
+  },
+  "list_of_recipes": {
+    "amaranth-wild-greens-patties": {
+      "title": "Bolinhos de Amaranto e Verduras Selvagens",
+      "ingredients": [
+        "½ xícara de sementes de amaranto",
+        "1 xícara de água",
+        "1 xícara de ervas selvagens mistas (mourão, azedinha, dente-de-leão), bem picadas",
+        "1 ovo pequeno",
+        "2 colheres de sopa de farinha ou farinha de rosca",
+        "Sal, pimenta, azeite de oliva"
+      ],
+      "instructions": [
+        "Cozinhe o amaranto: Cozinhe as sementes de amaranto na água até que seja totalmente absorvida (15–20 min). Deixe esfriar um pouco.",
+        "Misture: Junte o amaranto cozido com as ervas, ovo, farinha, sal e pimenta.",
+        "Forme: Modele pequenos bolinhos com as mãos úmidas.",
+        "Doure: Frite em frigideira com azeite por 3–4 min de cada lado até dourar.",
+        "Sirva: Com molho de iogurte, pesto ou como alternativa vegetariana ao hambúrguer."
+      ],
+      "species": ["amaranth", "chickweed", "sorrel", "dandelion"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Cozinhe o amaranto: Cozinhe as sementes de amaranto na água até que seja totalmente absorvida (15–20 min). Deixe esfriar um pouco."
+        },
+        {
+          "step": 2,
+          "instruction": "Misture: Junte o amaranto cozido com as ervas, ovo, farinha, sal e pimenta."
+        },
+        {
+          "step": 3,
+          "instruction": "Forme: Modele pequenos bolinhos com as mãos úmidas."
+        },
+        {
+          "step": 4,
+          "instruction": "Doure: Frite em frigideira com azeite por 3–4 min de cada lado até dourar."
+        },
+        {
+          "step": 5,
+          "instruction": "Sirva: Com molho de iogurte, pesto ou como alternativa vegetariana ao hambúrguer."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": []
+    },
+    "black-chanterelle-cream-sauce": {
+      "title": "Molho Cremoso de Trombeta dos Mortos",
+      "ingredients": [
+        "100 g de trombetas dos mortos (frescas ou 30 g secas)",
+        "1 chalota pequena, bem picada",
+        "1 dente de alho, picado",
+        "1 colher de sopa de manteiga",
+        "100 ml de vinho branco (opcional)",
+        "200 ml de creme de leite",
+        "Sal e pimenta-do-reino a gosto",
+        "Tomilho fresco (opcional)"
+      ],
+      "instructions": [
+        "Preparar os cogumelos: Se secos, deixe de molho em água quente por 20 min, depois escorra e esprema.",
+        "Refogar os aromáticos: Derreta a manteiga na frigideira, cozinhe a chalota e o alho até ficarem macios.",
+        "Adicionar os cogumelos: Junte as trombetas e refogue por 5–7 min.",
+        "Deglacear (opcional): Adicione o vinho e deixe reduzir pela metade.",
+        "Adicionar o creme: Acrescente o creme de leite, cozinhe por 5 min até engrossar levemente. Ajuste sal, pimenta e tomilho.",
+        "Servir: Perfeito com massa fresca, polenta ou batatas assadas."
+      ],
+      "species": ["black_chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar os cogumelos: Se secos, deixe de molho em água quente por 20 min, depois escorra e esprema."
+        },
+        {
+          "step": 2,
+          "instruction": "Refogar os aromáticos: Derreta a manteiga na frigideira, cozinhe a chalota e o alho até ficarem macios."
+        },
+        {
+          "step": 3,
+          "instruction": "Adicionar os cogumelos: Junte as trombetas e refogue por 5–7 min."
+        },
+        {
+          "step": 4,
+          "instruction": "Deglacear (opcional): Adicione o vinho e deixe reduzir pela metade."
+        },
+        {
+          "step": 5,
+          "instruction": "Adicionar o creme: Acrescente o creme de leite, cozinhe por 5 min até engrossar levemente. Ajuste sal, pimenta e tomilho."
+        },
+        {
+          "step": 6,
+          "instruction": "Servir: Perfeito com massa fresca, polenta ou batatas assadas."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "easy"],
+      "safetyNotes": [
+        "Certifique-se da identificação segura dos cogumelos colhidos."
+      ]
+    },
+    "chanterelle-herb-tart": {
+      "title": "Torta de Cantharellus e Ervas",
+      "ingredients": [
+        "200 g de cantharellus frescos",
+        "1 alho-poró pequeno, fatiado fino",
+        "2 ovos",
+        "100 ml de creme de leite",
+        "1 colher de sopa de azeite de oliva",
+        "Tomilho e salsa frescos, picados",
+        "Sal e pimenta a gosto",
+        "1 rolo de massa folhada"
+      ],
+      "instructions": [
+        "Limpe os cogumelos: Limpe os cantharellus com um pincel ou pano úmido.",
+        "Base refogada: Aqueça o azeite na frigideira, cozinhe o alho-poró até ficar macio. Adicione os cantharellus e refogue por 5 minutos. Ajuste o sal.",
+        "Prepare o recheio: Bata os ovos com o creme de leite, as ervas, sal e pimenta.",
+        "Monte: Disponha a massa folhada em uma forma, adicione cogumelos e alho-poró, despeje a mistura de ovos por cima.",
+        "Asse: Leve ao forno a 180°C por 25–30 minutos até dourar.",
+        "Sirva: Quente ou fria, ideal para um brunch na floresta."
+      ],
+      "species": ["chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpe os cogumelos: Limpe os cantharellus com um pincel ou pano úmido."
+        },
+        {
+          "step": 2,
+          "instruction": "Base refogada: Aqueça o azeite na frigideira, cozinhe o alho-poró até ficar macio. Adicione os cantharellus e refogue por 5 minutos. Ajuste o sal."
+        },
+        {
+          "step": 3,
+          "instruction": "Prepare o recheio: Bata os ovos com o creme de leite, as ervas, sal e pimenta."
+        },
+        {
+          "step": 4,
+          "instruction": "Monte: Disponha a massa folhada em uma forma, adicione cogumelos e alho-poró, despeje a mistura de ovos por cima."
+        },
+        {
+          "step": 5,
+          "instruction": "Asse: Leve ao forno a 180°C por 25–30 minutos até dourar."
+        },
+        {
+          "step": 6,
+          "instruction": "Sirva: Quente ou fria, ideal para um brunch na floresta."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": [
+        "Certifique-se da identificação segura dos cogumelos colhidos."
+      ]
+    },
+    "chickweed-sorrel-salad-with-walnut-vinaigrette": {
+      "title": "Salada de Mourão e Azedinha com Vinagrete de Nozes",
+      "ingredients": [
+        "2 punhados de folhas frescas de mourão",
+        "1 punhado de folhas de azedinha, picadas",
+        "1 punhado pequeno de nozes, torradas e picadas",
+        "2 colheres de chá de óleo de noz (ou azeite de oliva)",
+        "1 colher de chá de vinagre de maçã",
+        "1 colher de chá de mel",
+        "Sal e pimenta a gosto"
+      ],
+      "instructions": [
+        "Torrar as nozes: Em uma frigideira sem óleo, torre as nozes por 3–4 minutos até ficarem aromáticas. Deixe esfriar.",
+        "Lavar as ervas: Lave o mourão e a azedinha, depois seque delicadamente com um pano limpo.",
+        "Preparar o vinagrete: Em uma tigela pequena, bata o óleo, vinagre, mel, sal e pimenta.",
+        "Misturar a salada: Em uma tigela grande, junte mourão, azedinha e nozes. Tempere com o vinagrete e misture levemente.",
+        "Servir: Consuma imediatamente como uma salada fresca e levemente ácida."
+      ],
+      "species": ["chickweed", "sorrel", "walnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Torrar as nozes: Em uma frigideira sem óleo, torre as nozes por 3–4 minutos até ficarem aromáticas. Deixe esfriar."
+        },
+        {
+          "step": 2,
+          "instruction": "Lavar as ervas: Lave o mourão e a azedinha, depois seque delicadamente com um pano limpo."
+        },
+        {
+          "step": 3,
+          "instruction": "Preparar o vinagrete: Em uma tigela pequena, bata o óleo, vinagre, mel, sal e pimenta."
+        },
+        {
+          "step": 4,
+          "instruction": "Misturar a salada: Em uma tigela grande, junte mourão, azedinha e nozes. Tempere com o vinagrete e misture levemente."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Consuma imediatamente como uma salada fresca e levemente ácida."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "salad", "easy"],
+      "safetyNotes": []
+    },
+    "chestnut-mushroom-soup": {
+      "title": "Sopa de Castanhas e Cogumelos",
+      "ingredients": [
+        "200 g de castanhas assadas (descascadas)",
+        "150 g de cogumelos selvagens (porcini ou trombeta dos mortos são ideais)",
+        "1 cebola pequena, picada",
+        "1 dente de alho, picado",
+        "500 ml de caldo de legumes",
+        "1 colher de sopa de manteiga",
+        "1 ramo de tomilho",
+        "100 ml de creme de leite (opcional)",
+        "Sal e pimenta a gosto"
+      ],
+      "instructions": [
+        "Refogar a base: Em uma panela, derreta a manteiga e cozinhe a cebola e o alho até ficarem macios.",
+        "Adicionar os cogumelos: Junte os cogumelos cortados e refogue por 5 minutos.",
+        "Adicionar castanhas e caldo: Acrescente as castanhas e despeje o caldo de legumes. Adicione o tomilho.",
+        "Cozinhar: Leve à fervura, depois abaixe o fogo e cozinhe em fogo baixo por 20 minutos.",
+        "Bater: Retire o tomilho. Bata com um mixer de mão até obter um creme liso.",
+        "Finalizar: Acrescente o creme de leite se desejar, ajuste o sal e a pimenta.",
+        "Sirva quente, acompanhado de pão rústico ou um fio de azeite de trufa."
+      ],
+      "species": ["chestnut", "mushroom", "black_chant", "chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Refogar a base: Em uma panela, derreta a manteiga e cozinhe a cebola e o alho até ficarem macios."
+        },
+        {
+          "step": 2,
+          "instruction": "Adicionar os cogumelos: Junte os cogumelos cortados e refogue por 5 minutos."
+        },
+        {
+          "step": 3,
+          "instruction": "Adicionar castanhas e caldo: Acrescente as castanhas e despeje o caldo de legumes. Adicione o tomilho."
+        },
+        {
+          "step": 4,
+          "instruction": "Cozinhar: Leve à fervura, depois abaixe o fogo e cozinhe em fogo baixo por 20 minutos."
+        },
+        {
+          "step": 5,
+          "instruction": "Bater: Retire o tomilho. Bata com um mixer de mão até obter um creme liso."
+        },
+        {
+          "step": 6,
+          "instruction": "Finalizar: Acrescente o creme de leite se desejar, ajuste o sal e a pimenta."
+        },
+        {
+          "step": 7,
+          "instruction": "Sirva quente, acompanhado de pão rústico ou um fio de azeite de trufa."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "medium",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "medium"],
+      "safetyNotes": [
+        "Certifique-se da identificação segura dos cogumelos colhidos."
+      ]
+    },
+    "dandelion-flower-syrup": {
+      "title": "Xarope de Flores de Dente-de-leão",
+      "ingredients": [
+        "100 flores de dente-de-leão (apenas as pétalas amarelas)",
+        "500 ml de água",
+        "300 g de açúcar",
+        "Suco de 1 limão"
+      ],
+      "instructions": [
+        "Limpar as pétalas: Separe as pétalas amarelas das partes verdes (que são amargas). Lave delicadamente.",
+        "Preparar a infusão: Em uma panela, leve a água para ferver, adicione as pétalas e cozinhe em fogo baixo por 10 minutos.",
+        "Deixar em infusão: Retire do fogo e deixe em infusão coberto durante a noite.",
+        "Coar: Coe o líquido e descarte as pétalas. Adicione o suco de limão e o açúcar ao líquido.",
+        "Cozinhar: Cozinhe em fogo baixo até engrossar em um xarope (20–30 minutos).",
+        "Armazenar: Despeje em potes esterilizados. Ótimo em panquecas, queijos ou chá."
+      ],
+      "species": ["dandelion"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpar as pétalas: Separe as pétalas amarelas das partes verdes (que são amargas). Lave delicadamente."
+        },
+        {
+          "step": 2,
+          "instruction": "Preparar a infusão: Em uma panela, leve a água para ferver, adicione as pétalas e cozinhe em fogo baixo por 10 minutos."
+        },
+        {
+          "step": 3,
+          "instruction": "Deixar em infusão: Retire do fogo e deixe em infusão coberto durante a noite."
+        },
+        {
+          "step": 4,
+          "instruction": "Coar: Coe o líquido e descarte as pétalas. Adicione o suco de limão e o açúcar ao líquido."
+        },
+        {
+          "step": 5,
+          "instruction": "Cozinhar: Cozinhe em fogo baixo até engrossar em um xarope (20–30 minutos)."
+        },
+        {
+          "step": 6,
+          "instruction": "Armazenar: Despeje em potes esterilizados. Ótimo em panquecas, queijos ou chá."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "dessert", "medium"],
+      "safetyNotes": []
+    },
+    "nettle-soup": {
+      "title": "Sopa de Urtiga",
+      "ingredients": [
+        "1 cebola média, picada",
+        "1 dente de alho, picado",
+        "1 colher de sopa de manteiga ou azeite de oliva",
+        "2 batatas médias, descascadas e em cubos",
+        "1 L de caldo de legumes",
+        "2 grandes punhados de folhas frescas de urtiga (use luvas!)",
+        "100 ml de creme de leite ou leite de aveia (opcional)",
+        "Sal e pimenta a gosto"
+      ],
+      "instructions": [
+        "Refogar os aromáticos: Em uma panela, aqueça a manteiga e refogue a cebola e o alho até ficarem macios.",
+        "Adicionar as batatas: Junte as batatas e cozinhe por 5 minutos.",
+        "Adicionar o caldo: Despeje o caldo de legumes e leve para ferver.",
+        "Adicionar as urtigas: Após 10 minutos, adicione as urtigas e cozinhe por mais 5–7 minutos.",
+        "Bater: Bata a sopa com um mixer de mão até ficar lisa.",
+        "Finalizar: Acrescente creme de leite ou leite de aveia se desejar. Ajuste o sal e a pimenta.",
+        "Sirva quente, com um fio de azeite ou croutons."
+      ],
+      "species": ["nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Refogar os aromáticos: Em uma panela, aqueça a manteiga e refogue a cebola e o alho até ficarem macios."
+        },
+        {
+          "step": 2,
+          "instruction": "Adicionar as batatas: Junte as batatas e cozinhe por 5 minutos."
+        },
+        {
+          "step": 3,
+          "instruction": "Adicionar o caldo: Despeje o caldo de legumes e leve para ferver."
+        },
+        {
+          "step": 4,
+          "instruction": "Adicionar as urtigas: Após 10 minutos, adicione as urtigas e cozinhe por mais 5–7 minutos."
+        },
+        {
+          "step": 5,
+          "instruction": "Bater: Bata a sopa com um mixer de mão até ficar lisa."
+        },
+        {
+          "step": 6,
+          "instruction": "Finalizar: Acrescente creme de leite ou leite de aveia se desejar. Ajuste o sal e a pimenta."
+        },
+        {
+          "step": 7,
+          "instruction": "Sirva quente, com um fio de azeite ou croutons."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "medium"],
+      "safetyNotes": ["Use luvas ao manusear urtigas frescas."]
+    },
+    "parasol-mushroom-schnitzel": {
+      "title": "Schnitzel de Cogumelo Guarda-sol",
+      "ingredients": [
+        "2–4 grandes chapéus de cogumelo guarda-sol",
+        "1 ovo",
+        "4 colheres de sopa de farinha de rosca",
+        "2 colheres de sopa de parmesão ralado (opcional)",
+        "Sal e pimenta",
+        "Óleo ou manteiga para fritar"
+      ],
+      "instructions": [
+        "Limpar os cogumelos: Limpe os chapéus com um pano úmido. Não lave em água.",
+        "Preparar a empanagem: Bata o ovo em uma tigela. Em outra, misture farinha de rosca, sal, pimenta e parmesão.",
+        "Empanar: Passe cada chapéu no ovo, depois na mistura de farinha de rosca.",
+        "Fritar: Aqueça óleo ou manteiga em uma frigideira. Frite os chapéus em fogo médio até dourar e ficar crocante (cerca de 3 minutos de cada lado).",
+        "Servir: Com fatias de limão e salada fresca. Um clássico vegetariano."
+      ],
+      "species": ["parasol"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpar os cogumelos: Limpe os chapéus com um pano úmido. Não lave em água."
+        },
+        {
+          "step": 2,
+          "instruction": "Preparar a empanagem: Bata o ovo em uma tigela. Em outra, misture farinha de rosca, sal, pimenta e parmesão."
+        },
+        {
+          "step": 3,
+          "instruction": "Empanar: Passe cada chapéu no ovo, depois na mistura de farinha de rosca."
+        },
+        {
+          "step": 4,
+          "instruction": "Fritar: Aqueça óleo ou manteiga em uma frigideira. Frite os chapéus em fogo médio até dourar e ficar crocante (cerca de 3 minutos de cada lado)."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Com fatias de limão e salada fresca. Um clássico vegetariano."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "6 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Certifique-se da identificação segura dos cogumelos colhidos."
+      ]
+    },
+    "masterwort-infused-honey-glaze": {
+      "title": "Glacê de Mel com Raiz de Imperatória",
+      "ingredients": [
+        "1 colher de chá de raiz de imperatória seca ou 2 colheres de chá fresca, ralada",
+        "150 ml de mel",
+        "1 colher de sopa de água",
+        "Raspas de ½ limão"
+      ],
+      "instructions": [
+        "Aqueça o mel: Em uma panelinha, aqueça delicadamente o mel e a água em fogo baixo.",
+        "Infundir: Adicione a imperatória e as raspas de limão. Misture e mantenha em fogo bem baixo por 5–10 minutos (sem ferver).",
+        "Coar: Retire do fogo e coe com uma peneira fina ou gaze.",
+        "Engarrafar: Despeje em um pote limpo.",
+        "Uso: Perfeito em vegetais assados, frutas grelhadas ou caça. Conserva-se na geladeira por semanas."
+      ],
+      "species": ["masterwort"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Aqueça o mel: Em uma panelinha, aqueça delicadamente o mel e a água em fogo baixo."
+        },
+        {
+          "step": 2,
+          "instruction": "Infundir: Adicione a imperatória e as raspas de limão. Misture e mantenha em fogo bem baixo por 5–10 minutos (sem ferver)."
+        },
+        {
+          "step": 3,
+          "instruction": "Coar: Retire do fogo e coe com uma peneira fina ou gaze."
+        },
+        {
+          "step": 4,
+          "instruction": "Engarrafar: Despeje em um pote limpo."
+        },
+        {
+          "step": 5,
+          "instruction": "Uso: Perfeito em vegetais assados, frutas grelhadas ou caça. Conserva-se na geladeira por semanas."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "5 min",
+      "cookTime": "10 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "medium"],
+      "safetyNotes": []
+    },
+    "morel-chestnut-stuffing": {
+      "title": "Recheio de Morchela e Castanhas",
+      "ingredients": [
+        "100 g de morchelas (frescas ou reidratadas)",
+        "150 g de castanhas assadas, picadas",
+        "1 cebola pequena, em cubos",
+        "2 dentes de alho, picados",
+        "3 fatias de pão rústico, em cubos",
+        "100 ml de caldo de legumes",
+        "1 colher de sopa de manteiga",
+        "Tomilho fresco, sal e pimenta"
+      ],
+      "instructions": [
+        "Refogar a base: Em uma frigideira, derreta a manteiga e cozinhe a cebola e o alho até ficarem macios.",
+        "Adicionar cogumelos e castanhas: Junte as morchelas e as castanhas, cozinhe por 5 minutos.",
+        "Adicionar o pão: Acrescente os cubos de pão e misture delicadamente. Despeje o caldo e misture.",
+        "Temperar: Adicione tomilho, sal e pimenta. Deixe o líquido ser absorvido.",
+        "Assar: Transfira para uma assadeira e asse a 180°C por 20 minutos até dourar.",
+        "Sirva como acompanhamento para carnes assadas ou como prato vegetariano principal."
+      ],
+      "species": ["morel", "chestnut", "garlic", "bread"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Refogar a base: Em uma frigideira, derreta a manteiga e cozinhe a cebola e o alho até ficarem macios."
+        },
+        {
+          "step": 2,
+          "instruction": "Adicionar cogumelos e castanhas: Junte as morchelas e as castanhas, cozinhe por 5 minutos."
+        },
+        {
+          "step": 3,
+          "instruction": "Adicionar o pão: Acrescente os cubos de pão e misture delicadamente. Despeje o caldo e misture."
+        },
+        {
+          "step": 4,
+          "instruction": "Temperar: Adicione tomilho, sal e pimenta. Deixe o líquido ser absorvido."
+        },
+        {
+          "step": 5,
+          "instruction": "Assar: Transfira para uma assadeira e asse a 180°C por 20 minutos até dourar."
+        },
+        {
+          "step": 6,
+          "instruction": "Sirva como acompanhamento para carnes assadas ou como prato vegetariano principal."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "medium",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "side", "medium"],
+      "safetyNotes": [
+        "Certifique-se da identificação segura dos cogumelos colhidos."
+      ]
+    },
+    "nettle-potato-frittata": {
+      "title": "Fritada de Urtiga e Batata",
+      "ingredients": [
+        "1 xícara de urtigas escaldadas",
+        "2 batatas médias, cortadas em fatias finas",
+        "1 cebola, fatiada",
+        "5 ovos",
+        "Sal e pimenta",
+        "1 colher de sopa de azeite de oliva"
+      ],
+      "instructions": [
+        "Escaldar as urtigas: Ferva rapidamente as urtigas por 2 minutos. Escorra e pique.",
+        "Cozinhar as batatas: Em uma frigideira, refogue as batatas e a cebola no azeite até dourar.",
+        "Adicionar as urtigas: Junte as urtigas picadas e cozinhe por mais 2 minutos.",
+        "Adicionar os ovos: Bata os ovos com sal e pimenta, despeje na frigideira.",
+        "Cozinhar: Cozinhe em fogo baixo até firmar embaixo, depois finalize sob o grill ou vire para dourar o outro lado.",
+        "Sirva quente ou fria, perfeita para piqueniques ou café da manhã."
+      ],
+      "species": ["nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Escaldar as urtigas: Ferva rapidamente as urtigas por 2 minutos. Escorra e pique."
+        },
+        {
+          "step": 2,
+          "instruction": "Cozinhar as batatas: Em uma frigideira, refogue as batatas e a cebola no azeite até dourar."
+        },
+        {
+          "step": 3,
+          "instruction": "Adicionar as urtigas: Junte as urtigas picadas e cozinhe por mais 2 minutos."
+        },
+        {
+          "step": 4,
+          "instruction": "Adicionar os ovos: Bata os ovos com sal e pimenta, despeje na frigideira."
+        },
+        {
+          "step": 5,
+          "instruction": "Cozinhar: Cozinhe em fogo baixo até firmar embaixo, depois finalize sob o grill ou vire para dourar o outro lado."
+        },
+        {
+          "step": 6,
+          "instruction": "Sirva quente ou fria, perfeita para piqueniques ou café da manhã."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": ["Use luvas ao manusear urtigas frescas."]
+    },
+    "st-george-s-mushroom-spring-frittata": {
+      "title": "Fritada de Primavera com Cogumelo de São Jorge e Urtiga",
+      "ingredients": [
+        "150 g de cogumelos de São Jorge (Calocybe gambosa), fatiados",
+        "1 cebola pequena, picada",
+        "1 xícara de urtigas escaldadas ou espinafre",
+        "6 ovos",
+        "2 colheres de sopa de queijo ralado (ex: pecorino ou parmesão)",
+        "Sal e pimenta",
+        "1 colher de sopa de azeite de oliva ou manteiga"
+      ],
+      "instructions": [
+        "Preparar os cogumelos: Limpe cuidadosamente e fatie.",
+        "Refogar: Cozinhe a cebola no azeite até ficar macia, adicione os cogumelos e cozinhe por 5–7 minutos. Junte as urtigas escaldadas.",
+        "Bater os ovos: Em uma tigela, bata os ovos com queijo, sal e pimenta.",
+        "Combinar: Despeje os ovos sobre os cogumelos na frigideira. Cozinhe em fogo baixo até quase firmar.",
+        "Finalizar: Leve ao forno ou sob o grill por 5 minutos para dourar (ou vire com cuidado).",
+        "Sirva: Quente ou em temperatura ambiente — perfeita para piqueniques de primavera ou brunch."
+      ],
+      "species": ["st_george", "nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar os cogumelos: Limpe cuidadosamente e fatie."
+        },
+        {
+          "step": 2,
+          "instruction": "Refogar: Cozinhe a cebola no azeite até ficar macia, adicione os cogumelos e cozinhe por 5–7 minutos. Junte as urtigas escaldadas."
+        },
+        {
+          "step": 3,
+          "instruction": "Bater os ovos: Em uma tigela, bata os ovos com queijo, sal e pimenta."
+        },
+        {
+          "step": 4,
+          "instruction": "Combinar: Despeje os ovos sobre os cogumelos na frigideira. Cozinhe em fogo baixo até quase firmar."
+        },
+        {
+          "step": 5,
+          "instruction": "Finalizar: Leve ao forno ou sob o grill por 5 minutos para dourar (ou vire com cuidado)."
+        },
+        {
+          "step": 6,
+          "instruction": "Sirva: Quente ou em temperatura ambiente — perfeita para piqueniques de primavera ou brunch."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Use luvas ao manusear urtigas frescas.",
+        "Certifique-se da identificação segura dos cogumelos colhidos."
+      ]
+    },
+    "walnut-lingonberry-wild-tapenade": {
+      "title": "Tapenade Selvagem de Nozes e Mirtilo-vermelho",
+      "ingredients": [
+        "100 g de nozes",
+        "2 colheres de sopa de geleia de mirtilo-vermelho ou mirtilos-vermelhos frescos",
+        "1 dente de alho",
+        "1 colher de sopa de alho-selvagem ou salsa picada",
+        "2 colheres de sopa de azeite de oliva",
+        "Sal e pimenta a gosto"
+      ],
+      "instructions": [
+        "Torrar as nozes: Torre levemente as nozes em uma frigideira até dourar. Deixe esfriar.",
+        "Bater: Junte todos os ingredientes em um mixer: nozes, alho, mirtilo-vermelho, ervas e azeite.",
+        "Temperar: Ajuste o sal e a pimenta. Bata em pulsos até obter uma pasta grossa e espalhável.",
+        "Servir: Ideal em pão, como molho ou com queijos e vegetais grelhados."
+      ],
+      "species": ["walnut", "lingonb", "garlic", "masterwort"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Torrar as nozes: Torre levemente as nozes em uma frigideira até dourar. Deixe esfriar."
+        },
+        {
+          "step": 2,
+          "instruction": "Bater: Junte todos os ingredientes em um mixer: nozes, alho, mirtilo-vermelho, ervas e azeite."
+        },
+        {
+          "step": 3,
+          "instruction": "Temperar: Ajuste o sal e a pimenta. Bata em pulsos até obter uma pasta grossa e espalhável."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir: Ideal em pão, como molho ou com queijos e vegetais grelhados."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "5 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "appetizer", "easy"],
+      "safetyNotes": []
+    },
+    "wild-artichoke-lemon-pasta": {
+      "title": "Massa com Alcachofras Selvagens e Limão",
+      "ingredients": [
+        "2–3 corações de alcachofra-selvagem, limpos e fatiados",
+        "2 dentes de alho, em fatias finas",
+        "Raspas e suco de 1 limão",
+        "2 colheres de sopa de azeite de oliva",
+        "200 g de massa (linguine ou talharim)",
+        "Sal e pimenta-do-reino",
+        "Hortelã ou salsa fresca para decorar"
+      ],
+      "instructions": [
+        "Preparar as alcachofras: Remova as folhas externas e o feno. Fatie finamente os corações.",
+        "Refogar: Cozinhe delicadamente o alho e as alcachofras no azeite por 10 minutos até ficarem macios.",
+        "Cozinhar a massa: Ferva a massa em água salgada até ficar al dente. Reserve ½ xícara da água do cozimento.",
+        "Temperar: Misture a massa com as alcachofras, suco e raspas de limão, e a água do cozimento.",
+        "Servir: Acrescente sal, pimenta e decore com ervas frescas. Fresca, selvagem, mediterrânea."
+      ],
+      "species": ["artichoke", "garlic"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar as alcachofras: Remova as folhas externas e o feno. Fatie finamente os corações."
+        },
+        {
+          "step": 2,
+          "instruction": "Refogar: Cozinhe delicadamente o alho e as alcachofras no azeite por 10 minutos até ficarem macios."
+        },
+        {
+          "step": 3,
+          "instruction": "Cozinhar a massa: Ferva a massa em água salgada até ficar al dente. Reserve ½ xícara da água do cozimento."
+        },
+        {
+          "step": 4,
+          "instruction": "Temperar: Misture a massa com as alcachofras, suco e raspas de limão, e a água do cozimento."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Acrescente sal, pimenta e decore com ervas frescas. Fresca, selvagem, mediterrânea."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "pasta", "main", "easy"],
+      "safetyNotes": []
+    },
+    "wild-asparagus-dandelion-stir-fry": {
+      "title": "Salteado de Aspargos Selvagens e Dente-de-leão",
+      "ingredients": [
+        "200 g de aspargos selvagens, limpos",
+        "1 punhado de folhas jovens de dente-de-leão, lavadas e picadas",
+        "2 dentes de alho, em fatias",
+        "1 colher de sopa de azeite de oliva",
+        "1 colher de chá de raspas de limão",
+        "Sal e pimenta a gosto",
+        "Opcional: uma pitada de pimenta calabresa"
+      ],
+      "instructions": [
+        "Escaldar os aspargos: Ferva os aspargos por 1 minuto. Escorra e resfrie em água fria.",
+        "Refogar o alho: Em uma frigideira, aqueça o azeite, adicione o alho e a pimenta calabresa opcional, refogue até perfumar.",
+        "Adicionar os vegetais: Junte os aspargos e o dente-de-leão, refogue por 2–3 minutos até ficarem macios e brilhantes.",
+        "Finalizar: Tempere com sal, pimenta e raspas de limão.",
+        "Servir: Ótimo em pão torrado, cereais ou como acompanhamento selvagem."
+      ],
+      "species": ["asparagus", "dandelion", "garlic"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Escaldar os aspargos: Ferva os aspargos por 1 minuto. Escorra e resfrie em água fria."
+        },
+        {
+          "step": 2,
+          "instruction": "Refogar o alho: Em uma frigideira, aqueça o azeite, adicione o alho e a pimenta calabresa opcional, refogue até perfumar."
+        },
+        {
+          "step": 3,
+          "instruction": "Adicionar os vegetais: Junte os aspargos e o dente-de-leão, refogue por 2–3 minutos até ficarem macios e brilhantes."
+        },
+        {
+          "step": 4,
+          "instruction": "Finalizar: Tempere com sal, pimenta e raspas de limão."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Ótimo em pão torrado, cereais ou como acompanhamento selvagem."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": []
+    },
+    "wild-garlic-pesto": {
+      "title": "Pesto de Alho-selvagem e Nozes",
+      "ingredients": [
+        "50 g de folhas de alho-selvagem",
+        "30 g de nozes ou pinhões",
+        "50 g de parmesão ralado",
+        "100 ml de azeite de oliva",
+        "1 colher de chá de suco de limão",
+        "Sal a gosto"
+      ],
+      "instructions": [
+        "Preparar as folhas: Lave bem o alho-selvagem e seque.",
+        "Torrar as nozes: Torre levemente as nozes em uma frigideira. Deixe esfriar.",
+        "Bater: Coloque no mixer o alho-selvagem, nozes, parmesão e suco de limão. Bata até ficar grosseiro.",
+        "Adicionar azeite: Acrescente o azeite aos poucos batendo até virar um creme.",
+        "Temperar: Ajuste o sal.",
+        "Armazenar: Em pote fechado na geladeira por uma semana. Ótimo para massas, sanduíches ou vegetais assados."
+      ],
+      "species": ["garlic", "walnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar as folhas: Lave bem o alho-selvagem e seque."
+        },
+        {
+          "step": 2,
+          "instruction": "Torrar as nozes: Torre levemente as nozes em uma frigideira. Deixe esfriar."
+        },
+        {
+          "step": 3,
+          "instruction": "Bater: Coloque no mixer o alho-selvagem, nozes, parmesão e suco de limão. Bata até ficar grosseiro."
+        },
+        {
+          "step": 4,
+          "instruction": "Adicionar azeite: Acrescente o azeite aos poucos batendo até virar um creme."
+        },
+        {
+          "step": 5,
+          "instruction": "Temperar: Ajuste o sal."
+        },
+        {
+          "step": 6,
+          "instruction": "Armazenar: Em pote fechado na geladeira por uma semana. Ótimo para massas, sanduíches ou vegetais assados."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "easy"],
+      "safetyNotes": []
+    },
+    "wild-strawberry-sorrel-cooler": {
+      "title": "Bebida Refrescante de Morangos-silvestres e Azedinha",
+      "ingredients": [
+        "1 punhado de morangos-silvestres",
+        "6 folhas de azedinha, rasgadas",
+        "1 colher de sopa de mel (ou a gosto)",
+        "300 ml de água com gás gelada",
+        "Suco de ½ limão",
+        "Cubos de gelo"
+      ],
+      "instructions": [
+        "Macere: Em um copo ou coqueteleira, amasse delicadamente os morangos, azedinha e mel.",
+        "Adicionar limão: Junte o suco de limão e misture.",
+        "Completar: Encha o copo com gelo, depois adicione a água com gás.",
+        "Coar (opcional): Coe para uma bebida límpida ou sirva com a polpa.",
+        "Decorar: Decore com morango e folha de azedinha. Bebida de verão perfeita."
+      ],
+      "species": ["strawberry", "sorrel"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Macere: Em um copo ou coqueteleira, amasse delicadamente os morangos, azedinha e mel."
+        },
+        {
+          "step": 2,
+          "instruction": "Adicionar limão: Junte o suco de limão e misture."
+        },
+        {
+          "step": 3,
+          "instruction": "Completar: Encha o copo com gelo, depois adicione a água com gás."
+        },
+        {
+          "step": 4,
+          "instruction": "Coar (opcional): Coe para uma bebida límpida ou sirva com a polpa."
+        },
+        {
+          "step": 5,
+          "instruction": "Decorar: Decore com morango e folha de azedinha. Bebida de verão perfeita."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "5 min",
+      "cookTime": "0 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "drink", "easy"],
+      "safetyNotes": []
+    }
+  }
+}

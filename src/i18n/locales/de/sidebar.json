@@ -1,0 +1,14 @@
+{
+  "appName": "Funges",
+  "appDescription": "Pilz-Sammel-App",
+  "map": "Karte",
+  "species": "Arten",
+  "recipes": "Rezepte",
+  "instructions": "Anleitung",
+  "offlineMaps": "Offline Maps",
+  "support": "Support",
+  "impressum": "Impressum",
+  "privacyPolicy": "Datenschutzerklärung",
+  "termsOfUse": "Nutzungsbedingungen",
+  "settings": "Einstellungen"
+}

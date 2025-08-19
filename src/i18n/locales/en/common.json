@@ -1,0 +1,89 @@
+{
+  "common": {
+    "appName": "Funges",
+    "appDescription": "Mushroom Guide",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "select": "Select",
+    "upload": "Upload",
+    "download": "Download",
+    "view": "View",
+    "add": "Add",
+    "remove": "Remove",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "retry": "Retry",
+    "language": "Language",
+    "theme": "Theme",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System",
+    "sort": "Sort",
+    "email": "Email",
+    "score": "Score"
+  },
+  "offline": {
+    "mode": "Offline Mode",
+    "updateAvailable": "Update Available",
+    "installApp": "Install App",
+    "reloadForUpdate": "Reload for Update"
+  },
+  "home": {
+    "title": "Welcome to Fung.es",
+    "subtitle": "Your AI-powered foraging companion",
+    "description": "Discover and learn about wild edibles with the help of artificial intelligence",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More"
+  },
+  "errors": {
+    "general": "Something went wrong. Please try again.",
+    "network": "Network error. Please check your connection.",
+    "upload": "Failed to upload image. Please try again.",
+    "notFound": "Page not found.",
+    "unauthorized": "You are not authorized to access this resource."
+  },
+  "html": {
+    "title": "Fung.es - Find Mushrooms and Wild Edible Plants Near You",
+    "description": "Find mushrooms & edible plants near you with our real-time foraging map. Discover wild food hotspots using weather and geospatial data for successful foraging.",
+    "keywords": "mushrooms, foraging, wild edible plants, foraging map, wild food, edible plants, mushroom hunting, foraging spots, wild mushrooms",
+    "author": "Fung.es",
+    "ogTitle": "Fung.es - Find Mushrooms and Wild Edible Plants Near You",
+    "ogDescription": "Find mushrooms & edible plants near you with our real-time foraging map. Discover wild food hotspots using weather and geospatial data for successful foraging.",
+    "ogType": "website",
+    "ogImage": "/icons/logo_funges.png",
+    "twitterCard": "summary_large_image",
+    "twitterTitle": "Fung.es - Find Mushrooms and Wild Edible Plants Near You",
+    "twitterDescription": "Find mushrooms & edible plants near you with our real-time foraging map. Discover wild food hotspots using weather and geospatial data for successful foraging.",
+    "twitterImage": "/icons/logo_funges.png"
+  },
+  "splash": {
+    "title": "Fung.es",
+    "subtitle": "Mushroom Foraging App"
+  },
+  "pwa": {
+    "installTitle": "Install Fung.es",
+    "installDescription": "Install Fung.es on your device for quick access and offline functionality.",
+    "installButton": "Install App",
+    "laterButton": "Later"
+  },
+  "close": "Close",
+  "sidebar": {
+    "title": "Sidebar",
+    "description": "Displays the mobile sidebar.",
+    "toggle": "Toggle Sidebar"
+  }
+}

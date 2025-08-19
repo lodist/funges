@@ -1,0 +1,79 @@
+{
+  "title": "Instruções",
+  "subtitle": "Aprenda a usar o Fung.es com segurança e eficácia",
+  "downloadDataset": "Baixar conjunto de dados diário (CSV)",
+  "mapDescription": {
+    "intro": "O mapa destaca áreas geográficas com condições favoráveis para a coleta de cogumelos silvestres e plantas comestíveis.",
+    "selection": "Selecione sua espécie preferida usando o menu suspenso no topo da página.",
+    "colorCoding": "Cada área é colorida em um gradiente do amarelo claro ao vermelho escuro, indicando a probabilidade de encontrar boas condições para coleta, com base em dados ambientais.",
+    "scale": "A escala é acompanhada por uma classificação numérica de 0 a 10, ilustrada abaixo.",
+    "polygons": "Polígonos e marcadores só são exibidos quando fornecem informações sazonais relevantes, mantendo o mapa leve e focado. Se algo não aparecer, pode ser que ainda seja muito cedo ou tarde na estação."
+  },
+  "functions": {
+    "title": "Funções:",
+    "recipes": "Exibe espécies comestíveis próximas e sugere receitas",
+    "location": "Centraliza o mapa na localização do usuário",
+    "theme": "Alterna entre modo claro e escuro",
+    "numbers": "Exibe classificação numérica"
+  },
+  "mapInteraction": {
+    "title": "Clique em uma zona para ver as espécies e sua porcentagem de descoberta:",
+    "maps": "Abrir o destino no Maps"
+  },
+  "about": {
+    "title": "Sobre o Funges",
+    "description": "O Funges é uma plataforma baseada em dados que utiliza informações geográficas e ambientais para fornecer insights em tempo real para a coleta de cogumelos silvestres e plantas comestíveis.",
+    "dataCombination": "Combinando diversos conjuntos de dados — modelos climáticos, imagens de satélite, relevo e indicadores ecológicos — o Funges prevê condições ideais para o crescimento de recursos naturais como cogumelos e plantas.",
+    "climateChange": "À medida que os ecossistemas mudam devido às alterações climáticas, ferramentas como o Funges apoiam práticas sustentáveis de coleta e alimentação baseada na natureza.",
+    "currentStatus": "Atualmente, o Funges oferece insights em tempo real para um número limitado de espécies, com mais alimentos silvestres em breve.",
+    "keyFeatures": {
+      "title": "Principais Funcionalidades",
+      "environmentalData": "Integração de Dados Ambientais: Usa geolocalização, modelos climáticos e dados meteorológicos.",
+      "probabilityModels": "Modelos de Probabilidade: Prevê a presença de recursos naturais.",
+      "climateAdaptation": "Adaptação às Mudanças Climáticas: Oferece insights em tempo real sobre ecossistemas em transformação.",
+      "scalability": "Escalabilidade e Acessibilidade: Acesso aberto para usuários sem exigir dados pessoais."
+    }
+  },
+  "mission": {
+    "title": "Nossa Missão",
+    "commitment": "O Funges está comprometido em usar tecnologia e dados ambientais para capacitar pessoas e organizações na coleta sustentável de recursos.",
+    "goal": "Ao fornecer insights em tempo real e análises preditivas, nosso objetivo é reduzir o desperdício de recursos, adaptar-se às mudanças climáticas e tornar os presentes da natureza mais acessíveis a todos.",
+    "sustainability": "A coleta é mais sustentável quando segue o ritmo natural do ambiente — guiada pela sazonalidade, localidade e equilíbrio ecológico. A natureza provê o que é necessário, quando é necessário; a colheita responsável começa com atenção a esses ciclos.",
+    "community": "Por meio da inovação e do acesso aberto, o objetivo é criar uma comunidade de coletores responsáveis que valorizam a sustentabilidade e a biodiversidade.",
+    "openAccess": "O acesso aberto à informação promove uma conexão mais profunda com o lugar e o tempo, incentivando decisões que respeitam a biodiversidade e a capacidade regenerativa dos ecossistemas."
+  },
+  "prediction": {
+    "title": "Como os Alimentos Silvestres São Previstos",
+    "description": "O Funges analisa uma ampla gama de variáveis ambientais para identificar as áreas mais promissoras para a coleta de cogumelos silvestres e plantas comestíveis. Nossos modelos consideram múltiplas camadas de dados ecológicos — monitorados e combinados ao longo do tempo — para inferir ciclos naturais e determinar o melhor momento e local para a coleta.",
+    "monitorTitle": "monitorar e integrar:",
+    "variables": {
+      "temperature": "Temperatura, umidade e precipitação",
+      "soil": "pH do solo e características geológicas",
+      "vegetation": "Cobertura do solo e tipos de vegetação",
+      "topography": "Topografia e elevação",
+      "trends": "Tendências temporais"
+    },
+    "goal": "O objetivo é simular o comportamento de coletores experientes — potencializado por dados. Em outras palavras, tentar decifrar a natureza de forma respeitosa para tornar a coleta mais acessível, precisa e sustentável.",
+    "methodology": {
+      "title": "Fontes de Dados e Metodologia",
+      "description": "O Funges utiliza uma combinação de conjuntos de dados ambientais, meteorológicos e geoespaciais para prever os melhores locais e momentos para a coleta de alimentos silvestres.",
+      "datasets": "Incluem imagens de satélite, modelos de relevo, APIs meteorológicas e indicadores ecológicos — todos analisados ao longo do tempo para simular os ciclos da natureza e identificar pontos de interesse em tempo real."
+    },
+    "keyDatasets": {
+      "title": "Principais Conjuntos de Dados",
+      "corine": {
+        "title": "1. CORINE Land Cover (CLC)",
+        "description": "Fornecido pela Agência Europeia do Ambiente (EEA), o CORINE Land Cover oferece mapas detalhados de vegetação e uso do solo em toda a Europa. Isso ajuda a determinar ecossistemas adequados para diferentes espécies de cogumelos e plantas.",
+        "source": "Fonte: Agência Europeia do Ambiente (EEA)",
+        "citation": "Citação: Bossard, M., Feranec, J., & Otahel, J. (2000). CORINE Land Cover Technical Guide – Addendum 2000."
+      },
+      "soilPh": {
+        "title": "2. pH do Solo na Europa",
+        "description": "Criado pelo Centro Comum de Investigação (JRC) da Comissão Europeia, este conjunto de dados mapeia a acidez do solo usando mais de 12.000 amostras em 25 países, modeladas por Regression-Kriging com 54 variáveis ambientais.",
+        "source": "Fonte: Centro Europeu de Dados do Solo (ESDAC), Centro Comum de Investigação (JRC)",
+        "citation": "Citação: Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
+      },
+      "additional": "Fontes adicionais como APIs meteorológicas, camadas de sensoriamento remoto e modelos de inclinação/orientação são integradas para melhorar continuamente a precisão das previsões."
+    }
+  }
+}

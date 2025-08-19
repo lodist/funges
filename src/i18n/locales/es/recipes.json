@@ -1,0 +1,982 @@
+{
+  "title": "Recetas",
+  "subtitle": "Deliciosas recetas usando alimentos silvestres",
+  "filterByIngredient": "Filtrar por ingrediente",
+  "allIngredients": "Todos los ingredientes",
+  "difficulty": "Dificultad",
+  "prepTime": "Tiempo de preparación",
+  "cookTime": "Tiempo de cocción",
+  "servings": "Porciones",
+  "ingredients": "Ingredientes",
+  "instructions": "Instrucciones",
+  "tips": "Consejos",
+  "warnings": "Advertencias",
+  "description": "Descubre deliciosas recetas usando ingredientes recolectados",
+  "filterBy": "Ingrediente",
+  "filters": "Filtros",
+  "clear": "Limpiar",
+  "apply": "Aplicar",
+  "all": "Todos",
+  "mushroom": "Hongo",
+  "berry": "Baya",
+  "plant": "Planta",
+  "nut": "Nuez",
+  "more": "más",
+  "search": {
+    "placeholder": "Buscar recetas, ingredientes o etiquetas",
+    "no_results": "No se encontraron recetas",
+    "found_one": "Encontrada {{count}} receta",
+    "found_other": "Encontradas {{count}} recetas",
+    "try_adjusting": "Intenta modificar los términos de búsqueda o los filtros para encontrar más recetas."
+  },
+  "view_recipe": "Ver receta",
+  "species": {
+    "amaranth": "Amaranto",
+    "black_chant": "Trompeta de los Muertos",
+    "chant": "Rebozuelo",
+    "chickweed": "Pamplina",
+    "sorrel": "Acedera",
+    "dandelion": "Diente de león",
+    "chestnut": "Castaña",
+    "mushroom": "Hongo",
+    "nettle": "Ortiga",
+    "parasol": "Macrolepiota procera",
+    "masterwort": "Imperatoria",
+    "morel": "Colmenilla",
+    "st_george": "Seta de San Jorge",
+    "walnut": "Nuez",
+    "lingonb": "Arándano rojo",
+    "garlic": "Ajo",
+    "garlic_wild": "Ajo silvestre",
+    "artichoke": "Alcachofa silvestre",
+    "asparagus": "Espárrago silvestre",
+    "strawberry": "Fresa silvestre"
+  },
+  "tags": {
+    "vegetarian": "Vegetariano",
+    "vegan": "Vegano",
+    "gluten-free": "Sin gluten",
+    "quick": "Rápido",
+    "easy": "Fácil",
+    "medium": "Medio",
+    "hard": "Difícil",
+    "soup": "Sopa",
+    "pasta": "Pasta",
+    "salad": "Ensalada",
+    "dessert": "Postre",
+    "drink": "Bebida",
+    "sauce": "Salsa",
+    "main": "Plato principal",
+    "side": "Guarnición",
+    "appetizer": "Aperitivo",
+    "breakfast": "Desayuno",
+    "lunch": "Almuerzo",
+    "dinner": "Cena",
+    "snack": "Tentempié",
+    "beverage": "Bebida"
+  },
+  "list_of_recipes": {
+    "amaranth-wild-greens-patties": {
+      "title": "Tortitas de amaranto y hierbas silvestres",
+      "ingredients": [
+        "½ taza de semillas de amaranto",
+        "1 taza de agua",
+        "1 taza de hierbas silvestres mixtas (pamplina, acedera, diente de león), finamente picadas",
+        "1 huevo pequeño",
+        "2 cucharadas de harina o pan rallado",
+        "Sal, pimienta, aceite de oliva"
+      ],
+      "instructions": [
+        "Cocinar el amaranto: Cocinar las semillas de amaranto en agua hasta que se absorba completamente (15–20 min). Dejar templar.",
+        "Mezclar: Unir el amaranto cocido con las hierbas, huevo, harina, sal y pimienta.",
+        "Formar: Hacer pequeñas tortitas con las manos húmedas.",
+        "Saltear: Cocinar en sartén con aceite 3–4 min por lado hasta dorar.",
+        "Servir: Con salsa de yogur, pesto o como alternativa vegetariana a la hamburguesa."
+      ],
+      "species": ["amaranth", "chickweed", "sorrel", "dandelion"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Cocinar el amaranto: Cocinar las semillas de amaranto en agua hasta que se absorba completamente (15–20 min). Dejar templar."
+        },
+        {
+          "step": 2,
+          "instruction": "Mezclar: Unir el amaranto cocido con las hierbas, huevo, harina, sal y pimienta."
+        },
+        {
+          "step": 3,
+          "instruction": "Formar: Hacer pequeñas tortitas con las manos húmedas."
+        },
+        {
+          "step": 4,
+          "instruction": "Saltear: Cocinar en sartén con aceite 3–4 min por lado hasta dorar."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Con salsa de yogur, pesto o como alternativa vegetariana a la hamburguesa."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": []
+    },
+    "black-chanterelle-cream-sauce": {
+      "title": "Salsa cremosa de trompeta de los muertos",
+      "ingredients": [
+        "100 g de trompetas de los muertos (frescas o 30 g secas)",
+        "1 chalota pequeña, finamente picada",
+        "1 diente de ajo, picado",
+        "1 cucharada de mantequilla",
+        "100 ml de vino blanco (opcional)",
+        "200 ml de nata",
+        "Sal y pimienta negra al gusto",
+        "Tomillo fresco (opcional)"
+      ],
+      "instructions": [
+        "Preparar los hongos: Si están secos, remojar en agua caliente 20 min, luego escurrir y exprimir.",
+        "Sofreír los aromáticos: Derretir la mantequilla en sartén, cocinar chalota y ajo hasta que estén blandos.",
+        "Añadir los hongos: Incorporar las trompetas y saltear 5–7 min.",
+        "Desglasar (opcional): Añadir vino y reducir a la mitad.",
+        "Añadir nata: Verter la nata, cocinar 5 min hasta que espese ligeramente. Ajustar sal, pimienta y tomillo.",
+        "Servir: Perfecta con pasta fresca, polenta o patatas asadas."
+      ],
+      "species": ["black_chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar los hongos: Si están secos, remojar en agua caliente 20 min, luego escurrir y exprimir."
+        },
+        {
+          "step": 2,
+          "instruction": "Sofreír los aromáticos: Derretir la mantequilla en sartén, cocinar chalota y ajo hasta que estén blandos."
+        },
+        {
+          "step": 3,
+          "instruction": "Añadir los hongos: Incorporar las trompetas y saltear 5–7 min."
+        },
+        {
+          "step": 4,
+          "instruction": "Desglasar (opcional): Añadir vino y reducir a la mitad."
+        },
+        {
+          "step": 5,
+          "instruction": "Añadir nata: Verter la nata, cocinar 5 min hasta que espese ligeramente. Ajustar sal, pimienta y tomillo."
+        },
+        {
+          "step": 6,
+          "instruction": "Servir: Perfecta con pasta fresca, polenta o patatas asadas."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "easy"],
+      "safetyNotes": [
+        "Asegúrate de identificar correctamente los hongos recolectados."
+      ]
+    },
+    "chanterelle-herb-tart": {
+      "title": "Tarta de rebozuelos y hierbas",
+      "ingredients": [
+        "200 g de rebozuelos frescos",
+        "1 puerro pequeño, cortado en rodajas finas",
+        "2 huevos",
+        "100 ml de nata",
+        "1 cucharada de aceite de oliva",
+        "Tomillo y perejil frescos, picados",
+        "Sal y pimienta al gusto",
+        "1 lámina de masa de hojaldre"
+      ],
+      "instructions": [
+        "Limpiar los hongos: Limpiar los rebozuelos con un pincel o paño húmedo.",
+        "Base salteada: Calentar el aceite en sartén, cocinar el puerro hasta que esté blando. Añadir los rebozuelos y saltear 5 minutos. Ajustar sal.",
+        "Preparar el relleno: Batir los huevos con la nata, las hierbas, sal y pimienta.",
+        "Montar: Colocar la masa de hojaldre en un molde, añadir hongos y puerros, verter la mezcla de huevos encima.",
+        "Hornear: Hornear a 180°C durante 25–30 minutos hasta dorar.",
+        "Servir: Caliente o fría, ideal para un brunch en el bosque."
+      ],
+      "species": ["chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpiar los hongos: Limpiar los rebozuelos con un pincel o paño húmedo."
+        },
+        {
+          "step": 2,
+          "instruction": "Base salteada: Calentar el aceite en sartén, cocinar el puerro hasta que esté blando. Añadir los rebozuelos y saltear 5 minutos. Ajustar sal."
+        },
+        {
+          "step": 3,
+          "instruction": "Preparar el relleno: Batir los huevos con la nata, las hierbas, sal y pimienta."
+        },
+        {
+          "step": 4,
+          "instruction": "Montar: Colocar la masa de hojaldre en un molde, añadir hongos y puerros, verter la mezcla de huevos encima."
+        },
+        {
+          "step": 5,
+          "instruction": "Hornear: Hornear a 180°C durante 25–30 minutos hasta dorar."
+        },
+        {
+          "step": 6,
+          "instruction": "Servir: Caliente o fría, ideal para un brunch en el bosque."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": [
+        "Asegúrate de identificar correctamente los hongos recolectados."
+      ]
+    },
+    "chickweed-sorrel-salad-with-walnut-vinaigrette": {
+      "title": "Ensalada de pamplina y acedera con vinagreta de nuez",
+      "ingredients": [
+        "2 puñados de hojas frescas de pamplina",
+        "1 puñado de hojas de acedera, picadas",
+        "1 pequeño puñado de nueces, tostadas y picadas",
+        "2 cucharaditas de aceite de nuez (o aceite de oliva)",
+        "1 cucharadita de vinagre de manzana",
+        "1 cucharadita de miel",
+        "Sal y pimienta al gusto"
+      ],
+      "instructions": [
+        "Tostar las nueces: En una sartén sin aceite, tostar las nueces 3–4 minutos hasta que estén fragantes. Dejar enfriar.",
+        "Lavar las hierbas: Lavar la pamplina y la acedera, luego secar suavemente con un paño limpio.",
+        "Preparar la vinagreta: En un bol pequeño, batir aceite, vinagre, miel, sal y pimienta.",
+        "Mezclar la ensalada: En un bol grande, unir pamplina, acedera y nueces. Aliñar con la vinagreta y mezclar suavemente.",
+        "Servir: Disfrutar enseguida como ensalada fresca y ligeramente ácida."
+      ],
+      "species": ["chickweed", "sorrel", "walnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Tostar las nueces: En una sartén sin aceite, tostar las nueces 3–4 minutos hasta que estén fragantes. Dejar enfriar."
+        },
+        {
+          "step": 2,
+          "instruction": "Lavar las hierbas: Lavar la pamplina y la acedera, luego secar suavemente con un paño limpio."
+        },
+        {
+          "step": 3,
+          "instruction": "Preparar la vinagreta: En un bol pequeño, batir aceite, vinagre, miel, sal y pimienta."
+        },
+        {
+          "step": 4,
+          "instruction": "Mezclar la ensalada: En un bol grande, unir pamplina, acedera y nueces. Aliñar con la vinagreta y mezclar suavemente."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Disfrutar enseguida como ensalada fresca y ligeramente ácida."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "salad", "easy"],
+      "safetyNotes": []
+    },
+    "chestnut-mushroom-soup": {
+      "title": "Sopa de castañas y hongos",
+      "ingredients": [
+        "200 g de castañas asadas (peladas)",
+        "150 g de hongos silvestres (ideales boletus o trompeta de los muertos)",
+        "1 cebolla pequeña, picada",
+        "1 diente de ajo, picado",
+        "500 ml de caldo vegetal",
+        "1 cucharada de mantequilla",
+        "1 ramita de tomillo",
+        "100 ml de nata (opcional)",
+        "Sal y pimienta al gusto"
+      ],
+      "instructions": [
+        "Sofreír la base: En una olla, derretir la mantequilla y cocinar cebolla y ajo hasta que estén blandos.",
+        "Añadir los hongos: Incorporar los hongos cortados y saltear 5 minutos.",
+        "Añadir castañas y caldo: Añadir las castañas y verter el caldo vegetal. Añadir el tomillo.",
+        "Cocinar: Llevar a ebullición, luego bajar el fuego y cocinar a fuego lento 20 minutos.",
+        "Triturar: Retirar el tomillo. Triturar con batidora de mano hasta obtener una crema suave.",
+        "Finalizar: Añadir la nata si se desea, ajustar sal y pimienta.",
+        "Servir caliente, acompañado de pan rústico o un chorrito de aceite de trufa."
+      ],
+      "species": ["chestnut", "mushroom", "black_chant", "chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sofreír la base: En una olla, derretir la mantequilla y cocinar cebolla y ajo hasta que estén blandos."
+        },
+        {
+          "step": 2,
+          "instruction": "Añadir los hongos: Incorporar los hongos cortados y saltear 5 minutos."
+        },
+        {
+          "step": 3,
+          "instruction": "Añadir castañas y caldo: Añadir las castañas y verter el caldo vegetal. Añadir el tomillo."
+        },
+        {
+          "step": 4,
+          "instruction": "Cocinar: Llevar a ebullición, luego bajar el fuego y cocinar a fuego lento 20 minutos."
+        },
+        {
+          "step": 5,
+          "instruction": "Triturar: Retirar el tomillo. Triturar con batidora de mano hasta obtener una crema suave."
+        },
+        {
+          "step": 6,
+          "instruction": "Finalizar: Añadir la nata si se desea, ajustar sal y pimienta."
+        },
+        {
+          "step": 7,
+          "instruction": "Servir caliente, acompañado de pan rústico o un chorrito de aceite de trufa."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "medium",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "medium"],
+      "safetyNotes": [
+        "Asegúrate de identificar correctamente los hongos recolectados."
+      ]
+    },
+    "dandelion-flower-syrup": {
+      "title": "Jarabe de flores de diente de león",
+      "ingredients": [
+        "100 flores de diente de león (solo los pétalos amarillos)",
+        "500 ml de agua",
+        "300 g de azúcar",
+        "Zumo de 1 limón"
+      ],
+      "instructions": [
+        "Limpiar los pétalos: Separar los pétalos amarillos de las partes verdes (que son amargas). Lavar suavemente.",
+        "Preparar la infusión: En una olla llevar el agua a ebullición, añadir los pétalos y cocer a fuego lento 10 minutos.",
+        "Dejar infusionar: Retirar del fuego y dejar infusionar tapado toda la noche.",
+        "Colar: Colar el líquido y desechar los pétalos. Añadir zumo de limón y azúcar al líquido.",
+        "Cocinar: Cocer a fuego bajo hasta que espese en un jarabe (20–30 minutos).",
+        "Conservar: Verter en frascos esterilizados. Ideal sobre pancakes, quesos o en té."
+      ],
+      "species": ["dandelion"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpiar los pétalos: Separar los pétalos amarillos de las partes verdes (que son amargas). Lavar suavemente."
+        },
+        {
+          "step": 2,
+          "instruction": "Preparar la infusión: En una olla llevar el agua a ebullición, añadir los pétalos y cocer a fuego lento 10 minutos."
+        },
+        {
+          "step": 3,
+          "instruction": "Dejar infusionar: Retirar del fuego y dejar infusionar tapado toda la noche."
+        },
+        {
+          "step": 4,
+          "instruction": "Colar: Colar el líquido y desechar los pétalos. Añadir zumo de limón y azúcar al líquido."
+        },
+        {
+          "step": 5,
+          "instruction": "Cocinar: Cocer a fuego bajo hasta que espese en un jarabe (20–30 minutos)."
+        },
+        {
+          "step": 6,
+          "instruction": "Conservar: Verter en frascos esterilizados. Ideal sobre pancakes, quesos o en té."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "dessert", "medium"],
+      "safetyNotes": []
+    },
+    "nettle-soup": {
+      "title": "Sopa de ortigas",
+      "ingredients": [
+        "1 cebolla mediana, picada",
+        "1 diente de ajo, picado",
+        "1 cucharada de mantequilla o aceite de oliva",
+        "2 patatas medianas, peladas y en cubos",
+        "1 L de caldo vegetal",
+        "2 grandes puñados de hojas frescas de ortiga (¡usar guantes!)",
+        "100 ml de nata o leche de avena (opcional)",
+        "Sal y pimienta al gusto"
+      ],
+      "instructions": [
+        "Sofreír los aromáticos: En una olla, calentar la mantequilla y sofreír cebolla y ajo hasta que estén blandos.",
+        "Añadir las patatas: Incorporar las patatas y cocinar 5 minutos.",
+        "Añadir el caldo: Verter el caldo vegetal y llevar a ebullición.",
+        "Añadir las ortigas: Tras 10 minutos, añadir las ortigas y cocer a fuego lento 5–7 minutos más.",
+        "Triturar: Triturar la sopa con batidora de mano hasta que quede suave.",
+        "Finalizar: Añadir nata o leche de avena si se desea. Ajustar sal y pimienta.",
+        "Servir caliente, con un chorrito de aceite o picatostes."
+      ],
+      "species": ["nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sofreír los aromáticos: En una olla, calentar la mantequilla y sofreír cebolla y ajo hasta que estén blandos."
+        },
+        {
+          "step": 2,
+          "instruction": "Añadir las patatas: Incorporar las patatas y cocinar 5 minutos."
+        },
+        {
+          "step": 3,
+          "instruction": "Añadir el caldo: Verter el caldo vegetal y llevar a ebullición."
+        },
+        {
+          "step": 4,
+          "instruction": "Añadir las ortigas: Tras 10 minutos, añadir las ortigas y cocer a fuego lento 5–7 minutos más."
+        },
+        {
+          "step": 5,
+          "instruction": "Triturar: Triturar la sopa con batidora de mano hasta que quede suave."
+        },
+        {
+          "step": 6,
+          "instruction": "Finalizar: Añadir nata o leche de avena si se desea. Ajustar sal y pimienta."
+        },
+        {
+          "step": 7,
+          "instruction": "Servir caliente, con un chorrito de aceite o picatostes."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "medium"],
+      "safetyNotes": ["Usar guantes al manipular ortigas frescas."]
+    },
+    "parasol-mushroom-schnitzel": {
+      "title": "Schnitzel de Macrolepiota procera",
+      "ingredients": [
+        "2–4 grandes sombreros de Macrolepiota procera",
+        "1 huevo",
+        "4 cucharadas de pan rallado",
+        "2 cucharadas de parmesano rallado (opcional)",
+        "Sal y pimienta",
+        "Aceite o mantequilla para freír"
+      ],
+      "instructions": [
+        "Limpiar los hongos: Limpiar los sombreros con un paño húmedo. No lavar bajo el agua.",
+        "Preparar el empanado: Batir el huevo en un bol. En otro mezclar pan rallado, sal, pimienta y parmesano.",
+        "Empanar: Pasar cada sombrero por huevo y luego por la mezcla de pan rallado.",
+        "Freír: Calentar aceite o mantequilla en sartén. Freír los sombreros a fuego medio hasta dorar y crujir (unos 3 minutos por lado).",
+        "Servir: Con gajos de limón y ensalada fresca. Un clásico vegetariano."
+      ],
+      "species": ["parasol"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpiar los hongos: Limpiar los sombreros con un paño húmedo. No lavar bajo el agua."
+        },
+        {
+          "step": 2,
+          "instruction": "Preparar el empanado: Batir el huevo en un bol. En otro mezclar pan rallado, sal, pimienta y parmesano."
+        },
+        {
+          "step": 3,
+          "instruction": "Empanar: Pasar cada sombrero por huevo y luego por la mezcla de pan rallado."
+        },
+        {
+          "step": 4,
+          "instruction": "Freír: Calentar aceite o mantequilla en sartén. Freír los sombreros a fuego medio hasta dorar y crujir (unos 3 minutos por lado)."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Con gajos de limón y ensalada fresca. Un clásico vegetariano."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "6 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Asegúrate de identificar correctamente los hongos recolectados."
+      ]
+    },
+    "masterwort-infused-honey-glaze": {
+      "title": "Glaseado de miel con raíz de imperatoria",
+      "ingredients": [
+        "1 cucharadita de raíz de imperatoria seca o 2 cucharaditas fresca, rallada",
+        "150 ml de miel",
+        "1 cucharada de agua",
+        "Ralladura de ½ limón"
+      ],
+      "instructions": [
+        "Calentar la miel: En un cazo, calentar suavemente miel y agua a fuego bajo.",
+        "Infusionar: Añadir imperatoria y ralladura de limón. Remover y mantener a fuego muy bajo 5–10 minutos (sin hervir).",
+        "Colar: Retirar del fuego y colar con un colador fino o gasa.",
+        "Embotellar: Verter en un frasco limpio.",
+        "Uso: Perfecto sobre verduras asadas, fruta a la parrilla o caza. Se conserva en la nevera varias semanas."
+      ],
+      "species": ["masterwort"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Calentar la miel: En un cazo, calentar suavemente miel y agua a fuego bajo."
+        },
+        {
+          "step": 2,
+          "instruction": "Infusionar: Añadir imperatoria y ralladura de limón. Remover y mantener a fuego muy bajo 5–10 minutos (sin hervir)."
+        },
+        {
+          "step": 3,
+          "instruction": "Colar: Retirar del fuego y colar con un colador fino o gasa."
+        },
+        {
+          "step": 4,
+          "instruction": "Embotellar: Verter en un frasco limpio."
+        },
+        {
+          "step": 5,
+          "instruction": "Uso: Perfecto sobre verduras asadas, fruta a la parrilla o caza. Se conserva en la nevera varias semanas."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "5 min",
+      "cookTime": "10 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "medium"],
+      "safetyNotes": []
+    },
+    "morel-chestnut-stuffing": {
+      "title": "Relleno de colmenillas y castañas",
+      "ingredients": [
+        "100 g de colmenillas (frescas o rehidratadas)",
+        "150 g de castañas asadas, picadas",
+        "1 cebolla pequeña, en cubos",
+        "2 dientes de ajo, picados",
+        "3 rebanadas de pan rústico, en cubos",
+        "100 ml de caldo vegetal",
+        "1 cucharada de mantequilla",
+        "Tomillo fresco, sal y pimienta"
+      ],
+      "instructions": [
+        "Sofreír la base: En una sartén derretir la mantequilla y cocinar cebolla y ajo hasta que estén blandos.",
+        "Añadir hongos y castañas: Incorporar las colmenillas y castañas, cocinar 5 minutos.",
+        "Añadir el pan: Añadir los cubos de pan y mezclar suavemente. Verter el caldo y mezclar.",
+        "Sazonar: Añadir tomillo, sal y pimienta. Dejar que el líquido se absorba.",
+        "Hornear: Pasar a una bandeja y hornear a 180°C durante 20 minutos hasta dorar.",
+        "Servir como guarnición para carnes asadas o como plato principal vegetariano."
+      ],
+      "species": ["morel", "chestnut", "garlic", "bread"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sofreír la base: En una sartén derretir la mantequilla y cocinar cebolla y ajo hasta que estén blandos."
+        },
+        {
+          "step": 2,
+          "instruction": "Añadir hongos y castañas: Incorporar las colmenillas y castañas, cocinar 5 minutos."
+        },
+        {
+          "step": 3,
+          "instruction": "Añadir el pan: Añadir los cubos de pan y mezclar suavemente. Verter el caldo y mezclar."
+        },
+        {
+          "step": 4,
+          "instruction": "Sazonar: Añadir tomillo, sal y pimienta. Dejar que el líquido se absorba."
+        },
+        {
+          "step": 5,
+          "instruction": "Hornear: Pasar a una bandeja y hornear a 180°C durante 20 minutos hasta dorar."
+        },
+        {
+          "step": 6,
+          "instruction": "Servir como guarnición para carnes asadas o como plato principal vegetariano."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "medium",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "side", "medium"],
+      "safetyNotes": [
+        "Asegúrate de identificar correctamente los hongos recolectados."
+      ]
+    },
+    "nettle-potato-frittata": {
+      "title": "Tortilla de ortigas y patatas",
+      "ingredients": [
+        "1 taza de ortigas escaldadas",
+        "2 patatas medianas, cortadas en rodajas finas",
+        "1 cebolla, en rodajas",
+        "5 huevos",
+        "Sal y pimienta",
+        "1 cucharada de aceite de oliva"
+      ],
+      "instructions": [
+        "Escaldar las ortigas: Hervir brevemente las ortigas 2 minutos. Escurrir y picar.",
+        "Cocinar las patatas: En sartén, sofreír patatas y cebolla en aceite de oliva hasta dorar.",
+        "Añadir las ortigas: Incorporar las ortigas picadas y cocinar 2 minutos más.",
+        "Añadir los huevos: Batir los huevos con sal y pimienta, verter en la sartén.",
+        "Cocinar: Cocinar a fuego bajo hasta que cuaje por debajo, luego terminar bajo el grill o dar la vuelta para cuajar arriba.",
+        "Servir caliente o fría, perfecta para picnic o desayuno."
+      ],
+      "species": ["nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Escaldar las ortigas: Hervir brevemente las ortigas 2 minutos. Escurrir y picar."
+        },
+        {
+          "step": 2,
+          "instruction": "Cocinar las patatas: En sartén, sofreír patatas y cebolla en aceite de oliva hasta dorar."
+        },
+        {
+          "step": 3,
+          "instruction": "Añadir las ortigas: Incorporar las ortigas picadas y cocinar 2 minutos más."
+        },
+        {
+          "step": 4,
+          "instruction": "Añadir los huevos: Batir los huevos con sal y pimienta, verter en la sartén."
+        },
+        {
+          "step": 5,
+          "instruction": "Cocinar: Cocinar a fuego bajo hasta que cuaje por debajo, luego terminar bajo el grill o dar la vuelta para cuajar arriba."
+        },
+        {
+          "step": 6,
+          "instruction": "Servir caliente o fría, perfecta para picnic o desayuno."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": ["Usar guantes al manipular ortigas frescas."]
+    },
+    "st-george-s-mushroom-spring-frittata": {
+      "title": "Tortilla primaveral con seta de San Jorge y ortigas",
+      "ingredients": [
+        "150 g de setas de San Jorge (Calocybe gambosa), en rodajas",
+        "1 cebolla pequeña, picada",
+        "1 taza de ortigas escaldadas o espinacas",
+        "6 huevos",
+        "2 cucharadas de queso rallado (ej. pecorino o parmesano)",
+        "Sal y pimienta",
+        "1 cucharada de aceite de oliva o mantequilla"
+      ],
+      "instructions": [
+        "Preparar los hongos: Limpiar cuidadosamente y cortar en rodajas.",
+        "Sofreír: Cocinar la cebolla en el aceite hasta que esté blanda, añadir los hongos y cocinar 5–7 minutos. Incorporar las ortigas escaldadas.",
+        "Batir los huevos: En un bol, batir los huevos con queso, sal y pimienta.",
+        "Combinar: Verter los huevos sobre los hongos en la sartén. Cocinar a fuego bajo hasta que casi cuaje.",
+        "Finalizar: Pasar al horno o bajo el grill 5 minutos para dorar (o dar la vuelta con cuidado).",
+        "Servir: Caliente o a temperatura ambiente — perfecta para picnic de primavera o brunch."
+      ],
+      "species": ["st_george", "nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar los hongos: Limpiar cuidadosamente y cortar en rodajas."
+        },
+        {
+          "step": 2,
+          "instruction": "Sofreír: Cocinar la cebolla en el aceite hasta que esté blanda, añadir los hongos y cocinar 5–7 minutos. Incorporar las ortigas escaldadas."
+        },
+        {
+          "step": 3,
+          "instruction": "Batir los huevos: En un bol, batir los huevos con queso, sal y pimienta."
+        },
+        {
+          "step": 4,
+          "instruction": "Combinar: Verter los huevos sobre los hongos en la sartén. Cocinar a fuego bajo hasta que casi cuaje."
+        },
+        {
+          "step": 5,
+          "instruction": "Finalizar: Pasar al horno o bajo el grill 5 minutos para dorar (o dar la vuelta con cuidado)."
+        },
+        {
+          "step": 6,
+          "instruction": "Servir: Caliente o a temperatura ambiente — perfecta para picnic de primavera o brunch."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Usar guantes al manipular ortigas frescas.",
+        "Asegúrate de identificar correctamente los hongos recolectados."
+      ]
+    },
+    "walnut-lingonberry-wild-tapenade": {
+      "title": "Tapenade silvestre de nuez y arándano rojo",
+      "ingredients": [
+        "100 g de nueces",
+        "2 cucharadas de mermelada de arándano rojo o arándanos rojos frescos",
+        "1 diente de ajo",
+        "1 cucharada de ajo silvestre o perejil picado",
+        "2 cucharadas de aceite de oliva",
+        "Sal y pimienta al gusto"
+      ],
+      "instructions": [
+        "Tostar las nueces: Tostar ligeramente las nueces en sartén hasta dorar. Dejar enfriar.",
+        "Triturar: Unir todos los ingredientes en una batidora: nueces, ajo, arándano rojo, hierbas y aceite.",
+        "Aliñar: Ajustar sal y pimienta. Triturar a pulsos hasta obtener una pasta gruesa y untable.",
+        "Servir: Ideal sobre pan, como salsa o con quesos y verduras a la parrilla."
+      ],
+      "species": ["walnut", "lingonb", "garlic", "masterwort"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Tostar las nueces: Tostar ligeramente las nueces en sartén hasta dorar. Dejar enfriar."
+        },
+        {
+          "step": 2,
+          "instruction": "Triturar: Unir todos los ingredientes en una batidora: nueces, ajo, arándano rojo, hierbas y aceite."
+        },
+        {
+          "step": 3,
+          "instruction": "Aliñar: Ajustar sal y pimienta. Triturar a pulsos hasta obtener una pasta gruesa y untable."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir: Ideal sobre pan, como salsa o con quesos y verduras a la parrilla."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "5 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "appetizer", "easy"],
+      "safetyNotes": []
+    },
+    "wild-artichoke-lemon-pasta": {
+      "title": "Pasta con alcachofas silvestres y limón",
+      "ingredients": [
+        "2–3 corazones de alcachofa silvestre, limpios y en rodajas",
+        "2 dientes de ajo, en rodajas finas",
+        "Ralladura y zumo de 1 limón",
+        "2 cucharadas de aceite de oliva",
+        "200 g de pasta (linguine o tallarines)",
+        "Sal y pimienta negra",
+        "Mentastro o perejil fresco para decorar"
+      ],
+      "instructions": [
+        "Preparar las alcachofas: Quitar las hojas exteriores y el heno. Cortar finamente los corazones.",
+        "Sofreír: Cocinar suavemente ajo y alcachofas en aceite 10 minutos hasta que estén tiernos.",
+        "Cocer la pasta: Hervir la pasta en agua salada hasta al dente. Reservar ½ taza de agua de cocción.",
+        "Aliñar: Mezclar la pasta con alcachofas, zumo y ralladura de limón, y el agua de cocción.",
+        "Servir: Añadir sal, pimienta y decorar con hierbas frescas. Fresca, silvestre, mediterránea."
+      ],
+      "species": ["artichoke", "garlic"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar las alcachofas: Quitar las hojas exteriores y el heno. Cortar finamente los corazones."
+        },
+        {
+          "step": 2,
+          "instruction": "Sofreír: Cocinar suavemente ajo y alcachofas en aceite 10 minutos hasta que estén tiernos."
+        },
+        {
+          "step": 3,
+          "instruction": "Cocer la pasta: Hervir la pasta en agua salada hasta al dente. Reservar ½ taza de agua de cocción."
+        },
+        {
+          "step": 4,
+          "instruction": "Aliñar: Mezclar la pasta con alcachofas, zumo y ralladura de limón, y el agua de cocción."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Añadir sal, pimienta y decorar con hierbas frescas. Fresca, silvestre, mediterránea."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "pasta", "main", "easy"],
+      "safetyNotes": []
+    },
+    "wild-asparagus-dandelion-stir-fry": {
+      "title": "Salteado de espárragos silvestres y diente de león",
+      "ingredients": [
+        "200 g de espárragos silvestres, limpios",
+        "1 puñado de hojas jóvenes de diente de león, lavadas y picadas",
+        "2 dientes de ajo, en rodajas",
+        "1 cucharada de aceite de oliva",
+        "1 cucharadita de ralladura de limón",
+        "Sal y pimienta al gusto",
+        "Opcional: una pizca de guindilla"
+      ],
+      "instructions": [
+        "Escaldar los espárragos: Hervir los espárragos 1 minuto. Escurrir y enfriar en agua fría.",
+        "Sofreír el ajo: En sartén calentar el aceite, añadir ajo y guindilla opcional, cocinar hasta que huela.",
+        "Añadir las verduras: Incorporar espárragos y diente de león, saltear 2–3 minutos hasta que estén tiernos y brillantes.",
+        "Finalizar: Aliñar con sal, pimienta y ralladura de limón.",
+        "Servir: Ideal sobre pan tostado, cereales o como guarnición silvestre."
+      ],
+      "species": ["asparagus", "dandelion", "garlic"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Escaldar los espárragos: Hervir los espárragos 1 minuto. Escurrir y enfriar en agua fría."
+        },
+        {
+          "step": 2,
+          "instruction": "Sofreír el ajo: En sartén calentar el aceite, añadir ajo y guindilla opcional, cocinar hasta que huela."
+        },
+        {
+          "step": 3,
+          "instruction": "Añadir las verduras: Incorporar espárragos y diente de león, saltear 2–3 minutos hasta que estén tiernos y brillantes."
+        },
+        {
+          "step": 4,
+          "instruction": "Finalizar: Aliñar con sal, pimienta y ralladura de limón."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Ideal sobre pan tostado, cereales o como guarnición silvestre."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": []
+    },
+    "wild-garlic-pesto": {
+      "title": "Pesto de ajo silvestre y nuez",
+      "ingredients": [
+        "50 g de hojas de ajo silvestre",
+        "30 g de nueces o piñones",
+        "50 g de parmesano rallado",
+        "100 ml de aceite de oliva",
+        "1 cucharadita de zumo de limón",
+        "Sal al gusto"
+      ],
+      "instructions": [
+        "Preparar las hojas: Lavar bien el ajo silvestre y secar.",
+        "Tostar las nueces: Tostar ligeramente las nueces en sartén. Dejar enfriar.",
+        "Triturar: Poner en batidora ajo silvestre, nueces, parmesano y zumo de limón. Triturar grueso.",
+        "Añadir aceite: Verter el aceite en hilo mientras se tritura hasta obtener una crema.",
+        "Aliñar: Ajustar de sal.",
+        "Conservar: En frasco cerrado en la nevera una semana. Ideal para pasta, bocadillos o verduras asadas."
+      ],
+      "species": ["garlic", "walnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar las hojas: Lavar bien el ajo silvestre y secar."
+        },
+        {
+          "step": 2,
+          "instruction": "Tostar las nueces: Tostar ligeramente las nueces en sartén. Dejar enfriar."
+        },
+        {
+          "step": 3,
+          "instruction": "Triturar: Poner en batidora ajo silvestre, nueces, parmesano y zumo de limón. Triturar grueso."
+        },
+        {
+          "step": 4,
+          "instruction": "Añadir aceite: Verter el aceite en hilo mientras se tritura hasta obtener una crema."
+        },
+        {
+          "step": 5,
+          "instruction": "Aliñar: Ajustar de sal."
+        },
+        {
+          "step": 6,
+          "instruction": "Conservar: En frasco cerrado en la nevera una semana. Ideal para pasta, bocadillos o verduras asadas."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "easy"],
+      "safetyNotes": []
+    },
+    "wild-strawberry-sorrel-cooler": {
+      "title": "Bebida fresca de fresas silvestres y acedera",
+      "ingredients": [
+        "1 puñado de fresas silvestres",
+        "6 hojas de acedera, troceadas",
+        "1 cucharada de miel (o al gusto)",
+        "300 ml de agua con gas fría",
+        "Zumo de ½ limón",
+        "Cubos de hielo"
+      ],
+      "instructions": [
+        "Majar: En un vaso o coctelera, machacar suavemente fresas, acedera y miel.",
+        "Añadir limón: Incorporar el zumo de limón y mezclar.",
+        "Completar: Llenar el vaso con hielo, luego verter el agua con gas.",
+        "Colar (opcional): Colar para una bebida clara o servir con la pulpa.",
+        "Decorar: Decorar con una fresa y hoja de acedera. Bebida veraniega perfecta."
+      ],
+      "species": ["strawberry", "sorrel"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Majar: En un vaso o coctelera, machacar suavemente fresas, acedera y miel."
+        },
+        {
+          "step": 2,
+          "instruction": "Añadir limón: Incorporar el zumo de limón y mezclar."
+        },
+        {
+          "step": 3,
+          "instruction": "Completar: Llenar el vaso con hielo, luego verter el agua con gas."
+        },
+        {
+          "step": 4,
+          "instruction": "Colar (opcional): Colar para una bebida clara o servir con la pulpa."
+        },
+        {
+          "step": 5,
+          "instruction": "Decorar: Decorar con una fresa y hoja de acedera. Bebida veraniega perfecta."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "5 min",
+      "cookTime": "0 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "drink", "easy"],
+      "safetyNotes": []
+    }
+  }
+}

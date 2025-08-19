@@ -1,0 +1,59 @@
+{
+  "title": "Nutzungsbedingungen",
+  "welcome": {
+    "title": "Willkommen beim Service (im Folgenden „der Service“ genannt). Durch den Zugriff auf oder die Nutzung des Service erklärst du dich mit diesen Nutzungsbedingungen („Bedingungen“) einverstanden. Wenn du nicht einverstanden bist, stelle die Nutzung des Service bitte ein."
+  },
+  "safetyWarning": {
+    "title": "Wichtiger Sicherheitshinweis",
+    "content": "Dieser Service verwendet ein maschinelles Lernmodell zur Pilzbestimmung, ist jedoch nicht zu 100 % zuverlässig. Viele Pilze sehen ähnlich aus, und eine Fehlbestimmung kann zu schweren Vergiftungen oder zum Tod führen. Verlasse dich nicht auf diesen Service, um zu entscheiden, ob ein Pilz essbar ist. Konsultiere immer einen professionellen Mykologen oder einen lokalen Experten, bevor du Wildpilze verzehrst oder sammelst."
+  },
+  "useOfService": {
+    "title": "Nutzung des Service",
+    "content": "Der Service stellt Informationen zu Bedingungen für Wildnahrung auf Basis verschiedener Faktoren bereit. Diese Informationen dienen nur als allgemeine Orientierung und sind nicht garantiert korrekt, vollständig oder aktuell."
+  },
+  "foragingDisclaimer": {
+    "title": "Haftungsausschluss zum Sammeln",
+    "content": "Der Service enthält Rezepte und Informationen zu essbaren Wildpflanzen, Beeren, Nüssen und Pilzen. Trotz größter Sorgfalt hängt der sichere Verzehr von Wildnahrung vollständig von der richtigen Bestimmung, angemessenen Zubereitung und individuellen Gesundheitsbedingungen ab.",
+    "misidentification": "Eine Fehlbestimmung von Wildpflanzen oder Pilzen kann zu allergischen Reaktionen, Vergiftungen oder anderen schwerwiegenden gesundheitlichen Folgen führen. Einige essbare Arten haben giftige Doppelgänger. Konsultiere immer einen lokalen Experten oder verwende einen anerkannten Bestimmungsführer und verzehre nichts, wenn du dir nicht zu 100 % sicher bist.",
+    "preparation": "Einige Wildnahrungen sollten zudem nur in kleinen Mengen oder nach spezieller Zubereitung verzehrt werden, um natürliche Inhaltsstoffe zu neutralisieren. Die vom Service bereitgestellten Rezepte dienen nur zu Bildungszwecken und setzen die korrekte Bestimmung und sachgemäße Handhabung der Zutaten voraus."
+  },
+  "disclaimer": {
+    "title": "Haftungsausschluss",
+    "content": "Die Nutzung des Service erfolgt auf eigenes Risiko. Der Administrator übernimmt keine Verantwortung für Unfälle, Verletzungen, Schäden oder andere Vorfälle, die durch das Vertrauen auf die Informationen des Service entstehen. Bedingungen in der Natur können sich unerwartet ändern; du bist selbst dafür verantwortlich, Vorsicht und Urteilsvermögen bei der Planung oder Durchführung von Aktivitäten auf Basis der bereitgestellten Informationen walten zu lassen.",
+    "predictions": "In der Natur wachsen viele verschiedene Pilze und Früchte, von denen einige bei Fehlbestimmung giftig oder schädlich sein können. Die vom Service bereitgestellten Vorhersagen werden von einem maschinellen Lernmodell erzeugt und dienen nur als Orientierungshilfe. Dieses Modell ist nicht perfekt und kann falsche Klassifizierungen liefern. Eine Fehlbestimmung von Pilzen kann zu schweren Vergiftungen oder zum Tod führen. Konsultiere immer einen qualifizierten Experten, bevor du Pilze oder Früchte verzehrst oder sammelst."
+  },
+  "noProfessionalAdvice": {
+    "title": "Kein Ersatz für professionelle Beratung",
+    "content": "Die vom Service bereitgestellten Informationen ersetzen keine professionelle Beratung, insbesondere nicht in Bezug auf Sicherheit, Gesundheit oder Umwelt. Konsultiere immer lokale Behörden oder Experten, bevor du Outdoor-Aktivitäten unternimmst."
+  },
+  "thirdParty": {
+    "title": "Inhalte und Dienste Dritter",
+    "content": "Der Service kann Werbung anzeigen oder Dienste Dritter integrieren. Der Administrator ist nicht verantwortlich für Inhalte, Richtigkeit oder Praktiken solcher Drittanbieter. Deine Interaktion mit diesen Diensten unterliegt deren eigenen Bedingungen und Richtlinien."
+  },
+  "intellectualProperty": {
+    "title": "Geistiges Eigentum",
+    "content": "Alle vom Service bereitgestellten Inhalte, Funktionen und Funktionalitäten, einschließlich Texte, Grafiken und anderer Materialien, sind – sofern nicht anders angegeben – Eigentum des Administrators. Ohne vorherige schriftliche Genehmigung darf kein Teil des Service reproduziert, verbreitet oder verändert werden."
+  },
+  "prohibitedUse": {
+    "title": "Unzulässige Nutzung",
+    "intro": "Du erklärst dich damit einverstanden, Folgendes zu unterlassen:",
+    "items": [
+      "Den Service in irgendeiner rechtswidrigen Weise zu nutzen.",
+      "Zu versuchen, die Funktionalität oder Sicherheit des Service zu beeinträchtigen."
+    ]
+  },
+  "changes": {
+    "title": "Änderungen der Bedingungen",
+    "content": "Der Administrator behält sich das Recht vor, diese Bedingungen jederzeit zu ändern. Änderungen treten mit ihrer Veröffentlichung im Service sofort in Kraft. Die fortgesetzte Nutzung des Service gilt als Zustimmung zu den aktualisierten Bedingungen."
+  },
+  "governingLaw": {
+    "title": "Anwendbares Recht",
+    "content": "Diese Bedingungen unterliegen dem Recht der Schweiz und werden nach diesem ausgelegt. Für Streitigkeiten im Zusammenhang mit der Nutzung des Service sind ausschließlich die Gerichte der Schweiz zuständig."
+  },
+  "contact": {
+    "title": "Kontakt",
+    "intro": "Bei Fragen oder Anliegen zu diesen Bedingungen kontaktiere bitte:",
+    "email": "lorisdistefano@pm.me"
+  },
+  "lastUpdated": "Letzte Aktualisierung am: 02.04.2025"
+}

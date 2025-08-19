@@ -1,0 +1,79 @@
+{
+  "title": "Istruzioni",
+  "subtitle": "Impara come usare Fung.es in modo sicuro ed efficace",
+  "downloadDataset": "Scarica il dataset giornaliero (CSV)",
+  "mapDescription": {
+    "intro": "La mappa evidenzia le aree geografiche con condizioni favorevoli per la raccolta di funghi selvatici e piante commestibili.",
+    "selection": "Seleziona la tua specie preferita usando il menu a tendina nella parte superiore della pagina.",
+    "colorCoding": "Ogni area è codificata a colori su una scala dal giallo pallido al rosso scuro, indicando la probabilità di incontrare buone condizioni di raccolta, basate sui dati ambientali.",
+    "scale": "La scala è accompagnata da una valutazione numerica da 0 a 10, illustrata di seguito.",
+    "polygons": "I poligoni e i marcatori vengono mostrati solo quando forniscono informazioni stagionali significative, mantenendo la mappa leggera e focalizzata. Se qualcosa non viene mostrato, potrebbe essere troppo presto o troppo tardi nella stagione."
+  },
+  "functions": {
+    "title": "Funzioni:",
+    "recipes": "Mostra Specie Commestibili che Crescono Nelle Vicinanze e Suggerisce Ricette",
+    "location": "Centra la Mappa sulla Posizione dell'Utente",
+    "theme": "Passa tra Modalità Chiara e Scura",
+    "numbers": "Mostra Valutazione Numerica"
+  },
+  "mapInteraction": {
+    "title": "Clicca su una zona per vedere le specie e la loro percentuale di ritrovamento:",
+    "maps": "Apri la destinazione nelle Mappe"
+  },
+  "about": {
+    "title": "Su Funges",
+    "description": "Funges è una piattaforma basata sui dati che utilizza dati geografici e ambientali per fornire informazioni in tempo reale per la raccolta di funghi selvatici e piante commestibili.",
+    "dataCombination": "Combinando diversi set di dati—modelli climatici, immagini satellitari, indicatori del terreno ed ecologici—Funges prevede le condizioni ottimali per la crescita di risorse naturali come funghi e piante.",
+    "climateChange": "Mentre gli ecosistemi cambiano a causa del cambiamento climatico, strumenti come Funges supportano pratiche sostenibili di raccolta e raccolta di cibo basata sulla natura.",
+    "currentStatus": "Attualmente, Funges offre informazioni in tempo reale per un numero limitato di specie, con più commestibili selvatici in arrivo.",
+    "keyFeatures": {
+      "title": "Caratteristiche Principali",
+      "environmentalData": "Integrazione Dati Ambientali: Utilizza geolocalizzazione, modelli climatici e dati meteorologici.",
+      "probabilityModels": "Modelli di Probabilità: Prevede la probabilità di presenza di risorse naturali.",
+      "climateAdaptation": "Adattamento al Cambiamento Climatico: Offre informazioni in tempo reale sugli ecosistemi in cambiamento.",
+      "scalability": "Scalabilità e Accessibilità: Accesso aperto per gli utenti senza richiedere dati personali."
+    }
+  },
+  "mission": {
+    "title": "La Nostra Missione",
+    "commitment": "Funges si impegna a sfruttare la tecnologia e i dati ambientali per potenziare individui e organizzazioni nella raccolta sostenibile e nella raccolta di risorse.",
+    "goal": "Fornendo informazioni e analisi predittive in tempo reale, il nostro obiettivo è ridurre lo spreco di risorse, adattarci al cambiamento climatico e rendere i doni della natura più accessibili a tutti.",
+    "sustainability": "La raccolta è più sostenibile quando segue il ritmo naturale dell'ambiente — guidata dalla stagionalità, dalla località e dall'equilibrio ecologico. La natura fornisce ciò che è necessario, quando è necessario; la raccolta responsabile inizia con l'attenzione a questi cicli.",
+    "community": "Attraverso l'innovazione e l'accesso aperto, l'obiettivo è creare una comunità di raccoglitori responsabili che valorizzano la sostenibilità e la biodiversità.",
+    "openAccess": "L'accesso aperto alle informazioni favorisce una connessione più profonda con il luogo e il tempo, incoraggiando decisioni che rispettano la biodiversità e la capacità rigenerativa degli ecosistemi."
+  },
+  "prediction": {
+    "title": "Come Vengono Predetti i Commestibili Selvatici",
+    "description": "Funges analizza un'ampia gamma di variabili ambientali per identificare le aree più promettenti per la raccolta di funghi selvatici e piante commestibili. I nostri modelli considerano più livelli di dati ecologici—tracciati e combinati nel tempo—per dedurre i cicli naturali e determinare i tempi e le posizioni ottimali per la raccolta.",
+    "monitorTitle": "monitora e integra:",
+    "variables": {
+      "temperature": "Temperatura, umidità e precipitazioni",
+      "soil": "pH del suolo e caratteristiche geologiche",
+      "vegetation": "Copertura del suolo e tipi di vegetazione",
+      "topography": "Topografia e altitudine",
+      "trends": "Tendenze temporali"
+    },
+    "goal": "L'obiettivo è simulare il comportamento di raccoglitori esperti—amplificato dai dati. In altre parole, rispettosamente cercando di hackerare la natura per rendere la raccolta selvatica più accessibile, precisa e sostenibile.",
+    "methodology": {
+      "title": "Fonti di Dati e Metodologia",
+      "description": "Funges utilizza una combinazione di set di dati ambientali, meteorologici e geospaziali per prevedere le migliori posizioni e tempi per la raccolta di commestibili selvatici.",
+      "datasets": "Questi includono immagini satellitari, modelli del terreno, API meteorologiche e indicatori ecologici—tutti analizzati nel tempo per simulare i cicli della natura e identificare hotspot in tempo reale."
+    },
+    "keyDatasets": {
+      "title": "Set di Dati Principali",
+      "corine": {
+        "title": "1. CORINE Land Cover (CLC)",
+        "description": "Fornito dall'Agenzia Europea per l'Ambiente (EEA), CORINE Land Cover offre mappe dettagliate della vegetazione e dell'uso del suolo in tutta Europa. Questo aiuta a determinare ecosistemi adatti per diverse specie di funghi e piante.",
+        "source": "Fonte: Agenzia Europea per l'Ambiente (EEA)",
+        "citation": "Citazione: Bossard, M., Feranec, J., & Otahel, J. (2000). CORINE Land Cover Technical Guide – Addendum 2000."
+      },
+      "soilPh": {
+        "title": "2. pH del Suolo in Europa",
+        "description": "Creato dal Centro Comune di Ricerca (JRC) della Commissione Europea, questo set di dati mappa l'acidità del suolo utilizzando oltre 12.000 campioni in 25 paesi, modellati tramite Regression-Kriging con 54 covariate ambientali.",
+        "source": "Fonte: Centro Dati del Suolo Europeo (ESDAC), Centro Comune di Ricerca (JRC)",
+        "citation": "Citazione: Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
+      },
+      "additional": "Fonti aggiuntive come API meteorologiche, livelli di telerilevamento e modelli di pendenza/aspetto sono integrati per migliorare continuamente l'accuratezza della previsione."
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "title": "Mapa interactivo de recolección",
+  "description": "Explora ubicaciones de recolección y datos en tiempo real",
+  "loading": "Cargando mapa...",
+  "error": {
+    "title": "Error del mapa",
+    "retry": "Reintentar",
+    "reload": "Recargar página",
+    "offline": "Estás sin conexión",
+    "offlineMessage": "Por favor, revisa tu conexión a internet e inténtalo de nuevo.",
+    "generic": "Ocurrió un error al cargar el mapa.",
+    "waitingForConnection": "Esperando conexión..."
+  },
+
+  "noSpotsFound": "No se encontraron puntos de recolección cercanos",
+  "spotsFound": "¡Se encontró{{count > 1 ? 'n' : ''}} {{count}} punto{{count > 1 ? 's' : ''}} de recolección cerca!",
+  "tryMovingMap": "Intenta mover el mapa u obtener tu ubicación",
+  "geolocation": {
+    "enable": "Activar ubicación",
+    "finding": "Buscando tu ubicación...",
+    "found": "Ubicación encontrada",
+    "error": "No se pudo obtener la ubicación"
+  },
+  "overlays": {
+    "title": "Capas del mapa",
+    "polygons": "Mostrar áreas de recolección",
+    "realtime": "Mostrar datos en tiempo real"
+  },
+  "region": {
+    "title": "Seleccionar región",
+    "select": "Seleccionar región",
+    "loading": "Cargando región..."
+  },
+  "fallback": {
+    "title": "Mapa temporalmente no disponible",
+    "message": "El mapa interactivo no está disponible actualmente. Aún puedes ver tu ubicación e información de recolección.",
+    "retryMap": "Recargar mapa",
+    "getLocation": "Obtener ubicación",
+    "currentLocation": "Ubicación actual",
+    "coordinates": "Lat: {{lat}}, Lng: {{lng}}",
+    "spotsFound": "Puntos de recolección",
+    "support": "Apoya el proyecto",
+    "limit_hit_message": "Querido/a Forager,<br>\nNo podemos cargar los mosaicos del mapa porque hemos alcanzado nuestro límite mensual de uso.<br><br>\nPara ayudar a mantener los mapas disponibles, por favor considere <strong>apoyar el proyecto</strong>.<br>\nMientras tanto, disfrute de este mapa de Boletus no tan perfecto… hasta que alcance su propio límite 😅",
+
+    "tips": {
+      "title": "Consejos para solucionar problemas",
+      "checkConnection": "Verifica tu conexión a internet",
+      "refreshPage": "Actualiza la página",
+      "tryLater": "Intenta de nuevo en unos minutos"
+    }
+  },
+  "species": {
+    "select": "Seleccionar especie",
+    "search": "Buscar especie...",
+    "clear": "Limpiar selección",
+    "noResults": "No se encontraron especies",
+    "notAvailableOffline": "Not available offline. Download on the Offline Maps page."
+  },
+  "getLocation": "Obtener mi ubicación",
+  "toggleNumbers": "Mostrar números",
+  "toggleDarkMode": "Cambiar a modo oscuro",
+  "featureInfo": {
+    "title": "Detalles de la función",
+    "getDirections": "Obtener indicaciones",
+    "location": "Ubicación"
+  }
+}

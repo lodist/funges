@@ -1,0 +1,77 @@
+{
+  "common": {
+    "appName": "Funges",
+    "appDescription": "Guide des champignons",
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Éditer",
+    "close": "Fermer",
+    "submit": "Soumettre",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "clear": "Effacer",
+    "select": "Sélectionner",
+    "upload": "Téléverser",
+    "download": "Télécharger",
+    "view": "Voir",
+    "add": "Ajouter",
+    "remove": "Retirer",
+    "confirm": "Confirmer",
+    "yes": "Oui",
+    "no": "Non",
+    "retry": "Réessayer",
+    "language": "Langue",
+    "theme": "Thème",
+    "dark": "Sombre",
+    "light": "Clair",
+    "system": "Système",
+    "sort": "Trier",
+    "email": "E-mail",
+    "score": "Score"
+  },
+  "offline": {
+    "mode": "Mode hors ligne",
+    "updateAvailable": "Mise à jour disponible",
+    "installApp": "Installer l'application",
+    "reloadForUpdate": "Recharger pour mettre à jour"
+  },
+  "home": {
+    "title": "Bienvenue sur Fung.es",
+    "subtitle": "Votre compagnon de cueillette alimenté par l'IA",
+    "description": "Découvrez et apprenez à propos des comestibles sauvages grâce à l'intelligence artificielle",
+    "getStarted": "Commencer",
+    "learnMore": "En savoir plus"
+  },
+  "errors": {
+    "general": "Une erreur s'est produite. Veuillez réessayer.",
+    "network": "Erreur réseau. Veuillez vérifier votre connexion.",
+    "upload": "Échec du téléversement de l'image. Veuillez réessayer.",
+    "notFound": "Page non trouvée.",
+    "unauthorized": "Vous n'êtes pas autorisé à accéder à cette ressource."
+  },
+  "html": {
+    "title": "Fung.es - Trouvez des champignons et plantes sauvages comestibles près de chez vous",
+    "description": "Trouvez des champignons et plantes comestibles près de chez vous avec notre carte de cueillette en temps réel. Découvrez les meilleurs coins grâce aux données météo et géospatiales pour une cueillette réussie.",
+    "keywords": "champignons, cueillette, plantes sauvages comestibles, carte de cueillette, nourriture sauvage, plantes comestibles, chasse aux champignons, coins à champignons, champignons sauvages",
+    "author": "Fung.es",
+    "ogTitle": "Fung.es - Trouvez des champignons et plantes sauvages comestibles près de chez vous",
+    "ogDescription": "Trouvez des champignons et plantes comestibles près de chez vous avec notre carte de cueillette en temps réel. Découvrez les meilleurs coins grâce aux données météo et géospatiales pour une cueillette réussie.",
+    "ogType": "website",
+    "ogImage": "/icons/logo_funges.png",
+    "twitterCard": "summary_large_image",
+    "twitterTitle": "Fung.es - Trouvez des champignons et plantes sauvages comestibles près de chez vous",
+    "twitterDescription": "Trouvez des champignons et plantes comestibles près de chez vous avec notre carte de cueillette en temps réel. Découvrez les meilleurs coins grâce aux données météo et géospatiales pour une cueillette réussie.",
+    "twitterImage": "/icons/logo_funges.png"
+  },
+  "splash": {
+    "title": "Fung.es",
+    "subtitle": "Application de cueillette de champignons"
+  }
+}

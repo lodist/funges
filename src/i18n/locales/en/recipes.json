@@ -1,0 +1,972 @@
+{
+  "title": "Recipes",
+  "subtitle": "Delicious recipes using wild foods",
+  "filterByIngredient": "Filter by ingredient",
+  "allIngredients": "All Ingredients",
+  "difficulty": "Difficulty",
+  "prepTime": "Preparation Time",
+  "cookTime": "Cooking Time",
+  "servings": "Servings",
+  "ingredients": "Ingredients",
+  "instructions": "Instructions",
+  "tips": "Tips",
+  "warnings": "Warnings",
+  "description": "Discover delicious recipes using foraged ingredients",
+  "filterBy": "Ingredient",
+  "filters": "Filters",
+  "clear": "Clear",
+  "apply": "Apply",
+  "all": "All",
+  "mushroom": "Mushroom",
+  "berry": "Berry",
+  "plant": "Plant",
+  "nut": "Nut",
+  "more": "more",
+  "search": {
+    "placeholder": "Search recipes, ingredients or tags",
+    "no_results": "No recipes found",
+    "found_one": "Found {{count}} recipe",
+    "found_other": "Found {{count}} recipes",
+    "try_adjusting": "Try adjusting your search terms or filters to find more recipes."
+  },
+  "view_recipe": "View recipe",
+  "species": {
+    "amaranth": "Amaranth",
+    "black_chant": "Black Trumpet",
+    "chant": "Chanterelle",
+    "chickweed": "Chickweed",
+    "sorrel": "Sorrel",
+    "dandelion": "Dandelion",
+    "chestnut": "Chestnut",
+    "mushroom": "Mushroom",
+    "nettle": "Nettle",
+    "parasol": "Parasol Mushroom",
+    "masterwort": "Masterwort",
+    "morel": "Morel",
+    "st_george": "St. George's Mushroom",
+    "walnut": "Walnut",
+    "lingonb": "Lingonberry",
+    "garlic": "Garlic",
+    "garlic_wild": "Wild Garlic",
+    "artichoke": "Wild Artichoke",
+    "asparagus": "Wild Asparagus",
+    "strawberry": "Wild Strawberry"
+  },
+  "tags": {
+    "vegetarian": "Vegetarian",
+    "vegan": "Vegan",
+    "gluten-free": "Gluten-Free",
+    "quick": "Quick",
+    "easy": "Facile",
+    "medium": "Medio",
+    "hard": "Difficile",
+    "soup": "Soup",
+    "pasta": "Pasta",
+    "salad": "Salad",
+    "dessert": "Dessert",
+    "drink": "Drink",
+    "sauce": "Sauce",
+    "main": "Main Course",
+    "side": "Side Dish",
+    "appetizer": "Appetizer",
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "snack": "Snack",
+    "beverage": "Beverage"
+  },
+  "list_of_recipes": {
+    "amaranth-wild-greens-patties": {
+      "title": "Amaranth and Wild Greens Patties",
+      "ingredients": [
+        "½ cup amaranth seeds",
+        "1 cup water",
+        "1 cup mixed wild greens (chickweed, sorrel, dandelion), finely chopped",
+        "1 small egg",
+        "2 tablespoons flour or breadcrumbs",
+        "Salt, pepper, olive oil"
+      ],
+      "instructions": [
+        "Cook the amaranth: Cook the amaranth seeds in water until fully absorbed (15–20 min). Let cool slightly.",
+        "Mix: Combine cooked amaranth with greens, egg, flour, salt, and pepper.",
+        "Form: Shape small patties with wet hands.",
+        "Sauté: Cook in a pan with oil for 3–4 min per side until golden.",
+        "Serve: With yogurt sauce, pesto, or as a vegetarian burger alternative."
+      ],
+      "species": ["amaranth", "chickweed", "sorrel", "dandelion"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Cook the amaranth: Cook the amaranth seeds in water until fully absorbed (15–20 min). Let cool slightly."
+        },
+        {
+          "step": 2,
+          "instruction": "Mix: Combine cooked amaranth with greens, egg, flour, salt, and pepper."
+        },
+        {
+          "step": 3,
+          "instruction": "Form: Shape small patties with wet hands."
+        },
+        {
+          "step": 4,
+          "instruction": "Sauté: Cook in a pan with oil for 3–4 min per side until golden."
+        },
+        {
+          "step": 5,
+          "instruction": "Serve: With yogurt sauce, pesto, or as a vegetarian burger alternative."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": []
+    },
+    "black-chanterelle-cream-sauce": {
+      "title": "Creamy Black Trumpet Sauce",
+      "ingredients": [
+        "100 g black trumpets (fresh or 30 g dried)",
+        "1 small shallot, finely chopped",
+        "1 garlic clove, minced",
+        "1 tablespoon butter",
+        "100 ml white wine (optional)",
+        "200 ml cream",
+        "Salt and black pepper to taste",
+        "Fresh thyme (optional)"
+      ],
+      "instructions": [
+        "Prepare the mushrooms: If dried, soak in hot water for 20 min, then drain and squeeze.",
+        "Sauté aromatics: Melt butter in a pan, cook shallot and garlic until soft.",
+        "Add mushrooms: Add black trumpets and sauté 5–7 min.",
+        "Deglaze (optional): Add wine and reduce by half.",
+        "Add cream: Pour in cream, cook 5 min until slightly thickened. Adjust salt, pepper, thyme.",
+        "Serve: Perfect with fresh pasta, polenta, or roasted potatoes."
+      ],
+      "species": ["black_chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Prepare the mushrooms: If dried, soak in hot water for 20 min, then drain and squeeze."
+        },
+        {
+          "step": 2,
+          "instruction": "Sauté aromatics: Melt butter in a pan, cook shallot and garlic until soft."
+        },
+        {
+          "step": 3,
+          "instruction": "Add mushrooms: Add black trumpets and sauté 5–7 min."
+        },
+        {
+          "step": 4,
+          "instruction": "Deglaze (optional): Add wine and reduce by half."
+        },
+        {
+          "step": 5,
+          "instruction": "Add cream: Pour in cream, cook 5 min until slightly thickened. Adjust salt, pepper, thyme."
+        },
+        {
+          "step": 6,
+          "instruction": "Serve: Perfect with fresh pasta, polenta, or roasted potatoes."
+        }
+      ],
+      "warnings": [
+        "Do not consume wild mushrooms unless identified by an expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "easy"],
+      "safetyNotes": ["Ensure safe identification of foraged mushrooms."]
+    },
+    "chanterelle-herb-tart": {
+      "title": "Chanterelle and Herb Tart",
+      "ingredients": [
+        "200 g fresh chanterelles",
+        "1 small leek, thinly sliced",
+        "2 eggs",
+        "100 ml cream",
+        "1 tablespoon olive oil",
+        "Fresh thyme and parsley, chopped",
+        "Salt and pepper to taste",
+        "1 sheet puff pastry"
+      ],
+      "instructions": [
+        "Clean the mushrooms: Clean chanterelles with a brush or damp cloth.",
+        "Sauté base: Heat oil in a pan, cook leek until soft. Add chanterelles and sauté for 5 minutes. Season with salt.",
+        "Prepare filling: Beat eggs with cream, herbs, salt, and pepper.",
+        "Assemble: Place puff pastry in a baking dish, add mushrooms and leeks, pour egg mixture on top.",
+        "Bake: Bake at 180°C for 25–30 minutes until golden.",
+        "Serve: Hot or cold, perfect for a woodland brunch."
+      ],
+      "species": ["chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Clean the mushrooms: Clean chanterelles with a brush or damp cloth."
+        },
+        {
+          "step": 2,
+          "instruction": "Sauté base: Heat oil in a pan, cook leek until soft. Add chanterelles and sauté for 5 minutes. Season with salt."
+        },
+        {
+          "step": 3,
+          "instruction": "Prepare filling: Beat eggs with cream, herbs, salt, and pepper."
+        },
+        {
+          "step": 4,
+          "instruction": "Assemble: Place puff pastry in a baking dish, add mushrooms and leeks, pour egg mixture on top."
+        },
+        {
+          "step": 5,
+          "instruction": "Bake: Bake at 180°C for 25–30 minutes until golden."
+        },
+        {
+          "step": 6,
+          "instruction": "Serve: Hot or cold, perfect for a woodland brunch."
+        }
+      ],
+      "warnings": [
+        "Do not consume wild mushrooms unless identified by an expert."
+      ],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": ["Ensure safe identification of foraged mushrooms."]
+    },
+    "chickweed-sorrel-salad-with-walnut-vinaigrette": {
+      "title": "Chickweed and Sorrel Salad with Walnut Vinaigrette",
+      "ingredients": [
+        "2 handfuls fresh chickweed leaves",
+        "1 handful sorrel leaves, chopped",
+        "1 small handful walnuts, toasted and chopped",
+        "2 teaspoons walnut oil (or olive oil)",
+        "1 teaspoon apple cider vinegar",
+        "1 teaspoon honey",
+        "Salt and pepper to taste"
+      ],
+      "instructions": [
+        "Toast the walnuts: In a dry pan, toast walnuts for 3–4 minutes until fragrant. Let cool.",
+        "Wash the greens: Rinse chickweed and sorrel, then gently dry with a clean cloth.",
+        "Prepare vinaigrette: In a small bowl, whisk oil, vinegar, honey, salt, and pepper.",
+        "Toss the salad: In a large bowl, combine chickweed, sorrel, and walnuts. Dress with vinaigrette and toss gently.",
+        "Serve: Enjoy immediately as a fresh, slightly tangy salad."
+      ],
+      "species": ["chickweed", "sorrel", "walnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Toast the walnuts: In a dry pan, toast walnuts for 3–4 minutes until fragrant. Let cool."
+        },
+        {
+          "step": 2,
+          "instruction": "Wash the greens: Rinse chickweed and sorrel, then gently dry with a clean cloth."
+        },
+        {
+          "step": 3,
+          "instruction": "Prepare vinaigrette: In a small bowl, whisk oil, vinegar, honey, salt, and pepper."
+        },
+        {
+          "step": 4,
+          "instruction": "Toss the salad: In a large bowl, combine chickweed, sorrel, and walnuts. Dress with vinaigrette and toss gently."
+        },
+        {
+          "step": 5,
+          "instruction": "Serve: Enjoy immediately as a fresh, slightly tangy salad."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "salad", "easy"],
+      "safetyNotes": []
+    },
+    "chestnut-mushroom-soup": {
+      "title": "Chestnut and Mushroom Soup",
+      "ingredients": [
+        "200 g roasted chestnuts (peeled)",
+        "150 g wild mushrooms (porcini or black trumpets ideal)",
+        "1 small onion, chopped",
+        "1 garlic clove, minced",
+        "500 ml vegetable broth",
+        "1 tablespoon butter",
+        "1 sprig thyme",
+        "100 ml cream (optional)",
+        "Salt and pepper to taste"
+      ],
+      "instructions": [
+        "Sauté base: In a pot, melt butter and cook onion and garlic until soft.",
+        "Add mushrooms: Add chopped wild mushrooms and sauté for 5 minutes.",
+        "Add chestnuts and broth: Add chestnuts and pour in vegetable broth. Add thyme.",
+        "Cook: Bring to a boil, then lower heat and simmer for 20 minutes.",
+        "Blend: Remove thyme. Blend with an immersion blender until smooth.",
+        "Finish: Add cream if desired, adjust salt and pepper.",
+        "Serve hot, with rustic bread or a drizzle of truffle oil."
+      ],
+      "species": ["chestnut", "mushroom", "black_chant", "chant"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sauté base: In a pot, melt butter and cook onion and garlic until soft."
+        },
+        {
+          "step": 2,
+          "instruction": "Add mushrooms: Add chopped wild mushrooms and sauté for 5 minutes."
+        },
+        {
+          "step": 3,
+          "instruction": "Add chestnuts and broth: Add chestnuts and pour in vegetable broth. Add thyme."
+        },
+        {
+          "step": 4,
+          "instruction": "Cook: Bring to a boil, then lower heat and simmer for 20 minutes."
+        },
+        {
+          "step": 5,
+          "instruction": "Blend: Remove thyme. Blend with an immersion blender until smooth."
+        },
+        {
+          "step": 6,
+          "instruction": "Finish: Add cream if desired, adjust salt and pepper."
+        },
+        {
+          "step": 7,
+          "instruction": "Serve hot, with rustic bread or a drizzle of truffle oil."
+        }
+      ],
+      "warnings": [
+        "Do not consume wild mushrooms unless identified by an expert."
+      ],
+      "difficulty": "medium",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "medium"],
+      "safetyNotes": ["Ensure safe identification of foraged mushrooms."]
+    },
+    "dandelion-flower-syrup": {
+      "title": "Dandelion Flower Syrup",
+      "ingredients": [
+        "100 dandelion flowers (yellow petals only)",
+        "500 ml water",
+        "300 g sugar",
+        "Juice of 1 lemon"
+      ],
+      "instructions": [
+        "Clean petals: Separate yellow petals from green parts (which are bitter). Rinse gently.",
+        "Prepare infusion: In a pot, bring water to a boil, add petals and simmer for 10 minutes.",
+        "Steep: Remove from heat and let infuse covered overnight.",
+        "Strain: Strain the liquid and discard petals. Add lemon juice and sugar to the liquid.",
+        "Cook: Simmer over low heat until it thickens into a syrup (20–30 minutes).",
+        "Store: Pour into sterilized jars. Great on pancakes, cheese, or in tea."
+      ],
+      "species": ["dandelion"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Clean petals: Separate yellow petals from green parts (which are bitter). Rinse gently."
+        },
+        {
+          "step": 2,
+          "instruction": "Prepare infusion: In a pot, bring water to a boil, add petals and simmer for 10 minutes."
+        },
+        {
+          "step": 3,
+          "instruction": "Steep: Remove from heat and let infuse covered overnight."
+        },
+        {
+          "step": 4,
+          "instruction": "Strain: Strain the liquid and discard petals. Add lemon juice and sugar to the liquid."
+        },
+        {
+          "step": 5,
+          "instruction": "Cook: Simmer over low heat until it thickens into a syrup (20–30 minutes)."
+        },
+        {
+          "step": 6,
+          "instruction": "Store: Pour into sterilized jars. Great on pancakes, cheese, or in tea."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "dessert", "medium"],
+      "safetyNotes": []
+    },
+    "nettle-soup": {
+      "title": "Nettle Soup",
+      "ingredients": [
+        "1 medium onion, chopped",
+        "1 garlic clove, minced",
+        "1 tablespoon butter or olive oil",
+        "2 medium potatoes, peeled and cubed",
+        "1 L vegetable broth",
+        "2 large handfuls fresh nettle leaves (use gloves!)",
+        "100 ml cream or oat milk (optional)",
+        "Salt and pepper to taste"
+      ],
+      "instructions": [
+        "Sauté aromatics: In a pot, heat butter and sauté onion and garlic until soft.",
+        "Add potatoes: Add potatoes and cook for 5 minutes.",
+        "Add broth: Pour in vegetable broth and bring to a boil.",
+        "Add nettles: After 10 minutes, add nettles and simmer for another 5–7 minutes.",
+        "Blend: Blend the soup with an immersion blender until smooth.",
+        "Finish: Add cream or oat milk if desired. Adjust salt and pepper.",
+        "Serve hot, with a drizzle of oil or croutons."
+      ],
+      "species": ["nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sauté aromatics: In a pot, heat butter and sauté onion and garlic until soft."
+        },
+        {
+          "step": 2,
+          "instruction": "Add potatoes: Add potatoes and cook for 5 minutes."
+        },
+        {
+          "step": 3,
+          "instruction": "Add broth: Pour in vegetable broth and bring to a boil."
+        },
+        {
+          "step": 4,
+          "instruction": "Add nettles: After 10 minutes, add nettles and simmer for another 5–7 minutes."
+        },
+        {
+          "step": 5,
+          "instruction": "Blend: Blend the soup with an immersion blender until smooth."
+        },
+        {
+          "step": 6,
+          "instruction": "Finish: Add cream or oat milk if desired. Adjust salt and pepper."
+        },
+        {
+          "step": 7,
+          "instruction": "Serve hot, with a drizzle of oil or croutons."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "medium"],
+      "safetyNotes": ["Use gloves when handling fresh nettles."]
+    },
+    "parasol-mushroom-schnitzel": {
+      "title": "Parasol Mushroom Schnitzel",
+      "ingredients": [
+        "2–4 large parasol mushroom caps",
+        "1 egg",
+        "4 tablespoons breadcrumbs",
+        "2 tablespoons grated Parmesan (optional)",
+        "Salt and pepper",
+        "Oil or butter for frying"
+      ],
+      "instructions": [
+        "Clean the mushrooms: Wipe the caps with a damp cloth. Do not wash under water.",
+        "Prepare the coating: Beat the egg in a bowl. In another, mix breadcrumbs, salt, pepper, and Parmesan.",
+        "Bread: Dip each cap in egg, then in the breadcrumb mixture.",
+        "Fry: Heat oil or butter in a pan. Fry the caps over medium heat until golden and crispy (about 3 minutes per side).",
+        "Serve: With lemon wedges and fresh salad. A vegetarian classic."
+      ],
+      "species": ["parasol"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Clean the mushrooms: Wipe the caps with a damp cloth. Do not wash under water."
+        },
+        {
+          "step": 2,
+          "instruction": "Prepare the coating: Beat the egg in a bowl. In another, mix breadcrumbs, salt, pepper, and Parmesan."
+        },
+        {
+          "step": 3,
+          "instruction": "Bread: Dip each cap in egg, then in the breadcrumb mixture."
+        },
+        {
+          "step": 4,
+          "instruction": "Fry: Heat oil or butter in a pan. Fry the caps over medium heat until golden and crispy (about 3 minutes per side)."
+        },
+        {
+          "step": 5,
+          "instruction": "Serve: With lemon wedges and fresh salad. A vegetarian classic."
+        }
+      ],
+      "warnings": [
+        "Do not consume wild mushrooms unless identified by an expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "6 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": ["Ensure safe identification of foraged mushrooms."]
+    },
+    "masterwort-infused-honey-glaze": {
+      "title": "Masterwort Root Honey Glaze",
+      "ingredients": [
+        "1 teaspoon dried masterwort root or 2 teaspoons fresh, grated",
+        "150 ml honey",
+        "1 tablespoon water",
+        "Zest of ½ lemon"
+      ],
+      "instructions": [
+        "Warm the honey: In a small saucepan, gently heat honey and water over low heat.",
+        "Infuse: Add masterwort and lemon zest. Stir and keep on very low heat for 5–10 minutes (do not boil).",
+        "Strain: Remove from heat and strain through a fine sieve or cheesecloth.",
+        "Bottle: Pour into a clean jar.",
+        "Use: Perfect on roasted vegetables, grilled fruit, or game. Keeps in the fridge for weeks."
+      ],
+      "species": ["masterwort"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Warm the honey: In a small saucepan, gently heat honey and water over low heat."
+        },
+        {
+          "step": 2,
+          "instruction": "Infuse: Add masterwort and lemon zest. Stir and keep on very low heat for 5–10 minutes (do not boil)."
+        },
+        {
+          "step": 3,
+          "instruction": "Strain: Remove from heat and strain through a fine sieve or cheesecloth."
+        },
+        {
+          "step": 4,
+          "instruction": "Bottle: Pour into a clean jar."
+        },
+        {
+          "step": 5,
+          "instruction": "Use: Perfect on roasted vegetables, grilled fruit, or game. Keeps in the fridge for weeks."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "5 min",
+      "cookTime": "10 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "medium"],
+      "safetyNotes": []
+    },
+    "morel-chestnut-stuffing": {
+      "title": "Morel and Chestnut Stuffing",
+      "ingredients": [
+        "100 g morels (fresh or rehydrated)",
+        "150 g roasted chestnuts, chopped",
+        "1 small onion, diced",
+        "2 garlic cloves, minced",
+        "3 slices rustic bread, cubed",
+        "100 ml vegetable broth",
+        "1 tablespoon butter",
+        "Fresh thyme, salt, and pepper"
+      ],
+      "instructions": [
+        "Sauté base: In a pan, melt butter and cook onion and garlic until soft.",
+        "Add mushrooms and chestnuts: Add morels and chestnuts, cook for 5 minutes.",
+        "Add bread: Add bread cubes and mix gently. Pour in broth and stir.",
+        "Season: Add thyme, salt, and pepper. Let the liquid absorb.",
+        "Bake: Transfer to a baking dish and bake at 180°C for 20 minutes until golden.",
+        "Serve as a side for roast meats or as a main vegetarian dish."
+      ],
+      "species": ["morel", "chestnut", "garlic", "bread"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sauté base: In a pan, melt butter and cook onion and garlic until soft."
+        },
+        {
+          "step": 2,
+          "instruction": "Add mushrooms and chestnuts: Add morels and chestnuts, cook for 5 minutes."
+        },
+        {
+          "step": 3,
+          "instruction": "Add bread: Add bread cubes and mix gently. Pour in broth and stir."
+        },
+        {
+          "step": 4,
+          "instruction": "Season: Add thyme, salt, and pepper. Let the liquid absorb."
+        },
+        {
+          "step": 5,
+          "instruction": "Bake: Transfer to a baking dish and bake at 180°C for 20 minutes until golden."
+        },
+        {
+          "step": 6,
+          "instruction": "Serve as a side for roast meats or as a main vegetarian dish."
+        }
+      ],
+      "warnings": [
+        "Do not consume wild mushrooms unless identified by an expert."
+      ],
+      "difficulty": "medium",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "side", "medium"],
+      "safetyNotes": ["Ensure safe identification of foraged mushrooms."]
+    },
+    "nettle-potato-frittata": {
+      "title": "Nettle and Potato Frittata",
+      "ingredients": [
+        "1 cup blanched nettles",
+        "2 medium potatoes, thinly sliced",
+        "1 onion, sliced",
+        "5 eggs",
+        "Salt and pepper",
+        "1 tablespoon olive oil"
+      ],
+      "instructions": [
+        "Blanch the nettles: Briefly boil nettles for 2 minutes. Drain and chop.",
+        "Cook the potatoes: In a pan, sauté potatoes and onion in olive oil until golden.",
+        "Add nettles: Add chopped nettles and cook for another 2 minutes.",
+        "Add eggs: Beat eggs with salt and pepper, pour into the pan.",
+        "Cook: Cook over low heat until set underneath, then finish under the grill or flip to cook the top.",
+        "Serve hot or cold, perfect for picnics or breakfast."
+      ],
+      "species": ["nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Blanch the nettles: Briefly boil nettles for 2 minutes. Drain and chop."
+        },
+        {
+          "step": 2,
+          "instruction": "Cook the potatoes: In a pan, sauté potatoes and onion in olive oil until golden."
+        },
+        {
+          "step": 3,
+          "instruction": "Add nettles: Add chopped nettles and cook for another 2 minutes."
+        },
+        {
+          "step": 4,
+          "instruction": "Add eggs: Beat eggs with salt and pepper, pour into the pan."
+        },
+        {
+          "step": 5,
+          "instruction": "Cook: Cook over low heat until set underneath, then finish under the grill or flip to cook the top."
+        },
+        {
+          "step": 6,
+          "instruction": "Serve hot or cold, perfect for picnics or breakfast."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": ["Use gloves when handling fresh nettles."]
+    },
+    "st-george-s-mushroom-spring-frittata": {
+      "title": "Spring Frittata with St. George's Mushrooms and Nettles",
+      "ingredients": [
+        "150 g St. George's mushrooms (Calocybe gambosa), sliced",
+        "1 small onion, chopped",
+        "1 cup blanched nettles or spinach",
+        "6 eggs",
+        "2 tablespoons grated cheese (e.g. Pecorino or Parmesan)",
+        "Salt and pepper",
+        "1 tablespoon olive oil or butter"
+      ],
+      "instructions": [
+        "Prepare the mushrooms: Clean thoroughly and slice.",
+        "Sauté: Cook onion in oil until soft, add mushrooms and cook for 5–7 minutes. Add blanched nettles.",
+        "Beat the eggs: In a bowl, beat eggs with cheese, salt, and pepper.",
+        "Combine: Pour eggs over mushrooms in the pan. Cook over low heat until almost set.",
+        "Finish: Place in oven or under grill for 5 minutes to brown (or carefully flip).",
+        "Serve: Hot or at room temperature — perfect for spring picnics or brunch."
+      ],
+      "species": ["st_george", "nettle"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Prepare the mushrooms: Clean thoroughly and slice."
+        },
+        {
+          "step": 2,
+          "instruction": "Sauté: Cook onion in oil until soft, add mushrooms and cook for 5–7 minutes. Add blanched nettles."
+        },
+        {
+          "step": 3,
+          "instruction": "Beat the eggs: In a bowl, beat eggs with cheese, salt, and pepper."
+        },
+        {
+          "step": 4,
+          "instruction": "Combine: Pour eggs over mushrooms in the pan. Cook over low heat until almost set."
+        },
+        {
+          "step": 5,
+          "instruction": "Finish: Place in oven or under grill for 5 minutes to brown (or carefully flip)."
+        },
+        {
+          "step": 6,
+          "instruction": "Serve: Hot or at room temperature — perfect for spring picnics or brunch."
+        }
+      ],
+      "warnings": [
+        "Do not consume wild mushrooms unless identified by an expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Use gloves when handling fresh nettles.",
+        "Ensure safe identification of foraged mushrooms."
+      ]
+    },
+    "walnut-lingonberry-wild-tapenade": {
+      "title": "Wild Walnut and Lingonberry Tapenade",
+      "ingredients": [
+        "100 g walnuts",
+        "2 tablespoons lingonberry jam or fresh lingonberries",
+        "1 garlic clove",
+        "1 tablespoon wild garlic or chopped parsley",
+        "2 tablespoons olive oil",
+        "Salt and pepper to taste"
+      ],
+      "instructions": [
+        "Toast the walnuts: Lightly toast walnuts in a pan until golden. Let cool.",
+        "Blend: Combine all ingredients in a food processor: walnuts, garlic, lingonberry, herbs, and oil.",
+        "Season: Adjust salt and pepper. Pulse until a coarse, spreadable paste forms.",
+        "Serve: Ideal on bread, as a sauce, or with cheese and grilled vegetables."
+      ],
+      "species": ["walnut", "lingonb", "garlic", "masterwort"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Toast the walnuts: Lightly toast walnuts in a pan until golden. Let cool."
+        },
+        {
+          "step": 2,
+          "instruction": "Blend: Combine all ingredients in a food processor: walnuts, garlic, lingonberry, herbs, and oil."
+        },
+        {
+          "step": 3,
+          "instruction": "Season: Adjust salt and pepper. Pulse until a coarse, spreadable paste forms."
+        },
+        {
+          "step": 4,
+          "instruction": "Serve: Ideal on bread, as a sauce, or with cheese and grilled vegetables."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "5 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "appetizer", "easy"],
+      "safetyNotes": []
+    },
+    "wild-artichoke-lemon-pasta": {
+      "title": "Wild Artichoke and Lemon Pasta",
+      "ingredients": [
+        "2–3 wild artichoke hearts, cleaned and sliced",
+        "2 garlic cloves, thinly sliced",
+        "Zest and juice of 1 lemon",
+        "2 tablespoons olive oil",
+        "200 g pasta (linguine or tagliatelle)",
+        "Salt and black pepper",
+        "Wild mint or fresh parsley to garnish"
+      ],
+      "instructions": [
+        "Prepare the artichokes: Remove outer leaves and choke. Thinly slice the hearts.",
+        "Sauté: Gently cook garlic and artichokes in oil for 10 minutes until tender.",
+        "Cook the pasta: Boil pasta in salted water until al dente. Reserve ½ cup cooking water.",
+        "Toss: Mix pasta with artichokes, lemon juice and zest, and the cooking water.",
+        "Serve: Add salt, pepper, and garnish with fresh herbs. Fresh, wild, Mediterranean."
+      ],
+      "species": ["artichoke", "garlic"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Prepare the artichokes: Remove outer leaves and choke. Thinly slice the hearts."
+        },
+        {
+          "step": 2,
+          "instruction": "Sauté: Gently cook garlic and artichokes in oil for 10 minutes until tender."
+        },
+        {
+          "step": 3,
+          "instruction": "Cook the pasta: Boil pasta in salted water until al dente. Reserve ½ cup cooking water."
+        },
+        {
+          "step": 4,
+          "instruction": "Toss: Mix pasta with artichokes, lemon juice and zest, and the cooking water."
+        },
+        {
+          "step": 5,
+          "instruction": "Serve: Add salt, pepper, and garnish with fresh herbs. Fresh, wild, Mediterranean."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "pasta", "main", "easy"],
+      "safetyNotes": []
+    },
+    "wild-asparagus-dandelion-stir-fry": {
+      "title": "Wild Asparagus and Dandelion Stir-Fry",
+      "ingredients": [
+        "200 g wild asparagus, cleaned",
+        "1 handful young dandelion leaves, washed and chopped",
+        "2 garlic cloves, sliced",
+        "1 tablespoon olive oil",
+        "1 teaspoon lemon zest",
+        "Salt and pepper to taste",
+        "Optional: a pinch of chili flakes"
+      ],
+      "instructions": [
+        "Blanch the asparagus: Boil asparagus for 1 minute. Drain and cool in cold water.",
+        "Sauté garlic: In a pan, heat oil, add garlic and optional chili, cook until fragrant.",
+        "Add greens: Add asparagus and dandelion, sauté 2–3 minutes until tender and bright.",
+        "Finish: Season with salt, pepper, and lemon zest.",
+        "Serve: Great on toast, grains, or as a wild side dish."
+      ],
+      "species": ["asparagus", "dandelion", "garlic"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Blanch the asparagus: Boil asparagus for 1 minute. Drain and cool in cold water."
+        },
+        {
+          "step": 2,
+          "instruction": "Sauté garlic: In a pan, heat oil, add garlic and optional chili, cook until fragrant."
+        },
+        {
+          "step": 3,
+          "instruction": "Add greens: Add asparagus and dandelion, sauté 2–3 minutes until tender and bright."
+        },
+        {
+          "step": 4,
+          "instruction": "Finish: Season with salt, pepper, and lemon zest."
+        },
+        {
+          "step": 5,
+          "instruction": "Serve: Great on toast, grains, or as a wild side dish."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": []
+    },
+    "wild-garlic-pesto": {
+      "title": "Wild Garlic and Walnut Pesto",
+      "ingredients": [
+        "50 g wild garlic leaves",
+        "30 g walnuts or pine nuts",
+        "50 g grated Parmesan",
+        "100 ml olive oil",
+        "1 teaspoon lemon juice",
+        "Salt to taste"
+      ],
+      "instructions": [
+        "Prepare the leaves: Wash wild garlic thoroughly and dry.",
+        "Toast the nuts: Lightly toast walnuts in a pan. Let cool.",
+        "Blend: Place wild garlic, nuts, Parmesan, and lemon juice in a food processor. Blend coarsely.",
+        "Add oil: Pour in oil while blending until creamy.",
+        "Season: Adjust salt.",
+        "Store: In a closed jar in the fridge for a week. Great for pasta, sandwiches, or roasted vegetables."
+      ],
+      "species": ["garlic", "walnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Prepare the leaves: Wash wild garlic thoroughly and dry."
+        },
+        {
+          "step": 2,
+          "instruction": "Toast the nuts: Lightly toast walnuts in a pan. Let cool."
+        },
+        {
+          "step": 3,
+          "instruction": "Blend: Place wild garlic, nuts, Parmesan, and lemon juice in a food processor. Blend coarsely."
+        },
+        {
+          "step": 4,
+          "instruction": "Add oil: Pour in oil while blending until creamy."
+        },
+        {
+          "step": 5,
+          "instruction": "Season: Adjust salt."
+        },
+        {
+          "step": 6,
+          "instruction": "Store: In a closed jar in the fridge for a week. Great for pasta, sandwiches, or roasted vegetables."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "sauce", "easy"],
+      "safetyNotes": []
+    },
+    "wild-strawberry-sorrel-cooler": {
+      "title": "Wild Strawberry and Sorrel Cooler",
+      "ingredients": [
+        "1 handful wild strawberries",
+        "6 sorrel leaves, torn",
+        "1 tablespoon honey (or to taste)",
+        "300 ml cold sparkling water",
+        "Juice of ½ lemon",
+        "Ice cubes"
+      ],
+      "instructions": [
+        "Muddle: In a glass or shaker, gently crush strawberries, sorrel, and honey.",
+        "Add lemon: Add lemon juice and stir.",
+        "Finish: Fill the glass with ice, then pour in sparkling water.",
+        "Strain (optional): Strain for a clear drink or serve with the pulp.",
+        "Garnish: Decorate with a strawberry and sorrel leaf. Perfect summer drink."
+      ],
+      "species": ["strawberry", "sorrel"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Muddle: In a glass or shaker, gently crush strawberries, sorrel, and honey."
+        },
+        {
+          "step": 2,
+          "instruction": "Add lemon: Add lemon juice and stir."
+        },
+        {
+          "step": 3,
+          "instruction": "Finish: Fill the glass with ice, then pour in sparkling water."
+        },
+        {
+          "step": 4,
+          "instruction": "Strain (optional): Strain for a clear drink or serve with the pulp."
+        },
+        {
+          "step": 5,
+          "instruction": "Garnish: Decorate with a strawberry and sorrel leaf. Perfect summer drink."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "5 min",
+      "cookTime": "0 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "drink", "easy"],
+      "safetyNotes": []
+    }
+  }
+}
