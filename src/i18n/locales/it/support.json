@@ -15,10 +15,6 @@
     "name": "IOTA",
     "description": "Supporta con la criptovaluta IOTA"
   },
-  "patreon": {
-    "name": "Patreon",
-    "description": "Supporta con l'abbonamento Patreon"
-  },
   "buymeacoffee": {
     "name": "Buy Me a Coffee",
     "description": "Supporta con Buy Me a Coffee"
