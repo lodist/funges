@@ -15,7 +15,6 @@
 
 - **Custom domain**: Set `VITE_BASE_URL=/` (for https://fung.es)
 - **GitHub Pages**: Set `VITE_BASE_URL=/funges/` (for https://your-username.github.io/funges/)
-- **Subdirectory**: Set `VITE_BASE_URL=/your-subdir/`
 
 ## How It Works
 
@@ -23,4 +22,3 @@
 - Builds with your environment variables
 - Deploys to GitHub Pages
 - Base URL is configurable via `VITE_BASE_URL` secret
-
