@@ -3,10 +3,6 @@
   "welcome": {
     "title": "Bienvenido al servicio (en adelante, \"el Servicio\"). Al acceder o utilizar el Servicio, aceptas cumplir con estos Términos de Servicio (\"Términos\"). Si no estás de acuerdo, por favor deja de usar el Servicio."
   },
-  "safetyWarning": {
-    "title": "Advertencia importante de seguridad",
-    "content": "Este Servicio utiliza un modelo de aprendizaje automático para la identificación de hongos, pero no es 100% fiable. Muchos hongos se parecen y una identificación incorrecta puede resultar en intoxicaciones graves o la muerte. No confíes en este Servicio para determinar si un hongo es seguro para el consumo. Consulta siempre a un micólogo profesional o a un experto local antes de consumir o manipular hongos silvestres."
-  },
   "useOfService": {
     "title": "Uso del Servicio",
     "content": "El Servicio proporciona información sobre las condiciones de alimentos silvestres basada en diversos factores. La información es solo orientativa y no se garantiza que sea precisa, completa o actualizada."
@@ -19,8 +15,7 @@
   },
   "disclaimer": {
     "title": "Exención de responsabilidad",
-    "content": "Utilizas el Servicio bajo tu propio riesgo. El administrador no asume ninguna responsabilidad por accidentes, lesiones, daños u otros incidentes derivados de la confianza en la información del Servicio. Las condiciones en entornos naturales pueden cambiar inesperadamente, y eres responsable de actuar con precaución y criterio al planificar o realizar actividades basadas en la información proporcionada por el Servicio.",
-    "predictions": "En la naturaleza crecen diversas setas y frutos, y algunos pueden ser tóxicos o peligrosos si se identifican mal. Las predicciones proporcionadas por este Servicio son generadas por un modelo de aprendizaje automático y deben considerarse solo como una herramienta orientativa. Este modelo no es perfecto y puede producir clasificaciones incorrectas. Identificar mal los hongos puede causar intoxicaciones graves o la muerte. Consulta siempre a un experto calificado antes de consumir o manipular cualquier hongo o fruto."
+    "content": "Utilizas el Servicio bajo tu propio riesgo. El administrador no asume ninguna responsabilidad por accidentes, lesiones, daños u otros incidentes derivados de la confianza en la información del Servicio. Las condiciones en entornos naturales pueden cambiar inesperadamente, y eres responsable de actuar con precaución y criterio al planificar o realizar actividades basadas en la información proporcionada por el Servicio."
   },
   "noProfessionalAdvice": {
     "title": "Sin asesoramiento profesional",
