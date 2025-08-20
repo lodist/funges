@@ -5,6 +5,7 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import Sitemap from 'vite-plugin-sitemap';
 import removeConsole from 'vite-plugin-remove-console';
+import checker from 'vite-plugin-checker';
 
 const baseUrl = process.env.VITE_BASE_URL || '/';
 const hostname = process.env.VITE_HOSTNAME || 'https://www.fung.es';
@@ -241,6 +242,13 @@ export default defineConfig({
         'assert',
         'clear',
       ],
+    }),
+    checker({
+      typescript: true,
+      eslint: {
+        lintCommand: 'eslint . --max-warnings 0',
+      },
+      stylelint: false,
     }),
   ],
   resolve: {
