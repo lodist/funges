@@ -21,7 +21,7 @@
   },
   "common": {
     "appName": "Funges",
-    "appDescription": "Guida ai Funghi",
+    "appDescription": "Guida alla raccolta",
     "loading": "Caricamento...",
     "error": "Si è verificato un errore",
     "retry": "Riprova",
