@@ -54,6 +54,9 @@ export interface MapState {
   // Map reference for layer management
   mapRef: mapboxgl.Map | null;
 
+  // Data freshness
+  lastDataRefresh: string | null;
+
   // Actions
   setCenter: (center: [number, number]) => void;
   setZoom: (zoom: number) => void;
@@ -83,6 +86,8 @@ export interface MapState {
   setMapRef: (map: mapboxgl.Map | null) => void;
   updateVisibleLayers: () => void;
   restoreDarkLayersState: () => void;
+
+  setLastDataRefresh: (timestamp: string) => void;
 }
 
 export const useMapStore = create<MapState>()(
@@ -111,6 +116,8 @@ export const useMapStore = create<MapState>()(
       showUserLocation: true,
       mapRef: null,
 
+      lastDataRefresh: null,
+
       // Actions
       setCenter: center => set({ center }),
       setZoom: zoom => set({ zoom }),
@@ -119,7 +126,8 @@ export const useMapStore = create<MapState>()(
       setMapStyle: mapStyle => set({ mapStyle }),
       setUserLocation: userLocation => set({ userLocation }),
       setUserLocationError: userLocationError => set({ userLocationError }),
-      setForagingSpots: foragingSpots => set({ foragingSpots }),
+      setForagingSpots: foragingSpots =>
+        set({ foragingSpots, lastDataRefresh: new Date().toISOString() }),
       setSelectedSpot: selectedSpot => set({ selectedSpot }),
       setIsLoading: isLoading => set({ isLoading }),
       setError: error => set({ error }),
@@ -256,7 +264,11 @@ export const useMapStore = create<MapState>()(
             lastUpdated: new Date().toISOString(),
           }));
 
-          set({ foragingSpots: spots, isLoading: false });
+          set({
+            foragingSpots: spots,
+            isLoading: false,
+            lastDataRefresh: new Date().toISOString(),
+          });
         } catch (error) {
           // Don't set an error for this background operation, just log it
           console.warn('Failed to fetch nearby foraging spots:', error);
@@ -268,6 +280,7 @@ export const useMapStore = create<MapState>()(
       addForagingSpot: spot =>
         set(state => ({
           foragingSpots: [...state.foragingSpots, spot],
+          lastDataRefresh: new Date().toISOString(),
         })),
 
       updateForagingSpot: (id, updates) =>
@@ -275,15 +288,18 @@ export const useMapStore = create<MapState>()(
           foragingSpots: state.foragingSpots.map(spot =>
             spot.id === id ? { ...spot, ...updates } : spot
           ),
+          lastDataRefresh: new Date().toISOString(),
         })),
 
       removeForagingSpot: id =>
         set(state => ({
           foragingSpots: state.foragingSpots.filter(spot => spot.id !== id),
+          lastDataRefresh: new Date().toISOString(),
         })),
 
       // Map reference management
       setMapRef: (map: mapboxgl.Map | null) => set({ mapRef: map }),
+      setLastDataRefresh: lastDataRefresh => set({ lastDataRefresh }),
       updateVisibleLayers: () => {
         const {
           mapRef,

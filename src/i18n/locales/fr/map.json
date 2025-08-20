@@ -63,5 +63,7 @@
     "title": "Détails de la fonctionnalité",
     "getDirections": "Obtenir l'itinéraire",
     "location": "Emplacement"
-  }
+  },
+  "lastUpdated": "Dernière mise à jour",
+  "lastUpdatedInfo": "Les données de la carte se mettent à jour lorsque de nouvelles données sont chargées."
 }

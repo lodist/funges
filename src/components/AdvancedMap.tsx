@@ -11,6 +11,7 @@ import FeatureInfoModal from './FeatureInfoModal';
 import MapErrorBoundary from './MapErrorBoundary';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
+import LastUpdatedIndicator from './LastUpdatedIndicator';
 
 import { motion } from 'framer-motion';
 
@@ -528,6 +529,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             </Card>
           </div>
         )}
+
+        <LastUpdatedIndicator />
       </div>
       <FeatureInfoModal
         feature={selectedFeature}

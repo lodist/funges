@@ -62,5 +62,7 @@
     "title": "Dettagli Feature",
     "getDirections": "Ottieni Indicazioni",
     "location": "Località"
-  }
+  },
+  "lastUpdated": "Ultimo aggiornamento",
+  "lastUpdatedInfo": "I dati della mappa si aggiornano quando vengono caricati nuovi dati."
 }

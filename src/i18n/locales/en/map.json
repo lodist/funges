@@ -62,5 +62,7 @@
     "title": "Feature Details",
     "getDirections": "Get Directions",
     "location": "Location"
-  }
+  },
+  "lastUpdated": "Last updated",
+  "lastUpdatedInfo": "Map data refreshes when new data is loaded."
 }

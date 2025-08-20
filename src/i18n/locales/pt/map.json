@@ -63,5 +63,7 @@
     "title": "Detalhes da funcionalidade",
     "getDirections": "Obter direções",
     "location": "Localização"
-  }
+  },
+  "lastUpdated": "Última atualização",
+  "lastUpdatedInfo": "Os dados do mapa são atualizados quando novos dados são carregados."
 }

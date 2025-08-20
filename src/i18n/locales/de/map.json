@@ -63,5 +63,7 @@
     "title": "Feature-Details",
     "getDirections": "Route abrufen",
     "location": "Standort"
-  }
+  },
+  "lastUpdated": "Zuletzt aktualisiert",
+  "lastUpdatedInfo": "Kartendaten werden aktualisiert, wenn neue Daten geladen werden."
 }
