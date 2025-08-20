@@ -3,10 +3,6 @@
   "welcome": {
     "title": "Bienvenue sur le service (ci-après « le Service »). En accédant ou en utilisant le Service, vous acceptez de respecter ces Conditions d'utilisation (« Conditions »). Si vous n'êtes pas d'accord, veuillez cesser d'utiliser le Service."
   },
-  "safetyWarning": {
-    "title": "Avertissement de sécurité important",
-    "content": "Ce Service utilise un modèle d'apprentissage automatique pour l'identification des champignons, mais il n'est pas fiable à 100 %. De nombreux champignons se ressemblent, et une mauvaise identification peut entraîner une intoxication grave, voire la mort. Ne vous fiez pas à ce Service pour déterminer si un champignon est comestible. Consultez toujours un mycologue professionnel ou un expert local avant de consommer ou de manipuler des champignons sauvages."
-  },
   "useOfService": {
     "title": "Utilisation du Service",
     "content": "Le Service fournit des informations sur les conditions des aliments sauvages en fonction de divers facteurs. Ces informations sont données à titre indicatif uniquement et ne sont pas garanties comme étant exactes, complètes ou à jour."
@@ -19,8 +15,7 @@
   },
   "disclaimer": {
     "title": "Exclusion de responsabilité",
-    "content": "Vous utilisez le Service à vos propres risques. L'administrateur n'assume aucune responsabilité pour les accidents, blessures, dommages ou autres incidents résultant de la confiance accordée aux informations du Service. Les conditions dans la nature peuvent changer de façon inattendue, et il vous incombe de faire preuve de prudence et de discernement lors de la planification ou de la réalisation d'activités basées sur les informations fournies par le Service.",
-    "predictions": "De nombreux champignons et fruits poussent à l'état sauvage, et certains peuvent être toxiques ou dangereux en cas de mauvaise identification. Les prédictions fournies par ce Service sont générées par un modèle d'apprentissage automatique et doivent être considérées uniquement comme un outil de conseil. Ce modèle n'est pas parfait et peut produire des classifications incorrectes. Une mauvaise identification des champignons peut entraîner une intoxication grave, voire la mort. Consultez toujours un expert qualifié avant de consommer ou de manipuler des champignons ou des fruits."
+    "content": "Vous utilisez le Service à vos propres risques. L'administrateur n'assume aucune responsabilité pour les accidents, blessures, dommages ou autres incidents résultant de la confiance accordée aux informations du Service. Les conditions dans la nature peuvent changer de façon inattendue, et il vous incombe de faire preuve de prudence et de discernement lors de la planification ou de la réalisation d'activités basées sur les informations fournies par le Service."
   },
   "noProfessionalAdvice": {
     "title": "Aucun conseil professionnel",

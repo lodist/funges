@@ -24,16 +24,6 @@ export default function TermsUsePage() {
             </p>
           </div>
 
-          {/* Important Safety Warning */}
-          <section className='bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6'>
-            <h2 className='text-xl font-semibold text-red-900 dark:text-red-100 mb-4'>
-              {t('safetyWarning.title')}
-            </h2>
-            <p className='text-red-800 dark:text-red-200 leading-relaxed'>
-              {t('safetyWarning.content')}
-            </p>
-          </section>
-
           {/* Use of the Service */}
           <section className='bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm'>
             <h2 className='text-xl font-semibold text-gray-900 dark:text-white mb-4'>
@@ -63,7 +53,6 @@ export default function TermsUsePage() {
             </h2>
             <div className='space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed'>
               <p>{t('disclaimer.content')}</p>
-              <p>{t('disclaimer.predictions')}</p>
             </div>
           </section>
 

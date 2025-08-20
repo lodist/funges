@@ -3,10 +3,6 @@
   "welcome": {
     "title": "Bem-vindo ao serviço (referido como \"o Serviço\"). Ao acessar ou utilizar o Serviço, você concorda em cumprir estes Termos de Serviço (\"Termos\"). Se você não concorda, por favor, interrompa o uso do Serviço."
   },
-  "safetyWarning": {
-    "title": "Aviso Importante de Segurança",
-    "content": "Este Serviço utiliza um modelo de aprendizado de máquina para identificação de cogumelos, mas não é 100% confiável. Muitos cogumelos são semelhantes, e uma identificação incorreta pode resultar em intoxicação grave ou morte. Não confie neste Serviço para determinar se um cogumelo é seguro para consumo. Sempre consulte um micologista profissional ou um especialista local antes de consumir ou manusear cogumelos silvestres."
-  },
   "useOfService": {
     "title": "Uso do Serviço",
     "content": "O Serviço fornece informações sobre condições de alimentos silvestres com base em diversos fatores. As informações são apenas para orientação geral e não são garantidas como precisas, completas ou atualizadas."
@@ -19,8 +15,7 @@
   },
   "disclaimer": {
     "title": "Isenção de Responsabilidade",
-    "content": "Você utiliza o Serviço por sua conta e risco. O administrador não assume responsabilidade por acidentes, lesões, danos ou outros incidentes resultantes da confiança nas informações do Serviço. As condições em ambientes naturais podem mudar inesperadamente, e você é responsável por agir com cautela e bom senso ao planejar ou realizar atividades com base nas informações fornecidas pelo Serviço.",
-    "predictions": "Diversos fungos e frutas crescem na natureza, e alguns podem ser tóxicos ou prejudiciais se identificados incorretamente. As previsões fornecidas por este Serviço são geradas por um modelo de aprendizado de máquina e devem ser consideradas apenas como ferramenta de apoio. Este modelo não é perfeito e pode produzir classificações incorretas. Identificar cogumelos de forma errada pode causar intoxicação grave ou morte. Sempre consulte um especialista qualificado antes de consumir ou manusear qualquer fungo ou fruta."
+    "content": "Você utiliza o Serviço por sua conta e risco. O administrador não assume responsabilidade por acidentes, lesões, danos ou outros incidentes resultantes da confiança nas informações do Serviço. As condições em ambientes naturais podem mudar inesperadamente, e você é responsável por agir com cautela e bom senso ao planejar ou realizar atividades com base nas informações fornecidas pelo Serviço."
   },
   "noProfessionalAdvice": {
     "title": "Sem Orientação Profissional",
