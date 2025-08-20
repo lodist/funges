@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 import SpeciesSelector from './SpeciesSelector';
 import { useIsMobile } from '@/hooks/use-mobile';
 import FeatureInfoModal from './FeatureInfoModal';
-import MapErrorBoundary from './MapErrorBoundary';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 
@@ -27,7 +26,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapError, setMapError] = useState<string | null>(null);
   const [selectedFeature, setSelectedFeature] =
-    useState<mapboxgl.MapboxGeoJSONFeature | null>(null);
+    useState<mapboxgl.GeoJSONFeature | null>(null);
   const [isFeatureModalOpen, setIsFeatureModalOpen] = useState(false);
   const [isModalFromLocateMe, setIsModalFromLocateMe] = useState(false);
   const isMobile = useIsMobile();
@@ -38,9 +37,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     zoom,
     mapStyle,
     userLocation,
-    userLocationError,
     isLoading,
-    error,
     darkLayersVisible,
     numbersLayersVisible,
     setCenter,
@@ -101,7 +98,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       // Handle map errors
       map.current.on('error', e => {
         console.error('Mapbox error:', e);
-        setMapError('Failed to load map. Please try again.');
+        setMapError(t('error.loadFailed'));
       });
 
       // Handle map move
@@ -114,9 +111,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       });
     } catch (error) {
       console.error('Error initializing map:', error);
-      setMapError(
-        'Failed to initialize map. Please check your internet connection.'
-      );
+      setMapError(t('error.initFailed'));
     }
 
     return () => {
@@ -261,9 +256,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       }
     } catch (error) {
       console.error('Error getting user location:', error);
-      setError(
-        'Unable to get your location. Please check your browser permissions.'
-      );
+      setError(t('geolocation.permissionError'));
     } finally {
       setIsLoading(false);
     }
@@ -359,31 +352,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   if (mapError) {
     return (
-      <MapErrorBoundary
-        fallback={
-          <MapFallback
-            error={mapError}
-            onRetry={() => window.location.reload()}
-          />
-        }
-      >
-        <MapFallback
-          error={mapError}
-          onRetry={() => window.location.reload()}
-        />
-      </MapErrorBoundary>
+      <MapFallback error={mapError} onRetry={() => window.location.reload()} />
     );
   }
 
   return (
-    <MapErrorBoundary
-      fallback={
-        <MapFallback
-          error={mapError || error || undefined}
-          onRetry={() => window.location.reload()}
-        />
-      }
-    >
+    <>
       {/* Main container - Fixed dimensions only on mobile for better performance */}
       <div
         className={`relative ${isMobile ? 'h-full' : 'h-[calc(100vh-1rem)] my-2 pr-2'} ${className}`}
@@ -497,24 +471,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </motion.button>
         </div>
 
-        {/* Error display */}
-        {error && (
-          <div className='absolute top-4 right-4'>
-            <Card className='p-3 bg-destructive/10 border-destructive/20'>
-              <p className='text-sm text-destructive'>{error}</p>
-            </Card>
-          </div>
-        )}
-
-        {/* User location error */}
-        {userLocationError && (
-          <div className='absolute bottom-4 left-4 right-4'>
-            <Card className='p-3 bg-destructive/10 border-destructive/20'>
-              <p className='text-sm text-destructive'>{userLocationError}</p>
-            </Card>
-          </div>
-        )}
-
         {/* Foraging spots found notification */}
         {foragingSpots.length > 0 && (
           <div className='absolute bottom-4 left-4 right-4'>
@@ -539,7 +495,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         }}
         hideDirections={isModalFromLocateMe}
       />
-    </MapErrorBoundary>
+    </>
   );
 };
 

@@ -15,22 +15,19 @@
         if (segments.length === 0) {
           // Root domain deployment (VITE_BASE_URL=/)
           // Just reload the current page to let the app handle routing
-          console.debug('🔄 Root domain deployment, reloading...');
+          console.info('🔄 Root domain deployment, reloading...');
           window.location.reload();
         } else if (segments.length === 1) {
           // Subdirectory deployment (VITE_BASE_URL=/funges/)
           // Redirect to the base subdirectory
           const basePath = '/' + segments[0] + '/';
-          console.debug(
-            '🔄 Subdirectory deployment, redirecting to:',
-            basePath
-          );
+          console.info('🔄 Subdirectory deployment, redirecting to:', basePath);
           window.location.href = basePath;
         } else {
           // Deep route in subdirectory (e.g., /funges/recipes)
           // Extract the base subdirectory and redirect there
           const basePath = '/' + segments[0] + '/';
-          console.debug('🔄 Deep route, redirecting to base:', basePath);
+          console.info('🔄 Deep route, redirecting to base:', basePath);
           window.location.href = basePath;
         }
       })();
