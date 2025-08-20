@@ -15,10 +15,6 @@
     "name": "IOTA",
     "description": "Soutenir avec la cryptomonnaie IOTA"
   },
-  "patreon": {
-    "name": "Patreon",
-    "description": "Soutenir via un abonnement Patreon"
-  },
   "buymeacoffee": {
     "name": "Buy Me a Coffee",
     "description": "Soutenir via Buy Me a Coffee"

@@ -1,4 +1,4 @@
-import { Bitcoin, Coins, Coffee, Crown } from 'lucide-react';
+import { Bitcoin, Coins, Coffee } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export interface SupportMethod {
@@ -46,15 +46,6 @@ export const SUPPORT_METHODS: SupportMethod[] = [
     address: 'atoi1qzt0nhsf38nh6rs4p6zs5knqp6psgha9wsv74uajqgjmwc75ugupx3y7x0r',
     type: 'crypto',
     color: '#131f37',
-  },
-  {
-    id: 'patreon',
-    nameKey: 'patreon.name',
-    descriptionKey: 'patreon.description',
-    icon: Crown,
-    url: 'https://www.patreon.com/Funges',
-    type: 'platform',
-    color: '#ff424d',
   },
   {
     id: 'buymeacoffee',

@@ -140,10 +140,6 @@ export interface DonationInfo {
     address: string;
     qrCode: string;
   };
-  patreon: {
-    url: string;
-    qrCode: string;
-  };
   buymeacoffee: {
     url: string;
     qrCode: string;
