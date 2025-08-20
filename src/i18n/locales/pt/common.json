@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "Funges",
-    "appDescription": "Guia de Cogumelos",
+    "appDescription": "Guia de forrageamento",
     "loading": "Carregando...",
     "error": "Ocorreu um erro",
     "success": "Sucesso",

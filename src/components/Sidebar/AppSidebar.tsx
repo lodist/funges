@@ -123,7 +123,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
               {t('appName', { defaultValue: 'Funges' })}
             </h2>
             <p className='text-xs text-muted-foreground'>
-              {t('appDescription', { defaultValue: 'Mushroom Guide' })}
+              {t('appDescription', { defaultValue: 'Foraging Guide' })}
             </p>
           </div>
         </div>

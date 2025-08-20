@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "Funges",
-    "appDescription": "Mushroom Guide",
+    "appDescription": "Foraging Guide",
     "loading": "Loading...",
     "error": "An error occurred",
     "success": "Success",
