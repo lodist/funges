@@ -13,9 +13,8 @@
 
 ## Base URL Configuration
 
-- **GitHub Pages**: Set `VITE_BASE_URL=/funges/` (for https://albertoforcato.github.io/funges/)
 - **Custom domain**: Set `VITE_BASE_URL=/` (for https://fung.es)
-- **Subdirectory**: Set `VITE_BASE_URL=/your-subdir/`
+- **GitHub Pages**: Set `VITE_BASE_URL=/funges/` (for https://your-username.github.io/funges/)
 
 ## How It Works
 
@@ -23,10 +22,3 @@
 - Builds with your environment variables
 - Deploys to GitHub Pages
 - Base URL is configurable via `VITE_BASE_URL` secret
-
-## Current Issue
-
-Your site at https://albertoforcato.github.io/funges/ needs:
-
-1. `VITE_BASE_URL=/funges/` in repository secrets
-2. GitHub Pages enabled with GitHub Actions source
