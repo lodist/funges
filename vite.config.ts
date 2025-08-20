@@ -4,6 +4,8 @@ import react from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import Sitemap from 'vite-plugin-sitemap';
+import removeConsole from 'vite-plugin-remove-console';
+import checker from 'vite-plugin-checker';
 
 const baseUrl = process.env.VITE_BASE_URL || '/';
 const hostname = process.env.VITE_HOSTNAME || 'https://www.fung.es';
@@ -221,6 +223,33 @@ export default defineConfig({
       hostname: `${hostname}${baseUrl}`,
       dynamicRoutes: routeFullPaths,
     }),
+    removeConsole({
+      includes: [
+        'log',
+        'debug',
+        'warn',
+        'trace',
+        'dir',
+        'group',
+        'groupCollapsed',
+        'groupEnd',
+        'table',
+        'time',
+        'timeEnd',
+        'timeLog',
+        'count',
+        'countReset',
+        'assert',
+        'clear',
+      ],
+    }),
+    checker({
+      typescript: true,
+      eslint: {
+        lintCommand: 'eslint . --max-warnings 0',
+      },
+      stylelint: false,
+    }),
   ],
   resolve: {
     alias: {
@@ -254,6 +283,8 @@ export default defineConfig({
         manualChunks: undefined,
       },
     },
+    minify: 'esbuild',
+    target: 'es2015',
   },
   test: {
     globals: true,
