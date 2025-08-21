@@ -59,7 +59,6 @@
   "getLocation": "Obtenir ma position",
   "toggleNumbers": "Afficher/masquer les notes",
   "toggleDarkMode": "Basculer en mode sombre",
-  "lastUpdated": "Dernière mise à jour",
   "dataFreshnessTooltip": "Données mises à jour quotidiennement",
   "featureInfo": {
     "title": "Détails de la fonctionnalité",

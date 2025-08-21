@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { Download, Heart, Info, ShieldCheck, Gavel } from 'lucide-react';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
+import MapLastUpdated from '@/components/MapLastUpdated';
 
 export default function SettingsPage() {
   const { t } = useTranslation('settings');
@@ -73,6 +74,15 @@ export default function SettingsPage() {
           ))}
         </div>
 
+        {/* Data Freshness Info */}
+        <div className='flex justify-center'>
+          <div className='flex items-center gap-2 text-[10px] text-muted-foreground'>
+            <div className='w-2 h-2 bg-green-500 rounded-full animate-pulse flex-shrink-0'></div>
+            <span className='break-words leading-relaxed'>
+              {t('updatedAt')} <MapLastUpdated variant='sidebar' />
+            </span>
+          </div>
+        </div>
         <div className='flex flex-col items-center justify-center py-6 space-y-6'>
           <LanguageSwitcher />
           <InstallAppButton />
