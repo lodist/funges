@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from '@/components/ui/tooltip';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface Metadata {
   updated_at: string;
 }
 
-const MapLastUpdated: React.FC = () => {
+interface MapLastUpdatedProps {
+  variant?: 'sidebar' | 'mobile' | 'map';
+}
+
+const MapLastUpdated: React.FC<MapLastUpdatedProps> = ({ variant = 'map' }) => {
   const { t, i18n } = useTranslation('map');
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     fetch('/data/scores_metadata.json')
@@ -51,16 +52,28 @@ const MapLastUpdated: React.FC = () => {
 
   if (!lastUpdated) return null;
 
+  if (variant === 'sidebar') {
+    return <span className='font-medium'>{formatTime()}</span>;
+  }
+
+  if (variant === 'mobile') {
+    return (
+      <div className='flex items-center gap-2 text-[10px] text-muted-foreground'>
+        <div className='w-2 h-2 bg-green-500 rounded-full animate-pulse flex-shrink-0'></div>
+        <span className='break-words leading-relaxed'>
+          {t('lastUpdated')}: {formatTime()}
+        </span>
+      </div>
+    );
+  }
+
+  // Default map variant
   return (
-    <div className='absolute bottom-2 left-2 z-10'>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <span className='rounded bg-background/80 px-2 py-1 text-xs shadow-md'>
-            {t('lastUpdated')}: {formatTime()}
-          </span>
-        </TooltipTrigger>
-        <TooltipContent side='top'>{t('dataFreshnessTooltip')}</TooltipContent>
-      </Tooltip>
+    <div className='absolute bottom-4 left-4 z-10'>
+      <span className='inline-flex items-center gap-2 rounded-lg bg-white border border-gray-200 px-3 py-2 text-xs font-medium text-gray-700 shadow-lg hover:shadow-xl transition-all duration-200 hover:bg-gray-50'>
+        <div className='w-2 h-2 bg-green-500 rounded-full animate-pulse'></div>
+        {t('lastUpdated')}: {formatTime()}
+      </span>
     </div>
   );
 };

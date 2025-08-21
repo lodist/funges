@@ -58,7 +58,6 @@
   "getLocation": "Get My Location",
   "toggleNumbers": "Toggle Numbers",
   "toggleDarkMode": "Toggle Dark Mode",
-  "lastUpdated": "Last updated",
   "dataFreshnessTooltip": "Data refreshed daily",
   "featureInfo": {
     "title": "Feature Details",

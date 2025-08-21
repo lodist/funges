@@ -15,12 +15,14 @@ import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
+  SidebarFooter,
 } from '@/components/ui/sidebar';
 import { NavSecondary } from './nav-secondary';
 import { NavMain } from './nav-main';
 import { useTranslation } from 'react-i18next';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
+import MapLastUpdated from '@/components/MapLastUpdated';
 
 const basePath = import.meta.env.BASE_URL || '/';
 
@@ -128,10 +130,22 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
           </div>
         </div>
       </SidebarHeader>
-      <SidebarContent className='px-3 py-4'>
+      <SidebarContent className='px-3 pt-4 pb-0'>
         <NavMain items={data.navMain} />
         <NavSecondary items={data.navSecondary} className='mt-auto' />
       </SidebarContent>
+      {!isMobile && (
+        <SidebarFooter className='border-t py-3 px-1'>
+          <div className='flex flex-col gap-2 items-center justify-center'>
+            <div className='flex items-center gap-2 text-[10px] text-muted-foreground justify-center'>
+              <div className='w-2 h-2 bg-green-500 rounded-full animate-pulse flex-shrink-0'></div>
+              <span className='break-words leading-relaxed'>
+                {t('updatedAt')} <MapLastUpdated variant='sidebar' />
+              </span>
+            </div>
+          </div>
+        </SidebarFooter>
+      )}
     </Sidebar>
   );
 };
