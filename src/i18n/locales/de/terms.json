@@ -3,10 +3,6 @@
   "welcome": {
     "title": "Willkommen beim Service (im Folgenden „der Service“ genannt). Durch den Zugriff auf oder die Nutzung des Service erklärst du dich mit diesen Nutzungsbedingungen („Bedingungen“) einverstanden. Wenn du nicht einverstanden bist, stelle die Nutzung des Service bitte ein."
   },
-  "safetyWarning": {
-    "title": "Wichtiger Sicherheitshinweis",
-    "content": "Dieser Service verwendet ein maschinelles Lernmodell zur Pilzbestimmung, ist jedoch nicht zu 100 % zuverlässig. Viele Pilze sehen ähnlich aus, und eine Fehlbestimmung kann zu schweren Vergiftungen oder zum Tod führen. Verlasse dich nicht auf diesen Service, um zu entscheiden, ob ein Pilz essbar ist. Konsultiere immer einen professionellen Mykologen oder einen lokalen Experten, bevor du Wildpilze verzehrst oder sammelst."
-  },
   "useOfService": {
     "title": "Nutzung des Service",
     "content": "Der Service stellt Informationen zu Bedingungen für Wildnahrung auf Basis verschiedener Faktoren bereit. Diese Informationen dienen nur als allgemeine Orientierung und sind nicht garantiert korrekt, vollständig oder aktuell."
@@ -19,8 +15,7 @@
   },
   "disclaimer": {
     "title": "Haftungsausschluss",
-    "content": "Die Nutzung des Service erfolgt auf eigenes Risiko. Der Administrator übernimmt keine Verantwortung für Unfälle, Verletzungen, Schäden oder andere Vorfälle, die durch das Vertrauen auf die Informationen des Service entstehen. Bedingungen in der Natur können sich unerwartet ändern; du bist selbst dafür verantwortlich, Vorsicht und Urteilsvermögen bei der Planung oder Durchführung von Aktivitäten auf Basis der bereitgestellten Informationen walten zu lassen.",
-    "predictions": "In der Natur wachsen viele verschiedene Pilze und Früchte, von denen einige bei Fehlbestimmung giftig oder schädlich sein können. Die vom Service bereitgestellten Vorhersagen werden von einem maschinellen Lernmodell erzeugt und dienen nur als Orientierungshilfe. Dieses Modell ist nicht perfekt und kann falsche Klassifizierungen liefern. Eine Fehlbestimmung von Pilzen kann zu schweren Vergiftungen oder zum Tod führen. Konsultiere immer einen qualifizierten Experten, bevor du Pilze oder Früchte verzehrst oder sammelst."
+    "content": "Die Nutzung des Service erfolgt auf eigenes Risiko. Der Administrator übernimmt keine Verantwortung für Unfälle, Verletzungen, Schäden oder andere Vorfälle, die durch das Vertrauen auf die Informationen des Service entstehen. Bedingungen in der Natur können sich unerwartet ändern; du bist selbst dafür verantwortlich, Vorsicht und Urteilsvermögen bei der Planung oder Durchführung von Aktivitäten auf Basis der bereitgestellten Informationen walten zu lassen."
   },
   "noProfessionalAdvice": {
     "title": "Kein Ersatz für professionelle Beratung",

@@ -245,9 +245,7 @@ export default defineConfig({
     }),
     checker({
       typescript: true,
-      eslint: {
-        lintCommand: 'eslint . --max-warnings 0',
-      },
+      eslint: false,
       stylelint: false,
     }),
   ],

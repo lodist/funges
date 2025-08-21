@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "Funges",
-    "appDescription": "Guide des champignons",
+    "appDescription": "Guide de cueillette",
     "loading": "Chargement...",
     "error": "Une erreur est survenue",
     "success": "Succès",

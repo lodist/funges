@@ -3,10 +3,6 @@
   "welcome": {
     "title": "Benvenuto nel servizio (denominato \"il Servizio\"). Accedendo o utilizzando il Servizio, accetti di rispettare questi Termini di Servizio (\"Termini\"). Se non sei d'accordo, ti preghiamo di interrompere l'uso del Servizio."
   },
-  "safetyWarning": {
-    "title": "Avviso di Sicurezza Importante",
-    "content": "Questo Servizio utilizza un modello di machine learning per l'identificazione dei funghi, ma non è affidabile al 100%. Molti funghi si assomigliano e l'errata identificazione può causare avvelenamento grave o morte. Non fare affidamento su questo Servizio per determinare se un fungo è sicuro da mangiare. Consulta sempre un micologo professionista o un esperto locale prima di consumare o maneggiare funghi selvatici."
-  },
   "useOfService": {
     "title": "Utilizzo del Servizio",
     "content": "Il Servizio fornisce informazioni sulle condizioni degli alimenti selvatici basate su vari fattori. Le informazioni sono solo a scopo di orientamento generale e non sono garantite come accurate, complete o aggiornate."
@@ -19,8 +15,7 @@
   },
   "disclaimer": {
     "title": "Disclaimer di Responsabilità",
-    "content": "Utilizzi il Servizio a tuo rischio. L'amministratore non si assume alcuna responsabilità per incidenti, lesioni, danni o altri eventi derivanti dall'affidamento alle informazioni del Servizio. Le condizioni negli ambienti naturali possono cambiare inaspettatamente, e sei responsabile di esercitare cautela e giudizio quando pianifichi o intraprendi attività basate sulle informazioni fornite dal Servizio.",
-    "predictions": "Una varietà di funghi e frutti cresce in natura, e alcuni possono essere tossici o dannosi se identificati erroneamente. Le previsioni fornite da questo Servizio sono generate da un modello di machine learning e dovrebbero essere considerate solo come strumento consultivo. Questo modello non è perfetto e può produrre classificazioni errate. Identificare erroneamente i funghi può portare ad avvelenamento grave o morte. Consulta sempre un esperto qualificato prima di consumare o maneggiare qualsiasi fungo o frutto."
+    "content": "Utilizzi il Servizio a tuo rischio. L'amministratore non si assume alcuna responsabilità per incidenti, lesioni, danni o altri eventi derivanti dall'affidamento alle informazioni del Servizio. Le condizioni negli ambienti naturali possono cambiare inaspettatamente, e sei responsabile di esercitare cautela e giudizio quando pianifichi o intraprendi attività basate sulle informazioni fornite dal Servizio."
   },
   "noProfessionalAdvice": {
     "title": "Nessun Consiglio Professionale",

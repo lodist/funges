@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "Funges",
-    "appDescription": "Guía de hongos",
+    "appDescription": "Guía de recolección",
     "loading": "Cargando...",
     "error": "Ocurrió un error",
     "success": "Éxito",

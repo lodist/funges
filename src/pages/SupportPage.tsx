@@ -231,6 +231,11 @@ export default function SupportPage() {
             </div>
           </section>
 
+          {/* Contributor Credit */}
+          <p className='text-center text-sm text-gray-500 dark:text-gray-400 pt-4'>
+            {t('credits')}
+          </p>
+
           {/* Thank You Message */}
           <div className='text-center py-8'>
             <div className='inline-flex items-center space-x-2 bg-green-50 dark:bg-green-950 px-6 py-4 rounded-full'>
