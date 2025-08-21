@@ -103,7 +103,7 @@ export const SPECIES_DATA: Species[] = [
     nameKey: 'dandelion.name',
     scientificName: 'Taraxacum officinale',
     category: 'plant',
-    emoji: '🌼',
+    emoji: '🌸',
     descriptionKey: 'dandelion.description',
     howToKey: 'dandelion.howTo',
     season: 'spring-summer',
