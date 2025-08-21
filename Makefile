@@ -1,7 +1,7 @@
 # Fung.es Project Makefile
 # Common development and deployment commands
 
-.PHONY: help dev build lint format test storybook i18n-check analyze deploy clean install generate-splash
+.PHONY: help dev build lint format test test-watch storybook storybook-build i18n-check analyze deploy clean install install-ci generate-splash type-check preview generate-routes watch-routes dev-setup prod-setup dev-cycle quick-start
 
 # Default target
 help:
@@ -16,6 +16,8 @@ help:
 	@echo "  make lint         - Run ESLint"
 	@echo "  make format       - Run Prettier format"
 	@echo "  make test         - Run Vitest tests"
+	@echo "  make test-watch   - Run tests in watch mode"
+	@echo "  make type-check   - Run TypeScript type check"
 	@echo ""
 	@echo "Documentation & Tools:"
 	@echo "  make storybook    - Start Storybook"
@@ -24,10 +26,18 @@ help:
 	@echo "  make generate-splash - Generate PWA splash screen images"
 	@echo ""
 	@echo "Deployment:"
-@echo "  make deploy       - Build and deploy to GitHub Pages"
+	@echo "  make deploy       - Build and deploy to GitHub Pages"
+	@echo "  make preview      - Start preview server"
 	@echo ""
 	@echo "Dependencies:"
 	@echo "  make install      - Install dependencies"
+	@echo "  make install-ci   - Install dependencies for CI"
+	@echo ""
+	@echo "Workflows:"
+	@echo "  make dev-setup    - Setup development environment"
+	@echo "  make prod-setup   - Setup production environment"
+	@echo "  make dev-cycle    - Run full development cycle"
+	@echo "  make quick-start  - Quick start for new developers"
 
 # Development
 dev:
@@ -61,6 +71,10 @@ test-watch:
 	@echo "Running tests in watch mode..."
 	npm run test:watch
 
+type-check:
+	@echo "Running TypeScript type check..."
+	npx tsc --noEmit
+
 # Documentation & Tools
 storybook:
 	@echo "Starting Storybook..."
@@ -82,9 +96,9 @@ i18n-check:
 			const itKeys = Object.keys(it); \
 			const missingInIt = enKeys.filter(k => !itKeys.includes(k)); \
 			const missingInEn = itKeys.filter(k => !enKeys.includes(k)); \
-			if (missingInIt.length > 0) console.debug('Missing in Italian:', missingInIt); \
-			if (missingInEn.length > 0) console.debug('Missing in English:', missingInEn); \
-			if (missingInIt.length === 0 && missingInEn.length === 0) console.debug('✓ All translation keys are synchronized'); \
+			if (missingInIt.length > 0) console.log('Missing in Italian:', missingInIt); \
+			if (missingInEn.length > 0) console.log('Missing in English:', missingInEn); \
+			if (missingInIt.length === 0 && missingInEn.length === 0) console.log('✓ All translation keys are synchronized'); \
 		"; \
 	else \
 		echo "✗ Translation files not found"; \
@@ -119,7 +133,9 @@ deploy:
 		gh-pages -d dist; \
 	fi
 
-
+preview:
+	@echo "Starting preview server..."
+	npm run preview
 
 # Dependencies
 install:
@@ -130,15 +146,7 @@ install-ci:
 	@echo "Installing dependencies for CI..."
 	npm ci
 
-# Additional useful commands
-type-check:
-	@echo "Running TypeScript type check..."
-	npx tsc --noEmit
-
-preview:
-	@echo "Starting preview server..."
-	npm run preview
-
+# Route management
 generate-routes:
 	@echo "Generating route tree..."
 	npx tsr generate
@@ -166,4 +174,4 @@ dev-cycle: lint format test build
 
 # Quick start for new developers
 quick-start: dev-setup dev
-	@echo "Quick start complete! Development server should be running." 
+	@echo "Quick start complete! Development server should be running."
