@@ -6,7 +6,7 @@ on:
     branches: [main, master]
   workflow_run:
     workflows:
-      - Track Unique Visitors
+      - Update site data
     types:
       - completed
 

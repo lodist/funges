@@ -10,6 +10,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
+import MapLastUpdated from './MapLastUpdated';
 
 import { motion } from 'framer-motion';
 
@@ -484,6 +485,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             </Card>
           </div>
         )}
+        <MapLastUpdated />
       </div>
       <FeatureInfoModal
         feature={selectedFeature}
