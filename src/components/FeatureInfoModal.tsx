@@ -14,13 +14,10 @@ interface FeatureInfoModalProps {
   hideDirections?: boolean;
 }
 
-// Builds a platform specific navigation URL
+// Builds a Google Maps navigation URL for consistent cross-platform behavior
 function getNavigationUrl(lat: number, lng: number): string {
-  const ua = navigator.userAgent || '';
-  const isIOS = /iPad|iPhone|iPod/.test(ua);
-  const isAndroid = /Android/.test(ua);
-  if (isIOS) return `http://maps.apple.com/?daddr=${lat},${lng}`;
-  if (isAndroid) return `geo:${lat},${lng}?q=${lat},${lng}`;
+  // Always use Google Maps for consistent behavior across all platforms
+  // This ensures the same experience on desktop, iOS, and Android
   return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
 }
 
