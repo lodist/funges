@@ -60,7 +60,7 @@
   "toggleNumbers": "Mostrar números",
   "toggleDarkMode": "Cambiar a modo oscuro",
   "lastUpdated": "Última actualización",
-  "dataFreshnessTooltip": "Datos de puntuaciones actualizados diariamente",
+  "dataFreshnessTooltip": "Datos actualizados diariamente",
   "featureInfo": {
     "title": "Detalles de la función",
     "getDirections": "Obtener indicaciones",

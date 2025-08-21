@@ -60,7 +60,7 @@
   "toggleNumbers": "Zahlen ein-/ausblenden",
   "toggleDarkMode": "Dunkelmodus umschalten",
   "lastUpdated": "Zuletzt aktualisiert",
-  "dataFreshnessTooltip": "Punktedaten werden täglich aktualisiert",
+  "dataFreshnessTooltip": "Daten werden täglich aktualisiert",
   "featureInfo": {
     "title": "Feature-Details",
     "getDirections": "Route abrufen",
