@@ -79,13 +79,6 @@ export default function ImpressumPage() {
             </p>
           </section>
 
-          {/* Attribution */}
-          <section className='bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm'>
-            <p className='text-gray-700 dark:text-gray-300 leading-relaxed'>
-              {t('attribution.content')}
-            </p>
-          </section>
-
           {/* Last Updated */}
           <div className='text-center text-sm text-gray-500 dark:text-gray-400 pt-4'>
             {t('lastUpdated')}
