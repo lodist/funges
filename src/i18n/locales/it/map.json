@@ -58,6 +58,8 @@
   "getLocation": "Ottieni la Mia Posizione",
   "toggleNumbers": "Attiva/Disattiva Numeri",
   "toggleDarkMode": "Attiva/Disattiva Modalità Scura",
+  "lastUpdated": "Ultimo aggiornamento",
+  "dataFreshnessTooltip": "Dati dei punteggi aggiornati quotidianamente",
   "featureInfo": {
     "title": "Dettagli Feature",
     "getDirections": "Ottieni Indicazioni",

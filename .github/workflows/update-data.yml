@@ -1,4 +1,4 @@
-name: Track Unique Visitors
+name: Update site data
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     - cron: '0 */3 * * *'
 
 jobs:
-  update-visitors:
+  update-data:
     runs-on: ubuntu-latest
     env:
       CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
@@ -29,10 +29,13 @@ jobs:
       - name: Run visitor script
         run: python scripts/fetch_visitors.py
 
+      - name: Generate scores metadata
+        run: python scripts/generate_scores_metadata.py
+
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Update visitor count
-          file_pattern: public/data/visitors.json
+          commit_message: Update site data
+          file_pattern: public/data/visitors.json public/data/scores_metadata.json
           commit_user_name: github-actions[bot]
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com

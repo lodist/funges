@@ -107,13 +107,15 @@ generate-splash:
 
 # Deployment
 deploy:
-	@echo "Building and deploying to GitHub Pages..."
-	npm run build
-	@if command -v gh-pages >/dev/null 2>&1; then \
-		gh-pages -d dist; \
-	else \
-		echo "Installing gh-pages..."; \
-		npm install -g gh-pages; \
+        @echo "Generating scores metadata..."
+        python scripts/generate_scores_metadata.py
+        @echo "Building and deploying to GitHub Pages..."
+        npm run build
+        @if command -v gh-pages >/dev/null 2>&1; then \
+                gh-pages -d dist; \
+        else \
+                echo "Installing gh-pages..."; \
+                npm install -g gh-pages; \
 		gh-pages -d dist; \
 	fi
 
