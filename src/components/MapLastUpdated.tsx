@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 interface Metadata {
   updated_at: string;
@@ -13,7 +12,6 @@ interface MapLastUpdatedProps {
 const MapLastUpdated: React.FC<MapLastUpdatedProps> = ({ variant = 'map' }) => {
   const { t, i18n } = useTranslation('map');
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     fetch('/data/scores_metadata.json')
