@@ -63,5 +63,18 @@
     "title": "Feature-Details",
     "getDirections": "Route abrufen",
     "location": "Standort"
+  },
+  "onboarding": {
+    "title": "Explore wild species",
+    "description": "Use the map to discover foraging spots and species.",
+    "features": {
+      "species": "Choose a species with the selector",
+      "locate": "Center the map on your location",
+      "numbers": "Show or hide the numeric index",
+      "theme": "Switch between dark and light map styles",
+      "zones": "Tap a zone to view its species list"
+    },
+    "instructions": "Read full instructions",
+    "dismiss": "Start exploring"
   }
 }
