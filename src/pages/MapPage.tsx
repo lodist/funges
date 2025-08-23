@@ -6,6 +6,7 @@ import { Route as MapRoute } from '@/routes/index';
 import { useMapStore } from '@/store/mapStore';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
+import OnboardingModal from '@/components/OnboardingModal';
 
 export default function MapPage() {
   const isMobile = useIsMobile();
@@ -39,6 +40,7 @@ export default function MapPage() {
       <div className={isMobile ? 'h-full' : '-m-4'}>
         <MapComponent />
       </div>
+      <OnboardingModal />
     </>
   );
 }
