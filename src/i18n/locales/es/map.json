@@ -59,6 +59,7 @@
   "getLocation": "Obtener mi ubicación",
   "toggleNumbers": "Mostrar números",
   "toggleDarkMode": "Cambiar a modo oscuro",
+  "showOnboarding": "Show onboarding",
   "dataFreshnessTooltip": "Datos actualizados diariamente",
   "featureInfo": {
     "title": "Detalles de la función",

@@ -58,6 +58,7 @@
   "getLocation": "Ottieni la Mia Posizione",
   "toggleNumbers": "Attiva/Disattiva Numeri",
   "toggleDarkMode": "Attiva/Disattiva Modalità Scura",
+  "showOnboarding": "Show onboarding",
   "dataFreshnessTooltip": "Dati aggiornati quotidianamente",
   "featureInfo": {
     "title": "Dettagli Feature",

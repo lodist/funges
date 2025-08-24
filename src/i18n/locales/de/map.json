@@ -59,6 +59,7 @@
   "getLocation": "Meinen Standort ermitteln",
   "toggleNumbers": "Zahlen ein-/ausblenden",
   "toggleDarkMode": "Dunkelmodus umschalten",
+  "showOnboarding": "Show onboarding",
   "dataFreshnessTooltip": "Daten werden täglich aktualisiert",
   "featureInfo": {
     "title": "Feature-Details",
