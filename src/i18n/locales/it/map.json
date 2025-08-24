@@ -58,6 +58,7 @@
   "getLocation": "Ottieni la Mia Posizione",
   "toggleNumbers": "Attiva/Disattiva Numeri",
   "toggleDarkMode": "Attiva/Disattiva Modalità Scura",
+  "showOnboarding": "Mostra istruzioni",
   "dataFreshnessTooltip": "Dati aggiornati quotidianamente",
   "featureInfo": {
     "title": "Dettagli Feature",
@@ -65,16 +66,16 @@
     "location": "Località"
   },
   "onboarding": {
-    "title": "Explore wild species",
-    "description": "Use the map to discover foraging spots and species.",
+    "title": "Esplora le specie selvatiche",
+    "description": "Usa la mappa per scoprire luoghi di raccolta e specie.",
     "features": {
-      "species": "Choose a species with the selector",
-      "locate": "Center the map on your location",
-      "numbers": "Show or hide the numeric index",
-      "theme": "Switch between dark and light map styles",
-      "zones": "Tap a zone to view its species list"
+      "species": "Scegli una specie con il selettore",
+      "locate": "Centra la mappa sulla tua posizione",
+      "numbers": "Mostra o nascondi l’indice numerico",
+      "theme": "Passa tra lo stile chiaro e scuro della mappa",
+      "zones": "Tocca una zona per vedere l’elenco delle specie"
     },
-    "instructions": "Read full instructions",
-    "dismiss": "Start exploring"
+    "instructions": "Leggi le istruzioni complete",
+    "dismiss": "Inizia a esplorare"
   }
 }

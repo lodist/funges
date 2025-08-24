@@ -3,8 +3,9 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useMapStore } from '@/store/mapStore';
 import { Card } from '@/components/ui/card';
-import { Loader2, MapPin, Navigation, Moon, Hash } from 'lucide-react';
+import { Loader2, MapPin, Navigation, Moon, Hash, Info } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useUIStore } from '@/store/uiStore';
 import SpeciesSelector from './SpeciesSelector';
 import { useIsMobile } from '@/hooks/use-mobile';
 import FeatureInfoModal from './FeatureInfoModal';
@@ -31,6 +32,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const isMobile = useIsMobile();
 
   const { t } = useTranslation('map');
+  const { setActiveModal } = useUIStore();
   const {
     center,
     zoom,
@@ -467,6 +469,23 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             }}
           >
             <Moon className='h-4 w-4' />
+          </motion.button>
+
+          {/* Info button */}
+          <motion.button
+            onClick={() => setActiveModal('onboarding')}
+            className='inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg bg-secondary border-input'
+            title={t('showOnboarding')}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{
+              duration: 0.2,
+              type: 'spring',
+              stiffness: 400,
+              damping: 25,
+            }}
+          >
+            <Info className='h-4 w-4' />
           </motion.button>
         </div>
 

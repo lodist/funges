@@ -59,6 +59,7 @@
   "getLocation": "Meinen Standort ermitteln",
   "toggleNumbers": "Zahlen ein-/ausblenden",
   "toggleDarkMode": "Dunkelmodus umschalten",
+  "showOnboarding": "Anleitung anzeigen",
   "dataFreshnessTooltip": "Daten werden täglich aktualisiert",
   "featureInfo": {
     "title": "Feature-Details",
@@ -66,16 +67,16 @@
     "location": "Standort"
   },
   "onboarding": {
-    "title": "Explore wild species",
-    "description": "Use the map to discover foraging spots and species.",
+    "title": "Wilde Arten erkunden",
+    "description": "Nutze die Karte, um Sammelorte und Arten zu entdecken.",
     "features": {
-      "species": "Choose a species with the selector",
-      "locate": "Center the map on your location",
-      "numbers": "Show or hide the numeric index",
-      "theme": "Switch between dark and light map styles",
-      "zones": "Tap a zone to view its species list"
+      "species": "Wähle eine Art mit dem Selektor",
+      "locate": "Zentriere die Karte auf deinen Standort",
+      "numbers": "Zeige oder verberge den numerischen Index",
+      "theme": "Wechsle zwischen dunklem und hellem Kartenstil",
+      "zones": "Tippe auf eine Zone, um die Artenliste anzuzeigen"
     },
-    "instructions": "Read full instructions",
-    "dismiss": "Start exploring"
+    "instructions": "Vollständige Anleitung lesen",
+    "dismiss": "Erkunden starten"
   }
 }

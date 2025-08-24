@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { List, Navigation, Hash, Moon, MousePointerClick } from 'lucide-react';
+import { useUIStore } from '@/store/uiStore';
 
 import {
   Dialog,
@@ -17,6 +18,7 @@ const ONBOARDING_KEY = 'onboardingDismissed';
 
 export default function OnboardingModal() {
   const { t } = useTranslation('map');
+  const { activeModal, setActiveModal } = useUIStore();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -25,10 +27,17 @@ export default function OnboardingModal() {
     }
   }, []);
 
+  useEffect(() => {
+    if (activeModal === 'onboarding') {
+      setOpen(true);
+    }
+  }, [activeModal]);
+
   function handleOpenChange(value: boolean) {
     setOpen(value);
     if (!value) {
       localStorage.setItem(ONBOARDING_KEY, 'true');
+      setActiveModal(null);
     }
   }
 
