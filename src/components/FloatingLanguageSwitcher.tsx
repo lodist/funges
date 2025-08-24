@@ -36,7 +36,7 @@ const FloatingLanguageSwitcher: React.FC = () => {
           <Button
             variant='outline'
             size='sm'
-            className='flex items-center gap-2 shadow-lg bg-background/80 backdrop-blur-sm border-border/50 hover:bg-background/90'
+            className='flex items-center gap-2 shadow-lg bg-background border-border/50 hover:bg-muted hover:text-primary'
           >
             <span className='text-lg'>{currentLanguage.flag}</span>
             <span className='hidden sm:inline'>{currentLanguage.name}</span>
