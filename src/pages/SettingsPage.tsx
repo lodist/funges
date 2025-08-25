@@ -76,12 +76,7 @@ export default function SettingsPage() {
 
         {/* Data Freshness Info */}
         <div className='flex justify-center'>
-          <div className='flex items-center gap-2 text-[10px] text-muted-foreground'>
-            <div className='w-2 h-2 bg-green-500 rounded-full animate-pulse flex-shrink-0'></div>
-            <span className='break-words leading-relaxed'>
-              {t('updatedAt')} <MapLastUpdated variant='sidebar' />
-            </span>
-          </div>
+          <MapLastUpdated variant='mobile' />
         </div>
         <div className='flex flex-col items-center justify-center py-6 space-y-6'>
           <LanguageSwitcher />

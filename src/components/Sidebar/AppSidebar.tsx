@@ -140,7 +140,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             <div className='flex items-center gap-2 text-[10px] text-muted-foreground justify-center'>
               <div className='w-2 h-2 bg-green-500 rounded-full animate-pulse flex-shrink-0'></div>
               <span className='break-words leading-relaxed'>
-                {t('updatedAt')} <MapLastUpdated variant='sidebar' />
+                <MapLastUpdated variant='sidebar' />
               </span>
             </div>
           </div>
