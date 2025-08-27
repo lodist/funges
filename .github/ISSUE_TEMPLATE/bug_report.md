@@ -1,7 +1,7 @@
 ---
 name: Bug Report
 about: Report a problem with the project
-title: "Bug: "
+title: 'Bug: '
 labels: bug
 ---
 
@@ -29,4 +29,3 @@ Optional, add screenshots or logs for more context.
 
 - OS:
 - Browser:
-- App version:
