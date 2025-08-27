@@ -6,7 +6,7 @@ on:
     - cron: '0 */3 * * *'
 
 permissions:
-  contents: write   # needed to push commits
+  contents: write
 
 jobs:
   update-data:
@@ -16,7 +16,6 @@ jobs:
       CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
 
     steps:
-      # 1) Get an installation token from your GitHub App
       - name: Create GitHub App token
         id: app-token
         uses: actions/create-github-app-token@v1
@@ -24,14 +23,19 @@ jobs:
           app-id: ${{ vars.FUNGES_BOT_APP_ID }}
           private-key: ${{ secrets.FUNGES_BOT_PRIVATE_KEY }}
 
-      # 2) Checkout using the App token (critical)
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ steps.app-token.outputs.token }}
           fetch-depth: 0
+          ref: main
 
-      # 3) Python setup + deps
+      - name: Sync to latest main
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -42,14 +46,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      # 4) Your scripts
       - name: Run visitor script
         run: python scripts/fetch_visitors.py
 
-      - name: Generate scores metadata
+      - name: Generate scores metadata (max date)
         run: python scripts/generate_scores_metadata.py
 
-      # 5) Commit & push with the App token
+      - name: Show changes
+        run: |
+          git status --porcelain
+          echo "--- visitors.json ---" && [ -f public/data/visitors.json ] && cat public/data/visitors.json || echo "missing"
+          echo "--- scores_metadata.json ---" && [ -f public/data/scores_metadata.json ] && cat public/data/scores_metadata.json || echo "missing"
+          echo "--- CSV head ---" && head -3 public/data/EU_foraging_scores.csv || true
+
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
