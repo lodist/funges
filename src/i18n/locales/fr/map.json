@@ -79,5 +79,10 @@
     "instructions": "Lire les instructions complètes",
     "dismiss": "Commencer l’exploration"
   },
-  "updatedAt": "Mis à jour"
+  "updatedAt": "Mis à jour",
+  "scale": {
+    "low": "Faible",
+    "label": "Indice de présence",
+    "high": "Élevé"
+  }
 }

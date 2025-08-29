@@ -78,5 +78,10 @@
     "instructions": "Leggi le istruzioni complete",
     "dismiss": "Inizia a esplorare"
   },
-  "updatedAt": "Aggiornato"
+  "updatedAt": "Aggiornato",
+  "scale": {
+    "low": "Basso",
+    "label": "Indice di presenza",
+    "high": "Alto"
+  }
 }

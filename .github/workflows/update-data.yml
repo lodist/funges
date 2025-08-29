@@ -62,7 +62,7 @@ jobs:
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update site data"
+          commit_message: 'chore: update site data'
           file_pattern: public/data/visitors.json public/data/scores_metadata.json
           commit_user_name: funges-bot
           commit_user_email: funges-bot@users.noreply.github.com

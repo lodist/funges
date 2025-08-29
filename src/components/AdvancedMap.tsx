@@ -12,6 +12,7 @@ import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import { motion } from 'framer-motion';
+import MapInfoCard from '@/components/MapInfoCard';
 
 // Set Mapbox access token
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || '';
@@ -401,12 +402,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         )}
 
         {/* Species selector - top left corner */}
-        <div className='absolute top-4 left-4 z-20'>
+        <div className='absolute top-2 left-2 z-20'>
           <SpeciesSelector className='w-auto' />
         </div>
 
         {/* Control buttons */}
-        <div className='absolute top-4 right-4 z-10 flex flex-col gap-2'>
+        <div className='absolute top-2 right-4 z-10 flex flex-col gap-2'>
           {/* User location button */}
           <motion.button
             onClick={handleGetUserLocation}
@@ -489,6 +490,16 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </motion.button>
         </div>
 
+        {isMobile ? (
+          <div className='fixed left-4 right-4 bottom-24'>
+            <MapInfoCard />
+          </div>
+        ) : (
+          <div className='absolute bottom-2 left-2 z-10'>
+            <MapInfoCard />
+          </div>
+        )}
+
         {/* Foraging spots found notification */}
         {foragingSpots.length > 0 && (
           <div className='absolute bottom-4 left-4 right-4'>
@@ -503,6 +514,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </div>
         )}
       </div>
+
       <FeatureInfoModal
         feature={selectedFeature}
         open={isFeatureModalOpen}
