@@ -79,5 +79,10 @@
     "instructions": "Vollständige Anleitung lesen",
     "dismiss": "Erkunden starten"
   },
-  "updatedAt": "Aktualisiert"
+  "updatedAt": "Aktualisiert",
+  "scale": {
+    "low": "Niedrig",
+    "label": "Präsenzindex",
+    "high": "Hoch"
+  }
 }
