@@ -7,7 +7,6 @@ import { useMapStore } from '@/store/mapStore';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import OnboardingModal from '@/components/OnboardingModal';
-import MapInfoCard from '@/components/MapInfoCard';
 
 export default function MapPage() {
   const isMobile = useIsMobile();
