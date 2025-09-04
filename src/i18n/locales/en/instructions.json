@@ -7,6 +7,7 @@
     "selection": "Select your preferred species using the dropdown at the top of the page.",
     "colorCoding": "Each area is color-coded on a gradient from pale yellow to dark red, indicating the likelihood of encountering good foraging conditions, based on environmental data.",
     "scale": "The scale is accompanied by a numerical rating from 0 to 10, illustrated below.",
+    "scores": "Scores indicate the potential availability of the edible part to be foraged (such as nuts, fruits, or mushrooms), rather than the mere presence of the plant or tree itself.",
     "polygons": "Polygons and markers are only shown when they provide meaningful seasonal information, keeping the map lightweight and focused. If something's not showing, it might just be too early or too late in the season."
   },
   "functions": {
