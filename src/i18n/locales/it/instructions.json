@@ -7,6 +7,7 @@
     "selection": "Seleziona la tua specie preferita usando il menu a tendina nella parte superiore della pagina.",
     "colorCoding": "Ogni area è codificata a colori su una scala dal giallo pallido al rosso scuro, indicando la probabilità di incontrare buone condizioni di raccolta, basate sui dati ambientali.",
     "scale": "La scala è accompagnata da una valutazione numerica da 0 a 10, illustrata di seguito.",
+    "scores": "I punteggi indicano la potenziale disponibilità della parte edibile da raccogliere (come noci, frutti o funghi), piuttosto che la mera presenza della pianta o dell'albero stesso.",
     "polygons": "I poligoni e i marcatori vengono mostrati solo quando forniscono informazioni stagionali significative, mantenendo la mappa leggera e focalizzata. Se qualcosa non viene mostrato, potrebbe essere troppo presto o troppo tardi nella stagione."
   },
   "functions": {

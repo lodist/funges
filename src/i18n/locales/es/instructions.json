@@ -7,6 +7,7 @@
     "selection": "Selecciona tu especie preferida usando el menú desplegable en la parte superior de la página.",
     "colorCoding": "Cada área está codificada por colores en un gradiente de amarillo pálido a rojo oscuro, indicando la probabilidad de encontrar buenas condiciones de recolección según los datos ambientales.",
     "scale": "La escala se acompaña de una calificación numérica de 0 a 10, ilustrada abajo.",
+    "scores": "Las puntuaciones indican la disponibilidad potencial de la parte comestible para recolectar (como frutos secos, frutas o setas), más que la mera presencia de la planta o del árbol en sí.",
     "polygons": "Los polígonos y marcadores solo se muestran cuando aportan información estacional relevante, manteniendo el mapa ligero y enfocado. Si algo no aparece, puede que sea demasiado pronto o tarde en la temporada."
   },
   "functions": {

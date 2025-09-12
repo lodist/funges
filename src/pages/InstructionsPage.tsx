@@ -100,6 +100,9 @@ export default function InstructionsPage() {
                 {t('mapDescription.scale')}
               </div>
               <p className='text-gray-700 dark:text-gray-300 leading-relaxed'>
+                {t('mapDescription.scores')}
+              </p>
+              <p className='text-gray-700 dark:text-gray-300 leading-relaxed'>
                 {t('mapDescription.polygons')}
               </p>
             </CardContent>

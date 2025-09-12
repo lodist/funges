@@ -7,6 +7,7 @@
     "selection": "Wähle deine bevorzugte Art über das Dropdown-Menü oben auf der Seite aus.",
     "colorCoding": "Jedes Gebiet ist farblich von blassem Gelb bis Dunkelrot abgestuft, was die Wahrscheinlichkeit für gute Sammelbedingungen anhand von Umweltdaten anzeigt.",
     "scale": "Die Skala wird durch eine numerische Bewertung von 0 bis 10 ergänzt, wie unten dargestellt.",
+    "scores": "Die Bewertungen geben die potenzielle Verfügbarkeit des essbaren Teils zum Sammeln an (wie Nüsse, Früchte oder Pilze) und nicht nur die blosse Präsenz der Pflanze oder des Baumes selbst.",
     "polygons": "Polygone und Marker werden nur angezeigt, wenn sie sinnvolle saisonale Informationen bieten, um die Karte übersichtlich und fokussiert zu halten. Falls etwas nicht angezeigt wird, ist es möglicherweise zu früh oder zu spät in der Saison."
   },
   "functions": {
