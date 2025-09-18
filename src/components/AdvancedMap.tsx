@@ -68,7 +68,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         center: center,
         zoom: zoom,
         maxZoom: 12,
-        minZoom: 5,
+        minZoom: 3.01,
         collectResourceTiming: false,
         touchZoomRotate: true,
         trackResize: !isMobile, // Disable automatic resize only on mobile

@@ -90,7 +90,7 @@ export const useMapStore = create<MapState>()(
     (set, get) => ({
       // Initial state
       center: [7.3359, 47.7508], // Switzerland
-      zoom: 5,
+      zoom: 3.25,
       bearing: 0,
       pitch: 0,
       mapStyle: import.meta.env.VITE_MAPBOX_STYLE,
