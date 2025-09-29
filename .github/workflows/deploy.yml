@@ -114,6 +114,69 @@ jobs:
 
           echo "✅ Build completed successfully"
 
+      - name: Verify static files in dist
+        run: |
+          echo "🔍 Verifying static files (sitemap.xml, robots.txt, 404.html)..."
+          
+          MISSING_FILES=""
+          
+          # Check sitemap.xml
+          if [ -f dist/sitemap.xml ]; then
+            echo "✅ sitemap.xml found in dist/"
+            echo "📄 sitemap.xml size: $(wc -c < dist/sitemap.xml) bytes"
+            echo "📄 First 5 lines of sitemap.xml:"
+            head -5 dist/sitemap.xml
+          else
+            echo "❌ sitemap.xml NOT found in dist/"
+            MISSING_FILES="$MISSING_FILES sitemap.xml"
+          fi
+
+          echo ""
+          
+          # Check robots.txt
+          if [ -f dist/robots.txt ]; then
+            echo "✅ robots.txt found in dist/"
+            echo "📄 robots.txt contents:"
+            cat dist/robots.txt
+          else
+            echo "⚠️  robots.txt NOT found in dist/ (optional)"
+          fi
+
+          echo ""
+          
+          # Check 404.html
+          if [ -f dist/404.html ]; then
+            echo "✅ 404.html found in dist/"
+            echo "📄 404.html size: $(wc -c < dist/404.html) bytes"
+          else
+            echo "❌ 404.html NOT found in dist/"
+            MISSING_FILES="$MISSING_FILES 404.html"
+          fi
+          
+          # Check .nojekyll
+          if [ -f dist/.nojekyll ]; then
+            echo "✅ .nojekyll found in dist/"
+          else
+            echo "⚠️  .nojekyll NOT found in dist/ (recommended for GitHub Pages)"
+          fi
+          
+          # Fail if critical files are missing
+          if [ -n "$MISSING_FILES" ]; then
+            echo ""
+            echo "❌ CRITICAL: Missing files:$MISSING_FILES"
+            echo "💡 Make sure these files are in your public/ directory:"
+            echo "   - public/sitemap.xml"
+            echo "   - public/404.html"
+            echo "   - public/.nojekyll (optional but recommended)"
+            echo ""
+            echo "📁 Current public/ directory contents:"
+            ls -la public/ || echo "public/ directory not found!"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✅ All required static files are present!"
+
       - name: Debug build output
         run: |
           echo "🔍 Analyzing build output..."
@@ -183,6 +246,8 @@ jobs:
           if [ "${{ steps.deployment.outcome }}" = "success" ]; then
             echo "✅ Deployment successful!"
             echo "🌐 Your site should be available at: $DEPLOY_URL"
+            echo "📄 Sitemap should be at: ${DEPLOY_URL}sitemap.xml"
+            echo "🤖 Robots.txt should be at: ${DEPLOY_URL}robots.txt"
           else
             echo "❌ Deployment failed!"
             echo "🔍 Check the deployment logs above for errors"

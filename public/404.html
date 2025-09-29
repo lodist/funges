@@ -6,26 +6,35 @@
     <title>Funges - Loading...</title>
     <script>
       // SPA routing fix for GitHub Pages
-      // Dynamically determine the base URL from the current location
       (function () {
-        // Get the base path from the current URL
         const path = window.location.pathname;
+
+        // Skip redirect for static files
+        if (
+          path.endsWith('.xml') ||
+          path.endsWith('.txt') ||
+          path.endsWith('.json') ||
+          path === '/sitemap.xml' ||
+          path === '/robots.txt'
+        ) {
+          console.info('📄 Static file requested, no redirect');
+          return; // Let GitHub Pages handle it as a real 404
+        }
+
+        // Get the base path from the current URL
         const segments = path.split('/').filter(Boolean);
 
         if (segments.length === 0) {
           // Root domain deployment (VITE_BASE_URL=/)
-          // Just reload the current page to let the app handle routing
           console.info('🔄 Root domain deployment, reloading...');
           window.location.reload();
         } else if (segments.length === 1) {
           // Subdirectory deployment (VITE_BASE_URL=/funges/)
-          // Redirect to the base subdirectory
           const basePath = '/' + segments[0] + '/';
           console.info('🔄 Subdirectory deployment, redirecting to:', basePath);
           window.location.href = basePath;
         } else {
           // Deep route in subdirectory (e.g., /funges/recipes)
-          // Extract the base subdirectory and redirect there
           const basePath = '/' + segments[0] + '/';
           console.info('🔄 Deep route, redirecting to base:', basePath);
           window.location.href = basePath;
