@@ -1,14 +1,15 @@
 import csv
+import gzip
 import json
 from datetime import datetime
 from pathlib import Path
 
 
 def main() -> None:
-    csv_path = Path("public/data/EU_foraging_scores.csv")
+    csv_path = Path("public/data/foraging_scores.csv.gz")
     json_path = Path("public/data/scores_metadata.json")
 
-    with csv_path.open("r", encoding="utf-8") as f:
+    with gzip.open(csv_path, "rt", encoding="utf-8", newline="") as f:
         reader = csv.reader(f)
         next(reader, None)  # skip header
         row = next(reader, None)
@@ -30,3 +31,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

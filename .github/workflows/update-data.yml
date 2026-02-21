@@ -57,7 +57,7 @@ jobs:
           git status --porcelain
           echo "--- visitors.json ---" && [ -f public/data/visitors.json ] && cat public/data/visitors.json || echo "missing"
           echo "--- scores_metadata.json ---" && [ -f public/data/scores_metadata.json ] && cat public/data/scores_metadata.json || echo "missing"
-          echo "--- CSV head ---" && head -3 public/data/EU_foraging_scores.csv || true
+          echo "--- CSV.gz head ---" && gzip -cd public/data/foraging_scores.csv.gz | head -3 || true
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
