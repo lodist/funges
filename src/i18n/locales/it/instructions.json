@@ -1,7 +1,7 @@
 {
   "title": "Istruzioni",
   "subtitle": "Impara come usare Fung.es in modo sicuro ed efficace",
-  "downloadDataset": "Scarica il dataset giornaliero (CSV)",
+  "downloadDataset": "Scarica il dataset giornaliero",
   "mapDescription": {
     "intro": "La mappa evidenzia le aree geografiche con condizioni favorevoli per la raccolta di funghi selvatici e piante commestibili.",
     "selection": "Seleziona la tua specie preferita usando il menu a tendina nella parte superiore della pagina.",

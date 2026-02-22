@@ -1,7 +1,7 @@
 {
   "title": "Instructions",
   "subtitle": "Learn how to use Fung.es safely and effectively",
-  "downloadDataset": "Download daily dataset (CSV)",
+  "downloadDataset": "Download daily dataset",
   "mapDescription": {
     "intro": "The map highlights geographic areas with favorable conditions for foraging wild mushrooms and edible plants.",
     "selection": "Select your preferred species using the dropdown at the top of the page.",
