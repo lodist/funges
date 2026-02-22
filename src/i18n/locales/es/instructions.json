@@ -1,7 +1,7 @@
 {
   "title": "Instrucciones",
   "subtitle": "Aprende a usar Fung.es de forma segura y efectiva",
-  "downloadDataset": "Descargar conjunto de datos diario (CSV)",
+  "downloadDataset": "Descargar conjunto de datos diario",
   "mapDescription": {
     "intro": "El mapa resalta áreas geográficas con condiciones favorables para recolectar hongos silvestres y plantas comestibles.",
     "selection": "Selecciona tu especie preferida usando el menú desplegable en la parte superior de la página.",

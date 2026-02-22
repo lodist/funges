@@ -1,7 +1,7 @@
 {
   "title": "Instructions",
   "subtitle": "Apprenez à utiliser Fung.es en toute sécurité et efficacité",
-  "downloadDataset": "Télécharger l'ensemble de données quotidien (CSV)",
+  "downloadDataset": "Télécharger l'ensemble de données quotidien",
   "mapDescription": {
     "intro": "La carte met en évidence les zones géographiques présentant des conditions favorables à la cueillette de champignons sauvages et de plantes comestibles.",
     "selection": "Sélectionnez votre espèce préférée à l'aide du menu déroulant en haut de la page.",

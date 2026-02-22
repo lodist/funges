@@ -73,7 +73,7 @@ export default function InstructionsPage() {
             </h2>
             <div className='mt-4'>
               <Button asChild>
-                <a href='data/EU_foraging_scores.csv' download>
+                <a href='data/foraging_scores.csv.gz' download>
                   <Download className='h-4 w-4 mr-2' />
                   {t('downloadDataset')}
                 </a>
@@ -318,3 +318,4 @@ export default function InstructionsPage() {
     </>
   );
 }
+
