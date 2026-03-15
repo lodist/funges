@@ -1,4 +1,4 @@
-import type { Map, MapboxGeoJSONFeature } from 'mapbox-gl';
+import type { Map as MapboxMap, MapboxGeoJSONFeature } from 'mapbox-gl';
 import { getRepresentativeLngLat, type LngLat } from '@/lib/geo';
 
 export interface RouteDishRecipe {
@@ -132,7 +132,7 @@ const ROUTE_TO_DISH_SPECIES_IDS = new Set(
 );
 
 function getSpeciesLayerGroups(
-  map: Map,
+  map: MapboxMap,
   speciesIds: string[]
 ): RouteDishSourceGroup[] {
   const layers = map.getStyle().layers ?? [];
@@ -365,7 +365,7 @@ function buildGreedyPlan(
 }
 
 export function queryRouteDishData(params: {
-  map: Map;
+  map: MapboxMap;
   recipes: RouteDishRecipe[];
   start: LngLat;
   minScore: number;
