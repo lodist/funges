@@ -73,7 +73,8 @@
       "locate": "Center the map on your location",
       "numbers": "Show or hide the numeric index",
       "theme": "Switch between dark and light map styles",
-      "zones": "Tap a zone to view its species list"
+      "zones": "Tap a zone to view its species list",
+      "recipes": "Open nearby recipes and draw a route to each ingredient stop"
     },
     "instructions": "Read full instructions",
     "dismiss": "Start exploring"

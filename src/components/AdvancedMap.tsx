@@ -1,15 +1,17 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useMapStore } from '@/store/mapStore';
 import { Card } from '@/components/ui/card';
-import { Loader2, MapPin, Navigation, Moon, Hash, Info } from 'lucide-react';
+import {
+  ChefHat,
+  Loader2,
+  MapPin,
+  Navigation,
+  Moon,
+  Hash,
+  Info,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useUIStore } from '@/store/uiStore';
 import SpeciesSelector from './SpeciesSelector';
@@ -33,19 +35,58 @@ mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || '';
 const ROUTE_SOURCE_ID = 'route-to-dish-line';
 const ROUTE_LAYER_ID = 'route-to-dish-line-layer';
 const MIN_SCORE_DEFAULT = 5.5;
-const DEFAULT_RADIUS_KM = 25;
+const DEFAULT_RADIUS_KM = 30;
+const ROUTE_SEGMENT_ANIMATION_MS = 750;
+const ROUTE_SEGMENT_PAUSE_MS = 250;
+const ROUTE_START_MARKER_DELAY_MS = 150;
+const ROUTE_PANEL_REAPPEAR_DELAY_MS = 500;
 
-function escapeHtml(value: string): string {
-  return value
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
+function formatLatLngForUrl(coordinate: [number, number]): string {
+  return `${coordinate[1]},${coordinate[0]}`;
+}
+
+function getGoogleMapsDirectionsUrl(activeRoute: ActiveRouteState): string {
+  const coordinates = activeRoute.plan.orderedStops.map(
+    stop => stop.coordinate
+  );
+  if (coordinates.length === 0) {
+    return `https://www.google.com/maps/dir/?api=1&origin=${formatLatLngForUrl(activeRoute.start)}&destination=${formatLatLngForUrl(activeRoute.start)}&travelmode=walking`;
+  }
+
+  const destination = coordinates[coordinates.length - 1];
+  const waypoints = coordinates.slice(0, -1);
+  const params = new URLSearchParams({
+    api: '1',
+    origin: formatLatLngForUrl(activeRoute.start),
+    destination: formatLatLngForUrl(destination),
+    travelmode: 'walking',
+  });
+
+  if (waypoints.length > 0) {
+    params.set(
+      'waypoints',
+      waypoints.map(coordinate => formatLatLngForUrl(coordinate)).join('|')
+    );
+  }
+
+  return `https://www.google.com/maps/dir/?${params.toString()}`;
 }
 
 interface MapProps {
   className?: string;
+}
+
+interface ActiveRouteState {
+  plan: RouteDishPlan;
+  start: [number, number];
+}
+
+function closeRoutePanel(
+  setIsRoutePanelOpen: React.Dispatch<React.SetStateAction<boolean>>,
+  setActiveRoute: React.Dispatch<React.SetStateAction<ActiveRouteState | null>>
+) {
+  setIsRoutePanelOpen(false);
+  setActiveRoute(null);
 }
 
 const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
@@ -61,10 +102,24 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     useState<RouteDishResult | null>(null);
   const [routeDishError, setRouteDishError] = useState<string | null>(null);
   const [isRouteDishLoading, setIsRouteDishLoading] = useState(false);
-  const [selectedRoutePlan, setSelectedRoutePlan] =
-    useState<RouteDishPlan | null>(null);
+  const [activeRoute, setActiveRoute] = useState<ActiveRouteState | null>(null);
+  const [isRoutePanelOpen, setIsRoutePanelOpen] = useState(false);
+  const [isRouteAnimating, setIsRouteAnimating] = useState(false);
+  const [animatedRouteCoordinates, setAnimatedRouteCoordinates] = useState<
+    [number, number][]
+  >([]);
+  const [showAnimatedRouteStart, setShowAnimatedRouteStart] = useState(false);
+  const [visibleAnimatedStopCount, setVisibleAnimatedStopCount] = useState(0);
   const isMobile = useIsMobile();
   const recipes = useRecipesData();
+  const routeInputsRef = useRef<{
+    routeRecipes: Array<{
+      id: string;
+      title: string;
+      species: string[];
+    }>;
+    routeStart: [number, number];
+  } | null>(null);
 
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
@@ -74,6 +129,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     zoom,
     mapStyle,
     userLocation,
+    showUserLocation,
     isLoading,
     darkLayersVisible,
     numbersLayersVisible,
@@ -83,6 +139,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     setIsLoading,
     setError,
     setUserLocationError,
+    setShowUserLocation,
     foragingSpots,
     toggleDarkLayersVisibility,
     toggleNumbersLayersVisibility,
@@ -91,21 +148,24 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     restoreDarkLayersState,
     selectedSpecies,
   } = useMapStore();
-  const routeStart = userLocation ?? center;
-  const routeRecipes = useMemo(
-    () =>
-      recipes.map(recipe => ({
-        id: recipe.id,
-        title: recipe.title,
-        species: recipe.species,
-      })),
-    [recipes]
-  );
-  const getSpeciesLabel = useCallback(
-    (speciesId: string) =>
-      tRecipes(`species.${speciesId}`, { defaultValue: speciesId }),
-    [tRecipes]
-  );
+  const routeStart = showUserLocation && userLocation ? userLocation : center;
+  const routeRecipes = recipes.map(recipe => ({
+    id: recipe.id,
+    title: recipe.title,
+    species: recipe.species,
+  }));
+  const selectedRouteRecipeId = activeRoute?.plan.recipeId ?? null;
+  const openActiveRouteInGoogleMaps = useCallback(() => {
+    if (!activeRoute) return;
+    window.open(getGoogleMapsDirectionsUrl(activeRoute), '_blank');
+  }, [activeRoute]);
+
+  useEffect(() => {
+    routeInputsRef.current = {
+      routeRecipes,
+      routeStart,
+    };
+  }, [routeRecipes, routeStart]);
 
   // Initialize map
   useEffect(() => {
@@ -214,32 +274,27 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
+    if (!isRoutePanelOpen) return;
 
     const mapInstance = map.current;
 
     const computeRoutes = () => {
+      const routeInputs = routeInputsRef.current;
+      if (!routeInputs) return;
+
       setIsRouteDishLoading(true);
       setRouteDishError(null);
 
       try {
         const nextResult = queryRouteDishData({
           map: mapInstance,
-          recipes: routeRecipes,
-          start: routeStart,
+          recipes: routeInputs.routeRecipes,
+          start: routeInputs.routeStart,
           minScore: MIN_SCORE_DEFAULT,
           radiusKm: DEFAULT_RADIUS_KM,
         });
 
         setRouteDishResult(nextResult);
-        setSelectedRoutePlan(currentPlan => {
-          if (!currentPlan) return currentPlan;
-
-          return (
-            nextResult.plans.find(
-              plan => plan.recipeId === currentPlan.recipeId
-            ) ?? null
-          );
-        });
       } catch (caughtError) {
         setRouteDishError(
           caughtError instanceof Error
@@ -257,7 +312,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     return () => {
       mapInstance.off('idle', computeRoutes);
     };
-  }, [mapLoaded, routeRecipes, routeStart]);
+  }, [isRoutePanelOpen, mapLoaded, routeStart, tRecipes]);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -283,7 +338,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         type: 'line',
         source: ROUTE_SOURCE_ID,
         paint: {
-          'line-color': '#0f766e',
+          'line-color': '#800020',
           'line-width': 4,
           'line-opacity': 0.9,
         },
@@ -299,91 +354,178 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       | undefined;
     if (!source) return;
 
-    const coordinates = selectedRoutePlan
-      ? [
-          routeStart,
-          ...selectedRoutePlan.orderedStops.map(stop => stop.coordinate),
-        ]
-      : [];
-
     source.setData({
       type: 'FeatureCollection',
       features:
-        coordinates.length >= 2
+        animatedRouteCoordinates.length >= 2
           ? [
               {
                 type: 'Feature',
                 geometry: {
                   type: 'LineString',
-                  coordinates,
+                  coordinates: animatedRouteCoordinates,
                 },
                 properties: {},
               },
             ]
           : [],
     });
+  }, [animatedRouteCoordinates, mapLoaded]);
 
-    if (coordinates.length >= 2) {
-      const bounds = coordinates.reduce(
-        (acc, coordinate) => acc.extend(coordinate),
-        new mapboxgl.LngLatBounds(coordinates[0], coordinates[0])
-      );
-
-      map.current.fitBounds(bounds, {
-        padding: isMobile ? 80 : 120,
-        maxZoom: 11,
-        duration: 1200,
-      });
+  useEffect(() => {
+    if (!activeRoute) {
+      setIsRouteAnimating(false);
+      setAnimatedRouteCoordinates([]);
+      setShowAnimatedRouteStart(false);
+      setVisibleAnimatedStopCount(0);
+      return;
     }
-  }, [isMobile, mapLoaded, routeStart, selectedRoutePlan]);
+
+    const routeCoordinates = [
+      activeRoute.start,
+      ...activeRoute.plan.orderedStops.map(stop => stop.coordinate),
+    ];
+
+    let cancelled = false;
+    let frameId: number | null = null;
+    const timeoutIds: number[] = [];
+
+    const cleanupAnimation = () => {
+      cancelled = true;
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+      timeoutIds.forEach(timeoutId => window.clearTimeout(timeoutId));
+    };
+
+    const animateSegment = (segmentIndex: number) => {
+      if (cancelled) return;
+
+      if (segmentIndex >= routeCoordinates.length - 1) {
+        timeoutIds.push(
+          window.setTimeout(() => {
+            if (!cancelled) {
+              setIsRouteAnimating(false);
+            }
+          }, ROUTE_PANEL_REAPPEAR_DELAY_MS)
+        );
+        return;
+      }
+
+      const from = routeCoordinates[segmentIndex];
+      const to = routeCoordinates[segmentIndex + 1];
+      const completedCoordinates = routeCoordinates.slice(0, segmentIndex + 1);
+      let startedAt: number | null = null;
+
+      const step = (timestamp: number) => {
+        if (cancelled) return;
+
+        if (startedAt === null) {
+          startedAt = timestamp;
+        }
+
+        const progress = Math.min(
+          (timestamp - startedAt) / ROUTE_SEGMENT_ANIMATION_MS,
+          1
+        );
+        const interpolatedCoordinate: [number, number] = [
+          from[0] + (to[0] - from[0]) * progress,
+          from[1] + (to[1] - from[1]) * progress,
+        ];
+
+        setAnimatedRouteCoordinates([
+          ...completedCoordinates,
+          interpolatedCoordinate,
+        ]);
+
+        if (progress < 1) {
+          frameId = window.requestAnimationFrame(step);
+          return;
+        }
+
+        setAnimatedRouteCoordinates(
+          routeCoordinates.slice(0, segmentIndex + 2)
+        );
+        setVisibleAnimatedStopCount(segmentIndex + 1);
+
+        timeoutIds.push(
+          window.setTimeout(() => {
+            animateSegment(segmentIndex + 1);
+          }, ROUTE_SEGMENT_PAUSE_MS)
+        );
+      };
+
+      frameId = window.requestAnimationFrame(step);
+    };
+
+    setAnimatedRouteCoordinates([]);
+    setShowAnimatedRouteStart(false);
+    setVisibleAnimatedStopCount(0);
+    setIsRouteAnimating(true);
+
+    timeoutIds.push(
+      window.setTimeout(() => {
+        if (cancelled) return;
+
+        setShowAnimatedRouteStart(true);
+        setAnimatedRouteCoordinates([routeCoordinates[0]]);
+        animateSegment(0);
+      }, ROUTE_START_MARKER_DELAY_MS)
+    );
+
+    return cleanupAnimation;
+  }, [activeRoute]);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
 
     const routeMarkers: mapboxgl.Marker[] = [];
 
-    if (selectedRoutePlan) {
+    if (activeRoute && showAnimatedRouteStart) {
       const startElement = document.createElement('div');
       startElement.className = 'route-to-dish-start-marker';
       startElement.innerHTML = `
-        <div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9999px;background:#0f766e;color:#fff;font-weight:700;border:3px solid #ccfbf1;box-shadow:0 4px 10px rgba(15,118,110,0.25);">S</div>
+        <div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9999px;background:#800020;color:#fff7e6;border:3px solid #e8d7a5;box-shadow:0 4px 10px rgba(128,0,32,0.28);">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 11l18-8-8 18-2-8-8-2z"></path>
+          </svg>
+        </div>
       `;
 
       routeMarkers.push(
         new mapboxgl.Marker({ element: startElement })
-          .setLngLat(routeStart)
+          .setLngLat(activeRoute.start)
           .addTo(map.current)
       );
 
-      selectedRoutePlan.orderedStops.forEach((stop, index) => {
-        const coveredForPlan = stop.coveredSpecies.filter(speciesId =>
-          selectedRoutePlan.requiredSpecies.includes(speciesId)
-        );
-        const coveredLabel = coveredForPlan
-          .map(speciesId => getSpeciesLabel(speciesId))
-          .map(label => escapeHtml(label))
-          .join(', ');
-        const markerElement = document.createElement('div');
-        markerElement.className = 'route-to-dish-stop-marker';
-        markerElement.innerHTML = `
-          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;transform:translateY(-6px);">
-            <div style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9999px;background:#14532d;color:#fff;font-weight:700;border:3px solid #dcfce7;box-shadow:0 4px 10px rgba(20,83,45,0.25);">${index + 1}</div>
-            <div style="max-width:160px;padding:6px 8px;border-radius:10px;background:rgba(255,255,255,0.96);border:1px solid #bbf7d0;color:#166534;font-size:11px;line-height:1.2;text-align:center;box-shadow:0 2px 8px rgba(15,23,42,0.12);">${coveredLabel}</div>
-          </div>
-        `;
+      activeRoute.plan.orderedStops
+        .slice(0, visibleAnimatedStopCount)
+        .forEach((stop, index) => {
+          const markerElement = document.createElement('div');
+          markerElement.className = 'route-to-dish-stop-marker';
+          markerElement.innerHTML = `
+            <div style="display:flex;flex-direction:column;align-items:center;transform:translateY(-6px);">
+              <div style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9999px;background:#b38a3c;color:#fff9eb;font-weight:700;border:3px solid #800020;box-shadow:0 4px 10px rgba(128,0,32,0.18);">${index + 1}</div>
+            </div>
+          `;
 
-        routeMarkers.push(
-          new mapboxgl.Marker({ element: markerElement })
-            .setLngLat(stop.coordinate)
-            .addTo(map.current!)
-        );
-      });
+          routeMarkers.push(
+            new mapboxgl.Marker({ element: markerElement })
+              .setLngLat(stop.coordinate)
+              .addTo(map.current!)
+          );
+        });
     }
 
     return () => {
       routeMarkers.forEach(marker => marker.remove());
     };
-  }, [getSpeciesLabel, mapLoaded, routeStart, selectedRoutePlan]);
+  }, [
+    activeRoute,
+    mapLoaded,
+    showAnimatedRouteStart,
+    visibleAnimatedStopCount,
+  ]);
 
   // Show feature info on click
   useEffect(() => {
@@ -416,6 +558,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   // Handle user location
   const handleGetUserLocation = async () => {
+    if (showUserLocation && userLocation) {
+      setShowUserLocation(false);
+      setActiveRoute(null);
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
     setUserLocationError(null);
@@ -428,6 +576,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       ];
 
       if (map.current) {
+        setShowUserLocation(true);
         map.current.flyTo({
           center: coords,
           zoom: 10,
@@ -489,13 +638,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   // Add user location marker
   useEffect(() => {
-    if (!map.current || !mapLoaded || !userLocation) return;
-
-    // Remove existing marker
-    const existingMarker = document.querySelector('.user-location-marker');
-    if (existingMarker) {
-      existingMarker.remove();
-    }
+    if (!map.current || !mapLoaded || !showUserLocation || !userLocation)
+      return;
 
     // Create new marker
     const marker = new mapboxgl.Marker({
@@ -508,7 +652,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     return () => {
       marker.remove();
     };
-  }, [userLocation, mapLoaded]);
+  }, [userLocation, mapLoaded, showUserLocation]);
 
   // Add foraging spot markers
   useEffect(() => {
@@ -635,7 +779,11 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           <motion.button
             onClick={handleGetUserLocation}
             disabled={isLoading}
-            className='inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border border-input bg-secondary h-9 px-3 shadow-lg'
+            className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
+              showUserLocation && userLocation
+                ? 'bg-blue-100 border-blue-300 text-blue-800'
+                : 'border-input bg-secondary'
+            }`}
             title={t('getLocation')}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.95 }}
@@ -697,6 +845,34 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
           {/* Info button */}
           <motion.button
+            onClick={() => {
+              if (isRoutePanelOpen) {
+                closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
+                return;
+              }
+
+              setIsRoutePanelOpen(true);
+            }}
+            className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
+              isRoutePanelOpen
+                ? 'bg-emerald-100 border-emerald-300 text-emerald-800'
+                : 'bg-secondary border-input'
+            }`}
+            title={tRecipes('routePanel.title')}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{
+              duration: 0.2,
+              type: 'spring',
+              stiffness: 400,
+              damping: 25,
+            }}
+          >
+            <ChefHat className='h-4 w-4' />
+          </motion.button>
+
+          {/* Info button */}
+          <motion.button
             onClick={() => setActiveModal('onboarding')}
             className='inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg bg-secondary border-input'
             title={t('showOnboarding')}
@@ -718,38 +894,55 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             <div className='fixed left-4 right-4 bottom-24'>
               <MapInfoCard />
             </div>
-            <div className='fixed left-4 right-4 top-16 z-10 flex justify-center'>
-              <RouteToDishPanel
-                plans={routeDishResult?.plans ?? []}
-                error={routeDishError}
-                isLoading={isRouteDishLoading}
-                hasUserLocation={Boolean(userLocation)}
-                minScore={MIN_SCORE_DEFAULT}
-                radiusKm={DEFAULT_RADIUS_KM}
-                selectedRecipeId={selectedRoutePlan?.recipeId ?? null}
-                onDrawRoute={setSelectedRoutePlan}
-                onClearRoute={() => setSelectedRoutePlan(null)}
-              />
-            </div>
+            {isRoutePanelOpen && !isRouteAnimating ? (
+              <div className='fixed left-3 right-3 top-20 z-10'>
+                <RouteToDishPanel
+                  className='mx-auto'
+                  plans={routeDishResult?.plans ?? []}
+                  error={routeDishError}
+                  isLoading={isRouteDishLoading}
+                  selectedRecipeId={selectedRouteRecipeId}
+                  onDrawRoute={plan =>
+                    setActiveRoute({
+                      plan,
+                      start: routeStart,
+                    })
+                  }
+                  onClearRoute={() => setActiveRoute(null)}
+                  onClose={() =>
+                    closeRoutePanel(setIsRoutePanelOpen, setActiveRoute)
+                  }
+                  onOpenInGoogleMaps={openActiveRouteInGoogleMaps}
+                />
+              </div>
+            ) : null}
           </>
         ) : (
           <>
             <div className='absolute bottom-2 left-2 z-10'>
               <MapInfoCard />
             </div>
-            <div className='absolute top-2 left-36 z-10'>
-              <RouteToDishPanel
-                plans={routeDishResult?.plans ?? []}
-                error={routeDishError}
-                isLoading={isRouteDishLoading}
-                hasUserLocation={Boolean(userLocation)}
-                minScore={MIN_SCORE_DEFAULT}
-                radiusKm={DEFAULT_RADIUS_KM}
-                selectedRecipeId={selectedRoutePlan?.recipeId ?? null}
-                onDrawRoute={setSelectedRoutePlan}
-                onClearRoute={() => setSelectedRoutePlan(null)}
-              />
-            </div>
+            {isRoutePanelOpen && !isRouteAnimating ? (
+              <div className='absolute top-14 right-16 z-10'>
+                <RouteToDishPanel
+                  plans={routeDishResult?.plans ?? []}
+                  error={routeDishError}
+                  isLoading={isRouteDishLoading}
+                  selectedRecipeId={selectedRouteRecipeId}
+                  onDrawRoute={plan =>
+                    setActiveRoute({
+                      plan,
+                      start: routeStart,
+                    })
+                  }
+                  onClearRoute={() => setActiveRoute(null)}
+                  onClose={() =>
+                    closeRoutePanel(setIsRoutePanelOpen, setActiveRoute)
+                  }
+                  onOpenInGoogleMaps={openActiveRouteInGoogleMaps}
+                />
+              </div>
+            ) : null}
           </>
         )}
 

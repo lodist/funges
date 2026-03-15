@@ -127,6 +127,10 @@ export const ROUTE_TO_DISH_SPECIES_CONFIG: Record<
   },
 };
 
+const ROUTE_TO_DISH_SPECIES_IDS = new Set(
+  Object.keys(ROUTE_TO_DISH_SPECIES_CONFIG)
+);
+
 function getSpeciesLayerGroups(
   map: mapboxgl.Map,
   speciesIds: string[]
@@ -291,7 +295,13 @@ function buildGreedyPlan(
   minScore: number,
   radiusKm: number
 ): RouteDishPlan {
-  const requiredSpecies = Array.from(new Set(recipe.species));
+  const requiredSpecies = Array.from(
+    new Set(
+      recipe.species.filter(speciesId =>
+        ROUTE_TO_DISH_SPECIES_IDS.has(speciesId)
+      )
+    )
+  );
   const nearbyStops = candidateStops
     .filter(stop => haversineKm(start, stop.coordinate) <= radiusKm)
     .map(stop => ({
@@ -363,7 +373,11 @@ export function queryRouteDishData(params: {
 }): RouteDishResult {
   const { map, recipes, start, minScore, radiusKm } = params;
   const speciesIds = Array.from(
-    new Set(recipes.flatMap(recipe => recipe.species))
+    new Set(
+      recipes
+        .flatMap(recipe => recipe.species)
+        .filter(speciesId => ROUTE_TO_DISH_SPECIES_IDS.has(speciesId))
+    )
   );
   const sourceGroups = getSpeciesLayerGroups(map, speciesIds);
   const candidateStopMap = new Map<string, RouteDishCandidateStop>();

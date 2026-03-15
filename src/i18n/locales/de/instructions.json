@@ -12,7 +12,7 @@
   },
   "functions": {
     "title": "Funktionen:",
-    "recipes": "Zeigt essbare Arten in der Nähe und schlägt Rezepte vor",
+    "recipes": "Zeigt Rezepte in der Nähe und Routen zu Zutatenstopps",
     "location": "Zentriert die Karte auf den Standort des Nutzers",
     "theme": "Wechsel zwischen Hell- und Dunkelmodus",
     "numbers": "Zeigt numerische Bewertung an"

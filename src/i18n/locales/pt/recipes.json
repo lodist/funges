@@ -30,6 +30,19 @@
     "try_adjusting": "Tente ajustar os termos de busca ou filtros para encontrar mais receitas."
   },
   "view_recipe": "Ver receita",
+  "routePanel": {
+    "title": "Receitas proximas",
+    "subtitle": "Primeiro a melhor combinacao, depois o trajeto mais curto.",
+    "loading": "Verificando ingredientes proximos...",
+    "empty": "Ainda nao ha receitas prontas para rota nesta area. Tente mover o mapa ou usar sua localizacao.",
+    "stopsEstimated_one": "{{count}} parada, {{distance}} km estimados",
+    "stopsEstimated_other": "{{count}} paradas, {{distance}} km estimados",
+    "missingSpecies": "falta {{species}}",
+    "routeStops": "Paradas da rota",
+    "refreshRoute": "Atualizar rota",
+    "drawRoute": "Traçar rota",
+    "recipesButton": "Receitas"
+  },
   "species": {
     "amaranth": "Amaranto",
     "black_chant": "Trombeta dos Mortos",
