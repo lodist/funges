@@ -74,6 +74,12 @@
         "source": "Fuente: Centro Europeo de Datos del Suelo (ESDAC), Centro Común de Investigación (JRC)",
         "citation": "Cita: Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
       },
+      "nlcd": {
+        "title": "3. NLCD para la Cobertura Forestal en EE. UU.",
+        "description": "Proporcionado por el U.S. Geological Survey (USGS) en colaboración con el consorcio MRLC, el National Land Cover Database (NLCD) ofrece datos detallados de cobertura del suelo y cubierta arbórea en Estados Unidos con una resolución de 30 metros. Esto ayuda a identificar zonas boscosas y hábitats potenciales para especies de hongos y plantas en América del Norte.",
+        "source": "Fuente: U.S. Geological Survey (USGS), Multi-Resolution Land Characteristics (MRLC) Consortium",
+        "citation": "Cita: U.S. Geological Survey. Annual NLCD (National Land Cover Database) - The next generation of land cover mapping. Fact Sheet 2025-3001."
+      },
       "additional": "Se integran fuentes adicionales como APIs meteorológicas, capas de teledetección y modelos de pendiente/orientación para mejorar continuamente la precisión de las predicciones."
     }
   }
