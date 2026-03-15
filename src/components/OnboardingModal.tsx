@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import { List, Navigation, Hash, Moon, MousePointerClick } from 'lucide-react';
+import {
+  ChefHat,
+  Hash,
+  List,
+  Moon,
+  MousePointerClick,
+  Navigation,
+} from 'lucide-react';
 import { useUIStore } from '@/store/uiStore';
 
 import {
@@ -68,6 +75,10 @@ export default function OnboardingModal() {
           <li className='flex items-center gap-2'>
             <MousePointerClick className='h-4 w-4' />
             {t('onboarding.features.zones')}
+          </li>
+          <li className='flex items-center gap-2'>
+            <ChefHat className='h-4 w-4' />
+            {t('onboarding.features.recipes')}
           </li>
         </ul>
         <div className='mt-4 text-sm'>

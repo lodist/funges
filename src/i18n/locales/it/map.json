@@ -73,7 +73,8 @@
       "locate": "Centra la mappa sulla tua posizione",
       "numbers": "Mostra o nascondi l’indice numerico",
       "theme": "Passa tra lo stile chiaro e scuro della mappa",
-      "zones": "Tocca una zona per vedere l’elenco delle specie"
+      "zones": "Tocca una zona per vedere l’elenco delle specie",
+      "recipes": "Apri le ricette vicine e traccia un percorso verso ogni tappa degli ingredienti"
     },
     "instructions": "Leggi le istruzioni complete",
     "dismiss": "Inizia a esplorare"

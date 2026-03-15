@@ -12,7 +12,7 @@
   },
   "functions": {
     "title": "Functions:",
-    "recipes": "Displays Edible Species Growing Nearby and Suggests Recipes",
+    "recipes": "Shows nearby recipes and routes to ingredient stops",
     "location": "Centres the Map on the User's Location",
     "theme": "Switch between Light- and Dark-mode",
     "numbers": "Displays Numeric Rating"

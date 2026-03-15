@@ -12,7 +12,7 @@
   },
   "functions": {
     "title": "Funzioni:",
-    "recipes": "Mostra Specie Commestibili che Crescono Nelle Vicinanze e Suggerisce Ricette",
+    "recipes": "Mostra ricette vicine e percorsi verso le tappe degli ingredienti",
     "location": "Centra la Mappa sulla Posizione dell'Utente",
     "theme": "Passa tra Modalità Chiara e Scura",
     "numbers": "Mostra Valutazione Numerica"

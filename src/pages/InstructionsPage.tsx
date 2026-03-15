@@ -8,6 +8,7 @@ import {
   Navigation,
   Moon,
   Hash,
+  ChefHat,
   Globe,
   Thermometer,
   FlaskConical,
@@ -27,6 +28,11 @@ export default function InstructionsPage() {
   const { t } = useTranslation('instructions');
 
   const functions = [
+    {
+      icon: ChefHat,
+      text: t('functions.recipes'),
+      color: 'text-emerald-600',
+    },
     {
       icon: Navigation,
       text: t('functions.location'),

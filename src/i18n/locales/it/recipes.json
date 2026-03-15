@@ -30,6 +30,19 @@
     "try_adjusting": "Prova a modificare i termini di ricerca o i filtri per trovare più ricette."
   },
   "view_recipe": "Visualizza ricetta",
+  "routePanel": {
+    "title": "Ricette vicine",
+    "subtitle": "Prima la copertura migliore, poi il percorso piu breve.",
+    "loading": "Controllo degli ingredienti nelle vicinanze...",
+    "empty": "Nessuna ricetta pronta per il percorso in questa zona. Prova a spostare la mappa o usare la tua posizione.",
+    "stopsEstimated_one": "{{count}} tappa, {{distance}} km stimati",
+    "stopsEstimated_other": "{{count}} tappe, {{distance}} km stimati",
+    "missingSpecies": "manca {{species}}",
+    "routeStops": "Tappe del percorso",
+    "refreshRoute": "Aggiorna percorso",
+    "drawRoute": "Disegna percorso",
+    "recipesButton": "Ricette"
+  },
   "species": {
     "amaranth": "Amaranto",
     "black_chant": "Trombetta dei Morti",

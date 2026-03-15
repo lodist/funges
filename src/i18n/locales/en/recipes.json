@@ -30,6 +30,19 @@
     "try_adjusting": "Try adjusting your search terms or filters to find more recipes."
   },
   "view_recipe": "View recipe",
+  "routePanel": {
+    "title": "Nearby Recipes",
+    "subtitle": "Best match first, shortest route next.",
+    "loading": "Checking nearby ingredients...",
+    "empty": "No route-ready recipes found here yet. Try moving the map or using your location.",
+    "stopsEstimated_one": "{{count}} stop, {{distance}} km estimated",
+    "stopsEstimated_other": "{{count}} stops, {{distance}} km estimated",
+    "missingSpecies": "missing {{species}}",
+    "routeStops": "Route stops",
+    "refreshRoute": "Refresh route",
+    "drawRoute": "Draw route",
+    "recipesButton": "Recipes"
+  },
   "species": {
     "amaranth": "Amaranth",
     "black_chant": "Black Trumpet",

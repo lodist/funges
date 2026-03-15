@@ -12,7 +12,7 @@
   },
   "functions": {
     "title": "Funciones:",
-    "recipes": "Muestra especies comestibles cercanas y sugiere recetas",
+    "recipes": "Muestra recetas cercanas y rutas a las paradas de ingredientes",
     "location": "Centra el mapa en la ubicación del usuario",
     "theme": "Cambia entre modo claro y oscuro",
     "numbers": "Muestra la calificación numérica"
