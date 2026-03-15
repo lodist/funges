@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useMapStore } from '@/store/mapStore';
@@ -13,9 +19,30 @@ import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import { motion } from 'framer-motion';
 import MapInfoCard from '@/components/MapInfoCard';
+import RouteToDishPanel from '@/components/RouteToDishPanel';
+import { useRecipesData } from '@/data/recipes';
+import {
+  queryRouteDishData,
+  type RouteDishPlan,
+  type RouteDishResult,
+} from '@/lib/route-to-dish';
 
 // Set Mapbox access token
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || '';
+
+const ROUTE_SOURCE_ID = 'route-to-dish-line';
+const ROUTE_LAYER_ID = 'route-to-dish-line-layer';
+const MIN_SCORE_DEFAULT = 5.5;
+const DEFAULT_RADIUS_KM = 25;
+
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
 
 interface MapProps {
   className?: string;
@@ -30,9 +57,17 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     useState<mapboxgl.GeoJSONFeature | null>(null);
   const [isFeatureModalOpen, setIsFeatureModalOpen] = useState(false);
   const [isModalFromLocateMe, setIsModalFromLocateMe] = useState(false);
+  const [routeDishResult, setRouteDishResult] =
+    useState<RouteDishResult | null>(null);
+  const [routeDishError, setRouteDishError] = useState<string | null>(null);
+  const [isRouteDishLoading, setIsRouteDishLoading] = useState(false);
+  const [selectedRoutePlan, setSelectedRoutePlan] =
+    useState<RouteDishPlan | null>(null);
   const isMobile = useIsMobile();
+  const recipes = useRecipesData();
 
   const { t } = useTranslation('map');
+  const { t: tRecipes } = useTranslation('recipes');
   const { setActiveModal } = useUIStore();
   const {
     center,
@@ -56,6 +91,21 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     restoreDarkLayersState,
     selectedSpecies,
   } = useMapStore();
+  const routeStart = userLocation ?? center;
+  const routeRecipes = useMemo(
+    () =>
+      recipes.map(recipe => ({
+        id: recipe.id,
+        title: recipe.title,
+        species: recipe.species,
+      })),
+    [recipes]
+  );
+  const getSpeciesLabel = useCallback(
+    (speciesId: string) =>
+      tRecipes(`species.${speciesId}`, { defaultValue: speciesId }),
+    [tRecipes]
+  );
 
   // Initialize map
   useEffect(() => {
@@ -161,6 +211,179 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       updateVisibleLayers();
     }
   }, [mapLoaded, updateVisibleLayers, darkLayersVisible, numbersLayersVisible]);
+
+  useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+
+    const mapInstance = map.current;
+
+    const computeRoutes = () => {
+      setIsRouteDishLoading(true);
+      setRouteDishError(null);
+
+      try {
+        const nextResult = queryRouteDishData({
+          map: mapInstance,
+          recipes: routeRecipes,
+          start: routeStart,
+          minScore: MIN_SCORE_DEFAULT,
+          radiusKm: DEFAULT_RADIUS_KM,
+        });
+
+        setRouteDishResult(nextResult);
+        setSelectedRoutePlan(currentPlan => {
+          if (!currentPlan) return currentPlan;
+
+          return (
+            nextResult.plans.find(
+              plan => plan.recipeId === currentPlan.recipeId
+            ) ?? null
+          );
+        });
+      } catch (caughtError) {
+        setRouteDishError(
+          caughtError instanceof Error
+            ? caughtError.message
+            : 'Unable to compute nearby recipe routes'
+        );
+      } finally {
+        setIsRouteDishLoading(false);
+      }
+    };
+
+    computeRoutes();
+    mapInstance.on('idle', computeRoutes);
+
+    return () => {
+      mapInstance.off('idle', computeRoutes);
+    };
+  }, [mapLoaded, routeRecipes, routeStart]);
+
+  useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+
+    const emptyRoute: GeoJSON.FeatureCollection<GeoJSON.Geometry> = {
+      type: 'FeatureCollection',
+      features: [],
+    };
+    const existingSource = map.current.getSource(ROUTE_SOURCE_ID) as
+      | mapboxgl.GeoJSONSource
+      | undefined;
+
+    if (!existingSource) {
+      map.current.addSource(ROUTE_SOURCE_ID, {
+        type: 'geojson',
+        data: emptyRoute,
+      });
+    }
+
+    if (!map.current.getLayer(ROUTE_LAYER_ID)) {
+      map.current.addLayer({
+        id: ROUTE_LAYER_ID,
+        type: 'line',
+        source: ROUTE_SOURCE_ID,
+        paint: {
+          'line-color': '#0f766e',
+          'line-width': 4,
+          'line-opacity': 0.9,
+        },
+      });
+    }
+  }, [mapLoaded]);
+
+  useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+
+    const source = map.current.getSource(ROUTE_SOURCE_ID) as
+      | mapboxgl.GeoJSONSource
+      | undefined;
+    if (!source) return;
+
+    const coordinates = selectedRoutePlan
+      ? [
+          routeStart,
+          ...selectedRoutePlan.orderedStops.map(stop => stop.coordinate),
+        ]
+      : [];
+
+    source.setData({
+      type: 'FeatureCollection',
+      features:
+        coordinates.length >= 2
+          ? [
+              {
+                type: 'Feature',
+                geometry: {
+                  type: 'LineString',
+                  coordinates,
+                },
+                properties: {},
+              },
+            ]
+          : [],
+    });
+
+    if (coordinates.length >= 2) {
+      const bounds = coordinates.reduce(
+        (acc, coordinate) => acc.extend(coordinate),
+        new mapboxgl.LngLatBounds(coordinates[0], coordinates[0])
+      );
+
+      map.current.fitBounds(bounds, {
+        padding: isMobile ? 80 : 120,
+        maxZoom: 11,
+        duration: 1200,
+      });
+    }
+  }, [isMobile, mapLoaded, routeStart, selectedRoutePlan]);
+
+  useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+
+    const routeMarkers: mapboxgl.Marker[] = [];
+
+    if (selectedRoutePlan) {
+      const startElement = document.createElement('div');
+      startElement.className = 'route-to-dish-start-marker';
+      startElement.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9999px;background:#0f766e;color:#fff;font-weight:700;border:3px solid #ccfbf1;box-shadow:0 4px 10px rgba(15,118,110,0.25);">S</div>
+      `;
+
+      routeMarkers.push(
+        new mapboxgl.Marker({ element: startElement })
+          .setLngLat(routeStart)
+          .addTo(map.current)
+      );
+
+      selectedRoutePlan.orderedStops.forEach((stop, index) => {
+        const coveredForPlan = stop.coveredSpecies.filter(speciesId =>
+          selectedRoutePlan.requiredSpecies.includes(speciesId)
+        );
+        const coveredLabel = coveredForPlan
+          .map(speciesId => getSpeciesLabel(speciesId))
+          .map(label => escapeHtml(label))
+          .join(', ');
+        const markerElement = document.createElement('div');
+        markerElement.className = 'route-to-dish-stop-marker';
+        markerElement.innerHTML = `
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;transform:translateY(-6px);">
+            <div style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9999px;background:#14532d;color:#fff;font-weight:700;border:3px solid #dcfce7;box-shadow:0 4px 10px rgba(20,83,45,0.25);">${index + 1}</div>
+            <div style="max-width:160px;padding:6px 8px;border-radius:10px;background:rgba(255,255,255,0.96);border:1px solid #bbf7d0;color:#166534;font-size:11px;line-height:1.2;text-align:center;box-shadow:0 2px 8px rgba(15,23,42,0.12);">${coveredLabel}</div>
+          </div>
+        `;
+
+        routeMarkers.push(
+          new mapboxgl.Marker({ element: markerElement })
+            .setLngLat(stop.coordinate)
+            .addTo(map.current!)
+        );
+      });
+    }
+
+    return () => {
+      routeMarkers.forEach(marker => marker.remove());
+    };
+  }, [getSpeciesLabel, mapLoaded, routeStart, selectedRoutePlan]);
 
   // Show feature info on click
   useEffect(() => {
@@ -491,13 +714,43 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         </div>
 
         {isMobile ? (
-          <div className='fixed left-4 right-4 bottom-24'>
-            <MapInfoCard />
-          </div>
+          <>
+            <div className='fixed left-4 right-4 bottom-24'>
+              <MapInfoCard />
+            </div>
+            <div className='fixed left-4 right-4 top-16 z-10 flex justify-center'>
+              <RouteToDishPanel
+                plans={routeDishResult?.plans ?? []}
+                error={routeDishError}
+                isLoading={isRouteDishLoading}
+                hasUserLocation={Boolean(userLocation)}
+                minScore={MIN_SCORE_DEFAULT}
+                radiusKm={DEFAULT_RADIUS_KM}
+                selectedRecipeId={selectedRoutePlan?.recipeId ?? null}
+                onDrawRoute={setSelectedRoutePlan}
+                onClearRoute={() => setSelectedRoutePlan(null)}
+              />
+            </div>
+          </>
         ) : (
-          <div className='absolute bottom-2 left-2 z-10'>
-            <MapInfoCard />
-          </div>
+          <>
+            <div className='absolute bottom-2 left-2 z-10'>
+              <MapInfoCard />
+            </div>
+            <div className='absolute top-2 left-36 z-10'>
+              <RouteToDishPanel
+                plans={routeDishResult?.plans ?? []}
+                error={routeDishError}
+                isLoading={isRouteDishLoading}
+                hasUserLocation={Boolean(userLocation)}
+                minScore={MIN_SCORE_DEFAULT}
+                radiusKm={DEFAULT_RADIUS_KM}
+                selectedRecipeId={selectedRoutePlan?.recipeId ?? null}
+                onDrawRoute={setSelectedRoutePlan}
+                onClearRoute={() => setSelectedRoutePlan(null)}
+              />
+            </div>
+          </>
         )}
 
         {/* Foraging spots found notification */}
