@@ -40,6 +40,7 @@ const ROUTE_SEGMENT_ANIMATION_MS = 750;
 const ROUTE_SEGMENT_PAUSE_MS = 250;
 const ROUTE_START_MARKER_DELAY_MS = 150;
 const ROUTE_PANEL_REAPPEAR_DELAY_MS = 500;
+const ROUTE_DISH_MOVEMENT_DEBOUNCE_MS = 500;
 
 function formatLatLngForUrl(coordinate: [number, number]): string {
   return `${coordinate[1]},${coordinate[0]}`;
@@ -120,6 +121,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     }>;
     routeStart: [number, number];
   } | null>(null);
+  const routeDishDebounceTimeoutRef = useRef<number | null>(null);
 
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
@@ -278,7 +280,16 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
     const mapInstance = map.current;
 
+    const clearScheduledCompute = () => {
+      if (routeDishDebounceTimeoutRef.current !== null) {
+        window.clearTimeout(routeDishDebounceTimeoutRef.current);
+        routeDishDebounceTimeoutRef.current = null;
+      }
+    };
+
     const computeRoutes = () => {
+      clearScheduledCompute();
+
       const routeInputs = routeInputsRef.current;
       if (!routeInputs) return;
 
@@ -306,11 +317,25 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       }
     };
 
-    computeRoutes();
-    mapInstance.on('idle', computeRoutes);
+    const scheduleRoutesComputation = () => {
+      clearScheduledCompute();
+      setIsRouteDishLoading(true);
+      routeDishDebounceTimeoutRef.current = window.setTimeout(() => {
+        computeRoutes();
+      }, ROUTE_DISH_MOVEMENT_DEBOUNCE_MS);
+    };
+
+    if (mapInstance.isMoving()) {
+      scheduleRoutesComputation();
+    } else {
+      computeRoutes();
+    }
+
+    mapInstance.on('move', scheduleRoutesComputation);
 
     return () => {
-      mapInstance.off('idle', computeRoutes);
+      clearScheduledCompute();
+      mapInstance.off('move', scheduleRoutesComputation);
     };
   }, [isRoutePanelOpen, mapLoaded, routeStart, tRecipes]);
 
