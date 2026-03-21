@@ -12,7 +12,7 @@
   },
   "functions": {
     "title": "Functions:",
-    "recipes": "Displays Edible Species Growing Nearby and Suggests Recipes",
+    "recipes": "Shows nearby recipes and routes to ingredient stops",
     "location": "Centres the Map on the User's Location",
     "theme": "Switch between Light- and Dark-mode",
     "numbers": "Displays Numeric Rating"
@@ -73,6 +73,12 @@
         "description": "Created by the Joint Research Centre (JRC) of the European Commission, this dataset maps soil acidity using over 12,000 samples across 25 countries, modeled via Regression-Kriging with 54 environmental covariates.",
         "source": "Source: European Soil Data Centre (ESDAC), Joint Research Centre (JRC)",
         "citation": "Citation: Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
+      },
+      "nlcd": {
+        "title": "3. NLCD for U.S. Forest Cover",
+        "description": "Provided by the U.S. Geological Survey (USGS) in partnership with the MRLC Consortium, the National Land Cover Database (NLCD) offers detailed land cover and tree canopy data across the United States at 30-meter resolution. This helps identify forested areas and potential habitats for mushroom and plant species in North America.",
+        "source": "Source: U.S. Geological Survey (USGS), Multi-Resolution Land Characteristics (MRLC) Consortium",
+        "citation": "Citation: U.S. Geological Survey. Annual NLCD (National Land Cover Database) - The next generation of land cover mapping. Fact Sheet 2025-3001."
       },
       "additional": "Additional sources such as meteorological APIs, remote sensing layers, and slope/aspect models are integrated to continuously improve prediction accuracy."
     }

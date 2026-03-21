@@ -30,6 +30,19 @@
     "try_adjusting": "Essayez de modifier les termes de recherche ou les filtres pour trouver plus de recettes."
   },
   "view_recipe": "Voir la recette",
+  "routePanel": {
+    "title": "Recettes proches",
+    "subtitle": "Meilleure correspondance d'abord, trajet le plus court ensuite.",
+    "loading": "Verification des ingredients a proximite...",
+    "empty": "Aucune recette prete pour un itineraire ici pour le moment. Essayez de deplacer la carte ou d'utiliser votre position.",
+    "stopsEstimated_one": "{{count}} arret, {{distance}} km estimes",
+    "stopsEstimated_other": "{{count}} arrets, {{distance}} km estimes",
+    "missingSpecies": "{{species}} manquant",
+    "routeStops": "Arrets du trajet",
+    "refreshRoute": "Actualiser le trajet",
+    "drawRoute": "Tracer le trajet",
+    "recipesButton": "Recettes"
+  },
   "species": {
     "amaranth": "Amarante",
     "black_chant": "Trompette de la mort",

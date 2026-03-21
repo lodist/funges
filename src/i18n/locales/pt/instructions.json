@@ -12,7 +12,7 @@
   },
   "functions": {
     "title": "Funções:",
-    "recipes": "Exibe espécies comestíveis próximas e sugere receitas",
+    "recipes": "Exibe receitas proximas e rotas para as paradas de ingredientes",
     "location": "Centraliza o mapa na localização do usuário",
     "theme": "Alterna entre modo claro e escuro",
     "numbers": "Exibe classificação numérica"
@@ -73,6 +73,12 @@
         "description": "Criado pelo Centro Comum de Investigação (JRC) da Comissão Europeia, este conjunto de dados mapeia a acidez do solo usando mais de 12.000 amostras em 25 países, modeladas por Regression-Kriging com 54 variáveis ambientais.",
         "source": "Fonte: Centro Europeu de Dados do Solo (ESDAC), Centro Comum de Investigação (JRC)",
         "citation": "Citação: Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
+      },
+      "nlcd": {
+        "title": "3. NLCD para Cobertura Florestal nos EUA",
+        "description": "Fornecido pelo U.S. Geological Survey (USGS) em parceria com o consórcio MRLC, o National Land Cover Database (NLCD) oferece dados detalhados de cobertura do solo e cobertura arbórea nos Estados Unidos em resolução de 30 metros. Isso ajuda a identificar áreas florestadas e habitats potenciais para espécies de cogumelos e plantas na América do Norte.",
+        "source": "Fonte: U.S. Geological Survey (USGS), Multi-Resolution Land Characteristics (MRLC) Consortium",
+        "citation": "Citação: U.S. Geological Survey. Annual NLCD (National Land Cover Database) - The next generation of land cover mapping. Fact Sheet 2025-3001."
       },
       "additional": "Fontes adicionais como APIs meteorológicas, camadas de sensoriamento remoto e modelos de inclinação/orientação são integradas para melhorar continuamente a precisão das previsões."
     }
