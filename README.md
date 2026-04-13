@@ -65,18 +65,23 @@ A modern foraging webapp built with React 19, TanStack Router, and Vite that hel
 
 ```shell
 src/
+├── assets/             # Static assets
 ├── components/         # Reusable UI components
 │   ├── ui/             # shadcn/ui components
-│   ├── MapComponent/   # Map-related components
+│   ├── Mobile/         # Mobile-specific components
 │   └── Sidebar/        # Navigation components
-├── pages/              # Page components
-├── routes/             # TanStack Router file-based routes
-├── store/              # Zustand state stores
+├── contexts/           # React context providers
 ├── data/               # Static data (species, recipes)
 ├── hooks/              # Custom React hooks
 ├── i18n/               # Internationalization
 ├── lib/                # Utilities and API layer
-└── styles/             # Global styles and design tokens
+├── pages/              # Page components
+├── routes/             # TanStack Router file-based routes
+├── store/              # Zustand state stores
+├── stories/            # Storybook stories
+├── styles/             # Global styles and design tokens
+├── test/               # Test files
+└── types/              # TypeScript type definitions
 ```
 
 ### Key Components
@@ -84,8 +89,8 @@ src/
 - **AdvancedMap**: Interactive Mapbox map with foraging data
 - **SpeciesSelector**: Filter and browse wild edibles
 - **RecipeModal**: Detailed recipe viewer with instructions
+- **RouteToDishPanel**: Route-to-dish feature panel
 - **AppSidebar**: Navigation and species filtering
-- **MobileNavbar**: Mobile-optimized navigation
 
 ## 🚀 Getting Started
 
@@ -99,7 +104,7 @@ src/
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/funges.git
+git clone https://github.com/lodist/funges.git
 cd funges
 ```
 
@@ -173,38 +178,6 @@ The app will be available at `http://localhost:3000`
 - **Automatic language detection** based on browser settings
 - **Persistent language preference** stored locally
 
-## 🔧 Configuration
-
-### Environment Variables
-
-| Variable                   | Where            | Description                        |
-| -------------------------- | ---------------- | ---------------------------------- |
-| `VITE_MAPBOX_ACCESS_TOKEN` | `.env.secret`    | Mapbox API access token (required) |
-| `VITE_MAPBOX_STYLE`        | `.env.secret`    | Mapbox style URL                   |
-| `VITE_VISITOR_LIMIT`       | `.env.secret`    | Mapbox usage limit                 |
-| `MAPBOX_USERNAME`          | `.env.secret`    | Mapbox account username            |
-| `R2_ACCESS_KEY_ID`         | `.env.secret`    | Cloudflare R2 credentials          |
-| `R2_SECRET_ACCESS_KEY`     | `.env.secret`    | Cloudflare R2 credentials          |
-| `R2_BUCKET_NAME`           | `.env.secret`    | Cloudflare R2 bucket name          |
-| `R2_ENDPOINT_URL`          | `.env.secret`    | Cloudflare R2 endpoint             |
-| `WEATHERAPI_KEY`           | `.env.secret`    | WeatherAPI.com key                 |
-| R2 data URLs (NE/SE/USE/USW) | `.env`         | Public CDN URLs — already set      |
-
-## 🚀 Deployment
-
-### Build
-
-```bash
-npm run build
-```
-
-### PWA Deployment
-
-- **HTTPS required** for service worker functionality
-- **Manifest generation** automatic
-- **Icon generation** for all device sizes
-- **Splash screen** creation for native feel
-
 ## ⚙️ Backend Scripts
 
 The `backend/` folder contains the Python scripts that generate the foraging scores and map tiles served by the app. They run on a schedule and write results to Cloudflare R2.
@@ -243,6 +216,38 @@ python backend/EU/North_Europe/NE_MapLayer.py
 ```
 
 All credentials are loaded from `.env.secret` at the repo root. Public data URLs are in `.env`.
+
+## 🔧 Configuration
+
+### Environment Variables
+
+| Variable                   | Where            | Description                        |
+| -------------------------- | ---------------- | ---------------------------------- |
+| `VITE_MAPBOX_ACCESS_TOKEN` | `.env.secret`    | Mapbox API access token (required) |
+| `VITE_MAPBOX_STYLE`        | `.env.secret`    | Mapbox style URL                   |
+| `VITE_VISITOR_LIMIT`       | `.env.secret`    | Mapbox usage limit                 |
+| `MAPBOX_USERNAME`          | `.env.secret`    | Mapbox account username            |
+| `R2_ACCESS_KEY_ID`         | `.env.secret`    | Cloudflare R2 credentials          |
+| `R2_SECRET_ACCESS_KEY`     | `.env.secret`    | Cloudflare R2 credentials          |
+| `R2_BUCKET_NAME`           | `.env.secret`    | Cloudflare R2 bucket name          |
+| `R2_ENDPOINT_URL`          | `.env.secret`    | Cloudflare R2 endpoint             |
+| `WEATHERAPI_KEY`           | `.env.secret`    | WeatherAPI.com key                 |
+| R2 data URLs (NE/SE/USE/USW) | `.env`         | Public CDN URLs — already set      |
+
+## 🚀 Deployment
+
+### Build
+
+```bash
+npm run build
+```
+
+### PWA Deployment
+
+- **HTTPS required** for service worker functionality
+- **Manifest generation** automatic
+- **Icon generation** for all device sizes
+- **Splash screen** creation for native feel
 
 ## 🤝 Contributing
 
