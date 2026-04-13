@@ -79,7 +79,7 @@ export default function InstructionsPage() {
             </h2>
             <div className='mt-4'>
               <Button asChild>
-                <a href='data/foraging_scores.csv.gz' download>
+                <a href='data/foraging_scores.parquet' download>
                   <Download className='h-4 w-4 mr-2' />
                   {t('downloadDataset')}
                 </a>

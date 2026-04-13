@@ -65,18 +65,23 @@ A modern foraging webapp built with React 19, TanStack Router, and Vite that hel
 
 ```shell
 src/
+├── assets/             # Static assets
 ├── components/         # Reusable UI components
 │   ├── ui/             # shadcn/ui components
-│   ├── MapComponent/   # Map-related components
+│   ├── Mobile/         # Mobile-specific components
 │   └── Sidebar/        # Navigation components
-├── pages/              # Page components
-├── routes/             # TanStack Router file-based routes
-├── store/              # Zustand state stores
+├── contexts/           # React context providers
 ├── data/               # Static data (species, recipes)
 ├── hooks/              # Custom React hooks
 ├── i18n/               # Internationalization
 ├── lib/                # Utilities and API layer
-└── styles/             # Global styles and design tokens
+├── pages/              # Page components
+├── routes/             # TanStack Router file-based routes
+├── store/              # Zustand state stores
+├── stories/            # Storybook stories
+├── styles/             # Global styles and design tokens
+├── test/               # Test files
+└── types/              # TypeScript type definitions
 ```
 
 ### Key Components
@@ -84,8 +89,8 @@ src/
 - **AdvancedMap**: Interactive Mapbox map with foraging data
 - **SpeciesSelector**: Filter and browse wild edibles
 - **RecipeModal**: Detailed recipe viewer with instructions
+- **RouteToDishPanel**: Route-to-dish feature panel
 - **AppSidebar**: Navigation and species filtering
-- **MobileNavbar**: Mobile-optimized navigation
 
 ## 🚀 Getting Started
 
@@ -99,7 +104,7 @@ src/
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/funges.git
+git clone https://github.com/lodist/funges.git
 cd funges
 ```
 
@@ -112,18 +117,10 @@ npm install
 3. **Environment setup**
 
 ```bash
-cp .env.example .env
+cp .env.secret.example .env.secret
 ```
 
-Configure your `.env` file:
-
-```env
-VITE_MAPBOX_ACCESS_TOKEN=your_mapbox_token_here
-VITE_MAPBOX_STYLE=your_mapbox_style_here
-VITE_BASE_URL=/
-VITE_HOSTNAME=https://www.fung.es
-VITE_VISITOR_LIMIT=45000
-```
+Fill in your credentials in `.env.secret`. Public config (R2 data URLs) is already committed in `.env`.
 
 4. **Start development server**
 
@@ -181,17 +178,61 @@ The app will be available at `http://localhost:3000`
 - **Automatic language detection** based on browser settings
 - **Persistent language preference** stored locally
 
+## ⚙️ Backend Scripts
+
+The `backend/` folder contains the Python scripts that generate the foraging scores and map tiles served by the app. They run on a schedule and write results to Cloudflare R2.
+
+### Structure
+
+```
+backend/
+├── EU/
+│   ├── North_Europe/   NE_Scoring.py, NE_MapLayer.py
+│   └── South_Europe/   SE_Scoring.py, SE_MapLayer.py
+├── US/
+│   ├── USE/            USE_Scoring.py, USE_MapLayer.py
+│   └── USW/            USW_Scoring.py, USW_MapLayer.py
+└── requirements.txt
+```
+
+- **Scoring scripts** — fetch weather data from R2, compute foraging scores per species and location, write results back to R2 as Parquet
+- **MapLayer scripts** — load scores + wilderness GeoJSON, run Delaunay triangulation, assign scores to triangles, generate MBTiles via tippecanoe, upload to R2 and publish to Mapbox Tilesets
+
+### Setup
+
+**Requirements:** Python 3.10+, [tippecanoe](https://github.com/mapbox/tippecanoe) (for MapLayer scripts)
+
+```bash
+pip install -r backend/requirements.txt
+cp .env.secret.example .env.secret
+# fill in .env.secret with your credentials
+```
+
+### Running a script
+
+```bash
+python backend/EU/North_Europe/NE_Scoring.py
+python backend/EU/North_Europe/NE_MapLayer.py
+```
+
+All credentials are loaded from `.env.secret` at the repo root. Public data URLs are in `.env`.
+
 ## 🔧 Configuration
 
 ### Environment Variables
 
-| Variable                   | Description             | Default                               |
-| -------------------------- | ----------------------- | ------------------------------------- |
-| `VITE_MAPBOX_ACCESS_TOKEN` | Mapbox API access token | Required                              |
-| `VITE_MAPBOX_STYLE`        | Mapbox style URL        | `mapbox://styles/mapbox/outdoors-v12` |
-| `VITE_BASE_URL`            | Base URL for the app    | `/`                                   |
-| `VITE_HOSTNAME`            | Hostname for sitemap    | `https://www.fung.es`                 |
-| `VITE_VISITOR_LIMIT`       | Mapbox usage limit      | `45000`                               |
+| Variable                   | Where            | Description                        |
+| -------------------------- | ---------------- | ---------------------------------- |
+| `VITE_MAPBOX_ACCESS_TOKEN` | `.env.secret`    | Mapbox API access token (required) |
+| `VITE_MAPBOX_STYLE`        | `.env.secret`    | Mapbox style URL                   |
+| `VITE_VISITOR_LIMIT`       | `.env.secret`    | Mapbox usage limit                 |
+| `MAPBOX_USERNAME`          | `.env.secret`    | Mapbox account username            |
+| `R2_ACCESS_KEY_ID`         | `.env.secret`    | Cloudflare R2 credentials          |
+| `R2_SECRET_ACCESS_KEY`     | `.env.secret`    | Cloudflare R2 credentials          |
+| `R2_BUCKET_NAME`           | `.env.secret`    | Cloudflare R2 bucket name          |
+| `R2_ENDPOINT_URL`          | `.env.secret`    | Cloudflare R2 endpoint             |
+| `WEATHERAPI_KEY`           | `.env.secret`    | WeatherAPI.com key                 |
+| R2 data URLs (NE/SE/USE/USW) | `.env`         | Public CDN URLs — already set      |
 
 ## 🚀 Deployment
 
