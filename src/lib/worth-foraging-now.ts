@@ -1,11 +1,12 @@
 import type { Recipe } from '@/data/recipes';
 import type { SpeciesWithTranslations } from '@/data/species';
+import i18n from '@/i18n';
 
 export type ExperienceLevel = 'beginner' | 'intermediate' | 'expert';
 export type ForagingFocus = 'mixed' | 'mushrooms' | 'plants' | 'berries';
 export type ScoreRegionId = 'NE' | 'SE' | 'USE' | 'USW';
 
-export interface WeekendRecommendation {
+export interface WorthForagingNowRecommendation {
   speciesId: string;
   speciesName: string;
   scientificName: string;
@@ -78,13 +79,6 @@ const STORAGE_TTL_MS = 6 * 60 * 60 * 1000;
 const RADIUS_KM = 100;
 const MAX_RECOMMENDATIONS = 3;
 
-const REGION_LABELS: Record<ScoreRegionId, string> = {
-  NE: 'North Europe',
-  SE: 'South Europe',
-  USE: 'US East',
-  USW: 'US West',
-};
-
 const REGION_MATCHERS: Record<
   ScoreRegionId,
   (coordinate: [number, number]) => boolean
@@ -105,20 +99,6 @@ const FOCUS_CATEGORY_MAP: Record<
   berries: ['berry', 'nut'],
 };
 
-const EXPERIENCE_CAUTION: Record<ExperienceLevel, string> = {
-  beginner: 'Stay with easy-to-identify species and double-check every find.',
-  intermediate: 'Good target if you verify habitat, season, and lookalikes.',
-  expert: 'Suitable for experienced foragers who can validate local variation.',
-};
-
-const WINDOW_BY_CATEGORY: Record<SpeciesWithTranslations['category'], string> = {
-  mushroom: 'Best when moisture is still in the ground.',
-  plant: 'Best while fresh spring or early-summer growth is active.',
-  berry: 'Best once sun and recent moisture balance out.',
-  nut: 'Best during dry conditions with good ground visibility.',
-  flower: 'Best in bright, dry weather before midday heat.',
-};
-
 let cachedDataset: RecommendationDataset | null = null;
 let cachedDatasetPromise: Promise<RecommendationDataset> | null = null;
 
@@ -137,7 +117,9 @@ function getRecipeMatches(recipes: Recipe[], speciesId: string) {
     }));
 }
 
-function getConfidence(score: number): WeekendRecommendation['confidence'] {
+function getConfidence(
+  score: number
+): WorthForagingNowRecommendation['confidence'] {
   if (score >= 8.2) return 'high';
   if (score >= 6.8) return 'medium';
   return 'low';
@@ -169,6 +151,30 @@ function distanceAwareRanking(score: number, distanceKm: number | null) {
   const clampedDistance = Math.min(Math.max(distanceKm, 0), RADIUS_KM);
   const proximityScore = 10 - clampedDistance / 10;
   return score * 0.8 + proximityScore * 0.2;
+}
+
+function getRegionLabel(regionId: ScoreRegionId) {
+  return i18n.t(`common:worthForagingNow.regions.${regionId}`);
+}
+
+function getTranslatedSeasonLabel(season: string | null | undefined) {
+  if (!season) {
+    return i18n.t('common:worthForagingNow.variedSeason');
+  }
+
+  return i18n.t(`species:seasons.${season}`, {
+    defaultValue: season,
+  });
+}
+
+function getTranslatedHabitatLabel(habitat: string | null | undefined) {
+  if (!habitat) {
+    return null;
+  }
+
+  return i18n.t(`species:habitats.${habitat}`, {
+    defaultValue: habitat,
+  });
 }
 
 export function inferScoreRegion(center: [number, number]): ScoreRegionId {
@@ -369,18 +375,25 @@ function buildRecommendationsFromRanked({
   regionLabel: string;
   scope: RecommendationContext['scope'];
 }) {
-  return ranked.map<WeekendRecommendation>(candidate => {
+  return ranked.map<WorthForagingNowRecommendation>(candidate => {
     const recipeMatches = getRecipeMatches(recipes, candidate.species.id);
+    const habitatLabel = getTranslatedHabitatLabel(candidate.species.habitat);
     const scopeLine =
       scope === 'radius'
         ? candidate.distanceKm !== null
-          ? `Strong current score within 100 km, about ${candidate.distanceKm} km away.`
-          : 'Strong current score within 100 km of your location.'
-        : `Highest current score found in the ${regionLabel} map region.`;
+          ? i18n.t('common:worthForagingNow.reasons.scopeRadiusWithDistance', {
+              distance: candidate.distanceKm,
+            })
+          : i18n.t('common:worthForagingNow.reasons.scopeRadius')
+        : i18n.t('common:worthForagingNow.reasons.scopeRegion', {
+            region: regionLabel,
+          });
     const kitchenLine =
       recipeMatches.length > 0
-        ? `Kitchen payoff is strong with ${recipeMatches.length} matching recipe${recipeMatches.length > 1 ? 's' : ''}.`
-        : 'No direct recipe match yet, but the score is strong enough to scout.';
+        ? i18n.t('common:worthForagingNow.reasons.kitchenRecipes', {
+            count: recipeMatches.length,
+          })
+        : i18n.t('common:worthForagingNow.reasons.kitchenNone');
 
     return {
       speciesId: candidate.species.id,
@@ -389,18 +402,24 @@ function buildRecommendationsFromRanked({
       category: candidate.species.category,
       score: candidate.score,
       confidence: getConfidence(candidate.score),
-      seasonLabel: candidate.species.season ?? 'varied',
-      habitatLabel: candidate.species.habitat ?? null,
+      seasonLabel: getTranslatedSeasonLabel(candidate.species.season),
+      habitatLabel,
       recipes: recipeMatches,
       whyNow: [
         scopeLine,
         kitchenLine,
-        candidate.species.habitat
-          ? `Best habitat signal: ${candidate.species.habitat}.`
-          : 'Watch for the strongest local habitat signal on the map.',
+        habitatLabel
+          ? i18n.t('common:worthForagingNow.reasons.habitat', {
+              habitat: habitatLabel,
+            })
+          : i18n.t('common:worthForagingNow.reasons.habitatFallback'),
       ],
-      caution: EXPERIENCE_CAUTION[experienceLevel],
-      bestWindow: WINDOW_BY_CATEGORY[candidate.species.category],
+      caution: i18n.t(
+        `common:worthForagingNow.cautionByExperience.${experienceLevel}`
+      ),
+      bestWindow: i18n.t(
+        `common:worthForagingNow.bestWindowByCategory.${candidate.species.category}`
+      ),
       coordinate: candidate.coordinate,
       distanceKm: candidate.distanceKm,
     };
@@ -417,7 +436,7 @@ export function deriveWorthForagingNowRecommendations({
   userLocation,
 }: RecommendationInputs & { dataset: RecommendationDataset }) {
   const regionId = inferScoreRegion(mapCenter);
-  const regionLabel = REGION_LABELS[regionId];
+  const regionLabel = getRegionLabel(regionId);
 
   const rankedNearby = userLocation
     ? rankNearbySpecies({

@@ -4,7 +4,7 @@ import type { SpeciesWithTranslations } from '@/data/species';
 import {
   deriveWorthForagingNowRecommendations,
   inferScoreRegion,
-} from '@/lib/weekend-recommendations';
+} from '@/lib/worth-foraging-now';
 
 const species: SpeciesWithTranslations[] = [
   {

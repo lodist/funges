@@ -9,8 +9,8 @@ import {
   type ExperienceLevel,
   type ForagingFocus,
   type RecommendationContext,
-  type WeekendRecommendation,
-} from '@/lib/weekend-recommendations';
+  type WorthForagingNowRecommendation,
+} from '@/lib/worth-foraging-now';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -31,26 +31,15 @@ import {
 } from 'lucide-react';
 import { useMapStore } from '@/store/mapStore';
 
-function formatReferenceDate(referenceDate: string | null) {
-  if (!referenceDate) return null;
-  const parsed = new Date(referenceDate);
-  if (Number.isNaN(parsed.getTime())) return referenceDate;
-  return new Intl.DateTimeFormat(undefined, {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  }).format(parsed);
-}
-
 export default function WorthForagingNowPage() {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation(['common', 'species']);
   const species = useSpeciesData();
   const recipes = useRecipesData();
   const { center, userLocation } = useMapStore();
   const experienceLevel: ExperienceLevel = 'beginner';
   const [focus, setFocus] = useState<ForagingFocus>('mixed');
   const [recommendations, setRecommendations] = useState<
-    WeekendRecommendation[]
+    WorthForagingNowRecommendation[]
   >([]);
   const [context, setContext] = useState<RecommendationContext | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -81,7 +70,7 @@ export default function WorthForagingNowPage() {
         setLoadError(
           caughtError instanceof Error
             ? caughtError.message
-            : 'Unable to load score-based suggestions.'
+            : t('errors.general')
         );
       } finally {
         if (!cancelled) {
@@ -95,71 +84,45 @@ export default function WorthForagingNowPage() {
     return () => {
       cancelled = true;
     };
-  }, [center, experienceLevel, focus, recipes, species, userLocation]);
+  }, [center, experienceLevel, focus, i18n.language, recipes, species, userLocation]);
 
   const scopeLabel = useMemo(() => {
     if (!context) return null;
     if (context.scope === 'radius') {
-      return t('weekend.scopeRadius', {
-        defaultValue: `Top current scores within ${context.radiusKm} km`,
+      return t('worthForagingNow.scopeRadius', {
         radius: context.radiusKm ?? 100,
       });
     }
 
-    return t('weekend.scopeRegion', {
-      defaultValue: `Top current scores in ${context.regionLabel}`,
+    return t('worthForagingNow.scopeRegion', {
       region: context.regionLabel,
     });
   }, [context, t]);
 
-  const referenceDateLabel = useMemo(
-    () => formatReferenceDate(context?.referenceDate ?? null),
-    [context]
-  );
-
   return (
     <>
       <SEO
-        title={t('weekend.title')}
-        description={t('weekend.description')}
+        title={t('worthForagingNow.title')}
+        description={t('worthForagingNow.description')}
         canonicalUrl={`${import.meta.env.BASE_URL}worth-foraging-now`}
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
         <div className='mb-8 text-center'>
-          <div className='mb-4 flex flex-wrap justify-center gap-2'>
-            {scopeLabel ? (
-              <Badge className='border-[#dcc8b6] bg-background text-text-secondary hover:bg-background'>
-                {scopeLabel}
-              </Badge>
-            ) : null}
-            {referenceDateLabel ? (
-              <Badge
-                variant='outline'
-                className='border-[#dcc8b6] bg-background text-text-secondary'
-              >
-                {t('weekend.currentAsOf', {
-                  defaultValue: `As of ${referenceDateLabel}`,
-                  date: referenceDateLabel,
-                })}
-              </Badge>
-            ) : null}
-          </div>
+          {scopeLabel ? (
+            <p className='mb-4 text-sm font-medium text-text-secondary'>
+              {scopeLabel}
+            </p>
+          ) : null}
           <h1 className='mb-4 text-4xl font-bold text-text-primary'>
-            {t('weekend.title')}
+            {t('worthForagingNow.title')}
           </h1>
           <p className='mx-auto max-w-3xl text-lg text-text-secondary'>
-            {t('weekend.description')}
+            {t('worthForagingNow.description')}
           </p>
           <p className='mx-auto mt-6 max-w-3xl text-sm leading-8 text-text-secondary'>
             {userLocation
-              ? t('weekend.locationEnabled', {
-                  defaultValue:
-                    'These suggestions come from the strongest current scores within 100 km of your shared location.',
-                })
-              : t('weekend.locationMissing', {
-                  defaultValue:
-                    'Location is not shared, so these suggestions come from the strongest current scores in your current map region.',
-                })}
+              ? t('worthForagingNow.locationEnabled')
+              : t('worthForagingNow.locationMissing')}
           </p>
         </div>
 
@@ -175,16 +138,16 @@ export default function WorthForagingNowPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value='mixed'>
-                    {t('weekend.focus.mixed')}
+                    {t('worthForagingNow.focus.mixed')}
                   </SelectItem>
                   <SelectItem value='mushrooms'>
-                    {t('weekend.focus.mushrooms')}
+                    {t('worthForagingNow.focus.mushrooms')}
                   </SelectItem>
                   <SelectItem value='plants'>
-                    {t('weekend.focus.plants')}
+                    {t('worthForagingNow.focus.plants')}
                   </SelectItem>
                   <SelectItem value='berries'>
-                    {t('weekend.focus.berries')}
+                    {t('worthForagingNow.focus.berries')}
                   </SelectItem>
                 </SelectContent>
               </Select>
@@ -194,9 +157,7 @@ export default function WorthForagingNowPage() {
           {!isLoading && !loadError ? (
             <div className='text-sm text-text-secondary'>
               {recommendations.length}{' '}
-              {t('weekend.resultsLabel', {
-                defaultValue:
-                  recommendations.length === 1 ? 'suggestion' : 'suggestions',
+              {t('worthForagingNow.resultsLabel', {
                 count: recommendations.length,
               })}
             </div>
@@ -207,11 +168,7 @@ export default function WorthForagingNowPage() {
           <section className='rounded-3xl border bg-card p-10'>
             <div className='flex items-center justify-center gap-3 text-muted-foreground'>
               <Loader2 className='h-5 w-5 animate-spin' />
-              <span>
-                {t('weekend.loading', {
-                  defaultValue: 'Loading current score recommendations...',
-                })}
-              </span>
+              <span>{t('worthForagingNow.loading')}</span>
             </div>
           </section>
         ) : null}
@@ -224,10 +181,7 @@ export default function WorthForagingNowPage() {
 
         {!isLoading && !loadError && recommendations.length === 0 ? (
           <section className='rounded-3xl border bg-card p-6 text-sm text-muted-foreground'>
-            {t('weekend.noData', {
-              defaultValue:
-                'No score-based recommendations were available for the current scope.',
-            })}
+            {t('worthForagingNow.noData')}
           </section>
         ) : null}
 
@@ -236,14 +190,13 @@ export default function WorthForagingNowPage() {
             {recommendations.map((recommendation, index) => (
               <Card
                 key={recommendation.speciesId}
-                className='overflow-hidden rounded-[2rem] border-[#ddccbc] bg-[linear-gradient(180deg,#fffdf9_0%,#fbf4ea_100%)] py-0 shadow-[0_28px_60px_-45px_rgba(122,31,61,0.38)]'
+                className='rounded-[2rem] border-[#ddccbc] bg-card py-0 shadow-[0_18px_40px_-36px_rgba(60,42,24,0.22)]'
               >
-                <div className='h-2 bg-gradient-to-r from-[#7a1f3d] via-[#b77924] to-[#6c7c3d]' />
                 <CardHeader className='space-y-4 pt-6'>
                   <div className='flex items-start justify-between gap-3'>
                     <div className='min-w-0 flex-1'>
                       <p className='text-xs font-medium text-[#7b6a5f]'>
-                        {t('weekend.rankLabel', { rank: index + 1 })}
+                        {t('worthForagingNow.rankLabel', { rank: index + 1 })}
                       </p>
                       <CardTitle className='pr-3 text-lg font-semibold leading-snug text-[#24191b] md:text-xl'>
                         {recommendation.speciesName}
@@ -257,7 +210,7 @@ export default function WorthForagingNowPage() {
                         {recommendation.score}
                       </div>
                       <p className='mt-2 text-[10px] font-medium uppercase tracking-[0.18em] text-[#8b7868]'>
-                        {t('weekend.scoreLabel')}
+                        {t('worthForagingNow.scoreLabel')}
                       </p>
                     </div>
                   </div>
@@ -267,10 +220,12 @@ export default function WorthForagingNowPage() {
                       variant='outline'
                       className='border-[#ddccbc] bg-white/80 capitalize text-[#5f5249]'
                     >
-                      {t(`weekend.category.${recommendation.category}`)}
+                      {t(`worthForagingNow.category.${recommendation.category}`)}
                     </Badge>
                     <Badge className='bg-[#7a1f3d]/10 text-[#7a1f3d] hover:bg-[#7a1f3d]/10'>
-                      {t(`weekend.confidence.${recommendation.confidence}`)}
+                      {t(
+                        `worthForagingNow.confidence.${recommendation.confidence}`
+                      )}
                     </Badge>
                     <Badge
                       variant='outline'
@@ -284,7 +239,7 @@ export default function WorthForagingNowPage() {
                   <div className='space-y-3'>
                     <div className='flex items-center gap-2 text-sm font-medium text-[#24191b]'>
                       <Leaf className='h-4 w-4 text-[#6c7c3d]' />
-                      {t('weekend.whyNow')}
+                      {t('worthForagingNow.whyNow')}
                     </div>
                     <ul className='space-y-2 text-sm text-[#5b4c42]'>
                       {recommendation.whyNow.map(reason => (
@@ -303,7 +258,7 @@ export default function WorthForagingNowPage() {
                       <MapPinned className='mt-0.5 h-4 w-4 text-[#7a1f3d]' />
                       <div>
                         <p className='font-medium text-[#24191b]'>
-                          {t('weekend.bestWindow')}
+                          {t('worthForagingNow.bestWindow')}
                         </p>
                         <p>{recommendation.bestWindow}</p>
                       </div>
@@ -313,13 +268,10 @@ export default function WorthForagingNowPage() {
                         <MapPinned className='mt-0.5 h-4 w-4 text-[#7a1f3d]' />
                         <div>
                           <p className='font-medium text-[#24191b]'>
-                            {t('weekend.bestPoint', {
-                              defaultValue: 'Best nearby point',
-                            })}
+                            {t('worthForagingNow.bestPoint')}
                           </p>
                           <p>
-                            {t('weekend.distanceValue', {
-                              defaultValue: '{{distance}} km away',
+                            {t('worthForagingNow.distanceValue', {
                               distance: recommendation.distanceKm,
                             })}
                           </p>
@@ -330,7 +282,7 @@ export default function WorthForagingNowPage() {
                       <ShieldAlert className='mt-0.5 h-4 w-4 text-[#b77924]' />
                       <div>
                         <p className='font-medium text-[#24191b]'>
-                          {t('weekend.caution')}
+                          {t('worthForagingNow.caution')}
                         </p>
                         <p>{recommendation.caution}</p>
                       </div>
@@ -340,7 +292,7 @@ export default function WorthForagingNowPage() {
                   <div className='space-y-3'>
                     <div className='flex items-center gap-2 text-sm font-medium text-[#24191b]'>
                       <ChefHat className='h-4 w-4 text-[#b77924]' />
-                      {t('weekend.kitchenPayoff')}
+                      {t('worthForagingNow.kitchenPayoff')}
                     </div>
                     {recommendation.recipes.length > 0 ? (
                       <div className='flex flex-wrap gap-2'>
@@ -357,7 +309,7 @@ export default function WorthForagingNowPage() {
                       </div>
                     ) : (
                       <p className='text-sm text-[#7b6a5f]'>
-                        {t('weekend.noRecipeMatch')}
+                        {t('worthForagingNow.noRecipeMatch')}
                       </p>
                     )}
                   </div>
@@ -365,7 +317,7 @@ export default function WorthForagingNowPage() {
                   <div className='flex flex-col gap-3 sm:flex-row'>
                     <Button
                       asChild
-                      className='flex-1 rounded-2xl bg-[#7a1f3d] text-white hover:bg-[#651731]'
+                      className='flex-1 rounded-2xl border border-[#4f8740] bg-[#4f8740] text-white hover:bg-[#427236]'
                     >
                       <Link
                         to='/'
@@ -377,16 +329,18 @@ export default function WorthForagingNowPage() {
                         }}
                         className='inline-flex items-center justify-center gap-2'
                       >
-                        {t('weekend.openMap')}
+                        {t('worthForagingNow.openMap')}
                         <ArrowUpRight className='h-4 w-4' />
                       </Link>
                     </Button>
                     <Button
                       asChild
                       variant='outline'
-                      className='flex-1 rounded-2xl border-[#d3b88d] bg-[#fffaf0] text-[#8c5c00] hover:bg-[#fff2d0] hover:text-[#7a4d00]'
+                      className='flex-1 rounded-2xl border-[rgb(130,12,12)] bg-white text-[#24191b] hover:border-[rgb(130,12,12)] hover:bg-[rgb(130,12,12)] hover:text-white'
                     >
-                      <Link to='/species'>{t('weekend.reviewSpecies')}</Link>
+                      <Link to='/species'>
+                        {t('worthForagingNow.reviewSpecies')}
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>

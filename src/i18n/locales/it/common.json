@@ -12,18 +12,58 @@
     "getStarted": "Inizia",
     "learnMore": "Scopri di più"
   },
-  "weekend": {
+  "worthForagingNow": {
     "title": "Cosa vale la pena raccogliere adesso?",
     "description": "Una prima selezione che classifica i migliori obiettivi vicini usando gli attuali dati su specie e ricette.",
+    "scopeRadius": "Punteggi migliori nel raggio di {{radius}} km",
+    "scopeRegion": "Punteggi migliori in {{region}}",
+    "currentAsOf": "Aggiornato al {{date}}",
+    "locationEnabled": "Questi suggerimenti arrivano dai punteggi attuali piu forti entro 100 km dalla tua posizione condivisa",
+    "locationMissing": "La posizione non é condivisa, quindi questi suggerimenti si basano sui punteggi attuali piu forti nella tua area della mappa",
+    "resultsLabel_one": "suggerimento",
+    "resultsLabel_other": "suggerimenti",
+    "loading": "Caricamento dei suggerimenti basati sui punteggi in corso...",
+    "noData": "Non ci sono suggerimenti basati sui punteggi per l'area attuale.",
     "scoreLabel": "punteggio",
     "rankLabel": "Scelta #{{rank}}",
     "whyNow": "Perché vale la pena adesso",
     "bestWindow": "Finestra migliore",
+    "bestPoint": "Punto migliore vicino",
+    "distanceValue": "A {{distance}} km",
     "caution": "Livello di cautela",
     "kitchenPayoff": "In cucina",
     "noRecipeMatch": "Non c'è ancora una ricetta diretta, ma resta un buon obiettivo da esplorare.",
-    "openMap": "Apri sulla mappa",
-    "reviewSpecies": "Apri guida specie",
+    "openMap": "Vedi sulla mappa",
+    "reviewSpecies": "Vedi guida specie",
+    "variedSeason": "Variabile",
+    "regions": {
+      "NE": "Europa del Nord",
+      "SE": "Europa del Sud",
+      "USE": "USA Est",
+      "USW": "USA Ovest"
+    },
+    "reasons": {
+      "scopeRadiusWithDistance": "Punteggio attuale forte entro 100 km, a circa {{distance}} km.",
+      "scopeRadius": "Punteggio attuale forte entro 100 km dalla tua posizione.",
+      "scopeRegion": "Punteggio attuale piu alto trovato nella regione di mappa {{region}}.",
+      "kitchenRecipes_one": "Buon ritorno in cucina con {{count}} ricetta collegata.",
+      "kitchenRecipes_other": "Buon ritorno in cucina con {{count}} ricette collegate.",
+      "kitchenNone": "Non c'è ancora una ricetta diretta, ma il punteggio e abbastanza forte da valere un'esplorazione.",
+      "habitat": "Segnale di habitat migliore: {{habitat}}.",
+      "habitatFallback": "Guarda sulla mappa dove il segnale di habitat locale e piu forte."
+    },
+    "bestWindowByCategory": {
+      "mushroom": "Meglio quando l'umidita e ancora presente nel terreno.",
+      "plant": "Meglio quando la crescita fresca di primavera o inizio estate e attiva.",
+      "berry": "Meglio quando sole e umidita recente sono in buon equilibrio.",
+      "nut": "Meglio con condizioni asciutte e buona visibilita del terreno.",
+      "flower": "Meglio con tempo luminoso e asciutto prima del caldo di mezzogiorno."
+    },
+    "cautionByExperience": {
+      "beginner": "Resta su specie facili da identificare e ricontrolla sempre ogni raccolta.",
+      "intermediate": "Buon obiettivo se verifichi habitat, stagione e specie simili.",
+      "expert": "Adatto a raccoglitori esperti che sanno validare le variazioni locali."
+    },
     "filters": {
       "experience": "Il tuo livello di esperienza",
       "focus": "Cosa vuoi trovare"

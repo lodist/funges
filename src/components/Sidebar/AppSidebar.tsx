@@ -39,7 +39,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
         isActive: true,
       },
       {
-        title: t('thisWeekend'),
+        title: t('worthForagingNow'),
         url: `${basePath}worth-foraging-now`,
         icon: CalendarRange,
         isActive: false,

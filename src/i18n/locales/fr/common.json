@@ -49,18 +49,58 @@
     "getStarted": "Commencer",
     "learnMore": "En savoir plus"
   },
-  "weekend": {
+  "worthForagingNow": {
     "title": "Qu'est-ce qui vaut le coup d'aller cueillir maintenant ?",
     "description": "Une première sélection qui classe les meilleures cibles proches à partir de vos données actuelles sur les espèces et les recettes.",
+    "scopeRadius": "Meilleurs scores actuels dans un rayon de {{radius}} km",
+    "scopeRegion": "Meilleurs scores actuels en {{region}}",
+    "currentAsOf": "Au {{date}}",
+    "locationEnabled": "Ces suggestions viennent des scores actuels les plus forts dans un rayon de 100 km autour de votre position partagée",
+    "locationMissing": "La position n'est pas partagée, donc ces suggestions viennent des scores actuels les plus forts dans votre region actuelle de carte",
+    "resultsLabel_one": "suggestion",
+    "resultsLabel_other": "suggestions",
+    "loading": "Chargement des suggestions basees sur les scores actuels...",
+    "noData": "Aucune suggestion basee sur les scores n'etait disponible pour la zone actuelle.",
     "scoreLabel": "score",
     "rankLabel": "Choix #{{rank}}",
     "whyNow": "Pourquoi ça vaut le coup maintenant",
     "bestWindow": "Meilleur créneau",
+    "bestPoint": "Meilleur point a proximite",
+    "distanceValue": "A {{distance}} km",
     "caution": "Niveau de prudence",
     "kitchenPayoff": "En cuisine",
     "noRecipeMatch": "Pas encore de recette directe, mais cela reste une bonne cible d'exploration.",
-    "openMap": "Ouvrir sur la carte",
-    "reviewSpecies": "Voir la fiche espèce",
+    "openMap": "Voir sur la carte",
+    "reviewSpecies": "Voir le guide des espèces",
+    "variedSeason": "Variable",
+    "regions": {
+      "NE": "Europe du Nord",
+      "SE": "Europe du Sud",
+      "USE": "Est des États-Unis",
+      "USW": "Ouest des États-Unis"
+    },
+    "reasons": {
+      "scopeRadiusWithDistance": "Score actuel fort dans un rayon de 100 km, a environ {{distance}} km.",
+      "scopeRadius": "Score actuel fort dans un rayon de 100 km autour de votre position.",
+      "scopeRegion": "Score actuel le plus eleve trouve dans la region de carte {{region}}.",
+      "kitchenRecipes_one": "Le potentiel en cuisine est fort avec {{count}} recette associee.",
+      "kitchenRecipes_other": "Le potentiel en cuisine est fort avec {{count}} recettes associees.",
+      "kitchenNone": "Pas encore de recette directe, mais le score est assez fort pour justifier un repérage.",
+      "habitat": "Meilleur signal d'habitat : {{habitat}}.",
+      "habitatFallback": "Surveillez sur la carte le signal d'habitat local le plus fort."
+    },
+    "bestWindowByCategory": {
+      "mushroom": "Meilleur quand l'humidite est encore presente dans le sol.",
+      "plant": "Meilleur quand la pousse fraiche de printemps ou de debut d'ete est encore active.",
+      "berry": "Meilleur quand soleil et humidite recente sont bien equilibres.",
+      "nut": "Meilleur par temps sec avec une bonne visibilite au sol.",
+      "flower": "Meilleur par temps clair et sec avant la chaleur de midi."
+    },
+    "cautionByExperience": {
+      "beginner": "Restez sur des especes faciles a identifier et verifiez chaque cueillette.",
+      "intermediate": "Bonne cible si vous verifiez habitat, saison et especes ressemblantes.",
+      "expert": "Adapte aux cueilleurs experimentes capables de valider les variations locales."
+    },
     "filters": {
       "experience": "Votre niveau d'expérience",
       "focus": "Ce que vous cherchez"

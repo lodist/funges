@@ -49,18 +49,58 @@
     "getStarted": "Loslegen",
     "learnMore": "Mehr erfahren"
   },
-  "weekend": {
+  "worthForagingNow": {
     "title": "Was lohnt sich jetzt zu sammeln?",
     "description": "Eine erste Auswahl, die die besten nahegelegenen Ziele anhand deiner aktuellen Arten- und Rezeptdaten bewertet.",
+    "scopeRadius": "Beste aktuelle Scores im Umkreis von {{radius}} km",
+    "scopeRegion": "Beste aktuelle Scores in {{region}}",
+    "currentAsOf": "Stand {{date}}",
+    "locationEnabled": "Diese Vorschlaege kommen von den staerksten aktuellen Scores innerhalb von 100 km um deinen geteilten Standort",
+    "locationMissing": "Der Standort wird nicht geteilt, daher kommen diese Vorschlaege von den staerksten aktuellen Scores in deiner aktuellen Kartenregion",
+    "resultsLabel_one": "Vorschlag",
+    "resultsLabel_other": "Vorschlaege",
+    "loading": "Score-basierte Vorschlaege werden geladen...",
+    "noData": "Fuer den aktuellen Bereich waren keine score-basierten Vorschlaege verfuegbar.",
     "scoreLabel": "Aktueller Score",
     "rankLabel": "Tipp #{{rank}}",
     "whyNow": "Warum sich das gerade lohnt",
     "bestWindow": "Bestes Suchfenster",
+    "bestPoint": "Bester Punkt in der Naehe",
+    "distanceValue": "{{distance}} km entfernt",
     "caution": "Vorsicht",
     "kitchenPayoff": "In der Küche",
     "noRecipeMatch": "Noch kein direktes Rezept dazu, aber trotzdem ein lohnendes Ziel zum Erkunden.",
-    "openMap": "Auf Karte öffnen",
-    "reviewSpecies": "Artenführer öffnen",
+    "openMap": "Auf der Karte ansehen",
+    "reviewSpecies": "Artenführer ansehen",
+    "variedSeason": "Variabel",
+    "regions": {
+      "NE": "Nordeuropa",
+      "SE": "Südeuropa",
+      "USE": "US-Ostküste",
+      "USW": "US-Westküste"
+    },
+    "reasons": {
+      "scopeRadiusWithDistance": "Starker aktueller Score innerhalb von 100 km, etwa {{distance}} km entfernt.",
+      "scopeRadius": "Starker aktueller Score innerhalb von 100 km um deinen Standort.",
+      "scopeRegion": "Hoechster aktueller Score in der Kartenregion {{region}}.",
+      "kitchenRecipes_one": "Starkes Kuchenpotenzial mit {{count}} passendem Rezept.",
+      "kitchenRecipes_other": "Starkes Kuchenpotenzial mit {{count}} passenden Rezepten.",
+      "kitchenNone": "Noch kein direkt passendes Rezept, aber der Score ist stark genug zum Erkunden.",
+      "habitat": "Bestes Habitat-Signal: {{habitat}}.",
+      "habitatFallback": "Achte auf der Karte auf das staerkste lokale Habitat-Signal."
+    },
+    "bestWindowByCategory": {
+      "mushroom": "Am besten, wenn noch Feuchtigkeit im Boden steckt.",
+      "plant": "Am besten, solange frisches Fruehlings- oder Fruehsommerwachstum aktiv ist.",
+      "berry": "Am besten, wenn Sonne und letzte Feuchtigkeit gut ausbalanciert sind.",
+      "nut": "Am besten bei trockenen Bedingungen und guter Sicht auf den Boden.",
+      "flower": "Am besten bei hellem, trockenem Wetter vor der Mittagshitze."
+    },
+    "cautionByExperience": {
+      "beginner": "Bleib bei leicht erkennbaren Arten und pruefe jeden Fund doppelt.",
+      "intermediate": "Gutes Ziel, wenn du Habitat, Saison und Verwechslungen pruefst.",
+      "expert": "Geeignet fuer erfahrene Sammler, die lokale Abweichungen sicher pruefen koennen."
+    },
     "filters": {
       "experience": "Dein Erfahrungsniveau",
       "focus": "Wonach du suchst"
