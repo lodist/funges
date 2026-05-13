@@ -1,7 +1,8 @@
-import { useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRecipesData, type Recipe } from '@/data/recipes';
 import SEO from '@/components/SEO';
+import { Route as RecipesRoute } from '@/routes/recipes';
 import {
   Card,
   CardContent,
@@ -19,8 +20,9 @@ import { getRecipeImage } from '@/lib/utils';
 
 export default function RecipesPage() {
   const { t } = useTranslation('recipes');
+  const { q } = RecipesRoute.useSearch();
   const recipes = useRecipesData();
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(q ?? '');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [selectedTag, setSelectedTag] = useState<string>('all');
@@ -165,6 +167,10 @@ export default function RecipesPage() {
       );
     });
   }, [recipes, searchQuery, selectedCategory, selectedDifficulty, selectedTag]);
+
+  useEffect(() => {
+    setSearchQuery(q ?? '');
+  }, [q]);
 
   return (
     <>

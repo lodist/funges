@@ -49,6 +49,46 @@
     "getStarted": "Get Started",
     "learnMore": "Learn More"
   },
+  "weekend": {
+    "title": "Worth Foraging Now",
+    "description": "A first-pass picker that ranks the best nearby targets from your current species and recipe data.",
+    "scoreLabel": "current score",
+    "rankLabel": "Pick #{{rank}}",
+    "whyNow": "Why this is worth your time",
+    "bestWindow": "Best search window",
+    "caution": "Caution level",
+    "kitchenPayoff": "In the kitchen",
+    "noRecipeMatch": "No direct recipe match yet, but it still looks like a worthwhile scouting target.",
+    "openMap": "Open on map",
+    "reviewSpecies": "Review species guide",
+    "filters": {
+      "experience": "Your experience level",
+      "focus": "What you want to find"
+    },
+    "experience": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "expert": "Expert"
+    },
+    "focus": {
+      "mixed": "Mixed basket",
+      "mushrooms": "Mushrooms first",
+      "plants": "Greens and herbs",
+      "berries": "Berries and nuts"
+    },
+    "confidence": {
+      "high": "High confidence",
+      "medium": "Medium confidence",
+      "low": "Low confidence"
+    },
+    "category": {
+      "mushroom": "mushroom",
+      "plant": "plant",
+      "berry": "berry",
+      "nut": "nut",
+      "flower": "flower"
+    }
+  },
   "errors": {
     "general": "Something went wrong. Please try again.",
     "network": "Network error. Please check your connection.",

@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface Species {
@@ -43,7 +44,7 @@ export const SPECIES_DATA: Species[] = [
   {
     id: 'mushroom',
     nameKey: 'mushroom.name',
-    scientificName: 'Boletus edulis',
+    scientificName: 'Boletus spp.',
     category: 'mushroom',
     emoji: '🍄‍🟫',
     descriptionKey: 'mushroom.description',
@@ -55,7 +56,7 @@ export const SPECIES_DATA: Species[] = [
   {
     id: 'morel',
     nameKey: 'morel.name',
-    scientificName: 'Morchella esculenta',
+    scientificName: 'Morchella spp.',
     category: 'mushroom',
     emoji: '🍄‍🟫',
     descriptionKey: 'morel.description',
@@ -418,12 +419,16 @@ export const SPECIES_DATA: Species[] = [
 export const useSpeciesData = (): SpeciesWithTranslations[] => {
   const { t } = useTranslation('species', { keyPrefix: 'list_of_species' });
 
-  return SPECIES_DATA.map(species => ({
-    ...species,
-    name: t(species.nameKey),
-    description: t(species.descriptionKey),
-    howTo: t(species.howToKey),
-  }));
+  return useMemo(
+    () =>
+      SPECIES_DATA.map(species => ({
+        ...species,
+        name: t(species.nameKey),
+        description: t(species.descriptionKey),
+        howTo: t(species.howToKey),
+      })),
+    [t]
+  );
 };
 
 // Utility functions for non-React usage

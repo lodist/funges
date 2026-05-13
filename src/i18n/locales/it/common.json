@@ -12,6 +12,46 @@
     "getStarted": "Inizia",
     "learnMore": "Scopri di più"
   },
+  "weekend": {
+    "title": "Cosa vale la pena raccogliere adesso?",
+    "description": "Una prima selezione che classifica i migliori obiettivi vicini usando gli attuali dati su specie e ricette.",
+    "scoreLabel": "punteggio",
+    "rankLabel": "Scelta #{{rank}}",
+    "whyNow": "Perché vale la pena adesso",
+    "bestWindow": "Finestra migliore",
+    "caution": "Livello di cautela",
+    "kitchenPayoff": "In cucina",
+    "noRecipeMatch": "Non c'è ancora una ricetta diretta, ma resta un buon obiettivo da esplorare.",
+    "openMap": "Apri sulla mappa",
+    "reviewSpecies": "Apri guida specie",
+    "filters": {
+      "experience": "Il tuo livello di esperienza",
+      "focus": "Cosa vuoi trovare"
+    },
+    "experience": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "expert": "Esperto"
+    },
+    "focus": {
+      "mixed": "Cesto misto",
+      "mushrooms": "Prima i funghi",
+      "plants": "Erbe e verdi",
+      "berries": "Bacche e noci"
+    },
+    "confidence": {
+      "high": "Alta confidenza",
+      "medium": "Confidenza media",
+      "low": "Bassa confidenza"
+    },
+    "category": {
+      "mushroom": "fungo",
+      "plant": "pianta",
+      "berry": "bacca",
+      "nut": "noce",
+      "flower": "fiore"
+    }
+  },
   "errors": {
     "general": "Qualcosa è andato storto. Riprova.",
     "network": "Errore di rete. Controlla la tua connessione.",

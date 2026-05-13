@@ -49,6 +49,46 @@
     "getStarted": "Começar",
     "learnMore": "Saiba mais"
   },
+  "weekend": {
+    "title": "O que vale a pena procurar agora?",
+    "description": "Uma primeira seleção que classifica os melhores alvos próximos usando seus dados atuais de espécies e receitas.",
+    "scoreLabel": "pontuação",
+    "rankLabel": "Escolha #{{rank}}",
+    "whyNow": "Por que vale a pena agora",
+    "bestWindow": "Melhor janela",
+    "caution": "Nível de cautela",
+    "kitchenPayoff": "Na cozinha",
+    "noRecipeMatch": "Ainda não há uma receita direta, mas continua sendo um bom alvo para explorar.",
+    "openMap": "Abrir no mapa",
+    "reviewSpecies": "Ver guia da espécie",
+    "filters": {
+      "experience": "Seu nível de experiência",
+      "focus": "O que você quer encontrar"
+    },
+    "experience": {
+      "beginner": "Iniciante",
+      "intermediate": "Intermediário",
+      "expert": "Especialista"
+    },
+    "focus": {
+      "mixed": "Cesta mista",
+      "mushrooms": "Cogumelos primeiro",
+      "plants": "Ervas e folhas",
+      "berries": "Bagas e nozes"
+    },
+    "confidence": {
+      "high": "Alta confiança",
+      "medium": "Confiança média",
+      "low": "Baixa confiança"
+    },
+    "category": {
+      "mushroom": "cogumelo",
+      "plant": "planta",
+      "berry": "baga",
+      "nut": "noz",
+      "flower": "flor"
+    }
+  },
   "errors": {
     "general": "Algo deu errado. Por favor, tente novamente.",
     "network": "Erro de rede. Verifique sua conexão.",

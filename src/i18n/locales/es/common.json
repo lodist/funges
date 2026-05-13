@@ -49,6 +49,46 @@
     "getStarted": "Comenzar",
     "learnMore": "Saber más"
   },
+  "weekend": {
+    "title": "Qué merece la pena recolectar ahora",
+    "description": "Una primera selección que clasifica los mejores objetivos cercanos usando tus datos actuales de especies y recetas.",
+    "scoreLabel": "puntuación",
+    "rankLabel": "Opción #{{rank}}",
+    "whyNow": "Por qué merece la pena ahora",
+    "bestWindow": "Mejor momento para buscar",
+    "caution": "Nivel de precaución",
+    "kitchenPayoff": "En la cocina",
+    "noRecipeMatch": "Todavía no hay una receta directa, pero sigue siendo un objetivo interesante para explorar.",
+    "openMap": "Abrir en el mapa",
+    "reviewSpecies": "Ver guía de especies",
+    "filters": {
+      "experience": "Tu nivel de experiencia",
+      "focus": "Qué quieres encontrar"
+    },
+    "experience": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "expert": "Experto"
+    },
+    "focus": {
+      "mixed": "Cesta variada",
+      "mushrooms": "Primero setas",
+      "plants": "Hierbas y verdes",
+      "berries": "Bayas y frutos secos"
+    },
+    "confidence": {
+      "high": "Alta confianza",
+      "medium": "Confianza media",
+      "low": "Baja confianza"
+    },
+    "category": {
+      "mushroom": "seta",
+      "plant": "planta",
+      "berry": "baya",
+      "nut": "fruto seco",
+      "flower": "flor"
+    }
+  },
   "errors": {
     "general": "Algo salió mal. Por favor, inténtalo de nuevo.",
     "network": "Error de red. Por favor, revisa tu conexión.",

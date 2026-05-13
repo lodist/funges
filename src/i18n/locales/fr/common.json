@@ -49,6 +49,46 @@
     "getStarted": "Commencer",
     "learnMore": "En savoir plus"
   },
+  "weekend": {
+    "title": "Qu'est-ce qui vaut le coup d'aller cueillir maintenant ?",
+    "description": "Une première sélection qui classe les meilleures cibles proches à partir de vos données actuelles sur les espèces et les recettes.",
+    "scoreLabel": "score",
+    "rankLabel": "Choix #{{rank}}",
+    "whyNow": "Pourquoi ça vaut le coup maintenant",
+    "bestWindow": "Meilleur créneau",
+    "caution": "Niveau de prudence",
+    "kitchenPayoff": "En cuisine",
+    "noRecipeMatch": "Pas encore de recette directe, mais cela reste une bonne cible d'exploration.",
+    "openMap": "Ouvrir sur la carte",
+    "reviewSpecies": "Voir la fiche espèce",
+    "filters": {
+      "experience": "Votre niveau d'expérience",
+      "focus": "Ce que vous cherchez"
+    },
+    "experience": {
+      "beginner": "Débutant",
+      "intermediate": "Intermédiaire",
+      "expert": "Expert"
+    },
+    "focus": {
+      "mixed": "Panier mixte",
+      "mushrooms": "Champignons d'abord",
+      "plants": "Herbes et verdures",
+      "berries": "Baies et noix"
+    },
+    "confidence": {
+      "high": "Confiance élevée",
+      "medium": "Confiance moyenne",
+      "low": "Confiance faible"
+    },
+    "category": {
+      "mushroom": "champignon",
+      "plant": "plante",
+      "berry": "baie",
+      "nut": "noix",
+      "flower": "fleur"
+    }
+  },
   "errors": {
     "general": "Une erreur s'est produite. Veuillez réessayer.",
     "network": "Erreur réseau. Veuillez vérifier votre connexion.",

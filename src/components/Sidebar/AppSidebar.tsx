@@ -4,6 +4,7 @@ import {
   Database,
   ChefHat,
   BookOpen,
+  CalendarRange,
   Download,
   Settings,
   Heart,
@@ -36,6 +37,12 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
         url: `${basePath}`,
         icon: Map,
         isActive: true,
+      },
+      {
+        title: t('thisWeekend'),
+        url: `${basePath}worth-foraging-now`,
+        icon: CalendarRange,
+        isActive: false,
       },
       {
         title: t('species'),

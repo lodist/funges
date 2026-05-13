@@ -49,6 +49,46 @@
     "getStarted": "Loslegen",
     "learnMore": "Mehr erfahren"
   },
+  "weekend": {
+    "title": "Was lohnt sich jetzt zu sammeln?",
+    "description": "Eine erste Auswahl, die die besten nahegelegenen Ziele anhand deiner aktuellen Arten- und Rezeptdaten bewertet.",
+    "scoreLabel": "Aktueller Score",
+    "rankLabel": "Tipp #{{rank}}",
+    "whyNow": "Warum sich das gerade lohnt",
+    "bestWindow": "Bestes Suchfenster",
+    "caution": "Vorsicht",
+    "kitchenPayoff": "In der Küche",
+    "noRecipeMatch": "Noch kein direktes Rezept dazu, aber trotzdem ein lohnendes Ziel zum Erkunden.",
+    "openMap": "Auf Karte öffnen",
+    "reviewSpecies": "Artenführer öffnen",
+    "filters": {
+      "experience": "Dein Erfahrungsniveau",
+      "focus": "Wonach du suchst"
+    },
+    "experience": {
+      "beginner": "Anfänger",
+      "intermediate": "Fortgeschritten",
+      "expert": "Experte"
+    },
+    "focus": {
+      "mixed": "Gemischter Korb",
+      "mushrooms": "Pilze zuerst",
+      "plants": "Kräuter und Grün",
+      "berries": "Beeren und Nüsse"
+    },
+    "confidence": {
+      "high": "Hohe Sicherheit",
+      "medium": "Mittlere Sicherheit",
+      "low": "Niedrige Sicherheit"
+    },
+    "category": {
+      "mushroom": "Pilz",
+      "plant": "Pflanze",
+      "berry": "Beere",
+      "nut": "Nuss",
+      "flower": "Blüte"
+    }
+  },
   "errors": {
     "general": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
     "network": "Netzwerkfehler. Bitte überprüfe deine Verbindung.",

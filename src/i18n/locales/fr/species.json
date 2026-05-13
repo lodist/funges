@@ -65,12 +65,12 @@
       "howTo": "Cherchez-les dans les forêts de feuillus, surtout près des chênes et des hêtres"
     },
     "mushroom": {
-      "name": "Cèpe",
+      "name": "Boletus",
       "description": "Aussi appelé cèpe de Bordeaux, ce champignon prisé a un chapeau brun et des pores blancs ou jaunes",
       "howTo": "Se trouve dans les forêts de conifères et de feuillus, souvent près des pins"
     },
     "morel": {
-      "name": "Morille",
+      "name": "Morchella",
       "description": "Un champignon distinctif avec un chapeau alvéolé qui apparaît au printemps",
       "howTo": "Cherchez dans les zones perturbées, les forêts brûlées et près des arbres morts au printemps"
     },

@@ -1,22 +1,19 @@
-import csv
-import gzip
 import json
 from datetime import datetime
 from pathlib import Path
 
+import pyarrow.parquet as pq
+
 
 def main() -> None:
-    csv_path = Path("public/data/foraging_scores.csv.gz")
+    parquet_path = Path("public/data/foraging_scores.parquet")
     json_path = Path("public/data/scores_metadata.json")
 
-    with gzip.open(csv_path, "rt", encoding="utf-8", newline="") as f:
-        reader = csv.reader(f)
-        next(reader, None)  # skip header
-        row = next(reader, None)
-    if not row:
-        raise RuntimeError("CSV does not contain a second line")
+    table = pq.read_table(parquet_path, columns=["Date"])
+    if table.num_rows == 0:
+        raise RuntimeError("Parquet file does not contain any rows")
 
-    date_str = row[0].strip()
+    date_str = str(table.column("Date")[0].as_py()).strip()
     try:
         dt = datetime.strptime(date_str, "%Y-%m-%d")
         iso = dt.isoformat() + "Z"
@@ -31,4 +28,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
