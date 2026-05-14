@@ -83,8 +83,8 @@
       "scopeRadiusWithDistance": "Strong current score within 100 km, about {{distance}} km away.",
       "scopeRadius": "Strong current score within 100 km of your location.",
       "scopeRegion": "Highest current score found in the {{region}} map region.",
-      "kitchenRecipes_one": "Kitchen payoff is strong with {{count}} matching recipe.",
-      "kitchenRecipes_other": "Kitchen payoff is strong with {{count}} matching recipes.",
+      "kitchenRecipes_one": "Appears in {{count}} matching recipe.",
+      "kitchenRecipes_other": "Appears in {{count}} matching recipes.",
       "kitchenNone": "No direct recipe match yet, but the score is strong enough to scout.",
       "habitat": "Best habitat signal: {{habitat}}.",
       "habitatFallback": "Watch for the strongest local habitat signal on the map."

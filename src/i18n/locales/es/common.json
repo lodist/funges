@@ -83,8 +83,8 @@
       "scopeRadiusWithDistance": "Puntuacion actual fuerte dentro de 100 km, a unos {{distance}} km.",
       "scopeRadius": "Puntuacion actual fuerte dentro de 100 km de tu ubicacion.",
       "scopeRegion": "La puntuacion actual mas alta encontrada en la region del mapa {{region}}.",
-      "kitchenRecipes_one": "El potencial en cocina es alto con {{count}} receta relacionada.",
-      "kitchenRecipes_other": "El potencial en cocina es alto con {{count}} recetas relacionadas.",
+      "kitchenRecipes_one": "Aparece en {{count}} receta relacionada.",
+      "kitchenRecipes_other": "Aparece en {{count}} recetas relacionadas.",
       "kitchenNone": "Todavia no hay una receta directa, pero la puntuacion es lo bastante fuerte como para explorarlo.",
       "habitat": "Mejor señal de habitat: {{habitat}}.",
       "habitatFallback": "Busca en el mapa la señal de habitat local mas fuerte."

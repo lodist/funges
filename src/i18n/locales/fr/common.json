@@ -83,8 +83,8 @@
       "scopeRadiusWithDistance": "Score actuel fort dans un rayon de 100 km, a environ {{distance}} km.",
       "scopeRadius": "Score actuel fort dans un rayon de 100 km autour de votre position.",
       "scopeRegion": "Score actuel le plus eleve trouve dans la region de carte {{region}}.",
-      "kitchenRecipes_one": "Le potentiel en cuisine est fort avec {{count}} recette associee.",
-      "kitchenRecipes_other": "Le potentiel en cuisine est fort avec {{count}} recettes associees.",
+      "kitchenRecipes_one": "Présent dans {{count}} recette associée.",
+      "kitchenRecipes_other": "Présent dans {{count}} recettes associées.",
       "kitchenNone": "Pas encore de recette directe, mais le score est assez fort pour justifier un repérage.",
       "habitat": "Meilleur signal d'habitat : {{habitat}}.",
       "habitatFallback": "Surveillez sur la carte le signal d'habitat local le plus fort."

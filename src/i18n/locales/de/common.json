@@ -83,8 +83,8 @@
       "scopeRadiusWithDistance": "Starker aktueller Score innerhalb von 100 km, etwa {{distance}} km entfernt.",
       "scopeRadius": "Starker aktueller Score innerhalb von 100 km um deinen Standort.",
       "scopeRegion": "Hoechster aktueller Score in der Kartenregion {{region}}.",
-      "kitchenRecipes_one": "Starkes Kuchenpotenzial mit {{count}} passendem Rezept.",
-      "kitchenRecipes_other": "Starkes Kuchenpotenzial mit {{count}} passenden Rezepten.",
+      "kitchenRecipes_one": "In {{count}} passendem Rezept enthalten.",
+      "kitchenRecipes_other": "In {{count}} passenden Rezepten enthalten.",
       "kitchenNone": "Noch kein direkt passendes Rezept, aber der Score ist stark genug zum Erkunden.",
       "habitat": "Bestes Habitat-Signal: {{habitat}}.",
       "habitatFallback": "Achte auf der Karte auf das staerkste lokale Habitat-Signal."

@@ -21,14 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Loader2,
-  ChefHat,
-  Leaf,
-  MapPinned,
-  ShieldAlert,
-  ArrowUpRight,
-} from 'lucide-react';
+import { Loader2, ChefHat, Leaf, MapPinned, ArrowUpRight } from 'lucide-react';
 import { useMapStore } from '@/store/mapStore';
 
 export default function WorthForagingNowPage() {
@@ -278,15 +271,6 @@ export default function WorthForagingNowPage() {
                         </div>
                       </div>
                     ) : null}
-                    <div className='flex items-start gap-2 rounded-2xl border border-[#ecd7aa] bg-[#fff9ea] px-3 py-3'>
-                      <ShieldAlert className='mt-0.5 h-4 w-4 text-[#b77924]' />
-                      <div>
-                        <p className='font-medium text-[#24191b]'>
-                          {t('worthForagingNow.caution')}
-                        </p>
-                        <p>{recommendation.caution}</p>
-                      </div>
-                    </div>
                   </div>
 
                   <div className='space-y-3'>

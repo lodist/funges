@@ -46,8 +46,8 @@
       "scopeRadiusWithDistance": "Punteggio attuale forte entro 100 km, a circa {{distance}} km.",
       "scopeRadius": "Punteggio attuale forte entro 100 km dalla tua posizione.",
       "scopeRegion": "Punteggio attuale piu alto trovato nella regione di mappa {{region}}.",
-      "kitchenRecipes_one": "Buon ritorno in cucina con {{count}} ricetta collegata.",
-      "kitchenRecipes_other": "Buon ritorno in cucina con {{count}} ricette collegate.",
+      "kitchenRecipes_one": "Compare in {{count}} ricetta abbinata.",
+      "kitchenRecipes_other": "Compare in {{count}} ricette abbinate.",
       "kitchenNone": "Non c'è ancora una ricetta diretta, ma il punteggio e abbastanza forte da valere un'esplorazione.",
       "habitat": "Segnale di habitat migliore: {{habitat}}.",
       "habitatFallback": "Guarda sulla mappa dove il segnale di habitat locale e piu forte."
