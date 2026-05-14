@@ -112,7 +112,7 @@ export default function WorthForagingNowPage() {
           <p className='mx-auto max-w-3xl text-lg text-text-secondary'>
             {t('worthForagingNow.description')}
           </p>
-          <p className='mx-auto mt-6 max-w-3xl text-sm leading-8 text-text-secondary'>
+          <p className='mx-auto mt-2 max-w-3xl text-sm leading-7 text-text-secondary'>
             {userLocation
               ? t('worthForagingNow.locationEnabled')
               : t('worthForagingNow.locationMissing')}
