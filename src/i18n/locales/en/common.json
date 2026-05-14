@@ -70,8 +70,8 @@
     "caution": "Caution level",
     "kitchenPayoff": "In the kitchen",
     "noRecipeMatch": "No direct recipe match yet, but it still looks like a worthwhile scouting target.",
-    "openMap": "View on map",
-    "reviewSpecies": "View species guide",
+    "openMap": "On map",
+    "reviewSpecies": "Species guide",
     "variedSeason": "Varied",
     "regions": {
       "NE": "North Europe",

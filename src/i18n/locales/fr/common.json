@@ -70,8 +70,8 @@
     "caution": "Niveau de prudence",
     "kitchenPayoff": "En cuisine",
     "noRecipeMatch": "Pas encore de recette directe, mais cela reste une bonne cible d'exploration.",
-    "openMap": "Voir sur la carte",
-    "reviewSpecies": "Voir le guide des espèces",
+    "openMap": "Sur la carte",
+    "reviewSpecies": "Guide des espèces",
     "variedSeason": "Variable",
     "regions": {
       "NE": "Europe du Nord",
