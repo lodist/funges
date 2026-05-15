@@ -296,7 +296,10 @@ export default function WorthForagingNowPage() {
                     variant='outline'
                     className='flex-1 rounded-2xl border-[rgb(130,12,12)] bg-white text-[#24191b] hover:border-[rgb(130,12,12)] hover:bg-[rgb(130,12,12)] hover:text-white'
                   >
-                    <Link to='/species'>
+                    <Link
+                      to='/species'
+                      search={{ q: recommendation.speciesName }}
+                    >
                       {t('worthForagingNow.reviewSpecies')}
                     </Link>
                   </Button>
