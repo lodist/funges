@@ -49,6 +49,70 @@
     "getStarted": "Comenzar",
     "learnMore": "Saber más"
   },
+  "worthForagingNow": {
+    "title": "Qué merece la pena recolectar ahora",
+    "description": "Una primera selección que clasifica los mejores objetivos cercanos usando tus datos actuales de especies y recetas.",
+    "scopeRadius": "Puntuaciones actuales mas altas en un radio de {{radius}} km",
+    "scopeRegion": "Puntuaciones actuales mas altas en {{region}}",
+    "currentAsOf": "A fecha de {{date}}",
+    "locationEnabled": "Estas sugerencias salen de las puntuaciones actuales mas fuertes dentro de 100 km de tu ubicacion compartida",
+    "locationMissing": "La ubicacion no se comparte, asi que estas sugerencias salen de las puntuaciones actuales mas fuertes de tu region actual del mapa",
+
+    "loading": "Cargando sugerencias basadas en las puntuaciones actuales...",
+    "noData": "No habia sugerencias basadas en puntuaciones para el area actual.",
+    "scoreLabel": "puntuación",
+    "rankLabel": "Opción #{{rank}}",
+    "whyNow": "Por qué merece la pena ahora",
+    "bestWindow": "Mejor momento para buscar",
+    "bestPoint": "Mejor punto cercano",
+    "distanceValue": "A {{distance}} km",
+    "kitchenPayoff": "En la cocina",
+    "noRecipeMatch": "Todavía no hay una receta directa, pero sigue siendo un objetivo interesante para explorar.",
+    "openMap": "En el mapa",
+    "reviewSpecies": "Guía de especies",
+    "variedSeason": "Variable",
+    "regions": {
+      "NE": "Europa del Norte",
+      "SE": "Europa del Sur",
+      "USE": "Este de EE. UU.",
+      "USW": "Oeste de EE. UU."
+    },
+    "reasons": {
+      "scopeRadiusWithDistance": "Puntuacion actual fuerte dentro de 100 km, a unos {{distance}} km.",
+      "scopeRadius": "Puntuacion actual fuerte dentro de 100 km de tu ubicacion.",
+      "scopeRegion": "La puntuacion actual mas alta encontrada en la region del mapa {{region}}.",
+      "kitchenRecipes_one": "Aparece en {{count}} receta relacionada.",
+      "kitchenRecipes_other": "Aparece en {{count}} recetas relacionadas.",
+      "kitchenNone": "Todavia no hay una receta directa, pero la puntuacion es lo bastante fuerte como para explorarlo.",
+      "habitat": "Mejor señal de habitat: {{habitat}}.",
+      "habitatFallback": "Busca en el mapa la señal de habitat local mas fuerte."
+    },
+    "bestWindowByCategory": {
+      "mushroom": "Mejor cuando la humedad todavia sigue en el suelo.",
+      "plant": "Mejor mientras el crecimiento fresco de primavera o principios de verano sigue activo.",
+      "berry": "Mejor cuando el sol y la humedad reciente estan equilibrados.",
+      "nut": "Mejor en condiciones secas y con buena visibilidad del suelo.",
+      "flower": "Mejor con tiempo luminoso y seco antes del calor del mediodia."
+    },
+    "focus": {
+      "mixed": "Cesta variada",
+      "mushrooms": "Primero setas",
+      "plants": "Hierbas y verdes",
+      "berries": "Bayas y frutos secos"
+    },
+    "confidence": {
+      "high": "Alta confianza",
+      "medium": "Confianza media",
+      "low": "Baja confianza"
+    },
+    "category": {
+      "mushroom": "seta",
+      "plant": "planta",
+      "berry": "baya",
+      "nut": "fruto seco",
+      "flower": "flor"
+    }
+  },
   "errors": {
     "general": "Algo salió mal. Por favor, inténtalo de nuevo.",
     "network": "Error de red. Por favor, revisa tu conexión.",

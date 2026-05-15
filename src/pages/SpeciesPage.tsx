@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
@@ -17,14 +17,20 @@ import { Separator } from '@/components/ui/separator';
 import { Search, Leaf, Calendar, MapPin, AlertTriangle } from 'lucide-react';
 import { getSpeciesImage } from '@/lib/utils';
 import { Link } from '@tanstack/react-router';
+import { Route } from '@/routes/species';
 
 const basePath = import.meta.env.BASE_URL || '/';
 
 export default function SpeciesPage() {
   const { t } = useTranslation('species');
   const speciesData = useSpeciesData();
-  const [searchQuery, setSearchQuery] = useState('');
+  const { q } = Route.useSearch();
+  const [searchQuery, setSearchQuery] = useState(q ?? '');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+
+  useEffect(() => {
+    if (q !== undefined) setSearchQuery(q);
+  }, [q]);
 
   // Filter and sort species based on search query and category
   const filteredSpecies = useMemo(() => {

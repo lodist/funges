@@ -64,12 +64,12 @@
       "howTo": "Cercali nelle foreste decidue, specialmente vicino a querce e faggi"
     },
     "mushroom": {
-      "name": "Porcini",
+      "name": "Boletus",
       "description": "Conosciuto anche come Boleto Reale, questo fungo pregiato ha un cappello marrone e pori bianchi o gialli",
       "howTo": "Trovato nelle foreste di conifere e decidue, spesso vicino ai pini"
     },
     "morel": {
-      "name": "Spugnole",
+      "name": "Morchella",
       "description": "Un fungo distintivo con cappello a nido d'ape che appare in primavera",
       "howTo": "Cerca in aree disturbate, foreste bruciate e vicino ad alberi morti in primavera"
     },

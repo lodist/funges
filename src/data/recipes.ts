@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getRecipeImage } from '@/lib/utils';
 
@@ -50,96 +51,99 @@ export const RECIPES_DATA: string[] = [
 // Hook for React components
 export const useRecipesData = (): Recipe[] => {
   const { t } = useTranslation('recipes', { keyPrefix: 'list_of_recipes' });
-  return RECIPES_DATA.map(recipeId => {
-    if (
-      typeof t(`${recipeId}.ingredients`, {
-        returnObjects: true,
-      }) === 'string'
-    ) {
-      return;
-    }
+  return useMemo(
+    () =>
+      RECIPES_DATA.map(recipeId => {
+        if (
+          typeof t(`${recipeId}.ingredients`, {
+            returnObjects: true,
+          }) === 'string'
+        ) {
+          return;
+        }
 
-    const difficulty = t(`${recipeId}.difficulty`);
-    const validDifficulty =
-      difficulty && ['easy', 'medium', 'hard'].includes(difficulty)
-        ? (difficulty as 'easy' | 'medium' | 'hard')
-        : 'medium'; // Default to medium if empty or invalid
+        const difficulty = t(`${recipeId}.difficulty`);
+        const validDifficulty =
+          difficulty && ['easy', 'medium', 'hard'].includes(difficulty)
+            ? (difficulty as 'easy' | 'medium' | 'hard')
+            : 'medium';
 
-    const ingredients = t(`${recipeId}.ingredients`, {
-      returnObjects: true,
-    }) as string[];
-
-    const species = t(`${recipeId}.species`, {
-      returnObjects: true,
-    }) as string[];
-
-    // Generate default tags based on recipe content
-    const defaultTags: string[] = [];
-    if (
-      ingredients.some(
-        ing =>
-          ing.toLowerCase().includes('egg') ||
-          ing.toLowerCase().includes('cream') ||
-          ing.toLowerCase().includes('butter')
-      )
-    ) {
-      defaultTags.push('vegetarian');
-    }
-    if (ingredients.some(ing => ing.toLowerCase().includes('pasta'))) {
-      defaultTags.push('pasta');
-    }
-    if (
-      ingredients.some(
-        ing =>
-          ing.toLowerCase().includes('soup') ||
-          ingredients.join(' ').toLowerCase().includes('broth')
-      )
-    ) {
-      defaultTags.push('soup');
-    }
-    if (ingredients.some(ing => ing.toLowerCase().includes('salad'))) {
-      defaultTags.push('salad');
-    }
-    if (validDifficulty === 'easy') {
-      defaultTags.push('easy');
-    }
-    if (validDifficulty === 'medium') {
-      defaultTags.push('medium');
-    }
-    if (validDifficulty === 'hard') {
-      defaultTags.push('hard');
-    }
-
-    const recipe: Recipe = {
-      id: recipeId,
-      title: t(`${recipeId}.title`),
-      ingredients: ingredients,
-      instructions: t(`${recipeId}.instructions`, {
-        returnObjects: true,
-      }) as string[],
-      steps: t(`${recipeId}.steps`, {
-        returnObjects: true,
-      }) as RecipeStep[],
-      warnings: t(`${recipeId}.warnings`, {
-        returnObjects: true,
-      }) as string[],
-      species: species,
-      difficulty: validDifficulty,
-      prepTime: t(`${recipeId}.prepTime`) || '30 min',
-      cookTime: t(`${recipeId}.cookTime`) || '45 min',
-      servings: t(`${recipeId}.servings`) || '4 servings',
-      tags:
-        (t(`${recipeId}.tags`, { returnObjects: true }) as string[]) ||
-        defaultTags,
-      safetyNotes:
-        (t(`${recipeId}.safetyNotes`, {
+        const ingredients = t(`${recipeId}.ingredients`, {
           returnObjects: true,
-        }) as string[]) || [],
-      image: getRecipeImage(recipeId), // Get image using the utility function
-    };
+        }) as string[];
 
-    return recipe;
-  }).filter(recipe => recipe !== undefined) as Recipe[];
+        const species = t(`${recipeId}.species`, {
+          returnObjects: true,
+        }) as string[];
+
+        const defaultTags: string[] = [];
+        if (
+          ingredients.some(
+            ing =>
+              ing.toLowerCase().includes('egg') ||
+              ing.toLowerCase().includes('cream') ||
+              ing.toLowerCase().includes('butter')
+          )
+        ) {
+          defaultTags.push('vegetarian');
+        }
+        if (ingredients.some(ing => ing.toLowerCase().includes('pasta'))) {
+          defaultTags.push('pasta');
+        }
+        if (
+          ingredients.some(
+            ing =>
+              ing.toLowerCase().includes('soup') ||
+              ingredients.join(' ').toLowerCase().includes('broth')
+          )
+        ) {
+          defaultTags.push('soup');
+        }
+        if (ingredients.some(ing => ing.toLowerCase().includes('salad'))) {
+          defaultTags.push('salad');
+        }
+        if (validDifficulty === 'easy') {
+          defaultTags.push('easy');
+        }
+        if (validDifficulty === 'medium') {
+          defaultTags.push('medium');
+        }
+        if (validDifficulty === 'hard') {
+          defaultTags.push('hard');
+        }
+
+        const recipe: Recipe = {
+          id: recipeId,
+          title: t(`${recipeId}.title`),
+          ingredients,
+          instructions: t(`${recipeId}.instructions`, {
+            returnObjects: true,
+          }) as string[],
+          steps: t(`${recipeId}.steps`, {
+            returnObjects: true,
+          }) as RecipeStep[],
+          warnings: t(`${recipeId}.warnings`, {
+            returnObjects: true,
+          }) as string[],
+          species,
+          difficulty: validDifficulty,
+          prepTime: t(`${recipeId}.prepTime`) || '30 min',
+          cookTime: t(`${recipeId}.cookTime`) || '45 min',
+          servings: t(`${recipeId}.servings`) || '4 servings',
+          tags:
+            (t(`${recipeId}.tags`, { returnObjects: true }) as string[]) ||
+            defaultTags,
+          safetyNotes:
+            (t(`${recipeId}.safetyNotes`, {
+              returnObjects: true,
+            }) as string[]) || [],
+          image: getRecipeImage(recipeId),
+        };
+
+        return recipe;
+      }).filter(recipe => recipe !== undefined) as Recipe[],
+    [t]
+  );
 };
 
 // Utility functions for non-React usage

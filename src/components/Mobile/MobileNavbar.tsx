@@ -1,6 +1,7 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import {
   Map,
+  CalendarRange,
   ChefHat,
   Database,
   Settings as SettingsIcon,
@@ -13,6 +14,7 @@ import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 const basePath = import.meta.env.BASE_URL || '/';
 const items = [
   { url: `${basePath}`, icon: Map },
+  { url: `${basePath}worth-foraging-now`, icon: CalendarRange },
   { url: `${basePath}recipes`, icon: ChefHat },
   { url: `${basePath}species`, icon: Database },
   { url: `${basePath}instructions`, icon: BookOpen },

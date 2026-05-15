@@ -11,8 +11,9 @@ import OnboardingModal from '@/components/OnboardingModal';
 export default function MapPage() {
   const isMobile = useIsMobile();
   const navigate = useNavigate({ from: MapRoute.fullPath });
-  const { species } = MapRoute.useSearch();
-  const { setSelectedSpecies, speciesOptions } = useMapStore();
+  const { species, lat, lng, zoom } = MapRoute.useSearch();
+  const { setSelectedSpecies, speciesOptions, setCenter, setZoom } =
+    useMapStore();
   const { t } = useTranslation('map');
 
   useEffect(() => {
@@ -22,13 +23,28 @@ export default function MapPage() {
 
     if (!species || !validCodes.has(species)) {
       navigate({
-        search: { species: speciesCode },
+        search: {
+          species: speciesCode,
+          lat,
+          lng,
+          zoom,
+        },
         replace: true,
       });
     }
 
     setSelectedSpecies(speciesCode);
-  }, [species, speciesOptions, navigate, setSelectedSpecies]);
+  }, [species, speciesOptions, navigate, setSelectedSpecies, lat, lng, zoom]);
+
+  useEffect(() => {
+    if (typeof lat === 'number' && typeof lng === 'number') {
+      setCenter([lng, lat]);
+    }
+
+    if (typeof zoom === 'number') {
+      setZoom(zoom);
+    }
+  }, [lat, lng, zoom, setCenter, setZoom]);
 
   return (
     <>

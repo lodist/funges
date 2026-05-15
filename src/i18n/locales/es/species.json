@@ -65,12 +65,12 @@
       "howTo": "Búscalos en bosques caducifolios, especialmente cerca de robles y hayas"
     },
     "mushroom": {
-      "name": "Boletus/Porcini",
+      "name": "Boletus",
       "description": "También conocido como hongo rey, este apreciado hongo tiene un sombrero marrón y poros blancos o amarillos",
       "howTo": "Se encuentra en bosques de coníferas y caducifolios, a menudo cerca de pinos"
     },
     "morel": {
-      "name": "Colmenilla",
+      "name": "Morchella",
       "description": "Un hongo distintivo con sombrero en forma de panal que aparece en primavera",
       "howTo": "Busca en áreas alteradas, bosques quemados y cerca de árboles muertos en primavera"
     },
