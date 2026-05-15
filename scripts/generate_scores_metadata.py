@@ -13,7 +13,7 @@ def main() -> None:
     if table.num_rows == 0:
         raise RuntimeError("Parquet file does not contain any rows")
 
-    date_str = str(table.column("Date")[0].as_py()).strip()
+    date_str = str(max(table.column("Date").to_pylist())).strip()
     try:
         dt = datetime.strptime(date_str, "%Y-%m-%d")
         iso = dt.isoformat() + "Z"

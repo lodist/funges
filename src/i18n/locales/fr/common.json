@@ -57,8 +57,7 @@
     "currentAsOf": "Au {{date}}",
     "locationEnabled": "Ces suggestions viennent des scores actuels les plus forts dans un rayon de 100 km autour de votre position partagée",
     "locationMissing": "La position n'est pas partagée, donc ces suggestions viennent des scores actuels les plus forts dans votre region actuelle de carte",
-    "resultsLabel_one": "suggestion",
-    "resultsLabel_other": "suggestions",
+
     "loading": "Chargement des suggestions basees sur les scores actuels...",
     "noData": "Aucune suggestion basee sur les scores n'etait disponible pour la zone actuelle.",
     "scoreLabel": "score",
@@ -67,7 +66,6 @@
     "bestWindow": "Meilleur créneau",
     "bestPoint": "Meilleur point a proximite",
     "distanceValue": "A {{distance}} km",
-    "caution": "Niveau de prudence",
     "kitchenPayoff": "En cuisine",
     "noRecipeMatch": "Pas encore de recette directe, mais cela reste une bonne cible d'exploration.",
     "openMap": "Sur la carte",
@@ -95,20 +93,6 @@
       "berry": "Meilleur quand soleil et humidite recente sont bien equilibres.",
       "nut": "Meilleur par temps sec avec une bonne visibilite au sol.",
       "flower": "Meilleur par temps clair et sec avant la chaleur de midi."
-    },
-    "cautionByExperience": {
-      "beginner": "Restez sur des especes faciles a identifier et verifiez chaque cueillette.",
-      "intermediate": "Bonne cible si vous verifiez habitat, saison et especes ressemblantes.",
-      "expert": "Adapte aux cueilleurs experimentes capables de valider les variations locales."
-    },
-    "filters": {
-      "experience": "Votre niveau d'expérience",
-      "focus": "Ce que vous cherchez"
-    },
-    "experience": {
-      "beginner": "Débutant",
-      "intermediate": "Intermédiaire",
-      "expert": "Expert"
     },
     "focus": {
       "mixed": "Panier mixte",

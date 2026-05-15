@@ -57,8 +57,7 @@
     "currentAsOf": "Stand {{date}}",
     "locationEnabled": "Diese Vorschlaege kommen von den staerksten aktuellen Scores innerhalb von 100 km um deinen geteilten Standort",
     "locationMissing": "Der Standort wird nicht geteilt, daher kommen diese Vorschlaege von den staerksten aktuellen Scores in deiner aktuellen Kartenregion",
-    "resultsLabel_one": "Vorschlag",
-    "resultsLabel_other": "Vorschlaege",
+
     "loading": "Score-basierte Vorschlaege werden geladen...",
     "noData": "Fuer den aktuellen Bereich waren keine score-basierten Vorschlaege verfuegbar.",
     "scoreLabel": "Aktueller Score",
@@ -67,7 +66,6 @@
     "bestWindow": "Bestes Suchfenster",
     "bestPoint": "Bester Punkt in der Naehe",
     "distanceValue": "{{distance}} km entfernt",
-    "caution": "Vorsicht",
     "kitchenPayoff": "In der Küche",
     "noRecipeMatch": "Noch kein direktes Rezept dazu, aber trotzdem ein lohnendes Ziel zum Erkunden.",
     "openMap": "Auf der Karte",
@@ -95,20 +93,6 @@
       "berry": "Am besten, wenn Sonne und letzte Feuchtigkeit gut ausbalanciert sind.",
       "nut": "Am besten bei trockenen Bedingungen und guter Sicht auf den Boden.",
       "flower": "Am besten bei hellem, trockenem Wetter vor der Mittagshitze."
-    },
-    "cautionByExperience": {
-      "beginner": "Bleib bei leicht erkennbaren Arten und pruefe jeden Fund doppelt.",
-      "intermediate": "Gutes Ziel, wenn du Habitat, Saison und Verwechslungen pruefst.",
-      "expert": "Geeignet fuer erfahrene Sammler, die lokale Abweichungen sicher pruefen koennen."
-    },
-    "filters": {
-      "experience": "Dein Erfahrungsniveau",
-      "focus": "Wonach du suchst"
-    },
-    "experience": {
-      "beginner": "Anfänger",
-      "intermediate": "Fortgeschritten",
-      "expert": "Experte"
     },
     "focus": {
       "mixed": "Gemischter Korb",

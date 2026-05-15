@@ -2,7 +2,6 @@ import type { Recipe } from '@/data/recipes';
 import type { SpeciesWithTranslations } from '@/data/species';
 import i18n from '@/i18n';
 
-export type ExperienceLevel = 'beginner' | 'intermediate' | 'expert';
 export type ForagingFocus = 'mixed' | 'mushrooms' | 'plants' | 'berries';
 export type ScoreRegionId = 'NE' | 'SE' | 'USE' | 'USW';
 
@@ -20,7 +19,6 @@ export interface WorthForagingNowRecommendation {
     title: string;
   }>;
   whyNow: string[];
-  caution: string;
   bestWindow: string;
   coordinate: [number, number];
   distanceKm: number | null;
@@ -37,7 +35,6 @@ export interface RecommendationContext {
 interface RecommendationInputs {
   species: SpeciesWithTranslations[];
   recipes: Recipe[];
-  experienceLevel: ExperienceLevel;
   focus: ForagingFocus;
   mapCenter: [number, number];
   userLocation: [number, number] | null;
@@ -73,7 +70,7 @@ interface RankedSpeciesCandidate {
   rankingScore: number;
 }
 
-const SCORE_DATA_URL = 'data/worth_foraging_now.json';
+const SCORE_DATA_URL = `${import.meta.env.BASE_URL}data/worth_foraging_now.json`;
 const STORAGE_KEY = 'worth-foraging-now:v1';
 const STORAGE_TTL_MS = 6 * 60 * 60 * 1000;
 const RADIUS_KM = 100;
@@ -365,13 +362,11 @@ function rankNearbySpecies({
 function buildRecommendationsFromRanked({
   ranked,
   recipes,
-  experienceLevel,
   regionLabel,
   scope,
 }: {
   ranked: RankedSpeciesCandidate[];
   recipes: Recipe[];
-  experienceLevel: ExperienceLevel;
   regionLabel: string;
   scope: RecommendationContext['scope'];
 }) {
@@ -414,9 +409,6 @@ function buildRecommendationsFromRanked({
             })
           : i18n.t('common:worthForagingNow.reasons.habitatFallback'),
       ],
-      caution: i18n.t(
-        `common:worthForagingNow.cautionByExperience.${experienceLevel}`
-      ),
       bestWindow: i18n.t(
         `common:worthForagingNow.bestWindowByCategory.${candidate.species.category}`
       ),
@@ -430,7 +422,6 @@ export function deriveWorthForagingNowRecommendations({
   dataset,
   species,
   recipes,
-  experienceLevel,
   focus,
   mapCenter,
   userLocation,
@@ -464,7 +455,6 @@ export function deriveWorthForagingNowRecommendations({
     recommendations: buildRecommendationsFromRanked({
       ranked,
       recipes,
-      experienceLevel,
       regionLabel,
       scope: effectiveScope,
     }),

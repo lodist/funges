@@ -126,7 +126,7 @@ describe('worth foraging now recommendations', () => {
       },
       species,
       recipes,
-      experienceLevel: 'beginner',
+
       focus: 'plants',
       mapCenter: [7.3, 47.8],
       userLocation: [7.5, 47.6],
@@ -159,7 +159,7 @@ describe('worth foraging now recommendations', () => {
       },
       species,
       recipes,
-      experienceLevel: 'beginner',
+
       focus: 'mixed',
       mapCenter: [7.3, 47.8],
       userLocation: null,
@@ -200,7 +200,7 @@ describe('worth foraging now recommendations', () => {
       },
       species,
       recipes,
-      experienceLevel: 'beginner',
+
       focus: 'mushrooms',
       mapCenter: [7.3, 47.8],
       userLocation: [7.6, 47.6],

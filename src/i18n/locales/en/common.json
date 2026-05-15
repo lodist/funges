@@ -57,8 +57,7 @@
     "currentAsOf": "As of {{date}}",
     "locationEnabled": "These suggestions come from the strongest current scores within 100 km of your shared location",
     "locationMissing": "Location is not shared, so these suggestions come from the strongest current scores in your current map region",
-    "resultsLabel_one": "suggestion",
-    "resultsLabel_other": "suggestions",
+
     "loading": "Loading current score recommendations...",
     "noData": "No score-based recommendations were available for the current scope.",
     "scoreLabel": "current score",
@@ -67,7 +66,6 @@
     "bestWindow": "Best search window",
     "bestPoint": "Best nearby point",
     "distanceValue": "{{distance}} km away",
-    "caution": "Caution level",
     "kitchenPayoff": "In the kitchen",
     "noRecipeMatch": "No direct recipe match yet, but it still looks like a worthwhile scouting target.",
     "openMap": "On map",
@@ -95,20 +93,6 @@
       "berry": "Best once sun and recent moisture balance out.",
       "nut": "Best during dry conditions with good ground visibility.",
       "flower": "Best in bright, dry weather before midday heat."
-    },
-    "cautionByExperience": {
-      "beginner": "Stay with easy-to-identify species and double-check every find.",
-      "intermediate": "Good target if you verify habitat, season, and lookalikes.",
-      "expert": "Suitable for experienced foragers who can validate local variation."
-    },
-    "filters": {
-      "experience": "Your experience level",
-      "focus": "What you want to find"
-    },
-    "experience": {
-      "beginner": "Beginner",
-      "intermediate": "Intermediate",
-      "expert": "Expert"
     },
     "focus": {
       "mixed": "Mixed basket",

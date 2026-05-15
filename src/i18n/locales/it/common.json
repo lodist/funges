@@ -20,8 +20,7 @@
     "currentAsOf": "Aggiornato al {{date}}",
     "locationEnabled": "Questi suggerimenti arrivano dai punteggi attuali piu forti entro 100 km dalla tua posizione condivisa",
     "locationMissing": "La posizione non é condivisa, quindi questi suggerimenti si basano sui punteggi attuali piu forti nella tua area della mappa",
-    "resultsLabel_one": "suggerimento",
-    "resultsLabel_other": "suggerimenti",
+
     "loading": "Caricamento dei suggerimenti basati sui punteggi in corso...",
     "noData": "Non ci sono suggerimenti basati sui punteggi per l'area attuale.",
     "scoreLabel": "punteggio",
@@ -30,7 +29,6 @@
     "bestWindow": "Finestra migliore",
     "bestPoint": "Punto migliore vicino",
     "distanceValue": "A {{distance}} km",
-    "caution": "Livello di cautela",
     "kitchenPayoff": "In cucina",
     "noRecipeMatch": "Non c'è ancora una ricetta diretta, ma resta un buon obiettivo da esplorare.",
     "openMap": "Sulla mappa",
@@ -58,20 +56,6 @@
       "berry": "Meglio quando sole e umidita recente sono in buon equilibrio.",
       "nut": "Meglio con condizioni asciutte e buona visibilita del terreno.",
       "flower": "Meglio con tempo luminoso e asciutto prima del caldo di mezzogiorno."
-    },
-    "cautionByExperience": {
-      "beginner": "Resta su specie facili da identificare e ricontrolla sempre ogni raccolta.",
-      "intermediate": "Buon obiettivo se verifichi habitat, stagione e specie simili.",
-      "expert": "Adatto a raccoglitori esperti che sanno validare le variazioni locali."
-    },
-    "filters": {
-      "experience": "Il tuo livello di esperienza",
-      "focus": "Cosa vuoi trovare"
-    },
-    "experience": {
-      "beginner": "Principiante",
-      "intermediate": "Intermedio",
-      "expert": "Esperto"
     },
     "focus": {
       "mixed": "Cesto misto",
