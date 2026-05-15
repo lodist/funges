@@ -65,12 +65,12 @@
       "howTo": "Look for them in deciduous forests, especially near oak and beech trees"
     },
     "mushroom": {
-      "name": "Porcini",
+      "name": "Boletus",
       "description": "Also known as King Bolete, this prized mushroom has a brown cap and white or yellow pores",
       "howTo": "Found in coniferous and deciduous forests, often near pine trees"
     },
     "morel": {
-      "name": "Morel",
+      "name": "Morchella",
       "description": "A distinctive mushroom with a honeycomb cap that appears in spring",
       "howTo": "Look in disturbed areas, burned forests, and near dead trees in spring"
     },

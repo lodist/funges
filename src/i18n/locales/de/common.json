@@ -49,6 +49,70 @@
     "getStarted": "Loslegen",
     "learnMore": "Mehr erfahren"
   },
+  "worthForagingNow": {
+    "title": "Was lohnt sich jetzt zu sammeln?",
+    "description": "Eine erste Auswahl, die die besten nahegelegenen Ziele anhand deiner aktuellen Arten- und Rezeptdaten bewertet.",
+    "scopeRadius": "Beste aktuelle Scores im Umkreis von {{radius}} km",
+    "scopeRegion": "Beste aktuelle Scores in {{region}}",
+    "currentAsOf": "Stand {{date}}",
+    "locationEnabled": "Diese Vorschlaege kommen von den staerksten aktuellen Scores innerhalb von 100 km um deinen geteilten Standort",
+    "locationMissing": "Der Standort wird nicht geteilt, daher kommen diese Vorschlaege von den staerksten aktuellen Scores in deiner aktuellen Kartenregion",
+
+    "loading": "Score-basierte Vorschlaege werden geladen...",
+    "noData": "Fuer den aktuellen Bereich waren keine score-basierten Vorschlaege verfuegbar.",
+    "scoreLabel": "Aktueller Score",
+    "rankLabel": "Tipp #{{rank}}",
+    "whyNow": "Warum sich das gerade lohnt",
+    "bestWindow": "Bestes Suchfenster",
+    "bestPoint": "Bester Punkt in der Naehe",
+    "distanceValue": "{{distance}} km entfernt",
+    "kitchenPayoff": "In der Küche",
+    "noRecipeMatch": "Noch kein direktes Rezept dazu, aber trotzdem ein lohnendes Ziel zum Erkunden.",
+    "openMap": "Auf der Karte",
+    "reviewSpecies": "Artenführer",
+    "variedSeason": "Variabel",
+    "regions": {
+      "NE": "Nordeuropa",
+      "SE": "Südeuropa",
+      "USE": "US-Ostküste",
+      "USW": "US-Westküste"
+    },
+    "reasons": {
+      "scopeRadiusWithDistance": "Starker aktueller Score innerhalb von 100 km, etwa {{distance}} km entfernt.",
+      "scopeRadius": "Starker aktueller Score innerhalb von 100 km um deinen Standort.",
+      "scopeRegion": "Hoechster aktueller Score in der Kartenregion {{region}}.",
+      "kitchenRecipes_one": "In {{count}} passendem Rezept enthalten.",
+      "kitchenRecipes_other": "In {{count}} passenden Rezepten enthalten.",
+      "kitchenNone": "Noch kein direkt passendes Rezept, aber der Score ist stark genug zum Erkunden.",
+      "habitat": "Bestes Habitat-Signal: {{habitat}}.",
+      "habitatFallback": "Achte auf der Karte auf das staerkste lokale Habitat-Signal."
+    },
+    "bestWindowByCategory": {
+      "mushroom": "Am besten, wenn noch Feuchtigkeit im Boden steckt.",
+      "plant": "Am besten, solange frisches Fruehlings- oder Fruehsommerwachstum aktiv ist.",
+      "berry": "Am besten, wenn Sonne und letzte Feuchtigkeit gut ausbalanciert sind.",
+      "nut": "Am besten bei trockenen Bedingungen und guter Sicht auf den Boden.",
+      "flower": "Am besten bei hellem, trockenem Wetter vor der Mittagshitze."
+    },
+    "focus": {
+      "mixed": "Gemischter Korb",
+      "mushrooms": "Pilze zuerst",
+      "plants": "Kräuter und Grün",
+      "berries": "Beeren und Nüsse"
+    },
+    "confidence": {
+      "high": "Hohe Sicherheit",
+      "medium": "Mittlere Sicherheit",
+      "low": "Niedrige Sicherheit"
+    },
+    "category": {
+      "mushroom": "Pilz",
+      "plant": "Pflanze",
+      "berry": "Beere",
+      "nut": "Nuss",
+      "flower": "Blüte"
+    }
+  },
   "errors": {
     "general": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
     "network": "Netzwerkfehler. Bitte überprüfe deine Verbindung.",

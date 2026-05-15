@@ -17,6 +17,7 @@ const routeFullPaths = [
   '/recipes',
   '/settings',
   '/species',
+  '/worth-foraging-now',
 ];
 
 // https://vite.dev/config/
@@ -206,6 +207,18 @@ export default defineConfig({
             short_name: 'Species',
             description: 'Browse mushroom and plant species',
             url: `species`,
+            icons: [
+              {
+                src: `icons/logo_funges.png`,
+                sizes: '192x192',
+              },
+            ],
+          },
+          {
+            name: 'Worth Foraging Now',
+            short_name: 'Now',
+            description: 'See the best nearby foraging targets based on current signals',
+            url: `worth-foraging-now`,
             icons: [
               {
                 src: `icons/logo_funges.png`,

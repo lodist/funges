@@ -49,6 +49,70 @@
     "getStarted": "Commencer",
     "learnMore": "En savoir plus"
   },
+  "worthForagingNow": {
+    "title": "Qu'est-ce qui vaut le coup d'aller cueillir maintenant ?",
+    "description": "Une première sélection qui classe les meilleures cibles proches à partir de vos données actuelles sur les espèces et les recettes.",
+    "scopeRadius": "Meilleurs scores actuels dans un rayon de {{radius}} km",
+    "scopeRegion": "Meilleurs scores actuels en {{region}}",
+    "currentAsOf": "Au {{date}}",
+    "locationEnabled": "Ces suggestions viennent des scores actuels les plus forts dans un rayon de 100 km autour de votre position partagée",
+    "locationMissing": "La position n'est pas partagée, donc ces suggestions viennent des scores actuels les plus forts dans votre region actuelle de carte",
+
+    "loading": "Chargement des suggestions basees sur les scores actuels...",
+    "noData": "Aucune suggestion basee sur les scores n'etait disponible pour la zone actuelle.",
+    "scoreLabel": "score",
+    "rankLabel": "Choix #{{rank}}",
+    "whyNow": "Pourquoi ça vaut le coup maintenant",
+    "bestWindow": "Meilleur créneau",
+    "bestPoint": "Meilleur point a proximite",
+    "distanceValue": "A {{distance}} km",
+    "kitchenPayoff": "En cuisine",
+    "noRecipeMatch": "Pas encore de recette directe, mais cela reste une bonne cible d'exploration.",
+    "openMap": "Sur la carte",
+    "reviewSpecies": "Guide des espèces",
+    "variedSeason": "Variable",
+    "regions": {
+      "NE": "Europe du Nord",
+      "SE": "Europe du Sud",
+      "USE": "Est des États-Unis",
+      "USW": "Ouest des États-Unis"
+    },
+    "reasons": {
+      "scopeRadiusWithDistance": "Score actuel fort dans un rayon de 100 km, a environ {{distance}} km.",
+      "scopeRadius": "Score actuel fort dans un rayon de 100 km autour de votre position.",
+      "scopeRegion": "Score actuel le plus eleve trouve dans la region de carte {{region}}.",
+      "kitchenRecipes_one": "Présent dans {{count}} recette associée.",
+      "kitchenRecipes_other": "Présent dans {{count}} recettes associées.",
+      "kitchenNone": "Pas encore de recette directe, mais le score est assez fort pour justifier un repérage.",
+      "habitat": "Meilleur signal d'habitat : {{habitat}}.",
+      "habitatFallback": "Surveillez sur la carte le signal d'habitat local le plus fort."
+    },
+    "bestWindowByCategory": {
+      "mushroom": "Meilleur quand l'humidite est encore presente dans le sol.",
+      "plant": "Meilleur quand la pousse fraiche de printemps ou de debut d'ete est encore active.",
+      "berry": "Meilleur quand soleil et humidite recente sont bien equilibres.",
+      "nut": "Meilleur par temps sec avec une bonne visibilite au sol.",
+      "flower": "Meilleur par temps clair et sec avant la chaleur de midi."
+    },
+    "focus": {
+      "mixed": "Panier mixte",
+      "mushrooms": "Champignons d'abord",
+      "plants": "Herbes et verdures",
+      "berries": "Baies et noix"
+    },
+    "confidence": {
+      "high": "Confiance élevée",
+      "medium": "Confiance moyenne",
+      "low": "Confiance faible"
+    },
+    "category": {
+      "mushroom": "champignon",
+      "plant": "plante",
+      "berry": "baie",
+      "nut": "noix",
+      "flower": "fleur"
+    }
+  },
   "errors": {
     "general": "Une erreur s'est produite. Veuillez réessayer.",
     "network": "Erreur réseau. Veuillez vérifier votre connexion.",

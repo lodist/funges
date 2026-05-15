@@ -65,12 +65,12 @@
       "howTo": "Procure em florestas decíduas, especialmente perto de carvalhos e faias"
     },
     "mushroom": {
-      "name": "Porcini",
+      "name": "Boletus",
       "description": "Também conhecido como Boleto, este cogumelo valorizado tem chapéu marrom e poros brancos ou amarelos",
       "howTo": "Encontrado em florestas de coníferas e decíduas, frequentemente perto de pinheiros"
     },
     "morel": {
-      "name": "Morchela",
+      "name": "Morchella",
       "description": "Cogumelo distinto com chapéu em formato de colmeia que aparece na primavera",
       "howTo": "Procure em áreas perturbadas, florestas queimadas e perto de árvores mortas na primavera"
     },

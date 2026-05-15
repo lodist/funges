@@ -49,6 +49,70 @@
     "getStarted": "Get Started",
     "learnMore": "Learn More"
   },
+  "worthForagingNow": {
+    "title": "Worth Foraging Now",
+    "description": "A first-pass picker that ranks the best nearby targets from your current species and recipe data.",
+    "scopeRadius": "Top current scores within {{radius}} km",
+    "scopeRegion": "Top current scores in {{region}}",
+    "currentAsOf": "As of {{date}}",
+    "locationEnabled": "These suggestions come from the strongest current scores within 100 km of your shared location",
+    "locationMissing": "Location is not shared, so these suggestions come from the strongest current scores in your current map region",
+
+    "loading": "Loading current score recommendations...",
+    "noData": "No score-based recommendations were available for the current scope.",
+    "scoreLabel": "current score",
+    "rankLabel": "Pick #{{rank}}",
+    "whyNow": "Why this is worth your time",
+    "bestWindow": "Best search window",
+    "bestPoint": "Best nearby point",
+    "distanceValue": "{{distance}} km away",
+    "kitchenPayoff": "In the kitchen",
+    "noRecipeMatch": "No direct recipe match yet, but it still looks like a worthwhile scouting target.",
+    "openMap": "On map",
+    "reviewSpecies": "Species guide",
+    "variedSeason": "Varied",
+    "regions": {
+      "NE": "North Europe",
+      "SE": "South Europe",
+      "USE": "US East",
+      "USW": "US West"
+    },
+    "reasons": {
+      "scopeRadiusWithDistance": "Strong current score within 100 km, about {{distance}} km away.",
+      "scopeRadius": "Strong current score within 100 km of your location.",
+      "scopeRegion": "Highest current score found in the {{region}} map region.",
+      "kitchenRecipes_one": "Appears in {{count}} matching recipe.",
+      "kitchenRecipes_other": "Appears in {{count}} matching recipes.",
+      "kitchenNone": "No direct recipe match yet, but the score is strong enough to scout.",
+      "habitat": "Best habitat signal: {{habitat}}.",
+      "habitatFallback": "Watch for the strongest local habitat signal on the map."
+    },
+    "bestWindowByCategory": {
+      "mushroom": "Best when moisture is still in the ground.",
+      "plant": "Best while fresh spring or early-summer growth is active.",
+      "berry": "Best once sun and recent moisture balance out.",
+      "nut": "Best during dry conditions with good ground visibility.",
+      "flower": "Best in bright, dry weather before midday heat."
+    },
+    "focus": {
+      "mixed": "Mixed basket",
+      "mushrooms": "Mushrooms first",
+      "plants": "Greens and herbs",
+      "berries": "Berries and nuts"
+    },
+    "confidence": {
+      "high": "High confidence",
+      "medium": "Medium confidence",
+      "low": "Low confidence"
+    },
+    "category": {
+      "mushroom": "mushroom",
+      "plant": "plant",
+      "berry": "berry",
+      "nut": "nut",
+      "flower": "flower"
+    }
+  },
   "errors": {
     "general": "Something went wrong. Please try again.",
     "network": "Network error. Please check your connection.",

@@ -49,6 +49,70 @@
     "getStarted": "Começar",
     "learnMore": "Saiba mais"
   },
+  "worthForagingNow": {
+    "title": "O que vale a pena procurar agora?",
+    "description": "Uma primeira seleção que classifica os melhores alvos próximos usando seus dados atuais de espécies e receitas.",
+    "scopeRadius": "Maiores pontuações atuais num raio de {{radius}} km",
+    "scopeRegion": "Maiores pontuações atuais em {{region}}",
+    "currentAsOf": "Em {{date}}",
+    "locationEnabled": "Estas sugestões vêm das pontuações atuais mais fortes num raio de 100 km da sua localização compartilhada",
+    "locationMissing": "A localização não é compartilhada, então estas sugestões vêm das pontuações atuais mais fortes da sua região atual do mapa",
+
+    "loading": "Carregando sugestões baseadas nas pontuações atuais...",
+    "noData": "Não havia sugestões baseadas em pontuação para a área atual.",
+    "scoreLabel": "pontuação",
+    "rankLabel": "Escolha #{{rank}}",
+    "whyNow": "Por que vale a pena agora",
+    "bestWindow": "Melhor janela",
+    "bestPoint": "Melhor ponto por perto",
+    "distanceValue": "A {{distance}} km",
+    "kitchenPayoff": "Na cozinha",
+    "noRecipeMatch": "Ainda não há uma receita direta, mas continua sendo um bom alvo para explorar.",
+    "openMap": "No mapa",
+    "reviewSpecies": "Guia de espécies",
+    "variedSeason": "Variada",
+    "regions": {
+      "NE": "Norte da Europa",
+      "SE": "Sul da Europa",
+      "USE": "Leste dos EUA",
+      "USW": "Oeste dos EUA"
+    },
+    "reasons": {
+      "scopeRadiusWithDistance": "Pontuação atual forte dentro de 100 km, a cerca de {{distance}} km.",
+      "scopeRadius": "Pontuação atual forte dentro de 100 km da sua localização.",
+      "scopeRegion": "Maior pontuação atual encontrada na região de mapa {{region}}.",
+      "kitchenRecipes_one": "Aparece em {{count}} receita relacionada.",
+      "kitchenRecipes_other": "Aparece em {{count}} receitas relacionadas.",
+      "kitchenNone": "Ainda não há uma receita direta, mas a pontuação é forte o bastante para explorar.",
+      "habitat": "Melhor sinal de habitat: {{habitat}}.",
+      "habitatFallback": "Procure no mapa o sinal de habitat local mais forte."
+    },
+    "bestWindowByCategory": {
+      "mushroom": "Melhor quando a humidade ainda está no solo.",
+      "plant": "Melhor enquanto o crescimento fresco de primavera ou início do verão ainda está ativo.",
+      "berry": "Melhor quando sol e humidade recente estão em bom equilíbrio.",
+      "nut": "Melhor em condições secas e com boa visibilidade do solo.",
+      "flower": "Melhor com tempo claro e seco antes do calor do meio-dia."
+    },
+    "focus": {
+      "mixed": "Cesta mista",
+      "mushrooms": "Cogumelos primeiro",
+      "plants": "Ervas e folhas",
+      "berries": "Bagas e nozes"
+    },
+    "confidence": {
+      "high": "Alta confiança",
+      "medium": "Confiança média",
+      "low": "Baixa confiança"
+    },
+    "category": {
+      "mushroom": "cogumelo",
+      "plant": "planta",
+      "berry": "baga",
+      "nut": "noz",
+      "flower": "flor"
+    }
+  },
   "errors": {
     "general": "Algo deu errado. Por favor, tente novamente.",
     "network": "Erro de rede. Verifique sua conexão.",
