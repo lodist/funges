@@ -65,12 +65,12 @@
       "howTo": "Suche in Laubwäldern, besonders in der Nähe von Eichen und Buchen"
     },
     "mushroom": {
-      "name": "Steinpilz",
+      "name": "Boletus",
       "description": "Auch als Herrenpilz bekannt, geschätzter Pilz mit braunem Hut und weißen oder gelben Röhren",
       "howTo": "Kommt in Nadel- und Laubwäldern vor, oft in der Nähe von Kiefern"
     },
     "morel": {
-      "name": "Morchel",
+      "name": "Morchella",
       "description": "Charakteristischer Pilz mit wabenförmigem Hut, erscheint im Frühling",
       "howTo": "Suche in gestörten Gebieten, verbrannten Wäldern und bei toten Bäumen im Frühling"
     },

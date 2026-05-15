@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WorthForagingNowRouteImport } from './routes/worth-foraging-now'
 import { Route as TermsuseRouteImport } from './routes/termsuse'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as SpeciesRouteImport } from './routes/species'
@@ -20,6 +21,11 @@ import { Route as InstructionsRouteImport } from './routes/instructions'
 import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
+  id: '/worth-foraging-now',
+  path: '/worth-foraging-now',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsuseRoute = TermsuseRouteImport.update({
   id: '/termsuse',
   path: '/termsuse',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/species': typeof SpeciesRoute
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
+  '/worth-foraging-now': typeof WorthForagingNowRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/species': typeof SpeciesRoute
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
+  '/worth-foraging-now': typeof WorthForagingNowRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   '/species': typeof SpeciesRoute
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
+  '/worth-foraging-now': typeof WorthForagingNowRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
     | '/species'
     | '/support'
     | '/termsuse'
+    | '/worth-foraging-now'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
     | '/species'
     | '/support'
     | '/termsuse'
+    | '/worth-foraging-now'
   id:
     | '__root__'
     | '/'
@@ -145,6 +156,7 @@ export interface FileRouteTypes {
     | '/species'
     | '/support'
     | '/termsuse'
+    | '/worth-foraging-now'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -158,10 +170,18 @@ export interface RootRouteChildren {
   SpeciesRoute: typeof SpeciesRoute
   SupportRoute: typeof SupportRoute
   TermsuseRoute: typeof TermsuseRoute
+  WorthForagingNowRoute: typeof WorthForagingNowRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/worth-foraging-now': {
+      id: '/worth-foraging-now'
+      path: '/worth-foraging-now'
+      fullPath: '/worth-foraging-now'
+      preLoaderRoute: typeof WorthForagingNowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/termsuse': {
       id: '/termsuse'
       path: '/termsuse'
@@ -246,6 +266,7 @@ const rootRouteChildren: RootRouteChildren = {
   SpeciesRoute: SpeciesRoute,
   SupportRoute: SupportRoute,
   TermsuseRoute: TermsuseRoute,
+  WorthForagingNowRoute: WorthForagingNowRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
