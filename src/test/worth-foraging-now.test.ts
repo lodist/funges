@@ -210,4 +210,124 @@ describe('worth foraging now recommendations', () => {
     expect(result.recommendations[0]?.speciesId).toBe('morel');
     expect(result.recommendations[0]?.distanceKm).toBeLessThan(5);
   });
+
+  it('excludes species not shown on map', () => {
+    const hiddenSpecies = [
+      ...species,
+      {
+        id: 'hidden',
+        name: 'Hidden',
+        scientificName: 'Hidden sp.',
+        category: 'mushroom' as const,
+        emoji: '🍄',
+        description: '',
+        howTo: '',
+        season: 'spring',
+        habitat: 'forest',
+        showOnMap: false,
+      },
+    ];
+
+    const result = deriveWorthForagingNowRecommendations({
+      dataset: {
+        updated_at: null,
+        grid_size_degrees: 0.5,
+        min_score: 4,
+        regions: {
+          NE: [
+            { speciesId: 'hidden', score: 9.9, lat: 47.6, lng: 7.6 },
+            { speciesId: 'morel', score: 7.0, lat: 47.6, lng: 7.6 },
+          ],
+          SE: [],
+          USE: [],
+          USW: [],
+        },
+        points: [],
+      },
+      species: hiddenSpecies,
+      recipes,
+      focus: 'mushrooms',
+      mapCenter: [7.3, 47.8],
+      userLocation: null,
+    });
+
+    expect(result.recommendations.every(r => r.speciesId !== 'hidden')).toBe(true);
+  });
+
+  it('filters by focus category — berries focus excludes mushrooms and plants', () => {
+    const result = deriveWorthForagingNowRecommendations({
+      dataset: {
+        updated_at: null,
+        grid_size_degrees: 0.5,
+        min_score: 4,
+        regions: {
+          NE: [
+            { speciesId: 'morel', score: 9.5, lat: 47.6, lng: 7.6 },
+            { speciesId: 'nettle', score: 9.0, lat: 47.6, lng: 7.6 },
+            { speciesId: 'elderberry', score: 7.0, lat: 47.6, lng: 7.6 },
+          ],
+          SE: [],
+          USE: [],
+          USW: [],
+        },
+        points: [],
+      },
+      species,
+      recipes,
+      focus: 'berries',
+      mapCenter: [7.3, 47.8],
+      userLocation: null,
+    });
+
+    expect(result.recommendations.every(r => r.category === 'berry')).toBe(true);
+    expect(result.recommendations[0]?.speciesId).toBe('elderberry');
+  });
+
+  it('returns empty recommendations when the region has no data', () => {
+    const result = deriveWorthForagingNowRecommendations({
+      dataset: {
+        updated_at: null,
+        grid_size_degrees: 0.5,
+        min_score: 4,
+        regions: { NE: [], SE: [], USE: [], USW: [] },
+        points: [],
+      },
+      species,
+      recipes,
+      focus: 'mixed',
+      mapCenter: [7.3, 47.8],
+      userLocation: null,
+    });
+
+    expect(result.recommendations).toHaveLength(0);
+    expect(result.context.scope).toBe('region');
+  });
+
+  it('falls back to region scope when all nearby points are out of radius', () => {
+    const result = deriveWorthForagingNowRecommendations({
+      dataset: {
+        updated_at: null,
+        grid_size_degrees: 0.5,
+        min_score: 4,
+        regions: {
+          NE: [{ speciesId: 'morel', score: 8.0, lat: 47.6, lng: 7.6 }],
+          SE: [],
+          USE: [],
+          USW: [],
+        },
+        points: [
+          // Far from userLocation [7.5, 47.6] — over 100 km away
+          { regionId: 'NE', lat: 55.0, lng: 20.0, scores: { morel: 9.5 } },
+        ],
+      },
+      species,
+      recipes,
+      focus: 'mushrooms',
+      mapCenter: [7.3, 47.8],
+      userLocation: [7.5, 47.6],
+    });
+
+    expect(result.context.scope).toBe('region');
+    expect(result.recommendations[0]?.speciesId).toBe('morel');
+  });
 });
