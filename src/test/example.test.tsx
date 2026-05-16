@@ -1,10 +1,7 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import App from '../App';
+// Placeholder — real tests live in utils.test.ts, geo.test.ts,
+// worth-foraging-now.test.ts, and route-to-dish.test.ts.
+import { describe, it } from 'vitest';
 
-describe('App', () => {
-  it('renders without crashing', () => {
-    render(<App />);
-    expect(screen.getByText(/Vite \+ React/i)).toBeInTheDocument();
-  });
+describe('placeholder', () => {
+  it.todo('add component smoke tests here');
 });
