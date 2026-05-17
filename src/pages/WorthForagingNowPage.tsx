@@ -19,7 +19,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Loader2, ChefHat, Leaf, MapPinned, ArrowUpRight, Calendar } from 'lucide-react';
+import {
+  Loader2,
+  ChefHat,
+  Leaf,
+  MapPinned,
+  ArrowUpRight,
+  Calendar,
+} from 'lucide-react';
 import { useMapStore } from '@/store/mapStore';
 
 export default function WorthForagingNowPage() {
@@ -73,7 +80,7 @@ export default function WorthForagingNowPage() {
     return () => {
       cancelled = true;
     };
-  }, [center, focus, i18n.language, recipes, species, userLocation]);
+  }, [center, focus, i18n.language, recipes, species, t, userLocation]);
 
   const scopeLabel = useMemo(() => {
     if (!context) return null;
@@ -106,6 +113,11 @@ export default function WorthForagingNowPage() {
                 ? t('worthForagingNow.locationEnabled')
                 : t('worthForagingNow.locationMissing'))}
           </p>
+          {!userLocation ? (
+            <p className='mt-1 text-xs italic text-text-secondary/60'>
+              {t('worthForagingNow.shareLocationHint')}
+            </p>
+          ) : null}
         </div>
 
         <div className='mb-8 flex flex-wrap items-center gap-3'>
@@ -194,7 +206,9 @@ export default function WorthForagingNowPage() {
                     {t(`worthForagingNow.category.${recommendation.category}`)}
                   </Badge>
                   <Badge className='bg-[#7a1f3d]/10 text-[#7a1f3d] hover:bg-[#7a1f3d]/10'>
-                    {t(`worthForagingNow.confidence.${recommendation.confidence}`)}
+                    {t(
+                      `worthForagingNow.confidence.${recommendation.confidence}`
+                    )}
                   </Badge>
                   <Badge
                     variant='outline'
@@ -211,8 +225,8 @@ export default function WorthForagingNowPage() {
                     {t('worthForagingNow.whyNow')}
                   </div>
                   <ul className='space-y-1.5 border-l-2 border-[#d4c4b0] pl-3 text-sm text-[#5b4c42]'>
-                    {recommendation.whyNow.map((reason, i) => (
-                      <li key={i}>{reason}</li>
+                    {recommendation.whyNow.map(reason => (
+                      <li key={reason}>{reason}</li>
                     ))}
                   </ul>
                 </div>

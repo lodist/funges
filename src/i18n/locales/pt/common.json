@@ -57,7 +57,6 @@
     "currentAsOf": "Em {{date}}",
     "locationEnabled": "Estas sugestões vêm das pontuações atuais mais fortes num raio de 100 km da sua localização compartilhada",
     "locationMissing": "A localização não é compartilhada, então estas sugestões vêm das pontuações atuais mais fortes da sua região atual do mapa",
-
     "loading": "Carregando sugestões baseadas nas pontuações atuais...",
     "noData": "Não havia sugestões baseadas em pontuação para a área atual.",
     "scoreLabel": "pontuação",
@@ -111,7 +110,8 @@
       "berry": "baga",
       "nut": "noz",
       "flower": "flor"
-    }
+    },
+    "shareLocationHint": "Partilha a tua localização na página principal para indicações mais precisas."
   },
   "errors": {
     "general": "Algo deu errado. Por favor, tente novamente.",
@@ -137,5 +137,35 @@
   "splash": {
     "title": "Fung.es",
     "subtitle": "App de Coleta de Cogumelos"
+  },
+  "data": {
+    "subtitle": "Explora os dados por trás das recomendações de recolha.",
+    "europe": "Europa",
+    "unitedStates": "Estados Unidos",
+    "selectedZone": "Selecionada: {{zone}} — clica novamente para mostrar todas",
+    "clickZone": "Todas as zonas visíveis — clica numa para filtrar",
+    "noData": "Sem dados para a zona selecionada",
+    "score": "Pontuação",
+    "tempMax": "Máx",
+    "tempAvg": "Méd",
+    "tempMin": "Mín",
+    "regions": {
+      "NE": "Norte da Europa",
+      "SE": "Sul da Europa",
+      "USW": "EUA Oeste",
+      "USE": "EUA Leste"
+    },
+    "species": "Espécie",
+    "charts": {
+      "rainfall": "Precipitação (mm)",
+      "temperature": "Temperatura (°C)",
+      "humidity": "Humidade (%)",
+      "topSpecies": "Melhores espécies — Pontuações atuais",
+      "speciesScore": "Pontuação ao longo do tempo",
+      "scoreTempScatter": "Pontuação vs Temperatura",
+      "windPressure": "Vento & Pressão",
+      "wind": "Vento (m/s)",
+      "pressure": "Pressão (hPa)"
+    }
   }
 }

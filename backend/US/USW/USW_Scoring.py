@@ -709,7 +709,7 @@ print(f'len of dataset before: {len(updated_df)}')
 updated_df = updated_df[updated_df['Location_Id'] != '']
 print(f'len of dataset after: {len(updated_df)}')
 
-cutoff_date = datetime.now() - timedelta(days=35)
+cutoff_date = datetime.now() - timedelta(days=365)
 updated_df = updated_df[updated_df['Date'] > cutoff_date]
 
 species_score_columns = [c for c in updated_df.columns if c.endswith('_score')]

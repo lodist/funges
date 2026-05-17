@@ -5,7 +5,7 @@ import {
   ChefHat,
   Database,
   Settings as SettingsIcon,
-  BookOpen,
+  BarChart2,
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { motion } from 'framer-motion';
@@ -17,7 +17,7 @@ const items = [
   { url: `${basePath}worth-foraging-now`, icon: CalendarRange },
   { url: `${basePath}recipes`, icon: ChefHat },
   { url: `${basePath}species`, icon: Database },
-  { url: `${basePath}instructions`, icon: BookOpen },
+  { url: `${basePath}data`, icon: BarChart2 },
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];
 interface MobileNavbarProps {

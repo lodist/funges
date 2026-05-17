@@ -57,7 +57,6 @@
     "currentAsOf": "Stand {{date}}",
     "locationEnabled": "Diese Vorschlaege kommen von den staerksten aktuellen Scores innerhalb von 100 km um deinen geteilten Standort",
     "locationMissing": "Der Standort wird nicht geteilt, daher kommen diese Vorschlaege von den staerksten aktuellen Scores in deiner aktuellen Kartenregion",
-
     "loading": "Score-basierte Vorschlaege werden geladen...",
     "noData": "Fuer den aktuellen Bereich waren keine score-basierten Vorschlaege verfuegbar.",
     "scoreLabel": "Aktueller Score",
@@ -111,7 +110,8 @@
       "berry": "Beere",
       "nut": "Nuss",
       "flower": "Blüte"
-    }
+    },
+    "shareLocationHint": "Teile deinen Standort auf der Hauptseite für genauere Angaben."
   },
   "errors": {
     "general": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
@@ -137,5 +137,35 @@
   "splash": {
     "title": "Fung.es",
     "subtitle": "Pilz-Sammel-App"
+  },
+  "data": {
+    "subtitle": "Erkunde die Daten hinter den Sammelempfehlungen.",
+    "europe": "Europa",
+    "unitedStates": "Vereinigte Staaten",
+    "selectedZone": "Ausgewählt: {{zone}} — erneut klicken, um alle anzuzeigen",
+    "clickZone": "Alle Zonen werden angezeigt — klicke auf eine, um zu filtern",
+    "noData": "Keine Daten für die ausgewählte Zone",
+    "score": "Punktzahl",
+    "tempMax": "Max",
+    "tempAvg": "Ø",
+    "tempMin": "Min",
+    "regions": {
+      "NE": "Nordeuropa",
+      "SE": "Südeuropa",
+      "USW": "USA West",
+      "USE": "USA Ost"
+    },
+    "species": "Art",
+    "charts": {
+      "rainfall": "Niederschlag (mm)",
+      "temperature": "Temperatur (°C)",
+      "humidity": "Luftfeuchtigkeit (%)",
+      "topSpecies": "Top-Arten — Aktuelle Punkte",
+      "speciesScore": "Punktzahl im Zeitverlauf",
+      "scoreTempScatter": "Punktzahl vs. Temperatur",
+      "windPressure": "Wind & Luftdruck",
+      "wind": "Wind (m/s)",
+      "pressure": "Luftdruck (hPa)"
+    }
   }
 }

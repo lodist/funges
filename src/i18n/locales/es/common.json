@@ -57,7 +57,6 @@
     "currentAsOf": "A fecha de {{date}}",
     "locationEnabled": "Estas sugerencias salen de las puntuaciones actuales mas fuertes dentro de 100 km de tu ubicacion compartida",
     "locationMissing": "La ubicacion no se comparte, asi que estas sugerencias salen de las puntuaciones actuales mas fuertes de tu region actual del mapa",
-
     "loading": "Cargando sugerencias basadas en las puntuaciones actuales...",
     "noData": "No habia sugerencias basadas en puntuaciones para el area actual.",
     "scoreLabel": "puntuación",
@@ -111,7 +110,8 @@
       "berry": "baya",
       "nut": "fruto seco",
       "flower": "flor"
-    }
+    },
+    "shareLocationHint": "Comparte tu ubicación en la página principal para indicaciones más precisas."
   },
   "errors": {
     "general": "Algo salió mal. Por favor, inténtalo de nuevo.",
@@ -137,5 +137,35 @@
   "splash": {
     "title": "Fung.es",
     "subtitle": "App de recolección de hongos"
+  },
+  "data": {
+    "subtitle": "Explora los datos detrás de las recomendaciones de recolección.",
+    "europe": "Europa",
+    "unitedStates": "Estados Unidos",
+    "selectedZone": "Seleccionada: {{zone}} — haz clic de nuevo para mostrar todas",
+    "clickZone": "Mostrando todas las zonas — haz clic en una para filtrar",
+    "noData": "Sin datos para la zona seleccionada",
+    "score": "Puntuación",
+    "tempMax": "Máx",
+    "tempAvg": "Med",
+    "tempMin": "Mín",
+    "regions": {
+      "NE": "Norte de Europa",
+      "SE": "Sur de Europa",
+      "USW": "EE.UU. Oeste",
+      "USE": "EE.UU. Este"
+    },
+    "species": "Especie",
+    "charts": {
+      "rainfall": "Precipitación (mm)",
+      "temperature": "Temperatura (°C)",
+      "humidity": "Humedad (%)",
+      "topSpecies": "Especies destacadas — Puntuaciones actuales",
+      "speciesScore": "Puntuación en el tiempo",
+      "scoreTempScatter": "Puntuación vs Temperatura",
+      "windPressure": "Viento & Presión",
+      "wind": "Viento (m/s)",
+      "pressure": "Presión (hPa)"
+    }
   }
 }

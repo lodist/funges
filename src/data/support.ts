@@ -43,7 +43,8 @@ export const SUPPORT_METHODS: SupportMethod[] = [
     nameKey: 'iota.name',
     descriptionKey: 'iota.description',
     icon: Coins,
-    address: '0x5555a77f863b22f235b6abbeaaf7f7ee8916301ed702401bbeba7a7f756cdea6',
+    address:
+      '0x5555a77f863b22f235b6abbeaaf7f7ee8916301ed702401bbeba7a7f756cdea6',
     type: 'crypto',
     color: '#131f37',
   },
