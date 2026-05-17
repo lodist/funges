@@ -707,7 +707,7 @@ export default function DataNerdPage() {
               <Bar
                 yAxisId='wind'
                 dataKey='wind_ms'
-                fill='#7aace0'
+                fill='#b07080'
                 radius={[3, 3, 0, 0]}
                 name={t('common:dataNerd.charts.wind', {
                   defaultValue: 'Wind (m/s)',
@@ -716,7 +716,7 @@ export default function DataNerdPage() {
               <Line
                 yAxisId='pressure'
                 dataKey='pressure_hpa'
-                stroke='#c4909c'
+                stroke='#c9a227'
                 dot={false}
                 strokeWidth={2}
                 name={t('common:dataNerd.charts.pressure', {
