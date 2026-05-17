@@ -57,7 +57,6 @@
     "currentAsOf": "Au {{date}}",
     "locationEnabled": "Ces suggestions viennent des scores actuels les plus forts dans un rayon de 100 km autour de votre position partagée",
     "locationMissing": "La position n'est pas partagée, donc ces suggestions viennent des scores actuels les plus forts dans votre region actuelle de carte",
-
     "loading": "Chargement des suggestions basees sur les scores actuels...",
     "noData": "Aucune suggestion basee sur les scores n'etait disponible pour la zone actuelle.",
     "scoreLabel": "score",
@@ -111,7 +110,8 @@
       "berry": "baie",
       "nut": "noix",
       "flower": "fleur"
-    }
+    },
+    "shareLocationHint": "Partagez votre position sur la page principale pour des indications plus précises."
   },
   "errors": {
     "general": "Une erreur s'est produite. Veuillez réessayer.",
@@ -137,5 +137,29 @@
   "splash": {
     "title": "Fung.es",
     "subtitle": "Application de cueillette de champignons"
+  },
+  "dataNerd": {
+    "subtitle": "Explorez les données derrière les recommandations de cueillette.",
+    "europe": "Europe",
+    "unitedStates": "États-Unis",
+    "selectedZone": "Sélectionnée : {{zone}} — cliquez à nouveau pour tout afficher",
+    "clickZone": "Toutes les zones affichées — cliquez sur une pour filtrer",
+    "noData": "Aucune donnée pour la zone sélectionnée",
+    "score": "Score",
+    "tempMax": "Max",
+    "tempAvg": "Moy",
+    "tempMin": "Min",
+    "regions": {
+      "NE": "Nord Europe",
+      "SE": "Sud Europe",
+      "USW": "USA Ouest",
+      "USE": "USA Est"
+    },
+    "charts": {
+      "rainfall": "Précipitations (mm)",
+      "temperature": "Température (°C)",
+      "humidity": "Humidité (%)",
+      "topSpecies": "Meilleures espèces — Scores actuels"
+    }
   }
 }

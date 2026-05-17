@@ -132,33 +132,35 @@ export default function ZoneMap({
   return (
     <>
       <style>{SFUMATO_STYLE}</style>
-      <MapContainer
-        className='leaflet-zone-map'
-        bounds={REGION_BOUNDS[region] ?? REGION_BOUNDS.NE}
-        style={{ height: '320px', width: '100%', borderRadius: '0.5rem' }}
-        zoomControl={true}
-        attributionControl={false}
-        scrollWheelZoom={true}
-        minZoom={2}
-      >
-        <TileLayer
-          url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        />
-        <GeoJSON
-          key={region}
-          ref={geoJsonRef}
-          data={zonesGeo}
-          style={feature =>
-            styleFeature(
-              feature?.properties?.color as string,
-              feature?.properties?.zone === selectedZone
-            )
-          }
-          onEachFeature={onEachFeature}
-        />
-        <FitBounds region={region} />
-      </MapContainer>
+      <div style={{ isolation: 'isolate' }}>
+        <MapContainer
+          className='leaflet-zone-map'
+          bounds={REGION_BOUNDS[region] ?? REGION_BOUNDS.NE}
+          style={{ height: '320px', width: '100%', borderRadius: '0.5rem' }}
+          zoomControl={true}
+          attributionControl={false}
+          scrollWheelZoom={true}
+          minZoom={2}
+        >
+          <TileLayer
+            url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          />
+          <GeoJSON
+            key={region}
+            ref={geoJsonRef}
+            data={zonesGeo}
+            style={feature =>
+              styleFeature(
+                feature?.properties?.color as string,
+                feature?.properties?.zone === selectedZone
+              )
+            }
+            onEachFeature={onEachFeature}
+          />
+          <FitBounds region={region} />
+        </MapContainer>
+      </div>
     </>
   );
 }

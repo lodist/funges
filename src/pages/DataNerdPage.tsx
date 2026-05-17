@@ -344,9 +344,17 @@ export default function DataNerdPage() {
       <SEO title={t('sidebar:dataNerd', { defaultValue: 'Data' })} />
 
       {/* Header */}
-      <h1 className='text-2xl font-bold tracking-tight'>
-        {t('sidebar:dataNerd', { defaultValue: 'Data' })}
-      </h1>
+      <div className='text-center'>
+        <h1 className='mb-2 text-4xl font-bold text-text-primary'>
+          {t('sidebar:dataNerd', { defaultValue: 'Data' })}
+        </h1>
+        <p className='text-sm text-text-secondary'>
+          {t('common:dataNerd.subtitle', {
+            defaultValue:
+              'Explore the data behind the foraging recommendations.',
+          })}
+        </p>
+      </div>
 
       {/* Controls */}
       <div className='flex flex-wrap gap-3 items-end'>
@@ -366,7 +374,9 @@ export default function DataNerdPage() {
                       : 'hover:bg-muted text-muted-foreground'
                   }`}
                 >
-                  {r.label}
+                  {t(`common:dataNerd.regions.${r.id}`, {
+                    defaultValue: r.label,
+                  })}
                 </button>
                 <a
                   href={REGION_FILES[r.id][0].url}
@@ -399,7 +409,9 @@ export default function DataNerdPage() {
                       : 'hover:bg-muted text-muted-foreground'
                   }`}
                 >
-                  {r.label}
+                  {t(`common:dataNerd.regions.${r.id}`, {
+                    defaultValue: r.label,
+                  })}
                 </button>
                 <a
                   href={REGION_FILES[r.id][0].url}

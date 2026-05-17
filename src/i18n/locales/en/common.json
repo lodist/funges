@@ -57,7 +57,6 @@
     "currentAsOf": "As of {{date}}",
     "locationEnabled": "These suggestions come from the strongest current scores within 100 km of your shared location",
     "locationMissing": "Location is not shared, so these suggestions come from the strongest current scores in your current map region",
-
     "loading": "Loading current score recommendations...",
     "noData": "No score-based recommendations were available for the current scope.",
     "scoreLabel": "current score",
@@ -111,7 +110,8 @@
       "berry": "berry",
       "nut": "nut",
       "flower": "flower"
-    }
+    },
+    "shareLocationHint": "Share your location on the main page for more accurate indications."
   },
   "errors": {
     "general": "Something went wrong. Please try again.",
@@ -149,5 +149,29 @@
     "title": "Sidebar",
     "description": "Displays the mobile sidebar.",
     "toggle": "Toggle Sidebar"
+  },
+  "dataNerd": {
+    "subtitle": "Explore the data behind the foraging recommendations.",
+    "europe": "Europe",
+    "unitedStates": "United States",
+    "selectedZone": "Selected: {{zone}} — click again to show all",
+    "clickZone": "Showing all zones — click one to filter",
+    "noData": "No data for selected zone",
+    "score": "Score",
+    "tempMax": "Max",
+    "tempAvg": "Avg",
+    "tempMin": "Min",
+    "regions": {
+      "NE": "North Europe",
+      "SE": "South Europe",
+      "USW": "US West",
+      "USE": "US East"
+    },
+    "charts": {
+      "rainfall": "Rainfall (mm)",
+      "temperature": "Temperature (°C)",
+      "humidity": "Humidity (%)",
+      "topSpecies": "Top Foraging Species — Latest Scores"
+    }
   }
 }

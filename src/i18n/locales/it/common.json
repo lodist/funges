@@ -20,7 +20,6 @@
     "currentAsOf": "Aggiornato al {{date}}",
     "locationEnabled": "Questi suggerimenti arrivano dai punteggi attuali piu forti entro 100 km dalla tua posizione condivisa",
     "locationMissing": "La posizione non é condivisa, quindi questi suggerimenti si basano sui punteggi attuali piu forti nella tua area della mappa",
-
     "loading": "Caricamento dei suggerimenti basati sui punteggi in corso...",
     "noData": "Non ci sono suggerimenti basati sui punteggi per l'area attuale.",
     "scoreLabel": "punteggio",
@@ -74,7 +73,8 @@
       "berry": "bacca",
       "nut": "noce",
       "flower": "fiore"
-    }
+    },
+    "shareLocationHint": "Condividi la tua posizione nella pagina principale per indicazioni più precise."
   },
   "errors": {
     "general": "Qualcosa è andato storto. Riprova.",
@@ -149,5 +149,29 @@
     "title": "Barra laterale",
     "description": "Mostra la barra laterale mobile.",
     "toggle": "Attiva/Disattiva barra laterale"
+  },
+  "dataNerd": {
+    "subtitle": "Esplora i dati dietro le raccomandazioni di raccolta.",
+    "europe": "Europa",
+    "unitedStates": "Stati Uniti",
+    "selectedZone": "Selezionata: {{zone}} — clicca di nuovo per mostrare tutte",
+    "clickZone": "Tutte le zone visualizzate — clicca su una per filtrare",
+    "noData": "Nessun dato per la zona selezionata",
+    "score": "Punteggio",
+    "tempMax": "Max",
+    "tempAvg": "Med",
+    "tempMin": "Min",
+    "regions": {
+      "NE": "Nord Europa",
+      "SE": "Sud Europa",
+      "USW": "USA Ovest",
+      "USE": "USA Est"
+    },
+    "charts": {
+      "rainfall": "Precipitazioni (mm)",
+      "temperature": "Temperatura (°C)",
+      "humidity": "Umidità (%)",
+      "topSpecies": "Specie migliori — Punteggi attuali"
+    }
   }
 }
