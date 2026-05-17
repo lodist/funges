@@ -849,7 +849,7 @@ export default function DataPage() {
         </div>
       )}
 
-      {/* Charts grid */}
+      {/* Charts — row 1: rainfall + temperature */}
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {/* Rainfall */}
         <ChartCard
@@ -904,7 +904,10 @@ export default function DataPage() {
             </LineChart>
           </ResponsiveContainer>
         </ChartCard>
+      </div>
 
+      {/* Charts — row 2: humidity + wind & pressure */}
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {/* Humidity */}
         <ChartCard
           title={t('common:data.charts.humidity', {
@@ -935,49 +938,7 @@ export default function DataPage() {
           </ResponsiveContainer>
         </ChartCard>
 
-        {/* Top species today */}
-        <ChartCard
-          title={t('common:data.charts.topSpecies', {
-            defaultValue: 'Top Foraging Species — Latest Scores',
-          })}
-        >
-          {topSpeciesToday.length === 0 ? (
-            <div className='flex items-center justify-center h-[220px] text-sm text-muted-foreground'>
-              {t('common:data.noData', {
-                defaultValue: 'No data for selected zone',
-              })}
-            </div>
-          ) : (
-            <ResponsiveContainer width='100%' height={220}>
-              <BarChart
-                data={topSpeciesToday}
-                layout='vertical'
-                margin={{ top: 4, right: 24, left: 4, bottom: 0 }}
-              >
-                <defs>
-                  <linearGradient id='topSpecGrad' x1='0' y1='0' x2='1' y2='0'>
-                    <stop offset='0%' stopColor='#96be9a' stopOpacity={0.45} />
-                    <stop offset='100%' stopColor='#96be9a' stopOpacity={0.95} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray='2 4' horizontal={false} stroke='rgba(128,128,128,0.15)' />
-                <XAxis type='number' domain={[0, 10]} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
-                <YAxis type='category' dataKey='name' tick={{ fontSize: 11 }} width={90} axisLine={false} tickLine={false} />
-                <Tooltip
-                  formatter={(v: unknown) => [(v as number).toFixed(1), t('common:data.score', { defaultValue: 'Score' })]}
-                  contentStyle={TOOLTIP_STYLE}
-                />
-                <ReferenceLine x={5} stroke='rgba(128,128,128,0.25)' strokeDasharray='3 3' />
-                <Bar dataKey='score' fill='url(#topSpecGrad)' radius={[0, 4, 4, 0]} name={t('common:data.score', { defaultValue: 'Score' })} />
-              </BarChart>
-            </ResponsiveContainer>
-          )}
-        </ChartCard>
-      </div>
-
-      {/* Wind & Pressure + Species score — side by side */}
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-        {/* Left: Wind & Pressure */}
+        {/* Wind & Pressure */}
         <ChartCard
           title={t('common:data.charts.windPressure', {
             defaultValue: 'Wind & Pressure',
@@ -1005,8 +966,11 @@ export default function DataPage() {
             </ComposedChart>
           </ResponsiveContainer>
         </ChartCard>
+      </div>
 
-        {/* Right: species picker + score over time */}
+      {/* Charts — row 3: score over time + top species */}
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+        {/* Score over time */}
         {availableSpecies.length > 0 && (
           <ChartCard
             title={t('common:data.charts.speciesScore', {
@@ -1068,6 +1032,45 @@ export default function DataPage() {
             )}
           </ChartCard>
         )}
+
+        {/* Top species */}
+        <ChartCard
+          title={t('common:data.charts.topSpecies', {
+            defaultValue: 'Top Foraging Species — Latest Scores',
+          })}
+        >
+          {topSpeciesToday.length === 0 ? (
+            <div className='flex items-center justify-center h-[220px] text-sm text-muted-foreground'>
+              {t('common:data.noData', {
+                defaultValue: 'No data for selected zone',
+              })}
+            </div>
+          ) : (
+            <ResponsiveContainer width='100%' height={220}>
+              <BarChart
+                data={topSpeciesToday}
+                layout='vertical'
+                margin={{ top: 4, right: 24, left: 4, bottom: 0 }}
+              >
+                <defs>
+                  <linearGradient id='topSpecGrad' x1='0' y1='0' x2='1' y2='0'>
+                    <stop offset='0%' stopColor='#96be9a' stopOpacity={0.45} />
+                    <stop offset='100%' stopColor='#96be9a' stopOpacity={0.95} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray='2 4' horizontal={false} stroke='rgba(128,128,128,0.15)' />
+                <XAxis type='number' domain={[0, 10]} ticks={[0, 2, 4, 6, 8, 10]} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis type='category' dataKey='name' tick={{ fontSize: 11 }} width={90} axisLine={false} tickLine={false} />
+                <Tooltip
+                  formatter={(v: unknown) => [(v as number).toFixed(1), t('common:data.score', { defaultValue: 'Score' })]}
+                  contentStyle={TOOLTIP_STYLE}
+                />
+                <ReferenceLine x={5} stroke='rgba(128,128,128,0.25)' strokeDasharray='3 3' />
+                <Bar dataKey='score' fill='url(#topSpecGrad)' radius={[0, 4, 4, 0]} name={t('common:data.score', { defaultValue: 'Score' })} />
+              </BarChart>
+            </ResponsiveContainer>
+          )}
+        </ChartCard>
       </div>
     </div>
   );
