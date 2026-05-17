@@ -113,17 +113,14 @@ export default function ZoneMap({
       (feature.properties?.label as string) ?? formatZoneLabel(zone);
     const color = feature.properties?.color as string;
 
-    // @ts-expect-error — Leaflet layer has bindTooltip at runtime
     layer.bindTooltip(label, { sticky: true, className: 'zone-tooltip' });
 
     layer.on({
       click: () => onZoneSelect(zone),
       mouseover: e => {
-        // @ts-expect-error — Leaflet layer has setStyle at runtime
         e.target.setStyle({ fillOpacity: 0.55 });
       },
       mouseout: e => {
-        // @ts-expect-error — Leaflet layer has setStyle at runtime
         e.target.setStyle(getRestoreStyle.current(zone, color));
       },
     });
