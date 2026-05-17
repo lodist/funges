@@ -669,128 +669,9 @@ export default function DataNerdPage() {
         </ChartCard>
       </div>
 
-      {/* Species section */}
-      {availableSpecies.length > 0 && (
-        <>
-          {/* Species picker — shared by the two charts below */}
-          <div className='flex items-center gap-3'>
-            <span className='text-xs font-medium uppercase tracking-wide text-muted-foreground/60'>
-              {t('common:dataNerd.species', { defaultValue: 'Species' })}
-            </span>
-            <select
-              value={resolvedSpecies}
-              onChange={e => setSelectedSpecies(e.target.value)}
-              className='text-sm border rounded-lg px-3 py-1.5 bg-background text-foreground'
-            >
-              {availableSpecies.map(s => (
-                <option key={s.id} value={s.id}>
-                  {s.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-            {/* Species score over time */}
-            <ChartCard
-              title={t('common:dataNerd.charts.speciesScore', {
-                defaultValue: 'Score Over Time',
-              })}
-            >
-              {speciesOverTime.length === 0 ? (
-                <div className='flex items-center justify-center h-[220px] text-sm text-muted-foreground'>
-                  {t('common:dataNerd.noData', {
-                    defaultValue: 'No data for selected zone',
-                  })}
-                </div>
-              ) : (
-                <ResponsiveContainer width='100%' height={220}>
-                  <LineChart
-                    data={speciesOverTime}
-                    margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
-                  >
-                    <CartesianGrid strokeDasharray='3 3' vertical={false} />
-                    <XAxis
-                      dataKey='date'
-                      tickFormatter={formatDate}
-                      tick={{ fontSize: 11 }}
-                    />
-                    <YAxis domain={[0, 10]} tick={{ fontSize: 11 }} />
-                    <Tooltip
-                      formatter={(v: unknown) => [
-                        (v as number).toFixed(2),
-                        t('common:dataNerd.score', { defaultValue: 'Score' }),
-                      ]}
-                      labelFormatter={(l: unknown) => formatDate(String(l))}
-                    />
-                    <Line
-                      dataKey='score'
-                      stroke='#96be9a'
-                      dot={false}
-                      strokeWidth={2}
-                      name={t('common:dataNerd.score', {
-                        defaultValue: 'Score',
-                      })}
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              )}
-            </ChartCard>
-
-            {/* Pressure over time */}
-            <ChartCard
-              title={t('common:dataNerd.charts.pressure', {
-                defaultValue: 'Pressure (hPa)',
-              })}
-            >
-              {zoneData.length === 0 ? (
-                <div className='flex items-center justify-center h-[220px] text-sm text-muted-foreground'>
-                  {t('common:dataNerd.noData', {
-                    defaultValue: 'No data for selected zone',
-                  })}
-                </div>
-              ) : (
-                <ResponsiveContainer width='100%' height={220}>
-                  <LineChart
-                    data={zoneData}
-                    margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
-                  >
-                    <CartesianGrid strokeDasharray='3 3' vertical={false} />
-                    <XAxis
-                      dataKey='date'
-                      tickFormatter={formatDate}
-                      tick={{ fontSize: 11 }}
-                    />
-                    <YAxis
-                      domain={['auto', 'auto']}
-                      tick={{ fontSize: 11 }}
-                      unit=' hPa'
-                    />
-                    <Tooltip
-                      formatter={(v: unknown) => [
-                        `${(v as number).toFixed(0)} hPa`,
-                        t('common:dataNerd.charts.pressure', {
-                          defaultValue: 'Pressure (hPa)',
-                        }),
-                      ]}
-                      labelFormatter={(l: unknown) => formatDate(String(l))}
-                    />
-                    <Line
-                      dataKey='pressure_hpa'
-                      stroke='#c4909c'
-                      dot={false}
-                      strokeWidth={2}
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              )}
-            </ChartCard>
-          </div>
-        </>
-      )}
-
-      {/* Wind & Pressure */}
-      <div className='grid grid-cols-1 gap-4'>
+      {/* Wind & Pressure + Species score — side by side */}
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+        {/* Left: Wind & Pressure */}
         <ChartCard
           title={t('common:dataNerd.charts.windPressure', {
             defaultValue: 'Wind & Pressure',
@@ -845,6 +726,70 @@ export default function DataNerdPage() {
             </ComposedChart>
           </ResponsiveContainer>
         </ChartCard>
+
+        {/* Right: species picker + score over time */}
+        {availableSpecies.length > 0 && (
+          <ChartCard
+            title={t('common:dataNerd.charts.speciesScore', {
+              defaultValue: 'Score Over Time',
+            })}
+          >
+            <div className='flex items-center gap-2 mb-3'>
+              <span className='text-xs font-medium uppercase tracking-wide text-muted-foreground/60'>
+                {t('common:dataNerd.species', { defaultValue: 'Species' })}
+              </span>
+              <select
+                value={resolvedSpecies}
+                onChange={e => setSelectedSpecies(e.target.value)}
+                className='text-sm border rounded-lg px-3 py-1.5 bg-background text-foreground'
+              >
+                {availableSpecies.map(s => (
+                  <option key={s.id} value={s.id}>
+                    {s.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {speciesOverTime.length === 0 ? (
+              <div className='flex items-center justify-center h-[180px] text-sm text-muted-foreground'>
+                {t('common:dataNerd.noData', {
+                  defaultValue: 'No data for selected zone',
+                })}
+              </div>
+            ) : (
+              <ResponsiveContainer width='100%' height={180}>
+                <LineChart
+                  data={speciesOverTime}
+                  margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
+                >
+                  <CartesianGrid strokeDasharray='3 3' vertical={false} />
+                  <XAxis
+                    dataKey='date'
+                    tickFormatter={formatDate}
+                    tick={{ fontSize: 11 }}
+                  />
+                  <YAxis domain={[0, 10]} tick={{ fontSize: 11 }} />
+                  <Tooltip
+                    formatter={(v: unknown) => [
+                      (v as number).toFixed(2),
+                      t('common:dataNerd.score', { defaultValue: 'Score' }),
+                    ]}
+                    labelFormatter={(l: unknown) => formatDate(String(l))}
+                  />
+                  <Line
+                    dataKey='score'
+                    stroke='#96be9a'
+                    dot={false}
+                    strokeWidth={2}
+                    name={t('common:dataNerd.score', {
+                      defaultValue: 'Score',
+                    })}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            )}
+          </ChartCard>
+        )}
       </div>
     </div>
   );
