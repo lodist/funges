@@ -44,6 +44,7 @@ interface ZoneMapProps {
   selectedZone: string;
   onZoneSelect: (zone: string) => void;
   region: string;
+  zoneLabelFn?: (zone: string) => string;
 }
 
 const SFUMATO_STYLE = `
@@ -65,6 +66,7 @@ export default function ZoneMap({
   selectedZone,
   onZoneSelect,
   region,
+  zoneLabelFn,
 }: ZoneMapProps) {
   const geoJsonRef = useRef<L.GeoJSON | null>(null);
   // Updated synchronously every render so event-handler closures always read the latest value
@@ -110,7 +112,7 @@ export default function ZoneMap({
   function onEachFeature(feature: GeoJSON.Feature, layer: Layer) {
     const zone = feature.properties?.zone as string;
     const label =
-      (feature.properties?.label as string) ?? formatZoneLabel(zone);
+      zoneLabelFn?.(zone) ?? (feature.properties?.label as string) ?? formatZoneLabel(zone);
     const color = feature.properties?.color as string;
 
     layer.bindTooltip(label, { sticky: true, className: 'zone-tooltip' });

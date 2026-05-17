@@ -752,6 +752,7 @@ export default function DataPage() {
             selectedZone={zone}
             onZoneSelect={z => setZone(prev => (prev === z ? '' : z))}
             region={region}
+            zoneLabelFn={z => t(`common:data.zones.${z}` as Parameters<typeof t>[0], { defaultValue: formatZoneLabel(z) }) as unknown as string}
           />
         </Suspense>
       </div>
