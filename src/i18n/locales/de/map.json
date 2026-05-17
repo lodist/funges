@@ -40,7 +40,7 @@
     "coordinates": "Breite: {{lat}}, Länge: {{lng}}",
     "spotsFound": "Sammelstellen",
     "support": "Projekt unterstützen",
-    "limit_hit_message": "Liebere Forager,<br>\nWir können die Kartenkacheln nicht laden, da wir unser monatliches Nutzungslimit erreicht haben.<br><br>\nUm die Karten weiterhin verfügbar zu halten, erwägen Sie bitte, <strong>das Projekt zu unterstützen</strong>.<br>\nIn der Zwischenzeit genießen Sie diese nicht ganz perfekte Boletus-Karte – bis sie ihr eigenes Limit erreicht 😅",
+    "limit_hit_message": "Liebere Forager,<br>\nWir können die Kartenkacheln nicht laden, da wir unser monatliches Nutzungslimit erreicht haben.<br><br>\nUm die Karten weiterhin verfügbar zu halten, erwägen Sie bitte, <strong>das Projekt zu unterstützen</strong>.<br>\nIn der Zwischenzeit geniessen Sie diese nicht ganz perfekte Boletus-Karte – bis sie ihr eigenes Limit erreicht 😅",
 
     "tips": {
       "title": "Fehlerbehebung",
