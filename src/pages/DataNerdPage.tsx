@@ -310,6 +310,19 @@ export default function DataNerdPage() {
     [speciesData]
   );
 
+  const speciesCategoryMap = useMemo(
+    () => new Map(speciesData.map(s => [s.id, s.category])),
+    [speciesData]
+  );
+
+  const CATEGORY_COLORS: Record<string, string> = {
+    plant: '#5a8a3c',
+    mushroom: '#8b5e3c',
+    berry: '#7a2d6e',
+    flower: '#d4789a',
+    nut: '#b8860b',
+  };
+
   const availableSpecies = useMemo(() => {
     const ids = new Set<string>();
     for (const row of zoneData) {
@@ -321,6 +334,9 @@ export default function DataNerdPage() {
   }, [zoneData, speciesMap]);
 
   const resolvedSpecies = selectedSpecies || availableSpecies[0]?.id || '';
+
+  const speciesLineColor =
+    CATEGORY_COLORS[speciesCategoryMap.get(resolvedSpecies) ?? ''] ?? '#96be9a';
 
   const speciesOverTime = useMemo(
     () =>
@@ -778,7 +794,7 @@ export default function DataNerdPage() {
                   />
                   <Line
                     dataKey='score'
-                    stroke='#96be9a'
+                    stroke={speciesLineColor}
                     dot={false}
                     strokeWidth={2}
                     name={t('common:dataNerd.score', {
