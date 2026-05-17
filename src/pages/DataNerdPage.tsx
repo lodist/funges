@@ -750,14 +750,14 @@ export default function DataNerdPage() {
               defaultValue: 'Score Over Time',
             })}
           >
-            <div className='flex items-center gap-2 mb-3'>
-              <span className='text-xs font-medium uppercase tracking-wide text-muted-foreground/60'>
+            <div className='flex flex-wrap items-center gap-2 mb-3'>
+              <span className='text-xs font-medium uppercase tracking-wide text-muted-foreground/60 shrink-0'>
                 {t('common:dataNerd.species', { defaultValue: 'Species' })}
               </span>
               <select
                 value={resolvedSpecies}
                 onChange={e => setSelectedSpecies(e.target.value)}
-                className='text-sm border rounded-lg px-3 py-1.5 bg-background text-foreground'
+                className='text-sm border rounded-lg px-3 py-1.5 bg-background text-foreground max-w-[180px]'
               >
                 {availableSpecies.map(s => (
                   <option key={s.id} value={s.id}>
