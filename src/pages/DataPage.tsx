@@ -485,8 +485,8 @@ export default function DataPage() {
 
     // Shorthand for narrative keys
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const tn = (key: string, opts?: Record<string, unknown>) =>
-      t(`common:data.narrative.${key}` as Parameters<typeof t>[0], opts as any);
+    const tn = (key: string, opts?: Record<string, unknown>): string =>
+      t(`common:data.narrative.${key}` as Parameters<typeof t>[0], opts as any) as unknown as string;
 
     // Translated sub-parts
     const daysLabel =
