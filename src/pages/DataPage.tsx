@@ -1,6 +1,8 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  AreaChart,
+  Area,
   BarChart,
   Bar,
   LineChart,
@@ -12,7 +14,10 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
+  ReferenceLine,
+  ReferenceArea,
 } from 'recharts';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, Download } from 'lucide-react';
 import {
@@ -177,6 +182,36 @@ function formatDate(iso: string) {
   return iso.slice(5).replace('-', '/');
 }
 
+function tickInterval(days: number): number {
+  if (days <= 7) return 0;
+  if (days <= 14) return 1;
+  if (days <= 30) return 4;
+  if (days <= 90) return 9;
+  return 29;
+}
+
+const TOOLTIP_STYLE = {
+  borderRadius: 8,
+  fontSize: 12,
+  border: '1px solid rgba(128,128,128,0.2)',
+  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+  padding: '6px 10px',
+} as const;
+
+function PillLegend({ payload }: { payload?: Array<{ color: string; value: string }> }) {
+  if (!payload?.length) return null;
+  return (
+    <div className='flex flex-wrap gap-2 justify-center mt-1'>
+      {payload.map(entry => (
+        <span key={entry.value} className='flex items-center gap-1.5 text-xs text-muted-foreground'>
+          <span className='inline-block w-2 h-2 rounded-full flex-shrink-0' style={{ backgroundColor: entry.color }} />
+          {entry.value}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 interface ChartCardProps {
   title: string;
   children: React.ReactNode;
@@ -184,7 +219,7 @@ interface ChartCardProps {
 
 function ChartCard({ title, children }: ChartCardProps) {
   return (
-    <Card>
+    <Card className='shadow-sm hover:shadow-md transition-shadow duration-200'>
       <CardHeader className='pb-2'>
         <CardTitle className='text-sm font-medium text-muted-foreground'>
           {title}
@@ -621,8 +656,22 @@ export default function DataPage() {
 
   if (isLoading) {
     return (
-      <div className='flex h-full items-center justify-center'>
-        <Loader2 className='h-6 w-6 animate-spin text-muted-foreground' />
+      <div className='p-4 space-y-4 max-w-5xl mx-auto'>
+        <div className='flex gap-2'>
+          {[80, 96, 72, 88].map(w => <Skeleton key={w} className='h-8 rounded-full' style={{ width: w }} />)}
+        </div>
+        <Skeleton className='h-80 w-full rounded-lg' />
+        <div className='flex gap-2'>
+          {[48, 56, 56, 64, 72].map(w => <Skeleton key={w} className='h-8 rounded-md' style={{ width: w }} />)}
+        </div>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+          {[0, 1, 2, 3].map(i => (
+            <div key={i} className='rounded-lg border p-4 space-y-3'>
+              <Skeleton className='h-4 w-32' />
+              <Skeleton className='h-[200px] w-full' />
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
@@ -813,30 +862,22 @@ export default function DataPage() {
               data={zoneData}
               margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray='3 3' vertical={false} />
-              <XAxis
-                dataKey='date'
-                tickFormatter={formatDate}
-                tick={{ fontSize: 11 }}
-              />
-              <YAxis unit='mm' tick={{ fontSize: 11 }} />
+              <defs>
+                <linearGradient id='rainGrad' x1='0' y1='0' x2='0' y2='1'>
+                  <stop offset='0%' stopColor='#7aace0' stopOpacity={0.95} />
+                  <stop offset='100%' stopColor='#7aace0' stopOpacity={0.25} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray='2 4' vertical={false} stroke='rgba(128,128,128,0.15)' />
+              <XAxis dataKey='date' tickFormatter={formatDate} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} interval={tickInterval(days)} />
+              <YAxis unit='mm' tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
               <Tooltip
-                formatter={(v: unknown) => [
-                  `${v} mm`,
-                  t('common:data.charts.rainfall', {
-                    defaultValue: 'Rainfall',
-                  }),
-                ]}
+                formatter={(v: unknown) => [`${v} mm`, t('common:data.charts.rainfall', { defaultValue: 'Rainfall' })]}
                 labelFormatter={(l: unknown) => formatDate(String(l))}
+                contentStyle={TOOLTIP_STYLE}
               />
-              <Bar
-                dataKey='precip_mm'
-                fill='#7aace0'
-                radius={[3, 3, 0, 0]}
-                name={t('common:data.charts.rainfall', {
-                  defaultValue: 'Rainfall',
-                })}
-              />
+              <ReferenceLine y={20} stroke='#7aace0' strokeDasharray='3 3' strokeOpacity={0.5} label={{ value: '20mm', position: 'insideTopRight', fontSize: 10, fill: '#7aace0', opacity: 0.7 }} />
+              <Bar dataKey='precip_mm' fill='url(#rainGrad)' radius={[4, 4, 0, 0]} name={t('common:data.charts.rainfall', { defaultValue: 'Rainfall' })} />
             </BarChart>
           </ResponsiveContainer>
         </ChartCard>
@@ -852,37 +893,14 @@ export default function DataPage() {
               data={zoneData}
               margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray='3 3' vertical={false} />
-              <XAxis
-                dataKey='date'
-                tickFormatter={formatDate}
-                tick={{ fontSize: 11 }}
-              />
-              <YAxis unit='°' tick={{ fontSize: 11 }} />
-              <Tooltip labelFormatter={(l: unknown) => formatDate(String(l))} />
-              <Legend wrapperStyle={{ fontSize: 11 }} />
-              <Line
-                dataKey='temp_max'
-                stroke='#c4909c'
-                dot={false}
-                strokeWidth={1.5}
-                name={t('common:data.tempMax', { defaultValue: 'Max' })}
-              />
-              <Line
-                dataKey='temp_avg'
-                stroke='#d4a870'
-                dot={false}
-                strokeWidth={2}
-                name={t('common:data.tempAvg', { defaultValue: 'Avg' })}
-              />
-              <Line
-                dataKey='temp_min'
-                stroke='#96be9a'
-                dot={false}
-                strokeWidth={1.5}
-                name={t('common:data.tempMin', { defaultValue: 'Min' })}
-                strokeDasharray='4 2'
-              />
+              <CartesianGrid strokeDasharray='2 4' vertical={false} stroke='rgba(128,128,128,0.15)' />
+              <XAxis dataKey='date' tickFormatter={formatDate} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} interval={tickInterval(days)} />
+              <YAxis unit='°' tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+              <Tooltip labelFormatter={(l: unknown) => formatDate(String(l))} contentStyle={TOOLTIP_STYLE} />
+              <Legend content={(p) => <PillLegend payload={(p.payload ?? []) as Array<{ color: string; value: string }>} />} />
+              <Line type='monotone' dataKey='temp_max' stroke='#c4909c' dot={false} strokeWidth={1.5} activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }} name={t('common:data.tempMax', { defaultValue: 'Max' })} />
+              <Line type='monotone' dataKey='temp_avg' stroke='#d4a870' dot={false} strokeWidth={2.5} activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }} name={t('common:data.tempAvg', { defaultValue: 'Avg' })} />
+              <Line type='monotone' dataKey='temp_min' stroke='#96be9a' dot={false} strokeWidth={1.5} strokeDasharray='4 2' activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }} name={t('common:data.tempMin', { defaultValue: 'Min' })} />
             </LineChart>
           </ResponsiveContainer>
         </ChartCard>
@@ -894,36 +912,26 @@ export default function DataPage() {
           })}
         >
           <ResponsiveContainer width='100%' height={220}>
-            <LineChart
+            <AreaChart
               data={zoneData}
               margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray='3 3' vertical={false} />
-              <XAxis
-                dataKey='date'
-                tickFormatter={formatDate}
-                tick={{ fontSize: 11 }}
-              />
-              <YAxis unit='%' domain={[0, 100]} tick={{ fontSize: 11 }} />
+              <defs>
+                <linearGradient id='humidGrad' x1='0' y1='0' x2='0' y2='1'>
+                  <stop offset='0%' stopColor='#d4a870' stopOpacity={0.35} />
+                  <stop offset='100%' stopColor='#d4a870' stopOpacity={0.02} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray='2 4' vertical={false} stroke='rgba(128,128,128,0.15)' />
+              <XAxis dataKey='date' tickFormatter={formatDate} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} interval={tickInterval(days)} />
+              <YAxis unit='%' domain={[0, 100]} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
               <Tooltip
-                formatter={(v: unknown) => [
-                  `${v}%`,
-                  t('common:data.charts.humidity', {
-                    defaultValue: 'Humidity',
-                  }),
-                ]}
+                formatter={(v: unknown) => [`${v}%`, t('common:data.charts.humidity', { defaultValue: 'Humidity' })]}
                 labelFormatter={(l: unknown) => formatDate(String(l))}
+                contentStyle={TOOLTIP_STYLE}
               />
-              <Line
-                dataKey='humidity'
-                stroke='#d4a870'
-                dot={false}
-                strokeWidth={2}
-                name={t('common:data.charts.humidity', {
-                  defaultValue: 'Humidity',
-                })}
-              />
-            </LineChart>
+              <Area type='monotone' dataKey='humidity' stroke='#d4a870' strokeWidth={2} fill='url(#humidGrad)' dot={false} activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }} name={t('common:data.charts.humidity', { defaultValue: 'Humidity' })} />
+            </AreaChart>
           </ResponsiveContainer>
         </ChartCard>
 
@@ -946,26 +954,21 @@ export default function DataPage() {
                 layout='vertical'
                 margin={{ top: 4, right: 24, left: 4, bottom: 0 }}
               >
-                <CartesianGrid strokeDasharray='3 3' horizontal={false} />
-                <XAxis type='number' domain={[0, 10]} tick={{ fontSize: 11 }} />
-                <YAxis
-                  type='category'
-                  dataKey='name'
-                  tick={{ fontSize: 11 }}
-                  width={90}
-                />
+                <defs>
+                  <linearGradient id='topSpecGrad' x1='0' y1='0' x2='1' y2='0'>
+                    <stop offset='0%' stopColor='#96be9a' stopOpacity={0.45} />
+                    <stop offset='100%' stopColor='#96be9a' stopOpacity={0.95} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray='2 4' horizontal={false} stroke='rgba(128,128,128,0.15)' />
+                <XAxis type='number' domain={[0, 10]} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis type='category' dataKey='name' tick={{ fontSize: 11 }} width={90} axisLine={false} tickLine={false} />
                 <Tooltip
-                  formatter={(v: unknown) => [
-                    (v as number).toFixed(1),
-                    t('common:data.score', { defaultValue: 'Score' }),
-                  ]}
+                  formatter={(v: unknown) => [(v as number).toFixed(1), t('common:data.score', { defaultValue: 'Score' })]}
+                  contentStyle={TOOLTIP_STYLE}
                 />
-                <Bar
-                  dataKey='score'
-                  fill='#96be9a'
-                  radius={[0, 3, 3, 0]}
-                  name={t('common:data.score', { defaultValue: 'Score' })}
-                />
+                <ReferenceLine x={5} stroke='rgba(128,128,128,0.25)' strokeDasharray='3 3' />
+                <Bar dataKey='score' fill='url(#topSpecGrad)' radius={[0, 4, 4, 0]} name={t('common:data.score', { defaultValue: 'Score' })} />
               </BarChart>
             </ResponsiveContainer>
           )}
@@ -985,47 +988,20 @@ export default function DataPage() {
               data={zoneData}
               margin={{ top: 4, right: 0, left: -16, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray='3 3' vertical={false} />
-              <XAxis
-                dataKey='date'
-                tickFormatter={formatDate}
-                tick={{ fontSize: 11 }}
-              />
-              <YAxis
-                yAxisId='wind'
-                unit=' m/s'
-                tick={{ fontSize: 11 }}
-                width={52}
-              />
-              <YAxis
-                yAxisId='pressure'
-                orientation='right'
-                unit=' hPa'
-                tick={{ fontSize: 11 }}
-                width={60}
-                domain={['auto', 'auto']}
-              />
-              <Tooltip labelFormatter={(l: unknown) => formatDate(String(l))} />
-              <Legend wrapperStyle={{ fontSize: 11 }} />
-              <Bar
-                yAxisId='wind'
-                dataKey='wind_ms'
-                fill='#b07080'
-                radius={[3, 3, 0, 0]}
-                name={t('common:data.charts.wind', {
-                  defaultValue: 'Wind (m/s)',
-                })}
-              />
-              <Line
-                yAxisId='pressure'
-                dataKey='pressure_hpa'
-                stroke='#c9a227'
-                dot={false}
-                strokeWidth={2}
-                name={t('common:data.charts.pressure', {
-                  defaultValue: 'Pressure (hPa)',
-                })}
-              />
+              <defs>
+                <linearGradient id='windGrad' x1='0' y1='0' x2='0' y2='1'>
+                  <stop offset='0%' stopColor='#b07080' stopOpacity={0.9} />
+                  <stop offset='100%' stopColor='#b07080' stopOpacity={0.25} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray='2 4' vertical={false} stroke='rgba(128,128,128,0.15)' />
+              <XAxis dataKey='date' tickFormatter={formatDate} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} interval={tickInterval(days)} />
+              <YAxis yAxisId='wind' unit=' m/s' tick={{ fontSize: 11 }} width={52} axisLine={false} tickLine={false} />
+              <YAxis yAxisId='pressure' orientation='right' unit=' hPa' tick={{ fontSize: 11 }} width={60} domain={['auto', 'auto']} axisLine={false} tickLine={false} />
+              <Tooltip labelFormatter={(l: unknown) => formatDate(String(l))} contentStyle={TOOLTIP_STYLE} />
+              <Legend content={(p) => <PillLegend payload={(p.payload ?? []) as Array<{ color: string; value: string }>} />} />
+              <Bar yAxisId='wind' dataKey='wind_ms' fill='url(#windGrad)' radius={[3, 3, 0, 0]} name={t('common:data.charts.wind', { defaultValue: 'Wind (m/s)' })} />
+              <Line type='monotone' yAxisId='pressure' dataKey='pressure_hpa' stroke='#c9a227' dot={false} strokeWidth={2} activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }} name={t('common:data.charts.pressure', { defaultValue: 'Pressure (hPa)' })} />
             </ComposedChart>
           </ResponsiveContainer>
         </ChartCard>
@@ -1061,34 +1037,33 @@ export default function DataPage() {
               </div>
             ) : (
               <ResponsiveContainer width='100%' height={180}>
-                <LineChart
+                <AreaChart
                   data={speciesOverTime}
                   margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
                 >
-                  <CartesianGrid strokeDasharray='3 3' vertical={false} />
-                  <XAxis
-                    dataKey='date'
-                    tickFormatter={formatDate}
-                    tick={{ fontSize: 11 }}
-                  />
-                  <YAxis domain={[0, 10]} tick={{ fontSize: 11 }} />
+                  <CartesianGrid strokeDasharray='2 4' vertical={false} stroke='rgba(128,128,128,0.15)' />
+                  <XAxis dataKey='date' tickFormatter={formatDate} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} interval={tickInterval(days)} />
+                  <YAxis domain={[0, 10]} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
                   <Tooltip
-                    formatter={(v: unknown) => [
-                      (v as number).toFixed(2),
-                      t('common:data.score', { defaultValue: 'Score' }),
-                    ]}
+                    formatter={(v: unknown) => [(v as number).toFixed(2), t('common:data.score', { defaultValue: 'Score' })]}
                     labelFormatter={(l: unknown) => formatDate(String(l))}
+                    contentStyle={TOOLTIP_STYLE}
                   />
-                  <Line
+                  <ReferenceArea y1={0} y2={3} fill='#ef4444' fillOpacity={0.04} />
+                  <ReferenceArea y1={3} y2={6} fill='#f59e0b' fillOpacity={0.04} />
+                  <ReferenceArea y1={6} y2={10} fill='#22c55e' fillOpacity={0.04} />
+                  <Area
+                    type='monotone'
                     dataKey='score'
                     stroke={speciesLineColor}
+                    strokeWidth={2.5}
+                    fill={speciesLineColor}
+                    fillOpacity={0.12}
                     dot={false}
-                    strokeWidth={2}
-                    name={t('common:data.score', {
-                      defaultValue: 'Score',
-                    })}
+                    activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
+                    name={t('common:data.score', { defaultValue: 'Score' })}
                   />
-                </LineChart>
+                </AreaChart>
               </ResponsiveContainer>
             )}
           </ChartCard>
