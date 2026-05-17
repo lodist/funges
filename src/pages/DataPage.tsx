@@ -359,6 +359,264 @@ export default function DataPage() {
       .slice(0, 8);
   }, [zoneData, speciesMap]);
 
+  const narrativeInsight = useMemo(() => {
+    if (zoneData.length === 0) return null;
+
+    const regionLabel = t(`common:data.regions.${region}`, {
+      defaultValue: REGIONS.find(r => r.id === region)?.label ?? region,
+    });
+    const zoneLabel = zone ? formatZoneLabel(zone) : null;
+    // daysLabel is computed below alongside other translated sub-parts
+    const location = zoneLabel ? `${regionLabel} (${zoneLabel})` : regionLabel;
+
+    const avg = (vals: number[]) =>
+      vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+
+    // Weather stats
+    const rainVals = zoneData.map(r => r.precip_mm ?? 0);
+    const totalRain = rainVals.reduce((s, v) => s + v, 0);
+    const rainyDays = rainVals.filter(v => v > 1).length;
+    const tempVals = zoneData.map(r => r.temp_avg).filter((v): v is number => v != null);
+    const avgTemp = avg(tempVals);
+    const humidVals = zoneData.map(r => r.humidity).filter((v): v is number => v != null);
+    const avgHumidity = avg(humidVals);
+    const windVals = zoneData.map(r => r.wind_ms).filter((v): v is number => v != null);
+    const avgWind = avg(windVals);
+
+    // Pressure trend
+    const pressureVals = zoneData.map(r => r.pressure_hpa).filter((v): v is number => v != null);
+    const pHalf = Math.max(1, Math.floor(pressureVals.length / 2));
+    const pressureTrend =
+      pressureVals.length >= 4
+        ? (avg(pressureVals.slice(pHalf)) ?? 0) - (avg(pressureVals.slice(0, pHalf)) ?? 0) > 2
+          ? 'rising'
+          : (avg(pressureVals.slice(pHalf)) ?? 0) - (avg(pressureVals.slice(0, pHalf)) ?? 0) < -2
+          ? 'falling'
+          : null
+        : null;
+
+    // Temp trend
+    const tHalf = Math.max(1, Math.floor(tempVals.length / 2));
+    const tempTrend =
+      tempVals.length >= 4
+        ? (avg(tempVals.slice(tHalf)) ?? 0) - (avg(tempVals.slice(0, tHalf)) ?? 0) > 1.5
+          ? 'warming'
+          : (avg(tempVals.slice(tHalf)) ?? 0) - (avg(tempVals.slice(0, tHalf)) ?? 0) < -1.5
+          ? 'cooling'
+          : null
+        : null;
+
+    // Last significant rain — kept for the chip display only
+    const reversedData = [...zoneData].reverse();
+    const lastRainIdx = reversedData.findIndex(r => (r.precip_mm ?? 0) >= 8);
+    const daysSinceRain = lastRainIdx === -1 ? null : lastRainIdx;
+
+    // Rain-first flush pattern — mirrors the algorithm's rain_first bonus:
+    // wet days 7–10 ago (hist[6:10]) + dry last 4 days (hist[0:4]) = fruiting conditions
+    const minPrecip = 1.5;
+    const days7to10ago = zoneData.length >= 10 ? zoneData.slice(-11, -7) : [];
+    const days1to4ago = zoneData.length >= 5 ? zoneData.slice(-5, -1) : [];
+    const wetEarlyFrac = days7to10ago.length
+      ? days7to10ago.filter(r => (r.precip_mm ?? 0) >= minPrecip).length / days7to10ago.length
+      : 0;
+    const dryRecentFrac = days1to4ago.length
+      ? days1to4ago.filter(r => (r.precip_mm ?? 0) < minPrecip).length / days1to4ago.length
+      : 0;
+    const rainFirstPattern = wetEarlyFrac >= 0.5 && dryRecentFrac >= 0.75;
+
+    // Cumulative rain vs ~20mm species baseline (algorithm default for min_cumulative_rain)
+    // measured over last 14 days — the typical historical window the algorithm uses
+    const last14 = zoneData.slice(-Math.min(14, zoneData.length));
+    const cumRain14 = last14.reduce((s, r) => s + (r.precip_mm ?? 0), 0);
+    const rainSufficient = cumRain14 >= 20;
+    const rainScarce = cumRain14 < 8;
+
+    const flushTempOk = avgTemp != null && avgTemp >= 6 && avgTemp <= 22;
+    const flushHumidOk = avgHumidity != null && avgHumidity >= 65;
+
+    // Score stats
+    const topScore = topSpeciesToday[0]?.score ?? 0;
+    const topSpeciesName = topSpeciesToday[0]?.name ?? null;
+    const latestScores = Object.values(zoneData[zoneData.length - 1]?.scores ?? {});
+    const scoringAbove5 = latestScores.filter(s => s >= 5).length;
+    const scoringAbove3 = latestScores.filter(s => s >= 3).length;
+
+    // Score peak within selected period
+    const scoreByDay = zoneData.map(row => ({
+      date: row.date,
+      mean: avg(Object.values(row.scores ?? {})) ?? 0,
+    }));
+    const peakDay = scoreByDay.reduce((best, cur) => (cur.mean > best.mean ? cur : best), scoreByDay[0]);
+    const peakDaysAgo = peakDay
+      ? zoneData.length - 1 - zoneData.findIndex(r => r.date === peakDay.date)
+      : 0;
+    const currentMeanScore = scoreByDay[scoreByDay.length - 1]?.mean ?? 0;
+
+    // Score momentum: last 3 days vs prior 3
+    const recentRows = zoneData.slice(-3);
+    const priorRows = zoneData.slice(-6, -3);
+    const avgScoreRecent = avg(recentRows.flatMap(r => Object.values(r.scores ?? {})));
+    const avgScorePrior = avg(priorRows.flatMap(r => Object.values(r.scores ?? {})));
+    const scoreMomentum =
+      avgScoreRecent != null && avgScorePrior != null && priorRows.length > 0
+        ? avgScoreRecent - avgScorePrior > 0.3
+          ? 'improving'
+          : avgScoreRecent - avgScorePrior < -0.3
+          ? 'declining'
+          : null
+        : null;
+
+    // Category breakdown of top 5
+    const top5 = topSpeciesToday.slice(0, 5);
+    const categoryCounts: Record<string, number> = {};
+    for (const s of top5) {
+      const cat = speciesCategoryMap.get(s.id) ?? 'other';
+      categoryCounts[cat] = (categoryCounts[cat] ?? 0) + 1;
+    }
+    const dominantCategory =
+      Object.entries(categoryCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? null;
+    // Translate category label
+    const catKey = dominantCategory
+      ? `cat${dominantCategory.charAt(0).toUpperCase()}${dominantCategory.slice(1)}`
+      : null;
+    const catLabel = catKey
+      ? t(`common:data.narrative.${catKey}` as Parameters<typeof t>[0], { defaultValue: dominantCategory ?? '' })
+      : null;
+
+    // Shorthand for narrative keys
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const tn = (key: string, opts?: Record<string, unknown>) =>
+      t(`common:data.narrative.${key}` as Parameters<typeof t>[0], opts as any);
+
+    // Translated sub-parts
+    const daysLabel =
+      days === 365
+        ? tn('yearLabel', { defaultValue: 'the past year' })
+        : tn('daysLabel', { count: days, defaultValue: `the past ${days} days` });
+
+    const catSuffixEsp = catLabel ? tn('catSuffixEspecially', { catLabel, defaultValue: `, especially for ${catLabel}` }) : '';
+    const catSuffixLead = catLabel ? tn('catSuffixLeading', { catLabel, defaultValue: `, with ${catLabel} leading` }) : '';
+    const catSuffixWay = catLabel ? tn('catSuffixLeadingWay', { catLabel, defaultValue: `, with ${catLabel} leading the way` }) : '';
+
+    const tempDescT =
+      avgTemp == null ? ''
+      : avgTemp > 22 ? tn('tempWarm', { defaultValue: 'warm' })
+      : avgTemp > 12 ? tn('tempMild', { defaultValue: 'mild' })
+      : avgTemp > 3  ? tn('tempCool', { defaultValue: 'cool' })
+      : tn('tempCold', { defaultValue: 'cold' });
+
+    const trendSuffixT = tempTrend
+      ? tn('trendSuffix', {
+          trend: tempTrend === 'warming'
+            ? tn('trendWarming', { defaultValue: 'warming' })
+            : tn('trendCooling', { defaultValue: 'cooling' }),
+          defaultValue: `, ${tempTrend} recently`,
+        })
+      : '';
+
+    const humidSuffixT = avgHumidity != null
+      ? tn('humidSuffix', { humidity: avgHumidity.toFixed(0), defaultValue: `, humidity averaging ${avgHumidity.toFixed(0)}%` })
+      : '';
+
+    const rainyDaysStr = tn('rainyDays', { count: rainyDays, defaultValue: `${rainyDays} day${rainyDays !== 1 ? 's' : ''}` });
+
+    const rainDescT =
+      totalRain > 50 ? tn('rainHeavy', { defaultValue: 'heavy' })
+      : totalRain > 15 ? tn('rainModerate', { defaultValue: 'moderate' })
+      : tn('rainLight', { defaultValue: 'light' });
+
+    const sentences: string[] = [];
+
+    // === SENTENCE 1: VERDICT ===
+    if (avgTemp != null && avgTemp < 3) {
+      sentences.push(tn('freezing', { location }));
+    } else if (avgTemp != null && avgTemp > 25) {
+      sentences.push(tn('tooWarm', { location }));
+    } else if (flushTempOk && rainFirstPattern && flushHumidOk) {
+      sentences.push(tn('flushPattern', { location, temp: avgTemp?.toFixed(0), humidity: avgHumidity?.toFixed(0), catSuffix: catSuffixEsp }));
+    } else if (flushTempOk && rainSufficient && flushHumidOk) {
+      sentences.push(tn('wellAligned', { location, cumRain: cumRain14.toFixed(0), temp: avgTemp?.toFixed(0), catSuffix: catSuffixLead }));
+    } else if (flushTempOk && rainScarce) {
+      sentences.push(tn('rainScarce', { location, cumRain: cumRain14.toFixed(0) }));
+    } else if (!flushTempOk && rainSufficient) {
+      sentences.push(tn('rainOkTempWrong', { location, cumRain: cumRain14.toFixed(0), temp: avgTemp?.toFixed(0) }));
+    } else if (flushTempOk && rainSufficient && !flushHumidOk) {
+      sentences.push(tn('rainOkHumidLow', { location, humidity: avgHumidity?.toFixed(0) }));
+    } else if (topScore >= 7) {
+      sentences.push(tn('goodConditions', { location, catSuffix: catSuffixLead, topSpecies: topSpeciesName ?? '', topScore: topScore.toFixed(1) }));
+    } else {
+      const missingParts: string[] = [];
+      if (rainScarce) missingParts.push(tn('missingRain', { cumRain: cumRain14.toFixed(0) }));
+      if (avgTemp != null && !flushTempOk) missingParts.push(tn('missingTemp', { temp: avgTemp.toFixed(0) }));
+      if (avgHumidity != null && !flushHumidOk) missingParts.push(tn('missingHumidity', { humidity: avgHumidity.toFixed(0) }));
+      sentences.push(
+        missingParts.length > 0
+          ? tn('slowMissing', { location, missing: missingParts.join(', ') })
+          : tn('slowSeasonal', { location })
+      );
+    }
+
+    // === SENTENCE 2: RAIN + TEMP CONTEXT ===
+    sentences.push(
+      totalRain > 3
+        ? tn('rainGood', { totalRain: totalRain.toFixed(1), rainDesc: rainDescT, rainyDaysStr, daysLabel })
+        : tn('rainBare', { daysLabel, totalRain: totalRain.toFixed(1) })
+    );
+    if (avgTemp != null) {
+      sentences.push(tn('tempContext', { temp: avgTemp.toFixed(1), tempDesc: tempDescT, trendSuffix: trendSuffixT, humidSuffix: humidSuffixT }));
+    }
+
+    // === SENTENCE 3: SCORE PEAK + MOMENTUM ===
+    if (peakDaysAgo === 0 && topScore > 3) {
+      const climbSuffix = scoreMomentum === 'improving' ? tn('climbSuffix') : '';
+      sentences.push(tn('scorePeakNow', { daysLabel, climbSuffix }));
+    } else if (peakDaysAgo > 0 && peakDay.mean > currentMeanScore + 0.4) {
+      const peakStr = peakDaysAgo === 1
+        ? tn('yesterday')
+        : tn('daysAgo', { count: peakDaysAgo });
+      sentences.push(
+        scoreMomentum === 'declining'
+          ? tn('scorePeakFalling', { peakStr })
+          : tn('scorePeakPast', { peakStr })
+      );
+    } else if (scoreMomentum === 'improving') {
+      sentences.push(tn('scoreMomentumUp'));
+    }
+
+    // === SENTENCE 4: WIND ===
+    if (avgWind != null && avgWind > 8) sentences.push(tn('windStrong', { wind: avgWind.toFixed(1) }));
+    else if (avgWind != null && avgWind > 4) sentences.push(tn('windModerate', { wind: avgWind.toFixed(1) }));
+
+    // === SENTENCE 5: PRESSURE ===
+    if (pressureTrend === 'falling') sentences.push(tn('pressureFalling'));
+    else if (pressureTrend === 'rising') sentences.push(tn('pressureRising'));
+
+    // === SENTENCE 6: DIVERSITY ===
+    if (top5.length > 0) {
+      const diversityKey =
+        scoringAbove5 >= 6 ? 'diversityWide'
+        : scoringAbove5 >= 3 ? 'diversityGood'
+        : scoringAbove3 >= 2 ? 'diversityFew'
+        : 'diversitySlim';
+      sentences.push(tn(diversityKey, { catSuffix: catSuffixWay }));
+    }
+
+    const statChips = [
+      { label: tn('chipRain'), value: `${totalRain.toFixed(1)} mm` },
+      ...(daysSinceRain != null && daysSinceRain <= 14
+        ? [{ label: tn('chipLastRain'), value: daysSinceRain === 0 ? tn('today') : `${daysSinceRain}d ago` }]
+        : []),
+      ...(avgTemp != null ? [{ label: tn('chipTemp'), value: `${avgTemp.toFixed(1)}°C` }] : []),
+      ...(avgHumidity != null ? [{ label: tn('chipHumidity'), value: `${avgHumidity.toFixed(0)}%` }] : []),
+      ...(topScore > 0 ? [{ label: tn('chipTopScore'), value: `${topScore.toFixed(1)} / 10` }] : []),
+      ...(pressureTrend
+        ? [{ label: tn('chipPressure'), value: pressureTrend === 'falling' ? tn('pressureFallingShort') : tn('pressureRisingShort') }]
+        : []),
+    ];
+
+    return { sentences, statChips };
+  }, [zoneData, topSpeciesToday, speciesCategoryMap, region, zone, days, t]);
+
   if (isLoading) {
     return (
       <div className='flex h-full items-center justify-center'>
@@ -512,6 +770,32 @@ export default function DataPage() {
           </button>
         ))}
       </div>
+
+      {/* Dynamic narrative */}
+      {narrativeInsight && (
+        <div className='rounded-lg border bg-muted/20 px-4 py-3 space-y-2.5'>
+          <div className='flex flex-wrap gap-2'>
+            {narrativeInsight.statChips.map(chip => (
+              <div
+                key={chip.label}
+                className='flex flex-col items-center rounded-md border bg-background px-3 py-1.5 text-center min-w-[72px]'
+              >
+                <span className='text-[10px] uppercase tracking-wide text-muted-foreground/60 leading-none mb-0.5'>
+                  {chip.label}
+                </span>
+                <span className='text-sm font-medium leading-tight'>{chip.value}</span>
+              </div>
+            ))}
+          </div>
+          <div className='space-y-1'>
+            {narrativeInsight.sentences.map((s, i) => (
+              <p key={i} className='text-sm text-muted-foreground leading-snug'>
+                {s}
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Charts grid */}
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
