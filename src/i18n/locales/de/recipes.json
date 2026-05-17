@@ -104,7 +104,7 @@
         "Mischen: Gekochten Amarant mit Kräutern, Ei, Mehl, Salz und Pfeffer vermengen.",
         "Formen: Mit feuchten Händen kleine Puffer formen.",
         "Braten: In einer Pfanne mit Öl 3–4 Min. pro Seite goldbraun braten.",
-        "Servieren: Mit Joghurtsoße, Pesto oder als vegetarische Burger-Alternative servieren."
+        "Servieren: Mit Joghurtsosse, Pesto oder als vegetarische Burger-Alternative servieren."
       ],
       "species": ["amaranth", "chickweed", "sorrel", "dandelion"],
       "steps": [
@@ -126,7 +126,7 @@
         },
         {
           "step": 5,
-          "instruction": "Servieren: Mit Joghurtsoße, Pesto oder als vegetarische Burger-Alternative servieren."
+          "instruction": "Servieren: Mit Joghurtsosse, Pesto oder als vegetarische Burger-Alternative servieren."
         }
       ],
       "warnings": [],
@@ -144,13 +144,13 @@
         "1 kleine Schalotte, fein gehackt",
         "1 Knoblauchzehe, gehackt",
         "1 Esslöffel Butter",
-        "100 ml Weißwein (optional)",
+        "100 ml Weisswein (optional)",
         "200 ml Sahne",
         "Salz und schwarzer Pfeffer nach Geschmack",
         "Frischer Thymian (optional)"
       ],
       "instructions": [
-        "Pilze vorbereiten: Getrocknete Pilze 20 Min. in heißem Wasser einweichen, dann abgießen und ausdrücken.",
+        "Pilze vorbereiten: Getrocknete Pilze 20 Min. in heissem Wasser einweichen, dann abgiessen und ausdrücken.",
         "Aromen anbraten: Butter in der Pfanne schmelzen, Schalotte und Knoblauch weich dünsten.",
         "Pilze zugeben: Totentrompeten hinzufügen und 5–7 Min. anbraten.",
         "Ablöschen (optional): Mit Wein ablöschen und auf die Hälfte einkochen lassen.",
@@ -161,7 +161,7 @@
       "steps": [
         {
           "step": 1,
-          "instruction": "Pilze vorbereiten: Getrocknete Pilze 20 Min. in heißem Wasser einweichen, dann abgießen und ausdrücken."
+          "instruction": "Pilze vorbereiten: Getrocknete Pilze 20 Min. in heissem Wasser einweichen, dann abgiessen und ausdrücken."
         },
         {
           "step": 2,
@@ -210,7 +210,7 @@
         "Pilze putzen: Pfifferlinge mit Pinsel oder feuchtem Tuch reinigen.",
         "Basis anbraten: Öl in der Pfanne erhitzen, Lauch weich dünsten. Pfifferlinge zugeben und 5 Min. braten. Salzen.",
         "Füllung vorbereiten: Eier mit Sahne, Kräutern, Salz und Pfeffer verquirlen.",
-        "Zusammenstellen: Blätterteig in eine Form legen, Pilze und Lauch darauf verteilen, Eiermasse darüber gießen.",
+        "Zusammenstellen: Blätterteig in eine Form legen, Pilze und Lauch darauf verteilen, Eiermasse darüber giessen.",
         "Backen: Bei 180°C 25–30 Min. goldbraun backen.",
         "Servieren: Warm oder kalt, ideal für ein Wald-Brunch."
       ],
@@ -230,7 +230,7 @@
         },
         {
           "step": 4,
-          "instruction": "Zusammenstellen: Blätterteig in eine Form legen, Pilze und Lauch darauf verteilen, Eiermasse darüber gießen."
+          "instruction": "Zusammenstellen: Blätterteig in eine Form legen, Pilze und Lauch darauf verteilen, Eiermasse darüber giessen."
         },
         {
           "step": 5,
@@ -266,8 +266,8 @@
         "Walnüsse rösten: In einer Pfanne ohne Öl 3–4 Min. rösten, bis sie duften. Abkühlen lassen.",
         "Kräuter waschen: Vogelmiere und Sauerampfer waschen, vorsichtig mit einem sauberen Tuch trocknen.",
         "Vinaigrette zubereiten: In einer kleinen Schüssel Öl, Essig, Honig, Salz und Pfeffer verrühren.",
-        "Salat mischen: In einer großen Schüssel Vogelmiere, Sauerampfer und Walnüsse vermengen. Mit Vinaigrette beträufeln und leicht mischen.",
-        "Servieren: Sofort als frischen, leicht säuerlichen Salat genießen."
+        "Salat mischen: In einer grossen Schüssel Vogelmiere, Sauerampfer und Walnüsse vermengen. Mit Vinaigrette beträufeln und leicht mischen.",
+        "Servieren: Sofort als frischen, leicht säuerlichen Salat geniessen."
       ],
       "species": ["chickweed", "sorrel", "walnut"],
       "steps": [
@@ -285,11 +285,11 @@
         },
         {
           "step": 4,
-          "instruction": "Salat mischen: In einer großen Schüssel Vogelmiere, Sauerampfer und Walnüsse vermengen. Mit Vinaigrette beträufeln und leicht mischen."
+          "instruction": "Salat mischen: In einer grossen Schüssel Vogelmiere, Sauerampfer und Walnüsse vermengen. Mit Vinaigrette beträufeln und leicht mischen."
         },
         {
           "step": 5,
-          "instruction": "Servieren: Sofort als frischen, leicht säuerlichen Salat genießen."
+          "instruction": "Servieren: Sofort als frischen, leicht säuerlichen Salat geniessen."
         }
       ],
       "warnings": [],
@@ -316,11 +316,11 @@
       "instructions": [
         "Basis anbraten: Butter in einem Topf schmelzen, Zwiebel und Knoblauch weich dünsten.",
         "Pilze zugeben: Wildpilze schneiden und 5 Min. anbraten.",
-        "Kastanien und Brühe zugeben: Kastanien hinzufügen, Brühe angießen. Thymian zugeben.",
+        "Kastanien und Brühe zugeben: Kastanien hinzufügen, Brühe angiessen. Thymian zugeben.",
         "Kochen: Zum Kochen bringen, dann Hitze reduzieren und 20 Min. köcheln lassen.",
         "Pürieren: Thymian entfernen. Mit Stabmixer fein pürieren.",
-        "Abschließen: Nach Wunsch Sahne zugeben, mit Salz und Pfeffer abschmecken.",
-        "Heiß servieren, dazu rustikales Brot oder etwas Trüffelöl."
+        "Abschliessen: Nach Wunsch Sahne zugeben, mit Salz und Pfeffer abschmecken.",
+        "Heiss servieren, dazu rustikales Brot oder etwas Trüffelöl."
       ],
       "species": ["chestnut", "mushroom", "black_chant", "chant"],
       "steps": [
@@ -334,7 +334,7 @@
         },
         {
           "step": 3,
-          "instruction": "Kastanien und Brühe zugeben: Kastanien hinzufügen, Brühe angießen. Thymian zugeben."
+          "instruction": "Kastanien und Brühe zugeben: Kastanien hinzufügen, Brühe angiessen. Thymian zugeben."
         },
         {
           "step": 4,
@@ -346,11 +346,11 @@
         },
         {
           "step": 6,
-          "instruction": "Abschließen: Nach Wunsch Sahne zugeben, mit Salz und Pfeffer abschmecken."
+          "instruction": "Abschliessen: Nach Wunsch Sahne zugeben, mit Salz und Pfeffer abschmecken."
         },
         {
           "step": 7,
-          "instruction": "Heiß servieren, dazu rustikales Brot oder etwas Trüffelöl."
+          "instruction": "Heiss servieren, dazu rustikales Brot oder etwas Trüffelöl."
         }
       ],
       "warnings": [
@@ -422,18 +422,18 @@
         "1 Esslöffel Butter oder Olivenöl",
         "2 mittlere Kartoffeln, geschält und gewürfelt",
         "1 L Gemüsebrühe",
-        "2 große Handvoll frische Brennnesselblätter (mit Handschuhen pflücken!)",
+        "2 grosse Handvoll frische Brennnesselblätter (mit Handschuhen pflücken!)",
         "100 ml Sahne oder Hafermilch (optional)",
         "Salz und Pfeffer nach Geschmack"
       ],
       "instructions": [
         "Aromen anbraten: Butter in einem Topf erhitzen, Zwiebel und Knoblauch weich dünsten.",
         "Kartoffeln zugeben: Kartoffeln zugeben und 5 Min. anbraten.",
-        "Brühe zugeben: Gemüsebrühe angießen und aufkochen.",
+        "Brühe zugeben: Gemüsebrühe angiessen und aufkochen.",
         "Brennnesseln zugeben: Nach 10 Min. Brennnesseln zugeben und weitere 5–7 Min. köcheln lassen.",
         "Pürieren: Suppe mit Stabmixer fein pürieren.",
-        "Abschließen: Nach Wunsch Sahne oder Hafermilch zugeben. Mit Salz und Pfeffer abschmecken.",
-        "Heiß servieren, mit etwas Öl oder Croûtons."
+        "Abschliessen: Nach Wunsch Sahne oder Hafermilch zugeben. Mit Salz und Pfeffer abschmecken.",
+        "Heiss servieren, mit etwas Öl oder Croûtons."
       ],
       "species": ["nettle"],
       "steps": [
@@ -447,7 +447,7 @@
         },
         {
           "step": 3,
-          "instruction": "Brühe zugeben: Gemüsebrühe angießen und aufkochen."
+          "instruction": "Brühe zugeben: Gemüsebrühe angiessen und aufkochen."
         },
         {
           "step": 4,
@@ -459,11 +459,11 @@
         },
         {
           "step": 6,
-          "instruction": "Abschließen: Nach Wunsch Sahne oder Hafermilch zugeben. Mit Salz und Pfeffer abschmecken."
+          "instruction": "Abschliessen: Nach Wunsch Sahne oder Hafermilch zugeben. Mit Salz und Pfeffer abschmecken."
         },
         {
           "step": 7,
-          "instruction": "Heiß servieren, mit etwas Öl oder Croûtons."
+          "instruction": "Heiss servieren, mit etwas Öl oder Croûtons."
         }
       ],
       "warnings": [],
@@ -479,7 +479,7 @@
     "parasol-mushroom-schnitzel": {
       "title": "Parasol-Schnitzel",
       "ingredients": [
-        "2–4 große Parasolhüte",
+        "2–4 grosse Parasolhüte",
         "1 Ei",
         "4 Esslöffel Paniermehl",
         "2 Esslöffel geriebener Parmesan (optional)",
@@ -587,7 +587,7 @@
       "instructions": [
         "Basis anbraten: Butter in einer Pfanne schmelzen, Zwiebel und Knoblauch weich dünsten.",
         "Pilze und Kastanien zugeben: Morcheln und Kastanien zugeben, 5 Min. braten.",
-        "Brot zugeben: Brotwürfel zugeben und vorsichtig mischen. Brühe angießen und vermengen.",
+        "Brot zugeben: Brotwürfel zugeben und vorsichtig mischen. Brühe angiessen und vermengen.",
         "Abschmecken: Thymian, Salz und Pfeffer zugeben. Flüssigkeit aufnehmen lassen.",
         "Backen: In eine Auflaufform geben und bei 180°C 20 Min. goldbraun backen.",
         "Als Beilage zu Braten oder als vegetarisches Hauptgericht servieren."
@@ -604,7 +604,7 @@
         },
         {
           "step": 3,
-          "instruction": "Brot zugeben: Brotwürfel zugeben und vorsichtig mischen. Brühe angießen und vermengen."
+          "instruction": "Brot zugeben: Brotwürfel zugeben und vorsichtig mischen. Brühe angiessen und vermengen."
         },
         {
           "step": 4,
@@ -640,7 +640,7 @@
         "1 Esslöffel Olivenöl"
       ],
       "instructions": [
-        "Brennnesseln blanchieren: Brennnesseln 2 Min. kurz kochen, abgießen und hacken.",
+        "Brennnesseln blanchieren: Brennnesseln 2 Min. kurz kochen, abgiessen und hacken.",
         "Kartoffeln braten: Kartoffeln und Zwiebel in Olivenöl in der Pfanne goldbraun braten.",
         "Brennnesseln zugeben: Gehackte Brennnesseln zugeben und 2 Min. mitbraten.",
         "Eier zugeben: Eier mit Salz und Pfeffer verquirlen, in die Pfanne geben.",
@@ -651,7 +651,7 @@
       "steps": [
         {
           "step": 1,
-          "instruction": "Brennnesseln blanchieren: Brennnesseln 2 Min. kurz kochen, abgießen und hacken."
+          "instruction": "Brennnesseln blanchieren: Brennnesseln 2 Min. kurz kochen, abgiessen und hacken."
         },
         {
           "step": 2,
@@ -798,7 +798,7 @@
         "Minze oder frische Petersilie zum Garnieren"
       ],
       "instructions": [
-        "Artischocken vorbereiten: Äußere Blätter und Heu entfernen. Herzen in feine Scheiben schneiden.",
+        "Artischocken vorbereiten: Äussere Blätter und Heu entfernen. Herzen in feine Scheiben schneiden.",
         "Anbraten: Knoblauch und Artischocken 10 Min. sanft in Öl braten, bis sie weich sind.",
         "Pasta kochen: Pasta in Salzwasser al dente kochen. ½ Tasse Kochwasser aufbewahren.",
         "Vermengen: Pasta mit Artischocken, Zitronensaft und -schale sowie Kochwasser mischen.",
@@ -808,7 +808,7 @@
       "steps": [
         {
           "step": 1,
-          "instruction": "Artischocken vorbereiten: Äußere Blätter und Heu entfernen. Herzen in feine Scheiben schneiden."
+          "instruction": "Artischocken vorbereiten: Äussere Blätter und Heu entfernen. Herzen in feine Scheiben schneiden."
         },
         {
           "step": 2,
@@ -847,7 +847,7 @@
         "Optional: eine Prise Chili"
       ],
       "instructions": [
-        "Spargel blanchieren: Spargel 1 Min. kochen, abgießen und in kaltem Wasser abschrecken.",
+        "Spargel blanchieren: Spargel 1 Min. kochen, abgiessen und in kaltem Wasser abschrecken.",
         "Knoblauch anbraten: Öl in der Pfanne erhitzen, Knoblauch und ggf. Chili zugeben, bis es duftet.",
         "Gemüse zugeben: Spargel und Löwenzahn zugeben, 2–3 Min. anbraten, bis sie zart und leuchtend sind.",
         "Abschmecken: Mit Salz, Pfeffer und Zitronenschale würzen.",
@@ -857,7 +857,7 @@
       "steps": [
         {
           "step": 1,
-          "instruction": "Spargel blanchieren: Spargel 1 Min. kochen, abgießen und in kaltem Wasser abschrecken."
+          "instruction": "Spargel blanchieren: Spargel 1 Min. kochen, abgiessen und in kaltem Wasser abschrecken."
         },
         {
           "step": 2,
@@ -898,7 +898,7 @@
         "Blätter vorbereiten: Bärlauch gründlich waschen und trocknen.",
         "Walnüsse rösten: Walnüsse in der Pfanne leicht rösten. Abkühlen lassen.",
         "Pürieren: Bärlauch, Walnüsse, Parmesan und Zitronensaft in einen Mixer geben. Grob pürieren.",
-        "Öl zugeben: Öl langsam einfließen lassen und weiter pürieren, bis eine Creme entsteht.",
+        "Öl zugeben: Öl langsam einfliessen lassen und weiter pürieren, bis eine Creme entsteht.",
         "Abschmecken: Mit Salz würzen.",
         "Aufbewahren: In einem verschlossenen Glas im Kühlschrank eine Woche haltbar. Lecker zu Pasta, Sandwiches oder Ofengemüse."
       ],
@@ -918,7 +918,7 @@
         },
         {
           "step": 4,
-          "instruction": "Öl zugeben: Öl langsam einfließen lassen und weiter pürieren, bis eine Creme entsteht."
+          "instruction": "Öl zugeben: Öl langsam einfliessen lassen und weiter pürieren, bis eine Creme entsteht."
         },
         {
           "step": 5,
@@ -950,7 +950,7 @@
       "instructions": [
         "Zerdrücken: In einem Glas oder Shaker Erdbeeren, Sauerampfer und Honig leicht zerdrücken.",
         "Zitrone zugeben: Zitronensaft zugeben und umrühren.",
-        "Auffüllen: Glas mit Eis füllen, dann Sprudelwasser aufgießen.",
+        "Auffüllen: Glas mit Eis füllen, dann Sprudelwasser aufgiessen.",
         "Abseihen (optional): Für ein klares Getränk abseihen oder mit Fruchtfleisch servieren.",
         "Garnieren: Mit Erdbeere und Sauerampferblatt dekorieren. Perfektes Sommergetränk."
       ],
@@ -966,7 +966,7 @@
         },
         {
           "step": 3,
-          "instruction": "Auffüllen: Glas mit Eis füllen, dann Sprudelwasser aufgießen."
+          "instruction": "Auffüllen: Glas mit Eis füllen, dann Sprudelwasser aufgiessen."
         },
         {
           "step": 4,

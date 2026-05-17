@@ -9,9 +9,9 @@
   },
   "foragingDisclaimer": {
     "title": "Haftungsausschluss zum Sammeln",
-    "content": "Der Service enthält Rezepte und Informationen zu essbaren Wildpflanzen, Beeren, Nüssen und Pilzen. Trotz größter Sorgfalt hängt der sichere Verzehr von Wildnahrung vollständig von der richtigen Bestimmung, angemessenen Zubereitung und individuellen Gesundheitsbedingungen ab.",
+    "content": "Der Service enthält Rezepte und Informationen zu essbaren Wildpflanzen, Beeren, Nüssen und Pilzen. Trotz grösster Sorgfalt hängt der sichere Verzehr von Wildnahrung vollständig von der richtigen Bestimmung, angemessenen Zubereitung und individuellen Gesundheitsbedingungen ab.",
     "misidentification": "Eine Fehlbestimmung von Wildpflanzen oder Pilzen kann zu allergischen Reaktionen, Vergiftungen oder anderen schwerwiegenden gesundheitlichen Folgen führen. Einige essbare Arten haben giftige Doppelgänger. Konsultiere immer einen lokalen Experten oder verwende einen anerkannten Bestimmungsführer und verzehre nichts, wenn du dir nicht zu 100 % sicher bist.",
-    "preparation": "Einige Wildnahrungen sollten zudem nur in kleinen Mengen oder nach spezieller Zubereitung verzehrt werden, um natürliche Inhaltsstoffe zu neutralisieren. Die vom Service bereitgestellten Rezepte dienen nur zu Bildungszwecken und setzen die korrekte Bestimmung und sachgemäße Handhabung der Zutaten voraus."
+    "preparation": "Einige Wildnahrungen sollten zudem nur in kleinen Mengen oder nach spezieller Zubereitung verzehrt werden, um natürliche Inhaltsstoffe zu neutralisieren. Die vom Service bereitgestellten Rezepte dienen nur zu Bildungszwecken und setzen die korrekte Bestimmung und sachgemässe Handhabung der Zutaten voraus."
   },
   "disclaimer": {
     "title": "Haftungsausschluss",
@@ -27,7 +27,7 @@
   },
   "intellectualProperty": {
     "title": "Geistiges Eigentum",
-    "content": "Alle vom Service bereitgestellten Inhalte, Funktionen und Funktionalitäten, einschließlich Texte, Grafiken und anderer Materialien, sind – sofern nicht anders angegeben – Eigentum des Administrators. Ohne vorherige schriftliche Genehmigung darf kein Teil des Service reproduziert, verbreitet oder verändert werden."
+    "content": "Alle vom Service bereitgestellten Inhalte, Funktionen und Funktionalitäten, einschliesslich Texte, Grafiken und anderer Materialien, sind – sofern nicht anders angegeben – Eigentum des Administrators. Ohne vorherige schriftliche Genehmigung darf kein Teil des Service reproduziert, verbreitet oder verändert werden."
   },
   "prohibitedUse": {
     "title": "Unzulässige Nutzung",
@@ -43,7 +43,7 @@
   },
   "governingLaw": {
     "title": "Anwendbares Recht",
-    "content": "Diese Bedingungen unterliegen dem Recht der Schweiz und werden nach diesem ausgelegt. Für Streitigkeiten im Zusammenhang mit der Nutzung des Service sind ausschließlich die Gerichte der Schweiz zuständig."
+    "content": "Diese Bedingungen unterliegen dem Recht der Schweiz und werden nach diesem ausgelegt. Für Streitigkeiten im Zusammenhang mit der Nutzung des Service sind ausschliesslich die Gerichte der Schweiz zuständig."
   },
   "contact": {
     "title": "Kontakt",

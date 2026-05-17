@@ -66,7 +66,7 @@
     },
     "mushroom": {
       "name": "Boletus",
-      "description": "Auch als Herrenpilz bekannt, geschätzter Pilz mit braunem Hut und weißen oder gelben Röhren",
+      "description": "Auch als Herrenpilz bekannt, geschätzter Pilz mit braunem Hut und weissen oder gelben Röhren",
       "howTo": "Kommt in Nadel- und Laubwäldern vor, oft in der Nähe von Kiefern"
     },
     "morel": {
@@ -76,7 +76,7 @@
     },
     "blackberry": {
       "name": "Brombeere",
-      "description": "Süße, dunkelviolette Beeren, die an dornigen Sträuchern wachsen",
+      "description": "Süsse, dunkelviolette Beeren, die an dornigen Sträuchern wachsen",
       "howTo": "Zu finden in Hecken, Waldrändern und gestörten Gebieten im Spätsommer"
     },
     "elderberry": {
@@ -96,13 +96,13 @@
     },
     "hazelnut": {
       "name": "Haselnuss",
-      "description": "Süße, runde Nüsse, die an Haselsträuchern wachsen",
+      "description": "Süsse, runde Nüsse, die an Haselsträuchern wachsen",
       "howTo": "Suche Haselsträucher in Hecken und Waldrändern im Herbst"
     },
     "garlic": {
       "name": "Bärlauch",
-      "description": "Kräftig duftendes Kraut mit breiten Blättern und weißen Blüten",
-      "howTo": "Zu finden in Laubwäldern im Frühling, oft in großen Beständen"
+      "description": "Kräftig duftendes Kraut mit breiten Blättern und weissen Blüten",
+      "howTo": "Zu finden in Laubwäldern im Frühling, oft in grossen Beständen"
     },
     "chickenOfTheWoods": {
       "name": "Schwefelporling",
@@ -111,27 +111,27 @@
     },
     "oysterMushroom": {
       "name": "Austernpilz",
-      "description": "Weiß-grauer Pilz mit fächerförmigem Hut, wächst in Büscheln an Totholz",
+      "description": "Weiss-grauer Pilz mit fächerförmigem Hut, wächst in Büscheln an Totholz",
       "howTo": "Zu finden an totem Holz, besonders Buche und Eiche, im Herbst und Winter"
     },
     "shiitake": {
       "name": "Shiitake",
-      "description": "Pilz mit braunem Hut und weißen Lamellen, in der asiatischen Küche sehr geschätzt",
+      "description": "Pilz mit braunem Hut und weissen Lamellen, in der asiatischen Küche sehr geschätzt",
       "howTo": "Wächst an totem Laubholz, besonders Eiche und Buche, im Frühling und Herbst"
     },
     "raspberry": {
       "name": "Waldhimbeere",
-      "description": "Süße rote Beeren an dornigen Ruten mit charakteristischen gefiederten Blättern",
+      "description": "Süsse rote Beeren an dornigen Ruten mit charakteristischen gefiederten Blättern",
       "howTo": "Suche Himbeersträucher in Hecken, Waldrändern und gestörten Gebieten im Sommer"
     },
     "blueberry": {
       "name": "Waldheidelbeere",
-      "description": "Kleine, süße blaue Beeren an niedrigen Sträuchern auf saurem Boden",
+      "description": "Kleine, süsse blaue Beeren an niedrigen Sträuchern auf saurem Boden",
       "howTo": "Zu finden in Heiden, Mooren und sauren Wäldern im Sommer und Frühherbst"
     },
     "strawberry": {
       "name": "Walderdbeere",
-      "description": "Kleine, aromatische rote Beeren mit weißen Blüten und dreiteiligen Blättern",
+      "description": "Kleine, aromatische rote Beeren mit weissen Blüten und dreiteiligen Blättern",
       "howTo": "Zu finden auf Wiesen, Waldrändern und Grasflächen im Frühling und Sommer"
     },
     "wildMint": {
@@ -141,7 +141,7 @@
     },
     "chickweed": {
       "name": "Vogelmiere",
-      "description": "Niedrig wachsende Pflanze mit kleinen weißen Blüten und ovalen Blättern, sehr nahrhaft",
+      "description": "Niedrig wachsende Pflanze mit kleinen weissen Blüten und ovalen Blättern, sehr nahrhaft",
       "howTo": "Häufig in Gärten, gestörten Gebieten und Wiesen während der Wachstumszeit"
     },
     "plantain": {
@@ -151,27 +151,27 @@
     },
     "walnut": {
       "name": "Walnuss",
-      "description": "Große, runde Nüsse mit harter Schale und aromatischem, ölhaltigem Kern",
+      "description": "Grosse, runde Nüsse mit harter Schale und aromatischem, ölhaltigem Kern",
       "howTo": "Suche Walnussbäume in Parks, Gärten und Waldrändern im Herbst"
     },
     "chestnut": {
       "name": "Esskastanie",
-      "description": "Große, süße Nüsse in stacheligen grünen Hüllen, die bei Reife aufplatzen",
+      "description": "Grosse, süsse Nüsse in stacheligen grünen Hüllen, die bei Reife aufplatzen",
       "howTo": "Zu finden in Kastanienhainen und Mischwäldern im Herbst, oft in der Nähe von Wegen"
     },
     "elderflower": {
       "name": "Holunderblüte",
-      "description": "Cremeweiße Blüten in großen, flachen Dolden an Holunderbäumen",
+      "description": "Cremeweisse Blüten in grossen, flachen Dolden an Holunderbäumen",
       "howTo": "Suche Holunderbäume in Hecken und Waldrändern im späten Frühling und Frühsommer"
     },
     "daisy": {
       "name": "Gänseblümchen",
-      "description": "Kleine weiße Blüten mit gelber Mitte, wachsen bodennah",
+      "description": "Kleine weisse Blüten mit gelber Mitte, wachsen bodennah",
       "howTo": "Häufig auf Rasenflächen, Wiesen und Grasflächen im Frühling und Sommer"
     },
     "violets": {
       "name": "Duftveilchen",
-      "description": "Kleine violette Blüten mit herzförmigen Blättern und süßem Duft",
+      "description": "Kleine violette Blüten mit herzförmigen Blättern und süssem Duft",
       "howTo": "Zu finden an Waldrändern, in Hecken und schattigen Bereichen im zeitigen Frühling"
     },
     "maitake": {
@@ -206,12 +206,12 @@
     },
     "masterwort": {
       "name": "Meisterwurz",
-      "description": "Mehrjährige Pflanze mit aromatischen Blättern und weißen Doldenblüten, verwendet in der traditionellen Medizin und als Gewürz.",
+      "description": "Mehrjährige Pflanze mit aromatischen Blättern und weissen Doldenblüten, verwendet in der traditionellen Medizin und als Gewürz.",
       "howTo": "Findet man auf Bergwiesen und in lichten Waldlichtungen; sammle Blätter und Wurzeln im Frühling und Sommer."
     },
     "parasol": {
       "name": "Parasolpilz",
-      "description": "Großer Pilz mit breitem, schuppigem Hut, der einem Regenschirm ähnelt, jung essbar.",
+      "description": "Grosser Pilz mit breitem, schuppigem Hut, der einem Regenschirm ähnelt, jung essbar.",
       "howTo": "Suche auf Wiesen, Weiden und an Waldrändern von Spätsommer bis Herbst."
     },
     "sorrel": {
@@ -221,7 +221,7 @@
     },
     "st_george": {
       "name": "Georgsritterling",
-      "description": "Fester, weißer Pilz mit mehlartigem Geruch, erscheint um den Georgstag im Frühling.",
+      "description": "Fester, weisser Pilz mit mehlartigem Geruch, erscheint um den Georgstag im Frühling.",
       "howTo": "Findet man auf Wiesen, Weiden und an Waldrändern im Frühling."
     },
     "truffle_b": {
