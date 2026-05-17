@@ -365,7 +365,9 @@ export default function DataPage() {
     const regionLabel = t(`common:data.regions.${region}`, {
       defaultValue: REGIONS.find(r => r.id === region)?.label ?? region,
     });
-    const zoneLabel = zone ? formatZoneLabel(zone) : null;
+    const zoneLabel = zone
+      ? (t(`common:data.zones.${zone}` as Parameters<typeof t>[0], { defaultValue: formatZoneLabel(zone) }) as unknown as string)
+      : null;
     // daysLabel is computed below alongside other translated sub-parts
     const location = zoneLabel ? `${regionLabel} (${zoneLabel})` : regionLabel;
 
@@ -732,7 +734,7 @@ export default function DataPage() {
           {zone
             ? t('common:data.selectedZone', {
                 defaultValue: 'Selected: {{zone}} — click again to show all',
-                zone: formatZoneLabel(zone),
+                zone: t(`common:data.zones.${zone}` as Parameters<typeof t>[0], { defaultValue: formatZoneLabel(zone) }),
               })
             : t('common:data.clickZone', {
                 defaultValue: 'Showing all zones — click one to filter',
