@@ -2,7 +2,7 @@ import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
 import type { Layer, PathOptions } from 'leaflet';
-import { formatZoneLabel } from '@/lib/data-nerd';
+import { formatZoneLabel } from '@/lib/data';
 
 // Leaflet bounds type: [[south, west], [north, east]]
 type LatLngBounds = [[number, number], [number, number]];

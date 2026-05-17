@@ -16,12 +16,12 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, Download } from 'lucide-react';
 import {
-  loadDataNerdDataset,
+  loadForagingDataset,
   formatZoneLabel,
-  type DataNerdDataset,
-  type DataNerdRow,
+  type ForagingDataset,
+  type ForagingRow,
   type RegionId,
-} from '@/lib/data-nerd';
+} from '@/lib/data';
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
 
@@ -195,11 +195,11 @@ function ChartCard({ title, children }: ChartCardProps) {
   );
 }
 
-export default function DataNerdPage() {
+export default function DataPage() {
   const { t } = useTranslation(['sidebar', 'common']);
   const speciesData = useSpeciesData();
 
-  const [dataset, setDataset] = useState<DataNerdDataset | null>(null);
+  const [dataset, setDataset] = useState<ForagingDataset | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [region, setRegion] = useState<RegionId>('NE');
@@ -212,7 +212,7 @@ export default function DataNerdPage() {
     let cancelled = false;
     setIsLoading(true);
     setLoadError(null);
-    loadDataNerdDataset()
+    loadForagingDataset()
       .then(data => {
         if (cancelled) return;
         setDataset(data);
@@ -256,7 +256,7 @@ export default function DataNerdPage() {
     }
 
     // Aggregate all zones: group by date and average
-    const byDate = new Map<string, DataNerdRow[]>();
+    const byDate = new Map<string, ForagingRow[]>();
     for (const row of regionData) {
       const rows = byDate.get(row.date) ?? [];
       rows.push(row);
@@ -273,9 +273,9 @@ export default function DataNerdPage() {
       'pressure_hpa',
     ] as const;
 
-    const aggregated: DataNerdRow[] = [];
+    const aggregated: ForagingRow[] = [];
     for (const [date, rows] of byDate) {
-      const entry: DataNerdRow = { date, zone: '' };
+      const entry: ForagingRow = { date, zone: '' };
       for (const key of weatherKeys) {
         const vals = rows
           .map(r => r[key])
@@ -382,15 +382,15 @@ export default function DataNerdPage() {
 
   return (
     <div className='flex flex-col gap-6 p-4 md:p-6'>
-      <SEO title={t('sidebar:dataNerd', { defaultValue: 'Data' })} />
+      <SEO title={t('sidebar:data', { defaultValue: 'Data' })} />
 
       {/* Header */}
       <div className='text-center'>
         <h1 className='mb-2 text-4xl font-bold text-text-primary'>
-          {t('sidebar:dataNerd', { defaultValue: 'Data' })}
+          {t('sidebar:data', { defaultValue: 'Data' })}
         </h1>
         <p className='text-sm text-text-secondary'>
-          {t('common:dataNerd.subtitle', {
+          {t('common:data.subtitle', {
             defaultValue:
               'Explore the data behind the foraging recommendations.',
           })}
@@ -402,7 +402,7 @@ export default function DataNerdPage() {
         {/* Europe regions */}
         <div className='flex flex-col gap-0.5'>
           <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
-            {t('common:dataNerd.europe', { defaultValue: 'Europe' })}
+            {t('common:data.europe', { defaultValue: 'Europe' })}
           </span>
           <div className='flex gap-1'>
             {REGIONS.filter(r => r.id === 'NE' || r.id === 'SE').map(r => (
@@ -415,7 +415,7 @@ export default function DataNerdPage() {
                       : 'hover:bg-muted text-muted-foreground'
                   }`}
                 >
-                  {t(`common:dataNerd.regions.${r.id}`, {
+                  {t(`common:data.regions.${r.id}`, {
                     defaultValue: r.label,
                   })}
                 </button>
@@ -435,7 +435,7 @@ export default function DataNerdPage() {
         {/* US regions */}
         <div className='flex flex-col gap-0.5'>
           <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
-            {t('common:dataNerd.unitedStates', {
+            {t('common:data.unitedStates', {
               defaultValue: 'United States',
             })}
           </span>
@@ -450,7 +450,7 @@ export default function DataNerdPage() {
                       : 'hover:bg-muted text-muted-foreground'
                   }`}
                 >
-                  {t(`common:dataNerd.regions.${r.id}`, {
+                  {t(`common:data.regions.${r.id}`, {
                     defaultValue: r.label,
                   })}
                 </button>
@@ -472,11 +472,11 @@ export default function DataNerdPage() {
       <div className='flex flex-col gap-1'>
         <p className='text-xs text-muted-foreground'>
           {zone
-            ? t('common:dataNerd.selectedZone', {
+            ? t('common:data.selectedZone', {
                 defaultValue: 'Selected: {{zone}} — click again to show all',
                 zone: formatZoneLabel(zone),
               })
-            : t('common:dataNerd.clickZone', {
+            : t('common:data.clickZone', {
                 defaultValue: 'Showing all zones — click one to filter',
               })}
         </p>
@@ -517,7 +517,7 @@ export default function DataNerdPage() {
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {/* Rainfall */}
         <ChartCard
-          title={t('common:dataNerd.charts.rainfall', {
+          title={t('common:data.charts.rainfall', {
             defaultValue: 'Rainfall (mm)',
           })}
         >
@@ -536,7 +536,7 @@ export default function DataNerdPage() {
               <Tooltip
                 formatter={(v: unknown) => [
                   `${v} mm`,
-                  t('common:dataNerd.charts.rainfall', {
+                  t('common:data.charts.rainfall', {
                     defaultValue: 'Rainfall',
                   }),
                 ]}
@@ -546,7 +546,7 @@ export default function DataNerdPage() {
                 dataKey='precip_mm'
                 fill='#7aace0'
                 radius={[3, 3, 0, 0]}
-                name={t('common:dataNerd.charts.rainfall', {
+                name={t('common:data.charts.rainfall', {
                   defaultValue: 'Rainfall',
                 })}
               />
@@ -556,7 +556,7 @@ export default function DataNerdPage() {
 
         {/* Temperature */}
         <ChartCard
-          title={t('common:dataNerd.charts.temperature', {
+          title={t('common:data.charts.temperature', {
             defaultValue: 'Temperature (°C)',
           })}
         >
@@ -579,21 +579,21 @@ export default function DataNerdPage() {
                 stroke='#c4909c'
                 dot={false}
                 strokeWidth={1.5}
-                name={t('common:dataNerd.tempMax', { defaultValue: 'Max' })}
+                name={t('common:data.tempMax', { defaultValue: 'Max' })}
               />
               <Line
                 dataKey='temp_avg'
                 stroke='#d4a870'
                 dot={false}
                 strokeWidth={2}
-                name={t('common:dataNerd.tempAvg', { defaultValue: 'Avg' })}
+                name={t('common:data.tempAvg', { defaultValue: 'Avg' })}
               />
               <Line
                 dataKey='temp_min'
                 stroke='#96be9a'
                 dot={false}
                 strokeWidth={1.5}
-                name={t('common:dataNerd.tempMin', { defaultValue: 'Min' })}
+                name={t('common:data.tempMin', { defaultValue: 'Min' })}
                 strokeDasharray='4 2'
               />
             </LineChart>
@@ -602,7 +602,7 @@ export default function DataNerdPage() {
 
         {/* Humidity */}
         <ChartCard
-          title={t('common:dataNerd.charts.humidity', {
+          title={t('common:data.charts.humidity', {
             defaultValue: 'Humidity (%)',
           })}
         >
@@ -621,7 +621,7 @@ export default function DataNerdPage() {
               <Tooltip
                 formatter={(v: unknown) => [
                   `${v}%`,
-                  t('common:dataNerd.charts.humidity', {
+                  t('common:data.charts.humidity', {
                     defaultValue: 'Humidity',
                   }),
                 ]}
@@ -632,7 +632,7 @@ export default function DataNerdPage() {
                 stroke='#d4a870'
                 dot={false}
                 strokeWidth={2}
-                name={t('common:dataNerd.charts.humidity', {
+                name={t('common:data.charts.humidity', {
                   defaultValue: 'Humidity',
                 })}
               />
@@ -642,13 +642,13 @@ export default function DataNerdPage() {
 
         {/* Top species today */}
         <ChartCard
-          title={t('common:dataNerd.charts.topSpecies', {
+          title={t('common:data.charts.topSpecies', {
             defaultValue: 'Top Foraging Species — Latest Scores',
           })}
         >
           {topSpeciesToday.length === 0 ? (
             <div className='flex items-center justify-center h-[220px] text-sm text-muted-foreground'>
-              {t('common:dataNerd.noData', {
+              {t('common:data.noData', {
                 defaultValue: 'No data for selected zone',
               })}
             </div>
@@ -670,14 +670,14 @@ export default function DataNerdPage() {
                 <Tooltip
                   formatter={(v: unknown) => [
                     (v as number).toFixed(1),
-                    t('common:dataNerd.score', { defaultValue: 'Score' }),
+                    t('common:data.score', { defaultValue: 'Score' }),
                   ]}
                 />
                 <Bar
                   dataKey='score'
                   fill='#96be9a'
                   radius={[0, 3, 3, 0]}
-                  name={t('common:dataNerd.score', { defaultValue: 'Score' })}
+                  name={t('common:data.score', { defaultValue: 'Score' })}
                 />
               </BarChart>
             </ResponsiveContainer>
@@ -689,7 +689,7 @@ export default function DataNerdPage() {
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {/* Left: Wind & Pressure */}
         <ChartCard
-          title={t('common:dataNerd.charts.windPressure', {
+          title={t('common:data.charts.windPressure', {
             defaultValue: 'Wind & Pressure',
           })}
         >
@@ -725,7 +725,7 @@ export default function DataNerdPage() {
                 dataKey='wind_ms'
                 fill='#b07080'
                 radius={[3, 3, 0, 0]}
-                name={t('common:dataNerd.charts.wind', {
+                name={t('common:data.charts.wind', {
                   defaultValue: 'Wind (m/s)',
                 })}
               />
@@ -735,7 +735,7 @@ export default function DataNerdPage() {
                 stroke='#c9a227'
                 dot={false}
                 strokeWidth={2}
-                name={t('common:dataNerd.charts.pressure', {
+                name={t('common:data.charts.pressure', {
                   defaultValue: 'Pressure (hPa)',
                 })}
               />
@@ -746,13 +746,13 @@ export default function DataNerdPage() {
         {/* Right: species picker + score over time */}
         {availableSpecies.length > 0 && (
           <ChartCard
-            title={t('common:dataNerd.charts.speciesScore', {
+            title={t('common:data.charts.speciesScore', {
               defaultValue: 'Score Over Time',
             })}
           >
             <div className='flex flex-wrap items-center gap-2 mb-3'>
               <span className='text-xs font-medium uppercase tracking-wide text-muted-foreground/60 shrink-0'>
-                {t('common:dataNerd.species', { defaultValue: 'Species' })}
+                {t('common:data.species', { defaultValue: 'Species' })}
               </span>
               <select
                 value={resolvedSpecies}
@@ -768,7 +768,7 @@ export default function DataNerdPage() {
             </div>
             {speciesOverTime.length === 0 ? (
               <div className='flex items-center justify-center h-[180px] text-sm text-muted-foreground'>
-                {t('common:dataNerd.noData', {
+                {t('common:data.noData', {
                   defaultValue: 'No data for selected zone',
                 })}
               </div>
@@ -788,7 +788,7 @@ export default function DataNerdPage() {
                   <Tooltip
                     formatter={(v: unknown) => [
                       (v as number).toFixed(2),
-                      t('common:dataNerd.score', { defaultValue: 'Score' }),
+                      t('common:data.score', { defaultValue: 'Score' }),
                     ]}
                     labelFormatter={(l: unknown) => formatDate(String(l))}
                   />
@@ -797,7 +797,7 @@ export default function DataNerdPage() {
                     stroke={speciesLineColor}
                     dot={false}
                     strokeWidth={2}
-                    name={t('common:dataNerd.score', {
+                    name={t('common:data.score', {
                       defaultValue: 'Score',
                     })}
                   />

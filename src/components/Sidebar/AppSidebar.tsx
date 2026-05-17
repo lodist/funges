@@ -52,8 +52,8 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
         isActive: false,
       },
       {
-        title: t('dataNerd'),
-        url: `${basePath}data-nerd`,
+        title: t('data'),
+        url: `${basePath}data`,
         icon: BarChart2,
         isActive: false,
       },

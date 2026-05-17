@@ -150,7 +150,7 @@
     "description": "Mostra la barra laterale mobile.",
     "toggle": "Attiva/Disattiva barra laterale"
   },
-  "dataNerd": {
+  "data": {
     "subtitle": "Esplora i dati dietro le raccomandazioni di raccolta.",
     "europe": "Europa",
     "unitedStates": "Stati Uniti",

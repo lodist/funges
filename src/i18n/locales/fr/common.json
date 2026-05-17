@@ -138,7 +138,7 @@
     "title": "Fung.es",
     "subtitle": "Application de cueillette de champignons"
   },
-  "dataNerd": {
+  "data": {
     "subtitle": "Explorez les données derrière les recommandations de cueillette.",
     "europe": "Europe",
     "unitedStates": "États-Unis",

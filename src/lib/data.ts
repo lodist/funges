@@ -1,6 +1,6 @@
 export type RegionId = 'NE' | 'SE' | 'USE' | 'USW';
 
-export interface DataNerdRow {
+export interface ForagingRow {
   date: string;
   zone: string;
   precip_mm?: number;
@@ -13,34 +13,34 @@ export interface DataNerdRow {
   scores?: Record<string, number>;
 }
 
-export interface DataNerdRegion {
+export interface ForagingRegion {
   label: string;
   zones: string[];
   zones_geo: GeoJSON.FeatureCollection;
-  data: DataNerdRow[];
+  data: ForagingRow[];
 }
 
-export interface DataNerdDataset {
+export interface ForagingDataset {
   updated_at: string;
   days: number;
-  regions: Record<RegionId, DataNerdRegion>;
+  regions: Record<RegionId, ForagingRegion>;
 }
 
 const DATA_NERD_URL = `${import.meta.env.BASE_URL}data/data_nerd.json`;
 const STORAGE_KEY = 'data-nerd:v10';
 const STORAGE_TTL_MS = 3 * 60 * 60 * 1000;
 
-let cached: DataNerdDataset | null = null;
-let cachedPromise: Promise<DataNerdDataset> | null = null;
+let cached: ForagingDataset | null = null;
+let cachedPromise: Promise<ForagingDataset> | null = null;
 
 interface StoragePayload {
   cachedAt: number;
-  dataset: DataNerdDataset;
+  dataset: ForagingDataset;
 }
 
-function isDataNerdDataset(v: unknown): v is DataNerdDataset {
+function isForagingDataset(v: unknown): v is ForagingDataset {
   if (!v || typeof v !== 'object') return false;
-  const c = v as Partial<DataNerdDataset>;
+  const c = v as Partial<ForagingDataset>;
   return (
     typeof c.updated_at === 'string' &&
     typeof c.days === 'number' &&
@@ -48,7 +48,7 @@ function isDataNerdDataset(v: unknown): v is DataNerdDataset {
   );
 }
 
-function readStorage(): DataNerdDataset | null {
+function readStorage(): ForagingDataset | null {
   if (typeof window === 'undefined') return null;
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -56,7 +56,7 @@ function readStorage(): DataNerdDataset | null {
     const parsed = JSON.parse(raw) as Partial<StoragePayload>;
     if (
       typeof parsed.cachedAt !== 'number' ||
-      !isDataNerdDataset(parsed.dataset)
+      !isForagingDataset(parsed.dataset)
     )
       return null;
     if (Date.now() - parsed.cachedAt > STORAGE_TTL_MS) {
@@ -69,7 +69,7 @@ function readStorage(): DataNerdDataset | null {
   }
 }
 
-function writeStorage(dataset: DataNerdDataset) {
+function writeStorage(dataset: ForagingDataset) {
   if (typeof window === 'undefined') return;
   try {
     window.localStorage.setItem(
@@ -81,7 +81,7 @@ function writeStorage(dataset: DataNerdDataset) {
   }
 }
 
-export async function loadDataNerdDataset(): Promise<DataNerdDataset> {
+export async function loadForagingDataset(): Promise<ForagingDataset> {
   if (cached) return cached;
 
   const local = readStorage();
@@ -97,7 +97,7 @@ export async function loadDataNerdDataset(): Promise<DataNerdDataset> {
       .then(async res => {
         if (!res.ok) throw new Error('Failed to load data nerd dataset');
         const data = (await res.json()) as unknown;
-        if (!isDataNerdDataset(data))
+        if (!isForagingDataset(data))
           throw new Error('Data nerd dataset is malformed');
         cached = data;
         writeStorage(data);

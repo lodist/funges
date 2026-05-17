@@ -17,7 +17,7 @@ const items = [
   { url: `${basePath}worth-foraging-now`, icon: CalendarRange },
   { url: `${basePath}recipes`, icon: ChefHat },
   { url: `${basePath}species`, icon: Database },
-  { url: `${basePath}data-nerd`, icon: BarChart2 },
+  { url: `${basePath}data`, icon: BarChart2 },
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];
 interface MobileNavbarProps {

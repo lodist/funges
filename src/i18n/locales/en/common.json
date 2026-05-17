@@ -150,7 +150,7 @@
     "description": "Displays the mobile sidebar.",
     "toggle": "Toggle Sidebar"
   },
-  "dataNerd": {
+  "data": {
     "subtitle": "Explore the data behind the foraging recommendations.",
     "europe": "Europe",
     "unitedStates": "United States",
