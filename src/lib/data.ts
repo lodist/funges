@@ -27,7 +27,7 @@ export interface ForagingDataset {
 }
 
 const DATA_NERD_URL = `${import.meta.env.BASE_URL}data/data_nerd.json`;
-const STORAGE_KEY = 'data-nerd:v10';
+const STORAGE_KEY = 'data:v10';
 const STORAGE_TTL_MS = 3 * 60 * 60 * 1000;
 
 let cached: ForagingDataset | null = null;

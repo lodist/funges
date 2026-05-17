@@ -53,7 +53,7 @@ jobs:
         run: python scripts/generate_scores_metadata.py
 
       - name: Generate data nerd JSON
-        run: python scripts/generate_data_nerd.py
+        run: python scripts/generate_data.py
 
       - name: Show changes
         run: |
