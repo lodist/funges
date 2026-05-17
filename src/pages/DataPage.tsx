@@ -15,9 +15,7 @@ import {
   ResponsiveContainer,
   Legend,
   ReferenceLine,
-  ReferenceArea,
 } from 'recharts';
-import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, Download } from 'lucide-react';
 import {
@@ -254,13 +252,7 @@ export default function DataPage() {
       })
       .catch(err => {
         if (cancelled) return;
-        setLoadError(
-          err instanceof Error
-            ? err.message
-            : t('common:error.loadFailed', {
-                defaultValue: 'Failed to load data',
-              })
-        );
+        setLoadError(err instanceof Error ? err.message : 'Failed to load data');
       })
       .finally(() => {
         if (!cancelled) setIsLoading(false);
@@ -268,7 +260,7 @@ export default function DataPage() {
     return () => {
       cancelled = true;
     };
-  }, [t]);
+  }, []);
 
   const zones = useMemo(
     () => dataset?.regions[region]?.zones ?? [],
@@ -656,22 +648,8 @@ export default function DataPage() {
 
   if (isLoading) {
     return (
-      <div className='p-4 space-y-4 max-w-5xl mx-auto'>
-        <div className='flex gap-2'>
-          {[80, 96, 72, 88].map(w => <Skeleton key={w} className='h-8 rounded-full' style={{ width: w }} />)}
-        </div>
-        <Skeleton className='h-80 w-full rounded-lg' />
-        <div className='flex gap-2'>
-          {[48, 56, 56, 64, 72].map(w => <Skeleton key={w} className='h-8 rounded-md' style={{ width: w }} />)}
-        </div>
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-          {[0, 1, 2, 3].map(i => (
-            <div key={i} className='rounded-lg border p-4 space-y-3'>
-              <Skeleton className='h-4 w-32' />
-              <Skeleton className='h-[200px] w-full' />
-            </div>
-          ))}
-        </div>
+      <div className='flex h-full items-center justify-center p-8'>
+        <Loader2 className='h-6 w-6 animate-spin text-muted-foreground' />
       </div>
     );
   }
@@ -732,7 +710,7 @@ export default function DataPage() {
                   href={REGION_FILES[r.id][0].url}
                   target='_blank'
                   rel='noreferrer'
-                  className='flex items-center justify-center py-1 rounded-md border hover:bg-muted transition-colors text-muted-foreground'
+                  className='flex items-center justify-center py-1 rounded-md border hover:bg-muted transition-colors text-muted-foreground outline-none'
                 >
                   <Download className='h-3.5 w-3.5' />
                 </a>
@@ -767,7 +745,7 @@ export default function DataPage() {
                   href={REGION_FILES[r.id][0].url}
                   target='_blank'
                   rel='noreferrer'
-                  className='flex items-center justify-center py-1 rounded-md border hover:bg-muted transition-colors text-muted-foreground'
+                  className='flex items-center justify-center py-1 rounded-md border hover:bg-muted transition-colors text-muted-foreground outline-none'
                 >
                   <Download className='h-3.5 w-3.5' />
                 </a>
@@ -806,7 +784,7 @@ export default function DataPage() {
         </Suspense>
       </div>
 
-      {/* Days filter — below the map, above the charts */}
+      {/* Days filter */}
       <div className='flex rounded-lg border overflow-hidden w-fit text-sm'>
         {DAY_OPTIONS.map(d => (
           <button
@@ -1013,9 +991,6 @@ export default function DataPage() {
                     labelFormatter={(l: unknown) => formatDate(String(l))}
                     contentStyle={TOOLTIP_STYLE}
                   />
-                  <ReferenceArea y1={0} y2={3} fill='#ef4444' fillOpacity={0.04} />
-                  <ReferenceArea y1={3} y2={6} fill='#f59e0b' fillOpacity={0.04} />
-                  <ReferenceArea y1={6} y2={10} fill='#22c55e' fillOpacity={0.04} />
                   <Area
                     type='monotone'
                     dataKey='score'

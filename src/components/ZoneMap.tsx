@@ -1,6 +1,7 @@
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
+import { useTranslation } from 'react-i18next';
 import type { Layer, PathOptions } from 'leaflet';
 import { formatZoneLabel } from '@/lib/data';
 
@@ -68,6 +69,7 @@ export default function ZoneMap({
   region,
   zoneLabelFn,
 }: ZoneMapProps) {
+  const { i18n } = useTranslation();
   const geoJsonRef = useRef<L.GeoJSON | null>(null);
   // Updated synchronously every render so event-handler closures always read the latest value
   const getRestoreStyle = useRef<(zone: string, color: string) => PathOptions>(
@@ -146,7 +148,7 @@ export default function ZoneMap({
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           />
           <GeoJSON
-            key={region}
+            key={`${region}-${i18n.language}`}
             ref={geoJsonRef}
             data={zonesGeo}
             style={feature =>
