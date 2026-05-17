@@ -15,7 +15,12 @@ const MOCK_DATASET = {
     USW: [],
   },
   points: [
-    { regionId: 'NE', lat: 47.6, lng: 7.6, scores: { morel: 9.1, nettle: 8.4, chant: 7.8 } },
+    {
+      regionId: 'NE',
+      lat: 47.6,
+      lng: 7.6,
+      scores: { morel: 9.1, nettle: 8.4, chant: 7.8 },
+    },
   ],
 };
 
@@ -60,7 +65,9 @@ test.describe('worth foraging now page', () => {
     // Wait for loading to disappear
     await expect(page.getByText(/loading/i)).not.toBeVisible({ timeout: 5000 });
     // At least one recommendation card should be present
-    await expect(page.getByText(/why this is worth your time/i).first()).toBeVisible();
+    await expect(
+      page.getByText(/why this is worth your time/i).first()
+    ).toBeVisible();
   });
 
   test('shows the focus selector and allows switching', async ({ page }) => {
@@ -75,7 +82,9 @@ test.describe('worth foraging now page', () => {
     await page.getByRole('option', { name: /mushrooms/i }).click();
 
     // The page should still show recommendations (not crash)
-    await expect(page.getByRole('heading', { name: /worth foraging now/i })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /worth foraging now/i })
+    ).toBeVisible();
   });
 
   test('shows an error state when the data fetch fails', async ({ page }) => {

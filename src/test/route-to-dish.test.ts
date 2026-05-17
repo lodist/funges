@@ -176,7 +176,11 @@ describe('queryRouteDishData', () => {
     const result = queryRouteDishData({
       map: mapStub as never,
       recipes: [
-        { id: 'salad', title: 'Spring Salad', species: ['garlic', 'dandelion'] },
+        {
+          id: 'salad',
+          title: 'Spring Salad',
+          species: ['garlic', 'dandelion'],
+        },
       ],
       start: [7, 47],
       minScore: 5,

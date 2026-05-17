@@ -217,7 +217,8 @@ export default defineConfig({
           {
             name: 'Worth Foraging Now',
             short_name: 'Now',
-            description: 'See the best nearby foraging targets based on current signals',
+            description:
+              'See the best nearby foraging targets based on current signals',
             url: `worth-foraging-now`,
             icons: [
               {

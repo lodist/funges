@@ -251,7 +251,9 @@ describe('worth foraging now recommendations', () => {
       userLocation: null,
     });
 
-    expect(result.recommendations.every(r => r.speciesId !== 'hidden')).toBe(true);
+    expect(result.recommendations.every(r => r.speciesId !== 'hidden')).toBe(
+      true
+    );
   });
 
   it('filters by focus category — berries focus excludes mushrooms and plants', () => {
@@ -279,7 +281,9 @@ describe('worth foraging now recommendations', () => {
       userLocation: null,
     });
 
-    expect(result.recommendations.every(r => r.category === 'berry')).toBe(true);
+    expect(result.recommendations.every(r => r.category === 'berry')).toBe(
+      true
+    );
     expect(result.recommendations[0]?.speciesId).toBe('elderberry');
   });
 
