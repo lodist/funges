@@ -369,7 +369,7 @@ export default function DataPage() {
       ? (t(`common:data.zones.${zone}` as Parameters<typeof t>[0], { defaultValue: formatZoneLabel(zone) }) as unknown as string)
       : null;
     // daysLabel is computed below alongside other translated sub-parts
-    const location = zoneLabel ? `${regionLabel} (${zoneLabel})` : regionLabel;
+    const location = zoneLabel ? `${zoneLabel} (${regionLabel})` : regionLabel;
 
     const avg = (vals: number[]) =>
       vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
