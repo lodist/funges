@@ -44,13 +44,16 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          pip install requests pandas pyarrow shapely
 
       - name: Run visitor script
         run: python scripts/fetch_visitors.py
 
       - name: Generate scores metadata (max date)
         run: python scripts/generate_scores_metadata.py
+
+      - name: Generate data nerd JSON
+        run: python scripts/generate_data_nerd.py
 
       - name: Show changes
         run: |
@@ -63,7 +66,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'chore: update site data'
-          file_pattern: public/data/visitors.json public/data/scores_metadata.json
+          file_pattern: public/data/visitors.json public/data/scores_metadata.json public/data/data_nerd.json
           commit_user_name: funges-bot
           commit_user_email: funges-bot@users.noreply.github.com
         env:

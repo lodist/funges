@@ -19,6 +19,7 @@ import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as OfflineRouteImport } from './routes/offline'
 import { Route as InstructionsRouteImport } from './routes/instructions'
 import { Route as ImpressumRouteImport } from './routes/impressum'
+import { Route as DataNerdRouteImport } from './routes/data-nerd'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
@@ -71,6 +72,11 @@ const ImpressumRoute = ImpressumRouteImport.update({
   path: '/impressum',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DataNerdRoute = DataNerdRouteImport.update({
+  id: '/data-nerd',
+  path: '/data-nerd',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -79,6 +85,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/data-nerd': typeof DataNerdRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
   '/offline': typeof OfflineRoute
@@ -92,6 +99,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/data-nerd': typeof DataNerdRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
   '/offline': typeof OfflineRoute
@@ -106,6 +114,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/data-nerd': typeof DataNerdRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
   '/offline': typeof OfflineRoute
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/data-nerd'
     | '/impressum'
     | '/instructions'
     | '/offline'
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/data-nerd'
     | '/impressum'
     | '/instructions'
     | '/offline'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/data-nerd'
     | '/impressum'
     | '/instructions'
     | '/offline'
@@ -161,6 +173,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DataNerdRoute: typeof DataNerdRoute
   ImpressumRoute: typeof ImpressumRoute
   InstructionsRoute: typeof InstructionsRoute
   OfflineRoute: typeof OfflineRoute
@@ -245,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImpressumRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/data-nerd': {
+      id: '/data-nerd'
+      path: '/data-nerd'
+      fullPath: '/data-nerd'
+      preLoaderRoute: typeof DataNerdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -257,6 +277,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DataNerdRoute: DataNerdRoute,
   ImpressumRoute: ImpressumRoute,
   InstructionsRoute: InstructionsRoute,
   OfflineRoute: OfflineRoute,

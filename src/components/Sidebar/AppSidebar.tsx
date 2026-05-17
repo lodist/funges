@@ -11,6 +11,7 @@ import {
   Info,
   ShieldCheck,
   Gavel,
+  BarChart2,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -48,6 +49,12 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
         title: t('species'),
         url: `${basePath}species`,
         icon: Database,
+        isActive: false,
+      },
+      {
+        title: t('dataNerd'),
+        url: `${basePath}data-nerd`,
+        icon: BarChart2,
         isActive: false,
       },
       {
