@@ -44,7 +44,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          pip install requests pyarrow
 
       - name: Run visitor script
         run: python scripts/fetch_visitors.py
