@@ -528,7 +528,7 @@ export default function DataNerdPage() {
               />
               <Bar
                 dataKey='precip_mm'
-                fill='#b07080'
+                fill='#7aace0'
                 radius={[3, 3, 0, 0]}
                 name={t('common:dataNerd.charts.rainfall', {
                   defaultValue: 'Rainfall',
@@ -560,7 +560,7 @@ export default function DataNerdPage() {
               <Legend wrapperStyle={{ fontSize: 11 }} />
               <Line
                 dataKey='temp_max'
-                stroke='#c9a227'
+                stroke='#c4909c'
                 dot={false}
                 strokeWidth={1.5}
                 name={t('common:dataNerd.tempMax', { defaultValue: 'Max' })}
@@ -707,7 +707,7 @@ export default function DataNerdPage() {
               <Bar
                 yAxisId='wind'
                 dataKey='wind_ms'
-                fill='#b07080'
+                fill='#7aace0'
                 radius={[3, 3, 0, 0]}
                 name={t('common:dataNerd.charts.wind', {
                   defaultValue: 'Wind (m/s)',
@@ -716,7 +716,7 @@ export default function DataNerdPage() {
               <Line
                 yAxisId='pressure'
                 dataKey='pressure_hpa'
-                stroke='#c9a227'
+                stroke='#c4909c'
                 dot={false}
                 strokeWidth={2}
                 name={t('common:dataNerd.charts.pressure', {
