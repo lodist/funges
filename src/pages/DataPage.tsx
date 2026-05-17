@@ -696,7 +696,7 @@ export default function DataPage() {
           <ResponsiveContainer width='100%' height={220}>
             <ComposedChart
               data={zoneData}
-              margin={{ top: 4, right: 40, left: -16, bottom: 0 }}
+              margin={{ top: 4, right: 0, left: -16, bottom: 0 }}
             >
               <CartesianGrid strokeDasharray='3 3' vertical={false} />
               <XAxis
