@@ -167,11 +167,17 @@
       "USW": "US West",
       "USE": "US East"
     },
+    "species": "Species",
     "charts": {
       "rainfall": "Rainfall (mm)",
       "temperature": "Temperature (°C)",
       "humidity": "Humidity (%)",
-      "topSpecies": "Top Foraging Species — Latest Scores"
+      "topSpecies": "Top Foraging Species — Latest Scores",
+      "speciesScore": "Score Over Time",
+      "scoreTempScatter": "Score vs Temperature",
+      "windPressure": "Wind & Pressure",
+      "wind": "Wind (m/s)",
+      "pressure": "Pressure (hPa)"
     }
   }
 }

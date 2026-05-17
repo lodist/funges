@@ -155,11 +155,17 @@
       "USW": "USA West",
       "USE": "USA Ost"
     },
+    "species": "Art",
     "charts": {
       "rainfall": "Niederschlag (mm)",
       "temperature": "Temperatur (°C)",
       "humidity": "Luftfeuchtigkeit (%)",
-      "topSpecies": "Top-Arten — Aktuelle Punkte"
+      "topSpecies": "Top-Arten — Aktuelle Punkte",
+      "speciesScore": "Punktzahl im Zeitverlauf",
+      "scoreTempScatter": "Punktzahl vs. Temperatur",
+      "windPressure": "Wind & Luftdruck",
+      "wind": "Wind (m/s)",
+      "pressure": "Luftdruck (hPa)"
     }
   }
 }

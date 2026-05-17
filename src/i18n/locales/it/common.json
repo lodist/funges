@@ -167,11 +167,17 @@
       "USW": "USA Ovest",
       "USE": "USA Est"
     },
+    "species": "Specie",
     "charts": {
       "rainfall": "Precipitazioni (mm)",
       "temperature": "Temperatura (°C)",
       "humidity": "Umidità (%)",
-      "topSpecies": "Specie migliori — Punteggi attuali"
+      "topSpecies": "Specie migliori — Punteggi attuali",
+      "speciesScore": "Punteggio nel tempo",
+      "scoreTempScatter": "Punteggio vs Temperatura",
+      "windPressure": "Vento & Pressione",
+      "wind": "Vento (m/s)",
+      "pressure": "Pressione (hPa)"
     }
   }
 }
