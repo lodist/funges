@@ -8,7 +8,9 @@ test.describe('species page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/species');
     // Wait for the page to be fully rendered before each test
-    await expect(page.getByRole('heading', { name: /species database/i })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /species database/i })
+    ).toBeVisible();
   });
 
   test('shows the species list', async ({ page }) => {
