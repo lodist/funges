@@ -63,12 +63,16 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
         icon: ChefHat,
         isActive: false,
       },
-      {
-        title: t('instructions'),
-        url: `${basePath}instructions`,
-        icon: BookOpen,
-        isActive: false,
-      },
+      ...(!isMobile
+        ? [
+            {
+              title: t('instructions'),
+              url: `${basePath}instructions`,
+              icon: BookOpen,
+              isActive: false,
+            },
+          ]
+        : []),
       ...(!isMobile && shouldShowOfflineFeatures
         ? [
             {

@@ -4,7 +4,14 @@ import InstallAppButton from '@/components/InstallAppButton';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
-import { Download, Heart, Info, ShieldCheck, Gavel } from 'lucide-react';
+import {
+  BookOpen,
+  Download,
+  Heart,
+  Info,
+  ShieldCheck,
+  Gavel,
+} from 'lucide-react';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import MapLastUpdated from '@/components/MapLastUpdated';
 
@@ -12,6 +19,11 @@ export default function SettingsPage() {
   const { t } = useTranslation('settings');
   const { t: tCommon } = useTranslation('common');
   const links = [
+    {
+      url: '/instructions',
+      label: t('instructions'),
+      icon: BookOpen,
+    },
     ...(shouldShowOfflineFeatures
       ? [
           {

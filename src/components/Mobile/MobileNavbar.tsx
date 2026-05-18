@@ -50,6 +50,7 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
                 ? location.pathname.startsWith(`${basePath}settings`) ||
                   (shouldShowOfflineFeatures &&
                     location.pathname === `${basePath}offline`) ||
+                  location.pathname === `${basePath}instructions` ||
                   location.pathname === `${basePath}support` ||
                   location.pathname === `${basePath}impressum` ||
                   location.pathname === `${basePath}privacy-policy` ||

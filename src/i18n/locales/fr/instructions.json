@@ -7,7 +7,7 @@
     "selection": "Sélectionnez votre espèce préférée à l'aide du menu déroulant en haut de la page.",
     "colorCoding": "Chaque zone est colorée selon un dégradé du jaune pâle au rouge foncé, indiquant la probabilité de bonnes conditions de cueillette, basée sur des données environnementales.",
     "scale": "L'échelle est accompagnée d'une note numérique de 0 à 10, illustrée ci-dessous.",
-    "scores":"Les scores indiquent la disponibilité potentielle de la partie comestible à cueillir (comme les noix, les fruits ou les champignons), plutôt que la simple présence de la plante ou de l'arbre lui-même.",
+    "scores": "Les scores indiquent la disponibilité potentielle de la partie comestible à cueillir (comme les noix, les fruits ou les champignons), plutôt que la simple présence de la plante ou de l'arbre lui-même.",
     "polygons": "Les polygones et marqueurs ne s'affichent que lorsqu'ils apportent une information saisonnière pertinente, pour garder la carte légère et claire. Si rien n'apparaît, il est peut-être trop tôt ou trop tard dans la saison."
   },
   "functions": {
