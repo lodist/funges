@@ -221,18 +221,18 @@ All credentials are loaded from `.env.secret` at the repo root. Public data URLs
 
 ### Environment Variables
 
-| Variable                   | Where            | Description                        |
-| -------------------------- | ---------------- | ---------------------------------- |
-| `VITE_MAPBOX_ACCESS_TOKEN` | `.env.secret`    | Mapbox API access token (required) |
-| `VITE_MAPBOX_STYLE`        | `.env.secret`    | Mapbox style URL                   |
-| `VITE_VISITOR_LIMIT`       | `.env.secret`    | Mapbox usage limit                 |
-| `MAPBOX_USERNAME`          | `.env.secret`    | Mapbox account username            |
-| `R2_ACCESS_KEY_ID`         | `.env.secret`    | Cloudflare R2 credentials          |
-| `R2_SECRET_ACCESS_KEY`     | `.env.secret`    | Cloudflare R2 credentials          |
-| `R2_BUCKET_NAME`           | `.env.secret`    | Cloudflare R2 bucket name          |
-| `R2_ENDPOINT_URL`          | `.env.secret`    | Cloudflare R2 endpoint             |
-| `WEATHERAPI_KEY`           | `.env.secret`    | WeatherAPI.com key                 |
-| R2 data URLs (NE/SE/USE/USW) | `.env`         | Public CDN URLs — already set      |
+| Variable                     | Where         | Description                        |
+| ---------------------------- | ------------- | ---------------------------------- |
+| `VITE_MAPBOX_ACCESS_TOKEN`   | `.env.secret` | Mapbox API access token (required) |
+| `VITE_MAPBOX_STYLE`          | `.env.secret` | Mapbox style URL                   |
+| `VITE_VISITOR_LIMIT`         | `.env.secret` | Mapbox usage limit                 |
+| `MAPBOX_USERNAME`            | `.env.secret` | Mapbox account username            |
+| `R2_ACCESS_KEY_ID`           | `.env.secret` | Cloudflare R2 credentials          |
+| `R2_SECRET_ACCESS_KEY`       | `.env.secret` | Cloudflare R2 credentials          |
+| `R2_BUCKET_NAME`             | `.env.secret` | Cloudflare R2 bucket name          |
+| `R2_ENDPOINT_URL`            | `.env.secret` | Cloudflare R2 endpoint             |
+| `WEATHERAPI_KEY`             | `.env.secret` | WeatherAPI.com key                 |
+| R2 data URLs (NE/SE/USE/USW) | `.env`        | Public CDN URLs — already set      |
 
 ## 🚀 Deployment
 

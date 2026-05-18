@@ -126,9 +126,9 @@ jobs:
       - name: Verify static files in dist
         run: |
           echo "🔍 Verifying static files (sitemap.xml, robots.txt, 404.html)..."
-          
+
           MISSING_FILES=""
-          
+
           # Check sitemap.xml
           if [ -f dist/sitemap.xml ]; then
             echo "✅ sitemap.xml found in dist/"
@@ -141,7 +141,7 @@ jobs:
           fi
 
           echo ""
-          
+
           # Check robots.txt
           if [ -f dist/robots.txt ]; then
             echo "✅ robots.txt found in dist/"
@@ -152,7 +152,7 @@ jobs:
           fi
 
           echo ""
-          
+
           # Check 404.html
           if [ -f dist/404.html ]; then
             echo "✅ 404.html found in dist/"
@@ -161,14 +161,14 @@ jobs:
             echo "❌ 404.html NOT found in dist/"
             MISSING_FILES="$MISSING_FILES 404.html"
           fi
-          
+
           # Check .nojekyll
           if [ -f dist/.nojekyll ]; then
             echo "✅ .nojekyll found in dist/"
           else
             echo "⚠️  .nojekyll NOT found in dist/ (recommended for GitHub Pages)"
           fi
-          
+
           # Fail if critical files are missing
           if [ -n "$MISSING_FILES" ]; then
             echo ""
@@ -182,7 +182,7 @@ jobs:
             ls -la public/ || echo "public/ directory not found!"
             exit 1
           fi
-          
+
           echo ""
           echo "✅ All required static files are present!"
 

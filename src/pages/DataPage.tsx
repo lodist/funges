@@ -196,13 +196,23 @@ const TOOLTIP_STYLE = {
   padding: '6px 10px',
 } as const;
 
-function PillLegend({ payload }: { payload?: Array<{ color: string; value: string }> }) {
+function PillLegend({
+  payload,
+}: {
+  payload?: Array<{ color: string; value: string }>;
+}) {
   if (!payload?.length) return null;
   return (
     <div className='flex flex-wrap gap-2 justify-center mt-1'>
       {payload.map(entry => (
-        <span key={entry.value} className='flex items-center gap-1.5 text-xs text-muted-foreground'>
-          <span className='inline-block w-2 h-2 rounded-full flex-shrink-0' style={{ backgroundColor: entry.color }} />
+        <span
+          key={entry.value}
+          className='flex items-center gap-1.5 text-xs text-muted-foreground'
+        >
+          <span
+            className='inline-block w-2 h-2 rounded-full flex-shrink-0'
+            style={{ backgroundColor: entry.color }}
+          />
           {entry.value}
         </span>
       ))}
@@ -252,7 +262,9 @@ export default function DataPage() {
       })
       .catch(err => {
         if (cancelled) return;
-        setLoadError(err instanceof Error ? err.message : 'Failed to load data');
+        setLoadError(
+          err instanceof Error ? err.message : 'Failed to load data'
+        );
       })
       .finally(() => {
         if (!cancelled) setIsLoading(false);
@@ -393,7 +405,9 @@ export default function DataPage() {
       defaultValue: REGIONS.find(r => r.id === region)?.label ?? region,
     });
     const zoneLabel = zone
-      ? (t(`common:data.zones.${zone}` as Parameters<typeof t>[0], { defaultValue: formatZoneLabel(zone) }) as unknown as string)
+      ? (t(`common:data.zones.${zone}` as Parameters<typeof t>[0], {
+          defaultValue: formatZoneLabel(zone),
+        }) as unknown as string)
       : null;
     // daysLabel is computed below alongside other translated sub-parts
     const location = zoneLabel ? `${zoneLabel} (${regionLabel})` : regionLabel;
@@ -405,34 +419,50 @@ export default function DataPage() {
     const rainVals = zoneData.map(r => r.precip_mm ?? 0);
     const totalRain = rainVals.reduce((s, v) => s + v, 0);
     const rainyDays = rainVals.filter(v => v > 1).length;
-    const tempVals = zoneData.map(r => r.temp_avg).filter((v): v is number => v != null);
+    const tempVals = zoneData
+      .map(r => r.temp_avg)
+      .filter((v): v is number => v != null);
     const avgTemp = avg(tempVals);
-    const humidVals = zoneData.map(r => r.humidity).filter((v): v is number => v != null);
+    const humidVals = zoneData
+      .map(r => r.humidity)
+      .filter((v): v is number => v != null);
     const avgHumidity = avg(humidVals);
-    const windVals = zoneData.map(r => r.wind_ms).filter((v): v is number => v != null);
+    const windVals = zoneData
+      .map(r => r.wind_ms)
+      .filter((v): v is number => v != null);
     const avgWind = avg(windVals);
 
     // Pressure trend
-    const pressureVals = zoneData.map(r => r.pressure_hpa).filter((v): v is number => v != null);
+    const pressureVals = zoneData
+      .map(r => r.pressure_hpa)
+      .filter((v): v is number => v != null);
     const pHalf = Math.max(1, Math.floor(pressureVals.length / 2));
     const pressureTrend =
       pressureVals.length >= 4
-        ? (avg(pressureVals.slice(pHalf)) ?? 0) - (avg(pressureVals.slice(0, pHalf)) ?? 0) > 2
+        ? (avg(pressureVals.slice(pHalf)) ?? 0) -
+            (avg(pressureVals.slice(0, pHalf)) ?? 0) >
+          2
           ? 'rising'
-          : (avg(pressureVals.slice(pHalf)) ?? 0) - (avg(pressureVals.slice(0, pHalf)) ?? 0) < -2
-          ? 'falling'
-          : null
+          : (avg(pressureVals.slice(pHalf)) ?? 0) -
+                (avg(pressureVals.slice(0, pHalf)) ?? 0) <
+              -2
+            ? 'falling'
+            : null
         : null;
 
     // Temp trend
     const tHalf = Math.max(1, Math.floor(tempVals.length / 2));
     const tempTrend =
       tempVals.length >= 4
-        ? (avg(tempVals.slice(tHalf)) ?? 0) - (avg(tempVals.slice(0, tHalf)) ?? 0) > 1.5
+        ? (avg(tempVals.slice(tHalf)) ?? 0) -
+            (avg(tempVals.slice(0, tHalf)) ?? 0) >
+          1.5
           ? 'warming'
-          : (avg(tempVals.slice(tHalf)) ?? 0) - (avg(tempVals.slice(0, tHalf)) ?? 0) < -1.5
-          ? 'cooling'
-          : null
+          : (avg(tempVals.slice(tHalf)) ?? 0) -
+                (avg(tempVals.slice(0, tHalf)) ?? 0) <
+              -1.5
+            ? 'cooling'
+            : null
         : null;
 
     // Last significant rain — kept for the chip display only
@@ -446,10 +476,12 @@ export default function DataPage() {
     const days7to10ago = zoneData.length >= 10 ? zoneData.slice(-11, -7) : [];
     const days1to4ago = zoneData.length >= 5 ? zoneData.slice(-5, -1) : [];
     const wetEarlyFrac = days7to10ago.length
-      ? days7to10ago.filter(r => (r.precip_mm ?? 0) >= minPrecip).length / days7to10ago.length
+      ? days7to10ago.filter(r => (r.precip_mm ?? 0) >= minPrecip).length /
+        days7to10ago.length
       : 0;
     const dryRecentFrac = days1to4ago.length
-      ? days1to4ago.filter(r => (r.precip_mm ?? 0) < minPrecip).length / days1to4ago.length
+      ? days1to4ago.filter(r => (r.precip_mm ?? 0) < minPrecip).length /
+        days1to4ago.length
       : 0;
     const rainFirstPattern = wetEarlyFrac >= 0.5 && dryRecentFrac >= 0.75;
 
@@ -466,7 +498,9 @@ export default function DataPage() {
     // Score stats
     const topScore = topSpeciesToday[0]?.score ?? 0;
     const topSpeciesName = topSpeciesToday[0]?.name ?? null;
-    const latestScores = Object.values(zoneData[zoneData.length - 1]?.scores ?? {});
+    const latestScores = Object.values(
+      zoneData[zoneData.length - 1]?.scores ?? {}
+    );
     const scoringAbove5 = latestScores.filter(s => s >= 5).length;
     const scoringAbove3 = latestScores.filter(s => s >= 3).length;
 
@@ -475,7 +509,10 @@ export default function DataPage() {
       date: row.date,
       mean: avg(Object.values(row.scores ?? {})) ?? 0,
     }));
-    const peakDay = scoreByDay.reduce((best, cur) => (cur.mean > best.mean ? cur : best), scoreByDay[0]);
+    const peakDay = scoreByDay.reduce(
+      (best, cur) => (cur.mean > best.mean ? cur : best),
+      scoreByDay[0]
+    );
     const peakDaysAgo = peakDay
       ? zoneData.length - 1 - zoneData.findIndex(r => r.date === peakDay.date)
       : 0;
@@ -484,15 +521,19 @@ export default function DataPage() {
     // Score momentum: last 3 days vs prior 3
     const recentRows = zoneData.slice(-3);
     const priorRows = zoneData.slice(-6, -3);
-    const avgScoreRecent = avg(recentRows.flatMap(r => Object.values(r.scores ?? {})));
-    const avgScorePrior = avg(priorRows.flatMap(r => Object.values(r.scores ?? {})));
+    const avgScoreRecent = avg(
+      recentRows.flatMap(r => Object.values(r.scores ?? {}))
+    );
+    const avgScorePrior = avg(
+      priorRows.flatMap(r => Object.values(r.scores ?? {}))
+    );
     const scoreMomentum =
       avgScoreRecent != null && avgScorePrior != null && priorRows.length > 0
         ? avgScoreRecent - avgScorePrior > 0.3
           ? 'improving'
           : avgScoreRecent - avgScorePrior < -0.3
-          ? 'declining'
-          : null
+            ? 'declining'
+            : null
         : null;
 
     // Category breakdown of top 5
@@ -503,56 +544,94 @@ export default function DataPage() {
       categoryCounts[cat] = (categoryCounts[cat] ?? 0) + 1;
     }
     const dominantCategory =
-      Object.entries(categoryCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? null;
+      Object.entries(categoryCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ??
+      null;
     // Translate category label
     const catKey = dominantCategory
       ? `cat${dominantCategory.charAt(0).toUpperCase()}${dominantCategory.slice(1)}`
       : null;
     const catLabel = catKey
-      ? t(`common:data.narrative.${catKey}` as Parameters<typeof t>[0], { defaultValue: dominantCategory ?? '' })
+      ? t(`common:data.narrative.${catKey}` as Parameters<typeof t>[0], {
+          defaultValue: dominantCategory ?? '',
+        })
       : null;
 
     // Shorthand for narrative keys
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tn = (key: string, opts?: Record<string, unknown>): string =>
-      t(`common:data.narrative.${key}` as Parameters<typeof t>[0], opts as any) as unknown as string;
+      t(
+        `common:data.narrative.${key}` as Parameters<typeof t>[0],
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        opts as any
+      ) as unknown as string;
 
     // Translated sub-parts
     const daysLabel =
       days === 365
         ? tn('yearLabel', { defaultValue: 'the past year' })
-        : tn('daysLabel', { count: days, defaultValue: `the past ${days} days` });
+        : tn('daysLabel', {
+            count: days,
+            defaultValue: `the past ${days} days`,
+          });
 
-    const catSuffixEsp = catLabel ? tn('catSuffixEspecially', { catLabel, defaultValue: `, especially for ${catLabel}` }) : '';
-    const catSuffixLead = catLabel ? tn('catSuffixLeading', { catLabel, defaultValue: `, with ${catLabel} leading` }) : '';
-    const catSuffixWay = catLabel ? tn('catSuffixLeadingWay', { catLabel, defaultValue: `, with ${catLabel} leading the way` }) : '';
+    const catSuffixEsp = catLabel
+      ? tn('catSuffixEspecially', {
+          catLabel,
+          defaultValue: `, especially for ${catLabel}`,
+        })
+      : '';
+    const catSuffixLead = catLabel
+      ? tn('catSuffixLeading', {
+          catLabel,
+          defaultValue: `, with ${catLabel} leading`,
+        })
+      : '';
+    const catSuffixWay = catLabel
+      ? tn('catSuffixLeadingWay', {
+          catLabel,
+          defaultValue: `, with ${catLabel} leading the way`,
+        })
+      : '';
 
     const tempDescT =
-      avgTemp == null ? ''
-      : avgTemp > 22 ? tn('tempWarm', { defaultValue: 'warm' })
-      : avgTemp > 12 ? tn('tempMild', { defaultValue: 'mild' })
-      : avgTemp > 3  ? tn('tempCool', { defaultValue: 'cool' })
-      : tn('tempCold', { defaultValue: 'cold' });
+      avgTemp == null
+        ? ''
+        : avgTemp > 22
+          ? tn('tempWarm', { defaultValue: 'warm' })
+          : avgTemp > 12
+            ? tn('tempMild', { defaultValue: 'mild' })
+            : avgTemp > 3
+              ? tn('tempCool', { defaultValue: 'cool' })
+              : tn('tempCold', { defaultValue: 'cold' });
 
     const trendSuffixT = tempTrend
       ? tn('trendSuffix', {
-          trend: tempTrend === 'warming'
-            ? tn('trendWarming', { defaultValue: 'warming' })
-            : tn('trendCooling', { defaultValue: 'cooling' }),
+          trend:
+            tempTrend === 'warming'
+              ? tn('trendWarming', { defaultValue: 'warming' })
+              : tn('trendCooling', { defaultValue: 'cooling' }),
           defaultValue: `, ${tempTrend} recently`,
         })
       : '';
 
-    const humidSuffixT = avgHumidity != null
-      ? tn('humidSuffix', { humidity: avgHumidity.toFixed(0), defaultValue: `, humidity averaging ${avgHumidity.toFixed(0)}%` })
-      : '';
+    const humidSuffixT =
+      avgHumidity != null
+        ? tn('humidSuffix', {
+            humidity: avgHumidity.toFixed(0),
+            defaultValue: `, humidity averaging ${avgHumidity.toFixed(0)}%`,
+          })
+        : '';
 
-    const rainyDaysStr = tn('rainyDays', { count: rainyDays, defaultValue: `${rainyDays} day${rainyDays !== 1 ? 's' : ''}` });
+    const rainyDaysStr = tn('rainyDays', {
+      count: rainyDays,
+      defaultValue: `${rainyDays} day${rainyDays !== 1 ? 's' : ''}`,
+    });
 
     const rainDescT =
-      totalRain > 50 ? tn('rainHeavy', { defaultValue: 'heavy' })
-      : totalRain > 15 ? tn('rainModerate', { defaultValue: 'moderate' })
-      : tn('rainLight', { defaultValue: 'light' });
+      totalRain > 50
+        ? tn('rainHeavy', { defaultValue: 'heavy' })
+        : totalRain > 15
+          ? tn('rainModerate', { defaultValue: 'moderate' })
+          : tn('rainLight', { defaultValue: 'light' });
 
     const sentences: string[] = [];
 
@@ -562,22 +641,58 @@ export default function DataPage() {
     } else if (avgTemp != null && avgTemp > 25) {
       sentences.push(tn('tooWarm', { location }));
     } else if (flushTempOk && rainFirstPattern && flushHumidOk) {
-      sentences.push(tn('flushPattern', { location, temp: avgTemp?.toFixed(0), humidity: avgHumidity?.toFixed(0), catSuffix: catSuffixEsp }));
+      sentences.push(
+        tn('flushPattern', {
+          location,
+          temp: avgTemp?.toFixed(0),
+          humidity: avgHumidity?.toFixed(0),
+          catSuffix: catSuffixEsp,
+        })
+      );
     } else if (flushTempOk && rainSufficient && flushHumidOk) {
-      sentences.push(tn('wellAligned', { location, cumRain: cumRain14.toFixed(0), temp: avgTemp?.toFixed(0), catSuffix: catSuffixLead }));
+      sentences.push(
+        tn('wellAligned', {
+          location,
+          cumRain: cumRain14.toFixed(0),
+          temp: avgTemp?.toFixed(0),
+          catSuffix: catSuffixLead,
+        })
+      );
     } else if (flushTempOk && rainScarce) {
-      sentences.push(tn('rainScarce', { location, cumRain: cumRain14.toFixed(0) }));
+      sentences.push(
+        tn('rainScarce', { location, cumRain: cumRain14.toFixed(0) })
+      );
     } else if (!flushTempOk && rainSufficient) {
-      sentences.push(tn('rainOkTempWrong', { location, cumRain: cumRain14.toFixed(0), temp: avgTemp?.toFixed(0) }));
+      sentences.push(
+        tn('rainOkTempWrong', {
+          location,
+          cumRain: cumRain14.toFixed(0),
+          temp: avgTemp?.toFixed(0),
+        })
+      );
     } else if (flushTempOk && rainSufficient && !flushHumidOk) {
-      sentences.push(tn('rainOkHumidLow', { location, humidity: avgHumidity?.toFixed(0) }));
+      sentences.push(
+        tn('rainOkHumidLow', { location, humidity: avgHumidity?.toFixed(0) })
+      );
     } else if (topScore >= 7) {
-      sentences.push(tn('goodConditions', { location, catSuffix: catSuffixLead, topSpecies: topSpeciesName ?? '', topScore: topScore.toFixed(1) }));
+      sentences.push(
+        tn('goodConditions', {
+          location,
+          catSuffix: catSuffixLead,
+          topSpecies: topSpeciesName ?? '',
+          topScore: topScore.toFixed(1),
+        })
+      );
     } else {
       const missingParts: string[] = [];
-      if (rainScarce) missingParts.push(tn('missingRain', { cumRain: cumRain14.toFixed(0) }));
-      if (avgTemp != null && !flushTempOk) missingParts.push(tn('missingTemp', { temp: avgTemp.toFixed(0) }));
-      if (avgHumidity != null && !flushHumidOk) missingParts.push(tn('missingHumidity', { humidity: avgHumidity.toFixed(0) }));
+      if (rainScarce)
+        missingParts.push(tn('missingRain', { cumRain: cumRain14.toFixed(0) }));
+      if (avgTemp != null && !flushTempOk)
+        missingParts.push(tn('missingTemp', { temp: avgTemp.toFixed(0) }));
+      if (avgHumidity != null && !flushHumidOk)
+        missingParts.push(
+          tn('missingHumidity', { humidity: avgHumidity.toFixed(0) })
+        );
       sentences.push(
         missingParts.length > 0
           ? tn('slowMissing', { location, missing: missingParts.join(', ') })
@@ -588,21 +703,35 @@ export default function DataPage() {
     // === SENTENCE 2: RAIN + TEMP CONTEXT ===
     sentences.push(
       totalRain > 3
-        ? tn('rainGood', { totalRain: totalRain.toFixed(1), rainDesc: rainDescT, rainyDaysStr, daysLabel })
+        ? tn('rainGood', {
+            totalRain: totalRain.toFixed(1),
+            rainDesc: rainDescT,
+            rainyDaysStr,
+            daysLabel,
+          })
         : tn('rainBare', { daysLabel, totalRain: totalRain.toFixed(1) })
     );
     if (avgTemp != null) {
-      sentences.push(tn('tempContext', { temp: avgTemp.toFixed(1), tempDesc: tempDescT, trendSuffix: trendSuffixT, humidSuffix: humidSuffixT }));
+      sentences.push(
+        tn('tempContext', {
+          temp: avgTemp.toFixed(1),
+          tempDesc: tempDescT,
+          trendSuffix: trendSuffixT,
+          humidSuffix: humidSuffixT,
+        })
+      );
     }
 
     // === SENTENCE 3: SCORE PEAK + MOMENTUM ===
     if (peakDaysAgo === 0 && topScore > 3) {
-      const climbSuffix = scoreMomentum === 'improving' ? tn('climbSuffix') : '';
+      const climbSuffix =
+        scoreMomentum === 'improving' ? tn('climbSuffix') : '';
       sentences.push(tn('scorePeakNow', { daysLabel, climbSuffix }));
     } else if (peakDaysAgo > 0 && peakDay.mean > currentMeanScore + 0.4) {
-      const peakStr = peakDaysAgo === 1
-        ? tn('yesterday')
-        : tn('daysAgo', { count: peakDaysAgo });
+      const peakStr =
+        peakDaysAgo === 1
+          ? tn('yesterday')
+          : tn('daysAgo', { count: peakDaysAgo });
       sentences.push(
         scoreMomentum === 'declining'
           ? tn('scorePeakFalling', { peakStr })
@@ -613,8 +742,10 @@ export default function DataPage() {
     }
 
     // === SENTENCE 4: WIND ===
-    if (avgWind != null && avgWind > 8) sentences.push(tn('windStrong', { wind: avgWind.toFixed(1) }));
-    else if (avgWind != null && avgWind > 4) sentences.push(tn('windModerate', { wind: avgWind.toFixed(1) }));
+    if (avgWind != null && avgWind > 8)
+      sentences.push(tn('windStrong', { wind: avgWind.toFixed(1) }));
+    else if (avgWind != null && avgWind > 4)
+      sentences.push(tn('windModerate', { wind: avgWind.toFixed(1) }));
 
     // === SENTENCE 5: PRESSURE ===
     if (pressureTrend === 'falling') sentences.push(tn('pressureFalling'));
@@ -623,23 +754,46 @@ export default function DataPage() {
     // === SENTENCE 6: DIVERSITY ===
     if (top5.length > 0) {
       const diversityKey =
-        scoringAbove5 >= 6 ? 'diversityWide'
-        : scoringAbove5 >= 3 ? 'diversityGood'
-        : scoringAbove3 >= 2 ? 'diversityFew'
-        : 'diversitySlim';
+        scoringAbove5 >= 6
+          ? 'diversityWide'
+          : scoringAbove5 >= 3
+            ? 'diversityGood'
+            : scoringAbove3 >= 2
+              ? 'diversityFew'
+              : 'diversitySlim';
       sentences.push(tn(diversityKey, { catSuffix: catSuffixWay }));
     }
 
     const statChips = [
       { label: tn('chipRain'), value: `${totalRain.toFixed(1)} mm` },
       ...(daysSinceRain != null && daysSinceRain <= 14
-        ? [{ label: tn('chipLastRain'), value: daysSinceRain === 0 ? tn('today') : `${daysSinceRain}d ago` }]
+        ? [
+            {
+              label: tn('chipLastRain'),
+              value:
+                daysSinceRain === 0 ? tn('today') : `${daysSinceRain}d ago`,
+            },
+          ]
         : []),
-      ...(avgTemp != null ? [{ label: tn('chipTemp'), value: `${avgTemp.toFixed(1)}°C` }] : []),
-      ...(avgHumidity != null ? [{ label: tn('chipHumidity'), value: `${avgHumidity.toFixed(0)}%` }] : []),
-      ...(topScore > 0 ? [{ label: tn('chipTopScore'), value: `${topScore.toFixed(1)} / 10` }] : []),
+      ...(avgTemp != null
+        ? [{ label: tn('chipTemp'), value: `${avgTemp.toFixed(1)}°C` }]
+        : []),
+      ...(avgHumidity != null
+        ? [{ label: tn('chipHumidity'), value: `${avgHumidity.toFixed(0)}%` }]
+        : []),
+      ...(topScore > 0
+        ? [{ label: tn('chipTopScore'), value: `${topScore.toFixed(1)} / 10` }]
+        : []),
       ...(pressureTrend
-        ? [{ label: tn('chipPressure'), value: pressureTrend === 'falling' ? tn('pressureFallingShort') : tn('pressureRisingShort') }]
+        ? [
+            {
+              label: tn('chipPressure'),
+              value:
+                pressureTrend === 'falling'
+                  ? tn('pressureFallingShort')
+                  : tn('pressureRisingShort'),
+            },
+          ]
         : []),
     ];
 
@@ -761,7 +915,10 @@ export default function DataPage() {
           {zone
             ? t('common:data.selectedZone', {
                 defaultValue: 'Selected: {{zone}} — click again to show all',
-                zone: t(`common:data.zones.${zone}` as Parameters<typeof t>[0], { defaultValue: formatZoneLabel(zone) }),
+                zone: t(
+                  `common:data.zones.${zone}` as Parameters<typeof t>[0],
+                  { defaultValue: formatZoneLabel(zone) }
+                ),
               })
             : t('common:data.clickZone', {
                 defaultValue: 'Showing all zones — click one to filter',
@@ -779,7 +936,11 @@ export default function DataPage() {
             selectedZone={zone}
             onZoneSelect={z => setZone(prev => (prev === z ? '' : z))}
             region={region}
-            zoneLabelFn={z => t(`common:data.zones.${z}` as Parameters<typeof t>[0], { defaultValue: formatZoneLabel(z) }) as unknown as string}
+            zoneLabelFn={z =>
+              t(`common:data.zones.${z}` as Parameters<typeof t>[0], {
+                defaultValue: formatZoneLabel(z),
+              }) as unknown as string
+            }
           />
         </Suspense>
       </div>
@@ -813,12 +974,15 @@ export default function DataPage() {
                 <span className='text-[10px] uppercase tracking-wide text-muted-foreground/60 leading-none mb-0.5'>
                   {chip.label}
                 </span>
-                <span className='text-sm font-medium leading-tight'>{chip.value}</span>
+                <span className='text-sm font-medium leading-tight'>
+                  {chip.value}
+                </span>
               </div>
             ))}
           </div>
           <div className='space-y-1'>
             {narrativeInsight.sentences.map((s, i) => (
+              // eslint-disable-next-line react/no-array-index-key
               <p key={i} className='text-sm text-muted-foreground leading-snug'>
                 {s}
               </p>
@@ -846,16 +1010,56 @@ export default function DataPage() {
                   <stop offset='100%' stopColor='#7aace0' stopOpacity={0.25} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray='2 4' vertical={false} stroke='rgba(128,128,128,0.15)' />
-              <XAxis dataKey='date' tickFormatter={formatDate} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} interval={tickInterval(days)} />
-              <YAxis unit='mm' tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+              <CartesianGrid
+                strokeDasharray='2 4'
+                vertical={false}
+                stroke='rgba(128,128,128,0.15)'
+              />
+              <XAxis
+                dataKey='date'
+                tickFormatter={formatDate}
+                tick={{ fontSize: 11 }}
+                axisLine={false}
+                tickLine={false}
+                interval={tickInterval(days)}
+              />
+              <YAxis
+                unit='mm'
+                tick={{ fontSize: 11 }}
+                axisLine={false}
+                tickLine={false}
+              />
               <Tooltip
-                formatter={(v: unknown) => [`${v} mm`, t('common:data.charts.rainfall', { defaultValue: 'Rainfall' })]}
+                formatter={(v: unknown) => [
+                  `${v} mm`,
+                  t('common:data.charts.rainfall', {
+                    defaultValue: 'Rainfall',
+                  }),
+                ]}
                 labelFormatter={(l: unknown) => formatDate(String(l))}
                 contentStyle={TOOLTIP_STYLE}
               />
-              <ReferenceLine y={20} stroke='#7aace0' strokeDasharray='3 3' strokeOpacity={0.5} label={{ value: '20mm', position: 'insideTopRight', fontSize: 10, fill: '#7aace0', opacity: 0.7 }} />
-              <Bar dataKey='precip_mm' fill='url(#rainGrad)' radius={[4, 4, 0, 0]} name={t('common:data.charts.rainfall', { defaultValue: 'Rainfall' })} />
+              <ReferenceLine
+                y={20}
+                stroke='#7aace0'
+                strokeDasharray='3 3'
+                strokeOpacity={0.5}
+                label={{
+                  value: '20mm',
+                  position: 'insideTopRight',
+                  fontSize: 10,
+                  fill: '#7aace0',
+                  opacity: 0.7,
+                }}
+              />
+              <Bar
+                dataKey='precip_mm'
+                fill='url(#rainGrad)'
+                radius={[4, 4, 0, 0]}
+                name={t('common:data.charts.rainfall', {
+                  defaultValue: 'Rainfall',
+                })}
+              />
             </BarChart>
           </ResponsiveContainer>
         </ChartCard>
@@ -871,14 +1075,69 @@ export default function DataPage() {
               data={zoneData}
               margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray='2 4' vertical={false} stroke='rgba(128,128,128,0.15)' />
-              <XAxis dataKey='date' tickFormatter={formatDate} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} interval={tickInterval(days)} />
-              <YAxis unit='°' tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
-              <Tooltip labelFormatter={(l: unknown) => formatDate(String(l))} contentStyle={TOOLTIP_STYLE} />
-              <Legend content={(p) => <PillLegend payload={(p.payload ?? []) as Array<{ color: string; value: string }>} />} />
-              <Line type='monotone' dataKey='temp_max' stroke='#c4909c' dot={false} strokeWidth={1.5} activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }} name={t('common:data.tempMax', { defaultValue: 'Max' })} />
-              <Line type='monotone' dataKey='temp_avg' stroke='#d4a870' dot={false} strokeWidth={2.5} activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }} name={t('common:data.tempAvg', { defaultValue: 'Avg' })} />
-              <Line type='monotone' dataKey='temp_min' stroke='#96be9a' dot={false} strokeWidth={1.5} strokeDasharray='4 2' activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }} name={t('common:data.tempMin', { defaultValue: 'Min' })} />
+              <CartesianGrid
+                strokeDasharray='2 4'
+                vertical={false}
+                stroke='rgba(128,128,128,0.15)'
+              />
+              <XAxis
+                dataKey='date'
+                tickFormatter={formatDate}
+                tick={{ fontSize: 11 }}
+                axisLine={false}
+                tickLine={false}
+                interval={tickInterval(days)}
+              />
+              <YAxis
+                unit='°'
+                tick={{ fontSize: 11 }}
+                axisLine={false}
+                tickLine={false}
+              />
+              <Tooltip
+                labelFormatter={(l: unknown) => formatDate(String(l))}
+                contentStyle={TOOLTIP_STYLE}
+              />
+              <Legend
+                content={p => (
+                  <PillLegend
+                    payload={
+                      (p.payload ?? []) as Array<{
+                        color: string;
+                        value: string;
+                      }>
+                    }
+                  />
+                )}
+              />
+              <Line
+                type='monotone'
+                dataKey='temp_max'
+                stroke='#c4909c'
+                dot={false}
+                strokeWidth={1.5}
+                activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }}
+                name={t('common:data.tempMax', { defaultValue: 'Max' })}
+              />
+              <Line
+                type='monotone'
+                dataKey='temp_avg'
+                stroke='#d4a870'
+                dot={false}
+                strokeWidth={2.5}
+                activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
+                name={t('common:data.tempAvg', { defaultValue: 'Avg' })}
+              />
+              <Line
+                type='monotone'
+                dataKey='temp_min'
+                stroke='#96be9a'
+                dot={false}
+                strokeWidth={1.5}
+                strokeDasharray='4 2'
+                activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }}
+                name={t('common:data.tempMin', { defaultValue: 'Min' })}
+              />
             </LineChart>
           </ResponsiveContainer>
         </ChartCard>
@@ -903,15 +1162,48 @@ export default function DataPage() {
                   <stop offset='100%' stopColor='#d4a870' stopOpacity={0.02} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray='2 4' vertical={false} stroke='rgba(128,128,128,0.15)' />
-              <XAxis dataKey='date' tickFormatter={formatDate} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} interval={tickInterval(days)} />
-              <YAxis unit='%' domain={[0, 100]} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+              <CartesianGrid
+                strokeDasharray='2 4'
+                vertical={false}
+                stroke='rgba(128,128,128,0.15)'
+              />
+              <XAxis
+                dataKey='date'
+                tickFormatter={formatDate}
+                tick={{ fontSize: 11 }}
+                axisLine={false}
+                tickLine={false}
+                interval={tickInterval(days)}
+              />
+              <YAxis
+                unit='%'
+                domain={[0, 100]}
+                tick={{ fontSize: 11 }}
+                axisLine={false}
+                tickLine={false}
+              />
               <Tooltip
-                formatter={(v: unknown) => [`${v}%`, t('common:data.charts.humidity', { defaultValue: 'Humidity' })]}
+                formatter={(v: unknown) => [
+                  `${v}%`,
+                  t('common:data.charts.humidity', {
+                    defaultValue: 'Humidity',
+                  }),
+                ]}
                 labelFormatter={(l: unknown) => formatDate(String(l))}
                 contentStyle={TOOLTIP_STYLE}
               />
-              <Area type='monotone' dataKey='humidity' stroke='#d4a870' strokeWidth={2} fill='url(#humidGrad)' dot={false} activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }} name={t('common:data.charts.humidity', { defaultValue: 'Humidity' })} />
+              <Area
+                type='monotone'
+                dataKey='humidity'
+                stroke='#d4a870'
+                strokeWidth={2}
+                fill='url(#humidGrad)'
+                dot={false}
+                activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
+                name={t('common:data.charts.humidity', {
+                  defaultValue: 'Humidity',
+                })}
+              />
             </AreaChart>
           </ResponsiveContainer>
         </ChartCard>
@@ -933,14 +1225,74 @@ export default function DataPage() {
                   <stop offset='100%' stopColor='#b07080' stopOpacity={0.25} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray='2 4' vertical={false} stroke='rgba(128,128,128,0.15)' />
-              <XAxis dataKey='date' tickFormatter={formatDate} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} interval={tickInterval(days)} />
-              <YAxis yAxisId='wind' unit=' m/s' tick={{ fontSize: 11 }} width={52} axisLine={false} tickLine={false} />
-              <YAxis yAxisId='pressure' orientation='right' unit=' hPa' tick={{ fontSize: 11 }} width={60} domain={['auto', 'auto']} axisLine={false} tickLine={false} />
-              <Tooltip labelFormatter={(l: unknown) => formatDate(String(l))} contentStyle={TOOLTIP_STYLE} />
-              <Legend content={(p) => <PillLegend payload={(p.payload ?? []) as Array<{ color: string; value: string }>} />} />
-              <Bar yAxisId='wind' dataKey='wind_ms' fill='url(#windGrad)' radius={[3, 3, 0, 0]} name={t('common:data.charts.wind', { defaultValue: 'Wind (m/s)' })} />
-              <Line type='monotone' yAxisId='pressure' dataKey='pressure_hpa' stroke='#c9a227' dot={false} strokeWidth={2} activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }} name={t('common:data.charts.pressure', { defaultValue: 'Pressure (hPa)' })} />
+              <CartesianGrid
+                strokeDasharray='2 4'
+                vertical={false}
+                stroke='rgba(128,128,128,0.15)'
+              />
+              <XAxis
+                dataKey='date'
+                tickFormatter={formatDate}
+                tick={{ fontSize: 11 }}
+                axisLine={false}
+                tickLine={false}
+                interval={tickInterval(days)}
+              />
+              <YAxis
+                yAxisId='wind'
+                unit=' m/s'
+                tick={{ fontSize: 11 }}
+                width={52}
+                axisLine={false}
+                tickLine={false}
+              />
+              <YAxis
+                yAxisId='pressure'
+                orientation='right'
+                unit=' hPa'
+                tick={{ fontSize: 11 }}
+                width={60}
+                domain={['auto', 'auto']}
+                axisLine={false}
+                tickLine={false}
+              />
+              <Tooltip
+                labelFormatter={(l: unknown) => formatDate(String(l))}
+                contentStyle={TOOLTIP_STYLE}
+              />
+              <Legend
+                content={p => (
+                  <PillLegend
+                    payload={
+                      (p.payload ?? []) as Array<{
+                        color: string;
+                        value: string;
+                      }>
+                    }
+                  />
+                )}
+              />
+              <Bar
+                yAxisId='wind'
+                dataKey='wind_ms'
+                fill='url(#windGrad)'
+                radius={[3, 3, 0, 0]}
+                name={t('common:data.charts.wind', {
+                  defaultValue: 'Wind (m/s)',
+                })}
+              />
+              <Line
+                type='monotone'
+                yAxisId='pressure'
+                dataKey='pressure_hpa'
+                stroke='#c9a227'
+                dot={false}
+                strokeWidth={2}
+                activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
+                name={t('common:data.charts.pressure', {
+                  defaultValue: 'Pressure (hPa)',
+                })}
+              />
             </ComposedChart>
           </ResponsiveContainer>
         </ChartCard>
@@ -983,11 +1335,30 @@ export default function DataPage() {
                   data={speciesOverTime}
                   margin={{ top: 4, right: 8, left: -16, bottom: 0 }}
                 >
-                  <CartesianGrid strokeDasharray='2 4' vertical={false} stroke='rgba(128,128,128,0.15)' />
-                  <XAxis dataKey='date' tickFormatter={formatDate} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} interval={tickInterval(days)} />
-                  <YAxis domain={[0, 10]} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+                  <CartesianGrid
+                    strokeDasharray='2 4'
+                    vertical={false}
+                    stroke='rgba(128,128,128,0.15)'
+                  />
+                  <XAxis
+                    dataKey='date'
+                    tickFormatter={formatDate}
+                    tick={{ fontSize: 11 }}
+                    axisLine={false}
+                    tickLine={false}
+                    interval={tickInterval(days)}
+                  />
+                  <YAxis
+                    domain={[0, 10]}
+                    tick={{ fontSize: 11 }}
+                    axisLine={false}
+                    tickLine={false}
+                  />
                   <Tooltip
-                    formatter={(v: unknown) => [(v as number).toFixed(2), t('common:data.score', { defaultValue: 'Score' })]}
+                    formatter={(v: unknown) => [
+                      (v as number).toFixed(2),
+                      t('common:data.score', { defaultValue: 'Score' }),
+                    ]}
                     labelFormatter={(l: unknown) => formatDate(String(l))}
                     contentStyle={TOOLTIP_STYLE}
                   />
@@ -1030,18 +1401,52 @@ export default function DataPage() {
                 <defs>
                   <linearGradient id='topSpecGrad' x1='0' y1='0' x2='1' y2='0'>
                     <stop offset='0%' stopColor='#96be9a' stopOpacity={0.45} />
-                    <stop offset='100%' stopColor='#96be9a' stopOpacity={0.95} />
+                    <stop
+                      offset='100%'
+                      stopColor='#96be9a'
+                      stopOpacity={0.95}
+                    />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray='2 4' horizontal={false} stroke='rgba(128,128,128,0.15)' />
-                <XAxis type='number' domain={[0, 10]} ticks={[0, 2, 4, 6, 8, 10]} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
-                <YAxis type='category' dataKey='name' tick={{ fontSize: 11 }} width={90} axisLine={false} tickLine={false} />
+                <CartesianGrid
+                  strokeDasharray='2 4'
+                  horizontal={false}
+                  stroke='rgba(128,128,128,0.15)'
+                />
+                <XAxis
+                  type='number'
+                  domain={[0, 10]}
+                  ticks={[0, 2, 4, 6, 8, 10]}
+                  tick={{ fontSize: 11 }}
+                  axisLine={false}
+                  tickLine={false}
+                />
+                <YAxis
+                  type='category'
+                  dataKey='name'
+                  tick={{ fontSize: 11 }}
+                  width={90}
+                  axisLine={false}
+                  tickLine={false}
+                />
                 <Tooltip
-                  formatter={(v: unknown) => [(v as number).toFixed(1), t('common:data.score', { defaultValue: 'Score' })]}
+                  formatter={(v: unknown) => [
+                    (v as number).toFixed(1),
+                    t('common:data.score', { defaultValue: 'Score' }),
+                  ]}
                   contentStyle={TOOLTIP_STYLE}
                 />
-                <ReferenceLine x={5} stroke='rgba(128,128,128,0.25)' strokeDasharray='3 3' />
-                <Bar dataKey='score' fill='url(#topSpecGrad)' radius={[0, 4, 4, 0]} name={t('common:data.score', { defaultValue: 'Score' })} />
+                <ReferenceLine
+                  x={5}
+                  stroke='rgba(128,128,128,0.25)'
+                  strokeDasharray='3 3'
+                />
+                <Bar
+                  dataKey='score'
+                  fill='url(#topSpecGrad)'
+                  radius={[0, 4, 4, 0]}
+                  name={t('common:data.score', { defaultValue: 'Score' })}
+                />
               </BarChart>
             </ResponsiveContainer>
           )}
