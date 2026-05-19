@@ -11,6 +11,7 @@ import {
   Info,
   ShieldCheck,
   Gavel,
+  BarChart2,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -51,17 +52,27 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
         isActive: false,
       },
       {
+        title: t('data'),
+        url: `${basePath}data`,
+        icon: BarChart2,
+        isActive: false,
+      },
+      {
         title: t('recipes'),
         url: `${basePath}recipes`,
         icon: ChefHat,
         isActive: false,
       },
-      {
-        title: t('instructions'),
-        url: `${basePath}instructions`,
-        icon: BookOpen,
-        isActive: false,
-      },
+      ...(!isMobile
+        ? [
+            {
+              title: t('instructions'),
+              url: `${basePath}instructions`,
+              icon: BookOpen,
+              isActive: false,
+            },
+          ]
+        : []),
       ...(!isMobile && shouldShowOfflineFeatures
         ? [
             {

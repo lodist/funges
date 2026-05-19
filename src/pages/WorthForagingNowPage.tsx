@@ -113,6 +113,11 @@ export default function WorthForagingNowPage() {
                 ? t('worthForagingNow.locationEnabled')
                 : t('worthForagingNow.locationMissing'))}
           </p>
+          {!userLocation ? (
+            <p className='mt-1 text-xs italic text-text-secondary/60'>
+              {t('worthForagingNow.shareLocationHint')}
+            </p>
+          ) : null}
         </div>
 
         <div className='mb-8 flex flex-wrap items-center gap-3'>
