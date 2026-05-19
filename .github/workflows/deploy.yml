@@ -4,11 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches: [main, master]
-  workflow_run:
-    workflows:
-      - Update site data
-    types:
-      - completed
 
 permissions:
   contents: read
