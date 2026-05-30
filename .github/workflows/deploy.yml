@@ -120,14 +120,14 @@ jobs:
 
       - name: Create SPA route directories for GitHub Pages
         run: |
-          echo "📁 Creating route subdirectories so GitHub Pages serves them with HTTP 200..."
+          echo "Creating route subdirectories so GitHub Pages serves them with HTTP 200..."
           routes=(data impressum instructions offline privacy-policy recipes settings species support termsuse worth-foraging-now)
           for route in "${routes[@]}"; do
             mkdir -p dist/$route
             cp dist/index.html dist/$route/index.html
-            echo "  ✅ dist/$route/index.html"
+            echo "  created dist/$route/index.html"
           done
-          echo "✅ Route directories created"
+          echo "Route directories created"
 
       - name: Verify static files in dist
         run: |
