@@ -5,40 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Funges - Loading...</title>
     <script>
-      // SPA routing fix for GitHub Pages
+      // SPA routing fallback for GitHub Pages.
+      // Valid routes are served directly via their own index.html (e.g. /species/index.html),
+      // so this only fires for truly non-existent paths.
       (function () {
         const path = window.location.pathname;
 
-        // Skip redirect for static files
-        if (
-          path.endsWith('.xml') ||
-          path.endsWith('.txt') ||
-          path.endsWith('.json') ||
-          path === '/sitemap.xml' ||
-          path === '/robots.txt'
-        ) {
-          console.info('📄 Static file requested, no redirect');
-          return; // Let GitHub Pages handle it as a real 404
+        // Skip redirect for static files — let GitHub Pages return a real 404.
+        if (path.endsWith('.xml') || path.endsWith('.txt') || path.endsWith('.json')) {
+          return;
         }
 
-        // Get the base path from the current URL
         const segments = path.split('/').filter(Boolean);
-
-        if (segments.length === 0) {
-          // Root domain deployment (VITE_BASE_URL=/)
-          console.info('🔄 Root domain deployment, reloading...');
-          window.location.reload();
-        } else if (segments.length === 1) {
-          // Subdirectory deployment (VITE_BASE_URL=/funges/)
-          const basePath = '/' + segments[0] + '/';
-          console.info('🔄 Subdirectory deployment, redirecting to:', basePath);
-          window.location.href = basePath;
-        } else {
-          // Deep route in subdirectory (e.g., /funges/recipes)
-          const basePath = '/' + segments[0] + '/';
-          console.info('🔄 Deep route, redirecting to base:', basePath);
-          window.location.href = basePath;
-        }
+        // Root domain (base = /): redirect to /.
+        // Subdirectory deployment (base = /repo/): redirect to /repo/.
+        const base = segments.length > 1 ? '/' + segments[0] + '/' : '/';
+        window.location.replace(base);
       })();
     </script>
     <style>
