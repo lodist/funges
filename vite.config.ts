@@ -11,12 +11,16 @@ const baseUrl = process.env.VITE_BASE_URL || '/';
 const hostname = process.env.VITE_HOSTNAME || 'https://www.fung.es';
 
 const routeFullPaths = [
+  '/data',
   '/impressum',
   '/instructions',
+  '/offline',
   '/privacy-policy',
   '/recipes',
   '/settings',
   '/species',
+  '/support',
+  '/termsuse',
   '/worth-foraging-now',
 ];
 
