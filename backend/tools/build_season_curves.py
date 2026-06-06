@@ -1,34 +1,5 @@
 #!/usr/bin/env python3
-"""Generate empirical seasonal multiplier curves from GBIF target-group sighting ratios.
-
-For each region and target species this queries GBIF for monthly sighting counts of the
-target taxon and of all Fungi (the "target group"), over a multi-year window, within the
-region bounding box. The target-group ratio (target / all-fungi, per month) cancels
-observer-effort bias, so even sparsely-observed regions yield a correct seasonal *shape*
-(e.g. Turkey recovers a September Boletus peak from a handful of records). The normalized
-ratio is mapped to a bounded multiplier and written as `season_curve` (12 monthly values)
-per species. The *_Scoring.py scripts load these curves and apply a smooth, data-driven
-seasonal multiplier in place of the flat season_months ramp; species without a curve fall
-back to season_months.
-
-Each region's curves are published to its <REGION>_SEASON_CURVES R2 URL (same .env entry the
-scoring scripts read back), uploaded via boto3 with the same R2_* credentials / .env as the
-scoring scripts. The year window defaults to a rolling 7 years ending in the current year, so
-it always includes recent data. No GBIF account or API key is required (public
-occurrence-search facets).
-
-Usage:
-    python build_season_curves.py                      # all regions -> R2 (next to weather data)
-    python build_season_curves.py --regions NE,SE --years 2020,2026 --low 0.8 --high 1.2
-    python build_season_curves.py --out-dir ./curves --local-only   # skip R2, write local only
-
-Caveats:
-  * This is a *seasonality* (when) signal, robust to observer effort via the ratio.
-    It is NOT a "good year vs bad year" signal — year-to-year ratios reintroduce effort
-    bias and need separate, more careful treatment.
-  * Genus keys match the taxon and all descendants, so e.g. Boletus captures edulis,
-    aestivalis, pinophilus, reticulatus. Extend TAXON_MAP with verified keys only
-    (resolve via https://api.gbif.org/v1/species/match and check the result).
+"""Build empirical seasonality curves from GBIF target-group ratios and upload to R2
 """
 import argparse
 import json
@@ -46,18 +17,9 @@ import boto3
 _THIS_YEAR = date.today().year
 
 GBIF = "https://api.gbif.org/v1/occurrence/search"
-FUNGI_KEY = 5  # Kingdom Fungi — the target-group / observer-effort denominator
+FUNGI_KEY = 5  # Kingdom Fungi
 
-# app-species -> verified GBIF taxonKey(s). taxonKey matches the taxon and all descendants.
-#
-# SCOPE: FUNGI ONLY. This method assumes sighting date ~= forageable date, which holds for
-# fungi (an ephemeral fruiting body is recorded when it fruits) but NOT for perennial plants:
-# people photograph nettle, dandelion, walnut, etc. year-round regardless of when the young
-# tops (spring) or nuts (autumn) are forageable, so the target-group ratio for a plant is a
-# near-flat "when people walk outside" curve, not an edibility curve. The ~14 plant species
-# are deliberately left on their hand-set season_months (which do encode the forageable
-# window). Keys are kingdom-verified to avoid zoological homonyms (e.g. a non-fungal
-# "Cantharellus") — resolve via species/match?name=...&kingdom=Fungi and check the result.
+# Fungi only — plants excluded (sighting date ≠ forageable date for perennials).
 TAXON_MAP = {
     "mushroom":    [8287374],  # Boletus (genus): edulis, aestivalis, pinophilus, reticulatus, ...
     "morel":       [2594601],  # Morchella (genus): all morels
@@ -68,8 +30,6 @@ TAXON_MAP = {
     "truffle_b":   [8282501],  # Tuber (genus)
 }
 
-# region -> bounding box (matching each *_Scoring.py grid extent) + its curves-destination
-# env var. The same <REGION>_SEASON_CURVES R2 URL is read back by the scoring scripts.
 REGIONS = {
     "NE":  {"lat": (49.0, 71.5), "lon": (-25.0, 32.0),    "env": "NE_SEASON_CURVES"},
     "SE":  {"lat": (34.0, 55.5), "lon": (12.0, 42.5),     "env": "SE_SEASON_CURVES"},
@@ -107,7 +67,6 @@ def is_remote_path(path):
 
 
 def save_curves(data, dest):
-    """Write curves JSON to dest: upload to R2 when dest is a URL, else write to a local path."""
     payload = json.dumps(data, indent=2).encode("utf-8")
     if is_remote_path(dest):
         key = urlparse(dest).path.lstrip("/")
@@ -129,7 +88,6 @@ def save_curves(data, dest):
 
 
 def _facet_month(taxon_keys, region, years, retries=4):
-    """Return ({month: count} for 1..12, total_count) for the given taxa in the region/window."""
     params = [
         ("year", years), ("facet", "month"), ("facetLimit", "12"), ("limit", "0"),
         ("hasCoordinate", "true"),
@@ -155,11 +113,6 @@ def _facet_month(taxon_keys, region, years, retries=4):
 
 
 def build_curve(target_counts, fungi_counts, low, high, min_total):
-    """Map the target-group ratio to a bounded [low, high] monthly multiplier.
-
-    Returns (curve|None, total). None when there are too few sightings to trust —
-    the scoring then falls back to season_months for that species.
-    """
     total = sum(target_counts.values())
     ratio = {m: (target_counts[m] / fungi_counts[m] if fungi_counts[m] else 0.0) for m in range(1, 13)}
     mx = max(ratio.values())
@@ -172,7 +125,7 @@ def build_curve(target_counts, fungi_counts, low, high, min_total):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--years", default=f"{_THIS_YEAR - 6},{_THIS_YEAR}",
-                    help="GBIF year range (default: rolling 7-year window ending this year)")
+                    help="GBIF year range")
     ap.add_argument("--low", type=float, default=0.8, help="multiplier floor (off-peak)")
     ap.add_argument("--high", type=float, default=1.2, help="multiplier ceiling (peak)")
     ap.add_argument("--min-total", type=int, default=200,
