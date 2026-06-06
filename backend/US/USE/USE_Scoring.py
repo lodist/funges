@@ -722,7 +722,11 @@ print(f'len of dataset after: {len(updated_df)}')
 cutoff_date = datetime.now() - timedelta(days=365)
 updated_df = updated_df[updated_df['Date'] > cutoff_date]
 
-species_score_columns = [c for c in updated_df.columns if c.endswith('_score')]
+# Keep only score columns for species currently defined in species_params. Orphan
+# score columns (e.g. left behind by a renamed or typo'd species key) are pruned here
+# so they self-heal out of the saved file instead of persisting forever as all-NaN.
+valid_score_columns = {f"{specie}_score" for specie in species_params}
+species_score_columns = [c for c in updated_df.columns if c.endswith('_score') and c in valid_score_columns]
 updated_df[species_score_columns] = updated_df[species_score_columns].mask(updated_df[species_score_columns] > 9.5, 10).round(2)
 
 masterfile_columns = [
