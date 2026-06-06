@@ -91,10 +91,10 @@ species_params = {}
 exec(code, globals())
 
 # Merge GBIF-derived empirical season curves into params (produced by
-# tools/build_season_curves.py, stored next to the weather data in R2 — path is derived,
-# no extra config). Species with a curve use it; species without one fall back to their
-# season_months ramp. A missing or unreadable file degrades gracefully rather than failing.
-_curves_path = main_data_path.replace("weather_data.parquet", "season_curves.json")
+# tools/build_season_curves.py and published to R2 at SE_SEASON_CURVES). Species with a
+# curve use it; species without one fall back to their season_months ramp. A missing or
+# unreadable file degrades gracefully to season_months rather than failing the run.
+_curves_path = get_required_env("SE_SEASON_CURVES")
 try:
     _raw = r2_fetch(_curves_path).decode("utf-8") if is_remote_path(_curves_path) else Path(_curves_path).read_text(encoding="utf-8")
     _curves = json.loads(_raw)

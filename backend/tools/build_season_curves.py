@@ -11,12 +11,11 @@ per species. The *_Scoring.py scripts load these curves and apply a smooth, data
 seasonal multiplier in place of the flat season_months ramp; species without a curve fall
 back to season_months.
 
-Each region's curves are published next to its weather data in R2 (the destination is
-derived from <REGION>_WEATHER_DATA by swapping the filename to <region>_season_curves.json,
-so no dedicated env var is needed — the scoring scripts derive the exact same path). Upload
-uses boto3 with the same R2_* credentials / .env as the scoring scripts. The year window
-defaults to a rolling 7 years ending in the current year, so it always includes recent data.
-No GBIF account or API key is required (public occurrence-search facets).
+Each region's curves are published to its <REGION>_SEASON_CURVES R2 URL (same .env entry the
+scoring scripts read back), uploaded via boto3 with the same R2_* credentials / .env as the
+scoring scripts. The year window defaults to a rolling 7 years ending in the current year, so
+it always includes recent data. No GBIF account or API key is required (public
+occurrence-search facets).
 
 Usage:
     python build_season_curves.py                      # all regions -> R2 (next to weather data)
@@ -69,14 +68,13 @@ TAXON_MAP = {
     "truffle_b":   [8282501],  # Tuber (genus)
 }
 
-# region -> bounding box (matching each *_Scoring.py grid extent) + the weather-data env var.
-# The curves destination is derived from the weather-data path (sibling file in R2), so no
-# dedicated env var is needed — the scoring scripts derive the exact same path.
+# region -> bounding box (matching each *_Scoring.py grid extent) + its curves-destination
+# env var. The same <REGION>_SEASON_CURVES R2 URL is read back by the scoring scripts.
 REGIONS = {
-    "NE":  {"lat": (49.0, 71.5), "lon": (-25.0, 32.0),    "data_env": "NE_WEATHER_DATA"},
-    "SE":  {"lat": (34.0, 55.5), "lon": (12.0, 42.5),     "data_env": "SE_WEATHER_DATA"},
-    "USE": {"lat": (24.0, 37.5), "lon": (-106.5, -75.0),  "data_env": "USE_WEATHER_DATA"},
-    "USW": {"lat": (33.0, 49.5), "lon": (-125.5, -81.5),  "data_env": "USW_WEATHER_DATA"},
+    "NE":  {"lat": (49.0, 71.5), "lon": (-25.0, 32.0),    "env": "NE_SEASON_CURVES"},
+    "SE":  {"lat": (34.0, 55.5), "lon": (12.0, 42.5),     "env": "SE_SEASON_CURVES"},
+    "USE": {"lat": (24.0, 37.5), "lon": (-106.5, -75.0),  "env": "USE_SEASON_CURVES"},
+    "USW": {"lat": (33.0, 49.5), "lon": (-125.5, -81.5),  "env": "USW_SEASON_CURVES"},
 }
 
 _ROOT = Path(__file__).resolve().parents[2]
@@ -209,7 +207,7 @@ def main():
         if args.local_only:
             dest = str(Path(args.out_dir) / f"{region}_season_curves.json")
         else:
-            dest = get_required_env(reg["data_env"]).replace("weather_data.parquet", "season_curves.json")
+            dest = get_required_env(reg["env"])
         print(f"[{region}] {len(curves)} curve(s):")
         save_curves(curves, dest)
         print()
