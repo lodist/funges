@@ -180,9 +180,7 @@ The app will be available at `http://localhost:3000`
 
 ## ⚙️ Backend Scripts
 
-The `backend/` folder contains the Python scripts that generate the foraging scores and map tiles served by the app. They run on a schedule and write results to Cloudflare R2.
-
-### Structure
+Python scripts that generate foraging scores and map tiles, running on a schedule and writing to Cloudflare R2.
 
 ```
 backend/
@@ -197,41 +195,18 @@ backend/
 └── requirements.txt
 ```
 
-- **Scoring scripts** — fetch weather data from R2, compute foraging scores per species and location, write results back to R2 as Parquet
-- **MapLayer scripts** — load scores + wilderness GeoJSON, run Delaunay triangulation, assign scores to triangles, generate MBTiles via tippecanoe, upload to R2 and publish to Mapbox Tilesets
-- **`tools/build_season_curves.py`** — builds empirical seasonality curves for fungi from GBIF sightings (see below)
-
-### Empirical seasonality (GBIF)
-
-For the fungi species, the seasonal weighting in the scoring is driven by real-world sightings instead of a hand-set month list. `tools/build_season_curves.py` queries GBIF for monthly sighting counts of each target genus **and** of all Fungi, then divides them — this **target-group ratio** cancels observer-effort bias, so even sparsely-observed regions (e.g. Italy, Turkey) yield a correct seasonal *shape*. The normalized ratio becomes a bounded `[0.8, 1.2]` 12-month `season_curve`, published to each region's `<REGION>_SEASON_CURVES` R2 URL.
-
-The Scoring scripts read that file and apply a smooth daily multiplier (interpolated across the year) for any species that has a curve; species without one (all the **plants** — for which a sighting date does not mark the forageable window) fall back to their hand-set `season_months`. A missing or unreadable curves file degrades gracefully to `season_months`.
-
-The generator is fast (~18 s for all four regions — almost entirely GBIF network latency) and needs no GBIF account or API key. Since seasonality is a multi-year monthly shape, it only needs to run occasionally (monthly is ample); run it before the Scoring scripts on first setup so the curves exist in R2.
-
-```bash
-python backend/tools/build_season_curves.py                 # all regions -> R2
-python backend/tools/build_season_curves.py --local-only --out-dir ./curves   # test, no upload
-```
-
-### Setup
-
-**Requirements:** Python 3.10+, [tippecanoe](https://github.com/mapbox/tippecanoe) (for MapLayer scripts)
+- **Scoring** — fetch weather from R2, compute species scores, write Parquet back to R2
+- **MapLayer** — scores + GeoJSON → Delaunay triangulation → MBTiles via tippecanoe → Mapbox
+- **`build_season_curves.py`** — queries GBIF for monthly fungi sightings per region, builds a target-group ratio curve (cancels observer-effort bias), uploads to `<REGION>_SEASON_CURVES` in R2. Run once before the first scoring run, then monthly.
 
 ```bash
 pip install -r backend/requirements.txt
-cp .env.secret.example .env.secret
-# fill in .env.secret with your credentials
-```
+cp .env.secret.example .env.secret  # fill in R2, Mapbox, WeatherAPI credentials
 
-### Running a script
-
-```bash
-python backend/EU/North_Europe/NE_Scoring.py
+python backend/tools/build_season_curves.py        # publish season curves to R2
+python backend/EU/North_Europe/NE_Scoring.py       # then run scoring
 python backend/EU/North_Europe/NE_MapLayer.py
 ```
-
-All credentials are loaded from `.env.secret` at the repo root. Public data URLs are in `.env`.
 
 ## 🔧 Configuration
 
