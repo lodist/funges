@@ -90,6 +90,21 @@ else:
 species_params = {}
 exec(code, globals())
 
+# Merge GBIF-derived empirical season curves into params (produced by
+# tools/build_season_curves.py and published to R2 at USE_SEASON_CURVES). Species with a
+# curve use it; species without one fall back to their season_months ramp. A missing or
+# unreadable file degrades gracefully to season_months rather than failing the run.
+_curves_path = get_required_env("USE_SEASON_CURVES")
+try:
+    _raw = r2_fetch(_curves_path).decode("utf-8") if is_remote_path(_curves_path) else Path(_curves_path).read_text(encoding="utf-8")
+    _curves = json.loads(_raw)
+    for _sp, _p in species_params.items():
+        if _sp in _curves:
+            _p["season_curve"] = {int(k): float(v) for k, v in _curves[_sp].items()}
+    print(f"Loaded empirical season curves for {sum('season_curve' in p for p in species_params.values())} species.")
+except Exception as _e:
+    print(f"[warn] could not load season curves from {_curves_path}: {_e}; falling back to season_months")
+
 # STATIC INFO (pre-index for O(1) lookup)
 static_df = read_df_from_source(static_info_path)
 static_df['Latitude']  = static_df['Latitude'].astype(float)
@@ -404,13 +419,37 @@ def gaussian(x, mu, sig):
 
 def compute_lag_features(df, columns, days):
     df = df.sort_values(by=["Location_Id", "Date"], ascending=[True, True])
+    # Lags are keyed on the calendar date, not on row position: a row's "N days ago"
+    # value is taken from the row at exactly Date - N days for the same Location_Id
+    # (NaN if that day is absent). This prevents missing days in the daily history
+    # from silently stretching the lookback window. Duplicate (Location_Id, Date)
+    # pairs collapse to their last value so the lookup stays uniquely indexed.
+    lookups = {col: df.groupby(["Location_Id", "Date"])[col].last() for col in columns}
+    locs = df["Location_Id"].to_numpy()
     for day in range(1, days + 1):
+        target_idx = pd.MultiIndex.from_arrays(
+            [locs, (df["Date"] - pd.Timedelta(days=day)).to_numpy()]
+        )
         for col in columns:
-            df[f"{col}_{day}days_ago"] = df.groupby("Location_Id")[col].shift(day)
+            df[f"{col}_{day}days_ago"] = lookups[col].reindex(target_idx).to_numpy()
     return df
 
 def altitude_score(x, optimal_alt=1150, alt_sigma=600):
     return gaussian(x, optimal_alt, alt_sigma)
+
+# Empirical seasonality: replace the flat season_months ramp with a smooth multiplier
+# derived from a 12-month curve (the GBIF target-group sighting ratio). The curve lives
+# in params["season_curve"] as {month(1-12): multiplier}; values are interpolated at
+# month midpoints (periodic) so the multiplier varies smoothly across the day-of-year
+# instead of stepping at month boundaries. Species without a curve use season_months.
+_MONTH_MID_DOY = np.array([15, 46, 74, 105, 135, 166, 196, 227, 258, 288, 319, 349])
+
+def empirical_season_multiplier(dates, season_curve):
+    curve = {int(k): float(v) for k, v in season_curve.items()}
+    vals = np.array([curve[m] for m in range(1, 13)], dtype=float)
+    xp = np.concatenate(([_MONTH_MID_DOY[-1] - 365], _MONTH_MID_DOY, [_MONTH_MID_DOY[0] + 365]))
+    fp = np.concatenate(([vals[-1]], vals, [vals[0]]))
+    return np.interp(dates.dt.dayofyear.to_numpy(), xp, fp)
 
 df = combined_df
 df['Date'] = pd.to_datetime(df['Date'])
@@ -446,6 +485,11 @@ def calculate_mushroom_score(df, species_params):
         drought_floor  = max(0.08, 0.18 - 0.0015 * _ct)
         no_wet_penalty = max(0.50, 0.70 - 0.002 * _ct)
         weather_eps    = 1e-5
+        # Convex exponent on the cumulative-rain fraction: sub-threshold rain earns
+        # proportionally less credit (0.75 of threshold -> 0.75**1.5 ~= 0.65, vs the old
+        # near-linear 0.75), so marginal/drought weeks no longer read as "good". At and
+        # above threshold (frac == 1.0) it is unchanged, so peak conditions still score high.
+        cum_gamma      = 1.5
 
         dl_start_pct = min(0.85, 0.72 + 0.001 * _ct)
         dl_floor     = 0.05
@@ -489,6 +533,7 @@ def calculate_mushroom_score(df, species_params):
             scale   = (hist_days / baseline_days) if hist_days else 0.0
             adj_thr = max(cum_thr * scale, 1e-9)
             cum_frac = min(1.0, cum_mm / adj_thr)
+            cum_frac_eff = cum_frac ** cum_gamma
 
             ratio = cum_mm / adj_thr
             flood_pen = 1.0 if ratio <= 4 else 1.0 / (1.0 + 1.25 * (ratio - 4))
@@ -497,7 +542,7 @@ def calculate_mushroom_score(df, species_params):
                 0.20 * wet_factor +
                 0.15 * (dry_count >= req_dry) +
                 0.05 * day_ok +
-                0.60 * (cum_frac * flood_pen)
+                0.60 * (cum_frac_eff * flood_pen)
             )
 
             if rain_first:
@@ -524,7 +569,7 @@ def calculate_mushroom_score(df, species_params):
                 raw *= (1.0 - (1.0 - dl_floor) * (t ** dl_gamma))
             raw = min(1.0, raw)
 
-            sig = 1.0 / (1.0 + np.exp(-drought_k * (cum_frac - drought_mid)))
+            sig = 1.0 / (1.0 + np.exp(-drought_k * (cum_frac_eff - drought_mid)))
             drought_mult = drought_floor + (1.0 - drought_floor) * sig
             if wet_count == 0:
                 drought_mult *= no_wet_penalty
@@ -610,8 +655,8 @@ def calculate_mushroom_score(df, species_params):
             w = np.asarray(weights, float)
             return np.exp((w[:, None] * np.log(comps)).sum(axis=0) / max(w.sum(), eps))
 
-        #weight of single scores
-        wT, wH, wW, wA, wPH = 1.75, 1.5, 1.25, 0.75, 1.0
+        #weight of single scores (rain weighted above humidity: it is the stronger growth/fruiting trigger)
+        wT, wH, wW, wA, wPH = 1.75, 1.25, 1.5, 0.75, 1.0
         wWater = 0.7 if water_active else 0.0
 
         n = len(df)
@@ -665,7 +710,9 @@ def calculate_mushroom_score(df, species_params):
         if allowed_climates:
             df.loc[~df['climate_zone'].isin(allowed_climates), f'{specie}_score'] = 0
 
-        if "season_months" in params:
+        if "season_curve" in params:
+            df[f'{specie}_score'] *= empirical_season_multiplier(df['Date'], params["season_curve"])
+        elif "season_months" in params:
             ramp_days = 31
             allowed_months = set(params["season_months"])
             in_season = df['Date'].dt.month.isin(allowed_months)
@@ -712,7 +759,11 @@ print(f'len of dataset after: {len(updated_df)}')
 cutoff_date = datetime.now() - timedelta(days=365)
 updated_df = updated_df[updated_df['Date'] > cutoff_date]
 
-species_score_columns = [c for c in updated_df.columns if c.endswith('_score')]
+# Keep only score columns for species currently defined in species_params. Orphan
+# score columns (e.g. left behind by a renamed or typo'd species key) are pruned here
+# so they self-heal out of the saved file instead of persisting forever as all-NaN.
+valid_score_columns = {f"{specie}_score" for specie in species_params}
+species_score_columns = [c for c in updated_df.columns if c.endswith('_score') and c in valid_score_columns]
 updated_df[species_score_columns] = updated_df[species_score_columns].mask(updated_df[species_score_columns] > 9.5, 10).round(2)
 
 masterfile_columns = [

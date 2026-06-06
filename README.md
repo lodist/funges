@@ -180,9 +180,7 @@ The app will be available at `http://localhost:3000`
 
 ## ⚙️ Backend Scripts
 
-The `backend/` folder contains the Python scripts that generate the foraging scores and map tiles served by the app. They run on a schedule and write results to Cloudflare R2.
-
-### Structure
+Python scripts that generate foraging scores and map tiles, running on a schedule and writing to Cloudflare R2.
 
 ```
 backend/
@@ -192,30 +190,23 @@ backend/
 ├── US/
 │   ├── USE/            USE_Scoring.py, USE_MapLayer.py
 │   └── USW/            USW_Scoring.py, USW_MapLayer.py
+├── tools/
+│   └── build_season_curves.py
 └── requirements.txt
 ```
 
-- **Scoring scripts** — fetch weather data from R2, compute foraging scores per species and location, write results back to R2 as Parquet
-- **MapLayer scripts** — load scores + wilderness GeoJSON, run Delaunay triangulation, assign scores to triangles, generate MBTiles via tippecanoe, upload to R2 and publish to Mapbox Tilesets
-
-### Setup
-
-**Requirements:** Python 3.10+, [tippecanoe](https://github.com/mapbox/tippecanoe) (for MapLayer scripts)
+- **Scoring** — fetch weather from R2, compute species scores, write Parquet back to R2
+- **MapLayer** — scores + GeoJSON → Delaunay triangulation → MBTiles via tippecanoe → Mapbox
+- **`build_season_curves.py`** — queries GBIF for monthly fungi sightings per region, builds a target-group ratio curve (cancels observer-effort bias), uploads to `<REGION>_SEASON_CURVES` in R2. Run once before the first scoring run, then monthly.
 
 ```bash
 pip install -r backend/requirements.txt
-cp .env.secret.example .env.secret
-# fill in .env.secret with your credentials
-```
+cp .env.secret.example .env.secret  # fill in R2, Mapbox, WeatherAPI credentials
 
-### Running a script
-
-```bash
-python backend/EU/North_Europe/NE_Scoring.py
+python backend/tools/build_season_curves.py        # publish season curves to R2
+python backend/EU/North_Europe/NE_Scoring.py       # then run scoring
 python backend/EU/North_Europe/NE_MapLayer.py
 ```
-
-All credentials are loaded from `.env.secret` at the repo root. Public data URLs are in `.env`.
 
 ## 🔧 Configuration
 

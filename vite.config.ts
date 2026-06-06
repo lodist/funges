@@ -1,5 +1,4 @@
-/// <reference types="vitest" />
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -11,12 +10,16 @@ const baseUrl = process.env.VITE_BASE_URL || '/';
 const hostname = process.env.VITE_HOSTNAME || 'https://www.fung.es';
 
 const routeFullPaths = [
+  '/data',
   '/impressum',
   '/instructions',
+  '/offline',
   '/privacy-policy',
   '/recipes',
   '/settings',
   '/species',
+  '/support',
+  '/termsuse',
   '/worth-foraging-now',
 ];
 
