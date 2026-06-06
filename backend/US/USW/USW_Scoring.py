@@ -620,8 +620,8 @@ def calculate_mushroom_score(df, species_params):
             w = np.asarray(weights, float)
             return np.exp((w[:, None] * np.log(comps)).sum(axis=0) / max(w.sum(), eps))
 
-        #weight of single scores
-        wT, wH, wW, wA, wPH = 1.75, 1.5, 1.25, 0.75, 1.0
+        #weight of single scores (rain weighted above humidity: it is the stronger growth/fruiting trigger)
+        wT, wH, wW, wA, wPH = 1.75, 1.25, 1.5, 0.75, 1.0
         wWater = 0.7 if water_active else 0.0
 
         n = len(df)
