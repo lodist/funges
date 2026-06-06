@@ -90,21 +90,20 @@ else:
 species_params = {}
 exec(code, globals())
 
-# Optionally merge GBIF-derived empirical season curves into params (opt-in via
-# USE_EMPIRICAL_SEASON=1 + NE_SEASON_CURVES path/URL). No-op if disabled, unset, or
-# unreadable, so default behavior is unchanged. Produced by tools/build_season_curves.py.
-if os.getenv("USE_EMPIRICAL_SEASON", "0") == "1":
-    _curves_path = os.getenv("NE_SEASON_CURVES")
-    if _curves_path:
-        try:
-            _raw = r2_fetch(_curves_path).decode("utf-8") if is_remote_path(_curves_path) else Path(_curves_path).read_text(encoding="utf-8")
-            _curves = json.loads(_raw)
-            for _sp, _p in species_params.items():
-                if _sp in _curves:
-                    _p["season_curve"] = {int(k): float(v) for k, v in _curves[_sp].items()}
-            print(f"Loaded empirical season curves for {sum('season_curve' in p for p in species_params.values())} species.")
-        except Exception as _e:
-            print(f"[warn] could not load season curves from {_curves_path}: {_e}")
+# Merge GBIF-derived empirical season curves into params (produced by
+# tools/build_season_curves.py and published to R2). Species with a curve use it;
+# species without one fall back to their season_months ramp. A missing or unreadable
+# file degrades gracefully to season_months rather than failing the run.
+_curves_path = get_required_env("NE_SEASON_CURVES")
+try:
+    _raw = r2_fetch(_curves_path).decode("utf-8") if is_remote_path(_curves_path) else Path(_curves_path).read_text(encoding="utf-8")
+    _curves = json.loads(_raw)
+    for _sp, _p in species_params.items():
+        if _sp in _curves:
+            _p["season_curve"] = {int(k): float(v) for k, v in _curves[_sp].items()}
+    print(f"Loaded empirical season curves for {sum('season_curve' in p for p in species_params.values())} species.")
+except Exception as _e:
+    print(f"[warn] could not load season curves from {_curves_path}: {_e}; falling back to season_months")
 
 # STATIC INFO (pre-index for O(1) lookup)
 static_df = read_df_from_source(static_info_path)
@@ -438,13 +437,11 @@ def compute_lag_features(df, columns, days):
 def altitude_score(x, optimal_alt=1150, alt_sigma=600):
     return gaussian(x, optimal_alt, alt_sigma)
 
-# Empirical seasonality (opt-in via USE_EMPIRICAL_SEASON=1): replace the flat
-# season_months ramp with a smooth multiplier derived from a 12-month curve
-# (e.g. the GBIF target-group sighting ratio). The curve lives in
-# params["season_curve"] as {month(1-12): multiplier}; values are interpolated at
+# Empirical seasonality: replace the flat season_months ramp with a smooth multiplier
+# derived from a 12-month curve (the GBIF target-group sighting ratio). The curve lives
+# in params["season_curve"] as {month(1-12): multiplier}; values are interpolated at
 # month midpoints (periodic) so the multiplier varies smoothly across the day-of-year
-# instead of stepping at month boundaries. Falls back to season_months when off/absent.
-USE_EMPIRICAL_SEASON = os.getenv("USE_EMPIRICAL_SEASON", "0") == "1"
+# instead of stepping at month boundaries. Species without a curve use season_months.
 _MONTH_MID_DOY = np.array([15, 46, 74, 105, 135, 166, 196, 227, 258, 288, 319, 349])
 
 def empirical_season_multiplier(dates, season_curve):
@@ -707,7 +704,7 @@ def calculate_mushroom_score(df, species_params):
         if allowed_climates:
             df.loc[~df['climate_zone'].isin(allowed_climates), f'{specie}_score'] = 0
 
-        if USE_EMPIRICAL_SEASON and "season_curve" in params:
+        if "season_curve" in params:
             df[f'{specie}_score'] *= empirical_season_multiplier(df['Date'], params["season_curve"])
         elif "season_months" in params:
             ramp_days = 31

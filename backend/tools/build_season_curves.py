@@ -7,14 +7,18 @@ region bounding box. The target-group ratio (target / all-fungi, per month) canc
 observer-effort bias, so even sparsely-observed regions yield a correct seasonal *shape*
 (e.g. Turkey recovers a September Boletus peak from a handful of records). The normalized
 ratio is mapped to a bounded multiplier and written as `season_curve` (12 monthly values)
-per species. The *_Scoring.py scripts consume it when USE_EMPIRICAL_SEASON=1, replacing
-the flat season_months ramp with a smooth, data-driven seasonal multiplier.
+per species. The *_Scoring.py scripts load these curves (from the same <REGION>_SEASON_CURVES
+path) and apply a smooth, data-driven seasonal multiplier in place of the flat season_months
+ramp; species without a curve fall back to season_months.
 
-No GBIF account or API key is required — this uses the public occurrence-search facets.
+Each region's curves are published to its <REGION>_SEASON_CURVES destination — an R2 URL is
+uploaded via boto3 (same R2_* credentials / .env as the scoring scripts); a local path is
+written to disk. No GBIF account or API key is required (public occurrence-search facets).
 
 Usage:
-    python build_season_curves.py --out-dir ./curves
+    python build_season_curves.py                      # all regions -> their *_SEASON_CURVES dest
     python build_season_curves.py --regions NE,SE --years 2019,2025 --low 0.8 --high 1.2
+    python build_season_curves.py --out-dir ./curves --local-only   # skip R2, write local only
 
 Caveats:
   * This is a *seasonality* (when) signal, robust to observer effort via the ratio.
@@ -26,10 +30,15 @@ Caveats:
 """
 import argparse
 import json
+import os
 import time
 import urllib.parse
 import urllib.request
+from io import BytesIO
 from pathlib import Path
+from urllib.parse import urlparse
+
+import boto3
 
 GBIF = "https://api.gbif.org/v1/occurrence/search"
 FUNGI_KEY = 5  # Kingdom Fungi — the target-group / observer-effort denominator
@@ -44,13 +53,63 @@ TAXON_MAP = {
     "truffle_b":   [8282501],  # Tuber (genus)
 }
 
-# region -> bounding box, matching each *_Scoring.py grid extent
+# region -> (bounding box matching each *_Scoring.py grid extent, env var for the destination)
 REGIONS = {
-    "NE":  {"lat": (49.0, 71.5), "lon": (-25.0, 32.0)},
-    "SE":  {"lat": (34.0, 55.5), "lon": (12.0, 42.5)},
-    "USE": {"lat": (24.0, 37.5), "lon": (-106.5, -75.0)},
-    "USW": {"lat": (33.0, 49.5), "lon": (-125.5, -81.5)},
+    "NE":  {"lat": (49.0, 71.5), "lon": (-25.0, 32.0),    "env": "NE_SEASON_CURVES"},
+    "SE":  {"lat": (34.0, 55.5), "lon": (12.0, 42.5),     "env": "SE_SEASON_CURVES"},
+    "USE": {"lat": (24.0, 37.5), "lon": (-106.5, -75.0),  "env": "USE_SEASON_CURVES"},
+    "USW": {"lat": (33.0, 49.5), "lon": (-125.5, -81.5),  "env": "USW_SEASON_CURVES"},
 }
+
+_ROOT = Path(__file__).resolve().parents[2]
+
+
+def load_dotenv(dotenv_path):
+    if not dotenv_path.exists():
+        return
+    for raw_line in dotenv_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
+def get_required_env(*names):
+    for name in names:
+        value = os.getenv(name)
+        if value is not None and str(value).strip() != "":
+            return value
+    raise RuntimeError(f"Missing required environment variable. Checked: {', '.join(names)}")
+
+
+def is_remote_path(path):
+    return str(path).startswith(("http://", "https://"))
+
+
+def save_curves(data, dest):
+    """Write curves JSON to dest: upload to R2 when dest is a URL, else write to a local path."""
+    payload = json.dumps(data, indent=2).encode("utf-8")
+    if is_remote_path(dest):
+        key = urlparse(dest).path.lstrip("/")
+        client = boto3.client(
+            "s3",
+            endpoint_url=get_required_env("R2_ENDPOINT_URL"),
+            aws_access_key_id=get_required_env("R2_ACCESS_KEY_ID"),
+            aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY"),
+        )
+        client.put_object(
+            Bucket=get_required_env("R2_BUCKET_NAME"), Key=key,
+            Body=BytesIO(payload).getvalue(), ContentType="application/json",
+        )
+        print(f"  uploaded to R2: {dest}")
+    else:
+        Path(dest).parent.mkdir(parents=True, exist_ok=True)
+        Path(dest).write_bytes(payload)
+        print(f"  wrote local: {dest}")
 
 
 def _facet_month(taxon_keys, region, years, retries=4):
@@ -68,7 +127,7 @@ def _facet_month(taxon_keys, region, years, retries=4):
         try:
             d = json.load(urllib.request.urlopen(url, timeout=90))
             break
-        except Exception as e:
+        except Exception:
             if attempt == retries - 1:
                 raise
             time.sleep(1.5 * (attempt + 1))
@@ -101,12 +160,14 @@ def main():
     ap.add_argument("--high", type=float, default=1.2, help="multiplier ceiling (peak)")
     ap.add_argument("--min-total", type=int, default=200,
                     help="min target sightings in a region to trust its curve")
-    ap.add_argument("--out-dir", default=".")
     ap.add_argument("--regions", default=",".join(REGIONS), help="comma-separated region codes")
+    ap.add_argument("--local-only", action="store_true",
+                    help="ignore <REGION>_SEASON_CURVES and write to --out-dir instead")
+    ap.add_argument("--out-dir", default=".", help="local output dir (for --local-only)")
     args = ap.parse_args()
 
-    out_dir = Path(args.out_dir)
-    out_dir.mkdir(parents=True, exist_ok=True)
+    load_dotenv(_ROOT / ".env")
+    load_dotenv(_ROOT / ".env.secret")
 
     for region in args.regions.split(","):
         region = region.strip()
@@ -125,9 +186,14 @@ def main():
             print(f"[{region}] {sp:12s} target={total:6d} fungi={fungi_total:8d}  {status}")
             if curve:
                 curves[sp] = curve
-        path = out_dir / f"{region}_season_curves.json"
-        path.write_text(json.dumps(curves, indent=2))
-        print(f"[{region}] wrote {len(curves)} curve(s) -> {path}\n")
+
+        if args.local_only:
+            dest = str(Path(args.out_dir) / f"{region}_season_curves.json")
+        else:
+            dest = get_required_env(reg["env"])
+        print(f"[{region}] {len(curves)} curve(s):")
+        save_curves(curves, dest)
+        print()
 
 
 if __name__ == "__main__":
