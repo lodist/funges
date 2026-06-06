@@ -404,9 +404,19 @@ def gaussian(x, mu, sig):
 
 def compute_lag_features(df, columns, days):
     df = df.sort_values(by=["Location_Id", "Date"], ascending=[True, True])
+    # Lags are keyed on the calendar date, not on row position: a row's "N days ago"
+    # value is taken from the row at exactly Date - N days for the same Location_Id
+    # (NaN if that day is absent). This prevents missing days in the daily history
+    # from silently stretching the lookback window. Duplicate (Location_Id, Date)
+    # pairs collapse to their last value so the lookup stays uniquely indexed.
+    lookups = {col: df.groupby(["Location_Id", "Date"])[col].last() for col in columns}
+    locs = df["Location_Id"].to_numpy()
     for day in range(1, days + 1):
+        target_idx = pd.MultiIndex.from_arrays(
+            [locs, (df["Date"] - pd.Timedelta(days=day)).to_numpy()]
+        )
         for col in columns:
-            df[f"{col}_{day}days_ago"] = df.groupby("Location_Id")[col].shift(day)
+            df[f"{col}_{day}days_ago"] = lookups[col].reindex(target_idx).to_numpy()
     return df
 
 def altitude_score(x, optimal_alt=1150, alt_sigma=600):
