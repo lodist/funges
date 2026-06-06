@@ -7,17 +7,20 @@ region bounding box. The target-group ratio (target / all-fungi, per month) canc
 observer-effort bias, so even sparsely-observed regions yield a correct seasonal *shape*
 (e.g. Turkey recovers a September Boletus peak from a handful of records). The normalized
 ratio is mapped to a bounded multiplier and written as `season_curve` (12 monthly values)
-per species. The *_Scoring.py scripts load these curves (from the same <REGION>_SEASON_CURVES
-path) and apply a smooth, data-driven seasonal multiplier in place of the flat season_months
-ramp; species without a curve fall back to season_months.
+per species. The *_Scoring.py scripts load these curves and apply a smooth, data-driven
+seasonal multiplier in place of the flat season_months ramp; species without a curve fall
+back to season_months.
 
-Each region's curves are published to its <REGION>_SEASON_CURVES destination — an R2 URL is
-uploaded via boto3 (same R2_* credentials / .env as the scoring scripts); a local path is
-written to disk. No GBIF account or API key is required (public occurrence-search facets).
+Each region's curves are published next to its weather data in R2 (the destination is
+derived from <REGION>_WEATHER_DATA by swapping the filename to <region>_season_curves.json,
+so no dedicated env var is needed — the scoring scripts derive the exact same path). Upload
+uses boto3 with the same R2_* credentials / .env as the scoring scripts. The year window
+defaults to a rolling 7 years ending in the current year, so it always includes recent data.
+No GBIF account or API key is required (public occurrence-search facets).
 
 Usage:
-    python build_season_curves.py                      # all regions -> their *_SEASON_CURVES dest
-    python build_season_curves.py --regions NE,SE --years 2019,2025 --low 0.8 --high 1.2
+    python build_season_curves.py                      # all regions -> R2 (next to weather data)
+    python build_season_curves.py --regions NE,SE --years 2020,2026 --low 0.8 --high 1.2
     python build_season_curves.py --out-dir ./curves --local-only   # skip R2, write local only
 
 Caveats:
@@ -34,11 +37,14 @@ import os
 import time
 import urllib.parse
 import urllib.request
+from datetime import date
 from io import BytesIO
 from pathlib import Path
 from urllib.parse import urlparse
 
 import boto3
+
+_THIS_YEAR = date.today().year
 
 GBIF = "https://api.gbif.org/v1/occurrence/search"
 FUNGI_KEY = 5  # Kingdom Fungi — the target-group / observer-effort denominator
@@ -63,12 +69,14 @@ TAXON_MAP = {
     "truffle_b":   [8282501],  # Tuber (genus)
 }
 
-# region -> (bounding box matching each *_Scoring.py grid extent, env var for the destination)
+# region -> bounding box (matching each *_Scoring.py grid extent) + the weather-data env var.
+# The curves destination is derived from the weather-data path (sibling file in R2), so no
+# dedicated env var is needed — the scoring scripts derive the exact same path.
 REGIONS = {
-    "NE":  {"lat": (49.0, 71.5), "lon": (-25.0, 32.0),    "env": "NE_SEASON_CURVES"},
-    "SE":  {"lat": (34.0, 55.5), "lon": (12.0, 42.5),     "env": "SE_SEASON_CURVES"},
-    "USE": {"lat": (24.0, 37.5), "lon": (-106.5, -75.0),  "env": "USE_SEASON_CURVES"},
-    "USW": {"lat": (33.0, 49.5), "lon": (-125.5, -81.5),  "env": "USW_SEASON_CURVES"},
+    "NE":  {"lat": (49.0, 71.5), "lon": (-25.0, 32.0),    "data_env": "NE_WEATHER_DATA"},
+    "SE":  {"lat": (34.0, 55.5), "lon": (12.0, 42.5),     "data_env": "SE_WEATHER_DATA"},
+    "USE": {"lat": (24.0, 37.5), "lon": (-106.5, -75.0),  "data_env": "USE_WEATHER_DATA"},
+    "USW": {"lat": (33.0, 49.5), "lon": (-125.5, -81.5),  "data_env": "USW_WEATHER_DATA"},
 }
 
 _ROOT = Path(__file__).resolve().parents[2]
@@ -165,14 +173,15 @@ def build_curve(target_counts, fungi_counts, low, high, min_total):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--years", default="2019,2025", help="GBIF year range, e.g. 2019,2025")
+    ap.add_argument("--years", default=f"{_THIS_YEAR - 6},{_THIS_YEAR}",
+                    help="GBIF year range (default: rolling 7-year window ending this year)")
     ap.add_argument("--low", type=float, default=0.8, help="multiplier floor (off-peak)")
     ap.add_argument("--high", type=float, default=1.2, help="multiplier ceiling (peak)")
     ap.add_argument("--min-total", type=int, default=200,
                     help="min target sightings in a region to trust its curve")
     ap.add_argument("--regions", default=",".join(REGIONS), help="comma-separated region codes")
     ap.add_argument("--local-only", action="store_true",
-                    help="ignore <REGION>_SEASON_CURVES and write to --out-dir instead")
+                    help="skip R2 upload and write curves to --out-dir instead")
     ap.add_argument("--out-dir", default=".", help="local output dir (for --local-only)")
     args = ap.parse_args()
 
@@ -200,7 +209,7 @@ def main():
         if args.local_only:
             dest = str(Path(args.out_dir) / f"{region}_season_curves.json")
         else:
-            dest = get_required_env(reg["env"])
+            dest = get_required_env(reg["data_env"]).replace("weather_data.parquet", "season_curves.json")
         print(f"[{region}] {len(curves)} curve(s):")
         save_curves(curves, dest)
         print()
