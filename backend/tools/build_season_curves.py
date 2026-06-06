@@ -44,10 +44,20 @@ GBIF = "https://api.gbif.org/v1/occurrence/search"
 FUNGI_KEY = 5  # Kingdom Fungi — the target-group / observer-effort denominator
 
 # app-species -> verified GBIF taxonKey(s). taxonKey matches the taxon and all descendants.
+#
+# SCOPE: FUNGI ONLY. This method assumes sighting date ~= forageable date, which holds for
+# fungi (an ephemeral fruiting body is recorded when it fruits) but NOT for perennial plants:
+# people photograph nettle, dandelion, walnut, etc. year-round regardless of when the young
+# tops (spring) or nuts (autumn) are forageable, so the target-group ratio for a plant is a
+# near-flat "when people walk outside" curve, not an edibility curve. The ~14 plant species
+# are deliberately left on their hand-set season_months (which do encode the forageable
+# window). Keys are kingdom-verified to avoid zoological homonyms (e.g. a non-fungal
+# "Cantharellus") — resolve via species/match?name=...&kingdom=Fungi and check the result.
 TAXON_MAP = {
     "mushroom":    [8287374],  # Boletus (genus): edulis, aestivalis, pinophilus, reticulatus, ...
     "morel":       [2594601],  # Morchella (genus): all morels
     "black_chant": [2554662],  # Craterellus cornucopioides (horn of plenty / black chanterelle)
+    "chant":       [9623860],  # Cantharellus (genus, Fungi): chanterelle
     "parasol":     [8914748],  # Macrolepiota procera
     "st_george":   [8936224],  # Calocybe gambosa
     "truffle_b":   [8282501],  # Tuber (genus)
