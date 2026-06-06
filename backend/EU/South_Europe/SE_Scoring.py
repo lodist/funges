@@ -485,6 +485,11 @@ def calculate_mushroom_score(df, species_params):
         drought_floor  = max(0.08, 0.18 - 0.0015 * _ct)
         no_wet_penalty = max(0.50, 0.70 - 0.002 * _ct)
         weather_eps    = 1e-5
+        # Convex exponent on the cumulative-rain fraction: sub-threshold rain earns
+        # proportionally less credit (0.75 of threshold -> 0.75**1.5 ~= 0.65, vs the old
+        # near-linear 0.75), so marginal/drought weeks no longer read as "good". At and
+        # above threshold (frac == 1.0) it is unchanged, so peak conditions still score high.
+        cum_gamma      = 1.5
 
         dl_start_pct = min(0.85, 0.72 + 0.001 * _ct)
         dl_floor     = 0.05
@@ -528,6 +533,7 @@ def calculate_mushroom_score(df, species_params):
             scale   = (hist_days / baseline_days) if hist_days else 0.0
             adj_thr = max(cum_thr * scale, 1e-9)
             cum_frac = min(1.0, cum_mm / adj_thr)
+            cum_frac_eff = cum_frac ** cum_gamma
 
             ratio = cum_mm / adj_thr
             flood_pen = 1.0 if ratio <= 4 else 1.0 / (1.0 + 1.25 * (ratio - 4))
@@ -536,7 +542,7 @@ def calculate_mushroom_score(df, species_params):
                 0.20 * wet_factor +
                 0.15 * (dry_count >= req_dry) +
                 0.05 * day_ok +
-                0.60 * (cum_frac * flood_pen)
+                0.60 * (cum_frac_eff * flood_pen)
             )
 
             if rain_first:
@@ -563,7 +569,7 @@ def calculate_mushroom_score(df, species_params):
                 raw *= (1.0 - (1.0 - dl_floor) * (t ** dl_gamma))
             raw = min(1.0, raw)
 
-            sig = 1.0 / (1.0 + np.exp(-drought_k * (cum_frac - drought_mid)))
+            sig = 1.0 / (1.0 + np.exp(-drought_k * (cum_frac_eff - drought_mid)))
             drought_mult = drought_floor + (1.0 - drought_floor) * sig
             if wet_count == 0:
                 drought_mult *= no_wet_penalty
