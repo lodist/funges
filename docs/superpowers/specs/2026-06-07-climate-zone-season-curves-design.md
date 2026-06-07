@@ -116,8 +116,33 @@ New flow per macro-region:
    `None` and are simply absent from the output (→ scoring falls back to region curve).
 6. Write `{zone: {species: {month: mult}}}` to the macro-region's R2 path.
 
-Call volume ≈ `non_empty_cells × (n_species + 1)`. Periodic offline job; acceptable.
-`[low, high] = [0.8, 1.2]` unchanged.
+Call volume ≈ `non_empty_cells × (n_species + 1)` — roughly ~3,500 facet calls for a
+full EU+US run (~440 land cells × 8). `[low, high] = [0.8, 1.2]` unchanged.
+
+**Parallelization (required).** Run the per-cell facet calls through a
+`ThreadPoolExecutor` (same pattern as the weather fetcher in the scoring scripts,
+`max_workers=3`). Use a modest pool (`--workers`, default 6–8) to stay polite to GBIF;
+this cuts wall-clock from ~30–40 min single-threaded to ~5–10 min. The per-call
+`time.sleep(0.2)` politeness delay is dropped in favor of bounded concurrency.
+Accumulation into the per-zone count buckets happens as futures complete (counts are
+summed, so completion order does not matter). Retries already live inside
+`_facet_month`; a cell that exhausts retries is logged and skipped rather than failing
+the whole run.
+
+### Build cadence
+
+This is an offline job, fully decoupled from the 3-hour weather scoring cron (scoring
+only reads the published JSON — milliseconds). Curves are a slow-moving biological
+prior built from a 7-year GBIF window (`--years THIS_YEAR-6,THIS_YEAR`), so the shape
+is stable month to month.
+
+- **Calendar:** quarterly (semi-annually is also fine). The main reason for *any*
+  schedule is to keep the rolling `--years` window current.
+- **On change (the important trigger):** re-run whenever the species/taxon list,
+  climate-zone definitions, or region bboxes change.
+
+Monthly is unnecessary — it would re-derive a near-identical curve from the same
+multi-year aggregate.
 
 ## Component 2 — scoring (`NE_Scoring.py`, mirrored in SE / USE / USW)
 
