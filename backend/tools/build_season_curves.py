@@ -221,6 +221,12 @@ def fetch_cell_counts(cell, taxon_map, years):
 
 
 def build_zone_curves_for_macro(macro, years, low, high, min_total, cell_size, workers):
+    """Tile a macro-region into cells, filter to land, fetch GBIF facets in parallel,
+    and aggregate into per-climate-zone season curves.
+
+    macro: a MACROS entry dict (keys: lat, lon, static_env, out_env).
+    Returns the dict produced by build_zone_curves (may be empty if data is sparse).
+    """
     lats, lons, zones = load_static_coords(macro["static_env"])
     cells = generate_cells(macro["lat"], macro["lon"], cell_size)
     land = [(c, z) for c in cells for z in [majority_zone_in_cell(c, lats, lons, zones)] if z]
