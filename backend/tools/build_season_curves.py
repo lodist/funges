@@ -79,6 +79,18 @@ def is_remote_path(path):
     return str(path).startswith(("http://", "https://"))
 
 
+def r2_fetch(url):
+    """Fetch a file from R2 via authenticated boto3."""
+    key = urlparse(url).path.lstrip('/')
+    client = boto3.client(
+        's3',
+        endpoint_url=get_required_env("R2_ENDPOINT_URL"),
+        aws_access_key_id=get_required_env("R2_ACCESS_KEY_ID"),
+        aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY")
+    )
+    return client.get_object(Bucket=get_required_env("R2_BUCKET_NAME"), Key=key)["Body"].read()
+
+
 def save_curves(data, dest):
     payload = json.dumps(data, indent=2).encode("utf-8")
     if is_remote_path(dest):
@@ -198,8 +210,7 @@ def load_static_coords(env_name):
     """Load labeled (lat, lon, climate_zone) from a static-info CSV (local or remote)."""
     src = get_required_env(env_name)
     if is_remote_path(src):
-        raw = urllib.request.urlopen(src, timeout=120).read()
-        df = pd.read_csv(BytesIO(raw))
+        df = pd.read_csv(BytesIO(r2_fetch(src)))
     else:
         df = pd.read_csv(src)
     return (
