@@ -5,6 +5,7 @@ import argparse
 import json
 import os
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import date
@@ -112,7 +113,7 @@ def save_curves(data, dest):
         print(f"  wrote local: {dest}")
 
 
-def _facet_month(taxon_keys, region, years, retries=4):
+def _facet_month(taxon_keys, region, years, retries=6):
     params = [
         ("year", years), ("facet", "month"), ("facetLimit", "12"), ("limit", "0"),
         ("hasCoordinate", "true"),
@@ -126,6 +127,15 @@ def _facet_month(taxon_keys, region, years, retries=4):
         try:
             d = json.load(urllib.request.urlopen(url, timeout=90))
             break
+        except urllib.error.HTTPError as e:
+            if attempt == retries - 1:
+                raise
+            if e.code == 429:
+                retry_after = e.headers.get("Retry-After")
+                wait = float(retry_after) if (retry_after and retry_after.isdigit()) else 2.0 * (attempt + 1)
+                time.sleep(wait)
+            else:
+                time.sleep(1.5 * (attempt + 1))
         except Exception:
             if attempt == retries - 1:
                 raise
@@ -276,7 +286,7 @@ def main():
                     help="region: legacy per-region curves; zone: per-climate-zone curves")
     ap.add_argument("--macros", default=",".join(MACROS), help="comma-separated macro codes (zone mode)")
     ap.add_argument("--cell-size", type=float, default=2.0, help="grid cell size in degrees (zone mode)")
-    ap.add_argument("--workers", type=int, default=6, help="parallel GBIF fetch workers (zone mode)")
+    ap.add_argument("--workers", type=int, default=3, help="parallel GBIF fetch workers (zone mode)")
     args = ap.parse_args()
 
     load_dotenv(_ROOT / ".env")
