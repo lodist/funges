@@ -13,6 +13,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import boto3
+import numpy as np
 
 _THIS_YEAR = date.today().year
 
@@ -120,6 +121,65 @@ def build_curve(target_counts, fungi_counts, low, high, min_total):
         return None, total
     curve = {m: round(low + (high - low) * (ratio[m] / mx), 3) for m in range(1, 13)}
     return curve, total
+
+
+from collections import defaultdict
+
+
+def generate_cells(lat_range, lon_range, cell_size):
+    """Tile a bbox into (lat_lo, lat_hi, lon_lo, lon_hi) cells, clamping the last
+    row/column to the bbox edges."""
+    cells = []
+    lat = lat_range[0]
+    while lat < lat_range[1]:
+        lat_hi = min(lat + cell_size, lat_range[1])
+        lon = lon_range[0]
+        while lon < lon_range[1]:
+            lon_hi = min(lon + cell_size, lon_range[1])
+            cells.append((lat, lat_hi, lon, lon_hi))
+            lon = lon_hi
+        lat = lat_hi
+    return cells
+
+
+def majority_zone_in_cell(cell, lats, lons, zones):
+    """Most common climate_zone among labeled coords inside the cell, or None if the
+    cell contains no labeled coords (ocean / unlabeled -> skipped, no GBIF call)."""
+    lat_lo, lat_hi, lon_lo, lon_hi = cell
+    mask = (lats >= lat_lo) & (lats < lat_hi) & (lons >= lon_lo) & (lons < lon_hi)
+    if not mask.any():
+        return None
+    vals, counts = np.unique(zones[mask], return_counts=True)
+    return str(vals[counts.argmax()])
+
+
+def build_zone_curves(cell_results, low, high, min_total):
+    """Aggregate per-cell facet counts into per-zone curves.
+
+    cell_results: iterable of (zone, {species: {month: count}}, {month: count}) where
+    the third element is the all-fungi denominator for that cell.
+    Returns {zone: {species: curve}} with data-poor (zone, species) pairs omitted.
+    """
+    zero = lambda: {m: 0 for m in range(1, 13)}
+    zone_species = defaultdict(lambda: defaultdict(zero))
+    zone_fungi = defaultdict(zero)
+    for zone, sp_counts, fungi_counts in cell_results:
+        for m in range(1, 13):
+            zone_fungi[zone][m] += fungi_counts.get(m, 0)
+        for sp, counts in sp_counts.items():
+            for m in range(1, 13):
+                zone_species[zone][sp][m] += counts.get(m, 0)
+
+    out = {}
+    for zone, sp_map in zone_species.items():
+        curves = {}
+        for sp, counts in sp_map.items():
+            curve, _total = build_curve(counts, zone_fungi[zone], low, high, min_total)
+            if curve:
+                curves[sp] = curve
+        if curves:
+            out[zone] = curves
+    return out
 
 
 def main():
