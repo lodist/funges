@@ -90,6 +90,42 @@ def r2_fetch(url):
     return client.get_object(Bucket=get_required_env("R2_BUCKET_NAME"), Key=key)["Body"].read()
 
 
+def r2_last_modified(url):
+    """R2 object's LastModified datetime, or None if it does not exist."""
+    key = urlparse(url).path.lstrip('/')
+    client = boto3.client(
+        's3',
+        endpoint_url=get_required_env("R2_ENDPOINT_URL"),
+        aws_access_key_id=get_required_env("R2_ACCESS_KEY_ID"),
+        aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY")
+    )
+    try:
+        return client.head_object(Bucket=get_required_env("R2_BUCKET_NAME"), Key=key)["LastModified"]
+    except Exception:
+        return None
+
+
+def _quarter_index(d):
+    """Absolute quarter number so consecutive quarters compare with '<' across year boundaries."""
+    return d.year * 4 + (d.month - 1) // 3
+
+
+def needs_rebuild():
+    """Rebuild only when a zone-curve file is missing from R2 or was last built in an earlier
+    quarter than today -> refreshes once per quarter, on the first run after the boundary."""
+    today_q = _quarter_index(date.today())
+    for macro in MACROS.values():
+        lm = r2_last_modified(get_required_env(macro["out_env"]))
+        if lm is None:
+            print(f"[gate] {macro['out_env']} missing in R2 -> building")
+            return True
+        if _quarter_index(lm.date()) < today_q:
+            print(f"[gate] {macro['out_env']} last built {lm.date()} (earlier quarter) -> building")
+            return True
+    print("[gate] zone curves present and built this quarter -> skipping (use --force to rebuild)")
+    return False
+
+
 def save_curves(data, dest):
     payload = json.dumps(data, indent=2).encode("utf-8")
     if is_remote_path(dest):
@@ -263,47 +299,26 @@ def main():
     ap.add_argument("--low", type=float, default=0.25, help="multiplier floor (dead-season)")
     ap.add_argument("--high", type=float, default=1.2, help="multiplier ceiling (peak)")
     ap.add_argument("--min-total", type=int, default=200,
-                    help="min target sightings in a region to trust its curve")
-    ap.add_argument("--regions", default=",".join(REGIONS), help="comma-separated region codes")
+                    help="min target sightings to trust a curve")
+    ap.add_argument("--cell-size", type=float, default=2.0, help="zone-curve grid cell size (degrees)")
+    ap.add_argument("--workers", type=int, default=3, help="parallel GBIF fetch workers for zone curves")
     ap.add_argument("--local-only", action="store_true",
                     help="skip R2 upload and write curves to --out-dir instead")
     ap.add_argument("--out-dir", default=".", help="local output dir (for --local-only)")
-    ap.add_argument("--mode", choices=["region", "zone"], default="region",
-                    help="region: legacy per-region curves; zone: per-climate-zone curves")
-    ap.add_argument("--macros", default=",".join(MACROS), help="comma-separated macro codes (zone mode)")
-    ap.add_argument("--cell-size", type=float, default=2.0, help="grid cell size in degrees (zone mode)")
-    ap.add_argument("--workers", type=int, default=3, help="parallel GBIF fetch workers (zone mode)")
+    ap.add_argument("--force", action="store_true", help="rebuild even if curves are current this quarter")
     args = ap.parse_args()
 
     load_dotenv(_ROOT / ".env")
     load_dotenv(_ROOT / ".env.secret")
 
-    if args.mode == "zone":
-        for macro_code in args.macros.split(","):
-            macro_code = macro_code.strip()
-            if macro_code not in MACROS:
-                print(f"[{macro_code}] unknown macro, skipping")
-                continue
-            macro = MACROS[macro_code]
-            print(f"[{macro_code}] building zone curves...")
-            curves = build_zone_curves_for_macro(
-                macro, args.years, args.low, args.high, args.min_total,
-                args.cell_size, args.workers)
-            n_curves = sum(len(v) for v in curves.values())
-            print(f"[{macro_code}] {n_curves} curve(s) across {len(curves)} zone(s)")
-            if args.local_only:
-                dest = str(Path(args.out_dir) / f"{macro_code}_zone_season_curves.json")
-            else:
-                dest = get_required_env(macro["out_env"])
-            save_curves(curves, dest)
+    # Self-gate: skip the (expensive) build unless curves are missing or a new quarter has
+    # started. --local-only and --force always build. Safe to schedule this daily — it no-ops
+    # except ~once per quarter.
+    if not args.local_only and not args.force and not needs_rebuild():
         return
 
-    for region in args.regions.split(","):
-        region = region.strip()
-        if region not in REGIONS:
-            print(f"[{region}] unknown region, skipping")
-            continue
-        reg = REGIONS[region]
+    # 1) Region curves (fallback layer): one curve set per NE/SE/USE/USW.
+    for region, reg in REGIONS.items():
         fungi, fungi_total = _facet_month([FUNGI_KEY], reg, args.years)
         time.sleep(0.2)
         curves = {}
@@ -315,12 +330,22 @@ def main():
             print(f"[{region}] {sp:12s} target={total:6d} fungi={fungi_total:8d}  {status}")
             if curve:
                 curves[sp] = curve
-
-        if args.local_only:
-            dest = str(Path(args.out_dir) / f"{region}_season_curves.json")
-        else:
-            dest = get_required_env(reg["env"])
+        dest = (str(Path(args.out_dir) / f"{region}_season_curves.json")
+                if args.local_only else get_required_env(reg["env"]))
         print(f"[{region}] {len(curves)} curve(s):")
+        save_curves(curves, dest)
+        print()
+
+    # 2) Zone curves (primary signal): per-climate-zone, one file per macro-region (EU, US).
+    for macro_code, macro in MACROS.items():
+        print(f"[{macro_code}] building zone curves...")
+        curves = build_zone_curves_for_macro(
+            macro, args.years, args.low, args.high, args.min_total,
+            args.cell_size, args.workers)
+        n_curves = sum(len(v) for v in curves.values())
+        print(f"[{macro_code}] {n_curves} curve(s) across {len(curves)} zone(s)")
+        dest = (str(Path(args.out_dir) / f"{macro_code}_zone_season_curves.json")
+                if args.local_only else get_required_env(macro["out_env"]))
         save_curves(curves, dest)
         print()
 
