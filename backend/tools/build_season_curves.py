@@ -14,6 +14,8 @@ from urllib.parse import urlparse
 
 import boto3
 import numpy as np
+import pandas as pd
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 _THIS_YEAR = date.today().year
 
@@ -36,6 +38,16 @@ REGIONS = {
     "SE":  {"lat": (34.0, 55.5), "lon": (12.0, 42.5),     "env": "SE_SEASON_CURVES"},
     "USE": {"lat": (24.0, 37.5), "lon": (-106.5, -75.0),  "env": "USE_SEASON_CURVES"},
     "USW": {"lat": (33.0, 49.5), "lon": (-125.5, -81.5),  "env": "USW_SEASON_CURVES"},
+}
+
+# Macro-regions for zone curves. EU = NE ∪ SE bbox, US = USE ∪ USW bbox. Disjoint in
+# longitude, so EU-continental and US-continental stay distinct files. Both EU sub-region
+# scoring scripts read the EU file (dissolving the NE/SE overlap); both US scripts read US.
+MACROS = {
+    "EU": {"lat": (34.0, 71.5), "lon": (-25.0, 42.5),
+           "static_env": "EU_STATIC_INFO", "out_env": "EU_ZONE_SEASON_CURVES"},
+    "US": {"lat": (24.0, 49.5), "lon": (-125.5, -75.0),
+           "static_env": "US_STATIC_INFO", "out_env": "US_ZONE_SEASON_CURVES"},
 }
 
 _ROOT = Path(__file__).resolve().parents[2]
@@ -182,6 +194,55 @@ def build_zone_curves(cell_results, low, high, min_total):
     return out
 
 
+def load_static_coords(env_name):
+    """Load labeled (lat, lon, climate_zone) from a static-info CSV (local or remote)."""
+    src = get_required_env(env_name)
+    if is_remote_path(src):
+        raw = urllib.request.urlopen(src, timeout=120).read()
+        df = pd.read_csv(BytesIO(raw))
+    else:
+        df = pd.read_csv(src)
+    return (
+        df["Latitude"].astype(float).to_numpy(),
+        df["Longitude"].astype(float).to_numpy(),
+        df["climate_zone"].astype(str).to_numpy(),
+    )
+
+
+def fetch_cell_counts(cell, taxon_map, years):
+    """GBIF month-facets for one cell: returns (fungi_counts, {species: counts})."""
+    region = {"lat": (cell[0], cell[1]), "lon": (cell[2], cell[3])}
+    fungi_counts, _ = _facet_month([FUNGI_KEY], region, years)
+    sp_counts = {}
+    for sp, keys in taxon_map.items():
+        counts, _ = _facet_month(keys, region, years)
+        sp_counts[sp] = counts
+    return fungi_counts, sp_counts
+
+
+def build_zone_curves_for_macro(macro, years, low, high, min_total, cell_size, workers):
+    lats, lons, zones = load_static_coords(macro["static_env"])
+    cells = generate_cells(macro["lat"], macro["lon"], cell_size)
+    land = [(c, z) for c in cells for z in [majority_zone_in_cell(c, lats, lons, zones)] if z]
+    print(f"  {len(land)} land cells of {len(cells)} total; fetching with {workers} workers")
+
+    cell_results = []
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        futs = {ex.submit(fetch_cell_counts, cell, TAXON_MAP, years): zone for cell, zone in land}
+        done = 0
+        for fut in as_completed(futs):
+            zone = futs[fut]
+            try:
+                fungi_counts, sp_counts = fut.result()
+                cell_results.append((zone, sp_counts, fungi_counts))
+            except Exception as e:
+                print(f"  [warn] cell in zone {zone} failed: {e}; skipping")
+            done += 1
+            if done % 25 == 0:
+                print(f"  {done}/{len(land)} cells fetched...")
+    return build_zone_curves(cell_results, low, high, min_total)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--years", default=f"{_THIS_YEAR - 6},{_THIS_YEAR}",
@@ -194,10 +255,35 @@ def main():
     ap.add_argument("--local-only", action="store_true",
                     help="skip R2 upload and write curves to --out-dir instead")
     ap.add_argument("--out-dir", default=".", help="local output dir (for --local-only)")
+    ap.add_argument("--mode", choices=["region", "zone"], default="region",
+                    help="region: legacy per-region curves; zone: per-climate-zone curves")
+    ap.add_argument("--macros", default=",".join(MACROS), help="comma-separated macro codes (zone mode)")
+    ap.add_argument("--cell-size", type=float, default=2.0, help="grid cell size in degrees (zone mode)")
+    ap.add_argument("--workers", type=int, default=6, help="parallel GBIF fetch workers (zone mode)")
     args = ap.parse_args()
 
     load_dotenv(_ROOT / ".env")
     load_dotenv(_ROOT / ".env.secret")
+
+    if args.mode == "zone":
+        for macro_code in args.macros.split(","):
+            macro_code = macro_code.strip()
+            if macro_code not in MACROS:
+                print(f"[{macro_code}] unknown macro, skipping")
+                continue
+            macro = MACROS[macro_code]
+            print(f"[{macro_code}] building zone curves...")
+            curves = build_zone_curves_for_macro(
+                macro, args.years, args.low, args.high, args.min_total,
+                args.cell_size, args.workers)
+            n_curves = sum(len(v) for v in curves.values())
+            print(f"[{macro_code}] {n_curves} curve(s) across {len(curves)} zone(s)")
+            if args.local_only:
+                dest = str(Path(args.out_dir) / f"{macro_code}_zone_season_curves.json")
+            else:
+                dest = get_required_env(macro["out_env"])
+            save_curves(curves, dest)
+        return
 
     for region in args.regions.split(","):
         region = region.strip()
