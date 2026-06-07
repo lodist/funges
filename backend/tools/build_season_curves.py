@@ -41,9 +41,7 @@ REGIONS = {
     "USW": {"lat": (33.0, 49.5), "lon": (-125.5, -81.5),  "env": "USW_SEASON_CURVES"},
 }
 
-# Macro-regions for zone curves. EU = NE ∪ SE bbox, US = USE ∪ USW bbox. Disjoint in
-# longitude, so EU-continental and US-continental stay distinct files. Both EU sub-region
-# scoring scripts read the EU file (dissolving the NE/SE overlap); both US scripts read US.
+# Macro-regions for zone curves (EU = NE∪SE, US = USE∪USW); both EU scripts share the EU file.
 MACROS = {
     "EU": {"lat": (34.0, 71.5), "lon": (-25.0, 42.5),
            "static_env": "EU_STATIC_INFO", "out_env": "EU_ZONE_SEASON_CURVES"},
@@ -161,8 +159,7 @@ from collections import defaultdict
 
 
 def generate_cells(lat_range, lon_range, cell_size):
-    """Tile a bbox into (lat_lo, lat_hi, lon_lo, lon_hi) cells, clamping the last
-    row/column to the bbox edges."""
+    """Tile a bbox into (lat_lo, lat_hi, lon_lo, lon_hi) cells, clamping the last row/col."""
     cells = []
     lat = lat_range[0]
     while lat < lat_range[1]:
@@ -177,8 +174,7 @@ def generate_cells(lat_range, lon_range, cell_size):
 
 
 def majority_zone_in_cell(cell, lats, lons, zones):
-    """Most common climate_zone among labeled coords inside the cell, or None if the
-    cell contains no labeled coords (ocean / unlabeled -> skipped, no GBIF call)."""
+    """Most common climate_zone among coords in the cell, or None if empty (ocean/unlabeled)."""
     lat_lo, lat_hi, lon_lo, lon_hi = cell
     mask = (lats >= lat_lo) & (lats < lat_hi) & (lons >= lon_lo) & (lons < lon_hi)
     if not mask.any():
@@ -188,12 +184,7 @@ def majority_zone_in_cell(cell, lats, lons, zones):
 
 
 def build_zone_curves(cell_results, low, high, min_total):
-    """Aggregate per-cell facet counts into per-zone curves.
-
-    cell_results: iterable of (zone, {species: {month: count}}, {month: count}) where
-    the third element is the all-fungi denominator for that cell.
-    Returns {zone: {species: curve}} with data-poor (zone, species) pairs omitted.
-    """
+    """Sum per-cell (zone, species, fungi) counts into {zone: {species: curve}}; drop data-poor pairs."""
     zero = lambda: {m: 0 for m in range(1, 13)}
     zone_species = defaultdict(lambda: defaultdict(zero))
     zone_fungi = defaultdict(zero)
@@ -242,12 +233,7 @@ def fetch_cell_counts(cell, taxon_map, years):
 
 
 def build_zone_curves_for_macro(macro, years, low, high, min_total, cell_size, workers):
-    """Tile a macro-region into cells, filter to land, fetch GBIF facets in parallel,
-    and aggregate into per-climate-zone season curves.
-
-    macro: a MACROS entry dict (keys: lat, lon, static_env, out_env).
-    Returns the dict produced by build_zone_curves (may be empty if data is sparse).
-    """
+    """Tile a macro-region, fetch GBIF facets per land cell in parallel, aggregate to zone curves."""
     lats, lons, zones = load_static_coords(macro["static_env"])
     cells = generate_cells(macro["lat"], macro["lon"], cell_size)
     land = [(c, z) for c in cells for z in [majority_zone_in_cell(c, lats, lons, zones)] if z]
