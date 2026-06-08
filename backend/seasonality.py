@@ -1,13 +1,8 @@
-"""Seasonality multipliers shared by the regional scoring scripts.
-
-Extracted so the logic has one home and can be unit-tested in isolation
-(the scoring scripts themselves run network/R2 side effects at import time).
-"""
+"""Seasonality multipliers shared by the regional scoring scripts."""
 import numpy as np
 import pandas as pd
 
-# Day-of-year of each month's midpoint (Jan..Dec). Curve values are pinned here
-# and linearly interpolated between, with periodic Dec->Jan wraparound.
+# Day-of-year of each month's midpoint (Jan..Dec).
 _MONTH_MID_DOY = np.array([15, 46, 74, 105, 135, 166, 196, 227, 258, 288, 319, 349])
 
 
@@ -40,11 +35,9 @@ def season_months_ramp(dates, params):
 
 
 def season_multiplier_for_species(df, specie, params, zone_curves):
-    """Per-row seasonality multiplier with precedence:
-    zone curve -> region curve (params['season_curve']) -> season_months ramp -> 1.0.
+    """Per-row multiplier; precedence: zone curve -> region curve -> season_months ramp -> 1.0.
 
-    df must have 'Date' (datetime) and 'climate_zone' columns.
-    zone_curves is {climate_zone: {species: {month: multiplier}}}.
+    df needs 'Date' and 'climate_zone'; zone_curves is {zone: {species: {month: mult}}}.
     """
     n = len(df)
     dates = df['Date']
