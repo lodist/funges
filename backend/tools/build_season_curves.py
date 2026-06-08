@@ -250,6 +250,7 @@ def load_static_coords(env_name):
         df = pd.read_csv(BytesIO(r2_fetch(src)))
     else:
         df = pd.read_csv(src)
+    df = df[df["climate_zone"].notna()]  # else unlabeled coords tile as a spurious 'nan' zone
     return (
         df["Latitude"].astype(float).to_numpy(),
         df["Longitude"].astype(float).to_numpy(),
