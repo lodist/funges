@@ -297,8 +297,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--years", default=f"{_THIS_YEAR - 6},{_THIS_YEAR}",
                     help="GBIF year range")
-    ap.add_argument("--low", type=float, default=0.25, help="multiplier floor (dead-season)")
-    ap.add_argument("--high", type=float, default=1.2, help="multiplier ceiling (peak)")
+    ap.add_argument("--low", type=float, default=0.6, help="multiplier floor (dead-season)")
+    ap.add_argument("--high", type=float, default=1.0, help="multiplier ceiling (peak)")
     ap.add_argument("--min-total", type=int, default=200,
                     help="min target sightings to trust a curve")
     ap.add_argument("--cell-size", type=float, default=2.0, help="zone-curve grid cell size (degrees)")
