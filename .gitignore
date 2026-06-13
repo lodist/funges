@@ -43,3 +43,6 @@ __pycache__/
 /*_zone_season_curves.json
 # rolling-forecast subset proof output (generated)
 backend/subset_master_*.parquet
+
+# forecast-vs-actual longitudinal snapshot (generated)
+backend/tools/forecast_vs_actual_snapshot.jsonl
