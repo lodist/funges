@@ -48,3 +48,26 @@ def test_parse_carries_day_fields_and_location_id():
     assert r0["Description"] == d0["condition"]["text"]
     assert len({r["Location_Id"] for r in rows}) == 1
     assert r0["climate_zone"] == "temperate"
+
+
+def _mk(loc, dates, precip):
+    return pd.DataFrame({
+        "Location_Id": loc,
+        "Date": pd.to_datetime(dates),
+        "TotalPrecipitation_mm": precip,
+    })
+
+
+def test_merge_fresher_forecast_overwrites_overlapping_future():
+    existing = _mk("A", ["2026-06-09", "2026-06-10", "2026-06-11"], [1.0, 2.0, 3.0])
+    new = _mk("A", ["2026-06-10", "2026-06-11", "2026-06-12"], [9.0, 9.0, 9.0])
+    out = fp.merge_master(existing, new).sort_values("Date").reset_index(drop=True)
+    assert out["Date"].dt.strftime("%Y-%m-%d").tolist() == ["2026-06-09", "2026-06-10", "2026-06-11", "2026-06-12"]
+    assert out["TotalPrecipitation_mm"].tolist() == [1.0, 9.0, 9.0, 9.0]
+
+
+def test_merge_keeps_distinct_locations_separate():
+    existing = _mk("A", ["2026-06-09"], [1.0])
+    new = _mk("B", ["2026-06-09"], [5.0])
+    out = fp.merge_master(existing, new)
+    assert len(out) == 2

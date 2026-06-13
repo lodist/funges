@@ -66,3 +66,15 @@ def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp):
             "ph_level": static_fields.get("ph_level"),
         })
     return rows
+
+
+def merge_master(existing_df, new_df):
+    """Concat new AFTER existing, then keep the LAST row per (Location_Id, Date).
+
+    New (fresher) forecast rows therefore overwrite overlapping existing dates,
+    while frozen past rows (absent from new_df) are left untouched.
+    """
+    combined = pd.concat([existing_df, new_df], ignore_index=True)
+    combined["Date"] = pd.to_datetime(combined["Date"])
+    combined = combined.drop_duplicates(subset=["Location_Id", "Date"], keep="last")
+    return combined.reset_index(drop=True)
