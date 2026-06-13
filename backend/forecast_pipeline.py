@@ -384,6 +384,86 @@ def altitude_score(x, optimal_alt=1150, alt_sigma=600):
     return gaussian(x, optimal_alt, alt_sigma)
 
 
+def _weather_score_vectorized(df, precip_hist_cols, *, min_p, cum_thr, rain_first,
+                              baseline_days, max_wet_eff, min_dry_eff, cum_gamma,
+                              dl_start_pct, dl_floor, dl_gamma, drought_k, drought_mid,
+                              drought_floor, no_wet_penalty, weather_eps):
+    """Vectorized rain sub-score — bit-identical to the original per-row `_weather_row`
+    (locked by tests/test_weather_score_vectorization.py against the verbatim reference
+    in tools/vectorize_weather_poc.py), but ~500x faster: it operates on the whole
+    (N x lag_days) precip matrix at once instead of one Python call per row.
+    """
+    lag_days = len(precip_hist_cols)
+    n = len(df)
+    if lag_days:
+        H = df[precip_hist_cols].to_numpy(float)
+        H = np.where(np.isfinite(H), np.clip(H, 0.0, None), 0.0)
+    else:
+        H = np.zeros((n, 0), dtype=float)
+    hist_days = H.shape[1]
+
+    wet_mask = H >= min_p
+    wet_count = wet_mask.sum(axis=1)
+    dry_count = hist_days - wet_count
+    req_dry = (min_dry_eff if hist_days >= baseline_days
+               else math.ceil(min_dry_eff * (hist_days / baseline_days)))
+
+    today_p = df['TotalPrecipitation_mm'].to_numpy(float)
+    today_ok = np.isfinite(today_p) & (today_p >= min_p)
+    day_ok = today_ok.astype(float)
+
+    cum_mm = H.sum(axis=1) if hist_days else np.zeros(n)
+    scale = (hist_days / baseline_days) if hist_days else 0.0
+    adj_thr = max(cum_thr * scale, 1e-9)
+    cum_frac = np.minimum(1.0, cum_mm / adj_thr)
+    cum_frac_eff = cum_frac ** cum_gamma
+
+    ratio = cum_mm / adj_thr
+    flood_pen = np.where(ratio <= 4, 1.0, 1.0 / (1.0 + 1.25 * (ratio - 4)))
+
+    wet_factor = np.where(
+        wet_count == 0, 0.0,
+        np.where(wet_count <= max_wet_eff, 1.0,
+                 np.maximum(0.0, 1.0 - 0.15 * (wet_count - max_wet_eff))))
+
+    raw = (0.20 * wet_factor
+           + 0.15 * (dry_count >= req_dry).astype(float)
+           + 0.05 * day_ok
+           + 0.60 * (cum_frac_eff * flood_pen))
+
+    if rain_first:
+        if hist_days >= 10:
+            wet_early = (H[:, 6:10] >= min_p).mean(axis=1)
+            dry_recent = (H[:, 0:4] < min_p).mean(axis=1)
+        elif hist_days >= 4:
+            wet_early = (H[:, -4:] >= min_p).mean(axis=1)
+            dry_recent = (H[:, 0:4] < min_p).mean(axis=1)
+        else:
+            wet_early = np.zeros(n)
+            dry_recent = np.zeros(n)
+        raw = np.minimum(1.0, raw + 0.25 * (wet_early * dry_recent))
+
+    if hist_days:
+        any_wet = wet_mask.any(axis=1)
+        first_wet = np.argmax(wet_mask, axis=1)  # index of first wet day (0 if none)
+        days_since_wet = np.where(any_wet, first_wet + 1, hist_days + 1).astype(float)
+    else:
+        days_since_wet = np.zeros(n)
+    days_since_wet = days_since_wet + (~today_ok).astype(float)
+
+    pos = np.minimum(1.0, days_since_wet / baseline_days)
+    t = (pos - dl_start_pct) / max(1e-9, (1.0 - dl_start_pct))
+    decay = 1.0 - (1.0 - dl_floor) * (t ** dl_gamma)
+    raw = np.where(pos > dl_start_pct, raw * decay, raw)
+    raw = np.minimum(1.0, raw)
+
+    sig = 1.0 / (1.0 + np.exp(-drought_k * (cum_frac_eff - drought_mid)))
+    drought_mult = drought_floor + (1.0 - drought_floor) * sig
+    drought_mult = np.where(wet_count == 0, drought_mult * no_wet_penalty, drought_mult)
+
+    return np.clip(raw * drought_mult, weather_eps, 1.0)
+
+
 def calculate_mushroom_score(df, species_params, zone_curves):
     wind_start, wind_max = 4.15, 25
     df['Wind_Penalty'] = df['Wind Speed (m/s)'].apply(
@@ -424,84 +504,14 @@ def calculate_mushroom_score(df, species_params, zone_curves):
         max_wet_eff = int(np.clip(np.ceil(cum_thr / max(wet_day_mm_ref, 1e-9)), 1, max(1, int(0.55 * baseline_days))))
         min_dry_eff = int(np.clip(np.round(0.5 * (baseline_days - max_wet_eff)), 1, max(1, int(0.6 * baseline_days))))
 
-        def _weather_row(r):
-            if lag_days == 0:
-                hist = np.empty(0, dtype=float)
-            else:
-                arr = r[precip_hist_cols].to_numpy(float)
-                hist = np.where(np.isfinite(arr), np.clip(arr, 0.0, None), 0.0)
-
-            hist_days = hist.size
-            wet_mask  = (hist >= min_p)
-            wet_count = int(wet_mask.sum())
-            dry_count = int(hist_days - wet_count)
-            req_dry   = (min_dry_eff if hist_days >= baseline_days else math.ceil(min_dry_eff * (hist_days / baseline_days)))
-
-            today_p = r['TotalPrecipitation_mm']
-            day_ok  = 1.0 if (np.isfinite(today_p) and (today_p >= min_p)) else 0.0
-
-            if cum_thr <= 0:
-                cum_frac = 1.0
-            else:
-                scale = (hist_days / baseline_days) if hist_days > 0 else 0.0
-                adj_thr = max(cum_thr * scale, 1e-9)
-                cum_frac = float(min(1.0, (float(hist.sum()) if hist_days else 0.0) / adj_thr))
-
-            if wet_count == 0:
-                wet_factor = 0.0
-            elif wet_count <= max_wet_eff:
-                wet_factor = 1.0
-            else:
-                wet_factor = max(0.0, 1.0 - 0.15 * (wet_count - max_wet_eff))
-
-            cum_mm  = float(hist.sum()) if hist_days else 0.0
-            scale   = (hist_days / baseline_days) if hist_days else 0.0
-            adj_thr = max(cum_thr * scale, 1e-9)
-            cum_frac = min(1.0, cum_mm / adj_thr)
-            cum_frac_eff = cum_frac ** cum_gamma
-
-            ratio = cum_mm / adj_thr
-            flood_pen = 1.0 if ratio <= 4 else 1.0 / (1.0 + 1.25 * (ratio - 4))
-
-            raw = (
-                0.20 * wet_factor +
-                0.15 * (dry_count >= req_dry) +
-                0.05 * day_ok +
-                0.60 * (cum_frac_eff * flood_pen)
-            )
-
-            if rain_first:
-                if hist_days >= 10:
-                    wet_early  = (hist[6:10] >= min_p).mean()
-                    dry_recent = (hist[0:4] <  min_p).mean()
-                elif hist_days >= 4:
-                    wet_early  = (hist[-4:] >= min_p).mean()
-                    dry_recent = (hist[0:4]  <  min_p).mean()
-                else:
-                    wet_early = dry_recent = 0.0
-                raw = min(1.0, raw + 0.25 * float(wet_early * dry_recent))
-
-            if hist_days:
-                days_since_wet = (int(np.where(wet_mask)[0][0]) + 1) if wet_mask.any() else (hist_days + 1)
-            else:
-                days_since_wet = 0
-            if not (np.isfinite(today_p) and today_p >= min_p):
-                days_since_wet += 1
-
-            pos = min(1.0, float(days_since_wet) / baseline_days)
-            if pos > dl_start_pct:
-                t = (pos - dl_start_pct) / max(1e-9, (1.0 - dl_start_pct))
-                raw *= (1.0 - (1.0 - dl_floor) * (t ** dl_gamma))
-            raw = min(1.0, raw)
-
-            sig = 1.0 / (1.0 + np.exp(-drought_k * (cum_frac_eff - drought_mid)))
-            drought_mult = drought_floor + (1.0 - drought_floor) * sig
-            if wet_count == 0:
-                drought_mult *= no_wet_penalty
-
-            return float(np.clip(raw * drought_mult, weather_eps, 1.0))
-
-        df[f'{specie}_Weather_Score'] = df.apply(_weather_row, axis=1)
+        df[f'{specie}_Weather_Score'] = _weather_score_vectorized(
+            df, precip_hist_cols,
+            min_p=min_p, cum_thr=cum_thr, rain_first=rain_first,
+            baseline_days=baseline_days, max_wet_eff=max_wet_eff, min_dry_eff=min_dry_eff,
+            cum_gamma=cum_gamma, dl_start_pct=dl_start_pct, dl_floor=dl_floor,
+            dl_gamma=dl_gamma, drought_k=drought_k, drought_mid=drought_mid,
+            drought_floor=drought_floor, no_wet_penalty=no_wet_penalty,
+            weather_eps=weather_eps)
 
     for specie, params in species_params.items():
         optimal_temp, temp_sigma = params["optimal_temp"], params["temp_sigma"]
