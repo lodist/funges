@@ -94,3 +94,13 @@ def test_contiguity_ignores_legacy_lookback_gaps():
     legacy = pd.to_datetime(["2026-05-01", "2026-05-15"])  # gappy old history
     df = pd.DataFrame({"Location_Id": "A", "Date": forward.append(legacy)})
     fp.assert_window_contiguous(df, today, forward_days=7)  # must not raise
+
+
+def test_forward_mask_selects_today_and_future_only():
+    today = pd.Timestamp("2026-06-13")
+    df = pd.DataFrame({
+        "Location_Id": ["A"] * 4,
+        "Date": pd.to_datetime(["2026-06-11", "2026-06-12", "2026-06-13", "2026-06-19"]),
+    })
+    mask = fp.forward_window_mask(df, today)
+    assert mask.tolist() == [False, False, True, True]

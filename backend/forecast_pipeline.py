@@ -109,3 +109,13 @@ def assert_window_contiguous(df, today, forward_days=FORECAST_DAYS, lookback=21)
     if gappy:
         print(f"[warn] {gappy} location(s) have legacy gaps in the {lookback}-day lookback; "
               f"their lag features will be partially NaN (pre-existing history).")
+
+
+def forward_window_mask(df, today):
+    """Boolean mask of rows to (re)score this run: every row with Date >= today.
+
+    Frozen past rows keep their previously computed scores; the forward window is
+    rescored each run because the forecast refines daily.
+    """
+    today = pd.Timestamp(today).normalize()
+    return pd.to_datetime(df["Date"]).dt.normalize() >= today
