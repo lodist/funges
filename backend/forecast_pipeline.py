@@ -96,22 +96,20 @@ def assert_window_contiguous(df, today, forward_days=FORECAST_DAYS, lookback=21)
 
     fwd_end = today + pd.Timedelta(days=forward_days - 1)
     expected_fwd = pd.date_range(today, fwd_end)
-    bad = []
-    for loc, g in d.groupby("Location_Id"):
-        have = set(g["Date"])
-        missing = [ts for ts in expected_fwd if ts not in have]
-        if missing:
-            bad.append((loc, [m.strftime("%Y-%m-%d") for m in missing]))
-    assert not bad, f"Forward-window date gaps for {len(bad)} location(s): {bad[:5]}"
+    in_fwd = d[(d["Date"] >= today) & (d["Date"] <= fwd_end)]
+    fwd_cnt = in_fwd.groupby("Location_Id")["Date"].nunique()
+    bad = fwd_cnt[fwd_cnt < len(expected_fwd)]
+    assert bad.empty, (
+        f"Forward-window date gaps for {len(bad)} location(s): {bad.index[:5].tolist()}"
+    )
 
-    # Non-fatal lookback diagnostic.
     look_start = today - pd.Timedelta(days=lookback)
-    look_expected = pd.date_range(look_start, today - pd.Timedelta(days=1))
-    gappy = 0
-    for loc, g in d.groupby("Location_Id"):
-        have = set(g["Date"])
-        if any(ts not in have for ts in look_expected):
-            gappy += 1
+    look_end = today - pd.Timedelta(days=1)
+    look_expected = pd.date_range(look_start, look_end)
+    in_look = d[(d["Date"] >= look_start) & (d["Date"] <= look_end)]
+    look_cnt = in_look.groupby("Location_Id")["Date"].nunique()
+    full_locs = set(look_cnt[look_cnt >= len(look_expected)].index)
+    gappy = d["Location_Id"].nunique() - len(full_locs)
     if gappy:
         print(f"[warn] {gappy} location(s) have legacy gaps in the {lookback}-day lookback; "
               f"their lag features will be partially NaN (pre-existing history).")
@@ -280,28 +278,39 @@ def compute_distance(lat1, lon1, lat2, lon2):
     return 6371.01 * c  # km
 
 
+def _latlon_to_unit_xyz(lat, lon):
+    lat_r = np.radians(np.asarray(lat, dtype=float))
+    lon_r = np.radians(np.asarray(lon, dtype=float))
+    return np.column_stack([
+        np.cos(lat_r) * np.cos(lon_r),
+        np.cos(lat_r) * np.sin(lon_r),
+        np.sin(lat_r),
+    ])
+
+
 def replace_missing_elevation_with_closest(df):
     known = df[df['Elevation (m)'].notna()]
     if known.empty:
         return df
-    for idx, row in df[df['Elevation (m)'].isna()].iterrows():
-        d = known.apply(
-            lambda x: compute_distance(row['Latitude'], row['Longitude'], x['Latitude'], x['Longitude']),
-            axis=1
-        )
-        df.at[idx, 'Elevation (m)'] = known.at[d.idxmin(), 'Elevation (m)']
+    miss = df['Elevation (m)'].isna()
+    if not miss.any():
+        return df
+    from scipy.spatial import cKDTree
+    # Chord distance on the unit sphere is monotonic in great-circle distance, so the
+    # nearest neighbour matches the original haversine nearest, but far cheaper.
+    tree = cKDTree(_latlon_to_unit_xyz(known['Latitude'].to_numpy(), known['Longitude'].to_numpy()))
+    _, idx = tree.query(_latlon_to_unit_xyz(df.loc[miss, 'Latitude'].to_numpy(), df.loc[miss, 'Longitude'].to_numpy()))
+    df.loc[miss, 'Elevation (m)'] = known['Elevation (m)'].to_numpy()[idx]
     return df
 
 
 def replace_missing_elevation_from_previous_data(new_df, existing_df):
     if existing_df is None or existing_df.empty:
         return new_df
-    for idx in new_df[new_df['Elevation (m)'].isna()].index:
-        prev = existing_df.loc[
-            existing_df['Location_Id'] == new_df.at[idx, 'Location_Id'],
-            'Elevation (m)'
-        ].max()
-        new_df.at[idx, 'Elevation (m)'] = prev
+    prev_elev = existing_df.groupby('Location_Id')['Elevation (m)'].max()
+    na = new_df['Elevation (m)'].isna()
+    if na.any():
+        new_df.loc[na, 'Elevation (m)'] = new_df.loc[na, 'Location_Id'].map(prev_elev).values
     return new_df
 
 
@@ -841,6 +850,26 @@ def _join_to_base(config, weather_long, base_file_path):
     return out
 
 
+def apply_forward_scores(combined_df, forward, score_cols):
+    """Write freshly-computed forward-window scores back onto the full series,
+    leaving frozen past rows' existing scores untouched.
+
+    Relies on (Location_Id, Date) being unique in combined_df (guaranteed by
+    merge_master's keep='last' dedup) so the MultiIndex assignment is unambiguous.
+    """
+    base = combined_df.set_index(["Location_Id", "Date"])
+    assert not base.index.has_duplicates, (
+        "combined_df has duplicate (Location_Id, Date) rows; merge_master dedup did not run"
+    )
+    fwd = forward.set_index(["Location_Id", "Date"])
+    for col in score_cols:
+        if col not in base.columns:
+            base[col] = pd.NA
+        if col in fwd.columns:
+            base.loc[fwd.index, col] = fwd[col].values
+    return base.reset_index()
+
+
 def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
     today = pd.Timestamp(datetime.now().date())
 
@@ -869,6 +898,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
         df = replace_missing_elevation_with_closest(df)
         combined_df = df.copy()
         combined_df["Date"] = pd.to_datetime(combined_df["Date"])
+        combined_df = combined_df.drop_duplicates(subset=["Location_Id", "Date"], keep="last").reset_index(drop=True)
 
     combined_df = combined_df[np.isfinite(combined_df["Latitude"]) & np.isfinite(combined_df["Longitude"])]
     combined_df = combined_df[combined_df["Location_Id"] != ""]
@@ -886,14 +916,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
     forward = calculate_mushroom_score(forward, species_params, zone_curves)
 
     score_cols = [f"{s}_score" for s in species_params]
-    base = combined_df.set_index(["Location_Id", "Date"])
-    fwd = forward.set_index(["Location_Id", "Date"])
-    for col in score_cols:
-        if col not in base.columns:
-            base[col] = pd.NA
-        if col in fwd.columns:
-            base.loc[fwd.index, col] = fwd[col].values
-    updated_df = base.reset_index()
+    updated_df = apply_forward_scores(combined_df, forward, score_cols)
 
     cutoff_date = datetime.now() - timedelta(days=config.cutoff_days)
     updated_df = updated_df[updated_df["Date"] > cutoff_date]

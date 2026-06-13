@@ -130,3 +130,56 @@ def test_fetch_builds_forecast_request_and_counts_one_call(monkeypatch):
     assert "dt" not in captured["params"]
     assert captured["params"]["q"] == "59.33,18.07"
     assert counter.count == 1
+
+
+def test_prev_elevation_fill_uses_location_max():
+    existing = pd.DataFrame({
+        "Location_Id": ["A", "A", "B"],
+        "Elevation (m)": [100.0, 150.0, 200.0],
+    })
+    new = pd.DataFrame({
+        "Location_Id": ["A", "B", "C"],
+        "Elevation (m)": [np.nan, np.nan, np.nan],
+    })
+    out = fp.replace_missing_elevation_from_previous_data(new.copy(), existing)
+    assert out.loc[0, "Elevation (m)"] == 150.0   # A -> max(100,150)
+    assert out.loc[1, "Elevation (m)"] == 200.0   # B
+    assert pd.isna(out.loc[2, "Elevation (m)"])    # C absent -> stays NaN
+
+
+def test_closest_elevation_fill_picks_nearest_known():
+    df = pd.DataFrame({
+        "Latitude":  [10.0, 50.0, 10.1],
+        "Longitude": [10.0, 50.0, 10.0],
+        "Elevation (m)": [100.0, 900.0, np.nan],
+    })
+    out = fp.replace_missing_elevation_with_closest(df.copy())
+    assert out.loc[2, "Elevation (m)"] == 100.0   # nearest is row 0, not the far row 1
+
+
+def test_apply_forward_scores_refreshes_future_preserves_past():
+    combined = pd.DataFrame({
+        "Location_Id": ["A", "A", "A"],
+        "Date": pd.to_datetime(["2026-06-12", "2026-06-13", "2026-06-14"]),
+        "x_score": [3.0, 99.0, pd.NA],   # past=3.0 (frozen), today=stale 99, future=NA
+    })
+    forward = pd.DataFrame({
+        "Location_Id": ["A", "A"],
+        "Date": pd.to_datetime(["2026-06-13", "2026-06-14"]),
+        "x_score": [7.0, 8.0],            # fresh scores for today + future
+    })
+    out = fp.apply_forward_scores(combined, forward, ["x_score"]).sort_values("Date").reset_index(drop=True)
+    assert out.loc[0, "x_score"] == 3.0   # frozen past untouched
+    assert out.loc[1, "x_score"] == 7.0   # today refreshed
+    assert out.loc[2, "x_score"] == 8.0   # future filled
+
+
+def test_apply_forward_scores_rejects_duplicate_index():
+    combined = pd.DataFrame({
+        "Location_Id": ["A", "A"],
+        "Date": pd.to_datetime(["2026-06-13", "2026-06-13"]),  # duplicate (loc,date)
+        "x_score": [1.0, 2.0],
+    })
+    forward = combined.iloc[:1].copy()
+    with pytest.raises(AssertionError, match="duplicate"):
+        fp.apply_forward_scores(combined, forward, ["x_score"])
