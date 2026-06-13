@@ -119,3 +119,46 @@ def forward_window_mask(df, today):
     """
     today = pd.Timestamp(today).normalize()
     return pd.to_datetime(df["Date"]).dt.normalize() >= today
+
+
+class CallCounter:
+    """Thread-safe counter for WeatherAPI HTTP requests (proves 1 call/coord)."""
+    def __init__(self):
+        self._lock = threading.Lock()
+        self.count = 0
+
+    def incr(self):
+        with self._lock:
+            self.count += 1
+
+
+def fetch_weather_data(lat, lon, api_key, counter=None, retries=4):
+    """One forecast.json call per coordinate -> up to FORECAST_DAYS days in ONE response.
+
+    No dt= (history) parameter: this is a forward forecast, billed as a single call.
+    """
+    params = {
+        "key": api_key,
+        "q": f"{lat},{lon}",
+        "days": FORECAST_DAYS,
+        "aqi": "no",
+        "alerts": "no",
+    }
+    for attempt in range(retries):
+        try:
+            if counter is not None:
+                counter.incr()
+            resp = requests.get(BASE_URL, params=params, timeout=(5, 12))
+            if resp.status_code == 200:
+                return resp.json()
+            if resp.status_code == 429 and attempt < retries - 1:
+                time.sleep(2 ** attempt)        # rate-limit backoff (higher concurrency)
+                continue
+            print(f"[{lat},{lon}] bad status {resp.status_code}")
+            return None
+        except requests.RequestException as e:
+            if attempt < retries - 1:
+                time.sleep(1)
+                continue
+            print(f"[{lat},{lon}] request error after {retries} tries: {e}")
+            return None

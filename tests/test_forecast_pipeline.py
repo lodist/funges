@@ -104,3 +104,29 @@ def test_forward_mask_selects_today_and_future_only():
     })
     mask = fp.forward_window_mask(df, today)
     assert mask.tolist() == [False, False, True, True]
+
+
+def test_fetch_builds_forecast_request_and_counts_one_call(monkeypatch):
+    captured = {}
+
+    class _Resp:
+        status_code = 200
+        def json(self):
+            return {"ok": True}
+
+    def fake_get(url, params=None, timeout=None):
+        captured["url"] = url
+        captured["params"] = params
+        return _Resp()
+
+    monkeypatch.setattr(fp.requests, "get", fake_get)
+    counter = fp.CallCounter()
+    out = fp.fetch_weather_data(59.33, 18.07, api_key="K", counter=counter)
+    assert out == {"ok": True}
+    assert captured["url"] == fp.BASE_URL
+    assert captured["params"]["days"] == fp.FORECAST_DAYS
+    assert captured["params"]["aqi"] == "no"
+    assert captured["params"]["alerts"] == "no"
+    assert "dt" not in captured["params"]
+    assert captured["params"]["q"] == "59.33,18.07"
+    assert counter.count == 1
