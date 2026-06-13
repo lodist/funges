@@ -88,6 +88,20 @@ def test_contiguity_raises_on_gap_in_forward_window():
         fp.assert_window_contiguous(df, today, forward_days=7)
 
 
+def test_contiguity_allows_staggered_start_dates_across_timezones():
+    # US regions can return a forecast that starts a calendar day behind a UTC/Europe
+    # server; different coords may even start on different days. Each location's own
+    # forward run is still consecutive, so this must NOT raise.
+    today = pd.Timestamp("2026-06-13")
+    a = pd.date_range("2026-06-13", periods=7)   # local "today" == anchor
+    b = pd.date_range("2026-06-14", periods=7)   # this coord is one day ahead
+    df = pd.DataFrame({
+        "Location_Id": ["A"] * 7 + ["B"] * 7,
+        "Date": a.append(b),
+    })
+    fp.assert_window_contiguous(df, today, forward_days=7)  # both runs consecutive -> ok
+
+
 def test_contiguity_ignores_legacy_lookback_gaps():
     today = pd.Timestamp("2026-06-13")
     forward = pd.date_range(today, periods=7)

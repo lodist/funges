@@ -87,20 +87,28 @@ def merge_master(existing_df, new_df):
 
 
 def assert_window_contiguous(df, today, forward_days=FORECAST_DAYS, lookback=21):
-    """Hard-assert the forward window [today..today+forward_days-1] is gapless per
-    Location_Id; warn on gaps inside the legacy lag lookback [today-lookback..today-1].
+    """Per-Location_Id, the forward portion (Date >= today) must be a GAPLESS daily run;
+    warn on gaps inside the legacy lookback [today-lookback..today-1].
+
+    `today` must be the earliest forecast date actually fetched this run (coordinate-
+    LOCAL), not the server clock: WeatherAPI returns each coord's local 7 days, so US
+    regions legitimately start a calendar day behind a UTC/Europe server, and different
+    coords in one region may even start on different days. We therefore verify each
+    location's own forward run is consecutive (which is exactly requirement #2 — every
+    Location_Id's date series stays daily-contiguous) rather than forcing a single shared
+    window. `forward_days` is retained for call-site compatibility.
     """
     today = pd.Timestamp(today).normalize()
     d = df[["Location_Id", "Date"]].copy()
     d["Date"] = pd.to_datetime(d["Date"]).dt.normalize()
 
-    fwd_end = today + pd.Timedelta(days=forward_days - 1)
-    expected_fwd = pd.date_range(today, fwd_end)
-    in_fwd = d[(d["Date"] >= today) & (d["Date"] <= fwd_end)]
-    fwd_cnt = in_fwd.groupby("Location_Id")["Date"].nunique()
-    bad = fwd_cnt[fwd_cnt < len(expected_fwd)]
-    assert bad.empty, (
-        f"Forward-window date gaps for {len(bad)} location(s): {bad.index[:5].tolist()}"
+    fwd = d[d["Date"] >= today].drop_duplicates(["Location_Id", "Date"])
+    g = fwd.groupby("Location_Id")["Date"]
+    span_days = (g.max() - g.min()).dt.days + 1          # count if perfectly consecutive
+    distinct = g.nunique()
+    bad = span_days.index[span_days != distinct]          # a hole inside the forward run
+    assert len(bad) == 0, (
+        f"Forward date gaps for {len(bad)} location(s): {list(bad[:5])}"
     )
 
     look_start = today - pd.Timedelta(days=lookback)
@@ -896,7 +904,15 @@ def apply_forward_scores(combined_df, forward, score_cols):
 
 
 def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
-    today = pd.Timestamp(datetime.now().date())
+    # Anchor "today" to the EARLIEST forecast date actually fetched (coordinate-local),
+    # not the server clock: forecast.json returns each coord's local 7 days, so US
+    # regions legitimately start a day behind a UTC/Europe runner. Using the server date
+    # would mis-align the forward window and the contiguity guarantee for those regions.
+    new_dates = pd.to_datetime(df["Date"])
+    if new_dates.notna().any():
+        today = new_dates.min().normalize()
+    else:
+        today = pd.Timestamp(datetime.now().date())
 
     # NOTE: the Date=today override is intentionally GONE — dates are the real forecast dates.
     if "Wind Speed (m/s)" not in df.columns and "Wind Speed (kph)" in df.columns:

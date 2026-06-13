@@ -1,15 +1,19 @@
-"""Live verification on a small subset of NE coordinates.
+"""Live verification on a RANDOM subset of coordinates from EACH of the 4 regions.
 
-Proves, against the REAL WeatherAPI + R2 inputs, that the converted pipeline:
-  1. makes exactly ONE call per coordinate,
+For every region (NE, SE, USE, USW) it randomly samples N coordinates from that
+region's grid and proves, against the REAL WeatherAPI + R2 inputs, that the
+converted pipeline:
+  1. makes exactly ONE forecast fetch per coordinate,
   2. gets 7 forecast days back per coordinate (in that one call),
   3. produces a daily-contiguous forward window after merge, and
   4. computes species scores for FUTURE dates (not just today).
 
-Writes the merged result to a LOCAL parquet only — it never writes the prod R2
-master (the cold-start / local-file path is used so prod is untouched).
+Each region's merged result is written to a LOCAL parquet only (cold-start / local
+path) so the prod R2 masters are never touched.
 
-Run: python backend/run_subset_proof.py
+Run:  python backend/run_subset_proof.py            # all 4 regions
+      python backend/run_subset_proof.py NE          # one region
+      python backend/run_subset_proof.py --seed 99   # vary the random sample
 """
 import sys
 from datetime import datetime
@@ -22,99 +26,122 @@ _BACKEND = Path(__file__).resolve().parent
 sys.path.insert(0, str(_BACKEND))
 import forecast_pipeline as fp
 
-SUBSET = 20
-MAX_BASE_LOCATIONS = 200  # keep the base-grid expansion small for the proof
-LOCAL_OUT = _BACKEND / "subset_master_NE.parquet"
+SUBSET = 20                 # coordinates sampled per region
+MAX_BASE_LOCATIONS = 200    # cap on output locations scored, to keep the proof fast
 
-CONFIG = fp.RegionConfig(
-    boundaries_env="NE_BOUNDARIES_DATA",
-    coordinates_env="NE_UNIQUE_COORDINATES",
-    base_env="NE_BASE_DATA",
-    species_params_env="NE_SPECIES_PARAMS",
-    weather_data_env="NE_WEATHER_DATA",
-    static_info_env="EU_STATIC_INFO",
-    season_curves_env="NE_SEASON_CURVES",
-    zone_curves_env="EU_ZONE_SEASON_CURVES",
-    lat_range=(49.0, 71.5),
-    lon_range=(-25.0, 32.0),
-)
+REGIONS = {
+    "NE": fp.RegionConfig(
+        boundaries_env="NE_BOUNDARIES_DATA", coordinates_env="NE_UNIQUE_COORDINATES",
+        base_env="NE_BASE_DATA", species_params_env="NE_SPECIES_PARAMS",
+        weather_data_env="NE_WEATHER_DATA", static_info_env="EU_STATIC_INFO",
+        season_curves_env="NE_SEASON_CURVES", zone_curves_env="EU_ZONE_SEASON_CURVES",
+        lat_range=(49.0, 71.5), lon_range=(-25.0, 32.0)),
+    "SE": fp.RegionConfig(
+        boundaries_env="SE_BOUNDARIES_DATA", coordinates_env="SE_UNIQUE_COORDINATES",
+        base_env="SE_BASE_DATA", species_params_env="SE_SPECIES_PARAMS",
+        weather_data_env="SE_WEATHER_DATA", static_info_env="EU_STATIC_INFO",
+        season_curves_env="SE_SEASON_CURVES", zone_curves_env="EU_ZONE_SEASON_CURVES",
+        lat_range=(34.0, 55.5), lon_range=(12.0, 42.5)),
+    "USE": fp.RegionConfig(
+        boundaries_env="USE_BOUNDARIES_DATA", coordinates_env="USE_UNIQUE_COORDINATES",
+        base_env="USE_BASE_DATA", species_params_env="USE_SPECIES_PARAMS",
+        weather_data_env="USE_WEATHER_DATA", static_info_env="US_STATIC_INFO",
+        season_curves_env="USE_SEASON_CURVES", zone_curves_env="US_ZONE_SEASON_CURVES",
+        lat_range=(24.0, 37.5), lon_range=(-106.5, -75.0)),
+    "USW": fp.RegionConfig(
+        boundaries_env="USW_BOUNDARIES_DATA", coordinates_env="USW_UNIQUE_COORDINATES",
+        base_env="USW_BASE_DATA", species_params_env="USW_SPECIES_PARAMS",
+        weather_data_env="USW_WEATHER_DATA", static_info_env="US_STATIC_INFO",
+        season_curves_env="USW_SEASON_CURVES", zone_curves_env="US_ZONE_SEASON_CURVES",
+        lat_range=(33.0, 49.5), lon_range=(-125.5, -81.5)),
+}
+
+
+def prove_region(name, config, api_key, seed):
+    """Run the 4 proofs on a random N-coordinate sample of one region. Returns a
+    result dict; raises AssertionError on any proof failure."""
+    print(f"\n{'#'*70}\n# REGION {name}\n{'#'*70}")
+    species_params, zone_curves = fp._load_species_and_curves(
+        config, fp.get_required_env(config.species_params_env))
+    static_map = fp._load_static_map(fp.get_required_env(config.static_info_env), config.ndp)
+    all_coords = fp._load_or_build_coords(
+        config, fp.get_required_env(config.coordinates_env),
+        fp.get_required_env(config.boundaries_env))
+
+    rng = np.random.default_rng(seed)
+    pick = rng.choice(len(all_coords), size=min(SUBSET, len(all_coords)), replace=False)
+    coords = all_coords[np.sort(pick)]
+    print(f"Randomly sampled {len(coords)}/{len(all_coords)} coords (seed={seed})")
+
+    counter = fp.CallCounter()
+    weather_long = fp._fetch_all(config, coords, static_map, api_key, counter)
+
+    # PROOF 1: one forecast fetch per coordinate (HTTP count may exceed via the
+    # pre-existing transient-retry path only — same as the old history.json code).
+    fetched = weather_long[["Latitude", "Longitude"]].drop_duplicates()
+    assert len(fetched) == len(coords), f"{name}: only {len(fetched)}/{len(coords)} coords returned a forecast"
+    retries = counter.count - len(coords)
+    # PROOF 2: 7 forecast days per coordinate, all from that single request.
+    per_coord = weather_long.groupby(["Latitude", "Longitude"])["Date"].nunique()
+    assert (per_coord == fp.FORECAST_DAYS).all(), f"{name}: not all coords returned {fp.FORECAST_DAYS} days"
+    print(f"  PROOF 1: {len(coords)} coords -> {len(coords)} fetches; {counter.count} HTTP "
+          f"requests ({retries} transient retr{'y' if retries == 1 else 'ies'}).")
+    print(f"  PROOF 2: every coord returned {fp.FORECAST_DAYS} days "
+          f"({weather_long['Date'].min()} .. {weather_long['Date'].max()}).")
+
+    df = fp._join_to_base(config, weather_long, fp.get_required_env(config.base_env))
+    keep = pd.Index(df["Location_Id"].drop_duplicates()).tolist()[:MAX_BASE_LOCATIONS]
+    df = df[df["Location_Id"].isin(keep)].copy()
+
+    # Anchor today to the earliest fetched forecast date (coordinate-local), matching
+    # the pipeline — US regions can start a calendar day behind a UTC/Europe runner.
+    today = pd.to_datetime(weather_long["Date"]).min().normalize()
+    out = fp._merge_and_score(config, df, species_params, zone_curves,
+                              main_data_path=str(_BACKEND / f"subset_master_{name}.parquet"))
+
+    # PROOF 3: forward window daily-contiguous.
+    fp.assert_window_contiguous(out, today, forward_days=fp.FORECAST_DAYS, lookback=config.lag_days)
+    diffs = (out.sort_values(["Location_Id", "Date"])
+                .groupby("Location_Id")["Date"].diff().dropna().dt.days.unique().tolist())
+    assert diffs == [1], f"{name}: non-contiguous date diffs {diffs}"
+    # PROOF 4: species scores on FUTURE dates.
+    out["Date"] = pd.to_datetime(out["Date"])
+    score_cols = [c for c in out.columns if c.endswith("_score")]
+    future = out[out["Date"].dt.normalize() > today]
+    nonnull = [c for c in score_cols if future[c].notna().any()]
+    assert len(future) > 0 and nonnull, f"{name}: no future-dated species scores"
+    print(f"  PROOF 3: contiguous (date diffs == [1]); {df['Location_Id'].nunique()} locations x {fp.FORECAST_DAYS} days.")
+    print(f"  PROOF 4: {future['Date'].dt.date.nunique()} future dates carry scores; "
+          f"{len(nonnull)}/{len(score_cols)} species non-null.")
+
+    out.to_parquet(_BACKEND / f"subset_master_{name}.parquet", index=False)
+    return dict(region=name, coords=len(coords), http=counter.count, retries=retries,
+                days=int(per_coord.iloc[0]), future_dates=int(future["Date"].dt.date.nunique()),
+                species_nonnull=len(nonnull), species_total=len(score_cols))
 
 
 def main():
+    argv = [a for a in sys.argv[1:]]
+    seed = 42
+    if "--seed" in argv:
+        i = argv.index("--seed"); seed = int(argv[i + 1]); del argv[i:i + 2]
+    names = [a.upper() for a in argv if a.upper() in REGIONS] or list(REGIONS)
+
     root = _BACKEND.parent
     fp.load_dotenv(root / ".env")
     fp.load_dotenv(root / ".env.secret")
     api_key = fp.get_required_env("WEATHERAPI_KEY")
 
-    species_params, zone_curves = fp._load_species_and_curves(
-        CONFIG, fp.get_required_env(CONFIG.species_params_env))
-    static_map = fp._load_static_map(fp.get_required_env(CONFIG.static_info_env), CONFIG.ndp)
-    coords = fp._load_or_build_coords(
-        CONFIG, fp.get_required_env(CONFIG.coordinates_env),
-        fp.get_required_env(CONFIG.boundaries_env))[:SUBSET]
-    print(f"\nSubset: {len(coords)} coordinates\n" + "-" * 60)
+    results = []
+    for i, name in enumerate(names):
+        results.append(prove_region(name, REGIONS[name], api_key, seed=seed + i))
 
-    counter = fp.CallCounter()
-    weather_long = fp._fetch_all(CONFIG, coords, static_map, api_key, counter)
-
-    # PROOF 1: one forecast FETCH per coordinate (structural: one fetch_weather_data
-    # call per coord). The HTTP attempt counter may exceed #coords only via the
-    # pre-existing transient-retry path — identical to the old history.json code, so
-    # it is NOT extra data volume. We assert every coordinate yielded a forecast and
-    # report any retries explicitly.
-    fetched_coords = weather_long[["Latitude", "Longitude"]].drop_duplicates()
-    assert len(fetched_coords) == len(coords), \
-        f"only {len(fetched_coords)}/{len(coords)} coords returned a forecast"
-    retries = counter.count - len(coords)
-    # PROOF 2: 7 days returned per coordinate (all in that single forecast request).
-    per_coord = weather_long.groupby(["Latitude", "Longitude"])["Date"].nunique()
-    assert (per_coord == fp.FORECAST_DAYS).all(), \
-        f"not all coords returned {fp.FORECAST_DAYS} days:\n{per_coord}"
-    print(f"PROOF 1: {len(coords)} coords -> {len(coords)} forecast fetches; "
-          f"{counter.count} HTTP requests ({retries} transient retr{'y' if retries == 1 else 'ies'}, "
-          f"same retry path as the old history.json code -> no extra data volume).")
-    print(f"PROOF 2: every coord returned exactly {fp.FORECAST_DAYS} forecast days in its one "
-          f"request ({weather_long['Date'].min()} .. {weather_long['Date'].max()}); "
-          f"{len(weather_long)} rows = {len(coords)} x {fp.FORECAST_DAYS}.")
-
-    # Join to the base grid, then keep a small slice of output locations for speed.
-    df = fp._join_to_base(CONFIG, weather_long, fp.get_required_env(CONFIG.base_env))
-    keep_ids = pd.Index(df["Location_Id"].drop_duplicates()).tolist()[:MAX_BASE_LOCATIONS]
-    df = df[df["Location_Id"].isin(keep_ids)].copy()
-    print(f"Proof slice: {df['Location_Id'].nunique()} output locations x {fp.FORECAST_DAYS} days "
-          f"= {len(df)} rows")
-
-    today = pd.Timestamp(datetime.now().date())
-    # Local, non-existent path -> cold-start branch -> no prod R2 write.
-    out = fp._merge_and_score(CONFIG, df, species_params, zone_curves,
-                              main_data_path=str(LOCAL_OUT))
-
-    # PROOF 3: forward window is daily-contiguous (would raise otherwise).
-    fp.assert_window_contiguous(out, today, forward_days=fp.FORECAST_DAYS, lookback=CONFIG.lag_days)
-    diffs = (out.sort_values(["Location_Id", "Date"])
-                .groupby("Location_Id")["Date"].diff().dropna().dt.days.unique().tolist())
-    print(f"PROOF 3: forward window contiguous; per-location date diffs == {diffs} (expect [1]).")
-
-    # PROOF 4: species scores exist for FUTURE dates, not just today.
-    score_cols = [c for c in out.columns if c.endswith("_score")]
-    out["Date"] = pd.to_datetime(out["Date"])
-    future = out[out["Date"].dt.normalize() > today]
-    assert len(future) > 0, "no future-dated rows in output"
-    nonnull_future_cols = [c for c in score_cols if future[c].notna().any()]
-    assert nonnull_future_cols, "no species scores on future dates"
-    print(f"PROOF 4: {future['Date'].dt.date.nunique()} future date(s) carry scores; "
-          f"{len(nonnull_future_cols)}/{len(score_cols)} species have non-null future scores.")
-    # Show one location's score trajectory across the 7 days for a sanity look.
-    demo_loc = future["Location_Id"].iloc[0]
-    demo = out[out["Location_Id"] == demo_loc].sort_values("Date")
-    demo_col = nonnull_future_cols[0]
-    print(f"\n  e.g. {demo_loc} — {demo_col} by date:")
-    for _, r in demo.iterrows():
-        print(f"    {r['Date'].date()}  {demo_col}={r[demo_col]}")
-
-    out.to_parquet(LOCAL_OUT, index=False)
-    print("-" * 60)
-    print(f"Wrote subset master -> {LOCAL_OUT} ({len(out)} rows). NO prod write performed.")
+    print(f"\n{'='*70}\nSUMMARY (all proofs passed for every region below)\n{'='*70}")
+    print(f"{'region':<6}{'coords':>7}{'http':>6}{'retries':>9}{'days':>6}{'future':>8}{'species':>10}")
+    for r in results:
+        print(f"{r['region']:<6}{r['coords']:>7}{r['http']:>6}{r['retries']:>9}{r['days']:>6}"
+              f"{r['future_dates']:>8}{r['species_nonnull']:>4}/{r['species_total']:<5}")
+    print("\nNO prod write performed (each region written to a local subset_master_<R>.parquet).")
 
 
 if __name__ == "__main__":
