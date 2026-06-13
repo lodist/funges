@@ -35,3 +35,9 @@ storybook-static
 
 .tanstack/*
 dev-dist/*
+
+# Python (backend tooling + tests)
+__pycache__/
+*.pyc
+# Local zone-curve build artifacts (authoritative copies live in R2)
+/*_zone_season_curves.json

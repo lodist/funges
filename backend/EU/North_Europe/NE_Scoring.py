@@ -2,7 +2,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta
 from io import StringIO, BytesIO
 from urllib.parse import urlparse
-import os, json, time, math
+import os, sys, json, time, math
 from pathlib import Path
 import boto3
 import requests
@@ -11,6 +11,8 @@ import pandas as pd
 from shapely.ops import unary_union
 from shapely.geometry import shape, Point
 from scipy.spatial import cKDTree
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # backend/ for shared modules
+from seasonality import season_multiplier_for_species
 
 print(f"Script started at {datetime.now()}")
 
@@ -104,6 +106,28 @@ try:
     print(f"Loaded empirical season curves for {sum('season_curve' in p for p in species_params.values())} species.")
 except Exception as _e:
     print(f"[warn] could not load season curves from {_curves_path}: {_e}; falling back to season_months")
+
+# Per-climate-zone curves (built by tools/build_season_curves.py --mode zone, published
+# to R2 at EU_ZONE_SEASON_CURVES). Keyed climate_zone -> species -> {month: multiplier}.
+# A row uses its zone's curve when present, else the region curve, else season_months
+# (see seasonality.season_multiplier_for_species). os.getenv (not get_required_env) so an
+# unset var during rollout simply leaves zone_curves empty and falls back gracefully.
+_zone_curves_path = os.getenv("EU_ZONE_SEASON_CURVES")
+zone_curves = {}
+if _zone_curves_path:
+    try:
+        _zraw = (r2_fetch(_zone_curves_path).decode("utf-8")
+                 if is_remote_path(_zone_curves_path)
+                 else Path(_zone_curves_path).read_text(encoding="utf-8"))
+        _zone_raw = json.loads(_zraw)
+        zone_curves = {
+            str(_z): {str(_sp): {int(k): float(v) for k, v in _c.items()}
+                      for _sp, _c in _spmap.items()}
+            for _z, _spmap in _zone_raw.items()
+        }
+        print(f"Loaded zone season curves for {len(zone_curves)} climate zones.")
+    except Exception as _e:
+        print(f"[warn] could not load zone curves from {_zone_curves_path}: {_e}; falling back to region/season_months")
 
 # STATIC INFO (pre-index for O(1) lookup)
 static_df = read_df_from_source(static_info_path)
@@ -437,20 +461,6 @@ def compute_lag_features(df, columns, days):
 def altitude_score(x, optimal_alt=1150, alt_sigma=600):
     return gaussian(x, optimal_alt, alt_sigma)
 
-# Empirical seasonality: replace the flat season_months ramp with a smooth multiplier
-# derived from a 12-month curve (the GBIF target-group sighting ratio). The curve lives
-# in params["season_curve"] as {month(1-12): multiplier}; values are interpolated at
-# month midpoints (periodic) so the multiplier varies smoothly across the day-of-year
-# instead of stepping at month boundaries. Species without a curve use season_months.
-_MONTH_MID_DOY = np.array([15, 46, 74, 105, 135, 166, 196, 227, 258, 288, 319, 349])
-
-def empirical_season_multiplier(dates, season_curve):
-    curve = {int(k): float(v) for k, v in season_curve.items()}
-    vals = np.array([curve[m] for m in range(1, 13)], dtype=float)
-    xp = np.concatenate(([_MONTH_MID_DOY[-1] - 365], _MONTH_MID_DOY, [_MONTH_MID_DOY[0] + 365]))
-    fp = np.concatenate(([vals[-1]], vals, [vals[0]]))
-    return np.interp(dates.dt.dayofyear.to_numpy(), xp, fp)
-
 df = combined_df
 df['Date'] = pd.to_datetime(df['Date'])
 df = df.sort_values(by=['Location_Id', 'Date'], ascending=[True, False])
@@ -710,24 +720,7 @@ def calculate_mushroom_score(df, species_params):
         if allowed_climates:
             df.loc[~df['climate_zone'].isin(allowed_climates), f'{specie}_score'] = 0
 
-        if "season_curve" in params:
-            df[f'{specie}_score'] *= empirical_season_multiplier(df['Date'], params["season_curve"])
-        elif "season_months" in params:
-            ramp_days = 31
-            allowed_months = set(params["season_months"])
-            in_season = df['Date'].dt.month.isin(allowed_months)
-            day_of_year = df['Date'].dt.dayofyear
-            valid_days = np.concatenate([
-                pd.date_range(f'2021-{m:02d}-01', f'2021-{m:02d}-{pd.Period(f"2021-{m:02d}").days_in_month}')
-                  .dayofyear.to_numpy()
-                for m in sorted(allowed_months)
-            ])
-            dist = np.minimum(
-                np.abs(day_of_year.values[:, None] - valid_days[None, :]),
-                365 - np.abs(day_of_year.values[:, None] - valid_days[None, :])
-            ).min(axis=1)
-            factor = params.get("season_factor", 0.5)
-            df[f'{specie}_score'] *= np.where(in_season, 1, np.clip(1 - (1 - factor) * dist / ramp_days, factor, 1))
+        df[f'{specie}_score'] *= season_multiplier_for_species(df, specie, params, zone_curves)
 
         df.drop(columns=[
             f'{specie}_Temp_Score',
