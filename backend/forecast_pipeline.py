@@ -464,6 +464,32 @@ def _weather_score_vectorized(df, precip_hist_cols, *, min_p, cum_thr, rain_firs
     return np.clip(raw * drought_mult, weather_eps, 1.0)
 
 
+def _weighted_lag_gaussian(df, base_col, n_days, weights, mu, sigma):
+    """Weighted-over-lags gaussian score, vectorized over all rows. Bit-identical to
+    the original `sum(w * col.fillna(base).apply(gaussian))` (same left-fold order),
+    but evaluates the gaussian on whole columns instead of per row.
+    """
+    base = df[base_col]
+    score = np.zeros(len(df), dtype=float)
+    for i, d in enumerate(range(1, n_days + 1)):
+        col = f"{base_col}_{d}days_ago"
+        series = df[col] if col in df.columns else base
+        vals = series.fillna(base).to_numpy(float)
+        score = score + weights[i] * gaussian(vals, mu, sigma)
+    return score
+
+
+def _ph_score_vectorized(ph_values, optimal_pH, pH_sigma_near, pH_sigma_far, pH_range_near):
+    """Vectorized piecewise-sigma pH gaussian; NaN pH -> 0 (matches the original apply)."""
+    ph = np.asarray(ph_values, dtype=float)
+    isnan = np.isnan(ph)
+    ph_safe = np.where(isnan, optimal_pH, ph)
+    near = (ph_safe >= pH_range_near[0]) & (ph_safe <= pH_range_near[1])
+    sig = np.where(near, pH_sigma_near, pH_sigma_far)
+    score = np.exp(-((ph_safe - optimal_pH) ** 2) / (2 * sig ** 2))
+    return np.where(isnan, 0.0, score)
+
+
 def calculate_mushroom_score(df, species_params, zone_curves):
     wind_start, wind_max = 4.15, 25
     df['Wind_Penalty'] = df['Wind Speed (m/s)'].apply(
@@ -530,35 +556,24 @@ def calculate_mushroom_score(df, species_params, zone_curves):
             dT = np.arange(1, temp_days + 1)
             temp_weights = 0.6 * np.exp(-0.5 * ((dT - 4) / 3.0)**2) + 0.4 * np.exp(-0.08 * dT)
             temp_weights /= temp_weights.sum()
-            temp_score = sum(
-                w * df.get(f'Temperature (C)_{d}days_ago', df['Temperature (C)'])
-                    .fillna(df['Temperature (C)'])
-                    .apply(lambda x: gaussian(x, optimal_temp, temp_sigma))
-                for d, w in enumerate(temp_weights, start=1)
-            )
+            temp_score = _weighted_lag_gaussian(df, 'Temperature (C)', temp_days, temp_weights, optimal_temp, temp_sigma)
         else:
-            temp_score = df['Temperature (C)'].apply(lambda x: gaussian(x, optimal_temp, temp_sigma))
+            temp_score = gaussian(df['Temperature (C)'].to_numpy(float), optimal_temp, temp_sigma)
 
         if hum_days > 0:
             dH = np.arange(1, hum_days + 1)
             hum_weights = 0.6 * np.exp(-0.5 * ((dH - 9) / 5.0)**2) + 0.4 * np.exp(-0.05 * dH)
             hum_weights /= hum_weights.sum()
-            humidity_score = sum(
-                w * df.get(f'Humidity (%)_{d}days_ago', df['Humidity (%)'])
-                    .fillna(df['Humidity (%)'])
-                    .apply(lambda x: gaussian(x, optimal_humidity, humidity_sigma))
-                for d, w in enumerate(hum_weights, start=1)
-            )
+            humidity_score = _weighted_lag_gaussian(df, 'Humidity (%)', hum_days, hum_weights, optimal_humidity, humidity_sigma)
         else:
-            humidity_score = df['Humidity (%)'].apply(lambda x: gaussian(x, optimal_humidity, humidity_sigma))
+            humidity_score = gaussian(df['Humidity (%)'].to_numpy(float), optimal_humidity, humidity_sigma)
 
-        df[f'{specie}_Temp_Score'], df[f'{specie}_Humidity_Score'] = temp_score.clip(0, 1), humidity_score.clip(0, 1)
-        df[f'{specie}_Alt_Score'] = df['Elevation (m)'].apply(lambda x: altitude_score(x, optimal_alt, alt_sigma)).clip(0, 1)
-
-        df[f'{specie}_PH_Score'] = df['ph_level'].apply(
-            lambda x: np.exp(-((x - optimal_pH) ** 2) / (2 * (pH_sigma_near if pH_range_near[0] <= x <= pH_range_near[1] else pH_sigma_far) ** 2))
-            if not np.isnan(x) else 0
-        )
+        df[f'{specie}_Temp_Score'] = np.clip(temp_score, 0, 1)
+        df[f'{specie}_Humidity_Score'] = np.clip(humidity_score, 0, 1)
+        df[f'{specie}_Alt_Score'] = np.clip(
+            altitude_score(df['Elevation (m)'].to_numpy(float), optimal_alt, alt_sigma), 0, 1)
+        df[f'{specie}_PH_Score'] = _ph_score_vectorized(
+            df['ph_level'].to_numpy(float), optimal_pH, pH_sigma_near, pH_sigma_far, pH_range_near)
 
         water_score, sea_score = 1.0, 1.0
         for key, dist_col in [("water", "dist_m_water"), ("sea", "dist_m_sea")]:
