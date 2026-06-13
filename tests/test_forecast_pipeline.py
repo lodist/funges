@@ -71,3 +71,26 @@ def test_merge_keeps_distinct_locations_separate():
     new = _mk("B", ["2026-06-09"], [5.0])
     out = fp.merge_master(existing, new)
     assert len(out) == 2
+
+
+def test_contiguity_passes_on_gapless_forward_window():
+    today = pd.Timestamp("2026-06-13")
+    dates = pd.date_range(today, periods=7)  # today..today+6
+    df = pd.DataFrame({"Location_Id": "A", "Date": dates})
+    fp.assert_window_contiguous(df, today, forward_days=7)
+
+
+def test_contiguity_raises_on_gap_in_forward_window():
+    today = pd.Timestamp("2026-06-13")
+    dates = [today, today + pd.Timedelta(days=1), today + pd.Timedelta(days=3)]  # missing +2
+    df = pd.DataFrame({"Location_Id": "A", "Date": pd.to_datetime(dates)})
+    with pytest.raises(AssertionError, match="A"):
+        fp.assert_window_contiguous(df, today, forward_days=7)
+
+
+def test_contiguity_ignores_legacy_lookback_gaps():
+    today = pd.Timestamp("2026-06-13")
+    forward = pd.date_range(today, periods=7)
+    legacy = pd.to_datetime(["2026-05-01", "2026-05-15"])  # gappy old history
+    df = pd.DataFrame({"Location_Id": "A", "Date": forward.append(legacy)})
+    fp.assert_window_contiguous(df, today, forward_days=7)  # must not raise

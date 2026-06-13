@@ -78,3 +78,34 @@ def merge_master(existing_df, new_df):
     combined["Date"] = pd.to_datetime(combined["Date"])
     combined = combined.drop_duplicates(subset=["Location_Id", "Date"], keep="last")
     return combined.reset_index(drop=True)
+
+
+def assert_window_contiguous(df, today, forward_days=FORECAST_DAYS, lookback=21):
+    """Hard-assert the forward window [today..today+forward_days-1] is gapless per
+    Location_Id; warn on gaps inside the legacy lag lookback [today-lookback..today-1].
+    """
+    today = pd.Timestamp(today).normalize()
+    d = df[["Location_Id", "Date"]].copy()
+    d["Date"] = pd.to_datetime(d["Date"]).dt.normalize()
+
+    fwd_end = today + pd.Timedelta(days=forward_days - 1)
+    expected_fwd = pd.date_range(today, fwd_end)
+    bad = []
+    for loc, g in d.groupby("Location_Id"):
+        have = set(g["Date"])
+        missing = [ts for ts in expected_fwd if ts not in have]
+        if missing:
+            bad.append((loc, [m.strftime("%Y-%m-%d") for m in missing]))
+    assert not bad, f"Forward-window date gaps for {len(bad)} location(s): {bad[:5]}"
+
+    # Non-fatal lookback diagnostic.
+    look_start = today - pd.Timedelta(days=lookback)
+    look_expected = pd.date_range(look_start, today - pd.Timedelta(days=1))
+    gappy = 0
+    for loc, g in d.groupby("Location_Id"):
+        have = set(g["Date"])
+        if any(ts not in have for ts in look_expected):
+            gappy += 1
+    if gappy:
+        print(f"[warn] {gappy} location(s) have legacy gaps in the {lookback}-day lookback; "
+              f"their lag features will be partially NaN (pre-existing history).")
