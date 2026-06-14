@@ -8,7 +8,7 @@ reproduces this reference bit-for-bit, so any future drift is caught. Do not "fi
 the logic here to match the production code — it intentionally preserves the original.
 
 Run directly to compare the two implementations and print the speedup:
-    python backend/tools/weather_score_reference.py
+    python tests/weather_score_reference.py
 """
 import math
 import time

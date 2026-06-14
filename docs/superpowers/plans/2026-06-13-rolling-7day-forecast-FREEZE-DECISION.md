@@ -36,7 +36,7 @@ measured actuals.
 ## Quantification (the freeze error is small)
 
 A true forecast-vs-actual error must pair a forecast *made for* date D against the *actual*
-observed on D, so it accrues over time. Tooling: `backend/tools/forecast_vs_actual.py`
+observed on D, so it accrues over time. Tooling: `tests/forecast_vs_actual.py`
 (`capture` daily, `compare` once dates pass). An initial paired sample (day-0 forecast vs
 `history.json` actual, NE coords) gave:
 

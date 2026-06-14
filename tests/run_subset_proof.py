@@ -11,9 +11,9 @@ converted pipeline:
 Each region's merged result is written to a LOCAL parquet only (cold-start / local
 path) so the prod R2 masters are never touched.
 
-Run:  python backend/run_subset_proof.py            # all 4 regions
-      python backend/run_subset_proof.py NE          # one region
-      python backend/run_subset_proof.py --seed 99   # vary the random sample
+Run:  python tests/run_subset_proof.py            # all 4 regions
+      python tests/run_subset_proof.py NE          # one region
+      python tests/run_subset_proof.py --seed 99   # vary the random sample
 """
 import sys
 from datetime import datetime
@@ -22,7 +22,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-_BACKEND = Path(__file__).resolve().parent
+_HERE = Path(__file__).resolve().parent          # tests/ — local proof output lands here
+_BACKEND = _HERE.parent / "backend"               # for forecast_pipeline + .env loading
 sys.path.insert(0, str(_BACKEND))
 import forecast_pipeline as fp
 
@@ -97,7 +98,7 @@ def prove_region(name, config, api_key, seed):
     # the pipeline — US regions can start a calendar day behind a UTC/Europe runner.
     today = pd.to_datetime(weather_long["Date"]).min().normalize()
     out = fp._merge_and_score(config, df, species_params, zone_curves,
-                              main_data_path=str(_BACKEND / f"subset_master_{name}.parquet"))
+                              main_data_path=str(_HERE / f"subset_master_{name}.parquet"))
 
     # PROOF 3: forward window daily-contiguous.
     fp.assert_window_contiguous(out, today, forward_days=fp.FORECAST_DAYS, lookback=config.lag_days)
@@ -114,7 +115,7 @@ def prove_region(name, config, api_key, seed):
     print(f"  PROOF 4: {future['Date'].dt.date.nunique()} future dates carry scores; "
           f"{len(nonnull)}/{len(score_cols)} species non-null.")
 
-    out.to_parquet(_BACKEND / f"subset_master_{name}.parquet", index=False)
+    out.to_parquet(_HERE / f"subset_master_{name}.parquet", index=False)
     return dict(region=name, coords=len(coords), http=counter.count, retries=retries,
                 days=int(per_coord.iloc[0]), future_dates=int(future["Date"].dt.date.nunique()),
                 species_nonnull=len(nonnull), species_total=len(score_cols))

@@ -9,7 +9,7 @@ import numpy as np
 import pytest
 
 import forecast_pipeline as fp
-import weather_score_reference as poc  # tests/conftest.py puts backend/tools on sys.path
+import weather_score_reference as poc  # sibling module in tests/
 
 
 REGIMES = [

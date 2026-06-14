@@ -42,7 +42,7 @@ __pycache__/
 # Local zone-curve build artifacts (authoritative copies live in R2)
 /*_zone_season_curves.json
 # rolling-forecast subset proof output (generated)
-backend/subset_master_*.parquet
+tests/subset_master_*.parquet
 
 # forecast-vs-actual longitudinal snapshot (generated)
-backend/tools/forecast_vs_actual_snapshot.jsonl
+tests/forecast_vs_actual_snapshot.jsonl

@@ -14,8 +14,8 @@ to pass. This tool does exactly that, in two modes:
              absolute error per variable (rain is what drives the model).
 
 Usage:
-  python backend/tools/forecast_vs_actual.py capture
-  python backend/tools/forecast_vs_actual.py compare
+  python tests/forecast_vs_actual.py capture
+  python tests/forecast_vs_actual.py compare
 """
 import json
 import sys
@@ -25,7 +25,7 @@ from datetime import date, datetime
 from pathlib import Path
 from urllib.error import HTTPError
 
-_ROOT = Path(__file__).resolve().parents[2]
+_ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT = Path(__file__).resolve().parent / "forecast_vs_actual_snapshot.jsonl"
 
 # A small spread of NE coordinates (Sweden, Denmark, UK, France, Germany).
