@@ -1,11 +1,14 @@
-"""PROOF OF CONCEPT: vectorize the rain sub-score (`_weather_row`).
+"""Frozen reference for the rain sub-score (`_weather_row`).
 
-Goal: show a vectorized implementation produces output IDENTICAL (within float
-tolerance) to the current per-row `df.apply(_weather_row, axis=1)`, and measure
-the speedup. This does NOT touch the production scorer — it is a verification
-harness only. If this proves out, the vectorized body can replace the apply.
+`weather_score_apply` here is a VERBATIM copy of the ORIGINAL per-row
+`df.apply(_weather_row, axis=1)` behaviour. The production scorer now uses the
+vectorized `forecast_pipeline._weather_score_vectorized`; this module is the oracle
+that locks it: tests/test_weather_score_vectorization.py asserts the production path
+reproduces this reference bit-for-bit, so any future drift is caught. Do not "fix"
+the logic here to match the production code — it intentionally preserves the original.
 
-Run: python backend/tools/vectorize_weather_poc.py
+Run directly to compare the two implementations and print the speedup:
+    python backend/tools/weather_score_reference.py
 """
 import math
 import time

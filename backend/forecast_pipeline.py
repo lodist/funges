@@ -423,7 +423,7 @@ def _weather_score_vectorized(df, precip_hist_cols, *, min_p, cum_thr, rain_firs
                               drought_floor, no_wet_penalty, weather_eps):
     """Vectorized rain sub-score — bit-identical to the original per-row `_weather_row`
     (locked by tests/test_weather_score_vectorization.py against the verbatim reference
-    in tools/vectorize_weather_poc.py), but ~500x faster: it operates on the whole
+    in tools/weather_score_reference.py), but ~500x faster: it operates on the whole
     (N x lag_days) precip matrix at once instead of one Python call per row.
     """
     lag_days = len(precip_hist_cols)

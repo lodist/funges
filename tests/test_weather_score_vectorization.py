@@ -1,6 +1,6 @@
 """Locks the production vectorized rain sub-score to the original per-row logic.
 
-`vectorize_weather_poc.weather_score_apply` is a VERBATIM copy of the original
+`weather_score_reference.weather_score_apply` is a VERBATIM copy of the original
 `_weather_row` + `df.apply` (the behavior we must preserve). This test asserts the
 production `forecast_pipeline._weather_score_vectorized` reproduces it bit-for-bit
 across parameter regimes, so any future drift in the vectorized path is caught.
@@ -9,7 +9,7 @@ import numpy as np
 import pytest
 
 import forecast_pipeline as fp
-import vectorize_weather_poc as poc  # tests/conftest.py puts backend/tools on sys.path
+import weather_score_reference as poc  # tests/conftest.py puts backend/tools on sys.path
 
 
 REGIMES = [
