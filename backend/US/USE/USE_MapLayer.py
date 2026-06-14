@@ -213,7 +213,12 @@ print("Weather data fetched successfully!")
 
 df['Date'] = pd.to_datetime(df['Date'])
 
-# Select the latest date for each coordinate
+# Select TODAY's scores for each coordinate. The master now holds a 7-day forward
+# window (today..today+6); the map shows a single day, so we drop the future and take
+# the most recent remaining row per coordinate -> today's row after a normal run, or
+# the latest available date if today's scoring hasn't landed yet (map never blanks).
+today = pd.Timestamp(datetime.now()).normalize()
+df = df[df['Date'] <= today]
 df_sorted = df.sort_values(by="Date", ascending=False)
 df = df_sorted.groupby(['Latitude', 'Longitude']).first().reset_index()
 
