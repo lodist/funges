@@ -388,6 +388,31 @@ def compute_lag_features(df, columns, days):
     return df
 
 
+def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coord_lon="_coord_lon"):
+    """Same lag columns as compute_lag_features, but computed ONCE per (coord, Date)
+    and broadcast to every base point of that coord — not once per base point.
+
+    Valid because the lag columns are weather fields, which _fetch_all attaches per
+    fetched coord, so they are identical across a coord's base points. The per-coord
+    representative therefore equals each base point's own value, making the result
+    bit-identical to the per-base computation while doing ~base/coord times less work.
+
+    Every row must carry a non-null coord key; callers fall back to compute_lag_features
+    when that does not hold.
+    """
+    key = df[coord_lat].astype(str) + "_" + df[coord_lon].astype(str)
+    coord_series = df.assign(_coord_key=key)[["_coord_key", "Date"] + columns]
+    coord_series = (coord_series.drop_duplicates(["_coord_key", "Date"], keep="last")
+                                .rename(columns={"_coord_key": "Location_Id"}))
+    coord_lagged = compute_lag_features(coord_series, columns, days)
+
+    lag_cols = [f"{c}_{d}days_ago" for c in columns for d in range(1, days + 1)]
+    coord_lagged = coord_lagged.rename(columns={"Location_Id": "_coord_key"})[["_coord_key", "Date"] + lag_cols]
+
+    out = df.assign(_coord_key=key).merge(coord_lagged, on=["_coord_key", "Date"], how="left")
+    return out.drop(columns=["_coord_key", coord_lat, coord_lon])
+
+
 def altitude_score(x, optimal_alt=1150, alt_sigma=600):
     return gaussian(x, optimal_alt, alt_sigma)
 
@@ -852,22 +877,48 @@ def _fetch_all(config, coordinates, static_map, api_key, counter):
 
 
 def _join_to_base(config, weather_long, base_file_path):
-    """Map each base output point to its nearest fetched coord ONCE, then expand to
-    that coord's 7 daily weather rows. Tree is built on the N unique coords (not 7xN),
-    and the date expansion is a single vectorized merge.
-    """
-    from scipy.spatial import cKDTree
+    """Map each base output point to its fetched coord, then expand to that coord's
+    7 daily weather rows (a single vectorized merge).
 
-    base_df = read_df_from_source(base_file_path)
+    Fast path: if the base file carries baked `coord_lat`/`coord_lon` columns (the
+    nearest fetched coord, precomputed once at build time via tools/bake_base_coord_keys.py),
+    the assignment is a plain key merge — no per-run nearest-neighbour search. Any base
+    row whose baked coord did NOT fetch this run (or any base lacking the columns) falls
+    back to a KDTree query against the coords actually present, preserving the old
+    reroute-to-nearest behaviour.
+    """
+    base_df = read_df_from_source(base_file_path).copy()
+    ndp = config.ndp
 
     coord_keys = weather_long[["Latitude", "Longitude"]].drop_duplicates().reset_index(drop=True)
     coord_keys["coord_id"] = np.arange(len(coord_keys))
     weather_long = weather_long.merge(coord_keys, on=["Latitude", "Longitude"], how="left")
 
-    tree = cKDTree(coord_keys[["Latitude", "Longitude"]].to_numpy())
-    _, idx = tree.query(base_df[["Latitude", "Longitude"]].to_numpy())
-    base_df = base_df.copy()
-    base_df["coord_id"] = coord_keys["coord_id"].to_numpy()[idx]
+    base_df["coord_id"] = np.nan
+    if {"coord_lat", "coord_lon"}.issubset(base_df.columns):
+        key_to_id = (coord_keys.assign(
+                        _clat=coord_keys["Latitude"].round(ndp),
+                        _clon=coord_keys["Longitude"].round(ndp))
+                     .drop_duplicates(["_clat", "_clon"])
+                     .set_index(["_clat", "_clon"])["coord_id"])
+        baked = pd.MultiIndex.from_arrays(
+            [base_df["coord_lat"].round(ndp), base_df["coord_lon"].round(ndp)])
+        base_df["coord_id"] = key_to_id.reindex(baked).to_numpy()
+
+    missing = base_df["coord_id"].isna()
+    if missing.any():
+        from scipy.spatial import cKDTree
+        tree = cKDTree(coord_keys[["Latitude", "Longitude"]].to_numpy())
+        _, idx = tree.query(base_df.loc[missing, ["Latitude", "Longitude"]].to_numpy())
+        base_df.loc[missing, "coord_id"] = coord_keys["coord_id"].to_numpy()[idx]
+    base_df["coord_id"] = base_df["coord_id"].astype(int)
+
+    # Emit the ACTUAL assigned coord (not the baked input, which may have been rerouted
+    # for a missing fetch) so downstream lag dedup groups rows by the coord whose weather
+    # they actually received. compute_lag_features_by_coord consumes these.
+    cid = base_df["coord_id"].to_numpy()
+    base_df["_coord_lat"] = coord_keys["Latitude"].to_numpy()[cid]
+    base_df["_coord_lon"] = coord_keys["Longitude"].to_numpy()[cid]
 
     weather_cols = [
         "coord_id", "Date",
@@ -876,7 +927,9 @@ def _join_to_base(config, weather_long, base_file_path):
         "Description", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
         "Elevation (m)",
     ]
-    base_keep = base_df.drop(columns=[c for c in weather_cols if c in base_df.columns and c != "coord_id"])
+    drop_cols = [c for c in weather_cols if c in base_df.columns and c != "coord_id"]
+    drop_cols += [c for c in ("coord_lat", "coord_lon") if c in base_df.columns]
+    base_keep = base_df.drop(columns=drop_cols)
     out = base_keep.merge(weather_long[weather_cols], on="coord_id", how="left")
     out = out.drop(columns=["coord_id"])
     print(f"Length after base join (base x days): {len(out)}")
@@ -948,7 +1001,36 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
 
     combined_df = combined_df.sort_values(["Location_Id", "Date"])
     lag_columns = ["Temperature (C)", "TotalPrecipitation_mm", "Pressure (hPa)", "Humidity (%)"]
-    lagged = compute_lag_features(combined_df.copy(), lag_columns, days=config.lag_days)
+    # Only the forward window (Date >= today) is rescored, and a forward row's deepest
+    # lag reaches back exactly lag_days. So lag only [today - lag_days .. ]: frozen older
+    # rows are never rescored and need no lag features. Bit-identical for forward rows
+    # (every (loc, date-N) they reference is inside this slice), but far less data to
+    # reindex when the master holds a year of history at base resolution.
+    lag_start = today - pd.Timedelta(days=config.lag_days)
+    lag_slice = combined_df[pd.to_datetime(combined_df["Date"]).dt.normalize() >= lag_start].copy()
+
+    # Phase 2: weather (hence its lags) is identical across the base points that share a
+    # fetched coord, so lag ONCE per coord and broadcast instead of once per base point.
+    # The coord key (_coord_lat/_coord_lon) is carried from _join_to_base; history rows
+    # (from the prior master) lack it, so re-derive it per base point via the current run's
+    # Location_Id -> coord map. If any in-window row still has no coord key (un-baked base /
+    # legacy), fall back to the per-base path, which is the original behaviour.
+    if {"_coord_lat", "_coord_lon"}.issubset(df.columns):
+        loc_to_coord = (df[["Location_Id", "_coord_lat", "_coord_lon"]]
+                        .dropna(subset=["_coord_lat", "_coord_lon"])
+                        .drop_duplicates("Location_Id").set_index("Location_Id"))
+        lag_slice["_coord_lat"] = lag_slice["Location_Id"].map(loc_to_coord["_coord_lat"])
+        lag_slice["_coord_lon"] = lag_slice["Location_Id"].map(loc_to_coord["_coord_lon"])
+        can_dedup = lag_slice["_coord_lat"].notna().all() and lag_slice["_coord_lon"].notna().all()
+    else:
+        can_dedup = False
+
+    if can_dedup and len(lag_slice):
+        lagged = compute_lag_features_by_coord(lag_slice, lag_columns, days=config.lag_days)
+    else:
+        lagged = compute_lag_features(
+            lag_slice.drop(columns=[c for c in ("_coord_lat", "_coord_lon") if c in lag_slice.columns]),
+            lag_columns, days=config.lag_days)
 
     mask = forward_window_mask(lagged, today)
     forward = lagged[mask].copy()
