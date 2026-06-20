@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import { Protocol } from 'pmtiles';
 import { useMapStore } from '@/store/mapStore';
 import { Card } from '@/components/ui/card';
 import {
@@ -29,8 +30,9 @@ import {
   type RouteDishResult,
 } from '@/lib/route-to-dish';
 
-// Set Mapbox access token
-mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || '';
+// Register the pmtiles:// protocol so MapLibre can read PMTiles overlays from R2.
+// (MapLibre needs no access token.)
+maplibregl.addProtocol('pmtiles', new Protocol().tile);
 
 const ROUTE_SOURCE_ID = 'route-to-dish-line';
 const ROUTE_LAYER_ID = 'route-to-dish-line-layer';
@@ -92,11 +94,11 @@ function closeRoutePanel(
 
 const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
+  const map = useRef<maplibregl.Map | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapError, setMapError] = useState<string | null>(null);
   const [selectedFeature, setSelectedFeature] =
-    useState<mapboxgl.GeoJSONFeature | null>(null);
+    useState<maplibregl.GeoJSONFeature | null>(null);
   const [isFeatureModalOpen, setIsFeatureModalOpen] = useState(false);
   const [isModalFromLocateMe, setIsModalFromLocateMe] = useState(false);
   const [routeDishResult, setRouteDishResult] =
@@ -174,7 +176,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     if (!mapContainer.current || map.current) return;
 
     try {
-      map.current = new mapboxgl.Map({
+      map.current = new maplibregl.Map({
         container: mapContainer.current,
         style: mapStyle,
         center: center,
@@ -186,7 +188,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         trackResize: !isMobile, // Disable automatic resize only on mobile
         attributionControl: false,
         localIdeographFontFamily: 'sans-serif',
-        performanceMetricsCollection: false,
       });
 
       // Disable rotation
@@ -347,7 +348,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       features: [],
     };
     const existingSource = map.current.getSource(ROUTE_SOURCE_ID) as
-      | mapboxgl.GeoJSONSource
+      | maplibregl.GeoJSONSource
       | undefined;
 
     if (!existingSource) {
@@ -375,7 +376,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     if (!map.current || !mapLoaded) return;
 
     const source = map.current.getSource(ROUTE_SOURCE_ID) as
-      | mapboxgl.GeoJSONSource
+      | maplibregl.GeoJSONSource
       | undefined;
     if (!source) return;
 
@@ -504,7 +505,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
 
-    const routeMarkers: mapboxgl.Marker[] = [];
+    const routeMarkers: maplibregl.Marker[] = [];
 
     if (activeRoute && showAnimatedRouteStart) {
       const startElement = document.createElement('div');
@@ -518,7 +519,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       `;
 
       routeMarkers.push(
-        new mapboxgl.Marker({ element: startElement })
+        new maplibregl.Marker({ element: startElement })
           .setLngLat(activeRoute.start)
           .addTo(map.current)
       );
@@ -535,7 +536,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           `;
 
           routeMarkers.push(
-            new mapboxgl.Marker({ element: markerElement })
+            new maplibregl.Marker({ element: markerElement })
               .setLngLat(stop.coordinate)
               .addTo(map.current!)
           );
@@ -555,7 +556,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   // Show feature info on click
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
-    const handleClick = (e: mapboxgl.MapMouseEvent) => {
+    const handleClick = (e: maplibregl.MapMouseEvent) => {
       const layers =
         map.current
           ?.getStyle()
@@ -667,7 +668,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       return;
 
     // Create new marker
-    const marker = new mapboxgl.Marker({
+    const marker = new maplibregl.Marker({
       color: '#3b82f6',
       className: 'user-location-marker',
     })
@@ -688,7 +689,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     existingMarkers.forEach(marker => marker.remove());
 
     // Create markers for each foraging spot
-    const markers: mapboxgl.Marker[] = [];
+    const markers: maplibregl.Marker[] = [];
 
     foragingSpots.forEach(spot => {
       const markerColor =
@@ -700,7 +701,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               ? '#7c3aed'
               : '#f59e0b';
 
-      const marker = new mapboxgl.Marker({
+      const marker = new maplibregl.Marker({
         color: markerColor,
         className: 'foraging-spot-marker',
       })
@@ -708,7 +709,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         .addTo(map.current!);
 
       // Add popup with spot information
-      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
+      const popup = new maplibregl.Popup({ offset: 25 }).setHTML(`
         <div class="p-3 max-w-xs">
           <h3 class="font-semibold text-lg mb-2">${spot.name}</h3>
           <p class="text-sm text-gray-600 mb-2">${spot.description}</p>

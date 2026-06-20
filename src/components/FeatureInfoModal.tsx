@@ -8,7 +8,7 @@ import { SPECIES_DATA } from '@/data/species';
 import { Navigation, X } from 'lucide-react';
 
 interface FeatureInfoModalProps {
-  feature: mapboxgl.GeoJSONFeature | null;
+  feature: maplibregl.GeoJSONFeature | null;
   open: boolean;
   onClose: () => void;
   hideDirections?: boolean;

@@ -52,7 +52,7 @@ export interface MapState {
   showUserLocation: boolean;
 
   // Map reference for layer management
-  mapRef: mapboxgl.Map | null;
+  mapRef: maplibregl.Map | null;
 
   // Actions
   setCenter: (center: [number, number]) => void;
@@ -80,7 +80,7 @@ export interface MapState {
   toggleNumbersLayersVisibility: () => void;
 
   // Map reference management
-  setMapRef: (map: mapboxgl.Map | null) => void;
+  setMapRef: (map: maplibregl.Map | null) => void;
   updateVisibleLayers: () => void;
   restoreDarkLayersState: () => void;
 }
@@ -93,7 +93,7 @@ export const useMapStore = create<MapState>()(
       zoom: 3.5,
       bearing: 0,
       pitch: 0,
-      mapStyle: import.meta.env.VITE_MAPBOX_STYLE,
+      mapStyle: '/funges_style_free.json', // self-hosted from public/; regenerate via scripts/add-overlay-to-style.cjs then re-copy
       userLocation: null,
       userLocationError: null,
       foragingSpots: [],
@@ -283,7 +283,7 @@ export const useMapStore = create<MapState>()(
         })),
 
       // Map reference management
-      setMapRef: (map: mapboxgl.Map | null) => set({ mapRef: map }),
+      setMapRef: (map: maplibregl.Map | null) => set({ mapRef: map }),
       updateVisibleLayers: () => {
         const {
           mapRef,

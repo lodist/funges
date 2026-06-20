@@ -747,6 +747,17 @@ def build_mbtiles_from_geojson(geojson_path: Path, mbtiles_path: Path, layer_nam
     subprocess.run(cmd, check=True)
     print(f"MBTiles saved to: {mbtiles_path}")
 
+def convert_mbtiles_to_pmtiles(mbtiles_path: Path, pmtiles_path: Path) -> bool:
+    pmtiles_bin = shutil.which("pmtiles")
+    if pmtiles_bin is None:
+        print("pmtiles CLI not found. PMTiles conversion skipped.")
+        return False
+    print("Converting MBTiles -> PMTiles...")
+    subprocess.run([pmtiles_bin, "convert", str(mbtiles_path), str(pmtiles_path)], check=True)
+    print(f"PMTiles saved to: {pmtiles_path}")
+    return True
+
+# ponytail: reused for .pmtiles too — it's a generic put_object, no need for a second uploader
 def upload_mbtiles_to_r2(mbtiles_path: Path, r2_key: str) -> None:
     client = boto3.client(
         's3',
@@ -775,6 +786,9 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
     if mbtiles_path.exists():
         upload_mbtiles_to_r2(mbtiles_path, f"USA/USE/{region_code}_mushroom_data.mbtiles")
+        pmtiles_path = Path(tmpdir) / f"{region_code}_mushroom_data.pmtiles"
+        if convert_mbtiles_to_pmtiles(mbtiles_path, pmtiles_path):
+            upload_mbtiles_to_r2(pmtiles_path, f"USA/USE/{region_code}_mushroom_data.pmtiles")
 
 print(f"✅ Processing & Upload Completed at {datetime.now()}")
 print(f"Script ended at {datetime.now()}")

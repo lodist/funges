@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { getRepresentativeLngLat } from '@/lib/geo';
-import type { GeoJSONFeature } from 'mapbox-gl';
+import type { GeoJSONFeature } from 'maplibre-gl';
 
 function makeFeature(geometry: GeoJSONFeature['geometry']): GeoJSONFeature {
   return { type: 'Feature', geometry, properties: {} } as GeoJSONFeature;

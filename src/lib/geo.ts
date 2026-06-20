@@ -7,7 +7,7 @@ type GeoJSONCoordinate = LngLat | GeoJSONCoordinate[];
 // For points, the feature's coordinates are returned directly.
 // For polygons/lines, a simple bbox centroid is computed.
 export function getRepresentativeLngLat(
-  feature: mapboxgl.GeoJSONFeature
+  feature: maplibregl.GeoJSONFeature
 ): LngLat {
   const geom = feature.geometry;
   if (geom.type === 'Point') {
