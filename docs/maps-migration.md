@@ -1,7 +1,29 @@
 # Map migration: Mapbox/AWS → self-hosted MapLibre + PMTiles on R2
 
-**Status:** Planning / not started
+**Status:** Style ported & rendering on free Protomaps tiles. App swap + overlay not started.
 **Branch:** `feat/maplibre-pmtiles-migration`
+
+---
+
+## 🟢 NEW CONVERSATION — START HERE
+
+**Done so far:**
+- Style ported AWS→Protomaps schema and verified rendering (tiles/glyphs/sprite 200, no map errors).
+- `funges_style_free.json` — final style, Protomaps tiles+glyphs+sprite wired, Bold→Medium (Protomaps has no Bold). 89 layers. Public Protomaps key `1667c4db9cefcd10` is in the `aws` source url. ✅ loads in Maputnik.
+- `funges_mapstyle_V2.json` — the hand-tuned Maputnik export `funges_style_free.json` was generated from.
+- `funges_mapstyle_V1.json` — original AWS-schema style (reference).
+- `scripts/port-style.cjs` — regenerates the free style from an AWS-schema style (repoints source, Bold/Medium fonts, drops satellite/POI/shield layers).
+
+**Tiles decision still open:** currently using the **Protomaps hosted API** (the key). Cheaper-at-scale alternative is self-hosting an EU+US (or planet) basemap `.pmtiles` on R2 — defer until the API bill matters. See cost section below.
+
+**What's left (do in order):**
+1. **Overlay → PMTiles on R2.** In `backend/**/**_MapLayer.py`, after the tippecanoe `.mbtiles` build, `pmtiles convert` and upload `.pmtiles` to R2. Add overlay source + layers to `funges_style_free.json` — **reuse the exact layer IDs the app keys off** (see risk section): `source-layer` = `<region>_scores`.
+2. **Renderer swap** `mapbox-gl`→`maplibre-gl` in `src/components/AdvancedMap.tsx` (+ `mapboxgl.Map` type in `src/store/mapStore.ts`), register pmtiles protocol, drop `mapboxgl.accessToken`. See Phase-1 steps below.
+3. **Point the app at the new style:** `mapStyle` in `src/store/mapStore.ts` → the R2-hosted `funges_style_free.json` URL (instead of `VITE_MAPBOX_STYLE`).
+4. **R2 CORS+Range** for the `.pmtiles` (verify `curl -I -H "Range: bytes=0-99"` → `206`).
+5. **Verify** species selector / dark / numbers toggles, click→modal, locate-me, route-to-dish, Google Maps handoff. Remove `VITE_MAPBOX_*`, update `.env.secret.example`.
+
+Key files: `funges_style_free.json`, `funges_mapstyle_V2.json`, `funges_mapstyle_V1.json`, `scripts/port-style.cjs`, `src/components/AdvancedMap.tsx`, `src/store/mapStore.ts`, `backend/**/**_MapLayer.py`, `src/data/species`.
 **Goal:** Get off paid map tile providers (Mapbox renderer + AWS Location Service tiles) and onto a fully self-owned, serverless, near-zero-cost stack — without breaking the existing map interactions.
 
 ---

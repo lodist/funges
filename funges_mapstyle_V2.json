@@ -4127,7 +4127,7 @@
           4,
           ["coalesce", ["get", "name:en"], ["get", "name"]]
         ],
-        "text-font": ["Noto Sans Medium"],
+        "text-font": ["Noto Sans Bold"],
         "text-letter-spacing": [
           "interpolate",
           ["linear"],
@@ -4400,7 +4400,7 @@
         ],
         "symbol-sort-key": ["*", -1, ["get", "population"]],
         "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
-        "text-font": ["Noto Sans Medium"],
+        "text-font": ["Noto Sans Bold"],
         "text-justify": "auto",
         "text-line-height": 1,
         "text-radial-offset": [
@@ -4517,7 +4517,7 @@
       "layout": {
         "symbol-sort-key": ["-", 20, ["get", "population_rank"]],
         "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
-        "text-font": ["Noto Sans Medium"],
+        "text-font": ["Noto Sans Bold"],
         "text-letter-spacing": 0.2,
         "text-line-height": 1,
         "text-max-width": 8,
