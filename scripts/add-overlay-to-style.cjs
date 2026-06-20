@@ -35,7 +35,7 @@ for (const [src, url] of Object.values(REGION).map(([s, u]) => [s, u])) {
 const overlaySources = new Set(Object.values(REGION).map(([s]) => s));
 style.layers = style.layers.filter(l => !overlaySources.has(l.source));
 
-let n = 0;
+const overlay = [];
 for (const l of live.layers) {
   const map = REGION[l['source-layer']];
   if (!map) continue; // not a species overlay layer (skips basemap + 'landcover dark'/'water dark')
@@ -45,10 +45,13 @@ for (const l of live.layers) {
   copy['source-layer'] = srcLayer;
   delete copy.metadata; // mapbox:group ids, meaningless off-Mapbox
   if (copy.layout && copy.layout['text-font']) copy.layout['text-font'] = ['Noto Sans Medium'];
-  style.layers.push(copy);
-  n++;
+  overlay.push(copy);
 }
 
+// Insert overlay below the basemap labels (first symbol layer) so place names stay on top.
+const at = style.layers.findIndex(l => l.type === 'symbol');
+style.layers.splice(at === -1 ? style.layers.length : at, 0, ...overlay);
+
 fs.writeFileSync(stylePath, JSON.stringify(style, null, 2) + '\n');
-console.log(`appended ${n} overlay layers, ${overlaySources.size} sources -> ${stylePath}`);
+console.log(`inserted ${overlay.length} overlay layers below basemap labels, ${overlaySources.size} sources -> ${stylePath}`);
 console.log(`layer total now ${style.layers.length}`);
