@@ -560,7 +560,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       const layers =
         map.current
           ?.getStyle()
-          .layers?.map(l => l.id)
+          ?.layers?.map(l => l.id)
           .filter(
             id =>
               selectedSpecies &&
@@ -612,8 +612,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         // Check if there are features at the user's location
         const layers =
           map.current
-            .getStyle()
-            .layers?.map(l => l.id)
+            ?.getStyle()
+            ?.layers?.map(l => l.id)
             .filter(
               id =>
                 (selectedSpecies

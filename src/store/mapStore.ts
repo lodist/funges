@@ -275,9 +275,10 @@ export const useMapStore = create<MapState>()(
           return;
         }
 
-        const layers = mapRef.getStyle().layers;
+        // getStyle() is undefined mid-swap (style not loaded yet); bail and let the
+        // map's 'load' handler call this again once the new style is ready.
+        const layers = mapRef.getStyle()?.layers;
         if (!layers) {
-          console.warn('No layers found in map style.');
           return;
         }
 
