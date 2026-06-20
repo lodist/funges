@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Appends the species-score overlay (source + 168 layers) to funges_style_free.json.
+// Appends the species-score overlay (source + 168 layers) to funges_style.json.
 // Source of truth = the live Mapbox style's overlay layers; we keep the exact layer IDs
 // the app keys off (<species>_<region>, <species>_<region>_numbers) and only rewrite:
 //   source        composite        -> overlay-<region>  (a pmtiles source on R2)
@@ -7,11 +7,11 @@
 //   text-font     Sniglet Regular  -> Noto Sans Medium  (Protomaps glyphs only serve Noto Sans)
 // Re-run after changing the live style; idempotent (strips any prior overlay first).
 //
-// Usage: node scripts/add-overlay-to-style.cjs <live_style.json> [funges_style_free.json]
+// Usage: node scripts/add-overlay-to-style.cjs <live_style.json> [funges_style.json]
 const fs = require('fs');
 
 const livePath = process.argv[2];
-const stylePath = process.argv[3] || 'funges_style_free.json';
+const stylePath = process.argv[3] || 'funges_style.json';
 if (!livePath) { console.error('need <live_style.json>'); process.exit(1); }
 
 const R2 = 'https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev';

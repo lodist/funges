@@ -85,6 +85,12 @@ export interface MapState {
   restoreDarkLayersState: () => void;
 }
 
+// Dark mode swaps the whole style — Protomaps basemap has no per-layer ` dark` variant.
+// Both styles carry the same overlay layers; AdvancedMap's [mapStyle] effect recreates
+// the map (camera preserved from the store) and re-applies species visibility on swap.
+const LIGHT_STYLE = '/funges_style.json';
+const DARK_STYLE = '/funges_style_dark.json';
+
 export const useMapStore = create<MapState>()(
   devtools(
     (set, get) => ({
@@ -93,7 +99,10 @@ export const useMapStore = create<MapState>()(
       zoom: 3.5,
       bearing: 0,
       pitch: 0,
-      mapStyle: '/funges_style_free.json', // self-hosted from public/; regenerate via scripts/add-overlay-to-style.cjs then re-copy
+      mapStyle:
+        localStorage.getItem('darkLayersVisible') === 'true'
+          ? DARK_STYLE
+          : LIGHT_STYLE, // self-hosted from public/; regenerate via scripts/add-overlay-to-style.cjs then re-copy
       userLocation: null,
       userLocationError: null,
       foragingSpots: [],
@@ -138,44 +147,13 @@ export const useMapStore = create<MapState>()(
 
       toggleDarkLayersVisibility: () =>
         set(state => {
-          const newState = { darkLayersVisible: !state.darkLayersVisible };
-          const { mapRef } = get();
-
-          // Save to localStorage
-          localStorage.setItem(
-            'darkLayersVisible',
-            newState.darkLayersVisible.toString()
-          );
-
-          // Show loading spinner when enabling dark layers (like in old project)
-          if (newState.darkLayersVisible) {
-            set({ isLoading: true });
-            setTimeout(() => {
-              set({ isLoading: false });
-            }, 2000);
-          }
-
-          // Directly manage dark layers like in the old project
-          if (mapRef) {
-            const layers = mapRef.getStyle().layers;
-            if (layers) {
-              layers.forEach(layer => {
-                const layerId = layer.id;
-                if (layerId.endsWith(' dark')) {
-                  mapRef.setLayoutProperty(
-                    layerId,
-                    'visibility',
-                    newState.darkLayersVisible ? 'visible' : 'none'
-                  );
-                }
-              });
-            }
-          }
-
-          console.debug(
-            `Dark layers are now ${newState.darkLayersVisible ? 'visible' : 'hidden'}`
-          );
-          return newState;
+          const darkLayersVisible = !state.darkLayersVisible;
+          localStorage.setItem('darkLayersVisible', String(darkLayersVisible));
+          // Swap the style URL; the [mapStyle] effect in AdvancedMap reloads the map.
+          return {
+            darkLayersVisible,
+            mapStyle: darkLayersVisible ? DARK_STYLE : LIGHT_STYLE,
+          };
         }),
       toggleNumbersLayersVisibility: () =>
         set(state => {
@@ -340,29 +318,10 @@ export const useMapStore = create<MapState>()(
         console.debug('Numbers visible:', numbersLayersVisible);
         console.debug('Final visible layers:', visibleLayerIds);
       },
-      restoreDarkLayersState: () => {
-        const { mapRef, darkLayersVisible } = get();
-
-        if (mapRef) {
-          const layers = mapRef.getStyle().layers;
-          if (layers) {
-            layers.forEach(layer => {
-              const layerId = layer.id;
-              if (layerId.endsWith(' dark')) {
-                mapRef.setLayoutProperty(
-                  layerId,
-                  'visibility',
-                  darkLayersVisible ? 'visible' : 'none'
-                );
-              }
-            });
-          }
-        }
-
-        console.debug(
-          `Dark layers state restored: ${darkLayersVisible ? 'visible' : 'hidden'}`
-        );
-      },
+      // ponytail: dark mode is a full style swap now; the correct style is chosen at
+      // init and on toggle, so there are no per-layer ` dark` states to restore. No-op
+      // kept because AdvancedMap's load handler still calls it.
+      restoreDarkLayersState: () => {},
     }),
     {
       name: 'map-store',
