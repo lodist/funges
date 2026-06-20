@@ -40,9 +40,9 @@ s.layers = s.layers.filter((l) => {
 });
 
 // --- Font swap: "Amazon Ember ... , Noto Sans X" -> just "Noto Sans X"
+// Protomaps' free glyphs ship Regular / Medium / Italic only (no Bold) — map Bold->Medium.
 const fontFor = (str) =>
-  /Bold/.test(str) ? 'Noto Sans Bold'
-  : /Medium/.test(str) ? 'Noto Sans Medium'
+  /Bold|Medium/.test(str) ? 'Noto Sans Medium'
   : 'Noto Sans Regular';
 
 for (const l of s.layers) {

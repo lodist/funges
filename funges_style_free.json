@@ -55,11 +55,11 @@
   "sources": {
     "aws": {
       "type": "vector",
-      "url": "FILL_ME_TILEJSON_OR_PMTILES_URL"
+      "url": "https://api.protomaps.com/tiles/v4.json?key=1667c4db9cefcd10"
     }
   },
-  "sprite": "FILL_ME_SPRITE_URL",
-  "glyphs": "FILL_ME_GLYPHS_URL/{fontstack}/{range}.pbf",
+  "sprite": "https://protomaps.github.io/basemaps-assets/sprites/v4/light",
+  "glyphs": "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "land",
@@ -909,7 +909,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-letter-spacing": 0.05,
         "text-max-angle": 40,
@@ -6940,7 +6940,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-letter-spacing": [
           "interpolate",
@@ -7192,7 +7192,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-max-angle": 40,
         "text-offset": [
@@ -7318,7 +7318,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-max-angle": 40,
         "text-offset": [
@@ -7402,7 +7402,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-max-angle": 40,
         "text-offset": [
@@ -7478,7 +7478,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-line-height": 1,
         "text-max-width": 5,
@@ -7596,7 +7596,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-line-height": 1,
         "text-max-width": 4,
@@ -7727,7 +7727,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-line-height": 1,
         "text-offset": [
@@ -7851,7 +7851,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-line-height": 1,
         "text-offset": [
@@ -7921,7 +7921,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-line-height": 1,
         "text-max-width": 6,
@@ -7990,7 +7990,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-line-height": 1,
         "text-offset": [
@@ -8080,7 +8080,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-letter-spacing": [
           "interpolate",
@@ -8230,7 +8230,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-line-height": 1,
         "text-max-width": 8,
@@ -8764,7 +8764,7 @@
           [
             "literal",
             [
-              "Amazon Ember Bold,Noto Sans Bold"
+              "Amazon Ember Bold,Noto Sans Medium"
             ]
           ],
           4,
@@ -8781,7 +8781,7 @@
             [
               "literal",
               [
-                "Amazon Ember Bold,Noto Sans Bold"
+                "Amazon Ember Bold,Noto Sans Medium"
               ]
             ],
             [
@@ -8805,7 +8805,7 @@
             [
               "literal",
               [
-                "Amazon Ember Bold,Noto Sans Bold"
+                "Amazon Ember Bold,Noto Sans Medium"
               ]
             ],
             [
@@ -8829,7 +8829,7 @@
             [
               "literal",
               [
-                "Amazon Ember Bold,Noto Sans Bold"
+                "Amazon Ember Bold,Noto Sans Medium"
               ]
             ],
             [
@@ -8867,7 +8867,7 @@
             [
               "literal",
               [
-                "Amazon Ember Bold,Noto Sans Bold"
+                "Amazon Ember Bold,Noto Sans Medium"
               ]
             ],
             [
@@ -9181,7 +9181,7 @@
           ]
         ],
         "text-font": [
-          "Noto Sans Bold"
+          "Noto Sans Medium"
         ],
         "text-letter-spacing": 0.2,
         "text-line-height": 1,
