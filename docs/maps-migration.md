@@ -1,7 +1,16 @@
 # Map migration: Mapbox/AWS → self-hosted MapLibre + PMTiles on R2
 
-**Status:** Steps 1–3 done — overlay→PMTiles (backend + style), renderer swapped to maplibre-gl, app self-hosts the style from `public/`. Next: R2 CORS+Range for `.pmtiles` (step 4), then verify (step 5). Map renders end-to-end once the backend pipeline puts the `.pmtiles` on R2 post-merge.
+**Status:** Steps 1–5 effectively DONE and verified locally — overlay→PMTiles, renderer swap, self-hosted style, R2 CORS+Range, dark mode, label ordering. Map renders end-to-end on `npm run dev` (all 4 region `.pmtiles` live on R2). Remaining: install `pmtiles` CLI on the MapLayer host (DONE in WSL), merge to main, and (deferred) Phase A below when traffic nears the Protomaps free-tier cap.
 **Branch:** `feat/maplibre-pmtiles-migration`
+
+## ⚡ SESSION UPDATE (read this first — supersedes stale lines below)
+- **Files renamed:** `funges_style_free.json` → **`funges_style.json`** (root + `public/`), and **`funges_style_dark.json`** added (both 257 layers = 89 basemap + 168 overlay). `mapStyle` constants `LIGHT_STYLE`/`DARK_STYLE` in `mapStore.ts`.
+- **Dark mode = full style swap** (Protomaps has no per-layer ` dark`). The dark button flips `mapStyle` between the two URLs; AdvancedMap's `[mapStyle]` effect reloads the map (camera preserved). `restoreDarkLayersState` is now a no-op. Both styles carry the overlay.
+- **Labels render above the overlay** — `add-overlay-to-style.cjs` now inserts overlay layers *before* the first basemap symbol layer (was appending at end).
+- **getStyle() guarded** during style swap (`getStyle()?.layers`) in `mapStore.ts` + `AdvancedMap.tsx` — fixed "Cannot read properties of undefined (reading 'layers')" on dark toggle.
+- **`pmtiles` CLI installed in WSL** (`/usr/local/bin/pmtiles`, v1.30.3) — the MapLayer pipeline will now actually convert+upload `.pmtiles`. ⚠️ It's a silent skip if missing on any rebuilt host (`shutil.which("pmtiles")` → returns False, no error). Consider making it raise.
+- **All 4 overlay `.pmtiles` are live on R2** (NE/SE/USE/USW) and range-enabled (`206`). Currently built by hand; the pipeline reproduces them once it runs with pmtiles on PATH.
+- **Free-tier capacity:** Protomaps hosted API = **1M basemap tile req/mo (soft cap, non-commercial)**. Only basemap counts (overlay/glyphs/sprite are on R2/GitHub). ≈ **8k typical sessions/mo** (4k heavy – 25k light). At the 45k `VITE_VISITOR_LIMIT` you'd exceed it ~5× → do Phase A.
 
 ---
 
@@ -29,6 +38,31 @@
 
 Key files: `funges_style_free.json`, `funges_mapstyle_V2.json`, `funges_mapstyle_V1.json`, `scripts/port-style.cjs`, `scripts/add-overlay-to-style.cjs`, `src/components/AdvancedMap.tsx`, `src/store/mapStore.ts`, `backend/**/**_MapLayer.py`, `src/data/species`.
 **Goal:** Get off paid map tile providers (Mapbox renderer + AWS Location Service tiles) and onto a fully self-owned, serverless, near-zero-cost stack — without breaking the existing map interactions.
+
+---
+
+## Phase A — Basemap on R2 (DEFERRED; do when sessions approach ~8k/mo)
+
+Moves the **basemap** off the metered Protomaps API onto R2 (free egress, no per-tile cap). Only the tiles move — **glyphs + sprite stay on `protomaps.github.io/basemaps-assets/…`** (free GitHub Pages static, not the metered API, leave them). The Protomaps *build* pmtiles use the **same `kind`/`kind_detail` schema** as the API, so the style's filters keep working — it's purely a source-URL swap.
+
+1. **Get the basemap pmtiles.** `pmtiles` CLI is already in WSL. Grab the current build name from https://maps.protomaps.com/builds (a dated planet file at `https://build.protomaps.com/<DATE>.pmtiles`). Either:
+   - **Planet (simplest, one file, one source):** download or `pmtiles extract` nothing — just use the whole planet. Storage ≈107GB on R2 ≈ **$1.6/mo**; range requests mean transfer stays tiny. Recommended — no bbox math, covers EU+US+everything.
+   - **Or EU+US extracts (smaller storage, two sources):**
+     ```bash
+     pmtiles extract https://build.protomaps.com/<DATE>.pmtiles eu.pmtiles  --bbox=-25,34,45,72
+     pmtiles extract https://build.protomaps.com/<DATE>.pmtiles us.pmtiles  --bbox=-125,24,-66,50
+     ```
+     (Two disjoint regions can't be one bbox without the Atlantic; two files = two `basemap-*` sources + duplicated basemap layers per source. Planet avoids this.)
+2. **Upload to R2** (rclone with the `RCLONE_CONFIG_R2_*` env pattern, or dashboard) to e.g. `basemap/planet.pmtiles`. Confirm range: `curl -sI -H "Range: bytes=0-99" https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/basemap/planet.pmtiles` → `206`.
+3. **Swap the style source.** In `funges_style.json` AND `funges_style_dark.json` (root + `public/`), change the `aws` source:
+   ```json
+   "aws": { "type": "vector", "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/basemap/planet.pmtiles" }
+   ```
+   (was `https://api.protomaps.com/tiles/v4.json?key=…`). Keep the source id `aws` so no layer changes. Leave `glyphs`/`sprite` pointing at protomaps.github.io. Check the build's `maxzoom` (~15) is fine for the style.
+4. **Re-copy root → `public/`**, `npm run dev`, verify basemap still renders (same look, now from R2) + overlay + dark toggle. Then merge.
+5. **Freshness:** the planet build is a snapshot — re-pull/re-upload periodically (e.g. quarterly) for updated OSM data. Cheap to automate later.
+
+Result: basemap + overlay + style all on R2 (~€1–2/mo flat), no Protomaps API, no per-tile cap, no commercial-tier concern.
 
 ---
 
