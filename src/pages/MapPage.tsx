@@ -1,4 +1,4 @@
-import MapComponent from '@/components/MapComponent';
+import AdvancedMap from '@/components/AdvancedMap';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useEffect } from 'react';
 import { useNavigate } from '@tanstack/react-router';
@@ -54,7 +54,7 @@ export default function MapPage() {
         canonicalUrl={import.meta.env.BASE_URL}
       />
       <div className={isMobile ? 'h-full' : '-m-4'}>
-        <MapComponent />
+        <AdvancedMap />
       </div>
       <OnboardingModal />
     </>

@@ -214,7 +214,6 @@ python backend/EU/North_Europe/NE_MapLayer.py
 
 | Variable                     | Where         | Description                        |
 | ---------------------------- | ------------- | ---------------------------------- |
-| `VITE_VISITOR_LIMIT`         | `.env.secret` | Visitor count before the map falls back to a static view |
 | `R2_ACCESS_KEY_ID`           | `.env.secret` | Cloudflare R2 credentials          |
 | `R2_SECRET_ACCESS_KEY`       | `.env.secret` | Cloudflare R2 credentials          |
 | `R2_BUCKET_NAME`             | `.env.secret` | Cloudflare R2 bucket name          |

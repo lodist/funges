@@ -31,7 +31,7 @@ src/
 ## Environment
 
 - Copy `.env.example` to `.env` and set required variables.
-- Important variables: `VITE_BASE_URL`, `VITE_VISITOR_LIMIT`, and the `R2_*` credentials.
+- Important variables: `VITE_BASE_URL` and the `R2_*` credentials.
 
 ## Common Commands
 
