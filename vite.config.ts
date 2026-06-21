@@ -38,6 +38,11 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif,tflite}'],
         runtimeCaching: [
+          // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.
+          {
+            urlPattern: /\.pmtiles$/i,
+            handler: 'NetworkOnly',
+          },
           // TensorFlow Lite models caching
           {
             urlPattern:
