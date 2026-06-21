@@ -1,4 +1,4 @@
-import type { Map as MapboxMap, MapboxGeoJSONFeature } from 'mapbox-gl';
+import type { Map as MapLibreMap, GeoJSONFeature } from 'maplibre-gl';
 import { getRepresentativeLngLat, type LngLat } from '@/lib/geo';
 
 export interface RouteDishRecipe {
@@ -132,7 +132,7 @@ const ROUTE_TO_DISH_SPECIES_IDS = new Set(
 );
 
 function getSpeciesLayerGroups(
-  map: MapboxMap,
+  map: MapLibreMap,
   speciesIds: string[]
 ): RouteDishSourceGroup[] {
   const layers = map.getStyle().layers ?? [];
@@ -145,7 +145,9 @@ function getSpeciesLayerGroups(
     if (matchedSpecies.length === 0) return;
 
     const sourceId =
-      typeof layer.source === 'string' ? layer.source : undefined;
+      'source' in layer && typeof layer.source === 'string'
+        ? layer.source
+        : undefined;
     if (!sourceId) return;
 
     const sourceLayer =
@@ -176,7 +178,7 @@ function getSpeciesLayerGroups(
 }
 
 function getFeatureKey(
-  feature: MapboxGeoJSONFeature,
+  feature: GeoJSONFeature,
   sourceId: string,
   sourceLayer?: string
 ): string {
@@ -365,7 +367,7 @@ function buildGreedyPlan(
 }
 
 export function queryRouteDishData(params: {
-  map: MapboxMap;
+  map: MapLibreMap;
   recipes: RouteDishRecipe[];
   start: LngLat;
   minScore: number;
@@ -383,7 +385,7 @@ export function queryRouteDishData(params: {
   const candidateStopMap = new Map<string, RouteDishCandidateStop>();
 
   sourceGroups.forEach(group => {
-    let features: MapboxGeoJSONFeature[] = [];
+    let features: GeoJSONFeature[] = [];
 
     try {
       features = map.querySourceFeatures(group.sourceId, {

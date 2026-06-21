@@ -7,8 +7,6 @@
    - Source: "GitHub Actions"
 
 2. **Add repository secrets** (Settings → Secrets and variables → Actions):
-   - `VITE_MAPBOX_ACCESS_TOKEN` - Your Mapbox token
-   - `VITE_MAPBOX_STYLE` - Mapbox style URL
    - `VITE_BASE_URL` - Base path for your site
 
 ## Base URL Configuration

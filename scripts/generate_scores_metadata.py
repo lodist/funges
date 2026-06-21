@@ -13,7 +13,13 @@ def main() -> None:
     if table.num_rows == 0:
         raise RuntimeError("Parquet file does not contain any rows")
 
-    date_str = str(max(table.column("Date").to_pylist())).strip()
+    # The parquet now holds a rolling forecast window [today .. today+6]. The
+    # "last updated" label must reflect TODAY, not the forecast end (max(Date) ==
+    # today+6, which renders a broken future "in X minutes"). Pick today; if it
+    # isn't present yet, fall back to the earliest available day, else latest.
+    today = datetime.now().strftime("%Y-%m-%d")
+    dates = sorted(str(d).strip() for d in table.column("Date").to_pylist())
+    date_str = next((d for d in dates if d >= today), dates[-1])
     try:
         dt = datetime.strptime(date_str, "%Y-%m-%d")
         iso = dt.isoformat() + "Z"

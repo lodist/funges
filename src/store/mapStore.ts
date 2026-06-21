@@ -52,7 +52,7 @@ export interface MapState {
   showUserLocation: boolean;
 
   // Map reference for layer management
-  mapRef: mapboxgl.Map | null;
+  mapRef: maplibregl.Map | null;
 
   // Actions
   setCenter: (center: [number, number]) => void;
@@ -80,10 +80,16 @@ export interface MapState {
   toggleNumbersLayersVisibility: () => void;
 
   // Map reference management
-  setMapRef: (map: mapboxgl.Map | null) => void;
+  setMapRef: (map: maplibregl.Map | null) => void;
   updateVisibleLayers: () => void;
   restoreDarkLayersState: () => void;
 }
+
+// Dark mode swaps the whole style — Protomaps basemap has no per-layer ` dark` variant.
+// Both styles carry the same overlay layers; AdvancedMap's [mapStyle] effect recreates
+// the map (camera preserved from the store) and re-applies species visibility on swap.
+const LIGHT_STYLE = '/funges_style.json';
+const DARK_STYLE = '/funges_style_dark.json';
 
 export const useMapStore = create<MapState>()(
   devtools(
@@ -93,7 +99,10 @@ export const useMapStore = create<MapState>()(
       zoom: 3.5,
       bearing: 0,
       pitch: 0,
-      mapStyle: import.meta.env.VITE_MAPBOX_STYLE,
+      mapStyle:
+        localStorage.getItem('darkLayersVisible') === 'true'
+          ? DARK_STYLE
+          : LIGHT_STYLE, // self-hosted from public/; regenerate via scripts/add-overlay-to-style.cjs then re-copy
       userLocation: null,
       userLocationError: null,
       foragingSpots: [],
@@ -138,44 +147,13 @@ export const useMapStore = create<MapState>()(
 
       toggleDarkLayersVisibility: () =>
         set(state => {
-          const newState = { darkLayersVisible: !state.darkLayersVisible };
-          const { mapRef } = get();
-
-          // Save to localStorage
-          localStorage.setItem(
-            'darkLayersVisible',
-            newState.darkLayersVisible.toString()
-          );
-
-          // Show loading spinner when enabling dark layers (like in old project)
-          if (newState.darkLayersVisible) {
-            set({ isLoading: true });
-            setTimeout(() => {
-              set({ isLoading: false });
-            }, 2000);
-          }
-
-          // Directly manage dark layers like in the old project
-          if (mapRef) {
-            const layers = mapRef.getStyle().layers;
-            if (layers) {
-              layers.forEach(layer => {
-                const layerId = layer.id;
-                if (layerId.endsWith(' dark')) {
-                  mapRef.setLayoutProperty(
-                    layerId,
-                    'visibility',
-                    newState.darkLayersVisible ? 'visible' : 'none'
-                  );
-                }
-              });
-            }
-          }
-
-          console.debug(
-            `Dark layers are now ${newState.darkLayersVisible ? 'visible' : 'hidden'}`
-          );
-          return newState;
+          const darkLayersVisible = !state.darkLayersVisible;
+          localStorage.setItem('darkLayersVisible', String(darkLayersVisible));
+          // Swap the style URL; the [mapStyle] effect in AdvancedMap reloads the map.
+          return {
+            darkLayersVisible,
+            mapStyle: darkLayersVisible ? DARK_STYLE : LIGHT_STYLE,
+          };
         }),
       toggleNumbersLayersVisibility: () =>
         set(state => {
@@ -283,7 +261,7 @@ export const useMapStore = create<MapState>()(
         })),
 
       // Map reference management
-      setMapRef: (map: mapboxgl.Map | null) => set({ mapRef: map }),
+      setMapRef: (map: maplibregl.Map | null) => set({ mapRef: map }),
       updateVisibleLayers: () => {
         const {
           mapRef,
@@ -297,9 +275,10 @@ export const useMapStore = create<MapState>()(
           return;
         }
 
-        const layers = mapRef.getStyle().layers;
+        // getStyle() is undefined mid-swap (style not loaded yet); bail and let the
+        // map's 'load' handler call this again once the new style is ready.
+        const layers = mapRef.getStyle()?.layers;
         if (!layers) {
-          console.warn('No layers found in map style.');
           return;
         }
 
@@ -340,29 +319,10 @@ export const useMapStore = create<MapState>()(
         console.debug('Numbers visible:', numbersLayersVisible);
         console.debug('Final visible layers:', visibleLayerIds);
       },
-      restoreDarkLayersState: () => {
-        const { mapRef, darkLayersVisible } = get();
-
-        if (mapRef) {
-          const layers = mapRef.getStyle().layers;
-          if (layers) {
-            layers.forEach(layer => {
-              const layerId = layer.id;
-              if (layerId.endsWith(' dark')) {
-                mapRef.setLayoutProperty(
-                  layerId,
-                  'visibility',
-                  darkLayersVisible ? 'visible' : 'none'
-                );
-              }
-            });
-          }
-        }
-
-        console.debug(
-          `Dark layers state restored: ${darkLayersVisible ? 'visible' : 'hidden'}`
-        );
-      },
+      // ponytail: dark mode is a full style swap now; the correct style is chosen at
+      // init and on toggle, so there are no per-layer ` dark` states to restore. No-op
+      // kept because AdvancedMap's load handler still calls it.
+      restoreDarkLayersState: () => {},
     }),
     {
       name: 'map-store',

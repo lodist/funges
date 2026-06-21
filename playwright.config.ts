@@ -22,10 +22,6 @@ export default defineConfig({
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     env: {
-      VITE_MAPBOX_ACCESS_TOKEN:
-        process.env.VITE_MAPBOX_ACCESS_TOKEN ?? 'pk.dummy',
-      VITE_MAPBOX_STYLE:
-        process.env.VITE_MAPBOX_STYLE ?? 'mapbox://styles/mapbox/streets-v12',
       VITE_BASE_URL: '/',
       VITE_HOSTNAME: 'http://localhost:3000',
     },

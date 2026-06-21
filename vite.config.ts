@@ -38,6 +38,11 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif,tflite}'],
         runtimeCaching: [
+          // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.
+          {
+            urlPattern: /\.pmtiles$/i,
+            handler: 'NetworkOnly',
+          },
           // TensorFlow Lite models caching
           {
             urlPattern:
@@ -63,30 +68,6 @@ export default defineConfig({
               expiration: {
                 maxEntries: 10,
                 maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
-              },
-            },
-          },
-          // Mapbox API caching
-          {
-            urlPattern: /^https:\/\/api\.mapbox\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'mapbox-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24, // 1 day
-              },
-            },
-          },
-          // Mapbox tiles caching
-          {
-            urlPattern: /^https:\/\/.*\.tiles\.mapbox\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'mapbox-tiles-cache',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
               },
             },
           },
