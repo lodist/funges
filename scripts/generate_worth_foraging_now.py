@@ -64,8 +64,14 @@ def main() -> None:
     if not rows:
         raise RuntimeError("Parquet file does not contain any rows")
 
-    latest_date = max(iso_date(row["Date"]) for row in rows)
-    latest_rows = [row for row in rows if iso_date(row["Date"]) == latest_date]
+    # The parquet now holds a rolling forecast window [today .. today+6] plus
+    # frozen past rows. "Worth foraging now" must reflect TODAY, not the far end
+    # of the forecast (max(Date) == today+6). Pick today's rows; if today isn't
+    # present yet, fall back to the earliest available forecast day, else latest.
+    today = datetime.now().strftime("%Y-%m-%d")  # local, matches the pipeline's window
+    available_dates = sorted({iso_date(row["Date"]) for row in rows})
+    target_date = next((d for d in available_dates if d >= today), available_dates[-1])
+    latest_rows = [row for row in rows if iso_date(row["Date"]) == target_date]
 
     region_best: dict[str, dict[str, dict[str, float]]] = {
         "NE": {},
@@ -128,7 +134,7 @@ def main() -> None:
         reverse=True,
     )
 
-    metadata_date = datetime.strptime(latest_date, "%Y-%m-%d").isoformat() + "Z"
+    metadata_date = datetime.strptime(target_date, "%Y-%m-%d").isoformat() + "Z"
     payload = {
         "updated_at": metadata_date,
         "grid_size_degrees": GRID_SIZE_DEGREES,

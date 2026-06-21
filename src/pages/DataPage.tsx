@@ -289,14 +289,21 @@ export default function DataPage() {
   const zoneData = useMemo(() => {
     if (!dataset) return [];
     const regionData = dataset.regions[region].data;
+    // The dataset now extends 6 days into the future (rolling forecast window).
+    // The data page is retrospective — charts, narrative and "latest scores" all
+    // read the tail — so drop forward-dated rows and end the window at today.
+    const today = new Date().toLocaleDateString('en-CA'); // local YYYY-MM-DD
 
     if (zone) {
-      return regionData.filter(row => row.zone === zone).slice(-days);
+      return regionData
+        .filter(row => row.zone === zone && row.date <= today)
+        .slice(-days);
     }
 
     // Aggregate all zones: group by date and average
     const byDate = new Map<string, ForagingRow[]>();
     for (const row of regionData) {
+      if (row.date > today) continue;
       const rows = byDate.get(row.date) ?? [];
       rows.push(row);
       byDate.set(row.date, rows);
