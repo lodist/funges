@@ -56,7 +56,7 @@
   "sources": {
     "aws": {
       "type": "vector",
-      "url": "https://api.protomaps.com/tiles/v4.json?key=1667c4db9cefcd10"
+      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/basemap/world_z13_20260619.pmtiles"
     },
     "overlay-ne": {
       "type": "vector",
