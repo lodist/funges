@@ -96,7 +96,7 @@ export const useMapStore = create<MapState>()(
     (set, get) => ({
       // Initial state
       center: [7.3359, 47.7508], // Switzerland
-      zoom: 4.5, // first-open zoom (globe projection renders this wider than Mercator)
+      zoom: 3.5,
       bearing: 0,
       pitch: 0,
       mapStyle:
