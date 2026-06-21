@@ -19,10 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VITE_BASE_URL: ${{ vars.VITE_BASE_URL }}
-      VITE_MAPBOX_ACCESS_TOKEN: ${{ secrets.VITE_MAPBOX_ACCESS_TOKEN }}
-      VITE_MAPBOX_STYLE: ${{ secrets.VITE_MAPBOX_STYLE }}
       VITE_HOSTNAME: ${{ vars.VITE_HOSTNAME }}
-      VITE_VISITOR_LIMIT: ${{ vars.VITE_VISITOR_LIMIT }}
 
     steps:
       - name: Checkout
@@ -51,20 +48,7 @@ jobs:
             exit 1
           fi
 
-          # Check if required secrets are defined
-          if [ -z "$VITE_MAPBOX_ACCESS_TOKEN" ]; then
-            echo "❌ ERROR: VITE_MAPBOX_ACCESS_TOKEN is not defined"
-            echo "   Please set VITE_MAPBOX_ACCESS_TOKEN in your repository secrets"
-            exit 1
-          fi
-
-          if [ -z "$VITE_MAPBOX_STYLE" ]; then
-            echo "❌ ERROR: VITE_MAPBOX_STYLE is not defined"
-            echo "   Please set VITE_MAPBOX_STYLE in your repository secrets"
-            exit 1
-          fi
-
-          echo "✅ All required environment variables and secrets are defined"
+          echo "✅ All required environment variables are defined"
 
       - name: Install dependencies
         run: npm ci
@@ -82,11 +66,8 @@ jobs:
         run: |
           echo "📝 Creating .env file..."
           cat > .env << EOF
-          VITE_MAPBOX_ACCESS_TOKEN=$VITE_MAPBOX_ACCESS_TOKEN
-          VITE_MAPBOX_STYLE=$VITE_MAPBOX_STYLE
           VITE_BASE_URL=$VITE_BASE_URL
           VITE_HOSTNAME=$VITE_HOSTNAME
-          VITE_VISITOR_LIMIT=$VITE_VISITOR_LIMIT
           EOF
           echo "✅ .env file created successfully"
 
@@ -94,10 +75,7 @@ jobs:
         run: |
           echo "🔧 Exporting environment variables..."
           export VITE_BASE_URL="$VITE_BASE_URL"
-          export VITE_MAPBOX_ACCESS_TOKEN="$VITE_MAPBOX_ACCESS_TOKEN"
-          export VITE_MAPBOX_STYLE="$VITE_MAPBOX_STYLE"
           export VITE_HOSTNAME="$VITE_HOSTNAME"
-          export VITE_VISITOR_LIMIT="$VITE_VISITOR_LIMIT"
 
       - name: Debug .env file
         run: |
