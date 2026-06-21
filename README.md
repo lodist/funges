@@ -1,12 +1,12 @@
 # Fung.es
 
-A modern foraging webapp built with React 19, TanStack Router, and Vite that helps users discover wild mushrooms, edible plants, and berries in their area. Features an interactive Mapbox map with real-time foraging data, comprehensive species database, and curated wild food recipes.
+A modern foraging webapp built with React 19, TanStack Router, and Vite that helps users discover wild mushrooms, edible plants, and berries in their area. Features an interactive MapLibre map with real-time foraging data, comprehensive species database, and curated wild food recipes.
 
 ## 🌟 Features
 
 ### 🗺️ Interactive Foraging Map
 
-- **Real-time Mapbox integration** with custom GeoJSON overlays
+- **Real-time MapLibre + PMTiles integration** with custom GeoJSON overlays
 - **Dynamic species filtering** by category (mushrooms, plants, berries, nuts, flowers)
 - **Geolocation support** with user location detection and navigation
 - **Responsive design** optimized for both desktop and mobile devices
@@ -56,7 +56,7 @@ A modern foraging webapp built with React 19, TanStack Router, and Vite that hel
 - **Routing**: TanStack Router with file-based routing
 - **State Management**: Zustand stores
 - **Styling**: Tailwind CSS 4 + SCSS
-- **Maps**: Mapbox GL JS
+- **Maps**: MapLibre GL JS + PMTiles (self-hosted on R2)
 - **Build Tool**: Vite 6
 - **Testing**: Vitest + Testing Library
 - **PWA**: Vite PWA plugin
@@ -86,7 +86,7 @@ src/
 
 ### Key Components
 
-- **AdvancedMap**: Interactive Mapbox map with foraging data
+- **AdvancedMap**: Interactive MapLibre map with foraging data
 - **SpeciesSelector**: Filter and browse wild edibles
 - **RecipeModal**: Detailed recipe viewer with instructions
 - **RouteToDishPanel**: Route-to-dish feature panel
@@ -196,12 +196,12 @@ backend/
 ```
 
 - **Scoring** — fetch weather from R2, compute species scores, write Parquet back to R2
-- **MapLayer** — scores + GeoJSON → Delaunay triangulation → MBTiles via tippecanoe → Mapbox
+- **MapLayer** — scores + GeoJSON → Delaunay triangulation → MBTiles + PMTiles via tippecanoe → R2
 - **`build_season_curves.py`** — queries GBIF for monthly fungi sightings per region, builds a target-group ratio curve (cancels observer-effort bias), uploads to `<REGION>_SEASON_CURVES` in R2. Run once before the first scoring run, then monthly.
 
 ```bash
 pip install -r backend/requirements.txt
-cp .env.secret.example .env.secret  # fill in R2, Mapbox, WeatherAPI credentials
+cp .env.secret.example .env.secret  # fill in R2, WeatherAPI credentials
 
 python backend/tools/build_season_curves.py        # publish season curves to R2
 python backend/EU/North_Europe/NE_Scoring.py       # then run scoring
@@ -214,10 +214,7 @@ python backend/EU/North_Europe/NE_MapLayer.py
 
 | Variable                     | Where         | Description                        |
 | ---------------------------- | ------------- | ---------------------------------- |
-| `VITE_MAPBOX_ACCESS_TOKEN`   | `.env.secret` | Mapbox API access token (required) |
-| `VITE_MAPBOX_STYLE`          | `.env.secret` | Mapbox style URL                   |
-| `VITE_VISITOR_LIMIT`         | `.env.secret` | Mapbox usage limit                 |
-| `MAPBOX_USERNAME`            | `.env.secret` | Mapbox account username            |
+| `VITE_VISITOR_LIMIT`         | `.env.secret` | Visitor count before the map falls back to a static view |
 | `R2_ACCESS_KEY_ID`           | `.env.secret` | Cloudflare R2 credentials          |
 | `R2_SECRET_ACCESS_KEY`       | `.env.secret` | Cloudflare R2 credentials          |
 | `R2_BUCKET_NAME`             | `.env.secret` | Cloudflare R2 bucket name          |

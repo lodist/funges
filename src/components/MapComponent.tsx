@@ -12,7 +12,7 @@ const VISITOR_LIMIT = parseInt(
 );
 
 const MapComponent: React.FC = () => {
-  const [useMapbox, setUseMapbox] = useState<boolean | null>(null);
+  const [showMap, setShowMap] = useState<boolean | null>(null);
   const { t } = useTranslation('map');
 
   useEffect(() => {
@@ -20,20 +20,20 @@ const MapComponent: React.FC = () => {
       try {
         const res = await fetch('data/visitors.json');
         const data = await res.json();
-        setUseMapbox(data.count <= VISITOR_LIMIT);
+        setShowMap(data.count <= VISITOR_LIMIT);
       } catch (err) {
         console.error('Failed to fetch visitors count', err);
-        setUseMapbox(true);
+        setShowMap(true);
       }
     };
     checkVisitors();
   }, []);
 
-  if (useMapbox === null) {
+  if (showMap === null) {
     return null;
   }
 
-  if (!useMapbox) {
+  if (!showMap) {
     return <MapFallback error={t('fallback.limit_hit_message')} />;
   }
 

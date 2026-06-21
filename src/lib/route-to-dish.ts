@@ -1,4 +1,4 @@
-import type { Map as MapboxMap, GeoJSONFeature } from 'maplibre-gl';
+import type { Map as MapLibreMap, GeoJSONFeature } from 'maplibre-gl';
 import { getRepresentativeLngLat, type LngLat } from '@/lib/geo';
 
 export interface RouteDishRecipe {
@@ -132,7 +132,7 @@ const ROUTE_TO_DISH_SPECIES_IDS = new Set(
 );
 
 function getSpeciesLayerGroups(
-  map: MapboxMap,
+  map: MapLibreMap,
   speciesIds: string[]
 ): RouteDishSourceGroup[] {
   const layers = map.getStyle().layers ?? [];
@@ -367,7 +367,7 @@ function buildGreedyPlan(
 }
 
 export function queryRouteDishData(params: {
-  map: MapboxMap;
+  map: MapLibreMap;
   recipes: RouteDishRecipe[];
   start: LngLat;
   minScore: number;

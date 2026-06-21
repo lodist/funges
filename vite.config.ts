@@ -71,30 +71,6 @@ export default defineConfig({
               },
             },
           },
-          // Mapbox API caching
-          {
-            urlPattern: /^https:\/\/api\.mapbox\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'mapbox-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24, // 1 day
-              },
-            },
-          },
-          // Mapbox tiles caching
-          {
-            urlPattern: /^https:\/\/.*\.tiles\.mapbox\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'mapbox-tiles-cache',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
-              },
-            },
-          },
           // Static assets caching
           {
             urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|avif|ico)$/i,

@@ -31,7 +31,7 @@ src/
 ## Environment
 
 - Copy `.env.example` to `.env` and set required variables.
-- Important variables: `VITE_MAPBOX_ACCESS_TOKEN`, `VITE_MAPBOX_STYLE`, `VITE_BASE_URL`.
+- Important variables: `VITE_BASE_URL`, `VITE_VISITOR_LIMIT`, and the `R2_*` credentials.
 
 ## Common Commands
 

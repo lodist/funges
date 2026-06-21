@@ -212,7 +212,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
       // Handle map errors
       map.current.on('error', e => {
-        console.error('Mapbox error:', e);
+        console.error('MapLibre error:', e);
         setMapError(t('error.loadFailed'));
       });
 

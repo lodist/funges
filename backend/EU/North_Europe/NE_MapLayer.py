@@ -93,26 +93,6 @@ def download_remote_file_to_temp(url, suffix):
         return tmp.name
 
 
-def initiate_mapbox_upload(credentials, mapbox_token, username, dataset_name):
-    url = f"https://api.mapbox.com/uploads/v1/{username}?access_token={mapbox_token}"
-    payload = {
-        "url": f"http://{credentials.get('bucket')}.s3.amazonaws.com/{credentials.get('key')}",
-        "tileset": f"{username}.{dataset_name}",
-        "name": dataset_name
-    }
-    try:
-        response = requests.post(
-            url,
-            headers={"Content-Type": "application/json", "Cache-Control": "no-cache"},
-            json=payload
-        )
-        response.raise_for_status()
-        return response.json()
-    except requests.RequestException as e:
-        print(f"Error initiating Mapbox upload: {e}")
-        return None
-
-
 def assign_ids_corrected(tri_gdf):
     # Compute the bounding box of the entire dataset
     total_bounds = tri_gdf.total_bounds
@@ -170,9 +150,6 @@ def split_geojson_by_size(geo_df, max_size_mb=5):
 
 FILE_PATH = get_required_env("NE_WEATHER_DATA")
 GEOJSON_FILE_PATH = get_required_env("NE_WILDERNESS_DATA_SOURCE")
-
-MAPBOX_ACCESS_TOKEN = get_required_env("MAPBOX_ACCESS_TOKEN", "VITE_MAPBOX_ACCESS_TOKEN")
-username = get_required_env("MAPBOX_USERNAME")
 
 
 # 311 = Broad-leaved forest (deciduous trees like oak, beech)
@@ -554,149 +531,6 @@ for f in geojson_full['features']:
 # Check GeoJSON size
 geojson_size = len(json.dumps(geojson_full).encode('utf-8')) / (1024 * 1024)
 print(f"Size of the complete GeoJSON file: {geojson_size:.2f} MB")
-
-# -------------------- CONFIG --------------------
-dataset_name = f"mushroom_{region_code}"               # lowercase
-source_id    = f"mushroom_{region_code}_src"           # lowercase
-tileset_id   = f"{username}.{dataset_name}"
-
-# Recipe (change minzoom/maxzoom/layers here)
-recipe = {
-    "version": 1,
-    "layers": {
-        "ne-scores": {
-            "source": f"mapbox://tileset-source/{username}/{source_id}",
-            "minzoom": 3,
-            "maxzoom": 10
-        }
-    }
-}
-
-# -------------------- ENDPOINTS --------------------
-BASE = "https://api.mapbox.com"
-SRC_URL = f"{BASE}/tilesets/v1/sources/{username}/{source_id}?access_token={MAPBOX_ACCESS_TOKEN}"
-TS_URL  = f"{BASE}/tilesets/v1/{tileset_id}?access_token={MAPBOX_ACCESS_TOKEN}"
-PUB_URL = f"{BASE}/tilesets/v1/{tileset_id}/publish?access_token={MAPBOX_ACCESS_TOKEN}"
-
-# -------------------- HELPERS --------------------
-def featurecollection_to_ld_bytes(fc: dict) -> bytes:
-    lines = (json.dumps(f, separators=(",", ":")) for f in fc["features"])
-    return ("\n".join(lines)).encode("utf-8")
-
-def recipe_hash(obj: dict) -> str:
-    s = json.dumps(obj, separators=(",", ":"), sort_keys=True)
-    return hashlib.sha256(s.encode("utf-8")).hexdigest()
-
-CACHE_PATH = ".tileset_recipe_cache.json"
-def load_cache() -> dict:
-    if os.path.exists(CACHE_PATH):
-        try:
-            with open(CACHE_PATH, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            return {}
-    return {}
-def save_cache(d: dict):
-    with open(CACHE_PATH, "w", encoding="utf-8") as f:
-        json.dump(d, f, ensure_ascii=False, indent=2)
-
-def delete_source(username: str, source_id: str, token: str):
-    url = f"{BASE}/tilesets/v1/sources/{username}/{source_id}?access_token={token.strip()}"
-    r = requests.delete(url, timeout=60)
-    if not r.ok and r.status_code != 404:
-        raise RuntimeError(f"Delete source failed: {r.status_code} {r.text}")
-    print("Source deleted (or did not exist).")
-
-def upload_source_ndjson(ld_bytes: bytes):
-    """Create source; if exists -> PUT; if 10-file limit -> DELETE then POST."""
-    files = {"file": (f"{source_id}.ld.geojson", ld_bytes, "application/octet-stream")}
-    print("Uploading NDJSON source…")
-    r = requests.post(SRC_URL, files=files, timeout=600)
-    if r.status_code == 409:
-        print("Source exists → replacing…")
-        r = requests.put(SRC_URL, files=files, timeout=600)
-    if r.status_code == 422 and "already has 10 files" in (r.text or "").lower():
-        print("Source hit 10-file limit → deleting then recreating…")
-        delete_source(username, source_id, MAPBOX_ACCESS_TOKEN)
-        time.sleep(2)
-        r = requests.post(SRC_URL, files=files, timeout=600)
-    if not r.ok:
-        print("Source upload failed:", r.status_code, r.text)
-        r.raise_for_status()
-    print("Source ready.")
-
-def create_tileset_if_needed(recipe_obj: dict, name: str, retries: int = 6, delay_s: int = 3):
-    """POST create; if 409/already exists → return 'exists'; retry when source not found."""
-    payload = {"recipe": recipe_obj, "name": name}
-    for i in range(retries):
-        r = requests.post(TS_URL, json=payload, timeout=60)
-        body = (r.text or "").lower()
-        if r.status_code in (200, 201):
-            print("Tileset created.")
-            return "created"
-        if r.status_code == 409 or (r.status_code == 400 and "already exists" in body):
-            print("Tileset already exists.")
-            return "exists"
-        if r.status_code == 400 and "unable to find source" in body:
-            print(f"Source not visible yet → retrying in {delay_s}s ({i+1}/{retries})…")
-            time.sleep(delay_s)
-            continue
-        print("Create tileset failed:", r.status_code, r.text)
-        r.raise_for_status()
-    raise RuntimeError("Giving up creating tileset; source never became visible.")
-
-def delete_tileset():
-    r = requests.delete(TS_URL, timeout=60)
-    if not r.ok:
-        print("Tileset delete failed:", r.status_code, r.text)
-    r.raise_for_status()
-    print("Tileset deleted.")
-
-def publish_tileset():
-    print("Publishing…")
-    r = requests.post(PUB_URL, timeout=60)
-    if not r.ok:
-        print("Publish failed:", r.status_code, r.text)
-    r.raise_for_status()
-    print("Publish started:", r.json())
-
-# -------------------- RUN --------------------
-# 0) Prepare NDJSON from your FeatureCollection
-ld_bytes = featurecollection_to_ld_bytes(geojson_full)
-print(f"LD-GeoJSON size: {len(ld_bytes)/1024/1024:.2f} MB")
-
-# 1) Hard-reset the source to avoid stacking duplicates, then upload fresh
-delete_source(username, source_id, MAPBOX_ACCESS_TOKEN)
-time.sleep(1)  # tiny grace period
-upload_source_ndjson(ld_bytes)
-
-# 2) Create tileset if needed; recreate only when the recipe actually changed
-current_hash = recipe_hash(recipe)
-cache = load_cache()
-cached_hash = cache.get(tileset_id)
-
-result = create_tileset_if_needed(recipe, f"mushroom_{region_code}")
-
-if result == "exists":
-    if cached_hash and cached_hash != current_hash:
-        print("Recipe changed → delete & recreate tileset…")
-        delete_tileset()
-        time.sleep(2)
-        _ = create_tileset_if_needed(recipe, f"mushroom_{region_code}")
-        cache[tileset_id] = current_hash
-        save_cache(cache)
-    else:
-        print("Tileset exists and recipe unchanged.")
-        if not cached_hash:
-            cache[tileset_id] = current_hash
-            save_cache(cache)
-else:
-    cache[tileset_id] = current_hash
-    save_cache(cache)
-
-# 3) Publish (always)
-publish_tileset()
-print("✅ Done. Use:", f"mapbox://tileset/{tileset_id}")
 
 
 # ---------- BUILD MBTILES & UPLOAD TO R2 ----------
