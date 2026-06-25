@@ -85,5 +85,9 @@
     "low": "Niedrig",
     "label": "Präsenzindex",
     "high": "Hoch"
+  },
+  "forecast": {
+    "label": "Vorhersage",
+    "today": "Heute"
   }
 }
