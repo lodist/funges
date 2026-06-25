@@ -23,6 +23,7 @@ import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import { motion } from 'framer-motion';
 import MapInfoCard from '@/components/MapInfoCard';
 import RouteToDishPanel from '@/components/RouteToDishPanel';
+import ForecastSlider from '@/components/ForecastSlider';
 import { useRecipesData } from '@/data/recipes';
 import {
   queryRouteDishData,
@@ -565,6 +566,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             id =>
               selectedSpecies &&
               id.startsWith(selectedSpecies) &&
+              !id.endsWith('_fc') &&
               map.current?.getLayoutProperty(id, 'visibility') === 'visible'
           ) || [];
       const features = map.current?.queryRenderedFeatures(e.point, {
@@ -619,6 +621,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 (selectedSpecies
                   ? id.startsWith(selectedSpecies)
                   : id.includes('_score')) &&
+                !id.endsWith('_fc') &&
                 map.current?.getLayoutProperty(id, 'visibility') === 'visible'
             ) || [];
 
@@ -917,6 +920,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
         {isMobile ? (
           <>
+            <div className='fixed left-4 right-4 bottom-40 z-10'>
+              <ForecastSlider />
+            </div>
             <div className='fixed left-4 right-4 bottom-24'>
               <MapInfoCard />
             </div>
@@ -945,6 +951,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </>
         ) : (
           <>
+            <div className='absolute bottom-2 left-1/2 -translate-x-1/2 z-10 w-72 max-w-[80vw]'>
+              <ForecastSlider />
+            </div>
             <div className='absolute bottom-2 left-2 z-10'>
               <MapInfoCard />
             </div>
