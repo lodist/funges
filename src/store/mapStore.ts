@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { getSpeciesOptions, type SpeciesOption } from '@/data/species';
+import { setDayOnFillColor } from '@/lib/forecast';
 
 export interface MapViewport {
   latitude: number;
@@ -45,6 +46,7 @@ export interface MapState {
   // Layer visibility
   darkLayersVisible: boolean;
   numbersLayersVisible: boolean;
+  activeDay: number; // 0 = today; 1..6 = forecast
 
   // UI state
   isLoading: boolean;
@@ -78,6 +80,7 @@ export interface MapState {
   setSelectedSpecies: (species: string | null) => void;
   toggleDarkLayersVisibility: () => void;
   toggleNumbersLayersVisibility: () => void;
+  setActiveDay: (day: number) => void;
 
   // Map reference management
   setMapRef: (map: maplibregl.Map | null) => void;
@@ -115,6 +118,7 @@ export const useMapStore = create<MapState>()(
       darkLayersVisible: localStorage.getItem('darkLayersVisible') === 'true',
       numbersLayersVisible:
         localStorage.getItem('numbersLayersVisible') === 'true',
+      activeDay: 0,
       isLoading: false,
       error: null,
       showUserLocation: true,
@@ -172,6 +176,11 @@ export const useMapStore = create<MapState>()(
           }, 0);
           return newState;
         }),
+      setActiveDay: (day: number) => {
+        set({ activeDay: day });
+        // Defer so state is committed before layers are re-evaluated (mirrors numbers toggle).
+        setTimeout(() => get().updateVisibleLayers(), 0);
+      },
 
       getUserLocation: (): Promise<GeolocationPosition> => {
         return new Promise((resolve, reject) => {
@@ -268,6 +277,7 @@ export const useMapStore = create<MapState>()(
           selectedSpecies,
           numbersLayersVisible,
           speciesOptions,
+          activeDay,
         } = get();
 
         if (!mapRef) {
@@ -295,7 +305,7 @@ export const useMapStore = create<MapState>()(
             : false;
           const isNumbersLayer = id.includes('numbers');
 
-          if (isSpeciesLayer) {
+          if (isSpeciesLayer && !id.endsWith('_fc')) {
             if (isRelevantSpecies) {
               // Set visibility based on whether it's a numbers layer and the numbers toggle
               const visibility = isNumbersLayer
@@ -311,6 +321,27 @@ export const useMapStore = create<MapState>()(
             } else {
               mapRef.setLayoutProperty(id, 'visibility', 'none');
               console.debug(`HIDING unrelated species layer: ${id}`);
+            }
+          }
+
+          // Forecast overlay layers (id `<species>_<region>_fc`): visible only for the
+          // selected species AND a forecast day (>0); painted to the active day. Today
+          // layers stay on beneath, so unchanged triangles keep today's colour.
+          if (id.endsWith('_fc')) {
+            const relevant =
+              !!selectedSpecies && id.startsWith(`${selectedSpecies}_`);
+            if (relevant && activeDay > 0) {
+              const current = mapRef.getPaintProperty(id, 'fill-color') as unknown[];
+              if (Array.isArray(current)) {
+                mapRef.setPaintProperty(
+                  id,
+                  'fill-color',
+                  setDayOnFillColor(current, selectedSpecies, activeDay)
+                );
+              }
+              mapRef.setLayoutProperty(id, 'visibility', 'visible');
+            } else {
+              mapRef.setLayoutProperty(id, 'visibility', 'none');
             }
           }
         });
