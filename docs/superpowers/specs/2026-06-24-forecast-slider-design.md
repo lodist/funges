@@ -1,6 +1,6 @@
 # Forecast date slider — design
 
-**Date:** 2026-06-24
+**Date:** 2026-06-24 (rev 2026-06-25: split-tileset construction, measured)
 **Status:** Draft for review
 **Branch:** `feat/forecast-slider`
 
@@ -24,149 +24,151 @@ The forecast data already exists end to end; the map just discards it.
 - Rendering (`public/funges_style.json`, built by `scripts/add-overlay-to-style.cjs`):
   one `fill` layer per species×region, colored by
   `["interpolate","linear",["get","<species>_score"], 0…10 → ramp]`, sourced from
-  the per-region PMTiles on R2. The app (`src/components/AdvancedMap.tsx`,
-  `src/store/mapStore.ts`) only toggles layer visibility by selected species.
+  the per-region PMTiles on R2 (range-streamed). The app
+  (`src/components/AdvancedMap.tsx`, `src/store/mapStore.ts`) only toggles layer
+  visibility by selected species.
 
-So: stop discarding the forecast, bake the extra days into the same tiles as
-extra properties, and switch which property the color expression reads when the
-slider moves. No new tilesets, no new dependency, instant client-side switching.
+## Measured tile cost (NE, 66,936 kept points, window 2026-06-25→07-01)
 
-## Data model
+Naive bake = 7× per-feature properties. Measured reality
+(`scratchpad/measure_forecast_sparsity.py`):
 
-### Additive property naming
+| lever | outcome |
+|---|---|
+| omit zero scores | weak — kept cells average **17.4 / 21** species non-zero |
+| emit future day if it differs at 0.1 | **86 / 126** future cells change → **~4.9×** |
+| emit future day if it differs **≥ 0.5** (a visible ramp step) | **27 / 126** → **~2.1×** |
 
-Keep today exactly as-is; forecast days are purely additive.
+Properties dominate tile bytes here (17–44 numeric attrs vs a 3-point triangle),
+so tile size ≈ property multiple. A single combined tileset is therefore **~2×
+for every region and every user** (NE 10.9 → ~23 MB), range-streamed — a real
+regression even for users who never touch the slider. Point-level drift is an
+upper bound on triangle (interpolated) drift, so true growth is ≤ this.
 
-- `<species>_score` → **today (d0)**, unchanged. Existing layers, route-to-dish,
-  and the today view keep working with zero changes.
-- `<species>_score_d1 … _d6` → new, future days only.
+## Construction: split tileset (no bloat for the default view)
 
-### Sparse encoding (keeps tiles from bloating ~7×)
+- **Today tileset** `<region>_mushroom_data.pmtiles` — built exactly as now from
+  `<species>_score` (= d0). **Byte-identical to current.** Zero regression.
+- **Forecast tileset** `<region>_forecast.pmtiles` — NEW. Same triangle geometry,
+  but properties are sparse forecast **deltas**: for each triangle, for d1..d6, emit
+  `<species>_score_dN` only when `abs(round(dN,1) - round(d0,1)) >= 0.5`. A triangle
+  with no emitted property (flat week) is **dropped entirely**. So this tileset holds
+  only what actually changes — likely smaller than the today tileset, and it is
+  fetched **only when the slider first leaves today**, then cached.
 
-Vector-tile feature size is driven by **attribute count per feature**, not value
-width. Two facts make the data sparse, so we store it sparse:
+### Why the forecast tileset loads lazily for free
 
-1. **Most species are 0 on any triangle** (habitat-gated; today's tiles already
-   carry these zeros). → **Omit any score property whose value is 0.**
-2. **A weekly forecast is smooth** — most days round to the same 1-decimal value
-   as today. → **Emit `<species>_score_dN` only when `round(dN,1) != round(d0,1)`**
-   (this includes a genuine drop to 0; excludes "same as today").
+MapLibre fetches a source's tiles only when a **visible** layer references it.
+So we declare the forecast source + forecast layers in the style but leave them
+`visibility:none`. Day 0 → forecast layers hidden → **no forecast tiles fetched**
+→ default view costs exactly what it does today. Day N → show the selected
+species' forecast layer → MapLibre fetches forecast tiles on demand.
 
-The client reads with a coalesce chain:
+### Rendering a forecast day (no cross-source coalesce)
 
-```
-["interpolate","linear",
-  ["coalesce", ["get","<sp>_score_dN"], ["get","<sp>_score"], 0],
-  …same 0→10 ramp… ]
-```
+Two stacked layers per species:
 
-→ use day N if present, else today, else 0. Day 0 uses
-`["coalesce", ["get","<sp>_score"], 0]`.
+- **today layer** (base, always present): `["get","<species>_score"]`, as now.
+- **forecast layer** (on top, hidden until day N>0):
+  `["get","<species>_score_dN"]`. It only has features for changed triangles, so
+  unchanged areas show the today layer beneath. Correct because an absent forecast
+  triangle means "same as today" by construction.
 
-Net: per triangle stores the few non-zero species plus only their days that
-actually move — a small multiple of today's size, not 7×. Today's tiles get
-*leaner* too (zeros dropped). Exact factor is measured on NE before rollout
-(see Verification).
+Day 0 hides all forecast layers (today only). Day N shows the selected species'
+forecast layer and sets its paint to `_dN`.
 
 ## Part A — Pipeline (Python, `backend/`)
 
 The 4 `*_MapLayer.py` are parallel copies (NE↔SE differ ~17 non-region lines;
-US ~81; all 21 species). The score loop is shared logic, so put the new behavior
-in **one shared helper** and call it from each of the 4.
+US ~81; all 21 species). The per-day score loop is shared logic → one helper.
 
-1. **New `backend/maplayer_forecast.py`** — one function that, given the master
-   df, the canonical coord set, the KDTree/centroids already built in the script,
-   and the day list, returns per-triangle scores for d0…d6 as `<species>_score`
-   (= d0) plus `<species>_score_dN`. Per day it reindexes that day's point scores
-   to the canonical coord order (missing coord/day → NaN → 0.0, exactly as today's
-   `fillna(0.0)` path). It reuses the existing per-triangle neighbor search (the
-   expensive `query_ball_point` + Gaussian weights stay **once per triangle**; only
-   the cheap weighted-combine repeats per day → ~2–4× the score step, not 7×). It
-   also does the sparse emit (omit zeros; omit dN == d0).
+1. **New `backend/maplayer_forecast.py`** — given the master df, the canonical
+   coord set, and the KDTree/centroids the script already builds, returns
+   per-triangle scores for d0…d6. Per day it reindexes that day's point scores to
+   the canonical coord order (missing → NaN → 0.0, as today's `fillna(0.0)`). It
+   **reuses the per-triangle neighbor search once** (the expensive `query_ball_point`
+   + Gaussian weights); only the cheap weighted-combine repeats per day → ~2–4× the
+   score step, not 7×.
 
 2. **Each `*_MapLayer.py`** (4 sites): replace the today-collapse
-   (`NE_MapLayer.py:195-202` and equivalents) with: keep all forward rows, build
-   the canonical coord set for triangulation (coords are identical across days),
-   and call the helper. Everything downstream (clip cache, dominant habitat,
-   tippecanoe, mbtiles→pmtiles→R2) is unchanged — extra properties pass through.
+   (`NE_MapLayer.py:195-202` etc.) — keep all forward rows, build the canonical coord
+   set (coords identical across days), call the helper.
+   - **Today tileset**: build from d0 exactly as now (unchanged path). d0 mirrors
+     current behavior (today's row, or latest available if today's scoring is late).
+   - **Forecast tileset**: build the delta GeoJSON (rule above), drop no-change
+     triangles, add the 0/10 color-anchor dummies for each emitted `_dN`,
+     tippecanoe `-l <region>_forecast` → mbtiles → pmtiles →
+     `<region>_forecast.pmtiles` on R2 (reuse the existing convert+upload helpers).
 
-3. **Filter + dummies** (`NE_MapLayer.py:479-491` and equivalents): keep a
-   triangle if **any species on any day** ≥ 4 (today it's "all today's scores < 4"
-   dropped). Set the two color-anchor dummy triangles to 0 / 10 for `<species>_score`
-   and every emitted `<species>_score_dN`.
+3. **Forecast base date** — for slider labels (Decision D1).
 
-4. **Forecast base date** — needed for correct slider labels (see Decision D1).
-
-No change to `forecast_pipeline.py`, `scripts/generate_data.py` (data_nerd), or
+No change to `forecast_pipeline.py`, `scripts/generate_data.py`, or
 `Task_Scheduler/Upload_Scores_GitHub_logic.py`.
 
 ## Part B — Frontend (`src/`)
 
-5. **`store/mapStore.ts`** — add `activeDay: number` (0 = today) and `setActiveDay`.
-   No persistence (resets to today each load).
+4. **`scripts/add-overlay-to-style.cjs`** — also append a `forecast-<region>`
+   pmtiles source and a hidden forecast `fill` layer per species×region (id e.g.
+   `<species>_<region>_fc`, `visibility:none`, paint reads `<species>_score_d1` as a
+   placeholder; the client rewrites it per active day). Forecast **numbers** layers
+   omitted (halves the added layers; the today numbers layer stays for labels) —
+   confirm in review.
 
-6. **Color/label helper** — `scoreExpr(species, day)` returns the interpolate
-   expression with the coalesce chain above (extract the existing 0→10 ramp stops
-   from the style once). Day 0 → `["coalesce",["get","<sp>_score"],0]`.
+5. **`store/mapStore.ts`** — add `activeDay: number` (0 = today) + `setActiveDay`
+   (no persistence). Extend `updateVisibleLayers()`: today layers as now; for
+   forecast layers, set visibility = (selected species AND activeDay>0) and, when
+   shown, `setPaintProperty(fill,'fill-color', ["get", "<sp>_score_d"+activeDay])`.
+   Day change just calls `updateVisibleLayers()`; survives the dark-mode style swap.
 
-7. **`store/mapStore.ts:updateVisibleLayers()`** — for the visible species'
-   region layers, additionally `setPaintProperty(fill,'fill-color', scoreExpr(...))`
-   and `setLayoutProperty(numbers,'text-field', scoreExpr(...))` using `activeDay`.
-   Day change just calls `updateVisibleLayers()` — reuses existing machinery and
-   survives the dark-mode style swap (re-applied on the new style's `load`).
+6. **New `src/components/ForecastSlider.tsx`** — native
+   `<input type="range" min=0 max=6 step=1>` + active-day date label. On input →
+   `setActiveDay`. Bottom-center in `AdvancedMap`, above `MapInfoCard` and the mobile
+   navbar (`bottom-24`). Labelled + keyboard-accessible; i18n the static label.
 
-8. **New `src/components/ForecastSlider.tsx`** — native
-   `<input type="range" min=0 max=6 step=1>` plus a date label for the active day.
-   On input → `setActiveDay`. Rendered bottom-center in `AdvancedMap`, positioned
-   above the existing `MapInfoCard` (bottom-left) and the mobile navbar
-   (`bottom-24`). Labelled + keyboard-accessible. i18n the static label.
-
-9. **`src/components/FeatureInfoModal.tsx:66-94`** — it scans every `*_score`
-   property; the new `_dN` keys would show as junk rows. Filter the scan to keys
-   matching exactly `<name>_score` (so `_score_dN` is excluded), and read the
-   active day's value via the same coalesce logic so the modal reflects the slider.
+7. **`src/components/FeatureInfoModal.tsx:66-94`** — scans every `*_score` property;
+   the `_dN` keys would show as junk. Filter to exact `<name>_score`, and when
+   activeDay>0 read the clicked feature's `<name>_score_dN` from the forecast source
+   if present (else the today value).
 
 ## Components intentionally untouched
 
 `backend/forecast_pipeline.py`, `scripts/generate_data.py`,
 `Task_Scheduler/Upload_Scores_GitHub_logic.py`, `src/lib/route-to-dish.ts` (plans
-on today via `<species>_score`, which is unchanged).
+on today via `<species>_score`, unchanged).
 
-## Tile-size strategy & verification
+## Verification
 
-Sparse encoding (above) is baked in from the start — it's a few lines and also
-slims today's tiles, so it's not deferred. Verification before rollout:
-
-1. Build NE tiles with the change; compare `ne_mushroom_data.pmtiles` size vs
-   current. `log` the factor.
-2. Eyeball two days (today vs +3) on the map — colors shift, no missing regions.
-3. Fallbacks if still too heavy: trim the horizon (e.g. +4 instead of +6), or
-   split into a today tileset (byte-identical to now) + a forecast tileset fetched
-   only when the slider first leaves today (forecast cost becomes opt-in).
+1. Build NE today + forecast tilesets; confirm today pmtiles size == current
+   (±noise) and `log` the forecast pmtiles size (expect ≤ today's).
+2. Slider at today → no forecast tile requests in the network panel (default view
+   unchanged). Move to +3 → forecast tiles load once; colors shift; unchanged areas
+   keep today's color; no missing regions.
+3. Re-run `measure_forecast_sparsity.py` per region to confirm the ≥0.5 cell counts
+   before rollout (NE cached in scratchpad).
 
 ## Decisions for review
 
-- **D1 — slider labels / base date.** Tiles' d0 = the day the pipeline ran. Options:
-  (a) **Recommended:** label from the device's `today` (zero infra; correct as
-  long as tiles regenerate daily, which the "chore: update site data" cadence
-  suggests). (b) Robust: the pipeline writes a tiny `forecast_meta.json`
-  (`{base_date, days}`) to R2; the app fetches it once and falls back to device
-  date. Pick (a) now, add (b) if skipped-run date drift is ever observed.
+- **D1 — slider labels / base date.** Tiles' d0 = the day the pipeline ran.
+  (a) **Recommended:** label from the device's `today` (zero infra; correct while
+  tiles regenerate daily). (b) Robust: pipeline writes a tiny `forecast_meta.json`
+  (`{base_date, days}`) to R2; app fetches once, device-date fallback. Start with (a).
 - **D2 — shared helper vs 4 copies.** Recommended: one `maplayer_forecast.py`
-  imported by all 4 scripts (the subtle loop lives once). Alternative: duplicate
-  into each (simpler diff, drift risk). Going with the shared helper.
+  imported by all 4 scripts.
+- **D3 — forecast threshold.** ≥0.5 (one visible ramp step) → ~2.1× *delta* volume.
+  Raising toward 1.0 shrinks the forecast tileset further at the cost of fidelity;
+  tunable knob.
 
 ## Out of scope
 
-History/past days (would need a new daily-snapshot store), forecast on the Data
-Nerd page, per-day route-to-dish, animating/playing the slider automatically.
+History/past days (needs a daily-snapshot store), forecast on the Data Nerd page,
+per-day route-to-dish, auto-playing the slider.
 
 ## Acceptance criteria
 
 - Slider with 7 day-stops at the bottom of the map; default = today.
-- Moving it recolors the visible species' map to that day; today view is identical
-  to current behavior.
-- One PMTiles fetch per region; switching days makes no network request.
-- NE PMTiles size increase is measured and within an agreed bound (target ≲ ~2×;
-  fallback plan if not).
-- route-to-dish and the today map view unchanged; feature modal shows no junk rows.
+- **Today view byte-identical to current**: no forecast tile fetched until the
+  slider leaves today.
+- Moving to day N recolors the visible species to that day; unchanged areas keep
+  today's color; switching days after first load needs no extra network.
+- Forecast tileset per region ≤ the today tileset's size (measured).
+- route-to-dish and the today view unchanged; feature modal shows no junk rows.
