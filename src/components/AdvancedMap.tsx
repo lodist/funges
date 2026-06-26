@@ -927,10 +927,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
         {isMobile ? (
           <>
-            <div className='fixed left-4 right-4 bottom-40 z-10'>
+            <div className='fixed left-4 right-4 bottom-24 z-10 flex flex-col gap-2'>
               <ForecastSlider />
-            </div>
-            <div className='fixed left-4 right-4 bottom-24'>
               <MapInfoCard />
             </div>
             {isRoutePanelOpen && !isRouteAnimating ? (
@@ -958,10 +956,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </>
         ) : (
           <>
-            <div className='absolute bottom-2 left-1/2 -translate-x-1/2 z-10 w-72 max-w-[80vw]'>
+            <div className='absolute bottom-2 left-2 z-10 flex flex-col gap-2 md:w-96'>
               <ForecastSlider />
-            </div>
-            <div className='absolute bottom-2 left-2 z-10'>
               <MapInfoCard />
             </div>
             {isRoutePanelOpen && !isRouteAnimating ? (

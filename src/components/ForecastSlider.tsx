@@ -19,13 +19,13 @@ export default function ForecastSlider({
 
   return (
     <div
-      className={`rounded-lg border bg-secondary/95 shadow-lg px-3 py-2 backdrop-blur ${className}`}
+      className={`bg-white/95 backdrop-blur-sm border border-gray-200 px-3 py-2 md:px-4 md:py-3 rounded-lg shadow-sm ${className}`}
     >
-      <div className='flex items-center justify-between text-xs font-medium mb-1'>
-        <span className='text-muted-foreground'>
+      <div className='flex items-center justify-between text-xs leading-none mb-1 md:mb-2'>
+        <span className='font-bold text-gray-900'>
           {t('forecast.label', { defaultValue: 'Forecast' })}
         </span>
-        <span>{activeLabel}</span>
+        <span className='text-gray-600'>{activeLabel}</span>
       </div>
       <input
         type='range'
@@ -37,11 +37,6 @@ export default function ForecastSlider({
         aria-label={t('forecast.label', { defaultValue: 'Forecast day' })}
         className='w-full accent-[#800020]'
       />
-      <div className='flex justify-between text-[10px] text-muted-foreground/70 mt-0.5'>
-        {Array.from({ length: FORECAST_DAYS }, (_, i) => (
-          <span key={i}>{i === 0 ? '•' : forecastDayLabel(base, i)}</span>
-        ))}
-      </div>
     </div>
   );
 }
