@@ -339,6 +339,13 @@ export const useMapStore = create<MapState>()(
                   setDayOnFillColor(current, selectedSpecies, activeDay)
                 );
               }
+              // Only paint triangles that actually carry this species' active-day
+              // delta; others lack the property (get -> null -> black fill), so
+              // filter them out and let the today layer show through.
+              mapRef.setFilter(id, [
+                'has',
+                `${selectedSpecies}_score_d${activeDay}`,
+              ]);
               mapRef.setLayoutProperty(id, 'visibility', 'visible');
             } else {
               mapRef.setLayoutProperty(id, 'visibility', 'none');
