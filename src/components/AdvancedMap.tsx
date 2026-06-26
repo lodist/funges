@@ -213,6 +213,13 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
       // Handle map errors
       map.current.on('error', e => {
+        // Forecast overlays are optional + lazy: a missing/slow forecast tileset
+        // (e.g. a region not built yet) must NOT blank the whole map.
+        const sourceId = (e as unknown as { sourceId?: string }).sourceId;
+        if (sourceId && sourceId.startsWith('forecast-')) {
+          console.warn('Forecast source issue (non-fatal):', sourceId);
+          return;
+        }
         console.error('MapLibre error:', e);
         setMapError(t('error.loadFailed'));
       });
