@@ -19602,7 +19602,7 @@
           ],
           [
             "get",
-            "walnut_score_d1"
+            "walnut_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.16)",
@@ -19649,7 +19649,7 @@
           ],
           [
             "get",
-            "walnut_score_d1"
+            "walnut_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -19696,7 +19696,7 @@
           ],
           [
             "get",
-            "walnut_score_d1"
+            "walnut_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -19743,7 +19743,7 @@
           ],
           [
             "get",
-            "walnut_score_d1"
+            "walnut_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -19790,7 +19790,7 @@
           ],
           [
             "get",
-            "truffle_b_score_d1"
+            "truffle_b_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -19837,7 +19837,7 @@
           ],
           [
             "get",
-            "truffle_b_score_d1"
+            "truffle_b_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -19884,7 +19884,7 @@
           ],
           [
             "get",
-            "truffle_b_score_d1"
+            "truffle_b_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -19931,7 +19931,7 @@
           ],
           [
             "get",
-            "truffle_b_score_d1"
+            "truffle_b_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -19978,7 +19978,7 @@
           ],
           [
             "get",
-            "strawberry_score_d1"
+            "strawberry_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -20025,7 +20025,7 @@
           ],
           [
             "get",
-            "strawberry_score_d1"
+            "strawberry_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -20072,7 +20072,7 @@
           ],
           [
             "get",
-            "strawberry_score_d1"
+            "strawberry_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -20119,7 +20119,7 @@
           ],
           [
             "get",
-            "strawberry_score_d1"
+            "strawberry_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -20166,7 +20166,7 @@
           ],
           [
             "get",
-            "st_george_score_d1"
+            "st_george_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -20213,7 +20213,7 @@
           ],
           [
             "get",
-            "st_george_score_d1"
+            "st_george_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -20260,7 +20260,7 @@
           ],
           [
             "get",
-            "st_george_score_d1"
+            "st_george_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -20307,7 +20307,7 @@
           ],
           [
             "get",
-            "st_george_score_d1"
+            "st_george_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -20354,7 +20354,7 @@
           ],
           [
             "get",
-            "sorrel_score_d1"
+            "sorrel_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -20401,7 +20401,7 @@
           ],
           [
             "get",
-            "sorrel_score_d1"
+            "sorrel_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.2)",
@@ -20448,7 +20448,7 @@
           ],
           [
             "get",
-            "sorrel_score_d1"
+            "sorrel_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -20495,7 +20495,7 @@
           ],
           [
             "get",
-            "sorrel_score_d1"
+            "sorrel_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.2)",
@@ -20542,7 +20542,7 @@
           ],
           [
             "get",
-            "raspberry_score_d1"
+            "raspberry_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -20589,7 +20589,7 @@
           ],
           [
             "get",
-            "raspberry_score_d1"
+            "raspberry_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -20636,7 +20636,7 @@
           ],
           [
             "get",
-            "raspberry_score_d1"
+            "raspberry_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.16)",
@@ -20683,7 +20683,7 @@
           ],
           [
             "get",
-            "raspberry_score_d1"
+            "raspberry_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -20730,7 +20730,7 @@
           ],
           [
             "get",
-            "parasol_score_d1"
+            "parasol_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -20777,7 +20777,7 @@
           ],
           [
             "get",
-            "parasol_score_d1"
+            "parasol_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -20824,7 +20824,7 @@
           ],
           [
             "get",
-            "parasol_score_d1"
+            "parasol_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -20871,7 +20871,7 @@
           ],
           [
             "get",
-            "parasol_score_d1"
+            "parasol_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -20918,7 +20918,7 @@
           ],
           [
             "get",
-            "nettle_score_d1"
+            "nettle_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -20965,7 +20965,7 @@
           ],
           [
             "get",
-            "nettle_score_d1"
+            "nettle_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21012,7 +21012,7 @@
           ],
           [
             "get",
-            "nettle_score_d1"
+            "nettle_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -21059,7 +21059,7 @@
           ],
           [
             "get",
-            "nettle_score_d1"
+            "nettle_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21106,7 +21106,7 @@
           ],
           [
             "get",
-            "morel_score_d1"
+            "morel_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -21153,7 +21153,7 @@
           ],
           [
             "get",
-            "morel_score_d1"
+            "morel_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21200,7 +21200,7 @@
           ],
           [
             "get",
-            "morel_score_d1"
+            "morel_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -21247,7 +21247,7 @@
           ],
           [
             "get",
-            "morel_score_d1"
+            "morel_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21294,7 +21294,7 @@
           ],
           [
             "get",
-            "masterwort_score_d1"
+            "masterwort_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.16)",
@@ -21341,7 +21341,7 @@
           ],
           [
             "get",
-            "masterwort_score_d1"
+            "masterwort_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.16)",
@@ -21388,7 +21388,7 @@
           ],
           [
             "get",
-            "masterwort_score_d1"
+            "masterwort_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21435,7 +21435,7 @@
           ],
           [
             "get",
-            "masterwort_score_d1"
+            "masterwort_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.16)",
@@ -21482,7 +21482,7 @@
           ],
           [
             "get",
-            "lingonb_score_d1"
+            "lingonb_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21529,7 +21529,7 @@
           ],
           [
             "get",
-            "lingonb_score_d1"
+            "lingonb_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21576,7 +21576,7 @@
           ],
           [
             "get",
-            "lingonb_score_d1"
+            "lingonb_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21623,7 +21623,7 @@
           ],
           [
             "get",
-            "lingonb_score_d1"
+            "lingonb_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21670,7 +21670,7 @@
           ],
           [
             "get",
-            "garlic_score_d1"
+            "garlic_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21717,7 +21717,7 @@
           ],
           [
             "get",
-            "garlic_score_d1"
+            "garlic_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21764,7 +21764,7 @@
           ],
           [
             "get",
-            "garlic_score_d1"
+            "garlic_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21811,7 +21811,7 @@
           ],
           [
             "get",
-            "garlic_score_d1"
+            "garlic_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21858,7 +21858,7 @@
           ],
           [
             "get",
-            "dandelion_score_d1"
+            "dandelion_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -21905,7 +21905,7 @@
           ],
           [
             "get",
-            "dandelion_score_d1"
+            "dandelion_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21952,7 +21952,7 @@
           ],
           [
             "get",
-            "dandelion_score_d1"
+            "dandelion_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -21999,7 +21999,7 @@
           ],
           [
             "get",
-            "dandelion_score_d1"
+            "dandelion_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -22046,7 +22046,7 @@
           ],
           [
             "get",
-            "chickweed_score_d1"
+            "chickweed_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -22093,7 +22093,7 @@
           ],
           [
             "get",
-            "chickweed_score_d1"
+            "chickweed_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.16)",
@@ -22140,7 +22140,7 @@
           ],
           [
             "get",
-            "chickweed_score_d1"
+            "chickweed_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -22187,7 +22187,7 @@
           ],
           [
             "get",
-            "chickweed_score_d1"
+            "chickweed_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.16)",
@@ -22234,7 +22234,7 @@
           ],
           [
             "get",
-            "chestnut_score_d1"
+            "chestnut_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -22281,7 +22281,7 @@
           ],
           [
             "get",
-            "chestnut_score_d1"
+            "chestnut_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -22328,7 +22328,7 @@
           ],
           [
             "get",
-            "chestnut_score_d1"
+            "chestnut_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -22375,7 +22375,7 @@
           ],
           [
             "get",
-            "chestnut_score_d1"
+            "chestnut_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -22422,7 +22422,7 @@
           ],
           [
             "get",
-            "chant_score_d1"
+            "chant_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -22469,7 +22469,7 @@
           ],
           [
             "get",
-            "chant_score_d1"
+            "chant_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -22516,7 +22516,7 @@
           ],
           [
             "get",
-            "chant_score_d1"
+            "chant_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -22563,7 +22563,7 @@
           ],
           [
             "get",
-            "chant_score_d1"
+            "chant_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -22610,7 +22610,7 @@
           ],
           [
             "get",
-            "black_chant_score_d1"
+            "black_chant_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -22657,7 +22657,7 @@
           ],
           [
             "get",
-            "black_chant_score_d1"
+            "black_chant_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -22704,7 +22704,7 @@
           ],
           [
             "get",
-            "black_chant_score_d1"
+            "black_chant_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -22751,7 +22751,7 @@
           ],
           [
             "get",
-            "black_chant_score_d1"
+            "black_chant_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -22798,7 +22798,7 @@
           ],
           [
             "get",
-            "asparagus_score_d1"
+            "asparagus_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -22845,7 +22845,7 @@
           ],
           [
             "get",
-            "asparagus_score_d1"
+            "asparagus_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -22892,7 +22892,7 @@
           ],
           [
             "get",
-            "asparagus_score_d1"
+            "asparagus_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -22939,7 +22939,7 @@
           ],
           [
             "get",
-            "asparagus_score_d1"
+            "asparagus_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -22986,7 +22986,7 @@
           ],
           [
             "get",
-            "artichoke_score_d1"
+            "artichoke_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -23033,7 +23033,7 @@
           ],
           [
             "get",
-            "artichoke_score_d1"
+            "artichoke_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -23080,7 +23080,7 @@
           ],
           [
             "get",
-            "artichoke_score_d1"
+            "artichoke_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -23127,7 +23127,7 @@
           ],
           [
             "get",
-            "artichoke_score_d1"
+            "artichoke_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -23174,7 +23174,7 @@
           ],
           [
             "get",
-            "amaranth_score_d1"
+            "amaranth_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -23221,7 +23221,7 @@
           ],
           [
             "get",
-            "amaranth_score_d1"
+            "amaranth_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -23268,7 +23268,7 @@
           ],
           [
             "get",
-            "amaranth_score_d1"
+            "amaranth_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -23315,7 +23315,7 @@
           ],
           [
             "get",
-            "amaranth_score_d1"
+            "amaranth_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -23362,7 +23362,7 @@
           ],
           [
             "get",
-            "mushroom_score_d1"
+            "mushroom_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.17)",
@@ -23409,7 +23409,7 @@
           ],
           [
             "get",
-            "mushroom_score_d1"
+            "mushroom_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",
@@ -23456,7 +23456,7 @@
           ],
           [
             "get",
-            "mushroom_score_d1"
+            "mushroom_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.18)",
@@ -23503,7 +23503,7 @@
           ],
           [
             "get",
-            "mushroom_score_d1"
+            "mushroom_score"
           ],
           0,
           "hsla(60, 92%, 95%, 0.19)",

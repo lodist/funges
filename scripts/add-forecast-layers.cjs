@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Appends a forecast source + hidden forecast fill layer per existing species overlay
 // layer, derived from the already-built style (no live-style input needed). Idempotent:
-// strips prior `*_fc` layers / `forecast-*` sources first. The app sets each forecast
-// layer's active day via setPaintProperty; here the placeholder is `_d1`.
+// strips prior `*_fc` layers / `forecast-*` sources first. The app installs a 2-point
+// interpolation expression at runtime; the static paint clone keeps ["get","<sp>_score"].
 // Usage: node scripts/add-forecast-layers.cjs [public/funges_style.json ...]
 const fs = require('fs');
 
@@ -14,22 +14,6 @@ const FC = {
   'overlay-use': ['forecast-use', `${R2}/USA/USE/use_forecast.pmtiles`, 'use_forecast'],
   'overlay-usw': ['forecast-usw', `${R2}/USA/USW/usw_forecast.pmtiles`, 'usw_forecast'],
 };
-
-function setGetDay(node) {
-  // Deep-replace ["get","<x>_score"] -> ["get","<x>_score_d1"] (placeholder day).
-  if (Array.isArray(node)) {
-    if (node[0] === 'get' && typeof node[1] === 'string' && /_score$/.test(node[1])) {
-      return ['get', `${node[1]}_d1`];
-    }
-    return node.map(setGetDay);
-  }
-  if (node !== null && typeof node === 'object') {
-    const out = {};
-    for (const [k, v] of Object.entries(node)) out[k] = setGetDay(v);
-    return out;
-  }
-  return node;
-}
 
 for (const path of process.argv.slice(2)) {
   const style = JSON.parse(fs.readFileSync(path, 'utf8'));
@@ -50,7 +34,6 @@ for (const path of process.argv.slice(2)) {
     copy.id = `${l.id}_fc`;
     copy.source = fcSrc;
     copy['source-layer'] = fcLayer;
-    copy.paint = setGetDay(copy.paint);
     copy.layout = { ...(copy.layout || {}), visibility: 'none' };
     fcLayers.push(copy);
   }
