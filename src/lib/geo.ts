@@ -61,6 +61,10 @@ export function getRepresentativeLngLat(
   }
 
   // LineString / fallback: bbox centre of all vertices.
+  // GeometryCollection has no `coordinates` — nothing to place a stop on.
+  if (geom.type === 'GeometryCollection') {
+    return [0, 0];
+  }
   const coords: LngLat[] = [];
   const extract = (c: GeoJSONCoordinate): void => {
     if (typeof c[0] === 'number') {
