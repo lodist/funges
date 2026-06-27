@@ -475,7 +475,7 @@ minx, miny, maxx, maxy = gdf_full.total_bounds
 
 # Step 1: Filter out polygons where all scores are below threshold
 score_columns = [col for col in gdf_full.columns if col.endswith('_score')]
-filtered_gdf = gdf_full[~(gdf_full[score_columns] < 4).all(axis=1)]
+filtered_gdf = gdf_full[~(gdf_full[score_columns] < 4.5).all(axis=1)]
 
 # Step 2: Add dummy triangles for min/max color scale
 dummy_triangles = [
