@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { FORECAST_DAYS, FORECAST_REGIONS, forecastDayLabel, setDayOnFillColor } from '@/lib/forecast';
+import { FORECAST_DAYS, FORECAST_REGIONS, forecastDayLabel, setForecastFraction } from '@/lib/forecast';
 
 describe('forecast lib', () => {
   it('has a 7-day window and 4 regions', () => {
@@ -13,11 +13,18 @@ describe('forecast lib', () => {
     expect(forecastDayLabel(base, 6)).toBe('1/7');
   });
 
-  it('rewrites the interpolate input to the active day, preserving the ramp', () => {
-    const expr = ['interpolate', ['linear'], ['get', 'mushroom_score_d1'], 0, '#fff', 10, '#800020'];
-    const out = setDayOnFillColor(expr, 'mushroom', 3);
-    expect(out[2]).toEqual(['get', 'mushroom_score_d3']);
-    expect(out.slice(3)).toEqual([0, '#fff', 10, '#800020']); // ramp untouched
-    expect(expr[2]).toEqual(['get', 'mushroom_score_d1']);     // input not mutated
+  it('builds a d0->d6 interpolation input at the given fraction', () => {
+    const expr = ['interpolate', ['linear'], ['get', 'mushroom_score'], 0, '#fff', 10, '#800020'];
+    const out = setForecastFraction(expr, 'mushroom', 0.5);
+    expect(out[2]).toEqual([
+      '+',
+      ['coalesce', ['get', 'mushroom_score'], 0],
+      ['*', 0.5, ['-',
+        ['coalesce', ['get', 'mushroom_score_d6'], 0],
+        ['coalesce', ['get', 'mushroom_score'], 0],
+      ]],
+    ]);
+    expect(out.slice(3)).toEqual([0, '#fff', 10, '#800020']); // ramp preserved
+    expect(expr[2]).toEqual(['get', 'mushroom_score']);        // input not mutated
   });
 });

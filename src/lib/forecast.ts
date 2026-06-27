@@ -9,15 +9,18 @@ export function forecastDayLabel(base: Date, dayIndex: number): string {
   return `${d.getDate()}/${d.getMonth() + 1}`;
 }
 
-/** Return a copy of a fill-color `interpolate` expression with its input
- *  rewritten to `<species>_score_d{day}`. The colour ramp is preserved. */
-export function setDayOnFillColor(
+/** Return a copy of a fill-color `interpolate` expression whose input is the
+ *  linear interpolation between today (d0 = `<species>_score`) and day-6
+ *  (`<species>_score_d6`) at `frac` in [0,1]. Missing props coalesce to 0. */
+export function setForecastFraction(
   fillColor: unknown[],
   species: string,
-  day: number
+  frac: number
 ): unknown[] {
   const copy = [...fillColor];
-  copy[2] = ['get', `${species}_score_d${day}`];
+  const d0 = ['coalesce', ['get', `${species}_score`], 0];
+  const d6 = ['coalesce', ['get', `${species}_score_d6`], 0];
+  copy[2] = ['+', d0, ['*', frac, ['-', d6, d0]]];
   return copy;
 }
 
