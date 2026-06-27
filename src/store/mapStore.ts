@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { getSpeciesOptions, type SpeciesOption } from '@/data/species';
-import { setDayOnFillColor } from '@/lib/forecast';
+import { setForecastFraction, FORECAST_DAYS } from '@/lib/forecast';
 
 export interface MapViewport {
   latitude: number;
@@ -306,7 +306,7 @@ export const useMapStore = create<MapState>()(
           const isNumbersLayer = id.includes('numbers');
 
           if (isSpeciesLayer && !id.endsWith('_fc')) {
-            if (isRelevantSpecies) {
+            if (isRelevantSpecies && activeDay === 0) {
               // Set visibility based on whether it's a numbers layer and the numbers toggle
               const visibility = isNumbersLayer
                 ? numbersLayersVisible
@@ -324,28 +324,19 @@ export const useMapStore = create<MapState>()(
             }
           }
 
-          // Forecast overlay layers (id `<species>_<region>_fc`): visible only for the
-          // selected species AND a forecast day (>0); painted to the active day. Today
-          // layers stay on beneath, so unchanged triangles keep today's colour.
           if (id.endsWith('_fc')) {
             const relevant =
               !!selectedSpecies && id.startsWith(`${selectedSpecies}_`);
             if (relevant && activeDay > 0) {
+              const frac = activeDay / (FORECAST_DAYS - 1);
               const current = mapRef.getPaintProperty(id, 'fill-color') as unknown[];
               if (Array.isArray(current)) {
                 mapRef.setPaintProperty(
                   id,
                   'fill-color',
-                  setDayOnFillColor(current, selectedSpecies, activeDay)
+                  setForecastFraction(current, selectedSpecies, frac)
                 );
               }
-              // Only paint triangles that actually carry this species' active-day
-              // delta; others lack the property (get -> null -> black fill), so
-              // filter them out and let the today layer show through.
-              mapRef.setFilter(id, [
-                'has',
-                `${selectedSpecies}_score_d${activeDay}`,
-              ]);
               mapRef.setLayoutProperty(id, 'visibility', 'visible');
             } else {
               mapRef.setLayoutProperty(id, 'visibility', 'none');
