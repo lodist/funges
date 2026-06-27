@@ -133,15 +133,18 @@ const ROUTE_TO_DISH_SPECIES_IDS = new Set(
 
 function getSpeciesLayerGroups(
   map: MapLibreMap,
-  speciesIds: string[]
+  speciesIds: string[],
+  forecast: boolean
 ): RouteDishSourceGroup[] {
   const layers = map.getStyle().layers ?? [];
   const groups = new Map<string, RouteDishSourceGroup>();
 
   layers.forEach(layer => {
-    // Routes are for foraging today: skip forecast (_fc) twins and numbers/label
-    // layers, which also start with the species id but aren't today's score polygons.
-    if (layer.id.endsWith('_fc') || layer.id.includes('numbers')) return;
+    // Numbers/label layers also start with the species id but aren't score polygons.
+    if (layer.id.includes('numbers')) return;
+    // Day 0 reads today's polygons; a forecast day reads the `_fc` twins (they carry
+    // both the d0 score and the `_score_d6` value needed to interpolate).
+    if (forecast ? !layer.id.endsWith('_fc') : layer.id.endsWith('_fc')) return;
 
     const matchedSpecies = speciesIds.filter(speciesId =>
       layer.id.startsWith(speciesId)
@@ -209,7 +212,8 @@ function toNumber(value: unknown): number | null {
 
 function getScoreForSpecies(
   properties: Record<string, unknown>,
-  speciesId: string
+  speciesId: string,
+  frac: number
 ): number | null {
   const config = ROUTE_TO_DISH_SPECIES_CONFIG[speciesId];
   const aliases = config?.scorePropertyAliases ?? [
@@ -217,14 +221,21 @@ function getScoreForSpecies(
     `${speciesId}_score`,
   ];
 
+  let d0: number | null = null;
   for (const alias of aliases) {
     const score = toNumber(properties[alias]);
     if (score !== null) {
-      return score;
+      d0 = score;
+      break;
     }
   }
 
-  return null;
+  if (d0 === null || frac <= 0) return d0;
+
+  // Forecast tile stores the day-6 value as `<speciesId>_score_d6`; missing => flat.
+  const raw = toNumber(properties[`${speciesId}_score_d6`]);
+  const d6 = raw === null ? d0 : raw;
+  return Math.round((d0 + frac * (d6 - d0)) * 10) / 10;
 }
 
 function haversineKm(from: LngLat, to: LngLat): number {
@@ -376,8 +387,10 @@ export function queryRouteDishData(params: {
   start: LngLat;
   minScore: number;
   radiusKm: number;
+  /** Slider fraction in [0,1]: 0 = today, 1 = day 6. Interpolates scores. */
+  frac?: number;
 }): RouteDishResult {
-  const { map, recipes, start, minScore, radiusKm } = params;
+  const { map, recipes, start, minScore, radiusKm, frac = 0 } = params;
   const speciesIds = Array.from(
     new Set(
       recipes
@@ -385,7 +398,7 @@ export function queryRouteDishData(params: {
         .filter(speciesId => ROUTE_TO_DISH_SPECIES_IDS.has(speciesId))
     )
   );
-  const sourceGroups = getSpeciesLayerGroups(map, speciesIds);
+  const sourceGroups = getSpeciesLayerGroups(map, speciesIds, frac > 0);
   const candidateStopMap = new Map<string, RouteDishCandidateStop>();
 
   sourceGroups.forEach(group => {
@@ -410,7 +423,7 @@ export function queryRouteDishData(params: {
       const scoreBySpecies: Partial<Record<string, number>> = {};
 
       speciesIds.forEach(speciesId => {
-        const score = getScoreForSpecies(properties, speciesId);
+        const score = getScoreForSpecies(properties, speciesId, frac);
         if (score !== null) {
           scoreBySpecies[speciesId] = score;
         }

@@ -314,6 +314,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           start: routeInputs.routeStart,
           minScore: MIN_SCORE_DEFAULT,
           radiusKm: DEFAULT_RADIUS_KM,
+          frac: activeDay > 0 ? activeDay / (FORECAST_DAYS - 1) : 0,
         });
 
         setRouteDishResult(nextResult);
@@ -348,7 +349,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       clearScheduledCompute();
       mapInstance.off('move', scheduleRoutesComputation);
     };
-  }, [isRoutePanelOpen, mapLoaded, routeStart, tRecipes]);
+  }, [isRoutePanelOpen, mapLoaded, routeStart, tRecipes, activeDay]);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
