@@ -3,6 +3,7 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Protocol } from 'pmtiles';
 import { useMapStore } from '@/store/mapStore';
+import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
 import { Card } from '@/components/ui/card';
 import {
   ChefHat,
@@ -152,6 +153,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     updateVisibleLayers,
     restoreDarkLayersState,
     selectedSpecies,
+    activeDay,
   } = useMapStore();
   const routeStart = showUserLocation && userLocation ? userLocation : center;
   const routeRecipes = recipes.map(recipe => ({
@@ -565,6 +567,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
     const handleClick = (e: maplibregl.MapMouseEvent) => {
+      // Query whichever layer set is visible: today layers at day 0, forecast
+      // (_fc) layers on forecast days (the two are mutually exclusive by visibility).
       const layers =
         map.current
           ?.getStyle()
@@ -573,14 +577,27 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             id =>
               selectedSpecies &&
               id.startsWith(selectedSpecies) &&
-              !id.endsWith('_fc') &&
               map.current?.getLayoutProperty(id, 'visibility') === 'visible'
           ) || [];
       const features = map.current?.queryRenderedFeatures(e.point, {
         layers,
       });
       if (features && features.length > 0) {
-        setSelectedFeature(features[0]);
+        const f = features[0];
+        // On forecast days, interpolate the feature's per-species scores to the
+        // active day so the modal shows day-appropriate values (not the d0/d6 props).
+        const feature =
+          activeDay > 0
+            ? ({
+                ...f,
+                geometry: f.geometry, // getter on MapGeoJSONFeature; spread drops it
+                properties: interpolateScores(
+                  f.properties || {},
+                  activeDay / (FORECAST_DAYS - 1)
+                ),
+              } as typeof f)
+            : f;
+        setSelectedFeature(feature);
         setIsModalFromLocateMe(false);
         setIsFeatureModalOpen(true);
       }
@@ -589,7 +606,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     return () => {
       map.current?.off('click', handleClick);
     };
-  }, [mapLoaded, selectedSpecies]);
+  }, [mapLoaded, selectedSpecies, activeDay]);
 
   // Handle user location
   const handleGetUserLocation = async () => {

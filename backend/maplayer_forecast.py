@@ -11,26 +11,32 @@ import numpy as np
 INTERP_THRESHOLD = 4.5  # keep a triangle only if some species peaks >= this on d0 or d6
 
 
-def interp_props(per_day, threshold: float = INTERP_THRESHOLD) -> dict:
+def interp_props(today_scores, d6_scores, threshold: float = INTERP_THRESHOLD) -> dict:
     """Two-point forecast props for one triangle.
 
-    per_day[0] = today (d0); per_day[-1] = last forecast day (d6). The client
-    interpolates d0->d6 per slider day, so only the two endpoints are stored.
-    Returns {} (drop the triangle) unless some species peaks >= threshold on
-    either endpoint. Zeros are omitted (size); the client coalesces missing to 0.
+    today_scores = the *production* today score per species (so day 0 of the
+    forecast matches the today tile exactly); d6_scores = last forecast day. The
+    client interpolates d0->d6 per slider day, so only the two endpoints are stored.
+
+    Returns {} (drop the triangle) unless some species' max(today, d6) >= threshold
+    — this is the union keep-rule, identical for the today and forecast tiles, so a
+    kept polygon is present in both and never pops in/out.
+
+    Emits `{s}_score` (d0) when non-zero, and `{s}_score_d6` only when it *differs*
+    from d0. A missing _d6 therefore means "flat": the client coalesces it back to
+    d0, so a polygon we can't forecast holds its value instead of fading to 0.
     """
-    d0, d6 = per_day[0], per_day[-1]
-    species = set(d0) | set(d6)
-    peak = max((max(d0.get(s, 0.0), d6.get(s, 0.0)) for s in species), default=0.0)
+    species = set(today_scores) | set(d6_scores)
+    peak = max((max(today_scores.get(s, 0.0), d6_scores.get(s, 0.0)) for s in species), default=0.0)
     if peak < threshold:
         return {}
     props: dict = {}
     for s in species:
-        v0 = round(float(d0.get(s, 0.0)), 1)
-        v6 = round(float(d6.get(s, 0.0)), 1)
+        v0 = round(float(today_scores.get(s, 0.0)), 1)
+        v6 = round(float(d6_scores.get(s, 0.0)), 1)
         if v0 != 0:
             props[f"{s}_score"] = v0
-        if v6 != 0:
+        if v6 != v0:
             props[f"{s}_score_d6"] = v6
     return props
 

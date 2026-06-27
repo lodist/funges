@@ -19,7 +19,7 @@ export default function ForecastSlider({
 
   return (
     <div
-      className={`bg-white/95 backdrop-blur-sm border border-gray-200 px-3 py-2 md:px-4 md:py-3 rounded-lg shadow-sm ${className}`}
+      className={`flex flex-col justify-center bg-white/95 backdrop-blur-sm border border-gray-200 px-3 md:px-4 rounded-lg shadow-sm h-14 md:h-[68px] ${className}`}
     >
       <div className='flex items-center justify-between text-xs leading-none mb-1 md:mb-2'>
         <span className='font-bold text-gray-900'>

@@ -192,6 +192,7 @@ export default function RouteToDishPanel({
                     type='button'
                     size='sm'
                     className='flex-1 h-8 sm:h-9 text-xs sm:text-sm'
+                    disabled={plan.orderedStops.length === 0}
                     onClick={() => onDrawRoute(plan)}
                   >
                     <RouteIcon className='h-4 w-4' />

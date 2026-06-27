@@ -4,25 +4,35 @@ from maplayer_forecast import interp_props
 
 
 def test_interp_props_keeps_peak_and_omits_zeros():
-    # mushroom peaks 6.0 today; morel 0 today -> 5.0 by d6; chant stays low (<4.5)
-    per_day = [
-        {"mushroom": 6.0, "morel": 0.0, "chant": 3.0},  # d0
-        {"mushroom": 4.0, "morel": 5.0, "chant": 3.2},  # d6
-    ]
-    props = interp_props(per_day, threshold=4.5)
+    # mushroom 6.0 today -> 4.0 d6; morel 0 today -> 5.0 d6; chant low but moves
+    today = {"mushroom": 6.0, "morel": 0.0, "chant": 3.0}
+    d6 = {"mushroom": 4.0, "morel": 5.0, "chant": 3.2}
+    props = interp_props(today, d6, threshold=4.5)
     assert props == {
         "mushroom_score": 6.0,
         "mushroom_score_d6": 4.0,
-        "morel_score_d6": 5.0,   # morel d0 is 0 -> omitted; d6 emitted
+        "morel_score_d6": 5.0,   # morel d0 is 0 -> omitted; rises to 5 -> emitted
         "chant_score": 3.0,
         "chant_score_d6": 3.2,
     }
 
 
+def test_interp_props_omits_d6_when_flat():
+    # flat species: only d0 emitted; missing _d6 means "flat" client-side
+    assert interp_props({"mushroom": 6.0}, {"mushroom": 6.0}) == {"mushroom_score": 6.0}
+
+
+def test_interp_props_emits_zero_d6_for_real_decline():
+    # genuine drop to 0 must be stored (0 != d0) so the client shows the decline
+    assert interp_props({"mushroom": 6.0}, {"mushroom": 0.0}) == {
+        "mushroom_score": 6.0,
+        "mushroom_score_d6": 0.0,
+    }
+
+
 def test_interp_props_drops_triangle_below_threshold():
     # nothing reaches 4.5 on either endpoint -> drop
-    per_day = [{"mushroom": 3.0, "chant": 4.4}, {"mushroom": 4.0, "chant": 4.4}]
-    assert interp_props(per_day, threshold=4.5) == {}
+    assert interp_props({"mushroom": 3.0, "chant": 4.4}, {"mushroom": 4.0, "chant": 4.4}, threshold=4.5) == {}
 
 
 import numpy as np
@@ -58,6 +68,8 @@ def test_score_days_skips_invalid_habitat():
 
 if __name__ == "__main__":
     test_interp_props_keeps_peak_and_omits_zeros()
+    test_interp_props_omits_d6_when_flat()
+    test_interp_props_emits_zero_d6_for_real_decline()
     test_interp_props_drops_triangle_below_threshold()
     test_score_days_interpolates_per_day()
     test_score_days_skips_invalid_habitat()

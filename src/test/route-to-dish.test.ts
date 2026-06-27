@@ -72,6 +72,31 @@ describe('queryRouteDishData', () => {
     expect(result.plans[1]?.missingSpecies).toEqual(['strawberry']);
   });
 
+  it('excludes forecast (_fc) and numbers layers from the source groups', () => {
+    const mapStub = {
+      getStyle: () => ({
+        layers: [
+          { id: 'mushroom_ne', source: 'overlay-ne', 'source-layer': 'ne_scores' },
+          { id: 'mushroom_ne_fc', source: 'forecast-ne', 'source-layer': 'ne_forecast' },
+          { id: 'mushroom_numbers_ne', source: 'overlay-ne', 'source-layer': 'ne_numbers' },
+        ],
+      }),
+      querySourceFeatures: () => [],
+    };
+
+    const result = queryRouteDishData({
+      map: mapStub as never,
+      recipes: [{ id: 'r', title: 'Porcini Risotto', species: ['mushroom'] }],
+      start: [7, 47],
+      minScore: 5.5,
+      radiusKm: 100,
+    });
+
+    expect(result.sourceGroups).toHaveLength(1);
+    expect(result.sourceGroups[0]?.sourceId).toBe('overlay-ne');
+    expect(result.sourceGroups[0]?.sourceLayer).toBe('ne_scores');
+  });
+
   it('excludes stops beyond the radius', () => {
     const mapStub = {
       getStyle: () => ({

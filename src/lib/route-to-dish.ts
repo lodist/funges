@@ -139,6 +139,10 @@ function getSpeciesLayerGroups(
   const groups = new Map<string, RouteDishSourceGroup>();
 
   layers.forEach(layer => {
+    // Routes are for foraging today: skip forecast (_fc) twins and numbers/label
+    // layers, which also start with the species id but aren't today's score polygons.
+    if (layer.id.endsWith('_fc') || layer.id.includes('numbers')) return;
+
     const matchedSpecies = speciesIds.filter(speciesId =>
       layer.id.startsWith(speciesId)
     );
