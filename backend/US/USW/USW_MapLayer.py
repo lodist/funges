@@ -630,7 +630,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     # ---------- FORECAST DELTA TILESET (d1..d6) ----------
     import sys as _sys
     _sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # repo backend/
-    from maplayer_forecast import score_days, forecast_props
+    from maplayer_forecast import score_days, interp_props
 
     fwd_days = 7
     today_norm = pd.Timestamp(datetime.now()).normalize()
@@ -661,11 +661,11 @@ with tempfile.TemporaryDirectory() as tmpdir:
     per_tri = score_days(tree, xy_m, tri_centroids_m, valid_tris,
                          tri_id_to_raster, species_validsets, species_arrays_by_day)
 
-    # Build the forecast GeoJSON: same triangle geometry, sparse delta props, drop no-change tris.
+    # Build the forecast GeoJSON: same triangle geometry, two-point interp props, drop below-threshold tris.
     tri_geom = _tri_geom  # captured in Insert 1c
     fc_features, emitted_keys = [], set()
     for tri_id, per_day in per_tri.items():
-        props = forecast_props(per_day)
+        props = interp_props(per_day)
         if not props or tri_id not in tri_geom.index:
             continue
         emitted_keys.update(props)

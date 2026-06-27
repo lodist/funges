@@ -1,27 +1,28 @@
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "backend"))
-from maplayer_forecast import forecast_props
+from maplayer_forecast import interp_props
 
 
-def test_forecast_props_emits_only_visible_changes():
-    # per_day[0] = today; indices 1.. = forecast days
+def test_interp_props_keeps_peak_and_omits_zeros():
+    # mushroom peaks 6.0 today; morel 0 today -> 5.0 by d6; chant stays low (<4.5)
     per_day = [
-        {"mushroom": 6.0, "morel": 0.0, "chant": 5.0},  # d0 today
-        {"mushroom": 6.0, "morel": 0.0, "chant": 5.4},  # d1: chant +0.4 (sub-threshold) -> omit
-        {"mushroom": 7.0, "morel": 0.6, "chant": 5.0},  # d2: mushroom +1.0, morel 0->0.6 -> emit both
-        {"mushroom": 6.0, "morel": 0.0, "chant": 0.0},  # d3: chant 5->0 drop -> emit
+        {"mushroom": 6.0, "morel": 0.0, "chant": 3.0},  # d0
+        {"mushroom": 4.0, "morel": 5.0, "chant": 3.2},  # d6
     ]
-    props = forecast_props(per_day, threshold=0.5)
+    props = interp_props(per_day, threshold=4.5)
     assert props == {
-        "mushroom_score_d2": 7.0,
-        "morel_score_d2": 0.6,
-        "chant_score_d3": 0.0,
+        "mushroom_score": 6.0,
+        "mushroom_score_d6": 4.0,
+        "morel_score_d6": 5.0,   # morel d0 is 0 -> omitted; d6 emitted
+        "chant_score": 3.0,
+        "chant_score_d6": 3.2,
     }
 
 
-def test_forecast_props_empty_when_flat():
-    per_day = [{"mushroom": 6.0}, {"mushroom": 6.0}, {"mushroom": 6.04}]
-    assert forecast_props(per_day, threshold=0.5) == {}
+def test_interp_props_drops_triangle_below_threshold():
+    # nothing reaches 4.5 on either endpoint -> drop
+    per_day = [{"mushroom": 3.0, "chant": 4.4}, {"mushroom": 4.0, "chant": 4.4}]
+    assert interp_props(per_day, threshold=4.5) == {}
 
 
 import numpy as np
@@ -56,8 +57,8 @@ def test_score_days_skips_invalid_habitat():
 
 
 if __name__ == "__main__":
-    test_forecast_props_emits_only_visible_changes()
-    test_forecast_props_empty_when_flat()
+    test_interp_props_keeps_peak_and_omits_zeros()
+    test_interp_props_drops_triangle_below_threshold()
     test_score_days_interpolates_per_day()
     test_score_days_skips_invalid_habitat()
     print("OK")

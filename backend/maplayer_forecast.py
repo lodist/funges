@@ -1,32 +1,37 @@
-"""Forecast-day tile scoring + sparse delta props for the regional MapLayer scripts.
+"""Forecast-day tile scoring + two-point interpolation props for the regional MapLayer scripts.
 
 The today tileset is unchanged (built by the existing script path). This module adds
-the forward days (d1..d6): it reuses the same Delaunay-neighbour Gaussian combine the
-script uses for today, evaluating every forecast day from ONE neighbour search per
-triangle, and emits only the cells that visibly differ from today (sparse delta).
+the forward days: it reuses the same Delaunay-neighbour Gaussian combine the script
+uses for today, evaluating every forecast day from ONE neighbour search per triangle,
+and stores only the two endpoints (d0 today, d6 last day) so the client can interpolate.
 """
 from __future__ import annotations
 import numpy as np
 
-FORECAST_THRESHOLD = 0.5  # emit a forecast cell only if it moves >= this vs today (one ramp step)
+INTERP_THRESHOLD = 4.5  # keep a triangle only if some species peaks >= this on d0 or d6
 
 
-def forecast_props(per_day, threshold: float = FORECAST_THRESHOLD) -> dict:
-    """Sparse forecast delta props for one triangle.
+def interp_props(per_day, threshold: float = INTERP_THRESHOLD) -> dict:
+    """Two-point forecast props for one triangle.
 
-    per_day[0] == today (d0); per_day[n>=1] are forecast days. Emit
-    ``<species>_score_d{n}`` (n>=1) only when it visibly differs from today:
-    ``abs(round(dn,1) - round(d0,1)) >= threshold``. Returns {} when nothing
-    changes (caller drops the triangle from the forecast tileset).
+    per_day[0] = today (d0); per_day[-1] = last forecast day (d6). The client
+    interpolates d0->d6 per slider day, so only the two endpoints are stored.
+    Returns {} (drop the triangle) unless some species peaks >= threshold on
+    either endpoint. Zeros are omitted (size); the client coalesces missing to 0.
     """
-    today = per_day[0]
+    d0, d6 = per_day[0], per_day[-1]
+    species = set(d0) | set(d6)
+    peak = max((max(d0.get(s, 0.0), d6.get(s, 0.0)) for s in species), default=0.0)
+    if peak < threshold:
+        return {}
     props: dict = {}
-    for n in range(1, len(per_day)):
-        for species, value in per_day[n].items():
-            d0 = round(float(today.get(species, 0.0)), 1)
-            dn = round(float(value), 1)
-            if abs(dn - d0) >= threshold:
-                props[f"{species}_score_d{n}"] = dn
+    for s in species:
+        v0 = round(float(d0.get(s, 0.0)), 1)
+        v6 = round(float(d6.get(s, 0.0)), 1)
+        if v0 != 0:
+            props[f"{s}_score"] = v0
+        if v6 != 0:
+            props[f"{s}_score_d6"] = v6
     return props
 
 
