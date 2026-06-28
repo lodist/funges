@@ -96,13 +96,19 @@ const DARK_STYLE = '/funges_style_dark.json';
 
 // Region overlay/forecast tilesets are heavy; keeping all four live at once (even when
 // only one is in view) is what makes the map lag. We only show a region's layers when
-// its bbox intersects the viewport, so MapLibre stops loading tiles for off-screen
-// regions. Boxes are generous [west, south, east, north].
+// its activation zone intersects the viewport, so MapLibre stops loading tiles for
+// off-screen regions.
+//
+// The four tilesets' DATA extents overlap (NE/SE share lat ~49-55; USE/USW share lon
+// ~-106..-82), so to actually separate adjacent regions we gate on NON-overlapping
+// assignment zones: EU split at lat 52, US split at lon -93. Both split lines sit inside
+// the data overlap, so a point near the seam still has tiles in the region it maps to.
+// Boxes are [west, south, east, north].
 const REGION_BBOX: Record<string, [number, number, number, number]> = {
-  ne: [-13, 53, 33, 72],
-  se: [-13, 34, 33, 55],
-  use: [-92, 24, -66, 50],
-  usw: [-125, 31, -92, 50],
+  ne: [-25, 52, 45, 71], // Europe, north of 52°
+  se: [-25, 28, 45, 52], // Europe, south of 52°
+  use: [-93, 25, -66, 49], // US, east of -93°
+  usw: [-125, 31, -93, 49], // US, west of -93°
 };
 
 // Extract the region code (ne/se/use/usw) from a layer id like `mushroom_ne`,
