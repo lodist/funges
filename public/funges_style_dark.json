@@ -60,7 +60,7 @@
     },
     "overlay-ne": {
       "type": "vector",
-      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/ne_mushroom_data.pmtiles"
+      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/ne_mushroom_data_d9_test.pmtiles"
     },
     "overlay-se": {
       "type": "vector",
