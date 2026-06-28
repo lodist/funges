@@ -292,8 +292,6 @@ export const useMapStore = create<MapState>()(
           return;
         }
 
-        const visibleLayerIds: string[] = [];
-
         layers.forEach(layer => {
           const id = layer.id;
 
@@ -314,13 +312,8 @@ export const useMapStore = create<MapState>()(
                   : 'none'
                 : 'visible';
               mapRef.setLayoutProperty(id, 'visibility', visibility);
-              console.debug(
-                `SHOWING layer: ${id} | isNumbers: ${isNumbersLayer} | visibility: ${visibility}`
-              );
-              if (visibility === 'visible') visibleLayerIds.push(id);
             } else {
               mapRef.setLayoutProperty(id, 'visibility', 'none');
-              console.debug(`HIDING unrelated species layer: ${id}`);
             }
           }
 
@@ -343,10 +336,6 @@ export const useMapStore = create<MapState>()(
             }
           }
         });
-
-        console.debug('Species selected:', selectedSpecies);
-        console.debug('Numbers visible:', numbersLayersVisible);
-        console.debug('Final visible layers:', visibleLayerIds);
       },
       // ponytail: dark mode is a full style swap now; the correct style is chosen at
       // init and on toggle, so there are no per-layer ` dark` states to restore. No-op

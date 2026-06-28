@@ -189,6 +189,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         collectResourceTiming: false,
         touchZoomRotate: true,
         trackResize: !isMobile, // Disable automatic resize only on mobile
+        // Cap render resolution on mobile: the translucent fill layers are fill-rate
+        // bound, and phones run at DPR 2-3. 1.5 cuts pixels ~2-4x with no visible loss
+        // on flat-color polygons. Desktop keeps full sharpness.
+        ...(isMobile
+          ? { pixelRatio: Math.min(window.devicePixelRatio || 1, 1.5) }
+          : {}),
         attributionControl: false,
         localIdeographFontFamily: 'sans-serif',
       });
