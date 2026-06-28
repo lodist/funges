@@ -240,6 +240,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           setZoom(map.current.getZoom());
         }
       });
+
+      // Re-evaluate which region tilesets are in view once movement settles, so
+      // off-screen regions stop loading tiles (keeps only the visible region live).
+      map.current.on('moveend', () => {
+        updateVisibleLayers();
+      });
     } catch (error) {
       console.error('Error initializing map:', error);
       setMapError(t('error.initFailed'));

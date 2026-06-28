@@ -94,6 +94,42 @@ export interface MapState {
 const LIGHT_STYLE = '/funges_style.json';
 const DARK_STYLE = '/funges_style_dark.json';
 
+// Region overlay/forecast tilesets are heavy; keeping all four live at once (even when
+// only one is in view) is what makes the map lag. We only show a region's layers when
+// its bbox intersects the viewport, so MapLibre stops loading tiles for off-screen
+// regions. Boxes are generous [west, south, east, north].
+const REGION_BBOX: Record<string, [number, number, number, number]> = {
+  ne: [-13, 53, 33, 72],
+  se: [-13, 34, 33, 55],
+  use: [-92, 24, -66, 50],
+  usw: [-125, 31, -92, 50],
+};
+
+// Extract the region code (ne/se/use/usw) from a layer id like `mushroom_ne`,
+// `walnut_se_numbers`, `chant_use_fc`. Returns null for non-region layers.
+function layerRegion(id: string): string | null {
+  const base = id.replace(/_(fc|numbers)$/, '');
+  for (const r of ['usw', 'use', 'ne', 'se']) {
+    if (base.endsWith(`_${r}`)) return r;
+  }
+  return null;
+}
+
+function regionInView(
+  r: string,
+  bounds: maplibregl.LngLatBounds
+): boolean {
+  const box = REGION_BBOX[r];
+  if (!box) return true; // unknown region: don't hide it
+  const [w, s, e, n] = box;
+  return (
+    bounds.getEast() >= w &&
+    bounds.getWest() <= e &&
+    bounds.getNorth() >= s &&
+    bounds.getSouth() <= n
+  );
+}
+
 export const useMapStore = create<MapState>()(
   devtools(
     (set, get) => ({
@@ -292,6 +328,8 @@ export const useMapStore = create<MapState>()(
           return;
         }
 
+        const bounds = mapRef.getBounds();
+
         layers.forEach(layer => {
           const id = layer.id;
 
@@ -302,9 +340,12 @@ export const useMapStore = create<MapState>()(
             ? id.startsWith(selectedSpecies)
             : false;
           const isNumbersLayer = id.includes('numbers');
+          // Off-screen regions stay hidden so their tilesets don't load (the lag fix).
+          const region = layerRegion(id);
+          const inView = region === null || regionInView(region, bounds);
 
           if (isSpeciesLayer && !id.endsWith('_fc')) {
-            if (isRelevantSpecies && activeDay === 0) {
+            if (isRelevantSpecies && activeDay === 0 && inView) {
               // Set visibility based on whether it's a numbers layer and the numbers toggle
               const visibility = isNumbersLayer
                 ? numbersLayersVisible
@@ -320,7 +361,7 @@ export const useMapStore = create<MapState>()(
           if (id.endsWith('_fc')) {
             const relevant =
               !!selectedSpecies && id.startsWith(`${selectedSpecies}_`);
-            if (relevant && activeDay > 0) {
+            if (relevant && activeDay > 0 && inView) {
               const frac = activeDay / (FORECAST_DAYS - 1);
               const current = mapRef.getPaintProperty(id, 'fill-color') as unknown[];
               if (Array.isArray(current)) {
