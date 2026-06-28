@@ -643,6 +643,7 @@ def build_mbtiles_from_geojson(geojson_path: Path, mbtiles_path: Path, layer_nam
         "--force",
         "--no-tile-size-limit" if keep_all else "--drop-densest-as-needed",
         "--simplification=4",
+        "-d10",  # ~600m coord grid at z6: ~half the vertices/tile -> smaller per-tile payloads, faster loads
         "-l", layer_name,
         str(geojson_path),
     ]
