@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { getSpeciesOptions, type SpeciesOption } from '@/data/species';
+import { setForecastFraction, FORECAST_DAYS } from '@/lib/forecast';
 
 export interface MapViewport {
   latitude: number;
@@ -45,6 +46,7 @@ export interface MapState {
   // Layer visibility
   darkLayersVisible: boolean;
   numbersLayersVisible: boolean;
+  activeDay: number; // 0 = today; 1..6 = forecast
 
   // UI state
   isLoading: boolean;
@@ -78,6 +80,7 @@ export interface MapState {
   setSelectedSpecies: (species: string | null) => void;
   toggleDarkLayersVisibility: () => void;
   toggleNumbersLayersVisibility: () => void;
+  setActiveDay: (day: number) => void;
 
   // Map reference management
   setMapRef: (map: maplibregl.Map | null) => void;
@@ -90,6 +93,48 @@ export interface MapState {
 // the map (camera preserved from the store) and re-applies species visibility on swap.
 const LIGHT_STYLE = '/funges_style.json';
 const DARK_STYLE = '/funges_style_dark.json';
+
+// Region overlay/forecast tilesets are heavy; keeping all four live at once (even when
+// only one is in view) is what makes the map lag. We only show a region's layers when
+// its activation zone intersects the viewport, so MapLibre stops loading tiles for
+// off-screen regions.
+//
+// EU is split at lat 52 (NE/SE) so only the half in view loads. The US is treated as
+// ONE unit: USE/USW share the same combined bbox so they always activate together —
+// splitting them at a meridian made border states render as a weird seam. The US box
+// ends at -66° and EU starts at -25°, so the Atlantic gap still keeps the US and EU
+// groups from ever being active at the same time. Boxes are [west, south, east, north].
+const REGION_BBOX: Record<string, [number, number, number, number]> = {
+  ne: [-25, 52, 45, 71], // Europe, north of 52°
+  se: [-25, 28, 45, 52], // Europe, south of 52°
+  use: [-125, 24, -66, 50], // US (whole): USE+USW always load together
+  usw: [-125, 24, -66, 50],
+};
+
+// Extract the region code (ne/se/use/usw) from a layer id like `mushroom_ne`,
+// `walnut_se_numbers`, `chant_use_fc`. Returns null for non-region layers.
+function layerRegion(id: string): string | null {
+  const base = id.replace(/_(fc|numbers)$/, '');
+  for (const r of ['usw', 'use', 'ne', 'se']) {
+    if (base.endsWith(`_${r}`)) return r;
+  }
+  return null;
+}
+
+function regionInView(
+  r: string,
+  bounds: maplibregl.LngLatBounds
+): boolean {
+  const box = REGION_BBOX[r];
+  if (!box) return true; // unknown region: don't hide it
+  const [w, s, e, n] = box;
+  return (
+    bounds.getEast() >= w &&
+    bounds.getWest() <= e &&
+    bounds.getNorth() >= s &&
+    bounds.getSouth() <= n
+  );
+}
 
 export const useMapStore = create<MapState>()(
   devtools(
@@ -115,6 +160,7 @@ export const useMapStore = create<MapState>()(
       darkLayersVisible: localStorage.getItem('darkLayersVisible') === 'true',
       numbersLayersVisible:
         localStorage.getItem('numbersLayersVisible') === 'true',
+      activeDay: 0,
       isLoading: false,
       error: null,
       showUserLocation: true,
@@ -172,6 +218,11 @@ export const useMapStore = create<MapState>()(
           }, 0);
           return newState;
         }),
+      setActiveDay: (day: number) => {
+        set({ activeDay: day });
+        // Defer so state is committed before layers are re-evaluated (mirrors numbers toggle).
+        setTimeout(() => get().updateVisibleLayers(), 0);
+      },
 
       getUserLocation: (): Promise<GeolocationPosition> => {
         return new Promise((resolve, reject) => {
@@ -268,6 +319,7 @@ export const useMapStore = create<MapState>()(
           selectedSpecies,
           numbersLayersVisible,
           speciesOptions,
+          activeDay,
         } = get();
 
         if (!mapRef) {
@@ -282,7 +334,7 @@ export const useMapStore = create<MapState>()(
           return;
         }
 
-        const visibleLayerIds: string[] = [];
+        const bounds = mapRef.getBounds();
 
         layers.forEach(layer => {
           const id = layer.id;
@@ -294,9 +346,12 @@ export const useMapStore = create<MapState>()(
             ? id.startsWith(selectedSpecies)
             : false;
           const isNumbersLayer = id.includes('numbers');
+          // Off-screen regions stay hidden so their tilesets don't load (the lag fix).
+          const region = layerRegion(id);
+          const inView = region === null || regionInView(region, bounds);
 
-          if (isSpeciesLayer) {
-            if (isRelevantSpecies) {
+          if (isSpeciesLayer && !id.endsWith('_fc')) {
+            if (isRelevantSpecies && activeDay === 0 && inView) {
               // Set visibility based on whether it's a numbers layer and the numbers toggle
               const visibility = isNumbersLayer
                 ? numbersLayersVisible
@@ -304,20 +359,30 @@ export const useMapStore = create<MapState>()(
                   : 'none'
                 : 'visible';
               mapRef.setLayoutProperty(id, 'visibility', visibility);
-              console.debug(
-                `SHOWING layer: ${id} | isNumbers: ${isNumbersLayer} | visibility: ${visibility}`
-              );
-              if (visibility === 'visible') visibleLayerIds.push(id);
             } else {
               mapRef.setLayoutProperty(id, 'visibility', 'none');
-              console.debug(`HIDING unrelated species layer: ${id}`);
+            }
+          }
+
+          if (id.endsWith('_fc')) {
+            const relevant =
+              !!selectedSpecies && id.startsWith(`${selectedSpecies}_`);
+            if (relevant && activeDay > 0 && inView) {
+              const frac = activeDay / (FORECAST_DAYS - 1);
+              const current = mapRef.getPaintProperty(id, 'fill-color') as unknown[];
+              if (Array.isArray(current)) {
+                mapRef.setPaintProperty(
+                  id,
+                  'fill-color',
+                  setForecastFraction(current, selectedSpecies, frac)
+                );
+              }
+              mapRef.setLayoutProperty(id, 'visibility', 'visible');
+            } else {
+              mapRef.setLayoutProperty(id, 'visibility', 'none');
             }
           }
         });
-
-        console.debug('Species selected:', selectedSpecies);
-        console.debug('Numbers visible:', numbersLayersVisible);
-        console.debug('Final visible layers:', visibleLayerIds);
       },
       // ponytail: dark mode is a full style swap now; the correct style is chosen at
       // init and on toggle, so there are no per-layer ` dark` states to restore. No-op

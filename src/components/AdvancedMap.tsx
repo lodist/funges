@@ -3,6 +3,7 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Protocol } from 'pmtiles';
 import { useMapStore } from '@/store/mapStore';
+import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
 import { Card } from '@/components/ui/card';
 import {
   ChefHat,
@@ -23,6 +24,7 @@ import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import { motion } from 'framer-motion';
 import MapInfoCard from '@/components/MapInfoCard';
 import RouteToDishPanel from '@/components/RouteToDishPanel';
+import ForecastSlider from '@/components/ForecastSlider';
 import { useRecipesData } from '@/data/recipes';
 import {
   queryRouteDishData,
@@ -151,6 +153,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     updateVisibleLayers,
     restoreDarkLayersState,
     selectedSpecies,
+    activeDay,
   } = useMapStore();
   const routeStart = showUserLocation && userLocation ? userLocation : center;
   const routeRecipes = recipes.map(recipe => ({
@@ -186,6 +189,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         collectResourceTiming: false,
         touchZoomRotate: true,
         trackResize: !isMobile, // Disable automatic resize only on mobile
+        // Cap render resolution on mobile: the translucent fill layers are fill-rate
+        // bound, and phones run at DPR 2-3. 1.5 cuts pixels ~2-4x with no visible loss
+        // on flat-color polygons. Desktop keeps full sharpness.
+        ...(isMobile
+          ? { pixelRatio: Math.min(window.devicePixelRatio || 1, 1.5) }
+          : {}),
         attributionControl: false,
         localIdeographFontFamily: 'sans-serif',
       });
@@ -210,10 +219,15 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         }
       });
 
-      // Handle map errors
+      // The 'error' event fires for RECOVERABLE problems: a single tile failing, a
+      // transient cache/service-worker hiccup on a range request (ERR_CACHE_OPERATION_
+      // _NOT_SUPPORTED), a not-yet-built forecast tileset, etc. None of these should
+      // ever blank the working map — log and carry on. Genuine "cannot create the map"
+      // failures (e.g. WebGL unsupported) throw from the constructor and are handled by
+      // the try/catch below, which is the only path that shows the fallback screen.
       map.current.on('error', e => {
-        console.error('MapLibre error:', e);
-        setMapError(t('error.loadFailed'));
+        const sourceId = (e as unknown as { sourceId?: string }).sourceId;
+        console.warn('MapLibre error (non-fatal):', sourceId ?? '', e);
       });
 
       // Handle map move
@@ -223,6 +237,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           setCenter([center.lng, center.lat]);
           setZoom(map.current.getZoom());
         }
+      });
+
+      // Re-evaluate which region tilesets are in view once movement settles, so
+      // off-screen regions stop loading tiles (keeps only the visible region live).
+      map.current.on('moveend', () => {
+        updateVisibleLayers();
       });
     } catch (error) {
       console.error('Error initializing map:', error);
@@ -304,6 +324,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           start: routeInputs.routeStart,
           minScore: MIN_SCORE_DEFAULT,
           radiusKm: DEFAULT_RADIUS_KM,
+          frac: activeDay > 0 ? activeDay / (FORECAST_DAYS - 1) : 0,
         });
 
         setRouteDishResult(nextResult);
@@ -338,7 +359,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       clearScheduledCompute();
       mapInstance.off('move', scheduleRoutesComputation);
     };
-  }, [isRoutePanelOpen, mapLoaded, routeStart, tRecipes]);
+  }, [isRoutePanelOpen, mapLoaded, routeStart, tRecipes, activeDay]);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -557,6 +578,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
     const handleClick = (e: maplibregl.MapMouseEvent) => {
+      // Query whichever layer set is visible: today layers at day 0, forecast
+      // (_fc) layers on forecast days (the two are mutually exclusive by visibility).
       const layers =
         map.current
           ?.getStyle()
@@ -571,7 +594,21 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         layers,
       });
       if (features && features.length > 0) {
-        setSelectedFeature(features[0]);
+        const f = features[0];
+        // On forecast days, interpolate the feature's per-species scores to the
+        // active day so the modal shows day-appropriate values (not the d0/d6 props).
+        const feature =
+          activeDay > 0
+            ? ({
+                ...f,
+                geometry: f.geometry, // getter on MapGeoJSONFeature; spread drops it
+                properties: interpolateScores(
+                  f.properties || {},
+                  activeDay / (FORECAST_DAYS - 1)
+                ),
+              } as typeof f)
+            : f;
+        setSelectedFeature(feature);
         setIsModalFromLocateMe(false);
         setIsFeatureModalOpen(true);
       }
@@ -580,7 +617,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     return () => {
       map.current?.off('click', handleClick);
     };
-  }, [mapLoaded, selectedSpecies]);
+  }, [mapLoaded, selectedSpecies, activeDay]);
 
   // Handle user location
   const handleGetUserLocation = async () => {
@@ -619,6 +656,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 (selectedSpecies
                   ? id.startsWith(selectedSpecies)
                   : id.includes('_score')) &&
+                !id.endsWith('_fc') &&
                 map.current?.getLayoutProperty(id, 'visibility') === 'visible'
             ) || [];
 
@@ -917,7 +955,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
         {isMobile ? (
           <>
-            <div className='fixed left-4 right-4 bottom-24'>
+            <div className='fixed left-4 right-4 bottom-24 z-10 flex flex-col gap-2'>
+              <ForecastSlider />
               <MapInfoCard />
             </div>
             {isRoutePanelOpen && !isRouteAnimating ? (
@@ -945,7 +984,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </>
         ) : (
           <>
-            <div className='absolute bottom-2 left-2 z-10'>
+            <div className='absolute bottom-2 left-2 z-10 flex flex-col gap-2 md:w-96'>
+              <ForecastSlider />
               <MapInfoCard />
             </div>
             {isRoutePanelOpen && !isRouteAnimating ? (

@@ -34,7 +34,7 @@ describe('getRepresentativeLngLat', () => {
     expect(getRepresentativeLngLat(feature)).toEqual([5, 5]);
   });
 
-  it('returns bbox centroid for a Polygon', () => {
+  it('returns the centroid of a square Polygon', () => {
     const feature = makeFeature({
       type: 'Polygon',
       coordinates: [
@@ -48,6 +48,24 @@ describe('getRepresentativeLngLat', () => {
       ],
     });
     expect(getRepresentativeLngLat(feature)).toEqual([5, 5]);
+  });
+
+  it('returns the area centroid of a triangle (not the bbox centre)', () => {
+    // bbox centre would be [3, 3]; the true centroid is the vertex mean [2, 2].
+    const feature = makeFeature({
+      type: 'Polygon',
+      coordinates: [
+        [
+          [0, 0],
+          [6, 0],
+          [0, 6],
+          [0, 0],
+        ],
+      ],
+    });
+    const [lng, lat] = getRepresentativeLngLat(feature);
+    expect(lng).toBeCloseTo(2, 6);
+    expect(lat).toBeCloseTo(2, 6);
   });
 
   it('returns bbox centroid for a MultiLineString', () => {
@@ -67,30 +85,32 @@ describe('getRepresentativeLngLat', () => {
     expect(getRepresentativeLngLat(feature)).toEqual([5, 5]);
   });
 
-  it('returns bbox centroid for a MultiPolygon', () => {
+  it('returns the centroid of the largest part for a MultiPolygon', () => {
     const feature = makeFeature({
       type: 'MultiPolygon',
       coordinates: [
+        // larger part (6x6) -> its centroid [3, 3] wins
         [
           [
             [0, 0],
-            [4, 0],
-            [4, 4],
-            [0, 4],
+            [6, 0],
+            [6, 6],
+            [0, 6],
             [0, 0],
           ],
         ],
+        // smaller part (2x2)
         [
           [
-            [6, 6],
-            [10, 6],
+            [8, 8],
+            [10, 8],
             [10, 10],
-            [6, 10],
-            [6, 6],
+            [8, 10],
+            [8, 8],
           ],
         ],
       ],
     });
-    expect(getRepresentativeLngLat(feature)).toEqual([5, 5]);
+    expect(getRepresentativeLngLat(feature)).toEqual([3, 3]);
   });
 });

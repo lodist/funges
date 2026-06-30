@@ -191,6 +191,7 @@ df = load_weather_df(FILE_PATH)
 print("Weather data fetched successfully!")
 
 df['Date'] = pd.to_datetime(df['Date'])
+full_df = df.copy()  # forward window (today..+6) for the forecast tileset; today path collapses df below
 
 # Select TODAY's scores for each coordinate. The master now holds a 7-day forward
 # window (today..today+6); the map shows a single day, so we drop the future and take
@@ -300,6 +301,7 @@ transformer = Transformer.from_crs("EPSG:4326", _proj, always_xy=True)
 _xy_lonlat = np.array([(geom.x, geom.y) for geom in gdf.geometry], dtype=float)
 xy_m       = np.array([transformer.transform(x, y) for (x, y) in _xy_lonlat], dtype=float)
 tree       = cKDTree(xy_m)
+_canon_latlon = list(zip(gdf['Latitude'].round(3).to_numpy(), gdf['Longitude'].round(3).to_numpy()))  # forecast: align per-day point scores to xy_m order
 
 # --- 3) Precompute triangle centroids in meters (avoid repeated transforms) ---
 clipped_unique = clipped_tri_gdf.drop_duplicates(subset=["tri_id"])[["tri_id", "geometry"]]
@@ -435,6 +437,64 @@ def drop_z(geometry):
 
 # Apply the function to remove Z
 gdf_full['geometry'] = gdf_full['geometry'].apply(drop_z)
+_tri_geom = clipped_tri_gdf.drop_duplicates(subset=['tri_id']).set_index('tri_id')['geometry'].apply(drop_z)  # forecast: tri_id -> clean geometry
+
+
+# ---------- FORECAST SCORING (day-6 endpoint + unified keep-set) ----------
+# Anchored to the production "today" score so day 0 of the slider == the today tile
+# exactly; only the day-6 *delta* comes from the forward weather scoring. The union
+# keep-rule (max(today, d6) >= threshold for some species) drives BOTH tiles, so a
+# kept polygon is present in today AND forecast and never pops in/out.
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # repo backend/
+from maplayer_forecast import score_days, interp_props
+
+_score_cols_full = [c for c in gdf_full.columns if c.endswith('_score')]
+today_by_tri = gdf_full.set_index('tri_id')[_score_cols_full].to_dict('index')
+
+fwd_days = 7
+today_norm = pd.Timestamp(datetime.now()).normalize()
+full_df['Date'] = pd.to_datetime(full_df['Date'])
+fwd_dates = sorted(d for d in full_df['Date'].dt.normalize().unique() if d >= today_norm)[:fwd_days]
+if len(fwd_dates) < 2:
+    fwd_dates = sorted(full_df['Date'].dt.normalize().unique())[-fwd_days:]  # stale-master fallback
+print(f"Forecast window: {[str(pd.Timestamp(d).date()) for d in fwd_dates]}")
+
+# Per-day species arrays aligned to the points' order; only the two endpoints needed.
+canon_keys = _canon_latlon
+fwd = full_df.copy(); fwd['Date'] = fwd['Date'].dt.normalize()
+fwd['_lat'] = fwd['Latitude'].round(3); fwd['_lon'] = fwd['Longitude'].round(3)
+species_arrays_by_day = []
+for d in (fwd_dates[0], fwd_dates[-1]):
+    day_df = (fwd[fwd['Date'] == d]
+              .drop_duplicates(['_lat', '_lon'], keep='last')
+              .set_index(['_lat', '_lon']))
+    arrays = {}
+    for s in species_list:
+        col = f'{s}_score'
+        series = day_df[col] if col in day_df.columns else pd.Series(dtype=float)
+        arrays[s] = series.reindex(canon_keys).to_numpy(dtype=float)
+    species_arrays_by_day.append(arrays)
+
+per_tri = score_days(tree, xy_m, tri_centroids_m, valid_tris,
+                     tri_id_to_raster, species_validsets, species_arrays_by_day)
+
+# d0 = production today; d6 = today + (sd6 - sd0) (real forward delta, clamped 0..10).
+fc_props_by_tri, keep_ids = {}, set()
+for tid, today_row in today_by_tri.items():
+    today = {s: float(today_row.get(f'{s}_score', 0.0) or 0.0) for s in species_list}
+    sd = per_tri.get(tid)
+    if sd:
+        sd0, sd6 = sd[0], sd[-1]
+        d6 = {s: min(10.0, max(0.0, today[s] + (float(sd6.get(s, 0.0)) - float(sd0.get(s, 0.0)))))
+              for s in species_list}
+    else:
+        d6 = today  # un-forecastable triangle -> flat (stays put, never fades out)
+    props = interp_props(today, d6)
+    if props:
+        keep_ids.add(tid)
+        fc_props_by_tri[tid] = props
+print(f"Unified keep-set (today == forecast): {len(keep_ids)} triangles")
 
 
 def handle_geometry_collection(geometry):
@@ -470,15 +530,15 @@ gdf_full = gdf_full[~gdf_full['geometry'].isnull()]
 # Ensure GeoJSON structure compliance
 # Retain all species score columns
 score_columns = [col for col in gdf_full.columns if col.endswith('_score')]
-gdf_full = gdf_full[['geometry'] + score_columns]
+gdf_full = gdf_full[['geometry', 'tri_id'] + score_columns]  # tri_id kept to apply the unified keep-set
 
 
 # Calculate the bounding box of the entire dataset
 minx, miny, maxx, maxy = gdf_full.total_bounds
 
-# Step 1: Filter out polygons where all scores are below threshold
+# Step 1: Keep the unified set (today OR day-6 >= threshold); identical to the forecast tile.
 score_columns = [col for col in gdf_full.columns if col.endswith('_score')]
-filtered_gdf = gdf_full[~(gdf_full[score_columns] < 4).all(axis=1)]
+filtered_gdf = gdf_full[gdf_full['tri_id'].isin(keep_ids)].drop(columns=['tri_id'])
 
 # Step 2: Add dummy triangles for min/max color scale
 dummy_triangles = [
@@ -568,18 +628,22 @@ gdf = gdf[gdf.is_valid]
 
 geojson_local = json.loads(gdf.to_json())
 
-def build_mbtiles_from_geojson(geojson_path: Path, mbtiles_path: Path, layer_name: str) -> None:
+def build_mbtiles_from_geojson(geojson_path: Path, mbtiles_path: Path, layer_name: str,
+                               keep_all: bool = False) -> None:
     tippecanoe_path = shutil.which("tippecanoe")
     if tippecanoe_path is None:
         print("tippecanoe not found. MBTiles generation skipped.")
         return
+    # keep_all (forecast): never drop features, so forecast coverage >= today and a
+    # polygon can't vanish when sliding. Today keeps drop-densest to stay small.
     cmd = [
         tippecanoe_path,
         "-o", str(mbtiles_path),
-        "-zg",
+        "-z6",
         "--force",
-        "--drop-densest-as-needed",
-        "--extend-zooms-if-still-dropping",
+        "--no-tile-size-limit" if keep_all else "--drop-densest-as-needed",
+        "--simplification=4",
+        "-d10",  # ~600m coord grid at z6: ~half the vertices/tile -> smaller per-tile payloads, faster loads
         "-l", layer_name,
         str(geojson_path),
     ]
@@ -629,6 +693,47 @@ with tempfile.TemporaryDirectory() as tmpdir:
         pmtiles_path = Path(tmpdir) / f"{region_code}_mushroom_data.pmtiles"
         if convert_mbtiles_to_pmtiles(mbtiles_path, pmtiles_path):
             upload_mbtiles_to_r2(pmtiles_path, f"EU/SE/{region_code}_mushroom_data.pmtiles")
+
+    # ---------- FORECAST TILESET (two-point interp, same keep-set as today) ----------
+    # fc_props_by_tri was computed up front (production-today d0 + forward-delta d6);
+    # here we just attach geometry. Same triangles as the today tile -> never pops.
+    tri_geom = _tri_geom
+    fc_features, emitted_keys = [], set()
+    for tri_id, props in fc_props_by_tri.items():
+        if tri_id not in tri_geom.index:
+            continue
+        emitted_keys.update(props)
+        fc_features.append({'geometry': tri_geom.loc[tri_id], **props})
+
+    if fc_features:
+        fc_gdf = gpd.GeoDataFrame(fc_features, crs=gdf_full.crs)
+        # 0/10 colour-scale anchors per emitted key (mirror the today dummies)
+        minx, miny, maxx, maxy = fc_gdf.total_bounds
+        anchors = [
+            {'geometry': Polygon([(minx, -89.99), (maxx, -89.99), ((minx + maxx) / 2, -89.99)])},
+            {'geometry': Polygon([(minx, 89.99), (maxx, 89.99), ((minx + maxx) / 2, 89.99)])},
+        ]
+        for k in emitted_keys:
+            anchors[0][k] = 0
+            anchors[1][k] = 10
+        fc_gdf = pd.concat([fc_gdf, gpd.GeoDataFrame(anchors, crs=gdf_full.crs)], ignore_index=True)
+        fc_gdf['geometry'] = fc_gdf['geometry'].simplify(0.01, preserve_topology=True)  # match the today tile
+        fc_gdf = fc_gdf[fc_gdf.is_valid]
+
+        fc_geojson_path = Path(tmpdir) / f"{region_code}_forecast.geojson"
+        fc_mbtiles_path = Path(tmpdir) / f"{region_code}_forecast.mbtiles"
+        with open(fc_geojson_path, 'w', encoding='utf-8') as f:
+            json.dump(json.loads(fc_gdf.to_json()), f, ensure_ascii=False)
+        build_mbtiles_from_geojson(fc_geojson_path, fc_mbtiles_path, f"{region_code}_forecast", keep_all=True)
+        if fc_mbtiles_path.exists():
+            print(f"Forecast mbtiles: {fc_mbtiles_path.stat().st_size/1048576:.1f} MB "
+                  f"(today: {mbtiles_path.stat().st_size/1048576:.1f} MB)")
+            upload_mbtiles_to_r2(fc_mbtiles_path, f"EU/SE/{region_code}_forecast.mbtiles")
+            fc_pmtiles_path = Path(tmpdir) / f"{region_code}_forecast.pmtiles"
+            if convert_mbtiles_to_pmtiles(fc_mbtiles_path, fc_pmtiles_path):
+                upload_mbtiles_to_r2(fc_pmtiles_path, f"EU/SE/{region_code}_forecast.pmtiles")
+    else:
+        print("No forecast deltas above threshold — forecast tileset skipped this run.")
 
 print(f"✅ Processing & Upload Completed at {datetime.now()}")
 print(f"Script ended at {datetime.now()}")
