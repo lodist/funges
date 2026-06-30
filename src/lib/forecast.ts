@@ -21,7 +21,12 @@ export function setForecastFraction(
   const d0 = ['coalesce', ['get', `${species}_score`], 0];
   // Missing _d6 means "flat": fall back to d0 so un-forecastable polygons hold
   // their value instead of fading to 0. A stored _d6 (incl. 0) is a real decline.
-  const d6 = ['coalesce', ['get', `${species}_score_d6`], ['get', `${species}_score`], 0];
+  const d6 = [
+    'coalesce',
+    ['get', `${species}_score_d6`],
+    ['get', `${species}_score`],
+    0,
+  ];
   copy[2] = ['+', d0, ['*', frac, ['-', d6, d0]]];
   return copy;
 }

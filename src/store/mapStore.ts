@@ -121,10 +121,7 @@ function layerRegion(id: string): string | null {
   return null;
 }
 
-function regionInView(
-  r: string,
-  bounds: maplibregl.LngLatBounds
-): boolean {
+function regionInView(r: string, bounds: maplibregl.LngLatBounds): boolean {
   const box = REGION_BBOX[r];
   if (!box) return true; // unknown region: don't hide it
   const [w, s, e, n] = box;
@@ -369,7 +366,10 @@ export const useMapStore = create<MapState>()(
               !!selectedSpecies && id.startsWith(`${selectedSpecies}_`);
             if (relevant && activeDay > 0 && inView) {
               const frac = activeDay / (FORECAST_DAYS - 1);
-              const current = mapRef.getPaintProperty(id, 'fill-color') as unknown[];
+              const current = mapRef.getPaintProperty(
+                id,
+                'fill-color'
+              ) as unknown[];
               if (Array.isArray(current)) {
                 mapRef.setPaintProperty(
                   id,
