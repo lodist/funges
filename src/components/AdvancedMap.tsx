@@ -219,17 +219,15 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         }
       });
 
-      // Handle map errors
+      // The 'error' event fires for RECOVERABLE problems: a single tile failing, a
+      // transient cache/service-worker hiccup on a range request (ERR_CACHE_OPERATION_
+      // _NOT_SUPPORTED), a not-yet-built forecast tileset, etc. None of these should
+      // ever blank the working map — log and carry on. Genuine "cannot create the map"
+      // failures (e.g. WebGL unsupported) throw from the constructor and are handled by
+      // the try/catch below, which is the only path that shows the fallback screen.
       map.current.on('error', e => {
-        // Forecast overlays are optional + lazy: a missing/slow forecast tileset
-        // (e.g. a region not built yet) must NOT blank the whole map.
         const sourceId = (e as unknown as { sourceId?: string }).sourceId;
-        if (sourceId && sourceId.startsWith('forecast-')) {
-          console.warn('Forecast source issue (non-fatal):', sourceId);
-          return;
-        }
-        console.error('MapLibre error:', e);
-        setMapError(t('error.loadFailed'));
+        console.warn('MapLibre error (non-fatal):', sourceId ?? '', e);
       });
 
       // Handle map move
