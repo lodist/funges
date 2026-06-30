@@ -76,9 +76,21 @@ describe('queryRouteDishData', () => {
     const mapStub = {
       getStyle: () => ({
         layers: [
-          { id: 'mushroom_ne', source: 'overlay-ne', 'source-layer': 'ne_scores' },
-          { id: 'mushroom_ne_fc', source: 'forecast-ne', 'source-layer': 'ne_forecast' },
-          { id: 'mushroom_numbers_ne', source: 'overlay-ne', 'source-layer': 'ne_numbers' },
+          {
+            id: 'mushroom_ne',
+            source: 'overlay-ne',
+            'source-layer': 'ne_scores',
+          },
+          {
+            id: 'mushroom_ne_fc',
+            source: 'forecast-ne',
+            'source-layer': 'ne_forecast',
+          },
+          {
+            id: 'mushroom_numbers_ne',
+            source: 'overlay-ne',
+            'source-layer': 'ne_numbers',
+          },
         ],
       }),
       querySourceFeatures: () => [],
@@ -101,8 +113,16 @@ describe('queryRouteDishData', () => {
     const mapStub = {
       getStyle: () => ({
         layers: [
-          { id: 'mushroom_ne', source: 'overlay-ne', 'source-layer': 'ne_scores' },
-          { id: 'mushroom_ne_fc', source: 'forecast-ne', 'source-layer': 'ne_forecast' },
+          {
+            id: 'mushroom_ne',
+            source: 'overlay-ne',
+            'source-layer': 'ne_scores',
+          },
+          {
+            id: 'mushroom_ne_fc',
+            source: 'forecast-ne',
+            'source-layer': 'ne_forecast',
+          },
         ],
       }),
       // Both sources hold the same stop; only the _fc twin carries `_score_d6`.
