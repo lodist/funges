@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import {
   ChefHat,
   Hash,
+  Heart,
   List,
   Moon,
   MousePointerClick,
@@ -81,10 +82,21 @@ export default function OnboardingModal() {
             {t('onboarding.features.recipes')}
           </li>
         </ul>
-        <div className='mt-4 text-sm'>
-          <Link to='/instructions' className='underline text-primary'>
-            {t('onboarding.instructions')}
-          </Link>
+        <div className='mt-4 text-sm space-y-2'>
+          <div>
+            <Link to='/instructions' className='underline text-primary'>
+              {t('onboarding.instructions')}
+            </Link>
+          </div>
+          <div>
+            <Link
+              to='/support'
+              className='inline-flex items-center gap-1 font-medium text-[#7B2D3B] dark:text-[#B5566B] hover:underline'
+            >
+              <Heart className='h-3.5 w-3.5 fill-current' />
+              {t('onboarding.supportLink')}
+            </Link>
+          </div>
         </div>
         <DialogFooter>
           <Button onClick={() => handleOpenChange(false)}>

@@ -45,6 +45,16 @@ export default function PrivacyPolicyPage() {
             </div>
           </section>
 
+          {/* Location Data */}
+          <section className='bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm'>
+            <h2 className='text-xl font-semibold text-gray-900 dark:text-white mb-4'>
+              {t('location.title')}
+            </h2>
+            <p className='text-gray-700 dark:text-gray-300 leading-relaxed'>
+              {t('location.content')}
+            </p>
+          </section>
+
           {/* Your Rights */}
           <section className='bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm'>
             <h2 className='text-xl font-semibold text-gray-900 dark:text-white mb-4'>

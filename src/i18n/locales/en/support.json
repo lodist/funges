@@ -19,6 +19,10 @@
     "name": "Buy Me a Coffee",
     "description": "Support with Buy Me a Coffee"
   },
+  "github": {
+    "name": "Contribute on GitHub",
+    "description": "Help improve Fung.es by contributing code, reporting bugs, or suggesting features."
+  },
   "copyAddress": "Copy",
   "showQR": "QR",
   "copied": "Copied!",

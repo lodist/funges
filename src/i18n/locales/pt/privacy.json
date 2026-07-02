@@ -10,6 +10,10 @@
     "content": "Estamos comprometidos com os princípios de anonimato e proteção de dados. Este serviço não coleta, armazena ou processa nenhuma informação pessoal diretamente. Nossa proposta prioriza fornecer informações sem exigir dados em troca, refletindo nossa forte crença no valor do anonimato.",
     "cookiebot": "Para garantir ainda mais sua privacidade, utilizamos o Cookiebot em segundo plano para monitorar ativamente que nenhum serviço não estritamente necessário esteja em funcionamento. Verificações regulares e rigorosas são realizadas para garantir que os dados dos usuários não sejam compartilhados além do essencial para o funcionamento deste serviço."
   },
+  "location": {
+    "title": "Dados de Localização",
+    "content": "Para centralizar o mapa na sua posição e mostrar locais de coleta próximos, o aplicativo solicita acesso à localização do seu dispositivo. Essa localização é usada apenas no seu dispositivo para exibir o mapa e nunca é transmitida ou armazenada em nossos servidores. Você pode negar ou revogar essa permissão a qualquer momento nas configurações do navegador ou do dispositivo sem perder o acesso ao restante do aplicativo."
+  },
   "rights": {
     "title": "Seus Direitos",
     "intro": "Mesmo que este serviço não colete dados diretamente, você deve estar ciente dos seus direitos segundo a Lei Federal Suíça de Proteção de Dados (FADP) e o Regulamento Geral de Proteção de Dados (GDPR) ao interagir com serviços de terceiros:",
