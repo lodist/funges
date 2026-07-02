@@ -99,14 +99,16 @@ const DARK_STYLE = '/funges_style_dark.json';
 // its activation zone intersects the viewport, so MapLibre stops loading tiles for
 // off-screen regions.
 //
-// EU is split at lat 52 (NE/SE) so only the half in view loads. The US is treated as
-// ONE unit: USE/USW share the same combined bbox so they always activate together —
-// splitting them at a meridian made border states render as a weird seam. The US box
-// ends at -66° and EU starts at -25°, so the Atlantic gap still keeps the US and EU
-// groups from ever being active at the same time. Boxes are [west, south, east, north].
+// EU and US are each treated as ONE unit (both halves share the same combined bbox, so
+// they always activate together). We CAN'T split within a continent by any bbox line:
+// NE = British Isles + Nordics, SE = continental Europe, and they interleave by latitude
+// (London/NE at 51.5° sits above Paris/SE at 48.8°, while Berlin/SE at 52.5° sits above
+// London) — any lat/lon cut blanks half of one region's data. USE/USW overlap the same
+// way across the central US. The Atlantic gap (EU ends at 45°/starts at -25°, US spans
+// -125°..-66°) keeps EU and US from ever being active together. [west, south, east, north].
 const REGION_BBOX: Record<string, [number, number, number, number]> = {
-  ne: [-25, 52, 45, 71], // Europe, north of 52°
-  se: [-25, 28, 45, 52], // Europe, south of 52°
+  ne: [-25, 27, 45, 72], // EU (whole): NE+SE always load together
+  se: [-25, 27, 45, 72],
   use: [-125, 24, -66, 50], // US (whole): USE+USW always load together
   usw: [-125, 24, -66, 50],
 };
