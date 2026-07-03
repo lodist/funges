@@ -106,7 +106,7 @@ const DARK_STYLE = '/funges_style_dark.json';
 // London) — any lat/lon cut blanks half of one region's data. USE/USW overlap the same
 // way across the central US. The Atlantic gap (EU ends at 45°/starts at -25°, US spans
 // -125°..-66°) keeps EU and US from ever being active together. [west, south, east, north].
-const REGION_BBOX: Record<string, [number, number, number, number]> = {
+export const REGION_BBOX: Record<string, [number, number, number, number]> = {
   ne: [-25, 27, 45, 72], // EU (whole): NE+SE always load together
   se: [-25, 27, 45, 72],
   use: [-125, 24, -66, 50], // US (whole): USE+USW always load together

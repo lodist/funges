@@ -120,6 +120,46 @@ export default defineConfig({
               networkTimeoutSeconds: 10,
             },
           },
+          // Map style JSON — required to initialize the map. Cached on the
+          // online visit so a downloaded region can still render the map offline.
+          {
+            urlPattern: /funges_style(_dark)?\.json$/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'map-style-cache',
+              expiration: {
+                maxEntries: 4,
+                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days
+              },
+            },
+          },
+          // Map glyphs + sprites (Protomaps basemap assets, cross-origin) so
+          // labels/icons render offline for tiles that were viewed online.
+          {
+            urlPattern:
+              /^https:\/\/protomaps\.github\.io\/basemaps-assets\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'map-fonts-cache',
+              cacheableResponse: { statuses: [0, 200] },
+              expiration: {
+                maxEntries: 300,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+              },
+            },
+          },
+          // Data JSON (e.g. scores_metadata.json for the "last updated" label).
+          {
+            urlPattern: /\/data\/.*\.json$/i,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'data-json-cache',
+              expiration: {
+                maxEntries: 10,
+                maxAgeSeconds: 60 * 60 * 24, // 1 day
+              },
+            },
+          },
         ],
         // Offline fallback
         navigateFallback: 'index.html',

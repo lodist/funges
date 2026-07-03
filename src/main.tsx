@@ -5,6 +5,19 @@ import './index.css';
 import './i18n';
 import { initializeHtmlLocalization } from '@/lib/html-localization';
 import '@/lib/pwa';
+import { hydrateOfflineSources } from '@/lib/offlineCache';
+import { useOfflineStore } from '@/store/offlineStore';
+
+// Re-register any regions cached in a previous session before the map mounts.
+// Best-effort: if IndexedDB is unavailable (e.g. private browsing), the app
+// still runs fully online — offline maps just won't be available.
+hydrateOfflineSources()
+  .then(() => useOfflineStore.getState().refresh())
+  .catch(err => {
+    // Block body (not a bare console expression): vite-plugin-remove-console
+    // strips the statement in prod, leaving a valid empty block.
+    console.warn('Offline cache hydration skipped:', err);
+  });
 
 // Import Why Did You Render in development
 if (process.env.NODE_ENV === 'development') {

@@ -1,22 +1,23 @@
 {
   "title": "Offline Maps",
   "description": "Manage offline map data",
-  "offlineBanner": "You're offline — cached species will still load.",
+  "offlineBanner": "You're offline — downloaded regions still show their data, without the live base map underneath.",
   "storage": {
     "title": "Storage",
     "summary": "{{used}} MB / {{quota}} MB",
     "purge": "Purge expired now",
-    "ttl": "Caches expire after 14 days"
+    "ttl": "Downloads expire after 14 days"
   },
-  "species": {
-    "title": "Species",
-    "name": "Species",
+  "regions": {
+    "title": "Regions",
+    "name": "Region",
     "status": "Status",
-    "cached": "Cached",
-    "notCached": "Not cached",
-    "download": "Make available offline",
-    "remove": "Remove offline data",
-    "downloadAll": "Download all",
-    "removeAll": "Remove all"
+    "cachedOn": "Downloaded {{date}}",
+    "notCached": "Not downloaded",
+    "downloading": "Downloading...",
+    "download": "Download for offline",
+    "remove": "Remove",
+    "eu": "Europe",
+    "us": "United States"
   }
 }

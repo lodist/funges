@@ -2,22 +2,26 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { usePWA } from '@/hooks/use-pwa';
-import { useOfflineStore } from '@/store/offlineStore';
-import { useMapStore } from '@/store/mapStore';
+import { useOfflineStore, CONTINENTS } from '@/store/offlineStore';
 import { Button } from '@/components/ui/button';
+
+const QUOTA_MB = 500;
+const BYTES_PER_MB = 1024 * 1024;
 
 export default function OfflineMapsPage() {
   const { t } = useTranslation('offline');
   const { isOnline } = usePWA();
-  const { cachedSpecies, addSpecies, removeSpecies, clearAll, cacheQuota } =
+  const { cached, downloading, error, refresh, download, remove, purgeExpired } =
     useOfflineStore();
-  const { speciesOptions } = useMapStore();
-
-  const used = cachedSpecies.length * 10; // rough placeholder per species
 
   useEffect(() => {
-    // placeholder for future daily refresh logic or purge expired
-  }, []);
+    refresh();
+  }, [refresh]);
+
+  const usedMb = Math.round(
+    Object.values(cached).reduce((sum, info) => sum + (info?.sizeBytes ?? 0), 0) /
+      BYTES_PER_MB
+  );
 
   return (
     <>
@@ -35,48 +39,68 @@ export default function OfflineMapsPage() {
           </div>
         )}
 
+        {error && (
+          <div className='bg-red-100 text-red-800 px-4 py-2 rounded'>
+            {error}
+          </div>
+        )}
+
         <section className='space-y-2'>
           <h2 className='text-xl font-semibold'>{t('storage.title')}</h2>
-          <p>{t('storage.summary', { used, quota: cacheQuota })}</p>
-          <Button variant='outline' onClick={clearAll} className='mt-2'>
+          <p>{t('storage.summary', { used: usedMb, quota: QUOTA_MB })}</p>
+          <Button variant='outline' onClick={purgeExpired} className='mt-2'>
             {t('storage.purge')}
           </Button>
           <p className='text-sm text-muted-foreground'>{t('storage.ttl')}</p>
         </section>
 
         <section className='space-y-2'>
-          <h2 className='text-xl font-semibold'>{t('species.title')}</h2>
+          <h2 className='text-xl font-semibold'>{t('regions.title')}</h2>
           <div className='overflow-x-auto'>
             <table className='min-w-full divide-y divide-gray-200 text-sm'>
               <thead>
                 <tr>
-                  <th className='px-2 py-1 text-left'>{t('species.name')}</th>
-                  <th className='px-2 py-1 text-left'>{t('species.status')}</th>
+                  <th className='px-2 py-1 text-left'>{t('regions.name')}</th>
+                  <th className='px-2 py-1 text-left'>
+                    {t('regions.status')}
+                  </th>
                   <th className='px-2 py-1'></th>
                 </tr>
               </thead>
               <tbody className='divide-y divide-gray-200'>
-                {speciesOptions.map(s => {
-                  const cached = cachedSpecies.includes(s.code);
+                {CONTINENTS.map(continent => {
+                  const info = cached[continent];
+                  const isDownloading = Boolean(downloading[continent]);
                   return (
-                    <tr key={s.code} className='hover:bg-gray-50'>
+                    <tr key={continent} className='hover:bg-gray-50'>
+                      <td className='px-2 py-1'>{t(`regions.${continent}`)}</td>
                       <td className='px-2 py-1'>
-                        {s.emoji} {s.code}
+                        {isDownloading
+                          ? t('regions.downloading')
+                          : info
+                            ? t('regions.cachedOn', {
+                                date: new Date(
+                                  info.cachedAt
+                                ).toLocaleDateString(),
+                              })
+                            : t('regions.notCached')}
                       </td>
-                      <td className='px-2 py-1'>
-                        {cached ? t('species.cached') : t('species.notCached')}
-                      </td>
-                      <td className='px-2 py-1 text-right space-x-2'>
-                        {cached ? (
+                      <td className='px-2 py-1 text-right'>
+                        {info ? (
                           <Button
                             size='sm'
-                            onClick={() => removeSpecies(s.code)}
+                            disabled={isDownloading}
+                            onClick={() => remove(continent)}
                           >
-                            {t('species.remove')}
+                            {t('regions.remove')}
                           </Button>
                         ) : (
-                          <Button size='sm' onClick={() => addSpecies(s.code)}>
-                            {t('species.download')}
+                          <Button
+                            size='sm'
+                            disabled={isDownloading || !isOnline}
+                            onClick={() => download(continent)}
+                          >
+                            {t('regions.download')}
                           </Button>
                         )}
                       </td>
@@ -85,17 +109,6 @@ export default function OfflineMapsPage() {
                 })}
               </tbody>
             </table>
-          </div>
-          <div className='flex gap-2 mt-2'>
-            <Button
-              size='sm'
-              onClick={() => speciesOptions.forEach(s => addSpecies(s.code))}
-            >
-              {t('species.downloadAll')}
-            </Button>
-            <Button size='sm' variant='destructive' onClick={clearAll}>
-              {t('species.removeAll')}
-            </Button>
           </div>
         </section>
       </div>
