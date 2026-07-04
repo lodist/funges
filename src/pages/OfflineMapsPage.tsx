@@ -11,16 +11,25 @@ const BYTES_PER_MB = 1024 * 1024;
 export default function OfflineMapsPage() {
   const { t } = useTranslation('offline');
   const { isOnline } = usePWA();
-  const { cached, downloading, error, refresh, download, remove, purgeExpired } =
-    useOfflineStore();
+  const {
+    cached,
+    downloading,
+    error,
+    refresh,
+    download,
+    remove,
+    purgeExpired,
+  } = useOfflineStore();
 
   useEffect(() => {
     refresh();
   }, [refresh]);
 
   const usedMb = Math.round(
-    Object.values(cached).reduce((sum, info) => sum + (info?.sizeBytes ?? 0), 0) /
-      BYTES_PER_MB
+    Object.values(cached).reduce(
+      (sum, info) => sum + (info?.sizeBytes ?? 0),
+      0
+    ) / BYTES_PER_MB
   );
 
   return (
@@ -61,9 +70,7 @@ export default function OfflineMapsPage() {
               <thead>
                 <tr>
                   <th className='px-2 py-1 text-left'>{t('regions.name')}</th>
-                  <th className='px-2 py-1 text-left'>
-                    {t('regions.status')}
-                  </th>
+                  <th className='px-2 py-1 text-left'>{t('regions.status')}</th>
                   <th className='px-2 py-1'></th>
                 </tr>
               </thead>
