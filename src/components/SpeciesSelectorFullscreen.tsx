@@ -32,7 +32,11 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
     setSelectedSpecies,
     updateVisibleLayers,
   } = useMapStore();
-  const { cachedSpecies } = useOfflineStore();
+  const { cached } = useOfflineStore();
+  // ponytail: offline caching is per-continent (no per-species data files exist),
+  // so we can't tell which species a cached continent actually covers here —
+  // treat "any continent cached" as "species are available offline".
+  const hasAnyCachedRegion = Object.keys(cached).length > 0;
   const { isOnline } = usePWA();
   const navigate = useNavigate({ from: '/' });
   const isMobile = useIsMobile();
@@ -217,8 +221,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
           ) : (
             <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4'>
               {filteredSpecies.map((species, _index) => {
-                const disabled =
-                  !isOnline && !cachedSpecies.includes(species.code);
+                const disabled = !isOnline && !hasAnyCachedRegion;
                 const isSelected = selectedSpecies === species.code;
 
                 return (

@@ -78,6 +78,7 @@
       "recipes": "Ouvrez les recettes proches et tracez un itineraire vers chaque etape ingredient"
     },
     "instructions": "Lire les instructions complètes",
+    "supportLink": "Soutenir le projet",
     "dismiss": "Commencer l’exploration"
   },
   "updatedAt": "Mis à jour",

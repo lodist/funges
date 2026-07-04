@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { Protocol } from 'pmtiles';
-import { useMapStore } from '@/store/mapStore';
+import { protocol } from '@/lib/pmtiles-protocol';
+import { useMapStore, REGION_BBOX } from '@/store/mapStore';
+import { useOfflineStore, CONTINENTS } from '@/store/offlineStore';
+import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
 import { Card } from '@/components/ui/card';
 import {
@@ -32,9 +34,15 @@ import {
   type RouteDishResult,
 } from '@/lib/route-to-dish';
 
-// Register the pmtiles:// protocol so MapLibre can read PMTiles overlays from R2.
-// (MapLibre needs no access token.)
-maplibregl.addProtocol('pmtiles', new Protocol().tile);
+// Register the pmtiles:// protocol so MapLibre can read PMTiles overlays from
+// R2 (or, for a downloaded region, from the offline-cached instance already
+// added to this same `protocol` singleton — see pmtiles-protocol.ts).
+maplibregl.addProtocol('pmtiles', protocol.tile);
+
+const CONTINENT_BBOX = {
+  eu: REGION_BBOX.ne,
+  us: REGION_BBOX.use,
+};
 
 const ROUTE_SOURCE_ID = 'route-to-dish-line';
 const ROUTE_LAYER_ID = 'route-to-dish-line-layer';
@@ -155,6 +163,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     selectedSpecies,
     activeDay,
   } = useMapStore();
+  const { isOnline } = usePWA();
+  const { cached: cachedContinents } = useOfflineStore();
   const routeStart = showUserLocation && userLocation ? userLocation : center;
   const routeRecipes = recipes.map(recipe => ({
     id: recipe.id,
@@ -782,6 +792,45 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       markers.forEach(marker => marker.remove());
     };
   }, [foragingSpots, mapLoaded]);
+
+  // Offline fallback: the real basemap tiles are NetworkOnly (PMTiles range
+  // requests can't be cached), so when offline, show a static snapshot behind
+  // the (locally-cached) overlay/forecast vector layers for any downloaded
+  // continent. Georeferenced as an `image` source, so it pans/zooms with the
+  // map like any other layer within its own bbox.
+  useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+    const mapInstance = map.current;
+    const firstLayerId = mapInstance.getStyle()?.layers?.[0]?.id;
+
+    CONTINENTS.forEach(continent => {
+      const sourceId = `offline-basemap-${continent}`;
+      const layerId = `${sourceId}-layer`;
+      const shouldShow = !isOnline && Boolean(cachedContinents[continent]);
+      const exists = Boolean(mapInstance.getSource(sourceId));
+
+      if (shouldShow && !exists) {
+        const [west, south, east, north] = CONTINENT_BBOX[continent];
+        mapInstance.addSource(sourceId, {
+          type: 'image',
+          url: `${import.meta.env.BASE_URL}offline-snapshots/${continent}.png`,
+          coordinates: [
+            [west, north],
+            [east, north],
+            [east, south],
+            [west, south],
+          ],
+        });
+        mapInstance.addLayer(
+          { id: layerId, type: 'raster', source: sourceId },
+          firstLayerId
+        );
+      } else if (!shouldShow && exists) {
+        if (mapInstance.getLayer(layerId)) mapInstance.removeLayer(layerId);
+        mapInstance.removeSource(sourceId);
+      }
+    });
+  }, [mapLoaded, isOnline, cachedContinents]);
 
   if (mapError) {
     return (

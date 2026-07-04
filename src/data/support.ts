@@ -1,4 +1,4 @@
-import { Bitcoin, Coins, Coffee } from 'lucide-react';
+import { Bitcoin, Coins, Coffee, Github } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export interface SupportMethod {
@@ -56,6 +56,15 @@ export const SUPPORT_METHODS: SupportMethod[] = [
     url: 'https://buymeacoffee.com/lorisdisteq',
     type: 'platform',
     color: '#ffdd00',
+  },
+  {
+    id: 'github',
+    nameKey: 'github.name',
+    descriptionKey: 'github.description',
+    icon: Github,
+    url: 'https://github.com/lodist/funges',
+    type: 'platform',
+    color: '#24292f',
   },
 ];
 
