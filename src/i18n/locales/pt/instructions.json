@@ -80,6 +80,18 @@
         "source": "Fonte: U.S. Geological Survey (USGS), Multi-Resolution Land Characteristics (MRLC) Consortium",
         "citation": "Citação: U.S. Geological Survey. Annual NLCD (National Land Cover Database) - The next generation of land cover mapping. Fact Sheet 2025-3001."
       },
+      "eudem": {
+        "title": "4. EU-DEM (Modelo Digital de Elevação)",
+        "description": "Fornecido pelo Copernicus Land Monitoring Service (Agência Europeia do Ambiente), o EU-DEM v1.1 é um modelo digital de elevação pan-europeu com resolução de 25 metros. A altitude influencia a temperatura, a humidade e a distribuição dos habitats de cogumelos e plantas na paisagem.",
+        "source": "Fonte: Copernicus Land Monitoring Service, Agência Europeia do Ambiente (EEA)",
+        "citation": "Citação: European Environment Agency (2016). European Digital Elevation Model (EU-DEM), version 1.1. Copernicus Land Monitoring Service."
+      },
+      "hydrosheds": {
+        "title": "5. HydroSHEDS (Modelo de Elevação dos EUA)",
+        "description": "Desenvolvido pelo World Wildlife Fund (WWF) a partir da missão SRTM da NASA, o HydroSHEDS fornece um modelo digital de elevação hidrologicamente condicionado da América do Norte com resolução de ~90 metros (3 segundos de arco). Fornece dados de terreno e altitude para as áreas de coleta nos EUA, complementando o EU-DEM na Europa.",
+        "source": "Fonte: World Wildlife Fund (WWF), HydroSHEDS (derivado de NASA SRTM)",
+        "citation": "Citação: Lehner, B., Verdin, K., & Jarvis, A. (2008). New global hydrography derived from spaceborne elevation data. Eos, Transactions AGU, 89(10), 93-94."
+      },
       "additional": "Fontes adicionais como APIs meteorológicas, camadas de sensoriamento remoto e modelos de inclinação/orientação são integradas para melhorar continuamente a precisão das previsões."
     }
   }
