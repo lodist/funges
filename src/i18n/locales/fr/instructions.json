@@ -80,6 +80,12 @@
         "source": "Source : U.S. Geological Survey (USGS), Multi-Resolution Land Characteristics (MRLC) Consortium",
         "citation": "Citation : U.S. Geological Survey. Annual NLCD (National Land Cover Database) - The next generation of land cover mapping. Fact Sheet 2025-3001."
       },
+      "eudem": {
+        "title": "4. EU-DEM (Modèle Numérique de Terrain)",
+        "description": "Fourni par le Copernicus Land Monitoring Service (Agence européenne pour l'environnement), EU-DEM v1.1 est un modèle numérique de terrain paneuropéen à une résolution de 25 mètres. L'altitude influence la température, l'humidité et la répartition des habitats de champignons et de plantes dans le paysage.",
+        "source": "Source : Copernicus Land Monitoring Service, Agence européenne pour l'environnement (AEE)",
+        "citation": "Citation : European Environment Agency (2016). European Digital Elevation Model (EU-DEM), version 1.1. Copernicus Land Monitoring Service."
+      },
       "additional": "D'autres sources comme les API météorologiques, les couches de télédétection et les modèles de pente/orientation sont intégrées pour améliorer continuellement la précision des prédictions."
     }
   }

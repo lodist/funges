@@ -80,6 +80,12 @@
         "source": "Quelle: U.S. Geological Survey (USGS), Multi-Resolution Land Characteristics (MRLC) Consortium",
         "citation": "Zitat: U.S. Geological Survey. Annual NLCD (National Land Cover Database) - The next generation of land cover mapping. Fact Sheet 2025-3001."
       },
+      "eudem": {
+        "title": "4. EU-DEM (Digitales Höhenmodell)",
+        "description": "Bereitgestellt vom Copernicus Land Monitoring Service (Europäische Umweltagentur), ist EU-DEM v1.1 ein europaweites digitales Höhenmodell mit einer Auflösung von 25 Metern. Die Höhenlage beeinflusst Temperatur, Feuchtigkeit und die Verteilung von Pilz- und Pflanzenlebensräumen in der Landschaft.",
+        "source": "Quelle: Copernicus Land Monitoring Service, Europäische Umweltagentur (EEA)",
+        "citation": "Zitat: European Environment Agency (2016). European Digital Elevation Model (EU-DEM), version 1.1. Copernicus Land Monitoring Service."
+      },
       "additional": "Weitere Quellen wie Wetter-APIs, Fernerkundungsdaten und Hang-/Expositionsmodelle werden integriert, um die Prognosegenauigkeit kontinuierlich zu verbessern."
     }
   }
