@@ -86,6 +86,12 @@
         "source": "Quelle: Copernicus Land Monitoring Service, Europäische Umweltagentur (EEA)",
         "citation": "Zitat: European Environment Agency (2016). European Digital Elevation Model (EU-DEM), version 1.1. Copernicus Land Monitoring Service."
       },
+      "hydrosheds": {
+        "title": "5. HydroSHEDS (Höhenmodell USA)",
+        "description": "Entwickelt vom World Wildlife Fund (WWF) auf Basis der NASA-SRTM-Mission, bietet HydroSHEDS ein hydrologisch aufbereitetes digitales Höhenmodell Nordamerikas mit einer Auflösung von ca. 90 Metern (3 Bogensekunden). Es liefert Gelände- und Höhendaten für Sammelgebiete in den USA und ergänzt EU-DEM in Europa.",
+        "source": "Quelle: World Wildlife Fund (WWF), HydroSHEDS (abgeleitet von NASA SRTM)",
+        "citation": "Zitat: Lehner, B., Verdin, K., & Jarvis, A. (2008). New global hydrography derived from spaceborne elevation data. Eos, Transactions AGU, 89(10), 93-94."
+      },
       "additional": "Weitere Quellen wie Wetter-APIs, Fernerkundungsdaten und Hang-/Expositionsmodelle werden integriert, um die Prognosegenauigkeit kontinuierlich zu verbessern."
     }
   }

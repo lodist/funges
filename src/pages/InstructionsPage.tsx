@@ -332,6 +332,21 @@ export default function InstructionsPage() {
                     </p>
                   </div>
 
+                  <div className='p-4 rounded-lg bg-teal-50 dark:bg-teal-900/20'>
+                    <h5 className='font-semibold text-gray-900 dark:text-white mb-2'>
+                      {t('prediction.keyDatasets.hydrosheds.title')}
+                    </h5>
+                    <p className='text-gray-700 dark:text-gray-300 text-sm mb-2'>
+                      {t('prediction.keyDatasets.hydrosheds.description')}
+                    </p>
+                    <p className='text-gray-600 dark:text-gray-400 text-xs'>
+                      {t('prediction.keyDatasets.hydrosheds.source')}
+                    </p>
+                    <p className='text-gray-600 dark:text-gray-400 text-xs'>
+                      {t('prediction.keyDatasets.hydrosheds.citation')}
+                    </p>
+                  </div>
+
                   <p className='text-gray-700 dark:text-gray-300 text-sm'>
                     {t('prediction.keyDatasets.additional')}
                   </p>
