@@ -73,8 +73,8 @@ const REGION_FILES: Record<RegionId, { label: string; url: string }[]> = {
       url: `${R2}/EU/NE/NE_wilderness_data.geojson`,
     },
     {
-      label: 'Mushroom tiles (.mbtiles)',
-      url: `${R2}/EU/NE/ne_mushroom_data.mbtiles`,
+      label: 'Forecast tiles (.mbtiles)',
+      url: `${R2}/EU/NE/ne_forecast.mbtiles`,
     },
     { label: 'EU static info (.csv)', url: `${R2}/EU/EU_static_info.csv` },
   ],
@@ -105,8 +105,8 @@ const REGION_FILES: Record<RegionId, { label: string; url: string }[]> = {
       url: `${R2}/EU/SE/SE_wilderness_data.geojson`,
     },
     {
-      label: 'Mushroom tiles (.mbtiles)',
-      url: `${R2}/EU/SE/se_mushroom_data.mbtiles`,
+      label: 'Forecast tiles (.mbtiles)',
+      url: `${R2}/EU/SE/se_forecast.mbtiles`,
     },
     { label: 'EU static info (.csv)', url: `${R2}/EU/EU_static_info.csv` },
   ],
@@ -137,8 +137,8 @@ const REGION_FILES: Record<RegionId, { label: string; url: string }[]> = {
       url: `${R2}/USA/USE/USE_wilderness_data.geojson`,
     },
     {
-      label: 'Mushroom tiles (.mbtiles)',
-      url: `${R2}/USA/USE/use_mushroom_data.mbtiles`,
+      label: 'Forecast tiles (.mbtiles)',
+      url: `${R2}/USA/USE/use_forecast.mbtiles`,
     },
     { label: 'US static info (.csv)', url: `${R2}/USA/US_static_info.csv` },
   ],
@@ -169,8 +169,8 @@ const REGION_FILES: Record<RegionId, { label: string; url: string }[]> = {
       url: `${R2}/USA/USW/USW_wilderness_data.geojson`,
     },
     {
-      label: 'Mushroom tiles (.mbtiles)',
-      url: `${R2}/USA/USW/usw_mushroom_data.mbtiles`,
+      label: 'Forecast tiles (.mbtiles)',
+      url: `${R2}/USA/USW/usw_forecast.mbtiles`,
     },
     { label: 'US static info (.csv)', url: `${R2}/USA/US_static_info.csv` },
   ],

@@ -1,7 +1,11 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { getSpeciesOptions, type SpeciesOption } from '@/data/species';
-import { setForecastFraction, FORECAST_DAYS } from '@/lib/forecast';
+import {
+  setForecastFraction,
+  forecastNumberField,
+  FORECAST_DAYS,
+} from '@/lib/forecast';
 
 export interface MapViewport {
   latitude: number;
@@ -113,10 +117,10 @@ export const REGION_BBOX: Record<string, [number, number, number, number]> = {
   usw: [-125, 24, -66, 50],
 };
 
-// Extract the region code (ne/se/use/usw) from a layer id like `mushroom_ne`,
-// `walnut_se_numbers`, `chant_use_fc`. Returns null for non-region layers.
+// Extract the region code (ne/se/use/usw) from a layer id like `mushroom_ne` or
+// `walnut_se_numbers`. Returns null for non-region layers.
 function layerRegion(id: string): string | null {
-  const base = id.replace(/_(fc|numbers)$/, '');
+  const base = id.replace(/_numbers$/, '');
   for (const r of ['usw', 'use', 'ne', 'se']) {
     if (base.endsWith(`_${r}`)) return r;
   }
@@ -349,37 +353,52 @@ export const useMapStore = create<MapState>()(
           const region = layerRegion(id);
           const inView = region === null || regionInView(region, bounds);
 
-          if (isSpeciesLayer && !id.endsWith('_fc')) {
-            if (isRelevantSpecies && activeDay === 0 && inView) {
-              // Set visibility based on whether it's a numbers layer and the numbers toggle
-              const visibility = isNumbersLayer
-                ? numbersLayersVisible
-                  ? 'visible'
-                  : 'none'
-                : 'visible';
-              mapRef.setLayoutProperty(id, 'visibility', visibility);
-            } else {
-              mapRef.setLayoutProperty(id, 'visibility', 'none');
-            }
-          }
-
-          if (id.endsWith('_fc')) {
-            const relevant =
-              !!selectedSpecies && id.startsWith(`${selectedSpecies}_`);
-            if (relevant && activeDay > 0 && inView) {
+          // One tileset now: each species has a single fill + numbers layer, both reading
+          // the forecast tiles and both interpolated d0->d6 to the active day (frac 0 on
+          // day 0 == today's score exactly), so there's no source swap to glitch. Numbers
+          // render on every day too (interpolated), gated only by the numbers toggle.
+          if (isSpeciesLayer) {
+            if (selectedSpecies && isRelevantSpecies && inView) {
               const frac = activeDay / (FORECAST_DAYS - 1);
-              const current = mapRef.getPaintProperty(
-                id,
-                'fill-color'
-              ) as unknown[];
-              if (Array.isArray(current)) {
-                mapRef.setPaintProperty(
+              if (isNumbersLayer) {
+                if (numbersLayersVisible) {
+                  mapRef.setLayoutProperty(
+                    id,
+                    'text-field',
+                    forecastNumberField(selectedSpecies, frac)
+                  );
+                  // The badge colour is text-halo-color — the same score ramp as the
+                  // fill — so interpolate it to the active day too, or the digit shows
+                  // the forecast value on a today-coloured badge.
+                  const halo = mapRef.getPaintProperty(
+                    id,
+                    'text-halo-color'
+                  ) as unknown[];
+                  if (Array.isArray(halo)) {
+                    mapRef.setPaintProperty(
+                      id,
+                      'text-halo-color',
+                      setForecastFraction(halo, selectedSpecies, frac)
+                    );
+                  }
+                  mapRef.setLayoutProperty(id, 'visibility', 'visible');
+                } else {
+                  mapRef.setLayoutProperty(id, 'visibility', 'none');
+                }
+              } else {
+                const current = mapRef.getPaintProperty(
                   id,
-                  'fill-color',
-                  setForecastFraction(current, selectedSpecies, frac)
-                );
+                  'fill-color'
+                ) as unknown[];
+                if (Array.isArray(current)) {
+                  mapRef.setPaintProperty(
+                    id,
+                    'fill-color',
+                    setForecastFraction(current, selectedSpecies, frac)
+                  );
+                }
+                mapRef.setLayoutProperty(id, 'visibility', 'visible');
               }
-              mapRef.setLayoutProperty(id, 'visibility', 'visible');
             } else {
               mapRef.setLayoutProperty(id, 'visibility', 'none');
             }

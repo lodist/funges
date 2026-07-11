@@ -1,4 +1,5 @@
-// Forecast slider helpers. Day 0 = today (today tileset); days 1..6 = forecast tileset.
+// Forecast slider helpers. One tileset carries both endpoints per feature (`<sp>_score`
+// = today/d0, `<sp>_score_d6` = day 6); the slider interpolates between them, day 0 = d0.
 export const FORECAST_DAYS = 7;
 export const FORECAST_REGIONS = ['ne', 'se', 'use', 'usw'] as const;
 
@@ -12,23 +13,36 @@ export function forecastDayLabel(base: Date, dayIndex: number): string {
 /** Return a copy of a fill-color `interpolate` expression whose input is the
  *  linear interpolation between today (d0 = `<species>_score`) and day-6
  *  (`<species>_score_d6`) at `frac` in [0,1]. Missing props coalesce to 0. */
-export function setForecastFraction(
-  fillColor: unknown[],
-  species: string,
-  frac: number
-): unknown[] {
-  const copy = [...fillColor];
+/** d0->d6 interpolation VALUE expression at `frac` (frac 0 == d0/today). Missing _d6
+ *  falls back to d0 (flat) so un-forecastable polygons hold their value instead of
+ *  fading to 0; a stored _d6 (incl. 0) is a real decline. Missing d0 -> 0. */
+function forecastValue(species: string, frac: number): unknown[] {
   const d0 = ['coalesce', ['get', `${species}_score`], 0];
-  // Missing _d6 means "flat": fall back to d0 so un-forecastable polygons hold
-  // their value instead of fading to 0. A stored _d6 (incl. 0) is a real decline.
   const d6 = [
     'coalesce',
     ['get', `${species}_score_d6`],
     ['get', `${species}_score`],
     0,
   ];
-  copy[2] = ['+', d0, ['*', frac, ['-', d6, d0]]];
+  return ['+', d0, ['*', frac, ['-', d6, d0]]];
+}
+
+export function setForecastFraction(
+  fillColor: unknown[],
+  species: string,
+  frac: number
+): unknown[] {
+  const copy = [...fillColor];
+  copy[2] = forecastValue(species, frac);
   return copy;
+}
+
+/** Numbers-layer `text-field` showing the score interpolated to `frac`: empty below 1,
+ *  else the floored value. Rebuilt from the canonical template (matches the committed
+ *  style), so re-applying each render is idempotent — no reading of the live field. */
+export function forecastNumberField(species: string, frac: number): unknown[] {
+  const v = forecastValue(species, frac);
+  return ['case', ['<', v, 1], '', ['to-string', ['floor', v]]];
 }
 
 /** Interpolate a forecast feature's per-species scores to slider fraction `frac`.
@@ -52,9 +66,4 @@ export function interpolateScores(
     }
   }
   return out;
-}
-
-/** Forecast layer id for a species code + region (matches add-forecast-layers.cjs). */
-export function forecastLayerId(speciesCode: string, region: string): string {
-  return `${speciesCode}_${region}_fc`;
 }
