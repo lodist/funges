@@ -7,14 +7,7 @@ import { useOfflineStore, CONTINENTS } from '@/store/offlineStore';
 import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
 import { Card } from '@/components/ui/card';
-import {
-  ChefHat,
-  Loader2,
-  MapPin,
-  Navigation,
-  Moon,
-  Info,
-} from 'lucide-react';
+import { ChefHat, Loader2, MapPin, Navigation, Moon, Info } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useUIStore } from '@/store/uiStore';
 import SpeciesSelector from './SpeciesSelector';
