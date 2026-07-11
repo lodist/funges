@@ -13,7 +13,6 @@ import {
   MapPin,
   Navigation,
   Moon,
-  Hash,
   Info,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -156,7 +155,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     setShowUserLocation,
     foragingSpots,
     toggleDarkLayersVisibility,
-    toggleNumbersLayersVisibility,
     setMapRef,
     updateVisibleLayers,
     restoreDarkLayersState,
@@ -588,8 +586,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
     const handleClick = (e: maplibregl.MapMouseEvent) => {
-      // Query whichever layer set is visible: today layers at day 0, forecast
-      // (_fc) layers on forecast days (the two are mutually exclusive by visibility).
+      // One fill layer per species is visible for the selected species on every day;
+      // its feature carries the endpoints we interpolate below for forecast days.
       const layers =
         map.current
           ?.getStyle()
@@ -605,19 +603,17 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       });
       if (features && features.length > 0) {
         const f = features[0];
-        // On forecast days, interpolate the feature's per-species scores to the
-        // active day so the modal shows day-appropriate values (not the d0/d6 props).
-        const feature =
-          activeDay > 0
-            ? ({
-                ...f,
-                geometry: f.geometry, // getter on MapGeoJSONFeature; spread drops it
-                properties: interpolateScores(
-                  f.properties || {},
-                  activeDay / (FORECAST_DAYS - 1)
-                ),
-              } as typeof f)
-            : f;
+        // Each feature carries both endpoints (`_score` = d0/today, `_score_d6` = day 6).
+        // Always fold them to the active day's value (frac 0 on day 0 == today exactly) so
+        // the modal shows day-appropriate scores and never the raw `_score_d6` keys.
+        const feature = {
+          ...f,
+          geometry: f.geometry, // getter on MapGeoJSONFeature; spread drops it
+          properties: interpolateScores(
+            f.properties || {},
+            activeDay / (FORECAST_DAYS - 1)
+          ),
+        } as typeof f;
         setSelectedFeature(feature);
         setIsModalFromLocateMe(false);
         setIsFeatureModalOpen(true);
@@ -666,7 +662,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 (selectedSpecies
                   ? id.startsWith(selectedSpecies)
                   : id.includes('_score')) &&
-                !id.endsWith('_fc') &&
                 map.current?.getLayoutProperty(id, 'visibility') === 'visible'
             ) || [];
 
@@ -912,27 +907,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             ) : (
               <Navigation className='h-4 w-4' />
             )}
-          </motion.button>
-
-          {/* Numbers layers toggle */}
-          <motion.button
-            onClick={toggleNumbersLayersVisibility}
-            className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
-              numbersLayersVisible
-                ? 'bg-green-100 border-green-300 text-green-800'
-                : 'bg-secondary border-input'
-            }`}
-            title={t('toggleNumbers')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
-          >
-            <Hash className='h-4 w-4' />
           </motion.button>
 
           {/* Dark mode toggle */}

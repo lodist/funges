@@ -133,8 +133,7 @@ const ROUTE_TO_DISH_SPECIES_IDS = new Set(
 
 function getSpeciesLayerGroups(
   map: MapLibreMap,
-  speciesIds: string[],
-  forecast: boolean
+  speciesIds: string[]
 ): RouteDishSourceGroup[] {
   const layers = map.getStyle().layers ?? [];
   const groups = new Map<string, RouteDishSourceGroup>();
@@ -142,9 +141,8 @@ function getSpeciesLayerGroups(
   layers.forEach(layer => {
     // Numbers/label layers also start with the species id but aren't score polygons.
     if (layer.id.includes('numbers')) return;
-    // Day 0 reads today's polygons; a forecast day reads the `_fc` twins (they carry
-    // both the d0 score and the `_score_d6` value needed to interpolate).
-    if (forecast ? !layer.id.endsWith('_fc') : layer.id.endsWith('_fc')) return;
+    // One fill layer per species now serves every day: it carries both the d0 score and
+    // the `_score_d6` value getScoreForSpecies interpolates with `frac`.
 
     const matchedSpecies = speciesIds.filter(speciesId =>
       layer.id.startsWith(speciesId)
@@ -398,7 +396,7 @@ export function queryRouteDishData(params: {
         .filter(speciesId => ROUTE_TO_DISH_SPECIES_IDS.has(speciesId))
     )
   );
-  const sourceGroups = getSpeciesLayerGroups(map, speciesIds, frac > 0);
+  const sourceGroups = getSpeciesLayerGroups(map, speciesIds);
   const candidateStopMap = new Map<string, RouteDishCandidateStop>();
 
   sourceGroups.forEach(group => {

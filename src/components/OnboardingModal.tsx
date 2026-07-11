@@ -3,7 +3,6 @@ import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import {
   ChefHat,
-  Hash,
   Heart,
   List,
   Moon,
@@ -64,10 +63,6 @@ export default function OnboardingModal() {
           <li className='flex items-center gap-2'>
             <Navigation className='h-4 w-4' />
             {t('onboarding.features.locate')}
-          </li>
-          <li className='flex items-center gap-2'>
-            <Hash className='h-4 w-4' />
-            {t('onboarding.features.numbers')}
           </li>
           <li className='flex items-center gap-2'>
             <Moon className='h-4 w-4' />
