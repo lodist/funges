@@ -1,7 +1,11 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { getSpeciesOptions, type SpeciesOption } from '@/data/species';
-import { setForecastFraction, FORECAST_DAYS } from '@/lib/forecast';
+import {
+  setForecastFraction,
+  forecastNumberField,
+  FORECAST_DAYS,
+} from '@/lib/forecast';
 
 export interface MapViewport {
   latitude: number;
@@ -350,19 +354,24 @@ export const useMapStore = create<MapState>()(
           const inView = region === null || regionInView(region, bounds);
 
           // One tileset now: each species has a single fill + numbers layer, both reading
-          // the forecast tiles. The fill renders every day via the d0->d6 interpolation
-          // (frac 0 on day 0 == today's score exactly), so there's no source swap to
-          // glitch. Numbers stay today-only — there are no per-day labels.
+          // the forecast tiles and both interpolated d0->d6 to the active day (frac 0 on
+          // day 0 == today's score exactly), so there's no source swap to glitch. Numbers
+          // render on every day too (interpolated), gated only by the numbers toggle.
           if (isSpeciesLayer) {
             if (selectedSpecies && isRelevantSpecies && inView) {
+              const frac = activeDay / (FORECAST_DAYS - 1);
               if (isNumbersLayer) {
-                mapRef.setLayoutProperty(
-                  id,
-                  'visibility',
-                  activeDay === 0 && numbersLayersVisible ? 'visible' : 'none'
-                );
+                if (numbersLayersVisible) {
+                  mapRef.setLayoutProperty(
+                    id,
+                    'text-field',
+                    forecastNumberField(selectedSpecies, frac)
+                  );
+                  mapRef.setLayoutProperty(id, 'visibility', 'visible');
+                } else {
+                  mapRef.setLayoutProperty(id, 'visibility', 'none');
+                }
               } else {
-                const frac = activeDay / (FORECAST_DAYS - 1);
                 const current = mapRef.getPaintProperty(
                   id,
                   'fill-color'
