@@ -1,4 +1,5 @@
-// Forecast slider helpers. Day 0 = today (today tileset); days 1..6 = forecast tileset.
+// Forecast slider helpers. One tileset carries both endpoints per feature (`<sp>_score`
+// = today/d0, `<sp>_score_d6` = day 6); the slider interpolates between them, day 0 = d0.
 export const FORECAST_DAYS = 7;
 export const FORECAST_REGIONS = ['ne', 'se', 'use', 'usw'] as const;
 
@@ -52,9 +53,4 @@ export function interpolateScores(
     }
   }
   return out;
-}
-
-/** Forecast layer id for a species code + region (matches add-forecast-layers.cjs). */
-export function forecastLayerId(speciesCode: string, region: string): string {
-  return `${speciesCode}_${region}_fc`;
 }

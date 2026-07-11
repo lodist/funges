@@ -113,10 +113,10 @@ export const REGION_BBOX: Record<string, [number, number, number, number]> = {
   usw: [-125, 24, -66, 50],
 };
 
-// Extract the region code (ne/se/use/usw) from a layer id like `mushroom_ne`,
-// `walnut_se_numbers`, `chant_use_fc`. Returns null for non-region layers.
+// Extract the region code (ne/se/use/usw) from a layer id like `mushroom_ne` or
+// `walnut_se_numbers`. Returns null for non-region layers.
 function layerRegion(id: string): string | null {
-  const base = id.replace(/_(fc|numbers)$/, '');
+  const base = id.replace(/_numbers$/, '');
   for (const r of ['usw', 'use', 'ne', 'se']) {
     if (base.endsWith(`_${r}`)) return r;
   }
@@ -349,37 +349,33 @@ export const useMapStore = create<MapState>()(
           const region = layerRegion(id);
           const inView = region === null || regionInView(region, bounds);
 
-          if (isSpeciesLayer && !id.endsWith('_fc')) {
-            if (isRelevantSpecies && activeDay === 0 && inView) {
-              // Set visibility based on whether it's a numbers layer and the numbers toggle
-              const visibility = isNumbersLayer
-                ? numbersLayersVisible
-                  ? 'visible'
-                  : 'none'
-                : 'visible';
-              mapRef.setLayoutProperty(id, 'visibility', visibility);
-            } else {
-              mapRef.setLayoutProperty(id, 'visibility', 'none');
-            }
-          }
-
-          if (id.endsWith('_fc')) {
-            const relevant =
-              !!selectedSpecies && id.startsWith(`${selectedSpecies}_`);
-            if (relevant && activeDay > 0 && inView) {
-              const frac = activeDay / (FORECAST_DAYS - 1);
-              const current = mapRef.getPaintProperty(
-                id,
-                'fill-color'
-              ) as unknown[];
-              if (Array.isArray(current)) {
-                mapRef.setPaintProperty(
+          // One tileset now: each species has a single fill + numbers layer, both reading
+          // the forecast tiles. The fill renders every day via the d0->d6 interpolation
+          // (frac 0 on day 0 == today's score exactly), so there's no source swap to
+          // glitch. Numbers stay today-only — there are no per-day labels.
+          if (isSpeciesLayer) {
+            if (selectedSpecies && isRelevantSpecies && inView) {
+              if (isNumbersLayer) {
+                mapRef.setLayoutProperty(
                   id,
-                  'fill-color',
-                  setForecastFraction(current, selectedSpecies, frac)
+                  'visibility',
+                  activeDay === 0 && numbersLayersVisible ? 'visible' : 'none'
                 );
+              } else {
+                const frac = activeDay / (FORECAST_DAYS - 1);
+                const current = mapRef.getPaintProperty(
+                  id,
+                  'fill-color'
+                ) as unknown[];
+                if (Array.isArray(current)) {
+                  mapRef.setPaintProperty(
+                    id,
+                    'fill-color',
+                    setForecastFraction(current, selectedSpecies, frac)
+                  );
+                }
+                mapRef.setLayoutProperty(id, 'visibility', 'visible');
               }
-              mapRef.setLayoutProperty(id, 'visibility', 'visible');
             } else {
               mapRef.setLayoutProperty(id, 'visibility', 'none');
             }

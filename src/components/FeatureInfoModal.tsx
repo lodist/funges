@@ -75,9 +75,10 @@ export default function FeatureInfoModal({
     return key;
   };
 
-  // Get species entries with scores, filtered and sorted
+  // Get species entries with scores, filtered and sorted. `_score_d6` is the forecast
+  // day-6 endpoint (folded into its base `_score` before display) — never a species row.
   const speciesEntries = Object.entries(props)
-    .filter(([, value]) => value !== 0)
+    .filter(([key, value]) => value !== 0 && !key.endsWith('_score_d6'))
     .map(([key, value]) => {
       const cleanKey = key.replace('_score', '');
       const speciesData = SPECIES_DATA.find(species => species.id === cleanKey);

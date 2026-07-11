@@ -7,19 +7,13 @@ export const CONTINENTS: ContinentId[] = ['eu', 'us'];
 
 const R2 = 'https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev';
 
-// Each continent's presence/forecast data lives in region-pair PMTiles files
-// (NE+SE share the EU bbox, USE+USW share the US bbox — see mapStore's
-// REGION_BBOX). There's no per-species file, so caching is continent-wide.
+// Each continent's presence+forecast data lives in one PMTiles file per region
+// (NE+SE share the EU bbox, USE+USW share the US bbox — see mapStore's REGION_BBOX).
+// The single forecast tileset carries both today (d0) and the slider, so it's the
+// only file to cache. There's no per-species file, so caching is continent-wide.
 const CONTINENT_URLS: Record<ContinentId, string[]> = {
-  eu: [
-    `${R2}/EU/NE/ne_mushroom_data.pmtiles`,
-    `${R2}/EU/SE/se_mushroom_data.pmtiles`,
-    `${R2}/EU/NE/ne_forecast.pmtiles`,
-    `${R2}/EU/SE/se_forecast.pmtiles`,
-  ],
+  eu: [`${R2}/EU/NE/ne_forecast.pmtiles`, `${R2}/EU/SE/se_forecast.pmtiles`],
   us: [
-    `${R2}/USA/USE/use_mushroom_data.pmtiles`,
-    `${R2}/USA/USW/usw_mushroom_data.pmtiles`,
     `${R2}/USA/USE/use_forecast.pmtiles`,
     `${R2}/USA/USW/usw_forecast.pmtiles`,
   ],

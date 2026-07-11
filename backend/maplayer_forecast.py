@@ -90,8 +90,10 @@ def score_days(tree, xy_m, tri_centroids_m, valid_tris, tri_id_to_raster,
             for species, vset in species_validsets.items():
                 if tri_rv not in vset:
                     continue
-                v = _combine_topk(arrays[species][idxs], neigh_w)
-                day_scores[species] = 0.0 if not np.isfinite(v) else v
+                # Keep NaN (don't coerce to 0): the caller must tell "no forward data for
+                # this day/neighbourhood" apart from a real 0 score, and hold today flat
+                # instead of fading the polygon to zero (whole-region collapse otherwise).
+                day_scores[species] = _combine_topk(arrays[species][idxs], neigh_w)
             per_day.append(day_scores)
         out[tri_id] = per_day
     return out

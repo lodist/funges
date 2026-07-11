@@ -60,33 +60,17 @@
     },
     "overlay-ne": {
       "type": "vector",
-      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/ne_mushroom_data.pmtiles"
+      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/ne_forecast.pmtiles"
     },
     "overlay-se": {
       "type": "vector",
-      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/se_mushroom_data.pmtiles"
+      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/se_forecast.pmtiles"
     },
     "overlay-use": {
       "type": "vector",
-      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/use_mushroom_data.pmtiles"
-    },
-    "overlay-usw": {
-      "type": "vector",
-      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/usw_mushroom_data.pmtiles"
-    },
-    "forecast-ne": {
-      "type": "vector",
-      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/ne_forecast.pmtiles"
-    },
-    "forecast-se": {
-      "type": "vector",
-      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/se_forecast.pmtiles"
-    },
-    "forecast-use": {
-      "type": "vector",
       "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/use_forecast.pmtiles"
     },
-    "forecast-usw": {
+    "overlay-usw": {
       "type": "vector",
       "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/usw_forecast.pmtiles"
     }
@@ -1286,7 +1270,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1333,7 +1317,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1380,7 +1364,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1427,7 +1411,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1474,7 +1458,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1521,7 +1505,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1568,7 +1552,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1615,7 +1599,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1662,7 +1646,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1709,7 +1693,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1756,7 +1740,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1803,7 +1787,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1850,7 +1834,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1897,7 +1881,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1944,7 +1928,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1991,7 +1975,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2038,7 +2022,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2085,7 +2069,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2132,7 +2116,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2179,7 +2163,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2226,7 +2210,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2273,7 +2257,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2320,7 +2304,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2367,7 +2351,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2414,7 +2398,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2461,7 +2445,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2508,7 +2492,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2555,7 +2539,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2602,7 +2586,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2649,7 +2633,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2696,7 +2680,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2743,7 +2727,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2790,7 +2774,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2837,7 +2821,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2884,7 +2868,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2931,7 +2915,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2978,7 +2962,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3025,7 +3009,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3072,7 +3056,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3119,7 +3103,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3166,7 +3150,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3213,7 +3197,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3260,7 +3244,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3307,7 +3291,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3354,7 +3338,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3401,7 +3385,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3448,7 +3432,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3495,7 +3479,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3542,7 +3526,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3589,7 +3573,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3636,7 +3620,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3683,7 +3667,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3730,7 +3714,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3777,7 +3761,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3824,7 +3808,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3871,7 +3855,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3918,7 +3902,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3965,7 +3949,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4012,7 +3996,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4059,7 +4043,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4106,7 +4090,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4153,7 +4137,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4200,7 +4184,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4247,7 +4231,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4294,7 +4278,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4341,7 +4325,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4388,7 +4372,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4435,7 +4419,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4482,7 +4466,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4529,7 +4513,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4576,7 +4560,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4623,7 +4607,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4670,7 +4654,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4717,7 +4701,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4764,7 +4748,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4811,7 +4795,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4858,7 +4842,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4905,7 +4889,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4952,7 +4936,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4999,7 +4983,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -5046,7 +5030,7 @@
         "fill-antialias": false
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores"
+      "source-layer": "ne_forecast"
     },
     {
       "id": "mushroom_se",
@@ -5090,7 +5074,7 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_scores"
+      "source-layer": "se_forecast"
     },
     {
       "id": "mushroom_use",
@@ -5134,7 +5118,7 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_scores"
+      "source-layer": "use_forecast"
     },
     {
       "id": "mushroom_usw",
@@ -5178,7 +5162,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores"
+      "source-layer": "usw_forecast"
     },
     {
       "id": "walnut_ne_numbers",
@@ -5222,7 +5206,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -5295,7 +5279,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -5368,7 +5352,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -5441,7 +5425,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -5514,7 +5498,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -5587,7 +5571,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -5660,7 +5644,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -5733,7 +5717,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -5806,7 +5790,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -5879,7 +5863,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -5952,7 +5936,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6025,7 +6009,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6098,7 +6082,7 @@
         ]
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6171,7 +6155,7 @@
         ]
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6244,7 +6228,7 @@
         ]
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6317,7 +6301,7 @@
         ]
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6390,7 +6374,7 @@
         ]
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6463,7 +6447,7 @@
         ]
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6536,7 +6520,7 @@
         ]
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6609,7 +6593,7 @@
         ]
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6682,7 +6666,7 @@
         ]
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6755,7 +6739,7 @@
         ]
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6828,7 +6812,7 @@
         ]
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6901,7 +6885,7 @@
         ]
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -6974,7 +6958,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7047,7 +7031,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7120,7 +7104,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7193,7 +7177,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7266,7 +7250,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7339,7 +7323,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7412,7 +7396,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7485,7 +7469,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7558,7 +7542,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7631,7 +7615,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7704,7 +7688,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7777,7 +7761,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7850,7 +7834,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7923,7 +7907,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -7996,7 +7980,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8069,7 +8053,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8142,7 +8126,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8215,7 +8199,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8288,7 +8272,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8361,7 +8345,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8434,7 +8418,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8507,7 +8491,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8580,7 +8564,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8653,7 +8637,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8726,7 +8710,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8799,7 +8783,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8872,7 +8856,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -8945,7 +8929,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9018,7 +9002,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9091,7 +9075,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9164,7 +9148,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9237,7 +9221,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9310,7 +9294,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9383,7 +9367,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9456,7 +9440,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9529,7 +9513,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9602,7 +9586,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9675,7 +9659,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9748,7 +9732,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9821,7 +9805,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9894,7 +9878,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -9967,7 +9951,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10040,7 +10024,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10113,7 +10097,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10186,7 +10170,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10259,7 +10243,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10332,7 +10316,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10405,7 +10389,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10478,7 +10462,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10551,7 +10535,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10624,7 +10608,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10697,7 +10681,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10770,7 +10754,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10843,7 +10827,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10916,7 +10900,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -10989,7 +10973,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -11062,7 +11046,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-ne",
-      "source-layer": "ne_scores",
+      "source-layer": "ne_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -11135,7 +11119,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-se",
-      "source-layer": "se_scores",
+      "source-layer": "se_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -11208,7 +11192,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-use",
-      "source-layer": "use_scores",
+      "source-layer": "use_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -11281,7 +11265,7 @@
         "text-halo-blur": 2
       },
       "source": "overlay-usw",
-      "source-layer": "usw_scores",
+      "source-layer": "usw_forecast",
       "layout": {
         "text-font": [
           "Noto Sans Medium"
@@ -19589,3954 +19573,6 @@
         "text-halo-blur": 0.35,
         "text-halo-color": "rgba(245, 226, 163, 0.94)",
         "text-halo-width": 2.4
-      }
-    },
-    {
-      "id": "walnut_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "walnut_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.16)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "walnut_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "walnut_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "walnut_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "walnut_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "walnut_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "walnut_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "truffle_b_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "truffle_b_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "truffle_b_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "truffle_b_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "truffle_b_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "truffle_b_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "truffle_b_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "truffle_b_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "strawberry_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "strawberry_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "strawberry_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "strawberry_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "strawberry_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "strawberry_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "strawberry_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "strawberry_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "st_george_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "st_george_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "st_george_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "st_george_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "st_george_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "st_george_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "st_george_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "st_george_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "sorrel_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "sorrel_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "sorrel_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "sorrel_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.2)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "sorrel_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "sorrel_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "sorrel_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "sorrel_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.2)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "raspberry_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "raspberry_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "raspberry_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "raspberry_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "raspberry_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "raspberry_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.16)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "raspberry_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "raspberry_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "parasol_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "parasol_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "parasol_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "parasol_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "parasol_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "parasol_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "parasol_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "parasol_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "nettle_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "nettle_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "nettle_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "nettle_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "nettle_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "nettle_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "nettle_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "nettle_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "morel_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "morel_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "morel_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "morel_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "morel_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "morel_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "morel_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "morel_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "masterwort_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "masterwort_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.16)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "masterwort_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "masterwort_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.16)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "masterwort_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "masterwort_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "masterwort_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "masterwort_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.16)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "lingonb_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "lingonb_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "lingonb_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "lingonb_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "lingonb_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "lingonb_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "lingonb_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "lingonb_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "garlic_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "garlic_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "garlic_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "garlic_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "garlic_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "garlic_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "garlic_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "garlic_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "dandelion_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "dandelion_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "dandelion_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "dandelion_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "dandelion_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "dandelion_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "dandelion_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "dandelion_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chickweed_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chickweed_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chickweed_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chickweed_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.16)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chickweed_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chickweed_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chickweed_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chickweed_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.16)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chestnut_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chestnut_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chestnut_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chestnut_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chestnut_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chestnut_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chestnut_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chestnut_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chant_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chant_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chant_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chant_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chant_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chant_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chant_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chant_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "black_chant_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "black_chant_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "black_chant_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "black_chant_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "black_chant_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "black_chant_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "black_chant_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "black_chant_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "asparagus_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "asparagus_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "asparagus_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "asparagus_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "asparagus_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "asparagus_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "asparagus_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "asparagus_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "artichoke_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "artichoke_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "artichoke_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "artichoke_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "artichoke_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "artichoke_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "artichoke_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "artichoke_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "amaranth_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "amaranth_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "amaranth_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "amaranth_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "amaranth_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "amaranth_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "amaranth_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "amaranth_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "mushroom_ne_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "mushroom_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "mushroom_se_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "mushroom_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "mushroom_use_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "mushroom_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "mushroom_usw_fc",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "mushroom_score"
-          ],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "forecast-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
       }
     }
   ],

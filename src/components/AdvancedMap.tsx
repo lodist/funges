@@ -588,8 +588,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
     const handleClick = (e: maplibregl.MapMouseEvent) => {
-      // Query whichever layer set is visible: today layers at day 0, forecast
-      // (_fc) layers on forecast days (the two are mutually exclusive by visibility).
+      // One fill layer per species is visible for the selected species on every day;
+      // its feature carries the endpoints we interpolate below for forecast days.
       const layers =
         map.current
           ?.getStyle()
@@ -605,19 +605,17 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       });
       if (features && features.length > 0) {
         const f = features[0];
-        // On forecast days, interpolate the feature's per-species scores to the
-        // active day so the modal shows day-appropriate values (not the d0/d6 props).
-        const feature =
-          activeDay > 0
-            ? ({
-                ...f,
-                geometry: f.geometry, // getter on MapGeoJSONFeature; spread drops it
-                properties: interpolateScores(
-                  f.properties || {},
-                  activeDay / (FORECAST_DAYS - 1)
-                ),
-              } as typeof f)
-            : f;
+        // Each feature carries both endpoints (`_score` = d0/today, `_score_d6` = day 6).
+        // Always fold them to the active day's value (frac 0 on day 0 == today exactly) so
+        // the modal shows day-appropriate scores and never the raw `_score_d6` keys.
+        const feature = {
+          ...f,
+          geometry: f.geometry, // getter on MapGeoJSONFeature; spread drops it
+          properties: interpolateScores(
+            f.properties || {},
+            activeDay / (FORECAST_DAYS - 1)
+          ),
+        } as typeof f;
         setSelectedFeature(feature);
         setIsModalFromLocateMe(false);
         setIsFeatureModalOpen(true);
@@ -666,7 +664,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 (selectedSpecies
                   ? id.startsWith(selectedSpecies)
                   : id.includes('_score')) &&
-                !id.endsWith('_fc') &&
                 map.current?.getLayoutProperty(id, 'visibility') === 'visible'
             ) || [];
 
