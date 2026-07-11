@@ -161,8 +161,10 @@ export const useMapStore = create<MapState>()(
         // This will be programmatically generated from speciesOptions and species.json
       },
       darkLayersVisible: localStorage.getItem('darkLayersVisible') === 'true',
-      numbersLayersVisible:
-        localStorage.getItem('numbersLayersVisible') === 'true',
+      // ponytail: numbers layer temporarily disabled (glyph flood janks the map). The
+      // toggle button + instruction entries are removed but the layers/logic stay wired;
+      // re-enable by restoring the button and this localStorage read.
+      numbersLayersVisible: false,
       activeDay: 0,
       isLoading: false,
       error: null,
