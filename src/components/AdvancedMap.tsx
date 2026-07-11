@@ -13,7 +13,6 @@ import {
   MapPin,
   Navigation,
   Moon,
-  Hash,
   Info,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -156,7 +155,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     setShowUserLocation,
     foragingSpots,
     toggleDarkLayersVisibility,
-    toggleNumbersLayersVisibility,
     setMapRef,
     updateVisibleLayers,
     restoreDarkLayersState,
@@ -909,27 +907,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             ) : (
               <Navigation className='h-4 w-4' />
             )}
-          </motion.button>
-
-          {/* Numbers layers toggle */}
-          <motion.button
-            onClick={toggleNumbersLayersVisibility}
-            className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
-              numbersLayersVisible
-                ? 'bg-green-100 border-green-300 text-green-800'
-                : 'bg-secondary border-input'
-            }`}
-            title={t('toggleNumbers')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
-          >
-            <Hash className='h-4 w-4' />
           </motion.button>
 
           {/* Dark mode toggle */}

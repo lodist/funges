@@ -6,7 +6,6 @@ import {
   Map,
   Navigation,
   Moon,
-  Hash,
   ChefHat,
   Globe,
   Thermometer,
@@ -37,7 +36,6 @@ export default function InstructionsPage() {
       color: 'text-purple-600',
     },
     { icon: Moon, text: t('functions.theme'), color: 'text-gray-600' },
-    { icon: Hash, text: t('functions.numbers'), color: 'text-orange-600' },
   ];
 
   const variables = [
