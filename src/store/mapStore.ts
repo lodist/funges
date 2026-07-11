@@ -367,6 +367,20 @@ export const useMapStore = create<MapState>()(
                     'text-field',
                     forecastNumberField(selectedSpecies, frac)
                   );
+                  // The badge colour is text-halo-color — the same score ramp as the
+                  // fill — so interpolate it to the active day too, or the digit shows
+                  // the forecast value on a today-coloured badge.
+                  const halo = mapRef.getPaintProperty(
+                    id,
+                    'text-halo-color'
+                  ) as unknown[];
+                  if (Array.isArray(halo)) {
+                    mapRef.setPaintProperty(
+                      id,
+                      'text-halo-color',
+                      setForecastFraction(halo, selectedSpecies, frac)
+                    );
+                  }
                   mapRef.setLayoutProperty(id, 'visibility', 'visible');
                 } else {
                   mapRef.setLayoutProperty(id, 'visibility', 'none');
