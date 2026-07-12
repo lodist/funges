@@ -27,7 +27,8 @@ POSITRON = dict(
 )
 DARKMATTER = dict(
     name="Funges Dark Matter",
-    ocean="#0c0f11", land="#111314", green="#161c14",
+    # green=None -> no vegetation tint; Dark Matter is monochrome (Positron keeps its green)
+    ocean="#0c0f11", land="#111314", green=None,
     water="#0c0f11", waterway="#1b2327",
     boundary_country="#2d2d2d", boundary_region="#232323",
     road_major="#2e2e2e", road_medium="#242424", road_minor="#1c1c1c",
@@ -75,15 +76,19 @@ def basemap(p):
                    "protected_area", "park", "grass", "meadow", "scrub",
                    "grassland"]
 
+    green_layer = [{
+        "id": "landuse_green", "type": "fill", "source": "aws",
+        "source-layer": "landuse",
+        "filter": ["all", poly, ["match", ["get", "kind"], green_kinds, True, False]],
+        "paint": {"fill-color": p["green"], "fill-opacity": 0.6},
+    }] if p.get("green") else []
+
     return [
         {"id": "background", "type": "background",
          "paint": {"background-color": p["ocean"]}},
         {"id": "earth", "type": "fill", "source": "aws", "source-layer": "earth",
          "filter": poly, "paint": {"fill-color": p["land"]}},
-        {"id": "landuse_green", "type": "fill", "source": "aws",
-         "source-layer": "landuse",
-         "filter": ["all", poly, ["match", ["get", "kind"], green_kinds, True, False]],
-         "paint": {"fill-color": p["green"], "fill-opacity": 0.6}},
+        *green_layer,
         {"id": "water", "type": "fill", "source": "aws", "source-layer": "water",
          "filter": poly, "paint": {"fill-color": p["water"]}},
         line("waterway", "water", lstr, p["waterway"],

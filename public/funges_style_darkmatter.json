@@ -76,47 +76,6 @@
       }
     },
     {
-      "id": "landuse_green",
-      "type": "fill",
-      "source": "aws",
-      "source-layer": "landuse",
-      "filter": [
-        "all",
-        [
-          "==",
-          [
-            "geometry-type"
-          ],
-          "Polygon"
-        ],
-        [
-          "match",
-          [
-            "get",
-            "kind"
-          ],
-          [
-            "forest",
-            "wood",
-            "nature_reserve",
-            "national_park",
-            "protected_area",
-            "park",
-            "grass",
-            "meadow",
-            "scrub",
-            "grassland"
-          ],
-          true,
-          false
-        ]
-      ],
-      "paint": {
-        "fill-color": "#161c14",
-        "fill-opacity": 0.6
-      }
-    },
-    {
       "id": "water",
       "type": "fill",
       "source": "aws",
