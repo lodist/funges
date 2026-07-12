@@ -22,7 +22,9 @@ POSITRON = dict(
     water="#c9d5d9", waterway="#b7c4c9",
     boundary_country="#b0b0b0", boundary_region="#cbcbcb",
     road_major="#e4e4e0", road_medium="#eaeae7", road_minor="#efefec",
-    label="#5c5f63", label_halo="#fbfbf9", water_label="#7d94a3",
+    # near-charcoal text + white halo so names stay legible over the light-tan
+    # forecast polygons (medium grey washed out over them)
+    label="#33373b", label_halo="#ffffff", water_label="#6d8595",
     sprite="https://protomaps.github.io/basemaps-assets/sprites/v4/light",
 )
 DARKMATTER = dict(
@@ -66,7 +68,7 @@ def basemap(p):
             "id": id_, "type": "symbol", "source": "aws", "source-layer": sl,
             "minzoom": minz, "filter": filt, "layout": layout,
             "paint": {"text-color": color, "text-halo-color": halo,
-                      "text-halo-width": 1.2},
+                      "text-halo-width": 1.6},
         }
 
     poly = ["==", ["geometry-type"], "Polygon"]
