@@ -14,7 +14,7 @@
     "title": "Funções:",
     "recipes": "Exibe receitas proximas e rotas para as paradas de ingredientes",
     "location": "Centraliza o mapa na localização do usuário",
-    "theme": "Alterna entre modo claro e escuro",
+    "theme": "Alterne entre 4 estilos de mapa: Claro, Escuro, Positron, Dark Matter",
     "numbers": "Exibe classificação numérica"
   },
   "mapInteraction": {

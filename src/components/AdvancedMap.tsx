@@ -147,7 +147,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     setUserLocationError,
     setShowUserLocation,
     foragingSpots,
-    toggleDarkLayersVisibility,
+    cycleMapStyle,
     setMapRef,
     updateVisibleLayers,
     restoreDarkLayersState,
@@ -902,9 +902,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             )}
           </motion.button>
 
-          {/* Dark mode toggle */}
+          {/* Map style cycle (light → dark → Positron → Dark Matter) */}
           <motion.button
-            onClick={toggleDarkLayersVisibility}
+            onClick={cycleMapStyle}
             className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
               darkLayersVisible
                 ? 'bg-gray-100 border-gray-300 text-gray-800'
