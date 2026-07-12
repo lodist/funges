@@ -48,7 +48,8 @@ export interface MapState {
   speciesDisplayMap: Record<string, string>;
 
   // Layer visibility
-  darkLayersVisible: boolean;
+  darkLayersVisible: boolean; // true when the active style is a dark one
+  mapStyleIndex: number; // index into MAP_STYLES (cycled by the style button)
   numbersLayersVisible: boolean;
   activeDay: number; // 0 = today; 1..6 = forecast
 
@@ -82,7 +83,7 @@ export interface MapState {
 
   // Species selection actions
   setSelectedSpecies: (species: string | null) => void;
-  toggleDarkLayersVisibility: () => void;
+  cycleMapStyle: () => void;
   toggleNumbersLayersVisibility: () => void;
   setActiveDay: (day: number) => void;
 
@@ -92,11 +93,26 @@ export interface MapState {
   restoreDarkLayersState: () => void;
 }
 
-// Dark mode swaps the whole style — Protomaps basemap has no per-layer ` dark` variant.
-// Both styles carry the same overlay layers; AdvancedMap's [mapStyle] effect recreates
-// the map (camera preserved from the store) and re-applies species visibility on swap.
-const LIGHT_STYLE = '/funges_style.json';
-const DARK_STYLE = '/funges_style_dark.json';
+// The map-style button cycles these 4 whole styles — Protomaps basemap has no
+// per-layer ` dark` variant. All 4 carry the SAME overlay/species layers (only the
+// basemap differs); AdvancedMap's [mapStyle] effect recreates the map (camera
+// preserved from the store) and re-applies species visibility on swap.
+// Regenerate positron/darkmatter via scripts/make_carto_styles.py.
+const MAP_STYLES = [
+  '/funges_style.json', // 0 light (olive)
+  '/funges_style_dark.json', // 1 dark
+  '/funges_style_positron.json', // 2 Positron
+  '/funges_style_darkmatter.json', // 3 Dark Matter
+];
+const DARK_STYLE_INDEXES = new Set([1, 3]); // drives the button's dark styling
+function readStyleIndex(): number {
+  const saved = Number(localStorage.getItem('mapStyleIndex'));
+  if (Number.isInteger(saved) && saved >= 0 && saved < MAP_STYLES.length) {
+    return saved;
+  }
+  // Back-compat with the old light/dark boolean.
+  return localStorage.getItem('darkLayersVisible') === 'true' ? 1 : 0;
+}
 
 // Region overlay/forecast tilesets are heavy; keeping all four live at once (even when
 // only one is in view) is what makes the map lag. We only show a region's layers when
@@ -147,10 +163,8 @@ export const useMapStore = create<MapState>()(
       zoom: 3.5,
       bearing: 0,
       pitch: 0,
-      mapStyle:
-        localStorage.getItem('darkLayersVisible') === 'true'
-          ? DARK_STYLE
-          : LIGHT_STYLE, // self-hosted from public/; regenerate via scripts/add-overlay-to-style.cjs then re-copy
+      mapStyle: MAP_STYLES[readStyleIndex()], // self-hosted from public/
+      mapStyleIndex: readStyleIndex(),
       userLocation: null,
       userLocationError: null,
       foragingSpots: [],
@@ -160,7 +174,7 @@ export const useMapStore = create<MapState>()(
       speciesDisplayMap: {
         // This will be programmatically generated from speciesOptions and species.json
       },
-      darkLayersVisible: localStorage.getItem('darkLayersVisible') === 'true',
+      darkLayersVisible: DARK_STYLE_INDEXES.has(readStyleIndex()),
       // ponytail: numbers layer temporarily disabled (glyph flood janks the map). The
       // toggle button + instruction entries are removed but the layers/logic stay wired;
       // re-enable by restoring the button and this localStorage read.
@@ -196,14 +210,15 @@ export const useMapStore = create<MapState>()(
         set({ selectedSpecies });
       },
 
-      toggleDarkLayersVisibility: () =>
+      cycleMapStyle: () =>
         set(state => {
-          const darkLayersVisible = !state.darkLayersVisible;
-          localStorage.setItem('darkLayersVisible', String(darkLayersVisible));
+          const mapStyleIndex = (state.mapStyleIndex + 1) % MAP_STYLES.length;
+          localStorage.setItem('mapStyleIndex', String(mapStyleIndex));
           // Swap the style URL; the [mapStyle] effect in AdvancedMap reloads the map.
           return {
-            darkLayersVisible,
-            mapStyle: darkLayersVisible ? DARK_STYLE : LIGHT_STYLE,
+            mapStyleIndex,
+            mapStyle: MAP_STYLES[mapStyleIndex],
+            darkLayersVisible: DARK_STYLE_INDEXES.has(mapStyleIndex),
           };
         }),
       toggleNumbersLayersVisibility: () =>

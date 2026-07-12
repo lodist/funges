@@ -58,7 +58,7 @@
   },
   "getLocation": "Obtener mi ubicación",
   "toggleNumbers": "Mostrar números",
-  "toggleDarkMode": "Cambiar a modo oscuro",
+  "toggleDarkMode": "Cambiar estilo de mapa",
   "showOnboarding": "Mostrar instrucciones",
   "dataFreshnessTooltip": "Datos actualizados diariamente",
   "featureInfo": {
@@ -73,7 +73,7 @@
       "species": "Elige una especie con el selector",
       "locate": "Centra el mapa en tu ubicación",
       "numbers": "Muestra u oculta el índice numérico",
-      "theme": "Cambia entre estilos de mapa claro y oscuro",
+      "theme": "Alterna entre 4 estilos de mapa: Claro, Oscuro, Positron, Dark Matter",
       "zones": "Toca una zona para ver la lista de especies",
       "recipes": "Abre recetas cercanas y traza una ruta hasta cada parada de ingredientes"
     },

@@ -147,7 +147,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     setUserLocationError,
     setShowUserLocation,
     foragingSpots,
-    toggleDarkLayersVisibility,
+    cycleMapStyle,
     setMapRef,
     updateVisibleLayers,
     restoreDarkLayersState,
@@ -255,6 +255,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         map.current.remove();
         map.current = null;
       }
+      // The new map instance starts unloaded. Resetting this makes mapLoaded go
+      // false->true when the new map fires 'load', which re-runs every
+      // [mapLoaded]-gated effect (route source/layer, offline sources, markers)
+      // against the NEW instance. Without this, a style swap leaves mapLoaded
+      // stuck true, those effects never re-run, and e.g. the route line is never
+      // re-added to the new map — drawing a route shows markers but no line.
+      setMapLoaded(false);
+      setMapRef(null);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mapStyle]);
@@ -902,9 +910,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             )}
           </motion.button>
 
-          {/* Dark mode toggle */}
+          {/* Map style cycle (light → dark → Positron → Dark Matter) */}
           <motion.button
-            onClick={toggleDarkLayersVisibility}
+            onClick={cycleMapStyle}
             className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
               darkLayersVisible
                 ? 'bg-gray-100 border-gray-300 text-gray-800'

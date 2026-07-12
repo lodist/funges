@@ -14,7 +14,7 @@
     "title": "Funzioni:",
     "recipes": "Mostra ricette vicine e percorsi verso le tappe degli ingredienti",
     "location": "Centra la Mappa sulla Posizione dell'Utente",
-    "theme": "Passa tra Modalità Chiara e Scura",
+    "theme": "Scorri tra 4 stili di mappa: Chiaro, Scuro, Positron, Dark Matter",
     "numbers": "Mostra Valutazione Numerica"
   },
   "mapInteraction": {

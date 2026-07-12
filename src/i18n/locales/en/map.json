@@ -57,7 +57,7 @@
   },
   "getLocation": "Get My Location",
   "toggleNumbers": "Toggle Numbers",
-  "toggleDarkMode": "Toggle Dark Mode",
+  "toggleDarkMode": "Change map style",
   "showOnboarding": "Show onboarding",
   "dataFreshnessTooltip": "Data refreshed daily",
   "featureInfo": {
@@ -72,7 +72,7 @@
       "species": "Choose a species with the selector",
       "locate": "Center the map on your location",
       "numbers": "Show or hide the numeric index",
-      "theme": "Switch between dark and light map styles",
+      "theme": "Cycle through 4 map styles: Light, Dark, Positron, Dark Matter",
       "zones": "Tap a zone to view its species list",
       "recipes": "Open nearby recipes and draw a route to each ingredient stop"
     },
