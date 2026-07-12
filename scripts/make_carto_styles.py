@@ -158,7 +158,15 @@ def build(theme, out):
     style["sprite"] = theme["sprite"]
     style["metadata"] = {"maputnik:renderer": "mlgljs",
                          "custom:based_on": "funges_style.json (CARTO recolor)"}
-    style["layers"] = basemap(theme) + overlays
+
+    # Match the original ordering: base fills/water/boundaries render BELOW the
+    # forecast overlays; roads and all place labels render ABOVE them, so names
+    # stay legible over the polygons.
+    bm = basemap(theme)
+    above = [L for L in bm
+             if L.get("type") == "symbol" or L.get("source-layer") == "roads"]
+    below = [L for L in bm if L not in above]
+    style["layers"] = below + overlays + above
 
     (ROOT / "public" / out).write_text(
         json.dumps(style, indent=2, ensure_ascii=False), encoding="utf-8")
