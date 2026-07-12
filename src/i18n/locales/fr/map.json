@@ -58,7 +58,7 @@
   },
   "getLocation": "Obtenir ma position",
   "toggleNumbers": "Afficher/masquer les notes",
-  "toggleDarkMode": "Basculer en mode sombre",
+  "toggleDarkMode": "Changer de style de carte",
   "showOnboarding": "Afficher les instructions",
   "dataFreshnessTooltip": "Données mises à jour quotidiennement",
   "featureInfo": {
@@ -73,7 +73,7 @@
       "species": "Choisissez une espèce avec le sélecteur",
       "locate": "Centrer la carte sur votre position",
       "numbers": "Afficher ou masquer l’index numérique",
-      "theme": "Basculer entre les styles de carte clair et sombre",
+      "theme": "Basculez entre 4 styles de carte : Clair, Sombre, Positron, Dark Matter",
       "zones": "Touchez une zone pour voir la liste des espèces",
       "recipes": "Ouvrez les recettes proches et tracez un itineraire vers chaque etape ingredient"
     },

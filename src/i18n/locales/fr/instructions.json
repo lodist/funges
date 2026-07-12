@@ -14,7 +14,7 @@
     "title": "Fonctions :",
     "recipes": "Affiche les recettes proches et des trajets vers les etapes ingredients",
     "location": "Centre la carte sur la position de l'utilisateur",
-    "theme": "Bascule entre le mode clair et le mode sombre",
+    "theme": "Basculez entre 4 styles de carte : Clair, Sombre, Positron, Dark Matter",
     "numbers": "Affiche la note numérique"
   },
   "mapInteraction": {
