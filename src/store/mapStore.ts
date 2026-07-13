@@ -6,6 +6,7 @@ import {
   forecastNumberField,
   FORECAST_DAYS,
 } from '@/lib/forecast';
+import type { RegionId } from '@/lib/data';
 
 export interface MapViewport {
   latitude: number;
@@ -135,12 +136,19 @@ export const REGION_BBOX: Record<string, [number, number, number, number]> = {
 
 // Extract the region code (ne/se/use/usw) from a layer id like `mushroom_ne` or
 // `walnut_se_numbers`. Returns null for non-region layers.
-function layerRegion(id: string): string | null {
+export function layerRegion(id: string): string | null {
   const base = id.replace(/_numbers$/, '');
   for (const r of ['usw', 'use', 'ne', 'se']) {
     if (base.endsWith(`_${r}`)) return r;
   }
   return null;
+}
+
+// Resolves a clicked map layer id to the uppercase RegionId used by the Data Nerd
+// page/route (layerRegion produces lowercase codes; Data Nerd expects 'NE'/'SE'/'USE'/'USW').
+export function resolveDataNerdRegion(layerId: string): RegionId | null {
+  const region = layerRegion(layerId);
+  return region ? (region.toUpperCase() as RegionId) : null;
 }
 
 function regionInView(r: string, bounds: maplibregl.LngLatBounds): boolean {

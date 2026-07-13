@@ -64,7 +64,8 @@
   "featureInfo": {
     "title": "Feature-Details",
     "getDirections": "Route abrufen",
-    "location": "Standort"
+    "location": "Standort",
+    "dataNerd": "Gebietsdaten anzeigen"
   },
   "onboarding": {
     "title": "Wilde Arten erkunden",

@@ -64,7 +64,8 @@
   "featureInfo": {
     "title": "Detalhes da funcionalidade",
     "getDirections": "Obter direções",
-    "location": "Localização"
+    "location": "Localização",
+    "dataNerd": "Ver dados da área"
   },
   "onboarding": {
     "title": "Explore espécies selvagens",

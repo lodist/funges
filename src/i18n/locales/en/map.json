@@ -63,7 +63,8 @@
   "featureInfo": {
     "title": "Feature Details",
     "getDirections": "Get Directions",
-    "location": "Location"
+    "location": "Location",
+    "dataNerd": "View Area Data"
   },
   "onboarding": {
     "title": "Explore wild species",

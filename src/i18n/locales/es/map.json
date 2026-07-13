@@ -64,7 +64,8 @@
   "featureInfo": {
     "title": "Detalles de la función",
     "getDirections": "Obtener indicaciones",
-    "location": "Ubicación"
+    "location": "Ubicación",
+    "dataNerd": "Ver datos del área"
   },
   "onboarding": {
     "title": "Explora especies silvestres",

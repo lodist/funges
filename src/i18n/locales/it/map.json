@@ -63,7 +63,8 @@
   "featureInfo": {
     "title": "Dettagli Feature",
     "getDirections": "Ottieni Indicazioni",
-    "location": "Località"
+    "location": "Località",
+    "dataNerd": "Vedi dati area"
   },
   "onboarding": {
     "title": "Esplora le specie selvatiche",

@@ -2,7 +2,11 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { protocol } from '@/lib/pmtiles-protocol';
-import { useMapStore, REGION_BBOX } from '@/store/mapStore';
+import {
+  useMapStore,
+  REGION_BBOX,
+  resolveDataNerdRegion,
+} from '@/store/mapStore';
 import { useOfflineStore, CONTINENTS } from '@/store/offlineStore';
 import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
@@ -834,6 +838,13 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     );
   }
 
+  const selectedFeatureLayerId = (
+    selectedFeature as maplibregl.MapGeoJSONFeature | null
+  )?.layer?.id;
+  const dataNerdRegion = selectedFeatureLayerId
+    ? resolveDataNerdRegion(selectedFeatureLayerId)
+    : null;
+
   return (
     <>
       {/* Main container - Fixed dimensions only on mobile for better performance */}
@@ -1060,6 +1071,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           setIsModalFromLocateMe(false);
         }}
         hideDirections={isModalFromLocateMe}
+        dataNerdRegion={dataNerdRegion}
       />
     </>
   );
