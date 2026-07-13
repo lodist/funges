@@ -159,32 +159,35 @@ export default function FeatureInfoModal({
             )}
           </div>
         </div>
-        <DialogFooter className='pt-2 sm:pt-4 flex gap-2'>
-          <div className='text-center w-full'>
-            <span className='text-xs text-gray-500 font-mono'>
-              {lat.toFixed(6)}, {lng.toFixed(6)}
-            </span>
+        <DialogFooter className='pt-2 sm:pt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
+          <span className='text-xs text-gray-500 font-mono whitespace-nowrap'>
+            {lat.toFixed(6)}, {lng.toFixed(6)}
+          </span>
+          <div className='flex flex-wrap gap-2 sm:justify-end'>
+            <Button variant='outline' onClick={onClose}>
+              <X className='h-4 w-4 mr-2' />
+              {tCommon('common.close')}
+            </Button>
+            {!hideDirections && (
+              <Button
+                onClick={handleDirections}
+                className='flex-1 sm:flex-none'
+              >
+                <Navigation className='h-4 w-4 mr-2' />
+                {t('featureInfo.getDirections')}
+              </Button>
+            )}
+            {dataNerdRegion && (
+              <Button
+                onClick={handleDataNerd}
+                className='flex-1 sm:flex-none'
+                variant='outline'
+              >
+                <BarChart2 className='h-4 w-4 mr-2' />
+                {t('featureInfo.dataNerd')}
+              </Button>
+            )}
           </div>
-          <Button variant='outline' onClick={onClose}>
-            <X className='h-4 w-4 mr-2' />
-            {tCommon('common.close')}
-          </Button>
-          {!hideDirections && (
-            <Button onClick={handleDirections} className='flex-1 sm:flex-none'>
-              <Navigation className='h-4 w-4 mr-2' />
-              {t('featureInfo.getDirections')}
-            </Button>
-          )}
-          {dataNerdRegion && (
-            <Button
-              onClick={handleDataNerd}
-              className='flex-1 sm:flex-none'
-              variant='outline'
-            >
-              <BarChart2 className='h-4 w-4 mr-2' />
-              {t('featureInfo.dataNerd')}
-            </Button>
-          )}
         </DialogFooter>
       </DialogContent>
     </Dialog>
