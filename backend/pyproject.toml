@@ -4,21 +4,27 @@ version = "0.1.0"
 description = "Foraging-score forecast pipeline: fetches weather, scores species, publishes map tiles to R2."
 requires-python = ">=3.11"
 dependencies = [
+    "alembic",
     "boto3",
     "geopandas",
     "numpy",
     "pandas",
+    "psycopg[binary]",
+    "pydantic-settings",
     "pyarrow",
     "pyproj",
     "requests",
     "scipy",
     "shapely",
+    "sqlalchemy",
 ]
 
 [dependency-groups]
 dev = [
+    "docker",
     "pytest",
     "ruff",
+    "testcontainers[postgres]",
     "ty",
 ]
 
