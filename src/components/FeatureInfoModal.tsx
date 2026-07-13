@@ -1,17 +1,20 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from '@tanstack/react-router';
 import { Dialog, DialogContent, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { getRepresentativeLngLat } from '@/lib/geo';
 import { getSpeciesImage } from '@/lib/utils';
 import { SPECIES_DATA } from '@/data/species';
-import { Navigation, X } from 'lucide-react';
+import type { RegionId } from '@/lib/data';
+import { Navigation, BarChart2, X } from 'lucide-react';
 
 interface FeatureInfoModalProps {
   feature: maplibregl.GeoJSONFeature | null;
   open: boolean;
   onClose: () => void;
   hideDirections?: boolean;
+  dataNerdRegion?: RegionId | null;
 }
 
 // Builds a Google Maps navigation URL for consistent cross-platform behavior
@@ -39,10 +42,12 @@ export default function FeatureInfoModal({
   open,
   onClose,
   hideDirections,
+  dataNerdRegion,
 }: FeatureInfoModalProps) {
   const { t } = useTranslation('map');
   const { t: tSpecies } = useTranslation('species');
   const { t: tCommon } = useTranslation('common');
+  const navigate = useNavigate({ from: '/' });
 
   // lock body scroll when modal open
   useEffect(() => {
@@ -59,6 +64,11 @@ export default function FeatureInfoModal({
   const handleDirections = () => {
     const url = getNavigationUrl(lat, lng);
     window.open(url, '_blank');
+  };
+  const handleDataNerd = () => {
+    if (!dataNerdRegion) return;
+    onClose();
+    navigate({ to: '/data', search: { region: dataNerdRegion } });
   };
 
   // Function to get translated species name
@@ -163,6 +173,16 @@ export default function FeatureInfoModal({
             <Button onClick={handleDirections} className='flex-1 sm:flex-none'>
               <Navigation className='h-4 w-4 mr-2' />
               {t('featureInfo.getDirections')}
+            </Button>
+          )}
+          {dataNerdRegion && (
+            <Button
+              onClick={handleDataNerd}
+              className='flex-1 sm:flex-none'
+              variant='outline'
+            >
+              <BarChart2 className='h-4 w-4 mr-2' />
+              {t('featureInfo.dataNerd')}
             </Button>
           )}
         </DialogFooter>

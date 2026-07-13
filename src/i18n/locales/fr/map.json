@@ -64,7 +64,8 @@
   "featureInfo": {
     "title": "Détails de la fonctionnalité",
     "getDirections": "Obtenir l'itinéraire",
-    "location": "Emplacement"
+    "location": "Emplacement",
+    "dataNerd": "Voir les données de la zone"
   },
   "onboarding": {
     "title": "Explorer les espèces sauvages",
