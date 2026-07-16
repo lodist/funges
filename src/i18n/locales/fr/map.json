@@ -11,7 +11,6 @@
     "generic": "Une erreur s'est produite lors du chargement de la carte.",
     "waitingForConnection": "En attente de connexion..."
   },
-
   "noSpotsFound": "Aucun site de cueillette trouvé à proximité",
   "spotsFound": "{{count}} site{{count > 1 ? 's' : ''}} de cueillette trouvé{{count > 1 ? 's' : ''}} à proximité !",
   "tryMovingMap": "Essayez de déplacer la carte ou d'obtenir votre position",
@@ -41,7 +40,6 @@
     "spotsFound": "Sites de cueillette",
     "support": "Soutenir le projet",
     "limit_hit_message": "Cher Forager,<br>\nNous ne pouvons pas charger les tuiles de la carte car nous avons atteint notre limite mensuelle d'utilisation.<br><br>\nPour aider à maintenir les cartes disponibles, veuillez envisager de <strong>soutenir le projet</strong>.<br>\nEn attendant, profitez de cette carte de Boletus pas tout à fait parfaite… jusqu'à ce qu'elle atteigne sa propre limite 😅",
-
     "tips": {
       "title": "Conseils de dépannage",
       "checkConnection": "Vérifiez votre connexion internet",
@@ -62,8 +60,8 @@
   "showOnboarding": "Afficher les instructions",
   "dataFreshnessTooltip": "Données mises à jour quotidiennement",
   "featureInfo": {
-    "title": "Détails de la fonctionnalité",
-    "getDirections": "Obtenir l'itinéraire",
+    "title": "Espèces de cette zone",
+    "getDirections": "Naviguer",
     "location": "Emplacement",
     "dataNerd": "Voir les données de la zone"
   },
