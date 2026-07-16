@@ -1,0 +1,4 @@
+Latitude,Longitude,dist_m_water,dist_m_sea,Altitude,climate_zone,ph_level
+1.000,1.000,500.0,20000.0,120.0,temperate,6.1
+1.500,1.500,1500.0,25000.0,340.0,temperate,6.4
+0.500,0.500,,30000.0,,temperate,

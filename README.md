@@ -194,21 +194,26 @@ backend/
 │   │   ├── USE/            USE_Scoring.py, USE_MapLayer.py
 │   │   └── USW/            USW_Scoring.py, USW_MapLayer.py
 │   └── tools/
-│       └── build_season_curves.py
+│       ├── build_season_curves.py
+│       └── backfill.py
 └── tests/
 ```
 
 - **Scoring** — fetch weather from R2, compute species scores, write Parquet back to R2
 - **MapLayer** — scores + GeoJSON → Delaunay triangulation → MBTiles + PMTiles via tippecanoe → R2
 - **`build_season_curves.py`** — queries GBIF for monthly fungi sightings per region, builds a target-group ratio curve (cancels observer-effort bias), uploads to `<REGION>_SEASON_CURVES` in R2. Run once before the first scoring run, then monthly.
+- **`backfill.py`** — one-shot backfill of a region's R2 source files (coordinates, static info, species params + season/zone curves, boundaries, weather/score master) into Postgres. Idempotent, safe to re-run.
 
 ```bash
 cd backend
 uv sync                             # installs into backend/.venv from pyproject.toml + uv.lock
-cp ../.env.secret.example ../.env.secret  # fill in R2, WeatherAPI credentials
+cp ../.env.secret.example ../.env.secret  # fill in R2, WeatherAPI, DB_* credentials
 
-uv run python -m funges_backend.tools.build_season_curves        # publish season curves to R2
-uv run python -m funges_backend.EU.North_Europe.NE_Scoring       # then run scoring
+uv run alembic upgrade head                                       # create/update the Postgres schema
+uv run python -m funges_backend.tools.build_season_curves         # publish season curves to R2
+uv run python -m funges_backend.tools.backfill --region NE        # backfill one region from R2 into Postgres
+uv run python -m funges_backend.tools.backfill --region all       # ...or every region
+uv run python -m funges_backend.EU.North_Europe.NE_Scoring        # then run scoring
 uv run python -m funges_backend.EU.North_Europe.NE_MapLayer
 
 uv run pytest        # run the test suite
