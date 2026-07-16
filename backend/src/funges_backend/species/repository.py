@@ -95,6 +95,17 @@ class SpeciesRepository:
             result[row["species"]][row["month"]] = row["multiplier"]
         return dict(result)
 
+    def get_all_zone_curves(self) -> dict[str, dict[str, dict[int, float]]]:
+        """Return `{climate_zone: {species_name: {month: multiplier}}}` for every stored
+        zone -- the shape `seasonality.season_multiplier_for_species` expects."""
+        with self._engine.connect() as conn:
+            rows = conn.execute(zone_season_curves.select()).mappings().all()
+
+        result: dict[str, dict[str, dict[int, float]]] = defaultdict(dict)
+        for row in rows:
+            result[row["climate_zone"]].setdefault(row["species"], {})[row["month"]] = row["multiplier"]
+        return dict(result)
+
     def upsert_zone_curve(self, climate_zone: str, species_name: str, curve: dict[int, float]) -> None:
         """Insert or update the empirical season curve for a (climate zone, species) pair."""
         with self._engine.begin() as conn:
