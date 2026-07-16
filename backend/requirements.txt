@@ -1,9 +1,0 @@
-boto3
-geopandas
-numpy
-pandas
-pyarrow
-pyproj
-requests
-scipy
-shapely

@@ -1,0 +1,41 @@
+[project]
+name = "funges-backend"
+version = "0.1.0"
+description = "Foraging-score forecast pipeline: fetches weather, scores species, publishes map tiles to R2."
+requires-python = ">=3.11"
+dependencies = [
+    "boto3",
+    "geopandas",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "pyproj",
+    "requests",
+    "scipy",
+    "shapely",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "ruff",
+    "ty",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/funges_backend"]
+
+[tool.ruff]
+# 175: wide enough to cover this codebase's existing dense pandas/numpy expressions
+# without forcing a reflow of numerically sensitive lines during the src-layout move.
+line-length = 175
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "C4"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
