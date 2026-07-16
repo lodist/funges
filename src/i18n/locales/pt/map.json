@@ -11,7 +11,6 @@
     "generic": "Algo deu errado ao carregar o mapa.",
     "waitingForConnection": "Aguardando conexão..."
   },
-
   "noSpotsFound": "Nenhum ponto de coleta encontrado nas proximidades",
   "spotsFound": "{{count}} ponto{{count > 1 ? 's' : ''}} de coleta encontrado{{count > 1 ? 's' : ''}} nas proximidades!",
   "tryMovingMap": "Tente mover o mapa ou obter sua localização",
@@ -41,7 +40,6 @@
     "spotsFound": "Pontos de coleta",
     "support": "Apoiar o projeto",
     "limit_hit_message": "Caro Colecionador,<br>\nNão podemos carregar os mosaicos do mapa porque atingimos o nosso limite mensal de uso.<br><br>\nPara ajudar a manter os mapas disponíveis, por favor considere <strong>apoiar o projeto</strong>.<br>\nAguarde, aproveite este mapa de Boletus não tão perfeito… até que atinja seu próprio limite 😅",
-
     "tips": {
       "title": "Dicas de solução de problemas",
       "checkConnection": "Verifique sua conexão com a internet",
@@ -62,8 +60,8 @@
   "showOnboarding": "Mostrar instruções",
   "dataFreshnessTooltip": "Dados atualizados diariamente",
   "featureInfo": {
-    "title": "Detalhes da funcionalidade",
-    "getDirections": "Obter direções",
+    "title": "Espécies desta área",
+    "getDirections": "Navegar",
     "location": "Localização",
     "dataNerd": "Ver dados da área"
   },
