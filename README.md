@@ -184,15 +184,18 @@ Python scripts that generate foraging scores and map tiles, running on a schedul
 
 ```
 backend/
-├── EU/
-│   ├── North_Europe/   NE_Scoring.py, NE_MapLayer.py
-│   └── South_Europe/   SE_Scoring.py, SE_MapLayer.py
-├── US/
-│   ├── USE/            USE_Scoring.py, USE_MapLayer.py
-│   └── USW/            USW_Scoring.py, USW_MapLayer.py
-├── tools/
-│   └── build_season_curves.py
-└── requirements.txt
+├── pyproject.toml
+├── uv.lock
+├── src/funges_backend/
+│   ├── EU/
+│   │   ├── North_Europe/   NE_Scoring.py, NE_MapLayer.py
+│   │   └── South_Europe/   SE_Scoring.py, SE_MapLayer.py
+│   ├── US/
+│   │   ├── USE/            USE_Scoring.py, USE_MapLayer.py
+│   │   └── USW/            USW_Scoring.py, USW_MapLayer.py
+│   └── tools/
+│       └── build_season_curves.py
+└── tests/
 ```
 
 - **Scoring** — fetch weather from R2, compute species scores, write Parquet back to R2
@@ -200,12 +203,17 @@ backend/
 - **`build_season_curves.py`** — queries GBIF for monthly fungi sightings per region, builds a target-group ratio curve (cancels observer-effort bias), uploads to `<REGION>_SEASON_CURVES` in R2. Run once before the first scoring run, then monthly.
 
 ```bash
-pip install -r backend/requirements.txt
-cp .env.secret.example .env.secret  # fill in R2, WeatherAPI credentials
+cd backend
+uv sync                             # installs into backend/.venv from pyproject.toml + uv.lock
+cp ../.env.secret.example ../.env.secret  # fill in R2, WeatherAPI credentials
 
-python backend/tools/build_season_curves.py        # publish season curves to R2
-python backend/EU/North_Europe/NE_Scoring.py       # then run scoring
-python backend/EU/North_Europe/NE_MapLayer.py
+uv run python -m funges_backend.tools.build_season_curves        # publish season curves to R2
+uv run python -m funges_backend.EU.North_Europe.NE_Scoring       # then run scoring
+uv run python -m funges_backend.EU.North_Europe.NE_MapLayer
+
+uv run pytest        # run the test suite
+uv run ruff check .  # lint
+uv run ty check      # type-check
 ```
 
 ## 🔧 Configuration
