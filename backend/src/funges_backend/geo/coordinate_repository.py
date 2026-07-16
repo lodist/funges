@@ -66,6 +66,20 @@ class CoordinateRepository:
                 )
         return np.array(filtered, dtype=float)
 
+    def store_coordinates(self, region: str, coords) -> None:
+        """Insert a region's coordinate grid as loaded from a source file, deduping/rounding
+        and skipping rows already present. Unlike `generate_grid`, this does not filter
+        against the region's stored boundary -- the caller is trusting the source file.
+        """
+        rounded = sorted({(_round(lat), _round(lon)) for lat, lon in coords})
+        if not rounded:
+            return
+        with self._engine.begin() as conn:
+            conn.execute(
+                pg_insert(coordinates).on_conflict_do_nothing(),
+                [{"region": region, "lat": lat, "lon": lon} for lat, lon in rounded],
+            )
+
     def get_coordinates(self, region: str) -> np.ndarray:
         """Return the persisted, deduped/sorted lat/lon grid for a region."""
         stmt = select(coordinates.c.lat, coordinates.c.lon).where(coordinates.c.region == region).order_by(coordinates.c.lat, coordinates.c.lon)

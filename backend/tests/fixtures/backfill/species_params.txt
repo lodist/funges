@@ -1,0 +1,26 @@
+species_params = {
+    "mushroom": {
+        "optimal_temp": 14.0, "temp_sigma": 6.0,
+        "optimal_alt": 800.0, "alt_sigma": 500.0,
+        "optimal_humidity": 85.0, "humidity_sigma": 15.0,
+        "optimal_pH": 6.0, "pH_sigma_near": 0.5, "pH_sigma_far": 1.5, "pH_range_near": (5.0, 7.0),
+        "min_cumulative_rain": 25.0,
+        "weather_preference": {"rain_first": True},
+        "water_relevance": True, "sea_relevance": True,
+        "wind_sensitive": True,
+        "climate_zones": ["temperate"],
+        "season_months": [6, 7, 8, 9],
+        "season_factor": 0.4,
+    },
+    "chant": {
+        "optimal_temp": 11.0, "temp_sigma": 5.0,
+        "optimal_alt": 1200.0, "alt_sigma": 600.0,
+        "optimal_humidity": 80.0, "humidity_sigma": 18.0,
+        "optimal_pH": 6.5, "pH_sigma_near": 0.6, "pH_sigma_far": 1.4, "pH_range_near": (5.5, 7.5),
+        "min_cumulative_rain": 15.0,
+        "weather_preference": {"rain_first": False},
+        "water_relevance": False, "sea_relevance": False,
+        "wind_sensitive": False,
+        "climate_zones": [],
+    },
+}

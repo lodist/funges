@@ -51,6 +51,24 @@ class WeatherScoreRepository:
         with self._engine.begin() as conn:
             conn.execute(stmt)
 
+    def upsert_historical_rows(self, rows: Iterable[dict]) -> None:
+        """Insert or update rows with their `scores` intact.
+
+        Unlike `upsert_forecast_rows` (which always resets `scores` to `{}`, matching a
+        fresh forecast fetch), this is for backfilling historical rows whose scores are
+        already known and must not be blanked.
+        """
+        rows = list(rows)
+        if not rows:
+            return
+        stmt = pg_insert(weather_scores).values(rows)
+        stmt = stmt.on_conflict_do_update(
+            index_elements=[weather_scores.c.location_id, weather_scores.c.date],
+            set_={col: stmt.excluded[col] for col in _DATA_COLUMNS},
+        )
+        with self._engine.begin() as conn:
+            conn.execute(stmt)
+
     def get_forward_window(self, today: date) -> list[dict]:
         """Return every row with `date >= today`, across all locations, for rescoring."""
         stmt = select(weather_scores).where(weather_scores.c.date >= today).order_by(
