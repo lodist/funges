@@ -1,10 +1,10 @@
 import json
+import logging
 import os
 import shutil
 import subprocess
 import tempfile
 from datetime import datetime
-from io import BytesIO, StringIO
 from pathlib import Path
 
 import boto3
@@ -17,11 +17,20 @@ from pyproj import Transformer
 from scipy.spatial import Delaunay, cKDTree
 from shapely.geometry import MultiPolygon, Polygon, box
 
+from funges_backend import forecast_pipeline as fp
+from funges_backend.db.engine import get_engine
 from funges_backend.maplayer_forecast import interp_props, score_days
+from funges_backend.settings import get_r2_settings
+from funges_backend.weather_scores import WeatherScoreRepository
+
+logger = logging.getLogger(__name__)
 
 region_code = 'use'
+REGION = "USE"
+REGION_LAT_RANGE = (24.0, 37.5)
+REGION_LON_RANGE = (-106.5, -75.0)
 
-print(f"Script started at {datetime.now()}")
+logger.info(f"Script started at {datetime.now()}")
 
 def load_dotenv(dotenv_path):
     if not dotenv_path.exists():
@@ -40,17 +49,6 @@ _ROOT = Path(__file__).resolve().parents[3]
 load_dotenv(_ROOT / ".env")
 load_dotenv(_ROOT / ".env.secret")
 
-def load_weather_df(file_path):
-    """Load a dataframe from a local or remote file (parquet or csv)"""
-    if is_remote_path(file_path):
-        response = requests.get(file_path, timeout=600)
-        response.raise_for_status()
-        if str(file_path).endswith('.parquet'):
-            return pd.read_parquet(BytesIO(response.content))
-        return pd.read_csv(StringIO(response.text))
-    if str(file_path).endswith('.parquet'):
-        return pd.read_parquet(file_path)
-    return pd.read_csv(file_path)
 
 def load_geojson_from_local(file_path):
     """Load a GeoDataFrame from a local file"""
@@ -148,7 +146,6 @@ def split_geojson_by_size(geo_df, max_size_mb=5):
 
 
 
-FILE_PATH = get_required_env("USE_WEATHER_DATA")
 GEOJSON_FILE_PATH = get_required_env("USE_WILDERNESS_DATA_SOURCE")
 
 
@@ -183,9 +180,11 @@ species_forest_mapping = {
     "artichoke":    [71, 52]
 }
 
-print(f"Fetching weather data from {'R2' if is_remote_path(FILE_PATH) else 'local'}...")
-df = load_weather_df(FILE_PATH)
-print("Weather data fetched successfully!")
+logger.info("Fetching weather/score data from Postgres for region %s...", REGION)
+df = fp.rows_to_scored_dataframe(
+    WeatherScoreRepository(get_engine()).get_rows_in_bbox(REGION_LAT_RANGE, REGION_LON_RANGE)
+)
+logger.info("Weather/score data fetched successfully!")
 
 df['Date'] = pd.to_datetime(df['Date'])
 full_df = df.copy()  # forward window (today..+6) for the forecast tileset; today path collapses df below
@@ -212,9 +211,9 @@ tri_gdf = gpd.GeoDataFrame(geometry=triangles)
 tri_gdf['tri_id'] = range(len(tri_gdf))
 tri_gdf = tri_gdf.set_crs("EPSG:4326")
 
-print("Fetching wilderness GeoJSON from configured source...")
+logger.info("Fetching wilderness GeoJSON from configured source...")
 clipped_triangles_geojson = load_geojson_from_source(GEOJSON_FILE_PATH)
-print("GeoJSON fetched and loaded into GeoDataFrame successfully!")
+logger.info("GeoJSON fetched and loaded into GeoDataFrame successfully!")
 
 
 tri_gdf['geometry'] = tri_gdf.geometry.buffer(0)  # Clean geometries
@@ -224,17 +223,17 @@ clipped_triangles_geojson['geometry'] = clipped_triangles_geojson.geometry.buffe
 tri_gdf = tri_gdf[tri_gdf.is_valid]
 clipped_triangles_geojson = clipped_triangles_geojson[clipped_triangles_geojson.is_valid]
 
-print("start Set CRS and clip")
+logger.info("start Set CRS and clip")
 CLIPPED_TRIANGLES_PATH = get_required_env("USE_CLIPPED_GPKG")
 if is_remote_path(CLIPPED_TRIANGLES_PATH):
-    print("Loading clipped triangles from remote GPKG cache...")
+    logger.info("Loading clipped triangles from remote GPKG cache...")
     remote_gpkg_path = download_remote_file_to_temp(CLIPPED_TRIANGLES_PATH, ".gpkg")
     clipped_tri_gdf = gpd.read_file(remote_gpkg_path)[['raster_val', 'geometry']]
 elif os.path.exists(CLIPPED_TRIANGLES_PATH):
-    print("🔄 Loading cached clipped triangles...")
+    logger.info("🔄 Loading cached clipped triangles...")
     clipped_tri_gdf = gpd.read_file(CLIPPED_TRIANGLES_PATH)[['raster_val', 'geometry']]
 else:
-    print("🛠 Clipping triangles to forest and saving...")
+    logger.info("🛠 Clipping triangles to forest and saving...")
     tri_gdf = tri_gdf.set_crs(clipped_triangles_geojson.crs)
     clipped_tri_gdf = gpd.clip(tri_gdf, clipped_triangles_geojson)
     clipped_tri_gdf = gpd.sjoin(clipped_tri_gdf, clipped_triangles_geojson[['raster_val', 'geometry']], how="left", predicate="intersects").drop(columns='index_right')
@@ -256,7 +255,7 @@ for specie, valid_rasters in species_forest_mapping.items():
     )
 
     clipped_tri_gdf[details_col] = None
-print("Assigning species scores (dominant-habitat, optimized)...")
+logger.info("Assigning species scores (dominant-habitat, optimized)...")
 
 # --- 0) Compute DOMINANT raster per triangle (area-weighted in EPSG:5070) ---
 _proj = "EPSG:5070"
@@ -402,13 +401,13 @@ for tri_id in tri_ids:
 
         clipped_tri_gdf.loc[mask_tri, f"{s}_score"] = v
 
-print("Finished optimized score calculation for all triangles.")
+logger.info("Finished optimized score calculation for all triangles.")
 
 # --- 8) Fill remaining NaNs with 0.0 (no neighbor backfill) ---
 score_columns = [c for c in clipped_tri_gdf.columns if c.endswith('_score')]
 clipped_tri_gdf[score_columns] = clipped_tri_gdf[score_columns].fillna(0.0)
 
-print("All NaN scores replaced with 0.0 — backfill skipped.")
+logger.info("All NaN scores replaced with 0.0 — backfill skipped.")
 
 clipped_tri_gdf = clipped_tri_gdf.drop_duplicates(subset=['geometry'])
 
@@ -448,7 +447,7 @@ full_df['Date'] = pd.to_datetime(full_df['Date'])
 fwd_dates = sorted(d for d in full_df['Date'].dt.normalize().unique() if d >= today_norm)[:fwd_days]
 if len(fwd_dates) < 2:
     fwd_dates = sorted(full_df['Date'].dt.normalize().unique())[-fwd_days:]  # stale-master fallback
-print(f"Forecast window: {[str(pd.Timestamp(d).date()) for d in fwd_dates]}")
+logger.info(f"Forecast window: {[str(pd.Timestamp(d).date()) for d in fwd_dates]}")
 
 # Per-day species arrays aligned to the points' order; only the two endpoints needed.
 canon_keys = _canon_latlon
@@ -501,7 +500,7 @@ for tid, today_row in today_by_tri.items():
     if props:
         keep_ids.add(tid)
         fc_props_by_tri[tid] = props
-print(f"Unified keep-set (today == forecast): {len(keep_ids)} triangles")
+logger.info(f"Unified keep-set (today == forecast): {len(keep_ids)} triangles")
 
 def handle_geometry_collection(geometry):
     """Convert GeometryCollection into individual supported geometries."""
@@ -539,7 +538,7 @@ gdf_full = gdf_full[['geometry', 'tri_id'] + score_columns]
 def build_mbtiles_from_geojson(geojson_path: Path, mbtiles_path: Path, layer_name: str) -> None:
     tippecanoe_path = shutil.which("tippecanoe")
     if tippecanoe_path is None:
-        print("tippecanoe not found. MBTiles generation skipped.")
+        logger.info("tippecanoe not found. MBTiles generation skipped.")
         return
     cmd = [
         tippecanoe_path,
@@ -552,37 +551,38 @@ def build_mbtiles_from_geojson(geojson_path: Path, mbtiles_path: Path, layer_nam
         "-l", layer_name,
         str(geojson_path),
     ]
-    print("Running tippecanoe...")
+    logger.info("Running tippecanoe...")
     subprocess.run(cmd, check=True)
-    print(f"MBTiles saved to: {mbtiles_path}")
+    logger.info(f"MBTiles saved to: {mbtiles_path}")
 
 def convert_mbtiles_to_pmtiles(mbtiles_path: Path, pmtiles_path: Path) -> bool:
     pmtiles_bin = shutil.which("pmtiles")
     if pmtiles_bin is None:
-        print("pmtiles CLI not found. PMTiles conversion skipped.")
+        logger.info("pmtiles CLI not found. PMTiles conversion skipped.")
         return False
-    print("Converting MBTiles -> PMTiles...")
+    logger.info("Converting MBTiles -> PMTiles...")
     subprocess.run([pmtiles_bin, "convert", str(mbtiles_path), str(pmtiles_path)], check=True)
-    print(f"PMTiles saved to: {pmtiles_path}")
+    logger.info(f"PMTiles saved to: {pmtiles_path}")
     return True
 
 # ponytail: reused for .pmtiles too — it's a generic put_object, no need for a second uploader
 def upload_mbtiles_to_r2(mbtiles_path: Path, r2_key: str) -> None:
+    r2 = get_r2_settings()
     client = boto3.client(
         's3',
-        endpoint_url=get_required_env("R2_ENDPOINT_URL"),
-        aws_access_key_id=get_required_env("R2_ACCESS_KEY_ID"),
-        aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY")
+        endpoint_url=r2.endpoint_url,
+        aws_access_key_id=r2.access_key_id,
+        aws_secret_access_key=r2.secret_access_key,
     )
-    print(f"Uploading {mbtiles_path.name} to R2: {r2_key}...")
+    logger.info(f"Uploading {mbtiles_path.name} to R2: {r2_key}...")
     with open(mbtiles_path, 'rb') as f:
         client.put_object(
-            Bucket=get_required_env("R2_BUCKET_NAME"),
+            Bucket=r2.bucket_name,
             Key=r2_key,
             Body=f.read(),
             ContentType="application/octet-stream"
         )
-    print(f"✅ Uploaded to R2: {r2_key}")
+    logger.info(f"Uploaded to R2: {r2_key}")
 
 with tempfile.TemporaryDirectory() as tmpdir:
     # ---------- SOLE TILESET: forecast (today at d0 + the slider's d6 endpoint) ----------
@@ -620,11 +620,11 @@ with tempfile.TemporaryDirectory() as tmpdir:
         json.dump(json.loads(fc_gdf.to_json()), f, ensure_ascii=False)
     build_mbtiles_from_geojson(fc_geojson_path, fc_mbtiles_path, f"{region_code}_forecast")
     if fc_mbtiles_path.exists():
-        print(f"Forecast mbtiles: {fc_mbtiles_path.stat().st_size/1048576:.1f} MB")
+        logger.info(f"Forecast mbtiles: {fc_mbtiles_path.stat().st_size/1048576:.1f} MB")
         upload_mbtiles_to_r2(fc_mbtiles_path, f"USA/USE/{region_code}_forecast.mbtiles")
         fc_pmtiles_path = Path(tmpdir) / f"{region_code}_forecast.pmtiles"
         if convert_mbtiles_to_pmtiles(fc_mbtiles_path, fc_pmtiles_path):
             upload_mbtiles_to_r2(fc_pmtiles_path, f"USA/USE/{region_code}_forecast.pmtiles")
 
-print(f"✅ Processing & Upload Completed at {datetime.now()}")
-print(f"Script ended at {datetime.now()}")
+logger.info(f"✅ Processing & Upload Completed at {datetime.now()}")
+logger.info(f"Script ended at {datetime.now()}")

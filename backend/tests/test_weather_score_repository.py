@@ -147,3 +147,73 @@ def test_repository_read_data_fails_contiguity_guarantee_on_gap(repo):
 
     with pytest.raises(AssertionError):
         fp.assert_window_contiguous(df, today, forward_days=4, lookback=1)
+
+
+def test_get_rows_in_bbox_scopes_to_region_bounding_box(repo):
+    today = date(2026, 7, 16)
+    repo.upsert_forecast_rows([
+        _row(location_id="in_ne", d=today, latitude=60.0, longitude=10.0),
+        _row(location_id="in_se", d=today, latitude=40.0, longitude=20.0),
+    ])
+
+    rows = repo.get_rows_in_bbox(lat_range=(49.0, 71.5), lon_range=(-25.0, 32.0))
+
+    assert {r["location_id"] for r in rows} == {"in_ne"}
+
+
+def test_get_rows_for_locations_scopes_to_given_locations_only(repo):
+    today = date(2026, 7, 16)
+    repo.upsert_forecast_rows([
+        _row(location_id="A", d=today),
+        _row(location_id="B", d=today),
+        _row(location_id="C", d=today),
+    ])
+
+    rows = repo.get_rows_for_locations(["A", "B"])
+
+    assert {r["location_id"] for r in rows} == {"A", "B"}
+
+
+def test_get_rows_for_locations_applies_start_date_filter(repo):
+    today = date(2026, 7, 16)
+    repo.upsert_forecast_rows([
+        _row(location_id="A", d=today - timedelta(days=5)),
+        _row(location_id="A", d=today),
+    ])
+
+    rows = repo.get_rows_for_locations(["A"], start_date=today)
+
+    assert [r["date"] for r in rows] == [today]
+
+
+def test_get_rows_for_locations_empty_list_returns_empty(repo):
+    assert repo.get_rows_for_locations([]) == []
+
+
+def test_delete_rows_older_than_removes_only_stale_rows(repo):
+    today = date(2026, 7, 16)
+    repo.upsert_forecast_rows([
+        _row(location_id="A", d=today - timedelta(days=400)),
+        _row(location_id="A", d=today),
+    ])
+
+    deleted = repo.delete_rows_older_than(today - timedelta(days=365))
+
+    assert deleted == 1
+    assert [r["date"] for r in repo.get_history("A")] == [today]
+
+
+def test_delete_rows_older_than_scoped_to_bbox_leaves_other_regions_untouched(repo):
+    today = date(2026, 7, 16)
+    stale = today - timedelta(days=400)
+    repo.upsert_forecast_rows([
+        _row(location_id="in_ne", d=stale, latitude=60.0, longitude=10.0),
+        _row(location_id="in_se", d=stale, latitude=40.0, longitude=20.0),
+    ])
+
+    deleted = repo.delete_rows_older_than(
+        today - timedelta(days=365), lat_range=(49.0, 71.5), lon_range=(-25.0, 32.0),
+    )
+
+    assert deleted == 1
+    assert {r["location_id"] for r in repo.get_all()} == {"in_se"}

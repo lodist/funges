@@ -156,3 +156,21 @@ def test_upsert_zone_curve_replaces_prior_months(repo):
     repo.upsert_zone_curve("boreal", "sp_curve", {6: 1.0})
 
     assert repo.get_zone_curves("boreal") == {"sp_curve": {6: 1.0}}
+
+
+def test_get_all_zone_curves_groups_by_zone_then_species(repo):
+    repo.upsert_species("sp_curve", SP_CURVE_PARAMS)
+    repo.upsert_species("sp_water", SP_WATER_PARAMS)
+    repo.upsert_zone_curve("boreal", "sp_curve", {1: 0.1, 6: 1.0})
+    repo.upsert_zone_curve("temperate", "sp_water", {3: 0.5})
+
+    zone_curves = repo.get_all_zone_curves()
+
+    assert zone_curves == {
+        "boreal": {"sp_curve": {1: 0.1, 6: 1.0}},
+        "temperate": {"sp_water": {3: 0.5}},
+    }
+
+
+def test_get_all_zone_curves_empty_when_no_curves_stored(repo):
+    assert repo.get_all_zone_curves() == {}

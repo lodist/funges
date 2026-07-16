@@ -94,6 +94,60 @@ class WeatherScoreRepository:
         with self._engine.connect() as conn:
             return [dict(row) for row in conn.execute(stmt).mappings().all()]
 
+    def get_rows_in_bbox(self, lat_range: tuple[float, float], lon_range: tuple[float, float]) -> list[dict]:
+        """Return every stored row whose (latitude, longitude) falls within the given
+        bounding box -- scopes a read against the shared table to one region, the way
+        each region used to have its own separate master file."""
+        lat_min, lat_max = lat_range
+        lon_min, lon_max = lon_range
+        stmt = (
+            select(weather_scores)
+            .where(
+                weather_scores.c.latitude >= lat_min,
+                weather_scores.c.latitude <= lat_max,
+                weather_scores.c.longitude >= lon_min,
+                weather_scores.c.longitude <= lon_max,
+            )
+            .order_by(weather_scores.c.location_id, weather_scores.c.date)
+        )
+        with self._engine.connect() as conn:
+            return [dict(row) for row in conn.execute(stmt).mappings().all()]
+
+    def get_rows_for_locations(self, location_ids: Iterable[str], start_date: date | None = None) -> list[dict]:
+        """Return stored rows for exactly the given locations, optionally date-bounded.
+
+        Used by the pipeline to fetch just the current run's locations (rather than
+        every location in every region) when building the lag-feature/rescoring slice.
+        """
+        location_ids = list(location_ids)
+        if not location_ids:
+            return []
+        stmt = select(weather_scores).where(weather_scores.c.location_id.in_(location_ids))
+        if start_date is not None:
+            stmt = stmt.where(weather_scores.c.date >= start_date)
+        stmt = stmt.order_by(weather_scores.c.location_id, weather_scores.c.date)
+        with self._engine.connect() as conn:
+            return [dict(row) for row in conn.execute(stmt).mappings().all()]
+
+    def delete_rows_older_than(
+        self, cutoff_date: date, *, lat_range: tuple[float, float] | None = None, lon_range: tuple[float, float] | None = None,
+    ) -> int:
+        """Delete rows older than `cutoff_date`, mirroring the master file's old
+        `cutoff_days` retention window. Returns the number of rows deleted.
+
+        `weather_scores` has no region column, so an unscoped call would prune every
+        region's history at once; pass `lat_range`/`lon_range` (a region's bounding box,
+        as used by `get_rows_in_bbox`) to scope the deletion to just that region.
+        """
+        stmt = weather_scores.delete().where(weather_scores.c.date < cutoff_date)
+        if lat_range is not None:
+            stmt = stmt.where(weather_scores.c.latitude >= lat_range[0], weather_scores.c.latitude <= lat_range[1])
+        if lon_range is not None:
+            stmt = stmt.where(weather_scores.c.longitude >= lon_range[0], weather_scores.c.longitude <= lon_range[1])
+        with self._engine.begin() as conn:
+            result = conn.execute(stmt)
+            return result.rowcount
+
     def write_forward_scores(self, updates: Iterable[dict]) -> None:
         """Overwrite the `scores` column of exactly the given (location_id, date) rows.
 

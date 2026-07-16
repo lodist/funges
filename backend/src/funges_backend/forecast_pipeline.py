@@ -4,8 +4,12 @@ One WeatherAPI forecast.json call per coordinate returns up to 7 forecast days
 (billed as ONE call). We emit one dated row per forecast day, so the master time
 series gains [today .. today+6] each run. Overlapping future dates are replaced by
 the fresher forecast on the next run; the day that rolls out of the window freezes.
+
+Species/curve params, the coordinate grid, static geo attributes, and the rolling
+weather/score master all live in Postgres (via `SpeciesRepository`, `BoundaryRepository`,
+`CoordinateRepository`, `WeatherScoreRepository`) rather than R2/local files.
 """
-import json
+import logging
 import math
 import os
 import threading
@@ -13,18 +17,20 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from io import BytesIO, StringIO
-from pathlib import Path
-from urllib.parse import urlparse
 
-import boto3
 import numpy as np
 import pandas as pd
 import requests
-from shapely.geometry import Point, shape
-from shapely.ops import unary_union
+from sqlalchemy import Engine
 
+from funges_backend.db.engine import get_engine
+from funges_backend.geo import CoordinateRepository
 from funges_backend.seasonality import season_multiplier_for_species
+from funges_backend.settings import get_weatherapi_settings
+from funges_backend.species import SpeciesRepository
+from funges_backend.weather_scores import WeatherScoreRepository
+
+logger = logging.getLogger(__name__)
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
@@ -117,8 +123,10 @@ def assert_window_contiguous(df, today, forward_days=FORECAST_DAYS, lookback=21)
     full_locs = set(look_cnt[look_cnt >= len(look_expected)].index)
     gappy = d["Location_Id"].nunique() - len(full_locs)
     if gappy:
-        print(f"[warn] {gappy} location(s) have legacy gaps in the {lookback}-day lookback; "
-              f"their lag features will be partially NaN (pre-existing history).")
+        logger.warning(
+            "%s location(s) have legacy gaps in the %s-day lookback; "
+            "their lag features will be partially NaN (pre-existing history).", gappy, lookback,
+        )
 
 
 def forward_window_mask(df, today):
@@ -164,26 +172,19 @@ def fetch_weather_data(lat, lon, api_key, counter=None, retries=4):
             if resp.status_code == 429 and attempt < retries - 1:
                 time.sleep(2 ** attempt)        # rate-limit backoff (higher concurrency)
                 continue
-            print(f"[{lat},{lon}] bad status {resp.status_code}")
+            logger.warning("[%s,%s] bad status %s", lat, lon, resp.status_code)
             return None
         except requests.RequestException as e:
             if attempt < retries - 1:
                 time.sleep(1)
                 continue
-            print(f"[{lat},{lon}] request error after {retries} tries: {e}")
+            logger.warning("[%s,%s] request error after %s tries: %s", lat, lon, retries, e)
             return None
 
 
 @dataclass
 class RegionConfig:
-    boundaries_env: str
-    coordinates_env: str
-    base_env: str
-    species_params_env: str
-    weather_data_env: str
-    static_info_env: str
-    season_curves_env: str
-    zone_curves_env: str
+    region: str
     lat_range: tuple
     lon_range: tuple
     lat_step: float = 0.060
@@ -194,85 +195,6 @@ class RegionConfig:
     # Performance: WeatherAPI calls are network-bound. 3 was extremely conservative;
     # raise substantially, tunable via env for rate-limit headroom.
     max_workers: int = int(os.getenv("FORECAST_MAX_WORKERS", "16"))
-
-
-NDP = 3  # module-level default used by moved helpers
-
-
-# --- Moved VERBATIM from NE_Scoring.py -------------------------------------
-
-def load_dotenv(dotenv_path):
-    if not dotenv_path.exists():
-        return
-    for raw_line in dotenv_path.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, value = line.split("=", 1)
-        key = key.strip()
-        value = value.strip().strip('"').strip("'")
-        if key and key not in os.environ:
-            os.environ[key] = value
-
-
-def get_required_env(*names):
-    for name in names:
-        value = os.getenv(name)
-        if value is not None and str(value).strip() != "":
-            return value
-    raise RuntimeError(f"Missing required environment variable. Checked: {', '.join(names)}")
-
-
-def is_remote_path(path):
-    return str(path).startswith(("http://", "https://"))
-
-
-def r2_fetch(url):
-    """Fetch a file from R2 via authenticated boto3."""
-    key = urlparse(url).path.lstrip('/')
-    client = boto3.client(
-        's3',
-        endpoint_url=get_required_env("R2_ENDPOINT_URL"),
-        aws_access_key_id=get_required_env("R2_ACCESS_KEY_ID"),
-        aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY")
-    )
-    return client.get_object(Bucket=get_required_env("R2_BUCKET_NAME"), Key=key)["Body"].read()
-
-
-def read_df_from_source(path):
-    if is_remote_path(path):
-        raw = r2_fetch(path)
-        if str(path).endswith('.parquet'):
-            return pd.read_parquet(BytesIO(raw))
-        return pd.read_csv(StringIO(raw.decode('utf-8')))
-    if str(path).endswith('.parquet'):
-        return pd.read_parquet(path)
-    return pd.read_csv(path)
-
-
-def _round_pair(lat: float, lon: float):
-    return (round(float(lat), NDP), round(float(lon), NDP))
-
-
-def _dedupe_and_sort_latlon(latlon_iterable):
-    rounded = {_round_pair(lat, lon) for (lat, lon) in latlon_iterable}
-    return np.array(sorted(rounded), dtype=float)
-
-
-def _save_coords(path: str, coords: np.ndarray):
-    payload = [[f"{lat:.{NDP}f}", f"{lon:.{NDP}f}"] for lat, lon in coords]
-    with open(path, 'w', encoding='utf-8') as f:
-        json.dump(payload, f, ensure_ascii=False, indent=4)
-        f.write("\n")
-
-
-def _load_coords_any(path: str):
-    if is_remote_path(path):
-        raw = json.loads(r2_fetch(path))
-    else:
-        with open(path, encoding='utf-8') as f:
-            raw = json.load(f)
-    return np.array([(float(lat), float(lon)) for lat, lon in raw], dtype=float)
 
 
 def compute_distance(lat1, lon1, lat2, lon2):
@@ -320,50 +242,6 @@ def replace_missing_elevation_from_previous_data(new_df, existing_df):
     return new_df
 
 
-def load_df_from_file(file_path):
-    return read_df_from_source(file_path)
-
-
-def save_df_to_file(df, file_path):
-    buf = BytesIO()
-    if str(file_path).endswith('.parquet'):
-        df.to_parquet(buf, index=False)
-        content_type = 'application/octet-stream'
-    else:
-        buf.write(df.to_csv(index=False).encode('utf-8'))
-        content_type = 'text/csv'
-    data = buf.getvalue()
-    if is_remote_path(file_path):
-        key = urlparse(file_path).path.lstrip('/')
-        client = boto3.client(
-            's3',
-            endpoint_url=get_required_env("R2_ENDPOINT_URL"),
-            aws_access_key_id=get_required_env("R2_ACCESS_KEY_ID"),
-            aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY")
-        )
-        client.put_object(Bucket=get_required_env("R2_BUCKET_NAME"), Key=key, Body=data, ContentType=content_type)
-        print(f"Uploaded to R2: {file_path}")
-    else:
-        Path(file_path).write_bytes(data)
-
-
-def remote_file_exists(file_path):
-    if not is_remote_path(file_path):
-        return os.path.exists(file_path)
-    try:
-        key = urlparse(file_path).path.lstrip('/')
-        client = boto3.client(
-            's3',
-            endpoint_url=get_required_env("R2_ENDPOINT_URL"),
-            aws_access_key_id=get_required_env("R2_ACCESS_KEY_ID"),
-            aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY")
-        )
-        client.head_object(Bucket=get_required_env("R2_BUCKET_NAME"), Key=key)
-        return True
-    except Exception:
-        return False
-
-
 def gaussian(x, mu, sig):
     return np.exp(-np.power(x - mu, 2.) / (2 * np.power(sig, 2.)))
 
@@ -384,31 +262,6 @@ def compute_lag_features(df, columns, days):
         for col in columns:
             df[f"{col}_{day}days_ago"] = lookups[col].reindex(target_idx).to_numpy()
     return df
-
-
-def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coord_lon="_coord_lon"):
-    """Same lag columns as compute_lag_features, but computed ONCE per (coord, Date)
-    and broadcast to every base point of that coord — not once per base point.
-
-    Valid because the lag columns are weather fields, which _fetch_all attaches per
-    fetched coord, so they are identical across a coord's base points. The per-coord
-    representative therefore equals each base point's own value, making the result
-    bit-identical to the per-base computation while doing ~base/coord times less work.
-
-    Every row must carry a non-null coord key; callers fall back to compute_lag_features
-    when that does not hold.
-    """
-    key = df[coord_lat].astype(str) + "_" + df[coord_lon].astype(str)
-    coord_series = df.assign(_coord_key=key)[["_coord_key", "Date"] + columns]
-    coord_series = (coord_series.drop_duplicates(["_coord_key", "Date"], keep="last")
-                                .rename(columns={"_coord_key": "Location_Id"}))
-    coord_lagged = compute_lag_features(coord_series, columns, days)
-
-    lag_cols = [f"{c}_{d}days_ago" for c in columns for d in range(1, days + 1)]
-    coord_lagged = coord_lagged.rename(columns={"Location_Id": "_coord_key"})[["_coord_key", "Date"] + lag_cols]
-
-    out = df.assign(_coord_key=key).merge(coord_lagged, on=["_coord_key", "Date"], how="left")
-    return out.drop(columns=["_coord_key", coord_lat, coord_lon])
 
 
 def altitude_score(x, optimal_alt=1150, alt_sigma=600):
@@ -703,232 +556,73 @@ def calculate_mushroom_score(df, species_params, zone_curves):
     return df
 
 
-# --- Loader helpers (wrap original top-of-script blocks) -------------------
+# --- Repository <-> wide-DataFrame translation ------------------------------
 
-def _load_species_and_curves(config, species_params_path):
-    if is_remote_path(species_params_path):
-        code = r2_fetch(species_params_path)
-    else:
-        with open(species_params_path, encoding="utf-8") as f:
-            code = f.read()
-    ns = {}
-    exec(code, ns)
-    species_params = ns["species_params"]
-
-    _curves_path = get_required_env(config.season_curves_env)
-    try:
-        _raw = r2_fetch(_curves_path).decode("utf-8") if is_remote_path(_curves_path) else Path(_curves_path).read_text(encoding="utf-8")
-        _curves = json.loads(_raw)
-        for _sp, _p in species_params.items():
-            if _sp in _curves:
-                _p["season_curve"] = {int(k): float(v) for k, v in _curves[_sp].items()}
-        print(f"Loaded empirical season curves for {sum('season_curve' in p for p in species_params.values())} species.")
-    except Exception as _e:
-        print(f"[warn] could not load season curves from {_curves_path}: {_e}; falling back to season_months")
-
-    _zone_curves_path = os.getenv(config.zone_curves_env)
-    zone_curves = {}
-    if _zone_curves_path:
-        try:
-            _zraw = (r2_fetch(_zone_curves_path).decode("utf-8")
-                     if is_remote_path(_zone_curves_path)
-                     else Path(_zone_curves_path).read_text(encoding="utf-8"))
-            _zone_raw = json.loads(_zraw)
-            zone_curves = {
-                str(_z): {str(_sp): {int(k): float(v) for k, v in _c.items()}
-                          for _sp, _c in _spmap.items()}
-                for _z, _spmap in _zone_raw.items()
-            }
-            print(f"Loaded zone season curves for {len(zone_curves)} climate zones.")
-        except Exception as _e:
-            print(f"[warn] could not load zone curves from {_zone_curves_path}: {_e}; falling back to region/season_months")
-    return species_params, zone_curves
+# Wide pipeline column -> `weather_scores` column, everything but Location_Id/Date/scores.
+_MASTERFILE_TO_DB = {
+    "Latitude": "latitude",
+    "Longitude": "longitude",
+    "Elevation (m)": "elevation_m",
+    "Pressure (hPa)": "pressure_hpa",
+    "TotalPrecipitation_mm": "total_precipitation_mm",
+    "Humidity (%)": "humidity_pct",
+    "Wind Speed (m/s)": "wind_speed_ms",
+    "Description": "description",
+    "Temperature (C) Max": "temperature_c_max",
+    "Temperature (C) Min": "temperature_c_min",
+    "Temperature (C)": "temperature_c",
+    "dist_m_water": "dist_m_water",
+    "dist_m_sea": "dist_m_sea",
+    "climate_zone": "climate_zone",
+    "ph_level": "ph_level",
+}
+_DB_TO_MASTERFILE = {v: k for k, v in _MASTERFILE_TO_DB.items()}
 
 
-def _load_static_map(static_info_path, ndp):
-    static_df = read_df_from_source(static_info_path)
-    static_df['Latitude'] = static_df['Latitude'].astype(float)
-    static_df['Longitude'] = static_df['Longitude'].astype(float)
-    static_df['_latr'] = static_df['Latitude'].round(ndp)
-    static_df['_lonr'] = static_df['Longitude'].round(ndp)
-    static_df = static_df.drop_duplicates(subset=['_latr', '_lonr'], keep='first')
-    return static_df.set_index(['_latr', '_lonr'])[
-        ['Altitude', 'dist_m_water', 'dist_m_sea', 'climate_zone', 'ph_level']
-    ]
+def _clean(value):
+    """None for missing/NaN, else the value unchanged -- pandas NaN is not a valid
+    value for the nullable Postgres columns these rows are written to."""
+    return None if pd.isna(value) else value
 
 
-def _load_or_build_coords(config, coordinates_file_path, geojson_path):
-    lat_start, lat_end = config.lat_range
-    lon_start, lon_end = config.lon_range
-    lat_step = config.lat_step
-    lon_step = config.lon_step
-
-    if is_remote_path(coordinates_file_path) or os.path.exists(coordinates_file_path):
-        coords_in = _load_coords_any(coordinates_file_path)
-        coordinates = _dedupe_and_sort_latlon(coords_in)
-        print(f"Loaded (and normalized) {len(coordinates)} coordinates from source.")
-    else:
-        if is_remote_path(geojson_path):
-            g = json.loads(r2_fetch(geojson_path))
-        else:
-            with open(geojson_path, encoding='utf-8') as f:
-                g = json.load(f)
-
-        country_shapes = [shape(feat['geometry']) for feat in g.get('features', [])]
-        combined_boundary = unary_union(country_shapes)
-
-        lats = np.arange(lat_start, lat_end, lat_step)
-        lons = np.arange(lon_start, lon_end, lon_step)
-        lon_grid, lat_grid = np.meshgrid(lons, lats)
-        grid_points = np.column_stack([lon_grid.ravel(), lat_grid.ravel()])  # [lon, lat]
-        print(f"Original number of coordinates (pre-mask): {len(grid_points)}")
-
-        filtered_lonlat = [
-            tuple(Point(coord).coords[0])  # (lon, lat)
-            for coord in grid_points
-            if Point(coord).within(combined_boundary)
-        ]
-        latlon = [(lat, lon) for (lon, lat) in filtered_lonlat]
-        coordinates = _dedupe_and_sort_latlon(latlon)
-        _save_coords(coordinates_file_path, coordinates)
-        print(f"Saved {len(coordinates)} rounded & deduped coordinates to the file.")
-    return coordinates
-
-
-# --- Orchestration ---------------------------------------------------------
-
-def run_pipeline(config: RegionConfig):
-    print(f"Script started at {datetime.now()}")
-    _root = Path(__file__).resolve().parent.parent
-    load_dotenv(_root / ".env")
-    load_dotenv(_root / ".env.secret")
-
-    api_key = get_required_env("WEATHERAPI_KEY")
-    geojson_path = get_required_env(config.boundaries_env)
-    coordinates_file_path = get_required_env(config.coordinates_env)
-    base_file_path = get_required_env(config.base_env)
-    species_params_path = get_required_env(config.species_params_env)
-    main_data_path = get_required_env(config.weather_data_env)
-    static_info_path = get_required_env(config.static_info_env)
-
-    species_params, zone_curves = _load_species_and_curves(config, species_params_path)
-    static_map = _load_static_map(static_info_path, config.ndp)
-    coordinates = _load_or_build_coords(config, coordinates_file_path, geojson_path)
-    print(f"Final number of coordinates: {len(coordinates)}")
-
-    counter = CallCounter()
-    weather_long = _fetch_all(config, coordinates, static_map, api_key, counter)
-    print(f"API calls made: {counter.count} for {len(coordinates)} coordinates")
-
-    df = _join_to_base(config, weather_long, base_file_path)
-    df = _merge_and_score(config, df, species_params, zone_curves, main_data_path)
-    save_df_to_file(df, main_data_path)
-    print(f"Script ended at {datetime.now()}")
-
-
-def _fetch_all(config, coordinates, static_map, api_key, counter):
-    ndp = config.ndp
-
-    def _static_for(lat_r, lon_r):
-        try:
-            srow = static_map.loc[(lat_r, lon_r)]
-            if isinstance(srow, pd.DataFrame):
-                srow = srow.iloc[0]
-            return {
-                "Altitude": float(srow["Altitude"]) if pd.notna(srow["Altitude"]) else None,
-                "dist_m_water": float(srow["dist_m_water"]) if pd.notna(srow["dist_m_water"]) else None,
-                "dist_m_sea": float(srow["dist_m_sea"]) if pd.notna(srow["dist_m_sea"]) else None,
-                "climate_zone": srow["climate_zone"],
-                "ph_level": float(srow["ph_level"]) if pd.notna(srow["ph_level"]) else None,
-            }
-        except KeyError:
-            return {"Altitude": None, "dist_m_water": None, "dist_m_sea": None,
-                    "climate_zone": None, "ph_level": None}
-
-    def _process(coord):
-        lat, lon = map(float, coord)
-        lat_r, lon_r = round(lat, ndp), round(lon, ndp)
-        weather = fetch_weather_data(lat_r, lon_r, api_key=api_key, counter=counter)
-        if not weather:
-            return None
-        return parse_forecast_days(weather, _static_for(lat_r, lon_r), lat_r, lon_r, ndp)
-
-    print(f"Started API calls at {datetime.now()} (max_workers={config.max_workers})")
+def _to_weather_score_rows(df: pd.DataFrame) -> list[dict]:
+    """Convert wide pipeline rows (Location_Id/Date/... columns) into `weather_scores`
+    row dicts, ready for `WeatherScoreRepository.upsert_forecast_rows`."""
     rows = []
-    with ThreadPoolExecutor(max_workers=config.max_workers) as ex:
-        futures = [ex.submit(_process, c) for c in coordinates]
-        for processed, f in enumerate(as_completed(futures), start=1):
-            try:
-                r = f.result()
-                if r:
-                    rows.extend(r)
-            except Exception as e:
-                print(f"[Warning] Skipping failed/stuck coordinate: {e}")
-            if processed % 500 == 0:
-                print(f"{processed} coordinates processed...")
-    weather_long = pd.DataFrame(rows)
-    print(f"Length of weather_long (coords x days): {len(weather_long)}")
-    return weather_long
+    for record in df.to_dict("records"):
+        row = {"location_id": record["Location_Id"], "date": pd.Timestamp(record["Date"]).date()}
+        for src_col, dest_col in _MASTERFILE_TO_DB.items():
+            row[dest_col] = _clean(record.get(src_col))
+        rows.append(row)
+    return rows
 
 
-def _join_to_base(config, weather_long, base_file_path):
-    """Map each base output point to its fetched coord, then expand to that coord's
-    7 daily weather rows (a single vectorized merge).
-
-    Fast path: if the base file carries baked `coord_lat`/`coord_lon` columns (the
-    nearest fetched coord, precomputed once at build time via tools/bake_base_coord_keys.py),
-    the assignment is a plain key merge — no per-run nearest-neighbour search. Any base
-    row whose baked coord did NOT fetch this run (or any base lacking the columns) falls
-    back to a KDTree query against the coords actually present, preserving the old
-    reroute-to-nearest behaviour.
-    """
-    base_df = read_df_from_source(base_file_path).copy()
-    ndp = config.ndp
-
-    coord_keys = weather_long[["Latitude", "Longitude"]].drop_duplicates().reset_index(drop=True)
-    coord_keys["coord_id"] = np.arange(len(coord_keys))
-    weather_long = weather_long.merge(coord_keys, on=["Latitude", "Longitude"], how="left")
-
-    base_df["coord_id"] = np.nan
-    if {"coord_lat", "coord_lon"}.issubset(base_df.columns):
-        key_to_id = (coord_keys.assign(
-                        _clat=coord_keys["Latitude"].round(ndp),
-                        _clon=coord_keys["Longitude"].round(ndp))
-                     .drop_duplicates(["_clat", "_clon"])
-                     .set_index(["_clat", "_clon"])["coord_id"])
-        baked = pd.MultiIndex.from_arrays(
-            [base_df["coord_lat"].round(ndp), base_df["coord_lon"].round(ndp)])
-        base_df["coord_id"] = key_to_id.reindex(baked).to_numpy()
-
-    missing = base_df["coord_id"].isna()
-    if missing.any():
-        from scipy.spatial import cKDTree
-        tree = cKDTree(coord_keys[["Latitude", "Longitude"]].to_numpy())
-        _, idx = tree.query(base_df.loc[missing, ["Latitude", "Longitude"]].to_numpy())
-        base_df.loc[missing, "coord_id"] = coord_keys["coord_id"].to_numpy()[idx]
-    base_df["coord_id"] = base_df["coord_id"].astype(int)
-
-    # Emit the ACTUAL assigned coord (not the baked input, which may have been rerouted
-    # for a missing fetch) so downstream lag dedup groups rows by the coord whose weather
-    # they actually received. compute_lag_features_by_coord consumes these.
-    cid = base_df["coord_id"].to_numpy()
-    base_df["_coord_lat"] = coord_keys["Latitude"].to_numpy()[cid]
-    base_df["_coord_lon"] = coord_keys["Longitude"].to_numpy()[cid]
-
-    weather_cols = [
-        "coord_id", "Date",
-        "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
-        "Wind Speed (kph)", "Pressure (hPa)", "TotalPrecipitation_mm", "Humidity (%)",
-        "Description", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
-        "Elevation (m)",
+def _rows_to_dataframe(rows: list[dict]) -> pd.DataFrame:
+    """Inverse of `_to_weather_score_rows`, for rows read back from the repository
+    (minus `scores`, which the scoring step re-derives)."""
+    columns = ["Location_Id", "Date", *_MASTERFILE_TO_DB]
+    if not rows:
+        return pd.DataFrame(columns=columns)
+    records = [
+        {"Location_Id": row["location_id"], "Date": pd.Timestamp(row["date"]),
+         **{wide: row.get(db) for db, wide in _DB_TO_MASTERFILE.items()}}
+        for row in rows
     ]
-    drop_cols = [c for c in weather_cols if c in base_df.columns and c != "coord_id"]
-    drop_cols += [c for c in ("coord_lat", "coord_lon") if c in base_df.columns]
-    base_keep = base_df.drop(columns=drop_cols)
-    out = base_keep.merge(weather_long[weather_cols], on="coord_id", how="left")
-    out = out.drop(columns=["coord_id"])
-    print(f"Length after base join (base x days): {len(out)}")
-    return out
+    return pd.DataFrame(records, columns=columns)
+
+
+def rows_to_scored_dataframe(rows: list[dict]) -> pd.DataFrame:
+    """Reconstruct the wide weather+score DataFrame the map-layer scripts expect
+    (Location_Id/Date/weather columns plus one `{species}_score` column per scored
+    species) from `WeatherScoreRepository` rows -- replaces reading the per-region
+    weather/score master parquet/CSV directly."""
+    df = _rows_to_dataframe(rows)
+    if not rows:
+        return df
+    all_species = sorted({s for row in rows for s in (row.get("scores") or {})})
+    for s in all_species:
+        df[f"{s}_score"] = [(row.get("scores") or {}).get(s) for row in rows]
+    return df
 
 
 def apply_forward_scores(combined_df, forward, score_cols):
@@ -951,7 +645,10 @@ def apply_forward_scores(combined_df, forward, score_cols):
     return base.reset_index()
 
 
-def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
+def _merge_and_score(config, df, species_params, zone_curves, weather_repo: WeatherScoreRepository):
+    """Upsert this run's freshly-fetched rows, then rescore the forward window,
+    against `WeatherScoreRepository` (replaces the old merge_master/file-rewrite
+    with targeted Postgres upserts -- see `weather_scores/repository.py`)."""
     # Anchor "today" to the EARLIEST forecast date actually fetched (coordinate-local),
     # not the server clock: forecast.json returns each coord's local 7 days, so US
     # regions legitimately start a day behind a UTC/Europe runner. Using the server date
@@ -959,93 +656,120 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
     new_dates = pd.to_datetime(df["Date"])
     today = new_dates.min().normalize() if new_dates.notna().any() else pd.Timestamp(datetime.now().date())
 
-    # NOTE: the Date=today override is intentionally GONE — dates are the real forecast dates.
     if "Wind Speed (m/s)" not in df.columns and "Wind Speed (kph)" in df.columns:
         df["Wind Speed (m/s)"] = df["Wind Speed (kph)"] / 3.6
 
-    for specie in species_params:
-        col = f"{specie}_score"
-        if col not in df.columns:
-            df[col] = pd.NA
+    df = df[np.isfinite(df["Latitude"]) & np.isfinite(df["Longitude"])]
+    df = df[df["Location_Id"] != ""]
 
-    if remote_file_exists(main_data_path):
-        existing_df = load_df_from_file(main_data_path)
-        existing_df["Date"] = pd.to_datetime(existing_df["Date"])
-        for col in existing_df.columns:
-            if col not in df.columns:
-                df[col] = pd.NA
-        existing_cols = list(existing_df.columns)
-        new_cols = [c for c in df.columns if c not in existing_cols]
-        df = df[existing_cols + new_cols]
-        df = replace_missing_elevation_from_previous_data(df, existing_df)
-        df = replace_missing_elevation_with_closest(df)
-        combined_df = merge_master(existing_df, df)
-    else:
-        df = replace_missing_elevation_with_closest(df)
-        combined_df = df.copy()
-        combined_df["Date"] = pd.to_datetime(combined_df["Date"])
-        combined_df = combined_df.drop_duplicates(subset=["Location_Id", "Date"], keep="last").reset_index(drop=True)
+    weather_repo.upsert_forecast_rows(_to_weather_score_rows(df))
 
-    combined_df = combined_df[np.isfinite(combined_df["Latitude"]) & np.isfinite(combined_df["Longitude"])]
-    combined_df = combined_df[combined_df["Location_Id"] != ""]
+    location_ids = sorted(df["Location_Id"].unique())
+    # Only the forward window (Date >= today) is rescored, and a forward row's deepest
+    # lag reaches back exactly lag_days, so only [today - lag_days ..] needs fetching:
+    # frozen older rows are never rescored and need no lag features.
+    lag_start = (today - pd.Timedelta(days=config.lag_days)).date()
+    history_rows = weather_repo.get_rows_for_locations(location_ids, start_date=lag_start)
+    combined_df = _rows_to_dataframe(history_rows)
+    combined_df["Date"] = pd.to_datetime(combined_df["Date"])
 
     assert_window_contiguous(combined_df, today, forward_days=FORECAST_DAYS, lookback=config.lag_days)
 
     combined_df = combined_df.sort_values(["Location_Id", "Date"])
     lag_columns = ["Temperature (C)", "TotalPrecipitation_mm", "Pressure (hPa)", "Humidity (%)"]
-    # Only the forward window (Date >= today) is rescored, and a forward row's deepest
-    # lag reaches back exactly lag_days. So lag only [today - lag_days .. ]: frozen older
-    # rows are never rescored and need no lag features. Bit-identical for forward rows
-    # (every (loc, date-N) they reference is inside this slice), but far less data to
-    # reindex when the master holds a year of history at base resolution.
-    lag_start = today - pd.Timedelta(days=config.lag_days)
-    lag_slice = combined_df[pd.to_datetime(combined_df["Date"]).dt.normalize() >= lag_start].copy()
-
-    # Phase 2: weather (hence its lags) is identical across the base points that share a
-    # fetched coord, so lag ONCE per coord and broadcast instead of once per base point.
-    # The coord key (_coord_lat/_coord_lon) is carried from _join_to_base; history rows
-    # (from the prior master) lack it, so re-derive it per base point via the current run's
-    # Location_Id -> coord map. If any in-window row still has no coord key (un-baked base /
-    # legacy), fall back to the per-base path, which is the original behaviour.
-    if {"_coord_lat", "_coord_lon"}.issubset(df.columns):
-        loc_to_coord = (df[["Location_Id", "_coord_lat", "_coord_lon"]]
-                        .dropna(subset=["_coord_lat", "_coord_lon"])
-                        .drop_duplicates("Location_Id").set_index("Location_Id"))
-        lag_slice["_coord_lat"] = lag_slice["Location_Id"].map(loc_to_coord["_coord_lat"])
-        lag_slice["_coord_lon"] = lag_slice["Location_Id"].map(loc_to_coord["_coord_lon"])
-        can_dedup = lag_slice["_coord_lat"].notna().all() and lag_slice["_coord_lon"].notna().all()
-    else:
-        can_dedup = False
-
-    if can_dedup and len(lag_slice):
-        lagged = compute_lag_features_by_coord(lag_slice, lag_columns, days=config.lag_days)
-    else:
-        lagged = compute_lag_features(
-            lag_slice.drop(columns=[c for c in ("_coord_lat", "_coord_lon") if c in lag_slice.columns]),
-            lag_columns, days=config.lag_days)
+    lagged = compute_lag_features(combined_df, lag_columns, days=config.lag_days)
 
     mask = forward_window_mask(lagged, today)
     forward = lagged[mask].copy()
-    print(f"Scoring {len(forward)} forward rows (Date >= {today.date()}) "
-          f"across {forward['Location_Id'].nunique()} locations")
+    logger.info(
+        "Scoring %s forward rows (Date >= %s) across %s locations",
+        len(forward), today.date(), forward["Location_Id"].nunique(),
+    )
     forward = calculate_mushroom_score(forward, species_params, zone_curves)
 
     score_cols = [f"{s}_score" for s in species_params]
-    updated_df = apply_forward_scores(combined_df, forward, score_cols)
+    for col in score_cols:
+        if col in forward.columns:
+            forward[col] = forward[col].mask(forward[col] > 9.5, 10).round(2)
 
-    cutoff_date = datetime.now() - timedelta(days=config.cutoff_days)
-    updated_df = updated_df[updated_df["Date"] > cutoff_date]
-
-    valid_score_columns = {f"{s}_score" for s in species_params}
-    species_score_columns = [c for c in updated_df.columns if c.endswith("_score") and c in valid_score_columns]
-    updated_df[species_score_columns] = updated_df[species_score_columns].mask(
-        updated_df[species_score_columns] > 9.5, 10).round(2)
-
-    masterfile_columns = [
-        "Location_Id", "Date", "Latitude", "Longitude", "Elevation (m)",
-        "Pressure (hPa)", "TotalPrecipitation_mm", "Humidity (%)", "Wind Speed (m/s)",
-        "Description", "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
-        "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
+    updates = [
+        {
+            "location_id": record["Location_Id"],
+            "date": pd.Timestamp(record["Date"]).date(),
+            "scores": {s: float(record[f"{s}_score"]) for s in species_params if pd.notna(record.get(f"{s}_score"))},
+        }
+        for record in forward.to_dict("records")
     ]
-    updated_df = updated_df.reindex(columns=masterfile_columns + species_score_columns)
-    return updated_df
+    weather_repo.write_forward_scores(updates)
+
+    cutoff_date = (datetime.now() - timedelta(days=config.cutoff_days)).date()
+    weather_repo.delete_rows_older_than(cutoff_date, lat_range=config.lat_range, lon_range=config.lon_range)
+
+
+# --- Orchestration -----------------------------------------------------------
+
+def run_pipeline(config: RegionConfig, *, engine: Engine | None = None) -> None:
+    """Fetch this run's forecasts and rescore the forward window for one region,
+    reading/writing exclusively through the species/geo/weather-score repositories."""
+    logger.info("Script started at %s", datetime.now())
+    engine = engine or get_engine()
+    species_repo = SpeciesRepository(engine)
+    coordinate_repo = CoordinateRepository(engine)
+    weather_repo = WeatherScoreRepository(engine)
+
+    weatherapi_key = get_weatherapi_settings().weatherapi_key
+    species_params = species_repo.get_all_species_params()
+    zone_curves = species_repo.get_all_zone_curves()
+
+    coordinates = coordinate_repo.get_coordinates(config.region)
+    if len(coordinates) == 0:
+        coordinates = coordinate_repo.generate_grid(
+            config.region, config.lat_range, config.lon_range, config.lat_step, config.lon_step,
+        )
+    logger.info("Final number of coordinates: %s", len(coordinates))
+
+    counter = CallCounter()
+    weather_long = _fetch_all(config, coordinates, coordinate_repo, weatherapi_key, counter)
+    logger.info("API calls made: %s for %s coordinates", counter.count, len(coordinates))
+
+    _merge_and_score(config, weather_long, species_params, zone_curves, weather_repo)
+    logger.info("Script ended at %s", datetime.now())
+
+
+def _fetch_all(config: RegionConfig, coordinates, coordinate_repo: CoordinateRepository, api_key, counter):
+    ndp = config.ndp
+
+    def _static_for(lat_r, lon_r):
+        attrs = coordinate_repo.get_static_attributes(lat_r, lon_r)
+        return {
+            "Altitude": attrs["altitude"],
+            "dist_m_water": attrs["dist_m_water"],
+            "dist_m_sea": attrs["dist_m_sea"],
+            "climate_zone": attrs["climate_zone"],
+            "ph_level": attrs["ph_level"],
+        }
+
+    def _process(coord):
+        lat, lon = map(float, coord)
+        lat_r, lon_r = round(lat, ndp), round(lon, ndp)
+        weather = fetch_weather_data(lat_r, lon_r, api_key=api_key, counter=counter)
+        if not weather:
+            return None
+        return parse_forecast_days(weather, _static_for(lat_r, lon_r), lat_r, lon_r, ndp)
+
+    logger.info("Started API calls at %s (max_workers=%s)", datetime.now(), config.max_workers)
+    rows = []
+    with ThreadPoolExecutor(max_workers=config.max_workers) as ex:
+        futures = [ex.submit(_process, c) for c in coordinates]
+        for processed, f in enumerate(as_completed(futures), start=1):
+            try:
+                r = f.result()
+                if r:
+                    rows.extend(r)
+            except Exception as e:
+                logger.warning("Skipping failed/stuck coordinate: %s", e)
+            if processed % 500 == 0:
+                logger.info("%s coordinates processed...", processed)
+    weather_long = pd.DataFrame(rows)
+    logger.info("Length of weather_long (coords x days): %s", len(weather_long))
+    return weather_long

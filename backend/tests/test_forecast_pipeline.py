@@ -189,6 +189,34 @@ def test_apply_forward_scores_refreshes_future_preserves_past():
     assert out.loc[2, "x_score"] == 8.0   # future filled
 
 
+def test_rows_to_scored_dataframe_expands_scores_jsonb_to_columns():
+    rows = [
+        {"location_id": "A", "date": pd.Timestamp("2026-06-13").date(), "latitude": 59.33, "longitude": 18.07,
+         "elevation_m": 120.0, "pressure_hpa": 1000.0, "total_precipitation_mm": 0.0, "humidity_pct": 70.0,
+         "wind_speed_ms": 3.0, "description": "Sunny", "temperature_c_max": 20.0, "temperature_c_min": 10.0,
+         "temperature_c": 15.0, "dist_m_water": 50.0, "dist_m_sea": 9000.0, "climate_zone": "temperate",
+         "ph_level": 6.2, "scores": {"mushroom": 7.5, "morel": 2.0}},
+        {"location_id": "B", "date": pd.Timestamp("2026-06-13").date(), "latitude": 60.0, "longitude": 10.0,
+         "elevation_m": 300.0, "pressure_hpa": 1005.0, "total_precipitation_mm": 1.0, "humidity_pct": 80.0,
+         "wind_speed_ms": 2.0, "description": "Cloudy", "temperature_c_max": 12.0, "temperature_c_min": 5.0,
+         "temperature_c": 8.0, "dist_m_water": 100.0, "dist_m_sea": 200.0, "climate_zone": "boreal",
+         "ph_level": 5.5, "scores": {"mushroom": 3.0}},
+    ]
+    df = fp.rows_to_scored_dataframe(rows)
+    assert df.loc[0, "mushroom_score"] == 7.5
+    assert df.loc[0, "morel_score"] == 2.0
+    assert df.loc[1, "mushroom_score"] == 3.0
+    assert pd.isna(df.loc[1, "morel_score"])
+    assert df.loc[0, "Location_Id"] == "A"
+    assert df.loc[0, "Temperature (C)"] == 15.0
+
+
+def test_rows_to_scored_dataframe_empty_rows_returns_empty_dataframe():
+    df = fp.rows_to_scored_dataframe([])
+    assert df.empty
+    assert "Location_Id" in df.columns
+
+
 def test_apply_forward_scores_rejects_duplicate_index():
     combined = pd.DataFrame({
         "Location_Id": ["A", "A"],
