@@ -211,8 +211,14 @@ cp ../.env.secret.example ../.env.secret  # fill in R2, WeatherAPI, DB_* credent
 
 uv run alembic upgrade head                                       # create/update the Postgres schema
 uv run python -m funges_backend.tools.build_season_curves         # publish season curves to R2
-uv run python -m funges_backend.tools.backfill --region NE        # backfill one region from R2 into Postgres
-uv run python -m funges_backend.tools.backfill --region all       # ...or every region
+
+# One-shot backfill of each region's R2 source files into Postgres (idempotent, safe to re-run):
+uv run python -m funges_backend.tools.backfill --region NE
+uv run python -m funges_backend.tools.backfill --region SE
+uv run python -m funges_backend.tools.backfill --region USE
+uv run python -m funges_backend.tools.backfill --region USW
+uv run python -m funges_backend.tools.backfill --region all       # ...or every region in one run
+
 uv run python -m funges_backend.EU.North_Europe.NE_Scoring        # then run scoring
 uv run python -m funges_backend.EU.North_Europe.NE_MapLayer
 

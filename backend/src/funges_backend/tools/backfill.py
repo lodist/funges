@@ -22,18 +22,9 @@ from pathlib import Path
 
 import pandas as pd
 
+from funges_backend import forecast_pipeline as fp
 from funges_backend.db.engine import get_engine
-from funges_backend.forecast_pipeline import (
-    RegionConfig,
-    _load_coords_any,
-    _load_species_and_curves,
-    _load_static_map,
-    get_required_env,
-    is_remote_path,
-    load_dotenv,
-    r2_fetch,
-    read_df_from_source,
-)
+from funges_backend.forecast_pipeline import RegionConfig
 from funges_backend.geo import BoundaryRepository, CoordinateRepository
 from funges_backend.species import SpeciesRepository
 from funges_backend.tools.regions import REGIONS
@@ -51,7 +42,7 @@ def _clean(value):
 def backfill_species_and_curves(config: RegionConfig, species_repo: SpeciesRepository) -> tuple[int, int]:
     """Load species_params.txt + season/zone curve files and upsert species before zone
     curves (zone_season_curves.species has a FK to species.name)."""
-    species_params, zone_curves = _load_species_and_curves(config, get_required_env(config.species_params_env))
+    species_params, zone_curves = fp._load_species_and_curves(config, fp.get_required_env(config.species_params_env))
     for name, params in species_params.items():
         species_repo.upsert_species(name, params)
 
@@ -64,19 +55,19 @@ def backfill_species_and_curves(config: RegionConfig, species_repo: SpeciesRepos
 
 
 def _read_geojson(path: str) -> dict:
-    raw = r2_fetch(path) if is_remote_path(path) else Path(path).read_bytes()
+    raw = fp.r2_fetch(path) if fp.is_remote_path(path) else Path(path).read_bytes()
     return json.loads(raw)
 
 
 def backfill_geo(region: str, config: RegionConfig, boundary_repo: BoundaryRepository, coord_repo: CoordinateRepository) -> tuple[int, int]:
     """Store the region's boundary (before coordinates -- FK), its coordinate grid, and
     coordinate-keyed static attributes."""
-    boundary_repo.store_boundary_from_geojson(region, _read_geojson(get_required_env(config.boundaries_env)))
+    boundary_repo.store_boundary_from_geojson(region, _read_geojson(fp.get_required_env(config.boundaries_env)))
 
-    coords = _load_coords_any(get_required_env(config.coordinates_env))
+    coords = fp._load_coords_any(fp.get_required_env(config.coordinates_env))
     coord_repo.store_coordinates(region, coords)
 
-    static_map = _load_static_map(get_required_env(config.static_info_env), config.ndp)
+    static_map = fp._load_static_map(fp.get_required_env(config.static_info_env), config.ndp)
     for (lat, lon), row in static_map.iterrows():
         coord_repo.upsert_static_attributes(
             lat,
@@ -118,13 +109,20 @@ def _to_weather_score_row(record: dict, score_columns: list[str]) -> dict:
     return row
 
 
+# weather_scores has 18 columns; Postgres caps a single statement at 65535 bind
+# parameters, so a full region's history (potentially years of daily rows across many
+# locations) must be upserted in batches rather than one `INSERT ... VALUES`.
+_WEATHER_SCORE_BATCH_SIZE = 2000
+
+
 def backfill_weather_scores(config: RegionConfig, weather_repo: WeatherScoreRepository) -> int:
     """Load a region's wide weather/score master file and pivot its per-species
     `{specie}_score` columns into the single `scores` JSONB column per row."""
-    df = read_df_from_source(get_required_env(config.weather_data_env))
+    df = fp.read_df_from_source(fp.get_required_env(config.weather_data_env))
     score_columns = [c for c in df.columns if c.endswith("_score")]
     rows = [_to_weather_score_row(record, score_columns) for record in df.to_dict("records")]
-    weather_repo.upsert_historical_rows(rows)
+    for start in range(0, len(rows), _WEATHER_SCORE_BATCH_SIZE):
+        weather_repo.upsert_historical_rows(rows[start : start + _WEATHER_SCORE_BATCH_SIZE])
     return len(rows)
 
 
@@ -149,8 +147,8 @@ def main():
     ap.add_argument("--region", choices=[*REGIONS, "all"], default="all", help="Region to backfill (NE/SE/USE/USW), or 'all' for every region (default)")
     args = ap.parse_args()
 
-    load_dotenv(_ROOT / ".env")
-    load_dotenv(_ROOT / ".env.secret")
+    fp.load_dotenv(_ROOT / ".env")
+    fp.load_dotenv(_ROOT / ".env.secret")
 
     engine = get_engine()
     regions = list(REGIONS) if args.region == "all" else [args.region]

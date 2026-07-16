@@ -123,6 +123,17 @@ def test_backfill_region_pivots_wide_score_columns_into_scores_jsonb(engine):
     assert history[0]["latitude"] == 1.0
 
 
+def test_backfill_weather_scores_batches_large_regions(monkeypatch, engine):
+    # Force a batch size smaller than the fixture's row count so the batching loop in
+    # `backfill_weather_scores` actually splits the upsert across multiple calls.
+    monkeypatch.setattr(backfill, "_WEATHER_SCORE_BATCH_SIZE", 1)
+
+    n_rows = backfill.backfill_weather_scores(CONFIG, WeatherScoreRepository(engine))
+
+    assert n_rows == 3
+    assert len(WeatherScoreRepository(engine).get_all()) == 3
+
+
 def test_backfill_region_is_idempotent(engine):
     backfill.backfill_region(REGION, CONFIG, engine)
     backfill.backfill_region(REGION, CONFIG, engine)
