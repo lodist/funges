@@ -11,7 +11,6 @@
     "generic": "Something went wrong while loading the map.",
     "waitingForConnection": "Waiting for connection..."
   },
-
   "noSpotsFound": "No foraging spots found nearby",
   "spotsFound": "Found {{count}} foraging spot{{count > 1 ? 's' : ''}} nearby!",
   "tryMovingMap": "Try moving the map or getting your location",
@@ -40,7 +39,6 @@
     "spotsFound": "Foraging Spots",
     "support": "Support the project",
     "limit_hit_message": "Dear Forager,<br>\nWe’re unable to load the map tiles as we’ve reached our monthly usage limit.<br><br>\nTo help keep maps available, please consider <strong>supporting the project</strong>.<br>\nMeanwhile, enjoy this not-quite-perfect Boletus map — until it hits its own limit 😅",
-
     "tips": {
       "title": "Troubleshooting Tips",
       "checkConnection": "Check your internet connection",
@@ -61,9 +59,10 @@
   "showOnboarding": "Show onboarding",
   "dataFreshnessTooltip": "Data refreshed daily",
   "featureInfo": {
-    "title": "Feature Details",
-    "getDirections": "Get Directions",
-    "location": "Location"
+    "title": "Species in this area",
+    "getDirections": "Navigate",
+    "location": "Location",
+    "dataNerd": "View Area Data"
   },
   "onboarding": {
     "title": "Explore wild species",

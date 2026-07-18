@@ -1,17 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dialog, DialogContent, DialogFooter } from '@/components/ui/dialog';
+import { useNavigate } from '@tanstack/react-router';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { getRepresentativeLngLat } from '@/lib/geo';
 import { getSpeciesImage } from '@/lib/utils';
 import { SPECIES_DATA } from '@/data/species';
-import { Navigation, X } from 'lucide-react';
+import type { RegionId } from '@/lib/data';
+import { Navigation, BarChart2, Copy, Check } from 'lucide-react';
 
 interface FeatureInfoModalProps {
   feature: maplibregl.GeoJSONFeature | null;
   open: boolean;
   onClose: () => void;
   hideDirections?: boolean;
+  dataNerdRegion?: RegionId | null;
 }
 
 // Builds a Google Maps navigation URL for consistent cross-platform behavior
@@ -39,10 +48,13 @@ export default function FeatureInfoModal({
   open,
   onClose,
   hideDirections,
+  dataNerdRegion,
 }: FeatureInfoModalProps) {
   const { t } = useTranslation('map');
   const { t: tSpecies } = useTranslation('species');
   const { t: tCommon } = useTranslation('common');
+  const navigate = useNavigate({ from: '/' });
+  const [copied, setCopied] = useState(false);
 
   // lock body scroll when modal open
   useEffect(() => {
@@ -59,6 +71,17 @@ export default function FeatureInfoModal({
   const handleDirections = () => {
     const url = getNavigationUrl(lat, lng);
     window.open(url, '_blank');
+  };
+  const handleDataNerd = () => {
+    if (!dataNerdRegion) return;
+    onClose();
+    navigate({ to: '/data', search: { region: dataNerdRegion } });
+  };
+  const coordinatesLabel = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+  const handleCopyCoordinates = async () => {
+    await navigator.clipboard.writeText(coordinatesLabel);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   // Function to get translated species name
@@ -96,10 +119,26 @@ export default function FeatureInfoModal({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent
-        className='sm:max-w-lg max-w-[95vw]'
-        showCloseButton={false}
-      >
+      <DialogContent className='sm:max-w-lg max-w-[95vw]'>
+        <DialogHeader className='pr-8'>
+          <DialogTitle className='sm:text-center'>
+            {t('featureInfo.title')}
+          </DialogTitle>
+          <div className='flex justify-center'>
+            <button
+              type='button'
+              onClick={handleCopyCoordinates}
+              className='inline-flex items-center gap-2 rounded-md bg-primary px-3 py-1 font-mono text-xs text-primary-foreground shadow-xs transition-colors hover:bg-primary/90'
+            >
+              {coordinatesLabel}
+              {copied ? (
+                <Check className='h-3 w-3' />
+              ) : (
+                <Copy className='h-3 w-3' />
+              )}
+            </button>
+          </div>
+        </DialogHeader>
         <div className='max-h-[70vh] overflow-y-auto pr-2'>
           <div className='space-y-3'>
             {speciesEntries.map(
@@ -149,20 +188,21 @@ export default function FeatureInfoModal({
             )}
           </div>
         </div>
-        <DialogFooter className='pt-2 sm:pt-4 flex gap-2'>
-          <div className='text-center w-full'>
-            <span className='text-xs text-gray-500 font-mono'>
-              {lat.toFixed(6)}, {lng.toFixed(6)}
-            </span>
-          </div>
-          <Button variant='outline' onClick={onClose}>
-            <X className='h-4 w-4 mr-2' />
-            {tCommon('common.close')}
-          </Button>
+        <DialogFooter className='pt-2 sm:pt-4 flex flex-row flex-wrap justify-end gap-2'>
           {!hideDirections && (
             <Button onClick={handleDirections} className='flex-1 sm:flex-none'>
               <Navigation className='h-4 w-4 mr-2' />
               {t('featureInfo.getDirections')}
+            </Button>
+          )}
+          {dataNerdRegion && (
+            <Button
+              onClick={handleDataNerd}
+              className='flex-1 sm:flex-none'
+              variant='outline'
+            >
+              <BarChart2 className='h-4 w-4 mr-2' />
+              {t('featureInfo.dataNerd')}
             </Button>
           )}
         </DialogFooter>

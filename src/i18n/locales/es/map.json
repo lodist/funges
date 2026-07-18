@@ -11,7 +11,6 @@
     "generic": "Ocurrió un error al cargar el mapa.",
     "waitingForConnection": "Esperando conexión..."
   },
-
   "noSpotsFound": "No se encontraron puntos de recolección cercanos",
   "spotsFound": "¡Se encontró{{count > 1 ? 'n' : ''}} {{count}} punto{{count > 1 ? 's' : ''}} de recolección cerca!",
   "tryMovingMap": "Intenta mover el mapa u obtener tu ubicación",
@@ -41,7 +40,6 @@
     "spotsFound": "Puntos de recolección",
     "support": "Apoya el proyecto",
     "limit_hit_message": "Querido/a Forager,<br>\nNo podemos cargar los mosaicos del mapa porque hemos alcanzado nuestro límite mensual de uso.<br><br>\nPara ayudar a mantener los mapas disponibles, por favor considere <strong>apoyar el proyecto</strong>.<br>\nMientras tanto, disfrute de este mapa de Boletus no tan perfecto… hasta que alcance su propio límite 😅",
-
     "tips": {
       "title": "Consejos para solucionar problemas",
       "checkConnection": "Verifica tu conexión a internet",
@@ -62,9 +60,10 @@
   "showOnboarding": "Mostrar instrucciones",
   "dataFreshnessTooltip": "Datos actualizados diariamente",
   "featureInfo": {
-    "title": "Detalles de la función",
-    "getDirections": "Obtener indicaciones",
-    "location": "Ubicación"
+    "title": "Especies de esta área",
+    "getDirections": "Navegar",
+    "location": "Ubicación",
+    "dataNerd": "Ver datos del área"
   },
   "onboarding": {
     "title": "Explora especies silvestres",

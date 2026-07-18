@@ -11,7 +11,6 @@
     "generic": "Qualcosa è andato storto nel caricamento della mappa.",
     "waitingForConnection": "In attesa della connessione..."
   },
-
   "noSpotsFound": "Nessun punto di raccolta trovato nelle vicinanze",
   "spotsFound": "Trovato {{count}} punto di raccolta{{count > 1 ? 'i' : ''}} nelle vicinanze!",
   "tryMovingMap": "Prova a spostare la mappa o a ottenere la tua posizione",
@@ -40,7 +39,6 @@
     "spotsFound": "Luoghi di Raccolta",
     "support": "Supporta il progetto",
     "limit_hit_message": "Cari Cercatori,<br>\nNon possiamo caricare la mappa perché abbiamo raggiunto il nostro limite mensile di utilizzo.<br><br>\nPer aiutare a mantenere le mappe disponibili, considera di <strong>sostenere il progetto</strong>.<br>\nNel frattempo, goditi questa mappa di Boletus non proprio perfetta… finché non raggiunge il suo stesso limite 😅",
-
     "tips": {
       "title": "Suggerimenti per la Risoluzione",
       "checkConnection": "Controlla la tua connessione internet",
@@ -61,9 +59,10 @@
   "showOnboarding": "Mostra istruzioni",
   "dataFreshnessTooltip": "Dati aggiornati quotidianamente",
   "featureInfo": {
-    "title": "Dettagli Feature",
-    "getDirections": "Ottieni Indicazioni",
-    "location": "Località"
+    "title": "Specie di quest'area",
+    "getDirections": "Naviga",
+    "location": "Località",
+    "dataNerd": "Vedi dati area"
   },
   "onboarding": {
     "title": "Esplora le specie selvatiche",

@@ -27,6 +27,7 @@ import {
 } from '@/lib/data';
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
+import { Route as DataRoute } from '@/routes/data';
 
 const ZoneMap = lazy(() => import('@/components/ZoneMap'));
 
@@ -241,11 +242,12 @@ function ChartCard({ title, children }: ChartCardProps) {
 export default function DataPage() {
   const { t } = useTranslation(['sidebar', 'common']);
   const speciesData = useSpeciesData();
+  const { region: regionParam } = DataRoute.useSearch();
 
   const [dataset, setDataset] = useState<ForagingDataset | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [region, setRegion] = useState<RegionId>('NE');
+  const [region, setRegion] = useState<RegionId>(regionParam ?? 'NE');
   const [zone, setZone] = useState<string>('');
   const [days, setDays] = useState<7 | 14 | 30 | 90 | 365>(7);
   const [selectedSpecies, setSelectedSpecies] = useState<string>('');
