@@ -54,9 +54,31 @@
     "noResults": "Nenhuma espécie encontrada",
     "notAvailableOffline": "Not available offline. Download on the Offline Maps page."
   },
+  "themes": {
+    "select": "Tema do mapa",
+    "light": {
+      "name": "Claro",
+      "description": "O mapa Funges clássico e claro."
+    },
+    "dark": {
+      "name": "Escuro",
+      "description": "Paleta de pouca luz, confortável para os olhos à noite."
+    },
+    "white": {
+      "name": "Branco",
+      "description": "Paleta clara e minimalista com pouca distração."
+    },
+    "darkmatter": {
+      "name": "Dark Matter",
+      "description": "Mapa base monocromático escuro de contraste máximo."
+    },
+    "topographic": {
+      "name": "Topográfico",
+      "description": "Estilo de mapa de trilhas quente com trilhas e caminhos visíveis."
+    }
+  },
   "getLocation": "Obter minha localização",
   "toggleNumbers": "Alternar números",
-  "toggleDarkMode": "Mudar estilo do mapa",
   "showOnboarding": "Mostrar instruções",
   "dataFreshnessTooltip": "Dados atualizados diariamente",
   "featureInfo": {
@@ -72,7 +94,7 @@
       "species": "Escolha uma espécie com o seletor",
       "locate": "Centralize o mapa na sua localização",
       "numbers": "Mostrar ou ocultar o índice numérico",
-      "theme": "Alterne entre 4 estilos de mapa: Claro, Escuro, Positron, Dark Matter",
+      "theme": "Escolha um tema de mapa: Claro, Escuro, Branco, Dark Matter ou Topográfico",
       "zones": "Toque em uma zona para ver a lista de espécies",
       "recipes": "Abra receitas proximas e trace uma rota ate cada parada de ingredientes"
     },

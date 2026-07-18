@@ -1,5 +1,10 @@
-import { describe, expect, it } from 'vitest';
-import { layerRegion, resolveDataNerdRegion } from '@/store/mapStore';
+import { beforeEach, describe, expect, it } from 'vitest';
+import {
+  layerRegion,
+  resolveDataNerdRegion,
+  useMapStore,
+  MAP_THEMES,
+} from '@/store/mapStore';
 
 describe('layerRegion', () => {
   it.each([
@@ -30,5 +35,66 @@ describe('resolveDataNerdRegion', () => {
 
   it('returns null for an unrecognized layer id (no false-positive region match)', () => {
     expect(resolveDataNerdRegion('background')).toBeNull();
+  });
+});
+
+describe('setMapStyleIndex', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it('defaults to index 0 (Light) with no stored preference', () => {
+    expect(useMapStore.getState().mapStyleIndex).toBe(0);
+    expect(useMapStore.getState().mapStyle).toBe('/funges_style.json');
+    expect(useMapStore.getState().darkLayersVisible).toBe(false);
+  });
+
+  it('sets the style URL, index, and persists to localStorage for a light theme', () => {
+    useMapStore.getState().setMapStyleIndex(2);
+    const state = useMapStore.getState();
+    expect(state.mapStyleIndex).toBe(2);
+    expect(state.mapStyle).toBe('/funges_style_positron.json');
+    expect(state.darkLayersVisible).toBe(false);
+    expect(localStorage.getItem('mapStyleIndex')).toBe('2');
+  });
+
+  it('marks darkLayersVisible for Dark and Dark Matter indexes', () => {
+    useMapStore.getState().setMapStyleIndex(1);
+    expect(useMapStore.getState().darkLayersVisible).toBe(true);
+
+    useMapStore.getState().setMapStyleIndex(3);
+    expect(useMapStore.getState().darkLayersVisible).toBe(true);
+  });
+
+  it('selects the Topographic style at index 4', () => {
+    useMapStore.getState().setMapStyleIndex(4);
+    const state = useMapStore.getState();
+    expect(state.mapStyle).toBe('/funges_style_topographic.json');
+    expect(state.darkLayersVisible).toBe(false);
+  });
+
+  it('ignores out-of-range indexes and leaves state untouched', () => {
+    useMapStore.getState().setMapStyleIndex(2);
+    useMapStore.getState().setMapStyleIndex(99);
+    expect(useMapStore.getState().mapStyleIndex).toBe(2);
+    expect(localStorage.getItem('mapStyleIndex')).toBe('2');
+  });
+});
+
+describe('MAP_THEMES', () => {
+  it('has exactly 5 themes, each pointing at a valid style index', () => {
+    expect(MAP_THEMES).toHaveLength(5);
+    const indexes = MAP_THEMES.map(theme => theme.styleIndex).sort();
+    expect(indexes).toEqual([0, 1, 2, 3, 4]);
+  });
+
+  it('includes light, dark, white, darkmatter, and topographic', () => {
+    expect(MAP_THEMES.map(theme => theme.id).sort()).toEqual([
+      'dark',
+      'darkmatter',
+      'light',
+      'topographic',
+      'white',
+    ]);
   });
 });

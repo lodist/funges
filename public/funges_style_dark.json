@@ -14380,7 +14380,7 @@
       "source": "aws",
       "source-layer": "places",
       "minzoom": 3.75,
-      "maxzoom": 8,
+      "maxzoom": 11,
       "filter": [
         "all",
         [
@@ -14685,9 +14685,9 @@
               "get",
               "population"
             ],
-            35000
+            20000
           ],
-          10,
+          9,
           [
             ">=",
             [
@@ -14696,7 +14696,7 @@
             ],
             10000
           ],
-          11,
+          10,
           [
             ">=",
             [
@@ -14705,6 +14705,15 @@
             ],
             5000
           ],
+          11,
+          [
+            ">=",
+            [
+              "get",
+              "population"
+            ],
+            2000
+          ],
           12,
           [
             ">=",
@@ -14712,7 +14721,7 @@
               "get",
               "population"
             ],
-            1000
+            500
           ]
         ],
         [
@@ -15324,7 +15333,7 @@
       "source": "aws",
       "source-layer": "places",
       "minzoom": 1,
-      "maxzoom": 8,
+      "maxzoom": 11,
       "filter": [
         "all",
         [
