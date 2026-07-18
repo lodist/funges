@@ -1,0 +1,28 @@
+{
+  "country": { "minzoom": 1, "maxzoom": 11 },
+  "region": { "minzoom": 3.75, "maxzoom": 11 },
+  "city": {
+    "minzoom": 3,
+    "maxzoom": 14,
+    "populationSteps": [
+      { "zoom": 0, "population": 1200000 },
+      { "zoom": 4, "population": 400000 },
+      { "zoom": 6, "population": 200000 },
+      { "zoom": 7, "population": 100000 }
+    ]
+  },
+  "settlement": {
+    "minzoom": 7,
+    "maxzoom": 16,
+    "populationCeiling": 100000,
+    "populationSteps": [
+      { "zoom": 0, "population": 50000 },
+      { "zoom": 8, "population": 20000 },
+      { "zoom": 9, "population": 10000 },
+      { "zoom": 10, "population": 5000 },
+      { "zoom": 11, "population": 2000 },
+      { "zoom": 12, "population": 500 }
+    ]
+  },
+  "settlementSmall": { "minzoom": 12, "maxzoom": 16 }
+}

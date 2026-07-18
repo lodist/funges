@@ -50,7 +50,7 @@ export interface MapState {
 
   // Layer visibility
   darkLayersVisible: boolean; // true when the active style is a dark one
-  mapStyleIndex: number; // index into MAP_STYLES (cycled by the style button)
+  mapStyleIndex: number; // index into MAP_STYLES (set via setMapStyleIndex)
   numbersLayersVisible: boolean;
   activeDay: number; // 0 = today; 1..6 = forecast
 
@@ -84,7 +84,7 @@ export interface MapState {
 
   // Species selection actions
   setSelectedSpecies: (species: string | null) => void;
-  cycleMapStyle: () => void;
+  setMapStyleIndex: (index: number) => void;
   toggleNumbersLayersVisibility: () => void;
   setActiveDay: (day: number) => void;
 
@@ -94,18 +94,45 @@ export interface MapState {
   restoreDarkLayersState: () => void;
 }
 
-// The map-style button cycles these 4 whole styles — Protomaps basemap has no
-// per-layer ` dark` variant. All 4 carry the SAME overlay/species layers (only the
-// basemap differs); AdvancedMap's [mapStyle] effect recreates the map (camera
-// preserved from the store) and re-applies species visibility on swap.
-// Regenerate positron/darkmatter via scripts/make_carto_styles.py.
+// The theme selector picks one of these 5 whole styles — Protomaps basemap has
+// no per-layer `dark` variant. All 5 carry the SAME overlay/species layers (only
+// the basemap differs); AdvancedMap's [mapStyle] effect recreates the map
+// (camera preserved from the store) and re-applies species visibility on swap.
+// Regenerate positron/darkmatter/topographic via scripts/make_carto_styles.py.
 const MAP_STYLES = [
   '/funges_style.json', // 0 light (olive)
   '/funges_style_dark.json', // 1 dark
-  '/funges_style_positron.json', // 2 Positron
+  '/funges_style_positron.json', // 2 White (Positron)
   '/funges_style_darkmatter.json', // 3 Dark Matter
+  '/funges_style_topographic.json', // 4 Topographic
 ];
-const DARK_STYLE_INDEXES = new Set([1, 3]); // drives the button's dark styling
+const DARK_STYLE_INDEXES = new Set([1, 3]); // drives dark UI chrome
+
+export interface MapThemeOption {
+  id: 'light' | 'dark' | 'white' | 'darkmatter' | 'topographic';
+  styleIndex: number;
+  thumbnail: string;
+}
+
+// Drives the MapThemeSelector dropdown. Names/descriptions live in
+// map.json under the `themes.<id>` namespace (translated in all locales).
+// Thumbnails are real screenshots, manually captured and committed to
+// public/theme-thumbnails/ once each theme is visually verifiable.
+export const MAP_THEMES: MapThemeOption[] = [
+  { id: 'light', styleIndex: 0, thumbnail: '/theme-thumbnails/light.png' },
+  { id: 'dark', styleIndex: 1, thumbnail: '/theme-thumbnails/dark.png' },
+  { id: 'white', styleIndex: 2, thumbnail: '/theme-thumbnails/white.png' },
+  {
+    id: 'darkmatter',
+    styleIndex: 3,
+    thumbnail: '/theme-thumbnails/darkmatter.png',
+  },
+  {
+    id: 'topographic',
+    styleIndex: 4,
+    thumbnail: '/theme-thumbnails/topographic.png',
+  },
+];
 function readStyleIndex(): number {
   const saved = Number(localStorage.getItem('mapStyleIndex'));
   if (Number.isInteger(saved) && saved >= 0 && saved < MAP_STYLES.length) {
@@ -218,17 +245,22 @@ export const useMapStore = create<MapState>()(
         set({ selectedSpecies });
       },
 
-      cycleMapStyle: () =>
-        set(state => {
-          const mapStyleIndex = (state.mapStyleIndex + 1) % MAP_STYLES.length;
-          localStorage.setItem('mapStyleIndex', String(mapStyleIndex));
-          // Swap the style URL; the [mapStyle] effect in AdvancedMap reloads the map.
-          return {
-            mapStyleIndex,
-            mapStyle: MAP_STYLES[mapStyleIndex],
-            darkLayersVisible: DARK_STYLE_INDEXES.has(mapStyleIndex),
-          };
-        }),
+      setMapStyleIndex: (index: number) => {
+        if (
+          !Number.isInteger(index) ||
+          index < 0 ||
+          index >= MAP_STYLES.length
+        ) {
+          return;
+        }
+        localStorage.setItem('mapStyleIndex', String(index));
+        // Swap the style URL; the [mapStyle] effect in AdvancedMap reloads the map.
+        set({
+          mapStyleIndex: index,
+          mapStyle: MAP_STYLES[index],
+          darkLayersVisible: DARK_STYLE_INDEXES.has(index),
+        });
+      },
       toggleNumbersLayersVisibility: () =>
         set(state => {
           const newState = {
