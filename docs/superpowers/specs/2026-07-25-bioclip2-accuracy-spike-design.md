@@ -53,11 +53,11 @@ structure.
 
 Three functions, disk cache between each stage:
 
-| Stage        | Input → output                                        | Why it is cached                                        |
-| ------------ | ----------------------------------------------------- | ------------------------------------------------------- |
+| Stage        | Input → output                                           | Why it is cached                                          |
+| ------------ | -------------------------------------------------------- | --------------------------------------------------------- |
 | `fetch()`    | iNaturalist API → `spike_cache/images/`, `manifest.json` | Slow and rate-limited; must never re-fetch when iterating |
-| `embed()`    | images → `embeddings.npy`                             | ~2GB model load plus minutes of CPU                     |
-| `evaluate()` | embeddings + manifest → report                        | Fast; will be re-run many times while reading results   |
+| `embed()`    | images → `embeddings.npy`                                | ~2GB model load plus minutes of CPU                       |
+| `evaluate()` | embeddings + manifest → report                           | Fast; will be re-run many times while reading results     |
 
 Caching between stages is the entire reason for three stages instead of one
 blob: metrics get iterated on ten times, fetching happens once. `--stage
@@ -86,11 +86,16 @@ Therefore:
 The report must state this caveat inline so a future reader does not mistake the
 top-line accuracy for expected field performance.
 
-### Label set: 32 catalog + 22 toxic = 54 labels
+### Label set: 31 catalog + 22 toxic = 53 labels
 
-The catalog's 34 entries in `src/data/species.ts` collapse to 33 unique
+The catalog's 33 entries in `src/data/species.ts` collapse to 32 unique
 scientific names (`elderberry` and `elderflower` are both _Sambucus nigra_ —
-one label, two catalog ids mapping to it). One of those 33 is dropped, giving 32.
+one label, two catalog ids mapping to it). One of those 32 is dropped, giving 31.
+
+(Verified by `grep -cE "^    id: '" src/data/species.ts` → 33 and
+`grep -E "^    scientificName:" … | sort -u | wc -l` → 32. A plain
+`grep -c scientificName` returns 34 because it also matches the `interface`
+declaration — do not use it.)
 
 Special handling:
 
@@ -105,10 +110,10 @@ Special handling:
   threshold and be excluded from headline metrics.
 
 Toxic labels need gallery photos too, since method B builds a prototype per
-label. Total fetch: 54 labels × 55 photos ≈ 3000 images.
+label. Total fetch: 53 labels × 55 photos ≈ 2900 images.
 
 **Toxic labels are mandatory, not a nice-to-have.** The catalog is edible-only.
-A model given only 33 edible labels is structurally incapable of outputting
+A model given only 31 edible labels is structurally incapable of outputting
 "death cap" — it must return an edible for every photo, including photos of
 lethal species. Including toxic labels is what makes any output safe to display,
 and it doubles as the adversarial test set at no extra fetching cost.
@@ -116,18 +121,18 @@ and it doubles as the adversarial test set at no extra fetching cost.
 Toxic set — 22 unique labels, derived from what the catalog's own entries get
 confused with:
 
-| Catalog entry            | Toxic look-alikes                                                       |
-| ------------------------ | ----------------------------------------------------------------------- |
-| _Cantharellus cibarius_  | _Omphalotus olearius_, _Hygrophoropsis aurantiaca_                      |
-| _Macrolepiota procera_   | _Chlorophyllum molybdites_, _Lepiota brunneoincarnata_, young _A. phalloides_ |
-| _Calocybe gambosa_       | _Inocybe erubescens_, _Entoloma sinuatum_ (same season, same habitat)    |
-| _Morchella spp._         | _Gyromitra esculenta_, _Verpa bohemica_                                 |
-| _Boletus spp._           | _Rubroboletus satanas_, _Tylopilus felleus_                             |
-| _Pleurotus ostreatus_    | _Omphalotus_ spp.                                                       |
-| **_Allium ursinum_**     | **_Colchicum autumnale_, _Convallaria majalis_, _Arum maculatum_**       |
-| _Peucedanum ostruthium_  | _Conium maculatum_, _Aethusa cynapium_                                  |
-| _Vaccinium_ spp.         | _Atropa belladonna_                                                     |
-| _Sambucus nigra_         | _Sambucus ebulus_                                                       |
+| Catalog entry            | Toxic look-alikes                                                                         |
+| ------------------------ | ----------------------------------------------------------------------------------------- |
+| _Cantharellus cibarius_  | _Omphalotus olearius_, _Hygrophoropsis aurantiaca_                                        |
+| _Macrolepiota procera_   | _Chlorophyllum molybdites_, _Lepiota brunneoincarnata_, young _A. phalloides_             |
+| _Calocybe gambosa_       | _Inocybe erubescens_, _Entoloma sinuatum_ (same season, same habitat)                     |
+| _Morchella spp._         | _Gyromitra esculenta_, _Verpa bohemica_                                                   |
+| _Boletus spp._           | _Rubroboletus satanas_, _Tylopilus felleus_                                               |
+| _Pleurotus ostreatus_    | _Omphalotus_ spp.                                                                         |
+| **_Allium ursinum_**     | **_Colchicum autumnale_, _Convallaria majalis_, _Arum maculatum_**                        |
+| _Peucedanum ostruthium_  | _Conium maculatum_, _Aethusa cynapium_                                                    |
+| _Vaccinium_ spp.         | _Atropa belladonna_                                                                       |
+| _Sambucus nigra_         | _Sambucus ebulus_                                                                         |
 | (unconditional deadlies) | _A. phalloides_, _A. virosa_, _A. muscaria_, _Galerina marginata_, _Cortinarius rubellus_ |
 
 The _Allium ursinum_ row is bolded deliberately: it is the deadliest confusion
