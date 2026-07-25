@@ -96,9 +96,12 @@ export function IdentifyResults({
           row nests a "check these features" list, and an unlabelled outer list
           is indistinguishable from those to assistive tech. */}
       <ul className='space-y-2' aria-label={t('results.heading')}>
-        {candidates.map((candidate, index) => (
+        {/* Scientific name alone is a safe key: rankPredictions returns the
+            top-k distinct label rows, so a name cannot repeat within one
+            result set. */}
+        {candidates.map(candidate => (
           <CandidateRow
-            key={`${candidate.scientificName}-${index}`}
+            key={candidate.scientificName}
             candidate={candidate}
             t={t}
             tSpecies={tSpecies}
