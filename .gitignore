@@ -49,3 +49,6 @@ tests/forecast_vs_actual_snapshot.jsonl
 
 # Brainstorming session scratch (mockups/state, not project artifacts)
 .superpowers/
+
+# BioCLIP spike cache (downloaded photos + embeddings)
+spike_cache/
