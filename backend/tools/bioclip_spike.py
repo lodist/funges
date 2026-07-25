@@ -148,6 +148,75 @@ def split_by_observation(observations, gallery_n, test_n):
     return gallery, test
 
 
+def top_k_accuracy(preds, k):
+    """Share of CATALOG photos whose true label is in the top k. Toxic excluded."""
+    catalog = [p for p in preds if p["truth_kind"] == "catalog"]
+    if not catalog:
+        return 0.0
+    hits = sum(1 for p in catalog if p["truth"] in p["ranked"][:k])
+    return hits / len(catalog)
+
+
+def false_edible_rate(preds, catalog_names, k):
+    """THE GATE. Share of TOXIC photos with an edible label in the top k.
+
+    This is the number that can kill the feature: it is how often the app
+    would suggest something edible while looking at a poisonous specimen.
+    """
+    toxic = [p for p in preds if p["truth_kind"] == "toxic"]
+    if not toxic:
+        return 0.0
+    bad = sum(
+        1 for p in toxic if any(r in catalog_names for r in p["ranked"][:k])
+    )
+    return bad / len(toxic)
+
+
+def worst_confusions(preds, catalog_names, limit=10):
+    """Ranked toxic->edible top-1 confusions. An aggregate is not actionable."""
+    totals, pairs = {}, {}
+    for p in preds:
+        if p["truth_kind"] != "toxic":
+            continue
+        totals[p["truth"]] = totals.get(p["truth"], 0) + 1
+        top = p["ranked"][0] if p["ranked"] else None
+        if top in catalog_names:
+            pairs[(p["truth"], top)] = pairs.get((p["truth"], top), 0) + 1
+
+    rows = [
+        {
+            "toxic": toxic,
+            "predicted": edible,
+            "count": count,
+            "n": totals[toxic],
+            "rate": count / totals[toxic],
+        }
+        for (toxic, edible), count in pairs.items()
+    ]
+    rows.sort(key=lambda r: (-r["count"], -r["rate"], r["toxic"]))
+    return rows[:limit]
+
+
+def threshold_sweep(preds, catalog_names, cutoffs, k):
+    """Per cutoff: resulting false-edible rate and share of photos answered.
+
+    Decides whether the feature can have an honest "I'm not sure" state and
+    what that costs in coverage.
+    """
+    rows = []
+    for cutoff in cutoffs:
+        answered = [p for p in preds if p["confidence"] >= cutoff]
+        rows.append(
+            {
+                "cutoff": cutoff,
+                "answered": len(answered) / len(preds) if preds else 0.0,
+                "false_edible": false_edible_rate(answered, catalog_names, k),
+                "top1": top_k_accuracy(answered, k=1),
+            }
+        )
+    return rows
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument(
