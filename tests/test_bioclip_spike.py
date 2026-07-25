@@ -1,6 +1,7 @@
 from bioclip_spike import (
     false_edible_rate,
     split_by_observation,
+    taxonomic_prompt,
     threshold_sweep,
     top_k_accuracy,
     worst_confusions,
@@ -196,3 +197,30 @@ def test_threshold_sweep_top1_stays_pinned_to_k1():
 
     assert row["top1"] == 0.0
     assert top_k_accuracy(preds, k=3) == 1.0   # would be 1.0 if it followed k
+
+
+def test_taxonomic_prompt_uses_full_lineage():
+    lineage = {
+        "kingdom": "Fungi",
+        "phylum": "Basidiomycota",
+        "class": "Agaricomycetes",
+        "order": "Cantharellales",
+        "family": "Cantharellaceae",
+        "genus": "Cantharellus",
+        "species": "Cantharellus cibarius",
+    }
+    assert taxonomic_prompt(lineage) == (
+        "a photo of Fungi Basidiomycota Agaricomycetes Cantharellales "
+        "Cantharellaceae Cantharellus cibarius."
+    )
+
+
+def test_taxonomic_prompt_skips_missing_ranks():
+    lineage = {"kingdom": "Fungi", "genus": "Boletus"}
+    assert taxonomic_prompt(lineage) == "a photo of Fungi Boletus."
+
+
+def test_taxonomic_prompt_does_not_repeat_the_genus():
+    # iNat species names include the genus; emitting both would duplicate it
+    lineage = {"genus": "Amanita", "species": "Amanita phalloides"}
+    assert taxonomic_prompt(lineage) == "a photo of Amanita phalloides."

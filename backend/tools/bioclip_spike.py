@@ -237,6 +237,28 @@ def threshold_sweep(preds, catalog_names, cutoffs, k):
     return rows
 
 
+RANKS = ["kingdom", "phylum", "class", "order", "family", "genus", "species"]
+
+
+def taxonomic_prompt(lineage):
+    """Build BioCLIP's taxonomic prompt from a rank->name mapping.
+
+    BioCLIP is trained on full lineage strings, so bare species names
+    underperform. Missing ranks are skipped. The genus is not repeated when a
+    binomial species name already contains it.
+    """
+    parts = []
+    for rank in RANKS:
+        name = lineage.get(rank)
+        if not name:
+            continue
+        if rank == "species" and parts and name.startswith(parts[-1] + " "):
+            parts[-1] = name          # "Amanita" + "Amanita phalloides"
+        else:
+            parts.append(name)
+    return "a photo of " + " ".join(parts) + "."
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument(
