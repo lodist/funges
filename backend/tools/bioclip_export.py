@@ -31,6 +31,8 @@ from bioclip_spike import (  # noqa: E402
     taxonomic_prompt,
 )
 
+R2 = "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev"
+
 ARTIFACTS = Path(__file__).resolve().parent / "model_artifacts"
 ONNX_FP32 = ARTIFACTS / "image_tower_fp32.onnx"
 ONNX_INT8 = ARTIFACTS / "image_tower_int8.onnx"
@@ -507,6 +509,94 @@ def stage_parity_fixtures():
     print(f"\nwrote {len(manifest)} fixtures to {PARITY_DIR} ({total / 1e6:.2f} MB)")
 
 
+# Must match MODEL_VERSION / MODEL_URL in src/lib/modelCache.ts. The upload
+# stage asserts this rather than trusting it, because a mismatch means the app
+# fetches a 404 and the only symptom is a download that never starts.
+MODEL_VERSION = "bioclip2-int8-2026-07"
+R2_KEY = f"models/bioclip/{MODEL_VERSION}/image_tower_int8.onnx"
+
+
+def stage_upload():
+    """Publish the int8 artifact to R2 under its versioned key.
+
+    Refuses to overwrite. The key carries a version precisely so that publishing
+    is append-only: the service worker caches this CacheFirst for a year, so
+    replacing bytes at an existing URL would leave everyone who already
+    downloaded on the old model with nothing to signal it.
+    """
+    import boto3
+
+    if not ONNX_INT8.exists():
+        raise SystemExit("no int8 onnx — run --stage quantize first")
+
+    # Keep the app's constant and this key in lockstep.
+    ts_path = Path(__file__).resolve().parents[2] / "src" / "lib" / "modelCache.ts"
+    ts = ts_path.read_text(encoding="utf-8")
+    if f"'{MODEL_VERSION}'" not in ts:
+        raise SystemExit(
+            f"MODEL_VERSION mismatch: {MODEL_VERSION!r} is not in {ts_path.name}. "
+            "The app would request a key that does not exist."
+        )
+    if R2_KEY.rsplit("/", 1)[-1] not in ts:
+        raise SystemExit(f"filename in {ts_path.name} does not match {R2_KEY}")
+
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from build_season_curves import get_required_env, load_dotenv
+
+    root = Path(__file__).resolve().parents[2]
+    load_dotenv(root / ".env")
+    load_dotenv(root / ".env.secret")
+
+    bucket = get_required_env("R2_BUCKET_NAME")
+    client = boto3.client(
+        "s3",
+        endpoint_url=get_required_env("R2_ENDPOINT_URL"),
+        aws_access_key_id=get_required_env("R2_ACCESS_KEY_ID"),
+        aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY"),
+    )
+
+    try:
+        existing = client.head_object(Bucket=bucket, Key=R2_KEY)
+        raise SystemExit(
+            f"{R2_KEY} already exists ({existing['ContentLength']} bytes, "
+            f"{existing['LastModified']}). Publishing is append-only — bump "
+            "MODEL_VERSION in both modelCache.ts and this file instead of "
+            "overwriting, or the service worker will serve stale bytes forever."
+        )
+    except client.exceptions.ClientError as e:
+        if e.response["Error"]["Code"] not in ("404", "NoSuchKey", "NotFound"):
+            raise
+
+    size = ONNX_INT8.stat().st_size
+    print(f"uploading {size / 1e6:.1f} MB -> s3://{bucket}/{R2_KEY}")
+
+    seen = {"bytes": 0, "pct": -5}
+
+    def progress(chunk):
+        seen["bytes"] += chunk
+        pct = int(seen["bytes"] * 100 / size)
+        if pct >= seen["pct"] + 5:
+            seen["pct"] = pct
+            print(f"  {pct:3d}%  {seen['bytes'] / 1e6:.0f} MB")
+
+    client.upload_file(
+        str(ONNX_INT8),
+        bucket,
+        R2_KEY,
+        ExtraArgs={"ContentType": "application/octet-stream"},
+        Callback=progress,
+    )
+
+    # Verify what landed, rather than trusting the upload's exit status: a
+    # truncated object would be cached by the client as a corrupt model.
+    head = client.head_object(Bucket=bucket, Key=R2_KEY)
+    remote = head["ContentLength"]
+    print(f"\nremote size {remote} bytes, local {size} bytes")
+    if remote != size:
+        raise SystemExit(f"size mismatch after upload: {remote} != {size}")
+    print(f"verified. public URL:\n  {R2}/{R2_KEY}")
+
+
 SYNTH_DIR = Path(__file__).resolve().parents[2] / "src" / "test" / "fixtures"
 
 # Source sizes chosen to exercise the arithmetic edges of resize-then-crop.
@@ -602,6 +692,7 @@ def main():
             "text-matrix",
             "parity-fixtures",
             "parity-synthetic",
+            "upload",
         ],
         required=True,
     )
@@ -614,6 +705,7 @@ def main():
         "text-matrix": stage_text_matrix,
         "parity-fixtures": stage_parity_fixtures,
         "parity-synthetic": stage_parity_synthetic,
+        "upload": stage_upload,
     }[args.stage]()
 
 
