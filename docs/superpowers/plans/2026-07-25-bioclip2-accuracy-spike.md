@@ -210,7 +210,23 @@ python backend/tools/bioclip_spike.py --list-labels | tail -3
 
 Expected last line: `31 catalog + 22 toxic = 53 labels`
 
-If the count is wrong, the `CATALOG` list is wrong — cross-check every `scientificName` in `src/data/species.ts`. Note the `Cichorium intybus` entry marked in the NOTE: verify it against `src/data/species.ts` and replace it with the real 32nd name if it does not appear there.
+If the count is wrong, the `CATALOG` list is wrong. Cross-check it against the app with:
+
+```bash
+python - <<'PY'
+import re, pathlib
+src = pathlib.Path("src/data/species.ts").read_text(encoding="utf-8")
+real = {n.replace(" spp.", "") for n in re.findall(r"^    scientificName: '([^']+)'", src, re.M)}
+real -= {"Tuber melanosporum"}
+plan = pathlib.Path("backend/tools/bioclip_spike.py").read_text(encoding="utf-8")
+block = plan.split("CATALOG = [")[1].split("]")[0]
+planned = set(re.findall(r'\("([^"]+)", "(?:species|genus)"\)', block))
+print("missing:", sorted(real - planned), "extra:", sorted(planned - real))
+print("MATCH" if real == planned else "MISMATCH")
+PY
+```
+
+Expected: `missing: [] extra: []` and `MATCH`.
 
 - [ ] **Step 5: Commit**
 
