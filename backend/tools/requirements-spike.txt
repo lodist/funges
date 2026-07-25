@@ -5,3 +5,7 @@ torch
 open_clip_torch
 pillow
 numpy
+
+# ONNX export + quantization (backend/tools/bioclip_export.py)
+onnx
+onnxruntime

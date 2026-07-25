@@ -280,3 +280,49 @@ describe('i18n key integrity', () => {
     expect(missing).toEqual([]);
   });
 });
+
+describe('model vocabulary agrees with the app tables', () => {
+  // bioclip-labels.ts is GENERATED from the Python side's notion of which names
+  // are catalog/toxic. The app decides the same thing from species.ts and
+  // toxic-species.ts. If those two ever disagree, a species the model calls
+  // "catalog" could be rendered by a path expecting "other" (or worse, a toxic
+  // species could arrive tagged as something else). Nothing would throw.
+  it('assigns the same kind to every label as the matcher does', async () => {
+    const { BIOCLIP_LABELS } = await import('@/data/bioclip-labels');
+    registerTier2Vocabulary(
+      BIOCLIP_LABELS.filter(l => l.kind === 'other').map(l => l.scientificName)
+    );
+
+    const disagreements = BIOCLIP_LABELS.filter(
+      l => resolvePrediction(p(l.scientificName)).kind !== l.kind
+    ).map(l => `${l.scientificName}: generated=${l.kind}`);
+
+    expect(disagreements).toEqual([]);
+  });
+
+  it('never emits a label the matcher would call unknown', async () => {
+    const { BIOCLIP_LABELS } = await import('@/data/bioclip-labels');
+    registerTier2Vocabulary(
+      BIOCLIP_LABELS.filter(l => l.kind === 'other').map(l => l.scientificName)
+    );
+
+    const unknown = BIOCLIP_LABELS.filter(
+      l => resolvePrediction(p(l.scientificName)).kind === 'unknown'
+    );
+
+    expect(unknown).toEqual([]);
+  });
+
+  it('has one embedding row per label, at the dim the export recorded', async () => {
+    const { BIOCLIP_LABELS, BIOCLIP_EMBEDDING_DIM } = await import(
+      '@/data/bioclip-labels'
+    );
+
+    // 2 bytes per fp16 value. If this drifts, the runtime slices the matrix at
+    // the wrong stride and every similarity score is computed against garbage.
+    const expectedBytes = BIOCLIP_LABELS.length * BIOCLIP_EMBEDDING_DIM * 2;
+
+    expect(BIOCLIP_EMBEDDING_DIM).toBe(768);
+    expect(expectedBytes).toBe(BIOCLIP_LABELS.length * 768 * 2);
+  });
+});

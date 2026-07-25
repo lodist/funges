@@ -704,17 +704,15 @@ def _predictions(sims, label_names, test_rows):
     return preds
 
 
-def stage_evaluate():
-    """embeddings -> report (stdout markdown + spike_cache/report.json)."""
+def evaluate_embeddings(vectors, text_vectors, photos, text_labels):
+    """Compute the full results dict from embeddings. No disk I/O.
+
+    Factored out of stage_evaluate so the ONNX/quantized export path
+    (bioclip_export.py) scores its artifact with EXACTLY this code. A second
+    copy of the metric logic would let the shipped artifact be measured by
+    subtly different arithmetic than the research model was.
+    """
     import numpy as np
-
-    if not (CACHE / "embeddings.npy").exists():
-        raise SystemExit("no embeddings.npy — run --stage embed first")
-
-    vectors = np.load(CACHE / "embeddings.npy")
-    text_vectors = np.load(CACHE / "text_embeddings.npy")
-    order = json.loads((CACHE / "embed_order.json").read_text())
-    photos, text_labels = order["photos"], order["text_labels"]
 
     # embed_order and embeddings are joined POSITIONALLY. A length mismatch
     # pairs every photo with another photo's vector and yields confident
@@ -803,6 +801,24 @@ def stage_evaluate():
         ),
         "excluded": excluded,
     }
+
+    return results
+
+
+def stage_evaluate():
+    """embeddings -> report (stdout markdown + spike_cache/report.json)."""
+    import numpy as np
+
+    if not (CACHE / "embeddings.npy").exists():
+        raise SystemExit("no embeddings.npy — run --stage embed first")
+
+    order = json.loads((CACHE / "embed_order.json").read_text())
+    results = evaluate_embeddings(
+        np.load(CACHE / "embeddings.npy"),
+        np.load(CACHE / "text_embeddings.npy"),
+        order["photos"],
+        order["text_labels"],
+    )
 
     report = render_report(results)
     print("\n" + report)
