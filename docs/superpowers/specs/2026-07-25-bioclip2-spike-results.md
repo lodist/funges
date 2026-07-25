@@ -276,3 +276,64 @@ Ship tier 2. Reproduce with:
 python backend/tools/bioclip_wide_vocab.py --stage taxa --per-region 200
 python backend/tools/bioclip_wide_vocab.py --stage evaluate
 ```
+
+---
+
+## Addendum 3 — the int8 artifact that actually ships
+
+The spike measured a PyTorch fp32 model. What reaches a browser is a quantized
+ONNX graph, so every gating number was re-measured against the real artifact
+(`backend/tools/bioclip_export.py`).
+
+**Export fidelity, asserted before quantizing:** `model.visual` reproduces
+`encode_image` with a max absolute difference of exactly `0.00e+00` — so this
+checkpoint keeps no projection outside `.visual`. The exported fp32 ONNX matches
+PyTorch to `8.5e-07`. Both are assertions in the export stage, not observations,
+because a silent mismatch there would shift every embedding the feature computes.
+
+**Size:** 1216.6 MB fp32 -> **306.9 MB** dynamic weight-only int8 (4.0x).
+
+### False-edible@1, the gate
+
+| Vocabulary              | fp32 (spike) | int8 (ships) | delta       |
+| ----------------------- | ------------ | ------------ | ----------- |
+| 53 labels, text         | 1.4%         | 2.0%         | **+0.61pp** |
+| 53 labels, gallery      | 1.2%         | 1.5%         | +0.30pp     |
+| **1053 labels (ships)** | **0.91%**    | **1.06%**    | **+0.15pp** |
+
+Ceiling was +1.00pp. Passes at both sizes, and the shipping configuration is
+almost unaffected — more competing labels dilute quantization error's effect on
+the top-1 decision.
+
+Catalog top-1 barely moves: 97.4% -> 96.9% (text), 97.8% -> 97.8% (gallery).
+
+### A gate that was wrong in the strict direction
+
+The first run FAILED, and the failure was in the verification code, not the
+model. The plan specified the ceiling on false-edible**@1**; the implementation
+applied it to `@1` and `@3` alike, and `@3` regressed +1.52pp.
+
+That mattered because **@3 at 53 labels is close to arithmetic**: its random
+baseline is 93.4% there, and addendum 2 showed it falling to 27.6% at the
+shipping vocabulary. A 1.5pp move on such a metric is noise, not a safety
+signal. Rather than simply loosen the check, the fix narrowed it to `@1` as
+specified **and added the check that was genuinely missing** — the gate at the
+1053-label vocabulary that ships, rather than only the 53-label one the spike
+happened to use.
+
+### Text matrix
+
+1053 labels x 768 dims, **float16, 1.62 MB**, bundled at
+`public/models/bioclip_text_embeddings.f16.bin` with an index-aligned generated
+`src/data/bioclip-labels.ts`. float32 would be 3.25 MB — over workbox's 2 MiB
+precache default, which makes `vite build` throw rather than warn. The narrowing
+costs nothing measurable (min cosine 1.000000 against fp32).
+
+Reproduce:
+
+```bash
+python backend/tools/bioclip_export.py --stage export
+python backend/tools/bioclip_export.py --stage quantize
+python backend/tools/bioclip_export.py --stage verify
+python backend/tools/bioclip_export.py --stage text-matrix
+```
