@@ -330,26 +330,43 @@ def split_by_observation(observations, gallery_n, test_n):
     holds several near-identical photos of one specimen, so a photo-level split
     would put duplicates in both sets and inflate the gallery method.
 
-    Test set is filled first — it is what the metrics are computed from.
-    Deterministic: observations are processed in sorted id order.
+    Observations are dealt alternately to test and gallery, test getting the
+    first deal, each capped at its own requested count; once one set reaches
+    its count, all further observations go to the other until it too is full.
+    This keeps both sets non-empty when data is thin (a strict "fill test to
+    completion first" pass would starve gallery to zero), while test still
+    wins ties when supply falls short of both quotas combined. Deterministic:
+    observations are processed in sorted id order.
     """
     ordered = sorted(observations, key=lambda o: o["observation_id"])
 
     test, gallery = [], []
-    for obs in ordered:
+    for i, obs in enumerate(ordered):
+        if len(test) >= test_n and len(gallery) >= gallery_n:
+            break
         photos = [
             {"observation_id": obs["observation_id"], "url": u}
             for u in obs["photo_urls"]
         ]
-        if len(test) < test_n:
-            test.extend(photos[: test_n - len(test)])
-        elif len(gallery) < gallery_n:
-            gallery.extend(photos[: gallery_n - len(gallery)])
-        else:
-            break
+        buckets = [(test, test_n), (gallery, gallery_n)]
+        if i % 2:
+            buckets.reverse()
+        for bucket, cap in buckets:
+            if len(bucket) < cap:
+                bucket.extend(photos[: cap - len(bucket)])
+                break
 
     return gallery, test
 ```
+
+**Why alternating rather than "fill test first"** (corrected during implementation —
+the original plan text had a bug here): filling test to completion starves gallery
+whenever total supply is below `TEST_N`. A label with 20 photos would get
+`test=20, gallery=0` — above `MIN_TEST` so it is **scored**, but with no prototype
+method B cannot predict it while still being graded on it. That systematically
+penalises method B, which is precisely the comparison this spike exists to make.
+Each observation still goes entirely to one bucket, so the no-leakage property is
+unchanged.
 
 - [ ] **Step 4: Run the test to verify it passes**
 
@@ -867,7 +884,9 @@ def stage_fetch(since, only=None):
 
     labels = all_labels()
     if only:
-        labels = [row for row in labels if row[0] in only]
+        # destructure rather than index — a rank/kind swap on a 3-tuple of bare
+        # strings fails silently, and `kind` is what marks a photo toxic
+        labels = [(n, r, k) for n, r, k in labels if n in only]
 
     lineages_path = CACHE / "lineages.json"
     lineages = (
