@@ -173,7 +173,15 @@ def false_edible_rate(preds, catalog_names, k):
 
 
 def worst_confusions(preds, catalog_names, limit=10):
-    """Ranked toxic->edible top-1 confusions. An aggregate is not actionable."""
+    """Ranked toxic->edible top-1 confusions. An aggregate is not actionable.
+
+    Sorted count-first, then rate. This is a deliberate choice, not a default:
+    count ranks by total incidents in the test set, which tracks how often a
+    confusion would actually reach a user. Rate-first would instead surface
+    systematic blind spots (a species wrong 80% of the time) above merely
+    common ones. Both are defensible and both are printed per row as
+    `count`/`n`/`rate`, so ordering only decides what a reader sees first.
+    """
     totals, pairs = {}, {}
     for p in preds:
         if p["truth_kind"] != "toxic":
@@ -198,20 +206,32 @@ def worst_confusions(preds, catalog_names, limit=10):
 
 
 def threshold_sweep(preds, catalog_names, cutoffs, k):
-    """Per cutoff: resulting false-edible rate and share of photos answered.
+    """Per cutoff: false-edible rate, share of photos answered, and toxic n.
 
     Decides whether the feature can have an honest "I'm not sure" state and
     what that costs in coverage.
+
+    `toxic_n` is not decoration. Raising the cutoff shrinks the toxic
+    sub-sample, and false_edible_rate returns 0.0 for an EMPTY sample — so a
+    cutoff that filters out every toxic photo reports a perfect 0% gate while
+    having measured nothing at all. Always read false_edible together with
+    toxic_n, or the most attractive row in the table may be the emptiest one.
+
+    `top1` is deliberately pinned to k=1: it is the headline rank-1 number,
+    independent of the gate's k. It is not a bug — do not "fix" it to use k.
+
+    `answered` is a share (0..1) of ALL preds, not a count.
     """
     rows = []
     for cutoff in cutoffs:
-        answered = [p for p in preds if p["confidence"] >= cutoff]
+        kept = [p for p in preds if p["confidence"] >= cutoff]
         rows.append(
             {
                 "cutoff": cutoff,
-                "answered": len(answered) / len(preds) if preds else 0.0,
-                "false_edible": false_edible_rate(answered, catalog_names, k),
-                "top1": top_k_accuracy(answered, k=1),
+                "answered": len(kept) / len(preds) if preds else 0.0,
+                "toxic_n": sum(1 for p in kept if p["truth_kind"] == "toxic"),
+                "false_edible": false_edible_rate(kept, catalog_names, k),
+                "top1": top_k_accuracy(kept, k=1),
             }
         )
     return rows

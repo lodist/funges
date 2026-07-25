@@ -168,3 +168,31 @@ def test_threshold_sweep_trades_coverage_for_safety():
     assert rows[1]["cutoff"] == 0.5
     assert rows[1]["answered"] == 0.5       # the 0.30 pred is withheld
     assert rows[1]["false_edible"] == 0.0   # and so the danger is gone
+
+
+def test_threshold_sweep_reports_toxic_sample_size():
+    # Dangerous calls are low-confidence here and safe catalog calls are high,
+    # so a high cutoff filters out EVERY toxic photo: false_edible reads a
+    # perfect 0.0 while having measured nothing. toxic_n is what exposes that,
+    # and without it the emptiest row looks like the safest cutoff to ship.
+    preds = [
+        _pred("Amanita phalloides", "toxic", ["Boletus"], confidence=0.35)
+    ] * 2 + [_pred("Boletus", "catalog", ["Boletus"], confidence=0.95)] * 2
+    low, high = threshold_sweep(preds, CATALOG_SET, cutoffs=[0.0, 0.9], k=1)
+
+    assert low["toxic_n"] == 2
+    assert low["false_edible"] == 1.0        # every toxic photo called edible
+
+    assert high["toxic_n"] == 0              # nothing toxic survived the cutoff
+    assert high["false_edible"] == 0.0       # so this 0.0 means "unmeasured"
+
+
+def test_threshold_sweep_top1_stays_pinned_to_k1():
+    # Truth sits at rank 2: top-1 misses it, top-3 finds it. The `top1` field
+    # must stay anchored at k=1 even when the gate itself runs at k=3, or the
+    # column stops meaning what its name says.
+    preds = [_pred("Boletus", "catalog", ["Cantharellus cibarius", "Boletus"])]
+    row = threshold_sweep(preds, CATALOG_SET, cutoffs=[0.0], k=3)[0]
+
+    assert row["top1"] == 0.0
+    assert top_k_accuracy(preds, k=3) == 1.0   # would be 1.0 if it followed k

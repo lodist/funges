@@ -594,13 +594,14 @@ def threshold_sweep(preds, catalog_names, cutoffs, k):
     """
     rows = []
     for cutoff in cutoffs:
-        answered = [p for p in preds if p["confidence"] >= cutoff]
+        kept = [p for p in preds if p["confidence"] >= cutoff]
         rows.append(
             {
                 "cutoff": cutoff,
-                "answered": len(answered) / len(preds) if preds else 0.0,
-                "false_edible": false_edible_rate(answered, catalog_names, k),
-                "top1": top_k_accuracy(answered, k=1),
+                "answered": len(kept) / len(preds) if preds else 0.0,
+                "toxic_n": sum(1 for p in kept if p["truth_kind"] == "toxic"),
+                "false_edible": false_edible_rate(kept, catalog_names, k),
+                "top1": top_k_accuracy(kept, k=1),
             }
         )
     return rows
@@ -1155,8 +1156,8 @@ def test_report_leads_with_the_gate_and_flags_leakage():
             }
         ],
         "sweep": [
-            {"cutoff": 0.0, "answered": 1.0, "false_edible": 0.06, "top1": 0.71},
-            {"cutoff": 0.7, "answered": 0.48, "false_edible": 0.012, "top1": 0.83},
+            {"cutoff": 0.0, "answered": 1.0, "toxic_n": 612, "false_edible": 0.06, "top1": 0.71},
+            {"cutoff": 0.7, "answered": 0.48, "toxic_n": 291, "false_edible": 0.012, "top1": 0.83},
         ],
         "excluded": {"Tuber melanosporum": "dropped — subterranean"},
     }
@@ -1234,13 +1235,16 @@ def render_report(results):
         "",
         "## 4. Confidence threshold sweep",
         "",
-        "| Min confidence | False-edible @1 | Answered | Top-1 |",
-        "| --- | --- | --- | --- |",
+        "| Min confidence | False-edible @1 | Toxic n | Answered | Top-1 |",
+        "| --- | --- | --- | --- | --- |",
     ]
     for row in results["sweep"]:
+        # toxic_n MUST be shown: false_edible is 0.0 for an empty toxic sample,
+        # so without it a cutoff that measured nothing looks like the safest
+        # row in the table — the one a reader would pick to ship.
         lines.append(
             f"| {row['cutoff']:.2f} | {row['false_edible']:.1%} "
-            f"| {row['answered']:.0%} | {row['top1']:.1%} |"
+            f"| {row['toxic_n']} | {row['answered']:.0%} | {row['top1']:.1%} |"
         )
 
     lines += ["", "## 5. Excluded / insufficient data", ""]
