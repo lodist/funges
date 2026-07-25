@@ -1,0 +1,102 @@
+{
+  "title": "Identificar desde una foto",
+  "subtitle": "Reduce las posibilidades de lo que estás viendo",
+
+  "disclaimer": {
+    "beforeCapture": "Esta herramienta reduce las especies posibles a partir de una foto. Nunca confirma que algo sea seguro para comer.",
+    "aboveResults": "Estas son coincidencias posibles, no una identificación confirmada. Un sósia peligroso puede ser el correcto incluso cuando no aparece en primer lugar.",
+    "neverEat": "No comas nada basándote en esta aplicación. Comprueba los rasgos distintivos de abajo con una guía de campo y pregunta a alguien con experiencia si tienes cualquier duda."
+  },
+
+  "capture": {
+    "takePhoto": "Hacer una foto",
+    "choosePhoto": "Elegir una foto",
+    "dropHere": "Arrastra una foto aquí, o haz clic para elegirla",
+    "retake": "Probar con otra foto",
+    "hint": "Un solo ejemplar, que ocupe casi todo el encuadre, con luz de día si puedes."
+  },
+
+  "status": {
+    "preparing": "Preparando…",
+    "identifying": "Identificando…",
+    "failed": "La identificación ha fallado",
+    "retry": "Volver a intentarlo",
+    "unsupported": "La identificación no está disponible en este dispositivo o navegador."
+  },
+
+  "download": {
+    "title": "Descargar el reconocimiento de especies",
+    "why": "La identificación se ejecuta por completo en tu dispositivo, así que tus fotos nunca salen del móvil. Para eso hace falta una descarga única de {{size}}.",
+    "provenance": "El modelo es BioCLIP 2, un modelo de investigación abierto del Imageomics Institute.",
+    "notAFile": "Se guarda en el navegador, no en tus archivos. No se instala nada.",
+    "onWifi": "Mejor con wifi.",
+    "start": "Descargar ({{size}})",
+    "cancel": "Cancelar",
+    "progress": "Descargando… {{percent}} %",
+    "remove": "Eliminar el modelo descargado",
+    "removed": "Modelo eliminado. La identificación no estará disponible hasta que lo descargues de nuevo.",
+    "declined": "Para identificar hay que descargar antes el modelo.",
+    "failed": "La descarga ha fallado. Comprueba tu conexión e inténtalo de nuevo."
+  },
+
+  "results": {
+    "heading": "Coincidencias posibles",
+    "toxicBanner": "Una de estas coincidencias es tóxica. Lee todas las filas antes de seguir.",
+    "toxicLabel": "Tóxico: no comer",
+    "lethalLabel": "Mortal: no comer",
+    "inedibleLabel": "No comestible",
+    "notInCatalog": "No está en el catálogo de esta aplicación: sin información de seguridad",
+    "unknownSpecies": "No reconocido",
+    "confidence": "{{percent}} % de coincidencia",
+    "confusedWith": "Se confunde a menudo con {{species}}",
+    "checkThese": "Comprueba estos rasgos",
+    "criticalHeading": "Estos dos se confunden con facilidad"
+  },
+
+  "toxicity": {
+    "mechanisms": {
+      "amatoxin": "Contiene amatoxinas, el mismo grupo de toxinas que la oronja verde. La intoxicación suele tardar entre 6 y 24 horas, parece haber mejoría y después provoca fallo hepático. Con frecuencia mortal.",
+      "gyromitrin": "Contiene giromitrina, que el cuerpo transforma en una toxina que daña el hígado y el sistema nervioso. Puede ser mortal y la cocción no la destruye de forma fiable.",
+      "muscarine": "Contiene muscarina en cantidad elevada, lo que provoca sudoración intensa, salivación y colapso. Hay muertes documentadas.",
+      "orellanine": "Contiene orelanina, que destruye los riñones. Los síntomas pueden tardar días o semanas en aparecer, mucho después de haber olvidado la comida.",
+      "isoxazole": "Contiene ácido iboténico y muscimol, que provocan confusión, náuseas y delirio. Rara vez mortal, pero muy desagradable.",
+      "giIrritant": "Provoca vómitos y diarrea intensos, a veces durante días. No suele ser mortal, pero la deshidratación puede ser peligrosa.",
+      "colchicine": "Contiene colchicina. No hay antídoto, los síntomas son tardíos y una cantidad pequeña puede matar a un adulto.",
+      "cardiacGlycoside": "Contiene glucósidos cardíacos que alteran el ritmo del corazón. Puede ser mortal.",
+      "calciumOxalate": "Contiene cristales de oxalato de calcio en forma de aguja que queman e inflaman la boca y la garganta.",
+      "coniine": "Contiene coniína, el veneno de la cicuta. Paraliza los músculos con los que se respira. Cantidades muy pequeñas son mortales.",
+      "tropane": "Contiene alcaloides tropánicos. Un puñado de bayas puede matar a un niño. El sabor dulce no avisa de nada.",
+      "poorEdibility": "No es peligroso, pero sabe mal y se confunde con facilidad con algo mejor.",
+      "bitter": "No es venenoso, pero es tan amargo que un solo ejemplar arruina un plato entero."
+    },
+
+    "checks": {
+      "volva": "Mira la base del pie, por debajo del nivel del suelo: una envoltura a modo de saco o una copa hinchada ahí es una señal de alarma grave.",
+      "gillColour": "Color de las láminas, también en ejemplares viejos: unas láminas blanco puro en una seta con pie piden precaución.",
+      "gillAttachment": "Si la cara inferior tiene láminas de verdad, como cuchillas, que se puedan separar con la uña.",
+      "gillVsRidges": "Los rebozuelos auténticos tienen pliegues romos y bifurcados que bajan por el pie, no láminas finas y apretadas.",
+      "sporePrint": "Haz una esporada: deja el sombrero con las láminas hacia abajo sobre papel unas horas y comprueba el color.",
+      "ringAndStem": "Si el pie tiene anillo, si se desliza libremente, y qué dibujo presenta el pie por debajo.",
+      "overallSize": "Tamaño ya desarrollado. Algunos sósias mortales son mucho más pequeños que la especie comestible a la que se parecen.",
+      "capWarts": "Si el sombrero tiene placas o verrugas desprendibles, que la lluvia puede lavar.",
+      "cortina": "Si los ejemplares jóvenes tienen un velo como una telaraña entre el borde del sombrero y el pie, y si quedan restos de color pardo herrumbre.",
+      "capStructure": "Si la cabeza es un alveolado regular tipo panal o un conjunto irregular de pliegues como un cerebro.",
+      "capAttachment": "Si el sombrero está unido al pie en toda su longitud o solo por arriba, colgando libre.",
+      "hollowStem": "Corta el ejemplar por la mitad a lo largo y comprueba si está completamente hueco por dentro.",
+      "poreColour": "Color de los poros bajo el sombrero, en especial cualquier tono rojo o naranja.",
+      "fleshBruising": "Si la carne cambia de color al cortarla o presionarla, y a qué color.",
+      "fleshReddening": "Si la carne enrojece donde se ha manipulado o dañado.",
+      "stemNetwork": "Si el pie presenta un retículo en relieve, y de qué color.",
+      "smell": "Estruja una hoja o un trozo y huélelo. El ajo de oso huele intensamente a ajo; sus sósias mortales no.",
+      "leafArrangement": "Cómo salen las hojas: sueltas desde la base con su propio peciolo, o por pares y envainadas juntas.",
+      "leafShape": "Contorno y nervadura de la hoja, incluido si la base tiene forma de flecha.",
+      "stemMarkings": "Si el tallo es hueco, acanalado o manchado de púrpura, y si huele mal al estrujarlo.",
+      "berryArrangement": "Si los racimos de frutos cuelgan por debajo de las ramas o se mantienen erguidos por encima del follaje.",
+      "plantHabit": "Si la planta es un arbusto leñoso o una hierba blanda que se seca cada año."
+    },
+
+    "critical": {
+      "lepiotaMacrolepiota": "Las Lepiota mortales están entre los sósias más peligrosos de la parasol, y en nuestras pruebas fue el error más frecuente de todos. Una parasol auténtica es grande, con un anillo que se puede mover y un pie con dibujo de piel de serpiente. Los ejemplares pequeños con el pie liso hay que dejarlos, aunque parezcan los correctos."
+    }
+  }
+}

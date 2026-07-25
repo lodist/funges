@@ -1,0 +1,102 @@
+{
+  "title": "Identificar a partir de uma foto",
+  "subtitle": "Restringe as possibilidades do que estás a ver",
+
+  "disclaimer": {
+    "beforeCapture": "Esta ferramenta restringe as espécies possíveis a partir de uma foto. Nunca confirma que algo é seguro para comer.",
+    "aboveResults": "Estas são correspondências possíveis, não uma identificação confirmada. Um sósia perigoso pode ser o correto mesmo quando não aparece em primeiro lugar.",
+    "neverEat": "Não comas nada com base nesta aplicação. Confirma os caracteres distintivos indicados abaixo num guia de campo e pergunta a alguém com experiência se tiveres qualquer dúvida."
+  },
+
+  "capture": {
+    "takePhoto": "Tirar uma foto",
+    "choosePhoto": "Escolher uma foto",
+    "dropHere": "Arrasta uma foto para aqui, ou clica para escolher",
+    "retake": "Tentar outra foto",
+    "hint": "Um único exemplar, a ocupar quase todo o enquadramento, com luz do dia se possível."
+  },
+
+  "status": {
+    "preparing": "A preparar…",
+    "identifying": "A identificar…",
+    "failed": "A identificação falhou",
+    "retry": "Tentar novamente",
+    "unsupported": "A identificação não está disponível neste dispositivo ou navegador."
+  },
+
+  "download": {
+    "title": "Descarregar o reconhecimento de espécies",
+    "why": "A identificação corre inteiramente no teu dispositivo, por isso as tuas fotos nunca saem do telefone. Para isso é preciso um descarregamento único de {{size}}.",
+    "provenance": "O modelo é o BioCLIP 2, um modelo de investigação aberto do Imageomics Institute.",
+    "notAFile": "Fica guardado no navegador, não é gravado nos teus ficheiros. Não se instala nada.",
+    "onWifi": "É preferível fazê-lo por Wi-Fi.",
+    "start": "Descarregar ({{size}})",
+    "cancel": "Cancelar",
+    "progress": "A descarregar… {{percent}} %",
+    "remove": "Remover o modelo descarregado",
+    "removed": "Modelo removido. A identificação fica indisponível até o descarregares de novo.",
+    "declined": "Para identificar é preciso descarregar primeiro o modelo.",
+    "failed": "O descarregamento falhou. Verifica a ligação e tenta novamente."
+  },
+
+  "results": {
+    "heading": "Correspondências possíveis",
+    "toxicBanner": "Uma destas correspondências é tóxica. Lê todas as linhas antes de avançar.",
+    "toxicLabel": "Tóxico – não comer",
+    "lethalLabel": "Mortal – não comer",
+    "inedibleLabel": "Não comestível",
+    "notInCatalog": "Não consta do catálogo desta aplicação – sem informação de segurança",
+    "unknownSpecies": "Não reconhecido",
+    "confidence": "{{percent}} % de correspondência",
+    "confusedWith": "Frequentemente confundido com {{species}}",
+    "checkThese": "Confirma estes caracteres",
+    "criticalHeading": "Estes dois confundem-se com facilidade"
+  },
+
+  "toxicity": {
+    "mechanisms": {
+      "amatoxin": "Contém amatoxinas, o mesmo grupo de toxinas do cogumelo-da-morte. A intoxicação surge muitas vezes só 6 a 24 horas depois, dá a sensação de melhoria e depois provoca falência do fígado. Frequentemente mortal.",
+      "gyromitrin": "Contém giromitrina, que o corpo converte numa toxina que danifica o fígado e o sistema nervoso. Pode ser mortal e a cozedura não a destrói de forma fiável.",
+      "muscarine": "Contém muscarina em quantidade elevada, provocando suores intensos, salivação e colapso. Há mortes registadas.",
+      "orellanine": "Contém orelanina, que destrói os rins. Os sintomas podem levar dias ou semanas a aparecer, muito depois de a refeição estar esquecida.",
+      "isoxazole": "Contém ácido ibotênico e muscimol, que provocam confusão, náuseas e delírio. Raramente mortal, mas muito desagradável.",
+      "giIrritant": "Provoca vómitos e diarreia intensos, às vezes durante dias. Habitualmente não é mortal, mas a desidratação pode ser perigosa.",
+      "colchicine": "Contém colchicina. Não há antídoto, os sintomas são tardios e uma pequena quantidade pode matar um adulto.",
+      "cardiacGlycoside": "Contém glicosídeos cardíacos que alteram o ritmo do coração. Pode ser mortal.",
+      "calciumOxalate": "Contém cristais de oxalato de cálcio em forma de agulha que queimam e inflamam a boca e a garganta.",
+      "coniine": "Contém coniina, o veneno da cicuta. Paralisa os músculos usados para respirar. Quantidades muito pequenas são mortais.",
+      "tropane": "Contém alcaloides tropânicos. Um punhado de bagas pode matar uma criança. O sabor doce não serve de aviso.",
+      "poorEdibility": "Não é perigoso, mas sabe mal e confunde-se facilmente com algo melhor.",
+      "bitter": "Não é venenoso, mas é tão amargo que um único exemplar estraga um prato inteiro."
+    },
+
+    "checks": {
+      "volva": "Observa a própria base do pé, abaixo do nível do solo: uma volva em forma de saco ou uma taça inchada nesse ponto é um sinal de alarme grave.",
+      "gillColour": "A cor das lâminas, incluindo em exemplares velhos: lâminas de branco puro num cogumelo com pé exigem cautela.",
+      "gillAttachment": "Se a face inferior tem lâminas verdadeiras, como folhas de faca, que se soltem com a unha.",
+      "gillVsRidges": "As verdadeiras cantarelas têm pregas grossas e bifurcadas que descem pelo pé, não lâminas finas e apertadas.",
+      "sporePrint": "Faz uma esporada: deixa o chapéu com as lâminas para baixo sobre papel durante algumas horas e vê a cor.",
+      "ringAndStem": "Se o pé tem anel, se ele desliza livremente, e que padrão apresenta o pé por baixo.",
+      "overallSize": "O tamanho já desenvolvido. Alguns sósias mortais são muito mais pequenos do que a espécie comestível a que se parecem.",
+      "capWarts": "Se o chapéu tem placas ou verrugas que se soltam, e que a chuva pode lavar.",
+      "cortina": "Nos exemplares jovens, a presença de um véu como teia de aranha entre o bordo do chapéu e o pé, e os vestígios castanho-ferrugem que deixa.",
+      "capStructure": "Se a cabeça forma alvéolos regulares em favo ou um conjunto irregular de pregas parecido com um cérebro.",
+      "capAttachment": "Se o chapéu está unido ao pé em todo o seu comprimento ou apenas no topo, pendendo livre.",
+      "hollowStem": "Corta o exemplar ao meio no sentido do comprimento e verifica se está completamente oco por dentro.",
+      "poreColour": "A cor dos poros sob o chapéu, em especial quaisquer tons vermelhos ou alaranjados.",
+      "fleshBruising": "Se a carne muda de cor ao ser cortada ou pressionada, e para que cor.",
+      "fleshReddening": "Se a carne avermelha onde foi manuseada ou danificada.",
+      "stemNetwork": "A presença de um retículo em relevo no pé, e a sua cor.",
+      "smell": "Esmaga uma folha ou um pedaço e cheira. O alho-dos-ursos cheira intensamente a alho; os seus sósias mortais não.",
+      "leafArrangement": "Como saem as folhas: isoladas da base com o seu próprio pecíolo, ou aos pares e embainhadas em conjunto.",
+      "leafShape": "O contorno e a nervação da folha, incluindo se a base tem forma de seta.",
+      "stemMarkings": "Se o caule é oco, canelado ou manchado de púrpura – e se cheira mal quando esmagado.",
+      "berryArrangement": "Se os cachos de bagas pendem por baixo dos ramos ou se mantêm eretos acima da folhagem.",
+      "plantHabit": "Se a planta é um arbusto lenhoso ou uma erva tenra que seca todos os anos."
+    },
+
+    "critical": {
+      "lepiotaMacrolepiota": "As Lepiota mortais estão entre os sósias mais perigosos do frade, e nos nossos testes foi o erro mais frequente de todos. Um frade verdadeiro é grande, com um anel que se move e um pé com padrão de pele de cobra. Os exemplares pequenos com o pé liso devem ser deixados onde estão, mesmo que pareçam os corretos."
+    }
+  }
+}

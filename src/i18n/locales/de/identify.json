@@ -1,0 +1,102 @@
+{
+  "title": "Anhand eines Fotos bestimmen",
+  "subtitle": "Grenze ein, was du vor dir hast",
+
+  "disclaimer": {
+    "beforeCapture": "Dieses Werkzeug grenzt mögliche Arten anhand eines Fotos ein. Es bestätigt niemals, dass etwas essbar ist.",
+    "aboveResults": "Das sind mögliche Übereinstimmungen, keine gesicherte Bestimmung. Ein gefährlicher Doppelgänger kann auch dann richtig sein, wenn er nicht an erster Stelle steht.",
+    "neverEat": "Iss nichts auf Grundlage dieser App. Prüfe die unten genannten Unterscheidungsmerkmale mit einem Bestimmungsbuch und frage im Zweifelsfall eine erfahrene Person."
+  },
+
+  "capture": {
+    "takePhoto": "Foto aufnehmen",
+    "choosePhoto": "Foto auswählen",
+    "dropHere": "Foto hierher ziehen oder klicken zum Auswählen",
+    "retake": "Anderes Foto versuchen",
+    "hint": "Ein einzelnes Exemplar, möglichst bildfüllend, am besten bei Tageslicht."
+  },
+
+  "status": {
+    "preparing": "Vorbereiten…",
+    "identifying": "Wird bestimmt…",
+    "failed": "Bestimmung fehlgeschlagen",
+    "retry": "Erneut versuchen",
+    "unsupported": "Die Bestimmung ist auf diesem Gerät oder in diesem Browser nicht verfügbar."
+  },
+
+  "download": {
+    "title": "Arterkennung herunterladen",
+    "why": "Die Bestimmung läuft vollständig auf deinem Gerät, deine Fotos verlassen dein Handy also nie. Dafür ist ein einmaliger Download von {{size}} nötig.",
+    "provenance": "Das Modell ist BioCLIP 2, ein offenes Forschungsmodell des Imageomics Institute.",
+    "notAFile": "Es wird im Browser gespeichert, nicht in deinen Dateien abgelegt. Es wird nichts installiert.",
+    "onWifi": "Am besten über WLAN.",
+    "start": "Herunterladen ({{size}})",
+    "cancel": "Abbrechen",
+    "progress": "Wird heruntergeladen… {{percent}} %",
+    "remove": "Heruntergeladenes Modell entfernen",
+    "removed": "Modell entfernt. Die Bestimmung ist erst wieder möglich, wenn du es erneut herunterlädst.",
+    "declined": "Für die Bestimmung muss das Modell zuerst heruntergeladen werden.",
+    "failed": "Download fehlgeschlagen. Prüfe deine Verbindung und versuche es erneut."
+  },
+
+  "results": {
+    "heading": "Mögliche Übereinstimmungen",
+    "toxicBanner": "Eine dieser Übereinstimmungen ist giftig. Lies jede Zeile, bevor du weitergehst.",
+    "toxicLabel": "Giftig – nicht essen",
+    "lethalLabel": "Tödlich giftig – nicht essen",
+    "inedibleLabel": "Nicht essbar",
+    "notInCatalog": "Nicht im Katalog dieser App – keine Sicherheitsangaben",
+    "unknownSpecies": "Nicht erkannt",
+    "confidence": "{{percent}} % Übereinstimmung",
+    "confusedWith": "Wird häufig verwechselt mit {{species}}",
+    "checkThese": "Diese Merkmale prüfen",
+    "criticalHeading": "Diese beiden werden leicht verwechselt"
+  },
+
+  "toxicity": {
+    "mechanisms": {
+      "amatoxin": "Enthält Amatoxine – dieselbe Giftgruppe wie der Grüne Knollenblätterpilz. Die Vergiftung setzt oft erst nach 6–24 Stunden ein, es folgt eine scheinbare Besserung, dann Leberversagen. Häufig tödlich.",
+      "gyromitrin": "Enthält Gyromitrin, das der Körper in ein Gift umwandelt, das Leber und Nervensystem schädigt. Kann tödlich sein und wird durch Kochen nicht zuverlässig zerstört.",
+      "muscarine": "Enthält viel Muscarin, was zu starkem Schwitzen, Speichelfluss und Kreislaufkollaps führt. Todesfälle sind dokumentiert.",
+      "orellanine": "Enthält Orellanin, das die Nieren zerstört. Symptome können erst nach Tagen bis Wochen auftreten, lange nachdem die Mahlzeit vergessen ist.",
+      "isoxazole": "Enthält Ibotensäure und Muscimol, was Verwirrung, Übelkeit und Delirium verursacht. Selten tödlich, aber sehr unangenehm.",
+      "giIrritant": "Verursacht heftiges Erbrechen und Durchfall, manchmal über Tage. Meist nicht tödlich, aber der Flüssigkeitsverlust kann gefährlich werden.",
+      "colchicine": "Enthält Colchicin. Es gibt kein Gegenmittel, die Symptome treten verzögert auf, und eine kleine Menge kann einen Erwachsenen töten.",
+      "cardiacGlycoside": "Enthält herzwirksame Glykoside, die den Herzrhythmus stören. Kann tödlich sein.",
+      "calciumOxalate": "Enthält nadelförmige Calciumoxalat-Kristalle, die Mund und Rachen verbrennen und anschwellen lassen.",
+      "coniine": "Enthält Coniin, das Gift des Schierlings. Es lähmt die Atemmuskulatur. Schon sehr kleine Mengen sind tödlich.",
+      "tropane": "Enthält Tropanalkaloide. Eine Handvoll Beeren kann ein Kind töten. Der süße Geschmack ist keine Warnung.",
+      "poorEdibility": "Nicht gefährlich, aber geschmacklich schlecht und leicht mit etwas Besserem zu verwechseln.",
+      "bitter": "Nicht giftig, aber so bitter, dass ein einziges Exemplar ein ganzes Gericht verdirbt."
+    },
+
+    "checks": {
+      "volva": "Schau ganz unten am Stiel, unterhalb der Erdoberfläche: eine häutige Scheide oder ein aufgeblasener Becher dort ist ein ernstes Warnzeichen.",
+      "gillColour": "Lamellenfarbe, auch bei älteren Exemplaren – reinweiße Lamellen an einem gestielten Pilz verlangen Vorsicht.",
+      "gillAttachment": "Ob die Unterseite echte, klingenartige Lamellen hat, die sich mit dem Fingernagel ablösen lassen.",
+      "gillVsRidges": "Echte Pfifferlinge haben stumpfe, gegabelte Leisten, die am Stiel herablaufen, keine dünnen, gedrängten Lamellen.",
+      "sporePrint": "Mach einen Sporenabdruck: Lege den Hut mit den Lamellen nach unten einige Stunden auf Papier und prüfe die Farbe.",
+      "ringAndStem": "Ob am Stiel ein Ring sitzt, ob er frei verschiebbar ist, und welche Musterung der Stiel darunter zeigt.",
+      "overallSize": "Größe im ausgewachsenen Zustand. Manche tödlichen Doppelgänger sind viel kleiner als die essbare Art, der sie gleichen.",
+      "capWarts": "Ob der Hut abwischbare Flocken oder Warzen trägt, die bei Regen abgewaschen werden können.",
+      "cortina": "Ob junge Exemplare einen spinnwebartigen Schleier zwischen Hutrand und Stiel haben, und ob rostbraune Spuren davon zurückbleiben.",
+      "capStructure": "Ob der Kopf eine regelmäßig gegrubte Wabenstruktur hat oder unregelmäßige, hirnartige Falten.",
+      "capAttachment": "Ob der Hut auf seiner ganzen Länge am Stiel anliegt oder nur oben angewachsen ist und frei herabhängt.",
+      "hollowStem": "Schneide das Exemplar längs durch und prüfe, ob es innen vollständig hohl ist.",
+      "poreColour": "Farbe der Poren unter dem Hut, besonders rote oder orange Töne.",
+      "fleshBruising": "Ob sich das Fleisch beim Anschneiden oder Drücken verfärbt, und in welche Farbe.",
+      "fleshReddening": "Ob sich das Fleisch dort rötet, wo es berührt oder verletzt wurde.",
+      "stemNetwork": "Ob der Stiel ein erhabenes, netzartiges Muster zeigt, und in welcher Farbe.",
+      "smell": "Zerreibe ein Blatt oder Stück und rieche daran. Bärlauch riecht deutlich nach Knoblauch, seine tödlichen Doppelgänger nicht.",
+      "leafArrangement": "Wie die Blätter entstehen: einzeln aus der Basis auf eigenem Stiel, oder paarweise und gemeinsam von einer Scheide umschlossen.",
+      "leafShape": "Blattumriss und Nervatur, auch ob die Blattbasis pfeilförmig ist.",
+      "stemMarkings": "Ob der Stängel hohl, gerieft oder purpurn gefleckt ist – und ob er beim Zerreiben unangenehm riecht.",
+      "berryArrangement": "Ob die Beerenstände unter den Zweigen herabhängen oder aufrecht über dem Laub stehen.",
+      "plantHabit": "Ob die Pflanze ein verholzter Strauch ist oder ein weiches Kraut, das jedes Jahr zurückstirbt."
+    },
+
+    "critical": {
+      "lepiotaMacrolepiota": "Tödliche Schirmlinge der Gattung Lepiota gehören zu den gefährlichsten Doppelgängern des Parasolpilzes, und das war in unseren Tests der häufigste Fehler überhaupt. Ein echter Parasol ist groß, hat einen verschiebbaren Ring und einen schlangenhautartig genatterten Stiel. Kleine Exemplare mit glattem Stiel solltest du stehen lassen, auch wenn sie richtig aussehen."
+    }
+  }
+}

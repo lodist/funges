@@ -1,0 +1,102 @@
+{
+  "title": "Identifier à partir d'une photo",
+  "subtitle": "Restreins les possibilités de ce que tu observes",
+
+  "disclaimer": {
+    "beforeCapture": "Cet outil restreint les espèces possibles à partir d'une photo. Il ne confirme jamais qu'une chose est comestible.",
+    "aboveResults": "Ce sont des correspondances possibles, pas une identification confirmée. Un sosie dangereux peut être le bon même s'il n'arrive pas en premier.",
+    "neverEat": "Ne mange rien en te fondant sur cette application. Vérifie les critères de distinction ci-dessous dans un guide de terrain, et demande à une personne expérimentée au moindre doute."
+  },
+
+  "capture": {
+    "takePhoto": "Prendre une photo",
+    "choosePhoto": "Choisir une photo",
+    "dropHere": "Dépose une photo ici, ou clique pour la choisir",
+    "retake": "Essayer une autre photo",
+    "hint": "Un seul spécimen, occupant presque tout le cadre, à la lumière du jour si possible."
+  },
+
+  "status": {
+    "preparing": "Préparation…",
+    "identifying": "Identification…",
+    "failed": "L'identification a échoué",
+    "retry": "Réessayer",
+    "unsupported": "L'identification n'est pas disponible sur cet appareil ou ce navigateur."
+  },
+
+  "download": {
+    "title": "Télécharger la reconnaissance des espèces",
+    "why": "L'identification se fait entièrement sur ton appareil : tes photos ne quittent jamais ton téléphone. Cela demande un téléchargement unique de {{size}}.",
+    "provenance": "Le modèle est BioCLIP 2, un modèle de recherche ouvert de l'Imageomics Institute.",
+    "notAFile": "Il est conservé dans le navigateur, pas enregistré dans tes fichiers. Rien n'est installé.",
+    "onWifi": "À faire de préférence en Wi-Fi.",
+    "start": "Télécharger ({{size}})",
+    "cancel": "Annuler",
+    "progress": "Téléchargement… {{percent}} %",
+    "remove": "Supprimer le modèle téléchargé",
+    "removed": "Modèle supprimé. L'identification restera indisponible jusqu'à un nouveau téléchargement.",
+    "declined": "L'identification nécessite d'abord le téléchargement du modèle.",
+    "failed": "Le téléchargement a échoué. Vérifie ta connexion et réessaie."
+  },
+
+  "results": {
+    "heading": "Correspondances possibles",
+    "toxicBanner": "L'une de ces correspondances est toxique. Lis chaque ligne avant d'aller plus loin.",
+    "toxicLabel": "Toxique – ne pas consommer",
+    "lethalLabel": "Mortel – ne pas consommer",
+    "inedibleLabel": "Non comestible",
+    "notInCatalog": "Absent du catalogue de cette application – aucune information de sécurité",
+    "unknownSpecies": "Non reconnu",
+    "confidence": "{{percent}} % de correspondance",
+    "confusedWith": "Souvent confondu avec {{species}}",
+    "checkThese": "Vérifie ces critères",
+    "criticalHeading": "Ces deux-là se confondent facilement"
+  },
+
+  "toxicity": {
+    "mechanisms": {
+      "amatoxin": "Contient des amatoxines, le même groupe de toxines que l'amanite phalloïde. L'intoxication est souvent retardée de 6 à 24 heures, donne une impression de guérison, puis provoque une défaillance du foie. Souvent mortelle.",
+      "gyromitrin": "Contient de la gyromitrine, que le corps transforme en une toxine qui attaque le foie et le système nerveux. Peut être mortelle, et la cuisson ne la détruit pas de façon fiable.",
+      "muscarine": "Contient de fortes doses de muscarine, provoquant sueurs abondantes, salivation et malaise grave. Des décès ont été rapportés.",
+      "orellanine": "Contient de l'orellanine, qui détruit les reins. Les symptômes peuvent n'apparaître qu'après des jours voire des semaines, bien après que le repas soit oublié.",
+      "isoxazole": "Contient de l'acide iboténique et du muscimol, provoquant confusion, nausées et délire. Rarement mortel mais très éprouvant.",
+      "giIrritant": "Provoque vomissements et diarrhées violents, parfois pendant plusieurs jours. Rarement mortel, mais la déshydratation peut être dangereuse.",
+      "colchicine": "Contient de la colchicine. Il n'existe pas d'antidote, les symptômes sont retardés, et une petite quantité peut tuer un adulte.",
+      "cardiacGlycoside": "Contient des glycosides cardiotoniques qui perturbent le rythme du cœur. Peut être mortel.",
+      "calciumOxalate": "Contient des cristaux d'oxalate de calcium en aiguilles qui brûlent et font enfler la bouche et la gorge.",
+      "coniine": "Contient de la coniine, le poison de la grande ciguë. Elle paralyse les muscles respiratoires. De très petites quantités sont mortelles.",
+      "tropane": "Contient des alcaloïdes tropaniques. Une poignée de baies peut tuer un enfant. Le goût sucré ne prévient de rien.",
+      "poorEdibility": "Sans danger, mais mauvais à manger et facile à confondre avec quelque chose de meilleur.",
+      "bitter": "Non toxique, mais si amer qu'un seul spécimen gâche tout un plat."
+    },
+
+    "checks": {
+      "volva": "Regarde tout en bas du pied, sous le niveau du sol : une volve en forme de sac ou une coupe renflée à cet endroit est un signal d'alarme sérieux.",
+      "gillColour": "La couleur des lames, y compris sur les vieux spécimens : des lames d'un blanc pur sur un champignon à pied appellent la prudence.",
+      "gillAttachment": "Si le dessous porte de vraies lames en forme de lamelles, qu'on peut détacher avec l'ongle.",
+      "gillVsRidges": "Les vraies girolles ont des plis épais et fourchus qui descendent sur le pied, pas des lames fines et serrées.",
+      "sporePrint": "Fais une sporée : laisse le chapeau lames vers le bas sur du papier quelques heures et regarde la couleur.",
+      "ringAndStem": "Si le pied porte un anneau, s'il coulisse librement, et quel motif présente le pied en dessous.",
+      "overallSize": "La taille à maturité. Certains sosies mortels sont beaucoup plus petits que l'espèce comestible qu'ils imitent.",
+      "capWarts": "Si le chapeau porte des plaques ou des verrues détachables, que la pluie peut emporter.",
+      "cortina": "Sur les jeunes spécimens, la présence d'un voile en toile d'araignée entre le bord du chapeau et le pied, et les traces brun rouille qu'il laisse.",
+      "capStructure": "Si la tête forme des alvéoles régulières en nid d'abeille ou un ensemble irrégulier de replis évoquant un cerveau.",
+      "capAttachment": "Si le chapeau est soudé au pied sur toute sa hauteur ou seulement au sommet, retombant librement.",
+      "hollowStem": "Coupe le spécimen en deux dans la longueur et vérifie s'il est entièrement creux.",
+      "poreColour": "La couleur des pores sous le chapeau, en particulier les teintes rouges ou orangées.",
+      "fleshBruising": "Si la chair change de couleur à la coupe ou à la pression, et vers quelle couleur.",
+      "fleshReddening": "Si la chair rougit là où elle a été manipulée ou abîmée.",
+      "stemNetwork": "La présence d'un réseau en relief sur le pied, et sa couleur.",
+      "smell": "Froisse une feuille ou un morceau et sens-le. L'ail des ours sent fortement l'ail ; ses sosies mortels non.",
+      "leafArrangement": "Comment les feuilles sortent : isolément depuis la base sur leur propre pétiole, ou par paires engainées ensemble.",
+      "leafShape": "Le contour et la nervation de la feuille, et si la base est en fer de flèche.",
+      "stemMarkings": "Si la tige est creuse, cannelée ou tachée de pourpre – et si elle sent mauvais quand on la froisse.",
+      "berryArrangement": "Si les grappes de baies pendent sous les rameaux ou se tiennent dressées au-dessus du feuillage.",
+      "plantHabit": "Si la plante est un arbuste ligneux ou une herbe tendre qui disparaît chaque année."
+    },
+
+    "critical": {
+      "lepiotaMacrolepiota": "Les lépiotes mortelles figurent parmi les sosies les plus dangereux de la coulemelle, et c'était l'erreur la plus fréquente de tous nos tests. Une vraie coulemelle est grande, avec un anneau coulissant et un pied à motif de peau de serpent. Les petits spécimens à pied lisse doivent être laissés sur place, même s'ils semblent corrects."
+    }
+  }
+}

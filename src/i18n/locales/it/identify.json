@@ -1,0 +1,102 @@
+{
+  "title": "Identifica da una foto",
+  "subtitle": "Restringi il campo su ciò che stai guardando",
+
+  "disclaimer": {
+    "beforeCapture": "Questo strumento restringe le specie possibili a partire da una foto. Non conferma mai che qualcosa sia commestibile.",
+    "aboveResults": "Queste sono corrispondenze possibili, non un'identificazione confermata. Un sosia pericoloso può essere quello giusto anche quando non è il primo risultato.",
+    "neverEat": "Non mangiare nulla basandoti su questa app. Verifica i caratteri distintivi elencati sotto con una guida da campo e, al minimo dubbio, chiedi a una persona esperta."
+  },
+
+  "capture": {
+    "takePhoto": "Scatta una foto",
+    "choosePhoto": "Scegli una foto",
+    "dropHere": "Trascina qui una foto, oppure clicca per scegliere",
+    "retake": "Prova con un'altra foto",
+    "hint": "Un solo esemplare, che occupi quasi tutta l'inquadratura, con luce diurna se possibile."
+  },
+
+  "status": {
+    "preparing": "Preparazione…",
+    "identifying": "Identificazione…",
+    "failed": "Identificazione non riuscita",
+    "retry": "Riprova",
+    "unsupported": "L'identificazione non è disponibile su questo dispositivo o browser."
+  },
+
+  "download": {
+    "title": "Scarica il riconoscimento delle specie",
+    "why": "L'identificazione avviene interamente sul tuo dispositivo, quindi le tue foto non lasciano mai il telefono. Per questo serve un download una volta sola di {{size}}.",
+    "provenance": "Il modello è BioCLIP 2, un modello di ricerca aperto dell'Imageomics Institute.",
+    "notAFile": "Viene conservato nel browser, non salvato tra i tuoi file. Non viene installato nulla.",
+    "onWifi": "Meglio farlo sotto Wi-Fi.",
+    "start": "Scarica ({{size}})",
+    "cancel": "Annulla",
+    "progress": "Download… {{percent}} %",
+    "remove": "Rimuovi il modello scaricato",
+    "removed": "Modello rimosso. L'identificazione non sarà disponibile finché non lo scarichi di nuovo.",
+    "declined": "Per identificare bisogna prima scaricare il modello.",
+    "failed": "Download non riuscito. Controlla la connessione e riprova."
+  },
+
+  "results": {
+    "heading": "Corrispondenze possibili",
+    "toxicBanner": "Una di queste corrispondenze è tossica. Leggi ogni riga prima di procedere.",
+    "toxicLabel": "Tossico – non mangiare",
+    "lethalLabel": "Mortale – non mangiare",
+    "inedibleLabel": "Non commestibile",
+    "notInCatalog": "Non presente nel catalogo di questa app – nessuna informazione di sicurezza",
+    "unknownSpecies": "Non riconosciuto",
+    "confidence": "{{percent}} % di corrispondenza",
+    "confusedWith": "Spesso confuso con {{species}}",
+    "checkThese": "Controlla questi caratteri",
+    "criticalHeading": "Questi due si confondono facilmente"
+  },
+
+  "toxicity": {
+    "mechanisms": {
+      "amatoxin": "Contiene amatossine, lo stesso gruppo di tossine dell'Amanita phalloides. L'avvelenamento è spesso ritardato di 6-24 ore, dà l'impressione di un miglioramento e poi provoca insufficienza epatica. Spesso mortale.",
+      "gyromitrin": "Contiene giromitrina, che l'organismo trasforma in una tossina che danneggia fegato e sistema nervoso. Può essere mortale e la cottura non la distrugge in modo affidabile.",
+      "muscarine": "Contiene muscarina in dose elevata, con sudorazione intensa, salivazione e collasso. Sono stati documentati casi mortali.",
+      "orellanine": "Contiene orellanina, che distrugge i reni. I sintomi possono comparire dopo giorni o settimane, molto dopo che il pasto è stato dimenticato.",
+      "isoxazole": "Contiene acido ibotenico e muscimolo, che provocano confusione, nausea e delirio. Raramente mortale ma molto pesante.",
+      "giIrritant": "Provoca vomito e diarrea violenti, a volte per giorni. Di solito non mortale, ma la disidratazione può diventare pericolosa.",
+      "colchicine": "Contiene colchicina. Non esiste antidoto, i sintomi sono ritardati e una piccola quantità può uccidere un adulto.",
+      "cardiacGlycoside": "Contiene glicosidi cardioattivi che alterano il ritmo del cuore. Può essere mortale.",
+      "calciumOxalate": "Contiene cristalli aghiformi di ossalato di calcio che bruciano e gonfiano bocca e gola.",
+      "coniine": "Contiene coniina, il veleno della cicuta. Paralizza i muscoli respiratori. Quantità molto piccole sono mortali.",
+      "tropane": "Contiene alcaloidi tropanici. Una manciata di bacche può uccidere un bambino. Il sapore dolce non dà alcun avvertimento.",
+      "poorEdibility": "Non pericoloso, ma di scarsa qualità e facile da confondere con qualcosa di meglio.",
+      "bitter": "Non velenoso, ma così amaro che un solo esemplare rovina un intero piatto."
+    },
+
+    "checks": {
+      "volva": "Guarda alla base del gambo, sotto il livello del terreno: una volva a sacco o una coppa rigonfia in quel punto è un segnale d'allarme serio.",
+      "gillColour": "Il colore delle lamelle, anche negli esemplari vecchi: lamelle bianco puro in un fungo con gambo richiedono prudenza.",
+      "gillAttachment": "Se la parte inferiore ha vere lamelle a lama, staccabili con l'unghia.",
+      "gillVsRidges": "I gallinacci veri hanno pliche spesse e forcate che scendono lungo il gambo, non lamelle sottili e fitte.",
+      "sporePrint": "Fai una sporata: appoggia il cappello con le lamelle in basso su un foglio per qualche ora e osserva il colore.",
+      "ringAndStem": "Se il gambo ha un anello, se scorre liberamente, e che disegno presenta il gambo al di sotto.",
+      "overallSize": "La taglia da adulto. Alcuni sosia mortali sono molto più piccoli della specie commestibile a cui somigliano.",
+      "capWarts": "Se il cappello porta placche o verruche asportabili, che la pioggia può lavare via.",
+      "cortina": "Negli esemplari giovani, la presenza di un velo a ragnatela tra bordo del cappello e gambo, e le tracce bruno-ruggine che lascia.",
+      "capStructure": "Se la testa è un alveolato regolare a nido d'ape o un insieme irregolare di pieghe simile a un cervello.",
+      "capAttachment": "Se il cappello è saldato al gambo per tutta la sua lunghezza o solo in alto, ricadendo libero.",
+      "hollowStem": "Taglia l'esemplare a metà per il lungo e verifica se è completamente cavo all'interno.",
+      "poreColour": "Il colore dei pori sotto il cappello, in particolare le tonalità rosse o aranciate.",
+      "fleshBruising": "Se la carne cambia colore al taglio o alla pressione, e verso quale colore.",
+      "fleshReddening": "Se la carne arrossisce dove è stata toccata o danneggiata.",
+      "stemNetwork": "La presenza di un reticolo in rilievo sul gambo, e il suo colore.",
+      "smell": "Strofina una foglia o un pezzo e annusalo. L'aglio orsino ha un forte odore di aglio; i suoi sosia mortali no.",
+      "leafArrangement": "Come nascono le foglie: singole dalla base con il proprio picciolo, oppure a coppie e guainate insieme.",
+      "leafShape": "Il contorno e le nervature della foglia, compreso se la base è a forma di freccia.",
+      "stemMarkings": "Se il fusto è cavo, scanalato o macchiato di porpora – e se ha un odore sgradevole quando lo strofini.",
+      "berryArrangement": "Se i grappoli di bacche pendono sotto i rami o restano eretti sopra il fogliame.",
+      "plantHabit": "Se la pianta è un arbusto legnoso o un'erba tenera che secca ogni anno."
+    },
+
+    "critical": {
+      "lepiotaMacrolepiota": "Le Lepiota mortali sono tra i sosia più pericolosi della mazza di tamburo, e nei nostri test è stato l'errore più frequente in assoluto. Una vera mazza di tamburo è grande, con un anello scorrevole e un gambo con disegno a pelle di serpente. Gli esemplari piccoli con il gambo liscio vanno lasciati dove sono, anche se sembrano quelli giusti."
+    }
+  }
+}
