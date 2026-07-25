@@ -214,3 +214,65 @@ Reproduce with:
 python backend/tools/bioclip_spike.py --stage embed --model-id hf-hub:imageomics/bioclip
 python backend/tools/bioclip_spike.py --stage evaluate
 ```
+
+---
+
+## Addendum 2 — Wide-vocabulary gate (1058 labels)
+
+The plan required measuring the gate at a wider vocabulary before shipping
+"tier 2" (species named but not in the app's catalog), on the reasoning that more
+labels means more plausible-but-wrong neighbours. **That reasoning turned out to
+be backwards.** Widening the vocabulary makes the gate _better_.
+
+Method: 1005 additional species, the most-observed research-grade fungi and
+plants in the app's own NE/SE/USE/USW bounding boxes, via iNaturalist
+`/observations/species_counts`. No new photos — the gate is computed over the
+same 660 toxic test photos, so extra labels only change what those photos
+compete against. Script: `backend/tools/bioclip_wide_vocab.py`.
+
+| Metric                               | 53 labels | 1058 labels | change      |
+| ------------------------------------ | --------- | ----------- | ----------- |
+| **False-edible@1** (the gate)        | 1.4%      | **0.9%**    | **-0.5pp**  |
+| **Edible in top-3 of a toxic photo** | 77.1%     | **27.6%**   | **-49.5pp** |
+| Toxic label present in top-3         | 99.8%     | 98.3%       | -1.5pp      |
+| True toxic species ranked #1         | 97.9%     | 92.7%       | -5.2pp      |
+| Catalog top-1                        | 97.4%     | 83.2%       | -14.2pp     |
+| _Lepiota_ -> parasol (lethal pair)   | 13%       | 13%         | unchanged   |
+
+**This confirms the 77% figure was an artifact of the label ratio, not a model
+weakness.** At 53 labels, 58% of labels were edible, so an edible landed in any
+top-3 almost by arithmetic necessity. At 1058 labels only 31 are edible (2.9%),
+tier-2 neighbours fill those slots instead, and the rate collapses to 27.6%.
+
+**The critical check passed.** The obvious risk was that tier-2 species would
+displace the _toxic_ label too, silently removing the warning that makes a
+3-candidate list defensible. It barely moves: a toxic label still appears in the
+top-3 for 98.3% of toxic photos. So the warning survives while the misleading
+edible mostly disappears — a strictly better safety position.
+
+**The cost is catalog top-1, down 14.2pp to 83.2%.** That is the honest trade:
+more competitors displace the true catalog species more often. Since the 97.4%
+figure was leakage-inflated and never a field estimate, trading it for a halved
+false-edible surface is worth taking for a safety-critical narrowing tool.
+
+**_Lepiota_ -> _Macrolepiota_ stays at 13% at both vocabulary sizes.** It is a
+genuine visual confusion, not a label-set artifact, and needs the explicit
+handling the plan already specifies.
+
+### Consequence for the shipped text matrix
+
+At 1058 labels x 768 dims the matrix is **3.25MB as float32** — which exceeds
+workbox's 2 MiB precache default and would make `vite build` **throw**. Options:
+ship **float16 (1.63MB, precacheable)** and widen the dtype at load time, or keep
+float32 and deliver by runtime caching. float16 is the simpler choice; verify the
+gate is unchanged after the dtype narrowing, since it is a numerical change to
+the classifier's own weights.
+
+### Decision
+
+Ship tier 2. Reproduce with:
+
+```bash
+python backend/tools/bioclip_wide_vocab.py --stage taxa --per-region 200
+python backend/tools/bioclip_wide_vocab.py --stage evaluate
+```
