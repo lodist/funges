@@ -569,18 +569,59 @@ def stage_fetch(since, only=None):
     print(f"\nfetched {len(manifest)} photos, dropped {dropped}")
 
 
-def load_model():
-    """BioCLIP 2 via open_clip. Imported lazily so fetch/evaluate need no torch."""
+EXPECTED_MEAN = (0.48145466, 0.4578275, 0.40821073)
+EXPECTED_STD = (0.26862954, 0.26130258, 0.27577711)
+
+
+def _describe_preprocess(preprocess):
+    """Print and sanity-check the transform's resize/normalise settings.
+
+    The browser must reproduce this pipeline exactly (Phase 2 parity test). If a
+    checkpoint uses different constants, that must be visible here rather than
+    discovered as unexplained accuracy loss later.
+    """
+    for t in getattr(preprocess, "transforms", []):
+        name = type(t).__name__
+        if name == "Resize":
+            print(f"    Resize size={t.size} interpolation={t.interpolation}")
+        elif name == "CenterCrop":
+            print(f"    CenterCrop size={t.size}")
+        elif name == "Normalize":
+            mean = tuple(round(float(x), 8) for x in t.mean)
+            std = tuple(round(float(x), 8) for x in t.std)
+            print(f"    Normalize mean={mean} std={std}")
+            if not (
+                all(abs(a - b) < 1e-6 for a, b in zip(mean, EXPECTED_MEAN))
+                and all(abs(a - b) < 1e-6 for a, b in zip(std, EXPECTED_STD))
+            ):
+                raise SystemExit(
+                    "preprocess constants differ from the documented OpenCLIP "
+                    "values.\n"
+                    f"  got  mean={mean} std={std}\n"
+                    f"  want mean={EXPECTED_MEAN} std={EXPECTED_STD}\n"
+                    "The browser parity pipeline hardcodes these — update both "
+                    "together or embeddings will silently diverge."
+                )
+
+
+def load_model(model_id=None):
+    """BioCLIP via open_clip. Imported lazily so fetch/evaluate need no torch.
+
+    model_id defaults to MODEL_HUB_ID. Passed explicitly (rather than editing the
+    constant) so the run records which model produced which embeddings — a
+    hand-edited constant leaves no trace of what was actually measured.
+    """
     import open_clip
     import torch
 
-    model, _, preprocess = open_clip.create_model_and_transforms(MODEL_HUB_ID)
-    tokenizer = open_clip.get_tokenizer(MODEL_HUB_ID)
+    model_id = model_id or MODEL_HUB_ID
+    model, _, preprocess = open_clip.create_model_and_transforms(model_id)
+    tokenizer = open_clip.get_tokenizer(model_id)
     model.eval()
     return model, preprocess, tokenizer, torch
 
 
-def stage_embed(batch_size=32):
+def stage_embed(batch_size=32, model_id=None):
     """images -> spike_cache/embeddings.npy (L2-normalised, manifest order)."""
     import numpy as np
     from PIL import Image
@@ -590,7 +631,15 @@ def stage_embed(batch_size=32):
         raise SystemExit("no manifest.json — run --stage fetch first")
     photos = json.loads(manifest_path.read_text())["photos"]
 
-    model, preprocess, tokenizer, torch = load_model()
+    model, preprocess, tokenizer, torch = load_model(model_id)
+
+    # Record which model produced these embeddings, and assert the preprocessing
+    # constants are what we expect. Different open_clip checkpoints can ship
+    # different resize/normalise settings; a silent mismatch would shift every
+    # embedding with no error, which is this project's characteristic failure.
+    active_id = model_id or MODEL_HUB_ID
+    print(f"  model: {active_id}")
+    _describe_preprocess(preprocess)
 
     # --- image embeddings ---
     vectors, kept = [], []
@@ -625,7 +674,10 @@ def stage_embed(batch_size=32):
     np.save(CACHE / "text_embeddings.npy", tfeats.cpu().numpy())
 
     (CACHE / "embed_order.json").write_text(
-        json.dumps({"photos": kept, "text_labels": names}, indent=2),
+        json.dumps(
+            {"photos": kept, "text_labels": names, "model_id": active_id},
+            indent=2,
+        ),
         encoding="utf-8",
     )
     print(f"embedded {len(kept)} images, {len(names)} text prompts")
@@ -766,6 +818,11 @@ def main():
         default="all",
     )
     ap.add_argument("--since", default=SINCE)
+    ap.add_argument(
+        "--model-id",
+        default=None,
+        help=f"open_clip hub id to embed with (default {MODEL_HUB_ID})",
+    )
     ap.add_argument("--list-labels", action="store_true")
     ap.add_argument(
         "--only",
@@ -789,7 +846,7 @@ def main():
         stage_fetch(args.since, only=args.only)
     if args.stage in ("embed", "all"):
         print("== embed ==")
-        stage_embed()
+        stage_embed(model_id=args.model_id)
     if args.stage in ("evaluate", "all"):
         print("== evaluate ==")
         stage_evaluate()
