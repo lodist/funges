@@ -56,3 +56,7 @@ spike_cache/
 # ONNX export artifacts (the shipped model lives on R2, not in git)
 backend/tools/model_artifacts/
 
+
+# Playwright failure artifacts
+test-results/
+playwright-report/
