@@ -1491,7 +1491,7 @@ Run:
 python backend/tools/bioclip_spike.py --stage fetch
 ```
 
-Expected: 53 label lines, then `fetched ~2400-2900 photos, dropped <N>`. This takes roughly 45-60 minutes at 1 req/sec. It is resume-safe — if interrupted, re-run the same command.
+Expected: 53 label lines, then `fetched ~2400-2900 photos, dropped <N>`. Measured cost: `fetch_observations` paginates 200 observations per call, so this is ~3 API calls per label (~160 total at 1 req/sec, roughly 3 minutes) plus parallel image downloads — not one call per photo. Expect well under 15 minutes, not the 45-60 originally estimated. Resume-safe: if interrupted, re-run the same command.
 
 Watch for labels reporting far fewer than 55 photos; those will surface as "insufficient data" in the report. If more than about a third of labels are thin, loosen recency and re-run:
 
@@ -1509,7 +1509,7 @@ Run:
 python backend/tools/bioclip_spike.py --stage embed
 ```
 
-Expected: `embedded ~2400-2900 images, 53 text prompts`. Minutes-to-tens-of-minutes on CPU.
+Expected: `embedded ~2400-2900 images, 53 text prompts`. This is now the slowest step: 110 images took a couple of minutes on CPU (ViT-L/14), so ~2900 should be roughly 30-50 minutes. Weights are cached after the first load.
 
 - [ ] **Step 4: Produce the report**
 
