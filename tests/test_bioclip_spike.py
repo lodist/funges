@@ -236,3 +236,11 @@ def test_taxonomic_prompt_refuses_a_lineage_with_no_standard_rank():
         taxonomic_prompt({})
     with pytest.raises(ValueError):
         taxonomic_prompt({"complex": "Morchella esculenta complex"})
+
+
+def test_taxonomic_prompt_does_not_merge_a_non_genus_ancestor():
+    # Family is not a prefix of the species name, so the dedup must NOT fire.
+    # This is the case that proves the trailing-space check earns its keep: a
+    # loosened startswith would swallow "Amanitaceae" and lose a rank.
+    lineage = {"family": "Amanitaceae", "species": "Amanita phalloides"}
+    assert taxonomic_prompt(lineage) == "a photo of Amanitaceae Amanita phalloides."

@@ -259,6 +259,9 @@ def taxonomic_prompt(lineage):
         name = lineage.get(rank)
         if not name:
             continue
+        # parts[-1] is the genus here ONLY because RANKS puts genus immediately
+        # before species. Insert a rank between them (iNat has "subgenus") and
+        # this guard silently stops firing — compare lineage.get("genus") then.
         if rank == "species" and parts and name.startswith(parts[-1] + " "):
             parts[-1] = name          # "Amanita" + "Amanita phalloides"
         else:

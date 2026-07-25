@@ -668,7 +668,27 @@ def test_taxonomic_prompt_does_not_repeat_the_genus():
     # iNat species names include the genus; emitting both would duplicate it
     lineage = {"genus": "Amanita", "species": "Amanita phalloides"}
     assert taxonomic_prompt(lineage) == "a photo of Amanita phalloides."
+
+
+def test_taxonomic_prompt_does_not_merge_a_non_genus_ancestor():
+    # Family is not a prefix of the species name, so the dedup must NOT fire.
+    # This is the case that proves the trailing-space check earns its keep: a
+    # loosened startswith would swallow "Amanitaceae" and lose a rank.
+    lineage = {"family": "Amanitaceae", "species": "Amanita phalloides"}
+    assert taxonomic_prompt(lineage) == "a photo of Amanitaceae Amanita phalloides."
+
+
+def test_taxonomic_prompt_refuses_a_lineage_with_no_standard_rank():
+    # iNat uses ranks outside our seven ("complex", "section", ...). A lineage
+    # holding only those would render "a photo of ." — a prompt that embeds
+    # without error and silently corrupts that label's whole report column.
+    with pytest.raises(ValueError):
+        taxonomic_prompt({})
+    with pytest.raises(ValueError):
+        taxonomic_prompt({"complex": "Morchella esculenta complex"})
 ```
+
+(`import pytest` goes at the top of the test file.)
 
 - [ ] **Step 2: Run the test to verify it fails**
 
@@ -717,7 +737,7 @@ Run:
 python -m pytest tests/test_bioclip_spike.py -v
 ```
 
-Expected: 13 passed
+Expected: 17 passed
 
 - [ ] **Step 5: Commit**
 
@@ -903,6 +923,14 @@ def stage_fetch(since, only=None):
         except LookupError as e:
             print(f"  SKIP {name}: {e}")
             continue
+
+        # taxonomic_prompt raises on a lineage with no standard rank, but it
+        # only sees the dict — not which of the 53 labels produced it. Fail
+        # with the label attached or a crash 30 labels in is unplaceable.
+        try:
+            taxonomic_prompt(taxon["lineage"])
+        except ValueError as e:
+            raise ValueError(f"{name}: {e}") from e
 
         obs = fetch_observations(taxon["id"], since, GALLERY_N + TEST_N)
         gallery, test = split_by_observation(obs, GALLERY_N, TEST_N)
