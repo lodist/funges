@@ -46,3 +46,6 @@ tests/subset_master_*.parquet
 
 # forecast-vs-actual longitudinal snapshot (generated)
 tests/forecast_vs_actual_snapshot.jsonl
+
+# Brainstorming session scratch (mockups/state, not project artifacts)
+.superpowers/
