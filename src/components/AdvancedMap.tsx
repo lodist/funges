@@ -1,4 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { protocol } from '@/lib/pmtiles-protocol';
@@ -11,7 +18,15 @@ import { useOfflineStore, CONTINENTS } from '@/store/offlineStore';
 import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
 import { Card } from '@/components/ui/card';
-import { ChefHat, Loader2, MapPin, Navigation, Moon, Info } from 'lucide-react';
+import {
+  ChefHat,
+  Loader2,
+  MapPin,
+  Navigation,
+  Moon,
+  Info,
+  ScanSearch,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useUIStore } from '@/store/uiStore';
 import SpeciesSelector from './SpeciesSelector';
@@ -98,6 +113,12 @@ function closeRoutePanel(
   setActiveRoute(null);
 }
 
+// Lazily loaded: this panel's module graph reaches the ONNX worker, and the
+// map must not pay for that on first paint.
+const IdentifyPanel = lazy(() =>
+  import('@/components/IdentifyPanel').then(m => ({ default: m.IdentifyPanel }))
+);
+
 const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
@@ -133,6 +154,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
+  const { t: tIdentify } = useTranslation('identify');
+  const [isIdentifyOpen, setIsIdentifyOpen] = useState(false);
   const { setActiveModal } = useUIStore();
   const {
     center,
@@ -970,6 +993,24 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             <ChefHat className='h-4 w-4' />
           </motion.button>
 
+          {/* Identify from a photo. Sits directly above Info in the stack. */}
+          <motion.button
+            onClick={() => setIsIdentifyOpen(true)}
+            className='inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg bg-secondary border-input'
+            title={tIdentify('title')}
+            aria-label={tIdentify('title')}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{
+              duration: 0.2,
+              type: 'spring',
+              stiffness: 400,
+              damping: 25,
+            }}
+          >
+            <ScanSearch className='h-4 w-4' />
+          </motion.button>
+
           {/* Info button */}
           <motion.button
             onClick={() => setActiveModal('onboarding')}
@@ -1073,6 +1114,17 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         hideDirections={isModalFromLocateMe}
         dataNerdRegion={dataNerdRegion}
       />
+
+      {/* Mounted only once opened, so the ONNX chunk is never fetched by a user
+          who does not use identification. */}
+      {isIdentifyOpen && (
+        <Suspense fallback={null}>
+          <IdentifyPanel
+            open={isIdentifyOpen}
+            onClose={() => setIsIdentifyOpen(false)}
+          />
+        </Suspense>
+      )}
     </>
   );
 };
