@@ -171,3 +171,46 @@ constraints carried in from the start:
 4. **Do not build a confidence cutoff.** It buys 0.4 points for 4% of coverage.
 5. **Never present this as confirmation of edibility.** It narrows candidates
    behind the existing safety disclaimer; it does not verify anything.
+
+---
+
+## Addendum — BioCLIP v1 (ViT-B/16) re-measurement
+
+Run on the identical 2915 photos and 53 labels, to see whether the 3.5x smaller
+model (~86MB int8 on-device vs ~304MB) clears the same bar.
+
+**It does not.** The pre-agreed ceiling was 3.0% false-edible@1 (2x v2's 1.4%).
+
+| Metric                        | v2 ViT-L/14 | v1 ViT-B/16 |
+| ----------------------------- | ----------- | ----------- |
+| False-edible@1, text-prompt   | 1.4%        | **8.6%**    |
+| False-edible@1, gallery       | 1.2%        | **4.8%**    |
+| False-edible@3, text-prompt   | 77.1%       | 78.6%       |
+| Catalog top-1, text-prompt    | 97.4%       | 83.5%       |
+| Catalog top-1, gallery        | 97.8%       | 91.1%       |
+| _Lepiota_ -> parasol (lethal) | 13%         | **17%**     |
+
+With the text-prompt method we planned to ship, v1 puts an edible species first
+for roughly one in twelve toxic photos. It is also worse on the single lethal
+confusion the report already flagged as needing explicit handling.
+
+Two secondary findings:
+
+- **The "ship the model only" conclusion was v2-specific.** For v2, gallery beat
+  text-prompt by 0.4 points; for v1 the gap is 3.8 points (4.8% vs 8.6%), so v1
+  would need the embeddings file too. It fails the gate regardless.
+- **Preprocessing is identical between the two checkpoints** — bicubic resize to
+  224, centre crop, same normalise constants — verified by an assertion added to
+  `bioclip_spike.py`. One browser preprocessing pipeline therefore serves either
+  model.
+
+**Consequence:** the on-device artifact is BioCLIP 2 at roughly 304MB, not 86MB.
+That is a materially harder download to justify to a user, and it reopens the
+inference-location question the plan had settled.
+
+Reproduce with:
+
+```bash
+python backend/tools/bioclip_spike.py --stage embed --model-id hf-hub:imageomics/bioclip
+python backend/tools/bioclip_spike.py --stage evaluate
+```
