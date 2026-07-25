@@ -121,6 +121,11 @@ def split_by_observation(observations, gallery_n, test_n):
     completion first" pass would starve gallery to zero), while test still
     wins ties when supply falls short of both quotas combined. Deterministic:
     observations are processed in sorted id order.
+
+    A bucket that fills mid-observation keeps only enough photos to reach its
+    cap; that observation's remaining photos are dropped, landing in neither
+    list. So photos-used < photos-fetched whenever a cap is not a multiple of
+    an observation's photo count.
     """
     ordered = sorted(observations, key=lambda o: o["observation_id"])
 

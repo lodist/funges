@@ -12,13 +12,19 @@ def test_split_never_shares_an_observation():
     # 10 observations, 3 photos each
     # quotas deliberately NOT a multiple of photos-per-observation: with 9/9
     # a flatten-then-slice implementation splits cleanly by coincidence and
-    # this test would pass a leaking impl
+    # this test would pass a leaking impl. If you change photos-per-obs below,
+    # re-check the quotas share no common factor with it, or the teeth go away.
     obs = [_obs(i, 3) for i in range(10)]
     gallery, test = split_by_observation(obs, gallery_n=10, test_n=10)
 
     gallery_obs = {p["observation_id"] for p in gallery}
     test_obs = {p["observation_id"] for p in test}
     assert gallery_obs & test_obs == set(), "observation leaked across the split"
+
+    # cap is a HARD ceiling even when it falls mid-observation (10 is not a
+    # multiple of 3, so two observations here are truncated)
+    assert len(gallery) == 10
+    assert len(test) == 10
 
 
 def test_split_respects_requested_counts():
