@@ -432,7 +432,19 @@ def stage_fetch(since, only=None):
         with ThreadPoolExecutor(max_workers=8) as ex:
             futures = {}
             for split, photo in jobs:
-                fname = f"{name.replace(' ', '_')}_{photo['observation_id']}_{Path(urllib.parse.urlparse(photo['url']).path).name}"
+                # iNat URLs are .../photos/<photo_id>/<size>.jpg, so the photo
+                # id is a PATH SEGMENT and the basename is always "medium.jpg".
+                # Using the basename made every photo of one observation collide
+                # onto a single file; download()'s resume check then reported
+                # success without writing, so the manifest gained a row per
+                # photo while only one image existed. That silently inflated
+                # sample counts (defeating the MIN_TEST guard) and let one
+                # specimen carry several photos' worth of weight in the metrics.
+                url_path = Path(urllib.parse.urlparse(photo["url"]).path)
+                fname = (
+                    f"{name.replace(' ', '_')}_{photo['observation_id']}"
+                    f"_{url_path.parent.name}{url_path.suffix}"
+                )
                 dest = images / fname
                 futures[ex.submit(download, photo["url"], dest)] = (
                     split,
@@ -458,6 +470,17 @@ def stage_fetch(since, only=None):
         # run does not lose the lineages it already resolved
         lineages[name] = taxon["lineage"]
         lineages_path.write_text(json.dumps(lineages, indent=2), encoding="utf-8")
+
+    # One manifest row must mean one distinct image. A filename scheme that
+    # collides silently inflates every sample count downstream, so fail loudly
+    # here rather than report confident numbers over duplicated photos.
+    files = [row["file"] for row in manifest]
+    if len(files) != len(set(files)):
+        dupes = sorted({f for f in files if files.count(f) > 1})[:5]
+        raise SystemExit(
+            f"filename collision: {len(files)} rows, {len(set(files))} distinct "
+            f"files. Sample: {dupes}"
+        )
 
     (CACHE / "manifest.json").write_text(
         json.dumps({"photos": manifest, "dropped": dropped}, indent=2),
