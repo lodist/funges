@@ -104,6 +104,45 @@ def all_labels():
     )
 
 
+def split_by_observation(observations, gallery_n, test_n):
+    """Split photos into (gallery, test) with NO observation in both.
+
+    observations: [{"observation_id": int, "photo_urls": [str, ...]}]
+    Returns two lists of {"observation_id", "url"} dicts.
+
+    Splitting on observation id (not photo id) is mandatory: one observation
+    holds several near-identical photos of one specimen, so a photo-level split
+    would put duplicates in both sets and inflate the gallery method.
+
+    Observations are dealt alternately to test and gallery, test getting the
+    first deal, each capped at its own requested count; once one set reaches
+    its count, all further observations go to the other until it too is full.
+    This keeps both sets non-empty when data is thin (a strict "fill test to
+    completion first" pass would starve gallery to zero), while test still
+    wins ties when supply falls short of both quotas combined. Deterministic:
+    observations are processed in sorted id order.
+    """
+    ordered = sorted(observations, key=lambda o: o["observation_id"])
+
+    test, gallery = [], []
+    for i, obs in enumerate(ordered):
+        if len(test) >= test_n and len(gallery) >= gallery_n:
+            break
+        photos = [
+            {"observation_id": obs["observation_id"], "url": u}
+            for u in obs["photo_urls"]
+        ]
+        buckets = [(test, test_n), (gallery, gallery_n)]
+        if i % 2:
+            buckets.reverse()
+        for bucket, cap in buckets:
+            if len(bucket) < cap:
+                bucket.extend(photos[: cap - len(bucket)])
+                break
+
+    return gallery, test
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument(
