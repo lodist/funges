@@ -404,11 +404,205 @@ def stage_text_matrix():
     print(f"wrote {LABELS_TS} ({counts})")
 
 
+PARITY_DIR = Path(__file__).resolve().parents[2] / "e2e" / "fixtures" / "bioclip-parity"
+
+
+def stage_parity_fixtures():
+    """Emit fixtures + reference PREPROCESSED TENSORS for the browser parity test.
+
+    Scope note: this compares the preprocessed 3x224x224 tensor, not the final
+    embedding. That is deliberate and sufficient — `--stage export` already
+    asserts the ONNX graph matches PyTorch to 8.5e-07, so tensor parity composes
+    with graph parity to give embedding parity, without needing a 306MB model
+    inside a Playwright run.
+
+    The risk being isolated is real and specific: open_clip resizes with PIL
+    bicubic (antialiased), and a browser canvas does not. If the pixel pipelines
+    diverge, every embedding shifts and accuracy degrades with no error anywhere.
+    """
+    import numpy as np
+    from PIL import Image
+
+    _model, preprocess, _tok, torch = load_model()
+    order = json.loads((CACHE / "embed_order.json").read_text())
+    imgs = CACHE / "images"
+
+    # Chosen for the cases where resize-then-crop diverges most: extreme aspect
+    # ratios, upscaling (shortest side < 224), and the lethal Lepiota/parasol
+    # pair whose decision boundary the spike measured at 13%.
+    picks, seen_labels = [], set()
+    wanted = {"portrait": 2, "landscape": 1, "square": 1, "small": 2}
+    critical = {"Lepiota brunneoincarnata", "Macrolepiota procera"}
+    for row in order["photos"]:
+        path = imgs / row["file"]
+        try:
+            w, h = Image.open(path).size
+        except Exception:
+            continue
+        ar = w / h
+        if min(w, h) < 224:
+            bucket = "small"
+        elif ar > 1.4:
+            bucket = "landscape"
+        elif ar < 0.72:
+            bucket = "portrait"
+        elif 0.98 < ar < 1.02:
+            bucket = "square"
+        else:
+            bucket = None
+        if bucket and wanted.get(bucket):
+            wanted[bucket] -= 1
+            picks.append((row, w, h, bucket))
+        elif row["label"] in critical and row["label"] not in seen_labels:
+            seen_labels.add(row["label"])
+            picks.append((row, w, h, "critical"))
+
+    PARITY_DIR.mkdir(parents=True, exist_ok=True)
+    for old in PARITY_DIR.glob("*"):
+        old.unlink()
+
+    manifest = []
+    for row, w, h, bucket in picks:
+        src = imgs / row["file"]
+        (PARITY_DIR / row["file"]).write_bytes(src.read_bytes())
+
+        tensor = preprocess(Image.open(src).convert("RGB"))
+        arr = tensor.numpy().astype(np.float16)  # (3, 224, 224), CHW, normalised
+        ref_name = row["file"].rsplit(".", 1)[0] + ".tensor.f16.bin"
+        (PARITY_DIR / ref_name).write_bytes(arr.tobytes())
+
+        manifest.append(
+            {
+                "image": row["file"],
+                "referenceTensor": ref_name,
+                "label": row["label"],
+                "kind": row["kind"],
+                "sourceWidth": w,
+                "sourceHeight": h,
+                "case": bucket,
+                "shape": list(arr.shape),
+            }
+        )
+        print(f"  {bucket:9s} {w}x{h}  {row['file'][:52]}")
+
+    (PARITY_DIR / "reference.json").write_text(
+        json.dumps(
+            {
+                "model": MODEL_HUB_ID,
+                "note": (
+                    "Reference tensors are open_clip's own preprocess() output: "
+                    "PIL bicubic resize of the shortest side to 224, centre crop, "
+                    "then normalise. float16, CHW. Regenerate with "
+                    "bioclip_export.py --stage parity-fixtures."
+                ),
+                "mean": [0.48145466, 0.4578275, 0.40821073],
+                "std": [0.26862954, 0.26130258, 0.27577711],
+                "fixtures": manifest,
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+    total = sum(f.stat().st_size for f in PARITY_DIR.glob("*"))
+    print(f"\nwrote {len(manifest)} fixtures to {PARITY_DIR} ({total / 1e6:.2f} MB)")
+
+
+SYNTH_DIR = Path(__file__).resolve().parents[2] / "src" / "test" / "fixtures"
+
+# Source sizes chosen to exercise the arithmetic edges of resize-then-crop.
+# 219x500 is the one that matters most: it resizes to 224x511, giving a crop
+# offset of (511-224)/2 = 143.5, where Python's round-half-to-EVEN gives 144 but
+# Math.floor gives 143. That one-pixel shift is invisible on every other size
+# and cost a cosine of 0.964 when the TS port used floor.
+SYNTH_SIZES = [
+    (219, 500),  # -> 224x511, crop offset 143.5 (round-half-to-even == 144)
+    (225, 500),  # -> 224x497, crop offset 136.5 (round-half-to-even == 136)
+    (500, 222),  # -> 504x224, upscales the short side
+    (500, 333),  # -> 336x224, ordinary landscape downscale
+    (281, 500),  # -> 224x398, integer crop offset
+    (500, 500),  # -> 224x224, square, no crop at all
+    (100, 140),  # -> 224x313, heavy upscale from below 224 on both axes
+]
+
+
+def _synth_rgb(width, height):
+    """Deterministic pseudo-random RGB, reproducible byte-for-byte in TS.
+
+    A plain 32-bit LCG (glibc constants) so the browser test can regenerate the
+    identical input without committing megabytes of raw pixels. Structured noise
+    rather than a smooth gradient: a resampling bug shows up in high-frequency
+    detail and can hide entirely in a smooth ramp.
+    """
+    import numpy as np
+
+    n = width * height * 3
+    out = np.empty(n, dtype=np.uint8)
+    state = 12345
+    for i in range(n):
+        state = (1103515245 * state + 12345) & 0x7FFFFFFF
+        out[i] = (state >> 16) & 0xFF
+    return out.reshape(height, width, 3)
+
+
+def stage_parity_synthetic():
+    """Synthetic-input reference tensors for src/test/bioclip-preprocess.test.ts.
+
+    Why synthetic rather than the real photos: the browser's JPEG decoder and
+    PIL's are not guaranteed identical, so a photo-based test conflates decode
+    differences with resize differences. Feeding both sides identical generated
+    pixels isolates the resampling algorithm, which is the part we wrote and the
+    part that can regress. It also keeps the committed fixtures at tens of KB
+    instead of megabytes of raw pixel dumps.
+    """
+    import numpy as np
+    from PIL import Image
+
+    _model, preprocess, _tok, _torch = load_model()
+    SYNTH_DIR.mkdir(parents=True, exist_ok=True)
+
+    manifest = []
+    for width, height in SYNTH_SIZES:
+        arr = _synth_rgb(width, height)
+        tensor = preprocess(Image.fromarray(arr, mode="RGB")).numpy().astype(np.float16)
+        name = f"preprocess_{width}x{height}.f16.bin"
+        (SYNTH_DIR / name).write_bytes(tensor.tobytes())
+        manifest.append(
+            {"width": width, "height": height, "reference": name, "shape": list(tensor.shape)}
+        )
+        print(f"  {width}x{height} -> {tensor.shape}  {name}")
+
+    (SYNTH_DIR / "preprocess-reference.json").write_text(
+        json.dumps(
+            {
+                "note": (
+                    "GENERATED by bioclip_export.py --stage parity-synthetic. "
+                    "Reference output of open_clip's preprocess() on deterministic "
+                    "LCG-generated RGB. The TS test regenerates the same input and "
+                    "must reproduce these tensors."
+                ),
+                "lcg": {"seed": 12345, "mul": 1103515245, "add": 12345, "mod": 2147483648},
+                "cases": manifest,
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+    total = sum(f.stat().st_size for f in SYNTH_DIR.glob("preprocess*"))
+    print(f"\nwrote {len(manifest)} reference tensors ({total / 1e3:.0f} KB)")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument(
         "--stage",
-        choices=["export", "quantize", "verify", "text-matrix"],
+        choices=[
+            "export",
+            "quantize",
+            "verify",
+            "text-matrix",
+            "parity-fixtures",
+            "parity-synthetic",
+        ],
         required=True,
     )
     args = ap.parse_args()
@@ -418,6 +612,8 @@ def main():
         "quantize": stage_quantize,
         "verify": stage_verify,
         "text-matrix": stage_text_matrix,
+        "parity-fixtures": stage_parity_fixtures,
+        "parity-synthetic": stage_parity_synthetic,
     }[args.stage]()
 
 
