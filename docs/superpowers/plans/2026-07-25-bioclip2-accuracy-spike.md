@@ -1347,6 +1347,19 @@ def stage_evaluate():
         test_vectors @ np.array(protos).T, proto_labels, rows
     )
 
+    # The gate compares predicted labels against CATALOG_NAMES by exact string
+    # match. If a label ever reaches here in a different form (different case,
+    # whitespace, "Boletus edulis" vs "Boletus"), the `in` check silently misses
+    # and false_edible_rate UNDER-REPORTS danger — the one direction of error
+    # this spike must never make. Assert the contract instead of trusting it.
+    known = CATALOG_NAMES | TOXIC_NAMES
+    for preds in (preds_text, preds_gallery):
+        unknown = {r for p in preds for r in p["ranked"]} - known
+        if unknown:
+            raise SystemExit(
+                f"label contract violated, gate would under-report: {sorted(unknown)[:5]}"
+            )
+
     def summarise(preds):
         return {
             "top1": top_k_accuracy(preds, k=1),
