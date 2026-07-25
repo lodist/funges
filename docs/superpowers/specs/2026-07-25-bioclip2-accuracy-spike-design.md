@@ -72,8 +72,16 @@ no cloud, no Colab needed.
 ### Source
 
 iNaturalist API, research-grade observations only, filtered by observation date
-to `--since 2026-01-01` (a script constant, loosened if it starves a label below
-the data threshold — loosening is logged in the report).
+to `--since 2025-01-01` (a script constant).
+
+**The window must span at least one full autumn.** This was originally
+`2026-01-01`, which — run in July 2026 — contained no autumn at all. Most of the
+toxic fungi here fruit September-November, so the filter silently starved
+exactly the half of the label set the gate depends on: _Amanita virosa_ returned
+0 photos, _Entoloma sinuatum_ 2, _Cortinarius rubellus_ 6, _Lepiota
+brunneoincarnata_ 12. The bias was seasonal, not random. Widening to 18 months
+costs a little leakage margin and buys the deadly look-alikes back — a trade
+worth making, since a gate measured without them is not a gate.
 
 **Leakage is acknowledged, not solved.** iNaturalist is one of BioCLIP's
 training sources. Recency filtering reduces overlap; it cannot eliminate it.
@@ -125,13 +133,13 @@ confused with:
 | ------------------------ | ----------------------------------------------------------------------------------------- |
 | _Cantharellus cibarius_  | _Omphalotus olearius_, _Hygrophoropsis aurantiaca_                                        |
 | _Macrolepiota procera_   | _Chlorophyllum molybdites_, _Lepiota brunneoincarnata_, young _A. phalloides_             |
-| _Calocybe gambosa_       | _Inocybe erubescens_, _Entoloma sinuatum_ (same season, same habitat)                     |
+| _Calocybe gambosa_       | _Inosperma erubescens_, _Entoloma sinuatum_ (same season, same habitat)                   |
 | _Morchella spp._         | _Gyromitra esculenta_, _Verpa bohemica_                                                   |
 | _Boletus spp._           | _Rubroboletus satanas_, _Tylopilus felleus_                                               |
 | _Pleurotus ostreatus_    | _Omphalotus_ spp.                                                                         |
 | **_Allium ursinum_**     | **_Colchicum autumnale_, _Convallaria majalis_, _Arum maculatum_**                        |
 | _Peucedanum ostruthium_  | _Conium maculatum_, _Aethusa cynapium_                                                    |
-| _Vaccinium_ spp.         | _Atropa belladonna_                                                                       |
+| _Vaccinium_ spp.         | _Atropa bella-donna_                                                                      |
 | _Sambucus nigra_         | _Sambucus ebulus_                                                                         |
 | (unconditional deadlies) | _A. phalloides_, _A. virosa_, _A. muscaria_, _Galerina marginata_, _Cortinarius rubellus_ |
 
@@ -149,8 +157,17 @@ architecture conclusion.
 
 Per label: **25 gallery photos, 30 test photos, from disjoint observations.**
 
+**Label names must be iNaturalist's accepted names, not textbook ones.** Two
+lookups failed silently as "no species named": _Inocybe erubescens_ (iNat moved
+it to _Inosperma erubescens_) and _Atropa belladonna_ (iNat spells it
+_Atropa bella-donna_, with 8578 observations). Both are deadly look-alikes, and
+both would simply have been absent from the gate.
+
 **Insufficient-data guard:** any label yielding fewer than 15 test photos is
-reported as "insufficient data" and excluded from headline metrics. Without this,
+reported as "insufficient data" and excluded from headline metrics. A label that
+fetches ZERO photos must also be named in the report: it never enters the
+per-label counts, so without an explicit check it vanishes from the exclusions
+list and the report looks complete while missing deadly species. Without this,
 a label with 3 photos scores 100% and flatters the aggregate.
 
 ## Methods — measure both

@@ -66,7 +66,7 @@ TOXIC = [
     ("Hygrophoropsis aurantiaca", "species"),  # -> Cantharellus
     ("Chlorophyllum molybdites", "species"),   # -> Macrolepiota
     ("Lepiota brunneoincarnata", "species"),   # -> Macrolepiota
-    ("Inocybe erubescens", "species"),         # -> Calocybe gambosa
+    ("Inosperma erubescens", "species"),       # -> Calocybe gambosa; iNat moved it out of Inocybe
     ("Entoloma sinuatum", "species"),          # -> Calocybe gambosa
     ("Gyromitra esculenta", "species"),        # -> Morchella
     ("Verpa bohemica", "species"),             # -> Morchella
@@ -82,7 +82,7 @@ TOXIC = [
     ("Arum maculatum", "species"),             # -> Allium ursinum
     ("Conium maculatum", "species"),           # -> Peucedanum ostruthium
     ("Aethusa cynapium", "species"),           # -> Peucedanum ostruthium
-    ("Atropa belladonna", "species"),          # -> Vaccinium
+    ("Atropa bella-donna", "species"),         # -> Vaccinium; iNat spells it hyphenated
     ("Sambucus ebulus", "species"),            # -> Sambucus nigra
 ]
 
@@ -93,7 +93,12 @@ INAT_API = "https://api.inaturalist.org/v1"
 USER_AGENT = "funges-bioclip-spike/1.0 (+https://fung.es)"
 MODEL_HUB_ID = "hf-hub:imageomics/bioclip-2"
 
-SINCE = "2026-01-01"   # recency filter, reduces (cannot eliminate) train overlap
+# Recency filter — reduces (cannot eliminate) training overlap. Must span at
+# least one full autumn: most toxic fungi here fruit Sep-Nov, and a window
+# starting in the current calendar year contains no autumn at all, which
+# silently starved Amanita virosa, Entoloma sinuatum, Cortinarius rubellus and
+# Lepiota brunneoincarnata — the deadly half of the label set the gate needs.
+SINCE = "2025-01-01"
 GALLERY_N = 25
 TEST_N = 30
 MIN_TEST = 15          # below this a label is "insufficient data"
@@ -681,6 +686,13 @@ def stage_evaluate():
         if n < MIN_TEST
     }
     excluded["Tuber melanosporum"] = "dropped from label set — subterranean"
+
+    # A label that fetched ZERO photos never enters `counts`, so without this it
+    # never enters `excluded` either and vanishes from the report entirely — the
+    # report would look complete while missing deadly look-alikes. Name them.
+    for name, _rank, kind in all_labels():
+        if name not in counts and name not in excluded:
+            excluded[name] = f"NO photos fetched ({kind}) — absent from the evaluation"
     scored = [
         i for i, row in zip(test_idx, test_rows) if row["label"] not in excluded
     ]
