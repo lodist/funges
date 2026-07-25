@@ -11,6 +11,11 @@ Stages (disk-cached, run independently):
 """
 import argparse
 import json
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 # --- catalog labels: 31 unique scientific names from src/data/species.ts ---
@@ -271,6 +276,196 @@ def taxonomic_prompt(lineage):
     return "a photo of " + " ".join(parts) + "."
 
 
+_LAST_CALL = [0.0]
+
+
+def _get_json(path, params, retries=6):
+    """GET <INAT_API><path>?<params> as JSON, throttled to ~1 req/sec.
+
+    iNaturalist asks for <=60 req/min and a real User-Agent. Backoff mirrors
+    build_season_curves.py, including honouring Retry-After on 429.
+    """
+    url = f"{INAT_API}{path}?" + urllib.parse.urlencode(params, doseq=True)
+    for attempt in range(retries):
+        wait = 1.0 - (time.time() - _LAST_CALL[0])
+        if wait > 0:
+            time.sleep(wait)
+        _LAST_CALL[0] = time.time()
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, timeout=90) as resp:
+                return json.load(resp)
+        except urllib.error.HTTPError as e:
+            if attempt == retries - 1:
+                raise
+            if e.code == 429:
+                retry_after = e.headers.get("Retry-After")
+                delay = (
+                    float(retry_after)
+                    if (retry_after and retry_after.isdigit())
+                    else 2.0 * (attempt + 1)
+                )
+                time.sleep(delay)
+            else:
+                time.sleep(1.5 * (attempt + 1))
+        except Exception:
+            if attempt == retries - 1:
+                raise
+            time.sleep(1.5 * (attempt + 1))
+    raise RuntimeError(f"unreachable: {url}")
+
+
+def resolve_taxon(name, rank):
+    """Scientific name -> {"id", "lineage": {rank: name}}.
+
+    Two calls: /taxa?q= to find the id, then /taxa/{id} which reliably returns
+    the full `ancestors` array used to build the BioCLIP prompt.
+    """
+    hits = _get_json("/taxa", {"q": name, "rank": rank, "per_page": 5})
+    exact = [r for r in hits.get("results", []) if r.get("name") == name]
+    if not exact:
+        raise LookupError(f"iNat has no {rank} named {name!r}")
+    taxon_id = exact[0]["id"]
+
+    detail = _get_json(f"/taxa/{taxon_id}", {})["results"][0]
+    lineage = {}
+    for anc in detail.get("ancestors", []) + [detail]:
+        if anc.get("rank") in RANKS:
+            lineage[anc["rank"]] = anc["name"]
+    return {"id": taxon_id, "lineage": lineage}
+
+
+def fetch_observations(taxon_id, since, needed):
+    """Research-grade observations with photos, newest first.
+
+    Returns [{"observation_id", "photo_urls"}]. `url` from the API is a 75px
+    square thumbnail; swapping the filename for `medium` gives ~500px.
+    """
+    out, page = [], 1
+    while sum(len(o["photo_urls"]) for o in out) < needed and page <= 10:
+        data = _get_json(
+            "/observations",
+            {
+                "taxon_id": taxon_id,
+                "quality_grade": "research",
+                "photos": "true",
+                "d1": since,
+                "per_page": 200,
+                "page": page,
+                "order_by": "observed_on",
+                "order": "desc",
+            },
+        )
+        results = data.get("results", [])
+        if not results:
+            break
+        for obs in results:
+            urls = [
+                p["url"].replace("square", "medium")
+                for p in obs.get("photos", [])
+                if p.get("url")
+            ]
+            if urls:
+                out.append({"observation_id": obs["id"], "photo_urls": urls})
+        page += 1
+    return out
+
+
+def download(url, dest):
+    """Download url to dest unless already present. Returns True on success."""
+    if dest.exists() and dest.stat().st_size > 0:
+        return True
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            data = resp.read()
+        if not data:
+            return False
+        dest.write_bytes(data)
+        return True
+    except Exception:
+        return False
+
+
+def stage_fetch(since, only=None):
+    """iNaturalist -> spike_cache/images/ + manifest.json (resume-safe).
+
+    NOTE: manifest.json is rewritten from scratch, so a --only run leaves a
+    manifest covering only those labels. Re-run without --only before
+    evaluating; downloads are cached, so that is cheap.
+    """
+    images = CACHE / "images"
+    images.mkdir(parents=True, exist_ok=True)
+
+    labels = all_labels()
+    if only:
+        # destructure rather than index — a rank/kind swap on a 3-tuple of bare
+        # strings fails silently, and `kind` is what marks a photo toxic
+        labels = [(n, r, k) for n, r, k in labels if n in only]
+
+    lineages_path = CACHE / "lineages.json"
+    lineages = (
+        json.loads(lineages_path.read_text()) if lineages_path.exists() else {}
+    )
+
+    manifest, dropped = [], 0
+    for name, rank, kind in labels:
+        try:
+            taxon = resolve_taxon(name, rank)
+        except LookupError as e:
+            print(f"  SKIP {name}: {e}")
+            continue
+
+        # taxonomic_prompt raises on a lineage with no standard rank, but it
+        # only sees the dict — not which of the 53 labels produced it. Fail
+        # with the label attached or a crash 30 labels in is unplaceable.
+        try:
+            taxonomic_prompt(taxon["lineage"])
+        except ValueError as e:
+            raise ValueError(f"{name}: {e}") from e
+
+        obs = fetch_observations(taxon["id"], since, GALLERY_N + TEST_N)
+        gallery, test = split_by_observation(obs, GALLERY_N, TEST_N)
+        print(f"  {name}: {len(obs)} obs -> {len(gallery)} gallery / {len(test)} test")
+
+        jobs = [("gallery", p) for p in gallery] + [("test", p) for p in test]
+        with ThreadPoolExecutor(max_workers=8) as ex:
+            futures = {}
+            for split, photo in jobs:
+                fname = f"{name.replace(' ', '_')}_{photo['observation_id']}_{Path(urllib.parse.urlparse(photo['url']).path).name}"
+                dest = images / fname
+                futures[ex.submit(download, photo["url"], dest)] = (
+                    split,
+                    photo,
+                    dest,
+                )
+            for fut in as_completed(futures):
+                split, photo, dest = futures[fut]
+                if fut.result():
+                    manifest.append(
+                        {
+                            "file": dest.name,
+                            "label": name,
+                            "kind": kind,
+                            "split": split,
+                            "observation_id": photo["observation_id"],
+                        }
+                    )
+                else:
+                    dropped += 1
+
+        # written per label, not once at the end, so an interrupted 45-minute
+        # run does not lose the lineages it already resolved
+        lineages[name] = taxon["lineage"]
+        lineages_path.write_text(json.dumps(lineages, indent=2), encoding="utf-8")
+
+    (CACHE / "manifest.json").write_text(
+        json.dumps({"photos": manifest, "dropped": dropped}, indent=2),
+        encoding="utf-8",
+    )
+    print(f"\nfetched {len(manifest)} photos, dropped {dropped}")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument(
@@ -280,6 +475,11 @@ def main():
     )
     ap.add_argument("--since", default=SINCE)
     ap.add_argument("--list-labels", action="store_true")
+    ap.add_argument(
+        "--only",
+        nargs="*",
+        help="restrict to these scientific names (for smoke runs)",
+    )
     args = ap.parse_args()
 
     if args.list_labels:
@@ -291,7 +491,12 @@ def main():
         print(f"\n{n_cat} catalog + {n_tox} toxic = {len(labels)} labels")
         return
 
-    raise SystemExit("stages not implemented yet")
+    CACHE.mkdir(parents=True, exist_ok=True)
+    if args.stage in ("fetch", "all"):
+        print("== fetch ==")
+        stage_fetch(args.since, only=args.only)
+    if args.stage in ("embed", "all"):
+        raise SystemExit("embed not implemented yet")
 
 
 if __name__ == "__main__":
