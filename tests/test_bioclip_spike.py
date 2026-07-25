@@ -2,6 +2,7 @@ import pytest
 
 from bioclip_spike import (
     false_edible_rate,
+    render_report,
     split_by_observation,
     taxonomic_prompt,
     threshold_sweep,
@@ -244,3 +245,54 @@ def test_taxonomic_prompt_does_not_merge_a_non_genus_ancestor():
     # loosened startswith would swallow "Amanitaceae" and lose a rank.
     lineage = {"family": "Amanitaceae", "species": "Amanita phalloides"}
     assert taxonomic_prompt(lineage) == "a photo of Amanitaceae Amanita phalloides."
+
+
+def test_report_leads_with_the_gate_and_flags_leakage():
+    results = {
+        "methods": {
+            "text": {"top1": 0.54, "top3": 0.76, "false_edible_1": 0.18},
+            "gallery": {"top1": 0.71, "top3": 0.89, "false_edible_1": 0.06},
+        },
+        "n_toxic": 612,
+        "n_catalog": 890,
+        "confusions": [
+            {
+                "toxic": "Omphalotus olearius",
+                "predicted": "Cantharellus cibarius",
+                "rate": 0.31,
+                "count": 9,
+                "n": 29,
+            }
+        ],
+        "sweep": [
+            {
+                "cutoff": 0.0,
+                "answered": 1.0,
+                "toxic_n": 612,
+                "false_edible": 0.06,
+                "top1": 0.71,
+            },
+            {
+                "cutoff": 0.7,
+                "answered": 0.48,
+                "toxic_n": 291,
+                "false_edible": 0.012,
+                "top1": 0.83,
+            },
+        ],
+        "excluded": {"Tuber melanosporum": "dropped — subterranean"},
+    }
+    out = render_report(results)
+
+    # the gate comes first, before any accuracy number
+    assert out.index("False-edible") < out.index("Top-1")
+    # the named confusion is present, not just an aggregate
+    assert "Omphalotus olearius" in out
+    assert "Cantharellus cibarius" in out
+    # leakage caveat must survive into the report
+    assert "optimistic" in out.lower()
+    # exclusions printed explicitly
+    assert "Tuber melanosporum" in out
+    # toxic_n must be rendered — a 0% gate on an empty sample must be visible
+    assert "Toxic n" in out
+    assert "| 291 |" in out

@@ -276,6 +276,81 @@ def taxonomic_prompt(lineage):
     return "a photo of " + " ".join(parts) + "."
 
 
+def render_report(results):
+    """Markdown report. The gate goes first — it is what can kill the feature."""
+    m = results["methods"]
+    lines = [
+        "# BioCLIP 2 spike results",
+        "",
+        "## 1. The gate — false-edible rate",
+        "",
+        f"Toxic test photos: n={results['n_toxic']}",
+        "",
+        "| Method | False-edible @1 | False-edible @3 |",
+        "| --- | --- | --- |",
+    ]
+    for key, label in (("text", "Text-prompt"), ("gallery", "Gallery")):
+        row = m.get(key, {})
+        lines.append(
+            f"| {label} | {row.get('false_edible_1', 0):.1%} "
+            f"| {row.get('false_edible_3', 0):.1%} |"
+        )
+
+    lines += [
+        "",
+        "## 2. Catalog accuracy",
+        "",
+        f"Catalog test photos: n={results['n_catalog']}",
+        "",
+        "| Method | Top-1 | Top-3 | Ships as |",
+        "| --- | --- | --- | --- |",
+        f"| Text-prompt | {m['text']['top1']:.1%} | {m['text']['top3']:.1%} | model only |",
+        f"| Gallery | {m['gallery']['top1']:.1%} | {m['gallery']['top3']:.1%} | model + embeddings |",
+        "",
+        "## 3. Worst toxic confusions",
+        "",
+        "| Toxic photo | Predicted as | Rate |",
+        "| --- | --- | --- |",
+    ]
+    for row in results["confusions"]:
+        lines.append(
+            f"| {row['toxic']} | {row['predicted']} "
+            f"| {row['rate']:.0%} ({row['count']}/{row['n']}) |"
+        )
+
+    lines += [
+        "",
+        "## 4. Confidence threshold sweep",
+        "",
+        "| Min confidence | False-edible @1 | Toxic n | Answered | Top-1 |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in results["sweep"]:
+        # toxic_n MUST be shown: false_edible is 0.0 for an empty toxic sample,
+        # so without it a cutoff that measured nothing looks like the safest
+        # row in the table — the one a reader would pick to ship.
+        lines.append(
+            f"| {row['cutoff']:.2f} | {row['false_edible']:.1%} "
+            f"| {row['toxic_n']} | {row['answered']:.0%} | {row['top1']:.1%} |"
+        )
+
+    lines += ["", "## 5. Excluded / insufficient data", ""]
+    for name, reason in results["excluded"].items():
+        lines.append(f"- {name}: {reason}")
+
+    lines += [
+        "",
+        "---",
+        "",
+        "**Leakage caveat:** iNaturalist is one of BioCLIP's training sources, so "
+        "recency filtering reduces but cannot eliminate overlap. Treat the "
+        "accuracy figures as an optimistic ceiling. The false-edible rate remains "
+        "the trustworthy signal — it measures a decision boundary, not "
+        "memorization.",
+    ]
+    return "\n".join(lines)
+
+
 _LAST_CALL = [0.0]
 
 
@@ -489,6 +564,188 @@ def stage_fetch(since, only=None):
     print(f"\nfetched {len(manifest)} photos, dropped {dropped}")
 
 
+def load_model():
+    """BioCLIP 2 via open_clip. Imported lazily so fetch/evaluate need no torch."""
+    import open_clip
+    import torch
+
+    model, _, preprocess = open_clip.create_model_and_transforms(MODEL_HUB_ID)
+    tokenizer = open_clip.get_tokenizer(MODEL_HUB_ID)
+    model.eval()
+    return model, preprocess, tokenizer, torch
+
+
+def stage_embed(batch_size=32):
+    """images -> spike_cache/embeddings.npy (L2-normalised, manifest order)."""
+    import numpy as np
+    from PIL import Image
+
+    manifest_path = CACHE / "manifest.json"
+    if not manifest_path.exists():
+        raise SystemExit("no manifest.json — run --stage fetch first")
+    photos = json.loads(manifest_path.read_text())["photos"]
+
+    model, preprocess, tokenizer, torch = load_model()
+
+    # --- image embeddings ---
+    vectors, kept = [], []
+    for start in range(0, len(photos), batch_size):
+        chunk = photos[start : start + batch_size]
+        tensors, chunk_kept = [], []
+        for row in chunk:
+            try:
+                img = Image.open(CACHE / "images" / row["file"]).convert("RGB")
+            except Exception:
+                continue
+            tensors.append(preprocess(img))
+            chunk_kept.append(row)
+        if not tensors:
+            continue
+        with torch.no_grad():
+            feats = model.encode_image(torch.stack(tensors))
+            feats /= feats.norm(dim=-1, keepdim=True)
+        vectors.append(feats.cpu().numpy())
+        kept.extend(chunk_kept)
+        print(f"  embedded {len(kept)}/{len(photos)}")
+
+    np.save(CACHE / "embeddings.npy", np.concatenate(vectors))
+
+    # --- text embeddings, one prompt per label ---
+    lineages = json.loads((CACHE / "lineages.json").read_text())
+    names = sorted(lineages)
+    prompts = [taxonomic_prompt(lineages[n]) for n in names]
+    with torch.no_grad():
+        tfeats = model.encode_text(tokenizer(prompts))
+        tfeats /= tfeats.norm(dim=-1, keepdim=True)
+    np.save(CACHE / "text_embeddings.npy", tfeats.cpu().numpy())
+
+    (CACHE / "embed_order.json").write_text(
+        json.dumps({"photos": kept, "text_labels": names}, indent=2),
+        encoding="utf-8",
+    )
+    print(f"embedded {len(kept)} images, {len(names)} text prompts")
+
+
+def _predictions(sims, label_names, test_rows):
+    """similarity matrix -> Prediction dicts (softmax over labels for confidence)."""
+    import numpy as np
+
+    preds = []
+    for i, row in enumerate(test_rows):
+        scores = sims[i]
+        order = np.argsort(-scores)
+        exp = np.exp((scores - scores.max()) * 100.0)   # CLIP logit scale
+        probs = exp / exp.sum()
+        preds.append(
+            {
+                "truth": row["label"],
+                "truth_kind": row["kind"],
+                "ranked": [label_names[j] for j in order],
+                "confidence": float(probs[order[0]]),
+            }
+        )
+    return preds
+
+
+def stage_evaluate():
+    """embeddings -> report (stdout markdown + spike_cache/report.json)."""
+    import numpy as np
+
+    if not (CACHE / "embeddings.npy").exists():
+        raise SystemExit("no embeddings.npy — run --stage embed first")
+
+    vectors = np.load(CACHE / "embeddings.npy")
+    text_vectors = np.load(CACHE / "text_embeddings.npy")
+    order = json.loads((CACHE / "embed_order.json").read_text())
+    photos, text_labels = order["photos"], order["text_labels"]
+
+    # embed_order and embeddings are joined POSITIONALLY. A length mismatch
+    # pairs every photo with another photo's vector and yields confident
+    # nonsense, so refuse rather than report.
+    if len(photos) != len(vectors):
+        raise SystemExit(
+            f"embed_order/embeddings mismatch: {len(photos)} rows vs "
+            f"{len(vectors)} vectors — re-run --stage embed"
+        )
+
+    test_idx = [i for i, p in enumerate(photos) if p["split"] == "test"]
+    test_rows = [photos[i] for i in test_idx]
+
+    # insufficient-data guard: thin labels must not hide in an average
+    counts = {}
+    for row in test_rows:
+        counts[row["label"]] = counts.get(row["label"], 0) + 1
+    excluded = {
+        name: f"{n} test photos — insufficient (min {MIN_TEST})"
+        for name, n in counts.items()
+        if n < MIN_TEST
+    }
+    excluded["Tuber melanosporum"] = "dropped from label set — subterranean"
+    scored = [
+        i for i, row in zip(test_idx, test_rows) if row["label"] not in excluded
+    ]
+    rows = [photos[i] for i in scored]
+    test_vectors = vectors[scored]
+
+    # --- method A: text-prompt zero-shot ---
+    preds_text = _predictions(test_vectors @ text_vectors.T, text_labels, rows)
+
+    # --- method B: gallery prototypes ---
+    proto_labels, protos = [], []
+    for name in text_labels:
+        gallery_idx = [
+            i
+            for i, p in enumerate(photos)
+            if p["split"] == "gallery" and p["label"] == name
+        ]
+        if not gallery_idx:
+            continue
+        mean = vectors[gallery_idx].mean(axis=0)
+        protos.append(mean / np.linalg.norm(mean))
+        proto_labels.append(name)
+    preds_gallery = _predictions(
+        test_vectors @ np.array(protos).T, proto_labels, rows
+    )
+
+    # The gate compares predicted labels against CATALOG_NAMES by exact string
+    # match. If a label ever reaches here in a different form (different case,
+    # whitespace, "Boletus edulis" vs "Boletus"), the `in` check silently misses
+    # and false_edible_rate UNDER-REPORTS danger — the one direction of error
+    # this spike must never make. Assert the contract instead of trusting it.
+    known = CATALOG_NAMES | TOXIC_NAMES
+    for preds in (preds_text, preds_gallery):
+        unknown = {r for p in preds for r in p["ranked"]} - known
+        if unknown:
+            raise SystemExit(
+                f"label contract violated, gate would under-report: {sorted(unknown)[:5]}"
+            )
+
+    def summarise(preds):
+        return {
+            "top1": top_k_accuracy(preds, k=1),
+            "top3": top_k_accuracy(preds, k=3),
+            "false_edible_1": false_edible_rate(preds, CATALOG_NAMES, k=1),
+            "false_edible_3": false_edible_rate(preds, CATALOG_NAMES, k=3),
+        }
+
+    best = preds_gallery if preds_gallery else preds_text
+    results = {
+        "methods": {"text": summarise(preds_text), "gallery": summarise(preds_gallery)},
+        "n_toxic": sum(1 for p in preds_text if p["truth_kind"] == "toxic"),
+        "n_catalog": sum(1 for p in preds_text if p["truth_kind"] == "catalog"),
+        "confusions": worst_confusions(best, CATALOG_NAMES, limit=10),
+        "sweep": threshold_sweep(
+            best, CATALOG_NAMES, cutoffs=[0.0, 0.4, 0.55, 0.7, 0.85], k=1
+        ),
+        "excluded": excluded,
+    }
+
+    report = render_report(results)
+    print("\n" + report)
+    (CACHE / "report.json").write_text(json.dumps(results, indent=2), encoding="utf-8")
+    (CACHE / "report.md").write_text(report, encoding="utf-8")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument(
@@ -519,7 +776,11 @@ def main():
         print("== fetch ==")
         stage_fetch(args.since, only=args.only)
     if args.stage in ("embed", "all"):
-        raise SystemExit("embed not implemented yet")
+        print("== embed ==")
+        stage_embed()
+    if args.stage in ("evaluate", "all"):
+        print("== evaluate ==")
+        stage_evaluate()
 
 
 if __name__ == "__main__":
