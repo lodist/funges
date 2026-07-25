@@ -1,4 +1,10 @@
-from bioclip_spike import split_by_observation
+from bioclip_spike import (
+    false_edible_rate,
+    split_by_observation,
+    threshold_sweep,
+    top_k_accuracy,
+    worst_confusions,
+)
 
 
 def _obs(obs_id, n_photos):
@@ -60,13 +66,6 @@ def test_split_prefers_filling_test_set_over_gallery():
     assert len(test) == 2
     assert len(gallery) == 1
 
-
-from bioclip_spike import (
-    false_edible_rate,
-    top_k_accuracy,
-    worst_confusions,
-    threshold_sweep,
-)
 
 CATALOG_SET = {"Cantharellus cibarius", "Allium ursinum", "Boletus"}
 
