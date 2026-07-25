@@ -1,3 +1,5 @@
+import pytest
+
 from bioclip_spike import (
     false_edible_rate,
     split_by_observation,
@@ -224,3 +226,13 @@ def test_taxonomic_prompt_does_not_repeat_the_genus():
     # iNat species names include the genus; emitting both would duplicate it
     lineage = {"genus": "Amanita", "species": "Amanita phalloides"}
     assert taxonomic_prompt(lineage) == "a photo of Amanita phalloides."
+
+
+def test_taxonomic_prompt_refuses_a_lineage_with_no_standard_rank():
+    # iNat uses ranks outside our seven ("complex", "section", ...). A lineage
+    # holding only those would render "a photo of ." — a prompt that embeds
+    # without error and silently corrupts that label's whole report column.
+    with pytest.raises(ValueError):
+        taxonomic_prompt({})
+    with pytest.raises(ValueError):
+        taxonomic_prompt({"complex": "Morchella esculenta complex"})

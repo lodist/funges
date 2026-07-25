@@ -246,6 +246,13 @@ def taxonomic_prompt(lineage):
     BioCLIP is trained on full lineage strings, so bare species names
     underperform. Missing ranks are skipped. The genus is not repeated when a
     binomial species name already contains it.
+
+    Raises on a lineage with no standard rank at all. iNaturalist also uses
+    ranks outside the seven here ("complex", "section", "subgenus", ...), and a
+    lineage holding only those would otherwise render as "a photo of ." — a
+    prompt that embeds without error and silently corrupts that label's entire
+    column in the report. In a spike whose premise is that prompt content
+    matters, that must fail loudly rather than produce a plausible number.
     """
     parts = []
     for rank in RANKS:
@@ -256,6 +263,8 @@ def taxonomic_prompt(lineage):
             parts[-1] = name          # "Amanita" + "Amanita phalloides"
         else:
             parts.append(name)
+    if not parts:
+        raise ValueError(f"lineage has no standard rank, cannot prompt: {lineage!r}")
     return "a photo of " + " ".join(parts) + "."
 
 

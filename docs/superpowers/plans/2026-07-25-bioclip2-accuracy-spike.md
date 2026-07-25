@@ -704,6 +704,8 @@ def taxonomic_prompt(lineage):
             parts[-1] = name          # "Amanita" + "Amanita phalloides"
         else:
             parts.append(name)
+    if not parts:
+        raise ValueError(f"lineage has no standard rank, cannot prompt: {lineage!r}")
     return "a photo of " + " ".join(parts) + "."
 ```
 
