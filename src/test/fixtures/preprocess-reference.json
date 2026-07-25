@@ -11,71 +11,43 @@
       "width": 219,
       "height": 500,
       "reference": "preprocess_219x500.f16.bin",
-      "shape": [
-        3,
-        224,
-        224
-      ]
+      "shape": [3, 224, 224]
     },
     {
       "width": 225,
       "height": 500,
       "reference": "preprocess_225x500.f16.bin",
-      "shape": [
-        3,
-        224,
-        224
-      ]
+      "shape": [3, 224, 224]
     },
     {
       "width": 500,
       "height": 222,
       "reference": "preprocess_500x222.f16.bin",
-      "shape": [
-        3,
-        224,
-        224
-      ]
+      "shape": [3, 224, 224]
     },
     {
       "width": 500,
       "height": 333,
       "reference": "preprocess_500x333.f16.bin",
-      "shape": [
-        3,
-        224,
-        224
-      ]
+      "shape": [3, 224, 224]
     },
     {
       "width": 281,
       "height": 500,
       "reference": "preprocess_281x500.f16.bin",
-      "shape": [
-        3,
-        224,
-        224
-      ]
+      "shape": [3, 224, 224]
     },
     {
       "width": 500,
       "height": 500,
       "reference": "preprocess_500x500.f16.bin",
-      "shape": [
-        3,
-        224,
-        224
-      ]
+      "shape": [3, 224, 224]
     },
     {
       "width": 100,
       "height": 140,
       "reference": "preprocess_100x140.f16.bin",
-      "shape": [
-        3,
-        224,
-        224
-      ]
+      "shape": [3, 224, 224]
     }
   ]
 }
