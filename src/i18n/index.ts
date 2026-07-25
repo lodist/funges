@@ -15,6 +15,7 @@ import enSidebar from './locales/en/sidebar.json';
 import enMap from './locales/en/map.json';
 import enSettings from './locales/en/settings.json';
 import enOffline from './locales/en/offline.json';
+import enIdentify from './locales/en/identify.json';
 import itCommon from './locales/it/common.json';
 import itSpecies from './locales/it/species.json';
 import itRecipes from './locales/it/recipes.json';
@@ -90,6 +91,12 @@ const resources = {
     map: enMap,
     settings: enSettings,
     offline: enOffline,
+    // English only for now. The other five languages fall back to en via
+    // fallbackLng, which is deliberate: this namespace carries safety copy
+    // ("contains amatoxins — often fatal", "do not eat") and a machine
+    // translation reviewed by nobody is worse than English a reader can
+    // recognise as untranslated. Needs a human translator.
+    identify: enIdentify,
   },
   it: {
     common: itCommon,

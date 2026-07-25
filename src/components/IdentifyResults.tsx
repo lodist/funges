@@ -92,7 +92,10 @@ export function IdentifyResults({
         {t('disclaimer.aboveResults')}
       </p>
 
-      <ul className='space-y-2'>
+      {/* Labelled so the candidate list is addressable on its own: each toxic
+          row nests a "check these features" list, and an unlabelled outer list
+          is indistinguishable from those to assistive tech. */}
+      <ul className='space-y-2' aria-label={t('results.heading')}>
         {candidates.map((candidate, index) => (
           <CandidateRow
             key={`${candidate.scientificName}-${index}`}
