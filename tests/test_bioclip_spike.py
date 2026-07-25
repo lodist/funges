@@ -10,8 +10,11 @@ def _obs(obs_id, n_photos):
 
 def test_split_never_shares_an_observation():
     # 10 observations, 3 photos each
+    # quotas deliberately NOT a multiple of photos-per-observation: with 9/9
+    # a flatten-then-slice implementation splits cleanly by coincidence and
+    # this test would pass a leaking impl
     obs = [_obs(i, 3) for i in range(10)]
-    gallery, test = split_by_observation(obs, gallery_n=9, test_n=9)
+    gallery, test = split_by_observation(obs, gallery_n=10, test_n=10)
 
     gallery_obs = {p["observation_id"] for p in gallery}
     test_obs = {p["observation_id"] for p in test}
