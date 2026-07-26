@@ -1,10 +1,9 @@
 {
   "title": "Identifier à partir d'une photo",
-  "subtitle": "Restreins les possibilités de ce que tu observes",
   "disclaimer": {
     "beforeCapture": "Cet outil restreint les espèces possibles à partir d'une photo. Il ne confirme jamais qu'une chose est comestible.",
     "aboveResults": "Ce sont des correspondances possibles, pas une identification confirmée. Un sosie dangereux peut être le bon même s'il n'arrive pas en premier.",
-    "neverEat": "Ne mange rien en te fondant sur cette application. Vérifie les critères de distinction ci-dessous dans un guide de terrain, et demande à une personne expérimentée au moindre doute."
+    "neverEat": "Ne mange rien en te fondant sur cette application. Une erreur d'identification peut être mortelle."
   },
   "capture": {
     "takePhoto": "Prendre une photo",
@@ -49,7 +48,8 @@
     "confidence": "{{percent}} % de correspondance",
     "confusedWith": "Souvent confondu avec {{species}}",
     "checkThese": "Vérifie ces critères",
-    "criticalHeading": "Ces deux-là se confondent facilement"
+    "criticalHeading": "Ces deux-là se confondent facilement",
+    "openSpecies": "Ouvrir {{species}} dans le guide des espèces"
   },
   "toxicity": {
     "mechanisms": {

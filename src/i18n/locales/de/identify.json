@@ -1,10 +1,9 @@
 {
   "title": "Anhand eines Fotos bestimmen",
-  "subtitle": "Grenze ein, was du vor dir hast",
   "disclaimer": {
     "beforeCapture": "Dieses Werkzeug grenzt mögliche Arten anhand eines Fotos ein. Es bestätigt niemals, dass etwas essbar ist.",
     "aboveResults": "Das sind mögliche Übereinstimmungen, keine gesicherte Bestimmung. Ein gefährlicher Doppelgänger kann auch dann richtig sein, wenn er nicht an erster Stelle steht.",
-    "neverEat": "Iss nichts auf Grundlage dieser App. Prüfe die unten genannten Unterscheidungsmerkmale mit einem Bestimmungsbuch und frage im Zweifelsfall eine erfahrene Person."
+    "neverEat": "Iss nichts auf Grundlage dieser App. Eine Fehlbestimmung kann tödlich sein."
   },
   "capture": {
     "takePhoto": "Foto aufnehmen",
@@ -49,7 +48,8 @@
     "confidence": "{{percent}} % Übereinstimmung",
     "confusedWith": "Wird häufig verwechselt mit {{species}}",
     "checkThese": "Diese Merkmale prüfen",
-    "criticalHeading": "Diese beiden werden leicht verwechselt"
+    "criticalHeading": "Diese beiden werden leicht verwechselt",
+    "openSpecies": "{{species}} im Artenführer öffnen"
   },
   "toxicity": {
     "mechanisms": {

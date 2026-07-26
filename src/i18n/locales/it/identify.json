@@ -1,10 +1,9 @@
 {
   "title": "Identifica da una foto",
-  "subtitle": "Restringi il campo su ciò che stai guardando",
   "disclaimer": {
     "beforeCapture": "Questo strumento restringe le specie possibili a partire da una foto. Non conferma mai che qualcosa sia commestibile.",
     "aboveResults": "Queste sono corrispondenze possibili, non un'identificazione confermata. Un sosia pericoloso può essere quello giusto anche quando non è il primo risultato.",
-    "neverEat": "Non mangiare nulla basandoti su questa app. Verifica i caratteri distintivi elencati sotto con una guida da campo e, al minimo dubbio, chiedi a una persona esperta."
+    "neverEat": "Non mangiare nulla basandoti su questa app. Un'identificazione errata può essere fatale."
   },
   "capture": {
     "takePhoto": "Scatta una foto",
@@ -49,7 +48,8 @@
     "confidence": "{{percent}} % di corrispondenza",
     "confusedWith": "Spesso confuso con {{species}}",
     "checkThese": "Controlla questi caratteri",
-    "criticalHeading": "Questi due si confondono facilmente"
+    "criticalHeading": "Questi due si confondono facilmente",
+    "openSpecies": "Apri {{species}} nella guida alle specie"
   },
   "toxicity": {
     "mechanisms": {

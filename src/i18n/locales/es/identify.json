@@ -1,10 +1,9 @@
 {
   "title": "Identificar desde una foto",
-  "subtitle": "Reduce las posibilidades de lo que estás viendo",
   "disclaimer": {
     "beforeCapture": "Esta herramienta reduce las especies posibles a partir de una foto. Nunca confirma que algo sea seguro para comer.",
     "aboveResults": "Estas son coincidencias posibles, no una identificación confirmada. Un sósia peligroso puede ser el correcto incluso cuando no aparece en primer lugar.",
-    "neverEat": "No comas nada basándote en esta aplicación. Comprueba los rasgos distintivos de abajo con una guía de campo y pregunta a alguien con experiencia si tienes cualquier duda."
+    "neverEat": "No comas nada basándote en esta aplicación. Una identificación errónea puede ser mortal."
   },
   "capture": {
     "takePhoto": "Hacer una foto",
@@ -49,7 +48,8 @@
     "confidence": "{{percent}} % de coincidencia",
     "confusedWith": "Se confunde a menudo con {{species}}",
     "checkThese": "Comprueba estos rasgos",
-    "criticalHeading": "Estos dos se confunden con facilidad"
+    "criticalHeading": "Estos dos se confunden con facilidad",
+    "openSpecies": "Abrir {{species}} en la guía de especies"
   },
   "toxicity": {
     "mechanisms": {

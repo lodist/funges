@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { AlertTriangle, HelpCircle, Skull } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
+import { AlertTriangle, ChevronRight, HelpCircle, Skull } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { SPECIES_DATA } from '@/data/species';
 import {
   findCriticalConfusions,
@@ -225,6 +227,32 @@ function CandidateRow({
           })}
         </p>
       </div>
+
+      {/* Only catalog matches get this. A tier-2 or toxic row has no page to
+          open, and a link that lands on an empty list would read as a bug.
+
+          Filters by the CATALOG's scientific name, not the model's label: the
+          catalog stores genus-level entries as "Boletus spp." while the model
+          predicts "Boletus edulis", so filtering by the prediction would find
+          nothing for exactly the entries that are hardest to identify. */}
+      {candidate.kind === 'catalog' && candidate.catalogSpecies[0] && (
+        <Button
+          asChild
+          variant='outline'
+          size='icon'
+          className='shrink-0 self-center'
+        >
+          <Link
+            to='/species'
+            search={{ q: candidate.catalogSpecies[0].scientificName }}
+            aria-label={t('results.openSpecies', {
+              species: catalogName(candidate, tSpecies),
+            })}
+          >
+            <ChevronRight className='h-4 w-4' />
+          </Link>
+        </Button>
+      )}
     </li>
   );
 }

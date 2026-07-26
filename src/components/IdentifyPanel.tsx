@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
@@ -48,6 +47,11 @@ import { useIsMobile } from '@/hooks/use-mobile';
  */
 
 type Phase =
+  // Opening state. The cache lookup and, when nothing is cached, the GPU probe
+  // are both async, and showing the capture UI first meant a user could pick a
+  // photo and only THEN be told to download 280MB — the work discarded. Nothing
+  // actionable is offered until we know which state we are actually in.
+  | { name: 'checking' }
   | { name: 'capture' }
   // Carries the variant chosen for THIS device, so the consent copy states the
   // size the user will actually download rather than a hardcoded one.
@@ -95,7 +99,7 @@ export interface IdentifyPanelProps {
 export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   const { t, i18n } = useTranslation('identify');
   const isMobile = useIsMobile();
-  const [phase, setPhase] = useState<Phase>({ name: 'capture' });
+  const [phase, setPhase] = useState<Phase>({ name: 'checking' });
   const [provider, setProvider] = useState<string | null>(null);
   const [workingStage, setWorkingStage] = useState(0);
 
@@ -126,6 +130,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   useEffect(() => {
     if (!open) return;
     let cancelled = false;
+    setPhase({ name: 'checking' });
     getAnyCachedModel()
       .then(async cached => {
         if (cancelled) return;
@@ -310,13 +315,33 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       {/* Capped height with internal scroll: a long toxic result (three rows,
           each with an expandable checklist) must not push the card past the
           viewport on a phone. DialogContent supplies its own close button. */}
-      <DialogContent className='sm:max-w-lg max-w-[95vw] max-h-[85vh] overflow-y-auto'>
+      {/* aria-describedby={undefined} because there is deliberately no
+          DialogDescription: Radix otherwise logs a missing-description warning on
+          every open. The subtitle it used to hold said nothing the title did not. */}
+      <DialogContent
+        aria-describedby={undefined}
+        className='sm:max-w-lg max-w-[95vw] max-h-[85vh] overflow-y-auto'
+      >
         <DialogHeader className='pr-8'>
           <DialogTitle>{t('title')}</DialogTitle>
-          <DialogDescription>{t('subtitle')}</DialogDescription>
         </DialogHeader>
 
         <div className='space-y-4'>
+          {phase.name === 'checking' && (
+            <p
+              className='flex items-center justify-center gap-2 py-4 text-sm text-muted-foreground'
+              role='status'
+            >
+              <img
+                src={LoadingSquirrel}
+                alt=''
+                aria-hidden='true'
+                className='h-10 w-10'
+              />
+              {t('status.preparing')}
+            </p>
+          )}
+
           {phase.name === 'needsModel' && (
             <section className='space-y-3 rounded-lg border p-4'>
               <h3 className='font-medium'>{t('download.title')}</h3>

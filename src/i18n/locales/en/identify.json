@@ -1,10 +1,9 @@
 {
   "title": "Identify from a photo",
-  "subtitle": "Narrow down what you're looking at",
   "disclaimer": {
     "beforeCapture": "This tool narrows down possible species from a photo. It never confirms that something is safe to eat.",
     "aboveResults": "These are possible matches, not a confirmed identification. A dangerous look-alike can be correct even when it is not the top result.",
-    "neverEat": "Do not eat anything based on this app. Check the distinguishing features below against a field guide, and ask someone experienced if there is any doubt."
+    "neverEat": "Do not eat anything based on this app. A misidentification can be fatal."
   },
   "capture": {
     "takePhoto": "Take a photo",
@@ -49,7 +48,8 @@
     "confidence": "{{percent}}% match",
     "confusedWith": "Commonly mistaken for {{species}}",
     "checkThese": "Check these features",
-    "criticalHeading": "These two are easily confused"
+    "criticalHeading": "These two are easily confused",
+    "openSpecies": "Open {{species}} in the species guide"
   },
   "toxicity": {
     "mechanisms": {

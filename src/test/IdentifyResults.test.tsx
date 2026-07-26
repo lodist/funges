@@ -1,4 +1,32 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+/**
+ * TanStack's Link needs a RouterProvider, which mounts asynchronously and would
+ * make every synchronous query in this file fail. Mocked to an anchor that
+ * renders its target into href, so the link's route and search param are still
+ * asserted below.
+ *
+ * Little is lost by not using a real router: `to` and `search` are type-checked
+ * against the generated route tree, so a wrong route or renamed param is a
+ * compile error, not something a test would need to catch.
+ */
+vi.mock('@tanstack/react-router', () => ({
+  Link: ({
+    to,
+    search,
+    children,
+    ...rest
+  }: {
+    to: string;
+    search?: { q?: string };
+    children?: unknown;
+    [key: string]: unknown;
+  }) => (
+    <a href={`${to}?q=${encodeURIComponent(search?.q ?? '')}`} {...rest}>
+      {children as never}
+    </a>
+  ),
+}));
 import { render, screen, within } from '@testing-library/react';
 import '@/i18n';
 import i18n from '@/i18n';
@@ -235,5 +263,52 @@ describe('framing', () => {
     const [row] = candidateRows();
     expect(row.textContent).toMatch(/elder/i);
     expect(row.textContent).toContain('/');
+  });
+});
+
+describe('species guide link', () => {
+  it('links a catalog match to the species guide', () => {
+    render(
+      <IdentifyResults
+        candidates={resolvePredictions([p('Cantharellus cibarius')])}
+      />
+    );
+
+    const link = screen.getByRole('link', { name: /chanterelle/i });
+    expect(link).toHaveAttribute(
+      'href',
+      `/species?q=${encodeURIComponent('Cantharellus cibarius')}`
+    );
+  });
+
+  // Genus-level entries are the ones this is easiest to get wrong: the catalog
+  // stores "Boletus spp." while the model predicts "Boletus edulis", so filtering
+  // by the prediction would land on an empty list for exactly the entries a
+  // forager most needs to read about.
+  it('links a genus-level match by the CATALOG name, not the prediction', () => {
+    render(
+      <IdentifyResults candidates={resolvePredictions([p('Boletus edulis')])} />
+    );
+
+    const link = screen.getByRole('link');
+    expect(link.getAttribute('href')).toContain(
+      encodeURIComponent('Boletus spp.')
+    );
+    expect(link.getAttribute('href')).not.toContain('edulis');
+  });
+
+  // A link to a page that would show nothing is worse than no link.
+  it('gives no link to a toxic or tier-2 candidate', () => {
+    registerTier2Vocabulary(['Amanita muscaria']);
+    render(
+      <IdentifyResults
+        candidates={resolvePredictions([
+          p('Amanita phalloides'),
+          p('Amanita muscaria', 0.2),
+        ])}
+      />
+    );
+
+    expect(screen.queryAllByRole('link')).toHaveLength(0);
   });
 });
