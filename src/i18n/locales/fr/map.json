@@ -22,8 +22,7 @@
   },
   "overlays": {
     "title": "Couches de la carte",
-    "polygons": "Afficher les zones de cueillette",
-    "realtime": "Afficher les données en temps réel"
+    "polygons": "Afficher les zones de cueillette"
   },
   "region": {
     "title": "Sélectionner une région",
@@ -70,6 +69,7 @@
     "description": "Utilisez la carte pour découvrir des lieux de cueillette et des espèces.",
     "features": {
       "species": "Choisissez une espèce avec le sélecteur",
+      "identify": "Identifier à partir d’une photo (téléchargement unique)",
       "locate": "Centrer la carte sur votre position",
       "numbers": "Afficher ou masquer l’index numérique",
       "theme": "Basculez entre 4 styles de carte : Clair, Sombre, Positron, Dark Matter",
@@ -85,5 +85,9 @@
     "low": "Faible",
     "label": "Indice de présence",
     "high": "Élevé"
+  },
+  "forecast": {
+    "label": "Prévision",
+    "today": "Aujourd'hui"
   }
 }

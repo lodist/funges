@@ -69,6 +69,7 @@
     "description": "Usa la mappa per scoprire luoghi di raccolta e specie.",
     "features": {
       "species": "Scegli una specie con il selettore",
+      "identify": "Identificare da una foto (download una volta sola)",
       "locate": "Centra la mappa sulla tua posizione",
       "numbers": "Mostra o nascondi l’indice numerico",
       "theme": "Scorri tra 4 stili di mappa: Chiaro, Scuro, Positron, Dark Matter",
@@ -84,5 +85,9 @@
     "low": "Basso",
     "label": "Indice di presenza",
     "high": "Alto"
+  },
+  "forecast": {
+    "label": "Previsione",
+    "today": "Oggi"
   }
 }

@@ -69,6 +69,7 @@
     "description": "Use the map to discover foraging spots and species.",
     "features": {
       "species": "Choose a species with the selector",
+      "identify": "Identify from a photo (one-time download)",
       "locate": "Center the map on your location",
       "numbers": "Show or hide the numeric index",
       "theme": "Cycle through 4 map styles: Light, Dark, Positron, Dark Matter",

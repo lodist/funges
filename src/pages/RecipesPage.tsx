@@ -229,15 +229,6 @@ export default function RecipesPage() {
               </span>
             </Button>
           </div>
-
-          {/* Results Count */}
-          <div className='text-sm text-text-secondary'>
-            {filteredRecipes.length === 0 && t('search.no_results')}
-            {filteredRecipes.length >= 1 &&
-              t('search.found', {
-                count: filteredRecipes.length,
-              })}
-          </div>
         </div>
 
         {/* Recipes Grid */}
