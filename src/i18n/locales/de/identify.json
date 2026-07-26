@@ -1,10 +1,10 @@
 {
-  "title": "Bestimmen",
-  "openButton": "Anhand eines Fotos bestimmen",
+  "title": "Identifizieren",
+  "openButton": "Anhand eines Fotos identifizieren",
   "disclaimer": {
     "beforeCapture": "Dieses Werkzeug grenzt mögliche Arten anhand eines Fotos ein. Es bestätigt niemals, dass etwas essbar ist.",
-    "aboveResults": "Das sind mögliche Übereinstimmungen, keine gesicherte Bestimmung. Ein gefährlicher Doppelgänger kann auch dann richtig sein, wenn er nicht an erster Stelle steht.",
-    "neverEat": "Iss nichts auf Grundlage dieser App. Eine Fehlbestimmung kann tödlich sein."
+    "aboveResults": "Das sind mögliche Übereinstimmungen, keine gesicherte Identifizierung. Ein gefährlicher Doppelgänger kann auch dann richtig sein, wenn er nicht an erster Stelle steht.",
+    "neverEat": "Iss nichts auf Grundlage dieser App. Eine falsche Identifizierung kann tödlich sein."
   },
   "capture": {
     "takePhoto": "Foto aufnehmen",
@@ -15,18 +15,18 @@
   },
   "status": {
     "preparing": "Vorbereiten…",
-    "identifying": "Wird bestimmt…",
+    "identifying": "Wird identifiziert…",
     "identifyingLonger": "Vergleich mit {{total}} Arten…",
     "identifyingLongest": "Dauert noch - dein Handy rechnet alles selbst, nichts verlässt das Gerät.",
-    "failed": "Bestimmung fehlgeschlagen",
+    "failed": "Identifizierung fehlgeschlagen",
     "unreadable": "Dieses Foto konnte nicht gelesen werden. Versuche ein anderes oder wähle es aus der Galerie statt der Kamera.",
     "backendWrong": "Die Erkennung liefert auf der Grafikhardware dieses Geräts keine korrekten Ergebnisse. Es wird auf den langsameren, aber korrekten Modus umgeschaltet - wenn das weiterhin fehlschlägt, entferne das Modell und lade es neu.",
     "retry": "Erneut versuchen",
-    "unsupported": "Die Bestimmung ist auf diesem Gerät oder in diesem Browser nicht verfügbar."
+    "unsupported": "Die Identifizierung ist auf diesem Gerät oder in diesem Browser nicht verfügbar."
   },
   "download": {
     "title": "Arterkennung herunterladen",
-    "why": "Die Bestimmung läuft vollständig auf deinem Gerät, deine Fotos verlassen dein Handy also nie. Dafür ist ein einmaliger Download von {{size}} nötig.",
+    "why": "Die Identifizierung läuft vollständig auf deinem Gerät, deine Fotos verlassen dein Handy also nie. Dafür ist ein einmaliger Download von {{size}} nötig.",
     "provenance": "Das Modell ist BioCLIP 2, ein offenes Forschungsmodell des Imageomics Institute.",
     "notAFile": "Es wird im Browser gespeichert, nicht in deinen Dateien abgelegt. Es wird nichts installiert.",
     "onWifi": "Am besten über WLAN.",
@@ -34,8 +34,8 @@
     "cancel": "Abbrechen",
     "progress": "Wird heruntergeladen… {{percent}} %",
     "remove": "Heruntergeladenes Modell entfernen",
-    "removed": "Modell entfernt. Die Bestimmung ist erst wieder möglich, wenn du es erneut herunterlädst.",
-    "declined": "Für die Bestimmung muss das Modell zuerst heruntergeladen werden.",
+    "removed": "Modell entfernt. Die Identifizierung ist erst wieder möglich, wenn du es erneut herunterlädst.",
+    "declined": "Für die Identifizierung muss das Modell zuerst heruntergeladen werden.",
     "failed": "Download fehlgeschlagen. Prüfe deine Verbindung und versuche es erneut."
   },
   "results": {

@@ -15,7 +15,7 @@
     "recipes": "Zeigt Rezepte in der Nähe und Routen zu Zutatenstopps",
     "location": "Zentriert die Karte auf den Standort des Nutzers",
     "theme": "Wechsle durch 4 Kartenstile: Hell, Dunkel, Positron, Dark Matter",
-    "identify": "Bestimmt mögliche Arten anhand eines Fotos, auf deinem Gerät",
+    "identify": "Identifiziert mögliche Arten anhand eines Fotos, auf deinem Gerät",
     "numbers": "Zeigt numerische Bewertung an"
   },
   "mapInteraction": {
@@ -97,10 +97,10 @@
     }
   },
   "identify": {
-    "title": "Anhand eines Fotos bestimmen",
+    "title": "Anhand eines Fotos identifizieren",
     "intro": "Die ID-Schaltfläche oben rechts grenzt ein Foto auf etwa drei mögliche Arten ein, jeweils als essbar oder giftig gekennzeichnet. Das ist eine Vorauswahl, kein Urteil: Ein gefährlicher Doppelgänger kann die richtige Antwort sein, auch wenn er nicht an erster Stelle steht.",
-    "onDevice": "Die Erkennung läuft vollständig auf deinem Handy. Fotos werden niemals hochgeladen und von der App niemals gespeichert. Deshalb ist beim ersten Mal ein einmaliger Modell-Download nötig: ohne ihn müsste die Bestimmung deine Fotos an einen Server senden.",
+    "onDevice": "Die Erkennung läuft vollständig auf deinem Handy. Fotos werden niemals hochgeladen und von der App niemals gespeichert. Deshalb ist beim ersten Mal ein einmaliger Modell-Download nötig: ohne ihn müsste die Identifizierung deine Fotos an einen Server senden.",
     "howTo": "Tippe auf ID, erlaube den einmaligen Download über WLAN, und mache dann ein Foto oder wähle eines aus der Galerie. Fülle das Bild möglichst mit dem ganzen Exemplar, einschliesslich Stielbasis, und fotografiere das, was du tatsächlich ausgegraben oder gesammelt hast, nicht eine entfernte Gruppe.",
-    "limits": "Die Bestimmung dauert je nach Gerät etwa fünf bis zwanzig Sekunden, weil die Arbeit auf deinem Gerät statt in einem Rechenzentrum passiert. Sie deckt die Arten dieser App ab, plus etwa tausend weitere aus denselben Regionen; alles darüber hinaus wird nur mit dem wissenschaftlichen Namen und ohne Sicherheitsangaben gezeigt. Iss nichts auf Grundlage dieser App - eine Fehlbestimmung kann tödlich sein."
+    "limits": "Die Identifizierung dauert je nach Gerät etwa fünf bis zwanzig Sekunden, weil die Arbeit auf deinem Gerät statt in einem Rechenzentrum passiert. Sie deckt die Arten dieser App ab, plus etwa tausend weitere aus denselben Regionen; alles darüber hinaus wird nur mit dem wissenschaftlichen Namen und ohne Sicherheitsangaben gezeigt. Iss nichts auf Grundlage dieser App - eine falsche Identifizierung kann tödlich sein."
   }
 }

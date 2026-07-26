@@ -69,7 +69,7 @@
     "description": "Nutze die Karte, um Sammelorte und Arten zu entdecken.",
     "features": {
       "species": "Wähle eine Art mit dem Selektor",
-      "identify": "Anhand eines Fotos bestimmen (einmaliger Download)",
+      "identify": "Anhand eines Fotos identifizieren (einmaliger Download)",
       "locate": "Zentriere die Karte auf deinen Standort",
       "numbers": "Zeige oder verberge den numerischen Index",
       "theme": "Wechsle durch 4 Kartenstile: Hell, Dunkel, Positron, Dark Matter",
