@@ -18,6 +18,7 @@
     "identifying": "Identification…",
     "failed": "L'identification a échoué",
     "unreadable": "Cette photo n'a pas pu être lue. Essaie-en une autre, ou choisis-la dans la galerie plutôt qu'avec l'appareil photo.",
+    "backendWrong": "L'identification ne peut pas fonctionner correctement sur la puce graphique de cet appareil. Passage au mode plus lent mais correct — si l'échec persiste, supprime le modèle et retélécharge-le.",
     "retry": "Réessayer",
     "unsupported": "L'identification n'est pas disponible sur cet appareil ou ce navigateur."
   },

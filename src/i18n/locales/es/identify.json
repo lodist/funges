@@ -18,6 +18,7 @@
     "identifying": "Identificando…",
     "failed": "La identificación ha fallado",
     "unreadable": "No se ha podido leer esa foto. Prueba con otra o elígela de la galería en lugar de la cámara.",
+    "backendWrong": "La identificación no puede ejecutarse correctamente en el hardware gráfico de este dispositivo. Se cambia al modo más lento pero correcto; si sigue fallando, elimina el modelo y vuelve a descargarlo.",
     "retry": "Volver a intentarlo",
     "unsupported": "La identificación no está disponible en este dispositivo o navegador."
   },

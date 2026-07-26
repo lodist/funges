@@ -18,6 +18,7 @@
     "identifying": "Identifying…",
     "failed": "Identification failed",
     "unreadable": "That photo could not be read. Try another one, or pick it from your gallery instead of the camera.",
+    "backendWrong": "Identification cannot run correctly on this device's graphics hardware. Switching to the slower but correct mode — if this keeps failing, remove and re-download the model.",
     "retry": "Try again",
     "unsupported": "Identification is not available on this device or browser."
   },

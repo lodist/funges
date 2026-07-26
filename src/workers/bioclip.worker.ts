@@ -31,7 +31,7 @@ import ortMjsUrl from 'onnxruntime-web/ort-wasm-simd-threaded.jsep.mjs?url';
  */
 
 export type WorkerRequest =
-  | { type: 'init'; modelBytes: ArrayBuffer }
+  | { type: 'init'; modelBytes: ArrayBuffer; forceWasm?: boolean }
   | { type: 'infer'; requestId: number; tensor: Float32Array; dims: number[] }
   | { type: 'dispose' };
 
@@ -60,7 +60,10 @@ function post(msg: WorkerResponse, transfer?: Transferable[]) {
  * so a Netlify preview could quietly enable threading that production never
  * gets. Pinning to 1 keeps the preview representative of production.
  */
-async function createSession(modelBytes: ArrayBuffer): Promise<string> {
+async function createSession(
+  modelBytes: ArrayBuffer,
+  forceWasm = false
+): Promise<string> {
   // Explicit per-file URLs, not a prefix. Same-origin by construction, because
   // the default is a CDN and the point of on-device inference is working with no
   // signal at all.
@@ -68,8 +71,12 @@ async function createSession(modelBytes: ArrayBuffer): Promise<string> {
   ort.env.wasm.numThreads = 1;
 
   const bytes = new Uint8Array(modelBytes);
+  // forceWasm exists because "WebGPU initialised" and "WebGPU computes correct
+  // numbers" are different claims. An Android GPU ran this graph and returned a
+  // garbage embedding; the caller detects that with a reference comparison and
+  // rebuilds the session on the CPU backend, which is slower but right.
   const webgpuAvailable =
-    typeof navigator !== 'undefined' && 'gpu' in navigator;
+    !forceWasm && typeof navigator !== 'undefined' && 'gpu' in navigator;
 
   if (webgpuAvailable) {
     try {
@@ -94,7 +101,7 @@ self.onmessage = async (event: MessageEvent<WorkerRequest>) => {
   const msg = event.data;
   try {
     if (msg.type === 'init') {
-      const provider = await createSession(msg.modelBytes);
+      const provider = await createSession(msg.modelBytes, msg.forceWasm);
       if (!session) throw new Error('session creation returned no session');
       inputName = session.inputNames[0];
       outputName = session.outputNames[0];

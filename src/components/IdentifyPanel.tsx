@@ -11,11 +11,7 @@ import {
 } from '@/components/ui/dialog';
 import { IdentifyResults } from '@/components/IdentifyResults';
 import { loadTextMatrix, rankPredictions } from '@/lib/bioclip/classify';
-import {
-  BlankImageError,
-  prepareImage,
-  type ImageStats,
-} from '@/lib/bioclip/imagePrep';
+import { BlankImageError, prepareImage } from '@/lib/bioclip/imagePrep';
 import { preprocessToTensor, TARGET_SIZE } from '@/lib/bioclip/preprocess';
 import { BioclipSession } from '@/lib/bioclip/session';
 import {
@@ -25,9 +21,11 @@ import {
 } from '@/lib/modelCache';
 import {
   detectVariant,
+  markWebgpuUntrusted,
   MODEL_VARIANTS,
   type VariantSpec,
 } from '@/lib/bioclip/variant';
+import { runSelfCheck } from '@/lib/bioclip/selfCheck';
 import { resolvePredictions, type Candidate } from '@/lib/photo-id';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -75,7 +73,6 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   const [phase, setPhase] = useState<Phase>({ name: 'capture' });
   const [provider, setProvider] = useState<string | null>(null);
   const [probeProvider, setProbeProvider] = useState<string | null>(null);
-  const [imageStats, setImageStats] = useState<ImageStats | null>(null);
 
   const sessionRef = useRef<BioclipSession | null>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -169,13 +166,49 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
     }
   };
 
+  /**
+   * Build a session and PROVE it computes this model before returning it.
+   *
+   * A GPU backend that initialises but returns wrong numbers is not a
+   * theoretical worry — it happened on Android with int4 under `engine: webgpu`,
+   * and produced a confident species list from noise. So a failed self-check
+   * rebuilds on the CPU backend, and if that is also wrong the feature refuses
+   * rather than guessing. Slow and correct beats fast and wrong; wrong and
+   * confident is unacceptable for toxicity warnings.
+   *
+   * `bytes` is transferred into the worker, so the retry needs its own copy —
+   * hence the slice before the first attempt rather than a second IDB read.
+   */
   const ensureSession = async (): Promise<BioclipSession> => {
     if (sessionRef.current) return sessionRef.current;
     const cached = await getAnyCachedModel();
     if (!cached) throw new Error(t('download.declined'));
-    cachedSpecRef.current = MODEL_VARIANTS[cached.info.variant];
+    const spec = MODEL_VARIANTS[cached.info.variant];
+    cachedSpecRef.current = spec;
+
     const bytes = await cached.blob.arrayBuffer();
-    const { session, info } = await BioclipSession.create(bytes);
+    const retryBytes = bytes.slice(0);
+
+    let { session, info } = await BioclipSession.create(bytes);
+    let check = await runSelfCheck(session, spec.variant);
+
+    if (!check.ok && info.provider !== 'wasm') {
+      // This device's GPU backend is untrustworthy for this artifact. Remember
+      // it so the next download offers the variant whose compute path does not
+      // depend on it, instead of repeating this every session.
+      markWebgpuUntrusted(spec.variant);
+      session.dispose();
+      ({ session, info } = await BioclipSession.create(retryBytes, {
+        forceWasm: true,
+      }));
+      check = await runSelfCheck(session, spec.variant);
+    }
+
+    if (!check.ok) {
+      session.dispose();
+      throw new Error(t('status.backendWrong'));
+    }
+
     sessionRef.current = session;
     setProvider(info.provider);
     return session;
@@ -195,9 +228,8 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       ]);
       if (stale()) return;
 
-      const { rgba, previewUrl, stats } = await prepareImage(file);
+      const { rgba, previewUrl } = await prepareImage(file);
       previewUrlRef.current = previewUrl;
-      setImageStats(stats);
       if (stale()) return;
 
       const tensor = preprocessToTensor(rgba);
@@ -221,7 +253,6 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       // error would tell the user "something went wrong" when the actionable
       // fact is that this particular photo could not be read.
       if (err instanceof BlankImageError) {
-        setImageStats(err.stats);
         setPhase({ name: 'error', message: t('status.unreadable') });
         return;
       }
@@ -426,14 +457,6 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
               {`engine: ${provider ?? probeProvider}`}
               {cachedSpecRef.current
                 ? ` · model: ${cachedSpecRef.current.variant}`
-                : ''}
-              {/* Decode facts, because "wrong species on this device" and "this
-                device never decoded the photo" look identical in the results
-                list. sigma near zero means the pixels were blank. */}
-              {imageStats
-                ? ` · img: ${imageStats.sourceWidth}x${imageStats.sourceHeight}` +
-                  `→${imageStats.width}x${imageStats.height}` +
-                  ` σ${imageStats.stddev.toFixed(1)}`
                 : ''}
             </p>
           )}

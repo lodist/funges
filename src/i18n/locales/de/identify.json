@@ -18,6 +18,7 @@
     "identifying": "Wird bestimmt…",
     "failed": "Bestimmung fehlgeschlagen",
     "unreadable": "Dieses Foto konnte nicht gelesen werden. Versuche ein anderes oder wähle es aus der Galerie statt der Kamera.",
+    "backendWrong": "Die Erkennung liefert auf der Grafikhardware dieses Geräts keine korrekten Ergebnisse. Es wird auf den langsameren, aber korrekten Modus umgeschaltet — wenn das weiterhin fehlschlägt, entferne das Modell und lade es neu.",
     "retry": "Erneut versuchen",
     "unsupported": "Die Bestimmung ist auf diesem Gerät oder in diesem Browser nicht verfügbar."
   },

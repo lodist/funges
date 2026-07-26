@@ -25,7 +25,7 @@ export class BioclipSession {
   >();
   private readyPromise: Promise<SessionInfo>;
 
-  private constructor(modelBytes: ArrayBuffer) {
+  private constructor(modelBytes: ArrayBuffer, forceWasm: boolean) {
     this.worker = new Worker(
       new URL('@/workers/bioclip.worker.ts', import.meta.url),
       { type: 'module' }
@@ -53,7 +53,7 @@ export class BioclipSession {
       );
     });
 
-    const req: WorkerRequest = { type: 'init', modelBytes };
+    const req: WorkerRequest = { type: 'init', modelBytes, forceWasm };
     // Transfer rather than copy — at ~306MB a structured-clone copy would
     // briefly double peak memory, which is exactly where a low-end phone dies.
     this.worker.postMessage(req, [modelBytes]);
@@ -74,11 +74,14 @@ export class BioclipSession {
    * `modelBytes` is transferred to the worker and unusable afterwards on the
    * calling side.
    */
-  static async create(modelBytes: ArrayBuffer): Promise<{
+  static async create(
+    modelBytes: ArrayBuffer,
+    options: { forceWasm?: boolean } = {}
+  ): Promise<{
     session: BioclipSession;
     info: SessionInfo;
   }> {
-    const session = new BioclipSession(modelBytes);
+    const session = new BioclipSession(modelBytes, options.forceWasm ?? false);
     const info = await session.readyPromise;
     return { session, info };
   }

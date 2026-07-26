@@ -64,6 +64,32 @@ export const VARIANT_BY_VERSION: Record<string, VariantSpec> =
 /** 139 bytes, already in the repo for the e2e session smoke test. */
 const PROBE_URL = `${import.meta.env.BASE_URL}models/tiny_matmul.onnx`;
 
+const UNTRUSTED_KEY = 'funges.bioclip.webgpuUntrusted';
+
+/**
+ * Record that this device's WebGPU backend returned wrong numbers for a variant.
+ *
+ * Set by the session self-check, read here. Without persisting it, a device with
+ * a broken MatMulNBits shader would be handed int4 again on every future
+ * download and fall back to the slow CPU path every session.
+ */
+export function markWebgpuUntrusted(variant: ModelVariant): void {
+  try {
+    localStorage.setItem(UNTRUSTED_KEY, variant);
+  } catch {
+    // Private-mode storage refusal is not worth failing over; the self-check
+    // still protects correctness on every session, just without the shortcut.
+  }
+}
+
+export function isWebgpuUntrusted(variant: ModelVariant): boolean {
+  try {
+    return localStorage.getItem(UNTRUSTED_KEY) === variant;
+  } catch {
+    return false;
+  }
+}
+
 export interface VariantChoice {
   spec: VariantSpec;
   /** The provider the probe actually got: 'webgpu', 'wasm', or 'probe-failed'. */
@@ -89,6 +115,13 @@ export interface VariantChoice {
  * mismatch is visible rather than silent.
  */
 export async function detectVariant(): Promise<VariantChoice> {
+  // A device already caught returning wrong numbers for int4 on its GPU gets
+  // int8 instead, whose matmuls run on the CPU and so never touch the broken
+  // kernel. Checked before the probe, because the probe would happily say
+  // `webgpu` again — initialising is not the same as being correct.
+  if (isWebgpuUntrusted('int4')) {
+    return { spec: MODEL_VARIANTS.int8, provider: 'webgpu-untrusted' };
+  }
   try {
     const bytes = await (await fetch(PROBE_URL)).arrayBuffer();
     const { session, info } = await BioclipSession.create(bytes);
