@@ -403,3 +403,76 @@ describe('catalog is reachable from the model vocabulary', () => {
     }
   });
 });
+
+describe('toxic species have their everyday counterpart in the vocabulary', () => {
+  /**
+   * Each pair is a toxic label and the ordinary thing people actually photograph
+   * and confuse it with. Flagging one half without the other is worse than
+   * flagging neither: the model is a closed set, so with the counterpart missing
+   * the everyday find has the TOXIC label as its nearest neighbour.
+   *
+   * This is not hypothetical. Agaricus xanthodermus was promoted to toxic while
+   * Agaricus bisporus was absent, and a photo of a supermarket champignon came
+   * back as the yellow-stainer with a toxic warning. It happened twice: once by
+   * omission, then again when a tier-2 size cap deleted the curated labels that
+   * had fixed it. Neither showed up in any count, because regional names arrived
+   * to replace exactly what was lost.
+   */
+  const PAIRS: Array<[string, string[]]> = [
+    ['Agaricus xanthodermus', ['Agaricus bisporus', 'Agaricus campestris']],
+    ['Hypholoma fasciculare', ['Hypholoma capnoides']],
+    ['Scleroderma citrinum', ['Tuber melanosporum']],
+    ['Conium maculatum', ['Petroselinum crispum']],
+    ['Aethusa cynapium', ['Petroselinum crispum']],
+    ['Veratrum album', ['Allium ursinum']],
+    ['Pleurocybella porrigens', ['Pleurotus ostreatus']],
+    ['Colchicum autumnale', ['Allium ursinum']],
+    ['Convallaria majalis', ['Allium ursinum']],
+  ];
+
+  it.each(PAIRS)(
+    '%s has its counterpart present so the safe find is not forced onto it',
+    (toxic, counterparts) => {
+      const vocabulary = new Map(
+        BIOCLIP_LABELS.map(l => [l.scientificName, l.kind])
+      );
+      // Guard the guard: if the toxic half were absent the assertion below would
+      // pass vacuously and prove nothing.
+      expect(vocabulary.get(toxic)).toBe('toxic');
+
+      for (const name of counterparts) {
+        expect(vocabulary.has(name)).toBe(true);
+        expect(vocabulary.get(name)).not.toBe('toxic');
+      }
+    }
+  );
+
+  // The curated culinary set exists specifically because iNaturalist observation
+  // counts do not cover cultivated species, so any ranking or cap based on those
+  // counts will discard them unless explicitly exempted.
+  it('keeps the curated culinary labels that no observation ranking would', () => {
+    const vocabulary = new Set(BIOCLIP_LABELS.map(l => l.scientificName));
+    const curated = [
+      'Ocimum basilicum',
+      'Petroselinum crispum',
+      'Coriandrum sativum',
+      'Anethum graveolens',
+      'Allium schoenoprasum',
+      'Laurus nobilis',
+      'Salvia officinalis',
+      'Thymus vulgaris',
+      'Salvia rosmarinus',
+      'Origanum majorana',
+      'Melissa officinalis',
+      'Artemisia dracunculus',
+      'Levisticum officinale',
+      'Mentha spicata',
+      'Agaricus bisporus',
+      'Hypsizygus tessulatus',
+      'Tremella fuciformis',
+      'Volvariella volvacea',
+    ];
+
+    expect(curated.filter(n => !vocabulary.has(n))).toEqual([]);
+  });
+});

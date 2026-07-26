@@ -65,7 +65,7 @@ OPSET = 17
 # Tier-2 cap. See the sweep in the docstring of --stage verify-shipped: vocabulary
 # size trades the safety gate against catalog recall and warning availability, and
 # this is the chosen point on that curve.
-TIER2_LIMIT = 2000
+TIER2_LIMIT = 2500
 PARITY_IMAGES = 8
 
 
@@ -957,9 +957,20 @@ def stage_text_matrix():
             wide_lineages.pop(n, None)
         print(f"dropped {len(provisional)} provisional taxa: {provisional[:4]}")
 
-    # Insertion order of wide_vocab.json is iNaturalist observation rank per
-    # region, so position here is "how often people photograph it".
-    rank = {name: i for i, name in enumerate(wide_lineages)}
+    # Real observation counts, written next to the vocabulary by
+    # bioclip_wide_vocab.py. Insertion order was used here before and was wrong:
+    # wide_vocab.json is written in per-region blocks, so the first region filled
+    # the entire quota and the last contributed nothing.
+    counts_path = CACHE / "wide_vocab_counts.json"
+    observations = (
+        json.loads(counts_path.read_text()) if counts_path.exists() else {}
+    )
+    if not observations:
+        print(
+            "no wide_vocab_counts.json - the cap will keep an ARBITRARY subset "
+            "rather than the most observed; re-run bioclip_wide_vocab.py "
+            "--stage taxa to record counts"
+        )
 
     tier2 = sorted(set(wide_lineages) - set(tier1))
     tier2_lineages = {k: v for k, v in wide_lineages.items() if k in set(tier2)}
@@ -992,18 +1003,35 @@ def stage_text_matrix():
         )
 
     # Cap tier 2. Applied after the genus-ambiguity drop so the limit counts
-    # labels that actually ship, and by observation rank so what falls off the end
-    # is the least-photographed rather than the alphabetically unlucky.
-    if len(tier2) > TIER2_LIMIT:
-        dropped = len(tier2) - TIER2_LIMIT
-        tier2 = sorted(
-            sorted(tier2, key=lambda n: rank.get(n, 10**9))[:TIER2_LIMIT]
-        )
-        tier2_lineages = {k: v for k, v in tier2_lineages.items() if k in set(tier2)}
+    # labels that actually ship, and by observation count so what falls off the
+    # end is the least-photographed rather than the alphabetically unlucky.
+    # Curated labels are EXEMPT from the cap. They are absent from
+    # wide_vocab.json by definition - nobody logs a supermarket champignon on
+    # iNaturalist - so ranking them by observation count sent every one to the
+    # back and the cap deleted them. That silently undid the previous commit:
+    # Agaricus bisporus vanished while Agaricus xanthodermus stayed toxic, so a
+    # champignon photo came back as the yellow-stainer with a toxic warning.
+    curated = [n for n in tier2 if n in CULTIVATED_NAMES]
+    regional = [n for n in tier2 if n not in CULTIVATED_NAMES]
+    if len(regional) > TIER2_LIMIT:
+        dropped = len(regional) - TIER2_LIMIT
+        regional = sorted(regional, key=lambda n: -observations.get(n, 0))[
+            :TIER2_LIMIT
+        ]
+        kept_min = min(observations.get(n, 0) for n in regional)
         print(
-            f"capped tier 2 at {TIER2_LIMIT} by observation rank "
-            f"({dropped} least-observed dropped)"
+            f"capped regional tier 2 at the {TIER2_LIMIT} most observed "
+            f"({dropped} dropped; fewest observations kept: {kept_min}); "
+            f"{len(curated)} curated labels exempt"
         )
+    tier2 = sorted(set(regional) | set(curated))
+    tier2_lineages = {k: v for k, v in tier2_lineages.items() if k in set(tier2)}
+
+    # Nothing curated may go missing. The bug above was invisible in the label
+    # totals, because regional names arrived to replace exactly what was lost.
+    lost = sorted(CULTIVATED_NAMES - set(tier2) - set(tier1))
+    if lost:
+        raise SystemExit(f"curated labels missing from the vocabulary: {lost}")
 
     all_lineages = {**{n: lineages[n] for n in tier1 if n in lineages}, **tier2_lineages}
     labels = [n for n in tier1 if n in lineages] + tier2

@@ -42,6 +42,7 @@ from bioclip_spike import (  # noqa: E402
 )
 
 WIDE_VOCAB = CACHE / "wide_vocab.json"
+WIDE_COUNTS = CACHE / "wide_vocab_counts.json"
 
 # iNaturalist kingdom taxon ids. Foraging confusions live in fungi and plants;
 # nothing else is a plausible neighbour for this catalog.
@@ -68,6 +69,10 @@ def fetch_regional_species(per_region):
     likely to be photographing, not an arbitrary slice of the taxonomy.
     """
     found = {}
+    # taxon_id -> highest observation count seen in any region. Max rather than
+    # sum: a species common in one region should not be ranked down for being
+    # absent from another.
+    counts = {}
     for region, box in REGIONS.items():
         for kingdom, taxon_id in KINGDOMS.items():
             new = 0
@@ -99,7 +104,12 @@ def fetch_regional_species(per_region):
                         continue
                     name = taxon.get("name")
                     tid = taxon.get("id")
-                    if not name or not tid or tid in found:
+                    if not name or not tid:
+                        continue
+                    seen = row.get("count") or 0
+                    if seen > counts.get(name, 0):
+                        counts[name] = seen
+                    if tid in found:
                         continue
                     found[tid] = name
                     new += 1
@@ -110,7 +120,7 @@ def fetch_regional_species(per_region):
                 remaining -= size
                 page += 1
             print(f"  {region}/{kingdom}: +{new} species (total {len(found)})")
-    return found
+    return found, counts
 
 
 def fetch_lineages(taxon_ids, batch=30):
@@ -142,7 +152,7 @@ def fetch_lineages(taxon_ids, batch=30):
 def stage_taxa(per_region):
     """iNat -> spike_cache/wide_vocab.json (tier-2 distractor labels)."""
     CACHE.mkdir(parents=True, exist_ok=True)
-    species = fetch_regional_species(per_region)
+    species, counts = fetch_regional_species(per_region)
     print(f"\n{len(species)} unique species-rank taxa before exclusions")
 
     # A tier-1 name must never also be a tier-2 name — the app's matcher asserts
@@ -154,6 +164,14 @@ def stage_taxa(per_region):
     lineages = fetch_lineages(species.keys())
     WIDE_VOCAB.write_text(json.dumps(lineages, indent=2), encoding="utf-8")
     print(f"\nwrote {len(lineages)} tier-2 labels to {WIDE_VOCAB}")
+
+    # Ranking data for the tier-2 cap in bioclip_export.py. Separate file so the
+    # vocabulary itself stays a plain name -> lineage map.
+    kept = {n: counts.get(n, 0) for n in lineages}
+    WIDE_COUNTS.write_text(json.dumps(kept, indent=2), encoding="utf-8")
+    top = sorted(kept.items(), key=lambda kv: -kv[1])[:5]
+    print(f"wrote observation counts to {WIDE_COUNTS}")
+    print(f"  most observed: {', '.join(f'{n} ({c})' for n, c in top)}")
 
 
 def stage_evaluate():
