@@ -36,6 +36,18 @@ R2 = "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev"
 ARTIFACTS = Path(__file__).resolve().parent / "model_artifacts"
 ONNX_FP32 = ARTIFACTS / "image_tower_fp32.onnx"
 ONNX_INT8 = ARTIFACTS / "image_tower_int8.onnx"
+ONNX_INT4 = ARTIFACTS / "image_tower_int4.onnx"
+
+# The installed onnxruntime-web bundle is the authority on which ops the WebGPU
+# backend can actually run. Read it rather than trusting release notes: the op
+# set differs per version, and a mismatch here is measured in seconds per photo.
+ORT_WEB_BUNDLE = (
+    Path(__file__).resolve().parents[2]
+    / "node_modules"
+    / "onnxruntime-web"
+    / "dist"
+    / "ort.all.mjs"
+)
 
 # Bundled, not R2 — small enough, and keeping it in the build means it can never
 # be out of step with the labels file it is index-aligned to.
@@ -159,6 +171,158 @@ def stage_quantize():
     print(f"wrote {ONNX_INT8}")
 
 
+def stage_quantize_4bit():
+    """4-bit block-quantized weights via MatMulNBits — an op WebGPU can run.
+
+    The int8 dynamic artifact is small and accurate, but it is built out of
+    MatMulInteger / DynamicQuantizeLinear, and onnxruntime-web registers NO
+    WebGPU kernel for either (proven by --stage webgpu-coverage). So every heavy
+    matmul falls back to the single-threaded CPU backend even when the session
+    reports `webgpu`, which is why on-device inference measured 15-20s on a
+    phone. Quantization chosen for download size silently cost the GPU.
+
+    MatMulNBits does have a WebGPU kernel. Symmetric, block size 32: smaller
+    blocks cost a little file size and buy back accuracy, and accuracy is the
+    only real risk in this trade.
+    """
+    if not ONNX_FP32.exists():
+        raise SystemExit("no fp32 onnx — run --stage export first")
+    from onnxruntime.quantization.matmul_nbits_quantizer import MatMulNBitsQuantizer
+
+    print("quantizing (weight-only 4-bit MatMulNBits, block 32, symmetric)…")
+    quant = MatMulNBitsQuantizer(
+        model=str(ONNX_FP32),
+        bits=4,
+        block_size=32,
+        is_symmetric=True,
+    )
+    quant.process()
+    quant.model.save_model_to_file(str(ONNX_INT4), use_external_data_format=False)
+
+    fp32_mb = ONNX_FP32.stat().st_size / 1e6
+    int4_mb = ONNX_INT4.stat().st_size / 1e6
+    print(f"fp32 {fp32_mb:.1f} MB -> int4 {int4_mb:.1f} MB ({fp32_mb / int4_mb:.1f}x smaller)")
+    if ONNX_INT8.exists():
+        int8_mb = ONNX_INT8.stat().st_size / 1e6
+        print(f"vs shipped int8 {int8_mb:.1f} MB ({int8_mb - int4_mb:+.1f} MB)")
+    print(f"wrote {ONNX_INT4}")
+
+
+def _webgpu_kernels():
+    """Op names with a WebGPU kernel, read out of the installed ORT web bundle."""
+    import re
+
+    if not ORT_WEB_BUNDLE.exists():
+        raise SystemExit(f"no ORT web bundle at {ORT_WEB_BUNDLE} — run npm install")
+    src = ORT_WEB_BUNDLE.read_text(encoding="utf8", errors="replace")
+
+    # WEBGPU_OP_RESOLVE_RULES is the JSEP/WebGPU kernel table. Anchor on it by
+    # name: the same file also holds a WebGL table with a different entry shape,
+    # and matching that one instead would report ops as supported that are not.
+    start = src.index("WEBGPU_OP_RESOLVE_RULES")
+    depth, end = 0, None
+    for i in range(src.index("[", start), len(src)):
+        if src[i] == "[":
+            depth += 1
+        elif src[i] == "]":
+            depth -= 1
+            if depth == 0:
+                end = i
+                break
+    if end is None:
+        raise SystemExit("could not find the end of WEBGPU_OP_RESOLVE_RULES")
+    table = src[start:end]
+    ops = set(re.findall(r'\["([A-Za-z][A-Za-z0-9]*)",\s*\[', table))
+    if "MatMul" not in ops or len(ops) < 50:
+        raise SystemExit(f"WebGPU kernel extraction looks wrong (got {len(ops)} ops)")
+    return ops
+
+
+# Ops that legitimately run on the CPU without costing real time: shape algebra
+# and constants, which ORT assigns to the CPU on purpose and mostly folds away.
+# Anything NOT on this list which lacks a WebGPU kernel is arithmetic on the
+# critical path, and is a gate failure for the WebGPU-targeted artifact.
+SHAPE_OPS = {
+    "Constant",
+    "ConstantOfShape",
+    "Shape",
+    "Reshape",
+    "Unsqueeze",
+    "Squeeze",
+    "Mod",
+    "Size",
+    "Range",
+}
+
+# The artifact the WebGPU path serves. int8 is deliberately exempt: it is only
+# ever served to devices with no working WebGPU, where the kernel table is moot.
+WEBGPU_ARTIFACT = "int4"
+
+
+def stage_webgpu_coverage():
+    """Gate: the WebGPU-targeted artifact must have a GPU kernel for every compute op.
+
+    This is the check that was missing when the int8 artifact shipped. Every
+    accuracy gate passed green while `MatMulInteger` — 97 nodes, all of the heavy
+    matmuls — had no WebGPU kernel at all, so the model ran on one CPU core and
+    measured 15-20s per photo on a phone while reporting `webgpu`. Accuracy
+    verification cannot see that; only the kernel table can.
+    """
+    import collections
+
+    import onnx
+
+    kernels = _webgpu_kernels()
+    print(f"onnxruntime-web WebGPU kernels: {len(kernels)} ops\n")
+
+    failures = []
+    for variant, path in (
+        ("fp32", ONNX_FP32),
+        ("int8", ONNX_INT8),
+        ("int4", ONNX_INT4),
+    ):
+        if not path.exists():
+            print(f"{path.name}: absent, skipped")
+            continue
+        model = onnx.load(str(path))
+        counts = collections.Counter(n.op_type for n in model.graph.node)
+        missing = {op: n for op, n in counts.items() if op not in kernels}
+        compute_missing = {
+            op: n for op, n in missing.items() if op not in SHAPE_OPS
+        }
+        size_mb = path.stat().st_size / 1e6
+        gated = " [GATED: served to WebGPU devices]" if variant == WEBGPU_ARTIFACT else ""
+        print(f"=== {path.name} ({size_mb:.0f} MB, {sum(counts.values())} nodes){gated} ===")
+        if compute_missing:
+            print("  COMPUTE ops with no WebGPU kernel (these run on one CPU core):")
+            for op, n in sorted(compute_missing.items(), key=lambda kv: -kv[1]):
+                print(f"    {n:5d}  {op}")
+            if variant == WEBGPU_ARTIFACT:
+                failures.append((variant, compute_missing))
+        else:
+            print("  every compute op has a WebGPU kernel")
+        if missing:
+            shape_only = {op: n for op, n in missing.items() if op in SHAPE_OPS}
+            if shape_only:
+                print(
+                    f"  ({sum(shape_only.values())} shape/constant nodes on CPU, "
+                    "expected — ORT assigns these to CPU by design)"
+                )
+        print()
+
+    if failures:
+        for variant, missing in failures:
+            ops = ", ".join(f"{op} x{n}" for op, n in sorted(missing.items()))
+            print(f"{variant}: {ops}")
+        raise SystemExit(
+            f"the {WEBGPU_ARTIFACT} artifact has compute ops with no WebGPU "
+            "kernel, so it would run on a single CPU core while reporting "
+            "`webgpu`. Re-quantize into ops the WebGPU backend implements "
+            "(MatMulNBits, not MatMulInteger) before publishing."
+        )
+    print(f"{WEBGPU_ARTIFACT} artifact is fully GPU-resident on the compute path")
+
+
 def _embed_all_onnx(onnx_path, batch_size=16):
     """Re-embed every cached photo through the ONNX session, in manifest order."""
     import numpy as np
@@ -191,19 +355,25 @@ def _embed_all_onnx(onnx_path, batch_size=16):
     return np.concatenate(out), kept, order["text_labels"]
 
 
-def stage_verify():
-    """Re-run the gate using int8 image embeddings and fp32 text — what ships."""
+def stage_verify(artifact=None, tag="int8"):
+    """Re-run the gate using quantized image embeddings and fp32 text — what ships.
+
+    Parameterised by artifact so every candidate quantization is measured by
+    byte-identical metric code. Two artifacts scored by two code paths is not a
+    comparison.
+    """
     import numpy as np
 
-    if not ONNX_INT8.exists():
-        raise SystemExit("no int8 onnx — run --stage quantize first")
+    artifact = artifact or ONNX_INT8
+    if not artifact.exists():
+        raise SystemExit(f"no {artifact.name} — run the matching quantize stage first")
 
     baseline = json.loads((CACHE / "report.json").read_text())
     text_vectors = np.load(CACHE / "text_embeddings.npy")
 
-    print("re-embedding all cached photos through the int8 ONNX graph…")
-    vectors, photos, text_labels = _embed_all_onnx(ONNX_INT8)
-    np.save(CACHE / "embeddings_int8.npy", vectors)
+    print(f"re-embedding all cached photos through the {tag} ONNX graph…")
+    vectors, photos, text_labels = _embed_all_onnx(artifact)
+    np.save(CACHE / f"embeddings_{tag}.npy", vectors)
 
     # Text side stays fp32: that is the shipped configuration (fp16-narrowed
     # matrix on the client, but never int8), so quantizing it here would measure
@@ -211,7 +381,7 @@ def stage_verify():
     results = evaluate_embeddings(vectors, text_vectors, photos, text_labels)
 
     print(f"\n=== 53-label vocabulary (what the spike measured) ===")
-    print(f"{'metric':<32} {'fp32 (spike)':>13} {'int8 (ships)':>13} {'delta':>8}")
+    print(f"{'metric':<32} {'fp32 (spike)':>13} {tag:>13} {'delta':>8}")
     print("-" * 70)
     worst_at_1 = 0.0
     for method in ("text", "gallery"):
@@ -222,7 +392,7 @@ def stage_verify():
             if key == "false_edible_1":
                 worst_at_1 = max(worst_at_1, b - a)
 
-    (CACHE / "report_int8.json").write_text(json.dumps(results, indent=2))
+    (CACHE / f"report_{tag}.json").write_text(json.dumps(results, indent=2))
 
     # The gate is false-edible@1, per the plan. @3 is reported but NOT gated: at
     # 53 labels its random baseline is 93.4% (31 of 53 labels are edible, so an
@@ -231,19 +401,19 @@ def stage_verify():
     # signal. See addendum 2 of the spike results.
     print(f"\nworst false-edible@1 regression: {worst_at_1:+.2%} (ceiling +1.00%)")
 
-    wide_delta = _verify_wide(vectors, photos, text_labels)
+    wide_delta = _verify_wide(vectors, photos, text_labels, tag=tag)
 
     worst = max(worst_at_1, wide_delta)
     if worst > 0.01:
         raise SystemExit(
-            f"int8 quantization moved false-edible@1 by {worst:+.2%}, over the "
+            f"{tag} quantization moved false-edible@1 by {worst:+.2%}, over the "
             "+1.00% ceiling. Fall back to static QDQ with LayerNorm/Softmax "
             "excluded, or fp16, before shipping."
         )
-    print("\nint8 artifact is within the gate ceiling at both vocabulary sizes")
+    print(f"\n{tag} artifact is within the gate ceiling at both vocabulary sizes")
 
 
-def _verify_wide(int8_vectors, photos, tier1_labels):
+def _verify_wide(quant_vectors, photos, tier1_labels, tag="int8"):
     """Also gate at the vocabulary that SHIPS (1053 labels), not just 53.
 
     The 53-label comparison is the like-for-like check against the spike. But the
@@ -285,13 +455,13 @@ def _verify_wide(int8_vectors, photos, tier1_labels):
     rates = {}
     for name, vecs in (
         ("fp32 (spike)", np.load(CACHE / "embeddings.npy")[idx]),
-        ("int8 (ships)", int8_vectors[idx]),
+        (tag, quant_vectors[idx]),
     ):
         preds = _predictions(vecs @ text.T, labels, rows)
         rates[name] = false_edible_rate(preds, CATALOG_NAMES, k=1)
         print(f"{name:<22} {rates[name]:>14.2%}")
 
-    delta = rates["int8 (ships)"] - rates["fp32 (spike)"]
+    delta = rates[tag] - rates["fp32 (spike)"]
     print(f"{'delta':<22} {delta:>+14.2%}")
     return delta
 
@@ -512,33 +682,52 @@ def stage_parity_fixtures():
 # Must match MODEL_VERSION / MODEL_URL in src/lib/modelCache.ts. The upload
 # stage asserts this rather than trusting it, because a mismatch means the app
 # fetches a 404 and the only symptom is a download that never starts.
-MODEL_VERSION = "bioclip2-int8-2026-07"
-R2_KEY = f"models/bioclip/{MODEL_VERSION}/image_tower_int8.onnx"
+# Per-variant versions, matching src/lib/bioclip/variant.ts. Independent versions
+# mean publishing int4 did not require re-uploading the already-verified int8
+# object under a new shared key.
+VARIANTS = {
+    "int8": ("bioclip2-int8-2026-07", ONNX_INT8),
+    "int4": ("bioclip2-int4-2026-07", ONNX_INT4),
+}
+VARIANT_TS = Path(__file__).resolve().parents[2] / "src" / "lib" / "bioclip" / "variant.ts"
 
 
-def stage_upload():
-    """Publish the int8 artifact to R2 under its versioned key.
+def _r2_key(variant):
+    version, _ = VARIANTS[variant]
+    return f"models/bioclip/{version}/image_tower_{variant}.onnx"
+
+
+def stage_upload(only=None):
+    """Publish the quantized artifacts to R2 under their versioned keys.
 
     Refuses to overwrite. The key carries a version precisely so that publishing
     is append-only: the service worker caches this CacheFirst for a year, so
     replacing bytes at an existing URL would leave everyone who already
-    downloaded on the old model with nothing to signal it.
+    downloaded on the old model with nothing to signal it. An already-published
+    variant is skipped rather than treated as an error, so this stage is
+    re-runnable after adding a variant.
     """
     import boto3
 
-    if not ONNX_INT8.exists():
-        raise SystemExit("no int8 onnx — run --stage quantize first")
+    wanted = [only] if only else list(VARIANTS)
 
-    # Keep the app's constant and this key in lockstep.
-    ts_path = Path(__file__).resolve().parents[2] / "src" / "lib" / "modelCache.ts"
-    ts = ts_path.read_text(encoding="utf-8")
-    if f"'{MODEL_VERSION}'" not in ts:
-        raise SystemExit(
-            f"MODEL_VERSION mismatch: {MODEL_VERSION!r} is not in {ts_path.name}. "
-            "The app would request a key that does not exist."
-        )
-    if R2_KEY.rsplit("/", 1)[-1] not in ts:
-        raise SystemExit(f"filename in {ts_path.name} does not match {R2_KEY}")
+    # Keep the app's constants and these keys in lockstep. A mismatch would have
+    # the app request a key that does not exist, and the failure would surface as
+    # a download error rather than a build error.
+    ts = VARIANT_TS.read_text(encoding="utf-8")
+    for variant in wanted:
+        version, path = VARIANTS[variant]
+        if not path.exists():
+            raise SystemExit(f"no {path.name} — run the matching quantize stage first")
+        if f"'{version}'" not in ts:
+            raise SystemExit(
+                f"version mismatch: {version!r} is not in {VARIANT_TS.name}. "
+                "The app would request a key that does not exist."
+            )
+        if _r2_key(variant) not in ts:
+            raise SystemExit(
+                f"{VARIANT_TS.name} does not contain the key {_r2_key(variant)}"
+            )
 
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     from build_season_curves import get_required_env, load_dotenv
@@ -555,46 +744,54 @@ def stage_upload():
         aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY"),
     )
 
-    try:
-        existing = client.head_object(Bucket=bucket, Key=R2_KEY)
-        raise SystemExit(
-            f"{R2_KEY} already exists ({existing['ContentLength']} bytes, "
-            f"{existing['LastModified']}). Publishing is append-only — bump "
-            "MODEL_VERSION in both modelCache.ts and this file instead of "
-            "overwriting, or the service worker will serve stale bytes forever."
+    for variant in wanted:
+        _, path = VARIANTS[variant]
+        key = _r2_key(variant)
+        size = path.stat().st_size
+
+        try:
+            existing = client.head_object(Bucket=bucket, Key=key)
+            remote = existing["ContentLength"]
+            if remote != size:
+                raise SystemExit(
+                    f"{key} already exists with DIFFERENT bytes ({remote} remote "
+                    f"vs {size} local). Publishing is append-only — bump this "
+                    "variant's version in both variant.ts and this file instead "
+                    "of overwriting, or the service worker will serve stale "
+                    "bytes forever."
+                )
+            print(f"{variant}: already published, {remote} bytes — skipping")
+            continue
+        except client.exceptions.ClientError as e:
+            if e.response["Error"]["Code"] not in ("404", "NoSuchKey", "NotFound"):
+                raise
+
+        print(f"\nuploading {variant}: {size / 1e6:.1f} MB -> s3://{bucket}/{key}")
+        seen = {"bytes": 0, "pct": -5}
+
+        def progress(chunk, seen=seen, size=size):
+            seen["bytes"] += chunk
+            pct = int(seen["bytes"] * 100 / size)
+            if pct >= seen["pct"] + 5:
+                seen["pct"] = pct
+                print(f"  {pct:3d}%  {seen['bytes'] / 1e6:.0f} MB")
+
+        client.upload_file(
+            str(path),
+            bucket,
+            key,
+            ExtraArgs={"ContentType": "application/octet-stream"},
+            Callback=progress,
         )
-    except client.exceptions.ClientError as e:
-        if e.response["Error"]["Code"] not in ("404", "NoSuchKey", "NotFound"):
-            raise
 
-    size = ONNX_INT8.stat().st_size
-    print(f"uploading {size / 1e6:.1f} MB -> s3://{bucket}/{R2_KEY}")
-
-    seen = {"bytes": 0, "pct": -5}
-
-    def progress(chunk):
-        seen["bytes"] += chunk
-        pct = int(seen["bytes"] * 100 / size)
-        if pct >= seen["pct"] + 5:
-            seen["pct"] = pct
-            print(f"  {pct:3d}%  {seen['bytes'] / 1e6:.0f} MB")
-
-    client.upload_file(
-        str(ONNX_INT8),
-        bucket,
-        R2_KEY,
-        ExtraArgs={"ContentType": "application/octet-stream"},
-        Callback=progress,
-    )
-
-    # Verify what landed, rather than trusting the upload's exit status: a
-    # truncated object would be cached by the client as a corrupt model.
-    head = client.head_object(Bucket=bucket, Key=R2_KEY)
-    remote = head["ContentLength"]
-    print(f"\nremote size {remote} bytes, local {size} bytes")
-    if remote != size:
-        raise SystemExit(f"size mismatch after upload: {remote} != {size}")
-    print(f"verified. public URL:\n  {R2}/{R2_KEY}")
+        # Verify what landed, rather than trusting the upload's exit status: a
+        # truncated object would be cached by the client as a corrupt model.
+        head = client.head_object(Bucket=bucket, Key=key)
+        remote = head["ContentLength"]
+        print(f"remote size {remote} bytes, local {size} bytes")
+        if remote != size:
+            raise SystemExit(f"size mismatch after upload: {remote} != {size}")
+        print(f"verified. public URL:\n  {R2}/{key}")
 
 
 SYNTH_DIR = Path(__file__).resolve().parents[2] / "src" / "test" / "fixtures"
@@ -688,7 +885,10 @@ def main():
         choices=[
             "export",
             "quantize",
+            "quantize-4bit",
             "verify",
+            "verify-4bit",
+            "webgpu-coverage",
             "text-matrix",
             "parity-fixtures",
             "parity-synthetic",
@@ -701,7 +901,10 @@ def main():
     {
         "export": stage_export,
         "quantize": stage_quantize,
+        "quantize-4bit": stage_quantize_4bit,
         "verify": stage_verify,
+        "verify-4bit": lambda: stage_verify(ONNX_INT4, tag="int4"),
+        "webgpu-coverage": stage_webgpu_coverage,
         "text-matrix": stage_text_matrix,
         "parity-fixtures": stage_parity_fixtures,
         "parity-synthetic": stage_parity_synthetic,

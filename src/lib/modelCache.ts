@@ -14,21 +14,11 @@
  * which `MODEL_VERSION` below expresses directly.
  */
 
-const R2 = 'https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev';
-
-/**
- * Bump this when a new artifact is published, and publish under a NEW path.
- *
- * The path is versioned rather than stable because the service worker caches it
- * CacheFirst with a long TTL. At a fixed URL, users who already downloaded would
- * keep the old model forever with nothing to signal it.
- */
-export const MODEL_VERSION = 'bioclip2-int8-2026-07';
-
-export const MODEL_URL = `${R2}/models/bioclip/${MODEL_VERSION}/image_tower_int8.onnx`;
-
-/** Approximate, for UI copy before the download starts. Real size comes from the response. */
-export const MODEL_APPROX_BYTES = 307_000_000;
+import {
+  VARIANT_BY_VERSION,
+  type ModelVariant,
+  type VariantSpec,
+} from './bioclip/variant';
 
 const DB_NAME = 'funges-model-cache';
 const STORE_NAME = 'model-blobs';
@@ -42,6 +32,7 @@ interface StoredModel {
 
 export interface ModelCacheInfo {
   version: string;
+  variant: ModelVariant;
   sizeBytes: number;
   cachedAt: number;
 }
@@ -124,8 +115,47 @@ export async function readWithProgress(
   return new Blob(chunks as BlobPart[], { type: 'application/octet-stream' });
 }
 
-/** The cached model, if the cached version matches what the code expects. */
-export async function getCachedModel(): Promise<{
+function toInfo(record: StoredModel, spec: VariantSpec): ModelCacheInfo {
+  return {
+    version: record.version,
+    variant: spec.variant,
+    sizeBytes: record.sizeBytes,
+    cachedAt: record.cachedAt,
+  };
+}
+
+/**
+ * Whichever variant is already on this device, if any.
+ *
+ * Deliberately "any known variant" rather than "the variant this device would
+ * choose today". A user who already paid for a 307MB download must not be asked
+ * to pay for a 280MB one because the selection logic changed underneath them;
+ * `removeModel` is the way to switch. Records whose version is not a currently
+ * published variant are ignored, which is how a retired artifact gets superseded.
+ */
+export async function getAnyCachedModel(): Promise<{
+  blob: Blob;
+  info: ModelCacheInfo;
+} | null> {
+  const db = await openDb();
+  const all = await new Promise<StoredModel[]>((resolve, reject) => {
+    const request = db
+      .transaction(STORE_NAME, 'readonly')
+      .objectStore(STORE_NAME)
+      .getAll();
+    request.onsuccess = () => resolve(request.result as StoredModel[]);
+    request.onerror = () => reject(request.error);
+  });
+
+  for (const record of all) {
+    const spec = VARIANT_BY_VERSION[record.version];
+    if (spec) return { blob: record.blob, info: toInfo(record, spec) };
+  }
+  return null;
+}
+
+/** The cached model for one specific variant. */
+export async function getCachedModel(spec: VariantSpec): Promise<{
   blob: Blob;
   info: ModelCacheInfo;
 } | null> {
@@ -135,21 +165,14 @@ export async function getCachedModel(): Promise<{
       const request = db
         .transaction(STORE_NAME, 'readonly')
         .objectStore(STORE_NAME)
-        .get(MODEL_VERSION);
+        .get(spec.version);
       request.onsuccess = () =>
         resolve(request.result as StoredModel | undefined);
       request.onerror = () => reject(request.error);
     }
   );
   if (!record) return null;
-  return {
-    blob: record.blob,
-    info: {
-      version: record.version,
-      sizeBytes: record.sizeBytes,
-      cachedAt: record.cachedAt,
-    },
-  };
+  return { blob: record.blob, info: toInfo(record, spec) };
 }
 
 /** Size of everything cached here, for the storage figure on the offline page. */
@@ -167,17 +190,18 @@ export async function getCachedModelSize(): Promise<number> {
 }
 
 export async function downloadModel(
+  spec: VariantSpec,
   onProgress?: ProgressFn,
   signal?: AbortSignal
 ): Promise<ModelCacheInfo> {
-  const response = await fetch(MODEL_URL, { signal });
+  const response = await fetch(spec.url, { signal });
   if (!response.ok) {
-    throw new Error(`model download failed: ${response.status} ${MODEL_URL}`);
+    throw new Error(`model download failed: ${response.status} ${spec.url}`);
   }
 
   const blob = await readWithProgress(response, onProgress);
   const record: StoredModel = {
-    version: MODEL_VERSION,
+    version: spec.version,
     blob,
     sizeBytes: blob.size,
     cachedAt: Date.now(),
@@ -193,13 +217,11 @@ export async function downloadModel(
 
   // Drop any superseded version now that the new one is safely stored, rather
   // than before — a failed download must never leave the user with nothing.
-  await removeOtherVersions(MODEL_VERSION);
+  // This also means only ever one artifact on disk, so switching variants
+  // reclaims the old one instead of holding ~590MB.
+  await removeOtherVersions(spec.version);
 
-  return {
-    version: record.version,
-    sizeBytes: record.sizeBytes,
-    cachedAt: record.cachedAt,
-  };
+  return toInfo(record, spec);
 }
 
 async function removeOtherVersions(keep: string): Promise<void> {

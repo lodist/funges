@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { MODEL_URL, MODEL_VERSION, readWithProgress } from '@/lib/modelCache';
+import { readWithProgress } from '@/lib/modelCache';
+import { MODEL_VARIANTS, VARIANT_BY_VERSION } from '@/lib/bioclip/variant';
 
 /**
  * `readWithProgress` is the only non-trivial logic in modelCache, and at ~306MB
@@ -124,16 +125,39 @@ describe('readWithProgress', () => {
   });
 });
 
-describe('model URL', () => {
-  // The service worker caches this CacheFirst with a ~1 year TTL. At a stable
+describe('model variants', () => {
+  const specs = Object.values(MODEL_VARIANTS);
+
+  // The service worker caches these CacheFirst with a ~1 year TTL. At a stable
   // URL, anyone who already downloaded would keep the old model forever with
   // nothing to signal it, so the version MUST appear in the path.
-  it('carries the version in the path', () => {
-    expect(MODEL_URL).toContain(MODEL_VERSION);
-    expect(MODEL_URL).toMatch(/\/models\/bioclip\/[^/]+\/.+\.onnx$/);
+  it.each(specs)('$variant carries its version in the path', spec => {
+    expect(spec.url).toContain(spec.version);
+    expect(spec.url).toMatch(/\/models\/bioclip\/[^/]+\/.+\.onnx$/);
   });
 
-  it('points at the R2 bucket over https', () => {
-    expect(MODEL_URL.startsWith('https://')).toBe(true);
+  it.each(specs)('$variant points at the R2 bucket over https', spec => {
+    expect(spec.url.startsWith('https://')).toBe(true);
+  });
+
+  // The version doubles as the IndexedDB primary key. Two variants sharing one
+  // would have the second download silently overwrite the first, and a device
+  // could then run int4 bytes while believing it holds int8.
+  it('gives every variant a distinct version key', () => {
+    const versions = specs.map(s => s.version);
+    expect(new Set(versions).size).toBe(versions.length);
+  });
+
+  // Each variant's URL must name its own quantization. A copy-paste that left
+  // int4 pointing at the int8 object would serve the slow artifact to exactly
+  // the devices the fast one was built for, with no error anywhere.
+  it.each(specs)('$variant url names its own quantization', spec => {
+    expect(spec.url).toContain(`image_tower_${spec.variant}.onnx`);
+  });
+
+  it('maps every version back to its spec', () => {
+    for (const spec of specs) {
+      expect(VARIANT_BY_VERSION[spec.version]).toBe(spec);
+    }
   });
 });
