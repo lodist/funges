@@ -37,6 +37,11 @@ export default function InstructionsPage() {
       color: 'text-purple-600',
     },
     { icon: Moon, text: t('functions.theme'), color: 'text-gray-600' },
+    {
+      icon: ScanSearch,
+      text: t('functions.identify'),
+      color: 'text-emerald-600',
+    },
   ];
 
   const variables = [

@@ -15,6 +15,7 @@
     "recipes": "Affiche les recettes proches et des trajets vers les etapes ingredients",
     "location": "Centre la carte sur la position de l'utilisateur",
     "theme": "Basculez entre 4 styles de carte : Clair, Sombre, Positron, Dark Matter",
+    "identify": "Identifie les espèces possibles à partir d’une photo, sur ton appareil",
     "numbers": "Affiche la note numérique"
   },
   "mapInteraction": {
@@ -100,6 +101,6 @@
     "intro": "Le bouton ID en haut à droite réduit une photo à environ trois espèces possibles, chacune marquée comestible ou toxique. C’est une présélection, pas un verdict : un sosie dangereux peut être la bonne réponse même s’il n’est pas le premier résultat.",
     "onDevice": "La reconnaissance fonctionne entièrement sur ton téléphone. Les photos ne sont jamais téléversées ni conservées par l’application. C’est pourquoi un téléchargement unique du modèle est nécessaire la première fois : sans lui, l’identification devrait envoyer tes photos à un serveur.",
     "howTo": "Touche ID, autorise le téléchargement unique en Wi-Fi, puis prends une photo ou choisis-en une dans ta galerie. Remplis le cadre avec le spécimen entier quand c’est possible, base du pied comprise, et photographie ce que tu as réellement déterré ou cueilli plutôt qu’un groupe éloigné.",
-    "limits": "L’identification prend une quinzaine de secondes, parce que le calcul se fait sur ton appareil et non dans un centre de données. Elle couvre les espèces de cette application plus un millier d’autres présentes dans les mêmes régions ; tout le reste est affiché avec le seul nom scientifique, sans information de sécurité. Ne mange rien en te fondant sur cette application - une erreur d’identification peut être mortelle."
+    "limits": "L’identification prend d’environ cinq à vingt secondes selon l’appareil, parce que le calcul se fait sur ton appareil et non dans un centre de données. Elle couvre les espèces de cette application plus un millier d’autres présentes dans les mêmes régions ; tout le reste est affiché avec le seul nom scientifique, sans information de sécurité. Ne mange rien en te fondant sur cette application - une erreur d’identification peut être mortelle."
   }
 }
