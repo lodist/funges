@@ -1,5 +1,6 @@
 {
-  "title": "Identificar desde una foto",
+  "title": "Identificar",
+  "openButton": "Identificar desde una foto",
   "disclaimer": {
     "beforeCapture": "Esta herramienta reduce las especies posibles a partir de una foto. Nunca confirma que algo sea seguro para comer.",
     "aboveResults": "Estas son coincidencias posibles, no una identificación confirmada. Un sósia peligroso puede ser el correcto incluso cuando no aparece en primer lugar.",

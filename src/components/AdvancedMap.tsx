@@ -997,8 +997,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           <motion.button
             onClick={() => setIsIdentifyOpen(true)}
             className='inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg bg-secondary border-input'
-            title={tIdentify('title')}
-            aria-label={tIdentify('title')}
+            title={tIdentify('openButton')}
+            aria-label={tIdentify('openButton')}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.95 }}
             transition={{

@@ -1,5 +1,6 @@
 {
-  "title": "Anhand eines Fotos bestimmen",
+  "title": "Bestimmen",
+  "openButton": "Anhand eines Fotos bestimmen",
   "disclaimer": {
     "beforeCapture": "Dieses Werkzeug grenzt mögliche Arten anhand eines Fotos ein. Es bestätigt niemals, dass etwas essbar ist.",
     "aboveResults": "Das sind mögliche Übereinstimmungen, keine gesicherte Bestimmung. Ein gefährlicher Doppelgänger kann auch dann richtig sein, wenn er nicht an erster Stelle steht.",

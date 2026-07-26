@@ -1,5 +1,6 @@
 {
-  "title": "Identifier à partir d'une photo",
+  "title": "Identifier",
+  "openButton": "Identifier à partir d'une photo",
   "disclaimer": {
     "beforeCapture": "Cet outil restreint les espèces possibles à partir d'une photo. Il ne confirme jamais qu'une chose est comestible.",
     "aboveResults": "Ce sont des correspondances possibles, pas une identification confirmée. Un sosie dangereux peut être le bon même s'il n'arrive pas en premier.",

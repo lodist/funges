@@ -1,5 +1,6 @@
 {
-  "title": "Identify from a photo",
+  "title": "Identify",
+  "openButton": "Identify from a photo",
   "disclaimer": {
     "beforeCapture": "This tool narrows down possible species from a photo. It never confirms that something is safe to eat.",
     "aboveResults": "These are possible matches, not a confirmed identification. A dangerous look-alike can be correct even when it is not the top result.",
