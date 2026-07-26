@@ -69,7 +69,14 @@ export function IdentifyResults({
       {showToxicBanner && (
         <div
           role='alert'
-          className='bg-status-warning border border-status-warning-border rounded-lg p-3 flex gap-2'
+          /* Core Tailwind amber, not bg-status-warning: that class generates
+             no CSS (see NOTICE in the commit) so this banner had no amber at
+             all. Stronger than the standing disclaimer's halo, which is the
+             hierarchy this feature depends on. */
+          className={
+            'rounded-lg border-2 border-amber-500 bg-amber-100 p-3 flex gap-2 ' +
+            'text-amber-900 dark:border-amber-600 dark:bg-amber-950/50 dark:text-amber-100'
+          }
         >
           <AlertTriangle className='h-5 w-5 shrink-0 mt-0.5' />
           <p className='text-sm font-medium'>{t('results.toxicBanner')}</p>

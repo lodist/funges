@@ -138,6 +138,13 @@
     "title": "Fung.es",
     "subtitle": "App de Coleta de Cogumelos"
   },
+  "pwa": {
+    "installTitle": "Instalar o Fung.es",
+    "installDescription": "Instala o Fung.es no teu dispositivo para acesso rápido e funcionamento offline.",
+    "installButton": "Instalar a aplicação",
+    "laterButton": "Mais tarde"
+  },
+  "close": "Fechar",
   "data": {
     "subtitle": "Explora os dados por trás das recomendações de recolha.",
     "europe": "Europa",
@@ -256,5 +263,10 @@
       "pressureFallingShort": "a baixar",
       "pressureRisingShort": "a subir"
     }
+  },
+  "sidebar": {
+    "title": "Barra lateral",
+    "description": "Mostra a barra lateral no telemóvel.",
+    "toggle": "Mostrar ou ocultar a barra lateral"
   }
 }

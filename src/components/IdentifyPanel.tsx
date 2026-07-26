@@ -330,12 +330,12 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
             the warning should be read before a photo is taken, not after a list
             of species has already been offered.
 
-            Deliberately a soft halo rather than a solid fill. The toxic banner in
-            IdentifyResults uses solid `bg-status-warning`, and if this looked the
-            same, a permanent notice would be visually indistinguishable from
-            "one of these will kill you" — which would train users to ignore
-            both. Ranked: halo here, solid fill for toxic, destructive border for
-            a critical pair.
+            Deliberately the softest of the three amber treatments. The toxic
+            banner in IdentifyResults is a filled amber-100 with a 2px amber-500
+            border; if this looked the same, a permanent notice would be visually
+            indistinguishable from "one of these will kill you", which would train
+            users to ignore both. Ranked: halo here, filled border-2 for toxic,
+            destructive border for a critical pair.
 
             No role='alert': it is static, so announcing it on every render would
             fight the toxic banner that genuinely needs the assertive channel. */}
@@ -424,7 +424,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
 
           {phase.name === 'capture' && (
             <section className='space-y-3'>
-              <div className='bg-status-warning border border-status-warning-border rounded-lg p-3'>
+              <div className='rounded-lg border border-amber-400 bg-amber-50 p-3 text-amber-900 dark:border-amber-600 dark:bg-amber-950/40 dark:text-amber-100'>
                 <p className='text-sm'>{t('disclaimer.beforeCapture')}</p>
               </div>
               <p className='text-sm text-muted-foreground'>
