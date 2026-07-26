@@ -111,9 +111,10 @@ export function IdentifyResults({
         ))}
       </ul>
 
-      <p className='text-xs text-muted-foreground'>
-        {t('disclaimer.neverEat')}
-      </p>
+      {/* `disclaimer.neverEat` used to close the list here. It now sits directly
+          under the dialog title instead, where it is read before a photo is
+          taken rather than after a ranked list has already been offered.
+          Repeating it in both places would just teach people to skip it. */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Camera, ImageIcon } from 'lucide-react';
+import { AlertTriangle, Camera, ImageIcon } from 'lucide-react';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import { Button } from '@/components/ui/button';
 import {
@@ -325,6 +325,29 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
         <DialogHeader className='pr-8'>
           <DialogTitle>{t('title')}</DialogTitle>
         </DialogHeader>
+
+        {/* Directly under the title and present in EVERY phase, not just results:
+            the warning should be read before a photo is taken, not after a list
+            of species has already been offered.
+
+            Deliberately a soft halo rather than a solid fill. The toxic banner in
+            IdentifyResults uses solid `bg-status-warning`, and if this looked the
+            same, a permanent notice would be visually indistinguishable from
+            "one of these will kill you" — which would train users to ignore
+            both. Ranked: halo here, solid fill for toxic, destructive border for
+            a critical pair.
+
+            No role='alert': it is static, so announcing it on every render would
+            fight the toxic banner that genuinely needs the assertive channel. */}
+        <div className='flex items-start gap-2 rounded-lg bg-amber-50 px-3 py-2 ring-2 ring-amber-400/60 dark:bg-amber-950/40 dark:ring-amber-500/40'>
+          <AlertTriangle
+            className='mt-0.5 h-4 w-4 shrink-0 text-amber-600 dark:text-amber-400'
+            aria-hidden='true'
+          />
+          <p className='text-xs font-medium text-amber-900 dark:text-amber-100'>
+            {t('disclaimer.neverEat')}
+          </p>
+        </div>
 
         <div className='space-y-4'>
           {phase.name === 'checking' && (
