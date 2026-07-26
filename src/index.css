@@ -69,6 +69,24 @@
   --shadow-opacity: var(--shadow-opacity);
   --color-shadow-color: var(--shadow-color);
   --color-destructive-foreground: var(--destructive-foreground);
+
+  /* Fixed brand/status colours, mirroring src/lib/colors.ts.
+   *
+   * These exist here because Tailwind v4 does NOT read tailwind.config.js unless
+   * a stylesheet declares `@config`, and none does. The config file defines
+   * `status` and `primary` scales from colors.ts and looks authoritative, but it
+   * is inert: `bg-status-warning`, `text-status-warning-text` and
+   * `text-primary-600` were used in three components and generated no CSS at all.
+   * The warning box on the species page had no amber background, and the active
+   * item in the mobile navbar was not brand green.
+   *
+   * Literal values rather than var() indirection: unlike the shadcn tokens above,
+   * these are fixed in both themes by design — an amber warning should stay amber.
+   */
+  --color-status-warning: #f59e0b;
+  --color-status-warning-border: #d97706;
+  --color-status-warning-text: #78350f;
+  --color-primary-600: #3d955c;
 }
 
 :root {
