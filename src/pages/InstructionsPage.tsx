@@ -235,6 +235,7 @@ export default function InstructionsPage() {
               <p className='text-gray-700 dark:text-gray-300 leading-relaxed'>
                 {t('mission.openAccess')}
               </p>
+              <p>{t('mission.privacy')}</p>
             </CardContent>
           </Card>
 

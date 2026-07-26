@@ -7,8 +7,7 @@
   },
   "collection": {
     "title": "Collecte et utilisation des informations",
-    "content": "Nous nous engageons à respecter les principes d'anonymat et de protection des données. Ce service ne collecte, ne stocke ni ne traite aucune information personnelle directement. Notre conception privilégie la fourniture d'informations sans exiger de données en retour, reflétant notre forte conviction en la valeur de l'anonymat.",
-    "cookiebot": "Pour garantir davantage votre vie privée, nous utilisons Cookiebot en arrière-plan afin de surveiller activement qu'aucun service non strictement nécessaire ne fonctionne. Des contrôles réguliers et stricts sont effectués pour s'assurer que les données des utilisateurs ne sont pas partagées au-delà de ce qui est essentiel au fonctionnement de ce service."
+    "content": "Nous nous engageons à respecter les principes d'anonymat et de protection des données. Ce service ne collecte, ne stocke ni ne traite aucune information personnelle directement. Notre conception privilégie la fourniture d'informations sans exiger de données en retour, reflétant notre forte conviction en la valeur de l'anonymat."
   },
   "location": {
     "title": "Données de localisation",

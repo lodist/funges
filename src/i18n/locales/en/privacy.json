@@ -7,8 +7,7 @@
   },
   "collection": {
     "title": "Information Collection and Use",
-    "content": "We are committed to upholding the principles of anonymity and data protection. This service does not collect, store, or process any personal information directly. Our design prioritizes providing information to you without requiring any data in return, reflecting our strong belief in the value of anonymity.",
-    "cookiebot": "To further ensure your privacy, we deploy Cookiebot in the background to actively monitor that no service which is not strictly necessary is operating. Regular and strict checks are performed to ensure that users' data is not shared beyond what is essential for the functioning of this service."
+    "content": "We are committed to upholding the principles of anonymity and data protection. This service does not collect, store, or process any personal information directly. Our design prioritizes providing information to you without requiring any data in return, reflecting our strong belief in the value of anonymity."
   },
   "location": {
     "title": "Location Data",

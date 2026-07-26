@@ -41,7 +41,6 @@ export default function PrivacyPolicyPage() {
             </h2>
             <div className='space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed'>
               <p>{t('collection.content')}</p>
-              <p>{t('collection.cookiebot')}</p>
             </div>
           </section>
 
