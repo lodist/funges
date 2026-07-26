@@ -4,6 +4,7 @@ import SEO from '@/components/SEO';
 import { Separator } from '@/components/ui/separator';
 import {
   Map,
+  ScanSearch,
   Navigation,
   Moon,
   ChefHat,
@@ -123,6 +124,26 @@ export default function InstructionsPage() {
                   </div>
                 ))}
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Photo identification. Its own card rather than a line in the
+              functions list: it is the only feature that downloads anything, and
+              the only one where a misread costs more than a wasted walk. */}
+          <Card className='mb-8 shadow-lg border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm py-6'>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-3 text-2xl'>
+                <ScanSearch className='h-6 w-6 text-emerald-600' />
+                {t('identify.title')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className='space-y-4 text-gray-700 dark:text-gray-300'>
+              <p>{t('identify.intro')}</p>
+              <p>{t('identify.onDevice')}</p>
+              <p>{t('identify.howTo')}</p>
+              <p className='rounded-lg bg-status-warning p-4 text-sm'>
+                {t('identify.limits')}
+              </p>
             </CardContent>
           </Card>
 

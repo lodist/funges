@@ -94,5 +94,12 @@
       },
       "additional": "Fontes adicionais como APIs meteorológicas, camadas de sensoriamento remoto e modelos de inclinação/orientação são integradas para melhorar continuamente a precisão das previsões."
     }
+  },
+  "identify": {
+    "title": "Identificar a partir de uma fotografia",
+    "intro": "O botão ID no canto superior direito reduz uma fotografia a cerca de três espécies possíveis, cada uma marcada como comestível ou tóxica. É uma pré-selecção, não um veredicto: um sósia perigoso pode ser a resposta certa mesmo quando não é o primeiro resultado.",
+    "onDevice": "O reconhecimento corre inteiramente no teu telemóvel. As fotografias nunca são carregadas nem guardadas pela aplicação. É por isso que na primeira vez é necessário um descarregamento único do modelo: sem ele, a identificação teria de enviar as tuas fotografias para um servidor.",
+    "howTo": "Toca em ID, permite o descarregamento único por Wi-Fi e depois tira uma fotografia ou escolhe uma da galeria. Enche o enquadramento com o exemplar completo quando puderes, incluindo a base do pé, e fotografa o que realmente desenterraste ou colheste, não um grupo distante.",
+    "limits": "A identificação leva cerca de quinze segundos, porque o trabalho acontece no teu dispositivo e não num centro de dados. Cobre as espécies desta aplicação mais cerca de mil das mesmas regiões; tudo o resto é mostrado apenas com o nome científico e sem informação de segurança. Não comas nada com base nesta aplicação - uma identificação errada pode ser fatal."
   }
 }

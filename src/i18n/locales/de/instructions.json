@@ -94,5 +94,12 @@
       },
       "additional": "Weitere Quellen wie Wetter-APIs, Fernerkundungsdaten und Hang-/Expositionsmodelle werden integriert, um die Prognosegenauigkeit kontinuierlich zu verbessern."
     }
+  },
+  "identify": {
+    "title": "Anhand eines Fotos bestimmen",
+    "intro": "Die ID-Schaltfläche oben rechts grenzt ein Foto auf etwa drei mögliche Arten ein, jeweils als essbar oder giftig gekennzeichnet. Das ist eine Vorauswahl, kein Urteil: Ein gefährlicher Doppelgänger kann die richtige Antwort sein, auch wenn er nicht an erster Stelle steht.",
+    "onDevice": "Die Erkennung läuft vollständig auf deinem Handy. Fotos werden niemals hochgeladen und von der App niemals gespeichert. Deshalb ist beim ersten Mal ein einmaliger Modell-Download nötig: ohne ihn müsste die Bestimmung deine Fotos an einen Server senden.",
+    "howTo": "Tippe auf ID, erlaube den einmaligen Download über WLAN, und mache dann ein Foto oder wähle eines aus der Galerie. Fülle das Bild möglichst mit dem ganzen Exemplar, einschliesslich Stielbasis, und fotografiere das, was du tatsächlich ausgegraben oder gesammelt hast, nicht eine entfernte Gruppe.",
+    "limits": "Die Bestimmung dauert etwa fünfzehn Sekunden, weil die Arbeit auf deinem Gerät statt in einem Rechenzentrum passiert. Sie deckt die Arten dieser App ab, plus etwa tausend weitere aus denselben Regionen; alles darüber hinaus wird nur mit dem wissenschaftlichen Namen und ohne Sicherheitsangaben gezeigt. Iss nichts auf Grundlage dieser App - eine Fehlbestimmung kann tödlich sein."
   }
 }
