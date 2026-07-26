@@ -424,9 +424,6 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
 
           {phase.name === 'capture' && (
             <section className='space-y-3'>
-              <div className='rounded-lg border border-amber-400 bg-amber-50 p-3 text-amber-900 dark:border-amber-600 dark:bg-amber-950/40 dark:text-amber-100'>
-                <p className='text-sm'>{t('disclaimer.beforeCapture')}</p>
-              </div>
               <p className='text-sm text-muted-foreground'>
                 {t('capture.hint')}
               </p>

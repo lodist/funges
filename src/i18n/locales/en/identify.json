@@ -2,9 +2,8 @@
   "title": "Identify",
   "openButton": "Identify from a photo",
   "disclaimer": {
-    "beforeCapture": "This tool narrows down possible species from a photo. It never confirms that something is safe to eat.",
     "aboveResults": "These are possible matches, not a confirmed identification. A dangerous look-alike can be correct even when it is not the top result.",
-    "neverEat": "Do not eat anything based on this app. A misidentification can be fatal."
+    "neverEat": "Do not eat anything based on this app. A misidentification can be fatal. This tool never confirms that something is safe to eat."
   },
   "capture": {
     "takePhoto": "Take a photo",

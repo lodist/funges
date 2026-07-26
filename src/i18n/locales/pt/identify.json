@@ -2,9 +2,8 @@
   "title": "Identificar",
   "openButton": "Identificar a partir de uma foto",
   "disclaimer": {
-    "beforeCapture": "Esta ferramenta restringe as espécies possíveis a partir de uma foto. Nunca confirma que algo é seguro para comer.",
     "aboveResults": "Estas são correspondências possíveis, não uma identificação confirmada. Um sósia perigoso pode ser o correto mesmo quando não aparece em primeiro lugar.",
-    "neverEat": "Não comas nada com base nesta aplicação. Uma identificação errada pode ser fatal."
+    "neverEat": "Não comas nada com base nesta aplicação. Uma identificação errada pode ser fatal. Esta ferramenta nunca confirma que algo é seguro para comer."
   },
   "capture": {
     "takePhoto": "Tirar uma foto",

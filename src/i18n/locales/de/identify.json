@@ -2,9 +2,8 @@
   "title": "Identifizieren",
   "openButton": "Anhand eines Fotos identifizieren",
   "disclaimer": {
-    "beforeCapture": "Dieses Werkzeug grenzt mögliche Arten anhand eines Fotos ein. Es bestätigt niemals, dass etwas essbar ist.",
     "aboveResults": "Das sind mögliche Übereinstimmungen, keine gesicherte Identifizierung. Ein gefährlicher Doppelgänger kann auch dann richtig sein, wenn er nicht an erster Stelle steht.",
-    "neverEat": "Iss nichts auf Grundlage dieser App. Eine falsche Identifizierung kann tödlich sein."
+    "neverEat": "Iss nichts auf Grundlage dieser App. Eine falsche Identifizierung kann tödlich sein. Dieses Werkzeug bestätigt niemals, dass etwas sicher essbar ist."
   },
   "capture": {
     "takePhoto": "Foto aufnehmen",

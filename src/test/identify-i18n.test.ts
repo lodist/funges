@@ -127,7 +127,6 @@ describe('safety framing survives translation', () => {
   it.each(['en', ...OTHERS])('%s keeps the three disclaimer strings', lang => {
     const flat = FLAT[lang];
 
-    expect(flat['disclaimer.beforeCapture']).toBeTruthy();
     expect(flat['disclaimer.aboveResults']).toBeTruthy();
     expect(flat['disclaimer.neverEat']).toBeTruthy();
   });
