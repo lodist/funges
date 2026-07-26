@@ -59,12 +59,23 @@ describe('selfCheckInput', () => {
     expect(sum).toBeCloseTo(-1795.694135, 3);
   });
 
+  // Aggregate then assert once. Asserting per element is ~301k expect() calls
+  // for one fact, which is slow enough to trip the default test timeout — this
+  // test failed for exactly that reason before being rewritten.
   it('stays inside the normalised input range', () => {
     const input = selfCheckInput();
+    let min = Infinity;
+    let max = -Infinity;
     for (let i = 0; i < input.length; i++) {
-      expect(input[i]).toBeGreaterThanOrEqual(-1);
-      expect(input[i]).toBeLessThanOrEqual(1);
+      if (input[i] < min) min = input[i];
+      if (input[i] > max) max = input[i];
     }
+    expect(min).toBeGreaterThanOrEqual(-1);
+    expect(max).toBeLessThanOrEqual(1);
+    // Both ends actually reached, so this cannot pass on a degenerate constant
+    // array that would also satisfy the bounds.
+    expect(min).toBeLessThan(-0.9);
+    expect(max).toBeGreaterThan(0.9);
   });
 });
 

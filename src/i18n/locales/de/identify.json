@@ -16,6 +16,8 @@
   "status": {
     "preparing": "Vorbereiten…",
     "identifying": "Wird bestimmt…",
+    "identifyingLonger": "Das Eichhörnchen blättert im Bestimmungsbuch…",
+    "identifyingLongest": "Dauert noch — dein Handy rechnet alles selbst, nichts verlässt das Gerät.",
     "failed": "Bestimmung fehlgeschlagen",
     "unreadable": "Dieses Foto konnte nicht gelesen werden. Versuche ein anderes oder wähle es aus der Galerie statt der Kamera.",
     "backendWrong": "Die Erkennung liefert auf der Grafikhardware dieses Geräts keine korrekten Ergebnisse. Es wird auf den langsameren, aber korrekten Modus umgeschaltet — wenn das weiterhin fehlschlägt, entferne das Modell und lade es neu.",

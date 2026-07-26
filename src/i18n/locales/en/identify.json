@@ -16,6 +16,8 @@
   "status": {
     "preparing": "Preparing…",
     "identifying": "Identifying…",
+    "identifyingLonger": "The squirrel is flipping through the field guide…",
+    "identifyingLongest": "Still going — your phone is doing all the thinking, nothing leaves the device.",
     "failed": "Identification failed",
     "unreadable": "That photo could not be read. Try another one, or pick it from your gallery instead of the camera.",
     "backendWrong": "Identification cannot run correctly on this device's graphics hardware. Switching to the slower but correct mode — if this keeps failing, remove and re-download the model.",

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Camera, ImageIcon, Loader2 } from 'lucide-react';
+import { Camera, ImageIcon } from 'lucide-react';
+import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -62,6 +63,24 @@ type Phase =
 
 const formatMb = (bytes: number) => `${Math.round(bytes / 1e6)} MB`;
 
+/**
+ * Wait messages, escalating with elapsed time.
+ *
+ * On-device inference takes ~15s on a mid-range phone (the matmuls run on the
+ * CPU there), and a single unchanging "Identifying…" for that long reads as a
+ * hung app. The third message is not decoration: at 15s the user is deciding
+ * whether it is broken, so it says explicitly that it is still working AND why
+ * it is slow — the computation is happening on their phone, which is the same
+ * fact that justifies the download in the first place.
+ */
+const WORKING_MESSAGES = [
+  'status.identifying',
+  'status.identifyingLonger',
+  'status.identifyingLongest',
+] as const;
+
+const WORKING_STAGE_MS = [5000, 15000] as const;
+
 export interface IdentifyPanelProps {
   open: boolean;
   onClose: () => void;
@@ -73,6 +92,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   const [phase, setPhase] = useState<Phase>({ name: 'capture' });
   const [provider, setProvider] = useState<string | null>(null);
   const [probeProvider, setProbeProvider] = useState<string | null>(null);
+  const [workingStage, setWorkingStage] = useState(0);
 
   const sessionRef = useRef<BioclipSession | null>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -126,6 +146,17 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       cancelled = true;
     };
   }, [open]);
+
+  // Two timeouts rather than a per-second interval: only two thresholds matter,
+  // so ticking every second would re-render ~15 times to change text twice.
+  useEffect(() => {
+    if (phase.name !== 'working') return;
+    setWorkingStage(0);
+    const timers = WORKING_STAGE_MS.map((ms, i) =>
+      window.setTimeout(() => setWorkingStage(i + 1), ms)
+    );
+    return () => timers.forEach(clearTimeout);
+  }, [phase.name]);
 
   useEffect(
     () => () => {
@@ -413,10 +444,23 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
           )}
 
           {phase.name === 'working' && (
-            <p className='flex items-center gap-2 text-sm' role='status'>
-              <Loader2 className='h-4 w-4 animate-spin' />
-              {t('status.identifying')}
-            </p>
+            <div className='flex flex-col items-center gap-2 py-2'>
+              {/* The squirrel already means "working" everywhere else in this app
+                (AdvancedMap uses it at h-80 while the map loads), so reusing it
+                here costs no new asset and no new vocabulary. Much smaller than
+                on the map: this sits inside a dialog next to real content. */}
+              <img
+                src={LoadingSquirrel}
+                alt=''
+                aria-hidden='true'
+                className='h-20 w-20'
+              />
+              {/* aria-live on the text, not the image, so a screen reader
+                announces each new message rather than the decorative gif. */}
+              <p className='text-center text-sm' role='status'>
+                {t(WORKING_MESSAGES[workingStage])}
+              </p>
+            </div>
           )}
 
           {phase.name === 'results' && (

@@ -16,6 +16,8 @@
   "status": {
     "preparing": "A preparar…",
     "identifying": "A identificar…",
+    "identifyingLonger": "O esquilo está a folhear o guia de campo…",
+    "identifyingLongest": "Ainda a trabalhar — é o teu telemóvel a fazer as contas, nada sai do dispositivo.",
     "failed": "A identificação falhou",
     "unreadable": "Não foi possível ler esta fotografia. Tenta outra ou escolhe-a da galeria em vez da câmara.",
     "backendWrong": "A identificação não consegue funcionar corretamente no hardware gráfico deste dispositivo. A mudar para o modo mais lento mas correto — se continuar a falhar, remove o modelo e descarrega-o novamente.",
