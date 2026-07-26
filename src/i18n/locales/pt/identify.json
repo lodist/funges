@@ -16,7 +16,7 @@
   "status": {
     "preparing": "A preparar…",
     "identifying": "A identificar…",
-    "identifyingLonger": "O esquilo está a folhear o guia de campo…",
+    "identifyingLonger": "A comparar com {{total}} espécies…",
     "identifyingLongest": "Ainda a trabalhar — é o teu telemóvel a fazer as contas, nada sai do dispositivo.",
     "failed": "A identificação falhou",
     "unreadable": "Não foi possível ler esta fotografia. Tenta outra ou escolhe-a da galeria em vez da câmara.",

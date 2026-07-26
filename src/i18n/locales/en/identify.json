@@ -16,7 +16,7 @@
   "status": {
     "preparing": "Preparing…",
     "identifying": "Identifying…",
-    "identifyingLonger": "The squirrel is flipping through the field guide…",
+    "identifyingLonger": "Comparing against {{total}} species…",
     "identifyingLongest": "Still going — your phone is doing all the thinking, nothing leaves the device.",
     "failed": "Identification failed",
     "unreadable": "That photo could not be read. Try another one, or pick it from your gallery instead of the camera.",

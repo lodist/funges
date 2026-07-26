@@ -16,7 +16,7 @@
   "status": {
     "preparing": "Vorbereiten…",
     "identifying": "Wird bestimmt…",
-    "identifyingLonger": "Das Eichhörnchen blättert im Bestimmungsbuch…",
+    "identifyingLonger": "Vergleich mit {{total}} Arten…",
     "identifyingLongest": "Dauert noch — dein Handy rechnet alles selbst, nichts verlässt das Gerät.",
     "failed": "Bestimmung fehlgeschlagen",
     "unreadable": "Dieses Foto konnte nicht gelesen werden. Versuche ein anderes oder wähle es aus der Galerie statt der Kamera.",

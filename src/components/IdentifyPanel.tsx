@@ -27,6 +27,7 @@ import {
   type VariantSpec,
 } from '@/lib/bioclip/variant';
 import { runSelfCheck } from '@/lib/bioclip/selfCheck';
+import { BIOCLIP_LABELS } from '@/data/bioclip-labels';
 import { resolvePredictions, type Candidate } from '@/lib/photo-id';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -72,6 +73,11 @@ const formatMb = (bytes: number) => `${Math.round(bytes / 1e6)} MB`;
  * whether it is broken, so it says explicitly that it is still working AND why
  * it is slow — the computation is happening on their phone, which is the same
  * fact that justifies the download in the first place.
+ *
+ * The species count in the second message is derived from BIOCLIP_LABELS rather
+ * than written into the copy, so it cannot drift out of date when the vocabulary
+ * changes — and it is passed as `total`, NOT `count`, because i18next reserves
+ * `count` for pluralisation and would look for `_one`/`_other` variants instead.
  */
 const WORKING_MESSAGES = [
   'status.identifying',
@@ -87,7 +93,7 @@ export interface IdentifyPanelProps {
 }
 
 export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
-  const { t } = useTranslation('identify');
+  const { t, i18n } = useTranslation('identify');
   const isMobile = useIsMobile();
   const [phase, setPhase] = useState<Phase>({ name: 'capture' });
   const [provider, setProvider] = useState<string | null>(null);
@@ -458,7 +464,9 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
               {/* aria-live on the text, not the image, so a screen reader
                 announces each new message rather than the decorative gif. */}
               <p className='text-center text-sm' role='status'>
-                {t(WORKING_MESSAGES[workingStage])}
+                {t(WORKING_MESSAGES[workingStage], {
+                  total: BIOCLIP_LABELS.length.toLocaleString(i18n.language),
+                })}
               </p>
             </div>
           )}

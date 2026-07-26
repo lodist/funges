@@ -16,7 +16,7 @@
   "status": {
     "preparing": "Preparazione…",
     "identifying": "Identificazione…",
-    "identifyingLonger": "Lo scoiattolo sta sfogliando la guida da campo…",
+    "identifyingLonger": "Confronto con {{total}} specie…",
     "identifyingLongest": "Ci vuole ancora un po': è il tuo telefono a fare i calcoli, niente lascia il dispositivo.",
     "failed": "Identificazione non riuscita",
     "unreadable": "Non è stato possibile leggere questa foto. Provane un'altra oppure scegliela dalla galleria invece della fotocamera.",

@@ -16,7 +16,7 @@
   "status": {
     "preparing": "Preparando…",
     "identifying": "Identificando…",
-    "identifyingLonger": "La ardilla está hojeando la guía de campo…",
+    "identifyingLonger": "Comparando con {{total}} especies…",
     "identifyingLongest": "Sigue en marcha: tu móvil hace todo el trabajo, nada sale del dispositivo.",
     "failed": "La identificación ha fallado",
     "unreadable": "No se ha podido leer esa foto. Prueba con otra o elígela de la galería en lugar de la cámara.",
