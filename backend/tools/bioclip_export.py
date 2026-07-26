@@ -750,6 +750,8 @@ def stage_text_matrix():
     from bioclip_spike import (
         CATALOG,
         CATALOG_NAMES,
+        CULTIVATED,
+        CULTIVATED_NAMES,
         TOXIC,
         TOXIC_NAMES,
         resolve_taxon,
@@ -786,6 +788,31 @@ def stage_text_matrix():
         (CACHE / "lineages.json").write_text(json.dumps(resolved, indent=2))
         print(f"cached {len(resolved) - len(lineages)} new lineage(s)")
     lineages = resolved
+
+    # Cultivated and culinary species join tier 2. They are not in the regional
+    # observation data (nobody logs a supermarket champignon on iNaturalist), but
+    # people photograph them, and without a label of their own the closed-set
+    # model forces them onto their nearest neighbour - which for parsley and
+    # champignon is a species flagged as toxic.
+    cultivated_ranks = {name: rank for name, rank in CULTIVATED}
+    failed = []
+    for name in sorted(CULTIVATED_NAMES - set(wide_lineages)):
+        if name in lineages:
+            wide_lineages[name] = lineages[name]
+            continue
+        try:
+            print(f"fetching lineage for cultivated label {name!r}...")
+            wide_lineages[name] = resolve_taxon(
+                name, cultivated_ranks.get(name, "species")
+            )["lineage"]
+        except Exception as exc:  # noqa: BLE001 - reported in full below
+            failed.append(f"{name}: {exc}")
+    if failed:
+        # All at once rather than one per run: a taxon renamed by iNaturalist is
+        # a data fix, and finding them one round trip at a time is wasteful.
+        raise SystemExit(
+            "could not resolve cultivated labels:\n  " + "\n  ".join(failed)
+        )
 
     tier2 = sorted(set(wide_lineages) - set(tier1))
     tier2_lineages = {k: v for k, v in wide_lineages.items() if k in set(tier2)}

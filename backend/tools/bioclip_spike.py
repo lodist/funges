@@ -111,6 +111,41 @@ TOXIC = [
     ("Paris quadrifolia", "species"),          # -> Vaccinium myrtillus
 ]
 
+
+# --- cultivated and culinary species, shipped as TIER 2 ---
+# Named, with no edibility claim. Present because the model is a closed set and
+# will otherwise force these onto their nearest neighbour - which for parsley and
+# champignon is a species we flag as toxic. See the comment above CULTIVATED in
+# the module docstring of bioclip_export.py --stage text-matrix.
+CULTIVATED = [
+    # Edible counterparts to toxics we flag. These four are the safety-relevant
+    # ones: without them, an everyday find has only a toxic nearest neighbour.
+    ("Agaricus bisporus", "species"),      # champignon, cremini, portobello
+    ("Agaricus campestris", "species"),    # field mushroom -> A. xanthodermus
+    ("Hypholoma capnoides", "species"),    # edible twin of H. fasciculare
+    ("Volvariella volvacea", "species"),   # paddy straw
+    # Cultivated mushrooms not already covered.
+    ("Hypsizygus tessulatus", "species"),   # shimeji; NOT "tessellatus"
+    ("Tremella fuciformis", "species"),
+    # Culinary herbs. Parsley is the other safety-relevant one: hemlock and
+    # fool's parsley are both flagged, parsley itself was not present.
+    ("Ocimum basilicum", "species"),
+    ("Petroselinum crispum", "species"),
+    ("Coriandrum sativum", "species"),
+    ("Anethum graveolens", "species"),
+    ("Allium schoenoprasum", "species"),
+    ("Laurus nobilis", "species"),
+    ("Salvia officinalis", "species"),
+    ("Thymus vulgaris", "species"),
+    ("Salvia rosmarinus", "species"),      # iNat moved rosemary out of Rosmarinus
+    ("Origanum majorana", "species"),
+    ("Melissa officinalis", "species"),
+    ("Artemisia dracunculus", "species"),
+    ("Levisticum officinale", "species"),
+    ("Mentha spicata", "species"),
+]
+
+CULTIVATED_NAMES = {name for name, _ in CULTIVATED}
 CATALOG_NAMES = {name for name, _ in CATALOG}
 TOXIC_NAMES = {name for name, _ in TOXIC}
 
