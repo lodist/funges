@@ -14,6 +14,12 @@
     "title": "Données de localisation",
     "content": "Pour centrer la carte sur votre position et afficher les lieux de cueillette à proximité, l'application demande l'accès à la localisation de votre appareil. Cette localisation est utilisée uniquement sur votre appareil pour afficher la carte et n'est jamais transmise ni stockée sur nos serveurs. Vous pouvez refuser ou révoquer cette autorisation à tout moment dans les paramètres de votre navigateur ou de votre appareil sans perdre l'accès au reste de l'application."
   },
+  "photos": {
+    "title": "Photos et identification des espèces",
+    "content": "L'identification d'une espèce à partir d'une photo fonctionne entièrement sur ton appareil. Les photos que tu prends ou sélectionnes sont analysées localement dans ton navigateur et ne sont jamais téléversées, jamais transmises à un serveur, et jamais conservées par ce service. Rien d'une photo ne quitte ton appareil, y compris les informations de localisation que ton appareil photo y a enregistrées.",
+    "model": "Pour que l'identification sur l'appareil soit possible, un modèle de reconnaissance est téléchargé une fois et conservé dans le stockage du navigateur. Ce téléchargement est une requête ordinaire pour un fichier auprès du fournisseur de stockage, qui conserve des journaux de serveur habituels comme l'adresse IP, comme tout serveur web ; la requête ne transporte aucune information sur toi ni sur tes photos. Tu peux supprimer le modèle de ton appareil à tout moment depuis l'écran d'identification.",
+    "camera": "L'application n'a aucun accès continu à ton appareil photo. Prendre une photo ouvre l'appareil photo de ton téléphone, et seule la photo que tu choisis est transmise à l'application."
+  },
   "rights": {
     "title": "Vos droits",
     "intro": "Même si ce service ne collecte pas de données directement, vous devez être informé de vos droits selon la Loi fédérale suisse sur la protection des données (LPD) et le Règlement général sur la protection des données (RGPD) lors de l'utilisation de services tiers :",
@@ -43,5 +49,5 @@
     "intro": "Pour toute question ou préoccupation concernant cette politique de confidentialité, veuillez contacter :",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Dernière mise à jour : 15.01.2025"
+  "lastUpdated": "Dernière mise à jour : 26.07.2026"
 }

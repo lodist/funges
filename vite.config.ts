@@ -62,12 +62,16 @@ export default defineConfig({
               cacheableResponse: { statuses: [0, 200] },
             },
           },
-          // Precomputed BioCLIP text-embedding matrix (~1.6MB). Small enough to
-          // precache, but kept on runtime caching so adding `bin` to
-          // globPatterns cannot later pull in some unrelated large binary and
-          // break the build.
+          // Precomputed BioCLIP text-embedding matrix (~1.6MB). Kept on runtime
+          // caching rather than precache so adding `bin` to globPatterns cannot
+          // later pull in some unrelated large binary and break the build.
+          //
+          // Matched under /assets/ because it is imported as a Vite asset and so
+          // carries a content hash. That is what makes a year-long TTL safe: new
+          // content is a new URL, so this cache cannot serve a matrix that
+          // disagrees with the labels file it is index-aligned to.
           {
-            urlPattern: /\/models\/.*\.bin$/i,
+            urlPattern: /\/assets\/.*\.bin$/i,
             handler: 'CacheFirst',
             options: {
               cacheName: 'bioclip-labels-cache',

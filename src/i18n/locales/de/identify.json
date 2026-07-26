@@ -65,7 +65,9 @@
       "coniine": "Enthält Coniin, das Gift des Schierlings. Es lähmt die Atemmuskulatur. Schon sehr kleine Mengen sind tödlich.",
       "tropane": "Enthält Tropanalkaloide. Eine Handvoll Beeren kann ein Kind töten. Der süße Geschmack ist keine Warnung.",
       "poorEdibility": "Nicht gefährlich, aber geschmacklich schlecht und leicht mit etwas Besserem zu verwechseln.",
-      "bitter": "Nicht giftig, aber so bitter, dass ein einziges Exemplar ein ganzes Gericht verdirbt."
+      "bitter": "Nicht giftig, aber so bitter, dass ein einziges Exemplar ein ganzes Gericht verdirbt.",
+      "taxine": "Enthält Taxin-Alkaloide, die das Herz zum Stillstand bringen. Alle Teile ausser dem roten Fruchtfleisch des Samenmantels sind tödlich, auch der Samen darin. Keine Zubereitung macht die Pflanze essbar.",
+      "immuneHaemolysis": "Löst eine Immunreaktion aus, die rote Blutkörperchen zerstört. Sie baut sich über wiederholte Mahlzeiten auf, frühere beschwerdefreie Mahlzeiten sind also keine Sicherheit - die Vergiftung kann nach Jahren auftreten."
     },
     "checks": {
       "volva": "Schau ganz unten am Stiel, unterhalb der Erdoberfläche: eine häutige Scheide oder ein aufgeblasener Becher dort ist ein ernstes Warnzeichen.",
@@ -89,10 +91,12 @@
       "leafShape": "Blattumriss und Nervatur, auch ob die Blattbasis pfeilförmig ist.",
       "stemMarkings": "Ob der Stängel hohl, gerieft oder purpurn gefleckt ist - und ob er beim Zerreiben unangenehm riecht.",
       "berryArrangement": "Ob die Beerenstände unter den Zweigen herabhängen oder aufrecht über dem Laub stehen.",
-      "plantHabit": "Ob die Pflanze ein verholzter Strauch ist oder ein weiches Kraut, das jedes Jahr zurückstirbt."
+      "plantHabit": "Ob die Pflanze ein verholzter Strauch ist oder ein weiches Kraut, das jedes Jahr zurückstirbt.",
+      "interiorPattern": "Halbiere ihn. Ein echter Trüffel ist mit hellen, verzweigten Adern marmoriert. Ein falscher Trüffel ist eine feste dunkle Masse, violett bis schwarz, ohne Muster."
     },
     "critical": {
-      "lepiotaMacrolepiota": "Tödliche Schirmlinge der Gattung Lepiota gehören zu den gefährlichsten Doppelgängern des Parasolpilzes, und das war in unseren Tests der häufigste Fehler überhaupt. Ein echter Parasol ist groß, hat einen verschiebbaren Ring und einen schlangenhautartig genatterten Stiel. Kleine Exemplare mit glattem Stiel solltest du stehen lassen, auch wenn sie richtig aussehen."
+      "lepiotaMacrolepiota": "Tödliche Schirmlinge der Gattung Lepiota gehören zu den gefährlichsten Doppelgängern des Parasolpilzes, und das war in unseren Tests der häufigste Fehler überhaupt. Ein echter Parasol ist groß, hat einen verschiebbaren Ring und einen schlangenhautartig genatterten Stiel. Kleine Exemplare mit glattem Stiel solltest du stehen lassen, auch wenn sie richtig aussehen.",
+      "trufflePair": "Unter den Treffern sind sowohl ein Trüffel als auch ein giftiger falscher Trüffel. Von aussen sind sie kaum zu unterscheiden. Schneide den Fund zuerst auf: helle marmorierte Adern bedeuten Trüffel, ein festes dunkles Inneres bedeutet falscher Trüffel."
     }
   }
 }

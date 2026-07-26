@@ -206,10 +206,13 @@ describe('critical confusion escalation', () => {
 });
 
 describe('data integrity', () => {
-  it('has 22 toxic species with unique ids and names', () => {
-    expect(TOXIC_SPECIES).toHaveLength(22);
-    expect(new Set(TOXIC_SPECIES.map(t => t.id)).size).toBe(22);
-    expect(new Set(TOXIC_SPECIES.map(t => t.scientificName)).size).toBe(22);
+  // Pinned on purpose. The count is not interesting in itself, but an accidental
+  // deletion here silently removes a warning, and a duplicate id or name makes
+  // one entry unreachable — neither throws anywhere else.
+  it('has 35 toxic species with unique ids and names', () => {
+    expect(TOXIC_SPECIES).toHaveLength(35);
+    expect(new Set(TOXIC_SPECIES.map(t => t.id)).size).toBe(35);
+    expect(new Set(TOXIC_SPECIES.map(t => t.scientificName)).size).toBe(35);
   });
 
   it('references only real catalog ids in confusedWithSpeciesIds', () => {
@@ -337,12 +340,14 @@ describe('catalog is reachable from the model vocabulary', () => {
   };
 
   /**
-   * Deliberately absent, documented in the spike results (section 5,
-   * Exclusions): Tuber melanosporum is subterranean, so every photo of it is
-   * harvested truffles on a table rather than anything a forager can point a
-   * camera at in a forest.
+   * Empty, and it should stay that way.
+   *
+   * Tuber melanosporum used to sit here, excluded as subterranean. That was
+   * wrong: a dug-up truffle on a table is exactly what gets photographed, and
+   * exactly when telling it from a poisonous Scleroderma matters. It was added
+   * together with both Scleroderma species — never before them.
    */
-  const KNOWN_ABSENT = new Set(['Tuber melanosporum']);
+  const KNOWN_ABSENT = new Set<string>();
 
   // Resolving a name correctly is not the same as the model being ABLE to
   // predict it: the matcher works on any string, while only names present in
@@ -357,25 +362,44 @@ describe('catalog is reachable from the model vocabulary', () => {
     expect(unreachable).toEqual([]);
   });
 
-  // Goes red if the exclusion is ever resolved, so the allowance above cannot
-  // outlive its reason.
-  it('still excludes Tuber melanosporum', () => {
-    const vocabulary = new Set(BIOCLIP_LABELS.map(l => l.scientificName));
-    expect(vocabulary.has('Tuber melanosporum')).toBe(false);
-  });
+  // The pairing is the safety property, not either label on its own. An edible
+  // truffle label without its poisonous look-alike flagged would let a dug-up
+  // Scleroderma surface as an edible catalog row, which is the specific failure
+  // this feature exists to prevent.
+  it('flags Scleroderma as toxic now that the truffle is edible', () => {
+    const vocabulary = new Map(
+      BIOCLIP_LABELS.map(l => [l.scientificName, l.kind])
+    );
+    expect(vocabulary.get('Tuber melanosporum')).toBe('catalog');
 
-  // Its poisonous look-alike, Scleroderma, sits in tier 2 with no safety
-  // information. That is only acceptable while the truffle itself is absent: if
-  // the truffle is ever added as an edible label, Scleroderma must become a
-  // toxic label first, or a photo of a poisonous false truffle could surface an
-  // edible catalog row.
-  it('keeps Scleroderma out of the edible catalog', () => {
     const scleroderma = BIOCLIP_LABELS.filter(l =>
       l.scientificName.startsWith('Scleroderma')
     );
     expect(scleroderma.length).toBeGreaterThan(0);
     for (const label of scleroderma) {
-      expect(label.kind).not.toBe('catalog');
+      expect(label.kind).toBe('toxic');
+    }
+  });
+
+  // Both turned up unflagged in a real result set during device testing, showing
+  // "no safety information" for a lethal yew and a toxic jack-o'-lantern.
+  it('flags the species that were found unflagged on a device', () => {
+    const vocabulary = new Map(
+      BIOCLIP_LABELS.map(l => [l.scientificName, l.kind])
+    );
+    expect(vocabulary.get('Taxus baccata')).toBe('toxic');
+    expect(vocabulary.get('Omphalotus illudens')).toBe('toxic');
+  });
+
+  // Omphalotus olearius was flagged while its three siblings were not, so the
+  // warning depended on which of them the model happened to name.
+  it('flags every Omphalotus, not just the one that was in the list first', () => {
+    const omphalotus = BIOCLIP_LABELS.filter(l =>
+      l.scientificName.startsWith('Omphalotus')
+    );
+    expect(omphalotus.length).toBeGreaterThanOrEqual(4);
+    for (const label of omphalotus) {
+      expect(label.kind).toBe('toxic');
     }
   });
 });

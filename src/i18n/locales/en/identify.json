@@ -65,7 +65,9 @@
       "coniine": "Contains coniine, the poison in hemlock. It paralyses the muscles used for breathing. Very small amounts are fatal.",
       "tropane": "Contains tropane alkaloids. A handful of berries can kill a child. Sweet taste offers no warning.",
       "poorEdibility": "Not dangerous, but poor eating and easily mistaken for something better.",
-      "bitter": "Not poisonous, but so bitter that a single specimen ruins a whole dish."
+      "bitter": "Not poisonous, but so bitter that a single specimen ruins a whole dish.",
+      "taxine": "Contains taxine alkaloids, which stop the heart. All parts except the red flesh of the aril are lethal, including the seed inside it. There is no home preparation that makes it safe.",
+      "immuneHaemolysis": "Triggers an immune reaction that destroys red blood cells. It builds up over repeated meals, so having eaten it before safely is no reassurance at all - the poisoning can arrive after years of eating it."
     },
     "checks": {
       "volva": "Look at the very base of the stem, below ground level: a sac-like bag or swollen cup there is a serious warning sign.",
@@ -89,10 +91,12 @@
       "leafShape": "Leaf outline and veining, including whether the base is arrow-shaped.",
       "stemMarkings": "Whether the stem is hollow, ridged, or blotched with purple - and whether it smells unpleasant when crushed.",
       "berryArrangement": "Whether berry clusters droop below the branches or stand upright above the foliage.",
-      "plantHabit": "Whether the plant is a woody shrub or a soft green herb dying back each year."
+      "plantHabit": "Whether the plant is a woody shrub or a soft green herb dying back each year.",
+      "interiorPattern": "Cut it in half. A true truffle is marbled with pale branching veins. A false truffle is a solid dark mass, purple to black, with no pattern."
     },
     "critical": {
-      "lepiotaMacrolepiota": "Deadly Lepiota species are among the most dangerous look-alikes for the Parasol mushroom, and this was the single most frequent mistake in our testing. A true Parasol is large, with a movable ring and a snakeskin-patterned stem. Small specimens with a plain stem should be left alone even if they look right."
+      "lepiotaMacrolepiota": "Deadly Lepiota species are among the most dangerous look-alikes for the Parasol mushroom, and this was the single most frequent mistake in our testing. A true Parasol is large, with a movable ring and a snakeskin-patterned stem. Small specimens with a plain stem should be left alone even if they look right.",
+      "trufflePair": "Both a truffle and a poisonous false truffle are among the matches. From the outside they are genuinely hard to tell apart. Cut the find open before anything else: marbled pale veins mean truffle, a solid dark interior means false truffle."
     }
   }
 }

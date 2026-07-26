@@ -65,7 +65,9 @@
       "coniine": "Contiene coniina, il veleno della cicuta. Paralizza i muscoli respiratori. Quantità molto piccole sono mortali.",
       "tropane": "Contiene alcaloidi tropanici. Una manciata di bacche può uccidere un bambino. Il sapore dolce non dà alcun avvertimento.",
       "poorEdibility": "Non pericoloso, ma di scarsa qualità e facile da confondere con qualcosa di meglio.",
-      "bitter": "Non velenoso, ma così amaro che un solo esemplare rovina un intero piatto."
+      "bitter": "Non velenoso, ma così amaro che un solo esemplare rovina un intero piatto.",
+      "taxine": "Contiene alcaloidi tassinici, che arrestano il cuore. Tutte le parti tranne la polpa rossa dell'arillo sono mortali, compreso il seme al suo interno. Nessuna preparazione domestica la rende sicura.",
+      "immuneHaemolysis": "Provoca una reazione immunitaria che distrugge i globuli rossi. Si accumula con pasti ripetuti, quindi averlo mangiato senza problemi non è una garanzia: l'avvelenamento può arrivare dopo anni."
     },
     "checks": {
       "volva": "Guarda alla base del gambo, sotto il livello del terreno: una volva a sacco o una coppa rigonfia in quel punto è un segnale d'allarme serio.",
@@ -89,10 +91,12 @@
       "leafShape": "Il contorno e le nervature della foglia, compreso se la base è a forma di freccia.",
       "stemMarkings": "Se il fusto è cavo, scanalato o macchiato di porpora - e se ha un odore sgradevole quando lo strofini.",
       "berryArrangement": "Se i grappoli di bacche pendono sotto i rami o restano eretti sopra il fogliame.",
-      "plantHabit": "Se la pianta è un arbusto legnoso o un'erba tenera che secca ogni anno."
+      "plantHabit": "Se la pianta è un arbusto legnoso o un'erba tenera che secca ogni anno.",
+      "interiorPattern": "Taglialo a metà. Un tartufo vero è marmorizzato da venature chiare ramificate. Un falso tartufo è una massa scura e compatta, dal violaceo al nero, senza disegno."
     },
     "critical": {
-      "lepiotaMacrolepiota": "Le Lepiota mortali sono tra i sosia più pericolosi della mazza di tamburo, e nei nostri test è stato l'errore più frequente in assoluto. Una vera mazza di tamburo è grande, con un anello scorrevole e un gambo con disegno a pelle di serpente. Gli esemplari piccoli con il gambo liscio vanno lasciati dove sono, anche se sembrano quelli giusti."
+      "lepiotaMacrolepiota": "Le Lepiota mortali sono tra i sosia più pericolosi della mazza di tamburo, e nei nostri test è stato l'errore più frequente in assoluto. Una vera mazza di tamburo è grande, con un anello scorrevole e un gambo con disegno a pelle di serpente. Gli esemplari piccoli con il gambo liscio vanno lasciati dove sono, anche se sembrano quelli giusti.",
+      "trufflePair": "Tra le corrispondenze ci sono sia un tartufo sia un falso tartufo velenoso. Da fuori sono davvero difficili da distinguere. Taglia il ritrovamento prima di tutto: venature chiare marmorizzate indicano tartufo, un interno scuro e compatto indica falso tartufo."
     }
   }
 }

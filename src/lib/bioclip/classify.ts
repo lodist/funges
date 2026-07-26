@@ -1,4 +1,5 @@
 import { BIOCLIP_EMBEDDING_DIM, BIOCLIP_LABELS } from '@/data/bioclip-labels';
+import textMatrixUrl from '@/assets/bioclip_text_embeddings.f16.bin?url';
 import { registerTier2Vocabulary, type Prediction } from '@/lib/photo-id';
 
 /**
@@ -13,8 +14,19 @@ import { registerTier2Vocabulary, type Prediction } from '@/lib/photo-id';
  * confidence a user sees is not the confidence the gate was measured against.
  */
 
-/** Matches the `.bin` produced by `bioclip_export.py --stage text-matrix`. */
-export const TEXT_MATRIX_URL = `${import.meta.env.BASE_URL}models/bioclip_text_embeddings.f16.bin`;
+/**
+ * Imported as an asset, NOT served from public/, so Vite content-hashes the URL.
+ *
+ * This matters more than it looks. The matrix is cached CacheFirst for a year,
+ * and at a stable filename (`/models/bioclip_text_embeddings.f16.bin`) adding a
+ * single species would have served every existing user the OLD matrix against
+ * the NEW labels file. The length guard below turns that into a thrown error
+ * rather than silent mispairing — so the feature would have been dead for up to
+ * a year instead of subtly wrong. A content hash makes new content a new URL, so
+ * the stale copy is unreachable by construction.
+ */
+
+export const TEXT_MATRIX_URL = textMatrixUrl;
 
 /** CLIP's logit scale. Same constant as the Python side. */
 const LOGIT_SCALE = 100;

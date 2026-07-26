@@ -14,6 +14,12 @@
     "title": "Dados de Localização",
     "content": "Para centralizar o mapa na sua posição e mostrar locais de coleta próximos, o aplicativo solicita acesso à localização do seu dispositivo. Essa localização é usada apenas no seu dispositivo para exibir o mapa e nunca é transmitida ou armazenada em nossos servidores. Você pode negar ou revogar essa permissão a qualquer momento nas configurações do navegador ou do dispositivo sem perder o acesso ao restante do aplicativo."
   },
+  "photos": {
+    "title": "Fotografias e identificação de espécies",
+    "content": "A identificação de espécies a partir de uma fotografia corre inteiramente no teu dispositivo. As fotografias que tiras ou seleccionas são analisadas localmente no navegador e nunca são carregadas, nunca são transmitidas para qualquer servidor e nunca são conservadas por este serviço. Nada de uma fotografia sai do teu dispositivo, incluindo a informação de localização que a câmara nela tenha guardado.",
+    "model": "Para que a identificação no dispositivo seja possível, um modelo de reconhecimento é descarregado uma vez e mantido no armazenamento do navegador. Esse descarregamento é um pedido comum de um ficheiro ao fornecedor de armazenamento, que mantém registos de servidor habituais como o endereço IP, como qualquer servidor web; o pedido não transporta informação sobre ti nem sobre as tuas fotografias. Podes eliminar o modelo do teu dispositivo em qualquer momento a partir do ecrã de identificação.",
+    "camera": "A aplicação não tem acesso contínuo à tua câmara. Tirar uma fotografia abre a câmara do teu dispositivo, e apenas a fotografia que escolheres é passada à aplicação."
+  },
   "rights": {
     "title": "Seus Direitos",
     "intro": "Mesmo que este serviço não colete dados diretamente, você deve estar ciente dos seus direitos segundo a Lei Federal Suíça de Proteção de Dados (FADP) e o Regulamento Geral de Proteção de Dados (GDPR) ao interagir com serviços de terceiros:",
@@ -43,5 +49,5 @@
     "intro": "Para quaisquer dúvidas ou preocupações sobre esta Política de Privacidade, entre em contato:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Última atualização em: 15.01.2025"
+  "lastUpdated": "Última atualização em: 26.07.2026"
 }

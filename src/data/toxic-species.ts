@@ -288,6 +288,212 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     ],
     confusedWithSpeciesIds: ['elderberry', 'elderflower'],
   },
+
+  // --- promoted from tier 2 (2026-07): all 13 were in the model vocabulary
+  // already, showing as "not in this app's catalog - no safety information".
+  // Two of them turned up in a real result set during device testing with no
+  // warning attached: Taxus baccata and Omphalotus illudens. ---
+
+  // The false truffles. Added together with Tuber melanosporum, never after it:
+  // an edible truffle label without these would let a poisonous find surface as
+  // an edible row. The decisive check is cutting it open - a truffle is marbled
+  // with pale veins, a Scleroderma is a solid dark mass.
+  {
+    id: 'scleroderma-citrinum',
+    scientificName: 'Scleroderma citrinum',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.interiorPattern',
+      'toxicity.checks.capStructure',
+    ],
+    confusedWithSpeciesIds: ['truffle_b'],
+    criticalConfusions: [
+      { catalogId: 'truffle_b', noteKey: 'toxicity.critical.trufflePair' },
+    ],
+  },
+  {
+    id: 'scleroderma-polyrhizum',
+    scientificName: 'Scleroderma polyrhizum',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.interiorPattern',
+      'toxicity.checks.capStructure',
+    ],
+    confusedWithSpeciesIds: ['truffle_b'],
+    criticalConfusions: [
+      { catalogId: 'truffle_b', noteKey: 'toxicity.critical.trufflePair' },
+    ],
+  },
+
+  // Yew. The seed inside the red aril is the lethal part, which is why "it
+  // looked like a berry" is not a defence.
+  {
+    id: 'taxus-baccata',
+    scientificName: 'Taxus baccata',
+    category: 'berry',
+    severity: 'lethal',
+    reasonKey: 'toxicity.mechanisms.taxine',
+    checkKeys: [
+      'toxicity.checks.berryArrangement',
+      'toxicity.checks.leafShape',
+      'toxicity.checks.plantHabit',
+    ],
+    confusedWithSpeciesIds: ['lingonb'],
+  },
+
+  // Brown roll-rim. Eaten for decades in parts of Europe before the mechanism
+  // was understood: poisoning is an immune reaction that builds over repeated
+  // meals, so "I have always eaten it" is exactly the wrong reassurance.
+  {
+    id: 'paxillus-involutus',
+    scientificName: 'Paxillus involutus',
+    category: 'mushroom',
+    severity: 'lethal',
+    reasonKey: 'toxicity.mechanisms.immuneHaemolysis',
+    checkKeys: [
+      'toxicity.checks.capStructure',
+      'toxicity.checks.gillAttachment',
+      'toxicity.checks.fleshBruising',
+    ],
+    confusedWithSpeciesIds: [],
+  },
+
+  // Foxglove. The rosette leaves are the risk, not the flowers.
+  {
+    id: 'digitalis-purpurea',
+    scientificName: 'Digitalis purpurea',
+    category: 'plant',
+    severity: 'lethal',
+    reasonKey: 'toxicity.mechanisms.cardiacGlycoside',
+    checkKeys: [
+      'toxicity.checks.leafArrangement',
+      'toxicity.checks.leafShape',
+      'toxicity.checks.plantHabit',
+    ],
+    confusedWithSpeciesIds: [],
+  },
+
+  {
+    id: 'amanita-pantherina',
+    scientificName: 'Amanita pantherina',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.isoxazole',
+    checkKeys: [
+      'toxicity.checks.volva',
+      'toxicity.checks.capWarts',
+      'toxicity.checks.ringAndStem',
+    ],
+    confusedWithSpeciesIds: ['parasol'],
+  },
+
+  // Jack-o-lanterns. O. olearius was already flagged; these three were not,
+  // which made the warning depend on which species the model happened to name.
+  {
+    id: 'omphalotus-illudens',
+    scientificName: 'Omphalotus illudens',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.gillVsRidges',
+      'toxicity.checks.gillAttachment',
+      'toxicity.checks.capAttachment',
+    ],
+    confusedWithSpeciesIds: ['chant', 'oyster-mushroom'],
+  },
+  {
+    id: 'omphalotus-olivascens',
+    scientificName: 'Omphalotus olivascens',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.gillVsRidges',
+      'toxicity.checks.gillAttachment',
+      'toxicity.checks.capAttachment',
+    ],
+    confusedWithSpeciesIds: ['chant', 'oyster-mushroom'],
+  },
+  {
+    id: 'omphalotus-subilludens',
+    scientificName: 'Omphalotus subilludens',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.gillVsRidges',
+      'toxicity.checks.gillAttachment',
+      'toxicity.checks.capAttachment',
+    ],
+    confusedWithSpeciesIds: ['chant', 'oyster-mushroom'],
+  },
+
+  // Yellow-stainer. Bruises chrome yellow at the stem base and smells of ink or
+  // carbolic - the two checks that separate it from an edible field mushroom.
+  {
+    id: 'agaricus-xanthodermus',
+    scientificName: 'Agaricus xanthodermus',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.fleshBruising',
+      'toxicity.checks.smell',
+      'toxicity.checks.ringAndStem',
+    ],
+    confusedWithSpeciesIds: [],
+  },
+
+  // Sulphur tuft. One of the most common toxic mushrooms in Europe, in dense
+  // clusters on stumps where people look for edible clustered species.
+  {
+    id: 'hypholoma-fasciculare',
+    scientificName: 'Hypholoma fasciculare',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.gillColour',
+      'toxicity.checks.capAttachment',
+      'toxicity.checks.smell',
+    ],
+    confusedWithSpeciesIds: ['oyster-mushroom'],
+  },
+
+  {
+    id: 'daphne-mezereum',
+    scientificName: 'Daphne mezereum',
+    category: 'berry',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.berryArrangement',
+      'toxicity.checks.leafArrangement',
+      'toxicity.checks.plantHabit',
+    ],
+    confusedWithSpeciesIds: ['lingonb'],
+  },
+
+  // Herb paris. A single dark berry above a whorl of four leaves, in the same
+  // damp woodland as bilberry.
+  {
+    id: 'paris-quadrifolia',
+    scientificName: 'Paris quadrifolia',
+    category: 'berry',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.leafArrangement',
+      'toxicity.checks.berryArrangement',
+      'toxicity.checks.plantHabit',
+    ],
+    confusedWithSpeciesIds: ['blueberry'],
+  },
 ];
 
 /** Exact-match lookup table. Built once; the matcher never scans the array. */

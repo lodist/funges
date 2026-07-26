@@ -51,8 +51,13 @@ ORT_WEB_BUNDLE = (
 
 # Bundled, not R2 — small enough, and keeping it in the build means it can never
 # be out of step with the labels file it is index-aligned to.
+#
+# In src/assets rather than public/ so Vite content-hashes the emitted URL. At a
+# stable filename the service worker's year-long CacheFirst would serve an old
+# matrix against a new labels file, and adding one species would break the
+# feature for every existing user.
 PUBLIC_MODELS = Path(__file__).resolve().parents[2] / "public" / "models"
-TEXT_MATRIX = PUBLIC_MODELS / "bioclip_text_embeddings.f16.bin"
+TEXT_MATRIX = Path(__file__).resolve().parents[2] / "src" / "assets" / "bioclip_text_embeddings.f16.bin"
 LABELS_TS = Path(__file__).resolve().parents[2] / "src" / "data" / "bioclip-labels.ts"
 
 OPSET = 17
@@ -352,6 +357,80 @@ def _probe_input(numpy):
     idx = numpy.arange(n, dtype=numpy.int64)
     raw = ((idx % 251) * 7 + (idx % 17)) % 256
     return (raw / 255.0 * 2.0 - 1.0).astype(numpy.float32).reshape(PROBE_M, PROBE_K)
+
+
+def stage_verify_shipped():
+    """Re-run the safety gate against the shipped text matrix and labels file.
+
+    Distinct from --stage verify, which reconstructs the text side from the spike
+    cache. This one reads the two artifacts the browser actually loads:
+    src/assets/bioclip_text_embeddings.f16.bin and src/data/bioclip-labels.ts,
+    paired with the int8 image embeddings that ship. So it measures the shipped
+    configuration end to end rather than a faithful reproduction of it.
+
+    This is the gate for a VOCABULARY change. Adding an edible label widens the
+    false-edible surface, and promoting a species from tier 2 to toxic narrows it;
+    neither is visible without re-scoring, because both change the softmax for
+    every photo.
+    """
+    import re
+
+    import numpy as np
+
+    from bioclip_spike import CATALOG_NAMES, _predictions, false_edible_rate
+
+    if not TEXT_MATRIX.exists():
+        raise SystemExit("no text matrix — run --stage text-matrix first")
+
+    # Read the label order from the GENERATED file, so a drift between it and the
+    # matrix shows up here rather than as mislabelled predictions on a phone.
+    ts = LABELS_TS.read_text(encoding="utf-8")
+    labels = re.findall(r"\{ scientificName: '([^']*)', kind: '([^']*)' \}", ts)
+    if not labels:
+        raise SystemExit(f"could not parse labels out of {LABELS_TS.name}")
+    names = [n for n, _ in labels]
+    dim_match = re.search(r"BIOCLIP_EMBEDDING_DIM = (\d+)", ts)
+    dim = int(dim_match.group(1))
+
+    raw = np.frombuffer(TEXT_MATRIX.read_bytes(), dtype=np.float16)
+    if raw.size != len(names) * dim:
+        raise SystemExit(
+            f"matrix holds {raw.size} halves, labels file declares "
+            f"{len(names)} x {dim} = {len(names) * dim}. They have drifted."
+        )
+    text = raw.astype(np.float32).reshape(len(names), dim)
+
+    order = json.loads((CACHE / "embed_order.json").read_text())
+    photos = order["photos"]
+    vectors = np.load(CACHE / "embeddings_int8.npy")
+    if len(vectors) != len(photos):
+        raise SystemExit("cached embeddings do not match embed_order.json")
+
+    idx = [i for i, p in enumerate(photos) if p["split"] == "test"]
+    rows = [photos[i] for i in idx]
+    preds = _predictions(vectors[idx] @ text.T, names, rows)
+
+    kinds = {}
+    for name, kind in labels:
+        kinds.setdefault(kind, 0)
+        kinds[kind] += 1
+    rate = false_edible_rate(preds, CATALOG_NAMES, k=1)
+    toxic_rows = [p for p in preds if p["truth"] not in CATALOG_NAMES]
+
+    print(f"labels: {len(names)} ({kinds})")
+    print(f"test photos: {len(rows)}, of which toxic: {len(toxic_rows)}")
+    print(f"false-edible@1 (SHIPPED artifacts): {rate:.2%}")
+
+    # Same ceiling the feature originally shipped under. Stated as an absolute
+    # rather than a delta because the vocabulary is no longer the one the spike
+    # measured, so a delta would compare two different label sets.
+    CEILING = 0.02
+    if rate > CEILING:
+        raise SystemExit(
+            f"false-edible@1 is {rate:.2%}, over the {CEILING:.0%} ceiling. "
+            "A vocabulary change made the top-1 edible claim less safe."
+        )
+    print(f"within the {CEILING:.0%} ceiling")
 
 
 def stage_probe_model():
@@ -668,21 +747,55 @@ def stage_text_matrix():
     """
     import numpy as np
 
-    order = json.loads((CACHE / "embed_order.json").read_text())
-    tier1 = order["text_labels"]
-    lineages = json.loads((CACHE / "lineages.json").read_text())
+    from bioclip_spike import (
+        CATALOG,
+        CATALOG_NAMES,
+        TOXIC,
+        TOXIC_NAMES,
+        resolve_taxon,
+    )
 
+    # Tier 1 comes from the CODE lists, not from embed_order.json.
+    #
+    # embed_order.json records whatever the last spike run happened to embed, so
+    # taking tier 1 from it pinned the SHIPPED vocabulary to a stale measurement:
+    # promoting a species from tier 2 into TOXIC left the label file unchanged
+    # and surfaced only as a confusing "tier-2 overlaps tier-1" error. What ships
+    # is defined by CATALOG and TOXIC, here.
+    tier1 = sorted(CATALOG_NAMES | TOXIC_NAMES)
+
+    lineages = json.loads((CACHE / "lineages.json").read_text())
     wide_path = CACHE / "wide_vocab.json"
-    tier2_lineages = json.loads(wide_path.read_text()) if wide_path.exists() else {}
-    tier2 = sorted(set(tier2_lineages) - set(tier1))
-    if not tier2:
+    wide_lineages = json.loads(wide_path.read_text()) if wide_path.exists() else {}
+    if not wide_lineages:
         print("no wide_vocab.json — emitting tier 1 only")
 
-    from bioclip_spike import CATALOG, CATALOG_NAMES, TOXIC_NAMES
+    # A species promoted out of tier 2 already has its lineage in wide_vocab, so
+    # only a genuinely new name costs an API call.
+    ranks = {name: rank for name, rank in list(CATALOG) + list(TOXIC)}
+    resolved = dict(lineages)
+    for name in tier1:
+        if name in resolved:
+            continue
+        if name in wide_lineages:
+            resolved[name] = wide_lineages[name]
+            continue
+        print(f"fetching lineage for new tier-1 label {name!r}...")
+        resolved[name] = resolve_taxon(name, ranks.get(name, "species"))["lineage"]
+    if len(resolved) != len(lineages):
+        (CACHE / "lineages.json").write_text(json.dumps(resolved, indent=2))
+        print(f"cached {len(resolved) - len(lineages)} new lineage(s)")
+    lineages = resolved
 
+    tier2 = sorted(set(wide_lineages) - set(tier1))
+    tier2_lineages = {k: v for k, v in wide_lineages.items() if k in set(tier2)}
+
+    # Structurally impossible now that tier2 is wide-minus-tier1, but asserted
+    # anyway: a tier-1 species leaking into tier 2 would render as "no safety
+    # information" for a species we hold warnings for.
     overlap = set(tier2) & (CATALOG_NAMES | TOXIC_NAMES)
     if overlap:
-        raise SystemExit(f"tier-2 overlaps tier-1: {sorted(overlap)[:5]}")
+        raise SystemExit(f"tier-2 overlaps tier-1: {sorted(overlap)}")
 
     # Drop tier-2 names sharing a genus with a genus-level catalog entry.
     #
@@ -749,7 +862,7 @@ def stage_text_matrix():
     LABELS_TS.write_text(
         "// GENERATED by backend/tools/bioclip_export.py --stage text-matrix\n"
         "// DO NOT EDIT. Row order is index-aligned with\n"
-        "// public/models/bioclip_text_embeddings.f16.bin — editing one without\n"
+        "// src/assets/bioclip_text_embeddings.f16.bin - editing one without\n"
         "// regenerating the other pairs every photo with the wrong species.\n\n"
         "export type BioclipLabelKind = 'catalog' | 'toxic' | 'other';\n\n"
         "export interface BioclipLabel {\n"
@@ -1084,6 +1197,7 @@ def main():
             "verify",
             "verify-4bit",
             "webgpu-coverage",
+            "verify-shipped",
             "text-matrix",
             "parity-fixtures",
             "parity-synthetic",
@@ -1102,6 +1216,7 @@ def main():
         "verify": stage_verify,
         "verify-4bit": lambda: stage_verify(ONNX_INT4, tag="int4"),
         "webgpu-coverage": stage_webgpu_coverage,
+        "verify-shipped": stage_verify_shipped,
         "text-matrix": stage_text_matrix,
         "parity-fixtures": stage_parity_fixtures,
         "parity-synthetic": stage_parity_synthetic,

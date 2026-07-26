@@ -65,7 +65,9 @@
       "coniine": "Contient de la coniine, le poison de la grande ciguë. Elle paralyse les muscles respiratoires. De très petites quantités sont mortelles.",
       "tropane": "Contient des alcaloïdes tropaniques. Une poignée de baies peut tuer un enfant. Le goût sucré ne prévient de rien.",
       "poorEdibility": "Sans danger, mais mauvais à manger et facile à confondre avec quelque chose de meilleur.",
-      "bitter": "Non toxique, mais si amer qu'un seul spécimen gâche tout un plat."
+      "bitter": "Non toxique, mais si amer qu'un seul spécimen gâche tout un plat.",
+      "taxine": "Contient des alcaloïdes taxines, qui arrêtent le cœur. Toutes les parties sauf la chair rouge de l'arille sont mortelles, y compris la graine qu’elle contient. Aucune préparation ne la rend comestible.",
+      "immuneHaemolysis": "Déclenche une réaction immunitaire qui détruit les globules rouges. Elle se construit au fil des repas, donc en avoir mangé sans problème ne rassure en rien - l'empoisonnement peut survenir après des années."
     },
     "checks": {
       "volva": "Regarde tout en bas du pied, sous le niveau du sol : une volve en forme de sac ou une coupe renflée à cet endroit est un signal d'alarme sérieux.",
@@ -89,10 +91,12 @@
       "leafShape": "Le contour et la nervation de la feuille, et si la base est en fer de flèche.",
       "stemMarkings": "Si la tige est creuse, cannelée ou tachée de pourpre - et si elle sent mauvais quand on la froisse.",
       "berryArrangement": "Si les grappes de baies pendent sous les rameaux ou se tiennent dressées au-dessus du feuillage.",
-      "plantHabit": "Si la plante est un arbuste ligneux ou une herbe tendre qui disparaît chaque année."
+      "plantHabit": "Si la plante est un arbuste ligneux ou une herbe tendre qui disparaît chaque année.",
+      "interiorPattern": "Coupe-la en deux. Une vraie truffe est marbrée de veines pâles ramifiées. Une fausse truffe est une masse sombre et compacte, violacée à noire, sans motif."
     },
     "critical": {
-      "lepiotaMacrolepiota": "Les lépiotes mortelles figurent parmi les sosies les plus dangereux de la coulemelle, et c'était l'erreur la plus fréquente de tous nos tests. Une vraie coulemelle est grande, avec un anneau coulissant et un pied à motif de peau de serpent. Les petits spécimens à pied lisse doivent être laissés sur place, même s'ils semblent corrects."
+      "lepiotaMacrolepiota": "Les lépiotes mortelles figurent parmi les sosies les plus dangereux de la coulemelle, et c'était l'erreur la plus fréquente de tous nos tests. Une vraie coulemelle est grande, avec un anneau coulissant et un pied à motif de peau de serpent. Les petits spécimens à pied lisse doivent être laissés sur place, même s'ils semblent corrects.",
+      "trufflePair": "Parmi les correspondances il y a à la fois une truffe et une fausse truffe toxique. De l'extérieur elles sont vraiment difficiles à distinguer. Coupe la trouvaille avant tout : des veines pâles marbrées indiquent une truffe, un intérieur sombre et compact une fausse truffe."
     }
   }
 }

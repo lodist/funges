@@ -65,7 +65,9 @@
       "coniine": "Contiene coniína, el veneno de la cicuta. Paraliza los músculos con los que se respira. Cantidades muy pequeñas son mortales.",
       "tropane": "Contiene alcaloides tropánicos. Un puñado de bayas puede matar a un niño. El sabor dulce no avisa de nada.",
       "poorEdibility": "No es peligroso, pero sabe mal y se confunde con facilidad con algo mejor.",
-      "bitter": "No es venenoso, pero es tan amargo que un solo ejemplar arruina un plato entero."
+      "bitter": "No es venenoso, pero es tan amargo que un solo ejemplar arruina un plato entero.",
+      "taxine": "Contiene alcaloides taxínicos, que detienen el corazón. Todas las partes excepto la pulpa roja del arilo son mortales, incluida la semilla que contiene. Ninguna preparación doméstica la hace segura.",
+      "immuneHaemolysis": "Desencadena una reacción inmunitaria que destruye los glóbulos rojos. Se acumula con comidas repetidas, así que haberlo comido antes sin problemas no es garantía: la intoxicación puede llegar después de años."
     },
     "checks": {
       "volva": "Mira la base del pie, por debajo del nivel del suelo: una envoltura a modo de saco o una copa hinchada ahí es una señal de alarma grave.",
@@ -89,10 +91,12 @@
       "leafShape": "Contorno y nervadura de la hoja, incluido si la base tiene forma de flecha.",
       "stemMarkings": "Si el tallo es hueco, acanalado o manchado de púrpura, y si huele mal al estrujarlo.",
       "berryArrangement": "Si los racimos de frutos cuelgan por debajo de las ramas o se mantienen erguidos por encima del follaje.",
-      "plantHabit": "Si la planta es un arbusto leñoso o una hierba blanda que se seca cada año."
+      "plantHabit": "Si la planta es un arbusto leñoso o una hierba blanda que se seca cada año.",
+      "interiorPattern": "Córtala por la mitad. Una trufa verdadera está veteada con nervaduras pálidas ramificadas. Una falsa trufa es una masa oscura y compacta, violácea o negra, sin dibujo."
     },
     "critical": {
-      "lepiotaMacrolepiota": "Las Lepiota mortales están entre los sósias más peligrosos de la parasol, y en nuestras pruebas fue el error más frecuente de todos. Una parasol auténtica es grande, con un anillo que se puede mover y un pie con dibujo de piel de serpiente. Los ejemplares pequeños con el pie liso hay que dejarlos, aunque parezcan los correctos."
+      "lepiotaMacrolepiota": "Las Lepiota mortales están entre los sósias más peligrosos de la parasol, y en nuestras pruebas fue el error más frecuente de todos. Una parasol auténtica es grande, con un anillo que se puede mover y un pie con dibujo de piel de serpiente. Los ejemplares pequeños con el pie liso hay que dejarlos, aunque parezcan los correctos.",
+      "trufflePair": "Entre las coincidencias hay tanto una trufa como una falsa trufa venenosa. Por fuera son realmente difíciles de distinguir. Corta el hallazgo antes de nada: vetas pálidas marmoreadas indican trufa, un interior oscuro y compacto indica falsa trufa."
     }
   }
 }

@@ -18,9 +18,16 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-# --- catalog labels: 31 unique scientific names from src/data/species.ts ---
+# --- catalog labels: 32 unique scientific names from src/data/species.ts ---
 # 33 entries collapse to 32 unique names (elderberry + elderflower are both
-# Sambucus nigra); Tuber melanosporum is dropped (subterranean, no field photos).
+# Sambucus nigra).
+#
+# Tuber melanosporum was originally dropped as subterranean — "every photo is
+# harvested truffles on a table". That reasoning was backwards: a dug-up truffle
+# on a table is exactly what someone photographs, and exactly when telling it
+# from a poisonous Scleroderma matters. Scleroderma is promoted to TOXIC below,
+# because adding an edible truffle without flagging its false twin would create
+# a path from a poisonous find to an edible-looking row.
 CATALOG = [
     ("Cantharellus cibarius", "species"),
     ("Boletus", "genus"),               # catalog says "Boletus spp."
@@ -53,9 +60,10 @@ CATALOG = [
     ("Asparagus acutifolius", "species"),
     ("Peucedanum ostruthium", "species"),
     ("Rumex acetosa", "species"),
+    ("Tuber melanosporum", "species"),  # dug-up specimen, not in situ
 ]
 
-# NOTE: CATALOG must contain exactly 31 entries — every unique scientificName in
+# NOTE: CATALOG must contain exactly 32 entries — every unique scientificName in
 # src/data/species.ts except Tuber melanosporum. Verify with:
 #   grep -E "^    scientificName:" src/data/species.ts | sed "s/.*: '//;s/',$//" | sort -u
 
@@ -84,6 +92,23 @@ TOXIC = [
     ("Aethusa cynapium", "species"),           # -> Peucedanum ostruthium
     ("Atropa bella-donna", "species"),         # -> Vaccinium; iNat spells it hyphenated
     ("Sambucus ebulus", "species"),            # -> Sambucus nigra
+    # --- promoted from tier 2, where they showed as "no safety information" ---
+    # All 13 were already in the vocabulary, so this changes their KIND only and
+    # adds no rows to the text matrix. Two of them appeared in a real result set
+    # during testing, unflagged: Taxus baccata and Omphalotus illudens.
+    ("Scleroderma citrinum", "species"),       # -> Tuber (the false truffle)
+    ("Scleroderma polyrhizum", "species"),     # -> Tuber
+    ("Taxus baccata", "species"),              # lethal; yew arils
+    ("Paxillus involutus", "species"),         # lethal; delayed immune haemolysis
+    ("Digitalis purpurea", "species"),         # lethal; -> comfrey/borage leaves
+    ("Amanita pantherina", "species"),
+    ("Omphalotus illudens", "species"),        # O. olearius was already flagged
+    ("Omphalotus olivascens", "species"),
+    ("Omphalotus subilludens", "species"),
+    ("Agaricus xanthodermus", "species"),      # -> field mushroom
+    ("Hypholoma fasciculare", "species"),      # very common, clustered on wood
+    ("Daphne mezereum", "species"),            # -> red berries
+    ("Paris quadrifolia", "species"),          # -> Vaccinium myrtillus
 ]
 
 CATALOG_NAMES = {name for name, _ in CATALOG}

@@ -14,6 +14,12 @@
     "title": "Standortdaten",
     "content": "Um die Karte auf deinem Standort zu zentrieren und Sammelstellen in der Nähe anzuzeigen, fragt die App nach Zugriff auf den Standort deines Geräts. Dieser Standort wird ausschliesslich auf deinem Gerät verwendet, um die Karte anzuzeigen, und wird niemals an unsere Server übertragen oder dort gespeichert. Du kannst diese Berechtigung jederzeit in den Einstellungen deines Browsers oder Geräts verweigern oder widerrufen, ohne den Zugriff auf den Rest der App zu verlieren."
   },
+  "photos": {
+    "title": "Fotos und Artbestimmung",
+    "content": "Die Artbestimmung anhand eines Fotos läuft vollständig auf deinem Gerät. Fotos, die du aufnimmst oder auswählst, werden lokal in deinem Browser analysiert und niemals hochgeladen, niemals an einen Server übertragen und von diesem Dienst niemals gespeichert. Nichts von einem Foto verlässt dein Gerät, auch keine Standortangaben, die deine Kamera darin hinterlegt hat.",
+    "model": "Damit die Bestimmung auf dem Gerät möglich ist, wird einmalig ein Erkennungsmodell heruntergeladen und im Browserspeicher behalten. Dieser Download ist eine gewöhnliche Anfrage für eine Datei beim Speicheranbieter, der wie jeder Webserver übliche Serverprotokolle wie die IP-Adresse führt; die Anfrage enthält keine Informationen über dich oder deine Fotos. Du kannst das Modell jederzeit über den Bestimmungsbildschirm von deinem Gerät löschen.",
+    "camera": "Die App hat keinen dauerhaften Zugriff auf deine Kamera. Beim Fotografieren öffnet sich die Kamera deines Geräts, und nur das eine von dir gewählte Foto wird an die App übergeben."
+  },
   "rights": {
     "title": "Deine Rechte",
     "intro": "Auch wenn dieser Dienst keine Daten direkt erhebt, solltest du deine Rechte nach dem Schweizer Datenschutzgesetz (DSG) und der Datenschutz-Grundverordnung (DSGVO) kennen, wenn du mit Drittanbieterdiensten interagierst:",
@@ -43,5 +49,5 @@
     "intro": "Bei Fragen oder Anliegen zu dieser Datenschutzerklärung wende dich bitte an:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Letzte Aktualisierung am: 15.01.2025"
+  "lastUpdated": "Letzte Aktualisierung am: 26.07.2026"
 }
