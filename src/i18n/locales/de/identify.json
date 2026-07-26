@@ -67,7 +67,16 @@
       "poorEdibility": "Nicht gefährlich, aber geschmacklich schlecht und leicht mit etwas Besserem zu verwechseln.",
       "bitter": "Nicht giftig, aber so bitter, dass ein einziges Exemplar ein ganzes Gericht verdirbt.",
       "taxine": "Enthält Taxin-Alkaloide, die das Herz zum Stillstand bringen. Alle Teile ausser dem roten Fruchtfleisch des Samenmantels sind tödlich, auch der Samen darin. Keine Zubereitung macht die Pflanze essbar.",
-      "immuneHaemolysis": "Löst eine Immunreaktion aus, die rote Blutkörperchen zerstört. Sie baut sich über wiederholte Mahlzeiten auf, frühere beschwerdefreie Mahlzeiten sind also keine Sicherheit - die Vergiftung kann nach Jahren auftreten."
+      "immuneHaemolysis": "Löst eine Immunreaktion aus, die rote Blutkörperchen zerstört. Sie baut sich über wiederholte Mahlzeiten auf, frühere beschwerdefreie Mahlzeiten sind also keine Sicherheit - die Vergiftung kann nach Jahren auftreten.",
+      "nephrotoxic": "Zerstört Tage nach der Mahlzeit die Nieren, häufig ist Dialyse nötig. Kochen hilft nicht.",
+      "rhabdomyolysis": "Baut nach wiederholten Mahlzeiten Muskelgewebe ab, was zum Herzstillstand führen kann. Todesfälle sind bei Menschen belegt, die ihn jahrelang gegessen hatten.",
+      "encephalopathy": "Verursacht eine tödliche Hirnentzündung, besonders bei eingeschränkter Nierenfunktion. In Japan führte er zu einer Häufung von Todesfällen bei Sammlern, die ihn vorher beschwerdefrei gegessen hatten.",
+      "aconitine": "Eine der giftigsten Pflanzen Europas. Aconitin bringt das Herz zum Stillstand, Vergiftungen sind schon nach reinem Hautkontakt aufgetreten, und es gibt kein Gegenmittel.",
+      "cicutoxin": "Löst innerhalb einer Stunde heftige Krämpfe aus und endet häufig tödlich. Eine einzige Wurzel genügt. Sie gehört zu den giftigsten Pflanzen Europas.",
+      "ricin": "Die Samen enthalten eines der tödlichsten bekannten Naturgifte. Wenige zerkaute Samen können einen Erwachsenen töten, und ein Gegenmittel gibt es nicht.",
+      "cytisine": "Alle Teile, besonders die Hülsen, enthalten Cytisin. Kinder sind gestorben, nachdem sie die Hülsen für Erbsen gehalten und gegessen hatten.",
+      "grayanotoxin": "Blätter, Blüten und Nektar enthalten Grayanotoxine, die den Herzrhythmus stören. Honig aus den Blüten hat schon Menschen vergiftet.",
+      "veratrumAlkaloid": "Lässt Blutdruck und Herzfrequenz innerhalb von Stunden einbrechen. Die jungen Blätter werden immer wieder mit Bärlauch verwechselt, und solche Verwechslungen sind tödlich verlaufen."
     },
     "checks": {
       "volva": "Schau ganz unten am Stiel, unterhalb der Erdoberfläche: eine häutige Scheide oder ein aufgeblasener Becher dort ist ein ernstes Warnzeichen.",
@@ -96,7 +105,9 @@
     },
     "critical": {
       "lepiotaMacrolepiota": "Tödliche Schirmlinge der Gattung Lepiota gehören zu den gefährlichsten Doppelgängern des Parasolpilzes, und das war in unseren Tests der häufigste Fehler überhaupt. Ein echter Parasol ist groß, hat einen verschiebbaren Ring und einen schlangenhautartig genatterten Stiel. Kleine Exemplare mit glattem Stiel solltest du stehen lassen, auch wenn sie richtig aussehen.",
-      "trufflePair": "Unter den Treffern sind sowohl ein Trüffel als auch ein giftiger falscher Trüffel. Von aussen sind sie kaum zu unterscheiden. Schneide den Fund zuerst auf: helle marmorierte Adern bedeuten Trüffel, ein festes dunkles Inneres bedeutet falscher Trüffel."
+      "trufflePair": "Unter den Treffern sind sowohl ein Trüffel als auch ein giftiger falscher Trüffel. Von aussen sind sie kaum zu unterscheiden. Schneide den Fund zuerst auf: helle marmorierte Adern bedeuten Trüffel, ein festes dunkles Inneres bedeutet falscher Trüffel.",
+      "angelWingPair": "Unter den Treffern sind sowohl ein Austernseitling als auch der Ohrförmige Seitling. Letzterer hat tödliche Hirnentzündungen verursacht. Er ist dünner, reinweiss und wächst an Nadelholz: prüfe zuerst das Holz und die Fleischdicke.",
+      "veratrumPair": "Unter den Treffern sind sowohl Bärlauch als auch Weisser Germer. Diese Verwechslung hat Menschen getötet. Zerreibe ein Blatt: Bärlauch riecht stark nach Knoblauch, Germer nicht. Germerblätter sind zudem stark gerippt und stehen wechselständig am Stängel."
     }
   }
 }

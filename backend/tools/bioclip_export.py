@@ -61,6 +61,11 @@ TEXT_MATRIX = Path(__file__).resolve().parents[2] / "src" / "assets" / "bioclip_
 LABELS_TS = Path(__file__).resolve().parents[2] / "src" / "data" / "bioclip-labels.ts"
 
 OPSET = 17
+
+# Tier-2 cap. See the sweep in the docstring of --stage verify-shipped: vocabulary
+# size trades the safety gate against catalog recall and warning availability, and
+# this is the chosen point on that curve.
+TIER2_LIMIT = 2000
 PARITY_IMAGES = 8
 
 
@@ -377,7 +382,13 @@ def stage_verify_shipped():
 
     import numpy as np
 
-    from bioclip_spike import CATALOG_NAMES, _predictions, false_edible_rate
+    from bioclip_spike import (
+        CATALOG_NAMES,
+        TOXIC_NAMES,
+        _predictions,
+        false_edible_rate,
+        top_k_accuracy,
+    )
 
     if not TEXT_MATRIX.exists():
         raise SystemExit("no text matrix — run --stage text-matrix first")
@@ -385,7 +396,15 @@ def stage_verify_shipped():
     # Read the label order from the GENERATED file, so a drift between it and the
     # matrix shows up here rather than as mislabelled predictions on a phone.
     ts = LABELS_TS.read_text(encoding="utf-8")
-    labels = re.findall(r"\{ scientificName: '([^']*)', kind: '([^']*)' \}", ts)
+    # Quote-agnostic: a provisional name containing an apostrophe makes Python's
+    # repr emit double quotes, and a parser that only accepted single quotes
+    # under-counted the labels and reported drift that did not exist.
+    labels = [
+        (name[1:-1], kind)
+        for name, kind in re.findall(
+            r"\{ scientificName: ('[^']*'|\"[^\"]*\"), kind: '([^']*)' \}", ts
+        )
+    ]
     if not labels:
         raise SystemExit(f"could not parse labels out of {LABELS_TS.name}")
     names = [n for n, _ in labels]
@@ -417,9 +436,32 @@ def stage_verify_shipped():
     rate = false_edible_rate(preds, CATALOG_NAMES, k=1)
     toxic_rows = [p for p in preds if p["truth"] not in CATALOG_NAMES]
 
+    # Reported together, deliberately. Vocabulary size moves these in OPPOSITE
+    # directions, so false-edible alone can show a 7x improvement while the
+    # catalog gets materially worse and warnings go missing.
+    catalog_1 = top_k_accuracy(preds, 1)
+    catalog_3 = top_k_accuracy(preds, 3)
+    warned = sum(
+        1 for p in toxic_rows if any(n in TOXIC_NAMES for n in p["ranked"][:3])
+    ) / max(1, len(toxic_rows))
+
     print(f"labels: {len(names)} ({kinds})")
     print(f"test photos: {len(rows)}, of which toxic: {len(toxic_rows)}")
     print(f"false-edible@1 (SHIPPED artifacts): {rate:.2%}")
+    print(f"catalog top-1: {catalog_1:.1%}   catalog top-3: {catalog_3:.1%}")
+    print(f"toxic label in top-3 of a toxic photo: {warned:.1%}")
+
+    # Warning availability gets its own floor. A toxic photo whose three
+    # candidates carry no toxic label shows the user three neutral rows, which is
+    # a missing warning rather than a false one - not caught by false-edible at
+    # all, and the failure this feature exists to prevent.
+    WARN_FLOOR = 0.92
+    if warned < WARN_FLOOR:
+        raise SystemExit(
+            f"a toxic label reaches the top 3 for only {warned:.1%} of toxic "
+            f"photos, under the {WARN_FLOOR:.0%} floor. The vocabulary is "
+            "crowding warnings out of the candidate list."
+        )
 
     # Same ceiling the feature originally shipped under. Stated as an absolute
     # rather than a delta because the vocabulary is no longer the one the spike
@@ -431,6 +473,94 @@ def stage_verify_shipped():
             "A vocabulary change made the top-1 edible claim less safe."
         )
     print(f"within the {CEILING:.0%} ceiling")
+
+
+# Genera and species with a serious, well-documented poisoning risk in Europe and
+# North America. Genus-level entries where enough of the genus is dangerous that
+# a member landing in tier 2 deserves a human look.
+#
+# This is a SCREEN, not a determination. It over-flags on purpose: Amanita
+# caesarea, A. fulva, A. rubescens, Cortinarius violaceus and Entoloma abortivum
+# are all edible, and the screen still surfaces them. Under-flagging is the
+# failure that matters, because an unflagged lethal species renders as "not in
+# this app's catalog - no safety information", which is how a yew and a
+# jack-o'-lantern reached a real result set looking neutral.
+DANGER_TAXA = [
+    # Fungi
+    "Amanita", "Galerina", "Cortinarius", "Lepiota", "Conocybe", "Pholiotina",
+    "Inocybe", "Inosperma", "Clitocybe", "Gyromitra", "Paxillus", "Hypholoma",
+    "Entoloma", "Omphalotus", "Scleroderma", "Chlorophyllum", "Ramaria",
+    "Rubroboletus", "Neoboletus", "Russula emetica", "Agaricus xanthodermus",
+    "Tricholoma equestre", "Pleurocybella", "Hapalopilus", "Pseudosperma",
+    "Leucocoprinus", "Leucoagaricus", "Sarcosphaera", "Verpa", "Turbinellus",
+    # Plants
+    "Taxus", "Aconitum", "Conium", "Digitalis", "Colchicum", "Datura",
+    "Hyoscyamus", "Veratrum", "Cicuta", "Ricinus", "Nerium", "Daphne",
+    "Laburnum", "Bryonia", "Atropa", "Solanum", "Prunus laurocerasus",
+    "Heracleum", "Helleborus", "Oenanthe", "Chelidonium", "Euonymus",
+    "Ligustrum", "Hedera helix", "Ilex aquifolium", "Arum", "Convallaria",
+    "Aethusa", "Narcissus", "Galanthus", "Euphorbia", "Rhododendron", "Kalmia",
+    "Phytolacca", "Mercurialis", "Actaea", "Paris quadrifolia", "Aristolochia",
+    "Dieffenbachia", "Ranunculus", "Caltha", "Anemone", "Symphytum",
+    "Chaerophyllum", "Anthriscus", "Torilis", "Scandix", "Myrrhis",
+]
+
+
+def stage_audit_danger():
+    """Which tier-2 species carry a serious risk and no warning attached?
+
+    Run this after EVERY vocabulary expansion. Adding regional species is cheap
+    and safe; adding dangerous regional species without a toxic entry is neither,
+    because tier 2 renders as "no safety information" and a lethal plant shown
+    neutrally is worse than one not named at all.
+
+    Reports rather than fails: which of the candidates deserve promotion is a
+    judgement about severity and confusion risk, not something a genus list can
+    decide. What it guarantees is that the decision is never skipped silently.
+    """
+    from bioclip_spike import CATALOG_NAMES, CULTIVATED_NAMES, TOXIC_NAMES
+
+    wide_path = CACHE / "wide_vocab.json"
+    if not wide_path.exists():
+        raise SystemExit("no wide_vocab.json — run bioclip_wide_vocab.py --stage taxa")
+    wide = json.loads(wide_path.read_text())
+
+    tier1 = CATALOG_NAMES | TOXIC_NAMES
+    # Parenthesised: `-` binds tighter than `|`, so without them this would
+    # subtract tier 1 from CULTIVATED only and leave it in `wide`.
+    tier2 = sorted((set(wide) | CULTIVATED_NAMES) - tier1)
+
+    flagged = []
+    for name in tier2:
+        if name in tier1:
+            continue
+        for taxon in DANGER_TAXA:
+            if name == taxon or name.startswith(taxon + " ") or name.startswith(taxon):
+                flagged.append((name, taxon))
+                break
+
+    print(f"tier-2 labels screened: {len(tier2)}")
+    print(f"already flagged as toxic: {len(TOXIC_NAMES)}")
+    print()
+    if not flagged:
+        print("no tier-2 species matched the danger screen")
+        return
+
+    print(f"{len(flagged)} tier-2 species matching the danger screen, all currently")
+    print('rendering as "no safety information":')
+    print()
+    by_taxon = {}
+    for name, taxon in flagged:
+        by_taxon.setdefault(taxon, []).append(name)
+    for taxon in sorted(by_taxon):
+        names = by_taxon[taxon]
+        print(f"  {taxon:24s} {', '.join(names)}")
+    print()
+    print("Promote the ones whose severity and confusion risk warrant it into")
+    print("TOXIC in bioclip_spike.py, add a toxic-species.ts entry with severity,")
+    print("mechanism and checks, then re-run --stage text-matrix and")
+    print("--stage verify-shipped. The screen over-flags: some of the above are")
+    print("edible and should stay in tier 2.")
 
 
 def stage_probe_model():
@@ -814,6 +944,23 @@ def stage_text_matrix():
             "could not resolve cultivated labels:\n  " + "\n  ".join(failed)
         )
 
+    # Drop provisional / undescribed taxa: iNaturalist carries these as
+    # Amanita sp. 'flavoconia-01' and similar. A user gains nothing from one of
+    # three candidate slots reading "Anthracoporus sp. 'AL01'", and the quotes
+    # break naive parsing of the generated labels file.
+    def _provisional(name):
+        return " sp. " in name or name.endswith(" sp.") or "'" in name or '"' in name
+
+    provisional = sorted(n for n in wide_lineages if _provisional(n))
+    if provisional:
+        for n in provisional:
+            wide_lineages.pop(n, None)
+        print(f"dropped {len(provisional)} provisional taxa: {provisional[:4]}")
+
+    # Insertion order of wide_vocab.json is iNaturalist observation rank per
+    # region, so position here is "how often people photograph it".
+    rank = {name: i for i, name in enumerate(wide_lineages)}
+
     tier2 = sorted(set(wide_lineages) - set(tier1))
     tier2_lineages = {k: v for k, v in wide_lineages.items() if k in set(tier2)}
 
@@ -842,6 +989,20 @@ def stage_text_matrix():
         print(
             f"dropped {len(ambiguous)} tier-2 names sharing a genus with a "
             f"genus-level catalog entry: {ambiguous[:6]}"
+        )
+
+    # Cap tier 2. Applied after the genus-ambiguity drop so the limit counts
+    # labels that actually ship, and by observation rank so what falls off the end
+    # is the least-photographed rather than the alphabetically unlucky.
+    if len(tier2) > TIER2_LIMIT:
+        dropped = len(tier2) - TIER2_LIMIT
+        tier2 = sorted(
+            sorted(tier2, key=lambda n: rank.get(n, 10**9))[:TIER2_LIMIT]
+        )
+        tier2_lineages = {k: v for k, v in tier2_lineages.items() if k in set(tier2)}
+        print(
+            f"capped tier 2 at {TIER2_LIMIT} by observation rank "
+            f"({dropped} least-observed dropped)"
         )
 
     all_lineages = {**{n: lineages[n] for n in tier1 if n in lineages}, **tier2_lineages}
@@ -877,9 +1038,16 @@ def stage_text_matrix():
     TEXT_MATRIX.write_bytes(matrix16.tobytes())
     size_mb = TEXT_MATRIX.stat().st_size / 1e6
     print(f"wrote {TEXT_MATRIX} ({size_mb:.2f} MB, {matrix16.shape})")
-    if TEXT_MATRIX.stat().st_size > 2 * 1024 * 1024:
-        print("  WARNING: over 2 MiB — vite-plugin-pwa will throw unless "
-              "maximumFileSizeToCacheInBytes is raised or this moves to R2")
+    # Budget note rather than a build hazard. `.bin` is absent from workbox's
+    # globPatterns, so this is runtime-cached and cannot trip the 2 MiB precache
+    # ceiling. What the size does cost is a one-off download and, once decoded to
+    # fp32 in the browser, twice this in RAM alongside a ~307MB model. The
+    # practical ceiling on a phone is tens of MB, not hundreds.
+    decoded_mb = matrix16.size * 4 / 1e6
+    print(f"  decoded in the browser: {decoded_mb:.1f} MB fp32")
+    if decoded_mb > 60:
+        print("  WARNING: over 60 MB decoded — verify on a low-end phone before "
+              "shipping; this sits in memory next to the model")
 
     catalog, toxic = CATALOG_NAMES, TOXIC_NAMES
     rows = []
@@ -1225,6 +1393,7 @@ def main():
             "verify-4bit",
             "webgpu-coverage",
             "verify-shipped",
+            "audit-danger",
             "text-matrix",
             "parity-fixtures",
             "parity-synthetic",
@@ -1244,6 +1413,7 @@ def main():
         "verify-4bit": lambda: stage_verify(ONNX_INT4, tag="int4"),
         "webgpu-coverage": stage_webgpu_coverage,
         "verify-shipped": stage_verify_shipped,
+        "audit-danger": stage_audit_danger,
         "text-matrix": stage_text_matrix,
         "parity-fixtures": stage_parity_fixtures,
         "parity-synthetic": stage_parity_synthetic,

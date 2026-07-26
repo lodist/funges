@@ -209,10 +209,10 @@ describe('data integrity', () => {
   // Pinned on purpose. The count is not interesting in itself, but an accidental
   // deletion here silently removes a warning, and a duplicate id or name makes
   // one entry unreachable — neither throws anywhere else.
-  it('has 35 toxic species with unique ids and names', () => {
-    expect(TOXIC_SPECIES).toHaveLength(35);
-    expect(new Set(TOXIC_SPECIES.map(t => t.id)).size).toBe(35);
-    expect(new Set(TOXIC_SPECIES.map(t => t.scientificName)).size).toBe(35);
+  it('has 65 toxic species with unique ids and names', () => {
+    expect(TOXIC_SPECIES).toHaveLength(65);
+    expect(new Set(TOXIC_SPECIES.map(t => t.id)).size).toBe(65);
+    expect(new Set(TOXIC_SPECIES.map(t => t.scientificName)).size).toBe(65);
   });
 
   it('references only real catalog ids in confusedWithSpeciesIds', () => {

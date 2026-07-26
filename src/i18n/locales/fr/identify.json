@@ -67,7 +67,16 @@
       "poorEdibility": "Sans danger, mais mauvais à manger et facile à confondre avec quelque chose de meilleur.",
       "bitter": "Non toxique, mais si amer qu'un seul spécimen gâche tout un plat.",
       "taxine": "Contient des alcaloïdes taxines, qui arrêtent le cœur. Toutes les parties sauf la chair rouge de l'arille sont mortelles, y compris la graine qu’elle contient. Aucune préparation ne la rend comestible.",
-      "immuneHaemolysis": "Déclenche une réaction immunitaire qui détruit les globules rouges. Elle se construit au fil des repas, donc en avoir mangé sans problème ne rassure en rien - l'empoisonnement peut survenir après des années."
+      "immuneHaemolysis": "Déclenche une réaction immunitaire qui détruit les globules rouges. Elle se construit au fil des repas, donc en avoir mangé sans problème ne rassure en rien - l'empoisonnement peut survenir après des années.",
+      "nephrotoxic": "Détruit les reins plusieurs jours après le repas, souvent jusqu'à la dialyse. La cuisson n'y change rien.",
+      "rhabdomyolysis": "Détruit le tissu musculaire après des repas répétés, ce qui peut arrêter le coeur. Des décès sont documentés chez des personnes qui en mangeaient depuis des années.",
+      "encephalopathy": "Provoque une inflammation cérébrale mortelle, surtout en cas de fonction rénale réduite. Il a causé une série de décès au Japon chez des cueilleurs qui en avaient déjà mangé sans problème.",
+      "aconitine": "L'une des plantes les plus toxiques d'Europe. L'aconitine arrête le coeur, des intoxications ont suivi un simple contact cutané, et il n'existe pas d'antidote.",
+      "cicutoxin": "Provoque des convulsions violentes en moins d'une heure et se révèle souvent mortelle. Une seule racine suffit. C'est l'une des plantes les plus toxiques d'Europe.",
+      "ricin": "Les graines contiennent l'un des poisons naturels les plus mortels connus. Quelques graines mâchées peuvent tuer un adulte, et il n'existe pas d'antidote.",
+      "cytisine": "Toutes les parties, surtout les gousses, contiennent de la cytisine. Des enfants sont morts après avoir mangé les gousses, les prenant pour des petits pois.",
+      "grayanotoxin": "Les feuilles, les fleurs et le nectar contiennent des grayanotoxines, qui perturbent le rythme cardiaque. Du miel issu de ces fleurs a empoisonné des gens.",
+      "veratrumAlkaloid": "Fait s'effondrer la tension et le rythme cardiaque en quelques heures. Les jeunes feuilles sont régulièrement prises pour de l'ail des ours, et ces confusions ont été mortelles."
     },
     "checks": {
       "volva": "Regarde tout en bas du pied, sous le niveau du sol : une volve en forme de sac ou une coupe renflée à cet endroit est un signal d'alarme sérieux.",
@@ -96,7 +105,9 @@
     },
     "critical": {
       "lepiotaMacrolepiota": "Les lépiotes mortelles figurent parmi les sosies les plus dangereux de la coulemelle, et c'était l'erreur la plus fréquente de tous nos tests. Une vraie coulemelle est grande, avec un anneau coulissant et un pied à motif de peau de serpent. Les petits spécimens à pied lisse doivent être laissés sur place, même s'ils semblent corrects.",
-      "trufflePair": "Parmi les correspondances il y a à la fois une truffe et une fausse truffe toxique. De l'extérieur elles sont vraiment difficiles à distinguer. Coupe la trouvaille avant tout : des veines pâles marbrées indiquent une truffe, un intérieur sombre et compact une fausse truffe."
+      "trufflePair": "Parmi les correspondances il y a à la fois une truffe et une fausse truffe toxique. De l'extérieur elles sont vraiment difficiles à distinguer. Coupe la trouvaille avant tout : des veines pâles marbrées indiquent une truffe, un intérieur sombre et compact une fausse truffe.",
+      "angelWingPair": "Parmi les correspondances il y a à la fois un pleurote et l'oreille d'ange. Cette dernière a provoqué des inflammations cérébrales mortelles. Elle est plus fine, d'un blanc pur, et pousse sur bois de conifère : vérifie d'abord le bois et l'épaisseur de la chair.",
+      "veratrumPair": "Parmi les correspondances il y a à la fois de l'ail des ours et de l'hellébore blanc. Cette confusion a déjà tué. Froisse une feuille : l'ail des ours sent fortement l'ail, l'hellébore non. Les feuilles d'hellébore sont aussi fortement nervurées et alternes le long de la tige."
     }
   }
 }

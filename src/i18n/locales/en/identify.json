@@ -67,7 +67,16 @@
       "poorEdibility": "Not dangerous, but poor eating and easily mistaken for something better.",
       "bitter": "Not poisonous, but so bitter that a single specimen ruins a whole dish.",
       "taxine": "Contains taxine alkaloids, which stop the heart. All parts except the red flesh of the aril are lethal, including the seed inside it. There is no home preparation that makes it safe.",
-      "immuneHaemolysis": "Triggers an immune reaction that destroys red blood cells. It builds up over repeated meals, so having eaten it before safely is no reassurance at all - the poisoning can arrive after years of eating it."
+      "immuneHaemolysis": "Triggers an immune reaction that destroys red blood cells. It builds up over repeated meals, so having eaten it before safely is no reassurance at all - the poisoning can arrive after years of eating it.",
+      "nephrotoxic": "Destroys the kidneys days after the meal, often needing dialysis. Cooking does not help.",
+      "rhabdomyolysis": "Breaks down muscle tissue after repeated meals, which can stop the heart. Deaths are documented in people who had eaten it for years.",
+      "encephalopathy": "Causes fatal brain inflammation, especially where kidney function is reduced. It caused a cluster of deaths in Japan among foragers who had eaten it safely before.",
+      "aconitine": "One of the most toxic plants in Europe. Aconitine stops the heart, poisoning has followed skin contact alone, and there is no antidote.",
+      "cicutoxin": "Causes violent seizures within an hour and is frequently fatal. A single root is enough. It is among the most poisonous plants in Europe.",
+      "ricin": "The seeds contain one of the most lethal natural poisons known. A few chewed seeds can kill an adult, and there is no antidote.",
+      "cytisine": "All parts, especially the seed pods, contain cytisine. Children have died after eating the pods, having taken them for peas.",
+      "grayanotoxin": "Leaves, flowers and nectar contain grayanotoxins, which disturb heart rhythm. Honey made from the flowers has poisoned people.",
+      "veratrumAlkaloid": "Collapses blood pressure and heart rate within hours. The young leaves are repeatedly mistaken for wild garlic, and those confusions have been fatal."
     },
     "checks": {
       "volva": "Look at the very base of the stem, below ground level: a sac-like bag or swollen cup there is a serious warning sign.",
@@ -96,7 +105,9 @@
     },
     "critical": {
       "lepiotaMacrolepiota": "Deadly Lepiota species are among the most dangerous look-alikes for the Parasol mushroom, and this was the single most frequent mistake in our testing. A true Parasol is large, with a movable ring and a snakeskin-patterned stem. Small specimens with a plain stem should be left alone even if they look right.",
-      "trufflePair": "Both a truffle and a poisonous false truffle are among the matches. From the outside they are genuinely hard to tell apart. Cut the find open before anything else: marbled pale veins mean truffle, a solid dark interior means false truffle."
+      "trufflePair": "Both a truffle and a poisonous false truffle are among the matches. From the outside they are genuinely hard to tell apart. Cut the find open before anything else: marbled pale veins mean truffle, a solid dark interior means false truffle.",
+      "angelWingPair": "Both an oyster mushroom and the angel wing are among the matches. The angel wing has caused fatal brain inflammation. It is thinner, pure white, and grows on conifer wood: check the wood and the flesh thickness before anything else.",
+      "veratrumPair": "Both wild garlic and white hellebore are among the matches. This confusion has killed people. Crush a leaf: wild garlic smells strongly of garlic, hellebore does not. Hellebore leaves are also strongly ribbed and grow alternately up the stem."
     }
   }
 }

@@ -108,7 +108,42 @@ TOXIC = [
     ("Agaricus xanthodermus", "species"),      # -> field mushroom
     ("Hypholoma fasciculare", "species"),      # very common, clustered on wood
     ("Daphne mezereum", "species"),            # -> red berries
-    ("Paris quadrifolia", "species"),          # -> Vaccinium myrtillus
+    ("Paris quadrifolia", "species"),          # -> Vaccinium myrtillus    # --- lethal species found by bioclip_export.py --stage audit-danger when
+    # tier 2 grew from 1005 to 4873 (2026-07). Each has documented fatalities;
+    # in tier 2 they rendered as "no safety information". ---
+    ("Amanita bisporigera", "species"),
+    ("Amanita ocreata", "species"),
+    ("Amanita smithiana", "species"),
+    ("Galerina badipes", "species"),
+    ("Lepiota cristata", "species"),
+    ("Lepiota subincarnata", "species"),
+    ("Pholiotina rugosa", "species"),
+    ("Tricholoma equestre", "species"),
+    ("Pleurocybella porrigens", "species"),
+    ("Aconitum columbianum", "species"),
+    ("Cicuta virosa", "species"),
+    ("Oenanthe crocata", "species"),
+    ("Digitalis grandiflora", "species"),
+    ("Nerium oleander", "species"),
+    ("Datura stramonium", "species"),
+    ("Datura wrightii", "species"),
+    ("Hyoscyamus niger", "species"),
+    ("Ricinus communis", "species"),
+    ("Abrus precatorius", "species"),
+    ("Taxus brevifolia", "species"),
+    ("Laburnum anagyroides", "species"),
+    ("Kalmia latifolia", "species"),
+    ("Rhododendron ponticum", "species"),
+    ("Veratrum album", "species"),
+    ("Veratrum viride", "species"),
+    ("Veratrum californicum", "species"),    # --- sibling species in wholly-dangerous genera, caught by
+    # src/test/photo-id.test.ts when the vocabulary expanded. Leaving some
+    # members of Scleroderma or Rubroboletus unflagged makes the warning
+    # depend on which member the model happens to name. ---
+    ("Scleroderma areolatum", "species"),
+    ("Scleroderma verrucosum", "species"),
+    ("Rubroboletus rhodoxanthus", "species"),
+    ("Kalmia procumbens", "species"),
 ]
 
 

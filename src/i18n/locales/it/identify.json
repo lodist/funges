@@ -67,7 +67,16 @@
       "poorEdibility": "Non pericoloso, ma di scarsa qualità e facile da confondere con qualcosa di meglio.",
       "bitter": "Non velenoso, ma così amaro che un solo esemplare rovina un intero piatto.",
       "taxine": "Contiene alcaloidi tassinici, che arrestano il cuore. Tutte le parti tranne la polpa rossa dell'arillo sono mortali, compreso il seme al suo interno. Nessuna preparazione domestica la rende sicura.",
-      "immuneHaemolysis": "Provoca una reazione immunitaria che distrugge i globuli rossi. Si accumula con pasti ripetuti, quindi averlo mangiato senza problemi non è una garanzia: l'avvelenamento può arrivare dopo anni."
+      "immuneHaemolysis": "Provoca una reazione immunitaria che distrugge i globuli rossi. Si accumula con pasti ripetuti, quindi averlo mangiato senza problemi non è una garanzia: l'avvelenamento può arrivare dopo anni.",
+      "nephrotoxic": "Distrugge i reni giorni dopo il pasto, spesso fino alla dialisi. La cottura non aiuta.",
+      "rhabdomyolysis": "Distrugge il tessuto muscolare dopo pasti ripetuti e può arrestare il cuore. Sono documentati decessi in persone che lo mangiavano da anni.",
+      "encephalopathy": "Provoca un'encefalite mortale, soprattutto se la funzione renale è ridotta. Ha causato una serie di decessi in Giappone tra raccoglitori che lo avevano già mangiato senza problemi.",
+      "aconitine": "Una delle piante più tossiche d'Europa. L'aconitina arresta il cuore, sono avvenuti avvelenamenti per il solo contatto con la pelle e non esiste antidoto.",
+      "cicutoxin": "Provoca convulsioni violente entro un'ora ed è spesso mortale. Basta una sola radice. È tra le piante più velenose d'Europa.",
+      "ricin": "I semi contengono uno dei veleni naturali più letali conosciuti. Pochi semi masticati possono uccidere un adulto e non esiste antidoto.",
+      "cytisine": "Tutte le parti, soprattutto i legumi, contengono citisina. Alcuni bambini sono morti dopo aver mangiato i legumi credendoli piselli.",
+      "grayanotoxin": "Foglie, fiori e nettare contengono graianotossine, che alterano il ritmo cardiaco. Il miele ottenuto dai fiori ha avvelenato delle persone.",
+      "veratrumAlkaloid": "Fa crollare pressione e battito in poche ore. Le foglie giovani vengono ripetutamente confuse con l'aglio orsino, e quelle confusioni sono state fatali."
     },
     "checks": {
       "volva": "Guarda alla base del gambo, sotto il livello del terreno: una volva a sacco o una coppa rigonfia in quel punto è un segnale d'allarme serio.",
@@ -96,7 +105,9 @@
     },
     "critical": {
       "lepiotaMacrolepiota": "Le Lepiota mortali sono tra i sosia più pericolosi della mazza di tamburo, e nei nostri test è stato l'errore più frequente in assoluto. Una vera mazza di tamburo è grande, con un anello scorrevole e un gambo con disegno a pelle di serpente. Gli esemplari piccoli con il gambo liscio vanno lasciati dove sono, anche se sembrano quelli giusti.",
-      "trufflePair": "Tra le corrispondenze ci sono sia un tartufo sia un falso tartufo velenoso. Da fuori sono davvero difficili da distinguere. Taglia il ritrovamento prima di tutto: venature chiare marmorizzate indicano tartufo, un interno scuro e compatto indica falso tartufo."
+      "trufflePair": "Tra le corrispondenze ci sono sia un tartufo sia un falso tartufo velenoso. Da fuori sono davvero difficili da distinguere. Taglia il ritrovamento prima di tutto: venature chiare marmorizzate indicano tartufo, un interno scuro e compatto indica falso tartufo.",
+      "angelWingPair": "Tra le corrispondenze ci sono sia un pleuroto sia l'orecchia d'angelo. Quest'ultima ha provocato encefaliti mortali. È più sottile, bianco puro, e cresce su legno di conifera: controlla prima di tutto il legno e lo spessore della carne.",
+      "veratrumPair": "Tra le corrispondenze ci sono sia l'aglio orsino sia il veratro bianco. Questa confusione ha ucciso. Strofina una foglia: l'aglio orsino odora forte di aglio, il veratro no. Le foglie di veratro sono inoltre fortemente nervate e alterne lungo il fusto."
     }
   }
 }

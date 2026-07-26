@@ -67,7 +67,16 @@
       "poorEdibility": "No es peligroso, pero sabe mal y se confunde con facilidad con algo mejor.",
       "bitter": "No es venenoso, pero es tan amargo que un solo ejemplar arruina un plato entero.",
       "taxine": "Contiene alcaloides taxínicos, que detienen el corazón. Todas las partes excepto la pulpa roja del arilo son mortales, incluida la semilla que contiene. Ninguna preparación doméstica la hace segura.",
-      "immuneHaemolysis": "Desencadena una reacción inmunitaria que destruye los glóbulos rojos. Se acumula con comidas repetidas, así que haberlo comido antes sin problemas no es garantía: la intoxicación puede llegar después de años."
+      "immuneHaemolysis": "Desencadena una reacción inmunitaria que destruye los glóbulos rojos. Se acumula con comidas repetidas, así que haberlo comido antes sin problemas no es garantía: la intoxicación puede llegar después de años.",
+      "nephrotoxic": "Destruye los riñones días después de la comida y suele requerir diálisis. Cocinarlo no ayuda.",
+      "rhabdomyolysis": "Destruye el tejido muscular tras comidas repetidas, lo que puede parar el corazón. Hay muertes documentadas en personas que lo habían comido durante años.",
+      "encephalopathy": "Provoca una inflamación cerebral mortal, sobre todo si la función renal está reducida. Causó una serie de muertes en Japón entre recolectores que ya lo habían comido sin problemas.",
+      "aconitine": "Una de las plantas más tóxicas de Europa. La aconitina detiene el corazón, se han producido intoxicaciones por simple contacto con la piel y no hay antídoto.",
+      "cicutoxin": "Provoca convulsiones violentas en menos de una hora y con frecuencia resulta mortal. Basta una sola raíz. Está entre las plantas más venenosas de Europa.",
+      "ricin": "Las semillas contienen uno de los venenos naturales más letales conocidos. Unas pocas semillas masticadas pueden matar a un adulto y no hay antídoto.",
+      "cytisine": "Todas las partes, especialmente las vainas, contienen citisina. Han muerto niños tras comer las vainas tomándolas por guisantes.",
+      "grayanotoxin": "Las hojas, las flores y el néctar contienen grayanotoxinas, que alteran el ritmo cardíaco. La miel hecha con sus flores ha intoxicado a personas.",
+      "veratrumAlkaloid": "Hunde la tensión arterial y el pulso en pocas horas. Las hojas jóvenes se confunden repetidamente con el ajo de oso, y esas confusiones han sido mortales."
     },
     "checks": {
       "volva": "Mira la base del pie, por debajo del nivel del suelo: una envoltura a modo de saco o una copa hinchada ahí es una señal de alarma grave.",
@@ -96,7 +105,9 @@
     },
     "critical": {
       "lepiotaMacrolepiota": "Las Lepiota mortales están entre los sósias más peligrosos de la parasol, y en nuestras pruebas fue el error más frecuente de todos. Una parasol auténtica es grande, con un anillo que se puede mover y un pie con dibujo de piel de serpiente. Los ejemplares pequeños con el pie liso hay que dejarlos, aunque parezcan los correctos.",
-      "trufflePair": "Entre las coincidencias hay tanto una trufa como una falsa trufa venenosa. Por fuera son realmente difíciles de distinguir. Corta el hallazgo antes de nada: vetas pálidas marmoreadas indican trufa, un interior oscuro y compacto indica falsa trufa."
+      "trufflePair": "Entre las coincidencias hay tanto una trufa como una falsa trufa venenosa. Por fuera son realmente difíciles de distinguir. Corta el hallazgo antes de nada: vetas pálidas marmoreadas indican trufa, un interior oscuro y compacto indica falsa trufa.",
+      "angelWingPair": "Entre las coincidencias hay tanto una seta de ostra como la oreja de ángel. Esta última ha provocado inflamaciones cerebrales mortales. Es más delgada, blanco puro y crece sobre madera de conífera: comprueba antes de nada la madera y el grosor de la carne.",
+      "veratrumPair": "Entre las coincidencias hay tanto ajo de oso como vedegambre blanco. Esta confusión ha matado a personas. Estruja una hoja: el ajo de oso huele fuerte a ajo, el vedegambre no. Las hojas del vedegambre también están muy nervadas y salen alternas a lo largo del tallo."
     }
   }
 }

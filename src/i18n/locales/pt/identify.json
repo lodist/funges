@@ -67,7 +67,16 @@
       "poorEdibility": "Não é perigoso, mas sabe mal e confunde-se facilmente com algo melhor.",
       "bitter": "Não é venenoso, mas é tão amargo que um único exemplar estraga um prato inteiro.",
       "taxine": "Contém alcaloides taxínicos, que param o coração. Todas as partes excepto a polpa vermelha do arilo são mortais, incluindo a semente no seu interior. Nenhuma preparação doméstica a torna segura.",
-      "immuneHaemolysis": "Desencadeia uma reacção imunitária que destrói os glóbulos vermelhos. Acumula-se ao longo de refeições repetidas, pelo que já o ter comido sem problemas não é garantia: a intoxicação pode surgir depois de anos."
+      "immuneHaemolysis": "Desencadeia uma reacção imunitária que destrói os glóbulos vermelhos. Acumula-se ao longo de refeições repetidas, pelo que já o ter comido sem problemas não é garantia: a intoxicação pode surgir depois de anos.",
+      "nephrotoxic": "Destrói os rins dias após a refeição, exigindo muitas vezes diálise. Cozinhar não ajuda.",
+      "rhabdomyolysis": "Destrói o tecido muscular após refeições repetidas, o que pode parar o coração. Há mortes documentadas em pessoas que o comiam há anos.",
+      "encephalopathy": "Provoca uma inflamação cerebral mortal, sobretudo com função renal reduzida. Causou uma série de mortes no Japão entre apanhadores que já o tinham comido sem problemas.",
+      "aconitine": "Uma das plantas mais tóxicas da Europa. A aconitina para o coração, houve intoxicações apenas por contacto com a pele e não existe antídoto.",
+      "cicutoxin": "Provoca convulsões violentas em menos de uma hora e é frequentemente mortal. Basta uma única raiz. Está entre as plantas mais venenosas da Europa.",
+      "ricin": "As sementes contêm um dos venenos naturais mais letais conhecidos. Poucas sementes mastigadas podem matar um adulto e não existe antídoto.",
+      "cytisine": "Todas as partes, sobretudo as vagens, contêm citisina. Morreram crianças depois de comerem as vagens, tomando-as por ervilhas.",
+      "grayanotoxin": "As folhas, flores e néctar contêm graianotoxinas, que alteram o ritmo cardíaco. O mel feito destas flores já intoxicou pessoas.",
+      "veratrumAlkaloid": "Faz colapsar a tensão arterial e o ritmo cardíaco em poucas horas. As folhas jovens são repetidamente confundidas com alho-dos-ursos, e essas confusões foram fatais."
     },
     "checks": {
       "volva": "Observa a própria base do pé, abaixo do nível do solo: uma volva em forma de saco ou uma taça inchada nesse ponto é um sinal de alarme grave.",
@@ -96,7 +105,9 @@
     },
     "critical": {
       "lepiotaMacrolepiota": "As Lepiota mortais estão entre os sósias mais perigosos do frade, e nos nossos testes foi o erro mais frequente de todos. Um frade verdadeiro é grande, com um anel que se move e um pé com padrão de pele de cobra. Os exemplares pequenos com o pé liso devem ser deixados onde estão, mesmo que pareçam os corretos.",
-      "trufflePair": "Entre as correspondências estão tanto uma trufa como uma falsa trufa venenosa. Por fora são genuinamente difíceis de distinguir. Corta o achado antes de mais: veias pálidas marmoreadas indicam trufa, um interior escuro e compacto indica falsa trufa."
+      "trufflePair": "Entre as correspondências estão tanto uma trufa como uma falsa trufa venenosa. Por fora são genuinamente difíceis de distinguir. Corta o achado antes de mais: veias pálidas marmoreadas indicam trufa, um interior escuro e compacto indica falsa trufa.",
+      "angelWingPair": "Entre as correspondências estão tanto um pleuroto como a orelha-de-anjo. Esta última provocou inflamações cerebrais mortais. É mais fina, branco puro, e cresce em madeira de conífera: verifica antes de mais a madeira e a espessura da carne.",
+      "veratrumPair": "Entre as correspondências estão tanto alho-dos-ursos como veratro branco. Esta confusão já matou. Esmaga uma folha: o alho-dos-ursos cheira intensamente a alho, o veratro não. As folhas de veratro são também muito nervuradas e alternas ao longo do caule."
     }
   }
 }

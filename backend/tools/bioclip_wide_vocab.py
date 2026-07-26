@@ -47,6 +47,9 @@ WIDE_VOCAB = CACHE / "wide_vocab.json"
 # nothing else is a plausible neighbour for this catalog.
 KINGDOMS = {"Fungi": 47170, "Plantae": 47126}
 
+# iNaturalist refuses per_page above this.
+PAGE_CAP = 500
+
 # Same bounding boxes the scoring pipeline uses (backend/tools/build_season_curves.py),
 # so the distractor set is regionally plausible rather than globally random.
 REGIONS = {
@@ -67,29 +70,45 @@ def fetch_regional_species(per_region):
     found = {}
     for region, box in REGIONS.items():
         for kingdom, taxon_id in KINGDOMS.items():
-            data = _get_json(
-                "/observations/species_counts",
-                {
-                    "taxon_id": taxon_id,
-                    "quality_grade": "research",
-                    "swlat": box["lat"][0],
-                    "nelat": box["lat"][1],
-                    "swlng": box["lon"][0],
-                    "nelng": box["lon"][1],
-                    "per_page": per_region,
-                },
-            )
             new = 0
-            for row in data.get("results", []):
-                taxon = row.get("taxon") or {}
-                if taxon.get("rank") != "species":
-                    continue
-                name = taxon.get("name")
-                tid = taxon.get("id")
-                if not name or not tid or tid in found:
-                    continue
-                found[tid] = name
-                new += 1
+            # iNat caps per_page at 500, so anything larger has to be paged.
+            # Ranking is by observation count, so page 1 is the most-photographed
+            # species and later pages tail off into rarities — which is exactly
+            # the order we want to spend label budget in.
+            remaining = per_region
+            page = 1
+            while remaining > 0:
+                size = min(PAGE_CAP, remaining)
+                data = _get_json(
+                    "/observations/species_counts",
+                    {
+                        "taxon_id": taxon_id,
+                        "quality_grade": "research",
+                        "swlat": box["lat"][0],
+                        "nelat": box["lat"][1],
+                        "swlng": box["lon"][0],
+                        "nelng": box["lon"][1],
+                        "per_page": size,
+                        "page": page,
+                    },
+                )
+                results = data.get("results", [])
+                for row in results:
+                    taxon = row.get("taxon") or {}
+                    if taxon.get("rank") != "species":
+                        continue
+                    name = taxon.get("name")
+                    tid = taxon.get("id")
+                    if not name or not tid or tid in found:
+                        continue
+                    found[tid] = name
+                    new += 1
+                # Short page means the region is exhausted; asking for more would
+                # just re-request the same tail.
+                if len(results) < size:
+                    break
+                remaining -= size
+                page += 1
             print(f"  {region}/{kingdom}: +{new} species (total {len(found)})")
     return found
 
