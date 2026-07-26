@@ -1,4 +1,5 @@
 import { describe, expect, it, beforeEach } from 'vitest';
+import { BIOCLIP_LABELS } from '@/data/bioclip-labels';
 import { SPECIES_DATA } from '@/data/species';
 import { TOXIC_SPECIES } from '@/data/toxic-species';
 import {
@@ -324,5 +325,57 @@ describe('model vocabulary agrees with the app tables', () => {
 
     expect(BIOCLIP_EMBEDDING_DIM).toBe(768);
     expect(expectedBytes).toBe(BIOCLIP_LABELS.length * 768 * 2);
+  });
+});
+
+describe('catalog is reachable from the model vocabulary', () => {
+  // The catalog stores genus-level entries as "X spp."; the vocabulary uses the
+  // bare genus, because that is what the model was prompted with.
+  const GENUS_FORMS: Record<string, string> = {
+    'Boletus spp.': 'Boletus',
+    'Morchella spp.': 'Morchella',
+  };
+
+  /**
+   * Deliberately absent, documented in the spike results (section 5,
+   * Exclusions): Tuber melanosporum is subterranean, so every photo of it is
+   * harvested truffles on a table rather than anything a forager can point a
+   * camera at in a forest.
+   */
+  const KNOWN_ABSENT = new Set(['Tuber melanosporum']);
+
+  // Resolving a name correctly is not the same as the model being ABLE to
+  // predict it: the matcher works on any string, while only names present in
+  // BIOCLIP_LABELS have a row in the text matrix. A catalog species missing from
+  // the vocabulary is unfindable, and nothing else in the suite notices.
+  it('has a label for every catalog species except the documented exclusion', () => {
+    const vocabulary = new Set(BIOCLIP_LABELS.map(l => l.scientificName));
+    const unreachable = [...new Set(SPECIES_DATA.map(s => s.scientificName))]
+      .map(name => GENUS_FORMS[name] ?? name)
+      .filter(name => !vocabulary.has(name) && !KNOWN_ABSENT.has(name));
+
+    expect(unreachable).toEqual([]);
+  });
+
+  // Goes red if the exclusion is ever resolved, so the allowance above cannot
+  // outlive its reason.
+  it('still excludes Tuber melanosporum', () => {
+    const vocabulary = new Set(BIOCLIP_LABELS.map(l => l.scientificName));
+    expect(vocabulary.has('Tuber melanosporum')).toBe(false);
+  });
+
+  // Its poisonous look-alike, Scleroderma, sits in tier 2 with no safety
+  // information. That is only acceptable while the truffle itself is absent: if
+  // the truffle is ever added as an edible label, Scleroderma must become a
+  // toxic label first, or a photo of a poisonous false truffle could surface an
+  // edible catalog row.
+  it('keeps Scleroderma out of the edible catalog', () => {
+    const scleroderma = BIOCLIP_LABELS.filter(l =>
+      l.scientificName.startsWith('Scleroderma')
+    );
+    expect(scleroderma.length).toBeGreaterThan(0);
+    for (const label of scleroderma) {
+      expect(label.kind).not.toBe('catalog');
+    }
   });
 });
