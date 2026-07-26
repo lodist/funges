@@ -25,8 +25,6 @@
   "search": {
     "placeholder": "Suche nach Rezepten, Zutaten oder Tags",
     "no_results": "Kein Rezept gefunden",
-    "found_one": "{{count}} Rezept gefunden",
-    "found_other": "{{count}} Rezepte gefunden",
     "try_adjusting": "Versuche, die Suchbegriffe oder Filter zu ändern, um mehr Rezepte zu finden."
   },
   "view_recipe": "Rezept anzeigen",
