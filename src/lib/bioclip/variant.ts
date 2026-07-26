@@ -115,6 +115,30 @@ export interface VariantChoice {
 export const PROBE_MIN_COSINE = 0.99;
 
 /**
+ * int4 is published, measured, and NOT offered. Deliberately.
+ *
+ * It is 4.8x faster on a GPU that computes MatMulNBits correctly (768ms vs
+ * 3702ms, measured in a real browser). But of the two real devices tested, one
+ * Android GPU returns garbage for it — and the probe below, which runs a
+ * MatMulNBits node at K=1024/N=64/M=8, PASSED on that device. The real model
+ * runs N up to 4096 and M=257, so the fault evidently lives in a code path
+ * larger shapes reach and the probe does not.
+ *
+ * Enlarging the probe to those shapes costs ~1.5MB of bundled weights and is
+ * still only a guess about which dimension matters. Until a probe exists that
+ * demonstrably catches that device, offering int4 means some users download
+ * 280MB and land on the slow CPU fallback — worse than never offering it.
+ *
+ * int8 is correct everywhere by construction: its matmuls have no WebGPU kernel
+ * at all, so they run on the CPU on every device. 15-20s on a mid-range phone.
+ *
+ * To re-enable: set this true once the probe reproduces the failure. Everything
+ * else — the artifact on R2, the selection, the cache keys, the self-check — is
+ * already in place and tested.
+ */
+const INT4_ENABLED = false;
+
+/**
  * The same integer-only recipe Python's `_probe_input` uses.
  *
  * Small integers before one IEEE-754 double divide, so the two languages cannot
@@ -158,6 +182,11 @@ export function probeReference(): Float32Array {
  * results computed by a lying backend. The probe only saves bandwidth.
  */
 export async function detectVariant(): Promise<VariantChoice> {
+  // Short-circuits before fetching the probe or spinning up ORT, so the download
+  // gate opens immediately instead of paying for a session init it cannot use.
+  if (!INT4_ENABLED) {
+    return { spec: MODEL_VARIANTS.int8, provider: 'wasm' };
+  }
   // A device already caught returning wrong numbers for int4 gets int8 without
   // re-probing. Checked first because a GPU that fails the probe once will fail
   // it every time, and the probe costs a session init.
