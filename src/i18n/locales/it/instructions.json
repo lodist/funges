@@ -97,7 +97,7 @@
     }
   },
   "identify": {
-    "title": "Identificare da una foto",
+    "title": "Come funziona l’identificazione da foto",
     "intro": "Il pulsante ID in alto a destra riduce una foto a circa tre specie possibili, ciascuna indicata come commestibile o tossica. È una preselezione, non un verdetto: un sosia pericoloso può essere la risposta giusta anche quando non è il primo risultato.",
     "onDevice": "Il riconoscimento funziona interamente sul tuo telefono. Le foto non vengono mai caricate né conservate dall’app. Per questo la prima volta serve un download del modello una volta sola: senza di esso l’identificazione dovrebbe inviare le tue foto a un server.",
     "howTo": "Tocca ID, consenti il download una volta sola con il Wi-Fi, poi scatta una foto o scegline una dalla galleria. Riempi l’inquadratura con l’esemplare intero quando puoi, compresa la base del gambo, e fotografa quello che hai davvero dissotterrato o raccolto, non un gruppo lontano.",

@@ -97,7 +97,7 @@
     }
   },
   "identify": {
-    "title": "Identifier à partir d’une photo",
+    "title": "Comment fonctionne l'identification par photo",
     "intro": "Le bouton ID en haut à droite réduit une photo à environ trois espèces possibles, chacune marquée comestible ou toxique. C’est une présélection, pas un verdict : un sosie dangereux peut être la bonne réponse même s’il n’est pas le premier résultat.",
     "onDevice": "La reconnaissance fonctionne entièrement sur ton téléphone. Les photos ne sont jamais téléversées ni conservées par l’application. C’est pourquoi un téléchargement unique du modèle est nécessaire la première fois : sans lui, l’identification devrait envoyer tes photos à un serveur.",
     "howTo": "Touche ID, autorise le téléchargement unique en Wi-Fi, puis prends une photo ou choisis-en une dans ta galerie. Remplis le cadre avec le spécimen entier quand c’est possible, base du pied comprise, et photographie ce que tu as réellement déterré ou cueilli plutôt qu’un groupe éloigné.",
