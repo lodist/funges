@@ -16,10 +16,10 @@
     "preparing": "Preparing…",
     "identifying": "Identifying…",
     "identifyingLonger": "Comparing against {{total}} species…",
-    "identifyingLongest": "Still going — your phone is doing all the thinking, nothing leaves the device.",
+    "identifyingLongest": "Still going - your phone is doing all the thinking, nothing leaves the device.",
     "failed": "Identification failed",
     "unreadable": "That photo could not be read. Try another one, or pick it from your gallery instead of the camera.",
-    "backendWrong": "Identification cannot run correctly on this device's graphics hardware. Switching to the slower but correct mode — if this keeps failing, remove and re-download the model.",
+    "backendWrong": "Identification cannot run correctly on this device's graphics hardware. Switching to the slower but correct mode - if this keeps failing, remove and re-download the model.",
     "retry": "Try again",
     "unsupported": "Identification is not available on this device or browser."
   },
@@ -40,10 +40,10 @@
   "results": {
     "heading": "Possible matches",
     "toxicBanner": "One of these matches is toxic. Read every row before going further.",
-    "toxicLabel": "Toxic — do not eat",
-    "lethalLabel": "Deadly — do not eat",
+    "toxicLabel": "Toxic - do not eat",
+    "lethalLabel": "Deadly - do not eat",
     "inedibleLabel": "Not edible",
-    "notInCatalog": "Not in this app's catalog — no safety information",
+    "notInCatalog": "Not in this app's catalog - no safety information",
     "unknownSpecies": "Not recognised",
     "confidence": "{{percent}}% match",
     "confusedWith": "Commonly mistaken for {{species}}",
@@ -53,7 +53,7 @@
   },
   "toxicity": {
     "mechanisms": {
-      "amatoxin": "Contains amatoxins — the same toxin group as the death cap. Poisoning is often delayed by 6–24 hours, feels like recovery, then causes liver failure. Frequently fatal.",
+      "amatoxin": "Contains amatoxins - the same toxin group as the death cap. Poisoning is often delayed by 6-24 hours, feels like recovery, then causes liver failure. Frequently fatal.",
       "gyromitrin": "Contains gyromitrin, which the body converts to a toxin damaging the liver and nervous system. Can be fatal, and is not reliably destroyed by cooking.",
       "muscarine": "Contains high levels of muscarine, causing rapid sweating, salivation and collapse. Deaths have been recorded.",
       "orellanine": "Contains orellanine, which destroys the kidneys. Symptoms can take days to weeks to appear, long after the meal is forgotten.",
@@ -69,7 +69,7 @@
     },
     "checks": {
       "volva": "Look at the very base of the stem, below ground level: a sac-like bag or swollen cup there is a serious warning sign.",
-      "gillColour": "Gill colour, including on older specimens — pure white gills on a stemmed mushroom deserve caution.",
+      "gillColour": "Gill colour, including on older specimens - pure white gills on a stemmed mushroom deserve caution.",
       "gillAttachment": "Whether the underside has true blade-like gills that can be separated with a fingernail.",
       "gillVsRidges": "True chanterelles have blunt, forking ridges running down the stem, not thin crowded gills.",
       "sporePrint": "Take a spore print: leave the cap gill-side down on paper for a few hours and check the colour.",
@@ -87,7 +87,7 @@
       "smell": "Crush a leaf or piece and smell it. Wild garlic smells strongly of garlic; its deadly look-alikes do not.",
       "leafArrangement": "How leaves emerge: singly from the base on their own stalk, or paired and sheathed together.",
       "leafShape": "Leaf outline and veining, including whether the base is arrow-shaped.",
-      "stemMarkings": "Whether the stem is hollow, ridged, or blotched with purple — and whether it smells unpleasant when crushed.",
+      "stemMarkings": "Whether the stem is hollow, ridged, or blotched with purple - and whether it smells unpleasant when crushed.",
       "berryArrangement": "Whether berry clusters droop below the branches or stand upright above the foliage.",
       "plantHabit": "Whether the plant is a woody shrub or a soft green herb dying back each year."
     },

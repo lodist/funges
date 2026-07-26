@@ -16,10 +16,10 @@
     "preparing": "Vorbereiten…",
     "identifying": "Wird bestimmt…",
     "identifyingLonger": "Vergleich mit {{total}} Arten…",
-    "identifyingLongest": "Dauert noch — dein Handy rechnet alles selbst, nichts verlässt das Gerät.",
+    "identifyingLongest": "Dauert noch - dein Handy rechnet alles selbst, nichts verlässt das Gerät.",
     "failed": "Bestimmung fehlgeschlagen",
     "unreadable": "Dieses Foto konnte nicht gelesen werden. Versuche ein anderes oder wähle es aus der Galerie statt der Kamera.",
-    "backendWrong": "Die Erkennung liefert auf der Grafikhardware dieses Geräts keine korrekten Ergebnisse. Es wird auf den langsameren, aber korrekten Modus umgeschaltet — wenn das weiterhin fehlschlägt, entferne das Modell und lade es neu.",
+    "backendWrong": "Die Erkennung liefert auf der Grafikhardware dieses Geräts keine korrekten Ergebnisse. Es wird auf den langsameren, aber korrekten Modus umgeschaltet - wenn das weiterhin fehlschlägt, entferne das Modell und lade es neu.",
     "retry": "Erneut versuchen",
     "unsupported": "Die Bestimmung ist auf diesem Gerät oder in diesem Browser nicht verfügbar."
   },
@@ -40,10 +40,10 @@
   "results": {
     "heading": "Mögliche Übereinstimmungen",
     "toxicBanner": "Eine dieser Übereinstimmungen ist giftig. Lies jede Zeile, bevor du weitergehst.",
-    "toxicLabel": "Giftig – nicht essen",
-    "lethalLabel": "Tödlich giftig – nicht essen",
+    "toxicLabel": "Giftig - nicht essen",
+    "lethalLabel": "Tödlich giftig - nicht essen",
     "inedibleLabel": "Nicht essbar",
-    "notInCatalog": "Nicht im Katalog dieser App – keine Sicherheitsangaben",
+    "notInCatalog": "Nicht im Katalog dieser App - keine Sicherheitsangaben",
     "unknownSpecies": "Nicht erkannt",
     "confidence": "{{percent}} % Übereinstimmung",
     "confusedWith": "Wird häufig verwechselt mit {{species}}",
@@ -53,7 +53,7 @@
   },
   "toxicity": {
     "mechanisms": {
-      "amatoxin": "Enthält Amatoxine – dieselbe Giftgruppe wie der Grüne Knollenblätterpilz. Die Vergiftung setzt oft erst nach 6–24 Stunden ein, es folgt eine scheinbare Besserung, dann Leberversagen. Häufig tödlich.",
+      "amatoxin": "Enthält Amatoxine - dieselbe Giftgruppe wie der Grüne Knollenblätterpilz. Die Vergiftung setzt oft erst nach 6-24 Stunden ein, es folgt eine scheinbare Besserung, dann Leberversagen. Häufig tödlich.",
       "gyromitrin": "Enthält Gyromitrin, das der Körper in ein Gift umwandelt, das Leber und Nervensystem schädigt. Kann tödlich sein und wird durch Kochen nicht zuverlässig zerstört.",
       "muscarine": "Enthält viel Muscarin, was zu starkem Schwitzen, Speichelfluss und Kreislaufkollaps führt. Todesfälle sind dokumentiert.",
       "orellanine": "Enthält Orellanin, das die Nieren zerstört. Symptome können erst nach Tagen bis Wochen auftreten, lange nachdem die Mahlzeit vergessen ist.",
@@ -69,7 +69,7 @@
     },
     "checks": {
       "volva": "Schau ganz unten am Stiel, unterhalb der Erdoberfläche: eine häutige Scheide oder ein aufgeblasener Becher dort ist ein ernstes Warnzeichen.",
-      "gillColour": "Lamellenfarbe, auch bei älteren Exemplaren – reinweiße Lamellen an einem gestielten Pilz verlangen Vorsicht.",
+      "gillColour": "Lamellenfarbe, auch bei älteren Exemplaren - reinweiße Lamellen an einem gestielten Pilz verlangen Vorsicht.",
       "gillAttachment": "Ob die Unterseite echte, klingenartige Lamellen hat, die sich mit dem Fingernagel ablösen lassen.",
       "gillVsRidges": "Echte Pfifferlinge haben stumpfe, gegabelte Leisten, die am Stiel herablaufen, keine dünnen, gedrängten Lamellen.",
       "sporePrint": "Mach einen Sporenabdruck: Lege den Hut mit den Lamellen nach unten einige Stunden auf Papier und prüfe die Farbe.",
@@ -87,7 +87,7 @@
       "smell": "Zerreibe ein Blatt oder Stück und rieche daran. Bärlauch riecht deutlich nach Knoblauch, seine tödlichen Doppelgänger nicht.",
       "leafArrangement": "Wie die Blätter entstehen: einzeln aus der Basis auf eigenem Stiel, oder paarweise und gemeinsam von einer Scheide umschlossen.",
       "leafShape": "Blattumriss und Nervatur, auch ob die Blattbasis pfeilförmig ist.",
-      "stemMarkings": "Ob der Stängel hohl, gerieft oder purpurn gefleckt ist – und ob er beim Zerreiben unangenehm riecht.",
+      "stemMarkings": "Ob der Stängel hohl, gerieft oder purpurn gefleckt ist - und ob er beim Zerreiben unangenehm riecht.",
       "berryArrangement": "Ob die Beerenstände unter den Zweigen herabhängen oder aufrecht über dem Laub stehen.",
       "plantHabit": "Ob die Pflanze ein verholzter Strauch ist oder ein weiches Kraut, das jedes Jahr zurückstirbt."
     },

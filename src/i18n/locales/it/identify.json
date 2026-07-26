@@ -40,10 +40,10 @@
   "results": {
     "heading": "Corrispondenze possibili",
     "toxicBanner": "Una di queste corrispondenze è tossica. Leggi ogni riga prima di procedere.",
-    "toxicLabel": "Tossico – non mangiare",
-    "lethalLabel": "Mortale – non mangiare",
+    "toxicLabel": "Tossico - non mangiare",
+    "lethalLabel": "Mortale - non mangiare",
     "inedibleLabel": "Non commestibile",
-    "notInCatalog": "Non presente nel catalogo di questa app – nessuna informazione di sicurezza",
+    "notInCatalog": "Non presente nel catalogo di questa app - nessuna informazione di sicurezza",
     "unknownSpecies": "Non riconosciuto",
     "confidence": "{{percent}} % di corrispondenza",
     "confusedWith": "Spesso confuso con {{species}}",
@@ -87,7 +87,7 @@
       "smell": "Strofina una foglia o un pezzo e annusalo. L'aglio orsino ha un forte odore di aglio; i suoi sosia mortali no.",
       "leafArrangement": "Come nascono le foglie: singole dalla base con il proprio picciolo, oppure a coppie e guainate insieme.",
       "leafShape": "Il contorno e le nervature della foglia, compreso se la base è a forma di freccia.",
-      "stemMarkings": "Se il fusto è cavo, scanalato o macchiato di porpora – e se ha un odore sgradevole quando lo strofini.",
+      "stemMarkings": "Se il fusto è cavo, scanalato o macchiato di porpora - e se ha un odore sgradevole quando lo strofini.",
       "berryArrangement": "Se i grappoli di bacche pendono sotto i rami o restano eretti sopra il fogliame.",
       "plantHabit": "Se la pianta è un arbusto legnoso o un'erba tenera che secca ogni anno."
     },
