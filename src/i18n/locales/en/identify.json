@@ -1,13 +1,11 @@
 {
   "title": "Identify from a photo",
   "subtitle": "Narrow down what you're looking at",
-
   "disclaimer": {
     "beforeCapture": "This tool narrows down possible species from a photo. It never confirms that something is safe to eat.",
     "aboveResults": "These are possible matches, not a confirmed identification. A dangerous look-alike can be correct even when it is not the top result.",
     "neverEat": "Do not eat anything based on this app. Check the distinguishing features below against a field guide, and ask someone experienced if there is any doubt."
   },
-
   "capture": {
     "takePhoto": "Take a photo",
     "choosePhoto": "Choose a photo",
@@ -15,15 +13,14 @@
     "retake": "Try another photo",
     "hint": "One specimen, filling most of the frame, in daylight if you can."
   },
-
   "status": {
     "preparing": "Preparing…",
     "identifying": "Identifying…",
     "failed": "Identification failed",
+    "unreadable": "That photo could not be read. Try another one, or pick it from your gallery instead of the camera.",
     "retry": "Try again",
     "unsupported": "Identification is not available on this device or browser."
   },
-
   "download": {
     "title": "Download species recognition",
     "why": "Identification runs entirely on your device, so your photos never leave your phone. That needs a one-time {{size}} download.",
@@ -38,7 +35,6 @@
     "declined": "Identification needs the model downloaded before it can run.",
     "failed": "Download failed. Check your connection and try again."
   },
-
   "results": {
     "heading": "Possible matches",
     "toxicBanner": "One of these matches is toxic. Read every row before going further.",
@@ -52,7 +48,6 @@
     "checkThese": "Check these features",
     "criticalHeading": "These two are easily confused"
   },
-
   "toxicity": {
     "mechanisms": {
       "amatoxin": "Contains amatoxins — the same toxin group as the death cap. Poisoning is often delayed by 6–24 hours, feels like recovery, then causes liver failure. Frequently fatal.",
@@ -69,7 +64,6 @@
       "poorEdibility": "Not dangerous, but poor eating and easily mistaken for something better.",
       "bitter": "Not poisonous, but so bitter that a single specimen ruins a whole dish."
     },
-
     "checks": {
       "volva": "Look at the very base of the stem, below ground level: a sac-like bag or swollen cup there is a serious warning sign.",
       "gillColour": "Gill colour, including on older specimens — pure white gills on a stemmed mushroom deserve caution.",
@@ -94,7 +88,6 @@
       "berryArrangement": "Whether berry clusters droop below the branches or stand upright above the foliage.",
       "plantHabit": "Whether the plant is a woody shrub or a soft green herb dying back each year."
     },
-
     "critical": {
       "lepiotaMacrolepiota": "Deadly Lepiota species are among the most dangerous look-alikes for the Parasol mushroom, and this was the single most frequent mistake in our testing. A true Parasol is large, with a movable ring and a snakeskin-patterned stem. Small specimens with a plain stem should be left alone even if they look right."
     }

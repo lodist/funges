@@ -1,13 +1,11 @@
 {
   "title": "Identifier à partir d'une photo",
   "subtitle": "Restreins les possibilités de ce que tu observes",
-
   "disclaimer": {
     "beforeCapture": "Cet outil restreint les espèces possibles à partir d'une photo. Il ne confirme jamais qu'une chose est comestible.",
     "aboveResults": "Ce sont des correspondances possibles, pas une identification confirmée. Un sosie dangereux peut être le bon même s'il n'arrive pas en premier.",
     "neverEat": "Ne mange rien en te fondant sur cette application. Vérifie les critères de distinction ci-dessous dans un guide de terrain, et demande à une personne expérimentée au moindre doute."
   },
-
   "capture": {
     "takePhoto": "Prendre une photo",
     "choosePhoto": "Choisir une photo",
@@ -15,15 +13,14 @@
     "retake": "Essayer une autre photo",
     "hint": "Un seul spécimen, occupant presque tout le cadre, à la lumière du jour si possible."
   },
-
   "status": {
     "preparing": "Préparation…",
     "identifying": "Identification…",
     "failed": "L'identification a échoué",
+    "unreadable": "Cette photo n'a pas pu être lue. Essaie-en une autre, ou choisis-la dans la galerie plutôt qu'avec l'appareil photo.",
     "retry": "Réessayer",
     "unsupported": "L'identification n'est pas disponible sur cet appareil ou ce navigateur."
   },
-
   "download": {
     "title": "Télécharger la reconnaissance des espèces",
     "why": "L'identification se fait entièrement sur ton appareil : tes photos ne quittent jamais ton téléphone. Cela demande un téléchargement unique de {{size}}.",
@@ -38,7 +35,6 @@
     "declined": "L'identification nécessite d'abord le téléchargement du modèle.",
     "failed": "Le téléchargement a échoué. Vérifie ta connexion et réessaie."
   },
-
   "results": {
     "heading": "Correspondances possibles",
     "toxicBanner": "L'une de ces correspondances est toxique. Lis chaque ligne avant d'aller plus loin.",
@@ -52,7 +48,6 @@
     "checkThese": "Vérifie ces critères",
     "criticalHeading": "Ces deux-là se confondent facilement"
   },
-
   "toxicity": {
     "mechanisms": {
       "amatoxin": "Contient des amatoxines, le même groupe de toxines que l'amanite phalloïde. L'intoxication est souvent retardée de 6 à 24 heures, donne une impression de guérison, puis provoque une défaillance du foie. Souvent mortelle.",
@@ -69,7 +64,6 @@
       "poorEdibility": "Sans danger, mais mauvais à manger et facile à confondre avec quelque chose de meilleur.",
       "bitter": "Non toxique, mais si amer qu'un seul spécimen gâche tout un plat."
     },
-
     "checks": {
       "volva": "Regarde tout en bas du pied, sous le niveau du sol : une volve en forme de sac ou une coupe renflée à cet endroit est un signal d'alarme sérieux.",
       "gillColour": "La couleur des lames, y compris sur les vieux spécimens : des lames d'un blanc pur sur un champignon à pied appellent la prudence.",
@@ -94,7 +88,6 @@
       "berryArrangement": "Si les grappes de baies pendent sous les rameaux ou se tiennent dressées au-dessus du feuillage.",
       "plantHabit": "Si la plante est un arbuste ligneux ou une herbe tendre qui disparaît chaque année."
     },
-
     "critical": {
       "lepiotaMacrolepiota": "Les lépiotes mortelles figurent parmi les sosies les plus dangereux de la coulemelle, et c'était l'erreur la plus fréquente de tous nos tests. Une vraie coulemelle est grande, avec un anneau coulissant et un pied à motif de peau de serpent. Les petits spécimens à pied lisse doivent être laissés sur place, même s'ils semblent corrects."
     }

@@ -1,13 +1,11 @@
 {
   "title": "Identificar a partir de uma foto",
   "subtitle": "Restringe as possibilidades do que estás a ver",
-
   "disclaimer": {
     "beforeCapture": "Esta ferramenta restringe as espécies possíveis a partir de uma foto. Nunca confirma que algo é seguro para comer.",
     "aboveResults": "Estas são correspondências possíveis, não uma identificação confirmada. Um sósia perigoso pode ser o correto mesmo quando não aparece em primeiro lugar.",
     "neverEat": "Não comas nada com base nesta aplicação. Confirma os caracteres distintivos indicados abaixo num guia de campo e pergunta a alguém com experiência se tiveres qualquer dúvida."
   },
-
   "capture": {
     "takePhoto": "Tirar uma foto",
     "choosePhoto": "Escolher uma foto",
@@ -15,15 +13,14 @@
     "retake": "Tentar outra foto",
     "hint": "Um único exemplar, a ocupar quase todo o enquadramento, com luz do dia se possível."
   },
-
   "status": {
     "preparing": "A preparar…",
     "identifying": "A identificar…",
     "failed": "A identificação falhou",
+    "unreadable": "Não foi possível ler esta fotografia. Tenta outra ou escolhe-a da galeria em vez da câmara.",
     "retry": "Tentar novamente",
     "unsupported": "A identificação não está disponível neste dispositivo ou navegador."
   },
-
   "download": {
     "title": "Descarregar o reconhecimento de espécies",
     "why": "A identificação corre inteiramente no teu dispositivo, por isso as tuas fotos nunca saem do telefone. Para isso é preciso um descarregamento único de {{size}}.",
@@ -38,7 +35,6 @@
     "declined": "Para identificar é preciso descarregar primeiro o modelo.",
     "failed": "O descarregamento falhou. Verifica a ligação e tenta novamente."
   },
-
   "results": {
     "heading": "Correspondências possíveis",
     "toxicBanner": "Uma destas correspondências é tóxica. Lê todas as linhas antes de avançar.",
@@ -52,7 +48,6 @@
     "checkThese": "Confirma estes caracteres",
     "criticalHeading": "Estes dois confundem-se com facilidade"
   },
-
   "toxicity": {
     "mechanisms": {
       "amatoxin": "Contém amatoxinas, o mesmo grupo de toxinas do cogumelo-da-morte. A intoxicação surge muitas vezes só 6 a 24 horas depois, dá a sensação de melhoria e depois provoca falência do fígado. Frequentemente mortal.",
@@ -69,7 +64,6 @@
       "poorEdibility": "Não é perigoso, mas sabe mal e confunde-se facilmente com algo melhor.",
       "bitter": "Não é venenoso, mas é tão amargo que um único exemplar estraga um prato inteiro."
     },
-
     "checks": {
       "volva": "Observa a própria base do pé, abaixo do nível do solo: uma volva em forma de saco ou uma taça inchada nesse ponto é um sinal de alarme grave.",
       "gillColour": "A cor das lâminas, incluindo em exemplares velhos: lâminas de branco puro num cogumelo com pé exigem cautela.",
@@ -94,7 +88,6 @@
       "berryArrangement": "Se os cachos de bagas pendem por baixo dos ramos ou se mantêm eretos acima da folhagem.",
       "plantHabit": "Se a planta é um arbusto lenhoso ou uma erva tenra que seca todos os anos."
     },
-
     "critical": {
       "lepiotaMacrolepiota": "As Lepiota mortais estão entre os sósias mais perigosos do frade, e nos nossos testes foi o erro mais frequente de todos. Um frade verdadeiro é grande, com um anel que se move e um pé com padrão de pele de cobra. Os exemplares pequenos com o pé liso devem ser deixados onde estão, mesmo que pareçam os corretos."
     }

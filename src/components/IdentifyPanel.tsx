@@ -11,7 +11,11 @@ import {
 } from '@/components/ui/dialog';
 import { IdentifyResults } from '@/components/IdentifyResults';
 import { loadTextMatrix, rankPredictions } from '@/lib/bioclip/classify';
-import { prepareImage } from '@/lib/bioclip/imagePrep';
+import {
+  BlankImageError,
+  prepareImage,
+  type ImageStats,
+} from '@/lib/bioclip/imagePrep';
 import { preprocessToTensor, TARGET_SIZE } from '@/lib/bioclip/preprocess';
 import { BioclipSession } from '@/lib/bioclip/session';
 import {
@@ -71,6 +75,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   const [phase, setPhase] = useState<Phase>({ name: 'capture' });
   const [provider, setProvider] = useState<string | null>(null);
   const [probeProvider, setProbeProvider] = useState<string | null>(null);
+  const [imageStats, setImageStats] = useState<ImageStats | null>(null);
 
   const sessionRef = useRef<BioclipSession | null>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -190,8 +195,9 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       ]);
       if (stale()) return;
 
-      const { rgba, previewUrl } = await prepareImage(file);
+      const { rgba, previewUrl, stats } = await prepareImage(file);
       previewUrlRef.current = previewUrl;
+      setImageStats(stats);
       if (stale()) return;
 
       const tensor = preprocessToTensor(rgba);
@@ -211,6 +217,14 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       setPhase({ name: 'results', candidates, previewUrl });
     } catch (err) {
       if (stale()) return;
+      // A failed decode gets its own message. Falling through to the generic
+      // error would tell the user "something went wrong" when the actionable
+      // fact is that this particular photo could not be read.
+      if (err instanceof BlankImageError) {
+        setImageStats(err.stats);
+        setPhase({ name: 'error', message: t('status.unreadable') });
+        return;
+      }
       setPhase({
         name: 'error',
         message: err instanceof Error ? err.message : String(err),
@@ -412,6 +426,14 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
               {`engine: ${provider ?? probeProvider}`}
               {cachedSpecRef.current
                 ? ` · model: ${cachedSpecRef.current.variant}`
+                : ''}
+              {/* Decode facts, because "wrong species on this device" and "this
+                device never decoded the photo" look identical in the results
+                list. sigma near zero means the pixels were blank. */}
+              {imageStats
+                ? ` · img: ${imageStats.sourceWidth}x${imageStats.sourceHeight}` +
+                  `→${imageStats.width}x${imageStats.height}` +
+                  ` σ${imageStats.stddev.toFixed(1)}`
                 : ''}
             </p>
           )}

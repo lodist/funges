@@ -1,13 +1,11 @@
 {
   "title": "Anhand eines Fotos bestimmen",
   "subtitle": "Grenze ein, was du vor dir hast",
-
   "disclaimer": {
     "beforeCapture": "Dieses Werkzeug grenzt mögliche Arten anhand eines Fotos ein. Es bestätigt niemals, dass etwas essbar ist.",
     "aboveResults": "Das sind mögliche Übereinstimmungen, keine gesicherte Bestimmung. Ein gefährlicher Doppelgänger kann auch dann richtig sein, wenn er nicht an erster Stelle steht.",
     "neverEat": "Iss nichts auf Grundlage dieser App. Prüfe die unten genannten Unterscheidungsmerkmale mit einem Bestimmungsbuch und frage im Zweifelsfall eine erfahrene Person."
   },
-
   "capture": {
     "takePhoto": "Foto aufnehmen",
     "choosePhoto": "Foto auswählen",
@@ -15,15 +13,14 @@
     "retake": "Anderes Foto versuchen",
     "hint": "Ein einzelnes Exemplar, möglichst bildfüllend, am besten bei Tageslicht."
   },
-
   "status": {
     "preparing": "Vorbereiten…",
     "identifying": "Wird bestimmt…",
     "failed": "Bestimmung fehlgeschlagen",
+    "unreadable": "Dieses Foto konnte nicht gelesen werden. Versuche ein anderes oder wähle es aus der Galerie statt der Kamera.",
     "retry": "Erneut versuchen",
     "unsupported": "Die Bestimmung ist auf diesem Gerät oder in diesem Browser nicht verfügbar."
   },
-
   "download": {
     "title": "Arterkennung herunterladen",
     "why": "Die Bestimmung läuft vollständig auf deinem Gerät, deine Fotos verlassen dein Handy also nie. Dafür ist ein einmaliger Download von {{size}} nötig.",
@@ -38,7 +35,6 @@
     "declined": "Für die Bestimmung muss das Modell zuerst heruntergeladen werden.",
     "failed": "Download fehlgeschlagen. Prüfe deine Verbindung und versuche es erneut."
   },
-
   "results": {
     "heading": "Mögliche Übereinstimmungen",
     "toxicBanner": "Eine dieser Übereinstimmungen ist giftig. Lies jede Zeile, bevor du weitergehst.",
@@ -52,7 +48,6 @@
     "checkThese": "Diese Merkmale prüfen",
     "criticalHeading": "Diese beiden werden leicht verwechselt"
   },
-
   "toxicity": {
     "mechanisms": {
       "amatoxin": "Enthält Amatoxine – dieselbe Giftgruppe wie der Grüne Knollenblätterpilz. Die Vergiftung setzt oft erst nach 6–24 Stunden ein, es folgt eine scheinbare Besserung, dann Leberversagen. Häufig tödlich.",
@@ -69,7 +64,6 @@
       "poorEdibility": "Nicht gefährlich, aber geschmacklich schlecht und leicht mit etwas Besserem zu verwechseln.",
       "bitter": "Nicht giftig, aber so bitter, dass ein einziges Exemplar ein ganzes Gericht verdirbt."
     },
-
     "checks": {
       "volva": "Schau ganz unten am Stiel, unterhalb der Erdoberfläche: eine häutige Scheide oder ein aufgeblasener Becher dort ist ein ernstes Warnzeichen.",
       "gillColour": "Lamellenfarbe, auch bei älteren Exemplaren – reinweiße Lamellen an einem gestielten Pilz verlangen Vorsicht.",
@@ -94,7 +88,6 @@
       "berryArrangement": "Ob die Beerenstände unter den Zweigen herabhängen oder aufrecht über dem Laub stehen.",
       "plantHabit": "Ob die Pflanze ein verholzter Strauch ist oder ein weiches Kraut, das jedes Jahr zurückstirbt."
     },
-
     "critical": {
       "lepiotaMacrolepiota": "Tödliche Schirmlinge der Gattung Lepiota gehören zu den gefährlichsten Doppelgängern des Parasolpilzes, und das war in unseren Tests der häufigste Fehler überhaupt. Ein echter Parasol ist groß, hat einen verschiebbaren Ring und einen schlangenhautartig genatterten Stiel. Kleine Exemplare mit glattem Stiel solltest du stehen lassen, auch wenn sie richtig aussehen."
     }

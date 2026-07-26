@@ -1,13 +1,11 @@
 {
   "title": "Identificar desde una foto",
   "subtitle": "Reduce las posibilidades de lo que estás viendo",
-
   "disclaimer": {
     "beforeCapture": "Esta herramienta reduce las especies posibles a partir de una foto. Nunca confirma que algo sea seguro para comer.",
     "aboveResults": "Estas son coincidencias posibles, no una identificación confirmada. Un sósia peligroso puede ser el correcto incluso cuando no aparece en primer lugar.",
     "neverEat": "No comas nada basándote en esta aplicación. Comprueba los rasgos distintivos de abajo con una guía de campo y pregunta a alguien con experiencia si tienes cualquier duda."
   },
-
   "capture": {
     "takePhoto": "Hacer una foto",
     "choosePhoto": "Elegir una foto",
@@ -15,15 +13,14 @@
     "retake": "Probar con otra foto",
     "hint": "Un solo ejemplar, que ocupe casi todo el encuadre, con luz de día si puedes."
   },
-
   "status": {
     "preparing": "Preparando…",
     "identifying": "Identificando…",
     "failed": "La identificación ha fallado",
+    "unreadable": "No se ha podido leer esa foto. Prueba con otra o elígela de la galería en lugar de la cámara.",
     "retry": "Volver a intentarlo",
     "unsupported": "La identificación no está disponible en este dispositivo o navegador."
   },
-
   "download": {
     "title": "Descargar el reconocimiento de especies",
     "why": "La identificación se ejecuta por completo en tu dispositivo, así que tus fotos nunca salen del móvil. Para eso hace falta una descarga única de {{size}}.",
@@ -38,7 +35,6 @@
     "declined": "Para identificar hay que descargar antes el modelo.",
     "failed": "La descarga ha fallado. Comprueba tu conexión e inténtalo de nuevo."
   },
-
   "results": {
     "heading": "Coincidencias posibles",
     "toxicBanner": "Una de estas coincidencias es tóxica. Lee todas las filas antes de seguir.",
@@ -52,7 +48,6 @@
     "checkThese": "Comprueba estos rasgos",
     "criticalHeading": "Estos dos se confunden con facilidad"
   },
-
   "toxicity": {
     "mechanisms": {
       "amatoxin": "Contiene amatoxinas, el mismo grupo de toxinas que la oronja verde. La intoxicación suele tardar entre 6 y 24 horas, parece haber mejoría y después provoca fallo hepático. Con frecuencia mortal.",
@@ -69,7 +64,6 @@
       "poorEdibility": "No es peligroso, pero sabe mal y se confunde con facilidad con algo mejor.",
       "bitter": "No es venenoso, pero es tan amargo que un solo ejemplar arruina un plato entero."
     },
-
     "checks": {
       "volva": "Mira la base del pie, por debajo del nivel del suelo: una envoltura a modo de saco o una copa hinchada ahí es una señal de alarma grave.",
       "gillColour": "Color de las láminas, también en ejemplares viejos: unas láminas blanco puro en una seta con pie piden precaución.",
@@ -94,7 +88,6 @@
       "berryArrangement": "Si los racimos de frutos cuelgan por debajo de las ramas o se mantienen erguidos por encima del follaje.",
       "plantHabit": "Si la planta es un arbusto leñoso o una hierba blanda que se seca cada año."
     },
-
     "critical": {
       "lepiotaMacrolepiota": "Las Lepiota mortales están entre los sósias más peligrosos de la parasol, y en nuestras pruebas fue el error más frecuente de todos. Una parasol auténtica es grande, con un anillo que se puede mover y un pie con dibujo de piel de serpiente. Los ejemplares pequeños con el pie liso hay que dejarlos, aunque parezcan los correctos."
     }
