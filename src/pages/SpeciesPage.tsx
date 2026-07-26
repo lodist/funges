@@ -113,11 +113,6 @@ export default function SpeciesPage() {
               </SelectContent>
             </Select>
           </div>
-
-          {/* Results Count */}
-          <div className='text-sm text-text-secondary'>
-            {t('search.found')} {filteredSpecies.length} {t('search.species')}
-          </div>
         </div>
 
         {/* Species Grid */}
