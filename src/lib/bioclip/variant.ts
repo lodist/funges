@@ -1,3 +1,5 @@
+import { PROBE_K, PROBE_M, PROBE_OUTPUT_BASE64 } from '@/data/bioclip-probe';
+import { cosineSimilarity } from './selfCheck';
 import { BioclipSession } from './session';
 
 /**
@@ -61,8 +63,15 @@ export const VARIANT_BY_VERSION: Record<string, VariantSpec> =
     Object.values(MODEL_VARIANTS).map(spec => [spec.version, spec])
   );
 
-/** 139 bytes, already in the repo for the e2e session smoke test. */
-const PROBE_URL = `${import.meta.env.BASE_URL}models/tiny_matmul.onnx`;
+/**
+ * A single MatMulNBits node with the real tower's inner dimension, ~40KB.
+ *
+ * NOT the old `tiny_matmul.onnx`: that is a plain MatMul, so it could only
+ * answer "does a WebGPU session initialise", which was never the question. The
+ * op that breaks is MatMulNBits, and a probe that never executes one cannot
+ * detect a device that gets it wrong. That gap cost a 280MB download.
+ */
+const PROBE_URL = `${import.meta.env.BASE_URL}models/matmulnbits_probe.onnx`;
 
 const UNTRUSTED_KEY = 'funges.bioclip.webgpuUntrusted';
 
@@ -97,6 +106,38 @@ export interface VariantChoice {
 }
 
 /**
+ * Below this cosine the GPU is not computing MatMulNBits.
+ *
+ * Same reasoning as the session self-check: legitimate fp accumulation
+ * differences land at 0.999+, a broken kernel lands near zero, so the threshold
+ * sits in the empty band between them.
+ */
+export const PROBE_MIN_COSINE = 0.99;
+
+/**
+ * The same integer-only recipe Python's `_probe_input` uses.
+ *
+ * Small integers before one IEEE-754 double divide, so the two languages cannot
+ * disagree. An LCG is the trap here — its multiplier exceeds 2^53 and JS
+ * silently diverges from Python.
+ */
+export function probeInput(): Float32Array {
+  const n = PROBE_M * PROBE_K;
+  const input = new Float32Array(n);
+  for (let i = 0; i < n; i++) {
+    input[i] = ((((i % 251) * 7 + (i % 17)) % 256) / 255) * 2 - 1;
+  }
+  return input;
+}
+
+export function probeReference(): Float32Array {
+  const binary = atob(PROBE_OUTPUT_BASE64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new Float32Array(bytes.buffer);
+}
+
+/**
  * Pick a variant by trying to build a real WebGPU session first.
  *
  * Deliberately not `navigator.gpu.requestAdapter()`: an adapter can exist while
@@ -106,35 +147,51 @@ export interface VariantChoice {
  * than shipping nothing. So the probe runs the same code path as the real
  * session, through the same worker, and only the outcome decides.
  *
- * ponytail: the probe model is a plain MatMul, not a MatMulNBits. A device where
- * WebGPU MatMul works but WebGPU MatMulNBits does not would still be
- * mis-routed. Judged unlikely enough to not warrant a second artifact — the
- * kernel is present at the library level and is what on-device LLMs use. If it
- * ever bites, the upgrade is a ~200-byte probe model containing one MatMulNBits
- * node; `identify.provider` already surfaces the landed provider so the
- * mismatch is visible rather than silent.
+ * The probe then EXECUTES a MatMulNBits node and checks the numbers, rather than
+ * stopping at "a session was created". An earlier version probed with a plain
+ * MatMul and only checked initialisation, which is how an Android device with a
+ * broken MatMulNBits shader was handed the 4-bit artifact and had to download
+ * 280MB to discover it.
+ *
+ * The probe does not have to be perfectly representative to be safe: if a device
+ * still slips through, the post-download session self-check refuses to show
+ * results computed by a lying backend. The probe only saves bandwidth.
  */
 export async function detectVariant(): Promise<VariantChoice> {
-  // A device already caught returning wrong numbers for int4 on its GPU gets
-  // int8 instead, whose matmuls run on the CPU and so never touch the broken
-  // kernel. Checked before the probe, because the probe would happily say
-  // `webgpu` again — initialising is not the same as being correct.
+  // A device already caught returning wrong numbers for int4 gets int8 without
+  // re-probing. Checked first because a GPU that fails the probe once will fail
+  // it every time, and the probe costs a session init.
   if (isWebgpuUntrusted('int4')) {
-    return { spec: MODEL_VARIANTS.int8, provider: 'webgpu-untrusted' };
+    return { spec: MODEL_VARIANTS.int8, provider: 'wasm' };
   }
+  let session: BioclipSession | null = null;
   try {
     const bytes = await (await fetch(PROBE_URL)).arrayBuffer();
-    const { session, info } = await BioclipSession.create(bytes);
-    session.dispose();
-    return {
-      spec:
-        info.provider === 'webgpu' ? MODEL_VARIANTS.int4 : MODEL_VARIANTS.int8,
-      provider: info.provider,
-    };
+    const created = await BioclipSession.create(bytes);
+    session = created.session;
+
+    // No WebGPU at all: int8 is the right artifact, since it is the faster of
+    // the two on the CPU backend.
+    if (created.info.provider !== 'webgpu') {
+      return { spec: MODEL_VARIANTS.int8, provider: created.info.provider };
+    }
+
+    // WebGPU is present. Now the question that matters: does it compute
+    // MatMulNBits correctly? Initialising and being correct are different
+    // claims, and this device may be one where only the first is true.
+    const output = await session.embed(probeInput(), [PROBE_M, PROBE_K]);
+    const cosine = cosineSimilarity(output, probeReference());
+    if (cosine < PROBE_MIN_COSINE) {
+      markWebgpuUntrusted('int4');
+      return { spec: MODEL_VARIANTS.int8, provider: 'wasm' };
+    }
+    return { spec: MODEL_VARIANTS.int4, provider: 'webgpu' };
   } catch {
     // A failed probe must not block the feature. int8 is the safe default: it is
     // the faster of the two on the WASM backend, which is where a device whose
     // probe just failed is most likely to end up.
     return { spec: MODEL_VARIANTS.int8, provider: 'probe-failed' };
+  } finally {
+    session?.dispose();
   }
 }

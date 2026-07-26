@@ -97,7 +97,6 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   const isMobile = useIsMobile();
   const [phase, setPhase] = useState<Phase>({ name: 'capture' });
   const [provider, setProvider] = useState<string | null>(null);
-  const [probeProvider, setProbeProvider] = useState<string | null>(null);
   const [workingStage, setWorkingStage] = useState(0);
 
   const sessionRef = useRef<BioclipSession | null>(null);
@@ -138,9 +137,8 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
           setPhase({ name: 'capture' });
           return;
         }
-        const { spec, provider } = await detectVariant();
+        const { spec } = await detectVariant();
         if (cancelled) return;
-        setProbeProvider(provider);
         setPhase({ name: 'needsModel', spec });
       })
       .catch(() => {
@@ -432,8 +430,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
                       sessionRef.current?.dispose();
                       sessionRef.current = null;
                       cachedSpecRef.current = null;
-                      const { spec, provider } = await detectVariant();
-                      setProbeProvider(provider);
+                      const { spec } = await detectVariant();
                       setPhase({ name: 'needsModel', spec });
                     })
                     .catch(() =>
@@ -504,9 +501,9 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
             The variant is shown alongside it because the pairing is what
             matters — int4 on wasm is the one combination slower than doing
             nothing, and it is otherwise invisible. */}
-          {(provider ?? probeProvider) && (
+          {provider && (
             <p className='text-xs text-muted-foreground'>
-              {`engine: ${provider ?? probeProvider}`}
+              {`engine: ${provider}`}
               {cachedSpecRef.current
                 ? ` · model: ${cachedSpecRef.current.variant}`
                 : ''}

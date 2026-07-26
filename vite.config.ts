@@ -78,6 +78,27 @@ export default defineConfig({
               cacheableResponse: { statuses: [0, 200] },
             },
           },
+          // The bundled MatMulNBits probe (~40KB), used to decide which model
+          // variant this device can run before committing to a ~280MB download.
+          // It has to work offline, or an offline device could not open the
+          // download gate at all.
+          //
+          // `[^/]+` is load-bearing: it matches /models/probe.onnx but NOT the R2
+          // artifact at /models/bioclip/<version>/image_tower_int4.onnx. Without
+          // it this rule would have the service worker cache a second 280MB copy
+          // of a model that already lives in IndexedDB.
+          {
+            urlPattern: /\/models\/[^/]+\.onnx$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'bioclip-probe-cache',
+              expiration: {
+                maxEntries: 4,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
           // Static assets caching
           {
             urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|avif|ico)$/i,
