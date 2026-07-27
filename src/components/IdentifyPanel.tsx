@@ -72,16 +72,34 @@ type Phase =
       receivedBytes: number;
     }
   | { name: 'working' }
-  // One preview per photo combined, in capture order.
-  | { name: 'results'; candidates: Candidate[]; previewUrls: string[] }
+  // Thumbnails come from `staged`, which outlives this phase, so the result only
+  // has to carry what the model produced.
+  | { name: 'results'; candidates: Candidate[] }
   | { name: 'error'; message: string };
 
-/** What one photo contributed. Kept so a later photo can be folded in. */
+/** What one photo contributed to the combined answer. */
 interface Shot {
   embedding: Float32Array;
   /** This photo's own top 3, so a warning it alone saw survives averaging. */
   predictions: Prediction[];
-  previewUrl: string;
+}
+
+/**
+ * A photo of the current find, and the work it kicked off.
+ *
+ * Embedding starts the moment a photo is picked, while the user is still framing
+ * the next one, so the wait overlaps with the shooting instead of following it.
+ * The forward pass costs the same either way; this just stops it being wall-clock
+ * the user has to sit through.
+ */
+interface Staged {
+  key: number;
+  /** Thumbnail, once the decode has produced one. Null while decoding. */
+  previewUrl: string | null;
+  /** True when this photo could not be used. Never hidden. */
+  failed?: boolean;
+  /** Resolves to null instead of rejecting, so one bad photo cannot lose the others. */
+  work: Promise<Shot | null>;
 }
 
 /**
@@ -142,14 +160,23 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   // replacing a toxic warning with a stale non-toxic one. A ref, not state:
   // it must be readable synchronously inside the async chain.
   const requestIdRef = useRef(0);
-  // The photos combined into the current result, in capture order. A ref rather
-  // than state because the async chain appends to it and must read what is there
-  // now, not what it saw when the render closed over it.
-  const shotsRef = useRef<Shot[]>([]);
+  // Photos staged for the current find, in capture order.
+  const [staged, setStaged] = useState<Staged[]>([]);
+  // Every object URL created for the current find, so revoking does not depend on
+  // reading state from a cleanup closure that may be a render behind.
+  const previewsRef = useRef<string[]>([]);
+  // Tail of the per-photo work chain. Two photos picked in quick succession must
+  // not build the session twice or embed concurrently.
+  const chainRef = useRef<Promise<unknown>>(Promise.resolve());
+  const keyRef = useRef(0);
+  // Why a photo failed. Without it, a session that cannot be built at all would
+  // report "no photos could be read" instead of the actual reason.
+  const lastErrorRef = useRef<unknown>(null);
 
-  const clearShots = useCallback(() => {
-    for (const shot of shotsRef.current) URL.revokeObjectURL(shot.previewUrl);
-    shotsRef.current = [];
+  const clearStaged = useCallback(() => {
+    for (const url of previewsRef.current) URL.revokeObjectURL(url);
+    previewsRef.current = [];
+    setStaged([]);
   }, []);
 
   // Decide the opening state from whether the model is already on the device.
@@ -160,6 +187,10 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   useEffect(() => {
     if (!open) return;
     let cancelled = false;
+    // Reopening is a new find. Without this, yesterday's photos would still be
+    // staged and would be averaged into the next identification.
+    requestIdRef.current++;
+    clearStaged();
     setPhase({ name: 'checking' });
     getAnyCachedModel()
       .then(async cached => {
@@ -184,7 +215,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
     return () => {
       cancelled = true;
     };
-  }, [open]);
+  }, [open, clearStaged]);
 
   // Two timeouts rather than a per-second interval: only two thresholds matter,
   // so ticking every second would re-render ~15 times to change text twice.
@@ -202,9 +233,9 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       sessionRef.current?.dispose();
       sessionRef.current = null;
       abortRef.current?.abort();
-      clearShots();
+      clearStaged();
     },
-    [clearShots]
+    [clearStaged]
   );
 
   const startDownload = async (spec: VariantSpec) => {
@@ -285,49 +316,88 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   };
 
   /**
-   * Embed one photo and show the result of everything captured so far.
+   * Decode and embed one photo. Resolves to null rather than throwing.
    *
-   * `append` distinguishes "another angle on this find" from "a new find". The
-   * added photo is a second forward pass — the price of the accuracy — so results
-   * are shown after each one rather than after all of them: the user gets an
-   * answer in ~15s and chooses whether to spend another 15s sharpening it.
+   * Failure is per-photo on purpose: losing two good angles because the third
+   * could not be decoded would be the app throwing away the user's work. The
+   * failure is marked on the thumbnail instead, because a photo that silently
+   * stops counting is exactly the kind of invisible shrinkage this feature must
+   * not have.
    */
-  const identify = async (file: File, append = false) => {
-    const requestId = ++requestIdRef.current;
-    const stale = () => requestId !== requestIdRef.current;
-
-    if (!append) clearShots();
-    setPhase({ name: 'working' });
-
-    let previewUrl: string | null = null;
+  const embedPhoto = async (file: File, key: number): Promise<Shot | null> => {
     try {
       const [session, matrix] = await Promise.all([
         ensureSession(),
         loadTextMatrix(),
       ]);
-      if (stale()) return;
 
       const prepared = await prepareImage(file);
-      previewUrl = prepared.previewUrl;
-      if (stale()) return;
+      previewsRef.current.push(prepared.previewUrl);
+      // Published before the forward pass, which is the slow part: the user sees
+      // the thumbnail within ~100ms and can keep shooting.
+      setStaged(prev =>
+        prev.map(s =>
+          s.key === key ? { ...s, previewUrl: prepared.previewUrl } : s
+        )
+      );
 
-      const tensor = preprocessToTensor(prepared.rgba);
-      const embedding = await session.embed(tensor, [
+      const embedding = await session.embed(preprocessToTensor(prepared.rgba), [
         1,
         3,
         TARGET_SIZE,
         TARGET_SIZE,
       ]);
-      if (stale()) return;
 
       // Each photo's own ranking is kept, not just its embedding: it is what
       // mergeToxicSightings needs to notice a warning the average washed out.
-      const shot: Shot = {
-        embedding,
-        predictions: rankPredictions(embedding, matrix, 3),
-        previewUrl,
-      };
-      const shots = [...shotsRef.current, shot];
+      return { embedding, predictions: rankPredictions(embedding, matrix, 3) };
+    } catch (err) {
+      lastErrorRef.current = err;
+      setStaged(prev =>
+        prev.map(s => (s.key === key ? { ...s, failed: true } : s))
+      );
+      return null;
+    }
+  };
+
+  /**
+   * Combine everything staged and show the result.
+   *
+   * Most of the work is usually already done by the time this runs — each photo
+   * started embedding when it was picked — so pressing Identify after taking
+   * three photos is not three passes of waiting, only whatever is left of the
+   * last one.
+   */
+  const runIdentify = async (list: Staged[]) => {
+    const requestId = ++requestIdRef.current;
+    const stale = () => requestId !== requestIdRef.current;
+    setPhase({ name: 'working' });
+
+    try {
+      const shots = (await Promise.all(list.map(s => s.work))).filter(
+        (s): s is Shot => s !== null
+      );
+      if (stale()) return;
+
+      if (shots.length === 0) {
+        // Report the real cause. A failed decode gets its own message, because
+        // "something went wrong" hides the one actionable fact: this photo could
+        // not be read, so try another.
+        const err = lastErrorRef.current;
+        setPhase({
+          name: 'error',
+          message:
+            err instanceof BlankImageError
+              ? t('status.unreadable')
+              : err instanceof Error
+                ? err.message
+                : t('status.failed'),
+        });
+        return;
+      }
+
+      const matrix = await loadTextMatrix();
+      if (stale()) return;
 
       const candidates =
         shots.length === 1
@@ -340,49 +410,132 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
               ),
               shots.map(s => s.predictions)
             );
-
-      // Last check before anything is committed, and there is no await between
-      // it and the writes below. A superseded request must not leave its photo in
-      // shotsRef: the next result would average a photo of a DIFFERENT find and
-      // show it as evidence.
       if (stale()) return;
-      previewUrl = null; // ownership passes to shotsRef
-      shotsRef.current = shots;
 
-      setPhase({
-        name: 'results',
-        candidates,
-        previewUrls: shots.map(s => s.previewUrl),
-      });
+      setPhase({ name: 'results', candidates });
     } catch (err) {
       if (stale()) return;
-      // A failed decode gets its own message. Falling through to the generic
-      // error would tell the user "something went wrong" when the actionable
-      // fact is that this particular photo could not be read.
-      if (err instanceof BlankImageError) {
-        setPhase({ name: 'error', message: t('status.unreadable') });
-        return;
-      }
       setPhase({
         name: 'error',
         message: err instanceof Error ? err.message : String(err),
       });
-    } finally {
-      // Still set means this photo never became a Shot — a superseded request or
-      // a failure after decoding. Nothing else will ever revoke it.
-      if (previewUrl) URL.revokeObjectURL(previewUrl);
     }
+  };
+
+  /**
+   * Stage a photo and start its work immediately.
+   *
+   * `current` is passed in rather than read from state: the handler that calls
+   * this was rendered with the list it should append to, and doing the append
+   * inside a setState updater would make the updater impure — React would run it
+   * twice in development and identify twice.
+   */
+  const addPhoto = (file: File, current: Staged[], runNow: boolean) => {
+    const key = ++keyRef.current;
+    const work = chainRef.current.then(() => embedPhoto(file, key));
+    // embedPhoto never rejects, so the chain cannot be poisoned by one photo.
+    chainRef.current = work;
+
+    const next = [...current, { key, previewUrl: null, work }];
+    setStaged(next);
+    if (runNow) void runIdentify(next);
   };
 
   const onPick = (
     event: React.ChangeEvent<HTMLInputElement>,
-    append = false
+    runNow: boolean
   ) => {
     const file = event.target.files?.[0];
     // Reset so picking the same file twice still fires a change event.
     event.target.value = '';
-    if (file) void identify(file, append);
+    if (file) addPhoto(file, staged, runNow);
   };
+
+  const startOver = () => {
+    // Bump the request id so an in-flight identification cannot land on top of
+    // the fresh find the user is about to photograph.
+    requestIdRef.current++;
+    clearStaged();
+    setPhase({ name: 'capture' });
+  };
+
+  /** Thumbnails of the staged photos, shared by the capture and results phases. */
+  const thumbnails = (
+    <div className='flex gap-2'>
+      {staged.map((shot, index) => (
+        <div
+          key={shot.key}
+          className='relative min-w-0 flex-1 overflow-hidden rounded-lg bg-secondary'
+        >
+          {/* Each thumbnail is also proof of what was decoded: it comes from the
+              same downscaled canvas the tensor does, so a blank tensor shows as a
+              blank thumbnail rather than passing unnoticed. */}
+          {shot.previewUrl ? (
+            <img
+              src={shot.previewUrl}
+              alt=''
+              className='max-h-40 w-full object-contain'
+            />
+          ) : (
+            <div className='flex h-24 items-center justify-center text-xs text-muted-foreground'>
+              {index + 1}
+            </div>
+          )}
+          {shot.failed && (
+            <p className='absolute inset-x-0 bottom-0 flex items-center justify-center gap-1 bg-destructive/90 px-1 py-0.5 text-[10px] font-medium text-destructive-foreground'>
+              <AlertTriangle className='h-3 w-3 shrink-0' />
+              {t('capture.photoFailed')}
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+
+  /** The camera / gallery inputs. `runNow` skips straight to identifying. */
+  const photoInputs = (runNow: boolean) => (
+    <div className='flex flex-col gap-2 sm:flex-row'>
+      {/* `capture` opens the OS camera directly on mobile. No getUserMedia
+          preview: the native picker already yields the File this pipeline
+          needs, and a custom preview would add a video element, permission
+          fallbacks and iOS quirks for nothing. */}
+      {isMobile && (
+        <label className='flex-1'>
+          <input
+            type='file'
+            accept='image/*'
+            capture='environment'
+            className='sr-only'
+            onChange={event => onPick(event, runNow)}
+          />
+          <span
+            className={`inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border px-4 py-2 text-sm font-medium ${
+              staged.length === 0
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-secondary'
+            }`}
+          >
+            <Camera className='h-4 w-4' />
+            {staged.length === 0
+              ? t('capture.takePhoto')
+              : t('capture.addAngle')}
+          </span>
+        </label>
+      )}
+      <label className='flex-1'>
+        <input
+          type='file'
+          accept='image/*'
+          className='sr-only'
+          onChange={event => onPick(event, runNow)}
+        />
+        <span className='inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border bg-secondary px-4 py-2 text-sm font-medium'>
+          <ImageIcon className='h-4 w-4' />
+          {isMobile ? t('capture.choosePhoto') : t('capture.dropHere')}
+        </span>
+      </label>
+    </div>
+  );
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
@@ -501,42 +654,37 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
               <p className='text-sm text-muted-foreground'>
                 {t('capture.hint')}
               </p>
-              <div className='flex flex-col gap-2 sm:flex-row'>
-                {/* `capture` opens the OS camera directly on mobile. No
-                  getUserMedia preview: the native picker already yields the
-                  File this pipeline needs, and a custom preview would add a
-                  video element, permission fallbacks and iOS quirks for
-                  nothing. */}
-                {isMobile && (
-                  <label className='flex-1'>
-                    <input
-                      type='file'
-                      accept='image/*'
-                      capture='environment'
-                      className='sr-only'
-                      onChange={onPick}
-                    />
-                    <span className='inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border bg-primary px-4 py-2 text-sm font-medium text-primary-foreground'>
-                      <Camera className='h-4 w-4' />
-                      {t('capture.takePhoto')}
-                    </span>
-                  </label>
-                )}
-                <label className='flex-1'>
-                  <input
-                    type='file'
-                    accept='image/*'
-                    className='sr-only'
-                    onChange={onPick}
-                  />
-                  <span className='inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border bg-secondary px-4 py-2 text-sm font-medium'>
-                    <ImageIcon className='h-4 w-4' />
-                    {isMobile
-                      ? t('capture.choosePhoto')
-                      : t('capture.dropHere')}
-                  </span>
-                </label>
-              </div>
+
+              {/* Photos are collected BEFORE identifying, not added afterwards.
+                  The user is crouched in front of the find with it in hand; that
+                  is the moment all three angles are cheap to take. Prompting for
+                  a second angle only after a result has been shown means asking
+                  someone to walk back and crouch again — and once a ranked list
+                  with a confident-looking percentage is on screen, the job feels
+                  finished, so the angle that would have improved it rarely gets
+                  taken. The accuracy is only worth having if it is actually
+                  used. */}
+              {staged.length > 0 && thumbnails}
+
+              {/* Nothing is queued for later: each photo starts embedding as soon
+                  as it is picked, so the time spent framing the next one is time
+                  the model is already working. */}
+              {staged.length < MAX_PHOTOS && photoInputs(false)}
+
+              {staged.length > 0 && (
+                <>
+                  <p className='text-xs text-muted-foreground'>
+                    {t('capture.addAngleHint')}
+                  </p>
+                  <Button
+                    className='w-full'
+                    onClick={() => void runIdentify(staged)}
+                  >
+                    {t('capture.run')}
+                  </Button>
+                </>
+              )}
+
               <button
                 type='button'
                 className='text-xs text-muted-foreground underline'
@@ -589,57 +737,31 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
 
           {phase.name === 'results' && (
             <section className='space-y-3'>
-              {/* One thumbnail per photo, sharing the row. Each is proof of what
-                  was actually decoded: if a tensor was blank, its preview is too,
-                  which is how a bad Android capture was caught. */}
-              <div className='flex gap-2'>
-                {phase.previewUrls.map(url => (
-                  <img
-                    key={url}
-                    src={url}
-                    alt=''
-                    className='min-w-0 flex-1 max-h-48 rounded-lg object-contain'
-                  />
-                ))}
-              </div>
+              {thumbnails}
 
-              {phase.previewUrls.length > 1 && (
+              {staged.length > 1 && (
                 <p className='text-xs text-muted-foreground'>
-                  {t('capture.combined', { total: phase.previewUrls.length })}
+                  {t('capture.combined', { total: staged.length })}
                 </p>
               )}
 
               <IdentifyResults candidates={phase.candidates} />
 
-              {/* Offered AFTER a result, not before. Asking for three photos up
-                  front would mean ~45s of waiting before anything is on screen;
-                  this way each photo is a deliberate choice to spend another pass
-                  sharpening an answer the user has already seen. */}
-              {phase.previewUrls.length < MAX_PHOTOS && (
+              {/* Still offered here, and it earns its place: this is the point
+                  where the result itself tells you which angle is worth taking —
+                  a deadly look-alike in the list means go photograph the stem
+                  base. Identifies immediately, since committing to identify
+                  already happened. */}
+              {staged.length < MAX_PHOTOS && (
                 <div className='space-y-2 rounded-lg border p-3'>
                   <p className='text-xs text-muted-foreground'>
                     {t('capture.addAngleHint')}
                   </p>
-                  <label className='block'>
-                    <input
-                      type='file'
-                      accept='image/*'
-                      {...(isMobile ? { capture: 'environment' as const } : {})}
-                      className='sr-only'
-                      onChange={event => onPick(event, true)}
-                    />
-                    <span className='inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border bg-secondary px-4 py-2 text-sm font-medium'>
-                      <Camera className='h-4 w-4' />
-                      {t('capture.addAngle')}
-                    </span>
-                  </label>
+                  {photoInputs(true)}
                 </div>
               )}
 
-              <Button
-                variant='outline'
-                onClick={() => setPhase({ name: 'capture' })}
-              >
+              <Button variant='outline' onClick={startOver}>
                 {t('capture.retake')}
               </Button>
             </section>
@@ -649,9 +771,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
             <section className='space-y-3' role='alert'>
               <p className='text-sm font-medium'>{t('status.failed')}</p>
               <p className='text-sm text-muted-foreground'>{phase.message}</p>
-              <Button onClick={() => setPhase({ name: 'capture' })}>
-                {t('status.retry')}
-              </Button>
+              <Button onClick={startOver}>{t('status.retry')}</Button>
             </section>
           )}
 

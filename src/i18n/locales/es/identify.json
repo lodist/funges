@@ -10,6 +10,8 @@
     "choosePhoto": "Elegir una foto",
     "dropHere": "Arrastra una foto aquí, o haz clic para elegirla",
     "retake": "Probar con otra foto",
+    "run": "Identificar este hallazgo",
+    "photoFailed": "Ilegible",
     "addAngle": "Añadir otro ángulo",
     "addAngleHint": "Una segunda foto del mismo ejemplar suele dar una coincidencia mejor. Prueba con la parte inferior, la base del pie o un corte por la mitad - los rasgos que distinguen a los parecidos están en superficies que una sola foto no puede mostrar.",
     "combined": "Combinado a partir de {{total}} fotos del mismo ejemplar.",

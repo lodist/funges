@@ -10,6 +10,8 @@
     "choosePhoto": "Escolher uma foto",
     "dropHere": "Arrasta uma foto para aqui, ou clica para escolher",
     "retake": "Tentar outra foto",
+    "run": "Identificar este achado",
+    "photoFailed": "Ilegível",
     "addAngle": "Adicionar outro ângulo",
     "addAngleHint": "Uma segunda foto do mesmo exemplar dá normalmente uma correspondência melhor. Experimenta a parte de baixo, a base do pé ou um corte ao meio - as características que distinguem os sósias estão em superfícies que uma só foto não consegue mostrar.",
     "combined": "Combinado a partir de {{total}} fotos do mesmo exemplar.",

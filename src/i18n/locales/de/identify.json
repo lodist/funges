@@ -10,6 +10,8 @@
     "choosePhoto": "Foto auswählen",
     "dropHere": "Foto hierher ziehen oder klicken zum Auswählen",
     "retake": "Anderes Foto versuchen",
+    "run": "Diesen Fund identifizieren",
+    "photoFailed": "Nicht lesbar",
     "addAngle": "Weiteren Blickwinkel hinzufügen",
     "addAngleHint": "Ein zweites Foto desselben Fundes liefert meist einen besseren Treffer. Versuche die Unterseite, den Stielgrund oder einen Schnitt durch die Mitte - die Merkmale, die Doppelgänger unterscheiden, liegen auf Flächen, die ein einzelnes Foto nicht zeigen kann.",
     "combined": "Aus {{total}} Fotos desselben Fundes kombiniert.",
