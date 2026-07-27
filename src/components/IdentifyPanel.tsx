@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AlertTriangle, Camera, ImageIcon, X } from 'lucide-react';
+import { AlertTriangle, Camera, ImageIcon, XIcon } from 'lucide-react';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import { Button } from '@/components/ui/button';
 import {
@@ -513,16 +513,22 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
               {index + 1}
             </div>
           )}
-          {/* Sized past the 44px touch target rather than to the icon: this sits
-              on top of a photo on a phone, and a miss deletes nothing but does
-              open the picker behind it. */}
+          {/* Filled dark circle, light glyph. Deliberately high contrast rather
+              than the dialog close button's pale treatment: this sits ON a photo,
+              where a pale pill over pale foliage is unreadable — and where an
+              icon that fails to draw for any reason still leaves an obvious
+              button rather than an empty outline.
+              `shrink-0` is why shadcn writes icons this way: an svg is a flex
+              item here and can otherwise collapse while the button still paints.
+              28px, past the icon's own size, because a miss on a phone opens the
+              picker underneath. */}
           <button
             type='button'
             onClick={() => removePhoto(shot.key)}
             aria-label={t('capture.removePhoto')}
-            className='absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-background/80 text-foreground shadow-sm ring-1 ring-border'
+            className='absolute top-1 right-1 flex size-7 items-center justify-center rounded-full bg-neutral-900/80 text-white shadow-sm [&_svg]:shrink-0'
           >
-            <X className='h-4 w-4' aria-hidden='true' />
+            <XIcon className='size-4' aria-hidden='true' />
           </button>
           {shot.failed && (
             <p className='absolute inset-x-0 bottom-0 flex items-center justify-center gap-1 bg-destructive/90 px-1 py-0.5 text-[10px] font-medium text-destructive-foreground'>

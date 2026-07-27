@@ -115,6 +115,13 @@ describe('IdentifyPanel photo staging', () => {
 
     // The run button appears only once something is staged.
     expect(await screen.findByText('Identify this find')).toBeInTheDocument();
+
+    // The staged photo can be removed, and the button actually has its glyph.
+    // It shipped once as an empty pill: the icon element rendered nothing while
+    // the button still painted, which is invisible to any test that only checks
+    // the button exists.
+    const remove = screen.getByLabelText('Remove this photo');
+    expect(remove.querySelector('svg')).not.toBeNull();
     // And nothing started on its own.
     expect(screen.queryByText(/^Identifying/)).not.toBeInTheDocument();
     expect(document.querySelector('[role="alert"]')).toBeNull();
