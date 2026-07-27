@@ -9,13 +9,15 @@
     "takePhoto": "Take a photo",
     "choosePhoto": "Choose a photo",
     "dropHere": "Drop a photo here, or click to choose",
+    "chooseAnother": "Choose another photo",
+    "dropAnother": "Drop another photo here, or click to choose",
     "retake": "Try another photo",
     "run": "Identify this find",
     "photoFailed": "Unreadable",
     "addAngle": "Add another angle",
-    "addAngleHint": "A second photo of the same find usually gives a better match. Try the underside, the base of the stem, or a cut through the middle - the features that separate look-alikes sit on surfaces one photo cannot show.",
+    "addAngleHint": "Best next: the underside, the stem base, or a cut through the middle.",
     "combined": "Combined from {{total}} photos of the same find.",
-    "hint": "One specimen, filling most of the frame, in daylight if you can."
+    "hint": "One specimen, filling the frame. Daylight if you can."
   },
   "status": {
     "preparing": "Preparing…",

@@ -9,13 +9,15 @@
     "takePhoto": "Foto aufnehmen",
     "choosePhoto": "Foto auswählen",
     "dropHere": "Foto hierher ziehen oder klicken zum Auswählen",
+    "chooseAnother": "Weiteres Foto auswählen",
+    "dropAnother": "Weiteres Foto hierher ziehen oder klicken zum Auswählen",
     "retake": "Anderes Foto versuchen",
     "run": "Diesen Fund identifizieren",
     "photoFailed": "Nicht lesbar",
     "addAngle": "Weiteren Blickwinkel hinzufügen",
-    "addAngleHint": "Ein zweites Foto desselben Fundes liefert meist einen besseren Treffer. Versuche die Unterseite, den Stielgrund oder einen Schnitt durch die Mitte - die Merkmale, die Doppelgänger unterscheiden, liegen auf Flächen, die ein einzelnes Foto nicht zeigen kann.",
+    "addAngleHint": "Am besten als Nächstes: die Unterseite, der Stielgrund oder ein Schnitt durch die Mitte.",
     "combined": "Aus {{total}} Fotos desselben Fundes kombiniert.",
-    "hint": "Ein einzelnes Exemplar, möglichst bildfüllend, am besten bei Tageslicht."
+    "hint": "Ein einzelnes Exemplar, bildfüllend. Wenn möglich bei Tageslicht."
   },
   "status": {
     "preparing": "Vorbereiten…",

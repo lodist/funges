@@ -9,13 +9,15 @@
     "takePhoto": "Tirar uma foto",
     "choosePhoto": "Escolher uma foto",
     "dropHere": "Arrasta uma foto para aqui, ou clica para escolher",
+    "chooseAnother": "Escolher outra foto",
+    "dropAnother": "Arrasta outra foto para aqui, ou clica para escolher",
     "retake": "Tentar outra foto",
     "run": "Identificar este achado",
     "photoFailed": "Ilegível",
     "addAngle": "Adicionar outro ângulo",
-    "addAngleHint": "Uma segunda foto do mesmo exemplar dá normalmente uma correspondência melhor. Experimenta a parte de baixo, a base do pé ou um corte ao meio - as características que distinguem os sósias estão em superfícies que uma só foto não consegue mostrar.",
+    "addAngleHint": "A seguir, de preferência: a parte de baixo, a base do pé ou um corte ao meio.",
     "combined": "Combinado a partir de {{total}} fotos do mesmo exemplar.",
-    "hint": "Um único exemplar, a ocupar quase todo o enquadramento, com luz do dia se possível."
+    "hint": "Um único exemplar, a preencher o enquadramento. Com luz do dia se possível."
   },
   "status": {
     "preparing": "A preparar…",

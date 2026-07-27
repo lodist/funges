@@ -496,49 +496,62 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   );
 
   /** The camera / gallery inputs. `runNow` skips straight to identifying. */
-  const photoInputs = (runNow: boolean) => (
-    <div className='flex flex-col gap-2 sm:flex-row'>
-      {/* `capture` opens the OS camera directly on mobile. No getUserMedia
+  const photoInputs = (runNow: boolean) => {
+    // Both labels say "another" once a photo is in: offering "Choose a photo"
+    // next to two thumbnails reads as replacing them, not adding to them.
+    const galleryKey =
+      staged.length === 0
+        ? isMobile
+          ? 'capture.choosePhoto'
+          : 'capture.dropHere'
+        : isMobile
+          ? 'capture.chooseAnother'
+          : 'capture.dropAnother';
+
+    return (
+      <div className='flex flex-col gap-2 sm:flex-row'>
+        {/* `capture` opens the OS camera directly on mobile. No getUserMedia
           preview: the native picker already yields the File this pipeline
           needs, and a custom preview would add a video element, permission
           fallbacks and iOS quirks for nothing. */}
-      {isMobile && (
+        {isMobile && (
+          <label className='flex-1'>
+            <input
+              type='file'
+              accept='image/*'
+              capture='environment'
+              className='sr-only'
+              onChange={event => onPick(event, runNow)}
+            />
+            <span
+              className={`inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border px-4 py-2 text-sm font-medium ${
+                staged.length === 0
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-secondary'
+              }`}
+            >
+              <Camera className='h-4 w-4' />
+              {staged.length === 0
+                ? t('capture.takePhoto')
+                : t('capture.addAngle')}
+            </span>
+          </label>
+        )}
         <label className='flex-1'>
           <input
             type='file'
             accept='image/*'
-            capture='environment'
             className='sr-only'
             onChange={event => onPick(event, runNow)}
           />
-          <span
-            className={`inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border px-4 py-2 text-sm font-medium ${
-              staged.length === 0
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-secondary'
-            }`}
-          >
-            <Camera className='h-4 w-4' />
-            {staged.length === 0
-              ? t('capture.takePhoto')
-              : t('capture.addAngle')}
+          <span className='inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border bg-secondary px-4 py-2 text-sm font-medium'>
+            <ImageIcon className='h-4 w-4' />
+            {t(galleryKey)}
           </span>
         </label>
-      )}
-      <label className='flex-1'>
-        <input
-          type='file'
-          accept='image/*'
-          className='sr-only'
-          onChange={event => onPick(event, runNow)}
-        />
-        <span className='inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border bg-secondary px-4 py-2 text-sm font-medium'>
-          <ImageIcon className='h-4 w-4' />
-          {isMobile ? t('capture.choosePhoto') : t('capture.dropHere')}
-        </span>
-      </label>
-    </div>
-  );
+      </div>
+    );
+  };
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
@@ -654,9 +667,14 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
 
           {phase.name === 'capture' && (
             <section className='space-y-3'>
-              <p className='text-sm text-muted-foreground'>
-                {t('capture.hint')}
-              </p>
+              {/* One instruction at a time. Two paragraphs competing above the
+                  buttons is what made this screen read as a wall of text, and
+                  the framing advice is only useful before the first photo. */}
+              {staged.length === 0 && (
+                <p className='text-sm text-muted-foreground'>
+                  {t('capture.hint')}
+                </p>
+              )}
 
               {/* Photos are collected BEFORE identifying, not added afterwards.
                   The user is crouched in front of the find with it in hand; that
