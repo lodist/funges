@@ -145,6 +145,53 @@ export function resolvePredictions(predictions: Prediction[]): Candidate[] {
   return predictions.map(resolvePrediction);
 }
 
+/**
+ * Cap on toxic labels appended by `mergeToxicSightings`.
+ *
+ * Bounds the list at 3 + 2 rows. Three photos could in principle contribute nine
+ * distinct sightings, and a wall of warnings is how alarm fatigue is manufactured
+ * — the point of grading severity in the first place.
+ */
+const MAX_APPENDED_SIGHTINGS = 2;
+
+/**
+ * Combine the ranking from the averaged embedding with toxic labels that only one
+ * individual photo saw.
+ *
+ * Averaging is what makes several photos more accurate, but it can also dilute. A
+ * photo of the stem base can show a death cap's volva plainly while a top-down
+ * cap shot of the same find shows nothing at all, and the mean of the two can
+ * rank that warning out of the top 3. So `ranked` — the averaged, measured-
+ * accurate ordering — is what the user sees first, and a toxic label that a
+ * single photo put in its own top 3 is appended rather than lost.
+ *
+ * Only TOXIC labels are appended. Appending an edible one would manufacture a
+ * candidate the combined evidence does not support, which is the one direction
+ * this feature must never err in.
+ */
+export function mergeToxicSightings(
+  ranked: Prediction[],
+  perPhoto: Prediction[][]
+): Candidate[] {
+  const combined = resolvePredictions(ranked);
+  const seen = new Set(combined.map(c => c.scientificName));
+
+  // Strongest sighting first, so if the cap bites it drops the weakest evidence.
+  const sightings = perPhoto.flat().sort((a, b) => b.score - a.score);
+
+  const appended: Candidate[] = [];
+  for (const sighting of sightings) {
+    if (appended.length === MAX_APPENDED_SIGHTINGS) break;
+    if (seen.has(sighting.scientificName)) continue;
+    const candidate = resolvePrediction(sighting);
+    if (candidate.kind !== 'toxic') continue;
+    seen.add(sighting.scientificName);
+    appended.push(candidate);
+  }
+
+  return [...combined, ...appended];
+}
+
 /** True when any candidate is toxic, at any rank. Drives the warning banner. */
 export function hasToxicCandidate(candidates: Candidate[]): boolean {
   return candidates.some(c => c.kind === 'toxic');

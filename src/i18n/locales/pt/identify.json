@@ -9,8 +9,16 @@
     "takePhoto": "Tirar uma foto",
     "choosePhoto": "Escolher uma foto",
     "dropHere": "Arrasta uma foto para aqui, ou clica para escolher",
+    "chooseAnother": "Escolher outra foto",
+    "dropAnother": "Arrasta outra foto para aqui, ou clica para escolher",
+    "removePhoto": "Remover esta foto",
     "retake": "Tentar outra foto",
-    "hint": "Um único exemplar, a ocupar quase todo o enquadramento, com luz do dia se possível."
+    "run": "Identificar este achado",
+    "photoFailed": "Ilegível",
+    "addAngle": "Adicionar outro ângulo",
+    "addAngleHint": "A seguir, de preferência: a parte de baixo, a base do pé ou um corte ao meio.",
+    "combined": "Combinado a partir de {{total}} fotos do mesmo exemplar.",
+    "hint": "Um único exemplar, a preencher o enquadramento. Com luz do dia se possível."
   },
   "status": {
     "preparing": "A preparar…",

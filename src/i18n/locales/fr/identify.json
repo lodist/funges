@@ -9,8 +9,16 @@
     "takePhoto": "Prendre une photo",
     "choosePhoto": "Choisir une photo",
     "dropHere": "Dépose une photo ici, ou clique pour la choisir",
+    "chooseAnother": "Choisir une autre photo",
+    "dropAnother": "Dépose une autre photo ici, ou clique pour la choisir",
+    "removePhoto": "Retirer cette photo",
     "retake": "Essayer une autre photo",
-    "hint": "Un seul spécimen, occupant presque tout le cadre, à la lumière du jour si possible."
+    "run": "Identifier cette trouvaille",
+    "photoFailed": "Illisible",
+    "addAngle": "Ajouter un autre angle",
+    "addAngleHint": "Idéalement ensuite : le dessous, la base du pied ou une coupe en deux.",
+    "combined": "Combiné à partir de {{total}} photos du même spécimen.",
+    "hint": "Un seul spécimen, remplissant le cadre. À la lumière du jour si possible."
   },
   "status": {
     "preparing": "Préparation…",

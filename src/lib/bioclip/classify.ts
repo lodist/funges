@@ -103,6 +103,51 @@ export function resetTextMatrix(): void {
 }
 
 /**
+ * Combine embeddings from several photos of one specimen into one.
+ *
+ * Mean, then renormalise. The renormalise is not optional: cosine similarity
+ * depends only on direction, and the mean of unit vectors is shorter than one, so
+ * without it every score would be scaled down and the softmax would flatten.
+ *
+ * Measured on the 333 iNaturalist test observations that have two or more photos,
+ * paired so the only variable is how many were combined: two photos halved
+ * false-edible@1 (1.35% -> 0.68%), took catalog top-1 from 79.5% to 85.4%, and
+ * took "a toxic label is somewhere in the top 3" from 97.3% to 100%. A third
+ * photo added ~1pp of top-1 and moved nothing else, so the second photo does
+ * nearly all the work. Photos within one observation are not guaranteed to be
+ * different angles, so that is a floor on what deliberate different views buy.
+ */
+export function averageEmbeddings(embeddings: Float32Array[]): Float32Array {
+  const dim = BIOCLIP_EMBEDDING_DIM;
+  if (embeddings.length === 0) {
+    throw new Error('no embeddings to average');
+  }
+
+  const mean = new Float32Array(dim);
+  for (const embedding of embeddings) {
+    // A short embedding would otherwise average as implicit zeros and quietly
+    // rotate the result toward the first dimensions.
+    if (embedding.length !== dim) {
+      throw new Error(
+        `embedding is ${embedding.length} floats, expected ${dim}`
+      );
+    }
+    for (let i = 0; i < dim; i++) mean[i] += embedding[i];
+  }
+
+  let norm = 0;
+  for (let i = 0; i < dim; i++) norm += mean[i] * mean[i];
+  norm = Math.sqrt(norm);
+  // Only reachable if the inputs cancel out exactly. Scoring a zero vector gives
+  // every label the same similarity, i.e. an arbitrary top 3 presented as a
+  // ranking, so refuse instead.
+  if (norm === 0) throw new Error('averaged embedding has zero length');
+
+  for (let i = 0; i < dim; i++) mean[i] /= norm;
+  return mean;
+}
+
+/**
  * Rank labels for one image embedding.
  *
  * `embedding` must be L2-normalised — the exported ONNX graph normalises its own

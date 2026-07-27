@@ -9,8 +9,16 @@
     "takePhoto": "Scatta una foto",
     "choosePhoto": "Scegli una foto",
     "dropHere": "Trascina qui una foto, oppure clicca per scegliere",
+    "chooseAnother": "Scegli un'altra foto",
+    "dropAnother": "Trascina qui un'altra foto, oppure clicca per scegliere",
+    "removePhoto": "Rimuovi questa foto",
     "retake": "Prova con un'altra foto",
-    "hint": "Un solo esemplare, che occupi quasi tutta l'inquadratura, con luce diurna se possibile."
+    "run": "Identifica questo ritrovamento",
+    "photoFailed": "Illeggibile",
+    "addAngle": "Aggiungi un'altra angolazione",
+    "addAngleHint": "Meglio ora: la parte inferiore, la base del gambo o un taglio a metà.",
+    "combined": "Combinato da {{total}} foto dello stesso esemplare.",
+    "hint": "Un solo esemplare, che riempia l'inquadratura. Con luce diurna se possibile."
   },
   "status": {
     "preparing": "Preparazione…",

@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { BIOCLIP_EMBEDDING_DIM, BIOCLIP_LABELS } from '@/data/bioclip-labels';
 import {
+  averageEmbeddings,
   decodeFloat16,
   loadTextMatrix,
   rankPredictions,
@@ -189,5 +190,65 @@ describe('rankPredictions', () => {
     expect(() => rankPredictions(new Float32Array(10), matrix, 3)).toThrow(
       /expected/
     );
+  });
+});
+
+describe('averageEmbeddings', () => {
+  const dim = BIOCLIP_EMBEDDING_DIM;
+
+  // The whole point is that the result can be scored against the label matrix.
+  // The mean of two unit vectors is SHORTER than one, so skipping the renormalise
+  // would scale every similarity down and flatten the softmax - the confidences a
+  // user reads would be wrong in a way nothing throws on.
+  it('returns a unit vector', () => {
+    const combined = averageEmbeddings([
+      unitVector(dim, 0),
+      unitVector(dim, 1),
+    ]);
+
+    let norm = 0;
+    for (const v of combined) norm += v * v;
+    expect(Math.sqrt(norm)).toBeCloseTo(1, 6);
+  });
+
+  it('points between its inputs', () => {
+    const combined = averageEmbeddings([
+      unitVector(dim, 0),
+      unitVector(dim, 1),
+    ]);
+
+    // Equal contribution from both photos, at 1/sqrt(2) each.
+    expect(combined[0]).toBeCloseTo(Math.SQRT1_2, 6);
+    expect(combined[1]).toBeCloseTo(Math.SQRT1_2, 6);
+    expect(combined[2]).toBe(0);
+  });
+
+  it('leaves a single embedding alone', () => {
+    const one = unitVector(dim, 5);
+
+    expect(Array.from(averageEmbeddings([one]))).toEqual(Array.from(one));
+  });
+
+  // A shorter embedding would average as implicit zeros and quietly rotate the
+  // result toward the low dimensions - a wrong ranking with no error anywhere.
+  it('rejects a mismatched dimension', () => {
+    expect(() =>
+      averageEmbeddings([unitVector(dim, 0), new Float32Array(10)])
+    ).toThrow(/expected/);
+  });
+
+  it('refuses to score a zero vector', () => {
+    const opposite = new Float32Array(dim);
+    opposite[0] = -1;
+
+    // Every label would tie, and an arbitrary top 3 would be presented as a
+    // ranking.
+    expect(() => averageEmbeddings([unitVector(dim, 0), opposite])).toThrow(
+      /zero length/
+    );
+  });
+
+  it('rejects an empty list', () => {
+    expect(() => averageEmbeddings([])).toThrow();
   });
 });

@@ -9,8 +9,16 @@
     "takePhoto": "Take a photo",
     "choosePhoto": "Choose a photo",
     "dropHere": "Drop a photo here, or click to choose",
+    "chooseAnother": "Choose another photo",
+    "dropAnother": "Drop another photo here, or click to choose",
+    "removePhoto": "Remove this photo",
     "retake": "Try another photo",
-    "hint": "One specimen, filling most of the frame, in daylight if you can."
+    "run": "Identify this find",
+    "photoFailed": "Unreadable",
+    "addAngle": "Add another angle",
+    "addAngleHint": "Best next: the underside, the stem base, or a cut through the middle.",
+    "combined": "Combined from {{total}} photos of the same find.",
+    "hint": "One specimen, filling the frame. Daylight if you can."
   },
   "status": {
     "preparing": "Preparing…",

@@ -9,8 +9,16 @@
     "takePhoto": "Foto aufnehmen",
     "choosePhoto": "Foto auswählen",
     "dropHere": "Foto hierher ziehen oder klicken zum Auswählen",
+    "chooseAnother": "Weiteres Foto auswählen",
+    "dropAnother": "Weiteres Foto hierher ziehen oder klicken zum Auswählen",
+    "removePhoto": "Dieses Foto entfernen",
     "retake": "Anderes Foto versuchen",
-    "hint": "Ein einzelnes Exemplar, möglichst bildfüllend, am besten bei Tageslicht."
+    "run": "Diesen Fund identifizieren",
+    "photoFailed": "Nicht lesbar",
+    "addAngle": "Weiteren Blickwinkel hinzufügen",
+    "addAngleHint": "Am besten als Nächstes: die Unterseite, der Stielgrund oder ein Schnitt durch die Mitte.",
+    "combined": "Aus {{total}} Fotos desselben Fundes kombiniert.",
+    "hint": "Ein einzelnes Exemplar, bildfüllend. Wenn möglich bei Tageslicht."
   },
   "status": {
     "preparing": "Vorbereiten…",

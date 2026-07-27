@@ -97,6 +97,46 @@ async function createSession(
   return 'wasm';
 }
 
+/**
+ * One forward pass at a time, in arrival order.
+ *
+ * `self.onmessage` is async, so two `infer` messages can both reach `session.run`
+ * before either resolves — and one ORT session cannot run two graphs at once; it
+ * reuses internal buffers between runs, which is why the result is copied out
+ * below. The panel embeds each photo in the background while the user frames the
+ * next one, so concurrent requests are the normal case now, not a corner.
+ *
+ * Serialised here rather than in the caller so the invariant holds for every
+ * caller, including a future one that has not thought about it.
+ */
+let inferQueue: Promise<void> = Promise.resolve();
+
+async function runInfer(
+  msg: Extract<WorkerRequest, { type: 'infer' }>
+): Promise<void> {
+  try {
+    if (!session) throw new Error('infer before init');
+    const feeds: Record<string, ort.Tensor> = {
+      [inputName]: new ort.Tensor('float32', msg.tensor, msg.dims),
+    };
+    const out = await session.run(feeds);
+    const raw = out[outputName].data as Float32Array;
+    // Copy out of ORT's buffer before transferring: the session may reuse it.
+    const embedding = new Float32Array(raw);
+    post({ type: 'result', requestId: msg.requestId, embedding }, [
+      embedding.buffer,
+    ]);
+  } catch (err) {
+    // Caught here, not by the queue: a rejected tail would silently swallow
+    // every photo queued after a single bad one.
+    post({
+      type: 'error',
+      requestId: msg.requestId,
+      message: err instanceof Error ? err.message : String(err),
+    });
+  }
+}
+
 self.onmessage = async (event: MessageEvent<WorkerRequest>) => {
   const msg = event.data;
   try {
@@ -110,17 +150,7 @@ self.onmessage = async (event: MessageEvent<WorkerRequest>) => {
     }
 
     if (msg.type === 'infer') {
-      if (!session) throw new Error('infer before init');
-      const feeds: Record<string, ort.Tensor> = {
-        [inputName]: new ort.Tensor('float32', msg.tensor, msg.dims),
-      };
-      const out = await session.run(feeds);
-      const raw = out[outputName].data as Float32Array;
-      // Copy out of ORT's buffer before transferring: the session may reuse it.
-      const embedding = new Float32Array(raw);
-      post({ type: 'result', requestId: msg.requestId, embedding }, [
-        embedding.buffer,
-      ]);
+      inferQueue = inferQueue.then(() => runInfer(msg));
       return;
     }
 
@@ -132,7 +162,6 @@ self.onmessage = async (event: MessageEvent<WorkerRequest>) => {
   } catch (err) {
     post({
       type: 'error',
-      requestId: msg.type === 'infer' ? msg.requestId : undefined,
       message: err instanceof Error ? err.message : String(err),
     });
   }
