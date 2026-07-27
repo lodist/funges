@@ -73,8 +73,11 @@ type Phase =
     }
   | { name: 'working' }
   // Thumbnails come from `staged`, which outlives this phase, so the result only
-  // has to carry what the model produced.
-  | { name: 'results'; candidates: Candidate[] }
+  // has to carry what the model produced — plus how many photos actually
+  // contributed. That is not the same as how many were staged: a photo that
+  // failed to decode is not combined, and saying it was would be contradicted by
+  // the thumbnail sitting right beside the claim.
+  | { name: 'results'; candidates: Candidate[]; used: number }
   | { name: 'error'; message: string };
 
 /** What one photo contributed to the combined answer. */
@@ -412,7 +415,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
             );
       if (stale()) return;
 
-      setPhase({ name: 'results', candidates });
+      setPhase({ name: 'results', candidates, used: shots.length });
     } catch (err) {
       if (stale()) return;
       setPhase({
@@ -739,9 +742,9 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
             <section className='space-y-3'>
               {thumbnails}
 
-              {staged.length > 1 && (
+              {phase.used > 1 && (
                 <p className='text-xs text-muted-foreground'>
-                  {t('capture.combined', { total: staged.length })}
+                  {t('capture.combined', { total: phase.used })}
                 </p>
               )}
 
