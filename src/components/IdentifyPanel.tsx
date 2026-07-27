@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AlertTriangle, Camera, ImageIcon } from 'lucide-react';
+import { AlertTriangle, Camera, ImageIcon, X } from 'lucide-react';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import { Button } from '@/components/ui/button';
 import {
@@ -462,6 +462,35 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
     setPhase({ name: 'capture' });
   };
 
+  /**
+   * Drop one staged photo.
+   *
+   * Its in-flight work is left to finish and discarded: the embedding is already
+   * paid for, and cancelling mid-graph is not something ORT offers. When a result
+   * is on screen it was computed from this photo, so the remaining photos are
+   * re-ranked immediately — their embeddings are already resolved, so that is a
+   * matrix multiply, not another forward pass.
+   */
+  const removePhoto = (key: number) => {
+    const gone = staged.find(s => s.key === key);
+    if (gone?.previewUrl) {
+      URL.revokeObjectURL(gone.previewUrl);
+      previewsRef.current = previewsRef.current.filter(
+        url => url !== gone.previewUrl
+      );
+    }
+
+    const next = staged.filter(s => s.key !== key);
+    setStaged(next);
+    if (phase.name !== 'results') return;
+    if (next.length === 0) {
+      requestIdRef.current++;
+      setPhase({ name: 'capture' });
+      return;
+    }
+    void runIdentify(next);
+  };
+
   /** Thumbnails of the staged photos, shared by the capture and results phases. */
   const thumbnails = (
     <div className='flex gap-2'>
@@ -484,6 +513,17 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
               {index + 1}
             </div>
           )}
+          {/* Sized past the 44px touch target rather than to the icon: this sits
+              on top of a photo on a phone, and a miss deletes nothing but does
+              open the picker behind it. */}
+          <button
+            type='button'
+            onClick={() => removePhoto(shot.key)}
+            aria-label={t('capture.removePhoto')}
+            className='absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-background/80 text-foreground shadow-sm ring-1 ring-border'
+          >
+            <X className='h-4 w-4' aria-hidden='true' />
+          </button>
           {shot.failed && (
             <p className='absolute inset-x-0 bottom-0 flex items-center justify-center gap-1 bg-destructive/90 px-1 py-0.5 text-[10px] font-medium text-destructive-foreground'>
               <AlertTriangle className='h-3 w-3 shrink-0' />
