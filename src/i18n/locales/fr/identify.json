@@ -10,6 +10,9 @@
     "choosePhoto": "Choisir une photo",
     "dropHere": "Dépose une photo ici, ou clique pour la choisir",
     "retake": "Essayer une autre photo",
+    "addAngle": "Ajouter un autre angle",
+    "addAngleHint": "Une deuxième photo du même spécimen donne en général une meilleure correspondance. Essaie le dessous, la base du pied ou une coupe en deux - les caractères qui distinguent les sosies se trouvent sur des faces qu'une seule photo ne peut pas montrer.",
+    "combined": "Combiné à partir de {{total}} photos du même spécimen.",
     "hint": "Un seul spécimen, occupant presque tout le cadre, à la lumière du jour si possible."
   },
   "status": {

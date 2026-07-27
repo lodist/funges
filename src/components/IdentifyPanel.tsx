@@ -10,7 +10,11 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { IdentifyResults } from '@/components/IdentifyResults';
-import { loadTextMatrix, rankPredictions } from '@/lib/bioclip/classify';
+import {
+  averageEmbeddings,
+  loadTextMatrix,
+  rankPredictions,
+} from '@/lib/bioclip/classify';
 import { BlankImageError, prepareImage } from '@/lib/bioclip/imagePrep';
 import { preprocessToTensor, TARGET_SIZE } from '@/lib/bioclip/preprocess';
 import { BioclipSession } from '@/lib/bioclip/session';
@@ -27,7 +31,12 @@ import {
 } from '@/lib/bioclip/variant';
 import { runSelfCheck } from '@/lib/bioclip/selfCheck';
 import { BIOCLIP_LABELS } from '@/data/bioclip-labels';
-import { resolvePredictions, type Candidate } from '@/lib/photo-id';
+import {
+  mergeToxicSightings,
+  resolvePredictions,
+  type Candidate,
+  type Prediction,
+} from '@/lib/photo-id';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 /**
@@ -63,8 +72,28 @@ type Phase =
       receivedBytes: number;
     }
   | { name: 'working' }
-  | { name: 'results'; candidates: Candidate[]; previewUrl: string }
+  // One preview per photo combined, in capture order.
+  | { name: 'results'; candidates: Candidate[]; previewUrls: string[] }
   | { name: 'error'; message: string };
+
+/** What one photo contributed. Kept so a later photo can be folded in. */
+interface Shot {
+  embedding: Float32Array;
+  /** This photo's own top 3, so a warning it alone saw survives averaging. */
+  predictions: Prediction[];
+  previewUrl: string;
+}
+
+/**
+ * Cap on photos combined for one find.
+ *
+ * Three because the diagnostic features live on three surfaces — cap, underside,
+ * stem base or a cut — and no single photo can show more than one of them. Not
+ * higher, because each photo is another full forward pass: ~15s on a mid-range
+ * phone, and the measurement says the second photo does nearly all the work
+ * (see `averageEmbeddings`).
+ */
+const MAX_PHOTOS = 3;
 
 const formatMb = (bytes: number) => `${Math.round(bytes / 1e6)} MB`;
 
@@ -113,13 +142,14 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   // replacing a toxic warning with a stale non-toxic one. A ref, not state:
   // it must be readable synchronously inside the async chain.
   const requestIdRef = useRef(0);
-  const previewUrlRef = useRef<string | null>(null);
+  // The photos combined into the current result, in capture order. A ref rather
+  // than state because the async chain appends to it and must read what is there
+  // now, not what it saw when the render closed over it.
+  const shotsRef = useRef<Shot[]>([]);
 
-  const revokePreview = useCallback(() => {
-    if (previewUrlRef.current) {
-      URL.revokeObjectURL(previewUrlRef.current);
-      previewUrlRef.current = null;
-    }
+  const clearShots = useCallback(() => {
+    for (const shot of shotsRef.current) URL.revokeObjectURL(shot.previewUrl);
+    shotsRef.current = [];
   }, []);
 
   // Decide the opening state from whether the model is already on the device.
@@ -172,9 +202,9 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       sessionRef.current?.dispose();
       sessionRef.current = null;
       abortRef.current?.abort();
-      revokePreview();
+      clearShots();
     },
-    [revokePreview]
+    [clearShots]
   );
 
   const startDownload = async (spec: VariantSpec) => {
@@ -254,13 +284,22 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
     return session;
   };
 
-  const identify = async (file: File) => {
+  /**
+   * Embed one photo and show the result of everything captured so far.
+   *
+   * `append` distinguishes "another angle on this find" from "a new find". The
+   * added photo is a second forward pass — the price of the accuracy — so results
+   * are shown after each one rather than after all of them: the user gets an
+   * answer in ~15s and chooses whether to spend another 15s sharpening it.
+   */
+  const identify = async (file: File, append = false) => {
     const requestId = ++requestIdRef.current;
     const stale = () => requestId !== requestIdRef.current;
 
-    revokePreview();
+    if (!append) clearShots();
     setPhase({ name: 'working' });
 
+    let previewUrl: string | null = null;
     try {
       const [session, matrix] = await Promise.all([
         ensureSession(),
@@ -268,11 +307,11 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       ]);
       if (stale()) return;
 
-      const { rgba, previewUrl } = await prepareImage(file);
-      previewUrlRef.current = previewUrl;
+      const prepared = await prepareImage(file);
+      previewUrl = prepared.previewUrl;
       if (stale()) return;
 
-      const tensor = preprocessToTensor(rgba);
+      const tensor = preprocessToTensor(prepared.rgba);
       const embedding = await session.embed(tensor, [
         1,
         3,
@@ -281,12 +320,40 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       ]);
       if (stale()) return;
 
-      const candidates = resolvePredictions(
-        rankPredictions(embedding, matrix, 3)
-      );
-      if (stale()) return;
+      // Each photo's own ranking is kept, not just its embedding: it is what
+      // mergeToxicSightings needs to notice a warning the average washed out.
+      const shot: Shot = {
+        embedding,
+        predictions: rankPredictions(embedding, matrix, 3),
+        previewUrl,
+      };
+      const shots = [...shotsRef.current, shot];
 
-      setPhase({ name: 'results', candidates, previewUrl });
+      const candidates =
+        shots.length === 1
+          ? resolvePredictions(shots[0].predictions)
+          : mergeToxicSightings(
+              rankPredictions(
+                averageEmbeddings(shots.map(s => s.embedding)),
+                matrix,
+                3
+              ),
+              shots.map(s => s.predictions)
+            );
+
+      // Last check before anything is committed, and there is no await between
+      // it and the writes below. A superseded request must not leave its photo in
+      // shotsRef: the next result would average a photo of a DIFFERENT find and
+      // show it as evidence.
+      if (stale()) return;
+      previewUrl = null; // ownership passes to shotsRef
+      shotsRef.current = shots;
+
+      setPhase({
+        name: 'results',
+        candidates,
+        previewUrls: shots.map(s => s.previewUrl),
+      });
     } catch (err) {
       if (stale()) return;
       // A failed decode gets its own message. Falling through to the generic
@@ -300,14 +367,21 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
         name: 'error',
         message: err instanceof Error ? err.message : String(err),
       });
+    } finally {
+      // Still set means this photo never became a Shot — a superseded request or
+      // a failure after decoding. Nothing else will ever revoke it.
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
     }
   };
 
-  const onPick = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onPick = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    append = false
+  ) => {
     const file = event.target.files?.[0];
     // Reset so picking the same file twice still fires a change event.
     event.target.value = '';
-    if (file) void identify(file);
+    if (file) void identify(file, append);
   };
 
   return (
@@ -515,12 +589,53 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
 
           {phase.name === 'results' && (
             <section className='space-y-3'>
-              <img
-                src={phase.previewUrl}
-                alt=''
-                className='max-h-48 w-full rounded-lg object-contain'
-              />
+              {/* One thumbnail per photo, sharing the row. Each is proof of what
+                  was actually decoded: if a tensor was blank, its preview is too,
+                  which is how a bad Android capture was caught. */}
+              <div className='flex gap-2'>
+                {phase.previewUrls.map(url => (
+                  <img
+                    key={url}
+                    src={url}
+                    alt=''
+                    className='min-w-0 flex-1 max-h-48 rounded-lg object-contain'
+                  />
+                ))}
+              </div>
+
+              {phase.previewUrls.length > 1 && (
+                <p className='text-xs text-muted-foreground'>
+                  {t('capture.combined', { total: phase.previewUrls.length })}
+                </p>
+              )}
+
               <IdentifyResults candidates={phase.candidates} />
+
+              {/* Offered AFTER a result, not before. Asking for three photos up
+                  front would mean ~45s of waiting before anything is on screen;
+                  this way each photo is a deliberate choice to spend another pass
+                  sharpening an answer the user has already seen. */}
+              {phase.previewUrls.length < MAX_PHOTOS && (
+                <div className='space-y-2 rounded-lg border p-3'>
+                  <p className='text-xs text-muted-foreground'>
+                    {t('capture.addAngleHint')}
+                  </p>
+                  <label className='block'>
+                    <input
+                      type='file'
+                      accept='image/*'
+                      {...(isMobile ? { capture: 'environment' as const } : {})}
+                      className='sr-only'
+                      onChange={event => onPick(event, true)}
+                    />
+                    <span className='inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border bg-secondary px-4 py-2 text-sm font-medium'>
+                      <Camera className='h-4 w-4' />
+                      {t('capture.addAngle')}
+                    </span>
+                  </label>
+                </div>
+              )}
+
               <Button
                 variant='outline'
                 onClick={() => setPhase({ name: 'capture' })}

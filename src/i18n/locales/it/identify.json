@@ -10,6 +10,9 @@
     "choosePhoto": "Scegli una foto",
     "dropHere": "Trascina qui una foto, oppure clicca per scegliere",
     "retake": "Prova con un'altra foto",
+    "addAngle": "Aggiungi un'altra angolazione",
+    "addAngleHint": "Una seconda foto dello stesso esemplare dà di solito una corrispondenza migliore. Prova la parte inferiore, la base del gambo o un taglio a metà - i caratteri che distinguono i sosia stanno su superfici che una sola foto non può mostrare.",
+    "combined": "Combinato da {{total}} foto dello stesso esemplare.",
     "hint": "Un solo esemplare, che occupi quasi tutta l'inquadratura, con luce diurna se possibile."
   },
   "status": {

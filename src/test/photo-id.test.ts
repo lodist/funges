@@ -5,6 +5,7 @@ import { TOXIC_SPECIES } from '@/data/toxic-species';
 import {
   findCriticalConfusions,
   hasToxicCandidate,
+  mergeToxicSightings,
   registerTier2Vocabulary,
   resetTier2Vocabulary,
   resolvePrediction,
@@ -474,5 +475,85 @@ describe('toxic species have their everyday counterpart in the vocabulary', () =
     ];
 
     expect(curated.filter(n => !vocabulary.has(n))).toEqual([]);
+  });
+});
+
+describe('mergeToxicSightings', () => {
+  /**
+   * Averaging several photos is what makes the combined ranking more accurate,
+   * but it can also dilute: one photo of the stem base can show a volva plainly
+   * while a cap shot of the same find shows nothing, and the mean of the two can
+   * push that warning out of the top 3. These tests guard that no angle's toxic
+   * sighting is lost, and that nothing else sneaks in with it.
+   */
+  const averaged = [
+    p('Cantharellus cibarius', 0.7),
+    p('Craterellus tubaeformis', 0.2),
+    p('Hygrophoropsis aurantiaca', 0.05),
+  ];
+
+  it('keeps a toxic label only one photo saw', () => {
+    const merged = mergeToxicSightings(averaged, [
+      [p('Omphalotus olearius', 0.6)],
+      [p('Cantharellus cibarius', 0.8)],
+    ]);
+
+    expect(merged.map(c => c.scientificName)).toContain('Omphalotus olearius');
+    expect(
+      merged.find(c => c.scientificName === 'Omphalotus olearius')?.kind
+    ).toBe('toxic');
+  });
+
+  it('leaves the averaged ranking first and in order', () => {
+    const merged = mergeToxicSightings(averaged, [[p('Amanita phalloides')]]);
+
+    // Toxicity is an overlay, never a sort key: promoting the sighting would
+    // misrepresent how confident the combined evidence actually is.
+    expect(merged.slice(0, 3).map(c => c.scientificName)).toEqual(
+      averaged.map(a => a.scientificName)
+    );
+  });
+
+  // The one direction this feature must never err in. An edible label that only
+  // one angle proposed is not evidence the combined view supports.
+  it('never appends a non-toxic sighting', () => {
+    const merged = mergeToxicSightings(averaged, [
+      [p('Boletus edulis', 0.9), p('Ocimum basilicum', 0.5)],
+    ]);
+
+    expect(merged).toHaveLength(3);
+  });
+
+  it('does not duplicate a label already in the averaged ranking', () => {
+    const withToxic = [...averaged.slice(0, 2), p('Omphalotus olearius', 0.1)];
+
+    const merged = mergeToxicSightings(withToxic, [
+      [p('Omphalotus olearius', 0.9)],
+    ]);
+
+    expect(merged).toHaveLength(3);
+  });
+
+  // Three photos could contribute nine sightings. A wall of warnings is how
+  // alarm fatigue gets manufactured, which is the reason severity is graded at
+  // all - so the list is bounded, strongest evidence kept.
+  it('caps appended sightings and keeps the strongest', () => {
+    const merged = mergeToxicSightings(averaged, [
+      [p('Amanita phalloides', 0.1)],
+      [p('Omphalotus olearius', 0.9)],
+      [p('Veratrum album', 0.8)],
+    ]);
+
+    expect(merged).toHaveLength(5);
+    expect(merged.slice(3).map(c => c.scientificName)).toEqual([
+      'Omphalotus olearius',
+      'Veratrum album',
+    ]);
+  });
+
+  it('is the plain resolution when there is nothing extra to fold in', () => {
+    expect(mergeToxicSightings(averaged, [])).toEqual(
+      resolvePredictions(averaged)
+    );
   });
 });
