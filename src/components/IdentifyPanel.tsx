@@ -426,50 +426,64 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   };
 
   /**
-   * Stage a photo and start its work immediately.
+   * Return to the staging step because the photo set changed.
    *
-   * `current` is passed in rather than read from state: the handler that calls
-   * this was rendered with the list it should append to, and doing the append
-   * inside a setState updater would make the updater impure — React would run it
-   * twice in development and identify twice.
+   * The request id bump matters: an identification already in flight was started
+   * from a different set of photos, and letting it land would show a result for
+   * photos that are no longer the ones on screen.
    */
-  const addPhoto = (file: File, current: Staged[], runNow: boolean) => {
-    const key = ++keyRef.current;
-    const work = chainRef.current.then(() => embedPhoto(file, key));
-    // embedPhoto never rejects, so the chain cannot be poisoned by one photo.
-    chainRef.current = work;
-
-    const next = [...current, { key, previewUrl: null, work }];
-    setStaged(next);
-    if (runNow) void runIdentify(next);
-  };
-
-  const onPick = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    runNow: boolean
-  ) => {
-    const file = event.target.files?.[0];
-    // Reset so picking the same file twice still fires a change event.
-    event.target.value = '';
-    if (file) addPhoto(file, staged, runNow);
+  const backToStaging = () => {
+    requestIdRef.current++;
+    setPhase({ name: 'capture' });
   };
 
   const startOver = () => {
-    // Bump the request id so an in-flight identification cannot land on top of
-    // the fresh find the user is about to photograph.
     requestIdRef.current++;
     clearStaged();
     setPhase({ name: 'capture' });
   };
 
   /**
+   * Stage a photo. Embedding starts now; identifying does not.
+   *
+   * Adding a photo NEVER identifies on its own, including from the results
+   * screen. One rule for the whole flow: changing the set of photos returns you
+   * to the staging step, and you press Identify. Auto-running from results was
+   * inconsistent — the capture step asks, so results firing by itself took the
+   * decision away at the one moment the user has most reason to make it.
+   *
+   * `current` is passed in rather than read from state: the handler that calls
+   * this was rendered with the list it should append to, and doing the append
+   * inside a setState updater would make the updater impure — React would run it
+   * twice in development and stage the photo twice.
+   */
+  const addPhoto = (file: File, current: Staged[]) => {
+    const key = ++keyRef.current;
+    const work = chainRef.current.then(() => embedPhoto(file, key));
+    // embedPhoto never rejects, so the chain cannot be poisoned by one photo.
+    chainRef.current = work;
+
+    setStaged([...current, { key, previewUrl: null, work }]);
+    backToStaging();
+  };
+
+  const onPick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    // Reset so picking the same file twice still fires a change event.
+    event.target.value = '';
+    if (file) addPhoto(file, staged);
+  };
+
+  /**
    * Drop one staged photo.
    *
    * Its in-flight work is left to finish and discarded: the embedding is already
-   * paid for, and cancelling mid-graph is not something ORT offers. When a result
-   * is on screen it was computed from this photo, so the remaining photos are
-   * re-ranked immediately — their embeddings are already resolved, so that is a
-   * matrix multiply, not another forward pass.
+   * paid for, and cancelling mid-graph is not something ORT offers.
+   *
+   * Removing from the results screen goes back to staging rather than silently
+   * re-ranking. The result on screen was computed FROM this photo, so it is now
+   * wrong either way; making the user press Identify keeps one rule for every
+   * change to the photo set instead of two behaviours to learn.
    */
   const removePhoto = (key: number) => {
     const gone = staged.find(s => s.key === key);
@@ -480,15 +494,8 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       );
     }
 
-    const next = staged.filter(s => s.key !== key);
-    setStaged(next);
-    if (phase.name !== 'results') return;
-    if (next.length === 0) {
-      requestIdRef.current++;
-      setPhase({ name: 'capture' });
-      return;
-    }
-    void runIdentify(next);
+    setStaged(staged.filter(s => s.key !== key));
+    backToStaging();
   };
 
   /** Thumbnails of the staged photos, shared by the capture and results phases. */
@@ -541,8 +548,8 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
     </div>
   );
 
-  /** The camera / gallery inputs. `runNow` skips straight to identifying. */
-  const photoInputs = (runNow: boolean) => {
+  /** The camera / gallery inputs. Staging only — nothing here identifies. */
+  const photoInputs = () => {
     // Both labels say "another" once a photo is in: offering "Choose a photo"
     // next to two thumbnails reads as replacing them, not adding to them.
     const galleryKey =
@@ -567,7 +574,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
               accept='image/*'
               capture='environment'
               className='sr-only'
-              onChange={event => onPick(event, runNow)}
+              onChange={onPick}
             />
             <span
               className={`inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border px-4 py-2 text-sm font-medium ${
@@ -588,7 +595,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
             type='file'
             accept='image/*'
             className='sr-only'
-            onChange={event => onPick(event, runNow)}
+            onChange={onPick}
           />
           <span className='inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-md border bg-secondary px-4 py-2 text-sm font-medium'>
             <ImageIcon className='h-4 w-4' />
@@ -736,7 +743,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
               {/* Nothing is queued for later: each photo starts embedding as soon
                   as it is picked, so the time spent framing the next one is time
                   the model is already working. */}
-              {staged.length < MAX_PHOTOS && photoInputs(false)}
+              {staged.length < MAX_PHOTOS && photoInputs()}
 
               {staged.length > 0 && (
                 <>
@@ -817,14 +824,14 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
               {/* Still offered here, and it earns its place: this is the point
                   where the result itself tells you which angle is worth taking —
                   a deadly look-alike in the list means go photograph the stem
-                  base. Identifies immediately, since committing to identify
-                  already happened. */}
+                  base. Picking one returns to staging with it added, same as
+                  everywhere else; it does not re-identify by itself. */}
               {staged.length < MAX_PHOTOS && (
                 <div className='space-y-2 rounded-lg border p-3'>
                   <p className='text-xs text-muted-foreground'>
                     {t('capture.addAngleHint')}
                   </p>
-                  {photoInputs(true)}
+                  {photoInputs()}
                 </div>
               )}
 
