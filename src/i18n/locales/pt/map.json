@@ -22,8 +22,7 @@
   },
   "overlays": {
     "title": "Camadas do Mapa",
-    "polygons": "Mostrar áreas de coleta",
-    "realtime": "Mostrar dados em tempo real"
+    "polygons": "Mostrar áreas de coleta"
   },
   "region": {
     "title": "Selecionar Região",
@@ -70,6 +69,7 @@
     "description": "Use o mapa para descobrir locais de coleta e espécies.",
     "features": {
       "species": "Escolha uma espécie com o seletor",
+      "identify": "Identificar a partir de uma fotografia (descarregamento único)",
       "locate": "Centralize o mapa na sua localização",
       "numbers": "Mostrar ou ocultar o índice numérico",
       "theme": "Alterne entre 4 estilos de mapa: Claro, Escuro, Positron, Dark Matter",
@@ -85,5 +85,9 @@
     "low": "Baixa",
     "label": "Indice de presença",
     "high": "Alta"
+  },
+  "forecast": {
+    "label": "Previsão",
+    "today": "Hoje"
   }
 }

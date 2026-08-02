@@ -36,39 +36,71 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif,tflite}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif}'],
         runtimeCaching: [
           // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.
           {
             urlPattern: /\.pmtiles$/i,
             handler: 'NetworkOnly',
           },
-          // TensorFlow Lite models caching
+          // onnxruntime-web runtime for photo identification. Emitted by Vite as
+          // a content-hashed asset (~27MB), so it is deliberately NOT precached:
+          // `.wasm` is absent from globPatterns above, and workbox's 2 MiB
+          // precache ceiling would make the build THROW, not warn.
+          //
+          // A content hash in the filename means a new ORT version is a new URL,
+          // so an effectively-permanent TTL cannot serve stale bytes.
           {
-            urlPattern:
-              /^https:\/\/pub-92765923660e431daff3170fbef6471d\.r2\.dev\/.*\.tflite$/i,
+            urlPattern: /\/assets\/ort-wasm.*\.(?:wasm|mjs)$/i,
             handler: 'CacheFirst',
             options: {
-              cacheName: 'tensorflow-models-cache',
+              cacheName: 'ort-runtime-cache',
               expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year - models rarely change
+                maxEntries: 6,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
               },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
-          // Local TensorFlow models
+          // Precomputed BioCLIP text-embedding matrix (~1.6MB). Kept on runtime
+          // caching rather than precache so adding `bin` to globPatterns cannot
+          // later pull in some unrelated large binary and break the build.
+          //
+          // Matched under /assets/ because it is imported as a Vite asset and so
+          // carries a content hash. That is what makes a year-long TTL safe: new
+          // content is a new URL, so this cache cannot serve a matrix that
+          // disagrees with the labels file it is index-aligned to.
           {
-            urlPattern: /\/assets\/.*\.tflite$/i,
+            urlPattern: /\/assets\/.*\.bin$/i,
             handler: 'CacheFirst',
             options: {
-              cacheName: 'local-models-cache',
+              cacheName: 'bioclip-labels-cache',
               expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+                maxEntries: 4,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
               },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          // The bundled MatMulNBits probe (~40KB), used to decide which model
+          // variant this device can run before committing to a ~280MB download.
+          // It has to work offline, or an offline device could not open the
+          // download gate at all.
+          //
+          // `[^/]+` is load-bearing: it matches /models/probe.onnx but NOT the R2
+          // artifact at /models/bioclip/<version>/image_tower_int4.onnx. Without
+          // it this rule would have the service worker cache a second 280MB copy
+          // of a model that already lives in IndexedDB.
+          {
+            urlPattern: /\/models\/[^/]+\.onnx$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'bioclip-probe-cache',
+              expiration: {
+                maxEntries: 4,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
           // Static assets caching
@@ -306,6 +338,19 @@ export default defineConfig({
         // SCSS preprocessing options can be added here if needed
       },
     },
+  },
+  // The BioCLIP inference worker imports onnxruntime-web, which needs real ESM
+  // (it dynamically imports its own WASM glue). Vite's default worker format is
+  // 'iife', where `import` is a syntax error — so this must match the
+  // `{ type: 'module' }` at the `new Worker(...)` call site in
+  // src/lib/bioclip/session.ts.
+  worker: {
+    format: 'es',
+  },
+  optimizeDeps: {
+    // ORT ships prebuilt ESM plus .wasm siblings it fetches at runtime. Letting
+    // esbuild pre-bundle it rewrites those paths and breaks the wasm lookup.
+    exclude: ['onnxruntime-web'],
   },
   server: {
     port: 3000,

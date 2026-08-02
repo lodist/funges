@@ -46,3 +46,17 @@ tests/subset_master_*.parquet
 
 # forecast-vs-actual longitudinal snapshot (generated)
 tests/forecast_vs_actual_snapshot.jsonl
+
+# Brainstorming session scratch (mockups/state, not project artifacts)
+.superpowers/
+
+# BioCLIP spike cache (downloaded photos + embeddings)
+spike_cache/
+
+# ONNX export artifacts (the shipped model lives on R2, not in git)
+backend/tools/model_artifacts/
+
+
+# Playwright failure artifacts
+test-results/
+playwright-report/
