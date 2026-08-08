@@ -218,7 +218,15 @@ export default defineConfig({
             src: `icons/logo_app.png`,
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable',
+            purpose: 'any',
+          },
+          {
+            // opaque + padded: 'any maskable' on a transparent edge-to-edge logo
+            // gets cropped into a bad adaptive launcher icon on Android
+            src: `icons/logo_maskable.png`,
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
           },
           {
             src: `icons/logo_funges.png`,
