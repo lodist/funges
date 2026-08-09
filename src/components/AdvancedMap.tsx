@@ -26,6 +26,7 @@ import {
   Moon,
   Info,
   ScanSearch,
+  WifiOff,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useUIStore } from '@/store/uiStore';
@@ -907,6 +908,25 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 alt='Loading...'
                 className='h-80 w-80'
               />
+            </div>
+          </div>
+        )}
+
+        {/* Offline notice. The map still initializes offline — the style JSON is
+            precached — so it renders as empty background with no error and
+            nothing tells the user why. mapError never fires for this.
+            ponytail: shows whenever offline; gate on cachedContinents once
+            downloaded regions can actually render tiles. */}
+        {mapLoaded && !isOnline && (
+          <div className='absolute inset-0 z-30 flex items-center justify-center p-6 pointer-events-none'>
+            <div className='max-w-xs rounded-lg border bg-background/95 p-4 text-center shadow-lg'>
+              <WifiOff className='mx-auto mb-2 h-6 w-6 text-muted-foreground' />
+              <h3 className='mb-1 text-sm font-semibold'>
+                {t('offline.title')}
+              </h3>
+              <p className='text-xs text-muted-foreground'>
+                {t('offline.message')}
+              </p>
             </div>
           </div>
         )}

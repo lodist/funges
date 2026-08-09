@@ -89,5 +89,9 @@
   "forecast": {
     "label": "Vorhersage",
     "today": "Heute"
+  },
+  "offline": {
+    "title": "Keine Verbindung",
+    "message": "Die Karte braucht eine Internetverbindung. Arten, Rezepte und die Datenseiten funktionieren weiterhin offline."
   }
 }
