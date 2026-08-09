@@ -131,12 +131,51 @@
     <meta name="msapplication-TileImage" content="icons/logo_app.png" />
     <meta name="msapplication-config" content="none" />
 
-    <!-- Prefetch icons to avoid preload warnings -->
-    <link rel="prefetch" href="icons/logo_app.png" as="image" />
-    <link rel="prefetch" href="icons/logo_funges.png" as="image" />
+    <!-- Map data + glyph origins: DNS/TLS handshake overlaps the JS download -->
+    <link
+      rel="preconnect"
+      href="https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev"
+      crossorigin
+    />
+    <link rel="preconnect" href="https://protomaps.github.io" crossorigin />
   </head>
   <body>
-    <div id="root"></div>
+    <!-- Inline shell: the app's first paint waits on the CSS + ~700KB of JS, so
+         until React mounts the page was blank. Styles are inline on purpose —
+         anything in the stylesheet would be render-blocked too. React's first
+         render replaces this. -->
+    <div id="root">
+      <div
+        style="
+          position: fixed;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 0.75rem;
+          background: #f8f5f0;
+          font-family:
+            system-ui,
+            -apple-system,
+            sans-serif;
+        "
+      >
+        <div
+          style="
+            font-size: clamp(2rem, 12vw, 4rem);
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: #b81c00;
+          "
+        >
+          FUNGES
+        </div>
+        <div style="font-size: 0.875rem; color: #6b6259">
+          Loading the foraging map…
+        </div>
+      </div>
+    </div>
     <script type="module" src="src/main.tsx"></script>
   </body>
 </html>
