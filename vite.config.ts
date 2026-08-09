@@ -23,10 +23,27 @@ const routeFullPaths = [
   '/worth-foraging-now',
 ];
 
+// Cloudflare's Rocket Loader rewrites <script type="module"> into its own
+// deferred loader, adding a round trip before any app code runs. data-cfasync
+// opts out — and it has to be added here because Vite regenerates the entry
+// script tag from scratch, dropping any attribute written in index.html.
+const cfasyncOptOut = {
+  name: 'cfasync-opt-out',
+  transformIndexHtml: {
+    order: 'post' as const,
+    handler: (html: string) =>
+      html.replace(
+        /<script type="module"/g,
+        '<script type="module" data-cfasync="false"'
+      ),
+  },
+};
+
 // https://vite.dev/config/
 export default defineConfig({
   base: baseUrl,
   plugins: [
+    cfasyncOptOut,
     // Please make sure that '@tanstack/router-plugin' is passed before '@vitejs/plugin-react'
     tanstackRouter({
       target: 'react',
@@ -218,13 +235,15 @@ export default defineConfig({
             src: `icons/logo_app.png`,
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable',
+            purpose: 'any',
           },
           {
-            src: `icons/logo_funges.png`,
-            sizes: '192x192',
+            // opaque + padded: 'any maskable' on a transparent edge-to-edge logo
+            // gets cropped into a bad adaptive launcher icon on Android
+            src: `icons/logo_maskable.png`,
+            sizes: '512x512',
             type: 'image/png',
-            purpose: 'any',
+            purpose: 'maskable',
           },
           {
             src: `icons/logo_1.png`,
@@ -253,8 +272,8 @@ export default defineConfig({
             url: ``,
             icons: [
               {
-                src: `icons/logo_funges.png`,
-                sizes: '192x192',
+                src: `icons/logo_app.png`,
+                sizes: '512x512',
               },
             ],
           },
@@ -265,8 +284,8 @@ export default defineConfig({
             url: `species`,
             icons: [
               {
-                src: `icons/logo_funges.png`,
-                sizes: '192x192',
+                src: `icons/logo_app.png`,
+                sizes: '512x512',
               },
             ],
           },
@@ -278,8 +297,8 @@ export default defineConfig({
             url: `worth-foraging-now`,
             icons: [
               {
-                src: `icons/logo_funges.png`,
-                sizes: '192x192',
+                src: `icons/logo_app.png`,
+                sizes: '512x512',
               },
             ],
           },
@@ -359,13 +378,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-      },
-    },
     minify: 'esbuild',
-    target: 'es2015',
+    // es2015 had esbuild downlevel async/await and class fields into generator
+    // + helper code: 22 KB raw / 6 KB gzip of the entry chunk, for browsers
+    // that could not run this app's WASM or service worker anyway.
+    target: 'es2020',
   },
   test: {
     globals: true,

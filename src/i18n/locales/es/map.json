@@ -89,5 +89,9 @@
   "forecast": {
     "label": "Previsión",
     "today": "Hoy"
+  },
+  "offline": {
+    "title": "Sin conexión",
+    "message": "El mapa necesita conexión para cargarse. Las especies, las recetas y las páginas de datos siguen funcionando sin conexión."
   }
 }

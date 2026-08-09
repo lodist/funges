@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "es.fung.app",
+      "sha256_cert_fingerprints": [
+        "99:F4:38:A7:B4:9D:17:EE:EB:16:EE:66:73:01:0C:2C:38:56:C2:49:C0:37:D9:CB:BC:D7:DF:CB:9B:43:64:C6"
+      ]
+    }
+  }
+]

@@ -28,6 +28,13 @@ src/
 └── data/         # static data for species and recipes
 ```
 
+## Images
+
+Everything under `src/assets/**` and `public/icons/**` is precached by the
+service worker, so an oversized image is downloaded by every visitor whether
+they see it or not. Before committing one: species ≤ 512px, recipes ≤ 768px,
+icons at the size the manifest declares, WebP quality ~75.
+
 ## Environment
 
 - Copy `.env.example` to `.env` and set required variables.
