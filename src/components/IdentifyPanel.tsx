@@ -15,7 +15,11 @@ import {
   loadTextMatrix,
   rankPredictions,
 } from '@/lib/bioclip/classify';
-import { BlankImageError, prepareImage } from '@/lib/bioclip/imagePrep';
+import {
+  BlankImageError,
+  prepareImage,
+  type PreparedImage,
+} from '@/lib/bioclip/imagePrep';
 import { preprocessToTensor, TARGET_SIZE } from '@/lib/bioclip/preprocess';
 import { BioclipSession } from '@/lib/bioclip/session';
 import {
@@ -327,22 +331,20 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
    * stops counting is exactly the kind of invisible shrinkage this feature must
    * not have.
    */
-  const embedPhoto = async (file: File, key: number): Promise<Shot | null> => {
+  const embedPhoto = async (
+    preparation: Promise<PreparedImage | null>,
+    key: number
+  ): Promise<Shot | null> => {
     try {
+      // Decoding starts outside the inference queue. In particular, do not put
+      // it behind ensureSession(): loading a 300 MB model can take seconds, and
+      // an empty tile during that work makes a successful file pick look broken.
+      const prepared = await preparation;
+      if (!prepared) return null;
       const [session, matrix] = await Promise.all([
         ensureSession(),
         loadTextMatrix(),
       ]);
-
-      const prepared = await prepareImage(file);
-      previewsRef.current.push(prepared.previewUrl);
-      // Published before the forward pass, which is the slow part: the user sees
-      // the thumbnail within ~100ms and can keep shooting.
-      setStaged(prev =>
-        prev.map(s =>
-          s.key === key ? { ...s, previewUrl: prepared.previewUrl } : s
-        )
-      );
 
       const embedding = await session.embed(preprocessToTensor(prepared.rgba), [
         1,
@@ -457,21 +459,50 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
    * inside a setState updater would make the updater impure — React would run it
    * twice in development and stage the photo twice.
    */
-  const addPhoto = (file: File, current: Staged[]) => {
-    const key = ++keyRef.current;
-    const work = chainRef.current.then(() => embedPhoto(file, key));
-    // embedPhoto never rejects, so the chain cannot be poisoned by one photo.
-    chainRef.current = work;
+  const addPhotos = (files: File[], current: Staged[]) => {
+    const accepted = files.slice(0, MAX_PHOTOS - current.length);
+    const additions = accepted.map(file => {
+      const key = ++keyRef.current;
+      // Start every decode immediately. The much heavier model forward passes
+      // remain serialized below so low-memory phones do not run several copies
+      // of the graph at once.
+      const preparation = prepareImage(file)
+        .then(prepared => {
+          previewsRef.current.push(prepared.previewUrl);
+          setStaged(prev =>
+            prev.map(s =>
+              s.key === key ? { ...s, previewUrl: prepared.previewUrl } : s
+            )
+          );
+          return prepared;
+        })
+        .catch(err => {
+          // Handle decode failures immediately, including for the second or third
+          // concurrently selected file whose inference turn has not started yet.
+          // Returning null also prevents an early rejection from becoming an
+          // unhandled promise while it waits for the model queue.
+          lastErrorRef.current = err;
+          setStaged(prev =>
+            prev.map(s => (s.key === key ? { ...s, failed: true } : s))
+          );
+          return null;
+        });
+      const work = chainRef.current.then(() => embedPhoto(preparation, key));
+      // embedPhoto never rejects, so the chain cannot be poisoned by one photo.
+      chainRef.current = work;
+      return { key, previewUrl: null, work } satisfies Staged;
+    });
 
-    setStaged([...current, { key, previewUrl: null, work }]);
+    if (additions.length === 0) return;
+    setStaged([...current, ...additions]);
     backToStaging();
   };
 
   const onPick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const files = Array.from(event.target.files ?? []);
     // Reset so picking the same file twice still fires a change event.
     event.target.value = '';
-    if (file) addPhoto(file, staged);
+    addPhotos(files, staged);
   };
 
   /**
@@ -516,8 +547,13 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
               className='max-h-40 w-full object-contain'
             />
           ) : (
-            <div className='flex h-24 items-center justify-center text-xs text-muted-foreground'>
-              {index + 1}
+            <div
+              className='flex h-24 items-center justify-center text-xs text-muted-foreground'
+              role='status'
+            >
+              {shot.failed
+                ? index + 1
+                : t('capture.loadingPhoto', { number: index + 1 })}
             </div>
           )}
           {/* Filled dark circle, light glyph. Deliberately high contrast rather
@@ -594,6 +630,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
           <input
             type='file'
             accept='image/*'
+            multiple
             className='sr-only'
             onChange={onPick}
           />

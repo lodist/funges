@@ -126,4 +126,34 @@ describe('IdentifyPanel photo staging', () => {
     expect(screen.queryByText(/^Identifying/)).not.toBeInTheDocument();
     expect(document.querySelector('[role="alert"]')).toBeNull();
   });
+
+  it('accepts up to three gallery photos in one selection', async () => {
+    vi.mocked(getAnyCachedModel).mockResolvedValue({
+      blob: new Blob([new Uint8Array(4)]),
+      info: { variant: 'int8', version: 'test', bytes: 4 },
+    } as never);
+
+    render(<IdentifyPanel open onClose={() => {}} />);
+
+    await screen.findByText(/drop a photo here|take a photo/i);
+    const galleryInput = document.querySelector<HTMLInputElement>(
+      'input[type="file"][multiple]'
+    )!;
+    expect(galleryInput).not.toBeNull();
+
+    fireEvent.change(galleryInput, {
+      target: {
+        files: [
+          new File(['1'], 'one.jpg', { type: 'image/jpeg' }),
+          new File(['2'], 'two.jpg', { type: 'image/jpeg' }),
+          new File(['3'], 'three.jpg', { type: 'image/jpeg' }),
+          new File(['4'], 'ignored.jpg', { type: 'image/jpeg' }),
+        ],
+      },
+    });
+
+    expect(await screen.findAllByLabelText('Remove this photo')).toHaveLength(
+      3
+    );
+  });
 });
