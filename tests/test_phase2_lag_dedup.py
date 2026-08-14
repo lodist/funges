@@ -42,10 +42,9 @@ def test_per_base_fallback_matches_golden_master():
     pd.testing.assert_frame_equal(got, golden, check_dtype=False)
 
 
-def test_scores_are_identical_within_each_coord():
-    """The whole optimization rests on base points of one coord having identical inputs,
-    hence identical scores. Lock that invariant so a refactor that accidentally breaks
-    per-coord homogeneity is caught."""
+def test_raw_scores_are_identical_within_each_coord(monkeypatch):
+    """Coord-dedup must produce identical raw scores before spatial post-processing."""
+    monkeypatch.setattr(fp, "spatial_smooth_scores", lambda frame, _cols: frame)
     got = run_pipeline_scores()
     pairs = [("B0", "B1"), ("B2", "B3"), ("B4", "B5")]
     for a, b in pairs:
