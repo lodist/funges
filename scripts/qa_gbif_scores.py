@@ -57,7 +57,7 @@ SPECIES = {
     "black_chant": ("Black Chanterelle", "Craterellus cornucopioides"),
     "lingonb": ("Lingonberry", "Vaccinium vitis-idaea"),
     "garlic": ("Wild Garlic", "Allium ursinum"),
-    "truffle_b": ("Burgundy Truffle", "Tuber melanosporum"),
+    "truffle_b": ("Black Truffle", "Tuber melanosporum"),
     "walnut": ("Wild Walnut", "Juglans regia"),
     "strawberry": ("Wild Strawberry", "Fragaria vesca"),
     "asparagus": ("Wild Asparagus", "Asparagus acutifolius"),

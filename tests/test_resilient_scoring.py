@@ -67,13 +67,32 @@ def test_wind_is_lagged_multiplicative_and_capped():
     assert factor[2] == pytest.approx(0.82)
 
 
-def test_hybrid_aggregation_prevents_single_component_veto():
-    components = np.array([[1.0], [1.0], [0.0]])
-    hybrid = fp._hybrid_component_mean_rows(components, [1.0, 1.0, 1.0])
-    pure_geometric = np.exp(np.log(np.clip(components, 0.02, 1.0)).mean(axis=0))
+def test_component_floor_prevents_collapse_to_near_zero():
+    """The floor, not an arithmetic blend, is what stopped vetoed rows scoring ~0.9/10.
 
-    assert hybrid[0] > pure_geometric[0]
-    assert hybrid[0] > 0.25
+    The old aggregator clipped components at 1e-9, so a 1e-5 weather component survived
+    the log and dragged the whole score to near zero. Clipping at 0.02 is the fix.
+    """
+    components = np.array([[1.0], [1.0], [0.0]])
+    weights = [1.0, 1.0, 1.0]
+
+    scored = fp._hybrid_component_mean_rows(components, weights)
+    old_floor = np.exp(np.log(np.clip(components, 1e-9, 1.0)).mean(axis=0))
+
+    assert scored[0] > 10 * old_floor[0]
+    assert scored[0] == pytest.approx(0.02 ** (1 / 3))
+
+
+def test_arithmetic_blend_is_off_by_default_but_still_available():
+    """Blending lifts the veto end ~25%, which raised out-of-season false positives."""
+    components = np.array([[1.0], [1.0], [0.02]])
+    weights = [1.0, 1.0, 1.0]
+
+    default = fp._hybrid_component_mean_rows(components, weights)
+    blended = fp._hybrid_component_mean_rows(components, weights, geometric_share=0.70)
+
+    assert default[0] == pytest.approx(0.02 ** (1 / 3))  # pure geometric
+    assert blended[0] > default[0] * 1.2
 
 
 def test_spatial_smoothing_is_local_to_date_and_reports_confidence():

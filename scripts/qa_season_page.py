@@ -163,6 +163,55 @@ south = "".join(
     for species, before, after, april in SOUTH
 )
 
+# ------------------------------------------------------------------- the implemented fix
+simulation_path = QA / "season-simulation.json"
+simulation = json.loads(simulation_path.read_text()) if simulation_path.exists() else {}
+fix_rows, fix_stats = [], {}
+if simulation:
+    entries = [(region, species, entry)
+               for region, species_map in simulation.items()
+               for species, entry in species_map.items() if entry["variants"]["production"]]
+    for region, species, entry in sorted(entries, key=lambda e: e[2]["variants"]["production"]["auc"]):
+        before, after = entry["variants"]["production"], entry["variants"]["gate_only"]
+        fixed_below = before["auc"] < 0.5 <= after["auc"]
+        fix_rows.append(f"""<tr>
+          <td class="reg">{REGION_LABEL[region]}</td>
+          <td class="sp">{LABEL[species]}</td>
+          <td class="num {'bad' if before['auc'] < 0.5 else 'muted'}">{before['auc']:.3f}</td>
+          <td class="num {'ok' if after['auc'] >= 0.5 else 'bad'}">{after['auc']:.3f}
+            <span class="delta {'up' if after['auc'] >= before['auc'] else 'down'}">{after['auc'] - before['auc']:+.3f}</span></td>
+          <td class="num muted">{before['share_ge4_dead'] * 100:.0f}%</td>
+          <td class="num ok">{after['share_ge4_dead'] * 100:.0f}%</td>
+          <td class="num muted">{before['share_ge4_in'] * 100:.0f}%</td>
+          <td class="num">{after['share_ge4_in'] * 100:.0f}%</td>
+          <td>{'recovered' if fixed_below else ''}</td>
+        </tr>""")
+    for name, key in (("before", "production"), ("after", "gate_only")):
+        aucs = np.array([e["variants"][key]["auc"] for _, _, e in entries], float)
+        dead = np.array([e["variants"][key]["share_ge4_dead"] for _, _, e in entries], float)
+        inside = np.array([e["variants"][key]["share_ge4_in"] for _, _, e in entries], float)
+        errors = [abs(e["onset"][f"{key}_error_days"]) for _, _, e in entries
+                  if not e["onset"]["censored"] and e["onset"].get(f"{key}_error_days") is not None]
+        early = [e["onset"][f"{key}_error_days"] for _, _, e in entries
+                 if not e["onset"]["censored"] and e["onset"].get(f"{key}_error_days") is not None]
+        fix_stats[name] = {
+            "auc": np.median(aucs), "below": int((aucs < 0.5).sum()), "n": len(aucs),
+            "dead": np.median(dead), "inside": np.median(inside),
+            "onset": np.median(errors), "early": sum(1 for v in early if v < 0), "onset_n": len(early),
+        }
+
+SWEEP = [("no gate", 0.707, 40.8, 27, "7 of 17 below random"),
+         ("0.05 / 0.15", 0.931, 4.6, 21, "one species never reaches threshold"),
+         ("0.02 / 0.10", 0.923, 9.1, 15, "chosen"),
+         ("0.01 / 0.04", 0.884, 18.5, 10, "dead months leaking back")]
+sweep = "".join(
+    f'<tr{" class=chosen" if note == "chosen" else ""}>'
+    f'<td class="mono">{label}</td><td class="num">{auc:.3f}</td>'
+    f'<td class="num">{dead:.1f}%</td><td class="num">{onset:.0f} d</td>'
+    f'<td class="{"ok" if note == "chosen" else "muted"}">{note}</td></tr>'
+    for label, auc, dead, onset, note in SWEEP
+)
+
 HTML = f"""<title>Season-timing QA — fung.es scoring model</title>
 <style>
 :root {{
@@ -323,6 +372,7 @@ td.strips {{ padding: 8px 14px; }}
 .delta.up {{ color: var(--good); background: color-mix(in oklab, var(--good) 12%, transparent); }}
 .delta.down {{ color: var(--bad); background: color-mix(in oklab, var(--bad) 12%, transparent); }}
 
+tr.chosen td {{ background: var(--accent-soft); }}
 .legend {{ display: flex; flex-wrap: wrap; gap: 6px 22px; font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin: 0 0 4px; }}
 .legend span {{ display: inline-flex; align-items: center; gap: 7px; }}
 .swatch {{ width: 22px; height: 9px; border-radius: 1px; }}
@@ -627,6 +677,90 @@ S Europe porcini, Jul–Aug (observed 80–100% of peak): 33.5% of cell-days ≥
   so the residual inversion is unmeasured — but the direction is right and the mechanism
   (moisture memory surviving a dry Mediterranean summer) is the correct one for this failure.
   The PR's southern claim is better supported by this than by the AUC delta it actually reports.</p>
+</section>
+
+<section class="sec">
+  <p class="kicker">The fix</p>
+  <h2>Implemented and re-measured</h2>
+  <div class="prose">
+    <p class="lede">The season term is now two terms. The multiplier still tilts the score
+    across the calendar; a new gate is allowed to reach <strong>zero</strong> — the thing the
+    model previously could not express.</p>
+    <p>The gate reads the <em>uncompressed</em> monthly ratio, which the curve builder now
+    publishes alongside the compressed multiplier. That ratio was always computed and then
+    thrown away by the <code>[0.6, 1.0]</code> rescale. Both curve schemas load, so deployed
+    curves keep working.</p>
+  </div>
+  <div class="tiles">
+    <div class="tile is-good">
+      <p class="k">Season AUC, median</p>
+      <p class="v">{fix_stats['before']['auc']:.3f} → {fix_stats['after']['auc']:.3f}</p>
+      <p class="n">Across all {fix_stats['after']['n']} testable region-species. 0.5 is random.</p>
+    </div>
+    <div class="tile is-good">
+      <p class="k">Dead-month false positives</p>
+      <p class="v">{fix_stats['before']['dead'] * 100:.0f}% → {fix_stats['after']['dead'] * 100:.0f}%</p>
+      <p class="n">Median share of out-of-season cell-days above the recommendation threshold.</p>
+    </div>
+    <div class="tile">
+      <p class="k">In-season recommendations</p>
+      <p class="v">{fix_stats['before']['inside'] * 100:.0f}% → {fix_stats['after']['inside'] * 100:.0f}%</p>
+      <p class="n">Unchanged. The out-of-season noise goes without costing a single in-season day.</p>
+    </div>
+    <div class="tile is-good">
+      <p class="k">Below random</p>
+      <p class="v">{fix_stats['before']['below']} → {fix_stats['after']['below']}</p>
+      <p class="n">Every inversion recovered except the western-US chanterelle.</p>
+    </div>
+  </div>
+  <div class="scroll">
+    <table>
+      <thead><tr>
+        <th>Region</th><th>Species</th><th class="num">AUC before</th><th class="num">after</th>
+        <th class="num">≥4 dead, before</th><th class="num">after</th>
+        <th class="num">≥4 in, before</th><th class="num">after</th><th></th>
+      </tr></thead>
+      <tbody>{"".join(fix_rows)}</tbody>
+    </table>
+  </div>
+  <p class="caption">Onset error improves too: median 27 d → 15 d, and the model now fires
+  early in 3 of 11 cases rather than 9 of 11.</p>
+
+  <div class="callout">
+    <h3>Two of the recommendations were wrong, and the measurement says so</h3>
+    <p><strong>Lowering the multiplier floor is not worth it.</strong> It buys more separation
+    (AUC 0.950, 0% dead-month false positives) but suppresses the real season too: in-season
+    days above threshold fall 56% → 40%, median onset error rises 15 → 41 days, and four
+    region-species never reach the threshold at all. The floor stays at 0.6 and the gate does
+    the cutting.</p>
+    <p><strong>The gate thresholds needed tuning, not just adding.</strong> At the first guess
+    the season started <em>late</em> — trading "always on" for "switches on too late", the same
+    failure wearing different clothes.</p>
+    <div class="scroll" style="max-width:600px">
+      <table>
+        <thead><tr><th>Gate off / full</th><th class="num">Season AUC</th><th class="num">≥4 dead</th><th class="num">Onset error</th><th></th></tr></thead>
+        <tbody>{sweep}</tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>Truffle</h3>
+  <p class="caption prose"><code>truffle_b</code> now maps to <code>5258468</code>
+  (<em>T. melanosporum</em>), and the rebuild confirms the intended behaviour:
+  <code>target=0 sightings → SKIP</code> in all four regions, so no curve is published and the
+  correct hand-written winter window applies again. The builder also filters
+  <code>basisOfRecord=HUMAN_OBSERVATION</code>.</p>
+
+  <h3>Still open</h3>
+  <p class="caption prose">Western-US chanterelle stays below random. Component capture shows
+  the region is vetoed by humidity — median component <strong>0.042</strong> against 0.581 in
+  N Europe, with <code>optimal_humidity=80</code> in both — but deserts and California
+  correctly score 0.00, and the one zone that matters (<code>marine_west_coast</code>, holding
+  18 of 27 chanterelle finds) is only testable in July–August, which is early for Pacific
+  Northwest chanterelles. Bringing humidity, temperature and moisture all to N Europe levels
+  would still only reach ~4.2, so no single parameter rescues it. It needs autumn data — which
+  is now being accumulated at 13 KB/month, because R2's four-month retention is why nobody
+  could ever check this.</p>
 </section>
 
 <section class="sec">

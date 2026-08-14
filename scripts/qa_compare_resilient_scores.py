@@ -197,6 +197,12 @@ def compare(background: pd.DataFrame, targets: pd.DataFrame) -> tuple[list[dict]
     detail_frame = pd.DataFrame(detail)
     for species, (label, _) in TARGETS.items():
         group = detail_frame[detail_frame.species_id == species]
+        # A hit rate on target cells means nothing without the same rate on background
+        # cells: if a change lifts the whole distribution, "95% of finds score >=4" can
+        # rise while the score's ability to discriminate is flat or worse. These two
+        # columns are the false-positive side of every hit-rate claim.
+        background_old = background[f"{species}_score"] if f"{species}_score" in background else pd.Series(dtype=float)
+        background_new = background[f"new_{species}_score"] if f"new_{species}_score" in background else pd.Series(dtype=float)
         summary.append({
             "species_id": species,
             "label": label,
@@ -209,6 +215,12 @@ def compare(background: pd.DataFrame, targets: pd.DataFrame) -> tuple[list[dict]
             "median_score_delta": group.score_delta.median() if len(group) else np.nan,
             "old_hit_ge_4": (group.old_score >= 4).mean() if len(group) else np.nan,
             "new_hit_ge_4": (group.new_score >= 4).mean() if len(group) else np.nan,
+            "old_background_ge_4": (background_old >= 4).mean() if len(background_old) else np.nan,
+            "new_background_ge_4": (background_new >= 4).mean() if len(background_new) else np.nan,
+            "old_hit_lift": ((group.old_score >= 4).mean() - (background_old >= 4).mean()
+                             if len(group) and len(background_old) else np.nan),
+            "new_hit_lift": ((group.new_score >= 4).mean() - (background_new >= 4).mean()
+                             if len(group) and len(background_new) else np.nan),
         })
     return detail, summary
 
@@ -263,6 +275,14 @@ def main() -> None:
         "old_primary_auc": float(primary.old_percentile.mean()),
         "new_primary_auc": float(primary.new_percentile.mean()),
         "primary_auc_delta": float(primary.percentile_delta.mean()),
+        "background_ge_4": {
+            species: {
+                "old": float((background[f"{species}_score"] >= 4).mean()),
+                "new": float((background[f"new_{species}_score"] >= 4).mean()),
+            }
+            for species in sorted(primary_species)
+            if f"{species}_score" in background and f"new_{species}_score" in background
+        },
         "regions": metadata,
     }
     (output / "summary.json").write_text(json.dumps(result, indent=2), encoding="utf-8")

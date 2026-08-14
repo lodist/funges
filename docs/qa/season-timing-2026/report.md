@@ -338,6 +338,70 @@ southern claim is better supported by this than by the AUC delta it actually rep
    the existing hit-rate computation and it is the number that moves in the wrong
    direction here.
 
+## What was implemented, and what it measures
+
+All of the above was implemented and re-measured on the same April–August grid
+(`scripts/qa_season_simulate.py`, results in `season-simulation.json`).
+
+**The season term is now two terms.** `season_multiplier_for_species` still tilts the
+score across the calendar; a new `season_gate_for_species` in
+[seasonality.py](../../../backend/seasonality.py) is allowed to reach **zero**, which is
+the thing the model previously could not express. The gate reads the *uncompressed*
+monthly ratio, which the curve builder now publishes alongside the compressed multiplier —
+the ratio was always computed and then thrown away by the `[0.6, 1.0]` rescale. Both curve
+schemas load, so deployed curves keep working.
+
+**Measured effect across all 17 testable region-species:**
+
+| | median season AUC | below random | ≥4 in dead months | ≥4 in season | median onset error |
+|---|---:|---:|---:|---:|---:|
+| production | 0.707 | 7 / 17 | 40.8% | 56% | 27 d (early in 9 of 11) |
+| **with gate** | **0.923** | **1 / 17** | **9.1%** | **56%** | **15 d (early in 3 of 11)** |
+
+The in-season column is the point: out-of-season noise drops more than four-fold **without
+costing a single in-season recommendation**. The inversions are gone — SE chanterelle
+0.329 → 0.915, SE porcini 0.336 → 0.797, USE black chanterelle 0.324 → 0.703, USE
+chanterelle 0.322 → 0.649.
+
+**Two of my earlier recommendations were wrong, and the measurement says so.**
+
+*Lowering the `--low` floor to 0.15–0.2 is not worth it.* It does buy more separation
+(AUC 0.950, dead-month false positives 0%), but it suppresses the real season too:
+in-season cell-days above the threshold fall 56% → 40%, median onset error rises 15 → 41
+days, and four region-species never reach the recommendation threshold at all. The floor
+stays at 0.6; the gate does the cutting. Left as a flag with the numbers recorded next to
+it.
+
+*The gate thresholds needed tuning, not just adding.* At my first guess (5%/15% of peak)
+the season started **late** — trading "always on" for "switches on too late", which is the
+same failure wearing different clothes. Swept four settings; 2%/10% keeps the separation
+while cutting onset error rather than overshooting it.
+
+**Truffle.** `truffle_b` now maps to `5258468` (*T. melanosporum*), and the rebuild
+confirms the intended behaviour: `target=0 sightings → SKIP` in all four regions, so no
+curve is published and the correct hand-written winter window applies again. The curve
+builder also filters `basisOfRecord=HUMAN_OBSERVATION`, matching the population the app
+serves.
+
+**Aggregator.** `geometric_share` defaults to 1.0 (pure geometric). Ablated on an
+identical replayed frame: the arithmetic blend bought +0.006 season AUC for +8 pp
+dead-month false positives on chanterelle. The 0.02 component floor — not the blend — is
+what fixes the near-zero scores this PR set out to fix.
+
+**Still open.** USW chanterelle remains below random (0.384) and USW porcini is 0.580.
+Component capture shows the western US is vetoed by humidity (median component **0.042**
+vs 0.581 in NE, against `optimal_humidity=80` in both), but deserts and California
+correctly score 0.00, and the one zone that matters — `marine_west_coast`, holding 18 of
+27 chanterelle finds — is only testable in July–August, which is *early* for Pacific
+Northwest chanterelles. Bringing humidity, temperature and moisture all to NE levels would
+still only reach ~4.2, so no single parameter rescues it. This needs autumn data, which is
+exactly what `scripts/archive_score_climatology.py` now accumulates (13 KB/month).
+
+**Next limitation to attack.** Monthly curve resolution. Linear interpolation between
+month midpoints smears a sharp season boundary over ~30 days, which is why NE morel still
+shows 31% dead-month false positives: early June interpolates from May's high ratio.
+Semi-monthly or day-of-year curves would fix it.
+
 ## Reproducing
 
 ```bash
@@ -345,7 +409,12 @@ python scripts/qa_season_truth.py          # GBIF counts + complete enumeration 
 python scripts/qa_season_scan.py           # one pass per R2 region
 python scripts/qa_season_analysis.py       # tests A-E -> season-analysis.json
 python scripts/qa_season_branch_replay.py  # main vs PR #171 on identical weather
-python -m pytest tests/test_qa_season_metrics.py
+python scripts/qa_season_simulate.py       # retest the fix -> season-simulation.json
+python scripts/archive_score_climatology.py  # append this month to the durable archive
+python -m pytest tests/test_qa_season_metrics.py tests/test_season_gate.py
+
+# check a curve change without the multi-hundred-cell zone crawl, and never touch R2
+python backend/tools/build_season_curves.py --local-only --regions-only --force --out-dir /tmp
 ```
 
 Every number in this report comes from those scripts, `season-analysis.json`, or the

@@ -26,7 +26,7 @@ from shapely.ops import unary_union
 from shapely.geometry import shape, Point
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasonality
-from seasonality import season_multiplier_for_species
+from seasonality import season_gate_for_species, season_multiplier_for_species
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
@@ -572,8 +572,16 @@ def _lagged_wind_factor(df, days=7, start=4.15, severe=12.0, floor=0.82):
     return np.clip(1.0 - (1.0 - floor) * severity, floor, 1.0)
 
 
-def _hybrid_component_mean_rows(components, weights, geometric_share=0.70):
-    """Blend geometric and arithmetic means so no single proxy is a hard veto."""
+def _hybrid_component_mean_rows(components, weights, geometric_share=1.0):
+    """Weighted geometric mean of the components, with an optional arithmetic blend.
+
+    The 0.02 component floor below is what stopped a drought-vetoed row collapsing to
+    ~0.9/10: the previous code clipped at 1e-9, so a 1e-5 weather component survived the
+    log. That floor is the fix. Blending in an arithmetic term on top (geometric_share
+    < 1) lifts every score another ~25% at the veto end, which measurably raised
+    out-of-season false positives while adding ~0.005 of season AUC -- so it defaults off.
+    Left as a knob because it is the natural place to soften a veto if that is ever wanted.
+    """
     comps = np.clip(np.asarray(components, float), 0.02, 1.0)
     weights = np.asarray(weights, float)
     active = weights > 0
@@ -808,7 +816,10 @@ def calculate_mushroom_score(df, species_params, zone_curves):
         if allowed_climates:
             df.loc[~df['climate_zone'].isin(allowed_climates), f'{specie}_score'] = 0
 
+        # Two separate jobs. The multiplier tilts the score across the season; the gate is
+        # allowed to reach zero, which is the only way the model can say "not this month".
         df[f'{specie}_score'] *= season_multiplier_for_species(df, specie, params, zone_curves)
+        df[f'{specie}_score'] *= season_gate_for_species(df, specie, params, zone_curves)
 
         df.drop(columns=[
             f'{specie}_Temp_Score',

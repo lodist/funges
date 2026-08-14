@@ -1,0 +1,1120 @@
+{
+  "NE": {
+    "mushroom": {
+      "climatology_records": 27422,
+      "in_season_months": [
+        7,
+        8,
+        9
+      ],
+      "dead_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        12
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.795,
+          "median_in": 5.55,
+          "median_dead": 3.3,
+          "share_ge4_in": 0.843,
+          "share_ge4_dead": 0.387
+        },
+        "floor_only": {
+          "auc": 0.937,
+          "median_in": 4.49,
+          "median_dead": 1.18,
+          "share_ge4_in": 0.613,
+          "share_ge4_dead": 0.015
+        },
+        "gate_only": {
+          "auc": 0.923,
+          "median_in": 5.55,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.843,
+          "share_ge4_dead": 0.113
+        },
+        "fixed": {
+          "auc": 0.964,
+          "median_in": 4.49,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.613,
+          "share_ge4_dead": 0.015
+        }
+      },
+      "onset": {
+        "observed": "2026-05-30",
+        "censored": false,
+        "production": "2026-05-18",
+        "production_share_of_window_ge4": 0.727,
+        "production_error_days": -12,
+        "floor_only": "2026-07-14",
+        "floor_only_share_of_window_ge4": 0.297,
+        "floor_only_error_days": 45,
+        "gate_only": "2026-06-19",
+        "gate_only_share_of_window_ge4": 0.492,
+        "gate_only_error_days": 20,
+        "fixed": "2026-07-14",
+        "fixed_share_of_window_ge4": 0.297,
+        "fixed_error_days": 45
+      }
+    },
+    "chant": {
+      "climatology_records": 22594,
+      "in_season_months": [
+        7,
+        8
+      ],
+      "dead_months": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.869,
+          "median_in": 6.38,
+          "median_dead": 2.38,
+          "share_ge4_in": 0.855,
+          "share_ge4_dead": 0.264
+        },
+        "floor_only": {
+          "auc": 0.948,
+          "median_in": 6.0,
+          "median_dead": 0.86,
+          "share_ge4_in": 0.832,
+          "share_ge4_dead": 0.003
+        },
+        "gate_only": {
+          "auc": 0.935,
+          "median_in": 6.38,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.855,
+          "share_ge4_dead": 0.118
+        },
+        "fixed": {
+          "auc": 0.971,
+          "median_in": 6.0,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.832,
+          "share_ge4_dead": 0.003
+        }
+      },
+      "onset": {
+        "observed": "2026-06-10",
+        "censored": false,
+        "production": "2026-05-21",
+        "production_share_of_window_ge4": 0.664,
+        "production_error_days": -20,
+        "floor_only": "2026-06-25",
+        "floor_only_share_of_window_ge4": 0.445,
+        "floor_only_error_days": 15,
+        "gate_only": "2026-05-30",
+        "gate_only_share_of_window_ge4": 0.602,
+        "gate_only_error_days": -11,
+        "fixed": "2026-06-25",
+        "fixed_share_of_window_ge4": 0.445,
+        "fixed_error_days": 15
+      }
+    },
+    "black_chant": {
+      "climatology_records": 3332,
+      "in_season_months": [
+        8,
+        9,
+        10
+      ],
+      "dead_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.776,
+          "median_in": 4.78,
+          "median_dead": 2.55,
+          "share_ge4_in": 0.616,
+          "share_ge4_dead": 0.139
+        },
+        "floor_only": {
+          "auc": 0.921,
+          "median_in": 3.71,
+          "median_dead": 0.86,
+          "share_ge4_in": 0.403,
+          "share_ge4_dead": 0.0
+        },
+        "gate_only": {
+          "auc": 0.972,
+          "median_in": 4.78,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.616,
+          "share_ge4_dead": 0.008
+        },
+        "fixed": {
+          "auc": 0.989,
+          "median_in": 3.71,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.403,
+          "share_ge4_dead": 0.0
+        }
+      },
+      "onset": {
+        "observed": "2026-07-29",
+        "censored": false,
+        "production": "2026-06-07",
+        "production_share_of_window_ge4": 0.18,
+        "production_error_days": -52,
+        "floor_only": "2026-08-13",
+        "floor_only_share_of_window_ge4": 0.062,
+        "floor_only_error_days": 15,
+        "gate_only": "2026-07-31",
+        "gate_only_share_of_window_ge4": 0.164,
+        "gate_only_error_days": 2,
+        "fixed": "2026-08-13",
+        "fixed_share_of_window_ge4": 0.062,
+        "fixed_error_days": 15
+      }
+    },
+    "parasol": {
+      "climatology_records": 26043,
+      "in_season_months": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "dead_months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        12
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.718,
+          "median_in": 5.5,
+          "median_dead": 3.71,
+          "share_ge4_in": 0.786,
+          "share_ge4_dead": 0.442
+        },
+        "floor_only": {
+          "auc": 0.927,
+          "median_in": 4.37,
+          "median_dead": 1.3,
+          "share_ge4_in": 0.616,
+          "share_ge4_dead": 0.0
+        },
+        "gate_only": {
+          "auc": 0.931,
+          "median_in": 5.5,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.786,
+          "share_ge4_dead": 0.091
+        },
+        "fixed": {
+          "auc": 0.976,
+          "median_in": 4.37,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.616,
+          "share_ge4_dead": 0.0
+        }
+      },
+      "onset": {
+        "observed": "2026-06-13",
+        "censored": false,
+        "production": "2026-05-16",
+        "production_share_of_window_ge4": 0.742,
+        "production_error_days": -28,
+        "floor_only": "2026-08-04",
+        "floor_only_share_of_window_ge4": 0.133,
+        "floor_only_error_days": 52,
+        "gate_only": "2026-06-27",
+        "gate_only_share_of_window_ge4": 0.43,
+        "gate_only_error_days": 14,
+        "fixed": "2026-08-04",
+        "fixed_share_of_window_ge4": 0.133,
+        "fixed_error_days": 52
+      }
+    },
+    "morel": {
+      "climatology_records": 6106,
+      "in_season_months": [
+        4
+      ],
+      "dead_months": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.423,
+          "median_in": 3.38,
+          "median_dead": 3.83,
+          "share_ge4_in": 0.345,
+          "share_ge4_dead": 0.425
+        },
+        "floor_only": {
+          "auc": 0.641,
+          "median_in": 2.26,
+          "median_dead": 1.37,
+          "share_ge4_in": 0.229,
+          "share_ge4_dead": 0.034
+        },
+        "gate_only": {
+          "auc": 0.656,
+          "median_in": 3.37,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.343,
+          "share_ge4_dead": 0.307
+        },
+        "fixed": {
+          "auc": 0.693,
+          "median_in": 2.26,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.229,
+          "share_ge4_dead": 0.034
+        }
+      },
+      "onset": {
+        "observed": "2026-04-12",
+        "censored": true,
+        "production": "2026-05-16",
+        "production_share_of_window_ge4": 0.32,
+        "production_error_days": 34,
+        "floor_only": "2026-05-18",
+        "floor_only_share_of_window_ge4": 0.117,
+        "floor_only_error_days": 36,
+        "gate_only": "2026-05-16",
+        "gate_only_share_of_window_ge4": 0.289,
+        "gate_only_error_days": 34,
+        "fixed": "2026-05-18",
+        "fixed_share_of_window_ge4": 0.117,
+        "fixed_error_days": 36
+      }
+    },
+    "st_george": {
+      "climatology_records": 5441,
+      "in_season_months": [
+        4,
+        5
+      ],
+      "dead_months": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.707,
+          "median_in": 5.25,
+          "median_dead": 4.05,
+          "share_ge4_in": 0.711,
+          "share_ge4_dead": 0.527
+        },
+        "floor_only": {
+          "auc": 0.978,
+          "median_in": 4.9,
+          "median_dead": 1.44,
+          "share_ge4_in": 0.672,
+          "share_ge4_dead": 0.0
+        },
+        "gate_only": {
+          "auc": 0.974,
+          "median_in": 5.25,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.711,
+          "share_ge4_dead": 0.026
+        },
+        "fixed": {
+          "auc": 0.997,
+          "median_in": 4.9,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.672,
+          "share_ge4_dead": 0.0
+        }
+      },
+      "onset": {
+        "observed": "2026-04-12",
+        "censored": true,
+        "production": "2026-04-12",
+        "production_share_of_window_ge4": 0.836,
+        "production_error_days": 0,
+        "floor_only": "2026-04-15",
+        "floor_only_share_of_window_ge4": 0.336,
+        "floor_only_error_days": 3,
+        "gate_only": "2026-04-12",
+        "gate_only_share_of_window_ge4": 0.562,
+        "gate_only_error_days": 0,
+        "fixed": "2026-04-15",
+        "fixed_share_of_window_ge4": 0.336,
+        "fixed_error_days": 3
+      }
+    }
+  },
+  "SE": {
+    "mushroom": {
+      "climatology_records": 3925,
+      "in_season_months": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "dead_months": [
+        1,
+        2,
+        3,
+        4,
+        12
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.336,
+          "median_in": 3.39,
+          "median_dead": 5.11,
+          "share_ge4_in": 0.436,
+          "share_ge4_dead": 0.776
+        },
+        "floor_only": {
+          "auc": 0.641,
+          "median_in": 2.97,
+          "median_dead": 1.88,
+          "share_ge4_in": 0.362,
+          "share_ge4_dead": 0.0
+        },
+        "gate_only": {
+          "auc": 0.797,
+          "median_in": 3.39,
+          "median_dead": 0.37,
+          "share_ge4_in": 0.436,
+          "share_ge4_dead": 0.068
+        },
+        "fixed": {
+          "auc": 0.858,
+          "median_in": 2.97,
+          "median_dead": 0.14,
+          "share_ge4_in": 0.362,
+          "share_ge4_dead": 0.0
+        }
+      },
+      "onset": {
+        "observed": "2026-04-17",
+        "censored": false,
+        "production": "2026-04-12",
+        "production_share_of_window_ge4": 0.562,
+        "production_error_days": -5,
+        "floor_only": "2026-05-28",
+        "floor_only_share_of_window_ge4": 0.086,
+        "floor_only_error_days": 41,
+        "gate_only": "2026-05-09",
+        "gate_only_share_of_window_ge4": 0.359,
+        "gate_only_error_days": 22,
+        "fixed": "2026-05-28",
+        "fixed_share_of_window_ge4": 0.086,
+        "fixed_error_days": 41
+      }
+    },
+    "chant": {
+      "climatology_records": 2795,
+      "in_season_months": [
+        6,
+        7,
+        8
+      ],
+      "dead_months": [
+        3,
+        4
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.329,
+          "median_in": 2.68,
+          "median_dead": 4.08,
+          "share_ge4_in": 0.335,
+          "share_ge4_dead": 0.51
+        },
+        "floor_only": {
+          "auc": 0.616,
+          "median_in": 2.12,
+          "median_dead": 1.45,
+          "share_ge4_in": 0.225,
+          "share_ge4_dead": 0.0
+        },
+        "gate_only": {
+          "auc": 0.915,
+          "median_in": 2.68,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.335,
+          "share_ge4_dead": 0.036
+        },
+        "fixed": {
+          "auc": 0.942,
+          "median_in": 2.12,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.225,
+          "share_ge4_dead": 0.0
+        }
+      },
+      "onset": {
+        "observed": "2026-05-03",
+        "censored": false,
+        "production": "2026-04-12",
+        "production_share_of_window_ge4": 0.359,
+        "production_error_days": -21,
+        "floor_only": null,
+        "floor_only_share_of_window_ge4": 0.0,
+        "gate_only": "2026-05-18",
+        "gate_only_share_of_window_ge4": 0.219,
+        "gate_only_error_days": 15,
+        "fixed": null,
+        "fixed_share_of_window_ge4": 0.0
+      }
+    },
+    "black_chant": {
+      "climatology_records": 898,
+      "in_season_months": [
+        10,
+        11
+      ],
+      "dead_months": [
+        3,
+        4,
+        5
+      ],
+      "variants": {
+        "production": {},
+        "floor_only": {},
+        "gate_only": {},
+        "fixed": {}
+      },
+      "onset": {
+        "observed": "2026-06-23",
+        "censored": false,
+        "production": "2026-04-15",
+        "production_share_of_window_ge4": 0.07,
+        "production_error_days": -69,
+        "floor_only": null,
+        "floor_only_share_of_window_ge4": 0.0,
+        "gate_only": null,
+        "gate_only_share_of_window_ge4": 0.0,
+        "fixed": null,
+        "fixed_share_of_window_ge4": 0.0
+      }
+    },
+    "parasol": {
+      "climatology_records": 3961,
+      "in_season_months": [
+        9,
+        10,
+        11
+      ],
+      "dead_months": [
+        2,
+        3,
+        4
+      ],
+      "variants": {
+        "production": {},
+        "floor_only": {},
+        "gate_only": {},
+        "fixed": {}
+      },
+      "onset": {
+        "observed": "2026-04-26",
+        "censored": false,
+        "production": "2026-04-12",
+        "production_share_of_window_ge4": 0.555,
+        "production_error_days": -14,
+        "floor_only": null,
+        "floor_only_share_of_window_ge4": 0.0,
+        "gate_only": "2026-05-20",
+        "gate_only_share_of_window_ge4": 0.266,
+        "gate_only_error_days": 24,
+        "fixed": null,
+        "fixed_share_of_window_ge4": 0.0
+      }
+    },
+    "morel": {
+      "climatology_records": 1218,
+      "in_season_months": [
+        4
+      ],
+      "dead_months": [
+        1,
+        2,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.943,
+          "median_in": 4.89,
+          "median_dead": 1.23,
+          "share_ge4_in": 0.734,
+          "share_ge4_dead": 0.07
+        },
+        "floor_only": {
+          "auc": 0.997,
+          "median_in": 4.64,
+          "median_dead": 0.42,
+          "share_ge4_in": 0.667,
+          "share_ge4_dead": 0.002
+        },
+        "gate_only": {
+          "auc": 0.975,
+          "median_in": 4.89,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.733,
+          "share_ge4_dead": 0.044
+        },
+        "fixed": {
+          "auc": 0.998,
+          "median_in": 4.64,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.667,
+          "share_ge4_dead": 0.002
+        }
+      },
+      "onset": {
+        "observed": "2026-04-12",
+        "censored": true,
+        "production": "2026-04-12",
+        "production_share_of_window_ge4": 0.414,
+        "production_error_days": 0,
+        "floor_only": "2026-04-12",
+        "floor_only_share_of_window_ge4": 0.234,
+        "floor_only_error_days": 0,
+        "gate_only": "2026-04-12",
+        "gate_only_share_of_window_ge4": 0.414,
+        "gate_only_error_days": 0,
+        "fixed": "2026-04-12",
+        "fixed_share_of_window_ge4": 0.234,
+        "fixed_error_days": 0
+      }
+    },
+    "st_george": {
+      "climatology_records": 346,
+      "in_season_months": [
+        4,
+        5
+      ],
+      "dead_months": [
+        1,
+        2,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.992,
+          "median_in": 6.43,
+          "median_dead": 0.99,
+          "share_ge4_in": 0.907,
+          "share_ge4_dead": 0.03
+        },
+        "floor_only": {
+          "auc": 1.0,
+          "median_in": 5.63,
+          "median_dead": 0.35,
+          "share_ge4_in": 0.826,
+          "share_ge4_dead": 0.0
+        },
+        "gate_only": {
+          "auc": 1.0,
+          "median_in": 6.43,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.907,
+          "share_ge4_dead": 0.0
+        },
+        "fixed": {
+          "auc": 1.0,
+          "median_in": 5.63,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.826,
+          "share_ge4_dead": 0.0
+        }
+      },
+      "onset": {
+        "observed": "2026-04-12",
+        "censored": true,
+        "production": "2026-04-12",
+        "production_share_of_window_ge4": 0.422,
+        "production_error_days": 0,
+        "floor_only": "2026-04-12",
+        "floor_only_share_of_window_ge4": 0.391,
+        "floor_only_error_days": 0,
+        "gate_only": "2026-04-12",
+        "gate_only_share_of_window_ge4": 0.422,
+        "gate_only_error_days": 0,
+        "fixed": "2026-04-12",
+        "fixed_share_of_window_ge4": 0.391,
+        "fixed_error_days": 0
+      }
+    }
+  },
+  "USE": {
+    "mushroom": {
+      "climatology_records": 2506,
+      "in_season_months": [
+        7,
+        8
+      ],
+      "dead_months": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        12
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.637,
+          "median_in": 4.33,
+          "median_dead": 4.41,
+          "share_ge4_in": 0.565,
+          "share_ge4_dead": 0.543
+        },
+        "floor_only": {
+          "auc": 0.896,
+          "median_in": 4.05,
+          "median_dead": 1.7,
+          "share_ge4_in": 0.509,
+          "share_ge4_dead": 0.007
+        },
+        "gate_only": {
+          "auc": 0.786,
+          "median_in": 4.33,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.565,
+          "share_ge4_dead": 0.279
+        },
+        "fixed": {
+          "auc": 0.909,
+          "median_in": 4.05,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.509,
+          "share_ge4_dead": 0.007
+        }
+      },
+      "onset": {
+        "observed": "2026-05-28",
+        "censored": false,
+        "production": "2026-04-19",
+        "production_share_of_window_ge4": 0.89,
+        "production_error_days": -39,
+        "floor_only": "2026-05-29",
+        "floor_only_share_of_window_ge4": 0.299,
+        "floor_only_error_days": 1,
+        "gate_only": "2026-04-27",
+        "gate_only_share_of_window_ge4": 0.843,
+        "gate_only_error_days": -31,
+        "fixed": "2026-05-29",
+        "fixed_share_of_window_ge4": 0.299,
+        "fixed_error_days": 1
+      }
+    },
+    "chant": {
+      "climatology_records": 7323,
+      "in_season_months": [
+        7,
+        8
+      ],
+      "dead_months": [
+        1,
+        2,
+        3,
+        4,
+        10,
+        11,
+        12
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.322,
+          "median_in": 3.12,
+          "median_dead": 4.34,
+          "share_ge4_in": 0.342,
+          "share_ge4_dead": 0.55
+        },
+        "floor_only": {
+          "auc": 0.758,
+          "median_in": 2.93,
+          "median_dead": 1.72,
+          "share_ge4_in": 0.263,
+          "share_ge4_dead": 0.0
+        },
+        "gate_only": {
+          "auc": 0.649,
+          "median_in": 3.12,
+          "median_dead": 0.31,
+          "share_ge4_in": 0.341,
+          "share_ge4_dead": 0.203
+        },
+        "fixed": {
+          "auc": 0.799,
+          "median_in": 2.93,
+          "median_dead": 0.11,
+          "share_ge4_in": 0.263,
+          "share_ge4_dead": 0.0
+        }
+      },
+      "onset": {
+        "observed": "2026-05-26",
+        "censored": false,
+        "production": "2026-04-12",
+        "production_share_of_window_ge4": 0.402,
+        "production_error_days": -44,
+        "floor_only": null,
+        "floor_only_share_of_window_ge4": 0.0,
+        "gate_only": "2026-05-23",
+        "gate_only_share_of_window_ge4": 0.236,
+        "gate_only_error_days": -3,
+        "fixed": null,
+        "fixed_share_of_window_ge4": 0.0
+      }
+    },
+    "black_chant": {
+      "climatology_records": 3108,
+      "in_season_months": [
+        7,
+        8,
+        9
+      ],
+      "dead_months": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        12
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.324,
+          "median_in": 3.13,
+          "median_dead": 4.1,
+          "share_ge4_in": 0.269,
+          "share_ge4_dead": 0.516
+        },
+        "floor_only": {
+          "auc": 0.773,
+          "median_in": 2.72,
+          "median_dead": 1.6,
+          "share_ge4_in": 0.213,
+          "share_ge4_dead": 0.0
+        },
+        "gate_only": {
+          "auc": 0.703,
+          "median_in": 3.13,
+          "median_dead": 0.59,
+          "share_ge4_in": 0.269,
+          "share_ge4_dead": 0.137
+        },
+        "fixed": {
+          "auc": 0.847,
+          "median_in": 2.72,
+          "median_dead": 0.22,
+          "share_ge4_in": 0.213,
+          "share_ge4_dead": 0.0
+        }
+      },
+      "onset": {
+        "observed": "2026-05-23",
+        "censored": false,
+        "production": "2026-04-12",
+        "production_share_of_window_ge4": 0.299,
+        "production_error_days": -41,
+        "floor_only": "2026-08-17",
+        "floor_only_share_of_window_ge4": 0.024,
+        "floor_only_error_days": 86,
+        "gate_only": "2026-06-07",
+        "gate_only_share_of_window_ge4": 0.197,
+        "gate_only_error_days": 15,
+        "fixed": "2026-08-17",
+        "fixed_share_of_window_ge4": 0.024,
+        "fixed_error_days": 86
+      }
+    },
+    "morel": {
+      "climatology_records": 5802,
+      "in_season_months": [
+        4,
+        5
+      ],
+      "dead_months": [
+        1,
+        2,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.976,
+          "median_in": 4.73,
+          "median_dead": 1.17,
+          "share_ge4_in": 0.644,
+          "share_ge4_dead": 0.044
+        },
+        "floor_only": {
+          "auc": 0.994,
+          "median_in": 3.64,
+          "median_dead": 0.41,
+          "share_ge4_in": 0.436,
+          "share_ge4_dead": 0.003
+        },
+        "gate_only": {
+          "auc": 0.975,
+          "median_in": 4.71,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.622,
+          "share_ge4_dead": 0.043
+        },
+        "fixed": {
+          "auc": 0.988,
+          "median_in": 3.64,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.436,
+          "share_ge4_dead": 0.003
+        }
+      },
+      "onset": {
+        "observed": "2026-04-12",
+        "censored": true,
+        "production": "2026-04-12",
+        "production_share_of_window_ge4": 0.386,
+        "production_error_days": 0,
+        "floor_only": "2026-04-12",
+        "floor_only_share_of_window_ge4": 0.126,
+        "floor_only_error_days": 0,
+        "gate_only": "2026-04-12",
+        "gate_only_share_of_window_ge4": 0.386,
+        "gate_only_error_days": 0,
+        "fixed": "2026-04-12",
+        "fixed_share_of_window_ge4": 0.126,
+        "fixed_error_days": 0
+      }
+    }
+  },
+  "USW": {
+    "mushroom": {
+      "climatology_records": 6110,
+      "in_season_months": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "dead_months": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.351,
+          "median_in": 1.52,
+          "median_dead": 3.36,
+          "share_ge4_in": 0.195,
+          "share_ge4_dead": 0.408
+        },
+        "floor_only": {
+          "auc": 0.576,
+          "median_in": 1.41,
+          "median_dead": 1.33,
+          "share_ge4_in": 0.147,
+          "share_ge4_dead": 0.038
+        },
+        "gate_only": {
+          "auc": 0.58,
+          "median_in": 1.52,
+          "median_dead": 0.48,
+          "share_ge4_in": 0.195,
+          "share_ge4_dead": 0.239
+        },
+        "fixed": {
+          "auc": 0.694,
+          "median_in": 1.41,
+          "median_dead": 0.18,
+          "share_ge4_in": 0.147,
+          "share_ge4_dead": 0.038
+        }
+      },
+      "onset": {
+        "observed": "2026-05-05",
+        "censored": false,
+        "production": "2026-06-01",
+        "production_share_of_window_ge4": 0.048,
+        "production_error_days": 27,
+        "floor_only": null,
+        "floor_only_share_of_window_ge4": 0.0,
+        "gate_only": "2026-06-01",
+        "gate_only_share_of_window_ge4": 0.048,
+        "gate_only_error_days": 27,
+        "fixed": null,
+        "fixed_share_of_window_ge4": 0.0
+      }
+    },
+    "chant": {
+      "climatology_records": 5047,
+      "in_season_months": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "dead_months": [
+        4,
+        5,
+        6
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.194,
+          "median_in": 0.88,
+          "median_dead": 2.84,
+          "share_ge4_in": 0.042,
+          "share_ge4_dead": 0.27
+        },
+        "floor_only": {
+          "auc": 0.368,
+          "median_in": 0.8,
+          "median_dead": 1.33,
+          "share_ge4_in": 0.018,
+          "share_ge4_dead": 0.023
+        },
+        "gate_only": {
+          "auc": 0.384,
+          "median_in": 0.88,
+          "median_dead": 1.38,
+          "share_ge4_in": 0.041,
+          "share_ge4_dead": 0.159
+        },
+        "fixed": {
+          "auc": 0.506,
+          "median_in": 0.8,
+          "median_dead": 0.68,
+          "share_ge4_in": 0.018,
+          "share_ge4_dead": 0.023
+        }
+      },
+      "onset": {
+        "observed": "2026-04-13",
+        "censored": false,
+        "production": "2026-04-14",
+        "production_share_of_window_ge4": 0.087,
+        "production_error_days": 1,
+        "floor_only": null,
+        "floor_only_share_of_window_ge4": 0.0,
+        "gate_only": "2026-06-07",
+        "gate_only_share_of_window_ge4": 0.008,
+        "gate_only_error_days": 55,
+        "fixed": null,
+        "fixed_share_of_window_ge4": 0.0
+      }
+    },
+    "morel": {
+      "climatology_records": 3203,
+      "in_season_months": [
+        4,
+        5
+      ],
+      "dead_months": [
+        1,
+        2,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "variants": {
+        "production": {
+          "auc": 0.962,
+          "median_in": 3.77,
+          "median_dead": 0.48,
+          "share_ge4_in": 0.455,
+          "share_ge4_dead": 0.001
+        },
+        "floor_only": {
+          "auc": 0.991,
+          "median_in": 3.11,
+          "median_dead": 0.17,
+          "share_ge4_in": 0.28,
+          "share_ge4_dead": 0.0
+        },
+        "gate_only": {
+          "auc": 0.988,
+          "median_in": 3.76,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.454,
+          "share_ge4_dead": 0.001
+        },
+        "fixed": {
+          "auc": 0.997,
+          "median_in": 3.11,
+          "median_dead": 0.0,
+          "share_ge4_in": 0.28,
+          "share_ge4_dead": 0.0
+        }
+      },
+      "onset": {
+        "observed": "2026-04-12",
+        "censored": true,
+        "production": "2026-04-12",
+        "production_share_of_window_ge4": 0.135,
+        "production_error_days": 0,
+        "floor_only": null,
+        "floor_only_share_of_window_ge4": 0.0,
+        "gate_only": "2026-04-12",
+        "gate_only_share_of_window_ge4": 0.135,
+        "gate_only_error_days": 0,
+        "fixed": null,
+        "fixed_share_of_window_ge4": 0.0
+      }
+    }
+  }
+}
