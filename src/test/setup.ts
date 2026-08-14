@@ -1,29 +1,26 @@
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 
-// Mock IntersectionObserver
-window.IntersectionObserver = vi.fn().mockImplementation(
-  () =>
-    ({
-      disconnect: vi.fn(),
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      root: null,
-      rootMargin: '',
-      thresholds: [],
-      takeRecords: vi.fn(),
-    }) as unknown as IntersectionObserver
-);
+// Observer APIs are constructors in browsers. Class mocks preserve that
+// contract for Radix and other libraries that instantiate them with `new`.
+class MockIntersectionObserver implements IntersectionObserver {
+  readonly root = null;
+  readonly rootMargin = '';
+  readonly thresholds = [];
+  disconnect = vi.fn();
+  observe = vi.fn();
+  unobserve = vi.fn();
+  takeRecords = vi.fn(() => []);
+}
 
-// Mock ResizeObserver
-window.ResizeObserver = vi.fn().mockImplementation(
-  () =>
-    ({
-      disconnect: vi.fn(),
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-    }) as unknown as ResizeObserver
-);
+class MockResizeObserver implements ResizeObserver {
+  disconnect = vi.fn();
+  observe = vi.fn();
+  unobserve = vi.fn();
+}
+
+window.IntersectionObserver = MockIntersectionObserver;
+window.ResizeObserver = MockResizeObserver;
 
 // Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
