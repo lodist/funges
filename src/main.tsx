@@ -27,16 +27,15 @@ if (process.env.NODE_ENV === 'development') {
 // Initialize HTML and manifest localization
 initializeHtmlLocalization();
 
-const mountApp = () => {
-  createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-      <App />
-    </StrictMode>
-  );
-};
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
 
-// The inline FUNGES shell is useful only if it reads as an intentional startup
-// screen. On a warm cache React can otherwise replace it in a single flicker.
-// Start the minimum duration after a paint opportunity, so even a very fast
-// device shows the wordmark for at least half a second.
-requestAnimationFrame(() => window.setTimeout(mountApp, 500));
+// React mounts immediately behind the inline overlay, so map and data loading
+// overlap with the deliberate startup transition instead of waiting for it.
+// Start after a paint opportunity to guarantee 750 ms of visible wordmark even
+// when the module is already cached.
+const splash = document.getElementById('app-splash');
+requestAnimationFrame(() => window.setTimeout(() => splash?.remove(), 750));

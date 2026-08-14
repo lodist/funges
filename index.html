@@ -140,42 +140,42 @@
     <link rel="preconnect" href="https://protomaps.github.io" crossorigin />
   </head>
   <body>
-    <!-- Inline shell: the app's first paint waits on the CSS + ~700KB of JS, so
-         until React mounts the page was blank. Styles are inline on purpose —
-         anything in the stylesheet would be render-blocked too. React's first
-         render replaces this. -->
-    <div id="root">
+    <!-- Inline overlay: the app's first paint waits on the CSS + JS, so until
+         React mounts the page would be blank. Keeping this outside #root lets
+         React initialize the app underneath it during the minimum display time. -->
+    <div
+      id="app-splash"
+      style="
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        background: #f8f5f0;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+      "
+    >
       <div
         style="
-          position: fixed;
-          inset: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 0.75rem;
-          background: #f8f5f0;
-          font-family:
-            system-ui,
-            -apple-system,
-            sans-serif;
+          font-size: clamp(2rem, 12vw, 4rem);
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          color: #b81c00;
         "
       >
-        <div
-          style="
-            font-size: clamp(2rem, 12vw, 4rem);
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            color: #b81c00;
-          "
-        >
-          FUNGES
-        </div>
-        <div style="font-size: 0.875rem; color: #6b6259">
-          Loading the foraging map…
-        </div>
+        FUNGES
+      </div>
+      <div style="font-size: 0.875rem; color: #6b6259">
+        Loading the foraging map…
       </div>
     </div>
+    <div id="root"></div>
     <script type="module" src="src/main.tsx"></script>
   </body>
 </html>
