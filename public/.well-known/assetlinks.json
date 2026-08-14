@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "es.fung.app",
       "sha256_cert_fingerprints": [
-        "99:F4:38:A7:B4:9D:17:EE:EB:16:EE:66:73:01:0C:2C:38:56:C2:49:C0:37:D9:CB:BC:D7:DF:CB:9B:43:64:C6"
+        "99:F4:38:A7:B4:9D:17:EE:EB:16:EE:66:73:01:0C:2C:38:56:C2:49:C0:37:D9:CB:BC:D7:DF:CB:9B:43:64:C6",
+        "D6:40:87:72:23:FC:18:63:43:56:19:38:AC:2E:89:DE:8C:87:13:7A:42:14:E6:FF:8F:20:8D:CA:61:54:DA:16"
       ]
     }
   }
