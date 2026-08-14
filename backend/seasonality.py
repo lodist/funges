@@ -29,6 +29,24 @@ def _as_month_map(values):
     return {int(k): float(v) for k, v in values.items()}
 
 
+def normalize_curve(raw):
+    """Coerce either curve schema off the wire into the canonical two-part form.
+
+    Loaders must go through this rather than doing `{int(k): float(v)}` themselves: on the
+    two-part schema that idiom raises on `int("multiplier")`, and because the loaders catch
+    Exception and fall back, the failure is silent -- production would quietly drop every
+    empirical curve and run on `season_months` alone.
+    """
+    if not raw:
+        return None
+    if "multiplier" in raw:
+        curve = {"multiplier": _as_month_map(raw["multiplier"])}
+        if raw.get("ratio"):
+            curve["ratio"] = _as_month_map(raw["ratio"])
+        return curve
+    return {"multiplier": _as_month_map(raw)}
+
+
 def split_curve(season_curve):
     """Accept either curve schema and return (multiplier_map, ratio_map_or_None).
 

@@ -26,7 +26,7 @@ from shapely.ops import unary_union
 from shapely.geometry import shape, Point
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasonality
-from seasonality import season_gate_for_species, season_multiplier_for_species
+from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
@@ -849,7 +849,7 @@ def _load_species_and_curves(config, species_params_path):
         _curves = json.loads(_raw)
         for _sp, _p in species_params.items():
             if _sp in _curves:
-                _p["season_curve"] = {int(k): float(v) for k, v in _curves[_sp].items()}
+                _p["season_curve"] = normalize_curve(_curves[_sp])
         print(f"Loaded empirical season curves for {sum('season_curve' in p for p in species_params.values())} species.")
     except Exception as _e:
         print(f"[warn] could not load season curves from {_curves_path}: {_e}; falling back to season_months")
@@ -863,8 +863,7 @@ def _load_species_and_curves(config, species_params_path):
                      else Path(_zone_curves_path).read_text(encoding="utf-8"))
             _zone_raw = json.loads(_zraw)
             zone_curves = {
-                str(_z): {str(_sp): {int(k): float(v) for k, v in _c.items()}
-                          for _sp, _c in _spmap.items()}
+                str(_z): {str(_sp): normalize_curve(_c) for _sp, _c in _spmap.items()}
                 for _z, _spmap in _zone_raw.items()
             }
             print(f"Loaded zone season curves for {len(zone_curves)} climate zones.")
