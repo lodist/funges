@@ -56,6 +56,13 @@ spike_cache/
 # ONNX export artifacts (the shipped model lives on R2, not in git)
 backend/tools/model_artifacts/
 
+# Generated GBIF QA caches and row-level exports. Keep aggregate reports/results.
+docs/qa/**/gbif-cache*.json
+docs/qa/**/fungal-observer-background.csv
+docs/qa/**/matched-targets.csv
+docs/qa/**/matched-observations.csv
+docs/qa/**/matched-target-comparison.csv
+
 
 # Playwright failure artifacts
 test-results/
