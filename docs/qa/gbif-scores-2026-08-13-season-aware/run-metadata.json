@@ -1,0 +1,991 @@
+{
+  "period": {
+    "start": "2026-06-13",
+    "end": "2026-08-12"
+  },
+  "gbif_api": "https://api.gbif.org/v1",
+  "gbif_raw_api_counts": {
+    "mushroom": {
+      "NE": {
+        "total": 371,
+        "sampled": 371
+      },
+      "SE": {
+        "total": 51,
+        "sampled": 51
+      },
+      "USE": {
+        "total": 128,
+        "sampled": 128
+      },
+      "USW": {
+        "total": 139,
+        "sampled": 139
+      }
+    },
+    "black_chant": {
+      "NE": {
+        "total": 6,
+        "sampled": 6
+      },
+      "SE": {
+        "total": 6,
+        "sampled": 6
+      },
+      "USE": {
+        "total": 91,
+        "sampled": 91
+      },
+      "USW": {
+        "total": 0,
+        "sampled": 0
+      }
+    },
+    "lingonb": {
+      "NE": {
+        "total": 2450,
+        "sampled": 1500
+      },
+      "SE": {
+        "total": 204,
+        "sampled": 204
+      },
+      "USE": {
+        "total": 166,
+        "sampled": 166
+      },
+      "USW": {
+        "total": 175,
+        "sampled": 175
+      }
+    },
+    "garlic": {
+      "NE": {
+        "total": 187,
+        "sampled": 187
+      },
+      "SE": {
+        "total": 27,
+        "sampled": 27
+      },
+      "USE": {
+        "total": 0,
+        "sampled": 0
+      },
+      "USW": {
+        "total": 0,
+        "sampled": 0
+      }
+    },
+    "truffle_b": {
+      "NE": {
+        "total": 0,
+        "sampled": 0
+      },
+      "SE": {
+        "total": 0,
+        "sampled": 0
+      },
+      "USE": {
+        "total": 0,
+        "sampled": 0
+      },
+      "USW": {
+        "total": 0,
+        "sampled": 0
+      }
+    },
+    "walnut": {
+      "NE": {
+        "total": 1993,
+        "sampled": 1500
+      },
+      "SE": {
+        "total": 163,
+        "sampled": 163
+      },
+      "USE": {
+        "total": 1,
+        "sampled": 1
+      },
+      "USW": {
+        "total": 9,
+        "sampled": 9
+      }
+    },
+    "strawberry": {
+      "NE": {
+        "total": 2190,
+        "sampled": 1500
+      },
+      "SE": {
+        "total": 140,
+        "sampled": 140
+      },
+      "USE": {
+        "total": 68,
+        "sampled": 68
+      },
+      "USW": {
+        "total": 152,
+        "sampled": 152
+      }
+    },
+    "asparagus": {
+      "NE": {
+        "total": 0,
+        "sampled": 0
+      },
+      "SE": {
+        "total": 86,
+        "sampled": 86
+      },
+      "USE": {
+        "total": 0,
+        "sampled": 0
+      },
+      "USW": {
+        "total": 0,
+        "sampled": 0
+      }
+    },
+    "parasol": {
+      "NE": {
+        "total": 110,
+        "sampled": 110
+      },
+      "SE": {
+        "total": 9,
+        "sampled": 9
+      },
+      "USE": {
+        "total": 0,
+        "sampled": 0
+      },
+      "USW": {
+        "total": 0,
+        "sampled": 0
+      }
+    },
+    "chestnut": {
+      "NE": {
+        "total": 1333,
+        "sampled": 1333
+      },
+      "SE": {
+        "total": 173,
+        "sampled": 173
+      },
+      "USE": {
+        "total": 0,
+        "sampled": 0
+      },
+      "USW": {
+        "total": 2,
+        "sampled": 2
+      }
+    },
+    "amaranth": {
+      "NE": {
+        "total": 479,
+        "sampled": 479
+      },
+      "SE": {
+        "total": 48,
+        "sampled": 48
+      },
+      "USE": {
+        "total": 10,
+        "sampled": 10
+      },
+      "USW": {
+        "total": 10,
+        "sampled": 10
+      }
+    },
+    "masterwort": {
+      "NE": {
+        "total": 50,
+        "sampled": 50
+      },
+      "SE": {
+        "total": 78,
+        "sampled": 78
+      },
+      "USE": {
+        "total": 0,
+        "sampled": 0
+      },
+      "USW": {
+        "total": 0,
+        "sampled": 0
+      }
+    },
+    "nettle": {
+      "NE": {
+        "total": 6984,
+        "sampled": 1500
+      },
+      "SE": {
+        "total": 320,
+        "sampled": 320
+      },
+      "USE": {
+        "total": 4,
+        "sampled": 4
+      },
+      "USW": {
+        "total": 4,
+        "sampled": 4
+      }
+    },
+    "morel": {
+      "NE": {
+        "total": 9,
+        "sampled": 9
+      },
+      "SE": {
+        "total": 0,
+        "sampled": 0
+      },
+      "USE": {
+        "total": 1,
+        "sampled": 1
+      },
+      "USW": {
+        "total": 9,
+        "sampled": 9
+      }
+    },
+    "sorrel": {
+      "NE": {
+        "total": 1762,
+        "sampled": 1500
+      },
+      "SE": {
+        "total": 3,
+        "sampled": 3
+      },
+      "USE": {
+        "total": 0,
+        "sampled": 0
+      },
+      "USW": {
+        "total": 0,
+        "sampled": 0
+      }
+    },
+    "raspberry": {
+      "NE": {
+        "total": 2381,
+        "sampled": 1500
+      },
+      "SE": {
+        "total": 95,
+        "sampled": 95
+      },
+      "USE": {
+        "total": 342,
+        "sampled": 342
+      },
+      "USW": {
+        "total": 179,
+        "sampled": 179
+      }
+    },
+    "dandelion": {
+      "NE": {
+        "total": 2100,
+        "sampled": 1500
+      },
+      "SE": {
+        "total": 97,
+        "sampled": 97
+      },
+      "USE": {
+        "total": 431,
+        "sampled": 431
+      },
+      "USW": {
+        "total": 336,
+        "sampled": 336
+      }
+    },
+    "chickweed": {
+      "NE": {
+        "total": 765,
+        "sampled": 765
+      },
+      "SE": {
+        "total": 4,
+        "sampled": 4
+      },
+      "USE": {
+        "total": 18,
+        "sampled": 18
+      },
+      "USW": {
+        "total": 22,
+        "sampled": 22
+      }
+    },
+    "artichoke": {
+      "NE": {
+        "total": 93,
+        "sampled": 93
+      },
+      "SE": {
+        "total": 22,
+        "sampled": 22
+      },
+      "USE": {
+        "total": 5,
+        "sampled": 5
+      },
+      "USW": {
+        "total": 106,
+        "sampled": 106
+      }
+    },
+    "st_george": {
+      "NE": {
+        "total": 27,
+        "sampled": 27
+      },
+      "SE": {
+        "total": 1,
+        "sampled": 1
+      },
+      "USE": {
+        "total": 0,
+        "sampled": 0
+      },
+      "USW": {
+        "total": 0,
+        "sampled": 0
+      }
+    },
+    "chant": {
+      "NE": {
+        "total": 608,
+        "sampled": 608
+      },
+      "SE": {
+        "total": 9,
+        "sampled": 9
+      },
+      "USE": {
+        "total": 11,
+        "sampled": 11
+      },
+      "USW": {
+        "total": 0,
+        "sampled": 0
+      }
+    }
+  },
+  "gbif_deduplicated_records": 16376,
+  "r2": {
+    "NE": {
+      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_weather_data.parquet",
+      "rows": 8496542,
+      "row_groups": 9,
+      "grid_points": 66936,
+      "dates_seen": 61,
+      "min_points_per_day": 66936,
+      "max_points_per_day": 66936
+    },
+    "SE": {
+      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_weather_data.parquet",
+      "rows": 12883769,
+      "row_groups": 13,
+      "grid_points": 101447,
+      "dates_seen": 61,
+      "min_points_per_day": 101447,
+      "max_points_per_day": 101447
+    },
+    "USE": {
+      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/USE_weather_data.parquet",
+      "rows": 8965782,
+      "row_groups": 9,
+      "grid_points": 71157,
+      "dates_seen": 61,
+      "min_points_per_day": 71157,
+      "max_points_per_day": 71157
+    },
+    "USW": {
+      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/USW_weather_data.parquet",
+      "rows": 13573250,
+      "row_groups": 13,
+      "grid_points": 108586,
+      "dates_seen": 61,
+      "min_points_per_day": 108586,
+      "max_points_per_day": 108586
+    }
+  },
+  "taxon_matches": {
+    "mushroom": {
+      "query_name": "Boletus",
+      "taxon_key": 8287374,
+      "matched_name": "Boletus L.",
+      "rank": "GENUS",
+      "confidence": null
+    },
+    "black_chant": {
+      "query_name": "Craterellus cornucopioides",
+      "taxon_key": 2554662,
+      "matched_name": "Craterellus cornucopioides (L.) Pers.",
+      "rank": "SPECIES",
+      "confidence": 99
+    },
+    "lingonb": {
+      "query_name": "Vaccinium vitis-idaea",
+      "taxon_key": 2882835,
+      "matched_name": "Vaccinium vitis-idaea L.",
+      "rank": "SPECIES",
+      "confidence": 99
+    },
+    "garlic": {
+      "query_name": "Allium ursinum",
+      "taxon_key": 2857601,
+      "matched_name": "Allium ursinum L.",
+      "rank": "SPECIES",
+      "confidence": 99
+    },
+    "truffle_b": {
+      "query_name": "Tuber melanosporum",
+      "taxon_key": 5258468,
+      "matched_name": "Tuber melanosporum Vittad.",
+      "rank": "SPECIES",
+      "confidence": 99
+    },
+    "walnut": {
+      "query_name": "Juglans regia",
+      "taxon_key": 3054368,
+      "matched_name": "Juglans regia L.",
+      "rank": "SPECIES",
+      "confidence": 99
+    },
+    "strawberry": {
+      "query_name": "Fragaria vesca",
+      "taxon_key": 3029817,
+      "matched_name": "Fragaria vesca L.",
+      "rank": "SPECIES",
+      "confidence": 98
+    },
+    "asparagus": {
+      "query_name": "Asparagus acutifolius",
+      "taxon_key": 2768995,
+      "matched_name": "Asparagus acutifolius L.",
+      "rank": "SPECIES",
+      "confidence": 99
+    },
+    "parasol": {
+      "query_name": "Macrolepiota procera",
+      "taxon_key": 8914748,
+      "matched_name": "Macrolepiota procera (Scop.) Singer",
+      "rank": "SPECIES",
+      "confidence": 99
+    },
+    "chestnut": {
+      "query_name": "Castanea sativa",
+      "taxon_key": 5333294,
+      "matched_name": "Castanea sativa Mill.",
+      "rank": "SPECIES",
+      "confidence": 99
+    },
+    "amaranth": {
+      "query_name": "Amaranthus retroflexus",
+      "taxon_key": 6109534,
+      "matched_name": "Amaranthus retroflexus L.",
+      "rank": "SPECIES",
+      "confidence": 99
+    },
+    "masterwort": {
+      "query_name": "Peucedanum ostruthium",
+      "taxon_key": 3034230,
+      "matched_name": "Peucedanum ostruthium (L.) W.D.J.Koch",
+      "rank": "SPECIES",
+      "confidence": 98
+    },
+    "nettle": {
+      "query_name": "Urtica dioica",
+      "taxon_key": 7960979,
+      "matched_name": "Urtica dioica L.",
+      "rank": "SPECIES",
+      "confidence": 97
+    },
+    "morel": {
+      "query_name": "Morchella",
+      "taxon_key": 2594601,
+      "matched_name": "Morchella Dill. ex Pers.",
+      "rank": "GENUS",
+      "confidence": null
+    },
+    "sorrel": {
+      "query_name": "Rumex acetosa",
+      "taxon_key": 2888951,
+      "matched_name": "Rumex acetosa L.",
+      "rank": "SPECIES",
+      "confidence": 99
+    },
+    "raspberry": {
+      "query_name": "Rubus idaeus",
+      "taxon_key": 2993094,
+      "matched_name": "Rubus idaeus L.",
+      "rank": "SPECIES",
+      "confidence": 97
+    },
+    "dandelion": {
+      "query_name": "Taraxacum officinale",
+      "taxon_key": 5394163,
+      "matched_name": "Taraxacum officinale Weber ex F.H.Wigg.",
+      "rank": "SPECIES",
+      "confidence": 98
+    },
+    "chickweed": {
+      "query_name": "Stellaria media",
+      "taxon_key": 5384604,
+      "matched_name": "Stellaria media (L.) Vill.",
+      "rank": "SPECIES",
+      "confidence": 97
+    },
+    "artichoke": {
+      "query_name": "Cynara cardunculus",
+      "taxon_key": 3112364,
+      "matched_name": "Cynara cardunculus L.",
+      "rank": "SPECIES",
+      "confidence": 99
+    },
+    "st_george": {
+      "query_name": "Calocybe gambosa",
+      "taxon_key": 8936224,
+      "matched_name": "Calocybe gambosa (Fr.) Donk",
+      "rank": "SPECIES",
+      "confidence": 97
+    },
+    "chant": {
+      "query_name": "Cantharellus cibarius",
+      "taxon_key": 5249504,
+      "matched_name": "Cantharellus cibarius Fr.",
+      "rank": "SPECIES",
+      "confidence": 99
+    }
+  },
+  "exclusion_distance_km": 75,
+  "primary_fungal_result": {
+    "species_ids": [
+      "black_chant",
+      "chant",
+      "mushroom"
+    ],
+    "n": 812,
+    "active_days": 58,
+    "weighted_auc": 0.556,
+    "day_bootstrap_ci": [
+      0.536,
+      0.576
+    ]
+  },
+  "season_filter": {
+    "fungi_curve_threshold": 0.8,
+    "fungi_curve_sources": {
+      "NE": {
+        "region": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_season_curves.json",
+        "zone": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/EU_zone_season_curves.json"
+      },
+      "SE": {
+        "region": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_season_curves.json",
+        "zone": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/EU_zone_season_curves.json"
+      },
+      "USE": {
+        "region": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/USE_season_curves.json",
+        "zone": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/US_zone_season_curves.json"
+      },
+      "USW": {
+        "region": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/USW_season_curves.json",
+        "zone": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/US_zone_season_curves.json"
+      }
+    },
+    "plant_month_sources": {
+      "NE": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_species_params.txt",
+      "SE": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_species_params.txt",
+      "USE": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/USE_species_params.txt",
+      "USW": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/USW_species_params.txt"
+    },
+    "plant_season_months": {
+      "NE": {
+        "garlic": [
+          3,
+          4,
+          5
+        ],
+        "walnut": [
+          10,
+          11
+        ],
+        "strawberry": [
+          5,
+          6,
+          7
+        ],
+        "asparagus": [
+          3,
+          4,
+          5
+        ],
+        "chestnut": [
+          10,
+          11
+        ],
+        "amaranth": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "masterwort": [
+          6,
+          7,
+          8
+        ],
+        "nettle": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "sorrel": [
+          3,
+          4,
+          5,
+          6,
+          9,
+          10,
+          11
+        ],
+        "raspberry": [
+          6,
+          7,
+          8
+        ],
+        "dandelion": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "chickweed": [
+          1,
+          2,
+          3,
+          4,
+          10,
+          11,
+          12
+        ],
+        "artichoke": [
+          3,
+          4,
+          5
+        ],
+        "lingonb": [
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "SE": {
+        "garlic": [
+          3,
+          4,
+          5
+        ],
+        "walnut": [
+          10,
+          11
+        ],
+        "strawberry": [
+          5,
+          6,
+          7
+        ],
+        "asparagus": [
+          3,
+          4,
+          5
+        ],
+        "chestnut": [
+          10,
+          11
+        ],
+        "amaranth": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "masterwort": [
+          6,
+          7,
+          8
+        ],
+        "nettle": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "sorrel": [
+          3,
+          4,
+          5,
+          6,
+          9,
+          10,
+          11
+        ],
+        "raspberry": [
+          6,
+          7,
+          8
+        ],
+        "dandelion": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "chickweed": [
+          1,
+          2,
+          3,
+          4,
+          10,
+          11,
+          12
+        ],
+        "artichoke": [
+          3,
+          4,
+          5
+        ],
+        "lingonb": [
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "USE": {
+        "garlic": [
+          3,
+          4,
+          5
+        ],
+        "walnut": [
+          10,
+          11
+        ],
+        "strawberry": [
+          5,
+          6,
+          7
+        ],
+        "asparagus": [
+          3,
+          4,
+          5
+        ],
+        "chestnut": [
+          10,
+          11
+        ],
+        "amaranth": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "masterwort": [
+          12
+        ],
+        "nettle": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "sorrel": [
+          3,
+          4,
+          5,
+          6,
+          9,
+          10,
+          11
+        ],
+        "raspberry": [
+          6,
+          7,
+          8
+        ],
+        "dandelion": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "chickweed": [
+          1,
+          2,
+          3,
+          4,
+          10,
+          11,
+          12
+        ],
+        "artichoke": [
+          3,
+          4,
+          5
+        ],
+        "lingonb": [
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "USW": {
+        "garlic": [
+          3,
+          4,
+          5
+        ],
+        "walnut": [
+          10,
+          11
+        ],
+        "strawberry": [
+          5,
+          6,
+          7
+        ],
+        "asparagus": [
+          3,
+          4,
+          5
+        ],
+        "chestnut": [
+          10,
+          11
+        ],
+        "amaranth": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "masterwort": [
+          12
+        ],
+        "nettle": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "sorrel": [
+          3,
+          4,
+          5,
+          6,
+          9,
+          10,
+          11
+        ],
+        "raspberry": [
+          6,
+          7,
+          8
+        ],
+        "dandelion": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "chickweed": [
+          1,
+          2,
+          3,
+          4,
+          10,
+          11,
+          12
+        ],
+        "artichoke": [
+          3,
+          4,
+          5
+        ],
+        "lingonb": [
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  }
+}

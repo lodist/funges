@@ -31,7 +31,12 @@ TAXON_MAP = {
     "chant":       [9623860],  # Cantharellus (genus, Fungi): chanterelle
     "parasol":     [8914748],  # Macrolepiota procera
     "st_george":   [8936224],  # Calocybe gambosa
-    "truffle_b":   [8282501],  # Tuber (genus)
+    # Must stay the SPECIES, not genus Tuber (8282501). The genus is dominated by
+    # summer-fruiting relatives, so it produced a July-peaking curve for a winter
+    # truffle -- and because a curve overrides season_months, that curve replaced the
+    # correct hand-written winter window. With the species key the record count falls
+    # below --min-total, no curve is published, and season_months correctly applies.
+    "truffle_b":   [5258468],  # Tuber melanosporum (black Perigord truffle)
 }
 
 REGIONS = {
@@ -151,6 +156,10 @@ def _facet_month(taxon_keys, region, years, retries=6):
     params = [
         ("year", years), ("facet", "month"), ("facetLimit", "12"), ("limit", "0"),
         ("hasCoordinate", "true"),
+        # Human observations only. Preserved specimens carry collection-date and
+        # herbarium-campaign bias, and they are not the population the app serves.
+        ("basisOfRecord", "HUMAN_OBSERVATION"),
+        ("occurrenceStatus", "PRESENT"),
         ("decimalLatitude", f"{region['lat'][0]},{region['lat'][1]}"),
         ("decimalLongitude", f"{region['lon'][0]},{region['lon'][1]}"),
     ]
@@ -182,13 +191,22 @@ def _facet_month(taxon_keys, region, years, retries=6):
 
 
 def build_curve(target_counts, fungi_counts, low, high, min_total):
+    """Return {"multiplier": {...}, "ratio": {...}} for one species, or (None, total).
+
+    `multiplier` is the smooth scoring factor, compressed into [low, high]. `ratio` is
+    the same effort-normalised monthly signal *uncompressed* (peak = 1.0), which is what
+    a season gate needs: compressing into [0.6, 1.0] threw away the only information
+    that could distinguish a dead month from a peak one.
+    """
     total = sum(target_counts.values())
     ratio = {m: (target_counts[m] / fungi_counts[m] if fungi_counts[m] else 0.0) for m in range(1, 13)}
     mx = max(ratio.values())
     if total < min_total or mx <= 0:
         return None, total
-    curve = {m: round(low + (high - low) * (ratio[m] / mx), 3) for m in range(1, 13)}
-    return curve, total
+    return {
+        "multiplier": {m: round(low + (high - low) * (ratio[m] / mx), 3) for m in range(1, 13)},
+        "ratio": {m: round(ratio[m] / mx, 4) for m in range(1, 13)},
+    }, total
 
 
 from collections import defaultdict
@@ -297,6 +315,13 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--years", default=f"{_THIS_YEAR - 6},{_THIS_YEAR}",
                     help="GBIF year range")
+    # Stays at 0.6 deliberately. Dropping it to 0.2 was measured on the Apr-Aug 2026 grid
+    # (scripts/qa_season_simulate.py): season AUC 0.931 -> 0.950 and dead-month
+    # false positives 4.6% -> 0%, but in-season cell-days above the recommendation
+    # threshold fell 56% -> 40%, median onset error rose 15 -> 41 days, and four
+    # region-species never reached the threshold at all. The gate in backend/seasonality.py
+    # buys the same separation without suppressing the real season, so it does the cutting
+    # and this floor only keeps the shoulder season smooth.
     ap.add_argument("--low", type=float, default=0.6, help="multiplier floor (dead-season)")
     ap.add_argument("--high", type=float, default=1.0, help="multiplier ceiling (peak)")
     ap.add_argument("--min-total", type=int, default=200,
@@ -307,6 +332,9 @@ def main():
                     help="skip R2 upload and write curves to --out-dir instead")
     ap.add_argument("--out-dir", default=".", help="local output dir (for --local-only)")
     ap.add_argument("--force", action="store_true", help="rebuild even if curves are current this quarter")
+    ap.add_argument("--regions-only", action="store_true",
+                    help="skip the zone-curve crawl (hundreds of GBIF cell fetches); useful "
+                         "for checking a region curve change without a full rebuild")
     args = ap.parse_args()
 
     load_dotenv(_ROOT / ".env")
@@ -338,6 +366,9 @@ def main():
         print()
 
     # 2) Zone curves (primary signal): per-climate-zone, one file per macro-region (EU, US).
+    if args.regions_only:
+        print("[skip] --regions-only: zone curves not rebuilt")
+        return
     for macro_code, macro in MACROS.items():
         print(f"[{macro_code}] building zone curves...")
         curves = build_zone_curves_for_macro(
