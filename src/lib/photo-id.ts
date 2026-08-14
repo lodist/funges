@@ -148,7 +148,7 @@ export function resolvePredictions(predictions: Prediction[]): Candidate[] {
 /**
  * Cap on toxic labels appended by `mergeToxicSightings`.
  *
- * Bounds the list at 3 + 2 rows. Three photos could in principle contribute nine
+ * Bounds the list at 3 + 2 rows. Two photos could in principle contribute six
  * distinct sightings, and a wall of warnings is how alarm fatigue is manufactured
  * — the point of grading severity in the first place.
  */

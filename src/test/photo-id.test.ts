@@ -534,9 +534,9 @@ describe('mergeToxicSightings', () => {
     expect(merged).toHaveLength(3);
   });
 
-  // Three photos could contribute nine sightings. A wall of warnings is how
-  // alarm fatigue gets manufactured, which is the reason severity is graded at
-  // all - so the list is bounded, strongest evidence kept.
+  // Several prediction lists can contribute many sightings. A wall of warnings
+  // is how alarm fatigue gets manufactured, which is the reason severity is
+  // graded at all - so the list is bounded, strongest evidence kept.
   it('caps appended sightings and keeps the strongest', () => {
     const merged = mergeToxicSightings(averaged, [
       [p('Amanita phalloides', 0.1)],
