@@ -62,6 +62,10 @@ docs/qa/**/fungal-observer-background.csv
 docs/qa/**/matched-targets.csv
 docs/qa/**/matched-observations.csv
 docs/qa/**/matched-target-comparison.csv
+docs/qa/**/gbif-season-truth.json
+docs/qa/**/grid-cell-days-*.parquet
+docs/qa/**/branch-replay-*.parquet
+docs/qa/**/observation-scores-*.csv
 
 
 # Playwright failure artifacts
