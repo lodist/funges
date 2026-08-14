@@ -118,7 +118,7 @@ interface Staged {
  * phone, and the measurement says the second photo does nearly all the work
  * (see `averageEmbeddings`).
  */
-const MAX_PHOTOS = 3;
+const MAX_PHOTOS = 2;
 
 const formatMb = (bytes: number) => `${Math.round(bytes / 1e6)} MB`;
 
@@ -370,8 +370,8 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
    *
    * Most of the work is usually already done by the time this runs — each photo
    * started embedding when it was picked — so pressing Identify after taking
-   * three photos is not three passes of waiting, only whatever is left of the
-   * last one.
+   * two photos is not two passes of waiting, only whatever is left of the last
+   * one.
    */
   const runIdentify = async (list: Staged[]) => {
     const requestId = ++requestIdRef.current;

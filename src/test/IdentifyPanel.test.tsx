@@ -127,7 +127,7 @@ describe('IdentifyPanel photo staging', () => {
     expect(document.querySelector('[role="alert"]')).toBeNull();
   });
 
-  it('accepts up to three gallery photos in one selection', async () => {
+  it('accepts up to two gallery photos in one selection', async () => {
     vi.mocked(getAnyCachedModel).mockResolvedValue({
       blob: new Blob([new Uint8Array(4)]),
       info: { variant: 'int8', version: 'test', bytes: 4 },
@@ -153,7 +153,7 @@ describe('IdentifyPanel photo staging', () => {
     });
 
     expect(await screen.findAllByLabelText('Remove this photo')).toHaveLength(
-      3
+      2
     );
   });
 });
