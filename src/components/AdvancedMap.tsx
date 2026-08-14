@@ -906,7 +906,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               <img
                 src={LoadingSquirrel}
                 alt='Loading...'
-                className='h-80 w-80'
+                className='h-[13.4rem] w-[13.4rem]'
               />
             </div>
           </div>
