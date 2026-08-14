@@ -1,0 +1,32 @@
+{
+  "period": [
+    "2026-06-01",
+    "2026-08-12"
+  ],
+  "cohort": {
+    "background_cell_days": 11134,
+    "target_cell_days": 840
+  },
+  "primary_species": [
+    "chant",
+    "mushroom",
+    "parasol"
+  ],
+  "old_primary_auc": 0.6159870745789146,
+  "new_primary_auc": 0.6210918466556347,
+  "primary_auc_delta": 0.005104772076720183,
+  "regions": {
+    "NE": {
+      "r2_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_weather_data.parquet",
+      "grid_points": 66936,
+      "replayed_location_days": 44236,
+      "history_rows": 1861888
+    },
+    "SE": {
+      "r2_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_weather_data.parquet",
+      "grid_points": 101447,
+      "replayed_location_days": 11224,
+      "history_rows": 703024
+    }
+  }
+}
