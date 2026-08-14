@@ -101,7 +101,14 @@ def season_terms(region: str, species: str, dates: list[str], zones: list[str],
     new_multiplier = sn.season_multiplier_for_species(frame, species, fixed_spec, fixed_zone_curves)
     gate = sn.season_gate_for_species(frame, species, fixed_spec, fixed_zone_curves)
 
-    return grid.assign(old_multiplier=old_multiplier, new_multiplier=new_multiplier, gate=gate)
+    # Day-1-after-deploy behaviour. Curves already on R2 are the legacy flat schema and
+    # carry no ratio, so until the builder next runs the gate falls back to the
+    # hand-curated season_months. Worth knowing separately from the post-rebuild number.
+    months_only = {k: v for k, v in spec.items() if k != "season_curve"}
+    gate_months = sn.season_gate_for_species(frame, species, months_only, {})
+
+    return grid.assign(old_multiplier=old_multiplier, new_multiplier=new_multiplier,
+                       gate=gate, gate_months=gate_months)
 
 
 def evaluate(frame: pd.DataFrame, column: str, in_season: set, dead: set) -> dict:
@@ -181,6 +188,7 @@ def main() -> None:
             # Isolate the two halves of the season change.
             frame["floor_only"] = weather * frame.new_multiplier
             frame["gate_only"] = weather * frame.old_multiplier * frame.gate
+            frame["gate_months"] = weather * frame.old_multiplier * frame.gate_months
 
             entry = {
                 "climatology_records": int(records),
@@ -188,12 +196,13 @@ def main() -> None:
                 "dead_months": sorted(dead),
                 "variants": {
                     name: evaluate(frame, name, in_season, dead)
-                    for name in ("production", "floor_only", "gate_only", "fixed")
+                    for name in ("production", "gate_months", "gate_only", "floor_only", "fixed")
                 },
             }
 
             daily = frame.groupby("Date").agg(
                 production=("production", "median"), floor_only=("floor_only", "median"),
+                gate_months=("gate_months", "median"),
                 gate_only=("gate_only", "median"), fixed=("fixed", "median"))
             observed = daily_observed_rate(truth, region, species).reindex(daily.index)
             observed_onset = crossing_date(observed.rate_smooth, ONSET_FRACTION)
@@ -201,7 +210,7 @@ def main() -> None:
                 "observed": observed_onset.date().isoformat() if observed_onset is not None else None,
                 "censored": bool(observed_onset is not None and observed_onset == daily.index[0]),
             }
-            for name in ("production", "floor_only", "gate_only", "fixed"):
+            for name in ("production", "gate_months", "floor_only", "gate_only", "fixed"):
                 above = daily.index[daily[name] >= GOOD_SCORE]
                 reached = above[0] if len(above) else None
                 entry["onset"][name] = reached.date().isoformat() if reached is not None else None
