@@ -1,0 +1,90 @@
+{
+  "NE": {
+    "mushroom": {
+      "static_part": 0.411,
+      "static_part_n": 113,
+      "weather_part": 0.581,
+      "weather_part_n": 113,
+      "weather_climate": 0.548,
+      "weather_climate_n": 113,
+      "weather_anomaly": 0.629,
+      "weather_anomaly_n": 113,
+      "full_score": 0.624,
+      "full_score_n": 113
+    },
+    "chant": {
+      "static_part": 0.412,
+      "static_part_n": 322,
+      "weather_part": 0.592,
+      "weather_part_n": 322,
+      "weather_climate": 0.531,
+      "weather_climate_n": 322,
+      "weather_anomaly": 0.591,
+      "weather_anomaly_n": 322,
+      "full_score": 0.569,
+      "full_score_n": 322
+    },
+    "st_george": {
+      "static_part": 0.525,
+      "static_part_n": 58,
+      "weather_part": 0.484,
+      "weather_part_n": 58,
+      "weather_climate": 0.458,
+      "weather_climate_n": 58,
+      "weather_anomaly": 0.562,
+      "weather_anomaly_n": 58,
+      "full_score": 0.494,
+      "full_score_n": 58
+    }
+  },
+  "USE": {
+    "mushroom": {
+      "static_part": 0.668,
+      "static_part_n": 80,
+      "weather_part": 0.586,
+      "weather_part_n": 80,
+      "weather_climate": 0.546,
+      "weather_climate_n": 80,
+      "weather_anomaly": 0.586,
+      "weather_anomaly_n": 80,
+      "full_score": 0.592,
+      "full_score_n": 80
+    },
+    "chant": {
+      "static_part": 0.651,
+      "static_part_n": 290,
+      "weather_part": 0.614,
+      "weather_part_n": 290,
+      "weather_climate": 0.594,
+      "weather_climate_n": 290,
+      "weather_anomaly": 0.549,
+      "weather_anomaly_n": 290,
+      "full_score": 0.621,
+      "full_score_n": 290
+    },
+    "black_chant": {
+      "static_part": 0.356,
+      "static_part_n": 53,
+      "weather_part": 0.641,
+      "weather_part_n": 53,
+      "weather_climate": 0.645,
+      "weather_climate_n": 53,
+      "weather_anomaly": 0.542,
+      "weather_anomaly_n": 53,
+      "full_score": 0.667,
+      "full_score_n": 53
+    },
+    "morel": {
+      "static_part": 0.525,
+      "static_part_n": 20,
+      "weather_part": 0.799,
+      "weather_part_n": 20,
+      "weather_climate": 0.825,
+      "weather_climate_n": 20,
+      "weather_anomaly": 0.368,
+      "weather_anomaly_n": 20,
+      "full_score": 0.759,
+      "full_score_n": 20
+    }
+  }
+}
