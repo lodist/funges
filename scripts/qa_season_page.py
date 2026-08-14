@@ -7,12 +7,12 @@ import numpy as np
 import pandas as pd
 import requests
 
-ROOT = Path(r"c:\Users\loris\Desktop\app_operation\funges")
+ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from qa_season_analysis import CLIMATOLOGY_YEARS, monthly_rate, month_labels
 
-OUT = Path(__file__).resolve().parent / "season-timing.html"
 QA = ROOT / "docs/qa/season-timing-2026"
+OUT = QA / "season-timing.html"
 truth = json.loads((ROOT / "docs/qa/season-truth-2026/gbif-season-truth.json").read_text())
 analysis = json.loads((QA / "season-analysis.json").read_text())
 

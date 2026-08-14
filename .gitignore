@@ -71,3 +71,6 @@ docs/qa/**/observation-scores-*.csv
 # Playwright failure artifacts
 test-results/
 playwright-report/
+
+# Generated QA page (rebuild with scripts/qa_season_page.py)
+docs/qa/**/season-timing.html
