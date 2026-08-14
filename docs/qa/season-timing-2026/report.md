@@ -142,19 +142,19 @@ the regional median score reaches 4.0 — the product's own recommendation thres
 
 | Region | Species | Observed onset | Model reaches 4.0 | Error | Share of window model says ≥4 | Season's share of year |
 |---|---|---|---|---:|---:|---:|
-| SE | Porcini | 2026-04-17 | 2026-04-12 | −5 d | 56% | 42% |
-| NE | Porcini | 2026-05-30 | 2026-05-18 | −12 d | 73% | 25% |
-| SE | Parasol | 2026-04-26 | 2026-04-12 | −14 d | 56% | 25% |
-| NE | Chanterelle | 2026-06-10 | 2026-05-21 | −20 d | 66% | 17% |
-| SE | Chanterelle | 2026-05-03 | 2026-04-12 | −21 d | 36% | 25% |
-| NE | Parasol | 2026-06-13 | 2026-05-16 | −28 d | 74% | 33% |
-| USE | Porcini | 2026-05-28 | 2026-04-19 | −39 d | 89% | 17% |
-| USE | Black chanterelle | 2026-05-23 | 2026-04-12 | −41 d | 30% | 25% |
-| USE | Chanterelle | 2026-05-26 | 2026-04-12 | −44 d | 40% | 17% |
-| NE | Black chanterelle | 2026-07-29 | 2026-06-07 | −52 d | 18% | 25% |
 | SE | Black chanterelle | 2026-06-23 | 2026-04-15 | −69 d | 7% | 17% |
-| USW | Chanterelle | 2026-09 (obs) | 2026-04-13 | +1 d | 9% | 42% |
-| USW | Porcini | 2026-06-24 | 2026-07-21 | +27 d | 5% | 33% |
+| NE | Black chanterelle | 2026-07-29 | 2026-06-07 | −52 d | 18% | 25% |
+| USE | Chanterelle | 2026-05-26 | 2026-04-12 | −44 d | 40% | 17% |
+| USE | Black chanterelle | 2026-05-23 | 2026-04-12 | −41 d | 30% | 25% |
+| USE | Porcini | 2026-05-28 | 2026-04-19 | −39 d | 89% | 17% |
+| NE | Parasol | 2026-06-13 | 2026-05-16 | −28 d | 74% | 33% |
+| SE | Chanterelle | 2026-05-03 | 2026-04-12 | −21 d | 36% | 25% |
+| NE | Chanterelle | 2026-06-10 | 2026-05-21 | −20 d | 66% | 17% |
+| SE | Parasol | 2026-04-26 | 2026-04-12 | −14 d | 56% | 25% |
+| NE | Porcini | 2026-05-30 | 2026-05-18 | −12 d | 73% | 25% |
+| SE | Porcini | 2026-04-17 | 2026-04-12 | −5 d | 56% | 42% |
+| USW | Chanterelle | 2026-04-13 | 2026-04-14 | +1 d | 9% | 42% |
+| USW | Porcini | 2026-05-05 | 2026-06-01 | +27 d | 5% | 33% |
 
 Every European and eastern-US case fires early, several by more than a month. Onsets for
 morel and St George's are censored — both were already fruiting on 2026-04-12, so no
@@ -164,10 +164,11 @@ The last column is the clearest single statement of the calibration problem: NE 
 recommendable on **73%** of days in a season occupying **25%** of the year; USE porcini
 **89%** against **17%**.
 
-The USW rows fail in the opposite direction. Western-US medians are so low (in-season
+The two USW rows fail in the opposite direction. Western-US medians are so low (in-season
 median 1.52 for porcini, 0.88 for chanterelle) that the region is almost never above the
 recommendation threshold — 5% and 9% of the window. USW is not badly *timed* so much as
-uniformly floored.
+uniformly floored, and its apparently good onset errors (+1 d, +27 d) are a side effect of
+a series that barely crosses 4.0 at all.
 
 ## D/E. Does the weather model add anything?
 
