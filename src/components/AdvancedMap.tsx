@@ -261,8 +261,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
       // Navigation controls removed - zoom functionality handled by touch/scroll gestures
 
-      // Handle map load
-      map.current.on('load', () => {
+      // The style is enough to make the map interactive. Waiting for MapLibre's
+      // full `load` event can leave the loading overlay up indefinitely while a
+      // slow remote PMTiles source is still settling.
+      map.current.on('style.load', () => {
         setMapLoaded(true);
         setMapError(null);
         setMapRef(map.current);
@@ -295,7 +297,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           const center = map.current.getCenter();
           setCenter([center.lng, center.lat]);
           setZoom(map.current.getZoom());
-          updateVisibleLayers();
+          if (map.current.isStyleLoaded()) updateVisibleLayers();
         }
       });
     } catch (error) {

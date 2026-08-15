@@ -19,23 +19,29 @@ hydrateOfflineSources()
     console.warn('Offline cache hydration skipped:', err);
   });
 
-// Import Why Did You Render in development
-if (process.env.NODE_ENV === 'development') {
-  import('./lib/wdyr');
-}
-
 // Initialize HTML and manifest localization
 initializeHtmlLocalization();
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+async function renderApp() {
+  // Why Did You Render monkey-patches React. It must finish before the first
+  // render; loading it in parallel can change hook implementations between
+  // StrictMode renders and crash the development app.
+  if (import.meta.env.DEV) {
+    await import('./lib/wdyr');
+  }
 
-// React mounts immediately behind the inline overlay, so map and data loading
-// overlap with the deliberate startup transition instead of waiting for it.
-// Start after a paint opportunity to guarantee 1000 ms of visible brand lockup
-// even when the module is already cached.
-const splash = document.getElementById('app-splash');
-requestAnimationFrame(() => window.setTimeout(() => splash?.remove(), 1000));
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <App />
+    </StrictMode>
+  );
+
+  // React mounts immediately behind the inline overlay, so map and data loading
+  // overlap with the deliberate startup transition instead of waiting for it.
+  // Start after a paint opportunity to guarantee 1000 ms of visible brand lockup
+  // even when the module is already cached.
+  const splash = document.getElementById('app-splash');
+  requestAnimationFrame(() => window.setTimeout(() => splash?.remove(), 1000));
+}
+
+void renderApp();
