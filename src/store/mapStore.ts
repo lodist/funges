@@ -398,6 +398,7 @@ export const useMapStore = create<MapState>()(
     }),
     {
       name: 'map-store',
+      enabled: import.meta.env.DEV,
     }
   )
 );

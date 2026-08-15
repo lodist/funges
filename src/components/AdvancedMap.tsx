@@ -3,11 +3,13 @@ import React, {
   Suspense,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import { useShallow } from 'zustand/react/shallow';
 import { protocol } from '@/lib/pmtiles-protocol';
 import {
   useMapStore,
@@ -64,7 +66,6 @@ const ROUTE_SEGMENT_ANIMATION_MS = 750;
 const ROUTE_SEGMENT_PAUSE_MS = 250;
 const ROUTE_START_MARKER_DELAY_MS = 150;
 const ROUTE_PANEL_REAPPEAR_DELAY_MS = 500;
-const ROUTE_DISH_MOVEMENT_DEBOUNCE_MS = 500;
 
 function formatLatLngForUrl(coordinate: [number, number]): string {
   return `${coordinate[1]},${coordinate[0]}`;
@@ -151,8 +152,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     }>;
     routeStart: [number, number];
   } | null>(null);
-  const routeDishDebounceTimeoutRef = useRef<number | null>(null);
-
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
   const { t: tIdentify } = useTranslation('identify');
@@ -181,15 +180,44 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     restoreDarkLayersState,
     selectedSpecies,
     activeDay,
-  } = useMapStore();
+  } = useMapStore(
+    useShallow(state => ({
+      center: state.center,
+      zoom: state.zoom,
+      mapStyle: state.mapStyle,
+      userLocation: state.userLocation,
+      showUserLocation: state.showUserLocation,
+      isLoading: state.isLoading,
+      darkLayersVisible: state.darkLayersVisible,
+      numbersLayersVisible: state.numbersLayersVisible,
+      setCenter: state.setCenter,
+      setZoom: state.setZoom,
+      getUserLocation: state.getUserLocation,
+      setIsLoading: state.setIsLoading,
+      setError: state.setError,
+      setUserLocationError: state.setUserLocationError,
+      setShowUserLocation: state.setShowUserLocation,
+      foragingSpots: state.foragingSpots,
+      cycleMapStyle: state.cycleMapStyle,
+      setMapRef: state.setMapRef,
+      updateVisibleLayers: state.updateVisibleLayers,
+      restoreDarkLayersState: state.restoreDarkLayersState,
+      selectedSpecies: state.selectedSpecies,
+      activeDay: state.activeDay,
+    }))
+  );
   const { isOnline } = usePWA();
   const { cached: cachedContinents } = useOfflineStore();
   const routeStart = showUserLocation && userLocation ? userLocation : center;
-  const routeRecipes = recipes.map(recipe => ({
-    id: recipe.id,
-    title: recipe.title,
-    species: recipe.species,
-  }));
+  const routeRecipes = useMemo(
+    () =>
+      recipes.map(recipe => ({
+        id: recipe.id,
+        title: recipe.title,
+        species: recipe.species,
+      })),
+    [recipes]
+  );
   const selectedRouteRecipeId = activeRoute?.plan.recipeId ?? null;
   const openActiveRouteInGoogleMaps = useCallback(() => {
     if (!activeRoute) return;
@@ -259,19 +287,16 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         console.warn('MapLibre error (non-fatal):', sourceId ?? '', e);
       });
 
-      // Handle map move
-      map.current.on('move', () => {
+      // Keep gesture frames entirely inside MapLibre. Synchronizing the camera to
+      // React/Zustand on every `move` frame rerenders this whole component while
+      // WebGL is drawing, which is especially noticeable on mobile devices.
+      map.current.on('moveend', () => {
         if (map.current) {
           const center = map.current.getCenter();
           setCenter([center.lng, center.lat]);
           setZoom(map.current.getZoom());
+          updateVisibleLayers();
         }
-      });
-
-      // Re-evaluate which region tilesets are in view once movement settles, so
-      // off-screen regions stop loading tiles (keeps only the visible region live).
-      map.current.on('moveend', () => {
-        updateVisibleLayers();
       });
     } catch (error) {
       console.error('Error initializing map:', error);
@@ -338,16 +363,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
     const mapInstance = map.current;
 
-    const clearScheduledCompute = () => {
-      if (routeDishDebounceTimeoutRef.current !== null) {
-        window.clearTimeout(routeDishDebounceTimeoutRef.current);
-        routeDishDebounceTimeoutRef.current = null;
-      }
-    };
-
     const computeRoutes = () => {
-      clearScheduledCompute();
-
       const routeInputs = routeInputsRef.current;
       if (!routeInputs) return;
 
@@ -376,25 +392,20 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       }
     };
 
-    const scheduleRoutesComputation = () => {
-      clearScheduledCompute();
+    const handleMoveStart = () => {
       setIsRouteDishLoading(true);
-      routeDishDebounceTimeoutRef.current = window.setTimeout(() => {
-        computeRoutes();
-      }, ROUTE_DISH_MOVEMENT_DEBOUNCE_MS);
     };
 
-    if (mapInstance.isMoving()) {
-      scheduleRoutesComputation();
-    } else {
-      computeRoutes();
-    }
+    const handleMoveEnd = () => computeRoutes();
 
-    mapInstance.on('move', scheduleRoutesComputation);
+    if (!mapInstance.isMoving()) computeRoutes();
+
+    mapInstance.on('movestart', handleMoveStart);
+    mapInstance.on('moveend', handleMoveEnd);
 
     return () => {
-      clearScheduledCompute();
-      mapInstance.off('move', scheduleRoutesComputation);
+      mapInstance.off('movestart', handleMoveStart);
+      mapInstance.off('moveend', handleMoveEnd);
     };
   }, [isRoutePanelOpen, mapLoaded, routeStart, tRecipes, activeDay]);
 
