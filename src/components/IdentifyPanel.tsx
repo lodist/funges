@@ -123,14 +123,12 @@ const MAX_PHOTOS = 2;
 const formatMb = (bytes: number) => `${Math.round(bytes / 1e6)} MB`;
 
 /**
- * Wait messages, escalating with elapsed time.
+ * Wait messages, cycling while identification is running.
  *
  * On-device inference takes ~15s on a mid-range phone (the matmuls run on the
  * CPU there), and a single unchanging "Identifying…" for that long reads as a
- * hung app. The third message is not decoration: at 15s the user is deciding
- * whether it is broken, so it says explicitly that it is still working AND why
- * it is slow — the computation is happening on their phone, which is the same
- * fact that justifies the download in the first place.
+ * hung app. The messages include the privacy reason for the wait and cycle so
+ * slower devices continue to show activity without making completion promises.
  *
  * The species count in the second message is derived from BIOCLIP_LABELS rather
  * than written into the copy, so it cannot drift out of date when the vocabulary
@@ -141,9 +139,14 @@ const WORKING_MESSAGES = [
   'status.identifying',
   'status.identifyingLonger',
   'status.identifyingLongest',
+  'status.identifyingClosest',
+  'status.identifyingAlternatives',
+  'status.identifyingCandidates',
+  'status.identifyingDetails',
+  'status.identifyingWaiting',
 ] as const;
 
-const WORKING_STAGE_MS = [5000, 15000] as const;
+const WORKING_MESSAGE_INTERVAL_MS = 6000;
 
 export interface IdentifyPanelProps {
   open: boolean;
@@ -224,15 +227,15 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
     };
   }, [open, clearStaged]);
 
-  // Two timeouts rather than a per-second interval: only two thresholds matter,
-  // so ticking every second would re-render ~15 times to change text twice.
+  // Keep cycling for slow devices rather than leaving the final message static.
   useEffect(() => {
     if (phase.name !== 'working') return;
     setWorkingStage(0);
-    const timers = WORKING_STAGE_MS.map((ms, i) =>
-      window.setTimeout(() => setWorkingStage(i + 1), ms)
+    const timer = window.setInterval(
+      () => setWorkingStage(stage => (stage + 1) % WORKING_MESSAGES.length),
+      WORKING_MESSAGE_INTERVAL_MS
     );
-    return () => timers.forEach(clearTimeout);
+    return () => clearInterval(timer);
   }, [phase.name]);
 
   useEffect(
