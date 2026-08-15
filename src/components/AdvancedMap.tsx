@@ -261,10 +261,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
       // Navigation controls removed - zoom functionality handled by touch/scroll gestures
 
-      // The style is enough to make the map interactive. Waiting for MapLibre's
-      // full `load` event can leave the loading overlay up indefinitely while a
-      // slow remote PMTiles source is still settling.
-      map.current.on('style.load', () => {
+      // Reveal the map after its initial sources have settled. Showing it at
+      // `style.load` makes the first gesture compete with PMTiles parsing and
+      // tile uploads, which feels slower even though the UI appears sooner.
+      map.current.on('load', () => {
         setMapLoaded(true);
         setMapError(null);
         setMapRef(map.current);
