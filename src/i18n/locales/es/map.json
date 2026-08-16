@@ -53,9 +53,31 @@
     "noResults": "No se encontraron especies",
     "notAvailableOffline": "Not available offline. Download on the Offline Maps page."
   },
+  "themes": {
+    "select": "Tema del mapa",
+    "light": {
+      "name": "Claro",
+      "description": "Mapa clásico y luminoso."
+    },
+    "dark": {
+      "name": "Oscuro",
+      "description": "Paleta oscura para la noche."
+    },
+    "white": {
+      "name": "Blanco",
+      "description": "Mapa claro y minimalista."
+    },
+    "darkmatter": {
+      "name": "Dark Matter",
+      "description": "Mapa oscuro de alto contraste."
+    },
+    "topographic": {
+      "name": "Topográfico",
+      "description": "Mapa de senderismo con caminos."
+    }
+  },
   "getLocation": "Obtener mi ubicación",
   "toggleNumbers": "Mostrar números",
-  "toggleDarkMode": "Cambiar estilo de mapa",
   "showOnboarding": "Mostrar instrucciones",
   "dataFreshnessTooltip": "Datos actualizados diariamente",
   "featureInfo": {
@@ -72,7 +94,7 @@
       "identify": "Identificar a partir de una foto (descarga única)",
       "locate": "Centra el mapa en tu ubicación",
       "numbers": "Muestra u oculta el índice numérico",
-      "theme": "Alterna entre 4 estilos de mapa: Claro, Oscuro, Positron, Dark Matter",
+      "theme": "Elige un tema de mapa: Claro, Oscuro, Blanco, Dark Matter o Topográfico",
       "zones": "Toca una zona para ver la lista de especies",
       "recipes": "Abre recetas cercanas y traza una ruta hasta cada parada de ingredientes"
     },

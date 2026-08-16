@@ -14,7 +14,7 @@
     "title": "Funções:",
     "recipes": "Exibe receitas proximas e rotas para as paradas de ingredientes",
     "location": "Centraliza o mapa na localização do usuário",
-    "theme": "Alterne entre 4 estilos de mapa: Claro, Escuro, Positron, Dark Matter",
+    "theme": "Escolha um tema de mapa: Claro, Escuro, Branco, Dark Matter ou Topográfico",
     "identify": "Identifica espécies possíveis a partir de uma fotografia, no teu dispositivo",
     "numbers": "Exibe classificação numérica"
   },
