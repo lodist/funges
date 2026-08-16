@@ -14,11 +14,11 @@
   "r2": {
     "NE": {
       "grid_points": 66936,
-      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_weather_data.parquet"
+      "source_url": "https://data.fung.es/EU/NE/NE_weather_data.parquet"
     },
     "SE": {
       "grid_points": 101447,
-      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_weather_data.parquet"
+      "source_url": "https://data.fung.es/EU/SE/SE_weather_data.parquet"
     }
   },
   "gbif_counts": {

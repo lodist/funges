@@ -472,7 +472,7 @@ The fungal curves were themselves derived from 2020–2026 GBIF monthly ratios, 
       "min_points_per_day": 66936,
       "row_groups": 9,
       "rows": 8496542,
-      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_weather_data.parquet"
+      "source_url": "https://data.fung.es/EU/NE/NE_weather_data.parquet"
     },
     "SE": {
       "dates_seen": 61,
@@ -481,7 +481,7 @@ The fungal curves were themselves derived from 2020–2026 GBIF monthly ratios, 
       "min_points_per_day": 101447,
       "row_groups": 13,
       "rows": 12883769,
-      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_weather_data.parquet"
+      "source_url": "https://data.fung.es/EU/SE/SE_weather_data.parquet"
     },
     "USE": {
       "dates_seen": 61,
@@ -490,7 +490,7 @@ The fungal curves were themselves derived from 2020–2026 GBIF monthly ratios, 
       "min_points_per_day": 71157,
       "row_groups": 9,
       "rows": 8965782,
-      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/USE_weather_data.parquet"
+      "source_url": "https://data.fung.es/USA/USE/USE_weather_data.parquet"
     },
     "USW": {
       "dates_seen": 61,
@@ -499,34 +499,34 @@ The fungal curves were themselves derived from 2020–2026 GBIF monthly ratios, 
       "min_points_per_day": 108586,
       "row_groups": 13,
       "rows": 13573250,
-      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/USW_weather_data.parquet"
+      "source_url": "https://data.fung.es/USA/USW/USW_weather_data.parquet"
     }
   },
   "season_filter": {
     "fungi_curve_sources": {
       "NE": {
-        "region": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_season_curves.json",
-        "zone": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/EU_zone_season_curves.json"
+        "region": "https://data.fung.es/EU/NE/NE_season_curves.json",
+        "zone": "https://data.fung.es/EU/EU_zone_season_curves.json"
       },
       "SE": {
-        "region": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_season_curves.json",
-        "zone": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/EU_zone_season_curves.json"
+        "region": "https://data.fung.es/EU/SE/SE_season_curves.json",
+        "zone": "https://data.fung.es/EU/EU_zone_season_curves.json"
       },
       "USE": {
-        "region": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/USE_season_curves.json",
-        "zone": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/US_zone_season_curves.json"
+        "region": "https://data.fung.es/USA/USE/USE_season_curves.json",
+        "zone": "https://data.fung.es/USA/US_zone_season_curves.json"
       },
       "USW": {
-        "region": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/USW_season_curves.json",
-        "zone": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/US_zone_season_curves.json"
+        "region": "https://data.fung.es/USA/USW/USW_season_curves.json",
+        "zone": "https://data.fung.es/USA/US_zone_season_curves.json"
       }
     },
     "fungi_curve_threshold": 0.8,
     "plant_month_sources": {
-      "NE": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_species_params.txt",
-      "SE": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_species_params.txt",
-      "USE": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/USE_species_params.txt",
-      "USW": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/USW_species_params.txt"
+      "NE": "https://data.fung.es/EU/NE/NE_species_params.txt",
+      "SE": "https://data.fung.es/EU/SE/SE_species_params.txt",
+      "USE": "https://data.fung.es/USA/USE/USE_species_params.txt",
+      "USW": "https://data.fung.es/USA/USW/USW_species_params.txt"
     },
     "plant_season_months": {
       "NE": {

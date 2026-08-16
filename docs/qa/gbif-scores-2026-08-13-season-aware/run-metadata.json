@@ -387,7 +387,7 @@
   "gbif_deduplicated_records": 16376,
   "r2": {
     "NE": {
-      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_weather_data.parquet",
+      "source_url": "https://data.fung.es/EU/NE/NE_weather_data.parquet",
       "rows": 8496542,
       "row_groups": 9,
       "grid_points": 66936,
@@ -396,7 +396,7 @@
       "max_points_per_day": 66936
     },
     "SE": {
-      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_weather_data.parquet",
+      "source_url": "https://data.fung.es/EU/SE/SE_weather_data.parquet",
       "rows": 12883769,
       "row_groups": 13,
       "grid_points": 101447,
@@ -405,7 +405,7 @@
       "max_points_per_day": 101447
     },
     "USE": {
-      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/USE_weather_data.parquet",
+      "source_url": "https://data.fung.es/USA/USE/USE_weather_data.parquet",
       "rows": 8965782,
       "row_groups": 9,
       "grid_points": 71157,
@@ -414,7 +414,7 @@
       "max_points_per_day": 71157
     },
     "USW": {
-      "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/USW_weather_data.parquet",
+      "source_url": "https://data.fung.es/USA/USW/USW_weather_data.parquet",
       "rows": 13573250,
       "row_groups": 13,
       "grid_points": 108586,
@@ -591,27 +591,27 @@
     "fungi_curve_threshold": 0.8,
     "fungi_curve_sources": {
       "NE": {
-        "region": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_season_curves.json",
-        "zone": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/EU_zone_season_curves.json"
+        "region": "https://data.fung.es/EU/NE/NE_season_curves.json",
+        "zone": "https://data.fung.es/EU/EU_zone_season_curves.json"
       },
       "SE": {
-        "region": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_season_curves.json",
-        "zone": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/EU_zone_season_curves.json"
+        "region": "https://data.fung.es/EU/SE/SE_season_curves.json",
+        "zone": "https://data.fung.es/EU/EU_zone_season_curves.json"
       },
       "USE": {
-        "region": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/USE_season_curves.json",
-        "zone": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/US_zone_season_curves.json"
+        "region": "https://data.fung.es/USA/USE/USE_season_curves.json",
+        "zone": "https://data.fung.es/USA/US_zone_season_curves.json"
       },
       "USW": {
-        "region": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/USW_season_curves.json",
-        "zone": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/US_zone_season_curves.json"
+        "region": "https://data.fung.es/USA/USW/USW_season_curves.json",
+        "zone": "https://data.fung.es/USA/US_zone_season_curves.json"
       }
     },
     "plant_month_sources": {
-      "NE": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_species_params.txt",
-      "SE": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_species_params.txt",
-      "USE": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/USE_species_params.txt",
-      "USW": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/USW_species_params.txt"
+      "NE": "https://data.fung.es/EU/NE/NE_species_params.txt",
+      "SE": "https://data.fung.es/EU/SE/SE_species_params.txt",
+      "USE": "https://data.fung.es/USA/USE/USE_species_params.txt",
+      "USW": "https://data.fung.es/USA/USW/USW_species_params.txt"
     },
     "plant_season_months": {
       "NE": {
