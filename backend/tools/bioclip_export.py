@@ -31,7 +31,7 @@ from bioclip_spike import (  # noqa: E402
     taxonomic_prompt,
 )
 
-R2 = "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev"
+R2 = "https://data.fung.es"
 
 ARTIFACTS = Path(__file__).resolve().parent / "model_artifacts"
 ONNX_FP32 = ARTIFACTS / "image_tower_fp32.onnx"

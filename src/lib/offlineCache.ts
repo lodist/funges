@@ -5,7 +5,7 @@ export type ContinentId = 'eu' | 'us';
 
 export const CONTINENTS: ContinentId[] = ['eu', 'us'];
 
-const R2 = 'https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev';
+const R2 = 'https://data.fung.es';
 
 // Each continent's presence+forecast data lives in one PMTiles file per region
 // (NE+SE share the EU bbox, USE+USW share the US bbox — see mapStore's REGION_BBOX).
