@@ -7,12 +7,17 @@
   },
   "collection": {
     "title": "Information Collection and Use",
-    "content": "We are committed to upholding the principles of anonymity and data protection. This service does not collect, store, or process any personal information directly. Our design prioritizes providing information to you without requiring any data in return, reflecting our strong belief in the value of anonymity.",
-    "cookiebot": "To further ensure your privacy, we deploy Cookiebot in the background to actively monitor that no service which is not strictly necessary is operating. Regular and strict checks are performed to ensure that users' data is not shared beyond what is essential for the functioning of this service."
+    "content": "We are committed to upholding the principles of anonymity and data protection. This service does not collect, store, or process any personal information directly. Our design prioritizes providing information to you without requiring any data in return, reflecting our strong belief in the value of anonymity."
   },
   "location": {
     "title": "Location Data",
     "content": "To center the map on your position and show nearby foraging spots, the app asks for access to your device's location. This location is used only on your device to display the map and is never transmitted to or stored on our servers. You can deny or revoke this permission at any time in your browser or device settings without losing access to the rest of the app."
+  },
+  "photos": {
+    "title": "Photos and Species Identification",
+    "content": "Species identification from a photo runs entirely on your device. Photos you capture or select are analysed locally in your browser and are never uploaded, never transmitted to any server, and never retained by this service. Nothing about a photo, including any location information stored in it by your camera, leaves your device.",
+    "model": "To make on-device identification possible, a recognition model is downloaded once and kept in your browser storage. That download is an ordinary request for a file from the storage provider, which keeps standard server logs such as IP address, as any web server does; the request carries no information about you or your photos. You can delete the model from your device at any time from the identification screen.",
+    "camera": "The app has no continuous access to your camera. Taking a photo opens your device camera, and only the single photo you choose is passed to the app."
   },
   "rights": {
     "title": "Your Rights",
@@ -43,5 +48,5 @@
     "intro": "For any questions or concerns regarding this Privacy Policy, please contact:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Last updated on: 15.01.2025"
+  "lastUpdated": "Last updated on: 26.07.2026"
 }

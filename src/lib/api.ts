@@ -1,74 +1,15 @@
 import {
   API_BASE_URL,
-  type Species,
   type Recipe,
   type MapRegion,
   type ForagingSpot,
   type User,
-  type ClassificationResult,
   type DonationInfo,
   type WeatherForecast,
 } from '@/types/api';
 
 // API functions
 export const api = {
-  // Species API
-  species: {
-    async getAll(): Promise<Species[]> {
-      const response = await fetch(`${API_BASE_URL}/species`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch species');
-      }
-      return response.json();
-    },
-
-    async getById(id: string): Promise<Species> {
-      const response = await fetch(`${API_BASE_URL}/species/${id}`);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch species ${id}`);
-      }
-      return response.json();
-    },
-
-    async search(query: string): Promise<Species[]> {
-      const response = await fetch(
-        `${API_BASE_URL}/species/search?q=${encodeURIComponent(query)}`
-      );
-      if (!response.ok) {
-        throw new Error('Failed to search species');
-      }
-      return response.json();
-    },
-
-    async getByType(type: Species['type']): Promise<Species[]> {
-      const response = await fetch(`${API_BASE_URL}/species/type/${type}`);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch species by type ${type}`);
-      }
-      return response.json();
-    },
-
-    async getByRegion(region: string): Promise<Species[]> {
-      const response = await fetch(
-        `${API_BASE_URL}/species/region/${encodeURIComponent(region)}`
-      );
-      if (!response.ok) {
-        throw new Error(`Failed to fetch species by region ${region}`);
-      }
-      return response.json();
-    },
-
-    async getBySeason(season: string): Promise<Species[]> {
-      const response = await fetch(
-        `${API_BASE_URL}/species/season/${encodeURIComponent(season)}`
-      );
-      if (!response.ok) {
-        throw new Error(`Failed to fetch species by season ${season}`);
-      }
-      return response.json();
-    },
-  },
-
   // Recipes API
   recipes: {
     async getAll(): Promise<Recipe[]> {
@@ -214,43 +155,6 @@ export const api = {
       if (!response.ok) {
         throw new Error('Failed to report foraging spot');
       }
-    },
-  },
-
-  // AI Classification API
-  classification: {
-    async classifyImage(imageFile: File): Promise<ClassificationResult[]> {
-      const formData = new FormData();
-      formData.append('image', imageFile);
-
-      const response = await fetch(`${API_BASE_URL}/classify`, {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to classify image');
-      }
-
-      return response.json();
-    },
-
-    async classifyMultiple(images: File[]): Promise<ClassificationResult[][]> {
-      const formData = new FormData();
-      images.forEach((image, index) => {
-        formData.append(`image_${index}`, image);
-      });
-
-      const response = await fetch(`${API_BASE_URL}/classify/batch`, {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to classify images');
-      }
-
-      return response.json();
     },
   },
 

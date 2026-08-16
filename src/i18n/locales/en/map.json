@@ -91,6 +91,7 @@
     "description": "Use the map to discover foraging spots and species.",
     "features": {
       "species": "Choose a species with the selector",
+      "identify": "Identify from a photo (one-time download)",
       "locate": "Center the map on your location",
       "numbers": "Show or hide the numeric index",
       "theme": "Pick a map theme: Light, Dark, White, Dark Matter or Topographic",
@@ -110,5 +111,9 @@
   "forecast": {
     "label": "Forecast",
     "today": "Today"
+  },
+  "offline": {
+    "title": "You're offline",
+    "message": "The map needs a connection to load. Species, recipes and the data pages still work offline."
   }
 }

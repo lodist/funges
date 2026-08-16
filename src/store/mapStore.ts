@@ -80,7 +80,6 @@ export interface MapState {
   setShowUserLocation: (show: boolean) => void;
   clearError: () => void;
   getUserLocation: () => Promise<GeolocationPosition>;
-  fetchNearbySpots: (coordinates: [number, number]) => Promise<void>;
 
   // Species selection actions
   setSelectedSpecies: (species: string | null) => void;
@@ -292,20 +291,12 @@ export const useMapStore = create<MapState>()(
           }
 
           navigator.geolocation.getCurrentPosition(
-            async position => {
+            position => {
               const coords: [number, number] = [
                 position.coords.longitude,
                 position.coords.latitude,
               ];
               set({ userLocation: coords, userLocationError: null });
-
-              // Automatically fetch nearby foraging spots when user gets location
-              try {
-                await get().fetchNearbySpots(coords);
-              } catch (error) {
-                console.warn('Failed to fetch nearby foraging spots:', error);
-                // Don't reject the main promise for this, just log the warning
-              }
 
               resolve(position);
             },
@@ -321,36 +312,6 @@ export const useMapStore = create<MapState>()(
             }
           );
         });
-      },
-
-      fetchNearbySpots: async coordinates => {
-        set({ isLoading: true, error: null });
-        try {
-          // Use the API function to fetch nearby spots
-          const { api } = await import('@/lib/api');
-          const apiSpots = await api.map.getNearbySpots(coordinates, 10); // 10km radius
-
-          // Transform API spots to match our interface
-          const spots: ForagingSpot[] = apiSpots.map(spot => ({
-            id: spot.id,
-            name: spot.name,
-            description: spot.description,
-            coordinates: spot.coordinates,
-            type:
-              spot.species.includes('chant') || spot.species.includes('morel')
-                ? 'mushroom'
-                : 'berry',
-            season: spot.seasonality,
-            confidence: 0.8, // Default confidence
-            lastUpdated: new Date().toISOString(),
-          }));
-
-          set({ foragingSpots: spots, isLoading: false });
-        } catch (error) {
-          // Don't set an error for this background operation, just log it
-          console.warn('Failed to fetch nearby foraging spots:', error);
-          set({ isLoading: false });
-        }
       },
 
       // Foraging spot actions

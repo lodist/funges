@@ -1,10 +1,14 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   layerRegion,
+  MAP_THEMES,
   resolveDataNerdRegion,
   useMapStore,
-  MAP_THEMES,
 } from '@/store/mapStore';
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
 
 describe('layerRegion', () => {
   it.each([
@@ -96,5 +100,32 @@ describe('MAP_THEMES', () => {
       'topographic',
       'white',
     ]);
+  });
+});
+
+describe('getUserLocation', () => {
+  it('keeps precise coordinates on-device', async () => {
+    const position = {
+      coords: {
+        latitude: 47.7508,
+        longitude: 7.3359,
+      },
+    } as GeolocationPosition;
+    const fetchSpy = vi.fn();
+
+    vi.stubGlobal('fetch', fetchSpy);
+    vi.stubGlobal('navigator', {
+      ...navigator,
+      geolocation: {
+        getCurrentPosition: vi.fn(success => success(position)),
+      },
+    });
+
+    await expect(useMapStore.getState().getUserLocation()).resolves.toBe(
+      position
+    );
+
+    expect(useMapStore.getState().userLocation).toEqual([7.3359, 47.7508]);
+    expect(fetchSpy).not.toHaveBeenCalled();
   });
 });

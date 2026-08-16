@@ -9,23 +9,6 @@ export interface ApiResponse<T> {
   message?: string;
 }
 
-export interface Species {
-  id: string;
-  name: string;
-  scientificName: string;
-  type: 'mushroom' | 'plant' | 'berry' | 'nut' | 'flower';
-  description: string;
-  edible: boolean;
-  poisonous: boolean;
-  season: string[];
-  region: string[];
-  imageUrl?: string;
-  cookingTips?: string[];
-  safetyNotes?: string[];
-  habitat?: string;
-  identification?: string[];
-}
-
 export interface Recipe {
   id: string;
   name: string;
@@ -114,17 +97,6 @@ export interface User {
     recipes: string[];
     spots: string[];
   };
-}
-
-export interface ClassificationResult {
-  species: string;
-  confidence: number;
-  alternatives: Array<{
-    species: string;
-    confidence: number;
-  }>;
-  warnings?: string[];
-  recommendations?: string[];
 }
 
 export interface DonationInfo {

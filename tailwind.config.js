@@ -1,4 +1,17 @@
 /** @type {import('tailwindcss').Config} */
+//
+// NOT READ BY TAILWIND. This project runs Tailwind v4, which only loads a JS
+// config when a stylesheet declares `@config` — and none does. The theme lives in
+// src/index.css under `@theme`, and the dark variant comes from `@custom-variant`
+// there, not from `darkMode` below.
+//
+// Kept because components.json points the shadcn CLI at it. Do not add theme
+// values here expecting them to work: three components used `bg-status-warning`
+// and `text-primary-600` from this file and rendered nothing for it. Add colours
+// to `@theme` in src/index.css instead.
+//
+// The import below also resolves to nothing — ./src/lib/colors.js does not exist,
+// only colors.ts. It never throws because this file is never executed.
 import { colors } from './src/lib/colors.js';
 
 export default {

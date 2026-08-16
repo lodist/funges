@@ -1,0 +1,11 @@
+# Spike-only deps. Deliberately NOT in backend/requirements.txt — the scheduled
+# scoring/maplayer jobs must not pull ~2GB of torch.
+# Install with: pip install -r backend/tools/requirements-spike.txt
+torch
+open_clip_torch
+pillow
+numpy
+
+# ONNX export + quantization (backend/tools/bioclip_export.py)
+onnx
+onnxruntime

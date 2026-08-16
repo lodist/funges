@@ -23,10 +23,27 @@ const routeFullPaths = [
   '/worth-foraging-now',
 ];
 
+// Cloudflare's Rocket Loader rewrites <script type="module"> into its own
+// deferred loader, adding a round trip before any app code runs. data-cfasync
+// opts out — and it has to be added here because Vite regenerates the entry
+// script tag from scratch, dropping any attribute written in index.html.
+const cfasyncOptOut = {
+  name: 'cfasync-opt-out',
+  transformIndexHtml: {
+    order: 'post' as const,
+    handler: (html: string) =>
+      html.replace(
+        /<script type="module"/g,
+        '<script type="module" data-cfasync="false"'
+      ),
+  },
+};
+
 // https://vite.dev/config/
 export default defineConfig({
   base: baseUrl,
   plugins: [
+    cfasyncOptOut,
     // Please make sure that '@tanstack/router-plugin' is passed before '@vitejs/plugin-react'
     tanstackRouter({
       target: 'react',
@@ -36,39 +53,71 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif,tflite}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif}'],
         runtimeCaching: [
           // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.
           {
             urlPattern: /\.pmtiles$/i,
             handler: 'NetworkOnly',
           },
-          // TensorFlow Lite models caching
+          // onnxruntime-web runtime for photo identification. Emitted by Vite as
+          // a content-hashed asset (~27MB), so it is deliberately NOT precached:
+          // `.wasm` is absent from globPatterns above, and workbox's 2 MiB
+          // precache ceiling would make the build THROW, not warn.
+          //
+          // A content hash in the filename means a new ORT version is a new URL,
+          // so an effectively-permanent TTL cannot serve stale bytes.
           {
-            urlPattern:
-              /^https:\/\/pub-92765923660e431daff3170fbef6471d\.r2\.dev\/.*\.tflite$/i,
+            urlPattern: /\/assets\/ort-wasm.*\.(?:wasm|mjs)$/i,
             handler: 'CacheFirst',
             options: {
-              cacheName: 'tensorflow-models-cache',
+              cacheName: 'ort-runtime-cache',
               expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year - models rarely change
+                maxEntries: 6,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
               },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
-          // Local TensorFlow models
+          // Precomputed BioCLIP text-embedding matrix (~1.6MB). Kept on runtime
+          // caching rather than precache so adding `bin` to globPatterns cannot
+          // later pull in some unrelated large binary and break the build.
+          //
+          // Matched under /assets/ because it is imported as a Vite asset and so
+          // carries a content hash. That is what makes a year-long TTL safe: new
+          // content is a new URL, so this cache cannot serve a matrix that
+          // disagrees with the labels file it is index-aligned to.
           {
-            urlPattern: /\/assets\/.*\.tflite$/i,
+            urlPattern: /\/assets\/.*\.bin$/i,
             handler: 'CacheFirst',
             options: {
-              cacheName: 'local-models-cache',
+              cacheName: 'bioclip-labels-cache',
               expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
+                maxEntries: 4,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
               },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          // The bundled MatMulNBits probe (~40KB), used to decide which model
+          // variant this device can run before committing to a ~280MB download.
+          // It has to work offline, or an offline device could not open the
+          // download gate at all.
+          //
+          // `[^/]+` is load-bearing: it matches /models/probe.onnx but NOT the R2
+          // artifact at /models/bioclip/<version>/image_tower_int4.onnx. Without
+          // it this rule would have the service worker cache a second 280MB copy
+          // of a model that already lives in IndexedDB.
+          {
+            urlPattern: /\/models\/[^/]+\.onnx$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'bioclip-probe-cache',
+              expiration: {
+                maxEntries: 4,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
           // Static assets caching
@@ -123,7 +172,8 @@ export default defineConfig({
           // Map style JSON — required to initialize the map. Cached on the
           // online visit so a downloaded region can still render the map offline.
           {
-            urlPattern: /funges_style(_dark|_positron|_darkmatter)?\.json$/i,
+            urlPattern:
+              /funges_style(_dark|_positron|_darkmatter|_topographic)?\.json$/i,
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'map-style-cache',
@@ -186,13 +236,15 @@ export default defineConfig({
             src: `icons/logo_app.png`,
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable',
+            purpose: 'any',
           },
           {
-            src: `icons/logo_funges.png`,
-            sizes: '192x192',
+            // opaque + padded: 'any maskable' on a transparent edge-to-edge logo
+            // gets cropped into a bad adaptive launcher icon on Android
+            src: `icons/logo_maskable.png`,
+            sizes: '512x512',
             type: 'image/png',
-            purpose: 'any',
+            purpose: 'maskable',
           },
           {
             src: `icons/logo_1.png`,
@@ -221,8 +273,8 @@ export default defineConfig({
             url: ``,
             icons: [
               {
-                src: `icons/logo_funges.png`,
-                sizes: '192x192',
+                src: `icons/logo_app.png`,
+                sizes: '512x512',
               },
             ],
           },
@@ -233,8 +285,8 @@ export default defineConfig({
             url: `species`,
             icons: [
               {
-                src: `icons/logo_funges.png`,
-                sizes: '192x192',
+                src: `icons/logo_app.png`,
+                sizes: '512x512',
               },
             ],
           },
@@ -246,8 +298,8 @@ export default defineConfig({
             url: `worth-foraging-now`,
             icons: [
               {
-                src: `icons/logo_funges.png`,
-                sizes: '192x192',
+                src: `icons/logo_app.png`,
+                sizes: '512x512',
               },
             ],
           },
@@ -307,6 +359,19 @@ export default defineConfig({
       },
     },
   },
+  // The BioCLIP inference worker imports onnxruntime-web, which needs real ESM
+  // (it dynamically imports its own WASM glue). Vite's default worker format is
+  // 'iife', where `import` is a syntax error — so this must match the
+  // `{ type: 'module' }` at the `new Worker(...)` call site in
+  // src/lib/bioclip/session.ts.
+  worker: {
+    format: 'es',
+  },
+  optimizeDeps: {
+    // ORT ships prebuilt ESM plus .wasm siblings it fetches at runtime. Letting
+    // esbuild pre-bundle it rewrites those paths and breaks the wasm lookup.
+    exclude: ['onnxruntime-web'],
+  },
   server: {
     port: 3000,
     open: true,
@@ -314,13 +379,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-      },
-    },
     minify: 'esbuild',
-    target: 'es2015',
+    // es2015 had esbuild downlevel async/await and class fields into generator
+    // + helper code: 22 KB raw / 6 KB gzip of the entry chunk, for browsers
+    // that could not run this app's WASM or service worker anyway.
+    target: 'es2020',
   },
   test: {
     globals: true,

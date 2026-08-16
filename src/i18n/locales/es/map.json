@@ -22,8 +22,7 @@
   },
   "overlays": {
     "title": "Capas del mapa",
-    "polygons": "Mostrar áreas de recolección",
-    "realtime": "Mostrar datos en tiempo real"
+    "polygons": "Mostrar áreas de recolección"
   },
   "region": {
     "title": "Seleccionar región",
@@ -92,6 +91,7 @@
     "description": "Usa el mapa para descubrir lugares de recolección y especies.",
     "features": {
       "species": "Elige una especie con el selector",
+      "identify": "Identificar a partir de una foto (descarga única)",
       "locate": "Centra el mapa en tu ubicación",
       "numbers": "Muestra u oculta el índice numérico",
       "theme": "Elige un tema de mapa: Claro, Oscuro, Blanco, Dark Matter o Topográfico",
@@ -107,5 +107,13 @@
     "low": "Baja",
     "label": "Indice de presencia",
     "high": "Alta"
+  },
+  "forecast": {
+    "label": "Previsión",
+    "today": "Hoy"
+  },
+  "offline": {
+    "title": "Sin conexión",
+    "message": "El mapa necesita conexión para cargarse. Las especies, las recetas y las páginas de datos siguen funcionando sin conexión."
   }
 }

@@ -32,3 +32,10 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>
 );
+
+// React mounts immediately behind the inline overlay, so map and data loading
+// overlap with the deliberate startup transition instead of waiting for it.
+// Start after a paint opportunity to guarantee 1000 ms of visible brand lockup
+// even when the module is already cached.
+const splash = document.getElementById('app-splash');
+requestAnimationFrame(() => window.setTimeout(() => splash?.remove(), 1000));

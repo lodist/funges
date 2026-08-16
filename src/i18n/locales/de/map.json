@@ -22,8 +22,7 @@
   },
   "overlays": {
     "title": "Karten-Overlays",
-    "polygons": "Sammelgebiete anzeigen",
-    "realtime": "Echtzeitdaten anzeigen"
+    "polygons": "Sammelgebiete anzeigen"
   },
   "region": {
     "title": "Region auswählen",
@@ -92,6 +91,7 @@
     "description": "Nutze die Karte, um Sammelorte und Arten zu entdecken.",
     "features": {
       "species": "Wähle eine Art mit dem Selektor",
+      "identify": "Anhand eines Fotos identifizieren (einmaliger Download)",
       "locate": "Zentriere die Karte auf deinen Standort",
       "numbers": "Zeige oder verberge den numerischen Index",
       "theme": "Wähle ein Kartenthema: Hell, Dunkel, Weiß, Dark Matter oder Topografisch",
@@ -111,5 +111,9 @@
   "forecast": {
     "label": "Vorhersage",
     "today": "Heute"
+  },
+  "offline": {
+    "title": "Keine Verbindung",
+    "message": "Die Karte braucht eine Internetverbindung. Arten, Rezepte und die Datenseiten funktionieren weiterhin offline."
   }
 }

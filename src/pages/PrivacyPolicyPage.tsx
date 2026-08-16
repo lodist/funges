@@ -41,7 +41,6 @@ export default function PrivacyPolicyPage() {
             </h2>
             <div className='space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed'>
               <p>{t('collection.content')}</p>
-              <p>{t('collection.cookiebot')}</p>
             </div>
           </section>
 
@@ -53,6 +52,25 @@ export default function PrivacyPolicyPage() {
             <p className='text-gray-700 dark:text-gray-300 leading-relaxed'>
               {t('location.content')}
             </p>
+          </section>
+
+          {/* Photos and species identification.
+              Placed straight after Location Data because both concern data that
+              stays on the device, and because a reader looking for "what happens
+              to my photos" scans for it near the other device-data section.
+
+              This page renders every section by explicit key, so adding the
+              translations was not enough to make them appear — they were present
+              in all six languages and rendered nowhere. */}
+          <section className='bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm'>
+            <h2 className='text-xl font-semibold text-gray-900 dark:text-white mb-4'>
+              {t('photos.title')}
+            </h2>
+            <div className='space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed'>
+              <p>{t('photos.content')}</p>
+              <p>{t('photos.camera')}</p>
+              <p>{t('photos.model')}</p>
+            </div>
           </section>
 
           {/* Your Rights */}

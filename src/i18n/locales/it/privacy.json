@@ -7,12 +7,17 @@
   },
   "collection": {
     "title": "Raccolta e Utilizzo delle Informazioni",
-    "content": "Ci impegniamo a rispettare i principi di anonimato e protezione dei dati. Questo servizio non raccoglie, memorizza o elabora direttamente alcuna informazione personale. Il nostro design privilegia il fornire informazioni senza richiedere dati in cambio, riflettendo la nostra forte convinzione nel valore dell'anonimato.",
-    "cookiebot": "Per garantire ulteriormente la tua privacy, utilizziamo Cookiebot in background per monitorare attivamente che nessun servizio non strettamente necessario sia in funzione. Vengono effettuati controlli regolari e rigorosi per assicurare che i dati degli utenti non vengano condivisi oltre a quanto è essenziale per il funzionamento di questo servizio."
+    "content": "Ci impegniamo a rispettare i principi di anonimato e protezione dei dati. Questo servizio non raccoglie, memorizza o elabora direttamente alcuna informazione personale. Il nostro design privilegia il fornire informazioni senza richiedere dati in cambio, riflettendo la nostra forte convinzione nel valore dell'anonimato."
   },
   "location": {
     "title": "Dati di Localizzazione",
     "content": "Per centrare la mappa sulla tua posizione e mostrare i punti di raccolta vicini, l'app richiede l'accesso alla posizione del tuo dispositivo. Questa posizione viene utilizzata solo sul tuo dispositivo per visualizzare la mappa e non viene mai trasmessa o memorizzata sui nostri server. Puoi negare o revocare questo permesso in qualsiasi momento nelle impostazioni del browser o del dispositivo senza perdere l'accesso al resto dell'app."
+  },
+  "photos": {
+    "title": "Foto e identificazione delle specie",
+    "content": "L'identificazione delle specie da una foto funziona interamente sul tuo dispositivo. Le foto che scatti o selezioni vengono analizzate localmente nel browser e non vengono mai caricate, mai trasmesse a nessun server e mai conservate da questo servizio. Nulla di una foto lascia il tuo dispositivo, comprese le informazioni sulla posizione che la fotocamera vi ha registrato.",
+    "model": "Perché l'identificazione sul dispositivo sia possibile, un modello di riconoscimento viene scaricato una volta e mantenuto nella memoria del browser. Quel download è una normale richiesta di un file al fornitore di archiviazione, che conserva i consueti registri del server come l'indirizzo IP, come qualsiasi server web; la richiesta non contiene informazioni su di te o sulle tue foto. Puoi eliminare il modello dal dispositivo in qualsiasi momento dalla schermata di identificazione.",
+    "camera": "L'app non ha accesso continuo alla fotocamera. Scattare una foto apre la fotocamera del dispositivo e solo la singola foto che scegli viene passata all'app."
   },
   "rights": {
     "title": "I Tuoi Diritti",
@@ -43,5 +48,5 @@
     "intro": "Per qualsiasi domanda o preoccupazione riguardo questa Informativa sulla Privacy, contatta:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Ultimo aggiornamento: 15.01.2025"
+  "lastUpdated": "Ultimo aggiornamento: 26.07.2026"
 }

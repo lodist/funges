@@ -15,6 +15,7 @@
     "recipes": "Exibe receitas proximas e rotas para as paradas de ingredientes",
     "location": "Centraliza o mapa na localização do usuário",
     "theme": "Alterne entre 4 estilos de mapa: Claro, Escuro, Positron, Dark Matter",
+    "identify": "Identifica espécies possíveis a partir de uma fotografia, no teu dispositivo",
     "numbers": "Exibe classificação numérica"
   },
   "mapInteraction": {
@@ -41,7 +42,8 @@
     "goal": "Ao fornecer insights em tempo real e análises preditivas, nosso objetivo é reduzir o desperdício de recursos, adaptar-se às mudanças climáticas e tornar os presentes da natureza mais acessíveis a todos.",
     "sustainability": "A coleta é mais sustentável quando segue o ritmo natural do ambiente — guiada pela sazonalidade, localidade e equilíbrio ecológico. A natureza provê o que é necessário, quando é necessário; a colheita responsável começa com atenção a esses ciclos.",
     "community": "Por meio da inovação e do acesso aberto, o objetivo é criar uma comunidade de coletores responsáveis que valorizam a sustentabilidade e a biodiversidade.",
-    "openAccess": "O acesso aberto à informação promove uma conexão mais profunda com o lugar e o tempo, incentivando decisões que respeitam a biodiversidade e a capacidade regenerativa dos ecossistemas."
+    "openAccess": "O acesso aberto à informação promove uma conexão mais profunda com o lugar e o tempo, incentivando decisões que respeitam a biodiversidade e a capacidade regenerativa dos ecossistemas.",
+    "privacy": "Essa abertura funciona nos dois sentidos: a informação chega até ti sem que nada volte para trás. Não há conta, não são recolhidos dados pessoais e a identificação de fotografias acontece no teu próprio dispositivo. Aqui o anonimato não é uma opção a activar, é o princípio."
   },
   "prediction": {
     "title": "Como os Alimentos Silvestres São Previstos",
@@ -94,5 +96,12 @@
       },
       "additional": "Fontes adicionais como APIs meteorológicas, camadas de sensoriamento remoto e modelos de inclinação/orientação são integradas para melhorar continuamente a precisão das previsões."
     }
+  },
+  "identify": {
+    "title": "Como funciona a identificação por fotografia",
+    "intro": "O botão ID no canto superior direito reduz uma fotografia a cerca de três espécies possíveis, cada uma marcada como comestível ou tóxica. É uma pré-selecção, não um veredicto: um sósia perigoso pode ser a resposta certa mesmo quando não é o primeiro resultado.",
+    "onDevice": "O reconhecimento corre inteiramente no teu telemóvel. As fotografias nunca são carregadas nem guardadas pela aplicação. É por isso que na primeira vez é necessário um descarregamento único do modelo: sem ele, a identificação teria de enviar as tuas fotografias para um servidor.",
+    "howTo": "Toca em ID, permite o descarregamento único por Wi-Fi e depois tira uma fotografia ou escolhe uma da galeria. Enche o enquadramento com o exemplar completo quando puderes, incluindo a base do pé, e fotografa o que realmente desenterraste ou colheste, não um grupo distante. Duas fotos do mesmo achado - a parte de cima e a parte de baixo, incluindo a base do pé - dão uma correspondência bastante melhor do que uma só.",
+    "limits": "A identificação leva de cerca de cinco a vinte segundos dependendo do dispositivo, porque o trabalho acontece no teu dispositivo e não num centro de dados. Cobre as espécies desta aplicação mais cerca de duas mil e quinhentas das mesmas regiões; tudo o resto é mostrado apenas com o nome científico e sem informação de segurança. Não comas nada com base nesta aplicação - uma identificação errada pode ser fatal."
   }
 }

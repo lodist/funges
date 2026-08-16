@@ -91,6 +91,7 @@
     "description": "Usa la mappa per scoprire luoghi di raccolta e specie.",
     "features": {
       "species": "Scegli una specie con il selettore",
+      "identify": "Identificare da una foto (download una volta sola)",
       "locate": "Centra la mappa sulla tua posizione",
       "numbers": "Mostra o nascondi l’indice numerico",
       "theme": "Scegli un tema mappa: Chiaro, Scuro, Bianco, Dark Matter o Topografico",
@@ -106,5 +107,13 @@
     "low": "Basso",
     "label": "Indice di presenza",
     "high": "Alto"
+  },
+  "forecast": {
+    "label": "Previsione",
+    "today": "Oggi"
+  },
+  "offline": {
+    "title": "Nessuna connessione",
+    "message": "La mappa ha bisogno di una connessione per caricarsi. Specie, ricette e le pagine dati funzionano anche offline."
   }
 }

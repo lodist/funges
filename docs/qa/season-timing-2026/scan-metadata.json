@@ -1,0 +1,96 @@
+{
+  "NE": {
+    "grid_points": 66936,
+    "subsample_modulus": 11,
+    "subsample_locations": 6122,
+    "subsample_cell_days": 783616,
+    "dates": [
+      "2026-04-12",
+      "2026-08-20"
+    ],
+    "zones": [
+      "alpine",
+      "arctic",
+      "continental",
+      "oceanic_north",
+      "subarctic",
+      "temperate"
+    ],
+    "records_in_region": 3048,
+    "records_matched": 1977,
+    "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_weather_data.parquet"
+  },
+  "SE": {
+    "grid_points": 101447,
+    "subsample_modulus": 17,
+    "subsample_locations": 6080,
+    "subsample_cell_days": 778240,
+    "dates": [
+      "2026-04-12",
+      "2026-08-20"
+    ],
+    "zones": [
+      "alpine",
+      "atlantic_islands",
+      "central_spain",
+      "continental",
+      "mediterranean_dry_spain",
+      "mediterranean_greece",
+      "mediterranean_italy",
+      "mediterranean_turkey",
+      "oceanic_north",
+      "oceanic_south",
+      "sardinia",
+      "temperate"
+    ],
+    "records_in_region": 468,
+    "records_matched": 440,
+    "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_weather_data.parquet"
+  },
+  "USE": {
+    "grid_points": 71157,
+    "subsample_modulus": 12,
+    "subsample_locations": 5985,
+    "subsample_cell_days": 760095,
+    "dates": [
+      "2026-04-12",
+      "2026-08-19"
+    ],
+    "zones": [
+      "continental",
+      "humid_continental",
+      "humid_subtropical",
+      "semiarid_steppe",
+      "subarctic",
+      "temperate"
+    ],
+    "records_in_region": 2005,
+    "records_matched": 1650,
+    "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/USE_weather_data.parquet"
+  },
+  "USW": {
+    "grid_points": 108586,
+    "subsample_modulus": 18,
+    "subsample_locations": 5893,
+    "subsample_cell_days": 742518,
+    "dates": [
+      "2026-04-12",
+      "2026-08-19"
+    ],
+    "zones": [
+      "alpine",
+      "continental",
+      "desert_southwest",
+      "humid_continental",
+      "humid_subtropical",
+      "marine_west_coast",
+      "mediterranean_california",
+      "semiarid_steppe",
+      "subarctic",
+      "temperate"
+    ],
+    "records_in_region": 1022,
+    "records_matched": 935,
+    "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/USW_weather_data.parquet"
+  }
+}

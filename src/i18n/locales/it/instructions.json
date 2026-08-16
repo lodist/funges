@@ -15,6 +15,7 @@
     "recipes": "Mostra ricette vicine e percorsi verso le tappe degli ingredienti",
     "location": "Centra la Mappa sulla Posizione dell'Utente",
     "theme": "Scorri tra 4 stili di mappa: Chiaro, Scuro, Positron, Dark Matter",
+    "identify": "Identifica le specie possibili da una foto, sul tuo dispositivo",
     "numbers": "Mostra Valutazione Numerica"
   },
   "mapInteraction": {
@@ -41,7 +42,8 @@
     "goal": "Fornendo informazioni e analisi predittive in tempo reale, il nostro obiettivo è ridurre lo spreco di risorse, adattarci al cambiamento climatico e rendere i doni della natura più accessibili a tutti.",
     "sustainability": "La raccolta è più sostenibile quando segue il ritmo naturale dell'ambiente — guidata dalla stagionalità, dalla località e dall'equilibrio ecologico. La natura fornisce ciò che è necessario, quando è necessario; la raccolta responsabile inizia con l'attenzione a questi cicli.",
     "community": "Attraverso l'innovazione e l'accesso aperto, l'obiettivo è creare una comunità di raccoglitori responsabili che valorizzano la sostenibilità e la biodiversità.",
-    "openAccess": "L'accesso aperto alle informazioni favorisce una connessione più profonda con il luogo e il tempo, incoraggiando decisioni che rispettano la biodiversità e la capacità rigenerativa degli ecosistemi."
+    "openAccess": "L'accesso aperto alle informazioni favorisce una connessione più profonda con il luogo e il tempo, incoraggiando decisioni che rispettano la biodiversità e la capacità rigenerativa degli ecosistemi.",
+    "privacy": "Questa apertura vale in entrambe le direzioni: le informazioni arrivano a te senza che nulla torni indietro. Non c'è un account, non vengono raccolti dati personali e l'identificazione delle foto avviene sul tuo dispositivo. Qui l'anonimato non è un'opzione da attivare, è il principio."
   },
   "prediction": {
     "title": "Come Vengono Predetti i Commestibili Selvatici",
@@ -94,5 +96,12 @@
       },
       "additional": "Fonti aggiuntive come API meteorologiche, livelli di telerilevamento e modelli di pendenza/aspetto sono integrati per migliorare continuamente l'accuratezza della previsione."
     }
+  },
+  "identify": {
+    "title": "Come funziona l’identificazione da foto",
+    "intro": "Il pulsante ID in alto a destra riduce una foto a circa tre specie possibili, ciascuna indicata come commestibile o tossica. È una preselezione, non un verdetto: un sosia pericoloso può essere la risposta giusta anche quando non è il primo risultato.",
+    "onDevice": "Il riconoscimento funziona interamente sul tuo telefono. Le foto non vengono mai caricate né conservate dall’app. Per questo la prima volta serve un download del modello una volta sola: senza di esso l’identificazione dovrebbe inviare le tue foto a un server.",
+    "howTo": "Tocca ID, consenti il download una volta sola con il Wi-Fi, poi scatta una foto o scegline una dalla galleria. Riempi l’inquadratura con l’esemplare intero quando puoi, compresa la base del gambo, e fotografa quello che hai davvero dissotterrato o raccolto, non un gruppo lontano. Due foto dello stesso ritrovamento - la parte superiore e quella inferiore, compresa la base del gambo - danno una corrispondenza molto migliore di una sola.",
+    "limits": "L’identificazione richiede da circa cinque a venti secondi a seconda del dispositivo, perché il lavoro avviene sul tuo dispositivo e non in un centro dati. Copre le specie di questa app più circa duemilacinquecento presenti nelle stesse regioni; tutto il resto viene mostrato con il solo nome scientifico e senza informazioni di sicurezza. Non mangiare nulla basandoti su questa app - un’identificazione errata può essere fatale."
   }
 }

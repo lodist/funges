@@ -4,6 +4,7 @@ import SEO from '@/components/SEO';
 import { Separator } from '@/components/ui/separator';
 import {
   Map,
+  ScanSearch,
   Navigation,
   Moon,
   ChefHat,
@@ -36,6 +37,11 @@ export default function InstructionsPage() {
       color: 'text-purple-600',
     },
     { icon: Moon, text: t('functions.theme'), color: 'text-gray-600' },
+    {
+      icon: ScanSearch,
+      text: t('functions.identify'),
+      color: 'text-emerald-600',
+    },
   ];
 
   const variables = [
@@ -126,6 +132,26 @@ export default function InstructionsPage() {
             </CardContent>
           </Card>
 
+          {/* Photo identification. Its own card rather than a line in the
+              functions list: it is the only feature that downloads anything, and
+              the only one where a misread costs more than a wasted walk. */}
+          <Card className='mb-8 shadow-lg border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm py-6'>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-3 text-2xl'>
+                <ScanSearch className='h-6 w-6 text-emerald-600' />
+                {t('identify.title')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className='space-y-4 text-gray-700 dark:text-gray-300'>
+              <p>{t('identify.intro')}</p>
+              <p>{t('identify.onDevice')}</p>
+              <p>{t('identify.howTo')}</p>
+              <p className='rounded-lg bg-status-warning p-4 text-sm'>
+                {t('identify.limits')}
+              </p>
+            </CardContent>
+          </Card>
+
           {/* Map Interaction Section */}
           <Card className='mb-8 shadow-lg border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm py-6'>
             <CardHeader>
@@ -209,6 +235,7 @@ export default function InstructionsPage() {
               <p className='text-gray-700 dark:text-gray-300 leading-relaxed'>
                 {t('mission.openAccess')}
               </p>
+              <p>{t('mission.privacy')}</p>
             </CardContent>
           </Card>
 

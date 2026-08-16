@@ -138,6 +138,13 @@
     "title": "Fung.es",
     "subtitle": "Application de cueillette de champignons"
   },
+  "pwa": {
+    "installTitle": "Installer Fung.es",
+    "installDescription": "Installe Fung.es sur ton appareil pour un accès rapide et un fonctionnement hors ligne.",
+    "installButton": "Installer l'app",
+    "laterButton": "Plus tard"
+  },
+  "close": "Fermer",
   "data": {
     "subtitle": "Explorez les données derrière les recommandations de cueillette.",
     "europe": "Europe",
@@ -256,5 +263,10 @@
       "pressureFallingShort": "en baisse",
       "pressureRisingShort": "en hausse"
     }
+  },
+  "sidebar": {
+    "title": "Barre latérale",
+    "description": "Affiche la barre latérale mobile.",
+    "toggle": "Afficher ou masquer la barre latérale"
   }
 }
