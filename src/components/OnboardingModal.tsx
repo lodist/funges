@@ -5,9 +5,9 @@ import {
   ChefHat,
   Heart,
   List,
-  Moon,
   MousePointerClick,
   Navigation,
+  Palette,
   ScanSearch,
 } from 'lucide-react';
 import { useUIStore } from '@/store/uiStore';
@@ -72,7 +72,7 @@ export default function OnboardingModal() {
             {t('onboarding.features.locate')}
           </li>
           <li className='flex items-center gap-2'>
-            <Moon className='h-4 w-4' />
+            <Palette className='h-4 w-4' />
             {t('onboarding.features.theme')}
           </li>
           <li className='flex items-center gap-2'>

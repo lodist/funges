@@ -61,7 +61,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: -6 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
-            className='absolute right-0 top-full mt-2 w-72 bg-white rounded-xl border border-gray-200 shadow-xl overflow-hidden z-30'
+            className='absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] bg-white rounded-xl border border-gray-200 shadow-xl overflow-hidden z-30'
           >
             <p className='px-3 pt-3 pb-1.5 text-[11px] font-semibold tracking-wide text-gray-400 uppercase'>
               {t('themes.select')}
@@ -100,7 +100,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                         >
                           {t(`themes.${theme.id}.name`)}
                         </p>
-                        <p className='text-xs text-gray-500 truncate'>
+                        <p className='text-xs leading-snug text-gray-500 line-clamp-2'>
                           {t(`themes.${theme.id}.description`)}
                         </p>
                       </div>
