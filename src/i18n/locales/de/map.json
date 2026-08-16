@@ -57,23 +57,23 @@
     "select": "Kartenthema",
     "light": {
       "name": "Hell",
-      "description": "Die klassische, helle Funges-Karte."
+      "description": "Klassische, helle Funges-Karte."
     },
     "dark": {
       "name": "Dunkel",
-      "description": "Dunkle Palette, angenehm für die Augen bei Nacht."
+      "description": "Dunkle Palette für die Nacht."
     },
     "white": {
       "name": "Weiß",
-      "description": "Klare, minimalistische helle Palette mit wenig Ablenkung."
+      "description": "Helle Karte mit wenig Ablenkung."
     },
     "darkmatter": {
       "name": "Dark Matter",
-      "description": "Tiefes monochromes Kartenbild mit maximalem Kontrast."
+      "description": "Dunkle Karte mit starkem Kontrast."
     },
     "topographic": {
       "name": "Topografisch",
-      "description": "Warmer Wanderkarten-Stil mit sichtbaren Wander- und Trampelpfaden."
+      "description": "Warme Wanderkarte mit Wegen."
     }
   },
   "getLocation": "Meinen Standort ermitteln",
