@@ -44,7 +44,7 @@ function dayLabel(d: number): string {
   return d === 365 ? '1y' : `${d}d`;
 }
 
-const R2 = 'https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev';
+const R2 = 'https://data.fung.es';
 
 const REGION_FILES: Record<RegionId, { label: string; url: string }[]> = {
   NE: [

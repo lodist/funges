@@ -23,7 +23,7 @@ import { BioclipSession } from './session';
  * vocabulary both measure 1.06% false-edible@1 against fp32's 0.91%.
  */
 
-const R2 = 'https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev';
+const R2 = 'https://data.fung.es';
 
 export type ModelVariant = 'int4' | 'int8';
 
