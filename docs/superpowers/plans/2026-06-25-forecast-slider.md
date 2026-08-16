@@ -439,7 +439,7 @@ Create `scripts/add-forecast-layers.cjs`:
 // Usage: node scripts/add-forecast-layers.cjs [public/funges_style.json ...]
 const fs = require('fs');
 
-const R2 = 'https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev';
+const R2 = 'https://data.fung.es';
 // overlay source id -> [forecast source id, forecast pmtiles url, forecast source-layer]
 const FC = {
   'overlay-ne':  ['forecast-ne',  `${R2}/EU/NE/ne_forecast.pmtiles`,   'ne_forecast'],

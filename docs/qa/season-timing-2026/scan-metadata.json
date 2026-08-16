@@ -18,7 +18,7 @@
     ],
     "records_in_region": 3048,
     "records_matched": 1977,
-    "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_weather_data.parquet"
+    "source_url": "https://data.fung.es/EU/NE/NE_weather_data.parquet"
   },
   "SE": {
     "grid_points": 101447,
@@ -45,7 +45,7 @@
     ],
     "records_in_region": 468,
     "records_matched": 440,
-    "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_weather_data.parquet"
+    "source_url": "https://data.fung.es/EU/SE/SE_weather_data.parquet"
   },
   "USE": {
     "grid_points": 71157,
@@ -66,7 +66,7 @@
     ],
     "records_in_region": 2005,
     "records_matched": 1650,
-    "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/USE_weather_data.parquet"
+    "source_url": "https://data.fung.es/USA/USE/USE_weather_data.parquet"
   },
   "USW": {
     "grid_points": 108586,
@@ -91,6 +91,6 @@
     ],
     "records_in_region": 1022,
     "records_matched": 935,
-    "source_url": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/USW_weather_data.parquet"
+    "source_url": "https://data.fung.es/USA/USW/USW_weather_data.parquet"
   }
 }
