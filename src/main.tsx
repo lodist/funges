@@ -19,11 +19,6 @@ hydrateOfflineSources()
     console.warn('Offline cache hydration skipped:', err);
   });
 
-// Import Why Did You Render in development
-if (process.env.NODE_ENV === 'development') {
-  import('./lib/wdyr');
-}
-
 // Initialize HTML and manifest localization
 initializeHtmlLocalization();
 

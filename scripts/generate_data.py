@@ -19,10 +19,10 @@ import pandas as pd
 import requests
 
 REGION_URLS: dict[str, str] = {
-    "NE": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/NE_weather_data.parquet",
-    "SE": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/SE_weather_data.parquet",
-    "USE": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/USE_weather_data.parquet",
-    "USW": "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/USW_weather_data.parquet",
+    "NE": "https://data.fung.es/EU/NE/NE_weather_data.parquet",
+    "SE": "https://data.fung.es/EU/SE/SE_weather_data.parquet",
+    "USE": "https://data.fung.es/USA/USE/USE_weather_data.parquet",
+    "USW": "https://data.fung.es/USA/USW/USW_weather_data.parquet",
 }
 
 REGION_LABELS: dict[str, str] = {

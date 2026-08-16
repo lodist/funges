@@ -176,7 +176,9 @@ export default defineConfig({
               /funges_style(_dark|_positron|_darkmatter|_topographic)?\.json$/i,
             handler: 'StaleWhileRevalidate',
             options: {
-              cacheName: 'map-style-cache',
+              // Bump when style source URLs change so a newly deployed service
+              // worker cannot serve JSON that still points at a retired host.
+              cacheName: 'map-style-cache-v2',
               expiration: {
                 maxEntries: 6,
                 maxAgeSeconds: 60 * 60 * 24 * 30, // 30 days

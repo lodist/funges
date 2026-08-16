@@ -27,7 +27,7 @@ import requests
 from scipy.spatial import cKDTree
 
 
-R2_ROOT = "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev"
+R2_ROOT = "https://data.fung.es"
 REGIONS = {
     "NE": (f"{R2_ROOT}/EU/NE/NE_weather_data.parquet", (-25, 47, 45, 72)),
     "SE": (f"{R2_ROOT}/EU/SE/SE_weather_data.parquet", (-25, 34, 45, 47)),

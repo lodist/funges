@@ -16,7 +16,7 @@ OUT = QA / "season-timing.html"
 truth = json.loads((ROOT / "docs/qa/season-truth-2026/gbif-season-truth.json").read_text())
 analysis = json.loads((QA / "season-analysis.json").read_text())
 
-R2 = "https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev"
+R2 = "https://data.fung.es"
 CURVE_URLS = {"NE": f"{R2}/EU/NE/NE_season_curves.json", "SE": f"{R2}/EU/SE/SE_season_curves.json",
               "USE": f"{R2}/USA/USE/USE_season_curves.json", "USW": f"{R2}/USA/USW/USW_season_curves.json"}
 session = requests.Session()

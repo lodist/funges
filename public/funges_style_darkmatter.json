@@ -27,23 +27,23 @@
   "sources": {
     "aws": {
       "type": "vector",
-      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/basemap/world_z12_20260619.pmtiles"
+      "url": "pmtiles://https://data.fung.es/basemap/world_z12_20260619.pmtiles"
     },
     "overlay-ne": {
       "type": "vector",
-      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/NE/ne_forecast.pmtiles"
+      "url": "pmtiles://https://data.fung.es/EU/NE/ne_forecast.pmtiles"
     },
     "overlay-se": {
       "type": "vector",
-      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/EU/SE/se_forecast.pmtiles"
+      "url": "pmtiles://https://data.fung.es/EU/SE/se_forecast.pmtiles"
     },
     "overlay-use": {
       "type": "vector",
-      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USE/use_forecast.pmtiles"
+      "url": "pmtiles://https://data.fung.es/USA/USE/use_forecast.pmtiles"
     },
     "overlay-usw": {
       "type": "vector",
-      "url": "pmtiles://https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev/USA/USW/usw_forecast.pmtiles"
+      "url": "pmtiles://https://data.fung.es/USA/USW/usw_forecast.pmtiles"
     }
   },
   "sprite": "https://protomaps.github.io/basemaps-assets/sprites/v4/dark",

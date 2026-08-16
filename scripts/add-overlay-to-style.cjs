@@ -15,7 +15,7 @@ const livePath = process.argv[2];
 const stylePath = process.argv[3] || 'public/funges_style.json';
 if (!livePath) { console.error('need <live_style.json>'); process.exit(1); }
 
-const R2 = 'https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev';
+const R2 = 'https://data.fung.es';
 // current source-layer in live style -> [new source id, new pmtiles url, new source-layer]
 const REGION = {
   'ne-scores':  ['overlay-ne',  `${R2}/EU/NE/ne_forecast.pmtiles`,   'ne_forecast'],
