@@ -53,9 +53,31 @@
     "noResults": "Aucune espèce trouvée",
     "notAvailableOffline": "Not available offline. Download on the Offline Maps page."
   },
+  "themes": {
+    "select": "Thème de carte",
+    "light": {
+      "name": "Clair",
+      "description": "Carte classique et lumineuse."
+    },
+    "dark": {
+      "name": "Sombre",
+      "description": "Palette sombre pour la nuit."
+    },
+    "white": {
+      "name": "Blanc",
+      "description": "Carte claire et minimaliste."
+    },
+    "darkmatter": {
+      "name": "Dark Matter",
+      "description": "Carte sombre à fort contraste."
+    },
+    "topographic": {
+      "name": "Topographique",
+      "description": "Carte de randonnée avec sentiers."
+    }
+  },
   "getLocation": "Obtenir ma position",
   "toggleNumbers": "Afficher/masquer les notes",
-  "toggleDarkMode": "Changer de style de carte",
   "showOnboarding": "Afficher les instructions",
   "dataFreshnessTooltip": "Données mises à jour quotidiennement",
   "featureInfo": {
@@ -72,7 +94,7 @@
       "identify": "Identifier à partir d’une photo (téléchargement unique)",
       "locate": "Centrer la carte sur votre position",
       "numbers": "Afficher ou masquer l’index numérique",
-      "theme": "Basculez entre 4 styles de carte : Clair, Sombre, Positron, Dark Matter",
+      "theme": "Choisissez un thème de carte : Clair, Sombre, Blanc, Dark Matter ou Topographique",
       "zones": "Touchez une zone pour voir la liste des espèces",
       "recipes": "Ouvrez les recettes proches et tracez un itineraire vers chaque etape ingredient"
     },

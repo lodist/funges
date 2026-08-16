@@ -6,7 +6,7 @@ import {
   Map,
   ScanSearch,
   Navigation,
-  Moon,
+  Palette,
   ChefHat,
   Globe,
   Thermometer,
@@ -36,7 +36,7 @@ export default function InstructionsPage() {
       text: t('functions.location'),
       color: 'text-purple-600',
     },
-    { icon: Moon, text: t('functions.theme'), color: 'text-gray-600' },
+    { icon: Palette, text: t('functions.theme'), color: 'text-gray-600' },
     {
       icon: ScanSearch,
       text: t('functions.identify'),

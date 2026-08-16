@@ -172,7 +172,8 @@ export default defineConfig({
           // Map style JSON — required to initialize the map. Cached on the
           // online visit so a downloaded region can still render the map offline.
           {
-            urlPattern: /funges_style(_dark|_positron|_darkmatter)?\.json$/i,
+            urlPattern:
+              /funges_style(_dark|_positron|_darkmatter|_topographic)?\.json$/i,
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'map-style-cache',

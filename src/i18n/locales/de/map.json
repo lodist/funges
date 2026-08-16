@@ -53,9 +53,31 @@
     "noResults": "Keine Art gefunden",
     "notAvailableOffline": "Not available offline. Download on the Offline Maps page."
   },
+  "themes": {
+    "select": "Kartenthema",
+    "light": {
+      "name": "Hell",
+      "description": "Klassische, helle Funges-Karte."
+    },
+    "dark": {
+      "name": "Dunkel",
+      "description": "Dunkle Palette für die Nacht."
+    },
+    "white": {
+      "name": "Weiß",
+      "description": "Helle Karte mit wenig Ablenkung."
+    },
+    "darkmatter": {
+      "name": "Dark Matter",
+      "description": "Dunkle Karte mit starkem Kontrast."
+    },
+    "topographic": {
+      "name": "Topografisch",
+      "description": "Warme Wanderkarte mit Wegen."
+    }
+  },
   "getLocation": "Meinen Standort ermitteln",
   "toggleNumbers": "Zahlen ein-/ausblenden",
-  "toggleDarkMode": "Kartenstil wechseln",
   "showOnboarding": "Anleitung anzeigen",
   "dataFreshnessTooltip": "Daten werden täglich aktualisiert",
   "featureInfo": {
@@ -72,7 +94,7 @@
       "identify": "Anhand eines Fotos identifizieren (einmaliger Download)",
       "locate": "Zentriere die Karte auf deinen Standort",
       "numbers": "Zeige oder verberge den numerischen Index",
-      "theme": "Wechsle durch 4 Kartenstile: Hell, Dunkel, Positron, Dark Matter",
+      "theme": "Wähle ein Kartenthema: Hell, Dunkel, Weiß, Dark Matter oder Topografisch",
       "zones": "Tippe auf eine Zone, um die Artenliste anzuzeigen",
       "recipes": "Öffne Rezepte in der Nähe und zeichne eine Route zu jedem Zutatenstopp"
     },

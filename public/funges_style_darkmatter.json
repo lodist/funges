@@ -10569,6 +10569,73 @@
           ],
           true,
           false
+        ],
+        [
+          "<",
+          [
+            "get",
+            "population"
+          ],
+          100000
+        ],
+        [
+          "step",
+          [
+            "zoom"
+          ],
+          [
+            ">=",
+            [
+              "get",
+              "population"
+            ],
+            50000
+          ],
+          8,
+          [
+            ">=",
+            [
+              "get",
+              "population"
+            ],
+            20000
+          ],
+          9,
+          [
+            ">=",
+            [
+              "get",
+              "population"
+            ],
+            10000
+          ],
+          10,
+          [
+            ">=",
+            [
+              "get",
+              "population"
+            ],
+            5000
+          ],
+          11,
+          [
+            ">=",
+            [
+              "get",
+              "population"
+            ],
+            2000
+          ],
+          12,
+          [
+            ">=",
+            [
+              "get",
+              "population"
+            ],
+            500
+          ]
         ]
       ],
       "layout": {
@@ -10607,7 +10674,8 @@
         "text-color": "#a8a8a8",
         "text-halo-color": "#000000",
         "text-halo-width": 1.6
-      }
+      },
+      "maxzoom": 16
     },
     {
       "id": "place_city",
@@ -10631,6 +10699,47 @@
             "kind"
           ],
           "locality"
+        ],
+        [
+          "step",
+          [
+            "zoom"
+          ],
+          [
+            ">=",
+            [
+              "get",
+              "population"
+            ],
+            1200000
+          ],
+          4,
+          [
+            ">=",
+            [
+              "get",
+              "population"
+            ],
+            400000
+          ],
+          6,
+          [
+            ">=",
+            [
+              "get",
+              "population"
+            ],
+            200000
+          ],
+          7,
+          [
+            ">=",
+            [
+              "get",
+              "population"
+            ],
+            100000
+          ]
         ]
       ],
       "layout": {
@@ -10671,14 +10780,15 @@
         "text-color": "#a8a8a8",
         "text-halo-color": "#000000",
         "text-halo-width": 1.6
-      }
+      },
+      "maxzoom": 14
     },
     {
       "id": "place_region",
       "type": "symbol",
       "source": "aws",
       "source-layer": "places",
-      "minzoom": 4,
+      "minzoom": 3.75,
       "filter": [
         "all",
         [
@@ -10740,7 +10850,8 @@
         "text-color": "#a8a8a8",
         "text-halo-color": "#000000",
         "text-halo-width": 1.6
-      }
+      },
+      "maxzoom": 11
     },
     {
       "id": "place_country",
@@ -10804,7 +10915,8 @@
         "text-color": "#a8a8a8",
         "text-halo-color": "#000000",
         "text-halo-width": 1.6
-      }
+      },
+      "maxzoom": 11
     }
   ]
 }

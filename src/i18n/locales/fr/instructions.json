@@ -14,7 +14,7 @@
     "title": "Fonctions :",
     "recipes": "Affiche les recettes proches et des trajets vers les etapes ingredients",
     "location": "Centre la carte sur la position de l'utilisateur",
-    "theme": "Basculez entre 4 styles de carte : Clair, Sombre, Positron, Dark Matter",
+    "theme": "Choisissez un thème de carte : Clair, Sombre, Blanc, Dark Matter ou Topographique",
     "identify": "Identifie les espèces possibles à partir d’une photo, sur ton appareil",
     "numbers": "Affiche la note numérique"
   },

@@ -13,6 +13,9 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = ROOT / "public" / "funges_style.json"
+BANDS = json.loads(
+    (ROOT / "src" / "config" / "label-bands.json").read_text(encoding="utf-8")
+)
 
 # CARTO-ish palettes. ocean = background (shows before land tiles / as sea);
 # land = earth fill on top; water = lakes/rivers/ocean polygons.
@@ -37,8 +40,46 @@ DARKMATTER = dict(
     label="#a8a8a8", label_halo="#000000", water_label="#5a7280",
     sprite="https://protomaps.github.io/basemaps-assets/sprites/v4/dark",
 )
+# Natural-terrain hiking-map palette (Outdooractive/Alpine-club style): distinct
+# forest/scrub/farmland/urban land-cover tones instead of one flat tint, plus
+# trail=True below turns on the path/track line layer (roads source-layer,
+# kind path/track) starting at a mid zoom so trail networks are visible before
+# full zoom-in. NOTE: real contour lines / hillshade relief need an elevation
+# (DEM) source the vector tiles don't carry — see the spec's "Out of Scope".
+TOPOGRAPHIC = dict(
+    name="Funges Topographic",
+    ocean="#bcd6de", land="#eee3c4",
+    # (kind values from the landuse source-layer, fill color) — drawn in this
+    # order so forest sits visually "deepest" among the land-cover tints.
+    landcover=[
+        (["residential", "commercial", "industrial", "retail", "hospital",
+          "university"], "#e3dcc4"),
+        (["farmland", "agriculture", "farm", "orchard", "vineyard",
+          "plant_nursery"], "#dccf8e"),
+        (["grass", "scrub", "meadow", "heath", "wetland", "park",
+          "recreation_ground", "grassland"], "#c3d093"),
+        (["forest", "wood", "nature_reserve", "national_park",
+          "protected_area"], "#8fac6c"),
+    ],
+    water="#a3cdd6", waterway="#79aeb8",
+    boundary_country="#8a6d46", boundary_region="#b79f74",
+    road_major="#c9773f", road_medium="#d79f66", road_minor="#e3c093",
+    label="#3a2c18", label_halo="#f7f2df", water_label="#2f5b66",
+    sprite="https://protomaps.github.io/basemaps-assets/sprites/v4/light",
+    trail="#b0392c", trail_minzoom=8,
+)
 
 NAME = ["coalesce", ["get", "name:en"], ["get", "name"]]
+
+
+def population_step_expr(steps):
+    """['step', ['zoom'], base_expr, z1, expr1, ...] from label-bands.json steps."""
+    ordered = sorted(steps, key=lambda s: s["zoom"])
+    first, *rest = ordered
+    expr = ["step", ["zoom"], [">=", ["get", "population"], first["population"]]]
+    for s in rest:
+        expr += [s["zoom"], [">=", ["get", "population"], s["population"]]]
+    return expr
 
 
 def basemap(p):
@@ -56,7 +97,7 @@ def basemap(p):
         return L
 
     def label(id_, sl, filt, size, color, halo, font="Noto Sans Regular",
-              minz=0, upper=False):
+              minz=0, maxz=None, upper=False):
         layout = {
             "text-field": NAME, "text-font": [font], "text-size": size,
             "text-max-width": 6, "text-padding": 2, "visibility": "visible",
@@ -64,12 +105,15 @@ def basemap(p):
         if upper:
             layout["text-transform"] = "uppercase"
             layout["text-letter-spacing"] = 0.08
-        return {
+        L = {
             "id": id_, "type": "symbol", "source": "aws", "source-layer": sl,
             "minzoom": minz, "filter": filt, "layout": layout,
             "paint": {"text-color": color, "text-halo-color": halo,
                       "text-halo-width": 1.6},
         }
+        if maxz is not None:
+            L["maxzoom"] = maxz
+        return L
 
     poly = ["==", ["geometry-type"], "Polygon"]
     lstr = ["==", ["geometry-type"], "LineString"]
@@ -78,12 +122,27 @@ def basemap(p):
                    "protected_area", "park", "grass", "meadow", "scrub",
                    "grassland"]
 
-    green_layer = [{
-        "id": "landuse_green", "type": "fill", "source": "aws",
-        "source-layer": "landuse",
-        "filter": ["all", poly, ["match", ["get", "kind"], green_kinds, True, False]],
-        "paint": {"fill-color": p["green"], "fill-opacity": 0.6},
-    }] if p.get("green") else []
+    if p.get("landcover"):
+        # Multi-category land cover (forest/scrub/farmland/urban), each its own
+        # fill layer so tones can differ instead of one flat vegetation tint.
+        green_layer = [
+            {
+                "id": f"landuse_{i}", "type": "fill", "source": "aws",
+                "source-layer": "landuse",
+                "filter": ["all", poly, ["match", ["get", "kind"], kinds, True, False]],
+                "paint": {"fill-color": color, "fill-opacity": 0.85},
+            }
+            for i, (kinds, color) in enumerate(p["landcover"])
+        ]
+    elif p.get("green"):
+        green_layer = [{
+            "id": "landuse_green", "type": "fill", "source": "aws",
+            "source-layer": "landuse",
+            "filter": ["all", poly, ["match", ["get", "kind"], green_kinds, True, False]],
+            "paint": {"fill-color": p["green"], "fill-opacity": 0.6},
+        }]
+    else:
+        green_layer = []
 
     return [
         {"id": "background", "type": "background",
@@ -103,6 +162,13 @@ def basemap(p):
               ["!=", ["get", "kind_detail"], "service"]],
              p["road_minor"], ["interpolate", ["linear"], ["zoom"], 11, 0.3, 12, 0.9],
              minz=11),
+        *([line("trail", "roads",
+                ["all", lstr, ["match", ["get", "kind"],
+                               ["path", "track"], True, False]],
+                p["trail"], ["interpolate", ["linear"], ["zoom"],
+                              p["trail_minzoom"], 0.6, 12, 1.6],
+                minz=p["trail_minzoom"], dash=[3, 2])]
+          if p.get("trail") else []),
         line("road_medium", "roads",
              ["all", lstr, ["match", ["get", "kind_detail"],
                             ["secondary", "tertiary"], True, False]],
@@ -132,21 +198,28 @@ def basemap(p):
               p["water_label"], p["label_halo"], minz=3),
         label("place_settlement", "places",
               ["all", pt, ["match", ["get", "kind_detail"],
-                           ["town", "village", "hamlet", "borough", "suburb"], True, False]],
+                           ["town", "village", "hamlet", "borough", "suburb"], True, False],
+               ["<", ["get", "population"], BANDS["settlement"]["populationCeiling"]],
+               population_step_expr(BANDS["settlement"]["populationSteps"])],
               ["interpolate", ["linear"], ["zoom"], 7, 10, 12, 14],
-              p["label"], p["label_halo"], font="Noto Sans Medium", minz=7),
+              p["label"], p["label_halo"], font="Noto Sans Medium",
+              minz=BANDS["settlement"]["minzoom"], maxz=BANDS["settlement"]["maxzoom"]),
         label("place_city", "places",
-              ["all", pt, ["==", ["get", "kind"], "locality"]],
+              ["all", pt, ["==", ["get", "kind"], "locality"],
+               population_step_expr(BANDS["city"]["populationSteps"])],
               ["interpolate", ["linear"], ["zoom"], 3, 11, 10, 16],
-              p["label"], p["label_halo"], font="Noto Sans Medium", minz=3, upper=True),
+              p["label"], p["label_halo"], font="Noto Sans Medium",
+              minz=BANDS["city"]["minzoom"], maxz=BANDS["city"]["maxzoom"], upper=True),
         label("place_region", "places",
               ["all", pt, ["match", ["get", "kind"], ["region", "macroregion"], True, False]],
               ["interpolate", ["linear"], ["zoom"], 4, 10, 8, 13],
-              p["label"], p["label_halo"], minz=4, upper=True),
+              p["label"], p["label_halo"],
+              minz=BANDS["region"]["minzoom"], maxz=BANDS["region"]["maxzoom"], upper=True),
         label("place_country", "places",
               ["all", pt, ["==", ["get", "kind"], "country"]],
               ["interpolate", ["linear"], ["zoom"], 1, 11, 4, 15],
-              p["label"], p["label_halo"], font="Noto Sans Medium", minz=1, upper=True),
+              p["label"], p["label_halo"], font="Noto Sans Medium",
+              minz=BANDS["country"]["minzoom"], maxz=BANDS["country"]["maxzoom"], upper=True),
     ]
 
 
@@ -178,3 +251,4 @@ def build(theme, out):
 
 build(POSITRON, "funges_style_positron.json")
 build(DARKMATTER, "funges_style_darkmatter.json")
+build(TOPOGRAPHIC, "funges_style_topographic.json")

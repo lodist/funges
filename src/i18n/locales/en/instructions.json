@@ -14,7 +14,7 @@
     "title": "Functions:",
     "recipes": "Shows nearby recipes and routes to ingredient stops",
     "location": "Centres the Map on the User's Location",
-    "theme": "Cycle through 4 map styles: Light, Dark, Positron, Dark Matter",
+    "theme": "Pick a map theme: Light, Dark, White, Dark Matter or Topographic",
     "identify": "Identifies possible species from a photo, on your device",
     "numbers": "Displays Numeric Rating"
   },
