@@ -11,11 +11,13 @@ zones used by the scoring model.
 import json
 import math
 from datetime import datetime, timedelta, timezone
-from io import BytesIO
 from pathlib import Path
+from tempfile import TemporaryDirectory
+from typing import Iterator
 
 import numpy as np
 import pandas as pd
+import pyarrow.parquet as pq
 import requests
 
 REGION_URLS: dict[str, str] = {
@@ -70,6 +72,8 @@ VISUAL_REGIONS: dict[str, dict[str, tuple]] = {
 }
 
 DAYS = 365
+BATCH_SIZE = 100_000
+DOWNLOAD_CHUNK_SIZE = 1024 * 1024
 OUTPUT_PATH = Path("public/data/data_nerd.json")
 
 WEATHER_COLS: dict[str, str] = {
@@ -83,11 +87,15 @@ WEATHER_COLS: dict[str, str] = {
 }
 
 
-def fetch_parquet(url: str) -> pd.DataFrame:
-    print(f"Fetching {url} ...")
-    resp = requests.get(url, timeout=180)
-    resp.raise_for_status()
-    return pd.read_parquet(BytesIO(resp.content))
+def download_parquet(url: str, destination: Path) -> None:
+    """Stream a parquet to disk without retaining the response in memory."""
+    print(f"Fetching {url} ...", flush=True)
+    with requests.get(url, timeout=(30, 180), stream=True) as resp:
+        resp.raise_for_status()
+        with destination.open("wb") as output:
+            for chunk in resp.iter_content(chunk_size=DOWNLOAD_CHUNK_SIZE):
+                if chunk:
+                    output.write(chunk)
 
 
 def _safe_float(value: object, decimals: int) -> float | None:
@@ -132,24 +140,58 @@ def build_zones_geo(regions: dict[str, tuple]) -> dict:
     return {"type": "FeatureCollection", "features": features}
 
 
-def aggregate_region(df: pd.DataFrame, regions: dict[str, tuple]) -> tuple[list[dict], list[str]]:
-    df["Date"] = pd.to_datetime(df["Date"])
-    cutoff = datetime.now(timezone.utc).date() - timedelta(days=DAYS)
-    df = df[df["Date"].dt.date > cutoff].copy()
+def _parquet_batches(
+    parquet_path: Path, columns: list[str], batch_size: int
+) -> Iterator[pd.DataFrame]:
+    parquet = pq.ParquetFile(parquet_path)
+    for batch in parquet.iter_batches(
+        batch_size=batch_size, columns=columns, use_threads=True
+    ):
+        yield batch.to_pandas()
 
-    df["visual_region"] = assign_visual_regions(df, regions)
-    df = df[df["visual_region"].notna()]
 
-    score_cols = [c for c in df.columns if c.endswith("_score")]
-    present_weather = [c for c in WEATHER_COLS if c in df.columns]
-    present_scores = [c for c in score_cols if c in df.columns]
+def aggregate_region(
+    parquet_path: Path,
+    regions: dict[str, tuple],
+    batch_size: int = BATCH_SIZE,
+) -> tuple[list[dict], list[str]]:
+    """Aggregate a parquet with memory bounded by ``batch_size`` rows."""
+    parquet = pq.ParquetFile(parquet_path)
+    schema_columns = parquet.schema_arrow.names
+    score_cols = [c for c in schema_columns if c.endswith("_score")]
+    present_weather = [c for c in WEATHER_COLS if c in schema_columns]
+    value_columns = present_weather + score_cols
+    read_columns = ["Date", "Latitude", "Longitude", *value_columns]
 
-    agg: dict[str, str] = {c: "mean" for c in present_weather + present_scores}
-    grouped = (
-        df.groupby(["Date", "visual_region"], sort=False)
-        .agg(agg)
-        .reset_index()
+    cutoff = pd.Timestamp(
+        datetime.now(timezone.utc).date() - timedelta(days=DAYS)
     )
+    totals: pd.DataFrame | None = None
+
+    for df in _parquet_batches(parquet_path, read_columns, batch_size):
+        df["Date"] = pd.to_datetime(df["Date"])
+        df = df[df["Date"] > cutoff]
+        if df.empty:
+            continue
+
+        df["visual_region"] = assign_visual_regions(df, regions)
+        df = df[df["visual_region"].notna()]
+        if df.empty:
+            continue
+
+        partial = df.groupby(
+            ["Date", "visual_region"], sort=False
+        )[value_columns].agg(["sum", "count"])
+        totals = partial if totals is None else totals.add(partial, fill_value=0)
+
+    if totals is None:
+        return [], []
+
+    grouped = pd.DataFrame(index=totals.index)
+    for column in value_columns:
+        counts = totals[(column, "count")]
+        grouped[column] = totals[(column, "sum")].div(counts.where(counts > 0))
+    grouped = grouped.reset_index()
 
     rows: list[dict] = []
     for _, row in grouped.iterrows():
@@ -164,7 +206,7 @@ def aggregate_region(df: pd.DataFrame, regions: dict[str, tuple]) -> tuple[list[
             if val is not None:
                 entry[dst_key] = val
         scores: dict[str, float] = {}
-        for col in present_scores:
+        for col in score_cols:
             val = _safe_float(row[col], 2)
             if val is not None:
                 scores[col.removesuffix("_score")] = val
@@ -181,18 +223,26 @@ def main() -> None:
     updated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     regions_payload: dict[str, dict] = {}
 
-    for region_id, url in REGION_URLS.items():
-        df = fetch_parquet(url)
-        vis_regions = VISUAL_REGIONS[region_id]
-        data, zones = aggregate_region(df, vis_regions)
-        zones_geo = build_zones_geo(vis_regions)
-        regions_payload[region_id] = {
-            "label": REGION_LABELS[region_id],
-            "zones": zones,
-            "zones_geo": zones_geo,
-            "data": data,
-        }
-        print(f"  {region_id}: {len(data)} rows across {len(zones)} visual regions")
+    with TemporaryDirectory(prefix="funges-data-") as temp_dir:
+        temp_path = Path(temp_dir)
+        for region_id, url in REGION_URLS.items():
+            parquet_path = temp_path / f"{region_id}.parquet"
+            download_parquet(url, parquet_path)
+            vis_regions = VISUAL_REGIONS[region_id]
+            data, zones = aggregate_region(parquet_path, vis_regions)
+            zones_geo = build_zones_geo(vis_regions)
+            regions_payload[region_id] = {
+                "label": REGION_LABELS[region_id],
+                "zones": zones,
+                "zones_geo": zones_geo,
+                "data": data,
+            }
+            print(
+                f"  {region_id}: {len(data)} rows across "
+                f"{len(zones)} visual regions",
+                flush=True,
+            )
+            parquet_path.unlink()
 
     payload = {
         "updated_at": updated_at,
