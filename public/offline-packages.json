@@ -1,28 +1,28 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-20T21:22:03Z",
+  "generatedAt": "2026-08-20T22:07:12Z",
   "packages": [
     {
       "id": "eu",
       "continent": "eu",
       "name": "Europe",
       "description": "Detailed offline basemap and foraging forecasts for Europe.",
-      "bounds": [-25, 27, 45, 72],
+      "bounds": [-25, 34, 45, 72],
       "minZoom": 3,
       "maxZoom": 10,
-      "version": "d03c022e6b9f",
-      "updatedAt": "2026-08-20T21:05:23Z",
+      "version": "7d6861116c66",
+      "updatedAt": "2026-08-20T22:06:58Z",
       "published": true,
       "resources": [
         {
           "id": "basemap",
           "kind": "basemap",
-          "version": "7a0e835f4f84e71be75d39517675426548990a4150481fc283295728145ede80",
+          "version": "593cd24ffe221c6b006a23ce5560b3e931fb8c727c78dcd2e64a44c162eeab17",
           "sourceUrl": "https://data.fung.es/basemap/world_z12_20260619.pmtiles",
-          "downloadUrl": "https://data.fung.es/basemap/europe_z10_20260820.pmtiles",
-          "sizeBytes": 1374910317,
-          "etag": "dd555f0e7ecc8f5660ec531e48e1f86d",
-          "sha256": "7a0e835f4f84e71be75d39517675426548990a4150481fc283295728145ede80"
+          "downloadUrl": "https://data.fung.es/basemap/europe_z10_20260821.pmtiles",
+          "sizeBytes": 1351965398,
+          "etag": "650855154af6d81b5a2b24d47a070af5-21",
+          "sha256": "593cd24ffe221c6b006a23ce5560b3e931fb8c727c78dcd2e64a44c162eeab17"
         },
         {
           "id": "ne-forecast",
