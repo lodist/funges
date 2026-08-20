@@ -17,9 +17,7 @@
     "availableTitle": "Cosa resta disponibile",
     "available": "La mappa di base scaricata, le previsioni, il selettore delle specie, il cursore delle previsioni, i dettagli delle zone, tutti gli stili e la posizione restano disponibili. Il GPS non richiede dati mobili, ma può essere più lento e necessita del permesso di localizzazione.",
     "unavailableTitle": "Cosa richiede una connessione",
-    "unavailable": "ID da foto, Itinerario per la ricetta, navigazione Google Maps e dati dell’area sono nascosti offline perché richiedono una connessione Internet.",
-    "testTitle": "Prova prima dell’escursione",
-    "test": "Usa l’app HTTPS installata o una build di produzione, non il server di sviluppo. Scarica un pacchetto, attiva la modalità aereo, chiudi completamente l’app, riaprila, cambia stile e verifica che la mappa di base e la previsione restino visibili."
+    "unavailable": "ID da foto, Itinerario per la ricetta, navigazione Google Maps e dati dell’area sono nascosti offline perché richiedono una connessione Internet."
   },
   "functions": {
     "title": "Funzioni:",

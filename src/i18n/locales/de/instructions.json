@@ -17,9 +17,7 @@
     "availableTitle": "Was verfügbar bleibt",
     "available": "Die heruntergeladene Grundkarte, Prognosen, Artenauswahl, Prognoseregler, Zonendetails, alle Kartenstile und die Standortfunktion bleiben verfügbar. GPS benötigt keine mobilen Daten, kann aber langsamer sein und braucht die Standortberechtigung.",
     "unavailableTitle": "Was eine Verbindung benötigt",
-    "unavailable": "Foto-ID, Route zum Gericht, Google-Maps-Navigation und Gebietsdaten werden offline ausgeblendet, da sie eine Internetverbindung benötigen.",
-    "testTitle": "Vor dem Ausflug testen",
-    "test": "Verwende die installierte HTTPS-App oder einen Produktions-Build, nicht den Entwicklungsserver. Lade ein Paket, aktiviere den Flugmodus, schließe die App vollständig, öffne sie erneut, wechsle die Kartenstile und prüfe, ob Grundkarte und Prognose sichtbar bleiben."
+    "unavailable": "Foto-ID, Route zum Gericht, Google-Maps-Navigation und Gebietsdaten werden offline ausgeblendet, da sie eine Internetverbindung benötigen."
   },
   "functions": {
     "title": "Funktionen:",

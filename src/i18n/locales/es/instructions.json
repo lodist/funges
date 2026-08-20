@@ -17,9 +17,7 @@
     "availableTitle": "Qué permanece disponible",
     "available": "El mapa base descargado, las previsiones, el selector de especies, el control de previsión, los detalles de zonas, todos los estilos y la ubicación permanecen disponibles. El GPS no necesita datos móviles, aunque puede ser más lento y requiere permiso de ubicación.",
     "unavailableTitle": "Qué necesita conexión",
-    "unavailable": "La identificación por foto, Ruta al plato, la navegación de Google Maps y los datos del área se ocultan sin conexión porque necesitan acceso a Internet.",
-    "testTitle": "Pruébalo antes de salir",
-    "test": "Usa la aplicación HTTPS instalada o una compilación de producción, no el servidor de desarrollo. Descarga un paquete, activa el modo avión, cierra completamente la aplicación, ábrela de nuevo, cambia de estilo y comprueba que el mapa base y la previsión sigan visibles."
+    "unavailable": "La identificación por foto, Ruta al plato, la navegación de Google Maps y los datos del área se ocultan sin conexión porque necesitan acceso a Internet."
   },
   "functions": {
     "title": "Funciones:",

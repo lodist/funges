@@ -117,7 +117,7 @@ export default function InstructionsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className='space-y-5 text-gray-700 dark:text-gray-300'>
-              {(['prepare', 'available', 'unavailable', 'test'] as const).map(
+              {(['prepare', 'available', 'unavailable'] as const).map(
                 (item, index) => (
                   <div key={item}>
                     {index > 0 && <Separator className='mb-5' />}

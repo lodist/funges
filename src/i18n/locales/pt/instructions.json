@@ -17,9 +17,7 @@
     "availableTitle": "O que continua disponível",
     "available": "O mapa base transferido, as previsões, o seletor de espécies, o controlo da previsão, os detalhes das zonas, todos os estilos e a localização continuam disponíveis. O GPS não requer dados móveis, embora possa ser mais lento e necessite de permissão de localização.",
     "unavailableTitle": "O que requer ligação",
-    "unavailable": "A identificação por fotografia, Rota para o prato, a navegação Google Maps e os dados da área ficam ocultos offline porque requerem uma ligação à Internet.",
-    "testTitle": "Teste antes do passeio",
-    "test": "Utilize a aplicação HTTPS instalada ou uma versão de produção, não o servidor de desenvolvimento. Transfira um pacote, ative o modo de voo, feche completamente a aplicação, reabra-a, mude os estilos e confirme que o mapa base e a previsão continuam visíveis."
+    "unavailable": "A identificação por fotografia, Rota para o prato, a navegação Google Maps e os dados da área ficam ocultos offline porque requerem uma ligação à Internet."
   },
   "functions": {
     "title": "Funções:",
