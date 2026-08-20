@@ -44,7 +44,9 @@ export default function OfflineMapsPage() {
     const [west, south, east, north] = definition.bounds;
     const center: [number, number] = [(west + east) / 2, (south + north) / 2];
     const continentZoom = definition.continent === 'eu' ? 4 : 3.5;
-    await activateForCoordinate(center[0], center[1]);
+    if (!isOnline) {
+      await activateForCoordinate(center[0], center[1]);
+    }
     setCenter(center);
     setZoom(
       Math.max(definition.minZoom, Math.min(continentZoom, definition.maxZoom))
@@ -107,7 +109,8 @@ export default function OfflineMapsPage() {
             const installed = cached[definition.id];
             const currentProgress = progress[definition.id];
             const updateAvailable =
-              Boolean(installed) && installed.version !== definition.version;
+              Boolean(installed) &&
+              (installed.expired || installed.version !== definition.version);
             const hasBasemap = packageHasBasemap(definition);
 
             return (
@@ -172,10 +175,14 @@ export default function OfflineMapsPage() {
 
                 {installed && (
                   <p className='text-xs text-muted-foreground'>
-                    {t('packages.downloaded', {
-                      date: new Date(installed.cachedAt).toLocaleDateString(),
-                      version: installed.version,
-                    })}
+                    {installed.expired
+                      ? t('packages.expired')
+                      : t('packages.downloaded', {
+                          date: new Date(
+                            installed.cachedAt
+                          ).toLocaleDateString(),
+                          version: installed.version,
+                        })}
                   </p>
                 )}
 

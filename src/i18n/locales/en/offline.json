@@ -1,7 +1,7 @@
 {
   "title": "Offline Maps",
   "description": "Download and manage map packages for offline use",
-  "intro": "Download a map package before your trip. Each package includes the basemap and foraging forecasts for offline use.",
+  "intro": "Download a map package before your trip. Each package includes the basemap and foraging forecasts and remains valid for 7 days.",
   "offlineBanner": "You're offline. Installed packages remain available.",
   "storage": {
     "title": "Device storage",
@@ -19,6 +19,7 @@
     "open": "Open map",
     "cancel": "Cancel",
     "progress": "Downloading… {{percent}}%",
-    "downloaded": "Downloaded {{date}} · version {{version}}"
+    "downloaded": "Downloaded {{date}} · version {{version}} · valid for 7 days",
+    "expired": "Expired · connect to the internet and update before using offline"
   }
 }

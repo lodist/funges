@@ -6,6 +6,10 @@ import {
   validateOfflineManifest,
   type OfflinePackageDefinition,
 } from '@/lib/offline-packages';
+import {
+  isOfflinePackageExpired,
+  OFFLINE_PACKAGE_MAX_AGE_MS,
+} from '@/lib/offlineCache';
 
 const definition: OfflinePackageDefinition = {
   id: 'ch',
@@ -36,6 +40,22 @@ const definition: OfflinePackageDefinition = {
 };
 
 describe('offline package definitions', () => {
+  it('expires a downloaded package after seven days', () => {
+    const downloadedAt = Date.UTC(2026, 7, 20);
+    expect(
+      isOfflinePackageExpired(
+        downloadedAt,
+        downloadedAt + OFFLINE_PACKAGE_MAX_AGE_MS - 1
+      )
+    ).toBe(false);
+    expect(
+      isOfflinePackageExpired(
+        downloadedAt,
+        downloadedAt + OFFLINE_PACKAGE_MAX_AGE_MS
+      )
+    ).toBe(true);
+  });
+
   it('calculates package capabilities and size', () => {
     expect(packageSize(definition)).toBe(120);
     expect(packageHasBasemap(definition)).toBe(true);

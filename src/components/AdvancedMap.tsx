@@ -11,6 +11,10 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { protocol } from '@/lib/pmtiles-protocol';
 import {
+  deactivateOfflineSources,
+  hydrateOfflineSources,
+} from '@/lib/offlineCache';
+import {
   useMapStore,
   REGION_BBOX,
   resolveDataNerdRegion,
@@ -189,16 +193,18 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     activeDay,
   } = useMapStore();
   const { isOnline } = usePWA();
-  const { cached: cachedPackages } = useOfflineStore();
+  const { cached: cachedPackages, activateForCoordinate } = useOfflineStore();
   const cachedPackageList = useMemo(
     () => Object.values(cachedPackages),
     [cachedPackages]
   );
-  const hasOfflinePackageAtCenter = cachedPackageList.some(item =>
-    containsCoordinate(item.definition, center[0], center[1])
+  const hasOfflinePackageAtCenter = cachedPackageList.some(
+    item =>
+      !item.expired && containsCoordinate(item.definition, center[0], center[1])
   );
   const hasOfflineBasemapAtCenter = cachedPackageList.some(
     item =>
+      !item.expired &&
       packageHasBasemap(item.definition) &&
       containsCoordinate(item.definition, center[0], center[1])
   );
@@ -219,6 +225,27 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     setIsIdentifyOpen(false);
     closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
   }, [isOnline]);
+
+  useEffect(() => {
+    const syncMapSources = async () => {
+      if (isOnline) {
+        await deactivateOfflineSources();
+      } else {
+        await hydrateOfflineSources();
+        await activateForCoordinate(center[0], center[1]);
+      }
+      map.current?.triggerRepaint();
+    };
+    void syncMapSources().catch(error => {
+      console.warn(
+        'Unable to switch map sources for connectivity change:',
+        error
+      );
+    });
+    // Center is sampled when connectivity changes; map movement should not
+    // repeatedly reopen large files from device storage.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOnline, activateForCoordinate]);
 
   useEffect(() => {
     routeInputsRef.current = {
@@ -858,7 +885,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       const sourceId = `offline-basemap-${continent}`;
       const layerId = `${sourceId}-layer`;
       const hasContinentPackage = cachedPackageList.some(
-        item => item.definition.continent === continent
+        item => !item.expired && item.definition.continent === continent
       );
       const shouldShow =
         !isOnline && !hasOfflineBasemapAtCenter && hasContinentPackage;

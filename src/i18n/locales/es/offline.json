@@ -1,7 +1,7 @@
 {
   "title": "Mapas sin conexión",
   "description": "Descarga y administra paquetes de mapas para usarlos sin conexión",
-  "intro": "Descarga un paquete de mapas antes de salir. Cada paquete incluye el mapa base y las previsiones de recolección para usarlos sin conexión.",
+  "intro": "Descarga un paquete de mapas antes de salir. Cada paquete incluye el mapa base y las previsiones de recolección y es válido durante 7 días.",
   "offlineBanner": "Estás sin conexión. Los paquetes instalados siguen disponibles.",
   "storage": {
     "title": "Almacenamiento del dispositivo",
@@ -19,6 +19,7 @@
     "open": "Abrir mapa",
     "cancel": "Cancelar",
     "progress": "Descargando… {{percent}}%",
-    "downloaded": "Descargado el {{date}} · versión {{version}}"
+    "downloaded": "Descargado el {{date}} · versión {{version}} · válido durante 7 días",
+    "expired": "Caducado · conéctate a Internet y actualiza el paquete"
   }
 }

@@ -15,6 +15,7 @@ const DB_VERSION = 2;
 const PACKAGE_STORE = 'packages';
 const RESOURCE_STORE = 'package-resources';
 const OPFS_DIRECTORY = 'offline-map-packages';
+export const OFFLINE_PACKAGE_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 
 export type OfflineStorageBackend = 'opfs' | 'indexeddb';
 
@@ -47,6 +48,14 @@ export interface OfflinePackageCacheInfo {
   sizeBytes: number;
   cachedAt: number;
   complete: boolean;
+  expired: boolean;
+}
+
+export function isOfflinePackageExpired(
+  cachedAt: number,
+  now = Date.now()
+): boolean {
+  return now - cachedAt >= OFFLINE_PACKAGE_MAX_AGE_MS;
 }
 
 export interface OfflineDownloadProgress {
@@ -333,7 +342,10 @@ export async function assertStorageCapacity(
 }
 
 export async function hydrateOfflineSources(): Promise<void> {
-  const packages = (await getStoredPackages()).filter(item => item.complete);
+  if (navigator.onLine) return;
+  const packages = (await getStoredPackages()).filter(
+    item => item.complete && !isOfflinePackageExpired(item.cachedAt)
+  );
   const resources = await getStoredResources();
   const activeVersions = new Map(
     packages.flatMap(item =>
@@ -355,6 +367,11 @@ export async function hydrateOfflineSources(): Promise<void> {
   }
 }
 
+export async function deactivateOfflineSources(): Promise<void> {
+  const resources = await getStoredResources();
+  resources.forEach(resource => protocol.tiles.delete(resource.sourceUrl));
+}
+
 export async function activateBasemapForCoordinate(
   longitude: number,
   latitude: number
@@ -362,6 +379,7 @@ export async function activateBasemapForCoordinate(
   const packages = (await getStoredPackages()).filter(
     item =>
       item.complete &&
+      !isOfflinePackageExpired(item.cachedAt) &&
       packageHasBasemap(item.definition) &&
       containsCoordinate(item.definition, longitude, latitude)
   );
@@ -390,7 +408,10 @@ export async function activateBasemapForCoordinate(
 export async function getCachedPackages(): Promise<OfflinePackageCacheInfo[]> {
   return (await getStoredPackages())
     .filter(item => item.complete)
-    .map(item => ({ ...item }));
+    .map(item => ({
+      ...item,
+      expired: isOfflinePackageExpired(item.cachedAt),
+    }));
 }
 
 export async function downloadOfflinePackage(
@@ -478,10 +499,12 @@ export async function downloadOfflinePackage(
       tx.onerror = () => reject(tx.error);
     });
 
-    for (const resource of downloaded.filter(
-      item => item.kind === 'forecast'
-    )) {
-      await registerResource(resource);
+    if (!navigator.onLine) {
+      for (const resource of downloaded.filter(
+        item => item.kind === 'forecast'
+      )) {
+        await registerResource(resource);
+      }
     }
     const retainedKeys = new Set(retained.map(item => item.key));
     await Promise.all(
@@ -489,7 +512,7 @@ export async function downloadOfflinePackage(
         .filter(item => !retainedKeys.has(item.key))
         .map(removeOpfsResource)
     );
-    return { ...record };
+    return { ...record, expired: false };
   } catch (error) {
     await Promise.all(downloaded.map(removeOpfsResource));
     throw error;
