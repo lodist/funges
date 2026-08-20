@@ -114,6 +114,7 @@
   },
   "offline": {
     "title": "Keine Verbindung",
-    "message": "Die Karte braucht eine Internetverbindung. Arten und Rezepte funktionieren weiterhin offline."
+    "noPackageMessage": "Kein heruntergeladenes Kartenpaket deckt dieses Gebiet ab. Stelle eine Verbindung her oder kehre zu einem gespeicherten Gebiet zurück.",
+    "forecastOnlyMessage": "Offline-Prognose geladen. Die detaillierte Grundkarte benötigt eine Verbindung."
   }
 }

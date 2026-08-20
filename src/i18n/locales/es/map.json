@@ -114,6 +114,7 @@
   },
   "offline": {
     "title": "Sin conexión",
-    "message": "El mapa necesita conexión para cargarse. Las especies y las recetas siguen funcionando sin conexión."
+    "noPackageMessage": "Ningún paquete descargado cubre esta zona. Vuelve a conectarte o regresa a una zona guardada.",
+    "forecastOnlyMessage": "Previsión sin conexión cargada. El mapa base detallado necesita conexión."
   }
 }

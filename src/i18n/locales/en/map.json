@@ -114,6 +114,7 @@
   },
   "offline": {
     "title": "You're offline",
-    "message": "The map needs a connection to load. Species and recipes still work offline."
+    "noPackageMessage": "No downloaded map package covers this area. Reconnect or return to an area you saved.",
+    "forecastOnlyMessage": "Offline forecast loaded. The detailed basemap needs a connection."
   }
 }

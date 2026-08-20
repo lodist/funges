@@ -20,6 +20,7 @@ import {
   Users,
   BarChart3,
   Lightbulb,
+  WifiOff,
 } from 'lucide-react';
 
 export default function InstructionsPage() {
@@ -105,6 +106,35 @@ export default function InstructionsPage() {
               <p className='text-gray-700 dark:text-gray-300 leading-relaxed'>
                 {t('mapDescription.polygons')}
               </p>
+            </CardContent>
+          </Card>
+
+          {/* Offline behavior is a product contract, not an implementation
+              detail. Keep it explicit so users know what to prepare online and
+              which controls intentionally disappear without a connection. */}
+          <Card className='mb-8 border-green-200 bg-green-50/60 py-6 dark:border-green-900 dark:bg-green-950/20'>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-3 text-2xl'>
+                <WifiOff className='h-7 w-7 text-green-700 dark:text-green-400' />
+                {t('offline.title')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className='grid gap-4 text-gray-700 dark:text-gray-300 md:grid-cols-2'>
+              {(['prepare', 'available', 'unavailable', 'test'] as const).map(
+                item => (
+                  <div
+                    key={item}
+                    className='rounded-lg bg-white/70 p-4 dark:bg-gray-800/60'
+                  >
+                    <h3 className='mb-1 font-semibold text-gray-900 dark:text-white'>
+                      {t(`offline.${item}Title`)}
+                    </h3>
+                    <p className='text-sm leading-relaxed'>
+                      {t(`offline.${item}`)}
+                    </p>
+                  </div>
+                )
+              )}
             </CardContent>
           </Card>
 

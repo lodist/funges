@@ -13,7 +13,7 @@ export const OfflineIndicator = () => {
   }
 
   return (
-    <div className='fixed top-4 right-4 z-50 flex flex-col gap-2'>
+    <div className='pointer-events-none fixed left-1/2 top-4 z-50 flex -translate-x-1/2 flex-col items-center gap-2'>
       {!isOnline && (
         <Badge variant='destructive' className='flex items-center gap-2'>
           <WifiOff className='h-4 w-4' />
@@ -24,7 +24,7 @@ export const OfflineIndicator = () => {
       {hasUpdate && (
         <Button
           variant='secondary'
-          className='shadow-lg'
+          className='pointer-events-auto shadow-lg'
           onClick={reloadForUpdate}
         >
           <RefreshCw className='h-4 w-4' />

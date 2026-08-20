@@ -21,12 +21,14 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { usePWA } from '@/hooks/use-pwa';
 
 const ONBOARDING_KEY = 'onboardingDismissed';
 
 export default function OnboardingModal() {
   const { t } = useTranslation('map');
   const { activeModal, setActiveModal } = useUIStore();
+  const { isOnline } = usePWA();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -63,10 +65,12 @@ export default function OnboardingModal() {
           </li>
           {/* Same ScanSearch icon as the map control it describes, so the
               line and the button are recognisably the same feature. */}
-          <li className='flex items-center gap-2'>
-            <ScanSearch className='h-4 w-4' />
-            {t('onboarding.features.identify')}
-          </li>
+          {isOnline && (
+            <li className='flex items-center gap-2'>
+              <ScanSearch className='h-4 w-4' />
+              {t('onboarding.features.identify')}
+            </li>
+          )}
           <li className='flex items-center gap-2'>
             <Navigation className='h-4 w-4' />
             {t('onboarding.features.locate')}
@@ -79,10 +83,12 @@ export default function OnboardingModal() {
             <MousePointerClick className='h-4 w-4' />
             {t('onboarding.features.zones')}
           </li>
-          <li className='flex items-center gap-2'>
-            <ChefHat className='h-4 w-4' />
-            {t('onboarding.features.recipes')}
-          </li>
+          {isOnline && (
+            <li className='flex items-center gap-2'>
+              <ChefHat className='h-4 w-4' />
+              {t('onboarding.features.recipes')}
+            </li>
+          )}
         </ul>
         <div className='mt-4 text-sm space-y-2'>
           <div>

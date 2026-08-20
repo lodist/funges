@@ -79,11 +79,33 @@ test('map explains itself when the device goes offline', async ({
 }) => {
   await page.goto('/');
   await expect(page.locator('canvas.maplibregl-canvas')).toBeVisible();
+  const dismissOnboarding = page.getByRole('button', {
+    name: 'Start exploring',
+  });
+  if (await dismissOnboarding.isVisible()) await dismissOnboarding.click();
+  await expect(
+    page.getByRole('button', { name: 'Identify from a photo' })
+  ).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Nearby Recipes' })
+  ).toBeVisible();
 
   await context.setOffline(true);
 
   await expect(page.getByText(/you're offline/i)).toBeVisible();
-  await expect(page.getByText(/the map needs a connection/i)).toBeVisible();
+  await expect(
+    page.getByText(/no downloaded map package covers this area/i)
+  ).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Identify from a photo' })
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole('button', { name: 'Nearby Recipes' })
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole('button', { name: 'Get My Location' })
+  ).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Map theme' })).toBeVisible();
 });
 
 // Cold start in airplane mode is not covered here: `npm run dev` serves an

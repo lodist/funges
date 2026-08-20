@@ -10,6 +10,17 @@
     "scores": "Las puntuaciones indican la disponibilidad potencial de la parte comestible para recolectar (como frutos secos, frutas o setas), más que la mera presencia de la planta o del árbol en sí.",
     "polygons": "Los polígonos y marcadores solo se muestran cuando aportan información estacional relevante, manteniendo el mapa ligero y enfocado. Si algo no aparece, puede que sea demasiado pronto o tarde en la temporada."
   },
+  "offline": {
+    "title": "Usar el mapa sin conexión",
+    "prepareTitle": "Antes de salir",
+    "prepare": "Mientras tengas conexión, abre Mapas sin conexión y descarga tu región. Espera a que termine y después abre el mapa una vez. Instala la aplicación para que pueda reiniciarse sin conexión de forma fiable.",
+    "availableTitle": "Qué permanece disponible",
+    "available": "Las previsiones descargadas, el selector de especies, el control de previsión, los detalles de zonas, todos los estilos y la ubicación permanecen disponibles. El GPS no necesita datos móviles, aunque puede ser más lento y requiere permiso de ubicación.",
+    "unavailableTitle": "Qué necesita conexión",
+    "unavailable": "La identificación por foto, Ruta al plato, la navegación de Google Maps y los datos del área se ocultan sin conexión. Los paquetes actuales de previsión no incluyen un mapa base detallado; solo lo incluyen los paquetes descritos como completos.",
+    "testTitle": "Pruébalo antes de salir",
+    "test": "Usa la aplicación HTTPS instalada o una compilación de producción, no el servidor de desarrollo. Descarga un paquete, activa el modo avión, cierra completamente la aplicación, ábrela de nuevo, cambia de estilo y comprueba la previsión."
+  },
   "functions": {
     "title": "Funciones:",
     "recipes": "Muestra recetas cercanas y rutas a las paradas de ingredientes",

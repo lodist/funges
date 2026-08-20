@@ -114,6 +114,7 @@
   },
   "offline": {
     "title": "Sem conexão",
-    "message": "O mapa precisa de conexão para carregar. Espécies e receitas continuam funcionando offline."
+    "noPackageMessage": "Nenhum pacote transferido cobre esta área. Volte a ligar-se ou regresse a uma área guardada.",
+    "forecastOnlyMessage": "Previsão offline carregada. O mapa base detalhado requer ligação."
   }
 }

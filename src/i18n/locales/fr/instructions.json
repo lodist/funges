@@ -10,6 +10,17 @@
     "scores": "Les scores indiquent la disponibilité potentielle de la partie comestible à cueillir (comme les noix, les fruits ou les champignons), plutôt que la simple présence de la plante ou de l'arbre lui-même.",
     "polygons": "Les polygones et marqueurs ne s'affichent que lorsqu'ils apportent une information saisonnière pertinente, pour garder la carte légère et claire. Si rien n'apparaît, il est peut-être trop tôt ou trop tard dans la saison."
   },
+  "offline": {
+    "title": "Utiliser la carte hors ligne",
+    "prepareTitle": "Avant de partir",
+    "prepare": "En ligne, ouvrez Cartes hors ligne et téléchargez votre région. Attendez la fin du téléchargement, puis ouvrez la carte une fois. Installez l’application pour un redémarrage hors ligne fiable.",
+    "availableTitle": "Ce qui reste disponible",
+    "available": "Les prévisions téléchargées, le sélecteur d’espèces, le curseur de prévision, les détails des zones, tous les styles et la localisation restent disponibles. Le GPS n’utilise pas les données mobiles, mais peut être plus lent et nécessite l’autorisation de localisation.",
+    "unavailableTitle": "Ce qui nécessite une connexion",
+    "unavailable": "L’identification photo, Route vers un plat, la navigation Google Maps et les données régionales sont masquées hors ligne. Les forfaits de prévisions actuels n’incluent pas de fond de carte détaillé ; seuls les forfaits explicitement complets en incluent un.",
+    "testTitle": "Tester avant la sortie",
+    "test": "Utilisez l’application HTTPS installée ou une version de production, pas le serveur de développement. Téléchargez un forfait, activez le mode avion, fermez complètement l’application, rouvrez-la, changez de style et vérifiez la prévision."
+  },
   "functions": {
     "title": "Fonctions :",
     "recipes": "Affiche les recettes proches et des trajets vers les etapes ingredients",

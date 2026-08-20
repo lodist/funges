@@ -114,6 +114,7 @@
   },
   "offline": {
     "title": "Hors connexion",
-    "message": "La carte a besoin d'une connexion pour se charger. Les espèces et les recettes fonctionnent hors connexion."
+    "noPackageMessage": "Aucun forfait téléchargé ne couvre cette zone. Reconnectez-vous ou revenez dans une zone enregistrée.",
+    "forecastOnlyMessage": "Prévisions hors ligne chargées. Le fond de carte détaillé nécessite une connexion."
   }
 }

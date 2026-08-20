@@ -194,6 +194,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     () => Object.values(cachedPackages),
     [cachedPackages]
   );
+  const hasOfflinePackageAtCenter = cachedPackageList.some(item =>
+    containsCoordinate(item.definition, center[0], center[1])
+  );
   const hasOfflineBasemapAtCenter = cachedPackageList.some(
     item =>
       packageHasBasemap(item.definition) &&
@@ -210,6 +213,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     if (!activeRoute) return;
     window.open(getGoogleMapsDirectionsUrl(activeRoute), '_blank');
   }, [activeRoute]);
+
+  useEffect(() => {
+    if (isOnline) return;
+    setIsIdentifyOpen(false);
+    closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
+  }, [isOnline]);
 
   useEffect(() => {
     routeInputsRef.current = {
@@ -938,7 +947,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             precached — so it renders as empty background with no error and
             nothing tells the user why. mapError never fires for this.
             Hide it only when a detailed basemap package covers the viewport. */}
-        {mapLoaded && !isOnline && !hasOfflineBasemapAtCenter && (
+        {mapLoaded && !isOnline && !hasOfflinePackageAtCenter && (
           <div className='absolute inset-0 z-30 flex items-center justify-center p-6 pointer-events-none'>
             <div className='max-w-xs rounded-lg border bg-background/95 p-4 text-center shadow-lg'>
               <WifiOff className='mx-auto mb-2 h-6 w-6 text-muted-foreground' />
@@ -946,11 +955,20 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 {t('offline.title')}
               </h3>
               <p className='text-xs text-muted-foreground'>
-                {t('offline.message')}
+                {t('offline.noPackageMessage')}
               </p>
             </div>
           </div>
         )}
+
+        {mapLoaded &&
+          !isOnline &&
+          hasOfflinePackageAtCenter &&
+          !hasOfflineBasemapAtCenter && (
+            <div className='pointer-events-none absolute left-1/2 top-14 z-20 w-max max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-md border bg-background/90 px-3 py-2 text-center text-xs text-muted-foreground shadow-sm'>
+              {t('offline.forecastOnlyMessage')}
+            </div>
+          )}
 
         {/* Species selector - top left corner */}
         <div className='absolute top-2 left-2 z-20'>
@@ -988,51 +1006,54 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           {/* Map theme selector (Light/Dark/White/Dark Matter/Topographic) */}
           <MapThemeSelector />
 
-          {/* Info button */}
-          <motion.button
-            onClick={() => {
-              if (isRoutePanelOpen) {
-                closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
-                return;
-              }
+          {isOnline && (
+            <motion.button
+              onClick={() => {
+                if (isRoutePanelOpen) {
+                  closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
+                  return;
+                }
 
-              setIsRoutePanelOpen(true);
-            }}
-            className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
-              isRoutePanelOpen
-                ? 'bg-emerald-100 border-emerald-300 text-emerald-800'
-                : 'bg-secondary border-input'
-            }`}
-            title={tRecipes('routePanel.title')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
-          >
-            <ChefHat className='h-4 w-4' />
-          </motion.button>
+                setIsRoutePanelOpen(true);
+              }}
+              className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
+                isRoutePanelOpen
+                  ? 'bg-emerald-100 border-emerald-300 text-emerald-800'
+                  : 'bg-secondary border-input'
+              }`}
+              title={tRecipes('routePanel.title')}
+              aria-label={tRecipes('routePanel.title')}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{
+                duration: 0.2,
+                type: 'spring',
+                stiffness: 400,
+                damping: 25,
+              }}
+            >
+              <ChefHat className='h-4 w-4' />
+            </motion.button>
+          )}
 
-          {/* Identify from a photo. Sits directly above Info in the stack. */}
-          <motion.button
-            onClick={() => setIsIdentifyOpen(true)}
-            className='inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg bg-secondary border-input'
-            title={tIdentify('openButton')}
-            aria-label={tIdentify('openButton')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
-          >
-            <ScanSearch className='h-4 w-4' />
-          </motion.button>
+          {isOnline && (
+            <motion.button
+              onClick={() => setIsIdentifyOpen(true)}
+              className='inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg bg-secondary border-input'
+              title={tIdentify('openButton')}
+              aria-label={tIdentify('openButton')}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{
+                duration: 0.2,
+                type: 'spring',
+                stiffness: 400,
+                damping: 25,
+              }}
+            >
+              <ScanSearch className='h-4 w-4' />
+            </motion.button>
+          )}
 
           {/* Info button */}
           <motion.button
@@ -1134,8 +1155,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           setSelectedFeature(null);
           setIsModalFromLocateMe(false);
         }}
-        hideDirections={isModalFromLocateMe}
-        dataNerdRegion={dataNerdRegion}
+        hideDirections={isModalFromLocateMe || !isOnline}
+        dataNerdRegion={isOnline ? dataNerdRegion : null}
       />
 
       {/* Mounted only once opened, so the ONNX chunk is never fetched by a user
