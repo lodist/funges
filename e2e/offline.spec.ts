@@ -12,7 +12,9 @@ test('offline package catalog keeps package cards concise', async ({
   await expect(page.getByText('United States forecast data')).toBeVisible();
   await expect(page.getByText('12.9 MB')).toBeVisible();
   await expect(page.getByText('9.4 MB')).toBeVisible();
-  await expect(page.getByText(/save forecasts before your trip/i)).toBeVisible();
+  await expect(
+    page.getByText(/save forecasts before your trip/i)
+  ).toBeVisible();
   await expect(page.getByText(/forecast data only/i)).toHaveCount(0);
   await expect(page.getByText(/zoom 3/i)).toHaveCount(0);
 });
@@ -44,7 +46,7 @@ test('downloads, validates, activates, and removes a package', async ({
                 id: 'forecast',
                 kind: 'forecast',
                 sourceUrl,
-                sizeBytes: 4,
+                sizeBytes: 8,
               },
             ],
           },
@@ -55,8 +57,8 @@ test('downloads, validates, activates, and removes a package', async ({
   await page.route(sourceUrl, route =>
     route.fulfill({
       contentType: 'application/octet-stream',
-      headers: { 'Content-Length': '4' },
-      body: Buffer.from([0x50, 0x4d, 0x03, 0x00]),
+      headers: { 'Content-Length': '8' },
+      body: Buffer.from([0x50, 0x4d, 0x54, 0x69, 0x6c, 0x65, 0x73, 0x03]),
     })
   );
 

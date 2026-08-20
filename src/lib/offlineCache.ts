@@ -164,8 +164,12 @@ async function assertPmtilesFile(
       `Download truncated: received ${file.size} of ${expectedBytes} bytes`
     );
   }
-  const magic = new Uint8Array(await file.slice(0, 3).arrayBuffer());
-  if (magic[0] !== 0x50 || magic[1] !== 0x4d || magic[2] !== 3) {
+  const header = new Uint8Array(await file.slice(0, 8).arrayBuffer());
+  const signature = [0x50, 0x4d, 0x54, 0x69, 0x6c, 0x65, 0x73];
+  const hasValidSignature = signature.every(
+    (byte, index) => header[index] === byte
+  );
+  if (!hasValidSignature || header[7] !== 3) {
     throw new Error('Downloaded file is not a PMTiles v3 archive');
   }
 }
