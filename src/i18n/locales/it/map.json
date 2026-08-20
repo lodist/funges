@@ -114,6 +114,6 @@
   },
   "offline": {
     "title": "Nessuna connessione",
-    "message": "La mappa ha bisogno di una connessione per caricarsi. Specie, ricette e le pagine dati funzionano anche offline."
+    "message": "La mappa ha bisogno di una connessione per caricarsi. Specie e ricette funzionano anche offline."
   }
 }
