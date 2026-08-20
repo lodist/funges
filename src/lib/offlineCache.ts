@@ -485,12 +485,19 @@ export async function downloadOfflinePackage(
       (sum, resource) => sum + resource.sizeBytes,
       0
     );
+    const { usageBytes, quotaBytes } = await getOfflineStorageEstimate();
+    const mustReclaimBeforeDownload =
+      usageBytes !== null &&
+      quotaBytes !== null &&
+      quotaBytes - usageBytes < requiredBytes * 1.1;
     await assertStorageCapacity(requiredBytes, reclaimableBytes);
 
-    // An update may have to replace a large basemap in a browser with a small
-    // per-site quota. Reclaim only superseded files, after confirming the new
-    // package will fit; independently-versioned resources remain untouched.
-    await releaseReplacedResources(definition.id, replacedResources);
+    if (mustReclaimBeforeDownload) {
+      // A small per-site quota may not fit old and new basemaps together.
+      // Reclaim only superseded files after confirming the replacement will
+      // fit; independently-versioned resources remain untouched.
+      await releaseReplacedResources(definition.id, replacedResources);
+    }
 
     for (const resource of retained) {
       receivedBytes += resource.sizeBytes;

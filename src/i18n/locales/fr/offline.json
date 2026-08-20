@@ -2,7 +2,7 @@
   "title": "Cartes hors ligne",
   "description": "Télécharger et gérer des cartes pour une utilisation hors ligne",
   "intro": "Téléchargez une carte avant votre sortie. Chaque forfait comprend le fond de carte et les prévisions de cueillette et reste valable 7 jours.",
-  "offlineBanner": "Vous êtes hors ligne. Les forfaits installés restent disponibles.",
+  "offlineBanner": "Vous êtes hors ligne. Les forfaits téléchargés encore valables restent disponibles.",
   "storage": {
     "title": "Stockage de l’appareil",
     "summary": "{{used}} utilisés sur environ {{quota}} disponibles pour ce site",

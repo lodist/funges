@@ -974,7 +974,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             precached — so it renders as empty background with no error and
             nothing tells the user why. mapError never fires for this.
             Hide it only when a detailed basemap package covers the viewport. */}
-        {mapLoaded && !isOnline && !hasOfflinePackageAtCenter && (
+        {!isOnline && !hasOfflinePackageAtCenter && (
           <div className='absolute inset-0 z-30 flex items-center justify-center p-6 pointer-events-none'>
             <div className='max-w-xs rounded-lg border bg-background/95 p-4 text-center shadow-lg'>
               <WifiOff className='mx-auto mb-2 h-6 w-6 text-muted-foreground' />

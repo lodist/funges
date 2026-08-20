@@ -33,11 +33,18 @@ basemap resource version, so clients download only changed forecast archives.
 ## Client lifecycle
 
 Packages stream into OPFS when available, with IndexedDB Blob storage as a
-fallback. IndexedDB stores the active package metadata. A new version becomes
-active only after all resources pass size and PMTiles-header validation; failed
-updates leave the prior version intact. Basemap archives are registered under
-the canonical world source URL, while forecast archives retain their style
-source URLs.
+fallback. IndexedDB stores the active package metadata. Downloads remain valid
+for seven days. Refreshing an expired package reuses every independently
+versioned resource that is still current, so a stable basemap is not downloaded
+again when only forecasts changed.
+
+When the browser has enough free space, a replacement is staged before the old
+resource is removed. With a small per-site quota, the updater may first remove
+superseded resources after confirming that their reclaimed space is sufficient.
+If that in-place replacement then fails, the package is marked unavailable but
+retained current resources can still be reused by the next download attempt.
+Basemap archives are registered under the canonical world source URL, while
+forecast archives retain their style source URLs.
 
 The service worker deliberately leaves `.pmtiles` requests as `NetworkOnly`.
 Complete archives are application-managed because browser caches do not safely
@@ -53,6 +60,11 @@ store the range-response pattern used by PMTiles.
   while offline. Open panels close when the browser loses connectivity.
 - Every published package contains both a regional basemap and its foraging
   forecasts. Do not publish forecast-only package definitions.
+- Cached map resources are activated only while offline. Online sessions use
+  the live basemap and live forecasts even when a package is installed.
+- Packages become unavailable offline seven days after download. The Offline
+  Maps page keeps the files until the user updates or removes them; an update
+  reuses unchanged resources and resets the seven-day validity period.
 
 ## Testing
 
@@ -63,11 +75,19 @@ offline restart works. Run the production service-worker test instead:
 npm run test:e2e:offline
 ```
 
+That automated test covers cold app-shell reloads, style switching,
+connectivity-dependent controls, instructions, and geolocation on desktop and
+mobile Chromium. It deliberately does not download the published 380 MB or
+1.3 GB packages, so final basemap and forecast verification remains a manual
+release check on a real package.
+
 For a manual desktop test, build and serve the production app, download a
-package, and open the map. Then use browser DevTools to set Network to Offline,
-reload, and switch through every map style.
+package, and wait until its status changes to Downloaded. Then use browser
+DevTools to set Network to Offline, reload, and switch through every map style.
 
 For the final phone test, use an HTTPS deployment, install the PWA, download the
-package, open the map once, enable airplane mode, fully close the app, and reopen
-it. Confirm the forecast renders, styles switch, Locate Me remains visible, and
-network-only controls are absent.
+package, and confirm its status is Downloaded. Enable airplane mode, fully close
+the app, and reopen it. Confirm the basemap and forecast render, styles switch,
+Locate Me remains visible, and network-only controls are absent. Repeat after
+returning online to confirm live sources are restored, then update or remove the
+package from Offline Maps.

@@ -2,7 +2,7 @@
   "title": "Mapas offline",
   "description": "Transfira e gira pacotes de mapas para utilização offline",
   "intro": "Transfira um pacote de mapas antes do passeio. Cada pacote inclui o mapa base e as previsões de coleta e é válido durante 7 dias.",
-  "offlineBanner": "Está offline. Os pacotes instalados continuam disponíveis.",
+  "offlineBanner": "Está offline. Os pacotes transferidos ainda válidos continuam disponíveis.",
   "storage": {
     "title": "Armazenamento do dispositivo",
     "summary": "{{used}} utilizados de aproximadamente {{quota}} disponíveis para este site",

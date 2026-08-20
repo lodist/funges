@@ -13,7 +13,7 @@
   "offline": {
     "title": "Usare la mappa offline",
     "prepareTitle": "Prima di partire",
-    "prepare": "Mentre sei online, apri Mappe offline e scarica la tua regione. Il pacchetto include la mappa di base e le previsioni. Attendi il completamento e poi apri la mappa una volta. Installa l’app per riaprirla offline in modo affidabile.",
+    "prepare": "Mentre sei online, apri Mappe offline e scarica la tua regione. Il pacchetto include la mappa di base e le previsioni ed è valido per 7 giorni. Attendi che risulti scaricato e aggiornalo prima di partire se è scaduto. Installa l’app per riaprirla offline in modo affidabile.",
     "availableTitle": "Cosa resta disponibile",
     "available": "La mappa di base scaricata, le previsioni, il selettore delle specie, il cursore delle previsioni, i dettagli delle zone, tutti gli stili e la posizione restano disponibili. Il GPS non richiede dati mobili, ma può essere più lento e necessita del permesso di localizzazione.",
     "unavailableTitle": "Cosa richiede una connessione",

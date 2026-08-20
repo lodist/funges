@@ -14,7 +14,7 @@ async function waitForServiceWorker(page: import('@playwright/test').Page) {
   });
 }
 
-test('production app reloads and switches every map style offline', async ({
+test('production app shell reloads and switches every map style offline', async ({
   page,
   context,
 }) => {

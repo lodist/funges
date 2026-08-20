@@ -13,7 +13,7 @@
   "offline": {
     "title": "Die Karte offline verwenden",
     "prepareTitle": "Vor dem Ausflug",
-    "prepare": "Öffne online die Offline-Karten und lade deine Region herunter. Das Paket enthält die Grundkarte und die Prognosen. Warte bis der Download abgeschlossen ist und öffne danach einmal die Karte. Installiere die App, damit sie offline zuverlässig neu startet.",
+    "prepare": "Öffne online die Offline-Karten und lade deine Region herunter. Das Paket enthält die Grundkarte und die Prognosen und ist 7 Tage gültig. Warte, bis es als heruntergeladen angezeigt wird, und aktualisiere es vor dem Ausflug, falls es abgelaufen ist. Installiere die App, damit sie offline zuverlässig neu startet.",
     "availableTitle": "Was verfügbar bleibt",
     "available": "Die heruntergeladene Grundkarte, Prognosen, Artenauswahl, Prognoseregler, Zonendetails, alle Kartenstile und die Standortfunktion bleiben verfügbar. GPS benötigt keine mobilen Daten, kann aber langsamer sein und braucht die Standortberechtigung.",
     "unavailableTitle": "Was eine Verbindung benötigt",

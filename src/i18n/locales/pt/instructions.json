@@ -13,7 +13,7 @@
   "offline": {
     "title": "Utilizar o mapa offline",
     "prepareTitle": "Antes de sair",
-    "prepare": "Enquanto estiver online, abra Mapas offline e transfira a sua região. O pacote inclui o mapa base e as previsões. Aguarde a conclusão e depois abra o mapa uma vez. Instale a aplicação para um reinício offline fiável.",
+    "prepare": "Enquanto estiver online, abra Mapas offline e transfira a sua região. O pacote inclui o mapa base e as previsões e é válido durante 7 dias. Aguarde até aparecer como transferido e atualize-o antes de sair se tiver expirado. Instale a aplicação para um reinício offline fiável.",
     "availableTitle": "O que continua disponível",
     "available": "O mapa base transferido, as previsões, o seletor de espécies, o controlo da previsão, os detalhes das zonas, todos os estilos e a localização continuam disponíveis. O GPS não requer dados móveis, embora possa ser mais lento e necessite de permissão de localização.",
     "unavailableTitle": "O que requer ligação",

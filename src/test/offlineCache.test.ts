@@ -65,7 +65,7 @@ describe('offline package definitions', () => {
       if (originalStorage) {
         Object.defineProperty(navigator, 'storage', originalStorage);
       } else {
-        delete (navigator as Navigator & { storage?: StorageManager }).storage;
+        Reflect.deleteProperty(navigator, 'storage');
       }
     }
   });

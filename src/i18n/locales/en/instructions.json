@@ -13,7 +13,7 @@
   "offline": {
     "title": "Using the map offline",
     "prepareTitle": "Before you leave",
-    "prepare": "While online, open Offline Maps and download your region. The package includes the basemap and forecasts. Wait for the download to finish, then open the map once. Install the app for the most reliable offline restart.",
+    "prepare": "While online, open Offline Maps and download your region. The package includes the basemap and forecasts and remains valid for 7 days. Wait until it shows as downloaded, and update it before leaving if it has expired. Install the app for the most reliable offline restart.",
     "availableTitle": "What remains available",
     "available": "The downloaded basemap, forecasts, species selector, forecast slider, zone details, every map style, and Locate Me remain available. GPS does not require mobile data, although it may be slower and still needs location permission.",
     "unavailableTitle": "What needs a connection",

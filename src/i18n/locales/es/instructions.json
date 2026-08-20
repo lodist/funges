@@ -13,7 +13,7 @@
   "offline": {
     "title": "Usar el mapa sin conexión",
     "prepareTitle": "Antes de salir",
-    "prepare": "Mientras tengas conexión, abre Mapas sin conexión y descarga tu región. El paquete incluye el mapa base y las previsiones. Espera a que termine y después abre el mapa una vez. Instala la aplicación para que pueda reiniciarse sin conexión de forma fiable.",
+    "prepare": "Mientras tengas conexión, abre Mapas sin conexión y descarga tu región. El paquete incluye el mapa base y las previsiones y es válido durante 7 días. Espera hasta que aparezca como descargado y actualízalo antes de salir si ha caducado. Instala la aplicación para que pueda reiniciarse sin conexión de forma fiable.",
     "availableTitle": "Qué permanece disponible",
     "available": "El mapa base descargado, las previsiones, el selector de especies, el control de previsión, los detalles de zonas, todos los estilos y la ubicación permanecen disponibles. El GPS no necesita datos móviles, aunque puede ser más lento y requiere permiso de ubicación.",
     "unavailableTitle": "Qué necesita conexión",
