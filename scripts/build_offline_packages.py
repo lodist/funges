@@ -133,7 +133,7 @@ def main() -> None:
         )
 
     manifest = {
-        "schemaVersion": 2,
+        "schemaVersion": 1,
         "generatedAt": generated_at,
         "packages": packages,
     }

@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest';
 import {
   containsCoordinate,
   packageHasBasemap,
-  packageIsComplete,
   packageSize,
   validateOfflineManifest,
   type OfflinePackageDefinition,
@@ -40,7 +39,6 @@ describe('offline package definitions', () => {
   it('calculates package capabilities and size', () => {
     expect(packageSize(definition)).toBe(120);
     expect(packageHasBasemap(definition)).toBe(true);
-    expect(packageIsComplete(definition)).toBe(true);
   });
 
   it('uses inclusive geographic bounds', () => {
@@ -51,7 +49,7 @@ describe('offline package definitions', () => {
 
   it('accepts a supported, complete manifest', () => {
     const manifest = {
-      schemaVersion: 2,
+      schemaVersion: 1,
       generatedAt: '2026-08-20T00:00:00Z',
       packages: [definition],
     };
@@ -61,7 +59,7 @@ describe('offline package definitions', () => {
   it('rejects duplicate package ids', () => {
     expect(() =>
       validateOfflineManifest({
-        schemaVersion: 2,
+        schemaVersion: 1,
         generatedAt: '2026-08-20T00:00:00Z',
         packages: [definition, definition],
       })
@@ -70,44 +68,7 @@ describe('offline package definitions', () => {
 
   it('rejects incompatible manifest versions', () => {
     expect(() =>
-      validateOfflineManifest({ schemaVersion: 1, packages: [] })
+      validateOfflineManifest({ schemaVersion: 2, packages: [] })
     ).toThrow(/unsupported offline manifest version/i);
-  });
-
-  it('rejects forecast-only packages', () => {
-    expect(() =>
-      validateOfflineManifest({
-        schemaVersion: 2,
-        generatedAt: '2026-08-20T00:00:00Z',
-        packages: [
-          {
-            ...definition,
-            id: 'forecast-only',
-            resources: definition.resources.filter(
-              resource => resource.kind === 'forecast'
-            ),
-          },
-        ],
-      })
-    ).toThrow(/must include a basemap and forecast data/i);
-  });
-
-  it('rejects a basemap without a regional download archive', () => {
-    const missingDownload = {
-      ...definition,
-      resources: definition.resources.map(resource =>
-        resource.kind === 'basemap'
-          ? { ...resource, downloadUrl: undefined }
-          : resource
-      ),
-    };
-    expect(packageIsComplete(missingDownload)).toBe(false);
-    expect(() =>
-      validateOfflineManifest({
-        schemaVersion: 2,
-        generatedAt: '2026-08-20T00:00:00Z',
-        packages: [missingDownload],
-      })
-    ).toThrow(/downloadable regional basemap/i);
   });
 });

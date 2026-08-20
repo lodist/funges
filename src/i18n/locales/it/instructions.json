@@ -15,11 +15,11 @@
     "prepareTitle": "Prima di partire",
     "prepare": "Mentre sei online, apri Mappe offline e scarica la tua regione. Attendi il completamento e poi apri la mappa una volta. Installa l’app per riaprirla offline in modo affidabile.",
     "availableTitle": "Cosa resta disponibile",
-    "available": "La mappa di base dettagliata, strade, sentieri, nomi dei luoghi, previsioni scaricate, selettore delle specie, cursore delle previsioni, dettagli delle zone, tutti gli stili e la posizione restano disponibili. Il GPS non richiede dati mobili, ma può essere più lento e necessita del permesso di localizzazione.",
+    "available": "Previsioni scaricate, selettore delle specie, cursore delle previsioni, dettagli delle zone, tutti gli stili e la posizione restano disponibili. Il GPS non richiede dati mobili, ma può essere più lento e necessita del permesso di localizzazione.",
     "unavailableTitle": "Cosa richiede una connessione",
-    "unavailable": "ID da foto, Itinerario per la ricetta, navigazione Google Maps e dati dell’area sono nascosti offline perché richiedono servizi non inclusi nel pacchetto scaricato.",
+    "unavailable": "ID da foto, Itinerario per la ricetta, navigazione Google Maps e dati dell’area sono nascosti offline. I pacchetti previsionali attuali non includono una mappa di base dettagliata; è inclusa solo nei pacchetti indicati come completi.",
     "testTitle": "Prova prima dell’escursione",
-    "test": "Usa l’app HTTPS installata o una build di produzione, non il server di sviluppo. Scarica un pacchetto, apri la sua mappa, attiva la modalità aereo, chiudi completamente l’app, riaprila, cambia stile, usa la posizione e verifica che la mappa di base dettagliata e le previsioni restino visibili."
+    "test": "Usa l’app HTTPS installata o una build di produzione, non il server di sviluppo. Scarica un pacchetto, attiva la modalità aereo, chiudi completamente l’app, riaprila, cambia stile e verifica che la previsione sia presente."
   },
   "functions": {
     "title": "Funzioni:",

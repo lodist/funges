@@ -114,6 +114,7 @@
   },
   "offline": {
     "title": "Sem conexão",
-    "noPackageMessage": "Nenhum pacote completo de mapas offline cobre esta área. Volte a ligar-se ou regresse a uma região transferida."
+    "noPackageMessage": "Nenhum pacote transferido cobre esta área. Volte a ligar-se ou regresse a uma área guardada.",
+    "forecastOnlyMessage": "Previsão offline carregada. O mapa base detalhado requer ligação."
   }
 }

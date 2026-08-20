@@ -1,29 +1,33 @@
 import { test, expect } from '@playwright/test';
 
-test('does not offer incomplete packages', async ({ page }) => {
+test('offline package catalog keeps package cards concise', async ({
+  page,
+}) => {
   await page.goto('/offline');
 
   await expect(
     page.getByRole('heading', { name: 'Offline Maps' })
   ).toBeVisible();
-  await expect(page.getByText(/complete regional package/i)).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Download' })).toHaveCount(0);
-  await expect(page.getByRole('link', { name: 'Offline Maps' })).toHaveCount(0);
+  await expect(page.getByText('Europe forecast data')).toBeVisible();
+  await expect(page.getByText('United States forecast data')).toBeVisible();
+  await expect(page.getByText('12.9 MB')).toBeVisible();
+  await expect(page.getByText('9.4 MB')).toBeVisible();
   await expect(
-    page.getByText(/no complete offline map packages/i)
+    page.getByText(/save forecasts before your trip/i)
   ).toBeVisible();
+  await expect(page.getByText(/forecast data only/i)).toHaveCount(0);
+  await expect(page.getByText(/zoom 3/i)).toHaveCount(0);
 });
 
 test('downloads, validates, activates, and removes a package', async ({
   page,
 }) => {
-  const basemapUrl = 'https://offline.test/basemap.pmtiles';
-  const forecastUrl = 'https://offline.test/forecast.pmtiles';
+  const sourceUrl = 'https://offline.test/tiny.pmtiles';
   await page.route('**/offline-packages.json', route =>
     route.fulfill({
       contentType: 'application/json',
       body: JSON.stringify({
-        schemaVersion: 2,
+        schemaVersion: 1,
         generatedAt: '2026-08-20T00:00:00Z',
         packages: [
           {
@@ -39,16 +43,9 @@ test('downloads, validates, activates, and removes a package', async ({
             published: true,
             resources: [
               {
-                id: 'basemap',
-                kind: 'basemap',
-                sourceUrl: 'https://data.fung.es/basemap/world.pmtiles',
-                downloadUrl: basemapUrl,
-                sizeBytes: 8,
-              },
-              {
                 id: 'forecast',
                 kind: 'forecast',
-                sourceUrl: forecastUrl,
+                sourceUrl,
                 sizeBytes: 8,
               },
             ],
@@ -57,29 +54,25 @@ test('downloads, validates, activates, and removes a package', async ({
       }),
     })
   );
-  await page.route(
-    /https:\/\/offline\.test\/(?:basemap|forecast)\.pmtiles/,
-    route =>
-      route.fulfill({
-        contentType: 'application/octet-stream',
-        headers: { 'Content-Length': '8' },
-        body: Buffer.from([0x50, 0x4d, 0x54, 0x69, 0x6c, 0x65, 0x73, 0x03]),
-      })
+  await page.route(sourceUrl, route =>
+    route.fulfill({
+      contentType: 'application/octet-stream',
+      headers: { 'Content-Length': '8' },
+      body: Buffer.from([0x50, 0x4d, 0x54, 0x69, 0x6c, 0x65, 0x73, 0x03]),
+    })
   );
 
   await page.goto('/offline');
   await page.getByRole('button', { name: 'Download' }).click();
 
-  await expect(page.getByText(/version test-v1/i)).toBeVisible({
-    timeout: 30_000,
-  });
+  await expect(page.getByText(/version test-v1/i)).toBeVisible();
   await page.getByRole('button', { name: 'Remove' }).click();
   await expect(page.getByRole('button', { name: 'Download' })).toBeVisible();
 });
 
-// Dispatch first so Vite's development websocket cannot replace the page with
-// its reconnect shell before React handles the state transition. The production
-// suite separately exercises a real offline network and cold reload.
+// The map initializes fine without a connection — the style JSON is precached —
+// so it renders as empty background with no error. This asserts the user is
+// told why, instead of staring at a blank green rectangle.
 test('map explains itself when the device goes offline', async ({
   page,
   context,
@@ -96,19 +89,12 @@ test('map explains itself when the device goes offline', async ({
   await expect(
     page.getByRole('button', { name: 'Nearby Recipes' })
   ).toBeVisible();
-  await expect(page.getByAltText('Loading...')).toBeHidden({ timeout: 60_000 });
 
-  await page.evaluate(() => {
-    Object.defineProperty(navigator, 'onLine', {
-      configurable: true,
-      get: () => false,
-    });
-    window.dispatchEvent(new Event('offline'));
-  });
+  await context.setOffline(true);
 
   await expect(page.getByText(/you're offline/i)).toBeVisible();
   await expect(
-    page.getByText(/no complete offline map package covers this area/i)
+    page.getByText(/no downloaded map package covers this area/i)
   ).toBeVisible();
   await expect(
     page.getByRole('button', { name: 'Identify from a photo' })
@@ -120,8 +106,6 @@ test('map explains itself when the device goes offline', async ({
     page.getByRole('button', { name: 'Get My Location' })
   ).toBeVisible();
   await expect(page.getByRole('button', { name: 'Map theme' })).toBeVisible();
-  await context.setOffline(true);
-  await expect.poll(() => page.evaluate(() => navigator.onLine)).toBe(false);
 });
 
 // Cold start in airplane mode is not covered here: `npm run dev` serves an

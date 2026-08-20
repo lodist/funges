@@ -10,9 +10,17 @@ import React, {
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { protocol } from '@/lib/pmtiles-protocol';
-import { useMapStore, resolveDataNerdRegion } from '@/store/mapStore';
+import {
+  useMapStore,
+  REGION_BBOX,
+  resolveDataNerdRegion,
+} from '@/store/mapStore';
 import { useOfflineStore } from '@/store/offlineStore';
-import { containsCoordinate } from '@/lib/offline-packages';
+import {
+  containsCoordinate,
+  packageHasBasemap,
+  type OfflineContinent,
+} from '@/lib/offline-packages';
 import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
 import { Card } from '@/components/ui/card';
@@ -48,6 +56,12 @@ import {
 // R2 (or, for a downloaded region, from the offline-cached instance already
 // added to this same `protocol` singleton — see pmtiles-protocol.ts).
 maplibregl.addProtocol('pmtiles', protocol.tile);
+
+const CONTINENT_BBOX = {
+  eu: REGION_BBOX.ne,
+  us: REGION_BBOX.use,
+};
+const CONTINENTS: OfflineContinent[] = ['eu', 'us'];
 
 const ROUTE_SOURCE_ID = 'route-to-dish-line';
 const ROUTE_LAYER_ID = 'route-to-dish-line-layer';
@@ -182,6 +196,11 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   );
   const hasOfflinePackageAtCenter = cachedPackageList.some(item =>
     containsCoordinate(item.definition, center[0], center[1])
+  );
+  const hasOfflineBasemapAtCenter = cachedPackageList.some(
+    item =>
+      packageHasBasemap(item.definition) &&
+      containsCoordinate(item.definition, center[0], center[1])
   );
   const routeStart = showUserLocation && userLocation ? userLocation : center;
   const routeRecipes = recipes.map(recipe => ({
@@ -825,6 +844,49 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     };
   }, [foragingSpots, mapLoaded]);
 
+  // Offline fallback: the real basemap tiles are NetworkOnly (PMTiles range
+  // requests can't be cached), so when offline, show a static snapshot behind
+  // the (locally-cached) overlay/forecast vector layers for any downloaded
+  // continent. Georeferenced as an `image` source, so it pans/zooms with the
+  // map like any other layer within its own bbox.
+  useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+    const mapInstance = map.current;
+    const firstLayerId = mapInstance.getStyle()?.layers?.[0]?.id;
+
+    CONTINENTS.forEach(continent => {
+      const sourceId = `offline-basemap-${continent}`;
+      const layerId = `${sourceId}-layer`;
+      const hasContinentPackage = cachedPackageList.some(
+        item => item.definition.continent === continent
+      );
+      const shouldShow =
+        !isOnline && !hasOfflineBasemapAtCenter && hasContinentPackage;
+      const exists = Boolean(mapInstance.getSource(sourceId));
+
+      if (shouldShow && !exists) {
+        const [west, south, east, north] = CONTINENT_BBOX[continent];
+        mapInstance.addSource(sourceId, {
+          type: 'image',
+          url: `${import.meta.env.BASE_URL}offline-snapshots/${continent}.png`,
+          coordinates: [
+            [west, north],
+            [east, north],
+            [east, south],
+            [west, south],
+          ],
+        });
+        mapInstance.addLayer(
+          { id: layerId, type: 'raster', source: sourceId },
+          firstLayerId
+        );
+      } else if (!shouldShow && exists) {
+        if (mapInstance.getLayer(layerId)) mapInstance.removeLayer(layerId);
+        mapInstance.removeSource(sourceId);
+      }
+    });
+  }, [mapLoaded, isOnline, cachedPackageList, hasOfflineBasemapAtCenter]);
+
   if (mapError) {
     return (
       <MapFallback error={mapError} onRetry={() => window.location.reload()} />
@@ -881,7 +943,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </div>
         )}
 
-        {/* Complete packages include both the basemap and forecasts. */}
+        {/* Offline notice. The map still initializes offline — the style JSON is
+            precached — so it renders as empty background with no error and
+            nothing tells the user why. mapError never fires for this.
+            Hide it only when a detailed basemap package covers the viewport. */}
         {mapLoaded && !isOnline && !hasOfflinePackageAtCenter && (
           <div className='absolute inset-0 z-30 flex items-center justify-center p-6 pointer-events-none'>
             <div className='max-w-xs rounded-lg border bg-background/95 p-4 text-center shadow-lg'>
@@ -895,6 +960,15 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             </div>
           </div>
         )}
+
+        {mapLoaded &&
+          !isOnline &&
+          hasOfflinePackageAtCenter &&
+          !hasOfflineBasemapAtCenter && (
+            <div className='pointer-events-none absolute left-1/2 top-14 z-20 w-max max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-md border bg-background/90 px-3 py-2 text-center text-xs text-muted-foreground shadow-sm'>
+              {t('offline.forecastOnlyMessage')}
+            </div>
+          )}
 
         {/* Species selector - top left corner */}
         <div className='absolute top-2 left-2 z-20'>

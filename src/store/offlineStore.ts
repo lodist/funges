@@ -13,7 +13,6 @@ import {
 } from '@/lib/offlineCache';
 import {
   fetchOfflineManifest,
-  packageIsComplete,
   type OfflinePackageDefinition,
   type OfflinePackageId,
 } from '@/lib/offline-packages';
@@ -79,9 +78,7 @@ export const useOfflineStore = create<OfflineState>()(
           getOfflineStorageEstimate(),
         ]);
         set({
-          available: manifest.packages.filter(
-            item => item.published && packageIsComplete(item)
-          ),
+          available: manifest.packages.filter(item => item.published),
           cached: toCachedMap(cached),
           storage,
           ready: true,

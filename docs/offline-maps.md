@@ -1,13 +1,8 @@
 # Offline map packages
 
-Offline maps are controlled by `VITE_OFFLINE_MAPS_ENABLED`. Every build requires
-the flag to be exactly `true`. Navigation stays hidden until the validated
-catalog also contains at least one published package.
-
-The catalog accepts complete regional packages only. Each package must contain
-exactly one downloadable `basemap` resource and at least one `forecast`
-resource. Forecast-only packages are rejected and must never be published as
-offline maps.
+Offline maps are controlled by `VITE_OFFLINE_MAPS_ENABLED`. Development builds
+show the feature automatically; production builds require the flag to be
+exactly `true`.
 
 ## Package release
 
@@ -50,15 +45,15 @@ store the range-response pattern used by PMTiles.
 
 ## Offline behavior
 
-- The downloaded detailed basemap (including roads, paths, place names and
-  other styled features), forecasts, species selection, forecast slider, zone
-  details, all five map styles, and device geolocation remain available.
+- Downloaded forecasts, species selection, the forecast slider, zone details,
+  all five map styles, and device geolocation remain available.
 - Geolocation uses GPS and does not require mobile data, although the first fix
   can be slower and still requires operating-system permission.
 - Photo ID, Route to Dish, Google Maps navigation, and Area Data are hidden
   while offline. Open panels close when the browser loses connectivity.
-- Moving outside every downloaded region shows an explicit no-package message;
-  the app never substitutes a context-free forecast-only view.
+- A forecast-only package does not contain a detailed basemap. The style still
+  loads, but only a package containing a `basemap` resource can render detailed
+  roads, labels, and terrain offline.
 
 ## Testing
 
@@ -75,5 +70,5 @@ to set Network to Offline, reload, and switch through every map style.
 
 For the final phone test, use an HTTPS deployment, install the PWA, download the
 package, open the map once, enable airplane mode, fully close the app, and reopen
-it. Confirm the detailed basemap and forecast render, styles switch, Locate Me
-remains visible, and network-only controls are absent.
+it. Confirm the forecast renders, styles switch, Locate Me remains visible, and
+network-only controls are absent.

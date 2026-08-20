@@ -15,11 +15,11 @@
     "prepareTitle": "Vor dem Ausflug",
     "prepare": "Öffne online die Offline-Karten und lade deine Region herunter. Warte bis der Download abgeschlossen ist und öffne danach einmal die Karte. Installiere die App, damit sie offline zuverlässig neu startet.",
     "availableTitle": "Was verfügbar bleibt",
-    "available": "Die detaillierte Grundkarte, Straßen, Wege, Ortsnamen, heruntergeladene Prognosen, Artenauswahl, Prognoseregler, Zonendetails, alle Kartenstile und die Standortfunktion bleiben verfügbar. GPS benötigt keine mobilen Daten, kann aber langsamer sein und braucht die Standortberechtigung.",
+    "available": "Heruntergeladene Prognosen, Artenauswahl, Prognoseregler, Zonendetails, alle Kartenstile und die Standortfunktion bleiben verfügbar. GPS benötigt keine mobilen Daten, kann aber langsamer sein und braucht die Standortberechtigung.",
     "unavailableTitle": "Was eine Verbindung benötigt",
-    "unavailable": "Foto-ID, Route zum Gericht, Google-Maps-Navigation und Gebietsdaten werden offline ausgeblendet, da sie Dienste benötigen, die nicht im heruntergeladenen Paket enthalten sind.",
+    "unavailable": "Foto-ID, Route zum Gericht, Google-Maps-Navigation und Gebietsdaten werden offline ausgeblendet. Die aktuellen Prognosepakete enthalten keine detaillierte Grundkarte; nur ausdrücklich als vollständig bezeichnete Pakete enthalten eine.",
     "testTitle": "Vor dem Ausflug testen",
-    "test": "Verwende die installierte HTTPS-App oder einen Produktions-Build, nicht den Entwicklungsserver. Lade ein Paket, öffne seine Karte, aktiviere den Flugmodus, schließe die App vollständig, öffne sie erneut, wechsle die Kartenstile, nutze die Standortfunktion und prüfe, dass Grundkarte und Prognose sichtbar bleiben."
+    "test": "Verwende die installierte HTTPS-App oder einen Produktions-Build, nicht den Entwicklungsserver. Lade ein Paket, aktiviere den Flugmodus, schließe die App vollständig, öffne sie erneut, wechsle die Kartenstile und prüfe die Prognose."
   },
   "functions": {
     "title": "Funktionen:",

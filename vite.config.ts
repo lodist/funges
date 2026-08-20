@@ -13,7 +13,7 @@ const routeFullPaths = [
   '/data',
   '/impressum',
   '/instructions',
-  ...(process.env.VITE_OFFLINE_MAPS_ENABLED === 'true' ? ['/offline'] : []),
+  '/offline',
   '/privacy-policy',
   '/recipes',
   '/settings',

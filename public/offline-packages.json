@@ -1,5 +1,66 @@
 {
-  "schemaVersion": 2,
-  "generatedAt": "2026-08-20T00:00:00Z",
-  "packages": []
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-20T11:06:42.684009Z",
+  "packages": [
+    {
+      "id": "eu-forecast",
+      "continent": "eu",
+      "name": "Europe forecast data",
+      "description": "Foraging forecasts for Europe.",
+      "bounds": [-25, 27, 45, 72],
+      "minZoom": 3,
+      "maxZoom": 12,
+      "version": "332227ebfe9e",
+      "updatedAt": "2026-08-20T02:18:26Z",
+      "published": true,
+      "resources": [
+        {
+          "id": "ne-forecast",
+          "kind": "forecast",
+          "version": "c657be100b70921a3675be89d113d4dc",
+          "sourceUrl": "https://data.fung.es/EU/NE/ne_forecast.pmtiles",
+          "sizeBytes": 6834690,
+          "etag": "c657be100b70921a3675be89d113d4dc"
+        },
+        {
+          "id": "se-forecast",
+          "kind": "forecast",
+          "version": "4e518f5c325b9745fd9563e56a9f260a",
+          "sourceUrl": "https://data.fung.es/EU/SE/se_forecast.pmtiles",
+          "sizeBytes": 6695058,
+          "etag": "4e518f5c325b9745fd9563e56a9f260a"
+        }
+      ]
+    },
+    {
+      "id": "us-forecast",
+      "continent": "us",
+      "name": "United States forecast data",
+      "description": "Foraging forecasts for the United States.",
+      "bounds": [-125, 24, -66, 50],
+      "minZoom": 3,
+      "maxZoom": 12,
+      "version": "735ce9e3ce47",
+      "updatedAt": "2026-08-20T03:30:56Z",
+      "published": true,
+      "resources": [
+        {
+          "id": "use-forecast",
+          "kind": "forecast",
+          "version": "2be8344999da108f268ed1161d695572",
+          "sourceUrl": "https://data.fung.es/USA/USE/use_forecast.pmtiles",
+          "sizeBytes": 4753711,
+          "etag": "2be8344999da108f268ed1161d695572"
+        },
+        {
+          "id": "usw-forecast",
+          "kind": "forecast",
+          "version": "67b203c80f159f079e4bde9aa221f80f",
+          "sourceUrl": "https://data.fung.es/USA/USW/usw_forecast.pmtiles",
+          "sizeBytes": 5058555,
+          "etag": "67b203c80f159f079e4bde9aa221f80f"
+        }
+      ]
+    }
+  ]
 }

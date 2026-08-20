@@ -15,11 +15,11 @@
     "prepareTitle": "Antes de sair",
     "prepare": "Enquanto estiver online, abra Mapas offline e transfira a sua região. Aguarde a conclusão e depois abra o mapa uma vez. Instale a aplicação para um reinício offline fiável.",
     "availableTitle": "O que continua disponível",
-    "available": "O mapa base detalhado, estradas, trilhos, nomes de locais, previsões transferidas, o seletor de espécies, o controlo da previsão, os detalhes das zonas, todos os estilos e a localização continuam disponíveis. O GPS não requer dados móveis, embora possa ser mais lento e necessite de permissão de localização.",
+    "available": "As previsões transferidas, o seletor de espécies, o controlo da previsão, os detalhes das zonas, todos os estilos e a localização continuam disponíveis. O GPS não requer dados móveis, embora possa ser mais lento e necessite de permissão de localização.",
     "unavailableTitle": "O que requer ligação",
-    "unavailable": "A identificação por fotografia, Rota para o prato, a navegação Google Maps e os dados da área ficam ocultos offline porque requerem serviços que não estão incluídos no pacote transferido.",
+    "unavailable": "A identificação por fotografia, Rota para o prato, a navegação Google Maps e os dados da área ficam ocultos offline. Os pacotes de previsão atuais não incluem um mapa base detalhado; apenas os pacotes descritos como completos incluem um.",
     "testTitle": "Teste antes do passeio",
-    "test": "Utilize a aplicação HTTPS instalada ou uma versão de produção, não o servidor de desenvolvimento. Transfira um pacote, abra o respetivo mapa, ative o modo de voo, feche completamente a aplicação, reabra-a, mude os estilos, use a localização e confirme que o mapa base detalhado e a previsão continuam visíveis."
+    "test": "Utilize a aplicação HTTPS instalada ou uma versão de produção, não o servidor de desenvolvimento. Transfira um pacote, ative o modo de voo, feche completamente a aplicação, reabra-a, mude os estilos e confirme a previsão."
   },
   "functions": {
     "title": "Funções:",

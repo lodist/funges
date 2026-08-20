@@ -114,6 +114,7 @@
   },
   "offline": {
     "title": "Keine Verbindung",
-    "noPackageMessage": "Kein vollständiges Offline-Kartenpaket deckt dieses Gebiet ab. Stelle eine Verbindung her oder kehre zu einer heruntergeladenen Region zurück."
+    "noPackageMessage": "Kein heruntergeladenes Kartenpaket deckt dieses Gebiet ab. Stelle eine Verbindung her oder kehre zu einem gespeicherten Gebiet zurück.",
+    "forecastOnlyMessage": "Offline-Prognose geladen. Die detaillierte Grundkarte benötigt eine Verbindung."
   }
 }

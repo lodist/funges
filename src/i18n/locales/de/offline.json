@@ -1,7 +1,7 @@
 {
   "title": "Offline-Karten",
   "description": "Kartenpakete für die Offline-Nutzung herunterladen und verwalten",
-  "intro": "Lade vor deinem Ausflug ein vollständiges Regionalpaket herunter. Es enthält die detaillierte Grundkarte, Ortsnamen, Kartenstile und Sammelprognosen.",
+  "intro": "Speichere Prognosen vor deinem Ausflug. Heruntergeladene Prognosedaten funktionieren ohne Verbindung; die detaillierte Grundkarte benötigt weiterhin Internetzugang.",
   "offlineBanner": "Du bist offline. Installierte Pakete bleiben verfügbar.",
   "storage": {
     "title": "Gerätespeicher",
@@ -12,7 +12,7 @@
   "packages": {
     "title": "Verfügbare Pakete",
     "loading": "Paketkatalog wird geladen…",
-    "empty": "Derzeit sind keine vollständigen Offline-Kartenpakete veröffentlicht.",
+    "empty": "Derzeit sind keine Offline-Pakete veröffentlicht.",
     "download": "Herunterladen",
     "update": "Aktualisieren",
     "remove": "Entfernen",

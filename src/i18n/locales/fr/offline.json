@@ -1,7 +1,7 @@
 {
   "title": "Cartes hors ligne",
   "description": "Télécharger et gérer des cartes pour une utilisation hors ligne",
-  "intro": "Téléchargez un forfait régional complet avant votre sortie. Il comprend le fond de carte détaillé, les noms de lieux, les styles de carte et les prévisions de cueillette.",
+  "intro": "Enregistrez les prévisions avant votre sortie. Les données téléchargées fonctionnent sans connexion ; le fond de carte détaillé nécessite encore un accès à Internet.",
   "offlineBanner": "Vous êtes hors ligne. Les forfaits installés restent disponibles.",
   "storage": {
     "title": "Stockage de l’appareil",
@@ -12,7 +12,7 @@
   "packages": {
     "title": "Forfaits disponibles",
     "loading": "Chargement du catalogue…",
-    "empty": "Aucun forfait cartographique hors ligne complet n’est actuellement publié.",
+    "empty": "Aucun forfait hors ligne n’est actuellement publié.",
     "download": "Télécharger",
     "update": "Mettre à jour",
     "remove": "Supprimer",

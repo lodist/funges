@@ -2,7 +2,7 @@ import { FileSource, PMTiles } from 'pmtiles';
 import { protocol } from './pmtiles-protocol';
 import {
   containsCoordinate,
-  packageIsComplete,
+  packageHasBasemap,
   packageSize,
   resourceVersion,
   type OfflinePackageDefinition,
@@ -333,15 +333,7 @@ export async function assertStorageCapacity(
 }
 
 export async function hydrateOfflineSources(): Promise<void> {
-  const storedPackages = await getStoredPackages();
-  const legacyPackages = storedPackages.filter(
-    item => !item.complete || !packageIsComplete(item.definition)
-  );
-  await Promise.all(legacyPackages.map(item => removeOfflinePackage(item.id)));
-
-  const packages = storedPackages.filter(
-    item => item.complete && packageIsComplete(item.definition)
-  );
+  const packages = (await getStoredPackages()).filter(item => item.complete);
   const resources = await getStoredResources();
   const activeVersions = new Map(
     packages.flatMap(item =>
@@ -370,7 +362,7 @@ export async function activateBasemapForCoordinate(
   const packages = (await getStoredPackages()).filter(
     item =>
       item.complete &&
-      packageIsComplete(item.definition) &&
+      packageHasBasemap(item.definition) &&
       containsCoordinate(item.definition, longitude, latitude)
   );
   const selected = packages.sort(
@@ -397,7 +389,7 @@ export async function activateBasemapForCoordinate(
 
 export async function getCachedPackages(): Promise<OfflinePackageCacheInfo[]> {
   return (await getStoredPackages())
-    .filter(item => item.complete && packageIsComplete(item.definition))
+    .filter(item => item.complete)
     .map(item => ({ ...item }));
 }
 
@@ -408,11 +400,6 @@ export async function downloadOfflinePackage(
     onProgress?: (progress: OfflineDownloadProgress) => void;
   }
 ): Promise<OfflinePackageCacheInfo> {
-  if (!packageIsComplete(definition)) {
-    throw new Error(
-      'Offline packages must include a detailed basemap and forecast data'
-    );
-  }
   await assertStorageCapacity(packageSize(definition));
   const previousResources = await getResourcesForPackage(definition.id);
   const previousById = new Map(

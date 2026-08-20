@@ -4,7 +4,7 @@ import { Download, Info, Map, RefreshCw, X } from 'lucide-react';
 import SEO from '@/components/SEO';
 import { usePWA } from '@/hooks/use-pwa';
 import { useOfflineStore } from '@/store/offlineStore';
-import { packageSize } from '@/lib/offline-packages';
+import { packageHasBasemap, packageSize } from '@/lib/offline-packages';
 import { Button } from '@/components/ui/button';
 import { useMapStore } from '@/store/mapStore';
 import { useNavigate } from '@tanstack/react-router';
@@ -105,6 +105,8 @@ export default function OfflineMapsPage() {
             const currentProgress = progress[definition.id];
             const updateAvailable =
               Boolean(installed) && installed.version !== definition.version;
+            const hasBasemap = packageHasBasemap(definition);
+
             return (
               <article
                 key={definition.id}
@@ -145,13 +147,15 @@ export default function OfflineMapsPage() {
                   )}
                   {!currentProgress && installed && !updateAvailable && (
                     <div className='flex gap-2'>
-                      <Button
-                        size='sm'
-                        onClick={() => void openPackage(definition)}
-                      >
-                        <Map className='mr-1 h-4 w-4' />
-                        {t('packages.open')}
-                      </Button>
+                      {hasBasemap && (
+                        <Button
+                          size='sm'
+                          onClick={() => void openPackage(definition)}
+                        >
+                          <Map className='mr-1 h-4 w-4' />
+                          {t('packages.open')}
+                        </Button>
+                      )}
                       <Button
                         size='sm'
                         variant='outline'
