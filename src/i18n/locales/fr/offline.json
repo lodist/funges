@@ -1,23 +1,27 @@
 {
-  "title": "Offline Maps",
-  "description": "Manage offline map data",
-  "offlineBanner": "You're offline — downloaded regions still show their data, without the live base map underneath.",
+  "title": "Cartes hors ligne",
+  "description": "Télécharger et gérer des cartes pour une utilisation hors ligne",
+  "intro": "Téléchargez un forfait avant votre sortie. Les forfaits complets comprennent un fond de carte détaillé ; les forfaits de prévisions seuls conservent les données de cueillette, mais le fond de carte nécessite une connexion.",
+  "offlineBanner": "Vous êtes hors ligne. Les forfaits installés restent disponibles.",
   "storage": {
-    "title": "Storage",
-    "summary": "{{used}} MB / {{quota}} MB",
-    "purge": "Purge expired now",
-    "ttl": "Downloads expire after 14 days"
+    "title": "Stockage de l’appareil",
+    "summary": "{{used}} utilisés sur environ {{quota}} disponibles pour ce site",
+    "persistent": "Protégé contre la suppression automatique par le navigateur",
+    "bestEffort": "Le navigateur peut supprimer les téléchargements si l’espace manque"
   },
-  "regions": {
-    "title": "Regions",
-    "name": "Region",
-    "status": "Status",
-    "cachedOn": "Downloaded {{date}}",
-    "notCached": "Not downloaded",
-    "downloading": "Downloading...",
-    "download": "Download for offline",
-    "remove": "Remove",
-    "eu": "Europe",
-    "us": "United States"
+  "packages": {
+    "title": "Forfaits disponibles",
+    "loading": "Chargement du catalogue…",
+    "empty": "Aucun forfait hors ligne n’est actuellement publié.",
+    "fullMap": "Carte hors ligne détaillée",
+    "forecastOnly": "Prévisions uniquement",
+    "zoomRange": "Zoom {{min}}–{{max}}",
+    "download": "Télécharger",
+    "update": "Mettre à jour",
+    "remove": "Supprimer",
+    "open": "Ouvrir la carte",
+    "cancel": "Annuler",
+    "progress": "Téléchargement… {{percent}} %",
+    "downloaded": "Téléchargé le {{date}} · version {{version}}"
   }
 }

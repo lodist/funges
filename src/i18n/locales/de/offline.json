@@ -1,23 +1,27 @@
 {
-  "title": "Offline Maps",
-  "description": "Manage offline map data",
-  "offlineBanner": "You're offline — downloaded regions still show their data, without the live base map underneath.",
+  "title": "Offline-Karten",
+  "description": "Kartenpakete für die Offline-Nutzung herunterladen und verwalten",
+  "intro": "Lade vor deinem Ausflug ein Paket herunter. Vollständige Pakete enthalten eine detaillierte Grundkarte; reine Prognosepakete halten Sammeldaten verfügbar, während die Grundkarte eine Verbindung benötigt.",
+  "offlineBanner": "Du bist offline. Installierte Pakete bleiben verfügbar.",
   "storage": {
-    "title": "Storage",
-    "summary": "{{used}} MB / {{quota}} MB",
-    "purge": "Purge expired now",
-    "ttl": "Downloads expire after 14 days"
+    "title": "Gerätespeicher",
+    "summary": "{{used}} von ungefähr {{quota}} für diese Website verfügbarem Speicher verwendet",
+    "persistent": "Vor automatischer Löschung durch den Browser geschützt",
+    "bestEffort": "Der Browser kann Downloads bei knappem Gerätespeicher entfernen"
   },
-  "regions": {
-    "title": "Regions",
-    "name": "Region",
-    "status": "Status",
-    "cachedOn": "Downloaded {{date}}",
-    "notCached": "Not downloaded",
-    "downloading": "Downloading...",
-    "download": "Download for offline",
-    "remove": "Remove",
-    "eu": "Europe",
-    "us": "United States"
+  "packages": {
+    "title": "Verfügbare Pakete",
+    "loading": "Paketkatalog wird geladen…",
+    "empty": "Derzeit sind keine Offline-Pakete veröffentlicht.",
+    "fullMap": "Detaillierte Offline-Karte",
+    "forecastOnly": "Nur Prognosedaten",
+    "zoomRange": "Zoom {{min}}–{{max}}",
+    "download": "Herunterladen",
+    "update": "Aktualisieren",
+    "remove": "Entfernen",
+    "open": "Karte öffnen",
+    "cancel": "Abbrechen",
+    "progress": "Wird heruntergeladen… {{percent}} %",
+    "downloaded": "Heruntergeladen am {{date}} · Version {{version}}"
   }
 }

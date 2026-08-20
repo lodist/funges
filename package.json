@@ -17,6 +17,7 @@
     "check:fix": "npm run format && npm run lint:fix",
     "type-check": "tsc --noEmit",
     "test": "vitest",
+    "test:unit": "vitest run --config vitest.unit.config.ts",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",

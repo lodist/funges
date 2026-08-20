@@ -3,6 +3,7 @@ import React, {
   Suspense,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -14,7 +15,12 @@ import {
   REGION_BBOX,
   resolveDataNerdRegion,
 } from '@/store/mapStore';
-import { useOfflineStore, CONTINENTS } from '@/store/offlineStore';
+import { useOfflineStore } from '@/store/offlineStore';
+import {
+  containsCoordinate,
+  packageHasBasemap,
+  type OfflineContinent,
+} from '@/lib/offline-packages';
 import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
 import { Card } from '@/components/ui/card';
@@ -55,6 +61,7 @@ const CONTINENT_BBOX = {
   eu: REGION_BBOX.ne,
   us: REGION_BBOX.use,
 };
+const CONTINENTS: OfflineContinent[] = ['eu', 'us'];
 
 const ROUTE_SOURCE_ID = 'route-to-dish-line';
 const ROUTE_LAYER_ID = 'route-to-dish-line-layer';
@@ -182,7 +189,16 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     activeDay,
   } = useMapStore();
   const { isOnline } = usePWA();
-  const { cached: cachedContinents } = useOfflineStore();
+  const { cached: cachedPackages } = useOfflineStore();
+  const cachedPackageList = useMemo(
+    () => Object.values(cachedPackages),
+    [cachedPackages]
+  );
+  const hasOfflineBasemapAtCenter = cachedPackageList.some(
+    item =>
+      packageHasBasemap(item.definition) &&
+      containsCoordinate(item.definition, center[0], center[1])
+  );
   const routeStart = showUserLocation && userLocation ? userLocation : center;
   const routeRecipes = recipes.map(recipe => ({
     id: recipe.id,
@@ -832,7 +848,11 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     CONTINENTS.forEach(continent => {
       const sourceId = `offline-basemap-${continent}`;
       const layerId = `${sourceId}-layer`;
-      const shouldShow = !isOnline && Boolean(cachedContinents[continent]);
+      const hasContinentPackage = cachedPackageList.some(
+        item => item.definition.continent === continent
+      );
+      const shouldShow =
+        !isOnline && !hasOfflineBasemapAtCenter && hasContinentPackage;
       const exists = Boolean(mapInstance.getSource(sourceId));
 
       if (shouldShow && !exists) {
@@ -856,7 +876,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         mapInstance.removeSource(sourceId);
       }
     });
-  }, [mapLoaded, isOnline, cachedContinents]);
+  }, [mapLoaded, isOnline, cachedPackageList, hasOfflineBasemapAtCenter]);
 
   if (mapError) {
     return (
@@ -917,9 +937,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         {/* Offline notice. The map still initializes offline — the style JSON is
             precached — so it renders as empty background with no error and
             nothing tells the user why. mapError never fires for this.
-            ponytail: shows whenever offline; gate on cachedContinents once
-            downloaded regions can actually render tiles. */}
-        {mapLoaded && !isOnline && (
+            Hide it only when a detailed basemap package covers the viewport. */}
+        {mapLoaded && !isOnline && !hasOfflineBasemapAtCenter && (
           <div className='absolute inset-0 z-30 flex items-center justify-center p-6 pointer-events-none'>
             <div className='max-w-xs rounded-lg border bg-background/95 p-4 text-center shadow-lg'>
               <WifiOff className='mx-auto mb-2 h-6 w-6 text-muted-foreground' />

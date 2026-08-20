@@ -8,6 +8,8 @@
 
 2. **Add repository secrets** (Settings → Secrets and variables → Actions):
    - `VITE_BASE_URL` - Base path for your site
+   - `VITE_OFFLINE_MAPS_ENABLED` - Set to `true` only after the regional
+     PMTiles referenced by `public/offline-packages.json` are published
 
 ## Base URL Configuration
 

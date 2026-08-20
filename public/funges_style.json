@@ -47,7 +47,8 @@
   "sources": {
     "aws": {
       "type": "vector",
-      "url": "pmtiles://https://data.fung.es/basemap/world_z12_20260619.pmtiles"
+      "url": "pmtiles://https://data.fung.es/basemap/world_z12_20260619.pmtiles",
+      "attribution": "© OpenStreetMap contributors"
     },
     "overlay-ne": {
       "type": "vector",
@@ -66,8 +67,8 @@
       "url": "pmtiles://https://data.fung.es/USA/USW/usw_forecast.pmtiles"
     }
   },
-  "sprite": "https://protomaps.github.io/basemaps-assets/sprites/v4/light",
-  "glyphs": "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
+  "sprite": "map-assets/sprites/v4/light",
+  "glyphs": "map-assets/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "land",

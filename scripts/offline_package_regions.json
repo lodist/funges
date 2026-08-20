@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ch",
+    "continent": "eu",
+    "name": "Switzerland",
+    "description": "Detailed offline basemap and European foraging forecasts for Switzerland.",
+    "bounds": [5.9559, 45.8179, 10.4921, 47.8085],
+    "minZoom": 3,
+    "maxZoom": 12
+  },
+  {
+    "id": "us-co",
+    "continent": "us",
+    "name": "Colorado",
+    "description": "Detailed offline basemap and United States foraging forecasts for Colorado.",
+    "bounds": [-109.0603, 36.9924, -102.0415, 41.0034],
+    "minZoom": 3,
+    "maxZoom": 12
+  }
+]

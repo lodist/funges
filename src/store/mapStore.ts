@@ -106,6 +106,8 @@ const MAP_STYLES = [
   '/funges_style_topographic.json', // 4 Topographic
 ];
 const DARK_STYLE_INDEXES = new Set([1, 3]); // drives dark UI chrome
+const MAP_CENTER_KEY = 'mapCenter';
+const MAP_ZOOM_KEY = 'mapZoom';
 
 export interface MapThemeOption {
   id: 'light' | 'dark' | 'white' | 'darkmatter' | 'topographic';
@@ -139,6 +141,27 @@ function readStyleIndex(): number {
   }
   // Back-compat with the old light/dark boolean.
   return localStorage.getItem('darkLayersVisible') === 'true' ? 1 : 0;
+}
+
+function readCenter(): [number, number] {
+  try {
+    const saved = JSON.parse(localStorage.getItem(MAP_CENTER_KEY) ?? 'null');
+    if (
+      Array.isArray(saved) &&
+      saved.length === 2 &&
+      saved.every(value => typeof value === 'number' && Number.isFinite(value))
+    ) {
+      return [saved[0], saved[1]];
+    }
+  } catch {
+    // Ignore corrupt legacy/local values and use the default below.
+  }
+  return [7.3359, 47.7508];
+}
+
+function readZoom(): number {
+  const saved = Number(localStorage.getItem(MAP_ZOOM_KEY));
+  return Number.isFinite(saved) && saved >= 3.01 && saved <= 20 ? saved : 3.5;
 }
 
 // Region overlay/forecast tilesets are heavy; keeping all four live at once (even when
@@ -193,8 +216,8 @@ export const useMapStore = create<MapState>()(
   devtools(
     (set, get) => ({
       // Initial state
-      center: [7.3359, 47.7508], // Switzerland
-      zoom: 3.5,
+      center: readCenter(),
+      zoom: readZoom(),
       bearing: 0,
       pitch: 0,
       mapStyle: MAP_STYLES[readStyleIndex()], // self-hosted from public/
@@ -220,8 +243,14 @@ export const useMapStore = create<MapState>()(
       mapRef: null,
 
       // Actions
-      setCenter: center => set({ center }),
-      setZoom: zoom => set({ zoom }),
+      setCenter: center => {
+        localStorage.setItem(MAP_CENTER_KEY, JSON.stringify(center));
+        set({ center });
+      },
+      setZoom: zoom => {
+        localStorage.setItem(MAP_ZOOM_KEY, String(zoom));
+        set({ zoom });
+      },
       setBearing: bearing => set({ bearing }),
       setPitch: pitch => set({ pitch }),
       setMapStyle: mapStyle => set({ mapStyle }),

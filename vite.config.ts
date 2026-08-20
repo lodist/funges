@@ -53,7 +53,12 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif}'],
+        globPatterns: [
+          '**/*.{js,css,html,ico,png,svg,webp,avif}',
+          'funges_style*.json',
+          'offline-packages.json',
+          'map-assets/**/*.{json,png,pbf}',
+        ],
         runtimeCaching: [
           // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.
           {
@@ -185,8 +190,8 @@ export default defineConfig({
               },
             },
           },
-          // Map glyphs + sprites (Protomaps basemap assets, cross-origin) so
-          // labels/icons render offline for tiles that were viewed online.
+          // Legacy cross-origin fallback. Current styles use self-hosted glyphs
+          // and sprites from public/map-assets, which are precached above.
           {
             urlPattern:
               /^https:\/\/protomaps\.github\.io\/basemaps-assets\/.*/i,

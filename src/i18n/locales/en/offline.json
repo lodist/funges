@@ -1,23 +1,27 @@
 {
   "title": "Offline Maps",
-  "description": "Manage offline map data",
-  "offlineBanner": "You're offline — downloaded regions still show their data, without the live base map underneath.",
+  "description": "Download and manage map packages for offline use",
+  "intro": "Download a package before your trip. Complete packages include a detailed basemap; forecast-only packages keep foraging data available while the basemap requires a connection.",
+  "offlineBanner": "You're offline. Installed packages remain available.",
   "storage": {
-    "title": "Storage",
-    "summary": "{{used}} MB / {{quota}} MB",
-    "purge": "Purge expired now",
-    "ttl": "Downloads expire after 14 days"
+    "title": "Device storage",
+    "summary": "{{used}} used of approximately {{quota}} available to this site",
+    "persistent": "Protected from automatic browser eviction",
+    "bestEffort": "The browser may remove downloads when device storage is low"
   },
-  "regions": {
-    "title": "Regions",
-    "name": "Region",
-    "status": "Status",
-    "cachedOn": "Downloaded {{date}}",
-    "notCached": "Not downloaded",
-    "downloading": "Downloading...",
-    "download": "Download for offline",
+  "packages": {
+    "title": "Available packages",
+    "loading": "Loading package catalog…",
+    "empty": "No offline packages are currently published.",
+    "fullMap": "Detailed offline map",
+    "forecastOnly": "Forecast data only",
+    "zoomRange": "Zoom {{min}}–{{max}}",
+    "download": "Download",
+    "update": "Update",
     "remove": "Remove",
-    "eu": "Europe",
-    "us": "United States"
+    "open": "Open map",
+    "cancel": "Cancel",
+    "progress": "Downloading… {{percent}}%",
+    "downloaded": "Downloaded {{date}} · version {{version}}"
   }
 }

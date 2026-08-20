@@ -53,6 +53,9 @@ tests/forecast_vs_actual_snapshot.jsonl
 # BioCLIP spike cache (downloaded photos + embeddings)
 spike_cache/
 
+# Generated regional PMTiles can be hundreds of megabytes; publish to R2.
+dist-offline/
+
 # ONNX export artifacts (the shipped model lives on R2, not in git)
 backend/tools/model_artifacts/
 

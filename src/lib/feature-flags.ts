@@ -13,10 +13,11 @@ export const isDevelopment = import.meta.env.DEV;
 export const isProduction = import.meta.env.PROD;
 
 /**
- * Check if offline features should be visible
- * Hidden in development mode
+ * Offline maps stay opt-in in production until regional basemap packages have
+ * been published. Development keeps the page visible without extra setup.
  */
-export const shouldShowOfflineFeatures = isDevelopment;
+export const shouldShowOfflineFeatures =
+  isDevelopment || import.meta.env.VITE_OFFLINE_MAPS_ENABLED === 'true';
 
 /**
  * Check if a feature is enabled based on environment

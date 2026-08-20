@@ -103,6 +103,18 @@ describe('MAP_THEMES', () => {
   });
 });
 
+describe('offline viewport persistence', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('persists the last map center and zoom for an offline restart', () => {
+    useMapStore.getState().setCenter([-105.5, 39]);
+    useMapStore.getState().setZoom(8);
+
+    expect(localStorage.getItem('mapCenter')).toBe('[-105.5,39]');
+    expect(localStorage.getItem('mapZoom')).toBe('8');
+  });
+});
+
 describe('getUserLocation', () => {
   it('keeps precise coordinates on-device', async () => {
     const position = {

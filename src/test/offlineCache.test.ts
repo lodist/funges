@@ -1,51 +1,74 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
-  groupByContinent,
-  isExpired,
-  CACHE_EXPIRY_MS,
-  type ContinentId,
-} from '@/lib/offlineCache';
+  containsCoordinate,
+  packageHasBasemap,
+  packageSize,
+  validateOfflineManifest,
+  type OfflinePackageDefinition,
+} from '@/lib/offline-packages';
 
-function record(
-  continent: ContinentId,
-  url: string,
-  sizeBytes: number,
-  cachedAt: number
-) {
-  return { url, continent, blob: new Blob(), sizeBytes, cachedAt };
-}
+const definition: OfflinePackageDefinition = {
+  id: 'ch',
+  continent: 'eu',
+  name: 'Switzerland',
+  description: 'Pilot',
+  bounds: [5.95, 45.81, 10.49, 47.81],
+  minZoom: 3,
+  maxZoom: 12,
+  version: 'v1',
+  updatedAt: '2026-08-20T00:00:00Z',
+  published: true,
+  resources: [
+    {
+      id: 'basemap',
+      kind: 'basemap',
+      sourceUrl: 'https://example.com/world.pmtiles',
+      downloadUrl: 'https://example.com/ch.pmtiles',
+      sizeBytes: 100,
+    },
+    {
+      id: 'forecast',
+      kind: 'forecast',
+      sourceUrl: 'https://example.com/forecast.pmtiles',
+      sizeBytes: 20,
+    },
+  ],
+};
 
-describe('groupByContinent', () => {
-  it('sums sizes and keeps the earliest cachedAt per continent', () => {
-    const result = groupByContinent([
-      record('eu', 'a', 100, 1000),
-      record('eu', 'b', 200, 2000),
-      record('us', 'c', 50, 500),
-    ]);
-
-    expect(result).toEqual(
-      expect.arrayContaining([
-        { continent: 'eu', sizeBytes: 300, cachedAt: 1000 },
-        { continent: 'us', sizeBytes: 50, cachedAt: 500 },
-      ])
-    );
+describe('offline package definitions', () => {
+  it('calculates package capabilities and size', () => {
+    expect(packageSize(definition)).toBe(120);
+    expect(packageHasBasemap(definition)).toBe(true);
   });
 
-  it('returns an empty array for no records', () => {
-    expect(groupByContinent([])).toEqual([]);
-  });
-});
-
-describe('isExpired', () => {
-  it('is false right after caching', () => {
-    expect(isExpired(1000, 1000)).toBe(false);
+  it('uses inclusive geographic bounds', () => {
+    expect(containsCoordinate(definition, 5.95, 45.81)).toBe(true);
+    expect(containsCoordinate(definition, 8.2, 46.8)).toBe(true);
+    expect(containsCoordinate(definition, 11, 46.8)).toBe(false);
   });
 
-  it('is false just under the expiry window', () => {
-    expect(isExpired(1000, 1000 + CACHE_EXPIRY_MS - 1)).toBe(false);
+  it('accepts a supported, complete manifest', () => {
+    const manifest = {
+      schemaVersion: 1,
+      generatedAt: '2026-08-20T00:00:00Z',
+      packages: [definition],
+    };
+    expect(validateOfflineManifest(manifest)).toBe(manifest);
   });
 
-  it('is true once the expiry window has passed', () => {
-    expect(isExpired(1000, 1000 + CACHE_EXPIRY_MS + 1)).toBe(true);
+  it('rejects duplicate package ids', () => {
+    expect(() =>
+      validateOfflineManifest({
+        schemaVersion: 1,
+        generatedAt: '2026-08-20T00:00:00Z',
+        packages: [definition, definition],
+      })
+    ).toThrow(/duplicate package id/i);
+  });
+
+  it('rejects incompatible manifest versions', () => {
+    expect(() =>
+      validateOfflineManifest({ schemaVersion: 2, packages: [] })
+    ).toThrow(/unsupported offline manifest version/i);
   });
 });
