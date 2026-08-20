@@ -66,6 +66,23 @@ describe('offline package definitions', () => {
     ).toThrow(/duplicate package id/i);
   });
 
+  it('rejects packages without a downloadable basemap', () => {
+    expect(() =>
+      validateOfflineManifest({
+        schemaVersion: 1,
+        generatedAt: '2026-08-20T00:00:00Z',
+        packages: [
+          {
+            ...definition,
+            resources: definition.resources.filter(
+              resource => resource.kind === 'forecast'
+            ),
+          },
+        ],
+      })
+    ).toThrow(/downloadable basemap/i);
+  });
+
   it('rejects incompatible manifest versions', () => {
     expect(() =>
       validateOfflineManifest({ schemaVersion: 2, packages: [] })

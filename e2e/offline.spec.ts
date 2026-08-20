@@ -8,12 +8,12 @@ test('offline package catalog keeps package cards concise', async ({
   await expect(
     page.getByRole('heading', { name: 'Offline Maps' })
   ).toBeVisible();
-  await expect(page.getByText('Europe forecast data')).toBeVisible();
-  await expect(page.getByText('United States forecast data')).toBeVisible();
-  await expect(page.getByText('12.9 MB')).toBeVisible();
-  await expect(page.getByText('9.4 MB')).toBeVisible();
+  await expect(page.getByText('Europe', { exact: true })).toBeVisible();
+  await expect(page.getByText('United States', { exact: true })).toBeVisible();
+  await expect(page.getByText('1.3 GB')).toBeVisible();
+  await expect(page.getByText('380.0 MB')).toBeVisible();
   await expect(
-    page.getByText(/save forecasts before your trip/i)
+    page.getByText(/each package includes the basemap/i)
   ).toBeVisible();
   await expect(page.getByText(/forecast data only/i)).toHaveCount(0);
   await expect(page.getByText(/zoom 3/i)).toHaveCount(0);
@@ -22,7 +22,8 @@ test('offline package catalog keeps package cards concise', async ({
 test('downloads, validates, activates, and removes a package', async ({
   page,
 }) => {
-  const sourceUrl = 'https://offline.test/tiny.pmtiles';
+  const basemapUrl = 'https://offline.test/basemap.pmtiles';
+  const forecastUrl = 'https://offline.test/forecast.pmtiles';
   await page.route('**/offline-packages.json', route =>
     route.fulfill({
       contentType: 'application/json',
@@ -43,9 +44,16 @@ test('downloads, validates, activates, and removes a package', async ({
             published: true,
             resources: [
               {
+                id: 'basemap',
+                kind: 'basemap',
+                sourceUrl: 'https://data.fung.es/basemap/world.pmtiles',
+                downloadUrl: basemapUrl,
+                sizeBytes: 8,
+              },
+              {
                 id: 'forecast',
                 kind: 'forecast',
-                sourceUrl,
+                sourceUrl: forecastUrl,
                 sizeBytes: 8,
               },
             ],
@@ -54,12 +62,14 @@ test('downloads, validates, activates, and removes a package', async ({
       }),
     })
   );
-  await page.route(sourceUrl, route =>
-    route.fulfill({
-      contentType: 'application/octet-stream',
-      headers: { 'Content-Length': '8' },
-      body: Buffer.from([0x50, 0x4d, 0x54, 0x69, 0x6c, 0x65, 0x73, 0x03]),
-    })
+  await page.route(
+    /https:\/\/offline\.test\/(?:basemap|forecast)\.pmtiles/,
+    route =>
+      route.fulfill({
+        contentType: 'application/octet-stream',
+        headers: { 'Content-Length': '8' },
+        body: Buffer.from([0x50, 0x4d, 0x54, 0x69, 0x6c, 0x65, 0x73, 0x03]),
+      })
   );
 
   await page.goto('/offline');

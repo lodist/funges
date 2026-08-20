@@ -94,7 +94,10 @@ def main() -> None:
     packages = []
 
     for definition in definitions:
-        filename = f"{definition['id']}-basemap-z12-{args.version}.pmtiles"
+        filename = (
+            f"{definition['id']}-basemap-z{definition['maxZoom']}-"
+            f"{args.version}.pmtiles"
+        )
         output = args.output_dir / filename
         bbox = ",".join(str(value) for value in definition["bounds"])
         run(

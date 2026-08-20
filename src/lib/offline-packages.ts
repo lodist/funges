@@ -58,6 +58,12 @@ export function packageHasBasemap(
   return definition.resources.some(resource => resource.kind === 'basemap');
 }
 
+export function packageHasForecast(
+  definition: OfflinePackageDefinition
+): boolean {
+  return definition.resources.some(resource => resource.kind === 'forecast');
+}
+
 export function containsCoordinate(
   definition: OfflinePackageDefinition,
   longitude: number,
@@ -109,16 +115,32 @@ export function validateOfflineManifest(
     if (!Array.isArray(definition.resources) || !definition.resources.length) {
       throw new Error(`Package ${definition.id} has no resources`);
     }
+    const resourceIds = new Set<string>();
     definition.resources.forEach(resource => {
       if (
         !resource.id ||
+        resourceIds.has(resource.id) ||
+        !['basemap', 'forecast'].includes(resource.kind) ||
         !resource.sourceUrl ||
         !isFiniteNumber(resource.sizeBytes) ||
         resource.sizeBytes <= 0
       ) {
         throw new Error(`Invalid resource in package ${definition.id}`);
       }
+      resourceIds.add(resource.id);
     });
+    const basemaps = definition.resources.filter(
+      resource => resource.kind === 'basemap'
+    );
+    if (
+      basemaps.length !== 1 ||
+      !basemaps[0].downloadUrl ||
+      !packageHasForecast(definition)
+    ) {
+      throw new Error(
+        `Package ${definition.id} must include one downloadable basemap and forecast data`
+      );
+    }
   });
 
   return manifest as OfflinePackageManifest;

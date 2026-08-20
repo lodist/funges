@@ -19,7 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VITE_BASE_URL: ${{ vars.VITE_BASE_URL }}
-      VITE_OFFLINE_MAPS_ENABLED: ${{ vars.VITE_OFFLINE_MAPS_ENABLED || 'false' }}
       VITE_HOSTNAME: ${{ vars.VITE_HOSTNAME }}
 
     steps:
