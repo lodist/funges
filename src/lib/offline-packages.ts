@@ -1,4 +1,4 @@
-export const OFFLINE_MANIFEST_VERSION = 1;
+export const OFFLINE_MANIFEST_VERSION = 2;
 
 export type OfflinePackageId = string;
 export type OfflineContinent = 'eu' | 'us';
@@ -58,6 +58,26 @@ export function packageHasBasemap(
   return definition.resources.some(resource => resource.kind === 'basemap');
 }
 
+export function packageHasForecast(
+  definition: OfflinePackageDefinition
+): boolean {
+  return definition.resources.some(resource => resource.kind === 'forecast');
+}
+
+/** Only complete map packages are installable or exposed to users. */
+export function packageIsComplete(
+  definition: OfflinePackageDefinition
+): boolean {
+  const basemaps = definition.resources.filter(
+    resource => resource.kind === 'basemap'
+  );
+  return (
+    basemaps.length === 1 &&
+    Boolean(basemaps[0].downloadUrl) &&
+    packageHasForecast(definition)
+  );
+}
+
 export function containsCoordinate(
   definition: OfflinePackageDefinition,
   longitude: number,
@@ -109,16 +129,33 @@ export function validateOfflineManifest(
     if (!Array.isArray(definition.resources) || !definition.resources.length) {
       throw new Error(`Package ${definition.id} has no resources`);
     }
+    const resourceIds = new Set<string>();
     definition.resources.forEach(resource => {
       if (
         !resource.id ||
+        resourceIds.has(resource.id) ||
+        !['basemap', 'forecast'].includes(resource.kind) ||
         !resource.sourceUrl ||
         !isFiniteNumber(resource.sizeBytes) ||
         resource.sizeBytes <= 0
       ) {
         throw new Error(`Invalid resource in package ${definition.id}`);
       }
+      resourceIds.add(resource.id);
     });
+    if (!packageHasBasemap(definition) || !packageHasForecast(definition)) {
+      throw new Error(
+        `Package ${definition.id} must include a basemap and forecast data`
+      );
+    }
+    const basemaps = definition.resources.filter(
+      resource => resource.kind === 'basemap'
+    );
+    if (basemaps.length !== 1 || !basemaps[0].downloadUrl) {
+      throw new Error(
+        `Package ${definition.id} must include one downloadable regional basemap`
+      );
+    }
   });
 
   return manifest as OfflinePackageManifest;

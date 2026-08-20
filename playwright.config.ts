@@ -24,6 +24,7 @@ export default defineConfig({
     env: {
       VITE_BASE_URL: '/',
       VITE_HOSTNAME: 'http://localhost:3000',
+      VITE_OFFLINE_MAPS_ENABLED: 'true',
     },
   },
 });

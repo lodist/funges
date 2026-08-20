@@ -25,12 +25,16 @@ import { useTranslation } from 'react-i18next';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import MapLastUpdated from '@/components/MapLastUpdated';
+import { useOfflineStore } from '@/store/offlineStore';
 
 const basePath = import.meta.env.BASE_URL || '/';
 
 export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
   const { t } = useTranslation('sidebar');
   const isMobile = useIsMobile();
+  const hasOfflinePackages = useOfflineStore(
+    state => state.available.length > 0
+  );
   const data = {
     navMain: [
       {
@@ -73,7 +77,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             },
           ]
         : []),
-      ...(!isMobile && shouldShowOfflineFeatures
+      ...(!isMobile && shouldShowOfflineFeatures && hasOfflinePackages
         ? [
             {
               title: t('offlineMaps'),

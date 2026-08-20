@@ -114,7 +114,6 @@
   },
   "offline": {
     "title": "Nessuna connessione",
-    "noPackageMessage": "Nessun pacchetto scaricato copre quest'area. Riconnettiti o torna in un'area salvata.",
-    "forecastOnlyMessage": "Previsione offline caricata. La mappa di base dettagliata richiede una connessione."
+    "noPackageMessage": "Nessun pacchetto completo di mappe offline copre quest'area. Riconnettiti o torna in una regione scaricata."
   }
 }

@@ -15,11 +15,11 @@
     "prepareTitle": "Avant de partir",
     "prepare": "En ligne, ouvrez Cartes hors ligne et téléchargez votre région. Attendez la fin du téléchargement, puis ouvrez la carte une fois. Installez l’application pour un redémarrage hors ligne fiable.",
     "availableTitle": "Ce qui reste disponible",
-    "available": "Les prévisions téléchargées, le sélecteur d’espèces, le curseur de prévision, les détails des zones, tous les styles et la localisation restent disponibles. Le GPS n’utilise pas les données mobiles, mais peut être plus lent et nécessite l’autorisation de localisation.",
+    "available": "Le fond de carte détaillé, les routes, les sentiers, les noms de lieux, les prévisions téléchargées, le sélecteur d’espèces, le curseur de prévision, les détails des zones, tous les styles et la localisation restent disponibles. Le GPS n’utilise pas les données mobiles, mais peut être plus lent et nécessite l’autorisation de localisation.",
     "unavailableTitle": "Ce qui nécessite une connexion",
-    "unavailable": "L’identification photo, Route vers un plat, la navigation Google Maps et les données régionales sont masquées hors ligne. Les forfaits de prévisions actuels n’incluent pas de fond de carte détaillé ; seuls les forfaits explicitement complets en incluent un.",
+    "unavailable": "L’identification photo, Route vers un plat, la navigation Google Maps et les données régionales sont masquées hors ligne, car elles nécessitent des services qui ne sont pas inclus dans le forfait téléchargé.",
     "testTitle": "Tester avant la sortie",
-    "test": "Utilisez l’application HTTPS installée ou une version de production, pas le serveur de développement. Téléchargez un forfait, activez le mode avion, fermez complètement l’application, rouvrez-la, changez de style et vérifiez la prévision."
+    "test": "Utilisez l’application HTTPS installée ou une version de production, pas le serveur de développement. Téléchargez un forfait, ouvrez sa carte, activez le mode avion, fermez complètement l’application, rouvrez-la, changez de style, utilisez la localisation et vérifiez que le fond de carte détaillé et les prévisions restent visibles."
   },
   "functions": {
     "title": "Fonctions :",

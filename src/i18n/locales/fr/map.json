@@ -114,7 +114,6 @@
   },
   "offline": {
     "title": "Hors connexion",
-    "noPackageMessage": "Aucun forfait téléchargé ne couvre cette zone. Reconnectez-vous ou revenez dans une zone enregistrée.",
-    "forecastOnlyMessage": "Prévisions hors ligne chargées. Le fond de carte détaillé nécessite une connexion."
+    "noPackageMessage": "Aucun forfait cartographique hors ligne complet ne couvre cette zone. Reconnectez-vous ou revenez dans une région téléchargée."
   }
 }

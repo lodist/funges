@@ -14,17 +14,21 @@ import {
 } from 'lucide-react';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import MapLastUpdated from '@/components/MapLastUpdated';
+import { useOfflineStore } from '@/store/offlineStore';
 
 export default function SettingsPage() {
   const { t } = useTranslation('settings');
   const { t: tCommon } = useTranslation('common');
+  const hasOfflinePackages = useOfflineStore(
+    state => state.available.length > 0
+  );
   const links = [
     {
       url: '/instructions',
       label: t('instructions'),
       icon: BookOpen,
     },
-    ...(shouldShowOfflineFeatures
+    ...(shouldShowOfflineFeatures && hasOfflinePackages
       ? [
           {
             url: '/offline',

@@ -114,7 +114,6 @@
   },
   "offline": {
     "title": "Sin conexión",
-    "noPackageMessage": "Ningún paquete descargado cubre esta zona. Vuelve a conectarte o regresa a una zona guardada.",
-    "forecastOnlyMessage": "Previsión sin conexión cargada. El mapa base detallado necesita conexión."
+    "noPackageMessage": "Ningún paquete completo de mapas sin conexión cubre esta zona. Vuelve a conectarte o regresa a una región descargada."
   }
 }

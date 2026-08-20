@@ -114,7 +114,6 @@
   },
   "offline": {
     "title": "You're offline",
-    "noPackageMessage": "No downloaded map package covers this area. Reconnect or return to an area you saved.",
-    "forecastOnlyMessage": "Offline forecast loaded. The detailed basemap needs a connection."
+    "noPackageMessage": "No complete offline map package covers this area. Reconnect or return to a region you downloaded."
   }
 }
