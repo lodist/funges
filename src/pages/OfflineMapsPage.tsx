@@ -43,9 +43,12 @@ export default function OfflineMapsPage() {
   ): Promise<void> => {
     const [west, south, east, north] = definition.bounds;
     const center: [number, number] = [(west + east) / 2, (south + north) / 2];
+    const continentZoom = definition.continent === 'eu' ? 4 : 3.5;
     await activateForCoordinate(center[0], center[1]);
     setCenter(center);
-    setZoom(Math.min(8, definition.maxZoom));
+    setZoom(
+      Math.max(definition.minZoom, Math.min(continentZoom, definition.maxZoom))
+    );
     await navigate({ to: '/' });
   };
 
