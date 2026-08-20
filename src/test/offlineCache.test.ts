@@ -7,6 +7,7 @@ import {
   type OfflinePackageDefinition,
 } from '@/lib/offline-packages';
 import {
+  assertStorageCapacity,
   isOfflinePackageExpired,
   OFFLINE_PACKAGE_MAX_AGE_MS,
 } from '@/lib/offlineCache';
@@ -40,6 +41,35 @@ const definition: OfflinePackageDefinition = {
 };
 
 describe('offline package definitions', () => {
+  it('counts replaceable package files as available space during updates', async () => {
+    const originalStorage = Object.getOwnPropertyDescriptor(
+      navigator,
+      'storage'
+    );
+    Object.defineProperty(navigator, 'storage', {
+      configurable: true,
+      value: {
+        estimate: async () => ({ usage: 1_700, quota: 2_000 }),
+        persisted: async () => false,
+      },
+    });
+
+    try {
+      await expect(assertStorageCapacity(1_300)).rejects.toMatchObject({
+        name: 'QuotaExceededError',
+      });
+      await expect(
+        assertStorageCapacity(1_300, 1_200)
+      ).resolves.toBeUndefined();
+    } finally {
+      if (originalStorage) {
+        Object.defineProperty(navigator, 'storage', originalStorage);
+      } else {
+        delete (navigator as Navigator & { storage?: StorageManager }).storage;
+      }
+    }
+  });
+
   it('expires a downloaded package after seven days', () => {
     const downloadedAt = Date.UTC(2026, 7, 20);
     expect(

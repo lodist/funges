@@ -123,6 +123,9 @@ export const useOfflineStore = create<OfflineState>()(
         });
         await get().refresh();
       } catch (error) {
+        await get()
+          .refresh()
+          .catch(() => undefined);
         set(state => {
           const progress = { ...state.progress };
           delete progress[packageId];

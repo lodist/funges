@@ -328,17 +328,38 @@ export async function requestOfflinePersistence(): Promise<boolean | null> {
 }
 
 export async function assertStorageCapacity(
-  requiredBytes: number
+  requiredBytes: number,
+  reclaimableBytes = 0
 ): Promise<void> {
   const { usageBytes, quotaBytes } = await getOfflineStorageEstimate();
   if (usageBytes === null || quotaBytes === null) return;
-  const freeBytes = quotaBytes - usageBytes;
+  const freeBytes = quotaBytes - usageBytes + reclaimableBytes;
   if (freeBytes < requiredBytes * 1.1) {
     throw new DOMException(
       `Not enough storage: ${requiredBytes} bytes required, ${freeBytes} available`,
       'QuotaExceededError'
     );
   }
+}
+
+async function releaseReplacedResources(
+  packageId: OfflinePackageId,
+  resources: StoredResource[]
+): Promise<void> {
+  if (resources.length === 0) return;
+
+  const db = await openDb();
+  await new Promise<void>((resolve, reject) => {
+    const tx = db.transaction([PACKAGE_STORE, RESOURCE_STORE], 'readwrite');
+    tx.objectStore(PACKAGE_STORE).delete(packageId);
+    const resourceStore = tx.objectStore(RESOURCE_STORE);
+    resources.forEach(resource => resourceStore.delete(resource.key));
+    tx.oncomplete = () => resolve();
+    tx.onabort = () => reject(tx.error);
+    tx.onerror = () => reject(tx.error);
+  });
+  resources.forEach(resource => protocol.tiles.delete(resource.sourceUrl));
+  await Promise.all(resources.map(removeOpfsResource));
 }
 
 export async function hydrateOfflineSources(): Promise<void> {
@@ -421,13 +442,13 @@ export async function downloadOfflinePackage(
     onProgress?: (progress: OfflineDownloadProgress) => void;
   }
 ): Promise<OfflinePackageCacheInfo> {
-  await assertStorageCapacity(packageSize(definition));
   const previousResources = await getResourcesForPackage(definition.id);
   const previousById = new Map(
     previousResources.map(resource => [resource.resourceId, resource])
   );
   const downloaded: StoredResource[] = [];
   const retained: StoredResource[] = [];
+  const resourcesToDownload: OfflinePackageResource[] = [];
   let receivedBytes = 0;
   const totalBytes = packageSize(definition);
 
@@ -444,19 +465,45 @@ export async function downloadOfflinePackage(
           const file = await readStoredFile(previous);
           await assertPmtilesFile(file, resource.sizeBytes);
           retained.push(previous);
-          receivedBytes += resource.sizeBytes;
-          options.onProgress?.({
-            packageId: definition.id,
-            resourceId: resource.id,
-            receivedBytes,
-            totalBytes,
-            fraction: Math.min(receivedBytes / totalBytes, 1),
-          });
           continue;
         } catch {
           // Missing/corrupt retained data is downloaded again below.
         }
       }
+      resourcesToDownload.push(resource);
+    }
+
+    const retainedKeys = new Set(retained.map(item => item.key));
+    const replacedResources = previousResources.filter(
+      item => !retainedKeys.has(item.key)
+    );
+    const requiredBytes = resourcesToDownload.reduce(
+      (sum, resource) => sum + resource.sizeBytes,
+      0
+    );
+    const reclaimableBytes = replacedResources.reduce(
+      (sum, resource) => sum + resource.sizeBytes,
+      0
+    );
+    await assertStorageCapacity(requiredBytes, reclaimableBytes);
+
+    // An update may have to replace a large basemap in a browser with a small
+    // per-site quota. Reclaim only superseded files, after confirming the new
+    // package will fit; independently-versioned resources remain untouched.
+    await releaseReplacedResources(definition.id, replacedResources);
+
+    for (const resource of retained) {
+      receivedBytes += resource.sizeBytes;
+      options.onProgress?.({
+        packageId: definition.id,
+        resourceId: resource.resourceId,
+        receivedBytes,
+        totalBytes,
+        fraction: Math.min(receivedBytes / totalBytes, 1),
+      });
+    }
+
+    for (const resource of resourcesToDownload) {
       const stored = await downloadResource(
         definition,
         resource,
@@ -506,7 +553,6 @@ export async function downloadOfflinePackage(
         await registerResource(resource);
       }
     }
-    const retainedKeys = new Set(retained.map(item => item.key));
     await Promise.all(
       previousResources
         .filter(item => !retainedKeys.has(item.key))
