@@ -142,14 +142,23 @@ export default function OfflineMapsPage() {
                     </Button>
                   )}
                   {!currentProgress && installed && updateAvailable && (
-                    <Button
-                      size='sm'
-                      disabled={!isOnline}
-                      onClick={() => void download(definition.id)}
-                    >
-                      <RefreshCw className='mr-1 h-4 w-4' />
-                      {t('packages.update')}
-                    </Button>
+                    <div className='flex flex-wrap gap-2 sm:justify-end'>
+                      <Button
+                        size='sm'
+                        disabled={!isOnline}
+                        onClick={() => void download(definition.id)}
+                      >
+                        <RefreshCw className='mr-1 h-4 w-4' />
+                        {t('packages.update')}
+                      </Button>
+                      <Button
+                        size='sm'
+                        variant='outline'
+                        onClick={() => void remove(definition.id)}
+                      >
+                        {t('packages.remove')}
+                      </Button>
+                    </div>
                   )}
                   {!currentProgress && installed && !updateAvailable && (
                     <div className='flex gap-2'>
