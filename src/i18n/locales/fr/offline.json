@@ -1,7 +1,7 @@
 {
   "title": "Cartes hors ligne",
   "description": "Télécharger et gérer des cartes pour une utilisation hors ligne",
-  "intro": "Enregistrez les prévisions avant votre sortie. Les données téléchargées fonctionnent sans connexion ; le fond de carte détaillé nécessite encore un accès à Internet.",
+  "intro": "Téléchargez une carte avant votre sortie. Chaque forfait comprend le fond de carte et les prévisions de cueillette pour une utilisation hors ligne.",
   "offlineBanner": "Vous êtes hors ligne. Les forfaits installés restent disponibles.",
   "storage": {
     "title": "Stockage de l’appareil",

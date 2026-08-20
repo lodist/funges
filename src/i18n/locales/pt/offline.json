@@ -1,7 +1,7 @@
 {
   "title": "Mapas offline",
   "description": "Transfira e gira pacotes de mapas para utilização offline",
-  "intro": "Guarde as previsões antes do passeio. Os dados transferidos funcionam sem ligação; o mapa base detalhado ainda requer acesso à Internet.",
+  "intro": "Transfira um pacote de mapas antes do passeio. Cada pacote inclui o mapa base e as previsões de coleta para utilização offline.",
   "offlineBanner": "Está offline. Os pacotes instalados continuam disponíveis.",
   "storage": {
     "title": "Armazenamento do dispositivo",

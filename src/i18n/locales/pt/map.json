@@ -96,7 +96,8 @@
       "numbers": "Mostrar ou ocultar o índice numérico",
       "theme": "Escolha um tema de mapa: Claro, Escuro, Branco, Dark Matter ou Topográfico",
       "zones": "Toque em uma zona para ver a lista de espécies",
-      "recipes": "Abra receitas proximas e trace uma rota ate cada parada de ingredientes"
+      "recipes": "Abra receitas proximas e trace uma rota ate cada parada de ingredientes",
+      "offline": "Guarde um pacote de mapas antes do passeio para utilização offline"
     },
     "instructions": "Ler instruções completas",
     "supportLink": "Apoie o projeto",

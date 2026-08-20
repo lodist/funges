@@ -1,7 +1,7 @@
 {
   "title": "Mapas sin conexión",
   "description": "Descarga y administra paquetes de mapas para usarlos sin conexión",
-  "intro": "Guarda las previsiones antes de tu salida. Los datos descargados funcionan sin conexión; el mapa base detallado todavía necesita acceso a Internet.",
+  "intro": "Descarga un paquete de mapas antes de salir. Cada paquete incluye el mapa base y las previsiones de recolección para usarlos sin conexión.",
   "offlineBanner": "Estás sin conexión. Los paquetes instalados siguen disponibles.",
   "storage": {
     "title": "Almacenamiento del dispositivo",

@@ -96,7 +96,8 @@
       "numbers": "Zeige oder verberge den numerischen Index",
       "theme": "Wähle ein Kartenthema: Hell, Dunkel, Weiß, Dark Matter oder Topografisch",
       "zones": "Tippe auf eine Zone, um die Artenliste anzuzeigen",
-      "recipes": "Öffne Rezepte in der Nähe und zeichne eine Route zu jedem Zutatenstopp"
+      "recipes": "Öffne Rezepte in der Nähe und zeichne eine Route zu jedem Zutatenstopp",
+      "offline": "Speichere vor deinem Ausflug ein Kartenpaket zur Offline-Nutzung"
     },
     "instructions": "Vollständige Anleitung lesen",
     "supportLink": "Projekt unterstützen",

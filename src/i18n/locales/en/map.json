@@ -96,7 +96,8 @@
       "numbers": "Show or hide the numeric index",
       "theme": "Pick a map theme: Light, Dark, White, Dark Matter or Topographic",
       "zones": "Tap a zone to view its species list",
-      "recipes": "Open nearby recipes and draw a route to each ingredient stop"
+      "recipes": "Open nearby recipes and draw a route to each ingredient stop",
+      "offline": "Save a map package before your trip for offline use"
     },
     "instructions": "Read full instructions",
     "supportLink": "Support the project",

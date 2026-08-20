@@ -13,13 +13,13 @@
   "offline": {
     "title": "Usar el mapa sin conexión",
     "prepareTitle": "Antes de salir",
-    "prepare": "Mientras tengas conexión, abre Mapas sin conexión y descarga tu región. Espera a que termine y después abre el mapa una vez. Instala la aplicación para que pueda reiniciarse sin conexión de forma fiable.",
+    "prepare": "Mientras tengas conexión, abre Mapas sin conexión y descarga tu región. El paquete incluye el mapa base y las previsiones. Espera a que termine y después abre el mapa una vez. Instala la aplicación para que pueda reiniciarse sin conexión de forma fiable.",
     "availableTitle": "Qué permanece disponible",
-    "available": "Las previsiones descargadas, el selector de especies, el control de previsión, los detalles de zonas, todos los estilos y la ubicación permanecen disponibles. El GPS no necesita datos móviles, aunque puede ser más lento y requiere permiso de ubicación.",
+    "available": "El mapa base descargado, las previsiones, el selector de especies, el control de previsión, los detalles de zonas, todos los estilos y la ubicación permanecen disponibles. El GPS no necesita datos móviles, aunque puede ser más lento y requiere permiso de ubicación.",
     "unavailableTitle": "Qué necesita conexión",
-    "unavailable": "La identificación por foto, Ruta al plato, la navegación de Google Maps y los datos del área se ocultan sin conexión. Los paquetes actuales de previsión no incluyen un mapa base detallado; solo lo incluyen los paquetes descritos como completos.",
+    "unavailable": "La identificación por foto, Ruta al plato, la navegación de Google Maps y los datos del área se ocultan sin conexión porque necesitan acceso a Internet.",
     "testTitle": "Pruébalo antes de salir",
-    "test": "Usa la aplicación HTTPS instalada o una compilación de producción, no el servidor de desarrollo. Descarga un paquete, activa el modo avión, cierra completamente la aplicación, ábrela de nuevo, cambia de estilo y comprueba la previsión."
+    "test": "Usa la aplicación HTTPS instalada o una compilación de producción, no el servidor de desarrollo. Descarga un paquete, activa el modo avión, cierra completamente la aplicación, ábrela de nuevo, cambia de estilo y comprueba que el mapa base y la previsión sigan visibles."
   },
   "functions": {
     "title": "Funciones:",

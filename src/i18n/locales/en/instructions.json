@@ -13,13 +13,13 @@
   "offline": {
     "title": "Using the map offline",
     "prepareTitle": "Before you leave",
-    "prepare": "While online, open Offline Maps and download your region. Wait for the download to finish, then open the map once. Install the app for the most reliable offline restart.",
+    "prepare": "While online, open Offline Maps and download your region. The package includes the basemap and forecasts. Wait for the download to finish, then open the map once. Install the app for the most reliable offline restart.",
     "availableTitle": "What remains available",
-    "available": "Downloaded forecasts, the species selector, forecast slider, zone details, every map style, and Locate Me remain available. GPS does not require mobile data, although it may be slower and still needs location permission.",
+    "available": "The downloaded basemap, forecasts, species selector, forecast slider, zone details, every map style, and Locate Me remain available. GPS does not require mobile data, although it may be slower and still needs location permission.",
     "unavailableTitle": "What needs a connection",
-    "unavailable": "Photo ID, Route to Dish, Google Maps navigation, and Area Data are hidden while offline. Current forecast packages do not include a detailed basemap; only packages explicitly described as complete include one.",
+    "unavailable": "Photo ID, Route to Dish, Google Maps navigation, and Area Data are hidden while offline because they require an internet connection.",
     "testTitle": "Test before the trip",
-    "test": "Use the installed HTTPS app or a production build—not the development server. Download a package, enable airplane mode, fully close the app, reopen it, switch map styles, and confirm your forecast still appears."
+    "test": "Use the installed HTTPS app or a production build—not the development server. Download a package, enable airplane mode, fully close the app, reopen it, switch map styles, and confirm both the basemap and forecast remain visible."
   },
   "functions": {
     "title": "Functions:",

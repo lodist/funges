@@ -1,7 +1,7 @@
 {
   "title": "Mappe offline",
   "description": "Scarica e gestisci pacchetti di mappe per l’uso offline",
-  "intro": "Salva le previsioni prima dell’escursione. I dati scaricati funzionano senza connessione; la mappa di base dettagliata richiede ancora l’accesso a Internet.",
+  "intro": "Scarica un pacchetto di mappe prima dell’escursione. Ogni pacchetto include la mappa di base e le previsioni di raccolta per l’uso offline.",
   "offlineBanner": "Sei offline. I pacchetti installati restano disponibili.",
   "storage": {
     "title": "Spazio del dispositivo",
