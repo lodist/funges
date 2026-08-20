@@ -114,6 +114,6 @@
   },
   "offline": {
     "title": "You're offline",
-    "message": "The map needs a connection to load. Species, recipes and the data pages still work offline."
+    "message": "The map needs a connection to load. Species and recipes still work offline."
   }
 }

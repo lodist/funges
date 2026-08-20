@@ -114,6 +114,6 @@
   },
   "offline": {
     "title": "Hors connexion",
-    "message": "La carte a besoin d'une connexion pour se charger. Les espèces, les recettes et les pages de données fonctionnent hors connexion."
+    "message": "La carte a besoin d'une connexion pour se charger. Les espèces et les recettes fonctionnent hors connexion."
   }
 }
