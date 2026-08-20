@@ -1,7 +1,7 @@
 {
   "title": "Mapas sin conexión",
   "description": "Descarga y administra paquetes de mapas para usarlos sin conexión",
-  "intro": "Descarga un paquete antes de tu salida. Los paquetes completos incluyen un mapa base detallado; los paquetes solo de previsión mantienen disponibles los datos de recolección, pero el mapa base necesita conexión.",
+  "intro": "Guarda las previsiones antes de tu salida. Los datos descargados funcionan sin conexión; el mapa base detallado todavía necesita acceso a Internet.",
   "offlineBanner": "Estás sin conexión. Los paquetes instalados siguen disponibles.",
   "storage": {
     "title": "Almacenamiento del dispositivo",
@@ -13,9 +13,6 @@
     "title": "Paquetes disponibles",
     "loading": "Cargando catálogo de paquetes…",
     "empty": "No hay paquetes sin conexión publicados actualmente.",
-    "fullMap": "Mapa sin conexión detallado",
-    "forecastOnly": "Solo datos de previsión",
-    "zoomRange": "Zoom {{min}}–{{max}}",
     "download": "Descargar",
     "update": "Actualizar",
     "remove": "Eliminar",

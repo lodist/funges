@@ -1,7 +1,7 @@
 {
   "title": "Cartes hors ligne",
   "description": "Télécharger et gérer des cartes pour une utilisation hors ligne",
-  "intro": "Téléchargez un forfait avant votre sortie. Les forfaits complets comprennent un fond de carte détaillé ; les forfaits de prévisions seuls conservent les données de cueillette, mais le fond de carte nécessite une connexion.",
+  "intro": "Enregistrez les prévisions avant votre sortie. Les données téléchargées fonctionnent sans connexion ; le fond de carte détaillé nécessite encore un accès à Internet.",
   "offlineBanner": "Vous êtes hors ligne. Les forfaits installés restent disponibles.",
   "storage": {
     "title": "Stockage de l’appareil",
@@ -13,9 +13,6 @@
     "title": "Forfaits disponibles",
     "loading": "Chargement du catalogue…",
     "empty": "Aucun forfait hors ligne n’est actuellement publié.",
-    "fullMap": "Carte hors ligne détaillée",
-    "forecastOnly": "Prévisions uniquement",
-    "zoomRange": "Zoom {{min}}–{{max}}",
     "download": "Télécharger",
     "update": "Mettre à jour",
     "remove": "Supprimer",

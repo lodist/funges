@@ -1,7 +1,7 @@
 {
   "title": "Offline-Karten",
   "description": "Kartenpakete für die Offline-Nutzung herunterladen und verwalten",
-  "intro": "Lade vor deinem Ausflug ein Paket herunter. Vollständige Pakete enthalten eine detaillierte Grundkarte; reine Prognosepakete halten Sammeldaten verfügbar, während die Grundkarte eine Verbindung benötigt.",
+  "intro": "Speichere Prognosen vor deinem Ausflug. Heruntergeladene Prognosedaten funktionieren ohne Verbindung; die detaillierte Grundkarte benötigt weiterhin Internetzugang.",
   "offlineBanner": "Du bist offline. Installierte Pakete bleiben verfügbar.",
   "storage": {
     "title": "Gerätespeicher",
@@ -13,9 +13,6 @@
     "title": "Verfügbare Pakete",
     "loading": "Paketkatalog wird geladen…",
     "empty": "Derzeit sind keine Offline-Pakete veröffentlicht.",
-    "fullMap": "Detaillierte Offline-Karte",
-    "forecastOnly": "Nur Prognosedaten",
-    "zoomRange": "Zoom {{min}}–{{max}}",
     "download": "Herunterladen",
     "update": "Aktualisieren",
     "remove": "Entfernen",

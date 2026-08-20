@@ -1,7 +1,7 @@
 {
   "title": "Mappe offline",
   "description": "Scarica e gestisci pacchetti di mappe per l’uso offline",
-  "intro": "Scarica un pacchetto prima dell’escursione. I pacchetti completi includono una mappa di base dettagliata; quelli con sole previsioni mantengono disponibili i dati di raccolta, ma la mappa di base richiede una connessione.",
+  "intro": "Salva le previsioni prima dell’escursione. I dati scaricati funzionano senza connessione; la mappa di base dettagliata richiede ancora l’accesso a Internet.",
   "offlineBanner": "Sei offline. I pacchetti installati restano disponibili.",
   "storage": {
     "title": "Spazio del dispositivo",
@@ -13,9 +13,6 @@
     "title": "Pacchetti disponibili",
     "loading": "Caricamento del catalogo…",
     "empty": "Al momento non sono pubblicati pacchetti offline.",
-    "fullMap": "Mappa offline dettagliata",
-    "forecastOnly": "Solo dati previsionali",
-    "zoomRange": "Zoom {{min}}–{{max}}",
     "download": "Scarica",
     "update": "Aggiorna",
     "remove": "Rimuovi",

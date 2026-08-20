@@ -1,7 +1,7 @@
 {
   "title": "Offline Maps",
   "description": "Download and manage map packages for offline use",
-  "intro": "Download a package before your trip. Complete packages include a detailed basemap; forecast-only packages keep foraging data available while the basemap requires a connection.",
+  "intro": "Save forecasts before your trip. Downloaded forecast data works without a connection; the detailed basemap still requires internet access.",
   "offlineBanner": "You're offline. Installed packages remain available.",
   "storage": {
     "title": "Device storage",
@@ -13,9 +13,6 @@
     "title": "Available packages",
     "loading": "Loading package catalog…",
     "empty": "No offline packages are currently published.",
-    "fullMap": "Detailed offline map",
-    "forecastOnly": "Forecast data only",
-    "zoomRange": "Zoom {{min}}–{{max}}",
     "download": "Download",
     "update": "Update",
     "remove": "Remove",

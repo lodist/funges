@@ -1,7 +1,7 @@
 {
   "title": "Mapas offline",
   "description": "Transfira e gira pacotes de mapas para utilização offline",
-  "intro": "Transfira um pacote antes do passeio. Os pacotes completos incluem um mapa base detalhado; os pacotes apenas com previsões mantêm os dados de recolha disponíveis, mas o mapa base requer ligação.",
+  "intro": "Guarde as previsões antes do passeio. Os dados transferidos funcionam sem ligação; o mapa base detalhado ainda requer acesso à Internet.",
   "offlineBanner": "Está offline. Os pacotes instalados continuam disponíveis.",
   "storage": {
     "title": "Armazenamento do dispositivo",
@@ -13,9 +13,6 @@
     "title": "Pacotes disponíveis",
     "loading": "A carregar o catálogo de pacotes…",
     "empty": "Não existem pacotes offline publicados neste momento.",
-    "fullMap": "Mapa offline detalhado",
-    "forecastOnly": "Apenas dados de previsão",
-    "zoomRange": "Zoom {{min}}–{{max}}",
     "download": "Transferir",
     "update": "Atualizar",
     "remove": "Remover",

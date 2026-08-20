@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('offline package catalog shows real sizes and capabilities', async ({
+test('offline package catalog keeps package cards concise', async ({
   page,
 }) => {
   await page.goto('/offline');
@@ -12,7 +12,9 @@ test('offline package catalog shows real sizes and capabilities', async ({
   await expect(page.getByText('United States forecast data')).toBeVisible();
   await expect(page.getByText('12.9 MB')).toBeVisible();
   await expect(page.getByText('9.4 MB')).toBeVisible();
-  await expect(page.getByText('Forecast data only')).toHaveCount(2);
+  await expect(page.getByText(/save forecasts before your trip/i)).toBeVisible();
+  await expect(page.getByText(/forecast data only/i)).toHaveCount(0);
+  await expect(page.getByText(/zoom 3/i)).toHaveCount(0);
 });
 
 test('downloads, validates, activates, and removes a package', async ({
