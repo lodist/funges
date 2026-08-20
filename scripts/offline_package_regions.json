@@ -1,6 +1,7 @@
 [
   {
     "id": "eu",
+    "artifactName": "europe",
     "continent": "eu",
     "name": "Europe",
     "description": "Detailed offline basemap and foraging forecasts for Europe.",
@@ -10,6 +11,7 @@
   },
   {
     "id": "us",
+    "artifactName": "usa",
     "continent": "us",
     "name": "United States",
     "description": "Detailed offline basemap and foraging forecasts for the United States.",

@@ -16,8 +16,9 @@ must reference only complete, publicly accessible packages.
      --output-dir dist-offline
    ```
 
-4. Upload every generated archive to the immutable URL emitted in
-   `public/offline-packages.json`.
+4. Upload every generated archive beside the world archive under `basemap/`.
+   Regional filenames follow `<region>_z<zoom>_<YYYYMMDD>.pmtiles`, matching
+   `world_z12_<YYYYMMDD>.pmtiles` and remaining immutable without dated folders.
 5. Check the remote `Content-Length`, CORS, range support, and checksum.
 6. Deploy the manifest only after every referenced archive is available.
 7. Verify the package in staging, then deploy the updated manifest.

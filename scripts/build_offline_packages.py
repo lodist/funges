@@ -74,7 +74,7 @@ def main() -> None:
     parser.add_argument("--output-dir", required=True, type=Path)
     parser.add_argument(
         "--public-base-url",
-        default="https://data.fung.es/offline",
+        default="https://data.fung.es/basemap",
     )
     parser.add_argument(
         "--definitions",
@@ -94,9 +94,10 @@ def main() -> None:
     packages = []
 
     for definition in definitions:
+        artifact_name = definition.get("artifactName", definition["id"])
+        release_tag = args.version.replace("-", "")
         filename = (
-            f"{definition['id']}-basemap-z{definition['maxZoom']}-"
-            f"{args.version}.pmtiles"
+            f"{artifact_name}_z{definition['maxZoom']}_{release_tag}.pmtiles"
         )
         output = args.output_dir / filename
         bbox = ",".join(str(value) for value in definition["bounds"])
@@ -118,16 +119,21 @@ def main() -> None:
                 "version": args.version,
                 "sourceUrl": WORLD_SOURCE_URL,
                 "downloadUrl": (
-                    f"{args.public_base_url.rstrip('/')}/{args.version}/{filename}"
+                    f"{args.public_base_url.rstrip('/')}/{filename}"
                 ),
                 "sizeBytes": output.stat().st_size,
                 "sha256": sha256(output),
             },
             *FORECASTS[definition["continent"]],
         ]
+        package_definition = {
+            key: value
+            for key, value in definition.items()
+            if key != "artifactName"
+        }
         packages.append(
             {
-                **definition,
+                **package_definition,
                 "version": args.version,
                 "updatedAt": generated_at,
                 "published": True,

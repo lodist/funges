@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-20T21:07:41Z",
+  "generatedAt": "2026-08-20T21:22:03Z",
   "packages": [
     {
       "id": "eu",
@@ -19,9 +19,9 @@
           "kind": "basemap",
           "version": "7a0e835f4f84e71be75d39517675426548990a4150481fc283295728145ede80",
           "sourceUrl": "https://data.fung.es/basemap/world_z12_20260619.pmtiles",
-          "downloadUrl": "https://data.fung.es/offline/2026-08-20/eu-basemap-z10-2026-08-20.pmtiles",
+          "downloadUrl": "https://data.fung.es/basemap/europe_z10_20260820.pmtiles",
           "sizeBytes": 1374910317,
-          "etag": "18483801602ec4ed42f5bd84f77aa4c0-21",
+          "etag": "dd555f0e7ecc8f5660ec531e48e1f86d",
           "sha256": "7a0e835f4f84e71be75d39517675426548990a4150481fc283295728145ede80"
         },
         {
@@ -59,9 +59,9 @@
           "kind": "basemap",
           "version": "89d9507b84d8892d20f26a68dc3302a87998ec3a645f16fc10f68af9845d2a9f",
           "sourceUrl": "https://data.fung.es/basemap/world_z12_20260619.pmtiles",
-          "downloadUrl": "https://data.fung.es/offline/2026-08-20/us-basemap-z10-2026-08-20.pmtiles",
+          "downloadUrl": "https://data.fung.es/basemap/usa_z10_20260820.pmtiles",
           "sizeBytes": 388663609,
-          "etag": "fa1fab6f381004dd478241158ec15297-6",
+          "etag": "6136e786017f2073907c4d21cf004a4a",
           "sha256": "89d9507b84d8892d20f26a68dc3302a87998ec3a645f16fc10f68af9845d2a9f"
         },
         {
