@@ -1,0 +1,62 @@
+# Liquid Glass on the Web — Feasibility Brief
+
+**Context.** The originating ticket referred to "Liquid Glass" as an iOS 18 feature. That's incorrect and worth correcting up front: Apple introduced Liquid Glass at WWDC 2025 as the new system-wide material for **iOS 26 / iPadOS 26 / macOS Tahoe 26 / visionOS 26**, replacing the frosted-glass/vibrancy materials used since iOS 7 ([Apple HIG — Materials](https://developer.apple.com/design/human-interface-guidelines/materials), [WWDC25 session 219, "Meet Liquid Glass"](https://developer.apple.com/videos/play/wwdc2025/219/)). This brief evaluates what's actually replicable in `funges` — a React + Vite + Tailwind v4 + Radix/shadcn PWA with a map-heavy layout (MapLibre/Mapbox-style canvas underneath floating chrome) — for a "glass" visual language inspired by, not identical to, Apple's material.
+
+## What Liquid Glass is actually built from
+
+Per Apple's own materials, Liquid Glass is not a single blur value; it's a composite of several real-time-rendered layers ([HIG Materials](https://developer.apple.com/design/human-interface-guidelines/materials); [WWDC25 219](https://developer.apple.com/videos/play/wwdc2025/219/)):
+
+1. **Translucency + adaptive blur** — a base layer that samples and blurs the content behind it, described as a "digital meta-material" that "concentrates light."
+2. **A lighting model with specular highlights** — a simulated light source produces highlights along the material's edges that shift as the device moves, described in the session as behaving like "glass... but not glass; it does things glass could never do."
+3. **Real-time motion/gyroscope response** — highlights and refraction react to device orientation and motion sensors, not just to scroll/touch.
+4. **Legibility-driven, content-adaptive tinting** — the material auto-switches between light and dark rendering (and adjusts opacity/saturation) based on what's underneath it, to preserve contrast without a developer manually picking a color.
+5. **Edge refraction/lensing** — concave, physically-mapped edges bend/displace the content behind them, most pronounced on controls like the tab bar and sliders.
+6. Two variants ship: **Regular** (adaptive, for most controls, over content) and **Clear** (more transparent, intended for media-rich backgrounds, explicitly not recommended over text-heavy or low-contrast content) — with system guidance to disable heavy effects when Reduce Transparency or Reduce Motion is on ([HIG Materials](https://developer.apple.com/design/human-interface-guidelines/materials)).
+
+Every one of these effects is GPU-shader-driven and computed per frame against live device sensors and live framebuffer content — it is fundamentally a native rendering-pipeline feature, not CSS.
+
+## What's replicable on the web today
+
+CSS `backdrop-filter` (with `blur()`, `saturate()`, `brightness()`) is the only web primitive that samples and filters the actual pixels behind an element, which is what makes it the correct (if partial) analogue ([MDN backdrop-filter](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter)). Combined with a semi-transparent background color, an inset `box-shadow`/gradient border for a fake "edge highlight," and `@supports (backdrop-filter: blur(1px))` fallbacks, this reproduces layer (1) and a static, hand-authored approximation of layer (6)'s Regular variant. It's Baseline-available since 2024 ([MDN backdrop-filter](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter)).
+
+Layers (2)-(5) are not reachable with CSS alone. Specular highlights and edge refraction have been approximated on the web only via SVG `feDisplacementMap` filters driving `backdrop-filter: url(#filter)`, and even that combination is explicitly non-standard, Chromium-only in practice, and the displacement map must be precomputed rather than physically simulated — real-time device-motion-driven lensing "is not real-time-capable" client-side today ([kube.io, "How I recreated Liquid Glass with CSS & SVG"](https://kube.io/blog/liquid-glass-css-svg/)). Content-adaptive auto light/dark switching (layer 4) has no browser API; it would need to be hand-rolled by sampling canvas pixel data under each glass surface, which is expensive and unreliable over a live WebGL/Canvas map layer.
+
+## Browser/PWA support and known bugs
+
+`-webkit-backdrop-filter` shipped prefixed in Safari 9 (2015); Safari only shipped the **unprefixed** property in Safari 18 (WWDC24) ([WebKit blog, "News from WWDC24: WebKit in Safari 18 beta"](https://webkit.org/blog/15443/news-from-wwdc24-webkit-in-safari-18-beta/); [Apple Safari 9.1 release notes](https://developer.apple.com/library/archive/releasenotes/General/WhatsNewInSafari/Articles/Safari_9_1.html)) — so both prefixes should ship together for older iOS Safari. Current support is Baseline across Chrome, Firefox, Edge, and Safari (iOS and macOS) ([MDN backdrop-filter](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter); [caniuse.com/css-backdrop-filter](https://caniuse.com/css-backdrop-filter)). Home-screen-installed (standalone) PWAs on iOS have a long history of extra WebKit quirks around viewport, safe-area, and rendering edge cases ([MagicBell, "PWA iOS Limitations & Safari Support"](https://www.magicbell.com/blog/pwa-ios-limitations-safari-support-complete-guide)); `backdrop-filter` itself is not documented as separately restricted in standalone mode, but the general pattern of iOS-standalone rendering divergence means it should be manually verified on a real installed PWA, not just in Safari tabs. A well-documented real-world bug: `backdrop-filter` on an animated/transitioning element (e.g. a Radix `Dialog`/`Sheet` overlay) can force expensive full-surface repaints each frame, reported as a concrete performance regression against shadcn's own `Dialog` component ([shadcn-ui/ui issue #327](https://github.com/shadcn-ui/ui/issues/327)).
+
+## Performance over a map view
+
+A blurred surface is a compositor operation the GPU must re-run whenever the backdrop changes — and a MapLibre/Mapbox canvas repaints on nearly every frame during pan/zoom/rotate, so any `backdrop-filter` surface sitting over the map is effectively re-blurring a moving image continuously. Guidance converges on: keep blurred surfaces few, small, and static relative to the map (fixed toolbars/cards, not full-bleed panels); avoid blur on elements that animate their own size/position (that compounds compositor cost); and promote the blurred layer with `transform: translateZ(0)`/`will-change` sparingly, since over-promotion has its own memory cost. `funges` already does this correctly in practice — `MapInfoCard.tsx` and `RouteToDishPanel.tsx` use small, fixed-size `backdrop-blur-sm` cards rather than blurring large map regions.
+
+## Accessibility and contrast
+
+WCAG 1.4.11 Non-text Contrast requires a 3:1 ratio for UI-component boundaries/state against adjacent colors, and its official guidance calls out photo/image and map backgrounds by name as "worst-case" cases where contrast must hold against the busiest adjacent zone, not just the average ([WCAG 2.1 Understanding SC 1.4.11](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html)). WCAG 1.4.3 (4.5:1 text contrast) applies on top of that for any label/icon text on glass. Because a translucent surface's *effective* background color varies with whatever map tile, marker cluster, or trail line sits underneath it, a single fixed text/icon color cannot guarantee compliance everywhere on a live map — the practical mitigation is an opaque-enough base tint (Apple's own Regular variant leans opaque specifically for this reason) plus a scrim/gradient, not thin blur alone. Two OS/browser accessibility signals exist and should be respected: `prefers-reduced-transparency`, a CSS media feature that mirrors macOS/iOS "Reduce Transparency" and has real (if not yet universal) engine support ([MDN prefers-reduced-transparency](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-transparency)), and `prefers-contrast: more`. Apple's own HIG explicitly instructs developers to reduce or disable Liquid Glass effects when these system settings are on ([HIG Materials](https://developer.apple.com/design/human-interface-guidelines/materials)).
+
+## Feasibility conclusion
+
+| Bucket | Effect | Implementation note for this stack |
+|---|---|---|
+| **In reach** | Base translucency + blur/saturate | `backdrop-blur-{sm,md}` + `bg-background/70` Tailwind utilities, already used in `AppSidebar.tsx`, `MapInfoCard.tsx`, `RouteToDishPanel.tsx`. Wrap as a `.glass` variant on shadcn `Card`/`Sheet`/`Dialog` (`className` merge via `cva`), guarded with `@supports (backdrop-filter: blur(1px))` fallback to a solid `bg-background`. |
+| **In reach** | Static edge highlight | 1px inset gradient border / `box-shadow: inset 0 1px 0 rgb(255 255 255 / .4)` on the glass wrapper — cheap, no per-frame cost. |
+| **In reach** | Respect for reduce-transparency/contrast | `@media (prefers-reduced-transparency: reduce)` and `(prefers-contrast: more)` blocks that swap the glass variant for an opaque one; ship this from day one given the map's contrast risk under WCAG 1.4.11. |
+| **Simplified approximation** | "Content-adaptive" tinting | No browser API for real content sampling; approximate with a manually chosen light/dark tint per app surface (e.g. detect map style/theme in app state, not by sampling pixels), or a fixed semi-opaque tint tuned to worst-case map contrast rather than true per-pixel adaptivity. |
+| **Simplified approximation** | Edge refraction/"lensing" | Only reachable via SVG `feDisplacementMap` + `backdrop-filter: url(#filter)`, effectively Chromium-only and not real-time/motion-driven — usable as a one-off decorative flourish on a non-critical element, not as the default chrome treatment, and must degrade gracefully on Safari. |
+| **Off the table** | Specular highlights driven by device motion/gyroscope | No web API exposes this to `backdrop-filter`; would require `DeviceOrientationEvent` (itself gated behind a user permission prompt on iOS Safari) driving a custom shader/canvas overlay — disproportionate effort for a foraging map PWA. |
+| **Off the table** | True per-frame GPU material simulation | This is native rendering-pipeline territory (Apple's own compositor). A web equivalent would mean per-frame canvas/WebGL post-processing layered over an already-WebGL map — a real GPU/battery cost for marginal visual gain, and directly in tension with the "keep blur surfaces few and small" performance guidance above. |
+
+**Bottom line:** treat "Liquid Glass" as design inspiration, not a target for pixel parity. A restrained `backdrop-blur` + tint + hairline-highlight component, applied to a handful of fixed-size chrome elements (already the pattern in this codebase), with `prefers-reduced-transparency`/`prefers-contrast` fallbacks, delivers the recognizable "glass" feel at negligible risk. Chasing the motion-reactive specular/refraction layer is not worth the engineering cost or the accessibility risk over a map background.
+
+## Sources
+
+- [Apple HIG — Materials](https://developer.apple.com/design/human-interface-guidelines/materials)
+- [WWDC25 session 219 — "Meet Liquid Glass"](https://developer.apple.com/videos/play/wwdc2025/219/)
+- [MDN — `backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter)
+- [caniuse.com — CSS `backdrop-filter`](https://caniuse.com/css-backdrop-filter)
+- [WebKit blog — News from WWDC24: WebKit in Safari 18 beta](https://webkit.org/blog/15443/news-from-wwdc24-webkit-in-safari-18-beta/)
+- [Apple — Safari 9.1 release notes (prefixed `-webkit-backdrop-filter`)](https://developer.apple.com/library/archive/releasenotes/General/WhatsNewInSafari/Articles/Safari_9_1.html)
+- [W3C — WCAG 2.1 Understanding SC 1.4.11 Non-text Contrast](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html)
+- [MDN — `prefers-reduced-transparency`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-transparency)
+- [shadcn-ui/ui GitHub issue #327 — backdrop-filter performance in Dialog](https://github.com/shadcn-ui/ui/issues/327)
+- [kube.io — "How I recreated Liquid Glass with CSS & SVG"](https://kube.io/blog/liquid-glass-css-svg/)
+- [MagicBell — "PWA iOS Limitations & Safari Support: The Complete Guide"](https://www.magicbell.com/blog/pwa-ios-limitations-safari-support-complete-guide)
