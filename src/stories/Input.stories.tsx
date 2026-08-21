@@ -340,3 +340,22 @@ export const WithValidation: Story = {
     },
   },
 };
+
+// Brand typefaces
+export const Typefaces: Story = {
+  render: () => (
+    <div className='space-y-3'>
+      <Input className='font-sans' placeholder='Montserrat (font-sans)' />
+      <Input className='font-serif' placeholder='Merriweather (font-serif)' />
+      <Input className='font-mono' placeholder='Source Code Pro (font-mono)' />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Confirms the self-hosted @fontsource files actually load for each of the three brand typefaces.',
+      },
+    },
+  },
+};

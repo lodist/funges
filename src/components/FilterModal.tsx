@@ -70,7 +70,7 @@ export default function FilterModal({
           variant='ghost'
           size='sm'
           onClick={onClose}
-          className='absolute top-4 right-4 z-10 h-8 w-8 p-0 hover:bg-background-secondary/50'
+          className='absolute top-4 right-4 z-10 h-8 w-8 p-0 hover:bg-(--background-secondary)/50'
         >
           <span className='text-lg'>{'✕'}</span>
         </Button>
@@ -80,7 +80,7 @@ export default function FilterModal({
           {/* Category Filters */}
           <div className='space-y-4'>
             <div className='flex items-center gap-2'>
-              <span className='text-sm font-semibold text-text-primary uppercase tracking-wide'>
+              <span className='text-sm font-semibold text-foreground uppercase tracking-wide'>
                 {t('filterBy')}
               </span>
             </div>
@@ -128,7 +128,7 @@ export default function FilterModal({
           {/* Difficulty Filters */}
           <div className='space-y-4'>
             <div className='flex items-center gap-2'>
-              <span className='text-sm font-semibold text-text-primary uppercase tracking-wide'>
+              <span className='text-sm font-semibold text-foreground uppercase tracking-wide'>
                 {t('difficulty')}
               </span>
             </div>
@@ -178,7 +178,7 @@ export default function FilterModal({
           {/* Tag Filters */}
           <div className='space-y-4'>
             <div className='flex items-center gap-2'>
-              <span className='text-sm font-semibold text-text-primary uppercase tracking-wide'>
+              <span className='text-sm font-semibold text-foreground uppercase tracking-wide'>
                 {'tags'}
               </span>
             </div>
@@ -224,7 +224,7 @@ export default function FilterModal({
         </div>
 
         {/* Footer Actions - Fixed at bottom */}
-        <div className='flex items-center justify-between p-6 border-t border-border bg-background-secondary/30 mt-auto'>
+        <div className='flex items-center justify-between p-6 border-t border-border bg-(--background-secondary)/30 mt-auto'>
           <Button
             variant='outline'
             onClick={onClearFilters}

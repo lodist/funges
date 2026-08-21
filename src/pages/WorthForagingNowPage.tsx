@@ -104,17 +104,17 @@ export default function WorthForagingNowPage() {
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
         <div className='mb-8 text-center'>
-          <h1 className='mb-2 text-4xl font-bold text-text-primary'>
+          <h1 className='mb-2 text-4xl font-bold text-foreground'>
             {t('worthForagingNow.title')}
           </h1>
-          <p className='text-sm text-text-secondary'>
+          <p className='text-sm text-muted-foreground'>
             {scopeLabel ??
               (userLocation
                 ? t('worthForagingNow.locationEnabled')
                 : t('worthForagingNow.locationMissing'))}
           </p>
           {!userLocation ? (
-            <p className='mt-1 text-xs italic text-text-secondary/60'>
+            <p className='mt-1 text-xs italic text-muted-foreground/60'>
               {t('worthForagingNow.shareLocationHint')}
             </p>
           ) : null}

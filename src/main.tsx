@@ -1,6 +1,15 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+// Brand typefaces, self-hosted so --font-sans/--font-serif/--font-mono in
+// index.css actually render instead of falling back to system fonts.
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/600.css';
+import '@fontsource/montserrat/700.css';
+import '@fontsource/merriweather/400.css';
+import '@fontsource/merriweather/700.css';
+import '@fontsource/source-code-pro/400.css';
 import './index.css';
 import './i18n';
 import { initializeHtmlLocalization } from '@/lib/html-localization';

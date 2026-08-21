@@ -69,9 +69,9 @@ export function IdentifyResults({
       {showToxicBanner && (
         <div
           role='alert'
-          /* Core Tailwind amber, not bg-status-warning: that class generates
-             no CSS (see NOTICE in the commit) so this banner had no amber at
-             all. Stronger than the standing disclaimer's halo, which is the
+          /* Core Tailwind amber, not bg-status-warning: this needs explicit
+             dark-mode variants and bg-status-warning is flat across themes.
+             Stronger than the standing disclaimer's halo, which is the
              hierarchy this feature depends on. */
           className={
             'rounded-lg border-2 border-amber-500 bg-amber-100 p-3 flex gap-2 ' +
