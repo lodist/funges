@@ -375,10 +375,14 @@ export default function AtomsKitchenSink() {
           </div>
           <div className='space-y-2'>
             <Label>Condition</Label>
-            <RadioGroup defaultValue='fresh' className='gap-2.5'>
+            <RadioGroup defaultValue='Fresh' className='gap-2.5'>
               {['Fresh', 'Past prime', 'Not sure'].map(opt => (
                 <div key={opt} className='flex items-center gap-2'>
-                  <RadioGroupItem value={opt} id={`ks-cond-${opt}`} />
+                  <RadioGroupItem
+                    value={opt}
+                    id={`ks-cond-${opt}`}
+                    className={r.radio}
+                  />
                   <Label htmlFor={`ks-cond-${opt}`} className='font-normal'>
                     {opt}
                   </Label>
@@ -389,7 +393,7 @@ export default function AtomsKitchenSink() {
           <div className='space-y-2'>
             <Label>Options</Label>
             <div className='flex items-center gap-2'>
-              <Checkbox id='ks-confirm' defaultChecked />
+              <Checkbox id='ks-confirm' defaultChecked className={r.checkbox} />
               <Label htmlFor='ks-confirm' className='font-normal'>
                 I identified this myself
               </Label>

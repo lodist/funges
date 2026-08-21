@@ -65,6 +65,10 @@ interface Recipe {
   selectTrigger: string;
   selectContent: string;
   selectItem: string;
+  // Checkbox: square + a genuinely visible tick. Radio: circular. Both need
+  // p-0 for the same reason as saveButton (global button{} padding reset).
+  checkbox: string;
+  radio: string;
   // Overlay atoms
   dialogContent: string;
   dialogClose: string;
@@ -82,17 +86,24 @@ export const recipes: Record<Variant, Recipe> = {
     // changing to white on hover) — on a bright "happy" green, dark text
     // reads far better than white, and it keeps every colour on the button
     // within the green scale, per review.
+    // Hover is a deliberately BIG jump down the scale (0.74 → 0.58), not a
+    // token nudge — review wanted the hover state to actually read as a
+    // colour change, on both this and the destructive button below.
     btnPrimary:
-      'rounded-full px-6 h-11 font-semibold border-0 bg-[oklch(0.74_0.17_150)] text-[oklch(0.24_0.07_150)] shadow-[0_2px_8px_rgba(0,0,0,0.18)] hover:bg-[oklch(0.65_0.18_150)] hover:shadow-[0_3px_12px_rgba(0,0,0,0.22)] transition-[background-color,box-shadow]',
+      'rounded-full px-6 h-11 font-semibold border-0 bg-[oklch(0.74_0.17_150)] text-[oklch(0.24_0.07_150)] shadow-[0_2px_8px_rgba(0,0,0,0.18)] hover:bg-[oklch(0.58_0.18_150)] hover:shadow-[0_3px_12px_rgba(0,0,0,0.22)] transition-[background-color,box-shadow]',
     // Border lives ONLY here — this is the one button that's semantically
     // "outline" (Share). Every other button below is border-0, at rest and
     // on hover alike; hover only ever shifts a fill, never adds an outline.
+    // hover:text is pinned explicitly — Button's `outline` variant base
+    // classes include `hover:text-white`, which otherwise wins (nothing in
+    // this recipe used to contest it) and goes invisible on the pale hover
+    // fill.
     btnSecondary:
-      'rounded-full px-6 h-11 font-semibold border-2 border-[oklch(0.65_0.18_150)] bg-transparent text-[oklch(0.42_0.13_150)] shadow-none hover:bg-[oklch(0.97_0.03_152)]',
+      'rounded-full px-6 h-11 font-semibold border-2 border-[oklch(0.65_0.18_150)] bg-transparent text-[oklch(0.42_0.13_150)] shadow-none hover:bg-[oklch(0.97_0.03_152)] hover:text-[oklch(0.42_0.13_150)]',
     btnGhost:
       'rounded-full px-6 h-11 font-medium border-0 text-foreground bg-transparent hover:bg-[oklch(0.97_0.03_152)] hover:text-[oklch(0.42_0.13_150)] transition-colors',
     btnDestructive:
-      'rounded-full px-6 h-11 font-semibold border-0 bg-[oklch(0.24_0.07_150)] text-white shadow-[0_2px_8px_rgba(0,0,0,0.18)] hover:bg-[oklch(0.30_0.08_150)] hover:shadow-[0_3px_12px_rgba(0,0,0,0.22)] transition-[background-color,box-shadow]',
+      'rounded-full px-6 h-11 font-semibold border-0 bg-[oklch(0.24_0.07_150)] text-white shadow-[0_2px_8px_rgba(0,0,0,0.18)] hover:bg-[oklch(0.36_0.10_150)] hover:shadow-[0_3px_12px_rgba(0,0,0,0.22)] transition-[background-color,box-shadow]',
     dangerIcon: 'text-[oklch(0.24_0.07_150)]',
     btnIcon:
       'rounded-full size-11 p-0 border-0 shadow-[0_2px_10px_rgba(0,0,0,0.18)] bg-card text-[oklch(0.42_0.13_150)] hover:bg-[oklch(0.97_0.03_152)] hover:text-[oklch(0.42_0.13_150)]',
@@ -121,7 +132,20 @@ export const recipes: Record<Variant, Recipe> = {
     selectTrigger:
       'rounded-full h-11 px-4 border border-border bg-card focus-visible:border-[oklch(0.74_0.17_150)]',
     selectContent: 'rounded-2xl border-0 shadow-[0_4px_20px_rgba(0,0,0,0.16)]',
-    selectItem: 'rounded-xl',
+    // focus:bg/text override Radix's own focus:bg-accent/focus:text-accent-
+    // foreground (the warm tan token) — same green-only rule as everywhere
+    // else. Applies to DropdownMenuItem too (reused there).
+    selectItem:
+      'rounded-xl focus:bg-[oklch(0.93_0.06_152)] focus:text-[oklch(0.24_0.07_150)]',
+    // Square with a visible tick: p-0 cancels the global button{} padding
+    // that was stretching this into a pill; checked state uses the scale
+    // instead of the app's old dark-forest --primary, and the tick is
+    // explicitly white so it actually shows against the fill.
+    checkbox:
+      'p-0 size-5 rounded-[5px] border-2 border-[oklch(0.65_0.18_150)] data-[state=checked]:bg-[oklch(0.65_0.18_150)] data-[state=checked]:border-[oklch(0.65_0.18_150)] data-[state=checked]:text-white',
+    // Circular: same p-0 fix, plus a bit bigger so the (unthemed, still the
+    // app's --primary-coloured) centre dot reads clearly.
+    radio: 'p-0 size-5 border-2 border-[oklch(0.65_0.18_150)]',
     dialogContent: 'rounded-2xl border-0 shadow-[0_8px_32px_rgba(0,0,0,0.24)]',
     dialogClose: 'rounded-full',
     sheetContent:
@@ -129,7 +153,10 @@ export const recipes: Record<Variant, Recipe> = {
     sheetHandle: 'mx-auto mb-2 h-1.5 w-10 rounded-full bg-border',
     tooltipContent:
       'rounded-full px-3 py-1.5 bg-[oklch(0.24_0.07_150)] text-white',
-    switchRoot: 'data-[state=checked]:bg-[oklch(0.65_0.18_150)]',
+    // p-0 is the fix — same global button{padding} reset as everything
+    // else on this page was squashing the track/thumb proportions into a
+    // blob with no visible knob.
+    switchRoot: 'p-0 data-[state=checked]:bg-[oklch(0.65_0.18_150)]',
     separator: '',
     skeleton: 'rounded-2xl',
   },
@@ -170,12 +197,14 @@ export const recipes: Record<Variant, Recipe> = {
     selectTrigger: 'rounded-lg h-11 px-4 border-2 border-border bg-background',
     selectContent: 'rounded-lg border-2 shadow-none',
     selectItem: 'rounded-md',
+    checkbox: 'p-0 size-5 rounded-[3px] border-2',
+    radio: 'p-0 size-5 border-2',
     dialogContent: 'rounded-2xl border-2 shadow-none',
     dialogClose: 'rounded-md',
     sheetContent: 'rounded-none border-l-2 shadow-none',
     sheetHandle: 'hidden',
     tooltipContent: 'rounded-md',
-    switchRoot: 'data-[state=checked]:bg-primary',
+    switchRoot: 'p-0 data-[state=checked]:bg-primary',
     separator: '',
     skeleton: 'rounded-lg',
   },
