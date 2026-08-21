@@ -19,6 +19,7 @@ import {
   ArrowUpDown,
   ShieldAlert,
   Check,
+  X,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -46,6 +47,7 @@ import {
 } from '@/components/ui/select';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -375,7 +377,21 @@ export default function AtomsKitchenSink() {
           </div>
           <div className='space-y-2'>
             <Label>Condition</Label>
-            <RadioGroup defaultValue='Fresh' className='gap-2.5'>
+            <RadioGroup
+              defaultValue='Fresh'
+              className='gap-2.5'
+              // radio-group.tsx hardcodes the selected centre dot as
+              // `fill-primary` with no className passthrough — the only
+              // way to recolour it is overriding the --primary CSS var it
+              // reads from, scoped to this subtree only.
+              style={
+                r.radioIndicatorColor
+                  ? ({
+                      '--primary': r.radioIndicatorColor,
+                    } as React.CSSProperties)
+                  : undefined
+              }
+            >
               {['Fresh', 'Past prime', 'Not sure'].map(opt => (
                 <div key={opt} className='flex items-center gap-2'>
                   <RadioGroupItem
@@ -423,6 +439,11 @@ export default function AtomsKitchenSink() {
               <Button className={r.btnPrimary}>Add to list (sheet)</Button>
             </SheetTrigger>
             <SheetContent side='bottom' className={r.sheetContent}>
+              {/* Sheet's built-in close button has no className passthrough
+                  (unlike Dialog's showCloseButton escape hatch), so it's
+                  restyled in place via this page-scoped CSS instead of a
+                  React prop — see recipes.ts `sheetCloseCss`. */}
+              <style>{`[data-slot="sheet-content"] > button:last-of-type { ${r.sheetCloseCss} }`}</style>
               <div className={r.sheetHandle} />
               <SheetHeader>
                 <SheetTitle className='font-display'>Add to a list</SheetTitle>
@@ -432,11 +453,7 @@ export default function AtomsKitchenSink() {
               </SheetHeader>
               <div className='px-4 pb-6 flex flex-col gap-2'>
                 {['Weekend spots', 'Backyard finds', 'Wishlist'].map(l => (
-                  <button
-                    key={l}
-                    type='button'
-                    className='text-left px-3 py-2.5 rounded-lg hover:bg-muted text-sm font-medium'
-                  >
+                  <button key={l} type='button' className={r.sheetListItem}>
                     {l}
                   </button>
                 ))}
@@ -450,7 +467,13 @@ export default function AtomsKitchenSink() {
                 Delete find (dialog)
               </Button>
             </DialogTrigger>
-            <DialogContent className={r.dialogContent}>
+            <DialogContent className={r.dialogContent} showCloseButton={false}>
+              <DialogClose asChild>
+                <button type='button' className={r.dialogClose}>
+                  <X className='size-4' />
+                  <span className='sr-only'>Close</span>
+                </button>
+              </DialogClose>
               <DialogHeader>
                 <DialogTitle className='flex items-center gap-2'>
                   <ShieldAlert className={cn('size-4', r.dangerIcon)} />
