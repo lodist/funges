@@ -7,6 +7,10 @@
 // atom a different set of utility classes per variant. That's also exactly
 // how a "winning" direction would get folded in for real: as className
 // tweaks on the existing components, not a rewrite.
+//
+// Every oklch(...) value below is written out literally in each class
+// string on purpose — see palette.ts for why (Tailwind can't discover a
+// class name assembled via template-literal interpolation).
 
 export type Variant = 'trailhead' | 'ridge';
 
@@ -15,13 +19,13 @@ export const VARIANTS: { id: Variant; label: string; blurb: string }[] = [
     id: 'trailhead',
     label: 'A — Trailhead',
     blurb:
-      'Faithful AllTrails mapping: pill buttons/chips/search, soft floating shadows, circular map-style icon buttons, bottom-sheet-first modals.',
+      'Faithful AllTrails mapping, recoloured per review: a happy, lighter green scale — no red anywhere, no borders except the one true outline button.',
   },
   {
     id: 'ridge',
     label: 'B — Ridge',
     blurb:
-      'Same AllTrails DNA (photo-first cards, colour-coded status pills, chip filters) recomposed with our forest palette + Space Grotesk, structured borders instead of pills, trail-blaze accent bars.',
+      'Same AllTrails DNA (photo-first cards, chip filters) recomposed with our forest palette + Space Grotesk, structured borders instead of pills, trail-blaze accent bars.',
   },
 ];
 
@@ -31,6 +35,11 @@ interface Recipe {
   btnPrimary: string;
   btnSecondary: string;
   btnGhost: string;
+  // Same shape as btnPrimary, but the deepest step of the green scale —
+  // stands in for "destructive" without introducing red.
+  btnDestructive: string;
+  // Icon colour for danger/warning callouts (also green-scale, no red).
+  dangerIcon: string;
   // Circular floating icon button, à la AllTrails' map zoom/locate controls.
   btnIcon: string;
   // Species result card — AllTrails' trail card: photo-first, badge overlaid
@@ -40,7 +49,9 @@ interface Recipe {
   cardBody: string;
   // Save/heart toggle overlaid on the photo corner.
   saveButton: string;
-  // Colour-coded edibility pill (AllTrails' green/amber/red difficulty pill).
+  // Colour-coded edibility pill (AllTrails' green/amber/red difficulty pill,
+  // recoloured to a green-only scale: light = safe, mid = caution,
+  // deep = avoid).
   badgeBase: string;
   badgeSuccess: string;
   badgeWarning: string;
@@ -67,31 +78,48 @@ interface Recipe {
 
 export const recipes: Record<Variant, Recipe> = {
   trailhead: {
+    // Text is a deep green from the same scale (not white/black, and NOT
+    // changing to white on hover) — on a bright "happy" green, dark text
+    // reads far better than white, and it keeps every colour on the button
+    // within the green scale, per review.
     btnPrimary:
-      'rounded-full px-6 h-11 font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.18)] hover:shadow-[0_3px_12px_rgba(0,0,0,0.22)] transition-shadow',
+      'rounded-full px-6 h-11 font-semibold border-0 bg-[oklch(0.74_0.17_150)] text-[oklch(0.24_0.07_150)] shadow-[0_2px_8px_rgba(0,0,0,0.18)] hover:bg-[oklch(0.65_0.18_150)] hover:shadow-[0_3px_12px_rgba(0,0,0,0.22)] transition-[background-color,box-shadow]',
+    // Border lives ONLY here — this is the one button that's semantically
+    // "outline" (Share). Every other button below is border-0, at rest and
+    // on hover alike; hover only ever shifts a fill, never adds an outline.
     btnSecondary:
-      'rounded-full px-6 h-11 font-semibold border-2 bg-card shadow-none',
-    btnGhost: 'rounded-full px-4 font-medium',
+      'rounded-full px-6 h-11 font-semibold border-2 border-[oklch(0.65_0.18_150)] bg-transparent text-[oklch(0.42_0.13_150)] shadow-none hover:bg-[oklch(0.97_0.03_152)]',
+    btnGhost:
+      'rounded-full px-6 h-11 font-medium border-0 text-foreground bg-transparent hover:bg-[oklch(0.97_0.03_152)] hover:text-[oklch(0.42_0.13_150)] transition-colors',
+    btnDestructive:
+      'rounded-full px-6 h-11 font-semibold border-0 bg-[oklch(0.24_0.07_150)] text-white shadow-[0_2px_8px_rgba(0,0,0,0.18)] hover:bg-[oklch(0.30_0.08_150)] hover:shadow-[0_3px_12px_rgba(0,0,0,0.22)] transition-[background-color,box-shadow]',
+    dangerIcon: 'text-[oklch(0.24_0.07_150)]',
     btnIcon:
-      'rounded-full size-11 p-0 shadow-[0_2px_10px_rgba(0,0,0,0.18)] bg-card border border-border/60 text-foreground hover:bg-card',
+      'rounded-full size-11 p-0 border-0 shadow-[0_2px_10px_rgba(0,0,0,0.18)] bg-card text-[oklch(0.42_0.13_150)] hover:bg-[oklch(0.97_0.03_152)] hover:text-[oklch(0.42_0.13_150)]',
     card: 'rounded-[1.25rem] overflow-hidden border-0 p-0 gap-0 shadow-[0_2px_16px_rgba(0,0,0,0.10)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.14)] transition-shadow',
     cardImageWrap: 'relative h-40 w-full overflow-hidden bg-muted',
     cardBody: 'px-4 py-4 gap-2',
+    // p-0 matters: a global `button{padding:.6em 1.2em}` reset (see README)
+    // otherwise pads this off-centre inside its fixed size-9 circle.
     saveButton:
-      'absolute top-3 right-3 rounded-full size-9 grid place-items-center bg-black/35 text-white backdrop-blur-sm hover:bg-black/50 transition-colors',
+      'absolute top-3 right-3 rounded-full size-9 p-0 border-0 shrink-0 leading-none grid place-items-center bg-white/90 text-[oklch(0.42_0.13_150)] shadow-[0_2px_8px_rgba(0,0,0,0.18)] backdrop-blur-sm hover:bg-white transition-colors',
     badgeBase:
       'rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wide border-0',
-    badgeSuccess: 'bg-status-success text-white',
-    badgeWarning:
-      'bg-[var(--status-warning-background)] text-status-warning-text',
-    badgeDestructive: 'bg-destructive text-destructive-foreground',
-    chip: 'rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shrink-0 whitespace-nowrap',
+    badgeSuccess: 'bg-[oklch(0.74_0.17_150)] text-[oklch(0.24_0.07_150)]',
+    badgeWarning: 'bg-[oklch(0.93_0.06_152)] text-[oklch(0.42_0.13_150)]',
+    badgeDestructive: 'bg-[oklch(0.24_0.07_150)] text-white',
+    chip: 'rounded-full border-0 bg-card px-4 py-2 text-sm font-medium text-foreground shadow-[0_1px_4px_rgba(0,0,0,0.08)] shrink-0 whitespace-nowrap hover:bg-[oklch(0.97_0.03_152)]',
+    // Selected state stays the same neutral fill as the default chip — no
+    // colour swap — and is marked only by weight + the check icon rendered
+    // next to the label (see AtomsKitchenSink.tsx).
     chipSelected:
-      'rounded-full border border-primary bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shrink-0 whitespace-nowrap',
+      'rounded-full border-0 bg-card px-4 py-2 text-sm font-semibold text-foreground shrink-0 whitespace-nowrap shadow-[0_1px_4px_rgba(0,0,0,0.08)]',
     input:
-      'rounded-full h-12 pl-11 pr-4 border border-border shadow-[0_1px_6px_rgba(0,0,0,0.06)] bg-card',
-    textarea: 'rounded-2xl border border-border bg-card p-4',
-    selectTrigger: 'rounded-full h-11 px-4 border border-border bg-card',
+      'rounded-full h-12 pl-11 pr-4 border border-border shadow-[0_1px_6px_rgba(0,0,0,0.06)] bg-card focus-visible:border-[oklch(0.74_0.17_150)]',
+    textarea:
+      'rounded-2xl border border-border bg-card p-4 focus-visible:border-[oklch(0.74_0.17_150)]',
+    selectTrigger:
+      'rounded-full h-11 px-4 border border-border bg-card focus-visible:border-[oklch(0.74_0.17_150)]',
     selectContent: 'rounded-2xl border-0 shadow-[0_4px_20px_rgba(0,0,0,0.16)]',
     selectItem: 'rounded-xl',
     dialogContent: 'rounded-2xl border-0 shadow-[0_8px_32px_rgba(0,0,0,0.24)]',
@@ -99,8 +127,9 @@ export const recipes: Record<Variant, Recipe> = {
     sheetContent:
       'rounded-t-[1.75rem] border-0 shadow-[0_-4px_24px_rgba(0,0,0,0.18)] pt-3',
     sheetHandle: 'mx-auto mb-2 h-1.5 w-10 rounded-full bg-border',
-    tooltipContent: 'rounded-full px-3 py-1.5',
-    switchRoot: '',
+    tooltipContent:
+      'rounded-full px-3 py-1.5 bg-[oklch(0.24_0.07_150)] text-white',
+    switchRoot: 'data-[state=checked]:bg-[oklch(0.65_0.18_150)]',
     separator: '',
     skeleton: 'rounded-2xl',
   },
@@ -109,7 +138,12 @@ export const recipes: Record<Variant, Recipe> = {
       'rounded-xl px-6 h-11 font-display font-bold uppercase tracking-wide border-2 border-primary shadow-none',
     btnSecondary:
       'rounded-xl px-6 h-11 font-display font-bold uppercase tracking-wide border-2 bg-transparent',
-    btnGhost: 'rounded-lg px-4 font-display font-semibold uppercase text-xs',
+    btnGhost:
+      'rounded-lg px-4 h-11 font-display font-semibold uppercase text-xs',
+    // No red here either — the deepest green step stands in for destructive.
+    btnDestructive:
+      'rounded-xl px-6 h-11 font-display font-bold uppercase tracking-wide border-2 border-[oklch(0.24_0.07_150)] bg-[oklch(0.24_0.07_150)] text-white shadow-none',
+    dangerIcon: 'text-[oklch(0.24_0.07_150)]',
     btnIcon:
       'rounded-lg size-11 p-0 border-2 border-border bg-card text-foreground shadow-none hover:bg-accent hover:border-accent-foreground',
     card: 'rounded-2xl overflow-hidden border-2 border-border p-0 gap-0 shadow-none',
@@ -117,14 +151,15 @@ export const recipes: Record<Variant, Recipe> = {
       'relative h-40 w-full overflow-hidden bg-muted border-b-2 border-border',
     cardBody: 'px-4 py-4 gap-2',
     saveButton:
-      'absolute top-3 right-3 rounded-lg size-9 grid place-items-center border-2 border-foreground/20 bg-card/90 text-foreground hover:border-foreground transition-colors',
+      'absolute top-3 right-3 rounded-lg size-9 p-0 shrink-0 leading-none grid place-items-center border-2 border-foreground/20 bg-card/90 text-foreground hover:border-foreground transition-colors',
     badgeBase:
       'rounded-md px-2.5 py-1 text-[11px] font-display font-bold uppercase tracking-wide border-2',
     badgeSuccess:
-      'bg-status-success/15 text-status-success border-status-success',
+      'bg-[oklch(0.93_0.06_152)] text-[oklch(0.42_0.13_150)] border-[oklch(0.65_0.18_150)]',
     badgeWarning:
-      'bg-[var(--status-warning-background)] text-status-warning-text border-status-warning-border',
-    badgeDestructive: 'bg-destructive/10 text-destructive border-destructive',
+      'bg-[oklch(0.97_0.03_152)] text-[oklch(0.42_0.13_150)] border-[oklch(0.85_0.12_151)]',
+    badgeDestructive:
+      'bg-[oklch(0.24_0.07_150)] text-white border-[oklch(0.24_0.07_150)]',
     chip: 'rounded-md border-2 border-border bg-card px-3 py-1.5 font-display text-xs font-bold uppercase tracking-wide text-foreground shrink-0 whitespace-nowrap',
     chipSelected:
       'rounded-md border-2 border-accent-foreground bg-accent px-3 py-1.5 font-display text-xs font-bold uppercase tracking-wide text-accent-foreground shrink-0 whitespace-nowrap',

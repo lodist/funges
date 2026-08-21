@@ -18,6 +18,7 @@ import {
   Settings2,
   ArrowUpDown,
   ShieldAlert,
+  Check,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -226,7 +227,9 @@ export default function AtomsKitchenSink() {
                   type='button'
                   aria-pressed={selected}
                   onClick={() => setSelectedChip(label)}
+                  className='inline-flex items-center gap-1.5'
                 >
+                  {selected && <Check className='size-3.5' />}
                   {label}
                 </button>
               </Badge>
@@ -318,9 +321,7 @@ export default function AtomsKitchenSink() {
           <Button variant='ghost' className={r.btnGhost}>
             Skip
           </Button>
-          <Button variant='destructive' className={r.btnPrimary}>
-            Report issue
-          </Button>
+          <Button className={r.btnDestructive}>Report issue</Button>
           <Button disabled className={r.btnPrimary}>
             Disabled
           </Button>
@@ -448,7 +449,7 @@ export default function AtomsKitchenSink() {
             <DialogContent className={r.dialogContent}>
               <DialogHeader>
                 <DialogTitle className='flex items-center gap-2'>
-                  <ShieldAlert className='size-4 text-destructive' />
+                  <ShieldAlert className={cn('size-4', r.dangerIcon)} />
                   Delete this find?
                 </DialogTitle>
                 <DialogDescription>
@@ -459,9 +460,7 @@ export default function AtomsKitchenSink() {
                 <Button variant='outline' className={r.btnSecondary}>
                   Cancel
                 </Button>
-                <Button variant='destructive' className={r.btnPrimary}>
-                  Delete
-                </Button>
+                <Button className={r.btnDestructive}>Delete</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>

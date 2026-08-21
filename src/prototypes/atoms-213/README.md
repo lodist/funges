@@ -29,19 +29,34 @@ trail card, difficulty pill, map icon buttons, bottom-sheet actions,
 
 ### A — Trailhead
 
-A close mapping of AllTrails' actual chrome onto our species-card domain:
+A close mapping of AllTrails' actual chrome onto our species-card domain,
+**recoloured per review** (2026-08-22):
 
+- **Happy green scale, no red anywhere** — the original mapping inherited
+  the app's existing dark forest `--primary`. Review wanted lighter/more
+  vivid ("un verde FELICE"), and no red at all, even for destructive
+  actions — so `palette.ts` defines a standalone green scale (50/100/300/
+  500/600/700/900) used for _everything_, including "Report issue"/"Delete"
+  (deepest step, `900`, stands in for destructive) and the edibility badges
+  (light = safe, mid = caution, deep = avoid — severity via depth, not hue).
+- **No borders except the one true outline button** — "Share" is the only
+  bordered button (it's semantically `variant="outline"`); every other
+  button (ghost, icon, destructive, chips, the save/heart toggle) is
+  `border-0` at rest _and_ on hover — hover only ever shifts a fill/shadow,
+  never reveals an outline.
+- **Primary button text never turns white on hover** — stays the same deep
+  green from the scale in both states; only the fill deepens slightly.
 - **Pill buttons & search** — AllTrails' "Hit the Trail" primary CTA and
   search bar are both fully rounded, with soft diffuse shadow instead of a
   hard border.
 - **Circular floating icon buttons** — mirrors the zoom/locate/layers
-  controls AllTrails floats over its map.
+  controls AllTrails floats over its map; heart/save toggle is a plain white
+  circle with the icon genuinely centered (see the p-0 note below).
 - **Photo-first cards** — image bleeds to the card edge; a colour-coded
-  status pill (their difficulty badge, green/amber/red) sits overlaid on the
-  photo; a heart/save toggle sits in the opposite corner as a translucent
-  circular button.
-- **Filter chips** — horizontally-scrolling, fully-rounded, filled when
-  selected — AllTrails' filter row above trail results.
+  status pill sits overlaid on the photo.
+- **Filter chips** — horizontally-scrolling pills. Selected state stays the
+  _same neutral fill_ as unselected (review: "non farla colorata, mettila al
+  default") — marked only by bold weight + a check icon, not a colour swap.
 - **Bottom-sheet-first overlays** — "Add to list" opens as a sheet with a
   rounded top and a drag handle, matching how AllTrails handles nearly every
   mobile action instead of a centered dialog.
@@ -58,8 +73,8 @@ Space Grotesk display type, pushed toward a more structured, bordered
 - **Structured cards** — `border-2`, no shadow; the photo gets a hard
   bottom border instead of bleeding into a soft-shadowed card.
 - **Blaze-marker badges** — status pills become bordered, square-cornered
-  chips (`rounded-md`) rather than full pills — still colour-coded
-  green/amber/red.
+  chips (`rounded-md`) rather than full pills — same green-only scale as A,
+  severity conveyed by depth, no red.
 - **Centered dialog, not a sheet** — "Delete find" stays a classic centered,
   bordered modal. Put next to A's sheet-first "Add to list," this is the
   concrete decision point for the Sheet-vs-Dialog question raised in the
@@ -75,19 +90,25 @@ a hiking app.
 
 ## Observed while building this (not fixed here — out of scope)
 
-- `Checkbox` (`src/components/ui/checkbox.tsx`) builds its className via
-  `cn(checkboxVariants({ className }))` — `className` is passed as a cva
-  _variant_ key instead of a second arg to `cn`, so a caller's `className`
-  prop is silently dropped. Doesn't block this prototype (neither direction
-  needed to reshape Checkbox), but worth a one-line fix separately.
-- `Checkbox`, `RadioGroupItem`, and `Switch` all render ~40×21px in this
-  app regardless of their `size-4`/`w-8` utility classes — traced to a
-  generic `button { padding: 0.6em 1.2em; ... }` rule in
-  `src/styles/globals.scss` (a leftover Vite-template reset with no scoping
-  class) that applies to every native `<button>`, including Radix's
-  `role="checkbox"/"radio"/"switch"` elements. Visible in the "Log a find"
-  form section in both variants above. Site-wide blast radius — belongs in
-  its own bugfix ticket, not this one.
+- **Don't build Tailwind class names via template-literal interpolation.**
+  First pass at the green palette used a `` `bg-[${green[500]}]` `` helper —
+  Tailwind's JIT scanner greps _source_ files for complete, literal class
+  strings; it can't see what a template literal resolves to at runtime, so
+  every one of those classes silently never got generated. The visual
+  symptom was confusing (buttons falling back to whatever else touched
+  `background-color`, not to "unstyled") because of the next point:
+- `Checkbox`, `RadioGroupItem`, and `Switch` all render larger than their
+  `size-4`/`w-8` utility classes ask for — traced to a generic
+  `button { padding: 0.6em 1.2em; background-color: var(--muted); ... }`
+  rule in `src/styles/globals.scss` (a leftover Vite-template reset, in
+  `@layer base` with no scoping class) that applies to every native
+  `<button>`, including Radix's `role="checkbox"/"radio"/"switch"`
+  elements — and, harmlessly once real utility classes are generated, to
+  every Button/Badge here too (Tailwind's `@layer utilities` normally wins
+  over `@layer base` regardless of specificity, which is exactly why the
+  broken-interpolation classes above had nothing to win _with_). Still
+  visible on Checkbox/RadioGroup/Switch in the "Log a find" form section.
+  Site-wide blast radius — belongs in its own bugfix ticket, not this one.
 
 ## Capturing the decision
 
