@@ -54,6 +54,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif}'],
+        // HEIC support is a fallback, so do not make every visitor download its
+        // decoder chunk. Cache the JS + WASM after the first HEIC photo instead.
+        globIgnores: ['**/heic-decoder-*.js'],
         runtimeCaching: [
           // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.
           {
@@ -74,6 +77,18 @@ export default defineConfig({
               cacheName: 'ort-runtime-cache',
               expiration: {
                 maxEntries: 6,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            urlPattern: /\/assets\/(?:heic-decoder|heic_dec).*\.(?:js|wasm)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'heic-decoder-cache',
+              expiration: {
+                maxEntries: 4,
                 maxAgeSeconds: 60 * 60 * 24 * 365,
               },
               cacheableResponse: { statuses: [0, 200] },
@@ -370,9 +385,10 @@ export default defineConfig({
     format: 'es',
   },
   optimizeDeps: {
-    // ORT ships prebuilt ESM plus .wasm siblings it fetches at runtime. Letting
-    // esbuild pre-bundle it rewrites those paths and breaks the wasm lookup.
-    exclude: ['onnxruntime-web'],
+    // Both packages resolve sibling WASM files at runtime. Pre-bundling moves
+    // their JS into `.vite/deps` without the WASM, making the request fall
+    // through to index.html and fail compilation.
+    exclude: ['onnxruntime-web', '@discourse/heic'],
   },
   server: {
     port: 3000,
@@ -386,6 +402,15 @@ export default defineConfig({
     // + helper code: 22 KB raw / 6 KB gzip of the entry chunk, for browsers
     // that could not run this app's WASM or service worker anyway.
     target: 'es2020',
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/@discourse/heic')) {
+            return 'heic-decoder';
+          }
+        },
+      },
+    },
   },
   test: {
     globals: true,
