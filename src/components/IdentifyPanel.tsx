@@ -17,6 +17,7 @@ import {
 } from '@/lib/bioclip/classify';
 import {
   BlankImageError,
+  ImageDecodeError,
   prepareImage,
   type PreparedImage,
 } from '@/lib/bioclip/imagePrep';
@@ -395,7 +396,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
         setPhase({
           name: 'error',
           message:
-            err instanceof BlankImageError
+            err instanceof BlankImageError || err instanceof ImageDecodeError
               ? t('status.unreadable')
               : err instanceof Error
                 ? err.message

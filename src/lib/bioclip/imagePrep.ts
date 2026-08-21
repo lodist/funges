@@ -1,4 +1,5 @@
 import type { RgbaImage } from './preprocess';
+import { decodeHeic, isHeic } from './heic';
 
 /**
  * Turns a user-supplied photo into raw RGBA pixels for `preprocessToTensor`.
@@ -45,6 +46,85 @@ export class BlankImageError extends Error {
         `stddev ${stats.stddev.toFixed(2)})`
     );
     this.name = 'BlankImageError';
+  }
+}
+
+/** The browser and, where applicable, the HEIC fallback could not decode a photo. */
+export class ImageDecodeError extends Error {
+  constructor(
+    readonly originalError: unknown,
+    readonly attemptedHeicFallback: boolean
+  ) {
+    super(
+      attemptedHeicFallback
+        ? 'HEIC image could not be decoded'
+        : 'source image could not be decoded'
+    );
+    this.name = 'ImageDecodeError';
+  }
+}
+
+type DecodedPhoto =
+  | { kind: 'bitmap'; image: ImageBitmap }
+  | { kind: 'pixels'; image: ImageData };
+
+async function decodePhoto(file: Blob): Promise<DecodedPhoto> {
+  try {
+    return {
+      kind: 'bitmap',
+      image: await createImageBitmap(file, { imageOrientation: 'from-image' }),
+    };
+  } catch (nativeError) {
+    let heic = false;
+    try {
+      heic = await isHeic(file);
+    } catch {
+      // The typed decode error below is more useful than a secondary sniffing
+      // error and preserves the native failure for diagnostics.
+    }
+    if (!heic) throw new ImageDecodeError(nativeError, false);
+
+    try {
+      return { kind: 'pixels', image: await decodeHeic(file) };
+    } catch (heicError) {
+      throw new ImageDecodeError(heicError, true);
+    }
+  }
+}
+
+async function drawDecodedPhoto(
+  decoded: DecodedPhoto,
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number
+): Promise<void> {
+  if (decoded.kind === 'bitmap') {
+    ctx.drawImage(decoded.image, 0, 0, width, height);
+    return;
+  }
+
+  // Turning ImageData into a resized ImageBitmap avoids allocating a second
+  // full-resolution canvas next to a large phone photo. WebKit implementations
+  // that lack ImageData support get the canvas fallback instead.
+  try {
+    const bitmap = await createImageBitmap(decoded.image, {
+      resizeWidth: width,
+      resizeHeight: height,
+      resizeQuality: 'high',
+    });
+    try {
+      ctx.drawImage(bitmap, 0, 0, width, height);
+    } finally {
+      bitmap.close();
+    }
+  } catch {
+    const source = document.createElement('canvas');
+    source.width = decoded.image.width;
+    source.height = decoded.image.height;
+    const sourceCtx = source.getContext('2d');
+    if (!sourceCtx) throw new Error('could not get a HEIC canvas context');
+    sourceCtx.putImageData(decoded.image, 0, 0);
+    ctx.drawImage(source, 0, 0, width, height);
   }
 }
 
@@ -106,17 +186,17 @@ function canvasToBlob(canvas: HTMLCanvasElement): Promise<Blob | null> {
  * an image the app failed to read is the worst failure this feature has.
  */
 export async function prepareImage(file: Blob): Promise<PreparedImage> {
-  const bitmap = await createImageBitmap(file, {
-    imageOrientation: 'from-image',
-  });
+  const decoded = await decodePhoto(file);
+  const sourceWidth = decoded.image.width;
+  const sourceHeight = decoded.image.height;
 
   try {
     const scale = Math.min(
       1,
-      MAX_LONG_EDGE / Math.max(bitmap.width, bitmap.height)
+      MAX_LONG_EDGE / Math.max(sourceWidth, sourceHeight)
     );
-    const width = Math.max(1, Math.round(bitmap.width * scale));
-    const height = Math.max(1, Math.round(bitmap.height * scale));
+    const width = Math.max(1, Math.round(sourceWidth * scale));
+    const height = Math.max(1, Math.round(sourceHeight * scale));
 
     const canvas = document.createElement('canvas');
     canvas.width = width;
@@ -129,13 +209,13 @@ export async function prepareImage(file: Blob): Promise<PreparedImage> {
     // Pillow's algorithm because canvas resampling does NOT match it.
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(bitmap, 0, 0, width, height);
+    await drawDecodedPhoto(decoded, ctx, width, height);
 
     const data = ctx.getImageData(0, 0, width, height);
     const { mean, stddev } = pixelStats(data.data);
     const stats: ImageStats = {
-      sourceWidth: bitmap.width,
-      sourceHeight: bitmap.height,
+      sourceWidth,
+      sourceHeight,
       width,
       height,
       mean,
@@ -157,6 +237,6 @@ export async function prepareImage(file: Blob): Promise<PreparedImage> {
       stats,
     };
   } finally {
-    bitmap.close();
+    if (decoded.kind === 'bitmap') decoded.image.close();
   }
 }
