@@ -288,8 +288,11 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
    * rather than guessing. Slow and correct beats fast and wrong; wrong and
    * confident is unacceptable for toxicity warnings.
    *
-   * `bytes` is transferred into the worker, so the retry needs its own copy —
-   * hence the slice before the first attempt rather than a second IDB read.
+   * `bytes` is transferred into the worker. Do not retain an eager retry copy:
+   * for the current int8 model that would allocate another ~307 MB on every
+   * identification, including iPhones that have no WebGPU path to retry. A bad
+   * GPU is rare; re-reading IndexedDB in that exceptional path is slower but
+   * keeps the normal mobile peak low enough for Safari's web-content process.
    */
   const ensureSession = async (): Promise<BioclipSession> => {
     if (sessionRef.current) return sessionRef.current;
@@ -299,7 +302,6 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
     cachedSpecRef.current = spec;
 
     const bytes = await cached.blob.arrayBuffer();
-    const retryBytes = bytes.slice(0);
 
     let { session, info } = await BioclipSession.create(bytes);
     let check = await runSelfCheck(session, spec.variant);
@@ -310,6 +312,9 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       // depend on it, instead of repeating this every session.
       markWebgpuUntrusted(spec.variant);
       session.dispose();
+      // The first buffer was transferred and is detached. Pay for a fresh read
+      // only on a device whose GPU actually failed the numerical self-check.
+      const retryBytes = await cached.blob.arrayBuffer();
       ({ session, info } = await BioclipSession.create(retryBytes, {
         forceWasm: true,
       }));
