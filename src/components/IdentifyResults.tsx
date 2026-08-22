@@ -25,8 +25,9 @@ import { getSpeciesImage } from '@/lib/utils';
  *   - it filters rows with `.filter(entry => entry.image)`. Toxic species have no
  *     image asset, so that line would silently drop every toxic row — the worst
  *     possible outcome, reached by following the obvious template.
- *   - its `getScoreColor` ramps green-is-good. A 90%-confidence toxic match is
- *     not good, so confidence is neutral, de-emphasised text here.
+ *   - its `getScoreTextColorClass` ramps intensity-is-good (pale to dark maroon,
+ *     mirroring the map's fill colors). A 90%-confidence toxic match is not good,
+ *     so confidence is neutral, de-emphasised text here.
  */
 
 export interface IdentifyResultsProps {

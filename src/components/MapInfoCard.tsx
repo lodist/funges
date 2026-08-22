@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { getScoreGradientCss } from '@/lib/scoreColor';
 
 export default function MapInfoCard() {
   const { t } = useTranslation('map');
@@ -10,7 +11,13 @@ export default function MapInfoCard() {
         <span className='font-bold text-gray-900'>{t('scale.label')}</span>
         <span className='text-gray-600'>{t('scale.high')}</span>
       </div>
-      <div className='h-2 md:h-3 rounded-full bg-gradient-to-r from-[#FFFFCD] to-[#800020]' />
+      {/* Real fill-color ramp from the map style (getScoreGradientCss), not an
+          approximated 2-stop gradient — a faithful legend for what's actually
+          painted on the map, not just a same-hued decoration. */}
+      <div
+        className='h-2 md:h-3 rounded-full'
+        style={{ background: getScoreGradientCss() }}
+      />
     </div>
   );
 }
