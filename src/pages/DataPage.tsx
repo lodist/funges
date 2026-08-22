@@ -836,10 +836,10 @@ export default function DataPage() {
 
       {/* Header */}
       <div className='text-center'>
-        <h1 className='mb-2 text-4xl font-bold text-text-primary'>
+        <h1 className='mb-2 text-4xl font-bold text-foreground'>
           {t('sidebar:data', { defaultValue: 'Data' })}
         </h1>
-        <p className='text-sm text-text-secondary'>
+        <p className='text-sm text-muted-foreground'>
           {t('common:data.subtitle', {
             defaultValue:
               'Explore the data behind the foraging recommendations.',

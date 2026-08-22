@@ -42,7 +42,8 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
         duration: 0.3,
       }}
     >
-      <div className='bg-white rounded-2xl shadow-lg'>
+      {/* Trailhead (#213). */}
+      <div className='bg-card rounded-2xl shadow-[0_2px_16px_rgba(0,0,0,0.10)]'>
         <ul className='flex justify-around items-center py-3 px-3'>
           {items.map(item => {
             const isActive =
@@ -63,8 +64,8 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
                   to={item.url}
                   className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all duration-200 ${
                     isActive
-                      ? 'text-primary-600'
-                      : 'text-muted-foreground hover:text-primary-600'
+                      ? 'text-[var(--happy-700)]'
+                      : 'text-muted-foreground hover:text-[var(--happy-700)]'
                   }`}
                 >
                   <motion.div

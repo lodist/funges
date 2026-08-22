@@ -126,7 +126,7 @@ export function NavMain({
                                     }
                                     className={`flex items-center gap-2 ${
                                       i18n.language === language.code
-                                        ? 'bg-accent'
+                                        ? 'bg-[var(--happy-100)] text-[var(--happy-900)] font-semibold'
                                         : ''
                                     }`}
                                   >

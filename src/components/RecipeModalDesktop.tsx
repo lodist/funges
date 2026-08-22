@@ -29,7 +29,7 @@ const difficultyColor = (difficulty: string) => {
     case 'hard':
       return 'bg-rose-500/10 text-rose-600 border-rose-500/30';
     default:
-      return 'bg-background-secondary text-text-primary border-border';
+      return 'bg-(--background-secondary) text-foreground border-border';
   }
 };
 
@@ -59,7 +59,7 @@ export const RecipeModalDesktop = ({
             <Button
               variant='ghost'
               size='icon'
-              className='h-8 w-8 rounded-md text-text-secondary transition-all duration-200 hover:bg-background-secondary/50 hover:text-text-primary'
+              className='h-8 w-8 rounded-md text-muted-foreground transition-all duration-200 hover:bg-(--background-secondary)/50 hover:text-foreground'
             >
               <XIcon className='h-4 w-4' />
               <span className='sr-only'>{t('close', { ns: 'common' })}</span>
@@ -89,7 +89,7 @@ export const RecipeModalDesktop = ({
 
                 {/* Title, Info and Warnings */}
                 <div className='flex-1 min-w-0 space-y-4'>
-                  <h1 className='text-3xl font-bold leading-tight text-text-primary'>
+                  <h1 className='text-3xl font-bold leading-tight text-foreground'>
                     {recipe.title}
                   </h1>
                   <div className='flex flex-wrap items-center gap-4'>
@@ -111,13 +111,13 @@ export const RecipeModalDesktop = ({
                         <span className='capitalize'>{recipe.difficulty}</span>
                       </span>
                     </Badge>
-                    <div className='flex items-center gap-1.5 text-text-secondary'>
+                    <div className='flex items-center gap-1.5 text-muted-foreground'>
                       <Clock className='h-4 w-4 text-primary' />
                       <span className='text-sm font-medium'>
                         {recipe.prepTime}
                       </span>
                     </div>
-                    <div className='flex items-center gap-1.5 text-text-secondary'>
+                    <div className='flex items-center gap-1.5 text-muted-foreground'>
                       <Users className='h-4 w-4 text-primary' />
                       <span className='text-sm font-medium'>
                         {recipe.servings}
@@ -146,10 +146,10 @@ export const RecipeModalDesktop = ({
 
             {/* Ingredients Section - 2/5 of the width */}
             <div className='col-span-2'>
-              <Card className='bg-gradient-to-br from-background to-background-secondary/20 border-border/30 shadow-none'>
+              <Card className='bg-gradient-to-br from-background to-(--background-secondary)/20 border-border/30 shadow-none'>
                 <CardContent className='p-3'>
                   <div className='mb-2'>
-                    <h3 className='text-sm font-bold text-text-primary'>
+                    <h3 className='text-sm font-bold text-foreground'>
                       {t('ingredients')}
                     </h3>
                   </div>
@@ -157,10 +157,10 @@ export const RecipeModalDesktop = ({
                     {recipe.ingredients.map(ing => (
                       <div
                         key={ing}
-                        className='flex items-center gap-2 rounded-md border border-border/20 bg-background-secondary/30 px-2 py-1.5 transition-all duration-200 hover:border-border/40 hover:bg-background-secondary/50'
+                        className='flex items-center gap-2 rounded-md border border-border/20 bg-(--background-secondary)/30 px-2 py-1.5 transition-all duration-200 hover:border-border/40 hover:bg-(--background-secondary)/50'
                       >
                         <CheckCircle2 className='h-3 w-3 flex-shrink-0 text-emerald-500' />
-                        <span className='text-xs font-medium text-text-primary truncate'>
+                        <span className='text-xs font-medium text-foreground truncate'>
                           {ing}
                         </span>
                       </div>
@@ -191,7 +191,7 @@ export const RecipeModalDesktop = ({
 
                 {/* Title, Info and Warnings for Mobile */}
                 <div className='flex-1 min-w-0 space-y-4'>
-                  <h1 className='text-2xl font-bold leading-tight text-text-primary'>
+                  <h1 className='text-2xl font-bold leading-tight text-foreground'>
                     {recipe.title}
                   </h1>
                   <div className='flex flex-wrap items-center gap-4'>
@@ -213,13 +213,13 @@ export const RecipeModalDesktop = ({
                         <span className='capitalize'>{recipe.difficulty}</span>
                       </span>
                     </Badge>
-                    <div className='flex items-center gap-1.5 text-text-secondary'>
+                    <div className='flex items-center gap-1.5 text-muted-foreground'>
                       <Clock className='h-4 w-4 text-primary' />
                       <span className='text-sm font-medium'>
                         {recipe.prepTime}
                       </span>
                     </div>
-                    <div className='flex items-center gap-1.5 text-text-secondary'>
+                    <div className='flex items-center gap-1.5 text-muted-foreground'>
                       <Users className='h-4 w-4 text-primary' />
                       <span className='text-sm font-medium'>
                         {recipe.servings}
@@ -247,13 +247,13 @@ export const RecipeModalDesktop = ({
             </div>
 
             <div className='w-full'>
-              <Card className='bg-gradient-to-br from-background to-background-secondary/20 border-border/30 shadow-none'>
+              <Card className='bg-gradient-to-br from-background to-(--background-secondary)/20 border-border/30 shadow-none'>
                 <CardContent className='p-4'>
                   <div className='mb-3 flex items-center gap-3'>
                     <div className='rounded-lg border border-emerald-500/30 bg-gradient-to-br from-emerald-500/20 to-emerald-500/10 p-2'>
                       <UtensilsCrossed className='h-4 w-4 text-emerald-600' />
                     </div>
-                    <h3 className='text-base font-bold text-text-primary'>
+                    <h3 className='text-base font-bold text-foreground'>
                       {t('ingredients')}
                     </h3>
                   </div>
@@ -261,10 +261,10 @@ export const RecipeModalDesktop = ({
                     {recipe.ingredients.map(ing => (
                       <div
                         key={ing}
-                        className='flex items-center gap-2 rounded-md border border-border/20 bg-background-secondary/30 px-3 py-2 transition-all duration-200 hover:border-border/40 hover:bg-background-secondary/50'
+                        className='flex items-center gap-2 rounded-md border border-border/20 bg-(--background-secondary)/30 px-3 py-2 transition-all duration-200 hover:border-border/40 hover:bg-(--background-secondary)/50'
                       >
                         <CheckCircle2 className='h-3 w-3 flex-shrink-0 text-emerald-500' />
-                        <span className='text-sm font-medium text-text-primary truncate'>
+                        <span className='text-sm font-medium text-foreground truncate'>
                           {ing}
                         </span>
                       </div>
@@ -277,19 +277,19 @@ export const RecipeModalDesktop = ({
 
           <section className='grid grid-cols-1 gap-8 lg:grid-cols-2'>
             <div className='lg:col-span-2 space-y-6'>
-              <Card className='bg-gradient-to-br from-background to-background-secondary/20 border-border/30 shadow-none'>
+              <Card className='bg-gradient-to-br from-background to-(--background-secondary)/20 border-border/30 shadow-none'>
                 <CardContent className='p-8'>
                   <ol className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4'>
                     {recipe.steps.map((step, index) => (
                       <li
                         key={step.step}
-                        className='relative rounded-xl border-2 border-border/60 bg-background-secondary/20 p-4 transition-all duration-200 hover:border-border/80'
+                        className='relative rounded-xl border-2 border-border/60 bg-(--background-secondary)/20 p-4 transition-all duration-200 hover:border-border/80'
                       >
                         <div className='absolute -top-2 -left-2 flex h-10 w-10 items-center justify-center rounded-full border-4 border-background bg-gradient-to-br from-blue-500 to-blue-600 text-base font-bold text-white'>
                           {index + 1}
                         </div>
                         <div className='space-y-3 pt-2'>
-                          <p className='text-base font-medium leading-relaxed text-text-primary'>
+                          <p className='text-base font-medium leading-relaxed text-foreground'>
                             {step.instruction}
                           </p>
                           <div className='space-y-2'>
@@ -320,9 +320,9 @@ export const RecipeModalDesktop = ({
                               </div>
                             )}
                             {step.duration && (
-                              <div className='flex items-center gap-2 rounded-lg border border-border/20 bg-background-secondary/30 p-2'>
-                                <Clock className='h-4 w-4 text-text-secondary' />
-                                <span className='text-sm font-medium text-text-secondary'>
+                              <div className='flex items-center gap-2 rounded-lg border border-border/20 bg-(--background-secondary)/30 p-2'>
+                                <Clock className='h-4 w-4 text-muted-foreground' />
+                                <span className='text-sm font-medium text-muted-foreground'>
                                   {t('duration')}: {step.duration}
                                 </span>
                               </div>

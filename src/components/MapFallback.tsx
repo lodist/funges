@@ -52,7 +52,7 @@ const MapFallback: React.FC<MapFallbackProps> = ({
             {!isMobile && (
               <MapPin className='h-12 w-12 sm:h-16 sm:w-16 text-muted-foreground mx-auto mb-3 sm:mb-4' />
             )}
-            <h2 className='text-4xl font-bold text-text-primary'>
+            <h2 className='text-4xl font-bold text-foreground'>
               {t('fallback.title')}
             </h2>
           </div>

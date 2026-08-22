@@ -18,6 +18,7 @@ import { useOfflineStore, CONTINENTS } from '@/store/offlineStore';
 import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import {
   ChefHat,
   Loader2,
@@ -35,7 +36,6 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
-import { motion } from 'framer-motion';
 import MapInfoCard from '@/components/MapInfoCard';
 import RouteToDishPanel from '@/components/RouteToDishPanel';
 import ForecastSlider from '@/components/ForecastSlider';
@@ -941,36 +941,32 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         {/* Control buttons */}
         <div className='absolute top-2 right-4 z-10 flex flex-col gap-2'>
           {/* User location button */}
-          <motion.button
+          <Button
+            variant='outline'
+            size='icon'
             onClick={handleGetUserLocation}
             disabled={isLoading}
-            className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
+            className={
               showUserLocation && userLocation
-                ? 'bg-blue-100 border-blue-300 text-blue-800'
-                : 'border-input bg-secondary'
-            }`}
+                ? 'bg-blue-100 text-blue-800 hover:bg-blue-100 hover:text-blue-800'
+                : undefined
+            }
             title={t('getLocation')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
           >
             {isLoading ? (
               <Loader2 className='h-4 w-4 animate-spin' />
             ) : (
               <Navigation className='h-4 w-4' />
             )}
-          </motion.button>
+          </Button>
 
           {/* Map theme selector (Light/Dark/White/Dark Matter/Topographic) */}
           <MapThemeSelector />
 
           {/* Info button */}
-          <motion.button
+          <Button
+            variant='outline'
+            size='icon'
             onClick={() => {
               if (isRoutePanelOpen) {
                 closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
@@ -979,58 +975,36 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
               setIsRoutePanelOpen(true);
             }}
-            className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
+            className={
               isRoutePanelOpen
-                ? 'bg-emerald-100 border-emerald-300 text-emerald-800'
-                : 'bg-secondary border-input'
-            }`}
+                ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-100 hover:text-emerald-800'
+                : undefined
+            }
             title={tRecipes('routePanel.title')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
           >
             <ChefHat className='h-4 w-4' />
-          </motion.button>
+          </Button>
 
           {/* Identify from a photo. Sits directly above Info in the stack. */}
-          <motion.button
+          <Button
+            variant='outline'
+            size='icon'
             onClick={() => setIsIdentifyOpen(true)}
-            className='inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg bg-secondary border-input'
             title={tIdentify('openButton')}
             aria-label={tIdentify('openButton')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
           >
             <ScanSearch className='h-4 w-4' />
-          </motion.button>
+          </Button>
 
           {/* Info button */}
-          <motion.button
+          <Button
+            variant='outline'
+            size='icon'
             onClick={() => setActiveModal('onboarding')}
-            className='inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg bg-secondary border-input'
             title={t('showOnboarding')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
           >
             <Info className='h-4 w-4' />
-          </motion.button>
+          </Button>
         </div>
 
         {isMobile ? (

@@ -2,7 +2,13 @@ import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -71,10 +77,10 @@ export default function SpeciesPage() {
       <div className='container mx-auto px-4 py-8 max-w-7xl'>
         {/* Header */}
         <div className='text-center mb-8'>
-          <h1 className='text-4xl font-bold text-text-primary mb-4'>
+          <h1 className='text-4xl font-bold text-foreground mb-4'>
             {t('title')}
           </h1>
-          <p className='text-lg text-text-secondary max-w-2xl mx-auto'>
+          <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
             {t('description')}
           </p>
         </div>
@@ -84,7 +90,7 @@ export default function SpeciesPage() {
           <div className='flex flex-col sm:flex-row gap-4'>
             {/* Search Input */}
             <div className='relative flex-1'>
-              <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-text-tertiary h-4 w-4' />
+              <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4' />
               <Input
                 placeholder={t('search.placeholder')}
                 value={searchQuery}
@@ -112,6 +118,21 @@ export default function SpeciesPage() {
                 ))}
               </SelectContent>
             </Select>
+          </div>
+        </div>
+
+        {/* Safety Notes - shown once, above the species grid */}
+        <div className='mb-8 bg-status-warning border border-status-warning-border rounded-lg p-3'>
+          <div className='flex items-start gap-2'>
+            <AlertTriangle className='h-4 w-4 text-status-warning-text mt-0.5 flex-shrink-0' />
+            <div>
+              <p className='text-sm font-medium text-status-warning-text mb-1'>
+                {t('safetyNotes')}
+              </p>
+              <p className='text-xs text-status-warning-text'>
+                {t('safetyWarning')}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -146,10 +167,10 @@ export default function SpeciesPage() {
                     <div className='flex-1 min-w-0'>
                       <div className='flex items-start justify-between'>
                         <div>
-                          <CardTitle className='text-lg font-semibold text-text-primary'>
+                          <CardTitle className='text-lg font-semibold text-foreground'>
                             {species.name}
                           </CardTitle>
-                          <p className='text-sm text-text-secondary italic'>
+                          <p className='text-sm text-muted-foreground italic'>
                             {species.scientificName}
                           </p>
                         </div>
@@ -164,10 +185,30 @@ export default function SpeciesPage() {
                   </div>
                 </CardHeader>
 
+                {/* Season and Habitat - shown right below the photo/header */}
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 px-6 pb-4'>
+                  {species.season && (
+                    <div className='flex items-center gap-2'>
+                      <Calendar className='h-4 w-4 text-primary' />
+                      <Badge className='bg-secondary text-primary'>
+                        {t(`seasons.${species.season}`)}
+                      </Badge>
+                    </div>
+                  )}
+                  {species.habitat && (
+                    <div className='flex items-center gap-2'>
+                      <MapPin className='h-4 w-4 text-success' />
+                      <Badge className='bg-secondary text-primary'>
+                        {t(`habitats.${species.habitat}`)}
+                      </Badge>
+                    </div>
+                  )}
+                </div>
+
                 <CardContent className='space-y-4'>
                   {/* Description */}
                   <div>
-                    <p className='text-sm text-text-secondary leading-relaxed'>
+                    <p className='text-sm text-muted-foreground leading-relaxed'>
                       {species.description}
                     </p>
                   </div>
@@ -178,53 +219,19 @@ export default function SpeciesPage() {
                   <div>
                     <div className='flex items-center gap-2 mb-2'>
                       <Leaf className='h-4 w-4 text-success' />
-                      <span className='text-sm font-medium text-text-secondary'>
+                      <span className='text-sm font-medium text-muted-foreground'>
                         {t('howTo')}
                       </span>
                     </div>
-                    <p className='text-sm text-text-secondary leading-relaxed'>
+                    <p className='text-sm text-muted-foreground leading-relaxed'>
                       {species.howTo}
                     </p>
                   </div>
+                </CardContent>
 
-                  <Separator />
-
-                  {/* Season and Habitat */}
-                  <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
-                    {species.season && (
-                      <div className='flex items-center gap-2'>
-                        <Calendar className='h-4 w-4 text-primary' />
-                        <Badge className='bg-secondary text-primary'>
-                          {t(`seasons.${species.season}`)}
-                        </Badge>
-                      </div>
-                    )}
-                    {species.habitat && (
-                      <div className='flex items-center gap-2'>
-                        <MapPin className='h-4 w-4 text-success' />
-                        <Badge className='bg-secondary text-primary'>
-                          {t(`habitats.${species.habitat}`)}
-                        </Badge>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Safety Notes */}
-                  <div className='bg-status-warning border border-status-warning-border rounded-lg p-3'>
-                    <div className='flex items-start gap-2'>
-                      <AlertTriangle className='h-4 w-4 text-status-warning-text mt-0.5 flex-shrink-0' />
-                      <div>
-                        <p className='text-sm font-medium text-status-warning-text mb-1'>
-                          {t('safetyNotes')}
-                        </p>
-                        <p className='text-xs text-status-warning-text'>
-                          {t('safetyWarning')}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {species.showOnMap && (
+                {/* Action button - sticky to the card bottom, independent of description length */}
+                {species.showOnMap && (
+                  <CardFooter className='mt-auto px-6 pt-4'>
                     <Button
                       asChild
                       className='w-full flex items-center justify-center gap-2'
@@ -234,8 +241,8 @@ export default function SpeciesPage() {
                         {t('viewOnMap')}
                       </Link>
                     </Button>
-                  )}
-                </CardContent>
+                  </CardFooter>
+                )}
               </Card>
             );
           })}
@@ -245,10 +252,10 @@ export default function SpeciesPage() {
         {filteredSpecies.length === 0 && (
           <div className='text-center py-12'>
             <div className='text-6xl mb-4'>🔍</div>
-            <h3 className='text-xl font-semibold text-text-primary mb-2'>
+            <h3 className='text-xl font-semibold text-foreground mb-2'>
               {t('noResults')}
             </h3>
-            <p className='text-text-secondary mb-4'>
+            <p className='text-muted-foreground mb-4'>
               {t('noResultsDescription')}
             </p>
             <Button

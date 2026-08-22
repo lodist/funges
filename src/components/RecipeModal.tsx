@@ -38,7 +38,7 @@ const difficultyColor = (difficulty: string) => {
     case 'hard':
       return 'bg-red-500/10 text-red-500 border-red-500/30';
     default:
-      return 'bg-background-secondary text-text-primary border-border';
+      return 'bg-(--background-secondary) text-foreground border-border';
   }
 };
 
@@ -60,7 +60,7 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
                 <div className='p-2 rounded-lg bg-primary/10'>
                   <ChefHat className='h-6 w-6 text-primary' />
                 </div>
-                <DialogTitle className='text-2xl font-bold text-text-primary'>
+                <DialogTitle className='text-2xl font-bold text-foreground'>
                   {recipe.title}
                 </DialogTitle>
               </div>
@@ -80,11 +80,11 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
                     )}
                   </span>
                 </Badge>
-                <div className='flex items-center gap-2 text-sm text-text-secondary'>
+                <div className='flex items-center gap-2 text-sm text-muted-foreground'>
                   <Clock className='h-4 w-4' />
                   <span>{recipe.prepTime}</span>
                 </div>
-                <div className='flex items-center gap-2 text-sm text-text-secondary'>
+                <div className='flex items-center gap-2 text-sm text-muted-foreground'>
                   <Users className='h-4 w-4' />
                   <span>{recipe.servings}</span>
                 </div>
@@ -94,7 +94,7 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
               <Button
                 variant='ghost'
                 size='icon'
-                className='text-text-secondary hover:text-text-primary'
+                className='text-muted-foreground hover:text-foreground'
               >
                 <XIcon className='h-4 w-4' />
                 <span className='sr-only'>{t('close', { ns: 'common' })}</span>
@@ -111,7 +111,7 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
                 <div className='p-2 rounded-lg bg-primary/10'>
                   <UtensilsCrossed className='h-5 w-5 text-primary' />
                 </div>
-                <h3 className='text-lg font-semibold text-text-primary'>
+                <h3 className='text-lg font-semibold text-foreground'>
                   {t('ingredients')}
                 </h3>
               </div>
@@ -119,10 +119,10 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
                 {recipe.ingredients.map(ing => (
                   <div
                     key={ing}
-                    className='flex items-center gap-3 p-3 rounded-lg bg-background-secondary/50 border border-border/30 hover:bg-background-secondary transition-colors'
+                    className='flex items-center gap-3 p-3 rounded-lg bg-(--background-secondary)/50 border border-border/30 hover:bg-(--background-secondary) transition-colors'
                   >
                     <CheckCircle2 className='h-4 w-4 text-success flex-shrink-0' />
-                    <span className='text-sm text-text-primary'>{ing}</span>
+                    <span className='text-sm text-foreground'>{ing}</span>
                   </div>
                 ))}
               </div>
@@ -136,7 +136,7 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
                 <div className='p-2 rounded-lg bg-primary/10'>
                   <Timer className='h-5 w-5 text-primary' />
                 </div>
-                <h3 className='text-lg font-semibold text-text-primary'>
+                <h3 className='text-lg font-semibold text-foreground'>
                   {t('instructions')}
                 </h3>
               </div>
@@ -144,14 +144,14 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
                 {recipe.steps.map((step, index) => (
                   <div
                     key={step.step}
-                    className='relative p-4 rounded-lg bg-background-secondary/30 border border-border/20'
+                    className='relative p-4 rounded-lg bg-(--background-secondary)/30 border border-border/20'
                   >
                     <div className='flex items-start gap-4'>
                       <div className='flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold'>
                         {index + 1}
                       </div>
                       <div className='flex-1 space-y-2'>
-                        <p className='text-sm text-text-primary leading-relaxed'>
+                        <p className='text-sm text-foreground leading-relaxed'>
                           {step.instruction}
                         </p>
                         {step.tip && (
@@ -171,7 +171,7 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
                           </div>
                         )}
                         {step.duration && (
-                          <div className='flex items-center gap-2 text-xs text-text-secondary'>
+                          <div className='flex items-center gap-2 text-xs text-muted-foreground'>
                             <Clock className='h-3 w-3' />
                             <span>{step.duration}</span>
                           </div>
@@ -192,7 +192,7 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
                   <div className='p-2 rounded-lg bg-warning/10'>
                     <AlertTriangle className='h-5 w-5 text-warning' />
                   </div>
-                  <h3 className='text-lg font-semibold text-text-primary'>
+                  <h3 className='text-lg font-semibold text-foreground'>
                     {t('warnings')}
                   </h3>
                 </div>
