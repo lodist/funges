@@ -2,7 +2,13 @@ import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -115,6 +121,21 @@ export default function SpeciesPage() {
           </div>
         </div>
 
+        {/* Safety Notes - shown once, above the species grid */}
+        <div className='mb-8 bg-status-warning border border-status-warning-border rounded-lg p-3'>
+          <div className='flex items-start gap-2'>
+            <AlertTriangle className='h-4 w-4 text-status-warning-text mt-0.5 flex-shrink-0' />
+            <div>
+              <p className='text-sm font-medium text-status-warning-text mb-1'>
+                {t('safetyNotes')}
+              </p>
+              <p className='text-xs text-status-warning-text'>
+                {t('safetyWarning')}
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Species Grid */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
           {filteredSpecies.map(species => {
@@ -164,6 +185,26 @@ export default function SpeciesPage() {
                   </div>
                 </CardHeader>
 
+                {/* Season and Habitat - shown right below the photo/header */}
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 px-6 pb-4'>
+                  {species.season && (
+                    <div className='flex items-center gap-2'>
+                      <Calendar className='h-4 w-4 text-primary' />
+                      <Badge className='bg-secondary text-primary'>
+                        {t(`seasons.${species.season}`)}
+                      </Badge>
+                    </div>
+                  )}
+                  {species.habitat && (
+                    <div className='flex items-center gap-2'>
+                      <MapPin className='h-4 w-4 text-success' />
+                      <Badge className='bg-secondary text-primary'>
+                        {t(`habitats.${species.habitat}`)}
+                      </Badge>
+                    </div>
+                  )}
+                </div>
+
                 <CardContent className='space-y-4'>
                   {/* Description */}
                   <div>
@@ -186,45 +227,11 @@ export default function SpeciesPage() {
                       {species.howTo}
                     </p>
                   </div>
+                </CardContent>
 
-                  <Separator />
-
-                  {/* Season and Habitat */}
-                  <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
-                    {species.season && (
-                      <div className='flex items-center gap-2'>
-                        <Calendar className='h-4 w-4 text-primary' />
-                        <Badge className='bg-secondary text-primary'>
-                          {t(`seasons.${species.season}`)}
-                        </Badge>
-                      </div>
-                    )}
-                    {species.habitat && (
-                      <div className='flex items-center gap-2'>
-                        <MapPin className='h-4 w-4 text-success' />
-                        <Badge className='bg-secondary text-primary'>
-                          {t(`habitats.${species.habitat}`)}
-                        </Badge>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Safety Notes */}
-                  <div className='bg-status-warning border border-status-warning-border rounded-lg p-3'>
-                    <div className='flex items-start gap-2'>
-                      <AlertTriangle className='h-4 w-4 text-status-warning-text mt-0.5 flex-shrink-0' />
-                      <div>
-                        <p className='text-sm font-medium text-status-warning-text mb-1'>
-                          {t('safetyNotes')}
-                        </p>
-                        <p className='text-xs text-status-warning-text'>
-                          {t('safetyWarning')}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {species.showOnMap && (
+                {/* Action button - sticky to the card bottom, independent of description length */}
+                {species.showOnMap && (
+                  <CardFooter className='mt-auto px-6 pt-4'>
                     <Button
                       asChild
                       className='w-full flex items-center justify-center gap-2'
@@ -234,8 +241,8 @@ export default function SpeciesPage() {
                         {t('viewOnMap')}
                       </Link>
                     </Button>
-                  )}
-                </CardContent>
+                  </CardFooter>
+                )}
               </Card>
             );
           })}
