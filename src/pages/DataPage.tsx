@@ -17,7 +17,15 @@ import {
   ReferenceLine,
 } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, Download } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Loader2, Download, MapPin } from 'lucide-react';
 import {
   loadForagingDataset,
   formatZoneLabel,
@@ -28,6 +36,7 @@ import {
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
 import { Route as DataRoute } from '@/routes/data';
+import { cn } from '@/lib/utils';
 
 const ZoneMap = lazy(() => import('@/components/ZoneMap'));
 
@@ -221,6 +230,40 @@ function PillLegend({
   );
 }
 
+function SegmentedControl<T extends string | number>({
+  options,
+  value,
+  onChange,
+}: {
+  options: { value: T; label: string }[];
+  value: T;
+  onChange: (value: T) => void;
+}) {
+  return (
+    <div className='inline-flex items-center gap-0.5 rounded-full bg-muted/60 p-1'>
+      {options.map(option => {
+        const isActive = option.value === value;
+        return (
+          <button
+            key={option.value}
+            type='button'
+            onClick={() => onChange(option.value)}
+            aria-pressed={isActive}
+            className={cn(
+              'rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors',
+              isActive
+                ? 'bg-card text-foreground shadow-[0_1px_4px_rgba(0,0,0,0.1)]'
+                : 'text-muted-foreground hover:text-foreground'
+            )}
+          >
+            {option.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 interface ChartCardProps {
   title: string;
   children: React.ReactNode;
@@ -228,7 +271,7 @@ interface ChartCardProps {
 
 function ChartCard({ title, children }: ChartCardProps) {
   return (
-    <Card className='shadow-sm hover:shadow-md transition-shadow duration-200'>
+    <Card className='py-6 shadow-sm hover:shadow-md transition-shadow duration-200'>
       <CardHeader className='pb-2'>
         <CardTitle className='text-sm font-medium text-muted-foreground'>
           {title}
@@ -275,6 +318,10 @@ export default function DataPage() {
       cancelled = true;
     };
   }, []);
+
+  const regionLabel = t(`common:data.regions.${region}`, {
+    defaultValue: REGIONS.find(r => r.id === region)?.label ?? region,
+  });
 
   const zones = useMemo(
     () => dataset?.regions[region]?.zones ?? [],
@@ -848,79 +895,89 @@ export default function DataPage() {
       </div>
 
       {/* Controls */}
-      <div className='flex flex-wrap gap-3 items-end'>
-        {/* Europe regions */}
-        <div className='flex flex-col gap-0.5'>
-          <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
-            {t('common:data.europe', { defaultValue: 'Europe' })}
-          </span>
-          <div className='flex gap-1'>
-            {REGIONS.filter(r => r.id === 'NE' || r.id === 'SE').map(r => (
-              <div key={r.id} className='flex flex-col gap-1'>
-                <button
-                  onClick={() => setRegion(r.id)}
-                  className={`px-3 py-1.5 rounded-lg border text-sm transition-colors ${
-                    region === r.id
-                      ? 'bg-primary text-primary-foreground font-medium'
-                      : 'hover:bg-muted text-muted-foreground'
-                  }`}
-                >
-                  {t(`common:data.regions.${r.id}`, {
+      <div className='flex flex-wrap items-end justify-between gap-4'>
+        <div className='flex flex-wrap items-end gap-4'>
+          {/* Europe regions */}
+          <div className='flex flex-col gap-1.5'>
+            <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
+              {t('common:data.europe', { defaultValue: 'Europe' })}
+            </span>
+            <SegmentedControl
+              options={REGIONS.filter(r => r.id === 'NE' || r.id === 'SE').map(
+                r => ({
+                  value: r.id,
+                  label: t(`common:data.regions.${r.id}`, {
                     defaultValue: r.label,
-                  })}
-                </button>
-                <a
-                  href={REGION_FILES[r.id][0].url}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='flex items-center justify-center py-1 rounded-md border hover:bg-muted transition-colors text-muted-foreground outline-none'
-                >
-                  <Download className='h-3.5 w-3.5' />
-                </a>
-              </div>
-            ))}
+                  }),
+                })
+              )}
+              value={region}
+              onChange={setRegion}
+            />
+          </div>
+
+          {/* US regions */}
+          <div className='flex flex-col gap-1.5'>
+            <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
+              {t('common:data.unitedStates', {
+                defaultValue: 'United States',
+              })}
+            </span>
+            <SegmentedControl
+              options={REGIONS.filter(
+                r => r.id === 'USE' || r.id === 'USW'
+              ).map(r => ({
+                value: r.id,
+                label: t(`common:data.regions.${r.id}`, {
+                  defaultValue: r.label,
+                }),
+              }))}
+              value={region}
+              onChange={setRegion}
+            />
+          </div>
+
+          {/* Time range */}
+          <div className='flex flex-col gap-1.5'>
+            <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
+              {t('common:data.timeRange', { defaultValue: 'Time range' })}
+            </span>
+            <SegmentedControl
+              options={DAY_OPTIONS.map(d => ({
+                value: d,
+                label: dayLabel(d),
+              }))}
+              value={days}
+              onChange={setDays}
+            />
           </div>
         </div>
 
-        {/* US regions */}
-        <div className='flex flex-col gap-0.5'>
-          <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
-            {t('common:data.unitedStates', {
-              defaultValue: 'United States',
-            })}
-          </span>
-          <div className='flex gap-1'>
-            {REGIONS.filter(r => r.id === 'USE' || r.id === 'USW').map(r => (
-              <div key={r.id} className='flex flex-col gap-1'>
-                <button
-                  onClick={() => setRegion(r.id)}
-                  className={`px-3 py-1.5 rounded-lg border text-sm transition-colors ${
-                    region === r.id
-                      ? 'bg-primary text-primary-foreground font-medium'
-                      : 'hover:bg-muted text-muted-foreground'
-                  }`}
-                >
-                  {t(`common:data.regions.${r.id}`, {
-                    defaultValue: r.label,
-                  })}
-                </button>
-                <a
-                  href={REGION_FILES[r.id][0].url}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='flex items-center justify-center py-1 rounded-md border hover:bg-muted transition-colors text-muted-foreground outline-none'
-                >
-                  <Download className='h-3.5 w-3.5' />
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Download current region's data */}
+        <Button asChild variant='outline' size='sm' className='gap-1.5'>
+          <a
+            href={REGION_FILES[region][0].url}
+            target='_blank'
+            rel='noreferrer'
+            aria-label={`${t('common:common.download', { defaultValue: 'Download' })}: ${regionLabel}`}
+          >
+            <Download className='h-3.5 w-3.5' />
+            {t('common:common.download', { defaultValue: 'Download' })}
+          </a>
+        </Button>
       </div>
 
       {/* Zone map */}
-      <div className='flex flex-col gap-1'>
-        <p className='text-xs text-muted-foreground'>
+      <div className='flex flex-col gap-1.5'>
+        <div
+          className={cn(
+            'inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors',
+            zone
+              ? 'bg-[var(--happy-100)] text-[var(--happy-900)]'
+              : 'bg-muted text-muted-foreground'
+          )}
+        >
+          <MapPin className='h-3 w-3 shrink-0' />
           {zone
             ? t('common:data.selectedZone', {
                 defaultValue: 'Selected: {{zone}} — click again to show all',
@@ -932,7 +989,7 @@ export default function DataPage() {
             : t('common:data.clickZone', {
                 defaultValue: 'Showing all zones — click one to filter',
               })}
-        </p>
+        </div>
         <Suspense
           fallback={
             <div className='flex items-center justify-center h-[280px] rounded-lg border bg-muted/30'>
@@ -952,23 +1009,6 @@ export default function DataPage() {
             }
           />
         </Suspense>
-      </div>
-
-      {/* Days filter */}
-      <div className='flex rounded-lg border overflow-hidden w-fit text-sm'>
-        {DAY_OPTIONS.map(d => (
-          <button
-            key={d}
-            onClick={() => setDays(d)}
-            className={`px-3 py-1.5 transition-colors ${
-              days === d
-                ? 'bg-primary text-primary-foreground font-medium'
-                : 'hover:bg-muted text-muted-foreground'
-            }`}
-          >
-            {dayLabel(d)}
-          </button>
-        ))}
       </div>
 
       {/* Dynamic narrative */}
@@ -1320,17 +1360,21 @@ export default function DataPage() {
               <span className='text-xs font-medium uppercase tracking-wide text-muted-foreground/60 shrink-0'>
                 {t('common:data.species', { defaultValue: 'Species' })}
               </span>
-              <select
+              <Select
                 value={resolvedSpecies}
-                onChange={e => setSelectedSpecies(e.target.value)}
-                className='text-sm border rounded-lg px-3 py-1.5 bg-background text-foreground max-w-[180px]'
+                onValueChange={setSelectedSpecies}
               >
-                {availableSpecies.map(s => (
-                  <option key={s.id} value={s.id}>
-                    {s.name}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger size='sm' className='max-w-[180px]'>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {availableSpecies.map(s => (
+                    <SelectItem key={s.id} value={s.id}>
+                      {s.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             {speciesOverTime.length === 0 ? (
               <div className='flex items-center justify-center h-[180px] text-sm text-muted-foreground'>
