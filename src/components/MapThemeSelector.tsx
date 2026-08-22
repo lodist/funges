@@ -3,6 +3,7 @@ import { Check, Palette } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMapStore, MAP_THEMES } from '@/store/mapStore';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 interface MapThemeSelectorProps {
@@ -33,28 +34,19 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
 
   return (
     <div className={cn('relative', className)} ref={containerRef}>
-      <motion.button
+      <Button
+        variant='outline'
+        size='icon'
         onClick={() => setIsOpen(open => !open)}
         aria-label={t('themes.select')}
-        // Trailhead (#213): circular floating icon button, matching the
-        // map's other controls (zoom/locate/layers) — no border.
-        className={`inline-flex items-center justify-center rounded-full size-11 border-0 shadow-[0_2px_10px_rgba(0,0,0,0.18)] transition-colors disabled:pointer-events-none disabled:opacity-50 ${
-          darkLayersVisible
-            ? 'bg-card text-foreground'
-            : 'bg-card text-[var(--happy-700)]'
-        } ${isOpen ? 'bg-[var(--happy-50)]' : 'hover:bg-[var(--happy-50)]'}`}
         title={t('themes.select')}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{
-          duration: 0.2,
-          type: 'spring',
-          stiffness: 400,
-          damping: 25,
-        }}
+        className={cn(
+          darkLayersVisible && 'text-foreground hover:text-foreground',
+          isOpen && 'bg-[var(--happy-50)]'
+        )}
       >
         <Palette className='h-4 w-4' />
-      </motion.button>
+      </Button>
 
       <AnimatePresence>
         {isOpen && (
