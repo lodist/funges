@@ -36,11 +36,13 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
       <motion.button
         onClick={() => setIsOpen(open => !open)}
         aria-label={t('themes.select')}
-        className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
+        // Trailhead (#213): circular floating icon button, matching the
+        // map's other controls (zoom/locate/layers) — no border.
+        className={`inline-flex items-center justify-center rounded-full size-11 border-0 shadow-[0_2px_10px_rgba(0,0,0,0.18)] transition-colors disabled:pointer-events-none disabled:opacity-50 ${
           darkLayersVisible
-            ? 'bg-gray-100 border-gray-300 text-gray-800'
-            : 'bg-secondary border-input'
-        } ${isOpen ? 'ring-2 ring-primary/20 border-primary/30' : ''}`}
+            ? 'bg-card text-foreground'
+            : 'bg-card text-[var(--happy-700)]'
+        } ${isOpen ? 'bg-[var(--happy-50)]' : 'hover:bg-[var(--happy-50)]'}`}
         title={t('themes.select')}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.95 }}
@@ -61,9 +63,11 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: -6 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
-            className='absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] bg-white rounded-xl border border-gray-200 shadow-xl overflow-hidden z-30'
+            // Trailhead (#213): no border, bigger radius + shadow, mirrors
+            // the Select/DropdownMenu popover treatment.
+            className='absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] bg-popover rounded-2xl border-0 shadow-[0_4px_20px_rgba(0,0,0,0.16)] overflow-hidden z-30'
           >
-            <p className='px-3 pt-3 pb-1.5 text-[11px] font-semibold tracking-wide text-gray-400 uppercase'>
+            <p className='px-3 pt-3 pb-1.5 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase'>
               {t('themes.select')}
             </p>
             <ul className='max-h-96 overflow-y-auto py-1'>
@@ -79,11 +83,13 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                       }}
                       aria-pressed={isSelected}
                       className={cn(
-                        'appearance-none w-full flex items-center gap-3 rounded-lg border border-transparent bg-transparent px-2 py-2 text-left transition-colors',
-                        isSelected ? 'bg-primary/8' : 'hover:bg-gray-50'
+                        'appearance-none w-full flex items-center gap-3 rounded-xl border-0 bg-transparent px-2 py-2 text-left transition-colors',
+                        isSelected
+                          ? 'bg-[var(--happy-100)]'
+                          : 'hover:bg-muted'
                       )}
                     >
-                      <div className='relative w-14 h-10 rounded-md overflow-hidden bg-gray-100 flex-shrink-0 border border-gray-200'>
+                      <div className='relative w-14 h-10 rounded-md overflow-hidden bg-muted flex-shrink-0'>
                         <img
                           src={theme.thumbnail}
                           alt=''
@@ -94,13 +100,13 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                       <div className='min-w-0 flex-1'>
                         <p
                           className={cn(
-                            'text-sm font-medium text-gray-900 truncate',
-                            isSelected && 'text-primary'
+                            'text-sm font-medium text-foreground truncate',
+                            isSelected && 'text-[var(--happy-900)]'
                           )}
                         >
                           {t(`themes.${theme.id}.name`)}
                         </p>
-                        <p className='text-xs leading-snug text-gray-500 line-clamp-2'>
+                        <p className='text-xs leading-snug text-muted-foreground line-clamp-2'>
                           {t(`themes.${theme.id}.description`)}
                         </p>
                       </div>

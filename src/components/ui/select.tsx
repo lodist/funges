@@ -6,11 +6,17 @@ import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 
 const selectTriggerVariants = cva(
-  "border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-center gap-2 rounded-md border bg-background px-3 py-1.5 text-sm font-medium shadow-xs transition-[color,box-shadow] outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex",
+  // Trailhead (#213): data-[size=default]:h-12 (not just h-12 in the size
+  // variant below) is deliberate — this data-attribute-scoped class has
+  // higher specificity than a bare height utility, so the plain h-12 in
+  // `size.default` alone would lose the cascade to a leftover h-9 here.
+  // justify-between (was justify-center) left-aligns the value against the
+  // right-aligned chevron once a caller opts into w-full.
+  "border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium shadow-[0_1px_6px_rgba(0,0,0,0.06)] transition-[color,box-shadow] outline-none focus-visible:border-[var(--happy-500)] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-12 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex",
   {
     variants: {
       size: {
-        default: 'h-9 px-3 py-1.5',
+        default: 'h-12 px-4 py-1.5',
         sm: 'h-8 px-2 py-1',
         lg: 'h-10 px-4 py-2',
       },
@@ -74,7 +80,8 @@ function SelectContent({
       <SelectPrimitive.Content
         data-slot='select-content'
         className={cn(
-          'bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 relative z-50 max-h-(--radix-select-content-available-height) min-w-[8rem] origin-(--radix-select-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border shadow-md',
+          // Trailhead (#213): no border, bigger radius + shadow.
+          'bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 relative z-50 max-h-(--radix-select-content-available-height) min-w-[8rem] origin-(--radix-select-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-2xl border-0 shadow-[0_4px_20px_rgba(0,0,0,0.16)]',
           position === 'popper' &&
             'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
           className
@@ -120,7 +127,9 @@ function SelectItem({
     <SelectPrimitive.Item
       data-slot='select-item'
       className={cn(
-        "focus:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
+        // Trailhead (#213): green-only focus tone (not the warm accent),
+        // bigger radius, pl-4 to line item text up with the trigger's px-4.
+        "focus:bg-[var(--happy-100)] focus:text-[var(--happy-900)] [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-default items-center gap-2 rounded-xl py-1.5 pr-8 pl-4 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
         className
       )}
       {...props}

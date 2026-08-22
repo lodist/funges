@@ -94,8 +94,17 @@
      text-safe step (5.07:1 on white, verified); grass9 is reserved for
      non-text fills/rings (3:1 floor only) — don't reuse it as text color,
      see the #202 doc's WCAG table for why. */
-  --primary: oklch(0.5262 0.1294 147.1971); /* #2a7e3b — Radix grass11 */
-  --primary-foreground: oklch(1 0 0); /* #ffffff */
+  /* Trailhead (#213): --primary now points at the happy-green scale (was
+     the dark forest green above) so every custom component across the app
+     that already reads --primary/bg-primary/text-primary/border-primary
+     picks up the redesign automatically, not just the atoms in
+     src/components/ui/*. Light mode only — see the --happy-* block below
+     for why dark mode isn't touched. Individual atoms still hardcode
+     specific --happy-* steps (500/700/900/…) where a look needs more than
+     one step of the scale at once (e.g. a button's fill vs. its text) —
+     that nuance can't collapse into a single --primary value. */
+  --primary: var(--happy-600);
+  --primary-foreground: var(--happy-900);
   --secondary: oklch(0.9582 0.0193 147.8505); /* #e9f5ea */
   --secondary-foreground: oklch(0.5262 0.1294 147.1971); /* #2a7e3b */
   --muted: oklch(0.952 0.0083 91.4843); /* #f1efe9 */
@@ -106,11 +115,13 @@
      of the doc's literal "brown9 solid fill" suggestion. */
   --accent: oklch(0.9356 0.0194 72.5693); /* #f2e8dc */
   --accent-foreground: oklch(0.4506 0.0552 64.6273); /* #6b4f34 */
-  --destructive: oklch(0.5386 0.1937 26.7249); /* #ef4444 */
+  /* Trailhead (#213): no red anywhere, even destructive — deepest step of
+     the happy-green scale stands in for danger/delete, everywhere. */
+  --destructive: var(--happy-900);
   --destructive-foreground: oklch(1 0 0); /* #ffffff */
   --border: oklch(0.9071 0.01 87.4748); /* #e3e0d9 */
   --input: oklch(0.9071 0.01 87.4748); /* #e3e0d9 */
-  --ring: oklch(0.6512 0.1468 147.3918); /* #46a758 — Radix grass9 */
+  --ring: var(--happy-600);
 
   /* Chart colors */
   --chart-1: oklch(0.6731 0.1624 144.2083); /* #70c88f */
@@ -124,8 +135,13 @@
   --sidebar-foreground: oklch(0.2431 0.0076 95.3724); /* #21201c */
   --sidebar-primary: oklch(0.5262 0.1294 147.1971); /* #2a7e3b */
   --sidebar-primary-foreground: oklch(1 0 0); /* #ffffff */
-  --sidebar-accent: oklch(0.9356 0.0194 72.5693); /* #f2e8dc */
-  --sidebar-accent-foreground: oklch(0.4506 0.0552 64.6273); /* #6b4f34 */
+  /* Trailhead (#213): nav hover/active tint moves from the warm-neutral
+     accent to the happy-green scale, matching Select/DropdownMenu focus
+     colors. Light mode only, per the redesign's own scope. */
+  --sidebar-accent: var(--happy-100);
+  /* Nav item text stays standard foreground (not green) even when
+     hovered/active — only the background tint changes. */
+  --sidebar-accent-foreground: var(--foreground);
   --sidebar-border: oklch(0.9071 0.01 87.4748); /* #e3e0d9 */
   --sidebar-ring: oklch(0.6512 0.1468 147.3918); /* #46a758 */
 
@@ -158,6 +174,20 @@
     var(--status-warning) 55%,
     black
   );
+
+  /* "Happy green" scale — #213 Trailhead atom redesign, reviewed 2026-08-22.
+     Lighter/more vivid than --primary, and used as the ONLY hue across the
+     redesigned atoms (no red, even for destructive/danger — severity is
+     depth, not hue). Light-mode only: the redesign wasn't reviewed in dark
+     mode, so dark-mode atom classes fall back to the pre-existing tokens
+     instead of these. Values from prototypes/atoms-213/palette.ts. */
+  --happy-50: oklch(0.97 0.03 152); /* ~#eef8f0 */
+  --happy-100: oklch(0.93 0.06 152); /* ~#d9f0dd */
+  --happy-300: oklch(0.85 0.12 151); /* ~#a9e0b6 */
+  --happy-500: oklch(0.74 0.17 150); /* ~#4bd672 — primary */
+  --happy-600: oklch(0.65 0.18 150); /* ~#2fb85c — hover/pressed */
+  --happy-700: oklch(0.42 0.13 150); /* ~#1f6b3a — readable text/icon */
+  --happy-900: oklch(0.24 0.07 150); /* ~#12341f — deep, replaces red */
 
   /* Typography */
   --font-sans: 'Public Sans', sans-serif;

@@ -66,14 +66,22 @@ function SheetContent({
             'data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm',
           side === 'top' &&
             'data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 h-auto border-b',
+          // Trailhead (#213): AllTrails puts nearly every mobile action in
+          // a bottom sheet — rounded top, no border, drag handle below.
           side === 'bottom' &&
-            'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t',
+            'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto rounded-t-[1.75rem] border-0 border-t-0 shadow-[0_-4px_24px_rgba(0,0,0,0.18)] pt-3',
           className
         )}
         {...props}
       >
+        {side === 'bottom' && (
+          <div className='mx-auto mb-2 h-1.5 w-10 rounded-full bg-border' />
+        )}
         {children}
-        <SheetPrimitive.Close className='ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none'>
+        {/* Trailhead (#213): bare X, no resting background/border — only on
+            hover does it pick up a rounded-square happy-green fill,
+            matching Dialog. */}
+        <SheetPrimitive.Close className='ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-lg size-9 p-0 border-0 bg-transparent text-[var(--happy-700)] grid place-items-center leading-none opacity-100 transition-colors hover:bg-[var(--happy-50)] focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none'>
           <XIcon className='size-4' />
           <span className='sr-only'>{t('close')}</span>
         </SheetPrimitive.Close>

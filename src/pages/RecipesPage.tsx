@@ -206,7 +206,6 @@ export default function RecipesPage() {
 
             {/* Filter Button */}
             <Button
-              variant='outline'
               onClick={() => setIsFilterModalOpen(true)}
               className='w-full sm:w-48'
             >
@@ -378,7 +377,6 @@ export default function RecipesPage() {
                     {/* View Recipe Button */}
                     <Button
                       className='mt-auto'
-                      variant='outline'
                       onClick={() => setSelectedRecipe(recipe)}
                     >
                       {t('view_recipe')}
