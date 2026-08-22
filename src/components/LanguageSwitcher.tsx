@@ -43,7 +43,9 @@ const LanguageSwitcher: React.FC = () => {
             key={language.code}
             onClick={() => handleLanguageChange(language.code)}
             className={`flex items-center gap-2 ${
-              i18n.language === language.code ? 'bg-accent' : ''
+              i18n.language === language.code
+                ? 'bg-[var(--happy-100)] text-[var(--happy-900)] font-semibold'
+                : ''
             }`}
           >
             <span className='text-lg'>{language.flag}</span>

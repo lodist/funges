@@ -64,13 +64,14 @@ export default function FilterModal({
 
   return (
     <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4'>
-      <div className='bg-background rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto flex flex-col relative'>
+      {/* Trailhead (#213): matches Dialog's radius/shadow. */}
+      <div className='bg-background rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.24)] max-w-2xl w-full max-h-[90vh] overflow-y-auto flex flex-col relative'>
         {/* Close Button - Top Right */}
         <Button
           variant='ghost'
           size='sm'
           onClick={onClose}
-          className='absolute top-4 right-4 z-10 h-8 w-8 p-0 hover:bg-(--background-secondary)/50'
+          className='absolute top-4 right-4 z-10 h-8 w-8 p-0 rounded-lg border-0 bg-transparent hover:bg-[var(--happy-50)] hover:text-[var(--happy-700)]'
         >
           <span className='text-lg'>{'✕'}</span>
         </Button>
@@ -224,16 +225,13 @@ export default function FilterModal({
         </div>
 
         {/* Footer Actions - Fixed at bottom */}
-        <div className='flex items-center justify-between p-6 border-t border-border bg-(--background-secondary)/30 mt-auto'>
+        <div className='flex items-center justify-end gap-3 p-6 border-t border-border bg-(--background-secondary)/30 mt-auto'>
           <Button
             variant='outline'
             onClick={onClearFilters}
             className='hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors duration-200'
           >
-            <span className='flex items-center gap-2'>
-              <span>{'🗑️'}</span>
-              {t('clear')}
-            </span>
+            {t('clear')}
           </Button>
           <Button onClick={onClose} className='min-w-[100px]'>
             {t('apply')}

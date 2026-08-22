@@ -19,13 +19,14 @@ export default function ForecastSlider({
 
   return (
     <div
-      className={`flex flex-col justify-center bg-white/95 backdrop-blur-sm border border-gray-200 px-3 md:px-4 rounded-lg shadow-sm h-14 md:h-[68px] ${className}`}
+      // Trailhead (#213): floating map control — no border, soft shadow.
+      className={`flex flex-col justify-center bg-card/95 backdrop-blur-sm px-3 md:px-4 rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.18)] h-14 md:h-[68px] ${className}`}
     >
       <div className='flex items-center justify-between text-xs leading-none mb-1 md:mb-2'>
-        <span className='font-bold text-gray-900'>
+        <span className='font-bold text-foreground'>
           {t('forecast.label', { defaultValue: 'Forecast' })}
         </span>
-        <span className='text-gray-600'>{activeLabel}</span>
+        <span className='text-muted-foreground'>{activeLabel}</span>
       </div>
       <input
         type='range'
@@ -35,7 +36,7 @@ export default function ForecastSlider({
         value={activeDay}
         onChange={e => setActiveDay(Number(e.target.value))}
         aria-label={t('forecast.label', { defaultValue: 'Forecast day' })}
-        className='w-full accent-[#800020]'
+        className='w-full accent-[var(--happy-600)]'
       />
     </div>
   );

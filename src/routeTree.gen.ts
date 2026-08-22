@@ -20,7 +20,6 @@ import { Route as OfflineRouteImport } from './routes/offline'
 import { Route as InstructionsRouteImport } from './routes/instructions'
 import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as DataRouteImport } from './routes/data'
-import { Route as Atoms213RouteImport } from './routes/atoms-213'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
@@ -78,11 +77,6 @@ const DataRoute = DataRouteImport.update({
   path: '/data',
   getParentRoute: () => rootRouteImport,
 } as any)
-const Atoms213Route = Atoms213RouteImport.update({
-  id: '/atoms-213',
-  path: '/atoms-213',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -91,7 +85,6 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/atoms-213': typeof Atoms213Route
   '/data': typeof DataRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
@@ -106,7 +99,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/atoms-213': typeof Atoms213Route
   '/data': typeof DataRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
@@ -122,7 +114,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/atoms-213': typeof Atoms213Route
   '/data': typeof DataRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
@@ -139,7 +130,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/atoms-213'
     | '/data'
     | '/impressum'
     | '/instructions'
@@ -154,7 +144,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/atoms-213'
     | '/data'
     | '/impressum'
     | '/instructions'
@@ -169,7 +158,6 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/atoms-213'
     | '/data'
     | '/impressum'
     | '/instructions'
@@ -185,7 +173,6 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  Atoms213Route: typeof Atoms213Route
   DataRoute: typeof DataRoute
   ImpressumRoute: typeof ImpressumRoute
   InstructionsRoute: typeof InstructionsRoute
@@ -278,13 +265,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DataRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/atoms-213': {
-      id: '/atoms-213'
-      path: '/atoms-213'
-      fullPath: '/atoms-213'
-      preLoaderRoute: typeof Atoms213RouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -297,7 +277,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  Atoms213Route: Atoms213Route,
   DataRoute: DataRoute,
   ImpressumRoute: ImpressumRoute,
   InstructionsRoute: InstructionsRoute,
