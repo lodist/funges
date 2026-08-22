@@ -13,10 +13,11 @@ describe('forecast lib', () => {
     expect(FORECAST_REGIONS).toEqual(['ne', 'se', 'use', 'usw']);
   });
 
-  it('labels a day as D/M offset from the base date', () => {
+  it('labels a day as "<weekday> <day> <month>" in the given locale, offset from the base date', () => {
     const base = new Date(2026, 5, 25); // 25 Jun 2026 (month is 0-based)
-    expect(forecastDayLabel(base, 0)).toBe('25/6');
-    expect(forecastDayLabel(base, 6)).toBe('1/7');
+    expect(forecastDayLabel(base, 0, 'it')).toBe('Gio 25 Giugno');
+    expect(forecastDayLabel(base, 6, 'it')).toBe('Mer 1 Luglio');
+    expect(forecastDayLabel(base, 0, 'en')).toBe('Thu, June 25');
   });
 
   it('builds a d0->d6 interpolation input at the given fraction', () => {
