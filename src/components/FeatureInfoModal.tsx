@@ -11,6 +11,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { getRepresentativeLngLat } from '@/lib/geo';
 import { getSpeciesImage } from '@/lib/utils';
+import { getScoreTextColorClass } from '@/lib/scoreColor';
 import { SPECIES_DATA } from '@/data/species';
 import type { RegionId } from '@/lib/data';
 import { Navigation, BarChart2, Copy, Check } from 'lucide-react';
@@ -29,19 +30,6 @@ function getNavigationUrl(lat: number, lng: number): string {
   // This ensures the same experience on desktop, iOS, and Android
   return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
 }
-
-// Function to get gradient color based on score (0-10 scale)
-const getScoreColor = (score: number): string => {
-  // Convert score from 0-10 scale to 0-100 scale
-  const percentage = score * 10;
-
-  // Map percentage to darker colors from #B3B380 (darker cream) to #1A0000 (very dark burgundy)
-  if (percentage <= 20) return 'text-[#B3B380]'; // 0-20%
-  if (percentage <= 40) return 'text-[#A68A4D]'; // 20-40%
-  if (percentage <= 60) return 'text-[#8A4D4D]'; // 40-60%
-  if (percentage <= 80) return 'text-[#660019]'; // 60-80%
-  return 'text-[#1A0000]'; // 80-100%
-};
 
 export default function FeatureInfoModal({
   feature,
@@ -175,7 +163,7 @@ export default function FeatureInfoModal({
                   {/* Score display */}
                   <div className='flex-shrink-0 text-right'>
                     <div
-                      className={`text-xl sm:text-2xl font-bold ${getScoreColor(score)} leading-tight`}
+                      className={`text-xl sm:text-2xl font-bold ${getScoreTextColorClass(score)} leading-tight`}
                     >
                       {Math.round(score * 10)}%
                     </div>

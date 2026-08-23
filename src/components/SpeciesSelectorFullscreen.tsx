@@ -165,12 +165,14 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
             <button
               key={category.value}
               onClick={() => setSelectedCategory(category.value)}
+              // Trailhead (#213): filter chip — selected stays the same
+              // neutral fill as unselected, marked by weight only (no
+              // colour swap), no border.
               className={cn(
-                'flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200',
-                'border backdrop-blur-sm',
+                'flex items-center gap-2 px-3 py-2 rounded-full text-sm transition-all duration-200 border-0 backdrop-blur-sm',
                 selectedCategory === category.value
-                  ? 'bg-primary text-primary-foreground border-primary shadow-lg'
-                  : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 hover:text-gray-900'
+                  ? 'bg-white text-gray-900 font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
+                  : 'bg-white/90 text-gray-700 font-medium hover:bg-white'
               )}
             >
               <span className='text-base'>{category.icon}</span>
@@ -238,20 +240,22 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                         : tSpecies(`list_of_species.${species.code}.name`)
                     }
                     aria-disabled={disabled}
+                    // Trailhead (#213): no border — selection is a shadow
+                    // lift + tint + the corner checkmark badge, not a ring.
                     className={cn(
-                      'group relative bg-white rounded-xl border-2 transition-all duration-200 hover:shadow-lg',
+                      'group relative bg-white rounded-2xl border-0 transition-all duration-200 hover:shadow-[0_6px_20px_rgba(0,0,0,0.14)]',
                       'p-4 text-center min-h-[140px] flex flex-col items-center justify-center',
                       'hover:scale-105 active:scale-95',
                       disabled
-                        ? 'opacity-50 cursor-not-allowed border-gray-300'
+                        ? 'opacity-50 cursor-not-allowed'
                         : isSelected
-                          ? 'border-primary border-4 shadow-xl shadow-primary/30 bg-gray-100 scale-105'
-                          : 'border-gray-300 hover:border-primary/50 hover:shadow-md'
+                          ? 'shadow-[0_6px_20px_rgba(0,0,0,0.14)] bg-[var(--happy-50)] scale-105'
+                          : 'shadow-[0_2px_16px_rgba(0,0,0,0.10)]'
                     )}
                   >
                     {/* Selection indicator */}
                     {isSelected && (
-                      <div className='absolute -top-3 -right-3 w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-lg border-2 border-white'>
+                      <div className='absolute -top-3 -right-3 w-8 h-8 bg-[var(--happy-600)] rounded-full flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.18)] border-2 border-white'>
                         <div className='w-3 h-3 bg-white rounded-full' />
                       </div>
                     )}

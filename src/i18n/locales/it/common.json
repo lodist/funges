@@ -156,6 +156,7 @@
     "unitedStates": "Stati Uniti",
     "selectedZone": "Selezionata: {{zone}} — clicca di nuovo per mostrare tutte",
     "clickZone": "Tutte le zone visualizzate — clicca su una per filtrare",
+    "timeRange": "Periodo",
     "noData": "Nessun dato per la zona selezionata",
     "score": "Punteggio",
     "tempMax": "Max",

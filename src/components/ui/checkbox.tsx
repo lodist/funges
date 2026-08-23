@@ -6,13 +6,16 @@ import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 
 const checkboxVariants = cva(
-  'peer data-[state=checked]:bg-primary data-[state=checked]:border-primary aria-invalid:border-destructive size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none disabled:cursor-not-allowed disabled:opacity-50',
+  // Trailhead (#213): square with a genuinely visible tick. p-0 also fixes
+  // a pre-existing global `button{padding}` reset (globals.scss) that was
+  // stretching this into a pill. border/bg-primary === happy-600.
+  'peer p-0 rounded-[5px] border-2 border-primary data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-white aria-invalid:border-destructive shrink-0 shadow-xs transition-shadow outline-none disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       size: {
-        default: 'size-4',
+        default: 'size-5',
         sm: 'size-3',
-        lg: 'size-5',
+        lg: 'size-6',
       },
     },
     defaultVariants: {
