@@ -25,7 +25,8 @@
     "test:e2e:headed": "playwright test --headed",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky"
   },
   "dependencies": {
     "@fontsource/merriweather": "^5.3.0",
@@ -114,7 +115,9 @@
     "eslint-plugin-storybook": "^9.1.20",
     "eslint-plugin-unused-imports": "^4.2.0",
     "globals": "^16.0.0",
+    "husky": "^9.1.7",
     "jsdom": "^26.1.0",
+    "lint-staged": "^17.3.0",
     "onnxruntime-web": "^1.27.0",
     "playwright": "^1.56.1",
     "postcss": "^8.5.23",
@@ -131,5 +134,14 @@
     "vite-plugin-remove-console": "^2.2.0",
     "vite-plugin-sitemap": "^0.8.2",
     "vitest": "^4.1.11"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix --max-warnings 0",
+      "prettier --write"
+    ],
+    "*.{json,css,scss,md,html}": [
+      "prettier --write"
+    ]
   }
 }
