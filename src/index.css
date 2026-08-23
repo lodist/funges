@@ -42,7 +42,8 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-sans: Montserrat, sans-serif;
+  --font-sans: 'Public Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
   --font-mono: Source Code Pro, monospace;
   --font-serif: Merriweather, serif;
   --radius: 0.5rem;
@@ -69,33 +70,58 @@
   --shadow-opacity: var(--shadow-opacity);
   --color-shadow-color: var(--shadow-color);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-status-success: var(--status-success);
+  --color-status-warning: var(--status-warning);
+  --color-status-info: var(--status-info);
+  --color-warning: var(--status-warning);
+  --color-status-warning-text: var(--status-warning-text);
+  --color-status-warning-border: var(--status-warning-border);
 }
 
 :root {
   --radius: 0.5rem;
 
   /* Light theme colors - using centralized color system */
-  --background: oklch(0.9711 0.0074 80.7211); /* #fafafa */
-  --foreground: oklch(0.3 0.0358 30.2042); /* #1a1a1a */
-  --card: oklch(0.9711 0.0074 80.7211); /* #fafafa */
-  --card-foreground: oklch(0.3 0.0358 30.2042); /* #1a1a1a */
-  --popover: oklch(0.9711 0.0074 80.7211); /* #fafafa */
-  --popover-foreground: oklch(0.3 0.0358 30.2042); /* #1a1a1a */
-  /* #29782d — 0.5234 rendered #2e7d32, only 4.26:1 on the sidebar (#f0e9e0),
-     so every sidebar menu label failed WCAG AA. 0.5084 gives 4.57:1. */
-  --primary: oklch(0.5084 0.1347 144.1672); /* #29782d */
-  --primary-foreground: oklch(1 0 0); /* #ffffff */
-  --secondary: oklch(0.9571 0.021 147.636); /* #f0f9f4 */
-  --secondary-foreground: oklch(0.4254 0.1159 144.3078); /* #2e7045 */
-  --muted: oklch(0.937 0.0142 74.4218); /* #f5f5f5 */
-  --muted-foreground: oklch(0.4495 0.0486 39.211); /* #525252 */
-  --accent: oklch(0.8952 0.0504 146.0366); /* #b8e4c7 */
-  --accent-foreground: oklch(0.4254 0.1159 144.3078); /* #2e7045 */
-  --destructive: oklch(0.5386 0.1937 26.7249); /* #ef4444 */
+  --background: oklch(0.9938 0.0013 106.4231); /* #fdfdfc */
+  --foreground: oklch(0.2431 0.0076 95.3724); /* #21201c */
+  --card: oklch(0.9938 0.0013 106.4231); /* #fdfdfc */
+  --card-foreground: oklch(0.2431 0.0076 95.3724); /* #21201c */
+  --popover: oklch(0.9938 0.0013 106.4231); /* #fdfdfc */
+  --popover-foreground: oklch(0.2431 0.0076 95.3724); /* #21201c */
+  /* #203 — Forest/Moss + Warm Neutral direction (Radix grass11/grass9),
+     computed via the CSS Color 4 sRGB→OKLab formula per the #202 research
+     doc, same method the values above already used. grass11 is the
+     text-safe step (5.07:1 on white, verified); grass9 is reserved for
+     non-text fills/rings (3:1 floor only) — don't reuse it as text color,
+     see the #202 doc's WCAG table for why. */
+  /* Trailhead (#213): --primary now points at the happy-green scale (was
+     the dark forest green above) so every custom component across the app
+     that already reads --primary/bg-primary/text-primary/border-primary
+     picks up the redesign automatically, not just the atoms in
+     src/components/ui/*. Light mode only — see the --happy-* block below
+     for why dark mode isn't touched. Individual atoms still hardcode
+     specific --happy-* steps (500/700/900/…) where a look needs more than
+     one step of the scale at once (e.g. a button's fill vs. its text) —
+     that nuance can't collapse into a single --primary value. */
+  --primary: var(--happy-600);
+  --primary-foreground: var(--happy-900);
+  --secondary: oklch(0.9582 0.0193 147.8505); /* #e9f5ea */
+  --secondary-foreground: oklch(0.5262 0.1294 147.1971); /* #2a7e3b */
+  --muted: oklch(0.952 0.0083 91.4843); /* #f1efe9 */
+  --muted-foreground: oklch(0.5261 0.0151 82.3829); /* #6f6a61 */
+  /* Warm tan tint (Radix brown-adjacent), not brown9 solid — brown9 #ad7f58
+     only reaches 3.53:1 with white text (fails 4.5:1 body text), so this
+     follows the same light-tint + dark-text pattern as --secondary instead
+     of the doc's literal "brown9 solid fill" suggestion. */
+  --accent: oklch(0.9356 0.0194 72.5693); /* #f2e8dc */
+  --accent-foreground: oklch(0.4506 0.0552 64.6273); /* #6b4f34 */
+  /* Trailhead (#213): no red anywhere, even destructive — deepest step of
+     the happy-green scale stands in for danger/delete, everywhere. */
+  --destructive: var(--happy-900);
   --destructive-foreground: oklch(1 0 0); /* #ffffff */
-  --border: oklch(0.8805 0.0208 74.6428); /* #e5e5e5 */
-  --input: oklch(0.8805 0.0208 74.6428); /* #e5e5e5 */
-  --ring: oklch(0.5234 0.1347 144.1672); /* #4cba73 */
+  --border: oklch(0.9071 0.01 87.4748); /* #e3e0d9 */
+  --input: oklch(0.9071 0.01 87.4748); /* #e3e0d9 */
+  --ring: var(--happy-600);
 
   /* Chart colors */
   --chart-1: oklch(0.6731 0.1624 144.2083); /* #70c88f */
@@ -105,31 +131,67 @@
   --chart-5: oklch(0.2157 0.0453 145.7256); /* #102517 */
 
   /* Sidebar colors */
-  --sidebar: oklch(0.937 0.0142 74.4218); /* #f5f5f5 */
-  --sidebar-foreground: oklch(0.3 0.0358 30.2042); /* #1a1a1a */
-  --sidebar-primary: oklch(0.5234 0.1347 144.1672); /* #4cba73 */
+  --sidebar: oklch(0.9643 0.007 88.6428); /* #f5f3ee */
+  --sidebar-foreground: oklch(0.2431 0.0076 95.3724); /* #21201c */
+  --sidebar-primary: oklch(0.5262 0.1294 147.1971); /* #2a7e3b */
   --sidebar-primary-foreground: oklch(1 0 0); /* #ffffff */
-  --sidebar-accent: oklch(0.8952 0.0504 146.0366); /* #b8e4c7 */
-  --sidebar-accent-foreground: oklch(0.4254 0.1159 144.3078); /* #2e7045 */
-  --sidebar-border: oklch(0.8805 0.0208 74.6428); /* #e5e5e5 */
-  --sidebar-ring: oklch(0.5234 0.1347 144.1672); /* #4cba73 */
+  /* Trailhead (#213): nav hover/active tint moves from the warm-neutral
+     accent to the happy-green scale, matching Select/DropdownMenu focus
+     colors. Light mode only, per the redesign's own scope. */
+  --sidebar-accent: var(--happy-100);
+  /* Nav item text stays standard foreground (not green) even when
+     hovered/active — only the background tint changes. */
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: oklch(0.9071 0.01 87.4748); /* #e3e0d9 */
+  --sidebar-ring: oklch(0.6512 0.1468 147.3918); /* #46a758 */
 
-  /* Semantic color variables for theme-aware usage */
-  --text-primary: oklch(0.3 0.0358 30.2042); /* #1a1a1a */
-  --text-secondary: oklch(0.4495 0.0486 39.211); /* #525252 */
-  --text-tertiary: oklch(0.4495 0.0486 39.211); /* #6b7280 */
+  /* Semantic tokens with no shadcn equivalent (kept here as the single
+     definition; text-primary/secondary/tertiary and background-primary/
+     tertiary were removed as duplicates of --foreground/--muted-foreground/
+     --background/--muted). */
   --text-inverse: oklch(1 0 0); /* #ffffff */
-
-  --background-primary: oklch(0.9711 0.0074 80.7211); /* #fafafa */
   --background-secondary: rgba(250, 250, 250, 0.9);
-  --background-tertiary: oklch(0.937 0.0142 74.4218); /* #f5f5f5 */
   --background-overlay: rgba(0, 0, 0, 0.8);
-
   --hover-primary: oklch(0.8952 0.0504 146.0366); /* #e5f7ed */
   --hover-secondary: oklch(0.8579 0.0174 76.0955); /* #d1f2e1 */
 
+  /* Status colors — flat across themes, matching the values previously
+     hardcoded as globals.scss var() fallbacks */
+  --status-success: #4cba73;
+  --status-warning: #f59e0b;
+  --status-info: #3b82f6;
+  --status-warning-background: color-mix(
+    in oklch,
+    var(--status-warning) 15%,
+    var(--background)
+  );
+  /* Mixed toward black, not --foreground: bg-status-warning/bg-warning render
+     the flat, fairly bright --status-warning as a solid fill, so the text/
+     border need to stay dark for contrast in both light and dark mode. */
+  --status-warning-text: color-mix(in oklch, var(--status-warning) 25%, black);
+  --status-warning-border: color-mix(
+    in oklch,
+    var(--status-warning) 55%,
+    black
+  );
+
+  /* "Happy green" scale — #213 Trailhead atom redesign, reviewed 2026-08-22.
+     Lighter/more vivid than --primary, and used as the ONLY hue across the
+     redesigned atoms (no red, even for destructive/danger — severity is
+     depth, not hue). Light-mode only: the redesign wasn't reviewed in dark
+     mode, so dark-mode atom classes fall back to the pre-existing tokens
+     instead of these. Values from prototypes/atoms-213/palette.ts. */
+  --happy-50: oklch(0.97 0.03 152); /* ~#eef8f0 */
+  --happy-100: oklch(0.93 0.06 152); /* ~#d9f0dd */
+  --happy-300: oklch(0.85 0.12 151); /* ~#a9e0b6 */
+  --happy-500: oklch(0.74 0.17 150); /* ~#4bd672 — primary */
+  --happy-600: oklch(0.65 0.18 150); /* ~#2fb85c — hover/pressed */
+  --happy-700: oklch(0.42 0.13 150); /* ~#1f6b3a — readable text/icon */
+  --happy-900: oklch(0.24 0.07 150); /* ~#12341f — deep, replaces red */
+
   /* Typography */
-  --font-sans: Montserrat, sans-serif;
+  --font-sans: 'Public Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
   --font-serif: Merriweather, serif;
   --font-mono: Source Code Pro, monospace;
 
@@ -196,22 +258,16 @@
   --sidebar-border: oklch(0.3942 0.0265 142.9926); /* #262626 */
   --sidebar-ring: oklch(0.6731 0.1624 144.2083); /* #70c88f */
 
-  /* Semantic color variables for theme-aware usage */
-  --text-primary: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --text-secondary: oklch(0.8579 0.0174 76.0955); /* #a3a3a3 */
-  --text-tertiary: oklch(0.8579 0.0174 76.0955); /* #d1d5db */
+  /* Dark-mode values for the tokens with no shadcn equivalent (see :root) */
   --text-inverse: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
-
-  --background-primary: oklch(0.2683 0.0279 150.7681); /* #171717 */
   --background-secondary: rgba(23, 23, 23, 0.9);
-  --background-tertiary: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
   --background-overlay: rgba(0, 0, 0, 0.8);
-
   --hover-primary: oklch(0.3942 0.0265 142.9926); /* #1f2937 */
   --hover-secondary: oklch(0.3327 0.0271 146.9867); /* #374151 */
 
   --radius: 0.5rem;
-  --font-sans: Montserrat, sans-serif;
+  --font-sans: 'Public Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
   --font-serif: Merriweather, serif;
   --font-mono: Source Code Pro, monospace;
   --shadow-color: oklch(0 0 0);
@@ -241,7 +297,15 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
     letter-spacing: var(--tracking-normal);
+  }
+
+  /* #203 — Space Grotesk for display/headings, Public Sans (--font-sans)
+     for body, per the #202 research doc's Option 1 pairing. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
   }
 }

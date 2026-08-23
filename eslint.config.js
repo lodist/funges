@@ -12,7 +12,16 @@ import i18next from 'eslint-plugin-i18next';
 import unusedImports from 'eslint-plugin-unused-imports';
 
 export default tseslint.config(
-  { ignores: ['dist', 'dev-dist', 'src/components/ui', 'node_modules'] },
+  {
+    ignores: [
+      'dist',
+      'dev-dist',
+      'src/components/ui',
+      'node_modules',
+      'src/prototypes', // throwaway prototype code — see mattpocock-skills:prototype
+      '.claude', // local agent worktrees/state, not part of the repo
+    ],
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],

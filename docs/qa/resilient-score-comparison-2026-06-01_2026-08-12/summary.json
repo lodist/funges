@@ -1,17 +1,10 @@
 {
-  "period": [
-    "2026-06-01",
-    "2026-08-12"
-  ],
+  "period": ["2026-06-01", "2026-08-12"],
   "cohort": {
     "background_cell_days": 11134,
     "target_cell_days": 840
   },
-  "primary_species": [
-    "chant",
-    "mushroom",
-    "parasol"
-  ],
+  "primary_species": ["chant", "mushroom", "parasol"],
   "old_primary_auc": 0.6159870745789146,
   "new_primary_auc": 0.6210918466556347,
   "primary_auc_delta": 0.005104772076720183,

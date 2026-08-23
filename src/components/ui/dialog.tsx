@@ -60,7 +60,8 @@ function DialogContent({
       <DialogPrimitive.Content
         data-slot='dialog-content'
         className={cn(
-          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg',
+          // Trailhead (#213): no border, bigger radius + shadow.
+          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-2xl border-0 p-6 shadow-[0_8px_32px_rgba(0,0,0,0.24)] duration-200 sm:max-w-lg',
           className
         )}
         {...props}
@@ -69,7 +70,10 @@ function DialogContent({
         {showCloseButton && (
           <DialogPrimitive.Close
             data-slot='dialog-close'
-            className="ring-offset-background focus-visible:ring-ring absolute top-4 right-4 rounded-full bg-transparent p-1.5 text-muted-foreground opacity-70 transition-colors hover:bg-accent hover:text-accent-foreground hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+            // Trailhead (#213): bare X, no resting background/border — only
+            // on hover does it pick up a rounded-square happy-green fill,
+            // matching Sheet's close button.
+            className="ring-offset-background focus-visible:ring-ring absolute top-4 right-4 rounded-lg size-9 p-0 border-0 bg-transparent text-[var(--happy-700)] grid place-items-center leading-none transition-colors hover:bg-[var(--happy-50)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
           >
             <XIcon />
             <span className='sr-only'>Close</span>

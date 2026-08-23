@@ -8,13 +8,15 @@ import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 
 const radioGroupItemVariants = cva(
-  'border-input text-primary aria-invalid:border-destructive dark:bg-input/30 aspect-square size-4 shrink-0 rounded-full border shadow-xs transition-[color,box-shadow] outline-none disabled:cursor-not-allowed disabled:opacity-50',
+  // Trailhead (#213): p-0 fixes the same global button{padding} reset as
+  // Checkbox/Switch (globals.scss). border/text-primary === happy-600.
+  'p-0 border-2 border-primary text-primary aria-invalid:border-destructive aspect-square shrink-0 rounded-full shadow-xs transition-[color,box-shadow] outline-none disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       size: {
-        default: 'size-4',
+        default: 'size-5',
         sm: 'size-3',
-        lg: 'size-5',
+        lg: 'size-6',
       },
     },
     defaultVariants: {
@@ -55,7 +57,11 @@ function RadioGroupItem({
         data-slot='radio-group-indicator'
         className='relative flex items-center justify-center'
       >
-        <CircleIcon className='fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2' />
+        {/* Trailhead (#213): hardcoded instead of fill-primary, since this
+            icon has no className passthrough. text- is pinned too — the
+            stroke follows currentColor, not fill, so without it the dot
+            gets a stray dark ring from --foreground. */}
+        <CircleIcon className='fill-[var(--happy-600)] text-[var(--happy-600)] absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2' />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   );

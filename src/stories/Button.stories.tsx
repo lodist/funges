@@ -254,3 +254,23 @@ export const WithHTML: Story = {
     ),
   },
 };
+
+// Radius scale
+export const RadiusScale: Story = {
+  render: () => (
+    <div className='flex items-center gap-4'>
+      <Button className='rounded-sm'>{'sm'}</Button>
+      <Button className='rounded-md'>{'md'}</Button>
+      <Button className='rounded-lg'>{'lg'}</Button>
+      <Button className='rounded-xl'>{'xl'}</Button>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The --radius-* scale from index.css applied to the button corners.',
+      },
+    },
+  },
+};
