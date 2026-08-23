@@ -96,6 +96,9 @@ Thumbs.db
 # Generated files
 src/routeTree.gen.ts
 
-# Dynamic data files
-public/data/visitors.json 
+# Dynamic data files (regenerated and auto-committed on a schedule by
+# .github/workflows/update-data.yml — not meant to be hand-formatted)
+public/data/visitors.json
 public/data/scores_metadata.json
+public/data/data_nerd.json
+public/data/worth_foraging_now.json
