@@ -342,3 +342,10 @@
     width: 200px; // Smaller on mobile
   }
 }
+
+// AdvancedMap wires its own "locate me" button to GeolocateControl.trigger()
+// instead of showing MapLibre's default corner button — hide the native one
+// without touching its (still-functional) DOM element.
+.maplibregl-ctrl-geolocate {
+  display: none !important;
+}
