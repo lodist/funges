@@ -133,7 +133,7 @@ ci-check: install-ci
 	@echo "Running type check..."
 	npm run type-check
 	@echo "Running unit tests..."
-	npm run test:run
+	npx vitest run --project unit
 	@echo "Building for production..."
 	npm run build
 	@echo "All CI checks passed."
