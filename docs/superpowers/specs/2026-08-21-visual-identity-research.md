@@ -13,19 +13,19 @@ and WCAG 2.1/2.2. Not a decision — a menu for #203/#204.
 
 ## Reference landscape
 
-### AllTrails
+### Leading trail app
 
-The closest direct comp: a data-over-map, trust-driven outdoors app. AllTrails'
+The closest direct comp: a data-over-map, trust-driven outdoors app. Its
 own [brand style guide PDF](https://assets-global.website-files.com/650d0d523ce1729e6e4e0626/650d47c95f79fc1f3665097c_AllTrails%20Style%20Guide.pdf)
 is published (binary; not machine-extractable here, but its existence and file
-name confirm a maintained system) and the current [alltrails.com](https://www.alltrails.com/)
-homepage identifies a registered **"AllTrails Mountain Design"** mark — an
-icon+wordmark combination built around a mountain/peak motif over a map. Their
+name confirm a maintained system) and the current [product homepage](https://www.alltrails.com/)
+identifies a registered mountain-motif mark — an
+icon+wordmark combination built around a mountain/peak motif over a map. Its
 [logo history](https://1000logos.net/alltrails-logo/) has stayed in the green
 family across three redesigns (2010–2017, 2017–2023, 2023–present), each pass
 simplifying the mark rather than changing hue — evidence that a single
 recognizable green anchor, refined for legibility, outlasts palette
-experimentation. Their [2018 media kit](https://cdn-assets.alltrails.com/advertising/AllTrails_Media_Kit_2018.pdf)
+experimentation. Its [2018 media kit](https://cdn-assets.alltrails.com/advertising/AllTrails_Media_Kit_2018.pdf)
 and the [Working Not Working case study](https://workingnotworking.com/projects/335389-alltrails-rebrand-and-ui-design)
 (secondary, design-agency writeup) describe the 2023 rebrand as UI-system-first:
 a defined type scale and componentized map/photo overlays, not just a new logo.
@@ -128,7 +128,7 @@ tokens (`oklch(...) /* #hex */`).
 ### A. Forest/Moss + Warm Neutral
 
 Radix `grass` (primary) + `sand`/`brown` (neutral/accent). Closest to the
-current app palette and to Gaia GPS/AllTrails' "single evergreen anchor"
+current app palette and to Gaia GPS/the leading trail app's "single evergreen anchor"
 model — lowest migration cost.
 
 | role | Radix step | hex | OKLCH |
@@ -177,7 +177,7 @@ Google Fonts packages, matching how Montserrat/Merriweather/Source Code Pro
 already ship) and on [fonts.google.com](https://fonts.google.com), so a swap
 is a package-and-token change, not a hosting change.
 
-### 1. Geometric display + humanist body (AllTrails/Gaia-adjacent)
+### 1. Geometric display + humanist body (leading-trail-app/Gaia-adjacent)
 
 **[Space Grotesk](https://fonts.google.com/specimen/Space%2BGrotesk)**
 ([Fontsource](https://fontsource.org/fonts/space-grotesk)) for
@@ -188,7 +188,7 @@ confident/modern without Strava's aggressiveness — paired with
 government-grade (18F) humanist sans built for maximal legibility at small
 sizes over busy backgrounds, which matters directly for text sitting on top of
 map tiles and photo overlays. Closest match to the "trustworthy data app"
-register AllTrails and Gaia occupy.
+register the leading trail app and Gaia occupy.
 
 ### 2. Serif display + sans body (field-guide register)
 
@@ -232,14 +232,14 @@ A simplified, geometric leaf or spore-cluster glyph — closer to Pl@ntNet's
 minimal leaf than to Merlin's illustrated bird. Single flat fill, no gradient,
 2–3 anchor points max, so it survives to 16×16 favicon. Pair with a wordmark
 for the header/sidebar and drop to icon-only for the favicon and splash
-screen, matching how AllTrails' "Mountain Design" and Pl@ntNet both run
+screen, matching how the leading trail app's mountain-motif mark and Pl@ntNet both run
 icon+wordmark in-product and icon-alone at small sizes. Lowest risk, most
 directly comparable to the strongest primary sources found here.
 
 ### 2. Monoline botanical icon (line-art mark)
 
 A single-weight outline mark (mushroom cap + stem, or a stylized foraging
-basket) in the AllTrails/Gaia "solid and angular icon set" spirit — Gaia's own
+basket) in the leading-trail-app/Gaia "solid and angular icon set" spirit — Gaia's own
 case study explicitly describes designing a matching 24×24 icon set in the
 logo's geometry, which is the reusable lesson here: pick a stroke weight and
 corner radius the *entire* icon system (species categories, map pins, UI
@@ -312,14 +312,14 @@ scale is designed to hand you without hand-tuning.
 ## Summary for #203 / #204
 
 **#203 — Color palette & typography redesign:**
-- Lead with **Direction A (Forest/Moss + Warm Neutral, Radix `grass`+`sand`/`brown`)** — lowest migration cost from the current green-OKLCH system, most aligned with AllTrails/Gaia's "one evergreen anchor" precedent.
+- Lead with **Direction A (Forest/Moss + Warm Neutral, Radix `grass`+`sand`/`brown`)** — lowest migration cost from the current green-OKLCH system, most aligned with the leading trail app/Gaia's "one evergreen anchor" precedent.
 - Keep **Direction B (Deep Teal + Terracotta, `teal`+`bronze`/`orange`)** as the alternate if the team wants more differentiation from generic hiking-app green.
 - For any primary-on-white text/link color, pull from Radix step **`11`, not `9`** — `9` is a non-text/button-fill step and will fail 4.5:1 on white (see table above); this repo already had to hand-correct exactly this failure once (`src/index.css:90-91`).
 - Typography: **Option 1 (Space Grotesk + Public Sans)** is the safest default — geometric display, small-size-legible body over map/photo backgrounds. **Option 2 (Fraunces + Libre Franklin)** if the brand wants a field-guide/editorial register instead of an athletic-app register.
 - Verify all body text and non-text UI elements (borders, focus rings, chart lines) against WCAG **1.4.3 (4.5:1 text / 3:1 large text)** and **1.4.11 (3:1 non-text)** before shipping, in both light and dark tokens (mirror the existing `:root`/`.dark` split in `src/index.css`).
 
 **#204 — Logo redesign:**
-- Default to **Direction 1 (abstract leaf/spore icon + wordmark)** — closest precedent (Pl@ntNet, AllTrails' simplified mark evolution), best favicon survivability, no single-species commitment.
+- Default to **Direction 1 (abstract leaf/spore icon + wordmark)** — closest precedent (Pl@ntNet, the leading trail app's simplified mark evolution), best favicon survivability, no single-species commitment.
 - If the team wants a more distinctive/ownable mark and has budget for a full icon-system pass, **Direction 2 (monoline botanical line-art)** extends into the existing `lucide-react` icon usage (`Leaf`, `MapPin`, `AlertTriangle` in `SpeciesPage.tsx`) for a coherent system, per Gaia GPS's documented approach of designing the icon set alongside the logo.
 - Test every candidate mark at three concrete surfaces before picking: the `AppSidebar` icon slot, the `splash-screen.scss` splash container (~200px), and a 16×16 favicon — iNaturalist's own designer cited exactly this failure ("detail... gets a bit lost at smaller sizes") as the reason their old mark needed replacing.
 - Logos are exempt from WCAG 1.4.11's 3:1 non-text contrast rule, but the mark should still be legible in the header bar over both light and dark map styles (`AdvancedMap`'s dark-mode style swap) and over variable species-photo backgrounds — pick a version with a solid-fill background chip as a fallback for low-contrast placements.

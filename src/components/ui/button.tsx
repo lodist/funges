@@ -52,7 +52,7 @@ const buttonVariants = cva(
     },
     compoundVariants: [
       {
-        // AllTrails-style circular floating icon button (map zoom/locate
+        // Circular floating icon button (map zoom/locate
         // controls): no border even though it's semantically "outline",
         // colored icon on a plain card-colored circle.
         variant: 'outline',
