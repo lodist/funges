@@ -212,14 +212,14 @@ python backend/EU/North_Europe/NE_MapLayer.py
 
 ### Environment Variables
 
-| Variable                     | Where         | Description                        |
-| ---------------------------- | ------------- | ---------------------------------- |
-| `R2_ACCESS_KEY_ID`           | `.env.secret` | Cloudflare R2 credentials          |
-| `R2_SECRET_ACCESS_KEY`       | `.env.secret` | Cloudflare R2 credentials          |
-| `R2_BUCKET_NAME`             | `.env.secret` | Cloudflare R2 bucket name          |
-| `R2_ENDPOINT_URL`            | `.env.secret` | Cloudflare R2 endpoint             |
-| `WEATHERAPI_KEY`             | `.env.secret` | WeatherAPI.com key                 |
-| R2 data URLs (NE/SE/USE/USW) | `.env`        | Public CDN URLs — already set      |
+| Variable                     | Where         | Description                   |
+| ---------------------------- | ------------- | ----------------------------- |
+| `R2_ACCESS_KEY_ID`           | `.env.secret` | Cloudflare R2 credentials     |
+| `R2_SECRET_ACCESS_KEY`       | `.env.secret` | Cloudflare R2 credentials     |
+| `R2_BUCKET_NAME`             | `.env.secret` | Cloudflare R2 bucket name     |
+| `R2_ENDPOINT_URL`            | `.env.secret` | Cloudflare R2 endpoint        |
+| `WEATHERAPI_KEY`             | `.env.secret` | WeatherAPI.com key            |
+| R2 data URLs (NE/SE/USE/USW) | `.env`        | Public CDN URLs — already set |
 
 ## 🚀 Deployment
 

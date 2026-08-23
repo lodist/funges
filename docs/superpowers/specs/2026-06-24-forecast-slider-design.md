@@ -33,11 +33,11 @@ The forecast data already exists end to end; the map just discards it.
 Naive bake = 7× per-feature properties. Measured reality
 (`scratchpad/measure_forecast_sparsity.py`):
 
-| lever | outcome |
-|---|---|
-| omit zero scores | weak — kept cells average **17.4 / 21** species non-zero |
-| emit future day if it differs at 0.1 | **86 / 126** future cells change → **~4.9×** |
-| emit future day if it differs **≥ 0.5** (a visible ramp step) | **27 / 126** → **~2.1×** |
+| lever                                                         | outcome                                                  |
+| ------------------------------------------------------------- | -------------------------------------------------------- |
+| omit zero scores                                              | weak — kept cells average **17.4 / 21** species non-zero |
+| emit future day if it differs at 0.1                          | **86 / 126** future cells change → **~4.9×**             |
+| emit future day if it differs **≥ 0.5** (a visible ramp step) | **27 / 126** → **~2.1×**                                 |
 
 Properties dominate tile bytes here (17–44 numeric attrs vs a 3-point triangle),
 so tile size ≈ property multiple. A single combined tileset is therefore **~2×
@@ -87,8 +87,8 @@ US ~81; all 21 species). The per-day score loop is shared logic → one helper.
    per-triangle scores for d0…d6. Per day it reindexes that day's point scores to
    the canonical coord order (missing → NaN → 0.0, as today's `fillna(0.0)`). It
    **reuses the per-triangle neighbor search once** (the expensive `query_ball_point`
-   + Gaussian weights); only the cheap weighted-combine repeats per day → ~2–4× the
-   score step, not 7×.
+   - Gaussian weights); only the cheap weighted-combine repeats per day → ~2–4× the
+     score step, not 7×.
 
 2. **Each `*_MapLayer.py`** (4 sites): replace the today-collapse
    (`NE_MapLayer.py:195-202` etc.) — keep all forward rows, build the canonical coord
@@ -154,7 +154,7 @@ on today via `<species>_score`, unchanged).
   (`{base_date, days}`) to R2; app fetches once, device-date fallback. Start with (a).
 - **D2 — shared helper vs 4 copies.** Recommended: one `maplayer_forecast.py`
   imported by all 4 scripts.
-- **D3 — forecast threshold.** ≥0.5 (one visible ramp step) → ~2.1× *delta* volume.
+- **D3 — forecast threshold.** ≥0.5 (one visible ramp step) → ~2.1× _delta_ volume.
   Raising toward 1.0 shrinks the forecast tileset further at the cost of fidelity;
   tunable knob.
 

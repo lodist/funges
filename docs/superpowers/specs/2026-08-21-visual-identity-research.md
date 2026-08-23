@@ -75,7 +75,7 @@ community (80%+ preferred the new design in testing). No hex/type specifics
 are published in the release. **Fit:** the photo-forward lesson transfers
 directly — this app's species-ID flow is also photo-driven (`SpeciesPage`,
 `IdentifyResults`), so whatever palette ships needs to read well as UI chrome
-*around* user/reference photos, not compete with them.
+_around_ user/reference photos, not compete with them.
 
 ### iNaturalist
 
@@ -99,7 +99,7 @@ the shared Cornell Lab/Merlin logo is an illustrated bird "reminiscent of the
 work of ... Charley Harper," designed by Michael Bierut, explicitly referencing
 a specific illustrator's flat-color, geometric wildlife-art style rather than a
 generic outdoors abstraction. **Fit:** useful counter-example — an
-*illustrative species mark* (not abstract) is viable for a science-institution
+_illustrative species mark_ (not abstract) is viable for a science-institution
 app, but it commits hard to one visual language and doesn't generalize across
 21+ species the way an abstract botanical/mycological motif would for this app.
 
@@ -131,12 +131,12 @@ Radix `grass` (primary) + `sand`/`brown` (neutral/accent). Closest to the
 current app palette and to Gaia GPS/the leading trail app's "single evergreen anchor"
 model — lowest migration cost.
 
-| role | Radix step | hex | OKLCH |
-|---|---|---|---|
-| primary (solid) | `grass9` | `#46a758` | `oklch(0.651 0.147 147)`\* |
-| primary text/hover | `grass11` | `#2a7e3b` | `oklch(0.526 0.129 147)`\* |
-| accent | `brown9` | `#ad7f58` | earthy tan, for badges/secondary CTAs |
-| neutral base | `sand1`–`sand12` | `#fdfdfc`…`#21201c` | warm off-white → near-black |
+| role               | Radix step       | hex                 | OKLCH                                 |
+| ------------------ | ---------------- | ------------------- | ------------------------------------- |
+| primary (solid)    | `grass9`         | `#46a758`           | `oklch(0.651 0.147 147)`\*            |
+| primary text/hover | `grass11`        | `#2a7e3b`           | `oklch(0.526 0.129 147)`\*            |
+| accent             | `brown9`         | `#ad7f58`           | earthy tan, for badges/secondary CTAs |
+| neutral base       | `sand1`–`sand12` | `#fdfdfc`…`#21201c` | warm off-white → near-black           |
 
 \*computed from the published hex via the sRGB→OKLab formula (CSS Color 4);
 not copied from Radix, which ships hex/P3, not OKLCH.
@@ -148,12 +148,12 @@ generic "hiking-app green," reads more scientific/aquatic-adjacent (useful if
 foraging expands to coastal/wetland species), higher contrast headroom than
 grass at the same lightness.
 
-| role | Radix step | hex | OKLCH |
-|---|---|---|---|
-| primary (solid) | `teal9` | `#12a594` | `oklch(0.649 0.114 182)`\* |
-| primary text/hover | `teal11` | `#008573` | `oklch(0.552 0.101 179)`\* |
-| accent | `bronze9` | `#a18072` | terracotta, for warning/highlight chips |
-| accent alt | `orange9` | `#f76b15` | high-visibility CTA, Strava-style single accent |
+| role               | Radix step | hex       | OKLCH                                           |
+| ------------------ | ---------- | --------- | ----------------------------------------------- |
+| primary (solid)    | `teal9`    | `#12a594` | `oklch(0.649 0.114 182)`\*                      |
+| primary text/hover | `teal11`   | `#008573` | `oklch(0.552 0.101 179)`\*                      |
+| accent             | `bronze9`  | `#a18072` | terracotta, for warning/highlight chips         |
+| accent alt         | `orange9`  | `#f76b15` | high-visibility CTA, Strava-style single accent |
 
 ### C. Sage + Charcoal (muted/scientific)
 
@@ -161,10 +161,10 @@ Radix `sage` (primary/neutral hybrid) + `olive`. Lowest chroma of the three —
 closest to iNaturalist/Pl@ntNet's restrained, documentary tone; best choice if
 the goal is to read as a field guide rather than a fitness/adventure app.
 
-| role | Radix step | hex | OKLCH |
-|---|---|---|---|
-| primary (solid) | `sage9` | `#868e8b` | `oklch(0.639 0.010 172)`\* — low chroma, needs a separate saturated accent for CTAs |
-| text | `sage11` | `#5f6563` | `oklch(0.501 0.008 174)`\* |
+| role                        | Radix step       | hex                   | OKLCH                                                                                                             |
+| --------------------------- | ---------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| primary (solid)             | `sage9`          | `#868e8b`             | `oklch(0.639 0.010 172)`\* — low chroma, needs a separate saturated accent for CTAs                               |
+| text                        | `sage11`         | `#5f6563`             | `oklch(0.501 0.008 174)`\*                                                                                        |
 | accent (from grass or teal) | `grass9`/`teal9` | `#46a758` / `#12a594` | sage alone is too low-contrast/low-energy for primary buttons; pair with A or B's primary for actionable elements |
 
 Direction C is a neutral/text system more than a brand-color system — pair it
@@ -242,7 +242,7 @@ A single-weight outline mark (mushroom cap + stem, or a stylized foraging
 basket) in the leading-trail-app/Gaia "solid and angular icon set" spirit — Gaia's own
 case study explicitly describes designing a matching 24×24 icon set in the
 logo's geometry, which is the reusable lesson here: pick a stroke weight and
-corner radius the *entire* icon system (species categories, map pins, UI
+corner radius the _entire_ icon system (species categories, map pins, UI
 icons — note `SpeciesPage.tsx` already uses `lucide-react`'s `Leaf`/
 `MapPin`/`AlertTriangle`) can share, not just the logotype. Needs the most
 design iteration but pays off in a coherent system across the sidebar,
@@ -281,16 +281,16 @@ rendered only **4.26:1** against the sidebar background and had to drop to
 sharper against pure white. Computed directly here via the W3C relative-
 luminance formula ([WCAG 2.1 §1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)):
 
-| color | vs white (`#ffffff`) | vs black (`#000000`) |
-|---|---|---|
-| Material "green 500" `#4caf50` | **2.78:1 — fails 4.5:1 and even 3:1 large-text** | 7.56:1 |
-| Tailwind `green-500` `#22c55e` | **2.28:1 — fails** | 9.22:1 |
-| Radix `grass9` `#46a758` | **3.03:1 — fails 4.5:1 body text; barely clears the 3:1 large-text/non-text floor** | 6.93:1 |
-| Radix `grass11` `#2a7e3b` | **5.07:1 — passes 4.5:1** | 4.15:1 |
-| current `--primary` `#29782d` | **5.50:1 vs pure white — passes**; the in-repo comment's 4.57:1 figure is measured against the sidebar's off-white `#f0e9e0`, not pure white | 3.82:1 |
+| color                          | vs white (`#ffffff`)                                                                                                                         | vs black (`#000000`) |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| Material "green 500" `#4caf50` | **2.78:1 — fails 4.5:1 and even 3:1 large-text**                                                                                             | 7.56:1               |
+| Tailwind `green-500` `#22c55e` | **2.28:1 — fails**                                                                                                                           | 9.22:1               |
+| Radix `grass9` `#46a758`       | **3.03:1 — fails 4.5:1 body text; barely clears the 3:1 large-text/non-text floor**                                                          | 6.93:1               |
+| Radix `grass11` `#2a7e3b`      | **5.07:1 — passes 4.5:1**                                                                                                                    | 4.15:1               |
+| current `--primary` `#29782d`  | **5.50:1 vs pure white — passes**; the in-repo comment's 4.57:1 figure is measured against the sidebar's off-white `#f0e9e0`, not pure white | 3.82:1               |
 
 The pattern: Radix's own `9` step (the "solid button fill" step) is tuned for
-*non-text* use (buttons with white text on top, or icons at 3:1) — it is
+_non-text_ use (buttons with white text on top, or icons at 3:1) — it is
 **not** meant to sit on white as body text. Radix's `11` step is the one
 documented for text-on-white. Any of the three palette directions above must
 pull text/link colors from step `11` (or deeper), and reserve step `9` for
@@ -312,6 +312,7 @@ scale is designed to hand you without hand-tuning.
 ## Summary for #203 / #204
 
 **#203 — Color palette & typography redesign:**
+
 - Lead with **Direction A (Forest/Moss + Warm Neutral, Radix `grass`+`sand`/`brown`)** — lowest migration cost from the current green-OKLCH system, most aligned with the leading trail app/Gaia's "one evergreen anchor" precedent.
 - Keep **Direction B (Deep Teal + Terracotta, `teal`+`bronze`/`orange`)** as the alternate if the team wants more differentiation from generic hiking-app green.
 - For any primary-on-white text/link color, pull from Radix step **`11`, not `9`** — `9` is a non-text/button-fill step and will fail 4.5:1 on white (see table above); this repo already had to hand-correct exactly this failure once (`src/index.css:90-91`).
@@ -319,6 +320,7 @@ scale is designed to hand you without hand-tuning.
 - Verify all body text and non-text UI elements (borders, focus rings, chart lines) against WCAG **1.4.3 (4.5:1 text / 3:1 large text)** and **1.4.11 (3:1 non-text)** before shipping, in both light and dark tokens (mirror the existing `:root`/`.dark` split in `src/index.css`).
 
 **#204 — Logo redesign:**
+
 - Default to **Direction 1 (abstract leaf/spore icon + wordmark)** — closest precedent (Pl@ntNet, the leading trail app's simplified mark evolution), best favicon survivability, no single-species commitment.
 - If the team wants a more distinctive/ownable mark and has budget for a full icon-system pass, **Direction 2 (monoline botanical line-art)** extends into the existing `lucide-react` icon usage (`Leaf`, `MapPin`, `AlertTriangle` in `SpeciesPage.tsx`) for a coherent system, per Gaia GPS's documented approach of designing the icon set alongside the logo.
 - Test every candidate mark at three concrete surfaces before picking: the `AppSidebar` icon slot, the `splash-screen.scss` splash container (~200px), and a 16×16 favicon — iNaturalist's own designer cited exactly this failure ("detail... gets a bit lost at smaller sizes") as the reason their old mark needed replacing.
