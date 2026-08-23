@@ -123,6 +123,7 @@ const IdentifyPanel = lazy(() =>
 const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
+  const geolocateControl = useRef<maplibregl.GeolocateControl | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapError, setMapError] = useState<string | null>(null);
   const [selectedFeature, setSelectedFeature] =
@@ -152,6 +153,11 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     routeStart: [number, number];
   } | null>(null);
   const routeDishDebounceTimeoutRef = useRef<number | null>(null);
+  // Guards the nearby-feature probe (in the GeolocateControl setup effect
+  // below) so it only runs once per trigger, not on every 'geolocate' update
+  // while trackUserLocation keeps watching.
+  const hasCheckedNearbyFeatures = useRef(false);
+  const selectedSpeciesRef = useRef<string | null>(null);
 
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
@@ -169,7 +175,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     numbersLayersVisible,
     setCenter,
     setZoom,
-    getUserLocation,
+    setUserLocation,
     setIsLoading,
     setError,
     setUserLocationError,
@@ -201,6 +207,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       routeStart,
     };
   }, [routeRecipes, routeStart]);
+
+  useEffect(() => {
+    selectedSpeciesRef.current = selectedSpecies;
+  }, [selectedSpecies]);
 
   // Initialize map
   useEffect(() => {
@@ -235,6 +245,105 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
       // Navigation controls removed - zoom functionality handled by touch/scroll gestures
 
+      // Locate-me: MapLibre's standard GeolocateControl (dot + accuracy
+      // circle, live tracking). Its native corner button is hidden via CSS
+      // (see globals.scss) - the app's own button drives it through
+      // handleGetUserLocation -> trigger() instead. Added/removed here, in
+      // step with the map instance itself (map.current.remove() below tears
+      // this control down too), so there's no separate effect that could
+      // try to remove it a second time after the map already has.
+      const geolocate = new maplibregl.GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: true,
+        showUserLocation: true,
+        showAccuracyCircle: true,
+      });
+      geolocateControl.current = geolocate;
+
+      geolocate.on('geolocate', (position: GeolocationPosition) => {
+        const coords: [number, number] = [
+          position.coords.longitude,
+          position.coords.latitude,
+        ];
+        setUserLocation(coords);
+        setShowUserLocation(true);
+        setIsLoading(false);
+
+        // Only probe for nearby foraging features on the first fix after a
+        // trigger - trackUserLocation keeps firing 'geolocate' as the device
+        // moves, and re-opening the modal on every update would be spammy.
+        if (hasCheckedNearbyFeatures.current || !map.current) return;
+        hasCheckedNearbyFeatures.current = true;
+
+        const currentMap = map.current;
+        const selectedSpecies = selectedSpeciesRef.current;
+        const layers =
+          currentMap
+            .getStyle()
+            ?.layers?.map(l => l.id)
+            .filter(
+              id =>
+                (selectedSpecies
+                  ? id.startsWith(selectedSpecies)
+                  : id.includes('_score')) &&
+                currentMap.getLayoutProperty(id, 'visibility') === 'visible'
+            ) || [];
+
+        // Query features in the current viewport to see if any are near the user's location
+        const viewportFeatures = currentMap.queryRenderedFeatures({
+          layers,
+        });
+
+        // Filter features to find those close to the user's location
+        const nearbyFeatures = viewportFeatures.filter(feature => {
+          if (feature.geometry.type === 'Point') {
+            const featureCoords = feature.geometry.coordinates as [
+              number,
+              number,
+            ];
+            const distance = Math.sqrt(
+              Math.pow(featureCoords[0] - coords[0], 2) +
+                Math.pow(featureCoords[1] - coords[1], 2)
+            );
+            // Consider features within ~1km radius (0.01 degrees is roughly 1km)
+            return distance < 0.01;
+          }
+          return false;
+        });
+
+        if (nearbyFeatures.length > 0) {
+          // Found features near user location, open modal
+          setSelectedFeature(nearbyFeatures[0]);
+          setIsModalFromLocateMe(true);
+          setIsFeatureModalOpen(true);
+        } else {
+          // No features found, just log a warning
+          console.warn('No foraging data available at user location:', coords);
+        }
+      });
+
+      geolocate.on('trackuserlocationstart', () => {
+        hasCheckedNearbyFeatures.current = false;
+        setIsLoading(true);
+        setError(null);
+        setUserLocationError(null);
+      });
+
+      geolocate.on('trackuserlocationend', () => {
+        setIsLoading(false);
+        setShowUserLocation(false);
+        setActiveRoute(null);
+      });
+
+      geolocate.on('error', (error: GeolocationPositionError) => {
+        console.error('Error getting user location:', error);
+        setIsLoading(false);
+        setError(t('geolocation.permissionError'));
+        setUserLocationError(error.message);
+      });
+
+      map.current.addControl(geolocate);
+
       // Handle map load
       map.current.on('load', () => {
         setMapLoaded(true);
@@ -247,6 +356,19 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         if (map.current) {
           // Force initial resize with correct dimensions
           map.current.resize();
+        }
+
+        // A style switch tears down and recreates the whole map (and, with
+        // it, the GeolocateControl above) - if the user had their location
+        // active, the new control starts back at OFF and won't show the dot
+        // on its own. Re-trigger it here so tracking resumes automatically
+        // instead of the indicator silently vanishing while the button
+        // still shows "active". Checking userLocation too (not just the
+        // showUserLocation flag, which defaults to true from first mount)
+        // so this never fires as an unsolicited geolocation prompt before
+        // the user has ever pressed the button themselves.
+        if (showUserLocation && userLocation) {
+          geolocate.trigger();
         }
       });
 
@@ -282,9 +404,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
     return () => {
       if (map.current) {
+        // map.remove() already tears down every registered control
+        // (including geolocate.onRemove()) - don't call removeControl()
+        // separately, it would run onRemove() a second time on an already
+        // torn-down control and throw.
         map.current.remove();
         map.current = null;
       }
+      geolocateControl.current = null;
       // The new map instance starts unloaded. Resetting this makes mapLoaded go
       // false->true when the new map fires 'load', which re-runs every
       // [mapLoaded]-gated effect (route source/layer, offline sources, markers)
@@ -656,103 +783,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     };
   }, [mapLoaded, selectedSpecies, activeDay]);
 
-  // Handle user location
-  const handleGetUserLocation = async () => {
-    if (showUserLocation && userLocation) {
-      setShowUserLocation(false);
-      setActiveRoute(null);
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-    setUserLocationError(null);
-
-    try {
-      const position = await getUserLocation();
-      const coords: [number, number] = [
-        position.coords.longitude,
-        position.coords.latitude,
-      ];
-
-      if (map.current) {
-        setShowUserLocation(true);
-        map.current.flyTo({
-          center: coords,
-          zoom: 10,
-          duration: 2000,
-        });
-
-        // Check if there are features at the user's location
-        const layers =
-          map.current
-            ?.getStyle()
-            ?.layers?.map(l => l.id)
-            .filter(
-              id =>
-                (selectedSpecies
-                  ? id.startsWith(selectedSpecies)
-                  : id.includes('_score')) &&
-                map.current?.getLayoutProperty(id, 'visibility') === 'visible'
-            ) || [];
-
-        // Query features in the current viewport to see if any are near the user's location
-        const viewportFeatures = map.current.queryRenderedFeatures({
-          layers,
-        });
-
-        // Filter features to find those close to the user's location
-        const nearbyFeatures = viewportFeatures.filter(feature => {
-          if (feature.geometry.type === 'Point') {
-            const featureCoords = feature.geometry.coordinates as [
-              number,
-              number,
-            ];
-            const distance = Math.sqrt(
-              Math.pow(featureCoords[0] - coords[0], 2) +
-                Math.pow(featureCoords[1] - coords[1], 2)
-            );
-            // Consider features within ~1km radius (0.01 degrees is roughly 1km)
-            return distance < 0.01;
-          }
-          return false;
-        });
-
-        if (nearbyFeatures && nearbyFeatures.length > 0) {
-          // Found features near user location, open modal
-          setSelectedFeature(nearbyFeatures[0]);
-          setIsModalFromLocateMe(true);
-          setIsFeatureModalOpen(true);
-        } else {
-          // No features found, just log a warning
-          console.warn('No foraging data available at user location:', coords);
-        }
-      }
-    } catch (error) {
-      console.error('Error getting user location:', error);
-      setError(t('geolocation.permissionError'));
-    } finally {
-      setIsLoading(false);
-    }
+  // Locate-me button: delegates to the standard MapLibre GeolocateControl
+  // (set up in the "Initialize map" effect above) instead of a hand-rolled
+  // geolocation flow. trigger() mirrors clicking the control's own button —
+  // its internal state machine handles starting tracking when off and
+  // stopping it when active, so no on/off branching is needed here.
+  const handleGetUserLocation = () => {
+    geolocateControl.current?.trigger();
   };
-
-  // Add user location marker
-  useEffect(() => {
-    if (!map.current || !mapLoaded || !showUserLocation || !userLocation)
-      return;
-
-    // Create new marker
-    const marker = new maplibregl.Marker({
-      color: '#3b82f6',
-      className: 'user-location-marker',
-    })
-      .setLngLat(userLocation)
-      .addTo(map.current);
-
-    return () => {
-      marker.remove();
-    };
-  }, [userLocation, mapLoaded, showUserLocation]);
 
   // Add foraging spot markers
   useEffect(() => {

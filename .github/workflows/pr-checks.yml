@@ -1,0 +1,36 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main, master]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+concurrency:
+  group: pr-checks-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  ci-check:
+    # Skip draft PRs — checks run once the PR is marked ready for review
+    # (or immediately, for a PR opened directly as non-draft).
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    env:
+      VITE_BASE_URL: ${{ vars.VITE_BASE_URL }}
+      VITE_HOSTNAME: ${{ vars.VITE_HOSTNAME }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      # Runs the same checks as the deploy workflow's build job:
+      # install, format check, lint, type check, unit tests, build.
+      # See the Makefile's `ci-check` target for the exact steps.
+      - name: Run CI checks
+        run: make ci-check

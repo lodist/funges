@@ -4,10 +4,7 @@
     "subsample_modulus": 11,
     "subsample_locations": 6122,
     "subsample_cell_days": 783616,
-    "dates": [
-      "2026-04-12",
-      "2026-08-20"
-    ],
+    "dates": ["2026-04-12", "2026-08-20"],
     "zones": [
       "alpine",
       "arctic",
@@ -25,10 +22,7 @@
     "subsample_modulus": 17,
     "subsample_locations": 6080,
     "subsample_cell_days": 778240,
-    "dates": [
-      "2026-04-12",
-      "2026-08-20"
-    ],
+    "dates": ["2026-04-12", "2026-08-20"],
     "zones": [
       "alpine",
       "atlantic_islands",
@@ -52,10 +46,7 @@
     "subsample_modulus": 12,
     "subsample_locations": 5985,
     "subsample_cell_days": 760095,
-    "dates": [
-      "2026-04-12",
-      "2026-08-19"
-    ],
+    "dates": ["2026-04-12", "2026-08-19"],
     "zones": [
       "continental",
       "humid_continental",
@@ -73,10 +64,7 @@
     "subsample_modulus": 18,
     "subsample_locations": 5893,
     "subsample_cell_days": 742518,
-    "dates": [
-      "2026-04-12",
-      "2026-08-19"
-    ],
+    "dates": ["2026-04-12", "2026-08-19"],
     "zones": [
       "alpine",
       "continental",

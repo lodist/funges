@@ -3,19 +3,8 @@
     "tests": {
       "mushroom": {
         "climatology_records_2021_2025": 27422,
-        "observed_in_season_months": [
-          7,
-          8,
-          9
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          12
-        ],
+        "observed_in_season_months": [7, 8, 9],
+        "observed_dead_months": [1, 2, 3, 4, 5, 12],
         "observed_peak_month": 8,
         "observed_seasonal_range_x": 378.2,
         "model_multiplier_min": 0.604,
@@ -66,7 +55,7 @@
             "best_lag_days": 21,
             "best_rho": 0.654,
             "rho_at_lag_0": 0.462,
-            "p_at_lag_0": 9.703581944186215e-08,
+            "p_at_lag_0": 9.703581944186215e-8,
             "n_days": 121
           }
         },
@@ -99,17 +88,8 @@
       },
       "chant": {
         "climatology_records_2021_2025": 22594,
-        "observed_in_season_months": [
-          7,
-          8
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
+        "observed_in_season_months": [7, 8],
+        "observed_dead_months": [1, 2, 3, 4, 5],
         "observed_peak_month": 7,
         "observed_seasonal_range_x": 489.0,
         "model_multiplier_min": 0.603,
@@ -193,19 +173,8 @@
       },
       "black_chant": {
         "climatology_records_2021_2025": 3332,
-        "observed_in_season_months": [
-          8,
-          9,
-          10
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ],
+        "observed_in_season_months": [8, 9, 10],
+        "observed_dead_months": [1, 2, 3, 4, 5, 6],
         "observed_peak_month": 9,
         "observed_seasonal_range_x": 172.8,
         "model_multiplier_min": 0.6,
@@ -242,7 +211,7 @@
             "best_lag_days": -10,
             "best_rho": 0.659,
             "rho_at_lag_0": 0.492,
-            "p_at_lag_0": 1.0140669453942345e-08,
+            "p_at_lag_0": 1.0140669453942345e-8,
             "n_days": 121
           },
           "season_curve_only": {
@@ -289,20 +258,8 @@
       },
       "parasol": {
         "climatology_records_2021_2025": 26043,
-        "observed_in_season_months": [
-          8,
-          9,
-          10,
-          11
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          12
-        ],
+        "observed_in_season_months": [8, 9, 10, 11],
+        "observed_dead_months": [1, 2, 3, 4, 5, 12],
         "observed_peak_month": 10,
         "observed_seasonal_range_x": 441.3,
         "model_multiplier_min": 0.603,
@@ -353,7 +310,7 @@
             "best_lag_days": 20,
             "best_rho": 0.416,
             "rho_at_lag_0": 0.355,
-            "p_at_lag_0": 6.309113206148489e-05,
+            "p_at_lag_0": 6.309113206148489e-5,
             "n_days": 121
           }
         },
@@ -386,21 +343,8 @@
       },
       "morel": {
         "climatology_records_2021_2025": 6106,
-        "observed_in_season_months": [
-          4
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          3,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12
-        ],
+        "observed_in_season_months": [4],
+        "observed_dead_months": [1, 2, 3, 6, 7, 8, 9, 10, 11, 12],
         "observed_peak_month": 4,
         "observed_seasonal_range_x": 9615.5,
         "model_multiplier_min": 0.61,
@@ -484,21 +428,8 @@
       },
       "st_george": {
         "climatology_records_2021_2025": 5441,
-        "observed_in_season_months": [
-          4,
-          5
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          3,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12
-        ],
+        "observed_in_season_months": [4, 5],
+        "observed_dead_months": [1, 2, 3, 7, 8, 9, 10, 11, 12],
         "observed_peak_month": 5,
         "observed_seasonal_range_x": 1230.3,
         "model_multiplier_min": 0.604,
@@ -9820,20 +9751,8 @@
     "tests": {
       "mushroom": {
         "climatology_records_2021_2025": 3925,
-        "observed_in_season_months": [
-          6,
-          7,
-          8,
-          9,
-          10
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          3,
-          4,
-          12
-        ],
+        "observed_in_season_months": [6, 7, 8, 9, 10],
+        "observed_dead_months": [1, 2, 3, 4, 12],
         "observed_peak_month": 9,
         "observed_seasonal_range_x": 124.9,
         "model_multiplier_min": 0.614,
@@ -9917,15 +9836,8 @@
       },
       "chant": {
         "climatology_records_2021_2025": 2795,
-        "observed_in_season_months": [
-          6,
-          7,
-          8
-        ],
-        "observed_dead_months": [
-          3,
-          4
-        ],
+        "observed_in_season_months": [6, 7, 8],
+        "observed_dead_months": [3, 4],
         "observed_peak_month": 7,
         "observed_seasonal_range_x": 20.9,
         "model_multiplier_min": 0.61,
@@ -10009,15 +9921,8 @@
       },
       "black_chant": {
         "climatology_records_2021_2025": 898,
-        "observed_in_season_months": [
-          10,
-          11
-        ],
-        "observed_dead_months": [
-          3,
-          4,
-          5
-        ],
+        "observed_in_season_months": [10, 11],
+        "observed_dead_months": [3, 4, 5],
         "observed_peak_month": 10,
         "observed_seasonal_range_x": 53.4,
         "model_multiplier_min": 0.602,
@@ -10044,21 +9949,21 @@
             "best_lag_days": 20,
             "best_rho": -0.283,
             "rho_at_lag_0": -0.445,
-            "p_at_lag_0": 4.4243435148896807e-07,
+            "p_at_lag_0": 4.4243435148896807e-7,
             "n_days": 118
           },
           "season_curve_only": {
             "best_lag_days": -16,
             "best_rho": 0.551,
             "rho_at_lag_0": 0.452,
-            "p_at_lag_0": 2.4560842159725323e-07,
+            "p_at_lag_0": 2.4560842159725323e-7,
             "n_days": 119
           },
           "weather_only": {
             "best_lag_days": 9,
             "best_rho": -0.28,
             "rho_at_lag_0": -0.463,
-            "p_at_lag_0": 1.294626242503542e-07,
+            "p_at_lag_0": 1.294626242503542e-7,
             "n_days": 118
           }
         },
@@ -10091,16 +9996,8 @@
       },
       "parasol": {
         "climatology_records_2021_2025": 3961,
-        "observed_in_season_months": [
-          9,
-          10,
-          11
-        ],
-        "observed_dead_months": [
-          2,
-          3,
-          4
-        ],
+        "observed_in_season_months": [9, 10, 11],
+        "observed_dead_months": [2, 3, 4],
         "observed_peak_month": 11,
         "observed_seasonal_range_x": 31.7,
         "model_multiplier_min": 0.611,
@@ -10174,20 +10071,8 @@
       },
       "morel": {
         "climatology_records_2021_2025": 1218,
-        "observed_in_season_months": [
-          4
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12
-        ],
+        "observed_in_season_months": [4],
+        "observed_dead_months": [1, 2, 6, 7, 8, 9, 10, 11, 12],
         "observed_peak_month": 4,
         "observed_seasonal_range_x": 364.4,
         "model_multiplier_min": 0.6,
@@ -10238,7 +10123,7 @@
             "best_lag_days": -13,
             "best_rho": 0.745,
             "rho_at_lag_0": 0.465,
-            "p_at_lag_0": 1.1557110925393419e-07,
+            "p_at_lag_0": 1.1557110925393419e-7,
             "n_days": 118
           }
         },
@@ -10271,20 +10156,8 @@
       },
       "st_george": {
         "climatology_records_2021_2025": 346,
-        "observed_in_season_months": [
-          4,
-          5
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12
-        ],
+        "observed_in_season_months": [4, 5],
+        "observed_dead_months": [1, 2, 7, 8, 9, 10, 11, 12],
         "observed_peak_month": 5,
         "observed_seasonal_range_x": 477.2,
         "model_multiplier_min": 0.603,
@@ -19606,18 +19479,8 @@
     "tests": {
       "mushroom": {
         "climatology_records_2021_2025": 2506,
-        "observed_in_season_months": [
-          7,
-          8
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          3,
-          4,
-          11,
-          12
-        ],
+        "observed_in_season_months": [7, 8],
+        "observed_dead_months": [1, 2, 3, 4, 11, 12],
         "observed_peak_month": 7,
         "observed_seasonal_range_x": 48.2,
         "model_multiplier_min": 0.642,
@@ -19668,7 +19531,7 @@
             "best_lag_days": 21,
             "best_rho": 0.261,
             "rho_at_lag_0": -0.394,
-            "p_at_lag_0": 9.491248958036975e-06,
+            "p_at_lag_0": 9.491248958036975e-6,
             "n_days": 119
           }
         },
@@ -19701,19 +19564,8 @@
       },
       "chant": {
         "climatology_records_2021_2025": 7323,
-        "observed_in_season_months": [
-          7,
-          8
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          3,
-          4,
-          10,
-          11,
-          12
-        ],
+        "observed_in_season_months": [7, 8],
+        "observed_dead_months": [1, 2, 3, 4, 10, 11, 12],
         "observed_peak_month": 7,
         "observed_seasonal_range_x": 1128.3,
         "model_multiplier_min": 0.631,
@@ -19797,19 +19649,8 @@
       },
       "black_chant": {
         "climatology_records_2021_2025": 3108,
-        "observed_in_season_months": [
-          7,
-          8,
-          9
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          3,
-          4,
-          11,
-          12
-        ],
+        "observed_in_season_months": [7, 8, 9],
+        "observed_dead_months": [1, 2, 3, 4, 11, 12],
         "observed_peak_month": 8,
         "observed_seasonal_range_x": 226.6,
         "model_multiplier_min": 0.628,
@@ -19897,21 +19738,8 @@
       },
       "morel": {
         "climatology_records_2021_2025": 5802,
-        "observed_in_season_months": [
-          4,
-          5
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12
-        ],
+        "observed_in_season_months": [4, 5],
+        "observed_dead_months": [1, 2, 6, 7, 8, 9, 10, 11, 12],
         "observed_peak_month": 4,
         "observed_seasonal_range_x": 3451.6,
         "model_multiplier_min": 0.601,
@@ -26113,18 +25941,8 @@
     "tests": {
       "mushroom": {
         "climatology_records_2021_2025": 6110,
-        "observed_in_season_months": [
-          7,
-          8,
-          9,
-          10
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          3,
-          4
-        ],
+        "observed_in_season_months": [7, 8, 9, 10],
+        "observed_dead_months": [1, 2, 3, 4],
         "observed_peak_month": 8,
         "observed_seasonal_range_x": 52.9,
         "model_multiplier_min": 0.634,
@@ -26161,7 +25979,7 @@
             "best_lag_days": 20,
             "best_rho": -0.327,
             "rho_at_lag_0": -0.435,
-            "p_at_lag_0": 8.537755707584695e-07,
+            "p_at_lag_0": 8.537755707584695e-7,
             "n_days": 118
           },
           "season_curve_only": {
@@ -26175,7 +25993,7 @@
             "best_lag_days": 19,
             "best_rho": -0.439,
             "rho_at_lag_0": -0.506,
-            "p_at_lag_0": 5.149210137720319e-09,
+            "p_at_lag_0": 5.149210137720319e-9,
             "n_days": 118
           }
         },
@@ -26208,18 +26026,8 @@
       },
       "chant": {
         "climatology_records_2021_2025": 5047,
-        "observed_in_season_months": [
-          8,
-          9,
-          10,
-          11,
-          12
-        ],
-        "observed_dead_months": [
-          4,
-          5,
-          6
-        ],
+        "observed_in_season_months": [8, 9, 10, 11, 12],
+        "observed_dead_months": [4, 5, 6],
         "observed_peak_month": 9,
         "observed_seasonal_range_x": 95.6,
         "model_multiplier_min": 0.612,
@@ -26311,20 +26119,8 @@
       },
       "morel": {
         "climatology_records_2021_2025": 3203,
-        "observed_in_season_months": [
-          4,
-          5
-        ],
-        "observed_dead_months": [
-          1,
-          2,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12
-        ],
+        "observed_in_season_months": [4, 5],
+        "observed_dead_months": [1, 2, 7, 8, 9, 10, 11, 12],
         "observed_peak_month": 5,
         "observed_seasonal_range_x": 143.6,
         "model_multiplier_min": 0.603,

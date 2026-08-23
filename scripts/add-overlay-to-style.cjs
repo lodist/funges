@@ -13,15 +13,26 @@ const fs = require('fs');
 
 const livePath = process.argv[2];
 const stylePath = process.argv[3] || 'public/funges_style.json';
-if (!livePath) { console.error('need <live_style.json>'); process.exit(1); }
+if (!livePath) {
+  console.error('need <live_style.json>');
+  process.exit(1);
+}
 
 const R2 = 'https://data.fung.es';
 // current source-layer in live style -> [new source id, new pmtiles url, new source-layer]
 const REGION = {
-  'ne-scores':  ['overlay-ne',  `${R2}/EU/NE/ne_forecast.pmtiles`,   'ne_forecast'],
-  'se-scores':  ['overlay-se',  `${R2}/EU/SE/se_forecast.pmtiles`,   'se_forecast'],
-  'use-scores': ['overlay-use', `${R2}/USA/USE/use_forecast.pmtiles`, 'use_forecast'],
-  'usw-scores': ['overlay-usw', `${R2}/USA/USW/usw_forecast.pmtiles`, 'usw_forecast'],
+  'ne-scores': ['overlay-ne', `${R2}/EU/NE/ne_forecast.pmtiles`, 'ne_forecast'],
+  'se-scores': ['overlay-se', `${R2}/EU/SE/se_forecast.pmtiles`, 'se_forecast'],
+  'use-scores': [
+    'overlay-use',
+    `${R2}/USA/USE/use_forecast.pmtiles`,
+    'use_forecast',
+  ],
+  'usw-scores': [
+    'overlay-usw',
+    `${R2}/USA/USW/usw_forecast.pmtiles`,
+    'usw_forecast',
+  ],
 };
 
 const live = JSON.parse(fs.readFileSync(livePath, 'utf8'));
@@ -45,7 +56,8 @@ for (const l of live.layers) {
   copy.source = src;
   copy['source-layer'] = srcLayer;
   delete copy.metadata; // mapbox:group ids, meaningless off-Mapbox
-  if (copy.layout && copy.layout['text-font']) copy.layout['text-font'] = ['Noto Sans Medium'];
+  if (copy.layout && copy.layout['text-font'])
+    copy.layout['text-font'] = ['Noto Sans Medium'];
   overlay.push(copy);
 }
 
@@ -54,5 +66,7 @@ const at = style.layers.findIndex(l => l.type === 'symbol');
 style.layers.splice(at === -1 ? style.layers.length : at, 0, ...overlay);
 
 fs.writeFileSync(stylePath, JSON.stringify(style, null, 2) + '\n');
-console.log(`inserted ${overlay.length} overlay layers below basemap labels, ${overlaySources.size} sources -> ${stylePath}`);
+console.log(
+  `inserted ${overlay.length} overlay layers below basemap labels, ${overlaySources.size} sources -> ${stylePath}`
+);
 console.log(`layer total now ${style.layers.length}`);

@@ -1,8 +1,5 @@
 {
-  "period": [
-    "2026-06-01",
-    "2026-08-12"
-  ],
+  "period": ["2026-06-01", "2026-08-12"],
   "cell_km": 20,
   "max_match_km": 30,
   "basis_of_record": "HUMAN_OBSERVATION",

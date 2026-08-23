@@ -76,9 +76,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                       aria-pressed={isSelected}
                       className={cn(
                         'appearance-none w-full flex items-center gap-3 rounded-xl border-0 bg-transparent px-2 py-2 text-left transition-colors',
-                        isSelected
-                          ? 'bg-[var(--happy-100)]'
-                          : 'hover:bg-muted'
+                        isSelected ? 'bg-[var(--happy-100)]' : 'hover:bg-muted'
                       )}
                     >
                       <div className='relative w-14 h-10 rounded-md overflow-hidden bg-muted flex-shrink-0'>
