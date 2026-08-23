@@ -19,6 +19,7 @@ export default tseslint.config(
       'src/components/ui',
       'node_modules',
       'src/prototypes', // throwaway prototype code — see mattpocock-skills:prototype
+      '.claude', // local agent worktrees/state, not part of the repo
     ],
   },
   {

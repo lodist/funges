@@ -264,10 +264,7 @@ export default function WorthForagingNowPage() {
                     <div className='flex flex-wrap gap-2'>
                       {recommendation.recipes.map(recipe => (
                         <Badge key={recipe.id} asChild variant='secondary'>
-                          <Link
-                            to='/recipes'
-                            search={{ q: recipe.title }}
-                          >
+                          <Link to='/recipes' search={{ q: recipe.title }}>
                             {recipe.title}
                           </Link>
                         </Badge>

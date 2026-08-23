@@ -2,19 +2,8 @@
   "NE": {
     "mushroom": {
       "climatology_records": 27422,
-      "in_season_months": [
-        7,
-        8,
-        9
-      ],
-      "dead_months": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        12
-      ],
+      "in_season_months": [7, 8, 9],
+      "dead_months": [1, 2, 3, 4, 5, 12],
       "variants": {
         "production": {
           "auc": 0.795,
@@ -74,17 +63,8 @@
     },
     "chant": {
       "climatology_records": 22594,
-      "in_season_months": [
-        7,
-        8
-      ],
-      "dead_months": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
+      "in_season_months": [7, 8],
+      "dead_months": [1, 2, 3, 4, 5],
       "variants": {
         "production": {
           "auc": 0.869,
@@ -144,19 +124,8 @@
     },
     "black_chant": {
       "climatology_records": 3332,
-      "in_season_months": [
-        8,
-        9,
-        10
-      ],
-      "dead_months": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
+      "in_season_months": [8, 9, 10],
+      "dead_months": [1, 2, 3, 4, 5, 6],
       "variants": {
         "production": {
           "auc": 0.776,
@@ -216,20 +185,8 @@
     },
     "parasol": {
       "climatology_records": 26043,
-      "in_season_months": [
-        8,
-        9,
-        10,
-        11
-      ],
-      "dead_months": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        12
-      ],
+      "in_season_months": [8, 9, 10, 11],
+      "dead_months": [1, 2, 3, 4, 5, 12],
       "variants": {
         "production": {
           "auc": 0.718,
@@ -289,21 +246,8 @@
     },
     "morel": {
       "climatology_records": 6106,
-      "in_season_months": [
-        4
-      ],
-      "dead_months": [
-        1,
-        2,
-        3,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
-      ],
+      "in_season_months": [4],
+      "dead_months": [1, 2, 3, 6, 7, 8, 9, 10, 11, 12],
       "variants": {
         "production": {
           "auc": 0.423,
@@ -363,21 +307,8 @@
     },
     "st_george": {
       "climatology_records": 5441,
-      "in_season_months": [
-        4,
-        5
-      ],
-      "dead_months": [
-        1,
-        2,
-        3,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
-      ],
+      "in_season_months": [4, 5],
+      "dead_months": [1, 2, 3, 7, 8, 9, 10, 11, 12],
       "variants": {
         "production": {
           "auc": 0.707,
@@ -439,20 +370,8 @@
   "SE": {
     "mushroom": {
       "climatology_records": 3925,
-      "in_season_months": [
-        6,
-        7,
-        8,
-        9,
-        10
-      ],
-      "dead_months": [
-        1,
-        2,
-        3,
-        4,
-        12
-      ],
+      "in_season_months": [6, 7, 8, 9, 10],
+      "dead_months": [1, 2, 3, 4, 12],
       "variants": {
         "production": {
           "auc": 0.336,
@@ -512,15 +431,8 @@
     },
     "chant": {
       "climatology_records": 2795,
-      "in_season_months": [
-        6,
-        7,
-        8
-      ],
-      "dead_months": [
-        3,
-        4
-      ],
+      "in_season_months": [6, 7, 8],
+      "dead_months": [3, 4],
       "variants": {
         "production": {
           "auc": 0.329,
@@ -577,15 +489,8 @@
     },
     "black_chant": {
       "climatology_records": 898,
-      "in_season_months": [
-        10,
-        11
-      ],
-      "dead_months": [
-        3,
-        4,
-        5
-      ],
+      "in_season_months": [10, 11],
+      "dead_months": [3, 4, 5],
       "variants": {
         "production": {},
         "gate_months": {},
@@ -611,16 +516,8 @@
     },
     "parasol": {
       "climatology_records": 3961,
-      "in_season_months": [
-        9,
-        10,
-        11
-      ],
-      "dead_months": [
-        2,
-        3,
-        4
-      ],
+      "in_season_months": [9, 10, 11],
+      "dead_months": [2, 3, 4],
       "variants": {
         "production": {},
         "gate_months": {},
@@ -648,20 +545,8 @@
     },
     "morel": {
       "climatology_records": 1218,
-      "in_season_months": [
-        4
-      ],
-      "dead_months": [
-        1,
-        2,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
-      ],
+      "in_season_months": [4],
+      "dead_months": [1, 2, 6, 7, 8, 9, 10, 11, 12],
       "variants": {
         "production": {
           "auc": 0.943,
@@ -721,20 +606,8 @@
     },
     "st_george": {
       "climatology_records": 346,
-      "in_season_months": [
-        4,
-        5
-      ],
-      "dead_months": [
-        1,
-        2,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
-      ],
+      "in_season_months": [4, 5],
+      "dead_months": [1, 2, 7, 8, 9, 10, 11, 12],
       "variants": {
         "production": {
           "auc": 0.992,
@@ -796,18 +669,8 @@
   "USE": {
     "mushroom": {
       "climatology_records": 2506,
-      "in_season_months": [
-        7,
-        8
-      ],
-      "dead_months": [
-        1,
-        2,
-        3,
-        4,
-        11,
-        12
-      ],
+      "in_season_months": [7, 8],
+      "dead_months": [1, 2, 3, 4, 11, 12],
       "variants": {
         "production": {
           "auc": 0.637,
@@ -867,19 +730,8 @@
     },
     "chant": {
       "climatology_records": 7323,
-      "in_season_months": [
-        7,
-        8
-      ],
-      "dead_months": [
-        1,
-        2,
-        3,
-        4,
-        10,
-        11,
-        12
-      ],
+      "in_season_months": [7, 8],
+      "dead_months": [1, 2, 3, 4, 10, 11, 12],
       "variants": {
         "production": {
           "auc": 0.322,
@@ -937,19 +789,8 @@
     },
     "black_chant": {
       "climatology_records": 3108,
-      "in_season_months": [
-        7,
-        8,
-        9
-      ],
-      "dead_months": [
-        1,
-        2,
-        3,
-        4,
-        11,
-        12
-      ],
+      "in_season_months": [7, 8, 9],
+      "dead_months": [1, 2, 3, 4, 11, 12],
       "variants": {
         "production": {
           "auc": 0.324,
@@ -1009,21 +850,8 @@
     },
     "morel": {
       "climatology_records": 5802,
-      "in_season_months": [
-        4,
-        5
-      ],
-      "dead_months": [
-        1,
-        2,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
-      ],
+      "in_season_months": [4, 5],
+      "dead_months": [1, 2, 6, 7, 8, 9, 10, 11, 12],
       "variants": {
         "production": {
           "auc": 0.976,
@@ -1085,18 +913,8 @@
   "USW": {
     "mushroom": {
       "climatology_records": 6110,
-      "in_season_months": [
-        7,
-        8,
-        9,
-        10
-      ],
-      "dead_months": [
-        1,
-        2,
-        3,
-        4
-      ],
+      "in_season_months": [7, 8, 9, 10],
+      "dead_months": [1, 2, 3, 4],
       "variants": {
         "production": {
           "auc": 0.351,
@@ -1154,18 +972,8 @@
     },
     "chant": {
       "climatology_records": 5047,
-      "in_season_months": [
-        8,
-        9,
-        10,
-        11,
-        12
-      ],
-      "dead_months": [
-        4,
-        5,
-        6
-      ],
+      "in_season_months": [8, 9, 10, 11, 12],
+      "dead_months": [4, 5, 6],
       "variants": {
         "production": {
           "auc": 0.194,
@@ -1222,20 +1030,8 @@
     },
     "morel": {
       "climatology_records": 3203,
-      "in_season_months": [
-        4,
-        5
-      ],
-      "dead_months": [
-        1,
-        2,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
-      ],
+      "in_season_months": [4, 5],
+      "dead_months": [1, 2, 7, 8, 9, 10, 11, 12],
       "variants": {
         "production": {
           "auc": 0.962,

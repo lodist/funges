@@ -574,18 +574,11 @@
   },
   "exclusion_distance_km": 75,
   "primary_fungal_result": {
-    "species_ids": [
-      "black_chant",
-      "chant",
-      "mushroom"
-    ],
+    "species_ids": ["black_chant", "chant", "mushroom"],
     "n": 812,
     "active_days": 58,
     "weighted_auc": 0.556,
-    "day_bootstrap_ci": [
-      0.536,
-      0.576
-    ]
+    "day_bootstrap_ci": [0.536, 0.576]
   },
   "season_filter": {
     "fungi_curve_threshold": 0.8,
@@ -615,376 +608,68 @@
     },
     "plant_season_months": {
       "NE": {
-        "garlic": [
-          3,
-          4,
-          5
-        ],
-        "walnut": [
-          10,
-          11
-        ],
-        "strawberry": [
-          5,
-          6,
-          7
-        ],
-        "asparagus": [
-          3,
-          4,
-          5
-        ],
-        "chestnut": [
-          10,
-          11
-        ],
-        "amaranth": [
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "masterwort": [
-          6,
-          7,
-          8
-        ],
-        "nettle": [
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10
-        ],
-        "sorrel": [
-          3,
-          4,
-          5,
-          6,
-          9,
-          10,
-          11
-        ],
-        "raspberry": [
-          6,
-          7,
-          8
-        ],
-        "dandelion": [
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "chickweed": [
-          1,
-          2,
-          3,
-          4,
-          10,
-          11,
-          12
-        ],
-        "artichoke": [
-          3,
-          4,
-          5
-        ],
-        "lingonb": [
-          7,
-          8,
-          9,
-          10
-        ]
+        "garlic": [3, 4, 5],
+        "walnut": [10, 11],
+        "strawberry": [5, 6, 7],
+        "asparagus": [3, 4, 5],
+        "chestnut": [10, 11],
+        "amaranth": [5, 6, 7, 8, 9, 10, 11],
+        "masterwort": [6, 7, 8],
+        "nettle": [4, 5, 6, 7, 8, 9, 10],
+        "sorrel": [3, 4, 5, 6, 9, 10, 11],
+        "raspberry": [6, 7, 8],
+        "dandelion": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "chickweed": [1, 2, 3, 4, 10, 11, 12],
+        "artichoke": [3, 4, 5],
+        "lingonb": [7, 8, 9, 10]
       },
       "SE": {
-        "garlic": [
-          3,
-          4,
-          5
-        ],
-        "walnut": [
-          10,
-          11
-        ],
-        "strawberry": [
-          5,
-          6,
-          7
-        ],
-        "asparagus": [
-          3,
-          4,
-          5
-        ],
-        "chestnut": [
-          10,
-          11
-        ],
-        "amaranth": [
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "masterwort": [
-          6,
-          7,
-          8
-        ],
-        "nettle": [
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10
-        ],
-        "sorrel": [
-          3,
-          4,
-          5,
-          6,
-          9,
-          10,
-          11
-        ],
-        "raspberry": [
-          6,
-          7,
-          8
-        ],
-        "dandelion": [
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "chickweed": [
-          1,
-          2,
-          3,
-          4,
-          10,
-          11,
-          12
-        ],
-        "artichoke": [
-          3,
-          4,
-          5
-        ],
-        "lingonb": [
-          7,
-          8,
-          9,
-          10
-        ]
+        "garlic": [3, 4, 5],
+        "walnut": [10, 11],
+        "strawberry": [5, 6, 7],
+        "asparagus": [3, 4, 5],
+        "chestnut": [10, 11],
+        "amaranth": [5, 6, 7, 8, 9, 10, 11],
+        "masterwort": [6, 7, 8],
+        "nettle": [4, 5, 6, 7, 8, 9, 10],
+        "sorrel": [3, 4, 5, 6, 9, 10, 11],
+        "raspberry": [6, 7, 8],
+        "dandelion": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "chickweed": [1, 2, 3, 4, 10, 11, 12],
+        "artichoke": [3, 4, 5],
+        "lingonb": [7, 8, 9, 10]
       },
       "USE": {
-        "garlic": [
-          3,
-          4,
-          5
-        ],
-        "walnut": [
-          10,
-          11
-        ],
-        "strawberry": [
-          5,
-          6,
-          7
-        ],
-        "asparagus": [
-          3,
-          4,
-          5
-        ],
-        "chestnut": [
-          10,
-          11
-        ],
-        "amaranth": [
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "masterwort": [
-          12
-        ],
-        "nettle": [
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10
-        ],
-        "sorrel": [
-          3,
-          4,
-          5,
-          6,
-          9,
-          10,
-          11
-        ],
-        "raspberry": [
-          6,
-          7,
-          8
-        ],
-        "dandelion": [
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "chickweed": [
-          1,
-          2,
-          3,
-          4,
-          10,
-          11,
-          12
-        ],
-        "artichoke": [
-          3,
-          4,
-          5
-        ],
-        "lingonb": [
-          7,
-          8,
-          9,
-          10
-        ]
+        "garlic": [3, 4, 5],
+        "walnut": [10, 11],
+        "strawberry": [5, 6, 7],
+        "asparagus": [3, 4, 5],
+        "chestnut": [10, 11],
+        "amaranth": [5, 6, 7, 8, 9, 10, 11],
+        "masterwort": [12],
+        "nettle": [4, 5, 6, 7, 8, 9, 10],
+        "sorrel": [3, 4, 5, 6, 9, 10, 11],
+        "raspberry": [6, 7, 8],
+        "dandelion": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "chickweed": [1, 2, 3, 4, 10, 11, 12],
+        "artichoke": [3, 4, 5],
+        "lingonb": [7, 8, 9, 10]
       },
       "USW": {
-        "garlic": [
-          3,
-          4,
-          5
-        ],
-        "walnut": [
-          10,
-          11
-        ],
-        "strawberry": [
-          5,
-          6,
-          7
-        ],
-        "asparagus": [
-          3,
-          4,
-          5
-        ],
-        "chestnut": [
-          10,
-          11
-        ],
-        "amaranth": [
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "masterwort": [
-          12
-        ],
-        "nettle": [
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10
-        ],
-        "sorrel": [
-          3,
-          4,
-          5,
-          6,
-          9,
-          10,
-          11
-        ],
-        "raspberry": [
-          6,
-          7,
-          8
-        ],
-        "dandelion": [
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "chickweed": [
-          1,
-          2,
-          3,
-          4,
-          10,
-          11,
-          12
-        ],
-        "artichoke": [
-          3,
-          4,
-          5
-        ],
-        "lingonb": [
-          7,
-          8,
-          9,
-          10
-        ]
+        "garlic": [3, 4, 5],
+        "walnut": [10, 11],
+        "strawberry": [5, 6, 7],
+        "asparagus": [3, 4, 5],
+        "chestnut": [10, 11],
+        "amaranth": [5, 6, 7, 8, 9, 10, 11],
+        "masterwort": [12],
+        "nettle": [4, 5, 6, 7, 8, 9, 10],
+        "sorrel": [3, 4, 5, 6, 9, 10, 11],
+        "raspberry": [6, 7, 8],
+        "dandelion": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "chickweed": [1, 2, 3, 4, 10, 11, 12],
+        "artichoke": [3, 4, 5],
+        "lingonb": [7, 8, 9, 10]
       }
     }
   }

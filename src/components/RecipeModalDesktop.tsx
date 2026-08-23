@@ -84,7 +84,10 @@ export const RecipeModalDesktop = ({
             </h3>
             <ol className='divide-y divide-border'>
               {recipe.steps.map(step => (
-                <li key={step.step} className='space-y-2 py-3 first:pt-0 last:pb-0'>
+                <li
+                  key={step.step}
+                  className='space-y-2 py-3 first:pt-0 last:pb-0'
+                >
                   <p className='text-sm leading-relaxed text-foreground'>
                     {step.instruction}
                   </p>

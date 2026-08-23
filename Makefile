@@ -1,7 +1,7 @@
 # Fung.es Project Makefile
 # Common development and deployment commands
 
-.PHONY: help dev build lint format test storybook i18n-check analyze deploy clean install generate-splash
+.PHONY: help dev build lint format test storybook i18n-check analyze deploy clean install generate-splash ci-check
 
 # Default target
 help:
@@ -26,6 +26,7 @@ help:
 	@echo ""
 	@echo "Deployment:"
 	@echo "  make deploy       - Build and deploy to GitHub Pages"
+	@echo "  make ci-check     - Run all checks from the GitHub Pages deploy workflow"
 	@echo ""
 	@echo "Dependencies:"
 	@echo "  make install      - Install dependencies"
@@ -121,6 +122,21 @@ deploy:
 	fi
 
 
+
+# CI parity
+# Mirrors the checks run by .github/workflows/deploy.yml before publishing to GitHub Pages
+ci-check: install-ci
+	@echo "Running format check..."
+	npm run format:check
+	@echo "Running lint check..."
+	npm run lint:check
+	@echo "Running type check..."
+	npm run type-check
+	@echo "Running unit tests..."
+	npm run test:run
+	@echo "Building for production..."
+	npm run build
+	@echo "All CI checks passed."
 
 # Dependencies
 install:
