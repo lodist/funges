@@ -47,3 +47,8 @@ Showing or hiding nav items based on platform/feature context (e.g. mobile vs. d
 **Section-adaptive accent**:
 The active nav item's own tint (icon/label color, and scale on mobile) reflecting the current section — scoped to the active-item indicator only.
 _Avoid_: ambient/background retinting of the whole nav per section — considered and rejected (risks inconsistency and WCAG contrast issues); out of scope for #196.
+_Note_: on `MobileNavbar` the tint needs a dark-mode step (`--happy-500` rather than `--happy-700`). The `--happy-*` scale is light-mode only, and `--happy-700` over the translucent dark surface falls to 1.7:1 against a light map — under WCAG 1.4.11's 3:1 floor. `AppSidebar` needs no equivalent: its accent rides on `--sidebar-accent-foreground`, which is already redefined per theme.
+
+**Shared nav surface**:
+Both nav surfaces are elevation level **Raised** with **Glass-regular**. The class names live in one place — `NAV_SURFACE_CLASS` in `src/lib/nav-surface.ts` — which `AppSidebar` (via `Sidebar`'s `surfaceClassOverride` prop) and `MobileNavbar` both consume, so the two platforms' chrome can't drift apart. `src/test/nav-surface.test.ts` guards the constant against naming a utility `globals.scss` no longer defines.
+_Note_: on `Sidebar` the treatment has to land on the painted surface (`data-slot='sidebar-inner'`), not the positioning container that `className` targets — the surface's own background otherwise paints over it. That was the bug in the hand-rolled `bg-background/95 backdrop-blur` this replaced.
