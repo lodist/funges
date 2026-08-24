@@ -53,7 +53,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           onClick={() => setIsOpen(!isOpen)}
           // Trailhead (#213): floating map control — no border, soft shadow.
           className={cn(
-            'flex items-center border-0 bg-card/95 backdrop-blur-sm hover:bg-[var(--happy-50)]/95 transition-all duration-200 shadow-[0_2px_10px_rgba(0,0,0,0.18)]',
+            'flex items-center border-0 bg-card/95 backdrop-blur-sm hover:bg-[var(--happy-50)]/95 transition-all duration-[var(--duration-base)] shadow-[0_2px_10px_rgba(0,0,0,0.18)]',
             'h-16 px-2 py-2 rounded-2xl',
             isOpen && 'bg-[var(--happy-50)]/95'
           )}
@@ -61,6 +61,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
           transition={{
+            // Motion (#200): mirrors CSS --duration-base (200ms).
             duration: 0.2,
             type: 'spring',
             stiffness: 400,
@@ -106,7 +107,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           onClick={() => setIsOpen(!isOpen)}
           // Trailhead (#213): floating map control — no border, soft shadow.
           className={cn(
-            'justify-between border-0 bg-card/95 backdrop-blur-sm hover:bg-[var(--happy-50)]/95 transition-all duration-200 shadow-[0_2px_10px_rgba(0,0,0,0.18)] rounded-full',
+            'justify-between border-0 bg-card/95 backdrop-blur-sm hover:bg-[var(--happy-50)]/95 transition-all duration-[var(--duration-base)] shadow-[0_2px_10px_rgba(0,0,0,0.18)] rounded-full',
             'w-72 min-h-[32px] px-3 py-1',
             isOpen && 'bg-[var(--happy-50)]/95'
           )}
@@ -114,6 +115,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
           transition={{
+            // Motion (#200): mirrors CSS --duration-base (200ms).
             duration: 0.2,
             type: 'spring',
             stiffness: 400,
@@ -127,7 +129,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           </div>
           <ChevronDown
             className={cn(
-              'transition-transform duration-200 flex-shrink-0',
+              'transition-transform duration-[var(--duration-base)] flex-shrink-0',
               'h-3 w-3',
               isOpen ? 'rotate-180' : ''
             )}

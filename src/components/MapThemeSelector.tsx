@@ -54,7 +54,11 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
             initial={{ opacity: 0, scale: 0.97, y: -6 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: -6 }}
-            transition={{ duration: 0.15, ease: 'easeOut' }}
+            // Motion (#200): mirrors CSS --duration-fast (150ms) and
+            // --ease-standard (cubic-bezier(0.4, 0, 0.2, 1)). There is no
+            // synced JS token file by design, so these numeric values are
+            // kept greppable against the CSS tokens they shadow.
+            transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
             // Trailhead (#213): no border, bigger radius + shadow, mirrors
             // the Select/DropdownMenu popover treatment.
             className='absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] bg-popover rounded-2xl border-0 shadow-[0_4px_20px_rgba(0,0,0,0.16)] overflow-hidden z-30'

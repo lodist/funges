@@ -144,7 +144,7 @@ export default function SpeciesPage() {
             return (
               <Card
                 key={species.id}
-                className='hover:shadow-lg transition-shadow duration-200 py-6'
+                className='hover:shadow-lg transition-shadow duration-[var(--duration-base)] py-6'
               >
                 <CardHeader className='pb-3'>
                   <div className='flex items-start gap-4'>
