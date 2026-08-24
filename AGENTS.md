@@ -48,6 +48,9 @@ icons at the size the manifest declares, WebP quality ~75.
 - `npm run format` / `make format` – run Prettier formatting
 - `npm run test` / `make test` – run Vitest unit tests
 - `npm run storybook` / `make storybook` – start Storybook
+- `npx vitest run --project unit` – unit tests only
+- `npx vitest run --project storybook` – render every story in a browser and
+  gate it on axe (needs `npx playwright install chromium` once)
 - `make i18n-check` – validate translation files
 - `make deploy` – deploy to GitHub Pages
 
@@ -55,7 +58,11 @@ icons at the size the manifest declares, WebP quality ~75.
 
 - ESLint flat config with Prettier integration.
 - Unused imports/variables are disallowed (`unused-imports` plugin).
-- `i18next/no-literal-string` warns against untranslated JSX strings.
+- `i18next/no-literal-string` warns against untranslated JSX strings. It runs
+  project-wide and `lint:check` treats warnings as errors, so **literal text in
+  a story must be wrapped in an expression** — `{'Save'}`, not `Save`. That is
+  the escape hatch the existing stories already use; there is no story-specific
+  rule exemption to reach for.
 - Use TypeScript, React 19 features, Tailwind utilities, and SCSS modules for component styles.
 
 ## Testing and Checks
@@ -64,6 +71,28 @@ Before committing code:
 
 1. Run `npm run lint`.
 2. Run `npm run test`.
+
+`make ci-check` mirrors CI, which runs **both** Vitest projects. The Storybook
+project is not an extra test suite bolted onto the docs — the stories _are_ the
+design-system documentation and its test at once, so a story that cannot render
+is a failing build, and the a11y addon is configured to fail on axe violations.
+
+### Writing a story
+
+- Storybook is the canonical design-system documentation (`#205`, `#206`). Look
+  there before building a component, and document a new primitive there.
+- The atomic tier lives in the story **title** — `Foundations/…`, `Atoms/…`,
+  `Molecules/…` — not in the directory layout. See CONTEXT.md's glossary for
+  what belongs in which tier; the molecule boundary is a checkable rule, not a
+  matter of taste.
+- Primitive stories sit beside their component in `src/components/ui/`, so
+  renaming or deleting a component surfaces its documentation in the same diff.
+- Shared decorators live in `src/storybook/decorators.tsx`. `withI18n` and
+  `withTheme` are applied globally; add `withRouter` or `withSidebar` to a
+  story's own `decorators` when it needs them.
+- Per-primitive bar: a `Default` story, one story per meaningful variant, size
+  or state, `argTypes` with descriptions, `tags: ['autodocs']`, and one matrix
+  story rendering every variant together.
 
 ## Agent skills
 
