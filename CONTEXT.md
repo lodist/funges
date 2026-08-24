@@ -14,7 +14,7 @@ _Avoid_: shadow depth, shadow tier, z-index level
 The elevation level for the map canvas itself — no shadow, no glass. Not a "surface" in this system's sense.
 
 **Raised**:
-The elevation level for small, static, fixed-size chrome that sits above the base surface without floating free of it (e.g. a card, the app sidebar).
+The elevation level for small, static, fixed-size chrome that sits above the base surface without floating free of it (e.g. a card, the app sidebar, the mobile bottom nav bar — persistent primary nav, not dismissed by tap-outside, so it doesn't qualify as Floating despite visually sitting over the map).
 
 **Raised-subtle**:
 A quieter variant of Raised for lightweight input chrome (e.g. a search field, a select trigger) — chrome you look through rather than press; no hover escalation.
@@ -34,3 +34,16 @@ The glass variant for chrome sitting over text content or the map (e.g. an info 
 
 **Glass-clear**:
 The more-transparent glass variant, reserved for full-bleed media backgrounds; never used over text content.
+
+**Note — `variant='floating'` naming collision**: shadcn's `Sidebar` component takes a `variant='floating'` prop — a layout/shape API (rounded corners, inset from the viewport edge). It is unrelated to this glossary's elevation-level **Floating** term above. `AppSidebar` uses shadcn's `variant='floating'` prop but its elevation level is **Raised**.
+
+### Design system — navigation & chrome
+
+Settled while deciding the nav/chrome paradigm for `src/components/Sidebar/` and `src/components/Mobile/MobileNavbar.tsx` (`lodist/funges#196`).
+
+**Relevance-based disclosure**:
+Showing or hiding nav items based on platform/feature context (e.g. mobile vs. desktop, an offline-features flag) rather than always rendering the full item set. Names an existing pattern already in `AppSidebar`/`MobileNavbar`, not a new mechanism introduced by #196.
+
+**Section-adaptive accent**:
+The active nav item's own tint (icon/label color, and scale on mobile) reflecting the current section — scoped to the active-item indicator only.
+_Avoid_: ambient/background retinting of the whole nav per section — considered and rejected (risks inconsistency and WCAG contrast issues); out of scope for #196.
