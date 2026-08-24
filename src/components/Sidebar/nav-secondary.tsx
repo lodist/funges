@@ -39,7 +39,10 @@ export function NavSecondary({
                   isActive={isActive}
                   onClick={item.onClick}
                 >
-                  <Link to={item.url}>
+                  <Link
+                    to={item.url}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
                     <item.icon />
                     <span>{item.title}</span>
                   </Link>
