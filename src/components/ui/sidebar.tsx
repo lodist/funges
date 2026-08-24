@@ -155,12 +155,24 @@ function Sidebar({
   variant = 'sidebar',
   collapsible = 'offcanvas',
   className,
+  surfaceClassOverride,
   children,
   ...props
 }: React.ComponentProps<'div'> & {
   side?: 'left' | 'right';
   variant?: 'sidebar' | 'floating' | 'inset';
   collapsible?: 'offcanvas' | 'icon' | 'none';
+  /**
+   * Classes for the painted surface rather than the positioning container that
+   * `className` targets. Supplying this replaces shadcn's default background,
+   * border and shadow wholesale — the point is to let a consumer apply the
+   * app's own elevation/glass treatment (#200) without those defaults, which
+   * live in Tailwind's utilities layer, winning over it.
+   *
+   * Applies to the desktop rail only. The mobile branch is a Sheet, which is
+   * elevation level Floating rather than Raised, so it keeps its own styling.
+   */
+  surfaceClassOverride?: string;
 }) {
   const { t } = useTranslation('common');
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
@@ -218,7 +230,7 @@ function Sidebar({
       <div
         data-slot='sidebar-gap'
         className={cn(
-          'relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear',
+          'relative w-(--sidebar-width) bg-transparent transition-[width] duration-[var(--duration-base)] ease-linear',
           'group-data-[collapsible=offcanvas]:w-0',
           'group-data-[side=right]:rotate-180',
           variant === 'floating' || variant === 'inset'
@@ -229,7 +241,7 @@ function Sidebar({
       <div
         data-slot='sidebar-container'
         className={cn(
-          'fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex',
+          'fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-[var(--duration-base)] ease-linear md:flex',
           side === 'left'
             ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
             : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
@@ -244,7 +256,11 @@ function Sidebar({
         <div
           data-sidebar='sidebar'
           data-slot='sidebar-inner'
-          className='bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm'
+          className={cn(
+            'flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg',
+            surfaceClassOverride ??
+              'bg-sidebar group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm'
+          )}
         >
           {children}
         </div>
@@ -406,7 +422,7 @@ function SidebarGroupLabel({
       data-slot='sidebar-group-label'
       data-sidebar='group-label'
       className={cn(
-        'text-sidebar-foreground/70 ring-sidebar-ring flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear [&>svg]:size-4 [&>svg]:shrink-0',
+        'text-sidebar-foreground/70 ring-sidebar-ring flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-[var(--duration-base)] ease-linear [&>svg]:size-4 [&>svg]:shrink-0',
         'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0',
         className
       )}

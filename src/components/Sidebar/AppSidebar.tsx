@@ -24,6 +24,7 @@ import { NavMain } from './nav-main';
 import { useTranslation } from 'react-i18next';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
+import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 import MapLastUpdated from '@/components/MapLastUpdated';
 
 const basePath = import.meta.env.BASE_URL || '/';
@@ -128,7 +129,12 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
     <Sidebar
       variant='floating'
       collapsible='offcanvas'
-      className='bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'
+      // shadcn's `variant='floating'` is layout/shape only; the elevation level
+      // here is Raised, shared with MobileNavbar. See CONTEXT.md's note on the
+      // naming collision. This replaces a hand-rolled
+      // `bg-background/95 backdrop-blur` that sat on the positioning container
+      // and so was painted over by the surface's own opaque background.
+      surfaceClassOverride={NAV_SURFACE_CLASS}
       {...props}
     >
       <SidebarHeader className='border-b px-6 py-4'>

@@ -112,6 +112,21 @@
       background: var(--muted-foreground);
     }
   }
+
+  // Motion (#200): honour the OS-level reduced-motion preference app-wide.
+  // Non-essential transitions and decorative animations are collapsed to
+  // effectively zero rather than shortened, so the state change still lands
+  // — it just lands without the animation.
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 // Component-specific styles
@@ -267,6 +282,133 @@
       width: 60vw;
       max-width: 550px;
       height: auto;
+    }
+  }
+
+  // ---------------------------------------------------------------------
+  // Elevation levels (#200)
+  //
+  // Semantic depth roles composed from the --elevation-* tokens defined in
+  // index.css. Pick the role, not a raw shadow. Definitions are the ones in
+  // CONTEXT.md's design-system glossary:
+  //
+  //   base           - the map canvas. No class, no shadow: not a discrete
+  //                    surface, so it deliberately has no utility here.
+  //   raised-subtle  - lightweight input chrome you look through rather
+  //                    than press (search field, Select trigger). No hover
+  //                    escalation.
+  //   raised         - small, static, fixed-size chrome (Card, AppSidebar,
+  //                    MobileNavbar).
+  //   floating       - dismiss-by-tap-outside surfaces (Sheet, Popover,
+  //                    DropdownMenu, tooltip).
+  //   overlay        - blocking surfaces with a scrim (modal Dialog).
+  //
+  // In dark mode each carries a 1px inset --glass-highlight, which is what
+  // actually reads as depth there; the drop shadow is secondary. See
+  // ADR 0001 for why these values are Trailhead's rather than --shadow-*.
+  // ---------------------------------------------------------------------
+  .elevation-raised-subtle {
+    box-shadow: var(--elevation-raised-subtle);
+  }
+
+  .elevation-raised {
+    box-shadow: var(--elevation-raised);
+  }
+
+  .elevation-floating {
+    box-shadow: var(--elevation-floating);
+  }
+
+  .elevation-overlay {
+    box-shadow: var(--elevation-overlay);
+  }
+
+  // ---------------------------------------------------------------------
+  // Glass surfaces (#200)
+  //
+  // Scope rule: opt-in per component, and only on small, fixed-size chrome
+  // at the `raised` or `floating` level. Never on `base` (the map canvas),
+  // never on `overlay` (Dialogs are text-heavy and contrast-critical over a
+  // busy, variable map background — WCAG 1.4.11 risk), and never on
+  // anything large or that animates its own size.
+  //
+  // Both variants degrade to an opaque background whenever backdrop-filter
+  // is unavailable or the user has asked for less transparency / more
+  // contrast. The opaque path is the default here and the translucent path
+  // is layered on top, so an unsupporting browser never renders
+  // near-invisible chrome.
+  // ---------------------------------------------------------------------
+  .glass-regular,
+  .glass-clear {
+    border: 1px solid var(--glass-border);
+    // Shares --glass-highlight with the --elevation-* tokens: on glass it
+    // stands in for Liquid Glass's specular edge. Carried on the top border
+    // rather than an inset box-shadow so that pairing a glass class with an
+    // .elevation-* class doesn't have the two fight over box-shadow.
+    border-top-color: var(--glass-highlight);
+  }
+
+  .glass-regular {
+    background-color: var(--glass-bg-regular-opaque);
+  }
+
+  .glass-clear {
+    background-color: var(--glass-bg-clear-opaque);
+  }
+
+  @supports (backdrop-filter: blur(1px)) {
+    .glass-regular {
+      background-color: var(--glass-bg-regular);
+      backdrop-filter: blur(var(--glass-blur-regular));
+    }
+
+    // Reserved for full-bleed media backgrounds. Never place text-heavy
+    // content on this variant.
+    .glass-clear {
+      background-color: var(--glass-bg-clear);
+      backdrop-filter: blur(var(--glass-blur-clear));
+    }
+  }
+
+  // Accessibility fallbacks: drop the blur entirely and go opaque. Both
+  // preferences want the same outcome, so they share one rule.
+  @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+    .glass-regular {
+      background-color: var(--glass-bg-regular-opaque);
+      backdrop-filter: none;
+    }
+
+    .glass-clear {
+      background-color: var(--glass-bg-clear-opaque);
+      backdrop-filter: none;
+    }
+  }
+
+  // ---------------------------------------------------------------------
+  // Elevation hover/press feedback (#200)
+  //
+  // Opt-in on interactive `raised` chrome. Shifts shadow and background
+  // only — no scale or transform.
+  // ---------------------------------------------------------------------
+  .elevation-interactive {
+    transition:
+      box-shadow var(--duration-fast) var(--ease-standard),
+      background-color var(--duration-fast) var(--ease-standard);
+
+    &:hover {
+      box-shadow: var(--elevation-raised-hover);
+    }
+
+    &:active {
+      box-shadow: var(--elevation-raised);
+    }
+  }
+
+  // Non-essential motion (hover feedback, decorative fades) is removed
+  // outright rather than shortened; the state change still lands.
+  @media (prefers-reduced-motion: reduce) {
+    .elevation-interactive {
+      transition: none;
     }
   }
 }

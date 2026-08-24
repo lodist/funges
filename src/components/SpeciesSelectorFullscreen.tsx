@@ -125,6 +125,8 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.8, y: 20 }}
       transition={{
+        // Motion (#200): mirrors CSS --duration-base (200ms) and
+        // --ease-standard (cubic-bezier(0.4, 0, 0.2, 1)).
         duration: 0.2,
         ease: [0.4, 0.0, 0.2, 1],
       }}
@@ -152,7 +154,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
           variant='ghost'
           size='sm'
           onClick={onClose}
-          className='h-10 w-10 p-0 bg-white/20 hover:bg-white/40 text-white border border-white/30 hover:border-white/50 transition-all duration-200 flex-shrink-0'
+          className='h-10 w-10 p-0 bg-white/20 hover:bg-white/40 text-white border border-white/30 hover:border-white/50 transition-all duration-[var(--duration-base)] flex-shrink-0'
         >
           <X className='h-5 w-5' />
         </Button>
@@ -169,7 +171,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
               // neutral fill as unselected, marked by weight only (no
               // colour swap), no border.
               className={cn(
-                'flex items-center gap-2 px-3 py-2 rounded-full text-sm transition-all duration-200 border-0 backdrop-blur-sm',
+                'flex items-center gap-2 px-3 py-2 rounded-full text-sm transition-all duration-[var(--duration-base)] border-0 backdrop-blur-sm',
                 selectedCategory === category.value
                   ? 'bg-white text-gray-900 font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
                   : 'bg-white/90 text-gray-700 font-medium hover:bg-white'
@@ -243,7 +245,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                     // Trailhead (#213): no border — selection is a shadow
                     // lift + tint + the corner checkmark badge, not a ring.
                     className={cn(
-                      'group relative bg-white rounded-2xl border-0 transition-all duration-200 hover:shadow-[0_6px_20px_rgba(0,0,0,0.14)]',
+                      'group relative bg-white rounded-2xl border-0 transition-all duration-[var(--duration-base)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.14)]',
                       'p-4 text-center min-h-[140px] flex flex-col items-center justify-center',
                       'hover:scale-105 active:scale-95',
                       disabled
@@ -264,7 +266,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                     <div
                       className={cn(
                         'relative w-16 h-16 bg-gradient-to-br from-green-50 to-green-100 overflow-hidden rounded-lg mb-3',
-                        'flex-shrink-0 transition-transform duration-200 group-hover:scale-110'
+                        'flex-shrink-0 transition-transform duration-[var(--duration-base)] group-hover:scale-110'
                       )}
                     >
                       {getSpeciesImage(species.code) ? (

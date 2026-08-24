@@ -73,7 +73,10 @@ export function NavMain({
                   tooltip={item.title}
                   isActive={isActive}
                 >
-                  <Link to={item.url}>
+                  <Link
+                    to={item.url}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
                   </Link>
@@ -95,7 +98,7 @@ export function NavMain({
                   <SidebarMenuButton tooltip={item.title} isActive={isActive}>
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
-                    <ChevronRight className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
+                    <ChevronRight className='ml-auto transition-transform duration-[var(--duration-base)] group-data-[state=open]/collapsible:rotate-90' />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
