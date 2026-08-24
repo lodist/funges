@@ -76,6 +76,11 @@
   --color-warning: var(--status-warning);
   --color-status-warning-text: var(--status-warning-text);
   --color-status-warning-border: var(--status-warning-border);
+
+  /* Motion easing (#200). Registered here so Tailwind emits an `ease-standard`
+     utility. Durations are not a Tailwind theme namespace, so they live in
+     :root and are consumed via arbitrary values — see --duration-* below. */
+  --ease-standard: var(--ease-standard);
 }
 
 :root {
@@ -217,6 +222,55 @@
     0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
   --tracking-normal: 0em;
+
+  /* ------------------------------------------------------------------
+     Motion scale (#200)
+     Three durations and one easing curve. Every transition in the app
+     should reference these rather than hardcoding a value.
+     ------------------------------------------------------------------ */
+  --duration-fast: 150ms; /* elevation hover/press micro-interactions */
+  --duration-base: 200ms; /* canonical; default UI state changes */
+  --duration-slow: 300ms; /* floating/overlay enter-exit (Dialog, Sheet) */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ------------------------------------------------------------------
+     Glass surfaces (#200) — light theme
+     Opt-in, and only on `raised`/`floating` chrome. Never on `base`
+     (the map canvas) or `overlay` (blocking dialogs), which must stay
+     opaque for WCAG 1.4.11 contrast over the busy map background.
+     ------------------------------------------------------------------ */
+  --glass-blur-regular: 12px;
+  --glass-blur-clear: 16px;
+  --glass-bg-regular: rgb(255 255 255 / 0.9);
+  --glass-bg-clear: rgb(255 255 255 / 0.12);
+  --glass-border: rgb(255 255 255 / 0.3);
+  /* Stands in for Liquid Glass's specular highlight, which #193 confirmed
+     isn't feasible on the web. Doubles as the dark-mode depth cue below. */
+  --glass-highlight: rgb(255 255 255 / 0.5);
+
+  /* Opaque equivalents, used when backdrop-filter is unsupported or the
+     user asks for reduced transparency / increased contrast. */
+  --glass-bg-regular-opaque: var(--card);
+  --glass-bg-clear-opaque: var(--card);
+
+  /* ------------------------------------------------------------------
+     Elevation levels (#200) — light theme
+
+     Per ADR 0001, these are NOT aliases of the --shadow-* scale: that
+     scale predates Trailhead (#213) and is materially weaker than what
+     Trailhead already ships, so aliasing it would regress the live look.
+     The values below are Trailhead's shipped shadows, lifted verbatim and
+     canonicalized here as the single source of truth.
+
+     `base` is deliberately absent — the map canvas is not a discrete
+     surface and carries no shadow. Level definitions live in CONTEXT.md's
+     design-system glossary.
+     ------------------------------------------------------------------ */
+  --elevation-raised-subtle: 0 1px 6px rgba(0, 0, 0, 0.06); /* Input, Select trigger */
+  --elevation-raised: 0 2px 16px rgba(0, 0, 0, 0.1); /* Card, MobileNavbar */
+  --elevation-raised-hover: 0 6px 20px rgba(0, 0, 0, 0.14); /* Card hover escalation */
+  --elevation-floating: 0 4px 20px rgba(0, 0, 0, 0.16); /* DropdownMenu, Select content */
+  --elevation-overlay: 0 8px 32px rgba(0, 0, 0, 0.24); /* Dialog */
 }
 
 .dark {
@@ -290,6 +344,36 @@
   --shadow-xl:
     0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+
+  /* ------------------------------------------------------------------
+     Glass surfaces (#200) — dark theme
+     ------------------------------------------------------------------ */
+  --glass-bg-regular: color-mix(in oklch, var(--card) 80%, transparent);
+  --glass-bg-clear: rgb(0 0 0 / 0.2);
+  --glass-border: rgb(255 255 255 / 0.1);
+  --glass-highlight: rgb(255 255 255 / 0.08);
+  /* The *-opaque fallbacks are not restated here: they resolve through
+     var(--card), which the dark block already redefines above. */
+
+  /* ------------------------------------------------------------------
+     Elevation levels (#200) — dark theme
+
+     Same geometry as the light values above (identical offset/blur, so
+     the levels stay recognisably one scale); only the alpha deepens,
+     because a 0.06–0.24 black shadow is invisible against a dark
+     background. Per ADR 0001 the 1px inset --glass-highlight is the real
+     depth cue here and the drop shadow is secondary.
+     ------------------------------------------------------------------ */
+  --elevation-raised-subtle:
+    inset 0 1px 0 0 var(--glass-highlight), 0 1px 6px rgba(0, 0, 0, 0.3);
+  --elevation-raised:
+    inset 0 1px 0 0 var(--glass-highlight), 0 2px 16px rgba(0, 0, 0, 0.4);
+  --elevation-raised-hover:
+    inset 0 1px 0 0 var(--glass-highlight), 0 6px 20px rgba(0, 0, 0, 0.5);
+  --elevation-floating:
+    inset 0 1px 0 0 var(--glass-highlight), 0 4px 20px rgba(0, 0, 0, 0.55);
+  --elevation-overlay:
+    inset 0 1px 0 0 var(--glass-highlight), 0 8px 32px rgba(0, 0, 0, 0.65);
 }
 
 @layer base {

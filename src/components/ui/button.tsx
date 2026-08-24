@@ -31,7 +31,7 @@ const buttonVariants = cva(
         outline:
           'rounded-full border-2 border-primary bg-transparent text-[var(--happy-700)] shadow-none hover:bg-[var(--happy-50)] hover:text-[var(--happy-700)] dark:border-primary dark:bg-card dark:text-primary dark:hover:bg-primary dark:hover:text-primary-foreground',
         'enhanced-outline':
-          'border-2 border-primary bg-white text-primary shadow-md hover:bg-primary hover:text-white hover:shadow-lg transition-all duration-200 dark:border-primary dark:bg-card dark:text-primary dark:hover:bg-primary dark:hover:text-primary-foreground',
+          'border-2 border-primary bg-white text-primary shadow-md hover:bg-primary hover:text-white hover:shadow-lg transition-all duration-[var(--duration-base)] dark:border-primary dark:bg-card dark:text-primary dark:hover:bg-primary dark:hover:text-primary-foreground',
         secondary:
           'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
         // dark: classes unchanged — Trailhead wasn't reviewed in dark mode.

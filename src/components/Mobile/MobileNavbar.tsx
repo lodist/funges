@@ -39,6 +39,7 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
         type: 'spring',
         stiffness: 300,
         damping: 30,
+        // Motion (#200): mirrors CSS --duration-slow (300ms).
         duration: 0.3,
       }}
     >
@@ -62,7 +63,7 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
               <li key={item.url} className='flex-1'>
                 <Link
                   to={item.url}
-                  className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all duration-200 ${
+                  className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all duration-[var(--duration-base)] ${
                     isActive
                       ? 'text-[var(--happy-700)]'
                       : 'text-muted-foreground hover:text-[var(--happy-700)]'

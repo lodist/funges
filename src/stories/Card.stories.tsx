@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, userEvent, within } from 'storybook/test';
 import {
   Card,
   CardHeader,
@@ -420,5 +421,200 @@ export const HorizontalLayout: Story = {
   ),
   parameters: {
     layout: 'padded',
+  },
+};
+
+/* ---------------------------------------------------------------------------
+ * Elevation & glass tokens (#200)
+ *
+ * These stories are the visual seam for the elevation-level and glass-variant
+ * token system. They deliberately assert only that the surfaces render — the
+ * raw token values (oklch numbers, cubic-bezier strings) are implementation
+ * detail and are checked by eye in Storybook, not by string comparison.
+ * ------------------------------------------------------------------------- */
+
+/** Renders children twice: once in the light theme, once inside `.dark`. */
+const ThemeMatrix = ({ children }: { children: React.ReactNode }) => (
+  <div className='grid grid-cols-1 gap-0 sm:grid-cols-2'>
+    <div className='bg-background text-foreground flex flex-col gap-6 p-8'>
+      <p className='text-muted-foreground text-xs font-medium tracking-wide uppercase'>
+        {'Light'}
+      </p>
+      {children}
+    </div>
+    <div className='dark bg-background text-foreground flex flex-col gap-6 p-8'>
+      <p className='text-muted-foreground text-xs font-medium tracking-wide uppercase'>
+        {'Dark'}
+      </p>
+      {children}
+    </div>
+  </div>
+);
+
+const ELEVATION_LEVELS = [
+  {
+    name: 'base',
+    className: '',
+    blurb: 'The map canvas. No shadow, no glass — not a discrete surface.',
+  },
+  {
+    name: 'raised-subtle',
+    className: 'elevation-raised-subtle',
+    blurb: 'Lightweight input chrome: search field, Select trigger.',
+  },
+  {
+    name: 'raised',
+    className: 'elevation-raised',
+    blurb: 'Small static chrome: Card, AppSidebar, MobileNavbar.',
+  },
+  {
+    name: 'floating',
+    className: 'elevation-floating',
+    blurb: 'Dismiss-by-tap-outside overlays: Sheet, Popover, DropdownMenu.',
+  },
+  {
+    name: 'overlay',
+    className: 'elevation-overlay',
+    blurb: 'Blocking Dialogs with a scrim. Always opaque, never glass.',
+  },
+] as const;
+
+export const ElevationLevels: Story = {
+  render: () => (
+    <ThemeMatrix>
+      {ELEVATION_LEVELS.map(level => (
+        <Card key={level.name} className={`w-[320px] ${level.className}`}>
+          <CardHeader>
+            <CardTitle className='font-mono text-sm'>{level.name}</CardTitle>
+            <CardDescription>{level.blurb}</CardDescription>
+          </CardHeader>
+        </Card>
+      ))}
+    </ThemeMatrix>
+  ),
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story:
+          'The four semantic elevation levels, in both themes. Dark mode leans on the 1px inset --glass-highlight for depth, since the --shadow-* scale is identical across themes.',
+      },
+    },
+  },
+};
+
+/**
+ * Glass needs something textured behind it to read as translucent, so both
+ * glass stories sit on a striped backdrop standing in for the map canvas.
+ */
+const MapBackdrop = ({ children }: { children: React.ReactNode }) => (
+  <div
+    className='flex min-h-[220px] items-center justify-center rounded-xl p-8'
+    style={{
+      backgroundImage:
+        'repeating-linear-gradient(45deg, oklch(0.72 0.11 147) 0 18px, oklch(0.62 0.13 165) 18px 36px)',
+    }}
+  >
+    {children}
+  </div>
+);
+
+export const GlassRegular: Story = {
+  render: () => (
+    <ThemeMatrix>
+      <MapBackdrop>
+        <div className='glass-regular elevation-raised w-[280px] rounded-xl p-5'>
+          <p className='font-display text-base font-semibold'>
+            {'Glass regular'}
+          </p>
+          <p className='text-muted-foreground mt-1 text-sm'>
+            {'12px blur. For fixed chrome sitting over the map or text.'}
+          </p>
+        </div>
+      </MapBackdrop>
+    </ThemeMatrix>
+  ),
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story:
+          'The `glass-regular` variant at the `raised` level, over a stand-in map backdrop. Opt-in per component and restricted to small fixed-size chrome.',
+      },
+    },
+  },
+};
+
+export const GlassClear: Story = {
+  render: () => (
+    <ThemeMatrix>
+      <MapBackdrop>
+        <div className='glass-clear elevation-raised w-[280px] rounded-xl p-5'>
+          <p className='font-display text-base font-semibold'>
+            {'Glass clear'}
+          </p>
+          <p className='mt-1 text-sm'>
+            {'16px blur. Full-bleed media backgrounds only.'}
+          </p>
+        </div>
+      </MapBackdrop>
+    </ThemeMatrix>
+  ),
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story:
+          'The `glass-clear` variant — markedly more transparent, and reserved for full-bleed media. Never place text-heavy, contrast-critical content on it.',
+      },
+    },
+  },
+};
+
+export const GlassInteractive: Story = {
+  render: () => (
+    <MapBackdrop>
+      <button
+        type='button'
+        data-testid='glass-interactive'
+        className='glass-regular elevation-raised elevation-interactive w-[280px] cursor-pointer rounded-xl p-5 text-left'
+      >
+        <span className='font-display block text-base font-semibold'>
+          {'Interactive glass chrome'}
+        </span>
+        <span className='text-muted-foreground mt-1 block text-sm'>
+          {'Hover and press shift the shadow over --duration-fast.'}
+        </span>
+      </button>
+    </MapBackdrop>
+  ),
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        story:
+          'Exercises the motion tokens (--duration-fast, --ease-standard) through real hover/press behaviour on a `raised` glass surface.',
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const surface = canvas.getByTestId('glass-interactive');
+
+    await expect(surface).toBeInTheDocument();
+
+    // The transition itself is what the motion tokens drive, so assert the
+    // element actually declares one rather than pinning the literal ms value.
+    const transition = getComputedStyle(surface).transitionDuration;
+    await expect(transition).not.toBe('');
+    await expect(transition).not.toBe('0s');
+
+    await userEvent.hover(surface);
+    await expect(surface).toBeVisible();
+
+    await userEvent.click(surface);
+    await expect(surface).toBeVisible();
+
+    await userEvent.unhover(surface);
   },
 };
