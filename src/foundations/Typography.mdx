@@ -1,0 +1,48 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as TypographyStories from './Typography.stories';
+
+<Meta of={TypographyStories} />
+
+# Typography
+
+Two faces do the work: **Public Sans** for everything you read, **Space
+Grotesk** for everything you scan. Merriweather and Source Code Pro exist as
+tokens but carry almost no traffic.
+
+> **This page needs a human.** The specimens below render in the real bundled
+> faces — but a missing face falls back silently, and a fallback renders just
+> as green as the real thing. Automated checks cannot tell the difference. If
+> the headings below do not look geometric and slightly squared-off, the
+> display face is not loading.
+
+## Families
+
+<Story of={TypographyStories.Families} />
+
+## Scale
+
+Tailwind's default steps, unmodified. There is no custom scale to learn —
+`text-sm` through `text-4xl` cover every screen in the application.
+
+<Story of={TypographyStories.Scale} />
+
+## Weights
+
+Only the bundled weights are real. Public Sans ships 400/500/600/700; Space
+Grotesk ships 500/600/700 and has **no 400** — asking for `font-normal` on the
+display face gets you a synthesised approximation, which reads as subtly wrong
+rather than obviously broken.
+
+<Story of={TypographyStories.Weights} />
+
+## Headings
+
+`h1`, `h2` and `h3` switch to the display face from a base-layer rule, so a
+heading never needs a font class. From `h4` down, a heading is functionally a
+label and stays on the body face.
+
+<Story of={TypographyStories.Headings} />
+
+## Everything at once
+
+<Story of={TypographyStories.AllTypography} />

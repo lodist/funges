@@ -1,0 +1,28 @@
+/*
+ * Storybook-only overrides for the application's global stylesheet.
+ *
+ * The app is a full-viewport map PWA, so `styles/globals.scss` deliberately
+ * pins the body to the viewport and kills scrolling:
+ *
+ *   body { display: flex; height: 100dvh; overflow: hidden; }
+ *
+ * That is correct for the running app and wrong for documentation: a
+ * Foundations page or a variant matrix is routinely taller than the viewport,
+ * and inside the preview iframe those rules clip it with no way to scroll.
+ *
+ * Restoring normal document flow here rather than changing globals.scss keeps
+ * the application's critical path untouched — the same reasoning that keeps
+ * the font imports in the preview instead of the global stylesheet.
+ *
+ * These selectors are intentionally unlayered: the rules they override live in
+ * `@layer base`, and unlayered styles win over layered ones regardless of
+ * order. The one exception is the `max-width: 768px` block in globals.scss,
+ * which is also unlayered — this file is imported after index.css, so equal
+ * specificity resolves in its favour on source order.
+ */
+body {
+  display: block;
+  height: auto;
+  min-height: 100vh;
+  overflow: visible;
+}

@@ -1,0 +1,49 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as MotionStories from './Motion.stories';
+
+<Meta of={MotionStories} />
+
+# Motion
+
+Three durations and one easing curve. Every transition in the application
+references them; a hardcoded `200ms` is a bug even when the number is right,
+because the next retune will not find it.
+
+## Durations
+
+Press **Run** to feel each one. Reading `150ms` off a table tells you nothing
+about whether it is the right choice.
+
+<Story of={MotionStories.Durations} />
+
+Pick by what is moving, not by taste:
+
+- **`--duration-fast` (150ms)** — a surface reacting under the pointer. Hover
+  and press escalation, nothing that travels.
+- **`--duration-base` (200ms)** — the default. If you are unsure, this is the
+  answer.
+- **`--duration-slow` (300ms)** — a large surface covering real distance, like
+  a Sheet sliding in from an edge.
+
+## Easing
+
+<Story of={MotionStories.Easing} />
+
+One curve for everything. `cubic-bezier(0.4, 0, 0.2, 1)` accelerates fast and
+decelerates gently, so a surface reads as settling rather than snapping.
+
+Adding a second easing token is a design decision, not a convenience — the
+value of having one curve is that motion across the app feels like one system.
+
+## Reduced motion
+
+<Story of={MotionStories.ReducedMotion} />
+
+When the viewer asks for reduced motion, animations and transitions collapse to
+`0.01ms` rather than being removed. That distinction is deliberate: a
+transition that never fires can leave a component wedged mid-state, while one
+that completes instantly cannot. `elevation-interactive` goes further and drops
+its transition altogether, since its whole purpose is the movement.
+
+This is handled globally. Individual components do not need to check the
+preference themselves.

@@ -1,13 +1,13 @@
 # funges
 
-A React/Vite/Tailwind foraging map PWA. This glossary currently covers the design-system vocabulary settled while inventorying `src/components/ui/*` for elevation/glass adoption (`lodist/funges#201`); other domain areas (species, routes, forecasting) can grow here under their own subheadings as they get grilled.
+A React/Vite/Tailwind foraging map PWA. This glossary covers the design-system vocabulary: the elevation/glass terms settled while inventorying `src/components/ui/*` (`lodist/funges#201`), the nav/chrome terms from `#196`, and the atomic tiers from `#206`. Other domain areas (species, routes, forecasting) can grow here under their own subheadings as they get grilled.
 
 ## Language
 
 ### Design system — elevation & glass
 
 **Elevation level**:
-One of four semantic surface roles — `base`, `raised`, `floating`, `overlay` — that determines how a component's shadow and depth cues read, chosen by role rather than by picking a raw shadow value.
+One of five semantic surface roles — `base`, `raised-subtle`, `raised`, `floating`, `overlay` — that determines how a component's shadow and depth cues read, chosen by role rather than by picking a raw shadow value.
 _Avoid_: shadow depth, shadow tier, z-index level
 
 **Base**:
@@ -52,3 +52,58 @@ _Note_: on `MobileNavbar` the tint needs a dark-mode step (`--happy-500` rather 
 **Shared nav surface**:
 Both nav surfaces are elevation level **Raised** with **Glass-regular**. The class names live in one place — `NAV_SURFACE_CLASS` in `src/lib/nav-surface.ts` — which `AppSidebar` (via `Sidebar`'s `surfaceClassOverride` prop) and `MobileNavbar` both consume, so the two platforms' chrome can't drift apart. `src/test/nav-surface.test.ts` guards the constant against naming a utility `globals.scss` no longer defines.
 _Note_: on `Sidebar` the treatment has to land on the painted surface (`data-slot='sidebar-inner'`), not the positioning container that `className` targets — the surface's own background otherwise paints over it. That was the bug in the hand-rolled `bg-background/95 backdrop-blur` this replaced.
+
+### Design system — atomic tiers
+
+Settled while making Storybook the canonical design-system documentation
+(`lodist/funges#206`). #192, #205 and #213 all speak of atoms, molecules and
+organisms, so the terms are recorded here rather than re-litigated per ticket.
+
+The tier is carried by a story's **title**, not by its directory — the sidebar
+hierarchy `Foundations → Atoms → Molecules` comes from the title prefix, so
+moving a component between tiers is a one-line change and a component is never
+filed in two conceptual places at once.
+
+**Foundations**:
+The design tokens themselves — palette, typography, elevation and glass,
+motion, radius and spacing, iconography — documented as prose pages with live
+specimens rather than as components. A foundation has no props to model, which
+is why these are authored documentation pages and not stories with controls.
+_Avoid_: primitives, base, core (all three read as "atoms")
+
+**Atom**:
+A single primitive in `src/components/ui/*`, composing no other project
+component. Twenty-one of them, and the count is exact — `badge-variants.ts` is
+an internal helper, not an atom.
+
+**Molecule**:
+A composition that satisfies **both** conditions: it composes only atoms,
+**and** it owns no state, data fetching, store subscription or context. Both
+must hold; either one alone leaks. A composition that passes the state test but
+composes no atoms is not a molecule either.
+
+Applying the rule to the existing non-primitive components leaves the tier
+essentially empty, which is why the molecule tier is documented as **patterns**
+— recurring compositions the application genuinely renders on at least two
+screens. Four are admissible: search field, filter control, content list card,
+and status-and-category badge row. A composition that appears on one screen, or
+on none, is not a pattern.
+_Note_: "form field with label and error" was considered and rejected on that
+test — the primitives it would compose are used by no screen, so it stays a
+variant under the Form atom.
+
+**Organism**:
+A composition that fails either molecule condition — it composes molecules or
+other organisms, or it owns state, data, a store subscription or context. The
+offline indicator (consumes PWA state), the last-updated indicator (owns local
+state), the forecast slider (reads the map store) and the recipe modal wrapper
+(composes composites, branches on platform) are all organisms.
+
+**Template / Page**:
+A routed screen layout. Documented for reference only — the routed application
+remains canonical for page-level layout, so a template's Storybook entry never
+becomes the source of truth for it.
+
+**Note — the tier boundary is a checkable rule, not a convention**: placement is
+confirmed or corrected against the two molecule conditions above rather than
+against taste. That is the point of writing it down.

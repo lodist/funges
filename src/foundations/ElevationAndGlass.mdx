@@ -1,0 +1,71 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as ElevationStories from './ElevationAndGlass.stories';
+
+<Meta of={ElevationStories} />
+
+# Elevation and glass
+
+Elevation is a **role**, not a shadow value. Pick a level by what the surface
+does — is it page background, input chrome, a dismissible overlay, a blocking
+dialog — and the shadow follows. Picking by how deep the shadow looks is how a
+scale drifts into a dozen one-off values.
+
+## The five levels
+
+| Level           | What it is for                                                                                                                |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `base`          | The map canvas. Not a discrete surface — carries no shadow at all, which is why there is no `.elevation-base` class to apply. |
+| `raised-subtle` | Lightweight input chrome: the search field, a Select trigger.                                                                 |
+| `raised`        | Small static chrome: Card, the sidebar, the mobile navbar.                                                                    |
+| `floating`      | Overlays you dismiss by tapping outside: Sheet, Popover, DropdownMenu.                                                        |
+| `overlay`       | Blocking dialogs behind a scrim.                                                                                              |
+
+<Story of={ElevationStories.ElevationLevels} />
+
+Light and dark are one scale, not two: the offsets and blurs are identical and
+only the alpha deepens. In dark mode a black drop shadow is nearly invisible,
+so the real depth cue becomes a 1px inset highlight along the top edge.
+
+### Interactive escalation
+
+`elevation-interactive` is the one level that moves: a `raised` surface that
+escalates on hover and settles back on press. It is the only sanctioned way to
+animate elevation — hand-rolling a hover shadow puts a value outside the scale.
+
+<Story of={ElevationStories.GlassInteractive} />
+
+## Glass
+
+Glass is **opt-in per component** and answers to two hard rules:
+
+1. **Only on `raised` or `floating` chrome.** Never on `base` — the map canvas
+   is not a surface — and never on `overlay`, because a blocking dialog must
+   stay opaque to hold contrast over a busy map.
+2. **Small, fixed-size chrome only.** A full-bleed translucent panel over the
+   map cannot guarantee contrast against whatever happens to be underneath it.
+
+Both variants degrade to an opaque background when `backdrop-filter` is
+unsupported, or when the viewer asks for reduced transparency or increased
+contrast. That fallback is not a nicety — it is what keeps the text readable.
+
+### glass-regular
+
+The default. Roughly nine-tenths opaque, so body copy on it stays legible.
+
+<Story of={ElevationStories.GlassRegular} />
+
+### glass-clear
+
+Markedly more transparent, and reserved for **full-bleed media** — an image or
+map tile showing through. Do not put text-heavy or contrast-critical content on
+it; there is no contrast guarantee, because there is no telling what is behind.
+
+<Story of={ElevationStories.GlassClear} />
+
+## Everything at once
+
+Every level against every surface treatment. The lower rows of the glass
+columns are combinations the rules above **disallow** — they are here so a
+reviewer recognises the disallowed pairing on sight, not as a licence.
+
+<Story of={ElevationStories.AllSurfaces} />
