@@ -1,0 +1,65 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as ColorStories from './Color.stories';
+
+<Meta of={ColorStories} />
+
+# Color palette
+
+Every color in the application comes from a **semantic token**, never from a
+raw value. A token says what a color is _for_ — a card surface, a focus ring,
+a danger fill — so a screen specified in this vocabulary keeps working when the
+palette is retuned underneath it.
+
+Use the toolbar **Theme** control to see the dark values. There is one set of
+token names; only what they resolve to changes.
+
+## Semantic pairs
+
+Most tokens come in pairs: a surface and the foreground meant to sit on it.
+Pick the pair, not the two halves separately — the pairing is what carries the
+contrast guarantee.
+
+<Story of={ColorStories.SemanticPairs} />
+
+## Navigation shell
+
+The sidebar carries its own surface tokens because the nav chrome is tinted
+away from the page background rather than sharing it.
+
+<Story of={ColorStories.SidebarTokens} />
+
+## Lines and focus
+
+These paint a line, not a surface, so they have no foreground partner.
+`--ring` is non-text, which means it answers to WCAG's 3:1 non-text contrast
+floor rather than the 4.5:1 body-text one.
+
+<Story of={ColorStories.LineAndFocusTokens} />
+
+## The brand scale
+
+One hue, seven steps. Severity is depth, not hue — which is why `--destructive`
+resolves to the deepest green step and the palette carries no red at all.
+
+Steps `700` and `900` are the text-safe ones. Steps `500` and `600` are fills:
+using them as text color fails body-text contrast.
+
+<Story of={ColorStories.BrandScale} />
+
+## Charts
+
+Five steps, ordered so that adjacent series stay distinguishable.
+
+<Story of={ColorStories.ChartTokens} />
+
+## Status
+
+Flat across both themes — a status color that shifted with the theme would
+stop being recognisable. `--status-warning` is a solid fill bright enough that
+text on it needs `--status-warning-text`, not `--foreground`.
+
+<Story of={ColorStories.StatusTokens} />
+
+## Everything at once
+
+<Story of={ColorStories.AllTokens} />

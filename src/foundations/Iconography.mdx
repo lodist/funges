@@ -1,0 +1,60 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as IconographyStories from './Iconography.stories';
+
+<Meta of={IconographyStories} />
+
+# Iconography
+
+The set is [Lucide](https://lucide.dev), whole and unmodified. There is no
+curated subset and no custom icon library — if Lucide has it, use it.
+
+What is worth documenting is not _which_ icons but _how_ they are drawn, since
+that is what drifts when every screen decides for itself.
+
+## Sizing
+
+Four steps. Pick by context, not by eye.
+
+<Story of={IconographyStories.Sizes} />
+
+Two components size their icons for you:
+
+- **Button** forces 16px on any child SVG that has no explicit size class.
+- **Badge** forces 12px, unconditionally.
+
+Setting a size inside either one is redundant at best and a fight with the
+component at worst.
+
+## Stroke
+
+Lucide draws at a nominal stroke width of 2, and that is the answer almost
+always.
+
+<Story of={IconographyStories.Stroke} />
+
+Deviating is legitimate at the extremes of the size scale — 1.5 at 32px, 2.5 at
+12px against a fill — and nowhere else. A screen that picks 1.5 at 16px does
+not have a refined look; it has lighter icons than every other screen.
+
+## Color and alignment
+
+<Story of={IconographyStories.ColorAndAlignment} />
+
+Icons inherit `currentColor`, so an icon inside muted text is already muted. An
+icon that needs its own color class is usually a sign the surrounding text
+color is wrong.
+
+### Accessibility
+
+Two rules, and they are not interchangeable:
+
+- **Icon beside a label** — decorative. Mark it `aria-hidden` so a screen
+  reader does not announce the same thing twice.
+- **Icon as the whole control** — the control needs an `aria-label`. Nothing
+  else names it, and axe will fail the build if it is missing. That is not
+  hypothetical: promoting the a11y gate in this ticket caught exactly this in
+  five existing stories.
+
+## The set in use
+
+<Story of={IconographyStories.AllIcons} />

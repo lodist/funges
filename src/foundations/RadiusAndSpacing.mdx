@@ -1,0 +1,45 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as RadiusStories from './RadiusAndSpacing.stories';
+
+<Meta of={RadiusStories} />
+
+# Radius and spacing
+
+Two derived scales. Neither is a list of values to memorise — each is one base
+number with the steps computed off it, so retuning the base moves everything
+together.
+
+## Radius
+
+`--radius` is `0.5rem`, and the four steps sit ±4px around it.
+
+<Story of={RadiusStories.RadiusScale} />
+
+### Past the derived scale
+
+The redesigned atoms deliberately reach outside it: pills for anything you
+press, and a generous `rounded-2xl` for content surfaces. Worth knowing that
+these are Tailwind defaults rather than project tokens — they do **not** move
+when `--radius` does.
+
+<Story of={RadiusStories.BeyondTheScale} />
+
+Which shape a component takes is the variant's decision, not the size's. A
+button's pill shape comes from its variant; adding a `rounded-md` alongside it
+squares off the corner regardless of variant, because the later utility wins.
+
+## Spacing
+
+`--spacing` is `0.25rem`, so every step is a multiple of 4px.
+
+<Story of={RadiusStories.SpacingScale} />
+
+Padding, gaps and margins all draw from this one rhythm. A 5px gap is not a
+small deviation — it is off the grid, and it is visible next to anything that
+is on it.
+
+<Story of={RadiusStories.SpacingInPractice} />
+
+## Everything at once
+
+<Story of={RadiusStories.AllRadiusAndSpacing} />
