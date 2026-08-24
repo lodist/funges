@@ -134,6 +134,10 @@ ci-check: install-ci
 	npm run type-check
 	@echo "Running unit tests..."
 	npx vitest run --project unit
+	@echo "Installing the browser the Storybook project runs in..."
+	npx playwright install --with-deps chromium
+	@echo "Running Storybook stories (renders every story, axe-gated)..."
+	npx vitest run --project storybook
 	@echo "Building for production..."
 	npm run build
 	@echo "All CI checks passed."
