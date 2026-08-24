@@ -11,6 +11,12 @@ import {
   Download,
 } from 'lucide-react';
 
+// One list, used by both the controls and the matrix story below. `cva` keeps
+// its variant config private at runtime, so there is nothing to read back off
+// `badgeVariants` — but keeping a single copy per file means adding a variant
+// is two edits rather than three.
+const VARIANTS = ['default', 'secondary', 'destructive', 'outline'] as const;
+
 const meta: Meta<typeof Badge> = {
   title: 'Atoms/Badge',
   component: Badge,
@@ -27,7 +33,7 @@ const meta: Meta<typeof Badge> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['default', 'secondary', 'destructive', 'outline'],
+      options: VARIANTS,
       description: 'The visual style variant of the badge',
     },
     asChild: {
@@ -336,22 +342,12 @@ export const InTable: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className='grid grid-cols-2 gap-4 w-full max-w-md'>
-      <div className='space-y-2'>
-        <h4 className='font-medium'>{'Default'}</h4>
-        <Badge>{'Default Badge'}</Badge>
-      </div>
-      <div className='space-y-2'>
-        <h4 className='font-medium'>{'Secondary'}</h4>
-        <Badge variant='secondary'>{'Secondary Badge'}</Badge>
-      </div>
-      <div className='space-y-2'>
-        <h4 className='font-medium'>{'Destructive'}</h4>
-        <Badge variant='destructive'>{'Destructive Badge'}</Badge>
-      </div>
-      <div className='space-y-2'>
-        <h4 className='font-medium'>{'Outline'}</h4>
-        <Badge variant='outline'>{'Outline Badge'}</Badge>
-      </div>
+      {VARIANTS.map(variant => (
+        <div key={variant} className='space-y-2'>
+          <h4 className='font-medium'>{variant}</h4>
+          <Badge variant={variant}>{variant}</Badge>
+        </div>
+      ))}
     </div>
   ),
   parameters: {

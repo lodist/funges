@@ -66,6 +66,34 @@ const meta: Meta<typeof Form> = {
     },
   },
   tags: ['autodocs'],
+  // `Form` is React Hook Form's `FormProvider` under a project name: its props
+  // are the whole `useForm` return value, spread. There is nothing a control
+  // could usefully manipulate — you cannot type a form instance into a knob —
+  // so these document the contract instead of offering controls. The props
+  // worth knowing about belong to the subcomponents, and are described here
+  // because `Form` is the only thing autodocs can introspect.
+  argTypes: {
+    children: {
+      control: false,
+      description:
+        'The form element and its fields. Each field is a `FormField` with a `control` and a `name`, wrapping a `FormItem`.',
+    },
+    control: {
+      control: false,
+      description:
+        'From `useForm()`. Passed to every `FormField` so it can register its own field.',
+    },
+    handleSubmit: {
+      control: false,
+      description:
+        'From `useForm()`. Wrap your submit handler in it so validation runs first.',
+    },
+    formState: {
+      control: false,
+      description:
+        'From `useForm()`. `FormMessage` reads the field error out of it, so an error needs no prop threading.',
+    },
+  },
 };
 
 export default meta;

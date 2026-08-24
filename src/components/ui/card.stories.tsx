@@ -39,7 +39,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // Basic Card Examples
-export const Basic: Story = {
+export const Default: Story = {
   render: () => (
     <Card className='w-[350px]'>
       <CardHeader>
@@ -421,5 +421,100 @@ export const HorizontalLayout: Story = {
   ),
   parameters: {
     layout: 'padded',
+  },
+};
+
+/**
+ * The matrix the per-atom bar asks for.
+ *
+ * Card has no `variant` prop — what varies is which of its seven slots are
+ * filled — so the matrix is an anatomy view rather than a variant grid. It also
+ * replaces the all-at-once view Card briefly lost: the `ElevationLevels` and
+ * glass stories that used to live here were token documentation, and moved to
+ * `Foundations/Elevation and glass` where they belong.
+ */
+export const AllCompositions: Story = {
+  render: () => (
+    <div className='grid w-full max-w-5xl grid-cols-1 gap-6 lg:grid-cols-2'>
+      {[
+        {
+          label: 'header only',
+          content: (
+            <CardHeader>
+              <CardTitle>{'Title'}</CardTitle>
+              <CardDescription>{'Description'}</CardDescription>
+            </CardHeader>
+          ),
+        },
+        {
+          label: 'header + content',
+          content: (
+            <>
+              <CardHeader>
+                <CardTitle>{'Title'}</CardTitle>
+                <CardDescription>{'Description'}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className='text-sm'>{'Body content.'}</p>
+              </CardContent>
+            </>
+          ),
+        },
+        {
+          label: 'header + content + footer',
+          content: (
+            <>
+              <CardHeader>
+                <CardTitle>{'Title'}</CardTitle>
+                <CardDescription>{'Description'}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className='text-sm'>{'Body content.'}</p>
+              </CardContent>
+              <CardFooter>
+                <Button size='sm'>{'Action'}</Button>
+              </CardFooter>
+            </>
+          ),
+        },
+        {
+          label: 'header with action',
+          content: (
+            <>
+              <CardHeader>
+                <CardTitle>{'Title'}</CardTitle>
+                <CardDescription>{'Description'}</CardDescription>
+                <CardAction>
+                  <Button variant='ghost' size='sm' aria-label='Share'>
+                    <Share className='h-4 w-4' />
+                  </Button>
+                </CardAction>
+              </CardHeader>
+              <CardContent>
+                <p className='text-sm'>
+                  {'CardAction pins itself to the header’s trailing edge.'}
+                </p>
+              </CardContent>
+            </>
+          ),
+        },
+      ].map(composition => (
+        <div key={composition.label} className='flex flex-col gap-2'>
+          <p className='text-muted-foreground font-mono text-xs'>
+            {composition.label}
+          </p>
+          <Card>{composition.content}</Card>
+        </div>
+      ))}
+    </div>
+  ),
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        story:
+          'Every arrangement of the card’s slots in one view. Card has no variants, so this is an anatomy matrix rather than a variant grid.',
+      },
+    },
   },
 };

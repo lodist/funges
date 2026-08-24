@@ -359,3 +359,69 @@ export const Typefaces: Story = {
     },
   },
 };
+
+/**
+ * The matrix the per-atom bar asks for: every type and every state the input
+ * is rendered in, side by side. Input has no `variant` prop — `type` and the
+ * validation/disabled states are what vary.
+ */
+export const AllTypesAndStates: Story = {
+  render: () => (
+    <div className='grid w-full max-w-4xl grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2'>
+      {[
+        { label: 'text', props: { type: 'text', placeholder: 'Plain text' } },
+        {
+          label: 'email',
+          props: { type: 'email', placeholder: 'you@example.com' },
+        },
+        {
+          label: 'password',
+          props: { type: 'password', defaultValue: 'secret' },
+        },
+        { label: 'number', props: { type: 'number', defaultValue: 42 } },
+        { label: 'search', props: { type: 'search', placeholder: 'Search' } },
+        {
+          label: 'tel',
+          props: { type: 'tel', placeholder: '+39 000 000 0000' },
+        },
+        { label: 'url', props: { type: 'url', placeholder: 'https://' } },
+        { label: 'date', props: { type: 'date' } },
+        { label: 'time', props: { type: 'time' } },
+        { label: 'file', props: { type: 'file' } },
+        { label: 'with value', props: { defaultValue: 'Chanterelle' } },
+        {
+          label: 'disabled',
+          props: { disabled: true, defaultValue: 'Locked' },
+        },
+        {
+          label: 'read-only',
+          props: { readOnly: true, defaultValue: 'Not editable' },
+        },
+        {
+          label: 'required',
+          props: { required: true, placeholder: 'Required' },
+        },
+        {
+          label: 'invalid',
+          props: { 'aria-invalid': true, defaultValue: 'Bad value' },
+        },
+      ].map(state => (
+        <div key={state.label} className='flex flex-col gap-1'>
+          <p className='text-muted-foreground font-mono text-xs'>
+            {state.label}
+          </p>
+          <Input aria-label={state.label} {...state.props} />
+        </div>
+      ))}
+    </div>
+  ),
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        story:
+          'Every input type and state in one view. Note that `type` changes the native control the browser renders, so date, time and file look markedly different from the rest and are not stylable to match.',
+      },
+    },
+  },
+};

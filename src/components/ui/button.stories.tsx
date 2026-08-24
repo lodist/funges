@@ -2,6 +2,23 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from '@/components/ui/button';
 import { Search, Download, Heart, Settings } from 'lucide-react';
 
+// One list per axis, used by both the controls and the matrix stories below.
+// Written out rather than derived: `cva` keeps its variant config private, so
+// there is nothing to read back off `buttonVariants` at runtime. Keeping one
+// copy per file at least means adding a variant is two edits (here and the cva
+// definition) rather than three.
+const VARIANTS = [
+  'default',
+  'destructive',
+  'outline',
+  'enhanced-outline',
+  'secondary',
+  'ghost',
+  'link',
+] as const;
+
+const SIZES = ['default', 'sm', 'lg', 'icon'] as const;
+
 const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
   component: Button,
@@ -18,20 +35,12 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: [
-        'default',
-        'destructive',
-        'outline',
-        'enhanced-outline',
-        'secondary',
-        'ghost',
-        'link',
-      ],
+      options: VARIANTS,
       description: 'The visual style variant of the button',
     },
     size: {
       control: { type: 'select' },
-      options: ['default', 'sm', 'lg', 'icon'],
+      options: SIZES,
       description: 'The size of the button',
     },
     disabled: {
@@ -193,13 +202,11 @@ export const Interactive: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className='grid grid-cols-2 gap-4 w-full max-w-2xl'>
-      <Button variant='default'>{'Default'}</Button>
-      <Button variant='secondary'>{'Secondary'}</Button>
-      <Button variant='outline'>{'Outline'}</Button>
-      <Button variant='enhanced-outline'>{'Enhanced Outline'}</Button>
-      <Button variant='ghost'>{'Ghost'}</Button>
-      <Button variant='link'>{'Link'}</Button>
-      <Button variant='destructive'>{'Destructive'}</Button>
+      {VARIANTS.map(variant => (
+        <Button key={variant} variant={variant}>
+          {variant}
+        </Button>
+      ))}
     </div>
   ),
   parameters: {
