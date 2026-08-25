@@ -681,7 +681,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
 
             No role='alert': it is static, so announcing it on every render would
             fight the toxic banner that genuinely needs the assertive channel. */}
-        <div className='flex items-start gap-2 rounded-lg bg-status-warning-background px-3 py-2 ring-2 ring-status-warning-border/60 /40'>
+        <div className='flex items-start gap-2 rounded-lg bg-status-warning-background px-3 py-2 ring-2 ring-status-warning-border/60'>
           <AlertTriangle
             className='mt-0.5 h-4 w-4 shrink-0 text-status-warning-text'
             aria-hidden='true'

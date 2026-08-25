@@ -63,11 +63,7 @@ const MapFallback: React.FC<MapFallbackProps> = ({
               <div className='text-sm text-status-warning-text mb-3 leading-relaxed'>
                 <Trans>{errorMessage || t('fallback.message')}</Trans>
               </div>
-              <Button
-                asChild
-                size='sm'
-                className='w-full bg-status-warning hover:bg-status-warning text-white border-status-warning-border hover:border-status-warning-border text-sm'
-              >
+              <Button asChild size='sm' className='w-full text-sm'>
                 <Link to={`${basePath}support`}>
                   <Heart className='h-4 w-4 mr-2' />
                   {t('fallback.support')}

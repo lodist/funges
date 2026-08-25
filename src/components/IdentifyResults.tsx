@@ -70,10 +70,10 @@ export function IdentifyResults({
       {showToxicBanner && (
         <div
           role='alert'
-          /* Core Tailwind amber, not bg-status-warning: this needs explicit
-             dark-mode variants and bg-status-warning is flat across themes.
-             Stronger than the standing disclaimer's halo, which is the
-             hierarchy this feature depends on. */
+          /* The warning tokens, which are theme-aware and derived from the map
+             score ramp. Border-2 rather than a different colour is what makes
+             this stronger than the standing disclaimer's halo — the hierarchy
+             this feature depends on. */
           className={
             'rounded-lg border-2 border-status-warning-border bg-status-warning-background p-3 flex gap-2 ' +
             'text-status-warning-text   '

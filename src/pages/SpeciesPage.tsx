@@ -122,7 +122,7 @@ export default function SpeciesPage() {
         </div>
 
         {/* Safety Notes - shown once, above the species grid */}
-        <div className='mb-8 bg-status-warning border border-status-warning-border rounded-lg p-3'>
+        <div className='mb-8 bg-status-warning-background border border-status-warning-border rounded-lg p-3'>
           <div className='flex items-start gap-2'>
             <AlertTriangle className='h-4 w-4 text-status-warning-text mt-0.5 flex-shrink-0' />
             <div>

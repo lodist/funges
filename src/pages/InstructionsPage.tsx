@@ -159,7 +159,7 @@ export default function InstructionsPage() {
               <p>{t('identify.intro')}</p>
               <p>{t('identify.onDevice')}</p>
               <p>{t('identify.howTo')}</p>
-              <p className='rounded-lg bg-status-warning p-4 text-sm'>
+              <p className='rounded-lg bg-status-warning-background border border-status-warning-border p-4 text-sm text-status-warning-text'>
                 {t('identify.limits')}
               </p>
             </CardContent>

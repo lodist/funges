@@ -1,29 +1,37 @@
 ---
 name: Fung.es
-description: A foraging map PWA whose interface floats over living terrain — warm paper, one living green, glass chrome.
+description: A foraging map PWA whose interface floats over living terrain — warm paper, one living green, glass chrome. Two hue angles only: 150 for colour, 90 for neutrals.
 colors:
-  chlorophyll-mist: 'oklch(0.97 0.03 152)'
-  chlorophyll-tint: 'oklch(0.93 0.06 152)'
-  chlorophyll-soft: 'oklch(0.85 0.12 151)'
+  chlorophyll-mist: 'oklch(0.97 0.03 150)'
+  chlorophyll-tint: 'oklch(0.93 0.06 150)'
+  chlorophyll-soft: 'oklch(0.85 0.12 150)'
   chlorophyll-bright: 'oklch(0.74 0.17 150)'
   chlorophyll-pressed: 'oklch(0.65 0.18 150)'
-  chlorophyll-readable: 'oklch(0.42 0.13 150)'
+  chlorophyll-readable: 'oklch(0.42 0.122 150)'
   chlorophyll-deep: 'oklch(0.24 0.07 150)'
-  moss-fill: 'oklch(0.9582 0.0193 147.8505)'
-  moss-text: 'oklch(0.5262 0.1294 147.1971)'
-  lichen: 'oklch(0.6731 0.1624 144.2083)'
-  field-paper: 'oklch(0.9938 0.0013 106.4231)'
-  warm-linen: 'oklch(0.952 0.0083 91.4843)'
-  trail-tan: 'oklch(0.9356 0.0194 72.5693)'
-  bark: 'oklch(0.4506 0.0552 64.6273)'
-  ink: 'oklch(0.2431 0.0076 95.3724)'
-  stone: 'oklch(0.5261 0.0151 82.3829)'
-  hairline: 'oklch(0.9071 0.01 87.4748)'
-  night-canvas: 'oklch(0.2683 0.0279 150.7681)'
-  night-surface: 'oklch(0.3327 0.0271 146.9867)'
-  status-amber: '#f59e0b'
-  status-success: '#4cba73'
-  status-info: '#3b82f6'
+  brand-text-dark: 'oklch(0.72 0.15 150)'
+  moss-fill: 'oklch(0.9582 0.0193 150)'
+  moss-text: 'oklch(0.5 0.1294 150)'
+  lichen: 'oklch(0.6731 0.1624 150)'
+  field-paper: 'oklch(0.9938 0.0013 90)'
+  warm-linen: 'oklch(0.952 0.0083 90)'
+  trail-tan: 'oklch(0.9356 0.0194 90)'
+  bark: 'oklch(0.4506 0.0552 90)'
+  ink: 'oklch(0.2431 0.0076 90)'
+  stone: 'oklch(0.5261 0.0151 90)'
+  hairline: 'oklch(0.9071 0.01 90)'
+  night-canvas: 'oklch(0.2683 0.0279 90)'
+  night-surface: 'oklch(0.3327 0.0271 90)'
+  category-mushroom: 'oklch(0.3 0.086 150)'
+  category-berry: 'oklch(0.37 0.111 150)'
+  category-plant: 'oklch(0.44 0.127 150)'
+  category-flower: 'oklch(0.51 0.143 150)'
+  category-nut: 'oklch(0.58 0.161 150)'
+  status-success: 'oklch(0.42 0.122 150)'
+  status-info: 'oklch(0.42 0.122 150)'
+  warning-fill: '#fa733d'
+  warning-text: '#800020'
+  warning-border: '#fb4646'
 typography:
   display:
     fontFamily: "'Space Grotesk', sans-serif"
@@ -143,14 +151,16 @@ components:
 
 The Trailhead is the moment before you set off: the signpost is green, the ground is warm, and everything you need to read is legible in full daylight. That moment sets every decision in this system. The map is the world — a living, unpredictable, edge-to-edge surface the interface has no control over — and every piece of chrome is something that floats above it: a signpost, a marker, a field card. The interface never competes with the terrain; it hovers over it and stays readable against whatever the terrain happens to be doing underneath.
 
-The mood is fresh, alive, and tactile. A single spring-green hue does all the signalling, and it is a green with actual chroma in it — `oklch(0.74 0.17 150)`, the color of new growth rather than corporate forest. Everything interactive is a soft-edged pill with a diffuse drop shadow and no border, so surfaces read as pressable objects sitting on warm paper rather than as boxes drawn onto a page. Warm neutrals carry the ground (`#fdfdfc` paper, `#f1efe9` linen, `#f2e8dc` tan): there is no cool grey anywhere in the light theme, and the absence is deliberate — cool grey is what makes an outdoor tool feel like an admin panel.
+The mood is fresh, alive, and tactile. A single spring-green hue does all the signalling, and it is a green with actual chroma in it — `oklch(0.74 0.17 150)`, the color of new growth rather than corporate forest. Everything interactive is a soft-edged pill with a diffuse drop shadow and no border, so surfaces read as pressable objects sitting on warm paper rather than as boxes drawn onto a page. Warm neutrals carry the ground (`#fdfdfc` paper, `#f1efe9` linen, `#f2e8dc` tan): there is no cool grey anywhere in either theme, and the absence is deliberate — cool grey is what makes an outdoor tool feel like an admin panel.
 
-Restraint is enforced in exactly one place and it is the sharpest rule in the system: there is no second hue. No red, not even for destructive actions. Severity is expressed as depth on the green scale, not as a change of hue. The one thing this system rejects is the multi-hue semantic palette — a green for success, a red for danger, a blue for info — and the rejection is already shipped in `--destructive: var(--happy-900)`.
+Restraint is enforced in exactly one place and it is the sharpest rule in the system: **two hue angles, and only two.** Hue 150 for everything chromatic, hue 90 for every neutral. No red, not even for destructive actions; no blue for links or info; no separate green for success; no hue-coded categories. Severity is depth on the green scale, never a change of hue. The multi-hue semantic palette — a green for success, a red for danger, a blue for info — is the one thing this system rejects outright, and the rejection is now enforced rather than described: all 22 Tailwind color families are disabled in `@theme`, and `src/test/palette.test.ts` fails the build the moment a third hue angle appears in the theme.
+
+The single sanctioned exception is the map's score ramp, the yellow-through-burgundy scale that paints the polygons. It is its own family because a heat scale cannot be a single hue, and safety warnings borrow from it rather than introducing anything new.
 
 **Key Characteristics:**
 
-- One hue, seven steps: a spring-green scale carries brand, state, and severity alike.
-- Warm-neutral ground; zero cool grey in the light theme.
+- Two hue angles total: 150 for all colour, 90 for all neutrals, plus the map ramp.
+- Warm-neutral ground in both themes; zero cool grey, enforced at build time.
 - Borderless, full-round, shadow-lifted interactive surfaces.
 - Five semantic elevation roles, chosen by meaning rather than by shadow value.
 - Glass as an opt-in material on small chrome only — never on the map, never on a dialog.
@@ -158,47 +168,65 @@ Restraint is enforced in exactly one place and it is the sharpest rule in the sy
 
 ## Colors
 
-A single spring-green scale doing every job a palette usually spreads across four hues, laid over warm paper neutrals.
+Two hue families and nothing else: one spring-green hue carrying every signal, one warm angle carrying every neutral. Every chromatic token in the theme sits at **hue 150**; every neutral sits at **hue 90**. That is the whole palette geometry, and `src/test/palette.test.ts` fails the build if a third angle appears.
+
+The map's score ramp is the single sanctioned exception, and safety warnings borrow from it rather than adding a family of their own.
 
 ### Primary
 
-- **Spring Chlorophyll Bright** (`--happy-500`): the go-signal. Solid fills on primary buttons and default badges, always paired with Chlorophyll Deep text rather than white. Bright enough to read as "new growth" and deliberately never used as a text color on paper.
-- **Spring Chlorophyll Pressed** (`--happy-600`, aliased as `--primary` and `--ring`): the canonical brand value every custom component inherits through `bg-primary` / `text-primary` / `border-primary`, and the focus-ring color. One step down from Bright so pressed and focused states read as settling, not brightening.
-- **Spring Chlorophyll Readable** (`--happy-700`): the only green permitted as text or icon color on light surfaces. Ghost-button labels and green iconography live here.
-- **Spring Chlorophyll Deep** (`--happy-900`, aliased as `--destructive` and `--primary-foreground`): text on bright green fills, and the stand-in for danger. Destroying something is the deepest green in the system, never red.
+- **Spring Chlorophyll Bright** (`--happy-500`, `oklch(0.74 0.17 150)`): the go-signal. Solid fills on primary buttons and default badges, always paired with Chlorophyll Deep text rather than white. Deliberately never a text color on paper — it measures 2.12:1 there.
+- **Spring Chlorophyll Pressed** (`--happy-600`, aliased as `--primary`): the canonical brand value every custom component inherits through `bg-primary` / `text-primary` / `border-primary`. One step down from Bright so pressed states read as settling, not brightening. Not a text color and not the focus ring — at 2.95:1 on paper it misses even the 3:1 non-text floor.
+- **Spring Chlorophyll Readable** (`--happy-700`, `oklch(0.42 0.122 150)`, aliased as `--ring` and `--sidebar-ring`): the only green permitted as text or icon color on light surfaces, at 7.73:1, and the focus-ring color for the same reason.
+- **Spring Chlorophyll Deep** (`--happy-900`, aliased as `--destructive` and `--primary-foreground`): text on bright green fills, and the stand-in for danger. Destroying something is the deepest green in the system, never red — in **both** themes.
 - **Spring Chlorophyll Mist / Tint / Soft** (`--happy-50` / `--happy-100` / `--happy-300`): wash states. Mist is ghost-button hover; Tint is the sidebar's hover/active nav background; Soft is available for large low-emphasis fills.
+- **Brand Text** (`--primary-text`): the theme-aware, text-safe brand color — `--happy-700` in light, `oklch(0.72 0.15 150)` in dark. Links, green icons, and both non-warning status tokens resolve here. It exists because `--primary` cannot carry text, and its absence is what sent every link to Tailwind `blue-600`.
 
 ### Secondary
 
-- **Moss Fill** (`--secondary`) with **Moss Text** (`--secondary-foreground`): the quieter, older green pairing that predates the Trailhead scale. Secondary badges and low-emphasis chips. Light tint plus dark text, never a solid mid-green fill with white text.
-- **Lichen** (`--primary` / `--chart-1` / `--sidebar-primary` in dark mode): the dark theme's green. Lighter and less saturated than the Trailhead scale because a vivid green cannot hold its contrast against `#171717`.
+- **Moss Fill** (`--secondary`) with **Moss Text** (`--secondary-foreground`): the quieter green pairing, 4.63:1. Secondary badges and low-emphasis chips. Light tint plus dark text, never a solid mid-green fill with white text.
+- **Lichen** (dark `--primary`, dark `--sidebar-primary`): the dark theme's brand green, lighter and less saturated because a vivid green cannot hold contrast against the dark ground. A fill and an indicator, not a text color — dark-mode text uses `--primary-text`.
 
 ### Tertiary
 
-- **Trail Tan** (`--accent`) with **Bark** (`--accent-foreground`): the warm-neutral accent pairing, used where a surface needs to feel like material rather than UI. This is a light tint with dark text by deliberate choice — the solid warm-brown fill it replaces reaches only 3.53:1 with white text and fails body-text contrast.
+- **Trail Tan** (`--accent`) with **Bark** (`--accent-foreground`): the warm-neutral accent pairing at hue 90, used where a surface needs to feel like material rather than UI. A light tint with dark text by deliberate choice — a solid warm fill reaches only 3.53:1 with white text. In dark mode it is a dark warm tint with light text at 9.22:1, not the solid mid-green it used to be at 3.47:1.
 
 ### Neutral
 
+Every neutral sits at hue 90 in both themes. There used to be ten different angles here.
+
 - **Field Paper** (`--background`, `--card`, `--popover`): the light theme's ground and every card surface. Warm off-white, never `#fff`.
 - **Warm Linen** (`--muted`): muted fills and inactive tracks.
-- **Ink** (`--foreground`): all body and heading text on light surfaces.
+- **Ink** (`--foreground`): all body and heading text on light surfaces, 16:1.
 - **Stone** (`--muted-foreground`): secondary and tertiary text. The `.text-secondary` and `.text-tertiary` utilities both resolve here — the tertiary step is nominal, not a distinct value.
 - **Hairline** (`--border`, `--input`): dividers and the few borders that survive. Most components have none.
-- **Night Canvas** (dark `--background`, dark `--sidebar`) and **Night Surface** (dark `--card`, `--muted`, `--popover`): the dark theme's two grounds. Both carry a green cast in their chroma rather than being neutral black.
+- **Night Canvas** (dark `--background`, dark `--sidebar`) and **Night Surface** (dark `--card`, `--muted`, `--popover`): the dark theme's two grounds — warm at hue 90 like their light counterparts, not the green-cast values they used to carry.
+
+### Categories
+
+Species categories are the one place a palette usually reaches for five hues. Here they are five steps of the one hue, each at roughly 95% of the in-gamut chroma for its lightness so the steps sit as far apart as hue 150 allows: `--category-mushroom` (12.09:1 on paper), `--category-berry` (9.80), `--category-plant` (7.23), `--category-flower` (5.10), `--category-nut` (3.78). `--chart-1` … `--chart-5` alias the same five, so charts and map markers cannot drift apart again.
+
+Values live in `src/index.css`; `src/lib/categoryColor.ts` is the only way to read them. Use `categoryVar()` wherever CSS resolves, and `categoryColor()` only for APIs that need a literal — maplibre's `Marker({ color })` writes into an SVG fill attribute and cannot take a `var()`.
 
 ### Status
 
-- **Status Amber** (`--status-warning`), **Status Success** (`--status-success`), **Status Info** (`--status-info`): flat across both themes. Amber is the one that earns its keep — foraging safety warnings are the single place this system permits a non-green hue, and `--status-warning-text` / `--status-warning-border` are mixed toward black rather than toward the foreground so they hold contrast on the bright amber fill in either theme.
+- **Success** and **Info** (`--status-success`, `--status-info`) both resolve to `--primary-text`. They are not their own hues. The `#4cba73` and `#3b82f6` they used to hold were a fifth green family and a blue measuring 3.61:1 as text.
+- **Safety warning** (`--status-warning` plus its `-background` / `-text` / `-border`) is drawn from the map score ramp: stop 6 as the fill, stop 10 as the light-theme text, stop 5 as the dark-theme text, stop 8 as the edge. A toxic-lookalike warning has to shout, and borrowing the ramp lets it shout without adding a hue. `src/test/palette.test.ts` asserts these stay literal ramp stops.
 
 ### Named Rules
 
-**The One Hue Rule.** The Trailhead scale is the only brand hue on any screen. Severity is depth, not hue: `--destructive` resolves to `--happy-900`. The sole exception is safety warning amber, which exists because a toxic-lookalike warning must not read as decoration.
+**The Two-Family Rule.** Hue 150 for everything chromatic, hue 90 for everything neutral. The map score ramp is the only other hue family in the product, and safety warnings are its only appearance off the map. A third angle in `src/index.css` fails `src/test/palette.test.ts`.
 
-**The Text-Safe Step Rule.** Greens split into text-safe and fill-only. `--happy-700` and Moss Text are text-safe. `--happy-500` and the `grass9`-derived values are fills, rings, and non-text indicators only, held to the 3:1 non-text floor. Using a fill-only green as a text color is a contrast bug, not a style choice.
+**The One Hue Rule.** Severity is depth, not hue. `--destructive` is the deepest green in both themes; there is no red anywhere, no blue for info, no separate green for success, and no hue-coded categories.
 
-**The Light-Only Rule.** The `--happy-*` scale is a light-theme scale; it was never reviewed in dark mode. Dark-mode components fall back to the pre-existing tokens (Lichen, Night Surface) instead. When adding a component that hardcodes a `--happy-*` step, pair it with a dark-mode fallback that doesn't.
+**The Text-Safe Step Rule.** Colors split into text-safe and fill-only, and this is a contrast fact rather than a style preference. Text-safe: `--primary-text` / `--happy-700`, Moss Text, Ink, Stone, `--status-warning-text`. Fill-only, held to the 3:1 non-text floor: `--happy-500`, `--happy-600` / `--primary`, `--status-warning`, Lichen. Putting 14px text on `--status-warning` yields 3.91:1 at best — callouts use `--status-warning-background`, where the same text reads 10.21:1.
 
-**The Warm Ground Rule.** No cool grey in the light theme. Every neutral carries a warm hue angle (64–107 in OKLCH). A `#f5f5f5`, a `slate-100`, or a pure `#fff` background is out of system.
+**The No-Default-Palette Rule.** All 22 Tailwind color families are set to `initial` in the `@theme` block, so `text-gray-700` and `bg-blue-50` emit nothing at all. This is deliberate — 453 of them had accumulated, 294 of those cool grey. A color utility that renders nothing means you reached for a family this system does not have; use a token.
+
+**The Warm Ground Rule.** No cool grey, in either theme. A `#f5f5f5`, a `slate-100`, or a pure `#fff` background is out of system. Pure white survives in exactly two places: translucent white washes over media, and the QR code, which needs literal `#000`/`#fff` to scan.
+
+**The Registered-Token Rule.** The brand scale ships as real utilities (`bg-happy-50`, `text-happy-700`), not as `[var(--happy-N)]` arbitrary values. Add new tokens to the `@theme` block in `src/index.css` — that is the live theme, and `tailwind.config.js` carries none.
+
+**The Light-Tuned Scale Rule.** The `--happy-*` steps are absolute: they do not change between themes, and their contrast figures are measured against Field Paper. Anything that needs to work in both themes reads a semantic token instead — `--primary`, `--primary-text`, `--destructive`, `--secondary` — every one of which has a dark-mode value. Reach for a literal `--happy-*` step only where a component genuinely needs two steps of the scale at once, such as a button's fill against its own label.
 
 ## Typography
 
@@ -244,7 +272,7 @@ Touch targets sit at 44px (`h-11`) for buttons and 48px (`h-12`) for the search 
 
 Depth in this system is structural and role-first. There are five named elevation roles, and you choose the role that describes what a surface _is_ — the shadow value is a consequence, never a choice. The scale is `base` → `raised-subtle` → `raised` → `floating` → `overlay`, and the definitions are load-bearing: `raised` means small static chrome, `floating` means dismiss-by-tap-outside, `overlay` means blocking-with-a-scrim. The mobile bottom nav visually hovers over the map but is `raised`, not `floating`, because it is persistent primary nav — the taxonomy follows behavior, not appearance.
 
-In light mode the roles are diffuse black drop shadows. In dark mode the geometry is identical (same offsets, same blur, so it stays recognizably one scale) but the alpha deepens and a 1px inset white highlight becomes the primary depth cue, because a 6–24% black shadow is invisible against `#171717`. Per ADR 0001 these are _not_ aliases of the `--shadow-*` scale, which is weaker and predates the current look; the `--elevation-*` tokens are the single source of truth and `--shadow-*` is legacy.
+In light mode the roles are diffuse black drop shadows. In dark mode the geometry is identical (same offsets, same blur, so it stays recognizably one scale) but the alpha deepens and a 1px inset white highlight becomes the primary depth cue, because a 6–24% black shadow is invisible against Night Canvas. Per ADR 0001 these are _not_ aliases of the `--shadow-*` scale, which is weaker and predates the current look; the `--elevation-*` tokens are the single source of truth and `--shadow-*` is legacy.
 
 Glass is a separate, opt-in _material_ layered on top of a role — never a replacement for one. It is restricted to small, fixed-size, not-text-heavy chrome at `raised` or `floating`.
 
@@ -329,24 +357,27 @@ Three durations and one curve, and everything references them: `--duration-fast:
 ### Do:
 
 - **Do** pick an elevation role (`.elevation-raised`, `.elevation-floating`) and let the shadow follow. Reach for `.elevation-interactive` when the surface responds to hover.
-- **Do** keep every green in its lane: `--happy-700` and Moss Text for text and icons, `--happy-500` for fills and indicators only.
-- **Do** express severity as depth on the green scale. `--destructive` is `--happy-900` and that is correct, not a placeholder.
+- **Do** keep every colour in its lane: `--primary-text` and Moss Text for text and icons, `--happy-500` / `--happy-600` / `--status-warning` for fills and indicators only.
+- **Do** express severity as depth on the green scale. `--destructive` is the deepest green in both themes and that is correct, not a placeholder.
+- **Do** reach for `--primary-text` for any green text or icon, and `--status-warning-background` for any warning callout. Those two tokens cover the cases that used to reach for Tailwind blue and Tailwind amber.
+- **Do** read category colour through `src/lib/categoryColor.ts`, and always ship a category colour with its icon and label — five steps of one hue separate less well than five hues did.
 - **Do** define the opaque background before the translucent one on any glass surface, and honor `prefers-reduced-transparency` and `prefers-contrast`.
 - **Do** consume `NAV_SURFACE_CLASS` for any new nav chrome instead of respelling `elevation-raised glass-regular`.
 - **Do** keep interactive targets at 44px or larger (48px for the search field). Field use with cold hands is a real constraint.
 - **Do** add tokens to the `@theme` block in `src/index.css` — that is the live theme.
-- **Do** pair any component that hardcodes a `--happy-*` step with a dark-mode fallback on the pre-Trailhead tokens.
+- **Do** use a semantic token (`--primary`, `--primary-text`, `--destructive`, `--secondary`) when a component has to work in both themes; the `--happy-*` steps are absolute and light-tuned.
 - **Do** test text-bearing components in German before calling them done.
 
 ### Don't:
 
-- **Don't** introduce a second hue. No red for destructive, no blue for info, no amber outside genuine foraging safety warnings.
+- **Don't** introduce a third hue angle. No red for destructive, no blue for links or info, no amber of its own, no hue-coded categories. Chromatic is 150, neutral is 90, and `src/test/palette.test.ts` enforces it.
+- **Don't** reach for a Tailwind colour utility. `text-gray-700`, `bg-blue-50`, `border-red-500` and the other 20 families emit nothing — if a colour class renders no colour, that is why.
 - **Don't** write an arbitrary `shadow-[…]` on a new component. It bypasses the role system and will not pick up the dark-theme inset highlight.
 - **Don't** treat `--shadow-*` as the elevation scale. It is legacy, materially weaker than what ships, and aliasing to it regresses the live look (ADR 0001).
 - **Don't** put glass on the map canvas, on a dialog, or on anything text-heavy or size-animating.
-- **Don't** use `--happy-500` or any `grass9`-derived green as a text color. It is held to the 3:1 non-text floor only.
+- **Don't** use `--happy-500`, `--happy-600` / `--primary`, or `--status-warning` as a text color. All three are fill-only, held to the 3:1 non-text floor; `--status-warning` gives 3.91:1 at best, so warning callouts use `--status-warning-background`.
 - **Don't** use `--happy-700` for the mobile nav's active tint — 1.7:1 over translucent dark chrome on a light map.
-- **Don't** add a cool grey or a pure `#ffffff` to the light theme. Every neutral is warm.
+- **Don't** add a cool grey or a pure `#ffffff` to either theme. Every neutral is hue 90. The only surviving pure whites are translucent washes over media and the QR code, which needs literal `#000`/`#fff` to scan.
 - **Don't** add a border to a new primitive. The outline button pair (`outline`, `enhanced-outline`) is the system's entire bordered vocabulary.
 - **Don't** put theme values in `tailwind.config.js` — it carries no theme and is retained only for the shadcn CLI.
 - **Don't** make `body` scroll. The shell is fixed at `100dvh`; give overflowing content its own scroll container.
