@@ -372,6 +372,17 @@ def gaussian(x, mu, sig):
     return np.exp(-np.power(x - mu, 2.) / (2 * np.power(sig, 2.)))
 
 
+def humidity_suitability(x, saturation, sigma):
+    """Score humidity as a deficit curve with no penalty above saturation.
+
+    Below the species threshold this is the same Gaussian used previously.
+    At or above the threshold, additional humidity remains fully suitable.
+    """
+    values = np.asarray(x, dtype=float)
+    deficit = np.minimum(values - saturation, 0.0)
+    return np.exp(-np.power(deficit, 2.0) / (2 * np.power(sigma, 2.0)))
+
+
 def compute_lag_features(df, columns, days):
     df = df.sort_values(by=["Location_Id", "Date"], ascending=[True, True])
     # Lags are keyed on the calendar date, not on row position: a row's "N days ago"
@@ -678,6 +689,18 @@ def _weighted_lag_gaussian(df, base_col, n_days, weights, mu, sigma):
     return score
 
 
+def _weighted_lag_humidity(df, base_col, n_days, weights, saturation, sigma):
+    """Weighted lag score using the one-sided humidity deficit curve."""
+    base = df[base_col]
+    score = np.zeros(len(df), dtype=float)
+    for i, d in enumerate(range(1, n_days + 1)):
+        col = f"{base_col}_{d}days_ago"
+        series = df[col] if col in df.columns else base
+        vals = series.fillna(base).to_numpy(float)
+        score = score + weights[i] * humidity_suitability(vals, saturation, sigma)
+    return score
+
+
 def _ph_score_vectorized(ph_values, optimal_pH, pH_sigma_near, pH_sigma_far, pH_range_near):
     """Vectorized piecewise-sigma pH gaussian; NaN pH -> 0 (matches the original apply)."""
     ph = np.asarray(ph_values, dtype=float)
@@ -725,9 +748,11 @@ def calculate_mushroom_score(df, species_params, zone_curves):
             dH = np.arange(1, hum_days + 1)
             hum_weights = 0.6 * np.exp(-0.5 * ((dH - 9) / 5.0)**2) + 0.4 * np.exp(-0.05 * dH)
             hum_weights /= hum_weights.sum()
-            humidity_score = _weighted_lag_gaussian(df, 'Humidity (%)', hum_days, hum_weights, optimal_humidity, humidity_sigma)
+            humidity_score = _weighted_lag_humidity(
+                df, 'Humidity (%)', hum_days, hum_weights, optimal_humidity, humidity_sigma)
         else:
-            humidity_score = gaussian(df['Humidity (%)'].to_numpy(float), optimal_humidity, humidity_sigma)
+            humidity_score = humidity_suitability(
+                df['Humidity (%)'].to_numpy(float), optimal_humidity, humidity_sigma)
 
         df[f'{specie}_Temp_Score'] = np.clip(temp_score, 0, 1)
         df[f'{specie}_Humidity_Score'] = np.clip(humidity_score, 0, 1)
@@ -762,7 +787,7 @@ def calculate_mushroom_score(df, species_params, zone_curves):
         )
 
         #weight of single scores (rain weighted above humidity: it is the stronger growth/fruiting trigger)
-        wT, wH, wW, wA, wPH = 1.75, 1.25, 1.5, 0.75, 1.0
+        wT, wH, wW, wA, wPH = 1.75, 1.0, 1.5, 0.75, 1.0
         wWater = 0.7 if water_active else 0.0
 
         n = len(df)
