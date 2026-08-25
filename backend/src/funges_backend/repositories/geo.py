@@ -3,6 +3,7 @@
 from collections.abc import Iterable, Mapping
 from typing import Any
 
+import pandas as pd
 from geoalchemy2.shape import from_shape, to_shape
 from shapely.geometry.base import BaseGeometry
 from sqlalchemy import Engine, select, text
@@ -100,7 +101,9 @@ class CoordinateRepository:
             .order_by(coordinates.c.latitude, coordinates.c.longitude)
         )
         with self.engine.connect() as connection:
-            return [(float(row.latitude), float(row.longitude)) for row in connection.execute(query)]
+            return [
+                (float(row.latitude), float(row.longitude)) for row in connection.execute(query)
+            ]
 
     def upsert_static_attributes(
         self,
@@ -198,3 +201,21 @@ class CoordinateRepository:
             "ph_level": row["ph_level"],
         }
 
+    def static_attribute_frame(self, region_id: str) -> pd.DataFrame:
+        query = (
+            select(
+                coordinates.c.latitude.label("Latitude"),
+                coordinates.c.longitude.label("Longitude"),
+                static_geo_attributes.c.altitude.label("Altitude"),
+                static_geo_attributes.c.dist_m_water,
+                static_geo_attributes.c.dist_m_sea,
+                static_geo_attributes.c.climate_zone,
+                static_geo_attributes.c.ph_level,
+            )
+            .outerjoin(
+                static_geo_attributes, coordinates.c.id == static_geo_attributes.c.coordinate_id
+            )
+            .where(coordinates.c.region_id == region_id)
+        )
+        with self.engine.connect() as connection:
+            return pd.DataFrame(connection.execute(query).mappings().all())

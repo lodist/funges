@@ -32,3 +32,23 @@ class DatabaseSettings(BaseSettings):
             database=self.database,
         )
 
+
+class WeatherApiSettings(BaseSettings):
+    """Credentials for the billed forecast API."""
+
+    model_config = SettingsConfigDict(
+        env_prefix="WEATHERAPI_", env_file=("../.env", "../.env.secret"), extra="ignore"
+    )
+    key: SecretStr = Field(min_length=1)
+
+
+class R2Settings(BaseSettings):
+    """Validated output-only object storage configuration."""
+
+    model_config = SettingsConfigDict(
+        env_prefix="R2_", env_file=("../.env", "../.env.secret"), extra="ignore"
+    )
+    endpoint_url: str = Field(min_length=1)
+    access_key_id: str = Field(min_length=1)
+    secret_access_key: SecretStr
+    bucket_name: str = Field(min_length=1)

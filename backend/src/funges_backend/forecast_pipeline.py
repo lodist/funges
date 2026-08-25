@@ -5,7 +5,9 @@ One WeatherAPI forecast.json call per coordinate returns up to 7 forecast days
 series gains [today .. today+6] each run. Overlapping future dates are replaced by
 the fresher forecast on the next run; the day that rolls out of the window freezes.
 """
+
 import json
+import logging
 import math
 import os
 import threading
@@ -24,7 +26,6 @@ import requests
 from shapely.geometry import Point, shape
 from shapely.ops import unary_union
 
-from funges_backend.paths import REPOSITORY_ROOT
 from funges_backend.seasonality import (
     normalize_curve,
     season_gate_for_species,
@@ -33,6 +34,7 @@ from funges_backend.seasonality import (
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
+logger = logging.getLogger(__name__)
 
 
 def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp):
@@ -55,25 +57,27 @@ def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp):
             vals = [h.get("pressure_mb") for h in hours if h.get("pressure_mb") is not None]
             if vals:
                 pressure_mb = float(np.mean(vals))
-        rows.append({
-            "Date": fday.get("date"),
-            "Location_Id": location_id,
-            "Latitude": lat_r,
-            "Longitude": lon_r,
-            "Elevation (m)": static_fields.get("Altitude"),
-            "dist_m_water": static_fields.get("dist_m_water"),
-            "dist_m_sea": static_fields.get("dist_m_sea"),
-            "climate_zone": static_fields.get("climate_zone"),
-            "Temperature (C) Max": day.get("maxtemp_c"),
-            "Temperature (C) Min": day.get("mintemp_c"),
-            "Temperature (C)": day.get("avgtemp_c"),
-            "Wind Speed (kph)": day.get("maxwind_kph"),
-            "Pressure (hPa)": pressure_mb,
-            "Humidity (%)": day.get("avghumidity"),
-            "Description": (day.get("condition") or {}).get("text"),
-            "TotalPrecipitation_mm": day.get("totalprecip_mm", 0),
-            "ph_level": static_fields.get("ph_level"),
-        })
+        rows.append(
+            {
+                "Date": fday.get("date"),
+                "Location_Id": location_id,
+                "Latitude": lat_r,
+                "Longitude": lon_r,
+                "Elevation (m)": static_fields.get("Altitude"),
+                "dist_m_water": static_fields.get("dist_m_water"),
+                "dist_m_sea": static_fields.get("dist_m_sea"),
+                "climate_zone": static_fields.get("climate_zone"),
+                "Temperature (C) Max": day.get("maxtemp_c"),
+                "Temperature (C) Min": day.get("mintemp_c"),
+                "Temperature (C)": day.get("avgtemp_c"),
+                "Wind Speed (kph)": day.get("maxwind_kph"),
+                "Pressure (hPa)": pressure_mb,
+                "Humidity (%)": day.get("avghumidity"),
+                "Description": (day.get("condition") or {}).get("text"),
+                "TotalPrecipitation_mm": day.get("totalprecip_mm", 0),
+                "ph_level": static_fields.get("ph_level"),
+            }
+        )
     return rows
 
 
@@ -107,12 +111,10 @@ def assert_window_contiguous(df, today, forward_days=FORECAST_DAYS, lookback=21)
 
     fwd = d[d["Date"] >= today].drop_duplicates(["Location_Id", "Date"])
     g = fwd.groupby("Location_Id")["Date"]
-    span_days = (g.max() - g.min()).dt.days + 1          # count if perfectly consecutive
+    span_days = (g.max() - g.min()).dt.days + 1  # count if perfectly consecutive
     distinct = g.nunique()
-    bad = span_days.index[span_days != distinct]          # a hole inside the forward run
-    assert len(bad) == 0, (
-        f"Forward date gaps for {len(bad)} location(s): {list(bad[:5])}"
-    )
+    bad = span_days.index[span_days != distinct]  # a hole inside the forward run
+    assert len(bad) == 0, f"Forward date gaps for {len(bad)} location(s): {list(bad[:5])}"
 
     look_start = today - pd.Timedelta(days=lookback)
     look_end = today - pd.Timedelta(days=1)
@@ -122,8 +124,10 @@ def assert_window_contiguous(df, today, forward_days=FORECAST_DAYS, lookback=21)
     full_locs = set(look_cnt[look_cnt >= len(look_expected)].index)
     gappy = d["Location_Id"].nunique() - len(full_locs)
     if gappy:
-        print(f"[warn] {gappy} location(s) have legacy gaps in the {lookback}-day lookback; "
-              f"their lag features will be partially NaN (pre-existing history).")
+        print(
+            f"[warn] {gappy} location(s) have legacy gaps in the {lookback}-day lookback; "
+            f"their lag features will be partially NaN (pre-existing history)."
+        )
 
 
 def forward_window_mask(df, today):
@@ -138,6 +142,7 @@ def forward_window_mask(df, today):
 
 class CallCounter:
     """Thread-safe counter for WeatherAPI HTTP requests (proves 1 call/coord)."""
+
     def __init__(self):
         self._lock = threading.Lock()
         self.count = 0
@@ -167,7 +172,7 @@ def fetch_weather_data(lat, lon, api_key, counter=None, retries=4):
             if resp.status_code == 200:
                 return resp.json()
             if resp.status_code == 429 and attempt < retries - 1:
-                time.sleep(2 ** attempt)        # rate-limit backoff (higher concurrency)
+                time.sleep(2**attempt)  # rate-limit backoff (higher concurrency)
                 continue
             print(f"[{lat},{lon}] bad status {resp.status_code}")
             return None
@@ -181,16 +186,18 @@ def fetch_weather_data(lat, lon, api_key, counter=None, retries=4):
 
 @dataclass
 class RegionConfig:
-    boundaries_env: str
-    coordinates_env: str
-    base_env: str
-    species_params_env: str
-    weather_data_env: str
-    static_info_env: str
-    season_curves_env: str
-    zone_curves_env: str
     lat_range: tuple
     lon_range: tuple
+    region_id: str = ""
+    # Deprecated file variables remain only for migration utilities and old unit fixtures.
+    boundaries_env: str = ""
+    coordinates_env: str = ""
+    base_env: str = ""
+    species_params_env: str = ""
+    weather_data_env: str = ""
+    static_info_env: str = ""
+    season_curves_env: str = ""
+    zone_curves_env: str = ""
     lat_step: float = 0.060
     lon_step: float = 0.075
     ndp: int = 3
@@ -207,6 +214,7 @@ NDP = 3  # module-level default used by moved helpers
 
 
 # --- Moved VERBATIM from NE_Scoring.py -------------------------------------
+
 
 def load_dotenv(dotenv_path):
     if not dotenv_path.exists():
@@ -236,12 +244,12 @@ def is_remote_path(path):
 
 def r2_fetch(url):
     """Fetch a file from R2 via authenticated boto3."""
-    key = urlparse(url).path.lstrip('/')
+    key = urlparse(url).path.lstrip("/")
     client = boto3.client(
-        's3',
+        "s3",
         endpoint_url=get_required_env("R2_ENDPOINT_URL"),
         aws_access_key_id=get_required_env("R2_ACCESS_KEY_ID"),
-        aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY")
+        aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY"),
     )
     return client.get_object(Bucket=get_required_env("R2_BUCKET_NAME"), Key=key)["Body"].read()
 
@@ -249,10 +257,10 @@ def r2_fetch(url):
 def read_df_from_source(path):
     if is_remote_path(path):
         raw = r2_fetch(path)
-        if str(path).endswith('.parquet'):
+        if str(path).endswith(".parquet"):
             return pd.read_parquet(BytesIO(raw))
-        return pd.read_csv(StringIO(raw.decode('utf-8')))
-    if str(path).endswith('.parquet'):
+        return pd.read_csv(StringIO(raw.decode("utf-8")))
+    if str(path).endswith(".parquet"):
         return pd.read_parquet(path)
     return pd.read_csv(path)
 
@@ -268,7 +276,7 @@ def _dedupe_and_sort_latlon(latlon_iterable):
 
 def _save_coords(path: str, coords: np.ndarray):
     payload = [[f"{lat:.{NDP}f}", f"{lon:.{NDP}f}"] for lat, lon in coords]
-    with open(path, 'w', encoding='utf-8') as f:
+    with open(path, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=4)
         f.write("\n")
 
@@ -277,7 +285,7 @@ def _load_coords_any(path: str):
     if is_remote_path(path):
         raw = json.loads(r2_fetch(path))
     else:
-        with open(path, encoding='utf-8') as f:
+        with open(path, encoding="utf-8") as f:
             raw = json.load(f)
     return np.array([(float(lat), float(lon)) for lat, lon in raw], dtype=float)
 
@@ -286,44 +294,51 @@ def compute_distance(lat1, lon1, lat2, lon2):
     lat1, lon1, lat2, lon2 = map(np.radians, [lat1, lon1, lat2, lon2])
     dlon = lon2 - lon1
     dlat = lat2 - lat1
-    a = np.sin(dlat/2)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2)**2
-    c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1-a))
+    a = np.sin(dlat / 2) ** 2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon / 2) ** 2
+    c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
     return 6371.01 * c  # km
 
 
 def _latlon_to_unit_xyz(lat, lon):
     lat_r = np.radians(np.asarray(lat, dtype=float))
     lon_r = np.radians(np.asarray(lon, dtype=float))
-    return np.column_stack([
-        np.cos(lat_r) * np.cos(lon_r),
-        np.cos(lat_r) * np.sin(lon_r),
-        np.sin(lat_r),
-    ])
+    return np.column_stack(
+        [
+            np.cos(lat_r) * np.cos(lon_r),
+            np.cos(lat_r) * np.sin(lon_r),
+            np.sin(lat_r),
+        ]
+    )
 
 
 def replace_missing_elevation_with_closest(df):
-    known = df[df['Elevation (m)'].notna()]
+    known = df[df["Elevation (m)"].notna()]
     if known.empty:
         return df
-    miss = df['Elevation (m)'].isna()
+    miss = df["Elevation (m)"].isna()
     if not miss.any():
         return df
     from scipy.spatial import cKDTree
+
     # Chord distance on the unit sphere is monotonic in great-circle distance, so the
     # nearest neighbour matches the original haversine nearest, but far cheaper.
-    tree = cKDTree(_latlon_to_unit_xyz(known['Latitude'].to_numpy(), known['Longitude'].to_numpy()))
-    _, idx = tree.query(_latlon_to_unit_xyz(df.loc[miss, 'Latitude'].to_numpy(), df.loc[miss, 'Longitude'].to_numpy()))
-    df.loc[miss, 'Elevation (m)'] = known['Elevation (m)'].to_numpy()[idx]
+    tree = cKDTree(_latlon_to_unit_xyz(known["Latitude"].to_numpy(), known["Longitude"].to_numpy()))
+    _, idx = tree.query(
+        _latlon_to_unit_xyz(
+            df.loc[miss, "Latitude"].to_numpy(), df.loc[miss, "Longitude"].to_numpy()
+        )
+    )
+    df.loc[miss, "Elevation (m)"] = known["Elevation (m)"].to_numpy()[idx]
     return df
 
 
 def replace_missing_elevation_from_previous_data(new_df, existing_df):
     if existing_df is None or existing_df.empty:
         return new_df
-    prev_elev = existing_df.groupby('Location_Id')['Elevation (m)'].max()
-    na = new_df['Elevation (m)'].isna()
+    prev_elev = existing_df.groupby("Location_Id")["Elevation (m)"].max()
+    na = new_df["Elevation (m)"].isna()
     if na.any():
-        new_df.loc[na, 'Elevation (m)'] = new_df.loc[na, 'Location_Id'].map(prev_elev).values
+        new_df.loc[na, "Elevation (m)"] = new_df.loc[na, "Location_Id"].map(prev_elev).values
     return new_df
 
 
@@ -333,22 +348,24 @@ def load_df_from_file(file_path):
 
 def save_df_to_file(df, file_path):
     buf = BytesIO()
-    if str(file_path).endswith('.parquet'):
+    if str(file_path).endswith(".parquet"):
         df.to_parquet(buf, index=False)
-        content_type = 'application/octet-stream'
+        content_type = "application/octet-stream"
     else:
-        buf.write(df.to_csv(index=False).encode('utf-8'))
-        content_type = 'text/csv'
+        buf.write(df.to_csv(index=False).encode("utf-8"))
+        content_type = "text/csv"
     data = buf.getvalue()
     if is_remote_path(file_path):
-        key = urlparse(file_path).path.lstrip('/')
+        key = urlparse(file_path).path.lstrip("/")
         client = boto3.client(
-            's3',
+            "s3",
             endpoint_url=get_required_env("R2_ENDPOINT_URL"),
             aws_access_key_id=get_required_env("R2_ACCESS_KEY_ID"),
-            aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY")
+            aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY"),
         )
-        client.put_object(Bucket=get_required_env("R2_BUCKET_NAME"), Key=key, Body=data, ContentType=content_type)
+        client.put_object(
+            Bucket=get_required_env("R2_BUCKET_NAME"), Key=key, Body=data, ContentType=content_type
+        )
         print(f"Uploaded to R2: {file_path}")
     else:
         Path(file_path).write_bytes(data)
@@ -358,12 +375,12 @@ def remote_file_exists(file_path):
     if not is_remote_path(file_path):
         return os.path.exists(file_path)
     try:
-        key = urlparse(file_path).path.lstrip('/')
+        key = urlparse(file_path).path.lstrip("/")
         client = boto3.client(
-            's3',
+            "s3",
             endpoint_url=get_required_env("R2_ENDPOINT_URL"),
             aws_access_key_id=get_required_env("R2_ACCESS_KEY_ID"),
-            aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY")
+            aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY"),
         )
         client.head_object(Bucket=get_required_env("R2_BUCKET_NAME"), Key=key)
         return True
@@ -372,7 +389,7 @@ def remote_file_exists(file_path):
 
 
 def gaussian(x, mu, sig):
-    return np.exp(-np.power(x - mu, 2.) / (2 * np.power(sig, 2.)))
+    return np.exp(-np.power(x - mu, 2.0) / (2 * np.power(sig, 2.0)))
 
 
 def humidity_suitability(x, saturation, sigma):
@@ -404,7 +421,9 @@ def compute_lag_features(df, columns, days):
     return df
 
 
-def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coord_lon="_coord_lon"):
+def compute_lag_features_by_coord(
+    df, columns, days, coord_lat="_coord_lat", coord_lon="_coord_lon"
+):
     """Same lag columns as compute_lag_features, but computed ONCE per (coord, Date)
     and broadcast to every base point of that coord — not once per base point.
 
@@ -418,12 +437,15 @@ def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coo
     """
     key = df[coord_lat].astype(str) + "_" + df[coord_lon].astype(str)
     coord_series = df.assign(_coord_key=key)[["_coord_key", "Date"] + columns]
-    coord_series = (coord_series.drop_duplicates(["_coord_key", "Date"], keep="last")
-                                .rename(columns={"_coord_key": "Location_Id"}))
+    coord_series = coord_series.drop_duplicates(["_coord_key", "Date"], keep="last").rename(
+        columns={"_coord_key": "Location_Id"}
+    )
     coord_lagged = compute_lag_features(coord_series, columns, days)
 
     lag_cols = [f"{c}_{d}days_ago" for c in columns for d in range(1, days + 1)]
-    coord_lagged = coord_lagged.rename(columns={"Location_Id": "_coord_key"})[["_coord_key", "Date"] + lag_cols]
+    coord_lagged = coord_lagged.rename(columns={"Location_Id": "_coord_key"})[
+        ["_coord_key", "Date"] + lag_cols
+    ]
 
     out = df.assign(_coord_key=key).merge(coord_lagged, on=["_coord_key", "Date"], how="left")
     return out.drop(columns=["_coord_key", coord_lat, coord_lon])
@@ -433,10 +455,26 @@ def altitude_score(x, optimal_alt=1150, alt_sigma=600):
     return gaussian(x, optimal_alt, alt_sigma)
 
 
-def _weather_score_vectorized(df, precip_hist_cols, *, min_p, cum_thr, rain_first,
-                              baseline_days, max_wet_eff, min_dry_eff, cum_gamma,
-                              dl_start_pct, dl_floor, dl_gamma, drought_k, drought_mid,
-                              drought_floor, no_wet_penalty, weather_eps):
+def _weather_score_vectorized(
+    df,
+    precip_hist_cols,
+    *,
+    min_p,
+    cum_thr,
+    rain_first,
+    baseline_days,
+    max_wet_eff,
+    min_dry_eff,
+    cum_gamma,
+    dl_start_pct,
+    dl_floor,
+    dl_gamma,
+    drought_k,
+    drought_mid,
+    drought_floor,
+    no_wet_penalty,
+    weather_eps,
+):
     """Vectorized rain sub-score — bit-identical to the original per-row `_weather_row`
     (locked by tests/test_weather_score_vectorization.py against the verbatim reference
     in tools/weather_score_reference.py), but ~500x faster: it operates on the whole
@@ -454,10 +492,13 @@ def _weather_score_vectorized(df, precip_hist_cols, *, min_p, cum_thr, rain_firs
     wet_mask = min_p <= H
     wet_count = wet_mask.sum(axis=1)
     dry_count = hist_days - wet_count
-    req_dry = (min_dry_eff if hist_days >= baseline_days
-               else math.ceil(min_dry_eff * (hist_days / baseline_days)))
+    req_dry = (
+        min_dry_eff
+        if hist_days >= baseline_days
+        else math.ceil(min_dry_eff * (hist_days / baseline_days))
+    )
 
-    today_p = df['TotalPrecipitation_mm'].to_numpy(float)
+    today_p = df["TotalPrecipitation_mm"].to_numpy(float)
     today_ok = np.isfinite(today_p) & (today_p >= min_p)
     day_ok = today_ok.astype(float)
 
@@ -465,20 +506,25 @@ def _weather_score_vectorized(df, precip_hist_cols, *, min_p, cum_thr, rain_firs
     scale = (hist_days / baseline_days) if hist_days else 0.0
     adj_thr = max(cum_thr * scale, 1e-9)
     cum_frac = np.minimum(1.0, cum_mm / adj_thr)
-    cum_frac_eff = cum_frac ** cum_gamma
+    cum_frac_eff = cum_frac**cum_gamma
 
     ratio = cum_mm / adj_thr
     flood_pen = np.where(ratio <= 4, 1.0, 1.0 / (1.0 + 1.25 * (ratio - 4)))
 
     wet_factor = np.where(
-        wet_count == 0, 0.0,
-        np.where(wet_count <= max_wet_eff, 1.0,
-                 np.maximum(0.0, 1.0 - 0.15 * (wet_count - max_wet_eff))))
+        wet_count == 0,
+        0.0,
+        np.where(
+            wet_count <= max_wet_eff, 1.0, np.maximum(0.0, 1.0 - 0.15 * (wet_count - max_wet_eff))
+        ),
+    )
 
-    raw = (0.20 * wet_factor
-           + 0.15 * (dry_count >= req_dry).astype(float)
-           + 0.05 * day_ok
-           + 0.60 * (cum_frac_eff * flood_pen))
+    raw = (
+        0.20 * wet_factor
+        + 0.15 * (dry_count >= req_dry).astype(float)
+        + 0.05 * day_ok
+        + 0.60 * (cum_frac_eff * flood_pen)
+    )
 
     if rain_first:
         if hist_days >= 10:
@@ -502,7 +548,7 @@ def _weather_score_vectorized(df, precip_hist_cols, *, min_p, cum_thr, rain_firs
 
     pos = np.minimum(1.0, days_since_wet / baseline_days)
     t = (pos - dl_start_pct) / max(1e-9, (1.0 - dl_start_pct))
-    decay = 1.0 - (1.0 - dl_floor) * (t ** dl_gamma)
+    decay = 1.0 - (1.0 - dl_floor) * (t**dl_gamma)
     raw = np.where(pos > dl_start_pct, raw * decay, raw)
     raw = np.minimum(1.0, raw)
 
@@ -560,12 +606,8 @@ def _moisture_memory_score(df, *, cumulative_rain_target, rain_first):
     moisture = 0.65 * weighted + 0.35 * ratios.max(axis=0)
 
     if rain_first:
-        trigger = np.clip(
-            rain[:, 4:12].sum(axis=1) / max(target * 0.35, 1.0), 0.0, 1.0
-        )
-        recent_dry = np.clip(
-            1.0 - rain[:, :4].sum(axis=1) / max(target * 0.15, 1.0), 0.0, 1.0
-        )
+        trigger = np.clip(rain[:, 4:12].sum(axis=1) / max(target * 0.35, 1.0), 0.0, 1.0)
+        recent_dry = np.clip(1.0 - rain[:, :4].sum(axis=1) / max(target * 0.15, 1.0), 0.0, 1.0)
         moisture = moisture + 0.12 * trigger * recent_dry
 
     return np.clip(moisture, 0.02, 1.0)
@@ -602,9 +644,7 @@ def _hybrid_component_mean_rows(components, weights, geometric_share=1.0):
     comps = comps[active]
     weights = weights[active]
     weight_sum = max(weights.sum(), 1e-9)
-    geometric = np.exp(
-        (weights[:, None] * np.log(comps)).sum(axis=0) / weight_sum
-    )
+    geometric = np.exp((weights[:, None] * np.log(comps)).sum(axis=0) / weight_sum)
     arithmetic = (weights[:, None] * comps).sum(axis=0) / weight_sum
     return geometric_share * geometric + (1.0 - geometric_share) * arithmetic
 
@@ -631,16 +671,12 @@ def spatial_smooth_scores(df, score_cols, *, neighbours=5, radius_km=30.0):
         chord_dist, near = cKDTree(xyz).query(xyz, k=k)
         chord_dist = np.asarray(chord_dist).reshape(len(valid_idx), k)
         near = np.asarray(near).reshape(len(valid_idx), k)
-        distances = 2.0 * earth_radius_km * np.arcsin(
-            np.clip(chord_dist / 2.0, 0.0, 1.0)
-        )
+        distances = 2.0 * earth_radius_km * np.arcsin(np.clip(chord_dist / 2.0, 0.0, 1.0))
         in_radius = distances <= radius_km
         spatial_weights = np.exp(-((distances / 15.0) ** 2)) * in_radius
 
         for score_col in score_cols:
-            values = pd.to_numeric(
-                out.loc[valid_idx, score_col], errors="coerce"
-            ).to_numpy(float)
+            values = pd.to_numeric(out.loc[valid_idx, score_col], errors="coerce").to_numpy(float)
             neighbour_values = values[near]
             usable = in_radius & np.isfinite(neighbour_values)
             weights = spatial_weights * usable
@@ -671,9 +707,7 @@ def spatial_smooth_scores(df, score_cols, *, neighbours=5, radius_km=30.0):
             )
             agreement = np.exp(-np.sqrt(np.maximum(variance, 0.0)) / 2.0)
             confidence = coverage * np.exp(-mean_distance / radius_km) * agreement
-            out.loc[valid_idx, f"{score_col[:-6]}_confidence"] = np.clip(
-                confidence, 0.0, 1.0
-            )
+            out.loc[valid_idx, f"{score_col[:-6]}_confidence"] = np.clip(confidence, 0.0, 1.0)
     return out
 
 
@@ -711,58 +745,82 @@ def _ph_score_vectorized(ph_values, optimal_pH, pH_sigma_near, pH_sigma_far, pH_
     ph_safe = np.where(isnan, optimal_pH, ph)
     near = (ph_safe >= pH_range_near[0]) & (ph_safe <= pH_range_near[1])
     sig = np.where(near, pH_sigma_near, pH_sigma_far)
-    score = np.exp(-((ph_safe - optimal_pH) ** 2) / (2 * sig ** 2))
+    score = np.exp(-((ph_safe - optimal_pH) ** 2) / (2 * sig**2))
     return np.where(isnan, 0.0, score)
 
 
 def calculate_mushroom_score(df, species_params, zone_curves):
-    if 'TotalPrecipitation_mm' not in df.columns:
-        df['TotalPrecipitation_mm'] = np.nan
+    if "TotalPrecipitation_mm" not in df.columns:
+        df["TotalPrecipitation_mm"] = np.nan
     wind_factor = _lagged_wind_factor(df)
 
     for specie, params in species_params.items():
-        cum_thr = float(params.get('min_cumulative_rain', 20.0))
-        rain_first = bool(params.get('weather_preference', {}).get('rain_first', False))
-        df[f'{specie}_Weather_Score'] = _moisture_memory_score(
-            df, cumulative_rain_target=cum_thr, rain_first=rain_first)
+        cum_thr = float(params.get("min_cumulative_rain", 20.0))
+        rain_first = bool(params.get("weather_preference", {}).get("rain_first", False))
+        df[f"{specie}_Weather_Score"] = _moisture_memory_score(
+            df, cumulative_rain_target=cum_thr, rain_first=rain_first
+        )
 
     for specie, params in species_params.items():
         optimal_temp, temp_sigma = params["optimal_temp"], params["temp_sigma"]
         optimal_alt, alt_sigma = params["optimal_alt"], params["alt_sigma"]
         optimal_humidity, humidity_sigma = params["optimal_humidity"], params["humidity_sigma"]
         optimal_pH, pH_sigma_near, pH_sigma_far, pH_range_near = (
-            params["optimal_pH"], params["pH_sigma_near"], params["pH_sigma_far"], params["pH_range_near"]
+            params["optimal_pH"],
+            params["pH_sigma_near"],
+            params["pH_sigma_far"],
+            params["pH_range_near"],
         )
 
-        df[f'{specie}_Temp_Score'], df[f'{specie}_Humidity_Score'] = 0.0, 0.0
+        df[f"{specie}_Temp_Score"], df[f"{specie}_Humidity_Score"] = 0.0, 0.0
 
-        temp_days = min(12, len([c for c in df.columns if c.startswith('Temperature (C)_') and c.endswith('days_ago')]))
-        hum_days  = min(21, len([c for c in df.columns if c.startswith('Humidity (%)_') and c.endswith('days_ago')]))
+        temp_days = min(
+            12,
+            len(
+                [
+                    c
+                    for c in df.columns
+                    if c.startswith("Temperature (C)_") and c.endswith("days_ago")
+                ]
+            ),
+        )
+        hum_days = min(
+            21,
+            len(
+                [c for c in df.columns if c.startswith("Humidity (%)_") and c.endswith("days_ago")]
+            ),
+        )
 
         if temp_days > 0:
             dT = np.arange(1, temp_days + 1)
-            temp_weights = 0.6 * np.exp(-0.5 * ((dT - 4) / 3.0)**2) + 0.4 * np.exp(-0.08 * dT)
+            temp_weights = 0.6 * np.exp(-0.5 * ((dT - 4) / 3.0) ** 2) + 0.4 * np.exp(-0.08 * dT)
             temp_weights /= temp_weights.sum()
-            temp_score = _weighted_lag_gaussian(df, 'Temperature (C)', temp_days, temp_weights, optimal_temp, temp_sigma)
+            temp_score = _weighted_lag_gaussian(
+                df, "Temperature (C)", temp_days, temp_weights, optimal_temp, temp_sigma
+            )
         else:
-            temp_score = gaussian(df['Temperature (C)'].to_numpy(float), optimal_temp, temp_sigma)
+            temp_score = gaussian(df["Temperature (C)"].to_numpy(float), optimal_temp, temp_sigma)
 
         if hum_days > 0:
             dH = np.arange(1, hum_days + 1)
-            hum_weights = 0.6 * np.exp(-0.5 * ((dH - 9) / 5.0)**2) + 0.4 * np.exp(-0.05 * dH)
+            hum_weights = 0.6 * np.exp(-0.5 * ((dH - 9) / 5.0) ** 2) + 0.4 * np.exp(-0.05 * dH)
             hum_weights /= hum_weights.sum()
             humidity_score = _weighted_lag_humidity(
-                df, 'Humidity (%)', hum_days, hum_weights, optimal_humidity, humidity_sigma)
+                df, "Humidity (%)", hum_days, hum_weights, optimal_humidity, humidity_sigma
+            )
         else:
             humidity_score = humidity_suitability(
-                df['Humidity (%)'].to_numpy(float), optimal_humidity, humidity_sigma)
+                df["Humidity (%)"].to_numpy(float), optimal_humidity, humidity_sigma
+            )
 
-        df[f'{specie}_Temp_Score'] = np.clip(temp_score, 0, 1)
-        df[f'{specie}_Humidity_Score'] = np.clip(humidity_score, 0, 1)
-        df[f'{specie}_Alt_Score'] = np.clip(
-            altitude_score(df['Elevation (m)'].to_numpy(float), optimal_alt, alt_sigma), 0, 1)
-        df[f'{specie}_PH_Score'] = _ph_score_vectorized(
-            df['ph_level'].to_numpy(float), optimal_pH, pH_sigma_near, pH_sigma_far, pH_range_near)
+        df[f"{specie}_Temp_Score"] = np.clip(temp_score, 0, 1)
+        df[f"{specie}_Humidity_Score"] = np.clip(humidity_score, 0, 1)
+        df[f"{specie}_Alt_Score"] = np.clip(
+            altitude_score(df["Elevation (m)"].to_numpy(float), optimal_alt, alt_sigma), 0, 1
+        )
+        df[f"{specie}_PH_Score"] = _ph_score_vectorized(
+            df["ph_level"].to_numpy(float), optimal_pH, pH_sigma_near, pH_sigma_far, pH_range_near
+        )
 
         water_score, sea_score = 1.0, 1.0
         for key, dist_col in [("water", "dist_m_water"), ("sea", "dist_m_sea")]:
@@ -772,8 +830,9 @@ def calculate_mushroom_score(df, species_params, zone_curves):
                 decay_width = limit * 0.33
                 decay_start, decay_end = limit, limit + decay_width
                 score = np.where(
-                    dist <= decay_start, 1.0,
-                    np.where(dist >= decay_end, 0.0, 1.0 - ((dist - decay_start) / decay_width))
+                    dist <= decay_start,
+                    1.0,
+                    np.where(dist >= decay_end, 0.0, 1.0 - ((dist - decay_start) / decay_width)),
                 )
                 score = ((score * 0.8) + 0.2) ** 0.7
                 if key == "water":
@@ -786,10 +845,15 @@ def calculate_mushroom_score(df, species_params, zone_curves):
         eps = 1e-9
         water_factor = (
             2 * (water_score * sea_score) / np.clip(water_score + sea_score, eps, None)
-            if wr and sr else water_score if wr else sea_score if sr else 1.0
+            if wr and sr
+            else water_score
+            if wr
+            else sea_score
+            if sr
+            else 1.0
         )
 
-        #weight of single scores (rain weighted above humidity: it is the stronger growth/fruiting trigger)
+        # weight of single scores (rain weighted above humidity: it is the stronger growth/fruiting trigger)
         wT, wH, wW, wA, wPH = 1.75, 1.0, 1.5, 0.75, 1.0
         wWater = 0.7 if water_active else 0.0
 
@@ -801,65 +865,75 @@ def calculate_mushroom_score(df, species_params, zone_curves):
             if water_comp.size != n:
                 water_comp = np.full(n, float(np.mean(water_comp)), dtype=float)
 
-        if df['ph_level'].isna().any():
-            comps_no_ph = np.vstack([
-                df[f'{specie}_Temp_Score'].to_numpy(float),
-                df[f'{specie}_Humidity_Score'].to_numpy(float),
-                df[f'{specie}_Weather_Score'].to_numpy(float),
-                df[f'{specie}_Alt_Score'].to_numpy(float),
-                water_comp
-            ])
+        if df["ph_level"].isna().any():
+            comps_no_ph = np.vstack(
+                [
+                    df[f"{specie}_Temp_Score"].to_numpy(float),
+                    df[f"{specie}_Humidity_Score"].to_numpy(float),
+                    df[f"{specie}_Weather_Score"].to_numpy(float),
+                    df[f"{specie}_Alt_Score"].to_numpy(float),
+                    water_comp,
+                ]
+            )
             weights_no_ph = np.array([wT, wH, wW, wA, wWater], float)
             score_no_ph = 10 * _hybrid_component_mean_rows(comps_no_ph, weights_no_ph)
 
-            comps_ph = np.vstack([
-                df[f'{specie}_Temp_Score'].to_numpy(float),
-                df[f'{specie}_Humidity_Score'].to_numpy(float),
-                df[f'{specie}_Weather_Score'].to_numpy(float),
-                df[f'{specie}_Alt_Score'].to_numpy(float),
-                df[f'{specie}_PH_Score'].to_numpy(float),
-                water_comp
-            ])
+            comps_ph = np.vstack(
+                [
+                    df[f"{specie}_Temp_Score"].to_numpy(float),
+                    df[f"{specie}_Humidity_Score"].to_numpy(float),
+                    df[f"{specie}_Weather_Score"].to_numpy(float),
+                    df[f"{specie}_Alt_Score"].to_numpy(float),
+                    df[f"{specie}_PH_Score"].to_numpy(float),
+                    water_comp,
+                ]
+            )
             weights_ph = np.array([wT, wH, wW, wA, wPH, wWater], float)
             score_ph = 10 * _hybrid_component_mean_rows(comps_ph, weights_ph)
 
-            df[f'{specie}_score'] = np.where(df['ph_level'].isna(), score_no_ph, score_ph)
+            df[f"{specie}_score"] = np.where(df["ph_level"].isna(), score_no_ph, score_ph)
         else:
-            comps_ph = np.vstack([
-                df[f'{specie}_Temp_Score'].to_numpy(float),
-                df[f'{specie}_Humidity_Score'].to_numpy(float),
-                df[f'{specie}_Weather_Score'].to_numpy(float),
-                df[f'{specie}_Alt_Score'].to_numpy(float),
-                df[f'{specie}_PH_Score'].to_numpy(float),
-                water_comp
-            ])
+            comps_ph = np.vstack(
+                [
+                    df[f"{specie}_Temp_Score"].to_numpy(float),
+                    df[f"{specie}_Humidity_Score"].to_numpy(float),
+                    df[f"{specie}_Weather_Score"].to_numpy(float),
+                    df[f"{specie}_Alt_Score"].to_numpy(float),
+                    df[f"{specie}_PH_Score"].to_numpy(float),
+                    water_comp,
+                ]
+            )
             weights_ph = np.array([wT, wH, wW, wA, wPH, wWater], float)
-            df[f'{specie}_score'] = 10 * _hybrid_component_mean_rows(comps_ph, weights_ph)
+            df[f"{specie}_score"] = 10 * _hybrid_component_mean_rows(comps_ph, weights_ph)
 
-        df[f'{specie}_score'] = df[f'{specie}_score'].clip(0, 10)
+        df[f"{specie}_score"] = df[f"{specie}_score"].clip(0, 10)
         if params.get("wind_sensitive", False):
-            df[f'{specie}_score'] = (df[f'{specie}_score'] * wind_factor).clip(0, 10)
+            df[f"{specie}_score"] = (df[f"{specie}_score"] * wind_factor).clip(0, 10)
 
         allowed_climates = params.get("climate_zones", [])
         if allowed_climates:
-            df.loc[~df['climate_zone'].isin(allowed_climates), f'{specie}_score'] = 0
+            df.loc[~df["climate_zone"].isin(allowed_climates), f"{specie}_score"] = 0
 
         # Two separate jobs. The multiplier tilts the score across the season; the gate is
         # allowed to reach zero, which is the only way the model can say "not this month".
-        df[f'{specie}_score'] *= season_multiplier_for_species(df, specie, params, zone_curves)
-        df[f'{specie}_score'] *= season_gate_for_species(df, specie, params, zone_curves)
+        df[f"{specie}_score"] *= season_multiplier_for_species(df, specie, params, zone_curves)
+        df[f"{specie}_score"] *= season_gate_for_species(df, specie, params, zone_curves)
 
-        df.drop(columns=[
-            f'{specie}_Temp_Score',
-            f'{specie}_Alt_Score',
-            f'{specie}_Humidity_Score',
-            f'{specie}_PH_Score'
-        ], inplace=True)
+        df.drop(
+            columns=[
+                f"{specie}_Temp_Score",
+                f"{specie}_Alt_Score",
+                f"{specie}_Humidity_Score",
+                f"{specie}_PH_Score",
+            ],
+            inplace=True,
+        )
 
     return df
 
 
 # --- Loader helpers (wrap original top-of-script blocks) -------------------
+
 
 def _load_species_and_curves(config, species_params_path):
     if is_remote_path(species_params_path):
@@ -873,22 +947,32 @@ def _load_species_and_curves(config, species_params_path):
 
     _curves_path = get_required_env(config.season_curves_env)
     try:
-        _raw = r2_fetch(_curves_path).decode("utf-8") if is_remote_path(_curves_path) else Path(_curves_path).read_text(encoding="utf-8")
+        _raw = (
+            r2_fetch(_curves_path).decode("utf-8")
+            if is_remote_path(_curves_path)
+            else Path(_curves_path).read_text(encoding="utf-8")
+        )
         _curves = json.loads(_raw)
         for _sp, _p in species_params.items():
             if _sp in _curves:
                 _p["season_curve"] = normalize_curve(_curves[_sp])
-        print(f"Loaded empirical season curves for {sum('season_curve' in p for p in species_params.values())} species.")
+        print(
+            f"Loaded empirical season curves for {sum('season_curve' in p for p in species_params.values())} species."
+        )
     except Exception as _e:
-        print(f"[warn] could not load season curves from {_curves_path}: {_e}; falling back to season_months")
+        print(
+            f"[warn] could not load season curves from {_curves_path}: {_e}; falling back to season_months"
+        )
 
     _zone_curves_path = os.getenv(config.zone_curves_env)
     zone_curves = {}
     if _zone_curves_path:
         try:
-            _zraw = (r2_fetch(_zone_curves_path).decode("utf-8")
-                     if is_remote_path(_zone_curves_path)
-                     else Path(_zone_curves_path).read_text(encoding="utf-8"))
+            _zraw = (
+                r2_fetch(_zone_curves_path).decode("utf-8")
+                if is_remote_path(_zone_curves_path)
+                else Path(_zone_curves_path).read_text(encoding="utf-8")
+            )
             _zone_raw = json.loads(_zraw)
             zone_curves = {
                 str(_z): {str(_sp): normalize_curve(_c) for _sp, _c in _spmap.items()}
@@ -896,19 +980,21 @@ def _load_species_and_curves(config, species_params_path):
             }
             print(f"Loaded zone season curves for {len(zone_curves)} climate zones.")
         except Exception as _e:
-            print(f"[warn] could not load zone curves from {_zone_curves_path}: {_e}; falling back to region/season_months")
+            print(
+                f"[warn] could not load zone curves from {_zone_curves_path}: {_e}; falling back to region/season_months"
+            )
     return species_params, zone_curves
 
 
 def _load_static_map(static_info_path, ndp):
     static_df = read_df_from_source(static_info_path)
-    static_df['Latitude'] = static_df['Latitude'].astype(float)
-    static_df['Longitude'] = static_df['Longitude'].astype(float)
-    static_df['_latr'] = static_df['Latitude'].round(ndp)
-    static_df['_lonr'] = static_df['Longitude'].round(ndp)
-    static_df = static_df.drop_duplicates(subset=['_latr', '_lonr'], keep='first')
-    return static_df.set_index(['_latr', '_lonr'])[
-        ['Altitude', 'dist_m_water', 'dist_m_sea', 'climate_zone', 'ph_level']
+    static_df["Latitude"] = static_df["Latitude"].astype(float)
+    static_df["Longitude"] = static_df["Longitude"].astype(float)
+    static_df["_latr"] = static_df["Latitude"].round(ndp)
+    static_df["_lonr"] = static_df["Longitude"].round(ndp)
+    static_df = static_df.drop_duplicates(subset=["_latr", "_lonr"], keep="first")
+    return static_df.set_index(["_latr", "_lonr"])[
+        ["Altitude", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level"]
     ]
 
 
@@ -925,10 +1011,10 @@ def _load_or_build_coords(config, coordinates_file_path, geojson_path):
         if is_remote_path(geojson_path):
             g = json.loads(r2_fetch(geojson_path))
         else:
-            with open(geojson_path, encoding='utf-8') as f:
+            with open(geojson_path, encoding="utf-8") as f:
                 g = json.load(f)
 
-        country_shapes = [shape(feat['geometry']) for feat in g.get('features', [])]
+        country_shapes = [shape(feat["geometry"]) for feat in g.get("features", [])]
         combined_boundary = unary_union(country_shapes)
 
         lats = np.arange(lat_start, lat_end, lat_step)
@@ -951,36 +1037,79 @@ def _load_or_build_coords(config, coordinates_file_path, geojson_path):
 
 # --- Orchestration ---------------------------------------------------------
 
-def run_pipeline(config: RegionConfig):
-    print(f"Script started at {datetime.now()}")
-    _root = REPOSITORY_ROOT
-    load_dotenv(_root / ".env")
-    load_dotenv(_root / ".env.secret")
 
-    api_key = get_required_env("WEATHERAPI_KEY")
-    geojson_path = get_required_env(config.boundaries_env)
-    coordinates_file_path = get_required_env(config.coordinates_env)
-    base_file_path = get_required_env(config.base_env)
-    species_params_path = get_required_env(config.species_params_env)
-    main_data_path = get_required_env(config.weather_data_env)
-    static_info_path = get_required_env(config.static_info_env)
+def run_pipeline(config: RegionConfig, *, engine=None, weather_settings=None, fetcher=None):
+    """Run one region using Postgres for every intermediate input and output."""
+    from funges_backend.db.engine import create_database_engine
+    from funges_backend.repositories import (
+        BoundaryRepository,
+        CoordinateRepository,
+        PipelineInputRepository,
+        SpeciesRepository,
+        WeatherScoreRepository,
+    )
+    from funges_backend.settings import WeatherApiSettings
 
-    species_params, zone_curves = _load_species_and_curves(config, species_params_path)
-    static_map = _load_static_map(static_info_path, config.ndp)
-    coordinates = _load_or_build_coords(config, coordinates_file_path, geojson_path)
-    print(f"Final number of coordinates: {len(coordinates)}")
-
+    logger.info("pipeline_started", extra={"region_id": config.region_id})
+    resolved_engine = engine or create_database_engine()
+    weather = weather_settings or WeatherApiSettings()  # type: ignore[call-arg]
+    coordinate_repo = CoordinateRepository(resolved_engine)
+    coordinates = coordinate_repo.list(config.region_id)
+    if not coordinates:
+        if BoundaryRepository(resolved_engine).get(config.region_id) is None:
+            raise RuntimeError(f"No boundary seeded for region {config.region_id}")
+        coordinates = coordinate_repo.generate_grid(
+            config.region_id,
+            lat_range=config.lat_range,
+            lon_range=config.lon_range,
+            lat_step=config.lat_step,
+            lon_step=config.lon_step,
+            ndp=config.ndp,
+        )
+    static_frame = coordinate_repo.static_attribute_frame(config.region_id)
+    static_map = _static_frame_to_map(static_frame, config.ndp)
     counter = CallCounter()
-    weather_long = _fetch_all(config, coordinates, static_map, api_key, counter)
-    print(f"API calls made: {counter.count} for {len(coordinates)} coordinates")
+    weather_long = _fetch_all(
+        config,
+        coordinates,
+        static_map,
+        weather.key.get_secret_value(),
+        counter,
+        fetcher=fetcher or fetch_weather_data,
+    )
+    input_repo = PipelineInputRepository(resolved_engine)
+    base_frame = input_repo.read_base_points(config.region_id)
+    if base_frame.empty:
+        raise RuntimeError(f"No base points seeded for region {config.region_id}")
+    fresh = _join_to_base_frame(config, weather_long, base_frame)
+    species_repo = SpeciesRepository(resolved_engine)
+    score_repo = WeatherScoreRepository(resolved_engine)
+    result = _merge_and_score_frames(
+        config,
+        fresh,
+        species_repo.get_all_species_params(),
+        species_repo.get_zone_curves(),
+        score_repo.read_all(config.region_id),
+    )
+    score_repo.upsert_forecast_rows(config.region_id, result)
+    logger.info(
+        "pipeline_completed", extra={"region_id": config.region_id, "api_calls": counter.count}
+    )
+    return result
 
-    df = _join_to_base(config, weather_long, base_file_path)
-    df = _merge_and_score(config, df, species_params, zone_curves, main_data_path)
-    save_df_to_file(df, main_data_path)
-    print(f"Script ended at {datetime.now()}")
+
+def _static_frame_to_map(frame, ndp):
+    if frame.empty:
+        return pd.DataFrame(
+            columns=["Altitude", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level"]
+        )
+    result = frame.copy()
+    result["Latitude"] = result["Latitude"].round(ndp)
+    result["Longitude"] = result["Longitude"].round(ndp)
+    return result.set_index(["Latitude", "Longitude"])
 
 
-def _fetch_all(config, coordinates, static_map, api_key, counter):
+def _fetch_all(config, coordinates, static_map, api_key, counter, *, fetcher=fetch_weather_data):
     ndp = config.ndp
 
     def _static_for(lat_r, lon_r):
@@ -990,19 +1119,26 @@ def _fetch_all(config, coordinates, static_map, api_key, counter):
                 srow = srow.iloc[0]
             return {
                 "Altitude": float(srow["Altitude"]) if pd.notna(srow["Altitude"]) else None,
-                "dist_m_water": float(srow["dist_m_water"]) if pd.notna(srow["dist_m_water"]) else None,
+                "dist_m_water": float(srow["dist_m_water"])
+                if pd.notna(srow["dist_m_water"])
+                else None,
                 "dist_m_sea": float(srow["dist_m_sea"]) if pd.notna(srow["dist_m_sea"]) else None,
                 "climate_zone": srow["climate_zone"],
                 "ph_level": float(srow["ph_level"]) if pd.notna(srow["ph_level"]) else None,
             }
         except KeyError:
-            return {"Altitude": None, "dist_m_water": None, "dist_m_sea": None,
-                    "climate_zone": None, "ph_level": None}
+            return {
+                "Altitude": None,
+                "dist_m_water": None,
+                "dist_m_sea": None,
+                "climate_zone": None,
+                "ph_level": None,
+            }
 
     def _process(coord):
         lat, lon = map(float, coord)
         lat_r, lon_r = round(lat, ndp), round(lon, ndp)
-        weather = fetch_weather_data(lat_r, lon_r, api_key=api_key, counter=counter)
+        weather = fetcher(lat_r, lon_r, api_key=api_key, counter=counter)
         if not weather:
             return None
         return parse_forecast_days(weather, _static_for(lat_r, lon_r), lat_r, lon_r, ndp)
@@ -1036,7 +1172,12 @@ def _join_to_base(config, weather_long, base_file_path):
     back to a KDTree query against the coords actually present, preserving the old
     reroute-to-nearest behaviour.
     """
-    base_df = read_df_from_source(base_file_path).copy()
+    return _join_to_base_frame(config, weather_long, read_df_from_source(base_file_path))
+
+
+def _join_to_base_frame(config, weather_long, base_frame):
+    """Repository-friendly form of :func:`_join_to_base`."""
+    base_df = base_frame.copy()
     ndp = config.ndp
 
     coord_keys = weather_long[["Latitude", "Longitude"]].drop_duplicates().reset_index(drop=True)
@@ -1045,18 +1186,22 @@ def _join_to_base(config, weather_long, base_file_path):
 
     base_df["coord_id"] = np.nan
     if {"coord_lat", "coord_lon"}.issubset(base_df.columns):
-        key_to_id = (coord_keys.assign(
-                        _clat=coord_keys["Latitude"].round(ndp),
-                        _clon=coord_keys["Longitude"].round(ndp))
-                     .drop_duplicates(["_clat", "_clon"])
-                     .set_index(["_clat", "_clon"])["coord_id"])
+        key_to_id = (
+            coord_keys.assign(
+                _clat=coord_keys["Latitude"].round(ndp), _clon=coord_keys["Longitude"].round(ndp)
+            )
+            .drop_duplicates(["_clat", "_clon"])
+            .set_index(["_clat", "_clon"])["coord_id"]
+        )
         baked = pd.MultiIndex.from_arrays(
-            [base_df["coord_lat"].round(ndp), base_df["coord_lon"].round(ndp)])
+            [base_df["coord_lat"].round(ndp), base_df["coord_lon"].round(ndp)]
+        )
         base_df["coord_id"] = key_to_id.reindex(baked).to_numpy()
 
     missing = base_df["coord_id"].isna()
     if missing.any():
         from scipy.spatial import cKDTree
+
         tree = cKDTree(coord_keys[["Latitude", "Longitude"]].to_numpy())
         _, idx = tree.query(base_df.loc[missing, ["Latitude", "Longitude"]].to_numpy())
         base_df.loc[missing, "coord_id"] = coord_keys["coord_id"].to_numpy()[idx]
@@ -1070,10 +1215,20 @@ def _join_to_base(config, weather_long, base_file_path):
     base_df["_coord_lon"] = coord_keys["Longitude"].to_numpy()[cid]
 
     weather_cols = [
-        "coord_id", "Date",
-        "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
-        "Wind Speed (kph)", "Pressure (hPa)", "TotalPrecipitation_mm", "Humidity (%)",
-        "Description", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
+        "coord_id",
+        "Date",
+        "Temperature (C) Max",
+        "Temperature (C) Min",
+        "Temperature (C)",
+        "Wind Speed (kph)",
+        "Pressure (hPa)",
+        "TotalPrecipitation_mm",
+        "Humidity (%)",
+        "Description",
+        "dist_m_water",
+        "dist_m_sea",
+        "climate_zone",
+        "ph_level",
         "Elevation (m)",
     ]
     drop_cols = [c for c in weather_cols if c in base_df.columns and c != "coord_id"]
@@ -1106,6 +1261,13 @@ def apply_forward_scores(combined_df, forward, score_cols):
 
 
 def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
+    existing = (
+        load_df_from_file(main_data_path) if remote_file_exists(main_data_path) else pd.DataFrame()
+    )
+    return _merge_and_score_frames(config, df, species_params, zone_curves, existing)
+
+
+def _merge_and_score_frames(config, df, species_params, zone_curves, existing_df=None):
     # Anchor "today" to the EARLIEST forecast date actually fetched (coordinate-local),
     # not the server clock: forecast.json returns each coord's local 7 days, so US
     # regions legitimately start a day behind a UTC/Europe runner. Using the server date
@@ -1125,8 +1287,8 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
         if col not in df.columns:
             df[col] = pd.NA
 
-    if remote_file_exists(main_data_path):
-        existing_df = load_df_from_file(main_data_path)
+    if existing_df is not None and not existing_df.empty:
+        existing_df = existing_df.copy()
         existing_df["Date"] = pd.to_datetime(existing_df["Date"])
         for col in existing_df.columns:
             if col not in df.columns:
@@ -1141,16 +1303,27 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
         df = replace_missing_elevation_with_closest(df)
         combined_df = df.copy()
         combined_df["Date"] = pd.to_datetime(combined_df["Date"])
-        combined_df = combined_df.drop_duplicates(subset=["Location_Id", "Date"], keep="last").reset_index(drop=True)
+        combined_df = combined_df.drop_duplicates(
+            subset=["Location_Id", "Date"], keep="last"
+        ).reset_index(drop=True)
 
-    combined_df = combined_df[np.isfinite(combined_df["Latitude"]) & np.isfinite(combined_df["Longitude"])]
+    combined_df = combined_df[
+        np.isfinite(combined_df["Latitude"]) & np.isfinite(combined_df["Longitude"])
+    ]
     combined_df = combined_df[combined_df["Location_Id"] != ""]
 
-    assert_window_contiguous(combined_df, today, forward_days=FORECAST_DAYS, lookback=config.lag_days)
+    assert_window_contiguous(
+        combined_df, today, forward_days=FORECAST_DAYS, lookback=config.lag_days
+    )
 
     combined_df = combined_df.sort_values(["Location_Id", "Date"])
-    lag_columns = ["Temperature (C)", "TotalPrecipitation_mm", "Pressure (hPa)",
-                   "Humidity (%)", "Wind Speed (m/s)"]
+    lag_columns = [
+        "Temperature (C)",
+        "TotalPrecipitation_mm",
+        "Pressure (hPa)",
+        "Humidity (%)",
+        "Wind Speed (m/s)",
+    ]
     # Only the forward window (Date >= today) is rescored, and a forward row's deepest
     # lag reaches back exactly lag_days. So lag only [today - lag_days .. ]: frozen older
     # rows are never rescored and need no lag features. Bit-identical for forward rows
@@ -1166,9 +1339,12 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
     # Location_Id -> coord map. If any in-window row still has no coord key (un-baked base /
     # legacy), fall back to the per-base path, which is the original behaviour.
     if {"_coord_lat", "_coord_lon"}.issubset(df.columns):
-        loc_to_coord = (df[["Location_Id", "_coord_lat", "_coord_lon"]]
-                        .dropna(subset=["_coord_lat", "_coord_lon"])
-                        .drop_duplicates("Location_Id").set_index("Location_Id"))
+        loc_to_coord = (
+            df[["Location_Id", "_coord_lat", "_coord_lon"]]
+            .dropna(subset=["_coord_lat", "_coord_lon"])
+            .drop_duplicates("Location_Id")
+            .set_index("Location_Id")
+        )
         lag_slice["_coord_lat"] = lag_slice["Location_Id"].map(loc_to_coord["_coord_lat"])
         lag_slice["_coord_lon"] = lag_slice["Location_Id"].map(loc_to_coord["_coord_lon"])
         can_dedup = lag_slice["_coord_lat"].notna().all() and lag_slice["_coord_lon"].notna().all()
@@ -1179,13 +1355,19 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
         lagged = compute_lag_features_by_coord(lag_slice, lag_columns, days=config.lag_days)
     else:
         lagged = compute_lag_features(
-            lag_slice.drop(columns=[c for c in ("_coord_lat", "_coord_lon") if c in lag_slice.columns]),
-            lag_columns, days=config.lag_days)
+            lag_slice.drop(
+                columns=[c for c in ("_coord_lat", "_coord_lon") if c in lag_slice.columns]
+            ),
+            lag_columns,
+            days=config.lag_days,
+        )
 
     mask = forward_window_mask(lagged, today)
     forward = lagged[mask].copy()
-    print(f"Scoring {len(forward)} forward rows (Date >= {today.date()}) "
-          f"across {forward['Location_Id'].nunique()} locations")
+    print(
+        f"Scoring {len(forward)} forward rows (Date >= {today.date()}) "
+        f"across {forward['Location_Id'].nunique()} locations"
+    )
     forward = calculate_mushroom_score(forward, species_params, zone_curves)
 
     score_cols = [f"{s}_score" for s in species_params]
@@ -1195,9 +1377,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
     for species, params in species_params.items():
         allowed_climates = params.get("climate_zones", [])
         if allowed_climates:
-            forward.loc[
-                ~forward["climate_zone"].isin(allowed_climates), f"{species}_score"
-            ] = 0.0
+            forward.loc[~forward["climate_zone"].isin(allowed_climates), f"{species}_score"] = 0.0
     confidence_cols = [f"{s}_confidence" for s in species_params]
     updated_df = apply_forward_scores(combined_df, forward, score_cols + confidence_cols)
 
@@ -1205,18 +1385,35 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
     updated_df = updated_df[updated_df["Date"] > cutoff_date]
 
     valid_score_columns = {f"{s}_score" for s in species_params}
-    species_score_columns = [c for c in updated_df.columns if c.endswith("_score") and c in valid_score_columns]
-    updated_df[species_score_columns] = updated_df[species_score_columns].mask(
-        updated_df[species_score_columns] > 9.5, 10).round(2)
+    species_score_columns = [
+        c for c in updated_df.columns if c.endswith("_score") and c in valid_score_columns
+    ]
+    updated_df[species_score_columns] = (
+        updated_df[species_score_columns].mask(updated_df[species_score_columns] > 9.5, 10).round(2)
+    )
     confidence_columns = [c for c in confidence_cols if c in updated_df.columns]
     updated_df[confidence_columns] = updated_df[confidence_columns].round(3)
 
     masterfile_columns = [
-        "Location_Id", "Date", "Latitude", "Longitude", "Elevation (m)",
-        "Pressure (hPa)", "TotalPrecipitation_mm", "Humidity (%)", "Wind Speed (m/s)",
-        "Description", "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
-        "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
+        "Location_Id",
+        "Date",
+        "Latitude",
+        "Longitude",
+        "Elevation (m)",
+        "Pressure (hPa)",
+        "TotalPrecipitation_mm",
+        "Humidity (%)",
+        "Wind Speed (m/s)",
+        "Description",
+        "Temperature (C) Max",
+        "Temperature (C) Min",
+        "Temperature (C)",
+        "dist_m_water",
+        "dist_m_sea",
+        "climate_zone",
+        "ph_level",
     ]
     updated_df = updated_df.reindex(
-        columns=masterfile_columns + species_score_columns + confidence_columns)
+        columns=masterfile_columns + species_score_columns + confidence_columns
+    )
     return updated_df

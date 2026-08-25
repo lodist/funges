@@ -70,7 +70,12 @@ coordinates = Table(
     "coordinates",
     metadata,
     Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("region_id", String(16), ForeignKey("boundaries.region_id", ondelete="CASCADE"), nullable=False),
+    Column(
+        "region_id",
+        String(16),
+        ForeignKey("boundaries.region_id", ondelete="CASCADE"),
+        nullable=False,
+    ),
     Column("latitude", Float, nullable=False),
     Column("longitude", Float, nullable=False),
     Column("geometry", Geometry("POINT", srid=4326, spatial_index=False), nullable=False),
@@ -80,7 +85,9 @@ coordinates = Table(
 static_geo_attributes = Table(
     "static_geo_attributes",
     metadata,
-    Column("coordinate_id", Integer, ForeignKey("coordinates.id", ondelete="CASCADE"), primary_key=True),
+    Column(
+        "coordinate_id", Integer, ForeignKey("coordinates.id", ondelete="CASCADE"), primary_key=True
+    ),
     Column("altitude", Float),
     Column("dist_m_water", Float),
     Column("dist_m_sea", Float),
@@ -100,4 +107,26 @@ weather_scores = Table(
     Column("payload", JSONB, nullable=False),
     Column("updated_at", DateTime(timezone=True), nullable=False, server_default=func.now()),
     UniqueConstraint("location_id", "date", name="uq_weather_location_date"),
+)
+
+base_points = Table(
+    "base_points",
+    metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("region_id", String(16), nullable=False),
+    Column("location_id", String(160), nullable=False),
+    Column("latitude", Float, nullable=False),
+    Column("longitude", Float, nullable=False),
+    Column("coordinate_id", Integer, ForeignKey("coordinates.id", ondelete="SET NULL")),
+    Column("payload", JSONB, nullable=False, server_default="{}"),
+    UniqueConstraint("region_id", "location_id", name="uq_base_point_region_location"),
+)
+
+habitat_polygons = Table(
+    "habitat_polygons",
+    metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("region_id", String(16), nullable=False),
+    Column("raster_val", Integer),
+    Column("geometry", Geometry("GEOMETRY", srid=4326, spatial_index=False), nullable=False),
 )
