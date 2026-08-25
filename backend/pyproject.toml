@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Forecast scoring and map-data pipeline for Fung.es"
 requires-python = ">=3.11"
 dependencies = [
+  "alembic",
   "boto3",
   "fsspec",
   "geopandas",
@@ -15,15 +16,19 @@ dependencies = [
   "pandas==2.2.2",
   "pyarrow==17.0.0",
   "pyproj",
+  "pydantic-settings",
+  "psycopg[binary]",
   "requests",
   "scipy==1.17.1",
   "shapely",
+  "sqlalchemy",
 ]
 
 [dependency-groups]
 dev = [
   "pytest",
   "ruff",
+  "testcontainers[postgres]",
   "ty",
 ]
 
@@ -37,6 +42,7 @@ exclude = [".venv", ".uv-cache", "dist"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+markers = ["integration: requires Docker and a real Postgres/PostGIS container"]
 
 [tool.ruff]
 target-version = "py311"
