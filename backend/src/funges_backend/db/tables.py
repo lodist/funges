@@ -5,6 +5,8 @@ from sqlalchemy import (
     Boolean,
     CheckConstraint,
     Column,
+    Date,
+    DateTime,
     Float,
     ForeignKey,
     Integer,
@@ -12,6 +14,7 @@ from sqlalchemy import (
     Table,
     Text,
     UniqueConstraint,
+    func,
 )
 from sqlalchemy.dialects.postgresql import JSONB
 
@@ -83,4 +86,18 @@ static_geo_attributes = Table(
     Column("dist_m_sea", Float),
     Column("climate_zone", String(80)),
     Column("ph_level", Float),
+)
+
+weather_scores = Table(
+    "weather_scores",
+    metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("region_id", String(16), nullable=False),
+    Column("location_id", String(160), nullable=False),
+    Column("date", Date, nullable=False),
+    Column("latitude", Float),
+    Column("longitude", Float),
+    Column("payload", JSONB, nullable=False),
+    Column("updated_at", DateTime(timezone=True), nullable=False, server_default=func.now()),
+    UniqueConstraint("location_id", "date", name="uq_weather_location_date"),
 )

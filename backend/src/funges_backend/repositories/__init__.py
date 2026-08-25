@@ -2,6 +2,12 @@
 
 from funges_backend.repositories.geo import BoundaryRepository, CoordinateRepository
 from funges_backend.repositories.species import SpeciesRepository
+from funges_backend.repositories.weather_scores import WeatherScoreRepository
 
-__all__ = ["BoundaryRepository", "CoordinateRepository", "SpeciesRepository"]
+__all__ = [
+    "BoundaryRepository",
+    "CoordinateRepository",
+    "SpeciesRepository",
+    "WeatherScoreRepository",
+]
 
