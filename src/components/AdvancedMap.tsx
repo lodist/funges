@@ -29,6 +29,8 @@ import {
   WifiOff,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+
+import { categoryColor } from '@/lib/categoryColor';
 import { useUIStore } from '@/store/uiStore';
 import SpeciesSelector from './SpeciesSelector';
 import MapThemeSelector from './MapThemeSelector';
@@ -804,14 +806,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     const markers: maplibregl.Marker[] = [];
 
     foragingSpots.forEach(spot => {
-      const markerColor =
-        spot.type === 'mushroom'
-          ? '#dc2626'
-          : spot.type === 'berry'
-            ? '#059669'
-            : spot.type === 'herb'
-              ? '#7c3aed'
-              : '#f59e0b';
+      // Was a red / emerald / violet / amber quartet - a four-hue semantic
+      // palette the system rejects, and a second contradictory colouring
+      // of the same categories DataPage already coloured differently.
+      // maplibre writes this into an SVG fill attribute, so it needs the
+      // resolved value rather than a var().
+      const markerColor = categoryColor(spot.type);
 
       const marker = new maplibregl.Marker({
         color: markerColor,
