@@ -1,7 +1,7 @@
 # Fung.es Project Makefile
 # Common development and deployment commands
 
-.PHONY: help dev build lint format test storybook i18n-check analyze deploy clean install generate-splash ci-check
+.PHONY: help dev build lint format test storybook i18n-check species-check analyze deploy clean install generate-splash ci-check
 
 # Default target
 help:
@@ -92,6 +92,9 @@ i18n-check:
 		echo "✗ Translation files not found"; \
 		exit 1; \
 	fi
+
+species-check:
+	npm run species:check
 
 analyze:
 	@echo "Running bundle analyzer..."

@@ -16,6 +16,7 @@ from pyproj import Transformer
 from scipy.spatial import Delaunay, cKDTree
 from shapely.geometry import MultiPolygon, Polygon, box
 
+from funges_backend.generated_species import LANDCOVER_BY_REGION
 from funges_backend.map_inputs import load_map_inputs, r2_output_client
 from funges_backend.maplayer_forecast import interp_props, score_days
 from funges_backend.paths import REPOSITORY_ROOT
@@ -195,6 +196,7 @@ species_forest_mapping = {
     "st_george": [321, 324],
     "artichoke": [323, 321, 324],
 }
+species_forest_mapping.update(LANDCOVER_BY_REGION["NE"])
 
 
 print("Fetching weather scores and habitats from Postgres...")

@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { MANIFEST_SPECIES } from '@/generated/species-manifests';
 
 export interface Species {
   id: string;
@@ -12,6 +13,7 @@ export interface Species {
   season?: string;
   habitat?: string;
   showOnMap?: boolean;
+  safety?: { edibility: 'edible' | 'conditional' | 'unknown'; warning: string };
 }
 
 export interface SpeciesOption {
@@ -28,7 +30,7 @@ export interface SpeciesWithTranslations
 }
 
 // Base species data without translations
-export const SPECIES_DATA: Species[] = [
+const LEGACY_SPECIES_DATA: Species[] = [
   {
     id: 'chant',
     nameKey: 'chant.name',
@@ -413,6 +415,11 @@ export const SPECIES_DATA: Species[] = [
     habitat: 'forest',
     showOnMap: true,
   },
+];
+
+export const SPECIES_DATA: Species[] = [
+  ...LEGACY_SPECIES_DATA,
+  ...MANIFEST_SPECIES,
 ];
 
 // Hook for React components

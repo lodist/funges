@@ -34,3 +34,6 @@ jobs:
       # See the Makefile's `ci-check` target for the exact steps.
       - name: Run CI checks
         run: make ci-check
+
+      - name: Check species manifests
+        run: npm run species:check

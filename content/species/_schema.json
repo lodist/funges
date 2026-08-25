@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fung.es/schema/species-manifest.json",
+  "title": "Fung.es species manifest",
+  "type": "object",
+  "required": [
+    "id",
+    "scientificName",
+    "category",
+    "emoji",
+    "catalog",
+    "map",
+    "scoring",
+    "safety",
+    "image"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+    "scientificName": { "type": "string", "minLength": 2 },
+    "category": { "enum": ["mushroom", "plant", "berry", "nut", "flower"] },
+    "emoji": { "type": "string", "minLength": 1 },
+    "catalog": {
+      "type": "object",
+      "required": ["enabled", "season", "habitat", "translations"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "season": { "type": "string" },
+        "habitat": { "type": "string" },
+        "translations": {
+          "type": "object",
+          "required": ["en", "it", "fr", "de", "es", "pt"]
+        }
+      }
+    },
+    "map": {
+      "type": "object",
+      "required": ["enabled", "landcover"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "landcover": { "type": "object" }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "required": ["enabled", "params"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "params": { "type": "object" }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "required": ["edibility", "warning"],
+      "properties": {
+        "edibility": { "enum": ["edible", "conditional", "unknown"] },
+        "warning": { "type": "string" }
+      }
+    },
+    "image": { "type": "string", "pattern": "\\.webp$" },
+    "bioclip": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "label": { "type": "string" }
+      }
+    }
+  }
+}

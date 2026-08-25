@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { MANIFEST_TRANSLATIONS } from '@/generated/species-manifests';
 
 // Import translation files from language-specific folders
 import enCommon from './locales/en/common.json';
@@ -174,6 +175,13 @@ const resources = {
     identify: ptIdentify,
   },
 };
+
+for (const locale of ['en', 'it', 'fr', 'de', 'es', 'pt'] as const) {
+  Object.assign(
+    resources[locale].species.list_of_species,
+    MANIFEST_TRANSLATIONS[locale]
+  );
+}
 
 i18n
   .use(LanguageDetector)
