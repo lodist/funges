@@ -19,7 +19,8 @@ def test_database_settings_build_encoded_sqlalchemy_url():
     assert settings.sqlalchemy_url.password == "p@ss word"
 
 
-def test_database_settings_fail_fast_when_required_values_are_missing():
+def test_database_settings_fail_fast_when_required_values_are_missing(monkeypatch):
+    for name in ("HOST", "DATABASE", "USER", "PASSWORD"):
+        monkeypatch.delenv(f"FUNGES_DB_{name}", raising=False)
     with pytest.raises(ValidationError):
         DatabaseSettings(_env_file=None)
-
