@@ -81,3 +81,6 @@ docs/qa/**/season-timing.html
 # un-ignore them here; the specific-file excludes above still apply.
 !CONTEXT.md
 !docs/*
+!.claude/
+!.claude/skills/
+!.claude/skills/**
