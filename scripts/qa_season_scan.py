@@ -29,7 +29,7 @@ from scipy.spatial import cKDTree
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "backend"))
 sys.path.insert(0, str(ROOT / "scripts"))
-from seasonality import season_multiplier_for_species
+from funges_backend.seasonality import season_multiplier_for_species
 
 from qa_gbif_scores import PARAM_URLS, REGION_CURVE_URLS, REGIONS, ZONE_CURVE_URLS
 

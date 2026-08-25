@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "funges-backend"
+version = "0.1.0"
+description = "Forecast scoring and map-data pipeline for Fung.es"
+requires-python = ">=3.11"
+dependencies = [
+  "boto3",
+  "fsspec",
+  "geopandas",
+  "numpy==2.4.4",
+  "pandas==2.2.2",
+  "pyarrow==17.0.0",
+  "pyproj",
+  "requests",
+  "scipy==1.17.1",
+  "shapely",
+]
+
+[dependency-groups]
+dev = [
+  "pytest",
+  "ruff",
+  "ty",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/funges_backend"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/funges_backend", "tests", "pyproject.toml", "uv.lock"]
+exclude = [".venv", ".uv-cache", "dist"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+exclude = ["tests/_gen_phase2_golden.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "C4"]
+ignore = ["E501", "E741", "B008", "B905", "SIM108", "SIM115"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/run_subset_proof.py" = ["C408"]
+"tests/weather_score_reference.py" = ["C408", "E702"]
+
+[tool.ty.src]
+include = ["src"]

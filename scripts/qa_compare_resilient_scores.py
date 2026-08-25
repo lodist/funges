@@ -25,7 +25,7 @@ from scipy.spatial import cKDTree
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "backend"))
-from forecast_pipeline import calculate_mushroom_score, spatial_smooth_scores
+from funges_backend.forecast_pipeline import calculate_mushroom_score, spatial_smooth_scores
 
 from qa_gbif_observer_background import TARGETS, weighted_percentile
 from qa_gbif_scores import PARAM_URLS, REGION_CURVE_URLS, REGIONS, ZONE_CURVE_URLS, chord_to_km, unit_xyz

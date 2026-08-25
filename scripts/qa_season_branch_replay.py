@@ -32,7 +32,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "backend"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import forecast_pipeline as branch_pipeline
+from funges_backend import forecast_pipeline as branch_pipeline
 from qa_gbif_scores import PARAM_URLS, REGION_CURVE_URLS, REGIONS, ZONE_CURVE_URLS
 from qa_season_scan import FUNGI, chord_to_km, multiplier_table, unit_xyz
 

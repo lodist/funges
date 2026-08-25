@@ -39,6 +39,8 @@ dev-dist/*
 # Python (backend tooling + tests)
 __pycache__/
 *.pyc
+backend/.venv/
+backend/.uv-cache/
 # Local zone-curve build artifacts (authoritative copies live in R2)
 /*_zone_season_curves.json
 # rolling-forecast subset proof output (generated)

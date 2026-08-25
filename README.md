@@ -203,9 +203,11 @@ backend/
 pip install -r backend/requirements.txt
 cp .env.secret.example .env.secret  # fill in R2, WeatherAPI credentials
 
-python backend/tools/build_season_curves.py        # publish season curves to R2
-python backend/EU/North_Europe/NE_Scoring.py       # then run scoring
-python backend/EU/North_Europe/NE_MapLayer.py
+cd backend
+uv sync
+uv run python -m funges_backend.tools.build_season_curves  # publish curves to R2
+uv run python -m funges_backend.regions.eu.north_europe.scoring
+uv run python -m funges_backend.regions.eu.north_europe.map_layer
 ```
 
 ## 🔧 Configuration

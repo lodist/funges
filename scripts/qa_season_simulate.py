@@ -31,7 +31,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "backend"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import seasonality as sn
+from funges_backend import seasonality as sn
 from qa_gbif_scores import PARAM_URLS, REGION_CURVE_URLS, ZONE_CURVE_URLS
 from qa_season_analysis import (
     CLIMATOLOGY_YEARS, GOOD_SCORE, MIN_CLIMATOLOGY_RECORDS, ONSET_FRACTION,

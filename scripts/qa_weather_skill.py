@@ -43,8 +43,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "backend"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import forecast_pipeline as fp
-import seasonality as sn
+from funges_backend import forecast_pipeline as fp
+from funges_backend import seasonality as sn
 from qa_gbif_scores import REGIONS
 from qa_season_analysis import CLIMATOLOGY_YEARS, MIN_CLIMATOLOGY_RECORDS, monthly_rate, month_labels
 from qa_season_branch_replay import BRANCH_LAG_COLUMNS, BRANCH_LAG_DAYS, RAW_COLUMNS, add_lags, load_specs
