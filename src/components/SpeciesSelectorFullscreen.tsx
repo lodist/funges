@@ -173,8 +173,8 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
               className={cn(
                 'flex items-center gap-2 px-3 py-2 rounded-full text-sm transition-all duration-[var(--duration-base)] border-0 backdrop-blur-sm',
                 selectedCategory === category.value
-                  ? 'bg-white text-gray-900 font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
-                  : 'bg-white/90 text-gray-700 font-medium hover:bg-white'
+                  ? 'bg-white text-foreground font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
+                  : 'bg-white/90 text-foreground font-medium hover:bg-white'
               )}
             >
               <span className='text-base'>{category.icon}</span>
@@ -245,19 +245,19 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                     // Trailhead (#213): no border — selection is a shadow
                     // lift + tint + the corner checkmark badge, not a ring.
                     className={cn(
-                      'group relative bg-white rounded-2xl border-0 transition-all duration-[var(--duration-base)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.14)]',
+                      'group relative bg-card rounded-2xl border-0 transition-all duration-[var(--duration-base)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.14)]',
                       'p-4 text-center min-h-[140px] flex flex-col items-center justify-center',
                       'hover:scale-105 active:scale-95',
                       disabled
                         ? 'opacity-50 cursor-not-allowed'
                         : isSelected
-                          ? 'shadow-[0_6px_20px_rgba(0,0,0,0.14)] bg-[var(--happy-50)] scale-105'
+                          ? 'shadow-[0_6px_20px_rgba(0,0,0,0.14)] bg-happy-50 scale-105'
                           : 'shadow-[0_2px_16px_rgba(0,0,0,0.10)]'
                     )}
                   >
                     {/* Selection indicator */}
                     {isSelected && (
-                      <div className='absolute -top-3 -right-3 w-8 h-8 bg-[var(--happy-600)] rounded-full flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.18)] border-2 border-white'>
+                      <div className='absolute -top-3 -right-3 w-8 h-8 bg-happy-600 rounded-full flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.18)] border-2 border-white'>
                         <div className='w-3 h-3 bg-white rounded-full' />
                       </div>
                     )}
@@ -265,7 +265,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                     {/* Species Image */}
                     <div
                       className={cn(
-                        'relative w-16 h-16 bg-gradient-to-br from-green-50 to-green-100 overflow-hidden rounded-lg mb-3',
+                        'relative w-16 h-16 bg-secondary bg-secondary overflow-hidden rounded-lg mb-3',
                         'flex-shrink-0 transition-transform duration-[var(--duration-base)] group-hover:scale-110'
                       )}
                     >
@@ -288,7 +288,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                     <div className='flex-1 min-w-0'>
                       <h3
                         className={cn(
-                          'font-semibold text-gray-900 leading-tight mb-1 break-words text-sm',
+                          'font-semibold text-foreground leading-tight mb-1 break-words text-sm',
                           isSelected && 'text-primary'
                         )}
                       >
@@ -296,7 +296,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                       </h3>
 
                       {/* Scientific name */}
-                      <p className='text-xs text-gray-600 italic leading-tight break-words'>
+                      <p className='text-xs text-muted-foreground italic leading-tight break-words'>
                         {SPECIES_DATA.find(
                           speciesData => speciesData.id === species.code
                         )?.scientificName || species.code}
@@ -306,7 +306,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                     {/* Offline indicator */}
                     {disabled && (
                       <div className='absolute top-2 left-2'>
-                        <div className='w-2 h-2 bg-red-500 rounded-full' />
+                        <div className='w-2 h-2 bg-destructive rounded-full' />
                       </div>
                     )}
                   </motion.button>

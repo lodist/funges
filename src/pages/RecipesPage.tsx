@@ -255,7 +255,7 @@ export default function RecipesPage() {
                       {/* Recipe Image for mobile - above title */}
                       {recipeImage && (
                         <div className='mb-4'>
-                          <div className='relative w-full aspect-square bg-gradient-to-br from-green-50 to-green-100 overflow-hidden rounded-lg'>
+                          <div className='relative w-full aspect-square bg-secondary bg-secondary overflow-hidden rounded-lg'>
                             <img
                               src={recipeImage}
                               alt={recipe.title}
@@ -303,7 +303,7 @@ export default function RecipesPage() {
                       {/* Recipe Image */}
                       {recipeImage && (
                         <div className='flex-shrink-0'>
-                          <div className='relative w-35 h-35 bg-gradient-to-br from-green-50 to-green-100 overflow-hidden rounded-lg'>
+                          <div className='relative w-35 h-35 bg-secondary bg-secondary overflow-hidden rounded-lg'>
                             <img
                               src={recipeImage}
                               alt={recipe.title}

@@ -27,18 +27,25 @@ function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
 }
 
-/** Tailwind text-color class for `score` (0-10 scale), linearly interpolated
- *  between the two nearest SCORE_COLOR_RAMP stops exactly like maplibre's
- *  `interpolate`-`linear` fill-color expression. Scores outside [0.5, 10] clamp
- *  to the nearest end color. */
-export function getScoreTextColorClass(score: number): string {
+/** The ramp colour for `score` (0-10 scale), linearly interpolated between the
+ *  two nearest SCORE_COLOR_RAMP stops exactly like maplibre's
+ *  `interpolate`-`linear` fill-color expression, so a swatch in the UI matches
+ *  the polygon on the map. Scores outside [0.5, 10] clamp to the nearest end.
+ *
+ *  Returns a CSS colour for `style`, not a Tailwind class. It used to return
+ *  `text-[rgb(…)]`, which Tailwind can never emit: the string is built at
+ *  runtime from an interpolation, so it appears nowhere in the source Tailwind
+ *  scans and no safelist covers it. Every score rendered with the inherited
+ *  text colour instead. The pale end of the ramp (#ffffcc, 1.1:1 on paper)
+ *  could not have been used as a text colour anyway. */
+export function getScoreColor(score: number): string {
   const [minScore, minHex] = SCORE_COLOR_RAMP[0];
   const [maxScore, maxHex] = SCORE_COLOR_RAMP[SCORE_COLOR_RAMP.length - 1];
-  if (score <= minScore) return `text-[${minHex}]`;
-  if (score >= maxScore) return `text-[${maxHex}]`;
+  if (score <= minScore) return minHex;
+  if (score >= maxScore) return maxHex;
 
   const exactStop = SCORE_COLOR_RAMP.find(([stopScore]) => stopScore === score);
-  if (exactStop) return `text-[${exactStop[1]}]`;
+  if (exactStop) return exactStop[1];
 
   let lowerIndex = 0;
   while (
@@ -50,7 +57,7 @@ export function getScoreTextColorClass(score: number): string {
   const [lowerScore, lowerHex] = SCORE_COLOR_RAMP[lowerIndex];
   const [upperScore, upperHex] = SCORE_COLOR_RAMP[lowerIndex + 1];
 
-  if (lowerHex === upperHex) return `text-[${lowerHex}]`;
+  if (lowerHex === upperHex) return lowerHex;
 
   const t =
     upperScore === lowerScore
@@ -59,7 +66,7 @@ export function getScoreTextColorClass(score: number): string {
   const lowerRgb = hexToRgb(lowerHex);
   const upperRgb = hexToRgb(upperHex);
   const rgb = [0, 1, 2].map(i => Math.round(lerp(lowerRgb[i], upperRgb[i], t)));
-  return `text-[rgb(${rgb.join(',')})]`;
+  return `rgb(${rgb.join(', ')})`;
 }
 
 /** CSS `linear-gradient` reproducing the full SCORE_COLOR_RAMP, low to high —

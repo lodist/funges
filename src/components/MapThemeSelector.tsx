@@ -42,7 +42,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
         title={t('themes.select')}
         className={cn(
           darkLayersVisible && 'text-foreground hover:text-foreground',
-          isOpen && 'bg-[var(--happy-50)]'
+          isOpen && 'bg-happy-50'
         )}
       >
         <Palette className='h-4 w-4' />
@@ -80,7 +80,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                       aria-pressed={isSelected}
                       className={cn(
                         'appearance-none w-full flex items-center gap-3 rounded-xl border-0 bg-transparent px-2 py-2 text-left transition-colors',
-                        isSelected ? 'bg-[var(--happy-100)]' : 'hover:bg-muted'
+                        isSelected ? 'bg-happy-100' : 'hover:bg-muted'
                       )}
                     >
                       <div className='relative w-14 h-10 rounded-md overflow-hidden bg-muted flex-shrink-0'>
@@ -95,7 +95,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                         <p
                           className={cn(
                             'text-sm font-medium text-foreground truncate',
-                            isSelected && 'text-[var(--happy-900)]'
+                            isSelected && 'text-happy-900'
                           )}
                         >
                           {t(`themes.${theme.id}.name`)}

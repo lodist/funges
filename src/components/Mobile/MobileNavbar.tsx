@@ -24,10 +24,9 @@ const basePath = import.meta.env.BASE_URL || '/';
  * 1.4.11's 3:1 floor for non-text contrast. `--happy-500` holds 5.9:1 at its
  * worst. Exported so the test asserts the accent rather than a copied string.
  */
-export const ACTIVE_ACCENT_CLASS =
-  'text-[var(--happy-700)] dark:text-[var(--happy-500)]';
+export const ACTIVE_ACCENT_CLASS = 'text-happy-700 dark:text-happy-500';
 const INACTIVE_ACCENT_CLASS =
-  'text-muted-foreground hover:text-[var(--happy-700)] dark:hover:text-[var(--happy-500)]';
+  'text-muted-foreground hover:text-happy-700 dark:hover:text-happy-500';
 const items = [
   { url: `${basePath}`, icon: Map },
   { url: `${basePath}worth-foraging-now`, icon: CalendarRange },

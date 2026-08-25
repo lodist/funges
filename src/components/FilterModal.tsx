@@ -71,7 +71,7 @@ export default function FilterModal({
           variant='ghost'
           size='sm'
           onClick={onClose}
-          className='absolute top-4 right-4 z-10 h-8 w-8 p-0 rounded-lg border-0 bg-transparent hover:bg-[var(--happy-50)] hover:text-[var(--happy-700)]'
+          className='absolute top-4 right-4 z-10 h-8 w-8 p-0 rounded-lg border-0 bg-transparent hover:bg-happy-50 hover:text-happy-700'
         >
           <span className='text-lg'>{'✕'}</span>
         </Button>

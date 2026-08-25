@@ -12,7 +12,7 @@ const selectTriggerVariants = cva(
   // `size.default` alone would lose the cascade to a leftover h-9 here.
   // justify-between (was justify-center) left-aligns the value against the
   // right-aligned chevron once a caller opts into w-full.
-  "border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium shadow-[0_1px_6px_rgba(0,0,0,0.06)] transition-[color,box-shadow] outline-none focus-visible:border-[var(--happy-500)] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-12 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex",
+  "border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium shadow-[0_1px_6px_rgba(0,0,0,0.06)] transition-[color,box-shadow] outline-none focus-visible:border-happy-500 disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-12 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex",
   {
     variants: {
       size: {
@@ -129,7 +129,7 @@ function SelectItem({
       className={cn(
         // Trailhead (#213): green-only focus tone (not the warm accent),
         // bigger radius, pl-4 to line item text up with the trigger's px-4.
-        "focus:bg-[var(--happy-100)] focus:text-[var(--happy-900)] [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-default items-center gap-2 rounded-xl py-1.5 pr-8 pl-4 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
+        "focus:bg-happy-100 focus:text-happy-900 [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-default items-center gap-2 rounded-xl py-1.5 pr-8 pl-4 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
         className
       )}
       {...props}

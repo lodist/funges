@@ -106,8 +106,10 @@ export const WithAction: Story = {
 export const WithImage: Story = {
   render: () => (
     <Card className='w-[350px] overflow-hidden'>
-      <div className='aspect-video bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center'>
-        <span className='text-white font-semibold'>{'Image Placeholder'}</span>
+      <div className='aspect-video bg-muted flex items-center justify-center'>
+        <span className='text-muted-foreground font-semibold'>
+          {'Image Placeholder'}
+        </span>
       </div>
       <CardHeader>
         <CardTitle>{'Card with Image'}</CardTitle>
@@ -172,23 +174,23 @@ export const WithStats: Story = {
       <CardContent>
         <div className='grid grid-cols-2 gap-4'>
           <div className='text-center'>
-            <div className='text-2xl font-bold text-blue-600'>1,234</div>
+            <div className='text-2xl font-bold text-primary-text'>1,234</div>
             <div className='text-sm text-muted-foreground'>{'Total Users'}</div>
           </div>
           <div className='text-center'>
-            <div className='text-2xl font-bold text-green-600'>89%</div>
+            <div className='text-2xl font-bold text-primary-text'>89%</div>
             <div className='text-sm text-muted-foreground'>
               {'Success Rate'}
             </div>
           </div>
           <div className='text-center'>
-            <div className='text-2xl font-bold text-purple-600'>567</div>
+            <div className='text-2xl font-bold text-primary-text'>567</div>
             <div className='text-sm text-muted-foreground'>
               {'Active Projects'}
             </div>
           </div>
           <div className='text-center'>
-            <div className='text-2xl font-bold text-orange-600'>{'24h'}</div>
+            <div className='text-2xl font-bold text-primary-text'>{'24h'}</div>
             <div className='text-sm text-muted-foreground'>
               {'Response Time'}
             </div>
@@ -235,7 +237,7 @@ export const Interactive: Story = {
             onClick={() => setIsLiked(!isLiked)}
           >
             <Heart
-              className={`h-4 w-4 ${isLiked ? 'fill-current text-red-500' : ''}`}
+              className={`h-4 w-4 ${isLiked ? 'fill-current text-destructive' : ''}`}
             />
             <span className='ml-1'>{isLiked ? 'Liked' : 'Like'}</span>
           </Button>
@@ -253,8 +255,8 @@ export const Interactive: Story = {
 export const ProductCard: Story = {
   render: () => (
     <Card className='w-[300px] overflow-hidden'>
-      <div className='aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center'>
-        <span className='text-gray-500'>{'Product Image'}</span>
+      <div className='aspect-square bg-gradient-to-br from-muted to-border flex items-center justify-center'>
+        <span className='text-muted-foreground'>{'Product Image'}</span>
       </div>
       <CardHeader className='pb-3'>
         <div className='flex items-start justify-between'>
@@ -273,7 +275,7 @@ export const ProductCard: Story = {
             <Star
               // eslint-disable-next-line react/no-array-index-key
               key={i}
-              className={`h-4 w-4 ${i < 4 ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
+              className={`h-4 w-4 ${i < 4 ? 'fill-status-warning text-status-warning' : 'text-muted-foreground'}`}
             />
           ))}
           <span className='text-sm text-muted-foreground ml-1'>(4.0)</span>
@@ -335,8 +337,8 @@ export const ProfileCard: Story = {
   render: () => (
     <Card className='w-[350px]'>
       <CardHeader className='text-center'>
-        <div className='w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 mx-auto mb-4 flex items-center justify-center'>
-          <span className='text-white font-bold text-xl'>JD</span>
+        <div className='w-20 h-20 rounded-full bg-happy-500 mx-auto mb-4 flex items-center justify-center'>
+          <span className='text-happy-900 font-bold text-xl'>JD</span>
         </div>
         <CardTitle>{'John Doe'}</CardTitle>
         <CardDescription>{'Senior Software Engineer'}</CardDescription>

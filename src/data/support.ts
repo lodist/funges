@@ -21,6 +21,9 @@ export interface SupportMethodWithTranslations
 // Base support data without translations
 export const SUPPORT_METHODS: SupportMethod[] = [
   {
+    // The `color` on each entry is a third-party brand mark (Bitcoin orange,
+    // Ethereum periwinkle, GitHub ink, …), not app palette. Exempt from The One
+    // Hue Rule — a donation logo has to be its own brand's colour.
     id: 'bitcoin',
     nameKey: 'bitcoin.name',
     descriptionKey: 'bitcoin.description',

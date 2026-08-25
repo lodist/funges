@@ -62,7 +62,13 @@ const SEMANTIC_PAIRS: Pair[] = [
     name: 'primary / primary-foreground',
     surface: '--primary',
     text: '--primary-foreground',
-    use: 'The brand green. Fills, rings and active states.',
+    use: 'The brand green. Fills and active states — not text, and not the focus ring: it is 2.95:1 on the background.',
+  },
+  {
+    name: 'background / primary-text',
+    surface: '--background',
+    text: '--primary-text',
+    use: 'The theme-aware, text-safe brand colour. Every green link, label and icon. Its absence is why links used to reach for Tailwind blue-600.',
   },
   {
     name: 'secondary / secondary-foreground',
@@ -115,7 +121,31 @@ const SIDEBAR_PAIRS: Pair[] = [
 const LINE_TOKENS = [
   { name: '--border', use: 'Hairlines and component outlines.' },
   { name: '--input', use: 'Form control borders.' },
-  { name: '--ring', use: 'Focus rings. Non-text, so a 3:1 floor applies.' },
+  {
+    name: '--ring',
+    use: 'Focus rings. Non-text, so a 3:1 floor applies — which is why this is --happy-700 and not --primary (2.95:1).',
+  },
+  {
+    name: '--sidebar-ring',
+    use: 'Focus rings inside the sidebar. Same 3:1 floor, same value.',
+  },
+  {
+    name: '--destructive-border',
+    use: 'Boundary for the destructive fill, which is too dark to read against the dark ground on its own.',
+  },
+];
+
+/** Species categories: five steps of the one hue, not five hues. Each sits at
+ *  ~95% of the in-gamut chroma for its lightness, so the steps are as far apart
+ *  as hue 150 allows. --chart-1…5 alias these, so charts and map markers cannot
+ *  drift apart. Ship a category colour with its icon and label — lightness alone
+ *  separates five series less well than hue did. */
+const CATEGORY_TOKENS = [
+  '--category-mushroom',
+  '--category-berry',
+  '--category-plant',
+  '--category-flower',
+  '--category-nut',
 ];
 
 const CHART_TOKENS = [
@@ -136,13 +166,34 @@ const HAPPY_SCALE = [
   '--happy-900',
 ];
 
+/** Success and info are not their own hues — both resolve to --primary-text.
+ *  Only the safety warning sits outside the green, and it borrows the map score
+ *  ramp rather than introducing an amber of its own. */
 const STATUS_TOKENS = [
-  { name: '--status-success', use: 'Confirmations and healthy state.' },
+  {
+    name: '--status-success',
+    use: 'Confirmations and healthy state. Resolves to --primary-text.',
+  },
+  {
+    name: '--status-info',
+    use: 'Neutral informational notices. Also --primary-text — info is not blue here.',
+  },
   {
     name: '--status-warning',
-    use: 'Caution. Pair with --status-warning-text.',
+    use: 'Safety warnings only. A FILL: 14px text on it is 3.91:1, so callouts use --status-warning-background instead.',
   },
-  { name: '--status-info', use: 'Neutral informational notices.' },
+  {
+    name: '--status-warning-background',
+    use: 'The callout ground. --status-warning-text reads 10.21:1 here.',
+  },
+  {
+    name: '--status-warning-text',
+    use: 'Warning body text and icons. Map ramp stop 10 in light, stop 5 in dark.',
+  },
+  {
+    name: '--status-warning-border',
+    use: 'Warning callout edge. Map ramp stop 8.',
+  },
 ];
 
 const PairSwatch = ({ pair }: { pair: Pair }) => (
@@ -219,7 +270,24 @@ export const BrandScale: Story = {
       </div>
       <p className='text-muted-foreground max-w-2xl text-sm'>
         {
-          'The one hue in the palette. Severity is expressed as depth rather than as a change of hue, which is why --destructive points at the deepest step instead of a red. Steps 700 and 900 are the text-safe ones; 500 and 600 are fills.'
+          'The one hue in the palette, all seven steps at hue 150. Severity is depth rather than a change of hue, which is why --destructive points at the deepest step instead of a red — in both themes. Steps 700 and 900 are the text-safe ones; 500 and 600 are fills held to the 3:1 non-text floor. These steps are absolute and light-tuned: anything that has to work in dark mode reads --primary, --primary-text or --destructive instead.'
+        }
+      </p>
+    </div>
+  ),
+};
+
+export const CategoryTokens: Story = {
+  render: () => (
+    <div className='flex flex-col gap-4'>
+      <div className='grid grid-cols-2 gap-4 sm:grid-cols-5'>
+        {CATEGORY_TOKENS.map(token => (
+          <BlockSwatch key={token} token={token} />
+        ))}
+      </div>
+      <p className='text-muted-foreground max-w-2xl text-sm'>
+        {
+          'Species categories as five steps of the one hue, ordered light to dark: 12.09, 9.80, 7.23, 5.10 and 3.78 to 1 against the background. Read them through src/lib/categoryColor.ts, and always ship a category colour alongside its icon and label — lightness alone separates five series less well than five hues did.'
         }
       </p>
     </div>
@@ -228,10 +296,17 @@ export const BrandScale: Story = {
 
 export const ChartTokens: Story = {
   render: () => (
-    <div className='grid grid-cols-2 gap-4 sm:grid-cols-5'>
-      {CHART_TOKENS.map(token => (
-        <BlockSwatch key={token} token={token} />
-      ))}
+    <div className='flex flex-col gap-4'>
+      <div className='grid grid-cols-2 gap-4 sm:grid-cols-5'>
+        {CHART_TOKENS.map(token => (
+          <BlockSwatch key={token} token={token} />
+        ))}
+      </div>
+      <p className='text-muted-foreground max-w-2xl text-sm'>
+        {
+          'Aliases of the category tokens above, so a chart series and a map marker for the same species cannot disagree. These used to be a fourth green ramp that no product code referenced, while the charts drew from six hardcoded hexes.'
+        }
+      </p>
     </div>
   ),
 };

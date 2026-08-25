@@ -106,7 +106,9 @@ export default function ZoneMap({
     return {
       color: 'transparent',
       weight: 0,
-      fillColor: color ?? '#6b7280',
+      // Stone (--muted-foreground) as a literal: Leaflet needs a resolved colour,
+      // and the previous fallback was Tailwind gray-500, a cool grey.
+      fillColor: color ?? '#6f6a61',
       fillOpacity: selected ? 0.7 : 0.45,
     };
   }

@@ -85,7 +85,7 @@ function SheetContent({
         {/* Trailhead (#213): bare X, no resting background/border — only on
             hover does it pick up a rounded-square happy-green fill,
             matching Dialog. */}
-        <SheetPrimitive.Close className='ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-lg size-9 p-0 border-0 bg-transparent text-[var(--happy-700)] grid place-items-center leading-none opacity-100 transition-colors hover:bg-[var(--happy-50)] focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none'>
+        <SheetPrimitive.Close className='ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-lg size-9 p-0 border-0 bg-transparent text-happy-700 grid place-items-center leading-none opacity-100 transition-colors hover:bg-happy-50 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none'>
           <XIcon className='size-4' />
           <span className='sr-only'>{t('close')}</span>
         </SheetPrimitive.Close>

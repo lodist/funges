@@ -76,7 +76,7 @@ function DialogContent({
             // Trailhead (#213): bare X, no resting background/border — only
             // on hover does it pick up a rounded-square happy-green fill,
             // matching Sheet's close button.
-            className="ring-offset-background focus-visible:ring-ring absolute top-4 right-4 rounded-lg size-9 p-0 border-0 bg-transparent text-[var(--happy-700)] grid place-items-center leading-none transition-colors hover:bg-[var(--happy-50)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+            className="ring-offset-background focus-visible:ring-ring absolute top-4 right-4 rounded-lg size-9 p-0 border-0 bg-transparent text-happy-700 grid place-items-center leading-none transition-colors hover:bg-happy-50 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
           >
             <XIcon />
             <span className='sr-only'>Close</span>

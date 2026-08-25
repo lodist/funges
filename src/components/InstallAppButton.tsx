@@ -58,7 +58,7 @@ const InstallAppButton = () => {
     <Button
       size='lg'
       onClick={handleClick}
-      className='w-full md:hidden bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md hover:from-orange-600 hover:to-amber-600 transition-colors'
+      className='w-full md:hidden bg-gradient-to-r to-status-warning text-white shadow-md to-status-warning transition-colors'
     >
       <Download className='h-5 w-5' />
       {t('offline.installApp')}

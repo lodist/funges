@@ -74,25 +74,94 @@
   --color-status-warning: var(--status-warning);
   --color-status-info: var(--status-info);
   --color-warning: var(--status-warning);
+  --color-status-warning-background: var(--status-warning-background);
   --color-status-warning-text: var(--status-warning-text);
   --color-status-warning-border: var(--status-warning-border);
+
+  /* Theme-aware, text-safe brand colour. --primary is --happy-600 (2.95:1 on
+     paper) and fails as a text colour, which is why link/icon greens used to
+     reach for Tailwind blue-600 instead. This is the token they should use. */
+  --color-primary-text: var(--primary-text);
+  --color-destructive-border: var(--destructive-border);
+
+  /* Species-category identity. The one place hue is allowed to carry meaning
+     beyond the brand green and safety amber: five categories cannot be told
+     apart by lightness alone, and DataPage and AdvancedMap previously invented
+     a contradictory palette each for the same taxonomy. Warm-earth family, so
+     it sits inside The Warm Ground Rule rather than fighting it. */
+  --color-category-plant: var(--category-plant);
+  --color-category-mushroom: var(--category-mushroom);
+  --color-category-berry: var(--category-berry);
+  --color-category-flower: var(--category-flower);
+  --color-category-nut: var(--category-nut);
+
+  /* The Trailhead scale as first-class utilities (bg-happy-50, text-happy-700,
+     …) so components stop spelling it as arbitrary [var(--happy-N)] values.
+     Still light-only per The Light-Only Rule — see the :root block. */
+  --color-happy-50: var(--happy-50);
+  --color-happy-100: var(--happy-100);
+  --color-happy-300: var(--happy-300);
+  --color-happy-500: var(--happy-500);
+  --color-happy-600: var(--happy-600);
+  --color-happy-700: var(--happy-700);
+  --color-happy-900: var(--happy-900);
 
   /* Motion easing (#200). Registered here so Tailwind emits an `ease-standard`
      utility. Durations are not a Tailwind theme namespace, so they live in
      :root and are consumed via arbitrary values — see --duration-* below. */
   --ease-standard: var(--ease-standard);
+
+  /* ------------------------------------------------------------------
+     The One Hue Rule, enforced at build time.
+
+     Tailwind ships 22 colour families by default and every one of them was
+     reachable, so `text-gray-700` and `text-blue-600` resolved silently —
+     453 of them had accumulated across the app, including 294 cool greys
+     the Warm Ground Rule bans outright and a full red/blue/violet/amber
+     semantic set the system explicitly rejects.
+
+     Setting them to `initial` removes the utilities. A stray `bg-red-50`
+     now produces no rule at all instead of quietly shipping a second hue,
+     so the drift shows up while you are looking at the screen.
+
+     --color-white and --color-black stay: translucent white washes are a
+     real material here, and the QR code needs literal #000/#fff to scan.
+     Semantic colour comes from the tokens below.
+     ------------------------------------------------------------------ */
+  --color-slate-*: initial;
+  --color-gray-*: initial;
+  --color-zinc-*: initial;
+  --color-neutral-*: initial;
+  --color-stone-*: initial;
+  --color-red-*: initial;
+  --color-orange-*: initial;
+  --color-amber-*: initial;
+  --color-yellow-*: initial;
+  --color-lime-*: initial;
+  --color-green-*: initial;
+  --color-emerald-*: initial;
+  --color-teal-*: initial;
+  --color-cyan-*: initial;
+  --color-sky-*: initial;
+  --color-blue-*: initial;
+  --color-indigo-*: initial;
+  --color-violet-*: initial;
+  --color-purple-*: initial;
+  --color-fuchsia-*: initial;
+  --color-pink-*: initial;
+  --color-rose-*: initial;
 }
 
 :root {
   --radius: 0.5rem;
 
   /* Light theme colors - using centralized color system */
-  --background: oklch(0.9938 0.0013 106.4231); /* #fdfdfc */
-  --foreground: oklch(0.2431 0.0076 95.3724); /* #21201c */
-  --card: oklch(0.9938 0.0013 106.4231); /* #fdfdfc */
-  --card-foreground: oklch(0.2431 0.0076 95.3724); /* #21201c */
-  --popover: oklch(0.9938 0.0013 106.4231); /* #fdfdfc */
-  --popover-foreground: oklch(0.2431 0.0076 95.3724); /* #21201c */
+  --background: oklch(0.9938 0.0013 90);
+  --foreground: oklch(0.2431 0.0076 90);
+  --card: oklch(0.9938 0.0013 90);
+  --card-foreground: oklch(0.2431 0.0076 90);
+  --popover: oklch(0.9938 0.0013 90);
+  --popover-foreground: oklch(0.2431 0.0076 90);
   /* #203 — Forest/Moss + Warm Neutral direction (Radix grass11/grass9),
      computed via the CSS Color 4 sRGB→OKLab formula per the #202 research
      doc, same method the values above already used. grass11 is the
@@ -103,42 +172,64 @@
      the dark forest green above) so every custom component across the app
      that already reads --primary/bg-primary/text-primary/border-primary
      picks up the redesign automatically, not just the atoms in
-     src/components/ui/*. Light mode only — see the --happy-* block below
-     for why dark mode isn't touched. Individual atoms still hardcode
-     specific --happy-* steps (500/700/900/…) where a look needs more than
-     one step of the scale at once (e.g. a button's fill vs. its text) —
-     that nuance can't collapse into a single --primary value. */
+     src/components/ui/*. Individual atoms still reference specific --happy-*
+     steps (500/700/900/…) where a look needs more than one step of the scale
+     at once (e.g. a button's fill vs. its text) — that nuance can't collapse
+     into a single --primary value. Anything that has to work in both themes
+     uses --primary / --primary-text / --destructive instead, all of which
+     carry dark-mode values; the --happy-* steps do not. */
   --primary: var(--happy-600);
   --primary-foreground: var(--happy-900);
-  --secondary: oklch(0.9582 0.0193 147.8505); /* #e9f5ea */
-  --secondary-foreground: oklch(0.5262 0.1294 147.1971); /* #2a7e3b */
-  --muted: oklch(0.952 0.0083 91.4843); /* #f1efe9 */
-  --muted-foreground: oklch(0.5261 0.0151 82.3829); /* #6f6a61 */
+  /* Chlorophyll Readable — 7.73:1 on paper. The only brand green allowed as
+     text or icon colour on light surfaces. */
+  --primary-text: var(--happy-700);
+  --secondary: oklch(0.9582 0.0193 150);
+  --secondary-foreground: oklch(0.5 0.1294 150);
+  --muted: oklch(0.952 0.0083 90);
+  --muted-foreground: oklch(0.5261 0.0151 90);
   /* Warm tan tint (Radix brown-adjacent), not brown9 solid — brown9 #ad7f58
      only reaches 3.53:1 with white text (fails 4.5:1 body text), so this
      follows the same light-tint + dark-text pattern as --secondary instead
      of the doc's literal "brown9 solid fill" suggestion. */
-  --accent: oklch(0.9356 0.0194 72.5693); /* #f2e8dc */
-  --accent-foreground: oklch(0.4506 0.0552 64.6273); /* #6b4f34 */
+  --accent: oklch(0.9356 0.0194 90);
+  --accent-foreground: oklch(0.4506 0.0552 90);
   /* Trailhead (#213): no red anywhere, even destructive — deepest step of
      the happy-green scale stands in for danger/delete, everywhere. */
   --destructive: var(--happy-900);
   --destructive-foreground: oklch(1 0 0); /* #ffffff */
-  --border: oklch(0.9071 0.01 87.4748); /* #e3e0d9 */
-  --input: oklch(0.9071 0.01 87.4748); /* #e3e0d9 */
-  --ring: var(--happy-600);
+  --destructive-border: var(--happy-900);
+  --border: oklch(0.9071 0.01 90);
+  --input: oklch(0.9071 0.01 90);
+  /* --happy-600 measures 2.95:1 on --background and misses the WCAG 1.4.11
+     3:1 floor a focus indicator has to clear; --happy-700 is 7.73:1. */
+  --ring: var(--happy-700);
 
-  /* Chart colors */
-  --chart-1: oklch(0.6731 0.1624 144.2083); /* #70c88f */
-  --chart-2: oklch(0.5752 0.1446 144.1813); /* #3d955c */
-  --chart-3: oklch(0.5234 0.1347 144.1672); /* #4cba73 */
-  --chart-4: oklch(0.4254 0.1159 144.3078); /* #2e7045 */
-  --chart-5: oklch(0.2157 0.0453 145.7256); /* #102517 */
+  /* Species categories as five steps of the one hue, not five hues. Each sits
+     at ~95% of the in-gamut chroma for its lightness, so the steps are as far
+     apart as hue 150 allows. Verified against --background: 12.09, 9.80, 7.23,
+     5.10, 3.78 — all clear the 3:1 mark floor.
+
+     Lightness alone separates five series less well than hue did; the icon and
+     label beside each category are doing real work here, not decoration. */
+  --category-mushroom: oklch(0.3 0.086 150);
+  --category-berry: oklch(0.37 0.111 150);
+  --category-plant: oklch(0.44 0.127 150);
+  --category-flower: oklch(0.51 0.143 150);
+  --category-nut: oklch(0.58 0.161 150);
+
+  /* Chart series ARE the category palette. These five tokens used to be a
+     fourth green ramp that no product code referenced, while DataPage drew
+     its charts from six hardcoded hexes. One palette, both jobs. */
+  --chart-1: var(--category-plant);
+  --chart-2: var(--category-mushroom);
+  --chart-3: var(--category-berry);
+  --chart-4: var(--category-flower);
+  --chart-5: var(--category-nut);
 
   /* Sidebar colors */
-  --sidebar: oklch(0.9643 0.007 88.6428); /* #f5f3ee */
-  --sidebar-foreground: oklch(0.2431 0.0076 95.3724); /* #21201c */
-  --sidebar-primary: oklch(0.5262 0.1294 147.1971); /* #2a7e3b */
+  --sidebar: oklch(0.9643 0.007 90);
+  --sidebar-foreground: oklch(0.2431 0.0076 90);
+  --sidebar-primary: oklch(0.5262 0.1294 150);
   --sidebar-primary-foreground: oklch(1 0 0); /* #ffffff */
   /* Trailhead (#213): nav hover/active tint moves from the warm-neutral
      accent to the happy-green scale, matching Select/DropdownMenu focus
@@ -147,8 +238,9 @@
   /* Nav item text stays standard foreground (not green) even when
      hovered/active — only the background tint changes. */
   --sidebar-accent-foreground: var(--foreground);
-  --sidebar-border: oklch(0.9071 0.01 87.4748); /* #e3e0d9 */
-  --sidebar-ring: oklch(0.6512 0.1468 147.3918); /* #46a758 */
+  --sidebar-border: oklch(0.9071 0.01 90);
+  /* Focus rings hold the 3:1 non-text floor; the old value was 2.96:1. */
+  --sidebar-ring: var(--happy-700);
 
   /* Semantic tokens with no shadcn equivalent (kept here as the single
      definition; text-primary/secondary/tertiary and background-primary/
@@ -157,28 +249,34 @@
   --text-inverse: oklch(1 0 0); /* #ffffff */
   --background-secondary: rgba(250, 250, 250, 0.9);
   --background-overlay: rgba(0, 0, 0, 0.8);
-  --hover-primary: oklch(0.8952 0.0504 146.0366); /* #e5f7ed */
-  --hover-secondary: oklch(0.8579 0.0174 76.0955); /* #d1f2e1 */
+  --hover-primary: oklch(0.8952 0.0504 150);
+  /* Warm beige (hue 76), not the mint green the old #d1f2e1 comment claimed.
+     The same oklch also sits on dark --muted-foreground. */
+  --hover-secondary: oklch(0.8579 0.0174 90);
 
-  /* Status colors — flat across themes, matching the values previously
-     hardcoded as globals.scss var() fallbacks */
-  --status-success: #4cba73;
-  --status-warning: #f59e0b;
-  --status-info: #3b82f6;
+  /* Status colours. Per The One Hue Rule, success and info are not their own
+     hues — they resolve to the text-safe brand green. #4cba73 (a 5th green
+     family) and #3b82f6 (2.34:1 and 3.61:1 as text on paper) are retired.
+     Amber is the single sanctioned exception and it is theme-aware below,
+     because a flat value is what drove callers back to raw Tailwind amber. */
+  --status-success: var(--primary-text);
+  --status-info: var(--primary-text);
+  /* Safety warnings borrow from the map score ramp rather than introducing a
+     hue of their own, so the whole app is one green plus that one ramp. Values
+     are literal stops of SCORE_COLOR_RAMP in src/lib/scoreColor.ts — stop 6 as
+     the fill, stop 10 as the text, stop 8 as the edge. src/test/palette.test.ts
+     asserts they still match the ramp. */
+  --status-warning: #fa733d;
   --status-warning-background: color-mix(
     in oklch,
     var(--status-warning) 15%,
     var(--background)
   );
-  /* Mixed toward black, not --foreground: bg-status-warning/bg-warning render
-     the flat, fairly bright --status-warning as a solid fill, so the text/
-     border need to stay dark for contrast in both light and dark mode. */
-  --status-warning-text: color-mix(in oklch, var(--status-warning) 25%, black);
-  --status-warning-border: color-mix(
-    in oklch,
-    var(--status-warning) 55%,
-    black
-  );
+  /* Ramp stop 10 on a 15% stop-6 tint measures 10.21:1, and stop 8 as the edge
+     is 3.95:1 against that tint — both clear their floors as literal ramp stops,
+     with none of the colour-mix guesswork these two used to need. */
+  --status-warning-text: #800020;
+  --status-warning-border: #fb4646;
 
   /* "Happy green" scale — #213 Trailhead atom redesign, reviewed 2026-08-22.
      Lighter/more vivid than --primary, and used as the ONLY hue across the
@@ -186,13 +284,13 @@
      depth, not hue). Light-mode only: the redesign wasn't reviewed in dark
      mode, so dark-mode atom classes fall back to the pre-existing tokens
      instead of these. Values from prototypes/atoms-213/palette.ts. */
-  --happy-50: oklch(0.97 0.03 152); /* ~#eef8f0 */
-  --happy-100: oklch(0.93 0.06 152); /* ~#d9f0dd */
-  --happy-300: oklch(0.85 0.12 151); /* ~#a9e0b6 */
-  --happy-500: oklch(0.74 0.17 150); /* ~#4bd672 — primary */
-  --happy-600: oklch(0.65 0.18 150); /* ~#2fb85c — hover/pressed */
-  --happy-700: oklch(0.42 0.13 150); /* ~#1f6b3a — readable text/icon */
-  --happy-900: oklch(0.24 0.07 150); /* ~#12341f — deep, replaces red */
+  --happy-50: oklch(0.97 0.03 150); /* #e8fbeb */
+  --happy-100: oklch(0.93 0.06 150); /* #ccf4d3 */
+  --happy-300: oklch(0.85 0.12 150); /* #93e4a4 */
+  --happy-500: oklch(0.74 0.17 150); /* #47c86e — fill */
+  --happy-600: oklch(0.65 0.18 150); /* #00ac4e — hover/pressed, fill only */
+  --happy-700: oklch(0.42 0.122 150); /* #005e25 — readable text/icon */
+  --happy-900: oklch(0.24 0.07 150); /* #00280b — deep, replaces red */
 
   /* Typography */
   --font-sans: 'Public Sans', sans-serif;
@@ -275,49 +373,88 @@
 
 .dark {
   /* Dark theme colors - using centralized color system */
-  --background: oklch(0.2683 0.0279 150.7681); /* #171717 */
-  --foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --card: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
-  --card-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --popover: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
-  --popover-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --primary: oklch(0.6731 0.1624 144.2083); /* #70c88f */
-  --primary-foreground: oklch(0.2157 0.0453 145.7256); /* #102517 */
-  --secondary: oklch(0.3942 0.0265 142.9926); /* #262626 */
-  --secondary-foreground: oklch(0.897 0.0166 142.5518); /* #e5e5e5 */
-  --muted: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
-  --muted-foreground: oklch(0.8579 0.0174 76.0955); /* #a3a3a3 */
-  --accent: oklch(0.5752 0.1446 144.1813); /* #3d955c */
-  --accent-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --destructive: oklch(0.5386 0.1937 26.7249); /* #ef4444 */
-  --destructive-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --border: oklch(0.3942 0.0265 142.9926); /* #262626 */
-  --input: oklch(0.3942 0.0265 142.9926); /* #262626 */
-  --ring: oklch(0.6731 0.1624 144.2083); /* #70c88f */
+  /* Hex comments removed throughout this block: every one of them described
+     the pre-Trailhead palette (#171717, #0a0a0a, #262626, #1f2937 …) and none
+     matched the oklch value beside it. Two different tokens carried the same
+     oklch with two contradictory hexes. The oklch is the value. */
+  --background: oklch(0.2683 0.0279 90); /* Night Canvas */
+  --foreground: oklch(0.9423 0.0097 90);
+  --card: oklch(0.3327 0.0271 90); /* Night Surface */
+  --card-foreground: oklch(0.9423 0.0097 90);
+  --popover: oklch(0.3327 0.0271 90);
+  --popover-foreground: oklch(0.9423 0.0097 90);
+  --primary: oklch(0.6731 0.1624 150); /* Lichen */
+  --primary-foreground: oklch(0.2157 0.0453 150);
+  /* Text-safe brand green for dark: 6.40:1 on --background, 5.10:1 on --card.
+     Lichen itself is only 4.30:1 on --card, so it can't carry this role. */
+  --primary-text: oklch(0.72 0.15 150);
+  --secondary: oklch(0.3942 0.0265 150);
+  --secondary-foreground: oklch(0.897 0.0166 150);
+  --muted: oklch(0.3327 0.0271 90);
+  --muted-foreground: oklch(0.8579 0.0174 90);
+  /* Was a solid mid-green (oklch(0.5752 0.1446 150)) under near-white
+     text at 3.47:1 — the exact solid-fill pattern light mode rejected at
+     3.53:1. Now the dark counterpart of Trail Tan: warm tint, light text,
+     9.22:1, and no longer a green where light mode has a warm neutral. */
+  --accent: oklch(0.36 0.035 90);
+  --accent-foreground: oklch(0.9423 0.0097 90);
+  /* Was #ef4444. Red in dark mode while light mode forbids it outright was
+     the loudest contradiction in the palette. Destroying something is the
+     deepest usable green here too: 6.64:1 with light text. The fill only
+     reaches 1.91:1 against Night Canvas, so the variant carries
+     --destructive-border to give the component a perceivable boundary. */
+  --destructive: oklch(0.42 0.122 150);
+  --destructive-foreground: oklch(0.9423 0.0097 90);
+  --destructive-border: oklch(0.62 0.165 150); /* 4.54:1 vs --background */
+  --border: oklch(0.3942 0.0265 90);
+  --input: oklch(0.3942 0.0265 90);
+  --ring: oklch(0.6731 0.1624 150);
 
-  /* Chart colors */
-  --chart-1: oklch(0.766 0.1179 145.295); /* #94d6ab */
-  --chart-2: oklch(0.7185 0.1417 144.8887); /* #70c88f */
-  --chart-3: oklch(0.6731 0.1624 144.2083); /* #4cba73 */
-  --chart-4: oklch(0.6291 0.1543 144.2031); /* #3d955c */
-  --chart-5: oklch(0.5752 0.1446 144.1813); /* #2e7045 */
+  /* Same five steps, lifted for the dark ground. Verified against
+     --background: 3.93, 5.14, 6.83, 8.75, 11.36. */
+  --category-mushroom: oklch(0.58 0.161 150);
+  --category-berry: oklch(0.66 0.183 150);
+  --category-plant: oklch(0.73 0.17 150);
+  --category-flower: oklch(0.8 0.144 150);
+  --category-nut: oklch(0.88 0.104 150);
+
+  --chart-1: var(--category-plant);
+  --chart-2: var(--category-mushroom);
+  --chart-3: var(--category-berry);
+  --chart-4: var(--category-flower);
+  --chart-5: var(--category-nut);
 
   /* Sidebar colors */
-  --sidebar: oklch(0.2683 0.0279 150.7681); /* #171717 */
-  --sidebar-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --sidebar-primary: oklch(0.6731 0.1624 144.2083); /* #70c88f */
-  --sidebar-primary-foreground: oklch(0.2157 0.0453 145.7256); /* #102517 */
-  --sidebar-accent: oklch(0.5752 0.1446 144.1813); /* #3d955c */
-  --sidebar-accent-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --sidebar-border: oklch(0.3942 0.0265 142.9926); /* #262626 */
-  --sidebar-ring: oklch(0.6731 0.1624 144.2083); /* #70c88f */
+  --sidebar: oklch(0.2683 0.0279 90);
+  --sidebar-foreground: oklch(0.9423 0.0097 90);
+  --sidebar-primary: oklch(0.6731 0.1624 150);
+  --sidebar-primary-foreground: oklch(0.2157 0.0453 150);
+  /* Same 3.47:1 solid-mid-green-under-light-text defect --accent had. Light
+     mode's nav tint is a wash behind unchanged label text; this is its dark
+     counterpart at 6.89:1, not a saturated fill. */
+  --sidebar-accent: oklch(0.3942 0.0265 150);
+  --sidebar-accent-foreground: oklch(0.9423 0.0097 90);
+  --sidebar-border: oklch(0.3942 0.0265 90);
+  --sidebar-ring: oklch(0.6731 0.1624 150);
+
+  /* Safety warnings, dark counterpart. Same ramp identity; the text moves to
+     stop 5 (#fbae7e, 4.17:1 on a 22% tint) because stop 10 disappears against
+     a dark ground, and the tint is richer for the same reason. */
+  --status-warning: #fa733d;
+  --status-warning-background: color-mix(
+    in oklch,
+    var(--status-warning) 22%,
+    var(--background)
+  );
+  --status-warning-text: #fbae7e;
+  --status-warning-border: #fb4646;
 
   /* Dark-mode values for the tokens with no shadcn equivalent (see :root) */
-  --text-inverse: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
+  --text-inverse: oklch(0.3327 0.0271 90);
   --background-secondary: rgba(23, 23, 23, 0.9);
   --background-overlay: rgba(0, 0, 0, 0.8);
-  --hover-primary: oklch(0.3942 0.0265 142.9926); /* #1f2937 */
-  --hover-secondary: oklch(0.3327 0.0271 146.9867); /* #374151 */
+  --hover-primary: oklch(0.3942 0.0265 90);
+  --hover-secondary: oklch(0.3327 0.0271 90);
 
   --radius: 0.5rem;
   --font-sans: 'Public Sans', sans-serif;

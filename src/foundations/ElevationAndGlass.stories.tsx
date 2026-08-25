@@ -130,7 +130,9 @@ const MapBackdrop = ({ children }: { children: React.ReactNode }) => (
     className='flex min-h-[220px] items-center justify-center rounded-xl p-8'
     style={{
       backgroundImage:
-        'repeating-linear-gradient(45deg, oklch(0.72 0.11 147) 0 18px, oklch(0.62 0.13 165) 18px 36px)',
+        // Two steps of the one hue. These were hue 147 and 165 — two angles the
+        // palette does not have, in the design system's own documentation.
+        'repeating-linear-gradient(45deg, oklch(0.72 0.11 150) 0 18px, oklch(0.62 0.13 150) 18px 36px)',
     }}
   >
     {children}

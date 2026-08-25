@@ -16,6 +16,7 @@ import {
   Legend,
   ReferenceLine,
 } from 'recharts';
+import { categoryVar, toCategory } from '@/lib/categoryColor';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -410,13 +411,8 @@ export default function DataPage() {
     [speciesData]
   );
 
-  const CATEGORY_COLORS: Record<string, string> = {
-    plant: '#5a8a3c',
-    mushroom: '#8b5e3c',
-    berry: '#7a2d6e',
-    flower: '#d4789a',
-    nut: '#b8860b',
-  };
+  // Was a private five-hex palette that contradicted AdvancedMap's palette for
+  // the same five categories. Both now read the --category-* tokens.
 
   const availableSpecies = useMemo(() => {
     const ids = new Set<string>();
@@ -430,8 +426,9 @@ export default function DataPage() {
 
   const resolvedSpecies = selectedSpecies || availableSpecies[0]?.id || '';
 
-  const speciesLineColor =
-    CATEGORY_COLORS[speciesCategoryMap.get(resolvedSpecies) ?? ''] ?? '#96be9a';
+  const speciesLineColor = categoryVar(
+    toCategory(speciesCategoryMap.get(resolvedSpecies))
+  );
 
   const speciesOverTime = useMemo(
     () =>
@@ -973,7 +970,7 @@ export default function DataPage() {
           className={cn(
             'inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors',
             zone
-              ? 'bg-[var(--happy-100)] text-[var(--happy-900)]'
+              ? 'bg-happy-100 text-happy-900'
               : 'bg-muted text-muted-foreground'
           )}
         >
@@ -1055,8 +1052,16 @@ export default function DataPage() {
             >
               <defs>
                 <linearGradient id='rainGrad' x1='0' y1='0' x2='0' y2='1'>
-                  <stop offset='0%' stopColor='#7aace0' stopOpacity={0.95} />
-                  <stop offset='100%' stopColor='#7aace0' stopOpacity={0.25} />
+                  <stop
+                    offset='0%'
+                    stopColor='var(--chart-1)'
+                    stopOpacity={0.95}
+                  />
+                  <stop
+                    offset='100%'
+                    stopColor='var(--chart-1)'
+                    stopOpacity={0.25}
+                  />
                 </linearGradient>
               </defs>
               <CartesianGrid
@@ -1090,14 +1095,14 @@ export default function DataPage() {
               />
               <ReferenceLine
                 y={20}
-                stroke='#7aace0'
+                stroke='var(--chart-1)'
                 strokeDasharray='3 3'
                 strokeOpacity={0.5}
                 label={{
                   value: '20mm',
                   position: 'insideTopRight',
                   fontSize: 10,
-                  fill: '#7aace0',
+                  fill: 'var(--chart-1)',
                   opacity: 0.7,
                 }}
               />
@@ -1162,7 +1167,7 @@ export default function DataPage() {
               <Line
                 type='monotone'
                 dataKey='temp_max'
-                stroke='#c4909c'
+                stroke='var(--chart-3)'
                 dot={false}
                 strokeWidth={1.5}
                 activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }}
@@ -1171,7 +1176,7 @@ export default function DataPage() {
               <Line
                 type='monotone'
                 dataKey='temp_avg'
-                stroke='#d4a870'
+                stroke='var(--chart-2)'
                 dot={false}
                 strokeWidth={2.5}
                 activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
@@ -1180,7 +1185,7 @@ export default function DataPage() {
               <Line
                 type='monotone'
                 dataKey='temp_min'
-                stroke='#96be9a'
+                stroke='var(--chart-1)'
                 dot={false}
                 strokeWidth={1.5}
                 strokeDasharray='4 2'
@@ -1207,8 +1212,16 @@ export default function DataPage() {
             >
               <defs>
                 <linearGradient id='humidGrad' x1='0' y1='0' x2='0' y2='1'>
-                  <stop offset='0%' stopColor='#d4a870' stopOpacity={0.35} />
-                  <stop offset='100%' stopColor='#d4a870' stopOpacity={0.02} />
+                  <stop
+                    offset='0%'
+                    stopColor='var(--chart-2)'
+                    stopOpacity={0.35}
+                  />
+                  <stop
+                    offset='100%'
+                    stopColor='var(--chart-2)'
+                    stopOpacity={0.02}
+                  />
                 </linearGradient>
               </defs>
               <CartesianGrid
@@ -1244,7 +1257,7 @@ export default function DataPage() {
               <Area
                 type='monotone'
                 dataKey='humidity'
-                stroke='#d4a870'
+                stroke='var(--chart-2)'
                 strokeWidth={2}
                 fill='url(#humidGrad)'
                 dot={false}
@@ -1270,8 +1283,16 @@ export default function DataPage() {
             >
               <defs>
                 <linearGradient id='windGrad' x1='0' y1='0' x2='0' y2='1'>
-                  <stop offset='0%' stopColor='#b07080' stopOpacity={0.9} />
-                  <stop offset='100%' stopColor='#b07080' stopOpacity={0.25} />
+                  <stop
+                    offset='0%'
+                    stopColor='var(--chart-4)'
+                    stopOpacity={0.9}
+                  />
+                  <stop
+                    offset='100%'
+                    stopColor='var(--chart-4)'
+                    stopOpacity={0.25}
+                  />
                 </linearGradient>
               </defs>
               <CartesianGrid
@@ -1334,7 +1355,7 @@ export default function DataPage() {
                 type='monotone'
                 yAxisId='pressure'
                 dataKey='pressure_hpa'
-                stroke='#c9a227'
+                stroke='var(--chart-5)'
                 dot={false}
                 strokeWidth={2}
                 activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
@@ -1453,10 +1474,14 @@ export default function DataPage() {
               >
                 <defs>
                   <linearGradient id='topSpecGrad' x1='0' y1='0' x2='1' y2='0'>
-                    <stop offset='0%' stopColor='#96be9a' stopOpacity={0.45} />
+                    <stop
+                      offset='0%'
+                      stopColor='var(--chart-1)'
+                      stopOpacity={0.45}
+                    />
                     <stop
                       offset='100%'
-                      stopColor='#96be9a'
+                      stopColor='var(--chart-1)'
                       stopOpacity={0.95}
                     />
                   </linearGradient>

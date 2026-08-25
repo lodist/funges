@@ -63,20 +63,20 @@ export default function SettingsPage() {
         canonicalUrl={`${import.meta.env.BASE_URL}settings`}
       />
       <div className='settings-page max-w-4xl mx-auto px-4 py-8 space-y-6'>
-        <h1 className='text-3xl font-bold text-gray-900 dark:text-white'>
+        <h1 className='text-3xl font-bold text-foreground dark:text-white'>
           {t('title')}
         </h1>
 
         <div className='space-y-4'>
           {links.map(link => (
             <Link key={link.url} to={link.url} className='block'>
-              <Card className='bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors'>
+              <Card className='bg-card hover:bg-muted transition-colors'>
                 <CardContent className='py-4'>
                   <div className='flex items-center gap-3'>
                     {link.icon && (
-                      <link.icon className='h-5 w-5 text-gray-600 dark:text-gray-400' />
+                      <link.icon className='h-5 w-5 text-muted-foreground' />
                     )}
-                    <CardTitle className='text-gray-900 dark:text-white'>
+                    <CardTitle className='text-foreground dark:text-white'>
                       {link.label}
                     </CardTitle>
                   </div>
