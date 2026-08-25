@@ -23,7 +23,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { loadContext, extractPlatform, resolveTargetSelection } from './context.mjs';
+import {
+  loadContext,
+  extractPlatform,
+  resolveTargetSelection,
+} from './context.mjs';
 import { parseTargetOptions } from './lib/target-args.mjs';
 import { IMPECCABLE_COMMAND, IMPECCABLE_PROVIDER_ID } from './lib/provider.mjs';
 import { parseDesignMd } from './lib/design-parser.mjs';
@@ -66,7 +70,10 @@ function parseArgs(argv) {
     else if (arg === '--help' || arg === '-h') flags.help = true;
     else passthrough.push(arg);
   }
-  return { flags, targetOptions: parseTargetOptions(passthrough, { strict: true }) };
+  return {
+    flags,
+    targetOptions: parseTargetOptions(passthrough, { strict: true }),
+  };
 }
 
 function usage() {
@@ -86,9 +93,16 @@ function usage() {
 async function collect(cwd, targetOptions) {
   const ctx = loadContext(cwd, targetOptions);
   const projectRoot = ctx.projectRoot || cwd;
-  const absProductPath = ctx.productPath ? path.resolve(cwd, ctx.productPath) : null;
-  const absDesignPath = ctx.designPath ? path.resolve(cwd, ctx.designPath) : null;
-  const sidecarCandidates = designSidecarCandidatesFor(projectRoot, ctx.contextDir);
+  const absProductPath = ctx.productPath
+    ? path.resolve(cwd, ctx.productPath)
+    : null;
+  const absDesignPath = ctx.designPath
+    ? path.resolve(cwd, ctx.designPath)
+    : null;
+  const sidecarCandidates = designSidecarCandidatesFor(
+    projectRoot,
+    ctx.contextDir
+  );
   const knownRuleIds = await loadKnownRuleIds(SCRIPTS_DIR);
 
   const selection = resolveTargetSelection(cwd, targetOptions);
@@ -113,7 +127,11 @@ async function collect(cwd, targetOptions) {
     ...bootFindings.nativePlatform,
     ...bootFindings.designSidecar,
     ...checkDesignDrift({ designPath: absDesignPath, projectRoot }),
-    ...checkDesignCoverage({ design: ctx.design, designPath: ctx.designPath, parseDesignMd }),
+    ...checkDesignCoverage({
+      design: ctx.design,
+      designPath: ctx.designPath,
+      parseDesignMd,
+    }),
     ...bootFindings.config,
     ...bootFindings.buildPath,
     ...checkDetectorIgnores({ projectRoot, knownRuleIds }),
@@ -146,13 +164,18 @@ function readProjectRootPatterns(repoRoot) {
   const patterns = [];
   for (const name of ['config.json', 'config.local.json']) {
     try {
-      const raw = JSON.parse(fs.readFileSync(path.join(repoRoot, '.impeccable', name), 'utf-8'));
+      const raw = JSON.parse(
+        fs.readFileSync(path.join(repoRoot, '.impeccable', name), 'utf-8')
+      );
       if (Array.isArray(raw?.projectRoots)) {
         for (const entry of raw.projectRoots) {
-          if (typeof entry === 'string' && entry.trim()) patterns.push(entry.trim());
+          if (typeof entry === 'string' && entry.trim())
+            patterns.push(entry.trim());
         }
       }
-    } catch { /* missing or malformed: nothing to check */ }
+    } catch {
+      /* missing or malformed: nothing to check */
+    }
   }
   return patterns;
 }
@@ -172,34 +195,62 @@ function applyFixes(report) {
     }
     if (entry.id === 'design-sidecar-legacy-path') {
       const canonical = report.sidecarCandidates[0];
-      const present = report.sidecarCandidates.find((candidate) => fs.existsSync(candidate));
-      if (!canonical || !present || path.resolve(canonical) === path.resolve(present)) continue;
+      const present = report.sidecarCandidates.find(candidate =>
+        fs.existsSync(candidate)
+      );
+      if (
+        !canonical ||
+        !present ||
+        path.resolve(canonical) === path.resolve(present)
+      )
+        continue;
       if (fs.existsSync(canonical)) {
-        skipped.push({ id: entry.id, reason: `${rel(canonical, report.projectRoot)} already exists; not overwriting` });
+        skipped.push({
+          id: entry.id,
+          reason: `${rel(canonical, report.projectRoot)} already exists; not overwriting`,
+        });
         continue;
       }
       fs.mkdirSync(path.dirname(canonical), { recursive: true });
       fs.renameSync(present, canonical);
-      applied.push(`Moved ${rel(present, report.projectRoot)} to ${rel(canonical, report.projectRoot)}.`);
+      applied.push(
+        `Moved ${rel(present, report.projectRoot)} to ${rel(canonical, report.projectRoot)}.`
+      );
       continue;
     }
     if (entry.id === 'legacy-live-state') {
       // Reported, never deleted here: a running live session still reads these,
       // and losing session state to a doctor run is a worse outcome than a
       // stale file. The report says what to remove and when.
-      skipped.push({ id: entry.id, reason: 'delete by hand once no live session is running' });
+      skipped.push({
+        id: entry.id,
+        reason: 'delete by hand once no live session is running',
+      });
       continue;
     }
-    skipped.push({ id: entry.id, reason: 'no automatic migration implemented' });
+    skipped.push({
+      id: entry.id,
+      reason: 'no automatic migration implemented',
+    });
   }
 
   // Stamping the product record is additive and safe, and it is what stops a
   // later version proposing an interview the user has already sat through.
   const productPath = report.absProductPath;
-  if (productPath && report.ctx.product && readProductSchemaVersion(report.ctx.product) === null
-    && !report.findings.some((entry) => entry.id === 'product-schema-legacy')) {
-    fs.writeFileSync(productPath, stampProductSchema(report.ctx.product), 'utf-8');
-    applied.push(`Stamped ${rel(productPath, report.projectRoot)} as product-schema ${PRODUCT_SCHEMA_VERSION}.`);
+  if (
+    productPath &&
+    report.ctx.product &&
+    readProductSchemaVersion(report.ctx.product) === null &&
+    !report.findings.some(entry => entry.id === 'product-schema-legacy')
+  ) {
+    fs.writeFileSync(
+      productPath,
+      stampProductSchema(report.ctx.product),
+      'utf-8'
+    );
+    applied.push(
+      `Stamped ${rel(productPath, report.projectRoot)} as product-schema ${PRODUCT_SCHEMA_VERSION}.`
+    );
   }
 
   return { applied, skipped };
@@ -207,7 +258,9 @@ function applyFixes(report) {
 
 function rel(filePath, root) {
   const value = path.relative(root, filePath);
-  return value && !value.startsWith('..') ? value.split(path.sep).join('/') : filePath;
+  return value && !value.startsWith('..')
+    ? value.split(path.sep).join('/')
+    : filePath;
 }
 
 const SEVERITY_LABEL = {
@@ -220,18 +273,24 @@ function renderText(report, fixes) {
   const lines = [];
   const { findings } = report;
 
-  lines.push(`Impeccable doctor: ${rel(report.projectRoot, process.cwd()) || '.'}`);
+  lines.push(
+    `Impeccable doctor: ${rel(report.projectRoot, process.cwd()) || '.'}`
+  );
   if (report.ctx.isMonorepo) {
-    lines.push(`Monorepo, repo root ${rel(report.ctx.repoRoot, process.cwd()) || '.'}.`);
+    lines.push(
+      `Monorepo, repo root ${rel(report.ctx.repoRoot, process.cwd()) || '.'}.`
+    );
   }
   lines.push('');
 
   if (!findings.length) {
-    lines.push('No drift found. Every artifact matches what this version reads.');
+    lines.push(
+      'No drift found. Every artifact matches what this version reads.'
+    );
   } else {
     const order = ['route', 'mention', 'auto'];
     for (const severity of order) {
-      const group = findings.filter((entry) => entry.severity === severity);
+      const group = findings.filter(entry => entry.severity === severity);
       if (!group.length) continue;
       lines.push(`${SEVERITY_LABEL[severity]} (${group.length}):`);
       for (const entry of group) {
@@ -246,29 +305,37 @@ function renderText(report, fixes) {
   if (report.workspaces.length) {
     lines.push('Workspaces:');
     for (const workspace of report.workspaces) {
-      lines.push(`  ${workspace.path}  product: ${workspace.productStatus}`
-        + `  design: ${workspace.designStatus}`
-        + `${workspace.platform ? `  platform: ${workspace.platform}` : ''}`);
+      lines.push(
+        `  ${workspace.path}  product: ${workspace.productStatus}` +
+          `  design: ${workspace.designStatus}` +
+          `${workspace.platform ? `  platform: ${workspace.platform}` : ''}`
+      );
     }
     lines.push('');
   }
 
   if (!report.ruleRegistryAvailable) {
-    lines.push('Note: the bundled detector could not be resolved, so ignored rule ids were not validated.');
+    lines.push(
+      'Note: the bundled detector could not be resolved, so ignored rule ids were not validated.'
+    );
     lines.push('');
   }
 
   if (fixes) {
     lines.push(fixes.applied.length ? 'Applied:' : 'Applied nothing.');
     for (const entry of fixes.applied) lines.push(`  ${entry}`);
-    const held = fixes.skipped.filter((entry) => entry.reason !== 'needs a decision from the user');
+    const held = fixes.skipped.filter(
+      entry => entry.reason !== 'needs a decision from the user'
+    );
     if (held.length) {
       lines.push('Left alone:');
       for (const entry of held) lines.push(`  ${entry.id}: ${entry.reason}`);
     }
-  } else if (findings.some((entry) => entry.severity === 'auto')) {
-    lines.push(`Run \`node doctor.mjs --fix\` to apply the automatic migrations, `
-      + `or \`${IMPECCABLE_COMMAND} doctor\` to work through all of them.`);
+  } else if (findings.some(entry => entry.severity === 'auto')) {
+    lines.push(
+      `Run \`node doctor.mjs --fix\` to apply the automatic migrations, ` +
+        `or \`${IMPECCABLE_COMMAND} doctor\` to work through all of them.`
+    );
   }
 
   return lines.join('\n');
@@ -291,18 +358,24 @@ async function cli() {
   const fixes = parsed.flags.fix ? applyFixes(report) : null;
 
   if (parsed.flags.json) {
-    process.stdout.write(`${JSON.stringify({
-      projectRoot: report.projectRoot,
-      repoRoot: report.ctx.repoRoot,
-      isMonorepo: report.ctx.isMonorepo,
-      productPath: report.ctx.productPath,
-      designPath: report.ctx.designPath,
-      platform: report.ctx.platform,
-      ruleRegistryAvailable: report.ruleRegistryAvailable,
-      findings: report.findings,
-      workspaces: report.workspaces,
-      ...(fixes ? { fixes } : {}),
-    }, null, 2)}\n`);
+    process.stdout.write(
+      `${JSON.stringify(
+        {
+          projectRoot: report.projectRoot,
+          repoRoot: report.ctx.repoRoot,
+          isMonorepo: report.ctx.isMonorepo,
+          productPath: report.ctx.productPath,
+          designPath: report.ctx.designPath,
+          platform: report.ctx.platform,
+          ruleRegistryAvailable: report.ruleRegistryAvailable,
+          findings: report.findings,
+          workspaces: report.workspaces,
+          ...(fixes ? { fixes } : {}),
+        },
+        null,
+        2
+      )}\n`
+    );
     return;
   }
 
@@ -313,14 +386,16 @@ function invokedAsScript() {
   const arg = process.argv[1];
   if (!arg) return false;
   try {
-    return fs.realpathSync(arg) === fs.realpathSync(fileURLToPath(import.meta.url));
+    return (
+      fs.realpathSync(arg) === fs.realpathSync(fileURLToPath(import.meta.url))
+    );
   } catch {
     return false;
   }
 }
 
 if (invokedAsScript()) {
-  cli().catch((err) => {
+  cli().catch(err => {
     process.stderr.write(`impeccable doctor failed: ${err?.message || err}\n`);
     process.exit(1);
   });

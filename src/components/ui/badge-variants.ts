@@ -9,7 +9,7 @@ export const badgeVariants = cva(
       variant: {
         // bg intentionally stays literal happy-500 (--primary is happy-600).
         default:
-          'border-transparent bg-[var(--happy-500)] text-[var(--happy-900)] [a&]:hover:bg-[var(--happy-500)]/90',
+          'border-transparent bg-happy-500 text-happy-900 [a&]:hover:bg-happy-500/90',
         secondary:
           'border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90',
         // No red anywhere, per review — bg-destructive === --happy-900.

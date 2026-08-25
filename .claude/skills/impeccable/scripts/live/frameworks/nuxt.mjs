@@ -30,17 +30,23 @@ export function detectNuxtProject(cwd = process.cwd()) {
       .replace(/^\.\//, '')
       .replace(/\/+$/, '');
     const normalized = path.posix.normalize(candidate);
-    if (normalized !== '..' && !normalized.startsWith('../') && !path.isAbsolute(normalized)) {
+    if (
+      normalized !== '..' &&
+      !normalized.startsWith('../') &&
+      !path.isAbsolute(normalized)
+    ) {
       appDir = normalized === '.' ? '' : normalized;
     }
   } else if (
-    fs.existsSync(path.join(cwd, 'app', 'app.vue'))
-    || fs.existsSync(path.join(cwd, 'app', 'pages'))
+    fs.existsSync(path.join(cwd, 'app', 'app.vue')) ||
+    fs.existsSync(path.join(cwd, 'app', 'pages'))
   ) {
     appDir = 'app';
   }
 
-  const pluginFile = [appDir, 'plugins', NUXT_PLUGIN_NAME].filter(Boolean).join('/');
+  const pluginFile = [appDir, 'plugins', NUXT_PLUGIN_NAME]
+    .filter(Boolean)
+    .join('/');
   return { configFile, appDir, pluginFile };
 }
 
@@ -71,10 +77,17 @@ export default defineNuxtPlugin(() => {
 `;
 }
 
-export function applyNuxtLiveAdapter({ cwd = process.cwd(), port, token, project = detectNuxtProject(cwd) }) {
+export function applyNuxtLiveAdapter({
+  cwd = process.cwd(),
+  port,
+  token,
+  project = detectNuxtProject(cwd),
+}) {
   if (!project) return { error: 'nuxt_not_detected' };
   const absFile = path.join(cwd, project.pluginFile);
-  const existing = fs.existsSync(absFile) ? fs.readFileSync(absFile, 'utf-8') : null;
+  const existing = fs.existsSync(absFile)
+    ? fs.readFileSync(absFile, 'utf-8')
+    : null;
   if (existing !== null && !existing.includes(NUXT_PLUGIN_MARKER)) {
     return {
       file: project.pluginFile,
@@ -94,11 +107,18 @@ export function applyNuxtLiveAdapter({ cwd = process.cwd(), port, token, project
   };
 }
 
-export function removeNuxtLiveAdapter({ cwd = process.cwd(), project = detectNuxtProject(cwd) }) {
+export function removeNuxtLiveAdapter({
+  cwd = process.cwd(),
+  project = detectNuxtProject(cwd),
+}) {
   if (!project) return { error: 'nuxt_not_detected' };
   const absFile = path.join(cwd, project.pluginFile);
   if (!fs.existsSync(absFile)) {
-    return { file: project.pluginFile, removed: false, note: 'no adapter present' };
+    return {
+      file: project.pluginFile,
+      removed: false,
+      note: 'no adapter present',
+    };
   }
   const content = fs.readFileSync(absFile, 'utf-8');
   if (!content.includes(NUXT_PLUGIN_MARKER)) {
@@ -141,14 +161,16 @@ export const nuxt = {
 
     artifacts({ project }) {
       if (!project?.pluginFile) return [];
-      return [{
-        kind: 'created',
-        path: project.pluginFile,
-        marker: NUXT_PLUGIN_MARKER,
-        // Mirrors removeNuxtLiveAdapter: the generated `plugins/` directory
-        // goes when it empties, its parent stays.
-        pruneTo: path.posix.dirname(path.posix.dirname(project.pluginFile)),
-      }];
+      return [
+        {
+          kind: 'created',
+          path: project.pluginFile,
+          marker: NUXT_PLUGIN_MARKER,
+          // Mirrors removeNuxtLiveAdapter: the generated `plugins/` directory
+          // goes when it empties, its parent stays.
+          pruneTo: path.posix.dirname(path.posix.dirname(project.pluginFile)),
+        },
+      ];
     },
   },
 

@@ -93,7 +93,7 @@ export default function OnboardingModal() {
           <div>
             <Link
               to='/support'
-              className='inline-flex items-center gap-1 font-medium text-[#7B2D3B] dark:text-[#B5566B] hover:underline'
+              className='inline-flex items-center gap-1 font-medium text-primary-text hover:underline'
             >
               <Heart className='h-3.5 w-3.5 fill-current' />
               {t('onboarding.supportLink')}

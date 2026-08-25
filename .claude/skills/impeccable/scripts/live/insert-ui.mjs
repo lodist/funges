@@ -45,11 +45,21 @@ export function detectInsertAxisFromStyle(style) {
 export function computeInsertPosition(clientX, clientY, rect, axis = 'column') {
   if (!rect) return 'after';
   if (axis === 'row') {
-    if (!Number.isFinite(rect.left) || !Number.isFinite(rect.width) || rect.width <= 0) return 'after';
+    if (
+      !Number.isFinite(rect.left) ||
+      !Number.isFinite(rect.width) ||
+      rect.width <= 0
+    )
+      return 'after';
     const mid = rect.left + rect.width / 2;
     return clientX < mid ? 'before' : 'after';
   }
-  if (!Number.isFinite(rect.top) || !Number.isFinite(rect.height) || rect.height <= 0) return 'after';
+  if (
+    !Number.isFinite(rect.top) ||
+    !Number.isFinite(rect.height) ||
+    rect.height <= 0
+  )
+    return 'after';
   const mid = rect.top + rect.height / 2;
   return clientY < mid ? 'before' : 'after';
 }
@@ -61,9 +71,9 @@ export function computeInsertPosition(clientX, clientY, rect, axis = 'column') {
 export function canCreateInsert({ prompt, comments, strokes }) {
   const hasPrompt = typeof prompt === 'string' && prompt.trim().length > 0;
   const hasComments = Array.isArray(comments) && comments.length > 0;
-  const hasStrokes = Array.isArray(strokes) && strokes.some(
-    (s) => Array.isArray(s?.points) && s.points.length >= 2,
-  );
+  const hasStrokes =
+    Array.isArray(strokes) &&
+    strokes.some(s => Array.isArray(s?.points) && s.points.length >= 2);
   return hasPrompt || hasComments || hasStrokes;
 }
 
@@ -83,11 +93,23 @@ export function insertLineCoords(rect, position, axis = 'column') {
   if (axis === 'row') {
     const right = rect.right ?? rect.left + rect.width;
     const x = position === 'before' ? rect.left - 2 : right + 2;
-    return { axis: 'row', top: rect.top, left: x, width: 0, height: rect.height };
+    return {
+      axis: 'row',
+      top: rect.top,
+      left: x,
+      width: 0,
+      height: rect.height,
+    };
   }
   const bottom = rect.bottom ?? rect.top + rect.height;
   const y = position === 'before' ? rect.top - 2 : bottom + 2;
-  return { axis: 'column', top: y, left: rect.left, width: rect.width, height: 0 };
+  return {
+    axis: 'column',
+    top: y,
+    left: rect.left,
+    width: rect.width,
+    height: 0,
+  };
 }
 
 /** Cursor while hovering an insert boundary. */
@@ -96,7 +118,9 @@ export function cursorForInsertAxis(axis) {
 }
 
 function groupSiblingRows(siblings, rowThreshold = 8) {
-  const sorted = [...siblings].sort((a, b) => a.rect.top - b.rect.top || a.rect.left - b.rect.left);
+  const sorted = [...siblings].sort(
+    (a, b) => a.rect.top - b.rect.top || a.rect.left - b.rect.left
+  );
   const rows = [];
   for (const entry of sorted) {
     let placed = false;
@@ -114,7 +138,10 @@ function groupSiblingRows(siblings, rowThreshold = 8) {
 
 function horizontalOverlap(a, b) {
   const left = Math.max(a.left, b.left);
-  const right = Math.min(a.right ?? a.left + a.width, b.right ?? b.left + b.width);
+  const right = Math.min(
+    a.right ?? a.left + a.width,
+    b.right ?? b.left + b.width
+  );
   return Math.max(0, right - left);
 }
 
@@ -161,7 +188,9 @@ export function hitSiblingInsertGap(clientX, clientY, siblings, opts = {}) {
     }
   }
 
-  const sortedCol = [...siblings].sort((a, b) => a.rect.top - b.rect.top || a.rect.left - b.rect.left);
+  const sortedCol = [...siblings].sort(
+    (a, b) => a.rect.top - b.rect.top || a.rect.left - b.rect.left
+  );
   for (let i = 0; i < sortedCol.length - 1; i++) {
     const a = sortedCol[i];
     const b = sortedCol[i + 1];
@@ -177,7 +206,7 @@ export function hitSiblingInsertGap(clientX, clientY, siblings, opts = {}) {
     const overlapLeft = Math.max(a.rect.left, b.rect.left);
     const overlapRight = Math.min(
       a.rect.right ?? a.rect.left + a.rect.width,
-      b.rect.right ?? b.rect.left + b.rect.width,
+      b.rect.right ?? b.rect.left + b.rect.width
     );
     const inY = clientY >= gapTop - slop && clientY <= gapBottom + slop;
     const inX = clientX >= overlapLeft - slop && clientX <= overlapRight + slop;
@@ -188,7 +217,13 @@ export function hitSiblingInsertGap(clientX, clientY, siblings, opts = {}) {
       anchor: b.el,
       position: 'before',
       axis: 'column',
-      line: { axis: 'column', top: midY, left: overlapLeft, width: overlap, height: 0 },
+      line: {
+        axis: 'column',
+        top: midY,
+        left: overlapLeft,
+        width: overlap,
+        height: 0,
+      },
     };
   }
 
@@ -198,7 +233,14 @@ export function hitSiblingInsertGap(clientX, clientY, siblings, opts = {}) {
 /**
  * Resolve insert hover target, side, axis, and indicator line for the pointer.
  */
-export function resolveInsertHover({ clientX, clientY, target, rect, axis, siblings }) {
+export function resolveInsertHover({
+  clientX,
+  clientY,
+  target,
+  rect,
+  axis,
+  siblings,
+}) {
   const gap = hitSiblingInsertGap(clientX, clientY, siblings);
   if (gap) return gap;
 
@@ -212,15 +254,21 @@ export function resolveInsertHover({ clientX, clientY, target, rect, axis, sibli
  * Prefer implicit sizing (flex / %) so row inserts don't inherit the full parent width in px.
  * @returns {{ kind: 'flex', flex: string, minWidth: number } | { kind: 'percent' } | { kind: 'auto' } | { kind: 'explicit', width: number }}
  */
-export function placeholderSizing({ axis, parentDisplay, parentWidth, anchorFlex }) {
+export function placeholderSizing({
+  axis,
+  parentDisplay,
+  parentWidth,
+  anchorFlex,
+}) {
   const display = parentDisplay || 'block';
   const w = Number.isFinite(parentWidth) ? parentWidth : 0;
 
   if (axis === 'row') {
     if (display.includes('flex')) {
-      const flex = anchorFlex && anchorFlex !== 'none' && anchorFlex !== '0 1 auto'
-        ? anchorFlex
-        : '1 1 0';
+      const flex =
+        anchorFlex && anchorFlex !== 'none' && anchorFlex !== '0 1 auto'
+          ? anchorFlex
+          : '1 1 0';
       return { kind: 'flex', flex, minWidth: 0 };
     }
     if (display === 'grid' || display === 'inline-grid') {
@@ -271,7 +319,14 @@ export function cursorForPlaceholderEdge(edge) {
  * @param {number} dy pointer delta Y since drag start
  * @param {number} parentWidth
  */
-export function resizePlaceholderFromEdge(start, edge, dx, dy, parentWidth, opts = {}) {
+export function resizePlaceholderFromEdge(
+  start,
+  edge,
+  dx,
+  dy,
+  parentWidth,
+  opts = {}
+) {
   const base = {
     width: start.width,
     height: start.height,
@@ -288,7 +343,12 @@ export function resizePlaceholderFromEdge(start, edge, dx, dy, parentWidth, opts
     base.marginTop = start.marginTop + dy;
   }
 
-  const clamped = clampPlaceholderSize(base.width, base.height, parentWidth, opts);
+  const clamped = clampPlaceholderSize(
+    base.width,
+    base.height,
+    parentWidth,
+    opts
+  );
   if (edge === 'w') {
     base.marginLeft = start.marginLeft + start.width - clamped.width;
   } else if (edge === 'n') {
@@ -422,7 +482,11 @@ export function resolveInsertSessionAnchor(opts) {
  * }} placeholder
  * @param {{ position: 'before' | 'after', layoutAxis?: 'row' | 'column' }} meta
  */
-export function buildInsertPlaceholderSnapshot(anchor, placeholder, { position, layoutAxis }) {
+export function buildInsertPlaceholderSnapshot(
+  anchor,
+  placeholder,
+  { position, layoutAxis }
+) {
   return {
     width: Math.round(placeholder.offsetWidth || 0),
     height: Math.round(placeholder.offsetHeight || PLACEHOLDER_DEFAULT_HEIGHT),
@@ -451,7 +515,8 @@ export function findInsertAnchorInDom(doc, snapshot, liveAnchor = null) {
   const sel = cls ? `${tag}.${cls}` : tag;
   const candidates = doc.querySelectorAll(sel);
   for (const candidate of candidates) {
-    if (needle && !(candidate.textContent || '').includes(needle.slice(0, 40))) continue;
+    if (needle && !(candidate.textContent || '').includes(needle.slice(0, 40)))
+      continue;
     return candidate;
   }
   return null;

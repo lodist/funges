@@ -973,7 +973,7 @@ export default function DataPage() {
           className={cn(
             'inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors',
             zone
-              ? 'bg-[var(--happy-100)] text-[var(--happy-900)]'
+              ? 'bg-happy-100 text-happy-900'
               : 'bg-muted text-muted-foreground'
           )}
         >

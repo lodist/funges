@@ -35,7 +35,11 @@ function recordProfileEvent(profile, event) {
 
 function extractFindingIds(findings) {
   if (!Array.isArray(findings) || findings.length === 0) return [];
-  return [...new Set(findings.map(f => f?.id || f?.type || f?.antipattern).filter(Boolean))];
+  return [
+    ...new Set(
+      findings.map(f => f?.id || f?.type || f?.antipattern).filter(Boolean)
+    ),
+  ];
 }
 
 function profileFindings(profile, meta, callback) {
@@ -96,7 +100,7 @@ function percentile(sortedValues, pct) {
   if (!sortedValues.length) return 0;
   const idx = Math.min(
     sortedValues.length - 1,
-    Math.max(0, Math.ceil((pct / 100) * sortedValues.length) - 1),
+    Math.max(0, Math.ceil((pct / 100) * sortedValues.length) - 1)
   );
   return sortedValues[idx];
 }
@@ -104,7 +108,9 @@ function percentile(sortedValues, pct) {
 function summarizeDetectorProfile(profile) {
   const events = Array.isArray(profile)
     ? profile
-    : (Array.isArray(profile?.events) ? profile.events : []);
+    : Array.isArray(profile?.events)
+      ? profile.events
+      : [];
   const groups = new Map();
   for (const event of events) {
     const key = [

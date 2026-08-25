@@ -1,7 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { LIVE_CHROME_MOUNT_CONTRACT, LIVE_UI_SURFACES } from './ui-surfaces.mjs';
+import {
+  LIVE_CHROME_MOUNT_CONTRACT,
+  LIVE_UI_SURFACES,
+} from './ui-surfaces.mjs';
 
 export const LIVE_BROWSER_SCRIPT_PARTS = Object.freeze([
   Object.freeze({ name: 'session-state', file: 'live-browser-session.js' }),
@@ -9,7 +12,10 @@ export const LIVE_BROWSER_SCRIPT_PARTS = Object.freeze([
   Object.freeze({ name: 'browser-ui', file: 'live-browser.js' }),
 ]);
 
-export function resolveLiveBrowserScriptParts(scriptsDir, parts = LIVE_BROWSER_SCRIPT_PARTS) {
+export function resolveLiveBrowserScriptParts(
+  scriptsDir,
+  parts = LIVE_BROWSER_SCRIPT_PARTS
+) {
   if (!scriptsDir) throw new Error('scriptsDir is required');
   return parts.map((part, index) => ({
     ...part,
@@ -21,14 +27,19 @@ export function resolveLiveBrowserScriptParts(scriptsDir, parts = LIVE_BROWSER_S
 export function assertLiveBrowserScriptParts(parts, exists = fs.existsSync) {
   for (const part of parts) {
     if (!exists(part.path)) {
-      throw new Error(`Live browser script part missing: ${part.name} (${part.path})`);
+      throw new Error(
+        `Live browser script part missing: ${part.name} (${part.path})`
+      );
     }
   }
   return parts;
 }
 
-export function readLiveBrowserScriptParts(parts, readFile = (filePath) => fs.readFileSync(filePath, 'utf-8')) {
-  return parts.map((part) => ({
+export function readLiveBrowserScriptParts(
+  parts,
+  readFile = filePath => fs.readFileSync(filePath, 'utf-8')
+) {
+  return parts.map(part => ({
     ...part,
     source: readFile(part.path),
   }));
@@ -68,10 +79,12 @@ export function assembleLiveBrowserScript({
     `window.__IMPECCABLE_LIVE_UI_SURFACES__ = ${JSON.stringify(uiSurfaces)};\n` +
     `window.__IMPECCABLE_LIVE_MOUNT_CONTRACT__ = ${JSON.stringify(mountContract)};\n`;
 
-  const body = parts.map((part) => {
-    const file = part.file || path.basename(part.path || '');
-    return `// --- impeccable live script part: ${part.name} (${file}) ---\n${part.source}`;
-  }).join('\n');
+  const body = parts
+    .map(part => {
+      const file = part.file || path.basename(part.path || '');
+      return `// --- impeccable live script part: ${part.name} (${file}) ---\n${part.source}`;
+    })
+    .join('\n');
 
   return prelude + body;
 }

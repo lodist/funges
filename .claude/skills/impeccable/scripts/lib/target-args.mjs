@@ -18,7 +18,10 @@ export function parseTargetPath(args = [], { strict = false } = {}) {
         continue;
       }
       if (strict) {
-        throw new TargetArgError('--target requires a path value.', 'TARGET_VALUE_MISSING');
+        throw new TargetArgError(
+          '--target requires a path value.',
+          'TARGET_VALUE_MISSING'
+        );
       }
       continue;
     }
@@ -29,7 +32,10 @@ export function parseTargetPath(args = [], { strict = false } = {}) {
         continue;
       }
       if (strict) {
-        throw new TargetArgError('--target requires a path value.', 'TARGET_VALUE_MISSING');
+        throw new TargetArgError(
+          '--target requires a path value.',
+          'TARGET_VALUE_MISSING'
+        );
       }
     }
   }

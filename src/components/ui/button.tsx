@@ -19,7 +19,7 @@ const buttonVariants = cva(
         // bg-primary/text-primary-foreground (--primary is happy-600) — the
         // hero CTA uses the brighter 500 step on purpose.
         default:
-          'rounded-full border-0 font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.18)] bg-[var(--happy-500)] text-[var(--happy-900)] hover:bg-[oklch(0.58_0.18_150)] hover:shadow-[0_3px_12px_rgba(0,0,0,0.22)] transition-[background-color,box-shadow]',
+          'rounded-full border-0 font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.18)] bg-happy-500 text-happy-900 hover:bg-[oklch(0.58_0.18_150)] hover:shadow-[0_3px_12px_rgba(0,0,0,0.22)] transition-[background-color,box-shadow]',
         // Deepest step of the happy-green scale stands in for "destructive"
         // — no red anywhere, per review. bg-destructive === --happy-900.
         destructive:
@@ -29,14 +29,14 @@ const buttonVariants = cva(
         // fill, never adds/removes an outline. border-primary === happy-600.
         // dark: classes unchanged — Trailhead wasn't reviewed in dark mode.
         outline:
-          'rounded-full border-2 border-primary bg-transparent text-[var(--happy-700)] shadow-none hover:bg-[var(--happy-50)] hover:text-[var(--happy-700)] dark:border-primary dark:bg-card dark:text-primary dark:hover:bg-primary dark:hover:text-primary-foreground',
+          'rounded-full border-2 border-primary bg-transparent text-happy-700 shadow-none hover:bg-happy-50 hover:text-happy-700 dark:border-primary dark:bg-card dark:text-primary dark:hover:bg-primary dark:hover:text-primary-foreground',
         'enhanced-outline':
-          'border-2 border-primary bg-white text-primary shadow-md hover:bg-primary hover:text-white hover:shadow-lg transition-all duration-[var(--duration-base)] dark:border-primary dark:bg-card dark:text-primary dark:hover:bg-primary dark:hover:text-primary-foreground',
+          'border-2 border-primary bg-card text-primary shadow-md hover:bg-primary hover:text-white hover:shadow-lg transition-all duration-[var(--duration-base)] dark:border-primary dark:bg-card dark:text-primary dark:hover:bg-primary dark:hover:text-primary-foreground',
         secondary:
           'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
         // dark: classes unchanged — Trailhead wasn't reviewed in dark mode.
         ghost:
-          'rounded-full font-medium text-foreground hover:bg-[var(--happy-50)] hover:text-[var(--happy-700)] transition-colors dark:hover:bg-accent/50 dark:hover:text-accent-foreground',
+          'rounded-full font-medium text-foreground hover:bg-happy-50 hover:text-happy-700 transition-colors dark:hover:bg-accent/50 dark:hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
       },
       // Trailhead (#213): size controls height/padding only. Radius is the
@@ -58,7 +58,7 @@ const buttonVariants = cva(
         variant: 'outline',
         size: 'icon',
         class:
-          'rounded-full p-0 border-0 shadow-[0_2px_10px_rgba(0,0,0,0.18)] bg-card text-[var(--happy-700)] hover:bg-[var(--happy-50)] hover:text-[var(--happy-700)]',
+          'rounded-full p-0 border-0 shadow-[0_2px_10px_rgba(0,0,0,0.18)] bg-card text-happy-700 hover:bg-happy-50 hover:text-happy-700',
       },
     ],
     defaultVariants: {

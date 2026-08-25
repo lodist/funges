@@ -572,7 +572,7 @@ function getAntipattern(id) {
 // exit codes or the failure count, and the design hook skips them by default.
 // The set is derived from the registry so a rule only needs `advisory: true`.
 const ADVISORY_RULE_IDS = new Set(
-  ANTIPATTERNS.filter(rule => rule.advisory === true).map(rule => rule.id),
+  ANTIPATTERNS.filter(rule => rule.advisory === true).map(rule => rule.id)
 );
 
 function isAdvisoryRule(id) {
@@ -589,9 +589,7 @@ function getRuleEngineSupport(engine) {
 
 // Set of scope tags rules can declare (e.g. 'type', 'layout'). Used by the
 // CLI --scope flag to narrow output to one design domain.
-const RULE_SCOPES = new Set(
-  ANTIPATTERNS.flatMap(rule => rule.scopes || []),
-);
+const RULE_SCOPES = new Set(ANTIPATTERNS.flatMap(rule => rule.scopes || []));
 
 // Keep only findings whose rule declares at least one of the requested
 // scopes. An empty scope list means no filtering (default CLI behavior).

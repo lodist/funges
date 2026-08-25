@@ -78,7 +78,10 @@ The agent should insert variant HTML at insertLine.`);
   // a no-op on the svelte-component path, which never writes the route source.
   const deferSourceWrite = args.includes('--defer-source-write');
 
-  if (!id) { console.error('Missing --id'); process.exit(1); }
+  if (!id) {
+    console.error('Missing --id');
+    process.exit(1);
+  }
   if (!elementId && !classes && !query) {
     console.error('Need at least one of: --element-id, --classes, --query');
     process.exit(1);
@@ -96,7 +99,10 @@ The agent should insert variant HTML at insertLine.`);
   if (!targetFile) {
     for (const q of queries) {
       targetFile = findFileWithQuery(q, process.cwd(), genOpts);
-      if (targetFile) { matchedQuery = q; break; }
+      if (targetFile) {
+        matchedQuery = q;
+        break;
+      }
     }
     if (!targetFile) {
       // Nothing in source. Did the element show up in a generated file? That
@@ -104,33 +110,45 @@ The agent should insert variant HTML at insertLine.`);
       // doesn't exist in this project."
       let generatedHit = null;
       for (const q of queries) {
-        generatedHit = findFileWithQuery(q, process.cwd(), { ...genOpts, includeGenerated: true });
+        generatedHit = findFileWithQuery(q, process.cwd(), {
+          ...genOpts,
+          includeGenerated: true,
+        });
         if (generatedHit) break;
       }
       if (generatedHit) {
-        console.error(JSON.stringify({
-          error: 'element_not_in_source',
-          fallback: 'agent-driven',
-          generatedMatch: path.relative(process.cwd(), generatedHit),
-          hint: 'Element found only in a generated file. See "Handle fallback" in live.md.',
-        }));
+        console.error(
+          JSON.stringify({
+            error: 'element_not_in_source',
+            fallback: 'agent-driven',
+            generatedMatch: path.relative(process.cwd(), generatedHit),
+            hint: 'Element found only in a generated file. See "Handle fallback" in live.md.',
+          })
+        );
       } else {
-        console.error(JSON.stringify({
-          error: 'element_not_found',
-          fallback: 'agent-driven',
-          hint: 'Element not found in any project file. It may be runtime-injected (JS component, etc.). See "Handle fallback" in live.md.',
-        }));
+        console.error(
+          JSON.stringify({
+            error: 'element_not_found',
+            fallback: 'agent-driven',
+            hint: 'Element not found in any project file. It may be runtime-injected (JS component, etc.). See "Handle fallback" in live.md.',
+          })
+        );
       }
       process.exit(1);
     }
   } else {
     if (isGeneratedFile(targetFile, genOpts)) {
-      console.error(JSON.stringify({
-        error: 'file_is_generated',
-        fallback: 'agent-driven',
-        file: path.relative(process.cwd(), path.resolve(process.cwd(), targetFile)),
-        hint: 'Explicit --file points at a generated file. Writing here gets wiped by the next build. See "Handle fallback" in live.md.',
-      }));
+      console.error(
+        JSON.stringify({
+          error: 'file_is_generated',
+          fallback: 'agent-driven',
+          file: path.relative(
+            process.cwd(),
+            path.resolve(process.cwd(), targetFile)
+          ),
+          hint: 'Explicit --file points at a generated file. Writing here gets wiped by the next build. See "Handle fallback" in live.md.',
+        })
+      );
       process.exit(1);
     }
     matchedQuery = queries[0];
@@ -149,7 +167,7 @@ The agent should insert variant HTML at insertLine.`);
     for (const q of queries) {
       const all = findAllElements(lines, q, tag);
       for (const c of all) {
-        if (!candidates.some((x) => x.startLine === c.startLine)) {
+        if (!candidates.some(x => x.startLine === c.startLine)) {
           candidates.push(c);
         }
       }
@@ -159,7 +177,15 @@ The agent should insert variant HTML at insertLine.`);
       if (candidates.length === 1) break;
     }
     if (candidates.length === 0) {
-      console.error(JSON.stringify({ error: 'Found file but could not locate element in ' + targetFile + '. Searched for: ' + queries.join(', ') }));
+      console.error(
+        JSON.stringify({
+          error:
+            'Found file but could not locate element in ' +
+            targetFile +
+            '. Searched for: ' +
+            queries.join(', '),
+        })
+      );
       process.exit(1);
     }
     if (candidates.length === 1) {
@@ -179,33 +205,37 @@ The agent should insert variant HTML at insertLine.`);
           // the source uses expressions or component props. Picking the first
           // same-class sibling silently edits the wrong instance (observed on
           // Astro result cards), so stop and surface every candidate instead.
-          console.error(JSON.stringify({
-            error: 'element_ambiguous',
-            fallback: 'agent-driven',
-            reason: 'rendered_text_not_in_source',
-            file: path.relative(process.cwd(), targetFile),
-            candidates: candidates.map((c) => ({
-              startLine: c.startLine + 1,
-              endLine: c.endLine + 1,
-            })),
-            hint: 'Rendered text does not occur in any matching source branch. The element may use dynamic props or expressions; inspect the candidates and wrap the intended instance manually.',
-          }));
+          console.error(
+            JSON.stringify({
+              error: 'element_ambiguous',
+              fallback: 'agent-driven',
+              reason: 'rendered_text_not_in_source',
+              file: path.relative(process.cwd(), targetFile),
+              candidates: candidates.map(c => ({
+                startLine: c.startLine + 1,
+                endLine: c.endLine + 1,
+              })),
+              hint: 'Rendered text does not occur in any matching source branch. The element may use dynamic props or expressions; inspect the candidates and wrap the intended instance manually.',
+            })
+          );
           process.exit(1);
         }
       } else {
         // Multiple candidates ALSO match the text. Truly ambiguous — refuse
         // rather than pick wrong, and hand the agent the candidate locations
         // so it can disambiguate by reading the file.
-        console.error(JSON.stringify({
-          error: 'element_ambiguous',
-          fallback: 'agent-driven',
-          file: path.relative(process.cwd(), targetFile),
-          candidates: filtered.map((c) => ({
-            startLine: c.startLine + 1,
-            endLine: c.endLine + 1,
-          })),
-          hint: 'Multiple source elements match both classes/tag and textContent. Pass --element-id, a more specific --text, or write the wrapper manually. See "Handle fallback" in live.md.',
-        }));
+        console.error(
+          JSON.stringify({
+            error: 'element_ambiguous',
+            fallback: 'agent-driven',
+            file: path.relative(process.cwd(), targetFile),
+            candidates: filtered.map(c => ({
+              startLine: c.startLine + 1,
+              endLine: c.endLine + 1,
+            })),
+            hint: 'Multiple source elements match both classes/tag and textContent. Pass --element-id, a more specific --text, or write the wrapper manually. See "Handle fallback" in live.md.',
+          })
+        );
         process.exit(1);
       }
     }
@@ -215,7 +245,15 @@ The agent should insert variant HTML at insertLine.`);
       if (match) break;
     }
     if (!match) {
-      console.error(JSON.stringify({ error: 'Found file but could not locate element in ' + targetFile + '. Searched for: ' + queries.join(', ') }));
+      console.error(
+        JSON.stringify({
+          error:
+            'Found file but could not locate element in ' +
+            targetFile +
+            '. Searched for: ' +
+            queries.join(', '),
+        })
+      );
       process.exit(1);
     }
   }
@@ -247,16 +285,26 @@ The agent should insert variant HTML at insertLine.`);
   // otherwise skip buffer awareness so unrelated staged edits on another page
   // do not block normal wrap work.
   let pendingBuffer = { entries: [] };
-  try { pendingBuffer = readManualEditsBuffer(process.cwd()); } catch {}
+  try {
+    pendingBuffer = readManualEditsBuffer(process.cwd());
+  } catch {}
   const pendingEntriesForTarget = pageUrl
     ? []
-    : pendingEntriesThatMayAffectWrap(pendingBuffer.entries, targetFile, originalLines, startLine, process.cwd());
+    : pendingEntriesThatMayAffectWrap(
+        pendingBuffer.entries,
+        targetFile,
+        originalLines,
+        startLine,
+        process.cwd()
+      );
   if (pendingEntriesForTarget.length > 0) {
-    console.error(JSON.stringify({
-      error: 'missing_page_url_with_pending_edits',
-      pendingEntries: pendingEntriesForTarget.length,
-      hint: 'Pending manual edits may affect the selected source block. Pass --page-url=$event.pageUrl so the wrap block reflects the user\'s staged DOM.',
-    }));
+    console.error(
+      JSON.stringify({
+        error: 'missing_page_url_with_pending_edits',
+        pendingEntries: pendingEntriesForTarget.length,
+        hint: "Pending manual edits may affect the selected source block. Pass --page-url=$event.pageUrl so the wrap block reflects the user's staged DOM.",
+      })
+    );
     process.exit(1);
   }
   if (pageUrl) {
@@ -264,8 +312,18 @@ The agent should insert variant HTML at insertLine.`);
     for (const entry of pendingBuffer.entries || []) {
       if (entry.pageUrl !== pageUrl) continue;
       for (const op of entry.ops || []) {
-        const mayAffectWrap = manualEditMayAffectWrap(op, targetFile, originalLines, startLine, process.cwd());
-        const result = applyBufferedManualEditToLines(originalLines, startLine, op);
+        const mayAffectWrap = manualEditMayAffectWrap(
+          op,
+          targetFile,
+          originalLines,
+          startLine,
+          process.cwd()
+        );
+        const result = applyBufferedManualEditToLines(
+          originalLines,
+          startLine,
+          op
+        );
         if (result.changed) {
           originalLines = result.lines;
           continue;
@@ -280,30 +338,41 @@ The agent should insert variant HTML at insertLine.`);
       }
     }
     if (failedBufferedOps.length > 0) {
-      console.error(JSON.stringify({
-        error: 'manual_edit_buffer_apply_failed',
-        pendingOps: failedBufferedOps,
-        hint: 'A staged copy edit appears to affect the selected source block, but could not be applied unambiguously to the wrap original. Apply or discard copy edits first, or write the wrapper manually.',
-      }));
+      console.error(
+        JSON.stringify({
+          error: 'manual_edit_buffer_apply_failed',
+          pendingOps: failedBufferedOps,
+          hint: 'A staged copy edit appears to affect the selected source block, but could not be applied unambiguously to the wrap original. Apply or discard copy edits first, or write the wrapper manually.',
+        })
+      );
       process.exit(1);
     }
   }
 
   const originalBaseIndent = minLeadingSpaces(originalLines);
-  const reindentOriginal = (extra) => originalLines
-    .map((l) => (l.trim() === '' ? '' : indent + extra + l.slice(originalBaseIndent)))
-    .join('\n');
+  const reindentOriginal = extra =>
+    originalLines
+      .map(l =>
+        l.trim() === '' ? '' : indent + extra + l.slice(originalBaseIndent)
+      )
+      .join('\n');
   const originalIndented = reindentOriginal('    ');
-  const relTargetFile = path.relative(process.cwd(), targetFile).split(path.sep).join('/');
+  const relTargetFile = path
+    .relative(process.cwd(), targetFile)
+    .split(path.sep)
+    .join('/');
   // The registry says which files get component preview; the svelte-component
   // module keeps the env escape hatch that turns it off.
-  const useSvelteComponent = resolveSourceTraits(targetFile).preview === 'component'
-    && shouldUseSvelteComponentInjection(targetFile);
+  const useSvelteComponent =
+    resolveSourceTraits(targetFile).preview === 'component' &&
+    shouldUseSvelteComponentInjection(targetFile);
 
   // Wrapper attributes differ by syntax. HTML allows plain string attrs;
   // JSX requires object-literal style and parses string attrs as HTML (which
   // either type-errors or renders a literal CSS string).
-  const styleContents = isJsx ? 'style={{ display: "contents" }}' : 'style="display: contents"';
+  const styleContents = isJsx
+    ? 'style={{ display: "contents" }}'
+    : 'style="display: contents"';
 
   // JSX/TSX guard: the picked element occupies a single JSX child slot
   // (inside `return (...)`, an array `.map(...)`, an `asChild` branch, or
@@ -317,32 +386,81 @@ The agent should insert variant HTML at insertLine.`);
   // tuck both marker comments INSIDE it. accept/discard then expands its
   // replacement range to include the wrapper's `<div>` open / close lines
   // so the entire scaffold gets removed cleanly.
-  const wrapperLines = isJsx ? [
-    indent + '<div data-impeccable-variants="' + id + '" data-impeccable-variant-count="' + count + '"' + ' ' + styleContents + '>',
-    indent + '  ' + commentSyntax.open + ' impeccable-variants-start ' + id + ' ' + commentSyntax.close,
-    indent + '  ' + commentSyntax.open + ' Original ' + commentSyntax.close,
-    indent + '  <div data-impeccable-variant="original">',
-    reindentOriginal('    '),
-    indent + '  </div>',
-    indent + '  ' + commentSyntax.open + ' Variants: insert below this line ' + commentSyntax.close,
-    indent + '  ' + commentSyntax.open + ' impeccable-variants-end ' + id + ' ' + commentSyntax.close,
-    indent + '</div>',
-  ] : [
-    indent + commentSyntax.open + ' impeccable-variants-start ' + id + ' ' + commentSyntax.close,
-    indent + '<div data-impeccable-variants="' + id + '" data-impeccable-variant-count="' + count + '"' + ' ' + styleContents + '>',
-    indent + '  ' + commentSyntax.open + ' Original ' + commentSyntax.close,
-    indent + '  <div data-impeccable-variant="original">',
-    originalIndented,
-    indent + '  </div>',
-    indent + '  ' + commentSyntax.open + ' Variants: insert below this line ' + commentSyntax.close,
-    indent + '</div>',
-    indent + commentSyntax.open + ' impeccable-variants-end ' + id + ' ' + commentSyntax.close,
-  ];
+  const wrapperLines = isJsx
+    ? [
+        indent +
+          '<div data-impeccable-variants="' +
+          id +
+          '" data-impeccable-variant-count="' +
+          count +
+          '"' +
+          ' ' +
+          styleContents +
+          '>',
+        indent +
+          '  ' +
+          commentSyntax.open +
+          ' impeccable-variants-start ' +
+          id +
+          ' ' +
+          commentSyntax.close,
+        indent + '  ' + commentSyntax.open + ' Original ' + commentSyntax.close,
+        indent + '  <div data-impeccable-variant="original">',
+        reindentOriginal('    '),
+        indent + '  </div>',
+        indent +
+          '  ' +
+          commentSyntax.open +
+          ' Variants: insert below this line ' +
+          commentSyntax.close,
+        indent +
+          '  ' +
+          commentSyntax.open +
+          ' impeccable-variants-end ' +
+          id +
+          ' ' +
+          commentSyntax.close,
+        indent + '</div>',
+      ]
+    : [
+        indent +
+          commentSyntax.open +
+          ' impeccable-variants-start ' +
+          id +
+          ' ' +
+          commentSyntax.close,
+        indent +
+          '<div data-impeccable-variants="' +
+          id +
+          '" data-impeccable-variant-count="' +
+          count +
+          '"' +
+          ' ' +
+          styleContents +
+          '>',
+        indent + '  ' + commentSyntax.open + ' Original ' + commentSyntax.close,
+        indent + '  <div data-impeccable-variant="original">',
+        originalIndented,
+        indent + '  </div>',
+        indent +
+          '  ' +
+          commentSyntax.open +
+          ' Variants: insert below this line ' +
+          commentSyntax.close,
+        indent + '</div>',
+        indent +
+          commentSyntax.open +
+          ' impeccable-variants-end ' +
+          id +
+          ' ' +
+          commentSyntax.close,
+      ];
 
   let outputFile = targetFile;
   let outputLines;
   let outputStartLine = startLine + 1;
-  let outputEndLine = startLine + wrapperLines.length + (originalLines.length - 1);
+  let outputEndLine =
+    startLine + wrapperLines.length + (originalLines.length - 1);
   let insertLine;
   let svelteSession = null;
   let deferredWrapper = null;
@@ -388,7 +506,7 @@ The agent should insert variant HTML at insertLine.`);
     deferredWrapper = {
       block: wrapperLines.join('\n'),
       replaceStartLine: startLine + 1, // 1-indexed picked-element range the
-      replaceEndLine: endLine + 1,     // agent's wrapper block replaces
+      replaceEndLine: endLine + 1, // agent's wrapper block replaces
     };
     // insertLine matches the final file position the wrapper occupies once the
     // agent replaces the picked range, so downstream consumers stay consistent.
@@ -412,48 +530,64 @@ The agent should insert variant HTML at insertLine.`);
     insertLine = startLine + 6 + (originalLines.length - 1) + 1;
   }
 
-  const outputRelFile = path.relative(process.cwd(), outputFile).split(path.sep).join('/');
+  const outputRelFile = path
+    .relative(process.cwd(), outputFile)
+    .split(path.sep)
+    .join('/');
 
   const componentPreviewActive = !!svelteSession;
-  const svelteComponentAuthoring = componentPreviewActive ? buildSvelteComponentCssAuthoring(count) : null;
+  const svelteComponentAuthoring = componentPreviewActive
+    ? buildSvelteComponentCssAuthoring(count)
+    : null;
   const componentSession = svelteSession;
-  const componentPreviewMode = componentPreviewActive ? 'svelte-component' : undefined;
+  const componentPreviewMode = componentPreviewActive
+    ? 'svelte-component'
+    : undefined;
   const previewMode = componentPreviewMode;
 
-  console.log(JSON.stringify({
-    file: outputRelFile,
-    sourceFile: componentPreviewActive ? relTargetFile : undefined,
-    previewMode,
-    previewFallback: sveltePreviewFallback
-      ? { from: 'svelte-component', reason: sveltePreviewFallback }
-      : undefined,
-    // Deferred source write: the wrapper is NOT yet in source. The agent
-    // replaces [replaceStartLine, replaceEndLine] with `wrapperBlock` (variants
-    // spliced at the "insert below this line" marker) in one atomic edit.
-    sourceWritten: deferredWrapper ? false : undefined,
-    wrapperBlock: deferredWrapper ? deferredWrapper.block : undefined,
-    replaceStartLine: deferredWrapper ? deferredWrapper.replaceStartLine : undefined,
-    replaceEndLine: deferredWrapper ? deferredWrapper.replaceEndLine : undefined,
-    componentDir: componentSession?.componentDir,
-    propContract: componentSession?.propContract,
-    componentStubMarkup: componentSession?.stubMarkup,
-    sourceStartLine: componentPreviewActive ? startLine + 1 : undefined,
-    sourceEndLine: componentPreviewActive ? endLine + 1 : undefined,
-    startLine: outputStartLine,       // 1-indexed for the agent
-    // wrapperLines is an array but one element (the original-content slot)
-    // is a `\n`-joined multi-line string, so the actual file-row count is
-    // wrapperLines.length + (originalLines.length - 1). Without the offset,
-    // endLine pointed inside the wrapper for any picked element that
-    // spanned more than one source line.
-    endLine: outputEndLine, // 1-indexed
-    insertLine,            // 1-indexed: where variants go
-    commentSyntax: commentSyntax,
-    styleMode: componentPreviewMode || styleMode.mode,
-    styleTag: componentPreviewActive ? null : styleMode.styleTag,
-    cssSelectorPrefixExamples: componentPreviewActive ? [] : buildCssSelectorPrefixExamples(styleMode.mode, count),
-    cssAuthoring: svelteComponentAuthoring || buildCssAuthoring(styleMode, count),
-    originalLineCount: originalLines.length,
-  }));
+  console.log(
+    JSON.stringify({
+      file: outputRelFile,
+      sourceFile: componentPreviewActive ? relTargetFile : undefined,
+      previewMode,
+      previewFallback: sveltePreviewFallback
+        ? { from: 'svelte-component', reason: sveltePreviewFallback }
+        : undefined,
+      // Deferred source write: the wrapper is NOT yet in source. The agent
+      // replaces [replaceStartLine, replaceEndLine] with `wrapperBlock` (variants
+      // spliced at the "insert below this line" marker) in one atomic edit.
+      sourceWritten: deferredWrapper ? false : undefined,
+      wrapperBlock: deferredWrapper ? deferredWrapper.block : undefined,
+      replaceStartLine: deferredWrapper
+        ? deferredWrapper.replaceStartLine
+        : undefined,
+      replaceEndLine: deferredWrapper
+        ? deferredWrapper.replaceEndLine
+        : undefined,
+      componentDir: componentSession?.componentDir,
+      propContract: componentSession?.propContract,
+      componentStubMarkup: componentSession?.stubMarkup,
+      sourceStartLine: componentPreviewActive ? startLine + 1 : undefined,
+      sourceEndLine: componentPreviewActive ? endLine + 1 : undefined,
+      startLine: outputStartLine, // 1-indexed for the agent
+      // wrapperLines is an array but one element (the original-content slot)
+      // is a `\n`-joined multi-line string, so the actual file-row count is
+      // wrapperLines.length + (originalLines.length - 1). Without the offset,
+      // endLine pointed inside the wrapper for any picked element that
+      // spanned more than one source line.
+      endLine: outputEndLine, // 1-indexed
+      insertLine, // 1-indexed: where variants go
+      commentSyntax: commentSyntax,
+      styleMode: componentPreviewMode || styleMode.mode,
+      styleTag: componentPreviewActive ? null : styleMode.styleTag,
+      cssSelectorPrefixExamples: componentPreviewActive
+        ? []
+        : buildCssSelectorPrefixExamples(styleMode.mode, count),
+      cssAuthoring:
+        svelteComponentAuthoring || buildCssAuthoring(styleMode, count),
+      originalLineCount: originalLines.length,
+    })
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -469,18 +603,45 @@ function argVal(args, flag) {
   return idx !== -1 && idx + 1 < args.length ? args[idx + 1] : null;
 }
 
-function pendingEntriesThatMayAffectWrap(entries, targetFile, originalLines, selectionStartLine, cwd) {
+function pendingEntriesThatMayAffectWrap(
+  entries,
+  targetFile,
+  originalLines,
+  selectionStartLine,
+  cwd
+) {
   const targetAbs = path.resolve(cwd, targetFile);
-  return (entries || []).filter((entry) => {
-    return (entry.ops || []).some((op) => {
-      return manualEditMayAffectWrap(op, targetAbs, originalLines, selectionStartLine, cwd);
+  return (entries || []).filter(entry => {
+    return (entry.ops || []).some(op => {
+      return manualEditMayAffectWrap(
+        op,
+        targetAbs,
+        originalLines,
+        selectionStartLine,
+        cwd
+      );
     });
   });
 }
 
-function manualEditMayAffectWrap(op, targetFile, originalLines, selectionStartLine, cwd) {
+function manualEditMayAffectWrap(
+  op,
+  targetFile,
+  originalLines,
+  selectionStartLine,
+  cwd
+) {
   const targetAbs = path.resolve(cwd, targetFile);
-  if (manualEditHintFallsInsideSelection(op, targetAbs, originalLines, selectionStartLine, cwd)) return true;
+  if (
+    manualEditHintFallsInsideSelection(
+      op,
+      targetAbs,
+      originalLines,
+      selectionStartLine,
+      cwd
+    )
+  )
+    return true;
   if (manualEditLocatorMatchesSelection(op, originalLines)) return true;
   if (typeof op?.originalText === 'string' && op.originalText.length > 0) {
     return originalLines.join('\n').includes(op.originalText);
@@ -488,47 +649,69 @@ function manualEditMayAffectWrap(op, targetFile, originalLines, selectionStartLi
   return false;
 }
 
-function manualEditHintFallsInsideSelection(op, targetAbs, originalLines, selectionStartLine, cwd) {
+function manualEditHintFallsInsideSelection(
+  op,
+  targetAbs,
+  originalLines,
+  selectionStartLine,
+  cwd
+) {
   const hintFile = op?.sourceHint?.file;
   const hintedLine = Number(op?.sourceHint?.line);
   if (!hintFile || !Number.isFinite(hintedLine)) return false;
-  const hintAbs = path.isAbsolute(hintFile) ? hintFile : path.resolve(cwd, hintFile);
+  const hintAbs = path.isAbsolute(hintFile)
+    ? hintFile
+    : path.resolve(cwd, hintFile);
   if (path.resolve(hintAbs) !== targetAbs) return false;
   const hintedIndex = hintedLine - 1 - selectionStartLine;
-  return hintedIndex >= 0
-    && hintedIndex < originalLines.length
-    && typeof op?.originalText === 'string'
-    && originalLines[hintedIndex].includes(op.originalText);
+  return (
+    hintedIndex >= 0 &&
+    hintedIndex < originalLines.length &&
+    typeof op?.originalText === 'string' &&
+    originalLines[hintedIndex].includes(op.originalText)
+  );
 }
 
 function manualEditLocatorMatchesSelection(op, originalLines) {
-  if (!op || typeof op.originalText !== 'string' || op.originalText.length === 0) return false;
-  return originalLines.some((line) => (
-    line.includes(op.originalText) && lineMatchesManualEditLocator(line, op)
-  ));
+  if (
+    !op ||
+    typeof op.originalText !== 'string' ||
+    op.originalText.length === 0
+  )
+    return false;
+  return originalLines.some(
+    line =>
+      line.includes(op.originalText) && lineMatchesManualEditLocator(line, op)
+  );
 }
 
 function applyBufferedManualEditToLines(originalLines, selectionStartLine, op) {
   if (
-    !op
-    || typeof op.originalText !== 'string'
-    || op.originalText.length === 0
-    || typeof op.newText !== 'string'
+    !op ||
+    typeof op.originalText !== 'string' ||
+    op.originalText.length === 0 ||
+    typeof op.newText !== 'string'
   ) {
     return { lines: originalLines, changed: false };
   }
 
-  const replaceLine = (lineIndex) => ({
-    lines: originalLines.map((line, index) => (
-      index === lineIndex ? replaceOnce(line, op.originalText, op.newText) : line
-    )),
+  const replaceLine = lineIndex => ({
+    lines: originalLines.map((line, index) =>
+      index === lineIndex
+        ? replaceOnce(line, op.originalText, op.newText)
+        : line
+    ),
     changed: true,
   });
 
   const hintedLine = Number(op.sourceHint?.line);
   if (Number.isFinite(hintedLine)) {
     const hintedIndex = hintedLine - 1 - selectionStartLine;
-    if (hintedIndex >= 0 && hintedIndex < originalLines.length && originalLines[hintedIndex].includes(op.originalText)) {
+    if (
+      hintedIndex >= 0 &&
+      hintedIndex < originalLines.length &&
+      originalLines[hintedIndex].includes(op.originalText)
+    ) {
       return replaceLine(hintedIndex);
     }
   }
@@ -545,7 +728,9 @@ function applyBufferedManualEditToLines(originalLines, selectionStartLine, op) {
   const originalBlock = originalLines.join('\n');
   if (countOccurrences(originalBlock, op.originalText) === 1) {
     return {
-      lines: replaceOnce(originalBlock, op.originalText, op.newText).split('\n'),
+      lines: replaceOnce(originalBlock, op.originalText, op.newText).split(
+        '\n'
+      ),
       changed: true,
     };
   }
@@ -555,7 +740,10 @@ function applyBufferedManualEditToLines(originalLines, selectionStartLine, op) {
 
 function lineMatchesManualEditLocator(line, op) {
   if (op.tag) {
-    const tagRe = new RegExp('<\\s*' + escapeRegExp(op.tag) + '(?=[\\s>/]|$)', 'i');
+    const tagRe = new RegExp(
+      '<\\s*' + escapeRegExp(op.tag) + '(?=[\\s>/]|$)',
+      'i'
+    );
     if (!tagRe.test(line)) return false;
   }
 
@@ -576,7 +764,9 @@ function lineMatchesManualEditLocator(line, op) {
 function replaceOnce(value, needle, replacement) {
   const index = value.indexOf(needle);
   if (index === -1) return value;
-  return value.slice(0, index) + replacement + value.slice(index + needle.length);
+  return (
+    value.slice(0, index) + replacement + value.slice(index + needle.length)
+  );
 }
 
 function countOccurrences(value, needle) {
@@ -642,7 +832,10 @@ function buildSearchQueries(elementId, classes, tag, query) {
 }
 
 function splitClassList(classes) {
-  return String(classes).split(/[,\s]+/).map(c => c.trim()).filter(Boolean);
+  return String(classes)
+    .split(/[,\s]+/)
+    .map(c => c.trim())
+    .filter(Boolean);
 }
 
 function attrEscapeDouble(str) {
@@ -673,7 +866,10 @@ function detectStyleMode(filePath) {
 
 function buildCssSelectorPrefixExamples(styleMode, count) {
   if (styleMode !== 'astro-global-prefixed') return [];
-  return Array.from({ length: count }, (_, i) => `[data-impeccable-variant="${i + 1}"]`);
+  return Array.from(
+    { length: count },
+    (_, i) => `[data-impeccable-variant="${i + 1}"]`
+  );
 }
 
 function buildCssAuthoring(styleMode, count) {
@@ -684,7 +880,9 @@ function buildCssAuthoring(styleMode, count) {
       styleTag: styleMode.styleTag,
       strategy: 'global-prefixed',
       rulePattern: '[data-impeccable-variant="N"] > .variant-class { ... }',
-      selectorExamples: variantNumbers.map((n) => `[data-impeccable-variant="${n}"] > .variant-class`),
+      selectorExamples: variantNumbers.map(
+        n => `[data-impeccable-variant="${n}"] > .variant-class`
+      ),
       requirements: [
         'Use the styleTag exactly; the is:inline attribute is required for this file.',
         'Put raw CSS directly between the styleTag opening and a plain </style> close.',
@@ -702,8 +900,12 @@ function buildCssAuthoring(styleMode, count) {
     mode: styleMode.mode,
     styleTag: styleMode.styleTag,
     strategy: 'scope-rule',
-    rulePattern: '@scope ([data-impeccable-variant="N"]) { :scope > .variant-class { ... } }',
-    selectorExamples: variantNumbers.map((n) => `@scope ([data-impeccable-variant="${n}"]) { :scope > .variant-class { ... } }`),
+    rulePattern:
+      '@scope ([data-impeccable-variant="N"]) { :scope > .variant-class { ... } }',
+    selectorExamples: variantNumbers.map(
+      n =>
+        `@scope ([data-impeccable-variant="${n}"]) { :scope > .variant-class { ... } }`
+    ),
     requirements: [
       'Use @scope blocks keyed to each [data-impeccable-variant="N"] wrapper.',
       'Inside each @scope block, make :scope rules step into the replacement element with a descendant combinator.',
@@ -730,7 +932,8 @@ function findFileWithQuery(query, cwd, genOpts = {}) {
     query,
     cwd,
     extensions: resolveLiveTemplateExtensions(cwd),
-    fileFilter: (filePath) => genOpts.includeGenerated || !isGeneratedFile(filePath, genOpts),
+    fileFilter: filePath =>
+      genOpts.includeGenerated || !isGeneratedFile(filePath, genOpts),
   });
 }
 
@@ -773,7 +976,12 @@ function findElement(lines, query, tag = null) {
     if (!lines[i].includes(query)) continue;
 
     const stripped = lines[i].trim();
-    if (stripped.startsWith('<!--') || stripped.startsWith('{/*') || stripped.startsWith('//')) continue;
+    if (
+      stripped.startsWith('<!--') ||
+      stripped.startsWith('{/*') ||
+      stripped.startsWith('//')
+    )
+      continue;
     // Skip lines already inside a variant wrapper
     if (lines[i].includes('data-impeccable-variant')) continue;
 
@@ -800,7 +1008,12 @@ function findAllElements(lines, query, tag = null) {
   for (let i = 0; i < lines.length; i++) {
     if (!lines[i].includes(query)) continue;
     const stripped = lines[i].trim();
-    if (stripped.startsWith('<!--') || stripped.startsWith('{/*') || stripped.startsWith('//')) continue;
+    if (
+      stripped.startsWith('<!--') ||
+      stripped.startsWith('{/*') ||
+      stripped.startsWith('//')
+    )
+      continue;
     if (lines[i].includes('data-impeccable-variant')) continue;
     const openerLine = findOpenerLine(lines, i, tag);
     if (openerLine === -1) continue;
@@ -838,15 +1051,18 @@ function filterByText(candidates, lines, text) {
   const targetSpaced = trimmed;
   const targetCompact = trimmed.replace(/\s+/g, '');
 
-  return candidates.filter((c) => {
+  return candidates.filter(c => {
     const body = lines.slice(c.startLine, c.endLine + 1).join(' ');
     const inner = body
-      .replace(/<[^>]*>/g, ' ')   // strip HTML/JSX tags
-      .replace(/\{[^}]*\}/g, ' ')  // strip JSX expressions
+      .replace(/<[^>]*>/g, ' ') // strip HTML/JSX tags
+      .replace(/\{[^}]*\}/g, ' ') // strip JSX expressions
       .toLowerCase();
     const sourceSpaced = inner.replace(/\s+/g, ' ').trim();
     const sourceCompact = inner.replace(/\s+/g, '');
-    return sourceSpaced.includes(targetSpaced) || sourceCompact.includes(targetCompact);
+    return (
+      sourceSpaced.includes(targetSpaced) ||
+      sourceCompact.includes(targetCompact)
+    );
   });
 }
 
@@ -907,7 +1123,10 @@ function findClosingLine(lines, start) {
 
 // Auto-execute when run directly (node live-wrap.mjs ...)
 const _running = process.argv[1];
-if (_running?.endsWith('live-wrap.mjs') || _running?.endsWith('live-wrap.mjs/')) {
+if (
+  _running?.endsWith('live-wrap.mjs') ||
+  _running?.endsWith('live-wrap.mjs/')
+) {
   enterLiveRoot();
   wrapCli();
 }

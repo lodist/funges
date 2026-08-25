@@ -34,14 +34,20 @@ function readBufferInternal(cwd, { strict }) {
   try {
     const raw = fs.readFileSync(filePath, 'utf-8');
     const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed !== 'object' || !Array.isArray(parsed.entries)) {
+    if (
+      !parsed ||
+      typeof parsed !== 'object' ||
+      !Array.isArray(parsed.entries)
+    ) {
       if (strict) throw new Error('manual_edit_buffer_invalid_schema');
       return { version: BUFFER_VERSION, entries: [] };
     }
     return { version: BUFFER_VERSION, entries: parsed.entries };
   } catch (err) {
     if (strict && err?.code !== 'ENOENT') {
-      throw new Error('manual_edit_buffer_unreadable: ' + (err.message || String(err)));
+      throw new Error(
+        'manual_edit_buffer_unreadable: ' + (err.message || String(err))
+      );
     }
     return { version: BUFFER_VERSION, entries: [] };
   }
@@ -50,7 +56,14 @@ function readBufferInternal(cwd, { strict }) {
 export function writeBuffer(cwd, buffer) {
   const filePath = getBufferPath(cwd);
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, JSON.stringify({ version: BUFFER_VERSION, entries: buffer.entries }, null, 2));
+  fs.writeFileSync(
+    filePath,
+    JSON.stringify(
+      { version: BUFFER_VERSION, entries: buffer.entries },
+      null,
+      2
+    )
+  );
 }
 
 /**
@@ -68,7 +81,7 @@ export function stageEntry(cwd, newEntry) {
     let mergedIntoExisting = false;
     for (const existing of buf.entries) {
       if (existing.pageUrl !== pageUrl) continue;
-      const existingOpIdx = existing.ops.findIndex((op) => op.ref === newOp.ref);
+      const existingOpIdx = existing.ops.findIndex(op => op.ref === newOp.ref);
       if (existingOpIdx >= 0) {
         // Keep the original source text but refresh the latest DOM/source evidence.
         existing.ops[existingOpIdx] = {
@@ -85,7 +98,9 @@ export function stageEntry(cwd, newEntry) {
     }
     if (mergedIntoExisting) continue;
     // No existing op for this (pageUrl, ref). Find or create an entry to hold it.
-    let entry = buf.entries.find((e) => e.pageUrl === pageUrl && e.id === newEntry.id);
+    let entry = buf.entries.find(
+      e => e.pageUrl === pageUrl && e.id === newEntry.id
+    );
     if (!entry) {
       entry = {
         id: newEntry.id,

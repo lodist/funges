@@ -15,7 +15,9 @@ export function resolveLiveTarget(cwd = process.cwd(), args = []) {
     throw err;
   }
   const absoluteTargetPath = targetPath
-    ? path.isAbsolute(targetPath) ? targetPath : path.resolve(originalCwd, targetPath)
+    ? path.isAbsolute(targetPath)
+      ? targetPath
+      : path.resolve(originalCwd, targetPath)
     : null;
   const projectRoot = targetPath
     ? resolveProjectRoot(originalCwd, { targetPath: absoluteTargetPath })

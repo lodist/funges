@@ -61,7 +61,7 @@ function RadioGroupItem({
             icon has no className passthrough. text- is pinned too — the
             stroke follows currentColor, not fill, so without it the dot
             gets a stray dark ring from --foreground. */}
-        <CircleIcon className='fill-[var(--happy-600)] text-[var(--happy-600)] absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2' />
+        <CircleIcon className='fill-happy-600 text-happy-600 absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2' />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   );

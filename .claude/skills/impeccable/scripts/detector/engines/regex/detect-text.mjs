@@ -1,8 +1,19 @@
-import { GENERIC_FONTS, OVERUSED_FONTS, EM_DASH_FLOOR, EM_DASH_CHARS_PER_DASH } from '../../shared/constants.mjs';
+import {
+  GENERIC_FONTS,
+  OVERUSED_FONTS,
+  EM_DASH_FLOOR,
+  EM_DASH_CHARS_PER_DASH,
+} from '../../shared/constants.mjs';
 import { isNeutralColor } from '../../shared/color.mjs';
 import { extractGoogleFontFamilies } from '../../shared/fonts.mjs';
 import { checkSourceDesignSystem } from '../../design-system.mjs';
-import { scanCssTextForGlow, scanCssTextForGridBackground, scanCssTextForMarquee, scanCssTextForPseudoStripe, scanCssTextForRadialHalo } from '../../rules/checks.mjs';
+import {
+  scanCssTextForGlow,
+  scanCssTextForGridBackground,
+  scanCssTextForMarquee,
+  scanCssTextForPseudoStripe,
+  scanCssTextForRadialHalo,
+} from '../../rules/checks.mjs';
 import { isFullPage } from '../../shared/page.mjs';
 import { applyInlineIgnores } from '../../shared/inline-ignores.mjs';
 import { finding } from '../../findings.mjs';
@@ -12,11 +23,13 @@ import { profileFindings, profileStep } from '../../profile/profiler.mjs';
 // Regex fallback (non-HTML files: CSS, JSX, TSX, etc.)
 // ---------------------------------------------------------------------------
 
-const hasRounded = (line) =>
+const hasRounded = line =>
   /\brounded(?:-\w+)?\b/.test(line.replace(/\brounded-none\b/g, ''));
-const hasBorderRadius = (line) => /border-radius/i.test(line);
-const isSafeElement = (line) => /<(?:blockquote|nav[\s>]|pre[\s>]|code[\s>]|a\s|input[\s>]|span[\s>])/i.test(line);
-
+const hasBorderRadius = line => /border-radius/i.test(line);
+const isSafeElement = line =>
+  /<(?:blockquote|nav[\s>]|pre[\s>]|code[\s>]|a\s|input[\s>]|span[\s>])/i.test(
+    line
+  );
 
 /** Strip HTML to plain text — drops script/style/comments/tags so
  *  content-text analyzers don't false-positive on code or CSS. */
@@ -29,7 +42,13 @@ function stripHtmlToText(html) {
     .replace(/\s+/g, ' ');
 }
 
-const PAGE_ANALYZER_EXTS = new Set(['.html', '.htm', '.astro', '.vue', '.svelte']);
+const PAGE_ANALYZER_EXTS = new Set([
+  '.html',
+  '.htm',
+  '.astro',
+  '.vue',
+  '.svelte',
+]);
 
 function extFromFilePath(filePath) {
   return filePath ? (filePath.match(/\.\w+$/)?.[0] || '').toLowerCase() : '';
@@ -43,12 +62,29 @@ function shouldRunPageAnalyzers(content, filePath) {
 
 const JS_SOURCE_EXTS = new Set(['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs']);
 const STYLESHEET_EXTS = new Set(['.css', '.scss', '.sass', '.less']);
-const REGEX_PREFIX_KEYWORDS = new Set(['await', 'case', 'default', 'delete', 'do', 'else', 'in', 'instanceof', 'new', 'of', 'return', 'throw', 'typeof', 'void', 'yield']);
+const REGEX_PREFIX_KEYWORDS = new Set([
+  'await',
+  'case',
+  'default',
+  'delete',
+  'do',
+  'else',
+  'in',
+  'instanceof',
+  'new',
+  'of',
+  'return',
+  'throw',
+  'typeof',
+  'void',
+  'yield',
+]);
 const BLOCK_BRACE_PREFIX_KEYWORDS = new Set(['do', 'else', 'finally', 'try']);
 
 function isInsideOpeningJsxTag(source) {
   const tagStart = source.lastIndexOf('<');
-  if (tagStart === -1 || !/^<[A-Za-z][\w.:-]*/.test(source.slice(tagStart))) return false;
+  if (tagStart === -1 || !/^<[A-Za-z][\w.:-]*/.test(source.slice(tagStart)))
+    return false;
 
   let quote = '';
   for (let cursor = tagStart + 1; cursor < source.length; cursor++) {
@@ -85,18 +121,18 @@ function stripJsComments(content, options = {}) {
   const braceKinds = [];
   const templateExpressionDepths = [];
 
-  const braceKind = (startsJsxExpression = false) => (
-    !startsJsxExpression && (
-      !lastSignificant ||
+  const braceKind = (startsJsxExpression = false) =>
+    !startsJsxExpression &&
+    (!lastSignificant ||
       lastSignificant === ')' ||
       lastSignificant === ';' ||
       lastSignificant === '}' ||
       (previousSignificant === '=' && lastSignificant === '>') ||
-      BLOCK_BRACE_PREFIX_KEYWORDS.has(currentWord)
-    ) ? 'block' : 'expression'
-  );
+      BLOCK_BRACE_PREFIX_KEYWORDS.has(currentWord))
+      ? 'block'
+      : 'expression';
 
-  const recordSignificant = (char) => {
+  const recordSignificant = char => {
     if (/\s/.test(char)) {
       wordSeparated = true;
       return;
@@ -184,13 +220,19 @@ function stripJsComments(content, options = {}) {
       continue;
     }
 
-    const jsxUrlSeparator = options.jsx && char === '/' && next === '/' &&
+    const jsxUrlSeparator =
+      options.jsx &&
+      char === '/' &&
+      next === '/' &&
       jsxExpressionDepth === 0 &&
       (output.endsWith('http:') ||
         output.endsWith('https:') ||
-        (/<[A-Za-z](?:[^>]*[^/])?>[^<]*$/.test(output.slice(output.lastIndexOf('\n') + 1)) &&
+        (/<[A-Za-z](?:[^>]*[^/])?>[^<]*$/.test(
+          output.slice(output.lastIndexOf('\n') + 1)
+        ) &&
           /^[\w.-]+\.[A-Za-z]{2,}(?=[:/?#\s<]|$)/.test(content.slice(i + 2))));
-    const afterPostfixUpdate = (lastSignificant === '+' || lastSignificant === '-') &&
+    const afterPostfixUpdate =
+      (lastSignificant === '+' || lastSignificant === '-') &&
       previousSignificant === lastSignificant &&
       antePreviousSignificant !== lastSignificant;
     if (char === '/' && next === '/' && jsxUrlSeparator) {
@@ -226,7 +268,8 @@ function stripJsComments(content, options = {}) {
     } else if (
       char === '/' &&
       (!lastSignificant ||
-        (/[=([{!?:;,&|+\-*%^~<>]/.test(lastSignificant) && !afterPostfixUpdate) ||
+        (/[=([{!?:;,&|+\-*%^~<>]/.test(lastSignificant) &&
+          !afterPostfixUpdate) ||
         (lastSignificant === '}' && lastClosedBraceKind === 'block') ||
         (previousSignificant === '=' && lastSignificant === '>') ||
         (currentWordPrefix !== '.' && REGEX_PREFIX_KEYWORDS.has(currentWord)))
@@ -236,12 +279,18 @@ function stripJsComments(content, options = {}) {
       regexCharClass = false;
     } else {
       output += char;
-      const startsJsxExpression = options.jsx && char === '{' && jsxExpressionDepth === 0 &&
-        (/<[A-Za-z](?:[^>]*[^/])?>[^<]*$/.test(output.slice(output.lastIndexOf('\n') + 1, -1)) ||
+      const startsJsxExpression =
+        options.jsx &&
+        char === '{' &&
+        jsxExpressionDepth === 0 &&
+        (/<[A-Za-z](?:[^>]*[^/])?>[^<]*$/.test(
+          output.slice(output.lastIndexOf('\n') + 1, -1)
+        ) ||
           isInsideOpeningJsxTag(output.slice(0, -1)));
       if (char === '{') braceKinds.push(braceKind(startsJsxExpression));
       else if (char === '}') lastClosedBraceKind = braceKinds.pop() || '';
-      if (char === '{' && (jsxExpressionDepth || startsJsxExpression)) jsxExpressionDepth++;
+      if (char === '{' && (jsxExpressionDepth || startsJsxExpression))
+        jsxExpressionDepth++;
       else if (char === '}' && jsxExpressionDepth) jsxExpressionDepth--;
       recordSignificant(char);
       if (char === "'") state = 'single-quote';
@@ -254,11 +303,15 @@ function stripJsComments(content, options = {}) {
 }
 
 function stripCssComments(content) {
-  return content.replace(/\/\*[\s\S]*?\*\//g, comment => comment.replace(/[^\n]/g, ' '));
+  return content.replace(/\/\*[\s\S]*?\*\//g, comment =>
+    comment.replace(/[^\n]/g, ' ')
+  );
 }
 
 function blankHtmlComments(text) {
-  return text.replace(/<!--[\s\S]*?-->/g, comment => comment.replace(/[^\n]/g, ' '));
+  return text.replace(/<!--[\s\S]*?-->/g, comment =>
+    comment.replace(/[^\n]/g, ' ')
+  );
 }
 
 function blankCssLineCommentsInStyleBlocks(text) {
@@ -284,11 +337,18 @@ function blankHtmlAndCssCommentsOutsideScripts(text) {
   let lastIndex = 0;
   let match;
   while ((match = re.exec(text)) !== null) {
-    output += blankCssLineCommentsInStyleBlocks(stripCssComments(blankHtmlComments(text.slice(lastIndex, match.index))));
+    output += blankCssLineCommentsInStyleBlocks(
+      stripCssComments(blankHtmlComments(text.slice(lastIndex, match.index)))
+    );
     output += match[0];
     lastIndex = re.lastIndex;
   }
-  return output + blankCssLineCommentsInStyleBlocks(stripCssComments(blankHtmlComments(text.slice(lastIndex))));
+  return (
+    output +
+    blankCssLineCommentsInStyleBlocks(
+      stripCssComments(blankHtmlComments(text.slice(lastIndex)))
+    )
+  );
 }
 
 function blankCssLineComments(text) {
@@ -312,13 +372,23 @@ function blankCssLineComments(text) {
       if (char === '\\' && next) {
         output += next;
         i++;
-      } else if ((state === 'single' && char === "'") || (state === 'double' && char === '"')) {
+      } else if (
+        (state === 'single' && char === "'") ||
+        (state === 'double' && char === '"')
+      ) {
         state = 'code';
       }
       continue;
     }
     const prev = output.length ? output[output.length - 1] : '';
-    if (char === '/' && next === '/' && urlDepth === 0 && prev !== ':' && prev !== '(' && prev !== '\\') {
+    if (
+      char === '/' &&
+      next === '/' &&
+      urlDepth === 0 &&
+      prev !== ':' &&
+      prev !== '(' &&
+      prev !== '\\'
+    ) {
       output += '  ';
       i++;
       state = 'line';
@@ -346,7 +416,8 @@ function findAstroFrontmatterClose(text) {
     if (text[cursor - 1] === '\n' && text.startsWith('---', cursor)) {
       let end = cursor + 3;
       while (text[end] === ' ' || text[end] === '\t') end++;
-      if (end >= text.length || text[end] === '\n' || text[end] === '\r') return cursor - 1;
+      if (end >= text.length || text[end] === '\n' || text[end] === '\r')
+        return cursor - 1;
     }
     const char = text[cursor];
     const next = text[cursor + 1];
@@ -394,7 +465,8 @@ function blankAstroFrontmatterComments(text) {
 
 function blankCommentsForMatchers(text, ext) {
   if (PAGE_ANALYZER_EXTS.has(ext)) {
-    const withFrontmatter = ext === '.astro' ? blankAstroFrontmatterComments(text) : text;
+    const withFrontmatter =
+      ext === '.astro' ? blankAstroFrontmatterComments(text) : text;
     return blankHtmlAndCssCommentsOutsideScripts(withFrontmatter);
   }
   if (STYLESHEET_EXTS.has(ext)) {
@@ -412,17 +484,35 @@ function firstOverusedGoogleFont(text) {
 // this set falls through to the format parsers, and an unrecognized spelling
 // stays non-neutral so a real accent is never skipped.
 const NEUTRAL_COLOR_KEYWORDS = new Set([
-  'transparent', 'currentcolor',
-  'black', 'white', 'gray', 'grey', 'silver',
-  'dimgray', 'dimgrey', 'darkgray', 'darkgrey', 'lightgray', 'lightgrey',
-  'gainsboro', 'whitesmoke',
+  'transparent',
+  'currentcolor',
+  'black',
+  'white',
+  'gray',
+  'grey',
+  'silver',
+  'dimgray',
+  'dimgrey',
+  'darkgray',
+  'darkgrey',
+  'lightgray',
+  'lightgrey',
+  'gainsboro',
+  'whitesmoke',
 ]);
 
 function hexChannels(color) {
-  const long = color.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})(?:[0-9a-f]{2})?$/i);
-  if (long) return [parseInt(long[1], 16), parseInt(long[2], 16), parseInt(long[3], 16)];
+  const long = color.match(
+    /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})(?:[0-9a-f]{2})?$/i
+  );
+  if (long)
+    return [
+      parseInt(long[1], 16),
+      parseInt(long[2], 16),
+      parseInt(long[3], 16),
+    ];
   const short = color.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])(?:[0-9a-f])?$/i);
-  if (short) return [1, 2, 3].map((i) => parseInt(short[i] + short[i], 16));
+  if (short) return [1, 2, 3].map(i => parseInt(short[i] + short[i], 16));
   return null;
 }
 
@@ -471,7 +561,9 @@ function isShadowLength(token) {
  * colored stripe. Handle hex and named neutrals here, then defer.
  */
 function isNeutralAuthoredColor(rawColor) {
-  const c = String(rawColor || '').trim().toLowerCase();
+  const c = String(rawColor || '')
+    .trim()
+    .toLowerCase();
   if (!c) return false;
   if (NEUTRAL_COLOR_KEYWORDS.has(c)) return true;
   // Modern rgb() takes space-separated channels (`rgb(0 0 0)`). shared/color.mjs
@@ -479,131 +571,232 @@ function isNeutralAuthoredColor(rawColor) {
   // space-separated neutrals fell through it and reported as chromatic — the
   // exemption this function exists for, missed. Normalize before delegating.
   if (/^rgba?\(/i.test(c)) {
-    const channels = c.match(/^rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)/i);
+    const channels = c.match(
+      /^rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)/i
+    );
     if (channels) {
-      const values = [1, 2, 3].map((i) => Number(channels[i]));
-      return (Math.max(...values) - Math.min(...values)) < 30;
+      const values = [1, 2, 3].map(i => Number(channels[i]));
+      return Math.max(...values) - Math.min(...values) < 30;
     }
     return isNeutralColor(c);
   }
   if (/^(?:hsla?|oklch|oklab|lab|lch|hwb)\(/i.test(c)) return isNeutralColor(c);
   const channels = hexChannels(c);
-  if (channels) return (Math.max(...channels) - Math.min(...channels)) < 30;
+  if (channels) return Math.max(...channels) - Math.min(...channels) < 30;
   return false;
 }
 
 function isNeutralBorderColor(str) {
-  const m = str.match(/solid\s+((?:rgba?|hsla?|oklch|oklab|lab|lch|hwb|color)\([^)]*\)|#[0-9a-f]{3,8}\b|[a-z]+)/i);
+  const m = str.match(
+    /solid\s+((?:rgba?|hsla?|oklch|oklab|lab|lch|hwb|color)\([^)]*\)|#[0-9a-f]{3,8}\b|[a-z]+)/i
+  );
   if (!m) return false;
   return isNeutralAuthoredColor(m[1]);
 }
 
 const REGEX_MATCHERS = [
   // --- Side-tab ---
-  { id: 'side-tab', regex: /\bborder-[lrse]-(\d+)\b/g,
-    test: (m, line) => { const n = +m[1]; return hasRounded(line) ? n >= 2 : n >= 4; },
-    fmt: (m) => m[0] },
-  { id: 'side-tab', regex: /border-(?:left|right)\s*:\s*(\d+)px\s+solid[^;]*/gi,
-    test: (m, line) => { if (isSafeElement(line)) return false; if (isNeutralBorderColor(m[0])) return false; const n = +m[1]; return hasBorderRadius(line) ? n >= 2 : n >= 3; },
-    fmt: (m) => m[0].replace(/\s*;?\s*$/, '') },
-  { id: 'side-tab', regex: /border-(?:left|right)-width\s*:\s*(\d+)px/gi,
+  {
+    id: 'side-tab',
+    regex: /\bborder-[lrse]-(\d+)\b/g,
+    test: (m, line) => {
+      const n = +m[1];
+      return hasRounded(line) ? n >= 2 : n >= 4;
+    },
+    fmt: m => m[0],
+  },
+  {
+    id: 'side-tab',
+    regex: /border-(?:left|right)\s*:\s*(\d+)px\s+solid[^;]*/gi,
+    test: (m, line) => {
+      if (isSafeElement(line)) return false;
+      if (isNeutralBorderColor(m[0])) return false;
+      const n = +m[1];
+      return hasBorderRadius(line) ? n >= 2 : n >= 3;
+    },
+    fmt: m => m[0].replace(/\s*;?\s*$/, ''),
+  },
+  {
+    id: 'side-tab',
+    regex: /border-(?:left|right)-width\s*:\s*(\d+)px/gi,
     test: (m, line) => !isSafeElement(line) && +m[1] >= 3,
-    fmt: (m) => m[0] },
-  { id: 'side-tab', regex: /border-inline-(?:start|end)\s*:\s*(\d+)px\s+solid/gi,
+    fmt: m => m[0],
+  },
+  {
+    id: 'side-tab',
+    regex: /border-inline-(?:start|end)\s*:\s*(\d+)px\s+solid/gi,
     test: (m, line) => !isSafeElement(line) && +m[1] >= 3,
-    fmt: (m) => m[0] },
-  { id: 'side-tab', regex: /border-inline-(?:start|end)-width\s*:\s*(\d+)px/gi,
+    fmt: m => m[0],
+  },
+  {
+    id: 'side-tab',
+    regex: /border-inline-(?:start|end)-width\s*:\s*(\d+)px/gi,
     test: (m, line) => !isSafeElement(line) && +m[1] >= 3,
-    fmt: (m) => m[0] },
-  { id: 'side-tab', regex: /border(?:Left|Right)\s*[:=]\s*["'`](\d+)px\s+solid/g,
-    test: (m) => +m[1] >= 3,
-    fmt: (m) => m[0] },
+    fmt: m => m[0],
+  },
+  {
+    id: 'side-tab',
+    regex: /border(?:Left|Right)\s*[:=]\s*["'`](\d+)px\s+solid/g,
+    test: m => +m[1] >= 3,
+    fmt: m => m[0],
+  },
   // --- Border accent on rounded ---
-  { id: 'border-accent-on-rounded', regex: /\bborder-[tb]-(\d+)\b/g,
+  {
+    id: 'border-accent-on-rounded',
+    regex: /\bborder-[tb]-(\d+)\b/g,
     test: (m, line) => hasRounded(line) && +m[1] >= 1,
-    fmt: (m) => m[0] },
-  { id: 'border-accent-on-rounded', regex: /border-(?:top|bottom)\s*:\s*(\d+)px\s+solid/gi,
+    fmt: m => m[0],
+  },
+  {
+    id: 'border-accent-on-rounded',
+    regex: /border-(?:top|bottom)\s*:\s*(\d+)px\s+solid/gi,
     test: (m, line) => +m[1] >= 3 && hasBorderRadius(line),
-    fmt: (m) => m[0] },
+    fmt: m => m[0],
+  },
   // --- Overused font ---
-  { id: 'overused-font', regex: /font-family\s*:\s*['"]?(Inter|Roboto|Open Sans|Lato|Montserrat|Arial|Helvetica|Fraunces|Geist Sans|Geist Mono|Geist|Mona Sans|Plus Jakarta Sans|Space Grotesk|Recoleta|Instrument Sans|Instrument Serif)\b/gi,
+  {
+    id: 'overused-font',
+    regex:
+      /font-family\s*:\s*['"]?(Inter|Roboto|Open Sans|Lato|Montserrat|Arial|Helvetica|Fraunces|Geist Sans|Geist Mono|Geist|Mona Sans|Plus Jakarta Sans|Space Grotesk|Recoleta|Instrument Sans|Instrument Serif)\b/gi,
     test: () => true,
-    fmt: (m) => m[0] },
-  { id: 'overused-font', regex: /fonts\.googleapis\.com\/css2?\?[^"'\s)<>]*/gi,
-    test: (m) => {
+    fmt: m => m[0],
+  },
+  {
+    id: 'overused-font',
+    regex: /fonts\.googleapis\.com\/css2?\?[^"'\s)<>]*/gi,
+    test: m => {
       m.overusedGoogleFont = firstOverusedGoogleFont(m[0]);
       return Boolean(m.overusedGoogleFont);
     },
-    fmt: (m) => `Google Fonts: ${m.overusedGoogleFont || firstOverusedGoogleFont(m[0])}` },
+    fmt: m =>
+      `Google Fonts: ${m.overusedGoogleFont || firstOverusedGoogleFont(m[0])}`,
+  },
   // --- Gradient text ---
-  { id: 'gradient-text', regex: /background-clip\s*:\s*text|-webkit-background-clip\s*:\s*text/gi,
+  {
+    id: 'gradient-text',
+    regex: /background-clip\s*:\s*text|-webkit-background-clip\s*:\s*text/gi,
     test: (m, line) => /gradient/i.test(line),
-    fmt: () => 'background-clip: text + gradient' },
+    fmt: () => 'background-clip: text + gradient',
+  },
   // --- Gradient text (Tailwind) ---
-  { id: 'gradient-text', regex: /\bbg-clip-text\b/g,
+  {
+    id: 'gradient-text',
+    regex: /\bbg-clip-text\b/g,
     test: (m, line) => /\bbg-gradient-to-/i.test(line),
-    fmt: () => 'bg-clip-text + bg-gradient' },
+    fmt: () => 'bg-clip-text + bg-gradient',
+  },
   // --- Tailwind gray on colored bg ---
-  { id: 'gray-on-color', regex: /\btext-(?:gray|slate|zinc|neutral|stone)-(\d+)\b/g,
-    test: (m, line) => /\bbg-(?:red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-\d+\b/.test(line),
-    fmt: (m, line) => { const bg = line.match(/\bbg-(?:red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-\d+\b/); return `${m[0]} on ${bg?.[0] || '?'}`; } },
+  {
+    id: 'gray-on-color',
+    regex: /\btext-(?:gray|slate|zinc|neutral|stone)-(\d+)\b/g,
+    test: (m, line) =>
+      /\bbg-(?:red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-\d+\b/.test(
+        line
+      ),
+    fmt: (m, line) => {
+      const bg = line.match(
+        /\bbg-(?:red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-\d+\b/
+      );
+      return `${m[0]} on ${bg?.[0] || '?'}`;
+    },
+  },
   // --- Tailwind AI palette ---
-  { id: 'ai-color-palette', regex: /\btext-(?:purple|violet|indigo)-(\d+)\b/g,
+  {
+    id: 'ai-color-palette',
+    regex: /\btext-(?:purple|violet|indigo)-(\d+)\b/g,
     test: (m, line) => /\btext-(?:[2-9]xl|[3-9]xl)\b|<h[1-3]/i.test(line),
-    fmt: (m) => `${m[0]} on heading` },
-  { id: 'ai-color-palette', regex: /\bfrom-(?:purple|violet|indigo)-(\d+)\b/g,
-    test: (m, line) => /\bto-(?:purple|violet|indigo|blue|cyan|pink|fuchsia)-\d+\b/.test(line),
-    fmt: (m) => `${m[0]} gradient` },
+    fmt: m => `${m[0]} on heading`,
+  },
+  {
+    id: 'ai-color-palette',
+    regex: /\bfrom-(?:purple|violet|indigo)-(\d+)\b/g,
+    test: (m, line) =>
+      /\bto-(?:purple|violet|indigo|blue|cyan|pink|fuchsia)-\d+\b/.test(line),
+    fmt: m => `${m[0]} gradient`,
+  },
   // --- Bounce/elastic easing ---
-  { id: 'bounce-easing', regex: /\banimate-bounce\b/g,
+  {
+    id: 'bounce-easing',
+    regex: /\banimate-bounce\b/g,
     test: () => true,
-    fmt: () => 'animate-bounce (Tailwind)' },
-  { id: 'bounce-easing', regex: /animation(?:-name)?\s*:\s*([^;{}]*(?:bounce|elastic|wobble|jiggle|spring)[^;{}]*)/gi,
+    fmt: () => 'animate-bounce (Tailwind)',
+  },
+  {
+    id: 'bounce-easing',
+    regex:
+      /animation(?:-name)?\s*:\s*([^;{}]*(?:bounce|elastic|wobble|jiggle|spring)[^;{}]*)/gi,
     test: () => true,
-    fmt: (m) => {
+    fmt: m => {
       const token = m[1]
         .split(/[,\s]+/)
-        .find((part) => /bounce|elastic|wobble|jiggle|spring/i.test(part));
+        .find(part => /bounce|elastic|wobble|jiggle|spring/i.test(part));
       return `animation: ${token || m[1].trim()}`;
-    } },
-  { id: 'bounce-easing', regex: /cubic-bezier\(\s*([\d.-]+)\s*,\s*([\d.-]+)\s*,\s*([\d.-]+)\s*,\s*([\d.-]+)\s*\)/g,
-    test: (m) => {
-      const y1 = parseFloat(m[2]), y2 = parseFloat(m[4]);
+    },
+  },
+  {
+    id: 'bounce-easing',
+    regex:
+      /cubic-bezier\(\s*([\d.-]+)\s*,\s*([\d.-]+)\s*,\s*([\d.-]+)\s*,\s*([\d.-]+)\s*\)/g,
+    test: m => {
+      const y1 = parseFloat(m[2]),
+        y2 = parseFloat(m[4]);
       return y1 < -0.1 || y1 > 1.1 || y2 < -0.1 || y2 > 1.1;
     },
-    fmt: (m) => `cubic-bezier(${m[1]}, ${m[2]}, ${m[3]}, ${m[4]})` },
+    fmt: m => `cubic-bezier(${m[1]}, ${m[2]}, ${m[3]}, ${m[4]})`,
+  },
   // --- Layout property transition ---
   // JSX inline style objects use comma-delimited quoted values, not semicolons (issue #548).
-  { id: 'layout-transition', regex: /transition\s*:\s*(?:(['"])((?:(?!\1)[^\\]|\\.)*)\1|([^;{}]+))/gi,
-    test: (m) => {
+  {
+    id: 'layout-transition',
+    regex: /transition\s*:\s*(?:(['"])((?:(?!\1)[^\\]|\\.)*)\1|([^;{}]+))/gi,
+    test: m => {
       const val = (m[2] ?? m[3] ?? '').toLowerCase();
       if (/\ball\b/.test(val)) return false;
-      return /\b(?:(?:max|min)-)?(?:width|height)\b|\bpadding\b|\bmargin\b/.test(val);
+      return /\b(?:(?:max|min)-)?(?:width|height)\b|\bpadding\b|\bmargin\b/.test(
+        val
+      );
     },
-    fmt: (m) => {
+    fmt: m => {
       const raw = m[2] ?? m[3] ?? '';
-      const found = raw.match(/\b(?:(?:max|min)-)?(?:width|height)\b|\bpadding(?:-(?:top|right|bottom|left))?\b|\bmargin(?:-(?:top|right|bottom|left))?\b/gi);
+      const found = raw.match(
+        /\b(?:(?:max|min)-)?(?:width|height)\b|\bpadding(?:-(?:top|right|bottom|left))?\b|\bmargin(?:-(?:top|right|bottom|left))?\b/gi
+      );
       return `transition: ${found ? found.join(', ') : raw.trim()}`;
-    } },
-  { id: 'layout-transition', regex: /transition-property\s*:\s*(?:(['"])((?:(?!\1)[^\\]|\\.)*)\1|([^;{}]+))/gi,
-    test: (m) => {
+    },
+  },
+  {
+    id: 'layout-transition',
+    regex:
+      /transition-property\s*:\s*(?:(['"])((?:(?!\1)[^\\]|\\.)*)\1|([^;{}]+))/gi,
+    test: m => {
       const val = (m[2] ?? m[3] ?? '').toLowerCase();
       if (/\ball\b/.test(val)) return false;
-      return /\b(?:(?:max|min)-)?(?:width|height)\b|\bpadding\b|\bmargin\b/.test(val);
+      return /\b(?:(?:max|min)-)?(?:width|height)\b|\bpadding\b|\bmargin\b/.test(
+        val
+      );
     },
-    fmt: (m) => {
+    fmt: m => {
       const raw = m[2] ?? m[3] ?? '';
-      const found = raw.match(/\b(?:(?:max|min)-)?(?:width|height)\b|\bpadding(?:-(?:top|right|bottom|left))?\b|\bmargin(?:-(?:top|right|bottom|left))?\b/gi);
+      const found = raw.match(
+        /\b(?:(?:max|min)-)?(?:width|height)\b|\bpadding(?:-(?:top|right|bottom|left))?\b|\bmargin(?:-(?:top|right|bottom|left))?\b/gi
+      );
       return `transition-property: ${found ? found.join(', ') : raw.trim()}`;
-    } },
+    },
+  },
   // --- Broken image: src="" or src="#" or src=" " ---
-  { id: 'broken-image', regex: /<img\b[^>]*?\bsrc\s*=\s*(?:""|''|"\s+"|'\s+'|"#"|'#')/gi,
+  {
+    id: 'broken-image',
+    regex: /<img\b[^>]*?\bsrc\s*=\s*(?:""|''|"\s+"|'\s+'|"#"|'#')/gi,
     test: () => true,
-    fmt: (m) => m[0].slice(0, 100) },
+    fmt: m => m[0].slice(0, 100),
+  },
   // --- Broken image: <img> with no src attribute at all ---
-  { id: 'broken-image', regex: /<img\b(?:(?!\bsrc\s*=)[^>])*>/gi,
-    test: (m) => !/\bsrc\s*=/i.test(m[0]),
-    fmt: (m) => m[0].slice(0, 100) },
+  {
+    id: 'broken-image',
+    regex: /<img\b(?:(?!\bsrc\s*=)[^>])*>/gi,
+    test: m => !/\bsrc\s*=/i.test(m[0]),
+    fmt: m => m[0].slice(0, 100),
+  },
 ];
 
 const REGEX_ANALYZERS = [
@@ -617,30 +810,70 @@ const REGEX_ANALYZERS = [
       const px = m[2] === 'px' ? +m[1] : +m[1] * REM;
       if (px > 0 && px < 200) sizes.add(Math.round(px * 10) / 10);
     }
-    const clampRe = /font-size\s*:\s*clamp\(\s*([\d.]+)(px|rem|em)\s*,\s*[^,]+,\s*([\d.]+)(px|rem|em)\s*\)/gi;
+    const clampRe =
+      /font-size\s*:\s*clamp\(\s*([\d.]+)(px|rem|em)\s*,\s*[^,]+,\s*([\d.]+)(px|rem|em)\s*\)/gi;
     while ((m = clampRe.exec(content)) !== null) {
       sizes.add(Math.round((m[2] === 'px' ? +m[1] : +m[1] * REM) * 10) / 10);
       sizes.add(Math.round((m[4] === 'px' ? +m[3] : +m[3] * REM) * 10) / 10);
     }
-    const TW = { 'text-xs': 12, 'text-sm': 14, 'text-base': 16, 'text-lg': 18, 'text-xl': 20, 'text-2xl': 24, 'text-3xl': 30, 'text-4xl': 36, 'text-5xl': 48, 'text-6xl': 60, 'text-7xl': 72, 'text-8xl': 96, 'text-9xl': 128 };
-    for (const [cls, px] of Object.entries(TW)) { if (new RegExp(`\\b${cls}\\b`).test(content)) sizes.add(px); }
+    const TW = {
+      'text-xs': 12,
+      'text-sm': 14,
+      'text-base': 16,
+      'text-lg': 18,
+      'text-xl': 20,
+      'text-2xl': 24,
+      'text-3xl': 30,
+      'text-4xl': 36,
+      'text-5xl': 48,
+      'text-6xl': 60,
+      'text-7xl': 72,
+      'text-8xl': 96,
+      'text-9xl': 128,
+    };
+    for (const [cls, px] of Object.entries(TW)) {
+      if (new RegExp(`\\b${cls}\\b`).test(content)) sizes.add(px);
+    }
     if (sizes.size < 3) return [];
     const sorted = [...sizes].sort((a, b) => a - b);
     const ratio = sorted[sorted.length - 1] / sorted[0];
     if (ratio >= 2.0) return [];
     const lines = content.split('\n');
     let line = 1;
-    for (let i = 0; i < lines.length; i++) { if (/font-size/i.test(lines[i]) || /\btext-(?:xs|sm|base|lg|xl|\d)/i.test(lines[i])) { line = i + 1; break; } }
-    return [finding('flat-type-hierarchy', filePath, `Sizes: ${sorted.map(s => s + 'px').join(', ')} (ratio ${ratio.toFixed(1)}:1)`, line)];
+    for (let i = 0; i < lines.length; i++) {
+      if (
+        /font-size/i.test(lines[i]) ||
+        /\btext-(?:xs|sm|base|lg|xl|\d)/i.test(lines[i])
+      ) {
+        line = i + 1;
+        break;
+      }
+    }
+    return [
+      finding(
+        'flat-type-hierarchy',
+        filePath,
+        `Sizes: ${sorted.map(s => s + 'px').join(', ')} (ratio ${ratio.toFixed(1)}:1)`,
+        line
+      ),
+    ];
   },
   // Monotonous spacing (regex)
   (content, filePath) => {
     const vals = [];
     let m;
-    const pxRe = /(?:padding|margin)(?:-(?:top|right|bottom|left))?\s*:\s*(\d+)px/gi;
-    while ((m = pxRe.exec(content)) !== null) { const v = +m[1]; if (v > 0 && v < 200) vals.push(v); }
-    const remRe = /(?:padding|margin)(?:-(?:top|right|bottom|left))?\s*:\s*([\d.]+)rem/gi;
-    while ((m = remRe.exec(content)) !== null) { const v = Math.round(parseFloat(m[1]) * 16); if (v > 0 && v < 200) vals.push(v); }
+    const pxRe =
+      /(?:padding|margin)(?:-(?:top|right|bottom|left))?\s*:\s*(\d+)px/gi;
+    while ((m = pxRe.exec(content)) !== null) {
+      const v = +m[1];
+      if (v > 0 && v < 200) vals.push(v);
+    }
+    const remRe =
+      /(?:padding|margin)(?:-(?:top|right|bottom|left))?\s*:\s*([\d.]+)rem/gi;
+    while ((m = remRe.exec(content)) !== null) {
+      const v = Math.round(parseFloat(m[1]) * 16);
+      if (v > 0 && v < 200) vals.push(v);
+    }
     const gapRe = /gap\s*:\s*(\d+)px/gi;
     while ((m = gapRe.exec(content)) !== null) vals.push(+m[1]);
     const twRe = /\b(?:p|px|py|pt|pb|pl|pr|m|mx|my|mt|mb|ml|mr|gap)-(\d+)\b/g;
@@ -654,7 +887,13 @@ const REGEX_ANALYZERS = [
     const unique = [...new Set(rounded)].filter(v => v > 0);
     if (pct <= 0.6 || unique.length > 3) return [];
     const dominant = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
-    return [finding('monotonous-spacing', filePath, `~${dominant}px used ${maxCount}/${rounded.length} times (${Math.round(pct * 100)}%)`)];
+    return [
+      finding(
+        'monotonous-spacing',
+        filePath,
+        `~${dominant}px used ${maxCount}/${rounded.length} times (${Math.round(pct * 100)}%)`
+      ),
+    ];
   },
   // Em-dash overuse (ADVISORY): the AI cadence tell is em-dash *saturation*,
   // not the occasional dash. Humans use em-dashes legitimately, so this rule is
@@ -674,8 +913,10 @@ const REGEX_ANALYZERS = [
   // deliberately left alone: the rule counts em-dashes, and the literal `–`
   // was never counted either.
   (content, filePath) => {
-    const text = stripHtmlToText(content)
-      .replace(/&mdash;|&#0*8212;|&#x0*2014;/gi, '—');
+    const text = stripHtmlToText(content).replace(
+      /&mdash;|&#0*8212;|&#x0*2014;/gi,
+      '—'
+    );
     let count = 0;
     const re = /[—]|--(?=\S)/g;
     while (re.exec(text) !== null) count++;
@@ -684,22 +925,43 @@ const REGEX_ANALYZERS = [
     // a long document. textLength <= count * chars-per-dash means the density is
     // at or above the threshold.
     if (text.length > count * EM_DASH_CHARS_PER_DASH) return [];
-    return [finding('em-dash-overuse', filePath, `${count} em-dashes in body text`)];
+    return [
+      finding('em-dash-overuse', filePath, `${count} em-dashes in body text`),
+    ];
   },
   // Marketing buzzwords: SaaS phrase list
   (content, filePath) => {
     const text = stripHtmlToText(content);
     const lower = text.toLowerCase();
     const BUZZWORDS = [
-      'streamline your', 'empower your', 'supercharge your',
-      'unleash your', 'unleash the power', 'leverage the power',
-      'built for the modern', 'trusted by leading', 'trusted by the world',
-      'best-in-class', 'industry-leading', 'world-class', 'enterprise-grade',
-      'next-generation', 'cutting-edge', 'transform your business',
-      'revolutionize', 'game-changer', 'game changing',
-      'mission-critical', 'best of breed', 'future-proof', 'future proof',
-      'seamless experience', 'seamlessly integrate',
-      'drive engagement', 'drive growth', 'drive results',
+      'streamline your',
+      'empower your',
+      'supercharge your',
+      'unleash your',
+      'unleash the power',
+      'leverage the power',
+      'built for the modern',
+      'trusted by leading',
+      'trusted by the world',
+      'best-in-class',
+      'industry-leading',
+      'world-class',
+      'enterprise-grade',
+      'next-generation',
+      'cutting-edge',
+      'transform your business',
+      'revolutionize',
+      'game-changer',
+      'game changing',
+      'mission-critical',
+      'best of breed',
+      'future-proof',
+      'future proof',
+      'seamless experience',
+      'seamlessly integrate',
+      'drive engagement',
+      'drive growth',
+      'drive results',
       'harness the power',
     ];
     let count = 0;
@@ -711,19 +973,31 @@ const REGEX_ANALYZERS = [
         if (idx === -1) break;
         count++;
         if (!firstSample) {
-          firstSample = text.slice(Math.max(0, idx - 12), Math.min(text.length, idx + phrase.length + 12)).trim();
+          firstSample = text
+            .slice(
+              Math.max(0, idx - 12),
+              Math.min(text.length, idx + phrase.length + 12)
+            )
+            .trim();
         }
         from = idx + phrase.length;
       }
     }
     if (count === 0) return [];
-    return [finding('marketing-buzzword', filePath, `${count} buzzword phrase${count === 1 ? '' : 's'}: "${firstSample}"`)];
+    return [
+      finding(
+        'marketing-buzzword',
+        filePath,
+        `${count} buzzword phrase${count === 1 ? '' : 's'}: "${firstSample}"`
+      ),
+    ];
   },
   // Aphoristic cadence: manufactured-contrast + short-rebuttal
   (content, filePath) => {
     const text = stripHtmlToText(content);
     const NOT_A_RE = /\bNot an? [a-z][^.!?]{1,40}[.!]\s+[A-Z][^.!?]{1,60}[.!]/g;
-    const SHORT_REBUTTAL_RE = /\b[A-Z][^.!?]{4,80}[.!]\s+(No|Just)\s+[a-z][^.!?]{2,60}[.!]/g;
+    const SHORT_REBUTTAL_RE =
+      /\b[A-Z][^.!?]{4,80}[.!]\s+(No|Just)\s+[a-z][^.!?]{2,60}[.!]/g;
     let count = 0;
     let firstSample = '';
     let m;
@@ -738,7 +1012,13 @@ const REGEX_ANALYZERS = [
       if (!firstSample) firstSample = m[0].trim().slice(0, 80);
     }
     if (count < 3) return [];
-    return [finding('aphoristic-cadence', filePath, `${count} aphoristic constructions: "${firstSample}"`)];
+    return [
+      finding(
+        'aphoristic-cadence',
+        filePath,
+        `${count} aphoristic constructions: "${firstSample}"`
+      ),
+    ];
   },
   // Dark glow / chromatic halo shadows (page-level). Shared scanner handles
   // any color format, single-level var() resolution, zero-offset halos on
@@ -759,7 +1039,10 @@ const REGEX_ANALYZERS = [
   },
   // Auto-scrolling marquees (<marquee> or infinite horizontal loop
   // animations).
-  (content, filePath) => scanCssTextForMarquee(content).map(hit => finding('marquee', filePath, hit.snippet)),
+  (content, filePath) =>
+    scanCssTextForMarquee(content).map(hit =>
+      finding('marquee', filePath, hit.snippet)
+    ),
 ];
 
 // ---------------------------------------------------------------------------
@@ -767,14 +1050,22 @@ const REGEX_ANALYZERS = [
 // the static HTML engine.
 // ---------------------------------------------------------------------------
 
-const CHROMATIC_SHADOW_TOKEN_RE = /(?:^|-)(?:accent|kinpaku|patina|gold|red|orange|amber|yellow|lime|green|emerald|teal|cyan|blue|indigo|violet|purple|magenta|pink|rose|coral|aqua|mint|burgundy|crimson|scarlet)(?:-|$)/i;
+const CHROMATIC_SHADOW_TOKEN_RE =
+  /(?:^|-)(?:accent|kinpaku|patina|gold|red|orange|amber|yellow|lime|green|emerald|teal|cyan|blue|indigo|violet|purple|magenta|pink|rose|coral|aqua|mint|burgundy|crimson|scarlet)(?:-|$)/i;
 
 function insetStripeColorIsChromatic(rawColor) {
-  const color = String(rawColor || '').trim().replace(/\s*!important\s*$/i, '');
+  const color = String(rawColor || '')
+    .trim()
+    .replace(/\s*!important\s*$/i, '');
   if (/^(?:currentcolor|transparent|inherit|unset)$/i.test(color)) return false;
   const variable = color.match(/^var\(\s*(--[\w-]+)/i);
   if (variable) return CHROMATIC_SHADOW_TOKEN_RE.test(variable[1]);
-  if (!/^(?:#|rgba?\(|hsla?\(|hwb\(|oklch\(|oklab\(|lch\(|lab\(|color\(|[a-z]+$)/i.test(color)) return false;
+  if (
+    !/^(?:#|rgba?\(|hsla?\(|hwb\(|oklch\(|oklab\(|lch\(|lab\(|color\(|[a-z]+$)/i.test(
+      color
+    )
+  )
+    return false;
   return !isNeutralAuthoredColor(color);
 }
 
@@ -783,7 +1074,9 @@ function insetStripeColorIsChromatic(rawColor) {
  * every line number) so commented-out CSS is not scanned as live rules.
  */
 function blankCssComments(css) {
-  return css.replace(/\/\*[\s\S]*?\*\//g, (block) => block.replace(/[^\n]/g, ' '));
+  return css.replace(/\/\*[\s\S]*?\*\//g, block =>
+    block.replace(/[^\n]/g, ' ')
+  );
 }
 
 function scanInsetStripeCss(rawContent, filePath, lineOffset = 0) {
@@ -796,7 +1089,7 @@ function scanInsetStripeCss(rawContent, filePath, lineOffset = 0) {
   // arrive in source order, so carry a monotonic cursor instead: one pass total.
   let scanOffset = 0;
   let scanLine = 1;
-  const lineAtOffset = (offset) => {
+  const lineAtOffset = offset => {
     while (scanOffset < offset) {
       if (content[scanOffset] === '\n') scanLine++;
       scanOffset++;
@@ -807,28 +1100,48 @@ function scanInsetStripeCss(rawContent, filePath, lineOffset = 0) {
     // The selector group is `[^{};]+`, which greedily absorbs the whitespace and
     // newlines trailing the previous rule. Advance past that run before deriving
     // the line, or every rule after the first reports the preceding line.
-    const selectorStart = match.index + (match[1].length - match[1].trimStart().length);
+    const selectorStart =
+      match.index + (match[1].length - match[1].trimStart().length);
     const selector = match[1].trim().replace(/\s+/g, ' ');
     if (!selector) continue;
-    if (/:(?:hover|focus|focus-visible|focus-within|active|checked|target)\b/i.test(selector)) continue;
+    if (
+      /:(?:hover|focus|focus-visible|focus-within|active|checked|target)\b/i.test(
+        selector
+      )
+    )
+      continue;
     if (/\[aria-selected\s*[*^$|~]?=\s*["']?true/i.test(selector)) continue;
     if (/\[aria-current(?!\s*[*^$|~]?=\s*["']?false)/i.test(selector)) continue;
-    if (/(?:^|[\s._[-])(?:active|current|selected)(?![\w])/i.test(selector)) continue;
-    if (/(?:^|[\s>+~,(])(?:button|hr|tr|td|th|table|blockquote|pre|code)(?![\w-])/i.test(selector)) continue;
+    if (/(?:^|[\s._[-])(?:active|current|selected)(?![\w])/i.test(selector))
+      continue;
+    if (
+      /(?:^|[\s>+~,(])(?:button|hr|tr|td|th|table|blockquote|pre|code)(?![\w-])/i.test(
+        selector
+      )
+    )
+      continue;
 
     // Read the last of a repeated declaration, not the first: that is what the
     // cascade paints. Taking the first both flagged stripes that a later
     // `box-shadow: none` had cancelled and missed stripes that overrode an
     // earlier value, and mis-skipped rules whose narrow width was overridden.
-    const width = lastMatch(match[2], /(?:^|;)\s*(?:width|inline-size)\s*:\s*(\d+(?:\.\d+)?)px/gi);
+    const width = lastMatch(
+      match[2],
+      /(?:^|;)\s*(?:width|inline-size)\s*:\s*(\d+(?:\.\d+)?)px/gi
+    );
     if (width && Number(width[1]) <= 40) continue;
-    const declaration = lastMatch(match[2], /(?:^|;)\s*box-shadow\s*:\s*([^;]+)/gi);
+    const declaration = lastMatch(
+      match[2],
+      /(?:^|;)\s*box-shadow\s*:\s*([^;]+)/gi
+    );
     if (!declaration || !/\binset\b/i.test(declaration[1])) continue;
     // `!important` qualifies the declaration, not the shadow value, so strip it
     // before the layers are read. Tokenizing split it into its own token, which
     // made the color count wrong and silently stopped flagging stripes declared
     // with it — a shape the previous regex handled.
-    const shadowValue = declaration[1].replace(/\s*!\s*important\s*$/i, '').trim();
+    const shadowValue = declaration[1]
+      .replace(/\s*!\s*important\s*$/i, '')
+      .trim();
 
     for (const rawLayer of shadowValue.split(/,(?![^(]*\))/)) {
       const layer = rawLayer.trim();
@@ -840,15 +1153,16 @@ function scanInsetStripeCss(rawContent, filePath, lineOffset = 0) {
       // respect parens: `rgb(0 0 0)` is one color token, and splitting it on
       // whitespace would read its channels as lengths.
       const tokens = tokenizeShadowLayer(layer);
-      if (!tokens.some((token) => /^inset$/i.test(token))) continue;
-      const rest = tokens.filter((token) => !/^inset$/i.test(token));
+      if (!tokens.some(token => /^inset$/i.test(token))) continue;
+      const rest = tokens.filter(token => !/^inset$/i.test(token));
       const lengths = rest.filter(isShadowLength);
-      const colors = rest.filter((token) => !isShadowLength(token));
+      const colors = rest.filter(token => !isShadowLength(token));
       // Only the two offsets are required; omitted blur/spread default to 0,
       // which is exactly the stripe shape. More than one non-length token is a
       // layer shape we do not claim to understand, so leave it alone.
-      if (lengths.length < 2 || lengths.length > 4 || colors.length !== 1) continue;
-      const values = lengths.map((token) => ({
+      if (lengths.length < 2 || lengths.length > 4 || colors.length !== 1)
+        continue;
+      const values = lengths.map(token => ({
         n: Number(token.replace(/px$/i, '')),
         hasPx: /px$/i.test(token),
       }));
@@ -856,14 +1170,34 @@ function scanInsetStripeCss(rawContent, filePath, lineOffset = 0) {
       const y = values[1];
       const blur = values[2] ? values[2].n : 0;
       const spread = values[3] ? values[3].n : 0;
-      if ((x.n !== 0 && !x.hasPx) || (y.n !== 0 && !y.hasPx) || blur !== 0 || spread !== 0) continue;
+      if (
+        (x.n !== 0 && !x.hasPx) ||
+        (y.n !== 0 && !y.hasPx) ||
+        blur !== 0 ||
+        spread !== 0
+      )
+        continue;
       const ax = Math.abs(x.n);
       const ay = Math.abs(y.n);
-      if (!((ax >= 3 && ax <= 12 && ay === 0) || (ay >= 3 && ay <= 12 && ax === 0))) continue;
+      if (
+        !(
+          (ax >= 3 && ax <= 12 && ay === 0) ||
+          (ay >= 3 && ay <= 12 && ax === 0)
+        )
+      )
+        continue;
       if (!insetStripeColorIsChromatic(colors[0])) continue;
-      const edge = ay === 0 ? (x.n > 0 ? 'left' : 'right') : (y.n > 0 ? 'top' : 'bottom');
+      const edge =
+        ay === 0 ? (x.n > 0 ? 'left' : 'right') : y.n > 0 ? 'top' : 'bottom';
       const line = lineOffset + lineAtOffset(selectorStart);
-      findings.push(finding('side-tab', filePath, `${selector} — inset box-shadow ${ay === 0 ? ax : ay}px stripe (${edge})`, line));
+      findings.push(
+        finding(
+          'side-tab',
+          filePath,
+          `${selector} — inset box-shadow ${ay === 0 ? ax : ay}px stripe (${edge})`,
+          line
+        )
+      );
       break;
     }
   }
@@ -933,17 +1267,16 @@ function findTemplateExpressionEnd(content, start) {
   let lastClosedBraceKind = '';
   const braceKinds = [];
 
-  const braceKind = () => (
+  const braceKind = () =>
     lastSignificant === ')' ||
     lastSignificant === ';' ||
     lastSignificant === '}' ||
     (previousSignificant === '=' && lastSignificant === '>') ||
     BLOCK_BRACE_PREFIX_KEYWORDS.has(currentWord)
       ? 'block'
-      : 'expression'
-  );
+      : 'expression';
 
-  const recordSignificant = (char) => {
+  const recordSignificant = char => {
     if (/\s/.test(char)) {
       wordSeparated = true;
       return;
@@ -965,7 +1298,8 @@ function findTemplateExpressionEnd(content, start) {
   for (let cursor = start; cursor < content.length; cursor++) {
     const char = content[cursor];
     const next = content[cursor + 1];
-    const afterPostfixUpdate = (lastSignificant === '+' || lastSignificant === '-') &&
+    const afterPostfixUpdate =
+      (lastSignificant === '+' || lastSignificant === '-') &&
       previousSignificant === lastSignificant &&
       antePreviousSignificant !== lastSignificant;
     if (char === "'" || char === '"') {
@@ -983,7 +1317,8 @@ function findTemplateExpressionEnd(content, start) {
     } else if (
       char === '/' &&
       (!lastSignificant ||
-        (/[=([{!?:;,&|+\-*%^~<>]/.test(lastSignificant) && !afterPostfixUpdate) ||
+        (/[=([{!?:;,&|+\-*%^~<>]/.test(lastSignificant) &&
+          !afterPostfixUpdate) ||
         (lastSignificant === '}' && lastClosedBraceKind === 'block') ||
         (previousSignificant === '=' && lastSignificant === '>') ||
         (currentWordPrefix !== '.' && REGEX_PREFIX_KEYWORDS.has(currentWord)))
@@ -1065,7 +1400,7 @@ function findCSSinJSTemplates(content) {
 function extractCSSinJS(content, ext) {
   ext = ext.toLowerCase();
   if (!CSS_IN_JS_EXTENSIONS.has(ext)) return [];
-  return findCSSinJSTemplates(content).map((template) => {
+  return findCSSinJSTemplates(content).map(template => {
     const before = content.substring(0, template.tagStart);
     const startLine = before.split('\n').length;
     return {
@@ -1082,13 +1417,21 @@ function stripCssInJsComments(content, ext) {
   let cursor = 0;
   for (const template of templates) {
     output += content.slice(cursor, template.contentStart);
-    output += stripCssComments(content.slice(template.contentStart, template.contentEnd));
+    output += stripCssComments(
+      content.slice(template.contentStart, template.contentEnd)
+    );
     cursor = template.contentEnd;
   }
   return output + content.slice(cursor);
 }
 
-function runRegexMatchers(lines, filePath, lineOffset = 0, blockContext = null, options = {}) {
+function runRegexMatchers(
+  lines,
+  filePath,
+  lineOffset = 0,
+  blockContext = null,
+  options = {}
+) {
   const { profile, phase = 'regex-matchers' } = options || {};
   const findings = [];
   if (!profile) {
@@ -1100,10 +1443,19 @@ function runRegexMatchers(lines, filePath, lineOffset = 0, blockContext = null, 
         while ((m = matcher.regex.exec(line)) !== null) {
           // For extracted blocks, use nearby lines as context for multi-line CSS patterns
           const context = blockContext
-            ? lines.slice(Math.max(0, i - 3), Math.min(lines.length, i + 4)).join(' ')
+            ? lines
+                .slice(Math.max(0, i - 3), Math.min(lines.length, i + 4))
+                .join(' ')
             : line;
           if (matcher.test(m, context)) {
-            findings.push(finding(matcher.id, filePath, matcher.fmt(m, context), i + 1 + lineOffset));
+            findings.push(
+              finding(
+                matcher.id,
+                filePath,
+                matcher.fmt(m, context),
+                i + 1 + lineOffset
+              )
+            );
           }
         }
       }
@@ -1112,29 +1464,42 @@ function runRegexMatchers(lines, filePath, lineOffset = 0, blockContext = null, 
   }
 
   for (const matcher of REGEX_MATCHERS) {
-    const matcherFindings = profileFindings(profile, {
-      engine: 'regex',
-      phase,
-      ruleId: matcher.id,
-      target: filePath,
-    }, () => {
-      const matches = [];
-      for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        matcher.regex.lastIndex = 0;
-        let m;
-        while ((m = matcher.regex.exec(line)) !== null) {
-          // For extracted blocks, use nearby lines as context for multi-line CSS patterns
-          const context = blockContext
-            ? lines.slice(Math.max(0, i - 3), Math.min(lines.length, i + 4)).join(' ')
-            : line;
-          if (matcher.test(m, context)) {
-            matches.push(finding(matcher.id, filePath, matcher.fmt(m, context), i + 1 + lineOffset));
+    const matcherFindings = profileFindings(
+      profile,
+      {
+        engine: 'regex',
+        phase,
+        ruleId: matcher.id,
+        target: filePath,
+      },
+      () => {
+        const matches = [];
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          matcher.regex.lastIndex = 0;
+          let m;
+          while ((m = matcher.regex.exec(line)) !== null) {
+            // For extracted blocks, use nearby lines as context for multi-line CSS patterns
+            const context = blockContext
+              ? lines
+                  .slice(Math.max(0, i - 3), Math.min(lines.length, i + 4))
+                  .join(' ')
+              : line;
+            if (matcher.test(m, context)) {
+              matches.push(
+                finding(
+                  matcher.id,
+                  filePath,
+                  matcher.fmt(m, context),
+                  i + 1 + lineOffset
+                )
+              );
+            }
           }
         }
+        return matches;
       }
-      return matches;
-    });
+    );
     findings.push(...matcherFindings);
   }
   return findings;
@@ -1160,12 +1525,18 @@ function runTextContentAnalyzers(content, filePath, options = {}) {
   for (let i = 0; i < TEXT_CONTENT_ANALYZER_IDS.length; i++) {
     const analyzer = REGEX_ANALYZERS[2 + i];
     const ruleId = TEXT_CONTENT_ANALYZER_IDS[i];
-    findings.push(...profileFindings(profile, {
-      engine: 'regex',
-      phase: 'text-content',
-      ruleId,
-      target: filePath,
-    }, () => analyzer(content, filePath)));
+    findings.push(
+      ...profileFindings(
+        profile,
+        {
+          engine: 'regex',
+          phase: 'text-content',
+          ruleId,
+          target: filePath,
+        },
+        () => analyzer(content, filePath)
+      )
+    );
   }
   return findings;
 }
@@ -1174,18 +1545,22 @@ function detectText(content, filePath, options = {}) {
   const profile = options?.profile;
   const findings = [];
   const ext = extFromFilePath(filePath);
-  const commentStrippedSource = JS_SOURCE_EXTS.has(ext) ? stripJsComments(content, {
-    jsx: ext === '.js' || ext === '.jsx' || ext === '.tsx',
-  }) : blankCommentsForMatchers(content, ext);
+  const commentStrippedSource = JS_SOURCE_EXTS.has(ext)
+    ? stripJsComments(content, {
+        jsx: ext === '.js' || ext === '.jsx' || ext === '.tsx',
+      })
+    : blankCommentsForMatchers(content, ext);
   const source = stripCssInJsComments(commentStrippedSource, ext);
   const lines = source.split('\n');
 
   // Run regex matchers on the full file content (catches Tailwind classes, inline styles)
   // Enable block context for CSS files where related properties span multiple lines
-  findings.push(...runRegexMatchers(lines, filePath, 0, STYLESHEET_EXTS.has(ext) || null, {
-    profile,
-    phase: 'source',
-  }));
+  findings.push(
+    ...runRegexMatchers(lines, filePath, 0, STYLESHEET_EXTS.has(ext) || null, {
+      profile,
+      phase: 'source',
+    })
+  );
   // Pseudo-element stripes (::before/::after absolute bars) carry the same
   // side-tab silhouette without any border token, so the line matchers can't
   // see them (issue #394). The shared scanner already runs on full HTML pages
@@ -1195,7 +1570,13 @@ function detectText(content, filePath, options = {}) {
   // inline ignores keep working.
   const pseudoStripeFindings = (text, lineOffset) =>
     scanCssTextForPseudoStripe(text).map(hit =>
-      finding(hit.id, filePath, hit.snippet, lineOffset + text.slice(0, hit.index).split('\n').length));
+      finding(
+        hit.id,
+        filePath,
+        hit.snippet,
+        lineOffset + text.slice(0, hit.index).split('\n').length
+      )
+    );
 
   if (STYLESHEET_EXTS.has(ext)) {
     findings.push(...scanInsetStripeCss(content, filePath));
@@ -1205,78 +1586,111 @@ function detectText(content, filePath, options = {}) {
   // Block-level CSS checks that need multiple declarations must run over the
   // complete source, not line-by-line. This covers standalone stylesheets,
   // component style blocks, inline styles, and CSS-in-JS templates.
-  findings.push(...profileFindings(profile, {
-    engine: 'regex',
-    phase: 'source',
-    ruleId: 'codex-grid-background',
-    target: filePath,
-  }, () => scanCssTextForGridBackground(source).map(hit => {
-    const line = source.substring(0, hit.index).split('\n').length;
-    return finding('codex-grid-background', filePath, hit.snippet, line);
-  })));
+  findings.push(
+    ...profileFindings(
+      profile,
+      {
+        engine: 'regex',
+        phase: 'source',
+        ruleId: 'codex-grid-background',
+        target: filePath,
+      },
+      () =>
+        scanCssTextForGridBackground(source).map(hit => {
+          const line = source.substring(0, hit.index).split('\n').length;
+          return finding('codex-grid-background', filePath, hit.snippet, line);
+        })
+    )
+  );
 
   // Extract and scan <style> blocks from Astro/Vue/Svelte components.
   const styleBlocks = profile
-    ? profileStep(profile, {
-      engine: 'regex',
-      phase: 'extract',
-      ruleId: 'style-blocks',
-      target: filePath,
-    }, () => extractStyleBlocks(content, ext))
+    ? profileStep(
+        profile,
+        {
+          engine: 'regex',
+          phase: 'extract',
+          ruleId: 'style-blocks',
+          target: filePath,
+        },
+        () => extractStyleBlocks(content, ext)
+      )
     : extractStyleBlocks(content, ext);
   for (const block of styleBlocks) {
     const blockContent = blankCssLineComments(stripCssComments(block.content));
     const blockLines = blockContent.split('\n');
-    findings.push(...runRegexMatchers(blockLines, filePath, block.startLine - 1, true, {
-      profile,
-      phase: 'style-block',
-    }));
+    findings.push(
+      ...runRegexMatchers(blockLines, filePath, block.startLine - 1, true, {
+        profile,
+        phase: 'style-block',
+      })
+    );
     // block.startLine is the first line *after* the <style> tag, but block.content
     // begins at the character right after that tag — so its own line 1 sits on the
     // tag's line, whether or not a newline follows immediately. lineAtOffset is
     // 1-based, so the offset is startLine - 2; startLine - 1 double-counted and
     // reported every selector one line low. runRegexMatchers keeps startLine - 1
     // because it indexes its split lines from zero.
-    findings.push(...scanInsetStripeCss(blockContent, filePath, block.startLine - 2));
+    findings.push(
+      ...scanInsetStripeCss(blockContent, filePath, block.startLine - 2)
+    );
     findings.push(...pseudoStripeFindings(blockContent, block.startLine - 2));
   }
 
   // Extract and scan CSS-in-JS template literals
   const cssJsBlocks = profile
-    ? profileStep(profile, {
-      engine: 'regex',
-      phase: 'extract',
-      ruleId: 'css-in-js',
-      target: filePath,
-    }, () => extractCSSinJS(source, ext))
+    ? profileStep(
+        profile,
+        {
+          engine: 'regex',
+          phase: 'extract',
+          ruleId: 'css-in-js',
+          target: filePath,
+        },
+        () => extractCSSinJS(source, ext)
+      )
     : extractCSSinJS(source, ext);
   for (const block of cssJsBlocks) {
     const blockContent = stripCssComments(block.content);
     const blockLines = blockContent.split('\n');
-    findings.push(...runRegexMatchers(blockLines, filePath, block.startLine - 1, true, {
-      profile,
-      phase: 'css-in-js',
-    }));
-    findings.push(...scanInsetStripeCss(blockContent, filePath, block.startLine - 1));
+    findings.push(
+      ...runRegexMatchers(blockLines, filePath, block.startLine - 1, true, {
+        profile,
+        phase: 'css-in-js',
+      })
+    );
+    findings.push(
+      ...scanInsetStripeCss(blockContent, filePath, block.startLine - 1)
+    );
     findings.push(...pseudoStripeFindings(blockContent, block.startLine - 1));
   }
 
   if (options?.designSystem) {
-    findings.push(...profileFindings(profile, {
-      engine: 'regex',
-      phase: 'source',
-      ruleId: 'design-system',
-      target: filePath,
-    }, () => checkSourceDesignSystem(content, filePath, { designSystem: options.designSystem })));
+    findings.push(
+      ...profileFindings(
+        profile,
+        {
+          engine: 'regex',
+          phase: 'source',
+          ruleId: 'design-system',
+          target: filePath,
+        },
+        () =>
+          checkSourceDesignSystem(content, filePath, {
+            designSystem: options.designSystem,
+          })
+      )
+    );
   }
 
   // Deduplicate findings (same antipattern + similar snippet, within 2 lines)
   const deduped = [];
   for (const f of findings) {
-    const isDupe = deduped.some(d =>
-      d.antipattern === f.antipattern &&
-      d.snippet === f.snippet &&
-      Math.abs(d.line - f.line) <= 2
+    const isDupe = deduped.some(
+      d =>
+        d.antipattern === f.antipattern &&
+        d.snippet === f.snippet &&
+        Math.abs(d.line - f.line) <= 2
     );
     if (!isDupe) deduped.push(f);
   }
@@ -1293,18 +1707,26 @@ function detectText(content, filePath, options = {}) {
     ];
     for (let i = 0; i < REGEX_ANALYZERS.length; i++) {
       const analyzer = REGEX_ANALYZERS[i];
-      deduped.push(...profileFindings(profile, {
-        engine: 'regex',
-        phase: 'page-analyzer',
-        ruleId: analyzerIds[i] || `analyzer-${i + 1}`,
-        target: filePath,
-      }, () => analyzer(content, filePath)));
+      deduped.push(
+        ...profileFindings(
+          profile,
+          {
+            engine: 'regex',
+            phase: 'page-analyzer',
+            ruleId: analyzerIds[i] || `analyzer-${i + 1}`,
+            target: filePath,
+          },
+          () => analyzer(content, filePath)
+        )
+      );
     }
   }
 
   // Inline `impeccable-disable*` waivers travel with the file; honor them unless
   // explicitly bypassed (`--no-config` / `--no-inline-ignores`).
-  return options?.inlineIgnores === false ? deduped : applyInlineIgnores(deduped, content);
+  return options?.inlineIgnores === false
+    ? deduped
+    : applyInlineIgnores(deduped, content);
 }
 
 export {

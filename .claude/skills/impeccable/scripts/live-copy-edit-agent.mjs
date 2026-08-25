@@ -19,19 +19,21 @@ const require = createRequire(import.meta.url);
 
 export function buildCopyEditBatchPrompt(batch, { cwd = process.cwd() } = {}) {
   const compactBatch = compactBatchForPrompt(batch);
-  const repairLines = compactBatch.repair ? [
-    '',
-    'Repair mode:',
-    '- The previous Apply attempt changed source, but validation failed.',
-    '- Do not restart from the old source. Inspect and repair the current source files.',
-    '- Fix the validation failures below while preserving all successfully applied visible copy edits.',
-    '- If a failure says source_verification_failed, make the current source prove each applied op: the newText must appear at a plausible hinted, candidate, or coupled source location.',
-    '- If the old visible text is still present only because newText contains it, keep the valid append/edit and repair only missing source evidence.',
-    '- If failures or candidates show edited text is also a lookup key, update coupled count, animation, icon, image, asset, style, or metadata keys in the current source, or fail that entry without partial edits.',
-    '- Keep failed and notes as arrays.',
-    '- Return the same canonical JSON shape after repair.',
-    JSON.stringify(compactBatch.repair, null, 2),
-  ] : [];
+  const repairLines = compactBatch.repair
+    ? [
+        '',
+        'Repair mode:',
+        '- The previous Apply attempt changed source, but validation failed.',
+        '- Do not restart from the old source. Inspect and repair the current source files.',
+        '- Fix the validation failures below while preserving all successfully applied visible copy edits.',
+        '- If a failure says source_verification_failed, make the current source prove each applied op: the newText must appear at a plausible hinted, candidate, or coupled source location.',
+        '- If the old visible text is still present only because newText contains it, keep the valid append/edit and repair only missing source evidence.',
+        '- If failures or candidates show edited text is also a lookup key, update coupled count, animation, icon, image, asset, style, or metadata keys in the current source, or fail that entry without partial edits.',
+        '- Keep failed and notes as arrays.',
+        '- Return the same canonical JSON shape after repair.',
+        JSON.stringify(compactBatch.repair, null, 2),
+      ]
+    : [];
   return [
     'You are the Impeccable staged copy-edit batch applier.',
     '',
@@ -88,7 +90,11 @@ export function buildCopyEditBatchPrompt(batch, { cwd = process.cwd() } = {}) {
 
 export function parseCopyEditBatchResult(text) {
   const parsed = parseCopyEditAgentResult(text);
-  if (parsed?.status === 'done' || parsed?.status === 'partial' || parsed?.status === 'error') {
+  if (
+    parsed?.status === 'done' ||
+    parsed?.status === 'partial' ||
+    parsed?.status === 'error'
+  ) {
     return normalizeBatchResult(parsed);
   }
   return null;
@@ -97,17 +103,21 @@ export function parseCopyEditBatchResult(text) {
 export async function runCopyEditBatchAgent(batch, opts = {}) {
   const cwd = opts.cwd || process.cwd();
   const env = opts.env || process.env;
-  const provider = opts.provider || chooseCopyEditAgent({ env, chatAvailable: opts.chatAvailable });
+  const provider =
+    opts.provider ||
+    chooseCopyEditAgent({ env, chatAvailable: opts.chatAvailable });
   if (provider === 'mock') {
     const delayMs = Number(env.IMPECCABLE_LIVE_COPY_AGENT_MOCK_DELAY_MS || 0);
-    if (delayMs > 0) await new Promise((resolve) => setTimeout(resolve, delayMs));
+    if (delayMs > 0) await new Promise(resolve => setTimeout(resolve, delayMs));
     return mockBatchResult(batch, env, cwd);
   }
   if (provider === 'chat') {
     if (typeof opts.applyBatchToSource !== 'function') {
       throw new Error('chat provider requires applyBatchToSource callback');
     }
-    const raw = await opts.applyBatchToSource(batch, { repair: batch?.repair || null });
+    const raw = await opts.applyBatchToSource(batch, {
+      repair: batch?.repair || null,
+    });
     return normalizeBatchResult(raw || {});
   }
   if (!provider) {
@@ -115,44 +125,86 @@ export async function runCopyEditBatchAgent(batch, opts = {}) {
   }
 
   const prompt = buildCopyEditBatchPrompt(batch, { cwd });
-  const outDir = opts.outDir || fs.mkdtempSync(path.join(os.tmpdir(), 'impeccable-copy-batch-'));
+  const outDir =
+    opts.outDir ||
+    fs.mkdtempSync(path.join(os.tmpdir(), 'impeccable-copy-batch-'));
   fs.mkdirSync(outDir, { recursive: true });
   const resultPath = path.join(outDir, 'result.json');
   const logPath = path.join(outDir, 'agent.log');
 
   if (provider === 'codex') {
-    await runCodex(prompt, { cwd, env, resultPath, logPath, timeoutMs: opts.timeoutMs });
+    await runCodex(prompt, {
+      cwd,
+      env,
+      resultPath,
+      logPath,
+      timeoutMs: opts.timeoutMs,
+    });
   } else if (provider === 'claude') {
-    await runClaude(prompt, { cwd, env, resultPath, logPath, timeoutMs: opts.timeoutMs });
+    await runClaude(prompt, {
+      cwd,
+      env,
+      resultPath,
+      logPath,
+      timeoutMs: opts.timeoutMs,
+    });
   } else {
     throw new Error(`Unsupported live copy-edit AI runner: ${provider}`);
   }
 
-  const output = fs.existsSync(resultPath) ? fs.readFileSync(resultPath, 'utf-8') : '';
+  const output = fs.existsSync(resultPath)
+    ? fs.readFileSync(resultPath, 'utf-8')
+    : '';
   const parsed = parseCopyEditBatchResult(output);
   if (parsed) return parsed;
 
-  const tail = fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf-8').slice(-1200) : output.slice(-1200);
-  throw new Error('AI copy-edit batch did not return a valid completion payload. ' + tail.trim());
+  const tail = fs.existsSync(logPath)
+    ? fs.readFileSync(logPath, 'utf-8').slice(-1200)
+    : output.slice(-1200);
+  throw new Error(
+    'AI copy-edit batch did not return a valid completion payload. ' +
+      tail.trim()
+  );
 }
 
-export function runCopyEditPostApplyChecks({ cwd = process.cwd(), files = [] } = {}) {
+export function runCopyEditPostApplyChecks({
+  cwd = process.cwd(),
+  files = [],
+} = {}) {
   const failures = [];
   const warnings = [];
-  const uniqueFiles = [...new Set((files || []).filter((file) => typeof file === 'string' && file.trim()))];
+  const uniqueFiles = [
+    ...new Set(
+      (files || []).filter(file => typeof file === 'string' && file.trim())
+    ),
+  ];
   for (const relativeFile of uniqueFiles) {
     const file = path.resolve(cwd, relativeFile);
     if (!isPathInsideOrEqual(cwd, file) || !fs.existsSync(file)) {
-      warnings.push({ file: relativeFile, reason: 'file_missing_or_outside_cwd' });
+      warnings.push({
+        file: relativeFile,
+        reason: 'file_missing_or_outside_cwd',
+      });
       continue;
     }
     let content = '';
-    try { content = fs.readFileSync(file, 'utf-8'); } catch (err) {
-      failures.push({ file: relativeFile, reason: 'read_failed', message: err.message });
+    try {
+      content = fs.readFileSync(file, 'utf-8');
+    } catch (err) {
+      failures.push({
+        file: relativeFile,
+        reason: 'read_failed',
+        message: err.message,
+      });
       continue;
     }
     const markerMatch = findLeftoverImpeccableMarker(content);
-    if (markerMatch) failures.push({ file: relativeFile, reason: 'leftover_impeccable_marker', marker: markerMatch });
+    if (markerMatch)
+      failures.push({
+        file: relativeFile,
+        reason: 'leftover_impeccable_marker',
+        marker: markerMatch,
+      });
     if (/\.json$/.test(relativeFile)) {
       try {
         JSON.parse(content);
@@ -168,7 +220,10 @@ export function runCopyEditPostApplyChecks({ cwd = process.cwd(), files = [] } =
     if (syntaxCheck?.failure) failures.push(syntaxCheck.failure);
     if (syntaxCheck?.warning) warnings.push(syntaxCheck.warning);
     if (/\.(mjs|cjs|js)$/.test(relativeFile)) {
-      const check = spawnSync(process.execPath, ['--check', file], { cwd, encoding: 'utf-8' });
+      const check = spawnSync(process.execPath, ['--check', file], {
+        cwd,
+        encoding: 'utf-8',
+      });
       if (check.status !== 0) {
         failures.push({
           file: relativeFile,
@@ -190,7 +245,9 @@ function checkFrameworkSourceSyntax(relativeFile, content) {
   try {
     parser = require('@babel/parser');
   } catch {
-    return { warning: { file: relativeFile, reason: 'syntax_parser_unavailable' } };
+    return {
+      warning: { file: relativeFile, reason: 'syntax_parser_unavailable' },
+    };
   }
   const plugins = ['jsx'];
   if (/\.(ts|tsx)$/.test(relativeFile)) plugins.push('typescript');
@@ -213,10 +270,13 @@ function checkFrameworkSourceSyntax(relativeFile, content) {
 }
 
 function findLeftoverImpeccableMarker(content) {
-  const commentMarker = content.match(/^\s*(?:<!--|\{\/\*)\s*impeccable-carbonize-(?:start|end)\b|^\s*(?:<!--|\{\/\*)\s*impeccable-variants-(?:start|end)\b/m);
+  const commentMarker = content.match(
+    /^\s*(?:<!--|\{\/\*)\s*impeccable-carbonize-(?:start|end)\b|^\s*(?:<!--|\{\/\*)\s*impeccable-variants-(?:start|end)\b/m
+  );
   if (commentMarker) return commentMarker[0];
 
-  const attrPattern = /\bdata-impeccable-(?:variants?|original-text|editable|text-wrap)\s*=/g;
+  const attrPattern =
+    /\bdata-impeccable-(?:variants?|original-text|editable|text-wrap)\s*=/g;
   for (const line of content.split(/\r?\n/)) {
     attrPattern.lastIndex = 0;
     let match;
@@ -272,7 +332,10 @@ function runManualEditValidationScript(cwd) {
       failure: {
         file: 'package.json',
         reason: 'manual_edit_validation_failed',
-        message: [validation.stderr, validation.stdout].filter(Boolean).join('\n').trim(),
+        message: [validation.stderr, validation.stdout]
+          .filter(Boolean)
+          .join('\n')
+          .trim(),
       },
     };
   }
@@ -295,7 +358,7 @@ function compactBatchForPrompt(batch) {
   return {
     pageUrl: batch?.pageUrl || null,
     repair: compactBatchRepair(batch?.repair),
-    entries: (batch?.entries || []).map((entry) => ({
+    entries: (batch?.entries || []).map(entry => ({
       id: entry.id,
       pageUrl: entry.pageUrl,
       stagedAt: entry.stagedAt || null,
@@ -323,7 +386,7 @@ function compactBatchRepair(repair) {
 
 function compactBatchDiagnostics(items, depth = 0) {
   if (!Array.isArray(items)) return undefined;
-  return items.slice(0, 12).map((item) => ({
+  return items.slice(0, 12).map(item => ({
     entryId: compactBatchString(item?.entryId || item?.id),
     reason: compactBatchString(item?.reason || item?.kind),
     detail: compactBatchString(item?.detail),
@@ -333,22 +396,33 @@ function compactBatchDiagnostics(items, depth = 0) {
     ref: compactBatchString(item?.ref),
     marker: compactBatchString(item?.marker),
     files: compactBatchStringList(item?.files, 8),
-    candidates: depth < 2 ? compactBatchSourceMatches(item?.candidates, 8) : undefined,
-    failures: depth < 2 ? compactBatchDiagnostics(item?.failures, depth + 1) : undefined,
-    checks: depth < 2 ? compactBatchDiagnostics(item?.checks, depth + 1) : undefined,
+    candidates:
+      depth < 2 ? compactBatchSourceMatches(item?.candidates, 8) : undefined,
+    failures:
+      depth < 2
+        ? compactBatchDiagnostics(item?.failures, depth + 1)
+        : undefined,
+    checks:
+      depth < 2 ? compactBatchDiagnostics(item?.checks, depth + 1) : undefined,
   }));
 }
 
 function compactBatchCandidates(candidates) {
   return (Array.isArray(candidates) ? candidates : [])
     .slice(0, 24)
-    .map((candidate) => ({
+    .map(candidate => ({
       entryId: compactBatchString(candidate?.entryId),
       ref: compactBatchString(candidate?.ref),
       sourceHint: compactBatchSourceMatch(candidate?.sourceHint),
       textMatches: compactBatchSourceMatches(candidate?.textMatches, 8),
-      objectKeyMatches: compactBatchSourceMatches(candidate?.objectKeyMatches, 8),
-      contextTextMatches: compactBatchSourceMatches(candidate?.contextTextMatches, 8),
+      objectKeyMatches: compactBatchSourceMatches(
+        candidate?.objectKeyMatches,
+        8
+      ),
+      contextTextMatches: compactBatchSourceMatches(
+        candidate?.contextTextMatches,
+        8
+      ),
       locatorMatches: compactBatchSourceMatches(candidate?.locatorMatches, 6),
     }));
 }
@@ -420,25 +494,29 @@ function normalizeOptionalBatchNumber(value) {
 }
 
 function compactNearbyBatchTexts(items) {
-  return (Array.isArray(items) ? items : [])
-    .slice(0, 8)
-    .map((item) => typeof item === 'string' ? { text: truncate(item, BATCH_OP_TEXT_LIMIT) } : {
-      ref: compactBatchString(item?.ref),
-      tag: compactBatchString(item?.tag),
-      classes: compactBatchStringList(item?.classes, 24),
-      text: compactBatchString(item?.text),
-    });
+  return (Array.isArray(items) ? items : []).slice(0, 8).map(item =>
+    typeof item === 'string'
+      ? { text: truncate(item, BATCH_OP_TEXT_LIMIT) }
+      : {
+          ref: compactBatchString(item?.ref),
+          tag: compactBatchString(item?.tag),
+          classes: compactBatchStringList(item?.classes, 24),
+          text: compactBatchString(item?.text),
+        }
+  );
 }
 
 function compactBatchStringList(items, limit) {
   return (Array.isArray(items) ? items : [])
     .slice(0, limit)
-    .filter((item) => typeof item === 'string')
-    .map((item) => truncate(item, BATCH_OP_TEXT_LIMIT));
+    .filter(item => typeof item === 'string')
+    .map(item => truncate(item, BATCH_OP_TEXT_LIMIT));
 }
 
 function compactBatchString(value) {
-  return typeof value === 'string' ? truncate(value, BATCH_OP_TEXT_LIMIT) : undefined;
+  return typeof value === 'string'
+    ? truncate(value, BATCH_OP_TEXT_LIMIT)
+    : undefined;
 }
 
 function compactContextForBatch(value) {
@@ -456,30 +534,47 @@ function compactContextForBatch(value) {
 function stripLiveRuntimeHtml(html) {
   if (typeof html !== 'string') return html || null;
   return html
-    .replace(/\sdata-impeccable-(?:original-text|editable|text-wrap)(?:=(?:"[^"]*"|'[^']*'|[^\s>]+))?/g, '')
+    .replace(
+      /\sdata-impeccable-(?:original-text|editable|text-wrap)(?:=(?:"[^"]*"|'[^']*'|[^\s>]+))?/g,
+      ''
+    )
     .replace(/\scontenteditable(?:=(?:"[^"]*"|'[^']*'|[^\s>]+))?/g, '')
-    .replace(/\sstyle=(["'])(?:(?!\1)[\s\S])*(?:-webkit-user-modify|user-select:\s*text|cursor:\s*text)(?:(?!\1)[\s\S])*\1/g, '');
+    .replace(
+      /\sstyle=(["'])(?:(?!\1)[\s\S])*(?:-webkit-user-modify|user-select:\s*text|cursor:\s*text)(?:(?!\1)[\s\S])*\1/g,
+      ''
+    );
 }
 
 function normalizeBatchResult(result) {
-  const status = result.status === 'partial' ? 'partial' : result.status === 'error' ? 'error' : 'done';
+  const status =
+    result.status === 'partial'
+      ? 'partial'
+      : result.status === 'error'
+        ? 'error'
+        : 'done';
   const appliedEntryIds = Array.isArray(result.appliedEntryIds)
-    ? result.appliedEntryIds.filter((id) => typeof id === 'string')
+    ? result.appliedEntryIds.filter(id => typeof id === 'string')
     : [];
   const failed = Array.isArray(result.failed)
-    ? result.failed.filter(Boolean).map((item) => ({
+    ? result.failed.filter(Boolean).map(item => ({
         entryId: item.entryId || item.id || null,
         reason: item.reason || item.message || 'failed',
         candidates: Array.isArray(item.candidates) ? item.candidates : [],
       }))
     : [];
-  const files = Array.isArray(result.files) ? result.files.filter((file) => typeof file === 'string') : [];
-  const notes = Array.isArray(result.notes) ? result.notes.filter((note) => typeof note === 'string') : [];
+  const files = Array.isArray(result.files)
+    ? result.files.filter(file => typeof file === 'string')
+    : [];
+  const notes = Array.isArray(result.notes)
+    ? result.notes.filter(note => typeof note === 'string')
+    : [];
   const warnings = Array.isArray(result.warnings)
     ? result.warnings
         .filter(Boolean)
-        .map((warning) => typeof warning === 'string' ? { message: warning } : warning)
-        .filter((warning) => warning && typeof warning === 'object')
+        .map(warning =>
+          typeof warning === 'string' ? { message: warning } : warning
+        )
+        .filter(warning => warning && typeof warning === 'object')
     : [];
   return {
     status,
@@ -502,7 +597,9 @@ function mockBatchResult(batch, env, cwd = process.cwd()) {
   }
   return {
     status: 'done',
-    appliedEntryIds: (batch?.entries || []).map((entry) => entry.id).filter(Boolean),
+    appliedEntryIds: (batch?.entries || [])
+      .map(entry => entry.id)
+      .filter(Boolean),
     failed: [],
     files: [],
     notes: ['mock copy-edit batch result'],
@@ -517,7 +614,8 @@ function applyMockWrites(env, cwd) {
     throw new Error('Invalid IMPECCABLE_LIVE_COPY_AGENT_MOCK_WRITES JSON');
   }
   for (const [relativeFile, content] of Object.entries(writes)) {
-    if (typeof relativeFile !== 'string' || typeof content !== 'string') continue;
+    if (typeof relativeFile !== 'string' || typeof content !== 'string')
+      continue;
     const absolute = path.resolve(cwd, relativeFile);
     if (!isPathInsideOrEqual(cwd, absolute)) continue;
     fs.mkdirSync(path.dirname(absolute), { recursive: true });
@@ -535,13 +633,23 @@ export function parseCopyEditAgentResult(text) {
       const nested = parseCopyEditAgentResult(parsedOuter.result);
       if (nested) return nested;
     }
-    if (parsedOuter.status === 'done' || parsedOuter.status === 'partial' || parsedOuter.status === 'error') return parsedOuter;
+    if (
+      parsedOuter.status === 'done' ||
+      parsedOuter.status === 'partial' ||
+      parsedOuter.status === 'error'
+    )
+      return parsedOuter;
   }
 
   const jsonMatch = trimmed.match(/\{[\s\S]*\}/);
   if (!jsonMatch) return null;
   const parsed = tryParseJson(jsonMatch[0]);
-  if (parsed?.status === 'done' || parsed?.status === 'partial' || parsed?.status === 'error') return parsed;
+  if (
+    parsed?.status === 'done' ||
+    parsed?.status === 'partial' ||
+    parsed?.status === 'error'
+  )
+    return parsed;
   return null;
 }
 
@@ -551,7 +659,8 @@ export function chooseCopyEditAgent({
   chatAvailable = () => false,
 } = {}) {
   const mode = (env.IMPECCABLE_LIVE_COPY_AGENT || 'auto').trim().toLowerCase();
-  if (mode === '0' || mode === 'false' || mode === 'off' || mode === 'none') return null;
+  if (mode === '0' || mode === 'false' || mode === 'off' || mode === 'none')
+    return null;
   if (mode === 'mock') return 'mock';
   if (mode === 'chat') return chatAvailable() ? 'chat' : null;
   if (mode === 'codex') return commandExists('codex') ? 'codex' : null;
@@ -563,27 +672,43 @@ export function chooseCopyEditAgent({
   return null;
 }
 
-function runCodex(prompt, { cwd, env, resultPath, logPath, timeoutMs = DEFAULT_TIMEOUT_MS }) {
+function runCodex(
+  prompt,
+  { cwd, env, resultPath, logPath, timeoutMs = DEFAULT_TIMEOUT_MS }
+) {
   const args = [
     'exec',
-    '--cd', cwd,
+    '--cd',
+    cwd,
     '--dangerously-bypass-approvals-and-sandbox',
     '--ephemeral',
-    '--output-last-message', resultPath,
-    '-c', `model_reasoning_effort="${env.IMPECCABLE_LIVE_COPY_AGENT_EFFORT || 'low'}"`,
+    '--output-last-message',
+    resultPath,
+    '-c',
+    `model_reasoning_effort="${env.IMPECCABLE_LIVE_COPY_AGENT_EFFORT || 'low'}"`,
   ];
   if (env.IMPECCABLE_LIVE_COPY_AGENT_MODEL) {
     args.push('--model', env.IMPECCABLE_LIVE_COPY_AGENT_MODEL);
   }
   args.push('-');
-  return runAgentProcess('codex', args, prompt, { cwd, env, logPath, timeoutMs });
+  return runAgentProcess('codex', args, prompt, {
+    cwd,
+    env,
+    logPath,
+    timeoutMs,
+  });
 }
 
-function runClaude(prompt, { cwd, env, resultPath, logPath, timeoutMs = DEFAULT_TIMEOUT_MS }) {
+function runClaude(
+  prompt,
+  { cwd, env, resultPath, logPath, timeoutMs = DEFAULT_TIMEOUT_MS }
+) {
   const args = [
     '--print',
-    '--permission-mode', 'bypassPermissions',
-    '--output-format', 'json',
+    '--permission-mode',
+    'bypassPermissions',
+    '--output-format',
+    'json',
   ];
   if (env.IMPECCABLE_LIVE_COPY_AGENT_MODEL) {
     args.push('--model', env.IMPECCABLE_LIVE_COPY_AGENT_MODEL);
@@ -592,10 +717,21 @@ function runClaude(prompt, { cwd, env, resultPath, logPath, timeoutMs = DEFAULT_
   // through. On macOS, `claude /login` stores creds in the Keychain, which a
   // non-TTY subprocess cannot read; setting CLAUDE_CODE_OAUTH_TOKEN (via
   // `claude setup-token`) is the supported headless auth path.
-  return runAgentProcess('claude', args, prompt, { cwd, env, logPath, timeoutMs, mirrorOutputPath: resultPath });
+  return runAgentProcess('claude', args, prompt, {
+    cwd,
+    env,
+    logPath,
+    timeoutMs,
+    mirrorOutputPath: resultPath,
+  });
 }
 
-function runAgentProcess(command, args, stdin, { cwd, env, logPath, timeoutMs, mirrorOutputPath }) {
+function runAgentProcess(
+  command,
+  args,
+  stdin,
+  { cwd, env, logPath, timeoutMs, mirrorOutputPath }
+) {
   return new Promise((resolve, reject) => {
     const log = fs.createWriteStream(logPath, { flags: 'a' });
     const child = spawn(command, args, {
@@ -607,10 +743,12 @@ function runAgentProcess(command, args, stdin, { cwd, env, logPath, timeoutMs, m
     let settled = false;
     const timer = setTimeout(() => {
       child.kill('SIGTERM');
-      rejectOnce(new Error(`AI copy-edit worker timed out after ${timeoutMs}ms`));
+      rejectOnce(
+        new Error(`AI copy-edit worker timed out after ${timeoutMs}ms`)
+      );
     }, timeoutMs);
 
-    const rejectOnce = (err) => {
+    const rejectOnce = err => {
       if (settled) return;
       settled = true;
       clearTimeout(timer);
@@ -627,13 +765,15 @@ function runAgentProcess(command, args, stdin, { cwd, env, logPath, timeoutMs, m
     };
 
     process.once('SIGTERM', () => {
-      try { child.kill('SIGTERM'); } catch {}
+      try {
+        child.kill('SIGTERM');
+      } catch {}
     });
-    child.stdout.on('data', (chunk) => {
+    child.stdout.on('data', chunk => {
       output += chunk.toString();
       log.write(chunk);
     });
-    child.stderr.on('data', (chunk) => {
+    child.stderr.on('data', chunk => {
       log.write(chunk);
     });
     child.on('error', rejectOnce);
@@ -642,7 +782,9 @@ function runAgentProcess(command, args, stdin, { cwd, env, logPath, timeoutMs, m
         resolveOnce();
       } else {
         const hint = extractRunnerErrorMessage(output, command);
-        rejectOnce(new Error(hint || `${command} exited with ${signal || code}`));
+        rejectOnce(
+          new Error(hint || `${command} exited with ${signal || code}`)
+        );
       }
     });
     if (stdin) child.stdin.end(stdin);
@@ -652,11 +794,18 @@ function runAgentProcess(command, args, stdin, { cwd, env, logPath, timeoutMs, m
 
 function isPathInsideOrEqual(cwd, file) {
   const relative = path.relative(path.resolve(cwd), path.resolve(file));
-  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+  return (
+    relative === '' ||
+    (!relative.startsWith('..') && !path.isAbsolute(relative))
+  );
 }
 
 function tryParseJson(text) {
-  try { return JSON.parse(text); } catch { return null; }
+  try {
+    return JSON.parse(text);
+  } catch {
+    return null;
+  }
 }
 
 function truncate(value, max) {
@@ -683,26 +832,42 @@ export function describeNoProviderError({
   const lines = ['No live copy-edit AI runner is available.'];
   if (exists('claude')) {
     if (env.CLAUDE_CODE_OAUTH_TOKEN) {
-      lines.push('  • Claude CLI: installed; CLAUDE_CODE_OAUTH_TOKEN is set but the CLI still rejected it. The token may be expired or invalid.');
+      lines.push(
+        '  • Claude CLI: installed; CLAUDE_CODE_OAUTH_TOKEN is set but the CLI still rejected it. The token may be expired or invalid.'
+      );
     } else {
-      lines.push('  • Claude CLI: installed but not selected. If Apply still fails, the subprocess may be unable to read your `claude /login` credentials (on macOS, the Keychain can be unreachable from a no-TTY child).');
-      lines.push('      Headless fix: run `claude setup-token` once, then `export CLAUDE_CODE_OAUTH_TOKEN=<the printed sk-ant-oat01-… token>` before starting `live-server.mjs`.');
-      lines.push('      Alternative: `export ANTHROPIC_API_KEY=<key>` if you have console.anthropic.com credits.');
+      lines.push(
+        '  • Claude CLI: installed but not selected. If Apply still fails, the subprocess may be unable to read your `claude /login` credentials (on macOS, the Keychain can be unreachable from a no-TTY child).'
+      );
+      lines.push(
+        '      Headless fix: run `claude setup-token` once, then `export CLAUDE_CODE_OAUTH_TOKEN=<the printed sk-ant-oat01-… token>` before starting `live-server.mjs`.'
+      );
+      lines.push(
+        '      Alternative: `export ANTHROPIC_API_KEY=<key>` if you have console.anthropic.com credits.'
+      );
     }
   } else {
     lines.push('  • Claude CLI: not installed.');
   }
   if (exists('codex')) {
-    lines.push('  • Codex CLI: installed. If Apply still fails, run `codex login` to authenticate.');
+    lines.push(
+      '  • Codex CLI: installed. If Apply still fails, run `codex login` to authenticate.'
+    );
   } else {
     lines.push('  • Codex CLI: not installed.');
   }
   if (chatAvailable()) {
-    lines.push('  • Chat: an Impeccable live session is polling but selection chose another provider — unexpected; please report.');
+    lines.push(
+      '  • Chat: an Impeccable live session is polling but selection chose another provider — unexpected; please report.'
+    );
   } else {
-    lines.push('  • Chat: no Impeccable live session is currently polling on this server. Start Impeccable live in your chat to route Apply through the chat agent.');
+    lines.push(
+      '  • Chat: no Impeccable live session is currently polling on this server. Start Impeccable live in your chat to route Apply through the chat agent.'
+    );
   }
-  lines.push('Fix one of the above, or set IMPECCABLE_LIVE_COPY_AGENT=mock for tests.');
+  lines.push(
+    'Fix one of the above, or set IMPECCABLE_LIVE_COPY_AGENT=mock for tests.'
+  );
   return lines.join('\n');
 }
 
@@ -729,7 +894,11 @@ export function extractRunnerErrorMessage(output, command) {
   }
   for (const parsed of candidates) {
     if (!parsed || typeof parsed !== 'object') continue;
-    if (parsed.is_error === true && typeof parsed.result === 'string' && parsed.result.trim()) {
+    if (
+      parsed.is_error === true &&
+      typeof parsed.result === 'string' &&
+      parsed.result.trim()
+    ) {
       return `${command} CLI: ${parsed.result.trim()}`;
     }
     if (typeof parsed.message === 'string' && parsed.message.trim()) {
@@ -739,7 +908,10 @@ export function extractRunnerErrorMessage(output, command) {
       return `${command} CLI: ${parsed.error.trim()}`;
     }
   }
-  const lines = text.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  const lines = text
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(Boolean);
   if (lines.length > 0) {
     const last = lines[lines.length - 1];
     if (last.length > 0 && last.length < 400) return `${command}: ${last}`;
@@ -775,15 +947,15 @@ function computeCommandAuthed(command) {
   if (command !== 'claude') return false;
   let result;
   try {
-    result = spawnSync('claude', [
-      '--print',
-      '--output-format', 'json',
-      'ping',
-    ], {
-      encoding: 'utf-8',
-      timeout: 10000,
-      env: process.env,
-    });
+    result = spawnSync(
+      'claude',
+      ['--print', '--output-format', 'json', 'ping'],
+      {
+        encoding: 'utf-8',
+        timeout: 10000,
+        env: process.env,
+      }
+    );
   } catch {
     return false;
   }
@@ -794,7 +966,9 @@ function computeCommandAuthed(command) {
     return false;
   }
   if (!stdout) return true;
-  const parsed = tryParseJson(stdout) || tryParseJson(stdout.match(/\{[\s\S]*\}\s*$/)?.[0] || '');
+  const parsed =
+    tryParseJson(stdout) ||
+    tryParseJson(stdout.match(/\{[\s\S]*\}\s*$/)?.[0] || '');
   if (parsed && parsed.is_error === true) return false;
   return true;
 }

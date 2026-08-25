@@ -41,12 +41,14 @@ export const PRODUCT_V4_SECTIONS = Object.freeze([
  * v4 output.
  */
 export const PRODUCT_DEPRECATED_SECTIONS = Object.freeze({
-  Register: 'v4 replaced the brand/product register axis with the four visitor modes '
-    + '(Persuade, Operate, Read, Experience), which are chosen per surface and persisted in that '
-    + "surface's brief. Nothing reads `## Register` any more.",
+  Register:
+    'v4 replaced the brand/product register axis with the four visitor modes ' +
+    '(Persuade, Operate, Read, Experience), which are chosen per surface and persisted in that ' +
+    "surface's brief. Nothing reads `## Register` any more.",
 });
 
-const PRODUCT_STAMP_RE = /^[ \t]*<!--[ \t]*impeccable:product-schema[ \t]+(\d+)[ \t]*-->[ \t]*$/im;
+const PRODUCT_STAMP_RE =
+  /^[ \t]*<!--[ \t]*impeccable:product-schema[ \t]+(\d+)[ \t]*-->[ \t]*$/im;
 
 /** The literal stamp line, for the init template and for migrations. */
 export function productStampLine(version = PRODUCT_SCHEMA_VERSION) {
@@ -76,7 +78,7 @@ export function stampProductSchema(markdown, version = PRODUCT_SCHEMA_VERSION) {
   if (PRODUCT_STAMP_RE.test(body)) return body.replace(PRODUCT_STAMP_RE, line);
 
   const lines = body.split('\n');
-  const headingIndex = lines.findIndex((entry) => /^#\s+\S/.test(entry));
+  const headingIndex = lines.findIndex(entry => /^#\s+\S/.test(entry));
   if (headingIndex === -1) return `${line}\n\n${body.replace(/^\n+/, '')}`;
   lines.splice(headingIndex + 1, 0, '', line);
   return lines.join('\n');
@@ -88,6 +90,7 @@ export function stampProductSchema(markdown, version = PRODUCT_SCHEMA_VERSION) {
  * (the field predates the v2 rewrite in some files).
  */
 export function readSidecarSchemaVersion(sidecar) {
-  const version = sidecar && typeof sidecar === 'object' ? sidecar.schemaVersion : null;
+  const version =
+    sidecar && typeof sidecar === 'object' ? sidecar.schemaVersion : null;
   return Number.isInteger(version) ? version : null;
 }

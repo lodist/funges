@@ -78,10 +78,12 @@ export const TAG_PATCH_KIND = 'live-tag';
  * Undo functions keyed by the `patch` value an artifact carries. Built from
  * the entries so a new adapter registers its own undo alongside its apply.
  */
-export const PATCH_UNDOERS = Object.freeze(Object.assign(
-  { [TAG_PATCH_KIND]: unpatchTagFile },
-  ...FRAMEWORKS.map((framework) => framework.inject.unpatch || {}),
-));
+export const PATCH_UNDOERS = Object.freeze(
+  Object.assign(
+    { [TAG_PATCH_KIND]: unpatchTagFile },
+    ...FRAMEWORKS.map(framework => framework.inject.unpatch || {})
+  )
+);
 
 /**
  * First entry whose detect() matches. Returns { framework, project } where
@@ -120,7 +122,7 @@ export function resolveSourceTraits(filePath) {
  */
 export function frameworkIgnorePatterns(resolved) {
   const fn = resolved?.framework?.inject?.ignorePatterns;
-  return typeof fn === 'function' ? (fn(resolved.project) || []) : [];
+  return typeof fn === 'function' ? fn(resolved.project) || [] : [];
 }
 
 /**
@@ -128,13 +130,18 @@ export function frameworkIgnorePatterns(resolved) {
  * Adapters declare their own; the tag strategy patches exactly the resolved
  * config files.
  */
-export function describeInjectArtifacts(resolved, { cwd = process.cwd(), files = [] } = {}) {
+export function describeInjectArtifacts(
+  resolved,
+  { cwd = process.cwd(), files = [] } = {}
+) {
   if (!resolved) return [];
   const { framework, project } = resolved;
   if (framework.inject.kind === 'adapter') {
-    return (framework.inject.artifacts?.({ cwd, project }) || []).filter((a) => a && a.path);
+    return (framework.inject.artifacts?.({ cwd, project }) || []).filter(
+      a => a && a.path
+    );
   }
-  return files.map((file) => ({
+  return files.map(file => ({
     kind: 'patched',
     path: file,
     patch: TAG_PATCH_KIND,

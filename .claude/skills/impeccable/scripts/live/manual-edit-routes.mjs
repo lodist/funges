@@ -23,8 +23,10 @@ export function createManualEditRoutes({
   cwd = () => process.cwd(),
   env = () => process.env,
 } = {}) {
-  const projectCwd = () => typeof cwd === 'function' ? cwd() : cwd || process.cwd();
-  const currentEnv = () => typeof env === 'function' ? env() : env || process.env;
+  const projectCwd = () =>
+    typeof cwd === 'function' ? cwd() : cwd || process.cwd();
+  const currentEnv = () =>
+    typeof env === 'function' ? env() : env || process.env;
 
   return function handleManualEditRoute(req, res, url) {
     const p = url.pathname;
@@ -33,10 +35,14 @@ export function createManualEditRoutes({
     // local AI copy-edit runner.
     if (p === '/manual-edit-stash' && req.method === 'POST') {
       let body = '';
-      req.on('data', (c) => { body += c; });
+      req.on('data', c => {
+        body += c;
+      });
       req.on('end', () => {
         let msg;
-        try { msg = JSON.parse(body); } catch {
+        try {
+          msg = JSON.parse(body);
+        } catch {
           sendJson(res, 400, { error: 'Invalid JSON' });
           return;
         }
@@ -57,7 +63,10 @@ export function createManualEditRoutes({
             ops: msg.ops,
           });
         } catch (err) {
-          sendJson(res, 500, { error: 'stash_write_failed', message: err.message });
+          sendJson(res, 500, {
+            error: 'stash_write_failed',
+            message: err.message,
+          });
           return;
         }
         const { totalCount, perPage } = countPendingByPage(projectCwd());
@@ -68,7 +77,13 @@ export function createManualEditRoutes({
           opCount: msg.ops.length,
           pendingCount,
           totalCount,
-          hintedFileCount: new Set((msg.ops || []).map((op) => summarizeManualLogFile(op.sourceHint?.file, projectCwd())).filter(Boolean)).size,
+          hintedFileCount: new Set(
+            (msg.ops || [])
+              .map(op =>
+                summarizeManualLogFile(op.sourceHint?.file, projectCwd())
+              )
+              .filter(Boolean)
+          ).size,
         });
         sendJson(res, 200, { ok: true, pendingCount, totalCount, perPage });
       });
@@ -77,13 +92,19 @@ export function createManualEditRoutes({
 
     if (p === '/manual-edit-stash' && req.method === 'GET') {
       const token = url.searchParams.get('token');
-      if (token !== getToken()) { res.writeHead(401); res.end('Unauthorized'); return true; }
+      if (token !== getToken()) {
+        res.writeHead(401);
+        res.end('Unauthorized');
+        return true;
+      }
       const pageUrl = url.searchParams.get('pageUrl') || '';
       const { totalCount, perPage } = countPendingByPage(projectCwd());
       const buffer = readManualEditsBuffer(projectCwd());
-      const entriesForPage = pageUrl ? buffer.entries.filter((e) => e.pageUrl === pageUrl) : buffer.entries;
+      const entriesForPage = pageUrl
+        ? buffer.entries.filter(e => e.pageUrl === pageUrl)
+        : buffer.entries;
       sendJson(res, 200, {
-        count: pageUrl ? (perPage[pageUrl] || 0) : totalCount,
+        count: pageUrl ? perPage[pageUrl] || 0 : totalCount,
         totalCount,
         perPage,
         entries: entriesForPage,
@@ -93,33 +114,50 @@ export function createManualEditRoutes({
 
     if (p === '/manual-edit-commit' && req.method === 'POST') {
       const token = url.searchParams.get('token');
-      if (token !== getToken()) { res.writeHead(401); res.end('Unauthorized'); return true; }
+      if (token !== getToken()) {
+        res.writeHead(401);
+        res.end('Unauthorized');
+        return true;
+      }
       const pageUrl = url.searchParams.get('pageUrl');
-      const asyncMode = /^(1|true|yes)$/i.test(url.searchParams.get('async') || '');
-      const repairOnly = /^(1|true|yes)$/i.test(url.searchParams.get('repair') || '');
+      const asyncMode = /^(1|true|yes)$/i.test(
+        url.searchParams.get('async') || ''
+      );
+      const repairOnly = /^(1|true|yes)$/i.test(
+        url.searchParams.get('repair') || ''
+      );
       const existingTransaction = manualApply.readTransaction();
       if (repairOnly && !existingTransaction) {
         sendJson(res, 409, { error: 'manual_edit_repair_transaction_missing' });
         return true;
       }
-      const recoveredTransaction = repairOnly ? null : manualApply.rollbackTransaction({
-        pageUrl,
-        reason: 'manual_edit_commit_recovered_abandoned_transaction',
-      });
+      const recoveredTransaction = repairOnly
+        ? null
+        : manualApply.rollbackTransaction({
+            pageUrl,
+            reason: 'manual_edit_commit_recovered_abandoned_transaction',
+          });
       const before = getManualEditStatus();
-      const pendingCount = pageUrl ? (before.perPage[pageUrl] || 0) : before.totalCount;
+      const pendingCount = pageUrl
+        ? before.perPage[pageUrl] || 0
+        : before.totalCount;
       recordManualEditActivity('manual_edit_commit_started', {
         pageUrl,
         repairOnly,
         pendingCount,
         totalCount: before.totalCount,
-        recoveredTransaction: recoveredTransaction ? {
-          id: recoveredTransaction.id,
-          reason: recoveredTransaction.reason,
-          skipped: recoveredTransaction.skipped,
-          rolledBackFiles: recoveredTransaction.rolledBackFiles,
-          rollbackFailures: summarizeManualDiagnostics(recoveredTransaction.rollbackFailures, projectCwd()),
-        } : null,
+        recoveredTransaction: recoveredTransaction
+          ? {
+              id: recoveredTransaction.id,
+              reason: recoveredTransaction.reason,
+              skipped: recoveredTransaction.skipped,
+              rolledBackFiles: recoveredTransaction.rolledBackFiles,
+              rollbackFailures: summarizeManualDiagnostics(
+                recoveredTransaction.rollbackFailures,
+                projectCwd()
+              ),
+            }
+          : null,
         ...summarizePendingManualEditBatch(projectCwd(), pageUrl),
       });
       if (asyncMode) {
@@ -137,7 +175,10 @@ export function createManualEditRoutes({
         let commitBatch = null;
         try {
           if (pendingCount > 0) {
-            const transactionBatch = buildManualEditEvidence({ cwd: projectCwd(), pageUrl });
+            const transactionBatch = buildManualEditEvidence({
+              cwd: projectCwd(),
+              pageUrl,
+            });
             commitBatch = transactionBatch;
             if (!repairOnly && manualApply.countOps(transactionBatch) > 0) {
               transaction = manualApply.writeTransaction({
@@ -149,12 +190,17 @@ export function createManualEditRoutes({
             }
           }
           const envValue = currentEnv();
-          const requestedMode = (envValue.IMPECCABLE_LIVE_COPY_AGENT || 'auto').trim().toLowerCase();
-          const useChatRoute = requestedMode === 'chat'
-            || (requestedMode === 'auto' && chatAgentLikelyActive());
+          const requestedMode = (envValue.IMPECCABLE_LIVE_COPY_AGENT || 'auto')
+            .trim()
+            .toLowerCase();
+          const useChatRoute =
+            requestedMode === 'chat' ||
+            (requestedMode === 'auto' && chatAgentLikelyActive());
           if (useChatRoute) {
             routedProvider = 'chat';
-            const timeoutMs = Number(envValue.IMPECCABLE_LIVE_COPY_AGENT_TIMEOUT_MS || 120000);
+            const timeoutMs = Number(
+              envValue.IMPECCABLE_LIVE_COPY_AGENT_TIMEOUT_MS || 120000
+            );
             result = await commitManualEdits({
               cwd: projectCwd(),
               pageUrl,
@@ -162,14 +208,19 @@ export function createManualEditRoutes({
               env: envValue,
               timeoutMs,
               chatAvailable: chatAgentLikelyActive,
-              applyBatchToSource: (batch, context) => manualApply.pushBatchInChunksAndWait(batch, pageUrl, context),
+              applyBatchToSource: (batch, context) =>
+                manualApply.pushBatchInChunksAndWait(batch, pageUrl, context),
               repairOnly,
               transactionId: transaction?.id || existingTransaction?.id || null,
               batch: commitBatch,
             });
           } else {
-            const timeoutMs = Number(envValue.IMPECCABLE_LIVE_COPY_AGENT_TIMEOUT_MS || 120000);
-            const provider = ['codex', 'claude', 'mock'].includes(requestedMode) ? requestedMode : undefined;
+            const timeoutMs = Number(
+              envValue.IMPECCABLE_LIVE_COPY_AGENT_TIMEOUT_MS || 120000
+            );
+            const provider = ['codex', 'claude', 'mock'].includes(requestedMode)
+              ? requestedMode
+              : undefined;
             result = await commitManualEdits({
               cwd: projectCwd(),
               pageUrl,
@@ -207,7 +258,8 @@ export function createManualEditRoutes({
         } finally {
           if (transaction) {
             const shouldKeepTransaction = result?.needsManualDecision === true;
-            if (!shouldKeepTransaction) manualApply.clearTransaction(transaction.id);
+            if (!shouldKeepTransaction)
+              manualApply.clearTransaction(transaction.id);
           }
         }
         const { totalCount, perPage } = countPendingByPage(projectCwd());
@@ -218,8 +270,13 @@ export function createManualEditRoutes({
             transactionId: transaction?.id || existingTransaction?.id || null,
             repair: result.repair || null,
             failed: summarizeManualApplyFailures(result.failed, projectCwd()),
-            files: Array.isArray(result.files) ? result.files.slice(0, 20).map((file) => summarizeManualLogFile(file, projectCwd())).filter(Boolean) : [],
-            remainingCount: pageUrl ? (perPage[pageUrl] || 0) : totalCount,
+            files: Array.isArray(result.files)
+              ? result.files
+                  .slice(0, 20)
+                  .map(file => summarizeManualLogFile(file, projectCwd()))
+                  .filter(Boolean)
+              : [],
+            remainingCount: pageUrl ? perPage[pageUrl] || 0 : totalCount,
             totalCount,
           });
         } else {
@@ -228,17 +285,39 @@ export function createManualEditRoutes({
             provider: routedProvider,
             reason: result.reason || null,
             repair: result.repair || null,
-            appliedCount: Array.isArray(result.applied) ? result.applied.length : 0,
-            failedCount: Array.isArray(result.failed) ? result.failed.length : 0,
+            appliedCount: Array.isArray(result.applied)
+              ? result.applied.length
+              : 0,
+            failedCount: Array.isArray(result.failed)
+              ? result.failed.length
+              : 0,
             failed: summarizeManualApplyFailures(result.failed, projectCwd()),
-            files: Array.isArray(result.files) ? result.files.slice(0, 20).map((file) => summarizeManualLogFile(file, projectCwd())).filter(Boolean) : [],
+            files: Array.isArray(result.files)
+              ? result.files
+                  .slice(0, 20)
+                  .map(file => summarizeManualLogFile(file, projectCwd()))
+                  .filter(Boolean)
+              : [],
             warnings: summarizeManualDiagnostics(result.warnings, projectCwd()),
-            rolledBackFiles: Array.isArray(result.rolledBackFiles) ? result.rolledBackFiles.slice(0, 20).map((file) => summarizeManualLogFile(file, projectCwd())).filter(Boolean) : [],
-            rollbackFailures: summarizeManualDiagnostics(result.rollbackFailures, projectCwd()),
-            unreportedFiles: Array.isArray(result.unreportedFiles) ? result.unreportedFiles.slice(0, 20).map((file) => summarizeManualLogFile(file, projectCwd())).filter(Boolean) : undefined,
+            rolledBackFiles: Array.isArray(result.rolledBackFiles)
+              ? result.rolledBackFiles
+                  .slice(0, 20)
+                  .map(file => summarizeManualLogFile(file, projectCwd()))
+                  .filter(Boolean)
+              : [],
+            rollbackFailures: summarizeManualDiagnostics(
+              result.rollbackFailures,
+              projectCwd()
+            ),
+            unreportedFiles: Array.isArray(result.unreportedFiles)
+              ? result.unreportedFiles
+                  .slice(0, 20)
+                  .map(file => summarizeManualLogFile(file, projectCwd()))
+                  .filter(Boolean)
+              : undefined,
             noteCount: Array.isArray(result.notes) ? result.notes.length : 0,
             cleared: result.cleared || 0,
-            remainingCount: pageUrl ? (perPage[pageUrl] || 0) : totalCount,
+            remainingCount: pageUrl ? perPage[pageUrl] || 0 : totalCount,
             totalCount,
           });
         }
@@ -251,19 +330,35 @@ export function createManualEditRoutes({
 
     if (p === '/manual-edit-repair-decision' && req.method === 'POST') {
       let body = '';
-      req.on('data', (chunk) => { body += chunk; });
+      req.on('data', chunk => {
+        body += chunk;
+      });
       req.on('end', () => {
         let payload = {};
-        try { payload = body ? JSON.parse(body) : {}; } catch {
+        try {
+          payload = body ? JSON.parse(body) : {};
+        } catch {
           sendJson(res, 400, { error: 'Invalid JSON' });
           return;
         }
         const token = payload.token || url.searchParams.get('token');
-        if (token !== getToken()) { res.writeHead(401); res.end('Unauthorized'); return; }
-        const pageUrl = payload.pageUrl || url.searchParams.get('pageUrl') || null;
-        const action = String(payload.action || url.searchParams.get('action') || '').trim().toLowerCase();
+        if (token !== getToken()) {
+          res.writeHead(401);
+          res.end('Unauthorized');
+          return;
+        }
+        const pageUrl =
+          payload.pageUrl || url.searchParams.get('pageUrl') || null;
+        const action = String(
+          payload.action || url.searchParams.get('action') || ''
+        )
+          .trim()
+          .toLowerCase();
         if (action !== 'rollback') {
-          sendJson(res, 400, { error: 'unsupported_manual_edit_repair_decision', action });
+          sendJson(res, 400, {
+            error: 'unsupported_manual_edit_repair_decision',
+            action,
+          });
           return;
         }
         const rollback = manualApply.rollbackTransaction({
@@ -275,7 +370,7 @@ export function createManualEditRoutes({
           action,
           pageUrl,
           rollback,
-          remainingCount: pageUrl ? (perPage[pageUrl] || 0) : totalCount,
+          remainingCount: pageUrl ? perPage[pageUrl] || 0 : totalCount,
           totalCount,
           perPage,
         };
@@ -287,7 +382,11 @@ export function createManualEditRoutes({
 
     if (p === '/manual-edit-discard' && req.method === 'POST') {
       const token = url.searchParams.get('token');
-      if (token !== getToken()) { res.writeHead(401); res.end('Unauthorized'); return true; }
+      if (token !== getToken()) {
+        res.writeHead(401);
+        res.end('Unauthorized');
+        return true;
+      }
       const pageUrl = url.searchParams.get('pageUrl');
       let discarded;
       let discardedEntries = [];
@@ -300,8 +399,13 @@ export function createManualEditRoutes({
           reason: 'manual_edit_discarded',
         });
         if (pageUrl) {
-          discardedEntries = buffer.entries.filter((entry) => entry.pageUrl === pageUrl);
-          discarded = removeManualEditEntries(projectCwd(), (entry) => entry.pageUrl === pageUrl);
+          discardedEntries = buffer.entries.filter(
+            entry => entry.pageUrl === pageUrl
+          );
+          discarded = removeManualEditEntries(
+            projectCwd(),
+            entry => entry.pageUrl === pageUrl
+          );
         } else {
           discardedEntries = buffer.entries;
           discarded = truncateManualEditsBuffer(projectCwd());
@@ -315,21 +419,38 @@ export function createManualEditRoutes({
       recordManualEditActivity('manual_edit_discarded', {
         pageUrl,
         discarded,
-        canceledApplyIds: canceledApplyEvents.map((event) => event.id),
-        transactionRollback: transactionRollback ? {
-          id: transactionRollback.id,
-          rolledBackFiles: transactionRollback.rolledBackFiles?.map((file) => summarizeManualLogFile(file, projectCwd())).filter(Boolean) || [],
-          rollbackFailures: summarizeManualDiagnostics(transactionRollback.rollbackFailures, projectCwd()),
-          skipped: transactionRollback.skipped,
-        } : undefined,
+        canceledApplyIds: canceledApplyEvents.map(event => event.id),
+        transactionRollback: transactionRollback
+          ? {
+              id: transactionRollback.id,
+              rolledBackFiles:
+                transactionRollback.rolledBackFiles
+                  ?.map(file => summarizeManualLogFile(file, projectCwd()))
+                  .filter(Boolean) || [],
+              rollbackFailures: summarizeManualDiagnostics(
+                transactionRollback.rollbackFailures,
+                projectCwd()
+              ),
+              skipped: transactionRollback.skipped,
+            }
+          : undefined,
         totalCount,
       });
-      sendJson(res, 200, { discarded, entries: discardedEntries, canceledApplyEvents, totalCount, perPage });
+      sendJson(res, 200, {
+        discarded,
+        entries: discardedEntries,
+        canceledApplyEvents,
+        totalCount,
+        perPage,
+      });
       return true;
     }
 
     if (p === '/manual-edit' && req.method === 'POST') {
-      sendJson(res, 410, { error: '/manual-edit is removed; use /manual-edit-stash and /manual-edit-commit for staged copy edits.' });
+      sendJson(res, 410, {
+        error:
+          '/manual-edit is removed; use /manual-edit-stash and /manual-edit-commit for staged copy edits.',
+      });
       return true;
     }
 
@@ -345,11 +466,15 @@ function sendJson(res, status, body) {
 function summarizePendingManualEditBatch(cwd, pageUrl = null) {
   try {
     const buffer = readManualEditsBuffer(cwd);
-    const entries = (buffer.entries || [])
-      .filter((entry) => !pageUrl || entry.pageUrl === pageUrl);
+    const entries = (buffer.entries || []).filter(
+      entry => !pageUrl || entry.pageUrl === pageUrl
+    );
     return {
       pendingEntryCount: entries.length,
-      pendingOpCount: entries.reduce((sum, entry) => sum + (entry.ops?.length || 0), 0),
+      pendingOpCount: entries.reduce(
+        (sum, entry) => sum + (entry.ops?.length || 0),
+        0
+      ),
     };
   } catch (err) {
     return { pendingSummaryError: err.message || String(err) };

@@ -28,7 +28,10 @@ function parseFrontmatter(md) {
 
   let end = -1;
   for (let i = 1; i < lines.length; i++) {
-    if (lines[i].trim() === '---') { end = i; break; }
+    if (lines[i].trim() === '---') {
+      end = i;
+      break;
+    }
   }
   if (end === -1) return { frontmatter: null, body: md };
 
@@ -99,7 +102,10 @@ function findTopLevelColon(s) {
 }
 
 function unquoteYamlKey(key) {
-  if ((key.startsWith('"') && key.endsWith('"')) || (key.startsWith("'") && key.endsWith("'"))) {
+  if (
+    (key.startsWith('"') && key.endsWith('"')) ||
+    (key.startsWith("'") && key.endsWith("'"))
+  ) {
     return key.slice(1, -1);
   }
   return key;
@@ -126,7 +132,7 @@ function stripInlineYamlComment(s) {
 // keeps its literal backslashes and never matches the same family in CSS.
 // The full YAML 1.2 double-quote escape set (spec section 5.7).
 const YAML_SIMPLE_ESCAPES = {
-  '0': '\0',
+  0: '\0',
   a: '\x07',
   b: '\b',
   t: '\t',
@@ -165,7 +171,10 @@ function unescapeYamlDoubleQuoted(body) {
     const hexLen = YAML_HEX_ESCAPE_LENGTHS[next];
     if (hexLen) {
       const hex = body.slice(i + 2, i + 2 + hexLen);
-      const codePoint = hex.length === hexLen && /^[0-9a-fA-F]+$/.test(hex) ? parseInt(hex, 16) : -1;
+      const codePoint =
+        hex.length === hexLen && /^[0-9a-fA-F]+$/.test(hex)
+          ? parseInt(hex, 16)
+          : -1;
       if (codePoint >= 0 && codePoint <= 0x10ffff) {
         out += String.fromCodePoint(codePoint);
         i += 1 + hexLen;
@@ -248,7 +257,9 @@ function matchCanonicalSection(name) {
   // "Elevation & Depth" -> "Elevation", etc.
   for (const c of CANONICAL_SECTIONS) {
     const key = normalizeApostrophes(c).toLowerCase();
-    const pattern = new RegExp(`\\b${key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`);
+    const pattern = new RegExp(
+      `\\b${key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`
+    );
     if (pattern.test(normalized)) return c;
   }
   return null;
@@ -287,10 +298,19 @@ function collectParagraphs(lines) {
   };
   for (const raw of lines) {
     const trimmed = raw.trim();
-    if (trimmed === '') { flush(); continue; }
+    if (trimmed === '') {
+      flush();
+      continue;
+    }
     // Horizontal rules (---, ***) and headings/bullets end a paragraph.
-    if (/^(?:-{3,}|\*{3,}|_{3,})$/.test(trimmed)) { flush(); continue; }
-    if (raw.startsWith('#') || raw.match(/^[-*]\s/)) { flush(); continue; }
+    if (/^(?:-{3,}|\*{3,}|_{3,})$/.test(trimmed)) {
+      flush();
+      continue;
+    }
+    if (raw.startsWith('#') || raw.match(/^[-*]\s/)) {
+      flush();
+      continue;
+    }
     buf.push(trimmed);
   }
   flush();
@@ -336,11 +356,16 @@ function extractNamedRules(lines) {
   const inlineMatches = [];
   let m;
   while ((m = inlineStart.exec(joined)) !== null) {
-    inlineMatches.push({ name: m[1], start: m.index, end: inlineStart.lastIndex });
+    inlineMatches.push({
+      name: m[1],
+      start: m.index,
+      end: inlineStart.lastIndex,
+    });
   }
   for (let i = 0; i < inlineMatches.length; i++) {
     const mm = inlineMatches[i];
-    const bodyEnd = i + 1 < inlineMatches.length ? inlineMatches[i + 1].start : joined.length;
+    const bodyEnd =
+      i + 1 < inlineMatches.length ? inlineMatches[i + 1].start : joined.length;
     const body = joined
       .slice(mm.end, bodyEnd)
       .replace(/\n##[^\n]*$/s, '')
@@ -377,7 +402,10 @@ function extractNamedRules(lines) {
   for (const b of collectBullets(lines)) {
     const mm = b.match(/^\*\*([^*]+?)\*\*\s*(.+)$/);
     if (!mm) continue;
-    const nameRaw = mm[1].replace(/[.:]\s*$/, '').replace(/["“”]/g, '').trim();
+    const nameRaw = mm[1]
+      .replace(/[.:]\s*$/, '')
+      .replace(/["“”]/g, '')
+      .trim();
     if (!/^The\b.+\b(Rule|Fallback|Principle)$/i.test(nameRaw)) continue;
     if (seen.has(nameRaw.toLowerCase())) continue;
     seen.add(nameRaw.toLowerCase());
@@ -393,17 +421,22 @@ function extractOverview(section) {
   if (!section) return null;
   const text = section.lines.join('\n');
   const northStar = text.match(/\*\*Creative North Star:\s*"([^"]+)"\*\*/);
-  const keyCharMatch = text.match(/\*\*Key Characteristics:\*\*\s*\n([\s\S]+?)(?:\n##|\n###|$)/);
+  const keyCharMatch = text.match(
+    /\*\*Key Characteristics:\*\*\s*\n([\s\S]+?)(?:\n##|\n###|$)/
+  );
   const keyChars = keyCharMatch
-    ? collectBullets(keyCharMatch[1].split('\n')).map((bullet) => stripBold(bullet.trim()))
+    ? collectBullets(keyCharMatch[1].split('\n')).map(bullet =>
+        stripBold(bullet.trim())
+      )
     : [];
   const prose = keyCharMatch
-    ? text.slice(0, keyCharMatch.index) + text.slice(keyCharMatch.index + keyCharMatch[0].length)
+    ? text.slice(0, keyCharMatch.index) +
+      text.slice(keyCharMatch.index + keyCharMatch[0].length)
     : text;
 
   // Philosophy paragraphs: everything that isn't a rule header or key-char block
   const paragraphs = collectParagraphs(prose.split('\n')).filter(
-    (p) =>
+    p =>
       !p.startsWith('**Creative North Star') &&
       !p.startsWith('**Key Characteristics')
   );
@@ -425,16 +458,18 @@ function extractColors(section) {
   const ROLE_KEYWORDS = /^(primary|secondary|tertiary|neutral|accent)\b/i;
 
   for (const sub of subs.slice(1)) {
-    if (!sub.name || /Named Rules?/i.test(sub.name) || /^The\s/i.test(sub.name)) continue;
+    if (!sub.name || /Named Rules?/i.test(sub.name) || /^The\s/i.test(sub.name))
+      continue;
 
     const bullets = collectBullets(sub.lines);
-    const parsed = bullets.map((b) => parseColorBullet(b)).filter(Boolean);
+    const parsed = bullets.map(b => parseColorBullet(b)).filter(Boolean);
     if (parsed.length === 0) continue;
 
     // If every bullet starts with a role keyword (Primary/Secondary/...), promote
     // each bullet to its own group. Otherwise keep the subsection as the group.
     const allRoleBullets =
-      parsed.length > 0 && parsed.every((p) => p.name && ROLE_KEYWORDS.test(p.name));
+      parsed.length > 0 &&
+      parsed.every(p => p.name && ROLE_KEYWORDS.test(p.name));
 
     if (allRoleBullets) {
       for (const p of parsed) {
@@ -449,14 +484,14 @@ function extractColors(section) {
   // scanning the whole section as a flat bullet list.
   if (groups.length === 0) {
     const flat = collectBullets(section.lines)
-      .map((b) => parseColorBullet(b))
+      .map(b => parseColorBullet(b))
       .filter(Boolean);
     if (flat.length) {
       for (const p of flat) {
         if (p.name && ROLE_KEYWORDS.test(p.name)) {
           groups.push({ role: p.name, colors: [p] });
         } else {
-          const fallback = groups.find((g) => g.role === 'Palette');
+          const fallback = groups.find(g => g.role === 'Palette');
           if (fallback) fallback.colors.push(p);
           else groups.push({ role: 'Palette', colors: [p] });
         }
@@ -528,11 +563,11 @@ function buildColor(name, rawValue, description) {
 
 function collectColorValues(s) {
   const out = [];
-  s.replace(HEX_RE, (v) => {
+  s.replace(HEX_RE, v => {
     out.push(v);
     return v;
   });
-  s.replace(OKLCH_RE, (v) => {
+  s.replace(OKLCH_RE, v => {
     out.push(v);
     return v;
   });
@@ -553,7 +588,8 @@ function extractTypography(section) {
 
   const fonts = {};
   // Pattern A: **Display Font:** Family (with fallback)
-  const fontLineRe = /\*\*([\w\s/]+?)Font:\*\*\s*([^\n(]+?)(?:\s*\(with\s+([^)]+)\))?\s*$/gm;
+  const fontLineRe =
+    /\*\*([\w\s/]+?)Font:\*\*\s*([^\n(]+?)(?:\s*\(with\s+([^)]+)\))?\s*$/gm;
   let fm;
   while ((fm = fontLineRe.exec(text)) !== null) {
     const rawRole = fm[1].trim().toLowerCase().replace(/\s+/g, '-');
@@ -575,17 +611,25 @@ function extractTypography(section) {
         .replace(/\s*&\s*/g, '-')
         .replace(/\s+/g, '-');
       const role = normalizeFontRole(rawRole) || rawRole;
-      fonts[role] = { family: sm[2].trim(), fallback: null, purpose: sm[3].trim() };
+      fonts[role] = {
+        family: sm[2].trim(),
+        fallback: null,
+        purpose: sm[3].trim(),
+      };
     }
   }
 
   // Character paragraph — either a **Character:** label, or fall back to the
   // first free paragraph under the section header (Stitch style).
-  const characterMatch = text.match(/\*\*Character:\*\*\s*([^\n]+(?:\n[^\n]+)*?)(?=\n\n|\n###|\n##|$)/);
-  let character = characterMatch ? characterMatch[1].replace(/\n/g, ' ').trim() : null;
+  const characterMatch = text.match(
+    /\*\*Character:\*\*\s*([^\n]+(?:\n[^\n]+)*?)(?=\n\n|\n###|\n##|$)/
+  );
+  let character = characterMatch
+    ? characterMatch[1].replace(/\n/g, ' ').trim()
+    : null;
   if (!character) {
     const paragraphs = collectParagraphs(section.lines).filter(
-      (p) => !/^\*\*[\w\s/&]+Font/i.test(p) && !/^\*\*[\w\s/&]+\([^)]+\)/.test(p)
+      p => !/^\*\*[\w\s/&]+Font/i.test(p) && !/^\*\*[\w\s/&]+\([^)]+\)/.test(p)
     );
     if (paragraphs.length) character = paragraphs[0];
   }
@@ -593,7 +637,7 @@ function extractTypography(section) {
   // Hierarchy bullets under ### Hierarchy
   const subs = splitSubsections(section.lines);
   let hierarchy = [];
-  const hierSub = subs.find((s) => s.name && /hierarch/i.test(s.name));
+  const hierSub = subs.find(s => s.name && /hierarch/i.test(s.name));
   if (hierSub) {
     const bullets = collectBullets(hierSub.lines);
     hierarchy = bullets.map(parseTypeBullet).filter(Boolean);
@@ -626,7 +670,7 @@ function parseTypeBullet(bullet) {
   const m = bullet.match(/^\*\*(.+?)\*\*\s*\(([^)]+)\):\s*(.*)$/);
   if (!m) return null;
   const name = m[1].trim();
-  const specs = m[2].split(',').map((s) => s.trim());
+  const specs = m[2].split(',').map(s => s.trim());
   return {
     name,
     specs,
@@ -650,7 +694,7 @@ function extractElevation(section) {
 
   const shadows = [];
   const seen = new Set();
-  const dedupe = (entry) => {
+  const dedupe = entry => {
     const key = (entry.name || '') + '::' + entry.value;
     if (seen.has(key)) return;
     seen.add(key);
@@ -686,7 +730,9 @@ function extractInlineShadows(text) {
     // Name heuristic: the noun immediately before the shadow phrase.
     // e.g. "an extra-diffused shadow: ..." -> "extra-diffused shadow"
     const before = text.slice(0, m.index);
-    const nameMatch = before.match(/\b([A-Za-z][A-Za-z\- ]{2,40})\s+shadow\b[^A-Za-z0-9]*$/i);
+    const nameMatch = before.match(
+      /\b([A-Za-z][A-Za-z\- ]{2,40})\s+shadow\b[^A-Za-z0-9]*$/i
+    );
     let name = null;
     if (nameMatch) {
       const stripped = nameMatch[1]
@@ -694,8 +740,7 @@ function extractInlineShadows(text) {
         .replace(/^(?:a|an|the)\s+/i, '')
         .trim();
       if (stripped) {
-        name =
-          stripped.charAt(0).toUpperCase() + stripped.slice(1) + ' shadow';
+        name = stripped.charAt(0).toUpperCase() + stripped.slice(1) + ' shadow';
       }
     }
     out.push({
@@ -749,7 +794,11 @@ function extractComponents(section) {
         const value = stripBold(m[2]).trim();
         // Heuristic: "Primary", "Secondary", "Hover", "Focus" etc are variants;
         // "Shape", "Background", "Padding" are properties.
-        if (/^(primary|secondary|tertiary|ghost|hover|focus|active|disabled|default|error|selected|unselected|state)$/i.test(key.split(/[\s/]/)[0])) {
+        if (
+          /^(primary|secondary|tertiary|ghost|hover|focus|active|disabled|default|error|selected|unselected|state)$/i.test(
+            key.split(/[\s/]/)[0]
+          )
+        ) {
           variants.push({ name: key, description: value });
         } else {
           properties[key.toLowerCase()] = value;
@@ -780,7 +829,7 @@ function extractDosDonts(section) {
   for (const sub of subs.slice(1)) {
     if (!sub.name) continue;
     const subName = normalizeApostrophes(sub.name);
-    const bullets = collectBullets(sub.lines).map((b) => stripBold(b).trim());
+    const bullets = collectBullets(sub.lines).map(b => stripBold(b).trim());
     if (/^do'?t?:?$/i.test(subName) || /^do:?$/i.test(subName)) {
       dos.push(...bullets);
     } else if (/^don'?t:?$/i.test(subName)) {
@@ -792,9 +841,11 @@ function extractDosDonts(section) {
   for (const b of collectBullets(section.lines)) {
     const stripped = normalizeApostrophes(stripBold(b).trim());
     if (/^don'?t\b/i.test(stripped)) {
-      if (!donts.some((d) => normalizeApostrophes(d) === stripped)) donts.push(stripped);
+      if (!donts.some(d => normalizeApostrophes(d) === stripped))
+        donts.push(stripped);
     } else if (/^do\b/i.test(stripped)) {
-      if (!dos.some((d) => normalizeApostrophes(d) === stripped)) dos.push(stripped);
+      if (!dos.some(d => normalizeApostrophes(d) === stripped))
+        dos.push(stripped);
     }
   }
 
@@ -804,7 +855,7 @@ function extractDosDonts(section) {
 // ---------- Coverage assessment ----------
 
 // Sections whose model is description-plus-rules only (see extractGuidance).
-const guidanceCoverage = (guidance) =>
+const guidanceCoverage = guidance =>
   guidance
     ? {
         description: Boolean(guidance.description),
@@ -826,7 +877,10 @@ function assessCoverage(model) {
   report.colors = model.colors
     ? {
         groups: model.colors.groups.length,
-        totalColors: model.colors.groups.reduce((n, g) => n + g.colors.length, 0),
+        totalColors: model.colors.groups.reduce(
+          (n, g) => n + g.colors.length,
+          0
+        ),
         rules: model.colors.rules.length,
       }
     : 'missing';
@@ -855,7 +909,10 @@ function assessCoverage(model) {
   report.components = model.components
     ? {
         count: model.components.components.length,
-        variantTotal: model.components.components.reduce((n, c) => n + c.variants.length, 0),
+        variantTotal: model.components.components.reduce(
+          (n, c) => n + c.variants.length,
+          0
+        ),
       }
     : 'missing';
 

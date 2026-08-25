@@ -151,7 +151,7 @@ export default function SpeciesPage() {
                     {/* Species Image */}
                     {speciesImage && (
                       <div className='flex-shrink-0'>
-                        <div className='relative w-20 h-20 bg-gradient-to-br from-green-50 to-green-100 overflow-hidden rounded-lg'>
+                        <div className='relative w-20 h-20 bg-secondary bg-secondary overflow-hidden rounded-lg'>
                           <img
                             src={speciesImage}
                             alt={species.name}

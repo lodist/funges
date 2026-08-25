@@ -25,8 +25,15 @@ import path from 'node:path';
  * only gives the wrap query a chance to match build config by accident.
  */
 export const LIVE_TEMPLATE_EXTENSIONS = Object.freeze([
-  '.html', '.jsx', '.tsx', '.vue', '.svelte', '.astro',
-  '.ex', '.heex', '.eex',
+  '.html',
+  '.jsx',
+  '.tsx',
+  '.vue',
+  '.svelte',
+  '.astro',
+  '.ex',
+  '.heex',
+  '.eex',
 ]);
 
 /**
@@ -44,7 +51,10 @@ export function normalizeExtensionEntries(entries) {
     let ext = raw.trim().toLowerCase();
     if (!ext) continue;
     if (!ext.startsWith('.')) ext = `.${ext}`;
-    const engine = (!(typeof entry === 'string') && entry?.engine === 'text') ? 'text' : 'html';
+    const engine =
+      !(typeof entry === 'string') && entry?.engine === 'text'
+        ? 'text'
+        : 'html';
     out.push({ ext, engine });
   }
   return out;
@@ -52,8 +62,10 @@ export function normalizeExtensionEntries(entries) {
 
 export function mergeExtensions(existing, incoming) {
   const map = new Map();
-  for (const entry of normalizeExtensionEntries(existing)) map.set(entry.ext, entry);
-  for (const entry of normalizeExtensionEntries(incoming)) map.set(entry.ext, entry);
+  for (const entry of normalizeExtensionEntries(existing))
+    map.set(entry.ext, entry);
+  for (const entry of normalizeExtensionEntries(incoming))
+    map.set(entry.ext, entry);
   return Array.from(map.values());
 }
 
@@ -65,8 +77,11 @@ export function matchConfiguredExtension(filePath, extensions) {
   // entry regardless of config order.
   let best = null;
   for (const entry of normalizeExtensionEntries(extensions)) {
-    if (name.length > entry.ext.length && name.endsWith(entry.ext)
-      && (!best || entry.ext.length > best.ext.length)) {
+    if (
+      name.length > entry.ext.length &&
+      name.endsWith(entry.ext) &&
+      (!best || entry.ext.length > best.ext.length)
+    ) {
       best = entry;
     }
   }

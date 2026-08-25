@@ -26,15 +26,17 @@ export function readPackageDeps(cwd) {
 
 export function hasAnyDependency(cwd, names) {
   const deps = readPackageDeps(cwd);
-  return names.some((name) => Boolean(deps[name]));
+  return names.some(name => Boolean(deps[name]));
 }
 
 /** First top-level file name matching `re`, or null. */
 export function findConfigFile(cwd, re) {
   try {
-    return fs.readdirSync(cwd, { withFileTypes: true })
-      .find((entry) => entry.isFile() && re.test(entry.name))
-      ?.name ?? null;
+    return (
+      fs
+        .readdirSync(cwd, { withFileTypes: true })
+        .find(entry => entry.isFile() && re.test(entry.name))?.name ?? null
+    );
   } catch {
     return null;
   }
@@ -65,7 +67,8 @@ export function literalConfigFiles(cwd, config) {
   const files = Array.isArray(config?.files) ? config.files : [];
   const out = [];
   for (const rel of files) {
-    if (typeof rel !== 'string' || rel.includes('*') || rel.includes('?')) continue;
+    if (typeof rel !== 'string' || rel.includes('*') || rel.includes('?'))
+      continue;
     const normalized = rel.split(path.sep).join('/');
     if (fileExists(cwd, normalized)) out.push(normalized);
   }

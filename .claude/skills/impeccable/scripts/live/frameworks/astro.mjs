@@ -12,17 +12,24 @@
  *                      authored global and prefixed instead of @scope'd.
  */
 
-import { findConfigFile, hasAnyDependency, literalConfigFiles } from './detect-utils.mjs';
+import {
+  findConfigFile,
+  hasAnyDependency,
+  literalConfigFiles,
+} from './detect-utils.mjs';
 
 const ASTRO_CONFIG_RE = /^astro\.config\.(?:js|mjs|cjs|ts|mts|cts)$/;
 
 export function detectAstroProject(cwd = process.cwd(), config = null) {
   const configFile = findConfigFile(cwd, ASTRO_CONFIG_RE);
   if (configFile) return { configFile, via: 'config' };
-  if (hasAnyDependency(cwd, ['astro'])) return { configFile: null, via: 'package' };
+  if (hasAnyDependency(cwd, ['astro']))
+    return { configFile: null, via: 'package' };
   // A tree of .astro entry templates with no astro.config still belongs to
   // Astro; the configured injection target names it.
-  const entry = literalConfigFiles(cwd, config).find((rel) => rel.endsWith('.astro'));
+  const entry = literalConfigFiles(cwd, config).find(rel =>
+    rel.endsWith('.astro')
+  );
   if (entry) return { configFile: null, via: 'config-files', entry };
   return null;
 }

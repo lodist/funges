@@ -15,7 +15,8 @@
  * hand-maintained doc can.
  */
 
-const PLAN_POINTER = 'Plan per live.md section 4: extract the identity lock, pick default vs departure mode, commit each variant to a DIFFERENT primary axis, squint-test the trio. Size parameter knobs per section 7 budgets.';
+const PLAN_POINTER =
+  'Plan per live.md section 4: extract the identity lock, pick default vs departure mode, commit each variant to a DIFFERENT primary axis, squint-test the trio. Size parameter knobs per section 7 budgets.';
 
 function pollCmd(scriptsPath) {
   return `node ${scriptsPath}/live-poll.mjs`;
@@ -25,7 +26,10 @@ function replyCmd(scriptsPath, id, rest) {
   return `${pollCmd(scriptsPath)} --reply ${id} ${rest}`;
 }
 
-export function instructionsForEvent(event, { scriptsPath = '{{scripts_path}}' } = {}) {
+export function instructionsForEvent(
+  event,
+  { scriptsPath = '{{scripts_path}}' } = {}
+) {
   if (!event || typeof event !== 'object') return undefined;
   switch (event.type) {
     case 'generate':
@@ -59,9 +63,13 @@ function generateInstructions(event, scriptsPath) {
   const steps = [];
 
   if (event.screenshotPath) {
-    steps.push(`Read the annotated screenshot first: ${event.screenshotPath}. Comment {x,y} positions bind text to the child under that point; strokes read by shape (loop = emphasis on this thing, arrow = direction, cross = delete).`);
+    steps.push(
+      `Read the annotated screenshot first: ${event.screenshotPath}. Comment {x,y} positions bind text to the child under that point; strokes read by shape (loop = emphasis on this thing, arrow = direction, cross = delete).`
+    );
   } else {
-    steps.push('No screenshot was sent (the user did not annotate); do not ask for one and do not screenshot the page. Work from element.outerHTML, the computed styles, and the prompt.');
+    steps.push(
+      'No screenshot was sent (the user did not annotate); do not ask for one and do not screenshot the page. Work from element.outerHTML, the computed styles, and the prompt.'
+    );
   }
 
   if (event.mode === 'insert') {
@@ -71,16 +79,24 @@ function generateInstructions(event, scriptsPath) {
   } else if (scaffold && scaffold.sourceWritten === false) {
     steps.push(deferredWrapperInstructions(event, scaffold, scriptsPath));
   } else if (scaffold) {
-    steps.push(`The wrapper is already written into ${scaffold.file}. Splice preview CSS plus all ${event.count} variants at line ${scaffold.insertLine} in ONE edit, following the returned cssAuthoring contract (styleTag, selector strategy, forbidden patterns). Each variant div holds exactly ONE top-level element (same tag as the original); first visible, others display: none.`);
+    steps.push(
+      `The wrapper is already written into ${scaffold.file}. Splice preview CSS plus all ${event.count} variants at line ${scaffold.insertLine} in ONE edit, following the returned cssAuthoring contract (styleTag, selector strategy, forbidden patterns). Each variant div holds exactly ONE top-level element (same tag as the original); first visible, others display: none.`
+    );
   } else {
-    steps.push(`Preflight could not scaffold${event.scaffoldError ? ` (${event.scaffoldError})` : ''}. Run node ${scriptsPath}/live-wrap.mjs --id ${id} --count ${event.count} --element-id "${event.element?.id || ''}" --classes "${(event.element?.classes || []).join(',')}" --tag "${event.element?.tagName || ''}" --text "<first ~80 chars of the picked element's textContent>". Keep the flags separate; --text disambiguates repeated siblings. On a fallback error, follow live.md's Handle fallback.`);
+    steps.push(
+      `Preflight could not scaffold${event.scaffoldError ? ` (${event.scaffoldError})` : ''}. Run node ${scriptsPath}/live-wrap.mjs --id ${id} --count ${event.count} --element-id "${event.element?.id || ''}" --classes "${(event.element?.classes || []).join(',')}" --tag "${event.element?.tagName || ''}" --text "<first ~80 chars of the picked element's textContent>". Keep the flags separate; --text disambiguates repeated siblings. On a fallback error, follow live.md's Handle fallback.`
+    );
   }
 
-  steps.push(event.action && event.action !== 'impeccable'
-    ? `Action is "${event.action}": read reference/${event.action}.md before planning; its MUST params are non-negotiable. ${PLAN_POINTER}`
-    : `Freeform action: work from SKILL.md rules plus craft-floor.md; no sub-command file. ${PLAN_POINTER}`);
+  steps.push(
+    event.action && event.action !== 'impeccable'
+      ? `Action is "${event.action}": read reference/${event.action}.md before planning; its MUST params are non-negotiable. ${PLAN_POINTER}`
+      : `Freeform action: work from SKILL.md rules plus craft-floor.md; no sub-command file. ${PLAN_POINTER}`
+  );
 
-  steps.push(`When all ${event.count} variants are delivered: ${replyCmd(scriptsPath, id, 'done --file <project-root-relative path you wrote>')}. Then poll again. If generation fails after the browser flipped to GENERATING, reply --reply ${id} error "Short reason" so the bar resets (never live-accept --discard for this).`);
+  steps.push(
+    `When all ${event.count} variants are delivered: ${replyCmd(scriptsPath, id, 'done --file <project-root-relative path you wrote>')}. Then poll again. If generation fails after the browser flipped to GENERATING, reply --reply ${id} error "Short reason" so the bar resets (never live-accept --discard for this).`
+  );
 
   return steps.map((s, i) => `${i + 1}. ${s}`).join('\n');
 }
@@ -92,9 +108,10 @@ function svelteComponentInstructions(event, scaffold, scriptsPath) {
 }
 
 function deferredWrapperInstructions(event, scaffold, scriptsPath) {
-  const insertNote = Number(scaffold.replaceEndLine) < Number(scaffold.replaceStartLine)
-    ? ` (replaceEndLine < replaceStartLine: this is an INSERTION at line ${scaffold.replaceStartLine}; remove nothing)`
-    : '';
+  const insertNote =
+    Number(scaffold.replaceEndLine) < Number(scaffold.replaceStartLine)
+      ? ` (replaceEndLine < replaceStartLine: this is an INSERTION at line ${scaffold.replaceStartLine}; remove nothing)`
+      : '';
   return `The wrapper is NOT in source yet. In ONE edit to ${scaffold.file}: splice preview CSS plus all ${event.count} variants into scaffold.wrapperBlock at the "Variants: insert below this line" marker, then replace lines ${scaffold.replaceStartLine}-${scaffold.replaceEndLine}${insertNote} with the result. Two separate writes reload the framework mid-publish and strand the browser at 0/N. Author CSS per the returned cssAuthoring contract; each variant div holds exactly ONE top-level element (same tag as the original); first visible, others display: none. On JSX/TSX wrap the <style> content in a template literal and use className / style={{...}}.`;
 }
 
@@ -113,7 +130,9 @@ function insertScaffoldInstructions(event, scriptsPath) {
 function acceptInstructions(event, scriptsPath) {
   const result = event._acceptResult || {};
   const ackOk = event._completionAck?.ok === true;
-  const prefix = ackOk ? '' : `Completion was NOT acknowledged: run node ${scriptsPath}/live-status.mjs, finish any cleanup, then node ${scriptsPath}/live-complete.mjs --id ${event.id}. `;
+  const prefix = ackOk
+    ? ''
+    : `Completion was NOT acknowledged: run node ${scriptsPath}/live-status.mjs, finish any cleanup, then node ${scriptsPath}/live-complete.mjs --id ${event.id}. `;
 
   if (result.handled === true && result.carbonize === true) {
     return `${prefix}Carbonize cleanup is REQUIRED now, before the next poll, in ${result.file}: (1) locate the impeccable-carbonize-start/end block and read the impeccable-param-values comment; (2) move the CSS rules into the stylesheet that owns this area; (3) bake params while rewriting selectors (@scope wrappers to semantic classes, keep only the chosen data-p branch, substitute range literals); (4) unwrap the accepted content and drop every data-impeccable-* / data-p-* attribute; (5) delete the inline <style>, the param-values comment, and both markers plus dead @scope rules. Then run node ${scriptsPath}/live-complete.mjs --id ${event.id} and verify phase "completed"; it refuses with source_dirty while leftovers remain. Poll again only after that.`;

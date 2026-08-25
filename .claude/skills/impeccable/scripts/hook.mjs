@@ -21,7 +21,12 @@
  * subprocess. This file is the thin stdin/stdout adapter.
  */
 
-import { runHook, runStopHook, writeAuditLog, isStopEvent } from './hook-lib.mjs';
+import {
+  runHook,
+  runStopHook,
+  writeAuditLog,
+  isStopEvent,
+} from './hook-lib.mjs';
 
 async function readStdin() {
   if (process.stdin.isTTY) return '';
@@ -47,7 +52,11 @@ async function main() {
   process.env.IMPECCABLE_HOOK_DEPTH = process.env.IMPECCABLE_HOOK_DEPTH || '1';
 
   let stdinJson = '';
-  try { stdinJson = await readStdin(); } catch { /* fall through */ }
+  try {
+    stdinJson = await readStdin();
+  } catch {
+    /* fall through */
+  }
 
   const run = stdinIsStop(stdinJson) ? runStopHook : runHook;
   const result = await run({
@@ -62,7 +71,7 @@ async function main() {
   process.exit(result.exitCode || 0);
 }
 
-main().catch((err) => {
+main().catch(err => {
   // Last-ditch: never break the agent's turn even if something we did not
   // anticipate goes wrong. Audit-log the failure if logging is enabled.
   try {
@@ -71,7 +80,9 @@ main().catch((err) => {
       event: 'hook-error',
       error: String(err && err.message ? err.message : err),
     });
-  } catch { /* swallow */ }
+  } catch {
+    /* swallow */
+  }
   if (process.env.IMPECCABLE_HOOK_DEBUG) {
     process.stderr.write(`[impeccable-hook] ${err}\n`);
   }

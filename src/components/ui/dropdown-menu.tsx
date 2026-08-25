@@ -76,7 +76,7 @@ function DropdownMenuItem({
         // Trailhead (#213): green-only focus tone, mirrors SelectItem.
         // data-[variant=destructive] uses the deepest happy-green step too
         // — no red anywhere, per review.
-        "focus:bg-[var(--happy-100)] focus:text-[var(--happy-900)] data-[variant=destructive]:text-[var(--happy-900)] data-[variant=destructive]:focus:bg-[var(--happy-100)] data-[variant=destructive]:focus:text-[var(--happy-900)] data-[variant=destructive]:*:[svg]:!text-[var(--happy-900)] [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-xl px-4 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "focus:bg-happy-100 focus:text-happy-900 data-[variant=destructive]:text-happy-900 data-[variant=destructive]:focus:bg-happy-100 data-[variant=destructive]:focus:text-happy-900 data-[variant=destructive]:*:[svg]:!text-happy-900 [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-xl px-4 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

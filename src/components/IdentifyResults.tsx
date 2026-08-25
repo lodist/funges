@@ -25,7 +25,7 @@ import { getSpeciesImage } from '@/lib/utils';
  *   - it filters rows with `.filter(entry => entry.image)`. Toxic species have no
  *     image asset, so that line would silently drop every toxic row — the worst
  *     possible outcome, reached by following the obvious template.
- *   - its `getScoreTextColorClass` ramps intensity-is-good (pale to dark maroon,
+ *   - its `getScoreColor` ramps intensity-is-good (pale to dark maroon,
  *     mirroring the map's fill colors). A 90%-confidence toxic match is not good,
  *     so confidence is neutral, de-emphasised text here.
  */
@@ -75,8 +75,8 @@ export function IdentifyResults({
              Stronger than the standing disclaimer's halo, which is the
              hierarchy this feature depends on. */
           className={
-            'rounded-lg border-2 border-amber-500 bg-amber-100 p-3 flex gap-2 ' +
-            'text-amber-900 dark:border-amber-600 dark:bg-amber-950/50 dark:text-amber-100'
+            'rounded-lg border-2 border-status-warning-border bg-status-warning-background p-3 flex gap-2 ' +
+            'text-status-warning-text   '
           }
         >
           <AlertTriangle className='h-5 w-5 shrink-0 mt-0.5' />

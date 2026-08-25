@@ -5,7 +5,11 @@
 
 import { createLiveSessionStore } from './live/session-store.mjs';
 import { readLiveServerInfo } from './lib/impeccable-paths.mjs';
-import { manualApplyResumeHint, mountFailureAction, renderSummary } from './live-resume.mjs';
+import {
+  manualApplyResumeHint,
+  mountFailureAction,
+  renderSummary,
+} from './live-resume.mjs';
 import { enterLiveRoot } from './live/roots.mjs';
 
 function readServerInfo() {
@@ -15,7 +19,9 @@ function readServerInfo() {
 async function fetchServerStatus(info) {
   if (!info) return null;
   try {
-    const res = await fetch(`http://localhost:${info.port}/status?token=${info.token}`);
+    const res = await fetch(
+      `http://localhost:${info.port}/status?token=${info.token}`
+    );
     if (!res.ok) return null;
     return await res.json();
   } catch {
@@ -30,17 +36,23 @@ export async function statusCli() {
   const activeSessions = store.listActiveSessions();
   const manualApply = findPendingManualApply(server, activeSessions);
   const sessions = server?.activeSessions || activeSessions;
-  const renderFailure = sessions.find((session) => session?.renderState === 'failed') || null;
+  const renderFailure =
+    sessions.find(session => session?.renderState === 'failed') || null;
   const payload = {
-    liveServer: server ? {
-      status: server.status,
-      port: server.port,
-      connectedClients: server.connectedClients,
-      agentPolling: server.agentPolling,
-      pendingEvents: server.pendingEvents,
-    } : null,
+    liveServer: server
+      ? {
+          status: server.status,
+          port: server.port,
+          connectedClients: server.connectedClients,
+          agentPolling: server.agentPolling,
+          pendingEvents: server.pendingEvents,
+        }
+      : null,
     activeSessions: sessions,
-    render: sessions.map((session) => ({ id: session?.id ?? null, ...renderSummary(session) })),
+    render: sessions.map(session => ({
+      id: session?.id ?? null,
+      ...renderSummary(session),
+    })),
     recoveryHint: recoveryHint({ server, manualApply, renderFailure }),
   };
   console.log(JSON.stringify(payload, null, 2));
@@ -56,16 +68,21 @@ function recoveryHint({ server, manualApply, renderFailure }) {
 }
 
 function findPendingManualApply(server, activeSessions) {
-  const fromServer = server?.pendingEvents?.find((event) => event?.type === 'manual_edit_apply');
+  const fromServer = server?.pendingEvents?.find(
+    event => event?.type === 'manual_edit_apply'
+  );
   if (fromServer) return fromServer;
   const fromSession = activeSessions
-    ?.map((session) => session.pendingEvent)
-    .find((event) => event?.type === 'manual_edit_apply');
+    ?.map(session => session.pendingEvent)
+    .find(event => event?.type === 'manual_edit_apply');
   return fromSession || null;
 }
 
 const _running = process.argv[1];
-if (_running?.endsWith('live-status.mjs') || _running?.endsWith('live-status.mjs/')) {
+if (
+  _running?.endsWith('live-status.mjs') ||
+  _running?.endsWith('live-status.mjs/')
+) {
   enterLiveRoot();
   statusCli();
 }

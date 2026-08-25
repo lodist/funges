@@ -74,13 +74,71 @@
   --color-status-warning: var(--status-warning);
   --color-status-info: var(--status-info);
   --color-warning: var(--status-warning);
+  --color-status-warning-background: var(--status-warning-background);
   --color-status-warning-text: var(--status-warning-text);
   --color-status-warning-border: var(--status-warning-border);
+
+  /* Theme-aware, text-safe brand colour. --primary is --happy-600 (2.95:1 on
+     paper) and fails as a text colour, which is why link/icon greens used to
+     reach for Tailwind blue-600 instead. This is the token they should use. */
+  --color-primary-text: var(--primary-text);
+  --color-destructive-border: var(--destructive-border);
+
+  /* The Trailhead scale as first-class utilities (bg-happy-50, text-happy-700,
+     …) so components stop spelling it as arbitrary [var(--happy-N)] values.
+     Still light-only per The Light-Only Rule — see the :root block. */
+  --color-happy-50: var(--happy-50);
+  --color-happy-100: var(--happy-100);
+  --color-happy-300: var(--happy-300);
+  --color-happy-500: var(--happy-500);
+  --color-happy-600: var(--happy-600);
+  --color-happy-700: var(--happy-700);
+  --color-happy-900: var(--happy-900);
 
   /* Motion easing (#200). Registered here so Tailwind emits an `ease-standard`
      utility. Durations are not a Tailwind theme namespace, so they live in
      :root and are consumed via arbitrary values — see --duration-* below. */
   --ease-standard: var(--ease-standard);
+
+  /* ------------------------------------------------------------------
+     The One Hue Rule, enforced at build time.
+
+     Tailwind ships 22 colour families by default and every one of them was
+     reachable, so `text-gray-700` and `text-blue-600` resolved silently —
+     453 of them had accumulated across the app, including 294 cool greys
+     the Warm Ground Rule bans outright and a full red/blue/violet/amber
+     semantic set the system explicitly rejects.
+
+     Setting them to `initial` removes the utilities. A stray `bg-red-50`
+     now produces no rule at all instead of quietly shipping a second hue,
+     so the drift shows up while you are looking at the screen.
+
+     --color-white and --color-black stay: translucent white washes are a
+     real material here, and the QR code needs literal #000/#fff to scan.
+     Semantic colour comes from the tokens below.
+     ------------------------------------------------------------------ */
+  --color-slate-*: initial;
+  --color-gray-*: initial;
+  --color-zinc-*: initial;
+  --color-neutral-*: initial;
+  --color-stone-*: initial;
+  --color-red-*: initial;
+  --color-orange-*: initial;
+  --color-amber-*: initial;
+  --color-yellow-*: initial;
+  --color-lime-*: initial;
+  --color-green-*: initial;
+  --color-emerald-*: initial;
+  --color-teal-*: initial;
+  --color-cyan-*: initial;
+  --color-sky-*: initial;
+  --color-blue-*: initial;
+  --color-indigo-*: initial;
+  --color-violet-*: initial;
+  --color-purple-*: initial;
+  --color-fuchsia-*: initial;
+  --color-pink-*: initial;
+  --color-rose-*: initial;
 }
 
 :root {
@@ -110,6 +168,9 @@
      that nuance can't collapse into a single --primary value. */
   --primary: var(--happy-600);
   --primary-foreground: var(--happy-900);
+  /* Chlorophyll Readable — 7.73:1 on paper. The only brand green allowed as
+     text or icon colour on light surfaces. */
+  --primary-text: var(--happy-700);
   --secondary: oklch(0.9582 0.0193 147.8505); /* #e9f5ea */
   --secondary-foreground: oklch(0.5262 0.1294 147.1971); /* #2a7e3b */
   --muted: oklch(0.952 0.0083 91.4843); /* #f1efe9 */
@@ -124,9 +185,12 @@
      the happy-green scale stands in for danger/delete, everywhere. */
   --destructive: var(--happy-900);
   --destructive-foreground: oklch(1 0 0); /* #ffffff */
+  --destructive-border: var(--happy-900);
   --border: oklch(0.9071 0.01 87.4748); /* #e3e0d9 */
   --input: oklch(0.9071 0.01 87.4748); /* #e3e0d9 */
-  --ring: var(--happy-600);
+  /* --happy-600 measures 2.95:1 on --background and misses the WCAG 1.4.11
+     3:1 floor a focus indicator has to clear; --happy-700 is 7.73:1. */
+  --ring: var(--happy-700);
 
   /* Chart colors */
   --chart-1: oklch(0.6731 0.1624 144.2083); /* #70c88f */
@@ -158,13 +222,18 @@
   --background-secondary: rgba(250, 250, 250, 0.9);
   --background-overlay: rgba(0, 0, 0, 0.8);
   --hover-primary: oklch(0.8952 0.0504 146.0366); /* #e5f7ed */
-  --hover-secondary: oklch(0.8579 0.0174 76.0955); /* #d1f2e1 */
+  /* Warm beige (hue 76), not the mint green the old #d1f2e1 comment claimed.
+     The same oklch also sits on dark --muted-foreground. */
+  --hover-secondary: oklch(0.8579 0.0174 76.0955);
 
-  /* Status colors — flat across themes, matching the values previously
-     hardcoded as globals.scss var() fallbacks */
-  --status-success: #4cba73;
-  --status-warning: #f59e0b;
-  --status-info: #3b82f6;
+  /* Status colours. Per The One Hue Rule, success and info are not their own
+     hues — they resolve to the text-safe brand green. #4cba73 (a 5th green
+     family) and #3b82f6 (2.34:1 and 3.61:1 as text on paper) are retired.
+     Amber is the single sanctioned exception and it is theme-aware below,
+     because a flat value is what drove callers back to raw Tailwind amber. */
+  --status-success: var(--primary-text);
+  --status-warning: oklch(0.769 0.163 70.08); /* amber — safety warnings only */
+  --status-info: var(--primary-text);
   --status-warning-background: color-mix(
     in oklch,
     var(--status-warning) 15%,
@@ -275,25 +344,42 @@
 
 .dark {
   /* Dark theme colors - using centralized color system */
-  --background: oklch(0.2683 0.0279 150.7681); /* #171717 */
-  --foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --card: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
-  --card-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --popover: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
-  --popover-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --primary: oklch(0.6731 0.1624 144.2083); /* #70c88f */
-  --primary-foreground: oklch(0.2157 0.0453 145.7256); /* #102517 */
-  --secondary: oklch(0.3942 0.0265 142.9926); /* #262626 */
-  --secondary-foreground: oklch(0.897 0.0166 142.5518); /* #e5e5e5 */
-  --muted: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
-  --muted-foreground: oklch(0.8579 0.0174 76.0955); /* #a3a3a3 */
-  --accent: oklch(0.5752 0.1446 144.1813); /* #3d955c */
-  --accent-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --destructive: oklch(0.5386 0.1937 26.7249); /* #ef4444 */
-  --destructive-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --border: oklch(0.3942 0.0265 142.9926); /* #262626 */
-  --input: oklch(0.3942 0.0265 142.9926); /* #262626 */
-  --ring: oklch(0.6731 0.1624 144.2083); /* #70c88f */
+  /* Hex comments removed throughout this block: every one of them described
+     the pre-Trailhead palette (#171717, #0a0a0a, #262626, #1f2937 …) and none
+     matched the oklch value beside it. Two different tokens carried the same
+     oklch with two contradictory hexes. The oklch is the value. */
+  --background: oklch(0.2683 0.0279 150.7681); /* Night Canvas */
+  --foreground: oklch(0.9423 0.0097 72.6595);
+  --card: oklch(0.3327 0.0271 146.9867); /* Night Surface */
+  --card-foreground: oklch(0.9423 0.0097 72.6595);
+  --popover: oklch(0.3327 0.0271 146.9867);
+  --popover-foreground: oklch(0.9423 0.0097 72.6595);
+  --primary: oklch(0.6731 0.1624 144.2083); /* Lichen */
+  --primary-foreground: oklch(0.2157 0.0453 145.7256);
+  /* Text-safe brand green for dark: 6.40:1 on --background, 5.10:1 on --card.
+     Lichen itself is only 4.30:1 on --card, so it can't carry this role. */
+  --primary-text: oklch(0.72 0.15 146);
+  --secondary: oklch(0.3942 0.0265 142.9926);
+  --secondary-foreground: oklch(0.897 0.0166 142.5518);
+  --muted: oklch(0.3327 0.0271 146.9867);
+  --muted-foreground: oklch(0.8579 0.0174 76.0955);
+  /* Was a solid mid-green (oklch(0.5752 0.1446 144.1813)) under near-white
+     text at 3.47:1 — the exact solid-fill pattern light mode rejected at
+     3.53:1. Now the dark counterpart of Trail Tan: warm tint, light text,
+     9.22:1, and no longer a green where light mode has a warm neutral. */
+  --accent: oklch(0.36 0.035 70);
+  --accent-foreground: oklch(0.9423 0.0097 72.6595);
+  /* Was #ef4444. Red in dark mode while light mode forbids it outright was
+     the loudest contradiction in the palette. Destroying something is the
+     deepest usable green here too: 6.64:1 with light text. The fill only
+     reaches 1.91:1 against Night Canvas, so the variant carries
+     --destructive-border to give the component a perceivable boundary. */
+  --destructive: oklch(0.42 0.13 150);
+  --destructive-foreground: oklch(0.9423 0.0097 72.6595);
+  --destructive-border: oklch(0.62 0.19 150); /* 4.54:1 vs --background */
+  --border: oklch(0.3942 0.0265 142.9926);
+  --input: oklch(0.3942 0.0265 142.9926);
+  --ring: oklch(0.6731 0.1624 144.2083);
 
   /* Chart colors */
   --chart-1: oklch(0.766 0.1179 145.295); /* #94d6ab */
@@ -303,21 +389,31 @@
   --chart-5: oklch(0.5752 0.1446 144.1813); /* #2e7045 */
 
   /* Sidebar colors */
-  --sidebar: oklch(0.2683 0.0279 150.7681); /* #171717 */
-  --sidebar-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --sidebar-primary: oklch(0.6731 0.1624 144.2083); /* #70c88f */
-  --sidebar-primary-foreground: oklch(0.2157 0.0453 145.7256); /* #102517 */
-  --sidebar-accent: oklch(0.5752 0.1446 144.1813); /* #3d955c */
-  --sidebar-accent-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --sidebar-border: oklch(0.3942 0.0265 142.9926); /* #262626 */
-  --sidebar-ring: oklch(0.6731 0.1624 144.2083); /* #70c88f */
+  --sidebar: oklch(0.2683 0.0279 150.7681);
+  --sidebar-foreground: oklch(0.9423 0.0097 72.6595);
+  --sidebar-primary: oklch(0.6731 0.1624 144.2083);
+  --sidebar-primary-foreground: oklch(0.2157 0.0453 145.7256);
+  /* Same 3.47:1 solid-mid-green-under-light-text defect --accent had. Light
+     mode's nav tint is a wash behind unchanged label text; this is its dark
+     counterpart at 6.89:1, not a saturated fill. */
+  --sidebar-accent: oklch(0.3942 0.0265 142.9926);
+  --sidebar-accent-foreground: oklch(0.9423 0.0097 72.6595);
+  --sidebar-border: oklch(0.3942 0.0265 142.9926);
+  --sidebar-ring: oklch(0.6731 0.1624 144.2083);
+
+  /* Safety-warning amber, dark counterpart. The light value is a bright fill
+     for dark text; this is the dark-surface equivalent at the same job
+     (9.30:1 with --status-warning-text). --status-warning used to be flat
+     across both themes, which is the reason IdentifyResults abandoned the
+     token for raw Tailwind amber — that reason is now gone. */
+  --status-warning: oklch(0.82 0.15 80);
 
   /* Dark-mode values for the tokens with no shadcn equivalent (see :root) */
-  --text-inverse: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
+  --text-inverse: oklch(0.3327 0.0271 146.9867);
   --background-secondary: rgba(23, 23, 23, 0.9);
   --background-overlay: rgba(0, 0, 0, 0.8);
-  --hover-primary: oklch(0.3942 0.0265 142.9926); /* #1f2937 */
-  --hover-secondary: oklch(0.3327 0.0271 146.9867); /* #374151 */
+  --hover-primary: oklch(0.3942 0.0265 142.9926);
+  --hover-secondary: oklch(0.3327 0.0271 146.9867);
 
   --radius: 0.5rem;
   --font-sans: 'Public Sans', sans-serif;

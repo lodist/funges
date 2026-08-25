@@ -16,11 +16,22 @@ export function getDesignSidecarPath(cwd = process.cwd(), options = {}) {
   return path.join(getImpeccableDir(cwd, options), 'design.json');
 }
 
-export function getDesignSidecarCandidates(cwd = process.cwd(), contextDir = cwd, options = {}) {
-  return designSidecarCandidatesFor(resolveProjectRoot(cwd, options), contextDir);
+export function getDesignSidecarCandidates(
+  cwd = process.cwd(),
+  contextDir = cwd,
+  options = {}
+) {
+  return designSidecarCandidatesFor(
+    resolveProjectRoot(cwd, options),
+    contextDir
+  );
 }
 
-export function resolveDesignSidecarPath(cwd = process.cwd(), contextDir = cwd, options = {}) {
+export function resolveDesignSidecarPath(
+  cwd = process.cwd(),
+  contextDir = cwd,
+  options = {}
+) {
   return firstExisting(getDesignSidecarCandidates(cwd, contextDir, options));
 }
 
@@ -36,10 +47,17 @@ export function getLegacyLiveConfigPath(scriptsDir) {
   return path.join(scriptsDir, 'config.json');
 }
 
-export function resolveLiveConfigPath({ cwd = process.cwd(), scriptsDir, env = process.env, targetPath } = {}) {
+export function resolveLiveConfigPath({
+  cwd = process.cwd(),
+  scriptsDir,
+  env = process.env,
+  targetPath,
+} = {}) {
   if (env.IMPECCABLE_LIVE_CONFIG && env.IMPECCABLE_LIVE_CONFIG.trim()) {
     const configured = env.IMPECCABLE_LIVE_CONFIG.trim();
-    return path.isAbsolute(configured) ? configured : path.resolve(cwd, configured);
+    return path.isAbsolute(configured)
+      ? configured
+      : path.resolve(cwd, configured);
   }
   const primary = getLiveConfigPath(cwd, { targetPath });
   if (fs.existsSync(primary)) return primary;
@@ -59,11 +77,20 @@ export function getLegacyLiveServerPath(cwd = process.cwd(), options = {}) {
 }
 
 export function readLiveServerInfo(cwd = process.cwd(), options = {}) {
-  for (const filePath of [getLiveServerPath(cwd, options), getLegacyLiveServerPath(cwd, options)]) {
+  for (const filePath of [
+    getLiveServerPath(cwd, options),
+    getLegacyLiveServerPath(cwd, options),
+  ]) {
     try {
       const info = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-      if (info && typeof info.pid === 'number' && !isLiveServerPidReachable(info.pid)) {
-        try { fs.unlinkSync(filePath); } catch {}
+      if (
+        info &&
+        typeof info.pid === 'number' &&
+        !isLiveServerPidReachable(info.pid)
+      ) {
+        try {
+          fs.unlinkSync(filePath);
+        } catch {}
         continue;
       }
       return { info, path: filePath };
@@ -93,8 +120,13 @@ export function writeLiveServerInfo(cwd = process.cwd(), info, options = {}) {
 }
 
 export function removeLiveServerInfo(cwd = process.cwd(), options = {}) {
-  for (const filePath of [getLiveServerPath(cwd, options), getLegacyLiveServerPath(cwd, options)]) {
-    try { fs.unlinkSync(filePath); } catch {}
+  for (const filePath of [
+    getLiveServerPath(cwd, options),
+    getLegacyLiveServerPath(cwd, options),
+  ]) {
+    try {
+      fs.unlinkSync(filePath);
+    } catch {}
   }
 }
 
@@ -117,7 +149,11 @@ export function getLiveSessionsDir(cwd = process.cwd(), options = {}) {
 }
 
 export function getLegacyLiveSessionsDir(cwd = process.cwd(), options = {}) {
-  return path.join(resolveProjectRoot(cwd, options), '.impeccable-live', 'sessions');
+  return path.join(
+    resolveProjectRoot(cwd, options),
+    '.impeccable-live',
+    'sessions'
+  );
 }
 
 export function getLiveAnnotationsDir(cwd = process.cwd(), options = {}) {
@@ -129,9 +165,13 @@ export function getCritiqueDir(cwd = process.cwd(), options = {}) {
 }
 
 export function getLegacyLiveAnnotationsDir(cwd = process.cwd(), options = {}) {
-  return path.join(resolveProjectRoot(cwd, options), '.impeccable-live', 'annotations');
+  return path.join(
+    resolveProjectRoot(cwd, options),
+    '.impeccable-live',
+    'annotations'
+  );
 }
 
 function firstExisting(paths) {
-  return paths.find((filePath) => fs.existsSync(filePath)) || null;
+  return paths.find(filePath => fs.existsSync(filePath)) || null;
 }

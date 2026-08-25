@@ -46,7 +46,7 @@ export { slugFromTarget } from './lib/target-slug.mjs';
  * Plain colons aren't allowed on Windows filesystems.
  */
 export function nowFilenameStamp(date = new Date()) {
-  const iso = date.toISOString();           // 2026-05-12T18:30:00.123Z
+  const iso = date.toISOString(); // 2026-05-12T18:30:00.123Z
   return iso.replace(/[:.]/g, '-').replace(/-\d+Z$/, 'Z');
 }
 
@@ -57,7 +57,13 @@ export function nowFilenameStamp(date = new Date()) {
  *
  * Returns the absolute path written.
  */
-export function writeSnapshot({ slug, meta, body, cwd = process.cwd(), now = new Date() }) {
+export function writeSnapshot({
+  slug,
+  meta,
+  body,
+  cwd = process.cwd(),
+  now = new Date(),
+}) {
   if (!slug) throw new Error('writeSnapshot requires a slug');
   const dir = getCritiqueDir(cwd);
   fs.mkdirSync(dir, { recursive: true });
@@ -95,7 +101,11 @@ function parseFrontmatter(text) {
     const key = line.slice(0, colon).trim();
     let value = line.slice(colon + 1).trim();
     if (/^".*"$/.test(value)) {
-      try { value = JSON.parse(value); } catch { /* leave as-is */ }
+      try {
+        value = JSON.parse(value);
+      } catch {
+        /* leave as-is */
+      }
     } else if (/^-?\d+$/.test(value)) {
       value = Number(value);
     }
@@ -112,10 +122,11 @@ const SNAPSHOT_FILENAME = /^\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}Z__.+\.md$/;
 function listSnapshots(suffix, cwd) {
   const dir = getCritiqueDir(cwd);
   if (!fs.existsSync(dir)) return [];
-  return fs.readdirSync(dir)
-    .filter((f) => SNAPSHOT_FILENAME.test(f) && f.endsWith(suffix))
+  return fs
+    .readdirSync(dir)
+    .filter(f => SNAPSHOT_FILENAME.test(f) && f.endsWith(suffix))
     .sort()
-    .map((f) => path.join(dir, f));
+    .map(f => path.join(dir, f));
 }
 
 function readLatestSnapshotMatching(suffix, cwd) {
@@ -145,7 +156,7 @@ export function readLatestSnapshotAcrossTargets({ cwd = process.cwd() } = {}) {
 export function readTrend(slug, { limit = 5, cwd = process.cwd() } = {}) {
   const all = listSnapshots(`__${slug}.md`, cwd);
   const slice = all.slice(-limit);
-  return slice.map((file) => parseFrontmatter(fs.readFileSync(file, 'utf-8')));
+  return slice.map(file => parseFrontmatter(fs.readFileSync(file, 'utf-8')));
 }
 
 // ---- CLI ---------------------------------------------------------------
@@ -164,14 +175,20 @@ function main(argv) {
   switch (cmd) {
     case 'slug': {
       const slug = slugFromTarget(args[0]);
-      if (!slug) { process.stderr.write('no stable slug for input\n'); process.exit(1); }
+      if (!slug) {
+        process.stderr.write('no stable slug for input\n');
+        process.exit(1);
+      }
       process.stdout.write(`${slug}\n`);
       return;
     }
     case 'write': {
       const [slugArg, bodyFile] = args;
       const slug = coerceSlug(slugArg);
-      if (!slug || !bodyFile) { process.stderr.write('usage: write <slug-or-target> <body-file>\n'); process.exit(1); }
+      if (!slug || !bodyFile) {
+        process.stderr.write('usage: write <slug-or-target> <body-file>\n');
+        process.exit(1);
+      }
       const raw = fs.readFileSync(bodyFile, 'utf-8');
       // The body file may be a full report. The caller passes the meta as
       // a JSON object on stdin if it wants structured frontmatter; otherwise
@@ -179,7 +196,11 @@ function main(argv) {
       let meta = {};
       const metaArg = process.env.IMPECCABLE_CRITIQUE_META;
       if (metaArg) {
-        try { meta = JSON.parse(metaArg); } catch { /* ignore */ }
+        try {
+          meta = JSON.parse(metaArg);
+        } catch {
+          /* ignore */
+        }
       }
       const out = writeSnapshot({ slug, meta, body: raw });
       process.stdout.write(`${out}\n`);
@@ -187,17 +208,23 @@ function main(argv) {
     }
     case 'latest': {
       const latest = readLatestSnapshot(coerceSlug(args[0]));
-      if (!latest) { process.exit(2); }
+      if (!latest) {
+        process.exit(2);
+      }
       process.stdout.write(latest.body);
       return;
     }
     case 'trend': {
-      const rows = readTrend(coerceSlug(args[0]), { limit: args[1] ? Number(args[1]) : 5 });
+      const rows = readTrend(coerceSlug(args[0]), {
+        limit: args[1] ? Number(args[1]) : 5,
+      });
       process.stdout.write(JSON.stringify(rows, null, 2) + '\n');
       return;
     }
     default:
-      process.stderr.write('usage: critique-storage.mjs <slug|write|latest|trend> [args]\n');
+      process.stderr.write(
+        'usage: critique-storage.mjs <slug|write|latest|trend> [args]\n'
+      );
       process.exit(1);
   }
 }
@@ -205,7 +232,10 @@ function main(argv) {
 function isMainModule() {
   if (!process.argv[1]) return false;
   try {
-    return fs.realpathSync(fileURLToPath(import.meta.url)) === fs.realpathSync(process.argv[1]);
+    return (
+      fs.realpathSync(fileURLToPath(import.meta.url)) ===
+      fs.realpathSync(process.argv[1])
+    );
   } catch {
     // pathToFileURL normalizes Windows paths; keep it as a fallback for any
     // environment where realpath is unavailable.

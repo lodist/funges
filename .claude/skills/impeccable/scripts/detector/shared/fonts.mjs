@@ -18,7 +18,9 @@ function extractGoogleFontFamilies(text) {
     const queryStart = url.indexOf('?');
     if (queryStart === -1) continue;
 
-    const params = new URLSearchParams(url.slice(queryStart + 1).replace(/&amp;/g, '&'));
+    const params = new URLSearchParams(
+      url.slice(queryStart + 1).replace(/&amp;/g, '&')
+    );
     for (const value of params.getAll('family')) {
       families.push(...normalizeGoogleFontFamilyParam(value));
     }

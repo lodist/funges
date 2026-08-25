@@ -65,14 +65,23 @@ The agent should then:
 
   // Legacy workspace-monorepo selection first: it carries richer candidate
   // metadata (context inheritance status) than the roots scan.
-  const targetSelection = resolveTargetSelection(liveTarget.originalCwd, liveTarget.targetOptions);
+  const targetSelection = resolveTargetSelection(
+    liveTarget.originalCwd,
+    liveTarget.targetOptions
+  );
   if (targetSelection) {
-    console.log(JSON.stringify({
-      ok: false,
-      error: 'target_selection_required',
-      ...targetSelection,
-      hint: 'Ask the user which app Impeccable should use, then rerun live from that child app cwd. Use --target <path> only as a fallback or explicit path diagnostic.',
-    }, null, 2));
+    console.log(
+      JSON.stringify(
+        {
+          ok: false,
+          error: 'target_selection_required',
+          ...targetSelection,
+          hint: 'Ask the user which app Impeccable should use, then rerun live from that child app cwd. Use --target <path> only as a fallback or explicit path diagnostic.',
+        },
+        null,
+        2
+      )
+    );
     process.exit(0);
   }
 
@@ -81,12 +90,18 @@ The agent should then:
     targetPath: liveTarget.absoluteTargetPath,
   });
   if (rootsResult.selection) {
-    console.log(JSON.stringify({
-      ok: false,
-      error: 'target_selection_required',
-      targetCandidates: rootsResult.selection.candidates,
-      hint: 'Several apps with a dev-server config exist. Ask the user which one to use, then rerun with --target <path into that app>.',
-    }, null, 2));
+    console.log(
+      JSON.stringify(
+        {
+          ok: false,
+          error: 'target_selection_required',
+          targetCandidates: rootsResult.selection.candidates,
+          hint: 'Several apps with a dev-server config exist. Ask the user which one to use, then rerun with --target <path into that app>.',
+        },
+        null,
+        2
+      )
+    );
     process.exit(0);
   }
   const roots = rootsResult.manifest;
@@ -102,17 +117,25 @@ The agent should then:
   if (!product) missingContext.push('PRODUCT.md');
   if (!design) missingContext.push('DESIGN.md');
   if (missingContext.length > 0) {
-    console.log(JSON.stringify({
-      ok: false,
-      error: 'context_missing',
-      missing: missingContext,
-      nextCommand: missingContext.includes('PRODUCT.md') ? 'init' : 'document',
-      targetPath: outputTargetPath,
-      projectRoot: roots.appRoot,
-      repoRoot: roots.repoRoot,
-      productPath: relOrNull(liveTarget.originalCwd, roots.productPath),
-      designPath: relOrNull(liveTarget.originalCwd, roots.designPath),
-    }, null, 2));
+    console.log(
+      JSON.stringify(
+        {
+          ok: false,
+          error: 'context_missing',
+          missing: missingContext,
+          nextCommand: missingContext.includes('PRODUCT.md')
+            ? 'init'
+            : 'document',
+          targetPath: outputTargetPath,
+          projectRoot: roots.appRoot,
+          repoRoot: roots.repoRoot,
+          productPath: relOrNull(liveTarget.originalCwd, roots.productPath),
+          designPath: relOrNull(liveTarget.originalCwd, roots.designPath),
+        },
+        null,
+        2
+      )
+    );
     process.exit(0);
   }
 
@@ -121,15 +144,19 @@ The agent should then:
   writeRootsManifest(roots);
 
   // 1. Check config (fail fast if missing — no point starting anything else)
-  const checkOut = runScript('live-inject.mjs', ['--check'], { cwd: activeCwd });
+  const checkOut = runScript('live-inject.mjs', ['--check'], {
+    cwd: activeCwd,
+  });
   const checkResult = safeParse(checkOut);
   if (!checkResult || !checkResult.ok) {
-    console.log(JSON.stringify({
-      ...(checkResult || { ok: false, error: 'check_failed', raw: checkOut }),
-      targetPath: outputTargetPath,
-      projectRoot: roots.appRoot,
-      repoRoot: roots.repoRoot,
-    }));
+    console.log(
+      JSON.stringify({
+        ...(checkResult || { ok: false, error: 'check_failed', raw: checkOut }),
+        targetPath: outputTargetPath,
+        projectRoot: roots.appRoot,
+        repoRoot: roots.repoRoot,
+      })
+    );
     process.exit(0);
   }
 
@@ -144,16 +171,18 @@ The agent should then:
   const injectOut = runScript(
     'live-inject.mjs',
     ['--port', String(serverInfo.port), '--token', String(serverInfo.token)],
-    { cwd: activeCwd },
+    { cwd: activeCwd }
   );
   const injectResult = safeParse(injectOut);
   if (!injectResult || !injectResult.ok) {
-    console.log(JSON.stringify({
-      ok: false,
-      error: 'inject_failed',
-      detail: injectResult || injectOut,
-      serverPort: serverInfo.port,
-    }));
+    console.log(
+      JSON.stringify({
+        ok: false,
+        error: 'inject_failed',
+        detail: injectResult || injectOut,
+        serverPort: serverInfo.port,
+      })
+    );
     process.exit(1);
   }
 
@@ -174,44 +203,64 @@ The agent should then:
     // them there, and live must not report "no brief" for the same project.
     const briefRoots = [roots.appRoot, roots.contextRoot, roots.repoRoot]
       .filter(Boolean)
-      .filter((dir, i, arr) => arr.findIndex((other) => path.resolve(other) === path.resolve(dir)) === i);
+      .filter(
+        (dir, i, arr) =>
+          arr.findIndex(other => path.resolve(other) === path.resolve(dir)) ===
+          i
+      );
     for (const briefRoot of briefRoots) {
-      const resolvedBrief = resolveSurfaceBrief(briefRoot, liveTarget.absoluteTargetPath || null);
+      const resolvedBrief = resolveSurfaceBrief(
+        briefRoot,
+        liveTarget.absoluteTargetPath || null
+      );
       if (!resolvedBrief?.brief) continue;
-      surfaceBrief = resolvedBrief.brief.text ?? safeRead(resolvedBrief.brief.path);
+      surfaceBrief =
+        resolvedBrief.brief.text ?? safeRead(resolvedBrief.brief.path);
       surfaceBriefPath = resolvedBrief.brief.path
         ? path.relative(liveTarget.originalCwd, resolvedBrief.brief.path)
         : null;
       break;
     }
-  } catch { /* briefs are optional context */ }
-  console.log(JSON.stringify({
-    ok: true,
-    serverPort: serverInfo.port,
-    serverToken: serverInfo.token,
-    pageFiles: resolvedFiles,
-    liveConfigPath: checkResult.path,
-    configDrift: drift,
-    targetPath: outputTargetPath,
-    projectRoot: roots.appRoot,
-    repoRoot: roots.repoRoot,
-    roots,
-    hasProduct: !!product,
-    product,
-    productPath: relOrNull(liveTarget.originalCwd, roots.productPath),
-    hasDesign: !!design,
-    design,
-    designPath: relOrNull(liveTarget.originalCwd, roots.designPath),
-    hasSurfaceBrief: !!surfaceBrief,
-    surfaceBrief,
-    surfaceBriefPath,
-    _instructions: bootInstructions({ scriptsPath: __dirname }),
-  }, null, 2));
+  } catch {
+    /* briefs are optional context */
+  }
+  console.log(
+    JSON.stringify(
+      {
+        ok: true,
+        serverPort: serverInfo.port,
+        serverToken: serverInfo.token,
+        pageFiles: resolvedFiles,
+        liveConfigPath: checkResult.path,
+        configDrift: drift,
+        targetPath: outputTargetPath,
+        projectRoot: roots.appRoot,
+        repoRoot: roots.repoRoot,
+        roots,
+        hasProduct: !!product,
+        product,
+        productPath: relOrNull(liveTarget.originalCwd, roots.productPath),
+        hasDesign: !!design,
+        design,
+        designPath: relOrNull(liveTarget.originalCwd, roots.designPath),
+        hasSurfaceBrief: !!surfaceBrief,
+        surfaceBrief,
+        surfaceBriefPath,
+        _instructions: bootInstructions({ scriptsPath: __dirname }),
+      },
+      null,
+      2
+    )
+  );
 }
 
 function safeRead(p) {
   if (!p) return null;
-  try { return fs.readFileSync(p, 'utf-8'); } catch { return null; }
+  try {
+    return fs.readFileSync(p, 'utf-8');
+  } catch {
+    return null;
+  }
 }
 
 function relOrNull(base, p) {
@@ -231,24 +280,40 @@ function relOrNull(base, p) {
 function scanForDrift(rootDir, resolvedFiles, config) {
   const SCAN_ROOTS = ['public', 'src', 'app', 'pages'];
   const IGNORE_DIRS = new Set([
-    'node_modules', '.git', '.next', '.nuxt', '.svelte-kit', '.astro',
-    '.turbo', '.vercel', '.cache', 'coverage', 'dist', 'build',
+    'node_modules',
+    '.git',
+    '.next',
+    '.nuxt',
+    '.svelte-kit',
+    '.astro',
+    '.turbo',
+    '.vercel',
+    '.cache',
+    'coverage',
+    'dist',
+    'build',
   ]);
 
-  const resolvedSet = new Set(resolvedFiles.map((f) => f.split(path.sep).join('/')));
+  const resolvedSet = new Set(
+    resolvedFiles.map(f => f.split(path.sep).join('/'))
+  );
 
   // Files matching the user's `exclude` globs are intentional omissions,
   // not drift. Compile them to regexes so the orphan list stays signal.
-  const userExcludeRegexes = (Array.isArray(config.exclude) ? config.exclude : [])
-    .map((p) => globToRegex(p));
-  const isUserExcluded = (rel) => userExcludeRegexes.some((re) => re.test(rel));
+  const userExcludeRegexes = (
+    Array.isArray(config.exclude) ? config.exclude : []
+  ).map(p => globToRegex(p));
+  const isUserExcluded = rel => userExcludeRegexes.some(re => re.test(rel));
 
   const orphans = [];
 
   const walk = (dir, relBase) => {
     let entries;
-    try { entries = fs.readdirSync(dir, { withFileTypes: true }); }
-    catch { return; }
+    try {
+      entries = fs.readdirSync(dir, { withFileTypes: true });
+    } catch {
+      return;
+    }
     for (const e of entries) {
       const rel = relBase ? `${relBase}/${e.name}` : e.name;
       if (e.isDirectory()) {
@@ -290,8 +355,13 @@ function globToRegex(pattern) {
     const c = pattern[i];
     if (c === '*') {
       if (pattern[i + 1] === '*') {
-        if (pattern[i + 2] === '/') { re += '(?:.*/)?'; i += 3; }
-        else { re += '.*'; i += 2; }
+        if (pattern[i + 2] === '/') {
+          re += '(?:.*/)?';
+          i += 3;
+        } else {
+          re += '.*';
+          i += 2;
+        }
       } else {
         re += '[^/]*';
         i += 1;
@@ -332,7 +402,11 @@ function runScript(name, args, options = {}) {
 }
 
 function safeParse(out) {
-  try { return JSON.parse(String(out).trim()); } catch { return null; }
+  try {
+    return JSON.parse(String(out).trim());
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -346,9 +420,13 @@ function ensureServerRunning(cwd = process.cwd()) {
       try {
         process.kill(existing.pid, 0); // throws if dead
         return existing;
-      } catch { /* stale PID file — the server script will clean it up */ }
+      } catch {
+        /* stale PID file — the server script will clean it up */
+      }
     }
-  } catch { /* no PID file */ }
+  } catch {
+    /* no PID file */
+  }
 
   // Start a new server
   const out = runScript('live-server.mjs', ['--background'], { cwd });

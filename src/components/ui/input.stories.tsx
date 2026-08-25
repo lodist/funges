@@ -322,10 +322,10 @@ export const WithValidation: Story = {
           onChange={handleChange}
           placeholder='Enter email...'
           aria-invalid={!isValid}
-          className={!isValid ? 'border-red-500' : ''}
+          className={!isValid ? 'border-destructive' : ''}
         />
         {!isValid && email && (
-          <p className='text-sm text-red-500'>
+          <p className='text-sm text-destructive'>
             {'Please enter a valid email address'}
           </p>
         )}

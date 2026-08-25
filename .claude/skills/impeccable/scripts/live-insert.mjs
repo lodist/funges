@@ -38,30 +38,72 @@ export function computeInsertLine(startLine, endLine, position) {
   return position === 'before' ? startLine : endLine + 1;
 }
 
-export function buildInsertWrapperLines({ id, count, indent, commentSyntax, isJsx }) {
-  const styleContents = isJsx ? 'style={{ display: "contents" }}' : 'style="display: contents"';
+export function buildInsertWrapperLines({
+  id,
+  count,
+  indent,
+  commentSyntax,
+  isJsx,
+}) {
+  const styleContents = isJsx
+    ? 'style={{ display: "contents" }}'
+    : 'style="display: contents"';
   const attrs =
-    'data-impeccable-variants="' + id + '" ' +
+    'data-impeccable-variants="' +
+    id +
+    '" ' +
     'data-impeccable-mode="insert" ' +
-    'data-impeccable-variant-count="' + count + '" ' +
+    'data-impeccable-variant-count="' +
+    count +
+    '" ' +
     styleContents;
 
   if (isJsx) {
     return [
       indent + '<div ' + attrs + '>',
-      indent + '  ' + commentSyntax.open + ' impeccable-variants-start ' + id + ' ' + commentSyntax.close,
-      indent + '  ' + commentSyntax.open + ' Variants: insert below this line ' + commentSyntax.close,
-      indent + '  ' + commentSyntax.open + ' impeccable-variants-end ' + id + ' ' + commentSyntax.close,
+      indent +
+        '  ' +
+        commentSyntax.open +
+        ' impeccable-variants-start ' +
+        id +
+        ' ' +
+        commentSyntax.close,
+      indent +
+        '  ' +
+        commentSyntax.open +
+        ' Variants: insert below this line ' +
+        commentSyntax.close,
+      indent +
+        '  ' +
+        commentSyntax.open +
+        ' impeccable-variants-end ' +
+        id +
+        ' ' +
+        commentSyntax.close,
       indent + '</div>',
     ];
   }
 
   return [
-    indent + commentSyntax.open + ' impeccable-variants-start ' + id + ' ' + commentSyntax.close,
+    indent +
+      commentSyntax.open +
+      ' impeccable-variants-start ' +
+      id +
+      ' ' +
+      commentSyntax.close,
     indent + '<div ' + attrs + '>',
-    indent + '  ' + commentSyntax.open + ' Variants: insert below this line ' + commentSyntax.close,
+    indent +
+      '  ' +
+      commentSyntax.open +
+      ' Variants: insert below this line ' +
+      commentSyntax.close,
     indent + '</div>',
-    indent + commentSyntax.open + ' impeccable-variants-end ' + id + ' ' + commentSyntax.close,
+    indent +
+      commentSyntax.open +
+      ' impeccable-variants-end ' +
+      id +
+      ' ' +
+      commentSyntax.close,
   ];
 }
 
@@ -76,7 +118,8 @@ function resolveElementMatch({ lines, queries, tag, text }) {
     for (const q of queries) {
       const all = findAllElements(lines, q, tag);
       for (const c of all) {
-        if (!candidates.some((x) => x.startLine === c.startLine)) candidates.push(c);
+        if (!candidates.some(x => x.startLine === c.startLine))
+          candidates.push(c);
       }
       if (candidates.length === 1) break;
     }
@@ -136,9 +179,18 @@ Output (JSON):
   // untouched so the agent's single edit is the only framework reload.
   const deferSourceWrite = args.includes('--defer-source-write');
 
-  if (!id) { console.error('Missing --id'); process.exit(1); }
-  if (!position) { console.error('Missing --position (before | after)'); process.exit(1); }
-  if (!isInsertPosition(position)) { console.error('Invalid --position: ' + position); process.exit(1); }
+  if (!id) {
+    console.error('Missing --id');
+    process.exit(1);
+  }
+  if (!position) {
+    console.error('Missing --position (before | after)');
+    process.exit(1);
+  }
+  if (!isInsertPosition(position)) {
+    console.error('Invalid --position: ' + position);
+    process.exit(1);
+  }
   if (!elementId && !classes && !query) {
     console.error('Need at least one of: --element-id, --classes, --query');
     process.exit(1);
@@ -156,22 +208,32 @@ Output (JSON):
     if (!targetFile) {
       let generatedHit = null;
       for (const q of queries) {
-        generatedHit = findFileWithQuery(q, process.cwd(), { ...genOpts, includeGenerated: true });
+        generatedHit = findFileWithQuery(q, process.cwd(), {
+          ...genOpts,
+          includeGenerated: true,
+        });
         if (generatedHit) break;
       }
-      console.error(JSON.stringify({
-        error: generatedHit ? 'element_not_in_source' : 'element_not_found',
-        fallback: 'agent-driven',
-        hint: 'See "Handle fallback" in live.md.',
-      }));
+      console.error(
+        JSON.stringify({
+          error: generatedHit ? 'element_not_in_source' : 'element_not_found',
+          fallback: 'agent-driven',
+          hint: 'See "Handle fallback" in live.md.',
+        })
+      );
       process.exit(1);
     }
   } else if (isGeneratedFile(targetFile, genOpts)) {
-    console.error(JSON.stringify({
-      error: 'file_is_generated',
-      fallback: 'agent-driven',
-      file: path.relative(process.cwd(), path.resolve(process.cwd(), targetFile)),
-    }));
+    console.error(
+      JSON.stringify({
+        error: 'file_is_generated',
+        fallback: 'agent-driven',
+        file: path.relative(
+          process.cwd(),
+          path.resolve(process.cwd(), targetFile)
+        ),
+      })
+    );
     process.exit(1);
   }
 
@@ -180,19 +242,23 @@ Output (JSON):
   const resolved = resolveElementMatch({ lines, queries, tag, text });
 
   if (resolved.error === 'element_ambiguous') {
-    console.error(JSON.stringify({
-      error: 'element_ambiguous',
-      fallback: 'agent-driven',
-      file: path.relative(process.cwd(), targetFile),
-      candidates: resolved.candidates.map((c) => ({
-        startLine: c.startLine + 1,
-        endLine: c.endLine + 1,
-      })),
-    }));
+    console.error(
+      JSON.stringify({
+        error: 'element_ambiguous',
+        fallback: 'agent-driven',
+        file: path.relative(process.cwd(), targetFile),
+        candidates: resolved.candidates.map(c => ({
+          startLine: c.startLine + 1,
+          endLine: c.endLine + 1,
+        })),
+      })
+    );
     process.exit(1);
   }
   if (!resolved.match) {
-    console.error(JSON.stringify({ error: 'element_not_found', fallback: 'agent-driven' }));
+    console.error(
+      JSON.stringify({ error: 'element_not_found', fallback: 'agent-driven' })
+    );
     process.exit(1);
   }
 
@@ -201,7 +267,10 @@ Output (JSON):
   const styleMode = detectStyleMode(targetFile);
   const isJsx = commentSyntax.open === '{/*';
   const spliceIndex = computeInsertLine(startLine, endLine, position);
-  const relTargetFile = path.relative(process.cwd(), targetFile).split(path.sep).join('/');
+  const relTargetFile = path
+    .relative(process.cwd(), targetFile)
+    .split(path.sep)
+    .join('/');
 
   if (shouldUseSvelteComponentInjection(targetFile)) {
     const session = scaffoldSvelteComponentInsertSession({
@@ -215,30 +284,33 @@ Output (JSON):
       anchorLines: lines.slice(startLine, endLine + 1),
       cwd: process.cwd(),
     });
-    console.log(JSON.stringify({
-      mode: 'insert',
-      position,
-      file: session.manifestFile,
-      sourceFile: relTargetFile,
-      previewMode: 'svelte-component',
-      componentDir: session.componentDir,
-      propContract: session.propContract,
-      insertLine: 1,
-      sourceInsertLine: spliceIndex + 1,
-      anchorStartLine: startLine + 1,
-      anchorEndLine: endLine + 1,
-      commentSyntax,
-      styleMode: 'svelte-component',
-      styleTag: null,
-      cssSelectorPrefixExamples: [],
-      cssAuthoring: buildSvelteComponentCssAuthoring(count),
-    }));
+    console.log(
+      JSON.stringify({
+        mode: 'insert',
+        position,
+        file: session.manifestFile,
+        sourceFile: relTargetFile,
+        previewMode: 'svelte-component',
+        componentDir: session.componentDir,
+        propContract: session.propContract,
+        insertLine: 1,
+        sourceInsertLine: spliceIndex + 1,
+        anchorStartLine: startLine + 1,
+        anchorEndLine: endLine + 1,
+        commentSyntax,
+        styleMode: 'svelte-component',
+        styleTag: null,
+        cssSelectorPrefixExamples: [],
+        cssAuthoring: buildSvelteComponentCssAuthoring(count),
+      })
+    );
     return;
   }
 
-  const indent = lines[spliceIndex]?.match(/^(\s*)/)?.[1]
-    ?? lines[startLine]?.match(/^(\s*)/)?.[1]
-    ?? '';
+  const indent =
+    lines[spliceIndex]?.match(/^(\s*)/)?.[1] ??
+    lines[startLine]?.match(/^(\s*)/)?.[1] ??
+    '';
 
   const wrapperLines = buildInsertWrapperLines({
     id,
@@ -268,25 +340,37 @@ Output (JSON):
 
   const insertLine = spliceIndex + 3;
 
-  console.log(JSON.stringify({
-    mode: 'insert',
-    position,
-    file: relTargetFile,
-    sourceWritten: deferredWrapper ? false : undefined,
-    wrapperBlock: deferredWrapper ? deferredWrapper.block : undefined,
-    replaceStartLine: deferredWrapper ? deferredWrapper.replaceStartLine : undefined,
-    replaceEndLine: deferredWrapper ? deferredWrapper.replaceEndLine : undefined,
-    insertLine: insertLine + 1,
-    commentSyntax,
-    styleMode: styleMode.mode,
-    styleTag: styleMode.styleTag,
-    cssSelectorPrefixExamples: buildCssSelectorPrefixExamples(styleMode.mode, count),
-    cssAuthoring: buildCssAuthoring(styleMode, count),
-  }));
+  console.log(
+    JSON.stringify({
+      mode: 'insert',
+      position,
+      file: relTargetFile,
+      sourceWritten: deferredWrapper ? false : undefined,
+      wrapperBlock: deferredWrapper ? deferredWrapper.block : undefined,
+      replaceStartLine: deferredWrapper
+        ? deferredWrapper.replaceStartLine
+        : undefined,
+      replaceEndLine: deferredWrapper
+        ? deferredWrapper.replaceEndLine
+        : undefined,
+      insertLine: insertLine + 1,
+      commentSyntax,
+      styleMode: styleMode.mode,
+      styleTag: styleMode.styleTag,
+      cssSelectorPrefixExamples: buildCssSelectorPrefixExamples(
+        styleMode.mode,
+        count
+      ),
+      cssAuthoring: buildCssAuthoring(styleMode, count),
+    })
+  );
 }
 
 const _running = process.argv[1];
-if (_running?.endsWith('live-insert.mjs') || _running?.endsWith('live-insert.mjs/')) {
+if (
+  _running?.endsWith('live-insert.mjs') ||
+  _running?.endsWith('live-insert.mjs/')
+) {
   enterLiveRoot();
   insertCli();
 }

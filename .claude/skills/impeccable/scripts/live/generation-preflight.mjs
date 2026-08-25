@@ -30,14 +30,21 @@ function targetSignature(event) {
   });
 }
 
-export function buildGenerationPreflight(event, scriptsDir, { cache = null } = {}) {
+export function buildGenerationPreflight(
+  event,
+  scriptsDir,
+  { cache = null } = {}
+) {
   if (!event || event.type !== 'generate' || !event.id) return null;
 
   const isInsert = event.mode === 'insert';
   const target = isInsert ? insertTarget(event) : replaceTarget(event);
   if (!target.elementId && !target.classes) return null;
 
-  const script = path.join(scriptsDir, isInsert ? 'live-insert.mjs' : 'live-wrap.mjs');
+  const script = path.join(
+    scriptsDir,
+    isInsert ? 'live-insert.mjs' : 'live-wrap.mjs'
+  );
   const args = [script, '--id', event.id, '--count', String(event.count || 3)];
   // Compute the scaffold but do not write it into source for source-preview
   // targets. The agent writes wrapper + variants atomically; a premature
@@ -69,13 +76,16 @@ export function buildGenerationPreflight(event, scriptsDir, { cache = null } = {
  * server for that entire window: Accept and Discard POSTs, SSE progress
  * broadcasts, and every other poll stalled behind it.
  */
-export async function runGenerationPreflight(event, {
-  cwd = process.cwd(),
-  scriptsDir,
-  execFileImpl = execFileAsync,
-  timeoutMs = PREFLIGHT_TIMEOUT_MS,
-  cache = sourceResolutionCache,
-} = {}) {
+export async function runGenerationPreflight(
+  event,
+  {
+    cwd = process.cwd(),
+    scriptsDir,
+    execFileImpl = execFileAsync,
+    timeoutMs = PREFLIGHT_TIMEOUT_MS,
+    cache = sourceResolutionCache,
+  } = {}
+) {
   const command = buildGenerationPreflight(event, scriptsDir, { cache });
   if (!command) {
     return { ok: false, skipped: true, reason: 'insufficient_locator' };
@@ -131,9 +141,10 @@ function normalizeTarget(target) {
   const classes = Array.isArray(target.classes)
     ? target.classes.join(' ')
     : String(target.classes || '').trim();
-  const text = typeof target.textContent === 'string'
-    ? target.textContent.trim().slice(0, 80)
-    : '';
+  const text =
+    typeof target.textContent === 'string'
+      ? target.textContent.trim().slice(0, 80)
+      : '';
   return {
     elementId: target.id || target.elementId || undefined,
     classes: classes || undefined,
@@ -144,6 +155,9 @@ function normalizeTarget(target) {
 
 function compactError(error) {
   const stderr = error?.stderr ? String(error.stderr).trim() : '';
-  const message = stderr.split('\n').filter(Boolean).pop() || error?.message || 'preflight failed';
+  const message =
+    stderr.split('\n').filter(Boolean).pop() ||
+    error?.message ||
+    'preflight failed';
   return String(message).slice(0, 500);
 }

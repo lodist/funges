@@ -6,7 +6,11 @@ function isNeutralColor(color) {
   // rgb/rgba — use channel spread. Threshold 30 ≈ 11.7% of the 0–255 range.
   const rgb = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
   if (rgb) {
-    return (Math.max(+rgb[1], +rgb[2], +rgb[3]) - Math.min(+rgb[1], +rgb[2], +rgb[3])) < 30;
+    return (
+      Math.max(+rgb[1], +rgb[2], +rgb[3]) -
+        Math.min(+rgb[1], +rgb[2], +rgb[3]) <
+      30
+    );
   }
 
   // oklch()/lch() — chroma is the second numeric component.
@@ -22,12 +26,14 @@ function isNeutralColor(color) {
   // oklab a/b are ~-0.4..0.4, threshold 0.02. lab a/b are ~-128..127, threshold 3.
   const oklab = color.match(/oklab\(\s*[\d.]+%?\s*([\d.-]+)\s+([\d.-]+)/i);
   if (oklab) {
-    const a = parseFloat(oklab[1]), b = parseFloat(oklab[2]);
+    const a = parseFloat(oklab[1]),
+      b = parseFloat(oklab[2]);
     return Math.hypot(a, b) < 0.02;
   }
   const lab = color.match(/lab\(\s*[\d.]+%?\s*([\d.-]+)\s+([\d.-]+)/i);
   if (lab) {
-    const a = parseFloat(lab[1]), b = parseFloat(lab[2]);
+    const a = parseFloat(lab[1]),
+      b = parseFloat(lab[2]);
     return Math.hypot(a, b) < 3;
   }
 
@@ -41,8 +47,9 @@ function isNeutralColor(color) {
   // whiteness + blackness >= 100; chroma-like saturation = 1 - (w+b)/100.
   const hwb = color.match(/hwb\(\s*[\d.-]+\s+([\d.]+)%\s+([\d.]+)%/i);
   if (hwb) {
-    const w = parseFloat(hwb[1]), b = parseFloat(hwb[2]);
-    return (1 - Math.min(100, w + b) / 100) < 0.1;
+    const w = parseFloat(hwb[1]),
+      b = parseFloat(hwb[2]);
+    return 1 - Math.min(100, w + b) / 100 < 0.1;
   }
 
   // Unknown / unrecognized format — err on the side of DETECTING rather
@@ -75,7 +82,17 @@ function contrastRatio(c1, c2) {
 // is deliberately closed: `linear-gradient(` and `url(` also look like
 // `name(` and must not be read as colors.
 const COLOR_FUNCTION_NAMES = new Set([
-  'rgb', 'rgba', 'hsl', 'hsla', 'hwb', 'oklch', 'oklab', 'lch', 'lab', 'color', 'color-mix',
+  'rgb',
+  'rgba',
+  'hsl',
+  'hsla',
+  'hwb',
+  'oklch',
+  'oklab',
+  'lch',
+  'lab',
+  'color',
+  'color-mix',
 ]);
 
 // Pull every color-function token out of a value, with balanced-paren capture
@@ -88,10 +105,17 @@ function extractColorFunctionTokens(value) {
   let m;
   while ((m = re.exec(str)) !== null) {
     if (!COLOR_FUNCTION_NAMES.has(m[1].toLowerCase())) continue;
-    let depth = 0, end = -1;
+    let depth = 0,
+      end = -1;
     for (let i = m.index + m[0].length - 1; i < str.length; i++) {
       if (str[i] === '(') depth++;
-      else if (str[i] === ')') { depth--; if (depth === 0) { end = i; break; } }
+      else if (str[i] === ')') {
+        depth--;
+        if (depth === 0) {
+          end = i;
+          break;
+        }
+      }
     }
     if (end < 0) break;
     tokens.push(str.slice(m.index, end + 1));
@@ -121,9 +145,19 @@ function parseGradientColors(bgImage) {
     if (tokenSpans.some(s => m.index >= s.start && m.index < s.end)) continue;
     const h = m[1];
     if (h.length === 6) {
-      colors.push({ r: parseInt(h.slice(0,2),16), g: parseInt(h.slice(2,4),16), b: parseInt(h.slice(4,6),16), a: 1 });
+      colors.push({
+        r: parseInt(h.slice(0, 2), 16),
+        g: parseInt(h.slice(2, 4), 16),
+        b: parseInt(h.slice(4, 6), 16),
+        a: 1,
+      });
     } else {
-      colors.push({ r: parseInt(h[0]+h[0],16), g: parseInt(h[1]+h[1],16), b: parseInt(h[2]+h[2],16), a: 1 });
+      colors.push({
+        r: parseInt(h[0] + h[0], 16),
+        g: parseInt(h[1] + h[1], 16),
+        b: parseInt(h[2] + h[2], 16),
+        a: 1,
+      });
     }
   }
   return colors;
@@ -131,13 +165,16 @@ function parseGradientColors(bgImage) {
 
 function hasChroma(c, threshold = 30) {
   if (!c) return false;
-  return (Math.max(c.r, c.g, c.b) - Math.min(c.r, c.g, c.b)) >= threshold;
+  return Math.max(c.r, c.g, c.b) - Math.min(c.r, c.g, c.b) >= threshold;
 }
 
 function getHue(c) {
   if (!c) return 0;
-  const r = c.r / 255, g = c.g / 255, b = c.b / 255;
-  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const r = c.r / 255,
+    g = c.g / 255,
+    b = c.b / 255;
+  const max = Math.max(r, g, b),
+    min = Math.min(r, g, b);
   if (max === min) return 0;
   const d = max - min;
   let h;
@@ -149,7 +186,9 @@ function getHue(c) {
 
 function colorToHex(c) {
   if (!c) return '?';
-  return '#' + [c.r, c.g, c.b].map(v => v.toString(16).padStart(2, '0')).join('');
+  return (
+    '#' + [c.r, c.g, c.b].map(v => v.toString(16).padStart(2, '0')).join('')
+  );
 }
 
 // ─── Color-space conversions ────────────────────────────────────────────────
@@ -168,30 +207,41 @@ function clamp01(x) {
 // Linear-light sRGB channel to the encoded 0-255 value.
 function encodeSrgbChannel(x) {
   const c = clamp01(x);
-  return Math.round((c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055) * 255);
+  return Math.round(
+    (c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055) * 255
+  );
 }
 
 function decodeSrgbChannel(x) {
   const c = Number.isFinite(x) ? x : 0;
   const sign = c < 0 ? -1 : 1;
   const abs = Math.abs(c);
-  return sign * (abs <= 0.04045 ? abs / 12.92 : Math.pow((abs + 0.055) / 1.055, 2.4));
+  return (
+    sign * (abs <= 0.04045 ? abs / 12.92 : Math.pow((abs + 0.055) / 1.055, 2.4))
+  );
 }
 
 function linearSrgbToColor(r, g, b, a = 1) {
-  return { r: encodeSrgbChannel(r), g: encodeSrgbChannel(g), b: encodeSrgbChannel(b), a };
+  return {
+    r: encodeSrgbChannel(r),
+    g: encodeSrgbChannel(g),
+    b: encodeSrgbChannel(b),
+    a,
+  };
 }
 
 // OKLab to sRGB (Björn Ottosson's matrices). L in 0..1, a/b are signed axes.
 function oklabToRgb(L, a, b) {
   const l_ = L + 0.3963377774 * a + 0.2158037573 * b;
   const m_ = L - 0.1055613458 * a - 0.0638541728 * b;
-  const s_ = L - 0.0894841775 * a - 1.2914855480 * b;
-  const lc = l_ * l_ * l_, mc = m_ * m_ * m_, sc = s_ * s_ * s_;
+  const s_ = L - 0.0894841775 * a - 1.291485548 * b;
+  const lc = l_ * l_ * l_,
+    mc = m_ * m_ * m_,
+    sc = s_ * s_ * s_;
   return linearSrgbToColor(
-     4.0767416621 * lc - 3.3077115913 * mc + 0.2309699292 * sc,
+    4.0767416621 * lc - 3.3077115913 * mc + 0.2309699292 * sc,
     -1.2684380046 * lc + 2.6097574011 * mc - 0.3413193965 * sc,
-    -0.0041960863 * lc - 0.7034186147 * mc + 1.7076147010 * sc,
+    -0.0041960863 * lc - 0.7034186147 * mc + 1.707614701 * sc
   );
 }
 
@@ -205,16 +255,23 @@ function oklchToRgb(L, C, H) {
 // CIE Lab to sRGB. CSS lab()/lch() use the D50 white point; the matrix below
 // is the Bradford-adapted XYZ-D50 to linear-sRGB transform from CSS Color 4.
 function labToRgb(L, a, b) {
-  const kappa = 24389 / 27, epsilon = 216 / 24389;
-  const fy = (L + 16) / 116, fx = fy + a / 500, fz = fy - b / 200;
-  const invert = (t) => (t * t * t > epsilon ? t * t * t : (116 * t - 16) / kappa);
+  const kappa = 24389 / 27,
+    epsilon = 216 / 24389;
+  const fy = (L + 16) / 116,
+    fx = fy + a / 500,
+    fz = fy - b / 200;
+  const invert = t =>
+    t * t * t > epsilon ? t * t * t : (116 * t - 16) / kappa;
   const yr = L > kappa * epsilon ? Math.pow((L + 16) / 116, 3) : L / kappa;
-  const Xn = 0.3457 / 0.3585, Zn = (1 - 0.3457 - 0.3585) / 0.3585;
-  const x = invert(fx) * Xn, y = yr, z = invert(fz) * Zn;
+  const Xn = 0.3457 / 0.3585,
+    Zn = (1 - 0.3457 - 0.3585) / 0.3585;
+  const x = invert(fx) * Xn,
+    y = yr,
+    z = invert(fz) * Zn;
   return linearSrgbToColor(
-     3.1341359569958707 * x - 1.6173863321612538 * y - 0.4906619460083532 * z,
-    -0.9787955029120890 * x + 1.9162545672595240 * y + 0.0334427311613195 * z,
-     0.0719553798841168 * x - 0.2289768264158322 * y + 1.4053860583241250 * z,
+    3.1341359569958707 * x - 1.6173863321612538 * y - 0.4906619460083532 * z,
+    -0.978795502912089 * x + 1.916254567259524 * y + 0.0334427311613195 * z,
+    0.0719553798841168 * x - 0.2289768264158322 * y + 1.405386058324125 * z
   );
 }
 
@@ -230,15 +287,28 @@ function lchToRgb(L, C, H) {
 function colorFunctionToRgb(space, c1, c2, c3) {
   switch (space) {
     case 'srgb':
-      return { r: Math.round(clamp01(c1) * 255), g: Math.round(clamp01(c2) * 255), b: Math.round(clamp01(c3) * 255), a: 1 };
+      return {
+        r: Math.round(clamp01(c1) * 255),
+        g: Math.round(clamp01(c2) * 255),
+        b: Math.round(clamp01(c3) * 255),
+        a: 1,
+      };
     case 'srgb-linear':
       return linearSrgbToColor(c1, c2, c3);
     case 'display-p3': {
-      const [R, G, B] = [decodeSrgbChannel(c1), decodeSrgbChannel(c2), decodeSrgbChannel(c3)];
+      const [R, G, B] = [
+        decodeSrgbChannel(c1),
+        decodeSrgbChannel(c2),
+        decodeSrgbChannel(c3),
+      ];
       return linearSrgbToColor(
-         1.2249401762805587 * R - 0.2249404646817506 * G + 0.0000002884022551 * B,
-        -0.0420569547096138 * R + 1.0420571661298634 * G - 0.0000002113202247 * B,
-        -0.0196375587040044 * R - 0.0786360772174755 * G + 1.0982736359214800 * B,
+        1.2249401762805587 * R -
+          0.2249404646817506 * G +
+          0.0000002884022551 * B,
+        -0.0420569547096138 * R +
+          1.0420571661298634 * G -
+          0.0000002113202247 * B,
+        -0.0196375587040044 * R - 0.0786360772174755 * G + 1.09827363592148 * B
       );
     }
     default:
@@ -252,11 +322,17 @@ function hslToRgb(h, s, l) {
   const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
   const m0 = l - c / 2;
   const [r, g, b] =
-    h < 60 ? [c, x, 0] :
-    h < 120 ? [x, c, 0] :
-    h < 180 ? [0, c, x] :
-    h < 240 ? [0, x, c] :
-    h < 300 ? [x, 0, c] : [c, 0, x];
+    h < 60
+      ? [c, x, 0]
+      : h < 120
+        ? [x, c, 0]
+        : h < 180
+          ? [0, c, x]
+          : h < 240
+            ? [0, x, c]
+            : h < 300
+              ? [x, 0, c]
+              : [c, 0, x];
   return {
     r: Math.round((r + m0) * 255),
     g: Math.round((g + m0) * 255),
@@ -271,7 +347,7 @@ function hwbToRgb(h, w, bl) {
     return { r: g, g, b: g, a: 1 };
   }
   const base = hslToRgb(h, 1, 0.5);
-  const mix = (c) => Math.round(((c / 255) * (1 - w - bl) + w) * 255);
+  const mix = c => Math.round(((c / 255) * (1 - w - bl) + w) * 255);
   return { r: mix(base.r), g: mix(base.g), b: mix(base.b), a: 1 };
 }
 
@@ -324,7 +400,8 @@ const CSS_NAMED_COLORS = {
 // Split a string on top-level commas (ignoring commas nested in parens).
 function splitTopLevelCommas(str) {
   const parts = [];
-  let depth = 0, start = 0;
+  let depth = 0,
+    start = 0;
   for (let i = 0; i < str.length; i++) {
     const ch = str[i];
     if (ch === '(') depth++;
@@ -349,27 +426,41 @@ function splitTopLevelCommas(str) {
 // close-enough approximation for opaque-opaque mixes (the detector only
 // consumes these values for contrast/chroma thresholds, not for display).
 function parseColorMix(str) {
-  const m = String(str).trim().match(/^color-mix\(/i);
+  const m = String(str)
+    .trim()
+    .match(/^color-mix\(/i);
   if (!m) return null;
   // Balanced-paren capture of the arguments.
-  let depth = 0, end = -1;
+  let depth = 0,
+    end = -1;
   const open = str.indexOf('(');
   for (let i = open; i < str.length; i++) {
     if (str[i] === '(') depth++;
-    else if (str[i] === ')') { depth--; if (depth === 0) { end = i; break; } }
+    else if (str[i] === ')') {
+      depth--;
+      if (depth === 0) {
+        end = i;
+        break;
+      }
+    }
   }
   if (end < 0) return null;
   const args = splitTopLevelCommas(str.slice(open + 1, end));
   if (args.length !== 3 || !/^in\s/i.test(args[0])) return null;
 
-  const parseComponent = (component) => {
+  const parseComponent = component => {
     // Percentage may lead or trail the color per spec.
     let pct = null;
     let colorStr = component;
     const trail = component.match(/\s+([\d.]+)%$/);
     const lead = component.match(/^([\d.]+)%\s+/);
-    if (trail) { pct = parseFloat(trail[1]); colorStr = component.slice(0, trail.index).trim(); }
-    else if (lead) { pct = parseFloat(lead[1]); colorStr = component.slice(lead[0].length).trim(); }
+    if (trail) {
+      pct = parseFloat(trail[1]);
+      colorStr = component.slice(0, trail.index).trim();
+    } else if (lead) {
+      pct = parseFloat(lead[1]);
+      colorStr = component.slice(lead[0].length).trim();
+    }
     let color;
     if (/^transparent$/i.test(colorStr)) color = { r: 0, g: 0, b: 0, a: 0 };
     else color = parseAnyColor(colorStr);
@@ -380,20 +471,28 @@ function parseColorMix(str) {
   const c1 = parseComponent(args[1]);
   const c2 = parseComponent(args[2]);
   if (!c1 || !c2) return null;
-  let p1 = c1.pct, p2 = c2.pct;
-  if (p1 == null && p2 == null) { p1 = 50; p2 = 50; }
-  else if (p1 == null) p1 = 100 - p2;
+  let p1 = c1.pct,
+    p2 = c2.pct;
+  if (p1 == null && p2 == null) {
+    p1 = 50;
+    p2 = 50;
+  } else if (p1 == null) p1 = 100 - p2;
   else if (p2 == null) p2 = 100 - p1;
   const sum = p1 + p2;
   if (sum <= 0) return null;
   // Per spec: weights normalize to sum; when sum < 100 the result alpha is
   // additionally scaled by sum/100.
-  const w1 = p1 / sum, w2 = p2 / sum;
+  const w1 = p1 / sum,
+    w2 = p2 / sum;
   const alphaScale = sum < 100 ? sum / 100 : 1;
-  const a1 = c1.color.a ?? 1, a2 = c2.color.a ?? 1;
+  const a1 = c1.color.a ?? 1,
+    a2 = c2.color.a ?? 1;
   const a = (a1 * w1 + a2 * w2) * alphaScale;
   if (a <= 0) return { r: 0, g: 0, b: 0, a: 0 };
-  const mix = (ch) => Math.round((c1.color[ch] * a1 * w1 + c2.color[ch] * a2 * w2) / (a1 * w1 + a2 * w2));
+  const mix = ch =>
+    Math.round(
+      (c1.color[ch] * a1 * w1 + c2.color[ch] * a2 * w2) / (a1 * w1 + a2 * w2)
+    );
   return { r: mix('r'), g: mix('g'), b: mix('b'), a: Math.min(1, a) };
 }
 
@@ -436,12 +535,20 @@ function parseAlphaToken(token) {
 function parseAnyColor(s) {
   if (!s || typeof s !== 'string') return null;
   const str = s.trim();
-  if (str === 'transparent' || str === 'currentcolor' || str === 'inherit') return null;
+  if (str === 'transparent' || str === 'currentcolor' || str === 'inherit')
+    return null;
   if (/^color-mix\(/i.test(str)) return parseColorMix(str);
   let m;
-  m = str.match(/rgba?\(\s*(\d+(?:\.\d+)?)\s*,?\s*(\d+(?:\.\d+)?)\s*,?\s*(\d+(?:\.\d+)?)(?:\s*[,/]\s*([\d.]+)(%)?)?\s*\)/);
+  m = str.match(
+    /rgba?\(\s*(\d+(?:\.\d+)?)\s*,?\s*(\d+(?:\.\d+)?)\s*,?\s*(\d+(?:\.\d+)?)(?:\s*[,/]\s*([\d.]+)(%)?)?\s*\)/
+  );
   if (m) {
-    const c = { r: Math.round(+m[1]), g: Math.round(+m[2]), b: Math.round(+m[3]), a: 1 };
+    const c = {
+      r: Math.round(+m[1]),
+      g: Math.round(+m[2]),
+      b: Math.round(+m[3]),
+      a: 1,
+    };
     if (m[4] !== undefined) c.a = m[5] === '%' ? parseFloat(m[4]) / 100 : +m[4];
     return c;
   }
@@ -468,7 +575,9 @@ function parseAnyColor(s) {
   // OKLCH parser. Tailwind v4's CSS minifier squishes the space after
   // `%` ("21.5%.02 50"), so the separator between L and C may be absent.
   // Match L (with optional %), then C and H separated permissively.
-  m = str.match(/oklch\(\s*([\d.]+)(%?)\s*[\s,]*\s*([\d.]+)\s*[\s,]+\s*([-\d.]+)(?:deg)?(?:\s*\/\s*([\d.]+)(%)?)?\s*\)/i);
+  m = str.match(
+    /oklch\(\s*([\d.]+)(%?)\s*[\s,]*\s*([\d.]+)\s*[\s,]+\s*([-\d.]+)(?:deg)?(?:\s*\/\s*([\d.]+)(%)?)?\s*\)/i
+  );
   if (m) {
     const Lnum = parseFloat(m[1]);
     const L = m[2] === '%' ? Lnum / 100 : Lnum;
@@ -480,7 +589,9 @@ function parseAnyColor(s) {
     return rgb;
   }
   // OKLAB — a/b are signed axes; percentages map 100% → 0.4.
-  m = str.match(/oklab\(\s*([\d.]+)(%?)\s+(-?[\d.]+)(%?)\s+(-?[\d.]+)(%?)(?:\s*\/\s*([\d.]+)(%)?)?\s*\)/i);
+  m = str.match(
+    /oklab\(\s*([\d.]+)(%?)\s+(-?[\d.]+)(%?)\s+(-?[\d.]+)(%?)(?:\s*\/\s*([\d.]+)(%)?)?\s*\)/i
+  );
   if (m) {
     const L = m[2] === '%' ? parseFloat(m[1]) / 100 : parseFloat(m[1]);
     const a = m[4] === '%' ? parseFloat(m[3]) * 0.004 : parseFloat(m[3]);
@@ -495,7 +606,9 @@ function parseAnyColor(s) {
   // LCH / LAB — CIE, D50 white point. Chrome serializes lch(20% 5 60) as
   // `lch(20 5 60)`, so L arrives with or without its percent sign. In both
   // spaces L runs 0..100 and 100% means 100.
-  m = str.match(/^lch\(\s*([\d.]+%?|none)\s+([\d.]+%?|none)\s+(-?[\d.]+)(?:deg)?(?:\s*\/\s*([\d.]+%?|none))?\s*\)$/i);
+  m = str.match(
+    /^lch\(\s*([\d.]+%?|none)\s+([\d.]+%?|none)\s+(-?[\d.]+)(?:deg)?(?:\s*\/\s*([\d.]+%?|none))?\s*\)$/i
+  );
   if (m) {
     const L = parseColorComponent(m[1], 100);
     const C = parseColorComponent(m[2], 150);
@@ -505,7 +618,9 @@ function parseAnyColor(s) {
     rgb.a = parseAlphaToken(m[4]);
     return rgb;
   }
-  m = str.match(/^lab\(\s*([\d.]+%?|none)\s+(-?[\d.]+%?|none)\s+(-?[\d.]+%?|none)(?:\s*\/\s*([\d.]+%?|none))?\s*\)$/i);
+  m = str.match(
+    /^lab\(\s*([\d.]+%?|none)\s+(-?[\d.]+%?|none)\s+(-?[\d.]+%?|none)(?:\s*\/\s*([\d.]+%?|none))?\s*\)$/i
+  );
   if (m) {
     const L = parseColorComponent(m[1], 100);
     const a = parseColorComponent(m[2], 125);
@@ -517,7 +632,9 @@ function parseAnyColor(s) {
   }
   // color(<space> c1 c2 c3 [/ alpha]) — what Chrome hands back for most
   // color-mix() results and for any wide-gamut color an author wrote.
-  m = str.match(/^color\(\s*([a-z0-9-]+)\s+(-?[\d.eE+-]+%?|none)\s+(-?[\d.eE+-]+%?|none)\s+(-?[\d.eE+-]+%?|none)(?:\s*\/\s*([\d.]+%?|none))?\s*\)$/i);
+  m = str.match(
+    /^color\(\s*([a-z0-9-]+)\s+(-?[\d.eE+-]+%?|none)\s+(-?[\d.eE+-]+%?|none)\s+(-?[\d.eE+-]+%?|none)(?:\s*\/\s*([\d.]+%?|none))?\s*\)$/i
+  );
   if (m) {
     const c1 = parseColorComponent(m[2]);
     const c2 = parseColorComponent(m[3]);
@@ -529,9 +646,15 @@ function parseAnyColor(s) {
     return rgb;
   }
   // HSL/HSLA — comma or space syntax, optional deg on hue.
-  m = str.match(/hsla?\(\s*(-?[\d.]+)(?:deg)?\s*[,\s]\s*([\d.]+)%\s*[,\s]\s*([\d.]+)%(?:\s*[,/]\s*([\d.]+)(%)?)?\s*\)/i);
+  m = str.match(
+    /hsla?\(\s*(-?[\d.]+)(?:deg)?\s*[,\s]\s*([\d.]+)%\s*[,\s]\s*([\d.]+)%(?:\s*[,/]\s*([\d.]+)(%)?)?\s*\)/i
+  );
   if (m) {
-    const rgb = hslToRgb(parseFloat(m[1]), parseFloat(m[2]) / 100, parseFloat(m[3]) / 100);
+    const rgb = hslToRgb(
+      parseFloat(m[1]),
+      parseFloat(m[2]) / 100,
+      parseFloat(m[3]) / 100
+    );
     if (m[4] !== undefined) {
       const alpha = parseFloat(m[4]);
       rgb.a = m[5] === '%' ? alpha / 100 : alpha;
@@ -539,9 +662,15 @@ function parseAnyColor(s) {
     return rgb;
   }
   // HWB — hue whiteness% blackness%.
-  m = str.match(/hwb\(\s*(-?[\d.]+)(?:deg)?\s+([\d.]+)%\s+([\d.]+)%(?:\s*\/\s*([\d.]+)(%)?)?\s*\)/i);
+  m = str.match(
+    /hwb\(\s*(-?[\d.]+)(?:deg)?\s+([\d.]+)%\s+([\d.]+)%(?:\s*\/\s*([\d.]+)(%)?)?\s*\)/i
+  );
   if (m) {
-    const rgb = hwbToRgb(parseFloat(m[1]), parseFloat(m[2]) / 100, parseFloat(m[3]) / 100);
+    const rgb = hwbToRgb(
+      parseFloat(m[1]),
+      parseFloat(m[2]) / 100,
+      parseFloat(m[3]) / 100
+    );
     if (m[4] !== undefined) {
       const alpha = parseFloat(m[4]);
       rgb.a = m[5] === '%' ? alpha / 100 : alpha;
@@ -565,9 +694,19 @@ function parseAnyColor(s) {
 // (`currentcolor` is NOT here — it is real paint in the element's own text
 // color; resolveBackgroundInfo substitutes the computed color for it.)
 function isNoPaintColorValue(value) {
-  const v = String(value || '').trim().toLowerCase();
+  const v = String(value || '')
+    .trim()
+    .toLowerCase();
   if (!v) return true;
-  return v === 'transparent' || v === 'none' || v === 'initial' || v === 'inherit' || v === 'unset' || v === 'revert' || v === 'revert-layer';
+  return (
+    v === 'transparent' ||
+    v === 'none' ||
+    v === 'initial' ||
+    v === 'inherit' ||
+    v === 'unset' ||
+    v === 'revert' ||
+    v === 'revert-layer'
+  );
 }
 
 export {

@@ -824,24 +824,24 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       const popup = new maplibregl.Popup({ offset: 25 }).setHTML(`
         <div class="p-3 max-w-xs">
           <h3 class="font-semibold text-lg mb-2">${spot.name}</h3>
-          <p class="text-sm text-gray-600 mb-2">${spot.description}</p>
+          <p class="text-sm text-muted-foreground mb-2">${spot.description}</p>
           <div class="flex items-center gap-2 mb-2">
             <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
               spot.type === 'mushroom'
-                ? 'bg-red-100 text-red-800'
+                ? 'bg-destructive/10 text-destructive'
                 : spot.type === 'berry'
-                  ? 'bg-green-100 text-green-800'
+                  ? 'bg-secondary text-primary-text'
                   : spot.type === 'herb'
-                    ? 'bg-purple-100 text-purple-800'
-                    : 'bg-yellow-100 text-yellow-800'
+                    ? 'bg-muted text-primary-text'
+                    : 'bg-status-warning-background text-status-warning-text'
             }">
               ${spot.type}
             </span>
-            <span class="text-xs text-gray-500">
+            <span class="text-xs text-muted-foreground">
               Confidence: ${(spot.confidence * 100).toFixed(0)}%
             </span>
           </div>
-          <div class="text-xs text-gray-500">
+          <div class="text-xs text-muted-foreground">
             <p>Season: ${spot.season.join(', ')}</p>
             <p>Last updated: ${new Date(spot.lastUpdated).toLocaleDateString()}</p>
           </div>
@@ -986,7 +986,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             disabled={isLoading}
             className={
               showUserLocation && userLocation
-                ? 'bg-blue-100 text-blue-800 hover:bg-blue-100 hover:text-blue-800'
+                ? 'bg-muted text-primary-text hover:bg-muted hover:text-foreground'
                 : undefined
             }
             title={t('getLocation')}
@@ -1015,7 +1015,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             }}
             className={
               isRoutePanelOpen
-                ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-100 hover:text-emerald-800'
+                ? 'bg-secondary text-primary-text hover:bg-secondary hover:text-foreground'
                 : undefined
             }
             title={tRecipes('routePanel.title')}
@@ -1107,10 +1107,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         {/* Foraging spots found notification */}
         {foragingSpots.length > 0 && (
           <div className='absolute bottom-4 left-4 right-4'>
-            <Card className='p-3 bg-green-50 border-green-200'>
+            <Card className='p-3 bg-secondary border-secondary'>
               <div className='flex items-center gap-2'>
-                <MapPin className='h-4 w-4 text-green-600' />
-                <p className='text-sm text-green-800'>
+                <MapPin className='h-4 w-4 text-primary-text' />
+                <p className='text-sm text-primary-text'>
                   {t('spotsFound', { count: foragingSpots.length })}
                 </p>
               </div>

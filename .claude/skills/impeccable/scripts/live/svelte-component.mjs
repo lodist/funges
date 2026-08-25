@@ -42,12 +42,16 @@ export const SVELTE_COMPONENT_ROOT = 'node_modules/.impeccable-live';
 export const LEGACY_SVELTE_COMPONENT_ROOT = '.impeccable/live/previews';
 export const SVELTE_RUNTIME_FILE = `${SVELTE_COMPONENT_ROOT}/__runtime.js`;
 export const SVELTE_PROBE_FILE = `${SVELTE_COMPONENT_ROOT}/__probe.js`;
-export const DEFERRED_ACCEPTS_FILE = '.impeccable/live/deferred-svelte-component-accepts.json';
+export const DEFERRED_ACCEPTS_FILE =
+  '.impeccable/live/deferred-svelte-component-accepts.json';
 
 const MUSTACHE_RE = /\{([^{}]+)\}/g;
 
 export function shouldUseSvelteComponentInjection(filePath) {
-  if (/^(0|false|no)$/i.test(process.env.IMPECCABLE_LIVE_SVELTE_COMPONENT || '')) return false;
+  if (
+    /^(0|false|no)$/i.test(process.env.IMPECCABLE_LIVE_SVELTE_COMPONENT || '')
+  )
+    return false;
   return path.extname(filePath).toLowerCase() === '.svelte';
 }
 
@@ -63,7 +67,11 @@ export function ensureRuntimeHelper(cwd = process.cwd()) {
   const file = path.join(cwd, SVELTE_RUNTIME_FILE);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   if (!fs.existsSync(file)) {
-    fs.writeFileSync(file, `export { mount, unmount } from 'svelte';\n`, 'utf-8');
+    fs.writeFileSync(
+      file,
+      `export { mount, unmount } from 'svelte';\n`,
+      'utf-8'
+    );
   }
   // Attach-time probe: the browser imports this through the dev server before
   // the first mount. A 404 here means the resolved app root and the dev
@@ -71,7 +79,11 @@ export function ensureRuntimeHelper(cwd = process.cwd()) {
   // of a silent fall-back to the picker at first variant.
   const probe = path.join(cwd, SVELTE_PROBE_FILE);
   if (!fs.existsSync(probe)) {
-    fs.writeFileSync(probe, `export const impeccableLivePreviewProbe = true;\n`, 'utf-8');
+    fs.writeFileSync(
+      probe,
+      `export const impeccableLivePreviewProbe = true;\n`,
+      'utf-8'
+    );
   }
   return file;
 }
@@ -135,7 +147,9 @@ export function substitutePropsWithExprs(markup, contract) {
 
 export function parseSvelteComponentFile(content) {
   const text = String(content || '');
-  const scriptMatch = text.match(/^([\s\S]*?)<script\b[^>]*>[\s\S]*?<\/script>/i);
+  const scriptMatch = text.match(
+    /^([\s\S]*?)<script\b[^>]*>[\s\S]*?<\/script>/i
+  );
   const withoutScript = scriptMatch ? text.slice(scriptMatch[0].length) : text;
   const styleMatch = withoutScript.match(/<style\b[^>]*>[\s\S]*?<\/style\s*>/i);
   const styleBlock = styleMatch ? styleMatch[0] : '';
@@ -144,13 +158,14 @@ export function parseSvelteComponentFile(content) {
     : withoutScript.trim();
   const cssLines = styleBlock
     ? styleBlock
-      .replace(/^<style\b[^>]*>/i, '')
-      .replace(/<\/style\s*>$/i, '')
-      .split('\n')
-      .map((line) => line.trimEnd())
+        .replace(/^<style\b[^>]*>/i, '')
+        .replace(/<\/style\s*>$/i, '')
+        .split('\n')
+        .map(line => line.trimEnd())
     : [];
   while (cssLines.length > 0 && cssLines[0].trim() === '') cssLines.shift();
-  while (cssLines.length > 0 && cssLines[cssLines.length - 1].trim() === '') cssLines.pop();
+  while (cssLines.length > 0 && cssLines[cssLines.length - 1].trim() === '')
+    cssLines.pop();
   return { markup, cssLines, styleBlock };
 }
 
@@ -164,15 +179,16 @@ function buildPropsScript(contract) {
   if (contract.length === 0) {
     return '<script>\n  /** @typedef {Record<string, never>} Props */\n  let {} = $props();\n</script>\n';
   }
-  const names = contract.map((c) => c.prop).join(', ');
-  const typeFields = contract.map((c) => `    ${c.prop}: string;`).join('\n');
+  const names = contract.map(c => c.prop).join(', ');
+  const typeFields = contract.map(c => `    ${c.prop}: string;`).join('\n');
   return `<script>\n  /** @typedef {{\n${typeFields}\n  }} Props */\n  let { ${names} } = $props();\n</script>\n`;
 }
 
 function buildVariantStub(variantNum, originalWithProps, contract) {
-  const propsComment = contract.length > 0
-    ? `\n<!-- Props: ${contract.map((c) => `${c.prop} <- {${c.expr}}`).join(', ')} -->\n`
-    : '';
+  const propsComment =
+    contract.length > 0
+      ? `\n<!-- Props: ${contract.map(c => `${c.prop} <- {${c.expr}}`).join(', ')} -->\n`
+      : '';
   return `${buildPropsScript(contract)}${propsComment}${originalWithProps.trim()}\n\n<style>\n  /* Variant ${variantNum}: add scoped CSS here */\n</style>\n`;
 }
 
@@ -201,7 +217,10 @@ export function scaffoldSvelteComponentSession({
 
   const compiler = loadSvelteCompiler(cwd);
   if (!compiler) {
-    return { fallback: 'source-preview', reason: 'svelte 5 compiler not resolvable from the app root' };
+    return {
+      fallback: 'source-preview',
+      reason: 'svelte 5 compiler not resolvable from the app root',
+    };
   }
   const analysis = analyzeSvelteMarkup(originalMarkup, compiler.parse);
   if (!analysis.ok) {
@@ -215,7 +234,7 @@ export function scaffoldSvelteComponentSession({
   const contract = analysis.contract;
   const seeded = extractMatchingSourceCss(
     safeReadSource(path.resolve(cwd, sourceFile)),
-    originalMarkup,
+    originalMarkup
   );
   const seededCss = seeded.css;
   // The preview compiles in isolation, so NONE of these source rules applied
@@ -243,23 +262,37 @@ export function scaffoldSvelteComponentSession({
     // the preview tree is reachable at all before blaming a variant.
     componentDirAbs: dir.split(path.sep).join('/'),
     runtimeModule: `/${SVELTE_RUNTIME_FILE}`,
-    runtimeModuleAbs: path.join(cwd, SVELTE_RUNTIME_FILE).split(path.sep).join('/'),
+    runtimeModuleAbs: path
+      .join(cwd, SVELTE_RUNTIME_FILE)
+      .split(path.sep)
+      .join('/'),
     probeModule: `/${SVELTE_PROBE_FILE}`,
     probeModuleAbs: path.join(cwd, SVELTE_PROBE_FILE).split(path.sep).join('/'),
   };
 
-  fs.writeFileSync(path.join(dir, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n', 'utf-8');
+  fs.writeFileSync(
+    path.join(dir, 'manifest.json'),
+    JSON.stringify(manifest, null, 2) + '\n',
+    'utf-8'
+  );
 
   for (let n = 1; n <= count; n++) {
     const variantFile = path.join(dir, `v${n}.svelte`);
     if (!fs.existsSync(variantFile)) {
-      fs.writeFileSync(variantFile, buildVariantStubV2(n, analysis.markupWithProps, contract, seededCss), 'utf-8');
+      fs.writeFileSync(
+        variantFile,
+        buildVariantStubV2(n, analysis.markupWithProps, contract, seededCss),
+        'utf-8'
+      );
     }
   }
 
   return {
     manifest,
-    manifestFile: path.relative(cwd, path.join(dir, 'manifest.json')).split(path.sep).join('/'),
+    manifestFile: path
+      .relative(cwd, path.join(dir, 'manifest.json'))
+      .split(path.sep)
+      .join('/'),
     componentDir: manifest.componentDir,
     propContract: contract,
     // Inlined so the generate event's scaffold payload carries the stub
@@ -271,7 +304,11 @@ export function scaffoldSvelteComponentSession({
 }
 
 function safeReadSource(filePath) {
-  try { return fs.readFileSync(filePath, 'utf-8'); } catch { return ''; }
+  try {
+    return fs.readFileSync(filePath, 'utf-8');
+  } catch {
+    return '';
+  }
 }
 
 function escapeSelectorToken(token) {
@@ -292,13 +329,16 @@ function escapeSelectorToken(token) {
  */
 export function extractMatchingSourceCss(routeSource, originalMarkup) {
   const empty = { css: '', supersedable: new Set() };
-  const styleMatch = String(routeSource || '').match(/<style\b[^>]*>([\s\S]*?)<\/style\s*>/i);
+  const styleMatch = String(routeSource || '').match(
+    /<style\b[^>]*>([\s\S]*?)<\/style\s*>/i
+  );
   if (!styleMatch) return empty;
   const classNames = new Set();
   const classRe = /class\s*=\s*(["'])(.*?)\1/g;
   let m;
   while ((m = classRe.exec(originalMarkup))) {
-    for (const cls of m[2].split(/\s+/)) if (cls && !cls.includes('{')) classNames.add(cls);
+    for (const cls of m[2].split(/\s+/))
+      if (cls && !cls.includes('{')) classNames.add(cls);
   }
   const tagRe = /<([a-z][a-z0-9-]*)/gi;
   const tags = new Set();
@@ -309,13 +349,21 @@ export function extractMatchingSourceCss(routeSource, originalMarkup) {
   // `.btn-primary`, and `.stage` must not match `.stages`. A substring hit
   // seeds a rule that never styled the pick, and a falsely seeded selector
   // becomes an accept-time DELETION of a hand-written rule.
-  const classRes = [...classNames].map((cls) => new RegExp('\\.' + escapeSelectorToken(cls) + '(?![A-Za-z0-9_-])'));
-  const tagRes = [...tags].map((tag) => new RegExp('(^|[\\s>+~,(])' + escapeSelectorToken(tag) + '(?![A-Za-z0-9_-])', 'i'));
-  const classMatches = (selector) => classRes.some((re) => re.test(selector));
-  const tagMatches = (selector) => tagRes.some((re) => re.test(selector));
+  const classRes = [...classNames].map(
+    cls => new RegExp('\\.' + escapeSelectorToken(cls) + '(?![A-Za-z0-9_-])')
+  );
+  const tagRes = [...tags].map(
+    tag =>
+      new RegExp(
+        '(^|[\\s>+~,(])' + escapeSelectorToken(tag) + '(?![A-Za-z0-9_-])',
+        'i'
+      )
+  );
+  const classMatches = selector => classRes.some(re => re.test(selector));
+  const tagMatches = selector => tagRes.some(re => re.test(selector));
 
   const supersedable = new Set();
-  const ruleMatches = (prelude) => {
+  const ruleMatches = prelude => {
     let matched = false;
     for (const selector of splitSelectorList(prelude)) {
       if (classMatches(selector)) {
@@ -328,7 +376,7 @@ export function extractMatchingSourceCss(routeSource, originalMarkup) {
     return matched;
   };
 
-  const pick = (nodes) => {
+  const pick = nodes => {
     const kept = [];
     for (const node of nodes) {
       if (node.type === 'rule' && ruleMatches(node.prelude)) kept.push(node);
@@ -339,19 +387,26 @@ export function extractMatchingSourceCss(routeSource, originalMarkup) {
     }
     return kept;
   };
-  return { css: serializeNodes(pick(parseStylesheet(styleMatch[1]))), supersedable };
+  return {
+    css: serializeNodes(pick(parseStylesheet(styleMatch[1]))),
+    supersedable,
+  };
 }
 
 function buildVariantStubV2(variantNum, markupWithProps, contract, seededCss) {
-  const propsComment = contract.length > 0
-    ? `\n<!-- Props: ${contract.map((c) => `${c.prop} (${c.kind}) <- {${c.expr}}`).join(', ')} -->\n`
-    : '';
+  const propsComment =
+    contract.length > 0
+      ? `\n<!-- Props: ${contract.map(c => `${c.prop} (${c.kind}) <- {${c.expr}}`).join(', ')} -->\n`
+      : '';
   // The guard comments must never contain the literal "<style" character
   // sequence: agents (and the fake test agent) locate the style block with
   // string searches, and a mention inside a comment truncates their surgery
   // mid-comment.
   const css = seededCss
-    ? `\n<style>\n  /* Variant ${variantNum}: seeded from the route's current rules; restyle or delete freely.\n     ALL rules go inside THIS block. Svelte allows exactly one top-level style\n     element per component; appending a second one is a compile error. */\n${seededCss.split('\n').map((l) => (l.trim() ? '  ' + l : '')).join('\n')}\n</style>\n`
+    ? `\n<style>\n  /* Variant ${variantNum}: seeded from the route's current rules; restyle or delete freely.\n     ALL rules go inside THIS block. Svelte allows exactly one top-level style\n     element per component; appending a second one is a compile error. */\n${seededCss
+        .split('\n')
+        .map(l => (l.trim() ? '  ' + l : ''))
+        .join('\n')}\n</style>\n`
     : `\n<style>\n  /* Variant ${variantNum}: add all CSS inside THIS block. Svelte allows exactly\n     one top-level style element; a second one is a compile error. */\n</style>\n`;
   return `${buildPropsScriptV2(contract)}${propsComment}${markupWithProps.trim()}\n${css}`;
 }
@@ -388,12 +443,19 @@ export function scaffoldSvelteComponentInsertSession({
     componentDir: path.relative(cwd, dir).split(path.sep).join('/'),
     componentDirAbs: dir.split(path.sep).join('/'),
     runtimeModule: `/${SVELTE_RUNTIME_FILE}`,
-    runtimeModuleAbs: path.join(cwd, SVELTE_RUNTIME_FILE).split(path.sep).join('/'),
+    runtimeModuleAbs: path
+      .join(cwd, SVELTE_RUNTIME_FILE)
+      .split(path.sep)
+      .join('/'),
     probeModule: `/${SVELTE_PROBE_FILE}`,
     probeModuleAbs: path.join(cwd, SVELTE_PROBE_FILE).split(path.sep).join('/'),
   };
 
-  fs.writeFileSync(path.join(dir, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n', 'utf-8');
+  fs.writeFileSync(
+    path.join(dir, 'manifest.json'),
+    JSON.stringify(manifest, null, 2) + '\n',
+    'utf-8'
+  );
 
   for (let n = 1; n <= count; n++) {
     const variantFile = path.join(dir, `v${n}.svelte`);
@@ -404,7 +466,10 @@ export function scaffoldSvelteComponentInsertSession({
 
   return {
     manifest,
-    manifestFile: path.relative(cwd, path.join(dir, 'manifest.json')).split(path.sep).join('/'),
+    manifestFile: path
+      .relative(cwd, path.join(dir, 'manifest.json'))
+      .split(path.sep)
+      .join('/'),
     componentDir: manifest.componentDir,
     propContract: [],
   };
@@ -417,7 +482,12 @@ export function findSvelteComponentManifest(id, cwd = process.cwd()) {
   }
   // Legacy location: a session scaffolded by an older version can still be
   // accepted after an upgrade.
-  const legacyDirect = path.join(cwd, LEGACY_SVELTE_COMPONENT_ROOT, id, 'manifest.json');
+  const legacyDirect = path.join(
+    cwd,
+    LEGACY_SVELTE_COMPONENT_ROOT,
+    id,
+    'manifest.json'
+  );
   if (fs.existsSync(legacyDirect)) {
     return readManifest(legacyDirect);
   }
@@ -430,8 +500,11 @@ export function findSvelteComponentManifest(id, cwd = process.cwd()) {
       if (!fs.existsSync(candidate)) continue;
       try {
         const manifest = readManifest(candidate);
-        if (manifest?.id === id) return { ...manifest, manifestPath: candidate };
-      } catch { /* skip */ }
+        if (manifest?.id === id)
+          return { ...manifest, manifestPath: candidate };
+      } catch {
+        /* skip */
+      }
     }
   }
   return null;
@@ -462,15 +535,16 @@ export function resolveSourceFile(sourceFile, cwd = process.cwd()) {
 
 function appendCssToSvelteStyle(lines, cssLines) {
   const closeIdx = findLastStyleCloseLine(lines);
-  const prepared = ['', ...cssLines.map((line) => (line.trim() === '' ? '' : '  ' + line.trimStart()))];
+  const prepared = [
+    '',
+    ...cssLines.map(line =>
+      line.trim() === '' ? '' : '  ' + line.trimStart()
+    ),
+  ];
   if (closeIdx === -1) {
     return [...lines, '', '<style>', ...prepared.slice(1), '</style>'];
   }
-  return [
-    ...lines.slice(0, closeIdx),
-    ...prepared,
-    ...lines.slice(closeIdx),
-  ];
+  return [...lines.slice(0, closeIdx), ...prepared, ...lines.slice(closeIdx)];
 }
 
 function findLastStyleCloseLine(lines) {
@@ -482,48 +556,84 @@ function findLastStyleCloseLine(lines) {
 
 function bakeParamValuesInCss(cssLines, paramValues) {
   if (!paramValues || Object.keys(paramValues).length === 0) return cssLines;
-  return cssLines.map((line) => {
+  return cssLines.map(line => {
     let out = line;
     for (const [key, value] of Object.entries(paramValues)) {
       const varName = `--p-${key}`;
-      out = out.replace(new RegExp(`var\\(${escapeRegExp(varName)}(?:,\\s*[^)]+)?\\)`, 'g'), String(value));
+      out = out.replace(
+        new RegExp(`var\\(${escapeRegExp(varName)}(?:,\\s*[^)]+)?\\)`, 'g'),
+        String(value)
+      );
     }
     return out;
   });
 }
 
-function sanitizeAcceptedSvelteCss(cssLines, variantNum, paramValues = null, rootTag = 'div') {
+function sanitizeAcceptedSvelteCss(
+  cssLines,
+  variantNum,
+  paramValues = null,
+  rootTag = 'div'
+) {
   const css = String((cssLines || []).join('\n'));
-  if (!/data-impeccable-variant|impeccable-variant-ready/.test(css)) return cssLines;
+  if (!/data-impeccable-variant|impeccable-variant-ready/.test(css))
+    return cssLines;
 
   const rules = parseCssRules(css);
   const output = [];
   for (const rule of rules) {
     appendSanitizedCssRule(output, rule, variantNum, paramValues, rootTag);
   }
-  return output.join('\n')
+  return output
+    .join('\n')
     .split('\n')
-    .map((line) => line.trimEnd())
-    .filter((line) => line.trim() !== '');
+    .map(line => line.trimEnd())
+    .filter(line => line.trim() !== '');
 }
 
-function appendSanitizedCssRule(output, rule, variantNum, paramValues, rootTag) {
+function appendSanitizedCssRule(
+  output,
+  rule,
+  variantNum,
+  paramValues,
+  rootTag
+) {
   const prelude = rule.prelude.trim();
   const body = rule.body.trim();
   if (!prelude || !body || /--impeccable-variant-ready\s*:/.test(body)) return;
 
   if (/^@scope\b/i.test(prelude)) {
-    if (/data-impeccable-variant/.test(prelude) && !selectorHasVariant(prelude, variantNum)) return;
+    if (
+      /data-impeccable-variant/.test(prelude) &&
+      !selectorHasVariant(prelude, variantNum)
+    )
+      return;
     const inner = parseCssRules(body);
     for (const innerRule of inner) {
-      const rewrittenPrelude = rewriteAcceptedSvelteSelector(innerRule.prelude, variantNum, paramValues, rootTag, true);
-      if (!rewrittenPrelude || /--impeccable-variant-ready\s*:/.test(innerRule.body)) continue;
+      const rewrittenPrelude = rewriteAcceptedSvelteSelector(
+        innerRule.prelude,
+        variantNum,
+        paramValues,
+        rootTag,
+        true
+      );
+      if (
+        !rewrittenPrelude ||
+        /--impeccable-variant-ready\s*:/.test(innerRule.body)
+      )
+        continue;
       output.push(formatCssRule(rewrittenPrelude, innerRule.body.trim()));
     }
     return;
   }
 
-  const rewrittenPrelude = rewriteAcceptedSvelteSelector(prelude, variantNum, paramValues, rootTag, false);
+  const rewrittenPrelude = rewriteAcceptedSvelteSelector(
+    prelude,
+    variantNum,
+    paramValues,
+    rootTag,
+    false
+  );
   if (!rewrittenPrelude) return;
   output.push(formatCssRule(rewrittenPrelude, body));
 }
@@ -584,17 +694,35 @@ function parseCssRules(css) {
   return rules;
 }
 
-function rewriteAcceptedSvelteSelector(prelude, variantNum, paramValues, rootTag, fromScope) {
+function rewriteAcceptedSvelteSelector(
+  prelude,
+  variantNum,
+  paramValues,
+  rootTag,
+  fromScope
+) {
   const selectors = splitSelectorList(prelude);
   const rewritten = [];
   for (const selector of selectors) {
-    const next = rewriteAcceptedSvelteSelectorPart(selector, variantNum, paramValues, rootTag, fromScope);
+    const next = rewriteAcceptedSvelteSelectorPart(
+      selector,
+      variantNum,
+      paramValues,
+      rootTag,
+      fromScope
+    );
     if (next) rewritten.push(next);
   }
   return rewritten.join(', ');
 }
 
-function rewriteAcceptedSvelteSelectorPart(selector, variantNum, paramValues, rootTag, fromScope) {
+function rewriteAcceptedSvelteSelectorPart(
+  selector,
+  variantNum,
+  paramValues,
+  rootTag,
+  fromScope
+) {
   let out = selector.trim();
   const hasVariant = /data-impeccable-variant/.test(out);
   if (hasVariant && !selectorHasVariant(out, variantNum)) return '';
@@ -620,29 +748,45 @@ function rewriteAcceptedSvelteSelectorPart(selector, variantNum, paramValues, ro
 
 function rewriteParamSelectors(selector, paramValues) {
   let keep = true;
-  const next = selector.replace(/\[data-p-([A-Za-z0-9_-]+)(?:=(["'])(.*?)\2)?\]/g, (_match, key, _quote, expected) => {
-    if (!paramValues || !Object.prototype.hasOwnProperty.call(paramValues, key)) return '';
-    const actual = paramValues[key];
-    if (expected != null && String(actual) !== String(expected)) {
-      keep = false;
+  const next = selector.replace(
+    /\[data-p-([A-Za-z0-9_-]+)(?:=(["'])(.*?)\2)?\]/g,
+    (_match, key, _quote, expected) => {
+      if (
+        !paramValues ||
+        !Object.prototype.hasOwnProperty.call(paramValues, key)
+      )
+        return '';
+      const actual = paramValues[key];
+      if (expected != null && String(actual) !== String(expected)) {
+        keep = false;
+        return '';
+      }
+      if (
+        expected == null &&
+        (actual === false ||
+          actual == null ||
+          actual === 'false' ||
+          actual === 'off' ||
+          actual === '0')
+      ) {
+        keep = false;
+        return '';
+      }
       return '';
     }
-    if (expected == null && (actual === false || actual == null || actual === 'false' || actual === 'off' || actual === '0')) {
-      keep = false;
-      return '';
-    }
-    return '';
-  });
+  );
   return { keep, selector: next };
 }
-
 
 function selectorHasVariant(selector, variantNum) {
   return variantSelectorRegex(variantNum).test(selector);
 }
 
 function variantSelectorRegex(variantNum) {
-  return new RegExp(`\\[data-impeccable-variant=(["'])${escapeRegExp(String(variantNum))}\\1\\]`, 'g');
+  return new RegExp(
+    `\\[data-impeccable-variant=(["'])${escapeRegExp(String(variantNum))}\\1\\]`,
+    'g'
+  );
 }
 
 function formatCssRule(selector, body) {
@@ -653,9 +797,18 @@ function escapeRegExp(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-export function inlineSvelteComponentAccept(manifest, variantNum, paramValues = null, cwd = process.cwd()) {
+export function inlineSvelteComponentAccept(
+  manifest,
+  variantNum,
+  paramValues = null,
+  cwd = process.cwd()
+) {
   const sourceFile = resolveSourceFile(manifest.sourceFile, cwd);
-  const variantPath = path.join(cwd, manifest.componentDir, `v${variantNum}.svelte`);
+  const variantPath = path.join(
+    cwd,
+    manifest.componentDir,
+    `v${variantNum}.svelte`
+  );
   const resultBase = {
     file: manifest.sourceFile,
     sourceFile: manifest.sourceFile,
@@ -664,10 +817,16 @@ export function inlineSvelteComponentAccept(manifest, variantNum, paramValues = 
     carbonize: false,
   };
   if (!fs.existsSync(variantPath)) {
-    return { handled: false, error: `Variant ${variantNum} not found`, ...resultBase };
+    return {
+      handled: false,
+      error: `Variant ${variantNum} not found`,
+      ...resultBase,
+    };
   }
 
-  const { markup, cssLines } = parseSvelteComponentFile(fs.readFileSync(variantPath, 'utf-8'));
+  const { markup, cssLines } = parseSvelteComponentFile(
+    fs.readFileSync(variantPath, 'utf-8')
+  );
   if (manifest.mode === 'insert') {
     return inlineSvelteComponentInsertAccept({
       manifest,
@@ -684,7 +843,10 @@ export function inlineSvelteComponentAccept(manifest, variantNum, paramValues = 
   const rootTag = matchOpeningTag(markup)?.tag || 'div';
   const contract = manifest.propContract || [];
   const compiler = loadSvelteCompiler(cwd);
-  const mergedMarkup = mergeOriginalTopLevelAttrs(markup, manifest.originalMarkup || '');
+  const mergedMarkup = mergeOriginalTopLevelAttrs(
+    markup,
+    manifest.originalMarkup || ''
+  );
 
   // Restore props back to route expressions. Contract v2 restores through the
   // AST so a prop used without braces (each headers, attribute positions)
@@ -692,22 +854,40 @@ export function inlineSvelteComponentAccept(manifest, variantNum, paramValues = 
   // placeholder swap.
   let restoredText;
   if (Number(manifest.contractVersion) === 2 && compiler) {
-    const restored = restoreSvelteMarkup(mergedMarkup, contract, compiler.parse);
+    const restored = restoreSvelteMarkup(
+      mergedMarkup,
+      contract,
+      compiler.parse
+    );
     if (!restored.ok) {
-      return { handled: false, error: 'Accepted variant does not parse: ' + restored.reason, ...resultBase };
+      return {
+        handled: false,
+        error: 'Accepted variant does not parse: ' + restored.reason,
+        ...resultBase,
+      };
     }
     restoredText = restored.markup;
   } else {
     restoredText = substitutePropsWithExprs(mergedMarkup, contract);
   }
-  const restoredMarkup = restoredText.split('\n').map((line) => line.trimEnd());
+  const restoredMarkup = restoredText.split('\n').map(line => line.trimEnd());
 
   const sourceContent = fs.readFileSync(sourceFile, 'utf-8');
   const sourceLines = sourceContent.split('\n');
   const start = Number(manifest.sourceStartLine) - 1;
   const end = Number(manifest.sourceEndLine) - 1;
-  if (!Number.isInteger(start) || !Number.isInteger(end) || start < 0 || end < start || end >= sourceLines.length) {
-    return { handled: false, error: 'Invalid source line range for ' + manifest.sourceFile, ...resultBase };
+  if (
+    !Number.isInteger(start) ||
+    !Number.isInteger(end) ||
+    start < 0 ||
+    end < start ||
+    end >= sourceLines.length
+  ) {
+    return {
+      handled: false,
+      error: 'Invalid source line range for ' + manifest.sourceFile,
+      ...resultBase,
+    };
   }
 
   const indent = sourceLines[start].match(/^(\s*)/)?.[1] || '';
@@ -721,7 +901,9 @@ export function inlineSvelteComponentAccept(manifest, variantNum, paramValues = 
 
   // Selectors that were already unused before this accept are the user's
   // pre-existing code; the pruning pass must not touch them.
-  const preUnused = compiler ? collectUnusedSelectors(sourceContent, compiler.compile) : new Set();
+  const preUnused = compiler
+    ? collectUnusedSelectors(sourceContent, compiler.compile)
+    : new Set();
 
   // Bake params (declared kinds from params.json drive branch pruning), then
   // MERGE into the component's existing style block: matching selectors are
@@ -732,9 +914,18 @@ export function inlineSvelteComponentAccept(manifest, variantNum, paramValues = 
   if (/data-impeccable-variant|impeccable-variant-ready/.test(variantCss)) {
     // Defensive: strip preview-wrapper selectors that authoring rules forbid
     // on this path but an off-spec agent may still emit.
-    variantCss = sanitizeAcceptedSvelteCss(cssLines, variantNum, paramValues, rootTag).join('\n');
+    variantCss = sanitizeAcceptedSvelteCss(
+      cssLines,
+      variantNum,
+      paramValues,
+      rootTag
+    ).join('\n');
   }
-  const bakedCss = bakeParamValues(variantCss, declaredParams, paramValues || {});
+  const bakedCss = bakeParamValues(
+    variantCss,
+    declaredParams,
+    paramValues || {}
+  );
   const cssStats = { replaced: 0, appended: 0, pruned: [], superseded: [] };
   if (bakedCss.trim()) {
     const merged = mergeCssIntoSvelteSource(newLines.join('\n'), bakedCss);
@@ -756,7 +947,10 @@ export function inlineSvelteComponentAccept(manifest, variantNum, paramValues = 
   // alone, and removing it would strip styling from markup this accept never
   // touched. Keeping it risks a visible re-attachment quirk on the accepted
   // region; deleting it breaks the rest of the route. Keep it.
-  const outsideMarkup = [...sourceLines.slice(0, start), ...sourceLines.slice(end + 1)]
+  const outsideMarkup = [
+    ...sourceLines.slice(0, start),
+    ...sourceLines.slice(end + 1),
+  ]
     .join('\n')
     .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, '');
   const outsideClasses = new Set();
@@ -764,12 +958,13 @@ export function inlineSvelteComponentAccept(manifest, variantNum, paramValues = 
     const attrRe = /class\s*=\s*(["'])(.*?)\1/g;
     let cm;
     while ((cm = attrRe.exec(outsideMarkup))) {
-      for (const cls of cm[2].split(/\s+/)) if (cls && !cls.includes('{')) outsideClasses.add(cls);
+      for (const cls of cm[2].split(/\s+/))
+        if (cls && !cls.includes('{')) outsideClasses.add(cls);
     }
     const directiveRe = /class:([A-Za-z0-9_-]+)/g;
     while ((cm = directiveRe.exec(outsideMarkup))) outsideClasses.add(cm[1]);
   }
-  const usedOutsideReplacedRegion = (selector) => {
+  const usedOutsideReplacedRegion = selector => {
     const classTokenRe = /\.([A-Za-z0-9_-]+)/g;
     let tm;
     while ((tm = classTokenRe.exec(selector))) {
@@ -779,16 +974,26 @@ export function inlineSvelteComponentAccept(manifest, variantNum, paramValues = 
   };
   const incomingSelectors = collectAllSelectors(bakedCss);
   const superseded = (manifest.seededSelectors || [])
-    .map((selector) => normalizeSelector(selector))
-    .filter((selector) => selector && !incomingSelectors.has(selector) && !usedOutsideReplacedRegion(selector));
+    .map(selector => normalizeSelector(selector))
+    .filter(
+      selector =>
+        selector &&
+        !incomingSelectors.has(selector) &&
+        !usedOutsideReplacedRegion(selector)
+    );
   if (superseded.length > 0) {
-    const scrubbed = removeSelectorsFromSvelteSource(finalText, new Set(superseded));
+    const scrubbed = removeSelectorsFromSvelteSource(
+      finalText,
+      new Set(superseded)
+    );
     finalText = scrubbed.text;
     cssStats.superseded = scrubbed.removed;
   }
 
   if (compiler) {
-    const pruned = pruneUnusedSelectors(finalText, compiler.compile, { skipSelectors: preUnused });
+    const pruned = pruneUnusedSelectors(finalText, compiler.compile, {
+      skipSelectors: preUnused,
+    });
     finalText = pruned.source;
     cssStats.pruned = pruned.removed;
   }
@@ -804,9 +1009,10 @@ export function inlineSvelteComponentAccept(manifest, variantNum, paramValues = 
   if (lostSelectors.length > 0) {
     return {
       handled: false,
-      error: 'CSS reconciliation would lose selectors from the existing style block: '
-        + lostSelectors.join(', ')
-        + '. Source not modified; accept the variant manually.',
+      error:
+        'CSS reconciliation would lose selectors from the existing style block: ' +
+        lostSelectors.join(', ') +
+        '. Source not modified; accept the variant manually.',
       mode: 'error',
       ...resultBase,
     };
@@ -815,7 +1021,11 @@ export function inlineSvelteComponentAccept(manifest, variantNum, paramValues = 
   try {
     fs.writeFileSync(sourceFile, finalText, 'utf-8');
   } catch (err) {
-    return { handled: false, error: 'Failed to write Svelte source: ' + err.message, ...resultBase };
+    return {
+      handled: false,
+      error: 'Failed to write Svelte source: ' + err.message,
+      ...resultBase,
+    };
   }
   removeSvelteComponentSession(manifest.id, cwd);
 
@@ -830,10 +1040,12 @@ export function inlineSvelteComponentAccept(manifest, variantNum, paramValues = 
 
 /** Re-indent a block onto `indent` while preserving its internal structure. */
 export function reindentPreservingStructure(lines, indent) {
-  const nonEmpty = lines.filter((line) => line.trim() !== '');
+  const nonEmpty = lines.filter(line => line.trim() !== '');
   if (nonEmpty.length === 0) return lines.map(() => '');
-  const minIndent = Math.min(...nonEmpty.map((line) => (line.match(/^\s*/) || [''])[0].length));
-  return lines.map((line) => {
+  const minIndent = Math.min(
+    ...nonEmpty.map(line => (line.match(/^\s*/) || [''])[0].length)
+  );
+  return lines.map(line => {
     if (line.trim() === '') return '';
     const current = (line.match(/^\s*/) || [''])[0].length;
     return indent + line.slice(Math.min(minIndent, current));
@@ -841,7 +1053,9 @@ export function reindentPreservingStructure(lines, indent) {
 }
 
 function styleBlockText(sourceText) {
-  const match = String(sourceText || '').match(/<style\b[^>]*>([\s\S]*?)<\/style\s*>/i);
+  const match = String(sourceText || '').match(
+    /<style\b[^>]*>([\s\S]*?)<\/style\s*>/i
+  );
   return match ? match[1] : '';
 }
 
@@ -859,16 +1073,18 @@ export function removeSelectorsFromSvelteSource(sourceText, selectors) {
   if (!lastMatch) return { text, removed: [] };
 
   const removed = [];
-  const transform = (nodes) => {
+  const transform = nodes => {
     const kept = [];
     for (const node of nodes) {
       if (node.type === 'rule') {
         const survivors = [];
         for (const selector of splitSelectorList(node.prelude)) {
-          if (selectors.has(normalizeSelector(selector))) removed.push(normalizeSelector(selector));
+          if (selectors.has(normalizeSelector(selector)))
+            removed.push(normalizeSelector(selector));
           else survivors.push(selector);
         }
-        if (survivors.length > 0) kept.push({ ...node, prelude: survivors.join(', ') });
+        if (survivors.length > 0)
+          kept.push({ ...node, prelude: survivors.join(', ') });
       } else if (node.type === 'at' && node.children) {
         const children = transform(node.children);
         if (children.length > 0) kept.push({ ...node, children });
@@ -882,17 +1098,29 @@ export function removeSelectorsFromSvelteSource(sourceText, selectors) {
   const nodes = transform(parseStylesheet(lastMatch[1]));
   if (removed.length === 0) return { text, removed };
   const openTag = lastMatch[0].slice(0, lastMatch[0].indexOf('>') + 1);
-  const rebuilt = `${openTag}\n${serializeNodes(nodes).split('\n').map((l) => (l.trim() ? '  ' + l : '')).join('\n')}\n</style>`;
+  const rebuilt = `${openTag}\n${serializeNodes(nodes)
+    .split('\n')
+    .map(l => (l.trim() ? '  ' + l : ''))
+    .join('\n')}\n</style>`;
   return {
-    text: text.slice(0, lastMatch.index) + rebuilt + text.slice(lastMatch.index + lastMatch[0].length),
+    text:
+      text.slice(0, lastMatch.index) +
+      rebuilt +
+      text.slice(lastMatch.index + lastMatch[0].length),
     removed,
   };
 }
 
-export function findLostSelectors(beforeSource, afterSource, prunedSelectors = []) {
+export function findLostSelectors(
+  beforeSource,
+  afterSource,
+  prunedSelectors = []
+) {
   const before = collectAllSelectors(styleBlockText(beforeSource));
   const after = collectAllSelectors(styleBlockText(afterSource));
-  const pruned = new Set((prunedSelectors || []).map((s) => normalizeSelector(s)));
+  const pruned = new Set(
+    (prunedSelectors || []).map(s => normalizeSelector(s))
+  );
   const lost = [];
   for (const selector of before) {
     if (!after.has(selector) && !pruned.has(selector)) lost.push(selector);
@@ -902,7 +1130,12 @@ export function findLostSelectors(beforeSource, afterSource, prunedSelectors = [
 
 function readDeclaredParams(manifest, variantNum, cwd) {
   try {
-    const raw = JSON.parse(fs.readFileSync(path.join(cwd, manifest.componentDir, 'params.json'), 'utf-8'));
+    const raw = JSON.parse(
+      fs.readFileSync(
+        path.join(cwd, manifest.componentDir, 'params.json'),
+        'utf-8'
+      )
+    );
     const list = raw?.[String(variantNum)];
     return Array.isArray(list) ? list : [];
   } catch {
@@ -935,7 +1168,10 @@ export function mergeCssIntoSvelteSource(sourceText, incomingCss) {
   const openTag = lastMatch[0].slice(0, lastMatch[0].indexOf('>') + 1);
   const replacedBlock = `${openTag}\n${indentCssBlock(css)}\n</style>`;
   return {
-    text: text.slice(0, lastMatch.index) + replacedBlock + text.slice(lastMatch.index + lastMatch[0].length),
+    text:
+      text.slice(0, lastMatch.index) +
+      replacedBlock +
+      text.slice(lastMatch.index + lastMatch[0].length),
     replaced,
     appended,
   };
@@ -944,7 +1180,7 @@ export function mergeCssIntoSvelteSource(sourceText, incomingCss) {
 function indentCssBlock(css) {
   return String(css || '')
     .split('\n')
-    .map((line) => (line.trim() === '' ? '' : '  ' + line))
+    .map(line => (line.trim() === '' ? '' : '  ' + line))
     .join('\n');
 }
 
@@ -959,24 +1195,42 @@ function inlineSvelteComponentInsertAccept({
   cwd,
 }) {
   if (!svelteMarkupHasVisibleContent(markup)) {
-    return { handled: false, error: 'Accepted Svelte insert variant is empty', ...resultBase };
+    return {
+      handled: false,
+      error: 'Accepted Svelte insert variant is empty',
+      ...resultBase,
+    };
   }
   if (/\bdata-impeccable-[\w-]*\s*=/.test(markup)) {
-    return { handled: false, error: 'Accepted Svelte insert variant contains preview-only data-impeccable attributes', ...resultBase };
+    return {
+      handled: false,
+      error:
+        'Accepted Svelte insert variant contains preview-only data-impeccable attributes',
+      ...resultBase,
+    };
   }
 
   const rootTag = matchOpeningTag(markup)?.tag || 'div';
   const restoredMarkup = String(markup || '')
     .split('\n')
-    .map((line) => line.trimEnd());
+    .map(line => line.trimEnd());
   const sourceContent = fs.readFileSync(sourceFile, 'utf-8');
   const sourceLines = sourceContent.split('\n');
   const insertIndex = Number(manifest.insertLine) - 1;
-  if (!Number.isInteger(insertIndex) || insertIndex < 0 || insertIndex > sourceLines.length) {
-    return { handled: false, error: 'Invalid insert line for ' + manifest.sourceFile, ...resultBase };
+  if (
+    !Number.isInteger(insertIndex) ||
+    insertIndex < 0 ||
+    insertIndex > sourceLines.length
+  ) {
+    return {
+      handled: false,
+      error: 'Invalid insert line for ' + manifest.sourceFile,
+      ...resultBase,
+    };
   }
 
-  const nearbyLine = sourceLines[insertIndex] ?? sourceLines[insertIndex - 1] ?? '';
+  const nearbyLine =
+    sourceLines[insertIndex] ?? sourceLines[insertIndex - 1] ?? '';
   const indent = nearbyLine.match(/^(\s*)/)?.[1] || '';
   const indentedMarkup = reindentPreservingStructure(restoredMarkup, indent);
 
@@ -988,10 +1242,19 @@ function inlineSvelteComponentInsertAccept({
 
   let variantCss = cssLines.join('\n');
   if (/data-impeccable-variant|impeccable-variant-ready/.test(variantCss)) {
-    variantCss = sanitizeAcceptedSvelteCss(cssLines, variantNum, paramValues, rootTag).join('\n');
+    variantCss = sanitizeAcceptedSvelteCss(
+      cssLines,
+      variantNum,
+      paramValues,
+      rootTag
+    ).join('\n');
   }
   const declaredParams = readDeclaredParams(manifest, variantNum, cwd);
-  const bakedCss = bakeParamValues(variantCss, declaredParams, paramValues || {});
+  const bakedCss = bakeParamValues(
+    variantCss,
+    declaredParams,
+    paramValues || {}
+  );
   if (bakedCss.trim()) {
     const merged = mergeCssIntoSvelteSource(newLines.join('\n'), bakedCss);
     newLines = merged.text.split('\n');
@@ -1000,7 +1263,11 @@ function inlineSvelteComponentInsertAccept({
   try {
     fs.writeFileSync(sourceFile, newLines.join('\n'), 'utf-8');
   } catch (err) {
-    return { handled: false, error: 'Failed to write Svelte source: ' + err.message, ...resultBase };
+    return {
+      handled: false,
+      error: 'Failed to write Svelte source: ' + err.message,
+      ...resultBase,
+    };
   }
   removeSvelteComponentSession(manifest.id, cwd);
 
@@ -1021,14 +1288,17 @@ function svelteMarkupHasVisibleContent(markup) {
     .replace(/\s+/g, ' ')
     .trim();
   if (text.length > 0) return true;
-  return /<(img|svg|canvas|video|audio|picture|input|button|select|textarea)\b/i.test(markup || '');
+  return /<(img|svg|canvas|video|audio|picture|input|button|select|textarea)\b/i.test(
+    markup || ''
+  );
 }
 
 function mergeOriginalTopLevelAttrs(markup, originalMarkup) {
   const variantOpen = matchOpeningTag(markup);
   const originalOpen = matchOpeningTag(originalMarkup);
   if (!variantOpen || !originalOpen) return markup;
-  if (variantOpen.tag.toLowerCase() !== originalOpen.tag.toLowerCase()) return markup;
+  if (variantOpen.tag.toLowerCase() !== originalOpen.tag.toLowerCase())
+    return markup;
 
   const variantAttrs = parseAttrSegments(variantOpen.attrs);
   const originalAttrs = parseAttrSegments(originalOpen.attrs);
@@ -1040,7 +1310,10 @@ function mergeOriginalTopLevelAttrs(markup, originalMarkup) {
   if (originalClass && variantClass) {
     const merged = mergeStaticClassAttr(originalClass, variantClass);
     if (merged) {
-      attrs = attrs.slice(0, variantClass.start) + merged + attrs.slice(variantClass.end);
+      attrs =
+        attrs.slice(0, variantClass.start) +
+        merged +
+        attrs.slice(variantClass.end);
       variantAttrs.set('class', { ...variantClass, raw: merged });
     }
   } else if (originalClass && !variantClass) {
@@ -1053,16 +1326,23 @@ function mergeOriginalTopLevelAttrs(markup, originalMarkup) {
   }
 
   if (additions.length === 0 && attrs === variantOpen.attrs) return markup;
-  const nextOpen = variantOpen.prefix
-    + variantOpen.tag
-    + attrs
-    + additions.map((attr) => ' ' + attr.trim()).join('')
-    + variantOpen.close;
-  return markup.slice(0, variantOpen.index) + nextOpen + markup.slice(variantOpen.index + variantOpen.raw.length);
+  const nextOpen =
+    variantOpen.prefix +
+    variantOpen.tag +
+    attrs +
+    additions.map(attr => ' ' + attr.trim()).join('') +
+    variantOpen.close;
+  return (
+    markup.slice(0, variantOpen.index) +
+    nextOpen +
+    markup.slice(variantOpen.index + variantOpen.raw.length)
+  );
 }
 
 function matchOpeningTag(markup) {
-  const match = String(markup || '').match(/^(\s*<)([A-Za-z][\w:-]*)([^>]*?)(\/?>)/);
+  const match = String(markup || '').match(
+    /^(\s*<)([A-Za-z][\w:-]*)([^>]*?)(\/?>)/
+  );
   if (!match) return null;
   return {
     raw: match[0],
@@ -1076,7 +1356,8 @@ function matchOpeningTag(markup) {
 
 function parseAttrSegments(attrs) {
   const out = new Map();
-  const re = /([A-Za-z_:][\w:.-]*)(?:\s*=\s*(?:"[^"]*"|'[^']*'|\{[^}]*\}|[^\s"'>=]+))?/g;
+  const re =
+    /([A-Za-z_:][\w:.-]*)(?:\s*=\s*(?:"[^"]*"|'[^']*'|\{[^}]*\}|[^\s"'>=]+))?/g;
   let match;
   while ((match = re.exec(attrs))) {
     const raw = match[0];
@@ -1107,7 +1388,9 @@ export function removeSvelteComponentSession(id, cwd = process.cwd()) {
   const dir = componentSessionDir(id, cwd);
   try {
     fs.rmSync(dir, { recursive: true, force: true });
-  } catch { /* non-fatal */ }
+  } catch {
+    /* non-fatal */
+  }
 }
 
 /**
@@ -1138,25 +1421,35 @@ export function removeSvelteComponentSession(id, cwd = process.cwd()) {
  */
 export function compileCheckVariants(id, cwd = process.cwd()) {
   const manifest = findSvelteComponentManifest(id, cwd);
-  if (!manifest || !manifest.manifestPath) return { ok: true, failures: [], checked: 0 };
+  if (!manifest || !manifest.manifestPath)
+    return { ok: true, failures: [], checked: 0 };
   const compiler = loadSvelteCompiler(cwd);
-  if (!compiler || typeof compiler.compile !== 'function') return { ok: true, failures: [], checked: 0 };
+  if (!compiler || typeof compiler.compile !== 'function')
+    return { ok: true, failures: [], checked: 0 };
   const sessionDir = path.dirname(manifest.manifestPath);
   const failures = [];
   let checked = 0;
   let entries = [];
-  try { entries = fs.readdirSync(sessionDir); } catch { return { ok: true, failures: [], checked: 0 }; }
+  try {
+    entries = fs.readdirSync(sessionDir);
+  } catch {
+    return { ok: true, failures: [], checked: 0 };
+  }
   for (const name of entries) {
     if (!/^v\d+\.svelte$/.test(name)) continue;
     checked++;
     try {
-      compiler.compile(fs.readFileSync(path.join(sessionDir, name), 'utf-8'), { generate: false });
+      compiler.compile(fs.readFileSync(path.join(sessionDir, name), 'utf-8'), {
+        generate: false,
+      });
     } catch (err) {
       failures.push({
         file: `${manifest.componentDir}/${name}`,
         line: err?.start?.line ?? null,
         column: err?.start?.column ?? null,
-        message: String(err?.message || err).split('\n')[0].slice(0, 300),
+        message: String(err?.message || err)
+          .split('\n')[0]
+          .slice(0, 300),
       });
     }
   }
@@ -1179,19 +1472,40 @@ export function bumpSvelteComponentPreviewRevision(id, cwd = process.cwd()) {
   try {
     fs.mkdirSync(revDir, { recursive: true });
     let entries = [];
-    try { entries = fs.readdirSync(sessionDir, { withFileTypes: true }); } catch { /* empty */ }
+    try {
+      entries = fs.readdirSync(sessionDir, { withFileTypes: true });
+    } catch {
+      /* empty */
+    }
     for (const entry of entries) {
       if (!entry.isFile()) continue;
       if (entry.name === 'manifest.json') continue;
-      fs.copyFileSync(path.join(sessionDir, entry.name), path.join(revDir, entry.name));
+      fs.copyFileSync(
+        path.join(sessionDir, entry.name),
+        path.join(revDir, entry.name)
+      );
     }
     // Previous revision dirs are dead the moment a new one exists.
     for (const entry of entries) {
-      if (entry.isDirectory() && /^r\d+$/.test(entry.name) && entry.name !== revDirName) {
-        try { fs.rmSync(path.join(sessionDir, entry.name), { recursive: true, force: true }); } catch { /* non-fatal */ }
+      if (
+        entry.isDirectory() &&
+        /^r\d+$/.test(entry.name) &&
+        entry.name !== revDirName
+      ) {
+        try {
+          fs.rmSync(path.join(sessionDir, entry.name), {
+            recursive: true,
+            force: true,
+          });
+        } catch {
+          /* non-fatal */
+        }
       }
     }
-    const relSessionDir = path.relative(cwd, sessionDir).split(path.sep).join('/');
+    const relSessionDir = path
+      .relative(cwd, sessionDir)
+      .split(path.sep)
+      .join('/');
     const updated = {
       ...manifest,
       revision,
@@ -1199,7 +1513,11 @@ export function bumpSvelteComponentPreviewRevision(id, cwd = process.cwd()) {
       revisionDirAbs: revDir.split(path.sep).join('/'),
     };
     delete updated.manifestPath;
-    fs.writeFileSync(manifest.manifestPath, JSON.stringify(updated, null, 2) + '\n', 'utf-8');
+    fs.writeFileSync(
+      manifest.manifestPath,
+      JSON.stringify(updated, null, 2) + '\n',
+      'utf-8'
+    );
     return { revision, revisionDir: updated.revisionDir };
   } catch {
     return null;
@@ -1220,7 +1538,9 @@ export function removeAllSvelteComponentSessions(cwd = process.cwd()) {
     if (!fs.existsSync(root)) continue;
     try {
       fs.rmSync(root, { recursive: true, force: true });
-    } catch { /* non-fatal */ }
+    } catch {
+      /* non-fatal */
+    }
   }
 }
 
@@ -1233,7 +1553,10 @@ export function removeAllSvelteComponentSessions(cwd = process.cwd()) {
  * @param {Iterable<string>} activeIds session ids that must be preserved
  * @returns {{ removed: string[], removedRoot: boolean, kept: string[] }}
  */
-export function sweepInactiveSvelteComponentSessions(activeIds = [], cwd = process.cwd()) {
+export function sweepInactiveSvelteComponentSessions(
+  activeIds = [],
+  cwd = process.cwd()
+) {
   const result = { removed: [], removedRoot: false, kept: [] };
   const active = new Set();
   for (const id of activeIds || []) {
@@ -1261,7 +1584,10 @@ export function sweepInactiveSvelteComponentSessions(activeIds = [], cwd = proce
         continue;
       }
       try {
-        fs.rmSync(path.join(root, entry.name), { recursive: true, force: true });
+        fs.rmSync(path.join(root, entry.name), {
+          recursive: true,
+          force: true,
+        });
         result.removed.push(entry.name);
       } catch {
         // Could not remove it, so it still occupies the tree; treat it as kept
@@ -1275,15 +1601,25 @@ export function sweepInactiveSvelteComponentSessions(activeIds = [], cwd = proce
       try {
         fs.rmSync(root, { recursive: true, force: true });
         result.removedRoot = true;
-      } catch { /* non-fatal */ }
+      } catch {
+        /* non-fatal */
+      }
     }
   }
   return result;
 }
 
 export function deferredAcceptsPath(cwd = process.cwd()) {
-  const key = createHash('sha1').update(path.resolve(cwd)).digest('hex').slice(0, 16);
-  return path.join(os.tmpdir(), 'impeccable-live', key, 'deferred-svelte-component-accepts.json');
+  const key = createHash('sha1')
+    .update(path.resolve(cwd))
+    .digest('hex')
+    .slice(0, 16);
+  return path.join(
+    os.tmpdir(),
+    'impeccable-live',
+    key,
+    'deferred-svelte-component-accepts.json'
+  );
 }
 
 export function readDeferredAccepts(cwd = process.cwd()) {
@@ -1299,7 +1635,7 @@ export function writeDeferredAccept(entry, cwd = process.cwd()) {
   const file = deferredAcceptsPath(cwd);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   const data = readDeferredAccepts(cwd);
-  data.accepts = (data.accepts || []).filter((item) => item.id !== entry.id);
+  data.accepts = (data.accepts || []).filter(item => item.id !== entry.id);
   data.accepts.push({ ...entry, createdAt: new Date().toISOString() });
   fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n', 'utf-8');
 }
@@ -1322,7 +1658,7 @@ export function applyDeferredSvelteComponentAccepts(cwd = process.cwd()) {
         manifest,
         entry.variantNum,
         entry.paramValues || null,
-        cwd,
+        cwd
       );
       results.push({ id: entry.id, ok: result.handled !== false, result });
       if (result.handled === false) remaining.push(entry);
@@ -1332,11 +1668,21 @@ export function applyDeferredSvelteComponentAccepts(cwd = process.cwd()) {
     }
   }
   if (remaining.length > 0) {
-    fs.writeFileSync(file, JSON.stringify({ accepts: remaining }, null, 2) + '\n', 'utf-8');
+    fs.writeFileSync(
+      file,
+      JSON.stringify({ accepts: remaining }, null, 2) + '\n',
+      'utf-8'
+    );
   } else {
-    try { fs.rmSync(file, { force: true }); } catch {}
+    try {
+      fs.rmSync(file, { force: true });
+    } catch {}
   }
-  return { applied: results.filter((r) => r.ok).length, failed: results.filter((r) => !r.ok).length, results };
+  return {
+    applied: results.filter(r => r.ok).length,
+    failed: results.filter(r => !r.ok).length,
+    results,
+  };
 }
 
 export function buildSvelteComponentCssAuthoring(count) {
@@ -1346,7 +1692,9 @@ export function buildSvelteComponentCssAuthoring(count) {
     styleTag: null,
     strategy: 'component-style-block',
     rulePattern: '.semantic-class { ... }',
-    selectorExamples: variantNumbers.map(() => '.expense-row { padding: 22px; }'),
+    selectorExamples: variantNumbers.map(
+      () => '.expense-row { padding: 22px; }'
+    ),
     requirements: [
       'Write each variant as a real Svelte component file (v1.svelte, v2.svelte, ...).',
       'Keep the prop names from propContract; bind dynamic text with {propName}, not literal snapshot text.',

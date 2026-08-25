@@ -578,7 +578,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
             type='button'
             onClick={() => removePhoto(shot.key)}
             aria-label={t('capture.removePhoto')}
-            className='absolute top-1 right-1 flex size-7 items-center justify-center rounded-full bg-neutral-900/80 text-white shadow-sm [&_svg]:shrink-0'
+            className='absolute top-1 right-1 flex size-7 items-center justify-center rounded-full bg-foreground/80 text-white shadow-sm [&_svg]:shrink-0'
           >
             <XIcon className='size-4' aria-hidden='true' />
           </button>
@@ -681,12 +681,12 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
 
             No role='alert': it is static, so announcing it on every render would
             fight the toxic banner that genuinely needs the assertive channel. */}
-        <div className='flex items-start gap-2 rounded-lg bg-amber-50 px-3 py-2 ring-2 ring-amber-400/60 dark:bg-amber-950/40 dark:ring-amber-500/40'>
+        <div className='flex items-start gap-2 rounded-lg bg-status-warning-background px-3 py-2 ring-2 ring-status-warning-border/60 /40'>
           <AlertTriangle
-            className='mt-0.5 h-4 w-4 shrink-0 text-amber-600 dark:text-amber-400'
+            className='mt-0.5 h-4 w-4 shrink-0 text-status-warning-text'
             aria-hidden='true'
           />
-          <p className='text-xs font-medium text-amber-900 dark:text-amber-100'>
+          <p className='text-xs font-medium text-status-warning-text'>
             {t('disclaimer.neverEat')}
           </p>
         </div>

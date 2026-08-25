@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {
   SCORE_COLOR_RAMP,
-  getScoreTextColorClass,
+  getScoreColor,
   getScoreGradientCss,
 } from '@/lib/scoreColor';
 
@@ -76,21 +76,21 @@ describe('SCORE_COLOR_RAMP', () => {
   });
 });
 
-describe('getScoreTextColorClass', () => {
+describe('getScoreColor', () => {
   it('returns the exact ramp color at each authored stop', () => {
-    expect(getScoreTextColorClass(0.5)).toBe('text-[#ffffcc]');
-    expect(getScoreTextColorClass(6)).toBe('text-[#fa733d]');
-    expect(getScoreTextColorClass(10)).toBe('text-[#800020]');
+    expect(getScoreColor(0.5)).toBe('#ffffcc');
+    expect(getScoreColor(6)).toBe('#fa733d');
+    expect(getScoreColor(10)).toBe('#800020');
   });
 
   it('linearly interpolates between the two nearest stops, matching maplibre', () => {
     // Halfway between the 9 (#a60310) and 10 (#800020) stops.
-    expect(getScoreTextColorClass(9.5)).toBe('text-[rgb(147,2,24)]');
+    expect(getScoreColor(9.5)).toBe('rgb(147, 2, 24)');
   });
 
   it('clamps scores outside the authored 0.5-10 range', () => {
-    expect(getScoreTextColorClass(0)).toBe('text-[#ffffcc]');
-    expect(getScoreTextColorClass(15)).toBe('text-[#800020]');
+    expect(getScoreColor(0)).toBe('#ffffcc');
+    expect(getScoreColor(15)).toBe('#800020');
   });
 });
 

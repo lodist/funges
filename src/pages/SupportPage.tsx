@@ -60,24 +60,24 @@ export default function SupportPage() {
           {/* Header */}
           <div className='text-center'>
             <div className='flex justify-center mb-4'>
-              <div className='p-4 bg-red-50 dark:bg-red-950 rounded-full'>
-                <Heart className='h-12 w-12 text-red-500' />
+              <div className='p-4 bg-destructive/10 rounded-full'>
+                <Heart className='h-12 w-12 text-destructive' />
               </div>
             </div>
-            <h1 className='text-4xl font-bold text-gray-900 dark:text-white mb-4'>
+            <h1 className='text-4xl font-bold text-foreground dark:text-white mb-4'>
               {t('title')}
             </h1>
-            <p className='text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto'>
+            <p className='text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto'>
               {t('subtitle')}
             </p>
-            <p className='text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto mt-4'>
+            <p className='text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto mt-4'>
               {t('description')}
             </p>
           </div>
 
           {/* Why Support Section */}
-          <section className='bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950 dark:to-blue-950 rounded-xl p-8'>
-            <h2 className='text-2xl font-semibold text-gray-900 dark:text-white mb-6 text-center'>
+          <section className='bg-secondary bg-muted rounded-xl p-8'>
+            <h2 className='text-2xl font-semibold text-foreground dark:text-white mb-6 text-center'>
               {t('whySupport.title')}
             </h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
@@ -85,8 +85,8 @@ export default function SupportPage() {
                 t('whySupport.reasons', { returnObjects: true }) as string[]
               ).map((reason: string) => (
                 <div key={reason} className='flex items-start space-x-3'>
-                  <CheckCircle className='h-5 w-5 text-green-500 mt-0.5 flex-shrink-0' />
-                  <p className='text-gray-700 dark:text-gray-300'>{reason}</p>
+                  <CheckCircle className='h-5 w-5 text-primary-text mt-0.5 flex-shrink-0' />
+                  <p className='text-foreground'>{reason}</p>
                 </div>
               ))}
             </div>
@@ -94,7 +94,7 @@ export default function SupportPage() {
 
           {/* Platform Support Methods */}
           <section>
-            <h2 className='text-2xl font-semibold text-gray-900 dark:text-white mb-6 text-center'>
+            <h2 className='text-2xl font-semibold text-foreground dark:text-white mb-6 text-center'>
               {t('platformSupport')}
             </h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
@@ -121,12 +121,12 @@ export default function SupportPage() {
                         }
                       )}
                     </div>
-                    <ExternalLink className='h-5 w-5 text-gray-400' />
+                    <ExternalLink className='h-5 w-5 text-muted-foreground' />
                   </div>
-                  <h3 className='font-semibold text-lg text-gray-900 dark:text-white mb-2'>
+                  <h3 className='font-semibold text-lg text-foreground dark:text-white mb-2'>
                     {method.name}
                   </h3>
-                  <p className='text-gray-600 dark:text-gray-300 text-sm'>
+                  <p className='text-muted-foreground text-sm'>
                     {method.description}
                   </p>
                 </Card>
@@ -136,7 +136,7 @@ export default function SupportPage() {
 
           {/* Crypto Donations */}
           <section>
-            <h2 className='text-2xl font-semibold text-gray-900 dark:text-white mb-6 text-center'>
+            <h2 className='text-2xl font-semibold text-foreground dark:text-white mb-6 text-center'>
               {t('donate')}
             </h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
@@ -161,19 +161,19 @@ export default function SupportPage() {
                     </div>
                     <Badge variant='secondary'>{method.id.toUpperCase()}</Badge>
                   </div>
-                  <h3 className='font-semibold text-lg text-gray-900 dark:text-white mb-2'>
+                  <h3 className='font-semibold text-lg text-foreground dark:text-white mb-2'>
                     {method.name}
                   </h3>
-                  <p className='text-gray-600 dark:text-gray-300 text-sm mb-4'>
+                  <p className='text-muted-foreground text-sm mb-4'>
                     {method.description}
                   </p>
                   {method.address && (
                     <div className='space-y-3'>
-                      <div className='bg-gray-50 dark:bg-gray-800 rounded-lg p-3'>
-                        <p className='text-xs text-gray-500 dark:text-gray-400 mb-1'>
+                      <div className='bg-muted rounded-lg p-3'>
+                        <p className='text-xs text-muted-foreground mb-1'>
                           {t('address')}
                         </p>
-                        <p className='text-sm font-mono text-gray-900 dark:text-white break-all'>
+                        <p className='text-sm font-mono text-foreground dark:text-white break-all'>
                           {method.address}
                         </p>
                       </div>
@@ -213,17 +213,17 @@ export default function SupportPage() {
           </section>
 
           {/* Contact Section */}
-          <section className='bg-gray-50 dark:bg-gray-800 rounded-xl p-8'>
-            <h2 className='text-2xl font-semibold text-gray-900 dark:text-white mb-4 text-center'>
+          <section className='bg-muted rounded-xl p-8'>
+            <h2 className='text-2xl font-semibold text-foreground dark:text-white mb-4 text-center'>
               {t('contact.title')}
             </h2>
-            <p className='text-gray-600 dark:text-gray-300 text-center mb-4'>
+            <p className='text-muted-foreground text-center mb-4'>
               {t('contact.description')}
             </p>
             <div className='text-center'>
               <a
                 href={`mailto:${t('contact.email')}`}
-                className='inline-flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:underline'
+                className='inline-flex items-center space-x-2 text-primary-text hover:underline'
               >
                 <span>{t('contact.email')}</span>
                 <ExternalLink className='h-4 w-4' />
@@ -232,15 +232,15 @@ export default function SupportPage() {
           </section>
 
           {/* Contributor Credit */}
-          <p className='text-center text-sm text-gray-500 dark:text-gray-400 pt-4'>
+          <p className='text-center text-sm text-muted-foreground pt-4'>
             {t('credits')}
           </p>
 
           {/* Thank You Message */}
           <div className='text-center py-8'>
-            <div className='inline-flex items-center space-x-2 bg-green-50 dark:bg-green-950 px-6 py-4 rounded-full'>
-              <Heart className='h-5 w-5 text-green-500' />
-              <span className='text-green-700 dark:text-green-300 font-medium'>
+            <div className='inline-flex items-center space-x-2 bg-secondary px-6 py-4 rounded-full'>
+              <Heart className='h-5 w-5 text-primary-text' />
+              <span className='text-primary-text font-medium'>
                 {t('thankYou')}
               </span>
             </div>
