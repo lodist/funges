@@ -1,5 +1,6 @@
 """SQLAlchemy Core table definitions."""
 
+from geoalchemy2 import Geometry
 from sqlalchemy import (
     Boolean,
     CheckConstraint,
@@ -53,4 +54,33 @@ zone_season_curves = Table(
     Column("ratio", Float),
     CheckConstraint("month BETWEEN 1 AND 12", name="ck_zone_curve_month"),
     UniqueConstraint("climate_zone", "species_id", "month", name="uq_zone_species_month"),
+)
+
+boundaries = Table(
+    "boundaries",
+    metadata,
+    Column("region_id", String(16), primary_key=True),
+    Column("geometry", Geometry("GEOMETRY", srid=4326, spatial_index=False), nullable=False),
+)
+
+coordinates = Table(
+    "coordinates",
+    metadata,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("region_id", String(16), ForeignKey("boundaries.region_id", ondelete="CASCADE"), nullable=False),
+    Column("latitude", Float, nullable=False),
+    Column("longitude", Float, nullable=False),
+    Column("geometry", Geometry("POINT", srid=4326, spatial_index=False), nullable=False),
+    UniqueConstraint("region_id", "latitude", "longitude", name="uq_region_coordinate"),
+)
+
+static_geo_attributes = Table(
+    "static_geo_attributes",
+    metadata,
+    Column("coordinate_id", Integer, ForeignKey("coordinates.id", ondelete="CASCADE"), primary_key=True),
+    Column("altitude", Float),
+    Column("dist_m_water", Float),
+    Column("dist_m_sea", Float),
+    Column("climate_zone", String(80)),
+    Column("ph_level", Float),
 )

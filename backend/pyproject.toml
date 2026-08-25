@@ -12,6 +12,7 @@ dependencies = [
   "boto3",
   "fsspec",
   "geopandas",
+  "geoalchemy2",
   "numpy==2.4.4",
   "pandas==2.2.2",
   "pyarrow==17.0.0",
