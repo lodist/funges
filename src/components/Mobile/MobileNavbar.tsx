@@ -51,7 +51,7 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
       // animated element itself rather than an inner wrapper: a backdrop-filter
       // nested inside a transformed ancestor samples the wrong region in Safari.
       className={cn(
-        'fixed bottom-4 left-4 right-4 z-10 rounded-2xl',
+        'fixed bottom-4 left-4 right-4 z-10 rounded-card',
         NAV_SURFACE_CLASS
       )}
       initial={{ y: 0 }}

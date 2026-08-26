@@ -61,7 +61,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
             transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
             // Trailhead (#213): no border, bigger radius + shadow, mirrors
             // the Select/DropdownMenu popover treatment.
-            className='absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] bg-popover rounded-2xl border-0 shadow-[0_4px_20px_rgba(0,0,0,0.16)] overflow-hidden z-30'
+            className='absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] bg-popover rounded-card border-0 shadow-[0_4px_20px_rgba(0,0,0,0.16)] overflow-hidden z-30'
           >
             <p className='px-3 pt-3 pb-1.5 type-micro text-muted-foreground'>
               {t('themes.select')}

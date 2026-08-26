@@ -9,7 +9,7 @@ function Card({ className, ...props }: React.ComponentProps<'div'>) {
       className={cn(
         // Trailhead (#213): photo-first trail card — bigger radius, no
         // border, soft shadow that deepens on hover.
-        'bg-card text-card-foreground flex flex-col rounded-[1.25rem] overflow-hidden border-0 p-0 gap-0 elevation-raised elevation-interactive',
+        'bg-card text-card-foreground flex flex-col rounded-card overflow-hidden border-0 p-0 gap-0 elevation-raised elevation-interactive',
         className
       )}
       {...props}

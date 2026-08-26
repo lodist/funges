@@ -73,7 +73,7 @@ function SheetContent({
           // Trailhead (#213): bottom sheet for mobile actions — rounded
           // top, no border, drag handle below.
           side === 'bottom' &&
-            'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto rounded-t-[1.75rem] border-0 border-t-0 elevation-floating-up pt-3',
+            'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto rounded-t-card border-0 border-t-0 elevation-floating-up pt-3',
           className
         )}
         {...props}
@@ -85,7 +85,7 @@ function SheetContent({
         {/* Trailhead (#213): bare X, no resting background/border — only on
             hover does it pick up a rounded-square happy-green fill,
             matching Dialog. */}
-        <SheetPrimitive.Close className='focus-ring absolute top-4 right-4 rounded-lg size-9 p-0 border-0 bg-transparent text-happy-700 grid place-items-center leading-none opacity-100 transition-colors hover:bg-happy-50 disabled:pointer-events-none'>
+        <SheetPrimitive.Close className='focus-ring absolute top-4 right-4 rounded-full size-9 p-0 border-0 bg-transparent text-happy-700 grid place-items-center leading-none opacity-100 transition-colors hover:bg-happy-50 disabled:pointer-events-none'>
           <XIcon className='size-4' />
           <span className='sr-only'>{t('close')}</span>
         </SheetPrimitive.Close>

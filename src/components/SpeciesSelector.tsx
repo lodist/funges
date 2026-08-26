@@ -54,7 +54,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           // Trailhead (#213): floating map control — no border, soft shadow.
           className={cn(
             'flex items-center border-0 bg-card/95 backdrop-blur-sm hover:bg-happy-50/95 transition-all duration-[var(--duration-base)] shadow-[0_2px_10px_rgba(0,0,0,0.18)]',
-            'h-16 px-2 py-2 rounded-2xl',
+            'h-16 px-2 py-2 rounded-card',
             isOpen && 'bg-happy-50/95'
           )}
           layoutId='species-selector-button'

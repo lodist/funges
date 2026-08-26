@@ -264,19 +264,28 @@ export const WithHTML: Story = {
 
 // Radius scale
 export const RadiusScale: Story = {
+  name: 'Radius is not a knob',
   render: () => (
-    <div className='flex items-center gap-4'>
-      <Button className='rounded-sm'>{'sm'}</Button>
-      <Button className='rounded-md'>{'md'}</Button>
-      <Button className='rounded-lg'>{'lg'}</Button>
-      <Button className='rounded-xl'>{'xl'}</Button>
+    <div className='flex flex-col gap-4'>
+      <div className='flex items-center gap-4'>
+        <Button size='sm'>{'sm'}</Button>
+        <Button>{'default'}</Button>
+        <Button size='lg'>{'lg'}</Button>
+        <Button variant='secondary'>{'secondary'}</Button>
+        <Button variant='enhanced-outline'>{'enhanced-outline'}</Button>
+      </div>
+      <p className='text-muted-foreground max-w-xl text-sm'>
+        {
+          'Every size, every variant, one shape. The --radius-* scale is for structural surfaces, not for buttons — a button is a pill, decided once in the cva base. This story used to apply rounded-sm/md/lg/xl here, which worked (tailwind-merge lets a className override win) and was exactly the habit that left secondary, enhanced-outline and link shipping as 6px rectangles.'
+        }
+      </p>
     </div>
   ),
   parameters: {
     docs: {
       description: {
         story:
-          'The --radius-* scale from index.css applied to the button corners.',
+          'Radius does not vary by size or variant. See Foundations → Radius and spacing.',
       },
     },
   },

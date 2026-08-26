@@ -65,7 +65,7 @@ export default function FilterModal({
   return (
     <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4'>
       {/* Trailhead (#213): matches Dialog's radius/shadow. */}
-      <div className='bg-background rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.24)] max-w-2xl w-full max-h-[90vh] overflow-y-auto flex flex-col relative'>
+      <div className='bg-background rounded-card shadow-[0_8px_32px_rgba(0,0,0,0.24)] max-w-2xl w-full max-h-[90vh] overflow-y-auto flex flex-col relative'>
         {/* Close Button - Top Right */}
         <Button
           variant='ghost'

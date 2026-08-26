@@ -147,7 +147,7 @@ export default function WorthForagingNowPage() {
         </div>
 
         {isLoading ? (
-          <section className='rounded-3xl border bg-card p-10'>
+          <section className='rounded-card border bg-card p-10'>
             <div className='flex items-center justify-center gap-3 text-muted-foreground'>
               <Loader2 className='h-5 w-5 animate-spin' />
               <span>{t('worthForagingNow.loading')}</span>
@@ -156,13 +156,13 @@ export default function WorthForagingNowPage() {
         ) : null}
 
         {!isLoading && loadError ? (
-          <section className='rounded-3xl border border-destructive/20 bg-destructive/5 p-6 text-sm text-destructive'>
+          <section className='rounded-card border border-destructive/20 bg-destructive/5 p-6 text-sm text-destructive'>
             {loadError}
           </section>
         ) : null}
 
         {!isLoading && !loadError && recommendations.length === 0 ? (
-          <section className='rounded-3xl border bg-card p-6 text-sm text-muted-foreground'>
+          <section className='rounded-card border bg-card p-6 text-sm text-muted-foreground'>
             {t('worthForagingNow.noData')}
           </section>
         ) : null}
@@ -228,7 +228,7 @@ export default function WorthForagingNowPage() {
 
                 {/* Row 4 — best window (+ optional distance) */}
                 <div className='grid gap-3 px-6 pt-5 text-sm text-muted-foreground'>
-                  <div className='flex items-start gap-2 rounded-2xl border border-border bg-muted/40 px-3 py-3'>
+                  <div className='flex items-start gap-2 rounded-card border border-border bg-muted/40 px-3 py-3'>
                     <Calendar className='mt-0.5 h-4 w-4 shrink-0 text-primary' />
                     <div>
                       <p className='font-medium text-foreground'>
@@ -238,7 +238,7 @@ export default function WorthForagingNowPage() {
                     </div>
                   </div>
                   {recommendation.distanceKm !== null ? (
-                    <div className='flex items-start gap-2 rounded-2xl border border-border bg-muted/40 px-3 py-3'>
+                    <div className='flex items-start gap-2 rounded-card border border-border bg-muted/40 px-3 py-3'>
                       <MapPinned className='mt-0.5 h-4 w-4 shrink-0 text-primary' />
                       <div>
                         <p className='font-medium text-foreground'>

@@ -246,7 +246,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                     // Trailhead (#213): no border — selection is a shadow
                     // lift + tint + the corner checkmark badge, not a ring.
                     className={cn(
-                      'group relative bg-card rounded-2xl border-0 transition-all duration-[var(--duration-base)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.14)]',
+                      'group relative bg-card rounded-card border-0 transition-all duration-[var(--duration-base)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.14)]',
                       'p-4 text-center min-h-[140px] flex flex-col items-center justify-center',
                       'hover:scale-105 active:scale-95',
                       disabled
