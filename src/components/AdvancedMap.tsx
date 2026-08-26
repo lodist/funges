@@ -1051,8 +1051,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               <ForecastSlider />
               <MapInfoCard />
             </div>
-            {isRoutePanelOpen && !isRouteAnimating ? (
-              <div className='fixed left-3 right-3 top-20 z-10'>
+            {/* Recedes while the route draws instead of unmounting: the
+                conditional render this replaced tore the card out of the DOM
+                the instant onDrawRoute fired and put it back seconds later
+                with no transition, which reads as the card closing itself. */}
+            {isRoutePanelOpen ? (
+              <div
+                className={`fixed left-3 right-3 top-20 z-10 transition-opacity duration-[var(--duration-base)] ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+              >
                 <RouteToDishPanel
                   className='mx-auto'
                   plans={routeDishResult?.plans ?? []}
@@ -1080,8 +1086,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               <ForecastSlider />
               <MapInfoCard />
             </div>
-            {isRoutePanelOpen && !isRouteAnimating ? (
-              <div className='absolute top-14 right-16 z-10'>
+            {isRoutePanelOpen ? (
+              <div
+                className={`absolute top-14 right-16 z-10 transition-opacity duration-[var(--duration-base)] ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+              >
                 <RouteToDishPanel
                   plans={routeDishResult?.plans ?? []}
                   error={routeDishError}
