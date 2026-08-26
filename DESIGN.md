@@ -1,6 +1,6 @@
 ---
 name: Fung.es
-description: A foraging map PWA whose interface floats over living terrain — warm paper, one living green, glass chrome. Two hue angles only: 150 for colour, 90 for neutrals.
+description: A foraging map PWA whose interface floats over living terrain — warm paper, one living green, glass chrome. Two hue angles: 150 for colour, 90 for neutrals, plus hue 28 for danger and the map ramp for warnings.
 colors:
   chlorophyll-mist: 'oklch(0.97 0.03 150)'
   chlorophyll-tint: 'oklch(0.93 0.06 150)'
@@ -153,13 +153,15 @@ The Trailhead is the moment before you set off: the signpost is green, the groun
 
 The mood is fresh, alive, and tactile. A single spring-green hue does all the signalling, and it is a green with actual chroma in it — `oklch(0.74 0.17 150)`, the color of new growth rather than corporate forest. Everything interactive is a soft-edged pill with a diffuse drop shadow and no border, so surfaces read as pressable objects sitting on warm paper rather than as boxes drawn onto a page. Warm neutrals carry the ground (`#fdfdfc` paper, `#f1efe9` linen, `#f2e8dc` tan): there is no cool grey anywhere in either theme, and the absence is deliberate — cool grey is what makes an outdoor tool feel like an admin panel.
 
-Restraint is enforced in exactly one place and it is the sharpest rule in the system: **two hue angles, and only two.** Hue 150 for everything chromatic, hue 90 for every neutral. No red, not even for destructive actions; no blue for links or info; no separate green for success; no hue-coded categories. Severity is depth on the green scale, never a change of hue. The multi-hue semantic palette — a green for success, a red for danger, a blue for info — is the one thing this system rejects outright, and the rejection is now enforced rather than described: all 22 Tailwind color families are disabled in `@theme`, and `src/test/palette.test.ts` fails the build the moment a third hue angle appears in the theme.
+Restraint is enforced in exactly one place and it is the sharpest rule in the system: **two hue angles for the palette, plus one for danger, plus the map ramp.** Hue 150 for everything chromatic, hue 90 for every neutral, hue 28 for destructive actions. Warning chrome is the third case and it introduces no hue of its own: it borrows literal stops from the map score ramp, so a warning reads in the same colours as the map the visitor is already looking at. No blue for links or info; no separate green for success; no hue-coded categories. Severity is depth on the green scale, never a change of hue. The multi-hue semantic palette — a green for success, a red for danger, a blue for info — is the one thing this system rejects outright, and the rejection is enforced rather than described: all 22 Tailwind color families are disabled in `@theme`, and `src/test/palette.test.ts` fails the build the moment a fourth hue angle appears in the theme.
+
+Danger is the one place hue does the work, and it took a revision to get there (#225). The original rule admitted no red at all and put `--destructive` on the deepest green step — which meant a delete button was the same hue as a confirm button, and nothing but text told the two apart. Red earns its exception here because it is not a generic UI convention in this domain: red is the foraging world's own "do not eat" signal, the fly agaric's warning. Hue 28 keeps it warm enough to belong to the earth palette rather than reading as a borrowed system red, and it is a single angle used by the `--destructive` tokens alone.
 
 The single sanctioned exception is the map's score ramp, the yellow-through-burgundy scale that paints the polygons. It is its own family because a heat scale cannot be a single hue, and safety warnings borrow from it rather than introducing anything new.
 
 **Key Characteristics:**
 
-- Two hue angles total: 150 for all colour, 90 for all neutrals, plus the map ramp.
+- Two hue angles for the palette: 150 for all colour, 90 for all neutrals, plus the map ramp — and hue 28, used by the destructive tokens and nothing else.
 - Warm-neutral ground in both themes; zero cool grey, enforced at build time.
 - Borderless, full-round, shadow-lifted interactive surfaces.
 - Five semantic elevation roles, chosen by meaning rather than by shadow value.
@@ -177,7 +179,8 @@ The map's score ramp is the single sanctioned exception, and safety warnings bor
 - **Spring Chlorophyll Bright** (`--happy-500`, `oklch(0.74 0.17 150)`): the go-signal. Solid fills on primary buttons and default badges, always paired with Chlorophyll Deep text rather than white. Deliberately never a text color on paper — it measures 2.12:1 there.
 - **Spring Chlorophyll Pressed** (`--happy-600`, aliased as `--primary`): the canonical brand value every custom component inherits through `bg-primary` / `text-primary` / `border-primary`. One step down from Bright so pressed states read as settling, not brightening. Not a text color and not the focus ring — at 2.95:1 on paper it misses even the 3:1 non-text floor.
 - **Spring Chlorophyll Readable** (`--happy-700`, `oklch(0.42 0.122 150)`, aliased as `--ring` and `--sidebar-ring`): the only green permitted as text or icon color on light surfaces, at 7.73:1, and the focus-ring color for the same reason.
-- **Spring Chlorophyll Deep** (`--happy-900`, aliased as `--destructive` and `--primary-foreground`): text on bright green fills, and the stand-in for danger. Destroying something is the deepest green in the system, never red — in **both** themes.
+- **Spring Chlorophyll Deep** (`--happy-900`, aliased as `--primary-foreground`): text on bright green fills. It used to double as `--destructive`; see **Fly Agaric** below for why that changed.
+- **Fly Agaric** (`--destructive`, `oklch(0.48 0.19 28)` light / `oklch(0.52 0.18 28)` dark): danger and delete, and the only place hue 28 appears. 7.21:1 against its white label in light, 5.11:1 in dark, and 3.35:1 against the primary green so a delete can never be mistaken for a confirm. Dark mode also carries `--destructive-border` at 4.80:1, because the fill alone reaches only 2.50:1 against Night Canvas.
 - **Spring Chlorophyll Mist / Tint / Soft** (`--happy-50` / `--happy-100` / `--happy-300`): wash states. Mist is ghost-button hover; Tint is the sidebar's hover/active nav background; Soft is available for large low-emphasis fills.
 - **Brand Text** (`--primary-text`): the theme-aware, text-safe brand color — `--happy-700` in light, `oklch(0.72 0.15 150)` in dark. Links, green icons, and both non-warning status tokens resolve here. It exists because `--primary` cannot carry text, and its absence is what sent every link to Tailwind `blue-600`.
 
@@ -216,7 +219,7 @@ Values live in `src/index.css`; `src/lib/categoryColor.ts` is the only way to re
 
 **The Two-Family Rule.** Hue 150 for everything chromatic, hue 90 for everything neutral. The map score ramp is the only other hue family in the product, and safety warnings are its only appearance off the map. A third angle in `src/index.css` fails `src/test/palette.test.ts`.
 
-**The One Hue Rule.** Severity is depth, not hue. `--destructive` is the deepest green in both themes; there is no red anywhere, no blue for info, no separate green for success, and no hue-coded categories.
+**The One Hue Rule.** Severity is depth, not hue — with two exceptions, both narrow. `--destructive` is hue 28, the fly agaric's red, and no other token may use it. Warning chrome borrows literal stops from the map score ramp rather than inventing an amber. Everything else is hue 150 over hue 90: no blue for info, no separate green for success, no hue-coded categories. `src/test/palette.test.ts` enforces all of it, including that a coloured token can't slip in as a hex literal.
 
 **The Text-Safe Step Rule.** Colors split into text-safe and fill-only, and this is a contrast fact rather than a style preference. Text-safe: `--primary-text` / `--happy-700`, Moss Text, Ink, Stone, `--status-warning-text`. Fill-only, held to the 3:1 non-text floor: `--happy-500`, `--happy-600` / `--primary`, `--status-warning`, Lichen. Putting 14px text on `--status-warning` yields 3.91:1 at best — callouts use `--status-warning-background`, where the same text reads 10.21:1.
 
@@ -370,7 +373,7 @@ Three durations and one curve, and everything references them: `--duration-fast:
 
 ### Don't:
 
-- **Don't** introduce a third hue angle. No red for destructive, no blue for links or info, no amber of its own, no hue-coded categories. Chromatic is 150, neutral is 90, and `src/test/palette.test.ts` enforces it.
+- **Don't** introduce a new hue angle. No blue for links or info, no amber of its own, no hue-coded categories. Chromatic is 150, neutral is 90, danger is 28 and only for `--destructive`, warnings borrow ramp stops, and `src/test/palette.test.ts` enforces it — a new hue is caught whether it arrives as `oklch()` or as hex.
 - **Don't** reach for a Tailwind colour utility. `text-gray-700`, `bg-blue-50`, `border-red-500` and the other 20 families emit nothing — if a colour class renders no colour, that is why.
 - **Don't** write an arbitrary `shadow-[…]` on a new component. It bypasses the role system and will not pick up the dark-theme inset highlight.
 - **Don't** treat `--shadow-*` as the elevation scale. It is legacy, materially weaker than what ships, and aliasing to it regresses the live look (ADR 0001).

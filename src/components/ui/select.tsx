@@ -12,7 +12,7 @@ const selectTriggerVariants = cva(
   // `size.default` alone would lose the cascade to a leftover h-9 here.
   // justify-between (was justify-center) left-aligns the value against the
   // right-aligned chevron once a caller opts into w-full.
-  "border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium shadow-[0_1px_6px_rgba(0,0,0,0.06)] transition-[color,box-shadow] outline-none focus-visible:border-happy-500 disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-12 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex",
+  "border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium shadow-[0_1px_6px_rgba(0,0,0,0.06)] transition-[color,box-shadow] focus-ring focus-visible:border-happy-500 disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-12 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex",
   {
     variants: {
       size: {

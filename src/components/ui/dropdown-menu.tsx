@@ -74,9 +74,11 @@ function DropdownMenuItem({
       data-variant={variant}
       className={cn(
         // Trailhead (#213): green-only focus tone, mirrors SelectItem.
-        // data-[variant=destructive] uses the deepest happy-green step too
-        // — no red anywhere, per review.
-        "focus:bg-happy-100 focus:text-happy-900 data-[variant=destructive]:text-happy-900 data-[variant=destructive]:focus:bg-happy-100 data-[variant=destructive]:focus:text-happy-900 data-[variant=destructive]:*:[svg]:!text-happy-900 [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-xl px-4 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        // `variant='destructive'` used the same happy-green as a normal item,
+        // so a Delete row was indistinguishable from an Edit row. It now takes
+        // the danger hue (#225) — --destructive-text rather than --destructive,
+        // because the fill tone is only 2.00:1 as text on the dark popover.
+        "focus:bg-happy-100 focus:text-happy-900 data-[variant=destructive]:text-destructive-text data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive-text data-[variant=destructive]:*:[svg]:!text-destructive-text [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-xl px-4 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

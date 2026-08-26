@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none aria-invalid:border-destructive",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 focus-ring aria-invalid:border-destructive",
   {
     variants: {
       variant: {
@@ -20,10 +20,11 @@ const buttonVariants = cva(
         // hero CTA uses the brighter 500 step on purpose.
         default:
           'rounded-full border-0 font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.18)] bg-happy-500 text-happy-900 hover:bg-[oklch(0.58_0.18_150)] hover:shadow-[0_3px_12px_rgba(0,0,0,0.22)] transition-[background-color,box-shadow]',
-        // Deepest step of the happy-green scale stands in for "destructive"
-        // — no red anywhere, per review. bg-destructive === --happy-900.
+        // Fly-agaric red (#225) — see --destructive in index.css for why red
+        // earns its place in this palette. The hover step is the same hue
+        // pressed darker: 9.85:1 against the white label.
         destructive:
-          'rounded-full border-0 font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.18)] bg-destructive text-white hover:bg-[oklch(0.36_0.10_150)] hover:shadow-[0_3px_12px_rgba(0,0,0,0.22)] transition-[background-color,box-shadow]',
+          'rounded-full border-0 font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.18)] bg-destructive text-white hover:bg-[oklch(0.40_0.17_28)] hover:shadow-[0_3px_12px_rgba(0,0,0,0.22)] transition-[background-color,box-shadow]',
         // The one button that's semantically "outline" (e.g. Share) — the
         // only bordered button in the redesign; hover only ever shifts the
         // fill, never adds/removes an outline. border-primary === happy-600.
@@ -43,10 +44,13 @@ const buttonVariants = cva(
       // variant's call (pill for default/outline/destructive/ghost) — a
       // leftover `rounded-md` here would win over it via tailwind-merge and
       // square off every sm/lg button regardless of variant.
+      // `lg` was h-10 — 40px, *shorter* than default's 44px, so the large
+      // button rendered smaller than the medium one. It now steps up to 48px,
+      // keeping the ramp monotonic: 32 / 44 / 48.
       size: {
         default: 'h-11 px-6 py-2 has-[>svg]:px-4',
         sm: 'h-8 gap-1.5 px-3 has-[>svg]:px-2.5',
-        lg: 'h-10 px-6 has-[>svg]:px-4',
+        lg: 'h-12 px-8 has-[>svg]:px-6',
         icon: 'size-11',
       },
     },
@@ -89,4 +93,6 @@ function Button({
   );
 }
 
-export { Button, buttonVariants };
+// `buttonVariants` stays module-local: nothing imports it, and exporting a
+// non-component alongside Button breaks react-refresh's HMR boundary.
+export { Button };

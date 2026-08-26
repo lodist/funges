@@ -83,6 +83,7 @@
      reach for Tailwind blue-600 instead. This is the token they should use. */
   --color-primary-text: var(--primary-text);
   --color-destructive-border: var(--destructive-border);
+  --color-destructive-text: var(--destructive-text);
 
   /* Species-category identity. The one place hue is allowed to carry meaning
      beyond the brand green and safety amber: five categories cannot be told
@@ -193,11 +194,20 @@
      of the doc's literal "brown9 solid fill" suggestion. */
   --accent: oklch(0.9356 0.0194 90);
   --accent-foreground: oklch(0.4506 0.0552 90);
-  /* Trailhead (#213): no red anywhere, even destructive — deepest step of
-     the happy-green scale stands in for danger/delete, everywhere. */
-  --destructive: var(--happy-900);
+  /* Trailhead (#213) put destructive on the deepest green, so a delete looked
+     like a confirm — the variant read as primary-adjacent and nothing marked
+     the action as dangerous. Revisited (#225): fly-agaric red. Red is the
+     foraging domain's own "do not eat" signal, not a generic UI convention,
+     so it earns its place here; hue 28 keeps it warm enough to sit with the
+     hue-90 earth palette instead of reading as a cold system red.
+     7.21:1 vs its white label, 7.09:1 vs --background, and 3.35:1 against the
+     primary green so the two can never be confused. */
+  --destructive: oklch(0.48 0.19 28);
   --destructive-foreground: oklch(1 0 0); /* #ffffff */
-  --destructive-border: var(--happy-900);
+  --destructive-border: oklch(0.48 0.19 28);
+  /* Destructive as *text* on a light surface — the fill tone already clears
+     4.5:1 here (7.09:1 on --popover), so light mode reuses it. */
+  --destructive-text: oklch(0.48 0.19 28);
   --border: oklch(0.9071 0.01 90);
   --input: oklch(0.9071 0.01 90);
   /* --happy-600 measures 2.95:1 on --background and misses the WCAG 1.4.11
@@ -279,9 +289,11 @@
   --status-warning-border: #fb4646;
 
   /* "Happy green" scale — #213 Trailhead atom redesign, reviewed 2026-08-22.
-     Lighter/more vivid than --primary, and used as the ONLY hue across the
-     redesigned atoms (no red, even for destructive/danger — severity is
-     depth, not hue). Light-mode only: the redesign wasn't reviewed in dark
+     Lighter/more vivid than --primary, and used across the redesigned atoms
+     for everything except danger — severity is depth, not hue, but the
+     destructive tokens moved to hue 28 in #225 because a delete on the green
+     scale was indistinguishable from a confirm. Light-mode only: the redesign
+     wasn't reviewed in dark
      mode, so dark-mode atom classes fall back to the pre-existing tokens
      instead of these. Values from prototypes/atoms-213/palette.ts. */
   --happy-50: oklch(0.97 0.03 150); /* #e8fbeb */
@@ -380,9 +392,9 @@
   --background: oklch(0.2683 0.0279 90); /* Night Canvas */
   --foreground: oklch(0.9423 0.0097 90);
   --card: oklch(0.3327 0.0271 90); /* Night Surface */
-  --card-foreground: oklch(0.9423 0.0097 90);
-  --popover: oklch(0.3327 0.0271 90);
-  --popover-foreground: oklch(0.9423 0.0097 90);
+  --card-foreground: var(--foreground);
+  --popover: var(--card); /* same floating material as a card */
+  --popover-foreground: var(--foreground);
   --primary: oklch(0.6731 0.1624 150); /* Lichen */
   --primary-foreground: oklch(0.2157 0.0453 150);
   /* Text-safe brand green for dark: 6.40:1 on --background, 5.10:1 on --card.
@@ -397,17 +409,22 @@
      3.53:1. Now the dark counterpart of Trail Tan: warm tint, light text,
      9.22:1, and no longer a green where light mode has a warm neutral. */
   --accent: oklch(0.36 0.035 90);
-  --accent-foreground: oklch(0.9423 0.0097 90);
-  /* Was #ef4444. Red in dark mode while light mode forbids it outright was
-     the loudest contradiction in the palette. Destroying something is the
-     deepest usable green here too: 6.64:1 with light text. The fill only
-     reaches 1.91:1 against Night Canvas, so the variant carries
-     --destructive-border to give the component a perceivable boundary. */
-  --destructive: oklch(0.42 0.122 150);
+  --accent-foreground: var(--foreground);
+  /* Fly-agaric red, matching light mode (#225) — the green destructive it
+     replaces made a delete indistinguishable from a confirm. Lifted to L=0.52
+     so it clears its label on Night Canvas: 5.10:1. The fill reaches only
+     2.50:1 against the page, so the variant keeps --destructive-border for a
+     perceivable boundary, as the green one did. */
+  --destructive: oklch(0.52 0.18 28); /* 5.11:1 vs its label */
   --destructive-foreground: oklch(0.9423 0.0097 90);
-  --destructive-border: oklch(0.62 0.165 150); /* 4.54:1 vs --background */
+  --destructive-border: oklch(0.68 0.19 28); /* 4.80:1 vs --background */
+  /* The fill tone is only 2.00:1 as text on --popover, so destructive *text*
+     in dark mode needs its own lighter step: 4.91:1 on --popover. Chroma is
+     capped at 0.15 because 0.17 at this lightness falls outside sRGB and
+     palette.test.ts rejects it. */
+  --destructive-text: oklch(0.74 0.15 28);
   --border: oklch(0.3942 0.0265 90);
-  --input: oklch(0.3942 0.0265 90);
+  --input: var(--border); /* a field's edge is the same line as any other */
   --ring: oklch(0.6731 0.1624 150);
 
   /* Same five steps, lifted for the dark ground. Verified against
@@ -424,18 +441,24 @@
   --chart-4: var(--category-flower);
   --chart-5: var(--category-nut);
 
-  /* Sidebar colors */
-  --sidebar: oklch(0.2683 0.0279 90);
-  --sidebar-foreground: oklch(0.9423 0.0097 90);
-  --sidebar-primary: oklch(0.6731 0.1624 150);
-  --sidebar-primary-foreground: oklch(0.2157 0.0453 150);
+  /* Sidebar colors. The nav shell is the same material as the app shell, so
+     these mirror their core counterparts rather than restating the literals —
+     the way light mode already does it. Retuning a core token now moves the
+     sidebar with it instead of leaving a copy behind. */
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
   /* Same 3.47:1 solid-mid-green-under-light-text defect --accent had. Light
      mode's nav tint is a wash behind unchanged label text; this is its dark
      counterpart at 6.89:1, not a saturated fill. */
-  --sidebar-accent: oklch(0.3942 0.0265 150);
-  --sidebar-accent-foreground: oklch(0.9423 0.0097 90);
-  --sidebar-border: oklch(0.3942 0.0265 90);
-  --sidebar-ring: oklch(0.6731 0.1624 150);
+  --sidebar-accent: var(--secondary);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  /* Not var(--primary): --ring is its own role. The two share a value here but
+     deliberately diverge in light mode, where --primary is 2.95:1 on the
+     background and explicitly not the focus ring. */
+  --sidebar-ring: var(--ring);
 
   /* Safety warnings, dark counterpart. Same ramp identity; the text moves to
      stop 5 (#fbae7e, 4.17:1 on a 22% tint) because stop 10 disappears against

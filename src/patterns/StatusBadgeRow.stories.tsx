@@ -88,7 +88,7 @@ export const StatusLevels: Story = {
     docs: {
       description: {
         story:
-          'Confidence steps down through the variants rather than through a change of colour. That is the palette rule showing through: severity and emphasis are depth, not hue — there is no red badge to reach for.',
+          'Confidence steps down through the variants rather than through a change of colour. That is the palette rule showing through: severity and emphasis are depth, not hue. Hue 28 exists for destructive actions alone, so there is still no red badge to reach for here.',
       },
     },
   },

@@ -92,7 +92,7 @@ const SEMANTIC_PAIRS: Pair[] = [
     name: 'destructive / destructive-foreground',
     surface: '--destructive',
     text: '--destructive-foreground',
-    use: 'Danger and delete. The deepest green step — the palette carries no red.',
+    use: 'Danger and delete. Hue 28, the fly agaric red — no other token may use it. Warning chrome, the only other colour off 150/90, borrows map ramp stops instead.',
   },
 ];
 

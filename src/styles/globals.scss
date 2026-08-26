@@ -205,17 +205,6 @@
     border-radius: var(--radius-sm);
   }
 
-  // Warning component
-  .warning {
-    background: var(--status-warning-background);
-    color: var(--status-warning-text);
-    border-left: 5px solid var(--status-warning-border);
-    border-radius: var(--radius-md);
-    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
-    margin-bottom: calc(var(--spacing) * 5);
-    font-size: 15px;
-  }
-
   // Loading spinner
   .loading-spinner {
     position: fixed;
@@ -387,6 +376,23 @@
 
 // Utility classes
 @layer utilities {
+  // The one keyboard-focus indicator for every interactive primitive.
+  //
+  // `outline` rather than a ring: the `.elevation-*` tokens are box-shadows, so
+  // a box-shadow ring would have to compose with them in every primitive and
+  // loses that fight wherever one forgets. An outline also follows the
+  // element's border-radius and survives an `overflow: hidden` ancestor.
+  //
+  // `--ring` clears WCAG 1.4.11's 3:1 floor against every surface it lands on:
+  // light 7.85:1 on --background and 7.99:1 on --card; dark 5.46:1 on
+  // --background and 3.40:1 on --card, which is the worst case.
+  //
+  // `:focus-visible`, not `:focus` — a pointer press should not paint a ring.
+  .focus-ring:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
   // Fade out animation
   @keyframes fadeOut {
     0% {
@@ -418,9 +424,6 @@
   }
   .bg-overlay {
     background-color: var(--background-overlay);
-  }
-  .bg-overlay-dark {
-    background-color: var(--background-overlay-dark, rgba(0, 0, 0, 0.9));
   }
 
   // Layout utilities

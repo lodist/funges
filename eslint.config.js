@@ -16,7 +16,7 @@ export default tseslint.config(
     ignores: [
       'dist',
       'dev-dist',
-      'src/components/ui',
+      'storybook-static', // build artifact; linting it fails on vendored bundles
       'node_modules',
       'src/prototypes', // throwaway prototype code — see mattpocock-skills:prototype
       '.claude', // local agent worktrees/state, not part of the repo
@@ -99,6 +99,22 @@ export default tseslint.config(
       react: {
         version: 'detect',
       },
+    },
+  },
+  {
+    // The shadcn primitives pair a context provider with the hook that reads
+    // it, so the hook has to be exported from the same module as the
+    // component. Naming the two exports keeps Fast Refresh's warning useful
+    // everywhere else in the directory instead of ignoring the rule wholesale.
+    files: ['src/components/ui/**/*.tsx'],
+    rules: {
+      'react-refresh/only-export-components': [
+        'warn',
+        {
+          allowConstantExport: true,
+          allowExportNames: ['useFormField', 'useSidebar'],
+        },
+      ],
     },
   },
   storybook.configs['flat/recommended']
