@@ -12,7 +12,7 @@ import {
   ShieldCheck,
   Gavel,
   BarChart2,
-} from 'lucide-react';
+} from '@/lib/icons';
 import {
   Sidebar,
   SidebarContent,

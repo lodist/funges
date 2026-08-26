@@ -11,7 +11,7 @@ import {
   Info,
   ShieldCheck,
   Gavel,
-} from 'lucide-react';
+} from '@/lib/icons';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import MapLastUpdated from '@/components/MapLastUpdated';
 

@@ -16,14 +16,7 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar';
 import { withSidebar } from '@/storybook/decorators';
-import {
-  BarChart2,
-  BookOpen,
-  ChefHat,
-  Leaf,
-  Map,
-  Settings,
-} from 'lucide-react';
+import { BarChart2, BookOpen, ChefHat, Leaf, Map, Settings } from '@/lib/icons';
 
 /**
  * Sidebar is documented at a deliberately reduced bar: one composed shell

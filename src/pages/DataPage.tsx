@@ -26,7 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Loader2, Download, MapPin } from 'lucide-react';
+import { Loader2, Download, MapPin } from '@/lib/icons';
 import {
   loadForagingDataset,
   formatZoneLabel,
@@ -958,7 +958,7 @@ export default function DataPage() {
             rel='noreferrer'
             aria-label={`${t('common:common.download', { defaultValue: 'Download' })}: ${regionLabel}`}
           >
-            <Download className='h-3.5 w-3.5' />
+            <Download />
             {t('common:common.download', { defaultValue: 'Download' })}
           </a>
         </Button>

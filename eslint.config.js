@@ -117,5 +117,28 @@ export default tseslint.config(
       ],
     },
   },
+  {
+    // Icons go through src/lib/icons.tsx, which decides decorative-vs-named
+    // once instead of at every call site. Lucide itself sets no ARIA at all, so
+    // importing it directly is how the 109th icon would silently ship with no
+    // accessible name and no aria-hidden.
+    files: ['src/**/*.{ts,tsx}'],
+    ignores: ['src/lib/icons.tsx'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            {
+              name: 'lucide-react',
+              message:
+                "Import icons from '@/lib/icons' — it applies the aria-hidden / role='img' contract.",
+            },
+          ],
+          patterns: ['lucide-react/*'],
+        },
+      ],
+    },
+  },
   storybook.configs['flat/recommended']
 );

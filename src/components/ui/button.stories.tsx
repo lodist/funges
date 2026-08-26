@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { Button } from '@/components/ui/button';
-import { Search, Download, Heart, Settings } from 'lucide-react';
+import { Search, Download, Heart, Settings } from '@/lib/icons';
 
 // One list per axis, used by both the controls and the matrix stories below.
 // Written out rather than derived: `cva` keeps its variant config private, so

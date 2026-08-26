@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Heart, ExternalLink, Copy, QrCode, CheckCircle } from 'lucide-react';
+import { Heart, ExternalLink, Copy, QrCode, CheckCircle } from '@/lib/icons';
 import { useState } from 'react';
 import { useSupportMethods } from '@/data/support';
 import QRCodeModal from '@/components/QRCodeModal';

@@ -9,7 +9,7 @@ import {
   Navigation,
   Palette,
   ScanSearch,
-} from 'lucide-react';
+} from '@/lib/icons';
 import { useUIStore } from '@/store/uiStore';
 
 import {
@@ -95,7 +95,7 @@ export default function OnboardingModal() {
               to='/support'
               className='inline-flex items-center gap-1 font-medium text-primary-text hover:underline'
             >
-              <Heart className='h-3.5 w-3.5 fill-current' />
+              <Heart className='size-4 fill-current' />
               {t('onboarding.supportLink')}
             </Link>
           </div>

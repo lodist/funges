@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
-import { Search, X } from 'lucide-react';
+import { Search, X } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 import { useMapStore } from '@/store/mapStore';
 import { cn } from '@/lib/utils';
@@ -154,9 +154,10 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
           variant='ghost'
           size='sm'
           onClick={onClose}
+          aria-label={t('common:common.close')}
           className='h-10 w-10 p-0 bg-white/20 hover:bg-white/40 text-white border border-white/30 hover:border-white/50 transition-all duration-[var(--duration-base)] flex-shrink-0'
         >
-          <X className='h-5 w-5' />
+          <X className='size-5' />
         </Button>
       </div>
 

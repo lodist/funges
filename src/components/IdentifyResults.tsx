@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
-import { AlertTriangle, ChevronRight, HelpCircle, Skull } from 'lucide-react';
+import { AlertTriangle, ChevronRight, HelpCircle, Skull } from '@/lib/icons';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { SPECIES_DATA } from '@/data/species';

@@ -39,7 +39,9 @@
     "routeStops": "Arrets du trajet",
     "refreshRoute": "Actualiser le trajet",
     "drawRoute": "Tracer le trajet",
-    "recipesButton": "Recettes"
+    "recipesButton": "Recettes",
+    "openInMaps": "Ouvrir dans Google Maps",
+    "clearRoute": "Effacer l'itinéraire"
   },
   "species": {
     "amaranth": "Amarante",

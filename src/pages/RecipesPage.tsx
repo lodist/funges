@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Search, Clock, Users, ChefHat, Filter } from 'lucide-react';
+import { Search, Clock, Users, ChefHat, Filter } from '@/lib/icons';
 import { RecipeModalWrapper } from '@/components';
 import FilterModal from '@/components/FilterModal';
 import { getRecipeImage } from '@/lib/utils';

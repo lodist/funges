@@ -6,7 +6,7 @@ import {
   Database,
   Settings as SettingsIcon,
   BarChart2,
-} from 'lucide-react';
+} from '@/lib/icons';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 import { cn } from '@/lib/utils';

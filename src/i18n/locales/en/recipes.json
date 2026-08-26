@@ -39,7 +39,9 @@
     "routeStops": "Route stops",
     "refreshRoute": "Refresh route",
     "drawRoute": "Draw route",
-    "recipesButton": "Recipes"
+    "recipesButton": "Recipes",
+    "openInMaps": "Open in Google Maps",
+    "clearRoute": "Clear route"
   },
   "species": {
     "amaranth": "Amaranth",

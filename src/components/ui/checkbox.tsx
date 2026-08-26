@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
-import { CheckIcon } from 'lucide-react';
+import { CheckIcon } from '@/lib/icons';
 
 import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
@@ -13,9 +13,9 @@ const checkboxVariants = cva(
   {
     variants: {
       size: {
-        default: 'size-5',
-        sm: 'size-3',
-        lg: 'size-6',
+        default: 'size-5 [&_svg]:size-3',
+        sm: 'size-3 [&_svg]:size-2',
+        lg: 'size-6 [&_svg]:size-4',
       },
     },
     defaultVariants: {
@@ -42,7 +42,7 @@ function Checkbox({
         data-slot='checkbox-indicator'
         className='flex items-center justify-center text-current transition-none'
       >
-        <CheckIcon className='size-3.5' />
+        <CheckIcon />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

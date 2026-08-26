@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 import type { Recipe } from '@/data/recipes';
-import { Clock, Users, AlertTriangle, Info } from 'lucide-react';
+import { Clock, Users, AlertTriangle, Info } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 
 interface RecipeModalProps {
@@ -87,19 +87,19 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
                   </p>
                   {step.tip && (
                     <p className='flex items-start gap-1.5 text-xs text-status-info'>
-                      <Info className='mt-0.5 h-3.5 w-3.5 flex-shrink-0' />
+                      <Info className='mt-0.5 size-3 flex-shrink-0' />
                       {step.tip}
                     </p>
                   )}
                   {step.warning && (
                     <p className='flex items-start gap-1.5 text-xs text-status-warning-text'>
-                      <AlertTriangle className='mt-0.5 h-3.5 w-3.5 flex-shrink-0' />
+                      <AlertTriangle className='mt-0.5 size-3 flex-shrink-0' />
                       {step.warning}
                     </p>
                   )}
                   {step.duration && (
                     <p className='flex items-center gap-1.5 text-xs text-muted-foreground'>
-                      <Clock className='h-3.5 w-3.5' />
+                      <Clock className='size-3' />
                       {step.duration}
                     </p>
                   )}

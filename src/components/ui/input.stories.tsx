@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { Input } from '@/components/ui/input';
-import { Search as SearchIcon, Mail, Lock, User } from 'lucide-react';
+import { Search as SearchIcon, Mail, Lock, User } from '@/lib/icons';
 
 const meta: Meta<typeof Input> = {
   title: 'Atoms/Input',

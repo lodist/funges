@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 import { useMapStore } from '@/store/mapStore';
 import { cn } from '@/lib/utils';

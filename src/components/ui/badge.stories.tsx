@@ -9,7 +9,7 @@ import {
   Star,
   Heart,
   Download,
-} from 'lucide-react';
+} from '@/lib/icons';
 
 // One list, used by both the controls and the matrix story below. `cva` keeps
 // its variant config private at runtime, so there is nothing to read back off

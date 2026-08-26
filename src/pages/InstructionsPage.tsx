@@ -22,7 +22,7 @@ import {
   Users,
   BarChart3,
   Lightbulb,
-} from 'lucide-react';
+} from '@/lib/icons';
 
 export default function InstructionsPage() {
   const { t } = useTranslation('instructions');

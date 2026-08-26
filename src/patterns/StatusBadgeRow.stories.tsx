@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { Badge } from '@/components/ui/badge';
-import { Check, Clock, Info, Leaf, ChefHat } from 'lucide-react';
+import { Check, Clock, Info, Leaf, ChefHat } from '@/lib/icons';
 
 /**
  * Pattern: status and category badge row.

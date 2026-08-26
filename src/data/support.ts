@@ -1,4 +1,4 @@
-import { Bitcoin, Coins, Coffee, Github } from 'lucide-react';
+import { Bitcoin, Coins, Coffee, Github } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 
 export interface SupportMethod {

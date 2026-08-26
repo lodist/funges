@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { MapPin, Navigation, Info, Heart, RefreshCw } from 'lucide-react';
+import { MapPin, Navigation, Info, Heart, RefreshCw } from '@/lib/icons';
 import { Link } from '@tanstack/react-router';
 import { Trans, useTranslation } from 'react-i18next';
 import { useMapStore } from '@/store/mapStore';

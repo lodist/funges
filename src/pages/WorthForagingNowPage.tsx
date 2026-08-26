@@ -27,7 +27,7 @@ import {
   MapPinned,
   ArrowUpRight,
   Calendar,
-} from 'lucide-react';
+} from '@/lib/icons';
 import { useMapStore } from '@/store/mapStore';
 
 export default function WorthForagingNowPage() {

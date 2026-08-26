@@ -12,7 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { Heart, Share, Bookmark, Star, Calendar, MapPin } from 'lucide-react';
+import { Heart, Share, Bookmark, Star, Calendar, MapPin } from '@/lib/icons';
 
 const meta: Meta<typeof Card> = {
   title: 'Atoms/Card',

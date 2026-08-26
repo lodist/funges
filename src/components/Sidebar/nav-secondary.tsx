@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { type LucideIcon } from 'lucide-react';
+import { type LucideIcon } from '@/lib/icons';
 import { Link, useLocation } from '@tanstack/react-router';
 
 import {

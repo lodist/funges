@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AlertTriangle, Camera, ImageIcon, XIcon } from 'lucide-react';
+import { AlertTriangle, Camera, ImageIcon, XIcon } from '@/lib/icons';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import { Button } from '@/components/ui/button';
 import {

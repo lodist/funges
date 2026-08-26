@@ -6,7 +6,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Copy } from 'lucide-react';
+import { Copy } from '@/lib/icons';
 import QRCode from 'qrcode';
 import { useTranslation } from 'react-i18next';
 

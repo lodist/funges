@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
-import { Search, Leaf, Calendar, MapPin, AlertTriangle } from 'lucide-react';
+import { Search, Leaf, Calendar, MapPin, AlertTriangle } from '@/lib/icons';
 import { getSpeciesImage } from '@/lib/utils';
 import { Link } from '@tanstack/react-router';
 import { Route } from '@/routes/species';

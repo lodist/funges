@@ -39,7 +39,9 @@
     "routeStops": "Tappe del percorso",
     "refreshRoute": "Aggiorna percorso",
     "drawRoute": "Disegna percorso",
-    "recipesButton": "Ricette"
+    "recipesButton": "Ricette",
+    "openInMaps": "Apri in Google Maps",
+    "clearRoute": "Cancella percorso"
   },
   "species": {
     "amaranth": "Amaranto",

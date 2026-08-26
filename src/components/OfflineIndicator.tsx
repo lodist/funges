@@ -1,7 +1,7 @@
 import { usePWA } from '@/hooks/use-pwa';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { WifiOff, RefreshCw } from 'lucide-react';
+import { WifiOff, RefreshCw } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 
 export const OfflineIndicator = () => {

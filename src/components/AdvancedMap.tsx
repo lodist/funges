@@ -27,7 +27,7 @@ import {
   Info,
   ScanSearch,
   WifiOff,
-} from 'lucide-react';
+} from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 
 import { categoryColor } from '@/lib/categoryColor';

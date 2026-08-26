@@ -39,7 +39,9 @@
     "routeStops": "Paradas da rota",
     "refreshRoute": "Atualizar rota",
     "drawRoute": "Traçar rota",
-    "recipesButton": "Receitas"
+    "recipesButton": "Receitas",
+    "openInMaps": "Abrir no Google Maps",
+    "clearRoute": "Limpar rota"
   },
   "species": {
     "amaranth": "Amaranto",

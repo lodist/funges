@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Check, Palette } from 'lucide-react';
+import { Check, Palette } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMapStore, MAP_THEMES } from '@/store/mapStore';
