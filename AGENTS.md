@@ -42,17 +42,17 @@ icons at the size the manifest declares, WebP quality ~75.
 
 ## Common Commands
 
-- `npm run dev` / `make dev` – start development server
-- `npm run build` / `make build` – build for production
-- `npm run lint` / `make lint` – run ESLint (with Prettier)
-- `npm run format` / `make format` – run Prettier formatting
-- `npm run test` / `make test` – run Vitest unit tests
-- `npm run storybook` / `make storybook` – start Storybook
+- `npm run dev` / `task dev` – start development server
+- `npm run build` / `task build` – build for production
+- `npm run lint` / `task lint` – run ESLint (with Prettier)
+- `npm run format` / `task format` – run Prettier formatting
+- `npm run test` / `task test` – run Vitest unit tests
+- `npm run storybook` / `task storybook` – start Storybook
 - `npx vitest run --project unit` – unit tests only
 - `npx vitest run --project storybook` – render every story in a browser and
   gate it on axe (needs `npx playwright install chromium` once)
-- `make i18n-check` – validate translation files
-- `make deploy` – deploy to GitHub Pages
+- `task i18n-check` – validate translation files
+- `task deploy` – deploy to GitHub Pages
 
 ## Style and Linting
 
@@ -72,7 +72,7 @@ Before committing code:
 1. Run `npm run lint`.
 2. Run `npm run test`.
 
-`make ci-check` mirrors CI, which runs **both** Vitest projects. The Storybook
+`task ci-check` mirrors CI, which runs **both** Vitest projects. The Storybook
 project is not an extra test suite bolted onto the docs — the stories _are_ the
 design-system documentation and its test at once, so a story that cannot render
 is a failing build, and the a11y addon is configured to fail on axe violations.
