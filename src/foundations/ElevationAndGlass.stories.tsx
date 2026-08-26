@@ -55,33 +55,57 @@ const ThemeMatrix = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
+/**
+ * `glass` is the third column's business: a level marked `glass: false` is one
+ * the rules forbid pairing it with, and `AllSurfaces` renders those cells
+ * struck through so the prohibition is legible without reading the prose.
+ */
 const ELEVATION_LEVELS = [
   {
     name: 'base',
     className: '',
+    glass: false,
     blurb: 'The map canvas. No shadow, no glass — not a discrete surface.',
+  },
+  {
+    name: 'control',
+    className: 'elevation-control',
+    glass: true,
+    blurb: 'A small control you press: Button, Slider thumb, Checkbox, Switch.',
   },
   {
     name: 'raised-subtle',
     className: 'elevation-raised-subtle',
-    blurb: 'Lightweight input chrome: search field, Select trigger.',
+    glass: true,
+    blurb: 'Lightweight input chrome: search field, Select trigger, Textarea.',
   },
   {
     name: 'raised',
     className: 'elevation-raised',
+    glass: true,
     blurb: 'Small static chrome: Card, AppSidebar, MobileNavbar.',
   },
   {
     name: 'floating',
     className: 'elevation-floating',
+    glass: true,
     blurb: 'Dismiss-by-tap-outside overlays: Sheet, Popover, DropdownMenu.',
+  },
+  {
+    name: 'floating-up',
+    className: 'elevation-floating-up',
+    glass: true,
+    blurb: 'Floating, cast upward. Bottom Sheet only — nothing sits below it.',
   },
   {
     name: 'overlay',
     className: 'elevation-overlay',
+    glass: false,
     blurb: 'Blocking Dialogs with a scrim. Always opaque, never glass.',
   },
 ] as const;
+
+const SURFACES = ['bg-card', 'glass-regular', 'glass-clear'] as const;
 
 const Surface = ({
   name,
@@ -115,7 +139,7 @@ export const ElevationLevels: Story = {
     docs: {
       description: {
         story:
-          'The five semantic elevation levels, in both themes. Dark mode leans on a 1px inset highlight for depth, because a black drop shadow is invisible against a dark background.',
+          'The semantic elevation levels, in both themes. Dark mode leans on a 1px inset highlight for depth, because a black drop shadow is invisible against a dark background.',
       },
     },
   },
@@ -190,7 +214,7 @@ export const GlassInteractive: Story = {
     <MapBackdrop>
       <div
         data-testid='glass-interactive'
-        className='glass-regular elevation-interactive rounded-xl px-6 py-4'
+        className='glass-regular elevation-raised elevation-interactive rounded-xl px-6 py-4'
       >
         <p className='font-mono text-sm'>{'elevation-interactive'}</p>
         <p className='text-muted-foreground mt-1 text-xs'>
@@ -233,23 +257,52 @@ export const GlassInteractive: Story = {
 /** The matrix: every level against both glass variants and plain card. */
 export const AllSurfaces: Story = {
   render: () => (
-    <MapBackdrop>
-      <div className='grid grid-cols-1 gap-6 sm:grid-cols-3'>
-        {(['bg-card', 'glass-regular', 'glass-clear'] as const).map(surface => (
-          <div key={surface} className='flex flex-col gap-4'>
-            <p className='font-mono text-xs text-white'>{surface}</p>
-            {ELEVATION_LEVELS.map(level => (
-              <div
-                key={level.name}
-                className={`rounded-xl px-4 py-3 ${surface} ${level.className}`}
-              >
-                <p className='font-mono text-xs'>{level.name}</p>
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    </MapBackdrop>
+    <ThemeMatrix>
+      <MapBackdrop>
+        {/*
+          One row-major grid rather than three independent columns: a cell that
+          grows — the disallowed ones carry a second line, and a long label
+          wraps at narrow widths — then stretches its whole row instead of
+          pushing one column out of step. A comparison matrix whose rows do not
+          line up compares nothing.
+        */}
+        <div className='grid grid-cols-3 items-stretch gap-x-4 gap-y-3'>
+          {SURFACES.map(surface => (
+            <p key={surface} className='font-mono text-xs text-white'>
+              {surface}
+            </p>
+          ))}
+          {ELEVATION_LEVELS.map(level =>
+            SURFACES.map(surface => {
+              // The rules disallow glass on `base` and on `overlay`. Those
+              // cells still render — recognising the wrong pairing is the
+              // point — but they are dimmed and struck through so nobody
+              // reads the grid as a menu of sanctioned options.
+              const disallowed = surface !== 'bg-card' && !level.glass;
+              return (
+                <div
+                  key={`${level.name}-${surface}`}
+                  className={`rounded-xl px-4 py-3 ${surface} ${level.className} ${
+                    disallowed ? 'opacity-50' : ''
+                  }`}
+                >
+                  <p
+                    className={`font-mono text-xs ${disallowed ? 'line-through' : ''}`}
+                  >
+                    {level.name}
+                  </p>
+                  {disallowed && (
+                    <p className='mt-0.5 font-mono text-xs tracking-wide uppercase'>
+                      {'not allowed'}
+                    </p>
+                  )}
+                </div>
+              );
+            })
+          )}
+        </div>
+      </MapBackdrop>
+    </ThemeMatrix>
   ),
   parameters: {
     layout: 'padded',

@@ -2,6 +2,7 @@
 import { fileURLToPath } from 'node:url';
 import type { StorybookConfig } from '@storybook/tanstack-react';
 import { resolve, dirname } from 'path';
+import remarkGfm from 'remark-gfm';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -10,7 +11,18 @@ const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@chromatic-com/storybook',
-    '@storybook/addon-docs',
+    {
+      // Storybook's MDX pipeline is CommonMark only. Without remark-gfm a
+      // GFM table renders as one reflowed paragraph of literal pipes — which
+      // is what the elevation level table did, silently, because it is the
+      // only MDX table in the project (#225).
+      name: '@storybook/addon-docs',
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: { remarkPlugins: [remarkGfm] },
+        },
+      },
+    },
     '@storybook/addon-onboarding',
     '@storybook/addon-a11y',
     '@storybook/addon-vitest',

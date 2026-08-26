@@ -77,7 +77,7 @@ function Slider({
                 : ariaLabel
             }
             aria-labelledby={ariaLabelledBy}
-            className='border-background bg-foreground block size-4 shrink-0 rounded-full border-2 shadow-[0_1px_4px_rgba(0,0,0,0.25)] transition-transform hover:scale-110 focus-ring disabled:pointer-events-none disabled:opacity-50'
+            className='border-background bg-foreground block size-4 shrink-0 rounded-full border-2 elevation-control transition-transform hover:scale-110 focus-ring disabled:pointer-events-none disabled:opacity-50'
           />
         ))}
       </SliderPrimitive.Root>

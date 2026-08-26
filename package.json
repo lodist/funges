@@ -86,8 +86,10 @@
     "@playwright/test": "^1.60.0",
     "@storybook/addon-a11y": "^10.5.10",
     "@storybook/addon-docs": "^10.5.10",
+    "@storybook/addon-mcp": "^0.7.0",
     "@storybook/addon-onboarding": "^10.5.10",
     "@storybook/addon-vitest": "^10.5.10",
+    "@storybook/tanstack-react": "10.5.10",
     "@tanstack/eslint-plugin-query": "^5.83.1",
     "@tanstack/router-plugin": "^1.122.1",
     "@testing-library/jest-dom": "^6.10.0",
@@ -122,6 +124,7 @@
     "playwright": "^1.56.1",
     "postcss": "^8.5.23",
     "prettier": "^3.5.3",
+    "remark-gfm": "^4.0.1",
     "sass": "^1.89.2",
     "storybook": "^10.5.10",
     "tailwindcss": "^4.1.11",
@@ -133,9 +136,7 @@
     "vite-plugin-pwa": "^1.0.2",
     "vite-plugin-remove-console": "^2.2.0",
     "vite-plugin-sitemap": "^0.8.2",
-    "vitest": "^4.1.11",
-    "@storybook/tanstack-react": "10.5.10",
-    "@storybook/addon-mcp": "^0.7.0"
+    "vitest": "^4.1.11"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

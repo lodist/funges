@@ -376,10 +376,17 @@
      surface and carries no shadow. Level definitions live in CONTEXT.md's
      design-system glossary.
      ------------------------------------------------------------------ */
+  --elevation-control: 0 2px 8px rgba(0, 0, 0, 0.18); /* Button, Slider thumb */
+  --elevation-control-hover: 0 3px 12px rgba(0, 0, 0, 0.22); /* Button hover escalation */
   --elevation-raised-subtle: 0 1px 6px rgba(0, 0, 0, 0.06); /* Input, Select trigger */
   --elevation-raised: 0 2px 16px rgba(0, 0, 0, 0.1); /* Card, MobileNavbar */
   --elevation-raised-hover: 0 6px 20px rgba(0, 0, 0, 0.14); /* Card hover escalation */
   --elevation-floating: 0 4px 20px rgba(0, 0, 0, 0.16); /* DropdownMenu, Select content */
+  /* Bottom Sheet only: a surface pinned to the viewport's bottom edge has to
+     cast upward, or its shadow falls off-screen and the top edge loses its
+     separation from the map. Same blur and alpha as `floating`, Y inverted —
+     the one directional variant in the scale, not a licence for more. */
+  --elevation-floating-up: 0 -4px 20px rgba(0, 0, 0, 0.16); /* Sheet, side="bottom" */
   --elevation-overlay: 0 8px 32px rgba(0, 0, 0, 0.24); /* Dialog */
 }
 
@@ -524,6 +531,10 @@
      background. Per ADR 0001 the 1px inset --glass-highlight is the real
      depth cue here and the drop shadow is secondary.
      ------------------------------------------------------------------ */
+  --elevation-control:
+    inset 0 1px 0 0 var(--glass-highlight), 0 2px 8px rgba(0, 0, 0, 0.45);
+  --elevation-control-hover:
+    inset 0 1px 0 0 var(--glass-highlight), 0 3px 12px rgba(0, 0, 0, 0.55);
   --elevation-raised-subtle:
     inset 0 1px 0 0 var(--glass-highlight), 0 1px 6px rgba(0, 0, 0, 0.3);
   --elevation-raised:
@@ -532,6 +543,11 @@
     inset 0 1px 0 0 var(--glass-highlight), 0 6px 20px rgba(0, 0, 0, 0.5);
   --elevation-floating:
     inset 0 1px 0 0 var(--glass-highlight), 0 4px 20px rgba(0, 0, 0, 0.55);
+  /* The drop shadow inverts because nothing sits below a bottom sheet to catch
+     it; the light source does not. The highlight stays on the top edge — which
+     on a bottom sheet is the only edge on screen anyway. */
+  --elevation-floating-up:
+    inset 0 1px 0 0 var(--glass-highlight), 0 -4px 20px rgba(0, 0, 0, 0.55);
   --elevation-overlay:
     inset 0 1px 0 0 var(--glass-highlight), 0 8px 32px rgba(0, 0, 0, 0.65);
 }

@@ -73,7 +73,7 @@ function SheetContent({
           // Trailhead (#213): bottom sheet for mobile actions — rounded
           // top, no border, drag handle below.
           side === 'bottom' &&
-            'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto rounded-t-[1.75rem] border-0 border-t-0 shadow-[0_-4px_24px_rgba(0,0,0,0.18)] pt-3',
+            'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto rounded-t-[1.75rem] border-0 border-t-0 elevation-floating-up pt-3',
           className
         )}
         {...props}

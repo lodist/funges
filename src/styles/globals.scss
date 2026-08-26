@@ -255,29 +255,52 @@
   //
   //   base           - the map canvas. No class, no shadow: not a discrete
   //                    surface, so it deliberately has no utility here.
+  //   control        - a small control you press (Button, Slider thumb,
+  //                    Checkbox, Switch, RadioGroup item). Pair with
+  //                    .elevation-interactive for the hover escalation.
   //   raised-subtle  - lightweight input chrome you look through rather
-  //                    than press (search field, Select trigger). No hover
-  //                    escalation.
+  //                    than press (search field, Select trigger, Textarea).
+  //                    No hover escalation.
   //   raised         - small, static, fixed-size chrome (Card, AppSidebar,
   //                    MobileNavbar).
   //   floating       - dismiss-by-tap-outside surfaces (Sheet, Popover,
   //                    DropdownMenu, tooltip).
+  //   floating-up    - floating, cast upward. Bottom Sheet only: pinned to
+  //                    the viewport bottom, so a downward shadow would fall
+  //                    off-screen and leave the top edge unseparated.
   //   overlay        - blocking surfaces with a scrim (modal Dialog).
   //
   // In dark mode each carries a 1px inset --glass-highlight, which is what
   // actually reads as depth there; the drop shadow is secondary. See
   // ADR 0001 for why these values are Trailhead's rather than --shadow-*.
   // ---------------------------------------------------------------------
+  // Each level also publishes --elevation-rest / --elevation-lift, which is
+  // what .elevation-interactive animates between. That indirection is why one
+  // interactive modifier serves every level instead of one modifier per level.
+  .elevation-control {
+    --elevation-rest: var(--elevation-control);
+    --elevation-lift: var(--elevation-control-hover);
+
+    box-shadow: var(--elevation-rest);
+  }
+
   .elevation-raised-subtle {
     box-shadow: var(--elevation-raised-subtle);
   }
 
   .elevation-raised {
-    box-shadow: var(--elevation-raised);
+    --elevation-rest: var(--elevation-raised);
+    --elevation-lift: var(--elevation-raised-hover);
+
+    box-shadow: var(--elevation-rest);
   }
 
   .elevation-floating {
     box-shadow: var(--elevation-floating);
+  }
+
+  .elevation-floating-up {
+    box-shadow: var(--elevation-floating-up);
   }
 
   .elevation-overlay {
@@ -348,8 +371,10 @@
   // ---------------------------------------------------------------------
   // Elevation hover/press feedback (#200)
   //
-  // Opt-in on interactive `raised` chrome. Shifts shadow and background
-  // only — no scale or transform.
+  // Opt-in modifier for pressable chrome — pair it with a level that
+  // publishes --elevation-rest / --elevation-lift (`control`, `raised`).
+  // Shifts shadow and background only — no scale or transform. On its own it
+  // animates nothing, which is the point: the level decides how far it lifts.
   // ---------------------------------------------------------------------
   .elevation-interactive {
     transition:
@@ -357,11 +382,11 @@
       background-color var(--duration-fast) var(--ease-standard);
 
     &:hover {
-      box-shadow: var(--elevation-raised-hover);
+      box-shadow: var(--elevation-lift);
     }
 
     &:active {
-      box-shadow: var(--elevation-raised);
+      box-shadow: var(--elevation-rest);
     }
   }
 

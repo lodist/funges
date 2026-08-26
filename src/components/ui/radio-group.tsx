@@ -10,7 +10,7 @@ import { cva } from 'class-variance-authority';
 const radioGroupItemVariants = cva(
   // Trailhead (#213): p-0 fixes the same global button{padding} reset as
   // Checkbox/Switch (globals.scss). border/text-primary === happy-600.
-  'p-0 border-2 border-primary text-primary aria-invalid:border-destructive aspect-square shrink-0 rounded-full shadow-xs transition-[color,box-shadow] focus-ring disabled:cursor-not-allowed disabled:opacity-50',
+  'p-0 border-2 border-primary text-primary aria-invalid:border-destructive aspect-square shrink-0 rounded-full elevation-control transition-[color,box-shadow] focus-ring disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       size: {
