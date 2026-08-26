@@ -583,7 +583,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
             <XIcon className='size-4' aria-hidden='true' />
           </button>
           {shot.failed && (
-            <p className='absolute inset-x-0 bottom-0 flex items-center justify-center gap-1 bg-destructive/90 px-1 py-0.5 text-[10px] font-medium text-destructive-foreground'>
+            <p className='absolute inset-x-0 bottom-0 flex items-center justify-center gap-1 bg-destructive/90 px-1 py-0.5 text-xs font-medium text-destructive-foreground'>
               <AlertTriangle className='h-3 w-3 shrink-0' />
               {t('capture.photoFailed')}
             </p>

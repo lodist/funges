@@ -397,6 +397,33 @@
       transition: none;
     }
   }
+
+  // #225 — DESIGN.md's `micro` role, the uppercase tracked micro-label used
+  // for a field label above a control, a stat-chip caption, a popover section
+  // header.
+  //
+  // It exists because the role did not. DESIGN.md named `micro` (12px / 500)
+  // but nothing in the code implemented it, so seven sites hand-rolled it
+  // seven different ways — `text-[10px]` and `text-[11px]`, `font-medium` and
+  // `font-semibold`, `tracking-wide` and `tracking-[0.18em]`,
+  // `text-muted-foreground` and `/60`. Eleven independent sites reached below
+  // 12px not because 12px was too big but because the 12px role had no name.
+  //
+  // Colour is deliberately NOT set here: these labels sit on paper, on glass
+  // and on a warning fill, so the caller pairs it with the right foreground
+  // token.
+  //
+  // Pair it with a token at full strength. Four of the call sites carried
+  // `text-muted-foreground/60`, which composites to 2.42:1 on Field Paper —
+  // under even the 3:1 non-text floor. The role is already quiet at 12px, 500
+  // and uppercase; the alpha was buying nothing and costing legibility.
+  .type-micro {
+    font-size: var(--text-xs); // 12px
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
 }
 
 // Utility classes

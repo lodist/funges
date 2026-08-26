@@ -1,20 +1,9 @@
 import type { Preview } from '@storybook/tanstack-react';
-// Brand typefaces. These live in the application entrypoint (src/main.tsx),
-// which Storybook never loads, so every story rendered in fallback system
-// fonts until they were imported here too — misrepresenting the very
-// typography the design system just settled (#203). Kept in sync with
-// main.tsx by hand; consolidating both into index.css would touch the
-// application's critical path, so it is deliberately not done here.
-import '@fontsource/public-sans/400.css';
-import '@fontsource/public-sans/500.css';
-import '@fontsource/public-sans/600.css';
-import '@fontsource/public-sans/700.css';
-import '@fontsource/space-grotesk/500.css';
-import '@fontsource/space-grotesk/600.css';
-import '@fontsource/space-grotesk/700.css';
-import '@fontsource/merriweather/400.css';
-import '@fontsource/merriweather/700.css';
-import '@fontsource/source-code-pro/400.css';
+// The brand typefaces. These live in src/lib/fonts.ts, which the application
+// entrypoint also imports: Storybook never loads main.tsx, so without this
+// every story renders in fallback system fonts and misrepresents the very
+// typography the design system settled (#203).
+import '../src/lib/fonts';
 import '../src/index.css';
 // Imported after index.css on purpose — it undoes the app's no-scroll body.
 import './preview.css';

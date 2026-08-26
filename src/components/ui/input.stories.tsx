@@ -345,8 +345,11 @@ export const WithValidation: Story = {
 export const Typefaces: Story = {
   render: () => (
     <div className='space-y-3'>
-      <Input className='font-sans' placeholder='Montserrat (font-sans)' />
-      <Input className='font-serif' placeholder='Merriweather (font-serif)' />
+      <Input className='font-sans' placeholder='Public Sans (font-sans)' />
+      <Input
+        className='font-display'
+        placeholder='Space Grotesk (font-display)'
+      />
       <Input className='font-mono' placeholder='Source Code Pro (font-mono)' />
     </div>
   ),

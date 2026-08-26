@@ -192,7 +192,7 @@ export default function WorthForagingNowPage() {
                     <div className='text-4xl font-bold leading-none text-primary'>
                       {recommendation.score}
                     </div>
-                    <p className='mt-1 text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground'>
+                    <p className='mt-1 type-micro text-muted-foreground'>
                       {t('worthForagingNow.scoreLabel')}
                     </p>
                   </div>

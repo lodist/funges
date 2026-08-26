@@ -48,7 +48,7 @@ export default function RouteToDishPanel({
       <div className='p-2.5 sm:p-3 space-y-2.5 sm:space-y-3'>
         <div className='flex items-start justify-between gap-3'>
           <div>
-            <div className='flex items-center gap-2 text-[13px] sm:text-sm font-semibold text-foreground'>
+            <div className='flex items-center gap-2 text-xs sm:text-sm font-semibold text-foreground'>
               <ChefHat className='size-3 sm:size-4 text-primary-text' />
               <span>{t('routePanel.title')}</span>
             </div>
@@ -123,7 +123,7 @@ export default function RouteToDishPanel({
               >
                 <div className='flex items-start justify-between gap-2'>
                   <div className='min-w-0'>
-                    <p className='text-[13px] sm:text-sm font-medium text-foreground line-clamp-2'>
+                    <p className='text-xs sm:text-sm font-medium text-foreground line-clamp-2'>
                       {plan.recipeTitle}
                     </p>
                     <p className='mt-1 text-xs text-muted-foreground'>
@@ -165,7 +165,7 @@ export default function RouteToDishPanel({
 
                 {isSelected ? (
                   <div className='mt-3 rounded-lg border border-dashed border-status-warning-border bg-status-warning-background/60 px-3 py-2'>
-                    <p className='text-[10px] sm:text-[11px] font-medium uppercase tracking-wide text-status-warning-text'>
+                    <p className='type-micro text-status-warning-text'>
                       {t('routePanel.routeStops')}
                     </p>
                     <div className='mt-2 space-y-1.5'>

@@ -45,7 +45,6 @@
   --font-sans: 'Public Sans', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
   --font-mono: Source Code Pro, monospace;
-  --font-serif: Merriweather, serif;
   --radius: 0.5rem;
   --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
   --tracking-tight: calc(var(--tracking-normal) - 0.025em);
@@ -307,7 +306,6 @@
   /* Typography */
   --font-sans: 'Public Sans', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
-  --font-serif: Merriweather, serif;
   --font-mono: Source Code Pro, monospace;
 
   /* Shadows */
@@ -487,10 +485,6 @@
   --hover-secondary: oklch(0.3327 0.0271 90);
 
   --radius: 0.5rem;
-  --font-sans: 'Public Sans', sans-serif;
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-serif: Merriweather, serif;
-  --font-mono: Source Code Pro, monospace;
   --shadow-color: oklch(0 0 0);
   --shadow-opacity: 0.1;
   --shadow-blur: 3px;
@@ -562,7 +556,42 @@
   }
 
   /* #203 — Space Grotesk for display/headings, Public Sans (--font-sans)
-     for body, per the #202 research doc's Option 1 pairing. */
+     for body, per the #202 research doc's Option 1 pairing.
+
+     #225 — headings now carry their own size, weight and leading, from
+     DESIGN.md's display/headline/title roles. They used to carry only the
+     face: Tailwind's preflight resets headings to `font-size: inherit;
+     font-weight: inherit`, so a bare <h1> measured 16px/400 — the same size
+     as the paragraph next to it — and the MDX documented an h1–h4 size
+     mapping that no rule implemented.
+
+     The weights are not decoration. Space Grotesk ships 500/600/700 and no
+     400, so a heading left at the inherited 400 silently resolves to 500
+     (CSS Fonts 4 §5.2 checks 500 first for a desired weight of 400) — a
+     no-op you cannot see rather than a defect you can. 600 here is chosen,
+     not inherited. `font-normal` on h1–h3 is always a mistake: on the
+     display face there is nothing below 500 to reach.
+
+     h4 and below get no rule on purpose — below the third level a heading is
+     functionally a label, and the one h4 in the codebase sets its own size. */
+  h1 {
+    font-size: 2.25rem; /* 36px — DESIGN.md `display` */
+    line-height: 1.1;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: 1.875rem; /* 30px — DESIGN.md `headline` */
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.25rem; /* 20px — DESIGN.md `title` */
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
   h1,
   h2,
   h3 {

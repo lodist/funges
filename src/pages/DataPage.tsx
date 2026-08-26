@@ -896,7 +896,7 @@ export default function DataPage() {
         <div className='flex flex-wrap items-end gap-4'>
           {/* Europe regions */}
           <div className='flex flex-col gap-1.5'>
-            <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
+            <span className='type-micro text-muted-foreground px-1'>
               {t('common:data.europe', { defaultValue: 'Europe' })}
             </span>
             <SegmentedControl
@@ -915,7 +915,7 @@ export default function DataPage() {
 
           {/* US regions */}
           <div className='flex flex-col gap-1.5'>
-            <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
+            <span className='type-micro text-muted-foreground px-1'>
               {t('common:data.unitedStates', {
                 defaultValue: 'United States',
               })}
@@ -936,7 +936,7 @@ export default function DataPage() {
 
           {/* Time range */}
           <div className='flex flex-col gap-1.5'>
-            <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
+            <span className='type-micro text-muted-foreground px-1'>
               {t('common:data.timeRange', { defaultValue: 'Time range' })}
             </span>
             <SegmentedControl
@@ -1017,7 +1017,7 @@ export default function DataPage() {
                 key={chip.label}
                 className='flex flex-col items-center rounded-md border bg-background px-3 py-1.5 text-center min-w-[72px]'
               >
-                <span className='text-[10px] uppercase tracking-wide text-muted-foreground/60 leading-none mb-0.5'>
+                <span className='type-micro text-muted-foreground mb-0.5'>
                   {chip.label}
                 </span>
                 <span className='text-sm font-medium leading-tight'>

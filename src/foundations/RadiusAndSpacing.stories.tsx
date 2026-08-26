@@ -196,7 +196,7 @@ export const AllRadiusAndSpacing: Story = {
         ].map(className => (
           <div key={className} className='flex flex-col gap-1'>
             <div aria-hidden className={`bg-primary size-16 ${className}`} />
-            <p className='text-muted-foreground font-mono text-[10px]'>
+            <p className='text-muted-foreground font-mono text-xs'>
               {className}
             </p>
           </div>
@@ -210,9 +210,7 @@ export const AllRadiusAndSpacing: Story = {
               className='bg-primary w-4'
               style={{ height: `calc(var(--spacing) * ${step})` }}
             />
-            <p className='text-muted-foreground font-mono text-[10px]'>
-              {step}
-            </p>
+            <p className='text-muted-foreground font-mono text-xs'>{step}</p>
           </div>
         ))}
       </div>

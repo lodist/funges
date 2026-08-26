@@ -161,7 +161,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
       {!isMobile && (
         <SidebarFooter className='border-t py-3 px-1'>
           <div className='flex flex-col gap-2 items-center justify-center'>
-            <div className='flex items-center gap-2 text-[10px] text-muted-foreground justify-center'>
+            <div className='flex items-center gap-2 text-xs text-muted-foreground justify-center'>
               <div className='w-2 h-2 bg-primary rounded-full animate-pulse flex-shrink-0'></div>
               <span className='break-words leading-relaxed'>
                 <MapLastUpdated variant='sidebar' />

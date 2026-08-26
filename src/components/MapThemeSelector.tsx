@@ -63,7 +63,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
             // the Select/DropdownMenu popover treatment.
             className='absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] bg-popover rounded-2xl border-0 shadow-[0_4px_20px_rgba(0,0,0,0.16)] overflow-hidden z-30'
           >
-            <p className='px-3 pt-3 pb-1.5 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase'>
+            <p className='px-3 pt-3 pb-1.5 type-micro text-muted-foreground'>
               {t('themes.select')}
             </p>
             <ul className='max-h-96 overflow-y-auto py-1'>

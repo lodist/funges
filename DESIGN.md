@@ -68,7 +68,8 @@ typography:
     fontSize: '0.75rem'
     fontWeight: 500
     lineHeight: 1.3
-    letterSpacing: '0em'
+    letterSpacing: '0.06em'
+    textTransform: 'uppercase'
 rounded:
   sm: '0.25rem'
   md: '0.375rem'
@@ -235,10 +236,11 @@ Values live in `src/index.css`; `src/lib/categoryColor.ts` is the only way to re
 
 **Display Font:** Space Grotesk (with `sans-serif` fallback)
 **Body Font:** Public Sans (with `sans-serif` fallback)
-**Reference Serif:** Merriweather — declared as `--font-serif`, reserved
-**Mono Font:** Source Code Pro — declared as `--font-mono`, reserved
+**Mono Font:** Source Code Pro — `--font-mono`, and it is earned: the feature-flag chip, the QR fallback string, the support-page identifiers.
 
-All four ship locally via `@fontsource` packages imported in `src/main.tsx`; nothing is fetched from a font CDN, which is what lets typography survive the offline path intact.
+All three ship locally via `@fontsource` packages imported in `src/main.tsx`; nothing is fetched from a font CDN, which is what lets typography survive the offline path intact.
+
+There is no reference serif. Merriweather held `--font-serif` and rendered on no screen, shipping twenty files and 692 KB to `dist/` — half the font payload — to do it. Both the font and the token went at #225. Three faces is the ceiling, not a coincidence: a fourth has to earn its download on a real screen before it earns a token.
 
 **Character:** Space Grotesk brings a slightly geometric, outdoorsy confidence to headings — wide apertures, a little quirk in the letterforms, nothing precious. Public Sans underneath it is plain, highly legible at small sizes, and unshowy, which is exactly right for a species name being read at arm's length in bad light. The pairing reads as "field signage plus field notes."
 
@@ -249,7 +251,7 @@ All four ship locally via `@fontsource` packages imported in `src/main.tsx`; not
 - **Title** (Space Grotesk, 600, 1.25rem/20px, ~1.3): the workhorse heading, and the most common heading size in the app by a wide margin. Card titles, panel headers, species names. `CardTitle` renders at `font-semibold` with `leading-none`, deliberately tight so a title can sit directly above metadata.
 - **Body** (Public Sans, 400, 1rem/16px, 1.5): all running text. The global baseline set on `:root`.
 - **Label** (Public Sans, 500, 0.875rem/14px): buttons, form labels, list metadata, and input text at `md:` and above.
-- **Micro** (Public Sans, 500, 0.75rem/12px): badges and dense map chrome. The floor — nothing smaller ships.
+- **Micro** (Public Sans, 500, 0.75rem/12px, `0.06em`, uppercase): badges and dense map chrome — the label above a control, the caption on a stat chip, the section header in a popover. Implemented as `.type-micro` in `globals.scss`, which sets no colour so the caller pairs it with the foreground its surface needs. The floor — nothing smaller ships, and at #225 that stopped being aspirational: eleven sites had been at 10px and 11px because this role had a name here and no implementation in code.
 
 ### Named Rules
 
@@ -257,7 +259,7 @@ All four ship locally via `@fontsource` packages imported in `src/main.tsx`; not
 
 **The German Test.** Every text container must survive its longest German string without clipping or reflowing its layout. Six locales ship; a label that only fits in English is broken. Test with `de` before considering a text-bearing component done.
 
-**The Reserved Faces Rule.** Merriweather and Source Code Pro are declared but unused. Introducing either is a design decision that needs a reason — long-form reading matter for the serif, data or coordinates for the mono — not a default reach for variety.
+**The Third Face Rule.** Two faces carry the interface and the third is mono, used only where characters have to align by column. A fourth face is a design decision that needs a reason and a screen, not a default reach for variety — and the reason has to arrive before the token does. This rule used to reserve two faces for hypothetical futures; one of them, Merriweather, sat unused long enough to accumulate 692 KB of `dist/` and a comment in `main.tsx` explaining that it existed because its token did.
 
 ## Layout
 
