@@ -1,5 +1,10 @@
-import type { StorybookConfig } from '@storybook/react-vite';
-import { resolve } from 'path';
+// This file has been automatically migrated to valid ESM format by Storybook.
+import { fileURLToPath } from 'node:url';
+import type { StorybookConfig } from '@storybook/tanstack-react';
+import { resolve, dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -9,9 +14,10 @@ const config: StorybookConfig = {
     '@storybook/addon-onboarding',
     '@storybook/addon-a11y',
     '@storybook/addon-vitest',
+    '@storybook/addon-mcp',
   ],
   framework: {
-    name: '@storybook/react-vite',
+    name: '@storybook/tanstack-react',
     options: {},
   },
   viteFinal: async config => {

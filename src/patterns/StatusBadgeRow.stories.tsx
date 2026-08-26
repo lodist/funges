@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { Badge } from '@/components/ui/badge';
 import { Check, Clock, Info, Leaf, ChefHat } from 'lucide-react';
 

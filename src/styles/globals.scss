@@ -40,53 +40,25 @@
     }
   }
 
-  // Button base styles
-  button {
-    border-radius: var(--radius);
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: var(--muted);
-    color: var(--foreground);
+  // Tailwind v4's Preflight drops the pointer cursor on buttons; restore it.
+  // Everything else a button looks like belongs to the Button primitive's
+  // variants and sizes — the element-level rule that used to live here set
+  // `background-color: var(--muted)`, which filled the `ghost` and `link`
+  // variants (they deliberately declare no background) and whose `:hover`
+  // repainted every variant's border and background with the primary tint,
+  // overriding each variant's own hover. It was Vite starter-template
+  // leftover, not a design decision.
+  button:not(:disabled) {
     cursor: pointer;
-    transition: all 0.25s ease;
-
-    &:hover {
-      border-color: var(--primary);
-      background-color: var(--hover-primary);
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
   }
 
-  // Form elements
-  input,
-  textarea,
-  select {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    color: var(--foreground);
-    background-color: var(--background);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 0.5em;
-    transition: border-color 0.25s ease;
-
-    &:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    &::placeholder {
-      color: var(--muted-foreground);
-    }
-  }
+  // No element-level rule for input/textarea/select: the Input, Textarea and
+  // Select primitives own their own surface, radius, padding and focus ring.
+  // The rule that used to live here was Vite starter-template leftover, and
+  // its `&:focus { outline: none }` stripped the focus outline from every
+  // field in the app — a WCAG 2.4.7 failure the axe gate cannot see, because
+  // focus appearance is not machine-checkable. The only bare fields left are
+  // the two `sr-only` file inputs in IdentifyPanel, which render nothing.
 
   // Selection styles
   ::selection {

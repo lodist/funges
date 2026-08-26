@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react-vite';
+import type { Preview } from '@storybook/tanstack-react';
 // Brand typefaces. These live in the application entrypoint (src/main.tsx),
 // which Storybook never loads, so every story rendered in fallback system
 // fonts until they were imported here too — misrepresenting the very
