@@ -89,7 +89,7 @@ export const WithRotatingChevron: Story = {
       <CollapsibleTrigger asChild>
         <Button variant='outline' size='sm'>
           {'Habitat notes'}
-          <ChevronDown className='transition-transform duration-[var(--duration-base)] ease-standard group-data-[state=open]:rotate-180' />
+          <ChevronDown className='transition-transform duration-base ease-standard group-data-[state=open]:rotate-180' />
         </Button>
       </CollapsibleTrigger>
       <CollapsibleContent className='text-muted-foreground pt-3 text-sm'>

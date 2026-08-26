@@ -23,9 +23,12 @@
     overflow: hidden; // Disable scrolling for main app
     background-color: var(--background);
     color: var(--foreground);
+    // Motion (#225): the theme switch. Was `0.3s ease` twice over — the right
+    // duration by luck, the wrong curve, and neither would have followed a
+    // retune of the scale.
     transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
+      background-color var(--transition-duration-slow) var(--ease-standard),
+      color var(--transition-duration-slow) var(--ease-standard);
   }
 
   // Link styles
@@ -33,7 +36,9 @@
     font-weight: 500;
     color: var(--primary);
     text-decoration: inherit;
-    transition: color 0.25s ease;
+    // Motion (#225): was `0.25s ease` — a number off the scale entirely, on a
+    // curve that is not --ease-standard. Link colour is hover feedback.
+    transition: color var(--transition-duration-fast) var(--ease-standard);
 
     &:hover {
       color: color-mix(in oklch, var(--primary) 85%, black);
@@ -113,46 +118,6 @@
     box-shadow: var(--shadow-sm);
   }
 
-  // Button variants
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius);
-    font-weight: 500;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    border: 1px solid transparent;
-
-    &-primary {
-      background-color: var(--primary);
-      color: var(--primary-foreground);
-
-      &:hover {
-        background-color: color-mix(in oklch, var(--primary) 85%, black);
-      }
-    }
-
-    &-secondary {
-      background-color: var(--secondary);
-      color: var(--secondary-foreground);
-
-      &:hover {
-        background-color: color-mix(in oklch, var(--secondary) 85%, black);
-      }
-    }
-
-    &-outline {
-      background-color: transparent;
-      color: var(--foreground);
-      border-color: var(--border);
-
-      &:hover {
-        background-color: var(--hover-primary);
-      }
-    }
-  }
-
   // Badge component
   .badge {
     display: inline-flex;
@@ -221,27 +186,6 @@
 
     img {
       width: 260px;
-      height: auto;
-    }
-  }
-
-  // Splash screen
-  .splash-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--background-secondary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    animation: fadeOut 1.5s ease-out forwards;
-
-    img {
-      width: 60vw;
-      max-width: 550px;
       height: auto;
     }
   }
@@ -378,8 +322,8 @@
   // ---------------------------------------------------------------------
   .elevation-interactive {
     transition:
-      box-shadow var(--duration-fast) var(--ease-standard),
-      background-color var(--duration-fast) var(--ease-standard);
+      box-shadow var(--transition-duration-fast) var(--ease-standard),
+      background-color var(--transition-duration-fast) var(--ease-standard);
 
     &:hover {
       box-shadow: var(--elevation-lift);
@@ -390,13 +334,12 @@
     }
   }
 
-  // Non-essential motion (hover feedback, decorative fades) is removed
-  // outright rather than shortened; the state change still lands.
-  @media (prefers-reduced-motion: reduce) {
-    .elevation-interactive {
-      transition: none;
-    }
-  }
+  // Motion (#225): a `.elevation-interactive { transition: none }` block sat
+  // here claiming to go further than the global rule. It could not: the `*`
+  // rule in @layer base carries !important, and important declarations
+  // reverse layer order, so base beats components. The computed value stayed
+  // 0.01ms either way. Removed rather than made !important — 0.01ms and 0s
+  // are indistinguishable to a viewer, so the extra rule bought nothing.
 
   // #225 — DESIGN.md's `micro` role, the uppercase tracked micro-label used
   // for a field label above a control, a stat-chip caption, a popover section
@@ -445,17 +388,6 @@
     outline-offset: 2px;
   }
 
-  // Fade out animation
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-      visibility: hidden;
-    }
-  }
-
   // Text utilities
   .text-primary {
     color: var(--foreground);
@@ -501,10 +433,6 @@
 
   body {
     height: 100vh; // Fallback for mobile browsers
-  }
-
-  .splash-screen img {
-    width: 80vw; // Larger on mobile
   }
 
   .loading-spinner img {

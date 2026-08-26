@@ -90,7 +90,7 @@ describe('tokens are declared once', () => {
     // of telling Tailwind to emit `calc(var(--spacing) * n)` rather than inline
     // the number. Only concrete values count.
     const hits = (
-      indexCss.match(new RegExp(`^\\s*${name}:\\s*([^;]+);`, 'gm')) ?? []
+      indexCss.match(new RegExp(`^\\s*${name}:\\s*([^;\\n]+);`, 'gm')) ?? []
     ).filter(d => !d.includes(`var(${name})`));
     expect(hits).toHaveLength(1);
   });

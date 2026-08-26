@@ -272,7 +272,7 @@ interface ChartCardProps {
 
 function ChartCard({ title, children }: ChartCardProps) {
   return (
-    <Card className='py-6 shadow-sm hover:shadow-md transition-shadow duration-[var(--duration-base)]'>
+    <Card className='py-6 shadow-sm hover:shadow-md transition-shadow duration-base'>
       <CardHeader className='pb-2'>
         <CardTitle className='text-sm font-medium text-muted-foreground'>
           {title}

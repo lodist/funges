@@ -109,10 +109,21 @@
   --color-happy-700: var(--happy-700);
   --color-happy-900: var(--happy-900);
 
-  /* Motion easing (#200). Registered here so Tailwind emits an `ease-standard`
-     utility. Durations are not a Tailwind theme namespace, so they live in
-     :root and are consumed via arbitrary values — see --duration-* below. */
+  /* Motion (#200, #225). Registered here so Tailwind emits the utilities:
+     `ease-standard`, and `duration-fast|base|slow` from the
+     --transition-duration-* namespace. Same self-referential shape as
+     --spacing — the concrete values live in :root below, and `inline` makes
+     each utility emit var(--token) rather than baking the number in, so a
+     retune moves every call site. The two --default-transition-* keys make a
+     bare `transition-colors` — 20 of them, with no duration- beside it —
+     resolve through the tokens instead of Tailwind's own 150ms default, which
+     matched by coincidence and would not have followed a retune. */
   --ease-standard: var(--ease-standard);
+  --transition-duration-fast: var(--transition-duration-fast);
+  --transition-duration-base: var(--transition-duration-base);
+  --transition-duration-slow: var(--transition-duration-slow);
+  --default-transition-duration: var(--transition-duration-fast);
+  --default-transition-timing-function: var(--ease-standard);
 
   /* ------------------------------------------------------------------
      The One Hue Rule, enforced at build time.
@@ -335,13 +346,15 @@
   --tracking-normal: 0em;
 
   /* ------------------------------------------------------------------
-     Motion scale (#200)
+     Motion scale (#200, #225)
      Three durations and one easing curve. Every transition in the app
-     should reference these rather than hardcoding a value.
+     references these rather than hardcoding a value. The names carry
+     Tailwind's --transition-duration-* prefix so the scale IS the
+     `duration-*` utility namespace; see the @theme block above.
      ------------------------------------------------------------------ */
-  --duration-fast: 150ms; /* elevation hover/press micro-interactions */
-  --duration-base: 200ms; /* canonical; default UI state changes */
-  --duration-slow: 300ms; /* floating/overlay enter-exit (Dialog, Sheet) */
+  --transition-duration-fast: 150ms; /* elevation hover/press micro-interactions */
+  --transition-duration-base: 200ms; /* canonical; default UI state changes */
+  --transition-duration-slow: 300ms; /* floating/overlay enter-exit (Dialog, Sheet) */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* ------------------------------------------------------------------

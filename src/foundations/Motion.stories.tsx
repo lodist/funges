@@ -34,17 +34,17 @@ type Story = StoryObj<typeof meta>;
 
 const DURATIONS = [
   {
-    token: '--duration-fast',
+    token: '--transition-duration-fast',
     value: '150ms',
     use: 'Elevation hover and press micro-interactions.',
   },
   {
-    token: '--duration-base',
+    token: '--transition-duration-base',
     value: '200ms',
     use: 'The canonical default. Ordinary UI state changes, Dialog enter/exit.',
   },
   {
-    token: '--duration-slow',
+    token: '--transition-duration-slow',
     value: '300ms',
     use: 'Large floating surfaces travelling a distance: Sheet.',
   },
@@ -97,7 +97,7 @@ export const Durations: Story = {
 export const Easing: Story = {
   render: () => (
     <div className='flex max-w-2xl flex-col gap-4'>
-      <Runner token='--duration-slow' />
+      <Runner token='--transition-duration-slow' />
       <p className='font-mono text-xs'>
         {'--ease-standard: cubic-bezier(0.4, 0, 0.2, 1)'}
       </p>
@@ -108,7 +108,7 @@ export const Easing: Story = {
       </p>
       <p className='text-muted-foreground text-sm'>
         {
-          'The Tailwind utility is `ease-standard`. Durations are not a Tailwind theme namespace, so they are consumed as arbitrary values: `duration-[var(--duration-base)]`.'
+          'The utilities are `ease-standard` and `duration-fast` / `duration-base` / `duration-slow`. The scale is registered under Tailwind’s `--transition-duration-*` namespace, so no arbitrary values are needed, and a bare `transition-colors` inherits both tokens through `--default-transition-duration` and `--default-transition-timing-function`.'
         }
       </p>
     </div>
@@ -118,15 +118,15 @@ export const Easing: Story = {
 export const ReducedMotion: Story = {
   render: () => (
     <div className='flex max-w-2xl flex-col gap-4'>
-      <Runner token='--duration-slow' />
+      <Runner token='--transition-duration-slow' />
       <p className='text-muted-foreground text-sm'>
         {
-          'With prefers-reduced-motion set to reduce, a global rule collapses every animation and transition to 0.01ms rather than shortening it, and elevation-interactive drops its transition entirely. The state change still lands — it just lands without the travel.'
+          'With prefers-reduced-motion set to reduce, a global rule collapses every animation and transition to 0.01ms rather than shortening it. The state change still lands — it just lands without the travel.'
         }
       </p>
       <p className='text-muted-foreground text-sm'>
         {
-          'Collapsing rather than removing matters: a transition that never fires can leave a component wedged mid-state, whereas one that completes instantly cannot. To see it, set the preference in the OS or in the browser devtools rendering panel and press Run again.'
+          "Collapsing rather than removing matters: a transition that never fires can leave a component wedged mid-state, whereas one that completes instantly cannot. The CSS rule covers CSS only: framer-motion writes inline transforms from JavaScript that no stylesheet can reach, so those are covered separately by MotionConfig reducedMotion='user' in __root.tsx. To see it, set the preference in the OS or in the browser devtools rendering panel and press Run again."
         }
       </p>
     </div>

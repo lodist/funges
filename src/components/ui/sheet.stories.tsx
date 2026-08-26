@@ -22,7 +22,7 @@ const meta: Meta<typeof Sheet> = {
     docs: {
       description: {
         component:
-          'A panel that slides in from an edge. The `floating` elevation level, and it rides `--duration-slow` because it covers real distance. Reach for it over a Dialog when the content is a panel to work in rather than a decision to make.',
+          'A panel that slides in from an edge. The `floating` elevation level, and it rides `--transition-duration-slow` because it covers real distance. Reach for it over a Dialog when the content is a panel to work in rather than a decision to make.',
       },
     },
   },

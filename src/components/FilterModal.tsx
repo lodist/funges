@@ -90,7 +90,7 @@ export default function FilterModal({
                 variant={selectedCategory === 'all' ? 'default' : 'outline'}
                 size='sm'
                 onClick={() => onCategoryChange('all')}
-                className={`transition-all duration-[var(--duration-base)] ${
+                className={`transition-all duration-base ${
                   selectedCategory === 'all'
                     ? 'shadow-md scale-105'
                     : 'hover:scale-105'
@@ -109,7 +109,7 @@ export default function FilterModal({
                   }
                   size='sm'
                   onClick={() => onCategoryChange(category)}
-                  className={`transition-all duration-[var(--duration-base)] ${
+                  className={`transition-all duration-base ${
                     selectedCategory === category
                       ? 'shadow-md scale-105'
                       : 'hover:scale-105'
@@ -138,7 +138,7 @@ export default function FilterModal({
                 variant={selectedDifficulty === 'all' ? 'default' : 'outline'}
                 size='sm'
                 onClick={() => onDifficultyChange('all')}
-                className={`transition-all duration-[var(--duration-base)] ${
+                className={`transition-all duration-base ${
                   selectedDifficulty === 'all'
                     ? 'shadow-md scale-105'
                     : 'hover:scale-105'
@@ -157,7 +157,7 @@ export default function FilterModal({
                   }
                   size='sm'
                   onClick={() => onDifficultyChange(difficulty)}
-                  className={`transition-all duration-[var(--duration-base)] ${
+                  className={`transition-all duration-base ${
                     selectedDifficulty === difficulty
                       ? 'shadow-md scale-105'
                       : 'hover:scale-105'
@@ -188,7 +188,7 @@ export default function FilterModal({
                 variant={selectedTag === 'all' ? 'default' : 'outline'}
                 size='sm'
                 onClick={() => onTagChange('all')}
-                className={`transition-all duration-[var(--duration-base)] ${
+                className={`transition-all duration-base ${
                   selectedTag === 'all'
                     ? 'shadow-md scale-105'
                     : 'hover:scale-105'
@@ -207,7 +207,7 @@ export default function FilterModal({
                     variant={selectedTag === tag ? 'default' : 'outline'}
                     size='sm'
                     onClick={() => onTagChange(tag)}
-                    className={`transition-all duration-[var(--duration-base)] ${
+                    className={`transition-all duration-base ${
                       selectedTag === tag
                         ? 'shadow-md scale-105'
                         : 'hover:scale-105'
@@ -229,7 +229,7 @@ export default function FilterModal({
           <Button
             variant='outline'
             onClick={onClearFilters}
-            className='hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors duration-[var(--duration-base)]'
+            className='hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors duration-base'
           >
             {t('clear')}
           </Button>

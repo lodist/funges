@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Check, Palette } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
+import { DURATION_FAST, EASE_STANDARD } from '@/lib/motion';
 import { useMapStore, MAP_THEMES } from '@/store/mapStore';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -54,11 +55,10 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
             initial={{ opacity: 0, scale: 0.97, y: -6 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: -6 }}
-            // Motion (#200): mirrors CSS --duration-fast (150ms) and
-            // --ease-standard (cubic-bezier(0.4, 0, 0.2, 1)). There is no
-            // synced JS token file by design, so these numeric values are
-            // kept greppable against the CSS tokens they shadow.
-            transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
+            // Motion (#225): there is a synced JS token file now — see
+            // src/lib/motion.ts, guarded against src/index.css by
+            // src/test/motion.test.ts.
+            transition={{ duration: DURATION_FAST, ease: EASE_STANDARD }}
             // Trailhead (#213): no border, bigger radius + shadow, mirrors
             // the Select/DropdownMenu popover treatment.
             className='absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] bg-popover rounded-card border-0 shadow-[0_4px_20px_rgba(0,0,0,0.16)] overflow-hidden z-30'

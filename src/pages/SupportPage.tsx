@@ -101,7 +101,7 @@ export default function SupportPage() {
               {platformMethods.map(method => (
                 <Card
                   key={method.id}
-                  className='p-6 cursor-pointer hover:shadow-lg transition-all duration-[var(--duration-base)] border-2 hover:border-primary/20'
+                  className='p-6 cursor-pointer hover:shadow-lg transition-all duration-base border-2 hover:border-primary/20'
                   onClick={() => handleDonationClick(method)}
                 >
                   <div className='flex items-center justify-between mb-4'>

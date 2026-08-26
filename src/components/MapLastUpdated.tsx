@@ -70,7 +70,7 @@ const MapLastUpdated: React.FC<MapLastUpdatedProps> = ({ variant = 'map' }) => {
 
   return (
     <div className='absolute bottom-4 left-4 z-10'>
-      <span className='inline-flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2 text-xs font-medium text-foreground shadow-lg hover:shadow-xl transition-all duration-[var(--duration-base)] hover:bg-muted'>
+      <span className='inline-flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2 text-xs font-medium text-foreground shadow-lg hover:shadow-xl transition-all duration-base hover:bg-muted'>
         <div className='w-2 h-2 bg-primary rounded-full animate-pulse'></div>
         {t('updatedAt')}: {formatTime()}
       </span>

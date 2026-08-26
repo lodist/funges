@@ -1057,7 +1057,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 with no transition, which reads as the card closing itself. */}
             {isRoutePanelOpen ? (
               <div
-                className={`fixed left-3 right-3 top-20 z-10 transition-opacity duration-[var(--duration-base)] ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+                className={`fixed left-3 right-3 top-20 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
               >
                 <RouteToDishPanel
                   className='mx-auto'
@@ -1088,7 +1088,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             </div>
             {isRoutePanelOpen ? (
               <div
-                className={`absolute top-14 right-16 z-10 transition-opacity duration-[var(--duration-base)] ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+                className={`absolute top-14 right-16 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
               >
                 <RouteToDishPanel
                   plans={routeDishResult?.plans ?? []}
