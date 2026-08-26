@@ -84,3 +84,6 @@ docs/qa/**/season-timing.html
 !.claude/
 !.claude/skills/
 !.claude/skills/**
+!.agents/
+!.agents/skills/
+!.agents/skills/**

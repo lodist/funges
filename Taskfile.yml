@@ -1,0 +1,232 @@
+version: '3'
+
+set: [pipefail]
+
+tasks:
+  default:
+    desc: List available commands
+    silent: true
+    cmds:
+      - task --list
+
+  # Development
+  dev:
+    desc: Start development server
+    cmds:
+      - npm run dev
+
+  build:
+    desc: Build app for production
+    cmds:
+      - npm run build
+
+  clean:
+    desc: Clean build artifacts
+    cmds:
+      - rm -rf dist
+      - rm -rf node_modules/.vite
+
+  # Code Quality
+  lint:
+    desc: Run ESLint
+    cmds:
+      - npm run lint
+
+  format:
+    desc: Run Prettier format
+    cmds:
+      - npm run format
+
+  test:
+    desc: Run Vitest tests
+    cmds:
+      - npm run test
+
+  test-watch:
+    desc: Run tests in watch mode
+    cmds:
+      - npm run test:watch
+
+  type-check:
+    desc: Run TypeScript type check
+    cmds:
+      - npx tsc --noEmit
+
+  # Documentation & Tools
+  storybook:
+    desc: Start Storybook
+    cmds:
+      - npm run storybook
+
+  storybook-build:
+    desc: Build Storybook
+    cmds:
+      - npm run build-storybook
+
+  i18n-check:
+    desc: Validate translation files
+    summary: |
+      Diffs every locale under src/i18n/locales/ against the "en" source of
+      truth (fallbackLng in src/i18n/index.ts), namespace file by namespace
+      file, and reports any missing namespace file or missing/extra key.
+    cmds:
+      - node scripts/check-i18n.mjs
+
+  analyze:
+    desc: Run bundle analyzer
+    cmds:
+      - npm run build
+      - npx vite-bundle-analyzer dist
+
+  generate-splash:
+    desc: Generate PWA splash screen images
+    cmds:
+      - task: install-canvas
+      - node scripts/generate-splash-screens.js
+      - cmd: echo "Splash screen images generated successfully!"
+        silent: true
+
+  install-canvas:
+    internal: true
+    status:
+      - test -f node_modules/canvas/package.json
+    cmds:
+      - cmd: echo "Installing canvas dependency..."
+        silent: true
+      - npm install canvas
+
+  generate-routes:
+    desc: Generate route tree
+    cmds:
+      - npx tsr generate
+
+  watch-routes:
+    desc: Watch for route changes
+    cmds:
+      - npx tsr watch
+
+  preview:
+    desc: Start preview server
+    cmds:
+      - npm run preview
+
+  # Deployment
+  deploy:
+    desc: Build and deploy to GitHub Pages
+    summary: |
+      Regenerates scores metadata, builds the production bundle, then
+      publishes dist/ to GitHub Pages (installing gh-pages globally first
+      if it isn't already on PATH).
+    cmds:
+      - cmd: echo "Generating scores metadata..."
+        silent: true
+      - python scripts/generate_scores_metadata.py
+      - cmd: echo "Building and deploying to GitHub Pages..."
+        silent: true
+      - npm run build
+      - task: install-gh-pages
+      - gh-pages -d dist
+
+  install-gh-pages:
+    internal: true
+    status:
+      - command -v gh-pages
+    cmds:
+      - cmd: echo "Installing gh-pages..."
+        silent: true
+      - npm install -g gh-pages
+
+  # CI parity
+  # Mirrors the checks run by .github/workflows/deploy.yml before publishing to GitHub Pages
+  ci-check:
+    desc: Run all checks from the GitHub Pages deploy workflow
+    summary: |
+      Installs dependencies fresh via `npm ci`, then runs ci-check-only:
+      format check, lint, type check, unit tests, Storybook/axe tests, build.
+      This is the full local equivalent of what CI runs on a PR.
+    cmds:
+      - task: install-ci
+      - task: ci-check-only
+
+  ci-check-only:
+    desc: Same checks as ci-check, minus the install step (used by CI once node_modules is cache-restored)
+    cmds:
+      - cmd: echo "Running format check..."
+        silent: true
+      - npm run format:check
+      - cmd: echo "Running lint check..."
+        silent: true
+      - npm run lint:check
+      - cmd: echo "Running type check..."
+        silent: true
+      - npm run type-check
+      - cmd: echo "Running unit tests..."
+        silent: true
+      - npx vitest run --project unit
+      - cmd: echo "Installing the browser the Storybook project runs in..."
+        silent: true
+      - npx playwright install --with-deps chromium
+      - cmd: echo "Running Storybook stories (renders every story, axe-gated)..."
+        silent: true
+      - npx vitest run --project storybook
+      - cmd: echo "Building for production..."
+        silent: true
+      - npm run build
+      - cmd: echo "All CI checks passed."
+        silent: true
+
+  # Dependencies
+  install:
+    desc: Install dependencies
+    cmds:
+      - npm install
+
+  install-ci:
+    desc: Install dependencies for CI
+    cmds:
+      - npm ci
+
+  # Development workflow
+  dev-setup:
+    desc: Set up development environment
+    cmds:
+      - task: install
+      - task: create-env-file
+      - cmd: echo "Development setup complete!"
+        silent: true
+
+  create-env-file:
+    internal: true
+    status:
+      - test -f .env
+    cmds:
+      - cmd: echo "Creating .env file from template..."
+        silent: true
+      - cp .env.example .env 2>/dev/null || echo "No .env.example found, please create .env manually"
+
+  # Production workflow
+  prod-setup:
+    desc: Production setup workflow
+    cmds:
+      - task: install-ci
+      - task: build
+      - cmd: echo "Production setup complete!"
+        silent: true
+
+  # Full development cycle
+  dev-cycle:
+    desc: Full development cycle
+    cmds:
+      - task: lint
+      - task: format
+      - task: test
+      - task: build
+      - cmd: echo "Development cycle complete!"
+        silent: true
+
+  # Quick start for new developers
+  quick-start:
+    desc: Quick start for new developers (runs dev-setup, then starts the dev server)
+    cmds:
+      - task: dev-setup
+      - task: dev
