@@ -15,8 +15,8 @@ export const OfflineIndicator = () => {
   return (
     <div className='fixed top-4 right-4 z-50 flex flex-col gap-2'>
       {!isOnline && (
-        <Badge variant='destructive' className='flex items-center gap-2'>
-          <WifiOff className='h-4 w-4' />
+        <Badge variant='warning'>
+          <WifiOff />
           <span>{t('offline.mode')}</span>
         </Badge>
       )}

@@ -174,10 +174,7 @@ export default function SpeciesPage() {
                             {species.scientificName}
                           </p>
                         </div>
-                        <Badge
-                          variant='outline'
-                          className='capitalize flex-shrink-0'
-                        >
+                        <Badge variant='outline' className='capitalize'>
                           {t(`${species.category}`)}
                         </Badge>
                       </div>
@@ -190,7 +187,7 @@ export default function SpeciesPage() {
                   {species.season && (
                     <div className='flex items-center gap-2'>
                       <Calendar className='h-4 w-4 text-primary' />
-                      <Badge className='bg-secondary text-primary'>
+                      <Badge variant='secondary'>
                         {t(`seasons.${species.season}`)}
                       </Badge>
                     </div>
@@ -198,7 +195,7 @@ export default function SpeciesPage() {
                   {species.habitat && (
                     <div className='flex items-center gap-2'>
                       <MapPin className='h-4 w-4 text-success' />
-                      <Badge className='bg-secondary text-primary'>
+                      <Badge variant='secondary'>
                         {t(`habitats.${species.habitat}`)}
                       </Badge>
                     </div>

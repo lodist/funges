@@ -153,8 +153,7 @@ export default function RouteToDishPanel({
                   {plan.missingSpecies.map(speciesId => (
                     <Badge
                       key={`${plan.recipeId}-${speciesId}`}
-                      variant='outline'
-                      className='border-status-warning-border text-status-warning-text'
+                      variant='warning'
                     >
                       {t('routePanel.missingSpecies', {
                         species: getSpeciesLabel(speciesId),

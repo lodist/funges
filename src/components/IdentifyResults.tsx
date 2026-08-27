@@ -177,7 +177,7 @@ function CandidateRow({
 
       <div className='min-w-0 flex-1 space-y-1'>
         {isToxic && (
-          <Badge variant='destructive' className='gap-1'>
+          <Badge variant='destructive'>
             <Skull />
             {toxicLabel}
           </Badge>

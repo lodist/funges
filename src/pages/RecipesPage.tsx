@@ -216,10 +216,7 @@ export default function RecipesPage() {
                 {(selectedCategory !== 'all' ||
                   selectedDifficulty !== 'all' ||
                   selectedTag !== 'all') && (
-                  <Badge
-                    variant='secondary'
-                    className='ml-1 h-5 px-1.5 text-xs'
-                  >
+                  <Badge variant='secondary'>
                     {(selectedCategory !== 'all' ? 1 : 0) +
                       (selectedDifficulty !== 'all' ? 1 : 0) +
                       (selectedTag !== 'all' ? 1 : 0)}
@@ -346,16 +343,12 @@ export default function RecipesPage() {
                     {/* Tags */}
                     <div className='flex flex-wrap gap-1 mb-4'>
                       {recipe.tags.slice(0, 3).map(tag => (
-                        <Badge
-                          key={tag}
-                          variant='secondary'
-                          className='text-xs'
-                        >
+                        <Badge key={tag} variant='secondary'>
                           {t(`tags.${tag}`)}
                         </Badge>
                       ))}
                       {recipe.tags.length > 3 && (
-                        <Badge variant='secondary' className='text-xs'>
+                        <Badge variant='secondary'>
                           +{recipe.tags.length - 3} {t('more')}
                         </Badge>
                       )}
@@ -364,11 +357,7 @@ export default function RecipesPage() {
                     {/* Species */}
                     <div className='flex flex-wrap gap-1 mb-4'>
                       {recipe.species.map(species => (
-                        <Badge
-                          key={species}
-                          variant='outline'
-                          className='text-xs'
-                        >
+                        <Badge key={species} variant='outline'>
                           {t(`species.${species}`)}
                         </Badge>
                       ))}
