@@ -92,17 +92,23 @@ describe('the state indicator is a token, not a literal', () => {
 
   it('the switch knob keeps one colour and the track carries the state', () => {
     const thumb = switchThumb();
-    expect(thumb).toContain('bg-background');
+    // a fixed light knob, so it never darkens into a hole in either theme
+    expect(thumb).toContain('bg-white');
     // a per-state knob colour reads as a hole rather than a moving part
     expect(thumb.filter(c => /^data-\[state=\w+\]:bg-/.test(c))).toHaveLength(
       0
     );
 
-    // --input left that knob at 1.32:1; the off track has to do the work
+    // the knob's own outline is the boundary, so the off track can stay pale;
+    // --foreground collapses to 2.34:1 on the lit track in dark, hence the twin
+    expect(thumb).toContain('border');
+    expect(thumb).toContain('border-foreground');
+    expect(thumb).toContain('dark:border-border');
+
     const root = switchRoot();
-    expect(root).toContain('data-[state=unchecked]:bg-muted-foreground');
+    expect(root).toContain('data-[state=unchecked]:bg-input');
     expect(root).toContain('data-[state=checked]:bg-primary');
-    expect(root).not.toContain('data-[state=unchecked]:bg-input');
+    expect(root).not.toContain('data-[state=unchecked]:bg-muted-foreground');
     expect(root).not.toContain('dark:data-[state=unchecked]:bg-input/80');
   });
 

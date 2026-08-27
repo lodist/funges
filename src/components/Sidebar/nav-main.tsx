@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronRight, type LucideIcon } from '@/lib/icons';
+import { ChevronDown, type LucideIcon } from '@/lib/icons';
 import { Link, useLocation } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 
@@ -87,18 +87,13 @@ export function NavMain({
 
           // If item has sub-items, render as collapsible
           return (
-            <Collapsible
-              key={item.title}
-              asChild
-              defaultOpen={isActive}
-              className='group/collapsible'
-            >
+            <Collapsible key={item.title} asChild defaultOpen={isActive}>
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton tooltip={item.title} isActive={isActive}>
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
-                    <ChevronRight className='ml-auto transition-transform duration-base group-data-[state=open]/collapsible:rotate-90' />
+                    <ChevronDown className='ml-auto' />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>

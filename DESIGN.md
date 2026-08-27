@@ -369,12 +369,14 @@ hit-area rule, because they share the same failure: a control whose only edge is
 - **State indicator:** the checkbox tick is `--primary-foreground` on the bright fill
   (**5.36:1** light, **6.27:1** dark). The radio dot is `--primary-text` on a transparent box
   (**7.85:1** / **6.44:1**), pinned on both `fill` and `text` because the icon's stroke follows
-  `currentColor` while its body follows `fill`. The switch knob is `--background` in both
-  states and never changes colour: a knob that recolours per state reads as a hole punched in
-  the track rather than a moving part. Making that legible is the track's job — `--input` left
-  the knob at **1.32:1** and invisible, so the off track is `--muted-foreground` (**5.29:1**
-  light, **9.81:1** dark). The lit state is **2.94:1** light and **5.46:1** dark, knowingly just
-  under the 3:1 floor: there the track colour and the knob position carry the state as well.
+  `currentColor` while its body follows `fill`. The switch knob is a fixed light `white` in
+  both states and both themes, and never changes colour: a knob that recolours per state reads
+  as a hole punched in the track rather than a moving part, and `--background` darkens into
+  exactly that hole in dark. The off track stays pale (`--input`), so the knob carries its own
+  1px outline: `--foreground` measures **12.37:1** off and **5.44:1** lit in light, and **6.10:1**
+  off in dark, but collapses to **2.34:1** on the lit track in dark — the one place it fails, so
+  dark swaps the outline to `--border` for **3.40:1**. Every state clears the 3:1 floor on at
+  least one boundary. The knob's shadow is depth only: a blur is not a measurable boundary.
 - **Error:** `aria-invalid` reddens the stroke to `--destructive-text`. The plain
   `--destructive` step used by Inputs measures **2.50:1** in dark, so a selection control — whose
   stroke is its whole boundary — cannot borrow it.
@@ -392,6 +394,38 @@ hit-area rule, because they share the same failure: a control whose only edge is
 carries the non-text contrast floor in every state it can reach — unchecked, checked, invalid
 and hover alike. Fill colour is interior decoration; the stroke is the control.
 
+### Collapsible
+
+A disclosure is the one primitive whose whole job is a state change over time, so the motion is
+part of the component rather than a caller's garnish.
+
+- **Height, on the shared tokens:** the content animates between `0` and
+  `--radix-collapsible-content-height`, the measured height the primitive already publishes, over
+  `--transition-duration-base` on `--ease-standard`. A disclosure that snaps gives no clue which
+  way the content went.
+- **The chevron turns with it, by default:** the trigger's trailing glyph rotates 180° on that
+  same duration and curve, so the arrow and the height finish together. It is plain CSS keyed off
+  `[data-slot='collapsible-trigger'][data-state='open']`, which `asChild` puts on the caller's own
+  trigger, so the caller picks the glyph and never wires `data-state`. `svg:last-child` leaves a
+  leading icon alone. It sets the `rotate` property rather than `transform` — the same one
+  Tailwind's own `rotate-*` utilities set — and `@layer utilities` orders after
+  `@layer components`, so a caller who wants a different angle replaces this one instead of
+  composing with it.
+- **Padding never sits on the animating box:** padding does not collapse with height, so 12px of
+  it would leave the closed state 12px tall instead of nothing. The component takes the caller's
+  `className` and puts it on an inner box, and keeps `overflow-hidden` and the animation on the
+  outer one. Callers style the content and never think about it.
+- **Reduced motion is already covered:** the global rule collapses every animation to `0.01ms`,
+  so the disclosure still lands in its new state, just without the travel. No second rule and no
+  per-component opt-out.
+- **The trigger belongs to the caller,** as `asChild` on whatever component fits — a Button in the
+  catalogue, a `SidebarMenuButton` in the nav. Disabling the root is enough: the primitive
+  forwards `disabled` through `asChild`, so the trigger greys itself and needs no second prop.
+
+**The Animation-Is-The-Affordance Rule.** When a component's purpose is a transition between two
+states, the transition is the component's own, not the caller's. Anything a caller must remember
+to add for the component to read correctly belongs inside it.
+
 ### Navigation
 
 - **Style:** both nav surfaces are elevation `raised` with Glass Regular, and both consume one shared constant (`NAV_SURFACE_CLASS` in `src/lib/nav-surface.ts`) so desktop and mobile chrome cannot drift apart. On the shadcn `Sidebar` the treatment must land on the painted surface (`data-slot='sidebar-inner'`), not the positioning container `className` targets — otherwise the surface's own background paints over the glass.
@@ -404,7 +438,7 @@ and hover alike. Fill colour is interior decoration; the stroke is the control.
 
 Three durations and one curve, and everything references them: `--transition-duration-fast: 150ms` for elevation hover and press micro-interactions, `--transition-duration-base: 200ms` for default state changes, `--transition-duration-slow: 300ms` for floating and overlay enter/exit, all on `--ease-standard: cubic-bezier(0.4, 0, 0.2, 1)`. The names carry Tailwind's `--transition-duration-*` prefix so the scale _is_ the `duration-*` utility namespace, and `--default-transition-duration` / `--default-transition-timing-function` point at it, so even a bare `transition-colors` references the scale. Under `prefers-reduced-motion` non-essential motion collapses to `0.01ms` rather than being deleted — the state change still lands, it just arrives instantly, and a transition that never fires could leave a component wedged mid-state. That takes two rules, not one: a global CSS rule, plus `<MotionConfig reducedMotion='user'>` for the inline transforms framer-motion writes from JavaScript, which no stylesheet can reach.
 
-**The Weight-Not-Movement Rule.** Interaction feedback changes shadow and background. It does not scale, translate, or rotate chrome. The one sanctioned transform is the mobile nav's active-item scale.
+**The Weight-Not-Movement Rule.** Interaction feedback changes shadow and background. It does not scale, translate, or rotate chrome. Two transforms are sanctioned, and both report state rather than feedback: the mobile nav's active-item scale, and a disclosure chevron's rotation, which the Collapsible owns rather than each caller. A collapsible's height animation is not a transform and is exempt.
 
 ## Do's and Don'ts
 

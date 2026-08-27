@@ -16,7 +16,7 @@ const meta: Meta<typeof Collapsible> = {
     docs: {
       description: {
         component:
-          'Show and hide a region of content. Unstyled on purpose — it supplies the open/closed state and the accessibility wiring, and nothing else. Every visual decision, including the disclosure arrow, belongs to the caller.',
+          'Show and hide a region of content. It owns the open/closed state, the accessibility wiring and the height animation, and nothing else — the animation is the one visual it cannot leave to the caller, because padding on the animating box would keep the closed state its own padding tall, and a caller cannot rotate a glyph on the shared tokens without wiring `data-state` itself. The trigger turns its trailing glyph 180° on the same duration and curve the height travels on, so the arrow and the content finish together; a leading icon is left alone. Every other visual decision, the disclosure arrow included, belongs to the caller, and a className goes on an inner box rather than the animating one.',
       },
     },
   },
@@ -83,35 +83,11 @@ export const Open: Story = {
   ),
 };
 
-export const WithRotatingChevron: Story = {
-  render: () => (
-    <Collapsible className='group w-80'>
-      <CollapsibleTrigger asChild>
-        <Button variant='outline' size='sm'>
-          {'Habitat notes'}
-          <ChevronDown className='transition-transform duration-base ease-standard group-data-[state=open]:rotate-180' />
-        </Button>
-      </CollapsibleTrigger>
-      <CollapsibleContent className='text-muted-foreground pt-3 text-sm'>
-        {HABITAT_NOTES}
-      </CollapsibleContent>
-    </Collapsible>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'The component exposes its state as a `data-state` attribute, which is how a caller animates a chevron without tracking the state itself. The rotation rides the shared motion tokens rather than a hardcoded duration.',
-      },
-    },
-  },
-};
-
 export const Disabled: Story = {
   render: () => (
     <Collapsible disabled className='w-80'>
       <CollapsibleTrigger asChild>
-        <Button variant='outline' size='sm' disabled>
+        <Button variant='outline' size='sm'>
           {'Habitat notes unavailable'}
           <ChevronDown />
         </Button>
@@ -125,7 +101,7 @@ export const Disabled: Story = {
     docs: {
       description: {
         story:
-          'Disabling the collapsible stops it toggling but does not grey out the trigger — the trigger is the caller’s own component, so it needs disabling too.',
+          'Disabling the collapsible stops it toggling and greys the trigger with it: the primitive forwards `disabled` to the trigger, and `asChild` lands it on the caller’s own component, so no second prop is needed.',
       },
     },
   },
@@ -173,11 +149,7 @@ export const AllStates: Story = {
           </p>
           <Collapsible className='w-80' {...state.props}>
             <CollapsibleTrigger asChild>
-              <Button
-                variant='outline'
-                size='sm'
-                disabled={state.label === 'disabled'}
-              >
+              <Button variant='outline' size='sm'>
                 {'Habitat notes'}
                 <ChevronDown />
               </Button>
@@ -194,7 +166,8 @@ export const AllStates: Story = {
     layout: 'padded',
     docs: {
       description: {
-        story: 'Both states plus the disabled treatment, in one view.',
+        story:
+          'Both states plus the disabled treatment, in one view. Only the root is disabled — the trigger greys itself.',
       },
     },
   },

@@ -127,6 +127,13 @@
   --default-transition-duration: var(--transition-duration-fast);
   --default-transition-timing-function: var(--ease-standard);
 
+  /* Radix publishes the measured height as a custom property, so a disclosure
+     can animate open on the shared tokens instead of snapping in one frame. */
+  --animate-collapsible-down: collapsible-down var(--transition-duration-base)
+    var(--ease-standard);
+  --animate-collapsible-up: collapsible-up var(--transition-duration-base)
+    var(--ease-standard);
+
   /* ------------------------------------------------------------------
      The One Hue Rule, enforced at build time.
 
@@ -166,6 +173,38 @@
   --color-fuchsia-*: initial;
   --color-pink-*: initial;
   --color-rose-*: initial;
+}
+
+@keyframes collapsible-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes collapsible-up {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@layer components {
+  /* The disclosure owns its chevron's rotation, so no caller wires data-state by
+     hand. asChild puts data-slot on the caller's own trigger, and :last-child
+     leaves a leading icon alone. Utilities order after this layer, so a caller
+     that wants a different angle can still say so. */
+  [data-slot='collapsible-trigger'] > svg:last-child {
+    transition: rotate var(--transition-duration-base) var(--ease-standard);
+  }
+
+  [data-slot='collapsible-trigger'][data-state='open'] > svg:last-child {
+    rotate: 180deg;
+  }
 }
 
 :root {
