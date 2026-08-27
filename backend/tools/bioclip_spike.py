@@ -18,6 +18,8 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
+from generated_catalog import CATALOG, CATALOG_NAMES
+
 # --- catalog labels: 32 unique scientific names from src/data/species.ts ---
 # 33 entries collapse to 32 unique names (elderberry + elderflower are both
 # Sambucus nigra).
@@ -28,7 +30,7 @@ from pathlib import Path
 # from a poisonous Scleroderma matters. Scleroderma is promoted to TOXIC below,
 # because adding an edible truffle without flagging its false twin would create
 # a path from a poisonous find to an edible-looking row.
-CATALOG = [
+_LEGACY_CATALOG = [
     ("Cantharellus cibarius", "species"),
     ("Boletus", "genus"),               # catalog says "Boletus spp."
     ("Morchella", "genus"),             # catalog says "Morchella spp."
@@ -181,7 +183,6 @@ CULTIVATED = [
 ]
 
 CULTIVATED_NAMES = {name for name, _ in CULTIVATED}
-CATALOG_NAMES = {name for name, _ in CATALOG}
 TOXIC_NAMES = {name for name, _ in TOXIC}
 
 INAT_API = "https://api.inaturalist.org/v1"
