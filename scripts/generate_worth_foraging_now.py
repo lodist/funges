@@ -12,6 +12,7 @@ OUTPUT_PATH = Path("public/data/worth_foraging_now.json")
 GRID_SIZE_DEGREES = 0.5
 MIN_SCORE = 4.0
 MAX_CELL_SPECIES = 8
+SPECIES_REGISTRY_PATH = Path("backend/generated/species_registry.json")
 
 SPECIES_COLUMNS = {
     "mushroom": "Porcini",
@@ -37,6 +38,20 @@ SPECIES_COLUMNS = {
 }
 
 
+def resolve_species_columns(available_columns: set[str]) -> dict[str, str]:
+    """Choose the first available score alias for each manifest species."""
+    registry = json.loads(SPECIES_REGISTRY_PATH.read_text(encoding="utf-8"))
+    resolved = {}
+    for species_id, config in registry["species"].items():
+        column = next(
+            (candidate for candidate in config["dataColumns"] if candidate in available_columns),
+            None,
+        )
+        if column:
+            resolved[species_id] = column
+    return resolved
+
+
 def infer_region(longitude: float, latitude: float) -> str:
     if longitude < -100:
         return "USW"
@@ -58,7 +73,9 @@ def iso_date(value: object) -> str:
 
 
 def main() -> None:
-    columns = ["Date", "Latitude", "Longitude", *SPECIES_COLUMNS.values()]
+    schema_columns = set(pq.read_schema(PARQUET_PATH).names)
+    species_columns = resolve_species_columns(schema_columns)
+    columns = ["Date", "Latitude", "Longitude", *species_columns.values()]
     table = pq.read_table(PARQUET_PATH, columns=columns)
     rows = table.to_pylist()
     if not rows:
@@ -87,7 +104,7 @@ def main() -> None:
         region_id = infer_region(longitude, latitude)
         cell_key = (region_id, round_cell(latitude), round_cell(longitude))
 
-        for species_id, column_name in SPECIES_COLUMNS.items():
+        for species_id, column_name in species_columns.items():
             value = row.get(column_name)
             if value is None:
                 continue

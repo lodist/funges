@@ -39,6 +39,7 @@ TWO_PART = {
 
 
 class _Config:
+    region = "NE"
     season_curves_env = "TEST_SEASON_CURVES"
     zone_curves_env = "TEST_ZONE_CURVES"
 
@@ -52,7 +53,7 @@ def _load(tmp_path, monkeypatch, region_curves, zone_curves, capsys):
     zone_path.write_text(json.dumps({"temperate": {"chant": zone_curves}}), encoding="utf-8")
     monkeypatch.setenv("TEST_SEASON_CURVES", str(region_path))
     monkeypatch.setenv("TEST_ZONE_CURVES", str(zone_path))
-    params, zones = fp._load_species_and_curves(_Config(), str(params_path))
+    params, zones = fp._load_species_and_curves(_Config())
     # A silent fallback is the failure mode this file exists to catch.
     assert "[warn]" not in capsys.readouterr().out
     return params, zones
