@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fung.es/schemas/species-manifest-v1.json",
+  "title": "Fung.es species manifest",
+  "type": "object",
+  "$defs": {
+    "scoring": {
+      "type": "object",
+      "required": [
+        "optimal_temp",
+        "temp_sigma",
+        "min_temp",
+        "max_temp",
+        "optimal_alt",
+        "alt_sigma",
+        "optimal_humidity",
+        "humidity_sigma",
+        "optimal_pH",
+        "pH_sigma_near",
+        "pH_sigma_far",
+        "pH_range_near",
+        "optimal_soil_temp",
+        "soil_temp_sigma",
+        "min_cumulative_rain",
+        "weather_preference",
+        "climate_zones",
+        "wind_sensitive",
+        "season_months",
+        "water_relevance",
+        "sea_relevance"
+      ],
+      "properties": {
+        "optimal_temp": { "type": "number" },
+        "temp_sigma": { "type": "number", "exclusiveMinimum": 0 },
+        "min_temp": { "type": "number" },
+        "max_temp": { "type": "number" },
+        "optimal_alt": { "type": "number" },
+        "alt_sigma": { "type": "number", "exclusiveMinimum": 0 },
+        "optimal_humidity": { "type": "number" },
+        "humidity_sigma": { "type": "number", "exclusiveMinimum": 0 },
+        "optimal_pH": { "type": "number" },
+        "pH_sigma_near": { "type": "number", "exclusiveMinimum": 0 },
+        "pH_sigma_far": { "type": "number", "exclusiveMinimum": 0 },
+        "pH_range_near": {
+          "type": "array",
+          "prefixItems": [{ "type": "number" }, { "type": "number" }],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "optimal_soil_temp": { "type": "number" },
+        "soil_temp_sigma": { "type": "number", "exclusiveMinimum": 0 },
+        "min_cumulative_rain": { "type": "number", "minimum": 0 },
+        "weather_preference": {
+          "type": "object",
+          "required": ["rain_first"],
+          "properties": { "rain_first": { "type": "boolean" } }
+        },
+        "climate_zones": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "wind_sensitive": { "type": "boolean" },
+        "season_months": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "integer", "minimum": 1, "maximum": 12 }
+        },
+        "water_relevance": { "type": "boolean" },
+        "sea_relevance": { "type": "boolean" }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "scientificName",
+    "catalog",
+    "locales",
+    "identification",
+    "forecast"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:[-_][a-z0-9]+)*$" },
+    "scientificName": { "type": "string", "minLength": 2 },
+    "scientificNameGroup": { "type": "string", "minLength": 1 },
+    "catalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "order",
+        "translationKey",
+        "category",
+        "emoji",
+        "season",
+        "habitat",
+        "image"
+      ],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "order": { "type": "integer", "minimum": 0 },
+        "translationKey": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" },
+        "category": { "enum": ["mushroom", "plant", "berry", "nut", "flower"] },
+        "emoji": { "type": "string", "minLength": 1 },
+        "season": { "type": "string", "minLength": 1 },
+        "habitat": { "type": "string", "minLength": 1 },
+        "image": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path"],
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^src/assets/species/.+\\.webp$"
+            },
+            "source": { "type": "string" },
+            "author": { "type": "string" },
+            "license": { "type": "string" }
+          }
+        }
+      }
+    },
+    "locales": {
+      "type": "object",
+      "required": ["en", "it", "fr", "de", "es", "pt"],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(en|it|fr|de|es|pt)$": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "description", "howTo"],
+          "properties": {
+            "name": { "type": "string", "minLength": 1 },
+            "description": { "type": "string", "minLength": 1 },
+            "howTo": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "identification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "label": { "type": "string", "minLength": 2 },
+        "rank": { "enum": ["species", "genus"] },
+        "safetyReview": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "references"],
+          "properties": {
+            "status": { "enum": ["pending", "approved"] },
+            "reviewedBy": { "type": "string" },
+            "references": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "enabled": { "const": true } } },
+          "then": { "required": ["label", "rank", "safetyReview"] }
+        }
+      ]
+    },
+    "forecast": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "dataColumns": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "empiricalSeason": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["enabled", "taxonKeys", "references"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "taxonKeys": {
+              "type": "array",
+              "items": { "type": "integer", "minimum": 1 }
+            },
+            "references": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "regions": {
+          "type": "object",
+          "required": ["NE", "SE", "USE", "USW"],
+          "propertyNames": { "enum": ["NE", "SE", "USE", "USW"] },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "landCover",
+              "landCoverScheme",
+              "scoring",
+              "scoringReferences"
+            ],
+            "properties": {
+              "landCover": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "type": ["integer", "string"] }
+              },
+              "landCoverScheme": { "enum": ["CORINE", "NLCD"] },
+              "scoring": { "$ref": "#/$defs/scoring" },
+              "scoringReferences": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "scoringSnapshotSha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "enabled": { "const": true } } },
+          "then": { "required": ["regions", "empiricalSeason"] }
+        }
+      ]
+    }
+  }
+}

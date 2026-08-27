@@ -1,0 +1,251 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "strawberry",
+  "scientificName": "Fragaria vesca",
+  "catalog": {
+    "enabled": true,
+    "order": 14,
+    "translationKey": "strawberry",
+    "category": "berry",
+    "emoji": "🍓",
+    "season": "spring-summer",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/strawberry.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Wild Strawberry",
+      "description": "Small red berries with intense flavor, with white flowers and trifoliate leaves",
+      "howTo": "Look for them in meadows, woodland edges, and grassy areas in spring and summer"
+    },
+    "it": {
+      "name": "Fragola Selvatica",
+      "description": "Piccole bacche rosse dal sapore intenso con fiori bianchi e foglie trifogliate",
+      "howTo": "Cercale in praterie, bordi boschivi e aree erbose in primavera ed estate"
+    },
+    "fr": {
+      "name": "Fraise des bois",
+      "description": "Petites fraises rouges au goût intense, fleurs blanches et feuilles trifoliées",
+      "howTo": "Cherchez-les dans les prairies, lisières de bois et zones herbeuses au printemps et en été"
+    },
+    "de": {
+      "name": "Walderdbeere",
+      "description": "Kleine, aromatische rote Beeren mit weissen Blüten und dreiteiligen Blättern",
+      "howTo": "Zu finden auf Wiesen, Waldrändern und Grasflächen im Frühling und Sommer"
+    },
+    "es": {
+      "name": "Fresa silvestre",
+      "description": "Pequeñas bayas rojas de sabor intenso, con flores blancas y hojas trifoliadas",
+      "howTo": "Búscalas en praderas, bordes de bosques y áreas herbosas en primavera y verano"
+    },
+    "pt": {
+      "name": "Morangos-silvestres",
+      "description": "Pequenos morangos vermelhos de sabor intenso, com flores brancas e folhas trifoliadas",
+      "howTo": "Procure em prados, bordas de bosques e áreas gramadas na primavera e verão"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Fragaria vesca",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Wild Strawberry", "Strawberry"],
+    "regions": {
+      "NE": {
+        "landCover": [311, 313, 324],
+        "scoring": {
+          "optimal_temp": 15,
+          "optimal_alt": 500,
+          "temp_sigma": 5,
+          "min_temp": 4,
+          "max_temp": 24,
+          "alt_sigma": 800,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 5.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.6, 7],
+          "optimal_soil_temp": 16,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 20,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": false,
+          "season_months": [5, 6, 7],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "landCover": [311, 313, 324],
+        "scoring": {
+          "optimal_temp": 15,
+          "optimal_alt": 500,
+          "temp_sigma": 5,
+          "min_temp": 4,
+          "max_temp": 24,
+          "alt_sigma": 800,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 5.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.6, 7],
+          "optimal_soil_temp": 16,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 20,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": false,
+          "season_months": [5, 6, 7],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "landCover": [41, 43, 52],
+        "scoring": {
+          "optimal_temp": 15,
+          "optimal_alt": 500,
+          "temp_sigma": 5,
+          "min_temp": 4,
+          "max_temp": 24,
+          "alt_sigma": 800,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 5.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.6, 7],
+          "optimal_soil_temp": 16,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 20,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_subtropical",
+            "humid_continental",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": false,
+          "season_months": [5, 6, 7],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "landCover": [41, 43, 52],
+        "scoring": {
+          "optimal_temp": 15,
+          "optimal_alt": 500,
+          "temp_sigma": 5,
+          "min_temp": 4,
+          "max_temp": 24,
+          "alt_sigma": 800,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 5.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.6, 7],
+          "optimal_soil_temp": 16,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 20,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_subtropical",
+            "humid_continental",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": false,
+          "season_months": [5, 6, 7],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    }
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "chant",
+  "scientificName": "Cantharellus cibarius",
+  "catalog": {
+    "enabled": true,
+    "order": 0,
+    "translationKey": "chant",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "summer-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/chant.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Chanterelle",
+      "description": "A golden yellow mushroom with a distinctive funnel shape and fruity aroma",
+      "howTo": "Look for them in deciduous forests, especially near oak and beech trees"
+    },
+    "it": {
+      "name": "Galletti",
+      "description": "Un fungo giallo dorato con una forma a imbuto distintiva e aroma fruttato",
+      "howTo": "Cercali nelle foreste decidue, specialmente vicino a querce e faggi"
+    },
+    "fr": {
+      "name": "Girolle",
+      "description": "Un champignon jaune doré en forme d'entonnoir avec un arôme fruité distinctif",
+      "howTo": "Cherchez-les dans les forêts de feuillus, surtout près des chênes et des hêtres"
+    },
+    "de": {
+      "name": "Pfifferling",
+      "description": "Ein goldgelber Pilz mit charakteristischer Trichterform und fruchtigem Aroma",
+      "howTo": "Suche in Laubwäldern, besonders in der Nähe von Eichen und Buchen"
+    },
+    "es": {
+      "name": "Rebozuelo",
+      "description": "Un hongo amarillo dorado con forma de embudo distintiva y aroma afrutado",
+      "howTo": "Búscalos en bosques caducifolios, especialmente cerca de robles y hayas"
+    },
+    "pt": {
+      "name": "Cantarelo",
+      "description": "Um cogumelo amarelo-dourado com formato de funil distinto e aroma frutado",
+      "howTo": "Procure em florestas decíduas, especialmente perto de carvalhos e faias"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Cantharellus cibarius",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Chanterelle"],
+    "regions": {
+      "NE": {
+        "landCover": [311, 313, 324],
+        "scoring": {
+          "optimal_temp": 16,
+          "temp_sigma": 4.5,
+          "min_temp": 6,
+          "max_temp": 25,
+          "optimal_alt": 850,
+          "alt_sigma": 1200,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 5.25,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4, 6.75],
+          "optimal_soil_temp": 17.5,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": false,
+          "season_months": [7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "landCover": [311, 313, 324],
+        "scoring": {
+          "optimal_temp": 16,
+          "temp_sigma": 4.5,
+          "min_temp": 6,
+          "max_temp": 25,
+          "optimal_alt": 850,
+          "alt_sigma": 1200,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 5.25,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4, 6.75],
+          "optimal_soil_temp": 17.5,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": false,
+          "season_months": [7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "landCover": [41, 43, 52],
+        "scoring": {
+          "optimal_temp": 16,
+          "temp_sigma": 4,
+          "min_temp": 6,
+          "max_temp": 25,
+          "optimal_alt": 850,
+          "alt_sigma": 1200,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 5.25,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4, 6.75],
+          "optimal_soil_temp": 17.5,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_subtropical",
+            "humid_continental",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": false,
+          "season_months": [7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "landCover": [41, 43, 52],
+        "scoring": {
+          "optimal_temp": 16,
+          "temp_sigma": 4,
+          "min_temp": 6,
+          "max_temp": 25,
+          "optimal_alt": 850,
+          "alt_sigma": 1200,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 5.25,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4, 6.75],
+          "optimal_soil_temp": 17.5,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_subtropical",
+            "humid_continental",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": false,
+          "season_months": [7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [9623860],
+      "references": ["https://www.gbif.org/species/9623860"]
+    }
+  }
+}

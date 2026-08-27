@@ -1,0 +1,251 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "walnut",
+  "scientificName": "Juglans regia",
+  "catalog": {
+    "enabled": true,
+    "order": 18,
+    "translationKey": "walnut",
+    "category": "nut",
+    "emoji": "🌰",
+    "season": "fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/walnut.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Walnut",
+      "description": "Large round nuts with hard shells and rich, oily flavor",
+      "howTo": "Look for walnut trees in parks, gardens, and woodland edges in autumn"
+    },
+    "it": {
+      "name": "Noce",
+      "description": "Noci grandi e rotonde con guscio duro e sapore ricco e oleoso",
+      "howTo": "Cerca alberi di noce in parchi, giardini e bordi boschivi in autunno"
+    },
+    "fr": {
+      "name": "Noyer",
+      "description": "Grosses noix rondes à coque dure et saveur riche et huileuse",
+      "howTo": "Cherchez les noyers dans les parcs, jardins et lisières de bois en automne"
+    },
+    "de": {
+      "name": "Walnuss",
+      "description": "Grosse, runde Nüsse mit harter Schale und aromatischem, ölhaltigem Kern",
+      "howTo": "Suche Walnussbäume in Parks, Gärten und Waldrändern im Herbst"
+    },
+    "es": {
+      "name": "Nuez",
+      "description": "Frutos grandes y redondos con cáscara dura y sabor rico y aceitoso",
+      "howTo": "Busca nogales en parques, jardines y bordes de bosques en otoño"
+    },
+    "pt": {
+      "name": "Noz",
+      "description": "Nozes grandes e redondas com casca dura e sabor rico e oleoso",
+      "howTo": "Procure nogueiras em parques, jardins e bordas de bosques no outono"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Juglans regia",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Wild Walnut"],
+    "regions": {
+      "NE": {
+        "landCover": [311],
+        "scoring": {
+          "optimal_temp": 14,
+          "temp_sigma": 7,
+          "min_temp": 5,
+          "max_temp": 21,
+          "optimal_alt": 500,
+          "alt_sigma": 600,
+          "optimal_humidity": 70,
+          "humidity_sigma": 14,
+          "optimal_pH": 6.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.25, 7.75],
+          "optimal_soil_temp": 11,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 15,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [10, 11],
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "landCover": [311],
+        "scoring": {
+          "optimal_temp": 14,
+          "temp_sigma": 7,
+          "min_temp": 5,
+          "max_temp": 21,
+          "optimal_alt": 500,
+          "alt_sigma": 600,
+          "optimal_humidity": 70,
+          "humidity_sigma": 14,
+          "optimal_pH": 6.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.25, 7.75],
+          "optimal_soil_temp": 11,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 15,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [10, 11],
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "landCover": [41],
+        "scoring": {
+          "optimal_temp": 14,
+          "temp_sigma": 7,
+          "min_temp": 5,
+          "max_temp": 21,
+          "optimal_alt": 500,
+          "alt_sigma": 600,
+          "optimal_humidity": 70,
+          "humidity_sigma": 14,
+          "optimal_pH": 6.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.25, 7.75],
+          "optimal_soil_temp": 11,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 15,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [10, 11],
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_subtropical",
+            "humid_continental",
+            "continental",
+            "temperate",
+            "mediterranean_california"
+          ],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "landCover": [41],
+        "scoring": {
+          "optimal_temp": 14,
+          "temp_sigma": 7,
+          "min_temp": 5,
+          "max_temp": 21,
+          "optimal_alt": 500,
+          "alt_sigma": 600,
+          "optimal_humidity": 70,
+          "humidity_sigma": 14,
+          "optimal_pH": 6.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.25, 7.75],
+          "optimal_soil_temp": 11,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 15,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [10, 11],
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_subtropical",
+            "humid_continental",
+            "continental",
+            "temperate",
+            "mediterranean_california"
+          ],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    }
+  }
+}

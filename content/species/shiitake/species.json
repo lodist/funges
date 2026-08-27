@@ -1,0 +1,66 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "shiitake",
+  "scientificName": "Lentinula edodes",
+  "catalog": {
+    "enabled": true,
+    "order": 11,
+    "translationKey": "shiitake",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "spring-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/shiitake.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Shiitake",
+      "description": "A mushroom with brown cap and white gills, highly prized in Asian cuisine",
+      "howTo": "Found growing on dead hardwood trees, especially oak and beech, in spring and autumn"
+    },
+    "it": {
+      "name": "Shiitake",
+      "description": "Un fungo con cappello marrone e lamelle bianche, molto apprezzato nella cucina asiatica",
+      "howTo": "Trovato che cresce su alberi di legno duro morti, specialmente querce e faggi, in primavera e autunno"
+    },
+    "fr": {
+      "name": "Shiitaké",
+      "description": "Champignon à chapeau brun et lames blanches, très prisé en cuisine asiatique",
+      "howTo": "Se trouve sur le bois mort de feuillus, surtout chêne et hêtre, au printemps et en automne"
+    },
+    "de": {
+      "name": "Shiitake",
+      "description": "Pilz mit braunem Hut und weissen Lamellen, in der asiatischen Küche sehr geschätzt",
+      "howTo": "Wächst an totem Laubholz, besonders Eiche und Buche, im Frühling und Herbst"
+    },
+    "es": {
+      "name": "Shiitake",
+      "description": "Hongo con sombrero marrón y láminas blancas, muy apreciado en la cocina asiática",
+      "howTo": "Se encuentra creciendo en maderas duras muertas, especialmente roble y haya, en primavera y otoño"
+    },
+    "pt": {
+      "name": "Shiitake",
+      "description": "Cogumelo com chapéu marrom e lâminas brancas, muito valorizado na culinária asiática",
+      "howTo": "Encontrado crescendo em madeira dura morta, especialmente carvalho e faia, na primavera e outono"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Lentinula edodes",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": false,
+    "dataColumns": []
+  }
+}

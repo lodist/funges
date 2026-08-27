@@ -1,0 +1,205 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "masterwort",
+  "scientificName": "Peucedanum ostruthium",
+  "catalog": {
+    "enabled": true,
+    "order": 28,
+    "translationKey": "masterwort",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "summer",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/masterwort.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Masterwort",
+      "description": "A perennial herb with aromatic leaves and white flower clusters, used in traditional medicine and as a spice.",
+      "howTo": "Found in mountain meadows and forest clearings, harvest leaves and roots in spring and summer."
+    },
+    "it": {
+      "name": "Imperatoria",
+      "description": "Erba perenne con foglie aromatiche e ombrelle di fiori bianchi, usata in medicina tradizionale e come spezia.",
+      "howTo": "Si trova in prati montani e radure boschive; raccogli foglie e radici in primavera ed estate."
+    },
+    "fr": {
+      "name": "Impératoire",
+      "description": "Plante vivace aux feuilles aromatiques et ombelles de fleurs blanches, utilisée en médecine traditionnelle et comme épice.",
+      "howTo": "Se trouve dans les prairies de montagne et les clairières forestières ; récolte feuilles et racines au printemps et en été."
+    },
+    "de": {
+      "name": "Meisterwurz",
+      "description": "Mehrjährige Pflanze mit aromatischen Blättern und weissen Doldenblüten, verwendet in der traditionellen Medizin und als Gewürz.",
+      "howTo": "Findet man auf Bergwiesen und in lichten Waldlichtungen; sammle Blätter und Wurzeln im Frühling und Sommer."
+    },
+    "es": {
+      "name": "Imperatoria",
+      "description": "Hierba perenne con hojas aromáticas y umbelas de flores blancas, usada en medicina tradicional y como especia.",
+      "howTo": "Se encuentra en praderas de montaña y claros de bosque; recolecta hojas y raíces en primavera y verano."
+    },
+    "pt": {
+      "name": "Imperatória",
+      "description": "Erva perene com folhas aromáticas e umbelas de flores brancas, usada na medicina tradicional e como especiaria.",
+      "howTo": "Encontrada em prados de montanha e clareiras florestais; colha folhas e raízes na primavera e no verão."
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Peucedanum ostruthium",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Masterwort"],
+    "regions": {
+      "NE": {
+        "landCover": [321, 324],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 4,
+          "min_temp": 4.5,
+          "max_temp": 18,
+          "optimal_alt": 1800,
+          "alt_sigma": 650,
+          "optimal_humidity": 80,
+          "humidity_sigma": 17,
+          "optimal_pH": 6.2,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.8, 7.7],
+          "optimal_soil_temp": 10,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": ["alpine", "subarctic", "temperate", "continental"],
+          "wind_sensitive": false,
+          "season_months": [6, 7, 8],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "landCover": [321, 324],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 4,
+          "min_temp": 4.5,
+          "max_temp": 18,
+          "optimal_alt": 1800,
+          "alt_sigma": 650,
+          "optimal_humidity": 80,
+          "humidity_sigma": 17,
+          "optimal_pH": 6.2,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.8, 7.7],
+          "optimal_soil_temp": 10,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": ["alpine", "subarctic", "temperate", "continental"],
+          "wind_sensitive": false,
+          "season_months": [6, 7, 8],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "landCover": [71, 52],
+        "scoring": {
+          "optimal_temp": 1000,
+          "temp_sigma": 4,
+          "min_temp": 4.5,
+          "max_temp": 18,
+          "optimal_alt": 1800,
+          "alt_sigma": 650,
+          "optimal_humidity": 80,
+          "humidity_sigma": 17,
+          "optimal_pH": 6.2,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.8, 7.7],
+          "optimal_soil_temp": 10,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [],
+          "wind_sensitive": false,
+          "season_months": [12],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "landCover": [71, 52],
+        "scoring": {
+          "optimal_temp": 1000,
+          "temp_sigma": 4,
+          "min_temp": 4.5,
+          "max_temp": 18,
+          "optimal_alt": 1800,
+          "alt_sigma": 650,
+          "optimal_humidity": 80,
+          "humidity_sigma": 17,
+          "optimal_pH": 6.2,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.8, 7.7],
+          "optimal_soil_temp": 10,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [],
+          "wind_sensitive": false,
+          "season_months": [12],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    }
+  }
+}

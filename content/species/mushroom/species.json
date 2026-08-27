@@ -1,0 +1,255 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "mushroom",
+  "scientificName": "Boletus spp.",
+  "catalog": {
+    "enabled": true,
+    "order": 1,
+    "translationKey": "mushroom",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/mushroom.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Boletus",
+      "description": "Also known as King Bolete, this prized mushroom has a brown cap and white or yellow pores",
+      "howTo": "Found in coniferous and deciduous forests, often near pine trees"
+    },
+    "it": {
+      "name": "Boletus",
+      "description": "Conosciuto anche come Boleto Reale, questo fungo pregiato ha un cappello marrone e pori bianchi o gialli",
+      "howTo": "Trovato nelle foreste di conifere e decidue, spesso vicino ai pini"
+    },
+    "fr": {
+      "name": "Boletus",
+      "description": "Aussi appelé cèpe de Bordeaux, ce champignon prisé a un chapeau brun et des pores blancs ou jaunes",
+      "howTo": "Se trouve dans les forêts de conifères et de feuillus, souvent près des pins"
+    },
+    "de": {
+      "name": "Boletus",
+      "description": "Auch als Herrenpilz bekannt, geschätzter Pilz mit braunem Hut und weissen oder gelben Röhren",
+      "howTo": "Kommt in Nadel- und Laubwäldern vor, oft in der Nähe von Kiefern"
+    },
+    "es": {
+      "name": "Boletus",
+      "description": "También conocido como hongo rey, este apreciado hongo tiene un sombrero marrón y poros blancos o amarillos",
+      "howTo": "Se encuentra en bosques de coníferas y caducifolios, a menudo cerca de pinos"
+    },
+    "pt": {
+      "name": "Boletus",
+      "description": "Também conhecido como Boleto, este cogumelo valorizado tem chapéu marrom e poros brancos ou amarelos",
+      "howTo": "Encontrado em florestas de coníferas e decíduas, frequentemente perto de pinheiros"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Boletus",
+    "rank": "genus",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Porcini", "Mushroom"],
+    "regions": {
+      "NE": {
+        "landCover": [311, 312, 313],
+        "scoring": {
+          "optimal_temp": 17,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 25,
+          "optimal_alt": 1000,
+          "alt_sigma": 1600,
+          "optimal_humidity": 80,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4, 7],
+          "optimal_soil_temp": 17.5,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": true,
+          "season_months": [5, 6, 7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "landCover": [311, 312, 313],
+        "scoring": {
+          "optimal_temp": 17,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 25,
+          "optimal_alt": 1000,
+          "alt_sigma": 1600,
+          "optimal_humidity": 80,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4, 7],
+          "optimal_soil_temp": 17.5,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": true,
+          "season_months": [5, 6, 7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 17,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 25,
+          "optimal_alt": 1000,
+          "alt_sigma": 1600,
+          "optimal_humidity": 80,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4, 7],
+          "optimal_soil_temp": 17.5,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_subtropical",
+            "humid_continental",
+            "continental",
+            "temperate",
+            "mediterranean_california",
+            "semiarid_steppe"
+          ],
+          "wind_sensitive": true,
+          "season_months": [5, 6, 7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 17,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 25,
+          "optimal_alt": 1000,
+          "alt_sigma": 1600,
+          "optimal_humidity": 80,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4, 7],
+          "optimal_soil_temp": 17.5,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_subtropical",
+            "humid_continental",
+            "continental",
+            "temperate",
+            "mediterranean_california",
+            "semiarid_steppe"
+          ],
+          "wind_sensitive": true,
+          "season_months": [5, 6, 7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [8287374],
+      "references": ["https://www.gbif.org/species/8287374"]
+    }
+  }
+}

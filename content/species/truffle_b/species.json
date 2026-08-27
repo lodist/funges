@@ -1,0 +1,229 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "truffle_b",
+  "scientificName": "Tuber melanosporum",
+  "catalog": {
+    "enabled": true,
+    "order": 32,
+    "translationKey": "truffle_b",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "winter",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/truffle_b.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Black Truffle",
+      "description": "A highly prized underground fungus with a strong aroma, used in gourmet cuisine.",
+      "howTo": "Found underground near the roots of oaks and hazelnuts, typically harvested with trained animals in winter."
+    },
+    "it": {
+      "name": "Tartufo Nero Pregiato",
+      "description": "Fungo ipogeo molto pregiato dal profumo intenso, usato in cucina gourmet.",
+      "howTo": "Si trova sottoterra vicino alle radici di querce e noccioli, raccolto con animali addestrati in inverno."
+    },
+    "fr": {
+      "name": "Truffe noire du Périgord",
+      "description": "Champignon souterrain très recherché au parfum intense, utilisé en cuisine gastronomique.",
+      "howTo": "Se trouve sous terre près des racines de chênes et de noisetiers, récolté avec des animaux dressés en hiver."
+    },
+    "de": {
+      "name": "Schwarzer Trüffel",
+      "description": "Sehr geschätzter unterirdischer Pilz mit intensivem Aroma, in der Gourmetküche verwendet.",
+      "howTo": "Wächst unterirdisch in der Nähe der Wurzeln von Eichen und Haseln, wird im Winter mit ausgebildeten Tieren gesammelt."
+    },
+    "es": {
+      "name": "Trufa negra",
+      "description": "Hongo subterráneo muy apreciado, de aroma intenso, utilizado en la cocina gourmet.",
+      "howTo": "Se encuentra bajo tierra cerca de las raíces de robles y avellanos, recolectado con animales adiestrados en invierno."
+    },
+    "pt": {
+      "name": "Trufa-preta",
+      "description": "Cogumelo subterrâneo muito apreciado, de aroma intenso, usado na culinária gourmet.",
+      "howTo": "Encontra-se debaixo da terra, próximo às raízes de carvalhos e aveleiras, colhido com animais treinados no inverno."
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Tuber melanosporum",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": [],
+    "regions": {
+      "NE": {
+        "landCover": [311],
+        "scoring": {
+          "optimal_temp": 9,
+          "temp_sigma": 4,
+          "min_temp": 4,
+          "max_temp": 16,
+          "optimal_alt": 750,
+          "alt_sigma": 500,
+          "optimal_humidity": 75,
+          "humidity_sigma": 16,
+          "optimal_pH": 7.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [6.6, 9],
+          "optimal_soil_temp": 11,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 25,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "temperate",
+            "continental",
+            "central_spain",
+            "sardinia",
+            "oceanic_south",
+            "oceanic_north"
+          ],
+          "wind_sensitive": false,
+          "season_months": [1, 2, 3, 4, 10, 11, 12],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "landCover": [311],
+        "scoring": {
+          "optimal_temp": 9,
+          "temp_sigma": 4,
+          "min_temp": 4,
+          "max_temp": 16,
+          "optimal_alt": 750,
+          "alt_sigma": 500,
+          "optimal_humidity": 75,
+          "humidity_sigma": 16,
+          "optimal_pH": 7.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [6.6, 9],
+          "optimal_soil_temp": 11,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 25,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "temperate",
+            "continental",
+            "central_spain",
+            "sardinia",
+            "oceanic_south",
+            "oceanic_north"
+          ],
+          "wind_sensitive": false,
+          "season_months": [1, 2, 3, 4, 10, 11, 12],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "landCover": [41],
+        "scoring": {
+          "optimal_temp": 1000,
+          "temp_sigma": 4,
+          "min_temp": 4,
+          "max_temp": 16,
+          "optimal_alt": 750,
+          "alt_sigma": 500,
+          "optimal_humidity": 75,
+          "humidity_sigma": 16,
+          "optimal_pH": 7.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [6.6, 9],
+          "optimal_soil_temp": 11,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 25,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [],
+          "wind_sensitive": false,
+          "season_months": [12],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "landCover": [41],
+        "scoring": {
+          "optimal_temp": 1000,
+          "temp_sigma": 4,
+          "min_temp": 4,
+          "max_temp": 16,
+          "optimal_alt": 750,
+          "alt_sigma": 500,
+          "optimal_humidity": 75,
+          "humidity_sigma": 16,
+          "optimal_pH": 7.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [6.6, 9],
+          "optimal_soil_temp": 11,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 25,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [],
+          "wind_sensitive": false,
+          "season_months": [12],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [5258468],
+      "references": ["https://www.gbif.org/species/5258468"]
+    }
+  }
+}

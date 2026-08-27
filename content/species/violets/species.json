@@ -1,0 +1,66 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "violets",
+  "scientificName": "Viola odorata",
+  "catalog": {
+    "enabled": true,
+    "order": 22,
+    "translationKey": "violets",
+    "category": "flower",
+    "emoji": "🌸",
+    "season": "spring",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/violets.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Sweet Violet",
+      "description": "Small purple flowers with heart-shaped leaves and a sweet fragrance",
+      "howTo": "Found in woodland edges, hedgerows, and shady areas in early spring"
+    },
+    "it": {
+      "name": "Viola Mammola",
+      "description": "Piccoli fiori viola con foglie a forma di cuore e un profumo dolce",
+      "howTo": "Trovata in bordi boschivi, siepi e aree ombreggiate all'inizio della primavera"
+    },
+    "fr": {
+      "name": "Violette odorante",
+      "description": "Petites fleurs violettes à feuilles en cœur et parfum doux",
+      "howTo": "Se trouve en lisière de bois, haies et zones ombragées au début du printemps"
+    },
+    "de": {
+      "name": "Duftveilchen",
+      "description": "Kleine violette Blüten mit herzförmigen Blättern und süssem Duft",
+      "howTo": "Zu finden an Waldrändern, in Hecken und schattigen Bereichen im zeitigen Frühling"
+    },
+    "es": {
+      "name": "Violeta dulce",
+      "description": "Pequeñas flores moradas con hojas en forma de corazón y fragancia dulce",
+      "howTo": "Se encuentra en bordes de bosques, setos y zonas sombrías a principios de primavera"
+    },
+    "pt": {
+      "name": "Violeta-doce",
+      "description": "Pequenas flores roxas com folhas em formato de coração e fragrância adocicada",
+      "howTo": "Encontrada em bordas de bosques, cercas vivas e áreas sombreadas no início da primavera"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Viola odorata",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": false,
+    "dataColumns": []
+  }
+}

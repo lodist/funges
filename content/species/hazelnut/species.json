@@ -1,0 +1,66 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "hazelnut",
+  "scientificName": "Corylus avellana",
+  "catalog": {
+    "enabled": true,
+    "order": 7,
+    "translationKey": "hazelnut",
+    "category": "nut",
+    "emoji": "🌰",
+    "season": "fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/hazelnut.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Hazelnut",
+      "description": "Sweet, round nuts that grow on hazel trees",
+      "howTo": "Look for hazel trees in hedgerows and woodland edges in autumn"
+    },
+    "it": {
+      "name": "Nocciola",
+      "description": "Noci dolci e rotonde che crescono sui noccioli",
+      "howTo": "Cerca noccioli in siepi e bordi boschivi in autunno"
+    },
+    "fr": {
+      "name": "Noisette",
+      "description": "Noix rondes et sucrées poussant sur les noisetiers",
+      "howTo": "Cherchez les noisetiers dans les haies et lisières de bois en automne"
+    },
+    "de": {
+      "name": "Haselnuss",
+      "description": "Süsse, runde Nüsse, die an Haselsträuchern wachsen",
+      "howTo": "Suche Haselsträucher in Hecken und Waldrändern im Herbst"
+    },
+    "es": {
+      "name": "Avellana",
+      "description": "Frutos secos dulces y redondos que crecen en avellanos",
+      "howTo": "Busca avellanos en setos y bordes de bosques en otoño"
+    },
+    "pt": {
+      "name": "Avelã",
+      "description": "Nozes doces e arredondadas que crescem em aveleiras",
+      "howTo": "Procure aveleiras em cercas vivas e bordas de bosques no outono"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Corylus avellana",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": false,
+    "dataColumns": []
+  }
+}

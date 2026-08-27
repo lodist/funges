@@ -1,0 +1,233 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "asparagus",
+  "scientificName": "Asparagus acutifolius",
+  "catalog": {
+    "enabled": true,
+    "order": 25,
+    "translationKey": "asparagus",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "spring",
+    "habitat": "hedgerow",
+    "image": {
+      "path": "src/assets/species/asparagus.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Wild Asparagus",
+      "description": "A perennial plant with slender, edible shoots that appear in spring.",
+      "howTo": "Look for young shoots in open fields, meadows, and along hedgerows in spring."
+    },
+    "it": {
+      "name": "Asparago Selvatico",
+      "description": "Pianta perenne con germogli sottili e commestibili che compaiono in primavera.",
+      "howTo": "Cerca i giovani germogli in campi aperti, prati e lungo le siepi in primavera."
+    },
+    "fr": {
+      "name": "Asperge sauvage",
+      "description": "Plante vivace aux pousses fines et comestibles apparaissant au printemps.",
+      "howTo": "Cherche les jeunes pousses dans les champs ouverts, prairies et le long des haies au printemps."
+    },
+    "de": {
+      "name": "Wilder Spargel",
+      "description": "Mehrjährige Pflanze mit dünnen, essbaren Trieben, die im Frühling erscheinen.",
+      "howTo": "Suche die jungen Triebe auf offenen Feldern, Wiesen und entlang von Hecken im Frühling."
+    },
+    "es": {
+      "name": "Espárrago silvestre",
+      "description": "Planta perenne con brotes delgados y comestibles que aparecen en primavera.",
+      "howTo": "Busca los brotes jóvenes en campos abiertos, praderas y a lo largo de setos en primavera."
+    },
+    "pt": {
+      "name": "Espargo-silvestre",
+      "description": "Planta perene com rebentos finos e comestíveis que aparecem na primavera.",
+      "howTo": "Procure os rebentos jovens em campos abertos, prados e ao longo das sebes na primavera."
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Asparagus acutifolius",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Wild Asparagus", "Asparagus"],
+    "regions": {
+      "NE": {
+        "landCover": [323, 324],
+        "scoring": {
+          "optimal_temp": 14,
+          "optimal_alt": 400,
+          "temp_sigma": 4,
+          "min_temp": 5,
+          "max_temp": 18,
+          "alt_sigma": 700,
+          "optimal_humidity": 65,
+          "humidity_sigma": 12,
+          "optimal_pH": 6.4,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.2, 7.6],
+          "optimal_soil_temp": 10.5,
+          "soil_temp_sigma": 4.5,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "central_spain",
+            "sardinia",
+            "oceanic_south"
+          ],
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "landCover": [323, 324],
+        "scoring": {
+          "optimal_temp": 14,
+          "optimal_alt": 400,
+          "temp_sigma": 4,
+          "min_temp": 5,
+          "max_temp": 18,
+          "alt_sigma": 700,
+          "optimal_humidity": 65,
+          "humidity_sigma": 12,
+          "optimal_pH": 6.4,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.2, 7.6],
+          "optimal_soil_temp": 10.5,
+          "soil_temp_sigma": 4.5,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "central_spain",
+            "sardinia",
+            "oceanic_south"
+          ],
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "landCover": [52],
+        "scoring": {
+          "optimal_temp": 1000,
+          "optimal_alt": 400,
+          "temp_sigma": 4,
+          "min_temp": 5,
+          "max_temp": 18,
+          "alt_sigma": 700,
+          "optimal_humidity": 65,
+          "humidity_sigma": 12,
+          "optimal_pH": 6.4,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.2, 7.6],
+          "optimal_soil_temp": 10.5,
+          "soil_temp_sigma": 4.5,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "mediterranean_california",
+            "semiarid_steppe",
+            "temperate",
+            "humid_subtropical",
+            "marine_west_coast"
+          ],
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "landCover": [52],
+        "scoring": {
+          "optimal_temp": 1000,
+          "optimal_alt": 400,
+          "temp_sigma": 4,
+          "min_temp": 5,
+          "max_temp": 18,
+          "alt_sigma": 700,
+          "optimal_humidity": 65,
+          "humidity_sigma": 12,
+          "optimal_pH": 6.4,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.2, 7.6],
+          "optimal_soil_temp": 10.5,
+          "soil_temp_sigma": 4.5,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "mediterranean_california",
+            "semiarid_steppe",
+            "temperate",
+            "humid_subtropical",
+            "marine_west_coast"
+          ],
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    }
+  }
+}

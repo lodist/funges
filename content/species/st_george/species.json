@@ -1,0 +1,235 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "st_george",
+  "scientificName": "Calocybe gambosa",
+  "catalog": {
+    "enabled": true,
+    "order": 31,
+    "translationKey": "st_george",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "spring",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/st_george.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "St. George's Mushroom",
+      "description": "A white, firm mushroom with a mealy scent, appearing around St. George's Day in spring.",
+      "howTo": "Found in grassy areas, meadows, and along woodland edges in spring."
+    },
+    "it": {
+      "name": "Prugnolo (Fungo di San Giorgio)",
+      "description": "Fungo bianco e sodo con odore di farina, compare intorno alla festa di San Giorgio in primavera.",
+      "howTo": "Si trova in prati, pascoli e ai margini dei boschi in primavera."
+    },
+    "fr": {
+      "name": "Tricholome de la Saint-Georges",
+      "description": "Champignon blanc et ferme à odeur de farine, apparaissant autour de la Saint-Georges au printemps.",
+      "howTo": "Se trouve dans les prairies, pâturages et lisières de forêt au printemps."
+    },
+    "de": {
+      "name": "Georgsritterling",
+      "description": "Fester, weisser Pilz mit mehlartigem Geruch, erscheint um den Georgstag im Frühling.",
+      "howTo": "Findet man auf Wiesen, Weiden und an Waldrändern im Frühling."
+    },
+    "es": {
+      "name": "Seta de San Jorge",
+      "description": "Hongo blanco y firme con olor a harina, que aparece alrededor de la festividad de San Jorge en primavera.",
+      "howTo": "Se encuentra en praderas, pastizales y bordes de bosques en primavera."
+    },
+    "pt": {
+      "name": "Cogumelo-de-São-Jorge",
+      "description": "Cogumelo branco e firme com cheiro de farinha, que surge por volta da festa de São Jorge na primavera.",
+      "howTo": "Encontra-se em prados, pastagens e nas bordas das florestas na primavera."
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Calocybe gambosa",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["St. George's Mushroom", "St. Georges Mushroom"],
+    "regions": {
+      "NE": {
+        "landCover": [321, 324],
+        "scoring": {
+          "optimal_temp": 11,
+          "temp_sigma": 5,
+          "min_temp": 3,
+          "max_temp": 21,
+          "optimal_alt": 500,
+          "alt_sigma": 750,
+          "optimal_humidity": 80,
+          "humidity_sigma": 12,
+          "optimal_pH": 6.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.25, 7.75],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 3.5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "landCover": [321, 324],
+        "scoring": {
+          "optimal_temp": 11,
+          "temp_sigma": 5,
+          "min_temp": 3,
+          "max_temp": 21,
+          "optimal_alt": 500,
+          "alt_sigma": 750,
+          "optimal_humidity": 80,
+          "humidity_sigma": 12,
+          "optimal_pH": 6.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.25, 7.75],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 3.5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": false,
+          "season_months": [4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "landCover": [71, 52],
+        "scoring": {
+          "optimal_temp": 1000,
+          "temp_sigma": 5,
+          "min_temp": 3,
+          "max_temp": 21,
+          "optimal_alt": 500,
+          "alt_sigma": 750,
+          "optimal_humidity": 80,
+          "humidity_sigma": 12,
+          "optimal_pH": 6.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.25, 7.75],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 3.5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [],
+          "wind_sensitive": false,
+          "season_months": [12],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "landCover": [71, 52],
+        "scoring": {
+          "optimal_temp": 1000,
+          "temp_sigma": 5,
+          "min_temp": 3,
+          "max_temp": 21,
+          "optimal_alt": 500,
+          "alt_sigma": 750,
+          "optimal_humidity": 80,
+          "humidity_sigma": 12,
+          "optimal_pH": 6.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.25, 7.75],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 3.5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [],
+          "wind_sensitive": false,
+          "season_months": [12],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [8936224],
+      "references": ["https://www.gbif.org/species/8936224"]
+    }
+  }
+}

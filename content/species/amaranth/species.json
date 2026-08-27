@@ -1,0 +1,251 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "amaranth",
+  "scientificName": "Amaranthus retroflexus",
+  "catalog": {
+    "enabled": true,
+    "order": 23,
+    "translationKey": "amaranth",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "spring-fall",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/amaranth.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Amaranth",
+      "description": "A leafy green plant, often considered a weed, with edible leaves and seeds rich in nutrients.",
+      "howTo": "Look for it in disturbed soils, gardens, and fields during summer. Young leaves are best harvested before flowering."
+    },
+    "it": {
+      "name": "Amaranto",
+      "description": "Una pianta erbacea con foglie e semi commestibili, ricca di nutrienti.",
+      "howTo": "Cresce in terreni disturbati, orti e campi durante l'estate. Raccogli le foglie giovani prima della fioritura."
+    },
+    "fr": {
+      "name": "Amarante",
+      "description": "Plante herbacée aux feuilles et graines comestibles, riche en nutriments.",
+      "howTo": "Pousse sur sols perturbés, potagers et champs pendant l'été. Récolte les jeunes feuilles avant la floraison."
+    },
+    "de": {
+      "name": "Amarant",
+      "description": "Eine krautige Pflanze mit essbaren Blättern und Samen, reich an Nährstoffen.",
+      "howTo": "Wächst in gestörten Böden, Gärten und Feldern im Sommer. Pflücke die jungen Blätter vor der Blüte."
+    },
+    "es": {
+      "name": "Amaranto",
+      "description": "Planta herbácea con hojas y semillas comestibles, rica en nutrientes.",
+      "howTo": "Crece en suelos alterados, huertos y campos durante el verano. Recolecta las hojas jóvenes antes de la floración."
+    },
+    "pt": {
+      "name": "Amaranto",
+      "description": "Planta herbácea com folhas e sementes comestíveis, rica em nutrientes.",
+      "howTo": "Cresce em solos perturbados, hortas e campos durante o verão. Colha as folhas jovens antes da floração."
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Amaranthus retroflexus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Amaranth"],
+    "regions": {
+      "NE": {
+        "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
+        "scoring": {
+          "optimal_temp": 22,
+          "temp_sigma": 6,
+          "min_temp": 13,
+          "max_temp": 35,
+          "optimal_alt": 500,
+          "alt_sigma": 700,
+          "optimal_humidity": 63,
+          "humidity_sigma": 16,
+          "optimal_pH": 6.25,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5, 8.5],
+          "optimal_soil_temp": 20,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 5,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": false,
+          "season_months": [5, 6, 7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
+        "scoring": {
+          "optimal_temp": 22,
+          "temp_sigma": 6,
+          "min_temp": 13,
+          "max_temp": 35,
+          "optimal_alt": 500,
+          "alt_sigma": 700,
+          "optimal_humidity": 63,
+          "humidity_sigma": 16,
+          "optimal_pH": 6.25,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5, 8.5],
+          "optimal_soil_temp": 20,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 5,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": false,
+          "season_months": [5, 6, 7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "landCover": [31, 41, 42, 43, 52, 71],
+        "scoring": {
+          "optimal_temp": 22,
+          "temp_sigma": 6,
+          "min_temp": 13,
+          "max_temp": 35,
+          "optimal_alt": 500,
+          "alt_sigma": 700,
+          "optimal_humidity": 63,
+          "humidity_sigma": 16,
+          "optimal_pH": 6.25,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5, 8.5],
+          "optimal_soil_temp": 20,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 5,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "mediterranean_california",
+            "humid_subtropical",
+            "semiarid_steppe",
+            "desert_southwest",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": false,
+          "season_months": [5, 6, 7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "landCover": [31, 41, 42, 43, 52, 71],
+        "scoring": {
+          "optimal_temp": 22,
+          "temp_sigma": 6,
+          "min_temp": 13,
+          "max_temp": 35,
+          "optimal_alt": 500,
+          "alt_sigma": 700,
+          "optimal_humidity": 63,
+          "humidity_sigma": 16,
+          "optimal_pH": 6.25,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5, 8.5],
+          "optimal_soil_temp": 20,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 5,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "mediterranean_california",
+            "humid_subtropical",
+            "semiarid_steppe",
+            "desert_southwest",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": false,
+          "season_months": [5, 6, 7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    }
+  }
+}
