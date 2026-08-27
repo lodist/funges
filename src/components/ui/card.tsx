@@ -15,9 +15,11 @@ const cardVariants = cva(
         glass: 'glass-regular',
       },
       // The card owns its vertical rhythm; header/content own the horizontal.
-      // `none` is for full-bleed media and for cards that pad their own body.
+      // `compact` is the tighter step for map chrome, `none` for full-bleed
+      // media and for cards that pad their own body.
       padding: {
         content: 'py-6',
+        compact: 'p-3',
         none: 'p-0',
       },
       // The hover lift belongs to cards you can actually activate.

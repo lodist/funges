@@ -1115,7 +1115,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         {/* Foraging spots found notification */}
         {foragingSpots.length > 0 && (
           <div className='absolute bottom-4 left-4 right-4'>
-            <Card padding='none' className='p-3 bg-secondary'>
+            <Card padding='compact' className='bg-secondary'>
               <div className='flex items-center gap-2'>
                 <MapPin className='h-4 w-4 text-primary-text' />
                 <p className='text-sm text-primary-text'>

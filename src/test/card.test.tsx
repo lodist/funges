@@ -108,12 +108,24 @@ describe('the fill belongs to a variant', () => {
   });
 });
 
-describe('padding', () => {
+describe('padding is a named step, not a per-call-site value', () => {
   it('the card owns the vertical rhythm and the regions the horizontal', () => {
     expect(classes(<Card />)).toContain('py-6');
-    expect(classes(<Card padding='none' />)).toContain('p-0');
-    expect(classes(<Card padding='none' />)).not.toContain('py-6');
     expect(classes(<CardHeader />, 'card-header')).toContain('px-6');
+  });
+
+  // Each step declares a whole-box `p-*`, so tailwind-merge already discards a
+  // narrower padding smuggled in from another variant — except beside the
+  // default `py-6`, where an axis utility survives. Assert the exact set.
+  it.each([
+    ['content', ['py-6']],
+    ['compact', ['p-3']],
+    ['none', ['p-0']],
+  ] as const)('%s renders exactly %s', (padding, expected) => {
+    const padded = classes(<Card padding={padding} />).filter(c =>
+      /^p[xytrbles]?-/.test(c)
+    );
+    expect(padded).toEqual(expected);
   });
 });
 
@@ -184,6 +196,9 @@ describe('call sites do not re-declare what the atom owns', () => {
     ['hand-rolled glass', /(?<![\w-])backdrop-blur-/],
     ['a translucent card fill', /(?<![\w-])bg-card\//],
     ['a hand-rolled lift', /(?<![\w-])elevation-interactive(?![\w-])/],
+    // A padding utility here rides on tailwind-merge deciding it outranks the
+    // variant. Name the step instead.
+    ['a raw padding utility', /(?<![\w-])p[xy]?-\d/],
   ])('none pass %s', (_label, pattern) => {
     const offenders = openingTags
       .filter(({ tag }) => pattern.test(tag))

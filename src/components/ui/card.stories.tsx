@@ -50,8 +50,10 @@ const meta: Meta<typeof Card> = {
     },
     padding: {
       control: 'inline-radio',
-      options: ['content', 'none'],
-      description: '`none` is for full-bleed media and self-padding bodies.',
+      options: ['content', 'compact', 'none'],
+      description:
+        '`compact` is the tighter step for map chrome; `none` is for ' +
+        'full-bleed media and self-padding bodies.',
     },
     interactive: {
       control: 'boolean',
@@ -245,7 +247,7 @@ export const WithMedia: Story = {
 };
 
 export const Glass: Story = {
-  args: { surface: 'glass', padding: 'none' },
+  args: { surface: 'glass', padding: 'compact' },
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -258,7 +260,7 @@ export const Glass: Story = {
   },
   render: args => (
     <div className='from-happy-200 to-happy-500 flex h-64 items-center justify-center bg-gradient-to-br'>
-      <Card {...args} className='w-[280px] px-4 py-3'>
+      <Card {...args} className='w-[280px]'>
         <div className='flex items-center gap-3'>
           <Thermometer className='size-5' />
           <div>

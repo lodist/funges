@@ -22,10 +22,10 @@ export default function ForecastSlider({
   return (
     <Card
       surface='glass'
-      padding='none'
+      padding='compact'
       // No shadow: it sits on the map beside controls that carry their own, and
       // a second one read as a competing floating layer.
-      className={`shadow-none px-4 py-3 ${className}`}
+      className={`shadow-none ${className}`}
     >
       <div className='flex items-center justify-between text-xs leading-none mb-2.5'>
         <span className='font-bold text-foreground'>
