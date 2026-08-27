@@ -1,5 +1,6 @@
 import type { Map as MapLibreMap, GeoJSONFeature } from 'maplibre-gl';
 import { getRepresentativeLngLat, type LngLat } from '@/lib/geo';
+import { GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG } from '@/generated/route-to-dish-species';
 
 export interface RouteDishRecipe {
   id: string;
@@ -8,7 +9,7 @@ export interface RouteDishRecipe {
 }
 
 export interface RouteDishSpeciesConfig {
-  scorePropertyAliases: string[];
+  readonly scorePropertyAliases: readonly string[];
 }
 
 export interface RouteDishCandidateStop {
@@ -45,7 +46,7 @@ export interface RouteDishResult {
   plans: RouteDishPlan[];
 }
 
-export const ROUTE_TO_DISH_SPECIES_CONFIG: Record<
+const _LEGACY_ROUTE_TO_DISH_SPECIES_CONFIG: Record<
   string,
   RouteDishSpeciesConfig
 > = {
@@ -126,6 +127,10 @@ export const ROUTE_TO_DISH_SPECIES_CONFIG: Record<
     scorePropertyAliases: ['walnut', 'walnut_score', 'Wild Walnut', 'Walnut'],
   },
 };
+
+export const ROUTE_TO_DISH_SPECIES_CONFIG: Readonly<
+  Record<string, RouteDishSpeciesConfig>
+> = GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG;
 
 const ROUTE_TO_DISH_SPECIES_IDS = new Set(
   Object.keys(ROUTE_TO_DISH_SPECIES_CONFIG)
