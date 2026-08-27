@@ -30,10 +30,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "backend"))
 sys.path.insert(0, str(ROOT / "scripts"))
 from seasonality import season_multiplier_for_species
+from species_registry import get_empirical_taxon_map, get_species_params
 
-from qa_gbif_scores import PARAM_URLS, REGION_CURVE_URLS, REGIONS, ZONE_CURVE_URLS
+from qa_gbif_scores import REGION_CURVE_URLS, REGIONS, ZONE_CURVE_URLS
 
-FUNGI = ["mushroom", "chant", "black_chant", "parasol", "morel", "st_george", "truffle_b"]
+FUNGI = list(get_empirical_taxon_map())
 SCORE_COLUMNS = [f"{species}_score" for species in FUNGI]
 TARGET_LOCATIONS = 6000
 MAX_MATCH_KM = 30
@@ -52,15 +53,7 @@ def chord_to_km(chord: np.ndarray) -> np.ndarray:
 
 
 def load_specs(session: requests.Session, region: str) -> tuple[dict, dict]:
-    response = session.get(PARAM_URLS[region], timeout=60)
-    response.raise_for_status()
-    tree = ast.parse(response.text)
-    assignment = next(
-        node for node in tree.body
-        if isinstance(node, ast.Assign)
-        and any(isinstance(t, ast.Name) and t.id == "species_params" for t in node.targets)
-    )
-    all_params = ast.literal_eval(assignment.value)
+    all_params = get_species_params(region)
     region_curves = session.get(REGION_CURVE_URLS[region], timeout=60).json()
     zone_curves = session.get(ZONE_CURVE_URLS[region], timeout=60).json()
     params = {}

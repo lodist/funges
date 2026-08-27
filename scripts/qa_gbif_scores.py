@@ -26,6 +26,11 @@ import pyarrow.parquet as pq
 import requests
 from scipy.spatial import cKDTree
 
+ROOT = Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT / "backend"))
+from species_registry import get_empirical_taxon_map, get_species_metadata, get_species_params
+
 
 R2_ROOT = "https://data.fung.es"
 REGIONS = {
@@ -34,11 +39,9 @@ REGIONS = {
     "USE": (f"{R2_ROOT}/USA/USE/USE_weather_data.parquet", (-100, 24, -60, 72)),
     "USW": (f"{R2_ROOT}/USA/USW/USW_weather_data.parquet", (-170, 24, -100, 72)),
 }
-PARAM_URLS = {
-    "NE": f"{R2_ROOT}/EU/NE/NE_species_params.txt",
-    "SE": f"{R2_ROOT}/EU/SE/SE_species_params.txt",
-    "USE": f"{R2_ROOT}/USA/USE/USE_species_params.txt",
-    "USW": f"{R2_ROOT}/USA/USW/USW_species_params.txt",
+PARAM_SOURCES = {
+    region: f"backend/generated/species_registry.json#{region}"
+    for region in ("NE", "SE", "USE", "USW")
 }
 REGION_CURVE_URLS = {
     "NE": f"{R2_ROOT}/EU/NE/NE_season_curves.json",
@@ -52,7 +55,7 @@ ZONE_CURVE_URLS = {
     "USE": f"{R2_ROOT}/USA/US_zone_season_curves.json",
     "USW": f"{R2_ROOT}/USA/US_zone_season_curves.json",
 }
-SPECIES = {
+_LEGACY_SPECIES = {
     "mushroom": ("Porcini", "Boletus"),
     "black_chant": ("Black Chanterelle", "Craterellus cornucopioides"),
     "lingonb": ("Lingonberry", "Vaccinium vitis-idaea"),
@@ -75,15 +78,25 @@ SPECIES = {
     "st_george": ("St. George's Mushroom", "Calocybe gambosa"),
     "chant": ("Chanterelle", "Cantharellus cibarius"),
 }
+_SPECIES_METADATA = get_species_metadata()
+SPECIES = {
+    species_id: (config["name"], config["scientificName"])
+    for species_id, config in _SPECIES_METADATA.items()
+}
 GBIF = "https://api.gbif.org/v1"
 SCORE_COLUMNS = [f"{key}_score" for key in SPECIES]
-FUNGI = {"mushroom", "black_chant", "truffle_b", "parasol", "morel", "st_george", "chant"}
+FUNGI = set(get_empirical_taxon_map())
 ACTIVE_CURVE_THRESHOLD = 0.8
-TAXON_KEY_OVERRIDES = {
+_LEGACY_TAXON_KEY_OVERRIDES = {
     # GBIF's fuzzy matcher currently promotes bare "Boletus" to kingdom Fungi;
     # this is the exact accepted genus alternative returned by verbose matching.
     "mushroom": 8287374,
     "morel": 2594601,
+}
+TAXON_KEY_OVERRIDES = {
+    species_id: keys[0]
+    for species_id, keys in get_empirical_taxon_map().items()
+    if keys
 }
 
 
@@ -103,15 +116,7 @@ def load_season_specs(session: requests.Session) -> dict:
     specs = {}
     json_cache = {}
     for region in REGIONS:
-        source = session.get(PARAM_URLS[region], timeout=60)
-        source.raise_for_status()
-        tree = ast.parse(source.text)
-        assignment = next(
-            node for node in tree.body
-            if isinstance(node, ast.Assign)
-            and any(isinstance(target, ast.Name) and target.id == "species_params" for target in node.targets)
-        )
-        params = ast.literal_eval(assignment.value)
+        params = get_species_params(region)
         for url in (REGION_CURVE_URLS[region], ZONE_CURVE_URLS[region]):
             if url not in json_cache:
                 response = session.get(url, timeout=60)
@@ -155,7 +160,7 @@ def active_for_validation(species_id: str, region: str, zone: str, observed: str
 def match_taxa(session: requests.Session) -> dict[str, dict]:
     matches = {}
     for species_id, (_, name) in SPECIES.items():
-        expected_rank = "GENUS" if species_id in TAXON_KEY_OVERRIDES else "SPECIES"
+        expected_rank = _SPECIES_METADATA[species_id]["identificationRank"].upper()
         if species_id in TAXON_KEY_OVERRIDES:
             key = TAXON_KEY_OVERRIDES[species_id]
             result = gbif_get(session, f"species/{key}", {})
@@ -596,7 +601,7 @@ def main() -> None:
                 }
                 for region in REGIONS
             },
-            "plant_month_sources": PARAM_URLS,
+            "plant_month_sources": PARAM_SOURCES,
             "plant_season_months": {
                 region: {
                     species_id: spec.get("season_months", [])

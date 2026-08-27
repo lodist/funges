@@ -14,30 +14,6 @@ MIN_SCORE = 4.0
 MAX_CELL_SPECIES = 8
 SPECIES_REGISTRY_PATH = Path("backend/generated/species_registry.json")
 
-SPECIES_COLUMNS = {
-    "mushroom": "Porcini",
-    "black_chant": "Black Chanterelle",
-    "lingonb": "Lingonberry",
-    "garlic": "Wild Garlic",
-    "walnut": "Wild Walnut",
-    "strawberry": "Wild Strawberry",
-    "asparagus": "Wild Asparagus",
-    "parasol": "Parasol Mushroom",
-    "chestnut": "Chestnut",
-    "amaranth": "Amaranth",
-    "masterwort": "Masterwort",
-    "nettle": "Nettle",
-    "morel": "Morel",
-    "sorrel": "Sorrel",
-    "raspberry": "Raspberry",
-    "dandelion": "Dandelion",
-    "chickweed": "Chickweed",
-    "artichoke": "Artichoke",
-    "st_george": "St. George's Mushroom",
-    "chant": "Chanterelle",
-}
-
-
 def resolve_species_columns(available_columns: set[str]) -> dict[str, str]:
     """Choose the first available score alias for each manifest species."""
     registry = json.loads(SPECIES_REGISTRY_PATH.read_text(encoding="utf-8"))
