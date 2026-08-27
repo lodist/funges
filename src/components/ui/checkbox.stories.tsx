@@ -38,7 +38,7 @@ const meta: Meta<typeof Checkbox> = {
     className: {
       control: { type: 'text' },
       description:
-        'Additional CSS classes. Note that the size variants defined internally are not exposed as a prop — override the size here if you need one.',
+        'Additional CSS classes. The checkbox ships at a single size — a 20px box with a 12px tick — and carries a 44px hit area that does not change that visual size. Override the dimensions here only if a surface genuinely needs another.',
     },
   },
   args: {

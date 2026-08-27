@@ -352,6 +352,46 @@ The character line for every primitive: **soft, pressable, borderless.** Depth d
 - **Focus:** the border becomes Chlorophyll Bright. No glow, no ring stacking — one border color change, transitioned on `color, box-shadow`.
 - **Error:** `aria-invalid` switches the border to `--destructive`, Fly Agaric. An error reads as a reddening, and it needs a border width already present to paint into.
 
+### Selection Controls
+
+Checkbox, radio and switch. The three share one boundary rule, one indicator rule and one
+hit-area rule, because they share the same failure: a control whose only edge is a stroke.
+
+- **Style:** a 20px box on the checkbox with a `sm` corner, a 20px circle on the radio, a
+  32×18px track on the switch. All three carry a 2px stroke and **no shadow** — an inline
+  control inside a form does not float above anything, so no elevation level rides one.
+- **Boundary:** the stroke is Chlorophyll Readable (`--primary-text`), not Chlorophyll Bright
+  (`--primary`). An unchecked box has no fill, so the stroke is the only thing saying the
+  control exists, and the bright step measures **2.94:1** on the page against the WCAG 1.4.11
+  floor of 3:1; the readable step measures **7.85:1** light and **6.44:1** dark. The stroke
+  keeps that step when checked, so the boundary never rests on the fill's own contrast — which
+  is still 2.94:1, and no longer has to carry anything.
+- **State indicator:** the checkbox tick is `--primary-foreground` on the bright fill
+  (**5.36:1** light, **6.27:1** dark). The radio dot is `--primary-text` on a transparent box
+  (**7.85:1** / **6.44:1**), pinned on both `fill` and `text` because the icon's stroke follows
+  `currentColor` while its body follows `fill`. The switch knob is `--background` in both
+  states and never changes colour: a knob that recolours per state reads as a hole punched in
+  the track rather than a moving part. Making that legible is the track's job — `--input` left
+  the knob at **1.32:1** and invisible, so the off track is `--muted-foreground` (**5.29:1**
+  light, **9.81:1** dark). The lit state is **2.94:1** light and **5.46:1** dark, knowingly just
+  under the 3:1 floor: there the track colour and the knob position carry the state as well.
+- **Error:** `aria-invalid` reddens the stroke to `--destructive-text`. The plain
+  `--destructive` step used by Inputs measures **2.50:1** in dark, so a selection control — whose
+  stroke is its whole boundary — cannot borrow it.
+- **Transition:** every property that changes colour is named. The checkbox transitions
+  `color, background-color, border-color, box-shadow`; a control that transitions only the
+  shadow snaps its fill and its stroke.
+- **Hit area:** 44px, from a centred `::before` that does not change the visual size. Field use
+  is one-handed and outdoors, so this is a requirement rather than a refinement. A radio group
+  spaces items 24px (`gap-6`) so two 44px targets on 20px boxes cannot overlap — overlapping
+  targets trade a missed tap for a wrong one.
+- **One size:** none of the three takes a size prop. A size scale that no caller can reach is
+  dead documentation, not flexibility.
+
+**The Stroke-Is-The-Control Rule.** When a control's only boundary is its stroke, that stroke
+carries the non-text contrast floor in every state it can reach — unchecked, checked, invalid
+and hover alike. Fill colour is interior decoration; the stroke is the control.
+
 ### Navigation
 
 - **Style:** both nav surfaces are elevation `raised` with Glass Regular, and both consume one shared constant (`NAV_SURFACE_CLASS` in `src/lib/nav-surface.ts`) so desktop and mobile chrome cannot drift apart. On the shadcn `Sidebar` the treatment must land on the painted surface (`data-slot='sidebar-inner'`), not the positioning container `className` targets — otherwise the surface's own background paints over the glass.
