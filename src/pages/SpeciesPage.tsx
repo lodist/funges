@@ -142,10 +142,7 @@ export default function SpeciesPage() {
             const speciesImage = getSpeciesImage(species.id);
 
             return (
-              <Card
-                key={species.id}
-                className='hover:shadow-lg transition-shadow duration-base py-6'
-              >
+              <Card key={species.id}>
                 <CardHeader className='pb-3'>
                   <div className='flex items-start gap-4'>
                     {/* Species Image */}

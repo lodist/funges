@@ -34,14 +34,14 @@
   // Link styles
   a {
     font-weight: 500;
-    color: var(--primary);
+    // --primary is 2.94:1 as text; --primary-text is the readable step.
+    color: var(--primary-text);
     text-decoration: inherit;
-    // Motion (#225): was `0.25s ease` — a number off the scale entirely, on a
-    // curve that is not --ease-standard. Link colour is hover feedback.
+    // Link colour is hover feedback, so it rides the fast duration.
     transition: color var(--transition-duration-fast) var(--ease-standard);
 
     &:hover {
-      color: color-mix(in oklch, var(--primary) 85%, black);
+      color: color-mix(in oklch, var(--primary-text) 85%, black);
     }
   }
 

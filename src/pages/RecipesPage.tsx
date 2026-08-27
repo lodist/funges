@@ -242,17 +242,14 @@ export default function RecipesPage() {
               const recipeImage = getRecipeImage(recipe.id);
 
               return (
-                <Card
-                  key={recipe.id}
-                  className='h-full flex flex-col hover:shadow-lg transition-shadow py-6'
-                >
+                <Card key={recipe.id} className='h-full'>
                   <CardHeader className='pb-3'>
                     {/* Mobile: Image on top, then title */}
                     <div className='block md:hidden'>
                       {/* Recipe Image for mobile - above title */}
                       {recipeImage && (
                         <div className='mb-4'>
-                          <div className='relative w-full aspect-square bg-secondary bg-secondary overflow-hidden rounded-lg'>
+                          <div className='relative w-full aspect-square bg-secondary overflow-hidden rounded-lg'>
                             <img
                               src={recipeImage}
                               alt={recipe.title}
@@ -300,7 +297,7 @@ export default function RecipesPage() {
                       {/* Recipe Image */}
                       {recipeImage && (
                         <div className='flex-shrink-0'>
-                          <div className='relative w-35 h-35 bg-secondary bg-secondary overflow-hidden rounded-lg'>
+                          <div className='relative w-35 h-35 bg-secondary overflow-hidden rounded-lg'>
                             <img
                               src={recipeImage}
                               alt={recipe.title}

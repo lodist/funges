@@ -1,18 +1,29 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, userEvent, within } from 'storybook/test';
+
 import {
   Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
   CardAction,
-  CardDescription,
   CardContent,
-} from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { Heart, Share, Bookmark, Star, Calendar, MapPin } from '@/lib/icons';
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from './card';
+import { Button } from './button';
+import { Badge } from './badge';
+import {
+  Bookmark,
+  Calendar,
+  ChefHat,
+  Clock,
+  Leaf,
+  MapPin,
+  ScanSearch,
+  Share,
+  Sprout,
+  Thermometer,
+} from '@/lib/icons';
 
 const meta: Meta<typeof Card> = {
   title: 'Atoms/Card',
@@ -22,15 +33,33 @@ const meta: Meta<typeof Card> = {
     docs: {
       description: {
         component:
-          'A flexible card component with header, content, and footer sections. Perfect for displaying content in a structured layout.',
+          'Paper surface at the raised elevation: 20px radius, no border, ' +
+          '24px vertical padding, and horizontal padding owned by the ' +
+          'regions. `interactive` adds the hover lift, `media` adds the clip ' +
+          'that photo-bearing cards need, `surface="glass"` swaps the fill ' +
+          'for the translucent chrome treatment.',
       },
     },
   },
   tags: ['autodocs'],
   argTypes: {
-    className: {
-      control: { type: 'text' },
-      description: 'Additional CSS classes',
+    surface: {
+      control: 'inline-radio',
+      options: ['solid', 'glass'],
+      description: 'Fill: opaque paper, or translucent chrome.',
+    },
+    padding: {
+      control: 'inline-radio',
+      options: ['content', 'none'],
+      description: '`none` is for full-bleed media and self-padding bodies.',
+    },
+    interactive: {
+      control: 'boolean',
+      description: 'Hover lift. Only for cards that are themselves a target.',
+    },
+    media: {
+      control: 'boolean',
+      description: 'Clips children to the radius. Also clips focus rings.',
     },
   },
 };
@@ -38,21 +67,17 @@ const meta: Meta<typeof Card> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Basic Card Examples
 export const Default: Story = {
-  render: () => (
-    <Card className='w-[350px]'>
+  render: args => (
+    <Card {...args} className='w-[350px]'>
       <CardHeader>
-        <CardTitle>{'Card Title'}</CardTitle>
-        <CardDescription>
-          {'This is a basic card with title and description.'}
-        </CardDescription>
+        <CardTitle>{'Yellowfoot chanterelle'}</CardTitle>
+        <CardDescription>{'Craterellus tubaeformis'}</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>
-          {
-            'This is the main content of the card. You can put any content here.'
-          }
+        <p className='text-sm'>
+          {'Damp conifer moss, often in troops. Hollow stem and a wavy, ' +
+            'funnelled cap that darkens with age.'}
         </p>
       </CardContent>
     </Card>
@@ -60,463 +85,319 @@ export const Default: Story = {
 };
 
 export const WithFooter: Story = {
-  render: () => (
-    <Card className='w-[350px]'>
+  name: 'With footer',
+  render: args => (
+    <Card {...args} className='w-[350px]'>
       <CardHeader>
-        <CardTitle>{'Card with Footer'}</CardTitle>
+        <CardTitle>{'Save this patch'}</CardTitle>
         <CardDescription>
-          {'This card includes a footer section.'}
+          {'Kept on this device. Nothing is uploaded.'}
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <p>{'Main content goes here.'}</p>
+        <p className='text-sm'>
+          {'Two chanterelle finds within 40 m of each other.'}
+        </p>
       </CardContent>
-      <CardFooter>
-        <Button variant='outline' size='sm'>
-          {'Cancel'}
+      <CardFooter className='gap-2 pt-6'>
+        <Button variant='outline' className='flex-1'>
+          {'Discard'}
         </Button>
-        <Button size='sm'>{'Save'}</Button>
+        <Button className='flex-1'>{'Save'}</Button>
       </CardFooter>
     </Card>
   ),
 };
 
-export const WithAction: Story = {
-  render: () => (
-    <Card className='w-[350px]'>
-      <CardHeader>
-        <CardTitle>{'Card with Action'}</CardTitle>
-        <CardDescription>
-          {'This card has an action button in the header.'}
-        </CardDescription>
-        <CardAction>
-          <Button variant='ghost' size='sm' aria-label='Share'>
-            <Share className='h-4 w-4' />
-          </Button>
-        </CardAction>
-      </CardHeader>
-      <CardContent>
-        <p>{'Content with an action button in the top-right corner.'}</p>
-      </CardContent>
-    </Card>
-  ),
-};
+// The footer button's focus ring must survive: an unconditional clip used to
+// eat it, because the card has no padding below the footer.
+export const FooterFocusRing: Story = {
+  name: 'Footer focus ring',
+  ...WithFooter,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const save = canvas.getByRole('button', { name: 'Save' });
+    await userEvent.tab();
+    save.focus();
 
-// Content Types
-export const WithImage: Story = {
-  render: () => (
-    <Card className='w-[350px] overflow-hidden'>
-      <div className='aspect-video bg-muted flex items-center justify-center'>
-        <span className='text-muted-foreground font-semibold'>
-          {'Image Placeholder'}
-        </span>
-      </div>
-      <CardHeader>
-        <CardTitle>{'Card with Image'}</CardTitle>
-        <CardDescription>
-          {'This card includes an image at the top.'}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>{'Content below the image.'}</p>
-      </CardContent>
-    </Card>
-  ),
-};
+    const card = canvasElement.querySelector('[data-slot=card]')!;
+    await expect(getComputedStyle(card).overflow).toBe('visible');
 
-export const WithForm: Story = {
-  render: () => (
-    <Card className='w-[400px]'>
-      <CardHeader>
-        <CardTitle>{'Contact Form'}</CardTitle>
-        <CardDescription>
-          {'Fill out the form below to get in touch.'}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className='space-y-4'>
-        <div>
-          <label htmlFor='name' className='block text-sm font-medium mb-2'>
-            {'Name'}
-          </label>
-          <Input id='name' placeholder='Enter your name' />
-        </div>
-        <div>
-          <label htmlFor='email' className='block text-sm font-medium mb-2'>
-            {'Email'}
-          </label>
-          <Input id='email' type='email' placeholder='Enter your email' />
-        </div>
-        <div>
-          <label htmlFor='message' className='block text-sm font-medium mb-2'>
-            {'Message'}
-          </label>
-          <textarea
-            id='message'
-            className='w-full min-h-[100px] p-3 border rounded-md resize-none'
-            placeholder='Enter your message'
-          />
-        </div>
-      </CardContent>
-      <CardFooter>
-        <Button className='w-full'>{'Send Message'}</Button>
-      </CardFooter>
-    </Card>
-  ),
-};
-
-export const WithStats: Story = {
-  render: () => (
-    <Card className='w-[350px]'>
-      <CardHeader>
-        <CardTitle>{'Statistics'}</CardTitle>
-        <CardDescription>{'Key metrics and data points.'}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className='grid grid-cols-2 gap-4'>
-          <div className='text-center'>
-            <div className='text-2xl font-bold text-primary-text'>1,234</div>
-            <div className='text-sm text-muted-foreground'>{'Total Users'}</div>
-          </div>
-          <div className='text-center'>
-            <div className='text-2xl font-bold text-primary-text'>89%</div>
-            <div className='text-sm text-muted-foreground'>
-              {'Success Rate'}
-            </div>
-          </div>
-          <div className='text-center'>
-            <div className='text-2xl font-bold text-primary-text'>567</div>
-            <div className='text-sm text-muted-foreground'>
-              {'Active Projects'}
-            </div>
-          </div>
-          <div className='text-center'>
-            <div className='text-2xl font-bold text-primary-text'>{'24h'}</div>
-            <div className='text-sm text-muted-foreground'>
-              {'Response Time'}
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  ),
-};
-
-// Interactive Examples
-export const Interactive: Story = {
-  render: () => {
-    const [isLiked, setIsLiked] = React.useState(false);
-    const [isBookmarked, setIsBookmarked] = React.useState(false);
-
-    return (
-      <Card className='w-[350px]'>
-        <CardHeader>
-          <CardTitle>{'Interactive Card'}</CardTitle>
-          <CardDescription>
-            {'This card has interactive elements.'}
-          </CardDescription>
-          <CardAction>
-            <Button
-              variant='ghost'
-              size='sm'
-              aria-label='Bookmark'
-              onClick={() => setIsBookmarked(!isBookmarked)}
-            >
-              <Bookmark
-                className={`h-4 w-4 ${isBookmarked ? 'fill-current' : ''}`}
-              />
-            </Button>
-          </CardAction>
-        </CardHeader>
-        <CardContent>
-          <p>{'Click the buttons to see the interactions.'}</p>
-        </CardContent>
-        <CardFooter className='justify-between'>
-          <Button
-            variant='ghost'
-            size='sm'
-            onClick={() => setIsLiked(!isLiked)}
-          >
-            <Heart
-              className={`h-4 w-4 ${isLiked ? 'fill-current text-destructive' : ''}`}
-            />
-            <span className='ml-1'>{isLiked ? 'Liked' : 'Like'}</span>
-          </Button>
-          <Button variant='ghost' size='sm'>
-            <Share className='h-4 w-4' />
-            <span className='ml-1'>{'Share'}</span>
-          </Button>
-        </CardFooter>
-      </Card>
-    );
+    const cardBox = card.getBoundingClientRect();
+    const buttonBox = save.getBoundingClientRect();
+    // 2px ring at a 2px offset needs 4px of room outside the button.
+    await expect(cardBox.bottom - buttonBox.bottom).toBeGreaterThanOrEqual(4);
   },
 };
 
-// Complex Examples
-export const ProductCard: Story = {
-  render: () => (
-    <Card className='w-[300px] overflow-hidden'>
-      <div className='aspect-square bg-gradient-to-br from-muted to-border flex items-center justify-center'>
-        <span className='text-muted-foreground'>{'Product Image'}</span>
-      </div>
-      <CardHeader className='pb-3'>
-        <div className='flex items-start justify-between'>
-          <div>
-            <CardTitle className='text-lg'>{'Premium Widget'}</CardTitle>
-            <CardDescription>
-              {'High-quality widget for all your needs'}
-            </CardDescription>
-          </div>
-          <Badge variant='secondary'>$29.99</Badge>
-        </div>
-      </CardHeader>
-      <CardContent className='pt-0'>
-        <div className='flex items-center gap-1 mb-3'>
-          {[...Array(5)].map((_, i) => (
-            <Star
-              // eslint-disable-next-line react/no-array-index-key
-              key={i}
-              className={`h-4 w-4 ${i < 4 ? 'fill-status-warning text-status-warning' : 'text-muted-foreground'}`}
-            />
-          ))}
-          <span className='text-sm text-muted-foreground ml-1'>(4.0)</span>
-        </div>
-        <div className='flex items-center gap-2 text-sm text-muted-foreground'>
-          <MapPin className='h-4 w-4' />
-          <span>{'Free shipping'}</span>
-        </div>
-      </CardContent>
-      <CardFooter>
-        <Button className='w-full'>{'Add to Cart'}</Button>
-      </CardFooter>
-    </Card>
-  ),
-};
-
-export const EventCard: Story = {
-  render: () => (
-    <Card className='w-[350px]'>
+export const WithAction: Story = {
+  name: 'With action',
+  render: args => (
+    <Card {...args} className='w-[350px]'>
       <CardHeader>
-        <div className='flex items-start justify-between'>
-          <div>
-            <CardTitle>{'Tech Conference 2024'}</CardTitle>
-            <CardDescription>
-              {'Join us for the biggest tech event of the year'}
-            </CardDescription>
-          </div>
-          <Badge variant='outline'>{'Upcoming'}</Badge>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <div className='space-y-3'>
-          <div className='flex items-center gap-2 text-sm'>
-            <Calendar className='h-4 w-4 text-muted-foreground' />
-            <span>{'March 15, 2024 • 9:00 AM'}</span>
-          </div>
-          <div className='flex items-center gap-2 text-sm'>
-            <MapPin className='h-4 w-4 text-muted-foreground' />
-            <span>{'Convention Center, Downtown'}</span>
-          </div>
-          <p className='text-sm text-muted-foreground'>
-            {
-              'Learn about the latest technologies and network with industry experts.'
-            }
-          </p>
-        </div>
-      </CardContent>
-      <CardFooter>
-        <Button variant='outline' className='flex-1'>
-          {'Learn More'}
-        </Button>
-        <Button className='flex-1'>{'Register Now'}</Button>
-      </CardFooter>
-    </Card>
-  ),
-};
-
-export const ProfileCard: Story = {
-  render: () => (
-    <Card className='w-[350px]'>
-      <CardHeader className='text-center'>
-        <div className='w-20 h-20 rounded-full bg-happy-500 mx-auto mb-4 flex items-center justify-center'>
-          <span className='text-happy-900 font-bold text-xl'>JD</span>
-        </div>
-        <CardTitle>{'John Doe'}</CardTitle>
-        <CardDescription>{'Senior Software Engineer'}</CardDescription>
+        <CardTitle>{'Hedgehog mushroom'}</CardTitle>
+        <CardDescription>{'In season until late November'}</CardDescription>
         <CardAction>
-          <Button variant='ghost' size='sm' aria-label='Share'>
-            <Share className='h-4 w-4' />
+          <Button variant='ghost' size='icon' aria-label='Bookmark'>
+            <Bookmark />
           </Button>
         </CardAction>
       </CardHeader>
       <CardContent>
-        <div className='space-y-3'>
-          <div className='flex justify-between text-sm'>
-            <span className='text-muted-foreground'>{'Experience'}</span>
-            <span>{'5+ years'}</span>
-          </div>
-          <div className='flex justify-between text-sm'>
-            <span className='text-muted-foreground'>{'Location'}</span>
-            <span>{'San Francisco, CA'}</span>
-          </div>
-          <div className='flex justify-between text-sm'>
-            <span className='text-muted-foreground'>{'Skills'}</span>
-            <span>{'React, TypeScript, Node.js'}</span>
-          </div>
-        </div>
+        <p className='text-sm'>
+          {'Spines instead of gills. No lookalike worth worrying about.'}
+        </p>
       </CardContent>
-      <CardFooter>
-        <Button variant='outline' className='flex-1'>
-          {'Message'}
+    </Card>
+  ),
+};
+
+export const Interactive: Story = {
+  args: { interactive: true },
+  render: args => (
+    <Card {...args} className='relative w-[350px]'>
+      <CardHeader>
+        <CardTitle>
+          {/* Stretched to the card so the whole tile is one target. */}
+          <a
+            href='#species'
+            className='focus-ring text-card-foreground rounded-sm after:absolute after:inset-0'
+          >
+            {'Wood blewit'}
+          </a>
+        </CardTitle>
+        <CardDescription>{'Lepista nuda'}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className='text-sm'>
+          {'The lift belongs to cards that are themselves a link or a button.'}
+        </p>
+      </CardContent>
+    </Card>
+  ),
+};
+
+export const Static: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The default. A card that holds a button is not itself a target, ' +
+          'so it does not lift.',
+      },
+    },
+  },
+  render: args => (
+    <Card {...args} className='w-[350px]'>
+      <CardHeader>
+        <CardTitle>{'Season summary'}</CardTitle>
+        <CardDescription>{'September to November'}</CardDescription>
+      </CardHeader>
+      <CardContent className='grid grid-cols-3 gap-4 text-center'>
+        {[
+          { label: 'Finds', value: '128' },
+          { label: 'Species', value: '17' },
+          { label: 'Routes', value: '9' },
+        ].map(stat => (
+          <div key={stat.label}>
+            <p className='text-2xl font-semibold'>{stat.value}</p>
+            <p className='text-muted-foreground text-xs'>{stat.label}</p>
+          </div>
+        ))}
+      </CardContent>
+      <CardFooter className='pt-6'>
+        <Button variant='outline' className='w-full'>
+          {'Open the data page'}
         </Button>
-        <Button className='flex-1'>{'Connect'}</Button>
       </CardFooter>
     </Card>
   ),
 };
 
-// Layout Examples
-export const GridLayout: Story = {
-  render: () => (
-    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl'>
-      {[1, 2, 3, 4, 5, 6].map(i => (
-        <Card key={i}>
+export const WithMedia: Story = {
+  name: 'With media',
+  args: { padding: 'none', media: true },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Full-bleed photography: `padding="none"` lets the image reach the ' +
+          'edges, `media` clips it to the radius. The body pads itself.',
+      },
+    },
+  },
+  render: args => (
+    <Card {...args} className='w-[350px]'>
+      <div className='bg-secondary text-muted-foreground flex h-40 items-center justify-center'>
+        <Leaf className='size-10' />
+      </div>
+      <CardHeader className='pt-6'>
+        <CardTitle>{'Wild garlic'}</CardTitle>
+        <CardDescription>{'Allium ursinum'}</CardDescription>
+      </CardHeader>
+      <CardContent className='pb-6'>
+        <p className='text-sm'>
+          {'Broad leaves, unmistakable smell. Damp deciduous woodland.'}
+        </p>
+      </CardContent>
+    </Card>
+  ),
+};
+
+export const Glass: Story = {
+  args: { surface: 'glass', padding: 'none' },
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story:
+          'Translucent chrome for small floating controls over the map. Not ' +
+          'for large content cards: the fill has to stay readable.',
+      },
+    },
+  },
+  render: args => (
+    <div className='from-happy-200 to-happy-500 flex h-64 items-center justify-center bg-gradient-to-br'>
+      <Card {...args} className='w-[280px] px-4 py-3'>
+        <div className='flex items-center gap-3'>
+          <Thermometer className='size-5' />
+          <div>
+            <p className='text-sm font-semibold'>{'Good conditions'}</p>
+            <p className='text-muted-foreground text-xs'>
+              {'12 °C · rain 3 days ago'}
+            </p>
+          </div>
+        </div>
+      </Card>
+    </div>
+  ),
+};
+
+export const SpeciesTile: Story = {
+  name: 'Species tile',
+  render: args => (
+    <Card {...args} interactive className='relative w-[300px]'>
+      <CardHeader>
+        <div className='bg-secondary text-muted-foreground mb-2 flex size-20 items-center justify-center rounded-lg'>
+          <Sprout className='size-8' />
+        </div>
+        <CardTitle>
+          <a
+            href='#species'
+            className='focus-ring text-card-foreground rounded-sm after:absolute after:inset-0'
+          >
+            {'Penny bun'}
+          </a>
+        </CardTitle>
+        <CardDescription>{'Boletus edulis'}</CardDescription>
+        <CardAction>
+          <Badge variant='secondary'>{'Edible'}</Badge>
+        </CardAction>
+      </CardHeader>
+      <CardContent className='text-muted-foreground flex items-center gap-4 text-sm'>
+        <span className='flex items-center gap-1.5'>
+          <MapPin className='size-4' />
+          {'2.4 km'}
+        </span>
+        <span className='flex items-center gap-1.5'>
+          <Calendar className='size-4' />
+          {'Aug–Oct'}
+        </span>
+      </CardContent>
+    </Card>
+  ),
+};
+
+export const RecipeTile: Story = {
+  name: 'Recipe tile',
+  render: args => (
+    <Card {...args} className='w-[350px]'>
+      <CardHeader>
+        <CardTitle>{'Chanterelles on toast'}</CardTitle>
+        <CardDescription>
+          {'Four ingredients you already have.'}
+        </CardDescription>
+        <CardAction>
+          <Button variant='ghost' size='icon' aria-label='Share'>
+            <Share />
+          </Button>
+        </CardAction>
+      </CardHeader>
+      <CardContent className='text-muted-foreground flex items-center gap-4 text-sm'>
+        <span className='flex items-center gap-1.5'>
+          <Clock className='size-4' />
+          {'15 min'}
+        </span>
+        <span className='flex items-center gap-1.5'>
+          <ChefHat className='size-4' />
+          {'Easy'}
+        </span>
+      </CardContent>
+      <CardFooter className='pt-6'>
+        <Button className='w-full'>{'Open recipe'}</Button>
+      </CardFooter>
+    </Card>
+  ),
+};
+
+export const HeadingLevels: Story = {
+  name: 'Heading levels',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The title is a real heading — `h3` by default, `as` picks the ' +
+          'level so a card sits correctly in the page outline.',
+      },
+    },
+  },
+  render: args => (
+    <div className='flex w-[350px] flex-col gap-4'>
+      <Card {...args}>
+        <CardHeader>
+          <CardTitle as='h2' className='text-2xl'>
+            {'Instructions'}
+          </CardTitle>
+          <CardDescription>{'Section heading, h2'}</CardDescription>
+        </CardHeader>
+      </Card>
+      <Card {...args}>
+        <CardHeader>
+          <CardTitle className='text-lg'>{'Identifying a find'}</CardTitle>
+          <CardDescription>{'Default, h3'}</CardDescription>
+        </CardHeader>
+      </Card>
+    </div>
+  ),
+};
+
+export const Grid: Story = {
+  parameters: { layout: 'padded' },
+  render: args => (
+    <div className='grid w-[760px] grid-cols-3 gap-4'>
+      {[
+        {
+          title: 'Map',
+          icon: MapPin,
+          body: 'Where conditions are favourable.',
+        },
+        {
+          title: 'Identify',
+          icon: ScanSearch,
+          body: 'From a photo, on device.',
+        },
+        { title: 'Recipes', icon: ChefHat, body: 'What to cook with a find.' },
+      ].map(item => (
+        <Card key={item.title} {...args}>
           <CardHeader>
-            <CardTitle>{'Card ' + i}</CardTitle>
-            <CardDescription>
-              {'This is card number ' + i + ' in a grid layout.'}
-            </CardDescription>
+            <item.icon className='text-muted-foreground mb-2 size-6' />
+            <CardTitle>{item.title}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>{'Content for card ' + i + '.'}</p>
+            <p className='text-muted-foreground text-sm'>{item.body}</p>
           </CardContent>
         </Card>
       ))}
     </div>
   ),
-  parameters: {
-    layout: 'padded',
-  },
-};
-
-export const HorizontalLayout: Story = {
-  render: () => (
-    <div className='flex gap-6 w-full max-w-4xl'>
-      <Card className='flex-1'>
-        <CardHeader>
-          <CardTitle>{'Left Card'}</CardTitle>
-          <CardDescription>{'This card is on the left side.'}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>{'Content for the left card.'}</p>
-        </CardContent>
-      </Card>
-      <Card className='flex-1'>
-        <CardHeader>
-          <CardTitle>{'Right Card'}</CardTitle>
-          <CardDescription>{'This card is on the right side.'}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>{'Content for the right card.'}</p>
-        </CardContent>
-      </Card>
-    </div>
-  ),
-  parameters: {
-    layout: 'padded',
-  },
-};
-
-/**
- * The matrix the per-atom bar asks for.
- *
- * Card has no `variant` prop — what varies is which of its seven slots are
- * filled — so the matrix is an anatomy view rather than a variant grid. It also
- * replaces the all-at-once view Card briefly lost: the `ElevationLevels` and
- * glass stories that used to live here were token documentation, and moved to
- * `Foundations/Elevation and glass` where they belong.
- */
-export const AllCompositions: Story = {
-  render: () => (
-    <div className='grid w-full max-w-5xl grid-cols-1 gap-6 lg:grid-cols-2'>
-      {[
-        {
-          label: 'header only',
-          content: (
-            <CardHeader>
-              <CardTitle>{'Title'}</CardTitle>
-              <CardDescription>{'Description'}</CardDescription>
-            </CardHeader>
-          ),
-        },
-        {
-          label: 'header + content',
-          content: (
-            <>
-              <CardHeader>
-                <CardTitle>{'Title'}</CardTitle>
-                <CardDescription>{'Description'}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className='text-sm'>{'Body content.'}</p>
-              </CardContent>
-            </>
-          ),
-        },
-        {
-          label: 'header + content + footer',
-          content: (
-            <>
-              <CardHeader>
-                <CardTitle>{'Title'}</CardTitle>
-                <CardDescription>{'Description'}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className='text-sm'>{'Body content.'}</p>
-              </CardContent>
-              <CardFooter>
-                <Button size='sm'>{'Action'}</Button>
-              </CardFooter>
-            </>
-          ),
-        },
-        {
-          label: 'header with action',
-          content: (
-            <>
-              <CardHeader>
-                <CardTitle>{'Title'}</CardTitle>
-                <CardDescription>{'Description'}</CardDescription>
-                <CardAction>
-                  <Button variant='ghost' size='sm' aria-label='Share'>
-                    <Share className='h-4 w-4' />
-                  </Button>
-                </CardAction>
-              </CardHeader>
-              <CardContent>
-                <p className='text-sm'>
-                  {'CardAction pins itself to the header’s trailing edge.'}
-                </p>
-              </CardContent>
-            </>
-          ),
-        },
-      ].map(composition => (
-        <div key={composition.label} className='flex flex-col gap-2'>
-          <p className='text-muted-foreground font-mono text-xs'>
-            {composition.label}
-          </p>
-          <Card>{composition.content}</Card>
-        </div>
-      ))}
-    </div>
-  ),
-  parameters: {
-    layout: 'padded',
-    docs: {
-      description: {
-        story:
-          'Every arrangement of the card’s slots in one view. Card has no variants, so this is an anatomy matrix rather than a variant grid.',
-      },
-    },
-  },
 };

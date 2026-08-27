@@ -70,7 +70,7 @@ export default function SettingsPage() {
         <div className='space-y-4'>
           {links.map(link => (
             <Link key={link.url} to={link.url} className='block'>
-              <Card className='bg-card hover:bg-muted transition-colors'>
+              <Card interactive padding='none'>
                 <CardContent className='py-4'>
                   <div className='flex items-center gap-3'>
                     {link.icon && (

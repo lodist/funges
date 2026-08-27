@@ -12,7 +12,7 @@ type ThemeProviderProps = {
 
 export function ThemeProvider({
   children,
-  defaultTheme = 'light',
+  defaultTheme = 'system',
   storageKey = 'vite-ui-theme',
   ...props
 }: ThemeProviderProps) {
@@ -22,9 +22,20 @@ export function ThemeProvider({
 
   useEffect(() => {
     const root = window.document.documentElement;
+    const query = window.matchMedia('(prefers-color-scheme: dark)');
 
-    root.classList.remove('light', 'dark');
-    root.classList.add('light');
+    const apply = () => {
+      root.classList.remove('light', 'dark');
+      root.classList.add(
+        theme === 'system' ? (query.matches ? 'dark' : 'light') : theme
+      );
+    };
+
+    apply();
+    if (theme !== 'system') return;
+
+    query.addEventListener('change', apply);
+    return () => query.removeEventListener('change', apply);
   }, [theme]);
 
   const value = {

@@ -173,7 +173,8 @@ export default function WorthForagingNowPage() {
             {recommendations.map((recommendation, index) => (
               <Card
                 key={recommendation.speciesId}
-                className='mb-5 gap-0 py-0 last:mb-0 lg:mb-0 lg:row-span-6 lg:grid lg:[grid-template-rows:subgrid]'
+                padding='none'
+                className='mb-5 last:mb-0 lg:mb-0 lg:row-span-6 lg:grid lg:[grid-template-rows:subgrid]'
               >
                 {/* Row 1 — name + score */}
                 <div className='flex items-start justify-between gap-3 px-6 pt-6'>

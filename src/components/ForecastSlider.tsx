@@ -21,11 +21,11 @@ export default function ForecastSlider({
 
   return (
     <Card
-      // Trailhead (#213): floating map control. No shadow — it already sits
-      // directly on the map next to the button/theme-selector controls, which
-      // carry their own shadow; stacking another one here read as a second,
-      // competing floating layer instead of one coherent control cluster.
-      className={`shadow-none hover:shadow-none bg-card/95 backdrop-blur-sm px-4 py-3 ${className}`}
+      surface='glass'
+      padding='none'
+      // No shadow: it sits on the map beside controls that carry their own, and
+      // a second one read as a competing floating layer.
+      className={`shadow-none px-4 py-3 ${className}`}
     >
       <div className='flex items-center justify-between text-xs leading-none mb-2.5'>
         <span className='font-bold text-foreground'>

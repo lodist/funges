@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Card } from '@/components/ui/card';
+import { Card, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Heart, ExternalLink, Copy, QrCode, CheckCircle } from '@/lib/icons';
@@ -17,12 +17,6 @@ export default function SupportPage() {
   const [selectedMethod, setSelectedMethod] = useState<
     (typeof supportMethods)[0] | null
   >(null);
-
-  const handleDonationClick = (method: (typeof supportMethods)[0]) => {
-    if (method.url) {
-      window.open(method.url, '_blank', 'noopener,noreferrer');
-    }
-  };
 
   const handleCopyAddress = async (address: string, methodId: string) => {
     try {
@@ -99,11 +93,7 @@ export default function SupportPage() {
             </h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {platformMethods.map(method => (
-                <Card
-                  key={method.id}
-                  className='p-6 cursor-pointer hover:shadow-lg transition-all duration-base border-2 hover:border-primary/20'
-                  onClick={() => handleDonationClick(method)}
-                >
+                <Card key={method.id} interactive className='relative p-6'>
                   <div className='flex items-center justify-between mb-4'>
                     <div
                       className='p-3 rounded-lg'
@@ -121,11 +111,22 @@ export default function SupportPage() {
                         }
                       )}
                     </div>
-                    <ExternalLink className='h-5 w-5 text-muted-foreground' />
+                    <ExternalLink
+                      aria-hidden='true'
+                      className='size-5 text-muted-foreground'
+                    />
                   </div>
-                  <h3 className='font-semibold text-lg text-foreground dark:text-white mb-2'>
-                    {method.name}
-                  </h3>
+                  <CardTitle className='text-lg mb-2'>
+                    {/* Stretched to the card so the whole tile is one link. */}
+                    <a
+                      href={method.url}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='focus-ring text-card-foreground rounded-sm after:absolute after:inset-0'
+                    >
+                      {method.name}
+                    </a>
+                  </CardTitle>
                   <p className='text-muted-foreground text-sm'>
                     {method.description}
                   </p>
@@ -141,7 +142,7 @@ export default function SupportPage() {
             </h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {cryptoMethods.map(method => (
-                <Card key={method.id} className='p-6 border-2'>
+                <Card key={method.id} className='p-6'>
                   <div className='flex items-center justify-between mb-4'>
                     <div
                       className='p-3 rounded-lg'

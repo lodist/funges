@@ -338,10 +338,12 @@ The character line for every primitive: **soft, pressable, borderless.** Depth d
 ### Cards / Containers
 
 - **Corner Style:** 20px (`1.25rem`) — the photo-first trail card.
-- **Background:** Field Paper on light, Night Surface on dark.
-- **Shadow Strategy:** `raised` at rest, escalating to raised-hover on hover with a `transition-shadow`. Photo-bearing cards clip their media with `overflow: hidden` at the card radius.
-- **Border:** none.
-- **Internal Padding:** the card itself has zero padding so media can go full-bleed; the header and content regions supply `px-6` (24px) and a `gap-1.5` (6px) title-to-metadata rhythm.
+- **Background:** Field Paper on light, Night Surface on dark. `surface="glass"` swaps the fill for `.glass-regular`, and is scoped the same way glass always is: small floating chrome over the map, never a large content card.
+- **Shadow Strategy:** `raised` at rest. The escalation to raised-hover is `interactive`, and it belongs only to a card that is itself a link or a button — a card that merely _contains_ one does not lift, because the lift is a promise that the whole tile is a target.
+- **Border:** none. `surface="glass"` is the exception: the glass treatment carries its own hairline, so the paper fill and the `border-0` that suppresses it live together on `surface="solid"`.
+- **Internal Padding:** the card supplies `py-6` (24px) and the header and content regions supply `px-6` (24px), with a `gap-1.5` (6px) title-to-metadata rhythm. `padding="none"` is for full-bleed media and for bodies that pad themselves.
+- **Clipping:** `media` clips children to the card radius, and only photo-bearing cards should set it. Clipping is not free — `overflow: hidden` also clips the focus ring of any control that reaches the card edge, and the card has no padding below its footer.
+- **Title:** a real heading. `CardTitle` renders `h3`, and `as` picks the level so a card lands in the page outline where it belongs.
 
 ### Inputs / Fields
 

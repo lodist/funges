@@ -1,15 +1,62 @@
 import * as React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 
-function Card({ className, ...props }: React.ComponentProps<'div'>) {
+// `cardVariants` stays module-local: exporting a non-component alongside Card
+// breaks react-refresh's HMR boundary.
+const cardVariants = cva(
+  'text-card-foreground flex flex-col rounded-card gap-0 elevation-raised',
+  {
+    variants: {
+      // Glass carries its own background and hairline, so `solid` owns both.
+      surface: {
+        solid: 'bg-card border-0',
+        glass: 'glass-regular',
+      },
+      // The card owns its vertical rhythm; header/content own the horizontal.
+      // `none` is for full-bleed media and for cards that pad their own body.
+      padding: {
+        content: 'py-6',
+        none: 'p-0',
+      },
+      // The hover lift belongs to cards you can actually activate.
+      interactive: {
+        true: 'elevation-interactive',
+        false: '',
+      },
+      // Clipping is for photo-bearing cards only: it also eats focus rings.
+      media: {
+        true: 'overflow-hidden',
+        false: '',
+      },
+    },
+    defaultVariants: {
+      surface: 'solid',
+      padding: 'content',
+      interactive: false,
+      media: false,
+    },
+  }
+);
+
+type CardProps = React.ComponentProps<'div'> &
+  VariantProps<typeof cardVariants>;
+
+function Card({
+  className,
+  surface,
+  padding,
+  interactive,
+  media,
+  ...props
+}: CardProps) {
   return (
     <div
       data-slot='card'
+      data-interactive={interactive ? '' : undefined}
       className={cn(
-        // Trailhead (#213): photo-first trail card — bigger radius, no
-        // border, soft shadow that deepens on hover.
-        'bg-card text-card-foreground flex flex-col rounded-card overflow-hidden border-0 p-0 gap-0 elevation-raised elevation-interactive',
+        cardVariants({ surface, padding, interactive, media }),
         className
       )}
       {...props}
@@ -22,7 +69,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot='card-header'
       className={cn(
-        '@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6',
+        '@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto]',
         className
       )}
       {...props}
@@ -30,11 +77,16 @@ function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
-function CardTitle({ className, ...props }: React.ComponentProps<'div'>) {
+type CardTitleProps = React.ComponentProps<'h3'> & {
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+};
+
+// A card title is a section heading: `h3` by default, `as` picks the level.
+function CardTitle({ className, as: Comp = 'h3', ...props }: CardTitleProps) {
   return (
-    <div
+    <Comp
       data-slot='card-title'
-      className={cn('leading-none font-semibold', className)}
+      className={cn('text-base leading-snug font-semibold', className)}
       {...props}
     />
   );
@@ -77,7 +129,7 @@ function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot='card-footer'
-      className={cn('flex items-center px-6 [.border-t]:pt-6', className)}
+      className={cn('flex items-center px-6', className)}
       {...props}
     />
   );

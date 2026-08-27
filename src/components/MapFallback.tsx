@@ -44,7 +44,9 @@ const MapFallback: React.FC<MapFallbackProps> = ({
     >
       {/* Static map placeholder */}
       <Card
-        className={`w-full ${isMobile ? 'h-full' : 'h-[calc(100vh-1rem)]'} h-[calc(100vh-1rem)] ${isMobile ? 'border-0 shadow-none' : 'rounded-lg border-2 border-dashed border-border shadow-lg'} overflow-hidden bg-background`}
+        padding='none'
+        media
+        className={`w-full ${isMobile ? 'h-full' : 'h-[calc(100vh-1rem)]'} ${isMobile ? 'shadow-none' : 'border-2 border-dashed border-border'} bg-background`}
       >
         <div className='flex flex-col items-center justify-center h-full p-4 sm:p-6 lg:p-8 text-center'>
           {/* Header with icon and title */}

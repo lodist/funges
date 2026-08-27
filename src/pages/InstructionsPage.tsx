@@ -88,7 +88,7 @@ export default function InstructionsPage() {
           </div>
 
           {/* Map Description Section */}
-          <Card className='py-6'>
+          <Card>
             <CardHeader>
               <CardTitle className='flex items-center gap-3 text-2xl'>
                 <Map className='h-8 w-8 text-primary-text hidden lg:block' />
@@ -126,7 +126,7 @@ export default function InstructionsPage() {
           </Card>
 
           {/* Functions Section */}
-          <Card className='mb-8 shadow-lg border-0 bg-card/80/80 backdrop-blur-sm py-6'>
+          <Card className='mb-8'>
             <CardHeader>
               <CardTitle className='text-2xl'>{t('functions.title')}</CardTitle>
             </CardHeader>
@@ -150,7 +150,7 @@ export default function InstructionsPage() {
           {/* Photo identification. Its own card rather than a line in the
               functions list: it is the only feature that downloads anything, and
               the only one where a misread costs more than a wasted walk. */}
-          <Card className='mb-8 shadow-lg border-0 bg-card/80/80 backdrop-blur-sm py-6'>
+          <Card className='mb-8'>
             <CardHeader>
               <CardTitle className='flex items-center gap-3 text-2xl'>
                 <ScanSearch className='h-6 w-6 text-primary-text' />
@@ -168,7 +168,7 @@ export default function InstructionsPage() {
           </Card>
 
           {/* Map Interaction Section */}
-          <Card className='mb-8 shadow-lg border-0 bg-card/80/80 backdrop-blur-sm py-6'>
+          <Card className='mb-8'>
             <CardHeader>
               <CardTitle className='text-2xl'>
                 {t('mapInteraction.title')}
@@ -185,7 +185,7 @@ export default function InstructionsPage() {
           </Card>
 
           {/* About Section */}
-          <Card className='mb-8 shadow-lg border-0 bg-card/80/80 backdrop-blur-sm py-6'>
+          <Card className='mb-8'>
             <CardHeader>
               <CardTitle className='text-2xl'>{t('about.title')}</CardTitle>
             </CardHeader>
@@ -227,7 +227,7 @@ export default function InstructionsPage() {
           </Card>
 
           {/* Mission Section */}
-          <Card className='mb-8 shadow-lg border-0 bg-card/80/80 backdrop-blur-sm py-6'>
+          <Card className='mb-8'>
             <CardHeader>
               <CardTitle className='flex items-center gap-3 text-2xl'>
                 <Target className='h-8 w-8 text-primary-text hidden lg:block' />
@@ -255,7 +255,7 @@ export default function InstructionsPage() {
           </Card>
 
           {/* Prediction Section */}
-          <Card className='mb-8 shadow-lg border-0 bg-card/80/80 backdrop-blur-sm py-6'>
+          <Card className='mb-8'>
             <CardHeader>
               <CardTitle className='flex items-center gap-3 text-2xl'>
                 <Lightbulb className='h-8 w-8 text-primary-text hidden lg:block' />
