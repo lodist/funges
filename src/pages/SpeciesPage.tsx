@@ -186,7 +186,7 @@ export default function SpeciesPage() {
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 px-6 pb-4'>
                   {species.season && (
                     <div className='flex items-center gap-2'>
-                      <Calendar className='h-4 w-4 text-primary' />
+                      <Calendar className='h-4 w-4 text-primary-text' />
                       <Badge variant='secondary'>
                         {t(`seasons.${species.season}`)}
                       </Badge>

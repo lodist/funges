@@ -3,7 +3,12 @@ import { describe, expect, it } from 'vitest';
 
 import { SCORE_COLOR_RAMP } from '@/lib/scoreColor';
 
-const css = readFileSync('src/index.css', 'utf8');
+// Comments stripped: a value named in prose to explain why it was replaced
+// is not a colour the theme ships.
+const css = readFileSync('src/index.css', 'utf8').replace(
+  /\/\*[\s\S]*?\*\//g,
+  ''
+);
 
 /** Every `oklch(L C H)` literal in the theme, with its hue and chroma. */
 const oklchValues = [

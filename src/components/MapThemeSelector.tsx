@@ -106,7 +106,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                       </div>
                       <Check
                         className={cn(
-                          'h-4 w-4 flex-shrink-0 text-primary transition-opacity',
+                          'h-4 w-4 flex-shrink-0 text-primary-text transition-opacity',
                           isSelected ? 'opacity-100' : 'opacity-0'
                         )}
                       />

@@ -62,8 +62,7 @@ export default function RouteToDishPanel({
                 <Button
                   type='button'
                   variant='outline'
-                  size='sm'
-                  className='h-7 sm:h-8 px-2'
+                  size='xs'
                   onClick={onOpenInGoogleMaps}
                   aria-label={t('routePanel.openInMaps')}
                 >
@@ -72,8 +71,7 @@ export default function RouteToDishPanel({
                 <Button
                   type='button'
                   variant='outline'
-                  size='sm'
-                  className='h-7 sm:h-8 px-2'
+                  size='xs'
                   onClick={onClearRoute}
                   aria-label={t('routePanel.clearRoute')}
                 >
@@ -84,8 +82,7 @@ export default function RouteToDishPanel({
             <Button
               type='button'
               variant='outline'
-              size='sm'
-              className='h-7 sm:h-8 px-2'
+              size='xs'
               onClick={onClose}
               aria-label={t('common:common.close')}
             >
@@ -195,7 +192,7 @@ export default function RouteToDishPanel({
                   <Button
                     type='button'
                     size='sm'
-                    className='flex-1 h-8 sm:h-9 text-xs sm:text-sm'
+                    className='flex-1'
                     disabled={plan.orderedStops.length === 0}
                     onClick={() => onDrawRoute(plan)}
                   >
@@ -204,13 +201,7 @@ export default function RouteToDishPanel({
                       ? t('routePanel.refreshRoute')
                       : t('routePanel.drawRoute')}
                   </Button>
-                  <Button
-                    type='button'
-                    size='sm'
-                    variant='outline'
-                    className='h-8 sm:h-9 text-xs sm:text-sm'
-                    asChild
-                  >
+                  <Button type='button' size='sm' variant='outline' asChild>
                     <a href={recipesHref}>
                       <MapPinned className='h-4 w-4' />
                       {t('routePanel.recipesButton')}

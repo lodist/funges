@@ -14,7 +14,7 @@
   "description": "Discover delicious recipes using foraged ingredients",
   "filterBy": "Ingredient",
   "filters": "Filters",
-  "clear": "Clear",
+  "clear": "Clear filters",
   "apply": "Apply",
   "all": "All",
   "mushroom": "Mushroom",

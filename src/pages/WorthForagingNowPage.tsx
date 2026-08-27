@@ -189,7 +189,7 @@ export default function WorthForagingNowPage() {
                     <p className='text-xs font-medium text-muted-foreground'>
                       #{index + 1}
                     </p>
-                    <div className='text-4xl font-bold leading-none text-primary'>
+                    <div className='text-4xl font-bold leading-none text-primary-text'>
                       {recommendation.score}
                     </div>
                     <p className='mt-1 type-micro text-muted-foreground'>
@@ -216,7 +216,7 @@ export default function WorthForagingNowPage() {
                 {/* Row 3 — why now */}
                 <div className='space-y-2 px-6 pt-5'>
                   <div className='flex items-center gap-2 text-sm font-medium text-foreground'>
-                    <Leaf className='h-4 w-4 text-primary' />
+                    <Leaf className='h-4 w-4 text-primary-text' />
                     {t('worthForagingNow.whyNow')}
                   </div>
                   <ul className='space-y-1.5 border-l-2 border-border pl-3 text-sm text-muted-foreground'>
@@ -229,7 +229,7 @@ export default function WorthForagingNowPage() {
                 {/* Row 4 — best window (+ optional distance) */}
                 <div className='grid gap-3 px-6 pt-5 text-sm text-muted-foreground'>
                   <div className='flex items-start gap-2 rounded-card border border-border bg-muted/40 px-3 py-3'>
-                    <Calendar className='mt-0.5 h-4 w-4 shrink-0 text-primary' />
+                    <Calendar className='mt-0.5 h-4 w-4 shrink-0 text-primary-text' />
                     <div>
                       <p className='font-medium text-foreground'>
                         {t('worthForagingNow.bestWindow')}
@@ -239,7 +239,7 @@ export default function WorthForagingNowPage() {
                   </div>
                   {recommendation.distanceKm !== null ? (
                     <div className='flex items-start gap-2 rounded-card border border-border bg-muted/40 px-3 py-3'>
-                      <MapPinned className='mt-0.5 h-4 w-4 shrink-0 text-primary' />
+                      <MapPinned className='mt-0.5 h-4 w-4 shrink-0 text-primary-text' />
                       <div>
                         <p className='font-medium text-foreground'>
                           {t('worthForagingNow.bestPoint')}
@@ -257,7 +257,7 @@ export default function WorthForagingNowPage() {
                 {/* Row 5 — kitchen */}
                 <div className='space-y-3 px-6 pt-5'>
                   <div className='flex items-center gap-2 text-sm font-medium text-foreground'>
-                    <ChefHat className='h-4 w-4 text-primary' />
+                    <ChefHat className='h-4 w-4 text-primary-text' />
                     {t('worthForagingNow.kitchenPayoff')}
                   </div>
                   {recommendation.recipes.length > 0 ? (

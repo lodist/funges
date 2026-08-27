@@ -67,7 +67,10 @@ describe('one container radius', () => {
 });
 
 describe('buttons are pills, decided once', () => {
-  const base = button.match(/cva\(\s*(["'])([\s\S]*?)\1/)?.[2] ?? '';
+  // `\s*` alone stops at the comment lines that sit between `cva(` and the
+  // base string.
+  const base =
+    button.match(/cva\(\s*(?:\/\/[^\n]*\n\s*)*(["'])([\s\S]*?)\1/)?.[2] ?? '';
 
   it('the cva base sets rounded-full', () => {
     expect(base).toMatch(/\brounded-full\b/);

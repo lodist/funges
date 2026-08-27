@@ -13,6 +13,9 @@ colors:
   moss-fill: 'oklch(0.9582 0.0193 150)'
   moss-text: 'oklch(0.5 0.1294 150)'
   lichen: 'oklch(0.6731 0.1624 150)'
+  chlorophyll-hover: 'oklch(0.62 0.17 150)'
+  fly-agaric: 'oklch(0.48 0.19 28)'
+  fly-agaric-pressed: 'oklch(0.40 0.17 28)'
   field-paper: 'oklch(0.9938 0.0013 90)'
   warm-linen: 'oklch(0.952 0.0083 90)'
   trail-tan: 'oklch(0.9356 0.0194 90)'
@@ -93,15 +96,15 @@ components:
     height: '2.75rem'
     typography: '{typography.body}'
   button-primary-hover:
-    backgroundColor: 'oklch(0.58 0.18 150)'
+    backgroundColor: '{colors.chlorophyll-hover}'
   button-destructive:
-    backgroundColor: '{colors.chlorophyll-deep}'
+    backgroundColor: '{colors.fly-agaric}'
     textColor: '#ffffff'
     rounded: '{rounded.pill}'
     padding: '0 1.5rem'
     height: '2.75rem'
   button-destructive-hover:
-    backgroundColor: 'oklch(0.36 0.10 150)'
+    backgroundColor: '{colors.fly-agaric-pressed}'
   button-ghost:
     backgroundColor: 'transparent'
     textColor: '{colors.chlorophyll-readable}'
@@ -181,7 +184,7 @@ The map's score ramp is the single sanctioned exception, and safety warnings bor
 - **Spring Chlorophyll Pressed** (`--happy-600`, aliased as `--primary`): the canonical brand value every custom component inherits through `bg-primary` / `text-primary` / `border-primary`. One step down from Bright so pressed states read as settling, not brightening. Not a text color and not the focus ring — at 2.95:1 on paper it misses even the 3:1 non-text floor.
 - **Spring Chlorophyll Readable** (`--happy-700`, `oklch(0.42 0.122 150)`, aliased as `--ring` and `--sidebar-ring`): the only green permitted as text or icon color on light surfaces, at 7.73:1, and the focus-ring color for the same reason.
 - **Spring Chlorophyll Deep** (`--happy-900`, aliased as `--primary-foreground`): text on bright green fills. It used to double as `--destructive`; see **Fly Agaric** below for why that changed.
-- **Fly Agaric** (`--destructive`, `oklch(0.48 0.19 28)` light / `oklch(0.52 0.18 28)` dark): danger and delete, and the only place hue 28 appears. 7.21:1 against its white label in light, 5.11:1 in dark, and 3.35:1 against the primary green so a delete can never be mistaken for a confirm. Dark mode also carries `--destructive-border` at 4.80:1, because the fill alone reaches only 2.50:1 against Night Canvas.
+- **Fly Agaric** (`--destructive`, `oklch(0.48 0.19 28)` light / `oklch(0.52 0.18 28)` dark): danger and delete, and the only place hue 28 appears. 7.21:1 against its white label in light and 6.04:1 in dark (5.11:1 against `--destructive-foreground`, which the button does not use), and 3.35:1 against the primary green so a delete can never be mistaken for a confirm. Dark mode also carries `--destructive-border` at 4.80:1, because the fill alone reaches only 2.50:1 against Night Canvas.
 - **Spring Chlorophyll Mist / Tint / Soft** (`--happy-50` / `--happy-100` / `--happy-300`): wash states. Mist is ghost-button hover; Tint is the sidebar's hover/active nav background; Soft is available for large low-emphasis fills.
 - **Brand Text** (`--primary-text`): the theme-aware, text-safe brand color — `--happy-700` in light, `oklch(0.72 0.15 150)` in dark. Links, green icons, and both non-warning status tokens resolve here. It exists because `--primary` cannot carry text, and its absence is what sent every link to Tailwind `blue-600`.
 
@@ -228,7 +231,7 @@ Values live in `src/index.css`; `src/lib/categoryColor.ts` is the only way to re
 
 **The Warm Ground Rule.** No cool grey, in either theme. A `#f5f5f5`, a `slate-100`, or a pure `#fff` background is out of system. Pure white survives in exactly two places: translucent white washes over media, and the QR code, which needs literal `#000`/`#fff` to scan.
 
-**The Registered-Token Rule.** The brand scale ships as real utilities (`bg-happy-50`, `text-happy-700`), not as `[var(--happy-N)]` arbitrary values. Add new tokens to the `@theme` block in `src/index.css` — that is the live theme, and `tailwind.config.js` carries none.
+**The Registered-Token Rule.** The brand scale ships as real utilities (`bg-happy-50`, `text-happy-700`), not as `[var(--happy-N)]` arbitrary values. Add new tokens to the `@theme` block in `src/index.css` — that is the live theme, and `tailwind.config.js` carries none. The two filled buttons' pressed steps are tokens for this reason: they shipped as `hover:bg-[oklch(...)]` arbitrary values, which no palette check can see.
 
 **The Light-Tuned Scale Rule.** The `--happy-*` steps are absolute: they do not change between themes, and their contrast figures are measured against Field Paper. Anything that needs to work in both themes reads a semantic token instead — `--primary`, `--primary-text`, `--destructive`, `--secondary` — every one of which has a dark-mode value. Reach for a literal `--happy-*` step only where a component genuinely needs two steps of the scale at once, such as a button's fill against its own label.
 
@@ -317,12 +320,15 @@ The character line for every primitive: **soft, pressable, borderless.** Depth d
 
 ### Buttons
 
-- **Shape:** fully round pill (`border-radius: 9999px`), no border. Default height 44px (`h-11`), large 40px with wider padding, small 32px with `px-3`, icon-only a 44px circle.
-- **Primary:** Chlorophyll Bright fill with Chlorophyll Deep text — green on deep green, not green on white. `0 1.5rem` padding, reduced to `1rem` when the label carries an icon, with a `0 2px 8px rgba(0,0,0,0.18)` shadow that reads as a physical lift rather than an outline.
-- **Hover / Focus:** background steps down to `oklch(0.58 0.18 150)` and the shadow deepens to `0 3px 12px rgba(0,0,0,0.22)`. No transform, no scale — the surface gets heavier, it doesn't move. Focus rings use `--ring` (Chlorophyll Pressed).
-- **Destructive:** identical geometry, Chlorophyll Deep fill with white text, hovering to `oklch(0.36 0.10 150)`. A delete button in this system is the darkest green on screen.
-- **Ghost:** transparent with Chlorophyll Readable text, washing to Chlorophyll Mist on hover.
-- **Outline:** the sanctioned bordered exception — a 2px Chlorophyll Pressed stroke on transparent, Chlorophyll Readable label, no shadow, washing to Chlorophyll Mist on hover. Its sibling `enhanced-outline` carries the same stroke on white with a `shadow-md` that inverts to a solid Chlorophyll Pressed fill with white text on hover. The badge's `outline` is the same idea one tier down: a 1px Chlorophyll Readable stroke on transparent, at 7.73:1 rather than the button's 2.95:1, because a 20px pill has no room for a 2px edge and no shadow to fall back on.
+- **Shape:** fully round pill (`border-radius: 9999px`). The base carries a 1px transparent border — every variant is the same height, and the invalid state has a width to paint into. Heights: `xs` 28px growing to 32px at `sm:`, `sm` 32px, default 44px (`h-11`), `lg` 48px, icon-only a 44px circle. `xs` is the only size with a responsive step and it meets `sm` on desktop rather than crossing it.
+- **Primary:** Chlorophyll Bright fill with Chlorophyll Deep text — green on deep green, not green on white, at 7.46:1. `0 1.5rem` padding, reduced to `1rem` when the label carries an icon, with a `0 2px 8px rgba(0,0,0,0.18)` shadow that reads as a physical lift rather than an outline.
+- **Hover / Focus:** background steps down to `--primary-hover` (`oklch(0.62 0.17 150)`) and the shadow deepens to `0 3px 12px rgba(0,0,0,0.22)`. That step is chosen, not eyeballed: it keeps Chlorophyll Bright's chroma and steps lightness down, holding the Chlorophyll Deep label at 4.75:1 while the fill itself reaches 3.33:1 on Field Paper. `oklch(0.58 0.18 150)`, the step it replaces, was outside the sRGB gamut — the browser clamped it — and dropped the label to 4.14:1. No transform, no scale — the surface gets heavier, it doesn't move. Focus rings use `--ring` (Chlorophyll Readable), painted on `:focus-visible` only, and sit outside the button on a 2px offset, so they measure against the page rather than against the fill.
+- **Destructive:** identical geometry, Fly Agaric fill with a white label — 7.21:1 in light, 6.04:1 in dark — hovering to `--destructive-hover` (`oklch(0.40 0.17 28)`), which holds white at 9.85:1. In dark the fill alone reaches only 2.50:1 against Night Canvas, so the variant adds `--destructive-border`. A delete in this system reads as red, and hue 28 appears nowhere else.
+- **Ghost:** transparent with Ink text, washing to Chlorophyll Mist with a Chlorophyll Readable label on hover.
+- **Link:** Chlorophyll Readable with a standing underline, dropping the underline on hover. The underline is not decoration: without it `link` and `ghost` computed the same label over the same transparent fill and were one button under two names.
+- **Outline:** the sanctioned bordered exception — a 2px stroke on transparent, no shadow, washing to Chlorophyll Mist on hover. Stroke and label are one token, `--primary-text`: 7.85:1 on Field Paper and 5.15:1 on Night Surface. It cannot be `--primary`, which measures 2.94:1 and 4.36:1 on those two grounds — under the 1.4.11 floor and under AA respectively — and the light variant's fill is 1.00:1, so the stroke is its only boundary. Its sibling `enhanced-outline` carries the same stroke on Field Paper with an `elevation-control` lift, inverting on hover to a solid `--primary` fill with a `--primary-foreground` label at 5.36:1; white on that fill would be 3.00:1. The badge's `outline` is the same idea one tier down: a 1px stroke at 7.73:1, because a 20px pill has no room for a 2px edge and no shadow to fall back on.
+- **Secondary:** a Moss wash whose fill measures 1.10:1 against paper. That is deliberate and not a defect: identification rides on the 5.02:1 label and the elevation, the way a text label satisfies 1.4.11 where a boundary does not.
+- **Invalid:** `aria-invalid` colours the base's border on all seven variants — `--destructive` in light at 7.09:1, and `--destructive-border` in dark at 4.80:1, because the fill tone reads only 2.50:1 there. No variant may declare a dark-mode border colour of its own: `dark:border-primary` used to win here and paint an error in the brand green.
 
 ### Chips
 
@@ -341,7 +347,7 @@ The character line for every primitive: **soft, pressable, borderless.** Depth d
 
 - **Style:** 48px-tall (`h-12`) fully round pill on a Field Paper background with a Hairline border and a `raised-subtle` shadow. Base `px-4` padding, with callers that place a leading icon switching to `pl-11` themselves. Text is 16px, tightening to 14px at `md:` and up.
 - **Focus:** the border becomes Chlorophyll Bright. No glow, no ring stacking — one border color change, transitioned on `color, box-shadow`.
-- **Error:** `aria-invalid` switches the border to `--destructive`, which is Chlorophyll Deep. An error in this system reads as a darkening, not a reddening.
+- **Error:** `aria-invalid` switches the border to `--destructive`, Fly Agaric. An error reads as a reddening, and it needs a border width already present to paint into.
 
 ### Navigation
 
@@ -363,7 +369,7 @@ Three durations and one curve, and everything references them: `--transition-dur
 
 - **Do** pick an elevation role (`.elevation-raised`, `.elevation-floating`) and let the shadow follow. Reach for `.elevation-interactive` when the surface responds to hover.
 - **Do** keep every colour in its lane: `--primary-text` and Moss Text for text and icons, `--happy-500` / `--happy-600` / `--status-warning` for fills and indicators only.
-- **Do** express severity as depth on the green scale. `--destructive` is the deepest green in both themes and that is correct, not a placeholder.
+- **Do** keep severity on hue 28. `--destructive` is Fly Agaric in both themes; a delete is never the darkest green on screen. Use `--destructive-text` when the severity lands on text, since the fill tone reads 2.00:1 as a label on dark surfaces.
 - **Do** reach for `--primary-text` for any green text or icon, and `--status-warning-background` for any warning callout. Those two tokens cover the cases that used to reach for Tailwind blue and Tailwind amber.
 - **Do** read category colour through `src/lib/categoryColor.ts`, and always ship a category colour with its icon and label — five steps of one hue separate less well than five hues did.
 - **Do** define the opaque background before the translucent one on any glass surface, and honor `prefers-reduced-transparency` and `prefers-contrast`.

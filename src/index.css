@@ -22,6 +22,7 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -30,6 +31,7 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-destructive-hover: var(--destructive-hover);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -216,6 +218,13 @@
      7.21:1 vs its white label, 7.09:1 vs --background, and 3.35:1 against the
      primary green so the two can never be confused. */
   --destructive: oklch(0.48 0.19 28);
+  /* Pressed steps for the two filled buttons. Absolute like --happy-*, so no
+     .dark override. --primary-hover keeps --happy-500's chroma and steps L
+     down: label 4.75:1, fill 3.33:1 on --background. The step it replaces was
+     both out of the sRGB gamut and a 4.14:1 label.
+     --destructive-hover holds white at 9.85:1. */
+  --primary-hover: oklch(0.62 0.17 150);
+  --destructive-hover: oklch(0.4 0.17 28);
   --destructive-foreground: oklch(1 0 0); /* #ffffff */
   --destructive-border: oklch(0.48 0.19 28);
   /* Destructive as *text* on a light surface — the fill tone already clears
@@ -436,7 +445,10 @@
      so it clears its label on Night Canvas: 5.10:1. The fill reaches only
      2.50:1 against the page, so the variant keeps --destructive-border for a
      perceivable boundary, as the green one did. */
-  --destructive: oklch(0.52 0.18 28); /* 5.11:1 vs its label */
+  --destructive: oklch(
+    0.52 0.18 28
+  ); /* 6.04:1 vs the white label the
+     variant actually ships; 5.11:1 against --destructive-foreground */
   --destructive-foreground: oklch(0.9423 0.0097 90);
   --destructive-border: oklch(0.68 0.19 28); /* 4.80:1 vs --background */
   /* The fill tone is only 2.00:1 as text on --popover, so destructive *text*

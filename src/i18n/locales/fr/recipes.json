@@ -14,7 +14,7 @@
   "description": "Découvrez de délicieuses recettes utilisant des ingrédients cueillis",
   "filterBy": "Ingrédient",
   "filters": "Filtres",
-  "clear": "Effacer",
+  "clear": "Réinitialiser les filtres",
   "apply": "Appliquer",
   "all": "Tous",
   "mushroom": "Champignon",

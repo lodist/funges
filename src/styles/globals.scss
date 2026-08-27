@@ -389,9 +389,10 @@
   }
 
   // Text utilities
-  .text-primary {
-    color: var(--foreground);
-  }
+  // No `.text-primary`: Tailwind generates it from --color-primary, and
+  // redefining it as --foreground silently won — every brand-green label and
+  // icon rendered Ink. Text/icons take `text-primary-text`, fills
+  // `text-primary`.
   .text-secondary {
     color: var(--muted-foreground);
   }

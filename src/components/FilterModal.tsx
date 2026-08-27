@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
+import { X } from '@/lib/icons';
 
 interface FilterModalProps {
   isOpen: boolean;
@@ -69,11 +70,12 @@ export default function FilterModal({
         {/* Close Button - Top Right */}
         <Button
           variant='ghost'
-          size='sm'
+          size='icon'
           onClick={onClose}
-          className='absolute top-4 right-4 z-10 h-8 w-8 p-0 rounded-lg border-0 bg-transparent hover:bg-happy-50 hover:text-happy-700'
+          aria-label={t('common:common.close')}
+          className='absolute top-4 right-4 z-10'
         >
-          <span className='text-lg'>{'✕'}</span>
+          <X />
         </Button>
 
         {/* Filters Content */}
@@ -226,11 +228,7 @@ export default function FilterModal({
 
         {/* Footer Actions - Fixed at bottom */}
         <div className='flex items-center justify-end gap-3 p-6 border-t border-border bg-(--background-secondary)/30 mt-auto'>
-          <Button
-            variant='outline'
-            onClick={onClearFilters}
-            className='hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors duration-base'
-          >
+          <Button variant='outline' onClick={onClearFilters}>
             {t('clear')}
           </Button>
           <Button onClick={onClose} className='min-w-[100px]'>

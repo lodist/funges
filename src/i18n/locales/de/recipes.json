@@ -14,7 +14,7 @@
   "description": "Entdecke köstliche Rezepte mit gesammelten Zutaten",
   "filterBy": "Zutat",
   "filters": "Filter",
-  "clear": "Löschen",
+  "clear": "Filter zurücksetzen",
   "apply": "Anwenden",
   "all": "Alle",
   "mushroom": "Pilz",

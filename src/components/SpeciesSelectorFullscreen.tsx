@@ -148,10 +148,10 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
 
         <Button
           variant='ghost'
-          size='sm'
+          size='icon'
           onClick={onClose}
           aria-label={t('common:common.close')}
-          className='h-10 w-10 p-0 bg-white/20 hover:bg-white/40 text-white border border-white/30 hover:border-white/50 transition-all duration-base flex-shrink-0'
+          className='bg-white/20 hover:bg-white/40 text-white border-white/30 hover:border-white/50 flex-shrink-0'
         >
           <X className='size-5' />
         </Button>
@@ -286,7 +286,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                       <h3
                         className={cn(
                           'font-semibold text-foreground leading-tight mb-1 break-words text-sm',
-                          isSelected && 'text-primary'
+                          isSelected && 'text-primary-text'
                         )}
                       >
                         {tSpecies(`list_of_species.${species.code}.name`)}

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import { expect, userEvent, within } from 'storybook/test';
 import { Button } from '@/components/ui/button';
-import { Search, Download, Heart, Settings } from '@/lib/icons';
+import { Search, Download, Heart, Settings, Loader2 } from '@/lib/icons';
 
 // One list per axis, used by both the controls and the matrix stories below.
 // Written out rather than derived: `cva` keeps its variant config private, so
@@ -17,7 +18,7 @@ const VARIANTS = [
   'link',
 ] as const;
 
-const SIZES = ['default', 'sm', 'lg', 'icon'] as const;
+const SIZES = ['xs', 'sm', 'default', 'lg', 'icon'] as const;
 
 const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
@@ -27,7 +28,7 @@ const meta: Meta<typeof Button> = {
     docs: {
       description: {
         component:
-          'A versatile button component with multiple variants, sizes, and states. Built on top of Radix UI primitives with full accessibility support.',
+          'The interactive primitive. Seven variants, five sizes, one shape. Every variant carries a border width from the base so the invalid state can paint, and the transition names its properties rather than animating `all`.',
       },
     },
   },
@@ -117,6 +118,13 @@ export const Destructive: Story = {
 };
 
 // Sizes
+export const ExtraSmall: Story = {
+  args: {
+    size: 'xs',
+    children: 'Extra Small',
+  },
+};
+
 export const Small: Story = {
   args: {
     size: 'sm',
@@ -152,10 +160,18 @@ export const Loading: Story = {
     disabled: true,
     children: (
       <>
-        <div className='animate-spin rounded-full h-4 w-4 border-b-2 border-current' />
+        <Loader2 className='animate-spin' />
         Loading...
       </>
     ),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The spinner is `Loader2` from the icon module, not a hand-rolled `border-b-2` circle — a thick partial border on a round element is the one anti-pattern this file used to ship.',
+      },
+    },
   },
 };
 
@@ -190,14 +206,6 @@ export const WithTrailingIcon: Story = {
   },
 };
 
-// Interactive Examples
-export const Interactive: Story = {
-  args: {
-    children: 'Click me!',
-    onClick: () => alert('Button clicked!'),
-  },
-};
-
 // All Variants Grid
 export const AllVariants: Story = {
   render: () => (
@@ -221,10 +229,11 @@ export const AllVariants: Story = {
 // All Sizes Grid
 export const AllSizes: Story = {
   render: () => (
-    <div className='flex items-center gap-4'>
-      <Button size='sm'>{'Small'}</Button>
-      <Button size='default'>{'Default'}</Button>
-      <Button size='lg'>{'Large'}</Button>
+    <div className='flex flex-wrap items-center gap-4'>
+      <Button size='xs'>{'xs'}</Button>
+      <Button size='sm'>{'sm'}</Button>
+      <Button size='default'>{'default'}</Button>
+      <Button size='lg'>{'lg'}</Button>
       <Button size='icon' aria-label='Settings'>
         <Settings />
       </Button>
@@ -233,32 +242,132 @@ export const AllSizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'All available button sizes displayed in a row.',
+        story:
+          'The ramp is 28/32/44/48 below `sm:` and 32/32/44/48 above it — `xs` is the only size with a responsive step, and it meets `sm` on desktop rather than crossing it.',
       },
     },
   },
 };
 
-// With Different Content
-export const WithLongText: Story = {
-  args: {
-    children: 'This is a button with very long text that might wrap',
+export const LongLabel: Story = {
+  name: 'Long label, real locale',
+  render: () => (
+    <div className='flex flex-col items-start gap-3'>
+      <Button>{'Zum Aktualisieren neu laden'}</Button>
+      <Button variant='outline' size='sm'>
+        {'Was lohnt sich jetzt zu sammeln?'}
+      </Button>
+      <Button size='xs' variant='secondary'>
+        {'Zum Aktualisieren neu laden'}
+      </Button>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Real German strings from the shipped locale, at three sizes. The base is `whitespace-nowrap`, so a label cannot wrap — it widens the button instead, which is what the layout has to absorb.',
+      },
+    },
   },
 };
 
-export const WithEmoji: Story = {
-  args: {
-    children: '🚀 Launch App',
+// The two claims this file used to make and could not keep
+export const LinkIsNotGhost: Story = {
+  name: 'link is not ghost',
+  render: () => (
+    <div className='flex flex-col items-start gap-3'>
+      <Button variant='ghost' data-testid='btn-ghost'>
+        {'ghost'}
+      </Button>
+      <Button variant='link' data-testid='btn-link'>
+        {'link'}
+      </Button>
+      <p className='text-muted-foreground max-w-xl text-sm'>
+        {
+          'These two used to be the same button. Both spelled their label text-primary, which globals.scss redefined as --foreground, so both computed Ink over a transparent fill with no underline — identical at rest, telling apart only on hover. link now carries the brand text step and a standing underline, because colour alone is not an accessible link affordance.'
+        }
+      </p>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const ghost = canvas.getByTestId('btn-ghost');
+    const link = canvas.getByTestId('btn-link');
+
+    // The claim: they differ at rest, on both axes, in whichever theme the
+    // story is rendered in.
+    await expect(getComputedStyle(link).color).not.toBe(
+      getComputedStyle(ghost).color
+    );
+    await expect(getComputedStyle(link).textDecorationLine).toBe('underline');
+    await expect(getComputedStyle(ghost).textDecorationLine).toBe('none');
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Asserts the two variants are distinguishable without hovering. See Foundations → Colour for why the label uses --primary-text rather than --primary.',
+      },
+    },
   },
 };
 
-export const WithHTML: Story = {
-  args: {
-    children: (
-      <>
-        <strong>{'Bold'}</strong> {'and'} <em>{'italic'}</em> {'text'}
-      </>
-    ),
+export const Invalid: Story = {
+  name: 'Invalid form trigger',
+  render: () => (
+    <div className='flex flex-col items-start gap-3'>
+      <Button variant='outline' aria-invalid data-testid='invalid-outline'>
+        {'Choose a region'}
+      </Button>
+      <Button variant='ghost' aria-invalid data-testid='invalid-ghost'>
+        {'Choose a region'}
+      </Button>
+      <p className='text-muted-foreground max-w-xl text-sm'>
+        {
+          'The one place a button carries a validity state: a control that stands in for an unfilled field. The base declares a border width, so aria-invalid has something to colour — with border-0 on five of seven variants it resolved --destructive and painted nothing, and on the two bordered ones dark:border-primary won and drew the error in the brand green. The contract across all seven variants is enforced in src/test/border.test.ts, on the source rather than on a render.'
+        }
+      </p>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    // ghost, not outline: outline already carries a stroke colour, so it would
+    // pass this whether the invalid state painted or not.
+    const el = canvas.getByTestId('invalid-ghost');
+    const style = getComputedStyle(el);
+    await expect(parseFloat(style.borderTopWidth)).toBeGreaterThan(0);
+    await expect(style.borderTopColor).not.toBe('rgba(0, 0, 0, 0)');
+    await expect(style.borderTopColor).not.toBe('oklab(0 0 0 / 0)');
+  },
+};
+
+export const FocusRing: Story = {
+  name: 'Focus ring',
+  render: () => (
+    <div className='flex items-center gap-4'>
+      <Button variant='default'>{'default'}</Button>
+      <Button variant='outline'>{'outline'}</Button>
+      <Button variant='ghost'>{'ghost'}</Button>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.tab();
+    const focused = canvas.getByRole('button', { name: 'default' });
+    await expect(focused).toHaveFocus();
+    // .focus-ring paints an outline; the browser default would be `auto`.
+    const style = getComputedStyle(focused);
+    await expect(style.outlineStyle).toBe('solid');
+    await expect(parseFloat(style.outlineWidth)).toBeGreaterThan(0);
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Keyboard focus comes from `.focus-ring` on `:focus-visible`, so a pointer press paints nothing. The ring is `--ring`, which sits outside the button on a 2px offset and therefore measures against the page, not against the fill.',
+      },
+    },
   },
 };
 

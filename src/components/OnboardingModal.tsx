@@ -86,7 +86,7 @@ export default function OnboardingModal() {
         </ul>
         <div className='mt-4 text-sm space-y-2'>
           <div>
-            <Link to='/instructions' className='underline text-primary'>
+            <Link to='/instructions' className='underline text-primary-text'>
               {t('onboarding.instructions')}
             </Link>
           </div>
