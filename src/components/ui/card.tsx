@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 // `cardVariants` stays module-local: exporting a non-component alongside Card
 // breaks react-refresh's HMR boundary.
 const cardVariants = cva(
-  'text-card-foreground flex flex-col rounded-card gap-0 elevation-raised',
+  'text-card-foreground flex flex-col rounded-card elevation-raised',
   {
     variants: {
       // Glass carries its own background and hairline, so `solid` owns both.
@@ -15,12 +15,16 @@ const cardVariants = cva(
         glass: 'glass-regular',
       },
       // The card owns its vertical rhythm; header/content own the horizontal.
+      // Each step carries its own region gap, so a card never leaves the
+      // header sitting flat on the body: the base shipped `gap-0` and five
+      // call sites re-invented the gap by hand at four different values.
       // `compact` is the tighter step for map chrome, `none` for full-bleed
-      // media and for cards that pad their own body.
+      // media and for cards that pad their own body - where any gap would
+      // push the media off the card edge.
       padding: {
-        content: 'py-6',
-        compact: 'p-3',
-        none: 'p-0',
+        content: 'py-6 gap-6',
+        compact: 'p-3 gap-3',
+        none: 'p-0 gap-0',
       },
       // The hover lift belongs to cards you can actually activate.
       interactive: {

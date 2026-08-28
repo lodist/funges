@@ -243,7 +243,7 @@ export default function RecipesPage() {
 
               return (
                 <Card key={recipe.id} className='h-full'>
-                  <CardHeader className='pb-3'>
+                  <CardHeader>
                     {/* Mobile: Image on top, then title */}
                     <div className='block md:hidden'>
                       {/* Recipe Image for mobile - above title */}

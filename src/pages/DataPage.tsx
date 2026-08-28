@@ -273,12 +273,12 @@ interface ChartCardProps {
 function ChartCard({ title, children }: ChartCardProps) {
   return (
     <Card>
-      <CardHeader className='pb-2'>
+      <CardHeader>
         <CardTitle className='text-sm font-medium text-muted-foreground'>
           {title}
         </CardTitle>
       </CardHeader>
-      <CardContent className='pt-0'>{children}</CardContent>
+      <CardContent>{children}</CardContent>
     </Card>
   );
 }

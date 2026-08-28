@@ -178,7 +178,7 @@ export default function SupportPage() {
                   </CardHeader>
                   {method.address && (
                     <>
-                      <CardContent className='pt-4'>
+                      <CardContent>
                         <div className='bg-muted rounded-lg p-3'>
                           <p className='text-muted-foreground mb-1 text-xs'>
                             {t('address')}
@@ -188,7 +188,7 @@ export default function SupportPage() {
                           </p>
                         </div>
                       </CardContent>
-                      <CardFooter className='gap-2 pt-3'>
+                      <CardFooter className='gap-2'>
                         <Button
                           variant='outline'
                           onClick={() =>

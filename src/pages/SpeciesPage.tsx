@@ -143,7 +143,7 @@ export default function SpeciesPage() {
 
             return (
               <Card key={species.id}>
-                <CardHeader className='pb-3'>
+                <CardHeader>
                   <div className='flex items-start gap-4'>
                     {/* Species Image */}
                     {speciesImage && (
@@ -225,7 +225,7 @@ export default function SpeciesPage() {
 
                 {/* Action button - sticky to the card bottom, independent of description length */}
                 {species.showOnMap && (
-                  <CardFooter className='mt-auto px-6 pt-4'>
+                  <CardFooter className='mt-auto px-6'>
                     <Button
                       asChild
                       className='w-full flex items-center justify-center gap-2'

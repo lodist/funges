@@ -101,7 +101,7 @@ export const WithFooter: Story = {
           {'Two chanterelle finds within 40 m of each other.'}
         </p>
       </CardContent>
-      <CardFooter className='gap-2 pt-6'>
+      <CardFooter className='gap-2'>
         <Button variant='outline' className='flex-1'>
           {'Discard'}
         </Button>
@@ -207,7 +207,7 @@ export const Static: Story = {
           </div>
         ))}
       </CardContent>
-      <CardFooter className='pt-6'>
+      <CardFooter>
         <Button variant='outline' className='w-full'>
           {'Open the data page'}
         </Button>
@@ -335,7 +335,7 @@ export const RecipeTile: Story = {
           {'Easy'}
         </span>
       </CardContent>
-      <CardFooter className='pt-6'>
+      <CardFooter>
         <Button className='w-full'>{'Open recipe'}</Button>
       </CardFooter>
     </Card>

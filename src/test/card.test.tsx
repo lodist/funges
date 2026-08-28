@@ -127,6 +127,22 @@ describe('padding is a named step, not a per-call-site value', () => {
     );
     expect(padded).toEqual(expected);
   });
+
+  // The vertical rhythm is a gap, and each step carries its own. The base
+  // shipped `gap-0` while five call sites faked the gap with region padding at
+  // four different values - and the filter above only reads `p*`, so it could
+  // never see it. `none` keeps zero: a full-bleed card's media has to reach the
+  // card edge.
+  it.each([
+    ['content', 'gap-6'],
+    ['compact', 'gap-3'],
+    ['none', 'gap-0'],
+  ] as const)('%s renders %s', (padding, expected) => {
+    const gaps = classes(<Card padding={padding} />).filter(c =>
+      /^gap-/.test(c)
+    );
+    expect(gaps).toEqual([expected]);
+  });
 });
 
 describe('a card title is a heading', () => {
@@ -203,6 +219,37 @@ describe('call sites do not re-declare what the atom owns', () => {
     const offenders = openingTags
       .filter(({ tag }) => pattern.test(tag))
       .map(({ file }) => file);
+    expect(offenders).toEqual([]);
+  });
+});
+
+describe('a region does not fake the card gap', () => {
+  // The card owns the vertical rhythm, so a region that pads or margins itself
+  // vertically is re-inventing it. `<Card\b` does not match `<CardHeader`, so
+  // the call-site scan above never looked here, and five call sites drifted to
+  // `pb-2`, `pb-3`, `pt-0`, `pt-3` and `pt-4` while two pages got no gap at all.
+  //
+  // Shipped code only: `padding='none'` exists for regions that pad themselves,
+  // and the full-bleed story is where that is demonstrated.
+  const regionTags = src
+    .filter(file => !file.endsWith('.stories.tsx'))
+    .flatMap(file => {
+      const text = stripComments(readFileSync(file, 'utf8'));
+      return [
+        ...text.matchAll(/<Card(?:Header|Content|Footer)\b((?:[^>]|\n)*?)>/g),
+      ].map(m => ({ file, tag: m[0] }));
+    });
+
+  it('finds every region', () => {
+    expect(regionTags.length).toBeGreaterThan(20);
+  });
+
+  // `mt-auto` is alignment, not spacing: it pins a footer to the bottom of the
+  // card without claiming a gap of its own.
+  it('none pad or margin themselves vertically', () => {
+    const offenders = regionTags
+      .filter(({ tag }) => /(?<![\w-])[pm][tby]-\d/.test(tag))
+      .map(({ file, tag }) => `${file}: ${tag.replace(/\s+/g, ' ')}`);
     expect(offenders).toEqual([]);
   });
 });
