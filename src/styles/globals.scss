@@ -376,7 +376,10 @@
   // `outline` rather than a ring: the `.elevation-*` tokens are box-shadows, so
   // a box-shadow ring would have to compose with them in every primitive and
   // loses that fight wherever one forgets. An outline also follows the
-  // element's border-radius and survives an `overflow: hidden` ancestor.
+  // element's border-radius. It does not survive a clipping ancestor, though —
+  // `overflow: hidden` cuts an outline flat, measured, which is why a field's
+  // focus border carries `--ring` too instead of leaving the ring as the only
+  // focus cue.
   //
   // `--ring` clears WCAG 1.4.11's 3:1 floor against every surface it lands on:
   // light 7.85:1 on --background and 7.99:1 on --card; dark 5.46:1 on
