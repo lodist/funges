@@ -61,14 +61,35 @@ MIN_CONTROLS_PER_SIDE = 2
 FIRST_SCORED = "2026-05-24"   # 42 full lag days after the R2 history starts
 
 
-def decompose(frame: pd.DataFrame, species: str, params: dict, zone_curves: dict) -> pd.DataFrame:
+def decompose(
+    frame: pd.DataFrame,
+    species: str,
+    params: dict,
+    zone_curves: dict,
+    *,
+    candidate_components: dict[str, tuple[np.ndarray, float]] | None = None,
+) -> pd.DataFrame:
     """Score the frame and return the weather-only and static-only geometric parts."""
     captured = []
     original = fp._hybrid_component_mean_rows
 
+    extras = candidate_components or {}
+
     def spy(components, weights, **kwargs):
-        captured.append((np.asarray(components, float), np.asarray(weights, float)))
-        return original(components, weights, **kwargs)
+        component_array = np.asarray(components, float)
+        weight_array = np.asarray(weights, float)
+        base_names = NAMES_PH if component_array.shape[0] == 6 else NAMES_NO_PH
+        names = list(base_names)
+        if extras:
+            component_array = np.vstack(
+                [component_array, *[np.asarray(values, float) for values, _weight in extras.values()]]
+            )
+            weight_array = np.concatenate(
+                [weight_array, np.array([weight for _values, weight in extras.values()], float)]
+            )
+            names.extend(extras)
+        captured.append((component_array, weight_array, names))
+        return original(component_array, weight_array, **kwargs)
 
     fp._hybrid_component_mean_rows = spy
     try:
@@ -76,8 +97,7 @@ def decompose(frame: pd.DataFrame, species: str, params: dict, zone_curves: dict
     finally:
         fp._hybrid_component_mean_rows = original
 
-    components, weights = max(captured, key=lambda pair: pair[0].shape[0])
-    names = NAMES_PH if components.shape[0] == 6 else NAMES_NO_PH
+    components, weights, names = max(captured, key=lambda item: item[0].shape[0])
     components = np.clip(components, 0.02, 1.0)
 
     def geometric(selected):
@@ -88,7 +108,9 @@ def decompose(frame: pd.DataFrame, species: str, params: dict, zone_curves: dict
         return np.exp((chosen_weights[:, None] * np.log(chosen)).sum(axis=0) / chosen_weights.sum())
 
     wind = fp._lagged_wind_factor(frame) if params[species].get("wind_sensitive", False) else 1.0
-    out = frame[["Location_Id", "Date"]].copy()
+    identity = ["Location_Id", "Date"]
+    identity.extend(column for column in ("Latitude", "Longitude") if column in frame.columns)
+    out = frame[identity].copy()
     out["weather_part"] = geometric(WEATHER_COMPONENTS) * wind
     out["static_part"] = geometric(set(names) - WEATHER_COMPONENTS)
     # The calendar also varies between a find and its controls, and near a seasonal peak it
@@ -159,10 +181,16 @@ def bootstrap_ci(values: list[float], seed: int = 20260814) -> tuple[float, floa
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--truth", default="docs/qa/season-truth-2026/gbif-season-truth.json")
-    parser.add_argument("--scan", default="docs/qa/season-timing-2026")
+    parser.add_argument(
+        "--truth",
+        default="docs/qa/model-evaluation-2026/seasonal-ground-truth/gbif-season-truth.json",
+    )
+    parser.add_argument("--scan", default="docs/qa/model-evaluation-2026/seasonal-timing")
     parser.add_argument("--regions", default="NE,SE,USE,USW")
-    parser.add_argument("--output", default="docs/qa/season-timing-2026/weather-skill.json")
+    parser.add_argument(
+        "--output",
+        default="docs/qa/model-evaluation-2026/seasonal-timing/weather-skill.json",
+    )
     args = parser.parse_args()
     truth = json.loads(Path(args.truth).read_text(encoding="utf-8"))
     session = requests.Session()

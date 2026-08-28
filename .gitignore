@@ -66,6 +66,7 @@ docs/qa/**/gbif-season-truth.json
 docs/qa/**/grid-cell-days-*.parquet
 docs/qa/**/branch-replay-*.parquet
 docs/qa/**/observation-scores-*.csv
+docs/qa/**/candidate-history-*.parquet
 
 
 # Playwright failure artifacts

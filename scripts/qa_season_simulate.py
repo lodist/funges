@@ -130,8 +130,11 @@ def evaluate(frame: pd.DataFrame, column: str, in_season: set, dead: set) -> dic
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--truth", default="docs/qa/season-truth-2026/gbif-season-truth.json")
-    parser.add_argument("--scan", default="docs/qa/season-timing-2026")
+    parser.add_argument(
+        "--truth",
+        default="docs/qa/model-evaluation-2026/seasonal-ground-truth/gbif-season-truth.json",
+    )
+    parser.add_argument("--scan", default="docs/qa/model-evaluation-2026/seasonal-timing")
     parser.add_argument("--regions", default="NE,SE,USE,USW")
     parser.add_argument("--gate-off", type=float, default=sn.GATE_OFF,
                         help="gate fully closed at or below this fraction of peak rate")

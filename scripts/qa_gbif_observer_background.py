@@ -226,7 +226,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--start", default="2026-06-01")
     parser.add_argument("--end", default="2026-08-12")
-    parser.add_argument("--output-dir", default="docs/qa/gbif-effort-background-2026-06-01_2026-08-12")
+    parser.add_argument(
+        "--output-dir",
+        default="docs/qa/model-evaluation-2026/spatial-observer-background",
+    )
     args = parser.parse_args(); output = Path(args.output_dir); output.mkdir(parents=True, exist_ok=True)
     cache = output / "gbif-cache.json"
     session = requests.Session(); session.headers["User-Agent"] = "fung.es QA (https://fung.es)"

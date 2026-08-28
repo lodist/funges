@@ -1,4 +1,7 @@
-# Resilient-score paired GBIF QA
+# Resilient-score paired ablation
+
+> This compares the previous and current scorer on identical observations and weather.
+> See the [comprehensive report](../report.md) for the current model verdict.
 
 Period: **2026-06-01 to 2026-08-12**
 

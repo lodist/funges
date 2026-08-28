@@ -1,4 +1,10 @@
-# Season-timing QA: does the model know _when_, not just _where_?
+# Historical pre-gate season-timing diagnosis
+
+> **Superseded model vintage.** This report begins with the production model that existed
+> before the season gate. Its diagnosis led to the repaired model measured later in this
+> same document. For the current verdict, read
+> [`../report.md`](../report.md). The collected data and original analysis are retained for
+> auditability.
 
 Period: **2026-04-12 to 2026-08-20** (the full span of score history retained in R2).
 Target: **production scores** (`main`), with a separate replay comparing `main` against
@@ -42,9 +48,9 @@ some places and contradicts it in others.
 
 Concretely: **41% of dead-month cell-days score ≥4** (median across 17 testable
 region-species; worst case 78%). `MIN_SCORE = 4.0` is exactly the threshold
-[generate_worth_foraging_now.py](../../../scripts/generate_worth_foraging_now.py) uses to
+[generate_worth_foraging_now.py](../../../../scripts/generate_worth_foraging_now.py) uses to
 decide what to recommend, and
-[worth-foraging-now.ts](../../../src/lib/worth-foraging-now.ts) applies **no season gate
+[worth-foraging-now.ts](../../../../src/lib/worth-foraging-now.ts) applies **no season gate
 at all** — `seasonLabel` is display text. So this is a user-facing false-positive rate,
 not an abstract metric.
 
@@ -53,7 +59,7 @@ the model's median score reaches 4 _before_ fruiting begins — by 5 to 69 days.
 
 ## A. Seasonal amplitude is compressed by two to three orders of magnitude
 
-[build_season_curves.py:190](../../../backend/tools/build_season_curves.py#L190):
+[build_season_curves.py:190](../../../../backend/tools/build_season_curves.py#L190):
 
 ```python
 curve = {m: round(low + (high - low) * (ratio[m] / mx), 3) for m in range(1, 13)}
@@ -225,7 +231,7 @@ exists exactly when the species is actually fruiting.
 ## Two concrete defects
 
 **1. The truffle season curve is inverted, and it silently overrode a correct one.**
-[build_season_curves.py:34](../../../backend/tools/build_season_curves.py#L34) maps
+[build_season_curves.py:34](../../../../backend/tools/build_season_curves.py#L34) maps
 `truffle_b` to `8282501` — the **genus** _Tuber_ — while the app scores and labels
 _Tuber melanosporum_, a winter species. Measured over 2020–2026 in Northern Europe:
 
@@ -237,14 +243,14 @@ _Tuber melanosporum_, a winter species. Measured over 2020–2026 in Northern Eu
 
 The genus clears the builder's `min_total=200` trust gate, so a curve peaking in **July**
 is published and — per the precedence in
-[seasonality.py:44](../../../backend/seasonality.py#L44) — _overrides_ the correct
+[seasonality.py:44](../../../../backend/seasonality.py#L44) — _overrides_ the correct
 hand-written `season_months` of `[1,2,3,4,10,11,12]`. Had the species key been used, 2
 records would have failed the gate and the correct winter window would have survived. The
 existing QA already flagged the `Burgundy Truffle` / _melanosporum_ label mismatch; this is
 the same confusion reaching into the season model.
 
 **2. The curve builder does not filter `basisOfRecord`.** Only `hasCoordinate` is set
-([build_season_curves.py:153](../../../backend/tools/build_season_curves.py#L153)), so
+([build_season_curves.py:153](../../../../backend/tools/build_season_curves.py#L153)), so
 preserved specimens and machine observations shape the curves, while the app's users
 generate human observations. That is part of why genus _Tuber_ looks like a summer taxon.
 
@@ -345,7 +351,7 @@ All of the above was implemented and re-measured on the same April–August grid
 
 **The season term is now two terms.** `season_multiplier_for_species` still tilts the
 score across the calendar; a new `season_gate_for_species` in
-[seasonality.py](../../../backend/seasonality.py) is allowed to reach **zero**, which is
+[seasonality.py](../../../../backend/seasonality.py) is allowed to reach **zero**, which is
 the thing the model previously could not express. The gate reads the _uncompressed_
 monthly ratio, which the curve builder now publishes alongside the compressed multiplier —
 the ratio was always computed and then thrown away by the `[0.6, 1.0]` rescale. Both curve

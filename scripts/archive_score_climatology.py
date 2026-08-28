@@ -22,7 +22,7 @@ import pyarrow.parquet as pq
 
 GOOD_SCORE = 4.0
 DEFAULT_PARQUET = Path("public/data/foraging_scores.parquet")
-DEFAULT_ARCHIVE = Path("docs/qa/score-climatology.json")
+DEFAULT_ARCHIVE = Path("docs/qa/model-evaluation-2026/climatology/score-climatology.json")
 
 
 def infer_region(longitude: float, latitude: float) -> str:

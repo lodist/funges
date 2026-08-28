@@ -1,4 +1,8 @@
-# GBIF score QA
+# Within-zone spatial ranking QA
+
+> This is a deliberately strict local-ranking test. It conditions away the season and
+> broad climate-zone geography, so its AUC is not the overall model verdict. See the
+> [comprehensive report](../report.md) for the complete interpretation.
 
 Period: **2026-06-13 to 2026-08-12** (inclusive)
 

@@ -1,4 +1,7 @@
-# Continental GBIF observer-background QA
+# Macro-region GBIF observer-background QA
+
+> This is the primary operational geography assessment. The paired resilient-scorer
+> follow-up is summarized in the [comprehensive report](../report.md).
 
 Period: **2026-06-01 through 2026-08-12**.
 

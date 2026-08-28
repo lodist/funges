@@ -227,8 +227,14 @@ def compare(background: pd.DataFrame, targets: pd.DataFrame) -> tuple[list[dict]
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--source", default="docs/qa/gbif-effort-background-2026-06-01_2026-08-12-human")
-    parser.add_argument("--output", default="docs/qa/resilient-score-comparison-2026-06-01_2026-08-12")
+    parser.add_argument(
+        "--source",
+        default="docs/qa/model-evaluation-2026/spatial-observer-background",
+    )
+    parser.add_argument(
+        "--output",
+        default="docs/qa/model-evaluation-2026/resilient-score-ablation",
+    )
     parser.add_argument("--start", default="2026-06-01")
     parser.add_argument("--end", default="2026-08-12")
     args = parser.parse_args()

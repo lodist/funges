@@ -331,8 +331,11 @@ def analyse_region(region: str, truth: dict, grid: pd.DataFrame, params: dict) -
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--truth", default="docs/qa/season-truth-2026/gbif-season-truth.json")
-    parser.add_argument("--scan", default="docs/qa/season-timing-2026")
+    parser.add_argument(
+        "--truth",
+        default="docs/qa/model-evaluation-2026/seasonal-ground-truth/gbif-season-truth.json",
+    )
+    parser.add_argument("--scan", default="docs/qa/model-evaluation-2026/seasonal-timing")
     parser.add_argument("--regions", default="NE,SE,USE,USW")
     args = parser.parse_args()
     scan = Path(args.scan)

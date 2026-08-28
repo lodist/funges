@@ -131,7 +131,9 @@ def main() -> None:
     parser.add_argument("--end", default="2026-08-20", help="record enumeration end")
     parser.add_argument("--effort-start", default="2026-04-12", help="daily effort window start")
     parser.add_argument("--effort-end", default="2026-08-20")
-    parser.add_argument("--output", default="docs/qa/season-truth-2026")
+    parser.add_argument(
+        "--output", default="docs/qa/model-evaluation-2026/seasonal-ground-truth"
+    )
     args = parser.parse_args()
     output = Path(args.output)
     output.mkdir(parents=True, exist_ok=True)
