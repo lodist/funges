@@ -39,8 +39,8 @@ function DialogOverlay({
     <DialogPrimitive.Overlay
       data-slot='dialog-overlay'
       className={cn(
-        // Motion (#200): scrim matches the content's --transition-duration-base.
-        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50 duration-base ease-standard',
+        // Scrim and content share the overlay enter/exit duration.
+        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-scrim duration-slow ease-standard',
         className
       )}
       {...props}
@@ -63,22 +63,27 @@ function DialogContent({
       <DialogPrimitive.Content
         data-slot='dialog-content'
         className={cn(
-          // Trailhead (#213): no border, bigger radius + shadow. The shadow
-          // is now the `overlay` elevation token (#200 / ADR 0001), whose
-          // value is Trailhead's own — same pixels, one source of truth.
-          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-card border-0 elevation-overlay p-6 duration-base ease-standard sm:max-w-lg',
+          // No border; the radius and shadow are the card-radius and
+          // overlay-elevation tokens. The panel caps its own height so a tall
+          // dialog scrolls instead of growing past the viewport.
+          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 flex max-h-[calc(100dvh-2rem)] w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] flex-col rounded-card border-0 elevation-overlay duration-slow ease-standard sm:max-w-lg',
           className
         )}
         {...props}
       >
-        {children}
+        <div
+          data-slot='dialog-body'
+          className='grid min-h-0 gap-4 overflow-y-auto p-6'
+        >
+          {children}
+        </div>
         {showCloseButton && (
           <DialogPrimitive.Close
-            data-slot='dialog-close'
-            // Trailhead (#213): bare X, no resting background/border — only
-            // on hover does it pick up a rounded-square happy-green fill,
-            // matching Sheet's close button.
-            className="focus-ring absolute top-4 right-4 rounded-full size-9 p-0 border-0 bg-transparent text-happy-700 grid place-items-center leading-none transition-colors hover:bg-happy-50 disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+            data-slot='dialog-close-icon'
+            // Round X carrying the panel's own colour, so body text scrolling
+            // underneath stays masked, with a happy fill on hover. Sits above the
+            // scrolling body, so it never scrolls away.
+            className="focus-ring absolute top-4 right-4 z-10 rounded-full size-11 p-0 border-0 bg-background text-happy-700 dark:text-happy-300 grid place-items-center leading-none transition-colors hover:bg-happy-50 dark:hover:bg-happy-900 disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
           >
             <XIcon />
             <span className='sr-only'>{t('close')}</span>

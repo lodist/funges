@@ -110,6 +110,7 @@
   --color-happy-600: var(--happy-600);
   --color-happy-700: var(--happy-700);
   --color-happy-900: var(--happy-900);
+  --color-scrim: var(--scrim);
 
   /* Motion (#200, #225). Registered here so Tailwind emits the utilities:
      `ease-standard`, and `duration-fast|base|slow` from the
@@ -320,6 +321,9 @@
   --text-inverse: oklch(1 0 0); /* #ffffff */
   --background-secondary: rgba(250, 250, 250, 0.9);
   --background-overlay: rgba(0, 0, 0, 0.8);
+  /* Modal scrim. Lighter than --background-overlay, which dresses the
+     .overlay component in globals.scss, not a full-screen veil. */
+  --scrim: rgba(0, 0, 0, 0.5);
   --hover-primary: oklch(0.8952 0.0504 150);
   /* Warm beige (hue 76), not the mint green the old #d1f2e1 comment claimed.
      The same oklch also sits on dark --muted-foreground. */
@@ -548,6 +552,9 @@
   --text-inverse: oklch(0.3327 0.0271 90);
   --background-secondary: rgba(23, 23, 23, 0.9);
   --background-overlay: rgba(0, 0, 0, 0.8);
+  /* Modal scrim. Lighter than --background-overlay, which dresses the
+     .overlay component in globals.scss, not a full-screen veil. */
+  --scrim: rgba(0, 0, 0, 0.5);
   --hover-primary: oklch(0.3942 0.0265 90);
   --hover-secondary: oklch(0.3327 0.0271 90);
 

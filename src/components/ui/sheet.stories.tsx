@@ -126,7 +126,8 @@ export const FromLeft: Story = {
     docs: {
       description: {
         story:
-          'The left side is what `Sidebar` uses on mobile — the off-canvas nav is a Sheet underneath.',
+          'The left side is what `Sidebar` reaches for on mobile — the off-canvas nav is a Sheet underneath. ' +
+          'That branch ships unmounted: the root route renders `AppSidebar` on desktop only, and mobile navigation goes through `MobileNavbar`.',
       },
     },
   },
