@@ -1,0 +1,32 @@
+{
+  "status": "superseded",
+  "reason": "The geography rows used rectangular proxies, including an Iberian box labelled Spain. Retained only as historical provenance.",
+  "period": ["2026-06-01", "2026-08-12"],
+  "geography_check": [
+    {
+      "area": "Southern Finland rectangle",
+      "fungal_observer_cell_days": 742,
+      "porcini_median": 5.26,
+      "porcini_findings": 8,
+      "chanterelle_median": 6.015,
+      "chanterelle_findings": 64
+    },
+    {
+      "area": "Northern Finland rectangle",
+      "fungal_observer_cell_days": 423,
+      "porcini_median": 4.77,
+      "porcini_findings": 6,
+      "chanterelle_median": 5.86,
+      "chanterelle_findings": 2
+    },
+    {
+      "area": "Iberian rectangle formerly labelled Spain",
+      "fungal_observer_cell_days": 598,
+      "porcini_median": 2.89,
+      "porcini_findings": 10,
+      "chanterelle_median": 2.3,
+      "chanterelle_findings": 6
+    }
+  ],
+  "derivation": "Finland used 19-32 degrees east and was split at 65 degrees north. The Iberian proxy used 35-44 degrees north and -10-4.5 degrees east. These were not country boundaries."
+}

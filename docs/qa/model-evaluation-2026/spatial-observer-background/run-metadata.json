@@ -1,13 +1,16 @@
 {
-  "period": ["2026-06-01", "2026-08-12"],
+  "period": ["2026-06-01", "2026-08-27"],
   "cell_km": 20,
   "max_match_km": 30,
   "basis_of_record": "HUMAN_OBSERVATION",
   "max_coordinate_uncertainty_m": 20000,
-  "background_raw": 45049,
-  "background_cells": 15558,
-  "target_raw": 1390,
-  "target_cells": 1254,
+  "retrieved_at_utc": "2026-08-28T10:19:24.988813+00:00",
+  "matched_target_date_range": ["2026-06-01", "2026-08-24"],
+  "matched_background_date_range": ["2026-06-01", "2026-08-27"],
+  "background_raw": 55731,
+  "background_cells": 19960,
+  "target_raw": 1944,
+  "target_cells": 1745,
   "r2": {
     "NE": {
       "grid_points": 66936,
@@ -20,23 +23,23 @@
   },
   "gbif_counts": {
     "NE:2026-06-01": {
-      "total": 1593,
+      "total": 1618,
       "sampled": 600
     },
     "SE:2026-06-01": {
-      "total": 111,
-      "sampled": 110
+      "total": 114,
+      "sampled": 113
     },
     "NE:2026-06-02": {
-      "total": 1780,
-      "sampled": 594
+      "total": 1833,
+      "sampled": 595
     },
     "SE:2026-06-02": {
-      "total": 120,
-      "sampled": 117
+      "total": 121,
+      "sampled": 118
     },
     "NE:2026-06-03": {
-      "total": 1975,
+      "total": 2013,
       "sampled": 597
     },
     "SE:2026-06-03": {
@@ -44,151 +47,151 @@
       "sampled": 76
     },
     "NE:2026-06-04": {
-      "total": 1620,
-      "sampled": 595
+      "total": 1679,
+      "sampled": 596
     },
     "SE:2026-06-04": {
-      "total": 152,
-      "sampled": 142
+      "total": 155,
+      "sampled": 145
     },
     "NE:2026-06-05": {
-      "total": 1562,
+      "total": 1630,
       "sampled": 595
     },
     "SE:2026-06-05": {
-      "total": 227,
-      "sampled": 215
+      "total": 232,
+      "sampled": 220
     },
     "NE:2026-06-06": {
-      "total": 2584,
-      "sampled": 599
+      "total": 2671,
+      "sampled": 600
     },
     "SE:2026-06-06": {
-      "total": 379,
-      "sampled": 372
+      "total": 382,
+      "sampled": 375
     },
     "NE:2026-06-07": {
-      "total": 2572,
+      "total": 2627,
       "sampled": 597
     },
     "SE:2026-06-07": {
-      "total": 215,
-      "sampled": 207
+      "total": 216,
+      "sampled": 208
     },
     "NE:2026-06-08": {
-      "total": 1798,
+      "total": 1830,
       "sampled": 597
     },
     "SE:2026-06-08": {
-      "total": 90,
-      "sampled": 89
+      "total": 91,
+      "sampled": 90
     },
     "NE:2026-06-09": {
-      "total": 1481,
+      "total": 1515,
       "sampled": 599
     },
     "SE:2026-06-09": {
-      "total": 110,
-      "sampled": 109
+      "total": 112,
+      "sampled": 111
     },
     "NE:2026-06-10": {
-      "total": 1943,
-      "sampled": 600
+      "total": 1985,
+      "sampled": 599
     },
     "SE:2026-06-10": {
-      "total": 91,
-      "sampled": 88
+      "total": 92,
+      "sampled": 89
     },
     "NE:2026-06-11": {
-      "total": 1812,
+      "total": 1849,
       "sampled": 599
     },
     "SE:2026-06-11": {
-      "total": 61,
+      "total": 62,
       "sampled": 61
     },
     "NE:2026-06-12": {
-      "total": 1804,
+      "total": 1846,
       "sampled": 590
     },
     "SE:2026-06-12": {
-      "total": 109,
-      "sampled": 104
+      "total": 111,
+      "sampled": 106
     },
     "NE:2026-06-13": {
-      "total": 2496,
-      "sampled": 597
+      "total": 2555,
+      "sampled": 596
     },
     "SE:2026-06-13": {
       "total": 104,
       "sampled": 101
     },
     "NE:2026-06-14": {
-      "total": 2192,
+      "total": 2270,
       "sampled": 598
     },
     "SE:2026-06-14": {
-      "total": 129,
-      "sampled": 121
+      "total": 133,
+      "sampled": 125
     },
     "NE:2026-06-15": {
-      "total": 1674,
-      "sampled": 599
+      "total": 1744,
+      "sampled": 598
     },
     "SE:2026-06-15": {
-      "total": 92,
-      "sampled": 90
+      "total": 96,
+      "sampled": 94
     },
     "NE:2026-06-16": {
-      "total": 2261,
-      "sampled": 596
+      "total": 2328,
+      "sampled": 592
     },
     "SE:2026-06-16": {
-      "total": 109,
-      "sampled": 106
+      "total": 111,
+      "sampled": 108
     },
     "NE:2026-06-17": {
-      "total": 2605,
-      "sampled": 590
+      "total": 2653,
+      "sampled": 592
     },
     "SE:2026-06-17": {
-      "total": 97,
-      "sampled": 97
+      "total": 101,
+      "sampled": 101
     },
     "NE:2026-06-18": {
-      "total": 1829,
-      "sampled": 592
+      "total": 1917,
+      "sampled": 597
     },
     "SE:2026-06-18": {
       "total": 69,
       "sampled": 68
     },
     "NE:2026-06-19": {
-      "total": 1403,
+      "total": 1431,
       "sampled": 597
     },
     "SE:2026-06-19": {
-      "total": 88,
-      "sampled": 87
+      "total": 91,
+      "sampled": 90
     },
     "NE:2026-06-20": {
-      "total": 1534,
+      "total": 1597,
       "sampled": 593
     },
     "SE:2026-06-20": {
-      "total": 183,
-      "sampled": 182
+      "total": 187,
+      "sampled": 186
     },
     "NE:2026-06-21": {
-      "total": 1905,
-      "sampled": 593
+      "total": 1976,
+      "sampled": 591
     },
     "SE:2026-06-21": {
-      "total": 109,
-      "sampled": 104
+      "total": 112,
+      "sampled": 107
     },
     "NE:2026-06-22": {
-      "total": 1729,
+      "total": 1795,
       "sampled": 595
     },
     "SE:2026-06-22": {
@@ -196,410 +199,530 @@
       "sampled": 50
     },
     "NE:2026-06-23": {
-      "total": 1753,
-      "sampled": 596
+      "total": 1844,
+      "sampled": 594
     },
     "SE:2026-06-23": {
-      "total": 86,
-      "sampled": 84
+      "total": 90,
+      "sampled": 88
     },
     "NE:2026-06-24": {
-      "total": 1677,
-      "sampled": 588
+      "total": 1746,
+      "sampled": 587
     },
     "SE:2026-06-24": {
-      "total": 72,
-      "sampled": 69
+      "total": 75,
+      "sampled": 72
     },
     "NE:2026-06-25": {
-      "total": 1814,
-      "sampled": 589
+      "total": 1896,
+      "sampled": 592
     },
     "SE:2026-06-25": {
-      "total": 127,
-      "sampled": 118
+      "total": 130,
+      "sampled": 121
     },
     "NE:2026-06-26": {
-      "total": 1115,
-      "sampled": 593
+      "total": 1151,
+      "sampled": 592
     },
     "SE:2026-06-26": {
-      "total": 139,
-      "sampled": 139
+      "total": 145,
+      "sampled": 145
     },
     "NE:2026-06-27": {
-      "total": 1552,
-      "sampled": 584
+      "total": 1606,
+      "sampled": 579
     },
     "SE:2026-06-27": {
-      "total": 160,
-      "sampled": 158
+      "total": 161,
+      "sampled": 159
     },
     "NE:2026-06-28": {
-      "total": 1176,
+      "total": 1229,
       "sampled": 590
     },
     "SE:2026-06-28": {
-      "total": 86,
-      "sampled": 85
+      "total": 89,
+      "sampled": 88
     },
     "NE:2026-06-29": {
-      "total": 1540,
+      "total": 1582,
       "sampled": 600
     },
     "SE:2026-06-29": {
-      "total": 55,
-      "sampled": 55
+      "total": 60,
+      "sampled": 59
     },
     "NE:2026-06-30": {
-      "total": 1808,
-      "sampled": 600
+      "total": 1887,
+      "sampled": 599
     },
     "SE:2026-06-30": {
-      "total": 58,
-      "sampled": 58
+      "total": 61,
+      "sampled": 61
     },
     "NE:2026-07-01": {
-      "total": 1606,
+      "total": 1651,
       "sampled": 596
     },
     "SE:2026-07-01": {
-      "total": 60,
-      "sampled": 60
+      "total": 63,
+      "sampled": 63
     },
     "NE:2026-07-02": {
-      "total": 1630,
+      "total": 1728,
       "sampled": 596
     },
     "SE:2026-07-02": {
-      "total": 52,
-      "sampled": 51
+      "total": 53,
+      "sampled": 52
     },
     "NE:2026-07-03": {
-      "total": 1538,
+      "total": 1648,
       "sampled": 591
     },
     "SE:2026-07-03": {
-      "total": 63,
-      "sampled": 62
-    },
-    "NE:2026-07-04": {
-      "total": 1771,
-      "sampled": 581
-    },
-    "SE:2026-07-04": {
-      "total": 101,
-      "sampled": 96
-    },
-    "NE:2026-07-05": {
-      "total": 1755,
-      "sampled": 587
-    },
-    "SE:2026-07-05": {
-      "total": 114,
-      "sampled": 112
-    },
-    "NE:2026-07-06": {
-      "total": 1517,
-      "sampled": 598
-    },
-    "SE:2026-07-06": {
-      "total": 72,
-      "sampled": 72
-    },
-    "NE:2026-07-07": {
-      "total": 1622,
-      "sampled": 593
-    },
-    "SE:2026-07-07": {
       "total": 65,
       "sampled": 64
     },
+    "NE:2026-07-04": {
+      "total": 1891,
+      "sampled": 589
+    },
+    "SE:2026-07-04": {
+      "total": 105,
+      "sampled": 99
+    },
+    "NE:2026-07-05": {
+      "total": 1852,
+      "sampled": 587
+    },
+    "SE:2026-07-05": {
+      "total": 125,
+      "sampled": 123
+    },
+    "NE:2026-07-06": {
+      "total": 1621,
+      "sampled": 599
+    },
+    "SE:2026-07-06": {
+      "total": 80,
+      "sampled": 80
+    },
+    "NE:2026-07-07": {
+      "total": 1686,
+      "sampled": 593
+    },
+    "SE:2026-07-07": {
+      "total": 76,
+      "sampled": 75
+    },
     "NE:2026-07-08": {
-      "total": 1816,
-      "sampled": 594
+      "total": 1934,
+      "sampled": 597
     },
     "SE:2026-07-08": {
-      "total": 51,
-      "sampled": 51
+      "total": 57,
+      "sampled": 57
     },
     "NE:2026-07-09": {
-      "total": 1659,
+      "total": 1762,
       "sampled": 600
     },
     "SE:2026-07-09": {
-      "total": 59,
-      "sampled": 50
+      "total": 65,
+      "sampled": 56
     },
     "NE:2026-07-10": {
-      "total": 1340,
-      "sampled": 598
-    },
-    "SE:2026-07-10": {
-      "total": 54,
-      "sampled": 52
-    },
-    "NE:2026-07-11": {
-      "total": 1434,
+      "total": 1418,
       "sampled": 599
     },
-    "SE:2026-07-11": {
-      "total": 86,
-      "sampled": 83
+    "SE:2026-07-10": {
+      "total": 64,
+      "sampled": 62
     },
-    "NE:2026-07-12": {
-      "total": 1450,
-      "sampled": 597
-    },
-    "SE:2026-07-12": {
-      "total": 68,
-      "sampled": 67
-    },
-    "NE:2026-07-13": {
-      "total": 1689,
+    "NE:2026-07-11": {
+      "total": 1540,
       "sampled": 600
     },
+    "SE:2026-07-11": {
+      "total": 106,
+      "sampled": 103
+    },
+    "NE:2026-07-12": {
+      "total": 1549,
+      "sampled": 596
+    },
+    "SE:2026-07-12": {
+      "total": 74,
+      "sampled": 73
+    },
+    "NE:2026-07-13": {
+      "total": 1905,
+      "sampled": 598
+    },
     "SE:2026-07-13": {
-      "total": 60,
-      "sampled": 58
+      "total": 69,
+      "sampled": 67
     },
     "NE:2026-07-14": {
-      "total": 1393,
-      "sampled": 595
+      "total": 1456,
+      "sampled": 594
     },
     "SE:2026-07-14": {
-      "total": 42,
-      "sampled": 42
+      "total": 46,
+      "sampled": 45
     },
     "NE:2026-07-15": {
-      "total": 962,
+      "total": 1108,
       "sampled": 590
     },
     "SE:2026-07-15": {
-      "total": 74,
-      "sampled": 74
+      "total": 82,
+      "sampled": 82
     },
     "NE:2026-07-16": {
-      "total": 1047,
-      "sampled": 593
+      "total": 1147,
+      "sampled": 590
     },
     "SE:2026-07-16": {
-      "total": 66,
-      "sampled": 66
+      "total": 72,
+      "sampled": 72
     },
     "NE:2026-07-17": {
-      "total": 1184,
-      "sampled": 594
-    },
-    "SE:2026-07-17": {
-      "total": 68,
-      "sampled": 66
-    },
-    "NE:2026-07-18": {
-      "total": 1347,
-      "sampled": 584
-    },
-    "SE:2026-07-18": {
-      "total": 130,
-      "sampled": 130
-    },
-    "NE:2026-07-19": {
-      "total": 1844,
-      "sampled": 596
-    },
-    "SE:2026-07-19": {
-      "total": 75,
-      "sampled": 70
-    },
-    "NE:2026-07-20": {
-      "total": 1396,
+      "total": 1315,
       "sampled": 592
     },
+    "SE:2026-07-17": {
+      "total": 79,
+      "sampled": 77
+    },
+    "NE:2026-07-18": {
+      "total": 1539,
+      "sampled": 591
+    },
+    "SE:2026-07-18": {
+      "total": 140,
+      "sampled": 140
+    },
+    "NE:2026-07-19": {
+      "total": 2007,
+      "sampled": 595
+    },
+    "SE:2026-07-19": {
+      "total": 87,
+      "sampled": 80
+    },
+    "NE:2026-07-20": {
+      "total": 1510,
+      "sampled": 595
+    },
     "SE:2026-07-20": {
-      "total": 65,
-      "sampled": 65
+      "total": 77,
+      "sampled": 75
     },
     "NE:2026-07-21": {
-      "total": 3970,
+      "total": 4221,
       "sampled": 600
     },
     "SE:2026-07-21": {
-      "total": 79,
-      "sampled": 78
+      "total": 84,
+      "sampled": 83
     },
     "NE:2026-07-22": {
-      "total": 4064,
+      "total": 4300,
       "sampled": 599
     },
     "SE:2026-07-22": {
-      "total": 74,
-      "sampled": 71
+      "total": 88,
+      "sampled": 85
     },
     "NE:2026-07-23": {
-      "total": 4174,
+      "total": 4470,
       "sampled": 600
     },
     "SE:2026-07-23": {
-      "total": 85,
-      "sampled": 83
+      "total": 93,
+      "sampled": 91
     },
     "NE:2026-07-24": {
-      "total": 4024,
+      "total": 4234,
       "sampled": 600
     },
     "SE:2026-07-24": {
+      "total": 70,
+      "sampled": 68
+    },
+    "NE:2026-07-25": {
+      "total": 2194,
+      "sampled": 592
+    },
+    "SE:2026-07-25": {
+      "total": 148,
+      "sampled": 143
+    },
+    "NE:2026-07-26": {
+      "total": 1984,
+      "sampled": 587
+    },
+    "SE:2026-07-26": {
+      "total": 96,
+      "sampled": 89
+    },
+    "NE:2026-07-27": {
+      "total": 1736,
+      "sampled": 587
+    },
+    "SE:2026-07-27": {
+      "total": 66,
+      "sampled": 63
+    },
+    "NE:2026-07-28": {
+      "total": 1715,
+      "sampled": 583
+    },
+    "SE:2026-07-28": {
+      "total": 111,
+      "sampled": 106
+    },
+    "NE:2026-07-29": {
+      "total": 1938,
+      "sampled": 589
+    },
+    "SE:2026-07-29": {
+      "total": 81,
+      "sampled": 79
+    },
+    "NE:2026-07-30": {
+      "total": 1298,
+      "sampled": 596
+    },
+    "SE:2026-07-30": {
+      "total": 108,
+      "sampled": 104
+    },
+    "NE:2026-07-31": {
+      "total": 1709,
+      "sampled": 586
+    },
+    "SE:2026-07-31": {
+      "total": 53,
+      "sampled": 53
+    },
+    "NE:2026-08-01": {
+      "total": 2304,
+      "sampled": 593
+    },
+    "SE:2026-08-01": {
+      "total": 92,
+      "sampled": 76
+    },
+    "NE:2026-08-02": {
+      "total": 2001,
+      "sampled": 595
+    },
+    "SE:2026-08-02": {
+      "total": 80,
+      "sampled": 77
+    },
+    "NE:2026-08-03": {
+      "total": 1786,
+      "sampled": 588
+    },
+    "SE:2026-08-03": {
+      "total": 74,
+      "sampled": 72
+    },
+    "NE:2026-08-04": {
+      "total": 1971,
+      "sampled": 595
+    },
+    "SE:2026-08-04": {
+      "total": 58,
+      "sampled": 57
+    },
+    "NE:2026-08-05": {
+      "total": 1908,
+      "sampled": 596
+    },
+    "SE:2026-08-05": {
+      "total": 59,
+      "sampled": 59
+    },
+    "NE:2026-08-06": {
+      "total": 2093,
+      "sampled": 597
+    },
+    "SE:2026-08-06": {
+      "total": 32,
+      "sampled": 32
+    },
+    "NE:2026-08-07": {
+      "total": 2131,
+      "sampled": 600
+    },
+    "SE:2026-08-07": {
+      "total": 56,
+      "sampled": 52
+    },
+    "NE:2026-08-08": {
+      "total": 1886,
+      "sampled": 596
+    },
+    "SE:2026-08-08": {
       "total": 52,
       "sampled": 51
     },
-    "NE:2026-07-25": {
-      "total": 1825,
-      "sampled": 595
-    },
-    "SE:2026-07-25": {
-      "total": 129,
-      "sampled": 124
-    },
-    "NE:2026-07-26": {
-      "total": 1645,
-      "sampled": 593
-    },
-    "SE:2026-07-26": {
-      "total": 50,
-      "sampled": 48
-    },
-    "NE:2026-07-27": {
-      "total": 1132,
-      "sampled": 598
-    },
-    "SE:2026-07-27": {
-      "total": 26,
-      "sampled": 25
-    },
-    "NE:2026-07-28": {
-      "total": 1034,
-      "sampled": 594
-    },
-    "SE:2026-07-28": {
-      "total": 0,
-      "sampled": 0
-    },
-    "NE:2026-07-29": {
-      "total": 1197,
-      "sampled": 600
-    },
-    "SE:2026-07-29": {
-      "total": 0,
-      "sampled": 0
-    },
-    "NE:2026-07-30": {
-      "total": 646,
-      "sampled": 600
-    },
-    "SE:2026-07-30": {
-      "total": 0,
-      "sampled": 0
-    },
-    "NE:2026-07-31": {
-      "total": 857,
-      "sampled": 600
-    },
-    "SE:2026-07-31": {
-      "total": 0,
-      "sampled": 0
-    },
-    "NE:2026-08-01": {
-      "total": 1027,
-      "sampled": 600
-    },
-    "SE:2026-08-01": {
-      "total": 0,
-      "sampled": 0
-    },
-    "NE:2026-08-02": {
-      "total": 842,
-      "sampled": 600
-    },
-    "SE:2026-08-02": {
-      "total": 0,
-      "sampled": 0
-    },
-    "NE:2026-08-03": {
-      "total": 662,
-      "sampled": 600
-    },
-    "SE:2026-08-03": {
-      "total": 0,
-      "sampled": 0
-    },
-    "NE:2026-08-04": {
-      "total": 790,
-      "sampled": 600
-    },
-    "SE:2026-08-04": {
-      "total": 0,
-      "sampled": 0
-    },
-    "NE:2026-08-05": {
-      "total": 431,
-      "sampled": 431
-    },
-    "SE:2026-08-05": {
-      "total": 0,
-      "sampled": 0
-    },
-    "NE:2026-08-06": {
-      "total": 256,
-      "sampled": 256
-    },
-    "SE:2026-08-06": {
-      "total": 0,
-      "sampled": 0
-    },
-    "NE:2026-08-07": {
-      "total": 125,
-      "sampled": 125
-    },
-    "SE:2026-08-07": {
-      "total": 0,
-      "sampled": 0
-    },
-    "NE:2026-08-08": {
-      "total": 99,
-      "sampled": 99
-    },
-    "SE:2026-08-08": {
-      "total": 0,
-      "sampled": 0
-    },
     "NE:2026-08-09": {
-      "total": 92,
-      "sampled": 92
+      "total": 1869,
+      "sampled": 597
     },
     "SE:2026-08-09": {
-      "total": 0,
-      "sampled": 0
+      "total": 41,
+      "sampled": 41
     },
     "NE:2026-08-10": {
+      "total": 1628,
+      "sampled": 600
+    },
+    "SE:2026-08-10": {
+      "total": 24,
+      "sampled": 24
+    },
+    "NE:2026-08-11": {
+      "total": 2005,
+      "sampled": 600
+    },
+    "SE:2026-08-11": {
       "total": 2,
       "sampled": 2
     },
-    "SE:2026-08-10": {
-      "total": 0,
-      "sampled": 0
-    },
-    "NE:2026-08-11": {
-      "total": 6,
-      "sampled": 6
-    },
-    "SE:2026-08-11": {
-      "total": 0,
-      "sampled": 0
-    },
     "NE:2026-08-12": {
-      "total": 0,
-      "sampled": 0
+      "total": 2157,
+      "sampled": 600
     },
     "SE:2026-08-12": {
+      "total": 3,
+      "sampled": 3
+    },
+    "NE:2026-08-13": {
+      "total": 2120,
+      "sampled": 600
+    },
+    "SE:2026-08-13": {
+      "total": 0,
+      "sampled": 0
+    },
+    "NE:2026-08-14": {
+      "total": 1103,
+      "sampled": 600
+    },
+    "SE:2026-08-14": {
+      "total": 0,
+      "sampled": 0
+    },
+    "NE:2026-08-15": {
+      "total": 1803,
+      "sampled": 600
+    },
+    "SE:2026-08-15": {
+      "total": 0,
+      "sampled": 0
+    },
+    "NE:2026-08-16": {
+      "total": 987,
+      "sampled": 600
+    },
+    "SE:2026-08-16": {
+      "total": 1,
+      "sampled": 1
+    },
+    "NE:2026-08-17": {
+      "total": 993,
+      "sampled": 600
+    },
+    "SE:2026-08-17": {
+      "total": 0,
+      "sampled": 0
+    },
+    "NE:2026-08-18": {
+      "total": 713,
+      "sampled": 600
+    },
+    "SE:2026-08-18": {
+      "total": 0,
+      "sampled": 0
+    },
+    "NE:2026-08-19": {
+      "total": 348,
+      "sampled": 348
+    },
+    "SE:2026-08-19": {
+      "total": 0,
+      "sampled": 0
+    },
+    "NE:2026-08-20": {
+      "total": 320,
+      "sampled": 319
+    },
+    "SE:2026-08-20": {
+      "total": 0,
+      "sampled": 0
+    },
+    "NE:2026-08-21": {
+      "total": 348,
+      "sampled": 347
+    },
+    "SE:2026-08-21": {
+      "total": 0,
+      "sampled": 0
+    },
+    "NE:2026-08-22": {
+      "total": 422,
+      "sampled": 422
+    },
+    "SE:2026-08-22": {
+      "total": 0,
+      "sampled": 0
+    },
+    "NE:2026-08-23": {
+      "total": 359,
+      "sampled": 359
+    },
+    "SE:2026-08-23": {
+      "total": 1,
+      "sampled": 1
+    },
+    "NE:2026-08-24": {
+      "total": 148,
+      "sampled": 148
+    },
+    "SE:2026-08-24": {
+      "total": 0,
+      "sampled": 0
+    },
+    "NE:2026-08-25": {
+      "total": 113,
+      "sampled": 113
+    },
+    "SE:2026-08-25": {
+      "total": 0,
+      "sampled": 0
+    },
+    "NE:2026-08-26": {
+      "total": 73,
+      "sampled": 73
+    },
+    "SE:2026-08-26": {
+      "total": 0,
+      "sampled": 0
+    },
+    "NE:2026-08-27": {
+      "total": 0,
+      "sampled": 0
+    },
+    "SE:2026-08-27": {
       "total": 0,
       "sampled": 0
     }

@@ -64,7 +64,7 @@ def render(root: Path) -> str:
     weather_spatial = read_json("seasonal-timing/weather-spatial.json")
     grid_meta = read_json("spatial-grid-background/run-metadata.json")
     resilient = read_json("resilient-score-ablation/summary.json")
-    report_metrics = read_json("report-metrics.json")
+    geography_summary = read_json("spatial-observer-background/geography-summary.json")
     candidate_baseline = read_json("candidate-baseline.json")
 
     before = season_result(seasonal, "production")
@@ -76,21 +76,40 @@ def render(root: Path) -> str:
     spatial_static, spatial_n = weighted_result(weather_spatial, "static_part")
     spatial_weather, _ = weighted_result(weather_spatial, "weather_part")
     spatial_full, _ = weighted_result(weather_spatial, "full_score")
-    region_rows = report_metrics["macro_region_ablation"]
-    geography = report_metrics["geography_check"]
+    region_rows = [
+        {"region": region, **metrics}
+        for region, metrics in resilient["region_auc"].items()
+    ]
+    geography = geography_summary["areas"]
+    geography_by_key = {row["key"]: row for row in geography}
     primary = grid_meta["primary_fungal_result"]
 
+    def metric(value: float | None) -> str:
+        return "—" if value is None else f"{value:.2f}"
+
     geo_table = "\n".join(
-        f"| {row['area']} | {row['fungal_observer_cell_days']:,} | {row['porcini_median']:.2f} | "
-        f"{row['porcini_findings']} | {row['chanterelle_median']:.2f} | "
-        f"{row['chanterelle_findings']} |"
+        f"| {row['area']} | {row['sampled_fungal_observer_cell_days']:,} | "
+        f"{metric(row['species']['mushroom']['background_median'])} | "
+        f"{row['species']['mushroom']['findings']} | "
+        f"{metric(row['species']['mushroom']['finding_median'])} | "
+        f"{metric(row['species']['chant']['background_median'])} | "
+        f"{row['species']['chant']['findings']} | "
+        f"{metric(row['species']['chant']['finding_median'])} |"
         for row in geography
     )
     region_table = "\n".join(
-        f"| {row['region']} | {row['target_cell_days']} | {row['previous_auc']:.3f} | "
-        f"{row['current_auc']:.3f} | {row['current_auc'] - row['previous_auc']:+.3f} |"
+        f"| {row['region']} | {row['target_cell_days']} | {row['old_auc']:.3f} | "
+        f"{row['new_auc']:.3f} | {row['new_auc'] - row['old_auc']:+.3f} | "
+        f"{row['day_bootstrap_ci']['delta'][0]:+.3f} to "
+        f"{row['day_bootstrap_ci']['delta'][1]:+.3f} |"
         for row in region_rows
     )
+    spanish = geography_summary["countries"]["ES"]["species"]
+    spanish_porcini_ci = spanish["mushroom"]["country_percentile_day_bootstrap_ci"]
+    spanish_chant_ci = spanish["chant"]["country_percentile_day_bootstrap_ci"]
+    geography_period = " through ".join(geography_summary["period"])
+    geography_retrieved = geography_summary["retrieved_at_utc"].split("T", 1)[0]
+    latest_geography_target = geography_summary["matched_target_date_range"][1]
     candidate_rows = []
     for region, species_map in candidate_baseline["results"].items():
         for species in ("mushroom", "chant"):
@@ -131,20 +150,23 @@ two important jobs:
 2. It ranks useful macro-regions. Against same-day cells where people reported any fungus,
    the current resilient scorer reaches **{resilient['new_primary_auc']:.3f}** AUC over
    {sum(row['target_cell_days'] for row in region_rows):,} Porcini, Chanterelle, and
-   Parasol cell-days. Random ranking is 0.500.
+   Parasol cell-days (day-bootstrap 95% CI
+   **{resilient['day_bootstrap_ci']['new'][0]:.3f}–{resilient['day_bootstrap_ci']['new'][1]:.3f}**).
+   Random ranking is 0.500.
 
-That supports the operational behavior users see: when southern Finland is strongly
-scored, many in-season findings occur there; when Spain is weakly scored in the same
-summer window, far fewer target findings occur there. It does **not** establish precise
-stand-level habitat ranking or reliable day-to-day fruiting forecasts. Those are separate,
-harder questions.
+That supports broad continental ranking, but raw finding counts are not the evidence:
+GBIF is presence-only and observation effort differs sharply between countries. The
+country-coded audit confirms that the map scores northern Spain substantially above
+southern Spain. Its within-Spain ranking is still weak for Porcini and near neutral for
+Chanterelle. The model therefore has macro signal without demonstrated stand-level
+habitat ranking or reliable day-to-day fruiting forecasts.
 
 | Question | Cohort and control | Result | Interpretation |
 | --- | --- | ---: | --- |
 | Is the season active? | Same locations, fruiting vs dead months | AUC **{current['auc']:.3f}** | Strong operational timing after the gate |
 | Does the calendar help on an observation day? | Same location, nearby control days | season **{timing_season:.3f}**, full **{timing_full:.3f}** | The season term carries real timing information |
 | Does short-term weather pick the day? | Same location, nearby control days | **{timing_weather:.3f}**, n={timing_n:,} | Near-neutral overall; not yet demonstrated |
-| Does the map rank European macro-regions? | Same-day fungal-observer background | **{resilient['new_primary_auc']:.3f}** | Useful broad geographic signal |
+| Does the map rank European macro-regions? | Same-day fungal-observer background | **{resilient['new_primary_auc']:.3f}** ({resilient['day_bootstrap_ci']['new'][0]:.3f}–{resilient['day_bootstrap_ci']['new'][1]:.3f}) | Useful broad geographic signal |
 | Does it rank cells within the same climate zone? | Uniform same-day zone background | **{primary['weighted_auc']:.3f}** | Positive but modest fine-scale signal |
 | Which spatial side currently carries signal? | Same-day cross-location decomposition | weather **{spatial_weather:.3f}**, static **{spatial_static:.3f}**, full **{spatial_full:.3f}** | Static habitat is the clearest improvement target |
 
@@ -170,23 +192,42 @@ timing limitation is the interpolation of monthly curves, which smears sharp bou
 ## Macro-region behavior
 
 The observer-background assessment controls the largest presence-only bias by comparing
-target finds with other fungal-observer cells on the same day. The resilient scorer is
-almost neutral in northern Europe and materially improves southern Europe:
+target finds with other fungal-observer cells on the same day. This cohort runs
+**{geography_period}**. The resilient change is small in northern Europe and materially
+improves southern Europe:
 
-| Region | Target cell-days | Previous AUC | Current AUC | Change |
-| --- | ---: | ---: | ---: | ---: |
+| Region | Target cell-days | Previous AUC | Current AUC | Change | 95% CI for change |
+| --- | ---: | ---: | ---: | ---: | ---: |
 {region_table}
 
-The direct geography check from that cohort makes the behavior concrete:
+The direct geography check now uses GBIF country codes rather than the former rectangular
+“Spain” proxy, which also included Portugal. Spain is split into explicit latitude bands:
 
-| Area | Fungal-observer cell-days | Porcini median | Porcini finds | Chanterelle median | Chanterelle finds |
-| --- | ---: | ---: | ---: | ---: | ---: |
+| Area | Sampled fungal-observer cell-days | Porcini background median | Porcini finds | Porcini finding median | Chanterelle background median | Chanterelle finds | Chanterelle finding median |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 {geo_table}
 
-These counts are not prevalence estimates: GBIF is presence-only. They show that the map's
-broad ordering agrees with where the target reports concentrate during the evaluated
-window. Spain still contains real June finds that the model underrates, so low regional
-scores must not be interpreted as biological absence.
+The north-south Spanish gradient is real in the scores: northern background medians are
+**{geography_by_key['spain_north']['species']['mushroom']['background_median']:.2f}** for Porcini and
+**{geography_by_key['spain_north']['species']['chant']['background_median']:.2f}** for Chanterelle, versus
+**{geography_by_key['spain_south']['species']['mushroom']['background_median']:.2f}** and
+**{geography_by_key['spain_south']['species']['chant']['background_median']:.2f}** in southern Spain. All
+14 Spanish Porcini/Chanterelle target cell-days occur above 40°N; none are in southern
+Spain.
+
+That does not mean local Spanish ranking works. Against same-day fungal-observer cells
+inside Spain, the mean percentiles are **{spanish['mushroom']['mean_country_percentile']:.3f}**
+for Porcini (day-bootstrap 95% CI **{spanish_porcini_ci[0]:.3f}–{spanish_porcini_ci[1]:.3f}**)
+and **{spanish['chant']['mean_country_percentile']:.3f}** for Chanterelle (CI
+**{spanish_chant_ci[0]:.3f}–{spanish_chant_ci[1]:.3f}**; random = 0.500). The model captures
+the broad gradient but misses several central and northern Porcini locations. The five
+Spanish Chanterelle findings are too sparse for a firm local verdict. Extending through
+27 August adds no Spanish target event after 15 July, so it strengthens the continental
+cohort without changing this conclusion.
+
+The cohort was retrieved on **{geography_retrieved}**. Its latest matched target event is
+**{latest_geography_target}**, so 25–27 August should be treated as incomplete due to GBIF
+reporting lag rather than as observed zero-find days.
 
 ## Why the other AUC is lower
 

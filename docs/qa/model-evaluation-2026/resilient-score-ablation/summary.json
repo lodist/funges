@@ -1,25 +1,66 @@
 {
-  "period": ["2026-06-01", "2026-08-12"],
+  "period": ["2026-06-01", "2026-08-27"],
   "cohort": {
-    "background_cell_days": 11134,
-    "target_cell_days": 840
+    "background_cell_days": 14342,
+    "target_cell_days": 1150
   },
   "primary_species": ["chant", "mushroom", "parasol"],
-  "old_primary_auc": 0.6159870745789146,
-  "new_primary_auc": 0.6210918466556347,
-  "primary_auc_delta": 0.005104772076720183,
+  "old_primary_auc": 0.6364665398908332,
+  "new_primary_auc": 0.6403395150868958,
+  "primary_auc_delta": 0.003872975196062614,
+  "region_auc": {
+    "NE": {
+      "target_cell_days": 918,
+      "old_auc": 0.6537649671616544,
+      "new_auc": 0.6479916640160392,
+      "day_bootstrap_ci": {
+        "old": [0.6326297387661036, 0.6741215612409396],
+        "new": [0.6283387697979046, 0.6670219465343649],
+        "delta": [-0.014712358381583465, 0.0032893881848571863]
+      }
+    },
+    "SE": {
+      "target_cell_days": 111,
+      "old_auc": 0.4934038711105259,
+      "new_auc": 0.577054175294519,
+      "day_bootstrap_ci": {
+        "old": [0.4218994140816082, 0.5674184128082127],
+        "new": [0.5155670495058416, 0.6413924851421431],
+        "delta": [0.049603794128887005, 0.11850466964343745]
+      }
+    }
+  },
+  "background_ge_4": {
+    "chant": {
+      "old": 0.7315576628085344,
+      "new": 0.6995537581927207
+    },
+    "mushroom": {
+      "old": 0.792427834332729,
+      "new": 0.9058708687770185
+    },
+    "parasol": {
+      "old": 0.7215172221447497,
+      "new": 0.8552503137637707
+    }
+  },
   "regions": {
     "NE": {
       "r2_url": "https://data.fung.es/EU/NE/NE_weather_data.parquet",
       "grid_points": 66936,
-      "replayed_location_days": 44236,
-      "history_rows": 1861888
+      "replayed_location_days": 57177,
+      "history_rows": 2467737
     },
     "SE": {
       "r2_url": "https://data.fung.es/EU/SE/SE_weather_data.parquet",
       "grid_points": 101447,
-      "replayed_location_days": 11224,
-      "history_rows": 703024
+      "replayed_location_days": 14471,
+      "history_rows": 951357
     }
+  },
+  "day_bootstrap_ci": {
+    "old": [0.6148118376145562, 0.6566238245266335],
+    "new": [0.6215443170819243, 0.6580055307628755],
+    "delta": [-0.005121991474253398, 0.0132145078282794]
   }
 }

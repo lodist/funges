@@ -8,7 +8,7 @@ import json
 import math
 import time
 from collections import defaultdict
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import fsspec
@@ -78,6 +78,8 @@ def parse_records(payload: dict, region: str, species_id: str | None = None) -> 
             "date": observed, "region": region, "lat": float(lat), "lon": float(lon),
             "species_id": species_id, "gbif_key": row.get("key"),
             "basis_of_record": row.get("basisOfRecord"),
+            "country_code": row.get("countryCode"),
+            "state_province": row.get("stateProvince"),
             "coordinate_uncertainty_m": uncertainty,
         })
     return output
@@ -225,20 +227,40 @@ def analyse(background: list[dict], targets: list[dict]) -> tuple[list[dict], li
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--start", default="2026-06-01")
-    parser.add_argument("--end", default="2026-08-12")
+    parser.add_argument("--end", default="2026-08-27")
     parser.add_argument(
         "--output-dir",
         default="docs/qa/model-evaluation-2026/spatial-observer-background",
     )
+    parser.add_argument(
+        "--cache",
+        help="Raw cache path (defaults to a period-specific ignored file in output-dir)",
+    )
     args = parser.parse_args(); output = Path(args.output_dir); output.mkdir(parents=True, exist_ok=True)
-    cache = output / "gbif-cache.json"
+    cache = (
+        Path(args.cache)
+        if args.cache
+        else output / f"gbif-cache-{args.start}_{args.end}.json"
+    )
     session = requests.Session(); session.headers["User-Agent"] = "fung.es QA (https://fung.es)"
     if cache.exists():
         payload = json.loads(cache.read_text(encoding="utf-8"))
+        if payload.get("period") != [args.start, args.end]:
+            raise RuntimeError(
+                f"Cache period {payload.get('period')} does not match "
+                f"requested period {[args.start, args.end]}"
+            )
     else:
         background, counts = fetch_background(session, args.start, args.end)
         targets = fetch_targets(session, args.start, args.end)
-        payload = {"background": background, "targets": targets, "counts": counts}
+        payload = {
+            "schema_version": 2,
+            "period": [args.start, args.end],
+            "retrieved_at_utc": datetime.now(timezone.utc).isoformat(),
+            "background": background,
+            "targets": targets,
+            "counts": counts,
+        }
         cache.write_text(json.dumps(payload), encoding="utf-8")
     background = collapse(payload["background"], False); targets = collapse(payload["targets"], True)
     r2_meta = {region: attach_scores(region, background, targets) for region in EU_REGIONS}
@@ -262,6 +284,15 @@ def main() -> None:
         "period": [args.start, args.end], "cell_km": CELL_KM, "max_match_km": MAX_MATCH_KM,
         "basis_of_record": "HUMAN_OBSERVATION",
         "max_coordinate_uncertainty_m": MAX_COORDINATE_UNCERTAINTY_M,
+        "retrieved_at_utc": payload.get("retrieved_at_utc"),
+        "matched_target_date_range": [
+            min(row["date"] for row in detail),
+            max(row["date"] for row in detail),
+        ],
+        "matched_background_date_range": [
+            min(row["date"] for row in background_rows),
+            max(row["date"] for row in background_rows),
+        ],
         "background_raw": len(payload["background"]), "background_cells": len(background),
         "target_raw": len(payload["targets"]), "target_cells": len(targets), "r2": r2_meta,
         "gbif_counts": payload["counts"],

@@ -14,22 +14,25 @@ two important jobs:
    **9.1%**, while in-season coverage stayed at
    **56.5%**.
 2. It ranks useful macro-regions. Against same-day cells where people reported any fungus,
-   the current resilient scorer reaches **0.621** AUC over
-   740 Porcini, Chanterelle, and
-   Parasol cell-days. Random ranking is 0.500.
+   the current resilient scorer reaches **0.640** AUC over
+   1,029 Porcini, Chanterelle, and
+   Parasol cell-days (day-bootstrap 95% CI
+   **0.622–0.658**).
+   Random ranking is 0.500.
 
-That supports the operational behavior users see: when southern Finland is strongly
-scored, many in-season findings occur there; when Spain is weakly scored in the same
-summer window, far fewer target findings occur there. It does **not** establish precise
-stand-level habitat ranking or reliable day-to-day fruiting forecasts. Those are separate,
-harder questions.
+That supports broad continental ranking, but raw finding counts are not the evidence:
+GBIF is presence-only and observation effort differs sharply between countries. The
+country-coded audit confirms that the map scores northern Spain substantially above
+southern Spain. Its within-Spain ranking is still weak for Porcini and near neutral for
+Chanterelle. The model therefore has macro signal without demonstrated stand-level
+habitat ranking or reliable day-to-day fruiting forecasts.
 
 | Question                                         | Cohort and control                      |                                              Result | Interpretation                                    |
 | ------------------------------------------------ | --------------------------------------- | --------------------------------------------------: | ------------------------------------------------- |
 | Is the season active?                            | Same locations, fruiting vs dead months |                                       AUC **0.923** | Strong operational timing after the gate          |
 | Does the calendar help on an observation day?    | Same location, nearby control days      |                    season **0.634**, full **0.632** | The season term carries real timing information   |
 | Does short-term weather pick the day?            | Same location, nearby control days      |                                  **0.515**, n=1,035 | Near-neutral overall; not yet demonstrated        |
-| Does the map rank European macro-regions?        | Same-day fungal-observer background     |                                           **0.621** | Useful broad geographic signal                    |
+| Does the map rank European macro-regions?        | Same-day fungal-observer background     |                             **0.640** (0.622–0.658) | Useful broad geographic signal                    |
 | Does it rank cells within the same climate zone? | Uniform same-day zone background        |                                           **0.556** | Positive but modest fine-scale signal             |
 | Which spatial side currently carries signal?     | Same-day cross-location decomposition   | weather **0.597**, static **0.514**, full **0.599** | Static habitat is the clearest improvement target |
 
@@ -55,26 +58,48 @@ timing limitation is the interpolation of monthly curves, which smears sharp bou
 ## Macro-region behavior
 
 The observer-background assessment controls the largest presence-only bias by comparing
-target finds with other fungal-observer cells on the same day. The resilient scorer is
-almost neutral in northern Europe and materially improves southern Europe:
+target finds with other fungal-observer cells on the same day. This cohort runs
+**2026-06-01 through 2026-08-27**. The resilient change is small in northern Europe and materially
+improves southern Europe:
 
-| Region | Target cell-days | Previous AUC | Current AUC | Change |
-| ------ | ---------------: | -----------: | ----------: | -----: |
-| NE     |              655 |        0.635 |       0.630 | -0.005 |
-| SE     |               85 |        0.470 |       0.554 | +0.084 |
+| Region | Target cell-days | Previous AUC | Current AUC | Change | 95% CI for change |
+| ------ | ---------------: | -----------: | ----------: | -----: | ----------------: |
+| NE     |              918 |        0.654 |       0.648 | -0.006 |  -0.015 to +0.003 |
+| SE     |              111 |        0.493 |       0.577 | +0.084 |  +0.050 to +0.119 |
 
-The direct geography check from that cohort makes the behavior concrete:
+The direct geography check now uses GBIF country codes rather than the former rectangular
+“Spain” proxy, which also included Portugal. Spain is split into explicit latitude bands:
 
-| Area             | Fungal-observer cell-days | Porcini median | Porcini finds | Chanterelle median | Chanterelle finds |
-| ---------------- | ------------------------: | -------------: | ------------: | -----------------: | ----------------: |
-| Southern Finland |                       742 |           5.26 |             8 |               6.01 |                64 |
-| Northern Finland |                       423 |           4.77 |             6 |               5.86 |                 2 |
-| Spain            |                       598 |           2.89 |            10 |               2.30 |                 6 |
+| Area                     | Sampled fungal-observer cell-days | Porcini background median | Porcini finds | Porcini finding median | Chanterelle background median | Chanterelle finds | Chanterelle finding median |
+| ------------------------ | --------------------------------: | ------------------------: | ------------: | ---------------------: | ----------------------------: | ----------------: | -------------------------: |
+| Southern Finland (<65°N) |                               780 |                      6.29 |            29 |                   7.51 |                          7.96 |                84 |                       8.27 |
+| Northern Finland (≥65°N) |                               117 |                      5.53 |             2 |                   7.74 |                          7.27 |                 1 |                       7.27 |
+| Southern Spain (<40°N)   |                                39 |                      1.23 |             0 |                      — |                          0.91 |                 0 |                          — |
+| Central Spain (40–42°N)  |                               151 |                      1.68 |             6 |                   3.72 |                          1.12 |                 2 |                       1.27 |
+| Northern Spain (≥42°N)   |                               339 |                      6.11 |             3 |                   4.83 |                          4.82 |                 3 |                       3.60 |
+| Portugal                 |                               162 |                      2.71 |             2 |                   5.05 |                          2.50 |                 1 |                       1.91 |
 
-These counts are not prevalence estimates: GBIF is presence-only. They show that the map's
-broad ordering agrees with where the target reports concentrate during the evaluated
-window. Spain still contains real June finds that the model underrates, so low regional
-scores must not be interpreted as biological absence.
+The north-south Spanish gradient is real in the scores: northern background medians are
+**6.11** for Porcini and
+**4.82** for Chanterelle, versus
+**1.23** and
+**0.91** in southern Spain. All
+14 Spanish Porcini/Chanterelle target cell-days occur above 40°N; none are in southern
+Spain.
+
+That does not mean local Spanish ranking works. Against same-day fungal-observer cells
+inside Spain, the mean percentiles are **0.241**
+for Porcini (day-bootstrap 95% CI **0.166–0.338**)
+and **0.553** for Chanterelle (CI
+**0.370–0.828**; random = 0.500). The model captures
+the broad gradient but misses several central and northern Porcini locations. The five
+Spanish Chanterelle findings are too sparse for a firm local verdict. Extending through
+27 August adds no Spanish target event after 15 July, so it strengthens the continental
+cohort without changing this conclusion.
+
+The cohort was retrieved on **2026-08-28**. Its latest matched target event is
+**2026-08-24**, so 25–27 August should be treated as incomplete due to GBIF
+reporting lag rather than as observed zero-find days.
 
 ## Why the other AUC is lower
 

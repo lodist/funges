@@ -1,66 +1,47 @@
-# Resilient-score paired ablation
+# Resilient scorer observer-background ablation
 
-> This compares the previous and current scorer on identical observations and weather.
-> See the [comprehensive report](../report.md) for the current model verdict.
-
-Period: **2026-06-01 to 2026-08-12**
+Period: **2026-06-01 through 2026-08-27**.
 
 ## Verdict
 
-The branch is **better in southern Europe and roughly neutral overall**. It is not a
-continental ranking breakthrough: the primary observation/background AUC rises from
-**0.616 to 0.621** (delta **+0.005**, day-bootstrap 95% CI **-0.007 to +0.017**).
+Across the primary Porcini, Chanterelle, and Parasol cohort, the resilient scorer changes
+the same-day European fungal-observer AUC from **0.636** to
+**0.640** (+0.004). This is a small
+overall ranking improvement (paired day-bootstrap 95% CI for the change
+**-0.005 to
++0.013**), with the material gain concentrated in
+southern Europe.
 
-The important regional result is clearer:
+| Region | Target cell-days | Previous AUC | Current AUC | Change | 95% CI for change |
+| ------ | ---------------: | -----------: | ----------: | -----: | ----------------: |
+| NE     |              918 |        0.654 |       0.648 | -0.006 |  -0.015 to +0.003 |
+| SE     |              111 |        0.493 |       0.577 | +0.084 |  +0.050 to +0.119 |
 
-| Region          | Target cell-days | Old AUC | New AUC |      Delta | 95% day-bootstrap CI |
-| --------------- | ---------------: | ------: | ------: | ---------: | -------------------: |
-| Northern Europe |              655 |   0.635 |   0.630 |     -0.005 |     -0.017 to +0.007 |
-| Southern Europe |               85 |   0.470 |   0.554 | **+0.084** | **+0.048 to +0.127** |
+## Species results
 
-The southern correction is real in this cohort; the small northern regression is not
-statistically distinguishable from noise.
+| Species                    |   n | Old AUC | New AUC | Change | Old median | New median | Old ≥4 | New ≥4 |
+| -------------------------- | --: | ------: | ------: | -----: | ---------: | ---------: | -----: | -----: |
+| Porcini / Boletus          | 335 |   0.619 |   0.632 | +0.013 |       6.29 |       7.03 |  93.1% |  97.6% |
+| Black Chanterelle          |  20 |   0.758 |   0.739 | -0.019 |       4.72 |       5.75 |  90.0% | 100.0% |
+| Parasol Mushroom           |  88 |   0.678 |   0.687 | +0.009 |       5.60 |       6.25 |  94.3% |  97.7% |
+| Morel                      |  29 |   0.601 |   0.709 | +0.108 |       4.71 |       3.88 |  79.3% |  37.9% |
+| St. George's Mushroom      |  72 |   0.449 |   0.432 | -0.017 |       5.10 |       3.91 |  91.7% |  45.8% |
+| Chanterelle / Cantharellus | 606 |   0.640 |   0.638 | -0.002 |       6.29 |       7.27 |  95.0% |  92.7% |
 
-## Primary in-season fungi
+Scores and threshold hit rates rise more than ranking quality. That should not be read as
+an equally large discrimination gain: the background threshold rates also move. AUC is
+the primary comparison here.
 
-| Species           |   n | Old AUC | New AUC |  Delta | Old median | New median | Old score >=4 | New score >=4 |
-| ----------------- | --: | ------: | ------: | -----: | ---------: | ---------: | ------------: | ------------: |
-| Porcini / Boletus | 213 |   0.591 |   0.598 | +0.007 |       6.19 |       6.44 |         91.5% |         95.8% |
-| Parasol           |  66 |   0.651 |   0.659 | +0.008 |       5.49 |       5.72 |         92.4% |         97.0% |
-| Chanterelle       | 461 |   0.623 |   0.626 | +0.004 |       6.18 |       6.66 |         94.8% |         99.3% |
-
-Scores rise more than ranking quality. Threshold hit rates therefore look much better,
-but that should not be mistaken for an equally large gain in discrimination.
-
-## Spain and the dry June failures
-
-For southern-European June records:
-
-| Species     |   n | Old AUC |   New AUC | Old median | New median |
-| ----------- | --: | ------: | --------: | ---------: | ---------: |
-| Porcini     |  43 |   0.511 | **0.618** |       6.12 |       6.43 |
-| Chanterelle |  16 |   0.201 | **0.346** |       4.05 |       5.00 |
-
-The Litago observations that originally exposed the rain veto improve substantially:
-porcini rises from **0.02-0.93** to **3.01-3.21**, and the chanterelle record rises from
-**0.23 to 2.78**. Their background percentile remains very low, however, so those exact
-records are still not well explained by the weather signal. The change fixes the
-absurd near-zero output without pretending those observations are now fully predicted.
-
-## Other signals
-
-- Morel improves from AUC **0.592 to 0.740**, but only 27 records are available and June
-  is outside the core morel window in much of the region.
-- St. George's mushroom slips from **0.449 to 0.439**. These June-July records are outside
-  its intended spring window, so this is not used in the primary verdict.
-- Black chanterelle has only two records and cannot support a conclusion.
+The former rectangular “Spain” subsection has been replaced by the country-coded
+[observer-background geography audit](../spatial-observer-background/macro-region-report.md).
+That audit separates southern, central, and northern Spain and reports same-day
+within-country ranks.
 
 ## Method
 
-The replay used the stored R2 weather for the exact production locations, with 42 prior
-days reconstructed for every evaluated cell-day. Each requested point's five nearest
-production neighbours were included so branch spatial smoothing used real grid scores.
-Old and new scores were evaluated against the same **840 GBIF target cell-days** and
-**11,134 human fungal-observer background cell-days**, using identical observation
-weights and dates. This is a paired presence-background diagnostic, not a true
-presence/absence AUC.
+- The exact target and fungal-observer controls from the observer-background cohort are
+  retained.
+- The current resilient algorithm is replayed from production weather history at those
+  same location-days, including spatial smoothing.
+- Old and new percentiles therefore use identical observations and same-day controls.
+- This remains presence-background QA, not presence/absence validation.

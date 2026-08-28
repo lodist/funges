@@ -59,6 +59,7 @@ backend/tools/model_artifacts/
 # Generated GBIF QA caches and row-level exports. Keep aggregate reports/results.
 docs/qa/**/gbif-cache*.json
 docs/qa/**/fungal-observer-background.csv
+docs/qa/**/background-comparison.csv
 docs/qa/**/matched-targets.csv
 docs/qa/**/matched-observations.csv
 docs/qa/**/matched-target-comparison.csv

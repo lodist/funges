@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "period": ["2026-06-01", "2026-08-27"],
+  "retrieved_at_utc": "2026-08-28T10:19:24.988813+00:00",
+  "matched_target_date_range": ["2026-06-01", "2026-08-24"],
+  "matched_background_date_range": ["2026-06-01", "2026-08-27"],
+  "score_variant": "resilient scorer replay",
+  "areas": [
+    {
+      "key": "finland_south",
+      "area": "Southern Finland (<65\u00b0N)",
+      "country_code": "FI",
+      "latitude": [-90.0, 65.0],
+      "sampled_fungal_observer_cell_days": 780,
+      "estimated_fungal_observer_cell_days": 2351.4320322556923,
+      "species": {
+        "mushroom": {
+          "label": "Porcini",
+          "background_median": 6.290489073972491,
+          "findings": 29,
+          "finding_median": 7.509659753236927,
+          "mean_country_percentile": 0.546705122363017,
+          "finding_dates": {
+            "2026-07-06": 1,
+            "2026-07-12": 1,
+            "2026-07-15": 1,
+            "2026-07-16": 1,
+            "2026-07-21": 1,
+            "2026-07-22": 3,
+            "2026-07-23": 1,
+            "2026-07-24": 1,
+            "2026-07-27": 1,
+            "2026-07-28": 2,
+            "2026-07-29": 2,
+            "2026-07-31": 1,
+            "2026-08-01": 2,
+            "2026-08-02": 1,
+            "2026-08-04": 3,
+            "2026-08-07": 2,
+            "2026-08-08": 3,
+            "2026-08-09": 1,
+            "2026-08-15": 1
+          },
+          "latitude_range": [60.145103, 63.563395]
+        },
+        "chant": {
+          "label": "Chanterelle",
+          "background_median": 7.956322402040039,
+          "findings": 84,
+          "finding_median": 8.268406384761894,
+          "mean_country_percentile": 0.4638806648228969,
+          "finding_dates": {
+            "2026-06-20": 1,
+            "2026-06-22": 1,
+            "2026-06-24": 1,
+            "2026-06-25": 1,
+            "2026-06-27": 1,
+            "2026-07-01": 1,
+            "2026-07-02": 2,
+            "2026-07-04": 2,
+            "2026-07-05": 2,
+            "2026-07-06": 2,
+            "2026-07-07": 3,
+            "2026-07-08": 5,
+            "2026-07-09": 3,
+            "2026-07-10": 1,
+            "2026-07-11": 1,
+            "2026-07-12": 1,
+            "2026-07-13": 3,
+            "2026-07-14": 4,
+            "2026-07-15": 1,
+            "2026-07-17": 1,
+            "2026-07-18": 1,
+            "2026-07-20": 3,
+            "2026-07-21": 4,
+            "2026-07-22": 1,
+            "2026-07-23": 1,
+            "2026-07-24": 4,
+            "2026-07-25": 2,
+            "2026-07-26": 3,
+            "2026-07-27": 1,
+            "2026-07-29": 1,
+            "2026-07-30": 1,
+            "2026-07-31": 5,
+            "2026-08-01": 4,
+            "2026-08-02": 3,
+            "2026-08-03": 1,
+            "2026-08-04": 3,
+            "2026-08-05": 2,
+            "2026-08-06": 1,
+            "2026-08-07": 1,
+            "2026-08-08": 2,
+            "2026-08-10": 2,
+            "2026-08-22": 1
+          },
+          "latitude_range": [60.108144, 64.346968]
+        }
+      }
+    },
+    {
+      "key": "finland_north",
+      "area": "Northern Finland (\u226565\u00b0N)",
+      "country_code": "FI",
+      "latitude": [65.0, 90.0],
+      "sampled_fungal_observer_cell_days": 117,
+      "estimated_fungal_observer_cell_days": 356.455704467124,
+      "species": {
+        "mushroom": {
+          "label": "Porcini",
+          "background_median": 5.5310244072676245,
+          "findings": 2,
+          "finding_median": 7.738624941227799,
+          "mean_country_percentile": 0.36086309523809523,
+          "finding_dates": {
+            "2026-07-31": 1,
+            "2026-08-09": 1
+          },
+          "latitude_range": [65.056457, 65.065109]
+        },
+        "chant": {
+          "label": "Chanterelle",
+          "background_median": 7.274495613330496,
+          "findings": 1,
+          "finding_median": 7.274495613330496,
+          "mean_country_percentile": 0.25,
+          "finding_dates": {
+            "2026-08-20": 1
+          },
+          "latitude_range": [68.621065, 68.621065]
+        }
+      }
+    },
+    {
+      "key": "spain_south",
+      "area": "Southern Spain (<40\u00b0N)",
+      "country_code": "ES",
+      "latitude": [-90.0, 40.0],
+      "sampled_fungal_observer_cell_days": 39,
+      "estimated_fungal_observer_cell_days": 40.24101647410554,
+      "species": {
+        "mushroom": {
+          "label": "Porcini",
+          "background_median": 1.2254108138270638,
+          "findings": 0,
+          "finding_median": null,
+          "mean_country_percentile": null,
+          "finding_dates": {},
+          "latitude_range": null
+        },
+        "chant": {
+          "label": "Chanterelle",
+          "background_median": 0.9067912298740768,
+          "findings": 0,
+          "finding_median": null,
+          "mean_country_percentile": null,
+          "finding_dates": {},
+          "latitude_range": null
+        }
+      }
+    },
+    {
+      "key": "spain_central",
+      "area": "Central Spain (40\u201342\u00b0N)",
+      "country_code": "ES",
+      "latitude": [40.0, 42.0],
+      "sampled_fungal_observer_cell_days": 151,
+      "estimated_fungal_observer_cell_days": 155.27167335226608,
+      "species": {
+        "mushroom": {
+          "label": "Porcini",
+          "background_median": 1.6841650610043013,
+          "findings": 6,
+          "finding_median": 3.7200913286432127,
+          "mean_country_percentile": 0.1944966797907974,
+          "finding_dates": {
+            "2026-06-05": 1,
+            "2026-06-06": 3,
+            "2026-06-16": 1,
+            "2026-07-15": 1
+          },
+          "latitude_range": [40.061108, 41.82859]
+        },
+        "chant": {
+          "label": "Chanterelle",
+          "background_median": 1.1160963140158902,
+          "findings": 2,
+          "finding_median": 1.2657403691907234,
+          "mean_country_percentile": 0.3051470588235294,
+          "finding_dates": {
+            "2026-06-04": 1,
+            "2026-06-06": 1
+          },
+          "latitude_range": [40.848824, 41.823233]
+        }
+      }
+    },
+    {
+      "key": "spain_north",
+      "area": "Northern Spain (\u226542\u00b0N)",
+      "country_code": "ES",
+      "latitude": [42.0, 90.0],
+      "sampled_fungal_observer_cell_days": 339,
+      "estimated_fungal_observer_cell_days": 348.45058670786705,
+      "species": {
+        "mushroom": {
+          "label": "Porcini",
+          "background_median": 6.1115504651966495,
+          "findings": 3,
+          "finding_median": 4.827419747105511,
+          "mean_country_percentile": 0.3353174603174603,
+          "finding_dates": {
+            "2026-06-09": 1,
+            "2026-06-26": 1,
+            "2026-07-03": 1
+          },
+          "latitude_range": [42.735794, 43.317926]
+        },
+        "chant": {
+          "label": "Chanterelle",
+          "background_median": 4.818857652115407,
+          "findings": 3,
+          "finding_median": 3.596565612564779,
+          "mean_country_percentile": 0.7184343434343434,
+          "finding_dates": {
+            "2026-06-06": 1,
+            "2026-06-09": 1,
+            "2026-06-27": 1
+          },
+          "latitude_range": [42.63815, 43.318203]
+        }
+      }
+    },
+    {
+      "key": "portugal",
+      "area": "Portugal",
+      "country_code": "PT",
+      "latitude": [-90.0, 90.0],
+      "sampled_fungal_observer_cell_days": 162,
+      "estimated_fungal_observer_cell_days": 167.00505450734522,
+      "species": {
+        "mushroom": {
+          "label": "Porcini",
+          "background_median": 2.705391617239145,
+          "findings": 2,
+          "finding_median": 5.053014813728244,
+          "mean_country_percentile": 0.4,
+          "finding_dates": {
+            "2026-06-10": 1,
+            "2026-06-17": 1
+          },
+          "latitude_range": [41.286874, 41.590521]
+        },
+        "chant": {
+          "label": "Chanterelle",
+          "background_median": 2.4964495654493044,
+          "findings": 1,
+          "finding_median": 1.9060531130380685,
+          "mean_country_percentile": 0.5833333333333334,
+          "finding_dates": {
+            "2026-06-04": 1
+          },
+          "latitude_range": [41.303672, 41.303672]
+        }
+      }
+    }
+  ],
+  "countries": {
+    "FI": {
+      "label": "Finland",
+      "sampled_fungal_observer_cell_days": 897,
+      "species": {
+        "mushroom": {
+          "label": "Porcini",
+          "findings": 31,
+          "background_median": 6.220759104568916,
+          "finding_median": 7.509659753236927,
+          "mean_europe_percentile": 0.6867743312865631,
+          "mean_country_percentile": 0.5334306918540941,
+          "country_percentile_day_bootstrap_ci": [
+            0.41439663754147643, 0.6417603202718334
+          ],
+          "median_same_day_country_controls": 16.0,
+          "active_days": 19,
+          "latest_finding_date": "2026-08-15",
+          "findings_after_2026_08_12": 1
+        },
+        "chant": {
+          "label": "Chanterelle",
+          "findings": 85,
+          "background_median": 7.872545796374903,
+          "finding_median": 8.265867883669333,
+          "mean_europe_percentile": 0.7601789197392844,
+          "mean_country_percentile": 0.4612071565126106,
+          "country_percentile_day_bootstrap_ci": [
+            0.4068651496764661, 0.5209059799648331
+          ],
+          "median_same_day_country_controls": 15.0,
+          "active_days": 43,
+          "latest_finding_date": "2026-08-22",
+          "findings_after_2026_08_12": 2
+        }
+      }
+    },
+    "ES": {
+      "label": "Spain",
+      "sampled_fungal_observer_cell_days": 529,
+      "species": {
+        "mushroom": {
+          "label": "Porcini",
+          "findings": 9,
+          "background_median": 4.995049778028938,
+          "finding_median": 3.7404777294014218,
+          "mean_europe_percentile": 0.13242259618121388,
+          "mean_country_percentile": 0.24143693996635174,
+          "country_percentile_day_bootstrap_ci": [
+            0.165711739241151, 0.3375374625374625
+          ],
+          "median_same_day_country_controls": 12.0,
+          "active_days": 7,
+          "latest_finding_date": "2026-07-15",
+          "findings_after_2026_08_12": 0
+        },
+        "chant": {
+          "label": "Chanterelle",
+          "findings": 5,
+          "background_median": 3.2143000850211894,
+          "finding_median": 2.431276251154068,
+          "mean_europe_percentile": 0.4945049166628584,
+          "mean_country_percentile": 0.5531194295900178,
+          "country_percentile_day_bootstrap_ci": [
+            0.3700980392156863, 0.8276515151515151
+          ],
+          "median_same_day_country_controls": 12.0,
+          "active_days": 4,
+          "latest_finding_date": "2026-06-27",
+          "findings_after_2026_08_12": 0
+        }
+      }
+    },
+    "PT": {
+      "label": "Portugal",
+      "sampled_fungal_observer_cell_days": 162,
+      "species": {
+        "mushroom": {
+          "label": "Porcini",
+          "findings": 2,
+          "background_median": 2.705391617239145,
+          "finding_median": 5.053014813728244,
+          "mean_europe_percentile": 0.16221901391989035,
+          "mean_country_percentile": 0.4,
+          "country_percentile_day_bootstrap_ci": [0.3, 0.5],
+          "median_same_day_country_controls": 4.0,
+          "active_days": 2,
+          "latest_finding_date": "2026-06-17",
+          "findings_after_2026_08_12": 0
+        },
+        "chant": {
+          "label": "Chanterelle",
+          "findings": 1,
+          "background_median": 2.4964495654493044,
+          "finding_median": 1.9060531130380685,
+          "mean_europe_percentile": 0.4322511632870425,
+          "mean_country_percentile": 0.5833333333333334,
+          "country_percentile_day_bootstrap_ci": null,
+          "median_same_day_country_controls": 6.0,
+          "active_days": 1,
+          "latest_finding_date": "2026-06-04",
+          "findings_after_2026_08_12": 0
+        }
+      }
+    }
+  },
+  "iberian_target_audit": {
+    "spain_findings": 14,
+    "portugal_findings": 3,
+    "spain_latitude_range": [40.061108, 43.318203],
+    "spain_dates": {
+      "2026-06-04": 1,
+      "2026-06-05": 1,
+      "2026-06-06": 5,
+      "2026-06-09": 2,
+      "2026-06-16": 1,
+      "2026-06-26": 1,
+      "2026-06-27": 1,
+      "2026-07-03": 1,
+      "2026-07-15": 1
+    }
+  }
+}

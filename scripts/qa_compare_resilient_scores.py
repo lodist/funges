@@ -225,6 +225,114 @@ def compare(background: pd.DataFrame, targets: pd.DataFrame) -> tuple[list[dict]
     return detail, summary
 
 
+def render_report(summary: pd.DataFrame, result: dict) -> str:
+    rows = []
+    for row in summary.itertuples(index=False):
+        rows.append(
+            f"| {row.label} | {row.n} | {row.old_auc:.3f} | {row.new_auc:.3f} | "
+            f"{row.auc_delta:+.3f} | {row.old_median_score:.2f} | "
+            f"{row.new_median_score:.2f} | {row.old_hit_ge_4:.1%} | "
+            f"{row.new_hit_ge_4:.1%} |"
+        )
+    region_rows = "\n".join(
+        f"| {region} | {entry['target_cell_days']} | {entry['old_auc']:.3f} | "
+        f"{entry['new_auc']:.3f} | {entry['new_auc'] - entry['old_auc']:+.3f} | "
+        f"{entry['day_bootstrap_ci']['delta'][0]:+.3f} to "
+        f"{entry['day_bootstrap_ci']['delta'][1]:+.3f} |"
+        for region, entry in result["region_auc"].items()
+    )
+    start, end = result["period"]
+    return f"""# Resilient scorer observer-background ablation
+
+Period: **{start} through {end}**.
+
+## Verdict
+
+Across the primary Porcini, Chanterelle, and Parasol cohort, the resilient scorer changes
+the same-day European fungal-observer AUC from **{result['old_primary_auc']:.3f}** to
+**{result['new_primary_auc']:.3f}** ({result['primary_auc_delta']:+.3f}). This is a small
+overall ranking improvement (paired day-bootstrap 95% CI for the change
+**{result['day_bootstrap_ci']['delta'][0]:+.3f} to
+{result['day_bootstrap_ci']['delta'][1]:+.3f}**), with the material gain concentrated in
+southern Europe.
+
+| Region | Target cell-days | Previous AUC | Current AUC | Change | 95% CI for change |
+| --- | ---: | ---: | ---: | ---: | ---: |
+{region_rows}
+
+## Species results
+
+| Species | n | Old AUC | New AUC | Change | Old median | New median | Old ≥4 | New ≥4 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+{chr(10).join(rows)}
+
+Scores and threshold hit rates rise more than ranking quality. That should not be read as
+an equally large discrimination gain: the background threshold rates also move. AUC is
+the primary comparison here.
+
+The former rectangular “Spain” subsection has been replaced by the country-coded
+[observer-background geography audit](../spatial-observer-background/macro-region-report.md).
+That audit separates southern, central, and northern Spain and reports same-day
+within-country ranks.
+
+## Method
+
+- The exact target and fungal-observer controls from the observer-background cohort are
+  retained.
+- The current resilient algorithm is replayed from production weather history at those
+  same location-days, including spatial smoothing.
+- Old and new percentiles therefore use identical observations and same-day controls.
+- This remains presence-background QA, not presence/absence validation.
+"""
+
+
+def paired_day_bootstrap(
+    detail: pd.DataFrame, iterations: int = 10_000, seed: int = 20260828
+) -> dict:
+    daily = detail.groupby("date").agg(
+        old_sum=("old_percentile", "sum"),
+        new_sum=("new_percentile", "sum"),
+        n=("date", "size"),
+    )
+    if len(daily) < 2:
+        return {"old": None, "new": None, "delta": None}
+    rng = np.random.default_rng(seed)
+    sampled = rng.integers(0, len(daily), size=(iterations, len(daily)))
+    counts = daily.n.to_numpy()[sampled].sum(axis=1)
+    old = daily.old_sum.to_numpy()[sampled].sum(axis=1) / counts
+    new = daily.new_sum.to_numpy()[sampled].sum(axis=1) / counts
+
+    def interval(values: np.ndarray) -> list[float]:
+        low, high = np.quantile(values, [0.025, 0.975])
+        return [float(low), float(high)]
+
+    return {"old": interval(old), "new": interval(new), "delta": interval(new - old)}
+
+
+def enrich_uncertainty(result: dict, detail: pd.DataFrame) -> dict:
+    primary = detail[detail.species_id.isin(result["primary_species"])]
+    result["day_bootstrap_ci"] = paired_day_bootstrap(primary)
+    for region, entry in result["region_auc"].items():
+        entry["day_bootstrap_ci"] = paired_day_bootstrap(
+            primary[primary.region.eq(region)]
+        )
+    return result
+
+
+def write_report(output: Path, enrich: bool = False) -> None:
+    summary = pd.read_csv(output / "species-comparison.csv")
+    result = json.loads((output / "summary.json").read_text(encoding="utf-8"))
+    if enrich:
+        detail = pd.read_csv(output / "matched-target-comparison.csv")
+        result = enrich_uncertainty(result, detail)
+        (output / "summary.json").write_text(
+            json.dumps(result, indent=2), encoding="utf-8"
+        )
+    (output / "scorer-ablation-report.md").write_text(
+        render_report(summary, result), encoding="utf-8"
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -236,10 +344,14 @@ def main() -> None:
         default="docs/qa/model-evaluation-2026/resilient-score-ablation",
     )
     parser.add_argument("--start", default="2026-06-01")
-    parser.add_argument("--end", default="2026-08-12")
+    parser.add_argument("--end", default="2026-08-27")
+    parser.add_argument("--report-only", action="store_true")
     args = parser.parse_args()
     source, output = Path(args.source), Path(args.output)
     output.mkdir(parents=True, exist_ok=True)
+    if args.report_only:
+        write_report(output, enrich=True)
+        return
     background = pd.read_csv(source / "fungal-observer-background.csv")
     targets = pd.read_csv(source / "matched-targets.csv")
     for frame in (background, targets):
@@ -269,11 +381,20 @@ def main() -> None:
 
     detail, summary = compare(background, targets)
     detail_frame, summary_frame = pd.DataFrame(detail), pd.DataFrame(summary)
+    background.to_csv(output / "background-comparison.csv", index=False)
     detail_frame.to_csv(output / "matched-target-comparison.csv", index=False)
     summary_frame.to_csv(output / "species-comparison.csv", index=False)
 
     primary_species = {"mushroom", "parasol", "chant"}
     primary = detail_frame[detail_frame.species_id.isin(primary_species)]
+    region_auc = {
+        region: {
+            "target_cell_days": int(len(group)),
+            "old_auc": float(group.old_percentile.mean()),
+            "new_auc": float(group.new_percentile.mean()),
+        }
+        for region, group in primary.groupby("region")
+    }
     result = {
         "period": [args.start, args.end],
         "cohort": {"background_cell_days": len(background), "target_cell_days": len(targets)},
@@ -281,6 +402,7 @@ def main() -> None:
         "old_primary_auc": float(primary.old_percentile.mean()),
         "new_primary_auc": float(primary.new_percentile.mean()),
         "primary_auc_delta": float(primary.percentile_delta.mean()),
+        "region_auc": region_auc,
         "background_ge_4": {
             species: {
                 "old": float((background[f"{species}_score"] >= 4).mean()),
@@ -291,7 +413,9 @@ def main() -> None:
         },
         "regions": metadata,
     }
+    result = enrich_uncertainty(result, detail_frame)
     (output / "summary.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
+    write_report(output)
     print(summary_frame.to_string(index=False, float_format=lambda value: f"{value:.3f}"))
     print(json.dumps(result, indent=2))
 
