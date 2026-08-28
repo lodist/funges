@@ -27,7 +27,7 @@ import {
   MapPinned,
   ArrowUpRight,
   Calendar,
-} from 'lucide-react';
+} from '@/lib/icons';
 import { useMapStore } from '@/store/mapStore';
 
 export default function WorthForagingNowPage() {
@@ -147,7 +147,7 @@ export default function WorthForagingNowPage() {
         </div>
 
         {isLoading ? (
-          <section className='rounded-3xl border bg-card p-10'>
+          <section className='rounded-card border bg-card p-10'>
             <div className='flex items-center justify-center gap-3 text-muted-foreground'>
               <Loader2 className='h-5 w-5 animate-spin' />
               <span>{t('worthForagingNow.loading')}</span>
@@ -156,13 +156,13 @@ export default function WorthForagingNowPage() {
         ) : null}
 
         {!isLoading && loadError ? (
-          <section className='rounded-3xl border border-destructive/20 bg-destructive/5 p-6 text-sm text-destructive'>
+          <section className='rounded-card border border-destructive/20 bg-destructive/5 p-6 text-sm text-destructive-text'>
             {loadError}
           </section>
         ) : null}
 
         {!isLoading && !loadError && recommendations.length === 0 ? (
-          <section className='rounded-3xl border bg-card p-6 text-sm text-muted-foreground'>
+          <section className='rounded-card border bg-card p-6 text-sm text-muted-foreground'>
             {t('worthForagingNow.noData')}
           </section>
         ) : null}
@@ -173,7 +173,8 @@ export default function WorthForagingNowPage() {
             {recommendations.map((recommendation, index) => (
               <Card
                 key={recommendation.speciesId}
-                className='mb-5 gap-0 py-0 last:mb-0 lg:mb-0 lg:row-span-6 lg:grid lg:[grid-template-rows:subgrid]'
+                padding='none'
+                className='mb-5 last:mb-0 lg:mb-0 lg:row-span-6 lg:grid lg:[grid-template-rows:subgrid]'
               >
                 {/* Row 1 — name + score */}
                 <div className='flex items-start justify-between gap-3 px-6 pt-6'>
@@ -189,10 +190,10 @@ export default function WorthForagingNowPage() {
                     <p className='text-xs font-medium text-muted-foreground'>
                       #{index + 1}
                     </p>
-                    <div className='text-4xl font-bold leading-none text-primary'>
+                    <div className='text-4xl font-bold leading-none text-primary-text'>
                       {recommendation.score}
                     </div>
-                    <p className='mt-1 text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground'>
+                    <p className='mt-1 type-micro text-muted-foreground'>
                       {t('worthForagingNow.scoreLabel')}
                     </p>
                   </div>
@@ -216,7 +217,7 @@ export default function WorthForagingNowPage() {
                 {/* Row 3 — why now */}
                 <div className='space-y-2 px-6 pt-5'>
                   <div className='flex items-center gap-2 text-sm font-medium text-foreground'>
-                    <Leaf className='h-4 w-4 text-primary' />
+                    <Leaf className='h-4 w-4 text-primary-text' />
                     {t('worthForagingNow.whyNow')}
                   </div>
                   <ul className='space-y-1.5 border-l-2 border-border pl-3 text-sm text-muted-foreground'>
@@ -228,8 +229,8 @@ export default function WorthForagingNowPage() {
 
                 {/* Row 4 — best window (+ optional distance) */}
                 <div className='grid gap-3 px-6 pt-5 text-sm text-muted-foreground'>
-                  <div className='flex items-start gap-2 rounded-2xl border border-border bg-muted/40 px-3 py-3'>
-                    <Calendar className='mt-0.5 h-4 w-4 shrink-0 text-primary' />
+                  <div className='flex items-start gap-2 rounded-card border border-border bg-muted/40 px-3 py-3'>
+                    <Calendar className='mt-0.5 h-4 w-4 shrink-0 text-primary-text' />
                     <div>
                       <p className='font-medium text-foreground'>
                         {t('worthForagingNow.bestWindow')}
@@ -238,8 +239,8 @@ export default function WorthForagingNowPage() {
                     </div>
                   </div>
                   {recommendation.distanceKm !== null ? (
-                    <div className='flex items-start gap-2 rounded-2xl border border-border bg-muted/40 px-3 py-3'>
-                      <MapPinned className='mt-0.5 h-4 w-4 shrink-0 text-primary' />
+                    <div className='flex items-start gap-2 rounded-card border border-border bg-muted/40 px-3 py-3'>
+                      <MapPinned className='mt-0.5 h-4 w-4 shrink-0 text-primary-text' />
                       <div>
                         <p className='font-medium text-foreground'>
                           {t('worthForagingNow.bestPoint')}
@@ -257,7 +258,7 @@ export default function WorthForagingNowPage() {
                 {/* Row 5 — kitchen */}
                 <div className='space-y-3 px-6 pt-5'>
                   <div className='flex items-center gap-2 text-sm font-medium text-foreground'>
-                    <ChefHat className='h-4 w-4 text-primary' />
+                    <ChefHat className='h-4 w-4 text-primary-text' />
                     {t('worthForagingNow.kitchenPayoff')}
                   </div>
                   {recommendation.recipes.length > 0 ? (

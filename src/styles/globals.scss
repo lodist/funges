@@ -23,70 +23,47 @@
     overflow: hidden; // Disable scrolling for main app
     background-color: var(--background);
     color: var(--foreground);
+    // Motion (#225): the theme switch. Was `0.3s ease` twice over — the right
+    // duration by luck, the wrong curve, and neither would have followed a
+    // retune of the scale.
     transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
+      background-color var(--transition-duration-slow) var(--ease-standard),
+      color var(--transition-duration-slow) var(--ease-standard);
   }
 
   // Link styles
   a {
     font-weight: 500;
-    color: var(--primary);
+    // --primary is 2.94:1 as text; --primary-text is the readable step.
+    color: var(--primary-text);
     text-decoration: inherit;
-    transition: color 0.25s ease;
+    // Link colour is hover feedback, so it rides the fast duration.
+    transition: color var(--transition-duration-fast) var(--ease-standard);
 
     &:hover {
-      color: color-mix(in oklch, var(--primary) 85%, black);
+      color: color-mix(in oklch, var(--primary-text) 85%, black);
     }
   }
 
-  // Button base styles
-  button {
-    border-radius: var(--radius);
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: var(--muted);
-    color: var(--foreground);
+  // Tailwind v4's Preflight drops the pointer cursor on buttons; restore it.
+  // Everything else a button looks like belongs to the Button primitive's
+  // variants and sizes — the element-level rule that used to live here set
+  // `background-color: var(--muted)`, which filled the `ghost` and `link`
+  // variants (they deliberately declare no background) and whose `:hover`
+  // repainted every variant's border and background with the primary tint,
+  // overriding each variant's own hover. It was Vite starter-template
+  // leftover, not a design decision.
+  button:not(:disabled) {
     cursor: pointer;
-    transition: all 0.25s ease;
-
-    &:hover {
-      border-color: var(--primary);
-      background-color: var(--hover-primary);
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
   }
 
-  // Form elements
-  input,
-  textarea,
-  select {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    color: var(--foreground);
-    background-color: var(--background);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 0.5em;
-    transition: border-color 0.25s ease;
-
-    &:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    &::placeholder {
-      color: var(--muted-foreground);
-    }
-  }
+  // No element-level rule for input/textarea/select: the Input, Textarea and
+  // Select primitives own their own surface, radius, padding and focus ring.
+  // The rule that used to live here was Vite starter-template leftover, and
+  // its `&:focus { outline: none }` stripped the focus outline from every
+  // field in the app — a WCAG 2.4.7 failure the axe gate cannot see, because
+  // focus appearance is not machine-checkable. The only bare fields left are
+  // the two `sr-only` file inputs in IdentifyPanel, which render nothing.
 
   // Selection styles
   ::selection {
@@ -112,6 +89,21 @@
       background: var(--muted-foreground);
     }
   }
+
+  // Motion (#200): honour the OS-level reduced-motion preference app-wide.
+  // Non-essential transitions and decorative animations are collapsed to
+  // effectively zero rather than shortened, so the state change still lands
+  // — it just lands without the animation.
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 // Component-specific styles
@@ -124,46 +116,6 @@
     border-radius: var(--radius);
     padding: calc(var(--spacing) * 4);
     box-shadow: var(--shadow-sm);
-  }
-
-  // Button variants
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius);
-    font-weight: 500;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    border: 1px solid transparent;
-
-    &-primary {
-      background-color: var(--primary);
-      color: var(--primary-foreground);
-
-      &:hover {
-        background-color: color-mix(in oklch, var(--primary) 85%, black);
-      }
-    }
-
-    &-secondary {
-      background-color: var(--secondary);
-      color: var(--secondary-foreground);
-
-      &:hover {
-        background-color: color-mix(in oklch, var(--secondary) 85%, black);
-      }
-    }
-
-    &-outline {
-      background-color: transparent;
-      color: var(--foreground);
-      border-color: var(--border);
-
-      &:hover {
-        background-color: var(--hover-primary);
-      }
-    }
   }
 
   // Badge component
@@ -218,17 +170,6 @@
     border-radius: var(--radius-sm);
   }
 
-  // Warning component
-  .warning {
-    background: var(--status-warning-background);
-    color: var(--status-warning-text);
-    border-left: 5px solid var(--status-warning-border);
-    border-radius: var(--radius-md);
-    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
-    margin-bottom: calc(var(--spacing) * 5);
-    font-size: 15px;
-  }
-
   // Loading spinner
   .loading-spinner {
     position: fixed;
@@ -249,45 +190,212 @@
     }
   }
 
-  // Splash screen
-  .splash-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--background-secondary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    animation: fadeOut 1.5s ease-out forwards;
+  // ---------------------------------------------------------------------
+  // Elevation levels (#200)
+  //
+  // Semantic depth roles composed from the --elevation-* tokens defined in
+  // index.css. Pick the role, not a raw shadow. Definitions are the ones in
+  // CONTEXT.md's design-system glossary:
+  //
+  //   base           - the map canvas. No class, no shadow: not a discrete
+  //                    surface, so it deliberately has no utility here.
+  //   control        - a small control you press (Button, Slider thumb,
+  //                    Checkbox, Switch, RadioGroup item). Pair with
+  //                    .elevation-interactive for the hover escalation.
+  //   raised-subtle  - lightweight input chrome you look through rather
+  //                    than press (search field, Select trigger, Textarea).
+  //                    No hover escalation.
+  //   raised         - small, static, fixed-size chrome (Card, AppSidebar,
+  //                    MobileNavbar).
+  //   floating       - dismiss-by-tap-outside surfaces (Sheet, Popover,
+  //                    DropdownMenu, tooltip).
+  //   floating-up    - floating, cast upward. Bottom Sheet only: pinned to
+  //                    the viewport bottom, so a downward shadow would fall
+  //                    off-screen and leave the top edge unseparated.
+  //   overlay        - blocking surfaces with a scrim (modal Dialog).
+  //
+  // In dark mode each carries a 1px inset --glass-highlight, which is what
+  // actually reads as depth there; the drop shadow is secondary. See
+  // ADR 0001 for why these values are Trailhead's rather than --shadow-*.
+  // ---------------------------------------------------------------------
+  // Each level also publishes --elevation-rest / --elevation-lift, which is
+  // what .elevation-interactive animates between. That indirection is why one
+  // interactive modifier serves every level instead of one modifier per level.
+  .elevation-control {
+    --elevation-rest: var(--elevation-control);
+    --elevation-lift: var(--elevation-control-hover);
 
-    img {
-      width: 60vw;
-      max-width: 550px;
-      height: auto;
+    box-shadow: var(--elevation-rest);
+  }
+
+  .elevation-raised-subtle {
+    box-shadow: var(--elevation-raised-subtle);
+  }
+
+  .elevation-raised {
+    --elevation-rest: var(--elevation-raised);
+    --elevation-lift: var(--elevation-raised-hover);
+
+    box-shadow: var(--elevation-rest);
+  }
+
+  .elevation-floating {
+    box-shadow: var(--elevation-floating);
+  }
+
+  .elevation-floating-up {
+    box-shadow: var(--elevation-floating-up);
+  }
+
+  .elevation-overlay {
+    box-shadow: var(--elevation-overlay);
+  }
+
+  // ---------------------------------------------------------------------
+  // Glass surfaces (#200)
+  //
+  // Scope rule: opt-in per component, and only on small, fixed-size chrome
+  // at the `raised` or `floating` level. Never on `base` (the map canvas),
+  // never on `overlay` (Dialogs are text-heavy and contrast-critical over a
+  // busy, variable map background — WCAG 1.4.11 risk), and never on
+  // anything large or that animates its own size.
+  //
+  // Both variants degrade to an opaque background whenever backdrop-filter
+  // is unavailable or the user has asked for less transparency / more
+  // contrast. The opaque path is the default here and the translucent path
+  // is layered on top, so an unsupporting browser never renders
+  // near-invisible chrome.
+  // ---------------------------------------------------------------------
+  .glass-regular,
+  .glass-clear {
+    border: 1px solid var(--glass-border);
+    // Shares --glass-highlight with the --elevation-* tokens: on glass it
+    // stands in for Liquid Glass's specular edge. Carried on the top border
+    // rather than an inset box-shadow so that pairing a glass class with an
+    // .elevation-* class doesn't have the two fight over box-shadow.
+    border-top-color: var(--glass-highlight);
+  }
+
+  .glass-regular {
+    background-color: var(--glass-bg-regular-opaque);
+  }
+
+  .glass-clear {
+    background-color: var(--glass-bg-clear-opaque);
+  }
+
+  @supports (backdrop-filter: blur(1px)) {
+    .glass-regular {
+      background-color: var(--glass-bg-regular);
+      backdrop-filter: blur(var(--glass-blur-regular));
     }
+
+    // Reserved for full-bleed media backgrounds. Never place text-heavy
+    // content on this variant.
+    .glass-clear {
+      background-color: var(--glass-bg-clear);
+      backdrop-filter: blur(var(--glass-blur-clear));
+    }
+  }
+
+  // Accessibility fallbacks: drop the blur entirely and go opaque. Both
+  // preferences want the same outcome, so they share one rule.
+  @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+    .glass-regular {
+      background-color: var(--glass-bg-regular-opaque);
+      backdrop-filter: none;
+    }
+
+    .glass-clear {
+      background-color: var(--glass-bg-clear-opaque);
+      backdrop-filter: none;
+    }
+  }
+
+  // ---------------------------------------------------------------------
+  // Elevation hover/press feedback (#200)
+  //
+  // Opt-in modifier for pressable chrome — pair it with a level that
+  // publishes --elevation-rest / --elevation-lift (`control`, `raised`).
+  // Shifts shadow and background only — no scale or transform. On its own it
+  // animates nothing, which is the point: the level decides how far it lifts.
+  // ---------------------------------------------------------------------
+  .elevation-interactive {
+    transition:
+      box-shadow var(--transition-duration-fast) var(--ease-standard),
+      background-color var(--transition-duration-fast) var(--ease-standard);
+
+    &:hover {
+      box-shadow: var(--elevation-lift);
+    }
+
+    &:active {
+      box-shadow: var(--elevation-rest);
+    }
+  }
+
+  // Motion (#225): a `.elevation-interactive { transition: none }` block sat
+  // here claiming to go further than the global rule. It could not: the `*`
+  // rule in @layer base carries !important, and important declarations
+  // reverse layer order, so base beats components. The computed value stayed
+  // 0.01ms either way. Removed rather than made !important — 0.01ms and 0s
+  // are indistinguishable to a viewer, so the extra rule bought nothing.
+
+  // #225 — DESIGN.md's `micro` role, the uppercase tracked micro-label used
+  // for a field label above a control, a stat-chip caption, a popover section
+  // header.
+  //
+  // It exists because the role did not. DESIGN.md named `micro` (12px / 500)
+  // but nothing in the code implemented it, so seven sites hand-rolled it
+  // seven different ways — `text-[10px]` and `text-[11px]`, `font-medium` and
+  // `font-semibold`, `tracking-wide` and `tracking-[0.18em]`,
+  // `text-muted-foreground` and `/60`. Eleven independent sites reached below
+  // 12px not because 12px was too big but because the 12px role had no name.
+  //
+  // Colour is deliberately NOT set here: these labels sit on paper, on glass
+  // and on a warning fill, so the caller pairs it with the right foreground
+  // token.
+  //
+  // Pair it with a token at full strength. Four of the call sites carried
+  // `text-muted-foreground/60`, which composites to 2.42:1 on Field Paper —
+  // under even the 3:1 non-text floor. The role is already quiet at 12px, 500
+  // and uppercase; the alpha was buying nothing and costing legibility.
+  .type-micro {
+    font-size: var(--text-xs); // 12px
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 }
 
 // Utility classes
 @layer utilities {
-  // Fade out animation
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-      visibility: hidden;
-    }
+  // The one keyboard-focus indicator for every interactive primitive.
+  //
+  // `outline` rather than a ring: the `.elevation-*` tokens are box-shadows, so
+  // a box-shadow ring would have to compose with them in every primitive and
+  // loses that fight wherever one forgets. An outline also follows the
+  // element's border-radius. It does not survive a clipping ancestor, though —
+  // `overflow: hidden` cuts an outline flat, measured, which is why a field's
+  // focus border carries `--ring` too instead of leaving the ring as the only
+  // focus cue.
+  //
+  // `--ring` clears WCAG 1.4.11's 3:1 floor against every surface it lands on:
+  // light 7.85:1 on --background and 7.99:1 on --card; dark 5.46:1 on
+  // --background and 3.40:1 on --card, which is the worst case.
+  //
+  // `:focus-visible`, not `:focus` — a pointer press should not paint a ring.
+  .focus-ring:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
 
   // Text utilities
-  .text-primary {
-    color: var(--foreground);
-  }
+  // No `.text-primary`: Tailwind generates it from --color-primary, and
+  // redefining it as --foreground silently won — every brand-green label and
+  // icon rendered Ink. Text/icons take `text-primary-text`, fills
+  // `text-primary`.
   .text-secondary {
     color: var(--muted-foreground);
   }
@@ -304,9 +412,6 @@
   }
   .bg-overlay {
     background-color: var(--background-overlay);
-  }
-  .bg-overlay-dark {
-    background-color: var(--background-overlay-dark, rgba(0, 0, 0, 0.9));
   }
 
   // Layout utilities
@@ -332,10 +437,6 @@
 
   body {
     height: 100vh; // Fallback for mobile browsers
-  }
-
-  .splash-screen img {
-    width: 80vw; // Larger on mobile
   }
 
   .loading-spinner img {

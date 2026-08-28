@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 import { useMapStore } from '@/store/mapStore';
 import { cn } from '@/lib/utils';
@@ -53,23 +53,22 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           onClick={() => setIsOpen(!isOpen)}
           // Trailhead (#213): floating map control — no border, soft shadow.
           className={cn(
-            'flex items-center border-0 bg-card/95 backdrop-blur-sm hover:bg-[var(--happy-50)]/95 transition-all duration-200 shadow-[0_2px_10px_rgba(0,0,0,0.18)]',
-            'h-16 px-2 py-2 rounded-2xl',
-            isOpen && 'bg-[var(--happy-50)]/95'
+            'flex items-center border-0 bg-card/95 backdrop-blur-sm hover:bg-happy-50/95 transition-all duration-base shadow-[0_2px_10px_rgba(0,0,0,0.18)]',
+            'h-16 px-2 py-2 rounded-card',
+            isOpen && 'bg-happy-50/95'
           )}
           layoutId='species-selector-button'
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
-          transition={{
-            duration: 0.2,
-            type: 'spring',
-            stiffness: 400,
-            damping: 25,
-          }}
+          // Motion (#225): a spring is deliberate for press feedback — it is
+          // the one place the scale does not apply. The `duration: 0.2` that
+          // used to sit here was discarded by framer-motion (stiffness and
+          // damping override it), so it only ever documented a lie.
+          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
         >
           <div className='flex items-center gap-3 w-full'>
             {/* Species Image */}
-            <div className='relative w-12 h-12 bg-[var(--happy-50)] overflow-hidden rounded-lg flex-shrink-0'>
+            <div className='relative w-12 h-12 bg-happy-50 overflow-hidden rounded-lg flex-shrink-0'>
               {getSpeciesImage(selectedSpeciesData.code) ? (
                 <img
                   src={getSpeciesImage(selectedSpeciesData.code)!}
@@ -106,19 +105,18 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           onClick={() => setIsOpen(!isOpen)}
           // Trailhead (#213): floating map control — no border, soft shadow.
           className={cn(
-            'justify-between border-0 bg-card/95 backdrop-blur-sm hover:bg-[var(--happy-50)]/95 transition-all duration-200 shadow-[0_2px_10px_rgba(0,0,0,0.18)] rounded-full',
+            'justify-between border-0 bg-card/95 backdrop-blur-sm hover:bg-happy-50/95 transition-all duration-base shadow-[0_2px_10px_rgba(0,0,0,0.18)] rounded-full',
             'w-72 min-h-[32px] px-3 py-1',
-            isOpen && 'bg-[var(--happy-50)]/95'
+            isOpen && 'bg-happy-50/95'
           )}
           layoutId='species-selector-button'
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
-          transition={{
-            duration: 0.2,
-            type: 'spring',
-            stiffness: 400,
-            damping: 25,
-          }}
+          // Motion (#225): a spring is deliberate for press feedback — it is
+          // the one place the scale does not apply. The `duration: 0.2` that
+          // used to sit here was discarded by framer-motion (stiffness and
+          // damping override it), so it only ever documented a lie.
+          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
         >
           <div className='flex items-center gap-2 min-w-0 flex-1'>
             <span className={cn('truncate font-medium')}>
@@ -127,7 +125,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           </div>
           <ChevronDown
             className={cn(
-              'transition-transform duration-200 flex-shrink-0',
+              'transition-transform duration-base flex-shrink-0',
               'h-3 w-3',
               isOpen ? 'rotate-180' : ''
             )}

@@ -14,7 +14,7 @@
   "description": "Scopri deliziose ricette usando ingredienti raccolti",
   "filterBy": "Ingrediente",
   "filters": "Filtri",
-  "clear": "Cancella",
+  "clear": "Azzera filtri",
   "apply": "Applica",
   "all": "Tutti",
   "mushroom": "Fungo",
@@ -39,7 +39,9 @@
     "routeStops": "Tappe del percorso",
     "refreshRoute": "Aggiorna percorso",
     "drawRoute": "Disegna percorso",
-    "recipesButton": "Ricette"
+    "recipesButton": "Ricette",
+    "openInMaps": "Apri in Google Maps",
+    "clearRoute": "Cancella percorso"
   },
   "species": {
     "amaranth": "Amaranto",

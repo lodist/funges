@@ -1,0 +1,61 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as RadiusStories from './RadiusAndSpacing.stories';
+
+<Meta of={RadiusStories} />
+
+# Radius and spacing
+
+Two derived scales. Neither is a list of values to memorise — each is one base
+number with the steps computed off it, so retuning the base moves everything
+together.
+
+## Radius
+
+`--radius` is `0.5rem`. The four steps run `−4px`, `−2px`, `0`, `+4px` off it,
+so the scale is not symmetric — `lg` _is_ the base.
+
+<Story of={RadiusStories.RadiusScale} />
+
+### Past the derived scale
+
+Two roles sit outside it on purpose, and between them they cover most of what
+you see: `rounded-full` for anything you press, `rounded-card` (`1.25rem`, 20px)
+for anything that contains. Containers are deliberately _not_ derived from
+`--radius` — retuning the structural scale should not reshape every card.
+
+This page used to claim content surfaces were `rounded-2xl`. They were, and that
+was the bug: DESIGN.md's **Pill-Or-Card Rule** declares one container radius,
+20px, but the role had no token, so `Card` hardcoded `rounded-[1.25rem]` while
+thirteen other containers used Tailwind's `rounded-2xl` (16px) and three used
+`rounded-3xl` (24px). Naming the role fixed it. If a new surface is neither pill
+nor container, decide which of the two it is behaving as — do not invent a third.
+
+<Story of={RadiusStories.BeyondTheScale} />
+
+Shape is decided once, in a component's base — not per variant and not per
+size. Every button is a pill because `button.tsx`'s cva base says so; before
+#225 that base still carried shadcn's `rounded-md` and only four of seven
+variants overrode it, so `secondary`, `enhanced-outline` and `link` shipped as
+6px rectangles nobody had chosen.
+
+Passing a `rounded-*` in `className` still wins, but not "because the later
+utility wins" — `cn()` is `tailwind-merge`, which drops the losing class before
+CSS is consulted. Order in the stylesheet is Tailwind's, not yours: `.rounded-2xl`
+is emitted _before_ `.rounded-full`, so without `tailwind-merge` the pill would
+win. Rely on the merge, not on the ordering.
+
+## Spacing
+
+`--spacing` is `0.25rem`, so every step is a multiple of 4px.
+
+<Story of={RadiusStories.SpacingScale} />
+
+Padding, gaps and margins all draw from this one rhythm. A 5px gap is not a
+small deviation — it is off the grid, and it is visible next to anything that
+is on it.
+
+<Story of={RadiusStories.SpacingInPractice} />
+
+## Everything at once
+
+<Story of={RadiusStories.AllRadiusAndSpacing} />

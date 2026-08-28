@@ -1,8 +1,16 @@
 import { useTranslation } from 'react-i18next';
-import { Card } from '@/components/ui/card';
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Heart, ExternalLink, Copy, QrCode, CheckCircle } from 'lucide-react';
+import { Heart, ExternalLink, Copy, QrCode, CheckCircle } from '@/lib/icons';
 import { useState } from 'react';
 import { useSupportMethods } from '@/data/support';
 import QRCodeModal from '@/components/QRCodeModal';
@@ -17,12 +25,6 @@ export default function SupportPage() {
   const [selectedMethod, setSelectedMethod] = useState<
     (typeof supportMethods)[0] | null
   >(null);
-
-  const handleDonationClick = (method: (typeof supportMethods)[0]) => {
-    if (method.url) {
-      window.open(method.url, '_blank', 'noopener,noreferrer');
-    }
-  };
 
   const handleCopyAddress = async (address: string, methodId: string) => {
     try {
@@ -60,24 +62,24 @@ export default function SupportPage() {
           {/* Header */}
           <div className='text-center'>
             <div className='flex justify-center mb-4'>
-              <div className='p-4 bg-red-50 dark:bg-red-950 rounded-full'>
-                <Heart className='h-12 w-12 text-red-500' />
+              <div className='p-4 bg-destructive/10 rounded-full'>
+                <Heart className='h-12 w-12 text-destructive-text' />
               </div>
             </div>
-            <h1 className='text-4xl font-bold text-gray-900 dark:text-white mb-4'>
+            <h1 className='text-4xl font-bold text-foreground dark:text-white mb-4'>
               {t('title')}
             </h1>
-            <p className='text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto'>
+            <p className='text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto'>
               {t('subtitle')}
             </p>
-            <p className='text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto mt-4'>
+            <p className='text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto mt-4'>
               {t('description')}
             </p>
           </div>
 
           {/* Why Support Section */}
-          <section className='bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950 dark:to-blue-950 rounded-xl p-8'>
-            <h2 className='text-2xl font-semibold text-gray-900 dark:text-white mb-6 text-center'>
+          <section className='bg-secondary bg-muted rounded-xl p-8'>
+            <h2 className='text-2xl font-semibold text-foreground dark:text-white mb-6 text-center'>
               {t('whySupport.title')}
             </h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4'>
@@ -85,8 +87,8 @@ export default function SupportPage() {
                 t('whySupport.reasons', { returnObjects: true }) as string[]
               ).map((reason: string) => (
                 <div key={reason} className='flex items-start space-x-3'>
-                  <CheckCircle className='h-5 w-5 text-green-500 mt-0.5 flex-shrink-0' />
-                  <p className='text-gray-700 dark:text-gray-300'>{reason}</p>
+                  <CheckCircle className='h-5 w-5 text-primary-text mt-0.5 flex-shrink-0' />
+                  <p className='text-foreground'>{reason}</p>
                 </div>
               ))}
             </div>
@@ -94,19 +96,15 @@ export default function SupportPage() {
 
           {/* Platform Support Methods */}
           <section>
-            <h2 className='text-2xl font-semibold text-gray-900 dark:text-white mb-6 text-center'>
+            <h2 className='text-2xl font-semibold text-foreground dark:text-white mb-6 text-center'>
               {t('platformSupport')}
             </h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {platformMethods.map(method => (
-                <Card
-                  key={method.id}
-                  className='p-6 cursor-pointer hover:shadow-lg transition-all duration-200 border-2 hover:border-primary/20'
-                  onClick={() => handleDonationClick(method)}
-                >
-                  <div className='flex items-center justify-between mb-4'>
+                <Card key={method.id} interactive className='relative'>
+                  <CardHeader>
                     <div
-                      className='p-3 rounded-lg'
+                      className='mb-2 w-fit rounded-lg p-3'
                       style={{
                         backgroundColor: method.color
                           ? `${method.color}20`
@@ -116,19 +114,30 @@ export default function SupportPage() {
                       {React.createElement(
                         method.icon as React.ComponentType<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
                         {
-                          className: 'h-6 w-6',
+                          className: 'size-6',
                           style: { color: method.color },
                         }
                       )}
                     </div>
-                    <ExternalLink className='h-5 w-5 text-gray-400' />
-                  </div>
-                  <h3 className='font-semibold text-lg text-gray-900 dark:text-white mb-2'>
-                    {method.name}
-                  </h3>
-                  <p className='text-gray-600 dark:text-gray-300 text-sm'>
-                    {method.description}
-                  </p>
+                    <CardTitle className='text-lg'>
+                      {/* Stretched to the card so the whole tile is one link. */}
+                      <a
+                        href={method.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='focus-ring text-card-foreground rounded-sm after:absolute after:inset-0'
+                      >
+                        {method.name}
+                      </a>
+                    </CardTitle>
+                    <CardDescription>{method.description}</CardDescription>
+                    <CardAction>
+                      <ExternalLink
+                        aria-hidden='true'
+                        className='size-5 text-muted-foreground'
+                      />
+                    </CardAction>
+                  </CardHeader>
                 </Card>
               ))}
             </div>
@@ -136,15 +145,15 @@ export default function SupportPage() {
 
           {/* Crypto Donations */}
           <section>
-            <h2 className='text-2xl font-semibold text-gray-900 dark:text-white mb-6 text-center'>
+            <h2 className='text-2xl font-semibold text-foreground dark:text-white mb-6 text-center'>
               {t('donate')}
             </h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {cryptoMethods.map(method => (
-                <Card key={method.id} className='p-6 border-2'>
-                  <div className='flex items-center justify-between mb-4'>
+                <Card key={method.id}>
+                  <CardHeader>
                     <div
-                      className='p-3 rounded-lg'
+                      className='mb-2 w-fit rounded-lg p-3'
                       style={{
                         backgroundColor: method.color
                           ? `${method.color}20`
@@ -154,42 +163,43 @@ export default function SupportPage() {
                       {React.createElement(
                         method.icon as React.ComponentType<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
                         {
-                          className: 'h-6 w-6',
+                          className: 'size-6',
                           style: { color: method.color },
                         }
                       )}
                     </div>
-                    <Badge variant='secondary'>{method.id.toUpperCase()}</Badge>
-                  </div>
-                  <h3 className='font-semibold text-lg text-gray-900 dark:text-white mb-2'>
-                    {method.name}
-                  </h3>
-                  <p className='text-gray-600 dark:text-gray-300 text-sm mb-4'>
-                    {method.description}
-                  </p>
+                    <CardTitle className='text-lg'>{method.name}</CardTitle>
+                    <CardDescription>{method.description}</CardDescription>
+                    <CardAction>
+                      <Badge variant='secondary'>
+                        {method.id.toUpperCase()}
+                      </Badge>
+                    </CardAction>
+                  </CardHeader>
                   {method.address && (
-                    <div className='space-y-3'>
-                      <div className='bg-gray-50 dark:bg-gray-800 rounded-lg p-3'>
-                        <p className='text-xs text-gray-500 dark:text-gray-400 mb-1'>
-                          {t('address')}
-                        </p>
-                        <p className='text-sm font-mono text-gray-900 dark:text-white break-all'>
-                          {method.address}
-                        </p>
-                      </div>
-                      <div className='flex space-x-2'>
+                    <>
+                      <CardContent>
+                        <div className='bg-muted rounded-lg p-3'>
+                          <p className='text-muted-foreground mb-1 text-xs'>
+                            {t('address')}
+                          </p>
+                          <p className='font-mono text-sm break-all'>
+                            {method.address}
+                          </p>
+                        </div>
+                      </CardContent>
+                      <CardFooter className='gap-2'>
                         <Button
                           variant='outline'
-                          size='sm'
                           onClick={() =>
                             handleCopyAddress(method.address!, method.id)
                           }
                           className='flex-1'
                         >
                           {copiedAddress === method.id ? (
-                            <CheckCircle className='h-4 w-4 mr-2' />
+                            <CheckCircle />
                           ) : (
-                            <Copy className='h-4 w-4 mr-2' />
+                            <Copy />
                           )}
                           {copiedAddress === method.id
                             ? t('copied')
@@ -197,15 +207,14 @@ export default function SupportPage() {
                         </Button>
                         <Button
                           variant='outline'
-                          size='sm'
                           onClick={() => handleShowQR(method)}
                           className='flex-1'
                         >
-                          <QrCode className='h-4 w-4 mr-2' />
+                          <QrCode />
                           {t('showQR')}
                         </Button>
-                      </div>
-                    </div>
+                      </CardFooter>
+                    </>
                   )}
                 </Card>
               ))}
@@ -213,17 +222,17 @@ export default function SupportPage() {
           </section>
 
           {/* Contact Section */}
-          <section className='bg-gray-50 dark:bg-gray-800 rounded-xl p-8'>
-            <h2 className='text-2xl font-semibold text-gray-900 dark:text-white mb-4 text-center'>
+          <section className='bg-muted rounded-xl p-8'>
+            <h2 className='text-2xl font-semibold text-foreground dark:text-white mb-4 text-center'>
               {t('contact.title')}
             </h2>
-            <p className='text-gray-600 dark:text-gray-300 text-center mb-4'>
+            <p className='text-muted-foreground text-center mb-4'>
               {t('contact.description')}
             </p>
             <div className='text-center'>
               <a
                 href={`mailto:${t('contact.email')}`}
-                className='inline-flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:underline'
+                className='inline-flex items-center space-x-2 text-primary-text hover:underline'
               >
                 <span>{t('contact.email')}</span>
                 <ExternalLink className='h-4 w-4' />
@@ -232,15 +241,15 @@ export default function SupportPage() {
           </section>
 
           {/* Contributor Credit */}
-          <p className='text-center text-sm text-gray-500 dark:text-gray-400 pt-4'>
+          <p className='text-center text-sm text-muted-foreground pt-4'>
             {t('credits')}
           </p>
 
           {/* Thank You Message */}
           <div className='text-center py-8'>
-            <div className='inline-flex items-center space-x-2 bg-green-50 dark:bg-green-950 px-6 py-4 rounded-full'>
-              <Heart className='h-5 w-5 text-green-500' />
-              <span className='text-green-700 dark:text-green-300 font-medium'>
+            <div className='inline-flex items-center space-x-2 bg-secondary px-6 py-4 rounded-full'>
+              <Heart className='h-5 w-5 text-primary-text' />
+              <span className='text-primary-text font-medium'>
                 {t('thankYou')}
               </span>
             </div>

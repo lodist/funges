@@ -14,7 +14,7 @@
   "description": "Discover delicious recipes using foraged ingredients",
   "filterBy": "Ingredient",
   "filters": "Filters",
-  "clear": "Clear",
+  "clear": "Clear filters",
   "apply": "Apply",
   "all": "All",
   "mushroom": "Mushroom",
@@ -39,7 +39,9 @@
     "routeStops": "Route stops",
     "refreshRoute": "Refresh route",
     "drawRoute": "Draw route",
-    "recipesButton": "Recipes"
+    "recipesButton": "Recipes",
+    "openInMaps": "Open in Google Maps",
+    "clearRoute": "Clear route"
   },
   "species": {
     "amaranth": "Amaranth",

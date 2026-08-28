@@ -46,19 +46,26 @@ describe('FeatureInfoModal', () => {
     expect(screen.queryByText(/specie rilevate/i)).not.toBeInTheDocument();
   });
 
-  it('shows an icon-only close button and no text "Chiudi" button, and closes on click', async () => {
+  it('shows exactly one close button, icon-only, and closes on click', async () => {
     const onClose = vi.fn();
     const user = userEvent.setup();
     render(
       <FeatureInfoModal feature={twoSpeciesFeature} open onClose={onClose} />
     );
 
-    expect(
-      screen.queryByRole('button', { name: /^chiudi$/i })
-    ).not.toBeInTheDocument();
+    // The guard here is the *count*: a redundant text close button alongside
+    // Dialog's own icon button is the regression this test was written for.
+    // It used to find the icon button by the name /close/i, which only worked
+    // while DialogContent's sr-only label was hardcoded English (#225).
+    const closeButtons = screen.getAllByRole('button', { name: /^chiudi$/i });
+    expect(closeButtons).toHaveLength(1);
 
-    const closeButton = screen.getByRole('button', { name: /close/i });
-    await user.click(closeButton);
+    // Icon-only: the accessible name comes from sr-only text, so nothing of it
+    // is visible.
+    expect(closeButtons[0].textContent?.trim()).toBe('Chiudi');
+    expect(closeButtons[0].querySelector('.sr-only')).not.toBeNull();
+
+    await user.click(closeButtons[0]);
 
     expect(onClose).toHaveBeenCalled();
   });

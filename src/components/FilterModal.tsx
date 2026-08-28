@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
+import { X } from '@/lib/icons';
 
 interface FilterModalProps {
   isOpen: boolean;
@@ -65,15 +66,16 @@ export default function FilterModal({
   return (
     <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4'>
       {/* Trailhead (#213): matches Dialog's radius/shadow. */}
-      <div className='bg-background rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.24)] max-w-2xl w-full max-h-[90vh] overflow-y-auto flex flex-col relative'>
+      <div className='bg-background rounded-card shadow-[0_8px_32px_rgba(0,0,0,0.24)] max-w-2xl w-full max-h-[90vh] overflow-y-auto flex flex-col relative'>
         {/* Close Button - Top Right */}
         <Button
           variant='ghost'
-          size='sm'
+          size='icon'
           onClick={onClose}
-          className='absolute top-4 right-4 z-10 h-8 w-8 p-0 rounded-lg border-0 bg-transparent hover:bg-[var(--happy-50)] hover:text-[var(--happy-700)]'
+          aria-label={t('common:common.close')}
+          className='absolute top-4 right-4 z-10'
         >
-          <span className='text-lg'>{'✕'}</span>
+          <X />
         </Button>
 
         {/* Filters Content */}
@@ -88,9 +90,8 @@ export default function FilterModal({
             <div className='flex flex-wrap gap-3'>
               <Button
                 variant={selectedCategory === 'all' ? 'default' : 'outline'}
-                size='sm'
                 onClick={() => onCategoryChange('all')}
-                className={`transition-all duration-200 ${
+                className={`transition-all duration-base ${
                   selectedCategory === 'all'
                     ? 'shadow-md scale-105'
                     : 'hover:scale-105'
@@ -107,9 +108,8 @@ export default function FilterModal({
                   variant={
                     selectedCategory === category ? 'default' : 'outline'
                   }
-                  size='sm'
                   onClick={() => onCategoryChange(category)}
-                  className={`transition-all duration-200 ${
+                  className={`transition-all duration-base ${
                     selectedCategory === category
                       ? 'shadow-md scale-105'
                       : 'hover:scale-105'
@@ -136,9 +136,8 @@ export default function FilterModal({
             <div className='flex flex-wrap gap-3'>
               <Button
                 variant={selectedDifficulty === 'all' ? 'default' : 'outline'}
-                size='sm'
                 onClick={() => onDifficultyChange('all')}
-                className={`transition-all duration-200 ${
+                className={`transition-all duration-base ${
                   selectedDifficulty === 'all'
                     ? 'shadow-md scale-105'
                     : 'hover:scale-105'
@@ -155,9 +154,8 @@ export default function FilterModal({
                   variant={
                     selectedDifficulty === difficulty ? 'default' : 'outline'
                   }
-                  size='sm'
                   onClick={() => onDifficultyChange(difficulty)}
-                  className={`transition-all duration-200 ${
+                  className={`transition-all duration-base ${
                     selectedDifficulty === difficulty
                       ? 'shadow-md scale-105'
                       : 'hover:scale-105'
@@ -186,9 +184,8 @@ export default function FilterModal({
             <div className='flex flex-wrap gap-3'>
               <Button
                 variant={selectedTag === 'all' ? 'default' : 'outline'}
-                size='sm'
                 onClick={() => onTagChange('all')}
-                className={`transition-all duration-200 ${
+                className={`transition-all duration-base ${
                   selectedTag === 'all'
                     ? 'shadow-md scale-105'
                     : 'hover:scale-105'
@@ -205,9 +202,8 @@ export default function FilterModal({
                   <Button
                     key={tag}
                     variant={selectedTag === tag ? 'default' : 'outline'}
-                    size='sm'
                     onClick={() => onTagChange(tag)}
-                    className={`transition-all duration-200 ${
+                    className={`transition-all duration-base ${
                       selectedTag === tag
                         ? 'shadow-md scale-105'
                         : 'hover:scale-105'
@@ -226,11 +222,7 @@ export default function FilterModal({
 
         {/* Footer Actions - Fixed at bottom */}
         <div className='flex items-center justify-end gap-3 p-6 border-t border-border bg-(--background-secondary)/30 mt-auto'>
-          <Button
-            variant='outline'
-            onClick={onClearFilters}
-            className='hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors duration-200'
-          >
+          <Button variant='outline' onClick={onClearFilters}>
             {t('clear')}
           </Button>
           <Button onClick={onClose} className='min-w-[100px]'>

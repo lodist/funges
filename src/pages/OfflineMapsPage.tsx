@@ -43,13 +43,13 @@ export default function OfflineMapsPage() {
         <h1 className='text-3xl font-bold'>{t('title')}</h1>
 
         {!isOnline && (
-          <div className='bg-yellow-100 text-yellow-800 px-4 py-2 rounded'>
+          <div className='bg-status-warning-background text-status-warning-text px-4 py-2 rounded'>
             {t('offlineBanner')}
           </div>
         )}
 
         {error && (
-          <div className='bg-red-100 text-red-800 px-4 py-2 rounded'>
+          <div className='bg-destructive/10 text-destructive-text px-4 py-2 rounded'>
             {error}
           </div>
         )}
@@ -66,7 +66,7 @@ export default function OfflineMapsPage() {
         <section className='space-y-2'>
           <h2 className='text-xl font-semibold'>{t('regions.title')}</h2>
           <div className='overflow-x-auto'>
-            <table className='min-w-full divide-y divide-gray-200 text-sm'>
+            <table className='min-w-full divide-y divide-border text-sm'>
               <thead>
                 <tr>
                   <th className='px-2 py-1 text-left'>{t('regions.name')}</th>
@@ -74,12 +74,12 @@ export default function OfflineMapsPage() {
                   <th className='px-2 py-1'></th>
                 </tr>
               </thead>
-              <tbody className='divide-y divide-gray-200'>
+              <tbody className='divide-y divide-border'>
                 {CONTINENTS.map(continent => {
                   const info = cached[continent];
                   const isDownloading = Boolean(downloading[continent]);
                   return (
-                    <tr key={continent} className='hover:bg-gray-50'>
+                    <tr key={continent} className='hover:bg-muted'>
                       <td className='px-2 py-1'>{t(`regions.${continent}`)}</td>
                       <td className='px-2 py-1'>
                         {isDownloading
@@ -95,7 +95,6 @@ export default function OfflineMapsPage() {
                       <td className='px-2 py-1 text-right'>
                         {info ? (
                           <Button
-                            size='sm'
                             disabled={isDownloading}
                             onClick={() => remove(continent)}
                           >
@@ -103,7 +102,6 @@ export default function OfflineMapsPage() {
                           </Button>
                         ) : (
                           <Button
-                            size='sm'
                             disabled={isDownloading || !isOnline}
                             onClick={() => download(continent)}
                           >

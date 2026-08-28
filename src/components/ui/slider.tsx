@@ -11,6 +11,12 @@ function Slider({
   max = 100,
   step = 1,
   showTicks = false,
+  // Radix puts role="slider" on the *thumb*, not on the root, so an
+  // aria-label spread onto the root names an element that has no role and
+  // leaves the actual slider anonymous (axe: aria-input-field-name). Pulled
+  // out of props here so it can be forwarded to the thumbs below.
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
   ...props
 }: React.ComponentProps<typeof SliderPrimitive.Root> & {
   /** Render a tick mark under every legal step value (e.g. one per forecast day). */
@@ -57,8 +63,21 @@ function Slider({
         {values.map((_, index) => (
           <SliderPrimitive.Thumb
             data-slot='slider-thumb'
+            // A thumb's identity *is* its position: thumb 0 is always the low
+            // end. Keying by value would remount the thumb on every drag frame
+            // and break the drag.
+            // eslint-disable-next-line react/no-array-index-key
             key={index}
-            className='border-background bg-foreground block size-4 shrink-0 rounded-full border-2 shadow-[0_1px_4px_rgba(0,0,0,0.25)] transition-transform hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/30 disabled:pointer-events-none disabled:opacity-50'
+            // A range slider has two thumbs and one label, so each thumb gets
+            // the label plus its 1-based position — otherwise both announce
+            // identically and there is no telling which end has focus.
+            aria-label={
+              ariaLabel && values.length > 1
+                ? `${ariaLabel} ${index + 1}`
+                : ariaLabel
+            }
+            aria-labelledby={ariaLabelledBy}
+            className='border-background bg-foreground block size-4 shrink-0 rounded-full border-2 elevation-control transition-transform hover:scale-110 focus-ring disabled:pointer-events-none disabled:opacity-50'
           />
         ))}
       </SliderPrimitive.Root>

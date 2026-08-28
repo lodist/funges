@@ -11,10 +11,10 @@ import {
 import { Button } from '@/components/ui/button';
 import { getRepresentativeLngLat } from '@/lib/geo';
 import { getSpeciesImage } from '@/lib/utils';
-import { getScoreTextColorClass } from '@/lib/scoreColor';
+import { getScoreColor } from '@/lib/scoreColor';
 import { SPECIES_DATA } from '@/data/species';
 import type { RegionId } from '@/lib/data';
-import { Navigation, BarChart2, Copy, Check } from 'lucide-react';
+import { Navigation, BarChart2, Copy, Check } from '@/lib/icons';
 
 interface FeatureInfoModalProps {
   feature: maplibregl.GeoJSONFeature | null;
@@ -133,12 +133,12 @@ export default function FeatureInfoModal({
               ({ key, score, name, image, scientificName }) => (
                 <div
                   key={key}
-                  className='flex items-center space-x-3 p-2 sm:p-3 bg-gray-50 rounded-lg'
+                  className='flex items-center space-x-3 p-2 sm:p-3 bg-muted rounded-lg'
                 >
                   {/* Thumbnail */}
                   <div className='flex-shrink-0'>
                     {image && (
-                      <div className='relative w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-50 to-green-100 overflow-hidden rounded-lg'>
+                      <div className='relative w-14 h-14 sm:w-16 sm:h-16 bg-secondary bg-secondary overflow-hidden rounded-lg'>
                         <img
                           src={image}
                           alt={name}
@@ -152,22 +152,31 @@ export default function FeatureInfoModal({
 
                   {/* Species info */}
                   <div className='flex-1 min-w-0'>
-                    <h3 className='font-semibold text-gray-900 text-sm sm:text-base leading-tight mb-1'>
+                    <h3 className='font-semibold text-foreground text-sm sm:text-base leading-tight mb-1'>
                       {name}
                     </h3>
-                    <p className='text-xs sm:text-sm text-gray-600 italic leading-tight'>
+                    <p className='text-xs sm:text-sm text-muted-foreground italic leading-tight'>
                       {scientificName}
                     </p>
                   </div>
 
                   {/* Score display */}
                   <div className='flex-shrink-0 text-right'>
-                    <div
-                      className={`text-xl sm:text-2xl font-bold ${getScoreTextColorClass(score)} leading-tight`}
-                    >
-                      {Math.round(score * 10)}%
+                    <div className='flex items-center justify-end gap-1.5'>
+                      {/* The ramp colour reads as a swatch, matching the map
+                          polygon, while the number itself stays on Ink. It used
+                          to be the number's text colour, which never rendered
+                          and would have been unreadable at the pale end. */}
+                      <span
+                        aria-hidden
+                        className='size-2.5 shrink-0 rounded-full'
+                        style={{ backgroundColor: getScoreColor(score) }}
+                      />
+                      <span className='text-xl sm:text-2xl font-bold text-foreground leading-tight'>
+                        {Math.round(score * 10)}%
+                      </span>
                     </div>
-                    <div className='text-xs text-gray-500 leading-tight'>
+                    <div className='text-xs text-muted-foreground leading-tight'>
                       {tCommon('common.score')}: {score.toFixed(1)}/10
                     </div>
                   </div>

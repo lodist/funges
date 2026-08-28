@@ -14,7 +14,7 @@
   "description": "Descubre deliciosas recetas usando ingredientes recolectados",
   "filterBy": "Ingrediente",
   "filters": "Filtros",
-  "clear": "Limpiar",
+  "clear": "Borrar filtros",
   "apply": "Aplicar",
   "all": "Todos",
   "mushroom": "Hongo",
@@ -39,7 +39,9 @@
     "routeStops": "Paradas de la ruta",
     "refreshRoute": "Actualizar ruta",
     "drawRoute": "Trazar ruta",
-    "recipesButton": "Recetas"
+    "recipesButton": "Recetas",
+    "openInMaps": "Abrir en Google Maps",
+    "clearRoute": "Borrar ruta"
   },
   "species": {
     "amaranth": "Amaranto",

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
-import { XIcon } from 'lucide-react';
+import { XIcon } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 
 import { cn } from '@/lib/utils';
@@ -35,7 +35,8 @@ function SheetOverlay({
     <SheetPrimitive.Overlay
       data-slot='sheet-overlay'
       className={cn(
-        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50',
+        // Scrim and panel share the overlay enter/exit duration.
+        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-scrim duration-slow ease-standard',
         className
       )}
       {...props}
@@ -59,17 +60,20 @@ function SheetContent({
       <SheetPrimitive.Content
         data-slot='sheet-content'
         className={cn(
-          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500',
+          // Motion: Sheet is a `floating` surface, so enter and exit
+          // both ride --transition-duration-slow. The asymmetric 500ms open is folded
+          // onto the shared scale — one scale, no undocumented exception.
+          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out elevation-floating fixed z-50 flex max-h-dvh flex-col transition duration-slow ease-standard',
           side === 'right' &&
             'data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm',
           side === 'left' &&
             'data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm',
           side === 'top' &&
             'data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 h-auto border-b',
-          // Trailhead (#213): bottom sheet for mobile actions — rounded
+          // Trailhead: bottom sheet for mobile actions — rounded
           // top, no border, drag handle below.
           side === 'bottom' &&
-            'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto rounded-t-[1.75rem] border-0 border-t-0 shadow-[0_-4px_24px_rgba(0,0,0,0.18)] pt-3',
+            'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto rounded-t-card border-0 border-t-0 elevation-floating-up pt-3',
           className
         )}
         {...props}
@@ -77,11 +81,19 @@ function SheetContent({
         {side === 'bottom' && (
           <div className='mx-auto mb-2 h-1.5 w-10 rounded-full bg-border' />
         )}
-        {children}
-        {/* Trailhead (#213): bare X, no resting background/border — only on
-            hover does it pick up a rounded-square happy-green fill,
-            matching Dialog. */}
-        <SheetPrimitive.Close className='ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-lg size-9 p-0 border-0 bg-transparent text-[var(--happy-700)] grid place-items-center leading-none opacity-100 transition-colors hover:bg-[var(--happy-50)] focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none'>
+        <div
+          data-slot='sheet-body'
+          className='flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto'
+        >
+          {children}
+        </div>
+        {/* Round X carrying the panel's own colour, so body text scrolling
+            underneath stays masked, with a happy fill on hover. Sits above the
+            scrolling body, so it never scrolls away. */}
+        <SheetPrimitive.Close
+          data-slot='sheet-close-icon'
+          className='focus-ring absolute top-4 right-4 z-10 rounded-full size-11 p-0 border-0 bg-background text-happy-700 dark:text-happy-300 grid place-items-center leading-none opacity-100 transition-colors hover:bg-happy-50 dark:hover:bg-happy-900 disabled:pointer-events-none'
+        >
           <XIcon className='size-4' />
           <span className='sr-only'>{t('close')}</span>
         </SheetPrimitive.Close>

@@ -1,0 +1,555 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-25T15:34:17Z",
+  "title": "Design System: Fung.es",
+  "extensions": {
+    "colorMeta": {
+      "chlorophyll-bright": {
+        "role": "primary",
+        "displayName": "Spring Chlorophyll Bright",
+        "canonical": "oklch(0.74 0.17 150)",
+        "tonalRamp": [
+          "oklch(0.24 0.07 150)",
+          "oklch(0.42 0.13 150)",
+          "oklch(0.58 0.18 150)",
+          "oklch(0.65 0.18 150)",
+          "oklch(0.74 0.17 150)",
+          "oklch(0.85 0.12 151)",
+          "oklch(0.93 0.06 152)",
+          "oklch(0.97 0.03 152)"
+        ]
+      },
+      "chlorophyll-pressed": {
+        "role": "primary",
+        "displayName": "Spring Chlorophyll Pressed",
+        "canonical": "oklch(0.65 0.18 150)",
+        "tonalRamp": [
+          "oklch(0.24 0.07 150)",
+          "oklch(0.42 0.13 150)",
+          "oklch(0.58 0.18 150)",
+          "oklch(0.65 0.18 150)",
+          "oklch(0.74 0.17 150)",
+          "oklch(0.85 0.12 151)",
+          "oklch(0.93 0.06 152)",
+          "oklch(0.97 0.03 152)"
+        ]
+      },
+      "chlorophyll-readable": {
+        "role": "primary",
+        "displayName": "Spring Chlorophyll Readable",
+        "canonical": "oklch(0.42 0.13 150)",
+        "tonalRamp": [
+          "oklch(0.24 0.07 150)",
+          "oklch(0.42 0.13 150)",
+          "oklch(0.58 0.18 150)",
+          "oklch(0.65 0.18 150)",
+          "oklch(0.74 0.17 150)",
+          "oklch(0.85 0.12 151)",
+          "oklch(0.93 0.06 152)",
+          "oklch(0.97 0.03 152)"
+        ]
+      },
+      "chlorophyll-deep": {
+        "role": "primary",
+        "displayName": "Spring Chlorophyll Deep",
+        "canonical": "oklch(0.24 0.07 150)",
+        "tonalRamp": [
+          "oklch(0.24 0.07 150)",
+          "oklch(0.42 0.13 150)",
+          "oklch(0.58 0.18 150)",
+          "oklch(0.65 0.18 150)",
+          "oklch(0.74 0.17 150)",
+          "oklch(0.85 0.12 151)",
+          "oklch(0.93 0.06 152)",
+          "oklch(0.97 0.03 152)"
+        ]
+      },
+      "moss-fill": {
+        "role": "secondary",
+        "displayName": "Moss Fill",
+        "canonical": "oklch(0.9582 0.0193 147.8505)",
+        "tonalRamp": [
+          "oklch(0.15 0.019 147.5)",
+          "oklch(0.24 0.019 147.5)",
+          "oklch(0.42 0.019 147.5)",
+          "oklch(0.58 0.019 147.5)",
+          "oklch(0.65 0.019 147.5)",
+          "oklch(0.74 0.019 147.5)",
+          "oklch(0.85 0.019 147.5)",
+          "oklch(0.95 0.019 147.5)"
+        ]
+      },
+      "moss-text": {
+        "role": "secondary",
+        "displayName": "Moss Text",
+        "canonical": "oklch(0.5262 0.1294 147.1971)",
+        "tonalRamp": [
+          "oklch(0.15 0.129 147.2)",
+          "oklch(0.24 0.129 147.2)",
+          "oklch(0.42 0.129 147.2)",
+          "oklch(0.58 0.129 147.2)",
+          "oklch(0.65 0.129 147.2)",
+          "oklch(0.74 0.129 147.2)",
+          "oklch(0.85 0.129 147.2)",
+          "oklch(0.95 0.129 147.2)"
+        ]
+      },
+      "lichen": {
+        "role": "secondary",
+        "displayName": "Lichen (dark-theme green)",
+        "canonical": "oklch(0.6731 0.1624 144.2083)",
+        "tonalRamp": [
+          "oklch(0.15 0.162 144.2)",
+          "oklch(0.24 0.162 144.2)",
+          "oklch(0.42 0.162 144.2)",
+          "oklch(0.58 0.162 144.2)",
+          "oklch(0.65 0.162 144.2)",
+          "oklch(0.74 0.162 144.2)",
+          "oklch(0.85 0.162 144.2)",
+          "oklch(0.95 0.162 144.2)"
+        ]
+      },
+      "trail-tan": {
+        "role": "tertiary",
+        "displayName": "Trail Tan",
+        "canonical": "oklch(0.9356 0.0194 72.5693)",
+        "tonalRamp": [
+          "oklch(0.15 0.019 72.6)",
+          "oklch(0.24 0.019 72.6)",
+          "oklch(0.42 0.019 72.6)",
+          "oklch(0.58 0.019 72.6)",
+          "oklch(0.65 0.019 72.6)",
+          "oklch(0.74 0.019 72.6)",
+          "oklch(0.85 0.019 72.6)",
+          "oklch(0.95 0.019 72.6)"
+        ]
+      },
+      "bark": {
+        "role": "tertiary",
+        "displayName": "Bark",
+        "canonical": "oklch(0.4506 0.0552 64.6273)",
+        "tonalRamp": [
+          "oklch(0.15 0.055 64.6)",
+          "oklch(0.24 0.055 64.6)",
+          "oklch(0.42 0.055 64.6)",
+          "oklch(0.58 0.055 64.6)",
+          "oklch(0.65 0.055 64.6)",
+          "oklch(0.74 0.055 64.6)",
+          "oklch(0.85 0.055 64.6)",
+          "oklch(0.95 0.055 64.6)"
+        ]
+      },
+      "field-paper": {
+        "role": "neutral",
+        "displayName": "Field Paper",
+        "canonical": "oklch(0.9938 0.0013 106.4231)",
+        "tonalRamp": [
+          "oklch(0.15 0.0013 106.4)",
+          "oklch(0.24 0.0013 106.4)",
+          "oklch(0.42 0.0013 106.4)",
+          "oklch(0.58 0.0013 106.4)",
+          "oklch(0.65 0.0013 106.4)",
+          "oklch(0.74 0.0013 106.4)",
+          "oklch(0.85 0.0013 106.4)",
+          "oklch(0.95 0.0013 106.4)"
+        ]
+      },
+      "warm-linen": {
+        "role": "neutral",
+        "displayName": "Warm Linen",
+        "canonical": "oklch(0.952 0.0083 91.4843)",
+        "tonalRamp": [
+          "oklch(0.15 0.0083 91.5)",
+          "oklch(0.24 0.0083 91.5)",
+          "oklch(0.42 0.0083 91.5)",
+          "oklch(0.58 0.0083 91.5)",
+          "oklch(0.65 0.0083 91.5)",
+          "oklch(0.74 0.0083 91.5)",
+          "oklch(0.85 0.0083 91.5)",
+          "oklch(0.95 0.0083 91.5)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(0.2431 0.0076 95.3724)",
+        "tonalRamp": [
+          "oklch(0.15 0.0076 95.4)",
+          "oklch(0.24 0.0076 95.4)",
+          "oklch(0.42 0.0076 95.4)",
+          "oklch(0.58 0.0076 95.4)",
+          "oklch(0.65 0.0076 95.4)",
+          "oklch(0.74 0.0076 95.4)",
+          "oklch(0.85 0.0076 95.4)",
+          "oklch(0.95 0.0076 95.4)"
+        ]
+      },
+      "stone": {
+        "role": "neutral",
+        "displayName": "Stone",
+        "canonical": "oklch(0.5261 0.0151 82.3829)",
+        "tonalRamp": [
+          "oklch(0.15 0.0151 82.4)",
+          "oklch(0.24 0.0151 82.4)",
+          "oklch(0.42 0.0151 82.4)",
+          "oklch(0.58 0.0151 82.4)",
+          "oklch(0.65 0.0151 82.4)",
+          "oklch(0.74 0.0151 82.4)",
+          "oklch(0.85 0.0151 82.4)",
+          "oklch(0.95 0.0151 82.4)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(0.9071 0.01 87.4748)",
+        "tonalRamp": [
+          "oklch(0.15 0.01 87.5)",
+          "oklch(0.24 0.01 87.5)",
+          "oklch(0.42 0.01 87.5)",
+          "oklch(0.58 0.01 87.5)",
+          "oklch(0.65 0.01 87.5)",
+          "oklch(0.74 0.01 87.5)",
+          "oklch(0.85 0.01 87.5)",
+          "oklch(0.95 0.01 87.5)"
+        ]
+      },
+      "night-canvas": {
+        "role": "neutral",
+        "displayName": "Night Canvas",
+        "canonical": "oklch(0.2683 0.0279 150.7681)",
+        "tonalRamp": [
+          "oklch(0.15 0.0279 150.8)",
+          "oklch(0.24 0.0279 150.8)",
+          "oklch(0.42 0.0279 150.8)",
+          "oklch(0.58 0.0279 150.8)",
+          "oklch(0.65 0.0279 150.8)",
+          "oklch(0.74 0.0279 150.8)",
+          "oklch(0.85 0.0279 150.8)",
+          "oklch(0.95 0.0279 150.8)"
+        ]
+      },
+      "night-surface": {
+        "role": "neutral",
+        "displayName": "Night Surface",
+        "canonical": "oklch(0.3327 0.0271 146.9867)",
+        "tonalRamp": [
+          "oklch(0.15 0.0271 147.0)",
+          "oklch(0.24 0.0271 147.0)",
+          "oklch(0.42 0.0271 147.0)",
+          "oklch(0.58 0.0271 147.0)",
+          "oklch(0.65 0.0271 147.0)",
+          "oklch(0.74 0.0271 147.0)",
+          "oklch(0.85 0.0271 147.0)",
+          "oklch(0.95 0.0271 147.0)"
+        ]
+      },
+      "status-amber": {
+        "role": "tertiary",
+        "displayName": "Status Amber (safety warnings)",
+        "canonical": "#f59e0b",
+        "tonalRamp": [
+          "oklch(0.15 0.15 70.0)",
+          "oklch(0.24 0.15 70.0)",
+          "oklch(0.42 0.15 70.0)",
+          "oklch(0.58 0.15 70.0)",
+          "oklch(0.65 0.15 70.0)",
+          "oklch(0.74 0.15 70.0)",
+          "oklch(0.85 0.15 70.0)",
+          "oklch(0.95 0.15 70.0)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page-level hero heading. Rare — one per route at most."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Route titles and major section openers."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "The workhorse heading: card titles, panel headers, species names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All running text. The global 16px/1.5 baseline."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons, form labels, list metadata, input text at md+."
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "Badges and dense map chrome. The floor — nothing smaller ships."
+      }
+    },
+    "shadows": [
+      {
+        "name": "elevation-raised-subtle",
+        "value": "0 1px 6px rgba(0, 0, 0, 0.06)",
+        "purpose": "Lightweight input chrome you look through rather than press — search field, select trigger. No hover escalation."
+      },
+      {
+        "name": "elevation-raised",
+        "value": "0 2px 16px rgba(0, 0, 0, 0.1)",
+        "purpose": "Small static chrome above the map: cards, app sidebar, mobile nav bar."
+      },
+      {
+        "name": "elevation-raised-hover",
+        "value": "0 6px 20px rgba(0, 0, 0, 0.14)",
+        "purpose": "Hover escalation for interactive raised surfaces, via .elevation-interactive."
+      },
+      {
+        "name": "elevation-floating",
+        "value": "0 4px 20px rgba(0, 0, 0, 0.16)",
+        "purpose": "Dismiss-by-tap-outside surfaces: dropdown menus, select content, sheets, tooltips."
+      },
+      {
+        "name": "elevation-overlay",
+        "value": "0 8px 32px rgba(0, 0, 0, 0.24)",
+        "purpose": "Blocking surfaces with a scrim: modal dialogs."
+      },
+      {
+        "name": "elevation-raised-dark",
+        "value": "inset 0 1px 0 0 rgb(255 255 255 / 0.08), 0 2px 16px rgba(0, 0, 0, 0.4)",
+        "purpose": "Dark-theme raised. Same geometry as light; the 1px inset highlight is the real depth cue (ADR 0001)."
+      },
+      {
+        "name": "button-lift",
+        "value": "0 2px 8px rgba(0, 0, 0, 0.18)",
+        "purpose": "Resting lift on filled pill buttons — depth standing in for the border they don't have."
+      },
+      {
+        "name": "button-lift-hover",
+        "value": "0 3px 12px rgba(0, 0, 0, 0.22)",
+        "purpose": "Button hover: the surface gets heavier, it never moves."
+      }
+    ],
+    "motion": [
+      {
+        "name": "duration-fast",
+        "value": "150ms",
+        "purpose": "Elevation hover and press micro-interactions."
+      },
+      {
+        "name": "duration-base",
+        "value": "200ms",
+        "purpose": "Canonical duration for default UI state changes."
+      },
+      {
+        "name": "duration-slow",
+        "value": "300ms",
+        "purpose": "Floating and overlay enter/exit (Dialog, Sheet)."
+      },
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "The system's only easing curve. Every transition references it."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "2xl",
+        "value": "1536px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The go-signal: bright green fill, deep green label, borderless pill lifted by shadow.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Find nearby</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; height: 2.75rem; padding: 0 1.5rem; border: 0; border-radius: 9999px; font-family: 'Public Sans', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background-color 200ms cubic-bezier(0.4,0,0.2,1), box-shadow 200ms cubic-bezier(0.4,0,0.2,1), color 200ms cubic-bezier(0.4,0,0.2,1); } .ds-btn-primary { background: var(--happy-500, oklch(0.74 0.17 150)); color: var(--happy-900, oklch(0.24 0.07 150)); box-shadow: 0 2px 8px rgba(0,0,0,0.18); } .ds-btn-primary:hover { background: oklch(0.58 0.18 150); box-shadow: 0 3px 12px rgba(0,0,0,0.22); } .ds-btn-primary:focus-visible { outline: 2px solid var(--happy-600, oklch(0.65 0.18 150)); outline-offset: 2px; } .ds-btn-primary:active { box-shadow: 0 2px 8px rgba(0,0,0,0.18); }"
+    },
+    {
+      "name": "Destructive Button",
+      "kind": "button",
+      "refersTo": "button-destructive",
+      "description": "Danger without red: the deepest step of the green scale, white label. Severity is depth, not hue.",
+      "html": "<button class=\"ds-btn ds-btn-destructive\">Delete saved spot</button>",
+      "css": ".ds-btn-destructive { background: var(--happy-900, oklch(0.24 0.07 150)); color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.18); } .ds-btn-destructive:hover { background: oklch(0.36 0.10 150); box-shadow: 0 3px 12px rgba(0,0,0,0.22); } .ds-btn-destructive:focus-visible { outline: 2px solid var(--happy-600, oklch(0.65 0.18 150)); outline-offset: 2px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "The system's one sanctioned stroke: 2px green edge on transparent, readable-green label.",
+      "html": "<button class=\"ds-btn ds-btn-outline\">Share find</button>",
+      "css": ".ds-btn-outline { background: transparent; color: var(--happy-700, oklch(0.42 0.13 150)); border: 2px solid var(--happy-600, oklch(0.65 0.18 150)); box-shadow: none; } .ds-btn-outline:hover { background: var(--happy-50, oklch(0.97 0.03 152)); color: var(--happy-700, oklch(0.42 0.13 150)); } .ds-btn-outline:focus-visible { outline: 2px solid var(--happy-600, oklch(0.65 0.18 150)); outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Lowest-emphasis action: green label on nothing, washing to mist on hover.",
+      "html": "<button class=\"ds-btn ds-btn-ghost\">Cancel</button>",
+      "css": ".ds-btn-ghost { background: transparent; color: var(--happy-700, oklch(0.42 0.13 150)); box-shadow: none; } .ds-btn-ghost:hover { background: var(--happy-50, oklch(0.97 0.03 152)); color: var(--happy-700, oklch(0.42 0.13 150)); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--happy-600, oklch(0.65 0.18 150)); outline-offset: 2px; }"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "48px pill on warm paper with a raised-subtle lift; focus turns the border bright green. Leading-icon callers pad to 2.75rem.",
+      "html": "<div class=\"ds-field\"><svg class=\"ds-field-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"></circle><path d=\"m21 21-4.3-4.3\"></path></svg><input class=\"ds-input-search\" type=\"search\" placeholder=\"Search species…\" /></div>",
+      "css": ".ds-field { position: relative; display: block; width: 100%; max-width: 22rem; } .ds-field-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 1.125rem; height: 1.125rem; color: var(--muted-foreground, oklch(0.5261 0.0151 82.3829)); pointer-events: none; } .ds-input-search { display: flex; height: 3rem; width: 100%; padding: 0.25rem 1rem 0.25rem 2.75rem; border: 1px solid var(--border, oklch(0.9071 0.01 87.4748)); border-radius: 9999px; background: var(--card, oklch(0.9938 0.0013 106.4231)); color: var(--foreground, oklch(0.2431 0.0076 95.3724)); font-family: 'Public Sans', sans-serif; font-size: 1rem; box-shadow: 0 1px 6px rgba(0,0,0,0.06); outline: none; transition: color 200ms cubic-bezier(0.4,0,0.2,1), box-shadow 200ms cubic-bezier(0.4,0,0.2,1), border-color 200ms cubic-bezier(0.4,0,0.2,1); } .ds-input-search::placeholder { color: var(--muted-foreground, oklch(0.5261 0.0151 82.3829)); } .ds-input-search:focus-visible { border-color: var(--happy-500, oklch(0.74 0.17 150)); } .ds-input-search[aria-invalid='true'] { border-color: var(--happy-900, oklch(0.24 0.07 150)); }"
+    },
+    {
+      "name": "Badge",
+      "kind": "chip",
+      "refersTo": "badge-default",
+      "description": "Borderless 12px pill marker. Default uses the literal bright green — one step brighter than --primary — so it reads as a marker, not a small button.",
+      "html": "<span class=\"ds-badge\">In season</span><span class=\"ds-badge ds-badge-secondary\">Berry</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; justify-content: center; gap: 0.25rem; width: fit-content; padding: 0.125rem 0.5rem; border: 1px solid transparent; border-radius: 9999px; background: var(--happy-500, oklch(0.74 0.17 150)); color: var(--happy-900, oklch(0.24 0.07 150)); font-family: 'Public Sans', sans-serif; font-size: 0.75rem; font-weight: 500; line-height: 1.3; white-space: nowrap; overflow: hidden; transition: color 200ms cubic-bezier(0.4,0,0.2,1), box-shadow 200ms cubic-bezier(0.4,0,0.2,1); } .ds-badge + .ds-badge { margin-left: 0.375rem; } .ds-badge-secondary { background: var(--secondary, oklch(0.9582 0.0193 147.8505)); color: var(--secondary-foreground, oklch(0.5262 0.1294 147.1971)); }"
+    },
+    {
+      "name": "Trail Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Photo-first container: 20px radius, no border, raised shadow that deepens on hover, media clipped full-bleed.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-media\"></div><div class=\"ds-card-body\"><h3 class=\"ds-card-title\">Chanterelle</h3><p class=\"ds-card-meta\">Cantharellus cibarius · Jul–Oct</p></div></article>",
+      "css": ".ds-card { display: flex; flex-direction: column; gap: 0; padding: 0; border: 0; border-radius: 1.25rem; overflow: hidden; background: var(--card, oklch(0.9938 0.0013 106.4231)); color: var(--card-foreground, oklch(0.2431 0.0076 95.3724)); box-shadow: 0 2px 16px rgba(0,0,0,0.1); transition: box-shadow 200ms cubic-bezier(0.4,0,0.2,1); max-width: 20rem; } .ds-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.14); } .ds-card-media { height: 8rem; background: linear-gradient(135deg, var(--happy-300, oklch(0.85 0.12 151)), var(--happy-600, oklch(0.65 0.18 150))); } .ds-card-body { display: grid; gap: 0.375rem; padding: 1.25rem 1.5rem 1.5rem; } .ds-card-title { margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 600; line-height: 1; } .ds-card-meta { margin: 0; font-family: 'Public Sans', sans-serif; font-size: 0.875rem; color: var(--muted-foreground, oklch(0.5261 0.0151 82.3829)); }"
+    },
+    {
+      "name": "Nav Surface (glass)",
+      "kind": "nav",
+      "refersTo": "nav-surface",
+      "description": "The one nav treatment shared by desktop sidebar and mobile bottom bar: elevation raised plus glass-regular, with an opaque fallback and a green tint on the active item.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Primary\"><a class=\"ds-nav-item ds-nav-item-active\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z\"></path><path d=\"M9 3v15\"></path><path d=\"M15 6v15\"></path></svg><span>Map</span></a><a class=\"ds-nav-item\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 1 0 9 9\"></path><path d=\"M12 3v9h9\"></path></svg><span>Species</span></a><a class=\"ds-nav-item\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4h16v6a8 8 0 0 1-16 0z\"></path><path d=\"M2 20h20\"></path></svg><span>Recipes</span></a></nav>",
+      "css": ".ds-nav { display: flex; align-items: stretch; gap: 0.25rem; padding: 0.5rem; border: 1px solid rgb(255 255 255 / 0.3); border-top-color: rgb(255 255 255 / 0.5); border-radius: 1.25rem; background: var(--card, oklch(0.9938 0.0013 106.4231)); box-shadow: 0 2px 16px rgba(0,0,0,0.1); width: fit-content; } @supports (backdrop-filter: blur(1px)) { .ds-nav { background: rgb(255 255 255 / 0.9); backdrop-filter: blur(12px); } } @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) { .ds-nav { background: var(--card, oklch(0.9938 0.0013 106.4231)); backdrop-filter: none; } } .ds-nav-item { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; min-width: 4.5rem; padding: 0.5rem 0.75rem; border-radius: 0.75rem; color: var(--foreground, oklch(0.2431 0.0076 95.3724)); font-family: 'Public Sans', sans-serif; font-size: 0.75rem; font-weight: 500; text-decoration: none; transition: background-color 200ms cubic-bezier(0.4,0,0.2,1); } .ds-nav-item svg { width: 1.25rem; height: 1.25rem; } .ds-nav-item:hover { background: var(--happy-100, oklch(0.93 0.06 152)); } .ds-nav-item:focus-visible { outline: 2px solid var(--happy-600, oklch(0.65 0.18 150)); outline-offset: 2px; } .ds-nav-item-active { background: var(--happy-100, oklch(0.93 0.06 152)); } .ds-nav-item-active svg { color: var(--happy-700, oklch(0.42 0.13 150)); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Trailhead",
+    "overview": "The Trailhead is the moment before you set off: the signpost is green, the ground is warm, and everything you need to read is legible in full daylight. The map is the world — a living, unpredictable, edge-to-edge surface the interface has no control over — and every piece of chrome is something that floats above it: a signpost, a marker, a field card. The interface never competes with the terrain; it hovers over it and stays readable against whatever the terrain happens to be doing underneath.\n\nThe mood is fresh, alive, and tactile. A single spring-green hue does all the signalling, and it is a green with actual chroma in it — oklch(0.74 0.17 150), the color of new growth rather than corporate forest. Everything interactive is a soft-edged pill with a diffuse drop shadow and no border, so surfaces read as pressable objects sitting on warm paper rather than as boxes drawn onto a page. Warm neutrals carry the ground (#fdfdfc paper, #f1efe9 linen, #f2e8dc tan): there is no cool grey anywhere in the light theme, and the absence is deliberate — cool grey is what makes an outdoor tool feel like an admin panel.\n\nRestraint is enforced in exactly one place and it is the sharpest rule in the system: there is no second hue. No red, not even for destructive actions. Severity is expressed as depth on the green scale, not as a change of hue. The one thing this system rejects is the multi-hue semantic palette — a green for success, a red for danger, a blue for info — and the rejection is already shipped in --destructive: var(--happy-900).",
+    "keyCharacteristics": [
+      "One hue, seven steps: a spring-green scale carries brand, state, and severity alike.",
+      "Warm-neutral ground; zero cool grey in the light theme.",
+      "Borderless, full-round, shadow-lifted interactive surfaces.",
+      "Five semantic elevation roles, chosen by meaning rather than by shadow value.",
+      "Glass as an opt-in material on small chrome only — never on the map, never on a dialog.",
+      "Contrast floors treated as hard limits, because the surface underneath is a photograph of the world."
+    ],
+    "rules": [
+      {
+        "name": "The One Hue Rule",
+        "body": "The Trailhead scale is the only brand hue on any screen. Severity is depth, not hue: --destructive resolves to --happy-900. The sole exception is safety warning amber, which exists because a toxic-lookalike warning must not read as decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Text-Safe Step Rule",
+        "body": "Greens split into text-safe and fill-only. --happy-700 and Moss Text are text-safe. --happy-500 and the grass9-derived values are fills, rings, and non-text indicators only, held to the 3:1 non-text floor. Using a fill-only green as a text color is a contrast bug, not a style choice.",
+        "section": "colors"
+      },
+      {
+        "name": "The Light-Only Rule",
+        "body": "The --happy-* scale is a light-theme scale; it was never reviewed in dark mode. Dark-mode components fall back to the pre-existing tokens (Lichen, Night Surface) instead. When adding a component that hardcodes a --happy-* step, pair it with a dark-mode fallback that doesn't.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warm Ground Rule",
+        "body": "No cool grey in the light theme. Every neutral carries a warm hue angle (64–107 in OKLCH). A #f5f5f5, a slate-100, or a pure #fff background is out of system.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Family Rule",
+        "body": "h1–h3 are Space Grotesk automatically, via a global base rule. Everything else is Public Sans. Never set a display face on body copy, and never override a heading's family to match its surroundings.",
+        "section": "typography"
+      },
+      {
+        "name": "The German Test",
+        "body": "Every text container must survive its longest German string without clipping or reflowing its layout. Six locales ship; a label that only fits in English is broken. Test with de before considering a text-bearing component done.",
+        "section": "typography"
+      },
+      {
+        "name": "The Reserved Faces Rule",
+        "body": "Merriweather and Source Code Pro are declared but unused. Introducing either is a design decision that needs a reason — long-form reading matter for the serif, data or coordinates for the mono — not a default reach for variety.",
+        "section": "typography"
+      },
+      {
+        "name": "The Fixed Shell Rule",
+        "body": "The app shell never scrolls. If content overflows, it gets its own scroll container; adding scroll to body breaks the map canvas.",
+        "section": "layout"
+      },
+      {
+        "name": "The Role-Not-Value Rule",
+        "body": "Apply .elevation-raised, not a shadow-[…] arbitrary value. A hand-rolled shadow on a new component is drift, and it will not track the dark-theme inset highlight.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Base-Has-No-Shadow Rule",
+        "body": "The map canvas is base: no class, no shadow, no glass. It is not a discrete surface and deliberately has no utility to reach for.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Glass Scope Rule",
+        "body": "Glass goes only on small, fixed-size, non-text-heavy raised or floating chrome. Never on base (the map), never on overlay (dialogs are text-heavy and contrast-critical over an unpredictable background), and never on anything that animates its own size.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Opaque-First Rule",
+        "body": "Every glass surface defines its opaque background first and layers translucency on top inside @supports (backdrop-filter: blur(1px)). prefers-reduced-transparency: reduce and prefers-contrast: more both drop back to opaque. An unsupporting browser must never render near-invisible chrome over a photograph.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Pill-Or-Card Rule",
+        "body": "Interactive and small → fully round. Container → 20px. There is no middle radius for a component to invent; if a new surface is neither, decide which of the two it is behaving as.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Borderless Default Rule",
+        "body": "New components get no border. Separation comes from elevation and background contrast. The outline button pair is the sanctioned exception, and it stays a pair.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Weight-Not-Movement Rule",
+        "body": "Interaction feedback changes shadow and background. It does not scale, translate, or rotate chrome. The one sanctioned transform is the mobile nav's active-item scale.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do pick an elevation role (.elevation-raised, .elevation-floating) and let the shadow follow. Reach for .elevation-interactive when the surface responds to hover.",
+      "Do keep every green in its lane: --happy-700 and Moss Text for text and icons, --happy-500 for fills and indicators only.",
+      "Do express severity as depth on the green scale. --destructive is --happy-900 and that is correct, not a placeholder.",
+      "Do define the opaque background before the translucent one on any glass surface, and honor prefers-reduced-transparency and prefers-contrast.",
+      "Do consume NAV_SURFACE_CLASS for any new nav chrome instead of respelling elevation-raised glass-regular.",
+      "Do keep interactive targets at 44px or larger (48px for the search field). Field use with cold hands is a real constraint.",
+      "Do add tokens to the @theme block in src/index.css — that is the live theme.",
+      "Do pair any component that hardcodes a --happy-* step with a dark-mode fallback on the pre-Trailhead tokens.",
+      "Do test text-bearing components in German before calling them done."
+    ],
+    "donts": [
+      "Don't introduce a second hue. No red for destructive, no blue for info, no amber outside genuine foraging safety warnings.",
+      "Don't write an arbitrary shadow-[…] on a new component. It bypasses the role system and will not pick up the dark-theme inset highlight.",
+      "Don't treat --shadow-* as the elevation scale. It is legacy, materially weaker than what ships, and aliasing to it regresses the live look (ADR 0001).",
+      "Don't put glass on the map canvas, on a dialog, or on anything text-heavy or size-animating.",
+      "Don't use --happy-500 or any grass9-derived green as a text color. It is held to the 3:1 non-text floor only.",
+      "Don't use --happy-700 for the mobile nav's active tint — 1.7:1 over translucent dark chrome on a light map.",
+      "Don't add a cool grey or a pure #ffffff to the light theme. Every neutral is warm.",
+      "Don't add a border to a new primitive. The outline button pair (outline, enhanced-outline) is the system's entire bordered vocabulary.",
+      "Don't put theme values in tailwind.config.js — it carries no theme and is retained only for the shadcn CLI.",
+      "Don't make body scroll. The shell is fixed at 100dvh; give overflowing content its own scroll container.",
+      "Don't apply a surface treatment to the Sidebar's positioning container. It must land on data-slot='sidebar-inner' or the background paints over it."
+    ]
+  }
+}

@@ -14,7 +14,7 @@
   "description": "Descubra deliciosas receitas usando ingredientes colhidos",
   "filterBy": "Ingrediente",
   "filters": "Filtros",
-  "clear": "Limpar",
+  "clear": "Limpar filtros",
   "apply": "Aplicar",
   "all": "Todos",
   "mushroom": "Cogumelo",
@@ -39,7 +39,9 @@
     "routeStops": "Paradas da rota",
     "refreshRoute": "Atualizar rota",
     "drawRoute": "Traçar rota",
-    "recipesButton": "Receitas"
+    "recipesButton": "Receitas",
+    "openInMaps": "Abrir no Google Maps",
+    "clearRoute": "Limpar rota"
   },
   "species": {
     "amaranth": "Amaranto",
