@@ -369,3 +369,29 @@ describe('the menu sources carry no issue references', () => {
     expect(source).not.toMatch(/#\d{3}/);
   });
 });
+
+describe('a row pins what it would otherwise inherit', () => {
+  it('keeps its own colour and weight when asChild puts an anchor in it', () => {
+    // globals.scss styles every bare `a` at --primary-text and weight 500, and
+    // inheritance from the popover loses to the element's own rule. The Help
+    // flyout shipped four green rows at 500 among Ink rows at 400 before the
+    // row pinned both.
+    render(
+      <DropdownMenu defaultOpen>
+        <DropdownMenuTrigger>{'Open'}</DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem asChild>
+            <a href='/support'>{'Support'}</a>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+
+    const row = document.querySelector('[data-slot="dropdown-menu-item"]');
+    expect(row?.tagName).toBe('A');
+    // classList is a token array, so these are exact matches rather than
+    // substring hits.
+    expect([...(row?.classList ?? [])]).toContain('text-popover-foreground');
+    expect([...(row?.classList ?? [])]).toContain('font-normal');
+  });
+});

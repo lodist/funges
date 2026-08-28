@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import { expect } from 'storybook/test';
 import {
   Sidebar,
   SidebarContent,
@@ -12,6 +13,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSkeleton,
+  SidebarProvider,
   SidebarSeparator,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
@@ -218,6 +220,60 @@ export const AllVariants: Story = {
       description: {
         story:
           'The three variants side by side. `collapsible="none"` here so each panel stays visible — an off-canvas panel in a 16rem-tall box would just be a sliver.',
+      },
+    },
+  },
+};
+
+export const IconRail: Story = {
+  args: { collapsible: 'icon', variant: 'floating' },
+  render: args => (
+    // An inner provider pins the collapsed state, so the story documents the
+    // rail itself rather than a click that has to land first.
+    <SidebarProvider defaultOpen={false}>
+      <div className='flex min-h-[32rem] w-full'>
+        <Sidebar {...args}>
+          <Shell />
+        </Sidebar>
+        <SidebarInset className='p-6'>
+          <div className='flex items-center gap-3'>
+            <SidebarTrigger />
+            <p className='text-sm'>{'Expand the rail back to the panel.'}</p>
+          </div>
+        </SidebarInset>
+      </div>
+    </SidebarProvider>
+  ),
+  play: async ({ canvasElement }) => {
+    const rows = canvasElement.querySelectorAll(
+      '[data-slot="sidebar-menu-button"]'
+    );
+    await expect(rows.length).toBeGreaterThan(0);
+
+    for (const row of rows) {
+      const box = row.getBoundingClientRect();
+      // DESIGN.md's floor. Upstream shrinks these to 32px in the rail, which
+      // is what the 5rem rail exists to avoid.
+      await expect(Math.round(box.height)).toBe(44);
+      await expect(Math.round(box.width)).toBe(44);
+
+      // At 44px there are 12 pixels spare beside a 16px icon, which showed
+      // the label's first glyph. It is clipped, not removed: `display: none`
+      // took the accessible name with it and axe found six unnamed buttons.
+      const label = row.querySelector('span');
+      if (label) {
+        await expect(
+          Math.round(label.getBoundingClientRect().width)
+        ).toBeLessThanOrEqual(1);
+        await expect(label.textContent?.trim()).toBeTruthy();
+      }
+    }
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Collapsed to the icon rail. The rail is 5rem so a row can stay at the 44px floor instead of shrinking to upstream 32px, and everything after the icon is hidden rather than clipped.',
       },
     },
   },

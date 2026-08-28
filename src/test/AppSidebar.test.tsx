@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import '@/i18n';
 import { AppSidebar } from '@/components/Sidebar/AppSidebar';
 import { SidebarProvider, useSidebar } from '@/components/ui/sidebar';
@@ -70,6 +71,16 @@ const renderSidebar = () =>
 const navLinks = () =>
   screen.getAllByRole('link').map(link => link.getAttribute('href') ?? '');
 
+/**
+ * The flyout opens on hover. React derives `onPointerEnter` from the bubbling
+ * `pointerover`, so that is the event to fire; a `pointerenter` never reaches
+ * React's root listener.
+ */
+const openHelp = () =>
+  fireEvent.pointerOver(screen.getByRole('button', { name: 'Help' }), {
+    pointerType: 'mouse',
+  });
+
 beforeEach(() => {
   pathname.current = '/';
   isMobile.current = false;
@@ -77,7 +88,9 @@ beforeEach(() => {
 });
 
 describe('AppSidebar', () => {
-  it('shows every top-level section on desktop without extra taps', () => {
+  it('shows every destination section on desktop without extra taps', () => {
+    // The four utility links sit behind the Help disclosure, which is closed
+    // on an unrelated route — so they are deliberately absent here.
     renderSidebar();
 
     expect(navLinks()).toEqual([
@@ -87,6 +100,39 @@ describe('AppSidebar', () => {
       '/data',
       '/recipes',
       '/instructions',
+    ]);
+  });
+
+  it('keeps Help closed on an unrelated route', () => {
+    renderSidebar();
+
+    expect(navLinks()).not.toContain('/support');
+    expect(screen.getByText('Help')).toBeInTheDocument();
+  });
+
+  it('marks Help active when the current route is one of its children', () => {
+    // The parent has no destination of its own. Without this the current page
+    // has no representation in the nav at all, because its link lives in a
+    // flyout that is closed.
+    pathname.current = '/termsuse';
+    renderSidebar();
+
+    const help = screen.getByRole('button', { name: 'Help' });
+    expect(help).toHaveAttribute('data-active', 'true');
+  });
+
+  it('reveals the utility links once Help is hovered', () => {
+    renderSidebar();
+
+    expect(navLinks()).not.toContain('/support');
+    openHelp();
+
+    // Radix gives each row role="menuitem", which overrides the anchor's
+    // implicit link role — so these are not reachable through navLinks().
+    const flyout = screen
+      .getAllByRole('menuitem')
+      .map(item => item.getAttribute('href'));
+    expect(flyout).toEqual([
       '/support',
       '/impressum',
       '/privacy-policy',
@@ -156,9 +202,11 @@ describe('AppSidebar', () => {
     expect(accented[0]).toHaveAttribute('href', '/recipes');
   });
 
-  it('marks a secondary entry active too', () => {
+  it('marks the open flyout link active in markup, not only in colour', () => {
     pathname.current = '/privacy-policy';
     renderSidebar();
+
+    openHelp();
 
     const active = document.querySelectorAll('a[aria-current="page"]');
     expect(active).toHaveLength(1);

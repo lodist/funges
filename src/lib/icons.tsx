@@ -38,6 +38,7 @@ import {
   ImageIcon as LucideImageIcon,
   Info as LucideInfo,
   Leaf as LucideLeaf,
+  LifeBuoy as LucideLifeBuoy,
   Lightbulb as LucideLightbulb,
   List as LucideList,
   Loader2 as LucideLoader2,
@@ -145,6 +146,7 @@ export const HelpCircle = decorativeByDefault(LucideHelpCircle);
 export const ImageIcon = decorativeByDefault(LucideImageIcon);
 export const Info = decorativeByDefault(LucideInfo);
 export const Leaf = decorativeByDefault(LucideLeaf);
+export const LifeBuoy = decorativeByDefault(LucideLifeBuoy);
 export const Lightbulb = decorativeByDefault(LucideLightbulb);
 export const List = decorativeByDefault(LucideList);
 export const Loader2 = decorativeByDefault(LucideLoader2);

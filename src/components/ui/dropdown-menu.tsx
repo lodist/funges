@@ -73,13 +73,16 @@ function DropdownMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
+        // The row pins its own colour and weight: `asChild` with a Link puts an
+        // `<a>` here, and globals.scss's unscoped `a` rule wins by inheritance,
+        // repainting the row green at weight 500.
         // Trailhead: one focus tone for every row type, with a dark twin.
         // `--happy-100` is identical in both themes while `--accent` inverts, so a
         // single-theme tone reads 1.18 in light and 10.02 in dark on the same popover.
         // `variant='destructive'` keeps the danger hue — --destructive-text rather
         // than --destructive, whose fill is only 2.00:1 as text on the dark popover —
         // and needs its own dark twins, or the base `dark:` outranks it.
-        "focus:bg-happy-100 focus:text-happy-900 dark:focus:bg-happy-900 dark:focus:text-happy-100 data-[variant=destructive]:text-destructive-text data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive-text dark:data-[variant=destructive]:focus:bg-destructive/20 dark:data-[variant=destructive]:focus:text-destructive-text data-[variant=destructive]:*:[svg]:!text-destructive-text [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-xl px-4 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "focus:bg-happy-100 focus:text-happy-900 dark:focus:bg-happy-900 dark:focus:text-happy-100 data-[variant=destructive]:text-destructive-text data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive-text dark:data-[variant=destructive]:focus:bg-destructive/20 dark:data-[variant=destructive]:focus:text-destructive-text data-[variant=destructive]:*:[svg]:!text-destructive-text [&_svg:not([class*='text-'])]:text-muted-foreground text-popover-foreground relative flex cursor-default items-center gap-2 rounded-xl px-4 py-1.5 text-sm font-normal outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
