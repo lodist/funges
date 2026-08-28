@@ -129,10 +129,6 @@ const MapBackdrop = ({ children }: { children: React.ReactNode }) => (
   <div
     className='flex min-h-[220px] items-center justify-center rounded-xl p-8'
     style={{
-      // Axe cannot infer a reliable backdrop color through a translucent
-      // surface and an image/gradient alone. The theme-aware solid fallback
-      // also keeps the specimen legible if the gradient is unavailable.
-      backgroundColor: 'var(--background)',
       backgroundImage:
         // Two steps of the one hue. These were hue 147 and 165 — two angles the
         // palette does not have, in the design system's own documentation.
@@ -220,15 +216,9 @@ export const GlassInteractive: Story = {
 
     // The transition itself is what the motion tokens drive, so assert the
     // element actually declares one rather than pinning the literal ms value.
-    // The accessibility override intentionally removes it for reduced motion.
     const transition = getComputedStyle(surface).transitionDuration;
     await expect(transition).not.toBe('');
-    const previewWindow = canvasElement.ownerDocument.defaultView;
-    if (previewWindow?.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      await expect(transition).toBe('0s');
-    } else {
-      await expect(transition).not.toBe('0s');
-    }
+    await expect(transition).not.toBe('0s');
 
     await userEvent.hover(surface);
     await expect(surface).toBeVisible();
