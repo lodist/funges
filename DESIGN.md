@@ -312,6 +312,15 @@ Borders are the exception rather than the rule. The redesigned primitives are bo
 
 **The Pill-Or-Card Rule.** Interactive and small → `rounded-full`. Container → `rounded-card`. There is no middle radius for a component to invent; if a new surface is neither, decide which of the two it is behaving as. Both roles are tokens precisely so this rule is checkable — `src/test/radius.test.ts` fails on a re-introduced `rounded-2xl` or an invented `rounded-[19px]`. Shape belongs in a component's base, never in a variant or a size: a stray `rounded-*` down there wins via `tailwind-merge`, which is how three button variants spent #225 as 6px rectangles nobody chose. The one sanctioned exception is `tooltip.tsx`'s arrow, a 10px square rotated 45° that is neither pill nor container.
 
+**The Floor-Is-The-Default Rule.** A button's target is 44px, and the default size is exactly the
+floor rather than a step above it — so a call site that names no size lands on the floor by
+omission. The sub-floor sizes stay in the ramp but not in shipped code: 25 call sites across ten
+files had drifted onto them, the smallest at 134×28. The hit-area trick the selection controls use
+was not available as a remedy — measured, those buttons sat 4–9px from their neighbours against the
+12–16px an enlarged hit area needs, so it would have overlapped every row rather than enlarging it.
+The boxes grew instead. A height in `className` beats the size variant through `tailwind-merge`,
+exactly as a stray `rounded-*` beat the shape, so the guard checks that too.
+
 **The Outline-Means-Outline Rule.** New components get no border; separation comes from elevation and background contrast. The name `outline` is the one sanctioned exception, and it runs one way: a variant called `outline` carries a visible stroke. A stroke elsewhere is allowed only where a token exists for the purpose — `--destructive-border`, `--status-*-border` — never as a hand-rolled edge. A borderless `outline` is the defect this rule exists to catch — the badge shipped one, measuring 1.00:1 against its own ground in both themes, which is a variant naming a treatment it did not have. Two exceptions are named rather than implied: `--destructive-border` in dark, a contrast remedy for a fill that reaches only 2.50:1 on Night Canvas, and the `outline` + `size='icon'` compound variant, which drops to `border-0` because a floating map control is a circle on a card, not an outlined affordance. `src/test/border.test.ts` enforces the rule.
 
 ## Components
@@ -320,7 +329,7 @@ The character line for every primitive: **soft, pressable, borderless.** Depth d
 
 ### Buttons
 
-- **Shape:** fully round pill (`border-radius: 9999px`). The base carries a 1px transparent border — every variant is the same height, and the invalid state has a width to paint into. Heights: `xs` 28px growing to 32px at `sm:`, `sm` 32px, default 44px (`h-11`), `lg` 48px, icon-only a 44px circle. `xs` is the only size with a responsive step and it meets `sm` on desktop rather than crossing it.
+- **Shape:** fully round pill (`border-radius: 9999px`). The base carries a 1px transparent border — every variant is the same height, and the invalid state has a width to paint into. Heights: `xs` 28px growing to 32px at `sm:`, `sm` 32px, default 44px (`h-11`), `lg` 48px, icon-only a 44px circle. `xs` is the only size with a responsive step and it meets `sm` on desktop rather than crossing it. **`xs` and `sm` are below the touch floor and no shipped surface may ask for them** — they survive as the documented ramp and as a deliberate escape hatch, and `src/test/touch-target.test.ts` keeps them out of shipped code.
 - **Primary:** Chlorophyll Bright fill with Chlorophyll Deep text — green on deep green, not green on white, at 7.46:1. `0 1.5rem` padding, reduced to `1rem` when the label carries an icon, with a `0 2px 8px rgba(0,0,0,0.18)` shadow that reads as a physical lift rather than an outline.
 - **Hover / Focus:** background steps down to `--primary-hover` (`oklch(0.62 0.17 150)`) and the shadow deepens to `0 3px 12px rgba(0,0,0,0.22)`. That step is chosen, not eyeballed: it keeps Chlorophyll Bright's chroma and steps lightness down, holding the Chlorophyll Deep label at 4.75:1 while the fill itself reaches 3.33:1 on Field Paper. `oklch(0.58 0.18 150)`, the step it replaces, was outside the sRGB gamut — the browser clamped it — and dropped the label to 4.14:1. No transform, no scale — the surface gets heavier, it doesn't move. Focus rings use `--ring` (Chlorophyll Readable), painted on `:focus-visible` only, and sit outside the button on a 2px offset, so they measure against the page rather than against the fill.
 - **Destructive:** identical geometry, Fly Agaric fill with a white label — 7.21:1 in light, 6.04:1 in dark — hovering to `--destructive-hover` (`oklch(0.40 0.17 28)`), which holds white at 9.85:1. In dark the fill alone reaches only 2.50:1 against Night Canvas, so the variant adds `--destructive-border`. A delete in this system reads as red, and hue 28 appears nowhere else.
@@ -425,6 +434,96 @@ part of the component rather than a caller's garnish.
 **The Animation-Is-The-Affordance Rule.** When a component's purpose is a transition between two
 states, the transition is the component's own, not the caller's. Anything a caller must remember
 to add for the component to read correctly belongs inside it.
+
+### Dialog & Sheet
+
+Both are the same primitive wearing two geometries: Dialog centres a panel, Sheet slides one in
+from an edge. They carry the same scrim, the same corner dismiss and the same containment rule,
+so a fix to one that skips the other leaves a twin broken in exactly the same way.
+
+- **A panel never grows past the viewport.** The content caps its own height — `100dvh` less a
+  `2rem` margin for Dialog, `100dvh` for Sheet — and scrolls an inner body instead. Height and
+  scroll belong to the component: a modal that overflows has no page scroll to fall back on,
+  because opening it locked the body, so anything below the fold is simply unreachable. A caller
+  that wants a shorter panel still passes `max-h-*` and overrides the cap.
+- **Padding and gap sit on the scrolling body, not on the capped panel.** Spacing on the element
+  that owns `max-height` would eat into the scroll box and clip its last row.
+- **The corner dismiss stays put while the body scrolls.** It is positioned against the panel
+  rather than the scrolling content, so the way out never scrolls away — the failure mode that
+  matters most on a small screen. It carries the panel's own background so body text passing
+  underneath stays legible, which reads as a bare glyph on a plain panel.
+- **44×44, like every other target.** The glyph stays 16px; the hit area is the button.
+- **The glyph needs a dark twin.** `--happy-700` reads 7.85:1 on a light panel and 1.89:1 on a
+  dark one, under the 3:1 an interactive glyph has to clear. `--happy-300` restores it to 9.96:1,
+  and the hover surface flips from `--happy-50` to `--happy-900` so the tint stays as quiet in
+  dark as it is in light.
+- **The scrim is a token.** `--scrim` is black at 50%, in both themes. It is deliberately not
+  `--background-overlay`, which is the heavier veil the `.overlay` component in `globals.scss`
+  paints itself with — one name for a full-screen scrim, another for a component's own fill.
+- **Enter and exit ride `--transition-duration-slow`** on `--ease-standard`, scrim and panel
+  together. A surface this large reads as abrupt on the shorter durations, which is what the token
+  comment has always said.
+- **Elevation follows the depth scale:** Dialog takes `elevation-overlay`, Sheet
+  `elevation-floating`.
+- **`aria-modal` is absent on purpose.** The primitive `aria-hidden`s every sibling of the portal
+  instead, which is the better-supported equivalent. Measured on the open dialog: 11 siblings
+  hidden, the portal untouched. Adding the attribute by hand would be duplicating a mechanism
+  that already works.
+
+**The Escape-Hatch-Never-Scrolls Rule.** When a surface traps focus and locks the page behind it,
+every way out of it must stay reachable at any scroll position and any viewport height. A dismiss
+that scrolls out of reach is a dead end, not a style detail.
+
+### Menus
+
+DropdownMenu and Select are one surface under two names: the same popover, the same row, the same
+focus tone. `dropdown-menu.tsx` is the larger of the two and `select.tsx` mirrors it, so a fix that
+lands on one and skips the other leaves a twin broken identically — which is how five row types
+ended up wearing two different focus tones.
+
+- **Every row type shares one focus tone, and that tone has a dark twin.** `--happy-100` fill with
+  `--happy-900` text: 1.18:1 against the popover in light with the label at 13.34:1. The twin is not
+  cosmetic. `--happy-100` is defined identically in both themes while `--accent` inverts, so a
+  single-theme tone diverges nine-fold in dark — the green row measured 10.02:1, a floodlit block,
+  and the accent rows 1.10:1, nearly invisible. `--happy-900` fill with `--happy-100` text restores
+  the dark row to 1.33:1 with the label back at 13.34:1, closest of the ramp to the light reference
+  and the symmetric partner of the light pair. Plain, checkbox, radio and sub-trigger rows all take
+  it; the open sub-trigger takes the same pair on `data-[state=open]`.
+- **A destructive row carries its own dark twin.** With the base twin in place and none on the
+  variant, a Delete row repaints as a plain green row in dark only. Its own twins hold it at 1.09:1
+  of fill with the red label at 4.50:1, against 1.33:1 / 13.34:1 for a green row — distinguishable
+  by hue, not just by tone. The label is `--destructive-text`, never `--destructive`, whose fill
+  reads 2.00:1 as text on the dark popover.
+- **Rows sit in two text columns, not three.** Label, plain item and sub-trigger share the item
+  column at 16px; only rows that reserve space for an indicator — `inset`, checkbox, radio — step
+  out to 32px. A clickable row that does not line up with the other clickable rows is drift, and a
+  sub-trigger is as clickable as an item. Select's label and item share the same column, which is
+  also the column its trigger's `px-4` puts the closed value in.
+- **A row is `rounded-xl`, and that is the largest it may be.** Concentric radius on a 20px card
+  with 4px padding would ask for 16px, but 16px is `rounded-2xl`, which `src/test/radius.test.ts`
+  bans as an invented middle radius. 12px is the top of the derived scale and the row takes it.
+- **Menus ride `--transition-duration-fast`** on `--ease-standard`. `animate-in` alone inherits
+  Tailwind's default duration — which happens to be the fast token — and the browser's generic
+  `ease`, so the duration was right by accident and the curve was never a token at all. Both are
+  now explicit on all three surfaces. Menus are deliberately outside the `slow` band that Dialog
+  and Sheet sit in: a row list is small and appears under the pointer.
+- **A submenu contains its own height, like its parent.** The top-level content caps against
+  `--radix-dropdown-menu-content-available-height` and scrolls; the submenu carried `overflow-hidden`
+  and no cap. Measured with 25 rows in a 708px viewport, it grew to 904px, and
+  `document.elementFromPoint` on the last row returned nothing — the rows were not scrolled off,
+  they were gone. It now takes the same cap and the same `overflow-y-auto`.
+- **A checkbox row keeps the menu open; a radio row closes it.** Toggling several boxes is one
+  visit, and the primitive closes on select unless the event is prevented, so the base prevents it.
+  Picking one radio value ends the interaction, so that row still closes. A caller's own `onSelect`
+  runs either way.
+- **`DropdownMenuShortcut` displays a shortcut, it does not bind one.** It is a `<span>`. The key
+  handler stays the caller's job.
+
+**The Dark-Twin-Eats-The-Variant Rule.** A `dark:` on a base ties with a state variant on
+specificity and orders after it, so it wins. Add a dark twin to a base and every variant that
+declared the light equivalent needs its own twin in the same breath — and darken a variant and the
+base needs one too. It runs in both directions, and the symptom is a variant that is correct in one
+theme and silently identical to the base in the other.
 
 ### Navigation
 
