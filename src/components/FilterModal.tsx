@@ -90,7 +90,6 @@ export default function FilterModal({
             <div className='flex flex-wrap gap-3'>
               <Button
                 variant={selectedCategory === 'all' ? 'default' : 'outline'}
-                size='sm'
                 onClick={() => onCategoryChange('all')}
                 className={`transition-all duration-base ${
                   selectedCategory === 'all'
@@ -109,7 +108,6 @@ export default function FilterModal({
                   variant={
                     selectedCategory === category ? 'default' : 'outline'
                   }
-                  size='sm'
                   onClick={() => onCategoryChange(category)}
                   className={`transition-all duration-base ${
                     selectedCategory === category
@@ -138,7 +136,6 @@ export default function FilterModal({
             <div className='flex flex-wrap gap-3'>
               <Button
                 variant={selectedDifficulty === 'all' ? 'default' : 'outline'}
-                size='sm'
                 onClick={() => onDifficultyChange('all')}
                 className={`transition-all duration-base ${
                   selectedDifficulty === 'all'
@@ -157,7 +154,6 @@ export default function FilterModal({
                   variant={
                     selectedDifficulty === difficulty ? 'default' : 'outline'
                   }
-                  size='sm'
                   onClick={() => onDifficultyChange(difficulty)}
                   className={`transition-all duration-base ${
                     selectedDifficulty === difficulty
@@ -188,7 +184,6 @@ export default function FilterModal({
             <div className='flex flex-wrap gap-3'>
               <Button
                 variant={selectedTag === 'all' ? 'default' : 'outline'}
-                size='sm'
                 onClick={() => onTagChange('all')}
                 className={`transition-all duration-base ${
                   selectedTag === 'all'
@@ -207,7 +202,6 @@ export default function FilterModal({
                   <Button
                     key={tag}
                     variant={selectedTag === tag ? 'default' : 'outline'}
-                    size='sm'
                     onClick={() => onTagChange(tag)}
                     className={`transition-all duration-base ${
                       selectedTag === tag

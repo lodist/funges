@@ -951,7 +951,7 @@ export default function DataPage() {
         </div>
 
         {/* Download current region's data */}
-        <Button asChild variant='outline' size='sm' className='gap-1.5'>
+        <Button asChild variant='outline' className='gap-1.5'>
           <a
             href={REGION_FILES[region][0].url}
             target='_blank'
@@ -1385,7 +1385,7 @@ export default function DataPage() {
                 value={resolvedSpecies}
                 onValueChange={setSelectedSpecies}
               >
-                <SelectTrigger size='sm' className='max-w-[180px]'>
+                <SelectTrigger className='max-w-[180px]'>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

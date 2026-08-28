@@ -95,7 +95,6 @@ export default function OfflineMapsPage() {
                       <td className='px-2 py-1 text-right'>
                         {info ? (
                           <Button
-                            size='sm'
                             disabled={isDownloading}
                             onClick={() => remove(continent)}
                           >
@@ -103,7 +102,6 @@ export default function OfflineMapsPage() {
                           </Button>
                         ) : (
                           <Button
-                            size='sm'
                             disabled={isDownloading || !isOnline}
                             onClick={() => download(continent)}
                           >

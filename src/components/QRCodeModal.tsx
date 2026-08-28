@@ -89,21 +89,11 @@ export default function QRCodeModal({
             </div>
 
             <div className='flex gap-2'>
-              <Button
-                onClick={handleCopy}
-                variant='outline'
-                size='sm'
-                className='flex-1'
-              >
+              <Button onClick={handleCopy} variant='outline' className='flex-1'>
                 <Copy className='h-4 w-4 mr-2' />
                 {t('copyAddress')}
               </Button>
-              <Button
-                onClick={onClose}
-                variant='outline'
-                size='sm'
-                className='flex-1'
-              >
+              <Button onClick={onClose} variant='outline' className='flex-1'>
                 {t('close')}
               </Button>
             </div>

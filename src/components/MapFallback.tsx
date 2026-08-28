@@ -65,7 +65,7 @@ const MapFallback: React.FC<MapFallbackProps> = ({
               <div className='text-sm text-status-warning-text mb-3 leading-relaxed'>
                 <Trans>{errorMessage || t('fallback.message')}</Trans>
               </div>
-              <Button asChild size='sm' className='w-full text-sm'>
+              <Button asChild className='w-full text-sm'>
                 <Link to={`${basePath}support`}>
                   <Heart className='h-4 w-4 mr-2' />
                   {t('fallback.support')}
@@ -79,7 +79,6 @@ const MapFallback: React.FC<MapFallbackProps> = ({
             <Button
               onClick={onRetry}
               variant='outline'
-              size='sm'
               className='flex-1 text-sm'
             >
               <RefreshCw className='h-4 w-4 mr-2' />
@@ -89,7 +88,6 @@ const MapFallback: React.FC<MapFallbackProps> = ({
               <Button
                 onClick={handleGetLocation}
                 variant='outline'
-                size='sm'
                 className='flex-1 text-sm'
               >
                 <Navigation className='h-4 w-4 mr-2' />

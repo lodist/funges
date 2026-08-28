@@ -191,7 +191,6 @@ export default function SupportPage() {
                       <CardFooter className='gap-2 pt-3'>
                         <Button
                           variant='outline'
-                          size='sm'
                           onClick={() =>
                             handleCopyAddress(method.address!, method.id)
                           }
@@ -208,7 +207,6 @@ export default function SupportPage() {
                         </Button>
                         <Button
                           variant='outline'
-                          size='sm'
                           onClick={() => handleShowQR(method)}
                           className='flex-1'
                         >
