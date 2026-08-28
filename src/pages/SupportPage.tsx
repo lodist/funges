@@ -1,8 +1,16 @@
 import { useTranslation } from 'react-i18next';
-import { Card } from '@/components/ui/card';
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Heart, ExternalLink, Copy, QrCode, CheckCircle } from 'lucide-react';
+import { Heart, ExternalLink, Copy, QrCode, CheckCircle } from '@/lib/icons';
 import { useState } from 'react';
 import { useSupportMethods } from '@/data/support';
 import QRCodeModal from '@/components/QRCodeModal';
@@ -17,12 +25,6 @@ export default function SupportPage() {
   const [selectedMethod, setSelectedMethod] = useState<
     (typeof supportMethods)[0] | null
   >(null);
-
-  const handleDonationClick = (method: (typeof supportMethods)[0]) => {
-    if (method.url) {
-      window.open(method.url, '_blank', 'noopener,noreferrer');
-    }
-  };
 
   const handleCopyAddress = async (address: string, methodId: string) => {
     try {
@@ -61,7 +63,7 @@ export default function SupportPage() {
           <div className='text-center'>
             <div className='flex justify-center mb-4'>
               <div className='p-4 bg-destructive/10 rounded-full'>
-                <Heart className='h-12 w-12 text-destructive' />
+                <Heart className='h-12 w-12 text-destructive-text' />
               </div>
             </div>
             <h1 className='text-4xl font-bold text-foreground dark:text-white mb-4'>
@@ -99,14 +101,10 @@ export default function SupportPage() {
             </h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {platformMethods.map(method => (
-                <Card
-                  key={method.id}
-                  className='p-6 cursor-pointer hover:shadow-lg transition-all duration-[var(--duration-base)] border-2 hover:border-primary/20'
-                  onClick={() => handleDonationClick(method)}
-                >
-                  <div className='flex items-center justify-between mb-4'>
+                <Card key={method.id} interactive className='relative'>
+                  <CardHeader>
                     <div
-                      className='p-3 rounded-lg'
+                      className='mb-2 w-fit rounded-lg p-3'
                       style={{
                         backgroundColor: method.color
                           ? `${method.color}20`
@@ -116,19 +114,30 @@ export default function SupportPage() {
                       {React.createElement(
                         method.icon as React.ComponentType<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
                         {
-                          className: 'h-6 w-6',
+                          className: 'size-6',
                           style: { color: method.color },
                         }
                       )}
                     </div>
-                    <ExternalLink className='h-5 w-5 text-muted-foreground' />
-                  </div>
-                  <h3 className='font-semibold text-lg text-foreground dark:text-white mb-2'>
-                    {method.name}
-                  </h3>
-                  <p className='text-muted-foreground text-sm'>
-                    {method.description}
-                  </p>
+                    <CardTitle className='text-lg'>
+                      {/* Stretched to the card so the whole tile is one link. */}
+                      <a
+                        href={method.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='focus-ring text-card-foreground rounded-sm after:absolute after:inset-0'
+                      >
+                        {method.name}
+                      </a>
+                    </CardTitle>
+                    <CardDescription>{method.description}</CardDescription>
+                    <CardAction>
+                      <ExternalLink
+                        aria-hidden='true'
+                        className='size-5 text-muted-foreground'
+                      />
+                    </CardAction>
+                  </CardHeader>
                 </Card>
               ))}
             </div>
@@ -141,10 +150,10 @@ export default function SupportPage() {
             </h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {cryptoMethods.map(method => (
-                <Card key={method.id} className='p-6 border-2'>
-                  <div className='flex items-center justify-between mb-4'>
+                <Card key={method.id}>
+                  <CardHeader>
                     <div
-                      className='p-3 rounded-lg'
+                      className='mb-2 w-fit rounded-lg p-3'
                       style={{
                         backgroundColor: method.color
                           ? `${method.color}20`
@@ -154,42 +163,43 @@ export default function SupportPage() {
                       {React.createElement(
                         method.icon as React.ComponentType<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
                         {
-                          className: 'h-6 w-6',
+                          className: 'size-6',
                           style: { color: method.color },
                         }
                       )}
                     </div>
-                    <Badge variant='secondary'>{method.id.toUpperCase()}</Badge>
-                  </div>
-                  <h3 className='font-semibold text-lg text-foreground dark:text-white mb-2'>
-                    {method.name}
-                  </h3>
-                  <p className='text-muted-foreground text-sm mb-4'>
-                    {method.description}
-                  </p>
+                    <CardTitle className='text-lg'>{method.name}</CardTitle>
+                    <CardDescription>{method.description}</CardDescription>
+                    <CardAction>
+                      <Badge variant='secondary'>
+                        {method.id.toUpperCase()}
+                      </Badge>
+                    </CardAction>
+                  </CardHeader>
                   {method.address && (
-                    <div className='space-y-3'>
-                      <div className='bg-muted rounded-lg p-3'>
-                        <p className='text-xs text-muted-foreground mb-1'>
-                          {t('address')}
-                        </p>
-                        <p className='text-sm font-mono text-foreground dark:text-white break-all'>
-                          {method.address}
-                        </p>
-                      </div>
-                      <div className='flex space-x-2'>
+                    <>
+                      <CardContent>
+                        <div className='bg-muted rounded-lg p-3'>
+                          <p className='text-muted-foreground mb-1 text-xs'>
+                            {t('address')}
+                          </p>
+                          <p className='font-mono text-sm break-all'>
+                            {method.address}
+                          </p>
+                        </div>
+                      </CardContent>
+                      <CardFooter className='gap-2'>
                         <Button
                           variant='outline'
-                          size='sm'
                           onClick={() =>
                             handleCopyAddress(method.address!, method.id)
                           }
                           className='flex-1'
                         >
                           {copiedAddress === method.id ? (
-                            <CheckCircle className='h-4 w-4 mr-2' />
+                            <CheckCircle />
                           ) : (
-                            <Copy className='h-4 w-4 mr-2' />
+                            <Copy />
                           )}
                           {copiedAddress === method.id
                             ? t('copied')
@@ -197,15 +207,14 @@ export default function SupportPage() {
                         </Button>
                         <Button
                           variant='outline'
-                          size='sm'
                           onClick={() => handleShowQR(method)}
                           className='flex-1'
                         >
-                          <QrCode className='h-4 w-4 mr-2' />
+                          <QrCode />
                           {t('showQR')}
                         </Button>
-                      </div>
-                    </div>
+                      </CardFooter>
+                    </>
                   )}
                 </Card>
               ))}

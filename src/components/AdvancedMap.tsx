@@ -27,7 +27,7 @@ import {
   Info,
   ScanSearch,
   WifiOff,
-} from 'lucide-react';
+} from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 
 import { categoryColor } from '@/lib/categoryColor';
@@ -828,7 +828,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           <div class="flex items-center gap-2 mb-2">
             <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
               spot.type === 'mushroom'
-                ? 'bg-destructive/10 text-destructive'
+                ? 'bg-destructive/10 text-destructive-text'
                 : spot.type === 'berry'
                   ? 'bg-secondary text-primary-text'
                   : spot.type === 'herb'
@@ -1051,8 +1051,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               <ForecastSlider />
               <MapInfoCard />
             </div>
-            {isRoutePanelOpen && !isRouteAnimating ? (
-              <div className='fixed left-3 right-3 top-20 z-10'>
+            {/* Recedes while the route draws instead of unmounting: the
+                conditional render this replaced tore the card out of the DOM
+                the instant onDrawRoute fired and put it back seconds later
+                with no transition, which reads as the card closing itself. */}
+            {isRoutePanelOpen ? (
+              <div
+                className={`fixed left-3 right-3 top-20 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+              >
                 <RouteToDishPanel
                   className='mx-auto'
                   plans={routeDishResult?.plans ?? []}
@@ -1080,8 +1086,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               <ForecastSlider />
               <MapInfoCard />
             </div>
-            {isRoutePanelOpen && !isRouteAnimating ? (
-              <div className='absolute top-14 right-16 z-10'>
+            {isRoutePanelOpen ? (
+              <div
+                className={`absolute top-14 right-16 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+              >
                 <RouteToDishPanel
                   plans={routeDishResult?.plans ?? []}
                   error={routeDishError}
@@ -1107,7 +1115,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         {/* Foraging spots found notification */}
         {foragingSpots.length > 0 && (
           <div className='absolute bottom-4 left-4 right-4'>
-            <Card className='p-3 bg-secondary border-secondary'>
+            <Card padding='compact' className='bg-secondary'>
               <div className='flex items-center gap-2'>
                 <MapPin className='h-4 w-4 text-primary-text' />
                 <p className='text-sm text-primary-text'>

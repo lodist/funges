@@ -5,8 +5,14 @@ import * as IconographyStories from './Iconography.stories';
 
 # Iconography
 
-The set is [Lucide](https://lucide.dev), whole and unmodified. There is no
-curated subset and no custom icon library — if Lucide has it, use it.
+The set is [Lucide](https://lucide.dev). There is no curated subset and no
+custom icon library — if Lucide has it, use it.
+
+It is reached through exactly one import path, `@/lib/icons`, and importing
+`lucide-react` anywhere else is an ESLint error. That indirection exists for one
+reason, described under [Accessibility](#accessibility): Lucide sets no ARIA
+attributes at all, so left to the call site the decorative-versus-named question
+gets answered once per icon, and it was answered wrong 108 times out of 108.
 
 What is worth documenting is not _which_ icons but _how_ they are drawn, since
 that is what drifts when every screen decides for itself.
@@ -19,11 +25,27 @@ Four steps. Pick by context, not by eye.
 
 Two components size their icons for you:
 
-- **Button** forces 16px on any child SVG that has no explicit size class.
-- **Badge** forces 12px, unconditionally.
+- **Button** forces 16px on any descendant SVG whose class does not contain
+  `size-`.
+- **Badge** forces 12px on its direct SVG children, and wins even against an
+  explicit `size-5`.
 
-Setting a size inside either one is redundant at best and a fight with the
-component at worst.
+Both guards have an edge, and both edges have bitten this codebase:
+
+| written             | inside a Button                                    | inside a Badge                   |
+| ------------------- | -------------------------------------------------- | -------------------------------- |
+| `size-5`            | 20px — escapes the guard                           | 12px — Badge still wins          |
+| `h-5 w-5`           | **16px** — the guard outranks `h-5` on specificity | 12px                             |
+| wrapped in a `span` | 16px                                               | **unsized** — not a direct child |
+
+So write the step as `size-N`, never as `h-N w-N`. Six call sites had asked for
+14px or 20px inside a Button with `h-3.5 w-3.5` / `h-5 w-5` and had been
+rendering 16px since the day they were written.
+
+There is no `3.5` step. Fourteen pixels used to appear in sixteen places,
+including four primitives — `checkbox`, `dropdown-menu` twice, and `select` —
+where three of them were a 14px slot holding a 16px glyph that overflowed it.
+They are all on the scale now.
 
 ## Stroke
 
@@ -36,6 +58,10 @@ Deviating is legitimate at the extremes of the size scale — 1.5 at 32px, 2.5 a
 12px against a fill — and nowhere else. A screen that picks 1.5 at 16px does
 not have a refined look; it has lighter icons than every other screen.
 
+Nothing sets `strokeWidth` on an icon today. The six occurrences in `src/` are
+Recharts line weights, not glyphs. The section is here so that the first screen
+which does deviate deviates the same way as the second.
+
 ## Color and alignment
 
 <Story of={IconographyStories.ColorAndAlignment} />
@@ -44,16 +70,42 @@ Icons inherit `currentColor`, so an icon inside muted text is already muted. An
 icon that needs its own color class is usually a sign the surrounding text
 color is wrong.
 
-### Accessibility
+Alignment is the same one decision twice. Against a single line, `items-center`
+puts the glyph on the optical centre and needs nothing else. Against a block
+that wraps, `items-center` centres the glyph against the whole block rather
+than against the line it introduces, so switch to `items-start` and nudge by
+`mt-0.5`.
 
-Two rules, and they are not interchangeable:
+## Accessibility
 
-- **Icon beside a label** — decorative. Mark it `aria-hidden` so a screen
-  reader does not announce the same thing twice.
-- **Icon as the whole control** — the control needs an `aria-label`. Nothing
-  else names it, and axe will fail the build if it is missing. That is not
-  hypothetical: promoting the a11y gate in this ticket caught exactly this in
-  five existing stories.
+`aria-hidden` on a decorative icon is a **guarantee, not a repair**. An `<svg>`
+with no accessible name has nothing to announce, but how it is mapped is up to
+the engine: SVG-AAM maps it to `graphics-document`, Chrome and Firefox skip an
+unnamed one in browse mode, Safari and VoiceOver can still land on it as an
+image group, and any nested `<title>` would be read out. Marking it removes the
+bet. The double announcement people cite as the reason only happens once the
+icon _has_ a name, which Lucide never gives it.
+
+The decision does not belong at the call site, so it is not made there.
+`@/lib/icons` wraps every export:
+
+- **no `aria-label` or `aria-labelledby`** → `aria-hidden="true"`, out of the
+  accessibility tree. This is the right answer for an icon sitting beside its
+  own label.
+- **either one present** → `role="img"`, so the name it carries is exposed.
+
+Both are overridable — `props` is spread last on purpose — and `lucide-react`
+is ESLint-banned outside the barrel, so the next icon added cannot skip the
+contract the way the previous 108 did.
+
+<Story of={IconographyStories.Accessibility} />
+
+What a wrapper cannot infer is the other half, and that half stays yours: **an
+icon that is the whole control needs the control to carry an `aria-label`.**
+Nothing else names it, and axe will fail the build if it is missing. That is not
+hypothetical — promoting the a11y gate in this ticket caught it in five stories,
+and auditing the pages caught four more controls that a screen reader announced
+as nothing but "button".
 
 ## The set in use
 

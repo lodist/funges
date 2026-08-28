@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Search, Clock, Users, ChefHat, Filter } from 'lucide-react';
+import { Search, Clock, Users, ChefHat, Filter } from '@/lib/icons';
 import { RecipeModalWrapper } from '@/components';
 import FilterModal from '@/components/FilterModal';
 import { getRecipeImage } from '@/lib/utils';
@@ -216,10 +216,7 @@ export default function RecipesPage() {
                 {(selectedCategory !== 'all' ||
                   selectedDifficulty !== 'all' ||
                   selectedTag !== 'all') && (
-                  <Badge
-                    variant='secondary'
-                    className='ml-1 h-5 px-1.5 text-xs'
-                  >
+                  <Badge variant='secondary'>
                     {(selectedCategory !== 'all' ? 1 : 0) +
                       (selectedDifficulty !== 'all' ? 1 : 0) +
                       (selectedTag !== 'all' ? 1 : 0)}
@@ -245,17 +242,14 @@ export default function RecipesPage() {
               const recipeImage = getRecipeImage(recipe.id);
 
               return (
-                <Card
-                  key={recipe.id}
-                  className='h-full flex flex-col hover:shadow-lg transition-shadow py-6'
-                >
-                  <CardHeader className='pb-3'>
+                <Card key={recipe.id} className='h-full'>
+                  <CardHeader>
                     {/* Mobile: Image on top, then title */}
                     <div className='block md:hidden'>
                       {/* Recipe Image for mobile - above title */}
                       {recipeImage && (
                         <div className='mb-4'>
-                          <div className='relative w-full aspect-square bg-secondary bg-secondary overflow-hidden rounded-lg'>
+                          <div className='relative w-full aspect-square bg-secondary overflow-hidden rounded-lg'>
                             <img
                               src={recipeImage}
                               alt={recipe.title}
@@ -303,7 +297,7 @@ export default function RecipesPage() {
                       {/* Recipe Image */}
                       {recipeImage && (
                         <div className='flex-shrink-0'>
-                          <div className='relative w-35 h-35 bg-secondary bg-secondary overflow-hidden rounded-lg'>
+                          <div className='relative w-35 h-35 bg-secondary overflow-hidden rounded-lg'>
                             <img
                               src={recipeImage}
                               alt={recipe.title}
@@ -346,16 +340,12 @@ export default function RecipesPage() {
                     {/* Tags */}
                     <div className='flex flex-wrap gap-1 mb-4'>
                       {recipe.tags.slice(0, 3).map(tag => (
-                        <Badge
-                          key={tag}
-                          variant='secondary'
-                          className='text-xs'
-                        >
+                        <Badge key={tag} variant='secondary'>
                           {t(`tags.${tag}`)}
                         </Badge>
                       ))}
                       {recipe.tags.length > 3 && (
-                        <Badge variant='secondary' className='text-xs'>
+                        <Badge variant='secondary'>
                           +{recipe.tags.length - 3} {t('more')}
                         </Badge>
                       )}
@@ -364,11 +354,7 @@ export default function RecipesPage() {
                     {/* Species */}
                     <div className='flex flex-wrap gap-1 mb-4'>
                       {recipe.species.map(species => (
-                        <Badge
-                          key={species}
-                          variant='outline'
-                          className='text-xs'
-                        >
+                        <Badge key={species} variant='outline'>
                           {t(`species.${species}`)}
                         </Badge>
                       ))}

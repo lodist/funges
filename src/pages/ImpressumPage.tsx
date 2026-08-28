@@ -19,7 +19,9 @@ export default function ImpressumPage() {
             <h1 className='text-3xl font-bold text-foreground dark:text-white mb-2'>
               {t('title')}
             </h1>
-            <h2 className='text-xl text-muted-foreground'>{t('subtitle')}</h2>
+            <h2 className='text-xl font-medium text-muted-foreground'>
+              {t('subtitle')}
+            </h2>
           </div>
 
           {/* Responsible Entity */}

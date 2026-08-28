@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
-import { Search, Leaf, Calendar, MapPin, AlertTriangle } from 'lucide-react';
+import { Search, Leaf, Calendar, MapPin, AlertTriangle } from '@/lib/icons';
 import { getSpeciesImage } from '@/lib/utils';
 import { Link } from '@tanstack/react-router';
 import { Route } from '@/routes/species';
@@ -142,11 +142,8 @@ export default function SpeciesPage() {
             const speciesImage = getSpeciesImage(species.id);
 
             return (
-              <Card
-                key={species.id}
-                className='hover:shadow-lg transition-shadow duration-[var(--duration-base)] py-6'
-              >
-                <CardHeader className='pb-3'>
+              <Card key={species.id}>
+                <CardHeader>
                   <div className='flex items-start gap-4'>
                     {/* Species Image */}
                     {speciesImage && (
@@ -174,10 +171,7 @@ export default function SpeciesPage() {
                             {species.scientificName}
                           </p>
                         </div>
-                        <Badge
-                          variant='outline'
-                          className='capitalize flex-shrink-0'
-                        >
+                        <Badge variant='outline' className='capitalize'>
                           {t(`${species.category}`)}
                         </Badge>
                       </div>
@@ -189,8 +183,8 @@ export default function SpeciesPage() {
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 px-6 pb-4'>
                   {species.season && (
                     <div className='flex items-center gap-2'>
-                      <Calendar className='h-4 w-4 text-primary' />
-                      <Badge className='bg-secondary text-primary'>
+                      <Calendar className='h-4 w-4 text-primary-text' />
+                      <Badge variant='secondary'>
                         {t(`seasons.${species.season}`)}
                       </Badge>
                     </div>
@@ -198,7 +192,7 @@ export default function SpeciesPage() {
                   {species.habitat && (
                     <div className='flex items-center gap-2'>
                       <MapPin className='h-4 w-4 text-success' />
-                      <Badge className='bg-secondary text-primary'>
+                      <Badge variant='secondary'>
                         {t(`habitats.${species.habitat}`)}
                       </Badge>
                     </div>
@@ -231,7 +225,7 @@ export default function SpeciesPage() {
 
                 {/* Action button - sticky to the card bottom, independent of description length */}
                 {species.showOnMap && (
-                  <CardFooter className='mt-auto px-6 pt-4'>
+                  <CardFooter className='mt-auto px-6'>
                     <Button
                       asChild
                       className='w-full flex items-center justify-center gap-2'

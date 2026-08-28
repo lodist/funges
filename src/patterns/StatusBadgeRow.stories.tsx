@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { Badge } from '@/components/ui/badge';
-import { Check, Clock, Info, Leaf, ChefHat } from 'lucide-react';
+import { Check, Clock, Info, Leaf, ChefHat } from '@/lib/icons';
 
 /**
  * Pattern: status and category badge row.
@@ -88,7 +88,7 @@ export const StatusLevels: Story = {
     docs: {
       description: {
         story:
-          'Confidence steps down through the variants rather than through a change of colour. That is the palette rule showing through: severity and emphasis are depth, not hue — there is no red badge to reach for.',
+          'Confidence steps down through the variants rather than through a change of colour. That is the palette rule showing through: severity and emphasis are depth, not hue. Hue 28 exists for destructive actions alone, so there is still no red badge to reach for here.',
       },
     },
   },

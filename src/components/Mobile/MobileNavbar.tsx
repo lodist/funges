@@ -6,11 +6,12 @@ import {
   Database,
   Settings as SettingsIcon,
   BarChart2,
-} from 'lucide-react';
+} from '@/lib/icons';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { DURATION_SLOW, EASE_STANDARD } from '@/lib/motion';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 
 const basePath = import.meta.env.BASE_URL || '/';
@@ -51,18 +52,16 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
       // animated element itself rather than an inner wrapper: a backdrop-filter
       // nested inside a transformed ancestor samples the wrong region in Safari.
       className={cn(
-        'fixed bottom-4 left-4 right-4 z-10 rounded-2xl',
+        'fixed bottom-4 left-4 right-4 z-10 rounded-card',
         NAV_SURFACE_CLASS
       )}
       initial={{ y: 0 }}
       animate={{ y: hidden ? 120 : 0 }}
-      transition={{
-        type: 'spring',
-        stiffness: 300,
-        damping: 30,
-        // Motion (#200): mirrors CSS --duration-slow (300ms).
-        duration: 0.3,
-      }}
+      // Motion (#225): was a spring with `duration: 0.3` beside it, which
+      // framer-motion discards whenever stiffness/damping are set — measured
+      // settle time was ~500ms, not the 300ms the comment promised. A tween
+      // is what actually rides --transition-duration-slow.
+      transition={{ duration: DURATION_SLOW, ease: EASE_STANDARD }}
     >
       <ul className='flex justify-around items-center py-3 px-3'>
         {items.map(item => {
@@ -85,7 +84,7 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
                 // Section-adaptive accent is tint + scale only, so without
                 // this the active section is conveyed by colour alone.
                 aria-current={isActive ? 'page' : undefined}
-                className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all duration-[var(--duration-base)] ${
+                className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all duration-base ${
                   isActive ? ACTIVE_ACCENT_CLASS : INACTIVE_ACCENT_CLASS
                 }`}
               >

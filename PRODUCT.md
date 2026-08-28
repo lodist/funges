@@ -46,7 +46,7 @@ Together: _when to go_ and _what you're holding_, both without a server in the l
 - **Offline:** service-worker caching covers the map, species data, recipes, and the ID model. This is a real, shipped capability, not merely an enhancement.
 - **No accounts, no server-side user data:** identification and scoring run client-side. There is no auth, no user profile, and no uploaded imagery.
 - **Scoring coverage is regional:** only four score regions exist today (`NE`, `SE`, `USE`, `USW`). Do not design or write copy implying global coverage.
-- **Design-system vocabulary is already settled** in `CONTEXT.md`: five elevation levels (`base`, `raised-subtle`, `raised`, `floating`, `overlay`), opt-in `glass` / `glass-regular` / `glass-clear`, the shared nav surface constant in `src/lib/nav-surface.ts`, relevance-based disclosure, section-adaptive accent, and the Foundations → Atoms → Molecules → Organisms tiers. Use these terms; do not coin parallel ones.
+- **Design-system vocabulary is already settled** in `CONTEXT.md`: seven elevation levels (`base`, `control`, `raised-subtle`, `raised`, `floating`, `floating-up`, `overlay`), opt-in `glass` / `glass-regular` / `glass-clear`, the shared nav surface constant in `src/lib/nav-surface.ts`, relevance-based disclosure, section-adaptive accent, and the Foundations → Atoms → Molecules → Organisms tiers. Use these terms; do not coin parallel ones.
 
 ## Brand Commitments
 

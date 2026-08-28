@@ -14,7 +14,7 @@ import { getSpeciesImage } from '@/lib/utils';
 import { getScoreColor } from '@/lib/scoreColor';
 import { SPECIES_DATA } from '@/data/species';
 import type { RegionId } from '@/lib/data';
-import { Navigation, BarChart2, Copy, Check } from 'lucide-react';
+import { Navigation, BarChart2, Copy, Check } from '@/lib/icons';
 
 interface FeatureInfoModalProps {
   feature: maplibregl.GeoJSONFeature | null;

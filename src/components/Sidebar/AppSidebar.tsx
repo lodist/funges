@@ -12,14 +12,16 @@ import {
   ShieldCheck,
   Gavel,
   BarChart2,
-} from 'lucide-react';
+  LifeBuoy,
+} from '@/lib/icons';
 import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
-  SidebarFooter,
+  SidebarSeparator,
+  SidebarTrigger,
+  useSidebar,
 } from '@/components/ui/sidebar';
-import { NavSecondary } from './nav-secondary';
 import { NavMain } from './nav-main';
 import { useTranslation } from 'react-i18next';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -31,6 +33,8 @@ const basePath = import.meta.env.BASE_URL || '/';
 
 export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
   const { t } = useTranslation('sidebar');
+  const { t: tCommon } = useTranslation('common');
+  const { state, toggleSidebar } = useSidebar();
   const isMobile = useIsMobile();
   const data = {
     navMain: [
@@ -96,30 +100,37 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
           ]
         : []),
     ],
-    navSecondary: !isMobile
+    // Four low-frequency utility links under one entry. `#help` is the
+    // parent-without-a-destination convention this file already uses.
+    navHelp: !isMobile
       ? [
           {
-            title: t('support'),
-            url: `${basePath}support`,
-            icon: Heart,
-          },
-          {
-            title: t('impressum'),
-            url: `${basePath}impressum`,
-            icon: Info,
-            isActive: false,
-          },
-          {
-            title: t('privacyPolicy'),
-            url: `${basePath}privacy-policy`,
-            icon: ShieldCheck,
-            isActive: false,
-          },
-          {
-            title: t('termsOfUse'),
-            url: `${basePath}termsuse`,
-            icon: Gavel,
-            isActive: false,
+            title: t('help'),
+            url: '#help',
+            icon: LifeBuoy,
+            items: [
+              {
+                title: t('support'),
+                url: `${basePath}support`,
+                icon: Heart,
+              },
+              {
+                title: t('impressum'),
+                url: `${basePath}impressum`,
+                icon: Info,
+              },
+              {
+                title: t('privacyPolicy'),
+                url: `${basePath}privacy-policy`,
+                icon: ShieldCheck,
+              },
+              {
+                title: t('termsOfUse'),
+                url: `${basePath}termsuse`,
+                icon: Gavel,
+              },
+            ],
+            flyoutFooter: <MapLastUpdated variant='sidebar' />,
           },
         ]
       : [],
@@ -128,7 +139,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
   return (
     <Sidebar
       variant='floating'
-      collapsible='offcanvas'
+      collapsible='icon'
       // shadcn's `variant='floating'` is layout/shape only; the elevation level
       // here is Raised, shared with MobileNavbar. See CONTEXT.md's note on the
       // naming collision. This replaces a hand-rolled
@@ -137,39 +148,40 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
       surfaceClassOverride={NAV_SURFACE_CLASS}
       {...props}
     >
-      <SidebarHeader className='border-b px-6 py-4'>
-        <div className='flex items-center gap-3'>
-          <img
-            src='icons/logo_1.png'
-            alt='Funges Logo'
-            className='h-8 w-8 rounded-lg object-cover'
-          />
-          <div className='flex flex-col'>
-            <h2 className='text-lg font-semibold tracking-tight'>
-              {t('appName', { defaultValue: 'Funges' })}
-            </h2>
-            <p className='text-xs text-muted-foreground'>
-              {t('appDescription', { defaultValue: 'Foraging Guide' })}
-            </p>
+      {/* px-5 is the spine: the wordmark, the dividers and the nav labels all
+          start at 20px from the panel edge. The rail drops to px-2, where the
+          44px targets are all that fit. */}
+      <SidebarHeader className='px-2 pt-4 pb-4 group-data-[collapsible=icon]:px-0'>
+        {state === 'collapsed' && !isMobile ? (
+          // In the rail the mark is the only way back, so it is the control.
+          <button
+            type='button'
+            onClick={toggleSidebar}
+            aria-label={tCommon('sidebar.toggle')}
+            className='focus-ring mx-auto flex size-11 items-center justify-center rounded-full'
+          >
+            <img
+              src='icons/logo_1.png'
+              alt=''
+              className='size-8 object-contain'
+            />
+          </button>
+        ) : (
+          <div className='flex items-center gap-2'>
+            <img
+              src='icons/logo_funges.png'
+              alt={t('appName', { defaultValue: 'Funges' })}
+              className='min-w-0 flex-1 object-contain'
+            />
+            {!isMobile && <SidebarTrigger className='shrink-0' />}
           </div>
-        </div>
+        )}
       </SidebarHeader>
-      <SidebarContent className='px-3 pt-4 pb-0'>
+      <SidebarSeparator className='mx-2 group-data-[collapsible=icon]:mx-2' />
+      <SidebarContent className='px-2 pt-4 pb-0 group-data-[collapsible=icon]:px-0'>
         <NavMain items={data.navMain} />
-        <NavSecondary items={data.navSecondary} className='mt-auto' />
+        <NavMain items={data.navHelp} className='mt-auto' />
       </SidebarContent>
-      {!isMobile && (
-        <SidebarFooter className='border-t py-3 px-1'>
-          <div className='flex flex-col gap-2 items-center justify-center'>
-            <div className='flex items-center gap-2 text-[10px] text-muted-foreground justify-center'>
-              <div className='w-2 h-2 bg-primary rounded-full animate-pulse flex-shrink-0'></div>
-              <span className='break-words leading-relaxed'>
-                <MapLastUpdated variant='sidebar' />
-              </span>
-            </div>
-          </div>
-        </SidebarFooter>
-      )}
     </Sidebar>
   );
 };

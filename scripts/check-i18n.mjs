@@ -37,18 +37,20 @@ function loadJson(filePath) {
 
 const locales = fs
   .readdirSync(localesDir, { withFileTypes: true })
-  .filter((entry) => entry.isDirectory())
-  .map((entry) => entry.name)
+  .filter(entry => entry.isDirectory())
+  .map(entry => entry.name)
   .sort();
 
 if (!locales.includes(sourceLocale)) {
-  console.error(`✗ Source locale "${sourceLocale}" not found under ${localesDir}`);
+  console.error(
+    `✗ Source locale "${sourceLocale}" not found under ${localesDir}`
+  );
   process.exit(1);
 }
 
 const namespaces = fs
   .readdirSync(path.join(localesDir, sourceLocale))
-  .filter((file) => file.endsWith('.json'))
+  .filter(file => file.endsWith('.json'))
   .sort();
 
 let hasErrors = false;
@@ -65,18 +67,24 @@ for (const locale of locales) {
       continue;
     }
 
-    const sourceKeys = new Set(collectKeyPaths(loadJson(path.join(localesDir, sourceLocale, namespace))));
+    const sourceKeys = new Set(
+      collectKeyPaths(loadJson(path.join(localesDir, sourceLocale, namespace)))
+    );
     const targetKeys = new Set(collectKeyPaths(loadJson(targetPath)));
 
-    const missing = [...sourceKeys].filter((key) => !targetKeys.has(key));
-    const extra = [...targetKeys].filter((key) => !sourceKeys.has(key));
+    const missing = [...sourceKeys].filter(key => !targetKeys.has(key));
+    const extra = [...targetKeys].filter(key => !sourceKeys.has(key));
 
     if (missing.length > 0) {
-      console.error(`✗ [${locale}] ${namespace} missing keys: ${missing.join(', ')}`);
+      console.error(
+        `✗ [${locale}] ${namespace} missing keys: ${missing.join(', ')}`
+      );
       hasErrors = true;
     }
     if (extra.length > 0) {
-      console.error(`✗ [${locale}] ${namespace} has extra keys not in "${sourceLocale}": ${extra.join(', ')}`);
+      console.error(
+        `✗ [${locale}] ${namespace} has extra keys not in "${sourceLocale}": ${extra.join(', ')}`
+      );
       hasErrors = true;
     }
   }
@@ -86,4 +94,6 @@ if (hasErrors) {
   process.exit(1);
 }
 
-console.log(`✓ All translation keys are synchronized across ${locales.length} locales (${namespaces.length} namespaces each)`);
+console.log(
+  `✓ All translation keys are synchronized across ${locales.length} locales (${namespaces.length} namespaces each)`
+);

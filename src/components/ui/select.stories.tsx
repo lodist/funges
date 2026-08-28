@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import {
   Select,
   SelectContent,
@@ -237,7 +237,9 @@ export const Invalid: Story = {
           ))}
         </SelectContent>
       </Select>
-      <p className='text-destructive text-xs'>{'Please pick a species.'}</p>
+      <p className='text-destructive-text text-xs'>
+        {'Please pick a species.'}
+      </p>
     </div>
   ),
 };

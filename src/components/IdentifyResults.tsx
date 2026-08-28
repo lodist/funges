@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
-import { AlertTriangle, ChevronRight, HelpCircle, Skull } from 'lucide-react';
+import { AlertTriangle, ChevronRight, HelpCircle, Skull } from '@/lib/icons';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { SPECIES_DATA } from '@/data/species';
@@ -177,7 +177,7 @@ function CandidateRow({
 
       <div className='min-w-0 flex-1 space-y-1'>
         {isToxic && (
-          <Badge variant='destructive' className='gap-1'>
+          <Badge variant='destructive'>
             <Skull />
             {toxicLabel}
           </Badge>

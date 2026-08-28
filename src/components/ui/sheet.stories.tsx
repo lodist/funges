@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import {
   Sheet,
   SheetClose,
@@ -22,7 +22,7 @@ const meta: Meta<typeof Sheet> = {
     docs: {
       description: {
         component:
-          'A panel that slides in from an edge. The `floating` elevation level, and it rides `--duration-slow` because it covers real distance. Reach for it over a Dialog when the content is a panel to work in rather than a decision to make.',
+          'A panel that slides in from an edge. The `floating` elevation level, and it rides `--transition-duration-slow` because it covers real distance. Reach for it over a Dialog when the content is a panel to work in rather than a decision to make.',
       },
     },
   },
@@ -126,7 +126,8 @@ export const FromLeft: Story = {
     docs: {
       description: {
         story:
-          'The left side is what `Sidebar` uses on mobile — the off-canvas nav is a Sheet underneath.',
+          'The left side is what `Sidebar` reaches for on mobile — the off-canvas nav is a Sheet underneath. ' +
+          'That branch ships unmounted: the root route renders `AppSidebar` on desktop only, and mobile navigation goes through `MobileNavbar`.',
       },
     },
   },

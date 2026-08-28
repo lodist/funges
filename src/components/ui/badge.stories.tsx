@@ -1,6 +1,7 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { Badge } from '@/components/ui/badge';
+import { CATEGORIES, categoryVar } from '@/lib/categoryColor';
 import {
   Check,
   X,
@@ -9,13 +10,21 @@ import {
   Star,
   Heart,
   Download,
-} from 'lucide-react';
+} from '@/lib/icons';
 
 // One list, used by both the controls and the matrix story below. `cva` keeps
 // its variant config private at runtime, so there is nothing to read back off
 // `badgeVariants` — but keeping a single copy per file means adding a variant
 // is two edits rather than three.
-const VARIANTS = ['default', 'secondary', 'destructive', 'outline'] as const;
+const VARIANTS = [
+  'default',
+  'secondary',
+  'destructive',
+  'outline',
+  'warning',
+  'success',
+  'info',
+] as const;
 
 const meta: Meta<typeof Badge> = {
   title: 'Atoms/Badge',
@@ -25,7 +34,7 @@ const meta: Meta<typeof Badge> = {
     docs: {
       description: {
         component:
-          'A small badge component for displaying status, labels, or counts. Built with Radix UI primitives for accessibility.',
+          'A small pill for status, labels and counts. Renders a span; asChild swaps in a Radix Slot so a link can carry the same treatment.',
       },
     },
   },
@@ -172,16 +181,22 @@ export const CountBadges: Story = {
 export const CategoryBadges: Story = {
   render: () => (
     <div className='flex flex-wrap gap-2'>
-      <Badge variant='default'>{'Technology'}</Badge>
-      <Badge variant='secondary'>{'Design'}</Badge>
-      <Badge variant='outline'>{'Marketing'}</Badge>
-      <Badge variant='destructive'>{'Urgent'}</Badge>
+      {CATEGORIES.map(category => (
+        <Badge
+          key={category}
+          variant='outline'
+          style={{ borderColor: categoryVar(category) }}
+        >
+          {category}
+        </Badge>
+      ))}
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Badges used for categorizing content.',
+        story:
+          'The five species categories, coloured through categoryVar(). The colour sits on the stroke, not the label: the ramp bottoms out at 3.93:1 (nut, light) and 3.77:1 (mushroom, dark), which clears the 3:1 non-text floor but not the 4.5:1 text one.',
       },
     },
   },
@@ -195,20 +210,25 @@ export const Interactive: Story = {
 
     return (
       <div className='flex flex-wrap gap-2'>
-        <Badge
-          className='cursor-pointer hover:opacity-80'
-          onClick={() => setIsLiked(!isLiked)}
-        >
-          <Heart className={isLiked ? 'fill-current' : ''} />
-          {isLiked ? 'Liked' : 'Like'}
+        <Badge asChild>
+          <button
+            type='button'
+            className='cursor-pointer hover:opacity-80'
+            onClick={() => setIsLiked(!isLiked)}
+          >
+            <Heart className={isLiked ? 'fill-current' : ''} />
+            {isLiked ? 'Liked' : 'Like'}
+          </button>
         </Badge>
-        <Badge
-          variant='secondary'
-          className='cursor-pointer hover:opacity-80'
-          onClick={() => setCount(count + 1)}
-        >
-          <Star />
-          {count} {'stars'}
+        <Badge asChild variant='secondary'>
+          <button
+            type='button'
+            className='cursor-pointer hover:opacity-80'
+            onClick={() => setCount(count + 1)}
+          >
+            <Star />
+            {count} {'stars'}
+          </button>
         </Badge>
       </div>
     );
@@ -286,43 +306,43 @@ export const InTable: Story = {
       <table className='w-full'>
         <thead>
           <tr className='border-b'>
-            <th className='text-left p-3'>{'Name'}</th>
+            <th className='text-left p-3'>{'Species'}</th>
             <th className='text-left p-3'>{'Status'}</th>
-            <th className='text-left p-3'>{'Role'}</th>
+            <th className='text-left p-3'>{'Category'}</th>
           </tr>
         </thead>
         <tbody>
           <tr className='border-b'>
-            <td className='p-3'>{'John Doe'}</td>
+            <td className='p-3'>{'Pfifferling'}</td>
             <td className='p-3'>
               <Badge variant='default'>
                 <Check />
-                {'Active'}
+                {'In season'}
               </Badge>
             </td>
             <td className='p-3'>
-              <Badge variant='secondary'>{'Admin'}</Badge>
+              <Badge variant='secondary'>{'Mushroom'}</Badge>
             </td>
           </tr>
           <tr className='border-b'>
-            <td className='p-3'>{'Jane Smith'}</td>
+            <td className='p-3'>{'Holunderblüte'}</td>
             <td className='p-3'>
-              <Badge variant='outline'>{'Pending'}</Badge>
+              <Badge variant='warning'>{'Ending soon'}</Badge>
             </td>
             <td className='p-3'>
-              <Badge variant='secondary'>{'User'}</Badge>
+              <Badge variant='secondary'>{'Flower'}</Badge>
             </td>
           </tr>
           <tr>
-            <td className='p-3'>{'Bob Johnson'}</td>
+            <td className='p-3'>{'Fliegenpilz'}</td>
             <td className='p-3'>
               <Badge variant='destructive'>
                 <X />
-                {'Inactive'}
+                {'Toxic'}
               </Badge>
             </td>
             <td className='p-3'>
-              <Badge variant='secondary'>{'Editor'}</Badge>
+              <Badge variant='secondary'>{'Mushroom'}</Badge>
             </td>
           </tr>
         </tbody>
@@ -361,26 +381,16 @@ export const AllVariants: Story = {
 
 // Long Text Handling
 export const LongText: Story = {
-  args: {
-    children: 'This is a badge with very long text that might wrap',
-  },
+  render: () => (
+    <div className='w-40 border border-dashed border-border p-2'>
+      <Badge variant='secondary'>{'Herbsttrompete-Verwechslungsgefahr'}</Badge>
+    </div>
+  ),
   parameters: {
     docs: {
       description: {
-        story: 'Badge with long text to demonstrate text wrapping behavior.',
-      },
-    },
-  },
-};
-
-export const WithEmoji: Story = {
-  args: {
-    children: '🚀 Launch',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Badge with emoji content.',
+        story:
+          'The badge never wraps. Past a narrow container the label truncates with an ellipsis and the pill keeps its padding, rather than growing out of the layout. A short label is still sized to its content.',
       },
     },
   },
