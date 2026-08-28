@@ -20,9 +20,17 @@ import { readdirSync, readFileSync } from 'node:fs';
 const indexCss = readFileSync('src/index.css', 'utf8');
 const button = readFileSync('src/components/ui/button.tsx', 'utf8');
 
+// A comment naming a banned radius is prose, not a call site. Without this the
+// guard fires on the sentence that explains why the radius is banned.
+function stripComments(source: string) {
+  return source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
+}
+
 const sources = readdirSync('src', { recursive: true, encoding: 'utf8' })
   .filter(p => /\.(tsx?|css|scss)$/.test(p) && !p.endsWith('radius.test.ts'))
-  .map(p => [`src/${p}`, readFileSync(`src/${p}`, 'utf8')] as const);
+  .map(
+    p => [`src/${p}`, stripComments(readFileSync(`src/${p}`, 'utf8'))] as const
+  );
 
 // The foundation story demonstrates the off-scale radii it warns against.
 const isFoundationStory = (p: string) =>
