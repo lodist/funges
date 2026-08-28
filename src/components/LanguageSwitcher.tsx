@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { setHtmlLanguage } from '@/lib/html-localization';
@@ -32,26 +33,23 @@ const LanguageSwitcher: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='ghost' size='sm' className='flex items-center gap-2'>
+        <Button variant='ghost' className='flex items-center gap-2'>
           <span className='text-lg'>{currentLanguage.flag}</span>
           <span className=''>{currentLanguage.name}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='center'>
-        {languages.map(language => (
-          <DropdownMenuItem
-            key={language.code}
-            onClick={() => handleLanguageChange(language.code)}
-            className={`flex items-center gap-2 ${
-              i18n.language === language.code
-                ? 'bg-happy-100 text-happy-900 font-semibold'
-                : ''
-            }`}
-          >
-            <span className='text-lg'>{language.flag}</span>
-            <span>{language.name}</span>
-          </DropdownMenuItem>
-        ))}
+        <DropdownMenuRadioGroup
+          value={i18n.language}
+          onValueChange={handleLanguageChange}
+        >
+          {languages.map(language => (
+            <DropdownMenuRadioItem key={language.code} value={language.code}>
+              <span className='text-lg'>{language.flag}</span>
+              <span>{language.name}</span>
+            </DropdownMenuRadioItem>
+          ))}
+        </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -21,7 +21,8 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { setHtmlLanguage } from '@/lib/html-localization';
@@ -116,24 +117,22 @@ export function NavMain({
                                 align='start'
                                 className='ml-2'
                               >
-                                {languages.map(language => (
-                                  <DropdownMenuItem
-                                    key={language.code}
-                                    onClick={() =>
-                                      handleLanguageChange(language.code)
-                                    }
-                                    className={`flex items-center gap-2 ${
-                                      i18n.language === language.code
-                                        ? 'bg-happy-100 text-happy-900 font-semibold'
-                                        : ''
-                                    }`}
-                                  >
-                                    <span className='text-lg'>
-                                      {language.flag}
-                                    </span>
-                                    <span>{language.name}</span>
-                                  </DropdownMenuItem>
-                                ))}
+                                <DropdownMenuRadioGroup
+                                  value={i18n.language}
+                                  onValueChange={handleLanguageChange}
+                                >
+                                  {languages.map(language => (
+                                    <DropdownMenuRadioItem
+                                      key={language.code}
+                                      value={language.code}
+                                    >
+                                      <span className='text-lg'>
+                                        {language.flag}
+                                      </span>
+                                      <span>{language.name}</span>
+                                    </DropdownMenuRadioItem>
+                                  ))}
+                                </DropdownMenuRadioGroup>
                               </DropdownMenuContent>
                             </DropdownMenu>
                           </SidebarMenuSubItem>
