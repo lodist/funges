@@ -63,7 +63,7 @@ export default function SupportPage() {
           <div className='text-center'>
             <div className='flex justify-center mb-4'>
               <div className='p-4 bg-destructive/10 rounded-full'>
-                <Heart className='h-12 w-12 text-destructive' />
+                <Heart className='h-12 w-12 text-destructive-text' />
               </div>
             </div>
             <h1 className='text-4xl font-bold text-foreground dark:text-white mb-4'>

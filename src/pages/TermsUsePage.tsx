@@ -100,7 +100,7 @@ export default function TermsUsePage() {
                   t('prohibitedUse.items', { returnObjects: true }) as string[]
                 ).map((item: string) => (
                   <li key={item} className='flex items-start'>
-                    <span className='text-destructive mr-2'>•</span>
+                    <span className='text-destructive-text mr-2'>•</span>
                     {item}
                   </li>
                 ))}

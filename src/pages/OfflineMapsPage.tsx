@@ -49,7 +49,7 @@ export default function OfflineMapsPage() {
         )}
 
         {error && (
-          <div className='bg-destructive/10 text-destructive px-4 py-2 rounded'>
+          <div className='bg-destructive/10 text-destructive-text px-4 py-2 rounded'>
             {error}
           </div>
         )}

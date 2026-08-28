@@ -156,7 +156,7 @@ export default function WorthForagingNowPage() {
         ) : null}
 
         {!isLoading && loadError ? (
-          <section className='rounded-card border border-destructive/20 bg-destructive/5 p-6 text-sm text-destructive'>
+          <section className='rounded-card border border-destructive/20 bg-destructive/5 p-6 text-sm text-destructive-text'>
             {loadError}
           </section>
         ) : null}

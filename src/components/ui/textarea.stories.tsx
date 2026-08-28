@@ -129,7 +129,7 @@ export const Invalid: Story = {
     <div className='flex w-80 flex-col gap-2'>
       <Label htmlFor='notes-invalid'>{'Foraging notes'}</Label>
       <Textarea id='notes-invalid' aria-invalid defaultValue='Too short' />
-      <p className='text-destructive text-xs'>
+      <p className='text-destructive-text text-xs'>
         {'Please describe the habitat in at least ten characters.'}
       </p>
     </div>

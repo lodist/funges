@@ -237,7 +237,9 @@ export const Invalid: Story = {
           ))}
         </SelectContent>
       </Select>
-      <p className='text-destructive text-xs'>{'Please pick a species.'}</p>
+      <p className='text-destructive-text text-xs'>
+        {'Please pick a species.'}
+      </p>
     </div>
   ),
 };

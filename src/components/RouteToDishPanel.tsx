@@ -91,7 +91,9 @@ export default function RouteToDishPanel({
           </div>
         </div>
 
-        {error ? <p className='text-xs text-destructive'>{error}</p> : null}
+        {error ? (
+          <p className='text-xs text-destructive-text'>{error}</p>
+        ) : null}
 
         {isLoading ? (
           <p className='text-xs text-muted-foreground'>

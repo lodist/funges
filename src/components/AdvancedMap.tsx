@@ -828,7 +828,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           <div class="flex items-center gap-2 mb-2">
             <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
               spot.type === 'mushroom'
-                ? 'bg-destructive/10 text-destructive'
+                ? 'bg-destructive/10 text-destructive-text'
                 : spot.type === 'berry'
                   ? 'bg-secondary text-primary-text'
                   : spot.type === 'herb'

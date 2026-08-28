@@ -225,7 +225,9 @@ Values live in `src/index.css`; `src/lib/categoryColor.ts` is the only way to re
 
 **The One Hue Rule.** Severity is depth, not hue — with two exceptions, both narrow. `--destructive` is hue 28, the fly agaric's red, and no other token may use it. Warning chrome borrows literal stops from the map score ramp rather than inventing an amber. Everything else is hue 150 over hue 90: no blue for info, no separate green for success, no hue-coded categories. `src/test/palette.test.ts` enforces all of it, including that a coloured token can't slip in as a hex literal.
 
-**The Text-Safe Step Rule.** Colors split into text-safe and fill-only, and this is a contrast fact rather than a style preference. Text-safe: `--primary-text` / `--happy-700`, Moss Text, Ink, Stone, `--status-warning-text`. Fill-only, held to the 3:1 non-text floor: `--happy-500`, `--happy-600` / `--primary`, `--status-warning`, Lichen. Putting 14px text on `--status-warning` yields 3.91:1 at best — callouts use `--status-warning-background`, where the same text reads 10.21:1.
+**The Text-Safe Step Rule.** Colors split into text-safe and fill-only, and this is a contrast fact rather than a style preference. Text-safe: `--primary-text` / `--happy-700`, Moss Text, Ink, Stone, `--status-warning-text`, `--destructive-text`. Fill-only, held to the 3:1 non-text floor: `--happy-500`, `--happy-600` / `--primary`, `--status-warning`, `--destructive`, Lichen. Putting 14px text on `--status-warning` yields 3.91:1 at best — callouts use `--status-warning-background`, where the same text reads 10.21:1.
+
+**The Same-In-Light Rule.** Where a fill token and its `-text` twin hold the same value in light and diverge in dark, light mode cannot tell you which one a call site meant — so reaching for the fill costs nothing until someone switches themes. The destructive pair is exactly this: one value at 7.09:1 in light, and in dark `--destructive` drops to **2.50:1** on the page and **1.93:1** on `bg-destructive/10` over a card, while `--destructive-text` clears the floor on every ground the app puts it on: **6.14:1** and **4.74:1** at those same two. Measure a destructive token in dark before you trust what light mode shows you, and read the `-text` twin as the default for anything that is text or a meaningful glyph.
 
 **The No-Default-Palette Rule.** All 22 Tailwind color families are set to `initial` in the `@theme` block, so `text-gray-700` and `bg-blue-50` emit nothing at all. This is deliberate — 453 of them had accumulated, 294 of those cool grey. A color utility that renders nothing means you reached for a family this system does not have; use a token.
 
@@ -251,7 +253,7 @@ There is no reference serif. Merriweather held `--font-serif` and rendered on no
 
 - **Display** (Space Grotesk, 600, 2.25rem/36px, ~1.1): page-level hero headings. Rare — reserved for a route's single opening statement.
 - **Headline** (Space Grotesk, 600, 1.875rem/30px, ~1.2): route titles and major section openers.
-- **Title** (Space Grotesk, 600, 1.25rem/20px, ~1.3): the workhorse heading, and the most common heading size in the app by a wide margin. Card titles, panel headers, species names. `CardTitle` renders at `font-semibold` with `leading-none`, deliberately tight so a title can sit directly above metadata.
+- **Title** (Space Grotesk, 600, 1.25rem/20px, ~1.3): the workhorse heading, and the most common heading size in the app by a wide margin. Panel headers and species names. `CardTitle` is the exception and renders one step down, at `text-base leading-snug font-semibold` — a card title sits close enough to its own metadata that Body size reads as the heading, and `leading-snug` is what keeps a title that wraps from colliding with itself.
 - **Body** (Public Sans, 400, 1rem/16px, 1.5): all running text. The global baseline set on `:root`.
 - **Label** (Public Sans, 500, 0.875rem/14px): buttons, form labels, list metadata, and input text at `md:` and above.
 - **Micro** (Public Sans, 500, 0.75rem/12px, `0.06em`, uppercase): badges and dense map chrome — the label above a control, the caption on a stat chip, the section header in a popover. Implemented as `.type-micro` in `globals.scss`, which sets no colour so the caller pairs it with the foreground its surface needs. The floor — nothing smaller ships, and at #225 that stopped being aspirational: eleven sites had been at 10px and 11px because this role had a name here and no implementation in code.
@@ -365,6 +367,19 @@ The character line for every primitive: **soft, pressable, borderless.** Depth d
 - **Focus:** two things paint, and they are one token. `.focus-ring` puts a 2px `--ring` outline on a 2px offset, and the field's own border becomes `--ring` as well: **7.85:1** in light and **4.78:1** in dark against the interior. One token, so a field inside a clipping ancestor — which cuts the outline off — still has a border clearing 1.4.11 on its own. It cannot be a literal `--happy-*` step: `--happy-500` measured **2.12:1** in light, and `--primary` measures 2.95:1, both under the 3:1 floor without a ring to lean on.
 - **Error:** `aria-invalid` reddens the border to `--destructive-text`, Fly Agaric — the same step the selection controls use, and for the same reason. The plain `--destructive` step reads **2.20:1** against the dark field interior and **2.51:1** against the page, under the 3:1 floor; `--destructive-text` reads **5.38:1** and **6.14:1**. In light all three destructive steps are one value at 7.09:1, so the defect was invisible there and the fix changes nothing.
 - **Transition:** `color, border-color, box-shadow`. Two of these borders change colour, so a list that omits `border-color` snaps both the focus edge and the error edge.
+
+### Labels
+
+Label, and the `FormLabel` / `FormDescription` / `FormMessage` trio that dresses
+it. The whole family lives in Storybook only — nothing shipped imports it yet —
+but it is the atom the fields will be labelled by, so it is held to the same
+floors.
+
+- **Style:** 14px Public Sans at `font-medium`, laid out as a flex row with `gap-2` so a label can carry a control or an icon beside its text and stay aligned on `items-center`.
+- **Leading:** `leading-snug`, not `leading-none`. A label in a narrow column wraps, and a line box set to the text height puts the next line's ascenders into the previous line's descenders — measured at a 14px baseline step on a 14px font, which is a collision, against 19.25px now. `src/test/label.test.tsx` guards Label, `CardTitle` and `DialogTitle` together, because this defect has now been found in all three.
+- **Error tone:** `--destructive-text`, never `--destructive`. `FormMessage` is the most important sentence on a failing form, and the fill tone reads **2.00:1** on a dark card — measured in the browser, against **4.91:1** for the text step. `FormLabel` reddens through the same token on `data-[error=true]`.
+- **Disabled:** `opacity-50`, driven from the peer input (`peer-disabled:`) or a disabled group (`group-data-[disabled=true]:`), which also drops pointer events. Disabled text is exempt from the 4.5:1 floor, so the halved opacity is a deliberate affordance rather than a contrast failure.
+- **Association:** `FormLabel` sets `htmlFor` from the `FormItem`'s generated id, and `FormControl` puts the matching id on the field plus `aria-describedby` for the description and, when there is one, the message. A bare `Label` outside a `FormItem` owns its own `htmlFor`.
 
 ### Selection Controls
 

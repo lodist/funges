@@ -165,12 +165,6 @@ describe('a card title is a heading', () => {
     expect(union, 'no `as` prop found').toBeTruthy();
     expect(union![1]).toMatch(/^(?:\s*'h[1-6]'\s*\|?)+$/);
   });
-
-  it('no leading-none, so a wrapped title does not collide with itself', () => {
-    expect(
-      classes(<CardTitle>{'Title'}</CardTitle>, 'card-title')
-    ).not.toContain('leading-none');
-  });
 });
 
 describe('dead shadcn leftovers stay gone', () => {

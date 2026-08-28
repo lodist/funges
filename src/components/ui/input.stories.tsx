@@ -325,7 +325,7 @@ export const WithValidation: Story = {
           className={!isValid ? 'border-destructive' : ''}
         />
         {!isValid && email && (
-          <p className='text-sm text-destructive'>
+          <p className='text-sm text-destructive-text'>
             {'Please enter a valid email address'}
           </p>
         )}
