@@ -347,7 +347,9 @@
   --glass-highlight: rgb(255 255 255 / 0.5);
 
   /* Opaque equivalents, used when backdrop-filter is unsupported or the
-     user asks for reduced transparency / increased contrast. */
+     user asks for reduced transparency / increased contrast. Because custom
+     property references resolve where they are declared, the dark theme
+     restates these aliases below. */
   --glass-bg-regular-opaque: var(--card);
   --glass-bg-clear-opaque: var(--card);
 
@@ -489,8 +491,8 @@
   --glass-bg-clear: rgb(0 0 0 / 0.2);
   --glass-border: rgb(255 255 255 / 0.1);
   --glass-highlight: rgb(255 255 255 / 0.08);
-  /* The *-opaque fallbacks are not restated here: they resolve through
-     var(--card), which the dark block already redefines above. */
+  --glass-bg-regular-opaque: var(--card);
+  --glass-bg-clear-opaque: var(--card);
 
   /* ------------------------------------------------------------------
      Elevation levels (#200) — dark theme
