@@ -538,6 +538,20 @@ ended up wearing two different focus tones.
   runs either way.
 - **`DropdownMenuShortcut` displays a shortcut, it does not bind one.** It is a `<span>`. The key
   handler stays the caller's job.
+- **A language is named by its code and its endonym, never by a flag.** Both pickers sized six
+  regional-indicator pairs with `text-lg` — an emoji standing in for an icon system, and a flag is a
+  country rather than a language besides. A row is now a `.type-micro` code in a fixed `w-6` column
+  followed by the endonym, which lands the name column at 68px in all six locales; the trigger takes
+  the same pair plus an `aria-label` of `common.language` and the active name, because both pickers
+  ship with no visible label of their own. Measured open: no clipping at `Português`, the widest, with
+  12px to spare, and the trigger holds 44px from `Italiano` (121px) to `Português` (144px).
+
+**The Quiet-Child-Uses-Weight Rule.** A row that carries state carries it as a colour, and a child
+span that declares its own colour wins over the inherited one — so it keeps the resting colour into
+the focused row and reads wrong exactly when the row is active. Secondary rank inside such a row is
+size and weight, never a muted step: the language code is `.type-micro`, which sets no colour, and
+follows the row to 13.34:1 on the focus fill in both themes, while the endonym alone takes the
+checked row's `font-semibold`.
 
 **The Dark-Twin-Eats-The-Variant Rule.** A `dark:` on a base ties with a state variant on
 specificity and orders after it, so it wins. Add a dark twin to a base and every variant that
@@ -588,6 +602,8 @@ Three durations and one curve, and everything references them: `--transition-dur
 ### Don't:
 
 - **Don't** introduce a new hue angle. No blue for links or info, no amber of its own, no hue-coded categories. Chromatic is 150, neutral is 90, danger is 28 and only for `--destructive`, warnings borrow ramp stops, and `src/test/palette.test.ts` enforces it — a new hue is caught whether it arrives as `oklch()` or as hex.
+- **Don't** stand an emoji in for an icon. Icons are drawn, from `@/lib/icons`; a glyph sized with
+  `text-lg` is not a small icon, it is a font the design system does not control.
 - **Don't** reach for a Tailwind colour utility. `text-gray-700`, `bg-blue-50`, `border-red-500` and the other 20 families emit nothing — if a colour class renders no colour, that is why.
 - **Don't** write an arbitrary `shadow-[…]` on a new component. It bypasses the role system and will not pick up the dark-theme inset highlight.
 - **Don't** treat `--shadow-*` as the elevation scale. It is legacy, materially weaker than what ships, and aliasing to it regresses the live look (ADR 0001).
