@@ -7,7 +7,7 @@
     "description": "Detailed offline basemap and foraging forecasts for Europe.",
     "bounds": [-25, 34, 45, 72],
     "minZoom": 3,
-    "maxZoom": 10
+    "maxZoom": 8
   },
   {
     "id": "us",
