@@ -9,13 +9,6 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from '@/components/ui/sheet';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
   Tooltip,
@@ -27,7 +20,6 @@ import {
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_WIDTH = '15rem';
-const SIDEBAR_WIDTH_MOBILE = '14rem';
 const SIDEBAR_WIDTH_ICON = '3.5rem';
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b';
 
@@ -35,8 +27,6 @@ type SidebarContextProps = {
   state: 'expanded' | 'collapsed';
   open: boolean;
   setOpen: (open: boolean) => void;
-  openMobile: boolean;
-  setOpenMobile: (open: boolean) => void;
   isMobile: boolean;
   toggleSidebar: () => void;
 };
@@ -66,7 +56,6 @@ function SidebarProvider({
   onOpenChange?: (open: boolean) => void;
 }) {
   const isMobile = useIsMobile();
-  const [openMobile, setOpenMobile] = React.useState(false);
 
   // This is the internal state of the sidebar.
   // We use openProp and setOpenProp for control from outside the component.
@@ -89,8 +78,8 @@ function SidebarProvider({
 
   // Helper to toggle the sidebar.
   const toggleSidebar = React.useCallback(() => {
-    return isMobile ? setOpenMobile(open => !open) : setOpen(open => !open);
-  }, [isMobile, setOpen, setOpenMobile]);
+    setOpen(open => !open);
+  }, [setOpen]);
 
   // Adds a keyboard shortcut to toggle the sidebar.
   React.useEffect(() => {
@@ -118,11 +107,9 @@ function SidebarProvider({
       open,
       setOpen,
       isMobile,
-      openMobile,
-      setOpenMobile,
       toggleSidebar,
     }),
-    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
+    [state, open, setOpen, isMobile, toggleSidebar]
   );
 
   return (
@@ -168,14 +155,10 @@ function Sidebar({
    * border and shadow wholesale — the point is to let a consumer apply the
    * app's own elevation/glass treatment (#200) without those defaults, which
    * live in Tailwind's utilities layer, winning over it.
-   *
-   * Applies to the desktop rail only. The mobile branch is a Sheet, which is
-   * elevation level Floating rather than Raised, so it keeps its own styling.
    */
   surfaceClassOverride?: string;
 }) {
-  const { t } = useTranslation('common');
-  const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
+  const { state } = useSidebar();
 
   if (collapsible === 'none') {
     return (
@@ -189,31 +172,6 @@ function Sidebar({
       >
         {children}
       </div>
-    );
-  }
-
-  if (isMobile) {
-    return (
-      <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
-        <SheetContent
-          data-sidebar='sidebar'
-          data-slot='sidebar'
-          data-mobile='true'
-          className='bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden'
-          style={
-            {
-              '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
-            } as React.CSSProperties
-          }
-          side={side}
-        >
-          <SheetHeader className='sr-only'>
-            <SheetTitle>{t('sidebar.title')}</SheetTitle>
-            <SheetDescription>{t('sidebar.description')}</SheetDescription>
-          </SheetHeader>
-          <div className='flex h-full w-full flex-col'>{children}</div>
-        </SheetContent>
-      </Sheet>
     );
   }
 
@@ -448,7 +406,7 @@ function SidebarGroupAction({
       className={cn(
         'text-sidebar-foreground focus-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-full p-0 outline-hidden transition-colors [&>svg]:size-4 [&>svg]:shrink-0',
         // The visible glyph is 20px; the hit area carries it to the 44px
-        // floor. Not mobile-only — a tablet gets this sidebar, not the Sheet.
+        // floor. Not mobile-only — a tablet gets this sidebar too.
         'after:absolute after:-inset-3',
         'group-data-[collapsible=icon]:hidden',
         className
@@ -593,7 +551,7 @@ function SidebarMenuAction({
       className={cn(
         'text-sidebar-foreground focus-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute top-1/2 right-1 flex aspect-square w-5 -translate-y-1/2 items-center justify-center rounded-full p-0 outline-hidden transition-colors [&>svg]:size-4 [&>svg]:shrink-0',
         // The visible glyph is 20px; the hit area carries it to the 44px
-        // floor. Not mobile-only — a tablet gets this sidebar, not the Sheet.
+        // floor. Not mobile-only — a tablet gets this sidebar too.
         'after:absolute after:-inset-3',
         'group-data-[collapsible=icon]:hidden',
         showOnHover &&

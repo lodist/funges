@@ -498,6 +498,35 @@ so a fix to one that skips the other leaves a twin broken in exactly the same wa
   comment has always said.
 - **Elevation follows the depth scale:** Dialog takes `elevation-overlay`, Sheet
   `elevation-floating`.
+- **A sheet floats; it is not glued to the screen edge.** Borderless, with the card radius on the
+  two corners the screen edge does not cut off — `rounded-l-card` for a right sheet, `rounded-t-card`
+  for a bottom one. Three sides used to draw a 1px hairline on the exposed edge with square corners
+  while the fourth was round and borderless: four lids answering the same question two ways. The
+  shadow carries the edge on its own in both themes. Measured in dark, the panel steps 1.23:1 off
+  the scrim behind it with the elevation token's own `inset 0 1px 0` rim — the same figure Dialog
+  has shipped all along, borderless, since before this rule was written.
+- **The dismiss gutter is reserved, not masked.** The dismiss is absolute so it never scrolls away,
+  which parks it on top of the header row: 16px of inset plus its own 44px, 60px from the panel
+  edge. The panel's own background makes the overlap legible rather than visible, so an unreserved
+  gutter does not collide — it _eats_ text, and a wrapping description silently loses a word. The
+  header reserves the 44px. No measurement found this; a screenshot did.
+- **Both twins name the title's role.** `SheetTitle` set a colour and a weight and no size at all,
+  so it rendered at whatever styles an `h2` — 30px against its twin's 18px, a size nobody chose.
+  A role omitted is not a role inherited.
+- **`duration-*` arms a transition nobody asked for.** The token drives the keyframe animation, but
+  it lands on `transition-duration` too, and CSS defaults `transition-property` to `all`: measured
+  0.3s of `all` on both panels and both scrims, with no transition utility written anywhere in
+  either file. `transition-none` beside the duration keeps `animate-in` and disarms the transition.
+  This is `transition-all` under a name that never appears in the source, which is why the guard
+  that read the button's cva base could not see it.
+- **Padding sits at 16px on Sheet and 24px on Dialog, deliberately.** A sheet is a working panel
+  anchored to an edge, 75% of a narrow screen wide, where 24px a side eats a third of the text
+  column; a dialog is a centred decision capped at `max-w-lg`, where it does not. The rule the two
+  share is _where_ the padding goes, not how much: on the scrolling body. Sheet had it on the
+  header and footer instead, and every caller wrote its own `px-4` back.
+- **An affordance implements its gesture or it is not one.** The bottom sheet's drag handle was a
+  bare `div` — no handler, no drag code anywhere in the file. A handle says "pull me" to a thumb
+  that then gets nothing, which is worse than no handle.
 - **`aria-modal` is absent on purpose.** The primitive `aria-hidden`s every sibling of the portal
   instead, which is the better-supported equivalent. Measured on the open dialog: 11 siblings
   hidden, the portal untouched. Adding the attribute by hand would be duplicating a mechanism

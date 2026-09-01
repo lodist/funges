@@ -48,7 +48,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const SheetBody = () => (
-  <div className='flex flex-col gap-4 px-4'>
+  <div className='flex flex-col gap-4'>
     <div className='flex flex-col gap-2'>
       <Label htmlFor='sheet-region'>{'Region name'}</Label>
       <Input id='sheet-region' placeholder='North slope' />
@@ -126,8 +126,8 @@ export const FromLeft: Story = {
     docs: {
       description: {
         story:
-          'The left side is what `Sidebar` reaches for on mobile — the off-canvas nav is a Sheet underneath. ' +
-          'That branch ships unmounted: the root route renders `AppSidebar` on desktop only, and mobile navigation goes through `MobileNavbar`.',
+          'A left sheet is off-canvas navigation. Nothing in the app reaches for one: ' +
+          'mobile navigation is `MobileNavbar` and the desktop rail is `Sidebar` itself.',
       },
     },
   },
@@ -161,7 +161,9 @@ export const FromBottom: Story = {
         <SheetHeader>
           <SheetTitle>{'Actions'}</SheetTitle>
           <SheetDescription>
-            {'The mobile action sheet: rounded top, drag handle, no border.'}
+            {
+              'The mobile action sheet: a rounded top edge and a shadow cast upward.'
+            }
           </SheetDescription>
         </SheetHeader>
         <SheetFooter>
@@ -177,7 +179,7 @@ export const FromBottom: Story = {
     docs: {
       description: {
         story:
-          'The bottom side is styled differently on purpose — a rounded top edge and a drag handle, since a bottom sheet reads as something you pull up rather than a panel that appears.',
+          'The bottom side rounds its top corners and inverts its shadow, because it is lit from below. It carried a drag handle too, which was decorative — nothing implemented the gesture it promised.',
       },
     },
   },
