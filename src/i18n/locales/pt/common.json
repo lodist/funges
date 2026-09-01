@@ -94,6 +94,7 @@
       "flower": "Melhor com tempo claro e seco antes do calor do meio-dia."
     },
     "focus": {
+      "label": "Prioridade",
       "mixed": "Cesta mista",
       "mushrooms": "Cogumelos primeiro",
       "plants": "Ervas e folhas",

@@ -12,13 +12,24 @@ const selectTriggerVariants = cva(
   // `size.default` alone would lose the cascade to a leftover h-9 here.
   // justify-between (was justify-center) left-aligns the value against the
   // right-aligned chevron once a caller opts into w-full.
-  "data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground aria-invalid:border-destructive-text dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium elevation-raised-subtle transition-[color,border-color,box-shadow] focus-ring focus-visible:border-ring disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-12 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex",
+  // sm is h-11, not h-8: it is the dense form, not an exemption from the 44px
+  // target. It keeps px-4 so its closed value stays in the item column.
+  // The hover fill is --accent, not a --happy-* step: this is a field, and the
+  // Light-Tuned Scale Rule holds it to semantic tokens. --muted is not an
+  // option either, since it is the same value as --card in dark and would be
+  // invisible exactly where the upstream dark-only hover already was.
+  // SelectValue clones the chosen item's children into the trigger, so an icon
+  // that SelectItem sized and spaced arrives here with neither: it rendered at
+  // lucide's own 24px against the row's 16px, jammed against its label. The
+  // trigger has to repeat both rules — the size on any svg that does not name
+  // one, the gap on the value slot — or every icon row reads right open and
+  // wrong closed.
+  "data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground aria-invalid:border-destructive-text flex w-fit items-center justify-between gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium elevation-raised-subtle transition-[color,background-color,border-color,box-shadow] hover:bg-accent focus-ring focus-visible:border-ring disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-12 data-[size=sm]:h-11 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2",
   {
     variants: {
       size: {
         default: 'h-12 px-4 py-1.5',
-        sm: 'h-8 px-2 py-1',
-        lg: 'h-10 px-4 py-2',
+        sm: 'h-11 px-4 py-1',
       },
     },
     defaultVariants: {
@@ -112,7 +123,7 @@ function SelectLabel({
   return (
     <SelectPrimitive.Label
       data-slot='select-label'
-      className={cn('text-muted-foreground px-4 py-1.5 text-xs', className)}
+      className={cn('type-micro text-muted-foreground px-4 py-1.5', className)}
       {...props}
     />
   );

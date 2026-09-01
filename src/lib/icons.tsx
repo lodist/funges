@@ -11,6 +11,7 @@ import {
   Calendar as LucideCalendar,
   CalendarRange as LucideCalendarRange,
   Camera as LucideCamera,
+  Bean as LucideBean,
   Check as LucideCheck,
   CheckCircle as LucideCheckCircle,
   CheckIcon as LucideCheckIcon,
@@ -30,9 +31,11 @@ import {
   ExternalLink as LucideExternalLink,
   Filter as LucideFilter,
   FlaskConical as LucideFlaskConical,
+  Flower2 as LucideFlower2,
   Gavel as LucideGavel,
   Github as LucideGithub,
   Globe as LucideGlobe,
+  Grape as LucideGrape,
   Heart as LucideHeart,
   HelpCircle as LucideHelpCircle,
   ImageIcon as LucideImageIcon,
@@ -74,6 +77,7 @@ import {
   WifiOff as LucideWifiOff,
   X as LucideX,
   XIcon as LucideXIcon,
+  createLucideIcon,
 } from 'lucide-react';
 
 /**
@@ -113,6 +117,7 @@ export const AlertTriangle = decorativeByDefault(LucideAlertTriangle);
 export const ArrowUpRight = decorativeByDefault(LucideArrowUpRight);
 export const BarChart2 = decorativeByDefault(LucideBarChart2);
 export const BarChart3 = decorativeByDefault(LucideBarChart3);
+export const Bean = decorativeByDefault(LucideBean);
 export const Bitcoin = decorativeByDefault(LucideBitcoin);
 export const BookOpen = decorativeByDefault(LucideBookOpen);
 export const Bookmark = decorativeByDefault(LucideBookmark);
@@ -138,9 +143,11 @@ export const Download = decorativeByDefault(LucideDownload);
 export const ExternalLink = decorativeByDefault(LucideExternalLink);
 export const Filter = decorativeByDefault(LucideFilter);
 export const FlaskConical = decorativeByDefault(LucideFlaskConical);
+export const Flower2 = decorativeByDefault(LucideFlower2);
 export const Gavel = decorativeByDefault(LucideGavel);
 export const Github = decorativeByDefault(LucideGithub);
 export const Globe = decorativeByDefault(LucideGlobe);
+export const Grape = decorativeByDefault(LucideGrape);
 export const Heart = decorativeByDefault(LucideHeart);
 export const HelpCircle = decorativeByDefault(LucideHelpCircle);
 export const ImageIcon = decorativeByDefault(LucideImageIcon);
@@ -182,3 +189,13 @@ export const Users = decorativeByDefault(LucideUsers);
 export const WifiOff = decorativeByDefault(LucideWifiOff);
 export const X = decorativeByDefault(LucideX);
 export const XIcon = decorativeByDefault(LucideXIcon);
+
+// Trailhead: lucide has no mushroom and this app forages them. Built with
+// createLucideIcon so it takes the same size/strokeWidth/currentColor contract
+// as every other glyph here, and the same decorative-by-default wrapper.
+const LucideMushroom = createLucideIcon('Mushroom', [
+  ['path', { d: 'M4 13a8 7 0 0 1 16 0Z', key: 'cap' }],
+  ['path', { d: 'M10 13v5a2 2 0 0 0 4 0v-5', key: 'stem' }],
+]);
+
+export const Mushroom = decorativeByDefault(LucideMushroom);

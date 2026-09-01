@@ -546,6 +546,57 @@ ended up wearing two different focus tones.
   ship with no visible label of their own. Measured open: no clipping at `Português`, the widest, with
   12px to spare, and the trigger holds 44px from `Italiano` (121px) to `Português` (144px).
 
+- **One role, one type: a section header in a popover is `.type-micro`.** `SelectLabel` read
+  12px/400/muted and `DropdownMenuLabel` 14px/500/inherited for the same header on the same surface.
+  Both now take `.type-micro` with `text-muted-foreground`, and neither carries a size or weight
+  utility beside it — `.type-micro` lives in `@layer components`, so a `text-sm` from an atom or a
+  call site outranks it from `@layer utilities` and silently undoes the role.
+- **A Select trigger has two heights and both clear 44px.** `default` is 48px, `sm` is 44px — dense
+  chrome means tighter type, not a smaller tap target, and `sm` was `h-8`, twelve pixels under, on
+  the one screen the pattern prescribes it for. `sm` keeps `px-4` so its closed value stays in the
+  item column. A third `lg` variant existed that no caller could name, and would have rendered 40px
+  if one could.
+- **The trigger's hover has a dark twin, and it is the trigger's only fill state.** Upstream shipped
+  `dark:bg-input/30 dark:hover:bg-input/50`: a fill in dark and no hover at all in light. It is now
+  `bg-card` in both themes with `hover:bg-happy-50 dark:hover:bg-accent/50`, the same pair Button's
+  quiet variants use. `hover:bg-muted` is not an option — `--muted` and `--card` are the same value
+  in dark, so it is invisible exactly where it was reached for.
+- **`SelectValue` clones the chosen row into the trigger, and the row's rules do not travel with
+  it.** The species filter's category glyph is sized and spaced by `SelectItem` — `size-4` on any
+  svg that names no size, `gap-2` on the text span. Cloned into the trigger those rules are gone:
+  the icon came out at lucide's own 24px against the row's 16px, hard against its label, so the
+  filter read right open and wrong closed. The trigger repeats both rules on the value slot. This is
+  the general shape of every clone, portal and `asChild` in the system: styling written on a parent
+  describes a position in the tree, and a copy of the children is somewhere else.
+
+- **A filter caption is a `<span>`, and the trigger points at it with `aria-labelledby`.** The
+  trigger is a button: no `<label for>` can name it, and a `placeholder` is not a name — it vanishes
+  on the first selection, and a filter whose value defaults to something never renders it at all.
+  All three shipped filters went out unnamed. The caption is `.type-micro text-muted-foreground` and
+  never the `Label` atom, whose `text-sm` would win the cascade. `src/patterns/FilterControl.stories.tsx`
+  is the composition; `src/test/select-call-sites.test.ts` refuses a fourth unnamed trigger.
+- **`MapThemeSelector` is the one popover that is not Radix, and it borrows everything else.** Its
+  rows carry a thumbnail and a two-line description, which `SelectItem`'s single text column has
+  nowhere to put — so it stays hand-rolled and takes the vocabulary instead: `rounded-card` +
+  `.elevation-floating` on the popover, `rounded-xl` and the Menus focus tone with its dark twin on
+  the rows, `.type-micro` on the caption. What it does not inherit it has to say itself: it declares
+  `aria-expanded` and closes on Escape, both of which Radix gives the other two surfaces for free.
+- **A hand-rolled popover anchors to a box, and a flex parent decides how big that box is.** Its
+  content hangs off `top-full`, which means "below this container" — and a flex or grid parent
+  stretches the container by default. The map's control stack is a `flex-col`, where stretch is
+  horizontal and the height hugged the trigger by accident; the first `flex-row` frame it was put in
+  stretched it vertically and dropped the popover 476px down the page. The anchor is `w-fit h-fit`
+  now, so the offset is the trigger's, not the caller's. Radix's popovers are immune because they
+  position from a portal against the trigger element itself.
+
+**The Silent-Axis Rule.** When two things that should be twins diverge, the question is not which
+one is wrong. It is which axis the shared rule never mentions. This section declared DropdownMenu
+and Select one surface and specified the row, the focus tone, the radius, the motion and the two
+text columns — and said nothing about the label's type, which is exactly and only where the twins
+still disagreed. A rule that is silent on an axis is not neutral about it: it licenses drift, and
+the drift lands there every time. Write the axis down when you settle it, or settle it again next
+pass.
+
 **The Quiet-Child-Uses-Weight Rule.** A row that carries state carries it as a colour, and a child
 span that declares its own colour wins over the inherited one — so it keeps the resting colour into
 the focused row and reads wrong exactly when the row is active. Secondary rank inside such a row is
@@ -603,7 +654,13 @@ Three durations and one curve, and everything references them: `--transition-dur
 
 - **Don't** introduce a new hue angle. No blue for links or info, no amber of its own, no hue-coded categories. Chromatic is 150, neutral is 90, danger is 28 and only for `--destructive`, warnings borrow ramp stops, and `src/test/palette.test.ts` enforces it — a new hue is caught whether it arrives as `oklch()` or as hex.
 - **Don't** stand an emoji in for an icon. Icons are drawn, from `@/lib/icons`; a glyph sized with
-  `text-lg` is not a small icon, it is a font the design system does not control.
+  `text-lg` is not a small icon, it is a font the design system does not control. When lucide has no
+  glyph for the thing — it has no mushroom — draw one with `createLucideIcon` in `@/lib/icons` so it
+  takes the same size, stroke and colour contract as the rest.
+- **Don't** respell a named type role in utilities. `text-xs font-medium uppercase tracking-wide` is
+  `.type-micro` with the wrong letter-spacing, and it arrived with a `/60` on the colour that
+  composites to 2.42:1 — under even the 3:1 non-text floor. The role is already quiet; the alpha
+  buys nothing.
 - **Don't** reach for a Tailwind colour utility. `text-gray-700`, `bg-blue-50`, `border-red-500` and the other 20 families emit nothing — if a colour class renders no colour, that is why.
 - **Don't** write an arbitrary `shadow-[…]` on a new component. It bypasses the role system and will not pick up the dark-theme inset highlight.
 - **Don't** treat `--shadow-*` as the elevation scale. It is legacy, materially weaker than what ships, and aliasing to it regresses the live look (ADR 0001).

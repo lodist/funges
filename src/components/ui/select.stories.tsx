@@ -1,5 +1,7 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
+import { Bean, Flower2, Grape, Leaf, List, Mushroom } from '@/lib/icons';
 import {
   Select,
   SelectContent,
@@ -51,6 +53,32 @@ const meta: Meta<typeof Select> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// Every trigger is a tap target first. `default` is 48px and `sm` is the 44px
+// floor itself — `sm` was h-8, which put the data screen's filter 12px under.
+const FLOOR = 44;
+
+// Radix marks the rest of the document aria-hidden while the popover is open,
+// and the a11y addon runs axe after the play function — on a tree where the
+// trigger is both focusable and inside that aria-hidden region. That is the
+// primitive working, not a defect, so the story closes what it opened.
+const withOpenContent = async (
+  canvasElement: HTMLElement,
+  assert: (ctx: { trigger: HTMLElement; content: HTMLElement }) => Promise<void>
+) => {
+  const trigger = within(canvasElement).getByRole('combobox');
+  await userEvent.click(trigger);
+  const content = await within(document.body).findByRole('listbox');
+  // The popover enters on `zoom-in-95`, so anything measured before the
+  // animation lands comes back scaled — a 16px glyph reads 15.
+  await waitFor(() => {
+    const style = getComputedStyle(content);
+    expect(`${style.transform} ${style.opacity}`).toBe('none 1');
+  });
+  await assert({ trigger, content });
+  await userEvent.keyboard('{Escape}');
+  await waitFor(() => expect(content.isConnected).toBe(false));
+};
+
 const SPECIES = [
   { value: 'chanterelle', label: 'Chanterelle' },
   { value: 'cep', label: 'Cep' },
@@ -73,6 +101,21 @@ export const Default: Story = {
       </SelectContent>
     </Select>
   ),
+  play: async ({ canvasElement }) => {
+    await withOpenContent(canvasElement, async ({ trigger, content }) => {
+      await expect(Math.round(trigger.getBoundingClientRect().height)).toBe(48);
+
+      // The row column has to line up with where the trigger's px-4 puts the
+      // closed value, or the label jumps sideways on open.
+      const item = content.querySelector<HTMLElement>(
+        '[data-slot=select-item]'
+      )!;
+      await expect(getComputedStyle(item).paddingLeft).toBe(
+        getComputedStyle(trigger).paddingLeft
+      );
+      await expect(getComputedStyle(item).borderRadius).toBe('12px');
+    });
+  },
 };
 
 export const WithLabel: Story = {
@@ -143,11 +186,79 @@ export const Small: Story = {
       </SelectContent>
     </Select>
   ),
+  play: async ({ canvasElement }) => {
+    const trigger = within(canvasElement).getByRole('combobox');
+    await expect(Math.round(trigger.getBoundingClientRect().height)).toBe(
+      FLOOR
+    );
+  },
   parameters: {
     docs: {
       description: {
         story:
-          'The `sm` trigger, used where a filter sits inside dense chrome rather than in a form.',
+          'The `sm` trigger, used where a filter sits inside dense chrome rather than in a form. Dense means 44px and tighter type, not a smaller tap target.',
+      },
+    },
+  },
+};
+
+const CATEGORIES = [
+  { value: 'all', label: 'All types', Icon: List },
+  { value: 'mushroom', label: 'Mushrooms', Icon: Mushroom },
+  { value: 'plant', label: 'Plants', Icon: Leaf },
+  { value: 'berry', label: 'Berries', Icon: Grape },
+  { value: 'nut', label: 'Nuts', Icon: Bean },
+  { value: 'flower', label: 'Flowers', Icon: Flower2 },
+];
+
+export const WithIcons: Story = {
+  render: () => (
+    <Select defaultValue='all'>
+      <SelectTrigger className='w-56' aria-label='Category'>
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        {CATEGORIES.map(({ value, label, Icon }) => (
+          <SelectItem key={value} value={value}>
+            <Icon />
+            {label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  ),
+  play: async ({ canvasElement }) => {
+    await withOpenContent(canvasElement, async ({ trigger, content }) => {
+      const closed = trigger.querySelector<HTMLElement>(
+        '[data-slot=select-value] svg'
+      )!;
+      const open = content.querySelector<HTMLElement>(
+        '[data-slot=select-item] svg'
+      )!;
+
+      // SelectValue clones the chosen row's children into the trigger, and the
+      // rules SelectItem wrote do not travel with them. The closed glyph came
+      // out at lucide's 24px against the row's 16px, hard against its label.
+      await expect(Math.round(closed.getBoundingClientRect().width)).toBe(16);
+      await expect(Math.round(closed.getBoundingClientRect().width)).toBe(
+        Math.round(open.getBoundingClientRect().width)
+      );
+
+      const value = trigger.querySelector<HTMLElement>(
+        '[data-slot=select-value]'
+      )!;
+      const row = open.closest('[data-slot=select-item]') as HTMLElement;
+      await expect(getComputedStyle(value).columnGap).toBe('8px');
+      await expect(getComputedStyle(value).columnGap).toBe(
+        getComputedStyle(row).columnGap
+      );
+    });
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Rows that lead with a drawn icon — what the species filter ships. The glyph has to read the same size and sit at the same distance from its label whether the list is open or closed, which the trigger only manages because it repeats SelectItem’s icon rules for the children `SelectValue` clones into it.',
       },
     },
   },
@@ -174,6 +285,24 @@ export const Grouped: Story = {
       </SelectContent>
     </Select>
   ),
+  play: async ({ canvasElement }) => {
+    await withOpenContent(canvasElement, async ({ content }) => {
+      const label = content.querySelector<HTMLElement>(
+        '[data-slot=select-label]'
+      )!;
+      const item = content.querySelector<HTMLElement>(
+        '[data-slot=select-item]'
+      )!;
+
+      // The Micro role, the same one DropdownMenuLabel takes. The two used to
+      // read 12px/400/muted against 14px/500/inherited for one role.
+      const style = getComputedStyle(label);
+      await expect(style.fontSize).toBe('12px');
+      await expect(style.fontWeight).toBe('500');
+      await expect(style.textTransform).toBe('uppercase');
+      await expect(style.paddingLeft).toBe(getComputedStyle(item).paddingLeft);
+    });
+  },
   parameters: {
     docs: {
       description: {

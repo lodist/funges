@@ -94,6 +94,7 @@
       "flower": "Mejor con tiempo luminoso y seco antes del calor del mediodia."
     },
     "focus": {
+      "label": "Enfoque",
       "mixed": "Cesta variada",
       "mushrooms": "Primero setas",
       "plants": "Hierbas y verdes",

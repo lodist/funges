@@ -94,6 +94,7 @@
       "flower": "Meilleur par temps clair et sec avant la chaleur de midi."
     },
     "focus": {
+      "label": "Priorité",
       "mixed": "Panier mixte",
       "mushrooms": "Champignons d'abord",
       "plants": "Herbes et verdures",

@@ -1378,14 +1378,21 @@ export default function DataPage() {
             })}
           >
             <div className='flex flex-wrap items-center gap-2 mb-3'>
-              <span className='text-xs font-medium uppercase tracking-wide text-muted-foreground/60 shrink-0'>
+              <span
+                id='data-species-filter'
+                className='type-micro text-muted-foreground shrink-0'
+              >
                 {t('common:data.species', { defaultValue: 'Species' })}
               </span>
               <Select
                 value={resolvedSpecies}
                 onValueChange={setSelectedSpecies}
               >
-                <SelectTrigger className='max-w-[180px]'>
+                <SelectTrigger
+                  size='sm'
+                  className='w-44'
+                  aria-labelledby='data-species-filter'
+                >
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

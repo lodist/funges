@@ -121,29 +121,40 @@ export default function WorthForagingNowPage() {
           ) : null}
         </div>
 
-        <div className='mb-8 flex flex-wrap items-center gap-3'>
-          <Select
-            value={focus}
-            onValueChange={value => setFocus(value as ForagingFocus)}
-          >
-            <SelectTrigger className='w-48'>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value='mixed'>
-                {t('worthForagingNow.focus.mixed')}
-              </SelectItem>
-              <SelectItem value='mushrooms'>
-                {t('worthForagingNow.focus.mushrooms')}
-              </SelectItem>
-              <SelectItem value='plants'>
-                {t('worthForagingNow.focus.plants')}
-              </SelectItem>
-              <SelectItem value='berries'>
-                {t('worthForagingNow.focus.berries')}
-              </SelectItem>
-            </SelectContent>
-          </Select>
+        <div className='mb-8 flex flex-wrap items-end gap-3'>
+          <div className='flex flex-col gap-2'>
+            <span
+              id='worth-foraging-focus'
+              className='type-micro text-muted-foreground'
+            >
+              {t('worthForagingNow.focus.label')}
+            </span>
+            <Select
+              value={focus}
+              onValueChange={value => setFocus(value as ForagingFocus)}
+            >
+              <SelectTrigger
+                className='w-48'
+                aria-labelledby='worth-foraging-focus'
+              >
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value='mixed'>
+                  {t('worthForagingNow.focus.mixed')}
+                </SelectItem>
+                <SelectItem value='mushrooms'>
+                  {t('worthForagingNow.focus.mushrooms')}
+                </SelectItem>
+                <SelectItem value='plants'>
+                  {t('worthForagingNow.focus.plants')}
+                </SelectItem>
+                <SelectItem value='berries'>
+                  {t('worthForagingNow.focus.berries')}
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         {isLoading ? (

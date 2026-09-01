@@ -94,6 +94,7 @@
       "flower": "Best in bright, dry weather before midday heat."
     },
     "focus": {
+      "label": "Focus",
       "mixed": "Mixed basket",
       "mushrooms": "Mushrooms first",
       "plants": "Greens and herbs",

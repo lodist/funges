@@ -50,8 +50,24 @@ describe('the field transitions every colour it changes', () => {
   // A field declares two border colours - one on focus, one on aria-invalid -
   // so a list that names only `color, box-shadow` snaps both of them.
   it.each(FIELDS)('%s names border-color', (_name, list) => {
-    expect(list()).toContain('transition-[color,border-color,box-shadow]');
+    expect(
+      list().some(
+        c => c.startsWith('transition-[') && c.includes('border-color')
+      )
+    ).toBe(true);
     expect(list()).not.toContain('transition-[color,box-shadow]');
+  });
+
+  // The same rule, applied to the one field that also changes a fill. The
+  // select trigger is a button that opens a popover, not a box you type in, so
+  // it answers the pointer - and the list has to name what it animates or the
+  // fill snaps while the edge eases.
+  it('the select trigger names the fill it changes', () => {
+    const list = FIELDS[2][1]();
+    expect(list).toContain('hover:bg-accent');
+    expect(list).toContain(
+      'transition-[color,background-color,border-color,box-shadow]'
+    );
   });
 });
 
