@@ -38,6 +38,11 @@ const meta: Meta<typeof Slider> = {
       control: { type: 'boolean' },
       description: 'Whether the thumb can be moved',
     },
+    formatValue: {
+      control: false,
+      description:
+        'Spoken form of a value, put on each thumb’s `aria-valuetext`. Needed whenever the number the thumb sits on is not the thing the user is choosing — a forecast day is announced as “Today”, not as “0”.',
+    },
     defaultValue: {
       control: { type: 'object' },
       description:
@@ -90,6 +95,7 @@ export const WithTicks: Story = {
         step={1}
         defaultValue={[2]}
         showTicks
+        formatValue={day => (day === 0 ? 'Today' : `In ${day} days`)}
       />
     </div>
   ),
@@ -97,7 +103,7 @@ export const WithTicks: Story = {
     docs: {
       description: {
         story:
-          'Ticks are inset by the thumb’s radius so they line up with where the thumb can actually stop, rather than with the container edges. Seven steps for seven forecast days.',
+          'Ticks are inset by the thumb’s radius so they line up with where the thumb can actually stop, rather than with the container edges. Seven steps for seven forecast days, each announced by `formatValue` as the day it means rather than as its index.',
       },
     },
   },

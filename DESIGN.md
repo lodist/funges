@@ -433,6 +433,64 @@ busy state, where there is no shape to hold.
   `Math.random()` inside the render: nothing could assert the row and every remount reshuffled it.
   Width is a prop, like every other part of the shape.
 
+### Slider
+
+One shipped slider: the forecast day picker that floats on the map, dragged with a thumb,
+outdoors. Every measurement below comes from there rather than from its story.
+
+- **Style:** a 358×8 outlined capsule with a solid fill and a 16px ringed thumb, in neutrals only.
+  No accent colour anywhere on it — a green fill over the map would read as part of the
+  score/legend colour coding rather than as a control.
+- **The target is the bar, not the dot.** Radix starts a slide from a pointerdown anywhere on the
+  root, so the root _is_ the target — and the root measures 358×6 with the old track, because the
+  thumb is absolutely positioned and never raised it. The whole control was six pixels tall,
+  38 under the floor. A centred `::before` states 44px outright rather than insetting from a
+  height that is not the one you see, and covers the full length of the bar rather than a halo at
+  one point of it. Measured: a press 15px below the track moves the thumb. Vertical only, and it
+  stays inside the card's 12px padding at both ends of the travel, so the map keeps its own
+  events — `elementFromPoint` just outside the card still returns the MapLibre canvas.
+- **Boundary: a stroke, because a fill cannot carry both edges here.** The card is glass over the
+  map, which leaves one neutral axis and three levels to place on it. Measured on the shipped
+  surface: a wash dark enough to hold 3:1 against the card (`--foreground/50`) fell to **2.97:1**
+  where a dark tile passes under the glass, and every alpha that fixed that dropped the range
+  below 3:1 against the track — in dark over a bright tile, to **1.9:1**. An outline moves the
+  track's boundary off that axis entirely. `--foreground` solid measures **14.51:1** light and
+  **8.18:1** dark against the card, on any tile the map can produce, and the range then reads
+  against the untouched card interior at the same numbers. The old `bg-muted` track was a
+  background token: **1.32:1** light and **1.02:1** dark, where `--muted` carries `--card`'s own
+  value.
+- **8px, not 6px.** A 1px stroke on each side of a 6px capsule leaves 4px of interior for the
+  fill. The track is the one dimension the stroke costs, and it is paid back once.
+- **State indicator:** the thumb, at **14.51:1** light and **8.18:1** dark, whose
+  `--background` ring reads **10.44:1** against the fill it caps.
+- **Ticks:** the track's own stroke, not `--border`, which measured **1.04:1** in dark —
+  invisible on the one surface where the ticks are the only thing saying where the thumb can
+  stop. They are inset by the thumb's radius so they line up with the travel, not with the
+  container.
+- **Announced value:** a slider whose numbers are not the thing being chosen takes `formatValue`,
+  which lands on each thumb's `aria-valuetext`. Without it the forecast picker announced "0"
+  while the label beside it read "Today". The atom cannot know that, so the caller supplies the
+  same function that writes the visible caption — one function, so the two cannot drift.
+- **Dead states:** `disabled:pointer-events-none disabled:opacity-50` sat on the thumb, which is
+  a `<span>`. `:disabled` only ever matches a form control; Radix marks `data-disabled`. The
+  state worked anyway because the root dims the whole control, so the two classes read as the
+  reason it worked while doing nothing.
+- **One thumb unless asked:** the thumb count derives from the value, and the fallback for
+  neither `value` nor `defaultValue` is `[min]` — Radix's own default. It used to be
+  `[min, max]`, which handed a range slider to a caller who asked for a plain one.
+
+**The Root-Is-The-Target Rule.** Before widening a control's hit area, find out which element the
+primitive actually listens on. The thumb is what you see and what you reach for, but Radix binds
+pointerdown to the root, so the `::before` the selection controls use would have bought 44px at
+one point of a 358px bar and left the rest at six. Measure the element that receives the event,
+not the one that draws the affordance; the floor applies to the first.
+
+**The One-Axis-Two-Boundaries Rule.** A translucent surface has one neutral axis, and two
+stacked fills on it cannot both clear 3:1 — raise one and you sink the other, in whichever theme
+the ground moves toward. When a control needs two boundaries on glass, one of them stops being a
+fill. This is the Stroke-Is-The-Control Rule arriving from the other direction: there the stroke
+was the only edge a control had, here it is the only edge the ground leaves room for.
+
 ### Selection Controls
 
 Checkbox, radio and switch. The three share one boundary rule, one indicator rule and one
@@ -749,7 +807,7 @@ Three durations and one curve, and everything references them: `--transition-dur
 - **Don't** use `--happy-500`, `--happy-600` / `--primary`, or `--status-warning` as a text color. All three are fill-only, held to the 3:1 non-text floor; `--status-warning` gives 3.91:1 at best, so warning callouts use `--status-warning-background`.
 - **Don't** use `--happy-700` for the mobile nav's active tint — 1.7:1 over translucent dark chrome on a light map.
 - **Don't** add a cool grey or a pure `#ffffff` to either theme. Every neutral is hue 90. The only surviving pure whites are translucent washes over media and the QR code, which needs literal `#000`/`#fff` to scan.
-- **Don't** add a border to a primitive unless the variant is called `outline`, or the stroke is `--destructive-border` earning back contrast in dark. And don't ship an `outline` without one — the name is a promise.
+- **Don't** add a border to a primitive unless the variant is called `outline`, the stroke is `--destructive-border` earning back contrast in dark, or the stroke _is_ the control's boundary — the selection controls' 2px edge and the slider track's capsule, both of which exist because nothing else on those controls can carry the 3:1 floor. And don't ship an `outline` without one — the name is a promise.
 - **Don't** put theme values in `tailwind.config.js` — it carries no theme and is retained only for the shadcn CLI.
 - **Don't** make `body` scroll. The shell is fixed at `100dvh`; give overflowing content its own scroll container.
 - **Don't** apply a surface treatment to the `Sidebar`'s positioning container. It must land on `data-slot='sidebar-inner'` or the background paints over it.
