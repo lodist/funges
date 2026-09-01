@@ -62,6 +62,18 @@ jobs:
       - name: Run unit tests
         run: npx vitest run --project unit
 
+      # The Storybook project renders every story in a real browser, so the
+      # browser has to be present before it runs.
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # The stories are both the design-system documentation and its test: a
+      # story that cannot render is a failing test, and the a11y addon is set
+      # to fail on axe violations. Without this step the stories execute
+      # nowhere but a developer's machine.
+      - name: Run Storybook stories
+        run: npx vitest run --project storybook
+
       - name: Create .env file
         run: |
           echo "📝 Creating .env file..."

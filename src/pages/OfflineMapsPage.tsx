@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Download, Info, Map, RefreshCw, X } from 'lucide-react';
+import { Download, Info, Map, RefreshCw, X } from '@/lib/icons';
 import SEO from '@/components/SEO';
 import { usePWA } from '@/hooks/use-pwa';
 import { useOfflineStore } from '@/store/offlineStore';
@@ -69,12 +69,12 @@ export default function OfflineMapsPage() {
         <h1 className='text-2xl font-bold sm:text-3xl'>{t('title')}</h1>
 
         {!isOnline && (
-          <div className='rounded bg-yellow-100 px-4 py-2 text-yellow-800'>
+          <div className='bg-status-warning-background text-status-warning-text px-4 py-2 rounded'>
             {t('offlineBanner')}
           </div>
         )}
         {error && (
-          <div className='rounded bg-red-100 px-4 py-2 text-red-800'>
+          <div className='bg-destructive/10 text-destructive-text px-4 py-2 rounded'>
             {error}
           </div>
         )}
@@ -133,7 +133,6 @@ export default function OfflineMapsPage() {
 
                   {!currentProgress && !installed && (
                     <Button
-                      size='sm'
                       disabled={!isOnline}
                       onClick={() => void download(definition.id)}
                     >
@@ -144,7 +143,6 @@ export default function OfflineMapsPage() {
                   {!currentProgress && installed && updateAvailable && (
                     <div className='flex flex-wrap gap-2 sm:justify-end'>
                       <Button
-                        size='sm'
                         disabled={!isOnline}
                         onClick={() => void download(definition.id)}
                       >
@@ -152,7 +150,6 @@ export default function OfflineMapsPage() {
                         {t('packages.update')}
                       </Button>
                       <Button
-                        size='sm'
                         variant='outline'
                         onClick={() => void remove(definition.id)}
                       >
@@ -163,16 +160,12 @@ export default function OfflineMapsPage() {
                   {!currentProgress && installed && !updateAvailable && (
                     <div className='flex gap-2'>
                       {hasBasemap && (
-                        <Button
-                          size='sm'
-                          onClick={() => void openPackage(definition)}
-                        >
+                        <Button onClick={() => void openPackage(definition)}>
                           <Map className='mr-1 h-4 w-4' />
                           {t('packages.open')}
                         </Button>
                       )}
                       <Button
-                        size='sm'
                         variant='outline'
                         onClick={() => void remove(definition.id)}
                       >
@@ -204,7 +197,6 @@ export default function OfflineMapsPage() {
                         })}
                       </span>
                       <Button
-                        size='sm'
                         variant='ghost'
                         onClick={() => cancel(definition.id)}
                       >

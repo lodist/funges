@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
-import { AlertTriangle, ChevronRight, HelpCircle, Skull } from 'lucide-react';
+import { AlertTriangle, ChevronRight, HelpCircle, Skull } from '@/lib/icons';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { SPECIES_DATA } from '@/data/species';
@@ -25,8 +25,9 @@ import { getSpeciesImage } from '@/lib/utils';
  *   - it filters rows with `.filter(entry => entry.image)`. Toxic species have no
  *     image asset, so that line would silently drop every toxic row — the worst
  *     possible outcome, reached by following the obvious template.
- *   - its `getScoreColor` ramps green-is-good. A 90%-confidence toxic match is
- *     not good, so confidence is neutral, de-emphasised text here.
+ *   - its `getScoreColor` ramps intensity-is-good (pale to dark maroon,
+ *     mirroring the map's fill colors). A 90%-confidence toxic match is not good,
+ *     so confidence is neutral, de-emphasised text here.
  */
 
 export interface IdentifyResultsProps {
@@ -69,13 +70,13 @@ export function IdentifyResults({
       {showToxicBanner && (
         <div
           role='alert'
-          /* Core Tailwind amber, not bg-status-warning: that class generates
-             no CSS (see NOTICE in the commit) so this banner had no amber at
-             all. Stronger than the standing disclaimer's halo, which is the
-             hierarchy this feature depends on. */
+          /* The warning tokens, which are theme-aware and derived from the map
+             score ramp. Border-2 rather than a different colour is what makes
+             this stronger than the standing disclaimer's halo — the hierarchy
+             this feature depends on. */
           className={
-            'rounded-lg border-2 border-amber-500 bg-amber-100 p-3 flex gap-2 ' +
-            'text-amber-900 dark:border-amber-600 dark:bg-amber-950/50 dark:text-amber-100'
+            'rounded-lg border-2 border-status-warning-border bg-status-warning-background p-3 flex gap-2 ' +
+            'text-status-warning-text   '
           }
         >
           <AlertTriangle className='h-5 w-5 shrink-0 mt-0.5' />
@@ -176,7 +177,7 @@ function CandidateRow({
 
       <div className='min-w-0 flex-1 space-y-1'>
         {isToxic && (
-          <Badge variant='destructive' className='gap-1'>
+          <Badge variant='destructive'>
             <Skull />
             {toxicLabel}
           </Badge>

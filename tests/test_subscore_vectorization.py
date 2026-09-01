@@ -1,7 +1,7 @@
-"""Locks the vectorized temp / humidity / altitude / pH sub-scores to the original
-per-row `.apply` logic. The reference functions below are verbatim copies of the
-original expressions from calculate_mushroom_score; the test asserts the production
-helpers reproduce them bit-for-bit across NaNs and pH-range edges.
+"""Locks the vectorized temp, humidity, altitude, and pH sub-score helpers.
+
+Temperature retains the original symmetric Gaussian. Humidity uses a one-sided
+deficit curve: the same Gaussian below saturation and full suitability above it.
 """
 import numpy as np
 import pandas as pd
@@ -17,6 +17,15 @@ def _ref_weighted_lag(df, base_col, n_days, weights, mu, sigma):
         w * df.get(f'{base_col}_{d}days_ago', df[base_col])
             .fillna(df[base_col])
             .apply(lambda x: gaussian(x, mu, sigma))
+        for d, w in enumerate(weights, start=1)
+    ), dtype=float)
+
+
+def _ref_weighted_lag_humidity(df, base_col, n_days, weights, saturation, sigma):
+    return np.asarray(sum(
+        w * df.get(f'{base_col}_{d}days_ago', df[base_col])
+            .fillna(df[base_col])
+            .apply(lambda x: fp.humidity_suitability(x, saturation, sigma))
         for d, w in enumerate(weights, start=1)
     ), dtype=float)
 
@@ -75,12 +84,21 @@ def test_temp_weighted_lag_matches_reference():
     assert np.array_equal(got, ref, equal_nan=True)
 
 
-def test_humidity_weighted_lag_matches_reference():
+def test_humidity_curve_is_gaussian_only_below_saturation():
+    values = np.array([50.0, 65.0, 79.0, 80.0, 90.0, 100.0, np.nan])
+    got = fp.humidity_suitability(values, saturation=80.0, sigma=17.0)
+
+    assert np.array_equal(got[:3], gaussian(values[:3], 80.0, 17.0))
+    assert np.array_equal(got[3:6], np.ones(3))
+    assert np.isnan(got[-1])
+
+
+def test_humidity_weighted_lag_matches_one_sided_reference():
     df = _sample()
     hum_days, mu, sigma = 21, 85.0, 15.0
     w = _hum_weights(hum_days)
-    ref = _ref_weighted_lag(df, 'Humidity (%)', hum_days, w, mu, sigma)
-    got = fp._weighted_lag_gaussian(df, 'Humidity (%)', hum_days, w, mu, sigma)
+    ref = _ref_weighted_lag_humidity(df, 'Humidity (%)', hum_days, w, mu, sigma)
+    got = fp._weighted_lag_humidity(df, 'Humidity (%)', hum_days, w, mu, sigma)
     assert np.array_equal(got, ref, equal_nan=True)
 
 

@@ -1,6 +1,8 @@
 import { useMapStore } from '@/store/mapStore';
 import { FORECAST_DAYS, forecastDayLabel } from '@/lib/forecast';
 import { useTranslation } from 'react-i18next';
+import { Card } from '@/components/ui/card';
+import { Slider } from '@/components/ui/slider';
 
 // ponytail: base date = device today; tiles regenerate daily so d0 == today.
 // Upgrade path (spec D1): fetch a forecast_meta.json base_date if drift appears.
@@ -10,33 +12,36 @@ export default function ForecastSlider({
   className?: string;
 }) {
   const { activeDay, setActiveDay } = useMapStore();
-  const { t } = useTranslation('map');
+  const { t, i18n } = useTranslation('map');
   const base = new Date();
   const activeLabel =
     activeDay === 0
       ? t('forecast.today', { defaultValue: 'Today' })
-      : forecastDayLabel(base, activeDay);
+      : forecastDayLabel(base, activeDay, i18n.language);
 
   return (
-    <div
-      className={`flex flex-col justify-center bg-white/95 backdrop-blur-sm border border-gray-200 px-3 md:px-4 rounded-lg shadow-sm h-14 md:h-[68px] ${className}`}
+    <Card
+      surface='glass'
+      padding='compact'
+      // No shadow: it sits on the map beside controls that carry their own, and
+      // a second one read as a competing floating layer.
+      className={`shadow-none ${className}`}
     >
-      <div className='flex items-center justify-between text-xs leading-none mb-1 md:mb-2'>
-        <span className='font-bold text-gray-900'>
+      <div className='flex items-center justify-between text-xs leading-none mb-2.5'>
+        <span className='font-bold text-foreground'>
           {t('forecast.label', { defaultValue: 'Forecast' })}
         </span>
-        <span className='text-gray-600'>{activeLabel}</span>
+        <span className='text-muted-foreground'>{activeLabel}</span>
       </div>
-      <input
-        type='range'
+      <Slider
         min={0}
         max={FORECAST_DAYS - 1}
         step={1}
-        value={activeDay}
-        onChange={e => setActiveDay(Number(e.target.value))}
+        value={[activeDay]}
+        onValueChange={([next]) => setActiveDay(next)}
+        showTicks
         aria-label={t('forecast.label', { defaultValue: 'Forecast day' })}
-        className='w-full accent-[#800020]'
       />
-    </div>
+    </Card>
   );
 }

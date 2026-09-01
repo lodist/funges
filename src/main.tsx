@@ -1,6 +1,9 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+// The brand typefaces. One list, in src/lib/fonts.ts, imported here and by
+// .storybook/preview.tsx so the two cannot drift.
+import '@/lib/fonts';
 import './index.css';
 import './i18n';
 import { initializeHtmlLocalization } from '@/lib/html-localization';

@@ -12,7 +12,11 @@
         const path = window.location.pathname;
 
         // Skip redirect for static files — let GitHub Pages return a real 404.
-        if (path.endsWith('.xml') || path.endsWith('.txt') || path.endsWith('.json')) {
+        if (
+          path.endsWith('.xml') ||
+          path.endsWith('.txt') ||
+          path.endsWith('.json')
+        ) {
           return;
         }
 

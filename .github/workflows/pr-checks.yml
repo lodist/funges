@@ -1,0 +1,56 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+concurrency:
+  group: pr-checks-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  ci-check:
+    # Skip draft PRs — checks run once the PR is marked ready for review
+    # (or immediately, for a PR opened directly as non-draft).
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    env:
+      VITE_BASE_URL: ${{ vars.VITE_BASE_URL }}
+      VITE_HOSTNAME: ${{ vars.VITE_HOSTNAME }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Setup Task
+        uses: arduino/setup-task@v2
+        with:
+          version: '3.53.1'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Keyed on package-lock.json so a rerun after a rebase (forced by the
+      # branch's "must be up to date" required-check policy) can skip a
+      # full reinstall when the lockfile hasn't changed.
+      - name: Cache node_modules
+        id: node-modules-cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      # Runs the same checks as the deploy workflow's build job:
+      # format check, lint, type check, unit tests, build.
+      # See the Taskfile's `ci-check-only` task for the exact steps.
+      - name: Run CI checks
+        run: task ci-check-only

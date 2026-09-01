@@ -12,6 +12,7 @@ import {
 } from '@/lib/worth-foraging-now';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import {
   Select,
   SelectContent,
@@ -26,7 +27,7 @@ import {
   MapPinned,
   ArrowUpRight,
   Calendar,
-} from 'lucide-react';
+} from '@/lib/icons';
 import { useMapStore } from '@/store/mapStore';
 
 export default function WorthForagingNowPage() {
@@ -104,17 +105,17 @@ export default function WorthForagingNowPage() {
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
         <div className='mb-8 text-center'>
-          <h1 className='mb-2 text-4xl font-bold text-text-primary'>
+          <h1 className='mb-2 text-4xl font-bold text-foreground'>
             {t('worthForagingNow.title')}
           </h1>
-          <p className='text-sm text-text-secondary'>
+          <p className='text-sm text-muted-foreground'>
             {scopeLabel ??
               (userLocation
                 ? t('worthForagingNow.locationEnabled')
                 : t('worthForagingNow.locationMissing'))}
           </p>
           {!userLocation ? (
-            <p className='mt-1 text-xs italic text-text-secondary/60'>
+            <p className='mt-1 text-xs italic text-muted-foreground/60'>
               {t('worthForagingNow.shareLocationHint')}
             </p>
           ) : null}
@@ -146,7 +147,7 @@ export default function WorthForagingNowPage() {
         </div>
 
         {isLoading ? (
-          <section className='rounded-3xl border bg-card p-10'>
+          <section className='rounded-card border bg-card p-10'>
             <div className='flex items-center justify-center gap-3 text-muted-foreground'>
               <Loader2 className='h-5 w-5 animate-spin' />
               <span>{t('worthForagingNow.loading')}</span>
@@ -155,13 +156,13 @@ export default function WorthForagingNowPage() {
         ) : null}
 
         {!isLoading && loadError ? (
-          <section className='rounded-3xl border border-destructive/20 bg-destructive/5 p-6 text-sm text-destructive'>
+          <section className='rounded-card border border-destructive/20 bg-destructive/5 p-6 text-sm text-destructive-text'>
             {loadError}
           </section>
         ) : null}
 
         {!isLoading && !loadError && recommendations.length === 0 ? (
-          <section className='rounded-3xl border bg-card p-6 text-sm text-muted-foreground'>
+          <section className='rounded-card border bg-card p-6 text-sm text-muted-foreground'>
             {t('worthForagingNow.noData')}
           </section>
         ) : null}
@@ -170,28 +171,29 @@ export default function WorthForagingNowPage() {
         {!isLoading && !loadError ? (
           <section className='grid gap-x-5 lg:grid-cols-3'>
             {recommendations.map((recommendation, index) => (
-              <div
+              <Card
                 key={recommendation.speciesId}
-                className='mb-5 rounded-[2rem] border border-[#ddccbc] bg-card shadow-[0_18px_40px_-36px_rgba(60,42,24,0.22)] last:mb-0 lg:mb-0 lg:row-span-6 lg:grid lg:[grid-template-rows:subgrid]'
+                padding='none'
+                className='mb-5 last:mb-0 lg:mb-0 lg:row-span-6 lg:grid lg:[grid-template-rows:subgrid]'
               >
                 {/* Row 1 — name + score */}
                 <div className='flex items-start justify-between gap-3 px-6 pt-6'>
                   <div className='min-w-0 flex-1'>
-                    <h2 className='pr-3 text-lg font-semibold leading-snug text-[#24191b] md:text-xl'>
+                    <h2 className='pr-3 text-lg font-semibold leading-snug text-foreground md:text-xl'>
                       {recommendation.speciesName}
                     </h2>
-                    <p className='text-sm italic text-[#7b6a5f]'>
+                    <p className='text-sm italic text-muted-foreground'>
                       {recommendation.scientificName}
                     </p>
                   </div>
                   <div className='shrink-0 text-right'>
-                    <p className='text-xs font-medium text-[#8b7868]'>
+                    <p className='text-xs font-medium text-muted-foreground'>
                       #{index + 1}
                     </p>
-                    <div className='text-4xl font-bold leading-none text-[#7a1f3d]'>
+                    <div className='text-4xl font-bold leading-none text-primary-text'>
                       {recommendation.score}
                     </div>
-                    <p className='mt-1 text-[10px] font-medium uppercase tracking-[0.18em] text-[#8b7868]'>
+                    <p className='mt-1 type-micro text-muted-foreground'>
                       {t('worthForagingNow.scoreLabel')}
                     </p>
                   </div>
@@ -199,32 +201,26 @@ export default function WorthForagingNowPage() {
 
                 {/* Row 2 — badges */}
                 <div className='flex flex-wrap gap-2 px-6 pt-4'>
-                  <Badge
-                    variant='outline'
-                    className='border-[#ddccbc] bg-white/80 capitalize text-[#5f5249]'
-                  >
+                  <Badge variant='outline' className='capitalize'>
                     {t(`worthForagingNow.category.${recommendation.category}`)}
                   </Badge>
-                  <Badge className='bg-[#7a1f3d]/10 text-[#7a1f3d] hover:bg-[#7a1f3d]/10'>
+                  <Badge>
                     {t(
                       `worthForagingNow.confidence.${recommendation.confidence}`
                     )}
                   </Badge>
-                  <Badge
-                    variant='outline'
-                    className='border-[#e3cb93] bg-[#fff7df] text-[#9a6a02]'
-                  >
+                  <Badge variant='secondary'>
                     {recommendation.seasonLabel}
                   </Badge>
                 </div>
 
                 {/* Row 3 — why now */}
                 <div className='space-y-2 px-6 pt-5'>
-                  <div className='flex items-center gap-2 text-sm font-medium text-[#24191b]'>
-                    <Leaf className='h-4 w-4 text-[#6c7c3d]' />
+                  <div className='flex items-center gap-2 text-sm font-medium text-foreground'>
+                    <Leaf className='h-4 w-4 text-primary-text' />
                     {t('worthForagingNow.whyNow')}
                   </div>
-                  <ul className='space-y-1.5 border-l-2 border-[#d4c4b0] pl-3 text-sm text-[#5b4c42]'>
+                  <ul className='space-y-1.5 border-l-2 border-border pl-3 text-sm text-muted-foreground'>
                     {recommendation.whyNow.map(reason => (
                       <li key={reason}>{reason}</li>
                     ))}
@@ -232,21 +228,21 @@ export default function WorthForagingNowPage() {
                 </div>
 
                 {/* Row 4 — best window (+ optional distance) */}
-                <div className='grid gap-3 px-6 pt-5 text-sm text-[#5b4c42]'>
-                  <div className='flex items-start gap-2 rounded-2xl border border-[#e7d6c6] bg-white/70 px-3 py-3'>
-                    <Calendar className='mt-0.5 h-4 w-4 shrink-0 text-[#7a1f3d]' />
+                <div className='grid gap-3 px-6 pt-5 text-sm text-muted-foreground'>
+                  <div className='flex items-start gap-2 rounded-card border border-border bg-muted/40 px-3 py-3'>
+                    <Calendar className='mt-0.5 h-4 w-4 shrink-0 text-primary-text' />
                     <div>
-                      <p className='font-medium text-[#24191b]'>
+                      <p className='font-medium text-foreground'>
                         {t('worthForagingNow.bestWindow')}
                       </p>
                       <p>{recommendation.bestWindow}</p>
                     </div>
                   </div>
                   {recommendation.distanceKm !== null ? (
-                    <div className='flex items-start gap-2 rounded-2xl border border-[#e7d6c6] bg-white/70 px-3 py-3'>
-                      <MapPinned className='mt-0.5 h-4 w-4 shrink-0 text-[#7a1f3d]' />
+                    <div className='flex items-start gap-2 rounded-card border border-border bg-muted/40 px-3 py-3'>
+                      <MapPinned className='mt-0.5 h-4 w-4 shrink-0 text-primary-text' />
                       <div>
-                        <p className='font-medium text-[#24191b]'>
+                        <p className='font-medium text-foreground'>
                           {t('worthForagingNow.bestPoint')}
                         </p>
                         <p>
@@ -261,25 +257,22 @@ export default function WorthForagingNowPage() {
 
                 {/* Row 5 — kitchen */}
                 <div className='space-y-3 px-6 pt-5'>
-                  <div className='flex items-center gap-2 text-sm font-medium text-[#24191b]'>
-                    <ChefHat className='h-4 w-4 text-[#b77924]' />
+                  <div className='flex items-center gap-2 text-sm font-medium text-foreground'>
+                    <ChefHat className='h-4 w-4 text-primary-text' />
                     {t('worthForagingNow.kitchenPayoff')}
                   </div>
                   {recommendation.recipes.length > 0 ? (
                     <div className='flex flex-wrap gap-2'>
                       {recommendation.recipes.map(recipe => (
-                        <Link
-                          key={recipe.id}
-                          to='/recipes'
-                          search={{ q: recipe.title }}
-                          className='inline-flex items-center rounded-full bg-[#6c7c3d]/12 px-2.5 py-0.5 text-sm font-medium text-[#556229] transition-colors hover:bg-[#6c7c3d]/20'
-                        >
-                          {recipe.title}
-                        </Link>
+                        <Badge key={recipe.id} asChild variant='secondary'>
+                          <Link to='/recipes' search={{ q: recipe.title }}>
+                            {recipe.title}
+                          </Link>
+                        </Badge>
                       ))}
                     </div>
                   ) : (
-                    <p className='text-sm text-[#7b6a5f]'>
+                    <p className='text-sm text-muted-foreground'>
                       {t('worthForagingNow.noRecipeMatch')}
                     </p>
                   )}
@@ -287,10 +280,7 @@ export default function WorthForagingNowPage() {
 
                 {/* Row 6 — actions */}
                 <div className='flex flex-col gap-3 px-6 pb-6 pt-5 sm:flex-row'>
-                  <Button
-                    asChild
-                    className='flex-1 rounded-2xl border border-[#4f8740] bg-[#4f8740] text-white hover:bg-[#427236]'
-                  >
+                  <Button asChild className='flex-1'>
                     <Link
                       to='/'
                       search={{
@@ -305,11 +295,7 @@ export default function WorthForagingNowPage() {
                       <ArrowUpRight className='h-4 w-4' />
                     </Link>
                   </Button>
-                  <Button
-                    asChild
-                    variant='outline'
-                    className='flex-1 rounded-2xl border-[rgb(130,12,12)] bg-white text-[#24191b] hover:border-[rgb(130,12,12)] hover:bg-[rgb(130,12,12)] hover:text-white'
-                  >
+                  <Button asChild variant='outline' className='flex-1'>
                     <Link
                       to='/species'
                       search={{ q: recommendation.speciesName }}
@@ -318,7 +304,7 @@ export default function WorthForagingNowPage() {
                     </Link>
                   </Button>
                 </div>
-              </div>
+              </Card>
             ))}
           </section>
         ) : null}

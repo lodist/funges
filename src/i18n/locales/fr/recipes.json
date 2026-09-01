@@ -14,7 +14,7 @@
   "description": "Découvrez de délicieuses recettes utilisant des ingrédients cueillis",
   "filterBy": "Ingrédient",
   "filters": "Filtres",
-  "clear": "Effacer",
+  "clear": "Réinitialiser les filtres",
   "apply": "Appliquer",
   "all": "Tous",
   "mushroom": "Champignon",
@@ -39,7 +39,9 @@
     "routeStops": "Arrets du trajet",
     "refreshRoute": "Actualiser le trajet",
     "drawRoute": "Tracer le trajet",
-    "recipesButton": "Recettes"
+    "recipesButton": "Recettes",
+    "openInMaps": "Ouvrir dans Google Maps",
+    "clearRoute": "Effacer l'itinéraire"
   },
   "species": {
     "amaranth": "Amarante",

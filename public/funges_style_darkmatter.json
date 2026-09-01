@@ -5,21 +5,14 @@
     "maputnik:renderer": "mlgljs",
     "custom:based_on": "funges_style.json (CARTO recolor)"
   },
-  "center": [
-    10.679681327683397,
-    59.20531786301794
-  ],
+  "center": [10.679681327683397, 59.20531786301794],
   "zoom": 5.10124672030565,
   "bearing": 0,
   "pitch": 0,
   "light": {
     "anchor": "map",
     "intensity": 0.3,
-    "position": [
-      1.5,
-      235,
-      30
-    ]
+    "position": [1.5, 235, 30]
   },
   "projection": {
     "type": "mercator"
@@ -65,13 +58,7 @@
       "type": "fill",
       "source": "aws",
       "source-layer": "earth",
-      "filter": [
-        "==",
-        [
-          "geometry-type"
-        ],
-        "Polygon"
-      ],
+      "filter": ["==", ["geometry-type"], "Polygon"],
       "paint": {
         "fill-color": "#111314"
       }
@@ -81,13 +68,7 @@
       "type": "fill",
       "source": "aws",
       "source-layer": "water",
-      "filter": [
-        "==",
-        [
-          "geometry-type"
-        ],
-        "Polygon"
-      ],
+      "filter": ["==", ["geometry-type"], "Polygon"],
       "paint": {
         "fill-color": "#0c0f11"
       }
@@ -98,32 +79,14 @@
       "source": "aws",
       "source-layer": "water",
       "minzoom": 9,
-      "filter": [
-        "==",
-        [
-          "geometry-type"
-        ],
-        "LineString"
-      ],
+      "filter": ["==", ["geometry-type"], "LineString"],
       "layout": {
         "line-cap": "round",
         "line-join": "round"
       },
       "paint": {
         "line-color": "#1b2327",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          9,
-          0.4,
-          12,
-          1.2
-        ]
+        "line-width": ["interpolate", ["linear"], ["zoom"], 9, 0.4, 12, 1.2]
       }
     },
     {
@@ -134,42 +97,9 @@
       "minzoom": 4,
       "filter": [
         "all",
-        [
-          "match",
-          [
-            "get",
-            "kind"
-          ],
-          [
-            "region",
-            "macroregion"
-          ],
-          true,
-          false
-        ],
-        [
-          "match",
-          [
-            "to-number",
-            [
-              "get",
-              "kind_detail"
-            ]
-          ],
-          [
-            3,
-            4
-          ],
-          true,
-          false
-        ],
-        [
-          "==",
-          [
-            "geometry-type"
-          ],
-          "LineString"
-        ]
+        ["match", ["get", "kind"], ["region", "macroregion"], true, false],
+        ["match", ["to-number", ["get", "kind_detail"]], [3, 4], true, false],
+        ["==", ["geometry-type"], "LineString"]
       ],
       "layout": {
         "line-cap": "round",
@@ -177,23 +107,8 @@
       },
       "paint": {
         "line-color": "#232323",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          4,
-          0.4,
-          12,
-          1
-        ],
-        "line-dasharray": [
-          2,
-          2
-        ]
+        "line-width": ["interpolate", ["linear"], ["zoom"], 4, 0.4, 12, 1],
+        "line-dasharray": [2, 2]
       }
     },
     {
@@ -204,32 +119,9 @@
       "minzoom": 1,
       "filter": [
         "all",
-        [
-          "==",
-          [
-            "get",
-            "kind"
-          ],
-          "country"
-        ],
-        [
-          "==",
-          [
-            "to-number",
-            [
-              "get",
-              "kind_detail"
-            ]
-          ],
-          2
-        ],
-        [
-          "==",
-          [
-            "geometry-type"
-          ],
-          "LineString"
-        ]
+        ["==", ["get", "kind"], "country"],
+        ["==", ["to-number", ["get", "kind_detail"]], 2],
+        ["==", ["geometry-type"], "LineString"]
       ],
       "layout": {
         "line-cap": "round",
@@ -237,19 +129,7 @@
       },
       "paint": {
         "line-color": "#2d2d2d",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          1,
-          0.6,
-          6,
-          1.3
-        ]
+        "line-width": ["interpolate", ["linear"], ["zoom"], 1, 0.6, 6, 1.3]
       }
     },
     {
@@ -258,13 +138,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "walnut_score"
-          ],
+          ["linear"],
+          ["get", "walnut_score"],
           0,
           "hsla(60, 92%, 95%, 0.16)",
           0.5,
@@ -305,13 +180,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "walnut_score"
-          ],
+          ["linear"],
+          ["get", "walnut_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -352,13 +222,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "walnut_score"
-          ],
+          ["linear"],
+          ["get", "walnut_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -399,13 +264,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "walnut_score"
-          ],
+          ["linear"],
+          ["get", "walnut_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -446,13 +306,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "truffle_b_score"
-          ],
+          ["linear"],
+          ["get", "truffle_b_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -493,13 +348,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "truffle_b_score"
-          ],
+          ["linear"],
+          ["get", "truffle_b_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -540,13 +390,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "truffle_b_score"
-          ],
+          ["linear"],
+          ["get", "truffle_b_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -587,13 +432,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "truffle_b_score"
-          ],
+          ["linear"],
+          ["get", "truffle_b_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -634,13 +474,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "strawberry_score"
-          ],
+          ["linear"],
+          ["get", "strawberry_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -681,13 +516,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "strawberry_score"
-          ],
+          ["linear"],
+          ["get", "strawberry_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -728,13 +558,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "strawberry_score"
-          ],
+          ["linear"],
+          ["get", "strawberry_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -775,13 +600,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "strawberry_score"
-          ],
+          ["linear"],
+          ["get", "strawberry_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -822,13 +642,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "st_george_score"
-          ],
+          ["linear"],
+          ["get", "st_george_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -869,13 +684,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "st_george_score"
-          ],
+          ["linear"],
+          ["get", "st_george_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -916,13 +726,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "st_george_score"
-          ],
+          ["linear"],
+          ["get", "st_george_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -963,13 +768,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "st_george_score"
-          ],
+          ["linear"],
+          ["get", "st_george_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -1010,13 +810,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "sorrel_score"
-          ],
+          ["linear"],
+          ["get", "sorrel_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -1057,13 +852,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "sorrel_score"
-          ],
+          ["linear"],
+          ["get", "sorrel_score"],
           0,
           "hsla(60, 92%, 95%, 0.2)",
           0.5,
@@ -1104,13 +894,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "sorrel_score"
-          ],
+          ["linear"],
+          ["get", "sorrel_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -1151,13 +936,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "sorrel_score"
-          ],
+          ["linear"],
+          ["get", "sorrel_score"],
           0,
           "hsla(60, 92%, 95%, 0.2)",
           0.5,
@@ -1198,13 +978,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "raspberry_score"
-          ],
+          ["linear"],
+          ["get", "raspberry_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -1245,13 +1020,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "raspberry_score"
-          ],
+          ["linear"],
+          ["get", "raspberry_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -1292,13 +1062,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "raspberry_score"
-          ],
+          ["linear"],
+          ["get", "raspberry_score"],
           0,
           "hsla(60, 92%, 95%, 0.16)",
           0.5,
@@ -1339,13 +1104,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "raspberry_score"
-          ],
+          ["linear"],
+          ["get", "raspberry_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -1386,13 +1146,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "parasol_score"
-          ],
+          ["linear"],
+          ["get", "parasol_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -1433,13 +1188,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "parasol_score"
-          ],
+          ["linear"],
+          ["get", "parasol_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -1480,13 +1230,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "parasol_score"
-          ],
+          ["linear"],
+          ["get", "parasol_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -1527,13 +1272,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "parasol_score"
-          ],
+          ["linear"],
+          ["get", "parasol_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -1574,13 +1314,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "nettle_score"
-          ],
+          ["linear"],
+          ["get", "nettle_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -1621,13 +1356,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "nettle_score"
-          ],
+          ["linear"],
+          ["get", "nettle_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -1668,13 +1398,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "nettle_score"
-          ],
+          ["linear"],
+          ["get", "nettle_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -1715,13 +1440,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "nettle_score"
-          ],
+          ["linear"],
+          ["get", "nettle_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -1762,13 +1482,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "morel_score"
-          ],
+          ["linear"],
+          ["get", "morel_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -1809,13 +1524,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "morel_score"
-          ],
+          ["linear"],
+          ["get", "morel_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -1856,13 +1566,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "morel_score"
-          ],
+          ["linear"],
+          ["get", "morel_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -1903,13 +1608,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "morel_score"
-          ],
+          ["linear"],
+          ["get", "morel_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -1950,13 +1650,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "masterwort_score"
-          ],
+          ["linear"],
+          ["get", "masterwort_score"],
           0,
           "hsla(60, 92%, 95%, 0.16)",
           0.5,
@@ -1997,13 +1692,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "masterwort_score"
-          ],
+          ["linear"],
+          ["get", "masterwort_score"],
           0,
           "hsla(60, 92%, 95%, 0.16)",
           0.5,
@@ -2044,13 +1734,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "masterwort_score"
-          ],
+          ["linear"],
+          ["get", "masterwort_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2091,13 +1776,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "masterwort_score"
-          ],
+          ["linear"],
+          ["get", "masterwort_score"],
           0,
           "hsla(60, 92%, 95%, 0.16)",
           0.5,
@@ -2138,13 +1818,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "lingonb_score"
-          ],
+          ["linear"],
+          ["get", "lingonb_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2185,13 +1860,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "lingonb_score"
-          ],
+          ["linear"],
+          ["get", "lingonb_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2232,13 +1902,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "lingonb_score"
-          ],
+          ["linear"],
+          ["get", "lingonb_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2279,13 +1944,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "lingonb_score"
-          ],
+          ["linear"],
+          ["get", "lingonb_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2326,13 +1986,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "garlic_score"
-          ],
+          ["linear"],
+          ["get", "garlic_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2373,13 +2028,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "garlic_score"
-          ],
+          ["linear"],
+          ["get", "garlic_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2420,13 +2070,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "garlic_score"
-          ],
+          ["linear"],
+          ["get", "garlic_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2467,13 +2112,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "garlic_score"
-          ],
+          ["linear"],
+          ["get", "garlic_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2514,13 +2154,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "dandelion_score"
-          ],
+          ["linear"],
+          ["get", "dandelion_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -2561,13 +2196,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "dandelion_score"
-          ],
+          ["linear"],
+          ["get", "dandelion_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2608,13 +2238,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "dandelion_score"
-          ],
+          ["linear"],
+          ["get", "dandelion_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2655,13 +2280,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "dandelion_score"
-          ],
+          ["linear"],
+          ["get", "dandelion_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2702,13 +2322,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chickweed_score"
-          ],
+          ["linear"],
+          ["get", "chickweed_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2749,13 +2364,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chickweed_score"
-          ],
+          ["linear"],
+          ["get", "chickweed_score"],
           0,
           "hsla(60, 92%, 95%, 0.16)",
           0.5,
@@ -2796,13 +2406,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chickweed_score"
-          ],
+          ["linear"],
+          ["get", "chickweed_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -2843,13 +2448,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chickweed_score"
-          ],
+          ["linear"],
+          ["get", "chickweed_score"],
           0,
           "hsla(60, 92%, 95%, 0.16)",
           0.5,
@@ -2890,13 +2490,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chestnut_score"
-          ],
+          ["linear"],
+          ["get", "chestnut_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2937,13 +2532,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chestnut_score"
-          ],
+          ["linear"],
+          ["get", "chestnut_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -2984,13 +2574,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chestnut_score"
-          ],
+          ["linear"],
+          ["get", "chestnut_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -3031,13 +2616,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chestnut_score"
-          ],
+          ["linear"],
+          ["get", "chestnut_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -3078,13 +2658,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chant_score"
-          ],
+          ["linear"],
+          ["get", "chant_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -3125,13 +2700,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chant_score"
-          ],
+          ["linear"],
+          ["get", "chant_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3172,13 +2742,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chant_score"
-          ],
+          ["linear"],
+          ["get", "chant_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -3219,13 +2784,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chant_score"
-          ],
+          ["linear"],
+          ["get", "chant_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3266,13 +2826,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "black_chant_score"
-          ],
+          ["linear"],
+          ["get", "black_chant_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3313,13 +2868,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "black_chant_score"
-          ],
+          ["linear"],
+          ["get", "black_chant_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -3360,13 +2910,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "black_chant_score"
-          ],
+          ["linear"],
+          ["get", "black_chant_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -3407,13 +2952,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "black_chant_score"
-          ],
+          ["linear"],
+          ["get", "black_chant_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -3454,13 +2994,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "asparagus_score"
-          ],
+          ["linear"],
+          ["get", "asparagus_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3501,13 +3036,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "asparagus_score"
-          ],
+          ["linear"],
+          ["get", "asparagus_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3548,13 +3078,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "asparagus_score"
-          ],
+          ["linear"],
+          ["get", "asparagus_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3595,13 +3120,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "asparagus_score"
-          ],
+          ["linear"],
+          ["get", "asparagus_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3642,13 +3162,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "artichoke_score"
-          ],
+          ["linear"],
+          ["get", "artichoke_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -3689,13 +3204,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "artichoke_score"
-          ],
+          ["linear"],
+          ["get", "artichoke_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3736,13 +3246,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "artichoke_score"
-          ],
+          ["linear"],
+          ["get", "artichoke_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3783,13 +3288,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "artichoke_score"
-          ],
+          ["linear"],
+          ["get", "artichoke_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3830,13 +3330,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "amaranth_score"
-          ],
+          ["linear"],
+          ["get", "amaranth_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -3877,13 +3372,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "amaranth_score"
-          ],
+          ["linear"],
+          ["get", "amaranth_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3924,13 +3414,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "amaranth_score"
-          ],
+          ["linear"],
+          ["get", "amaranth_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3971,13 +3456,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "amaranth_score"
-          ],
+          ["linear"],
+          ["get", "amaranth_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -4018,13 +3498,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "mushroom_score"
-          ],
+          ["linear"],
+          ["get", "mushroom_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -4062,13 +3537,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "mushroom_score"
-          ],
+          ["linear"],
+          ["get", "mushroom_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -4106,13 +3576,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "mushroom_score"
-          ],
+          ["linear"],
+          ["get", "mushroom_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -4150,13 +3615,8 @@
       "paint": {
         "fill-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "mushroom_score"
-          ],
+          ["linear"],
+          ["get", "mushroom_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -4196,13 +3656,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "walnut_score"
-          ],
+          ["linear"],
+          ["get", "walnut_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4232,30 +3687,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "walnut_score"
-            ],
-            1
-          ],
+          ["<", ["get", "walnut_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "walnut_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "walnut_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -4269,13 +3706,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "walnut_score"
-          ],
+          ["linear"],
+          ["get", "walnut_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4305,30 +3737,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "walnut_score"
-            ],
-            1
-          ],
+          ["<", ["get", "walnut_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "walnut_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "walnut_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -4342,13 +3756,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "walnut_score"
-          ],
+          ["linear"],
+          ["get", "walnut_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4378,30 +3787,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "walnut_score"
-            ],
-            1
-          ],
+          ["<", ["get", "walnut_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "walnut_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "walnut_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -4415,13 +3806,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "walnut_score"
-          ],
+          ["linear"],
+          ["get", "walnut_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4451,30 +3837,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "walnut_score"
-            ],
-            1
-          ],
+          ["<", ["get", "walnut_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "walnut_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "walnut_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -4488,13 +3856,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "truffle_b_score"
-          ],
+          ["linear"],
+          ["get", "truffle_b_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4524,30 +3887,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "truffle_b_score"
-            ],
-            1
-          ],
+          ["<", ["get", "truffle_b_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "truffle_b_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "truffle_b_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -4561,13 +3906,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "truffle_b_score"
-          ],
+          ["linear"],
+          ["get", "truffle_b_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4597,30 +3937,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "truffle_b_score"
-            ],
-            1
-          ],
+          ["<", ["get", "truffle_b_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "truffle_b_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "truffle_b_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -4634,13 +3956,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "truffle_b_score"
-          ],
+          ["linear"],
+          ["get", "truffle_b_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4670,30 +3987,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "truffle_b_score"
-            ],
-            1
-          ],
+          ["<", ["get", "truffle_b_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "truffle_b_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "truffle_b_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -4707,13 +4006,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "truffle_b_score"
-          ],
+          ["linear"],
+          ["get", "truffle_b_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4743,30 +4037,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "truffle_b_score"
-            ],
-            1
-          ],
+          ["<", ["get", "truffle_b_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "truffle_b_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "truffle_b_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -4780,13 +4056,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "strawberry_score"
-          ],
+          ["linear"],
+          ["get", "strawberry_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4816,30 +4087,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "strawberry_score"
-            ],
-            1
-          ],
+          ["<", ["get", "strawberry_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "strawberry_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "strawberry_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -4853,13 +4106,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "strawberry_score"
-          ],
+          ["linear"],
+          ["get", "strawberry_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4889,30 +4137,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "strawberry_score"
-            ],
-            1
-          ],
+          ["<", ["get", "strawberry_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "strawberry_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "strawberry_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -4926,13 +4156,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "strawberry_score"
-          ],
+          ["linear"],
+          ["get", "strawberry_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4962,30 +4187,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "strawberry_score"
-            ],
-            1
-          ],
+          ["<", ["get", "strawberry_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "strawberry_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "strawberry_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -4999,13 +4206,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "strawberry_score"
-          ],
+          ["linear"],
+          ["get", "strawberry_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5035,30 +4237,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "strawberry_score"
-            ],
-            1
-          ],
+          ["<", ["get", "strawberry_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "strawberry_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "strawberry_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5074,13 +4258,8 @@
         "text-halo-blur": 2,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "st_george_score"
-          ],
+          ["linear"],
+          ["get", "st_george_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5108,30 +4287,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "st_george_score"
-            ],
-            1
-          ],
+          ["<", ["get", "st_george_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "st_george_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "st_george_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5147,13 +4308,8 @@
         "text-halo-blur": 2,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "st_george_score"
-          ],
+          ["linear"],
+          ["get", "st_george_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5181,30 +4337,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "st_george_score"
-            ],
-            1
-          ],
+          ["<", ["get", "st_george_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "st_george_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "st_george_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5220,13 +4358,8 @@
         "text-halo-blur": 2,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "st_george_score"
-          ],
+          ["linear"],
+          ["get", "st_george_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5254,30 +4387,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "st_george_score"
-            ],
-            1
-          ],
+          ["<", ["get", "st_george_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "st_george_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "st_george_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5293,13 +4408,8 @@
         "text-halo-blur": 2,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "st_george_score"
-          ],
+          ["linear"],
+          ["get", "st_george_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5327,30 +4437,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "st_george_score"
-            ],
-            1
-          ],
+          ["<", ["get", "st_george_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "st_george_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "st_george_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5366,13 +4458,8 @@
         "text-halo-blur": 2,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "sorrel_score"
-          ],
+          ["linear"],
+          ["get", "sorrel_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5400,30 +4487,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "sorrel_score"
-            ],
-            1
-          ],
+          ["<", ["get", "sorrel_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "sorrel_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "sorrel_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5439,13 +4508,8 @@
         "text-halo-blur": 2,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "sorrel_score"
-          ],
+          ["linear"],
+          ["get", "sorrel_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5473,30 +4537,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "sorrel_score"
-            ],
-            1
-          ],
+          ["<", ["get", "sorrel_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "sorrel_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "sorrel_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5512,13 +4558,8 @@
         "text-halo-blur": 2,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "sorrel_score"
-          ],
+          ["linear"],
+          ["get", "sorrel_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5546,30 +4587,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "sorrel_score"
-            ],
-            1
-          ],
+          ["<", ["get", "sorrel_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "sorrel_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "sorrel_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5585,13 +4608,8 @@
         "text-halo-blur": 2,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "sorrel_score"
-          ],
+          ["linear"],
+          ["get", "sorrel_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5619,30 +4637,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "sorrel_score"
-            ],
-            1
-          ],
+          ["<", ["get", "sorrel_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "sorrel_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "sorrel_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5658,13 +4658,8 @@
         "text-halo-blur": 2,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "raspberry_score"
-          ],
+          ["linear"],
+          ["get", "raspberry_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5692,30 +4687,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "raspberry_score"
-            ],
-            1
-          ],
+          ["<", ["get", "raspberry_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "raspberry_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "raspberry_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5731,13 +4708,8 @@
         "text-halo-blur": 2,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "raspberry_score"
-          ],
+          ["linear"],
+          ["get", "raspberry_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5765,30 +4737,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "raspberry_score"
-            ],
-            1
-          ],
+          ["<", ["get", "raspberry_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "raspberry_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "raspberry_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5804,13 +4758,8 @@
         "text-halo-blur": 2,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "raspberry_score"
-          ],
+          ["linear"],
+          ["get", "raspberry_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5838,30 +4787,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "raspberry_score"
-            ],
-            1
-          ],
+          ["<", ["get", "raspberry_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "raspberry_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "raspberry_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5877,13 +4808,8 @@
         "text-halo-blur": 2,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "raspberry_score"
-          ],
+          ["linear"],
+          ["get", "raspberry_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5911,30 +4837,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "raspberry_score"
-            ],
-            1
-          ],
+          ["<", ["get", "raspberry_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "raspberry_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "raspberry_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5948,13 +4856,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "parasol_score"
-          ],
+          ["linear"],
+          ["get", "parasol_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5984,30 +4887,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "parasol_score"
-            ],
-            1
-          ],
+          ["<", ["get", "parasol_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "parasol_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "parasol_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6021,13 +4906,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "parasol_score"
-          ],
+          ["linear"],
+          ["get", "parasol_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6057,30 +4937,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "parasol_score"
-            ],
-            1
-          ],
+          ["<", ["get", "parasol_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "parasol_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "parasol_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6094,13 +4956,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "parasol_score"
-          ],
+          ["linear"],
+          ["get", "parasol_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6130,30 +4987,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "parasol_score"
-            ],
-            1
-          ],
+          ["<", ["get", "parasol_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "parasol_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "parasol_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6167,13 +5006,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "parasol_score"
-          ],
+          ["linear"],
+          ["get", "parasol_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6203,30 +5037,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "parasol_score"
-            ],
-            1
-          ],
+          ["<", ["get", "parasol_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "parasol_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "parasol_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6240,13 +5056,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "nettle_score"
-          ],
+          ["linear"],
+          ["get", "nettle_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6276,30 +5087,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "nettle_score"
-            ],
-            1
-          ],
+          ["<", ["get", "nettle_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "nettle_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "nettle_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6313,13 +5106,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "nettle_score"
-          ],
+          ["linear"],
+          ["get", "nettle_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6349,30 +5137,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "nettle_score"
-            ],
-            1
-          ],
+          ["<", ["get", "nettle_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "nettle_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "nettle_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6386,13 +5156,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "nettle_score"
-          ],
+          ["linear"],
+          ["get", "nettle_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6422,30 +5187,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "nettle_score"
-            ],
-            1
-          ],
+          ["<", ["get", "nettle_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "nettle_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "nettle_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6459,13 +5206,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "nettle_score"
-          ],
+          ["linear"],
+          ["get", "nettle_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6495,30 +5237,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "nettle_score"
-            ],
-            1
-          ],
+          ["<", ["get", "nettle_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "nettle_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "nettle_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6532,13 +5256,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "morel_score"
-          ],
+          ["linear"],
+          ["get", "morel_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6568,30 +5287,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "morel_score"
-            ],
-            1
-          ],
+          ["<", ["get", "morel_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "morel_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "morel_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6605,13 +5306,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "morel_score"
-          ],
+          ["linear"],
+          ["get", "morel_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6641,30 +5337,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "morel_score"
-            ],
-            1
-          ],
+          ["<", ["get", "morel_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "morel_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "morel_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6678,13 +5356,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "morel_score"
-          ],
+          ["linear"],
+          ["get", "morel_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6714,30 +5387,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "morel_score"
-            ],
-            1
-          ],
+          ["<", ["get", "morel_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "morel_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "morel_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6751,13 +5406,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "morel_score"
-          ],
+          ["linear"],
+          ["get", "morel_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6787,30 +5437,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "morel_score"
-            ],
-            1
-          ],
+          ["<", ["get", "morel_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "morel_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "morel_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6824,13 +5456,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "masterwort_score"
-          ],
+          ["linear"],
+          ["get", "masterwort_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6860,30 +5487,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "masterwort_score"
-            ],
-            1
-          ],
+          ["<", ["get", "masterwort_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "masterwort_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "masterwort_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6897,13 +5506,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "masterwort_score"
-          ],
+          ["linear"],
+          ["get", "masterwort_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -6933,30 +5537,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "masterwort_score"
-            ],
-            1
-          ],
+          ["<", ["get", "masterwort_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "masterwort_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "masterwort_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6970,13 +5556,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "masterwort_score"
-          ],
+          ["linear"],
+          ["get", "masterwort_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7006,30 +5587,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "masterwort_score"
-            ],
-            1
-          ],
+          ["<", ["get", "masterwort_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "masterwort_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "masterwort_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7043,13 +5606,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "masterwort_score"
-          ],
+          ["linear"],
+          ["get", "masterwort_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7079,30 +5637,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "masterwort_score"
-            ],
-            1
-          ],
+          ["<", ["get", "masterwort_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "masterwort_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "masterwort_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7116,13 +5656,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "lingonb_score"
-          ],
+          ["linear"],
+          ["get", "lingonb_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7152,30 +5687,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "lingonb_score"
-            ],
-            1
-          ],
+          ["<", ["get", "lingonb_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "lingonb_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "lingonb_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7189,13 +5706,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "lingonb_score"
-          ],
+          ["linear"],
+          ["get", "lingonb_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7225,30 +5737,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "lingonb_score"
-            ],
-            1
-          ],
+          ["<", ["get", "lingonb_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "lingonb_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "lingonb_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7262,13 +5756,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "lingonb_score"
-          ],
+          ["linear"],
+          ["get", "lingonb_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7298,30 +5787,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "lingonb_score"
-            ],
-            1
-          ],
+          ["<", ["get", "lingonb_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "lingonb_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "lingonb_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7335,13 +5806,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "lingonb_score"
-          ],
+          ["linear"],
+          ["get", "lingonb_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7371,30 +5837,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "lingonb_score"
-            ],
-            1
-          ],
+          ["<", ["get", "lingonb_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "lingonb_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "lingonb_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7408,13 +5856,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "garlic_score"
-          ],
+          ["linear"],
+          ["get", "garlic_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7444,30 +5887,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "garlic_score"
-            ],
-            1
-          ],
+          ["<", ["get", "garlic_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "garlic_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "garlic_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7481,13 +5906,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "garlic_score"
-          ],
+          ["linear"],
+          ["get", "garlic_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7517,30 +5937,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "garlic_score"
-            ],
-            1
-          ],
+          ["<", ["get", "garlic_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "garlic_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "garlic_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7554,13 +5956,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "garlic_score"
-          ],
+          ["linear"],
+          ["get", "garlic_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7590,30 +5987,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "garlic_score"
-            ],
-            1
-          ],
+          ["<", ["get", "garlic_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "garlic_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "garlic_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7627,13 +6006,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "garlic_score"
-          ],
+          ["linear"],
+          ["get", "garlic_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7663,30 +6037,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "garlic_score"
-            ],
-            1
-          ],
+          ["<", ["get", "garlic_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "garlic_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "garlic_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7700,13 +6056,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "dandelion_score"
-          ],
+          ["linear"],
+          ["get", "dandelion_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7736,30 +6087,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "dandelion_score"
-            ],
-            1
-          ],
+          ["<", ["get", "dandelion_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "dandelion_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "dandelion_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7773,13 +6106,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "dandelion_score"
-          ],
+          ["linear"],
+          ["get", "dandelion_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7809,30 +6137,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "dandelion_score"
-            ],
-            1
-          ],
+          ["<", ["get", "dandelion_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "dandelion_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "dandelion_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7846,13 +6156,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "dandelion_score"
-          ],
+          ["linear"],
+          ["get", "dandelion_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7882,30 +6187,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "dandelion_score"
-            ],
-            1
-          ],
+          ["<", ["get", "dandelion_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "dandelion_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "dandelion_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7919,13 +6206,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "dandelion_score"
-          ],
+          ["linear"],
+          ["get", "dandelion_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7955,30 +6237,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "dandelion_score"
-            ],
-            1
-          ],
+          ["<", ["get", "dandelion_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "dandelion_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "dandelion_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7992,13 +6256,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chickweed_score"
-          ],
+          ["linear"],
+          ["get", "chickweed_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8028,30 +6287,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "chickweed_score"
-            ],
-            1
-          ],
+          ["<", ["get", "chickweed_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "chickweed_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "chickweed_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8065,13 +6306,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chickweed_score"
-          ],
+          ["linear"],
+          ["get", "chickweed_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8101,30 +6337,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "chickweed_score"
-            ],
-            1
-          ],
+          ["<", ["get", "chickweed_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "chickweed_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "chickweed_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8138,13 +6356,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chickweed_score"
-          ],
+          ["linear"],
+          ["get", "chickweed_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8174,30 +6387,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "chickweed_score"
-            ],
-            1
-          ],
+          ["<", ["get", "chickweed_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "chickweed_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "chickweed_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8211,13 +6406,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chickweed_score"
-          ],
+          ["linear"],
+          ["get", "chickweed_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8247,30 +6437,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "chickweed_score"
-            ],
-            1
-          ],
+          ["<", ["get", "chickweed_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "chickweed_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "chickweed_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8284,13 +6456,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chestnut_score"
-          ],
+          ["linear"],
+          ["get", "chestnut_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8320,30 +6487,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "chestnut_score"
-            ],
-            1
-          ],
+          ["<", ["get", "chestnut_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "chestnut_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "chestnut_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8357,13 +6506,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chestnut_score"
-          ],
+          ["linear"],
+          ["get", "chestnut_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8393,30 +6537,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "chestnut_score"
-            ],
-            1
-          ],
+          ["<", ["get", "chestnut_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "chestnut_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "chestnut_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8430,13 +6556,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chestnut_score"
-          ],
+          ["linear"],
+          ["get", "chestnut_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8466,30 +6587,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "chestnut_score"
-            ],
-            1
-          ],
+          ["<", ["get", "chestnut_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "chestnut_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "chestnut_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8503,13 +6606,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chestnut_score"
-          ],
+          ["linear"],
+          ["get", "chestnut_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8539,30 +6637,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "chestnut_score"
-            ],
-            1
-          ],
+          ["<", ["get", "chestnut_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "chestnut_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "chestnut_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8576,13 +6656,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chant_score"
-          ],
+          ["linear"],
+          ["get", "chant_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8612,30 +6687,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "chant_score"
-            ],
-            1
-          ],
+          ["<", ["get", "chant_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "chant_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "chant_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8649,13 +6706,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chant_score"
-          ],
+          ["linear"],
+          ["get", "chant_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8685,30 +6737,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "chant_score"
-            ],
-            1
-          ],
+          ["<", ["get", "chant_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "chant_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "chant_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8722,13 +6756,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chant_score"
-          ],
+          ["linear"],
+          ["get", "chant_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8758,30 +6787,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "chant_score"
-            ],
-            1
-          ],
+          ["<", ["get", "chant_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "chant_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "chant_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8795,13 +6806,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "chant_score"
-          ],
+          ["linear"],
+          ["get", "chant_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8831,30 +6837,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "chant_score"
-            ],
-            1
-          ],
+          ["<", ["get", "chant_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "chant_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "chant_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8868,13 +6856,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "black_chant_score"
-          ],
+          ["linear"],
+          ["get", "black_chant_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8904,30 +6887,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "black_chant_score"
-            ],
-            1
-          ],
+          ["<", ["get", "black_chant_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "black_chant_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "black_chant_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -8941,13 +6906,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "black_chant_score"
-          ],
+          ["linear"],
+          ["get", "black_chant_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -8977,30 +6937,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "black_chant_score"
-            ],
-            1
-          ],
+          ["<", ["get", "black_chant_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "black_chant_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "black_chant_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9014,13 +6956,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "black_chant_score"
-          ],
+          ["linear"],
+          ["get", "black_chant_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9050,30 +6987,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "black_chant_score"
-            ],
-            1
-          ],
+          ["<", ["get", "black_chant_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "black_chant_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "black_chant_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9087,13 +7006,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "black_chant_score"
-          ],
+          ["linear"],
+          ["get", "black_chant_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9123,30 +7037,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "black_chant_score"
-            ],
-            1
-          ],
+          ["<", ["get", "black_chant_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "black_chant_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "black_chant_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9160,13 +7056,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "asparagus_score"
-          ],
+          ["linear"],
+          ["get", "asparagus_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9196,30 +7087,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "asparagus_score"
-            ],
-            1
-          ],
+          ["<", ["get", "asparagus_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "asparagus_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "asparagus_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9233,13 +7106,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "asparagus_score"
-          ],
+          ["linear"],
+          ["get", "asparagus_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9269,30 +7137,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "asparagus_score"
-            ],
-            1
-          ],
+          ["<", ["get", "asparagus_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "asparagus_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "asparagus_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9306,13 +7156,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "asparagus_score"
-          ],
+          ["linear"],
+          ["get", "asparagus_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9342,30 +7187,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "asparagus_score"
-            ],
-            1
-          ],
+          ["<", ["get", "asparagus_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "asparagus_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "asparagus_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9379,13 +7206,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "asparagus_score"
-          ],
+          ["linear"],
+          ["get", "asparagus_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9415,30 +7237,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "asparagus_score"
-            ],
-            1
-          ],
+          ["<", ["get", "asparagus_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "asparagus_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "asparagus_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9452,13 +7256,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "artichoke_score"
-          ],
+          ["linear"],
+          ["get", "artichoke_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9488,30 +7287,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "artichoke_score"
-            ],
-            1
-          ],
+          ["<", ["get", "artichoke_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "artichoke_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "artichoke_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9525,13 +7306,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "artichoke_score"
-          ],
+          ["linear"],
+          ["get", "artichoke_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9561,30 +7337,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "artichoke_score"
-            ],
-            1
-          ],
+          ["<", ["get", "artichoke_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "artichoke_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "artichoke_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9598,13 +7356,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "artichoke_score"
-          ],
+          ["linear"],
+          ["get", "artichoke_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9634,30 +7387,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "artichoke_score"
-            ],
-            1
-          ],
+          ["<", ["get", "artichoke_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "artichoke_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "artichoke_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9671,13 +7406,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "artichoke_score"
-          ],
+          ["linear"],
+          ["get", "artichoke_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9707,30 +7437,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "artichoke_score"
-            ],
-            1
-          ],
+          ["<", ["get", "artichoke_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "artichoke_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "artichoke_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9744,13 +7456,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "amaranth_score"
-          ],
+          ["linear"],
+          ["get", "amaranth_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9780,30 +7487,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "amaranth_score"
-            ],
-            1
-          ],
+          ["<", ["get", "amaranth_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "amaranth_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "amaranth_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9817,13 +7506,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "amaranth_score"
-          ],
+          ["linear"],
+          ["get", "amaranth_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9853,30 +7537,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "amaranth_score"
-            ],
-            1
-          ],
+          ["<", ["get", "amaranth_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "amaranth_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "amaranth_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9890,13 +7556,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "amaranth_score"
-          ],
+          ["linear"],
+          ["get", "amaranth_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9926,30 +7587,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "amaranth_score"
-            ],
-            1
-          ],
+          ["<", ["get", "amaranth_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "amaranth_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "amaranth_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -9963,13 +7606,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "amaranth_score"
-          ],
+          ["linear"],
+          ["get", "amaranth_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -9999,30 +7637,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "amaranth_score"
-            ],
-            1
-          ],
+          ["<", ["get", "amaranth_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "amaranth_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "amaranth_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -10036,13 +7656,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "mushroom_score"
-          ],
+          ["linear"],
+          ["get", "mushroom_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -10072,30 +7687,12 @@
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "mushroom_score"
-            ],
-            1
-          ],
+          ["<", ["get", "mushroom_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "mushroom_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "mushroom_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -10109,13 +7706,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "mushroom_score"
-          ],
+          ["linear"],
+          ["get", "mushroom_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -10145,30 +7737,12 @@
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "mushroom_score"
-            ],
-            1
-          ],
+          ["<", ["get", "mushroom_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "mushroom_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "mushroom_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -10182,13 +7756,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "mushroom_score"
-          ],
+          ["linear"],
+          ["get", "mushroom_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -10218,30 +7787,12 @@
       "source": "overlay-use",
       "source-layer": "use_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "mushroom_score"
-            ],
-            1
-          ],
+          ["<", ["get", "mushroom_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "mushroom_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "mushroom_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -10255,13 +7806,8 @@
         "text-opacity": 0.88,
         "text-halo-color": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "get",
-            "mushroom_score"
-          ],
+          ["linear"],
+          ["get", "mushroom_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -10291,30 +7837,12 @@
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": [
-          "Noto Sans Medium"
-        ],
+        "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          [
-            "<",
-            [
-              "get",
-              "mushroom_score"
-            ],
-            1
-          ],
+          ["<", ["get", "mushroom_score"], 1],
           "",
-          [
-            "to-string",
-            [
-              "floor",
-              [
-                "get",
-                "mushroom_score"
-              ]
-            ]
-          ]
+          ["to-string", ["floor", ["get", "mushroom_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -10328,35 +7856,15 @@
       "minzoom": 11,
       "filter": [
         "all",
-        [
-          "==",
-          [
-            "geometry-type"
-          ],
-          "LineString"
-        ],
+        ["==", ["geometry-type"], "LineString"],
         [
           "match",
-          [
-            "get",
-            "kind"
-          ],
-          [
-            "minor_road",
-            "unclassified",
-            "track"
-          ],
+          ["get", "kind"],
+          ["minor_road", "unclassified", "track"],
           true,
           false
         ],
-        [
-          "!=",
-          [
-            "get",
-            "kind_detail"
-          ],
-          "service"
-        ]
+        ["!=", ["get", "kind_detail"], "service"]
       ],
       "layout": {
         "line-cap": "round",
@@ -10364,19 +7872,7 @@
       },
       "paint": {
         "line-color": "#1c1c1c",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          11,
-          0.3,
-          12,
-          0.9
-        ]
+        "line-width": ["interpolate", ["linear"], ["zoom"], 11, 0.3, 12, 0.9]
       }
     },
     {
@@ -10387,23 +7883,11 @@
       "minzoom": 8,
       "filter": [
         "all",
-        [
-          "==",
-          [
-            "geometry-type"
-          ],
-          "LineString"
-        ],
+        ["==", ["geometry-type"], "LineString"],
         [
           "match",
-          [
-            "get",
-            "kind_detail"
-          ],
-          [
-            "secondary",
-            "tertiary"
-          ],
+          ["get", "kind_detail"],
+          ["secondary", "tertiary"],
           true,
           false
         ]
@@ -10414,19 +7898,7 @@
       },
       "paint": {
         "line-color": "#242424",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          8,
-          0.4,
-          12,
-          1.6
-        ]
+        "line-width": ["interpolate", ["linear"], ["zoom"], 8, 0.4, 12, 1.6]
       }
     },
     {
@@ -10437,24 +7909,11 @@
       "minzoom": 5,
       "filter": [
         "all",
-        [
-          "==",
-          [
-            "geometry-type"
-          ],
-          "LineString"
-        ],
+        ["==", ["geometry-type"], "LineString"],
         [
           "match",
-          [
-            "get",
-            "kind_detail"
-          ],
-          [
-            "motorway",
-            "trunk",
-            "primary"
-          ],
+          ["get", "kind_detail"],
+          ["motorway", "trunk", "primary"],
           true,
           false
         ]
@@ -10467,12 +7926,8 @@
         "line-color": "#2e2e2e",
         "line-width": [
           "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
+          ["linear"],
+          ["zoom"],
           5,
           0.5,
           9,
@@ -10488,48 +7943,11 @@
       "source": "aws",
       "source-layer": "water",
       "minzoom": 3,
-      "filter": [
-        "all",
-        [
-          "==",
-          [
-            "geometry-type"
-          ],
-          "Point"
-        ],
-        [
-          "has",
-          "name"
-        ]
-      ],
+      "filter": ["all", ["==", ["geometry-type"], "Point"], ["has", "name"]],
       "layout": {
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
-        ],
-        "text-font": [
-          "Noto Sans Regular"
-        ],
-        "text-size": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          3,
-          10,
-          8,
-          13
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 3, 10, 8, 13],
         "text-max-width": 6,
         "text-padding": 2,
         "visibility": "visible"
@@ -10548,125 +7966,35 @@
       "minzoom": 7,
       "filter": [
         "all",
-        [
-          "==",
-          [
-            "geometry-type"
-          ],
-          "Point"
-        ],
+        ["==", ["geometry-type"], "Point"],
         [
           "match",
-          [
-            "get",
-            "kind_detail"
-          ],
-          [
-            "town",
-            "village",
-            "hamlet",
-            "borough",
-            "suburb"
-          ],
+          ["get", "kind_detail"],
+          ["town", "village", "hamlet", "borough", "suburb"],
           true,
           false
         ],
-        [
-          "<",
-          [
-            "get",
-            "population"
-          ],
-          100000
-        ],
+        ["<", ["get", "population"], 100000],
         [
           "step",
-          [
-            "zoom"
-          ],
-          [
-            ">=",
-            [
-              "get",
-              "population"
-            ],
-            50000
-          ],
+          ["zoom"],
+          [">=", ["get", "population"], 50000],
           8,
-          [
-            ">=",
-            [
-              "get",
-              "population"
-            ],
-            20000
-          ],
+          [">=", ["get", "population"], 20000],
           9,
-          [
-            ">=",
-            [
-              "get",
-              "population"
-            ],
-            10000
-          ],
+          [">=", ["get", "population"], 10000],
           10,
-          [
-            ">=",
-            [
-              "get",
-              "population"
-            ],
-            5000
-          ],
+          [">=", ["get", "population"], 5000],
           11,
-          [
-            ">=",
-            [
-              "get",
-              "population"
-            ],
-            2000
-          ],
+          [">=", ["get", "population"], 2000],
           12,
-          [
-            ">=",
-            [
-              "get",
-              "population"
-            ],
-            500
-          ]
+          [">=", ["get", "population"], 500]
         ]
       ],
       "layout": {
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
-        ],
-        "text-font": [
-          "Noto Sans Medium"
-        ],
-        "text-size": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          7,
-          10,
-          12,
-          14
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
+        "text-font": ["Noto Sans Medium"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 7, 10, 12, 14],
         "text-max-width": 6,
         "text-padding": 2,
         "visibility": "visible"
@@ -10686,91 +8014,24 @@
       "minzoom": 3,
       "filter": [
         "all",
-        [
-          "==",
-          [
-            "geometry-type"
-          ],
-          "Point"
-        ],
-        [
-          "==",
-          [
-            "get",
-            "kind"
-          ],
-          "locality"
-        ],
+        ["==", ["geometry-type"], "Point"],
+        ["==", ["get", "kind"], "locality"],
         [
           "step",
-          [
-            "zoom"
-          ],
-          [
-            ">=",
-            [
-              "get",
-              "population"
-            ],
-            1200000
-          ],
+          ["zoom"],
+          [">=", ["get", "population"], 1200000],
           4,
-          [
-            ">=",
-            [
-              "get",
-              "population"
-            ],
-            400000
-          ],
+          [">=", ["get", "population"], 400000],
           6,
-          [
-            ">=",
-            [
-              "get",
-              "population"
-            ],
-            200000
-          ],
+          [">=", ["get", "population"], 200000],
           7,
-          [
-            ">=",
-            [
-              "get",
-              "population"
-            ],
-            100000
-          ]
+          [">=", ["get", "population"], 100000]
         ]
       ],
       "layout": {
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
-        ],
-        "text-font": [
-          "Noto Sans Medium"
-        ],
-        "text-size": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          3,
-          11,
-          10,
-          16
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
+        "text-font": ["Noto Sans Medium"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 3, 11, 10, 16],
         "text-max-width": 6,
         "text-padding": 2,
         "visibility": "visible",
@@ -10792,55 +8053,13 @@
       "minzoom": 3.75,
       "filter": [
         "all",
-        [
-          "==",
-          [
-            "geometry-type"
-          ],
-          "Point"
-        ],
-        [
-          "match",
-          [
-            "get",
-            "kind"
-          ],
-          [
-            "region",
-            "macroregion"
-          ],
-          true,
-          false
-        ]
+        ["==", ["geometry-type"], "Point"],
+        ["match", ["get", "kind"], ["region", "macroregion"], true, false]
       ],
       "layout": {
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
-        ],
-        "text-font": [
-          "Noto Sans Regular"
-        ],
-        "text-size": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          4,
-          10,
-          8,
-          13
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 4, 10, 8, 13],
         "text-max-width": 6,
         "text-padding": 2,
         "visibility": "visible",
@@ -10862,50 +8081,13 @@
       "minzoom": 1,
       "filter": [
         "all",
-        [
-          "==",
-          [
-            "geometry-type"
-          ],
-          "Point"
-        ],
-        [
-          "==",
-          [
-            "get",
-            "kind"
-          ],
-          "country"
-        ]
+        ["==", ["geometry-type"], "Point"],
+        ["==", ["get", "kind"], "country"]
       ],
       "layout": {
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
-        ],
-        "text-font": [
-          "Noto Sans Medium"
-        ],
-        "text-size": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          1,
-          11,
-          4,
-          15
-        ],
+        "text-field": ["coalesce", ["get", "name:en"], ["get", "name"]],
+        "text-font": ["Noto Sans Medium"],
+        "text-size": ["interpolate", ["linear"], ["zoom"], 1, 11, 4, 15],
         "text-max-width": 6,
         "text-padding": 2,
         "visibility": "visible",

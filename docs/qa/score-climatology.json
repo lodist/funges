@@ -1,688 +1,688 @@
 {
- "good_score": 4.0,
- "months": {
-  "2026-08": {
-   "NE": {
-    "Amaranth": {
-     "mean": 4.568,
-     "median": 4.78,
-     "n": 101220,
-     "p90": 7.74,
-     "share_ge4": 0.5723,
-     "share_zero": 0.0955
-    },
-    "Artichoke": {
-     "mean": 2.304,
-     "median": 2.64,
-     "n": 101220,
-     "p90": 3.6,
-     "share_ge4": 0.0109,
-     "share_zero": 0.0955
-    },
-    "Black Chanterelle": {
-     "mean": 3.08,
-     "median": 2.93,
-     "n": 101220,
-     "p90": 5.83,
-     "share_ge4": 0.3913,
-     "share_zero": 0.0969
-    },
-    "Burgundy Truffle": {
-     "mean": 1.094,
-     "median": 0.42,
-     "n": 101220,
-     "p90": 3.14,
-     "share_ge4": 0.0232,
-     "share_zero": 0.4055
-    },
-    "Chanterelle": {
-     "mean": 4.677,
-     "median": 5.31,
-     "n": 101220,
-     "p90": 7.13,
-     "share_ge4": 0.6399,
-     "share_zero": 0.0
-    },
-    "Chestnut": {
-     "mean": 1.367,
-     "median": 0.8,
-     "n": 101220,
-     "p90": 3.63,
-     "share_ge4": 0.0094,
-     "share_zero": 0.4055
-    },
-    "Chickweed": {
-     "mean": 1.92,
-     "median": 2.1,
-     "n": 101220,
-     "p90": 2.82,
-     "share_ge4": 0.0005,
-     "share_zero": 0.0
-    },
-    "Dandelion": {
-     "mean": 4.3,
-     "median": 4.69,
-     "n": 101220,
-     "p90": 6.35,
-     "share_ge4": 0.6208,
-     "share_zero": 0.0
-    },
-    "Lingonberry": {
-     "mean": 5.455,
-     "median": 6.48,
-     "n": 101220,
-     "p90": 8.23,
-     "share_ge4": 0.6688,
-     "share_zero": 0.0
-    },
-    "Masterwort": {
-     "mean": 2.759,
-     "median": 2.46,
-     "n": 101220,
-     "p90": 5.95,
-     "share_ge4": 0.3775,
-     "share_zero": 0.2538
-    },
-    "Morel": {
-     "mean": 2.606,
-     "median": 2.87,
-     "n": 101220,
-     "p90": 4.22,
-     "share_ge4": 0.1836,
-     "share_zero": 0.0
-    },
-    "Nettle": {
-     "mean": 4.499,
-     "median": 5.13,
-     "n": 101220,
-     "p90": 6.49,
-     "share_ge4": 0.6462,
-     "share_zero": 0.0
-    },
-    "Parasol Mushroom": {
-     "mean": 4.191,
-     "median": 4.61,
-     "n": 101220,
-     "p90": 6.65,
-     "share_ge4": 0.6009,
-     "share_zero": 0.0955
-    },
-    "Porcini": {
-     "mean": 4.972,
-     "median": 5.34,
-     "n": 101220,
-     "p90": 7.37,
-     "share_ge4": 0.7025,
-     "share_zero": 0.0
-    },
-    "Raspberry": {
-     "mean": 4.848,
-     "median": 5.44,
-     "n": 101220,
-     "p90": 6.84,
-     "share_ge4": 0.7179,
-     "share_zero": 0.0
-    },
-    "Sorrel": {
-     "mean": 3.067,
-     "median": 3.42,
-     "n": 101220,
-     "p90": 4.69,
-     "share_ge4": 0.3188,
-     "share_zero": 0.0955
-    },
-    "St. George's Mushroom": {
-     "mean": 3.04,
-     "median": 3.53,
-     "n": 101220,
-     "p90": 4.73,
-     "share_ge4": 0.3986,
-     "share_zero": 0.0
-    },
-    "Wild Asparagus": {
-     "mean": 0.0,
-     "median": 0.0,
-     "n": 101220,
-     "p90": 0.0,
-     "share_ge4": 0.0,
-     "share_zero": 1.0
-    },
-    "Wild Garlic": {
-     "mean": 2.056,
-     "median": 2.16,
-     "n": 101220,
-     "p90": 3.59,
-     "share_ge4": 0.0145,
-     "share_zero": 0.0955
-    },
-    "Wild Strawberry": {
-     "mean": 4.08,
-     "median": 4.57,
-     "n": 101220,
-     "p90": 5.77,
-     "share_ge4": 0.6226,
-     "share_zero": 0.0
-    },
-    "Wild Walnut": {
-     "mean": 2.549,
-     "median": 2.97,
-     "n": 101220,
-     "p90": 3.8,
-     "share_ge4": 0.0295,
-     "share_zero": 0.0955
+  "good_score": 4.0,
+  "months": {
+    "2026-08": {
+      "NE": {
+        "Amaranth": {
+          "mean": 4.568,
+          "median": 4.78,
+          "n": 101220,
+          "p90": 7.74,
+          "share_ge4": 0.5723,
+          "share_zero": 0.0955
+        },
+        "Artichoke": {
+          "mean": 2.304,
+          "median": 2.64,
+          "n": 101220,
+          "p90": 3.6,
+          "share_ge4": 0.0109,
+          "share_zero": 0.0955
+        },
+        "Black Chanterelle": {
+          "mean": 3.08,
+          "median": 2.93,
+          "n": 101220,
+          "p90": 5.83,
+          "share_ge4": 0.3913,
+          "share_zero": 0.0969
+        },
+        "Burgundy Truffle": {
+          "mean": 1.094,
+          "median": 0.42,
+          "n": 101220,
+          "p90": 3.14,
+          "share_ge4": 0.0232,
+          "share_zero": 0.4055
+        },
+        "Chanterelle": {
+          "mean": 4.677,
+          "median": 5.31,
+          "n": 101220,
+          "p90": 7.13,
+          "share_ge4": 0.6399,
+          "share_zero": 0.0
+        },
+        "Chestnut": {
+          "mean": 1.367,
+          "median": 0.8,
+          "n": 101220,
+          "p90": 3.63,
+          "share_ge4": 0.0094,
+          "share_zero": 0.4055
+        },
+        "Chickweed": {
+          "mean": 1.92,
+          "median": 2.1,
+          "n": 101220,
+          "p90": 2.82,
+          "share_ge4": 0.0005,
+          "share_zero": 0.0
+        },
+        "Dandelion": {
+          "mean": 4.3,
+          "median": 4.69,
+          "n": 101220,
+          "p90": 6.35,
+          "share_ge4": 0.6208,
+          "share_zero": 0.0
+        },
+        "Lingonberry": {
+          "mean": 5.455,
+          "median": 6.48,
+          "n": 101220,
+          "p90": 8.23,
+          "share_ge4": 0.6688,
+          "share_zero": 0.0
+        },
+        "Masterwort": {
+          "mean": 2.759,
+          "median": 2.46,
+          "n": 101220,
+          "p90": 5.95,
+          "share_ge4": 0.3775,
+          "share_zero": 0.2538
+        },
+        "Morel": {
+          "mean": 2.606,
+          "median": 2.87,
+          "n": 101220,
+          "p90": 4.22,
+          "share_ge4": 0.1836,
+          "share_zero": 0.0
+        },
+        "Nettle": {
+          "mean": 4.499,
+          "median": 5.13,
+          "n": 101220,
+          "p90": 6.49,
+          "share_ge4": 0.6462,
+          "share_zero": 0.0
+        },
+        "Parasol Mushroom": {
+          "mean": 4.191,
+          "median": 4.61,
+          "n": 101220,
+          "p90": 6.65,
+          "share_ge4": 0.6009,
+          "share_zero": 0.0955
+        },
+        "Porcini": {
+          "mean": 4.972,
+          "median": 5.34,
+          "n": 101220,
+          "p90": 7.37,
+          "share_ge4": 0.7025,
+          "share_zero": 0.0
+        },
+        "Raspberry": {
+          "mean": 4.848,
+          "median": 5.44,
+          "n": 101220,
+          "p90": 6.84,
+          "share_ge4": 0.7179,
+          "share_zero": 0.0
+        },
+        "Sorrel": {
+          "mean": 3.067,
+          "median": 3.42,
+          "n": 101220,
+          "p90": 4.69,
+          "share_ge4": 0.3188,
+          "share_zero": 0.0955
+        },
+        "St. George's Mushroom": {
+          "mean": 3.04,
+          "median": 3.53,
+          "n": 101220,
+          "p90": 4.73,
+          "share_ge4": 0.3986,
+          "share_zero": 0.0
+        },
+        "Wild Asparagus": {
+          "mean": 0.0,
+          "median": 0.0,
+          "n": 101220,
+          "p90": 0.0,
+          "share_ge4": 0.0,
+          "share_zero": 1.0
+        },
+        "Wild Garlic": {
+          "mean": 2.056,
+          "median": 2.16,
+          "n": 101220,
+          "p90": 3.59,
+          "share_ge4": 0.0145,
+          "share_zero": 0.0955
+        },
+        "Wild Strawberry": {
+          "mean": 4.08,
+          "median": 4.57,
+          "n": 101220,
+          "p90": 5.77,
+          "share_ge4": 0.6226,
+          "share_zero": 0.0
+        },
+        "Wild Walnut": {
+          "mean": 2.549,
+          "median": 2.97,
+          "n": 101220,
+          "p90": 3.8,
+          "share_ge4": 0.0295,
+          "share_zero": 0.0955
+        }
+      },
+      "SE": {
+        "Amaranth": {
+          "mean": 4.066,
+          "median": 4.3,
+          "n": 67163,
+          "p90": 7.31,
+          "share_ge4": 0.5218,
+          "share_zero": 0.0
+        },
+        "Artichoke": {
+          "mean": 0.851,
+          "median": 0.59,
+          "n": 67163,
+          "p90": 2.1,
+          "share_ge4": 0.0,
+          "share_zero": 0.0603
+        },
+        "Black Chanterelle": {
+          "mean": 0.602,
+          "median": 0.17,
+          "n": 67163,
+          "p90": 1.81,
+          "share_ge4": 0.0268,
+          "share_zero": 0.2997
+        },
+        "Burgundy Truffle": {
+          "mean": 0.369,
+          "median": 0.12,
+          "n": 67163,
+          "p90": 1.08,
+          "share_ge4": 0.0008,
+          "share_zero": 0.0436
+        },
+        "Chanterelle": {
+          "mean": 1.054,
+          "median": 0.49,
+          "n": 67163,
+          "p90": 3.09,
+          "share_ge4": 0.0634,
+          "share_zero": 0.0157
+        },
+        "Chestnut": {
+          "mean": 0.717,
+          "median": 0.41,
+          "n": 67163,
+          "p90": 2.0,
+          "share_ge4": 0.0001,
+          "share_zero": 0.0113
+        },
+        "Chickweed": {
+          "mean": 0.378,
+          "median": 0.24,
+          "n": 67163,
+          "p90": 0.99,
+          "share_ge4": 0.0,
+          "share_zero": 0.0206
+        },
+        "Dandelion": {
+          "mean": 0.719,
+          "median": 0.31,
+          "n": 67163,
+          "p90": 2.08,
+          "share_ge4": 0.0127,
+          "share_zero": 0.02
+        },
+        "Lingonberry": {
+          "mean": 0.895,
+          "median": 0.18,
+          "n": 67163,
+          "p90": 2.99,
+          "share_ge4": 0.0612,
+          "share_zero": 0.3596
+        },
+        "Masterwort": {
+          "mean": 0.591,
+          "median": 0.05,
+          "n": 67163,
+          "p90": 1.85,
+          "share_ge4": 0.0359,
+          "share_zero": 0.4097
+        },
+        "Morel": {
+          "mean": 0.488,
+          "median": 0.23,
+          "n": 67163,
+          "p90": 1.31,
+          "share_ge4": 0.0009,
+          "share_zero": 0.0212
+        },
+        "Nettle": {
+          "mean": 0.911,
+          "median": 0.42,
+          "n": 67163,
+          "p90": 2.66,
+          "share_ge4": 0.0338,
+          "share_zero": 0.021
+        },
+        "Parasol Mushroom": {
+          "mean": 1.642,
+          "median": 1.05,
+          "n": 67163,
+          "p90": 4.28,
+          "share_ge4": 0.1109,
+          "share_zero": 0.0
+        },
+        "Porcini": {
+          "mean": 1.387,
+          "median": 0.69,
+          "n": 67163,
+          "p90": 4.17,
+          "share_ge4": 0.1069,
+          "share_zero": 0.1193
+        },
+        "Raspberry": {
+          "mean": 1.221,
+          "median": 0.66,
+          "n": 67163,
+          "p90": 3.47,
+          "share_ge4": 0.0621,
+          "share_zero": 0.0017
+        },
+        "Sorrel": {
+          "mean": 1.055,
+          "median": 0.72,
+          "n": 67163,
+          "p90": 2.62,
+          "share_ge4": 0.007,
+          "share_zero": 0.0013
+        },
+        "St. George's Mushroom": {
+          "mean": 0.561,
+          "median": 0.28,
+          "n": 67163,
+          "p90": 1.57,
+          "share_ge4": 0.0014,
+          "share_zero": 0.0172
+        },
+        "Wild Asparagus": {
+          "mean": 0.204,
+          "median": 0.0,
+          "n": 67163,
+          "p90": 0.69,
+          "share_ge4": 0.0,
+          "share_zero": 0.6245
+        },
+        "Wild Garlic": {
+          "mean": 0.458,
+          "median": 0.24,
+          "n": 67163,
+          "p90": 1.26,
+          "share_ge4": 0.0,
+          "share_zero": 0.0963
+        },
+        "Wild Strawberry": {
+          "mean": 1.061,
+          "median": 0.55,
+          "n": 67163,
+          "p90": 3.06,
+          "share_ge4": 0.0307,
+          "share_zero": 0.015
+        },
+        "Wild Walnut": {
+          "mean": 1.172,
+          "median": 0.85,
+          "n": 67163,
+          "p90": 2.69,
+          "share_ge4": 0.0001,
+          "share_zero": 0.0
+        }
+      },
+      "USE": {
+        "Amaranth": {
+          "mean": 4.37,
+          "median": 5.71,
+          "n": 91217,
+          "p90": 7.53,
+          "share_ge4": 0.632,
+          "share_zero": 0.2349
+        },
+        "Artichoke": {
+          "mean": 0.731,
+          "median": 0.39,
+          "n": 91217,
+          "p90": 2.33,
+          "share_ge4": 0.0,
+          "share_zero": 0.4315
+        },
+        "Black Chanterelle": {
+          "mean": 1.877,
+          "median": 1.78,
+          "n": 91217,
+          "p90": 4.61,
+          "share_ge4": 0.1903,
+          "share_zero": 0.3904
+        },
+        "Burgundy Truffle": {
+          "mean": 0.01,
+          "median": 0.01,
+          "n": 91217,
+          "p90": 0.02,
+          "share_ge4": 0.0,
+          "share_zero": 0.1315
+        },
+        "Chanterelle": {
+          "mean": 2.575,
+          "median": 2.61,
+          "n": 91217,
+          "p90": 4.91,
+          "share_ge4": 0.2474,
+          "share_zero": 0.0867
+        },
+        "Chestnut": {
+          "mean": 1.114,
+          "median": 0.65,
+          "n": 91217,
+          "p90": 2.73,
+          "share_ge4": 0.0,
+          "share_zero": 0.4421
+        },
+        "Chickweed": {
+          "mean": 0.795,
+          "median": 0.76,
+          "n": 91217,
+          "p90": 1.46,
+          "share_ge4": 0.0,
+          "share_zero": 0.0
+        },
+        "Dandelion": {
+          "mean": 2.058,
+          "median": 1.96,
+          "n": 91217,
+          "p90": 3.8,
+          "share_ge4": 0.0724,
+          "share_zero": 0.0
+        },
+        "Lingonberry": {
+          "mean": 1.816,
+          "median": 0.0,
+          "n": 91217,
+          "p90": 4.76,
+          "share_ge4": 0.2412,
+          "share_zero": 0.5566
+        },
+        "Masterwort": {
+          "mean": 0.008,
+          "median": 0.01,
+          "n": 91217,
+          "p90": 0.01,
+          "share_ge4": 0.0,
+          "share_zero": 0.2211
+        },
+        "Morel": {
+          "mean": 1.024,
+          "median": 0.97,
+          "n": 91217,
+          "p90": 2.0,
+          "share_ge4": 0.0,
+          "share_zero": 0.0
+        },
+        "Nettle": {
+          "mean": 2.088,
+          "median": 2.05,
+          "n": 91217,
+          "p90": 3.85,
+          "share_ge4": 0.0757,
+          "share_zero": 0.0
+        },
+        "Parasol Mushroom": {
+          "mean": 4.346,
+          "median": 4.7,
+          "n": 91217,
+          "p90": 7.33,
+          "share_ge4": 0.6372,
+          "share_zero": 0.0867
+        },
+        "Porcini": {
+          "mean": 4.076,
+          "median": 4.45,
+          "n": 91217,
+          "p90": 6.66,
+          "share_ge4": 0.5962,
+          "share_zero": 0.0574
+        },
+        "Raspberry": {
+          "mean": 2.239,
+          "median": 2.54,
+          "n": 91217,
+          "p90": 4.97,
+          "share_ge4": 0.2635,
+          "share_zero": 0.3555
+        },
+        "Sorrel": {
+          "mean": 2.022,
+          "median": 2.08,
+          "n": 91217,
+          "p90": 3.29,
+          "share_ge4": 0.0111,
+          "share_zero": 0.0
+        },
+        "St. George's Mushroom": {
+          "mean": 0.009,
+          "median": 0.01,
+          "n": 91217,
+          "p90": 0.01,
+          "share_ge4": 0.0,
+          "share_zero": 0.1399
+        },
+        "Wild Asparagus": {
+          "mean": 0.433,
+          "median": 0.09,
+          "n": 91217,
+          "p90": 1.22,
+          "share_ge4": 0.0,
+          "share_zero": 0.4434
+        },
+        "Wild Garlic": {
+          "mean": 0.974,
+          "median": 0.98,
+          "n": 91217,
+          "p90": 1.84,
+          "share_ge4": 0.0,
+          "share_zero": 0.0867
+        },
+        "Wild Strawberry": {
+          "mean": 2.605,
+          "median": 2.78,
+          "n": 91217,
+          "p90": 4.51,
+          "share_ge4": 0.2173,
+          "share_zero": 0.0867
+        },
+        "Wild Walnut": {
+          "mean": 2.144,
+          "median": 2.39,
+          "n": 91217,
+          "p90": 3.39,
+          "share_ge4": 0.0026,
+          "share_zero": 0.0867
+        }
+      },
+      "USW": {
+        "Amaranth": {
+          "mean": 2.841,
+          "median": 1.86,
+          "n": 88526,
+          "p90": 6.1,
+          "share_ge4": 0.3144,
+          "share_zero": 0.0338
+        },
+        "Artichoke": {
+          "mean": 0.458,
+          "median": 0.23,
+          "n": 88526,
+          "p90": 1.44,
+          "share_ge4": 0.0,
+          "share_zero": 0.2834
+        },
+        "Black Chanterelle": {
+          "mean": 0.254,
+          "median": 0.0,
+          "n": 88526,
+          "p90": 0.91,
+          "share_ge4": 0.0038,
+          "share_zero": 0.6339
+        },
+        "Burgundy Truffle": {
+          "mean": 0.003,
+          "median": 0.0,
+          "n": 88526,
+          "p90": 0.01,
+          "share_ge4": 0.0,
+          "share_zero": 0.7395
+        },
+        "Chanterelle": {
+          "mean": 0.396,
+          "median": 0.03,
+          "n": 88526,
+          "p90": 1.38,
+          "share_ge4": 0.0059,
+          "share_zero": 0.4364
+        },
+        "Chestnut": {
+          "mean": 0.153,
+          "median": 0.0,
+          "n": 88526,
+          "p90": 0.52,
+          "share_ge4": 0.0,
+          "share_zero": 0.543
+        },
+        "Chickweed": {
+          "mean": 0.294,
+          "median": 0.13,
+          "n": 88526,
+          "p90": 0.86,
+          "share_ge4": 0.0,
+          "share_zero": 0.0823
+        },
+        "Dandelion": {
+          "mean": 0.974,
+          "median": 0.49,
+          "n": 88526,
+          "p90": 2.72,
+          "share_ge4": 0.0145,
+          "share_zero": 0.0797
+        },
+        "Lingonberry": {
+          "mean": 0.416,
+          "median": 0.0,
+          "n": 88526,
+          "p90": 1.52,
+          "share_ge4": 0.0055,
+          "share_zero": 0.5041
+        },
+        "Masterwort": {
+          "mean": 0.001,
+          "median": 0.0,
+          "n": 88526,
+          "p90": 0.01,
+          "share_ge4": 0.0,
+          "share_zero": 0.8665
+        },
+        "Morel": {
+          "mean": 0.317,
+          "median": 0.11,
+          "n": 88526,
+          "p90": 0.94,
+          "share_ge4": 0.0001,
+          "share_zero": 0.0993
+        },
+        "Nettle": {
+          "mean": 0.649,
+          "median": 0.22,
+          "n": 88526,
+          "p90": 2.08,
+          "share_ge4": 0.007,
+          "share_zero": 0.131
+        },
+        "Parasol Mushroom": {
+          "mean": 0.754,
+          "median": 0.25,
+          "n": 88526,
+          "p90": 2.47,
+          "share_ge4": 0.0319,
+          "share_zero": 0.4342
+        },
+        "Porcini": {
+          "mean": 0.779,
+          "median": 0.24,
+          "n": 88526,
+          "p90": 2.5,
+          "share_ge4": 0.0197,
+          "share_zero": 0.3037
+        },
+        "Raspberry": {
+          "mean": 0.504,
+          "median": 0.11,
+          "n": 88526,
+          "p90": 1.62,
+          "share_ge4": 0.0068,
+          "share_zero": 0.4344
+        },
+        "Sorrel": {
+          "mean": 0.711,
+          "median": 0.35,
+          "n": 88526,
+          "p90": 2.04,
+          "share_ge4": 0.0059,
+          "share_zero": 0.1305
+        },
+        "St. George's Mushroom": {
+          "mean": 0.001,
+          "median": 0.0,
+          "n": 88526,
+          "p90": 0.01,
+          "share_ge4": 0.0,
+          "share_zero": 0.8803
+        },
+        "Wild Asparagus": {
+          "mean": 0.289,
+          "median": 0.0,
+          "n": 88526,
+          "p90": 1.07,
+          "share_ge4": 0.0,
+          "share_zero": 0.5418
+        },
+        "Wild Garlic": {
+          "mean": 0.224,
+          "median": 0.05,
+          "n": 88526,
+          "p90": 0.77,
+          "share_ge4": 0.0,
+          "share_zero": 0.4342
+        },
+        "Wild Strawberry": {
+          "mean": 0.364,
+          "median": 0.04,
+          "n": 88526,
+          "p90": 1.28,
+          "share_ge4": 0.005,
+          "share_zero": 0.4344
+        },
+        "Wild Walnut": {
+          "mean": 0.429,
+          "median": 0.16,
+          "n": 88526,
+          "p90": 1.31,
+          "share_ge4": 0.0,
+          "share_zero": 0.3834
+        }
+      }
     }
-   },
-   "SE": {
-    "Amaranth": {
-     "mean": 4.066,
-     "median": 4.3,
-     "n": 67163,
-     "p90": 7.31,
-     "share_ge4": 0.5218,
-     "share_zero": 0.0
-    },
-    "Artichoke": {
-     "mean": 0.851,
-     "median": 0.59,
-     "n": 67163,
-     "p90": 2.1,
-     "share_ge4": 0.0,
-     "share_zero": 0.0603
-    },
-    "Black Chanterelle": {
-     "mean": 0.602,
-     "median": 0.17,
-     "n": 67163,
-     "p90": 1.81,
-     "share_ge4": 0.0268,
-     "share_zero": 0.2997
-    },
-    "Burgundy Truffle": {
-     "mean": 0.369,
-     "median": 0.12,
-     "n": 67163,
-     "p90": 1.08,
-     "share_ge4": 0.0008,
-     "share_zero": 0.0436
-    },
-    "Chanterelle": {
-     "mean": 1.054,
-     "median": 0.49,
-     "n": 67163,
-     "p90": 3.09,
-     "share_ge4": 0.0634,
-     "share_zero": 0.0157
-    },
-    "Chestnut": {
-     "mean": 0.717,
-     "median": 0.41,
-     "n": 67163,
-     "p90": 2.0,
-     "share_ge4": 0.0001,
-     "share_zero": 0.0113
-    },
-    "Chickweed": {
-     "mean": 0.378,
-     "median": 0.24,
-     "n": 67163,
-     "p90": 0.99,
-     "share_ge4": 0.0,
-     "share_zero": 0.0206
-    },
-    "Dandelion": {
-     "mean": 0.719,
-     "median": 0.31,
-     "n": 67163,
-     "p90": 2.08,
-     "share_ge4": 0.0127,
-     "share_zero": 0.02
-    },
-    "Lingonberry": {
-     "mean": 0.895,
-     "median": 0.18,
-     "n": 67163,
-     "p90": 2.99,
-     "share_ge4": 0.0612,
-     "share_zero": 0.3596
-    },
-    "Masterwort": {
-     "mean": 0.591,
-     "median": 0.05,
-     "n": 67163,
-     "p90": 1.85,
-     "share_ge4": 0.0359,
-     "share_zero": 0.4097
-    },
-    "Morel": {
-     "mean": 0.488,
-     "median": 0.23,
-     "n": 67163,
-     "p90": 1.31,
-     "share_ge4": 0.0009,
-     "share_zero": 0.0212
-    },
-    "Nettle": {
-     "mean": 0.911,
-     "median": 0.42,
-     "n": 67163,
-     "p90": 2.66,
-     "share_ge4": 0.0338,
-     "share_zero": 0.021
-    },
-    "Parasol Mushroom": {
-     "mean": 1.642,
-     "median": 1.05,
-     "n": 67163,
-     "p90": 4.28,
-     "share_ge4": 0.1109,
-     "share_zero": 0.0
-    },
-    "Porcini": {
-     "mean": 1.387,
-     "median": 0.69,
-     "n": 67163,
-     "p90": 4.17,
-     "share_ge4": 0.1069,
-     "share_zero": 0.1193
-    },
-    "Raspberry": {
-     "mean": 1.221,
-     "median": 0.66,
-     "n": 67163,
-     "p90": 3.47,
-     "share_ge4": 0.0621,
-     "share_zero": 0.0017
-    },
-    "Sorrel": {
-     "mean": 1.055,
-     "median": 0.72,
-     "n": 67163,
-     "p90": 2.62,
-     "share_ge4": 0.007,
-     "share_zero": 0.0013
-    },
-    "St. George's Mushroom": {
-     "mean": 0.561,
-     "median": 0.28,
-     "n": 67163,
-     "p90": 1.57,
-     "share_ge4": 0.0014,
-     "share_zero": 0.0172
-    },
-    "Wild Asparagus": {
-     "mean": 0.204,
-     "median": 0.0,
-     "n": 67163,
-     "p90": 0.69,
-     "share_ge4": 0.0,
-     "share_zero": 0.6245
-    },
-    "Wild Garlic": {
-     "mean": 0.458,
-     "median": 0.24,
-     "n": 67163,
-     "p90": 1.26,
-     "share_ge4": 0.0,
-     "share_zero": 0.0963
-    },
-    "Wild Strawberry": {
-     "mean": 1.061,
-     "median": 0.55,
-     "n": 67163,
-     "p90": 3.06,
-     "share_ge4": 0.0307,
-     "share_zero": 0.015
-    },
-    "Wild Walnut": {
-     "mean": 1.172,
-     "median": 0.85,
-     "n": 67163,
-     "p90": 2.69,
-     "share_ge4": 0.0001,
-     "share_zero": 0.0
-    }
-   },
-   "USE": {
-    "Amaranth": {
-     "mean": 4.37,
-     "median": 5.71,
-     "n": 91217,
-     "p90": 7.53,
-     "share_ge4": 0.632,
-     "share_zero": 0.2349
-    },
-    "Artichoke": {
-     "mean": 0.731,
-     "median": 0.39,
-     "n": 91217,
-     "p90": 2.33,
-     "share_ge4": 0.0,
-     "share_zero": 0.4315
-    },
-    "Black Chanterelle": {
-     "mean": 1.877,
-     "median": 1.78,
-     "n": 91217,
-     "p90": 4.61,
-     "share_ge4": 0.1903,
-     "share_zero": 0.3904
-    },
-    "Burgundy Truffle": {
-     "mean": 0.01,
-     "median": 0.01,
-     "n": 91217,
-     "p90": 0.02,
-     "share_ge4": 0.0,
-     "share_zero": 0.1315
-    },
-    "Chanterelle": {
-     "mean": 2.575,
-     "median": 2.61,
-     "n": 91217,
-     "p90": 4.91,
-     "share_ge4": 0.2474,
-     "share_zero": 0.0867
-    },
-    "Chestnut": {
-     "mean": 1.114,
-     "median": 0.65,
-     "n": 91217,
-     "p90": 2.73,
-     "share_ge4": 0.0,
-     "share_zero": 0.4421
-    },
-    "Chickweed": {
-     "mean": 0.795,
-     "median": 0.76,
-     "n": 91217,
-     "p90": 1.46,
-     "share_ge4": 0.0,
-     "share_zero": 0.0
-    },
-    "Dandelion": {
-     "mean": 2.058,
-     "median": 1.96,
-     "n": 91217,
-     "p90": 3.8,
-     "share_ge4": 0.0724,
-     "share_zero": 0.0
-    },
-    "Lingonberry": {
-     "mean": 1.816,
-     "median": 0.0,
-     "n": 91217,
-     "p90": 4.76,
-     "share_ge4": 0.2412,
-     "share_zero": 0.5566
-    },
-    "Masterwort": {
-     "mean": 0.008,
-     "median": 0.01,
-     "n": 91217,
-     "p90": 0.01,
-     "share_ge4": 0.0,
-     "share_zero": 0.2211
-    },
-    "Morel": {
-     "mean": 1.024,
-     "median": 0.97,
-     "n": 91217,
-     "p90": 2.0,
-     "share_ge4": 0.0,
-     "share_zero": 0.0
-    },
-    "Nettle": {
-     "mean": 2.088,
-     "median": 2.05,
-     "n": 91217,
-     "p90": 3.85,
-     "share_ge4": 0.0757,
-     "share_zero": 0.0
-    },
-    "Parasol Mushroom": {
-     "mean": 4.346,
-     "median": 4.7,
-     "n": 91217,
-     "p90": 7.33,
-     "share_ge4": 0.6372,
-     "share_zero": 0.0867
-    },
-    "Porcini": {
-     "mean": 4.076,
-     "median": 4.45,
-     "n": 91217,
-     "p90": 6.66,
-     "share_ge4": 0.5962,
-     "share_zero": 0.0574
-    },
-    "Raspberry": {
-     "mean": 2.239,
-     "median": 2.54,
-     "n": 91217,
-     "p90": 4.97,
-     "share_ge4": 0.2635,
-     "share_zero": 0.3555
-    },
-    "Sorrel": {
-     "mean": 2.022,
-     "median": 2.08,
-     "n": 91217,
-     "p90": 3.29,
-     "share_ge4": 0.0111,
-     "share_zero": 0.0
-    },
-    "St. George's Mushroom": {
-     "mean": 0.009,
-     "median": 0.01,
-     "n": 91217,
-     "p90": 0.01,
-     "share_ge4": 0.0,
-     "share_zero": 0.1399
-    },
-    "Wild Asparagus": {
-     "mean": 0.433,
-     "median": 0.09,
-     "n": 91217,
-     "p90": 1.22,
-     "share_ge4": 0.0,
-     "share_zero": 0.4434
-    },
-    "Wild Garlic": {
-     "mean": 0.974,
-     "median": 0.98,
-     "n": 91217,
-     "p90": 1.84,
-     "share_ge4": 0.0,
-     "share_zero": 0.0867
-    },
-    "Wild Strawberry": {
-     "mean": 2.605,
-     "median": 2.78,
-     "n": 91217,
-     "p90": 4.51,
-     "share_ge4": 0.2173,
-     "share_zero": 0.0867
-    },
-    "Wild Walnut": {
-     "mean": 2.144,
-     "median": 2.39,
-     "n": 91217,
-     "p90": 3.39,
-     "share_ge4": 0.0026,
-     "share_zero": 0.0867
-    }
-   },
-   "USW": {
-    "Amaranth": {
-     "mean": 2.841,
-     "median": 1.86,
-     "n": 88526,
-     "p90": 6.1,
-     "share_ge4": 0.3144,
-     "share_zero": 0.0338
-    },
-    "Artichoke": {
-     "mean": 0.458,
-     "median": 0.23,
-     "n": 88526,
-     "p90": 1.44,
-     "share_ge4": 0.0,
-     "share_zero": 0.2834
-    },
-    "Black Chanterelle": {
-     "mean": 0.254,
-     "median": 0.0,
-     "n": 88526,
-     "p90": 0.91,
-     "share_ge4": 0.0038,
-     "share_zero": 0.6339
-    },
-    "Burgundy Truffle": {
-     "mean": 0.003,
-     "median": 0.0,
-     "n": 88526,
-     "p90": 0.01,
-     "share_ge4": 0.0,
-     "share_zero": 0.7395
-    },
-    "Chanterelle": {
-     "mean": 0.396,
-     "median": 0.03,
-     "n": 88526,
-     "p90": 1.38,
-     "share_ge4": 0.0059,
-     "share_zero": 0.4364
-    },
-    "Chestnut": {
-     "mean": 0.153,
-     "median": 0.0,
-     "n": 88526,
-     "p90": 0.52,
-     "share_ge4": 0.0,
-     "share_zero": 0.543
-    },
-    "Chickweed": {
-     "mean": 0.294,
-     "median": 0.13,
-     "n": 88526,
-     "p90": 0.86,
-     "share_ge4": 0.0,
-     "share_zero": 0.0823
-    },
-    "Dandelion": {
-     "mean": 0.974,
-     "median": 0.49,
-     "n": 88526,
-     "p90": 2.72,
-     "share_ge4": 0.0145,
-     "share_zero": 0.0797
-    },
-    "Lingonberry": {
-     "mean": 0.416,
-     "median": 0.0,
-     "n": 88526,
-     "p90": 1.52,
-     "share_ge4": 0.0055,
-     "share_zero": 0.5041
-    },
-    "Masterwort": {
-     "mean": 0.001,
-     "median": 0.0,
-     "n": 88526,
-     "p90": 0.01,
-     "share_ge4": 0.0,
-     "share_zero": 0.8665
-    },
-    "Morel": {
-     "mean": 0.317,
-     "median": 0.11,
-     "n": 88526,
-     "p90": 0.94,
-     "share_ge4": 0.0001,
-     "share_zero": 0.0993
-    },
-    "Nettle": {
-     "mean": 0.649,
-     "median": 0.22,
-     "n": 88526,
-     "p90": 2.08,
-     "share_ge4": 0.007,
-     "share_zero": 0.131
-    },
-    "Parasol Mushroom": {
-     "mean": 0.754,
-     "median": 0.25,
-     "n": 88526,
-     "p90": 2.47,
-     "share_ge4": 0.0319,
-     "share_zero": 0.4342
-    },
-    "Porcini": {
-     "mean": 0.779,
-     "median": 0.24,
-     "n": 88526,
-     "p90": 2.5,
-     "share_ge4": 0.0197,
-     "share_zero": 0.3037
-    },
-    "Raspberry": {
-     "mean": 0.504,
-     "median": 0.11,
-     "n": 88526,
-     "p90": 1.62,
-     "share_ge4": 0.0068,
-     "share_zero": 0.4344
-    },
-    "Sorrel": {
-     "mean": 0.711,
-     "median": 0.35,
-     "n": 88526,
-     "p90": 2.04,
-     "share_ge4": 0.0059,
-     "share_zero": 0.1305
-    },
-    "St. George's Mushroom": {
-     "mean": 0.001,
-     "median": 0.0,
-     "n": 88526,
-     "p90": 0.01,
-     "share_ge4": 0.0,
-     "share_zero": 0.8803
-    },
-    "Wild Asparagus": {
-     "mean": 0.289,
-     "median": 0.0,
-     "n": 88526,
-     "p90": 1.07,
-     "share_ge4": 0.0,
-     "share_zero": 0.5418
-    },
-    "Wild Garlic": {
-     "mean": 0.224,
-     "median": 0.05,
-     "n": 88526,
-     "p90": 0.77,
-     "share_ge4": 0.0,
-     "share_zero": 0.4342
-    },
-    "Wild Strawberry": {
-     "mean": 0.364,
-     "median": 0.04,
-     "n": 88526,
-     "p90": 1.28,
-     "share_ge4": 0.005,
-     "share_zero": 0.4344
-    },
-    "Wild Walnut": {
-     "mean": 0.429,
-     "median": 0.16,
-     "n": 88526,
-     "p90": 1.31,
-     "share_ge4": 0.0,
-     "share_zero": 0.3834
-    }
-   }
-  }
- },
- "schema": 1
+  },
+  "schema": 1
 }

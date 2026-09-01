@@ -28,6 +28,7 @@ import {
 import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import {
   ChefHat,
   Loader2,
@@ -36,8 +37,10 @@ import {
   Info,
   ScanSearch,
   WifiOff,
-} from 'lucide-react';
+} from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
+
+import { categoryColor } from '@/lib/categoryColor';
 import { useUIStore } from '@/store/uiStore';
 import SpeciesSelector from './SpeciesSelector';
 import MapThemeSelector from './MapThemeSelector';
@@ -45,7 +48,6 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
-import { motion } from 'framer-motion';
 import MapInfoCard from '@/components/MapInfoCard';
 import RouteToDishPanel from '@/components/RouteToDishPanel';
 import ForecastSlider from '@/components/ForecastSlider';
@@ -134,6 +136,7 @@ const IdentifyPanel = lazy(() =>
 const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
+  const geolocateControl = useRef<maplibregl.GeolocateControl | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapError, setMapError] = useState<string | null>(null);
   const [selectedFeature, setSelectedFeature] =
@@ -163,6 +166,11 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     routeStart: [number, number];
   } | null>(null);
   const routeDishDebounceTimeoutRef = useRef<number | null>(null);
+  // Guards the nearby-feature probe (in the GeolocateControl setup effect
+  // below) so it only runs once per trigger, not on every 'geolocate' update
+  // while trackUserLocation keeps watching.
+  const hasCheckedNearbyFeatures = useRef(false);
+  const selectedSpeciesRef = useRef<string | null>(null);
 
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
@@ -180,7 +188,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     numbersLayersVisible,
     setCenter,
     setZoom,
-    getUserLocation,
+    setUserLocation,
     setIsLoading,
     setError,
     setUserLocationError,
@@ -254,6 +262,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     };
   }, [routeRecipes, routeStart]);
 
+  useEffect(() => {
+    selectedSpeciesRef.current = selectedSpecies;
+  }, [selectedSpecies]);
+
   // Initialize map
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
@@ -287,6 +299,105 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
       // Navigation controls removed - zoom functionality handled by touch/scroll gestures
 
+      // Locate-me: MapLibre's standard GeolocateControl (dot + accuracy
+      // circle, live tracking). Its native corner button is hidden via CSS
+      // (see globals.scss) - the app's own button drives it through
+      // handleGetUserLocation -> trigger() instead. Added/removed here, in
+      // step with the map instance itself (map.current.remove() below tears
+      // this control down too), so there's no separate effect that could
+      // try to remove it a second time after the map already has.
+      const geolocate = new maplibregl.GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: true,
+        showUserLocation: true,
+        showAccuracyCircle: true,
+      });
+      geolocateControl.current = geolocate;
+
+      geolocate.on('geolocate', (position: GeolocationPosition) => {
+        const coords: [number, number] = [
+          position.coords.longitude,
+          position.coords.latitude,
+        ];
+        setUserLocation(coords);
+        setShowUserLocation(true);
+        setIsLoading(false);
+
+        // Only probe for nearby foraging features on the first fix after a
+        // trigger - trackUserLocation keeps firing 'geolocate' as the device
+        // moves, and re-opening the modal on every update would be spammy.
+        if (hasCheckedNearbyFeatures.current || !map.current) return;
+        hasCheckedNearbyFeatures.current = true;
+
+        const currentMap = map.current;
+        const selectedSpecies = selectedSpeciesRef.current;
+        const layers =
+          currentMap
+            .getStyle()
+            ?.layers?.map(l => l.id)
+            .filter(
+              id =>
+                (selectedSpecies
+                  ? id.startsWith(selectedSpecies)
+                  : id.includes('_score')) &&
+                currentMap.getLayoutProperty(id, 'visibility') === 'visible'
+            ) || [];
+
+        // Query features in the current viewport to see if any are near the user's location
+        const viewportFeatures = currentMap.queryRenderedFeatures({
+          layers,
+        });
+
+        // Filter features to find those close to the user's location
+        const nearbyFeatures = viewportFeatures.filter(feature => {
+          if (feature.geometry.type === 'Point') {
+            const featureCoords = feature.geometry.coordinates as [
+              number,
+              number,
+            ];
+            const distance = Math.sqrt(
+              Math.pow(featureCoords[0] - coords[0], 2) +
+                Math.pow(featureCoords[1] - coords[1], 2)
+            );
+            // Consider features within ~1km radius (0.01 degrees is roughly 1km)
+            return distance < 0.01;
+          }
+          return false;
+        });
+
+        if (nearbyFeatures.length > 0) {
+          // Found features near user location, open modal
+          setSelectedFeature(nearbyFeatures[0]);
+          setIsModalFromLocateMe(true);
+          setIsFeatureModalOpen(true);
+        } else {
+          // No features found, just log a warning
+          console.warn('No foraging data available at user location:', coords);
+        }
+      });
+
+      geolocate.on('trackuserlocationstart', () => {
+        hasCheckedNearbyFeatures.current = false;
+        setIsLoading(true);
+        setError(null);
+        setUserLocationError(null);
+      });
+
+      geolocate.on('trackuserlocationend', () => {
+        setIsLoading(false);
+        setShowUserLocation(false);
+        setActiveRoute(null);
+      });
+
+      geolocate.on('error', (error: GeolocationPositionError) => {
+        console.error('Error getting user location:', error);
+        setIsLoading(false);
+        setError(t('geolocation.permissionError'));
+        setUserLocationError(error.message);
+      });
+
+      map.current.addControl(geolocate);
+
       // Handle map load
       map.current.on('load', () => {
         setMapLoaded(true);
@@ -299,6 +410,19 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         if (map.current) {
           // Force initial resize with correct dimensions
           map.current.resize();
+        }
+
+        // A style switch tears down and recreates the whole map (and, with
+        // it, the GeolocateControl above) - if the user had their location
+        // active, the new control starts back at OFF and won't show the dot
+        // on its own. Re-trigger it here so tracking resumes automatically
+        // instead of the indicator silently vanishing while the button
+        // still shows "active". Checking userLocation too (not just the
+        // showUserLocation flag, which defaults to true from first mount)
+        // so this never fires as an unsolicited geolocation prompt before
+        // the user has ever pressed the button themselves.
+        if (showUserLocation && userLocation) {
+          geolocate.trigger();
         }
       });
 
@@ -334,9 +458,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
     return () => {
       if (map.current) {
+        // map.remove() already tears down every registered control
+        // (including geolocate.onRemove()) - don't call removeControl()
+        // separately, it would run onRemove() a second time on an already
+        // torn-down control and throw.
         map.current.remove();
         map.current = null;
       }
+      geolocateControl.current = null;
       // The new map instance starts unloaded. Resetting this makes mapLoaded go
       // false->true when the new map fires 'load', which re-runs every
       // [mapLoaded]-gated effect (route source/layer, offline sources, markers)
@@ -708,103 +837,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     };
   }, [mapLoaded, selectedSpecies, activeDay]);
 
-  // Handle user location
-  const handleGetUserLocation = async () => {
-    if (showUserLocation && userLocation) {
-      setShowUserLocation(false);
-      setActiveRoute(null);
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-    setUserLocationError(null);
-
-    try {
-      const position = await getUserLocation();
-      const coords: [number, number] = [
-        position.coords.longitude,
-        position.coords.latitude,
-      ];
-
-      if (map.current) {
-        setShowUserLocation(true);
-        map.current.flyTo({
-          center: coords,
-          zoom: 10,
-          duration: 2000,
-        });
-
-        // Check if there are features at the user's location
-        const layers =
-          map.current
-            ?.getStyle()
-            ?.layers?.map(l => l.id)
-            .filter(
-              id =>
-                (selectedSpecies
-                  ? id.startsWith(selectedSpecies)
-                  : id.includes('_score')) &&
-                map.current?.getLayoutProperty(id, 'visibility') === 'visible'
-            ) || [];
-
-        // Query features in the current viewport to see if any are near the user's location
-        const viewportFeatures = map.current.queryRenderedFeatures({
-          layers,
-        });
-
-        // Filter features to find those close to the user's location
-        const nearbyFeatures = viewportFeatures.filter(feature => {
-          if (feature.geometry.type === 'Point') {
-            const featureCoords = feature.geometry.coordinates as [
-              number,
-              number,
-            ];
-            const distance = Math.sqrt(
-              Math.pow(featureCoords[0] - coords[0], 2) +
-                Math.pow(featureCoords[1] - coords[1], 2)
-            );
-            // Consider features within ~1km radius (0.01 degrees is roughly 1km)
-            return distance < 0.01;
-          }
-          return false;
-        });
-
-        if (nearbyFeatures && nearbyFeatures.length > 0) {
-          // Found features near user location, open modal
-          setSelectedFeature(nearbyFeatures[0]);
-          setIsModalFromLocateMe(true);
-          setIsFeatureModalOpen(true);
-        } else {
-          // No features found, just log a warning
-          console.warn('No foraging data available at user location:', coords);
-        }
-      }
-    } catch (error) {
-      console.error('Error getting user location:', error);
-      setError(t('geolocation.permissionError'));
-    } finally {
-      setIsLoading(false);
-    }
+  // Locate-me button: delegates to the standard MapLibre GeolocateControl
+  // (set up in the "Initialize map" effect above) instead of a hand-rolled
+  // geolocation flow. trigger() mirrors clicking the control's own button —
+  // its internal state machine handles starting tracking when off and
+  // stopping it when active, so no on/off branching is needed here.
+  const handleGetUserLocation = () => {
+    geolocateControl.current?.trigger();
   };
-
-  // Add user location marker
-  useEffect(() => {
-    if (!map.current || !mapLoaded || !showUserLocation || !userLocation)
-      return;
-
-    // Create new marker
-    const marker = new maplibregl.Marker({
-      color: '#3b82f6',
-      className: 'user-location-marker',
-    })
-      .setLngLat(userLocation)
-      .addTo(map.current);
-
-    return () => {
-      marker.remove();
-    };
-  }, [userLocation, mapLoaded, showUserLocation]);
 
   // Add foraging spot markers
   useEffect(() => {
@@ -818,14 +858,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     const markers: maplibregl.Marker[] = [];
 
     foragingSpots.forEach(spot => {
-      const markerColor =
-        spot.type === 'mushroom'
-          ? '#dc2626'
-          : spot.type === 'berry'
-            ? '#059669'
-            : spot.type === 'herb'
-              ? '#7c3aed'
-              : '#f59e0b';
+      // Was a red / emerald / violet / amber quartet - a four-hue semantic
+      // palette the system rejects, and a second contradictory colouring
+      // of the same categories DataPage already coloured differently.
+      // maplibre writes this into an SVG fill attribute, so it needs the
+      // resolved value rather than a var().
+      const markerColor = categoryColor(spot.type);
 
       const marker = new maplibregl.Marker({
         color: markerColor,
@@ -838,24 +876,24 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       const popup = new maplibregl.Popup({ offset: 25 }).setHTML(`
         <div class="p-3 max-w-xs">
           <h3 class="font-semibold text-lg mb-2">${spot.name}</h3>
-          <p class="text-sm text-gray-600 mb-2">${spot.description}</p>
+          <p class="text-sm text-muted-foreground mb-2">${spot.description}</p>
           <div class="flex items-center gap-2 mb-2">
             <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
               spot.type === 'mushroom'
-                ? 'bg-red-100 text-red-800'
+                ? 'bg-destructive/10 text-destructive-text'
                 : spot.type === 'berry'
-                  ? 'bg-green-100 text-green-800'
+                  ? 'bg-secondary text-primary-text'
                   : spot.type === 'herb'
-                    ? 'bg-purple-100 text-purple-800'
-                    : 'bg-yellow-100 text-yellow-800'
+                    ? 'bg-muted text-primary-text'
+                    : 'bg-status-warning-background text-status-warning-text'
             }">
               ${spot.type}
             </span>
-            <span class="text-xs text-gray-500">
+            <span class="text-xs text-muted-foreground">
               Confidence: ${(spot.confidence * 100).toFixed(0)}%
             </span>
           </div>
-          <div class="text-xs text-gray-500">
+          <div class="text-xs text-muted-foreground">
             <p>Season: ${spot.season.join(', ')}</p>
             <p>Last updated: ${new Date(spot.lastUpdated).toLocaleDateString()}</p>
           </div>
@@ -1005,36 +1043,32 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         {/* Control buttons */}
         <div className='absolute top-2 right-4 z-10 flex flex-col gap-2'>
           {/* User location button */}
-          <motion.button
+          <Button
+            variant='outline'
+            size='icon'
             onClick={handleGetUserLocation}
             disabled={isLoading}
-            className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
+            className={
               showUserLocation && userLocation
-                ? 'bg-blue-100 border-blue-300 text-blue-800'
-                : 'border-input bg-secondary'
-            }`}
+                ? 'bg-muted text-primary-text hover:bg-muted hover:text-foreground'
+                : undefined
+            }
             title={t('getLocation')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
           >
             {isLoading ? (
               <Loader2 className='h-4 w-4 animate-spin' />
             ) : (
               <Navigation className='h-4 w-4' />
             )}
-          </motion.button>
+          </Button>
 
           {/* Map theme selector (Light/Dark/White/Dark Matter/Topographic) */}
           <MapThemeSelector />
 
           {isOnline && (
-            <motion.button
+            <Button
+              variant='outline'
+              size='icon'
               onClick={() => {
                 if (isRoutePanelOpen) {
                   closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
@@ -1043,61 +1077,39 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
                 setIsRoutePanelOpen(true);
               }}
-              className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
+              className={
                 isRoutePanelOpen
-                  ? 'bg-emerald-100 border-emerald-300 text-emerald-800'
-                  : 'bg-secondary border-input'
-              }`}
+                  ? 'bg-secondary text-primary-text hover:bg-secondary hover:text-foreground'
+                  : undefined
+              }
               title={tRecipes('routePanel.title')}
               aria-label={tRecipes('routePanel.title')}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{
-                duration: 0.2,
-                type: 'spring',
-                stiffness: 400,
-                damping: 25,
-              }}
             >
               <ChefHat className='h-4 w-4' />
-            </motion.button>
+            </Button>
           )}
 
           {isOnline && (
-            <motion.button
+            <Button
+              variant='outline'
+              size='icon'
               onClick={() => setIsIdentifyOpen(true)}
-              className='inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg bg-secondary border-input'
               title={tIdentify('openButton')}
               aria-label={tIdentify('openButton')}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{
-                duration: 0.2,
-                type: 'spring',
-                stiffness: 400,
-                damping: 25,
-              }}
             >
               <ScanSearch className='h-4 w-4' />
-            </motion.button>
+            </Button>
           )}
 
           {/* Info button */}
-          <motion.button
+          <Button
+            variant='outline'
+            size='icon'
             onClick={() => setActiveModal('onboarding')}
-            className='inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg bg-secondary border-input'
             title={t('showOnboarding')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
           >
             <Info className='h-4 w-4' />
-          </motion.button>
+          </Button>
         </div>
 
         {isMobile ? (
@@ -1106,8 +1118,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               <ForecastSlider />
               <MapInfoCard />
             </div>
-            {isRoutePanelOpen && !isRouteAnimating ? (
-              <div className='fixed left-3 right-3 top-20 z-10'>
+            {/* Recedes while the route draws instead of unmounting: the
+                conditional render this replaced tore the card out of the DOM
+                the instant onDrawRoute fired and put it back seconds later
+                with no transition, which reads as the card closing itself. */}
+            {isRoutePanelOpen ? (
+              <div
+                className={`fixed left-3 right-3 top-20 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+              >
                 <RouteToDishPanel
                   className='mx-auto'
                   plans={routeDishResult?.plans ?? []}
@@ -1135,8 +1153,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               <ForecastSlider />
               <MapInfoCard />
             </div>
-            {isRoutePanelOpen && !isRouteAnimating ? (
-              <div className='absolute top-14 right-16 z-10'>
+            {isRoutePanelOpen ? (
+              <div
+                className={`absolute top-14 right-16 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+              >
                 <RouteToDishPanel
                   plans={routeDishResult?.plans ?? []}
                   error={routeDishError}
@@ -1162,10 +1182,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         {/* Foraging spots found notification */}
         {foragingSpots.length > 0 && (
           <div className='absolute bottom-4 left-4 right-4'>
-            <Card className='p-3 bg-green-50 border-green-200'>
+            <Card padding='compact' className='bg-secondary'>
               <div className='flex items-center gap-2'>
-                <MapPin className='h-4 w-4 text-green-600' />
-                <p className='text-sm text-green-800'>
+                <MapPin className='h-4 w-4 text-primary-text' />
+                <p className='text-sm text-primary-text'>
                   {t('spotsFound', { count: foragingSpots.length })}
                 </p>
               </div>

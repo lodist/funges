@@ -11,6 +11,10 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  /* Container radius. Deliberately independent of --radius: DESIGN.md's
+     Pill-Or-Card Rule gives containers one shape, 20px, and it does not
+     move when the structural scale does. */
+  --radius-card: 1.25rem;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -18,6 +22,7 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -26,6 +31,7 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-destructive-hover: var(--destructive-hover);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -42,10 +48,9 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-sans: Montserrat, sans-serif;
+  --font-sans: 'Public Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
   --font-mono: Source Code Pro, monospace;
-  --font-serif: Merriweather, serif;
-  --radius: 0.5rem;
   --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
   --tracking-tight: calc(var(--tracking-normal) - 0.025em);
   --tracking-wide: calc(var(--tracking-normal) + 0.025em);
@@ -69,68 +74,304 @@
   --shadow-opacity: var(--shadow-opacity);
   --color-shadow-color: var(--shadow-color);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-status-success: var(--status-success);
+  --color-status-warning: var(--status-warning);
+  --color-status-info: var(--status-info);
+  --color-warning: var(--status-warning);
+  --color-status-warning-background: var(--status-warning-background);
+  --color-status-warning-text: var(--status-warning-text);
+  --color-status-warning-border: var(--status-warning-border);
+
+  /* Theme-aware, text-safe brand colour. --primary is --happy-600 (2.95:1 on
+     paper) and fails as a text colour, which is why link/icon greens used to
+     reach for Tailwind blue-600 instead. This is the token they should use. */
+  --color-primary-text: var(--primary-text);
+  --color-destructive-border: var(--destructive-border);
+  --color-destructive-text: var(--destructive-text);
+
+  /* Species-category identity. The one place hue is allowed to carry meaning
+     beyond the brand green and safety amber: five categories cannot be told
+     apart by lightness alone, and DataPage and AdvancedMap previously invented
+     a contradictory palette each for the same taxonomy. Warm-earth family, so
+     it sits inside The Warm Ground Rule rather than fighting it. */
+  --color-category-plant: var(--category-plant);
+  --color-category-mushroom: var(--category-mushroom);
+  --color-category-berry: var(--category-berry);
+  --color-category-flower: var(--category-flower);
+  --color-category-nut: var(--category-nut);
+
+  /* The Trailhead scale as first-class utilities (bg-happy-50, text-happy-700,
+     …) so components stop spelling it as arbitrary [var(--happy-N)] values.
+     Still light-only per The Light-Only Rule — see the :root block. */
+  --color-happy-50: var(--happy-50);
+  --color-happy-100: var(--happy-100);
+  --color-happy-300: var(--happy-300);
+  --color-happy-500: var(--happy-500);
+  --color-happy-600: var(--happy-600);
+  --color-happy-700: var(--happy-700);
+  --color-happy-900: var(--happy-900);
+  --color-scrim: var(--scrim);
+
+  /* Motion (#200, #225). Registered here so Tailwind emits the utilities:
+     `ease-standard`, and `duration-fast|base|slow` from the
+     --transition-duration-* namespace. Same self-referential shape as
+     --spacing — the concrete values live in :root below, and `inline` makes
+     each utility emit var(--token) rather than baking the number in, so a
+     retune moves every call site. The two --default-transition-* keys make a
+     bare `transition-colors` — 20 of them, with no duration- beside it —
+     resolve through the tokens instead of Tailwind's own 150ms default, which
+     matched by coincidence and would not have followed a retune. */
+  --ease-standard: var(--ease-standard);
+  --transition-duration-fast: var(--transition-duration-fast);
+  --transition-duration-base: var(--transition-duration-base);
+  --transition-duration-slow: var(--transition-duration-slow);
+  --default-transition-duration: var(--transition-duration-fast);
+  --default-transition-timing-function: var(--ease-standard);
+
+  /* Radix publishes the measured height as a custom property, so a disclosure
+     can animate open on the shared tokens instead of snapping in one frame. */
+  --animate-collapsible-down: collapsible-down var(--transition-duration-base)
+    var(--ease-standard);
+  --animate-collapsible-up: collapsible-up var(--transition-duration-base)
+    var(--ease-standard);
+
+  /* ------------------------------------------------------------------
+     The One Hue Rule, enforced at build time.
+
+     Tailwind ships 22 colour families by default and every one of them was
+     reachable, so `text-gray-700` and `text-blue-600` resolved silently —
+     453 of them had accumulated across the app, including 294 cool greys
+     the Warm Ground Rule bans outright and a full red/blue/violet/amber
+     semantic set the system explicitly rejects.
+
+     Setting them to `initial` removes the utilities. A stray `bg-red-50`
+     now produces no rule at all instead of quietly shipping a second hue,
+     so the drift shows up while you are looking at the screen.
+
+     --color-white and --color-black stay: translucent white washes are a
+     real material here, and the QR code needs literal #000/#fff to scan.
+     Semantic colour comes from the tokens below.
+     ------------------------------------------------------------------ */
+  --color-slate-*: initial;
+  --color-gray-*: initial;
+  --color-zinc-*: initial;
+  --color-neutral-*: initial;
+  --color-stone-*: initial;
+  --color-red-*: initial;
+  --color-orange-*: initial;
+  --color-amber-*: initial;
+  --color-yellow-*: initial;
+  --color-lime-*: initial;
+  --color-green-*: initial;
+  --color-emerald-*: initial;
+  --color-teal-*: initial;
+  --color-cyan-*: initial;
+  --color-sky-*: initial;
+  --color-blue-*: initial;
+  --color-indigo-*: initial;
+  --color-violet-*: initial;
+  --color-purple-*: initial;
+  --color-fuchsia-*: initial;
+  --color-pink-*: initial;
+  --color-rose-*: initial;
+}
+
+@keyframes collapsible-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes collapsible-up {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@layer components {
+  /* The disclosure owns its chevron's rotation, so no caller wires data-state by
+     hand. asChild puts data-slot on the caller's own trigger, and :last-child
+     leaves a leading icon alone. Utilities order after this layer, so a caller
+     that wants a different angle can still say so. */
+  [data-slot='collapsible-trigger'] > svg:last-child {
+    transition: rotate var(--transition-duration-base) var(--ease-standard);
+  }
+
+  [data-slot='collapsible-trigger'][data-state='open'] > svg:last-child {
+    rotate: 180deg;
+  }
 }
 
 :root {
   --radius: 0.5rem;
 
   /* Light theme colors - using centralized color system */
-  --background: oklch(0.9711 0.0074 80.7211); /* #fafafa */
-  --foreground: oklch(0.3 0.0358 30.2042); /* #1a1a1a */
-  --card: oklch(0.9711 0.0074 80.7211); /* #fafafa */
-  --card-foreground: oklch(0.3 0.0358 30.2042); /* #1a1a1a */
-  --popover: oklch(0.9711 0.0074 80.7211); /* #fafafa */
-  --popover-foreground: oklch(0.3 0.0358 30.2042); /* #1a1a1a */
-  /* #29782d — 0.5234 rendered #2e7d32, only 4.26:1 on the sidebar (#f0e9e0),
-     so every sidebar menu label failed WCAG AA. 0.5084 gives 4.57:1. */
-  --primary: oklch(0.5084 0.1347 144.1672); /* #29782d */
-  --primary-foreground: oklch(1 0 0); /* #ffffff */
-  --secondary: oklch(0.9571 0.021 147.636); /* #f0f9f4 */
-  --secondary-foreground: oklch(0.4254 0.1159 144.3078); /* #2e7045 */
-  --muted: oklch(0.937 0.0142 74.4218); /* #f5f5f5 */
-  --muted-foreground: oklch(0.4495 0.0486 39.211); /* #525252 */
-  --accent: oklch(0.8952 0.0504 146.0366); /* #b8e4c7 */
-  --accent-foreground: oklch(0.4254 0.1159 144.3078); /* #2e7045 */
-  --destructive: oklch(0.5386 0.1937 26.7249); /* #ef4444 */
+  --background: oklch(0.9938 0.0013 90);
+  --foreground: oklch(0.2431 0.0076 90);
+  --card: oklch(0.9938 0.0013 90);
+  --card-foreground: oklch(0.2431 0.0076 90);
+  --popover: oklch(0.9938 0.0013 90);
+  --popover-foreground: oklch(0.2431 0.0076 90);
+  /* #203 — Forest/Moss + Warm Neutral direction (Radix grass11/grass9),
+     computed via the CSS Color 4 sRGB→OKLab formula per the #202 research
+     doc, same method the values above already used. grass11 is the
+     text-safe step (5.07:1 on white, verified); grass9 is reserved for
+     non-text fills/rings (3:1 floor only) — don't reuse it as text color,
+     see the #202 doc's WCAG table for why. */
+  /* Trailhead (#213): --primary now points at the happy-green scale (was
+     the dark forest green above) so every custom component across the app
+     that already reads --primary/bg-primary/text-primary/border-primary
+     picks up the redesign automatically, not just the atoms in
+     src/components/ui/*. Individual atoms still reference specific --happy-*
+     steps (500/700/900/…) where a look needs more than one step of the scale
+     at once (e.g. a button's fill vs. its text) — that nuance can't collapse
+     into a single --primary value. Anything that has to work in both themes
+     uses --primary / --primary-text / --destructive instead, all of which
+     carry dark-mode values; the --happy-* steps do not. */
+  --primary: var(--happy-600);
+  --primary-foreground: var(--happy-900);
+  /* Chlorophyll Readable — 7.73:1 on paper. The only brand green allowed as
+     text or icon colour on light surfaces. */
+  --primary-text: var(--happy-700);
+  --secondary: oklch(0.9582 0.0193 150);
+  --secondary-foreground: oklch(0.5 0.1294 150);
+  --muted: oklch(0.952 0.0083 90);
+  --muted-foreground: oklch(0.5261 0.0151 90);
+  /* Warm tan tint (Radix brown-adjacent), not brown9 solid — brown9 #ad7f58
+     only reaches 3.53:1 with white text (fails 4.5:1 body text), so this
+     follows the same light-tint + dark-text pattern as --secondary instead
+     of the doc's literal "brown9 solid fill" suggestion. */
+  --accent: oklch(0.9356 0.0194 90);
+  --accent-foreground: oklch(0.4506 0.0552 90);
+  /* Trailhead (#213) put destructive on the deepest green, so a delete looked
+     like a confirm — the variant read as primary-adjacent and nothing marked
+     the action as dangerous. Revisited (#225): fly-agaric red. Red is the
+     foraging domain's own "do not eat" signal, not a generic UI convention,
+     so it earns its place here; hue 28 keeps it warm enough to sit with the
+     hue-90 earth palette instead of reading as a cold system red.
+     7.21:1 vs its white label, 7.09:1 vs --background, and 3.35:1 against the
+     primary green so the two can never be confused. */
+  --destructive: oklch(0.48 0.19 28);
+  /* Pressed steps for the two filled buttons. Absolute like --happy-*, so no
+     .dark override. --primary-hover keeps --happy-500's chroma and steps L
+     down: label 4.75:1, fill 3.33:1 on --background. The step it replaces was
+     both out of the sRGB gamut and a 4.14:1 label.
+     --destructive-hover holds white at 9.85:1. */
+  --primary-hover: oklch(0.62 0.17 150);
+  --destructive-hover: oklch(0.4 0.17 28);
   --destructive-foreground: oklch(1 0 0); /* #ffffff */
-  --border: oklch(0.8805 0.0208 74.6428); /* #e5e5e5 */
-  --input: oklch(0.8805 0.0208 74.6428); /* #e5e5e5 */
-  --ring: oklch(0.5234 0.1347 144.1672); /* #4cba73 */
+  --destructive-border: oklch(0.48 0.19 28);
+  /* Destructive as *text* on a light surface — the fill tone already clears
+     4.5:1 here (7.09:1 on --popover), so light mode reuses it. */
+  --destructive-text: oklch(0.48 0.19 28);
+  --border: oklch(0.9071 0.01 90);
+  --input: oklch(0.9071 0.01 90);
+  /* --happy-600 measures 2.95:1 on --background and misses the WCAG 1.4.11
+     3:1 floor a focus indicator has to clear; --happy-700 is 7.73:1. */
+  --ring: var(--happy-700);
 
-  /* Chart colors */
-  --chart-1: oklch(0.6731 0.1624 144.2083); /* #70c88f */
-  --chart-2: oklch(0.5752 0.1446 144.1813); /* #3d955c */
-  --chart-3: oklch(0.5234 0.1347 144.1672); /* #4cba73 */
-  --chart-4: oklch(0.4254 0.1159 144.3078); /* #2e7045 */
-  --chart-5: oklch(0.2157 0.0453 145.7256); /* #102517 */
+  /* Species categories as five steps of the one hue, not five hues. Each sits
+     at ~95% of the in-gamut chroma for its lightness, so the steps are as far
+     apart as hue 150 allows. Verified against --background: 12.09, 9.80, 7.23,
+     5.10, 3.78 — all clear the 3:1 mark floor.
+
+     Lightness alone separates five series less well than hue did; the icon and
+     label beside each category are doing real work here, not decoration. */
+  --category-mushroom: oklch(0.3 0.086 150);
+  --category-berry: oklch(0.37 0.111 150);
+  --category-plant: oklch(0.44 0.127 150);
+  --category-flower: oklch(0.51 0.143 150);
+  --category-nut: oklch(0.58 0.161 150);
+
+  /* Chart series ARE the category palette. These five tokens used to be a
+     fourth green ramp that no product code referenced, while DataPage drew
+     its charts from six hardcoded hexes. One palette, both jobs. */
+  --chart-1: var(--category-plant);
+  --chart-2: var(--category-mushroom);
+  --chart-3: var(--category-berry);
+  --chart-4: var(--category-flower);
+  --chart-5: var(--category-nut);
 
   /* Sidebar colors */
-  --sidebar: oklch(0.937 0.0142 74.4218); /* #f5f5f5 */
-  --sidebar-foreground: oklch(0.3 0.0358 30.2042); /* #1a1a1a */
-  --sidebar-primary: oklch(0.5234 0.1347 144.1672); /* #4cba73 */
+  --sidebar: oklch(0.9643 0.007 90);
+  --sidebar-foreground: oklch(0.2431 0.0076 90);
+  --sidebar-primary: oklch(0.5262 0.1294 150);
   --sidebar-primary-foreground: oklch(1 0 0); /* #ffffff */
-  --sidebar-accent: oklch(0.8952 0.0504 146.0366); /* #b8e4c7 */
-  --sidebar-accent-foreground: oklch(0.4254 0.1159 144.3078); /* #2e7045 */
-  --sidebar-border: oklch(0.8805 0.0208 74.6428); /* #e5e5e5 */
-  --sidebar-ring: oklch(0.5234 0.1347 144.1672); /* #4cba73 */
+  /* Trailhead (#213): nav hover/active tint moves from the warm-neutral
+     accent to the happy-green scale, matching Select/DropdownMenu focus
+     colors. Light mode only, per the redesign's own scope. */
+  --sidebar-accent: var(--happy-100);
+  /* Nav item text stays standard foreground (not green) even when
+     hovered/active — only the background tint changes. */
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: oklch(0.9071 0.01 90);
+  /* Focus rings hold the 3:1 non-text floor; the old value was 2.96:1. */
+  --sidebar-ring: var(--happy-700);
 
-  /* Semantic color variables for theme-aware usage */
-  --text-primary: oklch(0.3 0.0358 30.2042); /* #1a1a1a */
-  --text-secondary: oklch(0.4495 0.0486 39.211); /* #525252 */
-  --text-tertiary: oklch(0.4495 0.0486 39.211); /* #6b7280 */
+  /* Semantic tokens with no shadcn equivalent (kept here as the single
+     definition; text-primary/secondary/tertiary and background-primary/
+     tertiary were removed as duplicates of --foreground/--muted-foreground/
+     --background/--muted). */
   --text-inverse: oklch(1 0 0); /* #ffffff */
-
-  --background-primary: oklch(0.9711 0.0074 80.7211); /* #fafafa */
   --background-secondary: rgba(250, 250, 250, 0.9);
-  --background-tertiary: oklch(0.937 0.0142 74.4218); /* #f5f5f5 */
   --background-overlay: rgba(0, 0, 0, 0.8);
+  /* Modal scrim. Lighter than --background-overlay, which dresses the
+     .overlay component in globals.scss, not a full-screen veil. */
+  --scrim: rgba(0, 0, 0, 0.5);
+  --hover-primary: oklch(0.8952 0.0504 150);
+  /* Warm beige (hue 76), not the mint green the old #d1f2e1 comment claimed.
+     The same oklch also sits on dark --muted-foreground. */
+  --hover-secondary: oklch(0.8579 0.0174 90);
 
-  --hover-primary: oklch(0.8952 0.0504 146.0366); /* #e5f7ed */
-  --hover-secondary: oklch(0.8579 0.0174 76.0955); /* #d1f2e1 */
+  /* Status colours. Per The One Hue Rule, success and info are not their own
+     hues — they resolve to the text-safe brand green. #4cba73 (a 5th green
+     family) and #3b82f6 (2.34:1 and 3.61:1 as text on paper) are retired.
+     Amber is the single sanctioned exception and it is theme-aware below,
+     because a flat value is what drove callers back to raw Tailwind amber. */
+  --status-success: var(--primary-text);
+  --status-info: var(--primary-text);
+  /* Safety warnings borrow from the map score ramp rather than introducing a
+     hue of their own, so the whole app is one green plus that one ramp. Values
+     are literal stops of SCORE_COLOR_RAMP in src/lib/scoreColor.ts — stop 6 as
+     the fill, stop 10 as the text, stop 8 as the edge. src/test/palette.test.ts
+     asserts they still match the ramp. */
+  --status-warning: #fa733d;
+  --status-warning-background: color-mix(
+    in oklch,
+    var(--status-warning) 15%,
+    var(--background)
+  );
+  /* Ramp stop 10 on a 15% stop-6 tint measures 10.21:1, and stop 8 as the edge
+     is 3.95:1 against that tint — both clear their floors as literal ramp stops,
+     with none of the colour-mix guesswork these two used to need. */
+  --status-warning-text: #800020;
+  --status-warning-border: #fb4646;
+
+  /* "Happy green" scale — #213 Trailhead atom redesign, reviewed 2026-08-22.
+     Lighter/more vivid than --primary, and used across the redesigned atoms
+     for everything except danger — severity is depth, not hue, but the
+     destructive tokens moved to hue 28 in #225 because a delete on the green
+     scale was indistinguishable from a confirm. Light-mode only: the redesign
+     wasn't reviewed in dark
+     mode, so dark-mode atom classes fall back to the pre-existing tokens
+     instead of these. Values from prototypes/atoms-213/palette.ts. */
+  --happy-50: oklch(0.97 0.03 150); /* #e8fbeb */
+  --happy-100: oklch(0.93 0.06 150); /* #ccf4d3 */
+  --happy-300: oklch(0.85 0.12 150); /* #93e4a4 */
+  --happy-500: oklch(0.74 0.17 150); /* #47c86e — fill */
+  --happy-600: oklch(0.65 0.18 150); /* #00ac4e — hover/pressed, fill only */
+  --happy-700: oklch(0.42 0.122 150); /* #005e25 — readable text/icon */
+  --happy-900: oklch(0.24 0.07 150); /* #00280b — deep, replaces red */
 
   /* Typography */
-  --font-sans: Montserrat, sans-serif;
-  --font-serif: Merriweather, serif;
+  --font-sans: 'Public Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
   --font-mono: Source Code Pro, monospace;
 
   /* Shadows */
@@ -155,65 +396,168 @@
     0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
   --tracking-normal: 0em;
+
+  /* ------------------------------------------------------------------
+     Motion scale (#200, #225)
+     Three durations and one easing curve. Every transition in the app
+     references these rather than hardcoding a value. The names carry
+     Tailwind's --transition-duration-* prefix so the scale IS the
+     `duration-*` utility namespace; see the @theme block above.
+     ------------------------------------------------------------------ */
+  --transition-duration-fast: 150ms; /* elevation hover/press micro-interactions */
+  --transition-duration-base: 200ms; /* canonical; default UI state changes */
+  --transition-duration-slow: 300ms; /* floating/overlay enter-exit (Dialog, Sheet) */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ------------------------------------------------------------------
+     Glass surfaces (#200) — light theme
+     Opt-in, and only on `raised`/`floating` chrome. Never on `base`
+     (the map canvas) or `overlay` (blocking dialogs), which must stay
+     opaque for WCAG 1.4.11 contrast over the busy map background.
+     ------------------------------------------------------------------ */
+  --glass-blur-regular: 12px;
+  --glass-blur-clear: 16px;
+  --glass-bg-regular: rgb(255 255 255 / 0.9);
+  --glass-bg-clear: rgb(255 255 255 / 0.12);
+  --glass-border: rgb(255 255 255 / 0.3);
+  /* Stands in for Liquid Glass's specular highlight, which #193 confirmed
+     isn't feasible on the web. Doubles as the dark-mode depth cue below. */
+  --glass-highlight: rgb(255 255 255 / 0.5);
+
+  /* Opaque equivalents, used when backdrop-filter is unsupported or the
+     user asks for reduced transparency / increased contrast. */
+  --glass-bg-regular-opaque: var(--card);
+  --glass-bg-clear-opaque: var(--card);
+
+  /* ------------------------------------------------------------------
+     Elevation levels (#200) — light theme
+
+     Per ADR 0001, these are NOT aliases of the --shadow-* scale: that
+     scale predates Trailhead (#213) and is materially weaker than what
+     Trailhead already ships, so aliasing it would regress the live look.
+     The values below are Trailhead's shipped shadows, lifted verbatim and
+     canonicalized here as the single source of truth.
+
+     `base` is deliberately absent — the map canvas is not a discrete
+     surface and carries no shadow. Level definitions live in CONTEXT.md's
+     design-system glossary.
+     ------------------------------------------------------------------ */
+  --elevation-control: 0 2px 8px rgba(0, 0, 0, 0.18); /* Button, Slider thumb */
+  --elevation-control-hover: 0 3px 12px rgba(0, 0, 0, 0.22); /* Button hover escalation */
+  --elevation-raised-subtle: 0 1px 6px rgba(0, 0, 0, 0.06); /* Input, Select trigger */
+  --elevation-raised: 0 2px 16px rgba(0, 0, 0, 0.1); /* Card, MobileNavbar */
+  --elevation-raised-hover: 0 6px 20px rgba(0, 0, 0, 0.14); /* Card hover escalation */
+  --elevation-floating: 0 4px 20px rgba(0, 0, 0, 0.16); /* DropdownMenu, Select content */
+  /* Bottom Sheet only: a surface pinned to the viewport's bottom edge has to
+     cast upward, or its shadow falls off-screen and the top edge loses its
+     separation from the map. Same blur and alpha as `floating`, Y inverted —
+     the one directional variant in the scale, not a licence for more. */
+  --elevation-floating-up: 0 -4px 20px rgba(0, 0, 0, 0.16); /* Sheet, side="bottom" */
+  --elevation-overlay: 0 8px 32px rgba(0, 0, 0, 0.24); /* Dialog */
 }
 
 .dark {
   /* Dark theme colors - using centralized color system */
-  --background: oklch(0.2683 0.0279 150.7681); /* #171717 */
-  --foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --card: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
-  --card-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --popover: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
-  --popover-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --primary: oklch(0.6731 0.1624 144.2083); /* #70c88f */
-  --primary-foreground: oklch(0.2157 0.0453 145.7256); /* #102517 */
-  --secondary: oklch(0.3942 0.0265 142.9926); /* #262626 */
-  --secondary-foreground: oklch(0.897 0.0166 142.5518); /* #e5e5e5 */
-  --muted: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
-  --muted-foreground: oklch(0.8579 0.0174 76.0955); /* #a3a3a3 */
-  --accent: oklch(0.5752 0.1446 144.1813); /* #3d955c */
-  --accent-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --destructive: oklch(0.5386 0.1937 26.7249); /* #ef4444 */
-  --destructive-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --border: oklch(0.3942 0.0265 142.9926); /* #262626 */
-  --input: oklch(0.3942 0.0265 142.9926); /* #262626 */
-  --ring: oklch(0.6731 0.1624 144.2083); /* #70c88f */
+  /* Hex comments removed throughout this block: every one of them described
+     the pre-Trailhead palette (#171717, #0a0a0a, #262626, #1f2937 …) and none
+     matched the oklch value beside it. Two different tokens carried the same
+     oklch with two contradictory hexes. The oklch is the value. */
+  --background: oklch(0.2683 0.0279 90); /* Night Canvas */
+  --foreground: oklch(0.9423 0.0097 90);
+  --card: oklch(0.3327 0.0271 90); /* Night Surface */
+  --card-foreground: var(--foreground);
+  --popover: var(--card); /* same floating material as a card */
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.6731 0.1624 150); /* Lichen */
+  --primary-foreground: oklch(0.2157 0.0453 150);
+  /* Text-safe brand green for dark: 6.40:1 on --background, 5.10:1 on --card.
+     Lichen itself is only 4.30:1 on --card, so it can't carry this role. */
+  --primary-text: oklch(0.72 0.15 150);
+  --secondary: oklch(0.3942 0.0265 150);
+  --secondary-foreground: oklch(0.897 0.0166 150);
+  --muted: oklch(0.3327 0.0271 90);
+  --muted-foreground: oklch(0.8579 0.0174 90);
+  /* Was a solid mid-green (oklch(0.5752 0.1446 150)) under near-white
+     text at 3.47:1 — the exact solid-fill pattern light mode rejected at
+     3.53:1. Now the dark counterpart of Trail Tan: warm tint, light text,
+     9.22:1, and no longer a green where light mode has a warm neutral. */
+  --accent: oklch(0.36 0.035 90);
+  --accent-foreground: var(--foreground);
+  /* Fly-agaric red, matching light mode (#225) — the green destructive it
+     replaces made a delete indistinguishable from a confirm. Lifted to L=0.52
+     so it clears its label on Night Canvas: 5.10:1. The fill reaches only
+     2.50:1 against the page, so the variant keeps --destructive-border for a
+     perceivable boundary, as the green one did. */
+  --destructive: oklch(
+    0.52 0.18 28
+  ); /* 6.04:1 vs the white label the
+     variant actually ships; 5.11:1 against --destructive-foreground */
+  --destructive-foreground: oklch(0.9423 0.0097 90);
+  --destructive-border: oklch(0.68 0.19 28); /* 4.80:1 vs --background */
+  /* The fill tone is only 2.00:1 as text on --popover, so destructive *text*
+     in dark mode needs its own lighter step: 4.91:1 on --popover. Chroma is
+     capped at 0.15 because 0.17 at this lightness falls outside sRGB and
+     palette.test.ts rejects it. */
+  --destructive-text: oklch(0.74 0.15 28);
+  --border: oklch(0.3942 0.0265 90);
+  --input: var(--border); /* a field's edge is the same line as any other */
+  --ring: oklch(0.6731 0.1624 150);
 
-  /* Chart colors */
-  --chart-1: oklch(0.766 0.1179 145.295); /* #94d6ab */
-  --chart-2: oklch(0.7185 0.1417 144.8887); /* #70c88f */
-  --chart-3: oklch(0.6731 0.1624 144.2083); /* #4cba73 */
-  --chart-4: oklch(0.6291 0.1543 144.2031); /* #3d955c */
-  --chart-5: oklch(0.5752 0.1446 144.1813); /* #2e7045 */
+  /* Same five steps, lifted for the dark ground. Verified against
+     --background: 3.93, 5.14, 6.83, 8.75, 11.36. */
+  --category-mushroom: oklch(0.58 0.161 150);
+  --category-berry: oklch(0.66 0.183 150);
+  --category-plant: oklch(0.73 0.17 150);
+  --category-flower: oklch(0.8 0.144 150);
+  --category-nut: oklch(0.88 0.104 150);
 
-  /* Sidebar colors */
-  --sidebar: oklch(0.2683 0.0279 150.7681); /* #171717 */
-  --sidebar-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --sidebar-primary: oklch(0.6731 0.1624 144.2083); /* #70c88f */
-  --sidebar-primary-foreground: oklch(0.2157 0.0453 145.7256); /* #102517 */
-  --sidebar-accent: oklch(0.5752 0.1446 144.1813); /* #3d955c */
-  --sidebar-accent-foreground: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --sidebar-border: oklch(0.3942 0.0265 142.9926); /* #262626 */
-  --sidebar-ring: oklch(0.6731 0.1624 144.2083); /* #70c88f */
+  --chart-1: var(--category-plant);
+  --chart-2: var(--category-mushroom);
+  --chart-3: var(--category-berry);
+  --chart-4: var(--category-flower);
+  --chart-5: var(--category-nut);
 
-  /* Semantic color variables for theme-aware usage */
-  --text-primary: oklch(0.9423 0.0097 72.6595); /* #f5f5f5 */
-  --text-secondary: oklch(0.8579 0.0174 76.0955); /* #a3a3a3 */
-  --text-tertiary: oklch(0.8579 0.0174 76.0955); /* #d1d5db */
-  --text-inverse: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
+  /* Sidebar colors. The nav shell is the same material as the app shell, so
+     these mirror their core counterparts rather than restating the literals —
+     the way light mode already does it. Retuning a core token now moves the
+     sidebar with it instead of leaving a copy behind. */
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  /* Same 3.47:1 solid-mid-green-under-light-text defect --accent had. Light
+     mode's nav tint is a wash behind unchanged label text; this is its dark
+     counterpart at 6.89:1, not a saturated fill. */
+  --sidebar-accent: var(--secondary);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  /* Not var(--primary): --ring is its own role. The two share a value here but
+     deliberately diverge in light mode, where --primary is 2.95:1 on the
+     background and explicitly not the focus ring. */
+  --sidebar-ring: var(--ring);
 
-  --background-primary: oklch(0.2683 0.0279 150.7681); /* #171717 */
+  /* Safety warnings, dark counterpart. Same ramp identity; the text moves to
+     stop 5 (#fbae7e, 4.17:1 on a 22% tint) because stop 10 disappears against
+     a dark ground, and the tint is richer for the same reason. */
+  --status-warning: #fa733d;
+  --status-warning-background: color-mix(
+    in oklch,
+    var(--status-warning) 22%,
+    var(--background)
+  );
+  --status-warning-text: #fbae7e;
+  --status-warning-border: #fb4646;
+
+  /* Dark-mode values for the tokens with no shadcn equivalent (see :root) */
+  --text-inverse: oklch(0.3327 0.0271 90);
   --background-secondary: rgba(23, 23, 23, 0.9);
-  --background-tertiary: oklch(0.3327 0.0271 146.9867); /* #0a0a0a */
   --background-overlay: rgba(0, 0, 0, 0.8);
+  /* Modal scrim. Lighter than --background-overlay, which dresses the
+     .overlay component in globals.scss, not a full-screen veil. */
+  --scrim: rgba(0, 0, 0, 0.5);
+  --hover-primary: oklch(0.3942 0.0265 90);
+  --hover-secondary: oklch(0.3327 0.0271 90);
 
-  --hover-primary: oklch(0.3942 0.0265 142.9926); /* #1f2937 */
-  --hover-secondary: oklch(0.3327 0.0271 146.9867); /* #374151 */
-
-  --radius: 0.5rem;
-  --font-sans: Montserrat, sans-serif;
-  --font-serif: Merriweather, serif;
-  --font-mono: Source Code Pro, monospace;
   --shadow-color: oklch(0 0 0);
   --shadow-opacity: 0.1;
   --shadow-blur: 3px;
@@ -221,7 +565,6 @@
   --shadow-offset-x: 0;
   --shadow-offset-y: 1px;
   --letter-spacing: 0em;
-  --spacing: 0.25rem;
   --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --shadow-sm:
@@ -234,6 +577,45 @@
   --shadow-xl:
     0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+
+  /* ------------------------------------------------------------------
+     Glass surfaces (#200) — dark theme
+     ------------------------------------------------------------------ */
+  --glass-bg-regular: color-mix(in oklch, var(--card) 80%, transparent);
+  --glass-bg-clear: rgb(0 0 0 / 0.2);
+  --glass-border: rgb(255 255 255 / 0.1);
+  --glass-highlight: rgb(255 255 255 / 0.08);
+  /* The *-opaque fallbacks are not restated here: they resolve through
+     var(--card), which the dark block already redefines above. */
+
+  /* ------------------------------------------------------------------
+     Elevation levels (#200) — dark theme
+
+     Same geometry as the light values above (identical offset/blur, so
+     the levels stay recognisably one scale); only the alpha deepens,
+     because a 0.06–0.24 black shadow is invisible against a dark
+     background. Per ADR 0001 the 1px inset --glass-highlight is the real
+     depth cue here and the drop shadow is secondary.
+     ------------------------------------------------------------------ */
+  --elevation-control:
+    inset 0 1px 0 0 var(--glass-highlight), 0 2px 8px rgba(0, 0, 0, 0.45);
+  --elevation-control-hover:
+    inset 0 1px 0 0 var(--glass-highlight), 0 3px 12px rgba(0, 0, 0, 0.55);
+  --elevation-raised-subtle:
+    inset 0 1px 0 0 var(--glass-highlight), 0 1px 6px rgba(0, 0, 0, 0.3);
+  --elevation-raised:
+    inset 0 1px 0 0 var(--glass-highlight), 0 2px 16px rgba(0, 0, 0, 0.4);
+  --elevation-raised-hover:
+    inset 0 1px 0 0 var(--glass-highlight), 0 6px 20px rgba(0, 0, 0, 0.5);
+  --elevation-floating:
+    inset 0 1px 0 0 var(--glass-highlight), 0 4px 20px rgba(0, 0, 0, 0.55);
+  /* The drop shadow inverts because nothing sits below a bottom sheet to catch
+     it; the light source does not. The highlight stays on the top edge — which
+     on a bottom sheet is the only edge on screen anyway. */
+  --elevation-floating-up:
+    inset 0 1px 0 0 var(--glass-highlight), 0 -4px 20px rgba(0, 0, 0, 0.55);
+  --elevation-overlay:
+    inset 0 1px 0 0 var(--glass-highlight), 0 8px 32px rgba(0, 0, 0, 0.65);
 }
 
 @layer base {
@@ -241,7 +623,50 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
     letter-spacing: var(--tracking-normal);
+  }
+
+  /* #203 — Space Grotesk for display/headings, Public Sans (--font-sans)
+     for body, per the #202 research doc's Option 1 pairing.
+
+     #225 — headings now carry their own size, weight and leading, from
+     DESIGN.md's display/headline/title roles. They used to carry only the
+     face: Tailwind's preflight resets headings to `font-size: inherit;
+     font-weight: inherit`, so a bare <h1> measured 16px/400 — the same size
+     as the paragraph next to it — and the MDX documented an h1–h4 size
+     mapping that no rule implemented.
+
+     The weights are not decoration. Space Grotesk ships 500/600/700 and no
+     400, so a heading left at the inherited 400 silently resolves to 500
+     (CSS Fonts 4 §5.2 checks 500 first for a desired weight of 400) — a
+     no-op you cannot see rather than a defect you can. 600 here is chosen,
+     not inherited. `font-normal` on h1–h3 is always a mistake: on the
+     display face there is nothing below 500 to reach.
+
+     h4 and below get no rule on purpose — below the third level a heading is
+     functionally a label, and the one h4 in the codebase sets its own size. */
+  h1 {
+    font-size: 2.25rem; /* 36px — DESIGN.md `display` */
+    line-height: 1.1;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: 1.875rem; /* 30px — DESIGN.md `headline` */
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.25rem; /* 20px — DESIGN.md `title` */
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
   }
 }

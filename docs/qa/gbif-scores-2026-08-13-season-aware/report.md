@@ -14,44 +14,44 @@ The defensible primary result covers **812 in-season fungal observations across 
 - Out-of-season taxa—including spring asparagus and autumn chestnut—are explicitly excluded rather than scored as failures.
 - The catalog label `Burgundy Truffle` is paired with [`Tuber melanosporum`](https://www.gbif.org/species/5258468); GBIF calls that Black Périgord Truffle, while [`Tuber aestivum`](https://www.gbif.org/species/5258469) includes the Burgundy-truffle synonym `T. uncinatum`. No usable `T. melanosporum` observations were available in this window.
 
-| Species | Evidence | All | In season | Days | Median | ≥4 | Zone AUC (95% day-bootstrap CI) | Status |
-|---|---|---:|---:|---:|---:|---:|---:|---|
-| Dandelion | habitat-only | 1478 | 1478 | 45 | 3.65 | 41.1% | 0.407 (0.374–0.44) | proxy-only |
-| Raspberry | habitat-only | 1380 | 1380 | 56 | 5.92 | 88.3% | 0.442 (0.424–0.459) | proxy-only |
-| Wild Strawberry | habitat-only | 1284 | 1260 | 49 | 6.38 | 93.6% | 0.446 (0.424–0.469) | proxy-only |
-| Nettle | habitat-only | 1166 | 1166 | 56 | 4.81 | 67.4% | 0.415 (0.375–0.453) | proxy-only |
-| Lingonberry | habitat-only | 1293 | 715 | 36 | 6.43 | 90.6% | 0.467 (0.433–0.5) | proxy-only |
-| Sorrel | habitat-only | 1257 | 689 | 18 | 5.95 | 94.3% | 0.506 (0.472–0.536) | proxy-only |
-| Chanterelle | fruiting-proxy | 460 | 382 | 52 | 6.46 | 96.1% | 0.564 (0.531–0.596) | testable |
-| Porcini | fruiting-proxy | 451 | 357 | 54 | 5.82 | 73.9% | 0.545 (0.516–0.575) | testable |
-| Amaranth | habitat-only | 303 | 303 | 54 | 6.16 | 72.9% | 0.627 (0.569–0.683) | proxy-only |
-| Black Chanterelle | fruiting-proxy | 92 | 73 | 31 | 3.86 | 46.6% | 0.565 (0.499–0.623) | testable |
-| Masterwort | habitat-only | 72 | 72 | 33 | 5.82 | 79.2% | 0.701 (0.646–0.755) | proxy-only |
-| Parasol Mushroom | fruiting-proxy | 68 | 3 | 3 | 5.8 | 66.7% | 0.699 | low-sample |
-| Wild Garlic | habitat-only | 133 | 0 | 0 | — | — | — | not-testable-in-window |
-| Burgundy Truffle | fruiting-proxy | 0 | 0 | 0 | — | — | — | taxonomy-blocked |
-| Wild Walnut | habitat-only | 959 | 0 | 0 | — | — | — | not-testable-in-window |
-| Wild Asparagus | habitat-only | 79 | 0 | 0 | — | — | — | not-testable-in-window |
-| Chestnut | habitat-only | 1134 | 0 | 0 | — | — | — | not-testable-in-window |
-| Morel | fruiting-proxy | 17 | 0 | 0 | — | — | — | not-testable-in-window |
-| Chickweed | habitat-only | 634 | 0 | 0 | — | — | — | not-testable-in-window |
-| Artichoke | habitat-only | 209 | 0 | 0 | — | — | — | not-testable-in-window |
-| St. George's Mushroom | fruiting-proxy | 24 | 0 | 0 | — | — | — | not-testable-in-window |
+| Species               | Evidence       |  All | In season | Days | Median |    ≥4 | Zone AUC (95% day-bootstrap CI) | Status                 |
+| --------------------- | -------------- | ---: | --------: | ---: | -----: | ----: | ------------------------------: | ---------------------- |
+| Dandelion             | habitat-only   | 1478 |      1478 |   45 |   3.65 | 41.1% |              0.407 (0.374–0.44) | proxy-only             |
+| Raspberry             | habitat-only   | 1380 |      1380 |   56 |   5.92 | 88.3% |             0.442 (0.424–0.459) | proxy-only             |
+| Wild Strawberry       | habitat-only   | 1284 |      1260 |   49 |   6.38 | 93.6% |             0.446 (0.424–0.469) | proxy-only             |
+| Nettle                | habitat-only   | 1166 |      1166 |   56 |   4.81 | 67.4% |             0.415 (0.375–0.453) | proxy-only             |
+| Lingonberry           | habitat-only   | 1293 |       715 |   36 |   6.43 | 90.6% |               0.467 (0.433–0.5) | proxy-only             |
+| Sorrel                | habitat-only   | 1257 |       689 |   18 |   5.95 | 94.3% |             0.506 (0.472–0.536) | proxy-only             |
+| Chanterelle           | fruiting-proxy |  460 |       382 |   52 |   6.46 | 96.1% |             0.564 (0.531–0.596) | testable               |
+| Porcini               | fruiting-proxy |  451 |       357 |   54 |   5.82 | 73.9% |             0.545 (0.516–0.575) | testable               |
+| Amaranth              | habitat-only   |  303 |       303 |   54 |   6.16 | 72.9% |             0.627 (0.569–0.683) | proxy-only             |
+| Black Chanterelle     | fruiting-proxy |   92 |        73 |   31 |   3.86 | 46.6% |             0.565 (0.499–0.623) | testable               |
+| Masterwort            | habitat-only   |   72 |        72 |   33 |   5.82 | 79.2% |             0.701 (0.646–0.755) | proxy-only             |
+| Parasol Mushroom      | fruiting-proxy |   68 |         3 |    3 |    5.8 | 66.7% |                           0.699 | low-sample             |
+| Wild Garlic           | habitat-only   |  133 |         0 |    0 |      — |     — |                               — | not-testable-in-window |
+| Burgundy Truffle      | fruiting-proxy |    0 |         0 |    0 |      — |     — |                               — | taxonomy-blocked       |
+| Wild Walnut           | habitat-only   |  959 |         0 |    0 |      — |     — |                               — | not-testable-in-window |
+| Wild Asparagus        | habitat-only   |   79 |         0 |    0 |      — |     — |                               — | not-testable-in-window |
+| Chestnut              | habitat-only   | 1134 |         0 |    0 |      — |     — |                               — | not-testable-in-window |
+| Morel                 | fruiting-proxy |   17 |         0 |    0 |      — |     — |                               — | not-testable-in-window |
+| Chickweed             | habitat-only   |  634 |         0 |    0 |      — |     — |                               — | not-testable-in-window |
+| Artichoke             | habitat-only   |  209 |         0 |    0 |      — |     — |                               — | not-testable-in-window |
+| St. George's Mushroom | fruiting-proxy |   24 |         0 |    0 |      — |     — |                               — | not-testable-in-window |
 
 ## In-season fungal results by region
 
-| Region | Species | n | Days | Median score | Zone AUC |
-|---|---|---:|---:|---:|---:|
-| NE | Porcini | 143 | 50 | 6.35 | 0.503 |
-| NE | Parasol Mushroom | 1 | 1 | 5.8 | 0.915 |
-| NE | Chanterelle | 365 | 52 | 6.48 | 0.558 |
-| SE | Porcini | 37 | 18 | 6.12 | 0.686 |
-| SE | Parasol Mushroom | 2 | 2 | 4.47 | 0.591 |
-| SE | Chanterelle | 8 | 7 | 6.55 | 0.842 |
-| USE | Porcini | 97 | 40 | 5.53 | 0.587 |
-| USE | Black Chanterelle | 73 | 31 | 3.86 | 0.565 |
-| USE | Chanterelle | 9 | 9 | 4.84 | 0.58 |
-| USW | Porcini | 80 | 28 | 1.76 | 0.502 |
+| Region | Species           |   n | Days | Median score | Zone AUC |
+| ------ | ----------------- | --: | ---: | -----------: | -------: |
+| NE     | Porcini           | 143 |   50 |         6.35 |    0.503 |
+| NE     | Parasol Mushroom  |   1 |    1 |          5.8 |    0.915 |
+| NE     | Chanterelle       | 365 |   52 |         6.48 |    0.558 |
+| SE     | Porcini           |  37 |   18 |         6.12 |    0.686 |
+| SE     | Parasol Mushroom  |   2 |    2 |         4.47 |    0.591 |
+| SE     | Chanterelle       |   8 |    7 |         6.55 |    0.842 |
+| USE    | Porcini           |  97 |   40 |         5.53 |    0.587 |
+| USE    | Black Chanterelle |  73 |   31 |         3.86 |    0.565 |
+| USE    | Chanterelle       |   9 |    9 |         4.84 |     0.58 |
+| USW    | Porcini           |  80 |   28 |         1.76 |    0.502 |
 
 ## Method and caveats
 
@@ -452,16 +452,9 @@ The fungal curves were themselves derived from 2020–2026 GBIF monthly ratios, 
   },
   "primary_fungal_result": {
     "active_days": 58,
-    "day_bootstrap_ci": [
-      0.536,
-      0.576
-    ],
+    "day_bootstrap_ci": [0.536, 0.576],
     "n": 812,
-    "species_ids": [
-      "black_chant",
-      "chant",
-      "mushroom"
-    ],
+    "species_ids": ["black_chant", "chant", "mushroom"],
     "weighted_auc": 0.556
   },
   "r2": {
@@ -530,376 +523,68 @@ The fungal curves were themselves derived from 2020–2026 GBIF monthly ratios, 
     },
     "plant_season_months": {
       "NE": {
-        "amaranth": [
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "artichoke": [
-          3,
-          4,
-          5
-        ],
-        "asparagus": [
-          3,
-          4,
-          5
-        ],
-        "chestnut": [
-          10,
-          11
-        ],
-        "chickweed": [
-          1,
-          2,
-          3,
-          4,
-          10,
-          11,
-          12
-        ],
-        "dandelion": [
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "garlic": [
-          3,
-          4,
-          5
-        ],
-        "lingonb": [
-          7,
-          8,
-          9,
-          10
-        ],
-        "masterwort": [
-          6,
-          7,
-          8
-        ],
-        "nettle": [
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10
-        ],
-        "raspberry": [
-          6,
-          7,
-          8
-        ],
-        "sorrel": [
-          3,
-          4,
-          5,
-          6,
-          9,
-          10,
-          11
-        ],
-        "strawberry": [
-          5,
-          6,
-          7
-        ],
-        "walnut": [
-          10,
-          11
-        ]
+        "amaranth": [5, 6, 7, 8, 9, 10, 11],
+        "artichoke": [3, 4, 5],
+        "asparagus": [3, 4, 5],
+        "chestnut": [10, 11],
+        "chickweed": [1, 2, 3, 4, 10, 11, 12],
+        "dandelion": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "garlic": [3, 4, 5],
+        "lingonb": [7, 8, 9, 10],
+        "masterwort": [6, 7, 8],
+        "nettle": [4, 5, 6, 7, 8, 9, 10],
+        "raspberry": [6, 7, 8],
+        "sorrel": [3, 4, 5, 6, 9, 10, 11],
+        "strawberry": [5, 6, 7],
+        "walnut": [10, 11]
       },
       "SE": {
-        "amaranth": [
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "artichoke": [
-          3,
-          4,
-          5
-        ],
-        "asparagus": [
-          3,
-          4,
-          5
-        ],
-        "chestnut": [
-          10,
-          11
-        ],
-        "chickweed": [
-          1,
-          2,
-          3,
-          4,
-          10,
-          11,
-          12
-        ],
-        "dandelion": [
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "garlic": [
-          3,
-          4,
-          5
-        ],
-        "lingonb": [
-          7,
-          8,
-          9,
-          10
-        ],
-        "masterwort": [
-          6,
-          7,
-          8
-        ],
-        "nettle": [
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10
-        ],
-        "raspberry": [
-          6,
-          7,
-          8
-        ],
-        "sorrel": [
-          3,
-          4,
-          5,
-          6,
-          9,
-          10,
-          11
-        ],
-        "strawberry": [
-          5,
-          6,
-          7
-        ],
-        "walnut": [
-          10,
-          11
-        ]
+        "amaranth": [5, 6, 7, 8, 9, 10, 11],
+        "artichoke": [3, 4, 5],
+        "asparagus": [3, 4, 5],
+        "chestnut": [10, 11],
+        "chickweed": [1, 2, 3, 4, 10, 11, 12],
+        "dandelion": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "garlic": [3, 4, 5],
+        "lingonb": [7, 8, 9, 10],
+        "masterwort": [6, 7, 8],
+        "nettle": [4, 5, 6, 7, 8, 9, 10],
+        "raspberry": [6, 7, 8],
+        "sorrel": [3, 4, 5, 6, 9, 10, 11],
+        "strawberry": [5, 6, 7],
+        "walnut": [10, 11]
       },
       "USE": {
-        "amaranth": [
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "artichoke": [
-          3,
-          4,
-          5
-        ],
-        "asparagus": [
-          3,
-          4,
-          5
-        ],
-        "chestnut": [
-          10,
-          11
-        ],
-        "chickweed": [
-          1,
-          2,
-          3,
-          4,
-          10,
-          11,
-          12
-        ],
-        "dandelion": [
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "garlic": [
-          3,
-          4,
-          5
-        ],
-        "lingonb": [
-          7,
-          8,
-          9,
-          10
-        ],
-        "masterwort": [
-          12
-        ],
-        "nettle": [
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10
-        ],
-        "raspberry": [
-          6,
-          7,
-          8
-        ],
-        "sorrel": [
-          3,
-          4,
-          5,
-          6,
-          9,
-          10,
-          11
-        ],
-        "strawberry": [
-          5,
-          6,
-          7
-        ],
-        "walnut": [
-          10,
-          11
-        ]
+        "amaranth": [5, 6, 7, 8, 9, 10, 11],
+        "artichoke": [3, 4, 5],
+        "asparagus": [3, 4, 5],
+        "chestnut": [10, 11],
+        "chickweed": [1, 2, 3, 4, 10, 11, 12],
+        "dandelion": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "garlic": [3, 4, 5],
+        "lingonb": [7, 8, 9, 10],
+        "masterwort": [12],
+        "nettle": [4, 5, 6, 7, 8, 9, 10],
+        "raspberry": [6, 7, 8],
+        "sorrel": [3, 4, 5, 6, 9, 10, 11],
+        "strawberry": [5, 6, 7],
+        "walnut": [10, 11]
       },
       "USW": {
-        "amaranth": [
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "artichoke": [
-          3,
-          4,
-          5
-        ],
-        "asparagus": [
-          3,
-          4,
-          5
-        ],
-        "chestnut": [
-          10,
-          11
-        ],
-        "chickweed": [
-          1,
-          2,
-          3,
-          4,
-          10,
-          11,
-          12
-        ],
-        "dandelion": [
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11
-        ],
-        "garlic": [
-          3,
-          4,
-          5
-        ],
-        "lingonb": [
-          7,
-          8,
-          9,
-          10
-        ],
-        "masterwort": [
-          12
-        ],
-        "nettle": [
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10
-        ],
-        "raspberry": [
-          6,
-          7,
-          8
-        ],
-        "sorrel": [
-          3,
-          4,
-          5,
-          6,
-          9,
-          10,
-          11
-        ],
-        "strawberry": [
-          5,
-          6,
-          7
-        ],
-        "walnut": [
-          10,
-          11
-        ]
+        "amaranth": [5, 6, 7, 8, 9, 10, 11],
+        "artichoke": [3, 4, 5],
+        "asparagus": [3, 4, 5],
+        "chestnut": [10, 11],
+        "chickweed": [1, 2, 3, 4, 10, 11, 12],
+        "dandelion": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "garlic": [3, 4, 5],
+        "lingonb": [7, 8, 9, 10],
+        "masterwort": [12],
+        "nettle": [4, 5, 6, 7, 8, 9, 10],
+        "raspberry": [6, 7, 8],
+        "sorrel": [3, 4, 5, 6, 9, 10, 11],
+        "strawberry": [5, 6, 7],
+        "walnut": [10, 11]
       }
     }
   },

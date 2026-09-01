@@ -77,3 +77,16 @@ playwright-report/
 
 # Generated QA page (rebuild with scripts/qa_season_page.py)
 docs/qa/**/season-timing.html
+
+# ~/.gitignore (global excludesFile) blanket-ignores CONTEXT.md and docs/*
+# for other projects' scratch/Claude-generated files. This repo tracks both
+# for real (domain glossary, docs/qa, docs/superpowers, docs/adr, ...) —
+# un-ignore them here; the specific-file excludes above still apply.
+!CONTEXT.md
+!docs/*
+!.claude/
+!.claude/skills/
+!.claude/skills/**
+!.agents/
+!.agents/skills/
+!.agents/skills/**
