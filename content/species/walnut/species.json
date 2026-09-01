@@ -64,6 +64,7 @@
     "dataColumns": ["Wild Walnut"],
     "regions": {
       "NE": {
+        "available": true,
         "landCover": [311],
         "scoring": {
           "optimal_temp": 14,
@@ -111,6 +112,7 @@
         "landCoverScheme": "CORINE"
       },
       "SE": {
+        "available": true,
         "landCover": [311],
         "scoring": {
           "optimal_temp": 14,
@@ -158,6 +160,7 @@
         "landCoverScheme": "CORINE"
       },
       "USE": {
+        "available": true,
         "landCover": [41],
         "scoring": {
           "optimal_temp": 14,
@@ -200,6 +203,7 @@
         "landCoverScheme": "NLCD"
       },
       "USW": {
+        "available": true,
         "landCover": [41],
         "scoring": {
           "optimal_temp": 14,

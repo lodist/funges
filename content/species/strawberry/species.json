@@ -64,6 +64,7 @@
     "dataColumns": ["Wild Strawberry", "Strawberry"],
     "regions": {
       "NE": {
+        "available": true,
         "landCover": [311, 313, 324],
         "scoring": {
           "optimal_temp": 15,
@@ -112,6 +113,7 @@
         "landCoverScheme": "CORINE"
       },
       "SE": {
+        "available": true,
         "landCover": [311, 313, 324],
         "scoring": {
           "optimal_temp": 15,
@@ -160,6 +162,7 @@
         "landCoverScheme": "CORINE"
       },
       "USE": {
+        "available": true,
         "landCover": [41, 43, 52],
         "scoring": {
           "optimal_temp": 15,
@@ -201,6 +204,7 @@
         "landCoverScheme": "NLCD"
       },
       "USW": {
+        "available": true,
         "landCover": [41, 43, 52],
         "scoring": {
           "optimal_temp": 15,

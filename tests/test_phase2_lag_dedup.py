@@ -51,3 +51,24 @@ def test_raw_scores_are_identical_within_each_coord(monkeypatch):
         va = got[got["Location_Id"] == a].sort_values("Date")[fx.score_columns()].reset_index(drop=True)
         vb = got[got["Location_Id"] == b].sort_values("Date")[fx.score_columns()].reset_index(drop=True)
         pd.testing.assert_frame_equal(va, vb)
+
+
+def test_merge_drops_historical_score_columns_without_current_parameters():
+    """Unavailable species must disappear from the rewritten rolling parquet schema."""
+    fwd = fx.forward_df()
+    history = fx.history_df()
+    history["unavailable_score"] = 9.0
+
+    with tempfile.TemporaryDirectory() as tmp:
+        hist_path = str(Path(tmp) / "history.parquet")
+        history.to_parquet(hist_path, index=False)
+        out = fp._merge_and_score(
+            fx.config(),
+            fwd,
+            fx.species_params(),
+            fx.zone_curves(),
+            main_data_path=hist_path,
+        )
+
+    assert "unavailable_score" not in out.columns
+    assert set(fx.score_columns()).issubset(out.columns)

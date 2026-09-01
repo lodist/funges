@@ -64,6 +64,7 @@
     "dataColumns": ["Black Chanterelle"],
     "regions": {
       "NE": {
+        "available": true,
         "landCover": [311, 313],
         "scoring": {
           "optimal_temp": 14.5,
@@ -109,6 +110,7 @@
         "landCoverScheme": "CORINE"
       },
       "SE": {
+        "available": true,
         "landCover": [311, 313],
         "scoring": {
           "optimal_temp": 14.5,
@@ -154,6 +156,7 @@
         "landCoverScheme": "CORINE"
       },
       "USE": {
+        "available": true,
         "landCover": [41, 43],
         "scoring": {
           "optimal_temp": 14.5,
@@ -194,6 +197,7 @@
         "landCoverScheme": "NLCD"
       },
       "USW": {
+        "available": true,
         "landCover": [41, 43],
         "scoring": {
           "optimal_temp": 14.5,

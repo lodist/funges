@@ -64,6 +64,7 @@
     "dataColumns": ["Porcini", "Mushroom"],
     "regions": {
       "NE": {
+        "available": true,
         "landCover": [311, 312, 313],
         "scoring": {
           "optimal_temp": 17,
@@ -112,6 +113,7 @@
         "landCoverScheme": "CORINE"
       },
       "SE": {
+        "available": true,
         "landCover": [311, 312, 313],
         "scoring": {
           "optimal_temp": 17,
@@ -160,6 +162,7 @@
         "landCoverScheme": "CORINE"
       },
       "USE": {
+        "available": true,
         "landCover": [41, 42, 43],
         "scoring": {
           "optimal_temp": 17,
@@ -203,6 +206,7 @@
         "landCoverScheme": "NLCD"
       },
       "USW": {
+        "available": true,
         "landCover": [41, 42, 43],
         "scoring": {
           "optimal_temp": 17,

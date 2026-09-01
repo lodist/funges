@@ -64,6 +64,7 @@
     "dataColumns": ["St. George's Mushroom", "St. Georges Mushroom"],
     "regions": {
       "NE": {
+        "available": true,
         "landCover": [321, 324],
         "scoring": {
           "optimal_temp": 11,
@@ -112,6 +113,7 @@
         "landCoverScheme": "CORINE"
       },
       "SE": {
+        "available": true,
         "landCover": [321, 324],
         "scoring": {
           "optimal_temp": 11,
@@ -160,70 +162,10 @@
         "landCoverScheme": "CORINE"
       },
       "USE": {
-        "landCover": [71, 52],
-        "scoring": {
-          "optimal_temp": 1000,
-          "temp_sigma": 5,
-          "min_temp": 3,
-          "max_temp": 21,
-          "optimal_alt": 500,
-          "alt_sigma": 750,
-          "optimal_humidity": 80,
-          "humidity_sigma": 12,
-          "optimal_pH": 6.5,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [5.25, 7.75],
-          "optimal_soil_temp": 12,
-          "soil_temp_sigma": 3.5,
-          "min_cumulative_rain": 35,
-          "weather_preference": {
-            "rain_first": true
-          },
-          "climate_zones": [],
-          "wind_sensitive": false,
-          "season_months": [12],
-          "water_relevance": false,
-          "sea_relevance": false
-        },
-        "scoringReferences": [
-          "https://data.fung.es/USA/USE/USE_species_params.txt"
-        ],
-        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
-        "landCoverScheme": "NLCD"
+        "available": false
       },
       "USW": {
-        "landCover": [71, 52],
-        "scoring": {
-          "optimal_temp": 1000,
-          "temp_sigma": 5,
-          "min_temp": 3,
-          "max_temp": 21,
-          "optimal_alt": 500,
-          "alt_sigma": 750,
-          "optimal_humidity": 80,
-          "humidity_sigma": 12,
-          "optimal_pH": 6.5,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [5.25, 7.75],
-          "optimal_soil_temp": 12,
-          "soil_temp_sigma": 3.5,
-          "min_cumulative_rain": 35,
-          "weather_preference": {
-            "rain_first": true
-          },
-          "climate_zones": [],
-          "wind_sensitive": false,
-          "season_months": [12],
-          "water_relevance": false,
-          "sea_relevance": false
-        },
-        "scoringReferences": [
-          "https://data.fung.es/USA/USW/USW_species_params.txt"
-        ],
-        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
-        "landCoverScheme": "NLCD"
+        "available": false
       }
     },
     "empiricalSeason": {

@@ -64,6 +64,7 @@
     "dataColumns": ["Sorrel"],
     "regions": {
       "NE": {
+        "available": true,
         "landCover": [321, 324],
         "scoring": {
           "optimal_temp": 13,
@@ -114,6 +115,7 @@
         "landCoverScheme": "CORINE"
       },
       "SE": {
+        "available": true,
         "landCover": [321, 324],
         "scoring": {
           "optimal_temp": 13,
@@ -164,6 +166,7 @@
         "landCoverScheme": "CORINE"
       },
       "USE": {
+        "available": true,
         "landCover": [71, 52],
         "scoring": {
           "optimal_temp": 13,
@@ -209,6 +212,7 @@
         "landCoverScheme": "NLCD"
       },
       "USW": {
+        "available": true,
         "landCover": [71, 52],
         "scoring": {
           "optimal_temp": 13,

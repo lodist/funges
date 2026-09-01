@@ -64,6 +64,7 @@
     "dataColumns": ["Wild Garlic", "Garlic"],
     "regions": {
       "NE": {
+        "available": true,
         "landCover": [311],
         "scoring": {
           "optimal_temp": 10,
@@ -110,6 +111,7 @@
         "landCoverScheme": "CORINE"
       },
       "SE": {
+        "available": true,
         "landCover": [311],
         "scoring": {
           "optimal_temp": 10,
@@ -156,92 +158,10 @@
         "landCoverScheme": "CORINE"
       },
       "USE": {
-        "landCover": [41],
-        "scoring": {
-          "optimal_temp": 1000,
-          "temp_sigma": 5,
-          "min_temp": -2,
-          "max_temp": 15,
-          "optimal_alt": 600,
-          "alt_sigma": 950,
-          "optimal_humidity": 85,
-          "humidity_sigma": 18,
-          "optimal_pH": 6,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [4.25, 7.75],
-          "optimal_soil_temp": 9,
-          "soil_temp_sigma": 5,
-          "min_cumulative_rain": 30,
-          "weather_preference": {
-            "rain_first": false
-          },
-          "climate_zones": [
-            "alpine",
-            "subarctic",
-            "marine_west_coast",
-            "humid_subtropical",
-            "humid_continental",
-            "continental",
-            "temperate"
-          ],
-          "wind_sensitive": false,
-          "season_months": [3, 4, 5],
-          "water_relevance": true,
-          "sea_relevance": false,
-          "distance_thresholds": {
-            "water": 1800
-          }
-        },
-        "scoringReferences": [
-          "https://data.fung.es/USA/USE/USE_species_params.txt"
-        ],
-        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
-        "landCoverScheme": "NLCD"
+        "available": false
       },
       "USW": {
-        "landCover": [41],
-        "scoring": {
-          "optimal_temp": 1000,
-          "temp_sigma": 5,
-          "min_temp": -2,
-          "max_temp": 15,
-          "optimal_alt": 600,
-          "alt_sigma": 950,
-          "optimal_humidity": 85,
-          "humidity_sigma": 18,
-          "optimal_pH": 6,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [4.25, 7.75],
-          "optimal_soil_temp": 9,
-          "soil_temp_sigma": 5,
-          "min_cumulative_rain": 30,
-          "weather_preference": {
-            "rain_first": false
-          },
-          "climate_zones": [
-            "alpine",
-            "subarctic",
-            "marine_west_coast",
-            "humid_subtropical",
-            "humid_continental",
-            "continental",
-            "temperate"
-          ],
-          "wind_sensitive": false,
-          "season_months": [3, 4, 5],
-          "water_relevance": true,
-          "sea_relevance": false,
-          "distance_thresholds": {
-            "water": 1800
-          }
-        },
-        "scoringReferences": [
-          "https://data.fung.es/USA/USW/USW_species_params.txt"
-        ],
-        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
-        "landCoverScheme": "NLCD"
+        "available": false
       }
     },
     "empiricalSeason": {

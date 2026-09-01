@@ -14,9 +14,14 @@ MIN_SCORE = 4.0
 MAX_CELL_SPECIES = 8
 SPECIES_REGISTRY_PATH = Path("backend/generated/species_registry.json")
 
+
+def load_species_registry() -> dict:
+    return json.loads(SPECIES_REGISTRY_PATH.read_text(encoding="utf-8"))
+
+
 def resolve_species_columns(available_columns: set[str]) -> dict[str, str]:
     """Choose the first available score alias for each manifest species."""
-    registry = json.loads(SPECIES_REGISTRY_PATH.read_text(encoding="utf-8"))
+    registry = load_species_registry()
     resolved = {}
     for species_id, config in registry["species"].items():
         column = next(
@@ -26,6 +31,19 @@ def resolve_species_columns(available_columns: set[str]) -> dict[str, str]:
         if column:
             resolved[species_id] = column
     return resolved
+
+
+def resolve_region_species() -> dict[str, set[str]]:
+    """Return species that are available for scoring in each region."""
+    registry = load_species_registry()
+    return {
+        region: {
+            species_id
+            for species_id, config in registry["species"].items()
+            if region in config["regions"]
+        }
+        for region in ("NE", "SE", "USE", "USW")
+    }
 
 
 def infer_region(longitude: float, latitude: float) -> str:
@@ -51,6 +69,7 @@ def iso_date(value: object) -> str:
 def main() -> None:
     schema_columns = set(pq.read_schema(PARQUET_PATH).names)
     species_columns = resolve_species_columns(schema_columns)
+    region_species = resolve_region_species()
     columns = ["Date", "Latitude", "Longitude", *species_columns.values()]
     table = pq.read_table(PARQUET_PATH, columns=columns)
     rows = table.to_pylist()
@@ -81,6 +100,8 @@ def main() -> None:
         cell_key = (region_id, round_cell(latitude), round_cell(longitude))
 
         for species_id, column_name in species_columns.items():
+            if species_id not in region_species[region_id]:
+                continue
             value = row.get(column_name)
             if value is None:
                 continue

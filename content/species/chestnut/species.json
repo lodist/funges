@@ -64,6 +64,7 @@
     "dataColumns": ["Chestnut"],
     "regions": {
       "NE": {
+        "available": true,
         "landCover": [311],
         "scoring": {
           "optimal_temp": 14,
@@ -110,6 +111,7 @@
         "landCoverScheme": "CORINE"
       },
       "SE": {
+        "available": true,
         "landCover": [311],
         "scoring": {
           "optimal_temp": 14,
@@ -156,84 +158,10 @@
         "landCoverScheme": "CORINE"
       },
       "USE": {
-        "landCover": [41],
-        "scoring": {
-          "optimal_temp": 14,
-          "temp_sigma": 5,
-          "min_temp": 5,
-          "max_temp": 21,
-          "optimal_alt": 600,
-          "alt_sigma": 500,
-          "optimal_humidity": 75,
-          "humidity_sigma": 16,
-          "optimal_pH": 5.8,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [4.6, 7],
-          "optimal_soil_temp": 12,
-          "soil_temp_sigma": 4,
-          "min_cumulative_rain": 25,
-          "weather_preference": {
-            "rain_first": false
-          },
-          "climate_zones": [
-            "alpine",
-            "marine_west_coast",
-            "humid_continental",
-            "continental",
-            "temperate",
-            "mediterranean_california"
-          ],
-          "wind_sensitive": false,
-          "season_months": [10, 11],
-          "water_relevance": false,
-          "sea_relevance": false
-        },
-        "scoringReferences": [
-          "https://data.fung.es/USA/USE/USE_species_params.txt"
-        ],
-        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
-        "landCoverScheme": "NLCD"
+        "available": false
       },
       "USW": {
-        "landCover": [41],
-        "scoring": {
-          "optimal_temp": 14,
-          "temp_sigma": 5,
-          "min_temp": 5,
-          "max_temp": 21,
-          "optimal_alt": 600,
-          "alt_sigma": 500,
-          "optimal_humidity": 75,
-          "humidity_sigma": 16,
-          "optimal_pH": 5.8,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [4.6, 7],
-          "optimal_soil_temp": 12,
-          "soil_temp_sigma": 4,
-          "min_cumulative_rain": 25,
-          "weather_preference": {
-            "rain_first": false
-          },
-          "climate_zones": [
-            "alpine",
-            "marine_west_coast",
-            "humid_continental",
-            "continental",
-            "temperate",
-            "mediterranean_california"
-          ],
-          "wind_sensitive": false,
-          "season_months": [10, 11],
-          "water_relevance": false,
-          "sea_relevance": false
-        },
-        "scoringReferences": [
-          "https://data.fung.es/USA/USW/USW_species_params.txt"
-        ],
-        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
-        "landCoverScheme": "NLCD"
+        "available": false
       }
     },
     "empiricalSeason": {

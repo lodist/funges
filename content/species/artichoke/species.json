@@ -64,6 +64,7 @@
     "dataColumns": ["Artichoke"],
     "regions": {
       "NE": {
+        "available": true,
         "landCover": [323, 321, 324],
         "scoring": {
           "optimal_temp": 15,
@@ -111,6 +112,7 @@
         "landCoverScheme": "CORINE"
       },
       "SE": {
+        "available": true,
         "landCover": [323, 321, 324],
         "scoring": {
           "optimal_temp": 15,
@@ -158,6 +160,7 @@
         "landCoverScheme": "CORINE"
       },
       "USE": {
+        "available": true,
         "landCover": [71, 52],
         "scoring": {
           "optimal_temp": 15,
@@ -199,6 +202,7 @@
         "landCoverScheme": "NLCD"
       },
       "USW": {
+        "available": true,
         "landCover": [71, 52],
         "scoring": {
           "optimal_temp": 15,

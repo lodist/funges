@@ -167,12 +167,17 @@ function addForecastSpecies(root) {
         REGIONS.map(region => [
           region,
           {
-            landCover: [10],
-            landCoverScheme: ['NE', 'SE'].includes(region)
-              ? 'CORINE'
-              : 'NLCD',
-            scoring: scoring(),
-            scoringReferences: ['https://example.test/research'],
+            available: region !== 'USW',
+            ...(region === 'USW'
+              ? {}
+              : {
+                  landCover: [10],
+                  landCoverScheme: ['NE', 'SE'].includes(region)
+                    ? 'CORINE'
+                    : 'NLCD',
+                  scoring: scoring(),
+                  scoringReferences: ['https://example.test/research'],
+                }),
           },
         ])
       ),
@@ -210,7 +215,7 @@ test('rejects ambiguous names, an unapproved safety gate, and incomplete forecas
     catalog: { ...manifest().catalog, order: 1, translationKey: 'other' },
     forecast: {
       enabled: true,
-      regions: { NE: { landCover: [], scoring: {} } },
+      regions: { NE: { available: true, landCover: [], scoring: {} } },
     },
   });
   const errors = validateManifests(
@@ -258,8 +263,8 @@ test('scaffold chooses the next catalog order and includes every forecast region
   assert.equal(data.catalog.order, 1);
   assert.equal(data.catalog.image.path, 'src/assets/species/new-species.webp');
   assert.deepEqual(Object.keys(data.forecast.regions), REGIONS);
-  assert.equal(data.forecast.regions.NE.scoring.min_temp, 'TODO');
-  assert.equal(data.forecast.regions.NE.scoring.optimal_soil_temp, 'TODO');
+  assert.equal(data.forecast.regions.NE.available, false);
+  assert.deepEqual(Object.keys(data.forecast.regions.NE), ['available']);
 });
 
 test('generation is deterministic and preserves non-species locale content', async () => {
@@ -284,7 +289,7 @@ test('generation is deterministic and preserves non-species locale content', asy
   assert.equal(locale.list_of_species.chant.name, 'Chant en');
 });
 
-test('forecast generation emits backend parameters and every map layer', async () => {
+test('forecast generation emits only available regional parameters and map layers', async () => {
   const root = fixtureRoot();
   addForecastSpecies(root);
   await generate(root);
@@ -298,6 +303,7 @@ test('forecast generation emits backend parameters and every map layer', async (
     registry.species['new-species'].regions.NE.scoring,
     scoring()
   );
+  assert.equal('USW' in registry.species['new-species'].regions, false);
   const routeConfig = fs.readFileSync(
     path.join(root, 'src/generated/route-to-dish-species.ts'),
     'utf8'
@@ -316,10 +322,46 @@ test('forecast generation emits backend parameters and every map layer', async (
     );
     const ids = new Set(style.layers.map(layer => layer.id));
     for (const region of REGIONS.map(value => value.toLowerCase())) {
-      assert(ids.has(`new-species_${region}`));
-      assert(ids.has(`new-species_${region}_numbers`));
+      const expected = region !== 'usw';
+      assert.equal(ids.has(`new-species_${region}`), expected);
+      assert.equal(ids.has(`new-species_${region}_numbers`), expected);
     }
   }
+});
+
+test('rejects scoring data for unavailable regions and temperature sentinels', () => {
+  const regions = Object.fromEntries(
+    REGIONS.map(region => [
+      region,
+      {
+        available: true,
+        landCover: [10],
+        landCoverScheme: ['NE', 'SE'].includes(region) ? 'CORINE' : 'NLCD',
+        scoring: scoring(),
+        scoringReferences: ['https://example.test/research'],
+      },
+    ])
+  );
+  regions.NE = { available: false, scoring: scoring() };
+  regions.USE.scoring.optimal_temp = 1000;
+  const errors = validateManifests(
+    [
+      entry(
+        manifest({
+          forecast: {
+            enabled: true,
+            empiricalSeason: { enabled: false, taxonKeys: [], references: [] },
+            regions,
+          },
+        })
+      ),
+    ],
+    process.cwd(),
+    { checkImages: false }
+  ).join('\n');
+
+  assert.match(errors, /NE\.scoring is not allowed when available is false/);
+  assert.match(errors, /USE\.scoring\.optimal_temp must be between/);
 });
 
 test('repository check is read-only', async () => {

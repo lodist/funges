@@ -244,7 +244,11 @@ export function validateManifests(
         (!Array.isArray(forecast.dataColumns) ||
           forecast.dataColumns.some(column => !nonEmpty(column)))
       )
-        fail(errors, where, 'forecast.dataColumns must contain valid column names');
+        fail(
+          errors,
+          where,
+          'forecast.dataColumns must contain valid column names'
+        );
       const empirical = forecast.empiricalSeason;
       if (!empirical || typeof empirical.enabled !== 'boolean')
         fail(errors, where, 'forecast.empiricalSeason.enabled must be boolean');
@@ -287,9 +291,45 @@ export function validateManifests(
             where,
             `forecast.regions.${region} is required for a forecast species`
           );
+      if (
+        !REGIONS.some(region => forecast.regions?.[region]?.available === true)
+      )
+        fail(
+          errors,
+          where,
+          'at least one forecast region must have available set to true'
+        );
       for (const [region, config] of Object.entries(forecast.regions || {})) {
         if (!REGIONS.includes(region))
           fail(errors, where, `unknown forecast region ${region}`);
+        if (!config || typeof config !== 'object') {
+          fail(errors, where, `forecast.regions.${region} must be an object`);
+          continue;
+        }
+        if (typeof config.available !== 'boolean') {
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.available must be boolean`
+          );
+          continue;
+        }
+        if (!config.available) {
+          for (const key of [
+            'landCover',
+            'landCoverScheme',
+            'scoring',
+            'scoringReferences',
+            'scoringSnapshotSha256',
+          ])
+            if (key in config)
+              fail(
+                errors,
+                where,
+                `forecast.regions.${region}.${key} is not allowed when available is false`
+              );
+          continue;
+        }
         if (
           !Array.isArray(config.landCover) ||
           !config.landCover.length ||
@@ -327,6 +367,28 @@ export function validateManifests(
               where,
               `forecast.regions.${region}.scoring.${key} must be a number`
             );
+        if (
+          Number.isFinite(scoring?.min_temp) &&
+          Number.isFinite(scoring?.max_temp) &&
+          scoring.min_temp > scoring.max_temp
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.min_temp must not exceed max_temp`
+          );
+        if (
+          Number.isFinite(scoring?.optimal_temp) &&
+          Number.isFinite(scoring?.min_temp) &&
+          Number.isFinite(scoring?.max_temp) &&
+          (scoring.optimal_temp < scoring.min_temp ||
+            scoring.optimal_temp > scoring.max_temp)
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.optimal_temp must be between min_temp and max_temp`
+          );
         for (const key of [
           'temp_sigma',
           'alt_sigma',
@@ -490,18 +552,20 @@ function backendRegistry(manifests) {
         ...new Set([`${m.id}_score`, ...(m.forecast.dataColumns || [])]),
       ],
       regions: Object.fromEntries(
-        Object.entries(m.forecast.regions).map(([region, cfg]) => [
-          region,
-          {
-            landCover: cfg.landCover,
-            landCoverScheme: cfg.landCoverScheme,
-            scoring: cfg.scoring,
-            scoringReferences: cfg.scoringReferences,
-            ...(cfg.scoringSnapshotSha256
-              ? { scoringSnapshotSha256: cfg.scoringSnapshotSha256 }
-              : {}),
-          },
-        ])
+        Object.entries(m.forecast.regions)
+          .filter(([, cfg]) => cfg.available)
+          .map(([region, cfg]) => [
+            region,
+            {
+              landCover: cfg.landCover,
+              landCoverScheme: cfg.landCoverScheme,
+              scoring: cfg.scoring,
+              scoringReferences: cfg.scoringReferences,
+              ...(cfg.scoringSnapshotSha256
+                ? { scoringSnapshotSha256: cfg.scoringSnapshotSha256 }
+                : {}),
+            },
+          ])
       ),
     };
   }
@@ -526,7 +590,7 @@ function replaceDeep(value, from, to) {
   return value;
 }
 
-function styleWithMissingLayers(style, forecastIds) {
+function reconcileStyleLayers(style, forecastIdsByRegion, allForecastIds) {
   const out = structuredClone(style);
   for (const region of REGIONS.map(x => x.toLowerCase())) {
     const templateBase = out.layers.find(
@@ -537,9 +601,22 @@ function styleWithMissingLayers(style, forecastIds) {
     );
     if (!templateBase || !templateNumbers)
       throw new Error(`style is missing chant templates for ${region}`);
-    const insertion = out.layers.indexOf(templateNumbers) + 1;
+    const wantedIds = new Set(forecastIdsByRegion[region.toUpperCase()]);
+    out.layers = out.layers.filter(layer => {
+      for (const id of allForecastIds) {
+        if (
+          !wantedIds.has(id) &&
+          (layer.id === `${id}_${region}` ||
+            layer.id === `${id}_${region}_numbers`)
+        )
+          return false;
+      }
+      return true;
+    });
+    const insertion =
+      out.layers.findIndex(layer => layer.id === templateNumbers.id) + 1;
     const additions = [];
-    for (const id of forecastIds) {
+    for (const id of wantedIds) {
       for (const template of [templateBase, templateNumbers]) {
         const wanted = template.id.replace('chant_', `${id}_`);
         if (!out.layers.some(layer => layer.id === wanted))
@@ -619,18 +696,26 @@ const STYLE_NAMES = [
 
 function checkStyleLayers(entries, root) {
   const errors = [];
-  const ids = entries.filter(x => x.data.forecast.enabled).map(x => x.data.id);
+  const forecastEntries = entries.filter(x => x.data.forecast.enabled);
   for (const name of STYLE_NAMES) {
     const style = JSON.parse(
       fs.readFileSync(rel(root, 'public', name), 'utf8')
     );
     const layers = new Map(style.layers.map(layer => [layer.id, layer]));
     for (const region of REGIONS.map(x => x.toLowerCase())) {
-      for (const id of ids) {
+      for (const entry of forecastEntries) {
+        const id = entry.data.id;
+        const available =
+          entry.data.forecast.regions[region.toUpperCase()].available;
         for (const expected of [`${id}_${region}`, `${id}_${region}_numbers`]) {
-          if (!layers.has(expected))
+          if (available && !layers.has(expected))
             errors.push(`public/${name}: missing forecast layer ${expected}`);
+          else if (!available && layers.has(expected))
+            errors.push(
+              `public/${name}: unexpected unavailable forecast layer ${expected}`
+            );
           else if (
+            available &&
             !JSON.stringify(layers.get(expected)).includes(`${id}_score`)
           )
             errors.push(
@@ -707,15 +792,32 @@ export async function generate(root = process.cwd()) {
     fs.mkdirSync(path.dirname(absolute), { recursive: true });
     fs.writeFileSync(absolute, contents);
   }
-  const forecastIds = entries
-    .filter(x => x.data.forecast.enabled)
-    .map(x => x.data.id);
+  const forecastEntries = entries.filter(x => x.data.forecast.enabled);
+  const allForecastIds = forecastEntries.map(x => x.data.id);
+  const forecastIdsByRegion = Object.fromEntries(
+    REGIONS.map(region => [
+      region,
+      forecastEntries
+        .filter(x => x.data.forecast.regions[region].available)
+        .map(x => x.data.id),
+    ])
+  );
   for (const name of STYLE_NAMES) {
     const filename = rel(root, 'public', name);
     const current = JSON.parse(fs.readFileSync(filename, 'utf8'));
-    const updated = styleWithMissingLayers(current, forecastIds);
+    const updated = reconcileStyleLayers(
+      current,
+      forecastIdsByRegion,
+      allForecastIds
+    );
     if (JSON.stringify(current) !== JSON.stringify(updated))
-      fs.writeFileSync(filename, json(updated));
+      fs.writeFileSync(
+        filename,
+        await prettier.format(json(updated), {
+          ...PRETTIER_OPTIONS,
+          parser: 'json',
+        })
+      );
   }
 }
 
@@ -737,34 +839,7 @@ export function scaffold(id, root = process.cwd(), { forecast = false } = {}) {
         REGIONS.map(region => [
           region,
           {
-            landCover: [],
-            landCoverScheme: ['NE', 'SE'].includes(region)
-              ? 'CORINE'
-              : 'NLCD',
-            scoring: {
-              optimal_temp: 'TODO',
-              temp_sigma: 'TODO',
-              min_temp: 'TODO',
-              max_temp: 'TODO',
-              optimal_alt: 'TODO',
-              alt_sigma: 'TODO',
-              optimal_humidity: 'TODO',
-              humidity_sigma: 'TODO',
-              optimal_pH: 'TODO',
-              pH_sigma_near: 'TODO',
-              pH_sigma_far: 'TODO',
-              pH_range_near: [],
-              optimal_soil_temp: 'TODO',
-              soil_temp_sigma: 'TODO',
-              min_cumulative_rain: 'TODO',
-              weather_preference: { rain_first: 'TODO' },
-              climate_zones: [],
-              wind_sensitive: 'TODO',
-              season_months: [],
-              water_relevance: 'TODO',
-              sea_relevance: 'TODO',
-            },
-            scoringReferences: ['TODO'],
+            available: false,
           },
         ])
       )

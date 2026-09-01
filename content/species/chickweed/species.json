@@ -64,6 +64,7 @@
     "dataColumns": ["Chickweed"],
     "regions": {
       "NE": {
+        "available": true,
         "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
         "scoring": {
           "optimal_temp": 8.5,
@@ -115,6 +116,7 @@
         "landCoverScheme": "CORINE"
       },
       "SE": {
+        "available": true,
         "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
         "scoring": {
           "optimal_temp": 8.5,
@@ -166,6 +168,7 @@
         "landCoverScheme": "CORINE"
       },
       "USE": {
+        "available": true,
         "landCover": [31, 41, 42, 43, 52, 71],
         "scoring": {
           "optimal_temp": 8.5,
@@ -212,6 +215,7 @@
         "landCoverScheme": "NLCD"
       },
       "USW": {
+        "available": true,
         "landCover": [31, 41, 42, 43, 52, 71],
         "scoring": {
           "optimal_temp": 8.5,

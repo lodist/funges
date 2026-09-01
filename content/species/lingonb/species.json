@@ -64,6 +64,7 @@
     "dataColumns": ["Lingonberry"],
     "regions": {
       "NE": {
+        "available": true,
         "landCover": [312, 322],
         "scoring": {
           "optimal_temp": 10.5,
@@ -105,6 +106,7 @@
         "landCoverScheme": "CORINE"
       },
       "SE": {
+        "available": true,
         "landCover": [312, 322],
         "scoring": {
           "optimal_temp": 10.5,
@@ -146,6 +148,7 @@
         "landCoverScheme": "CORINE"
       },
       "USE": {
+        "available": true,
         "landCover": [42, 52],
         "scoring": {
           "optimal_temp": 10.5,
@@ -185,6 +188,7 @@
         "landCoverScheme": "NLCD"
       },
       "USW": {
+        "available": true,
         "landCover": [42, 52],
         "scoring": {
           "optimal_temp": 10.5,

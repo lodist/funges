@@ -202,13 +202,9 @@
           "additionalProperties": {
             "type": "object",
             "additionalProperties": false,
-            "required": [
-              "landCover",
-              "landCoverScheme",
-              "scoring",
-              "scoringReferences"
-            ],
+            "required": ["available"],
             "properties": {
+              "available": { "type": "boolean" },
               "landCover": {
                 "type": "array",
                 "minItems": 1,
@@ -225,7 +221,32 @@
                 "type": "string",
                 "pattern": "^[a-f0-9]{64}$"
               }
-            }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": { "available": { "const": true } },
+                  "required": ["available"]
+                },
+                "then": {
+                  "required": [
+                    "landCover",
+                    "landCoverScheme",
+                    "scoring",
+                    "scoringReferences"
+                  ]
+                },
+                "else": {
+                  "properties": {
+                    "landCover": false,
+                    "landCoverScheme": false,
+                    "scoring": false,
+                    "scoringReferences": false,
+                    "scoringSnapshotSha256": false
+                  }
+                }
+              }
+            ]
           }
         }
       },

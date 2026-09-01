@@ -24,25 +24,44 @@ are allowed only after a human checks that the depicted diagnostic features and
 the recorded source/license metadata are appropriate.
 
 Use `--forecast` with `species:scaffold` when the species needs prediction and
-map support. Forecast entries need explicit scoring and land-cover values for
-every enabled region. The scoring object contains the actual temperature,
+map support. Every region must explicitly declare `available`. Set it to `true`
+only when reviewed evidence supports an established, self-sustaining wild
+population that people can realistically forage in that region. Native and
+well-established naturalized populations qualify; isolated observations,
+cultivated plants, and occasional garden escapes do not. GBIF can support the
+review, but it is not sufficient by itself: use regional flora or mycological
+authorities and record the decision's sources. A region with `available: false`
+must contain no land-cover or scoring parameters and produces no score or map
+layer.
+
+Available forecast regions need explicit scoring and land-cover values. The
+scoring object contains the actual temperature,
 humidity, rainfall, altitude, pH, climate-zone, and fallback season parameters
 consumed by the backend. Add the reviewed research sources to
 `scoringReferences`; the command never invents or approves scientific values.
 An empty `climate_zones` array preserves the scoring model's explicit
 "unrestricted" meaning; omitting the field is invalid.
 
-For new scoring values, research each region separately and record the sources
-used. Confirm units and plausible ranges for air/soil temperature, humidity,
+For new scoring values, research each available region separately and record
+the sources used. GBIF occurrences should inform taxonomic scope, regional
+distribution, fungal seasonality, and environmental calibration, alongside
+literature and regional expertise; do not infer biological optima directly
+from raw occurrence counts. Confirm units and plausible ranges for air/soil temperature, humidity,
 rainfall, altitude, pH, season months, climate zones, and land-cover codes. The
 validator catches missing fields, invalid types, and unsafe sigmas, but it
 cannot establish scientific authority; parameter approval remains a human gate.
 
 `species:generate` updates the frontend catalog, the six locale catalogs, the
-shared backend registry, BioCLIP catalog input, and missing overlay layers in
-all five map styles. Recipe categories and route-to-dish score aliases also
-derive from the manifest catalog and forecast metadata. It is deterministic
-and safe to rerun.
+shared backend registry, BioCLIP catalog input, and reconciles overlay layers
+in all five map styles. Unavailable regional species are omitted from the
+backend registry and their regional map layers are removed. Recipe categories
+and route-to-dish score aliases also derive from the manifest catalog and
+forecast metadata. It is deterministic and safe to rerun.
+
+Existing R2 parquet files may temporarily retain an old score column until that
+region's next daily pipeline run. The pipeline drops columns that are no longer
+in the generated regional registry, and the recommendation generator applies
+the same registry gate immediately so stale scores cannot be recommended.
 The optional `--id` confirms that the requested manifest exists; generation
 still reconciles the complete catalog so derived artifacts cannot drift.
 
