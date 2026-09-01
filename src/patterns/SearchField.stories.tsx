@@ -1,7 +1,7 @@
 import * as React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
+import { Search } from '@/lib/icons';
 
 /**
  * Pattern: search field.

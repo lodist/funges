@@ -26,7 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Loader2, Download, MapPin } from 'lucide-react';
+import { Loader2, Download, MapPin } from '@/lib/icons';
 import {
   loadForagingDataset,
   formatZoneLabel,
@@ -272,13 +272,13 @@ interface ChartCardProps {
 
 function ChartCard({ title, children }: ChartCardProps) {
   return (
-    <Card className='py-6 shadow-sm hover:shadow-md transition-shadow duration-[var(--duration-base)]'>
-      <CardHeader className='pb-2'>
+    <Card>
+      <CardHeader>
         <CardTitle className='text-sm font-medium text-muted-foreground'>
           {title}
         </CardTitle>
       </CardHeader>
-      <CardContent className='pt-0'>{children}</CardContent>
+      <CardContent>{children}</CardContent>
     </Card>
   );
 }
@@ -896,7 +896,7 @@ export default function DataPage() {
         <div className='flex flex-wrap items-end gap-4'>
           {/* Europe regions */}
           <div className='flex flex-col gap-1.5'>
-            <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
+            <span className='type-micro text-muted-foreground px-1'>
               {t('common:data.europe', { defaultValue: 'Europe' })}
             </span>
             <SegmentedControl
@@ -915,7 +915,7 @@ export default function DataPage() {
 
           {/* US regions */}
           <div className='flex flex-col gap-1.5'>
-            <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
+            <span className='type-micro text-muted-foreground px-1'>
               {t('common:data.unitedStates', {
                 defaultValue: 'United States',
               })}
@@ -936,7 +936,7 @@ export default function DataPage() {
 
           {/* Time range */}
           <div className='flex flex-col gap-1.5'>
-            <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
+            <span className='type-micro text-muted-foreground px-1'>
               {t('common:data.timeRange', { defaultValue: 'Time range' })}
             </span>
             <SegmentedControl
@@ -951,14 +951,14 @@ export default function DataPage() {
         </div>
 
         {/* Download current region's data */}
-        <Button asChild variant='outline' size='sm' className='gap-1.5'>
+        <Button asChild variant='outline' className='gap-1.5'>
           <a
             href={REGION_FILES[region][0].url}
             target='_blank'
             rel='noreferrer'
             aria-label={`${t('common:common.download', { defaultValue: 'Download' })}: ${regionLabel}`}
           >
-            <Download className='h-3.5 w-3.5' />
+            <Download />
             {t('common:common.download', { defaultValue: 'Download' })}
           </a>
         </Button>
@@ -1017,7 +1017,7 @@ export default function DataPage() {
                 key={chip.label}
                 className='flex flex-col items-center rounded-md border bg-background px-3 py-1.5 text-center min-w-[72px]'
               >
-                <span className='text-[10px] uppercase tracking-wide text-muted-foreground/60 leading-none mb-0.5'>
+                <span className='type-micro text-muted-foreground mb-0.5'>
                   {chip.label}
                 </span>
                 <span className='text-sm font-medium leading-tight'>
@@ -1385,7 +1385,7 @@ export default function DataPage() {
                 value={resolvedSpecies}
                 onValueChange={setSelectedSpecies}
               >
-                <SelectTrigger size='sm' className='max-w-[180px]'>
+                <SelectTrigger className='max-w-[180px]'>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

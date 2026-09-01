@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 
@@ -32,7 +32,7 @@ const meta: Meta<typeof Switch> = {
     className: {
       control: { type: 'text' },
       description:
-        'Additional CSS classes. The internal size variants are not exposed as a prop — override the dimensions here if you need to.',
+        'Additional CSS classes. The switch ships at a single size and carries a 44px hit area that does not change that visual size. Override the dimensions here only if a surface genuinely needs another.',
     },
   },
   args: {

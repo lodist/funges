@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import {
   Tooltip,
   TooltipContent,
@@ -6,7 +6,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
-import { Info, Navigation, Plus, Minus } from 'lucide-react';
+import { Info, Navigation, Plus, Minus } from '@/lib/icons';
 
 const meta: Meta<typeof Tooltip> = {
   title: 'Atoms/Tooltip',

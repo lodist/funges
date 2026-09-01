@@ -1,20 +1,9 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
-// Brand typefaces, self-hosted so --font-sans/--font-display/--font-serif/
-// --font-mono in index.css actually render instead of falling back to
-// system fonts. Public Sans (body) + Space Grotesk (headings) per #203;
-// Merriweather stays for the still-unused --font-serif token.
-import '@fontsource/public-sans/400.css';
-import '@fontsource/public-sans/500.css';
-import '@fontsource/public-sans/600.css';
-import '@fontsource/public-sans/700.css';
-import '@fontsource/space-grotesk/500.css';
-import '@fontsource/space-grotesk/600.css';
-import '@fontsource/space-grotesk/700.css';
-import '@fontsource/merriweather/400.css';
-import '@fontsource/merriweather/700.css';
-import '@fontsource/source-code-pro/400.css';
+// The brand typefaces. One list, in src/lib/fonts.ts, imported here and by
+// .storybook/preview.tsx so the two cannot drift.
+import '@/lib/fonts';
 import './index.css';
 import './i18n';
 import { initializeHtmlLocalization } from '@/lib/html-localization';

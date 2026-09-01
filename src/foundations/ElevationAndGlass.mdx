@@ -10,15 +10,17 @@ does — is it page background, input chrome, a dismissible overlay, a blocking
 dialog — and the shadow follows. Picking by how deep the shadow looks is how a
 scale drifts into a dozen one-off values.
 
-## The five levels
+## The levels
 
-| Level           | What it is for                                                                                                                |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `base`          | The map canvas. Not a discrete surface — carries no shadow at all, which is why there is no `.elevation-base` class to apply. |
-| `raised-subtle` | Lightweight input chrome: the search field, a Select trigger.                                                                 |
-| `raised`        | Small static chrome: Card, the sidebar, the mobile navbar.                                                                    |
-| `floating`      | Overlays you dismiss by tapping outside: Sheet, Popover, DropdownMenu.                                                        |
-| `overlay`       | Blocking dialogs behind a scrim.                                                                                              |
+| Level           | What it is for                                                                                                                                     |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `base`          | The map canvas. Not a discrete surface — carries no shadow at all, which is why there is no `.elevation-base` class to apply.                      |
+| `control`       | A small control you press: Button, the Slider thumb, Checkbox, Switch, a RadioGroup item.                                                          |
+| `raised-subtle` | Lightweight input chrome you look through rather than press: the search field, a Select trigger, Textarea.                                         |
+| `raised`        | Small static chrome: Card, the sidebar, the mobile navbar.                                                                                         |
+| `floating`      | Overlays you dismiss by tapping outside: Sheet, Popover, DropdownMenu.                                                                             |
+| `floating-up`   | `floating`, cast upward. Bottom Sheet only — pinned to the viewport's bottom edge, where a downward shadow falls off-screen and separates nothing. |
+| `overlay`       | Blocking dialogs behind a scrim.                                                                                                                   |
 
 <Story of={ElevationStories.ElevationLevels} />
 
@@ -28,9 +30,16 @@ so the real depth cue becomes a 1px inset highlight along the top edge.
 
 ### Interactive escalation
 
-`elevation-interactive` is the one level that moves: a `raised` surface that
-escalates on hover and settles back on press. It is the only sanctioned way to
-animate elevation — hand-rolling a hover shadow puts a value outside the scale.
+`elevation-interactive` is not a level — it is the modifier that makes one
+move, escalating on hover and settling back on press. Pair it with a level:
+`elevation-control elevation-interactive` for a Button,
+`elevation-raised elevation-interactive` for a Card. The level decides how far
+the surface lifts, by publishing `--elevation-rest` and `--elevation-lift`;
+the modifier only animates between them. On its own it animates nothing.
+
+`raised-subtle` publishes neither on purpose — input chrome does not escalate.
+This is the only sanctioned way to animate elevation; hand-rolling a hover
+shadow puts a value outside the scale.
 
 <Story of={ElevationStories.GlassInteractive} />
 
@@ -64,8 +73,9 @@ it; there is no contrast guarantee, because there is no telling what is behind.
 
 ## Everything at once
 
-Every level against every surface treatment. The lower rows of the glass
-columns are combinations the rules above **disallow** — they are here so a
-reviewer recognises the disallowed pairing on sight, not as a licence.
+Every level against every surface treatment, in both themes. The cells struck
+through and dimmed are combinations the rules above **disallow** — `base` and
+`overlay` never take glass. They are rendered so a reviewer recognises the
+disallowed pairing on sight, not as a licence.
 
 <Story of={ElevationStories.AllSurfaces} />

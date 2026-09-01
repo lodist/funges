@@ -1,7 +1,7 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import { Input } from '@/components/ui/input';
-import { Search as SearchIcon, Mail, Lock, User } from 'lucide-react';
+import { Search as SearchIcon, Mail, Lock, User } from '@/lib/icons';
 
 const meta: Meta<typeof Input> = {
   title: 'Atoms/Input',
@@ -325,7 +325,7 @@ export const WithValidation: Story = {
           className={!isValid ? 'border-destructive' : ''}
         />
         {!isValid && email && (
-          <p className='text-sm text-destructive'>
+          <p className='text-sm text-destructive-text'>
             {'Please enter a valid email address'}
           </p>
         )}
@@ -345,8 +345,11 @@ export const WithValidation: Story = {
 export const Typefaces: Story = {
   render: () => (
     <div className='space-y-3'>
-      <Input className='font-sans' placeholder='Montserrat (font-sans)' />
-      <Input className='font-serif' placeholder='Merriweather (font-serif)' />
+      <Input className='font-sans' placeholder='Public Sans (font-sans)' />
+      <Input
+        className='font-display'
+        placeholder='Space Grotesk (font-display)'
+      />
       <Input className='font-mono' placeholder='Source Code Pro (font-mono)' />
     </div>
   ),

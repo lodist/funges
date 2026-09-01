@@ -7,11 +7,14 @@ A React/Vite/Tailwind foraging map PWA. This glossary covers the design-system v
 ### Design system — elevation & glass
 
 **Elevation level**:
-One of five semantic surface roles — `base`, `raised-subtle`, `raised`, `floating`, `overlay` — that determines how a component's shadow and depth cues read, chosen by role rather than by picking a raw shadow value.
+One of seven semantic surface roles — `base`, `control`, `raised-subtle`, `raised`, `floating`, `floating-up`, `overlay` — that determines how a component's shadow and depth cues read, chosen by role rather than by picking a raw shadow value.
 _Avoid_: shadow depth, shadow tier, z-index level
 
 **Base**:
 The elevation level for the map canvas itself — no shadow, no glass. Not a "surface" in this system's sense.
+
+**Control**:
+The elevation level for a small control the user presses — Button, the Slider thumb, Checkbox, Switch, a RadioGroup item. Distinct from Raised-subtle: control chrome is pressed, input chrome is looked through, and only the former escalates on hover.
 
 **Raised**:
 The elevation level for small, static, fixed-size chrome that sits above the base surface without floating free of it (e.g. a card, the app sidebar, the mobile bottom nav bar — persistent primary nav, not dismissed by tap-outside, so it doesn't qualify as Floating despite visually sitting over the map).
@@ -22,8 +25,16 @@ A quieter variant of Raised for lightweight input chrome (e.g. a search field, a
 **Floating**:
 The elevation level for dismiss-by-tap-outside surfaces that appear above other content and can be dismissed independently of it (e.g. a menu, a sheet, a tooltip).
 
+**Floating-up**:
+Floating with the drop shadow cast upward instead of down. The sole directional variant, and it exists for exactly one case: a bottom Sheet is pinned to the viewport's bottom edge, so a downward shadow falls off-screen and leaves the top edge — the only edge on screen — with nothing separating it from the map. The inset highlight does not invert with it; the light source is still above.
+_Avoid_: inverted shadow, reverse elevation, up-shadow
+
 **Overlay**:
 The elevation level for blocking surfaces with a scrim that must be explicitly dismissed (e.g. a modal dialog).
+
+**Interactive escalation**:
+The `elevation-interactive` modifier, which animates a surface between the resting and lifted shadows its level publishes as `--elevation-rest` / `--elevation-lift`. It is a modifier, not a level: it is always paired with one (`elevation-control elevation-interactive`, `elevation-raised elevation-interactive`) and animates nothing on its own. Raised-subtle publishes neither property on purpose — input chrome does not escalate.
+_Avoid_: hover shadow, lift effect
 
 **Glass**:
 An opt-in translucent, blurred treatment layered on top of an elevation level — never a replacement for one. Restricted to `raised`/`floating` chrome that is small, fixed-size, and not text-heavy; never applied to `base` or `overlay`.

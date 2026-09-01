@@ -3,7 +3,12 @@ import { describe, expect, it } from 'vitest';
 
 import { SCORE_COLOR_RAMP } from '@/lib/scoreColor';
 
-const css = readFileSync('src/index.css', 'utf8');
+// Comments stripped: a value named in prose to explain why it was replaced
+// is not a colour the theme ships.
+const css = readFileSync('src/index.css', 'utf8').replace(
+  /\/\*[\s\S]*?\*\//g,
+  ''
+);
 
 /** Every `oklch(L C H)` literal in the theme, with its hue and chroma. */
 const oklchValues = [
@@ -23,11 +28,17 @@ describe('palette hues', () => {
 
   // The whole point of the palette: one brand hue, one neutral angle, and the
   // map score ramp. A new hue angle here means colour has scattered again.
-  it('uses only the brand hue and the neutral angle', () => {
+  //
+  // Hue 28 is the one sanctioned exception (#225): destructive actions. The
+  // green stand-in it replaced made a delete look like a confirm, and red is
+  // the foraging domain's own "do not eat" signal rather than a generic UI
+  // convention. It is a single angle, used only by the --destructive tokens —
+  // if a fourth angle appears, colour has scattered and this test should fail.
+  it('uses only the brand hue, the neutral angle, and the danger hue', () => {
     const hues = [
       ...new Set(oklchValues.filter(v => v.chroma > 0).map(v => v.hue)),
     ].sort((a, b) => a - b);
-    expect(hues).toEqual([90, 150]);
+    expect(hues).toEqual([28, 90, 150]);
   });
 
   it('keeps every colour inside the sRGB gamut', () => {
@@ -64,5 +75,41 @@ describe('safety-warning tokens', () => {
     const dark = css.slice(css.indexOf('.dark {'));
     expect(dark).toContain(`--status-warning-text: ${stop(5)};`);
     expect(dark).toContain(`--status-warning-border: ${stop(8)};`);
+  });
+});
+
+describe('hue rule coverage', () => {
+  // The hue assertion above only reads `oklch()` literals, so for a long time
+  // a coloured token written as hex sat outside the One Hue Rule entirely —
+  // which is how the warning ramp stops went unnoticed. This closes that:
+  // every hex token must be either a deliberate ramp borrowing or achromatic
+  // (white, black, or a pure grey), never a new hue smuggled in as hex.
+  const rampStops = new Set(
+    SCORE_COLOR_RAMP.map(([, hex]) => hex.toLowerCase())
+  );
+
+  const isAchromatic = (hex: string) => {
+    const h = hex.replace('#', '');
+    const full =
+      h.length === 3
+        ? h
+            .split('')
+            .map(c => c + c)
+            .join('')
+        : h;
+    const [r, g, b] = [0, 2, 4].map(i => parseInt(full.slice(i, i + 2), 16));
+    return r === g && g === b;
+  };
+
+  it('declares no chromatic colour as a hex literal', () => {
+    const offenders = [
+      ...css.matchAll(/^\s*(--[a-z0-9-]+):\s*(#[0-9a-fA-F]{3,8})\s*;/gm),
+    ]
+      .map(m => ({ token: m[1], hex: m[2] }))
+      .filter(
+        ({ hex }) => !rampStops.has(hex.toLowerCase()) && !isAchromatic(hex)
+      );
+
+    expect(offenders).toEqual([]);
   });
 });

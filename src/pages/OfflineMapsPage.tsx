@@ -49,7 +49,7 @@ export default function OfflineMapsPage() {
         )}
 
         {error && (
-          <div className='bg-destructive/10 text-destructive px-4 py-2 rounded'>
+          <div className='bg-destructive/10 text-destructive-text px-4 py-2 rounded'>
             {error}
           </div>
         )}
@@ -95,7 +95,6 @@ export default function OfflineMapsPage() {
                       <td className='px-2 py-1 text-right'>
                         {info ? (
                           <Button
-                            size='sm'
                             disabled={isDownloading}
                             onClick={() => remove(continent)}
                           >
@@ -103,7 +102,6 @@ export default function OfflineMapsPage() {
                           </Button>
                         ) : (
                           <Button
-                            size='sm'
                             disabled={isDownloading || !isOnline}
                             onClick={() => download(continent)}
                           >

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/tanstack-react';
 
 /**
  * Foundations specimens for the radius and spacing scales.
@@ -41,7 +41,7 @@ const RADII = [
     className: 'rounded-md',
     token: '--radius-md',
     formula: 'radius − 2px',
-    use: 'Default for square-cornered controls.',
+    use: 'Small inner chrome. Not a control default — controls are pills.',
   },
   {
     className: 'rounded-lg',
@@ -53,20 +53,20 @@ const RADII = [
     className: 'rounded-xl',
     token: '--radius-xl',
     formula: 'radius + 4px',
-    use: 'Larger surfaces where the base looks mean.',
+    use: 'Larger structural surfaces. Containers use rounded-card instead.',
   },
 ];
 
 const EXTRA_RADII = [
   {
-    className: 'rounded-2xl',
-    label: 'rounded-2xl',
-    use: 'Cards, Textarea, Skeleton — the redesigned atoms.',
+    className: 'rounded-card',
+    label: 'rounded-card',
+    use: 'Every container: Card, Dialog, Select, Dropdown, Sheet, Textarea, Skeleton.',
   },
   {
     className: 'rounded-full',
     label: 'rounded-full',
-    use: 'Pills: Button, Badge, Input, Tooltip.',
+    use: 'Everything you press: Button, Badge, Input, Tooltip.',
   },
 ];
 
@@ -118,7 +118,7 @@ export const BeyondTheScale: Story = {
       </div>
       <p className='text-muted-foreground max-w-2xl text-sm'>
         {
-          'The redesigned atoms reach past the derived scale on purpose: pills for anything you press, and a generous 2xl for content surfaces. These are Tailwind defaults rather than project tokens, which is worth knowing — they do not move when --radius does.'
+          'The two radii that carry the product are not on the derived scale, and that is the point: --radius-card is a flat 1.25rem so containers keep one shape whatever the structural scale does, and pills are pills. Before #225 the container role had a name in DESIGN.md and no token in the code, so Card hardcoded 1.25rem while thirteen other surfaces used Tailwind’s rounded-2xl (16px) and three used rounded-3xl (24px) — three container radii where the rule declares one.'
         }
       </p>
     </div>
@@ -196,7 +196,7 @@ export const AllRadiusAndSpacing: Story = {
         ].map(className => (
           <div key={className} className='flex flex-col gap-1'>
             <div aria-hidden className={`bg-primary size-16 ${className}`} />
-            <p className='text-muted-foreground font-mono text-[10px]'>
+            <p className='text-muted-foreground font-mono text-xs'>
               {className}
             </p>
           </div>
@@ -210,9 +210,7 @@ export const AllRadiusAndSpacing: Story = {
               className='bg-primary w-4'
               style={{ height: `calc(var(--spacing) * ${step})` }}
             />
-            <p className='text-muted-foreground font-mono text-[10px]'>
-              {step}
-            </p>
+            <p className='text-muted-foreground font-mono text-xs'>{step}</p>
           </div>
         ))}
       </div>

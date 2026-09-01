@@ -11,7 +11,7 @@ import {
   Info,
   ShieldCheck,
   Gavel,
-} from 'lucide-react';
+} from '@/lib/icons';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import MapLastUpdated from '@/components/MapLastUpdated';
 
@@ -70,15 +70,13 @@ export default function SettingsPage() {
         <div className='space-y-4'>
           {links.map(link => (
             <Link key={link.url} to={link.url} className='block'>
-              <Card className='bg-card hover:bg-muted transition-colors'>
-                <CardContent className='py-4'>
+              <Card interactive>
+                <CardContent>
                   <div className='flex items-center gap-3'>
                     {link.icon && (
                       <link.icon className='h-5 w-5 text-muted-foreground' />
                     )}
-                    <CardTitle className='text-foreground dark:text-white'>
-                      {link.label}
-                    </CardTitle>
+                    <CardTitle>{link.label}</CardTitle>
                   </div>
                 </CardContent>
               </Card>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/tanstack-react';
 import {
   Dialog,
   DialogClose,
@@ -209,7 +209,7 @@ export const LongContent: Story = {
     docs: {
       description: {
         story:
-          'The content does not scroll on its own — a tall dialog needs `max-h-*` and `overflow-y-auto`, or it grows past the viewport.',
+          'The panel caps its own height and scrolls its body, so a tall dialog never grows past the viewport. `max-h-*` on the content overrides the cap when a dialog wants to sit shorter — as this story does at `80vh`. The close button stays put while the body scrolls.',
       },
     },
   },
