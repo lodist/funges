@@ -1,8 +1,9 @@
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
-import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
+import { MapContainer, GeoJSON, useMap } from 'react-leaflet';
 import { useTranslation } from 'react-i18next';
 import type { Layer, PathOptions } from 'leaflet';
+import { leafletLayer } from 'protomaps-leaflet';
 import { formatZoneLabel } from '@/lib/data';
 
 // Leaflet bounds type: [[south, west], [north, east]]
@@ -26,6 +27,28 @@ const REGION_BOUNDS: Record<string, LatLngBounds> = {
     [52, -97],
   ],
 };
+
+const BASEMAP_URL = 'https://data.fung.es/basemap/world_z12_20260619.pmtiles';
+
+function SelfHostedBasemap({ language }: { language: string }) {
+  const map = useMap();
+
+  useEffect(() => {
+    const layer = leafletLayer({
+      url: BASEMAP_URL,
+      flavor: 'white',
+      lang: language.split('-')[0],
+      maxDataZoom: 12,
+    });
+
+    layer.addTo(map);
+    return () => {
+      layer.remove();
+    };
+  }, [language, map]);
+
+  return null;
+}
 
 interface FitBoundsProps {
   region: string;
@@ -143,13 +166,11 @@ export default function ZoneMap({
           bounds={REGION_BOUNDS[region] ?? REGION_BOUNDS.NE}
           style={{ height: '320px', width: '100%', borderRadius: '0.5rem' }}
           zoomControl={true}
-          attributionControl={false}
           scrollWheelZoom={true}
           minZoom={2}
         >
-          <TileLayer
-            url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          <SelfHostedBasemap
+            language={i18n.resolvedLanguage ?? i18n.language}
           />
           <GeoJSON
             key={`${region}-${i18n.language}`}
