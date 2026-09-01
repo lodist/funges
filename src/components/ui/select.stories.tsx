@@ -8,7 +8,6 @@ import {
   SelectGroup,
   SelectItem,
   SelectLabel,
-  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
@@ -276,7 +275,6 @@ export const Grouped: Story = {
           <SelectItem value='chanterelle'>{'Chanterelle'}</SelectItem>
           <SelectItem value='cep'>{'Cep'}</SelectItem>
         </SelectGroup>
-        <SelectSeparator />
         <SelectGroup>
           <SelectLabel>{'Plants'}</SelectLabel>
           <SelectItem value='ramsons'>{'Ramsons'}</SelectItem>

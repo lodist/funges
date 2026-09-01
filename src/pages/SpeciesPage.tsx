@@ -19,7 +19,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Separator } from '@/components/ui/separator';
 import {
   Search,
   Leaf,
@@ -219,7 +218,7 @@ export default function SpeciesPage() {
                   )}
                 </div>
 
-                <CardContent className='space-y-4'>
+                <CardContent className='space-y-6'>
                   {/* Description */}
                   <div>
                     <p className='text-sm text-muted-foreground leading-relaxed'>
@@ -227,15 +226,13 @@ export default function SpeciesPage() {
                     </p>
                   </div>
 
-                  <Separator />
-
                   {/* Foraging Instructions */}
                   <div>
                     <div className='flex items-center gap-2 mb-2'>
                       <Leaf className='h-4 w-4 text-success' />
-                      <span className='text-sm font-medium text-muted-foreground'>
+                      <h4 className='text-sm font-medium text-muted-foreground'>
                         {t('howTo')}
-                      </span>
+                      </h4>
                     </div>
                     <p className='text-sm text-muted-foreground leading-relaxed'>
                       {species.howTo}

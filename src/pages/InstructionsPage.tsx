@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { getScoreGradientCss } from '@/lib/scoreColor';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import SEO from '@/components/SEO';
-import { Separator } from '@/components/ui/separator';
 import {
   Map,
   ScanSearch,
@@ -203,8 +202,6 @@ export default function InstructionsPage() {
                 {t('about.currentStatus')}
               </p>
 
-              <Separator />
-
               <div>
                 <h4 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
                   {t('about.keyFeatures.title')}
@@ -288,8 +285,6 @@ export default function InstructionsPage() {
                 {t('prediction.goal')}
               </p>
 
-              <Separator />
-
               <div>
                 <h4 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
                   {t('prediction.methodology.title')}
@@ -301,8 +296,6 @@ export default function InstructionsPage() {
                   {t('prediction.methodology.datasets')}
                 </p>
               </div>
-
-              <Separator />
 
               <div>
                 <h4 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
