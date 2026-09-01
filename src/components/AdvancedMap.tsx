@@ -22,6 +22,8 @@ import {
 import { useOfflineStore } from '@/store/offlineStore';
 import {
   containsCoordinate,
+  offlineMapMaxZoom,
+  ONLINE_MAX_ZOOM,
   packageHasBasemap,
   packageSize,
   type OfflineContinent,
@@ -217,16 +219,17 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       packageHasBasemap(item.definition) &&
       containsCoordinate(item.definition, center[0], center[1])
   );
-  const offlineBasemapPackageIdAtCenter = cachedPackageList
+  const offlineBasemapAtCenter = cachedPackageList
     .filter(
       item =>
         !item.expired &&
         packageHasBasemap(item.definition) &&
         containsCoordinate(item.definition, center[0], center[1])
     )
-    .sort(
-      (a, b) => packageSize(a.definition) - packageSize(b.definition)
-    )[0]?.id;
+    .sort((a, b) => packageSize(a.definition) - packageSize(b.definition))[0];
+  const offlineBasemapPackageIdAtCenter = offlineBasemapAtCenter?.id;
+  const offlineBasemapMaxZoom =
+    offlineBasemapAtCenter?.definition.maxZoom ?? null;
   const routeStart = showUserLocation && userLocation ? userLocation : center;
   const routeRecipes = recipes.map(recipe => ({
     id: recipe.id,
@@ -265,6 +268,16 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOnline, activateForCoordinate, offlineBasemapPackageIdAtCenter]);
 
+  // The offline archive has no tiles past its package maxZoom, so MapLibre
+  // renders blank instead of overzooming. Cap the camera while it is the
+  // source and hand the full range back once the online tiles return.
+  useEffect(() => {
+    const instance = map.current;
+    if (!instance || !mapLoaded) return;
+    const limit = offlineMapMaxZoom(isOnline, offlineBasemapMaxZoom);
+    if (instance.getMaxZoom() !== limit) instance.setMaxZoom(limit);
+  }, [isOnline, offlineBasemapMaxZoom, mapLoaded]);
+
   useEffect(() => {
     routeInputsRef.current = {
       routeRecipes,
@@ -289,7 +302,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         // Basemap tiles are baked to z12 natively; MapLibre overzooms past that
         // (reuses/upscales the z12 tile) so labels/roads keep rendering using the
         // interpolation stops already authored up to z20-22 in the style files.
-        maxZoom: 20,
+        maxZoom: ONLINE_MAX_ZOOM,
         minZoom: 3.01,
         collectResourceTiming: false,
         touchZoomRotate: true,

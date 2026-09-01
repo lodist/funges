@@ -38,6 +38,24 @@ export interface OfflinePackageManifest {
   packages: OfflinePackageDefinition[];
 }
 
+/**
+ * Camera ceiling with the online source, whose tiles are baked to z12 and
+ * overzoomed past that by MapLibre.
+ */
+export const ONLINE_MAX_ZOOM = 20;
+
+/**
+ * An offline archive holds no tiles past its package maxZoom, so MapLibre
+ * renders blank rather than overzooming. Cap the camera while offline.
+ */
+export function offlineMapMaxZoom(
+  isOnline: boolean,
+  offlinePackageMaxZoom: number | null
+): number {
+  if (isOnline || offlinePackageMaxZoom === null) return ONLINE_MAX_ZOOM;
+  return offlinePackageMaxZoom;
+}
+
 export function packageSize(definition: OfflinePackageDefinition): number {
   return definition.resources.reduce(
     (total, resource) => total + resource.sizeBytes,

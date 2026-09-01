@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
   containsCoordinate,
+  offlineMapMaxZoom,
+  ONLINE_MAX_ZOOM,
   packageHasBasemap,
   packageSize,
   validateOfflineManifest,
@@ -137,5 +139,19 @@ describe('offline package definitions', () => {
     expect(() =>
       validateOfflineManifest({ schemaVersion: 2, packages: [] })
     ).toThrow(/unsupported offline manifest version/i);
+  });
+});
+
+describe('offlineMapMaxZoom', () => {
+  it('caps the camera at the offline package maxZoom', () => {
+    expect(offlineMapMaxZoom(false, 8)).toBe(8);
+  });
+
+  it('keeps the full range online even over a downloaded package', () => {
+    expect(offlineMapMaxZoom(true, 8)).toBe(ONLINE_MAX_ZOOM);
+  });
+
+  it('keeps the full range offline with no package covering the view', () => {
+    expect(offlineMapMaxZoom(false, null)).toBe(ONLINE_MAX_ZOOM);
   });
 });
