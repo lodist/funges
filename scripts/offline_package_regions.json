@@ -17,6 +17,6 @@
     "description": "Detailed offline basemap and foraging forecasts for the United States.",
     "bounds": [-125, 24, -66, 50],
     "minZoom": 3,
-    "maxZoom": 10
+    "maxZoom": 8
   }
 ]
