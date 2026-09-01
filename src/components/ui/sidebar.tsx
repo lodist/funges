@@ -585,15 +585,17 @@ function SidebarMenuBadge({
 function SidebarMenuSkeleton({
   className,
   showIcon = false,
+  width = '70%',
   ...props
 }: React.ComponentProps<'div'> & {
   showIcon?: boolean;
+  /**
+   * Label width, so a list of rows can vary without a random number in the
+   * render. It was `Math.random()`, which made the output non-deterministic:
+   * nothing could assert the row, and every remount reshuffled it.
+   */
+  width?: string;
 }) {
-  // Random width between 50 to 90%.
-  const width = React.useMemo(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`;
-  }, []);
-
   return (
     <div
       data-slot='sidebar-menu-skeleton'

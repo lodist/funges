@@ -9,6 +9,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import type { RouteDishPlan } from '@/lib/route-to-dish';
 
@@ -96,9 +97,26 @@ export default function RouteToDishPanel({
         ) : null}
 
         {isLoading ? (
-          <p className='text-xs text-muted-foreground'>
-            {t('routePanel.loading')}
-          </p>
+          <SkeletonGroup label={t('routePanel.loading')} className='space-y-2'>
+            {[0, 1].map(placeholder => (
+              <div
+                key={placeholder}
+                className='rounded-lg border border-border px-2.5 py-2 sm:px-3'
+              >
+                <div className='flex items-start justify-between gap-2'>
+                  <div className='min-w-0 flex-1 space-y-1.5'>
+                    <Skeleton className='h-4 w-4/5' />
+                    <Skeleton className='h-3 w-1/2' />
+                  </div>
+                  <Skeleton className='h-5 w-9 shrink-0 rounded-full' />
+                </div>
+                <div className='mt-2 flex flex-wrap gap-1'>
+                  <Skeleton className='h-5 w-16 rounded-full' />
+                  <Skeleton className='h-5 w-12 rounded-full' />
+                </div>
+              </div>
+            ))}
+          </SkeletonGroup>
         ) : null}
 
         {!isLoading && !error && topPlans.length === 0 ? (

@@ -394,6 +394,45 @@ the role was, and the three implementations drifted exactly there.
 - **Length is decided by the container, so watch what the container does.** In the recipe modal the header rule sits outside the scrolling region and the section rules sat inside it, where `pr-1` plus the live scrollbar took 12px off their right edge — two rules of the same component, one above the other, ending at different x. Measure a separator's rendered box whenever it crosses a padding or overflow boundary; `data-[orientation=horizontal]:w-full` also outranks a plain `w-auto`, which is what made an inset `SidebarSeparator` overflow its container.
 - **One idiom per level.** `divide-y divide-border` inside the instruction list paints the same 1px `--border` at the same width as a section rule, so a step boundary read exactly as loud as the boundary between Ingredients and Instructions. `divide-y` is the right tool for a run of peers — a list of steps, a table body — and a `Separator` is the tool between siblings of different kinds. They must not appear at two levels of the same tree at the same weight.
 
+### Skeleton
+
+A placeholder for content that has not arrived. It has no size of its own: the caller gives it the
+shape of what it stands in for, and the shape includes the radius. Reach for it wherever a surface
+knows what is coming — a card grid, a page, a list of rows — and keep the spinner for a control's own
+busy state, where there is no shape to hold.
+
+- **A recessed fill is a step off the surface it recesses from, in both themes.** `--muted` carried
+  `--card`'s exact value in dark, so every `bg-muted` inside a card or a popover painted pixels
+  identical to its ground: 1.00:1, measured, byte for byte. Skeleton was the worst case because a
+  fill is its only channel — no border, no text — and the pulse could not rescue it either, since
+  animating the opacity of a fill that already matches its ground changes nothing at any frame. It
+  is now one lightness step above Night Surface at the same chroma: 1.152:1 on `--card`, which is
+  parity with the 1.13:1 the light theme has always shipped, and 1.441:1 on `--background`. It stays
+  under `--border` so a hairline still reads over a muted fill.
+- **The radius is part of the shape, and a container radius is not a text radius.** CSS clamps a
+  radius past half the shorter side, so `rounded-card` (20px) rendered a full pill on every
+  placeholder under 40px tall — which is every one standing in for text. The matrix listed «text
+  line» and «pill» as separate shapes and drew them identically. The default is now the small step;
+  a card- or media-shaped placeholder asks for `rounded-card`, and an avatar for `rounded-full`.
+- **`cn` has to know the project's own radius token for any of that to hold.** `--radius-card` is a
+  project value, so tailwind-merge did not recognise `rounded-card` as a radius utility and let it
+  coexist with the base step instead of replacing it. Both classes survived, the cascade picked the
+  winner, and a caller's override lost silently. `cn` now extends the radius theme.
+- **The wait is announced, not only pulsed.** A pulse is one visual channel, and reduced motion
+  collapses it to a still block — `animation-iteration-count: 1` — so a reduced-motion user in dark
+  had no channel at all before the token fix. `SkeletonGroup` is the live region: `role='status'`,
+  `aria-busy`, and one visually hidden message for the whole set. Each shape is `aria-hidden`, so a
+  screen reader hears the wait once rather than once per rectangle.
+- **One region per surface, not one per shape.** Measured on the recommendation grid: 36 shapes, one
+  `role='status'`.
+- **The placeholder takes the loaded footprint.** Measured on the same grid: the placeholder's
+  columns resolve to `365.328px 365.336px 365.336px`, the loaded grid's to the same, so arrival does
+  not shove the page. This is the whole reason to prefer it over a spinner, which sat in one small
+  box where a three-column grid was about to appear.
+- **A placeholder renders the same twice.** `SidebarMenuSkeleton` derived its label width from
+  `Math.random()` inside the render: nothing could assert the row and every remount reshuffled it.
+  Width is a prop, like every other part of the shape.
+
 ### Selection Controls
 
 Checkbox, radio and switch. The three share one boundary rule, one indicator rule and one
