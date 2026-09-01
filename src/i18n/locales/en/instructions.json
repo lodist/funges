@@ -17,7 +17,7 @@
     "availableTitle": "What remains available",
     "available": "The downloaded basemap, forecasts, species selector, forecast slider, zone details, every map style, and Locate Me remain available. GPS does not require mobile data, although it may be slower and still needs location permission.",
     "unavailableTitle": "What needs a connection",
-    "unavailable": "Photo ID, Route to Dish, Google Maps navigation, and Area Data are hidden while offline because they require an internet connection."
+    "unavailable": "Photo ID remains available after its one-time model download. Route to Dish, Google Maps navigation, and Area Data are hidden while offline because they require an internet connection."
   },
   "functions": {
     "title": "Functions:",

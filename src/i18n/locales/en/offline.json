@@ -3,6 +3,16 @@
   "description": "Download and manage map packages for offline use",
   "intro": "Download a map package before your trip. Each package includes the basemap and foraging forecasts and remains valid for 7 days.",
   "offlineBanner": "You're offline. Valid downloaded packages remain available.",
+  "catalog": {
+    "eu": {
+      "name": "Europe",
+      "description": "Detailed offline basemap and foraging forecasts for Europe."
+    },
+    "us": {
+      "name": "United States",
+      "description": "Detailed offline basemap and foraging forecasts for the United States."
+    }
+  },
   "storage": {
     "title": "Device storage",
     "summary": "{{used}} used of approximately {{quota}} available to this site",

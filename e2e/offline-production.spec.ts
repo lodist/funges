@@ -52,7 +52,7 @@ test('production app shell reloads and switches every map style offline', async 
   await expect(page.locator('canvas.maplibregl-canvas')).toBeVisible();
   await expect(
     page.getByRole('button', { name: 'Identify from a photo' })
-  ).toHaveCount(0);
+  ).toBeVisible();
   await expect(
     page.getByRole('button', { name: 'Nearby Recipes' })
   ).toHaveCount(0);
@@ -60,7 +60,7 @@ test('production app shell reloads and switches every map style offline', async 
     page.getByRole('button', { name: 'Get My Location' })
   ).toBeVisible();
   await page.getByRole('button', { name: 'Get My Location' }).click();
-  await expect(page.locator('.user-location-marker')).toBeVisible();
+  await expect(page.locator('.maplibregl-user-location-dot')).toBeVisible();
 
   await page.goto('/instructions');
   await expect(

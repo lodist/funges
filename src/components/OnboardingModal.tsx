@@ -67,12 +67,10 @@ export default function OnboardingModal() {
           </li>
           {/* Same ScanSearch icon as the map control it describes, so the
               line and the button are recognisably the same feature. */}
-          {isOnline && (
-            <li className='flex items-center gap-2'>
-              <ScanSearch className='h-4 w-4' />
-              {t('onboarding.features.identify')}
-            </li>
-          )}
+          <li className='flex items-center gap-2'>
+            <ScanSearch className='h-4 w-4' />
+            {t('onboarding.features.identify')}
+          </li>
           <li className='flex items-center gap-2'>
             <Navigation className='h-4 w-4' />
             {t('onboarding.features.locate')}
@@ -96,7 +94,7 @@ export default function OnboardingModal() {
               <Download className='h-4 w-4' />
               <Link
                 to='/offline'
-                className='font-medium text-primary underline underline-offset-2'
+                className='font-medium text-primary-text underline underline-offset-2'
               >
                 {t('onboarding.features.offline')}
               </Link>

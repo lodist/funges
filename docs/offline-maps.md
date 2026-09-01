@@ -25,6 +25,8 @@ must reference only complete, publicly accessible packages.
 
 The build script never uploads or deploys files. Updating the manifest before
 the archives exist would expose downloads that cannot complete.
+It copies the current forecast metadata from `public/offline-packages.json` so
+building a new basemap cannot restore old forecast sizes or versions.
 
 The scheduled data workflow runs `scripts/refresh_offline_manifest.py`. It
 updates forecast sizes, ETags, and resource versions without changing the
@@ -56,8 +58,9 @@ store the range-response pattern used by PMTiles.
   all five map styles, and device geolocation remain available.
 - Geolocation uses GPS and does not require mobile data, although the first fix
   can be slower and still requires operating-system permission.
-- Photo ID, Route to Dish, Google Maps navigation, and Area Data are hidden
-  while offline. Open panels close when the browser loses connectivity.
+- Photo ID remains available offline once its one-time model download has
+  completed. Route to Dish, Google Maps navigation, and Area Data are hidden
+  while offline. Open network-backed panels close when connectivity is lost.
 - Every published package contains both a regional basemap and its foraging
   forecasts. Do not publish forecast-only package definitions.
 - Cached map resources are activated only while offline. Online sessions use

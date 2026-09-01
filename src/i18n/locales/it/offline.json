@@ -3,6 +3,16 @@
   "description": "Scarica e gestisci pacchetti di mappe per l’uso offline",
   "intro": "Scarica un pacchetto di mappe prima dell’escursione. Ogni pacchetto include la mappa di base e le previsioni di raccolta ed è valido per 7 giorni.",
   "offlineBanner": "Sei offline. I pacchetti scaricati ancora validi restano disponibili.",
+  "catalog": {
+    "eu": {
+      "name": "Europa",
+      "description": "Mappa di base dettagliata e previsioni di raccolta offline per l’Europa."
+    },
+    "us": {
+      "name": "Stati Uniti",
+      "description": "Mappa di base dettagliata e previsioni di raccolta offline per gli Stati Uniti."
+    }
+  },
   "storage": {
     "title": "Spazio del dispositivo",
     "summary": "{{used}} utilizzati su circa {{quota}} disponibili per questo sito",

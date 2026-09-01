@@ -17,7 +17,7 @@
     "availableTitle": "Cosa resta disponibile",
     "available": "La mappa di base scaricata, le previsioni, il selettore delle specie, il cursore delle previsioni, i dettagli delle zone, tutti gli stili e la posizione restano disponibili. Il GPS non richiede dati mobili, ma può essere più lento e necessita del permesso di localizzazione.",
     "unavailableTitle": "Cosa richiede una connessione",
-    "unavailable": "ID da foto, Itinerario per la ricetta, navigazione Google Maps e dati dell’area sono nascosti offline perché richiedono una connessione Internet."
+    "unavailable": "L’ID da foto resta disponibile dopo aver scaricato il modello una sola volta. Itinerario per la ricetta, navigazione Google Maps e dati dell’area sono nascosti offline perché richiedono una connessione Internet."
   },
   "functions": {
     "title": "Funzioni:",

@@ -3,6 +3,16 @@
   "description": "Descarga y administra paquetes de mapas para usarlos sin conexión",
   "intro": "Descarga un paquete de mapas antes de salir. Cada paquete incluye el mapa base y las previsiones de recolección y es válido durante 7 días.",
   "offlineBanner": "Estás sin conexión. Los paquetes descargados que siguen vigentes permanecen disponibles.",
+  "catalog": {
+    "eu": {
+      "name": "Europa",
+      "description": "Mapa base detallado y previsiones de recolección para usar sin conexión en Europa."
+    },
+    "us": {
+      "name": "Estados Unidos",
+      "description": "Mapa base detallado y previsiones de recolección para usar sin conexión en Estados Unidos."
+    }
+  },
   "storage": {
     "title": "Almacenamiento del dispositivo",
     "summary": "{{used}} usados de aproximadamente {{quota}} disponibles para este sitio",

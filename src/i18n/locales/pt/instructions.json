@@ -17,7 +17,7 @@
     "availableTitle": "O que continua disponível",
     "available": "O mapa base transferido, as previsões, o seletor de espécies, o controlo da previsão, os detalhes das zonas, todos os estilos e a localização continuam disponíveis. O GPS não requer dados móveis, embora possa ser mais lento e necessite de permissão de localização.",
     "unavailableTitle": "O que requer ligação",
-    "unavailable": "A identificação por fotografia, Rota para o prato, a navegação Google Maps e os dados da área ficam ocultos offline porque requerem uma ligação à Internet."
+    "unavailable": "A identificação por fotografia continua disponível após a transferência única do modelo. Rota para o prato, a navegação Google Maps e os dados da área ficam ocultos offline porque requerem uma ligação à Internet."
   },
   "functions": {
     "title": "Funções:",

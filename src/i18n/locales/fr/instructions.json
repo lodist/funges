@@ -17,7 +17,7 @@
     "availableTitle": "Ce qui reste disponible",
     "available": "Le fond de carte téléchargé, les prévisions, le sélecteur d’espèces, le curseur de prévision, les détails des zones, tous les styles et la localisation restent disponibles. Le GPS n’utilise pas les données mobiles, mais peut être plus lent et nécessite l’autorisation de localisation.",
     "unavailableTitle": "Ce qui nécessite une connexion",
-    "unavailable": "L’identification photo, Route vers un plat, la navigation Google Maps et les données régionales sont masquées hors ligne car elles nécessitent une connexion Internet."
+    "unavailable": "L’identification photo reste disponible après le téléchargement unique du modèle. Route vers un plat, la navigation Google Maps et les données régionales sont masquées hors ligne car elles nécessitent une connexion Internet."
   },
   "functions": {
     "title": "Fonctions :",

@@ -19,42 +19,6 @@ WORLD_SOURCE_URL = (
     "https://data.fung.es/basemap/world_z12_20260619.pmtiles"
 )
 
-FORECASTS = {
-    "eu": [
-        {
-            "id": "ne-forecast",
-            "kind": "forecast",
-            "version": "2026-08-20-c657be10",
-            "sourceUrl": "https://data.fung.es/EU/NE/ne_forecast.pmtiles",
-            "sizeBytes": 6834690,
-        },
-        {
-            "id": "se-forecast",
-            "kind": "forecast",
-            "version": "2026-08-20-4e518f5c",
-            "sourceUrl": "https://data.fung.es/EU/SE/se_forecast.pmtiles",
-            "sizeBytes": 6695058,
-        },
-    ],
-    "us": [
-        {
-            "id": "use-forecast",
-            "kind": "forecast",
-            "version": "2026-08-20-2be83449",
-            "sourceUrl": "https://data.fung.es/USA/USE/use_forecast.pmtiles",
-            "sizeBytes": 4753711,
-        },
-        {
-            "id": "usw-forecast",
-            "kind": "forecast",
-            "version": "2026-08-20-67b203c8",
-            "sourceUrl": "https://data.fung.es/USA/USW/usw_forecast.pmtiles",
-            "sizeBytes": 5058555,
-        },
-    ],
-}
-
-
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as source:
@@ -86,9 +50,26 @@ def main() -> None:
         type=Path,
         default=Path("public/offline-packages.json"),
     )
+    parser.add_argument(
+        "--forecast-manifest",
+        type=Path,
+        default=Path("public/offline-packages.json"),
+        help="Current catalog used as the source of mutable forecast metadata",
+    )
     args = parser.parse_args()
 
     definitions = json.loads(args.definitions.read_text(encoding="utf-8"))
+    current_manifest = json.loads(
+        args.forecast_manifest.read_text(encoding="utf-8")
+    )
+    forecasts = {
+        package["continent"]: [
+            resource.copy()
+            for resource in package["resources"]
+            if resource["kind"] == "forecast"
+        ]
+        for package in current_manifest["packages"]
+    }
     args.output_dir.mkdir(parents=True, exist_ok=True)
     generated_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     packages = []
@@ -111,20 +92,21 @@ def main() -> None:
             "--overfetch=0",
         )
         run("pmtiles", "verify", str(output))
+        artifact_sha = sha256(output)
 
         resources = [
             {
                 "id": "basemap",
                 "kind": "basemap",
-                "version": args.version,
+                "version": artifact_sha,
                 "sourceUrl": WORLD_SOURCE_URL,
                 "downloadUrl": (
                     f"{args.public_base_url.rstrip('/')}/{filename}"
                 ),
                 "sizeBytes": output.stat().st_size,
-                "sha256": sha256(output),
+                "sha256": artifact_sha,
             },
-            *FORECASTS[definition["continent"]],
+            *forecasts[definition["continent"]],
         ]
         package_definition = {
             key: value

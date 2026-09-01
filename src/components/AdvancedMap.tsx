@@ -23,6 +23,7 @@ import { useOfflineStore } from '@/store/offlineStore';
 import {
   containsCoordinate,
   packageHasBasemap,
+  packageSize,
   type OfflineContinent,
 } from '@/lib/offline-packages';
 import { usePWA } from '@/hooks/use-pwa';
@@ -216,6 +217,16 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       packageHasBasemap(item.definition) &&
       containsCoordinate(item.definition, center[0], center[1])
   );
+  const offlineBasemapPackageIdAtCenter = cachedPackageList
+    .filter(
+      item =>
+        !item.expired &&
+        packageHasBasemap(item.definition) &&
+        containsCoordinate(item.definition, center[0], center[1])
+    )
+    .sort(
+      (a, b) => packageSize(a.definition) - packageSize(b.definition)
+    )[0]?.id;
   const routeStart = showUserLocation && userLocation ? userLocation : center;
   const routeRecipes = recipes.map(recipe => ({
     id: recipe.id,
@@ -230,7 +241,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   useEffect(() => {
     if (isOnline) return;
-    setIsIdentifyOpen(false);
     closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
   }, [isOnline]);
 
@@ -250,10 +260,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         error
       );
     });
-    // Center is sampled when connectivity changes; map movement should not
-    // repeatedly reopen large files from device storage.
+    // Re-run only when movement crosses a downloaded package boundary. Ordinary
+    // movement within a package must not repeatedly reopen a large local file.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOnline, activateForCoordinate]);
+  }, [isOnline, activateForCoordinate, offlineBasemapPackageIdAtCenter]);
 
   useEffect(() => {
     routeInputsRef.current = {
@@ -1089,17 +1099,15 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             </Button>
           )}
 
-          {isOnline && (
-            <Button
-              variant='outline'
-              size='icon'
-              onClick={() => setIsIdentifyOpen(true)}
-              title={tIdentify('openButton')}
-              aria-label={tIdentify('openButton')}
-            >
-              <ScanSearch className='h-4 w-4' />
-            </Button>
-          )}
+          <Button
+            variant='outline'
+            size='icon'
+            onClick={() => setIsIdentifyOpen(true)}
+            title={tIdentify('openButton')}
+            aria-label={tIdentify('openButton')}
+          >
+            <ScanSearch className='h-4 w-4' />
+          </Button>
 
           {/* Info button */}
           <Button

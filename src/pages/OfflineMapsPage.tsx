@@ -121,10 +121,14 @@ export default function OfflineMapsPage() {
                 <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
                   <div className='min-w-0 flex-1'>
                     <h3 className='text-lg font-semibold leading-tight'>
-                      {definition.name}
+                      {t(`catalog.${definition.id}.name`, {
+                        defaultValue: definition.name,
+                      })}
                     </h3>
                     <p className='mt-1 text-sm text-muted-foreground'>
-                      {definition.description}
+                      {t(`catalog.${definition.id}.description`, {
+                        defaultValue: definition.description,
+                      })}
                     </p>
                     <p className='mt-2 text-xs font-medium text-muted-foreground'>
                       {formatBytes(packageSize(definition))}
