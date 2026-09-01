@@ -5,16 +5,20 @@ must reference only complete, publicly accessible packages.
 
 ## Package release
 
-1. Download the canonical world PMTiles archive locally.
+1. Point at the canonical world PMTiles archive, by URL or a local copy.
 2. Install the official `pmtiles` CLI.
 3. Build and verify the pilot extracts:
 
    ```powershell
    python scripts/build_offline_packages.py `
-     --world C:\maps\world_z12_20260619.pmtiles `
-     --version 2026-08-20 `
+     --world https://data.fung.es/basemap/world_z12_20260619.pmtiles `
+     --version 2026-09-01 `
      --output-dir dist-offline
    ```
+
+   `--world` also takes a local path. The CLI reads the remote archive over
+   range requests and transfers only the tiles each extract needs, so the
+   17 GB world archive does not have to be downloaded first.
 
 4. Upload every generated archive beside the world archive under `basemap/`.
    Regional filenames follow `<region>_z<zoom>_<YYYYMMDD>.pmtiles`, matching
@@ -80,8 +84,8 @@ npm run test:e2e:offline
 
 That automated test covers cold app-shell reloads, style switching,
 connectivity-dependent controls, instructions, and geolocation on desktop and
-mobile Chromium. It deliberately does not download the published 380 MB or
-1.3 GB packages, so final basemap and forecast verification remains a manual
+mobile Chromium. It deliberately does not download the published 63 MB or
+190 MB packages, so final basemap and forecast verification remains a manual
 release check on a real package.
 
 For a manual desktop test, build and serve the production app, download a

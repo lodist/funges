@@ -33,7 +33,9 @@ def run(*args: str) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--world", required=True, type=Path)
+    # The pmtiles CLI reads a local path or an HTTP archive, and the world
+    # archive is 17 GB, so keep this a plain string: Path() mangles a URL.
+    parser.add_argument("--world", required=True)
     parser.add_argument("--version", required=True)
     parser.add_argument("--output-dir", required=True, type=Path)
     parser.add_argument(

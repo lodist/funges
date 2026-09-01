@@ -10,8 +10,9 @@ test('offline package catalog keeps package cards concise', async ({
   ).toBeVisible();
   await expect(page.getByText('Europe', { exact: true })).toBeVisible();
   await expect(page.getByText('United States', { exact: true })).toBeVisible();
-  await expect(page.getByText('1.3 GB')).toBeVisible();
-  await expect(page.getByText(/^\d{3}\.\d MB$/)).toBeVisible();
+  // Sizes follow whatever the published packages weigh, so assert both cards
+  // render a formatted size instead of pinning today's numbers.
+  await expect(page.getByText(/^\d+(\.\d)? (MB|GB)$/)).toHaveCount(2);
   await expect(
     page.getByText(/each package includes the basemap/i)
   ).toBeVisible();
