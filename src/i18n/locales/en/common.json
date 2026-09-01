@@ -34,7 +34,8 @@
     "system": "System",
     "sort": "Sort",
     "email": "Email",
-    "score": "Score"
+    "score": "Score",
+    "copied": "Copied!"
   },
   "offline": {
     "mode": "Offline Mode",
@@ -119,7 +120,8 @@
     "network": "Network error. Please check your connection.",
     "upload": "Failed to upload image. Please try again.",
     "notFound": "Page not found.",
-    "unauthorized": "You are not authorized to access this resource."
+    "unauthorized": "You are not authorized to access this resource.",
+    "copy": "Couldn't copy. Select the text and copy it by hand."
   },
   "html": {
     "title": "Fung.es - Find Mushrooms and Wild Edible Plants Near You",

@@ -128,4 +128,27 @@ describe('FeatureInfoModal', () => {
 
     expect(writeTextSpy).toHaveBeenCalledWith('45.678035, 7.976074');
   });
+
+  it('tells the reader when the clipboard refuses, out of a region that was already mounted', async () => {
+    const user = userEvent.setup();
+    render(
+      <FeatureInfoModal feature={twoSpeciesFeature} open onClose={vi.fn()} />
+    );
+
+    // The region has to exist before its text changes: one rendered by the
+    // failure arrives with its text already in place, and a screen reader
+    // announces nothing.
+    const live = document.querySelector('[aria-live="polite"]');
+    expect(live).not.toBeNull();
+    expect(live?.textContent).toBe('');
+
+    vi.spyOn(navigator.clipboard, 'writeText').mockRejectedValue(
+      new Error('denied')
+    );
+    await user.click(
+      screen.getByRole('button', { name: /45\.678035, 7\.976074/ })
+    );
+
+    expect(live?.textContent).toMatch(/copia non riuscita/i);
+  });
 });

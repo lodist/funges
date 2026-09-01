@@ -34,7 +34,8 @@
     "system": "Sistema",
     "sort": "Ordenar",
     "email": "E-mail",
-    "score": "Pontuação"
+    "score": "Pontuação",
+    "copied": "Copiado!"
   },
   "offline": {
     "mode": "Modo offline",
@@ -119,7 +120,8 @@
     "network": "Erro de rede. Verifique sua conexão.",
     "upload": "Falha ao enviar imagem. Por favor, tente novamente.",
     "notFound": "Página não encontrada.",
-    "unauthorized": "Você não está autorizado a acessar este recurso."
+    "unauthorized": "Você não está autorizado a acessar este recurso.",
+    "copy": "Não foi possível copiar. Selecione o texto e copie manualmente."
   },
   "html": {
     "title": "Fung.es - Encontre Cogumelos e Plantas Comestíveis Perto de Você",

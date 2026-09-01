@@ -82,7 +82,8 @@
     "network": "Errore di rete. Controlla la tua connessione.",
     "upload": "Caricamento immagine fallito. Riprova.",
     "notFound": "Pagina non trovata.",
-    "unauthorized": "Non sei autorizzato ad accedere a questa risorsa."
+    "unauthorized": "Non sei autorizzato ad accedere a questa risorsa.",
+    "copy": "Copia non riuscita. Seleziona il testo e copialo a mano."
   },
   "common": {
     "appName": "Funges",
@@ -119,7 +120,8 @@
     "confirm": "Conferma",
     "yes": "Sì",
     "no": "No",
-    "score": "Punteggio"
+    "score": "Punteggio",
+    "copied": "Copiato!"
   },
   "html": {
     "title": "Fung.es - Trova Funghi e Piante Commestibili Vicino a Te",
