@@ -72,7 +72,7 @@ export interface OfflineStorageEstimate {
   persisted: boolean | null;
 }
 
-function openDb(): Promise<IDBDatabase> {
+function openDbOnce(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, DB_VERSION);
     request.onupgradeneeded = () => {
@@ -90,6 +90,36 @@ function openDb(): Promise<IDBDatabase> {
     request.onsuccess = () => resolve(request.result);
     request.onerror = () => reject(request.error);
   });
+}
+
+function deleteDb(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.deleteDatabase(DB_NAME);
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error);
+    request.onblocked = () => resolve();
+  });
+}
+
+// ponytail: a database left behind by a newer build is unreadable here, which
+// otherwise bricks the page with no in-app way out. Every cached byte is
+// re-downloadable, so drop it and start clean.
+async function openDb(): Promise<IDBDatabase> {
+  try {
+    return await openDbOnce();
+  } catch (error) {
+    if (!(error instanceof DOMException) || error.name !== 'VersionError') {
+      throw error;
+    }
+    await deleteDb();
+    if (supportsOpfs()) {
+      const root = await navigator.storage.getDirectory();
+      await root
+        .removeEntry(OPFS_DIRECTORY, { recursive: true })
+        .catch(() => undefined);
+    }
+    return openDbOnce();
+  }
 }
 
 function requestResult<T>(request: IDBRequest<T>): Promise<T> {
