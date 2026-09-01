@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-01T14:03:47.754389Z",
+  "generatedAt": "2026-09-01T21:15:35.318813Z",
   "packages": [
     {
       "id": "eu",
@@ -9,20 +9,19 @@
       "description": "Detailed offline basemap and foraging forecasts for Europe.",
       "bounds": [-25, 34, 45, 72],
       "minZoom": 3,
-      "maxZoom": 10,
-      "version": "85c7f36b190b",
-      "updatedAt": "2026-09-01T02:13:57Z",
+      "maxZoom": 8,
+      "version": "2026-09-01",
+      "updatedAt": "2026-09-01T21:15:35.318813Z",
       "published": true,
       "resources": [
         {
           "id": "basemap",
           "kind": "basemap",
-          "version": "593cd24ffe221c6b006a23ce5560b3e931fb8c727c78dcd2e64a44c162eeab17",
+          "version": "4fa1f6eaa3bd4bb4255ddff41be4f32aec0cf4e5908737a89dae7a5a0de04f82",
           "sourceUrl": "https://data.fung.es/basemap/world_z12_20260619.pmtiles",
-          "downloadUrl": "https://data.fung.es/basemap/europe_z10_20260821.pmtiles",
-          "sizeBytes": 1351965398,
-          "etag": "650855154af6d81b5a2b24d47a070af5-21",
-          "sha256": "593cd24ffe221c6b006a23ce5560b3e931fb8c727c78dcd2e64a44c162eeab17"
+          "downloadUrl": "https://data.fung.es/basemap/europe_z8_20260901.pmtiles",
+          "sizeBytes": 185153517,
+          "sha256": "4fa1f6eaa3bd4bb4255ddff41be4f32aec0cf4e5908737a89dae7a5a0de04f82"
         },
         {
           "id": "ne-forecast",
@@ -49,20 +48,19 @@
       "description": "Detailed offline basemap and foraging forecasts for the United States.",
       "bounds": [-125, 24, -66, 50],
       "minZoom": 3,
-      "maxZoom": 10,
-      "version": "17506fd77893",
-      "updatedAt": "2026-09-01T03:10:03Z",
+      "maxZoom": 8,
+      "version": "2026-09-01",
+      "updatedAt": "2026-09-01T21:15:35.318813Z",
       "published": true,
       "resources": [
         {
           "id": "basemap",
           "kind": "basemap",
-          "version": "89d9507b84d8892d20f26a68dc3302a87998ec3a645f16fc10f68af9845d2a9f",
+          "version": "c6cf3598edef85273e387c5c8d794278abade00a2b102dc79ca40841cbbc70a8",
           "sourceUrl": "https://data.fung.es/basemap/world_z12_20260619.pmtiles",
-          "downloadUrl": "https://data.fung.es/basemap/usa_z10_20260820.pmtiles",
-          "sizeBytes": 388663609,
-          "etag": "6136e786017f2073907c4d21cf004a4a",
-          "sha256": "89d9507b84d8892d20f26a68dc3302a87998ec3a645f16fc10f68af9845d2a9f"
+          "downloadUrl": "https://data.fung.es/basemap/usa_z8_20260901.pmtiles",
+          "sizeBytes": 55283201,
+          "sha256": "c6cf3598edef85273e387c5c8d794278abade00a2b102dc79ca40841cbbc70a8"
         },
         {
           "id": "use-forecast",
