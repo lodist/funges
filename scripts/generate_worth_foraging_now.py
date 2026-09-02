@@ -6,24 +6,22 @@ from pathlib import Path
 
 import pyarrow.parquet as pq
 
+ROOT = Path(__file__).resolve().parents[1]
+import sys
+
+sys.path.insert(0, str(ROOT / "backend"))
+from species_registry import get_region_species, get_species_metadata
+
 
 PARQUET_PATH = Path("public/data/foraging_scores.parquet")
 OUTPUT_PATH = Path("public/data/worth_foraging_now.json")
 GRID_SIZE_DEGREES = 0.5
 MIN_SCORE = 4.0
 MAX_CELL_SPECIES = 8
-SPECIES_REGISTRY_PATH = Path("backend/generated/species_registry.json")
-
-
-def load_species_registry() -> dict:
-    return json.loads(SPECIES_REGISTRY_PATH.read_text(encoding="utf-8"))
-
-
 def resolve_species_columns(available_columns: set[str]) -> dict[str, str]:
     """Choose the first available score alias for each manifest species."""
-    registry = load_species_registry()
     resolved = {}
-    for species_id, config in registry["species"].items():
+    for species_id, config in get_species_metadata().items():
         column = next(
             (candidate for candidate in config["dataColumns"] if candidate in available_columns),
             None,
@@ -35,13 +33,8 @@ def resolve_species_columns(available_columns: set[str]) -> dict[str, str]:
 
 def resolve_region_species() -> dict[str, set[str]]:
     """Return species that are available for scoring in each region."""
-    registry = load_species_registry()
     return {
-        region: {
-            species_id
-            for species_id, config in registry["species"].items()
-            if region in config["regions"]
-        }
+        region: get_region_species(region)
         for region in ("NE", "SE", "USE", "USW")
     }
 

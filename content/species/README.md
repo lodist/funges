@@ -12,8 +12,8 @@ src/assets/species/<id>.webp
 ```bash
 npm run species:scaffold -- --id saffron-milk-cap
 # Complete every TODO and add src/assets/species/saffron-milk-cap.webp
-npm run species:generate -- --id saffron-milk-cap
-npm run species:check -- --id saffron-milk-cap
+npm run species:generate
+npm run species:check
 ```
 
 The scaffold never researches or invents biological content. Before generation,
@@ -33,6 +33,10 @@ review, but it is not sufficient by itself: use regional flora or mycological
 authorities and record the decision's sources. A region with `available: false`
 must contain no land-cover or scoring parameters and produces no score or map
 layer.
+
+Set `forecast.routeToDish` explicitly. Enable it only when the species should
+be considered by route-to-dish; forecast availability alone does not authorize
+that product behavior.
 
 Available forecast regions need explicit scoring and land-cover values. The
 scoring object contains the actual temperature,
@@ -62,8 +66,6 @@ Existing R2 parquet files may temporarily retain an old score column until that
 region's next daily pipeline run. The pipeline drops columns that are no longer
 in the generated regional registry, and the recommendation generator applies
 the same registry gate immediately so stale scores cannot be recommended.
-The optional `--id` confirms that the requested manifest exists; generation
-still reconciles the complete catalog so derived artifacts cannot drift.
 
 `species:check` is read-only. It validates manifests and images, rejects drift,
 and reports manual gates. Photo identification remains blocked until the toxic
@@ -99,7 +101,7 @@ columns are discovered from the generated registry.
 ## Final verification
 
 ```bash
-npm run species:check -- --id <species-id>
+npm run species:check
 npm run lint
 npm run test
 npm run build

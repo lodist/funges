@@ -31,16 +31,6 @@ REGION_BOXES = {
     "USW": (-170, 24, -100, 72),
 }
 # Fungal targets only: these are the species with empirical season curves.
-_LEGACY_FUNGI_TAXA = {
-    "mushroom": 8287374,      # Boletus (genus)
-    "chant": 9623860,         # Cantharellus (genus)
-    "black_chant": 2554662,   # Craterellus cornucopioides
-    "parasol": 8914748,       # Macrolepiota procera
-    "morel": 2594601,         # Morchella (genus)
-    "st_george": 8936224,     # Calocybe gambosa
-    "truffle_b": 5258468,     # Tuber melanosporum
-    "truffle_aestivum": 5258469,  # Tuber aestivum -- the actual Burgundy truffle
-}
 FUNGI_TAXA = {
     species_id: keys[0]
     for species_id, keys in get_empirical_taxon_map().items()

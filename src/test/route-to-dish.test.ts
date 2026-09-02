@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { queryRouteDishData } from '@/lib/route-to-dish';
+import {
+  queryRouteDishData,
+  ROUTE_TO_DISH_SPECIES_CONFIG,
+} from '@/lib/route-to-dish';
+
+describe('ROUTE_TO_DISH_SPECIES_CONFIG', () => {
+  it('does not opt the truffle forecast into surface-foraging routes', () => {
+    expect(ROUTE_TO_DISH_SPECIES_CONFIG).not.toHaveProperty('truffle_b');
+  });
+});
 
 describe('queryRouteDishData', () => {
   it('prefers a multi-ingredient stop and ranks fully covered recipes first', () => {

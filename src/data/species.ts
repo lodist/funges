@@ -13,7 +13,10 @@ export interface Species {
   season?: string;
   habitat?: string;
   showOnMap?: boolean;
+  forecastRegions?: readonly ForecastRegion[];
 }
+
+export type ForecastRegion = 'NE' | 'SE' | 'USE' | 'USW';
 
 export interface SpeciesOption {
   code: string;
@@ -54,7 +57,8 @@ export const getSpeciesByCategory = (
 
 export const getAllSpecies = (): Species[] => SPECIES_DATA;
 
-export const getSpeciesOptions = (): SpeciesOption[] =>
-  SPECIES_DATA.filter(({ showOnMap }) => showOnMap).map(
-    ({ id, emoji, category }) => ({ code: id, emoji, category })
-  );
+export const getSpeciesOptions = (region?: ForecastRegion): SpeciesOption[] =>
+  SPECIES_DATA.filter(
+    ({ showOnMap, forecastRegions }) =>
+      showOnMap && (!region || forecastRegions?.includes(region))
+  ).map(({ id, emoji, category }) => ({ code: id, emoji, category }));

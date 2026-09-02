@@ -6,6 +6,7 @@ from functools import lru_cache
 from pathlib import Path
 
 _REGISTRY_PATH = Path(__file__).resolve().parent / "generated" / "species_registry.json"
+_REGIONS = frozenset({"NE", "SE", "USE", "USW"})
 
 
 @lru_cache(maxsize=1)
@@ -13,10 +14,18 @@ def _registry():
     return json.loads(_REGISTRY_PATH.read_text(encoding="utf-8"))
 
 
+def _require_region(region):
+    if region not in _REGIONS:
+        raise ValueError(
+            f"unknown region {region!r}; expected one of {', '.join(sorted(_REGIONS))}"
+        )
+
+
 def get_land_cover_mapping(region):
     """Return the canonical species -> land-cover mapping for one region."""
+    _require_region(region)
     return {
-        species_id: config["regions"][region]["landCover"]
+        species_id: copy.deepcopy(config["regions"][region]["landCover"])
         for species_id, config in _registry()["species"].items()
         if region in config["regions"]
     }
@@ -24,8 +33,19 @@ def get_land_cover_mapping(region):
 
 def get_species_params(region):
     """Return a mutable copy of the canonical scoring parameters for one region."""
+    _require_region(region)
     return {
         species_id: copy.deepcopy(config["regions"][region]["scoring"])
+        for species_id, config in _registry()["species"].items()
+        if region in config["regions"]
+    }
+
+
+def get_region_species(region):
+    """Return the forecast species available in one region."""
+    _require_region(region)
+    return {
+        species_id
         for species_id, config in _registry()["species"].items()
         if region in config["regions"]
     }

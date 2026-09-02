@@ -1,6 +1,10 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { getSpeciesOptions, type SpeciesOption } from '@/data/species';
+import {
+  getSpeciesOptions,
+  type ForecastRegion,
+  type SpeciesOption,
+} from '@/data/species';
 import {
   setForecastFraction,
   forecastNumberField,
@@ -106,6 +110,42 @@ const MAP_STYLES = [
   '/funges_style_topographic.json', // 4 Topographic
 ];
 const DARK_STYLE_INDEXES = new Set([1, 3]); // drives dark UI chrome
+const INITIAL_CENTER: [number, number] = [7.3359, 47.7508];
+
+export function forecastRegionForCoordinate([longitude, latitude]: [
+  number,
+  number,
+]): ForecastRegion {
+  if (longitude < -100) return 'USW';
+  if (longitude < -25) return 'USE';
+  return latitude < 47 ? 'SE' : 'NE';
+}
+
+function regionalSpeciesState(
+  coordinate: [number, number],
+  selectedSpecies: string | null
+) {
+  const speciesOptions = getSpeciesOptions(
+    forecastRegionForCoordinate(coordinate)
+  );
+  const selectionIsAvailable = speciesOptions.some(
+    option => option.code === selectedSpecies
+  );
+  const nextSelectedSpecies = selectionIsAvailable
+    ? selectedSpecies
+    : (speciesOptions[0]?.code ?? null);
+  if (nextSelectedSpecies) {
+    localStorage.setItem('selectedSpecies', nextSelectedSpecies);
+  } else {
+    localStorage.removeItem('selectedSpecies');
+  }
+  return { speciesOptions, selectedSpecies: nextSelectedSpecies };
+}
+
+const INITIAL_SPECIES = regionalSpeciesState(
+  INITIAL_CENTER,
+  localStorage.getItem('selectedSpecies') || 'mushroom'
+);
 
 export interface MapThemeOption {
   id: 'light' | 'dark' | 'white' | 'darkmatter' | 'topographic';
@@ -193,7 +233,7 @@ export const useMapStore = create<MapState>()(
   devtools(
     (set, get) => ({
       // Initial state
-      center: [7.3359, 47.7508], // Switzerland
+      center: INITIAL_CENTER, // Switzerland
       zoom: 3.5,
       bearing: 0,
       pitch: 0,
@@ -203,8 +243,8 @@ export const useMapStore = create<MapState>()(
       userLocationError: null,
       foragingSpots: [],
       selectedSpot: null,
-      selectedSpecies: localStorage.getItem('selectedSpecies') || 'mushroom',
-      speciesOptions: getSpeciesOptions(),
+      selectedSpecies: INITIAL_SPECIES.selectedSpecies,
+      speciesOptions: INITIAL_SPECIES.speciesOptions,
       speciesDisplayMap: {
         // This will be programmatically generated from speciesOptions and species.json
       },
@@ -220,12 +260,25 @@ export const useMapStore = create<MapState>()(
       mapRef: null,
 
       // Actions
-      setCenter: center => set({ center }),
+      setCenter: center =>
+        set(state => ({
+          center,
+          ...(state.userLocation
+            ? {}
+            : regionalSpeciesState(center, state.selectedSpecies)),
+        })),
       setZoom: zoom => set({ zoom }),
       setBearing: bearing => set({ bearing }),
       setPitch: pitch => set({ pitch }),
       setMapStyle: mapStyle => set({ mapStyle }),
-      setUserLocation: userLocation => set({ userLocation }),
+      setUserLocation: userLocation =>
+        set(state => ({
+          userLocation,
+          ...regionalSpeciesState(
+            userLocation ?? state.center,
+            state.selectedSpecies
+          ),
+        })),
       setUserLocationError: userLocationError => set({ userLocationError }),
       setForagingSpots: foragingSpots => set({ foragingSpots }),
       setSelectedSpot: selectedSpot => set({ selectedSpot }),

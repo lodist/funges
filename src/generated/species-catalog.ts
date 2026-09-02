@@ -13,6 +13,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'summer-fall',
     habitat: 'forest',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'mushroom',
@@ -25,6 +26,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'fall',
     habitat: 'forest',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'morel',
@@ -37,6 +39,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'spring',
     habitat: 'forest',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'blackberry',
@@ -71,6 +74,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'spring-summer',
     habitat: 'meadow',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'dandelion',
@@ -83,6 +87,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'spring-summer',
     habitat: 'meadow',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'hazelnut',
@@ -106,6 +111,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'spring',
     habitat: 'forest',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE'],
   },
   {
     id: 'chicken-of-the-woods',
@@ -151,6 +157,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'summer',
     habitat: 'hedgerow',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'blueberry',
@@ -174,6 +181,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'spring-summer',
     habitat: 'meadow',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'wild-mint',
@@ -197,6 +205,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'spring-fall',
     habitat: 'meadow',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'plantain',
@@ -220,6 +229,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'fall',
     habitat: 'forest',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'chestnut',
@@ -232,6 +242,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'fall',
     habitat: 'forest',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE'],
   },
   {
     id: 'elderflower',
@@ -277,6 +288,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'spring-fall',
     habitat: 'meadow',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'artichoke',
@@ -289,6 +301,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'spring-summer',
     habitat: 'meadow',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'asparagus',
@@ -301,6 +314,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'spring',
     habitat: 'hedgerow',
     showOnMap: true,
+    forecastRegions: ['SE'],
   },
   {
     id: 'black_chant',
@@ -313,6 +327,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'fall',
     habitat: 'forest',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'lingonb',
@@ -325,6 +340,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'summer-fall',
     habitat: 'forest',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'masterwort',
@@ -337,6 +353,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'summer',
     habitat: 'meadow',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE'],
   },
   {
     id: 'parasol',
@@ -349,6 +366,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'summer-fall',
     habitat: 'meadow',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE'],
   },
   {
     id: 'sorrel',
@@ -361,6 +379,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'spring-summer',
     habitat: 'meadow',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'st_george',
@@ -373,6 +392,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'spring',
     habitat: 'meadow',
     showOnMap: true,
+    forecastRegions: ['NE', 'SE'],
   },
   {
     id: 'truffle_b',
@@ -385,5 +405,6 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'winter',
     habitat: 'forest',
     showOnMap: true,
+    forecastRegions: ['SE'],
   },
 ];

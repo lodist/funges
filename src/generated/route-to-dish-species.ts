@@ -96,7 +96,4 @@ export const GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG = {
       'St. Georges Mushroom',
     ],
   },
-  truffle_b: {
-    scorePropertyAliases: ['truffle_b', 'truffle_b_score', 'Black Truffle'],
-  },
 } as const;

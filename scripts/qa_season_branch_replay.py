@@ -12,7 +12,6 @@ present, and never used wind lags, so it is handed a 21-day frame and the branch
 from __future__ import annotations
 
 import argparse
-import ast
 import hashlib
 import importlib.util
 import json
@@ -71,6 +70,8 @@ def load_specs(session: requests.Session, region: str) -> tuple[dict, dict]:
     zone_curves = session.get(ZONE_CURVE_URLS[region], timeout=60).json()
     params = {}
     for species in FUNGI:
+        if species not in all_params:
+            continue
         spec = dict(all_params[species])
         if species in region_curves:
             spec["season_curve"] = region_curves[species]
@@ -148,7 +149,7 @@ def replay_region(region: str, session: requests.Session, main_pipeline: object,
         .reset_index(drop=True)
     )
     params, zone_curves = load_specs(session, region)
-    score_columns = [f"{species}_score" for species in FUNGI]
+    score_columns = [f"{species}_score" for species in params]
     cutoff = pd.Timestamp(first_scored)
 
     main_frame = add_lags(history, MAIN_LAG_COLUMNS, MAIN_LAG_DAYS)

@@ -124,6 +124,20 @@ function fixtureRoot() {
       },
     ];
   });
+  layers.push(
+    {
+      id: 'deleted-species_ne',
+      type: 'fill',
+      source: 'overlay-ne',
+      paint: { 'fill-opacity': ['get', 'deleted-species_score'] },
+    },
+    {
+      id: 'deleted-species_ne_numbers',
+      type: 'symbol',
+      source: 'overlay-ne',
+      layout: { 'text-field': ['get', 'deleted-species_score'] },
+    }
+  );
   const style = JSON.stringify({ version: 8, sources: {}, layers });
   for (const name of [
     'funges_style.json',
@@ -158,6 +172,7 @@ function addForecastSpecies(root) {
     },
     forecast: {
       enabled: true,
+      routeToDish: true,
       empiricalSeason: {
         enabled: true,
         taxonKeys: [123],
@@ -321,12 +336,44 @@ test('forecast generation emits only available regional parameters and map layer
       fs.readFileSync(path.join(root, 'public', name), 'utf8')
     );
     const ids = new Set(style.layers.map(layer => layer.id));
+    assert.equal(ids.has('deleted-species_ne'), false);
+    assert.equal(ids.has('deleted-species_ne_numbers'), false);
+    const overlayLayers = style.layers.filter(layer =>
+      String(layer.source).startsWith('overlay-')
+    );
+    const lastFill = overlayLayers.findLastIndex(
+      layer => layer.type === 'fill'
+    );
+    const firstSymbol = overlayLayers.findIndex(
+      layer => layer.type === 'symbol'
+    );
+    assert.ok(
+      lastFill < firstSymbol,
+      'all fills must remain below symbol layers'
+    );
     for (const region of REGIONS.map(value => value.toLowerCase())) {
       const expected = region !== 'usw';
       assert.equal(ids.has(`new-species_${region}`), expected);
       assert.equal(ids.has(`new-species_${region}_numbers`), expected);
     }
   }
+});
+
+test('route-to-dish requires explicit manifest opt-in', async () => {
+  const root = fixtureRoot();
+  addForecastSpecies(root);
+  const filename = path.join(root, 'content/species/new-species/species.json');
+  const data = JSON.parse(fs.readFileSync(filename, 'utf8'));
+  data.forecast.routeToDish = false;
+  fs.writeFileSync(filename, JSON.stringify(data));
+
+  await generate(root);
+
+  const routeConfig = fs.readFileSync(
+    path.join(root, 'src/generated/route-to-dish-species.ts'),
+    'utf8'
+  );
+  assert.doesNotMatch(routeConfig, /new-species_score/);
 });
 
 test('rejects scoring data for unavailable regions and temperature sentinels', () => {
@@ -370,7 +417,6 @@ test('repository check is read-only', async () => {
   const tracked = [
     'src/generated/species-catalog.ts',
     'backend/generated/species_registry.json',
-    'backend/generated/season_taxa.json',
     'backend/tools/generated_catalog.py',
     'src/i18n/locales/en/species.json',
     'public/funges_style.json',

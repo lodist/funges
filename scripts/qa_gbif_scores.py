@@ -10,7 +10,6 @@ regional background distribution.
 from __future__ import annotations
 
 import argparse
-import ast
 import csv
 import json
 import math
@@ -55,48 +54,19 @@ ZONE_CURVE_URLS = {
     "USE": f"{R2_ROOT}/USA/US_zone_season_curves.json",
     "USW": f"{R2_ROOT}/USA/US_zone_season_curves.json",
 }
-_LEGACY_SPECIES = {
-    "mushroom": ("Porcini", "Boletus"),
-    "black_chant": ("Black Chanterelle", "Craterellus cornucopioides"),
-    "lingonb": ("Lingonberry", "Vaccinium vitis-idaea"),
-    "garlic": ("Wild Garlic", "Allium ursinum"),
-    "truffle_b": ("Black Truffle", "Tuber melanosporum"),
-    "walnut": ("Wild Walnut", "Juglans regia"),
-    "strawberry": ("Wild Strawberry", "Fragaria vesca"),
-    "asparagus": ("Wild Asparagus", "Asparagus acutifolius"),
-    "parasol": ("Parasol Mushroom", "Macrolepiota procera"),
-    "chestnut": ("Chestnut", "Castanea sativa"),
-    "amaranth": ("Amaranth", "Amaranthus retroflexus"),
-    "masterwort": ("Masterwort", "Peucedanum ostruthium"),
-    "nettle": ("Nettle", "Urtica dioica"),
-    "morel": ("Morel", "Morchella"),
-    "sorrel": ("Sorrel", "Rumex acetosa"),
-    "raspberry": ("Raspberry", "Rubus idaeus"),
-    "dandelion": ("Dandelion", "Taraxacum officinale"),
-    "chickweed": ("Chickweed", "Stellaria media"),
-    "artichoke": ("Artichoke", "Cynara cardunculus"),
-    "st_george": ("St. George's Mushroom", "Calocybe gambosa"),
-    "chant": ("Chanterelle", "Cantharellus cibarius"),
-}
 _SPECIES_METADATA = get_species_metadata()
 SPECIES = {
     species_id: (config["name"], config["scientificName"])
     for species_id, config in _SPECIES_METADATA.items()
 }
 GBIF = "https://api.gbif.org/v1"
-SCORE_COLUMNS = [f"{key}_score" for key in SPECIES]
 FUNGI = set(get_empirical_taxon_map())
 ACTIVE_CURVE_THRESHOLD = 0.8
-_LEGACY_TAXON_KEY_OVERRIDES = {
+TAXON_KEY_OVERRIDES = {
     # GBIF's fuzzy matcher currently promotes bare "Boletus" to kingdom Fungi;
     # this is the exact accepted genus alternative returned by verbose matching.
     "mushroom": 8287374,
     "morel": 2594601,
-}
-TAXON_KEY_OVERRIDES = {
-    species_id: keys[0]
-    for species_id, keys in get_empirical_taxon_map().items()
-    if keys
 }
 
 
@@ -141,6 +111,8 @@ def curve_value(curve: dict, observed: str) -> float:
 
 
 def active_for_validation(species_id: str, region: str, zone: str, observed: str, specs: dict) -> tuple[bool, float | None]:
+    if species_id not in specs[region]["params"]:
+        return False, None
     if species_id == "truffle_b":
         # Catalog says Burgundy Truffle but the configured taxon is T. melanosporum.
         return False, None
@@ -311,7 +283,14 @@ def analyse_region(
             lambda: np.zeros(101, dtype=np.int64)
         )
         date_counts: dict[str, int] = defaultdict(int)
-        columns = ["Location_Id", "Date", "climate_zone", *SCORE_COLUMNS]
+        region_species = list(specs[region]["params"])
+        available_columns = set(parquet.schema_arrow.names)
+        score_columns = [
+            f"{species_id}_score"
+            for species_id in region_species
+            if f"{species_id}_score" in available_columns
+        ]
+        columns = ["Location_Id", "Date", "climate_zone", *score_columns]
         for batch in parquet.iter_batches(columns=columns):
             frame = batch.to_pandas()
             frame["Date"] = frame["Date"].astype("datetime64[ns]").dt.strftime("%Y-%m-%d")
@@ -321,7 +300,9 @@ def analyse_region(
             frame["climate_zone"] = frame["climate_zone"].astype(str)
             for (day, zone), day_frame in frame.groupby(["Date", "climate_zone"], sort=False):
                 date_counts[day] += len(day_frame)
-                for species_id in SPECIES:
+                for species_id in region_species:
+                    if f"{species_id}_score" not in day_frame:
+                        continue
                     values = day_frame[f"{species_id}_score"].to_numpy(float)
                     bins = np.clip(np.rint(np.nan_to_num(values) * 10), 0, 100).astype(int)
                     histograms[(day, zone, species_id)] += np.bincount(bins, minlength=101)
@@ -330,7 +311,9 @@ def analyse_region(
             ]
             for _, score_row in target_rows.iterrows():
                 for occurrence in wanted_many.get((score_row.Date, score_row.Location_Id), []):
-                    occurrence["score"] = float(score_row[f"{occurrence['species_id']}_score"])
+                    score_column = f"{occurrence['species_id']}_score"
+                    if score_column in score_row:
+                        occurrence["score"] = float(score_row[score_column])
 
     for row in eligible_occ:
         score = row.get("score")

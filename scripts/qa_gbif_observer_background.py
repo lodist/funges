@@ -26,15 +26,6 @@ from qa_gbif_scores import GBIF, REGIONS, R2_ROOT, chord_to_km, unit_xyz
 
 
 EU_REGIONS = {key: REGIONS[key] for key in ("NE", "SE")}
-_LEGACY_TARGETS = {
-    "mushroom": ("Porcini / Boletus", 8287374),
-    "black_chant": ("Black Chanterelle", 2554662),
-    "parasol": ("Parasol Mushroom", 8914748),
-    "morel": ("Morel", 2594601),
-    "st_george": ("St. George's Mushroom", 8936224),
-    # Match production's season-curve taxon, not only C. cibarius.
-    "chant": ("Chanterelle / Cantharellus", 9623860),
-}
 _TAXA = get_empirical_taxon_map()
 _METADATA = get_species_metadata()
 TARGETS = {

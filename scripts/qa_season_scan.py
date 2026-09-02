@@ -13,7 +13,6 @@ Outputs (per region, into --output):
 from __future__ import annotations
 
 import argparse
-import ast
 import hashlib
 import json
 import sys
@@ -35,7 +34,6 @@ from species_registry import get_empirical_taxon_map, get_species_params
 from qa_gbif_scores import REGION_CURVE_URLS, REGIONS, ZONE_CURVE_URLS
 
 FUNGI = list(get_empirical_taxon_map())
-SCORE_COLUMNS = [f"{species}_score" for species in FUNGI]
 TARGET_LOCATIONS = 6000
 MAX_MATCH_KM = 30
 EARTH_KM = 6371.0088
@@ -58,6 +56,8 @@ def load_specs(session: requests.Session, region: str) -> tuple[dict, dict]:
     zone_curves = session.get(ZONE_CURVE_URLS[region], timeout=60).json()
     params = {}
     for species in FUNGI:
+        if species not in all_params:
+            continue
         spec = dict(all_params[species])
         if species in region_curves:
             spec["season_curve"] = region_curves[species]
@@ -72,7 +72,7 @@ def multiplier_table(params: dict, zone_curves: dict, dates: list[str], zones: l
         "Date": pd.to_datetime(grid.date), "climate_zone": grid.climate_zone,
     })
     out = grid.copy()
-    for species in FUNGI:
+    for species in params:
         out[f"{species}_season_mult"] = season_multiplier_for_species(
             frame, species, params[species], zone_curves
         )
@@ -90,7 +90,8 @@ def scan_region(region: str, records: pd.DataFrame, session: requests.Session, o
     url = REGIONS[region][0]
     params, zone_curves = load_specs(session, region)
     fs = fsspec.filesystem("https")
-    columns = ["Location_Id", "Date", "Latitude", "Longitude", "climate_zone", *SCORE_COLUMNS]
+    score_columns = [f"{species}_score" for species in params]
+    columns = ["Location_Id", "Date", "Latitude", "Longitude", "climate_zone", *score_columns]
 
     with fs.open(url, "rb", block_size=16 * 1024 * 1024) as handle:
         parquet = pq.ParquetFile(handle)

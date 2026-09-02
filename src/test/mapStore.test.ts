@@ -1,10 +1,41 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
+  forecastRegionForCoordinate,
   layerRegion,
   MAP_THEMES,
   resolveDataNerdRegion,
   useMapStore,
 } from '@/store/mapStore';
+
+describe('forecastRegionForCoordinate', () => {
+  it.each([
+    [[7.3, 47.8], 'NE'],
+    [[12.5, 41.9], 'SE'],
+    [[-74, 40.7], 'USE'],
+    [[-122.4, 37.8], 'USW'],
+  ] as const)('maps %s to %s', (coordinate, expected) => {
+    expect(forecastRegionForCoordinate([...coordinate])).toBe(expected);
+  });
+});
+
+describe('regional species options', () => {
+  beforeEach(() => {
+    localStorage.clear();
+    useMapStore.setState({ userLocation: null });
+  });
+
+  it('removes species that have no layer in the selected region', () => {
+    useMapStore.getState().setCenter([-74, 40.7]);
+    const state = useMapStore.getState();
+
+    expect(state.speciesOptions.some(option => option.code === 'parasol')).toBe(
+      false
+    );
+    expect(state.speciesOptions.some(option => option.code === 'chant')).toBe(
+      true
+    );
+  });
+});
 
 afterEach(() => {
   vi.unstubAllGlobals();

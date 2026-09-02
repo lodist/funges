@@ -61,6 +61,7 @@
   },
   "forecast": {
     "enabled": true,
+    "routeToDish": true,
     "dataColumns": ["Parasol Mushroom"],
     "regions": {
       "NE": {

@@ -61,6 +61,7 @@
   },
   "forecast": {
     "enabled": true,
+    "routeToDish": true,
     "dataColumns": ["St. George's Mushroom", "St. Georges Mushroom"],
     "regions": {
       "NE": {

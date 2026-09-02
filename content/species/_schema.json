@@ -101,6 +101,7 @@
       ],
       "properties": {
         "enabled": { "type": "boolean" },
+        "routeToDish": { "type": "boolean" },
         "order": { "type": "integer", "minimum": 0 },
         "translationKey": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" },
         "category": { "enum": ["mushroom", "plant", "berry", "nut", "flower"] },
@@ -253,7 +254,9 @@
       "allOf": [
         {
           "if": { "properties": { "enabled": { "const": true } } },
-          "then": { "required": ["regions", "empiricalSeason"] }
+          "then": {
+            "required": ["regions", "empiricalSeason", "routeToDish"]
+          }
         }
       ]
     }

@@ -1,29 +1,26 @@
-import json
-
 from scripts import generate_worth_foraging_now
 
 
-def test_species_columns_are_discovered_from_generated_registry(tmp_path, monkeypatch):
-    registry = tmp_path / "species_registry.json"
-    registry.write_text(
-        json.dumps(
-            {
-                "species": {
-                    "new-species": {
-                        "dataColumns": ["new-species_score", "Display name"],
-                        "regions": {"NE": {}, "SE": {}},
-                    },
-                    "legacy": {
-                        "dataColumns": ["legacy_score", "Legacy Name"],
-                        "regions": {"USE": {}, "USW": {}},
-                    },
-                }
-            }
-        ),
-        encoding="utf-8",
+def test_species_columns_are_discovered_from_generated_registry(monkeypatch):
+    monkeypatch.setattr(
+        generate_worth_foraging_now,
+        "get_species_metadata",
+        lambda: {
+            "new-species": {
+                "dataColumns": ["new-species_score", "Display name"]
+            },
+            "legacy": {"dataColumns": ["legacy_score", "Legacy Name"]},
+        },
     )
     monkeypatch.setattr(
-        generate_worth_foraging_now, "SPECIES_REGISTRY_PATH", registry
+        generate_worth_foraging_now,
+        "get_region_species",
+        lambda region: {
+            "NE": {"new-species"},
+            "SE": {"new-species"},
+            "USE": {"legacy"},
+            "USW": {"legacy"},
+        }[region],
     )
 
     columns = generate_worth_foraging_now.resolve_species_columns(

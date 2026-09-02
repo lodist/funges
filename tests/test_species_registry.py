@@ -53,3 +53,36 @@ def test_generated_scoring_is_returned_as_an_independent_copy(monkeypatch):
     second = species_registry.get_species_params("NE")
 
     assert second["example"] == {"temperature": {"optimum": 18}}
+
+
+def test_generated_land_cover_is_returned_as_an_independent_copy(monkeypatch):
+    monkeypatch.setattr(
+        species_registry,
+        "_registry",
+        lambda: {
+            "species": {
+                "example": {
+                    "regions": {"NE": {"landCover": [10], "scoring": {}}}
+                }
+            }
+        },
+    )
+
+    first = species_registry.get_land_cover_mapping("NE")
+    first["example"].append(20)
+
+    assert species_registry.get_land_cover_mapping("NE")["example"] == [10]
+
+
+def test_unknown_region_is_rejected():
+    for loader in (
+        species_registry.get_land_cover_mapping,
+        species_registry.get_species_params,
+        species_registry.get_region_species,
+    ):
+        try:
+            loader("UNKNOWN")
+        except ValueError as error:
+            assert "unknown region" in str(error)
+        else:
+            raise AssertionError(f"{loader.__name__} accepted an unknown region")

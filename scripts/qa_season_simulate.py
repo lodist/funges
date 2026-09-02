@@ -18,7 +18,6 @@ weather side and is measured separately by the replay script.
 from __future__ import annotations
 
 import argparse
-import ast
 import json
 import sys
 from pathlib import Path
@@ -51,7 +50,11 @@ def load_specs(session: requests.Session, region: str) -> tuple[dict, dict, dict
     all_params = get_species_params(region)
     region_curves = session.get(REGION_CURVE_URLS[region], timeout=60).json()
     zone_curves = session.get(ZONE_CURVE_URLS[region], timeout=60).json()
-    params = {species: dict(all_params[species]) for species in FUNGI}
+    params = {
+        species: dict(all_params[species])
+        for species in FUNGI
+        if species in all_params
+    }
     return params, region_curves, zone_curves
 
 

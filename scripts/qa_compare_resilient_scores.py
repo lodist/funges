@@ -7,7 +7,6 @@ scores against the exact same cached GBIF target/background cohort.
 from __future__ import annotations
 
 import argparse
-import ast
 import csv
 import json
 import math
@@ -46,6 +45,8 @@ def load_model_specs(session: requests.Session, region: str) -> tuple[dict, dict
     zone_curves = session.get(ZONE_CURVE_URLS[region], timeout=60).json()
     params = {}
     for species in TARGETS:
+        if species not in all_params:
+            continue
         spec = dict(all_params[species])
         if species in region_curves:
             spec["season_curve"] = region_curves[species]
@@ -145,7 +146,7 @@ def replay_region(
     scoring = add_lags(scoring_pairs, history)
     params, zone_curves = load_model_specs(session, region)
     scoring = calculate_mushroom_score(scoring, params, zone_curves)
-    score_columns = [f"{species}_score" for species in TARGETS]
+    score_columns = [f"{species}_score" for species in params]
     scoring = spatial_smooth_scores(scoring, score_columns)
     for species, spec in params.items():
         allowed = spec.get("climate_zones", [])
