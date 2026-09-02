@@ -447,7 +447,7 @@
   --elevation-raised-subtle: 0 1px 6px rgba(0, 0, 0, 0.06); /* Input, Select trigger */
   --elevation-raised: 0 2px 16px rgba(0, 0, 0, 0.1); /* Card, MobileNavbar */
   --elevation-raised-hover: 0 6px 20px rgba(0, 0, 0, 0.14); /* Card hover escalation */
-  --elevation-floating: 0 4px 20px rgba(0, 0, 0, 0.16); /* DropdownMenu, Select content */
+  --elevation-floating: 0 4px 20px rgba(0, 0, 0, 0.16); /* DropdownMenu, Select content, Sheet, Tooltip */
   /* Bottom Sheet only: a surface pinned to the viewport's bottom edge has to
      cast upward, or its shadow falls off-screen and the top edge loses its
      separation from the map. Same blur and alpha as `floating`, Y inverted —

@@ -188,7 +188,9 @@ const Shell = () => (
         <SidebarMenu>
           {NAV_ITEMS.map((item, index) => (
             <SidebarMenuItem key={item.label}>
-              <SidebarMenuButton isActive={index === 0}>
+              {/* Every shipped nav row passes a tooltip: in the rail the label
+                  is `sr-only`, so this is the only visible name. */}
+              <SidebarMenuButton isActive={index === 0} tooltip={item.label}>
                 <item.icon />
                 <span>{item.label}</span>
               </SidebarMenuButton>

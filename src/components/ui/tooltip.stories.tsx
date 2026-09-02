@@ -16,11 +16,18 @@ const meta: Meta<typeof Tooltip> = {
     docs: {
       description: {
         component:
-          'A short label revealed on hover or focus. It is a supplement, never the only source of a name: tooltips never appear on touch, so a control whose meaning lives only in its tooltip is unlabelled on a phone. Give icon-only buttons an `aria-label` as well.',
+          'A short label revealed on hover or focus. It is a supplement, never the only source of a name: tooltips never appear on touch, so a control whose meaning lives only in its tooltip is unlabelled on a phone. Give icon-only buttons an `aria-label` as well. Every tooltip needs a `TooltipProvider` above it — the app mounts one at the root, and these stories mount one as a decorator.',
       },
     },
   },
   tags: ['autodocs'],
+  decorators: [
+    Story => (
+      <TooltipProvider>
+        <Story />
+      </TooltipProvider>
+    ),
+  ],
   argTypes: {
     defaultOpen: {
       control: { type: 'boolean' },
@@ -29,7 +36,7 @@ const meta: Meta<typeof Tooltip> = {
     delayDuration: {
       control: { type: 'number' },
       description:
-        'Milliseconds to wait before opening. Defaults to 0 here, so the tooltip appears immediately.',
+        'Milliseconds to wait before opening, overriding the provider for this one tooltip. Unset, it inherits the provider above — 300ms here, as in the app.',
     },
   },
 };
@@ -111,15 +118,15 @@ export const WithLongText: Story = {
     docs: {
       description: {
         story:
-          'The pill has no width constraint of its own, so a long tooltip needs a `max-w-*`. Anything this long is usually a sign the content belongs on the page instead.',
+          'The tooltip has no width constraint of its own, so a long one needs a `max-w-*`. At 224×92 it is a container and takes the 20px card corner; `rounded-full` would clamp to 46px here and read as a lozenge. Content this long is still usually a sign it belongs on the page.',
       },
     },
   },
 };
 
-export const SharedProvider: Story = {
+export const NestedProvider: Story = {
   render: () => (
-    <TooltipProvider delayDuration={300}>
+    <TooltipProvider delayDuration={0}>
       <div className='flex gap-2'>
         <Tooltip>
           <TooltipTrigger asChild>
@@ -152,7 +159,7 @@ export const SharedProvider: Story = {
     docs: {
       description: {
         story:
-          'Each `Tooltip` wraps itself in a provider, so a group of them works with no setup. Wrapping the group in one explicit `TooltipProvider` is what buys the shared behaviour: a common delay, and skipping that delay once one tooltip in the group is already open.',
+          'A provider governs every tooltip beneath it: one delay, and one skip-delay window so moving between siblings in a toolbar does not restart the wait. Nesting a second provider overrides that delay for its subtree alone — the collapsed sidebar rail does exactly this, opening at 0ms because its labels are hidden and the tooltip is the only visible name. These three open instantly; every other story waits the root 300ms.',
       },
     },
   },

@@ -114,6 +114,9 @@ function SidebarProvider({
 
   return (
     <SidebarContext.Provider value={contextValue}>
+      {/* The rail's labels are `sr-only` when collapsed, so its tooltip is the
+          only visible name and opens without a wait. Nested on purpose: it
+          overrides the root provider's delay for this subtree alone. */}
       <TooltipProvider delayDuration={0}>
         <div
           data-slot='sidebar-wrapper'
