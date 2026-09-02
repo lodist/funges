@@ -63,10 +63,14 @@ describe('the stroke carries the contrast floor, in every state', () => {
   // --primary is 2.94:1 on the page and misses WCAG 1.4.11; --primary-text is
   // 7.85:1 light / 6.44:1 dark. An unchecked box has no fill, so the stroke is
   // the only thing saying the control is there.
-  it('the unchecked box and the radio item stroke on the text step', () => {
-    for (const list of [checkbox(), radioItem()]) {
+  it('all three stroke on the text step', () => {
+    // The switch shipped `border-transparent`, so its only boundary was the
+    // fill: 1.30:1 off and 2.94:1 lit on the page. It is in this loop now
+    // because that is what the section's own rule always claimed.
+    for (const list of [checkbox(), radioItem(), switchRoot()]) {
       expect(list).toContain('border-primary-text');
       expect(list).not.toContain('border-primary');
+      expect(list).not.toContain('border-transparent');
     }
   });
 
@@ -76,10 +80,11 @@ describe('the stroke carries the contrast floor, in every state', () => {
     expect(list).toContain('border-primary-text');
   });
 
-  it('the invalid stroke uses the text step', () => {
-    const list = checkboxInvalid();
-    expect(list).toContain('aria-invalid:border-destructive-text');
-    expect(list).not.toContain('aria-invalid:border-destructive');
+  it('the invalid stroke uses the text step, on all three', () => {
+    for (const list of [checkboxInvalid(), radioItem(), switchRoot()]) {
+      expect(list).toContain('aria-invalid:border-destructive-text');
+      expect(list).not.toContain('aria-invalid:border-destructive');
+    }
   });
 });
 
@@ -99,11 +104,14 @@ describe('the state indicator is a token, not a literal', () => {
       0
     );
 
-    // the knob's own outline is the boundary, so the off track can stay pale;
-    // --foreground collapses to 2.34:1 on the lit track in dark, hence the twin
+    // The track's 2px stroke is the boundary now, so the knob's outline only
+    // has to find the knob on the pale off fill: --primary-text reads 6.06:1
+    // light / 4.01:1 dark there. It used to be a near-black --foreground ring,
+    // which was one patch over three separate holes.
     expect(thumb).toContain('border');
-    expect(thumb).toContain('border-foreground');
-    expect(thumb).toContain('dark:border-border');
+    expect(thumb).toContain('border-primary-text');
+    expect(thumb).not.toContain('border-foreground');
+    expect(thumb).not.toContain('dark:border-border');
 
     const root = switchRoot();
     expect(root).toContain('data-[state=unchecked]:bg-input');
@@ -152,6 +160,23 @@ describe('what changes colour also transitions', () => {
   it('the radio item transitions its stroke', () => {
     const t = radioItem().find(c => c.startsWith('transition-['));
     expect(t).toContain('border-color');
+  });
+
+  it('no one in the trio reaches for transition-all', () => {
+    // transition-all on the switch also animated its 44px ::before and every
+    // layout property the root owns.
+    for (const list of [checkbox(), radioItem(), switchRoot()]) {
+      expect(list).not.toContain('transition-all');
+      expect(list.find(c => c.startsWith('transition-['))).toBeTruthy();
+    }
+  });
+
+  it('the switch transitions its fill and its stroke, and the knob its travel', () => {
+    const t = switchRoot().find(c => c.startsWith('transition-['));
+    for (const prop of ['background-color', 'border-color']) {
+      expect(t).toContain(prop);
+    }
+    expect(switchThumb()).toContain('transition-transform');
   });
 });
 

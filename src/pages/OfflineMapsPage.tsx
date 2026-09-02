@@ -4,6 +4,7 @@ import SEO from '@/components/SEO';
 import { usePWA } from '@/hooks/use-pwa';
 import { useOfflineStore, CONTINENTS } from '@/store/offlineStore';
 import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
 
 const QUOTA_MB = 500;
 const BYTES_PER_MB = 1024 * 1024;
@@ -71,17 +72,22 @@ export default function OfflineMapsPage() {
                 <tr>
                   <th className='px-2 py-1 text-left'>{t('regions.name')}</th>
                   <th className='px-2 py-1 text-left'>{t('regions.status')}</th>
-                  <th className='px-2 py-1'></th>
+                  <th className='px-2 py-1'>
+                    <span className='sr-only'>{t('regions.download')}</span>
+                  </th>
                 </tr>
               </thead>
               <tbody className='divide-y divide-border'>
                 {CONTINENTS.map(continent => {
                   const info = cached[continent];
                   const isDownloading = Boolean(downloading[continent]);
+                  const nameId = `offline-region-${continent}`;
                   return (
                     <tr key={continent} className='hover:bg-muted'>
-                      <td className='px-2 py-1'>{t(`regions.${continent}`)}</td>
-                      <td className='px-2 py-1'>
+                      <td id={nameId} className='px-2 py-2.5'>
+                        {t(`regions.${continent}`)}
+                      </td>
+                      <td className='px-2 py-2.5'>
                         {isDownloading
                           ? t('regions.downloading')
                           : info
@@ -92,22 +98,15 @@ export default function OfflineMapsPage() {
                               })
                             : t('regions.notCached')}
                       </td>
-                      <td className='px-2 py-1 text-right'>
-                        {info ? (
-                          <Button
-                            disabled={isDownloading}
-                            onClick={() => remove(continent)}
-                          >
-                            {t('regions.remove')}
-                          </Button>
-                        ) : (
-                          <Button
-                            disabled={isDownloading || !isOnline}
-                            onClick={() => download(continent)}
-                          >
-                            {t('regions.download')}
-                          </Button>
-                        )}
+                      <td className='px-2 py-2.5 text-right'>
+                        <Switch
+                          aria-labelledby={nameId}
+                          checked={Boolean(info)}
+                          disabled={isDownloading || (!isOnline && !info)}
+                          onCheckedChange={on =>
+                            on ? download(continent) : remove(continent)
+                          }
+                        />
                       </td>
                     </tr>
                   );

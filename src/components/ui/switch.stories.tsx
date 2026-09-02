@@ -126,7 +126,7 @@ export const Controlled: Story = {
 
 export const AllStates: Story = {
   render: () => (
-    <div className='grid grid-cols-[auto_1fr] items-center gap-x-4 gap-y-4'>
+    <div className='grid grid-cols-[auto_1fr] items-center gap-x-4 gap-y-5'>
       {[
         { label: 'off', props: {} },
         { label: 'on', props: { defaultChecked: true } },

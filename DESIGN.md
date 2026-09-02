@@ -497,8 +497,12 @@ Checkbox, radio and switch. The three share one boundary rule, one indicator rul
 hit-area rule, because they share the same failure: a control whose only edge is a stroke.
 
 - **Style:** a 20px box on the checkbox with a `sm` corner, a 20px circle on the radio, a
-  32×18px track on the switch. All three carry a 2px stroke and **no shadow** — an inline
+  44×24px track on the switch. All three carry a 2px stroke and **no shadow** — an inline
   control inside a form does not float above anything, so no elevation level rides one.
+  ⚠️ For twenty-three passes this sentence was true of two of the three: the switch shipped
+  `border border-transparent` and a `shadow-sm` on its knob, so its only boundary was a **fill**
+  — 1.30:1 off and 2.94:1 lit on the page, in a section named after strokes. A rule that says
+  «all three» is a claim about three files, and it has to be read in all three.
 - **Boundary:** the stroke is Chlorophyll Readable (`--primary-text`), not Chlorophyll Bright
   (`--primary`). An unchecked box has no fill, so the stroke is the only thing saying the
   control exists, and the bright step measures **2.94:1** on the page against the WCAG 1.4.11
@@ -511,27 +515,50 @@ hit-area rule, because they share the same failure: a control whose only edge is
   `currentColor` while its body follows `fill`. The switch knob is a fixed light `white` in
   both states and both themes, and never changes colour: a knob that recolours per state reads
   as a hole punched in the track rather than a moving part, and `--background` darkens into
-  exactly that hole in dark. The off track stays pale (`--input`), so the knob carries its own
-  1px outline: `--foreground` measures **12.37:1** off and **5.44:1** lit in light, and **6.10:1**
-  off in dark, but collapses to **2.34:1** on the lit track in dark — the one place it fails, so
-  dark swaps the outline to `--border` for **3.40:1**. Every state clears the 3:1 floor on at
-  least one boundary. The knob's shadow is depth only: a blur is not a measurable boundary.
+  exactly that hole in dark. The off track stays pale (`--input`), so the knob carries a 1px
+  outline in the **same `--primary-text` as the track stroke** — **6.06:1** light and **4.01:1**
+  dark against the off fill, which is the state where the knob has to be found. On the lit track
+  it reads 2.67:1 and 1.18:1, and that is allowed: there the 2px stroke already bounds the
+  control and the knob is a redundant third cue. ⚠️ The outline used to be `--foreground`, a
+  near-black ring, and it was the only single patch that covered three separate holes at once —
+  off track 1.30:1 on the page, off fill against lit fill 2.27:1, white knob on the off fill
+  1.32:1. No ring colour clears 3:1 on both a near-white fill and a mid green, which is why
+  recolouring it was never the fix; giving the track its stroke back was.
 - **Error:** `aria-invalid` reddens the stroke to `--destructive-text`. The plain
   `--destructive` step used by Inputs measures **2.50:1** in dark, so a selection control — whose
   stroke is its whole boundary — cannot borrow it.
 - **Transition:** every property that changes colour is named. The checkbox transitions
-  `color, background-color, border-color, box-shadow`; a control that transitions only the
-  shadow snaps its fill and its stroke.
+  `color, background-color, border-color, box-shadow`, the switch track
+  `background-color, border-color, box-shadow` and its knob `transform`; a control that
+  transitions only the shadow snaps its fill and its stroke. The switch carried a bare
+  `transition-all`, which also animated the 44px `::before` and every layout property it owns.
 - **Hit area:** 44px, from a centred `::before` that does not change the visual size. Field use
-  is one-handed and outdoors, so this is a requirement rather than a refinement. A radio group
-  spaces items 24px (`gap-6`) so two 44px targets on 20px boxes cannot overlap — overlapping
-  targets trade a missed tap for a wrong one.
+  is one-handed and outdoors, so this is a requirement rather than a refinement. **The three
+  share that `::before`, so they share its spacing requirement: consecutive controls need 44px
+  between centres, whatever the visual size in between.** A radio group spaces items 24px
+  (`gap-6`) on 20px boxes; a column of switches needs `gap-y-5` on a 24px track, and a table of
+  them needs `py-2.5` in the cell, which puts the offline-maps rows at a 46px pitch.
+  ⚠️ Written for the radio group alone, this rule left the switch's own `AllStates` story at a
+  34.4px pitch — **9.6px of overlap on every adjacent pair**, measured with `elementFromPoint`.
+  Overlapping targets trade a missed tap for a wrong one.
 - **One size:** none of the three takes a size prop. A size scale that no caller can reach is
   dead documentation, not flexibility.
 
 **The Stroke-Is-The-Control Rule.** When a control's only boundary is its stroke, that stroke
 carries the non-text contrast floor in every state it can reach — unchecked, checked, invalid
-and hover alike. Fill colour is interior decoration; the stroke is the control.
+and hover alike. Fill colour is interior decoration; the stroke is the control. The switch is
+the case that proves it: it was the one member drawing its boundary with a fill, and every
+symptom downstream — the near-black knob ring, the 1.30:1 off state, the 2.94:1 lit state —
+followed from that one missing stroke.
+
+**A switch is the setting, not the errand.** `OfflineMapsPage` drew each region's toggle as a
+button whose label swapped between «Download for offline» and «Remove», with the state kept in a
+separate column: the control described what would happen next instead of showing how things
+stood. A switch shows the setting and the row's own status cell keeps what a toggle cannot carry
+— the progress while tiles are fetching, and the date once they are. Reach for a switch when the
+reader is expressing an intent that persists; leave a button where the action is a one-off with
+no state to show afterwards. ⚠️ The switch is still the _intent_: a continent download is slow
+and can fail, so the status cell, not the knob, is what says where the work actually got to.
 
 ### Collapsible
 
