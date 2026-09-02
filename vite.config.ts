@@ -53,7 +53,12 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,avif}'],
+        globPatterns: [
+          '**/*.{js,css,html,ico,png,svg,webp,avif}',
+          'funges_style*.json',
+          'offline-packages.json',
+          'map-assets/**/*.{json,png,pbf}',
+        ],
         // HEIC support is a fallback, so do not make every visitor download its
         // decoder chunk. Cache the JS + WASM after the first HEIC photo instead.
         globIgnores: ['**/heic-decoder-*.js'],
@@ -200,8 +205,8 @@ export default defineConfig({
               },
             },
           },
-          // Map glyphs + sprites (Protomaps basemap assets, cross-origin) so
-          // labels/icons render offline for tiles that were viewed online.
+          // Legacy cross-origin fallback. Current styles use self-hosted glyphs
+          // and sprites from public/map-assets, which are precached above.
           {
             urlPattern:
               /^https:\/\/protomaps\.github\.io\/basemaps-assets\/.*/i,

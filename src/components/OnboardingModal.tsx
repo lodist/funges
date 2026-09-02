@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import {
   ChefHat,
+  Download,
   Heart,
   List,
   MousePointerClick,
@@ -21,12 +22,15 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { usePWA } from '@/hooks/use-pwa';
+import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 
 const ONBOARDING_KEY = 'onboardingDismissed';
 
 export default function OnboardingModal() {
   const { t } = useTranslation('map');
   const { activeModal, setActiveModal } = useUIStore();
+  const { isOnline } = usePWA();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -79,10 +83,23 @@ export default function OnboardingModal() {
             <MousePointerClick className='h-4 w-4' />
             {t('onboarding.features.zones')}
           </li>
-          <li className='flex items-center gap-2'>
-            <ChefHat className='h-4 w-4' />
-            {t('onboarding.features.recipes')}
-          </li>
+          {isOnline && (
+            <li className='flex items-center gap-2'>
+              <ChefHat className='h-4 w-4' />
+              {t('onboarding.features.recipes')}
+            </li>
+          )}
+          {isOnline && shouldShowOfflineFeatures && (
+            <li className='flex items-center gap-2'>
+              <Download className='h-4 w-4' />
+              <Link
+                to='/offline'
+                className='font-medium text-primary-text underline underline-offset-2'
+              >
+                {t('onboarding.features.offline')}
+              </Link>
+            </li>
+          )}
         </ul>
         <div className='mt-4 text-sm space-y-2'>
           <div>

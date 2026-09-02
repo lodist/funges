@@ -1,23 +1,35 @@
 {
-  "title": "Offline Maps",
-  "description": "Manage offline map data",
-  "offlineBanner": "You're offline — downloaded regions still show their data, without the live base map underneath.",
-  "storage": {
-    "title": "Storage",
-    "summary": "{{used}} MB / {{quota}} MB",
-    "purge": "Purge expired now",
-    "ttl": "Downloads expire after 14 days"
+  "title": "Offline-Karten",
+  "description": "Kartenpakete für die Offline-Nutzung herunterladen und verwalten",
+  "intro": "Lade vor deinem Ausflug ein Kartenpaket herunter. Jedes Paket enthält die Grundkarte und Sammelprognosen und ist 7 Tage gültig.",
+  "offlineBanner": "Du bist offline. Gültige heruntergeladene Pakete bleiben verfügbar.",
+  "catalog": {
+    "eu": {
+      "name": "Europa",
+      "description": "Detaillierte Offline-Grundkarte und Sammelprognosen für Europa."
+    },
+    "us": {
+      "name": "Vereinigte Staaten",
+      "description": "Detaillierte Offline-Grundkarte und Sammelprognosen für die Vereinigten Staaten."
+    }
   },
-  "regions": {
-    "title": "Regions",
-    "name": "Region",
-    "status": "Status",
-    "cachedOn": "Downloaded {{date}}",
-    "notCached": "Not downloaded",
-    "downloading": "Downloading...",
-    "download": "Download for offline",
-    "remove": "Remove",
-    "eu": "Europe",
-    "us": "United States"
+  "storage": {
+    "title": "Gerätespeicher",
+    "summary": "{{used}} von ungefähr {{quota}} für diese Website verfügbarem Speicher verwendet",
+    "persistent": "Vor automatischer Löschung durch den Browser geschützt",
+    "bestEffort": "Der Browser kann Downloads bei knappem Gerätespeicher entfernen"
+  },
+  "packages": {
+    "title": "Verfügbare Pakete",
+    "loading": "Paketkatalog wird geladen…",
+    "empty": "Derzeit sind keine Offline-Pakete veröffentlicht.",
+    "download": "Herunterladen",
+    "update": "Aktualisieren",
+    "remove": "Entfernen",
+    "open": "Karte öffnen",
+    "cancel": "Abbrechen",
+    "progress": "Wird heruntergeladen… {{percent}} %",
+    "downloaded": "Heruntergeladen am {{date}} · Version {{version}} · 7 Tage gültig",
+    "expired": "Abgelaufen · verbinde dich mit dem Internet und aktualisiere das Paket"
   }
 }

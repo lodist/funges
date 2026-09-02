@@ -18,6 +18,7 @@ import { describe, expect, it } from 'vitest';
 const button = readFileSync('src/components/ui/button.tsx', 'utf8');
 
 const shipped = readdirSync('src', { recursive: true, encoding: 'utf8' })
+  .map(p => p.replace(/\\/g, '/'))
   .filter(
     p => /\.tsx$/.test(p) && !p.includes('.stories.') && !p.startsWith('test/')
   )
