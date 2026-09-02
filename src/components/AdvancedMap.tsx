@@ -1119,15 +1119,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </div>
         )}
 
-        {mapLoaded &&
-          !isOnline &&
-          hasOfflinePackageInView &&
-          !hasOfflineBasemapAtCenter && (
-            <div className='pointer-events-none absolute left-1/2 top-14 z-20 w-max max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-md border bg-background/90 px-3 py-2 text-center text-xs text-muted-foreground shadow-sm'>
-              {t('offline.forecastOnlyMessage')}
-            </div>
-          )}
-
         {/* Species selector - top left corner */}
         <div className='absolute top-2 left-2 z-20'>
           <SpeciesSelector className='w-auto' />
