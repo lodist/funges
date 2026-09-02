@@ -10,11 +10,11 @@ ROOT = Path(__file__).resolve().parents[1]
 import sys
 
 sys.path.insert(0, str(ROOT / "backend"))
-from species_registry import get_region_species, get_species_metadata
+from species_registry import get_region_species, get_species_metadata, infer_region
 
 
-PARQUET_PATH = Path("public/data/foraging_scores.parquet")
-OUTPUT_PATH = Path("public/data/worth_foraging_now.json")
+PARQUET_PATH = ROOT / "public" / "data" / "foraging_scores.parquet"
+OUTPUT_PATH = ROOT / "public" / "data" / "worth_foraging_now.json"
 GRID_SIZE_DEGREES = 0.5
 MIN_SCORE = 4.0
 MAX_CELL_SPECIES = 8
@@ -37,16 +37,6 @@ def resolve_region_species() -> dict[str, set[str]]:
         region: get_region_species(region)
         for region in ("NE", "SE", "USE", "USW")
     }
-
-
-def infer_region(longitude: float, latitude: float) -> str:
-    if longitude < -100:
-        return "USW"
-    if longitude < -25:
-        return "USE"
-    if latitude < 47:
-        return "SE"
-    return "NE"
 
 
 def round_cell(value: float) -> float:

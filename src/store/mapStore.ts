@@ -5,6 +5,7 @@ import {
   type ForecastRegion,
   type SpeciesOption,
 } from '@/data/species';
+import { GENERATED_REGION_BOUNDARIES } from '@/generated/species-catalog';
 import {
   setForecastFraction,
   forecastNumberField,
@@ -50,6 +51,7 @@ export interface MapState {
   // Species selection
   selectedSpecies: string | null;
   speciesOptions: SpeciesOption[];
+  forecastRegion: ForecastRegion; // derived from `center`, drives speciesOptions
   speciesDisplayMap: Record<string, string>;
 
   // Layer visibility
@@ -87,6 +89,7 @@ export interface MapState {
 
   // Species selection actions
   setSelectedSpecies: (species: string | null) => void;
+  syncSelectedSpecies: (species: string | null) => void;
   setMapStyleIndex: (index: number) => void;
   toggleNumbersLayersVisibility: () => void;
   setActiveDay: (day: number) => void;
@@ -112,40 +115,46 @@ const MAP_STYLES = [
 const DARK_STYLE_INDEXES = new Set([1, 3]); // drives dark UI chrome
 const INITIAL_CENTER: [number, number] = [7.3359, 47.7508];
 
+// Boundaries come from the manifests via species:generate, the same numbers the
+// Python scoring scripts read out of backend/generated/species_registry.json —
+// so the species list and the forecast data can't disagree about where USE ends.
 export function forecastRegionForCoordinate([longitude, latitude]: [
   number,
   number,
 ]): ForecastRegion {
-  if (longitude < -100) return 'USW';
-  if (longitude < -25) return 'USE';
-  return latitude < 47 ? 'SE' : 'NE';
+  const { uswMaxLongitude, usMaxLongitude, seMaxLatitude } =
+    GENERATED_REGION_BOUNDARIES;
+  if (longitude < uswMaxLongitude) return 'USW';
+  if (longitude < usMaxLongitude) return 'USE';
+  return latitude < seMaxLatitude ? 'SE' : 'NE';
 }
 
+// The species list follows the VIEWPORT: a US GPS fix does not make US-only species
+// meaningful while the map shows Europe. Never writes to localStorage — the fallback
+// below is session-only, so panning through a region that lacks the user's species
+// can't destroy their saved choice, and panning back restores it.
 function regionalSpeciesState(
-  coordinate: [number, number],
+  region: ForecastRegion,
   selectedSpecies: string | null
 ) {
-  const speciesOptions = getSpeciesOptions(
-    forecastRegionForCoordinate(coordinate)
-  );
-  const selectionIsAvailable = speciesOptions.some(
-    option => option.code === selectedSpecies
-  );
-  const nextSelectedSpecies = selectionIsAvailable
-    ? selectedSpecies
-    : (speciesOptions[0]?.code ?? null);
-  if (nextSelectedSpecies) {
-    localStorage.setItem('selectedSpecies', nextSelectedSpecies);
-  } else {
-    localStorage.removeItem('selectedSpecies');
-  }
-  return { speciesOptions, selectedSpecies: nextSelectedSpecies };
+  const speciesOptions = getSpeciesOptions(region);
+  const offered = (code: string | null) =>
+    !!code && speciesOptions.some(option => option.code === code);
+  const persisted = localStorage.getItem('selectedSpecies');
+  const nextSelectedSpecies = offered(persisted)
+    ? persisted
+    : offered(selectedSpecies)
+      ? selectedSpecies
+      : (speciesOptions[0]?.code ?? null);
+  return {
+    forecastRegion: region,
+    speciesOptions,
+    selectedSpecies: nextSelectedSpecies,
+  };
 }
 
-const INITIAL_SPECIES = regionalSpeciesState(
-  INITIAL_CENTER,
-  localStorage.getItem('selectedSpecies') || 'mushroom'
-);
+const INITIAL_REGION = forecastRegionForCoordinate(INITIAL_CENTER);
+const INITIAL_SPECIES = regionalSpeciesState(INITIAL_REGION, 'mushroom');
 
 export interface MapThemeOption {
   id: 'light' | 'dark' | 'white' | 'darkmatter' | 'topographic';
@@ -193,6 +202,10 @@ function readStyleIndex(): number {
 // London) — any lat/lon cut blanks half of one region's data. USE/USW overlap the same
 // way across the central US. The Atlantic gap (EU ends at 45°/starts at -25°, US spans
 // -125°..-66°) keeps EU and US from ever being active together. [west, south, east, north].
+//
+// These are NOT the forecast-region boundaries (GENERATED_REGION_BOUNDARIES above):
+// tile activation is deliberately coarser and overlapping, so moving the USE/USW
+// boundary does not touch this map.
 export const REGION_BBOX: Record<string, [number, number, number, number]> = {
   ne: [-25, 27, 45, 72], // EU (whole): NE+SE always load together
   se: [-25, 27, 45, 72],
@@ -245,6 +258,7 @@ export const useMapStore = create<MapState>()(
       selectedSpot: null,
       selectedSpecies: INITIAL_SPECIES.selectedSpecies,
       speciesOptions: INITIAL_SPECIES.speciesOptions,
+      forecastRegion: INITIAL_REGION,
       speciesDisplayMap: {
         // This will be programmatically generated from speciesOptions and species.json
       },
@@ -260,25 +274,25 @@ export const useMapStore = create<MapState>()(
       mapRef: null,
 
       // Actions
+      // MapLibre's `move` event calls this on every animation frame, so the species
+      // list is recomputed only when the viewport actually crosses into another
+      // region — not 60 times a second.
       setCenter: center =>
-        set(state => ({
-          center,
-          ...(state.userLocation
-            ? {}
-            : regionalSpeciesState(center, state.selectedSpecies)),
-        })),
+        set(state => {
+          const region = forecastRegionForCoordinate(center);
+          if (region === state.forecastRegion) return { center };
+          return {
+            center,
+            ...regionalSpeciesState(region, state.selectedSpecies),
+          };
+        }),
       setZoom: zoom => set({ zoom }),
       setBearing: bearing => set({ bearing }),
       setPitch: pitch => set({ pitch }),
       setMapStyle: mapStyle => set({ mapStyle }),
-      setUserLocation: userLocation =>
-        set(state => ({
-          userLocation,
-          ...regionalSpeciesState(
-            userLocation ?? state.center,
-            state.selectedSpecies
-          ),
-        })),
+      // Deliberately does not touch the species list: GeolocateControl recenters the
+      // map on the fix, and setCenter picks the region up from the viewport.
+      setUserLocation: userLocation => set({ userLocation }),
       setUserLocationError: userLocationError => set({ userLocationError }),
       setForagingSpots: foragingSpots => set({ foragingSpots }),
       setSelectedSpot: selectedSpot => set({ selectedSpot }),
@@ -286,6 +300,11 @@ export const useMapStore = create<MapState>()(
       setError: error => set({ error }),
       setShowUserLocation: showUserLocation => set({ showUserLocation }),
       clearError: () => set({ error: null }),
+
+      // Mirrors the URL's ?species into the store without persisting it: MapPage
+      // falls back to mushroom whenever the query species is not offered in the
+      // region on screen, and that fallback is not the user's choice to remember.
+      syncSelectedSpecies: selectedSpecies => set({ selectedSpecies }),
 
       // Species selection actions
       setSelectedSpecies: selectedSpecies => {

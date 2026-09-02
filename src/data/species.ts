@@ -57,8 +57,11 @@ export const getSpeciesByCategory = (
 
 export const getAllSpecies = (): Species[] => SPECIES_DATA;
 
-export const getSpeciesOptions = (region?: ForecastRegion): SpeciesOption[] =>
+// region is mandatory on purpose: an optional one degraded to "no filter", so a
+// caller that forgot it silently got the all-regions list back (parasol selectable
+// in the US, asparagus in NE). Now that mistake is a type error.
+export const getSpeciesOptions = (region: ForecastRegion): SpeciesOption[] =>
   SPECIES_DATA.filter(
     ({ showOnMap, forecastRegions }) =>
-      showOnMap && (!region || forecastRegions?.includes(region))
+      showOnMap && forecastRegions?.includes(region)
   ).map(({ id, emoji, category }) => ({ code: id, emoji, category }));

@@ -285,11 +285,19 @@ def analyse_region(
         date_counts: dict[str, int] = defaultdict(int)
         region_species = list(specs[region]["params"])
         available_columns = set(parquet.schema_arrow.names)
-        score_columns = [
-            f"{species_id}_score"
+        # Fail instead of intersecting: a species the registry declares available in
+        # the region but whose score column the pipeline never wrote is a pipeline
+        # gap, and silently dropping it turns that gap into a clean QA run.
+        missing = [
+            species_id
             for species_id in region_species
-            if f"{species_id}_score" in available_columns
+            if f"{species_id}_score" not in available_columns
         ]
+        if missing:
+            raise SystemExit(
+                f"{region}: parquet is missing score columns for {sorted(missing)}"
+            )
+        score_columns = [f"{species_id}_score" for species_id in region_species]
         columns = ["Location_Id", "Date", "climate_zone", *score_columns]
         for batch in parquet.iter_batches(columns=columns):
             frame = batch.to_pandas()
@@ -301,8 +309,6 @@ def analyse_region(
             for (day, zone), day_frame in frame.groupby(["Date", "climate_zone"], sort=False):
                 date_counts[day] += len(day_frame)
                 for species_id in region_species:
-                    if f"{species_id}_score" not in day_frame:
-                        continue
                     values = day_frame[f"{species_id}_score"].to_numpy(float)
                     bins = np.clip(np.rint(np.nan_to_num(values) * 10), 0, 100).astype(int)
                     histograms[(day, zone, species_id)] += np.bincount(bins, minlength=101)

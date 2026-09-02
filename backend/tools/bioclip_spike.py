@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "backend" / "tools"))
 from generated_catalog import CATALOG, CATALOG_NAMES
 
-# --- catalog labels: 32 unique scientific names from src/data/species.ts ---
+# --- catalog labels: 32 unique scientific names from content/species/*/species.json ---
 # 33 entries collapse to 32 unique names (elderberry + elderflower are both
 # Sambucus nigra).
 #

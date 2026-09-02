@@ -1,5 +1,10 @@
 {
   "schemaVersion": 1,
+  "regionBoundaries": {
+    "uswMaxLongitude": -100,
+    "usMaxLongitude": -25,
+    "seMaxLatitude": 47
+  },
   "species": {
     "chant": {
       "name": "Chanterelle",

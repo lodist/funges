@@ -408,3 +408,9 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     forecastRegions: ['SE'],
   },
 ];
+
+export const GENERATED_REGION_BOUNDARIES = {
+  uswMaxLongitude: -100,
+  usMaxLongitude: -25,
+  seMaxLatitude: 47,
+} as const;

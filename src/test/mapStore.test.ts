@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { getSpeciesOptions } from '@/data/species';
 import {
   forecastRegionForCoordinate,
   layerRegion,
@@ -18,14 +19,22 @@ describe('forecastRegionForCoordinate', () => {
   });
 });
 
+const NE_CENTER: [number, number] = [7.3359, 47.7508];
+const USE_CENTER: [number, number] = [-74, 40.7];
+
 describe('regional species options', () => {
   beforeEach(() => {
     localStorage.clear();
-    useMapStore.setState({ userLocation: null });
+    useMapStore.setState({
+      userLocation: null,
+      forecastRegion: 'NE',
+      selectedSpecies: 'mushroom',
+      speciesOptions: getSpeciesOptions('NE'),
+    });
   });
 
   it('removes species that have no layer in the selected region', () => {
-    useMapStore.getState().setCenter([-74, 40.7]);
+    useMapStore.getState().setCenter(USE_CENTER);
     const state = useMapStore.getState();
 
     expect(state.speciesOptions.some(option => option.code === 'parasol')).toBe(
@@ -34,6 +43,72 @@ describe('regional species options', () => {
     expect(state.speciesOptions.some(option => option.code === 'chant')).toBe(
       true
     );
+  });
+
+  // The species list must follow the viewport even once a GPS fix exists: the fix
+  // says where the user stands, not what the map is showing.
+  it('updates the species list when panning away from the geolocated region', () => {
+    useMapStore.setState({
+      userLocation: USE_CENTER,
+      forecastRegion: 'USE',
+      speciesOptions: getSpeciesOptions('USE'),
+    });
+    useMapStore.getState().setCenter(NE_CENTER);
+    const { speciesOptions, forecastRegion } = useMapStore.getState();
+
+    expect(forecastRegion).toBe('NE');
+    expect(speciesOptions.some(option => option.code === 'chant')).toBe(true);
+    expect(speciesOptions.some(option => option.code === 'masterwort')).toBe(
+      true
+    );
+    expect(speciesOptions.some(option => option.code === 'asparagus')).toBe(
+      false
+    );
+  });
+
+  // setCenter runs on MapLibre's `move` event, i.e. every animation frame.
+  it('leaves the species list untouched while panning inside one region', () => {
+    const before = useMapStore.getState().speciesOptions;
+    useMapStore.getState().setCenter([7.4, 47.8]);
+    useMapStore.getState().setCenter([7.5, 47.9]);
+    const state = useMapStore.getState();
+
+    expect(state.speciesOptions).toBe(before);
+    expect(state.center).toEqual([7.5, 47.9]);
+  });
+
+  it('keeps the saved species and restores it on the way back', () => {
+    useMapStore.getState().setSelectedSpecies('masterwort'); // NE/SE only
+    useMapStore.getState().setCenter(USE_CENTER);
+
+    expect(useMapStore.getState().selectedSpecies).not.toBe('masterwort');
+    expect(localStorage.getItem('selectedSpecies')).toBe('masterwort');
+
+    useMapStore.getState().setCenter(NE_CENTER);
+    expect(useMapStore.getState().selectedSpecies).toBe('masterwort');
+  });
+
+  // MapPage mirrors the URL's ?species here, falling back to mushroom when the
+  // query species is not offered in the region on screen. That fallback must not
+  // overwrite what the user last picked.
+  it('does not persist a species mirrored from the URL', () => {
+    useMapStore.getState().setSelectedSpecies('masterwort');
+    useMapStore.getState().syncSelectedSpecies('mushroom');
+
+    expect(useMapStore.getState().selectedSpecies).toBe('mushroom');
+    expect(localStorage.getItem('selectedSpecies')).toBe('masterwort');
+  });
+
+  it('filters the catalog per region, not per continent', () => {
+    expect(
+      getSpeciesOptions('USE').some(option => option.code === 'asparagus')
+    ).toBe(false);
+    expect(
+      getSpeciesOptions('NE').some(option => option.code === 'asparagus')
+    ).toBe(false);
+    expect(
+      getSpeciesOptions('SE').some(option => option.code === 'asparagus')
+    ).toBe(true);
   });
 });
 

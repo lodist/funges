@@ -3,6 +3,14 @@ import pytest
 from backend import species_registry
 
 
+@pytest.fixture(autouse=True)
+def _clear_registry_caches():
+    """_known_regions is memoised, so tests that swap _registry must reset it."""
+    species_registry._known_regions.cache_clear()
+    yield
+    species_registry._known_regions.cache_clear()
+
+
 def test_generated_registry_supplies_land_cover_for_forecast_species():
     mapping = species_registry.get_land_cover_mapping("NE")
 
@@ -82,12 +90,8 @@ def test_unknown_region_is_rejected():
         species_registry.get_species_params,
         species_registry.get_region_species,
     ):
-        try:
+        with pytest.raises(ValueError, match="unknown region"):
             loader("UNKNOWN")
-        except ValueError as error:
-            assert "unknown region" in str(error)
-        else:
-            raise AssertionError(f"{loader.__name__} accepted an unknown region")
 
 
 def test_a_region_with_no_available_species_is_rejected(monkeypatch):
@@ -106,3 +110,19 @@ def test_a_region_with_no_available_species_is_rejected(monkeypatch):
     assert species_registry.get_species_params("NE")
     with pytest.raises(ValueError, match="unknown region"):
         species_registry.get_species_params("USW")
+
+
+# Same coordinates as the forecastRegionForCoordinate cases in
+# src/test/mapStore.test.ts: both sides read the generated boundaries, and this
+# pins them so a manifest change that moves one has to move both.
+@pytest.mark.parametrize(
+    ("longitude", "latitude", "expected"),
+    [
+        (-122.4, 37.8, "USW"),
+        (-74, 40.7, "USE"),
+        (12.5, 41.9, "SE"),
+        (7.3, 47.8, "NE"),
+    ],
+)
+def test_infer_region_follows_the_generated_boundaries(longitude, latitude, expected):
+    assert species_registry.infer_region(longitude, latitude) == expected

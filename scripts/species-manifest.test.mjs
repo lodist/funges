@@ -89,12 +89,40 @@ function scoring(overrides = {}) {
   };
 }
 
+// chant is the declared style template species (STYLE_TEMPLATE_SPECIES in
+// species-manifest.mjs), so the fixture mirrors the repo: a forecast species
+// available in every region, whose layers every generated layer is cloned from.
+function forecast(availableIn = REGIONS) {
+  return {
+    enabled: true,
+    routeToDish: false,
+    dataColumns: [],
+    empiricalSeason: { enabled: false, taxonKeys: [], references: [] },
+    regions: Object.fromEntries(
+      REGIONS.map(region => [
+        region,
+        availableIn.includes(region)
+          ? {
+              available: true,
+              landCover: [10],
+              landCoverScheme: ['NE', 'SE'].includes(region)
+                ? 'CORINE'
+                : 'NLCD',
+              scoring: scoring(),
+              scoringReferences: ['https://example.test/research'],
+            }
+          : { available: false },
+      ])
+    ),
+  };
+}
+
 function fixtureRoot() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'funges-species-'));
   fs.mkdirSync(path.join(root, 'content/species/chant'), { recursive: true });
   fs.writeFileSync(
     path.join(root, 'content/species/chant/species.json'),
-    JSON.stringify(manifest())
+    JSON.stringify(manifest({ forecast: forecast() }))
   );
   fs.mkdirSync(path.join(root, 'src/assets/species'), { recursive: true });
   fs.writeFileSync(path.join(root, 'src/assets/species/chant.webp'), webp());
@@ -171,31 +199,13 @@ function addForecastSpecies(root) {
       image: { path: 'src/assets/species/new-species.webp' },
     },
     forecast: {
-      enabled: true,
+      ...forecast(REGIONS.filter(region => region !== 'USW')),
       routeToDish: true,
       empiricalSeason: {
         enabled: true,
         taxonKeys: [123],
         references: ['https://www.gbif.org/species/123'],
       },
-      regions: Object.fromEntries(
-        REGIONS.map(region => [
-          region,
-          {
-            available: region !== 'USW',
-            ...(region === 'USW'
-              ? {}
-              : {
-                  landCover: [10],
-                  landCoverScheme: ['NE', 'SE'].includes(region)
-                    ? 'CORINE'
-                    : 'NLCD',
-                  scoring: scoring(),
-                  scoringReferences: ['https://example.test/research'],
-                }),
-          },
-        ])
-      ),
     },
   });
   const directory = path.join(root, 'content/species/new-species');
@@ -449,6 +459,54 @@ test('repository check flags a style layer with no manifest behind it', async ()
   assert.match(
     (await checkRepository(root)).join('\n'),
     /funges_style\.json: forecast layers are stale/
+  );
+});
+
+test('generation keeps non-species layers that share the overlay sources', async () => {
+  const root = fixtureRoot();
+  addForecastSpecies(root);
+  await generate(root);
+  const filename = path.join(root, 'public/funges_style.json');
+  const style = JSON.parse(fs.readFileSync(filename, 'utf8'));
+  style.layers.push({
+    id: 'forecast_outline',
+    type: 'line',
+    source: 'overlay-ne',
+  });
+  fs.writeFileSync(filename, JSON.stringify(style));
+
+  assert.deepEqual(
+    (await checkRepository(root)).filter(error =>
+      error.includes('funges_style.json')
+    ),
+    []
+  );
+  await generate(root);
+  const ids = JSON.parse(fs.readFileSync(filename, 'utf8')).layers.map(
+    layer => layer.id
+  );
+  assert.ok(ids.includes('forecast_outline'), 'outline layer must survive');
+});
+
+test('generation restores the manifest layer order and the check reports it', async () => {
+  const root = fixtureRoot();
+  addForecastSpecies(root);
+  await generate(root);
+  const filename = path.join(root, 'public/funges_style.json');
+  const style = JSON.parse(fs.readFileSync(filename, 'utf8'));
+  const order = style.layers.map(layer => layer.id);
+  const [a, b] = [order.indexOf('chant_ne'), order.indexOf('new-species_ne')];
+  [style.layers[a], style.layers[b]] = [style.layers[b], style.layers[a]];
+  fs.writeFileSync(filename, JSON.stringify(style));
+
+  assert.match(
+    (await checkRepository(root)).join('\n'),
+    /funges_style\.json: forecast layers are stale/
+  );
+  await generate(root);
+  assert.deepEqual(
+    JSON.parse(fs.readFileSync(filename, 'utf8')).layers.map(layer => layer.id),
+    order
   );
 });
 

@@ -13,6 +13,7 @@ def _registry():
     return json.loads(_REGISTRY_PATH.read_text(encoding="utf-8"))
 
 
+@lru_cache(maxsize=1)
 def _known_regions():
     """Regions that carry at least one available species."""
     return frozenset(
@@ -23,10 +24,26 @@ def _known_regions():
 
 
 def _require_region(region):
-    if region not in _known_regions():
+    known = _known_regions()
+    if region not in known:
         raise ValueError(
-            f"unknown region {region!r}; expected one of {', '.join(sorted(_known_regions()))}"
+            f"unknown region {region!r}; expected one of {', '.join(sorted(known))}"
         )
+
+
+def infer_region(longitude, latitude):
+    """Return the forecast region a coordinate belongs to.
+
+    The boundaries are generated from the species manifests, the same numbers the
+    map store reads from src/generated/species-catalog.ts, so the scored regions and
+    the region the frontend offers species for cannot drift apart.
+    """
+    boundaries = _registry()["regionBoundaries"]
+    if longitude < boundaries["uswMaxLongitude"]:
+        return "USW"
+    if longitude < boundaries["usMaxLongitude"]:
+        return "USE"
+    return "SE" if latitude < boundaries["seMaxLatitude"] else "NE"
 
 
 def get_land_cover_mapping(region):
