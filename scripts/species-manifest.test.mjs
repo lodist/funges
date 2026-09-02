@@ -462,6 +462,16 @@ test('repository check flags a style layer with no manifest behind it', async ()
   );
 });
 
+test('rejects a style template species that is not available everywhere', () => {
+  const errors = validateManifests(
+    [entry(manifest({ forecast: forecast(['NE', 'SE']) }))],
+    process.cwd(),
+    { checkImages: false }
+  ).join('\n');
+
+  assert.match(errors, /chant is the declared style template/);
+});
+
 test('generation keeps non-species layers that share the overlay sources', async () => {
   const root = fixtureRoot();
   addForecastSpecies(root);

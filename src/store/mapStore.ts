@@ -132,7 +132,9 @@ export function forecastRegionForCoordinate([longitude, latitude]: [
 // The species list follows the VIEWPORT: a US GPS fix does not make US-only species
 // meaningful while the map shows Europe. Never writes to localStorage — the fallback
 // below is session-only, so panning through a region that lacks the user's species
-// can't destroy their saved choice, and panning back restores it.
+// can't destroy their saved choice, and it is preferred again as soon as a region
+// offers it. On the map page the URL's ?species still has the last word (MapPage
+// mirrors it in), so the restore shows up on the next cold start rather than mid-pan.
 function regionalSpeciesState(
   region: ForecastRegion,
   selectedSpecies: string | null
