@@ -10,7 +10,7 @@ const meta: Meta<typeof Textarea> = {
     docs: {
       description: {
         component:
-          'Multi-line free text. It grows with its content rather than scrolling inside a fixed box, so a long note stays readable without a nested scrollbar.',
+          'Multi-line free text. It grows with its content instead of scrolling inside a fixed box, up to half the viewport height. Past that it scrolls, so a long note can never push the rest of its form off screen.',
       },
     },
   },
@@ -23,7 +23,7 @@ const meta: Meta<typeof Textarea> = {
     rows: {
       control: { type: 'number' },
       description:
-        'Starting height in lines. The field still grows past it as text is entered.',
+        'Starting height in lines, honoured only where the browser lacks field-sizing support. Where it is supported the field sizes to its content instead.',
     },
     disabled: {
       control: { type: 'boolean' },
@@ -134,6 +134,31 @@ export const Invalid: Story = {
       </p>
     </div>
   ),
+};
+
+export const LongNote: Story = {
+  render: () => (
+    <div className='flex w-80 flex-col gap-2'>
+      <Label htmlFor='notes-long'>{'Foraging notes'}</Label>
+      <Textarea
+        id='notes-long'
+        defaultValue={Array.from(
+          { length: 40 },
+          (_, i) =>
+            `Patch ${i + 1}: mature beech, north slope, damp leaf litter.`
+        ).join('\n')}
+      />
+    </div>
+  ),
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        story:
+          'Past half the viewport height the field stops growing and scrolls its own content, so whatever sits below it stays reachable.',
+      },
+    },
+  },
 };
 
 export const AllStates: Story = {
