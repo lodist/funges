@@ -277,7 +277,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           'aws'
         ) as maplibregl.VectorTileSource | null;
         const serialized = basemapSource?.serialize();
-        if (serialized && 'url' in serialized && serialized.url) {
+        if (
+          basemapSource &&
+          serialized &&
+          'url' in serialized &&
+          serialized.url
+        ) {
           renderedBasemapKey.current = nextBasemapKey;
           basemapSource.setUrl(serialized.url);
           return;
