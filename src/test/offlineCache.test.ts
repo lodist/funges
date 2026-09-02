@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   containsCoordinate,
+  intersectsBounds,
   offlineMapMaxZoom,
   ONLINE_MAX_ZOOM,
   packageHasBasemap,
@@ -97,6 +98,17 @@ describe('offline package definitions', () => {
     expect(containsCoordinate(definition, 5.95, 45.81)).toBe(true);
     expect(containsCoordinate(definition, 8.2, 46.8)).toBe(true);
     expect(containsCoordinate(definition, 11, 46.8)).toBe(false);
+  });
+
+  it('keeps a package in view while any part of it is on screen', () => {
+    // The centre sits north of Switzerland but the package still covers the
+    // bottom of the viewport - this is the case that used to show the notice.
+    expect(intersectsBounds(definition, [4, 46.5, 12, 52])).toBe(true);
+    // A sliver of overlap at the very edge is enough.
+    expect(intersectsBounds(definition, [10.49, 47.81, 20, 55])).toBe(true);
+    // Only a viewport with no overlap at all shows the notice.
+    expect(intersectsBounds(definition, [11, 48, 20, 55])).toBe(false);
+    expect(intersectsBounds(definition, [-20, 30, -10, 40])).toBe(false);
   });
 
   it('accepts a supported, complete manifest', () => {

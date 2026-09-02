@@ -96,6 +96,29 @@ export function containsCoordinate(
   );
 }
 
+/**
+ * Viewport overlap test. The full-screen offline notice must disappear as soon
+ * as any downloaded package is on screen at all, so it keys on intersection
+ * instead of the centre point, which sits outside the package whenever the user
+ * pans a covered region to the edge of the viewport.
+ */
+export function intersectsBounds(
+  definition: OfflinePackageDefinition,
+  viewport: [number, number, number, number]
+): boolean {
+  const [west, south, east, north] = definition.bounds;
+  const [viewWest, viewSouth, viewEast, viewNorth] = viewport;
+  // ponytail: plain bbox overlap. Wrapping past the antimeridian widens the
+  // viewport instead of splitting it, so the notice hides slightly too eagerly
+  // there. Split into two boxes if that ever matters.
+  return (
+    west <= viewEast &&
+    east >= viewWest &&
+    south <= viewNorth &&
+    north >= viewSouth
+  );
+}
+
 function isFiniteNumber(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value);
 }

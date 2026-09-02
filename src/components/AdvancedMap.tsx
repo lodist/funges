@@ -22,6 +22,7 @@ import {
 import { useOfflineStore } from '@/store/offlineStore';
 import {
   containsCoordinate,
+  intersectsBounds,
   offlineMapMaxZoom,
   ONLINE_MAX_ZOOM,
   packageHasBasemap,
@@ -142,6 +143,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const geolocateControl = useRef<maplibregl.GeolocateControl | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapError, setMapError] = useState<string | null>(null);
+  const [viewportBounds, setViewportBounds] = useState<
+    [number, number, number, number] | null
+  >(null);
   const [selectedFeature, setSelectedFeature] =
     useState<maplibregl.GeoJSONFeature | null>(null);
   const [isFeatureModalOpen, setIsFeatureModalOpen] = useState(false);
@@ -210,9 +214,17 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     () => Object.values(cachedPackages),
     [cachedPackages]
   );
-  const hasOfflinePackageAtCenter = cachedPackageList.some(
-    item =>
-      !item.expired && containsCoordinate(item.definition, center[0], center[1])
+  // The full-screen notice means "nothing downloaded is on screen", so it has
+  // to test the whole viewport. Before the first move event fires there is no
+  // viewport yet; a degenerate box at the centre reduces to point containment.
+  const noticeViewport: [number, number, number, number] = viewportBounds ?? [
+    center[0],
+    center[1],
+    center[0],
+    center[1],
+  ];
+  const hasOfflinePackageInView = cachedPackageList.some(
+    item => !item.expired && intersectsBounds(item.definition, noticeViewport)
   );
   const hasOfflineBasemapAtCenter = cachedPackageList.some(
     item =>
@@ -464,9 +476,23 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
       map.current.addControl(geolocate);
 
+      const syncViewportBounds = () => {
+        const bounds = map.current?.getBounds();
+        if (!bounds) return;
+        setViewportBounds([
+          bounds.getWest(),
+          bounds.getSouth(),
+          bounds.getEast(),
+          bounds.getNorth(),
+        ]);
+      };
+
       // Handle map load
       map.current.on('load', () => {
         setMapLoaded(true);
+        // 'move' does not fire during initialization, so seed the viewport here
+        // or the offline notice falls back to point containment until first pan.
+        syncViewportBounds();
         setMapError(null);
         setMapRef(map.current);
         updateVisibleLayers();
@@ -509,6 +535,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           const center = map.current.getCenter();
           setCenter([center.lng, center.lat]);
           setZoom(map.current.getZoom());
+          syncViewportBounds();
         }
       });
 
@@ -1077,8 +1104,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         {/* Offline notice. The map still initializes offline — the style JSON is
             precached — so it renders as empty background with no error and
             nothing tells the user why. mapError never fires for this.
-            Hide it only when a detailed basemap package covers the viewport. */}
-        {!isOnline && !hasOfflinePackageAtCenter && (
+            Hide it as soon as any downloaded package overlaps the viewport. */}
+        {!isOnline && !hasOfflinePackageInView && (
           <div className='absolute inset-0 z-30 flex items-center justify-center p-6 pointer-events-none'>
             <div className='max-w-xs rounded-lg border bg-background/95 p-4 text-center shadow-lg'>
               <WifiOff className='mx-auto mb-2 h-6 w-6 text-muted-foreground' />
@@ -1094,7 +1121,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
         {mapLoaded &&
           !isOnline &&
-          hasOfflinePackageAtCenter &&
+          hasOfflinePackageInView &&
           !hasOfflineBasemapAtCenter && (
             <div className='pointer-events-none absolute left-1/2 top-14 z-20 w-max max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-md border bg-background/90 px-3 py-2 text-center text-xs text-muted-foreground shadow-sm'>
               {t('offline.forecastOnlyMessage')}
