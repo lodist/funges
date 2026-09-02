@@ -141,6 +141,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const map = useRef<maplibregl.Map | null>(null);
   const geolocateControl = useRef<maplibregl.GeolocateControl | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [basemapSourceRevision, setBasemapSourceRevision] = useState(0);
   const [mapError, setMapError] = useState<string | null>(null);
   const [selectedFeature, setSelectedFeature] =
     useState<maplibregl.GeoJSONFeature | null>(null);
@@ -204,7 +205,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     activeDay,
   } = useMapStore();
   const { isOnline } = usePWA();
-  const { cached: cachedPackages, activateForCoordinate } = useOfflineStore();
+  const {
+    cached: cachedPackages,
+    activeBasemapId,
+    activateForCoordinate,
+  } = useOfflineStore();
+  const renderedBasemapKey = useRef<string | null>(
+    isOnline ? 'online' : activeBasemapId
+  );
   const cachedPackageList = useMemo(
     () => Object.values(cachedPackages),
     [cachedPackages]
@@ -248,12 +256,26 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   }, [isOnline]);
 
   useEffect(() => {
+    let cancelled = false;
     const syncMapSources = async () => {
+      let nextBasemapKey: string | null;
       if (isOnline) {
         await deactivateOfflineSources();
+        nextBasemapKey = 'online';
       } else {
         await hydrateOfflineSources();
-        await activateForCoordinate(center[0], center[1]);
+        nextBasemapKey = await activateForCoordinate(center[0], center[1]);
+      }
+      if (cancelled) return;
+
+      // Europe and the US replace the same canonical basemap URL. MapLibre
+      // caches that source's PMTiles header and tiles, so repainting alone can
+      // keep rendering the previously active regional archive. Recreate the
+      // map only when the backing archive changes, after it has been swapped.
+      if (renderedBasemapKey.current !== nextBasemapKey) {
+        renderedBasemapKey.current = nextBasemapKey;
+        setBasemapSourceRevision(revision => revision + 1);
+        return;
       }
       map.current?.triggerRepaint();
     };
@@ -263,6 +285,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         error
       );
     });
+    return () => {
+      cancelled = true;
+    };
     // Re-run only when movement crosses a downloaded package boundary. Ordinary
     // movement within a package must not repeatedly reopen a large local file.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -499,7 +524,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       setMapRef(null);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapStyle]);
+  }, [mapStyle, basemapSourceRevision]);
 
   // Update map when center or zoom changes
   useEffect(() => {

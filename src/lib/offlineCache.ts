@@ -437,7 +437,13 @@ export async function activateBasemapForCoordinate(
   const selected = packages.sort(
     (a, b) => packageSize(a.definition) - packageSize(b.definition)
   )[0];
-  if (!selected) return null;
+  if (!selected) {
+    const resources = await getStoredResources();
+    resources
+      .filter(resource => resource.kind === 'basemap')
+      .forEach(resource => protocol.tiles.delete(resource.sourceUrl));
+    return null;
+  }
 
   const resources = await getResourcesForPackage(selected.id);
   for (const resource of resources) {
