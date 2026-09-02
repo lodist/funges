@@ -12,7 +12,7 @@ export default function MapPage() {
   const isMobile = useIsMobile();
   const navigate = useNavigate({ from: MapRoute.fullPath });
   const { species, lat, lng, zoom } = MapRoute.useSearch();
-  const { setSelectedSpecies, speciesOptions, setCenter, setZoom } =
+  const { syncSelectedSpecies, speciesOptions, setCenter, setZoom } =
     useMapStore();
   const { t } = useTranslation('map');
 
@@ -33,8 +33,8 @@ export default function MapPage() {
       });
     }
 
-    setSelectedSpecies(speciesCode);
-  }, [species, speciesOptions, navigate, setSelectedSpecies, lat, lng, zoom]);
+    syncSelectedSpecies(speciesCode);
+  }, [species, speciesOptions, navigate, syncSelectedSpecies, lat, lng, zoom]);
 
   useEffect(() => {
     if (typeof lat === 'number' && typeof lng === 'number') {

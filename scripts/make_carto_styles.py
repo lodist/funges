@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Generate Positron / Dark-Matter map styles from funges_style.json.
 
-Both new styles reuse the SAME sources + the 168 forecast/species overlay layers
-(the app drives those by id, so they must stay identical). Only the basemap is
+Both new styles reuse the SAME sources + every forecast/species overlay layer of
+the base style, in the same order (the app drives those by id, and species:generate
+keeps that order canonical, so they must stay identical). Only the basemap is
 swapped for a minimal CARTO-like layer set, recolored per theme.
 
 Run from repo root:  python scripts/make_carto_styles.py

@@ -20,20 +20,15 @@ from pathlib import Path
 
 import pyarrow.parquet as pq
 
+ROOT = Path(__file__).resolve().parents[1]
+import sys
+
+sys.path.insert(0, str(ROOT / "backend"))
+from species_registry import infer_region
+
 GOOD_SCORE = 4.0
-DEFAULT_PARQUET = Path("public/data/foraging_scores.parquet")
-DEFAULT_ARCHIVE = Path("docs/qa/score-climatology.json")
-
-
-def infer_region(longitude: float, latitude: float) -> str:
-    # Same boundaries as scripts/generate_worth_foraging_now.py.
-    if longitude < -100:
-        return "USW"
-    if longitude < -25:
-        return "USE"
-    if latitude < 47:
-        return "SE"
-    return "NE"
+DEFAULT_PARQUET = ROOT / "public" / "data" / "foraging_scores.parquet"
+DEFAULT_ARCHIVE = ROOT / "docs" / "qa" / "score-climatology.json"
 
 
 def iso_month(value: object) -> str:

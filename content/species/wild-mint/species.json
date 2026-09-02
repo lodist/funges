@@ -1,0 +1,66 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "wild-mint",
+  "scientificName": "Mentha arvensis",
+  "catalog": {
+    "enabled": true,
+    "order": 15,
+    "translationKey": "wildMint",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "spring-summer",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/wild-mint.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Wild Mint",
+      "description": "Aromatic herb with square stems and opposite leaves that release mint scent when crushed",
+      "howTo": "Found in wet areas, along streams, and in wet meadows in spring and summer"
+    },
+    "it": {
+      "name": "Menta Selvatica",
+      "description": "Erba aromatica con steli quadrati e foglie opposte che rilasciano profumo di menta quando schiacciate",
+      "howTo": "Trovata in aree umide, lungo i ruscelli e in praterie umide in primavera ed estate"
+    },
+    "fr": {
+      "name": "Menthe sauvage",
+      "description": "Herbe aromatique à tiges carrées et feuilles opposées dégageant une odeur de menthe quand on les froisse",
+      "howTo": "Se trouve dans les zones humides, le long des ruisseaux et prairies humides au printemps et en été"
+    },
+    "de": {
+      "name": "Wilde Minze",
+      "description": "Aromatisches Kraut mit vierkantigen Stängeln und gegenständigen Blättern, verströmt Minzduft beim Zerreiben",
+      "howTo": "Zu finden in feuchten Gebieten, an Bächen und in nassen Wiesen im Frühling und Sommer"
+    },
+    "es": {
+      "name": "Menta silvestre",
+      "description": "Hierba aromática con tallos cuadrados y hojas opuestas que desprenden aroma a menta al frotarlas",
+      "howTo": "Se encuentra en zonas húmedas, a lo largo de arroyos y en praderas húmedas en primavera y verano"
+    },
+    "pt": {
+      "name": "Hortelã-selvagem",
+      "description": "Erva aromática com caules quadrados e folhas opostas que liberam aroma de menta ao serem esmagadas",
+      "howTo": "Encontrada em áreas úmidas, ao longo de riachos e prados úmidos na primavera e verão"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Mentha arvensis",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": false,
+    "dataColumns": []
+  }
+}

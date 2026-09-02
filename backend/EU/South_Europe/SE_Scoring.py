@@ -5,10 +5,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # backend/ for sha
 from forecast_pipeline import RegionConfig, run_pipeline
 
 CONFIG = RegionConfig(
+    region="SE",
     boundaries_env="SE_BOUNDARIES_DATA",
     coordinates_env="SE_UNIQUE_COORDINATES",
     base_env="SE_BASE_DATA",
-    species_params_env="SE_SPECIES_PARAMS",
     weather_data_env="SE_WEATHER_DATA",
     static_info_env="EU_STATIC_INFO",
     season_curves_env="SE_SEASON_CURVES",

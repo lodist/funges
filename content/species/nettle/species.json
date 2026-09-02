@@ -1,0 +1,270 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "nettle",
+  "scientificName": "Urtica dioica",
+  "catalog": {
+    "enabled": true,
+    "order": 5,
+    "translationKey": "nettle",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "spring-summer",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/nettle.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Nettle",
+      "description": "A nutritious green plant with stinging hairs that must be cooked",
+      "howTo": "Found in disturbed areas, hedgerows, and woodland edges in spring and summer"
+    },
+    "it": {
+      "name": "Ortica",
+      "description": "Una pianta verde nutriente con peli urticanti che deve essere cotta",
+      "howTo": "Trovata in aree disturbate, siepi e bordi boschivi in primavera ed estate"
+    },
+    "fr": {
+      "name": "Ortie",
+      "description": "Plante verte nutritive avec des poils urticants, à cuire avant consommation",
+      "howTo": "Se trouve dans les zones perturbées, haies et lisières de bois au printemps et en été"
+    },
+    "de": {
+      "name": "Brennnessel",
+      "description": "Nährstoffreiche grüne Pflanze mit Brennhaaren, muss gekocht werden",
+      "howTo": "Zu finden in gestörten Gebieten, Hecken und Waldrändern im Frühling und Sommer"
+    },
+    "es": {
+      "name": "Ortiga",
+      "description": "Planta verde nutritiva con pelos urticantes que debe cocinarse",
+      "howTo": "Se encuentra en áreas alteradas, setos y bordes de bosques en primavera y verano"
+    },
+    "pt": {
+      "name": "Urtiga",
+      "description": "Planta verde nutritiva com pelos urticantes que deve ser cozida",
+      "howTo": "Encontrada em áreas perturbadas, cercas vivas e bordas de bosques na primavera e verão"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Urtica dioica",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Nettle"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 4,
+          "min_temp": 3,
+          "max_temp": 19,
+          "optimal_alt": 700,
+          "alt_sigma": 800,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 6.3,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.8, 7.8],
+          "optimal_soil_temp": 9.5,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 20,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": false,
+          "season_months": [4, 5, 6, 7, 8, 9, 10],
+          "water_relevance": true,
+          "sea_relevance": false,
+          "distance_thresholds": {
+            "water": 1000
+          }
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 4,
+          "min_temp": 3,
+          "max_temp": 19,
+          "optimal_alt": 700,
+          "alt_sigma": 800,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 6.3,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.8, 7.8],
+          "optimal_soil_temp": 9.5,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 20,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": false,
+          "season_months": [4, 5, 6, 7, 8, 9, 10],
+          "water_relevance": true,
+          "sea_relevance": false,
+          "distance_thresholds": {
+            "water": 1000
+          }
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": true,
+        "landCover": [31, 41, 42, 43, 52, 71],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 4,
+          "min_temp": 3,
+          "max_temp": 19,
+          "optimal_alt": 700,
+          "alt_sigma": 800,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 6.3,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.8, 7.8],
+          "optimal_soil_temp": 9.5,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 20,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_subtropical",
+            "humid_continental",
+            "continental",
+            "temperate",
+            "semiarid_steppe"
+          ],
+          "wind_sensitive": false,
+          "season_months": [4, 5, 6, 7, 8, 9, 10],
+          "water_relevance": true,
+          "sea_relevance": false,
+          "distance_thresholds": {
+            "water": 1000
+          }
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [31, 41, 42, 43, 52, 71],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 4,
+          "min_temp": 3,
+          "max_temp": 19,
+          "optimal_alt": 700,
+          "alt_sigma": 800,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 6.3,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.8, 7.8],
+          "optimal_soil_temp": 9.5,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 20,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_subtropical",
+            "humid_continental",
+            "continental",
+            "temperate",
+            "semiarid_steppe"
+          ],
+          "wind_sensitive": false,
+          "season_months": [4, 5, 6, 7, 8, 9, 10],
+          "water_relevance": true,
+          "sea_relevance": false,
+          "distance_thresholds": {
+            "water": 1000
+          }
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    }
+  }
+}

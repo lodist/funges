@@ -151,6 +151,10 @@ tasks:
   ci-check-only:
     desc: Same checks as ci-check, minus the install step (used by CI once node_modules is cache-restored)
     cmds:
+      - cmd: echo "Checking species manifests and generated artifacts..."
+        silent: true
+      - npm run species:check
+      - npm run species:test
       - cmd: echo "Running format check..."
         silent: true
       - npm run format:check
@@ -185,6 +189,12 @@ tasks:
     desc: Install dependencies for CI
     cmds:
       - npm ci
+
+  species-check:
+    desc: Validate species manifests and generated artifacts
+    cmds:
+      - npm run species:check
+      - npm run species:test
 
   # Development workflow
   dev-setup:

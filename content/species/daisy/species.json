@@ -1,0 +1,66 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "daisy",
+  "scientificName": "Bellis perennis",
+  "catalog": {
+    "enabled": true,
+    "order": 21,
+    "translationKey": "daisy",
+    "category": "flower",
+    "emoji": "🌸",
+    "season": "spring-summer",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/daisy.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Common Daisy",
+      "description": "Small white flowers with yellow centers that grow close to the ground",
+      "howTo": "Common in lawns, meadows, and grassy areas during spring and summer"
+    },
+    "it": {
+      "name": "Margherita Comune",
+      "description": "Piccoli fiori bianchi con centri gialli che crescono vicino al terreno",
+      "howTo": "Comune in prati, praterie e aree erbose durante primavera ed estate"
+    },
+    "fr": {
+      "name": "Pâquerette",
+      "description": "Petites fleurs blanches à cœur jaune poussant près du sol",
+      "howTo": "Commune dans les pelouses, prairies et zones herbeuses au printemps et en été"
+    },
+    "de": {
+      "name": "Gänseblümchen",
+      "description": "Kleine weisse Blüten mit gelber Mitte, wachsen bodennah",
+      "howTo": "Häufig auf Rasenflächen, Wiesen und Grasflächen im Frühling und Sommer"
+    },
+    "es": {
+      "name": "Margarita común",
+      "description": "Pequeñas flores blancas con centro amarillo que crecen cerca del suelo",
+      "howTo": "Común en céspedes, praderas y áreas herbosas durante primavera y verano"
+    },
+    "pt": {
+      "name": "Margarida-comum",
+      "description": "Pequenas flores brancas com centros amarelos que crescem rente ao solo",
+      "howTo": "Comum em gramados, prados e áreas gramadas durante a primavera e verão"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Bellis perennis",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": false,
+    "dataColumns": []
+  }
+}
