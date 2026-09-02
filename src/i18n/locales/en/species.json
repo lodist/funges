@@ -109,61 +109,6 @@
       "description": "A bright orange-yellow bracket fungus that grows on trees",
       "howTo": "Look for it growing on dead or dying trees, especially oaks"
     },
-    "maitake": {
-      "name": "Hen of the Woods (Maitake)",
-      "description": "A clustered, gray-brown polypore mushroom with frond-like caps, highly prized for its flavor and medicinal properties",
-      "howTo": "Look for it growing at the base of dead or dying hardwood trees, especially oaks, in late summer and autumn"
-    },
-    "amaranth": {
-      "name": "Amaranth",
-      "description": "A leafy green plant, often considered a weed, with edible leaves and seeds rich in nutrients.",
-      "howTo": "Look for it in disturbed soils, gardens, and fields during summer. Young leaves are best harvested before flowering."
-    },
-    "artichoke": {
-      "name": "Wild Artichoke",
-      "description": "A thistle-like plant with edible flower buds and stems, related to the cultivated artichoke.",
-      "howTo": "Found in meadows and fields, harvest young flower buds and tender stems in spring and early summer."
-    },
-    "asparagus": {
-      "name": "Wild Asparagus",
-      "description": "A perennial plant with slender, edible shoots that appear in spring.",
-      "howTo": "Look for young shoots in open fields, meadows, and along hedgerows in spring."
-    },
-    "black_chant": {
-      "name": "Black Trumpet (Horn of Plenty)",
-      "description": "A dark, funnel-shaped mushroom with a rich, smoky flavor, prized in gourmet cooking.",
-      "howTo": "Found in deciduous forests, especially under oak and beech, in late summer and autumn."
-    },
-    "lingonb": {
-      "name": "Lingonberry",
-      "description": "Small, red, tart berries that grow on low evergreen shrubs in acidic soils.",
-      "howTo": "Look for them in coniferous forests, moorlands, and heathlands in late summer and autumn."
-    },
-    "masterwort": {
-      "name": "Masterwort",
-      "description": "A perennial herb with aromatic leaves and white flower clusters, used in traditional medicine and as a spice.",
-      "howTo": "Found in mountain meadows and forest clearings, harvest leaves and roots in spring and summer."
-    },
-    "parasol": {
-      "name": "Parasol Mushroom",
-      "description": "A large, tall mushroom with a broad, scaly cap resembling a parasol, edible when young.",
-      "howTo": "Look for it in meadows, grasslands, and forest edges from late summer to autumn."
-    },
-    "sorrel": {
-      "name": "Common Sorrel",
-      "description": "A tangy, lemon-flavored leafy plant often used in salads and soups.",
-      "howTo": "Harvest young leaves in meadows, grasslands, and along paths in spring and summer."
-    },
-    "st_george": {
-      "name": "St. George's Mushroom",
-      "description": "A white, firm mushroom with a mealy scent, appearing around St. George's Day in spring.",
-      "howTo": "Found in grassy areas, meadows, and along woodland edges in spring."
-    },
-    "truffle_b": {
-      "name": "Black Truffle",
-      "description": "A highly prized underground fungus with a strong aroma, used in gourmet cuisine.",
-      "howTo": "Found underground near the roots of oaks and hazelnuts, typically harvested with trained animals in winter."
-    },
     "oysterMushroom": {
       "name": "Oyster Mushroom",
       "description": "A white-grey mushroom with fan-shaped cap that grows in clusters on dead wood",
@@ -228,6 +173,56 @@
       "name": "Sweet Violet",
       "description": "Small purple flowers with heart-shaped leaves and a sweet fragrance",
       "howTo": "Found in woodland edges, hedgerows, and shady areas in early spring"
+    },
+    "amaranth": {
+      "name": "Amaranth",
+      "description": "A leafy green plant, often considered a weed, with edible leaves and seeds rich in nutrients.",
+      "howTo": "Look for it in disturbed soils, gardens, and fields during summer. Young leaves are best harvested before flowering."
+    },
+    "artichoke": {
+      "name": "Wild Artichoke",
+      "description": "A thistle-like plant with edible flower buds and stems, related to the cultivated artichoke.",
+      "howTo": "Found in meadows and fields, harvest young flower buds and tender stems in spring and early summer."
+    },
+    "asparagus": {
+      "name": "Wild Asparagus",
+      "description": "A perennial plant with slender, edible shoots that appear in spring.",
+      "howTo": "Look for young shoots in open fields, meadows, and along hedgerows in spring."
+    },
+    "black_chant": {
+      "name": "Black Trumpet (Horn of Plenty)",
+      "description": "A dark, funnel-shaped mushroom with a rich, smoky flavor, prized in gourmet cooking.",
+      "howTo": "Found in deciduous forests, especially under oak and beech, in late summer and autumn."
+    },
+    "lingonb": {
+      "name": "Lingonberry",
+      "description": "Small, red, tart berries that grow on low evergreen shrubs in acidic soils.",
+      "howTo": "Look for them in coniferous forests, moorlands, and heathlands in late summer and autumn."
+    },
+    "masterwort": {
+      "name": "Masterwort",
+      "description": "A perennial herb with aromatic leaves and white flower clusters, used in traditional medicine and as a spice.",
+      "howTo": "Found in mountain meadows and forest clearings, harvest leaves and roots in spring and summer."
+    },
+    "parasol": {
+      "name": "Parasol Mushroom",
+      "description": "A large, tall mushroom with a broad, scaly cap resembling a parasol, edible when young.",
+      "howTo": "Look for it in meadows, grasslands, and forest edges from late summer to autumn."
+    },
+    "sorrel": {
+      "name": "Common Sorrel",
+      "description": "A tangy, lemon-flavored leafy plant often used in salads and soups.",
+      "howTo": "Harvest young leaves in meadows, grasslands, and along paths in spring and summer."
+    },
+    "st_george": {
+      "name": "St. George's Mushroom",
+      "description": "A white, firm mushroom with a mealy scent, appearing around St. George's Day in spring.",
+      "howTo": "Found in grassy areas, meadows, and along woodland edges in spring."
+    },
+    "truffle_b": {
+      "name": "Black Truffle",
+      "description": "A highly prized underground fungus with a strong aroma, used in gourmet cuisine.",
+      "howTo": "Found underground near the roots of oaks and hazelnuts, typically harvested with trained animals in winter."
     }
   }
 }

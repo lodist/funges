@@ -1,0 +1,66 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "chicken-of-the-woods",
+  "scientificName": "Laetiporus sulphureus",
+  "catalog": {
+    "enabled": true,
+    "order": 9,
+    "translationKey": "chickenOfTheWoods",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "summer-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/chicken-of-the-woods.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Chicken of the Woods",
+      "description": "A bright orange-yellow bracket fungus that grows on trees",
+      "howTo": "Look for it growing on dead or dying trees, especially oaks"
+    },
+    "it": {
+      "name": "Grifola Frondosa",
+      "description": "Un fungo a mensola arancione-giallo brillante che cresce sugli alberi",
+      "howTo": "Cercalo che cresce su alberi morti o morenti, specialmente querce"
+    },
+    "fr": {
+      "name": "Polypore soufré",
+      "description": "Champignon en console jaune orangé vif poussant sur les arbres",
+      "howTo": "Cherchez-le sur les arbres morts ou mourants, surtout les chênes"
+    },
+    "de": {
+      "name": "Schwefelporling",
+      "description": "Leuchtend orange-gelber Baumpilz, der an Bäumen wächst",
+      "howTo": "Suche an toten oder sterbenden Bäumen, besonders Eichen"
+    },
+    "es": {
+      "name": "Pollo de los bosques",
+      "description": "Un hongo de color naranja-amarillo brillante que crece en los árboles",
+      "howTo": "Búscalo creciendo en árboles muertos o moribundos, especialmente robles"
+    },
+    "pt": {
+      "name": "Frango-da-mata",
+      "description": "Fungo de prateleira amarelo-alaranjado brilhante que cresce em árvores",
+      "howTo": "Procure crescendo em árvores mortas ou moribundas, especialmente carvalhos"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Laetiporus sulphureus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": false,
+    "dataColumns": []
+  }
+}

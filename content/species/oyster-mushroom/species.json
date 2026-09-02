@@ -1,0 +1,66 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "oyster-mushroom",
+  "scientificName": "Pleurotus ostreatus",
+  "catalog": {
+    "enabled": true,
+    "order": 10,
+    "translationKey": "oysterMushroom",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "fall-winter",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/oyster-mushroom.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Oyster Mushroom",
+      "description": "A white-grey mushroom with fan-shaped cap that grows in clusters on dead wood",
+      "howTo": "Look for them growing on dead trees, especially beech and oak, in autumn and winter"
+    },
+    "it": {
+      "name": "Pleurotus ostreatus",
+      "description": "Un fungo bianco-grigio con cappello a ventaglio che cresce in grappoli su legno morto",
+      "howTo": "Cercali che crescono su alberi morti, specialmente faggi e querce, in autunno e inverno"
+    },
+    "fr": {
+      "name": "Pleurote",
+      "description": "Champignon blanc-gris à chapeau en éventail poussant en touffes sur le bois mort",
+      "howTo": "Cherchez-les sur les arbres morts, surtout hêtre et chêne, en automne et hiver"
+    },
+    "de": {
+      "name": "Austernpilz",
+      "description": "Weiss-grauer Pilz mit fächerförmigem Hut, wächst in Büscheln an Totholz",
+      "howTo": "Zu finden an totem Holz, besonders Buche und Eiche, im Herbst und Winter"
+    },
+    "es": {
+      "name": "Seta de ostra",
+      "description": "Hongo blanco-grisáceo con sombrero en forma de abanico que crece en racimos sobre madera muerta",
+      "howTo": "Búscalas creciendo en árboles muertos, especialmente hayas y robles, en otoño e invierno"
+    },
+    "pt": {
+      "name": "Cogumelo-ostra",
+      "description": "Cogumelo branco-acinzentado com chapéu em forma de leque que cresce em grupos sobre madeira morta",
+      "howTo": "Procure crescendo em árvores mortas, especialmente faia e carvalho, no outono e inverno"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Pleurotus ostreatus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": false,
+    "dataColumns": []
+  }
+}
