@@ -2,6 +2,7 @@ import { createRootRoute, Outlet, useLocation } from '@tanstack/react-router';
 import { useRef, useState } from 'react';
 import { useScroll, useMotionValueEvent, MotionConfig } from 'framer-motion';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { AppSidebar } from '@/components/Sidebar/AppSidebar';
 import MobileNavbar from '@/components/Mobile/MobileNavbar';
 import FloatingLanguageSwitcher from '@/components/FloatingLanguageSwitcher';
@@ -41,30 +42,34 @@ function RootComponent() {
     // still travelled 0→120px through 39 distinct transform values. One
     // provider covers every motion component, present and future.
     <MotionConfig reducedMotion='user'>
-      <div className='app-root h-screen flex flex-col'>
-        <SidebarProvider defaultOpen={!isMobile}>
-          {!isMobile && <AppSidebar />}
-          <SidebarInset>
-            <main
-              ref={mainRef}
-              className={`flex-1 bg-background ${isMobile && isMapPage ? 'overflow-hidden' : 'overflow-y-auto'}`}
-            >
-              <div
-                className={
-                  isMobile && isMapPage
-                    ? 'h-full bg-background'
-                    : `p-4 bg-background ${isMobile ? 'mobile-navbar-spacing' : ''}`
-                }
+      {/* The delay and the skip-delay window live on the atom; a subtree that
+          needs a different one nests its own provider. */}
+      <TooltipProvider>
+        <div className='app-root h-screen flex flex-col'>
+          <SidebarProvider defaultOpen={!isMobile}>
+            {!isMobile && <AppSidebar />}
+            <SidebarInset>
+              <main
+                ref={mainRef}
+                className={`flex-1 bg-background ${isMobile && isMapPage ? 'overflow-hidden' : 'overflow-y-auto'}`}
               >
-                {/* Mobile pages get extra bottom padding to account for fixed navbar */}
-                <Outlet />
-              </div>
-            </main>
-          </SidebarInset>
-        </SidebarProvider>
-        {isMobile && <MobileNavbar hidden={hideNavbar} />}
-        {!isMobile && <FloatingLanguageSwitcher />}
-      </div>
+                <div
+                  className={
+                    isMobile && isMapPage
+                      ? 'h-full bg-background'
+                      : `p-4 bg-background ${isMobile ? 'mobile-navbar-spacing' : ''}`
+                  }
+                >
+                  {/* Mobile pages get extra bottom padding to account for fixed navbar */}
+                  <Outlet />
+                </div>
+              </main>
+            </SidebarInset>
+          </SidebarProvider>
+          {isMobile && <MobileNavbar hidden={hideNavbar} />}
+          {!isMobile && <FloatingLanguageSwitcher />}
+        </div>
+      </TooltipProvider>
     </MotionConfig>
   );
 }

@@ -447,7 +447,7 @@
   --elevation-raised-subtle: 0 1px 6px rgba(0, 0, 0, 0.06); /* Input, Select trigger */
   --elevation-raised: 0 2px 16px rgba(0, 0, 0, 0.1); /* Card, MobileNavbar */
   --elevation-raised-hover: 0 6px 20px rgba(0, 0, 0, 0.14); /* Card hover escalation */
-  --elevation-floating: 0 4px 20px rgba(0, 0, 0, 0.16); /* DropdownMenu, Select content */
+  --elevation-floating: 0 4px 20px rgba(0, 0, 0, 0.16); /* DropdownMenu, Select content, Sheet, Tooltip */
   /* Bottom Sheet only: a surface pinned to the viewport's bottom edge has to
      cast upward, or its shadow falls off-screen and the top edge loses its
      separation from the map. Same blur and alpha as `floating`, Y inverted —
@@ -475,7 +475,14 @@
   --primary-text: oklch(0.72 0.15 150);
   --secondary: oklch(0.3942 0.0265 150);
   --secondary-foreground: oklch(0.897 0.0166 150);
-  --muted: oklch(0.3327 0.0271 90);
+  /* One lightness step above Night Surface, same chroma: a recessed fill on
+     the same material, not a different one. It carried --card's exact value,
+     so every `bg-muted` inside a card or a popover painted pixels identical
+     to its ground — 1.00:1, with Skeleton the worst case because a fill is
+     its only channel. 1.152:1 on --card matches the 1.13:1 the light theme
+     already ships, 1.442:1 on --background, clear of --accent (0.36), and
+     under --border (0.3942) so a hairline still reads over a muted fill. */
+  --muted: oklch(0.37 0.0271 90);
   --muted-foreground: oklch(0.8579 0.0174 90);
   /* Was a solid mid-green (oklch(0.5752 0.1446 150)) under near-white
      text at 3.47:1 — the exact solid-fill pattern light mode rejected at

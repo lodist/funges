@@ -362,11 +362,15 @@ The character line for every primitive: **soft, pressable, borderless.** Depth d
 
 ### Inputs / Fields
 
-- **Style:** 48px-tall (`h-12`) fully round pill on a Field Paper background with a Hairline border and a `raised-subtle` shadow. Base `px-4` padding, with callers that place a leading icon switching to `pl-11` themselves. Text is 16px, tightening to 14px at `md:` and up.
+- **Style, single-line:** 48px-tall (`h-12`) fully round pill on a Field Paper background with a Hairline border and a `raised-subtle` shadow. Base `px-4` padding, with callers that place a leading icon switching to `pl-11` themselves. Text is 16px, tightening to 14px at `md:` and up.
 - **The Hairline:** the field is the sanctioned bordered exception to Outline-Means-Outline, and the stroke is a token (`--border`) rather than a hand-rolled edge. It is decorative, not a boundary — **1.30:1** in light and **1.41:1** in dark against the field's own interior — and the separation is carried by `raised-subtle` plus, in dark, the `--input/30` fill. It stays for two reasons: in light `--card` and `--background` are the same value, so an empty field has nothing else distinguishing it from the page; and focus and error need a width already present to paint into, which is the same reason the buttons carry a transparent one.
 - **Focus:** two things paint, and they are one token. `.focus-ring` puts a 2px `--ring` outline on a 2px offset, and the field's own border becomes `--ring` as well: **7.85:1** in light and **4.78:1** in dark against the interior. One token, so a field inside a clipping ancestor — which cuts the outline off — still has a border clearing 1.4.11 on its own. It cannot be a literal `--happy-*` step: `--happy-500` measured **2.12:1** in light, and `--primary` measures 2.95:1, both under the 3:1 floor without a ring to lean on.
 - **Error:** `aria-invalid` reddens the border to `--destructive-text`, Fly Agaric — the same step the selection controls use, and for the same reason. The plain `--destructive` step reads **2.20:1** against the dark field interior and **2.51:1** against the page, under the 3:1 floor; `--destructive-text` reads **5.38:1** and **6.14:1**. In light all three destructive steps are one value at 7.09:1, so the defect was invisible there and the fix changes nothing.
 - **Transition:** `color, border-color, box-shadow`. Two of these borders change colour, so a list that omits `border-color` snaps both the focus edge and the error edge.
+- **Style, multi-line:** `Textarea` is the same field in a taller shape — `rounded-card` rather than the pill, `p-4` on all four sides, and `field-sizing-content` so the box tracks its own text. The hairline, the focus token, the error step and the transition list above are written on «the field» and both members answer to them. It lives in Storybook only, nothing shipped imports it yet, and like the Label family it is held to the floors regardless.
+- **A field that grows has to stop.** `field-sizing-content` carries no upper bound of its own: measured at 390×844, the notes field stood at **1474px** on sixty lines and pushed its form's submit button **1116px** past the bottom of the screen — the field ate the control that submits it. The cap is `max-h-[50dvh]`, the viewport-relative idiom the dialog (`max-h-[calc(100dvh-2rem)]`) and the sheet (`max-h-dvh`) already stop themselves with, and it is what the long-declared `overflow-y: auto` finally has to engage against. Half the viewport leaves the other half to the form: past the cap the button rests a fixed **64px** below the fold instead of a distance that grows with every line typed.
+- **The resting height belongs to the field, not to its placeholder.** Where `field-sizing-content` is supported the `rows` attribute is inert — 1, 2, 6 and 12 rows all measured the same box — and an empty field sizes to its _placeholder_ instead: **58px** for a short one, **82px** for one that wraps to two lines. `min-h-16` is the floor that catches the short case at **64px**. It is load-bearing, not the dead value it looks like beside a two-line placeholder, and `rows` is documented as the starting height only for the browsers that lack the property.
+- **Selection is themed once, globally.** `globals.scss` paints `::selection` from `--primary` / `--primary-foreground`, so a field that also declares `selection:bg-primary selection:text-primary-foreground` repeats the base rule to the same measured value in both themes. The Input carried the pair and the Textarea did not, which reads as drift until it is measured; the two match now because the utilities came off, not because they were copied across.
 
 ### Labels
 
@@ -381,14 +385,128 @@ floors.
 - **Disabled:** `opacity-50`, driven from the peer input (`peer-disabled:`) or a disabled group (`group-data-[disabled=true]:`), which also drops pointer events. Disabled text is exempt from the 4.5:1 floor, so the halved opacity is a deliberate affordance rather than a contrast failure.
 - **Association:** `FormLabel` sets `htmlFor` from the `FormItem`'s generated id, and `FormControl` puts the matching id on the field plus `aria-describedby` for the description and, when there is one, the message. A bare `Label` outside a `FormItem` owns its own `htmlFor`.
 
+### Separator
+
+`Separator`, plus `SidebarSeparator` which wraps it and `DropdownMenuSeparator`
+which reimplements the Radix primitive. The token was named in Colors before
+the role was, and the three implementations drifted exactly there.
+
+- **A heading divides better than a line does.** A rule between two sections that already open with a heading announces a boundary the heading has announced, in a system whose ground rule is that most components have no border at all. The recipe modals, the instructions page and the species card drew eight such rules between `h3`/`h4` sections and lost none of their structure when the rules went — `space-y-6` and a bold heading were already carrying it. A rule earns its pixel where nothing else marks the division: the recipe modal keeps exactly one, the boundary where the fixed header stops and the body scrolls.
+- **Decorative is the default and it is almost always right.** `role='separator'` announces that a division exists without saying what is on either side, so on content that is already sectioned it is a second, poorer announcement of the same fact. Where a division is worth announcing, the fix is the heading it is missing — the species card's «Foraging Instructions» was a `span` and is now an `h4`. Menus are the exception, and Radix makes it for us: inside `role='menu'` a separator is how ARIA groups items, so `DropdownMenuSeparator` is semantic and the atom is not.
+- **A separator takes no pointer events.** `SelectSeparator` carried `pointer-events-none`, `DropdownMenuSeparator` did not, and the atom said nothing — a rule silent on an axis authorises the drift. It now lives on the atom, and the one separator that reimplements the primitive rather than wrapping it repeats it. `src/test/separator.test.tsx` holds all three together.
+- **Contrast:** the Hairline reads **1.30:1** on the light modal ground and **1.61:1** on the dark one — measured in the browser, not derived. That is the same step the field's decorative stroke sits at, but a field leans on `raised-subtle` and, in dark, an `--input/30` fill. A separator has neither. It is the reason a rule has to be earning its place before it is drawn: at this weight it can only whisper, and a whisper repeated eight times is noise.
+- **Length is decided by the container, so watch what the container does.** In the recipe modal the header rule sits outside the scrolling region and the section rules sat inside it, where `pr-1` plus the live scrollbar took 12px off their right edge — two rules of the same component, one above the other, ending at different x. Measure a separator's rendered box whenever it crosses a padding or overflow boundary; `data-[orientation=horizontal]:w-full` also outranks a plain `w-auto`, which is what made an inset `SidebarSeparator` overflow its container.
+- **One idiom per level.** `divide-y divide-border` inside the instruction list paints the same 1px `--border` at the same width as a section rule, so a step boundary read exactly as loud as the boundary between Ingredients and Instructions. `divide-y` is the right tool for a run of peers — a list of steps, a table body — and a `Separator` is the tool between siblings of different kinds. They must not appear at two levels of the same tree at the same weight.
+
+### Skeleton
+
+A placeholder for content that has not arrived. It has no size of its own: the caller gives it the
+shape of what it stands in for, and the shape includes the radius. Reach for it wherever a surface
+knows what is coming — a card grid, a page, a list of rows — and keep the spinner for a control's own
+busy state, where there is no shape to hold.
+
+- **A recessed fill is a step off the surface it recesses from, in both themes.** `--muted` carried
+  `--card`'s exact value in dark, so every `bg-muted` inside a card or a popover painted pixels
+  identical to its ground: 1.00:1, measured, byte for byte. Skeleton was the worst case because a
+  fill is its only channel — no border, no text — and the pulse could not rescue it either, since
+  animating the opacity of a fill that already matches its ground changes nothing at any frame. It
+  is now one lightness step above Night Surface at the same chroma: 1.152:1 on `--card`, which is
+  parity with the 1.13:1 the light theme has always shipped, and 1.441:1 on `--background`. It stays
+  under `--border` so a hairline still reads over a muted fill.
+- **The radius is part of the shape, and a container radius is not a text radius.** CSS clamps a
+  radius past half the shorter side, so `rounded-card` (20px) rendered a full pill on every
+  placeholder under 40px tall — which is every one standing in for text. The matrix listed «text
+  line» and «pill» as separate shapes and drew them identically. The default is now the small step;
+  a card- or media-shaped placeholder asks for `rounded-card`, and an avatar for `rounded-full`.
+- **`cn` has to know the project's own radius token for any of that to hold.** `--radius-card` is a
+  project value, so tailwind-merge did not recognise `rounded-card` as a radius utility and let it
+  coexist with the base step instead of replacing it. Both classes survived, the cascade picked the
+  winner, and a caller's override lost silently. `cn` now extends the radius theme.
+- **The wait is announced, not only pulsed.** A pulse is one visual channel, and reduced motion
+  collapses it to a still block — `animation-iteration-count: 1` — so a reduced-motion user in dark
+  had no channel at all before the token fix. `SkeletonGroup` is the live region: `role='status'`,
+  `aria-busy`, and one visually hidden message for the whole set. Each shape is `aria-hidden`, so a
+  screen reader hears the wait once rather than once per rectangle.
+- **One region per surface, not one per shape.** Measured on the recommendation grid: 36 shapes, one
+  `role='status'`.
+- **The placeholder takes the loaded footprint.** Measured on the same grid: the placeholder's
+  columns resolve to `365.328px 365.336px 365.336px`, the loaded grid's to the same, so arrival does
+  not shove the page. This is the whole reason to prefer it over a spinner, which sat in one small
+  box where a three-column grid was about to appear.
+- **A placeholder renders the same twice.** `SidebarMenuSkeleton` derived its label width from
+  `Math.random()` inside the render: nothing could assert the row and every remount reshuffled it.
+  Width is a prop, like every other part of the shape.
+
+### Slider
+
+One shipped slider: the forecast day picker that floats on the map, dragged with a thumb,
+outdoors. Every measurement below comes from there rather than from its story.
+
+- **Style:** a 358×8 outlined capsule with a solid fill and a 16px ringed thumb, in neutrals only.
+  No accent colour anywhere on it — a green fill over the map would read as part of the
+  score/legend colour coding rather than as a control.
+- **The target is the bar, not the dot.** Radix starts a slide from a pointerdown anywhere on the
+  root, so the root _is_ the target — and the root measures 358×6 with the old track, because the
+  thumb is absolutely positioned and never raised it. The whole control was six pixels tall,
+  38 under the floor. A centred `::before` states 44px outright rather than insetting from a
+  height that is not the one you see, and covers the full length of the bar rather than a halo at
+  one point of it. Measured: a press 15px below the track moves the thumb. Vertical only, and it
+  stays inside the card's 12px padding at both ends of the travel, so the map keeps its own
+  events — `elementFromPoint` just outside the card still returns the MapLibre canvas.
+- **Boundary: a stroke, because a fill cannot carry both edges here.** The card is glass over the
+  map, which leaves one neutral axis and three levels to place on it. Measured on the shipped
+  surface: a wash dark enough to hold 3:1 against the card (`--foreground/50`) fell to **2.97:1**
+  where a dark tile passes under the glass, and every alpha that fixed that dropped the range
+  below 3:1 against the track — in dark over a bright tile, to **1.9:1**. An outline moves the
+  track's boundary off that axis entirely. `--foreground` solid measures **14.51:1** light and
+  **8.18:1** dark against the card, on any tile the map can produce, and the range then reads
+  against the untouched card interior at the same numbers. The old `bg-muted` track was a
+  background token: **1.32:1** light and **1.02:1** dark, where `--muted` carries `--card`'s own
+  value.
+- **8px, not 6px.** A 1px stroke on each side of a 6px capsule leaves 4px of interior for the
+  fill. The track is the one dimension the stroke costs, and it is paid back once.
+- **State indicator:** the thumb, at **14.51:1** light and **8.18:1** dark, whose
+  `--background` ring reads **10.44:1** against the fill it caps.
+- **Ticks:** the track's own stroke, not `--border`, which measured **1.04:1** in dark —
+  invisible on the one surface where the ticks are the only thing saying where the thumb can
+  stop. They are inset by the thumb's radius so they line up with the travel, not with the
+  container.
+- **Announced value:** a slider whose numbers are not the thing being chosen takes `formatValue`,
+  which lands on each thumb's `aria-valuetext`. Without it the forecast picker announced "0"
+  while the label beside it read "Today". The atom cannot know that, so the caller supplies the
+  same function that writes the visible caption — one function, so the two cannot drift.
+- **Dead states:** `disabled:pointer-events-none disabled:opacity-50` sat on the thumb, which is
+  a `<span>`. `:disabled` only ever matches a form control; Radix marks `data-disabled`. The
+  state worked anyway because the root dims the whole control, so the two classes read as the
+  reason it worked while doing nothing.
+- **One thumb unless asked:** the thumb count derives from the value, and the fallback for
+  neither `value` nor `defaultValue` is `[min]` — Radix's own default. It used to be
+  `[min, max]`, which handed a range slider to a caller who asked for a plain one.
+
+**The Root-Is-The-Target Rule.** Before widening a control's hit area, find out which element the
+primitive actually listens on. The thumb is what you see and what you reach for, but Radix binds
+pointerdown to the root, so the `::before` the selection controls use would have bought 44px at
+one point of a 358px bar and left the rest at six. Measure the element that receives the event,
+not the one that draws the affordance; the floor applies to the first.
+
+**The One-Axis-Two-Boundaries Rule.** A translucent surface has one neutral axis, and two
+stacked fills on it cannot both clear 3:1 — raise one and you sink the other, in whichever theme
+the ground moves toward. When a control needs two boundaries on glass, one of them stops being a
+fill. This is the Stroke-Is-The-Control Rule arriving from the other direction: there the stroke
+was the only edge a control had, here it is the only edge the ground leaves room for.
+
 ### Selection Controls
 
 Checkbox, radio and switch. The three share one boundary rule, one indicator rule and one
 hit-area rule, because they share the same failure: a control whose only edge is a stroke.
 
 - **Style:** a 20px box on the checkbox with a `sm` corner, a 20px circle on the radio, a
-  32×18px track on the switch. All three carry a 2px stroke and **no shadow** — an inline
+  44×24px track on the switch. All three carry a 2px stroke and **no shadow** — an inline
   control inside a form does not float above anything, so no elevation level rides one.
+  ⚠️ For twenty-three passes this sentence was true of two of the three: the switch shipped
+  `border border-transparent` and a `shadow-sm` on its knob, so its only boundary was a **fill**
+  — 1.30:1 off and 2.94:1 lit on the page, in a section named after strokes. A rule that says
+  «all three» is a claim about three files, and it has to be read in all three.
 - **Boundary:** the stroke is Chlorophyll Readable (`--primary-text`), not Chlorophyll Bright
   (`--primary`). An unchecked box has no fill, so the stroke is the only thing saying the
   control exists, and the bright step measures **2.94:1** on the page against the WCAG 1.4.11
@@ -401,27 +519,50 @@ hit-area rule, because they share the same failure: a control whose only edge is
   `currentColor` while its body follows `fill`. The switch knob is a fixed light `white` in
   both states and both themes, and never changes colour: a knob that recolours per state reads
   as a hole punched in the track rather than a moving part, and `--background` darkens into
-  exactly that hole in dark. The off track stays pale (`--input`), so the knob carries its own
-  1px outline: `--foreground` measures **12.37:1** off and **5.44:1** lit in light, and **6.10:1**
-  off in dark, but collapses to **2.34:1** on the lit track in dark — the one place it fails, so
-  dark swaps the outline to `--border` for **3.40:1**. Every state clears the 3:1 floor on at
-  least one boundary. The knob's shadow is depth only: a blur is not a measurable boundary.
+  exactly that hole in dark. The off track stays pale (`--input`), so the knob carries a 1px
+  outline in the **same `--primary-text` as the track stroke** — **6.06:1** light and **4.01:1**
+  dark against the off fill, which is the state where the knob has to be found. On the lit track
+  it reads 2.67:1 and 1.18:1, and that is allowed: there the 2px stroke already bounds the
+  control and the knob is a redundant third cue. ⚠️ The outline used to be `--foreground`, a
+  near-black ring, and it was the only single patch that covered three separate holes at once —
+  off track 1.30:1 on the page, off fill against lit fill 2.27:1, white knob on the off fill
+  1.32:1. No ring colour clears 3:1 on both a near-white fill and a mid green, which is why
+  recolouring it was never the fix; giving the track its stroke back was.
 - **Error:** `aria-invalid` reddens the stroke to `--destructive-text`. The plain
   `--destructive` step used by Inputs measures **2.50:1** in dark, so a selection control — whose
   stroke is its whole boundary — cannot borrow it.
 - **Transition:** every property that changes colour is named. The checkbox transitions
-  `color, background-color, border-color, box-shadow`; a control that transitions only the
-  shadow snaps its fill and its stroke.
+  `color, background-color, border-color, box-shadow`, the switch track
+  `background-color, border-color, box-shadow` and its knob `transform`; a control that
+  transitions only the shadow snaps its fill and its stroke. The switch carried a bare
+  `transition-all`, which also animated the 44px `::before` and every layout property it owns.
 - **Hit area:** 44px, from a centred `::before` that does not change the visual size. Field use
-  is one-handed and outdoors, so this is a requirement rather than a refinement. A radio group
-  spaces items 24px (`gap-6`) so two 44px targets on 20px boxes cannot overlap — overlapping
-  targets trade a missed tap for a wrong one.
+  is one-handed and outdoors, so this is a requirement rather than a refinement. **The three
+  share that `::before`, so they share its spacing requirement: consecutive controls need 44px
+  between centres, whatever the visual size in between.** A radio group spaces items 24px
+  (`gap-6`) on 20px boxes; a column of switches needs `gap-y-5` on a 24px track, and a table of
+  them needs `py-2.5` in the cell, which puts the offline-maps rows at a 46px pitch.
+  ⚠️ Written for the radio group alone, this rule left the switch's own `AllStates` story at a
+  34.4px pitch — **9.6px of overlap on every adjacent pair**, measured with `elementFromPoint`.
+  Overlapping targets trade a missed tap for a wrong one.
 - **One size:** none of the three takes a size prop. A size scale that no caller can reach is
   dead documentation, not flexibility.
 
 **The Stroke-Is-The-Control Rule.** When a control's only boundary is its stroke, that stroke
 carries the non-text contrast floor in every state it can reach — unchecked, checked, invalid
-and hover alike. Fill colour is interior decoration; the stroke is the control.
+and hover alike. Fill colour is interior decoration; the stroke is the control. The switch is
+the case that proves it: it was the one member drawing its boundary with a fill, and every
+symptom downstream — the near-black knob ring, the 1.30:1 off state, the 2.94:1 lit state —
+followed from that one missing stroke.
+
+**A switch is the setting, not the errand.** `OfflineMapsPage` drew each region's toggle as a
+button whose label swapped between «Download for offline» and «Remove», with the state kept in a
+separate column: the control described what would happen next instead of showing how things
+stood. A switch shows the setting and the row's own status cell keeps what a toggle cannot carry
+— the progress while tiles are fetching, and the date once they are. Reach for a switch when the
+reader is expressing an intent that persists; leave a button where the action is a one-off with
+no state to show afterwards. ⚠️ The switch is still the _intent_: a continent download is slow
+and can fail, so the status cell, not the knob, is what says where the work actually got to.
 
 ### Collapsible
 
@@ -485,6 +626,35 @@ so a fix to one that skips the other leaves a twin broken in exactly the same wa
   comment has always said.
 - **Elevation follows the depth scale:** Dialog takes `elevation-overlay`, Sheet
   `elevation-floating`.
+- **A sheet floats; it is not glued to the screen edge.** Borderless, with the card radius on the
+  two corners the screen edge does not cut off — `rounded-l-card` for a right sheet, `rounded-t-card`
+  for a bottom one. Three sides used to draw a 1px hairline on the exposed edge with square corners
+  while the fourth was round and borderless: four lids answering the same question two ways. The
+  shadow carries the edge on its own in both themes. Measured in dark, the panel steps 1.23:1 off
+  the scrim behind it with the elevation token's own `inset 0 1px 0` rim — the same figure Dialog
+  has shipped all along, borderless, since before this rule was written.
+- **The dismiss gutter is reserved, not masked.** The dismiss is absolute so it never scrolls away,
+  which parks it on top of the header row: 16px of inset plus its own 44px, 60px from the panel
+  edge. The panel's own background makes the overlap legible rather than visible, so an unreserved
+  gutter does not collide — it _eats_ text, and a wrapping description silently loses a word. The
+  header reserves the 44px. No measurement found this; a screenshot did.
+- **Both twins name the title's role.** `SheetTitle` set a colour and a weight and no size at all,
+  so it rendered at whatever styles an `h2` — 30px against its twin's 18px, a size nobody chose.
+  A role omitted is not a role inherited.
+- **`duration-*` arms a transition nobody asked for.** The token drives the keyframe animation, but
+  it lands on `transition-duration` too, and CSS defaults `transition-property` to `all`: measured
+  0.3s of `all` on both panels and both scrims, with no transition utility written anywhere in
+  either file. `transition-none` beside the duration keeps `animate-in` and disarms the transition.
+  This is `transition-all` under a name that never appears in the source, which is why the guard
+  that read the button's cva base could not see it.
+- **Padding sits at 16px on Sheet and 24px on Dialog, deliberately.** A sheet is a working panel
+  anchored to an edge, 75% of a narrow screen wide, where 24px a side eats a third of the text
+  column; a dialog is a centred decision capped at `max-w-lg`, where it does not. The rule the two
+  share is _where_ the padding goes, not how much: on the scrolling body. Sheet had it on the
+  header and footer instead, and every caller wrote its own `px-4` back.
+- **An affordance implements its gesture or it is not one.** The bottom sheet's drag handle was a
+  bare `div` — no handler, no drag code anywhere in the file. A handle says "pull me" to a thumb
+  that then gets nothing, which is worse than no handle.
 - **`aria-modal` is absent on purpose.** The primitive `aria-hidden`s every sibling of the portal
   instead, which is the better-supported equivalent. Measured on the open dialog: 11 siblings
   hidden, the portal untouched. Adding the attribute by hand would be duplicating a mechanism
@@ -538,12 +708,90 @@ ended up wearing two different focus tones.
   runs either way.
 - **`DropdownMenuShortcut` displays a shortcut, it does not bind one.** It is a `<span>`. The key
   handler stays the caller's job.
+- **A language is named by its code and its endonym, never by a flag.** Both pickers sized six
+  regional-indicator pairs with `text-lg` — an emoji standing in for an icon system, and a flag is a
+  country rather than a language besides. A row is now a `.type-micro` code in a fixed `w-6` column
+  followed by the endonym, which lands the name column at 68px in all six locales; the trigger takes
+  the same pair plus an `aria-label` of `common.language` and the active name, because both pickers
+  ship with no visible label of their own. Measured open: no clipping at `Português`, the widest, with
+  12px to spare, and the trigger holds 44px from `Italiano` (121px) to `Português` (144px).
+
+- **One role, one type: a section header in a popover is `.type-micro`.** `SelectLabel` read
+  12px/400/muted and `DropdownMenuLabel` 14px/500/inherited for the same header on the same surface.
+  Both now take `.type-micro` with `text-muted-foreground`, and neither carries a size or weight
+  utility beside it — `.type-micro` lives in `@layer components`, so a `text-sm` from an atom or a
+  call site outranks it from `@layer utilities` and silently undoes the role.
+- **A Select trigger has two heights and both clear 44px.** `default` is 48px, `sm` is 44px — dense
+  chrome means tighter type, not a smaller tap target, and `sm` was `h-8`, twelve pixels under, on
+  the one screen the pattern prescribes it for. `sm` keeps `px-4` so its closed value stays in the
+  item column. A third `lg` variant existed that no caller could name, and would have rendered 40px
+  if one could.
+- **The trigger's hover has a dark twin, and it is the trigger's only fill state.** Upstream shipped
+  `dark:bg-input/30 dark:hover:bg-input/50`: a fill in dark and no hover at all in light. It is now
+  `bg-card` in both themes with `hover:bg-happy-50 dark:hover:bg-accent/50`, the same pair Button's
+  quiet variants use. `hover:bg-muted` is not an option — `--muted` and `--card` are the same value
+  in dark, so it is invisible exactly where it was reached for.
+- **`SelectValue` clones the chosen row into the trigger, and the row's rules do not travel with
+  it.** The species filter's category glyph is sized and spaced by `SelectItem` — `size-4` on any
+  svg that names no size, `gap-2` on the text span. Cloned into the trigger those rules are gone:
+  the icon came out at lucide's own 24px against the row's 16px, hard against its label, so the
+  filter read right open and wrong closed. The trigger repeats both rules on the value slot. This is
+  the general shape of every clone, portal and `asChild` in the system: styling written on a parent
+  describes a position in the tree, and a copy of the children is somewhere else.
+
+- **A filter caption is a `<span>`, and the trigger points at it with `aria-labelledby`.** The
+  trigger is a button: no `<label for>` can name it, and a `placeholder` is not a name — it vanishes
+  on the first selection, and a filter whose value defaults to something never renders it at all.
+  All three shipped filters went out unnamed. The caption is `.type-micro text-muted-foreground` and
+  never the `Label` atom, whose `text-sm` would win the cascade. `src/patterns/FilterControl.stories.tsx`
+  is the composition; `src/test/select-call-sites.test.ts` refuses a fourth unnamed trigger.
+- **`MapThemeSelector` is the one popover that is not Radix, and it borrows everything else.** Its
+  rows carry a thumbnail and a two-line description, which `SelectItem`'s single text column has
+  nowhere to put — so it stays hand-rolled and takes the vocabulary instead: `rounded-card` +
+  `.elevation-floating` on the popover, `rounded-xl` and the Menus focus tone with its dark twin on
+  the rows, `.type-micro` on the caption. What it does not inherit it has to say itself: it declares
+  `aria-expanded` and closes on Escape, both of which Radix gives the other two surfaces for free.
+- **A hand-rolled popover anchors to a box, and a flex parent decides how big that box is.** Its
+  content hangs off `top-full`, which means "below this container" — and a flex or grid parent
+  stretches the container by default. The map's control stack is a `flex-col`, where stretch is
+  horizontal and the height hugged the trigger by accident; the first `flex-row` frame it was put in
+  stretched it vertically and dropped the popover 476px down the page. The anchor is `w-fit h-fit`
+  now, so the offset is the trigger's, not the caller's. Radix's popovers are immune because they
+  position from a portal against the trigger element itself.
+
+**The Silent-Axis Rule.** When two things that should be twins diverge, the question is not which
+one is wrong. It is which axis the shared rule never mentions. This section declared DropdownMenu
+and Select one surface and specified the row, the focus tone, the radius, the motion and the two
+text columns — and said nothing about the label's type, which is exactly and only where the twins
+still disagreed. A rule that is silent on an axis is not neutral about it: it licenses drift, and
+the drift lands there every time. Write the axis down when you settle it, or settle it again next
+pass.
+
+**The Quiet-Child-Uses-Weight Rule.** A row that carries state carries it as a colour, and a child
+span that declares its own colour wins over the inherited one — so it keeps the resting colour into
+the focused row and reads wrong exactly when the row is active. Secondary rank inside such a row is
+size and weight, never a muted step: the language code is `.type-micro`, which sets no colour, and
+follows the row to 13.34:1 on the focus fill in both themes, while the endonym alone takes the
+checked row's `font-semibold`.
 
 **The Dark-Twin-Eats-The-Variant Rule.** A `dark:` on a base ties with a state variant on
 specificity and orders after it, so it wins. Add a dark twin to a base and every variant that
 declared the light equivalent needs its own twin in the same breath — and darken a variant and the
 base needs one too. It runs in both directions, and the symptom is a variant that is correct in one
 theme and silently identical to the base in the other.
+
+### Tooltip
+
+`Tooltip` plus the provider that governs it, and the one atom in this pass with
+a shipped consumer: `SidebarMenuButton` gives every rail item one, visible only
+while the sidebar is collapsed.
+
+- **A component that mounts its own provider silences every ancestor.** `Tooltip` used to wrap itself in a `TooltipProvider`, which is React context and therefore wins over anything above it. The cost was invisible in review and measurable in the browser: a group declaring `delayDuration={300}` opened in **17ms**, the inner provider's default. `sidebar.tsx`'s `delayDuration={0}` was dead code that happened to name the same number, and the Storybook story asserted a shared delay and a shared skip-delay window that the arrangement made impossible. One provider is mounted at the app root, `Tooltip` renders the Radix root alone, and a subtree that needs a different wait nests its own provider — which is what the sidebar rail now genuinely does. `src/test/tooltip.test.tsx` asserts the structural fact rather than a class: with no provider above it, `Tooltip` throws.
+- **The delay lives on the atom, not the call site.** `TooltipProvider` defaults to 300ms, so the root mounts it bare and the number has one home. The rail is the one exception and says why: its collapsed labels are `sr-only`, so the tooltip is the only visible name and waiting for it would be waiting to read the navigation.
+- **A tooltip is `floating`, and it was the only floating surface without the shadow.** Elevation names it beside dropdown menus, select content and sheets; measured, it was `box-shadow: none` while all three siblings carried `.elevation-floating`. Deep green on paper separates itself, so on the light ground this was a rule violated rather than a surface that vanished. The dark theme is where it bites, and it is measurable without the map: on the collapsed rail the pill reads **1.33:1** against the panel behind it, so the fill alone does not draw the edge — the dark scale's 1px inset white highlight and the deepened shadow do. The tooltip over the map is the same problem further along, and map tiles do not load in dev, so that one is reasoned about rather than measured.
+- **One token holds both of a tooltip's shapes, because the clamp does the rest.** `rounded-full` clamps to half the short side without saying so: at `max-w-56` the box measures **224×92** across four lines and renders a **46px** lozenge, and the label step made it worse rather than better — the shape degrades exactly as the text becomes readable. The answer is not a middle radius and not a warning in the story: it is `rounded-card`. At one line the clamp cuts it to the same 16px a pill would render — hit-tested at 247×32, the two corner masks are identical to the half-pixel — and at four lines it holds 20px and reads as the container it has become. Pill-Or-Card asks which of the two a surface behaves as; a tooltip is both, in sequence, and the container token is the one that survives being both. The arrow keeps its named exception.
+- **The text is the 14px label step.** It was 12px at weight 400 — the size of `micro` without its weight, tracking or uppercase, so it matched no named role. It is a label in the most literal sense the system has: the visible name of a control whose written label is clipped away. The same reasoning already settled the clipboard confirmation, which took the label step rather than `.type-micro` because prose should not shout.
+- **`hidden` on the content works only while nothing paints `display`.** The rail hides its tooltip with `hidden={state !== 'collapsed' || isMobile}`, and that holds because no utility in the content's class list sets `display`. Adding one would show every rail tooltip with the sidebar open, silently. The guard checks for it.
 
 ### Navigation
 
@@ -562,6 +810,18 @@ theme and silently identical to the base in the other.
 - **Freshness reads relative, and full-strength.** "Updated yesterday", not a date the reader has to subtract from today; `Intl.RelativeTimeFormat` localises it in all six bundles, so no date library is warranted. It is not muted: the nav glass sits over the map, so the ground is whatever the map supplies, and `--muted-foreground` measured **4.32:1** there against **5.29:1** on an opaque card. Hierarchy is weight, which no ground can erode.
 
 **The Constant-Names-The-Surface Rule.** `NAV_SURFACE_CLASS` exists so the two nav surfaces cannot drift, and it names the _surface_ — elevation and material. It says nothing about shape, curve, target size or rhythm, and those are exactly where desktop and mobile drifted: 20px panel radius against 8px, 12px row radius against 6px, `--ease-standard` against `ease-linear`, 44px targets against 32px. A shared constant only protects what it spells out; check the axes it is silent about.
+
+### Feedback
+
+There is no toast in this product, and that is a decision, not an omission.
+`sonner` shipped mounted at the app root for twenty-two passes with **zero**
+callers — 88 KB and thirty-nine off-palette literals that no user ever saw a
+pixel of. It was deleted rather than brought onto the system.
+
+- **A transient surface is only right when nothing needs to be acted on later.** Every event whose toast had already been written in the stories had a better home that was already built: the offline download's progress, failure and storage warning all belong to `OfflineMapsPage`, which shows them per continent and keeps them on screen; the unreachable forecast belongs to `MapFallback`; the offline state belongs to `OfflineIndicator`, mounted two lines from where the `Toaster` was. A toast disappears, so a reader outdoors with cold hands who looks up four seconds late has lost it. Before adding one, name the event it serves and check that no persistent surface already owns it — twice now, the answer was that one did.
+- **An invisible action must report both outcomes.** Copying to the clipboard changes nothing on screen: it is the one action whose result the reader cannot see. Both call sites shipped the failure swallowed — `FeatureInfoModal` had no `catch` at all, so the promise rejected unhandled and the confirmation never ran; `SupportPage` caught it and wrote to the console, on the page that hands out **crypto addresses**. `navigator.clipboard` is genuinely absent over plain http and rejects on iOS Safari outside a user gesture, so this is the field case, not the edge case. `useCopyToClipboard` holds the whole outcome — `idle` / `copied` / `error`, plus which target — in one place, and the error tells the reader what to do instead: select the text and copy it by hand. The failure reads **7.09:1** light and **4.91:1** dark on the surfaces it appears on, the confirmation **5.29:1** and **7.84:1** — and it is set at the 14px label step, not `.type-micro`, because a sentence is prose and `.type-micro` would have shouted it in uppercase.
+- **A live region has to be mounted before its text changes.** A confirmation that only swaps an icon says nothing to a screen reader, and an `aria-live` element rendered _by_ the event arrives with its text already in place, which is exactly the case a screen reader does not announce. Both surfaces keep one region mounted from first paint and write into it: the modal reserves a `min-h-5` line under the button, the support page uses a single `sr-only` region for the whole grid rather than one per card, and the failing card additionally shows the error beside the address the reader now has to copy by hand. Measured on the real fonts: at the dialog's `sm:max-w-lg` all six locales fit the reserved 20px on one line, so nothing moves; at 370px German, French and Portuguese wrap and push the list below down by 20px. The line sits _under_ the button, so the target the reader is aiming at never moves — which is the shift that would matter.
+- **Named rule — Persistent-Beats-Transient.** When an event has a surface that survives the glance, that surface wins; a notification that vanishes is reserved for what carries no obligation. `src/test/use-copy-to-clipboard.test.ts` holds the clipboard half of this together, including the absent-clipboard branch that a `try`/`catch` around a rejection alone would miss.
 
 ### Motion
 
@@ -588,6 +848,14 @@ Three durations and one curve, and everything references them: `--transition-dur
 ### Don't:
 
 - **Don't** introduce a new hue angle. No blue for links or info, no amber of its own, no hue-coded categories. Chromatic is 150, neutral is 90, danger is 28 and only for `--destructive`, warnings borrow ramp stops, and `src/test/palette.test.ts` enforces it — a new hue is caught whether it arrives as `oklch()` or as hex.
+- **Don't** stand an emoji in for an icon. Icons are drawn, from `@/lib/icons`; a glyph sized with
+  `text-lg` is not a small icon, it is a font the design system does not control. When lucide has no
+  glyph for the thing — it has no mushroom — draw one with `createLucideIcon` in `@/lib/icons` so it
+  takes the same size, stroke and colour contract as the rest.
+- **Don't** respell a named type role in utilities. `text-xs font-medium uppercase tracking-wide` is
+  `.type-micro` with the wrong letter-spacing, and it arrived with a `/60` on the colour that
+  composites to 2.42:1 — under even the 3:1 non-text floor. The role is already quiet; the alpha
+  buys nothing.
 - **Don't** reach for a Tailwind colour utility. `text-gray-700`, `bg-blue-50`, `border-red-500` and the other 20 families emit nothing — if a colour class renders no colour, that is why.
 - **Don't** write an arbitrary `shadow-[…]` on a new component. It bypasses the role system and will not pick up the dark-theme inset highlight.
 - **Don't** treat `--shadow-*` as the elevation scale. It is legacy, materially weaker than what ships, and aliasing to it regresses the live look (ADR 0001).
@@ -595,7 +863,7 @@ Three durations and one curve, and everything references them: `--transition-dur
 - **Don't** use `--happy-500`, `--happy-600` / `--primary`, or `--status-warning` as a text color. All three are fill-only, held to the 3:1 non-text floor; `--status-warning` gives 3.91:1 at best, so warning callouts use `--status-warning-background`.
 - **Don't** use `--happy-700` for the mobile nav's active tint — 1.7:1 over translucent dark chrome on a light map.
 - **Don't** add a cool grey or a pure `#ffffff` to either theme. Every neutral is hue 90. The only surviving pure whites are translucent washes over media and the QR code, which needs literal `#000`/`#fff` to scan.
-- **Don't** add a border to a primitive unless the variant is called `outline`, or the stroke is `--destructive-border` earning back contrast in dark. And don't ship an `outline` without one — the name is a promise.
+- **Don't** add a border to a primitive unless the variant is called `outline`, the stroke is `--destructive-border` earning back contrast in dark, or the stroke _is_ the control's boundary — the selection controls' 2px edge and the slider track's capsule, both of which exist because nothing else on those controls can carry the 3:1 floor. And don't ship an `outline` without one — the name is a promise.
 - **Don't** put theme values in `tailwind.config.js` — it carries no theme and is retained only for the shadcn CLI.
 - **Don't** make `body` scroll. The shell is fixed at `100dvh`; give overflowing content its own scroll container.
 - **Don't** apply a surface treatment to the `Sidebar`'s positioning container. It must land on `data-slot='sidebar-inner'` or the background paints over it.

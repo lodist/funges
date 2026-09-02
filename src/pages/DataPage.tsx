@@ -18,6 +18,7 @@ import {
 } from 'recharts';
 import { categoryVar, toCategory } from '@/lib/categoryColor';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -855,9 +856,23 @@ export default function DataPage() {
 
   if (isLoading) {
     return (
-      <div className='flex h-full items-center justify-center p-8'>
-        <Loader2 className='h-6 w-6 animate-spin text-muted-foreground' />
-      </div>
+      <SkeletonGroup className='flex flex-col gap-6 p-4 md:p-6'>
+        <div className='flex flex-col items-center gap-2'>
+          <Skeleton className='h-10 w-40' />
+          <Skeleton className='h-4 w-72 max-w-full' />
+        </div>
+
+        <div className='flex flex-wrap items-end gap-4'>
+          {[0, 1].map(group => (
+            <div key={group} className='flex flex-col gap-1.5'>
+              <Skeleton className='mx-1 h-3 w-24' />
+              <Skeleton className='h-11 w-48 rounded-full' />
+            </div>
+          ))}
+        </div>
+
+        <Skeleton className='h-[280px] w-full rounded-card' />
+      </SkeletonGroup>
     );
   }
 
@@ -1378,14 +1393,21 @@ export default function DataPage() {
             })}
           >
             <div className='flex flex-wrap items-center gap-2 mb-3'>
-              <span className='text-xs font-medium uppercase tracking-wide text-muted-foreground/60 shrink-0'>
+              <span
+                id='data-species-filter'
+                className='type-micro text-muted-foreground shrink-0'
+              >
                 {t('common:data.species', { defaultValue: 'Species' })}
               </span>
               <Select
                 value={resolvedSpecies}
                 onValueChange={setSelectedSpecies}
               >
-                <SelectTrigger className='max-w-[180px]'>
+                <SelectTrigger
+                  size='sm'
+                  className='w-44'
+                  aria-labelledby='data-species-filter'
+                >
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

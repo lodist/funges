@@ -1,12 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/react';
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { useForm } from 'react-hook-form';
+
+import { sourceFiles, stripComments } from './source-scan';
 
 import { Label } from '@/components/ui/label';
 import { CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
 import {
   Form,
   FormField,
@@ -52,6 +55,26 @@ function field(children: React.ReactNode) {
   return <Harness />;
 }
 
+const dialogTitle = () =>
+  classes(
+    <Dialog open>
+      <DialogContent>
+        <DialogTitle>{'Species'}</DialogTitle>
+      </DialogContent>
+    </Dialog>,
+    'dialog-title'
+  );
+
+const sheetTitle = () =>
+  classes(
+    <Sheet open>
+      <SheetContent>
+        <SheetTitle>{'Species'}</SheetTitle>
+      </SheetContent>
+    </Sheet>,
+    'sheet-title'
+  );
+
 // Every component whose job is to render a short piece of text that can wrap.
 const WRAPPING_TEXT: [string, () => string[]][] = [
   ['label', () => classes(<Label>{'Species'}</Label>, 'label')],
@@ -59,23 +82,29 @@ const WRAPPING_TEXT: [string, () => string[]][] = [
     'card title',
     () => classes(<CardTitle>{'Species'}</CardTitle>, 'card-title'),
   ],
-  [
-    'dialog title',
-    () =>
-      classes(
-        <Dialog open>
-          <DialogContent>
-            <DialogTitle>{'Species'}</DialogTitle>
-          </DialogContent>
-        </Dialog>,
-        'dialog-title'
-      ),
-  ],
+  ['dialog title', dialogTitle],
+  ['sheet title', sheetTitle],
 ];
 
 describe('no wrapping text collides with itself', () => {
   it.each(WRAPPING_TEXT)('%s does not set leading-none', (_name, list) => {
     expect(list()).not.toContain('leading-none');
+  });
+});
+
+// Dialog and Sheet are one primitive in two geometries, so a role named on
+// one and left off the other is not a variation. SheetTitle set no size at
+// all and rendered at whatever styles `h2` - 30px against its twin's 18px,
+// which is a size nobody chose. `leading-none` absent is not the same as a
+// leading named: assert the pair, not the absence.
+describe('the twin panels title at one size', () => {
+  it.each([
+    ['dialog', dialogTitle],
+    ['sheet', sheetTitle],
+  ])('%s title names the Body Large role', (_name, list) => {
+    const classList = list();
+    expect(classList).toContain('text-lg');
+    expect(classList).toContain('leading-snug');
   });
 });
 
@@ -102,24 +131,6 @@ describe('destructive text clears 4.5:1 in both themes', () => {
     expect(list).not.toContain('text-destructive');
   });
 });
-
-// A class named in prose is not a class the browser sees: strip comments
-// before scanning, or a guard fails on the comment explaining the bug it
-// guards against.
-function stripComments(text: string): string {
-  return text
-    .replace(/\/\*[\s\S]*?\*\//g, '')
-    .replace(/(^|\s)\/\/[^\n]*/g, '$1');
-}
-
-function sourceFiles(dir: string, acc: string[] = []): string[] {
-  for (const entry of readdirSync(dir)) {
-    const full = join(dir, entry);
-    if (statSync(full).isDirectory()) sourceFiles(full, acc);
-    else if (/\.tsx?$/.test(entry)) acc.push(full);
-  }
-  return acc;
-}
 
 describe('nothing paints text with the destructive fill tone', () => {
   // The atom is guarded above; this catches the call sites, which have no

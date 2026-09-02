@@ -16,25 +16,21 @@ import { useSupportMethods } from '@/data/support';
 import QRCodeModal from '@/components/QRCodeModal';
 import React from 'react';
 import SEO from '@/components/SEO';
+import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 
 export default function SupportPage() {
   const { t } = useTranslation('support');
+  const { t: tCommon } = useTranslation('common');
   const supportMethods = useSupportMethods();
-  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
+  const { status: copyStatus, key: copyKey, copy } = useCopyToClipboard();
+  const copiedId = copyStatus === 'copied' ? copyKey : null;
   const [qrModalOpen, setQrModalOpen] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState<
     (typeof supportMethods)[0] | null
   >(null);
 
-  const handleCopyAddress = async (address: string, methodId: string) => {
-    try {
-      await navigator.clipboard.writeText(address);
-      setCopiedAddress(methodId);
-      setTimeout(() => setCopiedAddress(null), 2000);
-    } catch (err) {
-      console.error('Failed to copy address:', err);
-    }
-  };
+  const handleCopyAddress = (address: string, methodId: string) =>
+    copy(address, methodId);
 
   const handleShowQR = (method: (typeof supportMethods)[0]) => {
     if (method.address) {
@@ -58,6 +54,10 @@ export default function SupportPage() {
         canonicalUrl={`${import.meta.env.BASE_URL}support`}
       />
       <div className='support-page max-w-6xl mx-auto px-4 py-8'>
+        <p aria-live='polite' className='sr-only'>
+          {copyStatus === 'copied' && t('copied')}
+          {copyStatus === 'error' && tCommon('errors.copy')}
+        </p>
         <div className='space-y-8'>
           {/* Header */}
           <div className='text-center'>
@@ -187,6 +187,11 @@ export default function SupportPage() {
                             {method.address}
                           </p>
                         </div>
+                        {copyStatus === 'error' && copyKey === method.id && (
+                          <p className='text-destructive-text mt-2 text-sm'>
+                            {tCommon('errors.copy')}
+                          </p>
+                        )}
                       </CardContent>
                       <CardFooter className='gap-2'>
                         <Button
@@ -196,12 +201,8 @@ export default function SupportPage() {
                           }
                           className='flex-1'
                         >
-                          {copiedAddress === method.id ? (
-                            <CheckCircle />
-                          ) : (
-                            <Copy />
-                          )}
-                          {copiedAddress === method.id
+                          {copiedId === method.id ? <CheckCircle /> : <Copy />}
+                          {copiedId === method.id
                             ? t('copied')
                             : t('copyAddress')}
                         </Button>

@@ -34,7 +34,8 @@
     "system": "Système",
     "sort": "Trier",
     "email": "E-mail",
-    "score": "Score"
+    "score": "Score",
+    "copied": "Copié !"
   },
   "offline": {
     "mode": "Mode hors ligne",
@@ -94,6 +95,7 @@
       "flower": "Meilleur par temps clair et sec avant la chaleur de midi."
     },
     "focus": {
+      "label": "Priorité",
       "mixed": "Panier mixte",
       "mushrooms": "Champignons d'abord",
       "plants": "Herbes et verdures",
@@ -118,7 +120,8 @@
     "network": "Erreur réseau. Veuillez vérifier votre connexion.",
     "upload": "Échec du téléversement de l'image. Veuillez réessayer.",
     "notFound": "Page non trouvée.",
-    "unauthorized": "Vous n'êtes pas autorisé à accéder à cette ressource."
+    "unauthorized": "Vous n'êtes pas autorisé à accéder à cette ressource.",
+    "copy": "Échec de la copie. Sélectionnez le texte et copiez-le à la main."
   },
   "html": {
     "title": "Fung.es - Trouvez des champignons et plantes sauvages comestibles près de chez vous",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
-import { expect, userEvent, within } from 'storybook/test';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 import {
   Sidebar,
   SidebarContent,
@@ -188,7 +188,9 @@ const Shell = () => (
         <SidebarMenu>
           {NAV_ITEMS.map((item, index) => (
             <SidebarMenuItem key={item.label}>
-              <SidebarMenuButton isActive={index === 0}>
+              {/* Every shipped nav row passes a tooltip: in the rail the label
+                  is `sr-only`, so this is the only visible name. */}
+              <SidebarMenuButton isActive={index === 0} tooltip={item.label}>
                 <item.icon />
                 <span>{item.label}</span>
               </SidebarMenuButton>
@@ -283,6 +285,13 @@ export const Flyout: Story = {
       // does not pin its own colour inherits that through `asChild`.
       await expect(getComputedStyle(row).fontWeight).toBe('400');
     }
+
+    // Geometry is only true once the enter animation lands: `zoom-in-95`
+    // leaves the box 8px narrow mid-flight, which reads as a 1px overlap.
+    await waitFor(() => {
+      const style = getComputedStyle(menu!);
+      expect(`${style.transform} ${style.opacity}`).toBe('none 1');
+    });
 
     const panel = canvasElement.querySelector(
       '[data-slot="sidebar-inner"]'

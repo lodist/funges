@@ -3,7 +3,6 @@ import { routeTree } from './routeTree.gen';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider } from '@/components/theme-provider';
-import { Toaster } from '@/components/ui/sonner';
 import { OfflineIndicator } from '@/components/OfflineIndicator';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
@@ -49,7 +48,6 @@ function App() {
       <ThemeProvider>
         <RouterProvider router={router} />
         {shouldShowOfflineFeatures && <OfflineIndicator />}
-        <Toaster />
         <ReactQueryDevtools initialIsOpen={false} />
       </ThemeProvider>
     </QueryClientProvider>

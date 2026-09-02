@@ -9,7 +9,7 @@ const meta: Meta<typeof Separator> = {
     docs: {
       description: {
         component:
-          'A one-pixel rule between groups of content. Decorative by default, which is the right choice most of the time — a line that announces itself to a screen reader is noise unless it genuinely divides two sections.',
+          'A one-pixel rule between groups of content, and the last thing to reach for. Two sections that each open with a heading are already divided; the rule adds a line and no information. Decorative by default, and the default is almost always right.',
       },
     },
   },
@@ -24,7 +24,7 @@ const meta: Meta<typeof Separator> = {
     decorative: {
       control: { type: 'boolean' },
       description:
-        'When true (the default) the separator is hidden from assistive technology. Set false only when the division is meaningful, not merely visual.',
+        "When true (the default) the separator is hidden from assistive technology. `role='separator'` says a division exists without saying what is on either side, so on content that already has headings it is a second, poorer announcement of the same fact.",
     },
     className: {
       control: { type: 'text' },
@@ -92,7 +92,7 @@ export const Semantic: Story = {
     docs: {
       description: {
         story:
-          'With `decorative={false}` the separator is exposed as a real separator role, announcing the division. Use it when the two sides are genuinely different sections rather than one continuous run of content.',
+          "With `decorative={false}` the separator is exposed as a real separator role. Reach for it only where nothing else marks the division — if the section below deserves announcing, it deserves a heading, and the heading makes this redundant. Menus are the exception: inside `role='menu'` a separator is how ARIA groups items, so `DropdownMenuSeparator` is semantic without asking.",
       },
     },
   },

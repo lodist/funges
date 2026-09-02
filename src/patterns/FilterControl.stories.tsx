@@ -7,7 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Label } from '@/components/ui/label';
 
 /**
  * Pattern: filter control.
@@ -17,8 +16,14 @@ import { Label } from '@/components/ui/label';
  * two-screen bar for admissibility comfortably.
  *
  * The distinguishing detail is that it filters immediately rather than feeding
- * a submit, which is why the label is a plain caption rather than a form label
+ * a submit, which is why the caption is a plain span rather than a form label
  * pointing at an input.
+ *
+ * The caption is a `<span>`, not the `Label` atom, for two reasons pointing the
+ * same way: the trigger is a button, so it takes its name from
+ * `aria-labelledby` and `htmlFor` buys nothing — and `Label` carries `text-sm`,
+ * a utility, which outranks `.type-micro` in @layer components and would
+ * silently render the caption at 14px.
  */
 
 const meta: Meta = {
@@ -46,11 +51,9 @@ const FOCUS_OPTIONS = [
 export const Default: Story = {
   render: () => (
     <div className='flex flex-col gap-2'>
-      {/* The Select trigger is a button, so it takes its name from
-          aria-labelledby rather than from a label's htmlFor. */}
-      <Label id='focus-label' className='text-muted-foreground text-xs'>
+      <span id='focus-label' className='type-micro text-muted-foreground'>
         {'Focus'}
-      </Label>
+      </span>
       <Select defaultValue='mixed'>
         <SelectTrigger className='w-48' aria-labelledby='focus-label'>
           <SelectValue />
@@ -70,9 +73,12 @@ export const Default: Story = {
 export const Inline: Story = {
   render: () => (
     <div className='flex items-center gap-3'>
-      <Label id='inline-focus-label' className='text-muted-foreground text-xs'>
+      <span
+        id='inline-focus-label'
+        className='type-micro text-muted-foreground'
+      >
         {'Focus'}
-      </Label>
+      </span>
       <Select defaultValue='mixed'>
         <SelectTrigger
           size='sm'
@@ -117,9 +123,9 @@ export const MultipleFilters: Story = {
         },
       ].map(filter => (
         <div key={filter.id} className='flex flex-col gap-2'>
-          <Label id={filter.id} className='text-muted-foreground text-xs'>
+          <span id={filter.id} className='type-micro text-muted-foreground'>
             {filter.label}
-          </Label>
+          </span>
           <Select defaultValue={filter.options[0].value}>
             <SelectTrigger className='w-44' aria-labelledby={filter.id}>
               <SelectValue />
@@ -154,12 +160,12 @@ export const Controlled: Story = {
       return (
         <div className='flex flex-col gap-3'>
           <div className='flex flex-col gap-2'>
-            <Label
+            <span
               id='controlled-focus-label'
-              className='text-muted-foreground text-xs'
+              className='type-micro text-muted-foreground'
             >
               {'Focus'}
-            </Label>
+            </span>
             <Select value={focus} onValueChange={setFocus}>
               <SelectTrigger
                 className='w-48'
@@ -203,9 +209,12 @@ export const AllLayouts: Story = {
       <div className='flex flex-col gap-2'>
         <p className='text-muted-foreground font-mono text-xs'>{'stacked'}</p>
         <div className='flex flex-col gap-2'>
-          <Label id='matrix-stacked' className='text-muted-foreground text-xs'>
+          <span
+            id='matrix-stacked'
+            className='type-micro text-muted-foreground'
+          >
             {'Focus'}
-          </Label>
+          </span>
           <Select defaultValue='mixed'>
             <SelectTrigger className='w-48' aria-labelledby='matrix-stacked'>
               <SelectValue />
@@ -225,9 +234,9 @@ export const AllLayouts: Story = {
           {'inline · sm'}
         </p>
         <div className='flex items-center gap-3'>
-          <Label id='matrix-inline' className='text-muted-foreground text-xs'>
+          <span id='matrix-inline' className='type-micro text-muted-foreground'>
             {'Focus'}
-          </Label>
+          </span>
           <Select defaultValue='mixed'>
             <SelectTrigger
               size='sm'
