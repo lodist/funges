@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Search, Clock, Users, ChefHat, Filter } from 'lucide-react';
+import { Search, Clock, Users, ChefHat, Filter } from '@/lib/icons';
 import { RecipeModalWrapper } from '@/components';
 import FilterModal from '@/components/FilterModal';
 import { getRecipeImage } from '@/lib/utils';
@@ -182,10 +182,10 @@ export default function RecipesPage() {
       <div className='recipes-page max-w-7xl mx-auto px-4 py-8'>
         {/* Header */}
         <div className='text-center mb-8'>
-          <h1 className='text-4xl font-bold text-text-primary mb-4'>
+          <h1 className='text-4xl font-bold text-foreground mb-4'>
             {t('title')}
           </h1>
-          <p className='text-lg text-text-secondary max-w-2xl mx-auto'>
+          <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
             {t('description')}
           </p>
         </div>
@@ -195,7 +195,7 @@ export default function RecipesPage() {
           <div className='flex flex-col sm:flex-row gap-4'>
             {/* Search Input */}
             <div className='relative flex-1'>
-              <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-text-tertiary h-4 w-4' />
+              <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4' />
               <Input
                 placeholder={t('search.placeholder')}
                 value={searchQuery}
@@ -206,7 +206,6 @@ export default function RecipesPage() {
 
             {/* Filter Button */}
             <Button
-              variant='outline'
               onClick={() => setIsFilterModalOpen(true)}
               className='w-full sm:w-48'
             >
@@ -217,10 +216,7 @@ export default function RecipesPage() {
                 {(selectedCategory !== 'all' ||
                   selectedDifficulty !== 'all' ||
                   selectedTag !== 'all') && (
-                  <Badge
-                    variant='secondary'
-                    className='ml-1 h-5 px-1.5 text-xs'
-                  >
+                  <Badge variant='secondary'>
                     {(selectedCategory !== 'all' ? 1 : 0) +
                       (selectedDifficulty !== 'all' ? 1 : 0) +
                       (selectedTag !== 'all' ? 1 : 0)}
@@ -229,25 +225,16 @@ export default function RecipesPage() {
               </span>
             </Button>
           </div>
-
-          {/* Results Count */}
-          <div className='text-sm text-text-secondary'>
-            {filteredRecipes.length === 0 && t('search.no_results')}
-            {filteredRecipes.length >= 1 &&
-              t('search.found', {
-                count: filteredRecipes.length,
-              })}
-          </div>
         </div>
 
         {/* Recipes Grid */}
         {filteredRecipes.length === 0 ? (
           <div className='text-center py-12'>
-            <ChefHat className='h-12 w-12 text-text-tertiary mx-auto mb-4' />
-            <h3 className='text-lg font-medium text-text-primary mb-2'>
+            <ChefHat className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
+            <h3 className='text-lg font-medium text-foreground mb-2'>
               {t('search.no_results')}
             </h3>
-            <p className='text-text-secondary'>{t('search.try_adjusting')}</p>
+            <p className='text-muted-foreground'>{t('search.try_adjusting')}</p>
           </div>
         ) : (
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
@@ -255,17 +242,14 @@ export default function RecipesPage() {
               const recipeImage = getRecipeImage(recipe.id);
 
               return (
-                <Card
-                  key={recipe.id}
-                  className='h-full flex flex-col hover:shadow-lg transition-shadow py-6'
-                >
-                  <CardHeader className='pb-3'>
+                <Card key={recipe.id} className='h-full'>
+                  <CardHeader>
                     {/* Mobile: Image on top, then title */}
                     <div className='block md:hidden'>
                       {/* Recipe Image for mobile - above title */}
                       {recipeImage && (
                         <div className='mb-4'>
-                          <div className='relative w-full aspect-square bg-gradient-to-br from-green-50 to-green-100 overflow-hidden rounded-lg'>
+                          <div className='relative w-full aspect-square bg-secondary overflow-hidden rounded-lg'>
                             <img
                               src={recipeImage}
                               alt={recipe.title}
@@ -292,7 +276,7 @@ export default function RecipesPage() {
                       )}
 
                       {/* Recipe Stats for mobile */}
-                      <div className='flex items-center gap-4 text-sm text-text-secondary mb-2'>
+                      <div className='flex items-center gap-4 text-sm text-muted-foreground mb-2'>
                         <div className='flex items-center gap-1'>
                           <Clock className='h-4 w-4' />
                           <span>{recipe.prepTime}</span>
@@ -313,7 +297,7 @@ export default function RecipesPage() {
                       {/* Recipe Image */}
                       {recipeImage && (
                         <div className='flex-shrink-0'>
-                          <div className='relative w-35 h-35 bg-gradient-to-br from-green-50 to-green-100 overflow-hidden rounded-lg'>
+                          <div className='relative w-35 h-35 bg-secondary overflow-hidden rounded-lg'>
                             <img
                               src={recipeImage}
                               alt={recipe.title}
@@ -334,7 +318,7 @@ export default function RecipesPage() {
                         </div>
 
                         {/* Recipe Stats for desktop */}
-                        <div className='flex items-center gap-4 text-sm text-text-secondary my-2'>
+                        <div className='flex items-center gap-4 text-sm text-muted-foreground my-2'>
                           <div className='flex items-center gap-1'>
                             <Clock className='h-4 w-4' />
                             <span>{recipe.prepTime}</span>
@@ -356,16 +340,12 @@ export default function RecipesPage() {
                     {/* Tags */}
                     <div className='flex flex-wrap gap-1 mb-4'>
                       {recipe.tags.slice(0, 3).map(tag => (
-                        <Badge
-                          key={tag}
-                          variant='secondary'
-                          className='text-xs'
-                        >
+                        <Badge key={tag} variant='secondary'>
                           {t(`tags.${tag}`)}
                         </Badge>
                       ))}
                       {recipe.tags.length > 3 && (
-                        <Badge variant='secondary' className='text-xs'>
+                        <Badge variant='secondary'>
                           +{recipe.tags.length - 3} {t('more')}
                         </Badge>
                       )}
@@ -374,11 +354,7 @@ export default function RecipesPage() {
                     {/* Species */}
                     <div className='flex flex-wrap gap-1 mb-4'>
                       {recipe.species.map(species => (
-                        <Badge
-                          key={species}
-                          variant='outline'
-                          className='text-xs'
-                        >
+                        <Badge key={species} variant='outline'>
                           {t(`species.${species}`)}
                         </Badge>
                       ))}
@@ -387,7 +363,6 @@ export default function RecipesPage() {
                     {/* View Recipe Button */}
                     <Button
                       className='mt-auto'
-                      variant='outline'
                       onClick={() => setSelectedRecipe(recipe)}
                     >
                       {t('view_recipe')}

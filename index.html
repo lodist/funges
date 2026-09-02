@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="icons/logo_1.png" />
+    <link
+      rel="preload"
+      as="image"
+      href="icons/logo_funges.png"
+      type="image/png"
+      fetchpriority="high"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Fung.es - Mushroom Foraging App</title>
@@ -131,11 +138,45 @@
     <meta name="msapplication-TileImage" content="icons/logo_app.png" />
     <meta name="msapplication-config" content="none" />
 
-    <!-- Prefetch icons to avoid preload warnings -->
-    <link rel="prefetch" href="icons/logo_app.png" as="image" />
-    <link rel="prefetch" href="icons/logo_funges.png" as="image" />
+    <!-- Map data + glyph origins: DNS/TLS handshake overlaps the JS download -->
+    <link rel="preconnect" href="https://data.fung.es" crossorigin />
+    <link rel="preconnect" href="https://protomaps.github.io" crossorigin />
   </head>
   <body>
+    <!-- Inline overlay: the app's first paint waits on the CSS + JS, so until
+         React mounts the page would be blank. Keeping this outside #root lets
+         React initialize the app underneath it during the minimum display time. -->
+    <div
+      id="app-splash"
+      style="
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        background: #f8f5f0;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+      "
+    >
+      <img
+        src="icons/logo_funges.png"
+        alt="Funges"
+        width="1200"
+        height="504"
+        style="
+          display: block;
+          width: min(80vw, 320px);
+          height: auto;
+          object-fit: contain;
+        "
+      />
+    </div>
     <div id="root"></div>
     <script type="module" src="src/main.tsx"></script>
   </body>

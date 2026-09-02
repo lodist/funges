@@ -1,0 +1,120 @@
+{
+  "NE": {
+    "mushroom": {
+      "cases_available": 113,
+      "weather_part": 0.544,
+      "weather_part_n": 113,
+      "static_part": 0.5,
+      "static_part_n": 113,
+      "season_part": 0.628,
+      "season_part_n": 113,
+      "full_score": 0.649,
+      "full_score_n": 113
+    },
+    "chant": {
+      "cases_available": 322,
+      "weather_part": 0.521,
+      "weather_part_n": 320,
+      "static_part": 0.5,
+      "static_part_n": 320,
+      "season_part": 0.68,
+      "season_part_n": 320,
+      "full_score": 0.699,
+      "full_score_n": 320
+    },
+    "st_george": {
+      "cases_available": 58,
+      "weather_part": null,
+      "weather_part_n": 0,
+      "static_part": null,
+      "static_part_n": 0,
+      "season_part": null,
+      "season_part_n": 0,
+      "full_score": null,
+      "full_score_n": 0
+    }
+  },
+  "SE": {
+    "mushroom": {
+      "cases_available": 74,
+      "weather_part": 0.682,
+      "weather_part_n": 72,
+      "static_part": 0.494,
+      "static_part_n": 72,
+      "season_part": 0.455,
+      "season_part_n": 72,
+      "full_score": 0.674,
+      "full_score_n": 72
+    },
+    "chant": {
+      "cases_available": 30,
+      "weather_part": 0.508,
+      "weather_part_n": 30,
+      "static_part": 0.452,
+      "static_part_n": 30,
+      "season_part": 0.437,
+      "season_part_n": 30,
+      "full_score": 0.463,
+      "full_score_n": 30
+    }
+  },
+  "USE": {
+    "mushroom": {
+      "cases_available": 80,
+      "weather_part": 0.522,
+      "weather_part_n": 76,
+      "static_part": 0.499,
+      "static_part_n": 76,
+      "season_part": 0.598,
+      "season_part_n": 76,
+      "full_score": 0.586,
+      "full_score_n": 76
+    },
+    "chant": {
+      "cases_available": 291,
+      "weather_part": 0.461,
+      "weather_part_n": 277,
+      "static_part": 0.5,
+      "static_part_n": 277,
+      "season_part": 0.684,
+      "season_part_n": 277,
+      "full_score": 0.596,
+      "full_score_n": 277
+    },
+    "black_chant": {
+      "cases_available": 59,
+      "weather_part": 0.457,
+      "weather_part_n": 49,
+      "static_part": 0.499,
+      "static_part_n": 49,
+      "season_part": 0.576,
+      "season_part_n": 49,
+      "full_score": 0.619,
+      "full_score_n": 49
+    },
+    "morel": {
+      "cases_available": 20,
+      "weather_part": null,
+      "weather_part_n": 0,
+      "static_part": null,
+      "static_part_n": 0,
+      "season_part": null,
+      "season_part_n": 0,
+      "full_score": null,
+      "full_score_n": 0
+    }
+  },
+  "USW": {
+    "mushroom": {
+      "cases_available": 102,
+      "weather_part": 0.516,
+      "weather_part_n": 98,
+      "static_part": 0.502,
+      "static_part_n": 98,
+      "season_part": 0.601,
+      "season_part_n": 98,
+      "full_score": 0.557,
+      "full_score_n": 98
+    }
+  }
+}

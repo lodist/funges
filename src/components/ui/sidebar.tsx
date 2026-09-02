@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { PanelLeftIcon } from 'lucide-react';
+import { PanelLeftIcon } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -26,9 +26,9 @@ import {
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
-const SIDEBAR_WIDTH = '12rem';
+const SIDEBAR_WIDTH = '15rem';
 const SIDEBAR_WIDTH_MOBILE = '14rem';
-const SIDEBAR_WIDTH_ICON = '3rem';
+const SIDEBAR_WIDTH_ICON = '3.5rem';
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b';
 
 type SidebarContextProps = {
@@ -155,12 +155,24 @@ function Sidebar({
   variant = 'sidebar',
   collapsible = 'offcanvas',
   className,
+  surfaceClassOverride,
   children,
   ...props
 }: React.ComponentProps<'div'> & {
   side?: 'left' | 'right';
   variant?: 'sidebar' | 'floating' | 'inset';
   collapsible?: 'offcanvas' | 'icon' | 'none';
+  /**
+   * Classes for the painted surface rather than the positioning container that
+   * `className` targets. Supplying this replaces shadcn's default background,
+   * border and shadow wholesale — the point is to let a consumer apply the
+   * app's own elevation/glass treatment (#200) without those defaults, which
+   * live in Tailwind's utilities layer, winning over it.
+   *
+   * Applies to the desktop rail only. The mobile branch is a Sheet, which is
+   * elevation level Floating rather than Raised, so it keeps its own styling.
+   */
+  surfaceClassOverride?: string;
 }) {
   const { t } = useTranslation('common');
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
@@ -218,7 +230,7 @@ function Sidebar({
       <div
         data-slot='sidebar-gap'
         className={cn(
-          'relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear',
+          'relative w-(--sidebar-width) bg-transparent transition-[width] duration-base ease-standard',
           'group-data-[collapsible=offcanvas]:w-0',
           'group-data-[side=right]:rotate-180',
           variant === 'floating' || variant === 'inset'
@@ -229,7 +241,7 @@ function Sidebar({
       <div
         data-slot='sidebar-container'
         className={cn(
-          'fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex',
+          'fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-base ease-standard md:flex',
           side === 'left'
             ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
             : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
@@ -244,7 +256,11 @@ function Sidebar({
         <div
           data-sidebar='sidebar'
           data-slot='sidebar-inner'
-          className='bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm'
+          className={cn(
+            'flex h-full w-full flex-col group-data-[variant=floating]:rounded-card',
+            surfaceClassOverride ??
+              'bg-sidebar group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:border group-data-[variant=floating]:elevation-raised'
+          )}
         >
           {children}
         </div>
@@ -267,7 +283,7 @@ function SidebarTrigger({
       data-slot='sidebar-trigger'
       variant='ghost'
       size='icon'
-      className={cn('size-7', className)}
+      className={className}
       onClick={event => {
         onClick?.(event);
         toggleSidebar();
@@ -292,7 +308,7 @@ function SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
       onClick={toggleSidebar}
       title='Toggle Sidebar'
       className={cn(
-        'hover:after:bg-sidebar-border absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] sm:flex',
+        'hover:after:bg-sidebar-border absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all duration-base ease-standard group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] sm:flex',
         'in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize',
         '[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize',
         'hover:group-data-[collapsible=offcanvas]:bg-sidebar group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full',
@@ -311,7 +327,7 @@ function SidebarInset({ className, ...props }: React.ComponentProps<'main'>) {
       data-slot='sidebar-inset'
       className={cn(
         'bg-background relative flex w-full flex-1 flex-col',
-        'md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2',
+        'md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-card md:peer-data-[variant=inset]:elevation-raised md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2',
         className
       )}
       {...props}
@@ -327,7 +343,7 @@ function SidebarInput({
     <Input
       data-slot='sidebar-input'
       data-sidebar='input'
-      className={cn('bg-background h-8 w-full shadow-none', className)}
+      className={cn('bg-background w-full', className)}
       {...props}
     />
   );
@@ -363,7 +379,10 @@ function SidebarSeparator({
     <Separator
       data-slot='sidebar-separator'
       data-sidebar='separator'
-      className={cn('bg-sidebar-border mx-2 w-auto', className)}
+      className={cn(
+        'bg-sidebar-border mx-2 data-[orientation=horizontal]:w-auto',
+        className
+      )}
       {...props}
     />
   );
@@ -388,7 +407,7 @@ function SidebarGroup({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot='sidebar-group'
       data-sidebar='group'
-      className={cn('relative flex w-full min-w-0 flex-col p-2', className)}
+      className={cn('relative flex w-full min-w-0 flex-col py-2', className)}
       {...props}
     />
   );
@@ -406,7 +425,7 @@ function SidebarGroupLabel({
       data-slot='sidebar-group-label'
       data-sidebar='group-label'
       className={cn(
-        'text-sidebar-foreground/70 ring-sidebar-ring flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear [&>svg]:size-4 [&>svg]:shrink-0',
+        'text-sidebar-foreground/70 ring-sidebar-ring flex h-8 shrink-0 items-center rounded-xl px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-base ease-standard [&>svg]:size-4 [&>svg]:shrink-0',
         'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0',
         className
       )}
@@ -427,9 +446,10 @@ function SidebarGroupAction({
       data-slot='sidebar-group-action'
       data-sidebar='group-action'
       className={cn(
-        'text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-transform [&>svg]:size-4 [&>svg]:shrink-0',
-        // Increases the hit area of the button on mobile.
-        'after:absolute after:-inset-2 md:after:hidden',
+        'text-sidebar-foreground focus-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-full p-0 outline-hidden transition-colors [&>svg]:size-4 [&>svg]:shrink-0',
+        // The visible glyph is 20px; the hit area carries it to the 44px
+        // floor. Not mobile-only — a tablet gets this sidebar, not the Sheet.
+        'after:absolute after:-inset-3',
         'group-data-[collapsible=icon]:hidden',
         className
       )}
@@ -475,16 +495,25 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<'li'>) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  'peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
+  // text-sidebar-foreground pins the idle color explicitly — otherwise an
+  // unscoped `a { color: var(--primary) }` reset (globals.scss) wins by
+  // inheritance whenever this renders as a Link, tinting every nav item
+  // green regardless of hover/active state.
+  'peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-xl p-2 text-left text-sm text-sidebar-foreground focus-ring transition-[width,height,padding,background-color,color] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:mx-auto group-data-[collapsible=icon]:size-11! group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-2! group-data-[collapsible=icon]:[&>span]:sr-only group-data-[collapsible=icon]:[&>svg:last-child]:hidden [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
   {
     variants: {
+      // #225: the upstream `outline` variant is gone. Its border was
+      // `shadow-[0_0_0_1px_hsl(var(--sidebar-border))]`, but every sidebar
+      // token is an `oklch()` colour, not the HSL channel triplet that
+      // wrapper expects — `hsl(oklch(...))` fails to parse, so the browser
+      // dropped the declaration and the variant rendered no outline at all,
+      // in either theme. Nothing in the app or the stories ever selected it,
+      // so it is deleted rather than repaired.
       variant: {
         default: 'hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
-        outline:
-          'bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]',
       },
       size: {
-        default: 'h-8 text-sm',
+        default: 'h-11 text-sm',
         sm: 'h-7 text-xs',
         lg: 'h-12 text-sm group-data-[collapsible=icon]:p-0!',
       },
@@ -562,12 +591,10 @@ function SidebarMenuAction({
       data-slot='sidebar-menu-action'
       data-sidebar='menu-action'
       className={cn(
-        'text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-transform [&>svg]:size-4 [&>svg]:shrink-0',
-        // Increases the hit area of the button on mobile.
-        'after:absolute after:-inset-2 md:after:hidden',
-        'peer-data-[size=sm]/menu-button:top-1',
-        'peer-data-[size=default]/menu-button:top-1.5',
-        'peer-data-[size=lg]/menu-button:top-2.5',
+        'text-sidebar-foreground focus-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute top-1/2 right-1 flex aspect-square w-5 -translate-y-1/2 items-center justify-center rounded-full p-0 outline-hidden transition-colors [&>svg]:size-4 [&>svg]:shrink-0',
+        // The visible glyph is 20px; the hit area carries it to the 44px
+        // floor. Not mobile-only — a tablet gets this sidebar, not the Sheet.
+        'after:absolute after:-inset-3',
         'group-data-[collapsible=icon]:hidden',
         showOnHover &&
           'peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0',
@@ -587,11 +614,8 @@ function SidebarMenuBadge({
       data-slot='sidebar-menu-badge'
       data-sidebar='menu-badge'
       className={cn(
-        'text-sidebar-foreground pointer-events-none absolute right-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-medium tabular-nums select-none',
+        'text-sidebar-foreground pointer-events-none absolute top-1/2 right-1 flex h-5 min-w-5 -translate-y-1/2 items-center justify-center rounded-full px-1 text-xs font-medium tabular-nums select-none',
         'peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[active=true]/menu-button:text-sidebar-accent-foreground',
-        'peer-data-[size=sm]/menu-button:top-1',
-        'peer-data-[size=default]/menu-button:top-1.5',
-        'peer-data-[size=lg]/menu-button:top-2.5',
         'group-data-[collapsible=icon]:hidden',
         className
       )}
@@ -616,12 +640,12 @@ function SidebarMenuSkeleton({
     <div
       data-slot='sidebar-menu-skeleton'
       data-sidebar='menu-skeleton'
-      className={cn('flex h-8 items-center gap-2 rounded-md px-2', className)}
+      className={cn('flex h-11 items-center gap-2 rounded-xl px-2', className)}
       {...props}
     >
       {showIcon && (
         <Skeleton
-          className='size-4 rounded-md'
+          className='size-4 rounded-full'
           data-sidebar='menu-skeleton-icon'
         />
       )}
@@ -644,7 +668,7 @@ function SidebarMenuSub({ className, ...props }: React.ComponentProps<'ul'>) {
       data-slot='sidebar-menu-sub'
       data-sidebar='menu-sub'
       className={cn(
-        'border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2.5 py-0.5',
+        'border-sidebar-border mx-2 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2 py-0.5',
         'group-data-[collapsible=icon]:hidden',
         className
       )}
@@ -687,7 +711,7 @@ function SidebarMenuSubButton({
       data-size={size}
       data-active={isActive}
       className={cn(
-        'text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground [&>svg]:text-sidebar-accent-foreground flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 outline-hidden disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
+        'text-sidebar-foreground focus-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground [&>svg]:text-sidebar-accent-foreground flex h-11 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-xl px-2 outline-hidden disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
         'data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground',
         size === 'sm' && 'text-xs',
         size === 'md' && 'text-sm',

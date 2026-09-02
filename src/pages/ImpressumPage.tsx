@@ -16,20 +16,20 @@ export default function ImpressumPage() {
         <div className='space-y-8'>
           {/* Header */}
           <div className='text-center'>
-            <h1 className='text-3xl font-bold text-gray-900 dark:text-white mb-2'>
+            <h1 className='text-3xl font-bold text-foreground dark:text-white mb-2'>
               {t('title')}
             </h1>
-            <h2 className='text-xl text-gray-600 dark:text-gray-300'>
+            <h2 className='text-xl font-medium text-muted-foreground'>
               {t('subtitle')}
             </h2>
           </div>
 
           {/* Responsible Entity */}
-          <section className='bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm'>
-            <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
+          <section className='bg-card rounded-lg p-6 shadow-sm'>
+            <h3 className='text-lg font-semibold text-foreground dark:text-white mb-4'>
               {t('responsibleEntity.title')}
             </h3>
-            <div className='space-y-1 text-gray-700 dark:text-gray-300'>
+            <div className='space-y-1 text-foreground'>
               <p className='font-medium'>{t('responsibleEntity.name')}</p>
               <p>{t('responsibleEntity.address')}</p>
               <p>{t('responsibleEntity.city')}</p>
@@ -38,11 +38,11 @@ export default function ImpressumPage() {
           </section>
 
           {/* Administrator */}
-          <section className='bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm'>
-            <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
+          <section className='bg-card rounded-lg p-6 shadow-sm'>
+            <h3 className='text-lg font-semibold text-foreground dark:text-white mb-4'>
               {t('administrator.title')}
             </h3>
-            <div className='space-y-1 text-gray-700 dark:text-gray-300'>
+            <div className='space-y-1 text-foreground'>
               <p className='font-medium'>{t('administrator.name')}</p>
               <p>{t('administrator.address')}</p>
               <p>{t('administrator.city')}</p>
@@ -51,7 +51,7 @@ export default function ImpressumPage() {
                 <span className='font-medium'>{tCommon('common.email')}:</span>{' '}
                 <a
                   href={`mailto:${t('administrator.email')}`}
-                  className='text-blue-600 dark:text-blue-400 hover:underline'
+                  className='text-primary-text hover:underline'
                 >
                   {t('administrator.email')}
                 </a>
@@ -60,27 +60,27 @@ export default function ImpressumPage() {
           </section>
 
           {/* Disclaimer */}
-          <section className='bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm'>
-            <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
+          <section className='bg-card rounded-lg p-6 shadow-sm'>
+            <h3 className='text-lg font-semibold text-foreground dark:text-white mb-4'>
               {t('disclaimer.title')}
             </h3>
-            <p className='text-gray-700 dark:text-gray-300 leading-relaxed'>
+            <p className='text-foreground leading-relaxed'>
               {t('disclaimer.content')}
             </p>
           </section>
 
           {/* Disclaimer for Content and Links */}
-          <section className='bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm'>
-            <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
+          <section className='bg-card rounded-lg p-6 shadow-sm'>
+            <h3 className='text-lg font-semibold text-foreground dark:text-white mb-4'>
               {t('disclaimerContent.title')}
             </h3>
-            <p className='text-gray-700 dark:text-gray-300 leading-relaxed'>
+            <p className='text-foreground leading-relaxed'>
               {t('disclaimerContent.content')}
             </p>
           </section>
 
           {/* Last Updated */}
-          <div className='text-center text-sm text-gray-500 dark:text-gray-400 pt-4'>
+          <div className='text-center text-sm text-muted-foreground pt-4'>
             {t('lastUpdated')}
           </div>
         </div>

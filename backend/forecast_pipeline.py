@@ -26,7 +26,7 @@ from shapely.ops import unary_union
 from shapely.geometry import shape, Point
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasonality
-from seasonality import season_multiplier_for_species
+from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
@@ -191,7 +191,9 @@ class RegionConfig:
     lat_step: float = 0.060
     lon_step: float = 0.075
     ndp: int = 3
-    lag_days: int = 21
+    # Rain/soil moisture has a materially longer memory than temperature. The
+    # scoring helpers still cap temperature at 12 days and humidity at 21 days.
+    lag_days: int = 42
     cutoff_days: int = 365
     # Performance: WeatherAPI calls are network-bound. 3 was extremely conservative;
     # raise substantially, tunable via env for rate-limit headroom.
@@ -370,6 +372,17 @@ def gaussian(x, mu, sig):
     return np.exp(-np.power(x - mu, 2.) / (2 * np.power(sig, 2.)))
 
 
+def humidity_suitability(x, saturation, sigma):
+    """Score humidity as a deficit curve with no penalty above saturation.
+
+    Below the species threshold this is the same Gaussian used previously.
+    At or above the threshold, additional humidity remains fully suitable.
+    """
+    values = np.asarray(x, dtype=float)
+    deficit = np.minimum(values - saturation, 0.0)
+    return np.exp(-np.power(deficit, 2.0) / (2 * np.power(sigma, 2.0)))
+
+
 def compute_lag_features(df, columns, days):
     df = df.sort_values(by=["Location_Id", "Date"], ascending=[True, True])
     # Lags are keyed on the calendar date, not on row position: a row's "N days ago"
@@ -497,6 +510,170 @@ def _weather_score_vectorized(df, precip_hist_cols, *, min_p, cum_thr, rain_firs
     return np.clip(raw * drought_mult, weather_eps, 1.0)
 
 
+def _lag_matrix(df, base_col, days):
+    """Return lag values ordered from yesterday backwards."""
+    values = []
+    for day in range(1, days + 1):
+        col = f"{base_col}_{day}days_ago"
+        if col in df.columns:
+            values.append(pd.to_numeric(df[col], errors="coerce").to_numpy(float))
+        else:
+            values.append(np.full(len(df), np.nan, dtype=float))
+    return np.column_stack(values) if values else np.empty((len(df), 0), dtype=float)
+
+
+def _moisture_memory_score(df, *, cumulative_rain_target, rain_first):
+    """Estimate available moisture over 7, 21 and 42-day horizons."""
+    windows = (7, 21, 42)
+    max_days = max(windows)
+    rain = np.nan_to_num(_lag_matrix(df, "TotalPrecipitation_mm", max_days), nan=0.0)
+    rain = np.clip(rain, 0.0, None)
+    temp = _lag_matrix(df, "Temperature (C)", max_days)
+    humidity = _lag_matrix(df, "Humidity (%)", max_days)
+    wind = _lag_matrix(df, "Wind Speed (m/s)", max_days)
+
+    # Missing historical weather uses neutral values rather than inventing drought.
+    temp = np.where(np.isfinite(temp), temp, 10.0)
+    humidity = np.where(np.isfinite(humidity), humidity, 70.0)
+    wind = np.where(np.isfinite(wind), wind, 3.0)
+    drying = (
+        0.08 * np.maximum(temp - 10.0, 0.0)
+        + 0.025 * np.maximum(70.0 - humidity, 0.0)
+        + 0.12 * np.maximum(wind - 3.0, 0.0)
+    )
+    drying = np.clip(drying, 0.0, 4.0)
+
+    target = max(float(cumulative_rain_target), 1.0)
+    ratios = []
+    for days in windows:
+        # Longer horizons represent stored soil moisture and need less than a
+        # linear multiple of the old 21-day rainfall threshold.
+        horizon_target = target * (days / 21.0) ** 0.75
+        balance = rain[:, :days].sum(axis=1) - 0.35 * drying[:, :days].sum(axis=1)
+        ratios.append(np.clip(np.maximum(balance, 0.0) / horizon_target, 0.0, 1.0))
+    ratios = np.vstack(ratios)
+
+    weighted = np.average(ratios, axis=0, weights=np.array([0.30, 0.45, 0.25]))
+    moisture = 0.65 * weighted + 0.35 * ratios.max(axis=0)
+
+    if rain_first:
+        trigger = np.clip(
+            rain[:, 4:12].sum(axis=1) / max(target * 0.35, 1.0), 0.0, 1.0
+        )
+        recent_dry = np.clip(
+            1.0 - rain[:, :4].sum(axis=1) / max(target * 0.15, 1.0), 0.0, 1.0
+        )
+        moisture = moisture + 0.12 * trigger * recent_dry
+
+    return np.clip(moisture, 0.02, 1.0)
+
+
+def _lagged_wind_factor(df, days=7, start=4.15, severe=12.0, floor=0.82):
+    """Capped multiplicative wind effect based on prior days, never same-day wind."""
+    history = _lag_matrix(df, "Wind Speed (m/s)", days)
+    observed = np.isfinite(history)
+    observed_count = observed.sum(axis=1)
+    mean_wind = np.divide(
+        np.nansum(history, axis=1),
+        observed_count,
+        out=np.full(len(df), start, dtype=float),
+        where=observed_count > 0,
+    )
+    severity = np.clip((mean_wind - start) / max(severe - start, 1e-9), 0.0, 1.0)
+    return np.clip(1.0 - (1.0 - floor) * severity, floor, 1.0)
+
+
+def _hybrid_component_mean_rows(components, weights, geometric_share=1.0):
+    """Weighted geometric mean of the components, with an optional arithmetic blend.
+
+    The 0.02 component floor below is what stopped a drought-vetoed row collapsing to
+    ~0.9/10: the previous code clipped at 1e-9, so a 1e-5 weather component survived the
+    log. That floor is the fix. Blending in an arithmetic term on top (geometric_share
+    < 1) lifts every score another ~25% at the veto end, which measurably raised
+    out-of-season false positives while adding ~0.005 of season AUC -- so it defaults off.
+    Left as a knob because it is the natural place to soften a veto if that is ever wanted.
+    """
+    comps = np.clip(np.asarray(components, float), 0.02, 1.0)
+    weights = np.asarray(weights, float)
+    active = weights > 0
+    comps = comps[active]
+    weights = weights[active]
+    weight_sum = max(weights.sum(), 1e-9)
+    geometric = np.exp(
+        (weights[:, None] * np.log(comps)).sum(axis=0) / weight_sum
+    )
+    arithmetic = (weights[:, None] * comps).sum(axis=0) / weight_sum
+    return geometric_share * geometric + (1.0 - geometric_share) * arithmetic
+
+
+def spatial_smooth_scores(df, score_cols, *, neighbours=5, radius_km=30.0):
+    """Smooth scores locally per date and attach coverage/disagreement confidence."""
+    from scipy.spatial import cKDTree
+
+    out = df.copy()
+    earth_radius_km = 6371.0088
+    for score_col in score_cols:
+        out[f"{score_col[:-6]}_confidence"] = np.nan
+
+    for _, index in out.groupby(pd.to_datetime(out["Date"]).dt.normalize()).groups.items():
+        idx = np.asarray(list(index))
+        lat = pd.to_numeric(out.loc[idx, "Latitude"], errors="coerce").to_numpy(float)
+        lon = pd.to_numeric(out.loc[idx, "Longitude"], errors="coerce").to_numpy(float)
+        valid_coord = np.isfinite(lat) & np.isfinite(lon)
+        if not valid_coord.any():
+            continue
+        valid_idx = idx[valid_coord]
+        xyz = _latlon_to_unit_xyz(lat[valid_coord], lon[valid_coord])
+        k = min(neighbours, len(valid_idx))
+        chord_dist, near = cKDTree(xyz).query(xyz, k=k)
+        chord_dist = np.asarray(chord_dist).reshape(len(valid_idx), k)
+        near = np.asarray(near).reshape(len(valid_idx), k)
+        distances = 2.0 * earth_radius_km * np.arcsin(
+            np.clip(chord_dist / 2.0, 0.0, 1.0)
+        )
+        in_radius = distances <= radius_km
+        spatial_weights = np.exp(-((distances / 15.0) ** 2)) * in_radius
+
+        for score_col in score_cols:
+            values = pd.to_numeric(
+                out.loc[valid_idx, score_col], errors="coerce"
+            ).to_numpy(float)
+            neighbour_values = values[near]
+            usable = in_radius & np.isfinite(neighbour_values)
+            weights = spatial_weights * usable
+            weight_sum = weights.sum(axis=1)
+            smoothed = np.divide(
+                np.nansum(weights * neighbour_values, axis=1),
+                weight_sum,
+                out=values.copy(),
+                where=weight_sum > 0,
+            )
+            out.loc[valid_idx, score_col] = smoothed
+
+            count = usable.sum(axis=1)
+            expected = max(1, min(neighbours, len(valid_idx)))
+            coverage = count / expected
+            mean_distance = np.divide(
+                (distances * usable).sum(axis=1),
+                count,
+                out=np.full(len(valid_idx), radius_km),
+                where=count > 0,
+            )
+            centred = neighbour_values - smoothed[:, None]
+            variance = np.divide(
+                np.nansum(weights * centred**2, axis=1),
+                weight_sum,
+                out=np.full(len(valid_idx), 4.0),
+                where=weight_sum > 0,
+            )
+            agreement = np.exp(-np.sqrt(np.maximum(variance, 0.0)) / 2.0)
+            confidence = coverage * np.exp(-mean_distance / radius_km) * agreement
+            out.loc[valid_idx, f"{score_col[:-6]}_confidence"] = np.clip(
+                confidence, 0.0, 1.0
+            )
+    return out
+
+
 def _weighted_lag_gaussian(df, base_col, n_days, weights, mu, sigma):
     """Weighted-over-lags gaussian score, vectorized over all rows. Bit-identical to
     the original `sum(w * col.fillna(base).apply(gaussian))` (same left-fold order),
@@ -512,6 +689,18 @@ def _weighted_lag_gaussian(df, base_col, n_days, weights, mu, sigma):
     return score
 
 
+def _weighted_lag_humidity(df, base_col, n_days, weights, saturation, sigma):
+    """Weighted lag score using the one-sided humidity deficit curve."""
+    base = df[base_col]
+    score = np.zeros(len(df), dtype=float)
+    for i, d in enumerate(range(1, n_days + 1)):
+        col = f"{base_col}_{d}days_ago"
+        series = df[col] if col in df.columns else base
+        vals = series.fillna(base).to_numpy(float)
+        score = score + weights[i] * humidity_suitability(vals, saturation, sigma)
+    return score
+
+
 def _ph_score_vectorized(ph_values, optimal_pH, pH_sigma_near, pH_sigma_far, pH_range_near):
     """Vectorized piecewise-sigma pH gaussian; NaN pH -> 0 (matches the original apply)."""
     ph = np.asarray(ph_values, dtype=float)
@@ -524,53 +713,15 @@ def _ph_score_vectorized(ph_values, optimal_pH, pH_sigma_near, pH_sigma_far, pH_
 
 
 def calculate_mushroom_score(df, species_params, zone_curves):
-    wind_start, wind_max = 4.15, 25
-    df['Wind_Penalty'] = df['Wind Speed (m/s)'].apply(
-        lambda x: -1.5 if x >= wind_max else -1.5 * (x - wind_start) / (wind_max - wind_start) if x > wind_start else 0
-    ).clip(-1.5, 0)
-
-    precip_hist_cols = sorted(
-        [c for c in df.columns if c.startswith('TotalPrecipitation_mm_') and c.endswith('days_ago')],
-        key=lambda x: int(x.split('_')[-2].replace('days','').replace('day',''))
-    )
-    lag_days = len(precip_hist_cols)
     if 'TotalPrecipitation_mm' not in df.columns:
         df['TotalPrecipitation_mm'] = np.nan
-    baseline_days = float(max(lag_days, 1))
+    wind_factor = _lagged_wind_factor(df)
 
     for specie, params in species_params.items():
-        min_p = 1.5
         cum_thr = float(params.get('min_cumulative_rain', 20.0))
         rain_first = bool(params.get('weather_preference', {}).get('rain_first', False))
-
-        _ct = max(0.0, min(cum_thr, 80.0))
-        drought_k      = 4.0 + 0.06 * _ct
-        drought_mid    = min(0.85, 0.65 + 0.0025 * _ct)
-        drought_floor  = max(0.08, 0.18 - 0.0015 * _ct)
-        no_wet_penalty = max(0.50, 0.70 - 0.002 * _ct)
-        weather_eps    = 1e-5
-        # Convex exponent on the cumulative-rain fraction: sub-threshold rain earns
-        # proportionally less credit (0.75 of threshold -> 0.75**1.5 ~= 0.65, vs the old
-        # near-linear 0.75), so marginal/drought weeks no longer read as "good". At and
-        # above threshold (frac == 1.0) it is unchanged, so peak conditions still score high.
-        cum_gamma      = 1.5
-
-        dl_start_pct = min(0.85, 0.72 + 0.001 * _ct)
-        dl_floor     = 0.05
-        dl_gamma     = 2.0
-
-        wet_day_mm_ref = np.clip(12.0 - 0.2 * cum_thr, 4.5, 12.0)
-        max_wet_eff = int(np.clip(np.ceil(cum_thr / max(wet_day_mm_ref, 1e-9)), 1, max(1, int(0.55 * baseline_days))))
-        min_dry_eff = int(np.clip(np.round(0.5 * (baseline_days - max_wet_eff)), 1, max(1, int(0.6 * baseline_days))))
-
-        df[f'{specie}_Weather_Score'] = _weather_score_vectorized(
-            df, precip_hist_cols,
-            min_p=min_p, cum_thr=cum_thr, rain_first=rain_first,
-            baseline_days=baseline_days, max_wet_eff=max_wet_eff, min_dry_eff=min_dry_eff,
-            cum_gamma=cum_gamma, dl_start_pct=dl_start_pct, dl_floor=dl_floor,
-            dl_gamma=dl_gamma, drought_k=drought_k, drought_mid=drought_mid,
-            drought_floor=drought_floor, no_wet_penalty=no_wet_penalty,
-            weather_eps=weather_eps)
+        df[f'{specie}_Weather_Score'] = _moisture_memory_score(
+            df, cumulative_rain_target=cum_thr, rain_first=rain_first)
 
     for specie, params in species_params.items():
         optimal_temp, temp_sigma = params["optimal_temp"], params["temp_sigma"]
@@ -597,9 +748,11 @@ def calculate_mushroom_score(df, species_params, zone_curves):
             dH = np.arange(1, hum_days + 1)
             hum_weights = 0.6 * np.exp(-0.5 * ((dH - 9) / 5.0)**2) + 0.4 * np.exp(-0.05 * dH)
             hum_weights /= hum_weights.sum()
-            humidity_score = _weighted_lag_gaussian(df, 'Humidity (%)', hum_days, hum_weights, optimal_humidity, humidity_sigma)
+            humidity_score = _weighted_lag_humidity(
+                df, 'Humidity (%)', hum_days, hum_weights, optimal_humidity, humidity_sigma)
         else:
-            humidity_score = gaussian(df['Humidity (%)'].to_numpy(float), optimal_humidity, humidity_sigma)
+            humidity_score = humidity_suitability(
+                df['Humidity (%)'].to_numpy(float), optimal_humidity, humidity_sigma)
 
         df[f'{specie}_Temp_Score'] = np.clip(temp_score, 0, 1)
         df[f'{specie}_Humidity_Score'] = np.clip(humidity_score, 0, 1)
@@ -633,13 +786,8 @@ def calculate_mushroom_score(df, species_params, zone_curves):
             if wr and sr else water_score if wr else sea_score if sr else 1.0
         )
 
-        def wgeom_mean_rows(components, weights):
-            comps = np.clip(np.asarray(components, float), eps, 1.0)
-            w = np.asarray(weights, float)
-            return np.exp((w[:, None] * np.log(comps)).sum(axis=0) / max(w.sum(), eps))
-
         #weight of single scores (rain weighted above humidity: it is the stronger growth/fruiting trigger)
-        wT, wH, wW, wA, wPH = 1.75, 1.25, 1.5, 0.75, 1.0
+        wT, wH, wW, wA, wPH = 1.75, 1.0, 1.5, 0.75, 1.0
         wWater = 0.7 if water_active else 0.0
 
         n = len(df)
@@ -659,7 +807,7 @@ def calculate_mushroom_score(df, species_params, zone_curves):
                 water_comp
             ])
             weights_no_ph = np.array([wT, wH, wW, wA, wWater], float)
-            score_no_ph = 10 * wgeom_mean_rows(comps_no_ph, weights_no_ph)
+            score_no_ph = 10 * _hybrid_component_mean_rows(comps_no_ph, weights_no_ph)
 
             comps_ph = np.vstack([
                 df[f'{specie}_Temp_Score'].to_numpy(float),
@@ -670,7 +818,7 @@ def calculate_mushroom_score(df, species_params, zone_curves):
                 water_comp
             ])
             weights_ph = np.array([wT, wH, wW, wA, wPH, wWater], float)
-            score_ph = 10 * wgeom_mean_rows(comps_ph, weights_ph)
+            score_ph = 10 * _hybrid_component_mean_rows(comps_ph, weights_ph)
 
             df[f'{specie}_score'] = np.where(df['ph_level'].isna(), score_no_ph, score_ph)
         else:
@@ -683,17 +831,20 @@ def calculate_mushroom_score(df, species_params, zone_curves):
                 water_comp
             ])
             weights_ph = np.array([wT, wH, wW, wA, wPH, wWater], float)
-            df[f'{specie}_score'] = 10 * wgeom_mean_rows(comps_ph, weights_ph)
+            df[f'{specie}_score'] = 10 * _hybrid_component_mean_rows(comps_ph, weights_ph)
 
         df[f'{specie}_score'] = df[f'{specie}_score'].clip(0, 10)
         if params.get("wind_sensitive", False):
-            df[f'{specie}_score'] = (df[f'{specie}_score'] + df['Wind_Penalty']).clip(0, 10)
+            df[f'{specie}_score'] = (df[f'{specie}_score'] * wind_factor).clip(0, 10)
 
         allowed_climates = params.get("climate_zones", [])
         if allowed_climates:
             df.loc[~df['climate_zone'].isin(allowed_climates), f'{specie}_score'] = 0
 
+        # Two separate jobs. The multiplier tilts the score across the season; the gate is
+        # allowed to reach zero, which is the only way the model can say "not this month".
         df[f'{specie}_score'] *= season_multiplier_for_species(df, specie, params, zone_curves)
+        df[f'{specie}_score'] *= season_gate_for_species(df, specie, params, zone_curves)
 
         df.drop(columns=[
             f'{specie}_Temp_Score',
@@ -723,7 +874,7 @@ def _load_species_and_curves(config, species_params_path):
         _curves = json.loads(_raw)
         for _sp, _p in species_params.items():
             if _sp in _curves:
-                _p["season_curve"] = {int(k): float(v) for k, v in _curves[_sp].items()}
+                _p["season_curve"] = normalize_curve(_curves[_sp])
         print(f"Loaded empirical season curves for {sum('season_curve' in p for p in species_params.values())} species.")
     except Exception as _e:
         print(f"[warn] could not load season curves from {_curves_path}: {_e}; falling back to season_months")
@@ -737,8 +888,7 @@ def _load_species_and_curves(config, species_params_path):
                      else Path(_zone_curves_path).read_text(encoding="utf-8"))
             _zone_raw = json.loads(_zraw)
             zone_curves = {
-                str(_z): {str(_sp): {int(k): float(v) for k, v in _c.items()}
-                          for _sp, _c in _spmap.items()}
+                str(_z): {str(_sp): normalize_curve(_c) for _sp, _c in _spmap.items()}
                 for _z, _spmap in _zone_raw.items()
             }
             print(f"Loaded zone season curves for {len(zone_curves)} climate zones.")
@@ -1000,7 +1150,8 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
     assert_window_contiguous(combined_df, today, forward_days=FORECAST_DAYS, lookback=config.lag_days)
 
     combined_df = combined_df.sort_values(["Location_Id", "Date"])
-    lag_columns = ["Temperature (C)", "TotalPrecipitation_mm", "Pressure (hPa)", "Humidity (%)"]
+    lag_columns = ["Temperature (C)", "TotalPrecipitation_mm", "Pressure (hPa)",
+                   "Humidity (%)", "Wind Speed (m/s)"]
     # Only the forward window (Date >= today) is rescored, and a forward row's deepest
     # lag reaches back exactly lag_days. So lag only [today - lag_days .. ]: frozen older
     # rows are never rescored and need no lag features. Bit-identical for forward rows
@@ -1039,7 +1190,17 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
     forward = calculate_mushroom_score(forward, species_params, zone_curves)
 
     score_cols = [f"{s}_score" for s in species_params]
-    updated_df = apply_forward_scores(combined_df, forward, score_cols)
+    forward = spatial_smooth_scores(forward, score_cols)
+    # Neighbour smoothing may cross a climate-zone boundary, but an explicit
+    # species climate exclusion remains a hard constraint.
+    for species, params in species_params.items():
+        allowed_climates = params.get("climate_zones", [])
+        if allowed_climates:
+            forward.loc[
+                ~forward["climate_zone"].isin(allowed_climates), f"{species}_score"
+            ] = 0.0
+    confidence_cols = [f"{s}_confidence" for s in species_params]
+    updated_df = apply_forward_scores(combined_df, forward, score_cols + confidence_cols)
 
     cutoff_date = datetime.now() - timedelta(days=config.cutoff_days)
     updated_df = updated_df[updated_df["Date"] > cutoff_date]
@@ -1048,6 +1209,8 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
     species_score_columns = [c for c in updated_df.columns if c.endswith("_score") and c in valid_score_columns]
     updated_df[species_score_columns] = updated_df[species_score_columns].mask(
         updated_df[species_score_columns] > 9.5, 10).round(2)
+    confidence_columns = [c for c in confidence_cols if c in updated_df.columns]
+    updated_df[confidence_columns] = updated_df[confidence_columns].round(3)
 
     masterfile_columns = [
         "Location_Id", "Date", "Latitude", "Longitude", "Elevation (m)",
@@ -1055,5 +1218,6 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
         "Description", "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
         "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
     ]
-    updated_df = updated_df.reindex(columns=masterfile_columns + species_score_columns)
+    updated_df = updated_df.reindex(
+        columns=masterfile_columns + species_score_columns + confidence_columns)
     return updated_df

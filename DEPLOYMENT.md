@@ -20,3 +20,21 @@
 - Builds with your environment variables
 - Deploys to GitHub Pages
 - Base URL is configurable via `VITE_BASE_URL` secret
+
+## Cloudflare settings (not in this repo)
+
+GitHub Pages sends fixed headers and the apex domain is redirected at the edge,
+so these three cost real load time and can only be fixed in the Cloudflare
+dashboard for `fung.es`:
+
+1. **Apex redirect** — `https://fung.es` 301s to `https://www.fung.es`, worth
+   ~770 ms on a throttled mobile connection. Serve the apex directly (or point
+   marketing/QR links at `www.` so nobody pays the hop).
+2. **Browser Cache TTL** — assets under `/assets/` come back with
+   `max-age=86400` even though their filenames are content-hashed. A cache rule
+   on `/assets/*` setting `max-age=31536000, immutable` removes ~370 KB of
+   revalidation per repeat visit.
+3. **Rocket Loader** — off is best. The build now emits `data-cfasync="false"`
+   on the entry script (see `cfasyncOptOut` in `vite.config.ts`), which opts the
+   one script that matters out of it, but the feature buys a Vite/React app
+   nothing.

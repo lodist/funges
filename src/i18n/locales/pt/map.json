@@ -22,8 +22,7 @@
   },
   "overlays": {
     "title": "Camadas do Mapa",
-    "polygons": "Mostrar áreas de coleta",
-    "realtime": "Mostrar dados em tempo real"
+    "polygons": "Mostrar áreas de coleta"
   },
   "region": {
     "title": "Selecionar Região",
@@ -92,11 +91,13 @@
     "description": "Use o mapa para descobrir locais de coleta e espécies.",
     "features": {
       "species": "Escolha uma espécie com o seletor",
+      "identify": "Identificar a partir de uma fotografia (descarregamento único)",
       "locate": "Centralize o mapa na sua localização",
       "numbers": "Mostrar ou ocultar o índice numérico",
       "theme": "Escolha um tema de mapa: Claro, Escuro, Branco, Dark Matter ou Topográfico",
       "zones": "Toque em uma zona para ver a lista de espécies",
-      "recipes": "Abra receitas proximas e trace uma rota ate cada parada de ingredientes"
+      "recipes": "Abra receitas proximas e trace uma rota ate cada parada de ingredientes",
+      "offline": "Guarde um pacote de mapas antes do passeio para utilização offline"
     },
     "instructions": "Ler instruções completas",
     "supportLink": "Apoie o projeto",
@@ -107,5 +108,14 @@
     "low": "Baixa",
     "label": "Indice de presença",
     "high": "Alta"
+  },
+  "forecast": {
+    "label": "Previsão",
+    "today": "Hoje"
+  },
+  "offline": {
+    "title": "Sem conexão",
+    "noPackageMessage": "Nenhum pacote transferido cobre esta área. Volte a ligar-se ou regresse a uma área guardada.",
+    "forecastOnlyMessage": "Previsão offline carregada. O mapa base detalhado requer ligação."
   }
 }

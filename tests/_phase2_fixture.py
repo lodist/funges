@@ -18,8 +18,8 @@ import pandas as pd
 import forecast_pipeline as fp
 
 TODAY = pd.Timestamp("2026-06-13")
-LAG_DAYS = 21
-HIST_DAYS = 25          # history behind today (so 21-day lags are fully populated)
+LAG_DAYS = 42
+HIST_DAYS = 46          # history behind today (so 42-day moisture lags are populated)
 FWD_DAYS = fp.FORECAST_DAYS
 
 # 3 fetched coords; 2 base points each -> dedup must collapse 6 base rows to 3 coords.

@@ -14,7 +14,7 @@
   "description": "Entdecke köstliche Rezepte mit gesammelten Zutaten",
   "filterBy": "Zutat",
   "filters": "Filter",
-  "clear": "Löschen",
+  "clear": "Filter zurücksetzen",
   "apply": "Anwenden",
   "all": "Alle",
   "mushroom": "Pilz",
@@ -25,8 +25,6 @@
   "search": {
     "placeholder": "Suche nach Rezepten, Zutaten oder Tags",
     "no_results": "Kein Rezept gefunden",
-    "found_one": "{{count}} Rezept gefunden",
-    "found_other": "{{count}} Rezepte gefunden",
     "try_adjusting": "Versuche, die Suchbegriffe oder Filter zu ändern, um mehr Rezepte zu finden."
   },
   "view_recipe": "Rezept anzeigen",
@@ -41,7 +39,9 @@
     "routeStops": "Routenstopps",
     "refreshRoute": "Route aktualisieren",
     "drawRoute": "Route zeichnen",
-    "recipesButton": "Rezepte"
+    "recipesButton": "Rezepte",
+    "openInMaps": "In Google Maps öffnen",
+    "clearRoute": "Route löschen"
   },
   "species": {
     "amaranth": "Amarant",

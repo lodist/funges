@@ -138,12 +138,20 @@
     "title": "Fung.es",
     "subtitle": "App de recolección de hongos"
   },
+  "pwa": {
+    "installTitle": "Instalar Fung.es",
+    "installDescription": "Instala Fung.es en tu dispositivo para un acceso rápido y funciones sin conexión.",
+    "installButton": "Instalar la app",
+    "laterButton": "Más tarde"
+  },
+  "close": "Cerrar",
   "data": {
     "subtitle": "Explora los datos detrás de las recomendaciones de recolección.",
     "europe": "Europa",
     "unitedStates": "Estados Unidos",
     "selectedZone": "Seleccionada: {{zone}} — haz clic de nuevo para mostrar todas",
     "clickZone": "Mostrando todas las zonas — haz clic en una para filtrar",
+    "timeRange": "Periodo",
     "noData": "Sin datos para la zona seleccionada",
     "score": "Puntuación",
     "tempMax": "Máx",
@@ -256,5 +264,10 @@
       "pressureFallingShort": "bajando",
       "pressureRisingShort": "subiendo"
     }
+  },
+  "sidebar": {
+    "title": "Barra lateral",
+    "description": "Muestra la barra lateral en móvil.",
+    "toggle": "Mostrar u ocultar la barra lateral"
   }
 }

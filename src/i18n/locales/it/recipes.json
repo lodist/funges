@@ -14,7 +14,7 @@
   "description": "Scopri deliziose ricette usando ingredienti raccolti",
   "filterBy": "Ingrediente",
   "filters": "Filtri",
-  "clear": "Cancella",
+  "clear": "Azzera filtri",
   "apply": "Applica",
   "all": "Tutti",
   "mushroom": "Fungo",
@@ -25,8 +25,6 @@
   "search": {
     "placeholder": "Cerca ricette, ingredienti o tag",
     "no_results": "Nessuna ricetta trovata",
-    "found_one": "Trovata {{count}} ricetta",
-    "found_other": "Trovate {{count}} ricette",
     "try_adjusting": "Prova a modificare i termini di ricerca o i filtri per trovare più ricette."
   },
   "view_recipe": "Visualizza ricetta",
@@ -41,7 +39,9 @@
     "routeStops": "Tappe del percorso",
     "refreshRoute": "Aggiorna percorso",
     "drawRoute": "Disegna percorso",
-    "recipesButton": "Ricette"
+    "recipesButton": "Ricette",
+    "openInMaps": "Apri in Google Maps",
+    "clearRoute": "Cancella percorso"
   },
   "species": {
     "amaranth": "Amaranto",

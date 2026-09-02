@@ -22,8 +22,7 @@
   },
   "overlays": {
     "title": "Couches de la carte",
-    "polygons": "Afficher les zones de cueillette",
-    "realtime": "Afficher les données en temps réel"
+    "polygons": "Afficher les zones de cueillette"
   },
   "region": {
     "title": "Sélectionner une région",
@@ -58,23 +57,23 @@
     "select": "Thème de carte",
     "light": {
       "name": "Clair",
-      "description": "La carte Funges classique et lumineuse."
+      "description": "Carte classique et lumineuse."
     },
     "dark": {
       "name": "Sombre",
-      "description": "Palette sombre, agréable pour les yeux la nuit."
+      "description": "Palette sombre pour la nuit."
     },
     "white": {
       "name": "Blanc",
-      "description": "Palette claire et minimaliste, peu de distractions."
+      "description": "Carte claire et minimaliste."
     },
     "darkmatter": {
       "name": "Dark Matter",
-      "description": "Fond de carte monochrome sombre à contraste maximal."
+      "description": "Carte sombre à fort contraste."
     },
     "topographic": {
       "name": "Topographique",
-      "description": "Style de carte de randonnée chaleureux avec sentiers et pistes visibles."
+      "description": "Carte de randonnée avec sentiers."
     }
   },
   "getLocation": "Obtenir ma position",
@@ -92,11 +91,13 @@
     "description": "Utilisez la carte pour découvrir des lieux de cueillette et des espèces.",
     "features": {
       "species": "Choisissez une espèce avec le sélecteur",
+      "identify": "Identifier à partir d’une photo (téléchargement unique)",
       "locate": "Centrer la carte sur votre position",
       "numbers": "Afficher ou masquer l’index numérique",
       "theme": "Choisissez un thème de carte : Clair, Sombre, Blanc, Dark Matter ou Topographique",
       "zones": "Touchez une zone pour voir la liste des espèces",
-      "recipes": "Ouvrez les recettes proches et tracez un itineraire vers chaque etape ingredient"
+      "recipes": "Ouvrez les recettes proches et tracez un itineraire vers chaque etape ingredient",
+      "offline": "Enregistrez une carte avant votre sortie pour l’utiliser hors ligne"
     },
     "instructions": "Lire les instructions complètes",
     "supportLink": "Soutenir le projet",
@@ -107,5 +108,14 @@
     "low": "Faible",
     "label": "Indice de présence",
     "high": "Élevé"
+  },
+  "forecast": {
+    "label": "Prévision",
+    "today": "Aujourd'hui"
+  },
+  "offline": {
+    "title": "Hors connexion",
+    "noPackageMessage": "Aucun forfait téléchargé ne couvre cette zone. Reconnectez-vous ou revenez dans une zone enregistrée.",
+    "forecastOnlyMessage": "Prévisions hors ligne chargées. Le fond de carte détaillé nécessite une connexion."
   }
 }

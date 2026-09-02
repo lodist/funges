@@ -22,8 +22,7 @@
   },
   "overlays": {
     "title": "Karten-Overlays",
-    "polygons": "Sammelgebiete anzeigen",
-    "realtime": "Echtzeitdaten anzeigen"
+    "polygons": "Sammelgebiete anzeigen"
   },
   "region": {
     "title": "Region auswählen",
@@ -58,23 +57,23 @@
     "select": "Kartenthema",
     "light": {
       "name": "Hell",
-      "description": "Die klassische, helle Funges-Karte."
+      "description": "Klassische, helle Funges-Karte."
     },
     "dark": {
       "name": "Dunkel",
-      "description": "Dunkle Palette, angenehm für die Augen bei Nacht."
+      "description": "Dunkle Palette für die Nacht."
     },
     "white": {
       "name": "Weiß",
-      "description": "Klare, minimalistische helle Palette mit wenig Ablenkung."
+      "description": "Helle Karte mit wenig Ablenkung."
     },
     "darkmatter": {
       "name": "Dark Matter",
-      "description": "Tiefes monochromes Kartenbild mit maximalem Kontrast."
+      "description": "Dunkle Karte mit starkem Kontrast."
     },
     "topographic": {
       "name": "Topografisch",
-      "description": "Warmer Wanderkarten-Stil mit sichtbaren Wander- und Trampelpfaden."
+      "description": "Warme Wanderkarte mit Wegen."
     }
   },
   "getLocation": "Meinen Standort ermitteln",
@@ -92,11 +91,13 @@
     "description": "Nutze die Karte, um Sammelorte und Arten zu entdecken.",
     "features": {
       "species": "Wähle eine Art mit dem Selektor",
+      "identify": "Anhand eines Fotos identifizieren (einmaliger Download)",
       "locate": "Zentriere die Karte auf deinen Standort",
       "numbers": "Zeige oder verberge den numerischen Index",
       "theme": "Wähle ein Kartenthema: Hell, Dunkel, Weiß, Dark Matter oder Topografisch",
       "zones": "Tippe auf eine Zone, um die Artenliste anzuzeigen",
-      "recipes": "Öffne Rezepte in der Nähe und zeichne eine Route zu jedem Zutatenstopp"
+      "recipes": "Öffne Rezepte in der Nähe und zeichne eine Route zu jedem Zutatenstopp",
+      "offline": "Speichere vor deinem Ausflug ein Kartenpaket zur Offline-Nutzung"
     },
     "instructions": "Vollständige Anleitung lesen",
     "supportLink": "Projekt unterstützen",
@@ -111,5 +112,10 @@
   "forecast": {
     "label": "Vorhersage",
     "today": "Heute"
+  },
+  "offline": {
+    "title": "Keine Verbindung",
+    "noPackageMessage": "Kein heruntergeladenes Kartenpaket deckt dieses Gebiet ab. Stelle eine Verbindung her oder kehre zu einem gespeicherten Gebiet zurück.",
+    "forecastOnlyMessage": "Offline-Prognose geladen. Die detaillierte Grundkarte benötigt eine Verbindung."
   }
 }

@@ -6,7 +6,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Copy } from 'lucide-react';
+import { Copy } from '@/lib/icons';
 import QRCode from 'qrcode';
 import { useTranslation } from 'react-i18next';
 
@@ -33,6 +33,8 @@ export default function QRCodeModal({
       QRCode.toDataURL(address, {
         width: 256,
         margin: 2,
+        // Literal black/white, exempt from the warm-neutral palette: a QR code
+        // needs maximum luminance contrast to scan reliably.
         color: {
           dark: '#000000',
           light: '#FFFFFF',
@@ -78,30 +80,20 @@ export default function QRCodeModal({
 
           <div className='w-full space-y-3'>
             <div className='text-sm'>
-              <p className='font-medium text-gray-700 dark:text-gray-300 mb-1'>
+              <p className='font-medium text-foreground mb-1'>
                 {t('address')}:
               </p>
-              <p className='text-xs font-mono bg-gray-100 dark:bg-gray-800 p-2 rounded break-all'>
+              <p className='text-xs font-mono bg-muted p-2 rounded break-all'>
                 {address}
               </p>
             </div>
 
             <div className='flex gap-2'>
-              <Button
-                onClick={handleCopy}
-                variant='outline'
-                size='sm'
-                className='flex-1'
-              >
+              <Button onClick={handleCopy} variant='outline' className='flex-1'>
                 <Copy className='h-4 w-4 mr-2' />
                 {t('copyAddress')}
               </Button>
-              <Button
-                onClick={onClose}
-                variant='outline'
-                size='sm'
-                className='flex-1'
-              >
+              <Button onClick={onClose} variant='outline' className='flex-1'>
                 {t('close')}
               </Button>
             </div>

@@ -1,0 +1,22 @@
+{
+  "NE": {
+    "grid_points": 66936,
+    "seed_locations": 1152,
+    "locations_read": 5550,
+    "history_rows": 710400,
+    "scored_cell_days": 101376,
+    "first_scored_date": "2026-05-24",
+    "dates": ["2026-05-24", "2026-08-20"],
+    "source_url": "https://data.fung.es/EU/NE/NE_weather_data.parquet"
+  },
+  "SE": {
+    "grid_points": 101447,
+    "seed_locations": 1198,
+    "locations_read": 5854,
+    "history_rows": 749312,
+    "scored_cell_days": 105424,
+    "first_scored_date": "2026-05-24",
+    "dates": ["2026-05-24", "2026-08-20"],
+    "source_url": "https://data.fung.es/EU/SE/SE_weather_data.parquet"
+  }
+}

@@ -16,8 +16,17 @@ import {
   Legend,
   ReferenceLine,
 } from 'recharts';
+import { categoryVar, toCategory } from '@/lib/categoryColor';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, Download } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Loader2, Download, MapPin } from '@/lib/icons';
 import {
   loadForagingDataset,
   formatZoneLabel,
@@ -28,6 +37,7 @@ import {
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
 import { Route as DataRoute } from '@/routes/data';
+import { cn } from '@/lib/utils';
 
 const ZoneMap = lazy(() => import('@/components/ZoneMap'));
 
@@ -44,7 +54,7 @@ function dayLabel(d: number): string {
   return d === 365 ? '1y' : `${d}d`;
 }
 
-const R2 = 'https://pub-9988c4492e7945f0a2ff14e35232acdf.r2.dev';
+const R2 = 'https://data.fung.es';
 
 const REGION_FILES: Record<RegionId, { label: string; url: string }[]> = {
   NE: [
@@ -221,6 +231,40 @@ function PillLegend({
   );
 }
 
+function SegmentedControl<T extends string | number>({
+  options,
+  value,
+  onChange,
+}: {
+  options: { value: T; label: string }[];
+  value: T;
+  onChange: (value: T) => void;
+}) {
+  return (
+    <div className='inline-flex items-center gap-0.5 rounded-full bg-muted/60 p-1'>
+      {options.map(option => {
+        const isActive = option.value === value;
+        return (
+          <button
+            key={option.value}
+            type='button'
+            onClick={() => onChange(option.value)}
+            aria-pressed={isActive}
+            className={cn(
+              'rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors',
+              isActive
+                ? 'bg-card text-foreground shadow-[0_1px_4px_rgba(0,0,0,0.1)]'
+                : 'text-muted-foreground hover:text-foreground'
+            )}
+          >
+            {option.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 interface ChartCardProps {
   title: string;
   children: React.ReactNode;
@@ -228,13 +272,13 @@ interface ChartCardProps {
 
 function ChartCard({ title, children }: ChartCardProps) {
   return (
-    <Card className='shadow-sm hover:shadow-md transition-shadow duration-200'>
-      <CardHeader className='pb-2'>
+    <Card>
+      <CardHeader>
         <CardTitle className='text-sm font-medium text-muted-foreground'>
           {title}
         </CardTitle>
       </CardHeader>
-      <CardContent className='pt-0'>{children}</CardContent>
+      <CardContent>{children}</CardContent>
     </Card>
   );
 }
@@ -275,6 +319,10 @@ export default function DataPage() {
       cancelled = true;
     };
   }, []);
+
+  const regionLabel = t(`common:data.regions.${region}`, {
+    defaultValue: REGIONS.find(r => r.id === region)?.label ?? region,
+  });
 
   const zones = useMemo(
     () => dataset?.regions[region]?.zones ?? [],
@@ -363,13 +411,8 @@ export default function DataPage() {
     [speciesData]
   );
 
-  const CATEGORY_COLORS: Record<string, string> = {
-    plant: '#5a8a3c',
-    mushroom: '#8b5e3c',
-    berry: '#7a2d6e',
-    flower: '#d4789a',
-    nut: '#b8860b',
-  };
+  // Was a private five-hex palette that contradicted AdvancedMap's palette for
+  // the same five categories. Both now read the --category-* tokens.
 
   const availableSpecies = useMemo(() => {
     const ids = new Set<string>();
@@ -383,8 +426,9 @@ export default function DataPage() {
 
   const resolvedSpecies = selectedSpecies || availableSpecies[0]?.id || '';
 
-  const speciesLineColor =
-    CATEGORY_COLORS[speciesCategoryMap.get(resolvedSpecies) ?? ''] ?? '#96be9a';
+  const speciesLineColor = categoryVar(
+    toCategory(speciesCategoryMap.get(resolvedSpecies))
+  );
 
   const speciesOverTime = useMemo(
     () =>
@@ -836,10 +880,10 @@ export default function DataPage() {
 
       {/* Header */}
       <div className='text-center'>
-        <h1 className='mb-2 text-4xl font-bold text-text-primary'>
+        <h1 className='mb-2 text-4xl font-bold text-foreground'>
           {t('sidebar:data', { defaultValue: 'Data' })}
         </h1>
-        <p className='text-sm text-text-secondary'>
+        <p className='text-sm text-muted-foreground'>
           {t('common:data.subtitle', {
             defaultValue:
               'Explore the data behind the foraging recommendations.',
@@ -848,79 +892,89 @@ export default function DataPage() {
       </div>
 
       {/* Controls */}
-      <div className='flex flex-wrap gap-3 items-end'>
-        {/* Europe regions */}
-        <div className='flex flex-col gap-0.5'>
-          <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
-            {t('common:data.europe', { defaultValue: 'Europe' })}
-          </span>
-          <div className='flex gap-1'>
-            {REGIONS.filter(r => r.id === 'NE' || r.id === 'SE').map(r => (
-              <div key={r.id} className='flex flex-col gap-1'>
-                <button
-                  onClick={() => setRegion(r.id)}
-                  className={`px-3 py-1.5 rounded-lg border text-sm transition-colors ${
-                    region === r.id
-                      ? 'bg-primary text-primary-foreground font-medium'
-                      : 'hover:bg-muted text-muted-foreground'
-                  }`}
-                >
-                  {t(`common:data.regions.${r.id}`, {
+      <div className='flex flex-wrap items-end justify-between gap-4'>
+        <div className='flex flex-wrap items-end gap-4'>
+          {/* Europe regions */}
+          <div className='flex flex-col gap-1.5'>
+            <span className='type-micro text-muted-foreground px-1'>
+              {t('common:data.europe', { defaultValue: 'Europe' })}
+            </span>
+            <SegmentedControl
+              options={REGIONS.filter(r => r.id === 'NE' || r.id === 'SE').map(
+                r => ({
+                  value: r.id,
+                  label: t(`common:data.regions.${r.id}`, {
                     defaultValue: r.label,
-                  })}
-                </button>
-                <a
-                  href={REGION_FILES[r.id][0].url}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='flex items-center justify-center py-1 rounded-md border hover:bg-muted transition-colors text-muted-foreground outline-none'
-                >
-                  <Download className='h-3.5 w-3.5' />
-                </a>
-              </div>
-            ))}
+                  }),
+                })
+              )}
+              value={region}
+              onChange={setRegion}
+            />
+          </div>
+
+          {/* US regions */}
+          <div className='flex flex-col gap-1.5'>
+            <span className='type-micro text-muted-foreground px-1'>
+              {t('common:data.unitedStates', {
+                defaultValue: 'United States',
+              })}
+            </span>
+            <SegmentedControl
+              options={REGIONS.filter(
+                r => r.id === 'USE' || r.id === 'USW'
+              ).map(r => ({
+                value: r.id,
+                label: t(`common:data.regions.${r.id}`, {
+                  defaultValue: r.label,
+                }),
+              }))}
+              value={region}
+              onChange={setRegion}
+            />
+          </div>
+
+          {/* Time range */}
+          <div className='flex flex-col gap-1.5'>
+            <span className='type-micro text-muted-foreground px-1'>
+              {t('common:data.timeRange', { defaultValue: 'Time range' })}
+            </span>
+            <SegmentedControl
+              options={DAY_OPTIONS.map(d => ({
+                value: d,
+                label: dayLabel(d),
+              }))}
+              value={days}
+              onChange={setDays}
+            />
           </div>
         </div>
 
-        {/* US regions */}
-        <div className='flex flex-col gap-0.5'>
-          <span className='text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide px-1'>
-            {t('common:data.unitedStates', {
-              defaultValue: 'United States',
-            })}
-          </span>
-          <div className='flex gap-1'>
-            {REGIONS.filter(r => r.id === 'USE' || r.id === 'USW').map(r => (
-              <div key={r.id} className='flex flex-col gap-1'>
-                <button
-                  onClick={() => setRegion(r.id)}
-                  className={`px-3 py-1.5 rounded-lg border text-sm transition-colors ${
-                    region === r.id
-                      ? 'bg-primary text-primary-foreground font-medium'
-                      : 'hover:bg-muted text-muted-foreground'
-                  }`}
-                >
-                  {t(`common:data.regions.${r.id}`, {
-                    defaultValue: r.label,
-                  })}
-                </button>
-                <a
-                  href={REGION_FILES[r.id][0].url}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='flex items-center justify-center py-1 rounded-md border hover:bg-muted transition-colors text-muted-foreground outline-none'
-                >
-                  <Download className='h-3.5 w-3.5' />
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Download current region's data */}
+        <Button asChild variant='outline' className='gap-1.5'>
+          <a
+            href={REGION_FILES[region][0].url}
+            target='_blank'
+            rel='noreferrer'
+            aria-label={`${t('common:common.download', { defaultValue: 'Download' })}: ${regionLabel}`}
+          >
+            <Download />
+            {t('common:common.download', { defaultValue: 'Download' })}
+          </a>
+        </Button>
       </div>
 
       {/* Zone map */}
-      <div className='flex flex-col gap-1'>
-        <p className='text-xs text-muted-foreground'>
+      <div className='flex flex-col gap-1.5'>
+        <div
+          className={cn(
+            'inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors',
+            zone
+              ? 'bg-happy-100 text-happy-900'
+              : 'bg-muted text-muted-foreground'
+          )}
+        >
+          <MapPin className='h-3 w-3 shrink-0' />
           {zone
             ? t('common:data.selectedZone', {
                 defaultValue: 'Selected: {{zone}} — click again to show all',
@@ -932,7 +986,7 @@ export default function DataPage() {
             : t('common:data.clickZone', {
                 defaultValue: 'Showing all zones — click one to filter',
               })}
-        </p>
+        </div>
         <Suspense
           fallback={
             <div className='flex items-center justify-center h-[280px] rounded-lg border bg-muted/30'>
@@ -954,23 +1008,6 @@ export default function DataPage() {
         </Suspense>
       </div>
 
-      {/* Days filter */}
-      <div className='flex rounded-lg border overflow-hidden w-fit text-sm'>
-        {DAY_OPTIONS.map(d => (
-          <button
-            key={d}
-            onClick={() => setDays(d)}
-            className={`px-3 py-1.5 transition-colors ${
-              days === d
-                ? 'bg-primary text-primary-foreground font-medium'
-                : 'hover:bg-muted text-muted-foreground'
-            }`}
-          >
-            {dayLabel(d)}
-          </button>
-        ))}
-      </div>
-
       {/* Dynamic narrative */}
       {narrativeInsight && (
         <div className='rounded-lg border bg-muted/20 px-4 py-3 space-y-2.5'>
@@ -980,7 +1017,7 @@ export default function DataPage() {
                 key={chip.label}
                 className='flex flex-col items-center rounded-md border bg-background px-3 py-1.5 text-center min-w-[72px]'
               >
-                <span className='text-[10px] uppercase tracking-wide text-muted-foreground/60 leading-none mb-0.5'>
+                <span className='type-micro text-muted-foreground mb-0.5'>
                   {chip.label}
                 </span>
                 <span className='text-sm font-medium leading-tight'>
@@ -1015,8 +1052,16 @@ export default function DataPage() {
             >
               <defs>
                 <linearGradient id='rainGrad' x1='0' y1='0' x2='0' y2='1'>
-                  <stop offset='0%' stopColor='#7aace0' stopOpacity={0.95} />
-                  <stop offset='100%' stopColor='#7aace0' stopOpacity={0.25} />
+                  <stop
+                    offset='0%'
+                    stopColor='var(--chart-1)'
+                    stopOpacity={0.95}
+                  />
+                  <stop
+                    offset='100%'
+                    stopColor='var(--chart-1)'
+                    stopOpacity={0.25}
+                  />
                 </linearGradient>
               </defs>
               <CartesianGrid
@@ -1050,14 +1095,14 @@ export default function DataPage() {
               />
               <ReferenceLine
                 y={20}
-                stroke='#7aace0'
+                stroke='var(--chart-1)'
                 strokeDasharray='3 3'
                 strokeOpacity={0.5}
                 label={{
                   value: '20mm',
                   position: 'insideTopRight',
                   fontSize: 10,
-                  fill: '#7aace0',
+                  fill: 'var(--chart-1)',
                   opacity: 0.7,
                 }}
               />
@@ -1122,7 +1167,7 @@ export default function DataPage() {
               <Line
                 type='monotone'
                 dataKey='temp_max'
-                stroke='#c4909c'
+                stroke='var(--chart-3)'
                 dot={false}
                 strokeWidth={1.5}
                 activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }}
@@ -1131,7 +1176,7 @@ export default function DataPage() {
               <Line
                 type='monotone'
                 dataKey='temp_avg'
-                stroke='#d4a870'
+                stroke='var(--chart-2)'
                 dot={false}
                 strokeWidth={2.5}
                 activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
@@ -1140,7 +1185,7 @@ export default function DataPage() {
               <Line
                 type='monotone'
                 dataKey='temp_min'
-                stroke='#96be9a'
+                stroke='var(--chart-1)'
                 dot={false}
                 strokeWidth={1.5}
                 strokeDasharray='4 2'
@@ -1167,8 +1212,16 @@ export default function DataPage() {
             >
               <defs>
                 <linearGradient id='humidGrad' x1='0' y1='0' x2='0' y2='1'>
-                  <stop offset='0%' stopColor='#d4a870' stopOpacity={0.35} />
-                  <stop offset='100%' stopColor='#d4a870' stopOpacity={0.02} />
+                  <stop
+                    offset='0%'
+                    stopColor='var(--chart-2)'
+                    stopOpacity={0.35}
+                  />
+                  <stop
+                    offset='100%'
+                    stopColor='var(--chart-2)'
+                    stopOpacity={0.02}
+                  />
                 </linearGradient>
               </defs>
               <CartesianGrid
@@ -1204,7 +1257,7 @@ export default function DataPage() {
               <Area
                 type='monotone'
                 dataKey='humidity'
-                stroke='#d4a870'
+                stroke='var(--chart-2)'
                 strokeWidth={2}
                 fill='url(#humidGrad)'
                 dot={false}
@@ -1230,8 +1283,16 @@ export default function DataPage() {
             >
               <defs>
                 <linearGradient id='windGrad' x1='0' y1='0' x2='0' y2='1'>
-                  <stop offset='0%' stopColor='#b07080' stopOpacity={0.9} />
-                  <stop offset='100%' stopColor='#b07080' stopOpacity={0.25} />
+                  <stop
+                    offset='0%'
+                    stopColor='var(--chart-4)'
+                    stopOpacity={0.9}
+                  />
+                  <stop
+                    offset='100%'
+                    stopColor='var(--chart-4)'
+                    stopOpacity={0.25}
+                  />
                 </linearGradient>
               </defs>
               <CartesianGrid
@@ -1294,7 +1355,7 @@ export default function DataPage() {
                 type='monotone'
                 yAxisId='pressure'
                 dataKey='pressure_hpa'
-                stroke='#c9a227'
+                stroke='var(--chart-5)'
                 dot={false}
                 strokeWidth={2}
                 activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
@@ -1320,17 +1381,21 @@ export default function DataPage() {
               <span className='text-xs font-medium uppercase tracking-wide text-muted-foreground/60 shrink-0'>
                 {t('common:data.species', { defaultValue: 'Species' })}
               </span>
-              <select
+              <Select
                 value={resolvedSpecies}
-                onChange={e => setSelectedSpecies(e.target.value)}
-                className='text-sm border rounded-lg px-3 py-1.5 bg-background text-foreground max-w-[180px]'
+                onValueChange={setSelectedSpecies}
               >
-                {availableSpecies.map(s => (
-                  <option key={s.id} value={s.id}>
-                    {s.name}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger className='max-w-[180px]'>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {availableSpecies.map(s => (
+                    <SelectItem key={s.id} value={s.id}>
+                      {s.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             {speciesOverTime.length === 0 ? (
               <div className='flex items-center justify-center h-[180px] text-sm text-muted-foreground'>
@@ -1409,10 +1474,14 @@ export default function DataPage() {
               >
                 <defs>
                   <linearGradient id='topSpecGrad' x1='0' y1='0' x2='1' y2='0'>
-                    <stop offset='0%' stopColor='#96be9a' stopOpacity={0.45} />
+                    <stop
+                      offset='0%'
+                      stopColor='var(--chart-1)'
+                      stopOpacity={0.45}
+                    />
                     <stop
                       offset='100%'
-                      stopColor='#96be9a'
+                      stopColor='var(--chart-1)'
                       stopOpacity={0.95}
                     />
                   </linearGradient>

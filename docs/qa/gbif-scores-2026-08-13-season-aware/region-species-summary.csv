@@ -1,0 +1,37 @@
+region,species_id,label,evidence_class,n,active_days,median_score,presence_background_auc
+NE,mushroom,Porcini,fruiting-proxy,143,50,6.35,0.503
+NE,lingonb,Lingonberry,habitat-only,601,36,6.47,0.428
+NE,strawberry,Wild Strawberry,habitat-only,1015,49,6.57,0.415
+NE,parasol,Parasol Mushroom,fruiting-proxy,1,1,5.8,0.915
+NE,amaranth,Amaranth,habitat-only,258,50,6.15,0.641
+NE,nettle,Nettle,habitat-only,924,51,5.22,0.382
+NE,sorrel,Sorrel,habitat-only,686,18,5.96,0.506
+NE,raspberry,Raspberry,habitat-only,1042,56,6.11,0.395
+NE,dandelion,Dandelion,habitat-only,887,44,4.16,0.337
+NE,chant,Chanterelle,fruiting-proxy,365,52,6.48,0.558
+SE,mushroom,Porcini,fruiting-proxy,37,18,6.12,0.686
+SE,lingonb,Lingonberry,habitat-only,69,24,6.47,0.729
+SE,strawberry,Wild Strawberry,habitat-only,119,39,4.91,0.59
+SE,parasol,Parasol Mushroom,fruiting-proxy,2,2,4.47,0.591
+SE,amaranth,Amaranth,habitat-only,32,22,6.52,0.571
+SE,masterwort,Masterwort,habitat-only,72,33,5.82,0.701
+SE,nettle,Nettle,habitat-only,238,45,3.48,0.537
+SE,sorrel,Sorrel,habitat-only,3,3,5.23,0.574
+SE,raspberry,Raspberry,habitat-only,85,37,4.02,0.576
+SE,dandelion,Dandelion,habitat-only,76,36,3.12,0.56
+SE,chant,Chanterelle,fruiting-proxy,8,7,6.55,0.842
+USE,mushroom,Porcini,fruiting-proxy,97,40,5.53,0.587
+USE,black_chant,Black Chanterelle,fruiting-proxy,73,31,3.86,0.565
+USE,lingonb,Lingonberry,habitat-only,45,17,4.47,0.586
+USE,strawberry,Wild Strawberry,habitat-only,40,24,6.36,0.527
+USE,amaranth,Amaranth,habitat-only,7,6,0.0,0.506
+USE,nettle,Nettle,habitat-only,2,2,4.25,0.753
+USE,raspberry,Raspberry,habitat-only,191,44,5.42,0.62
+USE,dandelion,Dandelion,habitat-only,330,45,3.09,0.457
+USE,chant,Chanterelle,fruiting-proxy,9,9,4.84,0.58
+USW,mushroom,Porcini,fruiting-proxy,80,28,1.76,0.502
+USW,strawberry,Wild Strawberry,habitat-only,86,35,4.58,0.572
+USW,amaranth,Amaranth,habitat-only,6,6,5.29,0.456
+USW,nettle,Nettle,habitat-only,2,2,0.92,0.576
+USW,raspberry,Raspberry,habitat-only,62,31,1.44,0.503
+USW,dandelion,Dandelion,habitat-only,185,44,2.58,0.593

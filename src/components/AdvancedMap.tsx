@@ -1,18 +1,50 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { protocol } from '@/lib/pmtiles-protocol';
+import {
+  deactivateOfflineSources,
+  hydrateOfflineSources,
+} from '@/lib/offlineCache';
 import {
   useMapStore,
   REGION_BBOX,
   resolveDataNerdRegion,
 } from '@/store/mapStore';
-import { useOfflineStore, CONTINENTS } from '@/store/offlineStore';
+import { useOfflineStore } from '@/store/offlineStore';
+import {
+  containsCoordinate,
+  intersectsBounds,
+  offlineMapMaxZoom,
+  ONLINE_MAX_ZOOM,
+  packageHasBasemap,
+  packageSize,
+  type OfflineContinent,
+} from '@/lib/offline-packages';
 import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
 import { Card } from '@/components/ui/card';
-import { ChefHat, Loader2, MapPin, Navigation, Info } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  ChefHat,
+  Loader2,
+  MapPin,
+  Navigation,
+  Info,
+  ScanSearch,
+  WifiOff,
+} from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
+
+import { categoryColor } from '@/lib/categoryColor';
 import { useUIStore } from '@/store/uiStore';
 import SpeciesSelector from './SpeciesSelector';
 import MapThemeSelector from './MapThemeSelector';
@@ -20,7 +52,6 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
-import { motion } from 'framer-motion';
 import MapInfoCard from '@/components/MapInfoCard';
 import RouteToDishPanel from '@/components/RouteToDishPanel';
 import ForecastSlider from '@/components/ForecastSlider';
@@ -40,6 +71,7 @@ const CONTINENT_BBOX = {
   eu: REGION_BBOX.ne,
   us: REGION_BBOX.use,
 };
+const CONTINENTS: OfflineContinent[] = ['eu', 'us'];
 
 const ROUTE_SOURCE_ID = 'route-to-dish-line';
 const ROUTE_LAYER_ID = 'route-to-dish-line-layer';
@@ -99,11 +131,21 @@ function closeRoutePanel(
   setActiveRoute(null);
 }
 
+// Lazily loaded: this panel's module graph reaches the ONNX worker, and the
+// map must not pay for that on first paint.
+const IdentifyPanel = lazy(() =>
+  import('@/components/IdentifyPanel').then(m => ({ default: m.IdentifyPanel }))
+);
+
 const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
+  const geolocateControl = useRef<maplibregl.GeolocateControl | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapError, setMapError] = useState<string | null>(null);
+  const [viewportBounds, setViewportBounds] = useState<
+    [number, number, number, number] | null
+  >(null);
   const [selectedFeature, setSelectedFeature] =
     useState<maplibregl.GeoJSONFeature | null>(null);
   const [isFeatureModalOpen, setIsFeatureModalOpen] = useState(false);
@@ -131,9 +173,16 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     routeStart: [number, number];
   } | null>(null);
   const routeDishDebounceTimeoutRef = useRef<number | null>(null);
+  // Guards the nearby-feature probe (in the GeolocateControl setup effect
+  // below) so it only runs once per trigger, not on every 'geolocate' update
+  // while trackUserLocation keeps watching.
+  const hasCheckedNearbyFeatures = useRef(false);
+  const selectedSpeciesRef = useRef<string | null>(null);
 
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
+  const { t: tIdentify } = useTranslation('identify');
+  const [isIdentifyOpen, setIsIdentifyOpen] = useState(false);
   const { setActiveModal } = useUIStore();
   const {
     center,
@@ -146,7 +195,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     numbersLayersVisible,
     setCenter,
     setZoom,
-    getUserLocation,
+    setUserLocation,
     setIsLoading,
     setError,
     setUserLocationError,
@@ -159,7 +208,41 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     activeDay,
   } = useMapStore();
   const { isOnline } = usePWA();
-  const { cached: cachedContinents } = useOfflineStore();
+  const { cached: cachedPackages, activateForCoordinate } = useOfflineStore();
+  const renderedBasemapKey = useRef<string | null>(isOnline ? 'online' : null);
+  const cachedPackageList = useMemo(
+    () => Object.values(cachedPackages),
+    [cachedPackages]
+  );
+  // The full-screen notice means "nothing downloaded is on screen", so it has
+  // to test the whole viewport. Before the first move event fires there is no
+  // viewport yet; a degenerate box at the centre reduces to point containment.
+  const noticeViewport: [number, number, number, number] = viewportBounds ?? [
+    center[0],
+    center[1],
+    center[0],
+    center[1],
+  ];
+  const hasOfflinePackageInView = cachedPackageList.some(
+    item => !item.expired && intersectsBounds(item.definition, noticeViewport)
+  );
+  const hasOfflineBasemapAtCenter = cachedPackageList.some(
+    item =>
+      !item.expired &&
+      packageHasBasemap(item.definition) &&
+      containsCoordinate(item.definition, center[0], center[1])
+  );
+  const offlineBasemapAtCenter = cachedPackageList
+    .filter(
+      item =>
+        !item.expired &&
+        packageHasBasemap(item.definition) &&
+        containsCoordinate(item.definition, center[0], center[1])
+    )
+    .sort((a, b) => packageSize(a.definition) - packageSize(b.definition))[0];
+  const offlineBasemapPackageIdAtCenter = offlineBasemapAtCenter?.id;
+  const offlineBasemapMaxZoom =
+    offlineBasemapAtCenter?.definition.maxZoom ?? null;
   const routeStart = showUserLocation && userLocation ? userLocation : center;
   const routeRecipes = recipes.map(recipe => ({
     id: recipe.id,
@@ -173,11 +256,93 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   }, [activeRoute]);
 
   useEffect(() => {
+    if (isOnline) return;
+    closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
+  }, [isOnline]);
+
+  useEffect(() => {
+    let cancelled = false;
+    const syncMapSources = async () => {
+      let nextBasemapKey: string | null;
+      if (isOnline) {
+        await deactivateOfflineSources();
+        nextBasemapKey = 'online';
+      } else {
+        await hydrateOfflineSources();
+        nextBasemapKey = await activateForCoordinate(center[0], center[1]);
+      }
+      if (cancelled) return;
+
+      // Keep the last regional archive active while crossing the Atlantic. A
+      // null package has no replacement source, and reloading it would make
+      // MapLibre fall back to the unreachable network URL while offline.
+      if (!isOnline && nextBasemapKey === null) {
+        map.current?.triggerRepaint();
+        return;
+      }
+
+      // Europe and the US replace the same canonical basemap URL. Reload only
+      // that vector source so MapLibre drops its old PMTiles header/tile cache;
+      // recreating the entire map here causes camera jumps during panning.
+      if (renderedBasemapKey.current !== nextBasemapKey) {
+        const basemapSource = map.current?.getSource(
+          'aws'
+        ) as maplibregl.VectorTileSource | null;
+        const serialized = basemapSource?.serialize();
+        if (
+          basemapSource &&
+          serialized &&
+          'url' in serialized &&
+          serialized.url
+        ) {
+          renderedBasemapKey.current = nextBasemapKey;
+          basemapSource.setUrl(serialized.url);
+          return;
+        }
+        if (!map.current) renderedBasemapKey.current = nextBasemapKey;
+        return;
+      }
+      map.current?.triggerRepaint();
+    };
+    void syncMapSources().catch(error => {
+      console.warn(
+        'Unable to switch map sources for connectivity change:',
+        error
+      );
+    });
+    return () => {
+      cancelled = true;
+    };
+    // Re-run only when movement crosses a downloaded package boundary. Ordinary
+    // movement within a package must not repeatedly reopen a large local file.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    isOnline,
+    activateForCoordinate,
+    offlineBasemapPackageIdAtCenter,
+    mapLoaded,
+  ]);
+
+  // The offline archive has no tiles past its package maxZoom, so MapLibre
+  // renders blank instead of overzooming. Cap the camera while it is the
+  // source and hand the full range back once the online tiles return.
+  useEffect(() => {
+    const instance = map.current;
+    if (!instance || !mapLoaded) return;
+    const limit = offlineMapMaxZoom(isOnline, offlineBasemapMaxZoom);
+    if (instance.getMaxZoom() !== limit) instance.setMaxZoom(limit);
+  }, [isOnline, offlineBasemapMaxZoom, mapLoaded]);
+
+  useEffect(() => {
     routeInputsRef.current = {
       routeRecipes,
       routeStart,
     };
   }, [routeRecipes, routeStart]);
+
+  useEffect(() => {
+    selectedSpeciesRef.current = selectedSpecies;
+  }, [selectedSpecies]);
 
   // Initialize map
   useEffect(() => {
@@ -192,7 +357,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         // Basemap tiles are baked to z12 natively; MapLibre overzooms past that
         // (reuses/upscales the z12 tile) so labels/roads keep rendering using the
         // interpolation stops already authored up to z20-22 in the style files.
-        maxZoom: 20,
+        maxZoom: ONLINE_MAX_ZOOM,
         minZoom: 3.01,
         collectResourceTiming: false,
         touchZoomRotate: true,
@@ -212,9 +377,122 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
       // Navigation controls removed - zoom functionality handled by touch/scroll gestures
 
+      // Locate-me: MapLibre's standard GeolocateControl (dot + accuracy
+      // circle, live tracking). Its native corner button is hidden via CSS
+      // (see globals.scss) - the app's own button drives it through
+      // handleGetUserLocation -> trigger() instead. Added/removed here, in
+      // step with the map instance itself (map.current.remove() below tears
+      // this control down too), so there's no separate effect that could
+      // try to remove it a second time after the map already has.
+      const geolocate = new maplibregl.GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: true,
+        showUserLocation: true,
+        showAccuracyCircle: true,
+      });
+      geolocateControl.current = geolocate;
+
+      geolocate.on('geolocate', (position: GeolocationPosition) => {
+        const coords: [number, number] = [
+          position.coords.longitude,
+          position.coords.latitude,
+        ];
+        setUserLocation(coords);
+        setShowUserLocation(true);
+        setIsLoading(false);
+
+        // Only probe for nearby foraging features on the first fix after a
+        // trigger - trackUserLocation keeps firing 'geolocate' as the device
+        // moves, and re-opening the modal on every update would be spammy.
+        if (hasCheckedNearbyFeatures.current || !map.current) return;
+        hasCheckedNearbyFeatures.current = true;
+
+        const currentMap = map.current;
+        const selectedSpecies = selectedSpeciesRef.current;
+        const layers =
+          currentMap
+            .getStyle()
+            ?.layers?.map(l => l.id)
+            .filter(
+              id =>
+                (selectedSpecies
+                  ? id.startsWith(selectedSpecies)
+                  : id.includes('_score')) &&
+                currentMap.getLayoutProperty(id, 'visibility') === 'visible'
+            ) || [];
+
+        // Query features in the current viewport to see if any are near the user's location
+        const viewportFeatures = currentMap.queryRenderedFeatures({
+          layers,
+        });
+
+        // Filter features to find those close to the user's location
+        const nearbyFeatures = viewportFeatures.filter(feature => {
+          if (feature.geometry.type === 'Point') {
+            const featureCoords = feature.geometry.coordinates as [
+              number,
+              number,
+            ];
+            const distance = Math.sqrt(
+              Math.pow(featureCoords[0] - coords[0], 2) +
+                Math.pow(featureCoords[1] - coords[1], 2)
+            );
+            // Consider features within ~1km radius (0.01 degrees is roughly 1km)
+            return distance < 0.01;
+          }
+          return false;
+        });
+
+        if (nearbyFeatures.length > 0) {
+          // Found features near user location, open modal
+          setSelectedFeature(nearbyFeatures[0]);
+          setIsModalFromLocateMe(true);
+          setIsFeatureModalOpen(true);
+        } else {
+          // No features found, just log a warning
+          console.warn('No foraging data available at user location:', coords);
+        }
+      });
+
+      geolocate.on('trackuserlocationstart', () => {
+        hasCheckedNearbyFeatures.current = false;
+        setIsLoading(true);
+        setError(null);
+        setUserLocationError(null);
+      });
+
+      geolocate.on('trackuserlocationend', () => {
+        setIsLoading(false);
+        setShowUserLocation(false);
+        setActiveRoute(null);
+      });
+
+      geolocate.on('error', (error: GeolocationPositionError) => {
+        console.error('Error getting user location:', error);
+        setIsLoading(false);
+        setError(t('geolocation.permissionError'));
+        setUserLocationError(error.message);
+      });
+
+      map.current.addControl(geolocate);
+
+      const syncViewportBounds = () => {
+        const bounds = map.current?.getBounds();
+        if (!bounds) return;
+        setViewportBounds([
+          bounds.getWest(),
+          bounds.getSouth(),
+          bounds.getEast(),
+          bounds.getNorth(),
+        ]);
+      };
+
       // Handle map load
       map.current.on('load', () => {
         setMapLoaded(true);
+        // 'move' does not fire during initialization, so seed the viewport here
+        // or the offline notice falls back to point containment until first pan.
+        syncViewportBounds();
         setMapError(null);
         setMapRef(map.current);
         updateVisibleLayers();
@@ -224,6 +502,19 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         if (map.current) {
           // Force initial resize with correct dimensions
           map.current.resize();
+        }
+
+        // A style switch tears down and recreates the whole map (and, with
+        // it, the GeolocateControl above) - if the user had their location
+        // active, the new control starts back at OFF and won't show the dot
+        // on its own. Re-trigger it here so tracking resumes automatically
+        // instead of the indicator silently vanishing while the button
+        // still shows "active". Checking userLocation too (not just the
+        // showUserLocation flag, which defaults to true from first mount)
+        // so this never fires as an unsolicited geolocation prompt before
+        // the user has ever pressed the button themselves.
+        if (showUserLocation && userLocation) {
+          geolocate.trigger();
         }
       });
 
@@ -244,6 +535,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           const center = map.current.getCenter();
           setCenter([center.lng, center.lat]);
           setZoom(map.current.getZoom());
+          syncViewportBounds();
         }
       });
 
@@ -259,9 +551,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
     return () => {
       if (map.current) {
+        // map.remove() already tears down every registered control
+        // (including geolocate.onRemove()) - don't call removeControl()
+        // separately, it would run onRemove() a second time on an already
+        // torn-down control and throw.
         map.current.remove();
         map.current = null;
       }
+      geolocateControl.current = null;
       // The new map instance starts unloaded. Resetting this makes mapLoaded go
       // false->true when the new map fires 'load', which re-runs every
       // [mapLoaded]-gated effect (route source/layer, offline sources, markers)
@@ -633,103 +930,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     };
   }, [mapLoaded, selectedSpecies, activeDay]);
 
-  // Handle user location
-  const handleGetUserLocation = async () => {
-    if (showUserLocation && userLocation) {
-      setShowUserLocation(false);
-      setActiveRoute(null);
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-    setUserLocationError(null);
-
-    try {
-      const position = await getUserLocation();
-      const coords: [number, number] = [
-        position.coords.longitude,
-        position.coords.latitude,
-      ];
-
-      if (map.current) {
-        setShowUserLocation(true);
-        map.current.flyTo({
-          center: coords,
-          zoom: 10,
-          duration: 2000,
-        });
-
-        // Check if there are features at the user's location
-        const layers =
-          map.current
-            ?.getStyle()
-            ?.layers?.map(l => l.id)
-            .filter(
-              id =>
-                (selectedSpecies
-                  ? id.startsWith(selectedSpecies)
-                  : id.includes('_score')) &&
-                map.current?.getLayoutProperty(id, 'visibility') === 'visible'
-            ) || [];
-
-        // Query features in the current viewport to see if any are near the user's location
-        const viewportFeatures = map.current.queryRenderedFeatures({
-          layers,
-        });
-
-        // Filter features to find those close to the user's location
-        const nearbyFeatures = viewportFeatures.filter(feature => {
-          if (feature.geometry.type === 'Point') {
-            const featureCoords = feature.geometry.coordinates as [
-              number,
-              number,
-            ];
-            const distance = Math.sqrt(
-              Math.pow(featureCoords[0] - coords[0], 2) +
-                Math.pow(featureCoords[1] - coords[1], 2)
-            );
-            // Consider features within ~1km radius (0.01 degrees is roughly 1km)
-            return distance < 0.01;
-          }
-          return false;
-        });
-
-        if (nearbyFeatures && nearbyFeatures.length > 0) {
-          // Found features near user location, open modal
-          setSelectedFeature(nearbyFeatures[0]);
-          setIsModalFromLocateMe(true);
-          setIsFeatureModalOpen(true);
-        } else {
-          // No features found, just log a warning
-          console.warn('No foraging data available at user location:', coords);
-        }
-      }
-    } catch (error) {
-      console.error('Error getting user location:', error);
-      setError(t('geolocation.permissionError'));
-    } finally {
-      setIsLoading(false);
-    }
+  // Locate-me button: delegates to the standard MapLibre GeolocateControl
+  // (set up in the "Initialize map" effect above) instead of a hand-rolled
+  // geolocation flow. trigger() mirrors clicking the control's own button —
+  // its internal state machine handles starting tracking when off and
+  // stopping it when active, so no on/off branching is needed here.
+  const handleGetUserLocation = () => {
+    geolocateControl.current?.trigger();
   };
-
-  // Add user location marker
-  useEffect(() => {
-    if (!map.current || !mapLoaded || !showUserLocation || !userLocation)
-      return;
-
-    // Create new marker
-    const marker = new maplibregl.Marker({
-      color: '#3b82f6',
-      className: 'user-location-marker',
-    })
-      .setLngLat(userLocation)
-      .addTo(map.current);
-
-    return () => {
-      marker.remove();
-    };
-  }, [userLocation, mapLoaded, showUserLocation]);
 
   // Add foraging spot markers
   useEffect(() => {
@@ -743,14 +951,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     const markers: maplibregl.Marker[] = [];
 
     foragingSpots.forEach(spot => {
-      const markerColor =
-        spot.type === 'mushroom'
-          ? '#dc2626'
-          : spot.type === 'berry'
-            ? '#059669'
-            : spot.type === 'herb'
-              ? '#7c3aed'
-              : '#f59e0b';
+      // Was a red / emerald / violet / amber quartet - a four-hue semantic
+      // palette the system rejects, and a second contradictory colouring
+      // of the same categories DataPage already coloured differently.
+      // maplibre writes this into an SVG fill attribute, so it needs the
+      // resolved value rather than a var().
+      const markerColor = categoryColor(spot.type);
 
       const marker = new maplibregl.Marker({
         color: markerColor,
@@ -763,24 +969,24 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       const popup = new maplibregl.Popup({ offset: 25 }).setHTML(`
         <div class="p-3 max-w-xs">
           <h3 class="font-semibold text-lg mb-2">${spot.name}</h3>
-          <p class="text-sm text-gray-600 mb-2">${spot.description}</p>
+          <p class="text-sm text-muted-foreground mb-2">${spot.description}</p>
           <div class="flex items-center gap-2 mb-2">
             <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
               spot.type === 'mushroom'
-                ? 'bg-red-100 text-red-800'
+                ? 'bg-destructive/10 text-destructive-text'
                 : spot.type === 'berry'
-                  ? 'bg-green-100 text-green-800'
+                  ? 'bg-secondary text-primary-text'
                   : spot.type === 'herb'
-                    ? 'bg-purple-100 text-purple-800'
-                    : 'bg-yellow-100 text-yellow-800'
+                    ? 'bg-muted text-primary-text'
+                    : 'bg-status-warning-background text-status-warning-text'
             }">
               ${spot.type}
             </span>
-            <span class="text-xs text-gray-500">
+            <span class="text-xs text-muted-foreground">
               Confidence: ${(spot.confidence * 100).toFixed(0)}%
             </span>
           </div>
-          <div class="text-xs text-gray-500">
+          <div class="text-xs text-muted-foreground">
             <p>Season: ${spot.season.join(', ')}</p>
             <p>Last updated: ${new Date(spot.lastUpdated).toLocaleDateString()}</p>
           </div>
@@ -809,7 +1015,11 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     CONTINENTS.forEach(continent => {
       const sourceId = `offline-basemap-${continent}`;
       const layerId = `${sourceId}-layer`;
-      const shouldShow = !isOnline && Boolean(cachedContinents[continent]);
+      const hasContinentPackage = cachedPackageList.some(
+        item => !item.expired && item.definition.continent === continent
+      );
+      const shouldShow =
+        !isOnline && !hasOfflineBasemapAtCenter && hasContinentPackage;
       const exists = Boolean(mapInstance.getSource(sourceId));
 
       if (shouldShow && !exists) {
@@ -833,7 +1043,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         mapInstance.removeSource(sourceId);
       }
     });
-  }, [mapLoaded, isOnline, cachedContinents]);
+  }, [mapLoaded, isOnline, cachedPackageList, hasOfflineBasemapAtCenter]);
 
   if (mapError) {
     return (
@@ -885,11 +1095,38 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               <img
                 src={LoadingSquirrel}
                 alt='Loading...'
-                className='h-80 w-80'
+                className='h-[13.4rem] w-[13.4rem]'
               />
             </div>
           </div>
         )}
+
+        {/* Offline notice. The map still initializes offline — the style JSON is
+            precached — so it renders as empty background with no error and
+            nothing tells the user why. mapError never fires for this.
+            Hide it as soon as any downloaded package overlaps the viewport. */}
+        {!isOnline && !hasOfflinePackageInView && (
+          <div className='absolute inset-0 z-30 flex items-center justify-center p-6 pointer-events-none'>
+            <div className='max-w-xs rounded-lg border bg-background/95 p-4 text-center shadow-lg'>
+              <WifiOff className='mx-auto mb-2 h-6 w-6 text-muted-foreground' />
+              <h3 className='mb-1 text-sm font-semibold'>
+                {t('offline.title')}
+              </h3>
+              <p className='text-xs text-muted-foreground'>
+                {t('offline.noPackageMessage')}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {mapLoaded &&
+          !isOnline &&
+          hasOfflinePackageInView &&
+          !hasOfflineBasemapAtCenter && (
+            <div className='pointer-events-none absolute left-1/2 top-14 z-20 w-max max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-md border bg-background/90 px-3 py-2 text-center text-xs text-muted-foreground shadow-sm'>
+              {t('offline.forecastOnlyMessage')}
+            </div>
+          )}
 
         {/* Species selector - top left corner */}
         <div className='absolute top-2 left-2 z-20'>
@@ -899,78 +1136,71 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         {/* Control buttons */}
         <div className='absolute top-2 right-4 z-10 flex flex-col gap-2'>
           {/* User location button */}
-          <motion.button
+          <Button
+            variant='outline'
+            size='icon'
             onClick={handleGetUserLocation}
             disabled={isLoading}
-            className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
+            className={
               showUserLocation && userLocation
-                ? 'bg-blue-100 border-blue-300 text-blue-800'
-                : 'border-input bg-secondary'
-            }`}
+                ? 'bg-muted text-primary-text hover:bg-muted hover:text-foreground'
+                : undefined
+            }
             title={t('getLocation')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
           >
             {isLoading ? (
               <Loader2 className='h-4 w-4 animate-spin' />
             ) : (
               <Navigation className='h-4 w-4' />
             )}
-          </motion.button>
+          </Button>
 
           {/* Map theme selector (Light/Dark/White/Dark Matter/Topographic) */}
           <MapThemeSelector />
 
-          {/* Info button */}
-          <motion.button
-            onClick={() => {
-              if (isRoutePanelOpen) {
-                closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
-                return;
+          {isOnline && (
+            <Button
+              variant='outline'
+              size='icon'
+              onClick={() => {
+                if (isRoutePanelOpen) {
+                  closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
+                  return;
+                }
+
+                setIsRoutePanelOpen(true);
+              }}
+              className={
+                isRoutePanelOpen
+                  ? 'bg-secondary text-primary-text hover:bg-secondary hover:text-foreground'
+                  : undefined
               }
+              title={tRecipes('routePanel.title')}
+              aria-label={tRecipes('routePanel.title')}
+            >
+              <ChefHat className='h-4 w-4' />
+            </Button>
+          )}
 
-              setIsRoutePanelOpen(true);
-            }}
-            className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg ${
-              isRoutePanelOpen
-                ? 'bg-emerald-100 border-emerald-300 text-emerald-800'
-                : 'bg-secondary border-input'
-            }`}
-            title={tRecipes('routePanel.title')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
+          <Button
+            variant='outline'
+            size='icon'
+            onClick={() => setIsIdentifyOpen(true)}
+            title={tIdentify('openButton')}
+            aria-label={tIdentify('openButton')}
           >
-            <ChefHat className='h-4 w-4' />
-          </motion.button>
+            <ScanSearch className='h-4 w-4' />
+          </Button>
 
           {/* Info button */}
-          <motion.button
+          <Button
+            variant='outline'
+            size='icon'
             onClick={() => setActiveModal('onboarding')}
-            className='inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors disabled:pointer-events-none disabled:opacity-50 border h-9 px-3 shadow-lg bg-secondary border-input'
             title={t('showOnboarding')}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{
-              duration: 0.2,
-              type: 'spring',
-              stiffness: 400,
-              damping: 25,
-            }}
           >
             <Info className='h-4 w-4' />
-          </motion.button>
+          </Button>
         </div>
 
         {isMobile ? (
@@ -979,8 +1209,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               <ForecastSlider />
               <MapInfoCard />
             </div>
-            {isRoutePanelOpen && !isRouteAnimating ? (
-              <div className='fixed left-3 right-3 top-20 z-10'>
+            {/* Recedes while the route draws instead of unmounting: the
+                conditional render this replaced tore the card out of the DOM
+                the instant onDrawRoute fired and put it back seconds later
+                with no transition, which reads as the card closing itself. */}
+            {isRoutePanelOpen ? (
+              <div
+                className={`fixed left-3 right-3 top-20 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+              >
                 <RouteToDishPanel
                   className='mx-auto'
                   plans={routeDishResult?.plans ?? []}
@@ -1008,8 +1244,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               <ForecastSlider />
               <MapInfoCard />
             </div>
-            {isRoutePanelOpen && !isRouteAnimating ? (
-              <div className='absolute top-14 right-16 z-10'>
+            {isRoutePanelOpen ? (
+              <div
+                className={`absolute top-14 right-16 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+              >
                 <RouteToDishPanel
                   plans={routeDishResult?.plans ?? []}
                   error={routeDishError}
@@ -1035,10 +1273,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         {/* Foraging spots found notification */}
         {foragingSpots.length > 0 && (
           <div className='absolute bottom-4 left-4 right-4'>
-            <Card className='p-3 bg-green-50 border-green-200'>
+            <Card padding='compact' className='bg-secondary'>
               <div className='flex items-center gap-2'>
-                <MapPin className='h-4 w-4 text-green-600' />
-                <p className='text-sm text-green-800'>
+                <MapPin className='h-4 w-4 text-primary-text' />
+                <p className='text-sm text-primary-text'>
                   {t('spotsFound', { count: foragingSpots.length })}
                 </p>
               </div>
@@ -1055,9 +1293,20 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           setSelectedFeature(null);
           setIsModalFromLocateMe(false);
         }}
-        hideDirections={isModalFromLocateMe}
-        dataNerdRegion={dataNerdRegion}
+        hideDirections={isModalFromLocateMe || !isOnline}
+        dataNerdRegion={isOnline ? dataNerdRegion : null}
       />
+
+      {/* Mounted only once opened, so the ONNX chunk is never fetched by a user
+          who does not use identification. */}
+      {isIdentifyOpen && (
+        <Suspense fallback={null}>
+          <IdentifyPanel
+            open={isIdentifyOpen}
+            onClose={() => setIsIdentifyOpen(false)}
+          />
+        </Suspense>
+      )}
     </>
   );
 };

@@ -1,23 +1,35 @@
 {
-  "title": "Offline Maps",
-  "description": "Manage offline map data",
-  "offlineBanner": "You're offline — downloaded regions still show their data, without the live base map underneath.",
-  "storage": {
-    "title": "Storage",
-    "summary": "{{used}} MB / {{quota}} MB",
-    "purge": "Purge expired now",
-    "ttl": "Downloads expire after 14 days"
+  "title": "Mapas offline",
+  "description": "Transfira e gira pacotes de mapas para utilização offline",
+  "intro": "Transfira um pacote de mapas antes do passeio. Cada pacote inclui o mapa base e as previsões de coleta e é válido durante 7 dias.",
+  "offlineBanner": "Está offline. Os pacotes transferidos ainda válidos continuam disponíveis.",
+  "catalog": {
+    "eu": {
+      "name": "Europa",
+      "description": "Mapa base detalhado e previsões de coleta disponíveis offline para a Europa."
+    },
+    "us": {
+      "name": "Estados Unidos",
+      "description": "Mapa base detalhado e previsões de coleta disponíveis offline para os Estados Unidos."
+    }
   },
-  "regions": {
-    "title": "Regions",
-    "name": "Region",
-    "status": "Status",
-    "cachedOn": "Downloaded {{date}}",
-    "notCached": "Not downloaded",
-    "downloading": "Downloading...",
-    "download": "Download for offline",
-    "remove": "Remove",
-    "eu": "Europe",
-    "us": "United States"
+  "storage": {
+    "title": "Armazenamento do dispositivo",
+    "summary": "{{used}} utilizados de aproximadamente {{quota}} disponíveis para este site",
+    "persistent": "Protegido contra remoção automática pelo navegador",
+    "bestEffort": "O navegador pode remover as transferências quando houver pouco espaço"
+  },
+  "packages": {
+    "title": "Pacotes disponíveis",
+    "loading": "A carregar o catálogo de pacotes…",
+    "empty": "Não existem pacotes offline publicados neste momento.",
+    "download": "Transferir",
+    "update": "Atualizar",
+    "remove": "Remover",
+    "open": "Abrir mapa",
+    "cancel": "Cancelar",
+    "progress": "A transferir… {{percent}}%",
+    "downloaded": "Transferido em {{date}} · versão {{version}} · válido durante 7 dias",
+    "expired": "Expirado · ligue-se à Internet e atualize o pacote"
   }
 }

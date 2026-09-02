@@ -46,3 +46,47 @@ tests/subset_master_*.parquet
 
 # forecast-vs-actual longitudinal snapshot (generated)
 tests/forecast_vs_actual_snapshot.jsonl
+
+# Brainstorming session scratch (mockups/state, not project artifacts)
+.superpowers/
+
+# BioCLIP spike cache (downloaded photos + embeddings)
+spike_cache/
+
+# Generated regional PMTiles can be hundreds of megabytes; publish to R2.
+dist-offline/
+
+# ONNX export artifacts (the shipped model lives on R2, not in git)
+backend/tools/model_artifacts/
+
+# Generated GBIF QA caches and row-level exports. Keep aggregate reports/results.
+docs/qa/**/gbif-cache*.json
+docs/qa/**/fungal-observer-background.csv
+docs/qa/**/matched-targets.csv
+docs/qa/**/matched-observations.csv
+docs/qa/**/matched-target-comparison.csv
+docs/qa/**/gbif-season-truth.json
+docs/qa/**/grid-cell-days-*.parquet
+docs/qa/**/branch-replay-*.parquet
+docs/qa/**/observation-scores-*.csv
+
+
+# Playwright failure artifacts
+test-results/
+playwright-report/
+
+# Generated QA page (rebuild with scripts/qa_season_page.py)
+docs/qa/**/season-timing.html
+
+# ~/.gitignore (global excludesFile) blanket-ignores CONTEXT.md and docs/*
+# for other projects' scratch/Claude-generated files. This repo tracks both
+# for real (domain glossary, docs/qa, docs/superpowers, docs/adr, ...) —
+# un-ignore them here; the specific-file excludes above still apply.
+!CONTEXT.md
+!docs/*
+!.claude/
+!.claude/skills/
+!.claude/skills/**
+!.agents/
+!.agents/skills/
+!.agents/skills/**

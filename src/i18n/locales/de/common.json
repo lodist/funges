@@ -138,12 +138,20 @@
     "title": "Fung.es",
     "subtitle": "Pilz-Sammel-App"
   },
+  "pwa": {
+    "installTitle": "Fung.es installieren",
+    "installDescription": "Installiere Fung.es auf deinem Gerät für schnellen Zugriff und Offline-Funktionen.",
+    "installButton": "App installieren",
+    "laterButton": "Später"
+  },
+  "close": "Schliessen",
   "data": {
     "subtitle": "Erkunde die Daten hinter den Sammelempfehlungen.",
     "europe": "Europa",
     "unitedStates": "Vereinigte Staaten",
     "selectedZone": "Ausgewählt: {{zone}} — erneut klicken, um alle anzuzeigen",
     "clickZone": "Alle Zonen werden angezeigt — klicke auf eine, um zu filtern",
+    "timeRange": "Zeitraum",
     "noData": "Keine Daten für die ausgewählte Zone",
     "score": "Punktzahl",
     "tempMax": "Max",
@@ -256,5 +264,10 @@
       "pressureFallingShort": "fallend",
       "pressureRisingShort": "steigend"
     }
+  },
+  "sidebar": {
+    "title": "Seitenleiste",
+    "description": "Zeigt die mobile Seitenleiste an.",
+    "toggle": "Seitenleiste ein-/ausblenden"
   }
 }

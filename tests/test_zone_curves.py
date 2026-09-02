@@ -44,7 +44,11 @@ def test_build_zone_curves_sums_cells_and_gates_on_min_total():
     assert "continental" in out                 # 300 sightings >= 200
     assert "mushroom" in out["continental"]
     assert "temperate" not in out               # 5 sightings < 200 -> gated out
-    aug = out["continental"]["mushroom"][8]
-    other = out["continental"]["mushroom"][1]
-    assert aug > other                          # peak month scores higher
-    assert abs(aug - 1.2) < 1e-9                # ratio max -> high ceiling
+    multiplier = out["continental"]["mushroom"]["multiplier"]
+    assert multiplier[8] > multiplier[1]        # peak month scores higher
+    assert abs(multiplier[8] - 1.2) < 1e-9      # ratio max -> high ceiling
+    # The uncompressed ratio rides alongside, and unlike the multiplier it reaches 0 in a
+    # dead month -- that is what lets the gate distinguish "dead" from "quiet".
+    ratio = out["continental"]["mushroom"]["ratio"]
+    assert abs(ratio[8] - 1.0) < 1e-9
+    assert ratio[1] == 0.0

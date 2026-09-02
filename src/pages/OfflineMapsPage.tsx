@@ -1,36 +1,62 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Download, Info, Map, RefreshCw, X } from '@/lib/icons';
 import SEO from '@/components/SEO';
 import { usePWA } from '@/hooks/use-pwa';
-import { useOfflineStore, CONTINENTS } from '@/store/offlineStore';
+import { useOfflineStore } from '@/store/offlineStore';
+import { packageHasBasemap, packageSize } from '@/lib/offline-packages';
 import { Button } from '@/components/ui/button';
+import { useMapStore } from '@/store/mapStore';
+import { useNavigate } from '@tanstack/react-router';
 
-const QUOTA_MB = 500;
-const BYTES_PER_MB = 1024 * 1024;
+function formatBytes(bytes: number | null): string {
+  if (bytes === null) return '—';
+  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+  if (bytes < 1024 * 1024 * 1024) {
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  }
+  return `${(bytes / (1024 * 1024 * 1024)).toFixed(1)} GB`;
+}
 
 export default function OfflineMapsPage() {
   const { t } = useTranslation('offline');
   const { isOnline } = usePWA();
+  const navigate = useNavigate({ from: '/offline' });
+  const { setCenter, setZoom } = useMapStore();
   const {
+    available,
     cached,
-    downloading,
+    progress,
+    storage,
+    ready,
+    loading,
     error,
-    refresh,
+    initialize,
     download,
+    cancel,
     remove,
-    purgeExpired,
+    activateForCoordinate,
   } = useOfflineStore();
 
-  useEffect(() => {
-    refresh();
-  }, [refresh]);
+  const openPackage = async (
+    definition: (typeof available)[number]
+  ): Promise<void> => {
+    const [west, south, east, north] = definition.bounds;
+    const center: [number, number] = [(west + east) / 2, (south + north) / 2];
+    const continentZoom = definition.continent === 'eu' ? 4 : 3.5;
+    if (!isOnline) {
+      await activateForCoordinate(center[0], center[1]);
+    }
+    setCenter(center);
+    setZoom(
+      Math.max(definition.minZoom, Math.min(continentZoom, definition.maxZoom))
+    );
+    await navigate({ to: '/' });
+  };
 
-  const usedMb = Math.round(
-    Object.values(cached).reduce(
-      (sum, info) => sum + (info?.sizeBytes ?? 0),
-      0
-    ) / BYTES_PER_MB
-  );
+  useEffect(() => {
+    if (!ready && !loading) void initialize();
+  }, [initialize, loading, ready]);
 
   return (
     <>
@@ -39,84 +65,168 @@ export default function OfflineMapsPage() {
         description={t('description')}
         canonicalUrl={`${import.meta.env.BASE_URL}offline`}
       />
-      <div className='max-w-4xl mx-auto px-4 py-8 space-y-6'>
-        <h1 className='text-3xl font-bold'>{t('title')}</h1>
+      <div className='mx-auto max-w-3xl space-y-6 px-4 py-8'>
+        <h1 className='text-2xl font-bold sm:text-3xl'>{t('title')}</h1>
 
         {!isOnline && (
-          <div className='bg-yellow-100 text-yellow-800 px-4 py-2 rounded'>
+          <div className='bg-status-warning-background text-status-warning-text px-4 py-2 rounded'>
             {t('offlineBanner')}
           </div>
         )}
-
         {error && (
-          <div className='bg-red-100 text-red-800 px-4 py-2 rounded'>
+          <div className='bg-destructive/10 text-destructive-text px-4 py-2 rounded'>
             {error}
           </div>
         )}
 
-        <section className='space-y-2'>
-          <h2 className='text-xl font-semibold'>{t('storage.title')}</h2>
-          <p>{t('storage.summary', { used: usedMb, quota: QUOTA_MB })}</p>
-          <Button variant='outline' onClick={purgeExpired} className='mt-2'>
-            {t('storage.purge')}
-          </Button>
-          <p className='text-sm text-muted-foreground'>{t('storage.ttl')}</p>
+        <section className='space-y-1.5 rounded-lg border p-4'>
+          <h2 className='text-base font-semibold'>{t('storage.title')}</h2>
+          <p className='text-sm'>
+            {t('storage.summary', {
+              used: formatBytes(storage.usageBytes),
+              quota: formatBytes(storage.quotaBytes),
+            })}
+          </p>
+          <p className='text-xs text-muted-foreground'>
+            {storage.persisted
+              ? t('storage.persistent')
+              : t('storage.bestEffort')}
+          </p>
         </section>
 
-        <section className='space-y-2'>
-          <h2 className='text-xl font-semibold'>{t('regions.title')}</h2>
-          <div className='overflow-x-auto'>
-            <table className='min-w-full divide-y divide-gray-200 text-sm'>
-              <thead>
-                <tr>
-                  <th className='px-2 py-1 text-left'>{t('regions.name')}</th>
-                  <th className='px-2 py-1 text-left'>{t('regions.status')}</th>
-                  <th className='px-2 py-1'></th>
-                </tr>
-              </thead>
-              <tbody className='divide-y divide-gray-200'>
-                {CONTINENTS.map(continent => {
-                  const info = cached[continent];
-                  const isDownloading = Boolean(downloading[continent]);
-                  return (
-                    <tr key={continent} className='hover:bg-gray-50'>
-                      <td className='px-2 py-1'>{t(`regions.${continent}`)}</td>
-                      <td className='px-2 py-1'>
-                        {isDownloading
-                          ? t('regions.downloading')
-                          : info
-                            ? t('regions.cachedOn', {
-                                date: new Date(
-                                  info.cachedAt
-                                ).toLocaleDateString(),
-                              })
-                            : t('regions.notCached')}
-                      </td>
-                      <td className='px-2 py-1 text-right'>
-                        {info ? (
-                          <Button
-                            size='sm'
-                            disabled={isDownloading}
-                            onClick={() => remove(continent)}
-                          >
-                            {t('regions.remove')}
-                          </Button>
-                        ) : (
-                          <Button
-                            size='sm'
-                            disabled={isDownloading || !isOnline}
-                            onClick={() => download(continent)}
-                          >
-                            {t('regions.download')}
-                          </Button>
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+        <section className='space-y-3'>
+          <h2 className='text-xl font-semibold'>{t('packages.title')}</h2>
+          <div className='flex gap-3 rounded-lg bg-muted/60 p-3 text-sm text-muted-foreground'>
+            <Info className='mt-0.5 h-4 w-4 shrink-0 text-foreground' />
+            <p>{t('intro')}</p>
           </div>
+          {loading && <p>{t('packages.loading')}</p>}
+          {!loading && available.length === 0 && (
+            <p className='text-muted-foreground'>{t('packages.empty')}</p>
+          )}
+
+          {available.map(definition => {
+            const installed = cached[definition.id];
+            const currentProgress = progress[definition.id];
+            const updateAvailable =
+              Boolean(installed) &&
+              (installed.expired || installed.version !== definition.version);
+            const hasBasemap = packageHasBasemap(definition);
+
+            return (
+              <article
+                key={definition.id}
+                className='space-y-3 rounded-lg border p-4 sm:p-5'
+              >
+                <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
+                  <div className='min-w-0 flex-1'>
+                    <h3 className='text-lg font-semibold leading-tight'>
+                      {t(`catalog.${definition.id}.name`, {
+                        defaultValue: definition.name,
+                      })}
+                    </h3>
+                    <p className='mt-1 text-sm text-muted-foreground'>
+                      {t(`catalog.${definition.id}.description`, {
+                        defaultValue: definition.description,
+                      })}
+                    </p>
+                    <p className='mt-2 text-xs font-medium text-muted-foreground'>
+                      {formatBytes(packageSize(definition))}
+                    </p>
+                  </div>
+
+                  {!currentProgress && !installed && (
+                    <Button
+                      disabled={!isOnline}
+                      onClick={() => void download(definition.id)}
+                    >
+                      <Download className='mr-1 h-4 w-4' />
+                      {t('packages.download')}
+                    </Button>
+                  )}
+                  {!currentProgress && installed && updateAvailable && (
+                    <div className='flex flex-wrap gap-2 sm:justify-end'>
+                      <Button
+                        disabled={!isOnline}
+                        onClick={() => void download(definition.id)}
+                      >
+                        <RefreshCw className='mr-1 h-4 w-4' />
+                        {t('packages.update')}
+                      </Button>
+                      <Button
+                        variant='outline'
+                        onClick={() => void remove(definition.id)}
+                      >
+                        {t('packages.remove')}
+                      </Button>
+                    </div>
+                  )}
+                  {!currentProgress && installed && !updateAvailable && (
+                    <div className='flex gap-2'>
+                      {hasBasemap && (
+                        <Button onClick={() => void openPackage(definition)}>
+                          <Map className='mr-1 h-4 w-4' />
+                          {t('packages.open')}
+                        </Button>
+                      )}
+                      <Button
+                        variant='outline'
+                        onClick={() => void remove(definition.id)}
+                      >
+                        {t('packages.remove')}
+                      </Button>
+                    </div>
+                  )}
+                </div>
+
+                {installed && (
+                  <p className='text-xs text-muted-foreground'>
+                    {installed.expired
+                      ? t('packages.expired')
+                      : t('packages.downloaded', {
+                          date: new Date(
+                            installed.cachedAt
+                          ).toLocaleDateString(),
+                          version: installed.version,
+                        })}
+                  </p>
+                )}
+
+                {currentProgress && (
+                  <div className='space-y-2'>
+                    <div className='flex items-center justify-between text-sm'>
+                      <span>
+                        {t('packages.progress', {
+                          percent: Math.round(currentProgress.fraction * 100),
+                        })}
+                      </span>
+                      <Button
+                        variant='ghost'
+                        onClick={() => cancel(definition.id)}
+                      >
+                        <X className='mr-1 h-4 w-4' />
+                        {t('packages.cancel')}
+                      </Button>
+                    </div>
+                    <div
+                      className='h-2 overflow-hidden rounded bg-muted'
+                      role='progressbar'
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-valuenow={Math.round(currentProgress.fraction * 100)}
+                    >
+                      <div
+                        className='h-full bg-primary transition-[width]'
+                        style={{
+                          width: `${currentProgress.fraction * 100}%`,
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
+              </article>
+            );
+          })}
         </section>
       </div>
     </>

@@ -91,11 +91,13 @@
     "description": "Usa la mappa per scoprire luoghi di raccolta e specie.",
     "features": {
       "species": "Scegli una specie con il selettore",
+      "identify": "Identificare da una foto (download una volta sola)",
       "locate": "Centra la mappa sulla tua posizione",
       "numbers": "Mostra o nascondi l’indice numerico",
       "theme": "Scegli un tema mappa: Chiaro, Scuro, Bianco, Dark Matter o Topografico",
       "zones": "Tocca una zona per vedere l’elenco delle specie",
-      "recipes": "Apri le ricette vicine e traccia un percorso verso ogni tappa degli ingredienti"
+      "recipes": "Apri le ricette vicine e traccia un percorso verso ogni tappa degli ingredienti",
+      "offline": "Salva un pacchetto di mappe prima dell’escursione per usarlo offline"
     },
     "instructions": "Leggi le istruzioni complete",
     "supportLink": "Sostieni il progetto",
@@ -106,5 +108,14 @@
     "low": "Basso",
     "label": "Indice di presenza",
     "high": "Alto"
+  },
+  "forecast": {
+    "label": "Previsione",
+    "today": "Oggi"
+  },
+  "offline": {
+    "title": "Nessuna connessione",
+    "noPackageMessage": "Nessun pacchetto scaricato copre quest'area. Riconnettiti o torna in un'area salvata.",
+    "forecastOnlyMessage": "Previsione offline caricata. La mappa di base dettagliata richiede una connessione."
   }
 }

@@ -1,0 +1,96 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as TypographyStories from './Typography.stories';
+
+<Meta of={TypographyStories} />
+
+# Typography
+
+Two faces do the work: **Public Sans** for everything you read, **Space
+Grotesk** for everything you scan. **Source Code Pro** is the third and it is
+earned — token names, coordinates, anything that has to align by column.
+
+> **This page needs a human.** The specimens below render in the real bundled
+> faces — but a missing face falls back silently, and a fallback renders just
+> as green as the real thing. Automated checks cannot tell the difference. If
+> the headings below do not look geometric and slightly squared-off, the
+> display face is not loading. Verified by eye at `#225`, both themes: all
+> three faces load and render distinctly.
+
+Merriweather used to be a fourth family behind `--font-serif`. It rendered on
+no screen, and shipped twenty files and 692 KB to `dist/` to do it — half the
+font payload for a face nothing asked for. `main.tsx` even said so: _"Merriweather
+stays for the still-unused `--font-serif` token."_ The font was kept because
+the token existed and the token existed because the font was loaded, so both
+are gone. A serif is three lines to add back if a screen ever wants one.
+
+## Families
+
+<Story of={TypographyStories.Families} />
+
+## Scale
+
+Tailwind's default steps, unmodified. There is no custom scale to learn —
+`text-xs` through `text-4xl` cover every screen in the application, and that
+range is measured rather than asserted.
+
+There is deliberately **no step below `text-xs`**, and that was the live
+question at `#225`: eleven independent sites had reached for `text-[10px]`,
+which is either a missing step or eleven mistakes. It was neither. Seven of
+them were the same uppercase tracked micro-label, hand-rolled seven different
+ways because the role below `text-xs` had a name in DESIGN.md and no
+implementation in code. Naming the role removed the reason to go below 12px —
+see **Micro-label** below.
+
+<Story of={TypographyStories.Scale} />
+
+## Weights
+
+Only the bundled weights are real. Public Sans ships 400/500/600/700; Space
+Grotesk ships 500/600/700 and has **no 400**.
+
+Asking for `font-normal` on the display face does not look wrong — it does
+nothing at all. The browser resolves 400 to the 500 face rather than
+synthesising an approximation, so the class is a silent no-op. Measured at
+40px, the specimen string is 665.30px wide at both 400 and 500, against
+728.47px at 600. This page previously claimed the opposite, which is worse
+than saying nothing: it told a reader they had been warned about something
+they could see.
+
+The practical rule: **on h1–h3, `font-normal` is always a mistake.** There is
+nothing below 500 to reach.
+
+<Story of={TypographyStories.Weights} />
+
+## Headings
+
+`h1`, `h2` and `h3` carry face, size, weight and leading from a base-layer
+rule, mapped to DESIGN.md's `display` (36px / 600 / 1.1), `headline`
+(30px / 600 / 1.2) and `title` (20px / 600 / 1.3). **A heading needs no
+classes to be a heading**, and a utility overrides any of the four where a
+screen genuinely differs.
+
+They used to carry only the face. Tailwind's preflight resets headings to
+`font-size: inherit; font-weight: inherit`, so a bare `<h1>` measured
+16px / 400 — the same size as the paragraph next to it — while this page
+documented an `h1`–`h4` size mapping that no rule implemented. One site was
+relying on it (`IndexPage`), and two more set a size but no weight.
+
+From `h4` down a heading is functionally a label: no rule, body face,
+inherited size, and it sets its own if it needs one.
+
+<Story of={TypographyStories.Headings} />
+
+## Micro-label
+
+`.type-micro` is DESIGN.md's `micro` role made reachable: 12px, weight 500,
+`0.06em` tracking, uppercase. It is the label above a control, the caption on
+a stat chip, the section header in a popover.
+
+It sets **no colour**. These labels sit on paper, on glass and on a warning
+fill, so the caller pairs the role with the right foreground token.
+
+<Story of={TypographyStories.MicroLabel} />
+
+## Everything at once
+
+<Story of={TypographyStories.AllTypography} />

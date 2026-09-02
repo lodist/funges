@@ -89,6 +89,7 @@ test.describe('worth foraging now page', () => {
 
   test('shows an error state when the data fetch fails', async ({ page }) => {
     // Override the beforeEach mock with a failure
+    await page.unroute('**/data/worth_foraging_now.json');
     await page.route('**/data/worth_foraging_now.json', route =>
       route.fulfill({ status: 500 })
     );

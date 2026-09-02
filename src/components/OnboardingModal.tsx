@@ -3,12 +3,14 @@ import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import {
   ChefHat,
+  Download,
   Heart,
   List,
-  Moon,
   MousePointerClick,
   Navigation,
-} from 'lucide-react';
+  Palette,
+  ScanSearch,
+} from '@/lib/icons';
 import { useUIStore } from '@/store/uiStore';
 
 import {
@@ -20,12 +22,15 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { usePWA } from '@/hooks/use-pwa';
+import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 
 const ONBOARDING_KEY = 'onboardingDismissed';
 
 export default function OnboardingModal() {
   const { t } = useTranslation('map');
   const { activeModal, setActiveModal } = useUIStore();
+  const { isOnline } = usePWA();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -60,35 +65,54 @@ export default function OnboardingModal() {
             <List className='h-4 w-4' />
             {t('onboarding.features.species')}
           </li>
+          {/* Same ScanSearch icon as the map control it describes, so the
+              line and the button are recognisably the same feature. */}
+          <li className='flex items-center gap-2'>
+            <ScanSearch className='h-4 w-4' />
+            {t('onboarding.features.identify')}
+          </li>
           <li className='flex items-center gap-2'>
             <Navigation className='h-4 w-4' />
             {t('onboarding.features.locate')}
           </li>
           <li className='flex items-center gap-2'>
-            <Moon className='h-4 w-4' />
+            <Palette className='h-4 w-4' />
             {t('onboarding.features.theme')}
           </li>
           <li className='flex items-center gap-2'>
             <MousePointerClick className='h-4 w-4' />
             {t('onboarding.features.zones')}
           </li>
-          <li className='flex items-center gap-2'>
-            <ChefHat className='h-4 w-4' />
-            {t('onboarding.features.recipes')}
-          </li>
+          {isOnline && (
+            <li className='flex items-center gap-2'>
+              <ChefHat className='h-4 w-4' />
+              {t('onboarding.features.recipes')}
+            </li>
+          )}
+          {isOnline && shouldShowOfflineFeatures && (
+            <li className='flex items-center gap-2'>
+              <Download className='h-4 w-4' />
+              <Link
+                to='/offline'
+                className='font-medium text-primary-text underline underline-offset-2'
+              >
+                {t('onboarding.features.offline')}
+              </Link>
+            </li>
+          )}
         </ul>
         <div className='mt-4 text-sm space-y-2'>
           <div>
-            <Link to='/instructions' className='underline text-primary'>
+            <Link to='/instructions' className='underline text-primary-text'>
               {t('onboarding.instructions')}
             </Link>
           </div>
           <div>
             <Link
               to='/support'
-              className='inline-flex items-center gap-1 font-medium text-[#7B2D3B] dark:text-[#B5566B] hover:underline'
+              className='inline-flex items-center gap-1 font-medium text-primary-text hover:underline'
             >
-              <Heart className='h-3.5 w-3.5 fill-current' />
+              <Heart className='size-4 fill-current' />
               {t('onboarding.supportLink')}
             </Link>
           </div>

@@ -1,0 +1,22 @@
+species_id,label,gbif_query,evidence_class,matched_all_dates,n,active_days,median_score,mean_score,hit_rate_ge_4,hit_rate_ge_6,presence_background_auc,auc_ci_low,auc_ci_high,median_match_km,status
+mushroom,Porcini,Boletus,fruiting-proxy,451,357,54,5.82,5.03,0.739,0.454,0.545,0.516,0.575,2.7,testable
+black_chant,Black Chanterelle,Craterellus cornucopioides,fruiting-proxy,92,73,31,3.86,3.72,0.466,0.0,0.565,0.499,0.623,2.9,testable
+lingonb,Lingonberry,Vaccinium vitis-idaea,habitat-only,1293,715,36,6.43,6.2,0.906,0.608,0.467,0.433,0.5,2.3,proxy-only
+garlic,Wild Garlic,Allium ursinum,habitat-only,133,0,0,,,,,,,,,not-testable-in-window
+truffle_b,Burgundy Truffle,Tuber melanosporum,fruiting-proxy,0,0,0,,,,,,,,,taxonomy-blocked
+walnut,Wild Walnut,Juglans regia,habitat-only,959,0,0,,,,,,,,,not-testable-in-window
+strawberry,Wild Strawberry,Fragaria vesca,habitat-only,1284,1260,49,6.38,6.17,0.936,0.641,0.446,0.424,0.469,2.3,proxy-only
+asparagus,Wild Asparagus,Asparagus acutifolius,habitat-only,79,0,0,,,,,,,,,not-testable-in-window
+parasol,Parasol Mushroom,Macrolepiota procera,fruiting-proxy,68,3,3,5.8,4.91,0.667,0.333,0.699,,,3.2,low-sample
+chestnut,Chestnut,Castanea sativa,habitat-only,1134,0,0,,,,,,,,,not-testable-in-window
+amaranth,Amaranth,Amaranthus retroflexus,habitat-only,303,303,54,6.16,5.45,0.729,0.548,0.627,0.569,0.683,2.3,proxy-only
+masterwort,Masterwort,Peucedanum ostruthium,habitat-only,72,72,33,5.82,5.29,0.792,0.444,0.701,0.646,0.755,2.3,proxy-only
+nettle,Nettle,Urtica dioica,habitat-only,1166,1166,56,4.81,4.57,0.674,0.261,0.415,0.375,0.453,2.5,proxy-only
+morel,Morel,Morchella,fruiting-proxy,17,0,0,,,,,,,,,not-testable-in-window
+sorrel,Sorrel,Rumex acetosa,habitat-only,1257,689,18,5.95,5.87,0.943,0.488,0.506,0.472,0.536,2.3,proxy-only
+raspberry,Raspberry,Rubus idaeus,habitat-only,1380,1380,56,5.92,5.53,0.883,0.481,0.442,0.424,0.459,2.5,proxy-only
+dandelion,Dandelion,Taraxacum officinale,habitat-only,1478,1478,45,3.65,3.71,0.411,0.108,0.407,0.374,0.44,2.8,proxy-only
+chickweed,Chickweed,Stellaria media,habitat-only,634,0,0,,,,,,,,,not-testable-in-window
+artichoke,Artichoke,Cynara cardunculus,habitat-only,209,0,0,,,,,,,,,not-testable-in-window
+st_george,St. George's Mushroom,Calocybe gambosa,fruiting-proxy,24,0,0,,,,,,,,,not-testable-in-window
+chant,Chanterelle,Cantharellus cibarius,fruiting-proxy,460,382,52,6.46,6.33,0.961,0.681,0.564,0.531,0.596,2.3,testable

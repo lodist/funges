@@ -3,11 +3,32 @@
 export const FORECAST_DAYS = 7;
 export const FORECAST_REGIONS = ['ne', 'se', 'use', 'usw'] as const;
 
-/** "D/M" label for the date `dayIndex` days after `base`. */
-export function forecastDayLabel(base: Date, dayIndex: number): string {
+function capitalize(word: string): string {
+  return word.length ? word[0].toUpperCase() + word.slice(1) : word;
+}
+
+/** "<weekday> <day> <month>" label (e.g. "Gio 24 Aprile") for the date `dayIndex`
+ *  days after `base`, localized to `locale` — weekday/month are capitalized since
+ *  Intl lowercases them for several locales (it/fr/de/es/pt) but not others (en). */
+export function forecastDayLabel(
+  base: Date,
+  dayIndex: number,
+  locale: string
+): string {
   const d = new Date(base);
   d.setDate(d.getDate() + dayIndex);
-  return `${d.getDate()}/${d.getMonth() + 1}`;
+  return new Intl.DateTimeFormat(locale, {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'long',
+  })
+    .formatToParts(d)
+    .map(part =>
+      part.type === 'weekday' || part.type === 'month'
+        ? capitalize(part.value)
+        : part.value
+    )
+    .join('');
 }
 
 /** Return a copy of a fill-color `interpolate` expression whose input is the

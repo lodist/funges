@@ -80,7 +80,6 @@ export interface MapState {
   setShowUserLocation: (show: boolean) => void;
   clearError: () => void;
   getUserLocation: () => Promise<GeolocationPosition>;
-  fetchNearbySpots: (coordinates: [number, number]) => Promise<void>;
 
   // Species selection actions
   setSelectedSpecies: (species: string | null) => void;
@@ -107,6 +106,8 @@ const MAP_STYLES = [
   '/funges_style_topographic.json', // 4 Topographic
 ];
 const DARK_STYLE_INDEXES = new Set([1, 3]); // drives dark UI chrome
+const MAP_CENTER_KEY = 'mapCenter';
+const MAP_ZOOM_KEY = 'mapZoom';
 
 export interface MapThemeOption {
   id: 'light' | 'dark' | 'white' | 'darkmatter' | 'topographic';
@@ -140,6 +141,27 @@ function readStyleIndex(): number {
   }
   // Back-compat with the old light/dark boolean.
   return localStorage.getItem('darkLayersVisible') === 'true' ? 1 : 0;
+}
+
+function readCenter(): [number, number] {
+  try {
+    const saved = JSON.parse(localStorage.getItem(MAP_CENTER_KEY) ?? 'null');
+    if (
+      Array.isArray(saved) &&
+      saved.length === 2 &&
+      saved.every(value => typeof value === 'number' && Number.isFinite(value))
+    ) {
+      return [saved[0], saved[1]];
+    }
+  } catch {
+    // Ignore corrupt legacy/local values and use the default below.
+  }
+  return [7.3359, 47.7508];
+}
+
+function readZoom(): number {
+  const saved = Number(localStorage.getItem(MAP_ZOOM_KEY));
+  return Number.isFinite(saved) && saved >= 3.01 && saved <= 20 ? saved : 3.5;
 }
 
 // Region overlay/forecast tilesets are heavy; keeping all four live at once (even when
@@ -194,8 +216,8 @@ export const useMapStore = create<MapState>()(
   devtools(
     (set, get) => ({
       // Initial state
-      center: [7.3359, 47.7508], // Switzerland
-      zoom: 3.5,
+      center: readCenter(),
+      zoom: readZoom(),
       bearing: 0,
       pitch: 0,
       mapStyle: MAP_STYLES[readStyleIndex()], // self-hosted from public/
@@ -221,8 +243,14 @@ export const useMapStore = create<MapState>()(
       mapRef: null,
 
       // Actions
-      setCenter: center => set({ center }),
-      setZoom: zoom => set({ zoom }),
+      setCenter: center => {
+        localStorage.setItem(MAP_CENTER_KEY, JSON.stringify(center));
+        set({ center });
+      },
+      setZoom: zoom => {
+        localStorage.setItem(MAP_ZOOM_KEY, String(zoom));
+        set({ zoom });
+      },
       setBearing: bearing => set({ bearing }),
       setPitch: pitch => set({ pitch }),
       setMapStyle: mapStyle => set({ mapStyle }),
@@ -292,20 +320,12 @@ export const useMapStore = create<MapState>()(
           }
 
           navigator.geolocation.getCurrentPosition(
-            async position => {
+            position => {
               const coords: [number, number] = [
                 position.coords.longitude,
                 position.coords.latitude,
               ];
               set({ userLocation: coords, userLocationError: null });
-
-              // Automatically fetch nearby foraging spots when user gets location
-              try {
-                await get().fetchNearbySpots(coords);
-              } catch (error) {
-                console.warn('Failed to fetch nearby foraging spots:', error);
-                // Don't reject the main promise for this, just log the warning
-              }
 
               resolve(position);
             },
@@ -321,36 +341,6 @@ export const useMapStore = create<MapState>()(
             }
           );
         });
-      },
-
-      fetchNearbySpots: async coordinates => {
-        set({ isLoading: true, error: null });
-        try {
-          // Use the API function to fetch nearby spots
-          const { api } = await import('@/lib/api');
-          const apiSpots = await api.map.getNearbySpots(coordinates, 10); // 10km radius
-
-          // Transform API spots to match our interface
-          const spots: ForagingSpot[] = apiSpots.map(spot => ({
-            id: spot.id,
-            name: spot.name,
-            description: spot.description,
-            coordinates: spot.coordinates,
-            type:
-              spot.species.includes('chant') || spot.species.includes('morel')
-                ? 'mushroom'
-                : 'berry',
-            season: spot.seasonality,
-            confidence: 0.8, // Default confidence
-            lastUpdated: new Date().toISOString(),
-          }));
-
-          set({ foragingSpots: spots, isLoading: false });
-        } catch (error) {
-          // Don't set an error for this background operation, just log it
-          console.warn('Failed to fetch nearby foraging spots:', error);
-          set({ isLoading: false });
-        }
       },
 
       // Foraging spot actions
