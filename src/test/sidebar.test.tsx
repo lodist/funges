@@ -99,7 +99,7 @@ describe('shape and motion follow the system, not upstream', () => {
       recursive: true,
       encoding: 'utf8',
     })
-      .map(p => p.replaceAll('\\', '/'))
+      .map(p => p.replace(/\\/g, '/'))
       .filter(p => /\.(tsx?|css|scss)$/.test(p) && !p.startsWith('test/'))
       .filter(p =>
         /ease-linear/.test(stripComments(readFileSync(`src/${p}`, 'utf8')))

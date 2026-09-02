@@ -9,6 +9,9 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     include: ['src/test/**/*.test.{ts,tsx}'],
+    // Full-tree design-system guards scan hundreds of source files. On Windows
+    // they can exceed Vitest's 5s default when the suite runs concurrently.
+    testTimeout: 15_000,
     css: true,
   },
   resolve: {

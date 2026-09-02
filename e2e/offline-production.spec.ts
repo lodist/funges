@@ -66,4 +66,15 @@ test('production app shell reloads and switches every map style offline', async 
   await expect(
     page.getByText('Using the map offline', { exact: true })
   ).toBeVisible();
+
+  // Vite's development server cannot load route modules after DevTools is set
+  // offline. The production service worker precaches the built route chunk, so
+  // a direct offline navigation must still render the species database.
+  await page.goto('/species');
+  await expect(
+    page.getByRole('heading', { name: 'Species Database' })
+  ).toBeVisible();
+  await expect(
+    page.getByText('Chanterelle', { exact: true }).first()
+  ).toBeVisible();
 });

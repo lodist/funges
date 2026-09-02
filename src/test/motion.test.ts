@@ -32,7 +32,7 @@ const globalsScss = readFileSync('src/styles/globals.scss', 'utf8');
 const rootRoute = readFileSync('src/routes/__root.tsx', 'utf8');
 
 const sources = readdirSync('src', { recursive: true, encoding: 'utf8' })
-  .map(p => p.replaceAll('\\', '/'))
+  .map(p => p.replace(/\\/g, '/'))
   .filter(
     p => /\.(tsx?|css|scss|mdx)$/.test(p) && !p.endsWith('motion.test.ts')
   )
