@@ -6,7 +6,6 @@ from functools import lru_cache
 from pathlib import Path
 
 _REGISTRY_PATH = Path(__file__).resolve().parent / "generated" / "species_registry.json"
-_REGIONS = frozenset({"NE", "SE", "USE", "USW"})
 
 
 @lru_cache(maxsize=1)
@@ -14,10 +13,19 @@ def _registry():
     return json.loads(_REGISTRY_PATH.read_text(encoding="utf-8"))
 
 
+def _known_regions():
+    """Regions that carry at least one available species."""
+    return frozenset(
+        region
+        for config in _registry()["species"].values()
+        for region in config["regions"]
+    )
+
+
 def _require_region(region):
-    if region not in _REGIONS:
+    if region not in _known_regions():
         raise ValueError(
-            f"unknown region {region!r}; expected one of {', '.join(sorted(_REGIONS))}"
+            f"unknown region {region!r}; expected one of {', '.join(sorted(_known_regions()))}"
         )
 
 

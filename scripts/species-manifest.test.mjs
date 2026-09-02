@@ -432,6 +432,26 @@ test('repository check is read-only', async () => {
     assert.deepEqual(fs.readFileSync(path.join(root, filename)), contents);
 });
 
+test('repository check flags a style layer with no manifest behind it', async () => {
+  const root = fixtureRoot();
+  addForecastSpecies(root);
+  await generate(root);
+  const filename = path.join(root, 'public/funges_style.json');
+  const style = JSON.parse(fs.readFileSync(filename, 'utf8'));
+  style.layers.push({
+    id: 'orphan_ne',
+    type: 'fill',
+    source: 'overlay-ne',
+    paint: { 'fill-opacity': ['get', 'orphan_score'] },
+  });
+  fs.writeFileSync(filename, JSON.stringify(style));
+
+  assert.match(
+    (await checkRepository(root)).join('\n'),
+    /funges_style\.json: forecast layers are stale/
+  );
+});
+
 test('repository check detects BioCLIP label and embedding drift', async () => {
   const root = fixtureRoot();
   await generate(root);

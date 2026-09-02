@@ -1,3 +1,5 @@
+import pytest
+
 from backend import species_registry
 
 
@@ -86,3 +88,21 @@ def test_unknown_region_is_rejected():
             assert "unknown region" in str(error)
         else:
             raise AssertionError(f"{loader.__name__} accepted an unknown region")
+
+
+def test_a_region_with_no_available_species_is_rejected(monkeypatch):
+    monkeypatch.setattr(
+        species_registry,
+        "_registry",
+        lambda: {
+            "species": {
+                "example": {
+                    "regions": {"NE": {"landCover": [10], "scoring": {}}}
+                }
+            }
+        },
+    )
+
+    assert species_registry.get_species_params("NE")
+    with pytest.raises(ValueError, match="unknown region"):
+        species_registry.get_species_params("USW")

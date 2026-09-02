@@ -595,12 +595,24 @@ function replaceDeep(value, from, to) {
   return value;
 }
 
-function reconcileStyleLayers(style, forecastIdsByRegion) {
+function forecastIdsByRegion(entries) {
+  const forecastEntries = entries.filter(x => x.data.forecast.enabled);
+  return Object.fromEntries(
+    REGIONS.map(region => [
+      region,
+      forecastEntries
+        .filter(x => x.data.forecast.regions[region].available)
+        .map(x => x.data.id),
+    ])
+  );
+}
+
+function reconcileStyleLayers(style, wantedIdsByRegion) {
   const out = structuredClone(style);
   const existingLayers = new Map(out.layers.map(layer => [layer.id, layer]));
   const templates = new Map();
   for (const region of REGIONS.map(x => x.toLowerCase())) {
-    const wantedIds = forecastIdsByRegion[region.toUpperCase()];
+    const wantedIds = wantedIdsByRegion[region.toUpperCase()];
     const templateId =
       ['chant', ...wantedIds].find(id =>
         out.layers.some(layer => layer.id === `${id}_${region}`)
@@ -645,12 +657,12 @@ function reconcileStyleLayers(style, forecastIdsByRegion) {
     throw new Error('style is missing forecast overlay layers');
 
   const orderedIds = [
-    ...new Set(REGIONS.flatMap(region => forecastIdsByRegion[region])),
+    ...new Set(REGIONS.flatMap(region => wantedIdsByRegion[region])),
   ];
   const wantedLayerIds = new Set();
   for (const id of orderedIds) {
     for (const region of REGIONS.map(x => x.toLowerCase())) {
-      if (!forecastIdsByRegion[region.toUpperCase()].includes(id)) continue;
+      if (!wantedIdsByRegion[region.toUpperCase()].includes(id)) continue;
       wantedLayerIds.add(`${id}_${region}`);
       wantedLayerIds.add(`${id}_${region}_numbers`);
     }
@@ -663,7 +675,7 @@ function reconcileStyleLayers(style, forecastIdsByRegion) {
   const numbers = [];
   for (const id of orderedIds) {
     for (const region of REGIONS.map(x => x.toLowerCase())) {
-      if (!forecastIdsByRegion[region.toUpperCase()].includes(id)) continue;
+      if (!wantedIdsByRegion[region.toUpperCase()].includes(id)) continue;
       const { templateBase, templateNumbers, templatePrefix } =
         templates.get(region);
       if (!existingLayers.has(`${id}_${region}`))
@@ -752,6 +764,17 @@ function checkStyleLayers(entries, root) {
       fs.readFileSync(rel(root, 'public', name), 'utf8')
     );
     const layers = new Map(style.layers.map(layer => [layer.id, layer]));
+    // Catches layer ids no manifest explains (a deleted species), which the
+    // per-species loop below cannot see.
+    try {
+      const wanted = reconcileStyleLayers(style, forecastIdsByRegion(entries));
+      if (JSON.stringify(style) !== JSON.stringify(wanted))
+        errors.push(
+          `public/${name}: forecast layers are stale (orphan or misordered); run npm run species:generate`
+        );
+    } catch (error) {
+      errors.push(`public/${name}: ${error.message}`);
+    }
     for (const region of REGIONS.map(x => x.toLowerCase())) {
       for (const entry of forecastEntries) {
         const id = entry.data.id;
@@ -842,19 +865,10 @@ export async function generate(root = process.cwd()) {
     fs.mkdirSync(path.dirname(absolute), { recursive: true });
     fs.writeFileSync(absolute, contents);
   }
-  const forecastEntries = entries.filter(x => x.data.forecast.enabled);
-  const forecastIdsByRegion = Object.fromEntries(
-    REGIONS.map(region => [
-      region,
-      forecastEntries
-        .filter(x => x.data.forecast.regions[region].available)
-        .map(x => x.data.id),
-    ])
-  );
   for (const name of STYLE_NAMES) {
     const filename = rel(root, 'public', name);
     const current = JSON.parse(fs.readFileSync(filename, 'utf8'));
-    const updated = reconcileStyleLayers(current, forecastIdsByRegion);
+    const updated = reconcileStyleLayers(current, forecastIdsByRegion(entries));
     if (JSON.stringify(current) !== JSON.stringify(updated))
       fs.writeFileSync(
         filename,
