@@ -3,6 +3,7 @@ import React, {
   Suspense,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -10,11 +11,24 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { protocol } from '@/lib/pmtiles-protocol';
 import {
+  deactivateOfflineSources,
+  hydrateOfflineSources,
+} from '@/lib/offlineCache';
+import {
   useMapStore,
   REGION_BBOX,
   resolveDataNerdRegion,
 } from '@/store/mapStore';
-import { useOfflineStore, CONTINENTS } from '@/store/offlineStore';
+import { useOfflineStore } from '@/store/offlineStore';
+import {
+  containsCoordinate,
+  intersectsBounds,
+  offlineMapMaxZoom,
+  ONLINE_MAX_ZOOM,
+  packageHasBasemap,
+  packageSize,
+  type OfflineContinent,
+} from '@/lib/offline-packages';
 import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
 import { Card } from '@/components/ui/card';
@@ -57,6 +71,7 @@ const CONTINENT_BBOX = {
   eu: REGION_BBOX.ne,
   us: REGION_BBOX.use,
 };
+const CONTINENTS: OfflineContinent[] = ['eu', 'us'];
 
 const ROUTE_SOURCE_ID = 'route-to-dish-line';
 const ROUTE_LAYER_ID = 'route-to-dish-line-layer';
@@ -128,6 +143,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const geolocateControl = useRef<maplibregl.GeolocateControl | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapError, setMapError] = useState<string | null>(null);
+  const [viewportBounds, setViewportBounds] = useState<
+    [number, number, number, number] | null
+  >(null);
   const [selectedFeature, setSelectedFeature] =
     useState<maplibregl.GeoJSONFeature | null>(null);
   const [isFeatureModalOpen, setIsFeatureModalOpen] = useState(false);
@@ -190,7 +208,41 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     activeDay,
   } = useMapStore();
   const { isOnline } = usePWA();
-  const { cached: cachedContinents } = useOfflineStore();
+  const { cached: cachedPackages, activateForCoordinate } = useOfflineStore();
+  const renderedBasemapKey = useRef<string | null>(isOnline ? 'online' : null);
+  const cachedPackageList = useMemo(
+    () => Object.values(cachedPackages),
+    [cachedPackages]
+  );
+  // The full-screen notice means "nothing downloaded is on screen", so it has
+  // to test the whole viewport. Before the first move event fires there is no
+  // viewport yet; a degenerate box at the centre reduces to point containment.
+  const noticeViewport: [number, number, number, number] = viewportBounds ?? [
+    center[0],
+    center[1],
+    center[0],
+    center[1],
+  ];
+  const hasOfflinePackageInView = cachedPackageList.some(
+    item => !item.expired && intersectsBounds(item.definition, noticeViewport)
+  );
+  const hasOfflineBasemapAtCenter = cachedPackageList.some(
+    item =>
+      !item.expired &&
+      packageHasBasemap(item.definition) &&
+      containsCoordinate(item.definition, center[0], center[1])
+  );
+  const offlineBasemapAtCenter = cachedPackageList
+    .filter(
+      item =>
+        !item.expired &&
+        packageHasBasemap(item.definition) &&
+        containsCoordinate(item.definition, center[0], center[1])
+    )
+    .sort((a, b) => packageSize(a.definition) - packageSize(b.definition))[0];
+  const offlineBasemapPackageIdAtCenter = offlineBasemapAtCenter?.id;
+  const offlineBasemapMaxZoom =
+    offlineBasemapAtCenter?.definition.maxZoom ?? null;
   const routeStart = showUserLocation && userLocation ? userLocation : center;
   const routeRecipes = recipes.map(recipe => ({
     id: recipe.id,
@@ -202,6 +254,84 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     if (!activeRoute) return;
     window.open(getGoogleMapsDirectionsUrl(activeRoute), '_blank');
   }, [activeRoute]);
+
+  useEffect(() => {
+    if (isOnline) return;
+    closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
+  }, [isOnline]);
+
+  useEffect(() => {
+    let cancelled = false;
+    const syncMapSources = async () => {
+      let nextBasemapKey: string | null;
+      if (isOnline) {
+        await deactivateOfflineSources();
+        nextBasemapKey = 'online';
+      } else {
+        await hydrateOfflineSources();
+        nextBasemapKey = await activateForCoordinate(center[0], center[1]);
+      }
+      if (cancelled) return;
+
+      // Keep the last regional archive active while crossing the Atlantic. A
+      // null package has no replacement source, and reloading it would make
+      // MapLibre fall back to the unreachable network URL while offline.
+      if (!isOnline && nextBasemapKey === null) {
+        map.current?.triggerRepaint();
+        return;
+      }
+
+      // Europe and the US replace the same canonical basemap URL. Reload only
+      // that vector source so MapLibre drops its old PMTiles header/tile cache;
+      // recreating the entire map here causes camera jumps during panning.
+      if (renderedBasemapKey.current !== nextBasemapKey) {
+        const basemapSource = map.current?.getSource(
+          'aws'
+        ) as maplibregl.VectorTileSource | null;
+        const serialized = basemapSource?.serialize();
+        if (
+          basemapSource &&
+          serialized &&
+          'url' in serialized &&
+          serialized.url
+        ) {
+          renderedBasemapKey.current = nextBasemapKey;
+          basemapSource.setUrl(serialized.url);
+          return;
+        }
+        if (!map.current) renderedBasemapKey.current = nextBasemapKey;
+        return;
+      }
+      map.current?.triggerRepaint();
+    };
+    void syncMapSources().catch(error => {
+      console.warn(
+        'Unable to switch map sources for connectivity change:',
+        error
+      );
+    });
+    return () => {
+      cancelled = true;
+    };
+    // Re-run only when movement crosses a downloaded package boundary. Ordinary
+    // movement within a package must not repeatedly reopen a large local file.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    isOnline,
+    activateForCoordinate,
+    offlineBasemapPackageIdAtCenter,
+    mapLoaded,
+  ]);
+
+  // The offline archive has no tiles past its package maxZoom, so MapLibre
+  // renders blank instead of overzooming. Cap the camera while it is the
+  // source and hand the full range back once the online tiles return.
+  useEffect(() => {
+    const instance = map.current;
+    if (!instance || !mapLoaded) return;
+    const limit = offlineMapMaxZoom(isOnline, offlineBasemapMaxZoom);
+    if (instance.getMaxZoom() !== limit) instance.setMaxZoom(limit);
+  }, [isOnline, offlineBasemapMaxZoom, mapLoaded]);
 
   useEffect(() => {
     routeInputsRef.current = {
@@ -227,7 +357,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         // Basemap tiles are baked to z12 natively; MapLibre overzooms past that
         // (reuses/upscales the z12 tile) so labels/roads keep rendering using the
         // interpolation stops already authored up to z20-22 in the style files.
-        maxZoom: 20,
+        maxZoom: ONLINE_MAX_ZOOM,
         minZoom: 3.01,
         collectResourceTiming: false,
         touchZoomRotate: true,
@@ -346,9 +476,23 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
       map.current.addControl(geolocate);
 
+      const syncViewportBounds = () => {
+        const bounds = map.current?.getBounds();
+        if (!bounds) return;
+        setViewportBounds([
+          bounds.getWest(),
+          bounds.getSouth(),
+          bounds.getEast(),
+          bounds.getNorth(),
+        ]);
+      };
+
       // Handle map load
       map.current.on('load', () => {
         setMapLoaded(true);
+        // 'move' does not fire during initialization, so seed the viewport here
+        // or the offline notice falls back to point containment until first pan.
+        syncViewportBounds();
         setMapError(null);
         setMapRef(map.current);
         updateVisibleLayers();
@@ -391,6 +535,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           const center = map.current.getCenter();
           setCenter([center.lng, center.lat]);
           setZoom(map.current.getZoom());
+          syncViewportBounds();
         }
       });
 
@@ -870,7 +1015,11 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     CONTINENTS.forEach(continent => {
       const sourceId = `offline-basemap-${continent}`;
       const layerId = `${sourceId}-layer`;
-      const shouldShow = !isOnline && Boolean(cachedContinents[continent]);
+      const hasContinentPackage = cachedPackageList.some(
+        item => !item.expired && item.definition.continent === continent
+      );
+      const shouldShow =
+        !isOnline && !hasOfflineBasemapAtCenter && hasContinentPackage;
       const exists = Boolean(mapInstance.getSource(sourceId));
 
       if (shouldShow && !exists) {
@@ -894,7 +1043,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         mapInstance.removeSource(sourceId);
       }
     });
-  }, [mapLoaded, isOnline, cachedContinents]);
+  }, [mapLoaded, isOnline, cachedPackageList, hasOfflineBasemapAtCenter]);
 
   if (mapError) {
     return (
@@ -955,9 +1104,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         {/* Offline notice. The map still initializes offline — the style JSON is
             precached — so it renders as empty background with no error and
             nothing tells the user why. mapError never fires for this.
-            ponytail: shows whenever offline; gate on cachedContinents once
-            downloaded regions can actually render tiles. */}
-        {mapLoaded && !isOnline && (
+            Hide it as soon as any downloaded package overlaps the viewport. */}
+        {!isOnline && !hasOfflinePackageInView && (
           <div className='absolute inset-0 z-30 flex items-center justify-center p-6 pointer-events-none'>
             <div className='max-w-xs rounded-lg border bg-background/95 p-4 text-center shadow-lg'>
               <WifiOff className='mx-auto mb-2 h-6 w-6 text-muted-foreground' />
@@ -965,11 +1113,20 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 {t('offline.title')}
               </h3>
               <p className='text-xs text-muted-foreground'>
-                {t('offline.message')}
+                {t('offline.noPackageMessage')}
               </p>
             </div>
           </div>
         )}
+
+        {mapLoaded &&
+          !isOnline &&
+          hasOfflinePackageInView &&
+          !hasOfflineBasemapAtCenter && (
+            <div className='pointer-events-none absolute left-1/2 top-14 z-20 w-max max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-md border bg-background/90 px-3 py-2 text-center text-xs text-muted-foreground shadow-sm'>
+              {t('offline.forecastOnlyMessage')}
+            </div>
+          )}
 
         {/* Species selector - top left corner */}
         <div className='absolute top-2 left-2 z-20'>
@@ -1001,29 +1158,30 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           {/* Map theme selector (Light/Dark/White/Dark Matter/Topographic) */}
           <MapThemeSelector />
 
-          {/* Info button */}
-          <Button
-            variant='outline'
-            size='icon'
-            onClick={() => {
-              if (isRoutePanelOpen) {
-                closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
-                return;
+          {isOnline && (
+            <Button
+              variant='outline'
+              size='icon'
+              onClick={() => {
+                if (isRoutePanelOpen) {
+                  closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
+                  return;
+                }
+
+                setIsRoutePanelOpen(true);
+              }}
+              className={
+                isRoutePanelOpen
+                  ? 'bg-secondary text-primary-text hover:bg-secondary hover:text-foreground'
+                  : undefined
               }
+              title={tRecipes('routePanel.title')}
+              aria-label={tRecipes('routePanel.title')}
+            >
+              <ChefHat className='h-4 w-4' />
+            </Button>
+          )}
 
-              setIsRoutePanelOpen(true);
-            }}
-            className={
-              isRoutePanelOpen
-                ? 'bg-secondary text-primary-text hover:bg-secondary hover:text-foreground'
-                : undefined
-            }
-            title={tRecipes('routePanel.title')}
-          >
-            <ChefHat className='h-4 w-4' />
-          </Button>
-
-          {/* Identify from a photo. Sits directly above Info in the stack. */}
           <Button
             variant='outline'
             size='icon'
@@ -1135,8 +1293,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           setSelectedFeature(null);
           setIsModalFromLocateMe(false);
         }}
-        hideDirections={isModalFromLocateMe}
-        dataNerdRegion={dataNerdRegion}
+        hideDirections={isModalFromLocateMe || !isOnline}
+        dataNerdRegion={isOnline ? dataNerdRegion : null}
       />
 
       {/* Mounted only once opened, so the ONNX chunk is never fetched by a user

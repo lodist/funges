@@ -96,7 +96,8 @@
       "numbers": "Afficher ou masquer l’index numérique",
       "theme": "Choisissez un thème de carte : Clair, Sombre, Blanc, Dark Matter ou Topographique",
       "zones": "Touchez une zone pour voir la liste des espèces",
-      "recipes": "Ouvrez les recettes proches et tracez un itineraire vers chaque etape ingredient"
+      "recipes": "Ouvrez les recettes proches et tracez un itineraire vers chaque etape ingredient",
+      "offline": "Enregistrez une carte avant votre sortie pour l’utiliser hors ligne"
     },
     "instructions": "Lire les instructions complètes",
     "supportLink": "Soutenir le projet",
@@ -114,6 +115,7 @@
   },
   "offline": {
     "title": "Hors connexion",
-    "message": "La carte a besoin d'une connexion pour se charger. Les espèces et les recettes fonctionnent hors connexion."
+    "noPackageMessage": "Aucun forfait téléchargé ne couvre cette zone. Reconnectez-vous ou revenez dans une zone enregistrée.",
+    "forecastOnlyMessage": "Prévisions hors ligne chargées. Le fond de carte détaillé nécessite une connexion."
   }
 }

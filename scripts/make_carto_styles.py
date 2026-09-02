@@ -28,7 +28,7 @@ POSITRON = dict(
     # near-charcoal text + white halo so names stay legible over the light-tan
     # forecast polygons (medium grey washed out over them)
     label="#33373b", label_halo="#ffffff", water_label="#6d8595",
-    sprite="https://protomaps.github.io/basemaps-assets/sprites/v4/light",
+    sprite="map-assets/sprites/v4/light",
 )
 DARKMATTER = dict(
     name="Funges Dark Matter",
@@ -38,7 +38,7 @@ DARKMATTER = dict(
     boundary_country="#2d2d2d", boundary_region="#232323",
     road_major="#2e2e2e", road_medium="#242424", road_minor="#1c1c1c",
     label="#a8a8a8", label_halo="#000000", water_label="#5a7280",
-    sprite="https://protomaps.github.io/basemaps-assets/sprites/v4/dark",
+    sprite="map-assets/sprites/v4/dark",
 )
 # Natural-terrain hiking-map palette (Outdooractive/Alpine-club style): distinct
 # forest/scrub/farmland/urban land-cover tones instead of one flat tint, plus
@@ -65,7 +65,7 @@ TOPOGRAPHIC = dict(
     boundary_country="#8a6d46", boundary_region="#b79f74",
     road_major="#c9773f", road_medium="#d79f66", road_minor="#e3c093",
     label="#3a2c18", label_halo="#f7f2df", water_label="#2f5b66",
-    sprite="https://protomaps.github.io/basemaps-assets/sprites/v4/light",
+    sprite="map-assets/sprites/v4/light",
     trail="#b0392c", trail_minzoom=8,
 )
 
