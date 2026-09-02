@@ -1,0 +1,8 @@
+# Manifest sources and generated artifacts must be byte-stable across platforms.
+content/species/** text eol=lf
+scripts/species-manifest.mjs text eol=lf
+scripts/species-manifest.test.mjs text eol=lf
+backend/generated/** text eol=lf
+backend/tools/generated_catalog.py text eol=lf
+src/generated/** text eol=lf
+src/i18n/locales/*/species.json text eol=lf

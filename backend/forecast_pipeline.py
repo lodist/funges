@@ -27,6 +27,7 @@ from shapely.geometry import shape, Point
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasonality
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
+from species_registry import get_species_params
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
@@ -178,10 +179,10 @@ def fetch_weather_data(lat, lon, api_key, counter=None, retries=4):
 
 @dataclass
 class RegionConfig:
+    region: str
     boundaries_env: str
     coordinates_env: str
     base_env: str
-    species_params_env: str
     weather_data_env: str
     static_info_env: str
     season_curves_env: str
@@ -858,15 +859,8 @@ def calculate_mushroom_score(df, species_params, zone_curves):
 
 # --- Loader helpers (wrap original top-of-script blocks) -------------------
 
-def _load_species_and_curves(config, species_params_path):
-    if is_remote_path(species_params_path):
-        code = r2_fetch(species_params_path)
-    else:
-        with open(species_params_path, "r", encoding="utf-8") as f:
-            code = f.read()
-    ns = {}
-    exec(code, ns)
-    species_params = ns["species_params"]
+def _load_species_and_curves(config):
+    species_params = get_species_params(config.region)
 
     _curves_path = get_required_env(config.season_curves_env)
     try:
@@ -960,11 +954,10 @@ def run_pipeline(config: RegionConfig):
     geojson_path = get_required_env(config.boundaries_env)
     coordinates_file_path = get_required_env(config.coordinates_env)
     base_file_path = get_required_env(config.base_env)
-    species_params_path = get_required_env(config.species_params_env)
     main_data_path = get_required_env(config.weather_data_env)
     static_info_path = get_required_env(config.static_info_env)
 
-    species_params, zone_curves = _load_species_and_curves(config, species_params_path)
+    species_params, zone_curves = _load_species_and_curves(config)
     static_map = _load_static_map(static_info_path, config.ndp)
     coordinates = _load_or_build_coords(config, coordinates_file_path, geojson_path)
     print(f"Final number of coordinates: {len(coordinates)}")

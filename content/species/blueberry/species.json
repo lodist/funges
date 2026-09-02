@@ -1,0 +1,66 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "blueberry",
+  "scientificName": "Vaccinium myrtillus",
+  "catalog": {
+    "enabled": true,
+    "order": 13,
+    "translationKey": "blueberry",
+    "category": "berry",
+    "emoji": "🫐",
+    "season": "summer-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/blueberry.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Wild Blueberry",
+      "description": "Small sweet blue berries that grow on low shrubs in acidic soil",
+      "howTo": "Found in heaths, moors, and acidic forests in summer and early autumn"
+    },
+    "it": {
+      "name": "Mirtillo Selvatico",
+      "description": "Piccole bacche blu dolci che crescono su arbusti bassi in terreno acido",
+      "howTo": "Trovato in brughiere, lande e foreste acide in estate e inizio autunno"
+    },
+    "fr": {
+      "name": "Myrtille sauvage",
+      "description": "Petites baies bleues sucrées poussant sur des arbustes bas en sol acide",
+      "howTo": "Se trouve dans les landes, tourbières et forêts acides en été et début d'automne"
+    },
+    "de": {
+      "name": "Waldheidelbeere",
+      "description": "Kleine, süsse blaue Beeren an niedrigen Sträuchern auf saurem Boden",
+      "howTo": "Zu finden in Heiden, Mooren und sauren Wäldern im Sommer und Frühherbst"
+    },
+    "es": {
+      "name": "Arándano silvestre",
+      "description": "Pequeñas bayas azules dulces que crecen en arbustos bajos en suelos ácidos",
+      "howTo": "Se encuentra en brezales, turberas y bosques ácidos en verano y principios de otoño"
+    },
+    "pt": {
+      "name": "Mirtilo-selvagem",
+      "description": "Pequenas frutas azuis doces que crescem em arbustos baixos em solo ácido",
+      "howTo": "Encontrado em charnecas, turfeiras e florestas ácidas no verão e início do outono"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Vaccinium myrtillus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": false,
+    "dataColumns": []
+  }
+}

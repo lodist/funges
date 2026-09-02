@@ -127,7 +127,7 @@ def history_df():
 
 def config():
     return fp.RegionConfig(
-        boundaries_env="b", coordinates_env="c", base_env="base", species_params_env="s",
+        region="NE", boundaries_env="b", coordinates_env="c", base_env="base",
         weather_data_env="w", static_info_env="st", season_curves_env="sc", zone_curves_env="zc",
         lat_range=(0, 0), lon_range=(0, 0), lag_days=LAG_DAYS,
     )

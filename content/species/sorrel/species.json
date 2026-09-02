@@ -1,0 +1,268 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "sorrel",
+  "scientificName": "Rumex acetosa",
+  "catalog": {
+    "enabled": true,
+    "order": 30,
+    "translationKey": "sorrel",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "spring-summer",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/sorrel.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Common Sorrel",
+      "description": "A tangy, lemon-flavored leafy plant often used in salads and soups.",
+      "howTo": "Harvest young leaves in meadows, grasslands, and along paths in spring and summer."
+    },
+    "it": {
+      "name": "Acetosa Comune",
+      "description": "Pianta dal sapore acidulo e limonato, usata in insalate e zuppe.",
+      "howTo": "Raccogli le foglie giovani in prati, pascoli e lungo i sentieri in primavera ed estate."
+    },
+    "fr": {
+      "name": "Oseille commune",
+      "description": "Plante au goût acidulé et citronné, utilisée dans les salades et les soupes.",
+      "howTo": "Récolte les jeunes feuilles dans les prairies, pâturages et le long des sentiers au printemps et en été."
+    },
+    "de": {
+      "name": "Gewöhnlicher Sauerampfer",
+      "description": "Pflanze mit säuerlich-zitronigem Geschmack, verwendet in Salaten und Suppen.",
+      "howTo": "Pflücke die jungen Blätter auf Wiesen, Weiden und entlang von Wegen im Frühling und Sommer."
+    },
+    "es": {
+      "name": "Acedera común",
+      "description": "Planta de sabor ácido y cítrico, utilizada en ensaladas y sopas.",
+      "howTo": "Recolecta las hojas jóvenes en praderas, pastizales y a lo largo de los senderos en primavera y verano."
+    },
+    "pt": {
+      "name": "Azedinha-comum",
+      "description": "Planta de sabor ácido e cítrico, utilizada em saladas e sopas.",
+      "howTo": "Colha as folhas jovens em prados, pastagens e ao longo dos caminhos na primavera e no verão."
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Rumex acetosa",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Sorrel"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [321, 324],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 5,
+          "min_temp": 4,
+          "max_temp": 22,
+          "optimal_alt": 500,
+          "alt_sigma": 1000,
+          "optimal_humidity": 80,
+          "humidity_sigma": 11,
+          "optimal_pH": 5.75,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.5, 7],
+          "optimal_soil_temp": 12.5,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5, 6, 9, 10, 11],
+          "water_relevance": true,
+          "sea_relevance": false,
+          "distance_thresholds": {
+            "water": 1300
+          }
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [321, 324],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 5,
+          "min_temp": 4,
+          "max_temp": 22,
+          "optimal_alt": 500,
+          "alt_sigma": 1000,
+          "optimal_humidity": 80,
+          "humidity_sigma": 11,
+          "optimal_pH": 5.75,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.5, 7],
+          "optimal_soil_temp": 12.5,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5, 6, 9, 10, 11],
+          "water_relevance": true,
+          "sea_relevance": false,
+          "distance_thresholds": {
+            "water": 1300
+          }
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": true,
+        "landCover": [71, 52],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 5,
+          "min_temp": 4,
+          "max_temp": 22,
+          "optimal_alt": 500,
+          "alt_sigma": 1000,
+          "optimal_humidity": 80,
+          "humidity_sigma": 11,
+          "optimal_pH": 5.75,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.5, 7],
+          "optimal_soil_temp": 12.5,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_subtropical",
+            "humid_continental",
+            "continental",
+            "temperate",
+            "semiarid_steppe"
+          ],
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5, 6, 9, 10, 11],
+          "water_relevance": true,
+          "sea_relevance": false,
+          "distance_thresholds": {
+            "water": 1300
+          }
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [71, 52],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 5,
+          "min_temp": 4,
+          "max_temp": 22,
+          "optimal_alt": 500,
+          "alt_sigma": 1000,
+          "optimal_humidity": 80,
+          "humidity_sigma": 11,
+          "optimal_pH": 5.75,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.5, 7],
+          "optimal_soil_temp": 12.5,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_subtropical",
+            "humid_continental",
+            "continental",
+            "temperate",
+            "semiarid_steppe"
+          ],
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5, 6, 9, 10, 11],
+          "water_relevance": true,
+          "sea_relevance": false,
+          "distance_thresholds": {
+            "water": 1300
+          }
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    }
+  }
+}

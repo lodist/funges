@@ -18,26 +18,18 @@ import numpy as np
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from species_registry import get_empirical_taxon_map
+
 _THIS_YEAR = date.today().year
 
 GBIF = "https://api.gbif.org/v1/occurrence/search"
 FUNGI_KEY = 5  # Kingdom Fungi
 
 # Fungi only — plants excluded (sighting date ≠ forageable date for perennials).
-TAXON_MAP = {
-    "mushroom":    [8287374],  # Boletus (genus): edulis, aestivalis, pinophilus, reticulatus, ...
-    "morel":       [2594601],  # Morchella (genus): all morels
-    "black_chant": [2554662],  # Craterellus cornucopioides (horn of plenty / black chanterelle)
-    "chant":       [9623860],  # Cantharellus (genus, Fungi): chanterelle
-    "parasol":     [8914748],  # Macrolepiota procera
-    "st_george":   [8936224],  # Calocybe gambosa
-    # Must stay the SPECIES, not genus Tuber (8282501). The genus is dominated by
-    # summer-fruiting relatives, so it produced a July-peaking curve for a winter
-    # truffle -- and because a curve overrides season_months, that curve replaced the
-    # correct hand-written winter window. With the species key the record count falls
-    # below --min-total, no curve is published, and season_months correctly applies.
-    "truffle_b":   [5258468],  # Tuber melanosporum (black Perigord truffle)
-}
+TAXON_MAP = get_empirical_taxon_map()
 
 REGIONS = {
     "NE":  {"lat": (49.0, 71.5), "lon": (-25.0, 32.0),    "env": "NE_SEASON_CURVES"},

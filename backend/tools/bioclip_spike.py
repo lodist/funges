@@ -11,6 +11,7 @@ Stages (disk-cached, run independently):
 """
 import argparse
 import json
+import sys
 import time
 import urllib.error
 import urllib.parse
@@ -18,7 +19,11 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-# --- catalog labels: 32 unique scientific names from src/data/species.ts ---
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "backend" / "tools"))
+from generated_catalog import CATALOG, CATALOG_NAMES
+
+# --- catalog labels: 32 unique scientific names from content/species/*/species.json ---
 # 33 entries collapse to 32 unique names (elderberry + elderflower are both
 # Sambucus nigra).
 #
@@ -28,44 +33,8 @@ from pathlib import Path
 # from a poisonous Scleroderma matters. Scleroderma is promoted to TOXIC below,
 # because adding an edible truffle without flagging its false twin would create
 # a path from a poisonous find to an edible-looking row.
-CATALOG = [
-    ("Cantharellus cibarius", "species"),
-    ("Boletus", "genus"),               # catalog says "Boletus spp."
-    ("Morchella", "genus"),             # catalog says "Morchella spp."
-    ("Craterellus cornucopioides", "species"),
-    ("Laetiporus sulphureus", "species"),
-    ("Pleurotus ostreatus", "species"),
-    ("Lentinula edodes", "species"),    # cultivated; expected below MIN_TEST
-    ("Macrolepiota procera", "species"),
-    ("Calocybe gambosa", "species"),
-    ("Rubus fruticosus", "species"),
-    ("Rubus idaeus", "species"),
-    ("Sambucus nigra", "species"),      # both elderberry and elderflower
-    ("Vaccinium myrtillus", "species"),
-    ("Vaccinium vitis-idaea", "species"),
-    ("Fragaria vesca", "species"),
-    ("Urtica dioica", "species"),
-    ("Taraxacum officinale", "species"),
-    ("Corylus avellana", "species"),
-    ("Allium ursinum", "species"),
-    ("Mentha arvensis", "species"),
-    ("Stellaria media", "species"),
-    ("Plantago major", "species"),
-    ("Juglans regia", "species"),
-    ("Castanea sativa", "species"),
-    ("Bellis perennis", "species"),
-    ("Viola odorata", "species"),
-    ("Amaranthus retroflexus", "species"),
-    ("Cynara cardunculus", "species"),
-    ("Asparagus acutifolius", "species"),
-    ("Peucedanum ostruthium", "species"),
-    ("Rumex acetosa", "species"),
-    ("Tuber melanosporum", "species"),  # dug-up specimen, not in situ
-]
-
-# NOTE: CATALOG must contain exactly 32 entries — every unique scientificName in
-# src/data/species.ts except Tuber melanosporum. Verify with:
-#   grep -E "^    scientificName:" src/data/species.ts | sed "s/.*: '//;s/',$//" | sort -u
+# CATALOG is generated from content/species/*/species.json. The manifest check
+# keeps those identification labels aligned with the shipped BioCLIP vocabulary.
 
 # --- toxic look-alikes: 22 labels. Mandatory: the catalog is edible-only, so
 # without these the model cannot output "deadly" for any photo. ---
@@ -181,7 +150,6 @@ CULTIVATED = [
 ]
 
 CULTIVATED_NAMES = {name for name, _ in CULTIVATED}
-CATALOG_NAMES = {name for name, _ in CATALOG}
 TOXIC_NAMES = {name for name, _ in TOXIC}
 
 INAT_API = "https://api.inaturalist.org/v1"
