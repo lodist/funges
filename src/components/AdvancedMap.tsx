@@ -141,7 +141,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const map = useRef<maplibregl.Map | null>(null);
   const geolocateControl = useRef<maplibregl.GeolocateControl | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
-  const [basemapSourceRevision, setBasemapSourceRevision] = useState(0);
   const [mapError, setMapError] = useState<string | null>(null);
   const [selectedFeature, setSelectedFeature] =
     useState<maplibregl.GeoJSONFeature | null>(null);
@@ -205,14 +204,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     activeDay,
   } = useMapStore();
   const { isOnline } = usePWA();
-  const {
-    cached: cachedPackages,
-    activeBasemapId,
-    activateForCoordinate,
-  } = useOfflineStore();
-  const renderedBasemapKey = useRef<string | null>(
-    isOnline ? 'online' : activeBasemapId
-  );
+  const { cached: cachedPackages, activateForCoordinate } = useOfflineStore();
+  const renderedBasemapKey = useRef<string | null>(isOnline ? 'online' : null);
   const cachedPackageList = useMemo(
     () => Object.values(cachedPackages),
     [cachedPackages]
@@ -268,13 +261,28 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       }
       if (cancelled) return;
 
-      // Europe and the US replace the same canonical basemap URL. MapLibre
-      // caches that source's PMTiles header and tiles, so repainting alone can
-      // keep rendering the previously active regional archive. Recreate the
-      // map only when the backing archive changes, after it has been swapped.
+      // Keep the last regional archive active while crossing the Atlantic. A
+      // null package has no replacement source, and reloading it would make
+      // MapLibre fall back to the unreachable network URL while offline.
+      if (!isOnline && nextBasemapKey === null) {
+        map.current?.triggerRepaint();
+        return;
+      }
+
+      // Europe and the US replace the same canonical basemap URL. Reload only
+      // that vector source so MapLibre drops its old PMTiles header/tile cache;
+      // recreating the entire map here causes camera jumps during panning.
       if (renderedBasemapKey.current !== nextBasemapKey) {
-        renderedBasemapKey.current = nextBasemapKey;
-        setBasemapSourceRevision(revision => revision + 1);
+        const basemapSource = map.current?.getSource(
+          'aws'
+        ) as maplibregl.VectorTileSource | null;
+        const serialized = basemapSource?.serialize();
+        if (serialized && 'url' in serialized && serialized.url) {
+          renderedBasemapKey.current = nextBasemapKey;
+          basemapSource.setUrl(serialized.url);
+          return;
+        }
+        if (!map.current) renderedBasemapKey.current = nextBasemapKey;
         return;
       }
       map.current?.triggerRepaint();
@@ -291,7 +299,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     // Re-run only when movement crosses a downloaded package boundary. Ordinary
     // movement within a package must not repeatedly reopen a large local file.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOnline, activateForCoordinate, offlineBasemapPackageIdAtCenter]);
+  }, [
+    isOnline,
+    activateForCoordinate,
+    offlineBasemapPackageIdAtCenter,
+    mapLoaded,
+  ]);
 
   // The offline archive has no tiles past its package maxZoom, so MapLibre
   // renders blank instead of overzooming. Cap the camera while it is the
@@ -524,7 +537,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       setMapRef(null);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapStyle, basemapSourceRevision]);
+  }, [mapStyle]);
 
   // Update map when center or zoom changes
   useEffect(() => {
