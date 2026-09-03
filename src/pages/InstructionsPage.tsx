@@ -28,26 +28,10 @@ export default function InstructionsPage() {
   const { t } = useTranslation('instructions');
 
   const functions = [
-    {
-      icon: ChefHat,
-      text: t('functions.recipes'),
-      color: 'text-primary-text',
-    },
-    {
-      icon: Navigation,
-      text: t('functions.location'),
-      color: 'text-primary-text',
-    },
-    {
-      icon: Palette,
-      text: t('functions.theme'),
-      color: 'text-muted-foreground',
-    },
-    {
-      icon: ScanSearch,
-      text: t('functions.identify'),
-      color: 'text-primary-text',
-    },
+    { icon: ChefHat, text: t('functions.recipes') },
+    { icon: Navigation, text: t('functions.location') },
+    { icon: Palette, text: t('functions.theme') },
+    { icon: ScanSearch, text: t('functions.identify') },
   ];
 
   const variables = [
@@ -156,9 +140,7 @@ export default function InstructionsPage() {
                     key={func.text}
                     className='flex items-center gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors'
                   >
-                    <func.icon
-                      className={`h-6 w-6 ${func.color} flex-shrink-0`}
-                    />
+                    <func.icon className='h-6 w-6 text-primary-text flex-shrink-0' />
                     <span className='text-foreground'>{func.text}</span>
                   </div>
                 ))}

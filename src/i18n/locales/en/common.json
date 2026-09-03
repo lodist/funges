@@ -272,5 +272,11 @@
       "pressureFallingShort": "falling",
       "pressureRisingShort": "rising"
     }
+  },
+  "theme": {
+    "label": "Theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
   }
 }

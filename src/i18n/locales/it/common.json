@@ -272,5 +272,11 @@
       "pressureFallingShort": "in calo",
       "pressureRisingShort": "in aumento"
     }
+  },
+  "theme": {
+    "label": "Tema",
+    "system": "Sistema",
+    "light": "Chiaro",
+    "dark": "Scuro"
   }
 }

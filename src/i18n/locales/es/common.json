@@ -272,5 +272,11 @@
     "title": "Barra lateral",
     "description": "Muestra la barra lateral en móvil.",
     "toggle": "Mostrar u ocultar la barra lateral"
+  },
+  "theme": {
+    "label": "Tema",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Oscuro"
   }
 }

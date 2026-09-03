@@ -272,5 +272,11 @@
     "title": "Seitenleiste",
     "description": "Zeigt die mobile Seitenleiste an.",
     "toggle": "Seitenleiste ein-/ausblenden"
+  },
+  "theme": {
+    "label": "Design",
+    "system": "System",
+    "light": "Hell",
+    "dark": "Dunkel"
   }
 }

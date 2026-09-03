@@ -137,9 +137,8 @@ const LINE_TOKENS = [
 
 /** Species categories: five steps of the one hue, not five hues. Each sits at
  *  ~95% of the in-gamut chroma for its lightness, so the steps are as far apart
- *  as hue 150 allows. --chart-1…5 alias these, so charts and map markers cannot
- *  drift apart. Ship a category colour with its icon and label — lightness alone
- *  separates five series less well than hue did. */
+ *  as hue 150 allows. Ship a category colour with its icon and label — lightness
+ *  alone separates five series less well than hue did. */
 const CATEGORY_TOKENS = [
   '--category-mushroom',
   '--category-berry',
@@ -148,13 +147,11 @@ const CATEGORY_TOKENS = [
   '--category-nut',
 ];
 
-const CHART_TOKENS = [
-  '--chart-1',
-  '--chart-2',
-  '--chart-3',
-  '--chart-4',
-  '--chart-5',
-];
+/** Measurement charts: the one family where hue encodes quantity rather than
+ *  identity. Warm is heat and pressure, cool is water and cold, brand is the
+ *  middle. Staggered in lightness as well as hue so the series survive
+ *  red-green and blue-yellow vision, where hue alone collapses. */
+const CHART_TOKENS = ['--chart-warm', '--chart-brand', '--chart-cool'];
 
 const HAPPY_SCALE = [
   '--happy-50',
@@ -297,18 +294,75 @@ export const CategoryTokens: Story = {
 export const ChartTokens: Story = {
   render: () => (
     <div className='flex flex-col gap-4'>
-      <div className='grid grid-cols-2 gap-4 sm:grid-cols-5'>
+      <div className='grid grid-cols-1 gap-4 sm:grid-cols-3'>
         {CHART_TOKENS.map(token => (
           <BlockSwatch key={token} token={token} />
         ))}
       </div>
       <p className='text-muted-foreground max-w-2xl text-sm'>
         {
-          'Aliases of the category tokens above, so a chart series and a map marker for the same species cannot disagree. These used to be a fourth green ramp that no product code referenced, while the charts drew from six hardcoded hexes.'
+          'The one family where hue encodes a quantity rather than an identity, and the only place hues 55 and 245 are sanctioned. Warm is heat and pressure, cool is water and cold, brand is the middle. Species categories stay on the green ramp above, because those are identity and have to keep matching their map markers.'
+        }
+      </p>
+      <p className='text-muted-foreground max-w-2xl text-sm'>
+        {
+          'Each token sits at ~95% of the in-gamut chroma for its lightness, so the two themes deliberately order their lightness differently: green still holds 0.228 chroma at L 0.87 where amber is down to 0.098. Flip the toolbar theme — dark leads with green, light leads with amber.'
+        }
+      </p>
+      <p className='text-muted-foreground max-w-2xl text-sm'>
+        {
+          'The ≥0.10 lightness stagger is load bearing, not cosmetic. Hue collapses twice — amber and green merge for red-green vision, green and blue for blue-yellow — and lightness is what still separates the series there. The dash patterns in DataPage are the third channel. src/test/palette.test.ts asserts both the stagger and the 3:1 floor.'
         }
       </p>
     </div>
   ),
+};
+
+export const ChartSeries: Story = {
+  render: () => {
+    const MAX = [17.4, 16.9, 16.4, 16.2, 16, 15.9, 15.8, 15.9, 15.7, 15.8];
+    const AVG = [14.2, 14, 13.8, 13.7, 13.5, 13.3, 13.2, 13.2, 13.1, 13.2];
+    const MIN = [12.1, 12, 11.9, 11.8, 11.6, 11.3, 11.1, 10.9, 10.8, 11];
+    const line = (values: number[]) =>
+      values
+        .map(
+          (value, i) =>
+            `${i ? 'L' : 'M'}${(i / (values.length - 1)) * 320},${
+              90 - ((value - 9) / 10) * 90
+            }`
+        )
+        .join('');
+    const SERIES = [
+      { token: '--chart-warm', values: MAX, width: 1.5, dash: '6 3' },
+      { token: '--chart-brand', values: AVG, width: 2.5, dash: undefined },
+      { token: '--chart-cool', values: MIN, width: 1.5, dash: '2 3' },
+    ];
+
+    return (
+      <div className='flex flex-col gap-4'>
+        <div className='bg-card rounded-card p-4'>
+          <svg viewBox='0 0 320 92' className='w-full' aria-hidden='true'>
+            {SERIES.map(series => (
+              <path
+                key={series.token}
+                d={line(series.values)}
+                fill='none'
+                stroke={`var(${series.token})`}
+                strokeWidth={series.width}
+                strokeDasharray={series.dash}
+                strokeLinecap={series.dash === '2 3' ? 'round' : undefined}
+              />
+            ))}
+          </svg>
+        </div>
+        <p className='text-muted-foreground max-w-2xl text-sm'>
+          {
+            'The three tokens as DataPage actually draws them — max, avg and min temperature on one axis. Colour, lightness and dash pattern all separate them, so the reading survives a greyscale print, a colour-vision deficiency, and a 1.5px stroke. Squint, or flip the theme.'
+          }
+        </p>
+      </div>
+    );
+  },
 };
 
 export const StatusTokens: Story = {

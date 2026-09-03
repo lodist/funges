@@ -17,6 +17,11 @@ import {
   ReferenceLine,
 } from 'recharts';
 import { categoryVar, toCategory } from '@/lib/categoryColor';
+import {
+  TOOLTIP_CURSOR_BAND,
+  TOOLTIP_CURSOR_LINE,
+  TOOLTIP_STYLE,
+} from '@/lib/chart-chrome';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
@@ -199,14 +204,6 @@ function tickInterval(days: number): number {
   if (days <= 90) return 9;
   return 29;
 }
-
-const TOOLTIP_STYLE = {
-  borderRadius: 8,
-  fontSize: 12,
-  border: '1px solid rgba(128,128,128,0.2)',
-  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-  padding: '6px 10px',
-} as const;
 
 function PillLegend({
   payload,
@@ -1069,12 +1066,12 @@ export default function DataPage() {
                 <linearGradient id='rainGrad' x1='0' y1='0' x2='0' y2='1'>
                   <stop
                     offset='0%'
-                    stopColor='var(--chart-1)'
+                    stopColor='var(--chart-cool)'
                     stopOpacity={0.95}
                   />
                   <stop
                     offset='100%'
-                    stopColor='var(--chart-1)'
+                    stopColor='var(--chart-cool)'
                     stopOpacity={0.25}
                   />
                 </linearGradient>
@@ -1107,17 +1104,18 @@ export default function DataPage() {
                 ]}
                 labelFormatter={(l: unknown) => formatDate(String(l))}
                 contentStyle={TOOLTIP_STYLE}
+                cursor={TOOLTIP_CURSOR_BAND}
               />
               <ReferenceLine
                 y={20}
-                stroke='var(--chart-1)'
+                stroke='var(--chart-cool)'
                 strokeDasharray='3 3'
                 strokeOpacity={0.5}
                 label={{
                   value: '20mm',
                   position: 'insideTopRight',
                   fontSize: 10,
-                  fill: 'var(--chart-1)',
+                  fill: 'var(--chart-cool)',
                   opacity: 0.7,
                 }}
               />
@@ -1166,6 +1164,7 @@ export default function DataPage() {
               <Tooltip
                 labelFormatter={(l: unknown) => formatDate(String(l))}
                 contentStyle={TOOLTIP_STYLE}
+                cursor={TOOLTIP_CURSOR_LINE}
               />
               <Legend
                 content={p => (
@@ -1179,19 +1178,24 @@ export default function DataPage() {
                   />
                 )}
               />
+              {/* Warm, brand, cool — the reading itself, not three arbitrary
+                  slots. Each also carries its own dash pattern, because hue
+                  collapses for red-green and blue-yellow vision and lightness
+                  alone put these 0.07 apart. */}
               <Line
                 type='monotone'
                 dataKey='temp_max'
-                stroke='var(--chart-3)'
+                stroke='var(--chart-warm)'
                 dot={false}
                 strokeWidth={1.5}
+                strokeDasharray='6 3'
                 activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }}
                 name={t('common:data.tempMax', { defaultValue: 'Max' })}
               />
               <Line
                 type='monotone'
                 dataKey='temp_avg'
-                stroke='var(--chart-2)'
+                stroke='var(--chart-brand)'
                 dot={false}
                 strokeWidth={2.5}
                 activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
@@ -1200,10 +1204,11 @@ export default function DataPage() {
               <Line
                 type='monotone'
                 dataKey='temp_min'
-                stroke='var(--chart-1)'
+                stroke='var(--chart-cool)'
                 dot={false}
                 strokeWidth={1.5}
-                strokeDasharray='4 2'
+                strokeDasharray='2 3'
+                strokeLinecap='round'
                 activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }}
                 name={t('common:data.tempMin', { defaultValue: 'Min' })}
               />
@@ -1229,12 +1234,12 @@ export default function DataPage() {
                 <linearGradient id='humidGrad' x1='0' y1='0' x2='0' y2='1'>
                   <stop
                     offset='0%'
-                    stopColor='var(--chart-2)'
+                    stopColor='var(--chart-cool)'
                     stopOpacity={0.35}
                   />
                   <stop
                     offset='100%'
-                    stopColor='var(--chart-2)'
+                    stopColor='var(--chart-cool)'
                     stopOpacity={0.02}
                   />
                 </linearGradient>
@@ -1268,11 +1273,12 @@ export default function DataPage() {
                 ]}
                 labelFormatter={(l: unknown) => formatDate(String(l))}
                 contentStyle={TOOLTIP_STYLE}
+                cursor={TOOLTIP_CURSOR_LINE}
               />
               <Area
                 type='monotone'
                 dataKey='humidity'
-                stroke='var(--chart-2)'
+                stroke='var(--chart-cool)'
                 strokeWidth={2}
                 fill='url(#humidGrad)'
                 dot={false}
@@ -1300,12 +1306,12 @@ export default function DataPage() {
                 <linearGradient id='windGrad' x1='0' y1='0' x2='0' y2='1'>
                   <stop
                     offset='0%'
-                    stopColor='var(--chart-4)'
+                    stopColor='var(--chart-brand)'
                     stopOpacity={0.9}
                   />
                   <stop
                     offset='100%'
-                    stopColor='var(--chart-4)'
+                    stopColor='var(--chart-brand)'
                     stopOpacity={0.25}
                   />
                 </linearGradient>
@@ -1344,6 +1350,7 @@ export default function DataPage() {
               <Tooltip
                 labelFormatter={(l: unknown) => formatDate(String(l))}
                 contentStyle={TOOLTIP_STYLE}
+                cursor={TOOLTIP_CURSOR_BAND}
               />
               <Legend
                 content={p => (
@@ -1370,7 +1377,7 @@ export default function DataPage() {
                 type='monotone'
                 yAxisId='pressure'
                 dataKey='pressure_hpa'
-                stroke='var(--chart-5)'
+                stroke='var(--chart-warm)'
                 dot={false}
                 strokeWidth={2}
                 activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
@@ -1457,6 +1464,7 @@ export default function DataPage() {
                     ]}
                     labelFormatter={(l: unknown) => formatDate(String(l))}
                     contentStyle={TOOLTIP_STYLE}
+                    cursor={TOOLTIP_CURSOR_LINE}
                   />
                   <Area
                     type='monotone'
@@ -1498,12 +1506,12 @@ export default function DataPage() {
                   <linearGradient id='topSpecGrad' x1='0' y1='0' x2='1' y2='0'>
                     <stop
                       offset='0%'
-                      stopColor='var(--chart-1)'
+                      stopColor='var(--chart-cool)'
                       stopOpacity={0.45}
                     />
                     <stop
                       offset='100%'
-                      stopColor='var(--chart-1)'
+                      stopColor='var(--chart-cool)'
                       stopOpacity={0.95}
                     />
                   </linearGradient>
@@ -1535,6 +1543,7 @@ export default function DataPage() {
                     t('common:data.score', { defaultValue: 'Score' }),
                   ]}
                   contentStyle={TOOLTIP_STYLE}
+                  cursor={TOOLTIP_CURSOR_BAND}
                 />
                 <ReferenceLine
                   x={5}

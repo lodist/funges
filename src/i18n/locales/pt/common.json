@@ -272,5 +272,11 @@
     "title": "Barra lateral",
     "description": "Mostra a barra lateral no telemóvel.",
     "toggle": "Mostrar ou ocultar a barra lateral"
+  },
+  "theme": {
+    "label": "Tema",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Escuro"
   }
 }

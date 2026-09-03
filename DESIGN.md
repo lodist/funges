@@ -210,9 +210,22 @@ Every neutral sits at hue 90 in both themes. There used to be ten different angl
 
 ### Categories
 
-Species categories are the one place a palette usually reaches for five hues. Here they are five steps of the one hue, each at roughly 95% of the in-gamut chroma for its lightness so the steps sit as far apart as hue 150 allows: `--category-mushroom` (12.09:1 on paper), `--category-berry` (9.80), `--category-plant` (7.23), `--category-flower` (5.10), `--category-nut` (3.78). `--chart-1` … `--chart-5` alias the same five, so charts and map markers cannot drift apart again.
+Species categories are the one place a palette usually reaches for five hues. Here they are five steps of the one hue, each at roughly 95% of the in-gamut chroma for its lightness so the steps sit as far apart as hue 150 allows: `--category-mushroom` (12.09:1 on paper), `--category-berry` (9.80), `--category-plant` (7.23), `--category-flower` (5.10), `--category-nut` (3.78). These are identity — _which thing_ — so they stay on the brand ramp and keep matching their map markers. Measurement charts are a separate family; see below.
 
-Values live in `src/index.css`; `src/lib/categoryColor.ts` is the only way to read them. Use `categoryVar()` wherever CSS resolves, and `categoryColor()` only for APIs that need a literal — maplibre's `Marker({ color })` writes into an SVG fill attribute and cannot take a `var()`.
+Values live in `src/index.css`; `src/lib/categoryColor.ts` is the only way to read them.
+
+### Measurement charts
+
+The DataPage charts are the one family where hue encodes a **quantity** rather than an identity, and the only place a third and fourth angle are sanctioned. Warm is heat and pressure, cool is water and cold, brand green is the middle: `--chart-warm` (hue 55), `--chart-brand` (hue 150), `--chart-cool` (hue 245). Three tokens, not five, because these are physical readings and not a taxonomy.
+
+They used to alias the five category steps. That put max, avg and min on one axis at 0.07 apart in lightness with no hue difference at all, which is not separable at a 1.5px stroke — the defect that opened #246.
+
+Each sits at ~95% of the in-gamut chroma for its lightness, so the family is as saturated as sRGB allows rather than as saturated as a uniform rule would allow. **The two themes order their lightness differently on purpose**: hue 150 still holds 0.228 chroma at L 0.87 while hue 55 is down to 0.098 there, so a single shared ordering would wash out whichever hue lost. Dark leads with green at L 0.87, light leads with amber at L 0.66. Compose each theme; never invert one into the other.
+
+Each family member is also staggered **≥0.10 in lightness as well as hue**, and this is load bearing rather than cosmetic. Hue collapses twice: amber and green merge under red-green deficiency (normal separation 69 falls to 8 in light), green and blue under blue-yellow (27 to 15). Lightness is the channel that still separates the series there, and the dash patterns in `DataPage.tsx` are the third. Never flatten the stagger to make the family look tidier — the dark theme's wider 0.12 step is what lifts its worst pair from 8 to 31.
+
+Verified on `--card` — light 3.21 / 4.28 / 6.95, dark 8.82 / 5.18 / 3.49 — all clear of the 3:1 floor a plotted line has to hold. `src/test/palette.test.ts` asserts both the stagger and the floor.
+Use `categoryVar()` wherever CSS resolves, and `categoryColor()` only for APIs that need a literal — maplibre's `Marker({ color })` writes into an SVG fill attribute and cannot take a `var()`.
 
 ### Status
 
@@ -221,9 +234,11 @@ Values live in `src/index.css`; `src/lib/categoryColor.ts` is the only way to re
 
 ### Named Rules
 
-**The Two-Family Rule.** Hue 150 for everything chromatic, hue 90 for everything neutral. The map score ramp is the only other hue family in the product, and safety warnings are its only appearance off the map. A third angle in `src/index.css` fails `src/test/palette.test.ts`.
+**The Two-Family Rule.** Hue 150 for everything chromatic, hue 90 for everything neutral. The map score ramp is the only other hue family in the product, and safety warnings are its only appearance off the map.
 
-**The One Hue Rule.** Severity is depth, not hue — with two exceptions, both narrow. `--destructive` is hue 28, the fly agaric's red, and no other token may use it. Warning chrome borrows literal stops from the map score ramp rather than inventing an amber. Everything else is hue 150 over hue 90: no blue for info, no separate green for success, no hue-coded categories. `src/test/palette.test.ts` enforces all of it, including that a coloured token can't slip in as a hex literal.
+Two angles are sanctioned outside it, both narrow and both named: hue 28 for `--destructive`, and hues 55 / 245 for the `--chart-*` measurement family, where warm-versus-cool is the reading itself. `src/index.css` may hold six chromatic angles and no more — `28, 55, 90, 150, 245` plus nothing; a seventh fails `src/test/palette.test.ts`, and that failure means colour has scattered again rather than that the test is stale.
+
+**The One Hue Rule.** Severity is depth, not hue — with two exceptions, both narrow. `--destructive` is hue 28, the fly agaric's red, and no other token may use it. Warning chrome borrows literal stops from the map score ramp rather than inventing an amber. Charts are the third, and they are hue-coded on purpose — a temperature axis is a quantity, not a category. Everything else is hue 150 over hue 90: no blue for info, no separate green for success, no hue-coded species categories. `src/test/palette.test.ts` enforces all of it, including that a coloured token can't slip in as a hex literal.
 
 **The Text-Safe Step Rule.** Colors split into text-safe and fill-only, and this is a contrast fact rather than a style preference. Text-safe: `--primary-text` / `--happy-700`, Moss Text, Ink, Stone, `--status-warning-text`, `--destructive-text`. Fill-only, held to the 3:1 non-text floor: `--happy-500`, `--happy-600` / `--primary`, `--status-warning`, `--destructive`, Lichen. Putting 14px text on `--status-warning` yields 3.91:1 at best — callouts use `--status-warning-background`, where the same text reads 10.21:1.
 

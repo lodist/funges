@@ -272,5 +272,11 @@
     "title": "Barre latérale",
     "description": "Affiche la barre latérale mobile.",
     "toggle": "Afficher ou masquer la barre latérale"
+  },
+  "theme": {
+    "label": "Thème",
+    "system": "Système",
+    "light": "Clair",
+    "dark": "Sombre"
   }
 }
