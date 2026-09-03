@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import ThemeToggle from '@/components/ThemeToggle';
 import InstallAppButton from '@/components/InstallAppButton';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { useTranslation } from 'react-i18next';
@@ -89,6 +90,7 @@ export default function SettingsPage() {
           <MapLastUpdated variant='mobile' />
         </div>
         <div className='flex flex-col items-center justify-center py-6 space-y-6'>
+          <ThemeToggle className='w-40' />
           <LanguageSwitcher />
           <InstallAppButton />
         </div>

@@ -40,7 +40,7 @@ function DialogOverlay({
       data-slot='dialog-overlay'
       className={cn(
         // Scrim and content share the overlay enter/exit duration.
-        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-scrim duration-slow ease-standard',
+        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-scrim transition-none duration-slow ease-standard',
         className
       )}
       {...props}
@@ -66,7 +66,7 @@ function DialogContent({
           // No border; the radius and shadow are the card-radius and
           // overlay-elevation tokens. The panel caps its own height so a tall
           // dialog scrolls instead of growing past the viewport.
-          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 flex max-h-[calc(100dvh-2rem)] w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] flex-col rounded-card border-0 elevation-overlay duration-slow ease-standard sm:max-w-lg',
+          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 flex max-h-[calc(100dvh-2rem)] w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] flex-col rounded-card border-0 elevation-overlay transition-none duration-slow ease-standard sm:max-w-lg',
           className
         )}
         {...props}

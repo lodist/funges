@@ -16,6 +16,7 @@ import { describe, expect, it } from 'vitest';
  * of shipped surfaces, which is where the floor applies.
  */
 const button = readFileSync('src/components/ui/button.tsx', 'utf8');
+const select = readFileSync('src/components/ui/select.tsx', 'utf8');
 
 const shipped = readdirSync('src', { recursive: true, encoding: 'utf8' })
   .map(p => p.replace(/\\/g, '/'))
@@ -31,10 +32,24 @@ describe('the 44px floor', () => {
     expect(button).toMatch(/default:\s*'h-11\b/);
   });
 
+  it("SelectTrigger's own ramp bottoms out at the floor", () => {
+    // The scan below exempts SelectTrigger, because `sm` there is 44px, not
+    // Button's 32px. Pinned here so the exemption cannot outlive the fact it
+    // rests on. Both spellings matter: the data-attribute class is the one
+    // that actually wins the cascade, the variant is the fallback.
+    expect(select).toMatch(/sm:\s*'h-11\b/);
+    expect(select).toMatch(/data-\[size=sm\]:h-11\b/);
+    expect(select).not.toMatch(/data-\[size=sm\]:h-8\b/);
+  });
+
   it('no shipped surface asks for a sub-44px button size', () => {
     expect(shipped.length).toBeGreaterThan(20);
     const offenders = shipped
-      .filter(([, body]) => /size=['"](?:xs|sm)['"]/.test(body))
+      .filter(([, body]) =>
+        /size=['"](?:xs|sm)['"]/.test(
+          body.replace(/<SelectTrigger\b[^>]*>/g, '')
+        )
+      )
       .map(([path]) => path);
     expect(offenders).toEqual([]);
   });

@@ -9,21 +9,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { setHtmlLanguage } from '@/lib/html-localization';
+import { LANGUAGES, resolveLanguage } from '@/lib/languages';
 
 const FloatingLanguageSwitcher: React.FC = () => {
-  const { i18n } = useTranslation();
-
-  const languages = [
-    { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-    { code: 'fr', name: 'Français', flag: '🇫🇷' },
-    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-    { code: 'es', name: 'Español', flag: '🇪🇸' },
-    { code: 'pt', name: 'Português', flag: '🇵🇹' },
-  ];
-
-  const currentLanguage =
-    languages.find(lang => lang.code === i18n.language) || languages[0];
+  const { t, i18n } = useTranslation('common');
+  const currentLanguage = resolveLanguage(i18n.language);
 
   const handleLanguageChange = (languageCode: string) => {
     setHtmlLanguage(languageCode);
@@ -37,19 +27,20 @@ const FloatingLanguageSwitcher: React.FC = () => {
           <Button
             variant='enhanced-outline'
             className='flex items-center gap-2'
+            aria-label={`${t('common.language')}: ${currentLanguage.name}`}
           >
-            <span className='text-lg'>{currentLanguage.flag}</span>
+            <span className='type-micro'>{currentLanguage.code}</span>
             <span className='hidden sm:inline'>{currentLanguage.name}</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end' className='mb-2'>
           <DropdownMenuRadioGroup
-            value={i18n.language}
+            value={currentLanguage.code}
             onValueChange={handleLanguageChange}
           >
-            {languages.map(language => (
+            {LANGUAGES.map(language => (
               <DropdownMenuRadioItem key={language.code} value={language.code}>
-                <span className='text-lg'>{language.flag}</span>
+                <span className='type-micro w-6'>{language.code}</span>
                 <span>{language.name}</span>
               </DropdownMenuRadioItem>
             ))}

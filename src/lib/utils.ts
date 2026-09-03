@@ -1,5 +1,17 @@
 import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { extendTailwindMerge } from 'tailwind-merge';
+
+// `--radius-card` is a project token, so tailwind-merge did not know
+// `rounded-card` belonged to the radius group and let it coexist with a
+// built-in step instead of replacing it. Both classes survived `cn`, the
+// cascade picked the winner, and a caller could not override an atom's
+// radius: `rounded-card` next to a base `rounded-md` rendered 6px.
+const twMerge = extendTailwindMerge({
+  // `extend`, not a top-level `theme`: the latter replaces the scale instead
+  // of adding to it, and silently changed nothing. This form also covers the
+  // directional groups, so `rounded-l-card` replaces `rounded-l-md` too.
+  extend: { theme: { radius: ['card'] } },
+});
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

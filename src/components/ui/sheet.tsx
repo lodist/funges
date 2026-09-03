@@ -36,7 +36,7 @@ function SheetOverlay({
       data-slot='sheet-overlay'
       className={cn(
         // Scrim and panel share the overlay enter/exit duration.
-        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-scrim duration-slow ease-standard',
+        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-scrim transition-none duration-slow ease-standard',
         className
       )}
       {...props}
@@ -63,27 +63,23 @@ function SheetContent({
           // Motion: Sheet is a `floating` surface, so enter and exit
           // both ride --transition-duration-slow. The asymmetric 500ms open is folded
           // onto the shared scale — one scale, no undocumented exception.
-          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out elevation-floating fixed z-50 flex max-h-dvh flex-col transition duration-slow ease-standard',
+          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out elevation-floating fixed z-50 flex max-h-dvh flex-col transition-none duration-slow ease-standard',
           side === 'right' &&
-            'data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm',
+            'data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 h-full w-3/4 rounded-l-card sm:max-w-sm',
           side === 'left' &&
-            'data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm',
+            'data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left inset-y-0 left-0 h-full w-3/4 rounded-r-card sm:max-w-sm',
           side === 'top' &&
-            'data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 h-auto border-b',
-          // Trailhead: bottom sheet for mobile actions — rounded
-          // top, no border, drag handle below.
+            'data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 h-auto rounded-b-card',
+          // A bottom panel is lit from below, so its shadow inverts.
           side === 'bottom' &&
-            'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto rounded-t-card border-0 border-t-0 elevation-floating-up pt-3',
+            'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto rounded-t-card elevation-floating-up',
           className
         )}
         {...props}
       >
-        {side === 'bottom' && (
-          <div className='mx-auto mb-2 h-1.5 w-10 rounded-full bg-border' />
-        )}
         <div
           data-slot='sheet-body'
-          className='flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto'
+          className='flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-4'
         >
           {children}
         </div>
@@ -106,7 +102,14 @@ function SheetHeader({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot='sheet-header'
-      className={cn('flex flex-col gap-1.5 p-4', className)}
+      className={cn(
+        // The dismiss is absolute so it never scrolls away, which puts it on
+        // top of this row: 16px of inset plus its own 44px. Without the
+        // gutter the panel's own background masks whatever runs under it, so
+        // a wrapping description loses a word rather than colliding visibly.
+        'flex flex-col gap-1.5 pr-11',
+        className
+      )}
       {...props}
     />
   );
@@ -116,7 +119,7 @@ function SheetFooter({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot='sheet-footer'
-      className={cn('mt-auto flex flex-col gap-2 p-4', className)}
+      className={cn('mt-auto flex flex-col gap-2', className)}
       {...props}
     />
   );
@@ -129,7 +132,10 @@ function SheetTitle({
   return (
     <SheetPrimitive.Title
       data-slot='sheet-title'
-      className={cn('text-foreground font-semibold', className)}
+      className={cn(
+        'text-foreground text-lg leading-snug font-semibold',
+        className
+      )}
       {...props}
     />
   );

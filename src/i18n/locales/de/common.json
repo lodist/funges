@@ -34,7 +34,8 @@
     "system": "System",
     "sort": "Sortieren",
     "email": "E-Mail",
-    "score": "Bewertung"
+    "score": "Bewertung",
+    "copied": "Kopiert!"
   },
   "offline": {
     "mode": "Offline-Modus",
@@ -94,6 +95,7 @@
       "flower": "Am besten bei hellem, trockenem Wetter vor der Mittagshitze."
     },
     "focus": {
+      "label": "Schwerpunkt",
       "mixed": "Gemischter Korb",
       "mushrooms": "Pilze zuerst",
       "plants": "Kräuter und Grün",
@@ -118,7 +120,8 @@
     "network": "Netzwerkfehler. Bitte überprüfe deine Verbindung.",
     "upload": "Bild konnte nicht hochgeladen werden. Bitte versuche es erneut.",
     "notFound": "Seite nicht gefunden.",
-    "unauthorized": "Du bist nicht berechtigt, auf diese Ressource zuzugreifen."
+    "unauthorized": "Du bist nicht berechtigt, auf diese Ressource zuzugreifen.",
+    "copy": "Kopieren fehlgeschlagen. Markiere den Text und kopiere ihn von Hand."
   },
   "html": {
     "title": "Fung.es - Finde Pilze und essbare Wildpflanzen in deiner Nähe",
@@ -269,5 +272,11 @@
     "title": "Seitenleiste",
     "description": "Zeigt die mobile Seitenleiste an.",
     "toggle": "Seitenleiste ein-/ausblenden"
+  },
+  "theme": {
+    "label": "Design",
+    "system": "System",
+    "light": "Hell",
+    "dark": "Dunkel"
   }
 }

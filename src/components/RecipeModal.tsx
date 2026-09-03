@@ -70,8 +70,6 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
             </ul>
           </section>
 
-          <Separator />
-
           <section>
             <h3 className='mb-3 text-sm font-semibold text-foreground'>
               {t('instructions')}
@@ -109,25 +107,22 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
           </section>
 
           {recipe.warnings.length > 0 && (
-            <>
-              <Separator />
-              <section>
-                <h3 className='mb-3 text-sm font-semibold text-foreground'>
-                  {t('warnings')}
-                </h3>
-                <ul className='space-y-2'>
-                  {recipe.warnings.map(warning => (
-                    <li
-                      key={warning}
-                      className='flex items-start gap-2 text-sm text-status-warning-text'
-                    >
-                      <AlertTriangle className='mt-0.5 h-4 w-4 flex-shrink-0' />
-                      {warning}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            </>
+            <section>
+              <h3 className='mb-3 text-sm font-semibold text-foreground'>
+                {t('warnings')}
+              </h3>
+              <ul className='space-y-2'>
+                {recipe.warnings.map(warning => (
+                  <li
+                    key={warning}
+                    className='flex items-start gap-2 text-sm text-status-warning-text'
+                  >
+                    <AlertTriangle className='mt-0.5 h-4 w-4 flex-shrink-0' />
+                    {warning}
+                  </li>
+                ))}
+              </ul>
+            </section>
           )}
         </div>
       </DialogContent>

@@ -19,8 +19,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Separator } from '@/components/ui/separator';
-import { Search, Leaf, Calendar, MapPin, AlertTriangle } from '@/lib/icons';
+import {
+  Search,
+  Leaf,
+  Calendar,
+  MapPin,
+  AlertTriangle,
+  List,
+  Mushroom,
+  Grape,
+  Bean,
+  Flower2,
+} from '@/lib/icons';
 import { getSpeciesImage } from '@/lib/utils';
 import { Link } from '@tanstack/react-router';
 import { Route } from '@/routes/species';
@@ -59,12 +69,12 @@ export default function SpeciesPage() {
   }, [speciesData, searchQuery, selectedCategory]);
 
   const categories = [
-    { value: 'all', label: t('allTypes'), icon: '🍃' },
-    { value: 'mushroom', label: t('mushrooms'), icon: '🍄' },
-    { value: 'plant', label: t('plants'), icon: '🌿' },
-    { value: 'berry', label: t('berries'), icon: '🫐' },
-    { value: 'nut', label: t('nuts'), icon: '🌰' },
-    { value: 'flower', label: t('flowers'), icon: '🌸' },
+    { value: 'all', label: t('allTypes'), Icon: List },
+    { value: 'mushroom', label: t('mushrooms'), Icon: Mushroom },
+    { value: 'plant', label: t('plants'), Icon: Leaf },
+    { value: 'berry', label: t('berries'), Icon: Grape },
+    { value: 'nut', label: t('nuts'), Icon: Bean },
+    { value: 'flower', label: t('flowers'), Icon: Flower2 },
   ];
 
   return (
@@ -87,7 +97,7 @@ export default function SpeciesPage() {
 
         {/* Search and Filter Controls */}
         <div className='mb-8 space-y-4'>
-          <div className='flex flex-col sm:flex-row gap-4'>
+          <div className='flex flex-col sm:flex-row sm:items-end gap-4'>
             {/* Search Input */}
             <div className='relative flex-1'>
               <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4' />
@@ -100,24 +110,33 @@ export default function SpeciesPage() {
             </div>
 
             {/* Category Filter */}
-            <Select
-              value={selectedCategory}
-              onValueChange={setSelectedCategory}
-            >
-              <SelectTrigger className='w-full sm:w-48'>
-                <SelectValue placeholder={t('filterByType')} />
-              </SelectTrigger>
-              <SelectContent>
-                {categories.map(category => (
-                  <SelectItem key={category.value} value={category.value}>
-                    <span className='flex items-center gap-2'>
-                      <span>{category.icon}</span>
-                      {category.label}
-                    </span>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <div className='flex w-full flex-col gap-2 sm:w-auto'>
+              <span
+                id='species-category-filter'
+                className='type-micro text-muted-foreground'
+              >
+                {t('filterByType')}
+              </span>
+              <Select
+                value={selectedCategory}
+                onValueChange={setSelectedCategory}
+              >
+                <SelectTrigger
+                  className='w-full sm:w-48'
+                  aria-labelledby='species-category-filter'
+                >
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {categories.map(({ value, label, Icon }) => (
+                    <SelectItem key={value} value={value}>
+                      <Icon />
+                      {label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </div>
 
@@ -199,7 +218,7 @@ export default function SpeciesPage() {
                   )}
                 </div>
 
-                <CardContent className='space-y-4'>
+                <CardContent className='space-y-6'>
                   {/* Description */}
                   <div>
                     <p className='text-sm text-muted-foreground leading-relaxed'>
@@ -207,15 +226,13 @@ export default function SpeciesPage() {
                     </p>
                   </div>
 
-                  <Separator />
-
                   {/* Foraging Instructions */}
                   <div>
                     <div className='flex items-center gap-2 mb-2'>
                       <Leaf className='h-4 w-4 text-success' />
-                      <span className='text-sm font-medium text-muted-foreground'>
+                      <h4 className='text-sm font-medium text-muted-foreground'>
                         {t('howTo')}
-                      </span>
+                      </h4>
                     </div>
                     <p className='text-sm text-muted-foreground leading-relaxed'>
                       {species.howTo}
@@ -245,7 +262,7 @@ export default function SpeciesPage() {
         {/* Empty State */}
         {filteredSpecies.length === 0 && (
           <div className='text-center py-12'>
-            <div className='text-6xl mb-4'>🔍</div>
+            <Search className='mx-auto mb-4 size-12 text-muted-foreground' />
             <h3 className='text-xl font-semibold text-foreground mb-2'>
               {t('noResults')}
             </h3>

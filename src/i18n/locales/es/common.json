@@ -34,7 +34,8 @@
     "system": "Sistema",
     "sort": "Ordenar",
     "email": "Correo electrónico",
-    "score": "Puntuación"
+    "score": "Puntuación",
+    "copied": "¡Copiado!"
   },
   "offline": {
     "mode": "Modo sin conexión",
@@ -94,6 +95,7 @@
       "flower": "Mejor con tiempo luminoso y seco antes del calor del mediodia."
     },
     "focus": {
+      "label": "Enfoque",
       "mixed": "Cesta variada",
       "mushrooms": "Primero setas",
       "plants": "Hierbas y verdes",
@@ -118,7 +120,8 @@
     "network": "Error de red. Por favor, revisa tu conexión.",
     "upload": "No se pudo subir la imagen. Por favor, inténtalo de nuevo.",
     "notFound": "Página no encontrada.",
-    "unauthorized": "No estás autorizado para acceder a este recurso."
+    "unauthorized": "No estás autorizado para acceder a este recurso.",
+    "copy": "No se pudo copiar. Selecciona el texto y cópialo a mano."
   },
   "html": {
     "title": "Fung.es - Encuentra hongos y plantas silvestres comestibles cerca de ti",
@@ -269,5 +272,11 @@
     "title": "Barra lateral",
     "description": "Muestra la barra lateral en móvil.",
     "toggle": "Mostrar u ocultar la barra lateral"
+  },
+  "theme": {
+    "label": "Tema",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Oscuro"
   }
 }

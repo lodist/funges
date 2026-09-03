@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 
+import { sourceFiles, stripComments } from './source-scan';
+
 // The badge shipped an `outline` variant with border-width 0 — a name
 // promising a treatment it never had — and `--destructive-border` existed as a
 // token that no component read.
@@ -115,6 +117,25 @@ describe('one transition, named', () => {
         `${name} re-declares a transition`
       ).not.toMatch(/transition-/);
     }
+  });
+});
+
+// `transition` with no property list is `transition-all` under another name:
+// measured on the sheet panel, 22 properties, `display`, `overlay` and
+// `content-visibility` among them. The guard above only read the button, so
+// the bare utility passed under it for as long as it shipped. Stories are
+// excluded: they describe the rule in prose, and prose is not a class.
+describe('nothing animates an unnamed property list', () => {
+  // `=` is framer-motion's `transition={{...}}` prop and `:` a CSS
+  // declaration; neither is a utility. Narrow the pattern to the class token
+  // rather than widening the file list to excuse the matches.
+  const bareTransition = /(?<![\w-])transition(?![\w-=:])/;
+
+  it('no component reaches for the bare `transition` utility', () => {
+    const offenders = sourceFiles('src/components')
+      .filter(f => !f.endsWith('.stories.tsx'))
+      .filter(f => bareTransition.test(stripComments(readFileSync(f, 'utf8'))));
+    expect(offenders).toEqual([]);
   });
 });
 

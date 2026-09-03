@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/react';
 import '@/i18n';
 import { AppSidebar } from '@/components/Sidebar/AppSidebar';
-import { SidebarProvider, useSidebar } from '@/components/ui/sidebar';
+import { SidebarProvider } from '@/components/ui/sidebar';
 import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 
 /**
@@ -47,23 +47,9 @@ vi.mock('@/lib/feature-flags', () => ({
   },
 }));
 
-/**
- * On mobile `Sidebar` becomes an off-canvas Sheet that starts closed, so its
- * items aren't in the DOM until it opens. Nothing in the app renders a
- * `SidebarTrigger` today (mobile navigation goes through `MobileNavbar`
- * instead), so the mobile item set is opened here directly — the disclosure
- * logic under test lives in `AppSidebar`, not in what opens the sheet.
- */
-const OpenMobileSheet = () => {
-  const { setOpenMobile } = useSidebar();
-  React.useEffect(() => setOpenMobile(true), [setOpenMobile]);
-  return null;
-};
-
 const renderSidebar = () =>
   render(
     <SidebarProvider>
-      {isMobile.current && <OpenMobileSheet />}
       <AppSidebar />
     </SidebarProvider>
   );

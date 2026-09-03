@@ -13,6 +13,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import {
   Select,
   SelectContent,
@@ -20,14 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Loader2,
-  ChefHat,
-  Leaf,
-  MapPinned,
-  ArrowUpRight,
-  Calendar,
-} from '@/lib/icons';
+import { ChefHat, Leaf, MapPinned, ArrowUpRight, Calendar } from '@/lib/icons';
 import { useMapStore } from '@/store/mapStore';
 
 export default function WorthForagingNowPage() {
@@ -121,38 +115,85 @@ export default function WorthForagingNowPage() {
           ) : null}
         </div>
 
-        <div className='mb-8 flex flex-wrap items-center gap-3'>
-          <Select
-            value={focus}
-            onValueChange={value => setFocus(value as ForagingFocus)}
-          >
-            <SelectTrigger className='w-48'>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value='mixed'>
-                {t('worthForagingNow.focus.mixed')}
-              </SelectItem>
-              <SelectItem value='mushrooms'>
-                {t('worthForagingNow.focus.mushrooms')}
-              </SelectItem>
-              <SelectItem value='plants'>
-                {t('worthForagingNow.focus.plants')}
-              </SelectItem>
-              <SelectItem value='berries'>
-                {t('worthForagingNow.focus.berries')}
-              </SelectItem>
-            </SelectContent>
-          </Select>
+        <div className='mb-8 flex flex-wrap items-end gap-3'>
+          <div className='flex flex-col gap-2'>
+            <span
+              id='worth-foraging-focus'
+              className='type-micro text-muted-foreground'
+            >
+              {t('worthForagingNow.focus.label')}
+            </span>
+            <Select
+              value={focus}
+              onValueChange={value => setFocus(value as ForagingFocus)}
+            >
+              <SelectTrigger
+                className='w-48'
+                aria-labelledby='worth-foraging-focus'
+              >
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value='mixed'>
+                  {t('worthForagingNow.focus.mixed')}
+                </SelectItem>
+                <SelectItem value='mushrooms'>
+                  {t('worthForagingNow.focus.mushrooms')}
+                </SelectItem>
+                <SelectItem value='plants'>
+                  {t('worthForagingNow.focus.plants')}
+                </SelectItem>
+                <SelectItem value='berries'>
+                  {t('worthForagingNow.focus.berries')}
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         {isLoading ? (
-          <section className='rounded-card border bg-card p-10'>
-            <div className='flex items-center justify-center gap-3 text-muted-foreground'>
-              <Loader2 className='h-5 w-5 animate-spin' />
-              <span>{t('worthForagingNow.loading')}</span>
-            </div>
-          </section>
+          <SkeletonGroup
+            label={t('worthForagingNow.loading')}
+            className='grid gap-x-5 lg:grid-cols-3'
+          >
+            {[0, 1, 2].map(placeholder => (
+              <Card
+                key={placeholder}
+                padding='none'
+                className='mb-5 last:mb-0 lg:mb-0'
+              >
+                <div className='flex items-start justify-between gap-3 px-6 pt-6'>
+                  <div className='min-w-0 flex-1 space-y-2'>
+                    <Skeleton className='h-6 w-3/4' />
+                    <Skeleton className='h-4 w-1/2' />
+                  </div>
+                  <div className='flex shrink-0 flex-col items-end gap-1.5'>
+                    <Skeleton className='h-3 w-6' />
+                    <Skeleton className='h-9 w-12' />
+                    <Skeleton className='h-3 w-10' />
+                  </div>
+                </div>
+
+                <div className='flex flex-wrap gap-2 px-6 pt-4'>
+                  <Skeleton className='h-6 w-20 rounded-full' />
+                  <Skeleton className='h-6 w-16 rounded-full' />
+                  <Skeleton className='h-6 w-24 rounded-full' />
+                </div>
+
+                <div className='space-y-2 px-6 pt-5'>
+                  <Skeleton className='h-4 w-24' />
+                  <div className='space-y-1.5 pl-3'>
+                    <Skeleton className='h-4 w-full' />
+                    <Skeleton className='h-4 w-5/6' />
+                  </div>
+                </div>
+
+                <div className='px-6 pt-5 pb-6'>
+                  <Skeleton className='h-16 w-full rounded-card' />
+                </div>
+              </Card>
+            ))}
+          </SkeletonGroup>
         ) : null}
 
         {!isLoading && loadError ? (

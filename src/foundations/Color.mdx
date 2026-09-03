@@ -41,8 +41,9 @@ floor rather than the 4.5:1 body-text one.
 One hue, seven steps. Severity is depth, not hue — the scale carries emphasis
 and weight, never a change of colour. Danger is the single exception:
 `--destructive` is hue 28, the fly agaric's red, and no other token may use it.
-The only other colour outside hues 150 and 90 is the map's score ramp, which
-warning chrome borrows literally rather than inventing an amber of its own.
+Outside hues 150 and 90 sit the map's score ramp, which warning chrome borrows
+literally rather than inventing an amber of its own, and the measurement chart
+family below — the only place a chart is allowed its own hue.
 
 Steps `700` and `900` are the text-safe ones. Steps `500` and `600` are fills:
 using them as text color fails body-text contrast.
@@ -51,9 +52,23 @@ using them as text color fails body-text contrast.
 
 ## Charts
 
-Five steps, ordered so that adjacent series stay distinguishable.
+Three tokens, and the one family where hue encodes a **quantity** rather than an
+identity. Warm is heat and pressure, cool is water and cold, brand green is the
+middle. Species categories stay on the green ramp above: those are identity, and
+they have to keep matching their map markers.
+
+They used to alias the five category steps, which put max, avg and min on one
+axis 0.07 apart in lightness with no hue difference at all — not separable at a
+1.5px stroke.
 
 <Story of={ColorStories.ChartTokens} />
+
+The `≥0.10` lightness stagger is load bearing rather than cosmetic. Hue collapses
+twice: amber and green merge under red-green deficiency, green and blue under
+blue-yellow. Lightness is the channel that still separates the series there, and
+the dash patterns are the third — never flatten the stagger to tidy the family.
+
+<Story of={ColorStories.ChartSeries} />
 
 ## Status
 

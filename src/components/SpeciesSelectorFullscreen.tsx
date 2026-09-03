@@ -170,8 +170,8 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
               className={cn(
                 'flex items-center gap-2 px-3 py-2 rounded-full text-sm transition-all duration-base border-0 backdrop-blur-sm',
                 selectedCategory === category.value
-                  ? 'bg-white text-foreground font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
-                  : 'bg-white/90 text-foreground font-medium hover:bg-white'
+                  ? 'bg-card text-foreground font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
+                  : 'bg-card/90 text-foreground font-medium hover:bg-card'
               )}
             >
               <span className='text-base'>{category.icon}</span>
@@ -248,7 +248,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                       disabled
                         ? 'opacity-50 cursor-not-allowed'
                         : isSelected
-                          ? 'shadow-[0_6px_20px_rgba(0,0,0,0.14)] bg-happy-50 scale-105'
+                          ? 'shadow-[0_6px_20px_rgba(0,0,0,0.14)] bg-secondary scale-105'
                           : 'shadow-[0_2px_16px_rgba(0,0,0,0.10)]'
                     )}
                   >
@@ -286,7 +286,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                       <h3
                         className={cn(
                           'font-semibold text-foreground leading-tight mb-1 break-words text-sm',
-                          isSelected && 'text-primary-text'
+                          isSelected && 'text-secondary-foreground'
                         )}
                       >
                         {tSpecies(`list_of_species.${species.code}.name`)}
