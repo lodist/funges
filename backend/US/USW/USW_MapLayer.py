@@ -16,8 +16,12 @@ import boto3
 import os
 import hashlib
 import tempfile
+import sys
 from pathlib import Path
 from pyproj import Transformer
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from species_registry import get_land_cover_mapping
 
 region_code = 'usw'
 
@@ -160,29 +164,7 @@ GEOJSON_FILE_PATH = get_required_env("USW_WILDERNESS_DATA_SOURCE")
 # 52 = Shrub/Scrub
 # 71 = Grassland/Herbaceous
 
-species_forest_mapping = {
-    "mushroom":     [41, 42, 43],
-    "black_chant":  [41, 43],
-    "lingonb":      [42, 52],
-    "garlic":       [41],
-    "truffle_b":    [41],
-    "chestnut":     [41],
-    "parasol":      [41, 52],
-    "asparagus":    [52],
-    "strawberry":   [41, 43, 52],
-    "walnut":       [41],
-    "amaranth":     [31, 41, 42, 43, 52, 71],
-    "masterwort":   [71, 52],
-    "nettle":       [31, 41, 42, 43, 52, 71],
-    "morel":        [41, 43, 52],
-    "sorrel":       [71, 52],
-    "raspberry":    [41, 52],
-    "dandelion":    [31, 41, 42, 43, 52, 71],
-    "chickweed":    [31, 41, 42, 43, 52, 71],
-    "chant":        [41, 43, 52],
-    "st_george":    [71, 52],
-    "artichoke":    [71, 52]
-}
+species_forest_mapping = get_land_cover_mapping("USW")
 
 print(f"Fetching weather data from {'R2' if is_remote_path(FILE_PATH) else 'local'}...")
 df = load_weather_df(FILE_PATH)

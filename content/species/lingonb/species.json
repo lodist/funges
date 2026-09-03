@@ -1,0 +1,238 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "lingonb",
+  "scientificName": "Vaccinium vitis-idaea",
+  "catalog": {
+    "enabled": true,
+    "order": 27,
+    "translationKey": "lingonb",
+    "category": "berry",
+    "emoji": "🫐",
+    "season": "summer-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/lingonb.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Lingonberry",
+      "description": "Small, red, tart berries that grow on low evergreen shrubs in acidic soils.",
+      "howTo": "Look for them in coniferous forests, moorlands, and heathlands in late summer and autumn."
+    },
+    "it": {
+      "name": "Mirtillo Rosso",
+      "description": "Piccole bacche rosse e acidule che crescono su arbusti sempreverdi in suoli acidi.",
+      "howTo": "Cerca nei boschi di conifere, brughiere e lande tra fine estate e autunno."
+    },
+    "fr": {
+      "name": "Airelle rouge",
+      "description": "Petites baies rouges et acidulées poussant sur des arbustes persistants dans les sols acides.",
+      "howTo": "Cherche dans les forêts de conifères, landes et tourbières de la fin de l'été à l'automne."
+    },
+    "de": {
+      "name": "Preiselbeere",
+      "description": "Kleine rote, säuerliche Beeren, die auf immergrünen Sträuchern in saurem Boden wachsen.",
+      "howTo": "Suche in Nadelwäldern, Heideflächen und Mooren von Spätsommer bis Herbst."
+    },
+    "es": {
+      "name": "Arándano rojo",
+      "description": "Pequeñas bayas rojas y ácidas que crecen en arbustos perennes en suelos ácidos.",
+      "howTo": "Búscalo en bosques de coníferas, brezales y páramos desde finales del verano hasta el otoño."
+    },
+    "pt": {
+      "name": "Mirtilo-vermelho",
+      "description": "Pequenas bagas vermelhas e ácidas que crescem em arbustos perenes em solos ácidos.",
+      "howTo": "Procure em florestas de coníferas, charnecas e turfeiras do fim do verão ao outono."
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Vaccinium vitis-idaea",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Lingonberry"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [312, 322],
+        "scoring": {
+          "optimal_temp": 10.5,
+          "temp_sigma": 6,
+          "min_temp": -10,
+          "max_temp": 20,
+          "optimal_alt": 200,
+          "alt_sigma": 1400,
+          "optimal_humidity": 78,
+          "humidity_sigma": 16,
+          "optimal_pH": 4.75,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.5, 6],
+          "optimal_soil_temp": 10,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 30,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "continental",
+            "temperate",
+            "oceanic_north",
+            "mediterranean_italy"
+          ],
+          "wind_sensitive": false,
+          "season_months": [7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [312, 322],
+        "scoring": {
+          "optimal_temp": 10.5,
+          "temp_sigma": 6,
+          "min_temp": -10,
+          "max_temp": 20,
+          "optimal_alt": 1600,
+          "alt_sigma": 800,
+          "optimal_humidity": 78,
+          "humidity_sigma": 16,
+          "optimal_pH": 4.75,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.5, 6],
+          "optimal_soil_temp": 10,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 30,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "continental",
+            "temperate",
+            "oceanic_north",
+            "mediterranean_italy"
+          ],
+          "wind_sensitive": false,
+          "season_months": [7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": true,
+        "landCover": [42, 52],
+        "scoring": {
+          "optimal_temp": 10.5,
+          "temp_sigma": 6,
+          "min_temp": -10,
+          "max_temp": 20,
+          "optimal_alt": 300,
+          "alt_sigma": 1100,
+          "optimal_humidity": 78,
+          "humidity_sigma": 16,
+          "optimal_pH": 4.75,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.5, 6],
+          "optimal_soil_temp": 10,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 30,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_continental",
+            "continental"
+          ],
+          "wind_sensitive": false,
+          "season_months": [7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [42, 52],
+        "scoring": {
+          "optimal_temp": 10.5,
+          "temp_sigma": 6,
+          "min_temp": -10,
+          "max_temp": 20,
+          "optimal_alt": 300,
+          "alt_sigma": 1100,
+          "optimal_humidity": 78,
+          "humidity_sigma": 16,
+          "optimal_pH": 4.75,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.5, 6],
+          "optimal_soil_temp": 10,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 30,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_continental",
+            "continental"
+          ],
+          "wind_sensitive": false,
+          "season_months": [7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    }
+  }
+}

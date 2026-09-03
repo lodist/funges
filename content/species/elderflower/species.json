@@ -1,0 +1,67 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "elderflower",
+  "scientificName": "Sambucus nigra",
+  "scientificNameGroup": "sambucus-nigra-parts",
+  "catalog": {
+    "enabled": true,
+    "order": 20,
+    "translationKey": "elderflower",
+    "category": "flower",
+    "emoji": "🌸",
+    "season": "spring-summer",
+    "habitat": "hedgerow",
+    "image": {
+      "path": "src/assets/species/elderflower.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Elderflower",
+      "description": "Creamy white flowers that grow in large flat clusters on elder trees",
+      "howTo": "Look for elder trees in hedgerows and woodland edges in late spring and early summer"
+    },
+    "it": {
+      "name": "Fiori di Sambuco",
+      "description": "Fiori bianco crema che crescono in grandi grappoli piatti sui sambuchi",
+      "howTo": "Cerca alberi di sambuco in siepi e bordi boschivi in tarda primavera e inizio estate"
+    },
+    "fr": {
+      "name": "Fleur de sureau",
+      "description": "Fleurs blanches crémeuses en larges ombelles sur les sureaux",
+      "howTo": "Cherchez les sureaux dans les haies et lisières de bois à la fin du printemps et au début de l'été"
+    },
+    "de": {
+      "name": "Holunderblüte",
+      "description": "Cremeweisse Blüten in grossen, flachen Dolden an Holunderbäumen",
+      "howTo": "Suche Holunderbäume in Hecken und Waldrändern im späten Frühling und Frühsommer"
+    },
+    "es": {
+      "name": "Flor de saúco",
+      "description": "Flores blancas cremosas que crecen en grandes racimos planos en árboles de saúco",
+      "howTo": "Busca árboles de saúco en setos y bordes de bosques a finales de primavera y principios de verano"
+    },
+    "pt": {
+      "name": "Flor de sabugueiro",
+      "description": "Flores brancas cremosas que crescem em grandes cachos planos em árvores de sabugueiro",
+      "howTo": "Procure árvores de sabugueiro em cercas vivas e bordas de bosques no final da primavera e início do verão"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Sambucus nigra",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": false,
+    "dataColumns": []
+  }
+}

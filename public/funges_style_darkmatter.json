@@ -133,181 +133,13 @@
       }
     },
     {
-      "id": "walnut_ne",
+      "id": "chant_ne",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "walnut_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.16)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "walnut_se",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "walnut_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "walnut_use",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "walnut_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "walnut_usw",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "walnut_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "truffle_b_ne",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "truffle_b_score"],
+          ["get", "chant_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -343,181 +175,13 @@
       }
     },
     {
-      "id": "truffle_b_se",
+      "id": "chant_se",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "truffle_b_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "truffle_b_use",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "truffle_b_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "truffle_b_usw",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "truffle_b_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "strawberry_ne",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "strawberry_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "strawberry_se",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "strawberry_score"],
+          ["get", "chant_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -553,13 +217,13 @@
       }
     },
     {
-      "id": "strawberry_use",
+      "id": "chant_use",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "strawberry_score"],
+          ["get", "chant_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -595,13 +259,13 @@
       }
     },
     {
-      "id": "strawberry_usw",
+      "id": "chant_usw",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "strawberry_score"],
+          ["get", "chant_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -637,55 +301,13 @@
       }
     },
     {
-      "id": "st_george_ne",
+      "id": "mushroom_ne",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "st_george_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "st_george_se",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "st_george_score"],
+          ["get", "mushroom_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -714,482 +336,17 @@
         "fill-opacity": 0.85,
         "fill-antialias": false
       },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "st_george_use",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "st_george_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "st_george_usw",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "st_george_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "sorrel_ne",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "sorrel_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
       "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
+      "source-layer": "ne_forecast"
     },
     {
-      "id": "sorrel_se",
+      "id": "mushroom_se",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "sorrel_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.2)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "sorrel_use",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "sorrel_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "sorrel_usw",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "sorrel_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.2)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "raspberry_ne",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "raspberry_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "raspberry_se",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "raspberry_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "raspberry_use",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "raspberry_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.16)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "raspberry_usw",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "raspberry_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "parasol_ne",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "parasol_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "parasol_se",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "parasol_score"],
+          ["get", "mushroom_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -1219,187 +376,16 @@
         "fill-antialias": false
       },
       "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
+      "source-layer": "se_forecast"
     },
     {
-      "id": "parasol_use",
+      "id": "mushroom_use",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "parasol_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "parasol_usw",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "parasol_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "nettle_ne",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "nettle_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "nettle_se",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "nettle_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "nettle_use",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "nettle_score"],
+          ["get", "mushroom_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -1429,21 +415,18 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
+      "source-layer": "use_forecast"
     },
     {
-      "id": "nettle_usw",
+      "id": "mushroom_usw",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "nettle_score"],
+          ["get", "mushroom_score"],
           0,
-          "hsla(60, 92%, 95%, 0.17)",
+          "hsla(60, 92%, 95%, 0.19)",
           0.5,
           "#ffffcc",
           1,
@@ -1471,10 +454,7 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
+      "source-layer": "usw_forecast"
     },
     {
       "id": "morel_ne",
@@ -1645,15 +625,15 @@
       }
     },
     {
-      "id": "masterwort_ne",
+      "id": "nettle_ne",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "masterwort_score"],
+          ["get", "nettle_score"],
           0,
-          "hsla(60, 92%, 95%, 0.16)",
+          "hsla(60, 92%, 95%, 0.18)",
           0.5,
           "#ffffcc",
           1,
@@ -1687,181 +667,13 @@
       }
     },
     {
-      "id": "masterwort_se",
+      "id": "nettle_se",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "masterwort_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.16)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "masterwort_use",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "masterwort_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "masterwort_usw",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "masterwort_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.16)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "lingonb_ne",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "lingonb_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "lingonb_se",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "lingonb_score"],
+          ["get", "nettle_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -1897,15 +709,15 @@
       }
     },
     {
-      "id": "lingonb_use",
+      "id": "nettle_use",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "lingonb_score"],
+          ["get", "nettle_score"],
           0,
-          "hsla(60, 92%, 95%, 0.17)",
+          "hsla(60, 92%, 95%, 0.18)",
           0.5,
           "#ffffcc",
           1,
@@ -1939,181 +751,13 @@
       }
     },
     {
-      "id": "lingonb_usw",
+      "id": "nettle_usw",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "lingonb_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "garlic_ne",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "garlic_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "garlic_se",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "garlic_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "garlic_use",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "garlic_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "garlic_usw",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "garlic_score"],
+          ["get", "nettle_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2317,6 +961,426 @@
       }
     },
     {
+      "id": "garlic_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "garlic_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "garlic_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "garlic_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "raspberry_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "raspberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.19)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "raspberry_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "raspberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "raspberry_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "raspberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.16)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "raspberry_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "raspberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "strawberry_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "strawberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "strawberry_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "strawberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "strawberry_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "strawberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "strawberry_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "strawberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "chickweed_ne",
       "type": "fill",
       "paint": {
@@ -2485,6 +1549,174 @@
       }
     },
     {
+      "id": "walnut_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "walnut_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.16)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "walnut_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "walnut_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.19)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "walnut_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "walnut_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "walnut_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "walnut_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.19)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "chestnut_ne",
       "type": "fill",
       "paint": {
@@ -2569,97 +1801,13 @@
       }
     },
     {
-      "id": "chestnut_use",
+      "id": "amaranth_ne",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "chestnut_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chestnut_usw",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "chestnut_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chant_ne",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "chant_score"],
+          ["get", "amaranth_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -2695,13 +1843,13 @@
       }
     },
     {
-      "id": "chant_se",
+      "id": "amaranth_se",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "chant_score"],
+          ["get", "amaranth_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -2737,349 +1885,13 @@
       }
     },
     {
-      "id": "chant_use",
+      "id": "amaranth_use",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "chant_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chant_usw",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "chant_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "black_chant_ne",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "black_chant_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "black_chant_se",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "black_chant_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "black_chant_use",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "black_chant_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.18)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "black_chant_usw",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "black_chant_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.19)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "asparagus_ne",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "asparagus_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "asparagus_se",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "asparagus_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "asparagus_use",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "asparagus_score"],
+          ["get", "amaranth_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3115,13 +1927,13 @@
       }
     },
     {
-      "id": "asparagus_usw",
+      "id": "amaranth_usw",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "asparagus_score"],
+          ["get", "amaranth_score"],
           0,
           "hsla(60, 92%, 95%, 0.17)",
           0.5,
@@ -3325,13 +2137,433 @@
       }
     },
     {
-      "id": "amaranth_ne",
+      "id": "black_chant_ne",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "amaranth_score"],
+          ["get", "black_chant_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "black_chant_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "black_chant_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.19)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "black_chant_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "black_chant_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "black_chant_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "black_chant_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.19)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "lingonb_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "lingonb_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "lingonb_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "lingonb_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "lingonb_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "lingonb_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "lingonb_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "lingonb_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "masterwort_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "masterwort_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.16)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "masterwort_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "masterwort_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.16)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "parasol_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "parasol_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -3367,15 +2599,15 @@
       }
     },
     {
-      "id": "amaranth_se",
+      "id": "parasol_se",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "amaranth_score"],
+          ["get", "parasol_score"],
           0,
-          "hsla(60, 92%, 95%, 0.17)",
+          "hsla(60, 92%, 95%, 0.19)",
           0.5,
           "#ffffcc",
           1,
@@ -3409,136 +2641,13 @@
       }
     },
     {
-      "id": "amaranth_use",
+      "id": "sorrel_ne",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "amaranth_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "amaranth_usw",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "amaranth_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "mushroom_ne",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "mushroom_score"],
-          0,
-          "hsla(60, 92%, 95%, 0.17)",
-          0.5,
-          "#ffffcc",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "#ffe4b5",
-          3,
-          "#ffdab9",
-          4,
-          "#fec99a",
-          5,
-          "#fbae7e",
-          6,
-          "#fa733d",
-          7,
-          "#fb6d51",
-          8,
-          "#fb4646",
-          9,
-          "#a60310",
-          10,
-          "#800020"
-        ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast"
-    },
-    {
-      "id": "mushroom_se",
-      "type": "fill",
-      "paint": {
-        "fill-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "mushroom_score"],
+          ["get", "sorrel_score"],
           0,
           "hsla(60, 92%, 95%, 0.19)",
           0.5,
@@ -3567,17 +2676,62 @@
         "fill-opacity": 0.85,
         "fill-antialias": false
       },
-      "source": "overlay-se",
-      "source-layer": "se_forecast"
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
     },
     {
-      "id": "mushroom_use",
+      "id": "sorrel_se",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "mushroom_score"],
+          ["get", "sorrel_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.2)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "sorrel_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "sorrel_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
           0.5,
@@ -3607,18 +2761,21 @@
         "fill-antialias": false
       },
       "source": "overlay-use",
-      "source-layer": "use_forecast"
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
     },
     {
-      "id": "mushroom_usw",
+      "id": "sorrel_usw",
       "type": "fill",
       "paint": {
         "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "mushroom_score"],
+          ["get", "sorrel_score"],
           0,
-          "hsla(60, 92%, 95%, 0.19)",
+          "hsla(60, 92%, 95%, 0.2)",
           0.5,
           "#ffffcc",
           1,
@@ -3646,1210 +2803,181 @@
         "fill-antialias": false
       },
       "source": "overlay-usw",
-      "source-layer": "usw_forecast"
-    },
-    {
-      "id": "walnut_ne_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "walnut_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "walnut_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "walnut_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "walnut_se_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "walnut_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "walnut_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "walnut_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "walnut_use_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "walnut_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "walnut_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "walnut_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "walnut_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "walnut_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-usw",
       "source-layer": "usw_forecast",
       "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "walnut_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "walnut_score"]]]
-        ],
-        "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "truffle_b_ne_numbers",
-      "type": "symbol",
+      "id": "st_george_ne",
+      "type": "fill",
       "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "truffle_b_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "truffle_b_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "truffle_b_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "truffle_b_se_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "truffle_b_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "truffle_b_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "truffle_b_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "truffle_b_use_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "truffle_b_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "truffle_b_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "truffle_b_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "truffle_b_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "truffle_b_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "truffle_b_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "truffle_b_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "strawberry_ne_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "strawberry_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "strawberry_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "strawberry_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "strawberry_se_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "strawberry_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "strawberry_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "strawberry_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "strawberry_use_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "strawberry_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "strawberry_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "strawberry_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "strawberry_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "strawberry_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "strawberry_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "strawberry_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "st_george_ne_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-width": 40,
-        "text-halo-blur": 2,
-        "text-halo-color": [
+        "fill-color": [
           "interpolate",
           ["linear"],
           ["get", "st_george_score"],
           0,
-          "rgb(254, 254, 230)",
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
           1,
           "rgb(255, 255, 204)",
           2,
-          "rgb(255, 228, 181)",
+          "#ffe4b5",
           3,
-          "rgb(255, 218, 185)",
+          "#ffdab9",
           4,
-          "rgb(254, 201, 154)",
+          "#fec99a",
           5,
-          "rgb(251, 174, 126)",
+          "#fbae7e",
           6,
-          "rgb(250, 115, 61)",
+          "#fa733d",
           7,
-          "rgb(251, 109, 81)",
+          "#fb6d51",
           8,
-          "rgb(251, 70, 70)",
+          "#fb4646",
           9,
-          "rgb(166, 3, 16)",
+          "#a60310",
           10,
-          "rgb(128, 0, 32)"
-        ]
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
       "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "st_george_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "st_george_score"]]]
-        ],
-        "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "st_george_se_numbers",
-      "type": "symbol",
+      "id": "st_george_se",
+      "type": "fill",
       "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-width": 40,
-        "text-halo-blur": 2,
-        "text-halo-color": [
+        "fill-color": [
           "interpolate",
           ["linear"],
           ["get", "st_george_score"],
           0,
-          "rgb(254, 254, 230)",
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
           1,
           "rgb(255, 255, 204)",
           2,
-          "rgb(255, 228, 181)",
+          "#ffe4b5",
           3,
-          "rgb(255, 218, 185)",
+          "#ffdab9",
           4,
-          "rgb(254, 201, 154)",
+          "#fec99a",
           5,
-          "rgb(251, 174, 126)",
+          "#fbae7e",
           6,
-          "rgb(250, 115, 61)",
+          "#fa733d",
           7,
-          "rgb(251, 109, 81)",
+          "#fb6d51",
           8,
-          "rgb(251, 70, 70)",
+          "#fb4646",
           9,
-          "rgb(166, 3, 16)",
+          "#a60310",
           10,
-          "rgb(128, 0, 32)"
-        ]
+          "#800020"
+        ],
+        "fill-opacity": 0.85,
+        "fill-antialias": false
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "st_george_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "st_george_score"]]]
-        ],
-        "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "st_george_use_numbers",
-      "type": "symbol",
+      "id": "asparagus_se",
+      "type": "fill",
       "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-width": 40,
-        "text-halo-blur": 2,
-        "text-halo-color": [
+        "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "st_george_score"],
+          ["get", "asparagus_score"],
           0,
-          "rgb(254, 254, 230)",
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
           1,
           "rgb(255, 255, 204)",
           2,
-          "rgb(255, 228, 181)",
+          "#ffe4b5",
           3,
-          "rgb(255, 218, 185)",
+          "#ffdab9",
           4,
-          "rgb(254, 201, 154)",
+          "#fec99a",
           5,
-          "rgb(251, 174, 126)",
+          "#fbae7e",
           6,
-          "rgb(250, 115, 61)",
+          "#fa733d",
           7,
-          "rgb(251, 109, 81)",
+          "#fb6d51",
           8,
-          "rgb(251, 70, 70)",
+          "#fb4646",
           9,
-          "rgb(166, 3, 16)",
+          "#a60310",
           10,
-          "rgb(128, 0, 32)"
-        ]
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "st_george_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "st_george_score"]]]
+          "#800020"
         ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "st_george_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-width": 40,
-        "text-halo-blur": 2,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "st_george_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ]
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "st_george_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "st_george_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "sorrel_ne_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-width": 40,
-        "text-halo-blur": 2,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "sorrel_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ]
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "sorrel_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "sorrel_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "sorrel_se_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-width": 40,
-        "text-halo-blur": 2,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "sorrel_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ]
+        "fill-opacity": 0.85,
+        "fill-antialias": false
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "sorrel_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "sorrel_score"]]]
-        ],
-        "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "sorrel_use_numbers",
-      "type": "symbol",
+      "id": "truffle_b_se",
+      "type": "fill",
       "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-width": 40,
-        "text-halo-blur": 2,
-        "text-halo-color": [
+        "fill-color": [
           "interpolate",
           ["linear"],
-          ["get", "sorrel_score"],
+          ["get", "truffle_b_score"],
           0,
-          "rgb(254, 254, 230)",
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
           1,
           "rgb(255, 255, 204)",
           2,
-          "rgb(255, 228, 181)",
+          "#ffe4b5",
           3,
-          "rgb(255, 218, 185)",
+          "#ffdab9",
           4,
-          "rgb(254, 201, 154)",
+          "#fec99a",
           5,
-          "rgb(251, 174, 126)",
+          "#fbae7e",
           6,
-          "rgb(250, 115, 61)",
+          "#fa733d",
           7,
-          "rgb(251, 109, 81)",
+          "#fb6d51",
           8,
-          "rgb(251, 70, 70)",
+          "#fb4646",
           9,
-          "rgb(166, 3, 16)",
+          "#a60310",
           10,
-          "rgb(128, 0, 32)"
-        ]
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "sorrel_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "sorrel_score"]]]
+          "#800020"
         ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "sorrel_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-width": 40,
-        "text-halo-blur": 2,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "sorrel_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ]
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "sorrel_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "sorrel_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "raspberry_ne_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-width": 40,
-        "text-halo-blur": 2,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "raspberry_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ]
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "raspberry_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "raspberry_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "raspberry_se_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-width": 40,
-        "text-halo-blur": 2,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "raspberry_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ]
+        "fill-opacity": 0.85,
+        "fill-antialias": false
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
       "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "raspberry_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "raspberry_score"]]]
-        ],
-        "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "raspberry_use_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-width": 40,
-        "text-halo-blur": 2,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "raspberry_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ]
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "raspberry_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "raspberry_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "raspberry_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-width": 40,
-        "text-halo-blur": 2,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "raspberry_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ]
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "raspberry_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "raspberry_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "parasol_ne_numbers",
+      "id": "chant_ne_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -4857,7 +2985,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "parasol_score"],
+          ["get", "chant_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4890,16 +3018,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "parasol_score"], 1],
+          ["<", ["get", "chant_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "parasol_score"]]]
+          ["to-string", ["floor", ["get", "chant_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "parasol_se_numbers",
+      "id": "chant_se_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -4907,7 +3035,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "parasol_score"],
+          ["get", "chant_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4940,16 +3068,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "parasol_score"], 1],
+          ["<", ["get", "chant_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "parasol_score"]]]
+          ["to-string", ["floor", ["get", "chant_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "parasol_use_numbers",
+      "id": "chant_use_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -4957,7 +3085,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "parasol_score"],
+          ["get", "chant_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -4990,16 +3118,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "parasol_score"], 1],
+          ["<", ["get", "chant_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "parasol_score"]]]
+          ["to-string", ["floor", ["get", "chant_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "parasol_usw_numbers",
+      "id": "chant_usw_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -5007,7 +3135,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "parasol_score"],
+          ["get", "chant_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5040,16 +3168,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "parasol_score"], 1],
+          ["<", ["get", "chant_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "parasol_score"]]]
+          ["to-string", ["floor", ["get", "chant_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "nettle_ne_numbers",
+      "id": "mushroom_ne_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -5057,7 +3185,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "nettle_score"],
+          ["get", "mushroom_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5090,16 +3218,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "nettle_score"], 1],
+          ["<", ["get", "mushroom_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "nettle_score"]]]
+          ["to-string", ["floor", ["get", "mushroom_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "nettle_se_numbers",
+      "id": "mushroom_se_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -5107,7 +3235,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "nettle_score"],
+          ["get", "mushroom_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5140,16 +3268,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "nettle_score"], 1],
+          ["<", ["get", "mushroom_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "nettle_score"]]]
+          ["to-string", ["floor", ["get", "mushroom_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "nettle_use_numbers",
+      "id": "mushroom_use_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -5157,7 +3285,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "nettle_score"],
+          ["get", "mushroom_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5190,16 +3318,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "nettle_score"], 1],
+          ["<", ["get", "mushroom_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "nettle_score"]]]
+          ["to-string", ["floor", ["get", "mushroom_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "nettle_usw_numbers",
+      "id": "mushroom_usw_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -5207,7 +3335,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "nettle_score"],
+          ["get", "mushroom_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5240,9 +3368,9 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "nettle_score"], 1],
+          ["<", ["get", "mushroom_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "nettle_score"]]]
+          ["to-string", ["floor", ["get", "mushroom_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5449,7 +3577,7 @@
       }
     },
     {
-      "id": "masterwort_ne_numbers",
+      "id": "nettle_ne_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -5457,7 +3585,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "masterwort_score"],
+          ["get", "nettle_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5490,16 +3618,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "masterwort_score"], 1],
+          ["<", ["get", "nettle_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "masterwort_score"]]]
+          ["to-string", ["floor", ["get", "nettle_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "masterwort_se_numbers",
+      "id": "nettle_se_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -5507,7 +3635,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "masterwort_score"],
+          ["get", "nettle_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5540,16 +3668,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "masterwort_score"], 1],
+          ["<", ["get", "nettle_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "masterwort_score"]]]
+          ["to-string", ["floor", ["get", "nettle_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "masterwort_use_numbers",
+      "id": "nettle_use_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -5557,7 +3685,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "masterwort_score"],
+          ["get", "nettle_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5590,16 +3718,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "masterwort_score"], 1],
+          ["<", ["get", "nettle_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "masterwort_score"]]]
+          ["to-string", ["floor", ["get", "nettle_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "masterwort_usw_numbers",
+      "id": "nettle_usw_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -5607,7 +3735,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "masterwort_score"],
+          ["get", "nettle_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -5640,409 +3768,9 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "masterwort_score"], 1],
+          ["<", ["get", "nettle_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "masterwort_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "lingonb_ne_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "lingonb_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "lingonb_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "lingonb_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "lingonb_se_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "lingonb_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "lingonb_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "lingonb_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "lingonb_use_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "lingonb_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "lingonb_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "lingonb_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "lingonb_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "lingonb_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "lingonb_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "lingonb_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "garlic_ne_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "garlic_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "garlic_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "garlic_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "garlic_se_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "garlic_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "garlic_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "garlic_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "garlic_use_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "garlic_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "garlic_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "garlic_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "garlic_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "garlic_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "garlic_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "garlic_score"]]]
+          ["to-string", ["floor", ["get", "nettle_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -6249,6 +3977,506 @@
       }
     },
     {
+      "id": "garlic_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "garlic_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "garlic_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "garlic_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "garlic_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "garlic_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "garlic_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "garlic_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "raspberry_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-width": 40,
+        "text-halo-blur": 2,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "raspberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "raspberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "raspberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "raspberry_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-width": 40,
+        "text-halo-blur": 2,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "raspberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "raspberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "raspberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "raspberry_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-width": 40,
+        "text-halo-blur": 2,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "raspberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "raspberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "raspberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "raspberry_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-width": 40,
+        "text-halo-blur": 2,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "raspberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "raspberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "raspberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "strawberry_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "strawberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "strawberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "strawberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "strawberry_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "strawberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "strawberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "strawberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "strawberry_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "strawberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "strawberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "strawberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "strawberry_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "strawberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "strawberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "strawberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "chickweed_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -6449,6 +4677,206 @@
       }
     },
     {
+      "id": "walnut_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "walnut_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "walnut_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "walnut_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "walnut_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "walnut_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "walnut_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "walnut_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "walnut_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "walnut_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "walnut_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "walnut_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "walnut_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "walnut_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "walnut_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "walnut_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "chestnut_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -6543,906 +4971,6 @@
           ["<", ["get", "chestnut_score"], 1],
           "",
           ["to-string", ["floor", ["get", "chestnut_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chestnut_use_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "chestnut_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "chestnut_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "chestnut_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chestnut_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "chestnut_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "chestnut_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "chestnut_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chant_ne_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "chant_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "chant_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "chant_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chant_se_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "chant_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "chant_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "chant_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chant_use_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "chant_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "chant_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "chant_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "chant_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "chant_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "chant_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "chant_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "black_chant_ne_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "black_chant_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "black_chant_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "black_chant_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "black_chant_se_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "black_chant_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "black_chant_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "black_chant_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "black_chant_use_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "black_chant_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "black_chant_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "black_chant_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "black_chant_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "black_chant_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "black_chant_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "black_chant_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "asparagus_ne_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "asparagus_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "asparagus_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "asparagus_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "asparagus_se_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "asparagus_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "asparagus_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "asparagus_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "asparagus_use_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "asparagus_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "asparagus_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "asparagus_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "asparagus_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "asparagus_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "asparagus_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "asparagus_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "artichoke_ne_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "artichoke_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-ne",
-      "source-layer": "ne_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "artichoke_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "artichoke_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "artichoke_se_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "artichoke_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-se",
-      "source-layer": "se_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "artichoke_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "artichoke_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "artichoke_use_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "artichoke_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-use",
-      "source-layer": "use_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "artichoke_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "artichoke_score"]]]
-        ],
-        "text-size": 20,
-        "visibility": "none"
-      }
-    },
-    {
-      "id": "artichoke_usw_numbers",
-      "type": "symbol",
-      "paint": {
-        "text-color": "rgb(0, 0, 0)",
-        "text-opacity": 0.88,
-        "text-halo-color": [
-          "interpolate",
-          ["linear"],
-          ["get", "artichoke_score"],
-          0,
-          "rgb(254, 254, 230)",
-          1,
-          "rgb(255, 255, 204)",
-          2,
-          "rgb(255, 228, 181)",
-          3,
-          "rgb(255, 218, 185)",
-          4,
-          "rgb(254, 201, 154)",
-          5,
-          "rgb(251, 174, 126)",
-          6,
-          "rgb(250, 115, 61)",
-          7,
-          "rgb(251, 109, 81)",
-          8,
-          "rgb(251, 70, 70)",
-          9,
-          "rgb(166, 3, 16)",
-          10,
-          "rgb(128, 0, 32)"
-        ],
-        "text-halo-width": 40,
-        "text-halo-blur": 2
-      },
-      "source": "overlay-usw",
-      "source-layer": "usw_forecast",
-      "layout": {
-        "text-font": ["Noto Sans Medium"],
-        "text-field": [
-          "case",
-          ["<", ["get", "artichoke_score"], 1],
-          "",
-          ["to-string", ["floor", ["get", "artichoke_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -7649,7 +5177,7 @@
       }
     },
     {
-      "id": "mushroom_ne_numbers",
+      "id": "artichoke_ne_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -7657,7 +5185,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "mushroom_score"],
+          ["get", "artichoke_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7690,16 +5218,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "mushroom_score"], 1],
+          ["<", ["get", "artichoke_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "mushroom_score"]]]
+          ["to-string", ["floor", ["get", "artichoke_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "mushroom_se_numbers",
+      "id": "artichoke_se_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -7707,7 +5235,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "mushroom_score"],
+          ["get", "artichoke_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7740,16 +5268,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "mushroom_score"], 1],
+          ["<", ["get", "artichoke_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "mushroom_score"]]]
+          ["to-string", ["floor", ["get", "artichoke_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "mushroom_use_numbers",
+      "id": "artichoke_use_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -7757,7 +5285,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "mushroom_score"],
+          ["get", "artichoke_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7790,16 +5318,16 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "mushroom_score"], 1],
+          ["<", ["get", "artichoke_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "mushroom_score"]]]
+          ["to-string", ["floor", ["get", "artichoke_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
       }
     },
     {
-      "id": "mushroom_usw_numbers",
+      "id": "artichoke_usw_numbers",
       "type": "symbol",
       "paint": {
         "text-color": "rgb(0, 0, 0)",
@@ -7807,7 +5335,7 @@
         "text-halo-color": [
           "interpolate",
           ["linear"],
-          ["get", "mushroom_score"],
+          ["get", "artichoke_score"],
           0,
           "rgb(254, 254, 230)",
           1,
@@ -7840,9 +5368,1009 @@
         "text-font": ["Noto Sans Medium"],
         "text-field": [
           "case",
-          ["<", ["get", "mushroom_score"], 1],
+          ["<", ["get", "artichoke_score"], 1],
           "",
-          ["to-string", ["floor", ["get", "mushroom_score"]]]
+          ["to-string", ["floor", ["get", "artichoke_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "black_chant_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "black_chant_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "black_chant_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "black_chant_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "black_chant_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "black_chant_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "black_chant_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "black_chant_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "black_chant_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "black_chant_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "black_chant_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "black_chant_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "black_chant_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "black_chant_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "black_chant_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "black_chant_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "lingonb_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "lingonb_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "lingonb_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "lingonb_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "lingonb_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "lingonb_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "lingonb_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "lingonb_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "lingonb_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "lingonb_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "lingonb_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "lingonb_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "lingonb_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "lingonb_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "lingonb_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "lingonb_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "masterwort_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "masterwort_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "masterwort_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "masterwort_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "masterwort_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "masterwort_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "masterwort_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "masterwort_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "parasol_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "parasol_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "parasol_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "parasol_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "parasol_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "parasol_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "parasol_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "parasol_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "sorrel_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-width": 40,
+        "text-halo-blur": 2,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "sorrel_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "sorrel_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "sorrel_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "sorrel_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-width": 40,
+        "text-halo-blur": 2,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "sorrel_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "sorrel_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "sorrel_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "sorrel_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-width": 40,
+        "text-halo-blur": 2,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "sorrel_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "sorrel_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "sorrel_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "sorrel_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-width": 40,
+        "text-halo-blur": 2,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "sorrel_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "sorrel_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "sorrel_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "st_george_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-width": 40,
+        "text-halo-blur": 2,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "st_george_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "st_george_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "st_george_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "st_george_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-width": 40,
+        "text-halo-blur": 2,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "st_george_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "st_george_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "st_george_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "asparagus_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "asparagus_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "asparagus_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "asparagus_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "truffle_b_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "truffle_b_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "truffle_b_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "truffle_b_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"

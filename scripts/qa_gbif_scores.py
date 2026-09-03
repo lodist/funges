@@ -10,7 +10,6 @@ regional background distribution.
 from __future__ import annotations
 
 import argparse
-import ast
 import csv
 import json
 import math
@@ -26,6 +25,11 @@ import pyarrow.parquet as pq
 import requests
 from scipy.spatial import cKDTree
 
+ROOT = Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT / "backend"))
+from species_registry import get_empirical_taxon_map, get_species_metadata, get_species_params
+
 
 R2_ROOT = "https://data.fung.es"
 REGIONS = {
@@ -34,11 +38,9 @@ REGIONS = {
     "USE": (f"{R2_ROOT}/USA/USE/USE_weather_data.parquet", (-100, 24, -60, 72)),
     "USW": (f"{R2_ROOT}/USA/USW/USW_weather_data.parquet", (-170, 24, -100, 72)),
 }
-PARAM_URLS = {
-    "NE": f"{R2_ROOT}/EU/NE/NE_species_params.txt",
-    "SE": f"{R2_ROOT}/EU/SE/SE_species_params.txt",
-    "USE": f"{R2_ROOT}/USA/USE/USE_species_params.txt",
-    "USW": f"{R2_ROOT}/USA/USW/USW_species_params.txt",
+PARAM_SOURCES = {
+    region: f"backend/generated/species_registry.json#{region}"
+    for region in ("NE", "SE", "USE", "USW")
 }
 REGION_CURVE_URLS = {
     "NE": f"{R2_ROOT}/EU/NE/NE_season_curves.json",
@@ -52,32 +54,13 @@ ZONE_CURVE_URLS = {
     "USE": f"{R2_ROOT}/USA/US_zone_season_curves.json",
     "USW": f"{R2_ROOT}/USA/US_zone_season_curves.json",
 }
+_SPECIES_METADATA = get_species_metadata()
 SPECIES = {
-    "mushroom": ("Porcini", "Boletus"),
-    "black_chant": ("Black Chanterelle", "Craterellus cornucopioides"),
-    "lingonb": ("Lingonberry", "Vaccinium vitis-idaea"),
-    "garlic": ("Wild Garlic", "Allium ursinum"),
-    "truffle_b": ("Black Truffle", "Tuber melanosporum"),
-    "walnut": ("Wild Walnut", "Juglans regia"),
-    "strawberry": ("Wild Strawberry", "Fragaria vesca"),
-    "asparagus": ("Wild Asparagus", "Asparagus acutifolius"),
-    "parasol": ("Parasol Mushroom", "Macrolepiota procera"),
-    "chestnut": ("Chestnut", "Castanea sativa"),
-    "amaranth": ("Amaranth", "Amaranthus retroflexus"),
-    "masterwort": ("Masterwort", "Peucedanum ostruthium"),
-    "nettle": ("Nettle", "Urtica dioica"),
-    "morel": ("Morel", "Morchella"),
-    "sorrel": ("Sorrel", "Rumex acetosa"),
-    "raspberry": ("Raspberry", "Rubus idaeus"),
-    "dandelion": ("Dandelion", "Taraxacum officinale"),
-    "chickweed": ("Chickweed", "Stellaria media"),
-    "artichoke": ("Artichoke", "Cynara cardunculus"),
-    "st_george": ("St. George's Mushroom", "Calocybe gambosa"),
-    "chant": ("Chanterelle", "Cantharellus cibarius"),
+    species_id: (config["name"], config["scientificName"])
+    for species_id, config in _SPECIES_METADATA.items()
 }
 GBIF = "https://api.gbif.org/v1"
-SCORE_COLUMNS = [f"{key}_score" for key in SPECIES]
-FUNGI = {"mushroom", "black_chant", "truffle_b", "parasol", "morel", "st_george", "chant"}
+FUNGI = set(get_empirical_taxon_map())
 ACTIVE_CURVE_THRESHOLD = 0.8
 TAXON_KEY_OVERRIDES = {
     # GBIF's fuzzy matcher currently promotes bare "Boletus" to kingdom Fungi;
@@ -103,15 +86,7 @@ def load_season_specs(session: requests.Session) -> dict:
     specs = {}
     json_cache = {}
     for region in REGIONS:
-        source = session.get(PARAM_URLS[region], timeout=60)
-        source.raise_for_status()
-        tree = ast.parse(source.text)
-        assignment = next(
-            node for node in tree.body
-            if isinstance(node, ast.Assign)
-            and any(isinstance(target, ast.Name) and target.id == "species_params" for target in node.targets)
-        )
-        params = ast.literal_eval(assignment.value)
+        params = get_species_params(region)
         for url in (REGION_CURVE_URLS[region], ZONE_CURVE_URLS[region]):
             if url not in json_cache:
                 response = session.get(url, timeout=60)
@@ -136,6 +111,8 @@ def curve_value(curve: dict, observed: str) -> float:
 
 
 def active_for_validation(species_id: str, region: str, zone: str, observed: str, specs: dict) -> tuple[bool, float | None]:
+    if species_id not in specs[region]["params"]:
+        return False, None
     if species_id == "truffle_b":
         # Catalog says Burgundy Truffle but the configured taxon is T. melanosporum.
         return False, None
@@ -155,7 +132,7 @@ def active_for_validation(species_id: str, region: str, zone: str, observed: str
 def match_taxa(session: requests.Session) -> dict[str, dict]:
     matches = {}
     for species_id, (_, name) in SPECIES.items():
-        expected_rank = "GENUS" if species_id in TAXON_KEY_OVERRIDES else "SPECIES"
+        expected_rank = _SPECIES_METADATA[species_id]["identificationRank"].upper()
         if species_id in TAXON_KEY_OVERRIDES:
             key = TAXON_KEY_OVERRIDES[species_id]
             result = gbif_get(session, f"species/{key}", {})
@@ -306,7 +283,22 @@ def analyse_region(
             lambda: np.zeros(101, dtype=np.int64)
         )
         date_counts: dict[str, int] = defaultdict(int)
-        columns = ["Location_Id", "Date", "climate_zone", *SCORE_COLUMNS]
+        region_species = list(specs[region]["params"])
+        available_columns = set(parquet.schema_arrow.names)
+        # Fail instead of intersecting: a species the registry declares available in
+        # the region but whose score column the pipeline never wrote is a pipeline
+        # gap, and silently dropping it turns that gap into a clean QA run.
+        missing = [
+            species_id
+            for species_id in region_species
+            if f"{species_id}_score" not in available_columns
+        ]
+        if missing:
+            raise SystemExit(
+                f"{region}: parquet is missing score columns for {sorted(missing)}"
+            )
+        score_columns = [f"{species_id}_score" for species_id in region_species]
+        columns = ["Location_Id", "Date", "climate_zone", *score_columns]
         for batch in parquet.iter_batches(columns=columns):
             frame = batch.to_pandas()
             frame["Date"] = frame["Date"].astype("datetime64[ns]").dt.strftime("%Y-%m-%d")
@@ -316,7 +308,7 @@ def analyse_region(
             frame["climate_zone"] = frame["climate_zone"].astype(str)
             for (day, zone), day_frame in frame.groupby(["Date", "climate_zone"], sort=False):
                 date_counts[day] += len(day_frame)
-                for species_id in SPECIES:
+                for species_id in region_species:
                     values = day_frame[f"{species_id}_score"].to_numpy(float)
                     bins = np.clip(np.rint(np.nan_to_num(values) * 10), 0, 100).astype(int)
                     histograms[(day, zone, species_id)] += np.bincount(bins, minlength=101)
@@ -325,7 +317,9 @@ def analyse_region(
             ]
             for _, score_row in target_rows.iterrows():
                 for occurrence in wanted_many.get((score_row.Date, score_row.Location_Id), []):
-                    occurrence["score"] = float(score_row[f"{occurrence['species_id']}_score"])
+                    score_column = f"{occurrence['species_id']}_score"
+                    if score_column in score_row:
+                        occurrence["score"] = float(score_row[score_column])
 
     for row in eligible_occ:
         score = row.get("score")
@@ -596,7 +590,7 @@ def main() -> None:
                 }
                 for region in REGIONS
             },
-            "plant_month_sources": PARAM_URLS,
+            "plant_month_sources": PARAM_SOURCES,
             "plant_season_months": {
                 region: {
                     species_id: spec.get("season_months", [])

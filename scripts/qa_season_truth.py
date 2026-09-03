@@ -17,6 +17,11 @@ from urllib.parse import urlencode
 
 import requests
 
+ROOT = Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT / "backend"))
+from species_registry import get_empirical_taxon_map
+
 GBIF = "https://api.gbif.org/v1"
 # (west, south, east, north) -- same extents as the production score regions.
 REGION_BOXES = {
@@ -27,15 +32,11 @@ REGION_BOXES = {
 }
 # Fungal targets only: these are the species with empirical season curves.
 FUNGI_TAXA = {
-    "mushroom": 8287374,      # Boletus (genus)
-    "chant": 9623860,         # Cantharellus (genus)
-    "black_chant": 2554662,   # Craterellus cornucopioides
-    "parasol": 8914748,       # Macrolepiota procera
-    "morel": 2594601,         # Morchella (genus)
-    "st_george": 8936224,     # Calocybe gambosa
-    "truffle_b": 5258468,     # Tuber melanosporum
-    "truffle_aestivum": 5258469,  # Tuber aestivum -- the actual Burgundy truffle
+    species_id: keys[0]
+    for species_id, keys in get_empirical_taxon_map().items()
+    if keys
 }
+FUNGI_TAXA["truffle_aestivum"] = 5258469
 FUNGI_KINGDOM = 5
 MAX_UNCERTAINTY_M = 20_000
 CLIMATOLOGY_YEARS = (2021, 2022, 2023, 2024, 2025)

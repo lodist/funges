@@ -1,0 +1,3279 @@
+{
+  "schemaVersion": 1,
+  "regionBoundaries": {
+    "uswMaxLongitude": -100,
+    "usMaxLongitude": -25,
+    "seMaxLatitude": 47
+  },
+  "species": {
+    "chant": {
+      "name": "Chanterelle",
+      "scientificName": "Cantharellus cibarius",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [9623860],
+      "dataColumns": ["chant_score", "Chanterelle"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 16,
+            "temp_sigma": 4.5,
+            "min_temp": 6,
+            "max_temp": 25,
+            "optimal_alt": 850,
+            "alt_sigma": 1200,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 5.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 6.75],
+            "optimal_soil_temp": 17.5,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 16,
+            "temp_sigma": 4.5,
+            "min_temp": 6,
+            "max_temp": 25,
+            "optimal_alt": 850,
+            "alt_sigma": 1200,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 5.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 6.75],
+            "optimal_soil_temp": 17.5,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [41, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 16,
+            "temp_sigma": 4,
+            "min_temp": 6,
+            "max_temp": 25,
+            "optimal_alt": 850,
+            "alt_sigma": 1200,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 5.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 6.75],
+            "optimal_soil_temp": 17.5,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [41, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 16,
+            "temp_sigma": 4,
+            "min_temp": 6,
+            "max_temp": 25,
+            "optimal_alt": 850,
+            "alt_sigma": 1200,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 5.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 6.75],
+            "optimal_soil_temp": 17.5,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "mushroom": {
+      "name": "Boletus",
+      "scientificName": "Boletus",
+      "identificationRank": "genus",
+      "empiricalTaxonKeys": [8287374],
+      "dataColumns": ["mushroom_score", "Porcini", "Mushroom"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 312, 313],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 17,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 25,
+            "optimal_alt": 1000,
+            "alt_sigma": 1600,
+            "optimal_humidity": 80,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 7],
+            "optimal_soil_temp": 17.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": true,
+            "season_months": [5, 6, 7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311, 312, 313],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 17,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 25,
+            "optimal_alt": 1000,
+            "alt_sigma": 1600,
+            "optimal_humidity": 80,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 7],
+            "optimal_soil_temp": 17.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": true,
+            "season_months": [5, 6, 7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 17,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 25,
+            "optimal_alt": 1000,
+            "alt_sigma": 1600,
+            "optimal_humidity": 80,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 7],
+            "optimal_soil_temp": 17.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "mediterranean_california",
+              "semiarid_steppe"
+            ],
+            "wind_sensitive": true,
+            "season_months": [5, 6, 7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 17,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 25,
+            "optimal_alt": 1000,
+            "alt_sigma": 1600,
+            "optimal_humidity": 80,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 7],
+            "optimal_soil_temp": 17.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "mediterranean_california",
+              "semiarid_steppe"
+            ],
+            "wind_sensitive": true,
+            "season_months": [5, 6, 7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "morel": {
+      "name": "Morchella",
+      "scientificName": "Morchella",
+      "identificationRank": "genus",
+      "empiricalTaxonKeys": [2594601],
+      "dataColumns": ["morel_score", "Morel"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 12,
+            "temp_sigma": 4.5,
+            "min_temp": 1.5,
+            "max_temp": 22.5,
+            "optimal_alt": 800,
+            "alt_sigma": 1100,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.5, 8],
+            "optimal_soil_temp": 11.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1500
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 12,
+            "temp_sigma": 4.5,
+            "min_temp": 1.5,
+            "max_temp": 22.5,
+            "optimal_alt": 800,
+            "alt_sigma": 1100,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.5, 8],
+            "optimal_soil_temp": 11.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1500
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [41, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 12,
+            "temp_sigma": 4,
+            "min_temp": 1.5,
+            "max_temp": 22.5,
+            "optimal_alt": 800,
+            "alt_sigma": 1100,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.5, 8],
+            "optimal_soil_temp": 11.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "mediterranean_california",
+              "semiarid_steppe"
+            ],
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1500
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [41, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 12,
+            "temp_sigma": 4,
+            "min_temp": 1.5,
+            "max_temp": 22.5,
+            "optimal_alt": 800,
+            "alt_sigma": 1100,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.5, 8],
+            "optimal_soil_temp": 11.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "mediterranean_california",
+              "semiarid_steppe"
+            ],
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1500
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "nettle": {
+      "name": "Nettle",
+      "scientificName": "Urtica dioica",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["nettle_score", "Nettle"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 4,
+            "min_temp": 3,
+            "max_temp": 19,
+            "optimal_alt": 700,
+            "alt_sigma": 800,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.8, 7.8],
+            "optimal_soil_temp": 9.5,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 20,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1000
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 4,
+            "min_temp": 3,
+            "max_temp": 19,
+            "optimal_alt": 700,
+            "alt_sigma": 800,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.8, 7.8],
+            "optimal_soil_temp": 9.5,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 20,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1000
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [31, 41, 42, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 4,
+            "min_temp": 3,
+            "max_temp": 19,
+            "optimal_alt": 700,
+            "alt_sigma": 800,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.8, 7.8],
+            "optimal_soil_temp": 9.5,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 20,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "semiarid_steppe"
+            ],
+            "wind_sensitive": false,
+            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1000
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [31, 41, 42, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 4,
+            "min_temp": 3,
+            "max_temp": 19,
+            "optimal_alt": 700,
+            "alt_sigma": 800,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.8, 7.8],
+            "optimal_soil_temp": 9.5,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 20,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "semiarid_steppe"
+            ],
+            "wind_sensitive": false,
+            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1000
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "dandelion": {
+      "name": "Dandelion",
+      "scientificName": "Taraxacum officinale",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["dandelion_score", "Dandelion"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 6,
+            "min_temp": -1,
+            "max_temp": 20,
+            "optimal_alt": 500,
+            "alt_sigma": 1550,
+            "optimal_humidity": 80,
+            "humidity_sigma": 17,
+            "optimal_pH": 6.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7.5],
+            "optimal_soil_temp": 9,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 6,
+            "min_temp": -1,
+            "max_temp": 20,
+            "optimal_alt": 500,
+            "alt_sigma": 1550,
+            "optimal_humidity": 80,
+            "humidity_sigma": 17,
+            "optimal_pH": 6.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7.5],
+            "optimal_soil_temp": 9,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [31, 41, 42, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 6,
+            "min_temp": -1,
+            "max_temp": 20,
+            "optimal_alt": 500,
+            "alt_sigma": 1550,
+            "optimal_humidity": 80,
+            "humidity_sigma": 17,
+            "optimal_pH": 6.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7.5],
+            "optimal_soil_temp": 9,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "semiarid_steppe",
+              "mediterranean_california"
+            ],
+            "wind_sensitive": false,
+            "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [31, 41, 42, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 6,
+            "min_temp": -1,
+            "max_temp": 20,
+            "optimal_alt": 500,
+            "alt_sigma": 1550,
+            "optimal_humidity": 80,
+            "humidity_sigma": 17,
+            "optimal_pH": 6.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7.5],
+            "optimal_soil_temp": 9,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "semiarid_steppe",
+              "mediterranean_california"
+            ],
+            "wind_sensitive": false,
+            "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "garlic": {
+      "name": "Wild Garlic",
+      "scientificName": "Allium ursinum",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["garlic_score", "Wild Garlic", "Garlic"],
+      "regions": {
+        "NE": {
+          "landCover": [311],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 10,
+            "temp_sigma": 5,
+            "min_temp": -2,
+            "max_temp": 15,
+            "optimal_alt": 600,
+            "alt_sigma": 950,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.25, 7.75],
+            "optimal_soil_temp": 9,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 30,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "subarctic",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "mediterranean_turkey"
+            ],
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1800
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 10,
+            "temp_sigma": 5,
+            "min_temp": -2,
+            "max_temp": 15,
+            "optimal_alt": 600,
+            "alt_sigma": 950,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.25, 7.75],
+            "optimal_soil_temp": 9,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 30,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "subarctic",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "mediterranean_turkey"
+            ],
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1800
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        }
+      }
+    },
+    "raspberry": {
+      "name": "Wild Raspberry",
+      "scientificName": "Rubus idaeus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["raspberry_score", "Raspberry"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 4,
+            "min_temp": 7,
+            "max_temp": 25,
+            "optimal_alt": 700,
+            "alt_sigma": 800,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.75, 7.25],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 25,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [6, 7, 8],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 2000
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 4,
+            "min_temp": 7,
+            "max_temp": 25,
+            "optimal_alt": 700,
+            "alt_sigma": 800,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.75, 7.25],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 25,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [6, 7, 8],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 2000
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [41, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 4,
+            "min_temp": 7,
+            "max_temp": 25,
+            "optimal_alt": 700,
+            "alt_sigma": 800,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.75, 7.25],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 25,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_continental",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [6, 7, 8],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 2000
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [41, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 4,
+            "min_temp": 7,
+            "max_temp": 25,
+            "optimal_alt": 700,
+            "alt_sigma": 800,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.75, 7.25],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 25,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_continental",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [6, 7, 8],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 2000
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "strawberry": {
+      "name": "Wild Strawberry",
+      "scientificName": "Fragaria vesca",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["strawberry_score", "Wild Strawberry", "Strawberry"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "optimal_alt": 500,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 24,
+            "alt_sigma": 800,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 5.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.6, 7],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 20,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [5, 6, 7],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "optimal_alt": 500,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 24,
+            "alt_sigma": 800,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 5.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.6, 7],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 20,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [5, 6, 7],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [41, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 15,
+            "optimal_alt": 500,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 24,
+            "alt_sigma": 800,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 5.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.6, 7],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 20,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [5, 6, 7],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [41, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 15,
+            "optimal_alt": 500,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 24,
+            "alt_sigma": 800,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 5.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.6, 7],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 20,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [5, 6, 7],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "chickweed": {
+      "name": "Chickweed",
+      "scientificName": "Stellaria media",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["chickweed_score", "Chickweed"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 8.5,
+            "temp_sigma": 5,
+            "min_temp": -1,
+            "max_temp": 17,
+            "optimal_alt": 400,
+            "alt_sigma": 600,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.75, 8.25],
+            "optimal_soil_temp": 7,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [1, 2, 3, 4, 10, 11, 12],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1200
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 8.5,
+            "temp_sigma": 5,
+            "min_temp": -1,
+            "max_temp": 17,
+            "optimal_alt": 400,
+            "alt_sigma": 600,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.75, 8.25],
+            "optimal_soil_temp": 7,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [1, 2, 3, 4, 10, 11, 12],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1200
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [31, 41, 42, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 8.5,
+            "temp_sigma": 5,
+            "min_temp": -1,
+            "max_temp": 17,
+            "optimal_alt": 400,
+            "alt_sigma": 600,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.75, 8.25],
+            "optimal_soil_temp": 7,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "semiarid_steppe",
+              "mediterranean_california"
+            ],
+            "wind_sensitive": false,
+            "season_months": [1, 2, 3, 4, 10, 11, 12],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1200
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [31, 41, 42, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 8.5,
+            "temp_sigma": 5,
+            "min_temp": -1,
+            "max_temp": 17,
+            "optimal_alt": 400,
+            "alt_sigma": 600,
+            "optimal_humidity": 85,
+            "humidity_sigma": 18,
+            "optimal_pH": 6.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.75, 8.25],
+            "optimal_soil_temp": 7,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "semiarid_steppe",
+              "mediterranean_california"
+            ],
+            "wind_sensitive": false,
+            "season_months": [1, 2, 3, 4, 10, 11, 12],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1200
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "walnut": {
+      "name": "Walnut",
+      "scientificName": "Juglans regia",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["walnut_score", "Wild Walnut"],
+      "regions": {
+        "NE": {
+          "landCover": [311],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 14,
+            "temp_sigma": 7,
+            "min_temp": 5,
+            "max_temp": 21,
+            "optimal_alt": 500,
+            "alt_sigma": 600,
+            "optimal_humidity": 70,
+            "humidity_sigma": 14,
+            "optimal_pH": 6.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.25, 7.75],
+            "optimal_soil_temp": 11,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 15,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [10, 11],
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 14,
+            "temp_sigma": 7,
+            "min_temp": 5,
+            "max_temp": 21,
+            "optimal_alt": 500,
+            "alt_sigma": 600,
+            "optimal_humidity": 70,
+            "humidity_sigma": 14,
+            "optimal_pH": 6.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.25, 7.75],
+            "optimal_soil_temp": 11,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 15,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [10, 11],
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [41],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 14,
+            "temp_sigma": 7,
+            "min_temp": 5,
+            "max_temp": 21,
+            "optimal_alt": 500,
+            "alt_sigma": 600,
+            "optimal_humidity": 70,
+            "humidity_sigma": 14,
+            "optimal_pH": 6.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.25, 7.75],
+            "optimal_soil_temp": 11,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 15,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [10, 11],
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "mediterranean_california"
+            ],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [41],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 14,
+            "temp_sigma": 7,
+            "min_temp": 5,
+            "max_temp": 21,
+            "optimal_alt": 500,
+            "alt_sigma": 600,
+            "optimal_humidity": 70,
+            "humidity_sigma": 14,
+            "optimal_pH": 6.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.25, 7.75],
+            "optimal_soil_temp": 11,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 15,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [10, 11],
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "mediterranean_california"
+            ],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "chestnut": {
+      "name": "Chestnut",
+      "scientificName": "Castanea sativa",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["chestnut_score", "Chestnut"],
+      "regions": {
+        "NE": {
+          "landCover": [311],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 14,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 21,
+            "optimal_alt": 600,
+            "alt_sigma": 500,
+            "optimal_humidity": 75,
+            "humidity_sigma": 16,
+            "optimal_pH": 5.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.6, 7],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 25,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "temperate",
+              "continental",
+              "oceanic_south",
+              "oceanic_north",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "mediterranean_dry_spain",
+              "atlantic_islands",
+              "alpine",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 14,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 21,
+            "optimal_alt": 600,
+            "alt_sigma": 500,
+            "optimal_humidity": 75,
+            "humidity_sigma": 16,
+            "optimal_pH": 5.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.6, 7],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 25,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "temperate",
+              "continental",
+              "oceanic_south",
+              "oceanic_north",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "mediterranean_dry_spain",
+              "atlantic_islands",
+              "alpine",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        }
+      }
+    },
+    "amaranth": {
+      "name": "Amaranth",
+      "scientificName": "Amaranthus retroflexus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["amaranth_score", "Amaranth"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 22,
+            "temp_sigma": 6,
+            "min_temp": 13,
+            "max_temp": 35,
+            "optimal_alt": 500,
+            "alt_sigma": 700,
+            "optimal_humidity": 63,
+            "humidity_sigma": 16,
+            "optimal_pH": 6.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 8.5],
+            "optimal_soil_temp": 20,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 5,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [5, 6, 7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 22,
+            "temp_sigma": 6,
+            "min_temp": 13,
+            "max_temp": 35,
+            "optimal_alt": 500,
+            "alt_sigma": 700,
+            "optimal_humidity": 63,
+            "humidity_sigma": 16,
+            "optimal_pH": 6.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 8.5],
+            "optimal_soil_temp": 20,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 5,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [5, 6, 7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [31, 41, 42, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 22,
+            "temp_sigma": 6,
+            "min_temp": 13,
+            "max_temp": 35,
+            "optimal_alt": 500,
+            "alt_sigma": 700,
+            "optimal_humidity": 63,
+            "humidity_sigma": 16,
+            "optimal_pH": 6.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 8.5],
+            "optimal_soil_temp": 20,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 5,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "mediterranean_california",
+              "humid_subtropical",
+              "semiarid_steppe",
+              "desert_southwest",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [5, 6, 7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [31, 41, 42, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 22,
+            "temp_sigma": 6,
+            "min_temp": 13,
+            "max_temp": 35,
+            "optimal_alt": 500,
+            "alt_sigma": 700,
+            "optimal_humidity": 63,
+            "humidity_sigma": 16,
+            "optimal_pH": 6.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 8.5],
+            "optimal_soil_temp": 20,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 5,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "mediterranean_california",
+              "humid_subtropical",
+              "semiarid_steppe",
+              "desert_southwest",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [5, 6, 7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "artichoke": {
+      "name": "Wild Artichoke",
+      "scientificName": "Cynara cardunculus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["artichoke_score", "Artichoke"],
+      "regions": {
+        "NE": {
+          "landCover": [323, 321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 4.5,
+            "min_temp": 6,
+            "max_temp": 21,
+            "optimal_alt": 300,
+            "alt_sigma": 400,
+            "optimal_humidity": 65,
+            "humidity_sigma": 15,
+            "optimal_pH": 6.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.75, 7.75],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": true,
+            "season_months": [3, 4, 5],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [323, 321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 4.5,
+            "min_temp": 6,
+            "max_temp": 21,
+            "optimal_alt": 300,
+            "alt_sigma": 400,
+            "optimal_humidity": 65,
+            "humidity_sigma": 15,
+            "optimal_pH": 6.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.75, 7.75],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": true,
+            "season_months": [3, 4, 5],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [71, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 4,
+            "min_temp": 6,
+            "max_temp": 21,
+            "optimal_alt": 300,
+            "alt_sigma": 400,
+            "optimal_humidity": 65,
+            "humidity_sigma": 15,
+            "optimal_pH": 6.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.75, 7.75],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "mediterranean_california",
+              "humid_subtropical",
+              "temperate",
+              "semiarid_steppe",
+              "marine_west_coast"
+            ],
+            "wind_sensitive": true,
+            "season_months": [3, 4, 5],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [71, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 4,
+            "min_temp": 6,
+            "max_temp": 21,
+            "optimal_alt": 300,
+            "alt_sigma": 400,
+            "optimal_humidity": 65,
+            "humidity_sigma": 15,
+            "optimal_pH": 6.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.75, 7.75],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "mediterranean_california",
+              "humid_subtropical",
+              "temperate",
+              "semiarid_steppe",
+              "marine_west_coast"
+            ],
+            "wind_sensitive": true,
+            "season_months": [3, 4, 5],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "asparagus": {
+      "name": "Wild Asparagus",
+      "scientificName": "Asparagus acutifolius",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["asparagus_score", "Wild Asparagus", "Asparagus"],
+      "regions": {
+        "SE": {
+          "landCover": [323, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 14,
+            "optimal_alt": 400,
+            "temp_sigma": 4,
+            "min_temp": 5,
+            "max_temp": 18,
+            "alt_sigma": 700,
+            "optimal_humidity": 65,
+            "humidity_sigma": 12,
+            "optimal_pH": 6.4,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.2, 7.6],
+            "optimal_soil_temp": 10.5,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "central_spain",
+              "sardinia",
+              "oceanic_south"
+            ],
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        }
+      }
+    },
+    "black_chant": {
+      "name": "Black Trumpet (Horn of Plenty)",
+      "scientificName": "Craterellus cornucopioides",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [2554662],
+      "dataColumns": ["black_chant_score", "Black Chanterelle"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 313],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 14.5,
+            "temp_sigma": 4.5,
+            "min_temp": 5,
+            "max_temp": 23,
+            "optimal_alt": 900,
+            "alt_sigma": 1000,
+            "optimal_humidity": 90,
+            "humidity_sigma": 20,
+            "optimal_pH": 6.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7.5],
+            "optimal_soil_temp": 13.5,
+            "min_cumulative_rain": 45,
+            "soil_temp_sigma": 4,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "sardinia"
+            ],
+            "wind_sensitive": true,
+            "season_months": [7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311, 313],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 14.5,
+            "temp_sigma": 4.5,
+            "min_temp": 5,
+            "max_temp": 23,
+            "optimal_alt": 900,
+            "alt_sigma": 1000,
+            "optimal_humidity": 90,
+            "humidity_sigma": 20,
+            "optimal_pH": 6.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7.5],
+            "optimal_soil_temp": 13.5,
+            "min_cumulative_rain": 45,
+            "soil_temp_sigma": 4,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "sardinia"
+            ],
+            "wind_sensitive": true,
+            "season_months": [7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [41, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 14.5,
+            "temp_sigma": 4.5,
+            "min_temp": 5,
+            "max_temp": 23,
+            "optimal_alt": 900,
+            "alt_sigma": 1000,
+            "optimal_humidity": 90,
+            "humidity_sigma": 20,
+            "optimal_pH": 6.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7.5],
+            "optimal_soil_temp": 13.5,
+            "min_cumulative_rain": 45,
+            "soil_temp_sigma": 4,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_continental",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": true,
+            "season_months": [7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [41, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 14.5,
+            "temp_sigma": 4.5,
+            "min_temp": 5,
+            "max_temp": 23,
+            "optimal_alt": 900,
+            "alt_sigma": 1000,
+            "optimal_humidity": 90,
+            "humidity_sigma": 20,
+            "optimal_pH": 6.25,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7.5],
+            "optimal_soil_temp": 13.5,
+            "min_cumulative_rain": 45,
+            "soil_temp_sigma": 4,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_continental",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": true,
+            "season_months": [7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "lingonb": {
+      "name": "Lingonberry",
+      "scientificName": "Vaccinium vitis-idaea",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["lingonb_score", "Lingonberry"],
+      "regions": {
+        "NE": {
+          "landCover": [312, 322],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 10.5,
+            "temp_sigma": 6,
+            "min_temp": -10,
+            "max_temp": 20,
+            "optimal_alt": 200,
+            "alt_sigma": 1400,
+            "optimal_humidity": 78,
+            "humidity_sigma": 16,
+            "optimal_pH": 4.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6],
+            "optimal_soil_temp": 10,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 30,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "continental",
+              "temperate",
+              "oceanic_north",
+              "mediterranean_italy"
+            ],
+            "wind_sensitive": false,
+            "season_months": [7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [312, 322],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 10.5,
+            "temp_sigma": 6,
+            "min_temp": -10,
+            "max_temp": 20,
+            "optimal_alt": 1600,
+            "alt_sigma": 800,
+            "optimal_humidity": 78,
+            "humidity_sigma": 16,
+            "optimal_pH": 4.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6],
+            "optimal_soil_temp": 10,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 30,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "continental",
+              "temperate",
+              "oceanic_north",
+              "mediterranean_italy"
+            ],
+            "wind_sensitive": false,
+            "season_months": [7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [42, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 10.5,
+            "temp_sigma": 6,
+            "min_temp": -10,
+            "max_temp": 20,
+            "optimal_alt": 300,
+            "alt_sigma": 1100,
+            "optimal_humidity": 78,
+            "humidity_sigma": 16,
+            "optimal_pH": 4.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6],
+            "optimal_soil_temp": 10,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 30,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_continental",
+              "continental"
+            ],
+            "wind_sensitive": false,
+            "season_months": [7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [42, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 10.5,
+            "temp_sigma": 6,
+            "min_temp": -10,
+            "max_temp": 20,
+            "optimal_alt": 300,
+            "alt_sigma": 1100,
+            "optimal_humidity": 78,
+            "humidity_sigma": 16,
+            "optimal_pH": 4.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6],
+            "optimal_soil_temp": 10,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 30,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_continental",
+              "continental"
+            ],
+            "wind_sensitive": false,
+            "season_months": [7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "masterwort": {
+      "name": "Masterwort",
+      "scientificName": "Peucedanum ostruthium",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["masterwort_score", "Masterwort"],
+      "regions": {
+        "NE": {
+          "landCover": [321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 4,
+            "min_temp": 4.5,
+            "max_temp": 18,
+            "optimal_alt": 1800,
+            "alt_sigma": 650,
+            "optimal_humidity": 80,
+            "humidity_sigma": 17,
+            "optimal_pH": 6.2,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.8, 7.7],
+            "optimal_soil_temp": 10,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "temperate",
+              "continental"
+            ],
+            "wind_sensitive": false,
+            "season_months": [6, 7, 8],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 4,
+            "min_temp": 4.5,
+            "max_temp": 18,
+            "optimal_alt": 1800,
+            "alt_sigma": 650,
+            "optimal_humidity": 80,
+            "humidity_sigma": 17,
+            "optimal_pH": 6.2,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.8, 7.7],
+            "optimal_soil_temp": 10,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "temperate",
+              "continental"
+            ],
+            "wind_sensitive": false,
+            "season_months": [6, 7, 8],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        }
+      }
+    },
+    "parasol": {
+      "name": "Parasol Mushroom",
+      "scientificName": "Macrolepiota procera",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [8914748],
+      "dataColumns": ["parasol_score", "Parasol Mushroom"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 17,
+            "temp_sigma": 5,
+            "optimal_alt": 600,
+            "alt_sigma": 800,
+            "min_temp": 6,
+            "max_temp": 26,
+            "optimal_humidity": 70,
+            "humidity_sigma": 12,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.8, 7.2],
+            "optimal_soil_temp": 16.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [311, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 17,
+            "temp_sigma": 5,
+            "optimal_alt": 600,
+            "alt_sigma": 800,
+            "min_temp": 6,
+            "max_temp": 26,
+            "optimal_humidity": 70,
+            "humidity_sigma": 12,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.8, 7.2],
+            "optimal_soil_temp": 16.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        }
+      }
+    },
+    "sorrel": {
+      "name": "Common Sorrel",
+      "scientificName": "Rumex acetosa",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "dataColumns": ["sorrel_score", "Sorrel"],
+      "regions": {
+        "NE": {
+          "landCover": [321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 22,
+            "optimal_alt": 500,
+            "alt_sigma": 1000,
+            "optimal_humidity": 80,
+            "humidity_sigma": 11,
+            "optimal_pH": 5.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.5, 7],
+            "optimal_soil_temp": 12.5,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5, 6, 9, 10, 11],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1300
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 22,
+            "optimal_alt": 500,
+            "alt_sigma": 1000,
+            "optimal_humidity": 80,
+            "humidity_sigma": 11,
+            "optimal_pH": 5.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.5, 7],
+            "optimal_soil_temp": 12.5,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5, 6, 9, 10, 11],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1300
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        },
+        "USE": {
+          "landCover": [71, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 22,
+            "optimal_alt": 500,
+            "alt_sigma": 1000,
+            "optimal_humidity": 80,
+            "humidity_sigma": 11,
+            "optimal_pH": 5.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.5, 7],
+            "optimal_soil_temp": 12.5,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "semiarid_steppe"
+            ],
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5, 6, 9, 10, 11],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1300
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USE/USE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "USW": {
+          "landCover": [71, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 22,
+            "optimal_alt": 500,
+            "alt_sigma": 1000,
+            "optimal_humidity": 80,
+            "humidity_sigma": 11,
+            "optimal_pH": 5.75,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.5, 7],
+            "optimal_soil_temp": 12.5,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate",
+              "semiarid_steppe"
+            ],
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5, 6, 9, 10, 11],
+            "water_relevance": true,
+            "sea_relevance": false,
+            "distance_thresholds": {
+              "water": 1300
+            }
+          },
+          "scoringReferences": [
+            "https://data.fung.es/USA/USW/USW_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        }
+      }
+    },
+    "st_george": {
+      "name": "St. George's Mushroom",
+      "scientificName": "Calocybe gambosa",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [8936224],
+      "dataColumns": [
+        "st_george_score",
+        "St. George's Mushroom",
+        "St. Georges Mushroom"
+      ],
+      "regions": {
+        "NE": {
+          "landCover": [321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 5,
+            "min_temp": 3,
+            "max_temp": 21,
+            "optimal_alt": 500,
+            "alt_sigma": 750,
+            "optimal_humidity": 80,
+            "humidity_sigma": 12,
+            "optimal_pH": 6.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.25, 7.75],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 3.5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/NE/NE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
+        },
+        "SE": {
+          "landCover": [321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 5,
+            "min_temp": 3,
+            "max_temp": 21,
+            "optimal_alt": 500,
+            "alt_sigma": 750,
+            "optimal_humidity": 80,
+            "humidity_sigma": 12,
+            "optimal_pH": 6.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.25, 7.75],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 3.5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": false,
+            "season_months": [4, 5],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        }
+      }
+    },
+    "truffle_b": {
+      "name": "Black Truffle",
+      "scientificName": "Tuber melanosporum",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5258468],
+      "dataColumns": ["truffle_b_score"],
+      "regions": {
+        "SE": {
+          "landCover": [311],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 9,
+            "temp_sigma": 4,
+            "min_temp": 4,
+            "max_temp": 16,
+            "optimal_alt": 750,
+            "alt_sigma": 500,
+            "optimal_humidity": 75,
+            "humidity_sigma": 16,
+            "optimal_pH": 7.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [6.6, 9],
+            "optimal_soil_temp": 11,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 25,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "climate_zones": [
+              "alpine",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "temperate",
+              "continental",
+              "central_spain",
+              "sardinia",
+              "oceanic_south",
+              "oceanic_north"
+            ],
+            "wind_sensitive": false,
+            "season_months": [1, 2, 3, 4, 10, 11, 12],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ],
+          "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        }
+      }
+    }
+  }
+}

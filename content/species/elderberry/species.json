@@ -1,0 +1,67 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "elderberry",
+  "scientificName": "Sambucus nigra",
+  "scientificNameGroup": "sambucus-nigra-parts",
+  "catalog": {
+    "enabled": true,
+    "order": 4,
+    "translationKey": "elderberry",
+    "category": "berry",
+    "emoji": "🫐",
+    "season": "fall",
+    "habitat": "hedgerow",
+    "image": {
+      "path": "src/assets/species/elderberry.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Elderberry",
+      "description": "Small dark purple berries that grow in clusters on elder trees",
+      "howTo": "Look for elder trees in hedgerows and woodland edges in autumn"
+    },
+    "it": {
+      "name": "Sambuco",
+      "description": "Piccole bacche viola scuro che crescono in grappoli sui sambuchi",
+      "howTo": "Cerca alberi di sambuco in siepi e bordi boschivi in autunno"
+    },
+    "fr": {
+      "name": "Sureau noir",
+      "description": "Petites baies pourpre foncé poussant en grappes sur les sureaux",
+      "howTo": "Cherchez les sureaux dans les haies et lisières de bois en automne"
+    },
+    "de": {
+      "name": "Holunderbeere",
+      "description": "Kleine, dunkelviolette Beeren, die in Dolden an Holunderbäumen wachsen",
+      "howTo": "Suche Holunderbäume in Hecken und Waldrändern im Herbst"
+    },
+    "es": {
+      "name": "Saúco",
+      "description": "Pequeñas bayas oscuras que crecen en racimos en árboles de saúco",
+      "howTo": "Busca árboles de saúco en setos y bordes de bosques en otoño"
+    },
+    "pt": {
+      "name": "Sabugueiro",
+      "description": "Pequenas bagas roxas-escuras que crescem em cachos em árvores de sabugueiro",
+      "howTo": "Procure árvores de sabugueiro em cercas vivas e bordas de bosques no outono"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Sambucus nigra",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": false,
+    "dataColumns": []
+  }
+}

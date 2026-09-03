@@ -1,0 +1,66 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "plantain",
+  "scientificName": "Plantago major",
+  "catalog": {
+    "enabled": true,
+    "order": 17,
+    "translationKey": "plantain",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "spring-fall",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/plantain.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Common Plantain",
+      "description": "A low-growing plant with broad oval leaves and tall flower spikes",
+      "howTo": "Found in lawns, meadows, and disturbed areas during growing season"
+    },
+    "it": {
+      "name": "Piantaggine Comune",
+      "description": "Una pianta bassa con foglie larghe e ovali e alte spighe di fiori",
+      "howTo": "Trovata in prati, praterie e aree disturbate durante la stagione di crescita"
+    },
+    "fr": {
+      "name": "Plantain majeur",
+      "description": "Plante basse à larges feuilles ovales et longues hampes florales",
+      "howTo": "Se trouve dans les pelouses, prairies et zones perturbées pendant la saison de croissance"
+    },
+    "de": {
+      "name": "Breitwegerich",
+      "description": "Niedrig wachsende Pflanze mit breiten, ovalen Blättern und hohen Blütenständen",
+      "howTo": "Zu finden auf Rasenflächen, Wiesen und gestörten Gebieten während der Wachstumszeit"
+    },
+    "es": {
+      "name": "Llantén común",
+      "description": "Planta baja con hojas ovaladas anchas y espigas florales altas",
+      "howTo": "Se encuentra en céspedes, praderas y áreas alteradas durante la temporada de crecimiento"
+    },
+    "pt": {
+      "name": "Tanchagem",
+      "description": "Planta rasteira com folhas ovais largas e longas hastes florais",
+      "howTo": "Encontrada em gramados, prados e áreas perturbadas durante a estação de crescimento"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Plantago major",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": false,
+    "dataColumns": []
+  }
+}

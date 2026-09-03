@@ -17,18 +17,21 @@ import pyarrow.parquet as pq
 import requests
 from scipy.spatial import cKDTree
 
+ROOT = Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT / "backend"))
+from species_registry import get_empirical_taxon_map, get_species_metadata
+
 from qa_gbif_scores import GBIF, REGIONS, R2_ROOT, chord_to_km, unit_xyz
 
 
 EU_REGIONS = {key: REGIONS[key] for key in ("NE", "SE")}
+_TAXA = get_empirical_taxon_map()
+_METADATA = get_species_metadata()
 TARGETS = {
-    "mushroom": ("Porcini / Boletus", 8287374),
-    "black_chant": ("Black Chanterelle", 2554662),
-    "parasol": ("Parasol Mushroom", 8914748),
-    "morel": ("Morel", 2594601),
-    "st_george": ("St. George's Mushroom", 8936224),
-    # Match production's season-curve taxon, not only C. cibarius.
-    "chant": ("Chanterelle / Cantharellus", 9623860),
+    species_id: (_METADATA[species_id]["name"], keys[0])
+    for species_id, keys in _TAXA.items()
+    if keys
 }
 MAX_MATCH_KM = 30
 CELL_KM = 20

@@ -1,0 +1,66 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "blackberry",
+  "scientificName": "Rubus fruticosus",
+  "catalog": {
+    "enabled": true,
+    "order": 3,
+    "translationKey": "blackberry",
+    "category": "berry",
+    "emoji": "🫐",
+    "season": "summer-fall",
+    "habitat": "hedgerow",
+    "image": {
+      "path": "src/assets/species/blackberry.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Blackberry",
+      "description": "Sweet, dark purple berries that grow on thorny bushes",
+      "howTo": "Found in hedgerows, woodland edges, and disturbed areas in late summer"
+    },
+    "it": {
+      "name": "More",
+      "description": "Bacche dolci, viola scuro che crescono su cespugli spinosi",
+      "howTo": "Trovate in siepi, bordi boschivi e aree disturbate in tarda estate"
+    },
+    "fr": {
+      "name": "Mûre",
+      "description": "Baies sucrées, pourpre foncé, poussant sur des buissons épineux",
+      "howTo": "Se trouve dans les haies, lisières de bois et zones perturbées à la fin de l'été"
+    },
+    "de": {
+      "name": "Brombeere",
+      "description": "Süsse, dunkelviolette Beeren, die an dornigen Sträuchern wachsen",
+      "howTo": "Zu finden in Hecken, Waldrändern und gestörten Gebieten im Spätsommer"
+    },
+    "es": {
+      "name": "Mora",
+      "description": "Bayas dulces de color púrpura oscuro que crecen en arbustos espinosos",
+      "howTo": "Se encuentran en setos, bordes de bosques y áreas alteradas a finales del verano"
+    },
+    "pt": {
+      "name": "Amora",
+      "description": "Frutas doces e roxas-escuras que crescem em arbustos espinhosos",
+      "howTo": "Encontrada em cercas vivas, bordas de bosques e áreas perturbadas no final do verão"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Rubus fruticosus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": false,
+    "dataColumns": []
+  }
+}

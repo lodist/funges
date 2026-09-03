@@ -7,7 +7,6 @@ scores against the exact same cached GBIF target/background cohort.
 from __future__ import annotations
 
 import argparse
-import ast
 import csv
 import json
 import math
@@ -26,9 +25,10 @@ from scipy.spatial import cKDTree
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "backend"))
 from forecast_pipeline import calculate_mushroom_score, spatial_smooth_scores
+from species_registry import get_species_params
 
 from qa_gbif_observer_background import TARGETS, weighted_percentile
-from qa_gbif_scores import PARAM_URLS, REGION_CURVE_URLS, REGIONS, ZONE_CURVE_URLS, chord_to_km, unit_xyz
+from qa_gbif_scores import REGION_CURVE_URLS, REGIONS, ZONE_CURVE_URLS, chord_to_km, unit_xyz
 
 
 RAW_COLUMNS = [
@@ -40,19 +40,13 @@ LAG_COLUMNS = ["Temperature (C)", "TotalPrecipitation_mm", "Humidity (%)", "Wind
 
 
 def load_model_specs(session: requests.Session, region: str) -> tuple[dict, dict]:
-    response = session.get(PARAM_URLS[region], timeout=60)
-    response.raise_for_status()
-    tree = ast.parse(response.text)
-    assignment = next(
-        node for node in tree.body
-        if isinstance(node, ast.Assign)
-        and any(isinstance(target, ast.Name) and target.id == "species_params" for target in node.targets)
-    )
-    all_params = ast.literal_eval(assignment.value)
+    all_params = get_species_params(region)
     region_curves = session.get(REGION_CURVE_URLS[region], timeout=60).json()
     zone_curves = session.get(ZONE_CURVE_URLS[region], timeout=60).json()
     params = {}
     for species in TARGETS:
+        if species not in all_params:
+            continue
         spec = dict(all_params[species])
         if species in region_curves:
             spec["season_curve"] = region_curves[species]
@@ -152,7 +146,7 @@ def replay_region(
     scoring = add_lags(scoring_pairs, history)
     params, zone_curves = load_model_specs(session, region)
     scoring = calculate_mushroom_score(scoring, params, zone_curves)
-    score_columns = [f"{species}_score" for species in TARGETS]
+    score_columns = [f"{species}_score" for species in params]
     scoring = spatial_smooth_scores(scoring, score_columns)
     for species, spec in params.items():
         allowed = spec.get("climate_zones", [])

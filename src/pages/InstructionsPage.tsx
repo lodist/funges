@@ -133,16 +133,14 @@ export default function InstructionsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className='space-y-5 text-gray-700 dark:text-gray-300'>
-              {(['prepare', 'available', 'unavailable'] as const).map(
-                (item, index) => (
-                  <div key={item} className={index > 0 ? 'mt-5' : undefined}>
-                    <h3 className='mb-1 text-base font-semibold text-gray-900 dark:text-white'>
-                      {t(`offline.${item}Title`)}
-                    </h3>
-                    <p className='leading-relaxed'>{t(`offline.${item}`)}</p>
-                  </div>
-                )
-              )}
+              {(['prepare', 'available', 'unavailable'] as const).map(item => (
+                <div key={item}>
+                  <h3 className='mb-1 text-base font-semibold text-gray-900 dark:text-white'>
+                    {t(`offline.${item}Title`)}
+                  </h3>
+                  <p className='leading-relaxed'>{t(`offline.${item}`)}</p>
+                </div>
+              ))}
             </CardContent>
           </Card>
 

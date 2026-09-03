@@ -1,0 +1,254 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "artichoke",
+  "scientificName": "Cynara cardunculus",
+  "catalog": {
+    "enabled": true,
+    "order": 24,
+    "translationKey": "artichoke",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "spring-summer",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/artichoke.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Wild Artichoke",
+      "description": "A thistle-like plant with edible flower buds and stems, related to the cultivated artichoke.",
+      "howTo": "Found in meadows and fields, harvest young flower buds and tender stems in spring and early summer."
+    },
+    "it": {
+      "name": "Carciofo Selvatico",
+      "description": "Pianta spinosa simile al carciofo coltivato, con capolini e gambi commestibili.",
+      "howTo": "Si trova in prati e campi; raccogli i capolini giovani e i gambi teneri in primavera e inizio estate."
+    },
+    "fr": {
+      "name": "Artichaut sauvage",
+      "description": "Plante épineuse ressemblant à l'artichaut cultivé, avec capitules et tiges comestibles.",
+      "howTo": "Se trouve dans les prairies et champs ; récolte les jeunes capitules et les tiges tendres au printemps et au début de l'été."
+    },
+    "de": {
+      "name": "Wilder Artischocke",
+      "description": "Dornige Pflanze ähnlich der kultivierten Artischocke, mit essbaren Blütenköpfen und Stängeln.",
+      "howTo": "Findet man auf Wiesen und Feldern; sammle junge Blütenköpfe und zarte Stängel im Frühling und Frühsommer."
+    },
+    "es": {
+      "name": "Alcachofa silvestre",
+      "description": "Planta espinosa similar a la alcachofa cultivada, con cabezuelas y tallos comestibles.",
+      "howTo": "Se encuentra en praderas y campos; recolecta las cabezuelas jóvenes y los tallos tiernos en primavera y a comienzos del verano."
+    },
+    "pt": {
+      "name": "Alcachofra-silvestre",
+      "description": "Planta espinhosa semelhante à alcachofra cultivada, com capítulos e caules comestíveis.",
+      "howTo": "Encontrada em prados e campos; colha os capítulos jovens e os caules tenros na primavera e no início do verão."
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Cynara cardunculus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Artichoke"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [323, 321, 324],
+        "scoring": {
+          "optimal_temp": 15,
+          "temp_sigma": 4.5,
+          "min_temp": 6,
+          "max_temp": 21,
+          "optimal_alt": 300,
+          "alt_sigma": 400,
+          "optimal_humidity": 65,
+          "humidity_sigma": 15,
+          "optimal_pH": 6.75,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.75, 7.75],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": true,
+          "season_months": [3, 4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [323, 321, 324],
+        "scoring": {
+          "optimal_temp": 15,
+          "temp_sigma": 4.5,
+          "min_temp": 6,
+          "max_temp": 21,
+          "optimal_alt": 300,
+          "alt_sigma": 400,
+          "optimal_humidity": 65,
+          "humidity_sigma": 15,
+          "optimal_pH": 6.75,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.75, 7.75],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": true,
+          "season_months": [3, 4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": true,
+        "landCover": [71, 52],
+        "scoring": {
+          "optimal_temp": 15,
+          "temp_sigma": 4,
+          "min_temp": 6,
+          "max_temp": 21,
+          "optimal_alt": 300,
+          "alt_sigma": 400,
+          "optimal_humidity": 65,
+          "humidity_sigma": 15,
+          "optimal_pH": 6.75,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.75, 7.75],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "mediterranean_california",
+            "humid_subtropical",
+            "temperate",
+            "semiarid_steppe",
+            "marine_west_coast"
+          ],
+          "wind_sensitive": true,
+          "season_months": [3, 4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [71, 52],
+        "scoring": {
+          "optimal_temp": 15,
+          "temp_sigma": 4,
+          "min_temp": 6,
+          "max_temp": 21,
+          "optimal_alt": 300,
+          "alt_sigma": 400,
+          "optimal_humidity": 65,
+          "humidity_sigma": 15,
+          "optimal_pH": 6.75,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.75, 7.75],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "mediterranean_california",
+            "humid_subtropical",
+            "temperate",
+            "semiarid_steppe",
+            "marine_west_coast"
+          ],
+          "wind_sensitive": true,
+          "season_months": [3, 4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    }
+  }
+}

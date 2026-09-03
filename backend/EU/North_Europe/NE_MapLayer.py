@@ -16,8 +16,12 @@ import hashlib
 import tempfile
 import subprocess
 import shutil
+import sys
 from pathlib import Path
 from pyproj import Transformer
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from species_registry import get_land_cover_mapping
 
 region_code = 'ne'
 
@@ -161,29 +165,7 @@ GEOJSON_FILE_PATH = get_required_env("NE_WILDERNESS_DATA_SOURCE")
 # 324 = Transitional woodland-shrub (sparse trees and shrubs, recovering forest)
 # 333 = Sparsely vegetated areas (rocky terrain, alpine scree, bare land)
 
-species_forest_mapping = {
-    "mushroom": [311, 312, 313]
-    ,"black_chant": [311, 313]
-    ,"lingonb": [312, 322]
-    ,"garlic": [311]
-    ,"truffle_b": [311]
-    ,"chestnut": [311]
-    ,"parasol": [311, 324]
-    ,"asparagus": [323, 324]
-    ,"strawberry": [311, 313, 324]
-    ,"walnut": [311]
-    ,"amaranth": [311,312,313,321,322,323,324,333]
-    ,"masterwort": [321,324]
-    ,"nettle": [311,312,313,321,322,323,324,333]
-    ,"morel": [311, 313, 324]
-    ,"sorrel": [321, 324]
-    ,"raspberry": [311, 324]
-    ,"dandelion": [311,312,313,321,322,323,324,333]
-    ,"chickweed": [311,312,313,321,322,323,324,333]
-    ,"chant": [311,313,324]
-    ,"st_george": [321,324]
-    ,"artichoke": [323,321,324]
-}
+species_forest_mapping = get_land_cover_mapping("NE")
 
 
 print(f"Fetching weather data from {'R2' if is_remote_path(FILE_PATH) else 'local'}...")

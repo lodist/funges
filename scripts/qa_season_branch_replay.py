@@ -12,7 +12,6 @@ present, and never used wind lags, so it is handed a 21-day frame and the branch
 from __future__ import annotations
 
 import argparse
-import ast
 import hashlib
 import importlib.util
 import json
@@ -33,7 +32,8 @@ sys.path.insert(0, str(ROOT / "backend"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import forecast_pipeline as branch_pipeline
-from qa_gbif_scores import PARAM_URLS, REGION_CURVE_URLS, REGIONS, ZONE_CURVE_URLS
+from species_registry import get_species_params
+from qa_gbif_scores import REGION_CURVE_URLS, REGIONS, ZONE_CURVE_URLS
 from qa_season_scan import FUNGI, chord_to_km, multiplier_table, unit_xyz
 
 RAW_COLUMNS = [
@@ -65,19 +65,13 @@ def load_main_pipeline() -> object:
 
 
 def load_specs(session: requests.Session, region: str) -> tuple[dict, dict]:
-    response = session.get(PARAM_URLS[region], timeout=60)
-    response.raise_for_status()
-    tree = ast.parse(response.text)
-    assignment = next(
-        node for node in tree.body
-        if isinstance(node, ast.Assign)
-        and any(isinstance(t, ast.Name) and t.id == "species_params" for t in node.targets)
-    )
-    all_params = ast.literal_eval(assignment.value)
+    all_params = get_species_params(region)
     region_curves = session.get(REGION_CURVE_URLS[region], timeout=60).json()
     zone_curves = session.get(ZONE_CURVE_URLS[region], timeout=60).json()
     params = {}
     for species in FUNGI:
+        if species not in all_params:
+            continue
         spec = dict(all_params[species])
         if species in region_curves:
             spec["season_curve"] = region_curves[species]
@@ -155,7 +149,7 @@ def replay_region(region: str, session: requests.Session, main_pipeline: object,
         .reset_index(drop=True)
     )
     params, zone_curves = load_specs(session, region)
-    score_columns = [f"{species}_score" for species in FUNGI]
+    score_columns = [f"{species}_score" for species in params]
     cutoff = pd.Timestamp(first_scored)
 
     main_frame = add_lags(history, MAIN_LAG_COLUMNS, MAIN_LAG_DAYS)

@@ -6,45 +6,37 @@ from pathlib import Path
 
 import pyarrow.parquet as pq
 
+ROOT = Path(__file__).resolve().parents[1]
+import sys
 
-PARQUET_PATH = Path("public/data/foraging_scores.parquet")
-OUTPUT_PATH = Path("public/data/worth_foraging_now.json")
+sys.path.insert(0, str(ROOT / "backend"))
+from species_registry import get_region_species, get_species_metadata, infer_region
+
+
+PARQUET_PATH = ROOT / "public" / "data" / "foraging_scores.parquet"
+OUTPUT_PATH = ROOT / "public" / "data" / "worth_foraging_now.json"
 GRID_SIZE_DEGREES = 0.5
 MIN_SCORE = 4.0
 MAX_CELL_SPECIES = 8
-
-SPECIES_COLUMNS = {
-    "mushroom": "Porcini",
-    "black_chant": "Black Chanterelle",
-    "lingonb": "Lingonberry",
-    "garlic": "Wild Garlic",
-    "walnut": "Wild Walnut",
-    "strawberry": "Wild Strawberry",
-    "asparagus": "Wild Asparagus",
-    "parasol": "Parasol Mushroom",
-    "chestnut": "Chestnut",
-    "amaranth": "Amaranth",
-    "masterwort": "Masterwort",
-    "nettle": "Nettle",
-    "morel": "Morel",
-    "sorrel": "Sorrel",
-    "raspberry": "Raspberry",
-    "dandelion": "Dandelion",
-    "chickweed": "Chickweed",
-    "artichoke": "Artichoke",
-    "st_george": "St. George's Mushroom",
-    "chant": "Chanterelle",
-}
+def resolve_species_columns(available_columns: set[str]) -> dict[str, str]:
+    """Choose the first available score alias for each manifest species."""
+    resolved = {}
+    for species_id, config in get_species_metadata().items():
+        column = next(
+            (candidate for candidate in config["dataColumns"] if candidate in available_columns),
+            None,
+        )
+        if column:
+            resolved[species_id] = column
+    return resolved
 
 
-def infer_region(longitude: float, latitude: float) -> str:
-    if longitude < -100:
-        return "USW"
-    if longitude < -25:
-        return "USE"
-    if latitude < 47:
-        return "SE"
-    return "NE"
+def resolve_region_species() -> dict[str, set[str]]:
+    """Return species that are available for scoring in each region."""
+    return {
+        region: get_region_species(region)
+        for region in ("NE", "SE", "USE", "USW")
+    }
 
 
 def round_cell(value: float) -> float:
@@ -58,7 +50,10 @@ def iso_date(value: object) -> str:
 
 
 def main() -> None:
-    columns = ["Date", "Latitude", "Longitude", *SPECIES_COLUMNS.values()]
+    schema_columns = set(pq.read_schema(PARQUET_PATH).names)
+    species_columns = resolve_species_columns(schema_columns)
+    region_species = resolve_region_species()
+    columns = ["Date", "Latitude", "Longitude", *species_columns.values()]
     table = pq.read_table(PARQUET_PATH, columns=columns)
     rows = table.to_pylist()
     if not rows:
@@ -87,7 +82,9 @@ def main() -> None:
         region_id = infer_region(longitude, latitude)
         cell_key = (region_id, round_cell(latitude), round_cell(longitude))
 
-        for species_id, column_name in SPECIES_COLUMNS.items():
+        for species_id, column_name in species_columns.items():
+            if species_id not in region_species[region_id]:
+                continue
             value = row.get(column_name)
             if value is None:
                 continue

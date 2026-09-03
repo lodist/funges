@@ -32,26 +32,30 @@ MAX_BASE_LOCATIONS = 200    # cap on output locations scored, to keep the proof 
 
 REGIONS = {
     "NE": fp.RegionConfig(
+        region="NE",
         boundaries_env="NE_BOUNDARIES_DATA", coordinates_env="NE_UNIQUE_COORDINATES",
-        base_env="NE_BASE_DATA", species_params_env="NE_SPECIES_PARAMS",
+        base_env="NE_BASE_DATA",
         weather_data_env="NE_WEATHER_DATA", static_info_env="EU_STATIC_INFO",
         season_curves_env="NE_SEASON_CURVES", zone_curves_env="EU_ZONE_SEASON_CURVES",
         lat_range=(49.0, 71.5), lon_range=(-25.0, 32.0)),
     "SE": fp.RegionConfig(
+        region="SE",
         boundaries_env="SE_BOUNDARIES_DATA", coordinates_env="SE_UNIQUE_COORDINATES",
-        base_env="SE_BASE_DATA", species_params_env="SE_SPECIES_PARAMS",
+        base_env="SE_BASE_DATA",
         weather_data_env="SE_WEATHER_DATA", static_info_env="EU_STATIC_INFO",
         season_curves_env="SE_SEASON_CURVES", zone_curves_env="EU_ZONE_SEASON_CURVES",
         lat_range=(34.0, 55.5), lon_range=(12.0, 42.5)),
     "USE": fp.RegionConfig(
+        region="USE",
         boundaries_env="USE_BOUNDARIES_DATA", coordinates_env="USE_UNIQUE_COORDINATES",
-        base_env="USE_BASE_DATA", species_params_env="USE_SPECIES_PARAMS",
+        base_env="USE_BASE_DATA",
         weather_data_env="USE_WEATHER_DATA", static_info_env="US_STATIC_INFO",
         season_curves_env="USE_SEASON_CURVES", zone_curves_env="US_ZONE_SEASON_CURVES",
         lat_range=(24.0, 37.5), lon_range=(-106.5, -75.0)),
     "USW": fp.RegionConfig(
+        region="USW",
         boundaries_env="USW_BOUNDARIES_DATA", coordinates_env="USW_UNIQUE_COORDINATES",
-        base_env="USW_BASE_DATA", species_params_env="USW_SPECIES_PARAMS",
+        base_env="USW_BASE_DATA",
         weather_data_env="USW_WEATHER_DATA", static_info_env="US_STATIC_INFO",
         season_curves_env="USW_SEASON_CURVES", zone_curves_env="US_ZONE_SEASON_CURVES",
         lat_range=(33.0, 49.5), lon_range=(-125.5, -81.5)),
@@ -62,8 +66,7 @@ def prove_region(name, config, api_key, seed):
     """Run the 4 proofs on a random N-coordinate sample of one region. Returns a
     result dict; raises AssertionError on any proof failure."""
     print(f"\n{'#'*70}\n# REGION {name}\n{'#'*70}")
-    species_params, zone_curves = fp._load_species_and_curves(
-        config, fp.get_required_env(config.species_params_env))
+    species_params, zone_curves = fp._load_species_and_curves(config)
     static_map = fp._load_static_map(fp.get_required_env(config.static_info_env), config.ndp)
     all_coords = fp._load_or_build_coords(
         config, fp.get_required_env(config.coordinates_env),

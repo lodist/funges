@@ -1,0 +1,248 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "black_chant",
+  "scientificName": "Craterellus cornucopioides",
+  "catalog": {
+    "enabled": true,
+    "order": 26,
+    "translationKey": "black_chant",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/black_chant.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Black Trumpet (Horn of Plenty)",
+      "description": "A dark, funnel-shaped mushroom with a rich, smoky flavor, prized in gourmet cooking.",
+      "howTo": "Found in deciduous forests, especially under oak and beech, in late summer and autumn."
+    },
+    "it": {
+      "name": "Trombetta dei Morti",
+      "description": "Un fungo scuro a forma di trombetta, dal sapore intenso e molto apprezzato in cucina.",
+      "howTo": "Si trova nei boschi di latifoglie, specialmente sotto querce e faggi, tra fine estate e autunno."
+    },
+    "fr": {
+      "name": "Trompette de la mort",
+      "description": "Champignon sombre en forme de trompette, au goût intense, très apprécié en cuisine.",
+      "howTo": "Se trouve dans les forêts de feuillus, surtout sous les chênes et les hêtres, de la fin de l'été à l'automne."
+    },
+    "de": {
+      "name": "Totentrompete",
+      "description": "Ein dunkler trompetenförmiger Pilz mit intensivem Geschmack, sehr geschätzt in der Küche.",
+      "howTo": "Findet man in Laubwäldern, besonders unter Eichen und Buchen, von Spätsommer bis Herbst."
+    },
+    "es": {
+      "name": "Trompeta de los muertos",
+      "description": "Hongo oscuro con forma de trompeta, de sabor intenso y muy apreciado en la cocina.",
+      "howTo": "Se encuentra en bosques de frondosas, especialmente bajo robles y hayas, desde finales del verano hasta el otoño."
+    },
+    "pt": {
+      "name": "Trombeta-da-morte",
+      "description": "Cogumelo escuro em forma de trombeta, de sabor intenso, muito apreciado na culinária.",
+      "howTo": "Encontra-se em florestas de folhas largas, especialmente sob carvalhos e faias, do fim do verão ao outono."
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Craterellus cornucopioides",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Black Chanterelle"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [311, 313],
+        "scoring": {
+          "optimal_temp": 14.5,
+          "temp_sigma": 4.5,
+          "min_temp": 5,
+          "max_temp": 23,
+          "optimal_alt": 900,
+          "alt_sigma": 1000,
+          "optimal_humidity": 90,
+          "humidity_sigma": 20,
+          "optimal_pH": 6.25,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5, 7.5],
+          "optimal_soil_temp": 13.5,
+          "min_cumulative_rain": 45,
+          "soil_temp_sigma": 4,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "sardinia"
+          ],
+          "wind_sensitive": true,
+          "season_months": [7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [311, 313],
+        "scoring": {
+          "optimal_temp": 14.5,
+          "temp_sigma": 4.5,
+          "min_temp": 5,
+          "max_temp": 23,
+          "optimal_alt": 900,
+          "alt_sigma": 1000,
+          "optimal_humidity": 90,
+          "humidity_sigma": 20,
+          "optimal_pH": 6.25,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5, 7.5],
+          "optimal_soil_temp": 13.5,
+          "min_cumulative_rain": 45,
+          "soil_temp_sigma": 4,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "sardinia"
+          ],
+          "wind_sensitive": true,
+          "season_months": [7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 43],
+        "scoring": {
+          "optimal_temp": 14.5,
+          "temp_sigma": 4.5,
+          "min_temp": 5,
+          "max_temp": 23,
+          "optimal_alt": 900,
+          "alt_sigma": 1000,
+          "optimal_humidity": 90,
+          "humidity_sigma": 20,
+          "optimal_pH": 6.25,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5, 7.5],
+          "optimal_soil_temp": 13.5,
+          "min_cumulative_rain": 45,
+          "soil_temp_sigma": 4,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_continental",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": true,
+          "season_months": [7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USE/USE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 43],
+        "scoring": {
+          "optimal_temp": 14.5,
+          "temp_sigma": 4.5,
+          "min_temp": 5,
+          "max_temp": 23,
+          "optimal_alt": 900,
+          "alt_sigma": 1000,
+          "optimal_humidity": 90,
+          "humidity_sigma": 20,
+          "optimal_pH": 6.25,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5, 7.5],
+          "optimal_soil_temp": 13.5,
+          "min_cumulative_rain": 45,
+          "soil_temp_sigma": 4,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_continental",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": true,
+          "season_months": [7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://data.fung.es/USA/USW/USW_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [2554662],
+      "references": ["https://www.gbif.org/species/2554662"]
+    }
+  }
+}

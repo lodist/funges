@@ -14,8 +14,8 @@ import forecast_pipeline as fp  # backend/ on sys.path via conftest.py
 
 def _cfg(ndp=3, lag_days=21):
     return fp.RegionConfig(
-        boundaries_env="B", coordinates_env="C", base_env="BASE",
-        species_params_env="S", weather_data_env="W", static_info_env="ST",
+        region="NE", boundaries_env="B", coordinates_env="C", base_env="BASE",
+        weather_data_env="W", static_info_env="ST",
         season_curves_env="SC", zone_curves_env="ZC",
         lat_range=(0, 0), lon_range=(0, 0), ndp=ndp, lag_days=lag_days,
     )

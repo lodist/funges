@@ -1,0 +1,174 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "garlic",
+  "scientificName": "Allium ursinum",
+  "catalog": {
+    "enabled": true,
+    "order": 8,
+    "translationKey": "garlic",
+    "category": "plant",
+    "emoji": "🧄",
+    "season": "spring",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/garlic.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Wild Garlic",
+      "description": "A pungent herb with broad leaves and white flowers",
+      "howTo": "Found in deciduous woodlands in spring, often forming large patches"
+    },
+    "it": {
+      "name": "Aglio Orsino",
+      "description": "Un'erba pungente con foglie larghe e fiori bianchi",
+      "howTo": "Trovato in boschi decidui in primavera, spesso forma grandi macchie"
+    },
+    "fr": {
+      "name": "Ail des ours",
+      "description": "Herbe à l'odeur forte, larges feuilles et fleurs blanches",
+      "howTo": "Se trouve dans les forêts de feuillus au printemps, souvent en grandes colonies"
+    },
+    "de": {
+      "name": "Bärlauch",
+      "description": "Kräftig duftendes Kraut mit breiten Blättern und weissen Blüten",
+      "howTo": "Zu finden in Laubwäldern im Frühling, oft in grossen Beständen"
+    },
+    "es": {
+      "name": "Ajo silvestre",
+      "description": "Hierba de olor fuerte con hojas anchas y flores blancas",
+      "howTo": "Se encuentra en bosques caducifolios en primavera, a menudo formando grandes parches"
+    },
+    "pt": {
+      "name": "Alho-selvagem",
+      "description": "Erva de aroma forte com folhas largas e flores brancas",
+      "howTo": "Encontrado em bosques decíduos na primavera, frequentemente formando grandes tapetes"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Allium ursinum",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Wild Garlic", "Garlic"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [311],
+        "scoring": {
+          "optimal_temp": 10,
+          "temp_sigma": 5,
+          "min_temp": -2,
+          "max_temp": 15,
+          "optimal_alt": 600,
+          "alt_sigma": 950,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 6,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.25, 7.75],
+          "optimal_soil_temp": 9,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 30,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "subarctic",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "mediterranean_turkey"
+          ],
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5],
+          "water_relevance": true,
+          "sea_relevance": false,
+          "distance_thresholds": {
+            "water": 1800
+          }
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/NE/NE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [311],
+        "scoring": {
+          "optimal_temp": 10,
+          "temp_sigma": 5,
+          "min_temp": -2,
+          "max_temp": 15,
+          "optimal_alt": 600,
+          "alt_sigma": 950,
+          "optimal_humidity": 85,
+          "humidity_sigma": 18,
+          "optimal_pH": 6,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.25, 7.75],
+          "optimal_soil_temp": 9,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 30,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "climate_zones": [
+            "alpine",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "subarctic",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "mediterranean_turkey"
+          ],
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5],
+          "water_relevance": true,
+          "sea_relevance": false,
+          "distance_thresholds": {
+            "water": 1800
+          }
+        },
+        "scoringReferences": [
+          "https://data.fung.es/EU/SE/SE_species_params.txt"
+        ],
+        "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    }
+  }
+}

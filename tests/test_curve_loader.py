@@ -13,22 +13,10 @@ import pytest
 import forecast_pipeline as fp
 import seasonality as sn
 
-SPECIES_SOURCE = """
-species_params = {
-    "chant": {
-        "optimal_temp": 16, "temp_sigma": 5, "optimal_humidity": 85, "humidity_sigma": 12,
-        "optimal_alt": 100, "alt_sigma": 400, "optimal_pH": 6.0,
-        "pH_sigma_near": 0.6, "pH_sigma_far": 1.2, "pH_range_near": (5.5, 6.5),
-        "min_cumulative_rain": 35, "season_months": [7, 8],
-    },
-    "morel": {
-        "optimal_temp": 12, "temp_sigma": 5, "optimal_humidity": 80, "humidity_sigma": 12,
-        "optimal_alt": 100, "alt_sigma": 400, "optimal_pH": 7.0,
-        "pH_sigma_near": 0.6, "pH_sigma_far": 1.2, "pH_range_near": (6.5, 7.5),
-        "min_cumulative_rain": 40, "season_months": [3, 4, 5],
-    },
+SPECIES_PARAMS = {
+    "chant": {"season_months": [7, 8]},
+    "morel": {"season_months": [3, 4, 5]},
 }
-"""
 FLAT = {m: round(0.6 + 0.4 * v, 3) for m, v in
         {1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0, 5: 0.05, 6: 0.4,
          7: 1.0, 8: 0.8, 9: 0.45, 10: 0.2, 11: 0.15, 12: 0.05}.items()}
@@ -39,20 +27,26 @@ TWO_PART = {
 
 
 class _Config:
+    region = "NE"
     season_curves_env = "TEST_SEASON_CURVES"
     zone_curves_env = "TEST_ZONE_CURVES"
 
 
 def _load(tmp_path, monkeypatch, region_curves, zone_curves, capsys):
-    params_path = tmp_path / "species_params.txt"
-    params_path.write_text(SPECIES_SOURCE, encoding="utf-8")
     region_path = tmp_path / "region.json"
     region_path.write_text(json.dumps({"chant": region_curves}), encoding="utf-8")
     zone_path = tmp_path / "zone.json"
     zone_path.write_text(json.dumps({"temperate": {"chant": zone_curves}}), encoding="utf-8")
     monkeypatch.setenv("TEST_SEASON_CURVES", str(region_path))
     monkeypatch.setenv("TEST_ZONE_CURVES", str(zone_path))
-    params, zones = fp._load_species_and_curves(_Config(), str(params_path))
+    monkeypatch.setattr(
+        fp,
+        "get_species_params",
+        lambda region: {
+            species: dict(config) for species, config in SPECIES_PARAMS.items()
+        },
+    )
+    params, zones = fp._load_species_and_curves(_Config())
     # A silent fallback is the failure mode this file exists to catch.
     assert "[warn]" not in capsys.readouterr().out
     return params, zones
