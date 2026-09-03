@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from '@tanstack/react-router';
 import {
@@ -14,7 +14,8 @@ import { getSpeciesImage } from '@/lib/utils';
 import { getScoreColor } from '@/lib/scoreColor';
 import { SPECIES_DATA } from '@/data/species';
 import type { RegionId } from '@/lib/data';
-import { Navigation, BarChart2, Copy, Check } from '@/lib/icons';
+import { Navigation, BarChart2, Copy, Check, AlertTriangle } from '@/lib/icons';
+import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 
 interface FeatureInfoModalProps {
   feature: maplibregl.GeoJSONFeature | null;
@@ -42,7 +43,7 @@ export default function FeatureInfoModal({
   const { t: tSpecies } = useTranslation('species');
   const { t: tCommon } = useTranslation('common');
   const navigate = useNavigate({ from: '/' });
-  const [copied, setCopied] = useState(false);
+  const { status: copyStatus, copy } = useCopyToClipboard();
 
   // lock body scroll when modal open
   useEffect(() => {
@@ -66,11 +67,7 @@ export default function FeatureInfoModal({
     navigate({ to: '/data', search: { region: dataNerdRegion } });
   };
   const coordinatesLabel = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
-  const handleCopyCoordinates = async () => {
-    await navigator.clipboard.writeText(coordinatesLabel);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const handleCopyCoordinates = () => copy(coordinatesLabel);
 
   // Function to get translated species name
   const getSpeciesDisplayName = (key: string) => {
@@ -112,19 +109,32 @@ export default function FeatureInfoModal({
           <DialogTitle className='sm:text-center'>
             {t('featureInfo.title')}
           </DialogTitle>
-          <div className='flex justify-center'>
+          <div className='flex flex-col items-center gap-1'>
             <button
               type='button'
               onClick={handleCopyCoordinates}
               className='inline-flex items-center gap-2 rounded-md bg-primary px-3 py-1 font-mono text-xs text-primary-foreground shadow-xs transition-colors hover:bg-primary/90'
             >
               {coordinatesLabel}
-              {copied ? (
-                <Check className='h-3 w-3' />
+              {copyStatus === 'copied' ? (
+                <Check className='size-3' />
+              ) : copyStatus === 'error' ? (
+                <AlertTriangle className='size-3' />
               ) : (
-                <Copy className='h-3 w-3' />
+                <Copy className='size-3' />
               )}
             </button>
+            <p
+              aria-live='polite'
+              className={`min-h-5 text-sm ${
+                copyStatus === 'error'
+                  ? 'text-destructive-text'
+                  : 'text-muted-foreground'
+              }`}
+            >
+              {copyStatus === 'error' && tCommon('errors.copy')}
+              {copyStatus === 'copied' && tCommon('common.copied')}
+            </p>
           </div>
         </DialogHeader>
         <div className='max-h-[70vh] overflow-y-auto pr-2'>

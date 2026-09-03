@@ -113,6 +113,8 @@ const MAP_STYLES = [
   '/funges_style_topographic.json', // 4 Topographic
 ];
 const DARK_STYLE_INDEXES = new Set([1, 3]); // drives dark UI chrome
+const MAP_CENTER_KEY = 'mapCenter';
+const MAP_ZOOM_KEY = 'mapZoom';
 const INITIAL_CENTER: [number, number] = [7.3359, 47.7508];
 
 // Boundaries come from the manifests via species:generate, the same numbers the
@@ -155,7 +157,9 @@ function regionalSpeciesState(
   };
 }
 
-const INITIAL_REGION = forecastRegionForCoordinate(INITIAL_CENTER);
+// Seeded from the RESTORED viewport (readCenter is hoisted), so a cold start in a
+// saved US view opens with US species instead of the Swiss default's.
+const INITIAL_REGION = forecastRegionForCoordinate(readCenter());
 const INITIAL_SPECIES = regionalSpeciesState(INITIAL_REGION, 'mushroom');
 
 export interface MapThemeOption {
@@ -190,6 +194,27 @@ function readStyleIndex(): number {
   }
   // Back-compat with the old light/dark boolean.
   return localStorage.getItem('darkLayersVisible') === 'true' ? 1 : 0;
+}
+
+function readCenter(): [number, number] {
+  try {
+    const saved = JSON.parse(localStorage.getItem(MAP_CENTER_KEY) ?? 'null');
+    if (
+      Array.isArray(saved) &&
+      saved.length === 2 &&
+      saved.every(value => typeof value === 'number' && Number.isFinite(value))
+    ) {
+      return [saved[0], saved[1]];
+    }
+  } catch {
+    // Ignore corrupt legacy/local values and use the default below.
+  }
+  return INITIAL_CENTER;
+}
+
+function readZoom(): number {
+  const saved = Number(localStorage.getItem(MAP_ZOOM_KEY));
+  return Number.isFinite(saved) && saved >= 3.01 && saved <= 20 ? saved : 3.5;
 }
 
 // Region overlay/forecast tilesets are heavy; keeping all four live at once (even when
@@ -248,8 +273,8 @@ export const useMapStore = create<MapState>()(
   devtools(
     (set, get) => ({
       // Initial state
-      center: INITIAL_CENTER, // Switzerland
-      zoom: 3.5,
+      center: readCenter(), // Switzerland until a viewport is saved
+      zoom: readZoom(),
       bearing: 0,
       pitch: 0,
       mapStyle: MAP_STYLES[readStyleIndex()], // self-hosted from public/
@@ -279,7 +304,8 @@ export const useMapStore = create<MapState>()(
       // MapLibre's `move` event calls this on every animation frame, so the species
       // list is recomputed only when the viewport actually crosses into another
       // region — not 60 times a second.
-      setCenter: center =>
+      setCenter: center => {
+        localStorage.setItem(MAP_CENTER_KEY, JSON.stringify(center));
         set(state => {
           const region = forecastRegionForCoordinate(center);
           if (region === state.forecastRegion) return { center };
@@ -287,8 +313,12 @@ export const useMapStore = create<MapState>()(
             center,
             ...regionalSpeciesState(region, state.selectedSpecies),
           };
-        }),
-      setZoom: zoom => set({ zoom }),
+        });
+      },
+      setZoom: zoom => {
+        localStorage.setItem(MAP_ZOOM_KEY, String(zoom));
+        set({ zoom });
+      },
       setBearing: bearing => set({ bearing }),
       setPitch: pitch => set({ pitch }),
       setMapStyle: mapStyle => set({ mapStyle }),

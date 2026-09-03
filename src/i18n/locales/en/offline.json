@@ -1,23 +1,35 @@
 {
   "title": "Offline Maps",
-  "description": "Manage offline map data",
-  "offlineBanner": "You're offline — downloaded regions still show their data, without the live base map underneath.",
-  "storage": {
-    "title": "Storage",
-    "summary": "{{used}} MB / {{quota}} MB",
-    "purge": "Purge expired now",
-    "ttl": "Downloads expire after 14 days"
+  "description": "Download and manage map packages for offline use",
+  "intro": "Download a map package before your trip. Each package includes the basemap and foraging forecasts and remains valid for 7 days.",
+  "offlineBanner": "You're offline. Valid downloaded packages remain available.",
+  "catalog": {
+    "eu": {
+      "name": "Europe",
+      "description": "Detailed offline basemap and foraging forecasts for Europe."
+    },
+    "us": {
+      "name": "United States",
+      "description": "Detailed offline basemap and foraging forecasts for the United States."
+    }
   },
-  "regions": {
-    "title": "Regions",
-    "name": "Region",
-    "status": "Status",
-    "cachedOn": "Downloaded {{date}}",
-    "notCached": "Not downloaded",
-    "downloading": "Downloading...",
-    "download": "Download for offline",
+  "storage": {
+    "title": "Device storage",
+    "summary": "{{used}} used of approximately {{quota}} available to this site",
+    "persistent": "Protected from automatic browser eviction",
+    "bestEffort": "The browser may remove downloads when device storage is low"
+  },
+  "packages": {
+    "title": "Available packages",
+    "loading": "Loading package catalog…",
+    "empty": "No offline packages are currently published.",
+    "download": "Download",
+    "update": "Update",
     "remove": "Remove",
-    "eu": "Europe",
-    "us": "United States"
+    "open": "Open map",
+    "cancel": "Cancel",
+    "progress": "Downloading… {{percent}}%",
+    "downloaded": "Downloaded {{date}} · version {{version}} · valid for 7 days",
+    "expired": "Expired · connect to the internet and update before using offline"
   }
 }

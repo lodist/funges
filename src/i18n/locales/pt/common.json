@@ -34,7 +34,8 @@
     "system": "Sistema",
     "sort": "Ordenar",
     "email": "E-mail",
-    "score": "Pontuação"
+    "score": "Pontuação",
+    "copied": "Copiado!"
   },
   "offline": {
     "mode": "Modo offline",
@@ -94,6 +95,7 @@
       "flower": "Melhor com tempo claro e seco antes do calor do meio-dia."
     },
     "focus": {
+      "label": "Prioridade",
       "mixed": "Cesta mista",
       "mushrooms": "Cogumelos primeiro",
       "plants": "Ervas e folhas",
@@ -118,7 +120,8 @@
     "network": "Erro de rede. Verifique sua conexão.",
     "upload": "Falha ao enviar imagem. Por favor, tente novamente.",
     "notFound": "Página não encontrada.",
-    "unauthorized": "Você não está autorizado a acessar este recurso."
+    "unauthorized": "Você não está autorizado a acessar este recurso.",
+    "copy": "Não foi possível copiar. Selecione o texto e copie manualmente."
   },
   "html": {
     "title": "Fung.es - Encontre Cogumelos e Plantas Comestíveis Perto de Você",
@@ -269,5 +272,11 @@
     "title": "Barra lateral",
     "description": "Mostra a barra lateral no telemóvel.",
     "toggle": "Mostrar ou ocultar a barra lateral"
+  },
+  "theme": {
+    "label": "Tema",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Escuro"
   }
 }

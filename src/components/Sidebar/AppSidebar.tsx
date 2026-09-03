@@ -28,6 +28,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 import MapLastUpdated from '@/components/MapLastUpdated';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const basePath = import.meta.env.BASE_URL || '/';
 
@@ -130,7 +131,12 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
                 icon: Gavel,
               },
             ],
-            flyoutFooter: <MapLastUpdated variant='sidebar' />,
+            flyoutFooter: (
+              <div className='flex flex-col gap-2'>
+                <ThemeToggle />
+                <MapLastUpdated variant='sidebar' />
+              </div>
+            ),
           },
         ]
       : [],

@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { getScoreGradientCss } from '@/lib/scoreColor';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import SEO from '@/components/SEO';
-import { Separator } from '@/components/ui/separator';
 import {
   Map,
   ScanSearch,
@@ -22,32 +21,17 @@ import {
   Users,
   BarChart3,
   Lightbulb,
+  WifiOff,
 } from '@/lib/icons';
 
 export default function InstructionsPage() {
   const { t } = useTranslation('instructions');
 
   const functions = [
-    {
-      icon: ChefHat,
-      text: t('functions.recipes'),
-      color: 'text-primary-text',
-    },
-    {
-      icon: Navigation,
-      text: t('functions.location'),
-      color: 'text-primary-text',
-    },
-    {
-      icon: Palette,
-      text: t('functions.theme'),
-      color: 'text-muted-foreground',
-    },
-    {
-      icon: ScanSearch,
-      text: t('functions.identify'),
-      color: 'text-primary-text',
-    },
+    { icon: ChefHat, text: t('functions.recipes') },
+    { icon: Navigation, text: t('functions.location') },
+    { icon: Palette, text: t('functions.theme') },
+    { icon: ScanSearch, text: t('functions.identify') },
   ];
 
   const variables = [
@@ -125,6 +109,25 @@ export default function InstructionsPage() {
             </CardContent>
           </Card>
 
+          <Card>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-3 text-2xl'>
+                <WifiOff className='h-8 w-8 text-green-600 hidden lg:block' />
+                {t('offline.title')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className='space-y-5 text-gray-700 dark:text-gray-300'>
+              {(['prepare', 'available', 'unavailable'] as const).map(item => (
+                <div key={item}>
+                  <h3 className='mb-1 text-base font-semibold text-gray-900 dark:text-white'>
+                    {t(`offline.${item}Title`)}
+                  </h3>
+                  <p className='leading-relaxed'>{t(`offline.${item}`)}</p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
           {/* Functions Section */}
           <Card className='mb-8'>
             <CardHeader>
@@ -137,9 +140,7 @@ export default function InstructionsPage() {
                     key={func.text}
                     className='flex items-center gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors'
                   >
-                    <func.icon
-                      className={`h-6 w-6 ${func.color} flex-shrink-0`}
-                    />
+                    <func.icon className='h-6 w-6 text-primary-text flex-shrink-0' />
                     <span className='text-foreground'>{func.text}</span>
                   </div>
                 ))}
@@ -202,8 +203,6 @@ export default function InstructionsPage() {
               <p className='text-foreground leading-relaxed'>
                 {t('about.currentStatus')}
               </p>
-
-              <Separator />
 
               <div>
                 <h4 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
@@ -288,8 +287,6 @@ export default function InstructionsPage() {
                 {t('prediction.goal')}
               </p>
 
-              <Separator />
-
               <div>
                 <h4 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
                   {t('prediction.methodology.title')}
@@ -301,8 +298,6 @@ export default function InstructionsPage() {
                   {t('prediction.methodology.datasets')}
                 </p>
               </div>
-
-              <Separator />
 
               <div>
                 <h4 className='text-xl font-semibold text-foreground dark:text-white mb-4'>

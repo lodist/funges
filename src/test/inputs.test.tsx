@@ -50,8 +50,24 @@ describe('the field transitions every colour it changes', () => {
   // A field declares two border colours - one on focus, one on aria-invalid -
   // so a list that names only `color, box-shadow` snaps both of them.
   it.each(FIELDS)('%s names border-color', (_name, list) => {
-    expect(list()).toContain('transition-[color,border-color,box-shadow]');
+    expect(
+      list().some(
+        c => c.startsWith('transition-[') && c.includes('border-color')
+      )
+    ).toBe(true);
     expect(list()).not.toContain('transition-[color,box-shadow]');
+  });
+
+  // The same rule, applied to the one field that also changes a fill. The
+  // select trigger is a button that opens a popover, not a box you type in, so
+  // it answers the pointer - and the list has to name what it animates or the
+  // fill snaps while the edge eases.
+  it('the select trigger names the fill it changes', () => {
+    const list = FIELDS[2][1]();
+    expect(list).toContain('hover:bg-accent');
+    expect(list).toContain(
+      'transition-[color,background-color,border-color,box-shadow]'
+    );
   });
 });
 
@@ -109,5 +125,29 @@ describe('the hairline is the sanctioned bordered exception', () => {
   // second ever painted. This is the one guard here that has to read the source.
   it.each(SOURCES)('%s declares one border colour', file => {
     expect(readFileSync(file, 'utf8')).not.toMatch(/\bborder-input\b/);
+  });
+});
+
+describe('the disabled field keeps the cursor it declares', () => {
+  // `pointer-events: none` makes the element untargetable, so the
+  // `not-allowed` beside it never paints: on the disabled input story
+  // `elementFromPoint` at the centre returned the wrapping div and the painted
+  // cursor was `auto`. The textarea, which never carried the pointer-events
+  // rule, painted `not-allowed` from the same class.
+  it.each(FIELDS)('%s does not cancel its own cursor', (_name, list) => {
+    expect(list()).toContain('disabled:cursor-not-allowed');
+    expect(list()).not.toContain('disabled:pointer-events-none');
+  });
+});
+
+describe('the growing field stops before it clears the screen', () => {
+  // `field-sizing-content` has no upper bound of its own: at 390x844 the field
+  // measured 1474px on sixty lines and carried its form's submit button 1116px
+  // past the bottom of the screen. The cap is what `overflow-y: auto` - already
+  // declared - finally has to engage against.
+  it('the textarea caps its height against the viewport', () => {
+    const list = FIELDS[1][1]();
+    expect(list).toContain('field-sizing-content');
+    expect(list.some(c => /^max-h-/.test(c))).toBe(true);
   });
 });

@@ -35,11 +35,9 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+  --color-chart-warm: var(--chart-warm);
+  --color-chart-brand: var(--chart-brand);
+  --color-chart-cool: var(--chart-cool);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -289,14 +287,29 @@
   --category-flower: oklch(0.51 0.143 150);
   --category-nut: oklch(0.58 0.161 150);
 
-  /* Chart series ARE the category palette. These five tokens used to be a
-     fourth green ramp that no product code referenced, while DataPage drew
-     its charts from six hardcoded hexes. One palette, both jobs. */
-  --chart-1: var(--category-plant);
-  --chart-2: var(--category-mushroom);
-  --chart-3: var(--category-berry);
-  --chart-4: var(--category-flower);
-  --chart-5: var(--category-nut);
+  /* Measurement charts — the second place hue carries meaning, and the only
+     one that is not identity. Species categories above are *which thing*, so
+     they stay on the brand ramp and keep matching their map markers. The
+     DataPage charts plot *physical quantities*, where warm and cool is the
+     reading itself: heat, water, air. Three angles rather than five steps of
+     one, because max/avg/min on a single axis sat 0.07 apart in lightness and
+     could not be told apart at a 1.5px stroke.
+
+     Each sits at ~95% of the in-gamut chroma for its lightness, so the family
+     is as saturated as sRGB allows rather than as saturated as a uniform rule
+     would allow. That is why the two themes order their lightness differently:
+     green still holds 0.228 chroma at L 0.87 while amber is down to 0.098
+     there, so forcing one shared ordering would wash out whichever hue lost.
+
+     Staggered ~0.10 in lightness as well as hue, so the series survive the two
+     places hue collapses: amber and green merge for red-green vision (normal
+     separation 69 falls to 8), green and blue for blue-yellow (27 to 15).
+     Lightness is the channel that still separates them there, and the dash
+     patterns in DataPage are the third. Verified on --card: 3.21, 4.28, 6.95,
+     all clear of the 3:1 non-text floor. */
+  --chart-warm: oklch(0.66 0.156 55);
+  --chart-brand: oklch(0.56 0.147 150);
+  --chart-cool: oklch(0.46 0.111 245);
 
   /* Sidebar colors */
   --sidebar: oklch(0.9643 0.007 90);
@@ -447,7 +460,7 @@
   --elevation-raised-subtle: 0 1px 6px rgba(0, 0, 0, 0.06); /* Input, Select trigger */
   --elevation-raised: 0 2px 16px rgba(0, 0, 0, 0.1); /* Card, MobileNavbar */
   --elevation-raised-hover: 0 6px 20px rgba(0, 0, 0, 0.14); /* Card hover escalation */
-  --elevation-floating: 0 4px 20px rgba(0, 0, 0, 0.16); /* DropdownMenu, Select content */
+  --elevation-floating: 0 4px 20px rgba(0, 0, 0, 0.16); /* DropdownMenu, Select content, Sheet, Tooltip */
   /* Bottom Sheet only: a surface pinned to the viewport's bottom edge has to
      cast upward, or its shadow falls off-screen and the top edge loses its
      separation from the map. Same blur and alpha as `floating`, Y inverted —
@@ -475,7 +488,14 @@
   --primary-text: oklch(0.72 0.15 150);
   --secondary: oklch(0.3942 0.0265 150);
   --secondary-foreground: oklch(0.897 0.0166 150);
-  --muted: oklch(0.3327 0.0271 90);
+  /* One lightness step above Night Surface, same chroma: a recessed fill on
+     the same material, not a different one. It carried --card's exact value,
+     so every `bg-muted` inside a card or a popover painted pixels identical
+     to its ground — 1.00:1, with Skeleton the worst case because a fill is
+     its only channel. 1.152:1 on --card matches the 1.13:1 the light theme
+     already ships, 1.442:1 on --background, clear of --accent (0.36), and
+     under --border (0.3942) so a hairline still reads over a muted fill. */
+  --muted: oklch(0.37 0.0271 90);
   --muted-foreground: oklch(0.8579 0.0174 90);
   /* Was a solid mid-green (oklch(0.5752 0.1446 150)) under near-white
      text at 3.47:1 — the exact solid-fill pattern light mode rejected at
@@ -511,11 +531,15 @@
   --category-flower: oklch(0.8 0.144 150);
   --category-nut: oklch(0.88 0.104 150);
 
-  --chart-1: var(--category-plant);
-  --chart-2: var(--category-mushroom);
-  --chart-3: var(--category-berry);
-  --chart-4: var(--category-flower);
-  --chart-5: var(--category-nut);
+  /* Composed for the dark ground rather than inverted, and the theme where the
+     family gets to be vivid: a dark card lets every hue sit far higher up its
+     chroma curve than near-white does. Green leads at L 0.87 because that is
+     where hue 150 peaks; amber and blue peak lower and are placed there. Wider
+     stagger too (0.12), which lifts the worst colour-vision pair from 8 to 31.
+     Verified on --card: 8.82, 5.18, 3.49. */
+  --chart-brand: oklch(0.87 0.228 150);
+  --chart-warm: oklch(0.75 0.165 55);
+  --chart-cool: oklch(0.63 0.151 245);
 
   /* Sidebar colors. The nav shell is the same material as the app shell, so
      these mirror their core counterparts rather than restating the literals —

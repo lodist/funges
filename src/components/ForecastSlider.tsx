@@ -14,10 +14,13 @@ export default function ForecastSlider({
   const { activeDay, setActiveDay } = useMapStore();
   const { t, i18n } = useTranslation('map');
   const base = new Date();
-  const activeLabel =
-    activeDay === 0
+  // One function for the two places a day is spoken: the caption a sighted user
+  // reads and the aria-valuetext a screen reader hears.
+  const dayLabel = (day: number) =>
+    day === 0
       ? t('forecast.today', { defaultValue: 'Today' })
-      : forecastDayLabel(base, activeDay, i18n.language);
+      : forecastDayLabel(base, day, i18n.language);
+  const activeLabel = dayLabel(activeDay);
 
   return (
     <Card
@@ -27,7 +30,7 @@ export default function ForecastSlider({
       // a second one read as a competing floating layer.
       className={`shadow-none ${className}`}
     >
-      <div className='flex items-center justify-between text-xs leading-none mb-2.5'>
+      <div className='flex items-center justify-between text-xs mb-2.5'>
         <span className='font-bold text-foreground'>
           {t('forecast.label', { defaultValue: 'Forecast' })}
         </span>
@@ -40,6 +43,7 @@ export default function ForecastSlider({
         value={[activeDay]}
         onValueChange={([next]) => setActiveDay(next)}
         showTicks
+        formatValue={dayLabel}
         aria-label={t('forecast.label', { defaultValue: 'Forecast day' })}
       />
     </Card>

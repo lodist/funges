@@ -183,6 +183,24 @@ describe('menu text sits in two columns, not three', () => {
     expect(classes('[data-slot=select-label]')).toContain('px-4');
     expect(classes('[data-slot=select-item]')).toContain('pl-4');
   });
+
+  // One role, one treatment. These read 12px/400/muted against 14px/500/
+  // inherited for the same section header, because the shared rule named the
+  // row, the focus tone and the columns and said nothing about the type.
+  it.each([
+    ['select-label', renderSelect],
+    ['dropdown-menu-label', renderMenu],
+  ])('%s takes the Micro role', (slot, mount) => {
+    const { classes } = mount();
+    const c = classes(`[data-slot=${slot}]`);
+    expect(c).toContain('type-micro');
+    expect(c).toContain('text-muted-foreground');
+    // .type-micro carries the size and the weight; a utility beside it would
+    // win the cascade from @layer utilities and quietly undo the role.
+    expect(c).not.toContain('text-sm');
+    expect(c).not.toContain('text-xs');
+    expect(c).not.toContain('font-medium');
+  });
 });
 
 describe('menu surfaces animate on tokens', () => {
@@ -341,6 +359,7 @@ describe('the selected row belongs to the component', () => {
     // in dark while every other row measured 1.33. The same pair repeated across
     // call sites is a missing feature in the base, not a call-site preference.
     const consumers = readdirSync('src', { recursive: true, encoding: 'utf8' })
+      .map(f => f.replace(/\\/g, '/'))
       .filter(
         f =>
           typeof f === 'string' && /\.tsx$/.test(f) && !f.includes('.stories.')
