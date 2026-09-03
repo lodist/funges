@@ -12,11 +12,8 @@ export const isDevelopment = import.meta.env.DEV;
  */
 export const isProduction = import.meta.env.PROD;
 
-/**
- * Check if offline features should be visible
- * Hidden in development mode
- */
-export const shouldShowOfflineFeatures = isDevelopment;
+/** The complete regional basemap packages are published and ready for use. */
+export const shouldShowOfflineFeatures = true;
 
 /**
  * Check if a feature is enabled based on environment

@@ -84,6 +84,19 @@ SOFTWARE.
 Runs the model in the browser. MIT licence.
 <https://github.com/microsoft/onnxruntime>
 
+## Protomaps basemap assets
+
+The map bundles Protomaps basemap sprite sheets and Noto Sans glyph ranges so
+labels and symbols remain available without a network connection.
+
+- Asset source: <https://github.com/protomaps/basemaps-assets>
+- Noto Sans fonts: SIL Open Font License 1.1
+- Sprite icons: derived from the MIT-licensed Tangram icon set
+- Basemap data: © OpenStreetMap contributors, Open Database License
+
+OpenStreetMap attribution is also retained in every MapLibre style so it stays
+visible when an offline regional basemap is active.
+
 ## Species occurrence data
 
 The regional species list used as the identification vocabulary was derived from

@@ -1,23 +1,35 @@
 {
-  "title": "Offline Maps",
-  "description": "Manage offline map data",
-  "offlineBanner": "You're offline — downloaded regions still show their data, without the live base map underneath.",
-  "storage": {
-    "title": "Storage",
-    "summary": "{{used}} MB / {{quota}} MB",
-    "purge": "Purge expired now",
-    "ttl": "Downloads expire after 14 days"
+  "title": "Mappe offline",
+  "description": "Scarica e gestisci pacchetti di mappe per l’uso offline",
+  "intro": "Scarica un pacchetto di mappe prima dell’escursione. Ogni pacchetto include la mappa di base e le previsioni di raccolta ed è valido per 7 giorni.",
+  "offlineBanner": "Sei offline. I pacchetti scaricati ancora validi restano disponibili.",
+  "catalog": {
+    "eu": {
+      "name": "Europa",
+      "description": "Mappa di base dettagliata e previsioni di raccolta offline per l’Europa."
+    },
+    "us": {
+      "name": "Stati Uniti",
+      "description": "Mappa di base dettagliata e previsioni di raccolta offline per gli Stati Uniti."
+    }
   },
-  "regions": {
-    "title": "Regions",
-    "name": "Region",
-    "status": "Status",
-    "cachedOn": "Downloaded {{date}}",
-    "notCached": "Not downloaded",
-    "downloading": "Downloading...",
-    "download": "Download for offline",
-    "remove": "Remove",
-    "eu": "Europe",
-    "us": "United States"
+  "storage": {
+    "title": "Spazio del dispositivo",
+    "summary": "{{used}} utilizzati su circa {{quota}} disponibili per questo sito",
+    "persistent": "Protetto dalla rimozione automatica del browser",
+    "bestEffort": "Il browser può rimuovere i download quando lo spazio è insufficiente"
+  },
+  "packages": {
+    "title": "Pacchetti disponibili",
+    "loading": "Caricamento del catalogo…",
+    "empty": "Al momento non sono pubblicati pacchetti offline.",
+    "download": "Scarica",
+    "update": "Aggiorna",
+    "remove": "Rimuovi",
+    "open": "Apri mappa",
+    "cancel": "Annulla",
+    "progress": "Download… {{percent}}%",
+    "downloaded": "Scaricato il {{date}} · versione {{version}} · valido per 7 giorni",
+    "expired": "Scaduto · connettiti a Internet e aggiorna il pacchetto"
   }
 }

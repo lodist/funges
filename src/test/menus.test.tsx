@@ -359,6 +359,7 @@ describe('the selected row belongs to the component', () => {
     // in dark while every other row measured 1.33. The same pair repeated across
     // call sites is a missing feature in the base, not a call-site preference.
     const consumers = readdirSync('src', { recursive: true, encoding: 'utf8' })
+      .map(f => f.replace(/\\/g, '/'))
       .filter(
         f =>
           typeof f === 'string' && /\.tsx$/.test(f) && !f.includes('.stories.')

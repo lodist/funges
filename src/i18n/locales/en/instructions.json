@@ -10,6 +10,15 @@
     "scores": "Scores indicate the potential availability of the edible part to be foraged (such as nuts, fruits, or mushrooms), rather than the mere presence of the plant or tree itself.",
     "polygons": "Polygons and markers are only shown when they provide meaningful seasonal information, keeping the map lightweight and focused. If something's not showing, it might just be too early or too late in the season."
   },
+  "offline": {
+    "title": "Using the map offline",
+    "prepareTitle": "Before you leave",
+    "prepare": "While online, open Offline Maps and download your region. The package includes the basemap and forecasts and remains valid for 7 days. Wait until it shows as downloaded, and update it before leaving if it has expired. Install the app for the most reliable offline restart.",
+    "availableTitle": "What remains available",
+    "available": "The downloaded basemap, forecasts, species selector, forecast slider, zone details, every map style, and Locate Me remain available. GPS does not require mobile data, although it may be slower and still needs location permission.",
+    "unavailableTitle": "What needs a connection",
+    "unavailable": "Photo ID remains available after its one-time model download. Route to Dish, Google Maps navigation, and Area Data are hidden while offline because they require an internet connection."
+  },
   "functions": {
     "title": "Functions:",
     "recipes": "Shows nearby recipes and routes to ingredient stops",

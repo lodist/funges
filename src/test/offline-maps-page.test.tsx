@@ -3,121 +3,168 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@/i18n';
 import i18n from '@/i18n';
+import type {
+  OfflinePackageDefinition,
+  OfflinePackageId,
+} from '@/lib/offline-packages';
 
-// Each region row drew its toggle as a button whose label swapped between
-// "Download for offline" and "Remove", with the state kept in a separate
-// column: the control said what would happen next instead of showing how
-// things stood. It is a Switch now, and the disabled logic the two buttons
-// carried between them has to survive the merge — a forager offline cannot
-// download, but can still free the space a cached region is using.
+// This page used to list continents as rows whose single control swapped its
+// own label between "Download for offline" and "Remove": the control said what
+// would happen next instead of showing how things stood. It now lists
+// versioned packages, which have more states than a two-way toggle can carry
+// (absent, downloading, installed, update available), so the toggle is gone.
+// The two intents behind it still hold and are what this file guards:
+// every control carries its own accessible name, and a forager who is offline
+// cannot download but can still free the space a cached package is using.
 
 const download = vi.fn();
 const remove = vi.fn();
+const cancel = vi.fn();
+const navigate = vi.fn();
+
+function definition(
+  id: OfflinePackageId,
+  continent: 'eu' | 'us'
+): OfflinePackageDefinition {
+  return {
+    id,
+    continent,
+    name: id,
+    description: `${id} description`,
+    bounds: [-10, 35, 30, 60],
+    minZoom: 0,
+    maxZoom: 8,
+    version: '2',
+    updatedAt: '2026-01-01T00:00:00Z',
+    published: true,
+    resources: [
+      {
+        id: `${id}-basemap`,
+        kind: 'basemap',
+        sourceUrl: `https://example.test/${id}.pmtiles`,
+        sizeBytes: 4 * 1024 * 1024,
+      },
+    ],
+  };
+}
+
 const state = {
+  available: [] as OfflinePackageDefinition[],
   cached: {} as Record<
     string,
-    { cachedAt: number; sizeBytes: number } | undefined
+    | { id: string; cachedAt: number; version: string; expired: boolean }
+    | undefined
   >,
-  downloading: {} as Record<string, boolean>,
+  progress: {} as Record<string, { fraction: number } | undefined>,
+  storage: { usageBytes: 0, quotaBytes: 0, persisted: true },
+  ready: true,
+  loading: false,
   error: null as string | null,
+  initialize: vi.fn(),
   refresh: vi.fn(),
   download,
+  cancel,
   remove,
-  purgeExpired: vi.fn(),
+  activateForCoordinate: vi.fn(),
 };
 let isOnline = true;
 
 vi.mock('@/store/offlineStore', () => ({
   useOfflineStore: () => state,
-  CONTINENTS: ['eu', 'us'],
 }));
 vi.mock('@/hooks/use-pwa', () => ({
   usePWA: () => ({ isOnline, hasUpdate: false, reloadForUpdate: vi.fn() }),
 }));
+vi.mock('@/store/mapStore', () => ({
+  useMapStore: () => ({ setCenter: vi.fn(), setZoom: vi.fn() }),
+}));
+vi.mock('@tanstack/react-router', () => ({ useNavigate: () => navigate }));
 vi.mock('@/components/SEO', () => ({ default: () => null }));
 
 const { default: OfflineMapsPage } = await import('@/pages/OfflineMapsPage');
 
-const switches = () =>
-  [...document.querySelectorAll('[data-slot=switch]')] as HTMLButtonElement[];
+const installed = (
+  id: string,
+  over: { expired?: boolean; version?: string } = {}
+) => ({
+  id,
+  cachedAt: Date.UTC(2026, 0, 2),
+  version: over.version ?? '2',
+  expired: over.expired ?? false,
+});
 
 beforeEach(async () => {
   await i18n.changeLanguage('en');
+  state.available = [definition('eu', 'eu'), definition('us', 'us')];
   state.cached = {};
-  state.downloading = {};
+  state.progress = {};
+  state.loading = false;
+  state.error = null;
   isOnline = true;
-  download.mockClear();
-  remove.mockClear();
+  vi.clearAllMocks();
 });
 
-describe('OfflineMapsPage region rows', () => {
-  it('gives every region a switch named by its own row', () => {
+describe('OfflineMapsPage packages', () => {
+  it('names every control it draws', () => {
+    state.cached = { eu: installed('eu') };
     render(<OfflineMapsPage />);
 
-    const rows = switches();
-    expect(rows).toHaveLength(2);
-    // the name is the visible region cell, so it never drifts from the label
-    for (const s of rows) {
-      const id = s.getAttribute('aria-labelledby');
-      expect(id, 'switch has no accessible name').toBeTruthy();
-      expect(document.getElementById(id!)?.textContent).toBeTruthy();
+    const buttons = screen.getAllByRole('button');
+    expect(buttons.length).toBeGreaterThan(0);
+    // an icon alone is not a name: each control says what it does
+    for (const button of buttons) {
+      expect(
+        button.textContent?.trim(),
+        'control has no accessible name'
+      ).toBeTruthy();
     }
-    expect(screen.getByRole('switch', { name: 'Europe' })).toBeTruthy();
-    expect(screen.getByRole('switch', { name: 'United States' })).toBeTruthy();
   });
 
-  it('shows the setting, not the errand', () => {
-    state.cached = { eu: { cachedAt: Date.now(), sizeBytes: 1024 } };
+  it('shows how things stand, not only the errand', () => {
+    state.cached = { eu: installed('eu') };
     render(<OfflineMapsPage />);
 
-    expect(screen.getByRole('switch', { name: 'Europe' })).toBeChecked();
-    expect(
-      screen.getByRole('switch', { name: 'United States' })
-    ).not.toBeChecked();
-    // no label-swapping button survives
-    expect(screen.queryByRole('button', { name: /remove/i })).toBeNull();
-    expect(
-      screen.queryByRole('button', { name: /download for offline/i })
-    ).toBeNull();
+    // the cached package reports its own state instead of hiding it in a control
+    expect(screen.getByText(/Downloaded .* version 2/)).toBeTruthy();
+    expect(screen.getByRole('button', { name: /open map/i })).toBeTruthy();
+    // the absent one is the only thing still offering a download
+    expect(screen.getByRole('button', { name: /^download$/i })).toBeTruthy();
   });
 
-  it('downloads on, removes off', async () => {
+  it('offers an update, and removal, once a cached package is stale', () => {
+    state.cached = { eu: installed('eu', { version: '1' }) };
+    render(<OfflineMapsPage />);
+
+    expect(screen.getByRole('button', { name: /update/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /remove/i })).toBeTruthy();
+  });
+
+  it('trades the download control for progress and a cancel while tiles come down', async () => {
+    state.progress = { eu: { fraction: 0.25 } };
     const user = userEvent.setup();
     render(<OfflineMapsPage />);
 
-    await user.click(screen.getByRole('switch', { name: 'Europe' }));
-    expect(download).toHaveBeenCalledWith('eu');
-    expect(remove).not.toHaveBeenCalled();
+    const bar = screen.getByRole('progressbar');
+    expect(bar.getAttribute('aria-valuenow')).toBe('25');
+    // only the untouched package still offers a download
+    expect(screen.getAllByRole('button', { name: /^download$/i })).toHaveLength(
+      1
+    );
+
+    await user.click(screen.getByRole('button', { name: /cancel/i }));
+    expect(cancel).toHaveBeenCalledWith('eu');
   });
 
-  it('removes a cached region when switched off', async () => {
-    state.cached = { eu: { cachedAt: Date.now(), sizeBytes: 1024 } };
+  it('offline: cannot download, can still free the space', async () => {
+    isOnline = false;
+    state.cached = { eu: installed('eu') };
     const user = userEvent.setup();
     render(<OfflineMapsPage />);
 
-    await user.click(screen.getByRole('switch', { name: 'Europe' }));
+    expect(screen.getByRole('button', { name: /^download$/i })).toBeDisabled();
+
+    await user.click(screen.getByRole('button', { name: /remove/i }));
     expect(remove).toHaveBeenCalledWith('eu');
     expect(download).not.toHaveBeenCalled();
-  });
-
-  it('locks the switch while its tiles are still coming down', () => {
-    state.downloading = { eu: true };
-    render(<OfflineMapsPage />);
-
-    expect(screen.getByRole('switch', { name: 'Europe' })).toBeDisabled();
-    expect(screen.getByRole('switch', { name: 'United States' })).toBeEnabled();
-    // the knob cannot carry progress, so the status cell keeps it
-    expect(screen.getByText('Downloading...')).toBeTruthy();
-  });
-
-  it('offline: cannot download, can still free the space', () => {
-    isOnline = false;
-    state.cached = { eu: { cachedAt: Date.now(), sizeBytes: 1024 } };
-    render(<OfflineMapsPage />);
-
-    expect(screen.getByRole('switch', { name: 'Europe' })).toBeEnabled();
-    expect(
-      screen.getByRole('switch', { name: 'United States' })
-    ).toBeDisabled();
   });
 });

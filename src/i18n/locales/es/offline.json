@@ -1,23 +1,35 @@
 {
-  "title": "Offline Maps",
-  "description": "Manage offline map data",
-  "offlineBanner": "You're offline — downloaded regions still show their data, without the live base map underneath.",
-  "storage": {
-    "title": "Storage",
-    "summary": "{{used}} MB / {{quota}} MB",
-    "purge": "Purge expired now",
-    "ttl": "Downloads expire after 14 days"
+  "title": "Mapas sin conexión",
+  "description": "Descarga y administra paquetes de mapas para usarlos sin conexión",
+  "intro": "Descarga un paquete de mapas antes de salir. Cada paquete incluye el mapa base y las previsiones de recolección y es válido durante 7 días.",
+  "offlineBanner": "Estás sin conexión. Los paquetes descargados que siguen vigentes permanecen disponibles.",
+  "catalog": {
+    "eu": {
+      "name": "Europa",
+      "description": "Mapa base detallado y previsiones de recolección para usar sin conexión en Europa."
+    },
+    "us": {
+      "name": "Estados Unidos",
+      "description": "Mapa base detallado y previsiones de recolección para usar sin conexión en Estados Unidos."
+    }
   },
-  "regions": {
-    "title": "Regions",
-    "name": "Region",
-    "status": "Status",
-    "cachedOn": "Downloaded {{date}}",
-    "notCached": "Not downloaded",
-    "downloading": "Downloading...",
-    "download": "Download for offline",
-    "remove": "Remove",
-    "eu": "Europe",
-    "us": "United States"
+  "storage": {
+    "title": "Almacenamiento del dispositivo",
+    "summary": "{{used}} usados de aproximadamente {{quota}} disponibles para este sitio",
+    "persistent": "Protegido frente a la eliminación automática del navegador",
+    "bestEffort": "El navegador puede eliminar las descargas si queda poco espacio"
+  },
+  "packages": {
+    "title": "Paquetes disponibles",
+    "loading": "Cargando catálogo de paquetes…",
+    "empty": "No hay paquetes sin conexión publicados actualmente.",
+    "download": "Descargar",
+    "update": "Actualizar",
+    "remove": "Eliminar",
+    "open": "Abrir mapa",
+    "cancel": "Cancelar",
+    "progress": "Descargando… {{percent}}%",
+    "downloaded": "Descargado el {{date}} · versión {{version}} · válido durante 7 días",
+    "expired": "Caducado · conéctate a Internet y actualiza el paquete"
   }
 }

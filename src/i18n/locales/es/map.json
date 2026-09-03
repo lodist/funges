@@ -96,7 +96,8 @@
       "numbers": "Muestra u oculta el índice numérico",
       "theme": "Elige un tema de mapa: Claro, Oscuro, Blanco, Dark Matter o Topográfico",
       "zones": "Toca una zona para ver la lista de especies",
-      "recipes": "Abre recetas cercanas y traza una ruta hasta cada parada de ingredientes"
+      "recipes": "Abre recetas cercanas y traza una ruta hasta cada parada de ingredientes",
+      "offline": "Guarda un paquete de mapas antes de salir para usarlo sin conexión"
     },
     "instructions": "Leer las instrucciones completas",
     "supportLink": "Apoya el proyecto",
@@ -114,6 +115,7 @@
   },
   "offline": {
     "title": "Sin conexión",
-    "message": "El mapa necesita conexión para cargarse. Las especies y las recetas siguen funcionando sin conexión."
+    "noPackageMessage": "Ningún paquete descargado cubre esta zona. Vuelve a conectarte o regresa a una zona guardada.",
+    "forecastOnlyMessage": "Previsión sin conexión cargada. El mapa base detallado necesita conexión."
   }
 }

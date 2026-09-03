@@ -10,6 +10,15 @@
     "scores": "As pontuações indicam a disponibilidade potencial da parte comestível a ser colhida (como nozes, frutas ou cogumelos), em vez da simples presença da planta ou da árvore em si.",
     "polygons": "Polígonos e marcadores só são exibidos quando fornecem informações sazonais relevantes, mantendo o mapa leve e focado. Se algo não aparecer, pode ser que ainda seja muito cedo ou tarde na estação."
   },
+  "offline": {
+    "title": "Utilizar o mapa offline",
+    "prepareTitle": "Antes de sair",
+    "prepare": "Enquanto estiver online, abra Mapas offline e transfira a sua região. O pacote inclui o mapa base e as previsões e é válido durante 7 dias. Aguarde até aparecer como transferido e atualize-o antes de sair se tiver expirado. Instale a aplicação para um reinício offline fiável.",
+    "availableTitle": "O que continua disponível",
+    "available": "O mapa base transferido, as previsões, o seletor de espécies, o controlo da previsão, os detalhes das zonas, todos os estilos e a localização continuam disponíveis. O GPS não requer dados móveis, embora possa ser mais lento e necessite de permissão de localização.",
+    "unavailableTitle": "O que requer ligação",
+    "unavailable": "A identificação por fotografia continua disponível após a transferência única do modelo. Rota para o prato, a navegação Google Maps e os dados da área ficam ocultos offline porque requerem uma ligação à Internet."
+  },
   "functions": {
     "title": "Funções:",
     "recipes": "Exibe receitas proximas e rotas para as paradas de ingredientes",

@@ -58,6 +58,9 @@ jobs:
       - name: Generate worth foraging now JSON
         run: python scripts/generate_worth_foraging_now.py
 
+      - name: Refresh offline forecast package metadata
+        run: python scripts/refresh_offline_manifest.py
+
       - name: Show changes
         run: |
           git status --porcelain
@@ -69,7 +72,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'chore: update site data'
-          file_pattern: public/data/visitors.json public/data/scores_metadata.json public/data/data_nerd.json public/data/worth_foraging_now.json
+          file_pattern: public/data/visitors.json public/data/scores_metadata.json public/data/data_nerd.json public/data/worth_foraging_now.json public/offline-packages.json
           commit_user_name: funges-bot
           commit_user_email: funges-bot@users.noreply.github.com
         env:
