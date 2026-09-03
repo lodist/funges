@@ -1,17 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-02T05:11:05.582162Z",
+  "generatedAt": "2026-09-03T02:30:32.085751Z",
   "packages": [
     {
       "id": "eu",
       "continent": "eu",
       "name": "Europe",
       "description": "Detailed offline basemap and foraging forecasts for Europe.",
-      "bounds": [-25, 34, 45, 72],
+      "bounds": [
+        -25,
+        34,
+        45,
+        72
+      ],
       "minZoom": 3,
       "maxZoom": 8,
-      "version": "da7450aa7ef1",
-      "updatedAt": "2026-09-02T02:33:51Z",
+      "version": "7942aebab70a",
+      "updatedAt": "2026-09-03T02:22:08Z",
       "published": true,
       "resources": [
         {
@@ -26,18 +31,18 @@
         {
           "id": "ne-forecast",
           "kind": "forecast",
-          "version": "6edfe3bf23fdde1e61b96c0991a2350f",
+          "version": "68b3580cb46d3b6d0832ed3a67760448",
           "sourceUrl": "https://data.fung.es/EU/NE/ne_forecast.pmtiles",
-          "sizeBytes": 6844823,
-          "etag": "6edfe3bf23fdde1e61b96c0991a2350f"
+          "sizeBytes": 6823620,
+          "etag": "68b3580cb46d3b6d0832ed3a67760448"
         },
         {
           "id": "se-forecast",
           "kind": "forecast",
-          "version": "8d7a5271b278f7ef41bfb9b686a52490",
+          "version": "3a4210209729a503ea0848f96c5f8e1d",
           "sourceUrl": "https://data.fung.es/EU/SE/se_forecast.pmtiles",
-          "sizeBytes": 6788358,
-          "etag": "8d7a5271b278f7ef41bfb9b686a52490"
+          "sizeBytes": 6725687,
+          "etag": "3a4210209729a503ea0848f96c5f8e1d"
         }
       ]
     },
@@ -46,7 +51,12 @@
       "continent": "us",
       "name": "United States",
       "description": "Detailed offline basemap and foraging forecasts for the United States.",
-      "bounds": [-125, 24, -66, 50],
+      "bounds": [
+        -125,
+        24,
+        -66,
+        50
+      ],
       "minZoom": 3,
       "maxZoom": 8,
       "version": "c6e827a920a4",
