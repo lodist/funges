@@ -14,14 +14,14 @@ window.IntersectionObserver = vi.fn().mockImplementation(function () {
   } as unknown as IntersectionObserver;
 });
 
-// Mock ResizeObserver
-window.ResizeObserver = vi.fn().mockImplementation(function () {
-  return {
-    disconnect: vi.fn(),
-    observe: vi.fn(),
-    unobserve: vi.fn(),
-  } as unknown as ResizeObserver;
-});
+// Radix constructs ResizeObserver with `new`; use a real class because Vitest
+// 4 no longer treats an arrow-function mock implementation as constructable.
+class ResizeObserverMock implements ResizeObserver {
+  disconnect = vi.fn();
+  observe = vi.fn();
+  unobserve = vi.fn();
+}
+window.ResizeObserver = ResizeObserverMock;
 
 // Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {

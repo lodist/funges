@@ -22,6 +22,7 @@ import {
   Users,
   BarChart3,
   Lightbulb,
+  WifiOff,
 } from '@/lib/icons';
 
 export default function InstructionsPage() {
@@ -122,6 +123,28 @@ export default function InstructionsPage() {
               <p className='text-foreground leading-relaxed'>
                 {t('mapDescription.polygons')}
               </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-3 text-2xl'>
+                <WifiOff className='h-8 w-8 text-green-600 hidden lg:block' />
+                {t('offline.title')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className='space-y-5 text-gray-700 dark:text-gray-300'>
+              {(['prepare', 'available', 'unavailable'] as const).map(
+                (item, index) => (
+                  <div key={item}>
+                    {index > 0 && <Separator className='mb-5' />}
+                    <h3 className='mb-1 text-base font-semibold text-gray-900 dark:text-white'>
+                      {t(`offline.${item}Title`)}
+                    </h3>
+                    <p className='leading-relaxed'>{t(`offline.${item}`)}</p>
+                  </div>
+                )
+              )}
             </CardContent>
           </Card>
 

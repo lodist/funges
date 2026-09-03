@@ -27,6 +27,7 @@ function stripComments(source: string) {
 }
 
 const sources = readdirSync('src', { recursive: true, encoding: 'utf8' })
+  .map(p => p.replace(/\\/g, '/'))
   .filter(p => /\.(tsx?|css|scss)$/.test(p) && !p.endsWith('radius.test.ts'))
   .map(
     p => [`src/${p}`, stripComments(readFileSync(`src/${p}`, 'utf8'))] as const

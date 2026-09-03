@@ -96,7 +96,8 @@
       "numbers": "Show or hide the numeric index",
       "theme": "Pick a map theme: Light, Dark, White, Dark Matter or Topographic",
       "zones": "Tap a zone to view its species list",
-      "recipes": "Open nearby recipes and draw a route to each ingredient stop"
+      "recipes": "Open nearby recipes and draw a route to each ingredient stop",
+      "offline": "Save a map package before your trip for offline use"
     },
     "instructions": "Read full instructions",
     "supportLink": "Support the project",
@@ -114,6 +115,7 @@
   },
   "offline": {
     "title": "You're offline",
-    "message": "The map needs a connection to load. Species and recipes still work offline."
+    "noPackageMessage": "No downloaded map package covers this area. Reconnect or return to an area you saved.",
+    "forecastOnlyMessage": "Offline forecast loaded. The detailed basemap needs a connection."
   }
 }
