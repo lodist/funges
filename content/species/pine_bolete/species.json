@@ -1,0 +1,169 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "pine_bolete",
+  "scientificName": "Boletus pinophilus",
+  "catalog": {
+    "enabled": true,
+    "order": 34,
+    "translationKey": "pine_bolete",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "spring-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/pine_bolete.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Pine Bolete",
+      "description": "A red-brown capped porcino of pine woods, with a stout reddish netted stem and firm flesh",
+      "howTo": "Look in mossy pine and spruce forest on acidic sandy soil, in a late spring flush and again in autumn"
+    },
+    "it": {
+      "name": "Porcino Rosso",
+      "description": "Un porcino dal cappello bruno-rossiccio dei boschi di pino, con gambo tozzo reticolato e polpa soda",
+      "howTo": "Cercalo nelle pinete e peccete muscose su suolo acido e sabbioso, a fine primavera e di nuovo in autunno"
+    },
+    "fr": {
+      "name": "Cèpe des Pins",
+      "description": "Un cèpe au chapeau brun-rouge des pinèdes, au pied trapu réticulé rougeâtre et à la chair ferme",
+      "howTo": "Cherchez-le dans les pinèdes et pesséries moussues sur sol acide et sableux, à la fin du printemps puis en automne"
+    },
+    "de": {
+      "name": "Kiefern-Steinpilz",
+      "description": "Ein rotbrauner Steinpilz der Kiefernwälder mit gedrungenem, rötlich genetztem Stiel und festem Fleisch",
+      "howTo": "Suche in moosigen Kiefern- und Fichtenwäldern auf saurem Sandboden, im späten Frühjahr und wieder im Herbst"
+    },
+    "es": {
+      "name": "Boleto de Pino",
+      "description": "Un boleto de sombrero pardo rojizo de los pinares, con pie robusto reticulado y carne firme",
+      "howTo": "Búscalo en pinares y abetales con musgo sobre suelo ácido y arenoso, a finales de primavera y de nuevo en otoño"
+    },
+    "pt": {
+      "name": "Boleto do Pinheiro",
+      "description": "Um cogumelo boleto de chapéu castanho-avermelhado dos pinhais, com pé robusto reticulado e carne firme",
+      "howTo": "Procure em pinhais e abetais com musgo sobre solo ácido e arenoso, no fim da primavera e de novo no outono"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Boletus pinophilus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-06-boletus-chanterelle-split.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Pine Bolete"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [312, 313, 324],
+        "scoring": {
+          "optimal_temp": 15,
+          "temp_sigma": 5,
+          "min_temp": 4,
+          "max_temp": 23,
+          "optimal_alt": 1100,
+          "alt_sigma": 1500,
+          "optimal_humidity": 82,
+          "humidity_sigma": 17,
+          "optimal_pH": 4.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.8, 6.2],
+          "optimal_soil_temp": 15.5,
+          "soil_temp_sigma": 4.5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_italy",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": true,
+          "season_months": [5, 6, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5954949",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [312, 313, 324],
+        "scoring": {
+          "optimal_temp": 15,
+          "temp_sigma": 5,
+          "min_temp": 4,
+          "max_temp": 23,
+          "optimal_alt": 1100,
+          "alt_sigma": 1500,
+          "optimal_humidity": 82,
+          "humidity_sigma": 17,
+          "optimal_pH": 4.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.8, 6.2],
+          "optimal_soil_temp": 15.5,
+          "soil_temp_sigma": 4.5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_italy",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": true,
+          "season_months": [5, 6, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5954949",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [5954949],
+      "references": ["https://www.gbif.org/species/5954949"]
+    }
+  }
+}

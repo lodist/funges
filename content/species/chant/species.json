@@ -17,7 +17,7 @@
   },
   "locales": {
     "en": {
-      "name": "Chanterelle",
+      "name": "Golden Chanterelle",
       "description": "A golden yellow mushroom with a distinctive funnel shape and fruity aroma",
       "howTo": "Look for them in deciduous forests, especially near oak and beech trees"
     },
@@ -55,7 +55,8 @@
       "status": "approved",
       "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
       "references": [
-        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-06-boletus-chanterelle-split.md"
       ]
     }
   },
@@ -249,8 +250,8 @@
     },
     "empiricalSeason": {
       "enabled": true,
-      "taxonKeys": [9623860],
-      "references": ["https://www.gbif.org/species/9623860"]
+      "taxonKeys": [5249504],
+      "references": ["https://www.gbif.org/species/5249504"]
     }
   }
 }

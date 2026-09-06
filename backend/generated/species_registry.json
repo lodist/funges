@@ -7,10 +7,10 @@
   },
   "species": {
     "chant": {
-      "name": "Chanterelle",
+      "name": "Golden Chanterelle",
       "scientificName": "Cantharellus cibarius",
       "identificationRank": "species",
-      "empiricalTaxonKeys": [9623860],
+      "empiricalTaxonKeys": [5249504],
       "dataColumns": ["chant_score", "Chanterelle"],
       "regions": {
         "NE": {
@@ -194,11 +194,11 @@
       }
     },
     "mushroom": {
-      "name": "Boletus",
-      "scientificName": "Boletus",
-      "identificationRank": "genus",
-      "empiricalTaxonKeys": [8287374],
-      "dataColumns": ["mushroom_score", "Porcini", "Mushroom"],
+      "name": "Porcini",
+      "scientificName": "Boletus edulis",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5954958],
+      "dataColumns": ["mushroom_score", "Porcini", "Mushroom", "Boletus"],
       "regions": {
         "NE": {
           "landCover": [311, 312, 313],
@@ -3272,6 +3272,576 @@
             "https://data.fung.es/EU/SE/SE_species_params.txt"
           ],
           "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        }
+      }
+    },
+    "bronze_bolete": {
+      "name": "Bronze Bolete",
+      "scientificName": "Boletus aereus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [8733688],
+      "dataColumns": ["bronze_bolete_score", "Bronze Bolete"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 20,
+            "temp_sigma": 4.5,
+            "min_temp": 8,
+            "max_temp": 28,
+            "optimal_alt": 400,
+            "alt_sigma": 700,
+            "optimal_humidity": 78,
+            "humidity_sigma": 17,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7.5],
+            "optimal_soil_temp": 19,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/8733688",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 20,
+            "temp_sigma": 4.5,
+            "min_temp": 8,
+            "max_temp": 28,
+            "optimal_alt": 400,
+            "alt_sigma": 700,
+            "optimal_humidity": 78,
+            "humidity_sigma": 17,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7.5],
+            "optimal_soil_temp": 19,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/8733688",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        }
+      }
+    },
+    "pine_bolete": {
+      "name": "Pine Bolete",
+      "scientificName": "Boletus pinophilus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5954949],
+      "dataColumns": ["pine_bolete_score", "Pine Bolete"],
+      "regions": {
+        "NE": {
+          "landCover": [312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 23,
+            "optimal_alt": 1100,
+            "alt_sigma": 1500,
+            "optimal_humidity": 82,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.8, 6.2],
+            "optimal_soil_temp": 15.5,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_italy",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": true,
+            "season_months": [5, 6, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5954949",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "SE": {
+          "landCover": [312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 23,
+            "optimal_alt": 1100,
+            "alt_sigma": 1500,
+            "optimal_humidity": 82,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.8, 6.2],
+            "optimal_soil_temp": 15.5,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_italy",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": true,
+            "season_months": [5, 6, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5954949",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        }
+      }
+    },
+    "summer_bolete": {
+      "name": "Summer Bolete",
+      "scientificName": "Boletus reticulatus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5954691],
+      "dataColumns": ["summer_bolete_score", "Summer Bolete"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 19,
+            "temp_sigma": 5,
+            "min_temp": 7,
+            "max_temp": 27,
+            "optimal_alt": 600,
+            "alt_sigma": 900,
+            "optimal_humidity": 78,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.5, 7.2],
+            "optimal_soil_temp": 18.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": true,
+            "season_months": [5, 6, 7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5954691",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 19,
+            "temp_sigma": 5,
+            "min_temp": 7,
+            "max_temp": 27,
+            "optimal_alt": 600,
+            "alt_sigma": 900,
+            "optimal_humidity": 78,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.5, 7.2],
+            "optimal_soil_temp": 18.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_dry_spain",
+              "mediterranean_italy",
+              "mediterranean_greece",
+              "mediterranean_turkey",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate",
+              "central_spain",
+              "sardinia"
+            ],
+            "wind_sensitive": true,
+            "season_months": [5, 6, 7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5954691",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        }
+      }
+    },
+    "pacific_chant": {
+      "name": "Pacific Chanterelle",
+      "scientificName": "Cantharellus formosus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5466954],
+      "dataColumns": ["pacific_chant_score", "Pacific Chanterelle"],
+      "regions": {
+        "USW": {
+          "landCover": [42, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 4,
+            "min_temp": 3,
+            "max_temp": 22,
+            "optimal_alt": 500,
+            "alt_sigma": 900,
+            "optimal_humidity": 88,
+            "humidity_sigma": 16,
+            "optimal_pH": 5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 6.5],
+            "optimal_soil_temp": 14,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_continental",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [9, 10, 11, 12, 1],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5466954",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        }
+      }
+    },
+    "smooth_chant": {
+      "name": "Smooth Chanterelle",
+      "scientificName": "Cantharellus lateritius",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [7241861],
+      "dataColumns": ["smooth_chant_score", "Smooth Chanterelle"],
+      "regions": {
+        "USE": {
+          "landCover": [41, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 22,
+            "temp_sigma": 4.5,
+            "min_temp": 12,
+            "max_temp": 32,
+            "optimal_alt": 250,
+            "alt_sigma": 700,
+            "optimal_humidity": 85,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.2, 6.8],
+            "optimal_soil_temp": 22,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "humid_subtropical",
+              "humid_continental",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [6, 7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7241861",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        }
+      }
+    },
+    "winter_chant": {
+      "name": "Winter Chanterelle",
+      "scientificName": "Craterellus tubaeformis",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [2554536],
+      "dataColumns": ["winter_chant_score", "Winter Chanterelle"],
+      "regions": {
+        "NE": {
+          "landCover": [312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 4.5,
+            "min_temp": 1,
+            "max_temp": 20,
+            "optimal_alt": 600,
+            "alt_sigma": 1100,
+            "optimal_humidity": 90,
+            "humidity_sigma": 18,
+            "optimal_pH": 4.6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_italy",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [9, 10, 11, 12],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2554536",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "SE": {
+          "landCover": [312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 4.5,
+            "min_temp": 1,
+            "max_temp": 20,
+            "optimal_alt": 600,
+            "alt_sigma": 1100,
+            "optimal_humidity": 90,
+            "humidity_sigma": 18,
+            "optimal_pH": 4.6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "arctic",
+              "subarctic",
+              "atlantic_islands",
+              "mediterranean_italy",
+              "oceanic_south",
+              "oceanic_north",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [9, 10, 11, 12],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2554536",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "USE": {
+          "landCover": [42, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 4.5,
+            "min_temp": 1,
+            "max_temp": 20,
+            "optimal_alt": 600,
+            "alt_sigma": 1100,
+            "optimal_humidity": 90,
+            "humidity_sigma": 18,
+            "optimal_pH": 4.6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_continental",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [9, 10, 11, 12],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2554536",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "USW": {
+          "landCover": [42, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 4.5,
+            "min_temp": 1,
+            "max_temp": 20,
+            "optimal_alt": 600,
+            "alt_sigma": 1100,
+            "optimal_humidity": 90,
+            "humidity_sigma": 18,
+            "optimal_pH": 4.6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "climate_zones": [
+              "alpine",
+              "subarctic",
+              "marine_west_coast",
+              "humid_continental",
+              "continental",
+              "temperate"
+            ],
+            "wind_sensitive": false,
+            "season_months": [10, 11, 12, 1],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2554536",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
         }
       }
     }

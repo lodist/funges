@@ -1,0 +1,125 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "pacific_chant",
+  "scientificName": "Cantharellus formosus",
+  "catalog": {
+    "enabled": true,
+    "order": 36,
+    "translationKey": "pacific_chant",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "fall-winter",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/pacific_chant.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Pacific Chanterelle",
+      "description": "A large golden chanterelle of the Pacific Northwest, paler and pinker than its European cousin",
+      "howTo": "Look in mossy Douglas fir and hemlock forest once the autumn rains have set in"
+    },
+    "it": {
+      "name": "Galletto del Pacifico",
+      "description": "Un grande gallinaccio dorato del Nord-Ovest pacifico, più pallido e rosato del cugino europeo",
+      "howTo": "Cercalo nelle foreste muscose di abete di Douglas e tsuga, dopo l'arrivo delle piogge autunnali"
+    },
+    "fr": {
+      "name": "Girolle du Pacifique",
+      "description": "Une grande girolle dorée du Nord-Ouest pacifique, plus pâle et plus rosée que sa cousine européenne",
+      "howTo": "Cherchez-la dans les forêts moussues de douglas et de pruche, une fois les pluies d'automne installées"
+    },
+    "de": {
+      "name": "Pazifik-Pfifferling",
+      "description": "Ein grosser goldener Pfifferling des pazifischen Nordwestens, blasser und rosiger als sein europäischer Verwandter",
+      "howTo": "Suche in moosigen Douglasien- und Hemlockwäldern, sobald die Herbstregen eingesetzt haben"
+    },
+    "es": {
+      "name": "Rebozuelo del Pacífico",
+      "description": "Un rebozuelo dorado y grande del noroeste del Pacífico, más pálido y rosado que su primo europeo",
+      "howTo": "Búscalo en bosques con musgo de abeto de Douglas y tsuga, una vez llegadas las lluvias de otoño"
+    },
+    "pt": {
+      "name": "Cantarelo do Pacífico",
+      "description": "Um cantarelo dourado e grande do noroeste do Pacífico, mais pálido e rosado que o primo europeu",
+      "howTo": "Procure em florestas com musgo de abeto de Douglas e tsuga, depois de chegarem as chuvas de outono"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Cantharellus formosus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-06-boletus-chanterelle-split.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Pacific Chanterelle"],
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": true,
+        "landCover": [42, 43, 52],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 4,
+          "min_temp": 3,
+          "max_temp": 22,
+          "optimal_alt": 500,
+          "alt_sigma": 900,
+          "optimal_humidity": 88,
+          "humidity_sigma": 16,
+          "optimal_pH": 5.0,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4, 6.5],
+          "optimal_soil_temp": 14,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_continental",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": false,
+          "season_months": [9, 10, 11, 12, 1],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5466954",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [5466954],
+      "references": ["https://www.gbif.org/species/5466954"]
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "bronze_bolete",
+  "scientificName": "Boletus aereus",
+  "catalog": {
+    "enabled": true,
+    "order": 33,
+    "translationKey": "bronze_bolete",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "summer-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/bronze_bolete.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Bronze Bolete",
+      "description": "A dark bronze to almost black-capped porcino with a pale netted stem and firm white flesh",
+      "howTo": "Look on warm lowland slopes under oak and sweet chestnut, later in the season than the summer bolete"
+    },
+    "it": {
+      "name": "Porcino Nero",
+      "description": "Un porcino dal cappello bronzeo scuro, quasi nero, con gambo reticolato chiaro e polpa bianca e soda",
+      "howTo": "Cercalo sui versanti caldi di pianura sotto querce e castagni, più tardi del porcino estivo"
+    },
+    "fr": {
+      "name": "Cèpe Bronzé",
+      "description": "Un cèpe au chapeau bronze foncé presque noir, au pied clair réticulé et à la chair blanche et ferme",
+      "howTo": "Cherchez-le sur les coteaux chauds de plaine sous les chênes et les châtaigniers, plus tard que le cèpe d'été"
+    },
+    "de": {
+      "name": "Bronze-Steinpilz",
+      "description": "Ein Steinpilz mit dunkel bronzefarbenem bis fast schwarzem Hut, hell genetztem Stiel und festem weissem Fleisch",
+      "howTo": "Suche an warmen Tieflandhängen unter Eichen und Edelkastanien, später als der Sommersteinpilz"
+    },
+    "es": {
+      "name": "Boleto Bronceado",
+      "description": "Un boleto de sombrero bronceado oscuro casi negro, con pie claro reticulado y carne blanca y firme",
+      "howTo": "Búscalo en laderas cálidas de baja altitud bajo robles y castaños, más tarde que el boleto de verano"
+    },
+    "pt": {
+      "name": "Boleto Bronzeado",
+      "description": "Um cogumelo boleto de chapéu bronzeado escuro quase preto, com pé claro reticulado e carne branca e firme",
+      "howTo": "Procure em encostas quentes de baixa altitude sob carvalhos e castanheiros, mais tarde que o boleto de verão"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Boletus aereus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-06-boletus-chanterelle-split.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Bronze Bolete"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [311, 313, 324],
+        "scoring": {
+          "optimal_temp": 20,
+          "temp_sigma": 4.5,
+          "min_temp": 8,
+          "max_temp": 28,
+          "optimal_alt": 400,
+          "alt_sigma": 700,
+          "optimal_humidity": 78,
+          "humidity_sigma": 17,
+          "optimal_pH": 6.0,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5, 7.5],
+          "optimal_soil_temp": 19,
+          "soil_temp_sigma": 4.5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/8733688",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [311, 313, 324],
+        "scoring": {
+          "optimal_temp": 20,
+          "temp_sigma": 4.5,
+          "min_temp": 8,
+          "max_temp": 28,
+          "optimal_alt": 400,
+          "alt_sigma": 700,
+          "optimal_humidity": 78,
+          "humidity_sigma": 17,
+          "optimal_pH": 6.0,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5, 7.5],
+          "optimal_soil_temp": 19,
+          "soil_temp_sigma": 4.5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/8733688",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [8733688],
+      "references": ["https://www.gbif.org/species/8733688"]
+    }
+  }
+}

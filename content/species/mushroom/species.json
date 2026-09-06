@@ -2,7 +2,7 @@
   "$schema": "../_schema.json",
   "schemaVersion": 1,
   "id": "mushroom",
-  "scientificName": "Boletus spp.",
+  "scientificName": "Boletus edulis",
   "catalog": {
     "enabled": true,
     "order": 1,
@@ -17,52 +17,53 @@
   },
   "locales": {
     "en": {
-      "name": "Boletus",
-      "description": "Also known as King Bolete, this prized mushroom has a brown cap and white or yellow pores",
-      "howTo": "Found in coniferous and deciduous forests, often near pine trees"
+      "name": "Porcini",
+      "description": "The king bolete: a stout brown-capped mushroom with a pale netted stem and white pores that never bruise blue",
+      "howTo": "Found in coniferous and deciduous forest, often near spruce and beech, from late summer into autumn"
     },
     "it": {
-      "name": "Boletus",
-      "description": "Conosciuto anche come Boleto Reale, questo fungo pregiato ha un cappello marrone e pori bianchi o gialli",
-      "howTo": "Trovato nelle foreste di conifere e decidue, spesso vicino ai pini"
+      "name": "Porcino",
+      "description": "Il porcino per eccellenza: cappello bruno, gambo tozzo e reticolato, pori bianchi che non virano al blu",
+      "howTo": "Si trova nelle foreste di conifere e latifoglie, spesso vicino ad abeti e faggi, da fine estate all'autunno"
     },
     "fr": {
-      "name": "Boletus",
-      "description": "Aussi appelé cèpe de Bordeaux, ce champignon prisé a un chapeau brun et des pores blancs ou jaunes",
-      "howTo": "Se trouve dans les forêts de conifères et de feuillus, souvent près des pins"
+      "name": "Cèpe de Bordeaux",
+      "description": "Le roi des cèpes : chapeau brun, pied trapu et réticulé, pores blancs qui ne bleuissent jamais",
+      "howTo": "Se trouve dans les forêts de conifères et de feuillus, souvent près des épicéas et des hêtres, de la fin de l'été à l'automne"
     },
     "de": {
-      "name": "Boletus",
-      "description": "Auch als Herrenpilz bekannt, geschätzter Pilz mit braunem Hut und weissen oder gelben Röhren",
-      "howTo": "Kommt in Nadel- und Laubwäldern vor, oft in der Nähe von Kiefern"
+      "name": "Steinpilz",
+      "description": "Der Herrenpilz: brauner Hut, gedrungener genetzter Stiel und weisse Röhren, die sich nie blau verfärben",
+      "howTo": "Kommt in Nadel- und Laubwäldern vor, oft bei Fichten und Buchen, vom Spätsommer bis in den Herbst"
     },
     "es": {
-      "name": "Boletus",
-      "description": "También conocido como hongo rey, este apreciado hongo tiene un sombrero marrón y poros blancos o amarillos",
-      "howTo": "Se encuentra en bosques de coníferas y caducifolios, a menudo cerca de pinos"
+      "name": "Boleto Comestible",
+      "description": "El rey de los boletos: sombrero pardo, pie robusto y reticulado, y poros blancos que nunca azulean",
+      "howTo": "Se encuentra en bosques de coníferas y caducifolios, a menudo cerca de abetos y hayas, de finales de verano al otoño"
     },
     "pt": {
-      "name": "Boletus",
-      "description": "Também conhecido como Boleto, este cogumelo valorizado tem chapéu marrom e poros brancos ou amarelos",
-      "howTo": "Encontrado em florestas de coníferas e decíduas, frequentemente perto de pinheiros"
+      "name": "Boleto Comestível",
+      "description": "O rei dos boletos: chapéu castanho, pé robusto e reticulado, e poros brancos que nunca azulam",
+      "howTo": "Encontrado em florestas de coníferas e decíduas, muitas vezes perto de abetos e faias, do fim do verão ao outono"
     }
   },
   "identification": {
     "enabled": true,
-    "label": "Boletus",
-    "rank": "genus",
+    "label": "Boletus edulis",
+    "rank": "species",
     "safetyReview": {
       "status": "approved",
       "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
       "references": [
-        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-06-boletus-chanterelle-split.md"
       ]
     }
   },
   "forecast": {
     "enabled": true,
     "routeToDish": true,
-    "dataColumns": ["Porcini", "Mushroom"],
+    "dataColumns": ["Porcini", "Mushroom", "Boletus"],
     "regions": {
       "NE": {
         "available": true,
@@ -253,8 +254,8 @@
     },
     "empiricalSeason": {
       "enabled": true,
-      "taxonKeys": [8287374],
-      "references": ["https://www.gbif.org/species/8287374"]
+      "taxonKeys": [5954958],
+      "references": ["https://www.gbif.org/species/5954958"]
     }
   }
 }

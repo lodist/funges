@@ -1,0 +1,179 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "summer_bolete",
+  "scientificName": "Boletus reticulatus",
+  "catalog": {
+    "enabled": true,
+    "order": 35,
+    "translationKey": "summer_bolete",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "summer",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/summer_bolete.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Summer Bolete",
+      "description": "The earliest porcino, with a finely cracked pale brown cap and a stem netted from top to bottom",
+      "howTo": "Look under oak and beech from late spring, well before the other porcini appear"
+    },
+    "it": {
+      "name": "Porcino Estivo",
+      "description": "Il primo porcino della stagione, con cappello bruno chiaro finemente screpolato e gambo reticolato per intero",
+      "howTo": "Cercalo sotto querce e faggi da fine primavera, molto prima degli altri porcini"
+    },
+    "fr": {
+      "name": "Cèpe d'Été",
+      "description": "Le premier cèpe de la saison, au chapeau brun clair finement craquelé et au pied réticulé sur toute sa hauteur",
+      "howTo": "Cherchez-le sous les chênes et les hêtres dès la fin du printemps, bien avant les autres cèpes"
+    },
+    "de": {
+      "name": "Sommersteinpilz",
+      "description": "Der früheste Steinpilz, mit fein rissigem hellbraunem Hut und einem von oben bis unten genetzten Stiel",
+      "howTo": "Suche unter Eichen und Buchen ab dem späten Frühjahr, lange vor den anderen Steinpilzen"
+    },
+    "es": {
+      "name": "Boleto de Verano",
+      "description": "El primer boleto de la temporada, de sombrero pardo claro finamente agrietado y pie reticulado por completo",
+      "howTo": "Búscalo bajo robles y hayas desde finales de primavera, mucho antes que los demás boletos"
+    },
+    "pt": {
+      "name": "Boleto de Verão",
+      "description": "O primeiro cogumelo boleto da época, de chapéu castanho claro finamente gretado e pé reticulado de alto a baixo",
+      "howTo": "Procure sob carvalhos e faias a partir do fim da primavera, bem antes dos outros boletos"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Boletus reticulatus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-06-boletus-chanterelle-split.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Summer Bolete"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [311, 313, 324],
+        "scoring": {
+          "optimal_temp": 19,
+          "temp_sigma": 5,
+          "min_temp": 7,
+          "max_temp": 27,
+          "optimal_alt": 600,
+          "alt_sigma": 900,
+          "optimal_humidity": 78,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.5, 7.2],
+          "optimal_soil_temp": 18.5,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": true,
+          "season_months": [5, 6, 7, 8, 9],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5954691",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [311, 313, 324],
+        "scoring": {
+          "optimal_temp": 19,
+          "temp_sigma": 5,
+          "min_temp": 7,
+          "max_temp": 27,
+          "optimal_alt": 600,
+          "alt_sigma": 900,
+          "optimal_humidity": 78,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.5, 7.2],
+          "optimal_soil_temp": 18.5,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_dry_spain",
+            "mediterranean_italy",
+            "mediterranean_greece",
+            "mediterranean_turkey",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate",
+            "central_spain",
+            "sardinia"
+          ],
+          "wind_sensitive": true,
+          "season_months": [5, 6, 7, 8, 9],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5954691",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [5954691],
+      "references": ["https://www.gbif.org/species/5954691"]
+    }
+  }
+}

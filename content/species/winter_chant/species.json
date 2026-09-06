@@ -1,0 +1,245 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "winter_chant",
+  "scientificName": "Craterellus tubaeformis",
+  "catalog": {
+    "enabled": true,
+    "order": 38,
+    "translationKey": "winter_chant",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "fall-winter",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/winter_chant.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Winter Chanterelle",
+      "description": "A small brown-capped chanterelle on a hollow yellow stem, fruiting on through the first frosts",
+      "howTo": "Look in mossy conifer litter late in the season, often in dense troops on rotting wood"
+    },
+    "it": {
+      "name": "Finferla",
+      "description": "Un piccolo gallinaccio dal cappello bruno su gambo giallo e cavo, che fruttifica fino alle prime gelate",
+      "howTo": "Cercala nella lettiera muscosa delle conifere a fine stagione, spesso in fitti gruppi su legno marcescente"
+    },
+    "fr": {
+      "name": "Chanterelle en Tube",
+      "description": "Une petite chanterelle au chapeau brun sur un pied jaune et creux, qui fructifie jusqu'aux premières gelées",
+      "howTo": "Cherchez-la dans la litière moussue des conifères en fin de saison, souvent en troupes denses sur bois pourri"
+    },
+    "de": {
+      "name": "Trompetenpfifferling",
+      "description": "Ein kleiner Pfifferling mit braunem Hut auf hohlem gelbem Stiel, der bis in die ersten Fröste fruchtet",
+      "howTo": "Suche spät in der Saison in moosiger Nadelstreu, oft in dichten Trupps auf morschem Holz"
+    },
+    "es": {
+      "name": "Rebozuelo de Invierno",
+      "description": "Un rebozuelo pequeño de sombrero pardo sobre pie amarillo y hueco, que fructifica hasta las primeras heladas",
+      "howTo": "Búscalo en la hojarasca con musgo de las coníferas al final de la temporada, a menudo en grupos densos sobre madera podrida"
+    },
+    "pt": {
+      "name": "Cantarelo de Inverno",
+      "description": "Um cantarelo pequeno de chapéu castanho sobre pé amarelo e oco, que frutifica até às primeiras geadas",
+      "howTo": "Procure na manta morta com musgo das coníferas no fim da época, muitas vezes em grupos densos sobre madeira podre"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Craterellus tubaeformis",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-06-boletus-chanterelle-split.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Winter Chanterelle"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [312, 313, 324],
+        "scoring": {
+          "optimal_temp": 11,
+          "temp_sigma": 4.5,
+          "min_temp": 1,
+          "max_temp": 20,
+          "optimal_alt": 600,
+          "alt_sigma": 1100,
+          "optimal_humidity": 90,
+          "humidity_sigma": 18,
+          "optimal_pH": 4.6,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.5, 6.0],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_italy",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": false,
+          "season_months": [9, 10, 11, 12],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2554536",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [312, 313, 324],
+        "scoring": {
+          "optimal_temp": 11,
+          "temp_sigma": 4.5,
+          "min_temp": 1,
+          "max_temp": 20,
+          "optimal_alt": 600,
+          "alt_sigma": 1100,
+          "optimal_humidity": 90,
+          "humidity_sigma": 18,
+          "optimal_pH": 4.6,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.5, 6.0],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "arctic",
+            "subarctic",
+            "atlantic_islands",
+            "mediterranean_italy",
+            "oceanic_south",
+            "oceanic_north",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": false,
+          "season_months": [9, 10, 11, 12],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2554536",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": true,
+        "landCover": [42, 43, 52],
+        "scoring": {
+          "optimal_temp": 11,
+          "temp_sigma": 4.5,
+          "min_temp": 1,
+          "max_temp": 20,
+          "optimal_alt": 600,
+          "alt_sigma": 1100,
+          "optimal_humidity": 90,
+          "humidity_sigma": 18,
+          "optimal_pH": 4.6,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.5, 6.0],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_continental",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": false,
+          "season_months": [9, 10, 11, 12],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2554536",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [42, 43, 52],
+        "scoring": {
+          "optimal_temp": 11,
+          "temp_sigma": 4.5,
+          "min_temp": 1,
+          "max_temp": 20,
+          "optimal_alt": 600,
+          "alt_sigma": 1100,
+          "optimal_humidity": 90,
+          "humidity_sigma": 18,
+          "optimal_pH": 4.6,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.5, 6.0],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "climate_zones": [
+            "alpine",
+            "subarctic",
+            "marine_west_coast",
+            "humid_continental",
+            "continental",
+            "temperate"
+          ],
+          "wind_sensitive": false,
+          "season_months": [10, 11, 12, 1],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2554536",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [2554536],
+      "references": ["https://www.gbif.org/species/2554536"]
+    }
+  }
+}

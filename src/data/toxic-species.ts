@@ -66,7 +66,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.gillAttachment',
       'toxicity.checks.gillVsRidges',
     ],
-    confusedWithSpeciesIds: ['chant', 'oyster-mushroom'],
+    confusedWithSpeciesIds: [
+      'chant',
+      'pacific_chant',
+      'smooth_chant',
+      'winter_chant',
+      'oyster-mushroom',
+    ],
   },
   {
     id: 'hygrophoropsis-aurantiaca',
@@ -75,7 +81,12 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'inedible',
     reasonKey: 'toxicity.mechanisms.poorEdibility',
     checkKeys: ['toxicity.checks.gillVsRidges'],
-    confusedWithSpeciesIds: ['chant'],
+    confusedWithSpeciesIds: [
+      'chant',
+      'pacific_chant',
+      'smooth_chant',
+      'winter_chant',
+    ],
   },
 
   // --- confused with parasol mushroom ---
@@ -155,7 +166,12 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'toxic',
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.fleshBruising'],
-    confusedWithSpeciesIds: ['mushroom'],
+    confusedWithSpeciesIds: [
+      'mushroom',
+      'bronze_bolete',
+      'pine_bolete',
+      'summer_bolete',
+    ],
   },
   {
     id: 'tylopilus-felleus',
@@ -164,7 +180,12 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'inedible',
     reasonKey: 'toxicity.mechanisms.bitter',
     checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.stemNetwork'],
-    confusedWithSpeciesIds: ['mushroom'],
+    confusedWithSpeciesIds: [
+      'mushroom',
+      'bronze_bolete',
+      'pine_bolete',
+      'summer_bolete',
+    ],
   },
 
   // --- unconditionally dangerous fungi, no specific catalog pairing ---
@@ -404,7 +425,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.gillAttachment',
       'toxicity.checks.capAttachment',
     ],
-    confusedWithSpeciesIds: ['chant', 'oyster-mushroom'],
+    confusedWithSpeciesIds: [
+      'chant',
+      'pacific_chant',
+      'smooth_chant',
+      'winter_chant',
+      'oyster-mushroom',
+    ],
   },
   {
     id: 'omphalotus-olivascens',
@@ -417,7 +444,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.gillAttachment',
       'toxicity.checks.capAttachment',
     ],
-    confusedWithSpeciesIds: ['chant', 'oyster-mushroom'],
+    confusedWithSpeciesIds: [
+      'chant',
+      'pacific_chant',
+      'smooth_chant',
+      'winter_chant',
+      'oyster-mushroom',
+    ],
   },
   {
     id: 'omphalotus-subilludens',
@@ -430,7 +463,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.gillAttachment',
       'toxicity.checks.capAttachment',
     ],
-    confusedWithSpeciesIds: ['chant', 'oyster-mushroom'],
+    confusedWithSpeciesIds: [
+      'chant',
+      'pacific_chant',
+      'smooth_chant',
+      'winter_chant',
+      'oyster-mushroom',
+    ],
   },
 
   // Yellow-stainer. Bruises chrome yellow at the stem base and smells of ink or
@@ -886,7 +925,12 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.fleshBruising',
       'toxicity.checks.stemNetwork',
     ],
-    confusedWithSpeciesIds: ['mushroom'],
+    confusedWithSpeciesIds: [
+      'mushroom',
+      'bronze_bolete',
+      'pine_bolete',
+      'summer_bolete',
+    ],
   },
   {
     id: 'kalmia-procumbens',

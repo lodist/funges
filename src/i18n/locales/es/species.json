@@ -65,9 +65,9 @@
       "howTo": "Búscalos en bosques caducifolios, especialmente cerca de robles y hayas"
     },
     "mushroom": {
-      "name": "Boletus",
-      "description": "También conocido como hongo rey, este apreciado hongo tiene un sombrero marrón y poros blancos o amarillos",
-      "howTo": "Se encuentra en bosques de coníferas y caducifolios, a menudo cerca de pinos"
+      "name": "Boleto Comestible",
+      "description": "El rey de los boletos: sombrero pardo, pie robusto y reticulado, y poros blancos que nunca azulean",
+      "howTo": "Se encuentra en bosques de coníferas y caducifolios, a menudo cerca de abetos y hayas, de finales de verano al otoño"
     },
     "morel": {
       "name": "Morchella",
@@ -223,6 +223,36 @@
       "name": "Trufa negra",
       "description": "Hongo subterráneo muy apreciado, de aroma intenso, utilizado en la cocina gourmet.",
       "howTo": "Se encuentra bajo tierra cerca de las raíces de robles y avellanos, recolectado con animales adiestrados en invierno."
+    },
+    "bronze_bolete": {
+      "name": "Boleto Bronceado",
+      "description": "Un boleto de sombrero bronceado oscuro casi negro, con pie claro reticulado y carne blanca y firme",
+      "howTo": "Búscalo en laderas cálidas de baja altitud bajo robles y castaños, más tarde que el boleto de verano"
+    },
+    "pine_bolete": {
+      "name": "Boleto de Pino",
+      "description": "Un boleto de sombrero pardo rojizo de los pinares, con pie robusto reticulado y carne firme",
+      "howTo": "Búscalo en pinares y abetales con musgo sobre suelo ácido y arenoso, a finales de primavera y de nuevo en otoño"
+    },
+    "summer_bolete": {
+      "name": "Boleto de Verano",
+      "description": "El primer boleto de la temporada, de sombrero pardo claro finamente agrietado y pie reticulado por completo",
+      "howTo": "Búscalo bajo robles y hayas desde finales de primavera, mucho antes que los demás boletos"
+    },
+    "pacific_chant": {
+      "name": "Rebozuelo del Pacífico",
+      "description": "Un rebozuelo dorado y grande del noroeste del Pacífico, más pálido y rosado que su primo europeo",
+      "howTo": "Búscalo en bosques con musgo de abeto de Douglas y tsuga, una vez llegadas las lluvias de otoño"
+    },
+    "smooth_chant": {
+      "name": "Rebozuelo Liso",
+      "description": "Un rebozuelo anaranjado con el envés casi liso en lugar de plegado y fuerte olor a albaricoque",
+      "howTo": "Búscalo en robledales del sureste americano durante el verano húmedo, a menudo en grupos sobre suelo desnudo"
+    },
+    "winter_chant": {
+      "name": "Rebozuelo de Invierno",
+      "description": "Un rebozuelo pequeño de sombrero pardo sobre pie amarillo y hueco, que fructifica hasta las primeras heladas",
+      "howTo": "Búscalo en la hojarasca con musgo de las coníferas al final de la temporada, a menudo en grupos densos sobre madera podrida"
     }
   }
 }
