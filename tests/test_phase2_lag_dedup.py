@@ -72,3 +72,21 @@ def test_merge_drops_historical_score_columns_without_current_parameters():
 
     assert "unavailable_score" not in out.columns
     assert set(fx.score_columns()).issubset(out.columns)
+
+
+def test_bounded_parquet_update_preserves_golden_scores(tmp_path):
+    path = tmp_path / "history.parquet"
+    history = fx.history_df()
+    history.to_parquet(path, index=False)
+
+    fp.update_parquet_master(
+        fx.config(), fx.forward_df(), fx.species_params(), fx.zone_curves(), str(path)
+    )
+
+    out = pd.read_parquet(path)
+    out["Date"] = pd.to_datetime(out["Date"])
+    got = (out[out["Date"] >= fx.TODAY]
+           .sort_values(["Location_Id", "Date"])
+           .reset_index(drop=True)[["Location_Id", "Date"] + fx.score_columns()])
+    golden = pd.read_parquet(FIXTURE)
+    pd.testing.assert_frame_equal(got, golden, check_dtype=False)
