@@ -456,15 +456,61 @@ def _table_with_schema(table, schema):
     return pa.Table.from_arrays(arrays, schema=schema)
 
 
+# Rows per output row group, for both the frozen prefix and the rebuilt tail.
+# One group per DATE instead cost 38% file size on real data: every group carries its
+# own dictionary of all ~101k Location_Ids, and Date-major order destroys the runs in
+# the per-location constant columns (Location_Id, Lat/Lon, Elevation, dist_m_*).
+# Date-aligning the tail bought nothing in exchange -- split_date advances one day per
+# run, so the tail is re-read almost whole next time either way. What must stay prunable
+# is the frozen prefix, and that is automatic: its rows are all below split_date by
+# construction, so its Date max is below every later split_date.
+ROW_GROUP_ROWS = 1_000_000
+
+
+def _resolve_output_schema(source_path, tail):
+    """Columns come from the freshly scored tail; types are unified with the existing
+    file's.
+
+    Taking the type from the tail alone breaks history two ways. A column that is
+    all-NA this run infers as `null` and the cast raises outright; one that happens to
+    be integral infers as int64 and SILENTLY truncates every historical float
+    (1.7 -> 1). Unifying promotes instead: null+double and int64+double -> double.
+    """
+    tail_schema = pa.Schema.from_pandas(tail, preserve_index=False)
+    if source_path is None:
+        return tail_schema
+    source_schema = pq.ParquetFile(source_path).schema_arrow
+    fields = []
+    for field in tail_schema:
+        index = source_schema.get_field_index(field.name)
+        if index < 0 or source_schema.field(index).type == field.type:
+            fields.append(field)
+            continue
+        unified = pa.unify_schemas(
+            [pa.schema([source_schema.field(index)]), pa.schema([field])],
+            promote_options="permissive",
+        )
+        fields.append(unified.field(0))
+    return pa.schema(fields)
+
+
 def _write_streaming_parquet(source_path, output_path, updated_tail, split_date,
                              cutoff_date):
     """Write frozen history batchwise, then append the rebuilt mutable tail."""
-    tail = updated_tail.sort_values(["Date", "Location_Id"]).reset_index(drop=True)
-    tail_table = pa.Table.from_pandas(tail, preserve_index=False)
-    schema = tail_table.schema
+    tail = updated_tail.sort_values(["Location_Id", "Date"]).reset_index(drop=True)
+    schema = _resolve_output_schema(source_path, tail)
 
     with pq.ParquetWriter(output_path, schema, compression="snappy") as writer:
         if source_path is not None:
+            pending, pending_rows = [], 0
+
+            def flush_frozen():
+                nonlocal pending, pending_rows
+                if pending_rows:
+                    writer.write_table(pa.concat_tables(pending),
+                                       row_group_size=ROW_GROUP_ROWS)
+                pending, pending_rows = [], 0
+
             parquet_file = pq.ParquetFile(source_path)
             for row_group in range(parquet_file.num_row_groups):
                 if not _row_group_may_overlap(
@@ -476,14 +522,19 @@ def _write_streaming_parquet(source_path, output_path, updated_tail, split_date,
                     table = table.filter(_arrow_date_mask(
                         table, after=cutoff_date, before=split_date))
                     if len(table):
-                        writer.write_table(_table_with_schema(table, schema),
-                                           row_group_size=131_072)
+                        pending.append(_table_with_schema(table, schema))
+                        pending_rows += len(table)
+                        if pending_rows >= ROW_GROUP_ROWS:
+                            flush_frozen()
+            flush_frozen()
 
-        # A write call per date guarantees useful row-group Date min/max statistics.
-        for _, day in tail.groupby("Date", sort=True):
+        # Sliced rather than converted whole: one Arrow copy of the entire tail is a
+        # multi-GB allocation on top of the pandas frame, which is still alive.
+        for start in range(0, len(tail), ROW_GROUP_ROWS):
+            chunk = tail.iloc[start:start + ROW_GROUP_ROWS]
             writer.write_table(
-                pa.Table.from_pandas(day, schema=schema, preserve_index=False),
-                row_group_size=131_072,
+                pa.Table.from_pandas(chunk, schema=schema, preserve_index=False),
+                row_group_size=ROW_GROUP_ROWS,
             )
 
 
@@ -531,7 +582,9 @@ def humidity_suitability(x, saturation, sigma):
     return np.exp(-np.power(deficit, 2.0) / (2 * np.power(sigma, 2.0)))
 
 
-def compute_lag_features(df, columns, days):
+def compute_lag_features(df, columns, days, target=None):
+    """`target`, if given, is the subset the lag columns are attached to; the values
+    are still looked up across all of `df`, so those rows are unchanged."""
     df = df.sort_values(by=["Location_Id", "Date"], ascending=[True, True])
     # Lags are keyed on the calendar date, not on row position: a row's "N days ago"
     # value is taken from the row at exactly Date - N days for the same Location_Id
@@ -539,17 +592,20 @@ def compute_lag_features(df, columns, days):
     # from silently stretching the lookback window. Duplicate (Location_Id, Date)
     # pairs collapse to their last value so the lookup stays uniquely indexed.
     lookups = {col: df.groupby(["Location_Id", "Date"])[col].last() for col in columns}
-    locs = df["Location_Id"].to_numpy()
+    out = df if target is None else target.sort_values(
+        by=["Location_Id", "Date"], ascending=[True, True]).copy()
+    locs = out["Location_Id"].to_numpy()
     for day in range(1, days + 1):
         target_idx = pd.MultiIndex.from_arrays(
-            [locs, (df["Date"] - pd.Timedelta(days=day)).to_numpy()]
+            [locs, (out["Date"] - pd.Timedelta(days=day)).to_numpy()]
         )
         for col in columns:
-            df[f"{col}_{day}days_ago"] = lookups[col].reindex(target_idx).to_numpy()
-    return df
+            out[f"{col}_{day}days_ago"] = lookups[col].reindex(target_idx).to_numpy()
+    return out
 
 
-def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coord_lon="_coord_lon"):
+def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coord_lon="_coord_lon",
+                                  target=None):
     """Same lag columns as compute_lag_features, but computed ONCE per (coord, Date)
     and broadcast to every base point of that coord — not once per base point.
 
@@ -559,7 +615,7 @@ def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coo
     bit-identical to the per-base computation while doing ~base/coord times less work.
 
     Every row must carry a non-null coord key; callers fall back to compute_lag_features
-    when that does not hold.
+    when that does not hold. `target` behaves as in compute_lag_features.
     """
     key = df[coord_lat].astype(str) + "_" + df[coord_lon].astype(str)
     coord_series = df.assign(_coord_key=key)[["_coord_key", "Date"] + columns]
@@ -570,7 +626,12 @@ def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coo
     lag_cols = [f"{c}_{d}days_ago" for c in columns for d in range(1, days + 1)]
     coord_lagged = coord_lagged.rename(columns={"Location_Id": "_coord_key"})[["_coord_key", "Date"] + lag_cols]
 
-    out = df.assign(_coord_key=key).merge(coord_lagged, on=["_coord_key", "Date"], how="left")
+    if target is None:
+        dst, dst_key = df, key
+    else:
+        dst = target
+        dst_key = target[coord_lat].astype(str) + "_" + target[coord_lon].astype(str)
+    out = dst.assign(_coord_key=dst_key).merge(coord_lagged, on=["_coord_key", "Date"], how="left")
     return out.drop(columns=["_coord_key", coord_lat, coord_lon])
 
 
@@ -1323,15 +1384,20 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
     else:
         can_dedup = False
 
+    # Lookups span the whole slice (a forward row reaches back lag_days), but the
+    # lag_days x len(lag_columns) columns are materialized only for the forward rows,
+    # the only ones rescored below.
+    fwd_mask = forward_window_mask(lag_slice, today)
     if can_dedup and len(lag_slice):
-        lagged = compute_lag_features_by_coord(lag_slice, lag_columns, days=config.lag_days)
+        forward = compute_lag_features_by_coord(
+            lag_slice, lag_columns, days=config.lag_days, target=lag_slice[fwd_mask])
     else:
-        lagged = compute_lag_features(
-            lag_slice.drop(columns=[c for c in ("_coord_lat", "_coord_lon") if c in lag_slice.columns]),
-            lag_columns, days=config.lag_days)
-
-    mask = forward_window_mask(lagged, today)
-    forward = lagged[mask].copy()
+        _hist = lag_slice.drop(
+            columns=[c for c in ("_coord_lat", "_coord_lon") if c in lag_slice.columns])
+        forward = compute_lag_features(
+            _hist, lag_columns, days=config.lag_days, target=_hist[fwd_mask])
+        del _hist
+    del lag_slice
     print(f"Scoring {len(forward)} forward rows (Date >= {today.date()}) "
           f"across {forward['Location_Id'].nunique()} locations")
     forward = calculate_mushroom_score(forward, species_params, zone_curves)
