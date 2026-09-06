@@ -236,8 +236,7 @@ def test_streaming_parquet_replaces_tail_and_normalizes_schema(tmp_path):
     assert "retired_score" not in got.columns
     assert got["new_score"].iloc[:2].isna().all()
 
-    # The property later runs depend on: every frozen row group's Date max sits below
-    # split_date, so a later (larger) split_date prunes it without decoding.
+    # Frozen groups must stay prunable: Date max below split_date.
     parquet = pq.ParquetFile(output)
     date_index = parquet.schema_arrow.get_field_index("Date")
     split = pd.Timestamp("2026-04-01")
@@ -265,8 +264,7 @@ def test_recent_parquet_reader_returns_only_mutable_tail(tmp_path):
 
 
 def test_all_na_tail_column_does_not_null_out_history(tmp_path):
-    """A column that happens to be all-NA in one night's tail infers as arrow `null`.
-    Taking the schema from the tail alone would cast every historical value to null."""
+    """A tail-only schema infers `null` here and nulls out every historical value."""
     source = tmp_path / "source.parquet"
     output = tmp_path / "output.parquet"
     pd.DataFrame({
@@ -293,7 +291,7 @@ def test_all_na_tail_column_does_not_null_out_history(tmp_path):
 
 
 def test_frozen_history_is_written_in_coalesced_row_groups(tmp_path):
-    """One row group per decoded batch cost ~30% file size on the real master."""
+    """One group per decoded batch cost ~30% file size on the real master."""
     source = tmp_path / "source.parquet"
     output = tmp_path / "output.parquet"
     dates = pd.date_range("2026-01-01", periods=40)
@@ -311,15 +309,13 @@ def test_frozen_history_is_written_in_coalesced_row_groups(tmp_path):
     )
 
     parquet = pq.ParquetFile(output)
-    # 39 frozen rows coalesce into ONE group; the tail contributes one group per date.
+    # 39 frozen rows coalesce into one group, plus one for the tail.
     assert parquet.num_row_groups == 2, f"got {parquet.num_row_groups} row groups"
     assert parquet.metadata.row_group(0).num_rows == 39
 
 
 def test_narrower_tail_dtype_does_not_truncate_history(tmp_path):
-    """The silent case: if a score column happens to be integral in one night's tail
-    it infers as int64, and casting float history through that schema truncates every
-    historical value (1.7 -> 1) with no error."""
+    """The silent case: an integral tail infers int64 and truncates float history."""
     source = tmp_path / "source.parquet"
     output = tmp_path / "output.parquet"
     pd.DataFrame({

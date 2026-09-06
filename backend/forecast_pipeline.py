@@ -416,12 +416,8 @@ def _row_group_may_overlap(parquet_file, row_group, *, after=None, before=None):
 
 
 def _read_recent_parquet(path, split_date):
-    """Read only the mutable lag/forecast tail into pandas.
-
-    Old location-major files may require scanning every row group once. Output from
-    the streaming writer has a frozen prefix followed by date-aligned tail groups,
-    allowing row-group statistics to prune the prefix on subsequent nights.
-    """
+    """Read only the mutable lag/forecast tail into pandas, pruning frozen row
+    groups by their Date statistics."""
     parquet_file = pq.ParquetFile(path)
     pieces = []
     lower_bound = pd.Timestamp(split_date) - pd.Timedelta(nanoseconds=1)
@@ -456,26 +452,13 @@ def _table_with_schema(table, schema):
     return pa.Table.from_arrays(arrays, schema=schema)
 
 
-# Rows per output row group, for both the frozen prefix and the rebuilt tail.
-# One group per DATE instead cost 38% file size on real data: every group carries its
-# own dictionary of all ~101k Location_Ids, and Date-major order destroys the runs in
-# the per-location constant columns (Location_Id, Lat/Lon, Elevation, dist_m_*).
-# Date-aligning the tail bought nothing in exchange -- split_date advances one day per
-# run, so the tail is re-read almost whole next time either way. What must stay prunable
-# is the frozen prefix, and that is automatic: its rows are all below split_date by
-# construction, so its Date max is below every later split_date.
+# Per-date groups instead cost 38% file size: one dictionary of all ~101k ids each.
 ROW_GROUP_ROWS = 1_000_000
 
 
 def _resolve_output_schema(source_path, tail):
-    """Columns come from the freshly scored tail; types are unified with the existing
-    file's.
-
-    Taking the type from the tail alone breaks history two ways. A column that is
-    all-NA this run infers as `null` and the cast raises outright; one that happens to
-    be integral infers as int64 and SILENTLY truncates every historical float
-    (1.7 -> 1). Unifying promotes instead: null+double and int64+double -> double.
-    """
+    """Columns from the tail, types unified with the source: a tail-only schema
+    truncates history when a column happens to infer as int64 (1.7 -> 1)."""
     tail_schema = pa.Schema.from_pandas(tail, preserve_index=False)
     if source_path is None:
         return tail_schema
@@ -528,8 +511,7 @@ def _write_streaming_parquet(source_path, output_path, updated_tail, split_date,
                             flush_frozen()
             flush_frozen()
 
-        # Sliced rather than converted whole: one Arrow copy of the entire tail is a
-        # multi-GB allocation on top of the pandas frame, which is still alive.
+        # Sliced: one Arrow copy of the whole tail is a multi-GB allocation.
         for start in range(0, len(tail), ROW_GROUP_ROWS):
             chunk = tail.iloc[start:start + ROW_GROUP_ROWS]
             writer.write_table(
@@ -1384,9 +1366,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
     else:
         can_dedup = False
 
-    # Lookups span the whole slice (a forward row reaches back lag_days), but the
-    # lag_days x len(lag_columns) columns are materialized only for the forward rows,
-    # the only ones rescored below.
+    # Lookups span the slice; the lag columns land only on the rows rescored below.
     fwd_mask = forward_window_mask(lag_slice, today)
     if can_dedup and len(lag_slice):
         forward = compute_lag_features_by_coord(
@@ -1438,12 +1418,8 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
 
 
 def update_parquet_master(config, df, species_params, zone_curves, main_data_path):
-    """Replace the mutable tail of a parquet master with history-bounded RAM use.
-
-    Only ``lag_days`` of existing rows enter pandas. Retained frozen history is
-    decoded, schema-normalized, and rewritten in fixed-size Arrow batches. Both
-    remote download/upload and parquet serialization are disk-backed.
-    """
+    """Replace the mutable tail of a parquet master. Only ``lag_days`` of existing
+    rows enter pandas; frozen history is streamed through in Arrow batches."""
     new_dates = pd.to_datetime(df["Date"])
     today = (new_dates.min().normalize() if new_dates.notna().any()
              else pd.Timestamp(datetime.now().date()))
