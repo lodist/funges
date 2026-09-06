@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
+import pyarrow.parquet as pq
 import pytest
 
 import forecast_pipeline as fp  # backend/ is on sys.path via conftest.py
@@ -197,3 +198,64 @@ def test_apply_forward_scores_rejects_duplicate_index():
     forward = combined.iloc[:1].copy()
     with pytest.raises(AssertionError, match="duplicate"):
         fp.apply_forward_scores(combined, forward, ["x_score"])
+
+
+def test_streaming_parquet_replaces_tail_and_normalizes_schema(tmp_path):
+    source = tmp_path / "source.parquet"
+    output = tmp_path / "output.parquet"
+    history = pd.DataFrame({
+        "Location_Id": ["A"] * 5,
+        "Date": pd.to_datetime([
+            "2026-01-01", "2026-02-01", "2026-03-01", "2026-04-01", "2026-04-02"
+        ]),
+        "value": [0.0, 1.0, 2.0, 3.0, 4.0],
+        "retired_score": [9.0] * 5,
+    })
+    # Deliberately location/date ordered in one row group, like the legacy master.
+    history.to_parquet(source, index=False, row_group_size=len(history))
+    rebuilt_tail = pd.DataFrame({
+        "Location_Id": ["A", "A"],
+        "Date": pd.to_datetime(["2026-04-01", "2026-04-02"]),
+        "value": [30.0, 40.0],
+        "new_score": [7.0, 8.0],
+    })
+
+    fp._write_streaming_parquet(
+        source,
+        output,
+        rebuilt_tail,
+        split_date=pd.Timestamp("2026-04-01"),
+        cutoff_date=pd.Timestamp("2026-01-15"),
+    )
+
+    got = pd.read_parquet(output).sort_values("Date").reset_index(drop=True)
+    assert got["Date"].dt.strftime("%Y-%m-%d").tolist() == [
+        "2026-02-01", "2026-03-01", "2026-04-01", "2026-04-02"
+    ]
+    assert got["value"].tolist() == [1.0, 2.0, 30.0, 40.0]
+    assert "retired_score" not in got.columns
+    assert got["new_score"].iloc[:2].isna().all()
+
+    parquet = pq.ParquetFile(output)
+    date_index = parquet.schema_arrow.get_field_index("Date")
+    last_two = [
+        parquet.metadata.row_group(i).column(date_index).statistics
+        for i in range(parquet.num_row_groups - 2, parquet.num_row_groups)
+    ]
+    assert all(stats.min == stats.max for stats in last_two)
+
+
+def test_recent_parquet_reader_returns_only_mutable_tail(tmp_path):
+    source = tmp_path / "master.parquet"
+    frame = pd.DataFrame({
+        "Location_Id": ["A"] * 4,
+        "Date": pd.to_datetime(["2026-03-30", "2026-03-31", "2026-04-01", "2026-04-02"]),
+        "value": [1, 2, 3, 4],
+    })
+    frame.to_parquet(source, index=False, row_group_size=2)
+
+    got = fp._read_recent_parquet(source, pd.Timestamp("2026-04-01"))
+
+    assert pd.to_datetime(got["Date"]).dt.strftime("%Y-%m-%d").tolist() == [
+        "2026-04-01", "2026-04-02"
+    ]

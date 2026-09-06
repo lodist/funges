@@ -6,6 +6,7 @@ series gains [today .. today+6] each run. Overlapping future dates are replaced 
 the fresher forecast on the next run; the day that rolls out of the window freezes.
 """
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from io import StringIO, BytesIO
@@ -17,10 +18,14 @@ import sys
 import json
 import time
 import threading
+import tempfile
 
 import boto3
 import numpy as np
 import pandas as pd
+import pyarrow as pa
+import pyarrow.compute as pc
+import pyarrow.parquet as pq
 import requests
 from shapely.ops import unary_union
 from shapely.geometry import shape, Point
@@ -244,6 +249,37 @@ def r2_fetch(url):
     return client.get_object(Bucket=get_required_env("R2_BUCKET_NAME"), Key=key)["Body"].read()
 
 
+def _r2_client():
+    return boto3.client(
+        's3',
+        endpoint_url=get_required_env("R2_ENDPOINT_URL"),
+        aws_access_key_id=get_required_env("R2_ACCESS_KEY_ID"),
+        aws_secret_access_key=get_required_env("R2_SECRET_ACCESS_KEY")
+    )
+
+
+def _r2_key(url):
+    return urlparse(url).path.lstrip('/')
+
+
+@contextmanager
+def _local_parquet_source(path):
+    """Yield a seekable local parquet path without holding a remote object in RAM."""
+    if not is_remote_path(path):
+        yield Path(path)
+        return
+
+    fd, temp_name = tempfile.mkstemp(suffix=".parquet")
+    os.close(fd)
+    try:
+        _r2_client().download_file(
+            get_required_env("R2_BUCKET_NAME"), _r2_key(path), temp_name
+        )
+        yield Path(temp_name)
+    finally:
+        Path(temp_name).unlink(missing_ok=True)
+
+
 def read_df_from_source(path):
     if is_remote_path(path):
         raw = r2_fetch(path)
@@ -350,6 +386,117 @@ def save_df_to_file(df, file_path):
         print(f"Uploaded to R2: {file_path}")
     else:
         Path(file_path).write_bytes(data)
+
+
+def _arrow_date_mask(table, *, after=None, before=None):
+    """Build a date mask after normalizing parquet date-like values to timestamps."""
+    dates = pc.cast(table["Date"], pa.timestamp("ns"))
+    mask = pc.is_valid(dates)
+    if after is not None:
+        mask = pc.and_(mask, pc.greater(dates, pa.scalar(pd.Timestamp(after).to_datetime64())))
+    if before is not None:
+        mask = pc.and_(mask, pc.less(dates, pa.scalar(pd.Timestamp(before).to_datetime64())))
+    return mask
+
+
+def _row_group_may_overlap(parquet_file, row_group, *, after=None, before=None):
+    """Use Date statistics to avoid decoding row groups outside the requested range."""
+    date_index = parquet_file.schema_arrow.get_field_index("Date")
+    if date_index < 0:
+        raise ValueError("Master parquet has no Date column")
+    stats = parquet_file.metadata.row_group(row_group).column(date_index).statistics
+    if stats is None or not stats.has_min_max:
+        return True
+    minimum, maximum = pd.Timestamp(stats.min), pd.Timestamp(stats.max)
+    if after is not None and maximum <= pd.Timestamp(after):
+        return False
+    if before is not None and minimum >= pd.Timestamp(before):
+        return False
+    return True
+
+
+def _read_recent_parquet(path, split_date):
+    """Read only the mutable lag/forecast tail into pandas.
+
+    Old location-major files may require scanning every row group once. Output from
+    the streaming writer has a frozen prefix followed by date-aligned tail groups,
+    allowing row-group statistics to prune the prefix on subsequent nights.
+    """
+    parquet_file = pq.ParquetFile(path)
+    pieces = []
+    lower_bound = pd.Timestamp(split_date) - pd.Timedelta(nanoseconds=1)
+    for row_group in range(parquet_file.num_row_groups):
+        if not _row_group_may_overlap(
+                parquet_file, row_group, after=lower_bound):
+            continue
+        for batch in parquet_file.iter_batches(
+                row_groups=[row_group], batch_size=131_072):
+            table = pa.Table.from_batches([batch])
+            selected = table.filter(_arrow_date_mask(table, after=lower_bound))
+            if len(selected):
+                pieces.append(selected)
+    if not pieces:
+        return parquet_file.schema_arrow.empty_table().to_pandas()
+    combined = pa.concat_tables(pieces)
+    pieces.clear()
+    return combined.to_pandas(split_blocks=True, self_destruct=True)
+
+
+def _table_with_schema(table, schema):
+    """Add/drop/cast streamed columns to the newly scored master schema."""
+    arrays = []
+    for field in schema:
+        if field.name not in table.column_names:
+            arrays.append(pa.nulls(len(table), type=field.type))
+            continue
+        column = table[field.name]
+        if column.type != field.type:
+            column = pc.cast(column, field.type, safe=False)
+        arrays.append(column)
+    return pa.Table.from_arrays(arrays, schema=schema)
+
+
+def _write_streaming_parquet(source_path, output_path, updated_tail, split_date,
+                             cutoff_date):
+    """Write frozen history batchwise, then append the rebuilt mutable tail."""
+    tail = updated_tail.sort_values(["Date", "Location_Id"]).reset_index(drop=True)
+    tail_table = pa.Table.from_pandas(tail, preserve_index=False)
+    schema = tail_table.schema
+
+    with pq.ParquetWriter(output_path, schema, compression="snappy") as writer:
+        if source_path is not None:
+            parquet_file = pq.ParquetFile(source_path)
+            for row_group in range(parquet_file.num_row_groups):
+                if not _row_group_may_overlap(
+                        parquet_file, row_group, after=cutoff_date, before=split_date):
+                    continue
+                for batch in parquet_file.iter_batches(
+                        row_groups=[row_group], batch_size=131_072):
+                    table = pa.Table.from_batches([batch])
+                    table = table.filter(_arrow_date_mask(
+                        table, after=cutoff_date, before=split_date))
+                    if len(table):
+                        writer.write_table(_table_with_schema(table, schema),
+                                           row_group_size=131_072)
+
+        # A write call per date guarantees useful row-group Date min/max statistics.
+        for _, day in tail.groupby("Date", sort=True):
+            writer.write_table(
+                pa.Table.from_pandas(day, schema=schema, preserve_index=False),
+                row_group_size=131_072,
+            )
+
+
+def _publish_parquet_file(local_path, destination):
+    """Publish a completed local parquet without materializing its bytes in Python."""
+    if is_remote_path(destination):
+        _r2_client().upload_file(
+            str(local_path), get_required_env("R2_BUCKET_NAME"), _r2_key(destination),
+            ExtraArgs={"ContentType": "application/octet-stream"},
+        )
+        print(f"Uploaded to R2: {destination}")
+    else:
+        os.replace(local_path, destination)
 
 
 def remote_file_exists(file_path):
@@ -967,8 +1114,11 @@ def run_pipeline(config: RegionConfig):
     print(f"API calls made: {counter.count} for {len(coordinates)} coordinates")
 
     df = _join_to_base(config, weather_long, base_file_path)
-    df = _merge_and_score(config, df, species_params, zone_curves, main_data_path)
-    save_df_to_file(df, main_data_path)
+    if str(main_data_path).endswith('.parquet'):
+        update_parquet_master(config, df, species_params, zone_curves, main_data_path)
+    else:
+        df = _merge_and_score(config, df, species_params, zone_curves, main_data_path)
+        save_df_to_file(df, main_data_path)
     print(f"Script ended at {datetime.now()}")
 
 
@@ -1099,7 +1249,8 @@ def apply_forward_scores(combined_df, forward, score_cols):
     return base.reset_index()
 
 
-def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
+def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
+                     *, existing_df=None, existing_exists=None, cutoff_date=None):
     # Anchor "today" to the EARLIEST forecast date actually fetched (coordinate-local),
     # not the server clock: forecast.json returns each coord's local 7 days, so US
     # regions legitimately start a day behind a UTC/Europe runner. Using the server date
@@ -1119,8 +1270,11 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
         if col not in df.columns:
             df[col] = pd.NA
 
-    if remote_file_exists(main_data_path):
-        existing_df = load_df_from_file(main_data_path)
+    if existing_exists is None:
+        existing_exists = remote_file_exists(main_data_path)
+    if existing_exists:
+        if existing_df is None:
+            existing_df = load_df_from_file(main_data_path)
         existing_df["Date"] = pd.to_datetime(existing_df["Date"])
         for col in existing_df.columns:
             if col not in df.columns:
@@ -1195,7 +1349,8 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
     confidence_cols = [f"{s}_confidence" for s in species_params]
     updated_df = apply_forward_scores(combined_df, forward, score_cols + confidence_cols)
 
-    cutoff_date = datetime.now() - timedelta(days=config.cutoff_days)
+    if cutoff_date is None:
+        cutoff_date = datetime.now() - timedelta(days=config.cutoff_days)
     updated_df = updated_df[updated_df["Date"] > cutoff_date]
 
     valid_score_columns = {f"{s}_score" for s in species_params}
@@ -1214,3 +1369,44 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path):
     updated_df = updated_df.reindex(
         columns=masterfile_columns + species_score_columns + confidence_columns)
     return updated_df
+
+
+def update_parquet_master(config, df, species_params, zone_curves, main_data_path):
+    """Replace the mutable tail of a parquet master with history-bounded RAM use.
+
+    Only ``lag_days`` of existing rows enter pandas. Retained frozen history is
+    decoded, schema-normalized, and rewritten in fixed-size Arrow batches. Both
+    remote download/upload and parquet serialization are disk-backed.
+    """
+    new_dates = pd.to_datetime(df["Date"])
+    today = (new_dates.min().normalize() if new_dates.notna().any()
+             else pd.Timestamp(datetime.now().date()))
+    split_date = today - pd.Timedelta(days=config.lag_days)
+    cutoff_date = pd.Timestamp(datetime.now() - timedelta(days=config.cutoff_days))
+    exists = remote_file_exists(main_data_path)
+
+    fd, output_name = tempfile.mkstemp(suffix=".parquet")
+    os.close(fd)
+    output_path = Path(output_name)
+    try:
+        if exists:
+            with _local_parquet_source(main_data_path) as source_path:
+                recent = _read_recent_parquet(source_path, split_date)
+                updated_tail = _merge_and_score(
+                    config, df, species_params, zone_curves, main_data_path,
+                    existing_df=recent, existing_exists=True, cutoff_date=cutoff_date,
+                )
+                _write_streaming_parquet(
+                    source_path, output_path, updated_tail, split_date, cutoff_date,
+                )
+        else:
+            updated_tail = _merge_and_score(
+                config, df, species_params, zone_curves, main_data_path,
+                existing_exists=False, cutoff_date=cutoff_date,
+            )
+            _write_streaming_parquet(
+                None, output_path, updated_tail, split_date, cutoff_date,
+            )
+        _publish_parquet_file(output_path, main_data_path)
+    finally:
+        output_path.unlink(missing_ok=True)
