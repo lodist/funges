@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-08T02:32:23.934478Z",
+  "generatedAt": "2026-09-08T07:42:40.982567Z",
   "packages": [
     {
       "id": "eu",
@@ -15,8 +15,8 @@
       ],
       "minZoom": 3,
       "maxZoom": 8,
-      "version": "8fee6a509878",
-      "updatedAt": "2026-09-08T02:23:09Z",
+      "version": "1b629774539b",
+      "updatedAt": "2026-09-08T02:43:30Z",
       "published": true,
       "resources": [
         {
@@ -31,10 +31,10 @@
         {
           "id": "ne-forecast",
           "kind": "forecast",
-          "version": "591cce281353ed8244dc9aeb04372d79",
+          "version": "b615a67204b3a0b8123df4beb6c9bf8d",
           "sourceUrl": "https://data.fung.es/EU/NE/ne_forecast.pmtiles",
-          "sizeBytes": 6816490,
-          "etag": "591cce281353ed8244dc9aeb04372d79"
+          "sizeBytes": 6807670,
+          "etag": "b615a67204b3a0b8123df4beb6c9bf8d"
         },
         {
           "id": "se-forecast",
@@ -59,8 +59,8 @@
       ],
       "minZoom": 3,
       "maxZoom": 8,
-      "version": "36545cc979c9",
-      "updatedAt": "2026-09-07T03:05:37Z",
+      "version": "98a81a3bad7e",
+      "updatedAt": "2026-09-08T04:33:21Z",
       "published": true,
       "resources": [
         {
@@ -75,18 +75,18 @@
         {
           "id": "use-forecast",
           "kind": "forecast",
-          "version": "dc888d97b1a606b6f4e7f23a88f623cd",
+          "version": "ea542f3a49c8d31e472d8a68dd95958e",
           "sourceUrl": "https://data.fung.es/USA/USE/use_forecast.pmtiles",
-          "sizeBytes": 5020363,
-          "etag": "dc888d97b1a606b6f4e7f23a88f623cd"
+          "sizeBytes": 4577166,
+          "etag": "ea542f3a49c8d31e472d8a68dd95958e"
         },
         {
           "id": "usw-forecast",
           "kind": "forecast",
-          "version": "8cf5b0ddcbdd203407a21a0c4b5b6cb3",
+          "version": "5829f8bd5822096427d4fd232eb3ce3d",
           "sourceUrl": "https://data.fung.es/USA/USW/usw_forecast.pmtiles",
-          "sizeBytes": 5723877,
-          "etag": "8cf5b0ddcbdd203407a21a0c4b5b6cb3"
+          "sizeBytes": 5744106,
+          "etag": "5829f8bd5822096427d4fd232eb3ce3d"
         }
       ]
     }
