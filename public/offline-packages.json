@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-08T07:42:40.982567Z",
+  "generatedAt": "2026-09-09T02:34:17.088097Z",
   "packages": [
     {
       "id": "eu",
@@ -15,8 +15,8 @@
       ],
       "minZoom": 3,
       "maxZoom": 8,
-      "version": "1b629774539b",
-      "updatedAt": "2026-09-08T02:43:30Z",
+      "version": "2e90f29dcaed",
+      "updatedAt": "2026-09-09T02:17:00Z",
       "published": true,
       "resources": [
         {
@@ -31,18 +31,18 @@
         {
           "id": "ne-forecast",
           "kind": "forecast",
-          "version": "b615a67204b3a0b8123df4beb6c9bf8d",
+          "version": "9857643a7cab852f8fb32816a8538ef0",
           "sourceUrl": "https://data.fung.es/EU/NE/ne_forecast.pmtiles",
-          "sizeBytes": 6807670,
-          "etag": "b615a67204b3a0b8123df4beb6c9bf8d"
+          "sizeBytes": 6781236,
+          "etag": "9857643a7cab852f8fb32816a8538ef0"
         },
         {
           "id": "se-forecast",
           "kind": "forecast",
-          "version": "9bdc8e55dd2425cfb1a49a067def51e0",
+          "version": "38c79546330111829320093368743b91",
           "sourceUrl": "https://data.fung.es/EU/SE/se_forecast.pmtiles",
-          "sizeBytes": 6561591,
-          "etag": "9bdc8e55dd2425cfb1a49a067def51e0"
+          "sizeBytes": 6805098,
+          "etag": "38c79546330111829320093368743b91"
         }
       ]
     },
