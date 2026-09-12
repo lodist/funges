@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import type { GeoJSONFeature } from 'maplibre-gl';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from '@tanstack/react-router';
 import {
@@ -18,7 +19,7 @@ import { Navigation, BarChart2, Copy, Check, AlertTriangle } from '@/lib/icons';
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 
 interface FeatureInfoModalProps {
-  feature: maplibregl.GeoJSONFeature | null;
+  feature: GeoJSONFeature | null;
   open: boolean;
   onClose: () => void;
   hideDirections?: boolean;
