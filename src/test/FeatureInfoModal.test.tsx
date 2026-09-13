@@ -1,4 +1,5 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest';
+import type { GeoJSONFeature } from 'maplibre-gl';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@/i18n';
@@ -11,9 +12,7 @@ vi.mock('@tanstack/react-router', () => ({
   useNavigate: () => navigateMock,
 }));
 
-function makeFeature(
-  properties: Record<string, unknown>
-): maplibregl.GeoJSONFeature {
+function makeFeature(properties: Record<string, unknown>): GeoJSONFeature {
   return {
     type: 'Feature',
     properties,
@@ -21,7 +20,7 @@ function makeFeature(
       type: 'Point',
       coordinates: [7.976074, 45.678035],
     },
-  } as unknown as maplibregl.GeoJSONFeature;
+  } as unknown as GeoJSONFeature;
 }
 
 const twoSpeciesFeature = makeFeature({

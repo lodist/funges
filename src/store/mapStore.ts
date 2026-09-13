@@ -1,5 +1,10 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
+import type {
+  ExpressionSpecification,
+  LngLatBounds,
+  Map as MapLibreMap,
+} from 'maplibre-gl';
 import {
   getSpeciesOptions,
   type ForecastRegion,
@@ -66,7 +71,7 @@ export interface MapState {
   showUserLocation: boolean;
 
   // Map reference for layer management
-  mapRef: maplibregl.Map | null;
+  mapRef: MapLibreMap | null;
 
   // Actions
   setCenter: (center: [number, number]) => void;
@@ -95,7 +100,7 @@ export interface MapState {
   setActiveDay: (day: number) => void;
 
   // Map reference management
-  setMapRef: (map: maplibregl.Map | null) => void;
+  setMapRef: (map: MapLibreMap | null) => void;
   updateVisibleLayers: () => void;
   restoreDarkLayersState: () => void;
 }
@@ -257,7 +262,7 @@ export function resolveDataNerdRegion(layerId: string): RegionId | null {
   return region ? (region.toUpperCase() as RegionId) : null;
 }
 
-function regionInView(r: string, bounds: maplibregl.LngLatBounds): boolean {
+function regionInView(r: string, bounds: LngLatBounds): boolean {
   const box = REGION_BBOX[r];
   if (!box) return true; // unknown region: don't hide it
   const [w, s, e, n] = box;
@@ -437,7 +442,7 @@ export const useMapStore = create<MapState>()(
         })),
 
       // Map reference management
-      setMapRef: (map: maplibregl.Map | null) => set({ mapRef: map }),
+      setMapRef: (map: MapLibreMap | null) => set({ mapRef: map }),
       updateVisibleLayers: () => {
         const {
           mapRef,
@@ -487,7 +492,10 @@ export const useMapStore = create<MapState>()(
                   mapRef.setLayoutProperty(
                     id,
                     'text-field',
-                    forecastNumberField(selectedSpecies, frac)
+                    forecastNumberField(
+                      selectedSpecies,
+                      frac
+                    ) as ExpressionSpecification
                   );
                   // The badge colour is text-halo-color — the same score ramp as the
                   // fill — so interpolate it to the active day too, or the digit shows
@@ -500,7 +508,11 @@ export const useMapStore = create<MapState>()(
                     mapRef.setPaintProperty(
                       id,
                       'text-halo-color',
-                      setForecastFraction(halo, selectedSpecies, frac)
+                      setForecastFraction(
+                        halo,
+                        selectedSpecies,
+                        frac
+                      ) as ExpressionSpecification
                     );
                   }
                   mapRef.setLayoutProperty(id, 'visibility', 'visible');
@@ -516,7 +528,11 @@ export const useMapStore = create<MapState>()(
                   mapRef.setPaintProperty(
                     id,
                     'fill-color',
-                    setForecastFraction(current, selectedSpecies, frac)
+                    setForecastFraction(
+                      current,
+                      selectedSpecies,
+                      frac
+                    ) as ExpressionSpecification
                   );
                 }
                 mapRef.setLayoutProperty(id, 'visibility', 'visible');

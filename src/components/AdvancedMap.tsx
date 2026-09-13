@@ -7,8 +7,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
+import type { GeolocateErrorEvent, GeolocatePositionEvent } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import { protocol } from '@/lib/pmtiles-protocol';
 import {
   deactivateOfflineSources,
@@ -61,6 +63,10 @@ import {
   type RouteDishPlan,
   type RouteDishResult,
 } from '@/lib/route-to-dish';
+
+// MapLibre v6 ships its worker as a separate ES module. Vite must bundle it
+// explicitly so the worker and its shared chunk resolve in production.
+maplibregl.setWorkerUrl(maplibreWorkerUrl);
 
 // Register the pmtiles:// protocol so MapLibre can read PMTiles overlays from
 // R2 (or, for a downloaded region, from the offline-cached instance already
@@ -392,7 +398,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       });
       geolocateControl.current = geolocate;
 
-      geolocate.on('geolocate', (position: GeolocationPosition) => {
+      geolocate.on('geolocate', (position: GeolocatePositionEvent) => {
         const coords: [number, number] = [
           position.coords.longitude,
           position.coords.latitude,
@@ -467,7 +473,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         setActiveRoute(null);
       });
 
-      geolocate.on('error', (error: GeolocationPositionError) => {
+      geolocate.on('error', (error: GeolocateErrorEvent) => {
         console.error('Error getting user location:', error);
         setIsLoading(false);
         setError(t('geolocation.permissionError'));
