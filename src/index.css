@@ -197,7 +197,7 @@
    the copy. Desktop: the right half, fading in from the left and out at the
    bottom. */
 .landing-hero-map {
-  mask-image: linear-gradient(to bottom, #000 22%, transparent 68%);
+  mask-image: linear-gradient(to top, #000 55%, transparent 100%);
 }
 @media (min-width: 768px) {
   .landing-hero-map {

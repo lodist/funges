@@ -11,6 +11,7 @@ import { getRecipeImage, getSpeciesImage } from '@/lib/utils';
 const base = import.meta.env.BASE_URL;
 const HERO_MAP = `${base}landing/hero-map.webp`;
 const FJORDS = `${base}landing/fjords.webp`;
+const FORECAST_MAP = `${base}landing/forecast-map.webp`;
 
 // Illustrative marker on the hero: a real species with a plausible September
 // score, painted with the same ramp as the map. Decorative, so aria-hidden.
@@ -66,45 +67,51 @@ export default function LandingPage() {
       <div className='-mx-4 -mt-4 bg-background'>
         {/* Hero */}
         <section className='relative isolate overflow-hidden'>
-          <img
-            src={HERO_MAP}
-            alt=''
-            fetchPriority='high'
-            decoding='async'
-            className='landing-hero-map landing-hero-media absolute inset-0 -z-10 h-full w-full object-cover object-[55%_35%] md:left-auto md:w-1/2 md:object-center xl:w-[60%]'
-          />
-
-          {/* Floating chrome over the terrain: a species pin and the real
-              forecast card. Both decorative here, so hidden from AT and
-              inert to the pointer. */}
+          {/* Map box: the pin lives inside it, anchored at a score cell of the
+              capture so it stays on its polygon whatever the
+              viewport crops, and drifts with the map. Phone: the lower half,
+              rising into the paper under the buttons. Desktop: the right
+              side, fading in from the left. */}
           <div
             aria-hidden='true'
-            className='pointer-events-none absolute left-1/2 top-[12%] w-max -translate-x-1/2 md:left-[74%] md:top-[26%] xl:left-[63%]'
+            className='landing-hero-media pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[56%] md:inset-y-0 md:left-auto md:right-0 md:h-full md:w-1/2 xl:w-[60%]'
           >
-            <div className='glass-regular elevation-floating flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-3'>
-              <img
-                src={getSpeciesImage(PIN_SPECIES) ?? undefined}
-                alt=''
-                className='size-11 rounded-full object-cover'
-              />
-              <div className='min-w-0 leading-tight'>
-                <p className='text-sm font-semibold text-foreground'>
-                  {tSpecies(`list_of_species.${PIN_SPECIES}.name`)}
-                </p>
-                <p className='type-micro text-muted-foreground'>
-                  {tMap('forecast.today', { defaultValue: 'Today' })}
-                </p>
+            <img
+              src={HERO_MAP}
+              alt=''
+              fetchPriority='high'
+              decoding='async'
+              className='landing-hero-map h-full w-full object-cover'
+            />
+            {/* Anchors are score cells of the capture: one low in the frame for
+                the phone, where the top of the box fades; one in the opaque
+                right part for desktop. */}
+            <div className='absolute left-[61%] top-[51%] w-max -translate-x-1/2 -translate-y-full md:left-[59%] md:top-[24%]'>
+              <div className='glass-regular elevation-floating flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-3'>
+                <img
+                  src={getSpeciesImage(PIN_SPECIES) ?? undefined}
+                  alt=''
+                  className='size-11 rounded-full object-cover'
+                />
+                <div className='min-w-0 leading-tight'>
+                  <p className='text-sm font-semibold text-foreground'>
+                    {tSpecies(`list_of_species.${PIN_SPECIES}.name`)}
+                  </p>
+                  <p className='type-micro text-muted-foreground'>
+                    {tMap('forecast.today', { defaultValue: 'Today' })}
+                  </p>
+                </div>
+                {/* Same badge as the map's numbers layer: ramp fill, black digit. */}
+                <span
+                  className='grid size-8 shrink-0 place-items-center rounded-full text-sm font-bold text-black'
+                  style={{ background: getScoreColor(PIN_SCORE) }}
+                >
+                  {PIN_SCORE}
+                </span>
               </div>
-              {/* Same badge as the map's numbers layer: ramp fill, black digit. */}
-              <span
-                className='grid size-8 shrink-0 place-items-center rounded-full text-sm font-bold text-black'
-                style={{ background: getScoreColor(PIN_SCORE) }}
-              >
-                {PIN_SCORE}
-              </span>
+              <div className='mx-auto h-7 w-px bg-foreground/70' />
+              <div className='mx-auto size-2.5 rounded-full bg-foreground' />
             </div>
-            <div className='mx-auto h-7 w-px bg-foreground/70' />
-            <div className='mx-auto size-2.5 rounded-full bg-foreground' />
           </div>
           <div
             aria-hidden='true'
@@ -115,7 +122,7 @@ export default function LandingPage() {
 
           {/* Phone: one screen, terrain above, message below, nothing under the
               nav bar. Desktop: the copy sits beside the map. */}
-          <div className='mx-auto flex min-h-[calc(100dvh-var(--mobile-navbar-height))] max-w-6xl flex-col justify-end px-6 pb-10 md:min-h-[88dvh] md:justify-center md:pb-0'>
+          <div className='mx-auto flex min-h-[calc(100dvh-var(--mobile-navbar-height))] max-w-6xl flex-col px-6 pt-10 md:min-h-[88dvh] md:justify-center md:pt-0'>
             <div className='max-w-xl md:max-w-md xl:max-w-xl'>
               <img
                 src={`${base}icons/logo_funges.png`}
@@ -128,14 +135,20 @@ export default function LandingPage() {
               <p className='mt-4 max-w-md text-base text-muted-foreground md:text-lg'>
                 {t('home.description')}
               </p>
-              <div className='mt-8 flex flex-wrap items-center gap-3'>
+              <div className='mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center'>
                 <Button asChild size='lg'>
                   <Link to='/map'>
                     {t('home.cta')}
                     <ArrowRight className='size-5' />
                   </Link>
                 </Button>
-                <Button asChild variant='ghost' size='lg'>
+                {/* Stacked under the primary on a phone, flush with its edge. */}
+                <Button
+                  asChild
+                  variant='ghost'
+                  size='lg'
+                  className='px-0 sm:px-6'
+                >
                   <Link to='/worth-foraging-now'>{t('home.ctaSecondary')}</Link>
                 </Button>
               </div>
@@ -159,10 +172,10 @@ export default function LandingPage() {
             <Link to='/worth-foraging-now' className={ROW_CLASS}>
               <div className='landing-row-visual relative aspect-[4/3] overflow-hidden rounded-card elevation-raised'>
                 <img
-                  src={HERO_MAP}
+                  src={FORECAST_MAP}
                   alt=''
                   loading='lazy'
-                  className='h-full w-full object-cover object-[35%_70%]'
+                  className='h-full w-full object-cover'
                 />
                 <div className='absolute inset-x-4 bottom-4'>
                   <MapInfoCard />
