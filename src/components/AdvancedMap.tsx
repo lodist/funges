@@ -1294,7 +1294,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </Button>
 
           {/* Map theme selector (Light/Dark/White/Dark Matter/Topographic) */}
-          <MapThemeSelector />
+          <MapThemeSelector isOnline={isOnline} />
 
           {isOnline && (
             <Button

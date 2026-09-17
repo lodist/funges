@@ -6,15 +6,20 @@ import { DURATION_FAST, EASE_STANDARD } from '@/lib/motion';
 import { useMapStore, MAP_THEMES } from '@/store/mapStore';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
-import { usePWA } from '@/hooks/use-pwa';
 import { cn } from '@/lib/utils';
 
 interface MapThemeSelectorProps {
   className?: string;
+  /** Relief tiles are online-only; offline the switch is inert and shows the
+   *  layer's real state. Passed in by the map rather than read from usePWA
+   *  here: that hook imports the PWA plugin's virtual module, which does not
+   *  exist under Storybook's Vite config and broke the story import. */
+  isOnline?: boolean;
 }
 
 const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
   className = '',
+  isOnline = true,
 }) => {
   const { t } = useTranslation('map');
   const {
@@ -26,9 +31,6 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
   } = useMapStore();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  // Relief tiles are online-only, so the switch is inert offline and shows
-  // the layer's real state (off) rather than the saved preference.
-  const { isOnline } = usePWA();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
