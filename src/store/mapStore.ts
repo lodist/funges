@@ -481,9 +481,9 @@ export const useMapStore = create<MapState>()(
         layers.forEach(layer => {
           const id = layer.id;
 
-          // Relief tiles come from a third-party host and are not in any
-          // offline package, so offline the layer is hidden outright: a few
-          // service-worker-cached tiles amid blanks would read as patchy
+          // Relief tiles are network-only (a PMTiles archive, not part of any
+          // offline package), so offline the layer is hidden outright rather
+          // than rendering whatever few tiles are still in memory as patchy
           // terrain. Same source of truth as usePWA's isOnline.
           if (id === HILLSHADE_LAYER_ID) {
             mapRef.setLayoutProperty(

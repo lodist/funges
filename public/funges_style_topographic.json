@@ -39,15 +39,12 @@
       "type": "vector",
       "url": "pmtiles://https://data.fung.es/USA/USW/usw_forecast.pmtiles"
     },
-    "terrain-dem": {
-      "type": "raster-dem",
-      "tiles": [
-        "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
-      ],
-      "encoding": "terrarium",
+    "hillshade": {
+      "type": "raster",
+      "url": "pmtiles://https://data.fung.es/terrain/hillshade_z11.pmtiles",
       "tileSize": 256,
-      "maxzoom": 12,
-      "attribution": "Terrain: Mapzen/AWS Terrain Tiles"
+      "maxzoom": 11,
+      "attribution": "Terrain: Mapzen / AWS Terrain Tiles"
     }
   },
   "sprite": "map-assets/sprites/v4/light",
@@ -188,17 +185,14 @@
     },
     {
       "id": "hillshade",
-      "type": "hillshade",
-      "source": "terrain-dem",
+      "type": "raster",
+      "source": "hillshade",
       "layout": {
         "visibility": "visible"
       },
       "paint": {
-        "hillshade-exaggeration": 0.45,
-        "hillshade-shadow-color": "#4a3b25",
-        "hillshade-highlight-color": "#ffffff",
-        "hillshade-accent-color": "#4a3b25",
-        "hillshade-illumination-anchor": "map"
+        "raster-opacity": 0.7,
+        "raster-fade-duration": 0
       }
     },
     {

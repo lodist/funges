@@ -99,14 +99,17 @@ visible when an offline regional basemap is active.
 
 ## Terrain tiles
 
-The map's relief shading reads elevation from the **AWS Terrain Tiles** open
-dataset (Terrarium encoding), originally assembled by Mapzen.
+The map's relief shading is pre-rendered from the **AWS Terrain Tiles** open
+dataset (Terrarium encoding), originally assembled by Mapzen, and served from
+the app's own tile host as `terrain/hillshade_z11.pmtiles`
+(`scripts/build_hillshade_tiles.py`). No request reaches Amazon from a user's
+browser.
 
-- Tiles: <https://registry.opendata.aws/terrain-tiles/>
+- Source tiles: <https://registry.opendata.aws/terrain-tiles/>
 - Attribution: Mapzen / AWS Terrain Tiles; underlying data from SRTM, GMTED,
   ETOPO1 and other public sources listed in the dataset's documentation.
 
-The attribution is carried in the `terrain-dem` source of every MapLibre style.
+The attribution is carried in the `hillshade` source of every MapLibre style.
 
 ## Species occurrence data
 
