@@ -4,7 +4,7 @@ import SEO from '@/components/SEO';
 import MapInfoCard from '@/components/MapInfoCard';
 import ForecastSlider from '@/components/ForecastSlider';
 import { Button } from '@/components/ui/button';
-import { AlertTriangle, ArrowRight } from '@/lib/icons';
+import { ArrowRight } from '@/lib/icons';
 import { getScoreColor } from '@/lib/scoreColor';
 import { getRecipeImage, getSpeciesImage } from '@/lib/utils';
 
@@ -30,7 +30,6 @@ export default function LandingPage() {
   const { t: tNav } = useTranslation('sidebar');
   const { t: tMap } = useTranslation('map');
   const { t: tSpecies } = useTranslation('species');
-  const { t: tIdentify } = useTranslation('identify');
   const { t: tRecipes } = useTranslation('recipes');
 
   const footerLinks = [
@@ -193,14 +192,6 @@ export default function LandingPage() {
                         .join(' ')}
                     />
                   ))}
-                </div>
-                {/* The identify panel's own warning, because it belongs to the
-                    identity of the feature rather than to its fine print. */}
-                <div className='mx-auto mt-2 flex max-w-sm items-start gap-2 rounded-lg bg-status-warning-background px-3 py-2 ring-2 ring-status-warning-border/60'>
-                  <AlertTriangle className='mt-0.5 h-4 w-4 shrink-0 text-status-warning-text' />
-                  <p className='text-xs font-medium text-status-warning-text'>
-                    {tIdentify('disclaimer.neverEat')}
-                  </p>
                 </div>
               </div>
               <div className='md:order-1'>{rowText('identify')}</div>
