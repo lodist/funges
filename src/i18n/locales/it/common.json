@@ -6,22 +6,32 @@
     "reloadForUpdate": "Ricarica per Aggiornare"
   },
   "home": {
-    "title": "Fung.es",
-    "headline": "Vale la pena uscire oggi?",
-    "description": "Previsioni di raccolta per funghi, bacche e piante selvatiche, identificazione da foto che gira sul tuo telefono e ricette per quello che porti a casa. Nessun account, funziona offline.",
+    "title": "Funges",
+    "headline": "Esplora ciò che cresce intorno a te.",
+    "description": "Previsioni di raccolta, mappe delle specie, identificazione da foto e ricette selvatiche.",
     "cta": "Esplora la mappa",
-    "ctaSecondary": "Cosa vale la pena raccogliere ora",
+    "ctaSecondary": "Cosa è di stagione",
     "forecast": {
-      "title": "Previsione",
-      "body": "Un punteggio a sette giorni per ogni specie, da stagione, meteo e terreno. Scorri la settimana sulla mappa."
+      "label": "Previsione",
+      "heading": "Vale la pena uscire oggi?",
+      "body": "Sapere dove e quando le condizioni sono buone.",
+      "link": "Apri la previsione"
     },
     "identify": {
-      "title": "Identifica",
-      "body": "Punta la fotocamera sul tuo ritrovamento. Il modello gira sul tuo dispositivo e suggerisce cosa potresti avere in mano. Nulla viene caricato."
+      "label": "Identifica",
+      "heading": "Cosa hai trovato?",
+      "body": "Identifica funghi e piante in privato, sul tuo dispositivo.",
+      "link": "Prova l'identificazione"
     },
     "cook": {
-      "title": "Cucina",
-      "body": "Ricette di cibo selvatico, con le avvertenze di preparazione che contano prima di mangiare."
+      "label": "Cucina",
+      "heading": "Di nuovo a casa",
+      "body": "Trasforma ciò che trovi in ricette selvatiche.",
+      "link": "Sfoglia le ricette"
+    },
+    "closing": {
+      "heading": "Pronto a esplorare?",
+      "cta": "Apri la mappa"
     },
     "coverage": "Le previsioni coprono attualmente il Nord e il Sud Europa e l'Est e l'Ovest degli Stati Uniti."
   },

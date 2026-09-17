@@ -44,22 +44,32 @@
     "reloadForUpdate": "Zum Aktualisieren neu laden"
   },
   "home": {
-    "title": "Fung.es",
-    "headline": "Lohnt es sich heute rauszugehen?",
-    "description": "Sammelprognosen für Pilze, Beeren und Wildpflanzen, Fotobestimmung direkt auf deinem Handy und Rezepte für das, was du mit nach Hause bringst. Kein Konto, funktioniert offline.",
+    "title": "Funges",
+    "headline": "Entdecke, was um dich herum wächst.",
+    "description": "Sammelprognosen, Artenkarten, Fotobestimmung und Wildkräuter-Rezepte.",
     "cta": "Karte erkunden",
-    "ctaSecondary": "Was sich jetzt zu sammeln lohnt",
+    "ctaSecondary": "Was gerade Saison hat",
     "forecast": {
-      "title": "Prognose",
-      "body": "Ein Sieben-Tage-Wert für jede Art, aus Saison, Wetter und Gelände. Auf der Karte durch die Woche ziehen."
+      "label": "Prognose",
+      "heading": "Lohnt es sich heute rauszugehen?",
+      "body": "Wissen, wo und wann die Bedingungen gut sind.",
+      "link": "Prognose öffnen"
     },
     "identify": {
-      "title": "Bestimmen",
-      "body": "Richte die Kamera auf deinen Fund. Das Modell läuft auf deinem Gerät und schlägt vor, was du in der Hand halten könntest. Nichts wird hochgeladen."
+      "label": "Bestimmen",
+      "heading": "Was hast du gefunden?",
+      "body": "Pilze und Pflanzen privat auf deinem Gerät bestimmen.",
+      "link": "Bestimmung ausprobieren"
     },
     "cook": {
-      "title": "Kochen",
-      "body": "Wildkräuter- und Pilzrezepte, mit den Zubereitungshinweisen, die vor dem Essen zählen."
+      "label": "Kochen",
+      "heading": "Wieder zu Hause",
+      "body": "Aus deinen Funden Wildkräuter- und Pilzgerichte machen.",
+      "link": "Rezepte ansehen"
+    },
+    "closing": {
+      "heading": "Bereit zum Erkunden?",
+      "cta": "Karte öffnen"
     },
     "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab."
   },

@@ -44,22 +44,32 @@
     "reloadForUpdate": "Reload for Update"
   },
   "home": {
-    "title": "Fung.es",
-    "headline": "Is it worth going out today?",
-    "description": "Foraging forecasts for mushrooms, berries and wild plants, photo identification that runs on your phone, and recipes for what you bring home. No account, works offline.",
+    "title": "Funges",
+    "headline": "Explore what grows around you.",
+    "description": "Foraging forecasts, species maps, photo identification and wild-food recipes.",
     "cta": "Explore the map",
-    "ctaSecondary": "What's worth foraging now",
+    "ctaSecondary": "See what's in season",
     "forecast": {
-      "title": "Forecast",
-      "body": "A seven-day score for every species, from season, weather and terrain. Scrub the week on the map."
+      "label": "Forecast",
+      "heading": "Is it worth going out today?",
+      "body": "Know where and when conditions are good.",
+      "link": "Open the forecast"
     },
     "identify": {
-      "title": "Identify",
-      "body": "Point the camera at your find. The model runs on your device and suggests what you might be holding. Nothing is uploaded."
+      "label": "Identify",
+      "heading": "What did you find?",
+      "body": "Identify mushrooms and plants privately on your device.",
+      "link": "Try identification"
     },
     "cook": {
-      "title": "Cook",
-      "body": "Wild-food recipes, with the preparation warnings that matter before you eat."
+      "label": "Cook",
+      "heading": "Back home",
+      "body": "Turn what you find into wild-food recipes.",
+      "link": "Browse recipes"
+    },
+    "closing": {
+      "heading": "Ready to explore?",
+      "cta": "Open the map"
     },
     "coverage": "Forecasts currently cover Northern and Southern Europe and the eastern and western United States."
   },

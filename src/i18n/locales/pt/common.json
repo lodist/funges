@@ -44,22 +44,32 @@
     "reloadForUpdate": "Recarregar para atualizar"
   },
   "home": {
-    "title": "Fung.es",
-    "headline": "Vale a pena sair hoje?",
-    "description": "Previsões de colheita para cogumelos, bagas e plantas silvestres, identificação por foto que corre no seu telemóvel e receitas para o que traz para casa. Sem conta, funciona offline.",
+    "title": "Funges",
+    "headline": "Explore o que cresce à sua volta.",
+    "description": "Previsões de colheita, mapas de espécies, identificação por foto e receitas silvestres.",
     "cta": "Explorar o mapa",
-    "ctaSecondary": "O que vale a pena colher agora",
+    "ctaSecondary": "O que está na época",
     "forecast": {
-      "title": "Previsão",
-      "body": "Uma pontuação a sete dias para cada espécie, a partir da estação, do tempo e do terreno. Percorra a semana no mapa."
+      "label": "Previsão",
+      "heading": "Vale a pena sair hoje?",
+      "body": "Saber onde e quando as condições são boas.",
+      "link": "Abrir a previsão"
     },
     "identify": {
-      "title": "Identificar",
-      "body": "Aponte a câmara ao que encontrou. O modelo corre no seu dispositivo e sugere o que poderá ter na mão. Nada é enviado."
+      "label": "Identificar",
+      "heading": "O que encontrou?",
+      "body": "Identifique cogumelos e plantas em privado, no seu dispositivo.",
+      "link": "Experimentar a identificação"
     },
     "cook": {
-      "title": "Cozinhar",
-      "body": "Receitas de comida silvestre, com os avisos de preparação que importam antes de comer."
+      "label": "Cozinhar",
+      "heading": "De volta a casa",
+      "body": "Transforme o que encontra em receitas silvestres.",
+      "link": "Ver receitas"
+    },
+    "closing": {
+      "heading": "Pronto para explorar?",
+      "cta": "Abrir o mapa"
     },
     "coverage": "As previsões cobrem atualmente o Norte e o Sul da Europa e o Leste e o Oeste dos Estados Unidos."
   },

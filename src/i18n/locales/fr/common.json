@@ -44,22 +44,32 @@
     "reloadForUpdate": "Recharger pour mettre à jour"
   },
   "home": {
-    "title": "Fung.es",
-    "headline": "Ça vaut le coup de sortir aujourd'hui ?",
-    "description": "Prévisions de cueillette pour les champignons, les baies et les plantes sauvages, identification par photo directement sur votre téléphone et recettes pour ce que vous rapportez. Sans compte, fonctionne hors ligne.",
+    "title": "Funges",
+    "headline": "Explorez ce qui pousse autour de vous.",
+    "description": "Prévisions de cueillette, cartes des espèces, identification par photo et recettes sauvages.",
     "cta": "Explorer la carte",
-    "ctaSecondary": "Ce qui vaut la cueillette en ce moment",
+    "ctaSecondary": "Ce qui est de saison",
     "forecast": {
-      "title": "Prévision",
-      "body": "Un score sur sept jours pour chaque espèce, d'après la saison, la météo et le terrain. Parcourez la semaine sur la carte."
+      "label": "Prévision",
+      "heading": "Ça vaut le coup de sortir aujourd'hui ?",
+      "body": "Savoir où et quand les conditions sont bonnes.",
+      "link": "Ouvrir la prévision"
     },
     "identify": {
-      "title": "Identifier",
-      "body": "Visez votre trouvaille avec l'appareil photo. Le modèle tourne sur votre appareil et suggère ce que vous tenez peut-être. Rien n'est envoyé."
+      "label": "Identifier",
+      "heading": "Qu'avez-vous trouvé ?",
+      "body": "Identifiez champignons et plantes en privé, sur votre appareil.",
+      "link": "Essayer l'identification"
     },
     "cook": {
-      "title": "Cuisiner",
-      "body": "Des recettes de cuisine sauvage, avec les avertissements de préparation qui comptent avant de manger."
+      "label": "Cuisiner",
+      "heading": "De retour à la maison",
+      "body": "Transformez vos trouvailles en recettes sauvages.",
+      "link": "Voir les recettes"
+    },
+    "closing": {
+      "heading": "Prêt à explorer ?",
+      "cta": "Ouvrir la carte"
     },
     "coverage": "Les prévisions couvrent actuellement le nord et le sud de l'Europe ainsi que l'est et l'ouest des États-Unis."
   },
