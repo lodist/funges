@@ -101,7 +101,7 @@ visible when an offline regional basemap is active.
 
 The map's relief shading is pre-rendered from the **AWS Terrain Tiles** open
 dataset (Terrarium encoding), originally assembled by Mapzen, and served from
-the app's own tile host as `terrain/hillshade_z11.pmtiles`
+the app's own tile host as `basemap/hillshade_z11.pmtiles`
 (`scripts/build_hillshade_tiles.py`). No request reaches Amazon from a user's
 browser.
 

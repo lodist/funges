@@ -42,7 +42,7 @@ CACHE = ROOT.parent / "terrain_cache"
 PNG_DIR = CACHE / "terrarium"
 WEBP_DIR = CACHE / "hillshade"
 OUT_PMTILES = CACHE / "hillshade_z11.pmtiles"
-R2_KEY = "terrain/hillshade_z11.pmtiles"
+R2_KEY = "basemap/hillshade_z11.pmtiles"
 
 SOURCE = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
 # West, south, east, north. Same boxes as REGION_BBOX in src/store/mapStore.ts.

@@ -41,7 +41,7 @@
     },
     "hillshade": {
       "type": "raster",
-      "url": "pmtiles://https://data.fung.es/terrain/hillshade_z11.pmtiles",
+      "url": "pmtiles://https://data.fung.es/basemap/hillshade_z11.pmtiles",
       "tileSize": 256,
       "maxzoom": 11,
       "attribution": "Terrain: Mapzen / AWS Terrain Tiles"
