@@ -71,7 +71,7 @@ export default function LandingPage() {
             alt=''
             fetchPriority='high'
             decoding='async'
-            className='landing-hero-map landing-hero-media absolute inset-x-0 top-0 -z-10 h-[52dvh] w-full object-cover md:inset-y-0 md:left-auto md:right-0 md:h-full md:w-[60%]'
+            className='landing-hero-map landing-hero-media absolute inset-0 -z-10 h-full w-full object-cover object-[55%_35%] md:left-auto md:w-1/2 md:object-center xl:w-[60%]'
           />
 
           {/* Floating chrome over the terrain: a species pin and the real
@@ -79,7 +79,7 @@ export default function LandingPage() {
               inert to the pointer. */}
           <div
             aria-hidden='true'
-            className='pointer-events-none absolute left-1/2 top-[14dvh] w-max -translate-x-1/2 md:left-[63%] md:top-[26%]'
+            className='pointer-events-none absolute left-1/2 top-[12%] w-max -translate-x-1/2 md:left-[74%] md:top-[26%] xl:left-[63%]'
           >
             <div className='glass-regular elevation-floating flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-3'>
               <img
@@ -108,21 +108,21 @@ export default function LandingPage() {
           </div>
           <div
             aria-hidden='true'
-            className='pointer-events-none absolute bottom-10 right-8 z-10 hidden w-80 lg:block'
+            className='pointer-events-none absolute bottom-10 right-8 z-10 hidden w-80 xl:block'
           >
             <ForecastSlider />
           </div>
 
-          <div className='mx-auto flex min-h-[88dvh] max-w-6xl flex-col justify-end px-6 pb-12 md:justify-center md:pb-0'>
-            {/* Phone: the copy starts below the terrain band. */}
-            <div aria-hidden='true' className='h-[46dvh] md:hidden' />
-            <div className='max-w-xl'>
+          {/* Phone: one screen, terrain above, message below, nothing under the
+              nav bar. Desktop: the copy sits beside the map. */}
+          <div className='mx-auto flex min-h-[calc(100dvh-var(--mobile-navbar-height))] max-w-6xl flex-col justify-end px-6 pb-10 md:min-h-[88dvh] md:justify-center md:pb-0'>
+            <div className='max-w-xl md:max-w-md xl:max-w-xl'>
               <img
                 src={`${base}icons/logo_funges.png`}
                 alt={t('home.title')}
                 className='h-10 w-auto object-contain md:h-12'
               />
-              <h1 className='mt-6 text-4xl font-semibold leading-[1.05] text-foreground md:text-6xl'>
+              <h1 className='mt-6 text-4xl font-semibold leading-[1.05] text-foreground md:text-5xl xl:text-6xl'>
                 {t('home.headline')}
               </h1>
               <p className='mt-4 max-w-md text-base text-muted-foreground md:text-lg'>
