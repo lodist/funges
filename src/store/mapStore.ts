@@ -64,6 +64,9 @@ export interface MapState {
   mapStyleIndex: number; // index into MAP_STYLES (set via setMapStyleIndex)
   numbersLayersVisible: boolean;
   hillshadeVisible: boolean; // terrain relief shading under the score fills
+  // Set by the landing page's map links: the next map mount flies in from a
+  // region-scale view instead of opening on the saved viewport.
+  arriveRequested: boolean;
   activeDay: number; // 0 = today; 1..6 = forecast
 
   // UI state
@@ -99,6 +102,7 @@ export interface MapState {
   setMapStyleIndex: (index: number) => void;
   toggleNumbersLayersVisibility: () => void;
   toggleHillshade: () => void;
+  setArriveRequested: (requested: boolean) => void;
   setActiveDay: (day: number) => void;
 
   // Map reference management
@@ -304,6 +308,7 @@ export const useMapStore = create<MapState>()(
       // re-enable by restoring the button and this localStorage read.
       numbersLayersVisible: false,
       hillshadeVisible: localStorage.getItem(HILLSHADE_KEY) !== 'false',
+      arriveRequested: false,
       activeDay: 0,
       isLoading: false,
       error: null,
@@ -391,6 +396,7 @@ export const useMapStore = create<MapState>()(
           }, 0);
           return newState;
         }),
+      setArriveRequested: requested => set({ arriveRequested: requested }),
       toggleHillshade: () => {
         const next = !get().hillshadeVisible;
         localStorage.setItem(HILLSHADE_KEY, String(next));

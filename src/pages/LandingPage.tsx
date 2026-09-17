@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from '@/lib/icons';
 import { getScoreColor } from '@/lib/scoreColor';
 import { getRecipeImage, getSpeciesImage } from '@/lib/utils';
+import { useMapStore } from '@/store/mapStore';
 
 const base = import.meta.env.BASE_URL;
 const HERO_MAP = `${base}landing/hero-map.webp`;
@@ -28,6 +29,8 @@ const ROW_CLASS =
 // the way the app's own chrome does. PRODUCT.md: no stats, no testimonials.
 export default function LandingPage() {
   const { t } = useTranslation('common');
+  // Every way into the map from here flies in from above the user's region.
+  const requestArrive = () => useMapStore.getState().setArriveRequested(true);
   const { t: tMap } = useTranslation('map');
   const { t: tSpecies } = useTranslation('species');
   const { t: tRecipes } = useTranslation('recipes');
@@ -128,7 +131,7 @@ export default function LandingPage() {
               </p>
               <div className='mt-8'>
                 <Button asChild size='lg'>
-                  <Link to='/map'>
+                  <Link to='/map' onClick={requestArrive}>
                     {t('home.cta')}
                     <ArrowRight className='size-5' />
                   </Link>
@@ -167,7 +170,12 @@ export default function LandingPage() {
             </Link>
 
             {/* Identify */}
-            <Link to='/map' search={{ identify: true }} className={ROW_CLASS}>
+            <Link
+              to='/map'
+              search={{ identify: true }}
+              onClick={requestArrive}
+              className={ROW_CLASS}
+            >
               <div className='md:order-2'>
                 <div className='relative mx-auto h-64 max-w-sm'>
                   {FAN_SPECIES.map((id, index) => (
@@ -237,7 +245,7 @@ export default function LandingPage() {
             </h2>
             <div className='mt-6'>
               <Button asChild size='lg'>
-                <Link to='/map'>
+                <Link to='/map' onClick={requestArrive}>
                   {t('home.closing.cta')}
                   <ArrowRight className='size-5' />
                 </Link>

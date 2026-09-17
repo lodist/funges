@@ -92,12 +92,21 @@ const ROUTE_DISH_MOVEMENT_DEBOUNCE_MS = 500;
 // Camera choreography. MapLibre already skips camera animation under
 // prefers-reduced-motion (unless `essential`), so these only shape the motion
 // for users who asked for it.
-const ARRIVE_ZOOM_OFFSET = 1.5;
-const ARRIVE_DURATION_MS = 1400;
+// Arrive: the camera starts above the user's region and zooms in to the
+// saved viewport. Region scale is z5.5; a saved zoom close to that starts a
+// few levels further out so there is always a visible descent.
+const ARRIVE_REGION_ZOOM = 5.5;
+const ARRIVE_MIN_GAP = 2.5;
+const ARRIVE_DURATION_MS = 2200;
 const CAMERA_EASE_MS = 900;
 const ROUTE_PITCH = 45;
 const ROUTE_FIT_MS = 1000;
 const ROUTE_FIT_MAX_ZOOM = 13;
+
+// Module-level, so it survives the map unmounting between routes: the fly-in
+// plays on the first map of a session (PWA start, deep link) and whenever the
+// landing page asked for it, not on every tab switch back to the map.
+let arrivedThisSession = false;
 
 function formatLatLngForUrl(coordinate: [number, number]): string {
   return `${coordinate[1]},${coordinate[0]}`;
@@ -194,8 +203,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   // while trackUserLocation keeps watching.
   const hasCheckedNearbyFeatures = useRef(false);
   const selectedSpeciesRef = useRef<string | null>(null);
-  // The arrive animation plays once per session, not on every style swap.
-  const hasArrivedRef = useRef(false);
   const arrivingRef = useRef(false);
   // The last viewport the camera itself reported into the store. A store value
   // equal to it is an echo of the camera, not a request to move the camera.
@@ -371,16 +378,21 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     if (!mapContainer.current || map.current) return;
 
     try {
-      // Arrive: the first map of the session starts a step zoomed out; the
-      // camera-sync effect below eases it in to the saved viewport on load.
-      const arriving = !hasArrivedRef.current && !prefersReducedMotion();
-      hasArrivedRef.current = true;
+      // Arrive: start above the saved (or default) viewport; the load handler
+      // below zooms the camera in to it once the style is ready. The flags are
+      // consumed there, not here: in dev StrictMode this effect runs twice and
+      // the first map is torn down before it ever loads.
+      const arriving =
+        (useMapStore.getState().arriveRequested || !arrivedThisSession) &&
+        !prefersReducedMotion();
       arrivingRef.current = arriving;
       map.current = new maplibregl.Map({
         container: mapContainer.current,
         style: mapStyle,
         center: center,
-        zoom: arriving ? Math.max(zoom - ARRIVE_ZOOM_OFFSET, 3.01) : zoom,
+        zoom: arriving
+          ? Math.max(3.01, Math.min(ARRIVE_REGION_ZOOM, zoom - ARRIVE_MIN_GAP))
+          : zoom,
         // Basemap tiles are baked to z12 natively; MapLibre overzooms past that
         // (reuses/upscales the z12 tile) so labels/roads keep rendering using the
         // interpolation stops already authored up to z20-22 in the style files.
@@ -552,6 +564,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             });
           }
           arrivingRef.current = false;
+          arrivedThisSession = true;
+          useMapStore.getState().setArriveRequested(false);
         }
 
         // A style switch tears down and recreates the whole map (and, with
