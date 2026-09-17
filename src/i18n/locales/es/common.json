@@ -44,11 +44,24 @@
     "reloadForUpdate": "Recargar para actualizar"
   },
   "home": {
-    "title": "Bienvenido a Fung.es",
-    "subtitle": "Tu compañero de recolección potenciado por IA",
-    "description": "Descubre y aprende sobre alimentos silvestres con la ayuda de la inteligencia artificial",
-    "getStarted": "Comenzar",
-    "learnMore": "Saber más"
+    "title": "Fung.es",
+    "headline": "¿Merece la pena salir hoy?",
+    "description": "Previsiones de recolección para setas, bayas y plantas silvestres, identificación por foto que funciona en tu móvil y recetas para lo que traigas a casa. Sin cuenta, funciona sin conexión.",
+    "cta": "Explorar el mapa",
+    "ctaSecondary": "Qué merece la pena recolectar ahora",
+    "forecast": {
+      "title": "Previsión",
+      "body": "Una puntuación a siete días para cada especie, a partir de la estación, el tiempo y el terreno. Recorre la semana en el mapa."
+    },
+    "identify": {
+      "title": "Identificar",
+      "body": "Apunta la cámara a tu hallazgo. El modelo se ejecuta en tu dispositivo y sugiere qué podrías tener en la mano. No se sube nada."
+    },
+    "cook": {
+      "title": "Cocinar",
+      "body": "Recetas de alimentos silvestres, con las advertencias de preparación que importan antes de comer."
+    },
+    "coverage": "Las previsiones cubren actualmente el norte y el sur de Europa y el este y el oeste de Estados Unidos."
   },
   "worthForagingNow": {
     "title": "Qué merece la pena recolectar ahora",

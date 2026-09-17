@@ -174,6 +174,24 @@
   --color-rose-*: initial;
 }
 
+/* Landing hero: a slow drift on the map capture, GPU-only (transform). The
+   global reduced-motion rule in globals.scss collapses it to a still frame. */
+@keyframes hero-drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+.landing-hero-media {
+  /* Ambient, not a state change, so it sits outside the 150/200/300ms scale;
+     the token keeps the value in one place and out of the motion guard's way. */
+  --landing-hero-drift: 40s;
+  animation: hero-drift var(--landing-hero-drift) ease-in-out infinite alternate;
+  will-change: transform;
+}
+
 @keyframes collapsible-down {
   from {
     height: 0;

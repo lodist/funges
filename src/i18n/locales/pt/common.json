@@ -44,11 +44,24 @@
     "reloadForUpdate": "Recarregar para atualizar"
   },
   "home": {
-    "title": "Bem-vindo ao Fung.es",
-    "subtitle": "Seu companheiro de coleta com IA",
-    "description": "Descubra e aprenda sobre alimentos selvagens com a ajuda da inteligência artificial",
-    "getStarted": "Começar",
-    "learnMore": "Saiba mais"
+    "title": "Fung.es",
+    "headline": "Vale a pena sair hoje?",
+    "description": "Previsões de colheita para cogumelos, bagas e plantas silvestres, identificação por foto que corre no seu telemóvel e receitas para o que traz para casa. Sem conta, funciona offline.",
+    "cta": "Explorar o mapa",
+    "ctaSecondary": "O que vale a pena colher agora",
+    "forecast": {
+      "title": "Previsão",
+      "body": "Uma pontuação a sete dias para cada espécie, a partir da estação, do tempo e do terreno. Percorra a semana no mapa."
+    },
+    "identify": {
+      "title": "Identificar",
+      "body": "Aponte a câmara ao que encontrou. O modelo corre no seu dispositivo e sugere o que poderá ter na mão. Nada é enviado."
+    },
+    "cook": {
+      "title": "Cozinhar",
+      "body": "Receitas de comida silvestre, com os avisos de preparação que importam antes de comer."
+    },
+    "coverage": "As previsões cobrem atualmente o Norte e o Sul da Europa e o Leste e o Oeste dos Estados Unidos."
   },
   "worthForagingNow": {
     "title": "O que vale a pena procurar agora?",

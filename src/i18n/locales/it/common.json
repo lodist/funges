@@ -6,11 +6,24 @@
     "reloadForUpdate": "Ricarica per Aggiornare"
   },
   "home": {
-    "title": "Benvenuto su Fung.es",
-    "subtitle": "Il tuo compagno di raccolta alimentato dall'IA",
-    "description": "Scopri e impara sui cibi selvatici con l'aiuto dell'intelligenza artificiale",
-    "getStarted": "Inizia",
-    "learnMore": "Scopri di più"
+    "title": "Fung.es",
+    "headline": "Vale la pena uscire oggi?",
+    "description": "Previsioni di raccolta per funghi, bacche e piante selvatiche, identificazione da foto che gira sul tuo telefono e ricette per quello che porti a casa. Nessun account, funziona offline.",
+    "cta": "Esplora la mappa",
+    "ctaSecondary": "Cosa vale la pena raccogliere ora",
+    "forecast": {
+      "title": "Previsione",
+      "body": "Un punteggio a sette giorni per ogni specie, da stagione, meteo e terreno. Scorri la settimana sulla mappa."
+    },
+    "identify": {
+      "title": "Identifica",
+      "body": "Punta la fotocamera sul tuo ritrovamento. Il modello gira sul tuo dispositivo e suggerisce cosa potresti avere in mano. Nulla viene caricato."
+    },
+    "cook": {
+      "title": "Cucina",
+      "body": "Ricette di cibo selvatico, con le avvertenze di preparazione che contano prima di mangiare."
+    },
+    "coverage": "Le previsioni coprono attualmente il Nord e il Sud Europa e l'Est e l'Ovest degli Stati Uniti."
   },
   "worthForagingNow": {
     "title": "Cosa vale la pena raccogliere adesso?",

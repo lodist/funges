@@ -58,6 +58,16 @@
     "overlay-usw": {
       "type": "vector",
       "url": "pmtiles://https://data.fung.es/USA/USW/usw_forecast.pmtiles"
+    },
+    "terrain-dem": {
+      "type": "raster-dem",
+      "tiles": [
+        "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
+      ],
+      "encoding": "terrarium",
+      "tileSize": 256,
+      "maxzoom": 12,
+      "attribution": "Terrain: Mapzen/AWS Terrain Tiles"
     }
   },
   "sprite": "map-assets/sprites/v4/light",
@@ -277,6 +287,21 @@
           14,
           0.1
         ]
+      }
+    },
+    {
+      "id": "hillshade",
+      "type": "hillshade",
+      "source": "terrain-dem",
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "hillshade-exaggeration": 0.35,
+        "hillshade-shadow-color": "#000000",
+        "hillshade-highlight-color": "#ffffff",
+        "hillshade-accent-color": "#000000",
+        "hillshade-illumination-anchor": "map"
       }
     },
     {

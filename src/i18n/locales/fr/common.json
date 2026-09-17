@@ -44,11 +44,24 @@
     "reloadForUpdate": "Recharger pour mettre à jour"
   },
   "home": {
-    "title": "Bienvenue sur Fung.es",
-    "subtitle": "Votre compagnon de cueillette alimenté par l'IA",
-    "description": "Découvrez et apprenez à propos des comestibles sauvages grâce à l'intelligence artificielle",
-    "getStarted": "Commencer",
-    "learnMore": "En savoir plus"
+    "title": "Fung.es",
+    "headline": "Ça vaut le coup de sortir aujourd'hui ?",
+    "description": "Prévisions de cueillette pour les champignons, les baies et les plantes sauvages, identification par photo directement sur votre téléphone et recettes pour ce que vous rapportez. Sans compte, fonctionne hors ligne.",
+    "cta": "Explorer la carte",
+    "ctaSecondary": "Ce qui vaut la cueillette en ce moment",
+    "forecast": {
+      "title": "Prévision",
+      "body": "Un score sur sept jours pour chaque espèce, d'après la saison, la météo et le terrain. Parcourez la semaine sur la carte."
+    },
+    "identify": {
+      "title": "Identifier",
+      "body": "Visez votre trouvaille avec l'appareil photo. Le modèle tourne sur votre appareil et suggère ce que vous tenez peut-être. Rien n'est envoyé."
+    },
+    "cook": {
+      "title": "Cuisiner",
+      "body": "Des recettes de cuisine sauvage, avec les avertissements de préparation qui comptent avant de manger."
+    },
+    "coverage": "Les prévisions couvrent actuellement le nord et le sud de l'Europe ainsi que l'est et l'ouest des États-Unis."
   },
   "worthForagingNow": {
     "title": "Qu'est-ce qui vaut le coup d'aller cueillir maintenant ?",

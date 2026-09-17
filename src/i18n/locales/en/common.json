@@ -44,11 +44,24 @@
     "reloadForUpdate": "Reload for Update"
   },
   "home": {
-    "title": "Welcome to Fung.es",
-    "subtitle": "Your AI-powered foraging companion",
-    "description": "Discover and learn about wild edibles with the help of artificial intelligence",
-    "getStarted": "Get Started",
-    "learnMore": "Learn More"
+    "title": "Fung.es",
+    "headline": "Is it worth going out today?",
+    "description": "Foraging forecasts for mushrooms, berries and wild plants, photo identification that runs on your phone, and recipes for what you bring home. No account, works offline.",
+    "cta": "Explore the map",
+    "ctaSecondary": "What's worth foraging now",
+    "forecast": {
+      "title": "Forecast",
+      "body": "A seven-day score for every species, from season, weather and terrain. Scrub the week on the map."
+    },
+    "identify": {
+      "title": "Identify",
+      "body": "Point the camera at your find. The model runs on your device and suggests what you might be holding. Nothing is uploaded."
+    },
+    "cook": {
+      "title": "Cook",
+      "body": "Wild-food recipes, with the preparation warnings that matter before you eat."
+    },
+    "coverage": "Forecasts currently cover Northern and Southern Europe and the eastern and western United States."
   },
   "worthForagingNow": {
     "title": "Worth Foraging Now",

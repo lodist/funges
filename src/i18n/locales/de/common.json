@@ -44,11 +44,24 @@
     "reloadForUpdate": "Zum Aktualisieren neu laden"
   },
   "home": {
-    "title": "Willkommen bei Fung.es",
-    "subtitle": "Dein KI-gestützter Sammelbegleiter",
-    "description": "Entdecke und lerne essbare Wildpflanzen mit Hilfe künstlicher Intelligenz kennen",
-    "getStarted": "Loslegen",
-    "learnMore": "Mehr erfahren"
+    "title": "Fung.es",
+    "headline": "Lohnt es sich heute rauszugehen?",
+    "description": "Sammelprognosen für Pilze, Beeren und Wildpflanzen, Fotobestimmung direkt auf deinem Handy und Rezepte für das, was du mit nach Hause bringst. Kein Konto, funktioniert offline.",
+    "cta": "Karte erkunden",
+    "ctaSecondary": "Was sich jetzt zu sammeln lohnt",
+    "forecast": {
+      "title": "Prognose",
+      "body": "Ein Sieben-Tage-Wert für jede Art, aus Saison, Wetter und Gelände. Auf der Karte durch die Woche ziehen."
+    },
+    "identify": {
+      "title": "Bestimmen",
+      "body": "Richte die Kamera auf deinen Fund. Das Modell läuft auf deinem Gerät und schlägt vor, was du in der Hand halten könntest. Nichts wird hochgeladen."
+    },
+    "cook": {
+      "title": "Kochen",
+      "body": "Wildkräuter- und Pilzrezepte, mit den Zubereitungshinweisen, die vor dem Essen zählen."
+    },
+    "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab."
   },
   "worthForagingNow": {
     "title": "Was lohnt sich jetzt zu sammeln?",

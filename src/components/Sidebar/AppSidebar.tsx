@@ -41,7 +41,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
     navMain: [
       {
         title: t('map'),
-        url: `${basePath}`,
+        url: `${basePath}map`,
         icon: Map,
         isActive: true,
       },

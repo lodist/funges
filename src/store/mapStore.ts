@@ -16,6 +16,7 @@ import {
   forecastNumberField,
   FORECAST_DAYS,
 } from '@/lib/forecast';
+import { prefersReducedMotion } from '@/lib/motion';
 import type { RegionId } from '@/lib/data';
 
 export interface MapViewport {
@@ -63,7 +64,11 @@ export interface MapState {
   darkLayersVisible: boolean; // true when the active style is a dark one
   mapStyleIndex: number; // index into MAP_STYLES (set via setMapStyleIndex)
   numbersLayersVisible: boolean;
+  hillshadeVisible: boolean; // terrain relief shading under the score fills
   activeDay: number; // 0 = today; 1..6 = forecast
+  // The day the map is actually painted at. Tweens towards activeDay so a
+  // slider step morphs the polygons instead of snapping them.
+  displayDay: number;
 
   // UI state
   isLoading: boolean;
@@ -97,6 +102,7 @@ export interface MapState {
   syncSelectedSpecies: (species: string | null) => void;
   setMapStyleIndex: (index: number) => void;
   toggleNumbersLayersVisibility: () => void;
+  toggleHillshade: () => void;
   setActiveDay: (day: number) => void;
 
   // Map reference management
@@ -120,6 +126,10 @@ const MAP_STYLES = [
 const DARK_STYLE_INDEXES = new Set([1, 3]); // drives dark UI chrome
 const MAP_CENTER_KEY = 'mapCenter';
 const MAP_ZOOM_KEY = 'mapZoom';
+const HILLSHADE_KEY = 'hillshadeVisible';
+export const HILLSHADE_LAYER_ID = 'hillshade';
+const DAY_TWEEN_MS = 250;
+let dayTweenFrame: number | null = null;
 const INITIAL_CENTER: [number, number] = [7.3359, 47.7508];
 
 // Boundaries come from the manifests via species:generate, the same numbers the
@@ -299,7 +309,9 @@ export const useMapStore = create<MapState>()(
       // toggle button + instruction entries are removed but the layers/logic stay wired;
       // re-enable by restoring the button and this localStorage read.
       numbersLayersVisible: false,
+      hillshadeVisible: localStorage.getItem(HILLSHADE_KEY) !== 'false',
       activeDay: 0,
+      displayDay: 0,
       isLoading: false,
       error: null,
       showUserLocation: true,
@@ -386,10 +398,33 @@ export const useMapStore = create<MapState>()(
           }, 0);
           return newState;
         }),
+      toggleHillshade: () => {
+        const next = !get().hillshadeVisible;
+        localStorage.setItem(HILLSHADE_KEY, String(next));
+        set({ hillshadeVisible: next });
+        setTimeout(() => get().updateVisibleLayers(), 0);
+      },
       setActiveDay: (day: number) => {
         set({ activeDay: day });
-        // Defer so state is committed before layers are re-evaluated (mirrors numbers toggle).
-        setTimeout(() => get().updateVisibleLayers(), 0);
+        // Tween displayDay -> day so the score fills morph between forecast days.
+        // Only the visible species layers repaint per frame, so this is two or
+        // three setPaintProperty calls a frame for a quarter of a second.
+        if (dayTweenFrame !== null) cancelAnimationFrame(dayTweenFrame);
+        const from = get().displayDay;
+        if (prefersReducedMotion() || from === day) {
+          set({ displayDay: day });
+          setTimeout(() => get().updateVisibleLayers(), 0);
+          return;
+        }
+        const startedAt = performance.now();
+        const step = (now: number) => {
+          const t = Math.min((now - startedAt) / DAY_TWEEN_MS, 1);
+          const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+          set({ displayDay: from + (day - from) * eased });
+          get().updateVisibleLayers();
+          dayTweenFrame = t < 1 ? requestAnimationFrame(step) : null;
+        };
+        dayTweenFrame = requestAnimationFrame(step);
       },
 
       getUserLocation: (): Promise<GeolocationPosition> => {
@@ -448,8 +483,9 @@ export const useMapStore = create<MapState>()(
           mapRef,
           selectedSpecies,
           numbersLayersVisible,
+          hillshadeVisible,
           speciesOptions,
-          activeDay,
+          displayDay,
         } = get();
 
         if (!mapRef) {
@@ -469,6 +505,15 @@ export const useMapStore = create<MapState>()(
         layers.forEach(layer => {
           const id = layer.id;
 
+          if (id === HILLSHADE_LAYER_ID) {
+            mapRef.setLayoutProperty(
+              id,
+              'visibility',
+              hillshadeVisible ? 'visible' : 'none'
+            );
+            return;
+          }
+
           const isSpeciesLayer = speciesOptions.some(speciesOption =>
             id.startsWith(speciesOption.code)
           );
@@ -486,7 +531,7 @@ export const useMapStore = create<MapState>()(
           // render on every day too (interpolated), gated only by the numbers toggle.
           if (isSpeciesLayer) {
             if (selectedSpecies && isRelevantSpecies && inView) {
-              const frac = activeDay / (FORECAST_DAYS - 1);
+              const frac = displayDay / (FORECAST_DAYS - 1);
               if (isNumbersLayer) {
                 if (numbersLayersVisible) {
                   mapRef.setLayoutProperty(

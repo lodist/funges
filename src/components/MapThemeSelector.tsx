@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { DURATION_FAST, EASE_STANDARD } from '@/lib/motion';
 import { useMapStore, MAP_THEMES } from '@/store/mapStore';
 import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
 
 interface MapThemeSelectorProps {
@@ -15,7 +16,13 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
   className = '',
 }) => {
   const { t } = useTranslation('map');
-  const { mapStyleIndex, darkLayersVisible, setMapStyleIndex } = useMapStore();
+  const {
+    mapStyleIndex,
+    darkLayersVisible,
+    setMapStyleIndex,
+    hillshadeVisible,
+    toggleHillshade,
+  } = useMapStore();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -145,6 +152,18 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                 );
               })}
             </ul>
+            {/* Relief shading is a layer every theme carries, not a theme of its
+                own, so it lives under the list as a switch rather than as a
+                sixth row. The label is the click target; Switch's ::before
+                already widens the control itself to the 44px floor. */}
+            <label className='flex items-center justify-between gap-3 px-4 py-3 text-sm font-medium cursor-pointer'>
+              <span>{t('themes.relief')}</span>
+              <Switch
+                data-slot='map-relief-toggle'
+                checked={hillshadeVisible}
+                onCheckedChange={toggleHillshade}
+              />
+            </label>
           </motion.div>
         )}
       </AnimatePresence>

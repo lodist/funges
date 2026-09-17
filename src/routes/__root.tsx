@@ -15,8 +15,10 @@ export const Route = createRootRoute({
 function RootComponent() {
   const isMobile = useIsMobile();
   const location = useLocation();
+  // The map is the one route that owns the viewport (no document scroll).
   const isMapPage =
-    location.pathname === import.meta.env.BASE_URL || location.pathname === '/';
+    location.pathname.replace(/\/+$/, '') ===
+    `${import.meta.env.BASE_URL}map`.replace(/\/+$/, '');
   const mainRef = useRef<HTMLDivElement>(null);
   const [hideNavbar, setHideNavbar] = useState(false);
   const lastScrollYRef = useRef(0);

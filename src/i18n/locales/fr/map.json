@@ -74,7 +74,8 @@
     "topographic": {
       "name": "Topographique",
       "description": "Carte de randonnée avec sentiers."
-    }
+    },
+    "relief": "Ombrage du relief"
   },
   "getLocation": "Obtenir ma position",
   "toggleNumbers": "Afficher/masquer les notes",

@@ -74,7 +74,8 @@
     "topographic": {
       "name": "Topographic",
       "description": "Warm hiking-map style with visible trails and tracks."
-    }
+    },
+    "relief": "Relief shading"
   },
   "getLocation": "Get My Location",
   "toggleNumbers": "Toggle Numbers",
