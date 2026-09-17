@@ -119,6 +119,12 @@ jobs:
           done
           echo "Route directories created"
 
+          # Those directories make /species 301 to /species/; the plugin strips
+          # the slash, so without this every sitemap URL is a redirect.
+          sed -i -E 's#<loc>([^<]*[^/<])</loc>#<loc>/</loc>#g' dist/sitemap.xml
+          echo "Sitemap URLs normalised to trailing slashes:"
+          grep -o '<loc>[^<]*</loc>' dist/sitemap.xml
+
       - name: Verify static files in dist
         run: |
           echo "🔍 Verifying static files (sitemap.xml, robots.txt, 404.html)..."

@@ -334,6 +334,8 @@ export default defineConfig({
     Sitemap({
       hostname: `${hostname}${baseUrl}`,
       dynamicRoutes: routeFullPaths,
+      // Trailing slashes are added in deploy.yml (see there why).
+      exclude: ['/404'],
     }),
     removeConsole({
       includes: [

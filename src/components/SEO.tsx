@@ -1,6 +1,13 @@
 import i18n from '@/i18n';
 import { useMemo } from 'react';
 
+// /species 301s to /species/ on GitHub Pages; canonical must name the served URL.
+export function canonicalHref(path: string, origin: string): string {
+  const url = new URL(path, origin);
+  if (!url.pathname.endsWith('/')) url.pathname += '/';
+  return url.toString();
+}
+
 interface OpenGraphMeta {
   type?: string;
   title?: string;
@@ -44,7 +51,7 @@ export default function SEO({
 
   const canonical = useMemo(() => {
     const path = canonicalUrl ?? window.location.pathname;
-    return new URL(path, window.location.origin).toString();
+    return canonicalHref(path, window.location.origin);
   }, [canonicalUrl]);
 
   const defaultLocale = i18n.isInitialized
