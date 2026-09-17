@@ -16,7 +16,6 @@ import {
   forecastNumberField,
   FORECAST_DAYS,
 } from '@/lib/forecast';
-import { prefersReducedMotion } from '@/lib/motion';
 import type { RegionId } from '@/lib/data';
 
 export interface MapViewport {
@@ -66,9 +65,6 @@ export interface MapState {
   numbersLayersVisible: boolean;
   hillshadeVisible: boolean; // terrain relief shading under the score fills
   activeDay: number; // 0 = today; 1..6 = forecast
-  // The day the map is actually painted at. Tweens towards activeDay so a
-  // slider step morphs the polygons instead of snapping them.
-  displayDay: number;
 
   // UI state
   isLoading: boolean;
@@ -128,8 +124,6 @@ const MAP_CENTER_KEY = 'mapCenter';
 const MAP_ZOOM_KEY = 'mapZoom';
 const HILLSHADE_KEY = 'hillshadeVisible';
 export const HILLSHADE_LAYER_ID = 'hillshade';
-const DAY_TWEEN_MS = 250;
-let dayTweenFrame: number | null = null;
 const INITIAL_CENTER: [number, number] = [7.3359, 47.7508];
 
 // Boundaries come from the manifests via species:generate, the same numbers the
@@ -311,7 +305,6 @@ export const useMapStore = create<MapState>()(
       numbersLayersVisible: false,
       hillshadeVisible: localStorage.getItem(HILLSHADE_KEY) !== 'false',
       activeDay: 0,
-      displayDay: 0,
       isLoading: false,
       error: null,
       showUserLocation: true,
@@ -406,25 +399,8 @@ export const useMapStore = create<MapState>()(
       },
       setActiveDay: (day: number) => {
         set({ activeDay: day });
-        // Tween displayDay -> day so the score fills morph between forecast days.
-        // Only the visible species layers repaint per frame, so this is two or
-        // three setPaintProperty calls a frame for a quarter of a second.
-        if (dayTweenFrame !== null) cancelAnimationFrame(dayTweenFrame);
-        const from = get().displayDay;
-        if (prefersReducedMotion() || from === day) {
-          set({ displayDay: day });
-          setTimeout(() => get().updateVisibleLayers(), 0);
-          return;
-        }
-        const startedAt = performance.now();
-        const step = (now: number) => {
-          const t = Math.min((now - startedAt) / DAY_TWEEN_MS, 1);
-          const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
-          set({ displayDay: from + (day - from) * eased });
-          get().updateVisibleLayers();
-          dayTweenFrame = t < 1 ? requestAnimationFrame(step) : null;
-        };
-        dayTweenFrame = requestAnimationFrame(step);
+        // Defer so state is committed before layers are re-evaluated (mirrors numbers toggle).
+        setTimeout(() => get().updateVisibleLayers(), 0);
       },
 
       getUserLocation: (): Promise<GeolocationPosition> => {
@@ -485,7 +461,7 @@ export const useMapStore = create<MapState>()(
           numbersLayersVisible,
           hillshadeVisible,
           speciesOptions,
-          displayDay,
+          activeDay,
         } = get();
 
         if (!mapRef) {
@@ -531,7 +507,7 @@ export const useMapStore = create<MapState>()(
           // render on every day too (interpolated), gated only by the numbers toggle.
           if (isSpeciesLayer) {
             if (selectedSpecies && isRelevantSpecies && inView) {
-              const frac = displayDay / (FORECAST_DAYS - 1);
+              const frac = activeDay / (FORECAST_DAYS - 1);
               if (isNumbersLayer) {
                 if (numbersLayersVisible) {
                   mapRef.setLayoutProperty(
