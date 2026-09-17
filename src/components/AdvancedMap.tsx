@@ -204,6 +204,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const hasCheckedNearbyFeatures = useRef(false);
   const selectedSpeciesRef = useRef<string | null>(null);
   const arrivingRef = useRef(false);
+  // The viewport the map was asked to open on. The store can lose it before
+  // 'load': on phones useIsMobile flips false->true after the first render,
+  // the container resizes, and MapLibre's resize fires 'move', which reports
+  // the zoomed-out arrive start back into the store as if the user had moved.
+  const arriveTargetRef = useRef<{
+    center: [number, number];
+    zoom: number;
+  } | null>(null);
   // The last viewport the camera itself reported into the store. A store value
   // equal to it is an echo of the camera, not a request to move the camera.
   const cameraEchoRef = useRef<[number, number, number] | null>(null);
@@ -386,6 +394,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         (useMapStore.getState().arriveRequested || !arrivedThisSession) &&
         !prefersReducedMotion();
       arrivingRef.current = arriving;
+      arriveTargetRef.current = { center, zoom };
       map.current = new maplibregl.Map({
         container: mapContainer.current,
         style: mapStyle,
@@ -528,10 +537,21 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
       // Handle map load
       map.current.on('load', () => {
-        // Read the target before resize(): a deep link that landed in the
-        // store while the style was loading is what the camera should reach.
+        // Read the target before resize(). A deep link that landed in the
+        // store while the style was loading wins; a store value that is only
+        // the camera echoing its own start position does not, and the saved
+        // viewport captured at creation is used instead.
+        const st = useMapStore.getState();
+        const echo = cameraEchoRef.current;
+        const storeIsEcho =
+          !!echo &&
+          st.center[0] === echo[0] &&
+          st.center[1] === echo[1] &&
+          st.zoom === echo[2];
         const { center: targetCenter, zoom: targetZoom } =
-          useMapStore.getState();
+          storeIsEcho && arriveTargetRef.current
+            ? arriveTargetRef.current
+            : { center: st.center, zoom: st.zoom };
         setMapLoaded(true);
         // 'move' does not fire during initialization, so seed the viewport here
         // or the offline notice falls back to point containment until first pan.
