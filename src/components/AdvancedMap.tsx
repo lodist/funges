@@ -676,12 +676,19 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     }
   }, [mapLoaded, updateVisibleLayers, selectedSpecies]);
 
-  // Update visible layers when layer visibility toggles change
+  // Update visible layers when layer visibility toggles change, or when the
+  // connection comes and goes (the relief layer is online-only).
   useEffect(() => {
     if (mapLoaded) {
       updateVisibleLayers();
     }
-  }, [mapLoaded, updateVisibleLayers, darkLayersVisible, numbersLayersVisible]);
+  }, [
+    mapLoaded,
+    updateVisibleLayers,
+    darkLayersVisible,
+    numbersLayersVisible,
+    isOnline,
+  ]);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
