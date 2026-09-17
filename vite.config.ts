@@ -206,22 +206,6 @@ export default defineConfig({
               },
             },
           },
-          // Terrain tiles for the hillshade layer (AWS Terrain Tiles, Terrarium
-          // PNGs). Plain GET, so unlike PMTiles they cache fine; a year is safe
-          // because the elevation of a tile does not change.
-          {
-            urlPattern:
-              /^https:\/\/s3\.amazonaws\.com\/elevation-tiles-prod\/terrarium\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'terrain-dem-cache',
-              cacheableResponse: { statuses: [0, 200] },
-              expiration: {
-                maxEntries: 400,
-                maxAgeSeconds: 60 * 60 * 24 * 365,
-              },
-            },
-          },
           // Legacy cross-origin fallback. Current styles use self-hosted glyphs
           // and sprites from public/map-assets, which are precached above.
           {
