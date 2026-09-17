@@ -126,21 +126,12 @@ export default function LandingPage() {
               <p className='mt-4 max-w-md text-base text-muted-foreground md:text-lg'>
                 {t('home.description')}
               </p>
-              <div className='mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center'>
+              <div className='mt-8'>
                 <Button asChild size='lg'>
                   <Link to='/map'>
                     {t('home.cta')}
                     <ArrowRight className='size-5' />
                   </Link>
-                </Button>
-                {/* Stacked under the primary on a phone, flush with its edge. */}
-                <Button
-                  asChild
-                  variant='ghost'
-                  size='lg'
-                  className='px-0 sm:px-6'
-                >
-                  <Link to='/worth-foraging-now'>{t('home.ctaSecondary')}</Link>
                 </Button>
               </div>
             </div>
