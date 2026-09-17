@@ -29,16 +29,25 @@ describe('palette hues', () => {
   // The whole point of the palette: one brand hue, one neutral angle, and the
   // map score ramp. A new hue angle here means colour has scattered again.
   //
-  // Hue 28 is the one sanctioned exception (#225): destructive actions. The
+  // Hue 28 is the first sanctioned exception (#225): destructive actions. The
   // green stand-in it replaced made a delete look like a confirm, and red is
   // the foraging domain's own "do not eat" signal rather than a generic UI
-  // convention. It is a single angle, used only by the --destructive tokens —
-  // if a fourth angle appears, colour has scattered and this test should fail.
-  it('uses only the brand hue, the neutral angle, and the danger hue', () => {
+  // convention. It is a single angle, used only by the --destructive tokens.
+  //
+  // Hues 55 and 245 are the second (#246): the DataPage measurement charts.
+  // Species categories are identity and stay on the brand ramp, but a chart
+  // plotting temperature, rainfall and pressure encodes physical quantity, and
+  // warm-versus-cool IS that reading. Five steps of one hue put max/avg/min
+  // 0.07 apart in lightness on a shared axis, which is not separable at a
+  // 1.5px stroke. They are used only by the --chart-* tokens.
+  //
+  // Six angles is where this stops being a rule. If a seventh appears, colour
+  // has scattered and this test should fail.
+  it('uses only the brand, neutral, danger and measurement hues', () => {
     const hues = [
       ...new Set(oklchValues.filter(v => v.chroma > 0).map(v => v.hue)),
     ].sort((a, b) => a - b);
-    expect(hues).toEqual([28, 90, 150]);
+    expect(hues).toEqual([28, 55, 90, 150, 245]);
   });
 
   it('keeps every colour inside the sRGB gamut', () => {
@@ -76,6 +85,78 @@ describe('safety-warning tokens', () => {
     expect(dark).toContain(`--status-warning-text: ${stop(5)};`);
     expect(dark).toContain(`--status-warning-border: ${stop(8)};`);
   });
+});
+
+/** oklch -> linear sRGB, the same transform the gamut check above inlines. */
+function oklchToLinearRgb(L: number, C: number, H: number) {
+  const rad = (H * Math.PI) / 180;
+  const a = C * Math.cos(rad);
+  const b = C * Math.sin(rad);
+  const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
+  const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
+  const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
+  return [
+    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+    -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s,
+  ].map(v => Math.min(1, Math.max(0, v)));
+}
+
+const luminance = (L: number, C: number, H: number) => {
+  const [r, g, b] = oklchToLinearRgb(L, C, H);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+
+const contrast = (a: number, b: number) =>
+  a > b ? (a + 0.05) / (b + 0.05) : (b + 0.05) / (a + 0.05);
+
+/** The `oklch(...)` triple a token holds in one theme block. */
+const token = (theme: 'light' | 'dark', name: string) => {
+  const darkAt = css.indexOf('.dark {');
+  const block =
+    theme === 'light'
+      ? css.slice(css.indexOf(':root {'), darkAt)
+      : css.slice(darkAt);
+  const match = new RegExp(
+    `${name}: oklch\\(([\\d.]+) ([\\d.]+) ([\\d.]+)\\)`
+  ).exec(block);
+  if (!match) throw new Error(`no ${name} in the ${theme} theme`);
+  return [+match[1], +match[2], +match[3]] as const;
+};
+
+describe('measurement chart family', () => {
+  const CHART = ['--chart-warm', '--chart-brand', '--chart-cool'];
+
+  // Hue does the separating for normal vision, but it collapses twice: amber
+  // and green merge for red-green deficiency, green and blue for blue-yellow.
+  // Lightness is what still separates the series there, so the stagger is load
+  // bearing rather than cosmetic — flatten it and the charts fail the readers
+  // who need them most. (DataPage's dash patterns are the third channel.)
+  it.each(['light', 'dark'] as const)(
+    'staggers chart lightness in the %s theme',
+    theme => {
+      const steps = CHART.map(name => token(theme, name)[0]).sort(
+        (a, b) => a - b
+      );
+      // Rounded: the tokens are authored to 2dp, so a 0.10 step subtracts to
+      // 0.09999999999999998 and float noise is not a palette regression.
+      const gaps = steps.slice(1).map((v, i) => +(v - steps[i]).toFixed(3));
+      for (const gap of gaps) expect(gap).toBeGreaterThanOrEqual(0.1);
+    }
+  );
+
+  // WCAG 1.4.11: a plotted line is a graphical object, floor 3:1. Field use is
+  // sunlit and one-handed, so this is a hard limit, not a target.
+  it.each(['light', 'dark'] as const)(
+    'clears the 3:1 non-text floor on --card in the %s theme',
+    theme => {
+      const card = luminance(...token(theme, '--card'));
+      for (const name of CHART) {
+        const ratio = contrast(luminance(...token(theme, name)), card);
+        expect(ratio, `${name} on --card (${theme})`).toBeGreaterThanOrEqual(3);
+      }
+    }
+  );
 });
 
 describe('hue rule coverage', () => {

@@ -5,7 +5,7 @@ import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 export const Route = createFileRoute('/offline')({
   beforeLoad: () => {
     if (!shouldShowOfflineFeatures) {
-      throw redirect({ to: '/' });
+      throw redirect({ to: '/map' });
     }
   },
   component: OfflineMapsPage,

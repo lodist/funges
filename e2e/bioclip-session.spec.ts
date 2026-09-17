@@ -25,7 +25,7 @@ test.describe('bioclip inference session', () => {
       if (m.type() === 'error') consoleErrors.push(m.text());
     });
 
-    await page.goto('/');
+    await page.goto('/map');
 
     const result = await page.evaluate(async modelUrl => {
       const { BioclipSession } = await import('/src/lib/bioclip/session.ts');
@@ -71,7 +71,7 @@ test.describe('bioclip inference session', () => {
       if (/\.wasm(\?|$)/.test(url)) requested.push(url);
     });
 
-    await page.goto('/');
+    await page.goto('/map');
     await page.evaluate(async modelUrl => {
       const { BioclipSession } = await import('/src/lib/bioclip/session.ts');
       const bytes = await (await fetch(modelUrl)).arrayBuffer();

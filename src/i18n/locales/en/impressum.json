@@ -2,14 +2,7 @@
   "title": "Legal Notice",
   "subtitle": "Impressum",
   "responsibleEntity": {
-    "title": "Responsible Entity (Legally Responsible):",
-    "name": "Dario Lutz",
-    "address": "Hardturmstrasse 102",
-    "city": "8005 Zurich",
-    "country": "Switzerland"
-  },
-  "administrator": {
-    "title": "Administrator (Operational Responsibility):",
+    "title": "Responsible for this site (Operator):",
     "name": "Loris Di Stefano",
     "address": "C/ del Músic Jarque Cualladó 6",
     "city": "46009 València",
@@ -24,5 +17,5 @@
     "title": "Disclaimer for Content and Links",
     "content": "References and links to third party websites are outside our area of responsibility. It rejected any responsibility for such websites. Access to and use of such websites is at the user's own risk."
   },
-  "lastUpdated": "Last updated on: 20.08.2025"
+  "lastUpdated": "Last updated on: 17.09.2026"
 }

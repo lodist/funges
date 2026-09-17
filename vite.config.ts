@@ -13,6 +13,7 @@ const routeFullPaths = [
   '/data',
   '/impressum',
   '/instructions',
+  '/map',
   '/offline',
   '/privacy-policy',
   '/recipes',
@@ -205,6 +206,22 @@ export default defineConfig({
               },
             },
           },
+          // Terrain tiles for the hillshade layer (AWS Terrain Tiles, Terrarium
+          // PNGs). Plain GET, so unlike PMTiles they cache fine; a year is safe
+          // because the elevation of a tile does not change.
+          {
+            urlPattern:
+              /^https:\/\/s3\.amazonaws\.com\/elevation-tiles-prod\/terrarium\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'terrain-dem-cache',
+              cacheableResponse: { statuses: [0, 200] },
+              expiration: {
+                maxEntries: 400,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+            },
+          },
           // Legacy cross-origin fallback. Current styles use self-hosted glyphs
           // and sprites from public/map-assets, which are precached above.
           {
@@ -252,7 +269,9 @@ export default defineConfig({
         background_color: '#ffffff',
         display: 'standalone',
         scope: baseUrl,
-        start_url: baseUrl,
+        // Installed users open straight onto the map; the landing page at `/`
+        // is for first visits from the web.
+        start_url: `${baseUrl}map`,
         icons: [
           {
             src: `icons/logo_app.png`,
@@ -334,6 +353,8 @@ export default defineConfig({
     Sitemap({
       hostname: `${hostname}${baseUrl}`,
       dynamicRoutes: routeFullPaths,
+      // Trailing slashes are added in deploy.yml (see there why).
+      exclude: ['/404'],
     }),
     removeConsole({
       includes: [

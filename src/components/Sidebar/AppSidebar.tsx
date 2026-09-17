@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from '@tanstack/react-router';
 import {
   Map,
   Database,
@@ -28,6 +29,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 import MapLastUpdated from '@/components/MapLastUpdated';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const basePath = import.meta.env.BASE_URL || '/';
 
@@ -40,7 +42,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
     navMain: [
       {
         title: t('map'),
-        url: `${basePath}`,
+        url: `${basePath}map`,
         icon: Map,
         isActive: true,
       },
@@ -130,7 +132,12 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
                 icon: Gavel,
               },
             ],
-            flyoutFooter: <MapLastUpdated variant='sidebar' />,
+            flyoutFooter: (
+              <div className='flex flex-col gap-2'>
+                <ThemeToggle />
+                <MapLastUpdated variant='sidebar' />
+              </div>
+            ),
           },
         ]
       : [],
@@ -168,11 +175,20 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
           </button>
         ) : (
           <div className='flex items-center gap-2'>
-            <img
-              src='icons/logo_funges.png'
-              alt={t('appName', { defaultValue: 'Funges' })}
-              className='min-w-0 flex-1 object-contain'
-            />
+            {/* Logo = Home everywhere the logo is visible. In the collapsed
+                rail (above) the mark stays the toggle, since it is the only
+                way back out of the rail. */}
+            <Link
+              to='/'
+              className='focus-ring min-w-0 flex-1 rounded-md'
+              aria-label={t('appName', { defaultValue: 'Funges' })}
+            >
+              <img
+                src='icons/logo_funges.png'
+                alt=''
+                className='w-full object-contain'
+              />
+            </Link>
             {!isMobile && <SidebarTrigger className='shrink-0' />}
           </div>
         )}

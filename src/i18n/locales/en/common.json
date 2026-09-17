@@ -44,11 +44,34 @@
     "reloadForUpdate": "Reload for Update"
   },
   "home": {
-    "title": "Welcome to Fung.es",
-    "subtitle": "Your AI-powered foraging companion",
-    "description": "Discover and learn about wild edibles with the help of artificial intelligence",
-    "getStarted": "Get Started",
-    "learnMore": "Learn More"
+    "title": "Funges",
+    "headline": "Explore what grows around you.",
+    "description": "Foraging forecasts, species maps, private photo identification and wild-food recipes.",
+    "cta": "Explore the map",
+    "ctaSecondary": "See what's in season",
+    "forecast": {
+      "label": "Forecast",
+      "heading": "Is it worth going out today?",
+      "body": "Know where and when conditions are good.",
+      "link": "Open the forecast"
+    },
+    "identify": {
+      "label": "Identify",
+      "heading": "What did you find?",
+      "body": "Identify mushrooms and plants privately on your device.",
+      "link": "Try identification"
+    },
+    "cook": {
+      "label": "Cook",
+      "heading": "Back home",
+      "body": "Turn what you find into wild-food recipes.",
+      "link": "Browse recipes"
+    },
+    "closing": {
+      "heading": "Ready to explore?",
+      "cta": "Open the map"
+    },
+    "coverage": "Forecasts currently cover Northern and Southern Europe and the eastern and western United States."
   },
   "worthForagingNow": {
     "title": "Worth Foraging Now",
@@ -272,5 +295,11 @@
       "pressureFallingShort": "falling",
       "pressureRisingShort": "rising"
     }
+  },
+  "theme": {
+    "label": "Theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
   }
 }

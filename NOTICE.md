@@ -97,6 +97,17 @@ labels and symbols remain available without a network connection.
 OpenStreetMap attribution is also retained in every MapLibre style so it stays
 visible when an offline regional basemap is active.
 
+## Terrain tiles
+
+The map's relief shading reads elevation from the **AWS Terrain Tiles** open
+dataset (Terrarium encoding), originally assembled by Mapzen.
+
+- Tiles: <https://registry.opendata.aws/terrain-tiles/>
+- Attribution: Mapzen / AWS Terrain Tiles; underlying data from SRTM, GMTED,
+  ETOPO1 and other public sources listed in the dataset's documentation.
+
+The attribution is carried in the `terrain-dem` source of every MapLibre style.
+
 ## Species occurrence data
 
 The regional species list used as the identification vocabulary was derived from

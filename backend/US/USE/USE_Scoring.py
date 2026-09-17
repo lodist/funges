@@ -13,8 +13,8 @@ CONFIG = RegionConfig(
     static_info_env="US_STATIC_INFO",
     season_curves_env="USE_SEASON_CURVES",
     zone_curves_env="US_ZONE_SEASON_CURVES",
-    lat_range=(24.0, 37.5),
-    lon_range=(-106.5, -75.0),
+    lat_range=(24.0, 49.5),
+    lon_range=(-106.5, -67.0),
 )
 
 if __name__ == "__main__":

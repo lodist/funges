@@ -81,6 +81,7 @@ describe('AppSidebar', () => {
 
     expect(navLinks()).toEqual([
       '/',
+      '/map',
       '/worth-foraging-now',
       '/species',
       '/data',
@@ -155,6 +156,7 @@ describe('AppSidebar', () => {
 
     expect(navLinks()).toEqual([
       '/',
+      '/map',
       '/worth-foraging-now',
       '/species',
       '/data',

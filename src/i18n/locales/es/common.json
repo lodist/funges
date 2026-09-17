@@ -44,11 +44,34 @@
     "reloadForUpdate": "Recargar para actualizar"
   },
   "home": {
-    "title": "Bienvenido a Fung.es",
-    "subtitle": "Tu compañero de recolección potenciado por IA",
-    "description": "Descubre y aprende sobre alimentos silvestres con la ayuda de la inteligencia artificial",
-    "getStarted": "Comenzar",
-    "learnMore": "Saber más"
+    "title": "Funges",
+    "headline": "Explora lo que crece a tu alrededor.",
+    "description": "Previsiones de recolección, mapas de especies, identificación por foto privada y recetas silvestres.",
+    "cta": "Explorar el mapa",
+    "ctaSecondary": "Qué está de temporada",
+    "forecast": {
+      "label": "Previsión",
+      "heading": "¿Merece la pena salir hoy?",
+      "body": "Saber dónde y cuándo las condiciones son buenas.",
+      "link": "Abrir la previsión"
+    },
+    "identify": {
+      "label": "Identificar",
+      "heading": "¿Qué has encontrado?",
+      "body": "Identifica setas y plantas de forma privada en tu dispositivo.",
+      "link": "Probar la identificación"
+    },
+    "cook": {
+      "label": "Cocinar",
+      "heading": "De vuelta en casa",
+      "body": "Convierte lo que encuentras en recetas silvestres.",
+      "link": "Ver recetas"
+    },
+    "closing": {
+      "heading": "¿Listo para explorar?",
+      "cta": "Abrir el mapa"
+    },
+    "coverage": "Las previsiones cubren actualmente el norte y el sur de Europa y el este y el oeste de Estados Unidos."
   },
   "worthForagingNow": {
     "title": "Qué merece la pena recolectar ahora",
@@ -272,5 +295,11 @@
     "title": "Barra lateral",
     "description": "Muestra la barra lateral en móvil.",
     "toggle": "Mostrar u ocultar la barra lateral"
+  },
+  "theme": {
+    "label": "Tema",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Oscuro"
   }
 }

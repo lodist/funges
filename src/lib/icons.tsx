@@ -2,6 +2,7 @@ import type { ComponentType, ReactElement } from 'react';
 import type { LucideProps } from 'lucide-react';
 import {
   AlertTriangle as LucideAlertTriangle,
+  ArrowRight as LucideArrowRight,
   ArrowUpRight as LucideArrowUpRight,
   BarChart2 as LucideBarChart2,
   BarChart3 as LucideBarChart3,
@@ -52,6 +53,8 @@ import {
   MapPinned as LucideMapPinned,
   Minus as LucideMinus,
   MoreHorizontal as LucideMoreHorizontal,
+  Monitor as LucideMonitor,
+  Moon as LucideMoon,
   Mountain as LucideMountain,
   MousePointerClick as LucideMousePointerClick,
   Navigation as LucideNavigation,
@@ -70,6 +73,7 @@ import {
   Skull as LucideSkull,
   Sprout as LucideSprout,
   Star as LucideStar,
+  Sun as LucideSun,
   Target as LucideTarget,
   Thermometer as LucideThermometer,
   User as LucideUser,
@@ -114,6 +118,7 @@ const decorativeByDefault = (Icon: ComponentType<LucideProps>): LucideIcon => {
 };
 
 export const AlertTriangle = decorativeByDefault(LucideAlertTriangle);
+export const ArrowRight = decorativeByDefault(LucideArrowRight);
 export const ArrowUpRight = decorativeByDefault(LucideArrowUpRight);
 export const BarChart2 = decorativeByDefault(LucideBarChart2);
 export const BarChart3 = decorativeByDefault(LucideBarChart3);
@@ -164,6 +169,8 @@ export const MapPin = decorativeByDefault(LucideMapPin);
 export const MapPinned = decorativeByDefault(LucideMapPinned);
 export const Minus = decorativeByDefault(LucideMinus);
 export const MoreHorizontal = decorativeByDefault(LucideMoreHorizontal);
+export const Monitor = decorativeByDefault(LucideMonitor);
+export const Moon = decorativeByDefault(LucideMoon);
 export const Mountain = decorativeByDefault(LucideMountain);
 export const MousePointerClick = decorativeByDefault(LucideMousePointerClick);
 export const Navigation = decorativeByDefault(LucideNavigation);
@@ -182,6 +189,7 @@ export const ShieldCheck = decorativeByDefault(LucideShieldCheck);
 export const Skull = decorativeByDefault(LucideSkull);
 export const Sprout = decorativeByDefault(LucideSprout);
 export const Star = decorativeByDefault(LucideStar);
+export const Sun = decorativeByDefault(LucideSun);
 export const Target = decorativeByDefault(LucideTarget);
 export const Thermometer = decorativeByDefault(LucideThermometer);
 export const User = decorativeByDefault(LucideUser);

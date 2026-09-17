@@ -1,5 +1,10 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
+import type {
+  ExpressionSpecification,
+  LngLatBounds,
+  Map as MapLibreMap,
+} from 'maplibre-gl';
 import {
   getSpeciesOptions,
   type ForecastRegion,
@@ -58,6 +63,7 @@ export interface MapState {
   darkLayersVisible: boolean; // true when the active style is a dark one
   mapStyleIndex: number; // index into MAP_STYLES (set via setMapStyleIndex)
   numbersLayersVisible: boolean;
+  hillshadeVisible: boolean; // terrain relief shading under the score fills
   activeDay: number; // 0 = today; 1..6 = forecast
 
   // UI state
@@ -66,7 +72,7 @@ export interface MapState {
   showUserLocation: boolean;
 
   // Map reference for layer management
-  mapRef: maplibregl.Map | null;
+  mapRef: MapLibreMap | null;
 
   // Actions
   setCenter: (center: [number, number]) => void;
@@ -92,10 +98,11 @@ export interface MapState {
   syncSelectedSpecies: (species: string | null) => void;
   setMapStyleIndex: (index: number) => void;
   toggleNumbersLayersVisibility: () => void;
+  toggleHillshade: () => void;
   setActiveDay: (day: number) => void;
 
   // Map reference management
-  setMapRef: (map: maplibregl.Map | null) => void;
+  setMapRef: (map: MapLibreMap | null) => void;
   updateVisibleLayers: () => void;
   restoreDarkLayersState: () => void;
 }
@@ -115,6 +122,8 @@ const MAP_STYLES = [
 const DARK_STYLE_INDEXES = new Set([1, 3]); // drives dark UI chrome
 const MAP_CENTER_KEY = 'mapCenter';
 const MAP_ZOOM_KEY = 'mapZoom';
+const HILLSHADE_KEY = 'hillshadeVisible';
+export const HILLSHADE_LAYER_ID = 'hillshade';
 const INITIAL_CENTER: [number, number] = [7.3359, 47.7508];
 
 // Boundaries come from the manifests via species:generate, the same numbers the
@@ -257,7 +266,7 @@ export function resolveDataNerdRegion(layerId: string): RegionId | null {
   return region ? (region.toUpperCase() as RegionId) : null;
 }
 
-function regionInView(r: string, bounds: maplibregl.LngLatBounds): boolean {
+function regionInView(r: string, bounds: LngLatBounds): boolean {
   const box = REGION_BBOX[r];
   if (!box) return true; // unknown region: don't hide it
   const [w, s, e, n] = box;
@@ -294,6 +303,7 @@ export const useMapStore = create<MapState>()(
       // toggle button + instruction entries are removed but the layers/logic stay wired;
       // re-enable by restoring the button and this localStorage read.
       numbersLayersVisible: false,
+      hillshadeVisible: localStorage.getItem(HILLSHADE_KEY) !== 'false',
       activeDay: 0,
       isLoading: false,
       error: null,
@@ -381,6 +391,12 @@ export const useMapStore = create<MapState>()(
           }, 0);
           return newState;
         }),
+      toggleHillshade: () => {
+        const next = !get().hillshadeVisible;
+        localStorage.setItem(HILLSHADE_KEY, String(next));
+        set({ hillshadeVisible: next });
+        setTimeout(() => get().updateVisibleLayers(), 0);
+      },
       setActiveDay: (day: number) => {
         set({ activeDay: day });
         // Defer so state is committed before layers are re-evaluated (mirrors numbers toggle).
@@ -437,12 +453,13 @@ export const useMapStore = create<MapState>()(
         })),
 
       // Map reference management
-      setMapRef: (map: maplibregl.Map | null) => set({ mapRef: map }),
+      setMapRef: (map: MapLibreMap | null) => set({ mapRef: map }),
       updateVisibleLayers: () => {
         const {
           mapRef,
           selectedSpecies,
           numbersLayersVisible,
+          hillshadeVisible,
           speciesOptions,
           activeDay,
         } = get();
@@ -463,6 +480,15 @@ export const useMapStore = create<MapState>()(
 
         layers.forEach(layer => {
           const id = layer.id;
+
+          if (id === HILLSHADE_LAYER_ID) {
+            mapRef.setLayoutProperty(
+              id,
+              'visibility',
+              hillshadeVisible ? 'visible' : 'none'
+            );
+            return;
+          }
 
           const isSpeciesLayer = speciesOptions.some(speciesOption =>
             id.startsWith(speciesOption.code)
@@ -487,7 +513,10 @@ export const useMapStore = create<MapState>()(
                   mapRef.setLayoutProperty(
                     id,
                     'text-field',
-                    forecastNumberField(selectedSpecies, frac)
+                    forecastNumberField(
+                      selectedSpecies,
+                      frac
+                    ) as ExpressionSpecification
                   );
                   // The badge colour is text-halo-color — the same score ramp as the
                   // fill — so interpolate it to the active day too, or the digit shows
@@ -500,7 +529,11 @@ export const useMapStore = create<MapState>()(
                     mapRef.setPaintProperty(
                       id,
                       'text-halo-color',
-                      setForecastFraction(halo, selectedSpecies, frac)
+                      setForecastFraction(
+                        halo,
+                        selectedSpecies,
+                        frac
+                      ) as ExpressionSpecification
                     );
                   }
                   mapRef.setLayoutProperty(id, 'visibility', 'visible');
@@ -516,7 +549,11 @@ export const useMapStore = create<MapState>()(
                   mapRef.setPaintProperty(
                     id,
                     'fill-color',
-                    setForecastFraction(current, selectedSpecies, frac)
+                    setForecastFraction(
+                      current,
+                      selectedSpecies,
+                      frac
+                    ) as ExpressionSpecification
                   );
                 }
                 mapRef.setLayoutProperty(id, 'visibility', 'visible');

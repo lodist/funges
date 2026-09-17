@@ -44,11 +44,34 @@
     "reloadForUpdate": "Recharger pour mettre à jour"
   },
   "home": {
-    "title": "Bienvenue sur Fung.es",
-    "subtitle": "Votre compagnon de cueillette alimenté par l'IA",
-    "description": "Découvrez et apprenez à propos des comestibles sauvages grâce à l'intelligence artificielle",
-    "getStarted": "Commencer",
-    "learnMore": "En savoir plus"
+    "title": "Funges",
+    "headline": "Explorez ce qui pousse autour de vous.",
+    "description": "Prévisions de cueillette, cartes des espèces, identification par photo privée et recettes sauvages.",
+    "cta": "Explorer la carte",
+    "ctaSecondary": "Ce qui est de saison",
+    "forecast": {
+      "label": "Prévision",
+      "heading": "Ça vaut le coup de sortir aujourd'hui ?",
+      "body": "Savoir où et quand les conditions sont bonnes.",
+      "link": "Ouvrir la prévision"
+    },
+    "identify": {
+      "label": "Identifier",
+      "heading": "Qu'avez-vous trouvé ?",
+      "body": "Identifiez champignons et plantes en privé, sur votre appareil.",
+      "link": "Essayer l'identification"
+    },
+    "cook": {
+      "label": "Cuisiner",
+      "heading": "De retour à la maison",
+      "body": "Transformez vos trouvailles en recettes sauvages.",
+      "link": "Voir les recettes"
+    },
+    "closing": {
+      "heading": "Prêt à explorer ?",
+      "cta": "Ouvrir la carte"
+    },
+    "coverage": "Les prévisions couvrent actuellement le nord et le sud de l'Europe ainsi que l'est et l'ouest des États-Unis."
   },
   "worthForagingNow": {
     "title": "Qu'est-ce qui vaut le coup d'aller cueillir maintenant ?",
@@ -272,5 +295,11 @@
     "title": "Barre latérale",
     "description": "Affiche la barre latérale mobile.",
     "toggle": "Afficher ou masquer la barre latérale"
+  },
+  "theme": {
+    "label": "Thème",
+    "system": "Système",
+    "light": "Clair",
+    "dark": "Sombre"
   }
 }

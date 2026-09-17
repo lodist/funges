@@ -17,6 +17,7 @@ import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as RecipesRouteImport } from './routes/recipes'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as OfflineRouteImport } from './routes/offline'
+import { Route as MapRouteImport } from './routes/map'
 import { Route as InstructionsRouteImport } from './routes/instructions'
 import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as DataRouteImport } from './routes/data'
@@ -62,6 +63,11 @@ const OfflineRoute = OfflineRouteImport.update({
   path: '/offline',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InstructionsRoute = InstructionsRouteImport.update({
   id: '/instructions',
   path: '/instructions',
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/data': typeof DataRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
+  '/map': typeof MapRoute
   '/offline': typeof OfflineRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/recipes': typeof RecipesRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/data': typeof DataRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
+  '/map': typeof MapRoute
   '/offline': typeof OfflineRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/recipes': typeof RecipesRoute
@@ -117,6 +125,7 @@ export interface FileRoutesById {
   '/data': typeof DataRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
+  '/map': typeof MapRoute
   '/offline': typeof OfflineRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/recipes': typeof RecipesRoute
@@ -133,6 +142,7 @@ export interface FileRouteTypes {
     | '/data'
     | '/impressum'
     | '/instructions'
+    | '/map'
     | '/offline'
     | '/privacy-policy'
     | '/recipes'
@@ -147,6 +157,7 @@ export interface FileRouteTypes {
     | '/data'
     | '/impressum'
     | '/instructions'
+    | '/map'
     | '/offline'
     | '/privacy-policy'
     | '/recipes'
@@ -161,6 +172,7 @@ export interface FileRouteTypes {
     | '/data'
     | '/impressum'
     | '/instructions'
+    | '/map'
     | '/offline'
     | '/privacy-policy'
     | '/recipes'
@@ -176,6 +188,7 @@ export interface RootRouteChildren {
   DataRoute: typeof DataRoute
   ImpressumRoute: typeof ImpressumRoute
   InstructionsRoute: typeof InstructionsRoute
+  MapRoute: typeof MapRoute
   OfflineRoute: typeof OfflineRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   RecipesRoute: typeof RecipesRoute
@@ -244,6 +257,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OfflineRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/instructions': {
       id: '/instructions'
       path: '/instructions'
@@ -280,6 +300,7 @@ const rootRouteChildren: RootRouteChildren = {
   DataRoute: DataRoute,
   ImpressumRoute: ImpressumRoute,
   InstructionsRoute: InstructionsRoute,
+  MapRoute: MapRoute,
   OfflineRoute: OfflineRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   RecipesRoute: RecipesRoute,

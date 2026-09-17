@@ -1,4 +1,5 @@
 import i18n from '@/i18n';
+import { canonicalHref } from '@/lib/canonical';
 import { useMemo } from 'react';
 
 interface OpenGraphMeta {
@@ -44,7 +45,7 @@ export default function SEO({
 
   const canonical = useMemo(() => {
     const path = canonicalUrl ?? window.location.pathname;
-    return new URL(path, window.location.origin).toString();
+    return canonicalHref(path, window.location.origin);
   }, [canonicalUrl]);
 
   const defaultLocale = i18n.isInitialized

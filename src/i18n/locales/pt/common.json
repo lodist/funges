@@ -44,11 +44,34 @@
     "reloadForUpdate": "Recarregar para atualizar"
   },
   "home": {
-    "title": "Bem-vindo ao Fung.es",
-    "subtitle": "Seu companheiro de coleta com IA",
-    "description": "Descubra e aprenda sobre alimentos selvagens com a ajuda da inteligência artificial",
-    "getStarted": "Começar",
-    "learnMore": "Saiba mais"
+    "title": "Funges",
+    "headline": "Explore o que cresce à sua volta.",
+    "description": "Previsões de colheita, mapas de espécies, identificação por foto privada e receitas silvestres.",
+    "cta": "Explorar o mapa",
+    "ctaSecondary": "O que está na época",
+    "forecast": {
+      "label": "Previsão",
+      "heading": "Vale a pena sair hoje?",
+      "body": "Saber onde e quando as condições são boas.",
+      "link": "Abrir a previsão"
+    },
+    "identify": {
+      "label": "Identificar",
+      "heading": "O que encontrou?",
+      "body": "Identifique cogumelos e plantas em privado, no seu dispositivo.",
+      "link": "Experimentar a identificação"
+    },
+    "cook": {
+      "label": "Cozinhar",
+      "heading": "De volta a casa",
+      "body": "Transforme o que encontra em receitas silvestres.",
+      "link": "Ver receitas"
+    },
+    "closing": {
+      "heading": "Pronto para explorar?",
+      "cta": "Abrir o mapa"
+    },
+    "coverage": "As previsões cobrem atualmente o Norte e o Sul da Europa e o Leste e o Oeste dos Estados Unidos."
   },
   "worthForagingNow": {
     "title": "O que vale a pena procurar agora?",
@@ -272,5 +295,11 @@
     "title": "Barra lateral",
     "description": "Mostra a barra lateral no telemóvel.",
     "toggle": "Mostrar ou ocultar a barra lateral"
+  },
+  "theme": {
+    "label": "Tema",
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Escuro"
   }
 }

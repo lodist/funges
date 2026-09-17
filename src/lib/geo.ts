@@ -1,3 +1,5 @@
+import type { GeoJSONFeature } from 'maplibre-gl';
+
 export type LngLat = [number, number];
 
 // Type for GeoJSON coordinates which can be deeply nested
@@ -35,9 +37,7 @@ function ringCentroid(ring: LngLat[]): { centroid: LngLat; area: number } {
 // Points return their coordinates; polygons return the area-weighted centroid
 // (for MultiPolygons, the centroid of the largest part) so a route stop lands
 // inside the rendered polygon rather than at a bbox corner.
-export function getRepresentativeLngLat(
-  feature: maplibregl.GeoJSONFeature
-): LngLat {
+export function getRepresentativeLngLat(feature: GeoJSONFeature): LngLat {
   const geom = feature.geometry;
   if (geom.type === 'Point') {
     return geom.coordinates as LngLat;
