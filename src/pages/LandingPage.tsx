@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from '@/lib/icons';
 import { getScoreColor } from '@/lib/scoreColor';
 import { getRecipeImage, getSpeciesImage } from '@/lib/utils';
-import { useMapStore } from '@/store/mapStore';
 
 const base = import.meta.env.BASE_URL;
 const HERO_MAP = `${base}landing/hero-map.webp`;
@@ -29,8 +28,6 @@ const ROW_CLASS =
 // the way the app's own chrome does. PRODUCT.md: no stats, no testimonials.
 export default function LandingPage() {
   const { t } = useTranslation('common');
-  // Every way into the map from here flies in from above the user's region.
-  const requestArrive = () => useMapStore.getState().setArriveRequested(true);
   const { t: tMap } = useTranslation('map');
   const { t: tSpecies } = useTranslation('species');
   const { t: tRecipes } = useTranslation('recipes');
@@ -131,7 +128,7 @@ export default function LandingPage() {
               </p>
               <div className='mt-8'>
                 <Button asChild size='lg'>
-                  <Link to='/map' onClick={requestArrive}>
+                  <Link to='/map'>
                     {t('home.cta')}
                     <ArrowRight className='size-5' />
                   </Link>
@@ -155,7 +152,8 @@ export default function LandingPage() {
           <div className='mx-auto max-w-6xl space-y-20 px-6 py-20 md:space-y-28 md:py-28'>
             {/* Forecast */}
             <Link to='/worth-foraging-now' className={ROW_CLASS}>
-              <div className='landing-row-visual relative aspect-[4/3] overflow-hidden rounded-card elevation-raised'>
+              <div className='md:order-2'>{rowText('forecast')}</div>
+              <div className='landing-row-visual relative aspect-[4/3] overflow-hidden rounded-card elevation-raised md:order-1'>
                 <img
                   src={FORECAST_MAP}
                   alt=''
@@ -166,17 +164,12 @@ export default function LandingPage() {
                   <MapInfoCard />
                 </div>
               </div>
-              {rowText('forecast')}
             </Link>
 
             {/* Identify */}
-            <Link
-              to='/map'
-              search={{ identify: true }}
-              onClick={requestArrive}
-              className={ROW_CLASS}
-            >
-              <div className='md:order-2'>
+            <Link to='/map' search={{ identify: true }} className={ROW_CLASS}>
+              {rowText('identify')}
+              <div>
                 <div className='relative mx-auto h-64 max-w-sm'>
                   {FAN_SPECIES.map((id, index) => (
                     <img
@@ -197,14 +190,14 @@ export default function LandingPage() {
                   ))}
                 </div>
               </div>
-              <div className='md:order-1'>{rowText('identify')}</div>
             </Link>
 
             {/* Cook */}
             <Link to='/recipes' className={ROW_CLASS}>
+              <div className='md:order-2'>{rowText('cook')}</div>
               {/* Two recipe cards laid on the table, a touch askew, so neither
                   hides the other's caption. */}
-              <div className='mx-auto grid w-full max-w-md grid-cols-2 gap-4 px-2 py-4'>
+              <div className='mx-auto grid w-full max-w-md grid-cols-2 gap-4 px-2 py-4 md:order-1'>
                 {RECIPES.map((id, index) => (
                   <figure
                     key={id}
@@ -225,7 +218,6 @@ export default function LandingPage() {
                   </figure>
                 ))}
               </div>
-              {rowText('cook')}
             </Link>
           </div>
         </section>
@@ -245,7 +237,7 @@ export default function LandingPage() {
             </h2>
             <div className='mt-6'>
               <Button asChild size='lg'>
-                <Link to='/map' onClick={requestArrive}>
+                <Link to='/map'>
                   {t('home.closing.cta')}
                   <ArrowRight className='size-5' />
                 </Link>

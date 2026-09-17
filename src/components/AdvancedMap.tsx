@@ -34,6 +34,7 @@ import {
 import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
 import { prefersReducedMotion } from '@/lib/motion';
+import { isLandingPath, navHistory } from '@/lib/nav-history';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -105,7 +106,8 @@ const ROUTE_FIT_MAX_ZOOM = 13;
 
 // Module-level, so it survives the map unmounting between routes: the fly-in
 // plays on the first map of a session (PWA start, deep link) and whenever the
-// landing page asked for it, not on every tab switch back to the map.
+// map is entered from the landing page, by any link or nav item; not on a
+// tab switch back from another app page.
 let arrivedThisSession = false;
 
 function formatLatLngForUrl(coordinate: [number, number]): string {
@@ -391,7 +393,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       // consumed there, not here: in dev StrictMode this effect runs twice and
       // the first map is torn down before it ever loads.
       const arriving =
-        (useMapStore.getState().arriveRequested || !arrivedThisSession) &&
+        (!arrivedThisSession || isLandingPath(navHistory.previous)) &&
         !prefersReducedMotion();
       arrivingRef.current = arriving;
       arriveTargetRef.current = { center, zoom };
@@ -585,7 +587,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           }
           arrivingRef.current = false;
           arrivedThisSession = true;
-          useMapStore.getState().setArriveRequested(false);
         }
 
         // A style switch tears down and recreates the whole map (and, with
