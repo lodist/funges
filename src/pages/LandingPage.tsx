@@ -28,18 +28,9 @@ const ROW_CLASS =
 // the way the app's own chrome does. PRODUCT.md: no stats, no testimonials.
 export default function LandingPage() {
   const { t } = useTranslation('common');
-  const { t: tNav } = useTranslation('sidebar');
   const { t: tMap } = useTranslation('map');
   const { t: tSpecies } = useTranslation('species');
   const { t: tRecipes } = useTranslation('recipes');
-
-  const footerLinks = [
-    { to: '/instructions', label: tNav('instructions') },
-    { to: '/support', label: tNav('support') },
-    { to: '/impressum', label: tNav('impressum') },
-    { to: '/privacy-policy', label: tNav('privacyPolicy') },
-    { to: '/termsuse', label: tNav('termsOfUse') },
-  ] as const;
 
   const rowText = (key: 'forecast' | 'identify' | 'cook') => (
     <div>
@@ -265,21 +256,6 @@ export default function LandingPage() {
             <div aria-hidden='true' className='h-[34dvh] md:h-[40dvh]' />
           </div>
         </section>
-
-        <footer className='mx-auto max-w-6xl px-6 py-8 text-sm text-muted-foreground'>
-          <p>{t('home.coverage')}</p>
-          <nav className='mt-4 flex flex-wrap gap-x-5 gap-y-2'>
-            {footerLinks.map(link => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className='rounded-sm underline underline-offset-2 hover:text-foreground focus-ring'
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </footer>
       </div>
     </>
   );
