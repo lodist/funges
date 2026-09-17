@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { canonicalHref } from '@/components/SEO';
+import { canonicalHref } from '@/lib/canonical';
 
 describe('canonicalHref', () => {
   const origin = 'https://www.fung.es';
