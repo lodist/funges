@@ -7,6 +7,7 @@ import { AppSidebar } from '@/components/Sidebar/AppSidebar';
 import MobileNavbar from '@/components/Mobile/MobileNavbar';
 import FloatingLanguageSwitcher from '@/components/FloatingLanguageSwitcher';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { recordPath } from '@/lib/nav-history';
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -15,6 +16,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   const isMobile = useIsMobile();
   const location = useLocation();
+  recordPath(location.pathname);
   // The map is the one route that owns the viewport (no document scroll).
   const isMapPage =
     location.pathname.replace(/\/+$/, '') ===
