@@ -34,26 +34,13 @@ export default function ImpressumPage() {
               <p>{t('responsibleEntity.address')}</p>
               <p>{t('responsibleEntity.city')}</p>
               <p>{t('responsibleEntity.country')}</p>
-            </div>
-          </section>
-
-          {/* Administrator */}
-          <section className='bg-card rounded-lg p-6 shadow-sm'>
-            <h3 className='text-lg font-semibold text-foreground dark:text-white mb-4'>
-              {t('administrator.title')}
-            </h3>
-            <div className='space-y-1 text-foreground'>
-              <p className='font-medium'>{t('administrator.name')}</p>
-              <p>{t('administrator.address')}</p>
-              <p>{t('administrator.city')}</p>
-              <p>{t('administrator.country')}</p>
               <p>
                 <span className='font-medium'>{tCommon('common.email')}:</span>{' '}
                 <a
-                  href={`mailto:${t('administrator.email')}`}
+                  href={`mailto:${t('responsibleEntity.email')}`}
                   className='text-primary-text hover:underline'
                 >
-                  {t('administrator.email')}
+                  {t('responsibleEntity.email')}
                 </a>
               </p>
             </div>
