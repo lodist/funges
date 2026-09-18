@@ -492,10 +492,19 @@
      isn't feasible on the web. Doubles as the dark-mode depth cue below. */
   --glass-highlight: rgb(255 255 255 / 0.5);
 
+  /* Apple-only Liquid Glass variant (MobileNavbar, Apple mobile only — see
+     nav-surface.ts). More blur and more see-through than glass-regular,
+     with saturation boosted so colour behind the bar stays vivid instead of
+     washing out grey, the way UIKit's real Liquid Glass reads. */
+  --glass-blur-liquid: 24px;
+  --glass-saturate-liquid: 180%;
+  --glass-bg-liquid: rgb(255 255 255 / 0.55);
+
   /* Opaque equivalents, used when backdrop-filter is unsupported or the
      user asks for reduced transparency / increased contrast. */
   --glass-bg-regular-opaque: var(--card);
   --glass-bg-clear-opaque: var(--card);
+  --glass-bg-liquid-opaque: var(--card);
 
   /* ------------------------------------------------------------------
      Elevation levels (#200) — light theme
@@ -662,6 +671,7 @@
      ------------------------------------------------------------------ */
   --glass-bg-regular: color-mix(in oklch, var(--card) 80%, transparent);
   --glass-bg-clear: rgb(0 0 0 / 0.2);
+  --glass-bg-liquid: color-mix(in oklch, var(--card) 55%, transparent);
   --glass-border: rgb(255 255 255 / 0.1);
   --glass-highlight: rgb(255 255 255 / 0.08);
   /* The *-opaque fallbacks are not restated here: they resolve through
