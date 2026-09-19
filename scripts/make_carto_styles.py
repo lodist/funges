@@ -40,6 +40,7 @@ DARKMATTER = dict(
     road_major="#2e2e2e", road_medium="#242424", road_minor="#1c1c1c",
     label="#a8a8a8", label_halo="#000000", water_label="#5a7280",
     sprite="map-assets/sprites/v4/dark",
+    hillshade={"raster-opacity": 0.5},
 )
 # Natural-terrain hiking-map palette (Outdooractive/Alpine-club style): distinct
 # forest/scrub/farmland/urban land-cover tones instead of one flat tint, plus
@@ -242,6 +243,13 @@ def build(theme, out):
     above = [L for L in bm
              if L.get("type") == "symbol" or L.get("source-layer") == "roads"]
     below = [L for L in bm if L not in above]
+    # Hillshade: pre-rendered shadow tiles (raster source `hillshade`, inherited
+    # from the base style; see scripts/build_hillshade_tiles.py) sit above the
+    # land-cover fills and below water, exactly where the base style places them.
+    # A theme may override the paint, e.g. a lower raster-opacity on dark ground.
+    hill = next(L for L in base["layers"] if L["id"] == "hillshade")
+    water_at = next(i for i, L in enumerate(below) if L["id"] == "water")
+    below = below[:water_at] + [dict(hill, paint={**hill["paint"], **theme.get("hillshade", {})})] + below[water_at:]
     style["layers"] = below + overlays + above
 
     (ROOT / "public" / out).write_text(

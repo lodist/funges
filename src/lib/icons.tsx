@@ -2,6 +2,7 @@ import type { ComponentType, ReactElement } from 'react';
 import type { LucideProps } from 'lucide-react';
 import {
   AlertTriangle as LucideAlertTriangle,
+  ArrowRight as LucideArrowRight,
   ArrowUpRight as LucideArrowUpRight,
   BarChart2 as LucideBarChart2,
   BarChart3 as LucideBarChart3,
@@ -117,6 +118,7 @@ const decorativeByDefault = (Icon: ComponentType<LucideProps>): LucideIcon => {
 };
 
 export const AlertTriangle = decorativeByDefault(LucideAlertTriangle);
+export const ArrowRight = decorativeByDefault(LucideArrowRight);
 export const ArrowUpRight = decorativeByDefault(LucideArrowUpRight);
 export const BarChart2 = decorativeByDefault(LucideBarChart2);
 export const BarChart3 = decorativeByDefault(LucideBarChart3);

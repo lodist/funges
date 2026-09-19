@@ -58,6 +58,13 @@
     "overlay-usw": {
       "type": "vector",
       "url": "pmtiles://https://data.fung.es/USA/USW/usw_forecast.pmtiles"
+    },
+    "hillshade": {
+      "type": "raster",
+      "url": "pmtiles://https://data.fung.es/basemap/hillshade_z11.pmtiles",
+      "tileSize": 256,
+      "maxzoom": 11,
+      "attribution": "Terrain: Mapzen / AWS Terrain Tiles"
     }
   },
   "sprite": "map-assets/sprites/v4/light",
@@ -277,6 +284,18 @@
           14,
           0.1
         ]
+      }
+    },
+    {
+      "id": "hillshade",
+      "type": "raster",
+      "source": "hillshade",
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "raster-opacity": 0.7,
+        "raster-fade-duration": 0
       }
     },
     {

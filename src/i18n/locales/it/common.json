@@ -6,11 +6,34 @@
     "reloadForUpdate": "Ricarica per Aggiornare"
   },
   "home": {
-    "title": "Benvenuto su Fung.es",
-    "subtitle": "Il tuo compagno di raccolta alimentato dall'IA",
-    "description": "Scopri e impara sui cibi selvatici con l'aiuto dell'intelligenza artificiale",
-    "getStarted": "Inizia",
-    "learnMore": "Scopri di più"
+    "title": "Funges",
+    "headline": "Esplora ciò che cresce intorno a te",
+    "description": "Previsioni di raccolta, mappe delle specie, identificazione da foto privata e ricette selvatiche.",
+    "cta": "Esplora la mappa",
+    "ctaSecondary": "Cosa è di stagione",
+    "forecast": {
+      "label": "Previsione",
+      "heading": "Vale la pena uscire oggi?",
+      "body": "Sapere dove e quando le condizioni sono buone.",
+      "link": "Apri la previsione"
+    },
+    "identify": {
+      "label": "Identifica",
+      "heading": "Cosa hai trovato?",
+      "body": "Identifica funghi e piante in privato, sul tuo dispositivo.",
+      "link": "Prova l'identificazione"
+    },
+    "cook": {
+      "label": "Cucina",
+      "heading": "Di nuovo a casa",
+      "body": "Trasforma ciò che trovi in ricette selvatiche.",
+      "link": "Sfoglia le ricette"
+    },
+    "closing": {
+      "heading": "Pronto a esplorare?",
+      "cta": "Apri la mappa"
+    },
+    "coverage": "Le previsioni coprono attualmente il Nord e il Sud Europa e l'Est e l'Ovest degli Stati Uniti."
   },
   "worthForagingNow": {
     "title": "Cosa vale la pena raccogliere adesso?",

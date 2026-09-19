@@ -74,7 +74,8 @@
     "topographic": {
       "name": "Topografico",
       "description": "Stile mappa escursionistica calda con sentieri e tracciati visibili."
-    }
+    },
+    "relief": "Ombreggiatura del rilievo"
   },
   "getLocation": "Ottieni la Mia Posizione",
   "toggleNumbers": "Attiva/Disattiva Numeri",

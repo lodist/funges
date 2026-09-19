@@ -33,6 +33,8 @@ import {
 } from '@/lib/offline-packages';
 import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
+import { prefersReducedMotion } from '@/lib/motion';
+import { isLandingPath, navHistory } from '@/lib/nav-history';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -88,6 +90,25 @@ const ROUTE_SEGMENT_PAUSE_MS = 250;
 const ROUTE_START_MARKER_DELAY_MS = 150;
 const ROUTE_PANEL_REAPPEAR_DELAY_MS = 500;
 const ROUTE_DISH_MOVEMENT_DEBOUNCE_MS = 500;
+// Camera choreography. MapLibre already skips camera animation under
+// prefers-reduced-motion (unless `essential`), so these only shape the motion
+// for users who asked for it.
+// Arrive: the camera starts above the user's region and zooms in to the
+// saved viewport. Region scale is z5.5; a saved zoom close to that starts a
+// few levels further out so there is always a visible descent.
+const ARRIVE_REGION_ZOOM = 5.5;
+const ARRIVE_MIN_GAP = 2.5;
+const ARRIVE_DURATION_MS = 2200;
+const CAMERA_EASE_MS = 900;
+const ROUTE_PITCH = 45;
+const ROUTE_FIT_MS = 1000;
+const ROUTE_FIT_MAX_ZOOM = 13;
+
+// Module-level, so it survives the map unmounting between routes: the fly-in
+// plays on the first map of a session (PWA start, deep link) and whenever the
+// map is entered from the landing page, by any link or nav item; not on a
+// tab switch back from another app page.
+let arrivedThisSession = false;
 
 function formatLatLngForUrl(coordinate: [number, number]): string {
   return `${coordinate[1]},${coordinate[0]}`;
@@ -184,12 +205,24 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   // while trackUserLocation keeps watching.
   const hasCheckedNearbyFeatures = useRef(false);
   const selectedSpeciesRef = useRef<string | null>(null);
+  const arrivingRef = useRef(false);
+  // The viewport the map was asked to open on. The store can lose it before
+  // 'load': on phones useIsMobile flips false->true after the first render,
+  // the container resizes, and MapLibre's resize fires 'move', which reports
+  // the zoomed-out arrive start back into the store as if the user had moved.
+  const arriveTargetRef = useRef<{
+    center: [number, number];
+    zoom: number;
+  } | null>(null);
+  // The last viewport the camera itself reported into the store. A store value
+  // equal to it is an echo of the camera, not a request to move the camera.
+  const cameraEchoRef = useRef<[number, number, number] | null>(null);
 
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
   const { t: tIdentify } = useTranslation('identify');
   const [isIdentifyOpen, setIsIdentifyOpen] = useState(false);
-  const { setActiveModal } = useUIStore();
+  const { activeModal, setActiveModal } = useUIStore();
   const {
     center,
     zoom,
@@ -355,11 +388,22 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     if (!mapContainer.current || map.current) return;
 
     try {
+      // Arrive: start above the saved (or default) viewport; the load handler
+      // below zooms the camera in to it once the style is ready. The flags are
+      // consumed there, not here: in dev StrictMode this effect runs twice and
+      // the first map is torn down before it ever loads.
+      const arriving =
+        (!arrivedThisSession || isLandingPath(navHistory.previous)) &&
+        !prefersReducedMotion();
+      arrivingRef.current = arriving;
+      arriveTargetRef.current = { center, zoom };
       map.current = new maplibregl.Map({
         container: mapContainer.current,
         style: mapStyle,
         center: center,
-        zoom: zoom,
+        zoom: arriving
+          ? Math.max(3.01, Math.min(ARRIVE_REGION_ZOOM, zoom - ARRIVE_MIN_GAP))
+          : zoom,
         // Basemap tiles are baked to z12 natively; MapLibre overzooms past that
         // (reuses/upscales the z12 tile) so labels/roads keep rendering using the
         // interpolation stops already authored up to z20-22 in the style files.
@@ -495,6 +539,21 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
       // Handle map load
       map.current.on('load', () => {
+        // Read the target before resize(). A deep link that landed in the
+        // store while the style was loading wins; a store value that is only
+        // the camera echoing its own start position does not, and the saved
+        // viewport captured at creation is used instead.
+        const st = useMapStore.getState();
+        const echo = cameraEchoRef.current;
+        const storeIsEcho =
+          !!echo &&
+          st.center[0] === echo[0] &&
+          st.center[1] === echo[1] &&
+          st.zoom === echo[2];
+        const { center: targetCenter, zoom: targetZoom } =
+          storeIsEcho && arriveTargetRef.current
+            ? arriveTargetRef.current
+            : { center: st.center, zoom: st.zoom };
         setMapLoaded(true);
         // 'move' does not fire during initialization, so seed the viewport here
         // or the offline notice falls back to point containment until first pan.
@@ -508,6 +567,26 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         if (map.current) {
           // Force initial resize with correct dimensions
           map.current.resize();
+        }
+
+        // resize() fires 'move', which reports the camera back into the store
+        // and used to overwrite that deep link. Ease to the target instead;
+        // on the first map of the session this is also the arrive animation.
+        if (map.current) {
+          const cam = map.current.getCenter();
+          const offTarget =
+            cam.lng !== targetCenter[0] ||
+            cam.lat !== targetCenter[1] ||
+            map.current.getZoom() !== targetZoom;
+          if (offTarget) {
+            map.current.easeTo({
+              center: targetCenter,
+              zoom: targetZoom,
+              duration: arrivingRef.current ? ARRIVE_DURATION_MS : 0,
+            });
+          }
+          arrivingRef.current = false;
+          arrivedThisSession = true;
         }
 
         // A style switch tears down and recreates the whole map (and, with
@@ -539,8 +618,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       map.current.on('move', () => {
         if (map.current) {
           const center = map.current.getCenter();
+          const currentZoom = map.current.getZoom();
+          cameraEchoRef.current = [center.lng, center.lat, currentZoom];
           setCenter([center.lng, center.lat]);
-          setZoom(map.current.getZoom());
+          setZoom(currentZoom);
           syncViewportBounds();
         }
       });
@@ -579,19 +660,42 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   // Update map when center or zoom changes
   useEffect(() => {
-    if (map.current && mapLoaded) {
-      const currentCenter = map.current.getCenter();
-      const currentZoom = map.current.getZoom();
+    const instance = map.current;
+    if (!instance || !mapLoaded) return;
 
-      if (currentCenter.lng !== center[0] || currentCenter.lat !== center[1]) {
-        map.current.setCenter(center);
-      }
+    const echo = cameraEchoRef.current;
+    if (
+      echo &&
+      echo[0] === center[0] &&
+      echo[1] === center[1] &&
+      echo[2] === zoom
+    )
+      return;
+    const current = instance.getCenter();
+    if (
+      current.lng === center[0] &&
+      current.lat === center[1] &&
+      instance.getZoom() === zoom
+    )
+      return;
 
-      if (currentZoom !== zoom) {
-        map.current.setZoom(zoom);
-      }
-    }
+    // Anything else came from outside the map (a deep link, the offline page,
+    // a recommendation card, the first load's arrive): ease there instead of
+    // teleporting. MapLibre drops the animation itself under reduced motion.
+    instance.easeTo({
+      center,
+      zoom,
+      duration: arrivingRef.current ? ARRIVE_DURATION_MS : CAMERA_EASE_MS,
+    });
+    arrivingRef.current = false;
   }, [center, zoom, mapLoaded]);
+
+  // Deep link from the landing page: /map?identify=true opens the panel.
+  useEffect(() => {
+    if (activeModal !== 'identify') return;
+    setIsIdentifyOpen(true);
+    setActiveModal(null);
+  }, [activeModal, setActiveModal]);
 
   // Update visible layers when species or layer visibility changes
   useEffect(() => {
@@ -607,12 +711,19 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     }
   }, [mapLoaded, updateVisibleLayers, selectedSpecies]);
 
-  // Update visible layers when layer visibility toggles change
+  // Update visible layers when layer visibility toggles change, or when the
+  // connection comes and goes (the relief layer is online-only).
   useEffect(() => {
     if (mapLoaded) {
       updateVisibleLayers();
     }
-  }, [mapLoaded, updateVisibleLayers, darkLayersVisible, numbersLayersVisible]);
+  }, [
+    mapLoaded,
+    updateVisibleLayers,
+    darkLayersVisible,
+    numbersLayersVisible,
+    isOnline,
+  ]);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -841,6 +952,36 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
     return cleanupAnimation;
   }, [activeRoute]);
+
+  // Route camera: frame the whole route with a tilt while it draws, and sit
+  // back flat when it clears. Padding keeps the line clear of the route panel
+  // and the forecast chrome; if a viewport is too small to honour it MapLibre
+  // logs and leaves the camera where it is rather than throwing.
+  useEffect(() => {
+    const instance = map.current;
+    if (!instance || !mapLoaded) return;
+    if (!activeRoute) {
+      if (instance.getPitch() !== 0) {
+        instance.easeTo({ pitch: 0, duration: CAMERA_EASE_MS });
+      }
+      return;
+    }
+    const bounds = new maplibregl.LngLatBounds(
+      activeRoute.start,
+      activeRoute.start
+    );
+    activeRoute.plan.orderedStops.forEach(stop =>
+      bounds.extend(stop.coordinate)
+    );
+    instance.fitBounds(bounds, {
+      padding: isMobile
+        ? { top: 140, bottom: 220, left: 32, right: 32 }
+        : { top: 80, bottom: 160, left: 80, right: 420 },
+      pitch: ROUTE_PITCH,
+      maxZoom: ROUTE_FIT_MAX_ZOOM,
+      duration: ROUTE_FIT_MS,
+    });
+  }, [activeRoute, mapLoaded, isMobile]);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -1153,7 +1294,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </Button>
 
           {/* Map theme selector (Light/Dark/White/Dark Matter/Topographic) */}
-          <MapThemeSelector />
+          <MapThemeSelector isOnline={isOnline} />
 
           {isOnline && (
             <Button

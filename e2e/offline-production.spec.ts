@@ -18,7 +18,7 @@ test('production app shell reloads and switches every map style offline', async 
   page,
   context,
 }) => {
-  await page.goto('/');
+  await page.goto('/map');
   await waitForServiceWorker(page);
   const dismissOnboarding = page.getByRole('button', {
     name: 'Start exploring',

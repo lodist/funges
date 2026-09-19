@@ -74,7 +74,8 @@
     "topographic": {
       "name": "Topográfico",
       "description": "Mapa de senderismo con caminos."
-    }
+    },
+    "relief": "Sombreado del relieve"
   },
   "getLocation": "Obtener mi ubicación",
   "toggleNumbers": "Mostrar números",
