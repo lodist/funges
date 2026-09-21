@@ -41,7 +41,12 @@
     "drawRoute": "Route zeichnen",
     "recipesButton": "Rezepte",
     "openInMaps": "In Google Maps öffnen",
-    "clearRoute": "Route löschen"
+    "clearRoute": "Route löschen",
+    "walkingSummary": "{{distance}} km zu Fuß · {{duration}}",
+    "durationMinutes": "{{minutes}} Min.",
+    "durationHours": "{{hours}} Std. {{minutes}} Min.",
+    "routingPending": "Wanderwege werden gesucht ...",
+    "routingUnavailable": "Keine Wanderwege verfügbar - es werden Luftlinien gezeigt."
   },
   "species": {
     "amaranth": "Amarant",

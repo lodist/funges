@@ -41,7 +41,12 @@
     "drawRoute": "Tracer le trajet",
     "recipesButton": "Recettes",
     "openInMaps": "Ouvrir dans Google Maps",
-    "clearRoute": "Effacer l'itinéraire"
+    "clearRoute": "Effacer l'itinéraire",
+    "walkingSummary": "{{distance}} km à pied · {{duration}}",
+    "durationMinutes": "{{minutes}} min",
+    "durationHours": "{{hours}} h {{minutes}} min",
+    "routingPending": "Recherche de sentiers...",
+    "routingUnavailable": "Aucun sentier disponible : lignes droites affichées."
   },
   "species": {
     "amaranth": "Amarante",

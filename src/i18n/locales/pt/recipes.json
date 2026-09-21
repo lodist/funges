@@ -41,7 +41,12 @@
     "drawRoute": "Traçar rota",
     "recipesButton": "Receitas",
     "openInMaps": "Abrir no Google Maps",
-    "clearRoute": "Limpar rota"
+    "clearRoute": "Limpar rota",
+    "walkingSummary": "{{distance}} km a pé · {{duration}}",
+    "durationMinutes": "{{minutes}} min",
+    "durationHours": "{{hours}} h {{minutes}} min",
+    "routingPending": "A procurar trilhos...",
+    "routingUnavailable": "Sem trilhos disponíveis - a mostrar linhas retas."
   },
   "species": {
     "amaranth": "Amaranto",
