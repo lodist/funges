@@ -1,21 +1,28 @@
 /**
- * Real walking geometry for a Route-to-Dish plan.
+ * Real routed geometry and travel times for a Route-to-Dish plan.
  *
  * The plan itself — which stops, in which order — is still computed offline from
  * the forecast tiles. Only the LINE between those stops comes from here, so a
  * blocked, slow, or offline router degrades to the straight lines this feature
  * drew before rather than breaking the route.
  *
- * Default host is FOSSGIS's public OSRM foot profile, the same service
- * openstreetmap.org routes with: no key, CORS-enabled, fair use. Point
- * `VITE_ROUTING_URL` at another OSRM deployment if traffic ever outgrows that.
+ * Default host is FOSSGIS's public OSRM, the same service openstreetmap.org
+ * routes with: no key, CORS-enabled, fair use. Point `VITE_ROUTING_URL` at
+ * another OSRM deployment if traffic ever outgrows that.
  */
 
 import type { LngLat } from '@/lib/geo';
 
 const ROUTER_BASE_URL =
-  import.meta.env.VITE_ROUTING_URL ||
-  'https://routing.openstreetmap.de/routed-foot/route/v1/foot';
+  import.meta.env.VITE_ROUTING_URL || 'https://routing.openstreetmap.de';
+
+export type RouteProfile = 'foot' | 'car';
+
+/** FOSSGIS runs one OSRM instance per profile, each with its own path. */
+const PROFILE_PATHS: Record<RouteProfile, string> = {
+  foot: 'routed-foot/route/v1/foot',
+  car: 'routed-car/route/v1/driving',
+};
 
 const REQUEST_TIMEOUT_MS = 12_000;
 
@@ -78,10 +85,10 @@ interface OsrmResponse {
 const routeCache = new Map<string, WalkingRoute>();
 const inFlight = new Map<string, Promise<WalkingRoute | null>>();
 
-function cacheKey(waypoints: LngLat[]): string {
-  return waypoints
+function cacheKey(profile: RouteProfile, waypoints: LngLat[]): string {
+  return `${profile}:${waypoints
     .map(([lng, lat]) => `${lng.toFixed(5)},${lat.toFixed(5)}`)
-    .join(';');
+    .join(';')}`;
 }
 
 function rememberRoute(key: string, route: WalkingRoute): void {
@@ -114,27 +121,57 @@ function joinStepGeometry(leg: OsrmLeg): LngLat[] {
 }
 
 /**
- * Fetch walking geometry through every waypoint in order.
+ * Walking geometry through every waypoint in order — the line that is drawn.
  *
  * Resolves to `null` — never rejects — for every failure mode the caller treats
  * identically: offline, rate-limited, timed out, or no walkable route exists.
  */
-export async function fetchWalkingRoute(
+export function fetchWalkingRoute(
   waypoints: LngLat[],
   signal?: AbortSignal
 ): Promise<WalkingRoute | null> {
-  if (waypoints.length < 2 || waypoints.length > MAX_WAYPOINTS) return null;
+  return fetchRoute('foot', waypoints, signal);
+}
 
-  const key = cacheKey(waypoints);
+/**
+ * How long the same stops take by car, as numbers only.
+ *
+ * Most foraging trips start with a drive, so the walking figure alone answers
+ * half the question. The car route is never drawn — it would follow roads the
+ * forager does not walk — so this asks for no geometry, which keeps the extra
+ * request under a kilobyte.
+ */
+export async function fetchDrivingSummary(
+  waypoints: LngLat[],
+  signal?: AbortSignal
+): Promise<{ distanceMeters: number; durationSeconds: number } | null> {
+  const route = await fetchRoute('car', waypoints, signal);
+  if (!route) return null;
+  return {
+    distanceMeters: route.distanceMeters,
+    durationSeconds: route.durationSeconds,
+  };
+}
+
+function fetchRoute(
+  profile: RouteProfile,
+  waypoints: LngLat[],
+  signal?: AbortSignal
+): Promise<WalkingRoute | null> {
+  if (waypoints.length < 2 || waypoints.length > MAX_WAYPOINTS) {
+    return Promise.resolve(null);
+  }
+
+  const key = cacheKey(profile, waypoints);
   const cached = routeCache.get(key);
-  if (cached) return cached;
+  if (cached) return Promise.resolve(cached);
 
   // React re-runs effects in development StrictMode; without this the same
   // route is requested twice from a fair-use public service on every draw.
   const pending = inFlight.get(key);
   if (pending) return pending;
 
-  const request = requestRoute(waypoints, key, signal).finally(() => {
+  const request = requestRoute(profile, waypoints, key, signal).finally(() => {
     inFlight.delete(key);
   });
   inFlight.set(key, request);
@@ -142,6 +179,7 @@ export async function fetchWalkingRoute(
 }
 
 async function requestRoute(
+  profile: RouteProfile,
   waypoints: LngLat[],
   key: string,
   signal?: AbortSignal
@@ -149,7 +187,9 @@ async function requestRoute(
   const path = waypoints
     .map(([lng, lat]) => `${lng.toFixed(6)},${lat.toFixed(6)}`)
     .join(';');
-  const url = `${ROUTER_BASE_URL}/${path}?overview=false&geometries=geojson&steps=true&alternatives=false`;
+  // Steps carry the drawn geometry, so only the walking route pays for them.
+  const steps = profile === 'foot';
+  const url = `${ROUTER_BASE_URL}/${PROFILE_PATHS[profile]}/${path}?overview=false&geometries=geojson&steps=${steps}&alternatives=false`;
 
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);

@@ -24,6 +24,12 @@ export interface RouteSummary {
   status: 'pending' | 'routed' | 'straight';
   distanceKm: number;
   durationMinutes: number | null;
+  /**
+   * The same stops by car, when the driving router answered. Independent of
+   * `status`: the drive figure arrives on its own request and its own clock,
+   * and a walking route that fell back to straight lines can still have one.
+   */
+  drive?: { distanceKm: number; durationMinutes: number } | null;
 }
 
 interface RouteToDishPanelProps {
@@ -57,7 +63,7 @@ export default function RouteToDishPanel({
   const getSpeciesLabel = (speciesId: string) =>
     t(`species.${speciesId}`, { defaultValue: speciesId });
 
-  const formatWalkDuration = (minutes: number) =>
+  const formatDuration = (minutes: number) =>
     minutes < 60
       ? t('routePanel.durationMinutes', { minutes })
       : t('routePanel.durationHours', {
@@ -173,19 +179,32 @@ export default function RouteToDishPanel({
                       })}
                     </p>
                     {isSelected && activeRouteSummary ? (
-                      <p className='mt-0.5 text-xs text-primary-text'>
-                        {activeRouteSummary.status === 'pending'
-                          ? t('routePanel.routingPending')
-                          : activeRouteSummary.status === 'straight'
-                            ? t('routePanel.routingUnavailable')
-                            : t('routePanel.walkingSummary', {
-                                distance:
-                                  activeRouteSummary.distanceKm.toFixed(1),
-                                duration: formatWalkDuration(
-                                  activeRouteSummary.durationMinutes ?? 0
-                                ),
-                              })}
-                      </p>
+                      <>
+                        <p className='mt-0.5 text-xs text-primary-text'>
+                          {activeRouteSummary.status === 'pending'
+                            ? t('routePanel.routingPending')
+                            : activeRouteSummary.status === 'straight'
+                              ? t('routePanel.routingUnavailable')
+                              : t('routePanel.walkingSummary', {
+                                  distance:
+                                    activeRouteSummary.distanceKm.toFixed(1),
+                                  duration: formatDuration(
+                                    activeRouteSummary.durationMinutes ?? 0
+                                  ),
+                                })}
+                        </p>
+                        {activeRouteSummary.drive ? (
+                          <p className='mt-0.5 text-xs text-muted-foreground'>
+                            {t('routePanel.drivingSummary', {
+                              distance:
+                                activeRouteSummary.drive.distanceKm.toFixed(1),
+                              duration: formatDuration(
+                                activeRouteSummary.drive.durationMinutes
+                              ),
+                            })}
+                          </p>
+                        ) : null}
+                      </>
                     ) : null}
                   </div>
                   <Badge

@@ -46,7 +46,8 @@
     "durationMinutes": "{{minutes}} min",
     "durationHours": "{{hours}} h {{minutes}} min",
     "routingPending": "Finding walking paths...",
-    "routingUnavailable": "No walking paths available - showing straight lines."
+    "routingUnavailable": "No walking paths available - showing straight lines.",
+    "drivingSummary": "{{distance}} km by car · {{duration}}"
   },
   "species": {
     "amaranth": "Amaranth",

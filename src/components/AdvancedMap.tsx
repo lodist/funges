@@ -65,7 +65,11 @@ import {
   type RouteDishPlan,
   type RouteDishResult,
 } from '@/lib/route-to-dish';
-import { fetchWalkingRoute, sliceAlongPath } from '@/lib/route-directions';
+import {
+  fetchDrivingSummary,
+  fetchWalkingRoute,
+  sliceAlongPath,
+} from '@/lib/route-directions';
 
 // MapLibre v6 ships its worker as a separate ES module. Vite must bundle it
 // explicitly so the worker and its shared chunk resolve in production.
@@ -205,6 +209,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     [number, number][]
   >([]);
   const [routePath, setRoutePath] = useState<RoutePathState | null>(null);
+  const [driveSummary, setDriveSummary] = useState<{
+    distanceKm: number;
+    durationMinutes: number;
+  } | null>(null);
   const [showAnimatedRouteStart, setShowAnimatedRouteStart] = useState(false);
   const [visibleAnimatedStopCount, setVisibleAnimatedStopCount] = useState(0);
   const isMobile = useIsMobile();
@@ -300,6 +308,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         status: routePath.status,
         distanceKm: routePath.distanceKm,
         durationMinutes: routePath.durationMinutes,
+        drive: driveSummary,
       }
     : null;
   const openActiveRouteInGoogleMaps = useCallback(() => {
@@ -840,6 +849,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   useEffect(() => {
     if (!activeRoute) {
       setRoutePath(null);
+      setDriveSummary(null);
       return;
     }
 
@@ -878,6 +888,18 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         offTrail: route.offTrail,
         distanceKm: route.distanceMeters / 1000,
         durationMinutes: Math.round(route.durationSeconds / 60),
+      });
+    });
+
+    // Deliberately not awaited alongside the walking route: the drive figure is
+    // a number in the panel, and holding the line's animation for a second
+    // request would make the map feel slower to buy nothing.
+    setDriveSummary(null);
+    fetchDrivingSummary(waypoints, controller.signal).then(drive => {
+      if (cancelled || !drive) return;
+      setDriveSummary({
+        distanceKm: drive.distanceMeters / 1000,
+        durationMinutes: Math.round(drive.durationSeconds / 60),
       });
     });
 

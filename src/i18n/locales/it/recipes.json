@@ -46,7 +46,8 @@
     "durationMinutes": "{{minutes}} min",
     "durationHours": "{{hours}} h {{minutes}} min",
     "routingPending": "Ricerca dei sentieri...",
-    "routingUnavailable": "Nessun sentiero disponibile: vengono mostrate linee rette."
+    "routingUnavailable": "Nessun sentiero disponibile: vengono mostrate linee rette.",
+    "drivingSummary": "{{distance}} km in auto · {{duration}}"
   },
   "species": {
     "amaranth": "Amaranto",

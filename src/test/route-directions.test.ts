@@ -1,5 +1,9 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { fetchWalkingRoute, sliceAlongPath } from '@/lib/route-directions';
+import {
+  fetchDrivingSummary,
+  fetchWalkingRoute,
+  sliceAlongPath,
+} from '@/lib/route-directions';
 
 const START: [number, number] = [7.0, 47.0];
 const STOP_A: [number, number] = [7.01, 47.0];
@@ -79,6 +83,38 @@ describe('fetchWalkingRoute', () => {
         [1.1, 1.1],
       ])
     ).resolves.toBeNull();
+  });
+});
+
+describe('fetchDrivingSummary', () => {
+  it('asks the car profile for numbers only and returns them', async () => {
+    let requestedUrl = '';
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (url: string) => {
+        requestedUrl = url;
+        return {
+          ok: true,
+          json: async () => ({
+            code: 'Ok',
+            routes: [{ distance: 28_700, duration: 4080, legs: [{}, {}] }],
+            waypoints: [{ distance: 4 }, { distance: 9 }, { distance: 2 }],
+          }),
+        };
+      })
+    );
+
+    const drive = await fetchDrivingSummary([
+      [2, 2],
+      [2.1, 2.1],
+      [2.2, 2.2],
+    ]);
+
+    expect(drive).toEqual({ distanceMeters: 28_700, durationSeconds: 4080 });
+
+    expect(requestedUrl).toContain('routed-car/route/v1/driving');
+    // Geometry is never drawn for the drive, so it must not be requested.
+    expect(requestedUrl).toContain('steps=false');
   });
 });
 

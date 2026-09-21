@@ -46,7 +46,8 @@
     "durationMinutes": "{{minutes}} Min.",
     "durationHours": "{{hours}} Std. {{minutes}} Min.",
     "routingPending": "Wanderwege werden gesucht ...",
-    "routingUnavailable": "Keine Wanderwege verfügbar - es werden Luftlinien gezeigt."
+    "routingUnavailable": "Keine Wanderwege verfügbar - es werden Luftlinien gezeigt.",
+    "drivingSummary": "{{distance}} km mit dem Auto · {{duration}}"
   },
   "species": {
     "amaranth": "Amarant",
