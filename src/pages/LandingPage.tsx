@@ -55,7 +55,7 @@ export default function LandingPage() {
         description={t('home.description')}
         canonicalUrl={base}
       />
-      <div className='-mx-4 -mt-4 bg-background'>
+      <div className='bg-background'>
         {/* Hero */}
         <section className='relative isolate overflow-hidden'>
           {/* Map box: the pin lives inside it, anchored at a score cell of the
@@ -113,7 +113,7 @@ export default function LandingPage() {
 
           {/* Phone: one screen, terrain above, message below, nothing under the
               nav bar. Desktop: the copy sits beside the map. */}
-          <div className='mx-auto flex min-h-[calc(100dvh-var(--mobile-navbar-height))] max-w-6xl flex-col px-6 pt-10 md:min-h-[88dvh] md:justify-center md:pt-0'>
+          <div className='flex min-h-[calc(100dvh-var(--mobile-navbar-height))] flex-col px-6 pt-10 md:min-h-[88dvh] md:justify-center md:px-12 md:pt-0 xl:px-20 2xl:px-28'>
             <div className='max-w-xl md:max-w-md xl:max-w-xl'>
               <img
                 src={`${base}icons/logo_funges.png`}

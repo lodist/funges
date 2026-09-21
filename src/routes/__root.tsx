@@ -21,6 +21,10 @@ function RootComponent() {
   const isMapPage =
     location.pathname.replace(/\/+$/, '') ===
     `${import.meta.env.BASE_URL}map`.replace(/\/+$/, '');
+  // The landing page is the other full-bleed route: no sidebar, no padding.
+  const isLandingPage =
+    location.pathname.replace(/\/+$/, '') ===
+    import.meta.env.BASE_URL.replace(/\/+$/, '');
   const mainRef = useRef<HTMLDivElement>(null);
   const [hideNavbar, setHideNavbar] = useState(false);
   const lastScrollYRef = useRef(0);
@@ -51,7 +55,7 @@ function RootComponent() {
       <TooltipProvider>
         <div className='app-root h-screen flex flex-col'>
           <SidebarProvider defaultOpen={!isMobile}>
-            {!isMobile && <AppSidebar />}
+            {!isMobile && !isLandingPage && <AppSidebar />}
             <SidebarInset>
               <main
                 ref={mainRef}
@@ -61,7 +65,7 @@ function RootComponent() {
                   className={
                     isMobile && isMapPage
                       ? 'h-full bg-background'
-                      : `p-4 bg-background ${isMobile ? 'mobile-navbar-spacing' : ''}`
+                      : `bg-background ${isLandingPage ? '' : 'p-4'} ${isMobile ? 'mobile-navbar-spacing' : ''}`
                   }
                 >
                   {/* Mobile pages get extra bottom padding to account for fixed navbar */}
