@@ -14,3 +14,17 @@
  * them.
  */
 export const NAV_SURFACE_CLASS = 'elevation-raised glass-regular';
+
+/**
+ * Apple-only exception to the above: `MobileNavbar` swaps to this on Apple
+ * mobile devices (iPhone/iPadOS), detected via `useIsAppleMobile` /
+ * `isAppleMobileDevice` in `src/lib/platform.ts` — never via `@supports` or
+ * `@media` alone, since Android and desktop browsers also support
+ * `backdrop-filter` and must keep the cross-platform Glass-regular look.
+ *
+ * CONTEXT.md's Glass entry says the design system is "inspired by" Apple's
+ * Liquid Glass, not implementing it, as a deliberate cross-platform stance.
+ * This constant is a scoped, explicit carve-out from that stance for the
+ * mobile nav bar only — `AppSidebar` never picks it up.
+ */
+export const NAV_SURFACE_CLASS_LIQUID = 'elevation-raised glass-liquid';
