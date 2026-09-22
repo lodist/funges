@@ -267,7 +267,8 @@
   // near-invisible chrome.
   // ---------------------------------------------------------------------
   .glass-regular,
-  .glass-clear {
+  .glass-clear,
+  .glass-liquid {
     border: 1px solid var(--glass-border);
     // Shares --glass-highlight with the --elevation-* tokens: on glass it
     // stands in for Liquid Glass's specular edge. Carried on the top border
@@ -284,6 +285,16 @@
     background-color: var(--glass-bg-clear-opaque);
   }
 
+  // Apple-only Liquid Glass treatment for the mobile nav bar — gated in JS
+  // via isAppleMobileDevice()/useIsAppleMobile() (src/lib/platform.ts), never
+  // by this @supports block alone: Android and desktop browsers also support
+  // backdrop-filter and must stay on .glass-regular. See NAV_SURFACE_CLASS_LIQUID
+  // in nav-surface.ts for the scoped exception this carves out of CONTEXT.md's
+  // "inspired by, not implementing" Glass stance.
+  .glass-liquid {
+    background-color: var(--glass-bg-liquid-opaque);
+  }
+
   @supports (backdrop-filter: blur(1px)) {
     .glass-regular {
       background-color: var(--glass-bg-regular);
@@ -295,6 +306,12 @@
     .glass-clear {
       background-color: var(--glass-bg-clear);
       backdrop-filter: blur(var(--glass-blur-clear));
+    }
+
+    .glass-liquid {
+      background-color: var(--glass-bg-liquid);
+      backdrop-filter: blur(var(--glass-blur-liquid))
+        saturate(var(--glass-saturate-liquid));
     }
   }
 
@@ -308,6 +325,11 @@
 
     .glass-clear {
       background-color: var(--glass-bg-clear-opaque);
+      backdrop-filter: none;
+    }
+
+    .glass-liquid {
+      background-color: var(--glass-bg-liquid-opaque);
       backdrop-filter: none;
     }
   }
