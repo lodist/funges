@@ -57,7 +57,9 @@ import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import MapInfoCard from '@/components/MapInfoCard';
-import RouteToDishPanel from '@/components/RouteToDishPanel';
+import RouteToDishPanel, {
+  type RouteSummary,
+} from '@/components/RouteToDishPanel';
 import ForecastSlider from '@/components/ForecastSlider';
 import { useRecipesData } from '@/data/recipes';
 import {
@@ -65,6 +67,11 @@ import {
   type RouteDishPlan,
   type RouteDishResult,
 } from '@/lib/route-to-dish';
+import {
+  fetchDrivingSummary,
+  fetchWalkingRoute,
+  sliceAlongPath,
+} from '@/lib/route-directions';
 
 // MapLibre v6 ships its worker as a separate ES module. Vite must bundle it
 // explicitly so the worker and its shared chunk resolve in production.
@@ -83,6 +90,8 @@ const CONTINENTS: OfflineContinent[] = ['eu', 'us'];
 
 const ROUTE_SOURCE_ID = 'route-to-dish-line';
 const ROUTE_LAYER_ID = 'route-to-dish-line-layer';
+const ROUTE_OFF_TRAIL_SOURCE_ID = 'route-to-dish-off-trail';
+const ROUTE_OFF_TRAIL_LAYER_ID = 'route-to-dish-off-trail-layer';
 const MIN_SCORE_DEFAULT = 5.5;
 const DEFAULT_RADIUS_KM = 30;
 const ROUTE_SEGMENT_ANIMATION_MS = 750;
@@ -150,6 +159,39 @@ interface ActiveRouteState {
   start: [number, number];
 }
 
+/**
+ * The geometry actually drawn for the active route.
+ *
+ * Kept separate from the plan because the plan is derived offline from forecast
+ * tiles while this may come from the network: `pending` is the gap between the
+ * two, and `straight` is what we fall back to when the router cannot answer.
+ */
+interface RoutePathState {
+  status: 'pending' | 'routed' | 'straight';
+  /** One coordinate array per hop: start → stop 1, stop 1 → stop 2, ... */
+  legs: [number, number][][];
+  /**
+   * Stop → nearest path, index-aligned with the waypoints and null where the
+   * router snapped close enough for the difference not to matter.
+   */
+  offTrail: Array<[[number, number], [number, number]] | null>;
+  distanceKm: number;
+  durationMinutes: number | null;
+}
+
+function buildStraightPath(
+  waypoints: [number, number][],
+  distanceKm: number
+): RoutePathState {
+  return {
+    status: 'straight',
+    legs: waypoints.slice(1).map((to, index) => [waypoints[index], to]),
+    offTrail: [],
+    distanceKm,
+    durationMinutes: null,
+  };
+}
+
 function closeRoutePanel(
   setIsRoutePanelOpen: React.Dispatch<React.SetStateAction<boolean>>,
   setActiveRoute: React.Dispatch<React.SetStateAction<ActiveRouteState | null>>
@@ -187,6 +229,11 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const [animatedRouteCoordinates, setAnimatedRouteCoordinates] = useState<
     [number, number][]
   >([]);
+  const [routePath, setRoutePath] = useState<RoutePathState | null>(null);
+  const [driveSummary, setDriveSummary] = useState<{
+    distanceKm: number;
+    durationMinutes: number;
+  } | null>(null);
   const [showAnimatedRouteStart, setShowAnimatedRouteStart] = useState(false);
   const [visibleAnimatedStopCount, setVisibleAnimatedStopCount] = useState(0);
   const isMobile = useIsMobile();
@@ -289,6 +336,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     species: recipe.species,
   }));
   const selectedRouteRecipeId = activeRoute?.plan.recipeId ?? null;
+  const activeRouteSummary: RouteSummary | null = routePath
+    ? {
+        status: routePath.status,
+        distanceKm: routePath.distanceKm,
+        durationMinutes: routePath.durationMinutes,
+        drive: driveSummary,
+      }
+    : null;
   const openActiveRouteInGoogleMaps = useCallback(() => {
     if (!activeRoute) return;
     window.open(getGoogleMapsDirectionsUrl(activeRoute), '_blank');
@@ -821,6 +876,30 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         },
       });
     }
+
+    if (!map.current.getSource(ROUTE_OFF_TRAIL_SOURCE_ID)) {
+      map.current.addSource(ROUTE_OFF_TRAIL_SOURCE_ID, {
+        type: 'geojson',
+        data: emptyRoute,
+      });
+    }
+
+    // Dashed, because these stubs are the honest part of the route: a foraging
+    // stop is a forecast cell, not an address, and the last stretch to one
+    // often has no path at all. Drawing it solid would claim a way exists.
+    if (!map.current.getLayer(ROUTE_OFF_TRAIL_LAYER_ID)) {
+      map.current.addLayer({
+        id: ROUTE_OFF_TRAIL_LAYER_ID,
+        type: 'line',
+        source: ROUTE_OFF_TRAIL_SOURCE_ID,
+        paint: {
+          'line-color': '#800020',
+          'line-width': 3,
+          'line-opacity': 0.7,
+          'line-dasharray': [1, 1.5],
+        },
+      });
+    }
   }, [mapLoaded]);
 
   useEffect(() => {
@@ -850,7 +929,101 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   }, [animatedRouteCoordinates, mapLoaded]);
 
   useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+
+    const source = map.current.getSource(ROUTE_OFF_TRAIL_SOURCE_ID) as
+      | maplibregl.GeoJSONSource
+      | undefined;
+    if (!source) return;
+
+    // Index-aligned with the waypoints, so slicing by the stop reveal count
+    // keeps a connector from appearing before the stop it belongs to.
+    const visibleOffTrail = showAnimatedRouteStart
+      ? (routePath?.offTrail ?? [])
+          .slice(0, visibleAnimatedStopCount + 1)
+          .flatMap(connector => (connector ? [connector] : []))
+      : [];
+
+    source.setData({
+      type: 'FeatureCollection',
+      features: visibleOffTrail.map(connector => ({
+        type: 'Feature',
+        geometry: { type: 'LineString', coordinates: connector },
+        properties: {},
+      })),
+    });
+  }, [routePath, mapLoaded, showAnimatedRouteStart, visibleAnimatedStopCount]);
+
+  // Ask the router for real walking geometry before anything is drawn, so the
+  // line animates once along the paths instead of snapping from straight to
+  // routed halfway through.
+  useEffect(() => {
     if (!activeRoute) {
+      setRoutePath(null);
+      setDriveSummary(null);
+      return;
+    }
+
+    const waypoints: [number, number][] = [
+      activeRoute.start,
+      ...activeRoute.plan.orderedStops.map(stop => stop.coordinate),
+    ];
+    const straightPath = buildStraightPath(
+      waypoints,
+      activeRoute.plan.estimatedDistanceKm
+    );
+
+    if (waypoints.length < 2) {
+      setRoutePath(straightPath);
+      return;
+    }
+
+    let cancelled = false;
+    const controller = new AbortController();
+
+    setRoutePath({ ...straightPath, status: 'pending' });
+
+    // fetchWalkingRoute resolves to null rather than rejecting, so every
+    // failure mode lands on the same straight-line fallback.
+    fetchWalkingRoute(waypoints, controller.signal).then(route => {
+      if (cancelled) return;
+
+      if (!route) {
+        setRoutePath(straightPath);
+        return;
+      }
+
+      setRoutePath({
+        status: 'routed',
+        legs: route.legs.map(leg => leg.coordinates),
+        offTrail: route.offTrail,
+        distanceKm: route.distanceMeters / 1000,
+        durationMinutes: Math.round(route.durationSeconds / 60),
+      });
+    });
+
+    // Deliberately not awaited alongside the walking route: the drive figure is
+    // a number in the panel, and holding the line's animation for a second
+    // request would make the map feel slower to buy nothing.
+    setDriveSummary(null);
+    fetchDrivingSummary(waypoints, controller.signal).then(drive => {
+      if (cancelled || !drive) return;
+      setDriveSummary({
+        distanceKm: drive.distanceMeters / 1000,
+        durationMinutes: Math.round(drive.durationSeconds / 60),
+      });
+    });
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, [activeRoute]);
+
+  useEffect(() => {
+    if (!routePath || routePath.status === 'pending') {
+      // Not `true` while pending: the panel is hidden during the animation, and
+      // hiding it for a network round trip too would look like a stall.
       setIsRouteAnimating(false);
       setAnimatedRouteCoordinates([]);
       setShowAnimatedRouteStart(false);
@@ -858,10 +1031,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       return;
     }
 
-    const routeCoordinates = [
-      activeRoute.start,
-      ...activeRoute.plan.orderedStops.map(stop => stop.coordinate),
-    ];
+    const legs = routePath.legs;
 
     let cancelled = false;
     let frameId: number | null = null;
@@ -875,10 +1045,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       timeoutIds.forEach(timeoutId => window.clearTimeout(timeoutId));
     };
 
-    const animateSegment = (segmentIndex: number) => {
+    const animateLeg = (legIndex: number) => {
       if (cancelled) return;
 
-      if (segmentIndex >= routeCoordinates.length - 1) {
+      if (legIndex >= legs.length) {
         timeoutIds.push(
           window.setTimeout(() => {
             if (!cancelled) {
@@ -889,9 +1059,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         return;
       }
 
-      const from = routeCoordinates[segmentIndex];
-      const to = routeCoordinates[segmentIndex + 1];
-      const completedCoordinates = routeCoordinates.slice(0, segmentIndex + 1);
+      const leg = legs[legIndex];
+      const completedCoordinates = legs.slice(0, legIndex).flat();
       let startedAt: number | null = null;
 
       const step = (timestamp: number) => {
@@ -905,14 +1074,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           (timestamp - startedAt) / ROUTE_SEGMENT_ANIMATION_MS,
           1
         );
-        const interpolatedCoordinate: [number, number] = [
-          from[0] + (to[0] - from[0]) * progress,
-          from[1] + (to[1] - from[1]) * progress,
-        ];
 
+        // Sliced by length, not by vertex: a routed leg bunches vertices at
+        // junctions, and one vertex per frame would crawl through them.
         setAnimatedRouteCoordinates([
           ...completedCoordinates,
-          interpolatedCoordinate,
+          ...sliceAlongPath(leg, progress),
         ]);
 
         if (progress < 1) {
@@ -920,14 +1087,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           return;
         }
 
-        setAnimatedRouteCoordinates(
-          routeCoordinates.slice(0, segmentIndex + 2)
-        );
-        setVisibleAnimatedStopCount(segmentIndex + 1);
+        setAnimatedRouteCoordinates(legs.slice(0, legIndex + 1).flat());
+        setVisibleAnimatedStopCount(legIndex + 1);
 
         timeoutIds.push(
           window.setTimeout(() => {
-            animateSegment(segmentIndex + 1);
+            animateLeg(legIndex + 1);
           }, ROUTE_SEGMENT_PAUSE_MS)
         );
       };
@@ -945,13 +1110,15 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         if (cancelled) return;
 
         setShowAnimatedRouteStart(true);
-        setAnimatedRouteCoordinates([routeCoordinates[0]]);
-        animateSegment(0);
+        if (legs.length > 0) {
+          setAnimatedRouteCoordinates([legs[0][0]]);
+        }
+        animateLeg(0);
       }, ROUTE_START_MARKER_DELAY_MS)
     );
 
     return cleanupAnimation;
-  }, [activeRoute]);
+  }, [routePath]);
 
   // Route camera: frame the whole route with a tilt while it draws, and sit
   // back flat when it clears. Padding keeps the line clear of the route panel
@@ -1361,6 +1528,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                   error={routeDishError}
                   isLoading={isRouteDishLoading}
                   selectedRecipeId={selectedRouteRecipeId}
+                  activeRouteSummary={activeRouteSummary}
                   onDrawRoute={plan =>
                     setActiveRoute({
                       plan,
@@ -1391,6 +1559,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                   error={routeDishError}
                   isLoading={isRouteDishLoading}
                   selectedRecipeId={selectedRouteRecipeId}
+                  activeRouteSummary={activeRouteSummary}
                   onDrawRoute={plan =>
                     setActiveRoute({
                       plan,

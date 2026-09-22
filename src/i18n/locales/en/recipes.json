@@ -41,7 +41,13 @@
     "drawRoute": "Draw route",
     "recipesButton": "Recipes",
     "openInMaps": "Open in Google Maps",
-    "clearRoute": "Clear route"
+    "clearRoute": "Clear route",
+    "walkingSummary": "{{distance}} km on foot · {{duration}}",
+    "durationMinutes": "{{minutes}} min",
+    "durationHours": "{{hours}} h {{minutes}} min",
+    "routingPending": "Finding walking paths...",
+    "routingUnavailable": "No walking paths available - showing straight lines.",
+    "drivingSummary": "{{distance}} km by car · {{duration}}"
   },
   "species": {
     "amaranth": "Amaranth",

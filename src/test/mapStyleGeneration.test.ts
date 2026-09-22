@@ -5,6 +5,8 @@ import path from 'node:path';
 interface StyleLayer {
   id: string;
   source?: string;
+  type?: string;
+  paint?: Record<string, unknown>;
 }
 
 interface Style {
@@ -48,6 +50,43 @@ describe('generated theme style completeness', () => {
     const ids = new Set(style.layers.map(layer => layer.id));
     const missing = REQUIRED_LAYER_IDS.filter(id => !ids.has(id));
     expect(missing).toEqual([]);
+  });
+
+  // Below ~z7 a forecast cell is sub-pixel, and an un-antialiased sub-pixel fill is
+  // all-or-nothing per pixel, so the continent reads as pale speckle. scripts/add-overlay-
+  // to-style.cjs applies LOW_ZOOM_FILL to fix that — but it re-imports the paint verbatim
+  // from the live Mapbox style, so a re-run that lost the transform would silently revert
+  // every theme to the speckle. Assert the ramp is there instead of finding out on the map.
+  it.each([
+    'funges_style.json',
+    'funges_style_dark.json',
+    'funges_style_positron.json',
+    'funges_style_darkmatter.json',
+    'funges_style_topographic.json',
+  ])('%s antialiases and opacifies overlay fills at low zoom', fileName => {
+    const fills = loadStyle(fileName).layers.filter(
+      layer =>
+        layer.type === 'fill' && (layer.source ?? '').startsWith('overlay')
+    );
+    expect(fills.length).toBeGreaterThan(0);
+    for (const layer of fills) {
+      expect(layer.paint?.['fill-antialias']).toEqual([
+        'step',
+        ['zoom'],
+        true,
+        8,
+        false,
+      ]);
+      expect(layer.paint?.['fill-opacity']).toEqual([
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        5,
+        1,
+        8,
+        0.85,
+      ]);
+    }
   });
 
   it('funges_style_topographic.json additionally styles trail/track paths', () => {

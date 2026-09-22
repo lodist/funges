@@ -38,7 +38,10 @@ _Avoid_: hover shadow, lift effect
 
 **Glass**:
 An opt-in translucent, blurred treatment layered on top of an elevation level — never a replacement for one. Restricted to `raised`/`floating` chrome that is small, fixed-size, and not text-heavy; never applied to `base` or `overlay`.
-_Avoid_: backdrop blur, frosted, liquid glass (the last is the Apple design language this is _inspired by_, not implementing)
+_Avoid_: backdrop blur, frosted, liquid glass (the last is the Apple design language this is _inspired by_, not implementing) — **except** `MobileNavbar`'s `glass-liquid` variant (`NAV_SURFACE_CLASS_LIQUID` in `src/lib/nav-surface.ts`), a deliberate, scoped exception that does implement a Liquid Glass approximation, gated to Apple mobile devices only via `isAppleMobileDevice()`/`useIsAppleMobile()` (`src/lib/platform.ts`) rather than an `@supports`/`@media` feature query, since non-Apple browsers also support `backdrop-filter`. `AppSidebar` and every other glass surface keep the cross-platform Glass-regular/Glass-clear treatment.
+
+**Glass-liquid**:
+The Apple-only exception above: more blur and saturation than Glass-regular, paired with a pill shape (`rounded-full`), applied only to `MobileNavbar` and only when `useIsAppleMobile()` is true. Never used on `AppSidebar` or any desktop surface.
 
 **Glass-regular**:
 The glass variant for chrome sitting over text content or the map (e.g. an info card floating over the map).
