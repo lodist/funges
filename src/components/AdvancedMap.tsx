@@ -589,8 +589,17 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         setUserLocationError(null);
       });
 
+      // Also fired when any camera move (a pan, the route-to-dish zoom or
+      // route fit) drops the control from locked to background tracking. The
+      // dot keeps updating then, so only a real switch-off may stop using the
+      // user's location as the route start.
       geolocate.on('trackuserlocationend', () => {
         setIsLoading(false);
+        // ponytail: private field, but the only thing telling OFF from
+        // BACKGROUND here; re-check it on maplibre upgrades.
+        const watchState = (geolocate as unknown as { _watchState?: string })
+          ._watchState;
+        if (watchState !== 'OFF') return;
         setShowUserLocation(false);
         setActiveRoute(null);
       });
