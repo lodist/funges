@@ -51,7 +51,7 @@ export default function OfflineMapsPage() {
     setZoom(
       Math.max(definition.minZoom, Math.min(continentZoom, definition.maxZoom))
     );
-    await navigate({ to: '/' });
+    await navigate({ to: '/map' });
   };
 
   useEffect(() => {

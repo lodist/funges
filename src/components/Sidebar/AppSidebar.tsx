@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from '@tanstack/react-router';
 import {
   Map,
   Database,
@@ -41,7 +42,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
     navMain: [
       {
         title: t('map'),
-        url: `${basePath}`,
+        url: `${basePath}map`,
         icon: Map,
         isActive: true,
       },
@@ -174,11 +175,20 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
           </button>
         ) : (
           <div className='flex items-center gap-2'>
-            <img
-              src='icons/logo_funges.png'
-              alt={t('appName', { defaultValue: 'Funges' })}
-              className='min-w-0 flex-1 object-contain'
-            />
+            {/* Logo = Home everywhere the logo is visible. In the collapsed
+                rail (above) the mark stays the toggle, since it is the only
+                way back out of the rail. */}
+            <Link
+              to='/'
+              className='focus-ring min-w-0 flex-1 rounded-md'
+              aria-label={t('appName', { defaultValue: 'Funges' })}
+            >
+              <img
+                src='icons/logo_funges.png'
+                alt=''
+                className='w-full object-contain'
+              />
+            </Link>
             {!isMobile && <SidebarTrigger className='shrink-0' />}
           </div>
         )}

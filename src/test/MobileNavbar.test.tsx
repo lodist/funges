@@ -78,7 +78,7 @@ describe('MobileNavbar', () => {
     // Everything else (instructions, offline maps, legal pages) is reachable
     // through Settings rather than crowding the bar.
     expect(navLinks()).toEqual([
-      '/',
+      '/map',
       '/worth-foraging-now',
       '/recipes',
       '/species',

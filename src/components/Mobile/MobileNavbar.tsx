@@ -30,7 +30,7 @@ export const ACTIVE_ACCENT_CLASS = 'text-happy-700 dark:text-happy-500';
 const INACTIVE_ACCENT_CLASS =
   'text-muted-foreground hover:text-happy-700 dark:hover:text-happy-500';
 const items = [
-  { url: `${basePath}`, icon: Map },
+  { url: `${basePath}map`, icon: Map },
   { url: `${basePath}worth-foraging-now`, icon: CalendarRange },
   { url: `${basePath}recipes`, icon: ChefHat },
   { url: `${basePath}species`, icon: Database },

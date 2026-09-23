@@ -88,7 +88,7 @@ test('map explains itself when the device goes offline', async ({
   page,
   context,
 }) => {
-  await page.goto('/');
+  await page.goto('/map');
   await expect(page.locator('canvas.maplibregl-canvas')).toBeVisible();
   const dismissOnboarding = page.getByRole('button', {
     name: 'Start exploring',

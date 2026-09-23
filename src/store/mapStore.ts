@@ -63,6 +63,7 @@ export interface MapState {
   darkLayersVisible: boolean; // true when the active style is a dark one
   mapStyleIndex: number; // index into MAP_STYLES (set via setMapStyleIndex)
   numbersLayersVisible: boolean;
+  hillshadeVisible: boolean; // terrain relief shading under the score fills
   activeDay: number; // 0 = today; 1..6 = forecast
 
   // UI state
@@ -97,6 +98,7 @@ export interface MapState {
   syncSelectedSpecies: (species: string | null) => void;
   setMapStyleIndex: (index: number) => void;
   toggleNumbersLayersVisibility: () => void;
+  toggleHillshade: () => void;
   setActiveDay: (day: number) => void;
 
   // Map reference management
@@ -120,6 +122,8 @@ const MAP_STYLES = [
 const DARK_STYLE_INDEXES = new Set([1, 3]); // drives dark UI chrome
 const MAP_CENTER_KEY = 'mapCenter';
 const MAP_ZOOM_KEY = 'mapZoom';
+const HILLSHADE_KEY = 'hillshadeVisible';
+export const HILLSHADE_LAYER_ID = 'hillshade';
 const INITIAL_CENTER: [number, number] = [7.3359, 47.7508];
 
 // Boundaries come from the manifests via species:generate, the same numbers the
@@ -299,6 +303,7 @@ export const useMapStore = create<MapState>()(
       // toggle button + instruction entries are removed but the layers/logic stay wired;
       // re-enable by restoring the button and this localStorage read.
       numbersLayersVisible: false,
+      hillshadeVisible: localStorage.getItem(HILLSHADE_KEY) !== 'false',
       activeDay: 0,
       isLoading: false,
       error: null,
@@ -386,6 +391,12 @@ export const useMapStore = create<MapState>()(
           }, 0);
           return newState;
         }),
+      toggleHillshade: () => {
+        const next = !get().hillshadeVisible;
+        localStorage.setItem(HILLSHADE_KEY, String(next));
+        set({ hillshadeVisible: next });
+        setTimeout(() => get().updateVisibleLayers(), 0);
+      },
       setActiveDay: (day: number) => {
         set({ activeDay: day });
         // Defer so state is committed before layers are re-evaluated (mirrors numbers toggle).
@@ -448,6 +459,7 @@ export const useMapStore = create<MapState>()(
           mapRef,
           selectedSpecies,
           numbersLayersVisible,
+          hillshadeVisible,
           speciesOptions,
           activeDay,
         } = get();
@@ -468,6 +480,19 @@ export const useMapStore = create<MapState>()(
 
         layers.forEach(layer => {
           const id = layer.id;
+
+          // Relief tiles are network-only (a PMTiles archive, not part of any
+          // offline package), so offline the layer is hidden outright rather
+          // than rendering whatever few tiles are still in memory as patchy
+          // terrain. Same source of truth as usePWA's isOnline.
+          if (id === HILLSHADE_LAYER_ID) {
+            mapRef.setLayoutProperty(
+              id,
+              'visibility',
+              hillshadeVisible && navigator.onLine ? 'visible' : 'none'
+            );
+            return;
+          }
 
           const isSpeciesLayer = speciesOptions.some(speciesOption =>
             id.startsWith(speciesOption.code)

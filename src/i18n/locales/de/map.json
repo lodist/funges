@@ -74,7 +74,8 @@
     "topographic": {
       "name": "Topografisch",
       "description": "Warme Wanderkarte mit Wegen."
-    }
+    },
+    "relief": "Reliefschattierung"
   },
   "getLocation": "Meinen Standort ermitteln",
   "toggleNumbers": "Zahlen ein-/ausblenden",

@@ -74,7 +74,8 @@
     "topographic": {
       "name": "Topográfico",
       "description": "Estilo de mapa de trilhas quente com trilhas e caminhos visíveis."
-    }
+    },
+    "relief": "Sombreado do relevo"
   },
   "getLocation": "Obter minha localização",
   "toggleNumbers": "Alternar números",

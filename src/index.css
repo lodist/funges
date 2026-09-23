@@ -174,6 +174,61 @@
   --color-rose-*: initial;
 }
 
+/* Landing hero: a slow drift on the map capture, GPU-only (transform). The
+   global reduced-motion rule in globals.scss collapses it to a still frame. */
+@keyframes hero-drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+.landing-hero-media {
+  /* Ambient, not a state change, so it sits outside the 150/200/300ms scale;
+     the token keeps the value in one place and out of the motion guard's way. */
+  --landing-hero-drift: 40s;
+  animation: hero-drift var(--landing-hero-drift) ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* The terrain is the ground of the landing page, so it has no rectangle:
+   masks fade it into the paper. Phone: a band at the top fading down into
+   the copy. Desktop: the right half, fading in from the left and out at the
+   bottom. */
+.landing-hero-map {
+  mask-image: linear-gradient(to top, #000 55%, transparent 100%);
+}
+@media (min-width: 768px) {
+  .landing-hero-map {
+    mask-image:
+      linear-gradient(to left, #000 45%, transparent 100%),
+      linear-gradient(to top, #000 60%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+  }
+}
+.landing-wash {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 20%,
+    #000 80%,
+    transparent 100%
+  );
+}
+.landing-closing-map {
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 65%);
+}
+/* A row is one link; its pictures lift together on hover, on the same
+   rest/lift pair .elevation-interactive animates between. */
+.landing-row-visual {
+  transition: box-shadow var(--transition-duration-fast) var(--ease-standard);
+}
+.landing-row:hover .landing-row-visual {
+  box-shadow: var(--elevation-lift);
+}
+
 @keyframes collapsible-down {
   from {
     height: 0;

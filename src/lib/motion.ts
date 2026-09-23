@@ -23,3 +23,13 @@ export const DURATION_SLOW = 0.3;
 
 /** `--ease-standard` — `cubic-bezier(0.4, 0, 0.2, 1)` as framer-motion's array form. */
 export const EASE_STANDARD = [0.4, 0, 0.2, 1] as const;
+
+/** The OS reduced-motion preference, for motion that lives outside CSS and
+ *  framer-motion: MapLibre camera moves and the forecast paint tween. */
+export function prefersReducedMotion(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
+}
