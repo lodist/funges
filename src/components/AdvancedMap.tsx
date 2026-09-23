@@ -118,6 +118,11 @@ const ROUTE_FIT_MAX_ZOOM = 13;
 // map is entered from the landing page, by any link or nav item; not on a
 // tab switch back from another app page.
 let arrivedThisSession = false;
+// Stops are read from loaded tiles, so at street zoom only the few tiles on
+// screen are searched and the panel comes back empty. ~z10 puts the whole
+// DEFAULT_RADIUS_KM around the start on screen on a phone.
+const ROUTE_DISH_MAX_OPEN_ZOOM = 10;
+const ROUTE_FIT_MARGIN_PX = 32;
 
 function formatLatLngForUrl(coordinate: [number, number]): string {
   return `${coordinate[1]},${coordinate[0]}`;
@@ -208,6 +213,8 @@ const IdentifyPanel = lazy(() =>
 
 const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
+  const routePanelRef = useRef<HTMLDivElement>(null);
+  const bottomOverlayRef = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
   const geolocateControl = useRef<maplibregl.GeolocateControl | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -353,6 +360,71 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     if (isOnline) return;
     closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
   }, [isOnline]);
+
+  // routeStart deliberately read, not depended on: re-centering on every GPS
+  // tick would fight the user panning around while the panel is open.
+  useEffect(() => {
+    const mapInstance = map.current;
+    if (!isRoutePanelOpen || !mapLoaded || !mapInstance) return;
+    if (mapInstance.getZoom() <= ROUTE_DISH_MAX_OPEN_ZOOM) return;
+    mapInstance.easeTo({ center: routeStart, zoom: ROUTE_DISH_MAX_OPEN_ZOOM });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRoutePanelOpen, mapLoaded]);
+
+  // Fit the whole route into the part of the map the overlays leave visible.
+  // The panel stays mounted (only faded) while the route animates, so its box
+  // is where it will sit once it reappears.
+  useEffect(() => {
+    const mapInstance = map.current;
+    const container = mapContainer.current;
+    if (!routePath || routePath.status === 'pending' || !activeRoute) return;
+    if (!mapInstance || !mapLoaded || !container) return;
+
+    const coordinates: [number, number][] = [
+      activeRoute.start,
+      ...routePath.legs.flat(),
+      ...routePath.offTrail.flatMap(connector => connector ?? []),
+    ];
+    const bounds = coordinates.reduce(
+      (acc, coordinate) => acc.extend(coordinate),
+      new maplibregl.LngLatBounds(coordinates[0], coordinates[0])
+    );
+
+    const box = container.getBoundingClientRect();
+    const panel = routePanelRef.current?.getBoundingClientRect();
+    const bottom = bottomOverlayRef.current?.getBoundingClientRect();
+    const padding = {
+      top: ROUTE_FIT_MARGIN_PX,
+      right: ROUTE_FIT_MARGIN_PX,
+      bottom: ROUTE_FIT_MARGIN_PX,
+      left: ROUTE_FIT_MARGIN_PX,
+    };
+    if (panel) {
+      // A panel spanning most of the width is the phone layout: it blocks the
+      // top. Otherwise it sits at the side and blocks the right.
+      if (panel.width > box.width * 0.6) {
+        padding.top += panel.bottom - box.top;
+      } else {
+        padding.right += box.right - panel.left;
+      }
+    }
+    if (bottom) padding.bottom += Math.max(0, box.bottom - bottom.top);
+
+    // fitBounds refuses to move at all when padding leaves no room; give the
+    // route at least a sliver rather than leaving it off screen.
+    const minVisible = 120;
+    const overflowY = padding.top + padding.bottom + minVisible - box.height;
+    if (overflowY > 0) padding.top = Math.max(0, padding.top - overflowY);
+    const overflowX = padding.left + padding.right + minVisible - box.width;
+    if (overflowX > 0) padding.right = Math.max(0, padding.right - overflowX);
+
+    mapInstance.fitBounds(bounds, {
+      padding,
+      pitch: ROUTE_PITCH,
+      maxZoom: ROUTE_FIT_MAX_ZOOM,
+      duration: ROUTE_FIT_MS,
+    });
+  }, [routePath, activeRoute, mapLoaded]);
 
   useEffect(() => {
     let cancelled = false;
@@ -566,8 +638,17 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         setUserLocationError(null);
       });
 
+      // Also fired when any camera move (a pan, the route-to-dish zoom or
+      // route fit) drops the control from locked to background tracking. The
+      // dot keeps updating then, so only a real switch-off may stop using the
+      // user's location as the route start.
       geolocate.on('trackuserlocationend', () => {
         setIsLoading(false);
+        // ponytail: private field, but the only thing telling OFF from
+        // BACKGROUND here; re-check it on maplibre upgrades.
+        const watchState = (geolocate as unknown as { _watchState?: string })
+          ._watchState;
+        if (watchState !== 'OFF') return;
         setShowUserLocation(false);
         setActiveRoute(null);
       });
@@ -1120,35 +1201,15 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     return cleanupAnimation;
   }, [routePath]);
 
-  // Route camera: frame the whole route with a tilt while it draws, and sit
-  // back flat when it clears. Padding keeps the line clear of the route panel
-  // and the forecast chrome; if a viewport is too small to honour it MapLibre
-  // logs and leaves the camera where it is rather than throwing.
+  // Sit back flat once the route clears; the tilted fit itself happens where
+  // the walking geometry arrives, so it frames the real path.
   useEffect(() => {
     const instance = map.current;
-    if (!instance || !mapLoaded) return;
-    if (!activeRoute) {
-      if (instance.getPitch() !== 0) {
-        instance.easeTo({ pitch: 0, duration: CAMERA_EASE_MS });
-      }
-      return;
+    if (!instance || !mapLoaded || activeRoute) return;
+    if (instance.getPitch() !== 0) {
+      instance.easeTo({ pitch: 0, duration: CAMERA_EASE_MS });
     }
-    const bounds = new maplibregl.LngLatBounds(
-      activeRoute.start,
-      activeRoute.start
-    );
-    activeRoute.plan.orderedStops.forEach(stop =>
-      bounds.extend(stop.coordinate)
-    );
-    instance.fitBounds(bounds, {
-      padding: isMobile
-        ? { top: 140, bottom: 220, left: 32, right: 32 }
-        : { top: 80, bottom: 160, left: 80, right: 420 },
-      pitch: ROUTE_PITCH,
-      maxZoom: ROUTE_FIT_MAX_ZOOM,
-      duration: ROUTE_FIT_MS,
-    });
-  }, [activeRoute, mapLoaded, isMobile]);
+  }, [activeRoute, mapLoaded]);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -1510,7 +1571,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
         {isMobile ? (
           <>
-            <div className='fixed left-4 right-4 bottom-24 z-10 flex flex-col gap-2'>
+            <div
+              ref={bottomOverlayRef}
+              className='fixed left-4 right-4 bottom-24 z-10 flex flex-col gap-2'
+            >
               <ForecastSlider />
               <MapInfoCard />
             </div>
@@ -1520,6 +1584,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 with no transition, which reads as the card closing itself. */}
             {isRoutePanelOpen ? (
               <div
+                ref={routePanelRef}
                 className={`fixed left-3 right-3 top-20 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
               >
                 <RouteToDishPanel
@@ -1546,12 +1611,16 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </>
         ) : (
           <>
-            <div className='absolute bottom-2 left-2 z-10 flex flex-col gap-2 md:w-96'>
+            <div
+              ref={bottomOverlayRef}
+              className='absolute bottom-2 left-2 z-10 flex flex-col gap-2 md:w-96'
+            >
               <ForecastSlider />
               <MapInfoCard />
             </div>
             {isRoutePanelOpen ? (
               <div
+                ref={routePanelRef}
                 className={`absolute top-14 right-16 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
               >
                 <RouteToDishPanel
