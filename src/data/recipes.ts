@@ -154,11 +154,25 @@ export const getRecipeById = (
   return recipes.find(recipe => recipe.id === id);
 };
 
+// Species split out of a catalog entry cook like it, so they borrow its
+// recipes. They are not added to `recipe.species` because route-to-dish reads
+// that list as ingredients that are ALL required: a tart listing four
+// chanterelles would need the US-West and US-East endemics on one walk.
+const RECIPE_BASE_SPECIES: Record<string, string> = {
+  bronze_bolete: 'mushroom',
+  pine_bolete: 'mushroom',
+  summer_bolete: 'mushroom',
+  pacific_chant: 'chant',
+  smooth_chant: 'chant',
+  winter_chant: 'chant',
+};
+
 export const getRecipesBySpecies = (
   speciesId: string,
   recipes: Recipe[]
 ): Recipe[] => {
-  return recipes.filter(recipe => recipe.species.includes(speciesId));
+  const id = RECIPE_BASE_SPECIES[speciesId] ?? speciesId;
+  return recipes.filter(recipe => recipe.species.includes(id));
 };
 
 export const getAllRecipes = (recipes: Recipe[]): Recipe[] => {

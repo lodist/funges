@@ -74,7 +74,7 @@ describe('toxic warning banner', () => {
   it.each([0, 1, 2])(
     'renders when the toxic candidate is at rank %i',
     index => {
-      const names = ['Cantharellus cibarius', 'Boletus', 'Rubus idaeus'];
+      const names = ['Cantharellus cibarius', 'Boletus edulis', 'Rubus idaeus'];
       names[index] = 'Amanita phalloides';
 
       render(
@@ -93,7 +93,7 @@ describe('toxic warning banner', () => {
       <IdentifyResults
         candidates={resolvePredictions([
           p('Cantharellus cibarius'),
-          p('Boletus'),
+          p('Boletus edulis'),
         ])}
       />
     );

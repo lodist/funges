@@ -60,12 +60,15 @@ export const getAllSpecies = (): Species[] => SPECIES_DATA;
 // region is mandatory on purpose: an optional one degraded to "no filter", so a
 // caller that forgot it silently got the all-regions list back (parasol selectable
 // in the US, asparagus in NE). Now that mistake is a type error.
-/** A species the map can show somewhere — the check a URL or saved code must pass. */
-export const isMapSpecies = (code: string | null | undefined): code is string =>
-  !!code && SPECIES_DATA.some(({ id, showOnMap }) => id === code && showOnMap);
-
 export const getSpeciesOptions = (region: ForecastRegion): SpeciesOption[] =>
   SPECIES_DATA.filter(
     ({ showOnMap, forecastRegions }) =>
       showOnMap && forecastRegions?.includes(region)
   ).map(({ id, emoji, category }) => ({ code: id, emoji, category }));
+
+/** Forecast in every region, so it is always a valid map fallback. */
+export const DEFAULT_MAP_SPECIES = 'mushroom';
+
+/** A species the map can show somewhere — the check a URL or saved code must pass. */
+export const isMapSpecies = (code: string | null | undefined): boolean =>
+  !!code && SPECIES_DATA.some(({ id, showOnMap }) => id === code && showOnMap);

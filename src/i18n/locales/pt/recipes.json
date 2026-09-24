@@ -69,13 +69,7 @@
     "garlic_wild": "Alho-selvagem",
     "artichoke": "Alcachofra-selvagem",
     "asparagus": "Aspargo-selvagem",
-    "strawberry": "Morangos-silvestres",
-    "bronze_bolete": "Boleto Bronzeado",
-    "pine_bolete": "Boleto do Pinheiro",
-    "summer_bolete": "Boleto de Verão",
-    "pacific_chant": "Cantarelo do Pacífico",
-    "smooth_chant": "Cantarelo Liso",
-    "winter_chant": "Cantarelo de Inverno"
+    "strawberry": "Morangos-silvestres"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -228,7 +222,7 @@
         "Asse: Leve ao forno a 180°C por 25–30 minutos até dourar.",
         "Sirva: Quente ou fria, ideal para um brunch na floresta."
       ],
-      "species": ["chant", "pacific_chant", "smooth_chant", "winter_chant"],
+      "species": ["chant"],
       "steps": [
         {
           "step": 1,
@@ -338,15 +332,7 @@
         "Finalizar: Acrescente o creme de leite se desejar, ajuste o sal e a pimenta.",
         "Sirva quente, acompanhado de pão rústico ou um fio de azeite de trufa."
       ],
-      "species": [
-        "chestnut",
-        "mushroom",
-        "black_chant",
-        "chant",
-        "bronze_bolete",
-        "pine_bolete",
-        "summer_bolete"
-      ],
+      "species": ["chestnut", "mushroom", "black_chant", "chant"],
       "steps": [
         {
           "step": 1,

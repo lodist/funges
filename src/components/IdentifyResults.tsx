@@ -241,9 +241,9 @@ function CandidateRow({
           open, and a link that lands on an empty list would read as a bug.
 
           Filters by the CATALOG's scientific name, not the model's label: the
-          catalog stores genus-level entries as "Boletus spp." while the model
-          predicts "Boletus edulis", so filtering by the prediction would find
-          nothing for exactly the entries that are hardest to identify. */}
+          catalog stores genus-level entries as "Morchella spp." while the model
+          predicts "Morchella esculenta", so filtering by the prediction would
+          find nothing for exactly the entries that are hardest to identify. */}
       {candidate.kind === 'catalog' && candidate.catalogSpecies[0] && (
         <Button
           asChild

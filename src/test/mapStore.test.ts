@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import type { Map as MapLibreMap } from 'maplibre-gl';
 import { getSpeciesOptions } from '@/data/species';
 import {
   forecastRegionForCoordinate,
@@ -92,9 +93,7 @@ describe('regional species options', () => {
     useMapStore.setState({ selectedSpecies: 'no-such-species' });
     useMapStore.getState().setCenter(USE_CENTER);
 
-    expect(useMapStore.getState().selectedSpecies).toBe(
-      getSpeciesOptions('USE')[0].code
-    );
+    expect(useMapStore.getState().selectedSpecies).toBe('mushroom');
   });
 
   // MapPage mirrors the URL's ?species here, falling back to mushroom when the
@@ -254,5 +253,61 @@ describe('getUserLocation', () => {
 
     expect(useMapStore.getState().userLocation).toEqual([7.3359, 47.7508]);
     expect(fetchSpy).not.toHaveBeenCalled();
+  });
+});
+
+// The selection outlives region changes, so layer visibility has to cover every
+// map species, and the "no forecast here" notice has to follow what was drawn.
+describe('updateVisibleLayers with a selection from another region', () => {
+  const US_WEST_VIEW = { w: -124, e: -110, s: 35, n: 48 };
+
+  function fakeMap(layerIds: string[]) {
+    const visibility: Record<string, string> = {};
+    const map = {
+      getStyle: () => ({ layers: layerIds.map(id => ({ id })) }),
+      getBounds: () => ({
+        getWest: () => US_WEST_VIEW.w,
+        getEast: () => US_WEST_VIEW.e,
+        getSouth: () => US_WEST_VIEW.s,
+        getNorth: () => US_WEST_VIEW.n,
+      }),
+      setLayoutProperty: (id: string, _key: string, value: string) => {
+        visibility[id] = value;
+      },
+      getPaintProperty: () => undefined,
+      setPaintProperty: () => {},
+    };
+    return { visibility, map: map as unknown as MapLibreMap };
+  }
+
+  function run(selectedSpecies: string, layerIds: string[]) {
+    const { visibility, map } = fakeMap(layerIds);
+    useMapStore.setState({
+      mapRef: map,
+      selectedSpecies,
+      forecastRegion: 'USW',
+      speciesOptions: getSpeciesOptions('USW'),
+    });
+    useMapStore.getState().updateVisibleLayers();
+    return visibility;
+  }
+
+  it('draws a US-East species in a US-West view and hides the old one', () => {
+    const visibility = run('smooth_chant', [
+      'smooth_chant_use',
+      'pacific_chant_usw',
+    ]);
+
+    expect(visibility.smooth_chant_use).toBe('visible');
+    expect(visibility.pacific_chant_usw).toBe('none');
+    expect(useMapStore.getState().selectedSpeciesOnMap).toBe(true);
+  });
+
+  it('hides a Europe-only selection over the US and reports nothing drawn', () => {
+    const visibility = run('parasol', ['parasol_ne', 'mushroom_usw']);
+
+    expect(visibility.parasol_ne).toBe('none');
+    expect(visibility.mushroom_usw).toBe('none');
+    expect(useMapStore.getState().selectedSpeciesOnMap).toBe(false);
   });
 });

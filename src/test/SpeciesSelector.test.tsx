@@ -17,8 +17,9 @@ import SpeciesSelector from '@/components/SpeciesSelector';
  * directly rather than wrapped in providers, following MobileNavbar.test.tsx.
  */
 
-const { selectedSpecies } = vi.hoisted(() => ({
+const { selectedSpecies, onMap } = vi.hoisted(() => ({
   selectedSpecies: { current: 'mushroom' as string | null },
+  onMap: { current: true },
 }));
 
 vi.mock('@/store/mapStore', () => ({
@@ -26,7 +27,9 @@ vi.mock('@/store/mapStore', () => ({
     get selectedSpecies() {
       return selectedSpecies.current;
     },
-    speciesOptions: [{ code: 'mushroom', emoji: '🍄', category: 'mushroom' }],
+    get selectedSpeciesOnMap() {
+      return onMap.current;
+    },
   }),
 }));
 
@@ -45,13 +48,15 @@ vi.mock('@/components/SpeciesSelectorFullscreen', () => ({
 
 beforeEach(() => {
   selectedSpecies.current = 'mushroom';
+  onMap.current = true;
 });
 
 describe('SpeciesSelector trigger', () => {
-  // Panning no longer swaps the species, so a selection the region does not
-  // forecast must still render as itself and say why the map is empty.
-  it('keeps an unforecast selection and explains the empty map', () => {
-    selectedSpecies.current = 'parasol'; // NE/SE only; not in the mocked options
+  // Panning no longer swaps the species, so a selection with nothing drawn in
+  // view must still render as itself and say why the map is empty.
+  it('keeps an undrawn selection and explains the empty map', () => {
+    selectedSpecies.current = 'parasol';
+    onMap.current = false;
     render(<SpeciesSelector />);
 
     expect(screen.getByRole('button')).toHaveAttribute(
@@ -63,9 +68,11 @@ describe('SpeciesSelector trigger', () => {
     );
   });
 
-  it('shows no notice when the region forecasts the selection', () => {
+  // The live region is always mounted (so it is announced when it fills) and
+  // simply stays empty while the selection is drawn.
+  it('keeps the status region empty while the selection is drawn', () => {
     render(<SpeciesSelector />);
-    expect(screen.queryByRole('status')).toBeNull();
+    expect(screen.getByRole('status')).toBeEmptyDOMElement();
   });
 
   it('renders exactly one trigger, and it clears the touch floor', () => {

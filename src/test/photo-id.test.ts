@@ -115,6 +115,9 @@ describe('genus-level catalog entries', () => {
     const got = resolvePrediction(p('Boletus satanas'));
 
     expect(got.kind).not.toBe('catalog');
+    // Not merely "not edible": a tier-2 row would show it with no safety
+    // information at all. It is outside the vocabulary, so it stays unknown.
+    expect(got.kind).toBe('unknown');
     expect(got.catalogSpecies).toEqual([]);
   });
 

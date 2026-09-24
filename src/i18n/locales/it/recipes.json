@@ -69,13 +69,7 @@
     "garlic_wild": "Aglio Selvatico",
     "artichoke": "Carciofo Selvatico",
     "asparagus": "Asparago Selvatico",
-    "strawberry": "Fragola di Bosco",
-    "bronze_bolete": "Porcino Nero",
-    "pine_bolete": "Porcino Rosso",
-    "summer_bolete": "Porcino Estivo",
-    "pacific_chant": "Galletto del Pacifico",
-    "smooth_chant": "Galletto Liscio",
-    "winter_chant": "Finferla"
+    "strawberry": "Fragola di Bosco"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -228,7 +222,7 @@
         "Cottura: Inforna a 180°C per 25–30 minuti fino a doratura.",
         "Servi: Calda o fredda, ideale per un brunch nei boschi."
       ],
-      "species": ["chant", "pacific_chant", "smooth_chant", "winter_chant"],
+      "species": ["chant"],
       "steps": [
         {
           "step": 1,
@@ -338,15 +332,7 @@
         "Finire: Aggiungere la panna se desiderato, regolare di sale e pepe.",
         "Servire caldo, accompagnato da pane rustico o un filo d'olio al tartufo."
       ],
-      "species": [
-        "chestnut",
-        "mushroom",
-        "black_chant",
-        "chant",
-        "bronze_bolete",
-        "pine_bolete",
-        "summer_bolete"
-      ],
+      "species": ["chestnut", "mushroom", "black_chant", "chant"],
       "steps": [
         {
           "step": 1,

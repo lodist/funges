@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useMapStore } from '@/store/mapStore';
 import { cn } from '@/lib/utils';
 import { getSpeciesImage } from '@/lib/utils';
-import { SPECIES_DATA } from '@/data/species';
+import { getSpeciesById } from '@/data/species';
 import SpeciesSelectorFullscreen from './SpeciesSelectorFullscreen';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -17,7 +17,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
 }) => {
   const { t } = useTranslation('map');
   const { t: tSpecies } = useTranslation('species');
-  const { selectedSpecies, speciesOptions } = useMapStore();
+  const { selectedSpecies, selectedSpeciesOnMap } = useMapStore();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -31,18 +31,12 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
   //
   // Resolved from the whole catalog, not the region's options: the selection
   // survives panning into a region that has no forecast for it.
-  const selected = SPECIES_DATA.find(
-    species => species.id === selectedSpecies && species.showOnMap
-  );
-  const selectedSpeciesData = selected
-    ? { code: selected.id, emoji: selected.emoji }
-    : null;
-  const forecastHere =
-    !selectedSpeciesData ||
-    speciesOptions.some(opt => opt.code === selectedSpeciesData.code);
+  const selected = selectedSpecies
+    ? getSpeciesById(selectedSpecies)
+    : undefined;
 
-  const speciesName = selectedSpeciesData
-    ? tSpecies(`list_of_species.${selectedSpeciesData.code}.name`)
+  const speciesName = selected
+    ? tSpecies(`list_of_species.${selected.id}.name`)
     : null;
 
   return (
@@ -95,7 +89,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
         // Weight-Not-Movement owns hover.
         transition={{ type: 'spring', stiffness: 400, damping: 25 }}
       >
-        {selectedSpeciesData && (
+        {selected && (
           <span
             aria-hidden='true'
             className='relative flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg bg-secondary text-lg'
@@ -106,10 +100,10 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
                 return value could not reach the emoji — a missing .webp painted
                 a broken-image glyph instead. `key` remounts the img per species
                 so the hidden flag cannot survive a selection change. */}
-            {selectedSpeciesData.emoji}
+            {selected.emoji}
             <img
-              key={selectedSpeciesData.code}
-              src={getSpeciesImage(selectedSpeciesData.code) ?? undefined}
+              key={selected.id}
+              src={getSpeciesImage(selected.id) ?? undefined}
               alt=''
               className='absolute inset-0 h-full w-full object-cover object-center'
               loading='lazy'
@@ -153,14 +147,15 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
       {/* Without this an empty map reads as a bug: the species is still
           selected, the region just has no layer for it. Same opaque card as the
           tile above, for the same contrast reasons. */}
-      {!forecastHere && (
-        <p
-          role='status'
-          className='elevation-raised mt-2 max-w-[min(18rem,calc(100vw-5.5rem))] rounded-card bg-card px-3 py-2 text-xs text-muted-foreground'
-        >
-          {t('species.notForecastHere', { species: speciesName })}
-        </p>
-      )}
+      {/* The live region stays mounted and only its content changes: many
+          screen readers skip a status element that arrives already filled. */}
+      <div role='status'>
+        {selected && !selectedSpeciesOnMap && (
+          <p className='elevation-raised mt-2 max-w-[min(18rem,calc(100vw-5.5rem))] rounded-card bg-card px-3 py-2 text-xs text-muted-foreground'>
+            {t('species.notForecastHere', { species: speciesName })}
+          </p>
+        )}
+      </div>
 
       {/* Gated here rather than inside the child. AnimatePresence only plays an
           exit when the element it wraps unmounts, and the child's own

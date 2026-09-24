@@ -6,8 +6,10 @@ import type {
   Map as MapLibreMap,
 } from 'maplibre-gl';
 import {
+  DEFAULT_MAP_SPECIES,
   getSpeciesOptions,
   isMapSpecies,
+  SPECIES_DATA,
   type ForecastRegion,
   type SpeciesOption,
 } from '@/data/species';
@@ -58,6 +60,10 @@ export interface MapState {
   selectedSpecies: string | null;
   speciesOptions: SpeciesOption[];
   forecastRegion: ForecastRegion; // derived from `center`, drives speciesOptions
+  // Whether the last layer pass drew the selection anywhere in view. The
+  // selection outlives region changes, so this, not the region's list, is what
+  // says the map is empty for it.
+  selectedSpeciesOnMap: boolean;
   speciesDisplayMap: Record<string, string>;
 
   // Layer visibility
@@ -141,6 +147,8 @@ export function forecastRegionForCoordinate([longitude, latitude]: [
   return latitude < seMaxLatitude ? 'SE' : 'NE';
 }
 
+const MAP_SPECIES_CODES = SPECIES_DATA.filter(s => s.showOnMap).map(s => s.id);
+
 // The species LIST follows the viewport: a US GPS fix does not make US-only species
 // meaningful while the map shows Europe. The SELECTION does not. Panning a pine
 // bolete into the US used to swap it for whatever the US offered first, so the
@@ -156,7 +164,7 @@ function regionalSpeciesState(
     speciesOptions,
     selectedSpecies: isMapSpecies(selectedSpecies)
       ? selectedSpecies
-      : (speciesOptions[0]?.code ?? null),
+      : DEFAULT_MAP_SPECIES,
   };
 }
 
@@ -165,7 +173,7 @@ function regionalSpeciesState(
 const INITIAL_REGION = forecastRegionForCoordinate(readCenter());
 const INITIAL_SPECIES = regionalSpeciesState(
   INITIAL_REGION,
-  localStorage.getItem('selectedSpecies') ?? 'mushroom'
+  localStorage.getItem('selectedSpecies')
 );
 
 export interface MapThemeOption {
@@ -290,6 +298,7 @@ export const useMapStore = create<MapState>()(
       foragingSpots: [],
       selectedSpot: null,
       selectedSpecies: INITIAL_SPECIES.selectedSpecies,
+      selectedSpeciesOnMap: true,
       speciesOptions: INITIAL_SPECIES.speciesOptions,
       forecastRegion: INITIAL_REGION,
       speciesDisplayMap: {
@@ -457,7 +466,6 @@ export const useMapStore = create<MapState>()(
           selectedSpecies,
           numbersLayersVisible,
           hillshadeVisible,
-          speciesOptions,
           activeDay,
         } = get();
 
@@ -474,6 +482,7 @@ export const useMapStore = create<MapState>()(
         }
 
         const bounds = mapRef.getBounds();
+        let drawn = false;
 
         layers.forEach(layer => {
           const id = layer.id;
@@ -491,8 +500,11 @@ export const useMapStore = create<MapState>()(
             return;
           }
 
-          const isSpeciesLayer = speciesOptions.some(speciesOption =>
-            id.startsWith(speciesOption.code)
+          // Every map species, not just the region's list: the selection can
+          // come from another region, and a layer left out here keeps whatever
+          // visibility and forecast day it had last.
+          const isSpeciesLayer = MAP_SPECIES_CODES.some(code =>
+            id.startsWith(code)
           );
           const isRelevantSpecies = selectedSpecies
             ? id.startsWith(selectedSpecies)
@@ -558,12 +570,17 @@ export const useMapStore = create<MapState>()(
                   );
                 }
                 mapRef.setLayoutProperty(id, 'visibility', 'visible');
+                drawn = true;
               }
             } else {
               mapRef.setLayoutProperty(id, 'visibility', 'none');
             }
           }
         });
+
+        if (get().selectedSpeciesOnMap !== drawn) {
+          set({ selectedSpeciesOnMap: drawn });
+        }
       },
       // ponytail: dark mode is a full style swap now; the correct style is chosen at
       // init and on toggle, so there are no per-layer ` dark` states to restore. No-op

@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { useUIStore } from '@/store/uiStore';
 import OnboardingModal from '@/components/OnboardingModal';
-import { isMapSpecies } from '@/data/species';
+import { DEFAULT_MAP_SPECIES, isMapSpecies } from '@/data/species';
 
 export default function MapPage() {
   const isMobile = useIsMobile();
@@ -20,9 +20,13 @@ export default function MapPage() {
 
   // Validated against every map species, not the region on screen: a shared
   // pine-bolete link opened over the US keeps its species rather than being
-  // rewritten to porcini.
+  // rewritten to porcini. A link without one (the navbar, the landing page)
+  // keeps the current selection, which the store seeds from the saved choice.
   useEffect(() => {
-    const speciesCode = isMapSpecies(species) ? species : 'mushroom';
+    const speciesCode =
+      species && isMapSpecies(species)
+        ? species
+        : (useMapStore.getState().selectedSpecies ?? DEFAULT_MAP_SPECIES);
 
     if (speciesCode !== species) {
       navigate({
