@@ -155,8 +155,13 @@ availability moved so little. Worth re-checking if more congeners are added:
 the top-3 figure is what makes a three-candidate list defensible, and it is now
 the metric with the least headroom.
 
-## Follow-up
+## Illustrations
 
-- Species photographs. All six ship with a placeholder copied from `chant` or
-  `mushroom` and carry no `source`/`author`/`license`, because none has been
-  sourced or attributed yet. Replace before this reaches users.
+The six catalog images are repainted from the catalog's own porcini and
+chanterelle illustrations, so they share the house style and carry no
+third-party attribution. Silhouettes and shading are kept; colour and marks
+change to show what separates each from its siblings: the near-black cap of
+_B. aereus_, the wine-red cap of _B. pinophilus_, the full-length stem net of
+_B. reticulatus_, the darker cap top of _C. formosus_, the almost ridge-free
+underside of _C. lateritius_, and the brown cap, grey ridges and yellow stem of
+_Craterellus tubaeformis_.
