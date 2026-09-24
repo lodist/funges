@@ -8,7 +8,8 @@ import {
   BarChart2,
 } from '@/lib/icons';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
+import { useIsAppleMobile } from '@/hooks/use-apple-mobile';
+import { NAV_SURFACE_CLASS, NAV_SURFACE_CLASS_LIQUID } from '@/lib/nav-surface';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { DURATION_SLOW, EASE_STANDARD } from '@/lib/motion';
@@ -29,7 +30,7 @@ export const ACTIVE_ACCENT_CLASS = 'text-happy-700 dark:text-happy-500';
 const INACTIVE_ACCENT_CLASS =
   'text-muted-foreground hover:text-happy-700 dark:hover:text-happy-500';
 const items = [
-  { url: `${basePath}`, icon: Map },
+  { url: `${basePath}map`, icon: Map },
   { url: `${basePath}worth-foraging-now`, icon: CalendarRange },
   { url: `${basePath}recipes`, icon: ChefHat },
   { url: `${basePath}species`, icon: Database },
@@ -42,18 +43,26 @@ interface MobileNavbarProps {
 
 export default function MobileNavbar({ hidden }: MobileNavbarProps) {
   const isMobile = useIsMobile();
+  const isAppleMobile = useIsAppleMobile();
   const location = useLocation();
 
   if (!isMobile) return null;
 
   return (
     <motion.nav
-      // Raised + Glass-regular, shared with AppSidebar (#196). Carried on the
-      // animated element itself rather than an inner wrapper: a backdrop-filter
-      // nested inside a transformed ancestor samples the wrong region in Safari.
+      // Raised + Glass-regular, shared with AppSidebar (#196) — except on
+      // Apple mobile (iPhone/iPadOS), which gets the Liquid Glass surface
+      // and a pill shape instead (`rounded-full` clamps to a stadium shape
+      // on a rectangle this short, matching the iOS 18+ tab bar). See
+      // NAV_SURFACE_CLASS_LIQUID in nav-surface.ts for why this is scoped
+      // to Apple only and not every backdrop-filter-capable browser.
+      // Carried on the animated element itself rather than an inner
+      // wrapper: a backdrop-filter nested inside a transformed ancestor
+      // samples the wrong region in Safari.
       className={cn(
-        'fixed bottom-4 left-4 right-4 z-10 rounded-card',
-        NAV_SURFACE_CLASS
+        'fixed bottom-4 left-4 right-4 z-10',
+        isAppleMobile ? 'rounded-full' : 'rounded-card',
+        isAppleMobile ? NAV_SURFACE_CLASS_LIQUID : NAV_SURFACE_CLASS
       )}
       initial={{ y: 0 }}
       animate={{ y: hidden ? 120 : 0 }}

@@ -21,12 +21,16 @@ test.describe('app navigation', () => {
   test('sidebar is visible on desktop', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('[data-slot="sidebar"]')).toBeVisible();
-    await expect(page.getByText('Funges')).toBeVisible();
+    // The wordmark is an image inside the home link; its accessible name is
+    // the only "Funges" text on the page.
+    await expect(page.getByRole('link', { name: 'Funges' })).toBeVisible();
   });
 
   test('navigates to the Species page', async ({ page }) => {
-    // Start from a page without the home-page species-selector dialog
-    await page.goto('/worth-foraging-now');
+    // Start from a static page: the recommendations page reflows while its
+    // data loads, which moved the sidebar under a force-click often enough
+    // to make this flaky.
+    await page.goto('/instructions');
     await clickSidebarLink(page, '/species');
     await expect(page).toHaveURL(/\/species/);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();

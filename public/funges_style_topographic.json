@@ -38,6 +38,13 @@
     "overlay-usw": {
       "type": "vector",
       "url": "pmtiles://https://data.fung.es/USA/USW/usw_forecast.pmtiles"
+    },
+    "hillshade": {
+      "type": "raster",
+      "url": "pmtiles://https://data.fung.es/basemap/hillshade_z11.pmtiles",
+      "tileSize": 256,
+      "maxzoom": 11,
+      "attribution": "Terrain: Mapzen / AWS Terrain Tiles"
     }
   },
   "sprite": "map-assets/sprites/v4/light",
@@ -177,6 +184,18 @@
       }
     },
     {
+      "id": "hillshade",
+      "type": "raster",
+      "source": "hillshade",
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "raster-opacity": 0.7,
+        "raster-fade-duration": 0
+      }
+    },
+    {
       "id": "water",
       "type": "fill",
       "source": "aws",
@@ -278,8 +297,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -320,8 +339,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -362,8 +381,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -404,8 +423,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -446,8 +465,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast"
@@ -485,8 +504,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast"
@@ -524,8 +543,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast"
@@ -563,8 +582,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast"
@@ -602,8 +621,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -644,8 +663,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -686,8 +705,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -728,8 +747,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -770,8 +789,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -812,8 +831,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -854,8 +873,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -896,8 +915,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -938,8 +957,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -980,8 +999,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -1022,8 +1041,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -1064,8 +1083,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -1106,8 +1125,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -1148,8 +1167,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -1190,8 +1209,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -1232,8 +1251,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -1274,8 +1293,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -1316,8 +1335,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -1358,8 +1377,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -1400,8 +1419,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -1442,8 +1461,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -1484,8 +1503,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -1526,8 +1545,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -1568,8 +1587,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -1610,8 +1629,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -1652,8 +1671,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -1694,8 +1713,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -1736,8 +1755,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -1778,8 +1797,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -1820,8 +1839,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -1862,8 +1881,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -1904,8 +1923,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -1946,8 +1965,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -1988,8 +2007,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -2030,8 +2049,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -2072,8 +2091,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -2114,8 +2133,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -2156,8 +2175,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -2198,8 +2217,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -2240,8 +2259,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -2282,8 +2301,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -2324,8 +2343,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -2366,8 +2385,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -2408,8 +2427,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -2450,8 +2469,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -2492,8 +2511,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -2534,8 +2553,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -2576,8 +2595,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -2618,8 +2637,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -2660,8 +2679,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -2702,8 +2721,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -2744,8 +2763,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -2786,8 +2805,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -2828,8 +2847,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -2870,8 +2889,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -2912,8 +2931,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -2954,8 +2973,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -2996,8 +3015,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -3458,8 +3477,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -3500,8 +3519,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",

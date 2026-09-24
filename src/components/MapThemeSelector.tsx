@@ -5,17 +5,30 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { DURATION_FAST, EASE_STANDARD } from '@/lib/motion';
 import { useMapStore, MAP_THEMES } from '@/store/mapStore';
 import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
 
 interface MapThemeSelectorProps {
   className?: string;
+  /** Relief tiles are online-only; offline the switch is inert and shows the
+   *  layer's real state. Passed in by the map rather than read from usePWA
+   *  here: that hook imports the PWA plugin's virtual module, which does not
+   *  exist under Storybook's Vite config and broke the story import. */
+  isOnline?: boolean;
 }
 
 const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
   className = '',
+  isOnline = true,
 }) => {
   const { t } = useTranslation('map');
-  const { mapStyleIndex, darkLayersVisible, setMapStyleIndex } = useMapStore();
+  const {
+    mapStyleIndex,
+    darkLayersVisible,
+    setMapStyleIndex,
+    hillshadeVisible,
+    toggleHillshade,
+  } = useMapStore();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -102,13 +115,13 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                       }}
                       aria-pressed={isSelected}
                       className={cn(
-                        'appearance-none w-full flex items-center gap-3 rounded-xl border-0 bg-transparent px-2.5 py-2 text-left transition-colors',
+                        'appearance-none w-full flex items-center gap-3 rounded-xl border-0 bg-transparent px-2 py-1.5 text-left transition-colors',
                         isSelected
                           ? 'bg-happy-100 text-happy-900 dark:bg-happy-900 dark:text-happy-100'
                           : 'hover:bg-happy-50 dark:hover:bg-accent/50'
                       )}
                     >
-                      <div className='relative w-14 h-10 rounded-md overflow-hidden bg-muted flex-shrink-0'>
+                      <div className='relative w-12 h-9 rounded-md overflow-hidden bg-muted flex-shrink-0'>
                         <img
                           src={theme.thumbnail}
                           alt=''
@@ -145,6 +158,24 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                 );
               })}
             </ul>
+            {/* Relief shading is a layer every theme carries, not a theme of its
+                own, so it lives under the list as a switch rather than as a
+                sixth row. The label is the click target; Switch's ::before
+                already widens the control itself to the 44px floor. */}
+            <label
+              className={cn(
+                'flex items-center justify-between gap-3 px-4 py-2.5 text-sm font-medium',
+                isOnline ? 'cursor-pointer' : 'text-muted-foreground'
+              )}
+            >
+              <span>{t('themes.relief')}</span>
+              <Switch
+                data-slot='map-relief-toggle'
+                checked={hillshadeVisible && isOnline}
+                disabled={!isOnline}
+                onCheckedChange={toggleHillshade}
+              />
+            </label>
           </motion.div>
         )}
       </AnimatePresence>

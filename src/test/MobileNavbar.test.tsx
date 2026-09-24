@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import MobileNavbar, {
   ACTIVE_ACCENT_CLASS,
 } from '@/components/Mobile/MobileNavbar';
-import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
+import { NAV_SURFACE_CLASS, NAV_SURFACE_CLASS_LIQUID } from '@/lib/nav-surface';
 
 /**
  * The mobile bar's contract is a small, fixed item set plus one visibly active
@@ -36,6 +36,13 @@ vi.mock('@/hooks/use-mobile', () => ({
   useIsMobile: () => isMobile.current,
 }));
 
+const { isAppleMobile } = vi.hoisted(() => ({
+  isAppleMobile: { current: false },
+}));
+vi.mock('@/hooks/use-apple-mobile', () => ({
+  useIsAppleMobile: () => isAppleMobile.current,
+}));
+
 const { offlineEnabled } = vi.hoisted(() => ({
   offlineEnabled: { current: true },
 }));
@@ -53,6 +60,7 @@ const activeLink = () => document.querySelector('a[aria-current="page"]');
 beforeEach(() => {
   pathname.current = '/';
   isMobile.current = true;
+  isAppleMobile.current = false;
   offlineEnabled.current = true;
 });
 
@@ -70,7 +78,7 @@ describe('MobileNavbar', () => {
     // Everything else (instructions, offline maps, legal pages) is reachable
     // through Settings rather than crowding the bar.
     expect(navLinks()).toEqual([
-      '/',
+      '/map',
       '/worth-foraging-now',
       '/recipes',
       '/species',
@@ -141,12 +149,28 @@ describe('MobileNavbar', () => {
     expect(activeLink()).toBeNull();
   });
 
-  it('carries the shared nav surface treatment', () => {
+  it('carries the shared nav surface treatment on non-Apple devices', () => {
     render(<MobileNavbar hidden={false} />);
 
     const nav = screen.getByRole('navigation');
     for (const className of NAV_SURFACE_CLASS.split(' ')) {
       expect(nav).toHaveClass(className);
     }
+    expect(nav).toHaveClass('rounded-card');
+    expect(nav).not.toHaveClass('glass-liquid');
+    expect(nav).not.toHaveClass('rounded-full');
+  });
+
+  it('swaps to the Liquid Glass surface on Apple mobile devices', () => {
+    isAppleMobile.current = true;
+    render(<MobileNavbar hidden={false} />);
+
+    const nav = screen.getByRole('navigation');
+    for (const className of NAV_SURFACE_CLASS_LIQUID.split(' ')) {
+      expect(nav).toHaveClass(className);
+    }
+    expect(nav).toHaveClass('rounded-full');
+    expect(nav).not.toHaveClass('glass-regular');
+    expect(nav).not.toHaveClass('rounded-card');
   });
 });

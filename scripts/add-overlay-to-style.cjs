@@ -47,6 +47,18 @@ for (const [src, url] of Object.values(REGION).map(([s, u]) => [s, u])) {
 const overlaySources = new Set(Object.values(REGION).map(([s]) => s));
 style.layers = style.layers.filter(l => !overlaySources.has(l.source));
 
+// Low-zoom legibility. Below ~z7 a forecast cell is sub-pixel (z4: ~9.8 km/px vs a
+// ~1 km triangle), and with antialiasing off a sub-pixel fill is all-or-nothing per
+// pixel — coverage never accumulates, so the continent reads as pale speckle instead
+// of colour. Turn AA on where the cells are smaller than a pixel and push opacity to
+// full; both revert at z8, where the cells are large enough that AA would instead
+// paint a visible hairline seam between every pair of abutting triangles (the reason
+// `fill-antialias: false` is on these layers in the first place).
+const LOW_ZOOM_FILL = {
+  'fill-antialias': ['step', ['zoom'], true, 8, false],
+  'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 1, 8, 0.85],
+};
+
 const overlay = [];
 for (const l of live.layers) {
   const map = REGION[l['source-layer']];
@@ -58,6 +70,7 @@ for (const l of live.layers) {
   delete copy.metadata; // mapbox:group ids, meaningless off-Mapbox
   if (copy.layout && copy.layout['text-font'])
     copy.layout['text-font'] = ['Noto Sans Medium'];
+  if (copy.type === 'fill') Object.assign(copy.paint, LOW_ZOOM_FILL);
   overlay.push(copy);
 }
 

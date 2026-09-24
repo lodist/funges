@@ -18,12 +18,15 @@ const cardVariants = cva(
       // Each step carries its own region gap, so a card never leaves the
       // header sitting flat on the body: the base shipped `gap-0` and five
       // call sites re-invented the gap by hand at four different values.
-      // `compact` is the tighter step for map chrome, `none` for full-bleed
+      // `compact` is the tighter step for map chrome, `slim` tighter still for
+      // one-row map controls, `none` for full-bleed
       // media and for cards that pad their own body - where any gap would
       // push the media off the card edge.
       padding: {
         content: 'py-6 gap-6',
         compact: 'p-3 gap-3',
+        // A single-row control (the forecast slider) where `compact` reads bulky.
+        slim: 'px-3 py-2 gap-1.5',
         none: 'p-0 gap-0',
       },
       // The hover lift belongs to cards you can actually activate.

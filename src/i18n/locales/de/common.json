@@ -44,11 +44,34 @@
     "reloadForUpdate": "Zum Aktualisieren neu laden"
   },
   "home": {
-    "title": "Willkommen bei Fung.es",
-    "subtitle": "Dein KI-gestützter Sammelbegleiter",
-    "description": "Entdecke und lerne essbare Wildpflanzen mit Hilfe künstlicher Intelligenz kennen",
-    "getStarted": "Loslegen",
-    "learnMore": "Mehr erfahren"
+    "title": "Funges",
+    "headline": "Entdecke, was um dich herum wächst",
+    "description": "Sammelprognosen, Artenkarten, private Fotobestimmung und Wildkräuter-Rezepte.",
+    "cta": "Karte erkunden",
+    "ctaSecondary": "Was gerade Saison hat",
+    "forecast": {
+      "label": "Prognose",
+      "heading": "Lohnt es sich heute rauszugehen?",
+      "body": "Wissen, wo und wann die Bedingungen gut sind.",
+      "link": "Prognose öffnen"
+    },
+    "identify": {
+      "label": "Bestimmen",
+      "heading": "Was hast du gefunden?",
+      "body": "Pilze und Pflanzen privat auf deinem Gerät bestimmen.",
+      "link": "Bestimmung ausprobieren"
+    },
+    "cook": {
+      "label": "Kochen",
+      "heading": "Wieder zu Hause",
+      "body": "Aus deinen Funden Wildkräuter- und Pilzgerichte machen.",
+      "link": "Rezepte ansehen"
+    },
+    "closing": {
+      "heading": "Bereit zum Erkunden?",
+      "cta": "Karte öffnen"
+    },
+    "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab."
   },
   "worthForagingNow": {
     "title": "Was lohnt sich jetzt zu sammeln?",

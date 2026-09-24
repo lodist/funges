@@ -323,7 +323,7 @@ export default function WorthForagingNowPage() {
                 <div className='flex flex-col gap-3 px-6 pb-6 pt-5 sm:flex-row'>
                   <Button asChild className='flex-1'>
                     <Link
-                      to='/'
+                      to='/map'
                       search={{
                         species: recommendation.speciesId,
                         lat: recommendation.coordinate[1],

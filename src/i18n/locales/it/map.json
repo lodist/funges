@@ -57,24 +57,25 @@
     "select": "Tema mappa",
     "light": {
       "name": "Chiaro",
-      "description": "La classica mappa Funges chiara e luminosa."
+      "description": "La classica mappa chiara."
     },
     "dark": {
       "name": "Scuro",
-      "description": "Palette a bassa luminosità, comoda per gli occhi di notte."
+      "description": "Riposa la vista di notte."
     },
     "white": {
       "name": "Bianco",
-      "description": "Palette chiara e minimale con poche distrazioni."
+      "description": "Pulita e minimale."
     },
     "darkmatter": {
       "name": "Dark Matter",
-      "description": "Mappa base monocromatica scura dal massimo contrasto."
+      "description": "Nera, ad alto contrasto."
     },
     "topographic": {
       "name": "Topografico",
-      "description": "Stile mappa escursionistica calda con sentieri e tracciati visibili."
-    }
+      "description": "Per escursioni, con sentieri."
+    },
+    "relief": "Ombreggiatura del rilievo"
   },
   "getLocation": "Ottieni la Mia Posizione",
   "toggleNumbers": "Attiva/Disattiva Numeri",

@@ -13,11 +13,31 @@ import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import type { RouteDishPlan } from '@/lib/route-to-dish';
 
+/**
+ * What the drawn route actually measures, once the walking router has answered.
+ *
+ * The per-plan figure stays a straight-line estimate — pricing every listed
+ * plan against the router would mean one request per plan on every map move —
+ * so only the plan the user drew gets a real distance and time.
+ */
+export interface RouteSummary {
+  status: 'pending' | 'routed' | 'straight';
+  distanceKm: number;
+  durationMinutes: number | null;
+  /**
+   * The same stops by car, when the driving router answered. Independent of
+   * `status`: the drive figure arrives on its own request and its own clock,
+   * and a walking route that fell back to straight lines can still have one.
+   */
+  drive?: { distanceKm: number; durationMinutes: number } | null;
+}
+
 interface RouteToDishPanelProps {
   plans: RouteDishPlan[];
   error: string | null;
   isLoading: boolean;
   selectedRecipeId: string | null;
+  activeRouteSummary?: RouteSummary | null;
   className?: string;
   onDrawRoute: (plan: RouteDishPlan) => void;
   onClearRoute: () => void;
@@ -30,6 +50,7 @@ export default function RouteToDishPanel({
   error,
   isLoading,
   selectedRecipeId,
+  activeRouteSummary = null,
   className = '',
   onDrawRoute,
   onClearRoute,
@@ -41,6 +62,14 @@ export default function RouteToDishPanel({
   const recipesHref = `${import.meta.env.BASE_URL}recipes`;
   const getSpeciesLabel = (speciesId: string) =>
     t(`species.${speciesId}`, { defaultValue: speciesId });
+
+  const formatDuration = (minutes: number) =>
+    minutes < 60
+      ? t('routePanel.durationMinutes', { minutes })
+      : t('routePanel.durationHours', {
+          hours: Math.floor(minutes / 60),
+          minutes: minutes % 60,
+        });
 
   return (
     <Card
@@ -149,6 +178,34 @@ export default function RouteToDishPanel({
                         distance: plan.estimatedDistanceKm.toFixed(1),
                       })}
                     </p>
+                    {isSelected && activeRouteSummary ? (
+                      <>
+                        <p className='mt-0.5 text-xs text-primary-text'>
+                          {activeRouteSummary.status === 'pending'
+                            ? t('routePanel.routingPending')
+                            : activeRouteSummary.status === 'straight'
+                              ? t('routePanel.routingUnavailable')
+                              : t('routePanel.walkingSummary', {
+                                  distance:
+                                    activeRouteSummary.distanceKm.toFixed(1),
+                                  duration: formatDuration(
+                                    activeRouteSummary.durationMinutes ?? 0
+                                  ),
+                                })}
+                        </p>
+                        {activeRouteSummary.drive ? (
+                          <p className='mt-0.5 text-xs text-muted-foreground'>
+                            {t('routePanel.drivingSummary', {
+                              distance:
+                                activeRouteSummary.drive.distanceKm.toFixed(1),
+                              duration: formatDuration(
+                                activeRouteSummary.drive.durationMinutes
+                              ),
+                            })}
+                          </p>
+                        ) : null}
+                      </>
+                    ) : null}
                   </div>
                   <Badge
                     variant={plan.fullyCovered ? 'default' : 'outline'}

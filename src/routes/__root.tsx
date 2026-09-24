@@ -7,6 +7,7 @@ import { AppSidebar } from '@/components/Sidebar/AppSidebar';
 import MobileNavbar from '@/components/Mobile/MobileNavbar';
 import FloatingLanguageSwitcher from '@/components/FloatingLanguageSwitcher';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { recordPath } from '@/lib/nav-history';
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -15,8 +16,15 @@ export const Route = createRootRoute({
 function RootComponent() {
   const isMobile = useIsMobile();
   const location = useLocation();
+  recordPath(location.pathname);
+  // The map is the one route that owns the viewport (no document scroll).
   const isMapPage =
-    location.pathname === import.meta.env.BASE_URL || location.pathname === '/';
+    location.pathname.replace(/\/+$/, '') ===
+    `${import.meta.env.BASE_URL}map`.replace(/\/+$/, '');
+  // The landing page is the other full-bleed route: no sidebar, no padding.
+  const isLandingPage =
+    location.pathname.replace(/\/+$/, '') ===
+    import.meta.env.BASE_URL.replace(/\/+$/, '');
   const mainRef = useRef<HTMLDivElement>(null);
   const [hideNavbar, setHideNavbar] = useState(false);
   const lastScrollYRef = useRef(0);
@@ -47,7 +55,7 @@ function RootComponent() {
       <TooltipProvider>
         <div className='app-root h-screen flex flex-col'>
           <SidebarProvider defaultOpen={!isMobile}>
-            {!isMobile && <AppSidebar />}
+            {!isMobile && !isLandingPage && <AppSidebar />}
             <SidebarInset>
               <main
                 ref={mainRef}
@@ -57,7 +65,7 @@ function RootComponent() {
                   className={
                     isMobile && isMapPage
                       ? 'h-full bg-background'
-                      : `p-4 bg-background ${isMobile ? 'mobile-navbar-spacing' : ''}`
+                      : `bg-background ${isLandingPage ? '' : 'p-4'} ${isMobile ? 'mobile-navbar-spacing' : ''}`
                   }
                 >
                   {/* Mobile pages get extra bottom padding to account for fixed navbar */}

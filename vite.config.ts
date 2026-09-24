@@ -13,6 +13,7 @@ const routeFullPaths = [
   '/data',
   '/impressum',
   '/instructions',
+  '/map',
   '/offline',
   '/privacy-policy',
   '/recipes',
@@ -252,7 +253,9 @@ export default defineConfig({
         background_color: '#ffffff',
         display: 'standalone',
         scope: baseUrl,
-        start_url: baseUrl,
+        // Installed users open straight onto the map; the landing page at `/`
+        // is for first visits from the web.
+        start_url: `${baseUrl}map`,
         icons: [
           {
             src: `icons/logo_app.png`,
@@ -334,6 +337,8 @@ export default defineConfig({
     Sitemap({
       hostname: `${hostname}${baseUrl}`,
       dynamicRoutes: routeFullPaths,
+      // Trailing slashes are added in deploy.yml (see there why).
+      exclude: ['/404'],
     }),
     removeConsole({
       includes: [

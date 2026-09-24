@@ -7,8 +7,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
+import type { GeolocateErrorEvent, GeolocatePositionEvent } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import { protocol } from '@/lib/pmtiles-protocol';
 import {
   deactivateOfflineSources,
@@ -31,6 +33,8 @@ import {
 } from '@/lib/offline-packages';
 import { usePWA } from '@/hooks/use-pwa';
 import { FORECAST_DAYS, interpolateScores } from '@/lib/forecast';
+import { prefersReducedMotion } from '@/lib/motion';
+import { isLandingPath, navHistory } from '@/lib/nav-history';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -53,7 +57,9 @@ import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import MapInfoCard from '@/components/MapInfoCard';
-import RouteToDishPanel from '@/components/RouteToDishPanel';
+import RouteToDishPanel, {
+  type RouteSummary,
+} from '@/components/RouteToDishPanel';
 import ForecastSlider from '@/components/ForecastSlider';
 import { useRecipesData } from '@/data/recipes';
 import {
@@ -61,6 +67,15 @@ import {
   type RouteDishPlan,
   type RouteDishResult,
 } from '@/lib/route-to-dish';
+import {
+  fetchDrivingSummary,
+  fetchWalkingRoute,
+  sliceAlongPath,
+} from '@/lib/route-directions';
+
+// MapLibre v6 ships its worker as a separate ES module. Vite must bundle it
+// explicitly so the worker and its shared chunk resolve in production.
+maplibregl.setWorkerUrl(maplibreWorkerUrl);
 
 // Register the pmtiles:// protocol so MapLibre can read PMTiles overlays from
 // R2 (or, for a downloaded region, from the offline-cached instance already
@@ -75,6 +90,8 @@ const CONTINENTS: OfflineContinent[] = ['eu', 'us'];
 
 const ROUTE_SOURCE_ID = 'route-to-dish-line';
 const ROUTE_LAYER_ID = 'route-to-dish-line-layer';
+const ROUTE_OFF_TRAIL_SOURCE_ID = 'route-to-dish-off-trail';
+const ROUTE_OFF_TRAIL_LAYER_ID = 'route-to-dish-off-trail-layer';
 const MIN_SCORE_DEFAULT = 5.5;
 const DEFAULT_RADIUS_KM = 30;
 const ROUTE_SEGMENT_ANIMATION_MS = 750;
@@ -82,6 +99,30 @@ const ROUTE_SEGMENT_PAUSE_MS = 250;
 const ROUTE_START_MARKER_DELAY_MS = 150;
 const ROUTE_PANEL_REAPPEAR_DELAY_MS = 500;
 const ROUTE_DISH_MOVEMENT_DEBOUNCE_MS = 500;
+// Camera choreography. MapLibre already skips camera animation under
+// prefers-reduced-motion (unless `essential`), so these only shape the motion
+// for users who asked for it.
+// Arrive: the camera starts above the user's region and zooms in to the
+// saved viewport. Region scale is z5.5; a saved zoom close to that starts a
+// few levels further out so there is always a visible descent.
+const ARRIVE_REGION_ZOOM = 5.5;
+const ARRIVE_MIN_GAP = 2.5;
+const ARRIVE_DURATION_MS = 2200;
+const CAMERA_EASE_MS = 900;
+const ROUTE_PITCH = 45;
+const ROUTE_FIT_MS = 1000;
+const ROUTE_FIT_MAX_ZOOM = 13;
+
+// Module-level, so it survives the map unmounting between routes: the fly-in
+// plays on the first map of a session (PWA start, deep link) and whenever the
+// map is entered from the landing page, by any link or nav item; not on a
+// tab switch back from another app page.
+let arrivedThisSession = false;
+// Stops are read from loaded tiles, so at street zoom only the few tiles on
+// screen are searched and the panel comes back empty. ~z10 puts the whole
+// DEFAULT_RADIUS_KM around the start on screen on a phone.
+const ROUTE_DISH_MAX_OPEN_ZOOM = 10;
+const ROUTE_FIT_MARGIN_PX = 32;
 
 function formatLatLngForUrl(coordinate: [number, number]): string {
   return `${coordinate[1]},${coordinate[0]}`;
@@ -123,6 +164,39 @@ interface ActiveRouteState {
   start: [number, number];
 }
 
+/**
+ * The geometry actually drawn for the active route.
+ *
+ * Kept separate from the plan because the plan is derived offline from forecast
+ * tiles while this may come from the network: `pending` is the gap between the
+ * two, and `straight` is what we fall back to when the router cannot answer.
+ */
+interface RoutePathState {
+  status: 'pending' | 'routed' | 'straight';
+  /** One coordinate array per hop: start → stop 1, stop 1 → stop 2, ... */
+  legs: [number, number][][];
+  /**
+   * Stop → nearest path, index-aligned with the waypoints and null where the
+   * router snapped close enough for the difference not to matter.
+   */
+  offTrail: Array<[[number, number], [number, number]] | null>;
+  distanceKm: number;
+  durationMinutes: number | null;
+}
+
+function buildStraightPath(
+  waypoints: [number, number][],
+  distanceKm: number
+): RoutePathState {
+  return {
+    status: 'straight',
+    legs: waypoints.slice(1).map((to, index) => [waypoints[index], to]),
+    offTrail: [],
+    distanceKm,
+    durationMinutes: null,
+  };
+}
+
 function closeRoutePanel(
   setIsRoutePanelOpen: React.Dispatch<React.SetStateAction<boolean>>,
   setActiveRoute: React.Dispatch<React.SetStateAction<ActiveRouteState | null>>
@@ -139,6 +213,8 @@ const IdentifyPanel = lazy(() =>
 
 const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
+  const routePanelRef = useRef<HTMLDivElement>(null);
+  const bottomOverlayRef = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
   const geolocateControl = useRef<maplibregl.GeolocateControl | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -160,6 +236,11 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const [animatedRouteCoordinates, setAnimatedRouteCoordinates] = useState<
     [number, number][]
   >([]);
+  const [routePath, setRoutePath] = useState<RoutePathState | null>(null);
+  const [driveSummary, setDriveSummary] = useState<{
+    distanceKm: number;
+    durationMinutes: number;
+  } | null>(null);
   const [showAnimatedRouteStart, setShowAnimatedRouteStart] = useState(false);
   const [visibleAnimatedStopCount, setVisibleAnimatedStopCount] = useState(0);
   const isMobile = useIsMobile();
@@ -178,12 +259,24 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   // while trackUserLocation keeps watching.
   const hasCheckedNearbyFeatures = useRef(false);
   const selectedSpeciesRef = useRef<string | null>(null);
+  const arrivingRef = useRef(false);
+  // The viewport the map was asked to open on. The store can lose it before
+  // 'load': on phones useIsMobile flips false->true after the first render,
+  // the container resizes, and MapLibre's resize fires 'move', which reports
+  // the zoomed-out arrive start back into the store as if the user had moved.
+  const arriveTargetRef = useRef<{
+    center: [number, number];
+    zoom: number;
+  } | null>(null);
+  // The last viewport the camera itself reported into the store. A store value
+  // equal to it is an echo of the camera, not a request to move the camera.
+  const cameraEchoRef = useRef<[number, number, number] | null>(null);
 
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
   const { t: tIdentify } = useTranslation('identify');
   const [isIdentifyOpen, setIsIdentifyOpen] = useState(false);
-  const { setActiveModal } = useUIStore();
+  const { activeModal, setActiveModal } = useUIStore();
   const {
     center,
     zoom,
@@ -250,6 +343,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     species: recipe.species,
   }));
   const selectedRouteRecipeId = activeRoute?.plan.recipeId ?? null;
+  const activeRouteSummary: RouteSummary | null = routePath
+    ? {
+        status: routePath.status,
+        distanceKm: routePath.distanceKm,
+        durationMinutes: routePath.durationMinutes,
+        drive: driveSummary,
+      }
+    : null;
   const openActiveRouteInGoogleMaps = useCallback(() => {
     if (!activeRoute) return;
     window.open(getGoogleMapsDirectionsUrl(activeRoute), '_blank');
@@ -259,6 +360,71 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     if (isOnline) return;
     closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
   }, [isOnline]);
+
+  // routeStart deliberately read, not depended on: re-centering on every GPS
+  // tick would fight the user panning around while the panel is open.
+  useEffect(() => {
+    const mapInstance = map.current;
+    if (!isRoutePanelOpen || !mapLoaded || !mapInstance) return;
+    if (mapInstance.getZoom() <= ROUTE_DISH_MAX_OPEN_ZOOM) return;
+    mapInstance.easeTo({ center: routeStart, zoom: ROUTE_DISH_MAX_OPEN_ZOOM });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRoutePanelOpen, mapLoaded]);
+
+  // Fit the whole route into the part of the map the overlays leave visible.
+  // The panel stays mounted (only faded) while the route animates, so its box
+  // is where it will sit once it reappears.
+  useEffect(() => {
+    const mapInstance = map.current;
+    const container = mapContainer.current;
+    if (!routePath || routePath.status === 'pending' || !activeRoute) return;
+    if (!mapInstance || !mapLoaded || !container) return;
+
+    const coordinates: [number, number][] = [
+      activeRoute.start,
+      ...routePath.legs.flat(),
+      ...routePath.offTrail.flatMap(connector => connector ?? []),
+    ];
+    const bounds = coordinates.reduce(
+      (acc, coordinate) => acc.extend(coordinate),
+      new maplibregl.LngLatBounds(coordinates[0], coordinates[0])
+    );
+
+    const box = container.getBoundingClientRect();
+    const panel = routePanelRef.current?.getBoundingClientRect();
+    const bottom = bottomOverlayRef.current?.getBoundingClientRect();
+    const padding = {
+      top: ROUTE_FIT_MARGIN_PX,
+      right: ROUTE_FIT_MARGIN_PX,
+      bottom: ROUTE_FIT_MARGIN_PX,
+      left: ROUTE_FIT_MARGIN_PX,
+    };
+    if (panel) {
+      // A panel spanning most of the width is the phone layout: it blocks the
+      // top. Otherwise it sits at the side and blocks the right.
+      if (panel.width > box.width * 0.6) {
+        padding.top += panel.bottom - box.top;
+      } else {
+        padding.right += box.right - panel.left;
+      }
+    }
+    if (bottom) padding.bottom += Math.max(0, box.bottom - bottom.top);
+
+    // fitBounds refuses to move at all when padding leaves no room; give the
+    // route at least a sliver rather than leaving it off screen.
+    const minVisible = 120;
+    const overflowY = padding.top + padding.bottom + minVisible - box.height;
+    if (overflowY > 0) padding.top = Math.max(0, padding.top - overflowY);
+    const overflowX = padding.left + padding.right + minVisible - box.width;
+    if (overflowX > 0) padding.right = Math.max(0, padding.right - overflowX);
+
+    mapInstance.fitBounds(bounds, {
+      padding,
+      pitch: ROUTE_PITCH,
+      maxZoom: ROUTE_FIT_MAX_ZOOM,
+      duration: ROUTE_FIT_MS,
+    });
+  }, [routePath, activeRoute, mapLoaded]);
 
   useEffect(() => {
     let cancelled = false;
@@ -349,16 +515,27 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     if (!mapContainer.current || map.current) return;
 
     try {
+      // Arrive: start above the saved (or default) viewport; the load handler
+      // below zooms the camera in to it once the style is ready. The flags are
+      // consumed there, not here: in dev StrictMode this effect runs twice and
+      // the first map is torn down before it ever loads.
+      const arriving =
+        (!arrivedThisSession || isLandingPath(navHistory.previous)) &&
+        !prefersReducedMotion();
+      arrivingRef.current = arriving;
+      arriveTargetRef.current = { center, zoom };
       map.current = new maplibregl.Map({
         container: mapContainer.current,
         style: mapStyle,
         center: center,
-        zoom: zoom,
+        zoom: arriving
+          ? Math.max(3.01, Math.min(ARRIVE_REGION_ZOOM, zoom - ARRIVE_MIN_GAP))
+          : zoom,
         // Basemap tiles are baked to z12 natively; MapLibre overzooms past that
         // (reuses/upscales the z12 tile) so labels/roads keep rendering using the
         // interpolation stops already authored up to z20-22 in the style files.
         maxZoom: ONLINE_MAX_ZOOM,
-        minZoom: 3.01,
+        minZoom: 2.01,
         collectResourceTiming: false,
         touchZoomRotate: true,
         trackResize: !isMobile, // Disable automatic resize only on mobile
@@ -392,7 +569,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       });
       geolocateControl.current = geolocate;
 
-      geolocate.on('geolocate', (position: GeolocationPosition) => {
+      geolocate.on('geolocate', (position: GeolocatePositionEvent) => {
         const coords: [number, number] = [
           position.coords.longitude,
           position.coords.latitude,
@@ -461,13 +638,22 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         setUserLocationError(null);
       });
 
+      // Also fired when any camera move (a pan, the route-to-dish zoom or
+      // route fit) drops the control from locked to background tracking. The
+      // dot keeps updating then, so only a real switch-off may stop using the
+      // user's location as the route start.
       geolocate.on('trackuserlocationend', () => {
         setIsLoading(false);
+        // ponytail: private field, but the only thing telling OFF from
+        // BACKGROUND here; re-check it on maplibre upgrades.
+        const watchState = (geolocate as unknown as { _watchState?: string })
+          ._watchState;
+        if (watchState !== 'OFF') return;
         setShowUserLocation(false);
         setActiveRoute(null);
       });
 
-      geolocate.on('error', (error: GeolocationPositionError) => {
+      geolocate.on('error', (error: GeolocateErrorEvent) => {
         console.error('Error getting user location:', error);
         setIsLoading(false);
         setError(t('geolocation.permissionError'));
@@ -489,6 +675,21 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
       // Handle map load
       map.current.on('load', () => {
+        // Read the target before resize(). A deep link that landed in the
+        // store while the style was loading wins; a store value that is only
+        // the camera echoing its own start position does not, and the saved
+        // viewport captured at creation is used instead.
+        const st = useMapStore.getState();
+        const echo = cameraEchoRef.current;
+        const storeIsEcho =
+          !!echo &&
+          st.center[0] === echo[0] &&
+          st.center[1] === echo[1] &&
+          st.zoom === echo[2];
+        const { center: targetCenter, zoom: targetZoom } =
+          storeIsEcho && arriveTargetRef.current
+            ? arriveTargetRef.current
+            : { center: st.center, zoom: st.zoom };
         setMapLoaded(true);
         // 'move' does not fire during initialization, so seed the viewport here
         // or the offline notice falls back to point containment until first pan.
@@ -502,6 +703,26 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         if (map.current) {
           // Force initial resize with correct dimensions
           map.current.resize();
+        }
+
+        // resize() fires 'move', which reports the camera back into the store
+        // and used to overwrite that deep link. Ease to the target instead;
+        // on the first map of the session this is also the arrive animation.
+        if (map.current) {
+          const cam = map.current.getCenter();
+          const offTarget =
+            cam.lng !== targetCenter[0] ||
+            cam.lat !== targetCenter[1] ||
+            map.current.getZoom() !== targetZoom;
+          if (offTarget) {
+            map.current.easeTo({
+              center: targetCenter,
+              zoom: targetZoom,
+              duration: arrivingRef.current ? ARRIVE_DURATION_MS : 0,
+            });
+          }
+          arrivingRef.current = false;
+          arrivedThisSession = true;
         }
 
         // A style switch tears down and recreates the whole map (and, with
@@ -533,8 +754,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       map.current.on('move', () => {
         if (map.current) {
           const center = map.current.getCenter();
+          const currentZoom = map.current.getZoom();
+          cameraEchoRef.current = [center.lng, center.lat, currentZoom];
           setCenter([center.lng, center.lat]);
-          setZoom(map.current.getZoom());
+          setZoom(currentZoom);
           syncViewportBounds();
         }
       });
@@ -573,19 +796,42 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   // Update map when center or zoom changes
   useEffect(() => {
-    if (map.current && mapLoaded) {
-      const currentCenter = map.current.getCenter();
-      const currentZoom = map.current.getZoom();
+    const instance = map.current;
+    if (!instance || !mapLoaded) return;
 
-      if (currentCenter.lng !== center[0] || currentCenter.lat !== center[1]) {
-        map.current.setCenter(center);
-      }
+    const echo = cameraEchoRef.current;
+    if (
+      echo &&
+      echo[0] === center[0] &&
+      echo[1] === center[1] &&
+      echo[2] === zoom
+    )
+      return;
+    const current = instance.getCenter();
+    if (
+      current.lng === center[0] &&
+      current.lat === center[1] &&
+      instance.getZoom() === zoom
+    )
+      return;
 
-      if (currentZoom !== zoom) {
-        map.current.setZoom(zoom);
-      }
-    }
+    // Anything else came from outside the map (a deep link, the offline page,
+    // a recommendation card, the first load's arrive): ease there instead of
+    // teleporting. MapLibre drops the animation itself under reduced motion.
+    instance.easeTo({
+      center,
+      zoom,
+      duration: arrivingRef.current ? ARRIVE_DURATION_MS : CAMERA_EASE_MS,
+    });
+    arrivingRef.current = false;
   }, [center, zoom, mapLoaded]);
+
+  // Deep link from the landing page: /map?identify=true opens the panel.
+  useEffect(() => {
+    if (activeModal !== 'identify') return;
+    setIsIdentifyOpen(true);
+    setActiveModal(null);
+  }, [activeModal, setActiveModal]);
 
   // Update visible layers when species or layer visibility changes
   useEffect(() => {
@@ -601,12 +847,19 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     }
   }, [mapLoaded, updateVisibleLayers, selectedSpecies]);
 
-  // Update visible layers when layer visibility toggles change
+  // Update visible layers when layer visibility toggles change, or when the
+  // connection comes and goes (the relief layer is online-only).
   useEffect(() => {
     if (mapLoaded) {
       updateVisibleLayers();
     }
-  }, [mapLoaded, updateVisibleLayers, darkLayersVisible, numbersLayersVisible]);
+  }, [
+    mapLoaded,
+    updateVisibleLayers,
+    darkLayersVisible,
+    numbersLayersVisible,
+    isOnline,
+  ]);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -704,6 +957,30 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         },
       });
     }
+
+    if (!map.current.getSource(ROUTE_OFF_TRAIL_SOURCE_ID)) {
+      map.current.addSource(ROUTE_OFF_TRAIL_SOURCE_ID, {
+        type: 'geojson',
+        data: emptyRoute,
+      });
+    }
+
+    // Dashed, because these stubs are the honest part of the route: a foraging
+    // stop is a forecast cell, not an address, and the last stretch to one
+    // often has no path at all. Drawing it solid would claim a way exists.
+    if (!map.current.getLayer(ROUTE_OFF_TRAIL_LAYER_ID)) {
+      map.current.addLayer({
+        id: ROUTE_OFF_TRAIL_LAYER_ID,
+        type: 'line',
+        source: ROUTE_OFF_TRAIL_SOURCE_ID,
+        paint: {
+          'line-color': '#800020',
+          'line-width': 3,
+          'line-opacity': 0.7,
+          'line-dasharray': [1, 1.5],
+        },
+      });
+    }
   }, [mapLoaded]);
 
   useEffect(() => {
@@ -733,7 +1010,101 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   }, [animatedRouteCoordinates, mapLoaded]);
 
   useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+
+    const source = map.current.getSource(ROUTE_OFF_TRAIL_SOURCE_ID) as
+      | maplibregl.GeoJSONSource
+      | undefined;
+    if (!source) return;
+
+    // Index-aligned with the waypoints, so slicing by the stop reveal count
+    // keeps a connector from appearing before the stop it belongs to.
+    const visibleOffTrail = showAnimatedRouteStart
+      ? (routePath?.offTrail ?? [])
+          .slice(0, visibleAnimatedStopCount + 1)
+          .flatMap(connector => (connector ? [connector] : []))
+      : [];
+
+    source.setData({
+      type: 'FeatureCollection',
+      features: visibleOffTrail.map(connector => ({
+        type: 'Feature',
+        geometry: { type: 'LineString', coordinates: connector },
+        properties: {},
+      })),
+    });
+  }, [routePath, mapLoaded, showAnimatedRouteStart, visibleAnimatedStopCount]);
+
+  // Ask the router for real walking geometry before anything is drawn, so the
+  // line animates once along the paths instead of snapping from straight to
+  // routed halfway through.
+  useEffect(() => {
     if (!activeRoute) {
+      setRoutePath(null);
+      setDriveSummary(null);
+      return;
+    }
+
+    const waypoints: [number, number][] = [
+      activeRoute.start,
+      ...activeRoute.plan.orderedStops.map(stop => stop.coordinate),
+    ];
+    const straightPath = buildStraightPath(
+      waypoints,
+      activeRoute.plan.estimatedDistanceKm
+    );
+
+    if (waypoints.length < 2) {
+      setRoutePath(straightPath);
+      return;
+    }
+
+    let cancelled = false;
+    const controller = new AbortController();
+
+    setRoutePath({ ...straightPath, status: 'pending' });
+
+    // fetchWalkingRoute resolves to null rather than rejecting, so every
+    // failure mode lands on the same straight-line fallback.
+    fetchWalkingRoute(waypoints, controller.signal).then(route => {
+      if (cancelled) return;
+
+      if (!route) {
+        setRoutePath(straightPath);
+        return;
+      }
+
+      setRoutePath({
+        status: 'routed',
+        legs: route.legs.map(leg => leg.coordinates),
+        offTrail: route.offTrail,
+        distanceKm: route.distanceMeters / 1000,
+        durationMinutes: Math.round(route.durationSeconds / 60),
+      });
+    });
+
+    // Deliberately not awaited alongside the walking route: the drive figure is
+    // a number in the panel, and holding the line's animation for a second
+    // request would make the map feel slower to buy nothing.
+    setDriveSummary(null);
+    fetchDrivingSummary(waypoints, controller.signal).then(drive => {
+      if (cancelled || !drive) return;
+      setDriveSummary({
+        distanceKm: drive.distanceMeters / 1000,
+        durationMinutes: Math.round(drive.durationSeconds / 60),
+      });
+    });
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, [activeRoute]);
+
+  useEffect(() => {
+    if (!routePath || routePath.status === 'pending') {
+      // Not `true` while pending: the panel is hidden during the animation, and
+      // hiding it for a network round trip too would look like a stall.
       setIsRouteAnimating(false);
       setAnimatedRouteCoordinates([]);
       setShowAnimatedRouteStart(false);
@@ -741,10 +1112,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       return;
     }
 
-    const routeCoordinates = [
-      activeRoute.start,
-      ...activeRoute.plan.orderedStops.map(stop => stop.coordinate),
-    ];
+    const legs = routePath.legs;
 
     let cancelled = false;
     let frameId: number | null = null;
@@ -758,10 +1126,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       timeoutIds.forEach(timeoutId => window.clearTimeout(timeoutId));
     };
 
-    const animateSegment = (segmentIndex: number) => {
+    const animateLeg = (legIndex: number) => {
       if (cancelled) return;
 
-      if (segmentIndex >= routeCoordinates.length - 1) {
+      if (legIndex >= legs.length) {
         timeoutIds.push(
           window.setTimeout(() => {
             if (!cancelled) {
@@ -772,9 +1140,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         return;
       }
 
-      const from = routeCoordinates[segmentIndex];
-      const to = routeCoordinates[segmentIndex + 1];
-      const completedCoordinates = routeCoordinates.slice(0, segmentIndex + 1);
+      const leg = legs[legIndex];
+      const completedCoordinates = legs.slice(0, legIndex).flat();
       let startedAt: number | null = null;
 
       const step = (timestamp: number) => {
@@ -788,14 +1155,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           (timestamp - startedAt) / ROUTE_SEGMENT_ANIMATION_MS,
           1
         );
-        const interpolatedCoordinate: [number, number] = [
-          from[0] + (to[0] - from[0]) * progress,
-          from[1] + (to[1] - from[1]) * progress,
-        ];
 
+        // Sliced by length, not by vertex: a routed leg bunches vertices at
+        // junctions, and one vertex per frame would crawl through them.
         setAnimatedRouteCoordinates([
           ...completedCoordinates,
-          interpolatedCoordinate,
+          ...sliceAlongPath(leg, progress),
         ]);
 
         if (progress < 1) {
@@ -803,14 +1168,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           return;
         }
 
-        setAnimatedRouteCoordinates(
-          routeCoordinates.slice(0, segmentIndex + 2)
-        );
-        setVisibleAnimatedStopCount(segmentIndex + 1);
+        setAnimatedRouteCoordinates(legs.slice(0, legIndex + 1).flat());
+        setVisibleAnimatedStopCount(legIndex + 1);
 
         timeoutIds.push(
           window.setTimeout(() => {
-            animateSegment(segmentIndex + 1);
+            animateLeg(legIndex + 1);
           }, ROUTE_SEGMENT_PAUSE_MS)
         );
       };
@@ -828,13 +1191,25 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         if (cancelled) return;
 
         setShowAnimatedRouteStart(true);
-        setAnimatedRouteCoordinates([routeCoordinates[0]]);
-        animateSegment(0);
+        if (legs.length > 0) {
+          setAnimatedRouteCoordinates([legs[0][0]]);
+        }
+        animateLeg(0);
       }, ROUTE_START_MARKER_DELAY_MS)
     );
 
     return cleanupAnimation;
-  }, [activeRoute]);
+  }, [routePath]);
+
+  // Sit back flat once the route clears; the tilted fit itself happens where
+  // the walking geometry arrives, so it frames the real path.
+  useEffect(() => {
+    const instance = map.current;
+    if (!instance || !mapLoaded || activeRoute) return;
+    if (instance.getPitch() !== 0) {
+      instance.easeTo({ pitch: 0, duration: CAMERA_EASE_MS });
+    }
+  }, [activeRoute, mapLoaded]);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -1125,7 +1500,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         </div>
 
         {/* Control buttons */}
-        <div className='absolute top-2 right-4 z-10 flex flex-col gap-2'>
+        <div className='absolute top-2 right-4 z-20 flex flex-col gap-2'>
           {/* User location button */}
           <Button
             variant='outline'
@@ -1147,7 +1522,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </Button>
 
           {/* Map theme selector (Light/Dark/White/Dark Matter/Topographic) */}
-          <MapThemeSelector />
+          <MapThemeSelector isOnline={isOnline} />
 
           {isOnline && (
             <Button
@@ -1196,7 +1571,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
         {isMobile ? (
           <>
-            <div className='fixed left-4 right-4 bottom-24 z-10 flex flex-col gap-2'>
+            <div
+              ref={bottomOverlayRef}
+              className='fixed left-4 right-4 bottom-24 z-10 flex flex-col gap-2'
+            >
               <ForecastSlider />
               <MapInfoCard />
             </div>
@@ -1206,6 +1584,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 with no transition, which reads as the card closing itself. */}
             {isRoutePanelOpen ? (
               <div
+                ref={routePanelRef}
                 className={`fixed left-3 right-3 top-20 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
               >
                 <RouteToDishPanel
@@ -1214,6 +1593,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                   error={routeDishError}
                   isLoading={isRouteDishLoading}
                   selectedRecipeId={selectedRouteRecipeId}
+                  activeRouteSummary={activeRouteSummary}
                   onDrawRoute={plan =>
                     setActiveRoute({
                       plan,
@@ -1231,12 +1611,16 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </>
         ) : (
           <>
-            <div className='absolute bottom-2 left-2 z-10 flex flex-col gap-2 md:w-96'>
+            <div
+              ref={bottomOverlayRef}
+              className='absolute bottom-2 left-2 z-10 flex flex-col gap-2 md:w-96'
+            >
               <ForecastSlider />
               <MapInfoCard />
             </div>
             {isRoutePanelOpen ? (
               <div
+                ref={routePanelRef}
                 className={`absolute top-14 right-16 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
               >
                 <RouteToDishPanel
@@ -1244,6 +1628,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                   error={routeDishError}
                   isLoading={isRouteDishLoading}
                   selectedRecipeId={selectedRouteRecipeId}
+                  activeRouteSummary={activeRouteSummary}
                   onDrawRoute={plan =>
                     setActiveRoute({
                       plan,

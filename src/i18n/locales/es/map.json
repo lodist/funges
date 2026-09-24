@@ -57,24 +57,25 @@
     "select": "Tema del mapa",
     "light": {
       "name": "Claro",
-      "description": "Mapa clásico y luminoso."
+      "description": "El mapa clásico y luminoso."
     },
     "dark": {
       "name": "Oscuro",
-      "description": "Paleta oscura para la noche."
+      "description": "Descansa la vista de noche."
     },
     "white": {
       "name": "Blanco",
-      "description": "Mapa claro y minimalista."
+      "description": "Limpio y minimalista."
     },
     "darkmatter": {
       "name": "Dark Matter",
-      "description": "Mapa oscuro de alto contraste."
+      "description": "Negro, de alto contraste."
     },
     "topographic": {
       "name": "Topográfico",
-      "description": "Mapa de senderismo con caminos."
-    }
+      "description": "Mapa de senderismo con rutas."
+    },
+    "relief": "Sombreado del relieve"
   },
   "getLocation": "Obtener mi ubicación",
   "toggleNumbers": "Mostrar números",
