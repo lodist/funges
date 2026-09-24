@@ -96,7 +96,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
             // hand-rolled rather than becoming a Select because its rows carry
             // a thumbnail and a two-line description, which SelectItem's single
             // text column has nowhere to put.
-            className='absolute right-0 top-full mt-2 w-72 max-w-[calc(100vw-2rem)] bg-popover text-popover-foreground rounded-card border-0 elevation-floating overflow-hidden z-30'
+            className='absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] bg-popover text-popover-foreground rounded-card border-0 elevation-floating overflow-hidden z-30'
           >
             <p className='px-4 pt-3 pb-1.5 type-micro text-muted-foreground'>
               {t('themes.select')}
@@ -140,7 +140,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                         </p>
                         <p
                           className={cn(
-                            'text-xs leading-snug truncate',
+                            'text-xs leading-snug line-clamp-2',
                             !isSelected && 'text-muted-foreground'
                           )}
                         >
