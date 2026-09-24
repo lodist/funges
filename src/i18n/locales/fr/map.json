@@ -57,23 +57,23 @@
     "select": "Thème de carte",
     "light": {
       "name": "Clair",
-      "description": "Carte classique et lumineuse."
+      "description": "La carte classique et claire."
     },
     "dark": {
       "name": "Sombre",
-      "description": "Palette sombre pour la nuit."
+      "description": "Repose les yeux la nuit."
     },
     "white": {
       "name": "Blanc",
-      "description": "Carte claire et minimaliste."
+      "description": "Épurée et minimaliste."
     },
     "darkmatter": {
       "name": "Dark Matter",
-      "description": "Carte sombre à fort contraste."
+      "description": "Noire, à fort contraste."
     },
     "topographic": {
       "name": "Topographique",
-      "description": "Carte de randonnée avec sentiers."
+      "description": "Randonnée, avec sentiers."
     },
     "relief": "Ombrage du relief"
   },
