@@ -54,6 +54,21 @@ export interface ToxicSpecies {
   criticalConfusions?: { catalogId: string; noteKey: string }[];
 }
 
+// The catalog's porcini and chanterelle siblings, shared by every look-alike
+// that is mistaken for any of them. Add a new sibling here once, not per entry.
+const BOLETE_IDS = [
+  'mushroom',
+  'bronze_bolete',
+  'pine_bolete',
+  'summer_bolete',
+];
+const CHANTERELLE_IDS = [
+  'chant',
+  'pacific_chant',
+  'smooth_chant',
+  'winter_chant',
+];
+
 export const TOXIC_SPECIES: ToxicSpecies[] = [
   // --- confused with chanterelle / oyster mushroom ---
   {
@@ -66,13 +81,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.gillAttachment',
       'toxicity.checks.gillVsRidges',
     ],
-    confusedWithSpeciesIds: [
-      'chant',
-      'pacific_chant',
-      'smooth_chant',
-      'winter_chant',
-      'oyster-mushroom',
-    ],
+    confusedWithSpeciesIds: [...CHANTERELLE_IDS, 'oyster-mushroom'],
   },
   {
     id: 'hygrophoropsis-aurantiaca',
@@ -81,12 +90,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'inedible',
     reasonKey: 'toxicity.mechanisms.poorEdibility',
     checkKeys: ['toxicity.checks.gillVsRidges'],
-    confusedWithSpeciesIds: [
-      'chant',
-      'pacific_chant',
-      'smooth_chant',
-      'winter_chant',
-    ],
+    confusedWithSpeciesIds: CHANTERELLE_IDS,
   },
 
   // --- confused with parasol mushroom ---
@@ -166,12 +170,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'toxic',
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.fleshBruising'],
-    confusedWithSpeciesIds: [
-      'mushroom',
-      'bronze_bolete',
-      'pine_bolete',
-      'summer_bolete',
-    ],
+    confusedWithSpeciesIds: BOLETE_IDS,
   },
   {
     id: 'tylopilus-felleus',
@@ -180,12 +179,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'inedible',
     reasonKey: 'toxicity.mechanisms.bitter',
     checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.stemNetwork'],
-    confusedWithSpeciesIds: [
-      'mushroom',
-      'bronze_bolete',
-      'pine_bolete',
-      'summer_bolete',
-    ],
+    confusedWithSpeciesIds: BOLETE_IDS,
   },
 
   // --- unconditionally dangerous fungi, no specific catalog pairing ---
@@ -425,13 +419,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.gillAttachment',
       'toxicity.checks.capAttachment',
     ],
-    confusedWithSpeciesIds: [
-      'chant',
-      'pacific_chant',
-      'smooth_chant',
-      'winter_chant',
-      'oyster-mushroom',
-    ],
+    confusedWithSpeciesIds: [...CHANTERELLE_IDS, 'oyster-mushroom'],
   },
   {
     id: 'omphalotus-olivascens',
@@ -444,13 +432,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.gillAttachment',
       'toxicity.checks.capAttachment',
     ],
-    confusedWithSpeciesIds: [
-      'chant',
-      'pacific_chant',
-      'smooth_chant',
-      'winter_chant',
-      'oyster-mushroom',
-    ],
+    confusedWithSpeciesIds: [...CHANTERELLE_IDS, 'oyster-mushroom'],
   },
   {
     id: 'omphalotus-subilludens',
@@ -463,13 +445,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.gillAttachment',
       'toxicity.checks.capAttachment',
     ],
-    confusedWithSpeciesIds: [
-      'chant',
-      'pacific_chant',
-      'smooth_chant',
-      'winter_chant',
-      'oyster-mushroom',
-    ],
+    confusedWithSpeciesIds: [...CHANTERELLE_IDS, 'oyster-mushroom'],
   },
 
   // Yellow-stainer. Bruises chrome yellow at the stem base and smells of ink or
@@ -925,12 +901,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.fleshBruising',
       'toxicity.checks.stemNetwork',
     ],
-    confusedWithSpeciesIds: [
-      'mushroom',
-      'bronze_bolete',
-      'pine_bolete',
-      'summer_bolete',
-    ],
+    confusedWithSpeciesIds: BOLETE_IDS,
   },
   {
     id: 'kalmia-procumbens',
