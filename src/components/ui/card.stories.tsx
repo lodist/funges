@@ -50,9 +50,10 @@ const meta: Meta<typeof Card> = {
     },
     padding: {
       control: 'inline-radio',
-      options: ['content', 'compact', 'none'],
+      options: ['content', 'compact', 'slim', 'none'],
       description:
-        '`compact` is the tighter step for map chrome; `none` is for ' +
+        '`compact` is the tighter step for map chrome; `slim` is tighter ' +
+        'still for one-row controls; `none` is for ' +
         'full-bleed media and self-padding bodies.',
     },
     interactive: {
