@@ -8,22 +8,23 @@ import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { useUIStore } from '@/store/uiStore';
 import OnboardingModal from '@/components/OnboardingModal';
+import { isMapSpecies } from '@/data/species';
 
 export default function MapPage() {
   const isMobile = useIsMobile();
   const navigate = useNavigate({ from: MapRoute.fullPath });
   const { species, lat, lng, zoom, identify } = MapRoute.useSearch();
   const setActiveModal = useUIStore(state => state.setActiveModal);
-  const { syncSelectedSpecies, speciesOptions, setCenter, setZoom } =
-    useMapStore();
+  const { syncSelectedSpecies, setCenter, setZoom } = useMapStore();
   const { t } = useTranslation('map');
 
+  // Validated against every map species, not the region on screen: a shared
+  // pine-bolete link opened over the US keeps its species rather than being
+  // rewritten to porcini.
   useEffect(() => {
-    const validCodes = new Set(speciesOptions.map(opt => opt.code));
-    const speciesCode =
-      species && validCodes.has(species) ? species : 'mushroom';
+    const speciesCode = isMapSpecies(species) ? species : 'mushroom';
 
-    if (!species || !validCodes.has(species)) {
+    if (speciesCode !== species) {
       navigate({
         search: {
           species: speciesCode,
@@ -36,7 +37,7 @@ export default function MapPage() {
     }
 
     syncSelectedSpecies(speciesCode);
-  }, [species, speciesOptions, navigate, syncSelectedSpecies, lat, lng, zoom]);
+  }, [species, navigate, syncSelectedSpecies, lat, lng, zoom]);
 
   // /map?identify=true (from the landing page) opens the photo panel once,
   // then drops the flag so a reload or back-navigation does not reopen it.

@@ -27,6 +27,7 @@ vi.mock('@/store/mapStore', () => ({
       return selectedSpecies.current;
     },
     speciesOptions: [{ code: 'mushroom', emoji: '🍄', category: 'mushroom' }],
+    forecastRegion: 'USE',
   }),
 }));
 
@@ -48,6 +49,26 @@ beforeEach(() => {
 });
 
 describe('SpeciesSelector trigger', () => {
+  // Panning no longer swaps the species, so a selection the region does not
+  // forecast must still render as itself and say why the map is empty.
+  it('keeps an unforecast selection and explains the empty map', () => {
+    selectedSpecies.current = 'parasol'; // NE/SE only; not in the mocked options
+    render(<SpeciesSelector />);
+
+    expect(screen.getByRole('button')).toHaveAttribute(
+      'aria-label',
+      'species.select: Boletus'
+    );
+    expect(screen.getByRole('status')).toHaveTextContent(
+      'species.notForecastHere'
+    );
+  });
+
+  it('shows no notice when the region forecasts the selection', () => {
+    render(<SpeciesSelector />);
+    expect(screen.queryByRole('status')).toBeNull();
+  });
+
   it('renders exactly one trigger, and it clears the touch floor', () => {
     render(<SpeciesSelector />);
     const buttons = screen.getAllByRole('button');
