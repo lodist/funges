@@ -27,7 +27,6 @@ vi.mock('@/store/mapStore', () => ({
       return selectedSpecies.current;
     },
     speciesOptions: [{ code: 'mushroom', emoji: '🍄', category: 'mushroom' }],
-    forecastRegion: 'USE',
   }),
 }));
 

@@ -17,8 +17,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
 }) => {
   const { t } = useTranslation('map');
   const { t: tSpecies } = useTranslation('species');
-  const { t: tCommon } = useTranslation('common');
-  const { selectedSpecies, speciesOptions, forecastRegion } = useMapStore();
+  const { selectedSpecies, speciesOptions } = useMapStore();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -159,10 +158,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           role='status'
           className='elevation-raised mt-2 max-w-[min(18rem,calc(100vw-5.5rem))] rounded-card bg-card px-3 py-2 text-xs text-muted-foreground'
         >
-          {t('species.notForecastHere', {
-            species: speciesName,
-            region: tCommon(`data.regions.${forecastRegion}`),
-          })}
+          {t('species.notForecastHere', { species: speciesName })}
         </p>
       )}
 

@@ -52,7 +52,7 @@
     "clear": "Cancella Selezione",
     "noResults": "Nessuna specie trovata",
     "notAvailableOffline": "Not available offline. Download on the Offline Maps page.",
-    "notForecastHere": "Nessuna previsione per {{species}} qui ({{region}})."
+    "notForecastHere": "Nessuna previsione per {{species}} qui."
   },
   "themes": {
     "select": "Tema mappa",
