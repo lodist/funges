@@ -1500,7 +1500,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         </div>
 
         {/* Control buttons */}
-        <div className='absolute top-2 right-4 z-10 flex flex-col gap-2'>
+        <div className='absolute top-2 right-4 z-20 flex flex-col gap-2'>
           {/* User location button */}
           <Button
             variant='outline'
