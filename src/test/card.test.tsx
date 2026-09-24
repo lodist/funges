@@ -120,6 +120,7 @@ describe('padding is a named step, not a per-call-site value', () => {
   it.each([
     ['content', ['py-6']],
     ['compact', ['p-3']],
+    ['slim', ['px-3', 'py-2']],
     ['none', ['p-0']],
   ] as const)('%s renders exactly %s', (padding, expected) => {
     const padded = classes(<Card padding={padding} />).filter(c =>
@@ -136,6 +137,7 @@ describe('padding is a named step, not a per-call-site value', () => {
   it.each([
     ['content', 'gap-6'],
     ['compact', 'gap-3'],
+    ['slim', 'gap-1.5'],
     ['none', 'gap-0'],
   ] as const)('%s renders %s', (padding, expected) => {
     const gaps = classes(<Card padding={padding} />).filter(c =>
