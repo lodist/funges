@@ -286,7 +286,7 @@
       "catFlower": "i fiori",
       "catNut": "le noci",
       "chipRain": "Pioggia totale",
-      "chipLastRain": "Ultima pioggia",
+      "chipLastRain": "Ultima pioggia ≥ 8 mm",
       "chipTemp": "Temp media",
       "chipHumidity": "Umidità",
       "chipTopScore": "Punteggio massimo",

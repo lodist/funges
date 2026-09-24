@@ -490,7 +490,7 @@ export default function DataPage() {
             : null
         : null;
 
-    // Last significant rain (kept for the chip display only): a day when at
+    // Last soaking rain (chip only, labelled "≥ 8 mm"): a day when at
     // least a tenth of the zone got 8 mm, since a zone mean rarely does.
     const reversedData = [...zoneData].reverse();
     const lastRainIdx = reversedData.findIndex(
@@ -900,7 +900,11 @@ export default function DataPage() {
             {
               label: tn('chipLastRain'),
               value:
-                daysSinceRain === 0 ? tn('today') : `${daysSinceRain}d ago`,
+                daysSinceRain === 0
+                  ? tn('today')
+                  : daysSinceRain === 1
+                    ? tn('yesterday')
+                    : tn('daysAgo', { count: daysSinceRain }),
             },
           ]
         : []),

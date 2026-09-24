@@ -281,7 +281,7 @@
       "catFlower": "flores",
       "catNut": "nueces",
       "chipRain": "Lluvia total",
-      "chipLastRain": "Última lluvia",
+      "chipLastRain": "Última lluvia ≥ 8 mm",
       "chipTemp": "Temp. media",
       "chipHumidity": "Humedad",
       "chipTopScore": "Mejor puntuación",

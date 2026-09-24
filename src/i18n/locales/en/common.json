@@ -286,7 +286,7 @@
       "catFlower": "flowers",
       "catNut": "nuts",
       "chipRain": "Total rain",
-      "chipLastRain": "Last rain",
+      "chipLastRain": "Last rain ≥ 8 mm",
       "chipTemp": "Avg temp",
       "chipHumidity": "Humidity",
       "chipTopScore": "Top score",

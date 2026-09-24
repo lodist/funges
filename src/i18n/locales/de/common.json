@@ -281,7 +281,7 @@
       "catFlower": "Blumen",
       "catNut": "Nüssen",
       "chipRain": "Gesamtniederschlag",
-      "chipLastRain": "Letzter Regen",
+      "chipLastRain": "Letzter Regen ≥ 8 mm",
       "chipTemp": "Ø Temperatur",
       "chipHumidity": "Luftfeuchtigkeit",
       "chipTopScore": "Top-Score",
