@@ -96,7 +96,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
             // hand-rolled rather than becoming a Select because its rows carry
             // a thumbnail and a two-line description, which SelectItem's single
             // text column has nowhere to put.
-            className='absolute right-0 top-full mt-2 w-80 max-w-[calc(100vw-2rem)] bg-popover text-popover-foreground rounded-card border-0 elevation-floating overflow-hidden z-30'
+            className='absolute right-0 top-full mt-2 w-72 max-w-[calc(100vw-2rem)] bg-popover text-popover-foreground rounded-card border-0 elevation-floating overflow-hidden z-30'
           >
             <p className='px-4 pt-3 pb-1.5 type-micro text-muted-foreground'>
               {t('themes.select')}
@@ -115,13 +115,13 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                       }}
                       aria-pressed={isSelected}
                       className={cn(
-                        'appearance-none w-full flex items-center gap-3 rounded-xl border-0 bg-transparent px-2.5 py-2 text-left transition-colors',
+                        'appearance-none w-full flex items-center gap-3 rounded-xl border-0 bg-transparent px-2 py-1.5 text-left transition-colors',
                         isSelected
                           ? 'bg-happy-100 text-happy-900 dark:bg-happy-900 dark:text-happy-100'
                           : 'hover:bg-happy-50 dark:hover:bg-accent/50'
                       )}
                     >
-                      <div className='relative w-14 h-10 rounded-md overflow-hidden bg-muted flex-shrink-0'>
+                      <div className='relative w-12 h-9 rounded-md overflow-hidden bg-muted flex-shrink-0'>
                         <img
                           src={theme.thumbnail}
                           alt=''
@@ -140,7 +140,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                         </p>
                         <p
                           className={cn(
-                            'text-xs leading-snug line-clamp-2',
+                            'text-xs leading-snug truncate',
                             !isSelected && 'text-muted-foreground'
                           )}
                         >
@@ -164,7 +164,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
                 already widens the control itself to the 44px floor. */}
             <label
               className={cn(
-                'flex items-center justify-between gap-3 px-4 py-3 text-sm font-medium',
+                'flex items-center justify-between gap-3 px-4 py-2.5 text-sm font-medium',
                 isOnline ? 'cursor-pointer' : 'text-muted-foreground'
               )}
             >
