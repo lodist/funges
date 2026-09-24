@@ -28,9 +28,9 @@ export default function ForecastSlider({
       padding='compact'
       // No shadow: it sits on the map beside controls that carry their own, and
       // a second one read as a competing floating layer.
-      className={`shadow-none ${className}`}
+      className={`shadow-none py-2 gap-1.5 ${className}`}
     >
-      <div className='flex items-center justify-between text-xs mb-2.5'>
+      <div className='flex items-center justify-between text-xs'>
         <span className='font-bold text-foreground'>
           {t('forecast.label', { defaultValue: 'Forecast' })}
         </span>

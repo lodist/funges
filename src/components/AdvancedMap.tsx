@@ -535,7 +535,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         // (reuses/upscales the z12 tile) so labels/roads keep rendering using the
         // interpolation stops already authored up to z20-22 in the style files.
         maxZoom: ONLINE_MAX_ZOOM,
-        minZoom: 3.01,
+        minZoom: 2.01,
         collectResourceTiming: false,
         touchZoomRotate: true,
         trackResize: !isMobile, // Disable automatic resize only on mobile
