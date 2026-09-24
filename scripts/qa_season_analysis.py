@@ -171,11 +171,9 @@ def analyse_region(region: str, truth: dict, grid: pd.DataFrame, params: dict) -
         mult_column = f"{species}_season_mult"
         if score_column not in grid.columns:
             continue
-        allowed = params[species].get("climate_zones", [])
-        eligible = grid[grid.climate_zone.isin(allowed)] if allowed else grid
-        if eligible.empty:
+        if grid.empty:
             continue
-        eligible = eligible.copy()
+        eligible = grid.copy()
         eligible["weather_side"] = np.clip(
             eligible[score_column] / eligible[mult_column].replace(0, np.nan), 0, 10
         )

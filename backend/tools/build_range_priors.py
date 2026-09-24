@@ -1,0 +1,366 @@
+#!/usr/bin/env python3
+"""Build per-species range priors from GBIF occurrence density and upload to R2.
+
+A range prior answers "does this species grow here?": the share of nearby human
+observations of its kingdom that are this species, relative to its core range.
+It replaces the hand-drawn climate-zone allow-lists, which cut the map along
+straight lines and knew nothing about where a species actually grows.
+"""
+import argparse
+import io
+import json
+import math
+import struct
+import sys
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+from concurrent.futures import ThreadPoolExecutor
+from datetime import date
+from pathlib import Path
+
+import numpy as np
+from scipy.ndimage import gaussian_filter1d
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from species_registry import get_range_taxon_map
+
+_THIS_YEAR = date.today().year
+_ROOT = Path(__file__).resolve().parents[2]
+
+# The adhoc endpoint queries the live occurrence index. The precomputed density
+# tiles lag it: 1230 vs 1668 B. edulis records on one Scottish tile.
+GBIF_TILE = "https://api.gbif.org/v2/map/occurrence/adhoc/{z}/{x}/{y}.mvt"
+GBIF_SPECIES = "https://api.gbif.org/v1/species/{key}"
+ZOOM = 4  # EPSG:4326 tiles of 11.25°; adhoc clusters records to ~0.2° at any zoom
+STEP = 0.1  # grid cell, degrees
+KM_PER_DEG = 111.32
+
+# Covers every RegionConfig lat/lon range in the macro (EU = NE ∪ SE, US = USE ∪ USW).
+MACROS = {
+    "EU": {"lat": (34.0, 71.5), "lon": (-25.0, 42.5), "env": "EU_RANGE_PRIORS"},
+    "US": {"lat": (24.0, 49.5), "lon": (-125.5, -67.0), "env": "US_RANGE_PRIORS"},
+}
+
+SIGMA_KM = 50.0  # smoothing radius: wide enough that one empty cell is not evidence
+PSEUDO_RECORDS = 20.0  # kingdom records a cell needs before its own share outweighs the macro mean
+MIN_RECORDS = 50  # fewer species records than this in a macro -> no prior there
+CORE_QUANTILE = 90  # percentile of the share that defines the species' core range
+SATURATION = 0.1  # share (as a fraction of core) that already reaches a prior of 0.63
+
+
+# --- GBIF vector tiles -----------------------------------------------------
+
+def _varint(buf, i):
+    shift = result = 0
+    while True:
+        b = buf[i]
+        i += 1
+        result |= (b & 0x7F) << shift
+        if b < 0x80:
+            return result, i
+        shift += 7
+
+
+def _fields(buf):
+    """Yield (field number, value) for a protobuf message."""
+    i = 0
+    while i < len(buf):
+        key, i = _varint(buf, i)
+        wire = key & 7
+        if wire == 0:
+            value, i = _varint(buf, i)
+        elif wire == 2:
+            length, i = _varint(buf, i)
+            value, i = buf[i:i + length], i + length
+        elif wire == 5:
+            value, i = buf[i:i + 4], i + 4
+        elif wire == 1:
+            value, i = buf[i:i + 8], i + 8
+        else:
+            raise ValueError(f"unsupported protobuf wire type {wire}")
+        yield key >> 3, value
+
+
+def _packed(buf):
+    out, i = [], 0
+    while i < len(buf):
+        value, i = _varint(buf, i)
+        out.append(value)
+    return out
+
+
+def _zigzag(n):
+    return (n >> 1) ^ -(n & 1)
+
+
+def _tile_value(buf):
+    for num, value in _fields(buf):
+        if num == 1:
+            return value.decode()
+        if num == 2:
+            return struct.unpack("<f", value)[0]
+        if num == 3:
+            return struct.unpack("<d", value)[0]
+        if num in (4, 5):
+            return value
+        if num == 6:
+            return _zigzag(value)
+        if num == 7:
+            return bool(value)
+    return None
+
+
+def decode_points(tile):
+    """Yield (x, y, total, extent) for each point of a GBIF occurrence tile.
+
+    ponytail: a points-only Mapbox Vector Tile reader; GBIF point tiles carry
+    nothing else, so a full MVT dependency buys nothing here.
+    """
+    for num, layer in _fields(tile):
+        if num != 3:
+            continue
+        keys, values, features, extent = [], [], [], 4096
+        for n, value in _fields(layer):
+            if n == 2:
+                features.append(value)
+            elif n == 3:
+                keys.append(value.decode())
+            elif n == 4:
+                values.append(_tile_value(value))
+            elif n == 5:
+                extent = value
+        for feature in features:
+            tags, geometry = [], []
+            for n, value in _fields(feature):
+                if n == 2:
+                    tags = _packed(value)
+                elif n == 4:
+                    geometry = _packed(value)
+            props = {keys[tags[k]]: values[tags[k + 1]] for k in range(0, len(tags), 2)}
+            total = props.get("total", 0)
+            x = y = k = 0
+            while k < len(geometry):
+                command, count = geometry[k] & 7, geometry[k] >> 3
+                k += 1
+                if command != 1:  # MoveTo is the only command a point uses
+                    break
+                for _ in range(count):
+                    x += _zigzag(geometry[k])
+                    y += _zigzag(geometry[k + 1])
+                    k += 2
+                    yield x, y, total, extent
+
+
+def _get(url, retries=6):
+    for attempt in range(retries):
+        try:
+            with urllib.request.urlopen(url, timeout=90) as resp:
+                return resp.read() if resp.status == 200 else b""
+        except urllib.error.HTTPError as e:
+            if attempt == retries - 1:
+                raise
+            retry_after = e.headers.get("Retry-After")
+            time.sleep(float(retry_after) if retry_after and retry_after.isdigit() else 2.0 * (attempt + 1))
+        except Exception:
+            if attempt == retries - 1:
+                raise
+            time.sleep(1.5 * (attempt + 1))
+
+
+def tile_span(z):
+    """Tile width in degrees for EPSG:4326 (two tiles wide at zoom 0)."""
+    return 180.0 / 2 ** z
+
+
+def tiles_for(macro, z=ZOOM):
+    w = tile_span(z)
+    xs = range(int((macro["lon"][0] + 180) // w), int((macro["lon"][1] + 180) // w) + 1)
+    ys = range(int((90 - macro["lat"][1]) // w), int((90 - macro["lat"][0]) // w) + 1)
+    return [(x, y) for x in xs for y in ys]
+
+
+def grid_shape(macro):
+    return (round((macro["lat"][1] - macro["lat"][0]) / STEP),
+            round((macro["lon"][1] - macro["lon"][0]) / STEP))
+
+
+def bin_tile(grid, macro, tile, x, y, z=ZOOM):
+    """Add one tile's point counts into the macro grid (row 0 = southern edge)."""
+    w = tile_span(z)
+    for px, py, total, extent in decode_points(tile):
+        if not (0 <= px < extent and 0 <= py < extent):
+            continue  # tile buffer: that point belongs to the neighbouring tile
+        lon = -180 + x * w + (px + 0.5) / extent * w
+        lat = 90 - y * w - (py + 0.5) / extent * w
+        i = int((lat - macro["lat"][0]) // STEP)
+        j = int((lon - macro["lon"][0]) // STEP)
+        if 0 <= i < grid.shape[0] and 0 <= j < grid.shape[1]:
+            grid[i, j] += total
+
+
+def count_grid(macro, taxon_key, years, workers=4):
+    params = urllib.parse.urlencode({
+        "srs": "EPSG:4326", "taxonKey": taxon_key,
+        # Human observations only, as in the season curves: specimens carry
+        # herbarium-campaign bias and are not the population the app serves.
+        "basisOfRecord": "HUMAN_OBSERVATION", "year": years, "mode": "GEO_CENTROID",
+    })
+    grid = np.zeros(grid_shape(macro))
+    tiles = tiles_for(macro)
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        bodies = ex.map(lambda t: _get(GBIF_TILE.format(z=ZOOM, x=t[0], y=t[1]) + "?" + params), tiles)
+        for (x, y), body in zip(tiles, bodies):
+            if body:
+                bin_tile(grid, macro, body, x, y)
+    return grid
+
+
+# --- Prior maths -----------------------------------------------------------
+
+def lat_centers(macro):
+    return macro["lat"][0] + (np.arange(grid_shape(macro)[0]) + 0.5) * STEP
+
+
+def smooth_counts(grid, lats, sigma_km=SIGMA_KM):
+    """Gaussian kernel-weighted record counts; the lon sigma widens with latitude."""
+    sy = sigma_km / (KM_PER_DEG * STEP)
+    out = gaussian_filter1d(grid.astype(float), sy, axis=0, mode="constant")
+    for r, lat in enumerate(lats):
+        sx = sy / max(math.cos(math.radians(lat)), 0.2)
+        # gaussian_filter1d averages; the kernel mass turns that back into a count.
+        out[r] = gaussian_filter1d(out[r], sx, mode="constant") * (2 * math.pi * sy * sx)
+    return out
+
+
+def range_prior(target, background):
+    """Prior in [0, 1] from smoothed species (target) and kingdom (background) counts.
+
+    Unsampled cells shrink towards the macro-wide share instead of reading as
+    absence; well-sampled cells without the species fall towards 0.
+    """
+    s0 = target.sum() / max(background.sum(), 1e-9)
+    share = (target + PSEUDO_RECORDS * s0) / (background + PSEUDO_RECORDS)
+    core = (target >= 1) & (background >= 100)
+    if not core.any():
+        return None
+    ref = np.percentile(share[core], CORE_QUANTILE)
+    return 1 - np.exp(-share / (SATURATION * ref))
+
+
+def kingdom_key(taxon_key):
+    return json.loads(_get(GBIF_SPECIES.format(key=taxon_key)))["kingdomKey"]
+
+
+def build_macro(macro, taxon_map, years, workers=4):
+    """{species: prior grid} for one macro region; species without evidence are left out."""
+    lats = lat_centers(macro)
+    backgrounds, priors = {}, {}
+    for species, keys in taxon_map.items():
+        kingdom = kingdom_key(keys[0])
+        if kingdom not in backgrounds:
+            backgrounds[kingdom] = smooth_counts(count_grid(macro, kingdom, years, workers), lats)
+        raw = sum(count_grid(macro, k, years, workers) for k in keys)
+        if raw.sum() < MIN_RECORDS:
+            print(f"  {species:22s} {int(raw.sum()):7d} records  SKIP (< {MIN_RECORDS})")
+            continue
+        prior = range_prior(smooth_counts(raw, lats), backgrounds[kingdom])
+        if prior is None:
+            print(f"  {species:22s} {int(raw.sum()):7d} records  SKIP (no well-sampled core)")
+            continue
+        priors[species] = prior
+        print(f"  {species:22s} {int(raw.sum()):7d} records  "
+              f"land cells >0.5: {np.mean(prior > 0.5):.0%}")
+    return priors
+
+
+def to_npz(macro, priors):
+    buf = io.BytesIO()
+    species = sorted(priors)
+    np.savez_compressed(
+        buf, lat0=macro["lat"][0], lon0=macro["lon"][0], step=STEP,
+        species=np.array(species),
+        priors=np.stack([np.rint(priors[s] * 255).astype(np.uint8) for s in species]),
+    )
+    return buf.getvalue()
+
+
+# --- Entry point -----------------------------------------------------------
+
+def _curves():
+    # The season-curve tool owns the R2/env helpers this build shares.
+    import build_season_curves as curves
+    return curves
+
+
+def save(payload, dest):
+    curves = _curves()
+    if curves.is_remote_path(dest):
+        key = urllib.parse.urlparse(dest).path.lstrip("/")
+        client = curves.boto3.client(
+            "s3",
+            endpoint_url=curves.get_required_env("R2_ENDPOINT_URL"),
+            aws_access_key_id=curves.get_required_env("R2_ACCESS_KEY_ID"),
+            aws_secret_access_key=curves.get_required_env("R2_SECRET_ACCESS_KEY"),
+        )
+        client.put_object(Bucket=curves.get_required_env("R2_BUCKET_NAME"), Key=key,
+                          Body=payload, ContentType="application/octet-stream")
+        print(f"  uploaded to R2: {dest}")
+    else:
+        Path(dest).parent.mkdir(parents=True, exist_ok=True)
+        Path(dest).write_bytes(payload)
+        print(f"  wrote local: {dest}")
+
+
+def needs_rebuild():
+    """Missing from R2, or last built in an earlier quarter -> rebuild."""
+    curves = _curves()
+    today_q = curves._quarter_index(date.today())
+    for macro in MACROS.values():
+        lm = curves.r2_last_modified(curves.get_required_env(macro["env"]))
+        if lm is None or curves._quarter_index(lm.date()) < today_q:
+            return True
+    print("[gate] range priors present and built this quarter -> skipping (use --force to rebuild)")
+    return False
+
+
+def run(years=None, local_only=False, out_dir=".", force=False, workers=4):
+    curves = _curves()
+    curves.load_dotenv(_ROOT / ".env")
+    curves.load_dotenv(_ROOT / ".env.secret")
+    if not local_only and not force and not needs_rebuild():
+        return
+    # The current year stays out so QA, which scores this year's sightings, is not
+    # graded on its own training data.
+    years = years or f"1990,{_THIS_YEAR - 1}"
+    taxon_map = get_range_taxon_map()
+    for code, macro in MACROS.items():
+        print(f"[{code}] building range priors for {len(taxon_map)} species ({years})...")
+        priors = build_macro(macro, taxon_map, years, workers)
+        dest = (str(Path(out_dir) / f"{code}_range_priors.npz") if local_only
+                else curves.get_required_env(macro["env"]))
+        save(to_npz(macro, priors), dest)
+
+
+def run_safely():
+    """Scheduler hook: a failed prior build must never fail the scoring run."""
+    try:
+        run()
+    except Exception as e:
+        print(f"[warn] range prior build failed: {e}; scoring keeps the last published priors")
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--years", help="GBIF year range (default: 1990 to last year)")
+    ap.add_argument("--local-only", action="store_true", help="write to --out-dir instead of R2")
+    ap.add_argument("--out-dir", default=".")
+    ap.add_argument("--force", action="store_true", help="rebuild even if built this quarter")
+    ap.add_argument("--workers", type=int, default=4, help="parallel GBIF tile fetches")
+    args = ap.parse_args()
+    run(args.years, args.local_only, args.out_dir, args.force, args.workers)
+
+
+if __name__ == "__main__":
+    main()

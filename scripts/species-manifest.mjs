@@ -306,6 +306,16 @@ export function validateManifests(
           where,
           'forecast.empiricalSeason.taxonKeys and references must be arrays'
         );
+      const rangeKeys = forecast.rangePrior?.taxonKeys;
+      if (
+        !Array.isArray(rangeKeys) ||
+        rangeKeys.some(key => !Number.isInteger(key) || key <= 0)
+      )
+        fail(
+          errors,
+          where,
+          'forecast.rangePrior.taxonKeys must contain GBIF taxon keys (empty means no range prior)'
+        );
       for (const region of REGIONS)
         if (!forecast.regions?.[region])
           fail(
@@ -457,15 +467,6 @@ export function validateManifests(
             where,
             `forecast.regions.${region}.scoring.season_months must contain months 1-12`
           );
-        if (
-          !Array.isArray(scoring?.climate_zones) ||
-          scoring.climate_zones.some(zone => !nonEmpty(zone))
-        )
-          fail(
-            errors,
-            where,
-            `forecast.regions.${region}.scoring.climate_zones must be an array of zone names (empty means unrestricted)`
-          );
         for (const key of [
           'wind_sensitive',
           'water_relevance',
@@ -594,6 +595,7 @@ function backendRegistry(manifests) {
       empiricalTaxonKeys: m.forecast.empiricalSeason.enabled
         ? m.forecast.empiricalSeason.taxonKeys
         : [],
+      rangeTaxonKeys: m.forecast.rangePrior.taxonKeys,
       dataColumns: [
         ...new Set([`${m.id}_score`, ...(m.forecast.dataColumns || [])]),
       ],
@@ -958,6 +960,7 @@ export function scaffold(id, root = process.cwd(), { forecast = false } = {}) {
               taxonKeys: [],
               references: [],
             },
+            rangePrior: { taxonKeys: [] },
           }
         : {}),
       ...(regions ? { regions } : {}),

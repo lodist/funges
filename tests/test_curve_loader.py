@@ -30,6 +30,7 @@ class _Config:
     region = "NE"
     season_curves_env = "TEST_SEASON_CURVES"
     zone_curves_env = "TEST_ZONE_CURVES"
+    range_priors_env = ""
 
 
 def _load(tmp_path, monkeypatch, region_curves, zone_curves, capsys):

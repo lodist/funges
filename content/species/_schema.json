@@ -23,7 +23,6 @@
         "soil_temp_sigma",
         "min_cumulative_rain",
         "weather_preference",
-        "climate_zones",
         "wind_sensitive",
         "season_months",
         "water_relevance",
@@ -54,10 +53,6 @@
           "type": "object",
           "required": ["rain_first"],
           "properties": { "rain_first": { "type": "boolean" } }
-        },
-        "climate_zones": {
-          "type": "array",
-          "items": { "type": "string", "minLength": 1 }
         },
         "wind_sensitive": { "type": "boolean" },
         "season_months": {
@@ -196,6 +191,17 @@
             }
           }
         },
+        "rangePrior": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["taxonKeys"],
+          "properties": {
+            "taxonKeys": {
+              "type": "array",
+              "items": { "type": "integer", "minimum": 1 }
+            }
+          }
+        },
         "regions": {
           "type": "object",
           "required": ["NE", "SE", "USE", "USW"],
@@ -255,7 +261,12 @@
         {
           "if": { "properties": { "enabled": { "const": true } } },
           "then": {
-            "required": ["regions", "empiricalSeason", "routeToDish"]
+            "required": [
+              "regions",
+              "empiricalSeason",
+              "rangePrior",
+              "routeToDish"
+            ]
           }
         }
       ]
