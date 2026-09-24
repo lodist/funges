@@ -223,7 +223,7 @@ function readCenter(): [number, number] {
 
 function readZoom(): number {
   const saved = Number(localStorage.getItem(MAP_ZOOM_KEY));
-  return Number.isFinite(saved) && saved >= 3.01 && saved <= 20 ? saved : 3.5;
+  return Number.isFinite(saved) && saved >= 2.01 && saved <= 20 ? saved : 3.5;
 }
 
 // Region overlay/forecast tilesets are heavy; keeping all four live at once (even when
