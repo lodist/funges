@@ -10,14 +10,42 @@ export interface ForagingRow {
   humidity?: number;
   wind_ms?: number;
   pressure_hpa?: number;
+  /** Rain reached by the wettest tenth of the zone that day. */
+  precip_p90?: number;
   scores?: Record<string, number>;
+}
+
+/** Region-wide rows/spread key: the page's "all zones" view. */
+export const ALL_ZONE = '_all';
+
+export type Compass = 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'nw';
+
+/**
+ * Across-cell spread over a window ending today. A zone mean hides local
+ * weather (a storm over Valencia averages to ~0 mm across Iberia), so the
+ * narrative reads this to say how uneven it was.
+ */
+export interface ZoneSpread {
+  rain_p50?: number;
+  rain_p90?: number;
+  /** Where the wettest tenth sits; null when central or uniform. */
+  rain_dir?: Compass | null;
+  temp_avg_p10?: number;
+  temp_avg_p90?: number;
+  humidity_p10?: number;
+  humidity_p90?: number;
+  wind_ms_p10?: number;
+  wind_ms_p90?: number;
 }
 
 export interface ForagingRegion {
   label: string;
   zones: string[];
   zones_geo: GeoJSON.FeatureCollection;
+  /** One row per zone per day, plus ALL_ZONE rows. */
   data: ForagingRow[];
+  /** zone (or ALL_ZONE) → window length in days → spread. */
+  spread?: Record<string, Record<string, ZoneSpread>>;
 }
 
 export interface ForagingDataset {
@@ -27,7 +55,7 @@ export interface ForagingDataset {
 }
 
 const DATA_NERD_URL = `${import.meta.env.BASE_URL}data/data_nerd.json`;
-const STORAGE_KEY = 'data:v10';
+const STORAGE_KEY = 'data:v11';
 const STORAGE_TTL_MS = 3 * 60 * 60 * 1000;
 
 let cached: ForagingDataset | null = null;

@@ -4,6 +4,12 @@ Reads the four R2 weather parquets (NE / SE / USE / USW), assigns each grid
 point to a visually-meaningful oval region (defined as axis-aligned ellipses),
 aggregates daily means per region, and writes public/data/data_nerd.json.
 
+Weather is first averaged into BIN_DEG cells so every patch of land counts once
+however densely its wilderness points are mapped, then summarised per zone and
+region-wide (ALL_ZONE). A zone mean alone hides local weather -- a storm over
+Valencia averages to ~0 mm across Iberia -- so each zone also carries the
+across-cell spread for every page window (see ``window_spread``).
+
 The visual regions are defined here for display — they are NOT the ML climate
 zones used by the scoring model.
 """
@@ -72,6 +78,10 @@ VISUAL_REGIONS: dict[str, dict[str, tuple]] = {
 }
 
 DAYS = 365
+BIN_DEG = 0.25  # ~25 km cells: fine enough to resolve a regional storm
+ALL_ZONE = "_all"  # region-wide rows and spread, the page's "all zones" view
+WINDOWS = (7, 14, 30, 90, 365)  # must match DAY_OPTIONS in DataPage.tsx
+COMPASS = ("e", "ne", "n", "nw", "w", "sw", "s", "se")
 BATCH_SIZE = 100_000
 DOWNLOAD_CHUNK_SIZE = 1024 * 1024
 OUTPUT_PATH = Path("public/data/data_nerd.json")
@@ -150,23 +160,119 @@ def _parquet_batches(
         yield batch.to_pandas()
 
 
+def _mean_of(totals: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
+    """Turn accumulated (column, sum|count) totals back into means."""
+    out = pd.DataFrame(index=totals.index)
+    for column in columns:
+        counts = totals[(column, "count")]
+        out[column] = totals[(column, "sum")].div(counts.where(counts > 0))
+    return out
+
+
+def wettest_direction(totals: pd.Series) -> str | None:
+    """Compass direction of the wettest tenth of cells from the zone's centre.
+
+    None when rain is uniform or the wet cells sit around the centre, so the
+    page only names a direction when there is a real one.
+    """
+    values = totals.to_numpy()
+    if len(values) < 2 or values.max() <= 0:
+        return None
+    lat = totals.index.get_level_values("blat").to_numpy() * BIN_DEG
+    lon = totals.index.get_level_values("blon").to_numpy() * BIN_DEG
+    wet = values >= np.quantile(values, 0.9)
+    if wet.all():
+        return None
+    dy = lat[wet].mean() - lat.mean()
+    dx = (lon[wet].mean() - lon.mean()) * math.cos(math.radians(lat.mean()))
+    # ponytail: "central" = offset under 15% of the zone's half-extent
+    radius = max(np.ptp(lat), np.ptp(lon), BIN_DEG) / 2
+    if math.hypot(dx, dy) < 0.15 * radius:
+        return None
+    return COMPASS[round(math.degrees(math.atan2(dy, dx)) / 45) % 8]
+
+
+def window_spread(cells: pd.DataFrame, today: pd.Timestamp) -> dict[str, dict]:
+    """Across-cell spread for each page window, every window ending today.
+
+    Rain uses each cell's window total (p50/p90 + where the wettest cells
+    are); temperature, humidity and wind use each cell's window mean (p10/p90).
+    """
+    dates = cells.index.get_level_values("Date")
+    out: dict[str, dict] = {}
+    for window in WINDOWS:
+        win = cells[(dates <= today) & (dates > today - pd.Timedelta(days=window))]
+        if win.empty:
+            continue
+        per_cell = win.groupby(level=["blat", "blon"])
+        spread: dict = {}
+        if "precip_mm" in win:
+            rain = per_cell["precip_mm"].sum()
+            spread["rain_p50"] = _safe_float(rain.quantile(0.5), 1)
+            spread["rain_p90"] = _safe_float(rain.quantile(0.9), 1)
+            spread["rain_dir"] = wettest_direction(rain)
+        for key in ("temp_avg", "humidity", "wind_ms"):
+            if key in win:
+                means = per_cell[key].mean()
+                spread[f"{key}_p10"] = _safe_float(means.quantile(0.1), 1)
+                spread[f"{key}_p90"] = _safe_float(means.quantile(0.9), 1)
+        out[str(window)] = spread
+    return out
+
+
+def summarise_zone(
+    zone: str,
+    cells: pd.DataFrame,
+    scores: pd.DataFrame | None,
+    today: pd.Timestamp,
+) -> tuple[list[dict], dict[str, dict]]:
+    """Daily rows (cell-weighted means + precip_p90) and window spread."""
+    by_date = cells.groupby(level="Date")
+    daily = by_date.mean()
+    if "precip_mm" in daily:
+        # Share-of-area signal: at least a tenth of the zone got this much.
+        daily["precip_p90"] = by_date["precip_mm"].quantile(0.9)
+
+    rows: list[dict] = []
+    for date, weather in daily.iterrows():
+        entry: dict = {"date": date.strftime("%Y-%m-%d"), "zone": zone}
+        for key, raw in weather.items():
+            val = _safe_float(raw, 1)
+            if val is not None:
+                entry[key] = val
+        if scores is not None and date in scores.index:
+            day_scores = {
+                col.removesuffix("_score"): val
+                for col, raw in scores.loc[date].items()
+                if (val := _safe_float(raw, 2)) is not None
+            }
+            if day_scores:
+                entry["scores"] = day_scores
+        rows.append(entry)
+    return rows, window_spread(cells, today)
+
+
 def aggregate_region(
     parquet_path: Path,
     regions: dict[str, tuple],
     batch_size: int = BATCH_SIZE,
-) -> tuple[list[dict], list[str]]:
-    """Aggregate a parquet with memory bounded by ``batch_size`` rows."""
+) -> tuple[list[dict], list[str], dict[str, dict]]:
+    """Aggregate a parquet with memory bounded by ``batch_size`` rows.
+
+    Returns (daily rows, zone names, spread per zone). Rows and spread also
+    carry ALL_ZONE; zone names do not.
+    """
     parquet = pq.ParquetFile(parquet_path)
     schema_columns = parquet.schema_arrow.names
     score_cols = [c for c in schema_columns if c.endswith("_score")]
     present_weather = [c for c in WEATHER_COLS if c in schema_columns]
-    value_columns = present_weather + score_cols
-    read_columns = ["Date", "Latitude", "Longitude", *value_columns]
+    read_columns = ["Date", "Latitude", "Longitude", *present_weather, *score_cols]
 
     cutoff = pd.Timestamp(
         datetime.now(timezone.utc).date() - timedelta(days=DAYS)
     )
-    totals: pd.DataFrame | None = None
+    cell_totals: pd.DataFrame | None = None
+    score_totals: pd.DataFrame | None = None
 
     for df in _parquet_batches(parquet_path, read_columns, batch_size):
         df["Date"] = pd.to_datetime(df["Date"])
@@ -174,49 +280,54 @@ def aggregate_region(
         if df.empty:
             continue
 
-        df["visual_region"] = assign_visual_regions(df, regions)
-        df = df[df["visual_region"].notna()]
+        df["zone"] = assign_visual_regions(df, regions)
+        df = df[df["zone"].notna()]
         if df.empty:
             continue
+        df["blat"] = np.floor(df["Latitude"] / BIN_DEG).astype("int32")
+        df["blon"] = np.floor(df["Longitude"] / BIN_DEG).astype("int32")
 
-        partial = df.groupby(
-            ["Date", "visual_region"], sort=False
-        )[value_columns].agg(["sum", "count"])
-        totals = partial if totals is None else totals.add(partial, fill_value=0)
+        cells = df.groupby(["Date", "zone", "blat", "blon"], sort=False)[
+            present_weather
+        ].agg(["sum", "count"])
+        cell_totals = cells if cell_totals is None else cell_totals.add(cells, fill_value=0)
+        if score_cols:
+            # Scores stay point-weighted: they describe foraging spots, not land.
+            scores = df.groupby(["Date", "zone"], sort=False)[score_cols].agg(["sum", "count"])
+            score_totals = scores if score_totals is None else score_totals.add(scores, fill_value=0)
 
-    if totals is None:
-        return [], []
+    if cell_totals is None:
+        return [], [], {}
 
-    grouped = pd.DataFrame(index=totals.index)
-    for column in value_columns:
-        counts = totals[(column, "count")]
-        grouped[column] = totals[(column, "sum")].div(counts.where(counts > 0))
-    grouped = grouped.reset_index()
+    cells = _mean_of(cell_totals, present_weather).rename(columns=WEATHER_COLS)
+    del cell_totals
+    today = pd.Timestamp(datetime.now(timezone.utc).date())
+    zones = sorted(cells.index.get_level_values("zone").unique())
 
     rows: list[dict] = []
-    for _, row in grouped.iterrows():
-        entry: dict = {
-            "date": row["Date"].strftime("%Y-%m-%d"),
-            "zone": str(row["visual_region"]),
-        }
-        for src_col, dst_key in WEATHER_COLS.items():
-            if src_col not in row:
-                continue
-            val = _safe_float(row[src_col], 1)
-            if val is not None:
-                entry[dst_key] = val
-        scores: dict[str, float] = {}
-        for col in score_cols:
-            val = _safe_float(row[col], 2)
-            if val is not None:
-                scores[col.removesuffix("_score")] = val
-        if scores:
-            entry["scores"] = scores
-        rows.append(entry)
+    spread: dict[str, dict] = {}
+
+    def add(zone: str, zone_cells: pd.DataFrame, zone_scores: pd.DataFrame | None) -> None:
+        zone_rows, spread[zone] = summarise_zone(zone, zone_cells, zone_scores, today)
+        rows.extend(zone_rows)
+
+    for zone in zones:
+        add(
+            zone,
+            cells.xs(zone, level="zone"),
+            _mean_of(score_totals.xs(zone, level="zone"), score_cols)
+            if score_totals is not None else None,
+        )
+    # A cell cut by two ellipses appears once per zone; average it back to one.
+    add(
+        ALL_ZONE,
+        cells.groupby(level=["Date", "blat", "blon"]).mean(),
+        _mean_of(score_totals.groupby(level="Date").sum(), score_cols)
+        if score_totals is not None else None,
+    )
 
     rows.sort(key=lambda r: (r["zone"], r["date"]))
-    zones = sorted({r["zone"] for r in rows})
-    return rows, zones
+    return rows, zones, spread
 
 
 def main() -> None:
@@ -229,13 +340,14 @@ def main() -> None:
             parquet_path = temp_path / f"{region_id}.parquet"
             download_parquet(url, parquet_path)
             vis_regions = VISUAL_REGIONS[region_id]
-            data, zones = aggregate_region(parquet_path, vis_regions)
+            data, zones, spread = aggregate_region(parquet_path, vis_regions)
             zones_geo = build_zones_geo(vis_regions)
             regions_payload[region_id] = {
                 "label": REGION_LABELS[region_id],
                 "zones": zones,
                 "zones_geo": zones_geo,
                 "data": data,
+                "spread": spread,
             }
             print(
                 f"  {region_id}: {len(data)} rows across "
