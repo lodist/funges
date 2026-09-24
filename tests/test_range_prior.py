@@ -34,7 +34,7 @@ def test_decodes_multipoint_features_with_their_total():
 
 
 def test_only_thorough_looking_without_finding_rules_a_species_out():
-    background = np.array([5000.0, 5000.0, 0.0, 50.0, 5000.0])
+    background = np.array([5000.0, 50000.0, 0.0, 50.0, 5000.0])
     # core, well observed and absent, unobserved, barely observed, present but 10x rarer
     target = np.array([50.0, 0.0, 0.0, 0.0, 5.0])
     core, absent, unobserved, barely, rare = brp.possibility(target, background)
@@ -52,6 +52,14 @@ def test_a_species_must_be_possible_at_every_scale():
     prior = brp.range_prior([local[0], regional[0]], [local[1], regional[1]])
     assert brp.possibility(*local)[0] > 0.9
     assert prior[0] < 0.01
+
+
+def test_regional_absence_does_not_overrule_records_nearby():
+    # A mountain population (3 records) inside lowlands that never have it.
+    local = (np.array([3.0, 20.0]), np.array([1000.0, 1000.0]))
+    regional = (np.array([3.0, 20.0]), np.array([100000.0, 1000.0]))
+    assert brp.possibility(*regional)[0] < 0.01
+    assert brp.range_prior([local[0], regional[0]], [local[1], regional[1]])[0] > 0.9
 
 
 def test_smoothing_keeps_record_counts():

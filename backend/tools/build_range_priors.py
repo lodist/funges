@@ -51,9 +51,10 @@ SIGMA_KM = 50.0  # smoothing radius: wide enough that one empty cell is not evid
 # thousands and none of it. A species must be consistent with both.
 SCALES_KM = (SIGMA_KM, 150.0)
 # A population this much rarer than the species' typical share still counts as
-# growing there. 0.02 kept B. edulis at 0.20 in Missouri and amaranth at 0.29 in
-# Ireland; 0.1 started hiding real sightings (2.6% of 2026's).
-TOLERANCE = 0.05
+# growing there. F. vesca in the Great Smokies (35 iNaturalist observations against
+# 290 of F. virginiana) sits near 4% of its typical share, amaranth in Scotland near
+# 0.5%: 0.05 zeroed the Smokies, 0.02 keeps them (0.92) and Scotland at 0.
+TOLERANCE = 0.02
 
 
 # --- GBIF vector tiles -----------------------------------------------------
@@ -258,9 +259,17 @@ def possibility(target, background):
 
 
 def range_prior(targets, backgrounds):
-    """Prior in [0, 1]: the species must be possible at every scale (lists follow SCALES_KM)."""
-    tests = [possibility(t, b) for t, b in zip(targets, backgrounds)]
-    return None if any(t is None for t in tests) else np.minimum.reduce(tests)
+    """Prior in [0, 1] from (local, regional) smoothed counts, following SCALES_KM.
+
+    The regional test rules out ground with no records anywhere near it. It may not
+    overrule records nearby, or it would average a mountain population away with
+    the lowlands around it; the blend keeps that hand-over free of edges.
+    """
+    local, regional = (possibility(t, b) for t, b in zip(targets, backgrounds))
+    if local is None or regional is None:
+        return None
+    nearby = np.clip(targets[0], 0, 1)
+    return nearby * local + (1 - nearby) * np.minimum(local, regional)
 
 
 def kingdom_key(taxon_key):
