@@ -57,7 +57,7 @@
     "sorrel": "Acedera",
     "dandelion": "Diente de león",
     "chestnut": "Castaña",
-    "mushroom": "Boletus",
+    "mushroom": "Boleto Comestible",
     "nettle": "Ortiga",
     "parasol": "Macrolepiota procera",
     "masterwort": "Imperatoria",
@@ -69,7 +69,13 @@
     "garlic_wild": "Ajo silvestre",
     "artichoke": "Alcachofa silvestre",
     "asparagus": "Espárrago silvestre",
-    "strawberry": "Fresa silvestre"
+    "strawberry": "Fresa silvestre",
+    "bronze_bolete": "Boleto Bronceado",
+    "pine_bolete": "Boleto de Pino",
+    "summer_bolete": "Boleto de Verano",
+    "pacific_chant": "Rebozuelo del Pacífico",
+    "smooth_chant": "Rebozuelo Liso",
+    "winter_chant": "Rebozuelo de Invierno"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -222,7 +228,7 @@
         "Hornear: Hornear a 180°C durante 25–30 minutos hasta dorar.",
         "Servir: Caliente o fría, ideal para un brunch en el bosque."
       ],
-      "species": ["chant"],
+      "species": ["chant", "pacific_chant", "smooth_chant", "winter_chant"],
       "steps": [
         {
           "step": 1,
@@ -332,7 +338,15 @@
         "Finalizar: Añadir la nata si se desea, ajustar sal y pimienta.",
         "Servir caliente, acompañado de pan rústico o un chorrito de aceite de trufa."
       ],
-      "species": ["chestnut", "mushroom", "black_chant", "chant"],
+      "species": [
+        "chestnut",
+        "mushroom",
+        "black_chant",
+        "chant",
+        "bronze_bolete",
+        "pine_bolete",
+        "summer_bolete"
+      ],
       "steps": [
         {
           "step": 1,

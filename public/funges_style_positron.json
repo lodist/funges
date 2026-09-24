@@ -2976,8 +2976,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -3018,8 +3018,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -3060,8 +3060,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -3102,8 +3102,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -3144,8 +3144,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -3186,8 +3186,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -3228,8 +3228,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-ne",
       "source-layer": "ne_forecast",
@@ -3270,8 +3270,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
@@ -3312,8 +3312,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -3354,8 +3354,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
@@ -3480,8 +3480,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-use",
       "source-layer": "use_forecast",
@@ -3522,8 +3522,8 @@
           10,
           "#800020"
         ],
-        "fill-opacity": 0.85,
-        "fill-antialias": false
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",

@@ -52,12 +52,12 @@
   "species": {
     "amaranth": "Amaranto",
     "black_chant": "Trombetta dei Morti",
-    "chant": "Finferlo",
+    "chant": "Galletti",
     "chickweed": "Centocchio",
     "sorrel": "Acetosa",
     "dandelion": "Tarassaco",
     "chestnut": "Castagna",
-    "mushroom": "Boletus",
+    "mushroom": "Porcino",
     "nettle": "Ortica",
     "parasol": "Mazza di Tamburo",
     "masterwort": "Imperatoria",
@@ -69,7 +69,13 @@
     "garlic_wild": "Aglio Selvatico",
     "artichoke": "Carciofo Selvatico",
     "asparagus": "Asparago Selvatico",
-    "strawberry": "Fragola di Bosco"
+    "strawberry": "Fragola di Bosco",
+    "bronze_bolete": "Porcino Nero",
+    "pine_bolete": "Porcino Rosso",
+    "summer_bolete": "Porcino Estivo",
+    "pacific_chant": "Galletto del Pacifico",
+    "smooth_chant": "Galletto Liscio",
+    "winter_chant": "Finferla"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -222,7 +228,7 @@
         "Cottura: Inforna a 180°C per 25–30 minuti fino a doratura.",
         "Servi: Calda o fredda, ideale per un brunch nei boschi."
       ],
-      "species": ["chant"],
+      "species": ["chant", "pacific_chant", "smooth_chant", "winter_chant"],
       "steps": [
         {
           "step": 1,
@@ -332,7 +338,15 @@
         "Finire: Aggiungere la panna se desiderato, regolare di sale e pepe.",
         "Servire caldo, accompagnato da pane rustico o un filo d'olio al tartufo."
       ],
-      "species": ["chestnut", "mushroom", "black_chant", "chant"],
+      "species": [
+        "chestnut",
+        "mushroom",
+        "black_chant",
+        "chant",
+        "bronze_bolete",
+        "pine_bolete",
+        "summer_bolete"
+      ],
       "steps": [
         {
           "step": 1,

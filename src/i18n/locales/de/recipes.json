@@ -57,7 +57,7 @@
     "sorrel": "Sauerampfer",
     "dandelion": "Löwenzahn",
     "chestnut": "Esskastanie",
-    "mushroom": "Boletus",
+    "mushroom": "Steinpilz",
     "nettle": "Brennnessel",
     "parasol": "Parasol",
     "masterwort": "Meisterwurz",
@@ -69,7 +69,13 @@
     "garlic_wild": "Bärlauch",
     "artichoke": "Wilder Artischocke",
     "asparagus": "Wilder Spargel",
-    "strawberry": "Wald-Erdbeere"
+    "strawberry": "Wald-Erdbeere",
+    "bronze_bolete": "Bronze-Steinpilz",
+    "pine_bolete": "Kiefern-Steinpilz",
+    "summer_bolete": "Sommersteinpilz",
+    "pacific_chant": "Pazifik-Pfifferling",
+    "smooth_chant": "Glatter Pfifferling",
+    "winter_chant": "Trompetenpfifferling"
   },
   "tags": {
     "vegetarian": "Vegetarisch",
@@ -220,7 +226,7 @@
         "Backen: Bei 180°C 25–30 Min. goldbraun backen.",
         "Servieren: Warm oder kalt, ideal für ein Wald-Brunch."
       ],
-      "species": ["chant"],
+      "species": ["chant", "pacific_chant", "smooth_chant", "winter_chant"],
       "steps": [
         {
           "step": 1,
@@ -328,7 +334,15 @@
         "Abschliessen: Nach Wunsch Sahne zugeben, mit Salz und Pfeffer abschmecken.",
         "Heiss servieren, dazu rustikales Brot oder etwas Trüffelöl."
       ],
-      "species": ["chestnut", "mushroom", "black_chant", "chant"],
+      "species": [
+        "chestnut",
+        "mushroom",
+        "black_chant",
+        "chant",
+        "bronze_bolete",
+        "pine_bolete",
+        "summer_bolete"
+      ],
       "steps": [
         {
           "step": 1,

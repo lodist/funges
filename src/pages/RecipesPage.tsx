@@ -17,6 +17,11 @@ import { Search, Clock, Users, ChefHat, Filter } from '@/lib/icons';
 import { RecipeModalWrapper } from '@/components';
 import FilterModal from '@/components/FilterModal';
 import { getRecipeImage } from '@/lib/utils';
+import { SPECIES_DATA } from '@/data/species';
+
+const MUSHROOM_IDS = new Set(
+  SPECIES_DATA.filter(s => s.category === 'mushroom').map(s => s.id)
+);
 
 export default function RecipesPage() {
   const { t } = useTranslation('recipes');
@@ -35,18 +40,7 @@ export default function RecipesPage() {
     recipes.forEach(recipe => {
       recipe.species.forEach(species => {
         // Map species to categories (this would ideally come from species data)
-        if (
-          [
-            'chant',
-            'morel',
-            'mushroom',
-            'oyster-mushroom',
-            'shiitake',
-            'black_chant',
-            'parasol',
-            'st_george',
-          ].includes(species)
-        ) {
+        if (MUSHROOM_IDS.has(species)) {
           categorySet.add('mushroom');
         } else if (
           [
@@ -118,16 +112,7 @@ export default function RecipesPage() {
         selectedCategory === 'all' ||
         recipe.species.some(species => {
           if (selectedCategory === 'mushroom') {
-            return [
-              'chant',
-              'morel',
-              'mushroom',
-              'oyster-mushroom',
-              'shiitake',
-              'black_chant',
-              'parasol',
-              'st_george',
-            ].includes(species);
+            return MUSHROOM_IDS.has(species);
           } else if (selectedCategory === 'berry') {
             return [
               'elderberry',
