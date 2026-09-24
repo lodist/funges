@@ -40,18 +40,27 @@ that product behavior.
 
 Available forecast regions need explicit scoring and land-cover values. The
 scoring object contains the actual temperature,
-humidity, rainfall, altitude, pH, climate-zone, and fallback season parameters
+humidity, rainfall, altitude, pH, and fallback season parameters
 consumed by the backend. Add the reviewed research sources to
 `scoringReferences`; the command never invents or approves scientific values.
-An empty `climate_zones` array preserves the scoring model's explicit
-"unrestricted" meaning; omitting the field is invalid.
+
+Where a species grows at all is not a scoring parameter. `forecast.rangePrior`
+lists the GBIF taxon keys whose human observations define its range; every name
+the species is recorded under belongs there (nettle carries _Urtica gracilis_,
+the name most North American stinging nettles are filed under).
+`backend/tools/build_range_priors.py` turns them into a 0-1 prior per 0.1° cell:
+the species' share of nearby observations of its kingdom, compared with its core
+range. Well-observed ground without the species scores near 0; ground nobody
+observes falls back to the regional average instead of reading as absence. An
+empty list means no prior. The priors replaced hand-listed climate zones, whose
+lat/lon-rectangle labels cut the map along straight lines.
 
 For new scoring values, research each available region separately and record
 the sources used. GBIF occurrences should inform taxonomic scope, regional
 distribution, fungal seasonality, and environmental calibration, alongside
 literature and regional expertise; do not infer biological optima directly
 from raw occurrence counts. Confirm units and plausible ranges for air/soil temperature, humidity,
-rainfall, altitude, pH, season months, climate zones, and land-cover codes. The
+rainfall, altitude, pH, season months, range taxon keys, and land-cover codes. The
 validator catches missing fields, invalid types, and unsafe sigmas, but it
 cannot establish scientific authority; parameter approval remains a human gate.
 

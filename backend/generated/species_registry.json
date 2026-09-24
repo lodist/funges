@@ -437,7 +437,7 @@
       "scientificName": "Urtica dioica",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
-      "rangeTaxonKeys": [7960979],
+      "rangeTaxonKeys": [7960979, 6414539],
       "dataColumns": ["nettle_score", "Nettle"],
       "regions": {
         "NE": {

@@ -24,7 +24,7 @@ import numpy as np
 from scipy.ndimage import gaussian_filter1d
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from species_registry import get_range_taxon_map
+from species_registry import get_range_taxon_map, get_region_species
 
 _THIS_YEAR = date.today().year
 _ROOT = Path(__file__).resolve().parents[2]
@@ -39,13 +39,12 @@ KM_PER_DEG = 111.32
 
 # Covers every RegionConfig lat/lon range in the macro (EU = NE ∪ SE, US = USE ∪ USW).
 MACROS = {
-    "EU": {"lat": (34.0, 71.5), "lon": (-25.0, 42.5), "env": "EU_RANGE_PRIORS"},
-    "US": {"lat": (24.0, 49.5), "lon": (-125.5, -67.0), "env": "US_RANGE_PRIORS"},
+    "EU": {"lat": (34.0, 71.5), "lon": (-25.0, 42.5), "env": "EU_RANGE_PRIORS", "regions": ("NE", "SE")},
+    "US": {"lat": (24.0, 49.5), "lon": (-125.5, -67.0), "env": "US_RANGE_PRIORS", "regions": ("USE", "USW")},
 }
 
 SIGMA_KM = 50.0  # smoothing radius: wide enough that one empty cell is not evidence
 PSEUDO_RECORDS = 20.0  # kingdom records a cell needs before its own share outweighs the macro mean
-MIN_RECORDS = 50  # fewer species records than this in a macro -> no prior there
 CORE_QUANTILE = 90  # percentile of the share that defines the species' core range
 SATURATION = 0.1  # share (as a fraction of core) that already reaches a prior of 0.63
 
@@ -262,8 +261,10 @@ def build_macro(macro, taxon_map, years, workers=4):
         if kingdom not in backgrounds:
             backgrounds[kingdom] = smooth_counts(count_grid(macro, kingdom, years, workers), lats)
         raw = sum(count_grid(macro, k, years, workers) for k in keys)
-        if raw.sum() < MIN_RECORDS:
-            print(f"  {species:22s} {int(raw.sum()):7d} records  SKIP (< {MIN_RECORDS})")
+        # A few records on a well-observed continent is evidence of rarity, so even
+        # 20 records get a prior. None at all more likely means a wrong taxon key.
+        if not raw.sum():
+            print(f"  [warn] {species}: no GBIF records -- check rangePrior.taxonKeys; no prior")
             continue
         prior = range_prior(smooth_counts(raw, lats), backgrounds[kingdom])
         if prior is None:
@@ -336,8 +337,10 @@ def run(years=None, local_only=False, out_dir=".", force=False, workers=4):
     years = years or f"1990,{_THIS_YEAR - 1}"
     taxon_map = get_range_taxon_map()
     for code, macro in MACROS.items():
-        print(f"[{code}] building range priors for {len(taxon_map)} species ({years})...")
-        priors = build_macro(macro, taxon_map, years, workers)
+        available = set().union(*(get_region_species(r) for r in macro["regions"]))
+        macro_taxa = {sp: keys for sp, keys in taxon_map.items() if sp in available}
+        print(f"[{code}] building range priors for {len(macro_taxa)} species ({years})...")
+        priors = build_macro(macro, macro_taxa, years, workers)
         dest = (str(Path(out_dir) / f"{code}_range_priors.npz") if local_only
                 else curves.get_required_env(macro["env"]))
         save(to_npz(macro, priors), dest)
