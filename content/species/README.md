@@ -47,12 +47,14 @@ consumed by the backend. Add the reviewed research sources to
 Where a species grows at all is not a scoring parameter. `forecast.rangePrior`
 lists the GBIF taxon keys whose human observations define its range; every name
 the species is recorded under belongs there (nettle carries _Urtica gracilis_,
-the name most North American stinging nettles are filed under).
-`backend/tools/build_range_priors.py` turns them into a 0-1 prior per 0.1° cell:
-the species' share of nearby observations of its kingdom, compared with its core
-range. Well-observed ground without the species scores near 0; ground nobody
-observes falls back to the regional average instead of reading as absence. An
-empty list means no prior. The priors replaced hand-listed climate zones, whose
+the name most North American stinging nettles are filed under; dandelion uses the
+genus, because Swedish and British recorders rarely name the species).
+`backend/tools/build_range_priors.py` turns them into a 0-1 prior per 0.1° cell
+that answers "can it grow here", not "how often is it seen": how likely the
+nearby record count is if the species grew there, given how thoroughly its
+kingdom is observed at 50 and 150 km. Ground nobody observes stays possible;
+well-observed ground without the species scores near 0. An empty list means no
+prior. The priors replaced hand-listed climate zones, whose
 lat/lon-rectangle labels cut the map along straight lines.
 
 For new scoring values, research each available region separately and record

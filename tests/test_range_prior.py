@@ -33,15 +33,25 @@ def test_decodes_multipoint_features_with_their_total():
     assert list(brp.decode_points(_field(3, layer))) == [(10, 20, 7, 512), (15, 17, 7, 512)]
 
 
-def test_share_separates_absence_from_no_evidence():
-    background = np.array([5000.0, 5000.0, 0.0, 5000.0])
-    target = np.array([50.0, 0.0, 0.0, 5.0])  # core, well-observed absence, unsampled, sparse
-    prior = brp.range_prior(target, background)
-    core, absent, unsampled, sparse = prior
+def test_only_thorough_looking_without_finding_rules_a_species_out():
+    background = np.array([5000.0, 5000.0, 0.0, 50.0, 5000.0])
+    # core, well observed and absent, unobserved, barely observed, present but 10x rarer
+    target = np.array([50.0, 0.0, 0.0, 0.0, 5.0])
+    core, absent, unobserved, barely, rare = brp.possibility(target, background)
     assert core > 0.99
     assert absent < 0.1
-    assert absent < sparse < core
-    assert unsampled > absent  # no observations is not evidence of absence
+    assert unobserved == 1.0  # no observations is not evidence of absence
+    assert barely > 0.9  # 50 records would not have turned up a 1-in-100 species
+    assert rare > 0.9  # "can it grow here", not "how often is it seen"
+
+
+def test_a_species_must_be_possible_at_every_scale():
+    # Locally too few records to tell; regionally thoroughly observed without it.
+    local = (np.array([0.0, 20.0]), np.array([50.0, 1000.0]))
+    regional = (np.array([0.0, 20.0]), np.array([50000.0, 1000.0]))
+    prior = brp.range_prior([local[0], regional[0]], [local[1], regional[1]])
+    assert brp.possibility(*local)[0] > 0.9
+    assert prior[0] < 0.01
 
 
 def test_smoothing_keeps_record_counts():

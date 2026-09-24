@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Build per-species range priors from GBIF occurrence density and upload to R2.
 
-A range prior answers "does this species grow here?": the share of nearby human
-observations of its kingdom that are this species, relative to its core range.
-It replaces the hand-drawn climate-zone allow-lists, which cut the map along
-straight lines and knew nothing about where a species actually grows.
+A range prior answers "can this species grow here?": how likely the few (or zero)
+records near a cell are if the species did grow there. Many records, or too few
+observations of its kingdom to tell, mean yes; a well-observed area with almost
+none of it means no. It replaces the hand-drawn climate-zone allow-lists, which
+cut the map along straight lines and knew nothing about where a species grows.
 """
 import argparse
 import io
@@ -22,6 +23,7 @@ from pathlib import Path
 
 import numpy as np
 from scipy.ndimage import gaussian_filter1d
+from scipy.special import gammaincc
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from species_registry import get_range_taxon_map, get_region_species
@@ -44,14 +46,14 @@ MACROS = {
 }
 
 SIGMA_KM = 50.0  # smoothing radius: wide enough that one empty cell is not evidence
-PSEUDO_RECORDS = 20.0  # kingdom records a cell needs before its own share outweighs the macro mean
-CORE_QUANTILE = 90  # percentile of the share that defines the species' core range
-# Share (as a fraction of core) that already reaches a prior of 0.63; ~6% of core
-# reaches 0.95. The prior multiplies the final score, so it has to answer "can it
-# grow here", not "how common": at 0.1, Vermont amaranth (recorded ~10x less often
-# than in the Plains) and Abruzzo porcini lost 40% of their score. 0.01 would let
-# Kansas porcini back at half strength. Rank-neutral: held-out AUC is unchanged.
-SATURATION = 0.02
+# Local and regional scale. Around central Kansas 50 km holds 325 fungi records, too
+# few to rule B. edulis out; at 150 km the Missouri/Kansas ground has tens of
+# thousands and none of it. A species must be consistent with both.
+SCALES_KM = (SIGMA_KM, 150.0)
+# A population this much rarer than the species' typical share still counts as
+# growing there. 0.02 kept B. edulis at 0.20 in Missouri and amaranth at 0.29 in
+# Ireland; 0.1 started hiding real sightings (2.6% of 2026's).
+TOLERANCE = 0.05
 
 
 # --- GBIF vector tiles -----------------------------------------------------
@@ -238,19 +240,27 @@ def smooth_counts(grid, lats, sigma_km=SIGMA_KM):
     return out
 
 
-def range_prior(target, background):
-    """Prior in [0, 1] from smoothed species (target) and kingdom (background) counts.
+def possibility(target, background):
+    """P(no more than `target` records | the species grows here at TOLERANCE x its typical share).
 
-    Unsampled cells shrink towards the macro-wide share instead of reading as
-    absence; well-sampled cells without the species fall towards 0.
+    A frequency would punish places where people record plants or fungi less; this
+    only says no where the looking was thorough enough that the species would have
+    turned up. `typical` is the share seen by the median record, so a sparse cell
+    with one lucky record cannot inflate it.
     """
-    s0 = target.sum() / max(background.sum(), 1e-9)
-    share = (target + PSEUDO_RECORDS * s0) / (background + PSEUDO_RECORDS)
-    core = (target >= 1) & (background >= 100)
-    if not core.any():
+    present = (target >= 1) & (background > 0)
+    if not present.any():
         return None
-    ref = np.percentile(share[core], CORE_QUANTILE)
-    return 1 - np.exp(-share / (SATURATION * ref))
+    share, weight = target[present] / background[present], target[present]
+    order = np.argsort(share)
+    typical = share[order][np.searchsorted(np.cumsum(weight[order]), weight.sum() / 2)]
+    return gammaincc(target + 1, background * TOLERANCE * typical)
+
+
+def range_prior(targets, backgrounds):
+    """Prior in [0, 1]: the species must be possible at every scale (lists follow SCALES_KM)."""
+    tests = [possibility(t, b) for t, b in zip(targets, backgrounds)]
+    return None if any(t is None for t in tests) else np.minimum.reduce(tests)
 
 
 def kingdom_key(taxon_key):
@@ -264,16 +274,17 @@ def build_macro(macro, taxon_map, years, workers=4):
     for species, keys in taxon_map.items():
         kingdom = kingdom_key(keys[0])
         if kingdom not in backgrounds:
-            backgrounds[kingdom] = smooth_counts(count_grid(macro, kingdom, years, workers), lats)
+            raw_bg = count_grid(macro, kingdom, years, workers)
+            backgrounds[kingdom] = [smooth_counts(raw_bg, lats, s) for s in SCALES_KM]
         raw = sum(count_grid(macro, k, years, workers) for k in keys)
         # A few records on a well-observed continent is evidence of rarity, so even
         # 20 records get a prior. None at all more likely means a wrong taxon key.
         if not raw.sum():
             print(f"  [warn] {species}: no GBIF records -- check rangePrior.taxonKeys; no prior")
             continue
-        prior = range_prior(smooth_counts(raw, lats), backgrounds[kingdom])
+        prior = range_prior([smooth_counts(raw, lats, s) for s in SCALES_KM], backgrounds[kingdom])
         if prior is None:
-            print(f"  {species:22s} {int(raw.sum()):7d} records  SKIP (no well-sampled core)")
+            print(f"  {species:22s} {int(raw.sum()):7d} records  SKIP (no cell with a record)")
             continue
         priors[species] = prior
         print(f"  {species:22s} {int(raw.sum()):7d} records  "
