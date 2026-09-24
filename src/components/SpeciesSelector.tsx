@@ -17,7 +17,8 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
 }) => {
   const { t } = useTranslation('map');
   const { t: tSpecies } = useTranslation('species');
-  const { selectedSpecies, speciesOptions } = useMapStore();
+  const { t: tCommon } = useTranslation('common');
+  const { selectedSpecies, speciesOptions, forecastRegion } = useMapStore();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -28,9 +29,18 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
   // floor. It was still reachable through a stale persisted code, which is the
   // one path that has to keep working, so the tile now degrades into that state
   // instead of a second component doing it badly.
-  const selectedSpeciesData = selectedSpecies
-    ? speciesOptions.find(opt => opt.code === selectedSpecies)
+  //
+  // Resolved from the whole catalog, not the region's options: the selection
+  // survives panning into a region that has no forecast for it.
+  const selected = SPECIES_DATA.find(
+    species => species.id === selectedSpecies && species.showOnMap
+  );
+  const selectedSpeciesData = selected
+    ? { code: selected.id, emoji: selected.emoji }
     : null;
+  const forecastHere =
+    !selectedSpeciesData ||
+    speciesOptions.some(opt => opt.code === selectedSpeciesData.code);
 
   const speciesName = selectedSpeciesData
     ? tSpecies(`list_of_species.${selectedSpeciesData.code}.name`)
@@ -122,11 +132,9 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           <span className='block truncate text-sm font-semibold leading-tight text-foreground'>
             {speciesName ?? t('species.select')}
           </span>
-          {selectedSpeciesData && (
+          {selected && (
             <span className='mt-1 block truncate text-xs italic leading-tight text-muted-foreground'>
-              {SPECIES_DATA.find(
-                species => species.id === selectedSpeciesData.code
-              )?.scientificName || selectedSpeciesData.code}
+              {selected.scientificName || selected.id}
             </span>
           )}
         </span>
@@ -142,6 +150,21 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           )}
         />
       </motion.button>
+
+      {/* Without this an empty map reads as a bug: the species is still
+          selected, the region just has no layer for it. Same opaque card as the
+          tile above, for the same contrast reasons. */}
+      {!forecastHere && (
+        <p
+          role='status'
+          className='elevation-raised mt-2 max-w-[min(18rem,calc(100vw-5.5rem))] rounded-card bg-card px-3 py-2 text-xs text-muted-foreground'
+        >
+          {t('species.notForecastHere', {
+            species: speciesName,
+            region: tCommon(`data.regions.${forecastRegion}`),
+          })}
+        </p>
+      )}
 
       {/* Gated here rather than inside the child. AnimatePresence only plays an
           exit when the element it wraps unmounts, and the child's own

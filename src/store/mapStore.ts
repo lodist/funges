@@ -7,6 +7,7 @@ import type {
 } from 'maplibre-gl';
 import {
   getSpeciesOptions,
+  isMapSpecies,
   type ForecastRegion,
   type SpeciesOption,
 } from '@/data/species';
@@ -140,36 +141,32 @@ export function forecastRegionForCoordinate([longitude, latitude]: [
   return latitude < seMaxLatitude ? 'SE' : 'NE';
 }
 
-// The species list follows the VIEWPORT: a US GPS fix does not make US-only species
-// meaningful while the map shows Europe. Never writes to localStorage — the fallback
-// below is session-only, so panning through a region that lacks the user's species
-// can't destroy their saved choice, and it is preferred again as soon as a region
-// offers it. On the map page the URL's ?species still has the last word (MapPage
-// mirrors it in), so the restore shows up on the next cold start rather than mid-pan.
+// The species LIST follows the viewport: a US GPS fix does not make US-only species
+// meaningful while the map shows Europe. The SELECTION does not. Panning a pine
+// bolete into the US used to swap it for whatever the US offered first, so the
+// user lost their species by moving the map. It now stays selected and the region
+// simply has no layer for it; SpeciesSelector says so.
 function regionalSpeciesState(
   region: ForecastRegion,
   selectedSpecies: string | null
 ) {
   const speciesOptions = getSpeciesOptions(region);
-  const offered = (code: string | null) =>
-    !!code && speciesOptions.some(option => option.code === code);
-  const persisted = localStorage.getItem('selectedSpecies');
-  const nextSelectedSpecies = offered(persisted)
-    ? persisted
-    : offered(selectedSpecies)
-      ? selectedSpecies
-      : (speciesOptions[0]?.code ?? null);
   return {
     forecastRegion: region,
     speciesOptions,
-    selectedSpecies: nextSelectedSpecies,
+    selectedSpecies: isMapSpecies(selectedSpecies)
+      ? selectedSpecies
+      : (speciesOptions[0]?.code ?? null),
   };
 }
 
 // Seeded from the RESTORED viewport (readCenter is hoisted), so a cold start in a
 // saved US view opens with US species instead of the Swiss default's.
 const INITIAL_REGION = forecastRegionForCoordinate(readCenter());
-const INITIAL_SPECIES = regionalSpeciesState(INITIAL_REGION, 'mushroom');
+const INITIAL_SPECIES = regionalSpeciesState(
+  INITIAL_REGION,
+  localStorage.getItem('selectedSpecies') ?? 'mushroom'
+);
 
 export interface MapThemeOption {
   id: 'light' | 'dark' | 'white' | 'darkmatter' | 'topographic';
@@ -344,8 +341,8 @@ export const useMapStore = create<MapState>()(
       clearError: () => set({ error: null }),
 
       // Mirrors the URL's ?species into the store without persisting it: MapPage
-      // falls back to mushroom whenever the query species is not offered in the
-      // region on screen, and that fallback is not the user's choice to remember.
+      // falls back to mushroom when the query names no map species at all, and
+      // that fallback is not the user's choice to remember.
       syncSelectedSpecies: selectedSpecies => set({ selectedSpecies }),
 
       // Species selection actions

@@ -77,20 +77,29 @@ describe('regional species options', () => {
     expect(state.center).toEqual([7.5, 47.9]);
   });
 
-  it('keeps the saved species and restores it on the way back', () => {
+  // Panning must never change the species: the region just has no layer for it.
+  it('keeps the selected species in a region that does not forecast it', () => {
     useMapStore.getState().setSelectedSpecies('masterwort'); // NE/SE only
     useMapStore.getState().setCenter(USE_CENTER);
+    const state = useMapStore.getState();
 
-    expect(useMapStore.getState().selectedSpecies).not.toBe('masterwort');
+    expect(state.selectedSpecies).toBe('masterwort');
+    expect(state.speciesOptions.some(o => o.code === 'masterwort')).toBe(false);
     expect(localStorage.getItem('selectedSpecies')).toBe('masterwort');
+  });
 
-    useMapStore.getState().setCenter(NE_CENTER);
-    expect(useMapStore.getState().selectedSpecies).toBe('masterwort');
+  it('replaces a code that is not a map species at all', () => {
+    useMapStore.setState({ selectedSpecies: 'no-such-species' });
+    useMapStore.getState().setCenter(USE_CENTER);
+
+    expect(useMapStore.getState().selectedSpecies).toBe(
+      getSpeciesOptions('USE')[0].code
+    );
   });
 
   // MapPage mirrors the URL's ?species here, falling back to mushroom when the
-  // query species is not offered in the region on screen. That fallback must not
-  // overwrite what the user last picked.
+  // query names no map species. That fallback must not overwrite what the user
+  // last picked.
   it('does not persist a species mirrored from the URL', () => {
     useMapStore.getState().setSelectedSpecies('masterwort');
     useMapStore.getState().syncSelectedSpecies('mushroom');
