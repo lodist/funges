@@ -492,7 +492,9 @@ export default function DataPage() {
 
     // Last soaking rain (chip only, labelled "≥ 8 mm"): a day when at
     // least a tenth of the zone got 8 mm, since a zone mean rarely does.
-    const reversedData = [...zoneData].reverse();
+    // Searched in the full history so the answer does not depend on the
+    // selected window (7d used to hide a soaking rain 8 days ago).
+    const reversedData = [...zoneHistory].reverse();
     const lastRainIdx = reversedData.findIndex(
       r => (r.precip_p90 ?? r.precip_mm ?? 0) >= 8
     );
@@ -895,7 +897,8 @@ export default function DataPage() {
             },
           ]
         : []),
-      ...(daysSinceRain != null && daysSinceRain <= 14
+      // Shown for long dry spells too: "23 days ago" is worth knowing.
+      ...(daysSinceRain != null
         ? [
             {
               label: tn('chipLastRain'),
