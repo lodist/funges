@@ -46,7 +46,12 @@ MACROS = {
 SIGMA_KM = 50.0  # smoothing radius: wide enough that one empty cell is not evidence
 PSEUDO_RECORDS = 20.0  # kingdom records a cell needs before its own share outweighs the macro mean
 CORE_QUANTILE = 90  # percentile of the share that defines the species' core range
-SATURATION = 0.1  # share (as a fraction of core) that already reaches a prior of 0.63
+# Share (as a fraction of core) that already reaches a prior of 0.63; ~6% of core
+# reaches 0.95. The prior multiplies the final score, so it has to answer "can it
+# grow here", not "how common": at 0.1, Vermont amaranth (recorded ~10x less often
+# than in the Plains) and Abruzzo porcini lost 40% of their score. 0.01 would let
+# Kansas porcini back at half strength. Rank-neutral: held-out AUC is unchanged.
+SATURATION = 0.02
 
 
 # --- GBIF vector tiles -----------------------------------------------------
