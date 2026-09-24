@@ -57,23 +57,23 @@
     "select": "Tema do mapa",
     "light": {
       "name": "Claro",
-      "description": "O mapa Funges clássico e claro."
+      "description": "O mapa clássico e claro."
     },
     "dark": {
       "name": "Escuro",
-      "description": "Paleta de pouca luz, confortável para os olhos à noite."
+      "description": "Descansa a vista à noite."
     },
     "white": {
       "name": "Branco",
-      "description": "Paleta clara e minimalista com pouca distração."
+      "description": "Limpo e minimalista."
     },
     "darkmatter": {
       "name": "Dark Matter",
-      "description": "Mapa base monocromático escuro de contraste máximo."
+      "description": "Preto, de alto contraste."
     },
     "topographic": {
       "name": "Topográfico",
-      "description": "Estilo de mapa de trilhas quente com trilhas e caminhos visíveis."
+      "description": "Mapa de trilhas com caminhos."
     },
     "relief": "Sombreado do relevo"
   },
