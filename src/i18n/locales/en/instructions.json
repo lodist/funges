@@ -60,16 +60,16 @@
     "monitorTitle": "monitor and integrate:",
     "variables": {
       "temperature": "Temperature, humidity and rainfall",
-      "soil": "Soil pH and geological features",
-      "vegetation": "Land cover and vegetation types",
-      "topography": "Topography and elevation",
-      "trends": "Time-series trends"
+      "soil": "Soil pH",
+      "vegetation": "Land cover, forest types and host trees",
+      "topography": "Elevation and distance to water",
+      "trends": "Where each species is recorded, and its season"
     },
     "goal": "The goal is to simulate the behavior of experienced foragers—amplified by data. In other words, respectfully trying to hack nature to make wild harvesting more accessible, precise and sustainable.",
     "methodology": {
       "title": "Data Sources & Methodology",
       "description": "Funges uses a combination of environmental, meteorological, and geospatial datasets to forecast the best locations and times for foraging wild edibles.",
-      "datasets": "These include satellite imagery, terrain models, weather APIs, and ecological indicators—all analyzed over time to simulate nature's cycles and identify real-time hotspots."
+      "datasets": "These include weather forecasts, elevation and soil maps, land-cover and forest maps, and citizen-science sightings of each species—analyzed over time to simulate nature's cycles and identify real-time hotspots."
     },
     "keyDatasets": {
       "title": "Key Datasets",
@@ -103,7 +103,31 @@
         "source": "Source: World Wildlife Fund (WWF), HydroSHEDS (derived from NASA SRTM)",
         "citation": "Citation: Lehner, B., Verdin, K., & Jarvis, A. (2008). New global hydrography derived from spaceborne elevation data. Eos, Transactions AGU, 89(10), 93-94."
       },
-      "additional": "Additional sources such as meteorological APIs, remote sensing layers, and slope/aspect models are integrated to continuously improve prediction accuracy."
+      "soilgrids": {
+        "title": "6. SoilGrids (U.S. Soil pH)",
+        "description": "ISRIC's global soil maps, modeled from soil profiles worldwide. Funges reads topsoil pH from them for U.S. foraging areas, complementing the European soil pH map.",
+        "source": "Source: ISRIC – World Soil Information",
+        "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
+      },
+      "treeGenus": {
+        "title": "7. European Tree Genus Map",
+        "description": "A 10-meter map of the dominant tree genus across Europe (spruce, pine, larch, beech, oak and others), derived from Sentinel-1 and Sentinel-2 satellite data. Mushrooms such as porcini and chanterelles fruit only near their host trees, so each species is scored by how much of its hosts grow nearby.",
+        "source": "Source: ForestPaths project (early-access release on Zenodo)",
+        "citation": "Citation: De Keersmaecker, W., Zanaga, D., Senf, C., et al. (2025). European Tree Genus Map 2020 (Early Access Release). Zenodo. https://doi.org/10.5281/zenodo.13341104. CC BY 4.0."
+      },
+      "forestTypes": {
+        "title": "8. U.S. Forest Type Groups",
+        "description": "A USDA Forest Service map of forest types (such as spruce–fir, oak–hickory or Douglas-fir) across the contiguous United States at 250-meter resolution, built from forest inventory plots. It supplies the host trees for U.S. mushrooms.",
+        "source": "Source: USDA Forest Service, Forest Inventory and Analysis (FIA)",
+        "citation": "Citation: Ruefenacht, B., Finco, M.V., Nelson, M.D., et al. (2008). Conterminous U.S. and Alaska forest type mapping using forest inventory and analysis data. Photogrammetric Engineering & Remote Sensing, 74(11), 1379–1388."
+      },
+      "gbif": {
+        "title": "9. GBIF Species Observations",
+        "description": "The Global Biodiversity Information Facility gathers survey and citizen-science sightings, including iNaturalist. Funges uses them to learn where each species can grow—weighed against how thoroughly each area is observed—and when in the year it appears.",
+        "source": "Source: Global Biodiversity Information Facility (GBIF.org)",
+        "citation": "Citation: GBIF.org (2026). GBIF occurrence data, accessed via the GBIF API. https://www.gbif.org"
+      },
+      "additional": "Daily weather comes from WeatherAPI.com forecasts, and every model change is checked against recent sightings the model has not seen."
     }
   },
   "identify": {

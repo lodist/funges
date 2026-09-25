@@ -60,16 +60,16 @@
     "monitorTitle": "surveille et intègre :",
     "variables": {
       "temperature": "Température, humidité et précipitations",
-      "soil": "pH du sol et caractéristiques géologiques",
-      "vegetation": "Occupation du sol et types de végétation",
-      "topography": "Topographie et altitude",
-      "trends": "Tendances temporelles"
+      "soil": "pH du sol",
+      "vegetation": "Occupation du sol, types de forêt et arbres hôtes",
+      "topography": "Altitude et distance à l'eau",
+      "trends": "Où chaque espèce est observée, et sa saison"
     },
     "goal": "L'objectif est de simuler le comportement de cueilleurs expérimentés — amplifié par les données. Autrement dit, essayer respectueusement de « hacker » la nature pour rendre la cueillette sauvage plus accessible, précise et durable.",
     "methodology": {
       "title": "Sources de données & méthodologie",
       "description": "Funges utilise une combinaison de jeux de données environnementaux, météorologiques et géospatiaux pour prévoir les meilleurs lieux et moments pour la cueillette de comestibles sauvages.",
-      "datasets": "Cela inclut des images satellites, des modèles de terrain, des API météo et des indicateurs écologiques — tous analysés dans le temps pour simuler les cycles naturels et identifier les points chauds en temps réel."
+      "datasets": "On y trouve des prévisions météo, des cartes d'altitude et de sol, des cartes d'occupation du sol et des forêts, et les observations de chaque espèce issues de la science participative, analysées dans le temps pour simuler les cycles de la nature et repérer les meilleurs coins en temps réel."
     },
     "keyDatasets": {
       "title": "Jeux de données clés",
@@ -103,7 +103,31 @@
         "source": "Source : World Wildlife Fund (WWF), HydroSHEDS (dérivé de NASA SRTM)",
         "citation": "Citation : Lehner, B., Verdin, K., & Jarvis, A. (2008). New global hydrography derived from spaceborne elevation data. Eos, Transactions AGU, 89(10), 93-94."
       },
-      "additional": "D'autres sources comme les API météorologiques, les couches de télédétection et les modèles de pente/orientation sont intégrées pour améliorer continuellement la précision des prédictions."
+      "soilgrids": {
+        "title": "6. SoilGrids (pH du sol aux États-Unis)",
+        "description": "Les cartes mondiales des sols de l'ISRIC, modélisées à partir de profils de sol du monde entier. Funges y lit le pH de surface pour les zones de cueillette aux États-Unis, en complément de la carte européenne du pH.",
+        "source": "Source : ISRIC – World Soil Information",
+        "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
+      },
+      "treeGenus": {
+        "title": "7. Carte européenne des genres d'arbres",
+        "description": "Une carte à 10 mètres du genre d'arbre dominant en Europe (épicéa, pin, mélèze, hêtre, chêne et autres), issue des satellites Sentinel-1 et Sentinel-2. Les champignons comme les cèpes et les girolles ne fructifient qu'à proximité de leurs arbres hôtes : chaque espèce est donc notée selon la quantité de ses hôtes aux alentours.",
+        "source": "Source : projet ForestPaths (version en accès anticipé sur Zenodo)",
+        "citation": "Citation: De Keersmaecker, W., Zanaga, D., Senf, C., et al. (2025). European Tree Genus Map 2020 (Early Access Release). Zenodo. https://doi.org/10.5281/zenodo.13341104. CC BY 4.0."
+      },
+      "forestTypes": {
+        "title": "8. Groupes de types forestiers des États-Unis",
+        "description": "Une carte de l'USDA Forest Service des types de forêt (par exemple épicéa–sapin, chêne–caryer ou douglas) sur les États-Unis contigus à 250 mètres, construite à partir des placettes d'inventaire forestier. Elle fournit les arbres hôtes des champignons américains.",
+        "source": "Source : USDA Forest Service, Forest Inventory and Analysis (FIA)",
+        "citation": "Citation: Ruefenacht, B., Finco, M.V., Nelson, M.D., et al. (2008). Conterminous U.S. and Alaska forest type mapping using forest inventory and analysis data. Photogrammetric Engineering & Remote Sensing, 74(11), 1379–1388."
+      },
+      "gbif": {
+        "title": "9. Observations d'espèces GBIF",
+        "description": "Le Global Biodiversity Information Facility rassemble des observations issues d'inventaires et de la science participative, dont iNaturalist. Funges s'en sert pour savoir où chaque espèce peut pousser, en tenant compte de l'intensité d'observation de chaque zone, et à quel moment de l'année elle apparaît.",
+        "source": "Source : Global Biodiversity Information Facility (GBIF.org)",
+        "citation": "Citation: GBIF.org (2026). GBIF occurrence data, accessed via the GBIF API. https://www.gbif.org"
+      },
+      "additional": "La météo quotidienne provient des prévisions de WeatherAPI.com, et chaque changement du modèle est vérifié sur des observations récentes que le modèle n'a jamais vues."
     }
   },
   "identify": {

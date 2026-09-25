@@ -60,16 +60,16 @@
     "monitorTitle": "überwacht und integriert:",
     "variables": {
       "temperature": "Temperatur, Luftfeuchtigkeit und Niederschlag",
-      "soil": "Boden-pH und geologische Merkmale",
-      "vegetation": "Bodenbedeckung und Vegetationstypen",
-      "topography": "Topografie und Höhenlage",
-      "trends": "Zeitreihen-Trends"
+      "soil": "Boden-pH",
+      "vegetation": "Landbedeckung, Waldtypen und Wirtsbäume",
+      "topography": "Höhe und Entfernung zu Gewässern",
+      "trends": "Wo jede Art gemeldet wird, und ihre Saison"
     },
     "goal": "Das Ziel ist es, das Verhalten erfahrener Sammler zu simulieren – verstärkt durch Daten. Anders gesagt: Wir versuchen respektvoll, die Natur zu „hacken“, um wildes Sammeln zugänglicher, präziser und nachhaltiger zu machen.",
     "methodology": {
       "title": "Datenquellen & Methodik",
       "description": "Funges nutzt eine Kombination aus Umwelt-, Wetter- und Geodaten, um die besten Orte und Zeiten für das Sammeln von Wildpflanzen vorherzusagen.",
-      "datasets": "Dazu gehören Satellitenbilder, Geländemodelle, Wetter-APIs und ökologische Indikatoren – alle werden über die Zeit analysiert, um natürliche Zyklen zu simulieren und Echtzeit-Hotspots zu identifizieren."
+      "datasets": "Dazu gehören Wettervorhersagen, Höhen- und Bodenkarten, Landbedeckungs- und Waldkarten sowie Citizen-Science-Sichtungen jeder Art – über die Zeit ausgewertet, um die Zyklen der Natur nachzubilden und aktuelle Hotspots zu erkennen."
     },
     "keyDatasets": {
       "title": "Wichtige Datensätze",
@@ -103,7 +103,31 @@
         "source": "Quelle: World Wildlife Fund (WWF), HydroSHEDS (abgeleitet von NASA SRTM)",
         "citation": "Zitat: Lehner, B., Verdin, K., & Jarvis, A. (2008). New global hydrography derived from spaceborne elevation data. Eos, Transactions AGU, 89(10), 93-94."
       },
-      "additional": "Weitere Quellen wie Wetter-APIs, Fernerkundungsdaten und Hang-/Expositionsmodelle werden integriert, um die Prognosegenauigkeit kontinuierlich zu verbessern."
+      "soilgrids": {
+        "title": "6. SoilGrids (Boden-pH in den USA)",
+        "description": "Die globalen Bodenkarten von ISRIC, modelliert aus Bodenprofilen weltweit. Funges liest daraus den pH-Wert des Oberbodens für die Sammelgebiete in den USA, ergänzend zur europäischen Boden-pH-Karte.",
+        "source": "Quelle: ISRIC – World Soil Information",
+        "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
+      },
+      "treeGenus": {
+        "title": "7. Europäische Baumgattungskarte",
+        "description": "Eine 10-Meter-Karte der vorherrschenden Baumgattung in Europa (Fichte, Kiefer, Lärche, Buche, Eiche und weitere), abgeleitet aus Sentinel-1- und Sentinel-2-Satellitendaten. Pilze wie Steinpilze und Pfifferlinge fruchten nur in der Nähe ihrer Wirtsbäume, daher wird jede Art danach bewertet, wie viele ihrer Wirte in der Nähe wachsen.",
+        "source": "Quelle: Projekt ForestPaths (Early-Access-Version auf Zenodo)",
+        "citation": "Citation: De Keersmaecker, W., Zanaga, D., Senf, C., et al. (2025). European Tree Genus Map 2020 (Early Access Release). Zenodo. https://doi.org/10.5281/zenodo.13341104. CC BY 4.0."
+      },
+      "forestTypes": {
+        "title": "8. Waldtypgruppen der USA",
+        "description": "Eine Karte des USDA Forest Service mit Waldtypen (etwa Fichte–Tanne, Eiche–Hickory oder Douglasie) für die zusammenhängenden USA in 250 Metern Auflösung, erstellt aus Waldinventur-Probeflächen. Sie liefert die Wirtsbäume für Pilze in den USA.",
+        "source": "Quelle: USDA Forest Service, Forest Inventory and Analysis (FIA)",
+        "citation": "Citation: Ruefenacht, B., Finco, M.V., Nelson, M.D., et al. (2008). Conterminous U.S. and Alaska forest type mapping using forest inventory and analysis data. Photogrammetric Engineering & Remote Sensing, 74(11), 1379–1388."
+      },
+      "gbif": {
+        "title": "9. GBIF-Artbeobachtungen",
+        "description": "Die Global Biodiversity Information Facility sammelt Sichtungen aus Erhebungen und Citizen Science, darunter iNaturalist. Funges nutzt sie, um zu lernen, wo jede Art wachsen kann – abgewogen gegen die Beobachtungsdichte des Gebiets – und wann im Jahr sie erscheint.",
+        "source": "Quelle: Global Biodiversity Information Facility (GBIF.org)",
+        "citation": "Citation: GBIF.org (2026). GBIF occurrence data, accessed via the GBIF API. https://www.gbif.org"
+      },
+      "additional": "Das tägliche Wetter stammt aus Vorhersagen von WeatherAPI.com, und jede Modelländerung wird an aktuellen Sichtungen geprüft, die das Modell noch nicht kennt."
     }
   },
   "identify": {

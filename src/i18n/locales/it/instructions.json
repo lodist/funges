@@ -60,16 +60,16 @@
     "monitorTitle": "monitora e integra:",
     "variables": {
       "temperature": "Temperatura, umidità e precipitazioni",
-      "soil": "pH del suolo e caratteristiche geologiche",
-      "vegetation": "Copertura del suolo e tipi di vegetazione",
-      "topography": "Topografia e altitudine",
-      "trends": "Tendenze temporali"
+      "soil": "pH del suolo",
+      "vegetation": "Copertura del suolo, tipi di bosco e alberi ospiti",
+      "topography": "Altitudine e distanza dall'acqua",
+      "trends": "Dove viene segnalata ogni specie e la sua stagione"
     },
     "goal": "L'obiettivo è simulare il comportamento di raccoglitori esperti—amplificato dai dati. In altre parole, rispettosamente cercando di hackerare la natura per rendere la raccolta selvatica più accessibile, precisa e sostenibile.",
     "methodology": {
       "title": "Fonti di Dati e Metodologia",
       "description": "Funges utilizza una combinazione di set di dati ambientali, meteorologici e geospaziali per prevedere le migliori posizioni e tempi per la raccolta di commestibili selvatici.",
-      "datasets": "Questi includono immagini satellitari, modelli del terreno, API meteorologiche e indicatori ecologici—tutti analizzati nel tempo per simulare i cicli della natura e identificare hotspot in tempo reale."
+      "datasets": "Tra questi: previsioni meteo, mappe di altitudine e suolo, mappe di copertura del suolo e dei boschi, e avvistamenti di ogni specie raccolti dalla citizen science, analizzati nel tempo per simulare i cicli della natura e individuare in tempo reale le zone migliori."
     },
     "keyDatasets": {
       "title": "Set di Dati Principali",
@@ -103,7 +103,31 @@
         "source": "Fonte: World Wildlife Fund (WWF), HydroSHEDS (derivato da NASA SRTM)",
         "citation": "Citazione: Lehner, B., Verdin, K., & Jarvis, A. (2008). New global hydrography derived from spaceborne elevation data. Eos, Transactions AGU, 89(10), 93-94."
       },
-      "additional": "Fonti aggiuntive come API meteorologiche, livelli di telerilevamento e modelli di pendenza/aspetto sono integrati per migliorare continuamente l'accuratezza della previsione."
+      "soilgrids": {
+        "title": "6. SoilGrids (pH del suolo negli USA)",
+        "description": "Mappe globali del suolo di ISRIC, modellate su profili di suolo di tutto il mondo. Funges ne legge il pH superficiale per le zone di raccolta negli USA, a complemento della mappa europea del pH.",
+        "source": "Fonte: ISRIC – World Soil Information",
+        "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
+      },
+      "treeGenus": {
+        "title": "7. Mappa europea dei generi arborei",
+        "description": "Una mappa a 10 metri del genere arboreo dominante in Europa (abete rosso, pino, larice, faggio, quercia e altri), ricavata dai satelliti Sentinel-1 e Sentinel-2. Funghi come porcini e finferli fruttificano solo vicino ai loro alberi ospiti, quindi ogni specie viene valutata in base a quanti ospiti crescono nei dintorni.",
+        "source": "Fonte: progetto ForestPaths (versione early access su Zenodo)",
+        "citation": "Citation: De Keersmaecker, W., Zanaga, D., Senf, C., et al. (2025). European Tree Genus Map 2020 (Early Access Release). Zenodo. https://doi.org/10.5281/zenodo.13341104. CC BY 4.0."
+      },
+      "forestTypes": {
+        "title": "8. Gruppi di tipi forestali degli USA",
+        "description": "Una mappa dello USDA Forest Service dei tipi di bosco (ad esempio abete–abete rosso, quercia–hickory o douglasia) negli Stati Uniti continentali a 250 metri, costruita dalle aree di inventario forestale. Fornisce gli alberi ospiti per i funghi degli USA.",
+        "source": "Fonte: USDA Forest Service, Forest Inventory and Analysis (FIA)",
+        "citation": "Citation: Ruefenacht, B., Finco, M.V., Nelson, M.D., et al. (2008). Conterminous U.S. and Alaska forest type mapping using forest inventory and analysis data. Photogrammetric Engineering & Remote Sensing, 74(11), 1379–1388."
+      },
+      "gbif": {
+        "title": "9. Osservazioni di specie GBIF",
+        "description": "Il Global Biodiversity Information Facility raccoglie avvistamenti da rilievi e dalla citizen science, incluso iNaturalist. Funges li usa per capire dove ogni specie può crescere, tenendo conto di quanto ogni zona è osservata, e in quale periodo dell'anno compare.",
+        "source": "Fonte: Global Biodiversity Information Facility (GBIF.org)",
+        "citation": "Citation: GBIF.org (2026). GBIF occurrence data, accessed via the GBIF API. https://www.gbif.org"
+      },
+      "additional": "Il meteo giornaliero proviene dalle previsioni di WeatherAPI.com, e ogni modifica del modello viene verificata su avvistamenti recenti che il modello non ha mai visto."
     }
   },
   "identify": {
