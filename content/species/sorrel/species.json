@@ -214,6 +214,6 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [2888951] }
+    "rangePrior": { "taxonKeys": [2888951, 2888995] }
   }
 }

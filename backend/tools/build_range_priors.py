@@ -301,12 +301,12 @@ def build_macro(macro, taxon_map, years, workers=4):
     return priors
 
 
-def to_npz(macro, priors):
+def to_npz(macro, priors, taxa):
     buf = io.BytesIO()
     species = sorted(priors)
     np.savez_compressed(
         buf, lat0=macro["lat"][0], lon0=macro["lon"][0], step=STEP,
-        species=np.array(species),
+        species=np.array(species), taxa=json.dumps(taxa, sort_keys=True),
         priors=np.stack([np.rint(priors[s] * 255).astype(np.uint8) for s in species]),
     )
     return buf.getvalue()
@@ -339,15 +339,35 @@ def save(payload, dest):
         print(f"  wrote local: {dest}")
 
 
+def macro_taxa(macro):
+    """{species: GBIF keys} for the species available in one macro region."""
+    available = set().union(*(get_region_species(r) for r in macro["regions"]))
+    return {sp: keys for sp, keys in get_range_taxon_map().items() if sp in available}
+
+
+def built_from_other_taxa(raw, taxa):
+    """True when a published file was built from different species or keys than `taxa`."""
+    with np.load(io.BytesIO(raw)) as z:
+        return "taxa" not in z or json.loads(str(z["taxa"])) != json.loads(json.dumps(taxa))
+
+
 def needs_rebuild():
-    """Missing from R2, or last built in an earlier quarter -> rebuild."""
+    """Missing from R2, built in an earlier quarter, or built from other taxon keys -> rebuild.
+
+    The last case means a manifest change (a species added, a key corrected) reaches
+    the map on the next run instead of the next quarter.
+    """
     curves = _curves()
     today_q = curves._quarter_index(date.today())
     for macro in MACROS.values():
-        lm = curves.r2_last_modified(curves.get_required_env(macro["env"]))
+        url = curves.get_required_env(macro["env"])
+        lm = curves.r2_last_modified(url)
         if lm is None or curves._quarter_index(lm.date()) < today_q:
             return True
-    print("[gate] range priors present and built this quarter -> skipping (use --force to rebuild)")
+        if built_from_other_taxa(curves.r2_fetch(url), macro_taxa(macro)):
+            print(f"[gate] {url} was built from other taxon keys -> building")
+            return True
+    print("[gate] range priors present, current and built this quarter -> skipping (use --force to rebuild)")
     return False
 
 
@@ -360,15 +380,13 @@ def run(years=None, local_only=False, out_dir=".", force=False, workers=4):
     # The current year stays out so QA, which scores this year's sightings, is not
     # graded on its own training data.
     years = years or f"1990,{_THIS_YEAR - 1}"
-    taxon_map = get_range_taxon_map()
     for code, macro in MACROS.items():
-        available = set().union(*(get_region_species(r) for r in macro["regions"]))
-        macro_taxa = {sp: keys for sp, keys in taxon_map.items() if sp in available}
-        print(f"[{code}] building range priors for {len(macro_taxa)} species ({years})...")
-        priors = build_macro(macro, macro_taxa, years, workers)
+        taxa = macro_taxa(macro)
+        print(f"[{code}] building range priors for {len(taxa)} species ({years})...")
+        priors = build_macro(macro, taxa, years, workers)
         dest = (str(Path(out_dir) / f"{code}_range_priors.npz") if local_only
                 else curves.get_required_env(macro["env"]))
-        save(to_npz(macro, priors), dest)
+        save(to_npz(macro, priors, taxa), dest)
 
 
 def run_safely():

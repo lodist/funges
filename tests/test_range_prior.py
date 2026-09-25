@@ -75,7 +75,11 @@ def test_published_grid_round_trips_into_scoring():
     macro = {"lat": (40.0, 41.0), "lon": (10.0, 11.0)}
     grid = np.ones(brp.grid_shape(macro))
     grid[:, :5] = 0.0  # western half: well observed, species absent
-    priors = load_range_priors(brp.to_npz(macro, {"amaranth": grid}))
+    raw = brp.to_npz(macro, {"amaranth": grid}, {"amaranth": [6109534]})
+    priors = load_range_priors(raw)
+    assert not brp.built_from_other_taxa(raw, {"amaranth": [6109534]})
+    assert brp.built_from_other_taxa(raw, {"amaranth": [6109534], "sorrel": [2888951]})  # species added
+    assert brp.built_from_other_taxa(raw, {"amaranth": [6109534, 1]})  # key added
     rows = pd.DataFrame({"Latitude": [40.5, 40.5, 60.0, np.nan],
                          "Longitude": [10.2, 10.8, 10.5, 10.5]})
     got = range_prior_for_species(rows, {"range_prior": priors["amaranth"]})

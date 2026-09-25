@@ -1111,7 +1111,7 @@
       "scientificName": "Fragaria vesca",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
-      "rangeTaxonKeys": [3029817],
+      "rangeTaxonKeys": [3029817, 7950792],
       "dataColumns": ["strawberry_score", "Wild Strawberry", "Strawberry"],
       "regions": {
         "NE": {
@@ -2415,7 +2415,7 @@
       "scientificName": "Rumex acetosa",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
-      "rangeTaxonKeys": [2888951],
+      "rangeTaxonKeys": [2888951, 2888995],
       "dataColumns": ["sorrel_score", "Sorrel"],
       "regions": {
         "NE": {
