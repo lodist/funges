@@ -60,16 +60,16 @@
     "monitorTitle": "monitorar e integrar:",
     "variables": {
       "temperature": "Temperatura, umidade e precipitação",
-      "soil": "pH do solo e características geológicas",
-      "vegetation": "Cobertura do solo e tipos de vegetação",
-      "topography": "Topografia e elevação",
-      "trends": "Tendências temporais"
+      "soil": "pH do solo",
+      "vegetation": "Cobertura do solo, tipos de floresta e árvores hospedeiras",
+      "topography": "Altitude e distância à água",
+      "trends": "Onde cada espécie é registada, e a sua época"
     },
     "goal": "O objetivo é simular o comportamento de coletores experientes — potencializado por dados. Em outras palavras, tentar decifrar a natureza de forma respeitosa para tornar a coleta mais acessível, precisa e sustentável.",
     "methodology": {
       "title": "Fontes de Dados e Metodologia",
       "description": "O Funges utiliza uma combinação de conjuntos de dados ambientais, meteorológicos e geoespaciais para prever os melhores locais e momentos para a coleta de alimentos silvestres.",
-      "datasets": "Incluem imagens de satélite, modelos de relevo, APIs meteorológicas e indicadores ecológicos — todos analisados ao longo do tempo para simular os ciclos da natureza e identificar pontos de interesse em tempo real."
+      "datasets": "Incluem previsões meteorológicas, mapas de altitude e de solos, mapas de cobertura do solo e de florestas, e avistamentos de cada espécie vindos da ciência cidadã, analisados ao longo do tempo para simular os ciclos da natureza e identificar os melhores locais em tempo real."
     },
     "keyDatasets": {
       "title": "Principais Conjuntos de Dados",
@@ -103,7 +103,31 @@
         "source": "Fonte: World Wildlife Fund (WWF), HydroSHEDS (derivado de NASA SRTM)",
         "citation": "Citação: Lehner, B., Verdin, K., & Jarvis, A. (2008). New global hydrography derived from spaceborne elevation data. Eos, Transactions AGU, 89(10), 93-94."
       },
-      "additional": "Fontes adicionais como APIs meteorológicas, camadas de sensoriamento remoto e modelos de inclinação/orientação são integradas para melhorar continuamente a precisão das previsões."
+      "soilgrids": {
+        "title": "6. SoilGrids (pH do solo nos EUA)",
+        "description": "Os mapas globais de solos do ISRIC, modelados a partir de perfis de solo de todo o mundo. A Funges lê deles o pH superficial para as zonas de recolha nos EUA, complementando o mapa europeu de pH.",
+        "source": "Fonte: ISRIC – World Soil Information",
+        "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
+      },
+      "treeGenus": {
+        "title": "7. Mapa europeu de géneros de árvores",
+        "description": "Um mapa a 10 metros do género de árvore dominante na Europa (espruce, pinheiro, lariço, faia, carvalho e outros), obtido dos satélites Sentinel-1 e Sentinel-2. Cogumelos como os boletos e as cantarelas só frutificam perto das suas árvores hospedeiras, por isso cada espécie é avaliada pela quantidade de hospedeiras que crescem por perto.",
+        "source": "Fonte: projeto ForestPaths (versão de acesso antecipado no Zenodo)",
+        "citation": "Citation: De Keersmaecker, W., Zanaga, D., Senf, C., et al. (2025). European Tree Genus Map 2020 (Early Access Release). Zenodo. https://doi.org/10.5281/zenodo.13341104. CC BY 4.0."
+      },
+      "forestTypes": {
+        "title": "8. Grupos de tipos florestais dos EUA",
+        "description": "Um mapa do USDA Forest Service dos tipos de floresta (como espruce–abeto, carvalho–nogueira-americana ou abeto-de-douglas) nos Estados Unidos contíguos a 250 metros, construído a partir de parcelas do inventário florestal. Fornece as árvores hospedeiras para os cogumelos dos EUA.",
+        "source": "Fonte: USDA Forest Service, Forest Inventory and Analysis (FIA)",
+        "citation": "Citation: Ruefenacht, B., Finco, M.V., Nelson, M.D., et al. (2008). Conterminous U.S. and Alaska forest type mapping using forest inventory and analysis data. Photogrammetric Engineering & Remote Sensing, 74(11), 1379–1388."
+      },
+      "gbif": {
+        "title": "9. Observações de espécies do GBIF",
+        "description": "O Global Biodiversity Information Facility reúne avistamentos de inventários e da ciência cidadã, incluindo o iNaturalist. A Funges usa-os para saber onde cada espécie pode crescer, tendo em conta quanto cada zona é observada, e em que altura do ano aparece.",
+        "source": "Fonte: Global Biodiversity Information Facility (GBIF.org)",
+        "citation": "Citation: GBIF.org (2026). GBIF occurrence data, accessed via the GBIF API. https://www.gbif.org"
+      },
+      "additional": "O tempo diário vem das previsões do WeatherAPI.com, e cada alteração do modelo é verificada com avistamentos recentes que o modelo nunca viu."
     }
   },
   "identify": {

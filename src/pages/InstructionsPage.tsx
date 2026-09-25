@@ -24,6 +24,19 @@ import {
   WifiOff,
 } from '@/lib/icons';
 
+// Every dataset the forecast reads, in the order the page credits them.
+const KEY_DATASETS = [
+  ['corine', 'bg-muted'],
+  ['soilPh', 'bg-secondary'],
+  ['nlcd', 'bg-status-warning-background'],
+  ['eudem', 'bg-muted'],
+  ['hydrosheds', 'bg-muted'],
+  ['soilgrids', 'bg-secondary'],
+  ['treeGenus', 'bg-muted'],
+  ['forestTypes', 'bg-status-warning-background'],
+  ['gbif', 'bg-secondary'],
+] as const;
+
 export default function InstructionsPage() {
   const { t } = useTranslation('instructions');
 
@@ -305,80 +318,22 @@ export default function InstructionsPage() {
                 </h4>
 
                 <div className='space-y-6'>
-                  <div className='p-4 rounded-lg bg-muted'>
-                    <h5 className='font-semibold text-foreground dark:text-white mb-2'>
-                      {t('prediction.keyDatasets.corine.title')}
-                    </h5>
-                    <p className='text-foreground text-sm mb-2'>
-                      {t('prediction.keyDatasets.corine.description')}
-                    </p>
-                    <p className='text-muted-foreground text-xs'>
-                      {t('prediction.keyDatasets.corine.source')}
-                    </p>
-                    <p className='text-muted-foreground text-xs'>
-                      {t('prediction.keyDatasets.corine.citation')}
-                    </p>
-                  </div>
-
-                  <div className='p-4 rounded-lg bg-secondary'>
-                    <h5 className='font-semibold text-foreground dark:text-white mb-2'>
-                      {t('prediction.keyDatasets.soilPh.title')}
-                    </h5>
-                    <p className='text-foreground text-sm mb-2'>
-                      {t('prediction.keyDatasets.soilPh.description')}
-                    </p>
-                    <p className='text-muted-foreground text-xs'>
-                      {t('prediction.keyDatasets.soilPh.source')}
-                    </p>
-                    <p className='text-muted-foreground text-xs'>
-                      {t('prediction.keyDatasets.soilPh.citation')}
-                    </p>
-                  </div>
-
-                  <div className='p-4 rounded-lg bg-status-warning-background'>
-                    <h5 className='font-semibold text-foreground dark:text-white mb-2'>
-                      {t('prediction.keyDatasets.nlcd.title')}
-                    </h5>
-                    <p className='text-foreground text-sm mb-2'>
-                      {t('prediction.keyDatasets.nlcd.description')}
-                    </p>
-                    <p className='text-muted-foreground text-xs'>
-                      {t('prediction.keyDatasets.nlcd.source')}
-                    </p>
-                    <p className='text-muted-foreground text-xs'>
-                      {t('prediction.keyDatasets.nlcd.citation')}
-                    </p>
-                  </div>
-
-                  <div className='p-4 rounded-lg bg-muted'>
-                    <h5 className='font-semibold text-foreground dark:text-white mb-2'>
-                      {t('prediction.keyDatasets.eudem.title')}
-                    </h5>
-                    <p className='text-foreground text-sm mb-2'>
-                      {t('prediction.keyDatasets.eudem.description')}
-                    </p>
-                    <p className='text-muted-foreground text-xs'>
-                      {t('prediction.keyDatasets.eudem.source')}
-                    </p>
-                    <p className='text-muted-foreground text-xs'>
-                      {t('prediction.keyDatasets.eudem.citation')}
-                    </p>
-                  </div>
-
-                  <div className='p-4 rounded-lg bg-muted'>
-                    <h5 className='font-semibold text-foreground dark:text-white mb-2'>
-                      {t('prediction.keyDatasets.hydrosheds.title')}
-                    </h5>
-                    <p className='text-foreground text-sm mb-2'>
-                      {t('prediction.keyDatasets.hydrosheds.description')}
-                    </p>
-                    <p className='text-muted-foreground text-xs'>
-                      {t('prediction.keyDatasets.hydrosheds.source')}
-                    </p>
-                    <p className='text-muted-foreground text-xs'>
-                      {t('prediction.keyDatasets.hydrosheds.citation')}
-                    </p>
-                  </div>
+                  {KEY_DATASETS.map(([key, background]) => (
+                    <div key={key} className={`p-4 rounded-lg ${background}`}>
+                      <h5 className='font-semibold text-foreground dark:text-white mb-2'>
+                        {t(`prediction.keyDatasets.${key}.title`)}
+                      </h5>
+                      <p className='text-foreground text-sm mb-2'>
+                        {t(`prediction.keyDatasets.${key}.description`)}
+                      </p>
+                      <p className='text-muted-foreground text-xs'>
+                        {t(`prediction.keyDatasets.${key}.source`)}
+                      </p>
+                      <p className='text-muted-foreground text-xs'>
+                        {t(`prediction.keyDatasets.${key}.citation`)}
+                      </p>
+                    </div>
+                  ))}
 
                   <p className='text-foreground text-sm'>
                     {t('prediction.keyDatasets.additional')}
