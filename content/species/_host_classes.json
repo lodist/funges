@@ -1,0 +1,47 @@
+{
+  "EU": {
+    "source": "European Tree Genus Map 2020, early access (De Keersmaecker et al. 2025), https://doi.org/10.5281/zenodo.13341104, CC-BY-4.0",
+    "classes": {
+      "larix": 0,
+      "picea": 1,
+      "pinus": 2,
+      "fagus": 3,
+      "quercus": 4,
+      "other_needleleaf": 5,
+      "other_broadleaf": 6
+    }
+  },
+  "US": {
+    "source": "USFS Forest Type Groups of the conterminous US, 250 m, https://data.fs.usda.gov/geodata/rastergateway/forest_type/",
+    "classes": {
+      "white_red_jack_pine": 100,
+      "spruce_fir": 120,
+      "longleaf_slash_pine": 140,
+      "loblolly_shortleaf_pine": 160,
+      "pinyon_juniper": 180,
+      "douglas_fir": 200,
+      "ponderosa_pine": 220,
+      "western_white_pine": 240,
+      "fir_spruce_mountain_hemlock": 260,
+      "lodgepole_pine": 280,
+      "hemlock_sitka_spruce": 300,
+      "western_larch": 320,
+      "redwood": 340,
+      "other_western_softwood": 360,
+      "california_mixed_conifer": 370,
+      "exotic_softwoods": 380,
+      "oak_pine": 400,
+      "oak_hickory": 500,
+      "oak_gum_cypress": 600,
+      "elm_ash_cottonwood": 700,
+      "maple_beech_birch": 800,
+      "aspen_birch": 900,
+      "alder_maple": 910,
+      "western_oak": 920,
+      "tanoak_laurel": 940,
+      "other_western_hardwoods": 950,
+      "tropical_hardwoods": 980,
+      "exotic_hardwoods": 990
+    }
+  }
+}

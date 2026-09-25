@@ -376,3 +376,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # ponytail: the scheduler exe only runs this script before scoring, so the range
+    # priors (same GBIF source, same quarterly refresh) ride along. Give them their own
+    # scheduler step the next time Scoring.exe is rebuilt. Any flag means a manual
+    # season-curve run, which must not publish priors.
+    if len(sys.argv) == 1:
+        import build_range_priors
+        build_range_priors.run_safely()

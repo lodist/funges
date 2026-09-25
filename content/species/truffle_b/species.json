@@ -89,23 +89,11 @@
           "weather_preference": {
             "rain_first": false
           },
-          "climate_zones": [
-            "alpine",
-            "mediterranean_dry_spain",
-            "mediterranean_italy",
-            "mediterranean_greece",
-            "mediterranean_turkey",
-            "temperate",
-            "continental",
-            "central_spain",
-            "sardinia",
-            "oceanic_south",
-            "oceanic_north"
-          ],
           "wind_sensitive": false,
           "season_months": [1, 2, 3, 4, 10, 11, 12],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": ["quercus", "other_broadleaf"]
         },
         "scoringReferences": [
           "https://data.fung.es/EU/SE/SE_species_params.txt"
@@ -124,6 +112,7 @@
       "enabled": true,
       "taxonKeys": [5258468],
       "references": ["https://www.gbif.org/species/5258468"]
-    }
+    },
+    "rangePrior": { "taxonKeys": [5258468] }
   }
 }

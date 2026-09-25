@@ -86,7 +86,6 @@
           "weather_preference": {
             "rain_first": false
           },
-          "climate_zones": ["alpine", "subarctic", "temperate", "continental"],
           "wind_sensitive": false,
           "season_months": [6, 7, 8],
           "water_relevance": false,
@@ -120,7 +119,6 @@
           "weather_preference": {
             "rain_first": false
           },
-          "climate_zones": ["alpine", "subarctic", "temperate", "continental"],
           "wind_sensitive": false,
           "season_months": [6, 7, 8],
           "water_relevance": false,
@@ -143,6 +141,7 @@
       "enabled": false,
       "taxonKeys": [],
       "references": []
-    }
+    },
+    "rangePrior": { "taxonKeys": [5538108] }
   }
 }

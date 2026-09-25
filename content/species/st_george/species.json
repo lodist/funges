@@ -86,22 +86,6 @@
           "weather_preference": {
             "rain_first": true
           },
-          "climate_zones": [
-            "alpine",
-            "arctic",
-            "subarctic",
-            "atlantic_islands",
-            "mediterranean_dry_spain",
-            "mediterranean_italy",
-            "mediterranean_greece",
-            "mediterranean_turkey",
-            "oceanic_south",
-            "oceanic_north",
-            "continental",
-            "temperate",
-            "central_spain",
-            "sardinia"
-          ],
           "wind_sensitive": false,
           "season_months": [3, 4, 5],
           "water_relevance": false,
@@ -135,22 +119,6 @@
           "weather_preference": {
             "rain_first": true
           },
-          "climate_zones": [
-            "alpine",
-            "arctic",
-            "subarctic",
-            "atlantic_islands",
-            "mediterranean_dry_spain",
-            "mediterranean_italy",
-            "mediterranean_greece",
-            "mediterranean_turkey",
-            "oceanic_south",
-            "oceanic_north",
-            "continental",
-            "temperate",
-            "central_spain",
-            "sardinia"
-          ],
           "wind_sensitive": false,
           "season_months": [4, 5],
           "water_relevance": false,
@@ -173,6 +141,7 @@
       "enabled": true,
       "taxonKeys": [8936224],
       "references": ["https://www.gbif.org/species/8936224"]
-    }
+    },
+    "rangePrior": { "taxonKeys": [8936224] }
   }
 }

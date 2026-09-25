@@ -148,10 +148,6 @@ def replay_region(
     scoring = calculate_mushroom_score(scoring, params, zone_curves)
     score_columns = [f"{species}_score" for species in params]
     scoring = spatial_smooth_scores(scoring, score_columns)
-    for species, spec in params.items():
-        allowed = spec.get("climate_zones", [])
-        if allowed:
-            scoring.loc[~scoring.climate_zone.isin(allowed), f"{species}_score"] = 0.0
 
     wanted = desired.merge(scoring, on=["Location_Id", "Date"], how="left")
     return wanted, {
