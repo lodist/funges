@@ -96,18 +96,18 @@
           "weather_preference": {
             "rain_first": true
           },
-          "climate_zones": [
-            "alpine",
-            "subarctic",
-            "marine_west_coast",
-            "humid_continental",
-            "continental",
-            "temperate"
-          ],
           "wind_sensitive": false,
           "season_months": [9, 10, 11, 12, 1],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": [
+            "douglas_fir",
+            "hemlock_sitka_spruce",
+            "fir_spruce_mountain_hemlock",
+            "redwood",
+            "tanoak_laurel",
+            "california_mixed_conifer"
+          ]
         },
         "scoringReferences": [
           "https://www.gbif.org/species/5466954",
@@ -120,6 +120,7 @@
       "enabled": true,
       "taxonKeys": [5466954],
       "references": ["https://www.gbif.org/species/5466954"]
-    }
+    },
+    "rangePrior": { "taxonKeys": [5466954] }
   }
 }

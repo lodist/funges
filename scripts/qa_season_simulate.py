@@ -171,8 +171,7 @@ def main() -> None:
                 continue
             in_season, dead = month_labels(rates)
 
-            allowed = params[species].get("climate_zones", [])
-            frame = grid[grid.climate_zone.isin(allowed)] if allowed else grid
+            frame = grid
             if frame.empty:
                 continue
             terms = season_terms(region, species, dates, zones, params, region_curves, zone_curves)

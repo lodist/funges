@@ -6,7 +6,7 @@ looked up per coord in _fetch_all). So here, rows are generated per (coord, date
 replicated to that coord's base points; only Location_Id / base lat-lon differ.
 
 Branches exercised by the two synthetic species:
-  - sp_water: water_relevance + sea_relevance, wind_sensitive, climate_zones filter,
+  - sp_water: water_relevance + sea_relevance, wind_sensitive,
               season_months ramp, rain_first weather preference.
   - sp_curve: empirical season_curve path, no water relevance, not wind sensitive.
 Plus: some coords carry NaN pH (exercises the mixed isna() score branch) and a zone
@@ -48,7 +48,6 @@ def species_params():
             "weather_preference": {"rain_first": True},
             "water_relevance": True, "sea_relevance": True,
             "wind_sensitive": True,
-            "climate_zones": ["temperate", "boreal"],
             "season_months": [6, 7, 8, 9],
             "season_factor": 0.4,
         },

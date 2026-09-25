@@ -89,15 +89,6 @@
           "weather_preference": {
             "rain_first": false
           },
-          "climate_zones": [
-            "mediterranean_dry_spain",
-            "mediterranean_italy",
-            "mediterranean_greece",
-            "mediterranean_turkey",
-            "central_spain",
-            "sardinia",
-            "oceanic_south"
-          ],
           "wind_sensitive": false,
           "season_months": [3, 4, 5],
           "water_relevance": false,
@@ -120,6 +111,7 @@
       "enabled": false,
       "taxonKeys": [],
       "references": []
-    }
+    },
+    "rangePrior": { "taxonKeys": [2768995] }
   }
 }

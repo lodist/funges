@@ -93,16 +93,18 @@
           "weather_preference": {
             "rain_first": true
           },
-          "climate_zones": [
-            "humid_subtropical",
-            "humid_continental",
-            "continental",
-            "temperate"
-          ],
           "wind_sensitive": false,
           "season_months": [6, 7, 8, 9],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": [
+            "oak_hickory",
+            "oak_pine",
+            "oak_gum_cypress",
+            "maple_beech_birch",
+            "loblolly_shortleaf_pine",
+            "longleaf_slash_pine"
+          ]
         },
         "scoringReferences": [
           "https://www.gbif.org/species/7241861",
@@ -118,6 +120,7 @@
       "enabled": true,
       "taxonKeys": [7241861],
       "references": ["https://www.gbif.org/species/7241861"]
-    }
+    },
+    "rangePrior": { "taxonKeys": [7241861] }
   }
 }

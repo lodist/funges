@@ -87,26 +87,18 @@
           "weather_preference": {
             "rain_first": true
           },
-          "climate_zones": [
-            "alpine",
-            "arctic",
-            "subarctic",
-            "atlantic_islands",
-            "mediterranean_dry_spain",
-            "mediterranean_italy",
-            "mediterranean_greece",
-            "mediterranean_turkey",
-            "oceanic_south",
-            "oceanic_north",
-            "continental",
-            "temperate",
-            "central_spain",
-            "sardinia"
-          ],
           "wind_sensitive": true,
           "season_months": [5, 6, 7, 8, 9, 10, 11],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": [
+            "picea",
+            "pinus",
+            "fagus",
+            "quercus",
+            "other_needleleaf",
+            "other_broadleaf"
+          ]
         },
         "scoringReferences": [
           "https://data.fung.es/EU/NE/NE_species_params.txt"
@@ -136,26 +128,18 @@
           "weather_preference": {
             "rain_first": true
           },
-          "climate_zones": [
-            "alpine",
-            "arctic",
-            "subarctic",
-            "atlantic_islands",
-            "mediterranean_dry_spain",
-            "mediterranean_italy",
-            "mediterranean_greece",
-            "mediterranean_turkey",
-            "oceanic_south",
-            "oceanic_north",
-            "continental",
-            "temperate",
-            "central_spain",
-            "sardinia"
-          ],
           "wind_sensitive": true,
           "season_months": [5, 6, 7, 8, 9, 10, 11],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": [
+            "picea",
+            "pinus",
+            "fagus",
+            "quercus",
+            "other_needleleaf",
+            "other_broadleaf"
+          ]
         },
         "scoringReferences": [
           "https://data.fung.es/EU/SE/SE_species_params.txt"
@@ -185,21 +169,28 @@
           "weather_preference": {
             "rain_first": true
           },
-          "climate_zones": [
-            "alpine",
-            "subarctic",
-            "marine_west_coast",
-            "humid_subtropical",
-            "humid_continental",
-            "continental",
-            "temperate",
-            "mediterranean_california",
-            "semiarid_steppe"
-          ],
           "wind_sensitive": true,
           "season_months": [5, 6, 7, 8, 9, 10, 11],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": [
+            "spruce_fir",
+            "fir_spruce_mountain_hemlock",
+            "hemlock_sitka_spruce",
+            "white_red_jack_pine",
+            "lodgepole_pine",
+            "ponderosa_pine",
+            "douglas_fir",
+            "western_white_pine",
+            "western_larch",
+            "california_mixed_conifer",
+            "redwood",
+            "other_western_softwood",
+            "aspen_birch",
+            "maple_beech_birch",
+            "western_oak",
+            "tanoak_laurel"
+          ]
         },
         "scoringReferences": [
           "https://data.fung.es/USA/USE/USE_species_params.txt"
@@ -229,21 +220,28 @@
           "weather_preference": {
             "rain_first": true
           },
-          "climate_zones": [
-            "alpine",
-            "subarctic",
-            "marine_west_coast",
-            "humid_subtropical",
-            "humid_continental",
-            "continental",
-            "temperate",
-            "mediterranean_california",
-            "semiarid_steppe"
-          ],
           "wind_sensitive": true,
           "season_months": [5, 6, 7, 8, 9, 10, 11],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": [
+            "spruce_fir",
+            "fir_spruce_mountain_hemlock",
+            "hemlock_sitka_spruce",
+            "white_red_jack_pine",
+            "lodgepole_pine",
+            "ponderosa_pine",
+            "douglas_fir",
+            "western_white_pine",
+            "western_larch",
+            "california_mixed_conifer",
+            "redwood",
+            "other_western_softwood",
+            "aspen_birch",
+            "maple_beech_birch",
+            "western_oak",
+            "tanoak_laurel"
+          ]
         },
         "scoringReferences": [
           "https://data.fung.es/USA/USW/USW_species_params.txt"
@@ -256,6 +254,7 @@
       "enabled": true,
       "taxonKeys": [5954958],
       "references": ["https://www.gbif.org/species/5954958"]
-    }
+    },
+    "rangePrior": { "taxonKeys": [5954958] }
   }
 }

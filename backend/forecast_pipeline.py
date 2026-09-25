@@ -31,6 +31,7 @@ from shapely.ops import unary_union
 from shapely.geometry import shape, Point
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasonality
+from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
 from species_registry import get_species_params
 
@@ -204,6 +205,8 @@ class RegionConfig:
     # Performance: WeatherAPI calls are network-bound. 3 was extremely conservative;
     # raise substantially, tunable via env for rate-limit headroom.
     max_workers: int = int(os.getenv("FORECAST_MAX_WORKERS", "16"))
+    range_priors_env: str = ""
+    host_cover_env: str = ""
 
 
 NDP = 3  # module-level default used by moved helpers
@@ -1028,9 +1031,10 @@ def calculate_mushroom_score(df, species_params, zone_curves):
         if params.get("wind_sensitive", False):
             df[f'{specie}_score'] = (df[f'{specie}_score'] * wind_factor).clip(0, 10)
 
-        allowed_climates = params.get("climate_zones", [])
-        if allowed_climates:
-            df.loc[~df['climate_zone'].isin(allowed_climates), f'{specie}_score'] = 0
+        # Whether the species can grow here at all: where it is observed and, for
+        # mycorrhizal fungi, whether its host trees are around. It replaced the
+        # climate-zone allow-lists, whose rectangle-drawn zones cut the map in lines.
+        df[f'{specie}_score'] *= range_prior_for_species(df, params)
 
         # Two separate jobs. The multiplier tilts the score across the season; the gate is
         # allowed to reach zero, which is the only way the model can say "not this month".
@@ -1078,6 +1082,30 @@ def _load_species_and_curves(config):
             print(f"Loaded zone season curves for {len(zone_curves)} climate zones.")
         except Exception as _e:
             print(f"[warn] could not load zone curves from {_zone_curves_path}: {_e}; falling back to region/season_months")
+
+    _priors_path = os.getenv(config.range_priors_env) if config.range_priors_env else None
+    if _priors_path:
+        try:
+            _priors = load_range_priors(
+                r2_fetch(_priors_path) if is_remote_path(_priors_path) else Path(_priors_path).read_bytes())
+            for _sp, _p in species_params.items():
+                if _sp in _priors:
+                    _p["range_prior"] = _priors[_sp]
+            print(f"Loaded range priors for {sum('range_prior' in p for p in species_params.values())} species.")
+        except Exception as _e:
+            print(f"[warn] could not load range priors from {_priors_path}: {_e}; scoring without them")
+
+    _cover_path = os.getenv(config.host_cover_env) if config.host_cover_env else None
+    if _cover_path:
+        try:
+            _cover = load_host_cover(
+                r2_fetch(_cover_path) if is_remote_path(_cover_path) else Path(_cover_path).read_bytes())
+            for _p in species_params.values():
+                if _p.get("hosts"):
+                    _p["host_prior"] = host_prior(_cover, _p["hosts"])
+            print(f"Loaded host cover for {sum('host_prior' in p for p in species_params.values())} species.")
+        except Exception as _e:
+            print(f"[warn] could not load host cover from {_cover_path}: {_e}; scoring without it")
     return species_params, zone_curves
 
 
@@ -1384,14 +1412,6 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
 
     score_cols = [f"{s}_score" for s in species_params]
     forward = spatial_smooth_scores(forward, score_cols)
-    # Neighbour smoothing may cross a climate-zone boundary, but an explicit
-    # species climate exclusion remains a hard constraint.
-    for species, params in species_params.items():
-        allowed_climates = params.get("climate_zones", [])
-        if allowed_climates:
-            forward.loc[
-                ~forward["climate_zone"].isin(allowed_climates), f"{species}_score"
-            ] = 0.0
     confidence_cols = [f"{s}_confidence" for s in species_params]
     updated_df = apply_forward_scores(combined_df, forward, score_cols + confidence_cols)
 

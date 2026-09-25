@@ -87,26 +87,11 @@
           "weather_preference": {
             "rain_first": true
           },
-          "climate_zones": [
-            "alpine",
-            "arctic",
-            "subarctic",
-            "atlantic_islands",
-            "mediterranean_dry_spain",
-            "mediterranean_italy",
-            "mediterranean_greece",
-            "mediterranean_turkey",
-            "oceanic_south",
-            "oceanic_north",
-            "continental",
-            "temperate",
-            "central_spain",
-            "sardinia"
-          ],
           "wind_sensitive": true,
           "season_months": [5, 6, 7, 8, 9],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": ["fagus", "quercus", "other_broadleaf"]
         },
         "scoringReferences": [
           "https://www.gbif.org/species/5954691",
@@ -136,26 +121,11 @@
           "weather_preference": {
             "rain_first": true
           },
-          "climate_zones": [
-            "alpine",
-            "arctic",
-            "subarctic",
-            "atlantic_islands",
-            "mediterranean_dry_spain",
-            "mediterranean_italy",
-            "mediterranean_greece",
-            "mediterranean_turkey",
-            "oceanic_south",
-            "oceanic_north",
-            "continental",
-            "temperate",
-            "central_spain",
-            "sardinia"
-          ],
           "wind_sensitive": true,
           "season_months": [5, 6, 7, 8, 9],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": ["fagus", "quercus", "other_broadleaf"]
         },
         "scoringReferences": [
           "https://www.gbif.org/species/5954691",
@@ -174,6 +144,7 @@
       "enabled": true,
       "taxonKeys": [5954691],
       "references": ["https://www.gbif.org/species/5954691"]
-    }
+    },
+    "rangePrior": { "taxonKeys": [5954691] }
   }
 }

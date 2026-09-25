@@ -86,22 +86,6 @@
           "weather_preference": {
             "rain_first": false
           },
-          "climate_zones": [
-            "alpine",
-            "arctic",
-            "subarctic",
-            "atlantic_islands",
-            "mediterranean_dry_spain",
-            "mediterranean_italy",
-            "mediterranean_greece",
-            "mediterranean_turkey",
-            "oceanic_south",
-            "oceanic_north",
-            "continental",
-            "temperate",
-            "central_spain",
-            "sardinia"
-          ],
           "wind_sensitive": false,
           "season_months": [4, 5, 6, 7, 8, 9, 10],
           "water_relevance": true,
@@ -138,22 +122,6 @@
           "weather_preference": {
             "rain_first": false
           },
-          "climate_zones": [
-            "alpine",
-            "arctic",
-            "subarctic",
-            "atlantic_islands",
-            "mediterranean_dry_spain",
-            "mediterranean_italy",
-            "mediterranean_greece",
-            "mediterranean_turkey",
-            "oceanic_south",
-            "oceanic_north",
-            "continental",
-            "temperate",
-            "central_spain",
-            "sardinia"
-          ],
           "wind_sensitive": false,
           "season_months": [4, 5, 6, 7, 8, 9, 10],
           "water_relevance": true,
@@ -190,16 +158,6 @@
           "weather_preference": {
             "rain_first": false
           },
-          "climate_zones": [
-            "alpine",
-            "subarctic",
-            "marine_west_coast",
-            "humid_subtropical",
-            "humid_continental",
-            "continental",
-            "temperate",
-            "semiarid_steppe"
-          ],
           "wind_sensitive": false,
           "season_months": [4, 5, 6, 7, 8, 9, 10],
           "water_relevance": true,
@@ -236,16 +194,6 @@
           "weather_preference": {
             "rain_first": false
           },
-          "climate_zones": [
-            "alpine",
-            "subarctic",
-            "marine_west_coast",
-            "humid_subtropical",
-            "humid_continental",
-            "continental",
-            "temperate",
-            "semiarid_steppe"
-          ],
           "wind_sensitive": false,
           "season_months": [4, 5, 6, 7, 8, 9, 10],
           "water_relevance": true,
@@ -265,6 +213,7 @@
       "enabled": false,
       "taxonKeys": [],
       "references": []
-    }
+    },
+    "rangePrior": { "taxonKeys": [7960979, 6414539] }
   }
 }

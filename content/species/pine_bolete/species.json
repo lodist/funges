@@ -87,21 +87,11 @@
           "weather_preference": {
             "rain_first": true
           },
-          "climate_zones": [
-            "alpine",
-            "arctic",
-            "subarctic",
-            "atlantic_islands",
-            "mediterranean_italy",
-            "oceanic_south",
-            "oceanic_north",
-            "continental",
-            "temperate"
-          ],
           "wind_sensitive": true,
           "season_months": [5, 6, 9, 10, 11],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": ["pinus", "picea"]
         },
         "scoringReferences": [
           "https://www.gbif.org/species/5954949",
@@ -131,21 +121,11 @@
           "weather_preference": {
             "rain_first": true
           },
-          "climate_zones": [
-            "alpine",
-            "arctic",
-            "subarctic",
-            "atlantic_islands",
-            "mediterranean_italy",
-            "oceanic_south",
-            "oceanic_north",
-            "continental",
-            "temperate"
-          ],
           "wind_sensitive": true,
           "season_months": [5, 6, 9, 10, 11],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": ["pinus", "picea"]
         },
         "scoringReferences": [
           "https://www.gbif.org/species/5954949",
@@ -164,6 +144,7 @@
       "enabled": true,
       "taxonKeys": [5954949],
       "references": ["https://www.gbif.org/species/5954949"]
-    }
+    },
+    "rangePrior": { "taxonKeys": [5954949] }
   }
 }

@@ -86,17 +86,6 @@
           "weather_preference": {
             "rain_first": false
           },
-          "climate_zones": [
-            "alpine",
-            "mediterranean_italy",
-            "mediterranean_greece",
-            "subarctic",
-            "oceanic_south",
-            "oceanic_north",
-            "continental",
-            "temperate",
-            "mediterranean_turkey"
-          ],
           "wind_sensitive": false,
           "season_months": [3, 4, 5],
           "water_relevance": true,
@@ -133,17 +122,6 @@
           "weather_preference": {
             "rain_first": false
           },
-          "climate_zones": [
-            "alpine",
-            "mediterranean_italy",
-            "mediterranean_greece",
-            "subarctic",
-            "oceanic_south",
-            "oceanic_north",
-            "continental",
-            "temperate",
-            "mediterranean_turkey"
-          ],
           "wind_sensitive": false,
           "season_months": [3, 4, 5],
           "water_relevance": true,
@@ -169,6 +147,7 @@
       "enabled": false,
       "taxonKeys": [],
       "references": []
-    }
+    },
+    "rangePrior": { "taxonKeys": [2857601] }
   }
 }

@@ -85,6 +85,15 @@ def get_empirical_taxon_map():
     }
 
 
+def get_range_taxon_map():
+    """Return species with GBIF taxa used to build range priors."""
+    return {
+        species_id: copy.deepcopy(config["rangeTaxonKeys"])
+        for species_id, config in _registry()["species"].items()
+        if config.get("rangeTaxonKeys")
+    }
+
+
 def get_species_metadata():
     """Return a mutable copy of forecast-species names and data-column aliases."""
     return {
