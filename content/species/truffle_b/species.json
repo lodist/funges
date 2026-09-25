@@ -92,7 +92,8 @@
           "wind_sensitive": false,
           "season_months": [1, 2, 3, 4, 10, 11, 12],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": ["quercus", "other_broadleaf"]
         },
         "scoringReferences": [
           "https://data.fung.es/EU/SE/SE_species_params.txt"
