@@ -108,10 +108,11 @@ def test_host_prior_sums_a_species_hosts_and_saturates():
     from range_prior import COVER_SCALE, HOST_FULL_COVER, host_prior
 
     share = lambda v: np.full((1, 3), round(v * COVER_SCALE), dtype=np.uint16)  # noqa: E731
-    cover = {"lat0": 0.0, "lon0": 0.0, "step": 0.05,
+    cover = {"lat0": 0.0, "lon0": 0.0, "step": 0.05, "mapped": np.array([[True, True, False]]),
              "classes": {"spruce_fir": share(0.0), "aspen_birch": share(HOST_FULL_COVER / 4),
                          "oak_hickory": share(0.9)}}
-    assert host_prior(cover, ["spruce_fir"])["grid"].max() == 0  # no host trees: cannot fruit
+    assert host_prior(cover, ["spruce_fir"])["grid"][0, :2].max() == 0  # no host trees: cannot fruit
+    assert host_prior(cover, ["spruce_fir"])["grid"][0, 2] == 255  # off the map: no evidence
     half = host_prior(cover, ["aspen_birch", "aspen_birch"])["grid"][0, 0] / 255  # listed twice, summed
     assert abs(half - 0.5) < 0.05
     assert host_prior(cover, ["oak_hickory"])["grid"].min() == 255

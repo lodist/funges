@@ -120,11 +120,14 @@ def cover_grids(macro, counts, total):
                 for name, c in counts.items()}
 
 
-def to_npz(macro, cover):
+def to_npz(macro, cover, total):
     buf = io.BytesIO()
     names = list(cover)
     np.savez_compressed(
         buf, lat0=macro["lat"][0], lon0=macro["lon"][0], step=STEP, classes=np.array(names),
+        # Cells the source map does not reach (the EU map stops short of Turkey) are
+        # unknown, not treeless.
+        mapped=total > 0,
         cover=np.stack([np.rint(np.clip(cover[n], 0, 1) * COVER_SCALE).astype(np.uint16) for n in names]),
     )
     return buf.getvalue()
@@ -144,7 +147,7 @@ def main():
         macro = MACROS[code]
         print(f"[{code}] binning host classes...", flush=True)
         counts, total = (eu_counts if code == "EU" else us_counts)(Path(args.cache_dir))
-        payload = to_npz(macro, cover_grids(macro, counts, total))
+        payload = to_npz(macro, cover_grids(macro, counts, total), total)
         dest = (str(Path(args.out_dir) / f"{code}_host_cover.npz") if args.local_only
                 else curves.get_required_env(macro["env"]))
         brp.save(payload, dest)

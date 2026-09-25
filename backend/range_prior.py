@@ -33,18 +33,22 @@ def load_range_priors(raw):
 
 
 def load_host_cover(raw):
-    """npz bytes -> {"lat0", "lon0", "step", "classes": {host class: uint16 cover grid}}."""
+    """npz bytes -> {"lat0", "lon0", "step", "mapped", "classes": {host class: uint16 cover grid}}."""
     with np.load(BytesIO(raw)) as z:
         return {
-            "lat0": float(z["lat0"]), "lon0": float(z["lon0"]), "step": float(z["step"]),
+            "lat0": float(z["lat0"]), "lon0": float(z["lon0"]), "step": float(z["step"]), "mapped": z["mapped"],
             "classes": {str(name): z["cover"][i] for i, name in enumerate(z["classes"])},
         }
 
 
 def host_prior(cover, hosts):
-    """Grid for one species: 0 with none of its hosts around, 1 from HOST_FULL_COVER up."""
+    """Grid for one species: 0 with none of its hosts around, 1 from HOST_FULL_COVER up.
+
+    Ground the source map does not reach stays 1: no evidence either way.
+    """
     share = sum(cover["classes"][h].astype(float) for h in hosts) / COVER_SCALE
-    grid = np.rint(np.clip(share / HOST_FULL_COVER, 0, 1) * 255).astype(np.uint8)
+    factor = np.where(cover["mapped"], np.clip(share / HOST_FULL_COVER, 0, 1), 1.0)
+    grid = np.rint(factor * 255).astype(np.uint8)
     return {"lat0": cover["lat0"], "lon0": cover["lon0"], "step": cover["step"], "grid": grid}
 
 
