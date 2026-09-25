@@ -230,9 +230,9 @@ def lat_centers(macro):
     return macro["lat"][0] + (np.arange(grid_shape(macro)[0]) + 0.5) * STEP
 
 
-def smooth_counts(grid, lats, sigma_km=SIGMA_KM):
+def smooth_counts(grid, lats, sigma_km=SIGMA_KM, step=STEP):
     """Gaussian kernel-weighted record counts; the lon sigma widens with latitude."""
-    sy = sigma_km / (KM_PER_DEG * STEP)
+    sy = sigma_km / (KM_PER_DEG * step)
     out = gaussian_filter1d(grid.astype(float), sy, axis=0, mode="constant")
     for r, lat in enumerate(lats):
         sx = sy / max(math.cos(math.radians(lat)), 0.2)

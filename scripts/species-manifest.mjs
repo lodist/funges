@@ -25,6 +25,16 @@ const REGION_BOUNDARIES = {
 // hand-tuned layer's paint to every species generated after it (mushroom_*, for one,
 // is default-visible and a shade more opaque than the canonical layer).
 const STYLE_TEMPLATE_SPECIES = 'chant';
+// Host-tree classes per map (EU tree genus map, US forest type groups), shared
+// with backend/tools/build_host_cover.py.
+const HOST_CLASSES = JSON.parse(
+  fs.readFileSync(
+    fileURLToPath(
+      new URL('../content/species/_host_classes.json', import.meta.url)
+    ),
+    'utf8'
+  )
+);
 const CATEGORIES = new Set(['mushroom', 'plant', 'berry', 'nut', 'flower']);
 const ID_RE = /^[a-z0-9]+(?:[-_][a-z0-9]+)*$/;
 const TODO_RE = /\bTODO\b/i;
@@ -478,6 +488,20 @@ export function validateManifests(
               where,
               `forecast.regions.${region}.scoring.${key} must be boolean`
             );
+        const hostClasses =
+          HOST_CLASSES[['NE', 'SE'].includes(region) ? 'EU' : 'US'].classes;
+        if (
+          scoring?.hosts !== undefined &&
+          (!Array.isArray(scoring.hosts) ||
+            !scoring.hosts.length ||
+            new Set(scoring.hosts).size !== scoring.hosts.length ||
+            scoring.hosts.some(host => !Object.hasOwn(hostClasses, host)))
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.hosts must list distinct classes from content/species/_host_classes.json`
+          );
         if (typeof scoring?.weather_preference?.rain_first !== 'boolean')
           fail(
             errors,

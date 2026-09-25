@@ -14,6 +14,7 @@ CONFIG = RegionConfig(
     season_curves_env="USE_SEASON_CURVES",
     zone_curves_env="US_ZONE_SEASON_CURVES",
     range_priors_env="US_RANGE_PRIORS",
+    host_cover_env="US_HOST_COVER",
     lat_range=(24.0, 49.5),
     lon_range=(-106.5, -67.0),
 )

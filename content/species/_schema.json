@@ -54,6 +54,13 @@
           "required": ["rain_first"],
           "properties": { "rain_first": { "type": "boolean" } }
         },
+        "hosts": {
+          "description": "Mycorrhizal host-tree classes from _host_classes.json (EU classes for NE/SE, US for USE/USW); omit for species without hosts",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
         "wind_sensitive": { "type": "boolean" },
         "season_months": {
           "type": "array",

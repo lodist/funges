@@ -102,3 +102,32 @@ def test_score_is_scaled_by_the_prior():
     plain = fp.calculate_mushroom_score(rows.copy(), {"sp": params}, {})
     assert scored["sp_score"].iloc[0] == 0.0
     assert scored["sp_score"].iloc[1] == plain["sp_score"].iloc[1] > 0
+
+
+def test_host_prior_sums_a_species_hosts_and_saturates():
+    from range_prior import COVER_SCALE, HOST_FULL_COVER, host_prior
+
+    share = lambda v: np.full((1, 3), round(v * COVER_SCALE), dtype=np.uint16)  # noqa: E731
+    cover = {"lat0": 0.0, "lon0": 0.0, "step": 0.05,
+             "classes": {"spruce_fir": share(0.0), "aspen_birch": share(HOST_FULL_COVER / 4),
+                         "oak_hickory": share(0.9)}}
+    assert host_prior(cover, ["spruce_fir"])["grid"].max() == 0  # no host trees: cannot fruit
+    half = host_prior(cover, ["aspen_birch", "aspen_birch"])["grid"][0, 0] / 255  # listed twice, summed
+    assert abs(half - 0.5) < 0.05
+    assert host_prior(cover, ["oak_hickory"])["grid"].min() == 255
+
+
+def test_host_pixels_land_in_their_cells():
+    import build_host_cover as bhc
+    from affine import Affine
+    from pyproj import Transformer
+
+    macro = {"lat": (40.0, 41.0), "lon": (10.0, 11.0)}
+    shape = bhc.grid_shape(macro)
+    counts, total = {"picea": np.zeros(shape)}, np.zeros(shape)
+    arr = np.array([[1, 7], [255, 1]], dtype=np.uint8)  # picea, no trees / nodata, picea
+    transform = Affine(0.05, 0, 10.0, 0, -0.05, 40.1)  # pixels are exactly the grid's top-left cells
+    identity = Transformer.from_crs("EPSG:4326", "EPSG:4326", always_xy=True)
+    bhc.bin_pixels(counts, total, macro, identity, transform, arr, 255, {"picea": 1})
+    assert total.sum() == 3  # nodata is not ground
+    assert counts["picea"][1, 0] == 1 and counts["picea"][0, 1] == 1 and counts["picea"].sum() == 2

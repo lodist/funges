@@ -401,6 +401,7 @@ test('rejects scoring data for unavailable regions and temperature sentinels', (
   );
   regions.NE = { available: false, scoring: scoring() };
   regions.USE.scoring.optimal_temp = 1000;
+  regions.USW.scoring.hosts = ['oak_hickory', 'picea'];
   const errors = validateManifests(
     [
       entry(
@@ -420,6 +421,7 @@ test('rejects scoring data for unavailable regions and temperature sentinels', (
   assert.match(errors, /NE\.scoring is not allowed when available is false/);
   assert.match(errors, /USE\.scoring\.optimal_temp must be between/);
   assert.match(errors, /forecast\.rangePrior\.taxonKeys must contain/);
+  assert.match(errors, /USW\.scoring\.hosts must list distinct classes/);
 });
 
 test('repository check is read-only', async () => {
