@@ -30,30 +30,27 @@ export interface Candidate {
 }
 
 /**
- * Genus-level catalog entries store a literal `"spp."` suffix (`'Boletus spp.'`)
- * while the model's vocabulary uses the bare genus (`'Boletus'`). This bridges
- * the two, and is an ALLOW-LIST rather than a prefix match on purpose.
+ * Genus-level catalog entries store a literal `"spp."` suffix
+ * (`'Morchella spp.'`) while the model's vocabulary uses the bare genus
+ * (`'Morchella'`). This bridges the two, and is an ALLOW-LIST rather than a
+ * prefix match on purpose.
  *
  * A prefix match ("starts with Boletus" -> the edible catalog entry) would
  * classify `Boletus satanas` — the deprecated synonym for the toxic
  * *Rubroboletus satanas* — as safe porcini. Several boletes carry old `Boletus`
  * binomials for the same reason, so the rule must be "these exact names", never
  * "this genus".
+ *
+ * *Boletus* used to be bridged here. It no longer is: the catalog carries
+ * `Boletus edulis`, `aereus`, `pinophilus` and `reticulatus` as four separate
+ * species entries, so each resolves under its own name and a bare-genus
+ * prediction is no longer something the vocabulary emits. The reasoning above
+ * still governs what may be added back — an allow-list, never a prefix.
  */
 const GENUS_LEVEL_CATALOG: Record<
   string,
   { catalogName: string; accepted: string[] }
 > = {
-  Boletus: {
-    catalogName: 'Boletus spp.',
-    accepted: [
-      'Boletus',
-      'Boletus edulis',
-      'Boletus aereus',
-      'Boletus pinophilus',
-      'Boletus reticulatus',
-    ],
-  },
   Morchella: {
     catalogName: 'Morchella spp.',
     accepted: [

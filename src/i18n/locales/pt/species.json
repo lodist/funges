@@ -65,9 +65,9 @@
       "howTo": "Procure em florestas decíduas, especialmente perto de carvalhos e faias"
     },
     "mushroom": {
-      "name": "Boletus",
-      "description": "Também conhecido como Boleto, este cogumelo valorizado tem chapéu marrom e poros brancos ou amarelos",
-      "howTo": "Encontrado em florestas de coníferas e decíduas, frequentemente perto de pinheiros"
+      "name": "Boleto Comestível",
+      "description": "O rei dos boletos: chapéu castanho, pé robusto e reticulado, e poros brancos que nunca azulam",
+      "howTo": "Encontrado em florestas de coníferas e decíduas, muitas vezes perto de abetos e faias, do fim do verão ao outono"
     },
     "morel": {
       "name": "Morchella",
@@ -223,6 +223,36 @@
       "name": "Trufa-preta",
       "description": "Cogumelo subterrâneo muito apreciado, de aroma intenso, usado na culinária gourmet.",
       "howTo": "Encontra-se debaixo da terra, próximo às raízes de carvalhos e aveleiras, colhido com animais treinados no inverno."
+    },
+    "bronze_bolete": {
+      "name": "Boleto Bronzeado",
+      "description": "Um cogumelo boleto de chapéu bronzeado escuro quase preto, com pé claro reticulado e carne branca e firme",
+      "howTo": "Procure em encostas quentes de baixa altitude sob carvalhos e castanheiros, mais tarde que o boleto de verão"
+    },
+    "pine_bolete": {
+      "name": "Boleto do Pinheiro",
+      "description": "Um cogumelo boleto de chapéu castanho-avermelhado dos pinhais, com pé robusto reticulado e carne firme",
+      "howTo": "Procure em pinhais e abetais com musgo sobre solo ácido e arenoso, no fim da primavera e de novo no outono"
+    },
+    "summer_bolete": {
+      "name": "Boleto de Verão",
+      "description": "O primeiro cogumelo boleto da época, de chapéu castanho claro finamente gretado e pé reticulado de alto a baixo",
+      "howTo": "Procure sob carvalhos e faias a partir do fim da primavera, bem antes dos outros boletos"
+    },
+    "pacific_chant": {
+      "name": "Cantarelo do Pacífico",
+      "description": "Um cantarelo dourado e grande do noroeste do Pacífico, mais pálido e rosado que o primo europeu",
+      "howTo": "Procure em florestas com musgo de abeto de Douglas e tsuga, depois de chegarem as chuvas de outono"
+    },
+    "smooth_chant": {
+      "name": "Cantarelo Liso",
+      "description": "Um cantarelo alaranjado com a face inferior quase lisa em vez de pregueada e forte cheiro a alperce",
+      "howTo": "Procure em carvalhais do sudeste americano durante o verão húmido, muitas vezes em grupos sobre solo nu"
+    },
+    "winter_chant": {
+      "name": "Cantarelo de Inverno",
+      "description": "Um cantarelo pequeno de chapéu castanho sobre pé amarelo e oco, que frutifica até às primeiras geadas",
+      "howTo": "Procure na manta morta com musgo das coníferas no fim da época, muitas vezes em grupos densos sobre madeira podre"
     }
   }
 }

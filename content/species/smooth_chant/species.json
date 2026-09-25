@@ -1,0 +1,126 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "smooth_chant",
+  "scientificName": "Cantharellus lateritius",
+  "catalog": {
+    "enabled": true,
+    "order": 37,
+    "translationKey": "smooth_chant",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "summer",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/smooth_chant.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Smooth Chanterelle",
+      "description": "An orange chanterelle whose underside is nearly smooth instead of ridged, with a strong apricot smell",
+      "howTo": "Look in southeastern oak woods through the humid summer, often in troops on bare soil"
+    },
+    "it": {
+      "name": "Galletto Liscio",
+      "description": "Un gallinaccio arancione con la faccia inferiore quasi liscia invece che costolata, dal forte odore di albicocca",
+      "howTo": "Cercalo nei querceti del sud-est americano durante l'estate umida, spesso in gruppi su terreno nudo"
+    },
+    "fr": {
+      "name": "Girolle Lisse",
+      "description": "Une girolle orangée dont le dessous est presque lisse au lieu d'être plissé, à forte odeur d'abricot",
+      "howTo": "Cherchez-la dans les chênaies du sud-est américain pendant l'été humide, souvent en troupes sur sol nu"
+    },
+    "de": {
+      "name": "Glatter Pfifferling",
+      "description": "Ein orangefarbener Pfifferling mit fast glatter statt geriefter Unterseite und starkem Aprikosengeruch",
+      "howTo": "Suche in den Eichenwäldern des amerikanischen Südostens im feuchten Sommer, oft truppweise auf offenem Boden"
+    },
+    "es": {
+      "name": "Rebozuelo Liso",
+      "description": "Un rebozuelo anaranjado con el envés casi liso en lugar de plegado y fuerte olor a albaricoque",
+      "howTo": "Búscalo en robledales del sureste americano durante el verano húmedo, a menudo en grupos sobre suelo desnudo"
+    },
+    "pt": {
+      "name": "Cantarelo Liso",
+      "description": "Um cantarelo alaranjado com a face inferior quase lisa em vez de pregueada e forte cheiro a alperce",
+      "howTo": "Procure em carvalhais do sudeste americano durante o verão húmido, muitas vezes em grupos sobre solo nu"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Cantharellus lateritius",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-06-boletus-chanterelle-split.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Smooth Chanterelle"],
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 43, 52],
+        "scoring": {
+          "optimal_temp": 22,
+          "temp_sigma": 4.5,
+          "min_temp": 12,
+          "max_temp": 32,
+          "optimal_alt": 250,
+          "alt_sigma": 700,
+          "optimal_humidity": 85,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.3,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.2, 6.8],
+          "optimal_soil_temp": 22,
+          "soil_temp_sigma": 4.5,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": false,
+          "season_months": [6, 7, 8, 9],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "oak_hickory",
+            "oak_pine",
+            "oak_gum_cypress",
+            "maple_beech_birch",
+            "loblolly_shortleaf_pine",
+            "longleaf_slash_pine"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/7241861",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": false
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [7241861],
+      "references": ["https://www.gbif.org/species/7241861"]
+    },
+    "rangePrior": { "taxonKeys": [7241861] }
+  }
+}

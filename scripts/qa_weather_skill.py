@@ -205,11 +205,7 @@ def main() -> None:
             cases = cases.drop_duplicates(["Location_Id", "Date"])
             if len(cases) < 20:
                 continue
-            allowed = params[species].get("climate_zones", [])
-            scored = decompose(
-                frame[frame.climate_zone.isin(allowed)] if allowed else frame,
-                species, params, zone_curves,
-            )
+            scored = decompose(frame, species, params, zone_curves)
             entry = {"cases_available": int(len(cases))}
             for column in ("weather_part", "static_part", "season_part", "full_score"):
                 value, used = crossover(cases, scored, column)

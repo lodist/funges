@@ -7,10 +7,11 @@
   },
   "species": {
     "chant": {
-      "name": "Chanterelle",
+      "name": "Golden Chanterelle",
       "scientificName": "Cantharellus cibarius",
       "identificationRank": "species",
-      "empiricalTaxonKeys": [9623860],
+      "empiricalTaxonKeys": [5249504],
+      "rangeTaxonKeys": [5249504],
       "dataColumns": ["chant_score", "Chanterelle"],
       "regions": {
         "NE": {
@@ -35,26 +36,19 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [7, 8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": [
+              "larix",
+              "picea",
+              "pinus",
+              "fagus",
+              "quercus",
+              "other_needleleaf",
+              "other_broadleaf"
+            ]
           },
           "scoringReferences": [
             "https://data.fung.es/EU/NE/NE_species_params.txt"
@@ -83,26 +77,19 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [7, 8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": [
+              "larix",
+              "picea",
+              "pinus",
+              "fagus",
+              "quercus",
+              "other_needleleaf",
+              "other_broadleaf"
+            ]
           },
           "scoringReferences": [
             "https://data.fung.es/EU/SE/SE_species_params.txt"
@@ -131,19 +118,40 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate"
-            ],
             "wind_sensitive": false,
             "season_months": [7, 8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": [
+              "white_red_jack_pine",
+              "spruce_fir",
+              "longleaf_slash_pine",
+              "loblolly_shortleaf_pine",
+              "pinyon_juniper",
+              "douglas_fir",
+              "ponderosa_pine",
+              "western_white_pine",
+              "fir_spruce_mountain_hemlock",
+              "lodgepole_pine",
+              "hemlock_sitka_spruce",
+              "western_larch",
+              "redwood",
+              "other_western_softwood",
+              "california_mixed_conifer",
+              "exotic_softwoods",
+              "oak_pine",
+              "oak_hickory",
+              "oak_gum_cypress",
+              "elm_ash_cottonwood",
+              "maple_beech_birch",
+              "aspen_birch",
+              "alder_maple",
+              "western_oak",
+              "tanoak_laurel",
+              "other_western_hardwoods",
+              "tropical_hardwoods",
+              "exotic_hardwoods"
+            ]
           },
           "scoringReferences": [
             "https://data.fung.es/USA/USE/USE_species_params.txt"
@@ -172,19 +180,40 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate"
-            ],
             "wind_sensitive": false,
             "season_months": [7, 8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": [
+              "white_red_jack_pine",
+              "spruce_fir",
+              "longleaf_slash_pine",
+              "loblolly_shortleaf_pine",
+              "pinyon_juniper",
+              "douglas_fir",
+              "ponderosa_pine",
+              "western_white_pine",
+              "fir_spruce_mountain_hemlock",
+              "lodgepole_pine",
+              "hemlock_sitka_spruce",
+              "western_larch",
+              "redwood",
+              "other_western_softwood",
+              "california_mixed_conifer",
+              "exotic_softwoods",
+              "oak_pine",
+              "oak_hickory",
+              "oak_gum_cypress",
+              "elm_ash_cottonwood",
+              "maple_beech_birch",
+              "aspen_birch",
+              "alder_maple",
+              "western_oak",
+              "tanoak_laurel",
+              "other_western_hardwoods",
+              "tropical_hardwoods",
+              "exotic_hardwoods"
+            ]
           },
           "scoringReferences": [
             "https://data.fung.es/USA/USW/USW_species_params.txt"
@@ -194,11 +223,12 @@
       }
     },
     "mushroom": {
-      "name": "Boletus",
-      "scientificName": "Boletus",
-      "identificationRank": "genus",
-      "empiricalTaxonKeys": [8287374],
-      "dataColumns": ["mushroom_score", "Porcini", "Mushroom"],
+      "name": "Porcini",
+      "scientificName": "Boletus edulis",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5954958],
+      "rangeTaxonKeys": [5954958],
+      "dataColumns": ["mushroom_score", "Porcini", "Mushroom", "Boletus"],
       "regions": {
         "NE": {
           "landCover": [311, 312, 313],
@@ -222,26 +252,18 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": true,
             "season_months": [5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": [
+              "picea",
+              "pinus",
+              "fagus",
+              "quercus",
+              "other_needleleaf",
+              "other_broadleaf"
+            ]
           },
           "scoringReferences": [
             "https://data.fung.es/EU/NE/NE_species_params.txt"
@@ -270,26 +292,18 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": true,
             "season_months": [5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": [
+              "picea",
+              "pinus",
+              "fagus",
+              "quercus",
+              "other_needleleaf",
+              "other_broadleaf"
+            ]
           },
           "scoringReferences": [
             "https://data.fung.es/EU/SE/SE_species_params.txt"
@@ -318,21 +332,28 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "mediterranean_california",
-              "semiarid_steppe"
-            ],
             "wind_sensitive": true,
             "season_months": [5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": [
+              "spruce_fir",
+              "fir_spruce_mountain_hemlock",
+              "hemlock_sitka_spruce",
+              "white_red_jack_pine",
+              "lodgepole_pine",
+              "ponderosa_pine",
+              "douglas_fir",
+              "western_white_pine",
+              "western_larch",
+              "california_mixed_conifer",
+              "redwood",
+              "other_western_softwood",
+              "aspen_birch",
+              "maple_beech_birch",
+              "western_oak",
+              "tanoak_laurel"
+            ]
           },
           "scoringReferences": [
             "https://data.fung.es/USA/USE/USE_species_params.txt"
@@ -361,21 +382,28 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "mediterranean_california",
-              "semiarid_steppe"
-            ],
             "wind_sensitive": true,
             "season_months": [5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": [
+              "spruce_fir",
+              "fir_spruce_mountain_hemlock",
+              "hemlock_sitka_spruce",
+              "white_red_jack_pine",
+              "lodgepole_pine",
+              "ponderosa_pine",
+              "douglas_fir",
+              "western_white_pine",
+              "western_larch",
+              "california_mixed_conifer",
+              "redwood",
+              "other_western_softwood",
+              "aspen_birch",
+              "maple_beech_birch",
+              "western_oak",
+              "tanoak_laurel"
+            ]
           },
           "scoringReferences": [
             "https://data.fung.es/USA/USW/USW_species_params.txt"
@@ -389,6 +417,7 @@
       "scientificName": "Morchella",
       "identificationRank": "genus",
       "empiricalTaxonKeys": [2594601],
+      "rangeTaxonKeys": [2594601],
       "dataColumns": ["morel_score", "Morel"],
       "regions": {
         "NE": {
@@ -413,22 +442,6 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [3, 4, 5],
             "water_relevance": true,
@@ -464,22 +477,6 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [3, 4, 5],
             "water_relevance": true,
@@ -515,17 +512,6 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "mediterranean_california",
-              "semiarid_steppe"
-            ],
             "wind_sensitive": false,
             "season_months": [3, 4, 5],
             "water_relevance": true,
@@ -561,17 +547,6 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "mediterranean_california",
-              "semiarid_steppe"
-            ],
             "wind_sensitive": false,
             "season_months": [3, 4, 5],
             "water_relevance": true,
@@ -592,6 +567,7 @@
       "scientificName": "Urtica dioica",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [7960979, 6414539],
       "dataColumns": ["nettle_score", "Nettle"],
       "regions": {
         "NE": {
@@ -616,22 +592,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [4, 5, 6, 7, 8, 9, 10],
             "water_relevance": true,
@@ -667,22 +627,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [4, 5, 6, 7, 8, 9, 10],
             "water_relevance": true,
@@ -718,16 +662,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "semiarid_steppe"
-            ],
             "wind_sensitive": false,
             "season_months": [4, 5, 6, 7, 8, 9, 10],
             "water_relevance": true,
@@ -763,16 +697,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "semiarid_steppe"
-            ],
             "wind_sensitive": false,
             "season_months": [4, 5, 6, 7, 8, 9, 10],
             "water_relevance": true,
@@ -793,6 +717,7 @@
       "scientificName": "Taraxacum officinale",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [7787708],
       "dataColumns": ["dandelion_score", "Dandelion"],
       "regions": {
         "NE": {
@@ -817,22 +742,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
@@ -865,22 +774,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
@@ -913,17 +806,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "semiarid_steppe",
-              "mediterranean_california"
-            ],
             "wind_sensitive": false,
             "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
@@ -956,17 +838,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "semiarid_steppe",
-              "mediterranean_california"
-            ],
             "wind_sensitive": false,
             "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
@@ -984,6 +855,7 @@
       "scientificName": "Allium ursinum",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2857601],
       "dataColumns": ["garlic_score", "Wild Garlic", "Garlic"],
       "regions": {
         "NE": {
@@ -1008,17 +880,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "subarctic",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "mediterranean_turkey"
-            ],
             "wind_sensitive": false,
             "season_months": [3, 4, 5],
             "water_relevance": true,
@@ -1054,17 +915,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "subarctic",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "mediterranean_turkey"
-            ],
             "wind_sensitive": false,
             "season_months": [3, 4, 5],
             "water_relevance": true,
@@ -1085,6 +935,7 @@
       "scientificName": "Rubus idaeus",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2993094],
       "dataColumns": ["raspberry_score", "Raspberry"],
       "regions": {
         "NE": {
@@ -1109,22 +960,6 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [6, 7, 8],
             "water_relevance": true,
@@ -1160,22 +995,6 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [6, 7, 8],
             "water_relevance": true,
@@ -1211,14 +1030,6 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_continental",
-              "continental",
-              "temperate"
-            ],
             "wind_sensitive": false,
             "season_months": [6, 7, 8],
             "water_relevance": true,
@@ -1254,14 +1065,6 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_continental",
-              "continental",
-              "temperate"
-            ],
             "wind_sensitive": false,
             "season_months": [6, 7, 8],
             "water_relevance": true,
@@ -1282,6 +1085,7 @@
       "scientificName": "Fragaria vesca",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [3029817, 7950792],
       "dataColumns": ["strawberry_score", "Wild Strawberry", "Strawberry"],
       "regions": {
         "NE": {
@@ -1306,22 +1110,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [5, 6, 7],
             "water_relevance": false,
@@ -1354,22 +1142,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [5, 6, 7],
             "water_relevance": false,
@@ -1402,15 +1174,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate"
-            ],
             "wind_sensitive": false,
             "season_months": [5, 6, 7],
             "water_relevance": false,
@@ -1443,15 +1206,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate"
-            ],
             "wind_sensitive": false,
             "season_months": [5, 6, 7],
             "water_relevance": false,
@@ -1469,6 +1223,7 @@
       "scientificName": "Stellaria media",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [5384604],
       "dataColumns": ["chickweed_score", "Chickweed"],
       "regions": {
         "NE": {
@@ -1493,22 +1248,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [1, 2, 3, 4, 10, 11, 12],
             "water_relevance": true,
@@ -1544,22 +1283,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [1, 2, 3, 4, 10, 11, 12],
             "water_relevance": true,
@@ -1595,17 +1318,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "semiarid_steppe",
-              "mediterranean_california"
-            ],
             "wind_sensitive": false,
             "season_months": [1, 2, 3, 4, 10, 11, 12],
             "water_relevance": true,
@@ -1641,17 +1353,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "semiarid_steppe",
-              "mediterranean_california"
-            ],
             "wind_sensitive": false,
             "season_months": [1, 2, 3, 4, 10, 11, 12],
             "water_relevance": true,
@@ -1672,6 +1373,7 @@
       "scientificName": "Juglans regia",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [3054368],
       "dataColumns": ["walnut_score", "Wild Walnut"],
       "regions": {
         "NE": {
@@ -1698,21 +1400,6 @@
             },
             "wind_sensitive": false,
             "season_months": [10, 11],
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -1745,21 +1432,6 @@
             },
             "wind_sensitive": false,
             "season_months": [10, 11],
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -1792,16 +1464,6 @@
             },
             "wind_sensitive": false,
             "season_months": [10, 11],
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "mediterranean_california"
-            ],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -1834,16 +1496,6 @@
             },
             "wind_sensitive": false,
             "season_months": [10, 11],
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "mediterranean_california"
-            ],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -1859,6 +1511,7 @@
       "scientificName": "Castanea sativa",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [5333294],
       "dataColumns": ["chestnut_score", "Chestnut"],
       "regions": {
         "NE": {
@@ -1883,20 +1536,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "temperate",
-              "continental",
-              "oceanic_south",
-              "oceanic_north",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "mediterranean_dry_spain",
-              "atlantic_islands",
-              "alpine",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [10, 11],
             "water_relevance": false,
@@ -1929,20 +1568,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "temperate",
-              "continental",
-              "oceanic_south",
-              "oceanic_north",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "mediterranean_dry_spain",
-              "atlantic_islands",
-              "alpine",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [10, 11],
             "water_relevance": false,
@@ -1960,6 +1585,7 @@
       "scientificName": "Amaranthus retroflexus",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [6109534],
       "dataColumns": ["amaranth_score", "Amaranth"],
       "regions": {
         "NE": {
@@ -1984,21 +1610,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
@@ -2031,21 +1642,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
@@ -2078,16 +1674,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "mediterranean_california",
-              "humid_subtropical",
-              "semiarid_steppe",
-              "desert_southwest",
-              "continental",
-              "temperate"
-            ],
             "wind_sensitive": false,
             "season_months": [5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
@@ -2120,16 +1706,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "mediterranean_california",
-              "humid_subtropical",
-              "semiarid_steppe",
-              "desert_southwest",
-              "continental",
-              "temperate"
-            ],
             "wind_sensitive": false,
             "season_months": [5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
@@ -2147,6 +1723,7 @@
       "scientificName": "Cynara cardunculus",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [3112364],
       "dataColumns": ["artichoke_score", "Artichoke"],
       "regions": {
         "NE": {
@@ -2171,21 +1748,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": true,
             "season_months": [3, 4, 5],
             "water_relevance": false,
@@ -2218,21 +1780,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": true,
             "season_months": [3, 4, 5],
             "water_relevance": false,
@@ -2265,15 +1812,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "mediterranean_california",
-              "humid_subtropical",
-              "temperate",
-              "semiarid_steppe",
-              "marine_west_coast"
-            ],
             "wind_sensitive": true,
             "season_months": [3, 4, 5],
             "water_relevance": false,
@@ -2306,15 +1844,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "mediterranean_california",
-              "humid_subtropical",
-              "temperate",
-              "semiarid_steppe",
-              "marine_west_coast"
-            ],
             "wind_sensitive": true,
             "season_months": [3, 4, 5],
             "water_relevance": false,
@@ -2332,6 +1861,7 @@
       "scientificName": "Asparagus acutifolius",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2768995],
       "dataColumns": ["asparagus_score", "Wild Asparagus", "Asparagus"],
       "regions": {
         "SE": {
@@ -2356,15 +1886,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "central_spain",
-              "sardinia",
-              "oceanic_south"
-            ],
             "wind_sensitive": false,
             "season_months": [3, 4, 5],
             "water_relevance": false,
@@ -2382,6 +1903,7 @@
       "scientificName": "Craterellus cornucopioides",
       "identificationRank": "species",
       "empiricalTaxonKeys": [2554662],
+      "rangeTaxonKeys": [2554662],
       "dataColumns": ["black_chant_score", "Black Chanterelle"],
       "regions": {
         "NE": {
@@ -2406,23 +1928,11 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "sardinia"
-            ],
             "wind_sensitive": true,
             "season_months": [7, 8, 9, 10],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": ["fagus", "quercus", "other_needleleaf", "other_broadleaf"]
           },
           "scoringReferences": [
             "https://data.fung.es/EU/NE/NE_species_params.txt"
@@ -2451,23 +1961,11 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "sardinia"
-            ],
             "wind_sensitive": true,
             "season_months": [7, 8, 9, 10],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": ["fagus", "quercus", "other_needleleaf", "other_broadleaf"]
           },
           "scoringReferences": [
             "https://data.fung.es/EU/SE/SE_species_params.txt"
@@ -2496,18 +1994,40 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_continental",
-              "continental",
-              "temperate"
-            ],
             "wind_sensitive": true,
             "season_months": [7, 8, 9, 10],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": [
+              "white_red_jack_pine",
+              "spruce_fir",
+              "longleaf_slash_pine",
+              "loblolly_shortleaf_pine",
+              "pinyon_juniper",
+              "douglas_fir",
+              "ponderosa_pine",
+              "western_white_pine",
+              "fir_spruce_mountain_hemlock",
+              "lodgepole_pine",
+              "hemlock_sitka_spruce",
+              "western_larch",
+              "redwood",
+              "other_western_softwood",
+              "california_mixed_conifer",
+              "exotic_softwoods",
+              "oak_pine",
+              "oak_hickory",
+              "oak_gum_cypress",
+              "elm_ash_cottonwood",
+              "maple_beech_birch",
+              "aspen_birch",
+              "alder_maple",
+              "western_oak",
+              "tanoak_laurel",
+              "other_western_hardwoods",
+              "tropical_hardwoods",
+              "exotic_hardwoods"
+            ]
           },
           "scoringReferences": [
             "https://data.fung.es/USA/USE/USE_species_params.txt"
@@ -2536,18 +2056,40 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_continental",
-              "continental",
-              "temperate"
-            ],
             "wind_sensitive": true,
             "season_months": [7, 8, 9, 10],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": [
+              "white_red_jack_pine",
+              "spruce_fir",
+              "longleaf_slash_pine",
+              "loblolly_shortleaf_pine",
+              "pinyon_juniper",
+              "douglas_fir",
+              "ponderosa_pine",
+              "western_white_pine",
+              "fir_spruce_mountain_hemlock",
+              "lodgepole_pine",
+              "hemlock_sitka_spruce",
+              "western_larch",
+              "redwood",
+              "other_western_softwood",
+              "california_mixed_conifer",
+              "exotic_softwoods",
+              "oak_pine",
+              "oak_hickory",
+              "oak_gum_cypress",
+              "elm_ash_cottonwood",
+              "maple_beech_birch",
+              "aspen_birch",
+              "alder_maple",
+              "western_oak",
+              "tanoak_laurel",
+              "other_western_hardwoods",
+              "tropical_hardwoods",
+              "exotic_hardwoods"
+            ]
           },
           "scoringReferences": [
             "https://data.fung.es/USA/USW/USW_species_params.txt"
@@ -2561,6 +2103,7 @@
       "scientificName": "Vaccinium vitis-idaea",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2882835],
       "dataColumns": ["lingonb_score", "Lingonberry"],
       "regions": {
         "NE": {
@@ -2585,15 +2128,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "continental",
-              "temperate",
-              "oceanic_north",
-              "mediterranean_italy"
-            ],
             "wind_sensitive": false,
             "season_months": [7, 8, 9, 10],
             "water_relevance": false,
@@ -2626,15 +2160,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "continental",
-              "temperate",
-              "oceanic_north",
-              "mediterranean_italy"
-            ],
             "wind_sensitive": false,
             "season_months": [7, 8, 9, 10],
             "water_relevance": false,
@@ -2667,13 +2192,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_continental",
-              "continental"
-            ],
             "wind_sensitive": false,
             "season_months": [7, 8, 9, 10],
             "water_relevance": false,
@@ -2706,13 +2224,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_continental",
-              "continental"
-            ],
             "wind_sensitive": false,
             "season_months": [7, 8, 9, 10],
             "water_relevance": false,
@@ -2730,6 +2241,7 @@
       "scientificName": "Peucedanum ostruthium",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [5538108],
       "dataColumns": ["masterwort_score", "Masterwort"],
       "regions": {
         "NE": {
@@ -2754,12 +2266,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "temperate",
-              "continental"
-            ],
             "wind_sensitive": false,
             "season_months": [6, 7, 8],
             "water_relevance": false,
@@ -2792,12 +2298,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "temperate",
-              "continental"
-            ],
             "wind_sensitive": false,
             "season_months": [6, 7, 8],
             "water_relevance": false,
@@ -2815,6 +2315,7 @@
       "scientificName": "Macrolepiota procera",
       "identificationRank": "species",
       "empiricalTaxonKeys": [8914748],
+      "rangeTaxonKeys": [8914748],
       "dataColumns": ["parasol_score", "Parasol Mushroom"],
       "regions": {
         "NE": {
@@ -2839,21 +2340,6 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [4, 5, 6, 7, 8, 9, 10],
             "water_relevance": false,
@@ -2886,21 +2372,6 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [4, 5, 6, 7, 8, 9, 10],
             "water_relevance": false,
@@ -2918,6 +2389,7 @@
       "scientificName": "Rumex acetosa",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2888951, 2888995],
       "dataColumns": ["sorrel_score", "Sorrel"],
       "regions": {
         "NE": {
@@ -2942,21 +2414,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [3, 4, 5, 6, 9, 10, 11],
             "water_relevance": true,
@@ -2992,21 +2449,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [3, 4, 5, 6, 9, 10, 11],
             "water_relevance": true,
@@ -3042,16 +2484,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "semiarid_steppe"
-            ],
             "wind_sensitive": false,
             "season_months": [3, 4, 5, 6, 9, 10, 11],
             "water_relevance": true,
@@ -3087,16 +2519,6 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "subarctic",
-              "marine_west_coast",
-              "humid_subtropical",
-              "humid_continental",
-              "continental",
-              "temperate",
-              "semiarid_steppe"
-            ],
             "wind_sensitive": false,
             "season_months": [3, 4, 5, 6, 9, 10, 11],
             "water_relevance": true,
@@ -3117,6 +2539,7 @@
       "scientificName": "Calocybe gambosa",
       "identificationRank": "species",
       "empiricalTaxonKeys": [8936224],
+      "rangeTaxonKeys": [8936224],
       "dataColumns": [
         "st_george_score",
         "St. George's Mushroom",
@@ -3145,22 +2568,6 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [3, 4, 5],
             "water_relevance": false,
@@ -3193,22 +2600,6 @@
             "weather_preference": {
               "rain_first": true
             },
-            "climate_zones": [
-              "alpine",
-              "arctic",
-              "subarctic",
-              "atlantic_islands",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "oceanic_south",
-              "oceanic_north",
-              "continental",
-              "temperate",
-              "central_spain",
-              "sardinia"
-            ],
             "wind_sensitive": false,
             "season_months": [4, 5],
             "water_relevance": false,
@@ -3226,6 +2617,7 @@
       "scientificName": "Tuber melanosporum",
       "identificationRank": "species",
       "empiricalTaxonKeys": [5258468],
+      "rangeTaxonKeys": [5258468],
       "dataColumns": ["truffle_b_score"],
       "regions": {
         "SE": {
@@ -3250,28 +2642,516 @@
             "weather_preference": {
               "rain_first": false
             },
-            "climate_zones": [
-              "alpine",
-              "mediterranean_dry_spain",
-              "mediterranean_italy",
-              "mediterranean_greece",
-              "mediterranean_turkey",
-              "temperate",
-              "continental",
-              "central_spain",
-              "sardinia",
-              "oceanic_south",
-              "oceanic_north"
-            ],
             "wind_sensitive": false,
             "season_months": [1, 2, 3, 4, 10, 11, 12],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "hosts": ["quercus", "other_broadleaf"]
           },
           "scoringReferences": [
             "https://data.fung.es/EU/SE/SE_species_params.txt"
           ],
           "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
+        }
+      }
+    },
+    "bronze_bolete": {
+      "name": "Bronze Bolete",
+      "scientificName": "Boletus aereus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [8733688],
+      "rangeTaxonKeys": [8733688],
+      "dataColumns": ["bronze_bolete_score", "Bronze Bolete"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 20,
+            "temp_sigma": 4.5,
+            "min_temp": 8,
+            "max_temp": 28,
+            "optimal_alt": 400,
+            "alt_sigma": 700,
+            "optimal_humidity": 78,
+            "humidity_sigma": 17,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7.5],
+            "optimal_soil_temp": 19,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": ["fagus", "quercus", "other_broadleaf"]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/8733688",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 20,
+            "temp_sigma": 4.5,
+            "min_temp": 8,
+            "max_temp": 28,
+            "optimal_alt": 400,
+            "alt_sigma": 700,
+            "optimal_humidity": 78,
+            "humidity_sigma": 17,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7.5],
+            "optimal_soil_temp": 19,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": ["fagus", "quercus", "other_broadleaf"]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/8733688",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        }
+      }
+    },
+    "pine_bolete": {
+      "name": "Pine Bolete",
+      "scientificName": "Boletus pinophilus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5954949],
+      "rangeTaxonKeys": [5954949],
+      "dataColumns": ["pine_bolete_score", "Pine Bolete"],
+      "regions": {
+        "NE": {
+          "landCover": [312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 23,
+            "optimal_alt": 1100,
+            "alt_sigma": 1500,
+            "optimal_humidity": 82,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.8, 6.2],
+            "optimal_soil_temp": 15.5,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [5, 6, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": ["pinus", "picea"]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5954949",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "SE": {
+          "landCover": [312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 23,
+            "optimal_alt": 1100,
+            "alt_sigma": 1500,
+            "optimal_humidity": 82,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.8, 6.2],
+            "optimal_soil_temp": 15.5,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [5, 6, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": ["pinus", "picea"]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5954949",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        }
+      }
+    },
+    "summer_bolete": {
+      "name": "Summer Bolete",
+      "scientificName": "Boletus reticulatus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5954691],
+      "rangeTaxonKeys": [5954691],
+      "dataColumns": ["summer_bolete_score", "Summer Bolete"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 19,
+            "temp_sigma": 5,
+            "min_temp": 7,
+            "max_temp": 27,
+            "optimal_alt": 600,
+            "alt_sigma": 900,
+            "optimal_humidity": 78,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.5, 7.2],
+            "optimal_soil_temp": 18.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [5, 6, 7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": ["fagus", "quercus", "other_broadleaf"]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5954691",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 19,
+            "temp_sigma": 5,
+            "min_temp": 7,
+            "max_temp": 27,
+            "optimal_alt": 600,
+            "alt_sigma": 900,
+            "optimal_humidity": 78,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.5, 7.2],
+            "optimal_soil_temp": 18.5,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [5, 6, 7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": ["fagus", "quercus", "other_broadleaf"]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5954691",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        }
+      }
+    },
+    "pacific_chant": {
+      "name": "Pacific Chanterelle",
+      "scientificName": "Cantharellus formosus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5466954],
+      "rangeTaxonKeys": [5466954],
+      "dataColumns": ["pacific_chant_score", "Pacific Chanterelle"],
+      "regions": {
+        "USW": {
+          "landCover": [42, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 4,
+            "min_temp": 3,
+            "max_temp": 22,
+            "optimal_alt": 500,
+            "alt_sigma": 900,
+            "optimal_humidity": 88,
+            "humidity_sigma": 16,
+            "optimal_pH": 5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 6.5],
+            "optimal_soil_temp": 14,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": false,
+            "season_months": [9, 10, 11, 12, 1],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "douglas_fir",
+              "hemlock_sitka_spruce",
+              "fir_spruce_mountain_hemlock",
+              "redwood",
+              "tanoak_laurel",
+              "california_mixed_conifer"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5466954",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        }
+      }
+    },
+    "smooth_chant": {
+      "name": "Smooth Chanterelle",
+      "scientificName": "Cantharellus lateritius",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [7241861],
+      "rangeTaxonKeys": [7241861],
+      "dataColumns": ["smooth_chant_score", "Smooth Chanterelle"],
+      "regions": {
+        "USE": {
+          "landCover": [41, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 22,
+            "temp_sigma": 4.5,
+            "min_temp": 12,
+            "max_temp": 32,
+            "optimal_alt": 250,
+            "alt_sigma": 700,
+            "optimal_humidity": 85,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.2, 6.8],
+            "optimal_soil_temp": 22,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": false,
+            "season_months": [6, 7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "oak_hickory",
+              "oak_pine",
+              "oak_gum_cypress",
+              "maple_beech_birch",
+              "loblolly_shortleaf_pine",
+              "longleaf_slash_pine"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7241861",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        }
+      }
+    },
+    "winter_chant": {
+      "name": "Winter Chanterelle",
+      "scientificName": "Craterellus tubaeformis",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [2554536],
+      "rangeTaxonKeys": [2554536],
+      "dataColumns": ["winter_chant_score", "Winter Chanterelle"],
+      "regions": {
+        "NE": {
+          "landCover": [312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 4.5,
+            "min_temp": 1,
+            "max_temp": 20,
+            "optimal_alt": 600,
+            "alt_sigma": 1100,
+            "optimal_humidity": 90,
+            "humidity_sigma": 18,
+            "optimal_pH": 4.6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": false,
+            "season_months": [9, 10, 11, 12],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": ["larix", "picea", "pinus", "other_needleleaf"]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2554536",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "SE": {
+          "landCover": [312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 4.5,
+            "min_temp": 1,
+            "max_temp": 20,
+            "optimal_alt": 600,
+            "alt_sigma": 1100,
+            "optimal_humidity": 90,
+            "humidity_sigma": 18,
+            "optimal_pH": 4.6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": false,
+            "season_months": [9, 10, 11, 12],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": ["larix", "picea", "pinus", "other_needleleaf"]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2554536",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "USE": {
+          "landCover": [42, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 4.5,
+            "min_temp": 1,
+            "max_temp": 20,
+            "optimal_alt": 600,
+            "alt_sigma": 1100,
+            "optimal_humidity": 90,
+            "humidity_sigma": 18,
+            "optimal_pH": 4.6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": false,
+            "season_months": [9, 10, 11, 12],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "spruce_fir",
+              "fir_spruce_mountain_hemlock",
+              "hemlock_sitka_spruce",
+              "white_red_jack_pine",
+              "lodgepole_pine",
+              "ponderosa_pine",
+              "douglas_fir",
+              "western_white_pine",
+              "western_larch",
+              "california_mixed_conifer",
+              "redwood",
+              "other_western_softwood",
+              "maple_beech_birch",
+              "aspen_birch"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2554536",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "USW": {
+          "landCover": [42, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 4.5,
+            "min_temp": 1,
+            "max_temp": 20,
+            "optimal_alt": 600,
+            "alt_sigma": 1100,
+            "optimal_humidity": 90,
+            "humidity_sigma": 18,
+            "optimal_pH": 4.6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": false,
+            "season_months": [10, 11, 12, 1],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "spruce_fir",
+              "fir_spruce_mountain_hemlock",
+              "hemlock_sitka_spruce",
+              "white_red_jack_pine",
+              "lodgepole_pine",
+              "ponderosa_pine",
+              "douglas_fir",
+              "western_white_pine",
+              "western_larch",
+              "california_mixed_conifer",
+              "redwood",
+              "other_western_softwood",
+              "maple_beech_birch",
+              "aspen_birch"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2554536",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
         }
       }
     }

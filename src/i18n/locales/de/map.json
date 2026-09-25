@@ -51,7 +51,8 @@
     "search": "Art suchen...",
     "clear": "Auswahl löschen",
     "noResults": "Keine Art gefunden",
-    "notAvailableOffline": "Not available offline. Download on the Offline Maps page."
+    "notAvailableOffline": "Not available offline. Download on the Offline Maps page.",
+    "notForecastHere": "Keine Prognose für {{species}} hier."
   },
   "themes": {
     "select": "Kartenthema",

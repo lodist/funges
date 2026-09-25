@@ -146,9 +146,7 @@ def main() -> None:
                 continue
             cases = set(zip(found.location_id, found.Date.dt.strftime("%Y-%m-%d")))
 
-            allowed = params[species].get("climate_zones", [])
-            eligible = frame[frame.climate_zone.isin(allowed)] if allowed else frame
-            scored = decompose(eligible, species, params, zone_curves)
+            scored = decompose(frame, species, params, zone_curves)
             scored = scored[scored.Date.dt.month.isin(in_season)].copy()
             if scored.empty:
                 continue

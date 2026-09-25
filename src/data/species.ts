@@ -65,3 +65,10 @@ export const getSpeciesOptions = (region: ForecastRegion): SpeciesOption[] =>
     ({ showOnMap, forecastRegions }) =>
       showOnMap && forecastRegions?.includes(region)
   ).map(({ id, emoji, category }) => ({ code: id, emoji, category }));
+
+/** Forecast in every region, so it is always a valid map fallback. */
+export const DEFAULT_MAP_SPECIES = 'mushroom';
+
+/** A species the map can show somewhere — the check a URL or saved code must pass. */
+export const isMapSpecies = (code: string | null | undefined): boolean =>
+  !!code && SPECIES_DATA.some(({ id, showOnMap }) => id === code && showOnMap);

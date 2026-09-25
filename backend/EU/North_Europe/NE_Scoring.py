@@ -13,6 +13,8 @@ CONFIG = RegionConfig(
     static_info_env="EU_STATIC_INFO",
     season_curves_env="NE_SEASON_CURVES",
     zone_curves_env="EU_ZONE_SEASON_CURVES",
+    range_priors_env="EU_RANGE_PRIORS",
+    host_cover_env="EU_HOST_COVER",
     lat_range=(49.0, 71.5),
     lon_range=(-25.0, 32.0),
 )

@@ -103,7 +103,7 @@ def test_dead_month_score_stays_below_the_recommendation_threshold():
         "optimal_temp": 16, "temp_sigma": 5, "optimal_humidity": 85, "humidity_sigma": 12,
         "optimal_alt": 100, "alt_sigma": 400, "optimal_pH": 6.0,
         "pH_sigma_near": 0.6, "pH_sigma_far": 1.2, "pH_range_near": (5.5, 6.5),
-        "min_cumulative_rain": 35, "climate_zones": ["temperate"],
+        "min_cumulative_rain": 35,
         "season_months": [7, 8], "season_curve": TWO_PART,
     }}
     scored = fp.calculate_mushroom_score(pd.DataFrame(data), params, {})

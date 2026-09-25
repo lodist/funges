@@ -65,9 +65,9 @@
       "howTo": "Suche in Laubwäldern, besonders in der Nähe von Eichen und Buchen"
     },
     "mushroom": {
-      "name": "Boletus",
-      "description": "Auch als Herrenpilz bekannt, geschätzter Pilz mit braunem Hut und weissen oder gelben Röhren",
-      "howTo": "Kommt in Nadel- und Laubwäldern vor, oft in der Nähe von Kiefern"
+      "name": "Steinpilz",
+      "description": "Der Herrenpilz: brauner Hut, gedrungener genetzter Stiel und weisse Röhren, die sich nie blau verfärben",
+      "howTo": "Kommt in Nadel- und Laubwäldern vor, oft bei Fichten und Buchen, vom Spätsommer bis in den Herbst"
     },
     "morel": {
       "name": "Morchella",
@@ -223,6 +223,36 @@
       "name": "Schwarzer Trüffel",
       "description": "Sehr geschätzter unterirdischer Pilz mit intensivem Aroma, in der Gourmetküche verwendet.",
       "howTo": "Wächst unterirdisch in der Nähe der Wurzeln von Eichen und Haseln, wird im Winter mit ausgebildeten Tieren gesammelt."
+    },
+    "bronze_bolete": {
+      "name": "Bronze-Steinpilz",
+      "description": "Ein Steinpilz mit dunkel bronzefarbenem bis fast schwarzem Hut, hell genetztem Stiel und festem weissem Fleisch",
+      "howTo": "Suche an warmen Tieflandhängen unter Eichen und Edelkastanien, später als der Sommersteinpilz"
+    },
+    "pine_bolete": {
+      "name": "Kiefern-Steinpilz",
+      "description": "Ein rotbrauner Steinpilz der Kiefernwälder mit gedrungenem, rötlich genetztem Stiel und festem Fleisch",
+      "howTo": "Suche in moosigen Kiefern- und Fichtenwäldern auf saurem Sandboden, im späten Frühjahr und wieder im Herbst"
+    },
+    "summer_bolete": {
+      "name": "Sommersteinpilz",
+      "description": "Der früheste Steinpilz, mit fein rissigem hellbraunem Hut und einem von oben bis unten genetzten Stiel",
+      "howTo": "Suche unter Eichen und Buchen ab dem späten Frühjahr, lange vor den anderen Steinpilzen"
+    },
+    "pacific_chant": {
+      "name": "Pazifik-Pfifferling",
+      "description": "Ein grosser goldener Pfifferling des pazifischen Nordwestens, blasser und rosiger als sein europäischer Verwandter",
+      "howTo": "Suche in moosigen Douglasien- und Hemlockwäldern, sobald die Herbstregen eingesetzt haben"
+    },
+    "smooth_chant": {
+      "name": "Glatter Pfifferling",
+      "description": "Ein orangefarbener Pfifferling mit fast glatter statt geriefter Unterseite und starkem Aprikosengeruch",
+      "howTo": "Suche in den Eichenwäldern des amerikanischen Südostens im feuchten Sommer, oft truppweise auf offenem Boden"
+    },
+    "winter_chant": {
+      "name": "Trompetenpfifferling",
+      "description": "Ein kleiner Pfifferling mit braunem Hut auf hohlem gelbem Stiel, der bis in die ersten Fröste fruchtet",
+      "howTo": "Suche spät in der Saison in moosiger Nadelstreu, oft in dichten Trupps auf morschem Holz"
     }
   }
 }

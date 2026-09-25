@@ -65,9 +65,9 @@
       "howTo": "Cherchez-les dans les forêts de feuillus, surtout près des chênes et des hêtres"
     },
     "mushroom": {
-      "name": "Boletus",
-      "description": "Aussi appelé cèpe de Bordeaux, ce champignon prisé a un chapeau brun et des pores blancs ou jaunes",
-      "howTo": "Se trouve dans les forêts de conifères et de feuillus, souvent près des pins"
+      "name": "Cèpe de Bordeaux",
+      "description": "Le roi des cèpes : chapeau brun, pied trapu et réticulé, pores blancs qui ne bleuissent jamais",
+      "howTo": "Se trouve dans les forêts de conifères et de feuillus, souvent près des épicéas et des hêtres, de la fin de l'été à l'automne"
     },
     "morel": {
       "name": "Morchella",
@@ -223,6 +223,36 @@
       "name": "Truffe noire du Périgord",
       "description": "Champignon souterrain très recherché au parfum intense, utilisé en cuisine gastronomique.",
       "howTo": "Se trouve sous terre près des racines de chênes et de noisetiers, récolté avec des animaux dressés en hiver."
+    },
+    "bronze_bolete": {
+      "name": "Cèpe Bronzé",
+      "description": "Un cèpe au chapeau bronze foncé presque noir, au pied clair réticulé et à la chair blanche et ferme",
+      "howTo": "Cherchez-le sur les coteaux chauds de plaine sous les chênes et les châtaigniers, plus tard que le cèpe d'été"
+    },
+    "pine_bolete": {
+      "name": "Cèpe des Pins",
+      "description": "Un cèpe au chapeau brun-rouge des pinèdes, au pied trapu réticulé rougeâtre et à la chair ferme",
+      "howTo": "Cherchez-le dans les pinèdes et pesséries moussues sur sol acide et sableux, à la fin du printemps puis en automne"
+    },
+    "summer_bolete": {
+      "name": "Cèpe d'Été",
+      "description": "Le premier cèpe de la saison, au chapeau brun clair finement craquelé et au pied réticulé sur toute sa hauteur",
+      "howTo": "Cherchez-le sous les chênes et les hêtres dès la fin du printemps, bien avant les autres cèpes"
+    },
+    "pacific_chant": {
+      "name": "Girolle du Pacifique",
+      "description": "Une grande girolle dorée du Nord-Ouest pacifique, plus pâle et plus rosée que sa cousine européenne",
+      "howTo": "Cherchez-la dans les forêts moussues de douglas et de pruche, une fois les pluies d'automne installées"
+    },
+    "smooth_chant": {
+      "name": "Girolle Lisse",
+      "description": "Une girolle orangée dont le dessous est presque lisse au lieu d'être plissé, à forte odeur d'abricot",
+      "howTo": "Cherchez-la dans les chênaies du sud-est américain pendant l'été humide, souvent en troupes sur sol nu"
+    },
+    "winter_chant": {
+      "name": "Chanterelle en Tube",
+      "description": "Une petite chanterelle au chapeau brun sur un pied jaune et creux, qui fructifie jusqu'aux premières gelées",
+      "howTo": "Cherchez-la dans la litière moussue des conifères en fin de saison, souvent en troupes denses sur bois pourri"
     }
   }
 }
