@@ -34,10 +34,12 @@ import {
 } from '@/components/ui/select';
 import { Loader2, Download, MapPin } from '@/lib/icons';
 import {
+  ALL_ZONE,
   loadForagingDataset,
   formatZoneLabel,
   type ForagingDataset,
-  type ForagingRow,
+  type PlaceName,
+  type RainHotspot,
   type RegionId,
 } from '@/lib/data';
 import { useSpeciesData } from '@/data/species';
@@ -282,7 +284,7 @@ function ChartCard({ title, children }: ChartCardProps) {
 }
 
 export default function DataPage() {
-  const { t } = useTranslation(['sidebar', 'common']);
+  const { t, i18n } = useTranslation(['sidebar', 'common']);
   const speciesData = useSpeciesData();
   const { region: regionParam } = DataRoute.useSearch();
 
@@ -334,70 +336,23 @@ export default function DataPage() {
     }
   }, [region, zones, zone]);
 
-  const zoneData = useMemo(() => {
+  // Full history up to today for the selected zone, or the region-wide
+  // ALL_ZONE rows the data script computes from every weather cell once.
+  // The dataset extends 6 days into the future (rolling forecast window).
+  // The data page is retrospective (charts, narrative and "latest scores" all
+  // read the tail), so drop forward-dated rows and end the window at today.
+  const zoneHistory = useMemo(() => {
     if (!dataset) return [];
-    const regionData = dataset.regions[region].data;
-    // The dataset now extends 6 days into the future (rolling forecast window).
-    // The data page is retrospective — charts, narrative and "latest scores" all
-    // read the tail — so drop forward-dated rows and end the window at today.
     const today = new Date().toLocaleDateString('en-CA'); // local YYYY-MM-DD
+    const key = zone || ALL_ZONE;
+    return dataset.regions[region].data.filter(
+      row => row.zone === key && row.date <= today
+    );
+  }, [dataset, region, zone]);
 
-    if (zone) {
-      return regionData
-        .filter(row => row.zone === zone && row.date <= today)
-        .slice(-days);
-    }
+  const zoneData = useMemo(() => zoneHistory.slice(-days), [zoneHistory, days]);
 
-    // Aggregate all zones: group by date and average
-    const byDate = new Map<string, ForagingRow[]>();
-    for (const row of regionData) {
-      if (row.date > today) continue;
-      const rows = byDate.get(row.date) ?? [];
-      rows.push(row);
-      byDate.set(row.date, rows);
-    }
-
-    const weatherKeys = [
-      'precip_mm',
-      'temp_avg',
-      'temp_min',
-      'temp_max',
-      'humidity',
-      'wind_ms',
-      'pressure_hpa',
-    ] as const;
-
-    const aggregated: ForagingRow[] = [];
-    for (const [date, rows] of byDate) {
-      const entry: ForagingRow = { date, zone: '' };
-      for (const key of weatherKeys) {
-        const vals = rows
-          .map(r => r[key])
-          .filter((v): v is number => v != null);
-        if (vals.length)
-          entry[key] =
-            Math.round((vals.reduce((a, b) => a + b, 0) / vals.length) * 10) /
-            10;
-      }
-      const scoreKeys = new Set(rows.flatMap(r => Object.keys(r.scores ?? {})));
-      if (scoreKeys.size) {
-        entry.scores = {};
-        for (const sk of scoreKeys) {
-          const vals = rows
-            .map(r => r.scores?.[sk])
-            .filter((v): v is number => v != null);
-          if (vals.length)
-            entry.scores[sk] =
-              Math.round(
-                (vals.reduce((a, b) => a + b, 0) / vals.length) * 100
-              ) / 100;
-        }
-      }
-      aggregated.push(entry);
-    }
-
-    return aggregated.sort((a, b) => a.date.localeCompare(b.date)).slice(-days);
-  }, [dataset, region, zone, days]);
+  const spread = dataset?.regions[region].spread?.[zone || ALL_ZONE];
 
   const speciesMap = useMemo(
     () => new Map(speciesData.map(s => [s.id, s.name])),
@@ -469,7 +424,26 @@ export default function DataPage() {
     // Weather stats
     const rainVals = zoneData.map(r => r.precip_mm ?? 0);
     const totalRain = rainVals.reduce((s, v) => s + v, 0);
-    const rainyDays = rainVals.filter(v => v > 1).length;
+    // A zone mean over 1 mm needs rain almost everywhere; count a day as rainy
+    // when at least a tenth of the zone got over 1 mm instead.
+    const rainyDays = zoneData.filter(
+      r => (r.precip_p90 ?? r.precip_mm ?? 0) > 1
+    ).length;
+
+    // Across-area spread for the selected window. Only mention it when it is
+    // wide enough to change what a forager would do.
+    const win = spread?.[String(days)];
+    const rangeOf = (
+      low: number | undefined,
+      high: number | undefined,
+      minWidth: number
+    ) =>
+      low != null && high != null && high - low >= minWidth
+        ? { low: low.toFixed(0), high: high.toFixed(0) }
+        : null;
+    const tempRange = rangeOf(win?.temp_avg_p10, win?.temp_avg_p90, 3);
+    const humidRange = rangeOf(win?.humidity_p10, win?.humidity_p90, 10);
+    const windRange = rangeOf(win?.wind_ms_p10, win?.wind_ms_p90, 2);
     const tempVals = zoneData
       .map(r => r.temp_avg)
       .filter((v): v is number => v != null);
@@ -516,16 +490,24 @@ export default function DataPage() {
             : null
         : null;
 
-    // Last significant rain — kept for the chip display only
-    const reversedData = [...zoneData].reverse();
-    const lastRainIdx = reversedData.findIndex(r => (r.precip_mm ?? 0) >= 8);
+    // Last soaking rain (chip only, labelled "≥ 8 mm"): a day when at
+    // least a tenth of the zone got 8 mm, since a zone mean rarely does.
+    // Searched in the full history so the answer does not depend on the
+    // selected window (7d used to hide a soaking rain 8 days ago).
+    const reversedData = [...zoneHistory].reverse();
+    const lastRainIdx = reversedData.findIndex(
+      r => (r.precip_p90 ?? r.precip_mm ?? 0) >= 8
+    );
     const daysSinceRain = lastRainIdx === -1 ? null : lastRainIdx;
 
     // Rain-first flush pattern — mirrors the algorithm's rain_first bonus:
-    // wet days 7–10 ago (hist[6:10]) + dry last 4 days (hist[0:4]) = fruiting conditions
+    // wet days 7–10 ago (hist[6:10]) + dry last 4 days (hist[0:4]) = fruiting conditions.
+    // Reads the full history: the default 7-day window never reaches 10 days back.
     const minPrecip = 1.5;
-    const days7to10ago = zoneData.length >= 10 ? zoneData.slice(-11, -7) : [];
-    const days1to4ago = zoneData.length >= 5 ? zoneData.slice(-5, -1) : [];
+    const days7to10ago =
+      zoneHistory.length >= 10 ? zoneHistory.slice(-11, -7) : [];
+    const days1to4ago =
+      zoneHistory.length >= 5 ? zoneHistory.slice(-5, -1) : [];
     const wetEarlyFrac = days7to10ago.length
       ? days7to10ago.filter(r => (r.precip_mm ?? 0) >= minPrecip).length /
         days7to10ago.length
@@ -537,11 +519,17 @@ export default function DataPage() {
     const rainFirstPattern = wetEarlyFrac >= 0.5 && dryRecentFrac >= 0.75;
 
     // Cumulative rain vs ~20mm species baseline (algorithm default for min_cumulative_rain)
-    // measured over last 14 days — the typical historical window the algorithm uses
-    const last14 = zoneData.slice(-Math.min(14, zoneData.length));
+    // measured over last 14 days — the typical historical window the algorithm uses.
+    // Always 14 days of history, whatever window the page shows.
+    const last14 = zoneHistory.slice(-14);
     const cumRain14 = last14.reduce((s, r) => s + (r.precip_mm ?? 0), 0);
     const rainSufficient = cumRain14 >= 20;
     const rainScarce = cumRain14 < 8;
+    // Scarce on average, but somewhere in the zone reached the 20mm baseline:
+    // the wettest such hotspot of the past two weeks.
+    const wetHotspot14 = (spread?.['14']?.hotspots ?? [])
+      .filter(h => h.rain_mm >= 20)
+      .sort((a, b) => b.rain_mm - a.rain_mm)[0];
 
     const flushTempOk = avgTemp != null && avgTemp >= 6 && avgTemp <= 22;
     const flushHumidOk = avgHumidity != null && avgHumidity >= 65;
@@ -669,8 +657,44 @@ export default function DataPage() {
         ? tn('humidSuffix', {
             humidity: avgHumidity.toFixed(0),
             defaultValue: `, humidity averaging ${avgHumidity.toFixed(0)}%`,
-          })
+          }) + (humidRange ? tn('humidRange', humidRange) : '')
         : '';
+
+    // Hotspots are named after the basemap labels in the reader's language,
+    // falling back to English and then the local name (or a direction when
+    // the map had no label there).
+    const lang = (i18n.resolvedLanguage ?? 'en').split('-')[0];
+    const listFormat = new Intl.ListFormat(lang, { type: 'conjunction' });
+    const placeName = (p: PlaceName) => p[lang] ?? p.en ?? p.name;
+    const whereOf = (h: RainHotspot) =>
+      h.places?.length
+        ? tn('whereAround', {
+            places: listFormat.format(h.places.map(placeName)),
+          })
+        : tn(`where${(h.dir ?? 'c').toUpperCase()}`);
+    const lastDate = zoneHistory[zoneHistory.length - 1]?.date;
+    const whenOf = (h: RainHotspot) => {
+      const ago = lastDate
+        ? Math.round((Date.parse(lastDate) - Date.parse(h.peak_date)) / 864e5)
+        : 0;
+      return ago <= 0
+        ? tn('today')
+        : ago === 1
+          ? tn('yesterday')
+          : tn('daysAgo', { count: ago });
+    };
+    const hotspotVars = (h: RainHotspot) => ({
+      where: whereOf(h),
+      amount: h.rain_mm.toFixed(0),
+      peakSuffix:
+        h.rain_high >= 1.5 * h.rain_mm
+          ? tn('peakSuffix', { peak: h.rain_high.toFixed(0) })
+          : '',
+      when: whenOf(h),
+    });
+    const capitalise = (text: string) =>
+      text.charAt(0).toLocaleUpperCase(lang) + text.slice(1);
+    let verdictHotspot: RainHotspot | undefined;
 
     const rainyDaysStr = tn('rainyDays', {
       count: rainyDays,
@@ -711,8 +735,17 @@ export default function DataPage() {
       );
     } else if (flushTempOk && rainScarce) {
       sentences.push(
-        tn('rainScarce', { location, cumRain: cumRain14.toFixed(0) })
+        wetHotspot14
+          ? tn('rainScarceHotspot', {
+              location,
+              cumRain: cumRain14.toFixed(0),
+              where: capitalise(whereOf(wetHotspot14)),
+              amount: wetHotspot14.rain_mm.toFixed(0),
+            })
+          : tn('rainScarce', { location, cumRain: cumRain14.toFixed(0) })
       );
+      verdictHotspot = wetHotspot14;
+      if (wetHotspot14?.flush) sentences.push(tn('hotspotFlush'));
     } else if (!flushTempOk && rainSufficient) {
       sentences.push(
         tn('rainOkTempWrong', {
@@ -752,22 +785,50 @@ export default function DataPage() {
     }
 
     // === SENTENCE 2: RAIN + TEMP CONTEXT ===
-    sentences.push(
-      totalRain > 3
-        ? tn('rainGood', {
-            totalRain: totalRain.toFixed(1),
-            rainDesc: rainDescT,
-            rainyDaysStr,
-            daysLabel,
-          })
-        : tn('rainBare', { daysLabel, totalRain: totalRain.toFixed(1) })
+    // Where it rained, not only how much on average. The hotspot the verdict
+    // already named (the same object when the 14d window is selected) is not
+    // repeated.
+    const [topHotspot, nextHotspot] = (win?.hotspots ?? []).filter(
+      h => h !== verdictHotspot
     );
+    if (topHotspot && (win?.rain_p50 ?? 0) < 5) {
+      sentences.push(
+        // A median of 0 means at least half the zone stayed dry.
+        tn((win?.rain_p50 ?? 0) < 0.5 ? 'rainPatchyDry' : 'rainPatchy', {
+          daysLabel,
+          location,
+          p50: win?.rain_p50?.toFixed(1),
+          ...hotspotVars(topHotspot),
+        })
+      );
+    } else {
+      sentences.push(
+        totalRain > 3
+          ? tn('rainGood', {
+              totalRain: totalRain.toFixed(1),
+              rainDesc: rainDescT,
+              rainyDaysStr,
+              daysLabel,
+            })
+          : tn('rainBare', { daysLabel, totalRain: totalRain.toFixed(1) })
+      );
+      if (topHotspot)
+        sentences.push(tn('rainWettest', hotspotVars(topHotspot)));
+    }
+    if (nextHotspot)
+      sentences.push(
+        tn('rainHotspotMore', {
+          where: whereOf(nextHotspot),
+          amount: nextHotspot.rain_mm.toFixed(0),
+        })
+      );
     if (avgTemp != null) {
       sentences.push(
         tn('tempContext', {
           temp: avgTemp.toFixed(1),
           tempDesc: tempDescT,
           trendSuffix: trendSuffixT,
+          tempRange: tempRange ? tn('tempRange', tempRange) : '',
           humidSuffix: humidSuffixT,
         })
       );
@@ -793,10 +854,15 @@ export default function DataPage() {
     }
 
     // === SENTENCE 4: WIND ===
+    const windRangeT = windRange ? tn('windRange', windRange) : '';
     if (avgWind != null && avgWind > 8)
-      sentences.push(tn('windStrong', { wind: avgWind.toFixed(1) }));
+      sentences.push(
+        tn('windStrong', { wind: avgWind.toFixed(1), windRange: windRangeT })
+      );
     else if (avgWind != null && avgWind > 4)
-      sentences.push(tn('windModerate', { wind: avgWind.toFixed(1) }));
+      sentences.push(
+        tn('windModerate', { wind: avgWind.toFixed(1), windRange: windRangeT })
+      );
 
     // === SENTENCE 5: PRESSURE ===
     if (pressureTrend === 'falling') sentences.push(tn('pressureFalling'));
@@ -815,14 +881,33 @@ export default function DataPage() {
       sentences.push(tn(diversityKey, { catSuffix: catSuffixWay }));
     }
 
+    const wettest = [...(win?.hotspots ?? [])].sort(
+      (a, b) => b.rain_mm - a.rain_mm
+    )[0];
+    const wettestPlace = wettest?.places?.[0];
     const statChips = [
       { label: tn('chipRain'), value: `${totalRain.toFixed(1)} mm` },
-      ...(daysSinceRain != null && daysSinceRain <= 14
+      ...(wettest
+        ? [
+            {
+              label: tn('chipWettest'),
+              value: wettestPlace
+                ? `${wettest.rain_mm.toFixed(0)} mm · ${placeName(wettestPlace)}`
+                : `${wettest.rain_mm.toFixed(0)} mm`,
+            },
+          ]
+        : []),
+      // Shown for long dry spells too: "23 days ago" is worth knowing.
+      ...(daysSinceRain != null
         ? [
             {
               label: tn('chipLastRain'),
               value:
-                daysSinceRain === 0 ? tn('today') : `${daysSinceRain}d ago`,
+                daysSinceRain === 0
+                  ? tn('today')
+                  : daysSinceRain === 1
+                    ? tn('yesterday')
+                    : tn('daysAgo', { count: daysSinceRain }),
             },
           ]
         : []),
@@ -849,7 +934,18 @@ export default function DataPage() {
     ];
 
     return { sentences, statChips };
-  }, [zoneData, topSpeciesToday, speciesCategoryMap, region, zone, days, t]);
+  }, [
+    zoneData,
+    zoneHistory,
+    spread,
+    i18n.resolvedLanguage,
+    topSpeciesToday,
+    speciesCategoryMap,
+    region,
+    zone,
+    days,
+    t,
+  ]);
 
   if (isLoading) {
     return (
@@ -989,14 +1085,16 @@ export default function DataPage() {
           <MapPin className='h-3 w-3 shrink-0' />
           {zone
             ? t('common:data.selectedZone', {
-                defaultValue: 'Selected: {{zone}} — click again to show all',
+                defaultValue: 'Selected: {{zone}}. Click again to show all',
                 zone: t(
                   `common:data.zones.${zone}` as Parameters<typeof t>[0],
                   { defaultValue: formatZoneLabel(zone) }
                 ),
               })
             : t('common:data.clickZone', {
-                defaultValue: 'Showing all zones — click one to filter',
+                defaultValue:
+                  'Showing all zones in {{region}}. Click one to filter',
+                region: regionLabel,
               })}
         </div>
         <Suspense
