@@ -63,9 +63,6 @@ GBIF = "https://api.gbif.org/v1"
 FUNGI = set(get_empirical_taxon_map())
 ACTIVE_CURVE_THRESHOLD = 0.8
 TAXON_KEY_OVERRIDES = {
-    # GBIF's fuzzy matcher currently promotes bare "Boletus" to kingdom Fungi;
-    # this is the exact accepted genus alternative returned by verbose matching.
-    "mushroom": 8287374,
     "morel": 2594601,
 }
 

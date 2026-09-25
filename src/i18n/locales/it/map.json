@@ -51,7 +51,8 @@
     "search": "Cerca specie...",
     "clear": "Cancella Selezione",
     "noResults": "Nessuna specie trovata",
-    "notAvailableOffline": "Not available offline. Download on the Offline Maps page."
+    "notAvailableOffline": "Not available offline. Download on the Offline Maps page.",
+    "notForecastHere": "Nessuna previsione per {{species}} qui."
   },
   "themes": {
     "select": "Tema mappa",

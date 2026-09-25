@@ -60,14 +60,14 @@
   },
   "list_of_species": {
     "chant": {
-      "name": "Chanterelle",
+      "name": "Golden Chanterelle",
       "description": "A golden yellow mushroom with a distinctive funnel shape and fruity aroma",
       "howTo": "Look for them in deciduous forests, especially near oak and beech trees"
     },
     "mushroom": {
-      "name": "Boletus",
-      "description": "Also known as King Bolete, this prized mushroom has a brown cap and white or yellow pores",
-      "howTo": "Found in coniferous and deciduous forests, often near pine trees"
+      "name": "Porcini",
+      "description": "The king bolete: a stout brown-capped mushroom with a pale netted stem and white pores that never bruise blue",
+      "howTo": "Found in coniferous and deciduous forest, often near spruce and beech, from late summer into autumn"
     },
     "morel": {
       "name": "Morchella",
@@ -223,6 +223,36 @@
       "name": "Black Truffle",
       "description": "A highly prized underground fungus with a strong aroma, used in gourmet cuisine.",
       "howTo": "Found underground near the roots of oaks and hazelnuts, typically harvested with trained animals in winter."
+    },
+    "bronze_bolete": {
+      "name": "Bronze Bolete",
+      "description": "A dark bronze to almost black-capped porcino with a pale netted stem and firm white flesh",
+      "howTo": "Look on warm lowland slopes under oak and sweet chestnut, later in the season than the summer bolete"
+    },
+    "pine_bolete": {
+      "name": "Pine Bolete",
+      "description": "A red-brown capped porcino of pine woods, with a stout reddish netted stem and firm flesh",
+      "howTo": "Look in mossy pine and spruce forest on acidic sandy soil, in a late spring flush and again in autumn"
+    },
+    "summer_bolete": {
+      "name": "Summer Bolete",
+      "description": "The earliest porcino, with a finely cracked pale brown cap and a stem netted from top to bottom",
+      "howTo": "Look under oak and beech from late spring, well before the other porcini appear"
+    },
+    "pacific_chant": {
+      "name": "Pacific Chanterelle",
+      "description": "A large golden chanterelle of the Pacific Northwest, paler and pinker than its European cousin",
+      "howTo": "Look in mossy Douglas fir and hemlock forest once the autumn rains have set in"
+    },
+    "smooth_chant": {
+      "name": "Smooth Chanterelle",
+      "description": "An orange chanterelle whose underside is nearly smooth instead of ridged, with a strong apricot smell",
+      "howTo": "Look in southeastern oak woods through the humid summer, often in troops on bare soil"
+    },
+    "winter_chant": {
+      "name": "Winter Chanterelle",
+      "description": "A small brown-capped chanterelle on a hollow yellow stem, fruiting on through the first frosts",
+      "howTo": "Look in mossy conifer litter late in the season, often in dense troops on rotting wood"
     }
   }
 }

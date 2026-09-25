@@ -64,9 +64,9 @@
       "howTo": "Cercali nelle foreste decidue, specialmente vicino a querce e faggi"
     },
     "mushroom": {
-      "name": "Boletus",
-      "description": "Conosciuto anche come Boleto Reale, questo fungo pregiato ha un cappello marrone e pori bianchi o gialli",
-      "howTo": "Trovato nelle foreste di conifere e decidue, spesso vicino ai pini"
+      "name": "Porcino",
+      "description": "Il porcino per eccellenza: cappello bruno, gambo tozzo e reticolato, pori bianchi che non virano al blu",
+      "howTo": "Si trova nelle foreste di conifere e latifoglie, spesso vicino ad abeti e faggi, da fine estate all'autunno"
     },
     "morel": {
       "name": "Morchella",
@@ -222,6 +222,36 @@
       "name": "Tartufo Nero Pregiato",
       "description": "Fungo ipogeo molto pregiato dal profumo intenso, usato in cucina gourmet.",
       "howTo": "Si trova sottoterra vicino alle radici di querce e noccioli, raccolto con animali addestrati in inverno."
+    },
+    "bronze_bolete": {
+      "name": "Porcino Nero",
+      "description": "Un porcino dal cappello bronzeo scuro, quasi nero, con gambo reticolato chiaro e polpa bianca e soda",
+      "howTo": "Cercalo sui versanti caldi di pianura sotto querce e castagni, più tardi del porcino estivo"
+    },
+    "pine_bolete": {
+      "name": "Porcino Rosso",
+      "description": "Un porcino dal cappello bruno-rossiccio dei boschi di pino, con gambo tozzo reticolato e polpa soda",
+      "howTo": "Cercalo nelle pinete e peccete muscose su suolo acido e sabbioso, a fine primavera e di nuovo in autunno"
+    },
+    "summer_bolete": {
+      "name": "Porcino Estivo",
+      "description": "Il primo porcino della stagione, con cappello bruno chiaro finemente screpolato e gambo reticolato per intero",
+      "howTo": "Cercalo sotto querce e faggi da fine primavera, molto prima degli altri porcini"
+    },
+    "pacific_chant": {
+      "name": "Galletto del Pacifico",
+      "description": "Un grande gallinaccio dorato del Nord-Ovest pacifico, più pallido e rosato del cugino europeo",
+      "howTo": "Cercalo nelle foreste muscose di abete di Douglas e tsuga, dopo l'arrivo delle piogge autunnali"
+    },
+    "smooth_chant": {
+      "name": "Galletto Liscio",
+      "description": "Un gallinaccio arancione con la faccia inferiore quasi liscia invece che costolata, dal forte odore di albicocca",
+      "howTo": "Cercalo nei querceti del sud-est americano durante l'estate umida, spesso in gruppi su terreno nudo"
+    },
+    "winter_chant": {
+      "name": "Finferla",
+      "description": "Un piccolo gallinaccio dal cappello bruno su gambo giallo e cavo, che fruttifica fino alle prime gelate",
+      "howTo": "Cercala nella lettiera muscosa delle conifere a fine stagione, spesso in fitti gruppi su legno marcescente"
     }
   },
   "search_placeholder": "Cerca una specie"

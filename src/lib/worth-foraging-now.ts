@@ -1,4 +1,4 @@
-import type { Recipe } from '@/data/recipes';
+import { getRecipesBySpecies, type Recipe } from '@/data/recipes';
 import type { SpeciesWithTranslations } from '@/data/species';
 import i18n from '@/i18n';
 
@@ -105,8 +105,7 @@ interface CachedDatasetPayload {
 }
 
 function getRecipeMatches(recipes: Recipe[], speciesId: string) {
-  return recipes
-    .filter(recipe => recipe.species.includes(speciesId))
+  return getRecipesBySpecies(speciesId, recipes)
     .slice(0, 2)
     .map(recipe => ({
       id: recipe.id,

@@ -6,7 +6,10 @@ import type {
   Map as MapLibreMap,
 } from 'maplibre-gl';
 import {
+  DEFAULT_MAP_SPECIES,
   getSpeciesOptions,
+  isMapSpecies,
+  SPECIES_DATA,
   type ForecastRegion,
   type SpeciesOption,
 } from '@/data/species';
@@ -57,6 +60,10 @@ export interface MapState {
   selectedSpecies: string | null;
   speciesOptions: SpeciesOption[];
   forecastRegion: ForecastRegion; // derived from `center`, drives speciesOptions
+  // Whether the last layer pass drew the selection anywhere in view. The
+  // selection outlives region changes, so this, not the region's list, is what
+  // says the map is empty for it.
+  selectedSpeciesOnMap: boolean;
   speciesDisplayMap: Record<string, string>;
 
   // Layer visibility
@@ -140,36 +147,34 @@ export function forecastRegionForCoordinate([longitude, latitude]: [
   return latitude < seMaxLatitude ? 'SE' : 'NE';
 }
 
-// The species list follows the VIEWPORT: a US GPS fix does not make US-only species
-// meaningful while the map shows Europe. Never writes to localStorage — the fallback
-// below is session-only, so panning through a region that lacks the user's species
-// can't destroy their saved choice, and it is preferred again as soon as a region
-// offers it. On the map page the URL's ?species still has the last word (MapPage
-// mirrors it in), so the restore shows up on the next cold start rather than mid-pan.
+const MAP_SPECIES_CODES = SPECIES_DATA.filter(s => s.showOnMap).map(s => s.id);
+
+// The species LIST follows the viewport: a US GPS fix does not make US-only species
+// meaningful while the map shows Europe. The SELECTION does not. Panning a pine
+// bolete into the US used to swap it for whatever the US offered first, so the
+// user lost their species by moving the map. It now stays selected and the region
+// simply has no layer for it; SpeciesSelector says so.
 function regionalSpeciesState(
   region: ForecastRegion,
   selectedSpecies: string | null
 ) {
   const speciesOptions = getSpeciesOptions(region);
-  const offered = (code: string | null) =>
-    !!code && speciesOptions.some(option => option.code === code);
-  const persisted = localStorage.getItem('selectedSpecies');
-  const nextSelectedSpecies = offered(persisted)
-    ? persisted
-    : offered(selectedSpecies)
-      ? selectedSpecies
-      : (speciesOptions[0]?.code ?? null);
   return {
     forecastRegion: region,
     speciesOptions,
-    selectedSpecies: nextSelectedSpecies,
+    selectedSpecies: isMapSpecies(selectedSpecies)
+      ? selectedSpecies
+      : DEFAULT_MAP_SPECIES,
   };
 }
 
 // Seeded from the RESTORED viewport (readCenter is hoisted), so a cold start in a
 // saved US view opens with US species instead of the Swiss default's.
 const INITIAL_REGION = forecastRegionForCoordinate(readCenter());
-const INITIAL_SPECIES = regionalSpeciesState(INITIAL_REGION, 'mushroom');
+const INITIAL_SPECIES = regionalSpeciesState(
+  INITIAL_REGION,
+  localStorage.getItem('selectedSpecies')
+);
 
 export interface MapThemeOption {
   id: 'light' | 'dark' | 'white' | 'darkmatter' | 'topographic';
@@ -293,6 +298,7 @@ export const useMapStore = create<MapState>()(
       foragingSpots: [],
       selectedSpot: null,
       selectedSpecies: INITIAL_SPECIES.selectedSpecies,
+      selectedSpeciesOnMap: true,
       speciesOptions: INITIAL_SPECIES.speciesOptions,
       forecastRegion: INITIAL_REGION,
       speciesDisplayMap: {
@@ -344,8 +350,8 @@ export const useMapStore = create<MapState>()(
       clearError: () => set({ error: null }),
 
       // Mirrors the URL's ?species into the store without persisting it: MapPage
-      // falls back to mushroom whenever the query species is not offered in the
-      // region on screen, and that fallback is not the user's choice to remember.
+      // falls back to mushroom when the query names no map species at all, and
+      // that fallback is not the user's choice to remember.
       syncSelectedSpecies: selectedSpecies => set({ selectedSpecies }),
 
       // Species selection actions
@@ -460,7 +466,6 @@ export const useMapStore = create<MapState>()(
           selectedSpecies,
           numbersLayersVisible,
           hillshadeVisible,
-          speciesOptions,
           activeDay,
         } = get();
 
@@ -477,6 +482,7 @@ export const useMapStore = create<MapState>()(
         }
 
         const bounds = mapRef.getBounds();
+        let drawn = false;
 
         layers.forEach(layer => {
           const id = layer.id;
@@ -494,8 +500,11 @@ export const useMapStore = create<MapState>()(
             return;
           }
 
-          const isSpeciesLayer = speciesOptions.some(speciesOption =>
-            id.startsWith(speciesOption.code)
+          // Every map species, not just the region's list: the selection can
+          // come from another region, and a layer left out here keeps whatever
+          // visibility and forecast day it had last.
+          const isSpeciesLayer = MAP_SPECIES_CODES.some(code =>
+            id.startsWith(code)
           );
           const isRelevantSpecies = selectedSpecies
             ? id.startsWith(selectedSpecies)
@@ -561,12 +570,17 @@ export const useMapStore = create<MapState>()(
                   );
                 }
                 mapRef.setLayoutProperty(id, 'visibility', 'visible');
+                drawn = true;
               }
             } else {
               mapRef.setLayoutProperty(id, 'visibility', 'none');
             }
           }
         });
+
+        if (get().selectedSpeciesOnMap !== drawn) {
+          set({ selectedSpeciesOnMap: drawn });
+        }
       },
       // ponytail: dark mode is a full style swap now; the correct style is chosen at
       // init and on toggle, so there are no per-layer ` dark` states to restore. No-op

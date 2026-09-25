@@ -63,38 +63,70 @@ describe('vocabulary coverage', () => {
 });
 
 describe('genus-level catalog entries', () => {
-  // The catalog stores 'Boletus spp.' but the model emits a bare genus.
+  // The catalog stores 'Morchella spp.' but the model emits a bare genus.
   it('resolves the bare genus the model actually emits', () => {
-    expect(resolvePrediction(p('Boletus')).catalogSpecies[0]?.id).toBe(
-      'mushroom'
-    );
     expect(resolvePrediction(p('Morchella')).catalogSpecies[0]?.id).toBe(
       'morel'
     );
   });
 
   it('resolves accepted edible species-level names under the genus', () => {
-    expect(resolvePrediction(p('Boletus edulis')).catalogSpecies[0]?.id).toBe(
-      'mushroom'
-    );
     expect(
       resolvePrediction(p('Morchella esculenta')).catalogSpecies[0]?.id
     ).toBe('morel');
   });
 
+  // Boletus is no longer bridged: the four porcini are separate catalog
+  // entries, so each resolves under its own binomial rather than through the
+  // genus allow-list.
+  it('resolves each bolete species to its own catalog entry', () => {
+    const boletes: Array<[string, string]> = [
+      ['Boletus edulis', 'mushroom'],
+      ['Boletus aereus', 'bronze_bolete'],
+      ['Boletus pinophilus', 'pine_bolete'],
+      ['Boletus reticulatus', 'summer_bolete'],
+    ];
+    for (const [name, id] of boletes) {
+      const got = resolvePrediction(p(name));
+      expect(got.kind).toBe('catalog');
+      expect(got.catalogSpecies.map(s => s.id)).toEqual([id]);
+    }
+  });
+
+  it('resolves each chanterelle species to its own catalog entry', () => {
+    const chanterelles: Array<[string, string]> = [
+      ['Cantharellus cibarius', 'chant'],
+      ['Cantharellus formosus', 'pacific_chant'],
+      ['Cantharellus lateritius', 'smooth_chant'],
+      ['Craterellus tubaeformis', 'winter_chant'],
+    ];
+    for (const [name, id] of chanterelles) {
+      const got = resolvePrediction(p(name));
+      expect(got.kind).toBe('catalog');
+      expect(got.catalogSpecies.map(s => s.id)).toEqual([id]);
+    }
+  });
+
   // THE safety test for this mechanism. `Boletus satanas` is the deprecated
   // synonym for the toxic Rubroboletus satanas. A genus PREFIX match would
-  // hand it back as edible porcini. It must not resolve to catalog.
-  it('does not resolve a dangerous old genus synonym to the edible entry', () => {
+  // hand it back as edible porcini. Splitting the genus into four species
+  // entries must not reintroduce that path.
+  it('does not resolve a dangerous old genus synonym to an edible entry', () => {
     const got = resolvePrediction(p('Boletus satanas'));
 
     expect(got.kind).not.toBe('catalog');
+    // Not merely "not edible": a tier-2 row would show it with no safety
+    // information at all. It is outside the vocabulary, so it stays unknown.
     expect(got.kind).toBe('unknown');
     expect(got.catalogSpecies).toEqual([]);
   });
 
   it('does not resolve arbitrary same-genus names to the edible entry', () => {
-    for (const name of ['Boletus badius', 'Morchella nonexistentia']) {
+    for (const name of [
+      'Boletus badius',
+      'Cantharellus nonexistentia',
+      'Morchella nonexistentia',
+    ]) {
       expect(resolvePrediction(p(name)).kind).not.toBe('catalog');
     }
   });
@@ -159,7 +191,7 @@ describe('toxic detection at any rank', () => {
   it.each([0, 1, 2])('detects a toxic candidate at rank %i', index => {
     const predictions = [
       p('Cantharellus cibarius'),
-      p('Boletus'),
+      p('Boletus edulis'),
       p('Rubus idaeus'),
     ];
     predictions[index] = p('Amanita phalloides');
@@ -168,7 +200,10 @@ describe('toxic detection at any rank', () => {
   });
 
   it('reports no toxic candidate for an all-edible result', () => {
-    const got = resolvePredictions([p('Cantharellus cibarius'), p('Boletus')]);
+    const got = resolvePredictions([
+      p('Cantharellus cibarius'),
+      p('Boletus edulis'),
+    ]);
 
     expect(hasToxicCandidate(got)).toBe(false);
   });
@@ -199,7 +234,7 @@ describe('critical confusion escalation', () => {
 
   it('does not fire when only the toxic half is present', () => {
     const got = findCriticalConfusions(
-      resolvePredictions([p('Lepiota brunneoincarnata'), p('Boletus')])
+      resolvePredictions([p('Lepiota brunneoincarnata'), p('Boletus edulis')])
     );
 
     expect(got).toEqual([]);
@@ -336,7 +371,6 @@ describe('catalog is reachable from the model vocabulary', () => {
   // The catalog stores genus-level entries as "X spp."; the vocabulary uses the
   // bare genus, because that is what the model was prompted with.
   const GENUS_FORMS: Record<string, string> = {
-    'Boletus spp.': 'Boletus',
     'Morchella spp.': 'Morchella',
   };
 

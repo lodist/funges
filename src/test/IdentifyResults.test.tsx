@@ -74,7 +74,7 @@ describe('toxic warning banner', () => {
   it.each([0, 1, 2])(
     'renders when the toxic candidate is at rank %i',
     index => {
-      const names = ['Cantharellus cibarius', 'Boletus', 'Rubus idaeus'];
+      const names = ['Cantharellus cibarius', 'Boletus edulis', 'Rubus idaeus'];
       names[index] = 'Amanita phalloides';
 
       render(
@@ -93,7 +93,7 @@ describe('toxic warning banner', () => {
       <IdentifyResults
         candidates={resolvePredictions([
           p('Cantharellus cibarius'),
-          p('Boletus'),
+          p('Boletus edulis'),
         ])}
       />
     );
@@ -283,19 +283,36 @@ describe('species guide link', () => {
   });
 
   // Genus-level entries are the ones this is easiest to get wrong: the catalog
-  // stores "Boletus spp." while the model predicts "Boletus edulis", so filtering
-  // by the prediction would land on an empty list for exactly the entries a
-  // forager most needs to read about.
+  // stores "Morchella spp." while the model predicts "Morchella esculenta", so
+  // filtering by the prediction would land on an empty list for exactly the
+  // entries a forager most needs to read about.
   it('links a genus-level match by the CATALOG name, not the prediction', () => {
     render(
-      <IdentifyResults candidates={resolvePredictions([p('Boletus edulis')])} />
+      <IdentifyResults
+        candidates={resolvePredictions([p('Morchella esculenta')])}
+      />
     );
 
     const link = screen.getByRole('link');
     expect(link.getAttribute('href')).toContain(
-      encodeURIComponent('Boletus spp.')
+      encodeURIComponent('Morchella spp.')
     );
-    expect(link.getAttribute('href')).not.toContain('edulis');
+    expect(link.getAttribute('href')).not.toContain('esculenta');
+  });
+
+  // The other half of the same rule. Boletus used to be a genus entry and is
+  // now four species, so the porcini link must carry the predicted binomial
+  // rather than a genus name the catalog no longer holds.
+  it('links a species-level bolete by its own binomial', () => {
+    render(
+      <IdentifyResults candidates={resolvePredictions([p('Boletus aereus')])} />
+    );
+
+    const link = screen.getByRole('link');
+    expect(link.getAttribute('href')).toContain(
+      encodeURIComponent('Boletus aereus')
+    );
+    expect(link.getAttribute('href')).not.toContain('spp.');
   });
 
   // A link to a page that would show nothing is worse than no link.

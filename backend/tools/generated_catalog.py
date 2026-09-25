@@ -5,8 +5,8 @@ CATALOG = [
     "species"
   ],
   [
-    "Boletus",
-    "genus"
+    "Boletus edulis",
+    "species"
   ],
   [
     "Morchella",
@@ -126,6 +126,30 @@ CATALOG = [
   ],
   [
     "Tuber melanosporum",
+    "species"
+  ],
+  [
+    "Boletus aereus",
+    "species"
+  ],
+  [
+    "Boletus pinophilus",
+    "species"
+  ],
+  [
+    "Boletus reticulatus",
+    "species"
+  ],
+  [
+    "Cantharellus formosus",
+    "species"
+  ],
+  [
+    "Cantharellus lateritius",
+    "species"
+  ],
+  [
+    "Craterellus tubaeformis",
     "species"
   ]
 ]
