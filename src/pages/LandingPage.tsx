@@ -57,22 +57,23 @@ export default function LandingPage() {
       />
       <div className='bg-background'>
         {/* Hero */}
-        <section className='relative isolate overflow-hidden'>
+        <section className='relative isolate flex min-h-[calc(100dvh-var(--mobile-navbar-height))] flex-col-reverse overflow-hidden md:block md:min-h-0'>
           {/* Map box: the pin lives inside it, anchored at a score cell of the
               capture so it stays on its polygon whatever the
-              viewport crops, and drifts with the map. Phone: the lower half,
-              rising into the paper under the buttons. Desktop: the right
-              side, fading in from the left. */}
+              viewport crops, and drifts with the map. Phone: in flow below the
+              copy (flex-col-reverse), so however short the screen the pin
+              can't climb under the button; it only tucks its faded top under
+              the copy. Desktop: the right side, fading in from the left. */}
           <div
             aria-hidden='true'
-            className='landing-hero-media pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[56%] md:inset-y-0 md:left-auto md:right-0 md:h-full md:w-1/2 xl:w-[60%]'
+            className='landing-hero-media pointer-events-none relative -z-10 -mt-12 min-h-80 flex-1 md:absolute md:inset-y-0 md:right-0 md:mt-0 md:h-full md:min-h-0 md:w-1/2 xl:w-[60%]'
           >
             <img
               src={HERO_MAP}
               alt=''
               fetchPriority='high'
               decoding='async'
-              className='landing-hero-map h-full w-full object-cover'
+              className='landing-hero-map absolute inset-0 h-full w-full object-cover'
             />
             {/* Anchors are score cells of the capture: one low in the frame for
                 the phone, where the top of the box fades; one in the opaque
@@ -113,7 +114,7 @@ export default function LandingPage() {
 
           {/* Phone: one screen, terrain above, message below, nothing under the
               nav bar. Desktop: the copy sits beside the map. */}
-          <div className='flex min-h-[calc(100dvh-var(--mobile-navbar-height))] flex-col px-6 pt-10 md:min-h-[88dvh] md:justify-center md:px-12 md:pt-0 xl:px-20 2xl:px-28'>
+          <div className='flex flex-col px-6 pt-10 md:min-h-[88dvh] md:justify-center md:px-12 md:pt-0 xl:px-20 2xl:px-28'>
             <div className='max-w-xl md:max-w-md xl:max-w-xl'>
               <img
                 src={`${base}icons/logo_funges.png`}
