@@ -77,9 +77,9 @@ def test_published_grid_round_trips_into_scoring():
     grid[:, :5] = 0.0  # western half: well observed, species absent
     raw = brp.to_npz(macro, {"amaranth": grid}, {"amaranth": [6109534]})
     priors = load_range_priors(raw)
-    assert not brp.built_from_other_taxa(raw, {"amaranth": [6109534]})
-    assert brp.built_from_other_taxa(raw, {"amaranth": [6109534], "sorrel": [2888951]})  # species added
-    assert brp.built_from_other_taxa(raw, {"amaranth": [6109534, 1]})  # key added
+    assert not brp.built_from_other_inputs(raw, {"amaranth": [6109534]})
+    assert brp.built_from_other_inputs(raw, {"amaranth": [6109534], "sorrel": [2888951]})  # species added
+    assert brp.built_from_other_inputs(raw, {"amaranth": [6109534, 1]})  # key added
     rows = pd.DataFrame({"Latitude": [40.5, 40.5, 60.0, np.nan],
                          "Longitude": [10.2, 10.8, 10.5, 10.5]})
     got = range_prior_for_species(rows, {"range_prior": priors["amaranth"]})
@@ -136,3 +136,22 @@ def test_host_pixels_land_in_their_cells():
     bhc.bin_pixels(counts, total, macro, identity, transform, arr, 255, {"picea": 1})
     assert total.sum() == 3  # nodata is not ground
     assert counts["picea"][1, 0] == 1 and counts["picea"][0, 1] == 1 and counts["picea"].sum() == 2
+
+
+def test_a_new_method_rebuilds_the_published_priors(monkeypatch):
+    macro = {"lat": (40.0, 41.0), "lon": (10.0, 11.0)}
+    raw = brp.to_npz(macro, {"amaranth": np.ones(brp.grid_shape(macro))}, {"amaranth": [6109534]})
+    assert not brp.built_from_other_inputs(raw, {"amaranth": [6109534]})
+    monkeypatch.setattr(brp, "METHOD", brp.METHOD + "-next")
+    assert brp.built_from_other_inputs(raw, {"amaranth": [6109534]})
+
+
+def test_casual_records_prove_presence_but_never_absence():
+    # core; Finnish-dandelion-like (a normal share of casual records); Scottish-amaranth-
+    # like (half a record amid much looking); unrecorded; barely observed
+    target = np.array([64.0, 16.0, 0.5, 0.0, 0.0])
+    background = np.array([10000.0, 10000.0, 40000.0, 40000.0, 50.0])
+    core, finland, scotland, unrecorded, unobserved = brp.casual_presence(target, background)
+    assert finland > 0.95
+    assert scotland < 0.01
+    assert unrecorded == 0.0 and unobserved == 0.0  # no records is no proof, however little the looking

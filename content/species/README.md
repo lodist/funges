@@ -53,9 +53,13 @@ genus, because Swedish and British recorders rarely name the species).
 that answers "can it grow here", not "how often is it seen": how likely the
 nearby record count is if the species grew there, given how thoroughly its
 kingdom is observed at 50 and 150 km. Ground nobody observes stays possible;
-well-observed ground without the species scores near 0. An empty list means no
-prior. The priors replaced hand-listed climate zones, whose
-lat/lon-rectangle labels cut the map along straight lines.
+well-observed ground without the species scores near 0. Surveys that skip very
+common plants (Finland's floristic archive barely records dandelions) would
+otherwise read as absence, so records from casual platforms (iNaturalist,
+Observation.org, Pl@ntNet, Mushroom Observer) can prove a species present and lift
+the prior; they never lower it. An empty list means no prior. The priors replaced
+hand-listed climate zones, whose lat/lon-rectangle labels cut the map along
+straight lines.
 
 Mycorrhizal fungi also list their host trees in `scoring.hosts`, per region,
 using the classes in `_host_classes.json`: the European Tree Genus Map for NE

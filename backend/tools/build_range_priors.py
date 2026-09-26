@@ -6,6 +6,11 @@ records near a cell are if the species did grow there. Many records, or too few
 observations of its kingdom to tell, mean yes; a well-observed area with almost
 none of it means no. It replaces the hand-drawn climate-zone allow-lists, which
 cut the map along straight lines and knew nothing about where a species grows.
+
+Surveys and atlases skip what they find too common to record, so on all sources a
+thoroughly surveyed region can look empty of its commonest weeds. Casual platforms,
+where people log whatever they come across, can therefore prove a species present
+and lift the prior back up; they never add absence.
 """
 import argparse
 import io
@@ -55,6 +60,23 @@ SCALES_KM = (SIGMA_KM, 150.0)
 # 290 of F. virginiana) sits near 4% of its typical share, amaranth in Scotland near
 # 0.5%: 0.05 zeroed the Smokies, 0.02 keeps them (0.92) and Scotland at 0.
 TOLERANCE = 0.02
+# Casual platforms, where people log whatever they come across, with photos. Finland's
+# Kastikka floristic archive holds 4.2M of its 6.4M plant records and 1.2 dandelions
+# per 10,000 (Sweden 28.6), so on all sources Finland read as dandelion-free.
+CASUAL_DATASETS = (
+    "50c9509d-22c7-4a22-a47d-8c48425ef4a7",  # iNaturalist research-grade observations
+    "8a863029-f435-446a-821e-275f4f641165",  # Observation.org
+    "7a3679ef-5582-4aaa-81f0-8c2545cafc81",  # Pl@ntNet observations (not its automatic IDs)
+    "d714382d-5890-4234-ae81-696eeb53658a",  # Mushroom Observer
+)
+# Casual records rescue a species only as proof: when they would be unlikely had it
+# grown here at under this share of its typical casual share. Against held-out 2026
+# sightings, 0.05 let two planted chestnuts rescue Stockholm (0.33) and 0.2 left
+# central Finland's dandelions at 0.64; 0.1 lifts Finland to 1.00, keeps Scottish
+# amaranth at 0.01 and cuts the score lost at real sightings by 31%.
+RESCUE_SHARE = 0.1
+# Stamped into the published files, so a change of method rebuilds them on the next run.
+METHOD = "possibility-2scale+casual-rescue-v1"
 
 
 # --- GBIF vector tiles -----------------------------------------------------
@@ -207,13 +229,13 @@ def bin_tile(grid, macro, tile, x, y, z=ZOOM):
             grid[i, j] += total
 
 
-def count_grid(macro, taxon_key, years, workers=4):
-    params = urllib.parse.urlencode({
-        "srs": "EPSG:4326", "taxonKey": taxon_key,
+def count_grid(macro, taxon_key, years, workers=4, datasets=()):
+    params = urllib.parse.urlencode([
+        ("srs", "EPSG:4326"), ("taxonKey", taxon_key),
         # Human observations only, as in the season curves: specimens carry
         # herbarium-campaign bias and are not the population the app serves.
-        "basisOfRecord": "HUMAN_OBSERVATION", "year": years, "mode": "GEO_CENTROID",
-    })
+        ("basisOfRecord", "HUMAN_OBSERVATION"), ("year", years), ("mode", "GEO_CENTROID"),
+    ] + [("datasetKey", d) for d in datasets])
     grid = np.zeros(grid_shape(macro))
     tiles = tiles_for(macro)
     with ThreadPoolExecutor(max_workers=workers) as ex:
@@ -249,13 +271,33 @@ def possibility(target, background):
     turned up. `typical` is the share seen by the median record, so a sparse cell
     with one lucky record cannot inflate it.
     """
+    typical = typical_share(target, background)
+    if typical is None:
+        return None
+    return gammaincc(target + 1, background * TOLERANCE * typical)
+
+
+def typical_share(target, background):
+    """The species' share of its kingdom's records, as seen by its median record."""
     present = (target >= 1) & (background > 0)
     if not present.any():
         return None
     share, weight = target[present] / background[present], target[present]
     order = np.argsort(share)
-    typical = share[order][np.searchsorted(np.cumsum(weight[order]), weight.sum() / 2)]
-    return gammaincc(target + 1, background * TOLERANCE * typical)
+    return share[order][np.searchsorted(np.cumsum(weight[order]), weight.sum() / 2)]
+
+
+def casual_presence(target, background):
+    """Proof from casual records that the species grows here, in [0, 1].
+
+    P(fewer casual records than observed | it grew here at only RESCUE_SHARE x its
+    typical casual share). No records, or too little looking to tell, gives 0: this
+    can lift a prior, never lower one.
+    """
+    typical = typical_share(target, background)
+    if typical is None:
+        return np.zeros_like(target)
+    return np.where(target > 0, gammaincc(np.maximum(target, 1e-12), background * RESCUE_SHARE * typical), 0.0)
 
 
 def range_prior(targets, backgrounds):
@@ -279,12 +321,14 @@ def kingdom_key(taxon_key):
 def build_macro(macro, taxon_map, years, workers=4):
     """{species: prior grid} for one macro region; species without evidence are left out."""
     lats = lat_centers(macro)
-    backgrounds, priors = {}, {}
+    backgrounds, casual_backgrounds, priors = {}, {}, {}
     for species, keys in taxon_map.items():
         kingdom = kingdom_key(keys[0])
         if kingdom not in backgrounds:
             raw_bg = count_grid(macro, kingdom, years, workers)
             backgrounds[kingdom] = [smooth_counts(raw_bg, lats, s) for s in SCALES_KM]
+            casual_backgrounds[kingdom] = smooth_counts(
+                count_grid(macro, kingdom, years, workers, CASUAL_DATASETS), lats)
         raw = sum(count_grid(macro, k, years, workers) for k in keys)
         # A few records on a well-observed continent is evidence of rarity, so even
         # 20 records get a prior. None at all more likely means a wrong taxon key.
@@ -295,9 +339,12 @@ def build_macro(macro, taxon_map, years, workers=4):
         if prior is None:
             print(f"  {species:22s} {int(raw.sum()):7d} records  SKIP (no cell with a record)")
             continue
-        priors[species] = prior
+        casual = smooth_counts(sum(count_grid(macro, k, years, workers, CASUAL_DATASETS) for k in keys), lats)
+        presence = casual_presence(casual, casual_backgrounds[kingdom])
+        priors[species] = np.maximum(prior, presence)
         print(f"  {species:22s} {int(raw.sum()):7d} records  "
-              f"land cells >0.5: {np.mean(prior > 0.5):.0%}")
+              f"land cells >0.5: {np.mean(priors[species] > 0.5):.0%}  "
+              f"lifted by casual records: {np.mean(presence - prior > 0.1):.1%}")
     return priors
 
 
@@ -306,7 +353,7 @@ def to_npz(macro, priors, taxa):
     species = sorted(priors)
     np.savez_compressed(
         buf, lat0=macro["lat"][0], lon0=macro["lon"][0], step=STEP,
-        species=np.array(species), taxa=json.dumps(taxa, sort_keys=True),
+        species=np.array(species), taxa=json.dumps(taxa, sort_keys=True), method=METHOD,
         priors=np.stack([np.rint(priors[s] * 255).astype(np.uint8) for s in species]),
     )
     return buf.getvalue()
@@ -345,17 +392,19 @@ def macro_taxa(macro):
     return {sp: keys for sp, keys in get_range_taxon_map().items() if sp in available}
 
 
-def built_from_other_taxa(raw, taxa):
-    """True when a published file was built from different species or keys than `taxa`."""
+def built_from_other_inputs(raw, taxa):
+    """True when a published file was built by another METHOD or from other species or keys."""
     with np.load(io.BytesIO(raw)) as z:
-        return "taxa" not in z or json.loads(str(z["taxa"])) != json.loads(json.dumps(taxa))
+        if "taxa" not in z or "method" not in z or str(z["method"]) != METHOD:
+            return True
+        return json.loads(str(z["taxa"])) != json.loads(json.dumps(taxa))
 
 
 def needs_rebuild():
-    """Missing from R2, built in an earlier quarter, or built from other taxon keys -> rebuild.
+    """Missing from R2, built in an earlier quarter, or built from other inputs -> rebuild.
 
-    The last case means a manifest change (a species added, a key corrected) reaches
-    the map on the next run instead of the next quarter.
+    The last case means a manifest change (a species added, a key corrected) or a
+    change of METHOD reaches the map on the next run instead of the next quarter.
     """
     curves = _curves()
     today_q = curves._quarter_index(date.today())
@@ -364,8 +413,8 @@ def needs_rebuild():
         lm = curves.r2_last_modified(url)
         if lm is None or curves._quarter_index(lm.date()) < today_q:
             return True
-        if built_from_other_taxa(curves.r2_fetch(url), macro_taxa(macro)):
-            print(f"[gate] {url} was built from other taxon keys -> building")
+        if built_from_other_inputs(curves.r2_fetch(url), macro_taxa(macro)):
+            print(f"[gate] {url} was built by another method or from other taxon keys -> building")
             return True
     print("[gate] range priors present, current and built this quarter -> skipping (use --force to rebuild)")
     return False
