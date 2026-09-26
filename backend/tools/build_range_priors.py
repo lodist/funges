@@ -60,20 +60,23 @@ SCALES_KM = (SIGMA_KM, 150.0)
 # 290 of F. virginiana) sits near 4% of its typical share, amaranth in Scotland near
 # 0.5%: 0.05 zeroed the Smokies, 0.02 keeps them (0.92) and Scotland at 0.
 TOLERANCE = 0.02
-# Casual platforms, where people log whatever they come across, with photos. Finland's
-# Kastikka floristic archive holds 4.2M of its 6.4M plant records and 1.2 dandelions
-# per 10,000 (Sweden 28.6), so on all sources Finland read as dandelion-free.
+# Casual platforms, where people log whatever wild thing they come across, with photos.
+# Finland's Kastikka floristic archive holds 4.2M of its 6.4M plant records and 1.2
+# dandelions per 10,000 (Sweden 28.6), so on all sources Finland read as dandelion-free.
+# Pl@ntNet is left out: it identifies garden plants as readily as wild ones, and its
+# records (528 of France's 924 casual raspberries) lifted lowland France where the
+# botanical conservatories, which map wild flora, rightly have none.
 CASUAL_DATASETS = (
-    "50c9509d-22c7-4a22-a47d-8c48425ef4a7",  # iNaturalist research-grade observations
+    "50c9509d-22c7-4a22-a47d-8c48425ef4a7",  # iNaturalist research grade: cultivated excluded
     "8a863029-f435-446a-821e-275f4f641165",  # Observation.org
-    "7a3679ef-5582-4aaa-81f0-8c2545cafc81",  # Pl@ntNet observations (not its automatic IDs)
     "d714382d-5890-4234-ae81-696eeb53658a",  # Mushroom Observer
 )
 # Casual records rescue a species only as proof: when they would be unlikely had it
 # grown here at under this share of its typical casual share. Against held-out 2026
-# sightings, 0.05 let two planted chestnuts rescue Stockholm (0.33) and 0.2 left
-# central Finland's dandelions at 0.64; 0.1 lifts Finland to 1.00, keeps Scottish
-# amaranth at 0.01 and cuts the score lost at real sightings by 31%.
+# sightings, 0.2 left central Finland's dandelions at 0.63; 0.05 and 0.1 both lift
+# Finland to 1.00 and keep Scottish amaranth and Stockholm chestnut at 0. The held-out
+# score cannot penalise a false rescue (a planted tree photographed in 2026 is a
+# "real sighting"), so of the two the stricter one is used.
 RESCUE_SHARE = 0.1
 # Stamped into the published files, so a change of method rebuilds them on the next run.
 METHOD = "possibility-2scale+casual-rescue-v1"
