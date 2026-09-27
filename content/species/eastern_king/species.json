@@ -109,6 +109,10 @@
         "scoringReferences": [
           "https://www.gbif.org/species/7240439",
           "https://www.gbif.org/species/2524722",
+          "https://www.mushroomexpert.com/boletus_variipes.html",
+          "https://www.mushroomexpert.com/boletus_separans.html",
+          "https://www.mushroomexpert.com/boletus_nobilis.html",
+          "https://www.mushroomexpert.com/boletus_atkinsonii.html",
           "docs/species/2026-09-27-us-porcini.md"
         ],
         "landCoverScheme": "NLCD"
@@ -151,6 +155,10 @@
         "scoringReferences": [
           "https://www.gbif.org/species/7240439",
           "https://www.gbif.org/species/2524722",
+          "https://www.mushroomexpert.com/boletus_variipes.html",
+          "https://www.mushroomexpert.com/boletus_separans.html",
+          "https://www.mushroomexpert.com/boletus_nobilis.html",
+          "https://www.mushroomexpert.com/boletus_atkinsonii.html",
           "docs/species/2026-09-27-us-porcini.md"
         ],
         "landCoverScheme": "NLCD"

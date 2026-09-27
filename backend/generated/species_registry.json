@@ -3312,6 +3312,10 @@
           "scoringReferences": [
             "https://www.gbif.org/species/7240439",
             "https://www.gbif.org/species/2524722",
+            "https://www.mushroomexpert.com/boletus_variipes.html",
+            "https://www.mushroomexpert.com/boletus_separans.html",
+            "https://www.mushroomexpert.com/boletus_nobilis.html",
+            "https://www.mushroomexpert.com/boletus_atkinsonii.html",
             "docs/species/2026-09-27-us-porcini.md"
           ]
         },
@@ -3353,6 +3357,10 @@
           "scoringReferences": [
             "https://www.gbif.org/species/7240439",
             "https://www.gbif.org/species/2524722",
+            "https://www.mushroomexpert.com/boletus_variipes.html",
+            "https://www.mushroomexpert.com/boletus_separans.html",
+            "https://www.mushroomexpert.com/boletus_nobilis.html",
+            "https://www.mushroomexpert.com/boletus_atkinsonii.html",
             "docs/species/2026-09-27-us-porcini.md"
           ]
         }
@@ -3402,6 +3410,8 @@
           },
           "scoringReferences": [
             "https://www.gbif.org/species/7769448",
+            "https://doi.org/10.2509/naf2014.009.006",
+            "https://www.foragecolorado.com/post/forage-weekly-1-rocky-mountain-red-boletus-rubriceps",
             "docs/species/2026-09-27-us-porcini.md"
           ]
         },
@@ -3441,6 +3451,8 @@
           },
           "scoringReferences": [
             "https://www.gbif.org/species/7769448",
+            "https://doi.org/10.2509/naf2014.009.006",
+            "https://www.foragecolorado.com/post/forage-weekly-1-rocky-mountain-red-boletus-rubriceps",
             "docs/species/2026-09-27-us-porcini.md"
           ]
         }

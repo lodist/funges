@@ -107,6 +107,8 @@
         },
         "scoringReferences": [
           "https://www.gbif.org/species/7769448",
+          "https://doi.org/10.2509/naf2014.009.006",
+          "https://www.foragecolorado.com/post/forage-weekly-1-rocky-mountain-red-boletus-rubriceps",
           "docs/species/2026-09-27-us-porcini.md"
         ],
         "landCoverScheme": "NLCD"
@@ -147,6 +149,8 @@
         },
         "scoringReferences": [
           "https://www.gbif.org/species/7769448",
+          "https://doi.org/10.2509/naf2014.009.006",
+          "https://www.foragecolorado.com/post/forage-weekly-1-rocky-mountain-red-boletus-rubriceps",
           "docs/species/2026-09-27-us-porcini.md"
         ],
         "landCoverScheme": "NLCD"

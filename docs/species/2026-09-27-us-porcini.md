@@ -10,9 +10,11 @@ This record covers the three changes that put them back on the map, and it is
 the reviewed source the manifests cite in `scoringReferences` and
 `identification.safetyReview`.
 
-**The parameter values below are agent-derived and await approval by Loris Di
-Stefano.** The validator checks types, ranges and sigmas; it cannot establish
-scientific authority, and no mycologist has reviewed them.
+**The parameter values below are agent-derived and were approved by Loris Di
+Stefano on 2026-09-27.** The validator checks types, ranges and sigmas; it
+cannot establish scientific authority, and no mycologist has reviewed them.
+They rest on GBIF and iNaturalist records and the 2026 weather at real
+sightings, checked against the sources in [Literature check](#literature-check).
 
 ## Changes
 
@@ -246,6 +248,69 @@ These numbers come from a single season (2026) and 120–141 sightings; the only
 values tuned against them are the optima, which were set to the sighting
 medians rather than searched.
 
+## Literature check
+
+The sources agree with every host, altitude and season choice above. The few
+places where the sightings, not the literature, decided are listed after each
+species.
+
+**_B. rubriceps_:**
+
+- **Arora & Frank 2014**, "_Boletus rubriceps_, a new species of porcini from
+  the southwestern USA", _North American Fungi_ 9(6): 1–11,
+  [doi:10.2509/naf2014.009.006](https://doi.org/10.2509/naf2014.009.006):
+  southern Rocky Mountains and the Southwest, with spruce, pine and sometimes
+  fir. Previously reported as _B. edulis_ or _B. pinophilus_.
+- **[Forage Colorado](https://www.foragecolorado.com/post/forage-weekly-1-rocky-mountain-red-boletus-rubriceps):**
+  - Hosts: mainly Engelmann spruce, sometimes firs and Douglas-fir, less often
+    pines.
+  - Elevation: from 8,000 ft (about 2,440 m) early in the season up to the
+    tree line.
+  - Season: fruits with the July monsoon rains into late September or
+    October.
+  - Flesh does not stain.
+  - Look-alikes are _Leccinum_ and _Suillus_, neither dangerous.
+- **Agrees with:** the spruce–fir, fir, Douglas-fir and ponderosa hosts, the
+  2,900 ± 900 m altitude, the July–September season, and the description.
+- **From the sightings only:** aspen–birch. No source names aspen; it is in
+  the list because sightings fall in aspen-mapped mixed stands.
+
+**Eastern King Bolete** (MushroomExpert):
+
+- **[_B. variipes_](https://www.mushroomexpert.com/boletus_variipes.html):**
+  mycorrhizal with hardwoods, especially oaks; late summer and fall; eastern
+  North America. Cap tan to greyish brown, often cracking; pores white to
+  yellowish or olive; not bruising.
+- **[_B. separans_](https://www.mushroomexpert.com/boletus_separans.html):**
+  mycorrhizal with oaks (possibly other hardwoods, rarely conifers); summer and
+  fall; east of the Rockies. Cap lilac-brown to liver-red, fading; flesh
+  unchanging.
+- **[_B. nobilis_](https://www.mushroomexpert.com/boletus_nobilis.html):**
+  mycorrhizal with oaks and possibly other hardwoods; summer and fall; the
+  Appalachians.
+- **[_B. atkinsonii_](https://www.mushroomexpert.com/boletus_atkinsonii.html):**
+  mycorrhizal with oaks, beech and other hardwoods; summer and fall; widely
+  distributed in eastern North America.
+
+- **Agrees with:** the oak and hardwood hosts, the no-blue-staining and pore
+  descriptions, and the eastern range.
+- **From the sightings only:**
+  - _B. variipes_ is listed as "late summer and fall", but the group's
+    sightings peak in July–August. _X. separans_, 60% of the records, fruits
+    in "summer and fall". The empirical season curve settles it after the
+    rebuild.
+  - The southern pine classes are in the host list because oaks grow inside
+    pine-mapped stands.
+
+**The porcini fold:**
+
+- **_B. chippewaensis_** is now treated as part of the _B. edulis_ species
+  complex ([Wikipedia, _Boletus edulis_](https://en.wikipedia.org/wiki/Boletus_edulis)).
+- **_B. subcaerulescens_** grows with pine and spruce in northeastern North
+  America (Bessette, Roody & Bessette 2000, _North American Boletes_,
+  pp. 161–162).
+- **Both** fit porcini's existing northern-conifer hosts.
+
 ## Photo identification
 
 `Boletus variipes` and `Boletus rubriceps` join the shipped BioCLIP vocabulary
@@ -298,7 +363,8 @@ so the gate's warning figure measures toxic photos only again.
 ## Illustrations
 
 Both are repainted from the catalog's own bolete illustrations, so they share
-the house style and carry no third-party attribution.
+the house style and carry no third-party attribution. Loris approved both on
+2026-09-27.
 
 - **Eastern King Bolete:** the summer bolete's full-length stem net, with a
   greyish lilac-brown cap for the tan to lilac-brown group (_X. separans_ is the
