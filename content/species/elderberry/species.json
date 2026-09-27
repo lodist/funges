@@ -84,6 +84,7 @@
           "optimal_soil_temp": 17,
           "soil_temp_sigma": 6,
           "min_cumulative_rain": 6,
+          "rain_weight": 0,
           "weather_preference": {
             "rain_first": false
           },
@@ -119,6 +120,7 @@
           "optimal_soil_temp": 22,
           "soil_temp_sigma": 6,
           "min_cumulative_rain": 7,
+          "rain_weight": 0,
           "weather_preference": {
             "rain_first": false
           },
@@ -154,6 +156,7 @@
           "optimal_soil_temp": 24,
           "soil_temp_sigma": 6,
           "min_cumulative_rain": 47,
+          "rain_weight": 0,
           "weather_preference": {
             "rain_first": false
           },
@@ -189,6 +192,7 @@
           "optimal_soil_temp": 19,
           "soil_temp_sigma": 6,
           "min_cumulative_rain": 1,
+          "rain_weight": 0,
           "weather_preference": {
             "rain_first": false
           },

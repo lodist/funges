@@ -980,8 +980,12 @@ def calculate_mushroom_score(df, species_params, zone_curves):
             if wr and sr else water_score if wr else sea_score if sr else 1.0
         )
 
-        #weight of single scores (rain weighted above humidity: it is the stronger growth/fruiting trigger)
-        wT, wH, wW, wA, wPH = 1.75, 1.0, 1.5, 0.75, 1.0
+        # Weight of each sub-score. Rain sits above humidity because it is what makes
+        # fungi fruit. Plants whose flowers, fruit or nuts do not wait for rain set a
+        # lower `rain_weight`: against 2026 sightings in the forageable stage, 0 scored
+        # them higher and told their places from random ones better than 1.5 did.
+        wT, wH, wA, wPH = 1.75, 1.0, 0.75, 1.0
+        wW = float(params.get("rain_weight", 1.5))
         wWater = 0.7 if water_active else 0.0
 
         n = len(df)

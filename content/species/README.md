@@ -61,6 +61,13 @@ prior; they never lower it. An empty list means no prior. The priors replaced
 hand-listed climate zones, whose lat/lon-rectangle labels cut the map along
 straight lines.
 
+`scoring.rain_weight` sets how much recent rain counts in the score, against
+temperature 1.75, humidity 1.0, altitude 0.75 and soil pH 1.0. Omit it for the
+default 1.5, which suits fungi: rain is what makes them fruit. Set 0 for plants
+whose flowers, fruit or nuts do not wait for rain. Against 2026 sightings in the
+forageable stage, 0 scored those plants higher and told their places from random
+ones better, most of all in dry summers, where a rain term capped them near 4/10.
+
 Mycorrhizal fungi also list their host trees in `scoring.hosts`, per region,
 using the classes in `_host_classes.json`: the European Tree Genus Map for NE
 and SE, the USFS Forest Type Groups for USE and USW. Omit it for species that
