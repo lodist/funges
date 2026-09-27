@@ -362,18 +362,29 @@ embedded with the PyTorch BioCLIP model and ranked against the shipped matrix:
 
 ## Illustrations and recipes
 
-- **All four images are drawn for this PR.** They are vector illustrations
-  written as SVG, rendered with Chromium at 2× and downscaled, with the house
-  grain added and saved as WebP at quality 75. There is no third-party imagery.
-  The README asks for a human check of the depicted features.
+- **The images are generated in the house style**, from the existing species
+  and recipe images as style references, and saved as WebP. They await
+  Loris's check (the README requires a human check of generated images).
 - **Catalog images, 512 px:**
-  - `src/assets/species/lions_mane.webp`: a rounded white clump whose spines
-    hang in tiers.
-  - `hen_of_the_woods.webp`: a rosette of spoon-shaped grey-brown fronds with
-    pale margins on a white branching base.
+  - `src/assets/species/lions_mane.webp`: a rounded white clump of long hanging
+    spines.
+  - `hen_of_the_woods.webp`: a rosette of overlapping grey-brown fronds on a
+    white branching base.
 - **Recipe images, 768 px:**
-  - `src/assets/recipes/lions-mane-crab-cakes.webp`
+  - `src/assets/recipes/lions-mane-crab-cakes.webp`: one cake is broken open to
+    show the shredded inside.
   - `crispy-roasted-hen-of-the-woods.webp`
+- **Redrawn in the same pass:** the eastern and Rocky Mountain kings from #276
+  (they had been recoloured from sibling boletes) and the six species split out
+  in #266 (summer, bronze and pine bolete; Pacific, smooth and winter
+  chanterelle).
+- **Features checked against each manifest's description:**
+  - the cracked lilac-brown cap of the eastern king;
+  - the brick-red cap of the Rocky Mountain king;
+  - the netted stems of the boletes;
+  - the salmon false gills of the Pacific chanterelle;
+  - the smooth underside of the smooth chanterelle;
+  - the brown funnels on yellow stems of the winter chanterelle.
 - **Recipes:**
   - `lions-mane-crab-cakes`: lion's mane "crab" cakes, dry-fried first to drive
     out the water.
