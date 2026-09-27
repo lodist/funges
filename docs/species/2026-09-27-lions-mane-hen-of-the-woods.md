@@ -134,8 +134,9 @@ hardwood.
 | hen of the woods, no hosts                   |              8.69 |                  5.89 |       0.814 |
 | hen of the woods, all hardwoods              |              8.56 |                  5.39 |       0.819 |
 
-Chicken of the woods and oyster have no US host list after #277's check. That
-check counted town sightings too, so they deserve the same re-test.
+The same re-test gave chicken of the woods and oyster US host lists in this PR:
+all hardwoods in US East, and hardwoods plus the wet western conifers in US West.
+See the correction in `2026-09-27-quick-wins.md`.
 
 ## Seasons
 
