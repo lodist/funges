@@ -418,21 +418,43 @@ random points.
 | Wild Artichoke  | USW    | 5.2 · 0.67   | 6.0 · 0.80 | 6.8 · 0.88 | 7.6 · 0.93 | 0      |
 | Masterwort      | SE     | 7.3 · 0.92   | 7.0 · 0.93 | 6.9 · 0.93 | 6.8 · 0.92 | 1.5    |
 
-**A finding beyond rain.** With their current parameters, some existing
-plants score lower at real sightings than at random points of the region
-(ranking under 0.5):
+**Recalibrated existing plants.** Five plants scored lower at real sightings
+than at random points with their old values: artichoke, nettle, asparagus,
+lingonberry and amaranth. Each was recalibrated with the method above:
 
-- Amaranth, USW (0.47);
-- Wild Artichoke, NE (0.34);
-- Wild Artichoke, SE (0.41);
-- Wild Artichoke, USE (0.47);
-- Wild Asparagus, SE (0.46);
-- Lingonberry, NE (0.48);
-- Nettle, NE (0.41).
+- in-season sightings only, from 3 May, once the 21-day lookback is complete;
+- missing weather days skipped, as the scorer does;
+- nettle's water factor tested as well.
 
-Their temperature, humidity or altitude optima do not match where they are
-found. That is worth the same weather-at-sightings recalibration these eleven
-species received, as a separate change.
+A region takes the new values under the rain-weight rule: the ranking holds
+(within 0.01), the score at sightings does not drop, and one of them clearly
+improves. Regions with fewer than 30 in-season sightings keep their values:
+artichoke in NE and USE, asparagus in NE, lingonberry in USW, amaranth in NE.
+
+| plant          | region | sightings | before     | after      |             | new values                                                         |
+| -------------- | ------ | --------: | ---------- | ---------- | ----------- | ------------------------------------------------------------------ |
+| Wild Artichoke | SE     |        71 | 7.8 · 0.63 | 8.6 · 0.72 | **applied** | 17 °C, 70%, 100 ± 800 m, pH 5.9, rain 11 mm, weight 0              |
+| Wild Artichoke | USW    |        64 | 8.5 · 0.96 | 9.1 · 0.98 | **applied** | 17 °C, 70%, 100 ± 800 m, pH 6.7, rain 5 mm, weight 0               |
+| Nettle         | NE     |        83 | 6.3 · 0.43 | 8.9 · 0.68 | **applied** | 15 °C, 75%, 50 ± 800 m, pH 4.6, rain 22 mm, weight 0, water off    |
+| Nettle         | SE     |       260 | 5.1 · 0.59 | 7.0 · 0.59 | **applied** | 19 °C, 65%, 450 ± 1300 m, pH 5.5, rain 16 mm, weight 1.5           |
+| Nettle         | USE    |       227 | 5.4 · 0.71 | 8.2 · 0.60 | kept        | 20 °C, 70%, 200 ± 800 m, pH 5.8, rain 45 mm, weight 1.5, water off |
+| Nettle         | USW    |       227 | 4.8 · 0.71 | 7.7 · 0.74 | **applied** | 17 °C, 60%, 450 ± 2200 m, pH 6.0, rain 3 mm, weight 0, water off   |
+| Wild Asparagus | SE     |        53 | 8.1 · 0.65 | 8.8 · 0.72 | **applied** | 16 °C, 70%, 200 ± 800 m, pH 6.3, rain 20 mm, weight 0              |
+| Lingonberry    | NE     |       101 | 8.4 · 0.48 | 8.9 · 0.67 | **applied** | 15 °C, 75%, 100 ± 800 m, pH 4.7, rain 32 mm, weight 1.5            |
+| Lingonberry    | SE     |        78 | 7.1 · 0.89 | 8.5 · 0.86 | kept        | 16 °C, 70%, 1100 ± 2100 m, pH 5.4, rain 38 mm, weight 1.5          |
+| Lingonberry    | USE    |        47 | 7.3 · 0.94 | 9.2 · 0.91 | kept        | 18 °C, 70%, 350 ± 800 m, pH 4.9, rain 40 mm, weight 1.5            |
+| Amaranth       | SE     |       459 | 7.9 · 0.58 | 8.5 · 0.63 | **applied** | 22 °C, 55%, 200 ± 800 m, pH 5.5, rain 11 mm, weight 0              |
+| Amaranth       | USE    |       298 | 9.0 · 0.70 | 8.8 · 0.66 | kept        | 23 °C, 70%, 200 ± 800 m, pH 5.9, rain 50 mm, weight 1.5            |
+| Amaranth       | USW    |       290 | 6.2 · 0.55 | 8.4 · 0.62 | **applied** | 22 °C, 40%, 1350 ± 1900 m, pH 7.0, rain 3 mm, weight 0             |
+
+Nettle's old values put its optimum at 700 ± 800 m and 85% humidity, and
+applied the water-distance factor. Its sightings sit near 50 m at 75%, most of
+them far from mapped water. In North Europe this lifts it from 6.3 to 8.9, and
+its ranking from 0.43 to 0.68. Lingonberry's optimum moves from 10.5 °C to the
+15 °C at which its fruit is found.
+
+Some regions keep their old values because the new ones would rank worse:
+nettle in USE (0.71 → 0.60), lingonberry in SE and USE, amaranth in USE.
 
 ## Photo identification and look-alikes
 
