@@ -96,7 +96,21 @@
           "wind_sensitive": true,
           "season_months": [8, 9, 10, 11, 12],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": [
+            "oak_pine",
+            "oak_hickory",
+            "oak_gum_cypress",
+            "elm_ash_cottonwood",
+            "maple_beech_birch",
+            "aspen_birch",
+            "alder_maple",
+            "western_oak",
+            "tanoak_laurel",
+            "other_western_hardwoods",
+            "tropical_hardwoods",
+            "exotic_hardwoods"
+          ]
         },
         "scoringReferences": [
           "https://www.gbif.org/species/5248508",
@@ -132,7 +146,21 @@
           "wind_sensitive": true,
           "season_months": [8, 9, 10, 11, 12, 1, 2],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": [
+            "oak_pine",
+            "oak_hickory",
+            "oak_gum_cypress",
+            "elm_ash_cottonwood",
+            "maple_beech_birch",
+            "aspen_birch",
+            "alder_maple",
+            "western_oak",
+            "tanoak_laurel",
+            "other_western_hardwoods",
+            "tropical_hardwoods",
+            "exotic_hardwoods"
+          ]
         },
         "scoringReferences": [
           "https://www.gbif.org/species/5248508",

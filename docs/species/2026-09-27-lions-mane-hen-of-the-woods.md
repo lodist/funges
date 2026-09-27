@@ -86,28 +86,55 @@ background, casual rescue), then scored against 2026 sightings:
 Lion's mane grows across the East and down the Pacific coast, so its prior rules
 little out. Hen of the woods' prior closes most of the West.
 
-### Host trees: none
+### Host trees: every hardwood class
 
-Both species are wood-decay fungi. That makes a host list tempting, but every
-list tested hides far more sightings than the ~3% the host layer allows.
+Both species grow on hardwoods, not conifers (see the
+[Literature check](#literature-check)). Both manifests list all 12 hardwood
+forest-type groups:
 
-The tests use all-year GBIF records with coordinate uncertainty ≤ 1 km (4,200 per
+- oak–pine, oak–hickory and oak–gum–cypress;
+- elm–ash–cottonwood, maple–beech–birch and aspen–birch;
+- alder–maple, western oak, tanoak–laurel and other western hardwoods;
+- tropical and exotic hardwoods. Exotic hardwoods covers eucalyptus.
+
+**Where the hidden sightings are.** At first every host list looked as if it
+hid 10–29% of sightings. Splitting those sightings by what surrounds them shows
+they are nearly all in towns and farmland: less than 10% forest within ~5 km.
+The map shows forest only (NLCD 41–43), so they can't appear with or without a
+host list. The test that matters is the share hidden among sightings made in
+forest.
+
+The data: all-year GBIF records with coordinate uncertainty ≤ 1 km (4,200 per
 species; the host maps are not GBIF-built, so this does not leak) and the 2026
-iNaturalist sightings:
+iNaturalist sightings. The forest around the forest sightings is 95–99%
+hardwood.
 
-| species          | host classes                                                       | all years hidden | 2026 hidden |
-| ---------------- | ------------------------------------------------------------------ | ---------------: | ----------: |
-| lion's mane      | eastern hardwood (oak ×3, maple–beech–birch, elm–ash, aspen–birch) |            25.0% |       29.0% |
-| lion's mane      | + western hardwood (western oak, tanoak, alder–maple, other)       |            13.4% |       27.1% |
-| hen of the woods | oak (oak–hickory, oak–pine, oak–gum–cypress)                       |            12.3% |       24.2% |
-| hen of the woods | + maple–beech–birch                                                |            10.3% |       22.1% |
-| hen of the woods | + elm–ash–cottonwood                                               |            10.3% |       22.1% |
+| species                   | host classes            | hidden, all years | of which town/farmland | hidden among forest sightings (all years / 2026) |
+| ------------------------- | ----------------------- | ----------------: | ---------------------: | -----------------------------------------------: |
+| lion's mane               | all hardwoods           |             13.4% |                  13.3% |                                      0.2% / 0.0% |
+| lion's mane, US West only | all hardwoods           |             13.8% |                  12.6% |                                             2.0% |
+| hen of the woods          | oak (3 classes)         |             12.3% |                   7.1% |                                      7.9% / 8.9% |
+| hen of the woods          | oak + maple–beech–birch |             10.4% |                   5.8% |                                      7.0% / 7.4% |
+| hen of the woods          | all hardwoods           |              3.9% |                   3.9% |                                      0.0% / 0.0% |
 
-Much of it is trees the forest map cannot see: hen of the woods on park,
-cemetery and street oaks, and lion's mane on a lone wounded hardwood inside a
-conifer-typed stand. The literature agrees that the host is "hardwoods", not
-a stand type (see below). Chicken of the woods has no US host list for the same
-reason.
+- **Hen of the woods needs more than oak.** It fruits at the base of oaks, but
+  inside stands the map types as maple–beech–birch or elm–ash.
+- **What the list closes:**
+  - on the US West points: 70% for lion's mane and 79% for hen of the woods, the
+    conifer and dry West;
+  - on the US East points: 5–6%, mostly Southeast pine and northern spruce–fir.
+- **What it costs where the species grows:** the score at sightings barely
+  moves, and random points drop.
+
+| full score (weather × range × host), US East | mean at sightings | mean at random points | spatial AUC |
+| -------------------------------------------- | ----------------: | --------------------: | ----------: |
+| lion's mane, no hosts                        |              8.77 |                  5.83 |       0.865 |
+| lion's mane, all hardwoods                   |              8.74 |                  5.34 |       0.872 |
+| hen of the woods, no hosts                   |              8.69 |                  5.89 |       0.814 |
+| hen of the woods, all hardwoods              |              8.56 |                  5.39 |       0.819 |
+
+Chicken of the woods and oyster have no US host list after #277's check. That
+check counted town sightings too, so they deserve the same re-test.
 
 ## Seasons
 
@@ -155,6 +182,11 @@ are weighted like the scorer, and missing days are skipped.
 | minimum rain, 21 days (mm)   |            50 |               40 |
 | rain weight                  | 1.5 (default) |    1.5 (default) |
 | land cover (NLCD)            |    41, 42, 43 |       41, 42, 43 |
+| hosts                        | all hardwoods |    all hardwoods |
+
+Evergreen forest (NLCD 42) stays in the land cover because it includes the
+evergreen hardwoods, such as California's live oaks and tanoak. The host list,
+not the land cover, removes conifer stands.
 
 How each value was set:
 
@@ -233,16 +265,32 @@ score:
   - East of the Great Plains, "especially north of the 38th Parallel".
   - Branched, with long spines; young, unbranched clumps can be confused with
     _H. erinaceus_.
+- **[Wikipedia](https://en.wikipedia.org/wiki/Hericium_erinaceus):**
+  - North American hosts "include maple, ash, oaks, and eucalyptus",
+    "particularly American beech and maple".
+  - In California it grows on coast live, canyon live, interior live, California
+    black, blue and valley oak.
+  - It is "mostly" on dead trees, and on living trees "usually in association
+    with a wound".
+- **[Woodland Trust](https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/fungi-and-lichens/bearded-tooth/)**
+  (UK):
+  - "grows on beech, oak and birch trees";
+  - it grows on fallen deadwood and standing trunks, "especially old, veteran or
+    ancient" trees;
+  - it fruits from late August to December.
 - **[Fungi Perfecti](https://fungi.com/products/hericium-erinaceus-culture):**
   fruits at 60–80 °F (16–27 °C) in cultivation.
-- **Agrees with:** the hardwood hosts, the eastern and Pacific range, the
-  August–December season with a winter season in warm climates (US West's
-  fallback runs to February), and the white spine clump in the description.
-- **From the sightings only:**
-  - The 17 °C optimum sits at the cool end of the cultivation range. It is a
-    12-day mean that includes the cool nights that trigger fruiting.
-  - Dropping the host list: the literature's "especially oaks" is not
-    restrictive enough to justify a host list that hides 13–29% of sightings.
+- **Agrees with:**
+  - the hardwood-only host list, with beech, oak, maple, birch, ash and
+    eucalyptus all inside it;
+  - the eastern and Pacific range;
+  - the August–December season, with a winter season in warm climates. US
+    West's fallback runs to February.
+  - the white spine clump in the description.
+- **Walnut:** named only in foraging guides. It is inside the list either way.
+- **From the sightings only:** the 17 °C optimum sits at the cool end of the
+  cultivation range. It is a 12-day mean that includes the cool nights that
+  trigger fruiting.
 
 **Hen of the woods.**
 
@@ -257,7 +305,9 @@ score:
 - **Agrees with:** oak and other hardwoods, the base-of-tree and same-tree text,
   the eastern range (the prior closes the West), and the September–October
   season.
-- **From the sightings only:** the 18 °C optimum and the 40 mm rain threshold.
+- **From the sightings only:**
+  - the 18 °C optimum and the 40 mm rain threshold;
+  - listing every hardwood class rather than oak alone.
 
 ## Photo identification
 
@@ -292,13 +342,13 @@ change, because its test split has no photos of the two species:
 20 recent research-grade iNaturalist photos per taxon (one per observation) were
 embedded with the PyTorch BioCLIP model and ranked against the shipped matrix:
 
-| photos of                 | catalog label expected | first | in top 3 | a toxic label in top 3 |
-| ------------------------- | ---------------------- | ----: | -------: | ---------------------: |
-| _Hericium erinaceus_      | lion's mane            |  100% |     100% |                    10% |
-| _Hericium americanum_     | lion's mane            |   60% |     100% |                     0% |
-| _Grifola frondosa_        | hen of the woods       |   95% |     100% |                     0% |
-| _Meripilus sumstinei_     | (none: own name 95%)   |    0% |      40% |                     0% |
-| _Bondarzewia berkeleyi_   | (none: own name 95%)   |    0% |       0% |                    10% |
+| photos of               | catalog label expected | first | in top 3 | a toxic label in top 3 |
+| ----------------------- | ---------------------- | ----: | -------: | ---------------------: |
+| _Hericium erinaceus_    | lion's mane            |  100% |     100% |                    10% |
+| _Hericium americanum_   | lion's mane            |   60% |     100% |                     0% |
+| _Grifola frondosa_      | hen of the woods       |   95% |     100% |                     0% |
+| _Meripilus sumstinei_   | (none: own name 95%)   |    0% |      40% |                     0% |
+| _Bondarzewia berkeleyi_ | (none: own name 95%)   |    0% |       0% |                    10% |
 
 - **Bear's head photos:** the other 40% rank comb tooth (_H. coralloides_)
   first. It is edible too.
