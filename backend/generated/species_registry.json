@@ -717,7 +717,7 @@
       "scientificName": "Taraxacum officinale",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
-      "rangeTaxonKeys": [7787708],
+      "rangeTaxonKeys": [],
       "dataColumns": ["dandelion_score", "Dandelion"],
       "regions": {
         "NE": {
