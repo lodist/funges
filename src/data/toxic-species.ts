@@ -61,6 +61,8 @@ const BOLETE_IDS = [
   'bronze_bolete',
   'pine_bolete',
   'summer_bolete',
+  'eastern_king',
+  'rocky_king',
 ];
 const CHANTERELLE_IDS = [
   'chant',

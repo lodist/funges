@@ -253,6 +253,16 @@
       "name": "Rebozuelo de Invierno",
       "description": "Un rebozuelo pequeño de sombrero pardo sobre pie amarillo y hueco, que fructifica hasta las primeras heladas",
       "howTo": "Búscalo en la hojarasca con musgo de las coníferas al final de la temporada, a menudo en grupos densos sobre madera podrida"
+    },
+    "eastern_king": {
+      "name": "Boleto Rey del Este",
+      "description": "Los boletos de los robledales del este americano: sombrero pardo claro a pardo lila, poros blancos que amarillean con la edad y pie reticulado, sin azulear nunca",
+      "howTo": "Búscalo bajo robles, hayas y nogales americanos en los bosques caducifolios del este, desde junio, pocos días después de una lluvia cálida de verano"
+    },
+    "rocky_king": {
+      "name": "Boleto Rey de las Rocosas",
+      "description": "Un boleto robusto de alta montaña, de sombrero rojo ladrillo a pardo rojizo, poros blancos y pie grueso y claro reticulado en lo alto",
+      "howTo": "Búscalo bajo píceas y abetos en lo alto de las Montañas Rocosas del sur, cuando llegan las lluvias del monzón de verano, de julio a septiembre"
     }
   }
 }

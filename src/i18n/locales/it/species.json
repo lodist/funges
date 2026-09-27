@@ -252,6 +252,16 @@
       "name": "Finferla",
       "description": "Un piccolo gallinaccio dal cappello bruno su gambo giallo e cavo, che fruttifica fino alle prime gelate",
       "howTo": "Cercala nella lettiera muscosa delle conifere a fine stagione, spesso in fitti gruppi su legno marcescente"
+    },
+    "eastern_king": {
+      "name": "Porcino dell'Est Americano",
+      "description": "I porcini dei querceti dell'est americano: cappello da nocciola a bruno-lilla, pori bianchi che ingialliscono con l'età e gambo reticolato, mai viranti al blu",
+      "howTo": "Cercalo sotto querce e faggi nei boschi di latifoglie dell'est, da giugno, pochi giorni dopo una pioggia estiva calda"
+    },
+    "rocky_king": {
+      "name": "Porcino delle Rocciose",
+      "description": "Un porcino tozzo d'alta montagna, con cappello rosso mattone o bruno-rossastro, pori bianchi e gambo chiaro e grosso reticolato in alto",
+      "howTo": "Cercalo sotto abeti rossi e abeti bianchi in alta quota nelle Montagne Rocciose meridionali, quando arrivano le piogge monsoniche estive, da luglio a settembre"
     }
   },
   "search_placeholder": "Cerca una specie"

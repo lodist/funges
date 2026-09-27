@@ -162,6 +162,8 @@ const RECIPE_BASE_SPECIES: Record<string, string> = {
   bronze_bolete: 'mushroom',
   pine_bolete: 'mushroom',
   summer_bolete: 'mushroom',
+  eastern_king: 'mushroom',
+  rocky_king: 'mushroom',
   pacific_chant: 'chant',
   smooth_chant: 'chant',
   winter_chant: 'chant',

@@ -1,0 +1,162 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "rocky_king",
+  "scientificName": "Boletus rubriceps",
+  "catalog": {
+    "enabled": true,
+    "order": 40,
+    "translationKey": "rocky_king",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "summer",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/rocky_king.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Rocky Mountain King",
+      "description": "A stout high-mountain porcino with a brick-red to red-brown cap, white pores and a thick pale stem netted at the top",
+      "howTo": "Look under spruce and fir high in the southern Rockies once the summer monsoon rains arrive, from July to September"
+    },
+    "it": {
+      "name": "Porcino delle Rocciose",
+      "description": "Un porcino tozzo d'alta montagna, con cappello rosso mattone o bruno-rossastro, pori bianchi e gambo chiaro e grosso reticolato in alto",
+      "howTo": "Cercalo sotto abeti rossi e abeti bianchi in alta quota nelle Montagne Rocciose meridionali, quando arrivano le piogge monsoniche estive, da luglio a settembre"
+    },
+    "fr": {
+      "name": "Cèpe des Rocheuses",
+      "description": "Un cèpe trapu de haute montagne, au chapeau rouge brique à brun-rouge, aux pores blancs et au gros pied clair réticulé au sommet",
+      "howTo": "Cherchez-le sous les épicéas et les sapins en altitude dans les Rocheuses du Sud, dès l'arrivée des pluies de mousson estivales, de juillet à septembre"
+    },
+    "de": {
+      "name": "Rocky-Mountains-Steinpilz",
+      "description": "Ein gedrungener Hochgebirgs-Steinpilz mit ziegelrotem bis rotbraunem Hut, weissen Poren und dickem hellem Stiel, oben genetzt",
+      "howTo": "Suche unter Fichten und Tannen in den Hochlagen der südlichen Rocky Mountains, sobald der Sommermonsun Regen bringt, von Juli bis September"
+    },
+    "es": {
+      "name": "Boleto Rey de las Rocosas",
+      "description": "Un boleto robusto de alta montaña, de sombrero rojo ladrillo a pardo rojizo, poros blancos y pie grueso y claro reticulado en lo alto",
+      "howTo": "Búscalo bajo píceas y abetos en lo alto de las Montañas Rocosas del sur, cuando llegan las lluvias del monzón de verano, de julio a septiembre"
+    },
+    "pt": {
+      "name": "Boleto Rei das Rochosas",
+      "description": "Um cogumelo boleto robusto de alta montanha, de chapéu vermelho-tijolo a castanho-avermelhado, poros brancos e pé grosso e claro reticulado no alto",
+      "howTo": "Procure sob píceas e abetos nas altitudes das Montanhas Rochosas do sul, quando chegam as chuvas de monção de verão, de julho a setembro"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Boletus rubriceps",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-27-us-porcini.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Rocky Mountain King"],
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 19,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 25,
+          "optimal_alt": 2900,
+          "alt_sigma": 900,
+          "optimal_humidity": 50,
+          "humidity_sigma": 17,
+          "optimal_pH": 6.0,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5, 7],
+          "optimal_soil_temp": 17,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [7, 8, 9],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "spruce_fir",
+            "fir_spruce_mountain_hemlock",
+            "aspen_birch",
+            "douglas_fir",
+            "ponderosa_pine"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/7769448",
+          "docs/species/2026-09-27-us-porcini.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 19,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 25,
+          "optimal_alt": 2900,
+          "alt_sigma": 900,
+          "optimal_humidity": 50,
+          "humidity_sigma": 17,
+          "optimal_pH": 6.0,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5, 7],
+          "optimal_soil_temp": 17,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 35,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [7, 8, 9],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "spruce_fir",
+            "fir_spruce_mountain_hemlock",
+            "aspen_birch",
+            "douglas_fir",
+            "ponderosa_pine"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/7769448",
+          "docs/species/2026-09-27-us-porcini.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [7769448],
+      "references": ["https://www.gbif.org/species/7769448"]
+    },
+    "rangePrior": { "taxonKeys": [7769448] }
+  }
+}

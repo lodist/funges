@@ -253,6 +253,16 @@
       "name": "Trompetenpfifferling",
       "description": "Ein kleiner Pfifferling mit braunem Hut auf hohlem gelbem Stiel, der bis in die ersten Fröste fruchtet",
       "howTo": "Suche spät in der Saison in moosiger Nadelstreu, oft in dichten Trupps auf morschem Holz"
+    },
+    "eastern_king": {
+      "name": "Ostamerika-Steinpilz",
+      "description": "Die Steinpilze der ostamerikanischen Eichenwälder: hellbrauner bis lilabrauner Hut, weisse, im Alter gilbende Poren und genetzter Stiel, nie blau verfärbend",
+      "howTo": "Suche unter Eichen, Buchen und Hickorys in den Laubwäldern des Ostens ab Juni, wenige Tage nach warmem Sommerregen"
+    },
+    "rocky_king": {
+      "name": "Rocky-Mountains-Steinpilz",
+      "description": "Ein gedrungener Hochgebirgs-Steinpilz mit ziegelrotem bis rotbraunem Hut, weissen Poren und dickem hellem Stiel, oben genetzt",
+      "howTo": "Suche unter Fichten und Tannen in den Hochlagen der südlichen Rocky Mountains, sobald der Sommermonsun Regen bringt, von Juli bis September"
     }
   }
 }
