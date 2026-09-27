@@ -26,7 +26,9 @@ def interp_props(today_scores, d6_scores, threshold: float = INTERP_THRESHOLD) -
     from d0. A missing _d6 therefore means "flat": the client coalesces it back to
     d0, so a polygon we can't forecast holds its value instead of fading to 0.
     """
-    species = set(today_scores) | set(d6_scores)
+    # Ordered union, not a set: str hashing is randomised per process, so a set would
+    # shuffle the property order run to run and no two GeoJSONs would compare equal.
+    species = dict.fromkeys([*today_scores, *d6_scores])
     peak = max((max(today_scores.get(s, 0.0), d6_scores.get(s, 0.0)) for s in species), default=0.0)
     if peak < threshold:
         return {}
