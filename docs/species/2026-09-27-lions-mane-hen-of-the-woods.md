@@ -7,7 +7,8 @@ searched wild mushrooms there. This record covers the new catalog entries and
 their forecasts. It is the reviewed source the manifests cite in
 `scoringReferences` and `identification.safetyReview`.
 
-**The parameter values below are agent-derived and await approval.** The
+**The parameter values below are agent-derived and were approved by Loris Di
+Stefano on 2026-09-27.** The
 validator checks types, ranges and sigmas. It cannot establish scientific
 authority, and no mycologist has reviewed them. They rest on GBIF and
 iNaturalist records and the 2026 weather at real sightings, checked against the
@@ -363,8 +364,8 @@ embedded with the PyTorch BioCLIP model and ranked against the shipped matrix:
 ## Illustrations and recipes
 
 - **The images are generated in the house style**, from the existing species
-  and recipe images as style references, and saved as WebP. They await
-  Loris's check (the README requires a human check of generated images).
+  and recipe images as style references, and saved as WebP. Loris
+  checked them on 2026-09-27.
 - **Catalog images, 512 px:**
   - `src/assets/species/lions_mane.webp`: a rounded white clump of long hanging
     spines.
@@ -377,7 +378,8 @@ embedded with the PyTorch BioCLIP model and ranked against the shipped matrix:
 - **Redrawn in the same pass:** the eastern and Rocky Mountain kings from #276
   (they had been recoloured from sibling boletes) and the six species split out
   in #266 (summer, bronze and pine bolete; Pacific, smooth and winter
-  chanterelle).
+  chanterelle). Four older catalog images were refreshed to match: porcini,
+  chanterelle, black trumpet and oyster.
 - **Features checked against each manifest's description:**
   - the cracked lilac-brown cap of the eastern king;
   - the brick-red cap of the Rocky Mountain king;
