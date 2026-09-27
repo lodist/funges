@@ -226,8 +226,8 @@
       "name": "Porcini",
       "scientificName": "Boletus edulis",
       "identificationRank": "species",
-      "empiricalTaxonKeys": [5954958],
-      "rangeTaxonKeys": [5954958],
+      "empiricalTaxonKeys": [5954958, 6015464, 6015325],
+      "rangeTaxonKeys": [5954958, 6015464, 6015325],
       "dataColumns": ["mushroom_score", "Porcini", "Mushroom", "Boletus"],
       "regions": {
         "NE": {
@@ -3262,6 +3262,198 @@
           "scoringReferences": [
             "https://www.gbif.org/species/2554536",
             "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        }
+      }
+    },
+    "eastern_king": {
+      "name": "Eastern King Bolete",
+      "scientificName": "Boletus variipes",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [2524722, 7240439, 6015430, 6015920],
+      "rangeTaxonKeys": [2524722, 7240439, 6015430, 6015920],
+      "dataColumns": ["eastern_king_score", "Eastern King Bolete"],
+      "regions": {
+        "USE": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 24,
+            "temp_sigma": 5,
+            "min_temp": 12,
+            "max_temp": 32,
+            "optimal_alt": 400,
+            "alt_sigma": 900,
+            "optimal_humidity": 75,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.3, 6.5],
+            "optimal_soil_temp": 22,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [6, 7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "oak_hickory",
+              "oak_pine",
+              "oak_gum_cypress",
+              "maple_beech_birch",
+              "loblolly_shortleaf_pine",
+              "longleaf_slash_pine"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7240439",
+            "https://www.gbif.org/species/2524722",
+            "https://www.mushroomexpert.com/boletus_variipes.html",
+            "https://www.mushroomexpert.com/boletus_separans.html",
+            "https://www.mushroomexpert.com/boletus_nobilis.html",
+            "https://www.mushroomexpert.com/boletus_atkinsonii.html",
+            "docs/species/2026-09-27-us-porcini.md"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 24,
+            "temp_sigma": 5,
+            "min_temp": 12,
+            "max_temp": 32,
+            "optimal_alt": 400,
+            "alt_sigma": 900,
+            "optimal_humidity": 75,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.3, 6.5],
+            "optimal_soil_temp": 22,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [6, 7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "oak_hickory",
+              "oak_pine",
+              "oak_gum_cypress",
+              "maple_beech_birch",
+              "loblolly_shortleaf_pine",
+              "longleaf_slash_pine"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7240439",
+            "https://www.gbif.org/species/2524722",
+            "https://www.mushroomexpert.com/boletus_variipes.html",
+            "https://www.mushroomexpert.com/boletus_separans.html",
+            "https://www.mushroomexpert.com/boletus_nobilis.html",
+            "https://www.mushroomexpert.com/boletus_atkinsonii.html",
+            "docs/species/2026-09-27-us-porcini.md"
+          ]
+        }
+      }
+    },
+    "rocky_king": {
+      "name": "Rocky Mountain King",
+      "scientificName": "Boletus rubriceps",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [7769448],
+      "rangeTaxonKeys": [7769448],
+      "dataColumns": ["rocky_king_score", "Rocky Mountain King"],
+      "regions": {
+        "USE": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 19,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 25,
+            "optimal_alt": 2900,
+            "alt_sigma": 900,
+            "optimal_humidity": 50,
+            "humidity_sigma": 17,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7],
+            "optimal_soil_temp": 17,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "spruce_fir",
+              "fir_spruce_mountain_hemlock",
+              "aspen_birch",
+              "douglas_fir",
+              "ponderosa_pine"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7769448",
+            "https://doi.org/10.2509/naf2014.009.006",
+            "https://www.foragecolorado.com/post/forage-weekly-1-rocky-mountain-red-boletus-rubriceps",
+            "docs/species/2026-09-27-us-porcini.md"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 19,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 25,
+            "optimal_alt": 2900,
+            "alt_sigma": 900,
+            "optimal_humidity": 50,
+            "humidity_sigma": 17,
+            "optimal_pH": 6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5, 7],
+            "optimal_soil_temp": 17,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "spruce_fir",
+              "fir_spruce_mountain_hemlock",
+              "aspen_birch",
+              "douglas_fir",
+              "ponderosa_pine"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7769448",
+            "https://doi.org/10.2509/naf2014.009.006",
+            "https://www.foragecolorado.com/post/forage-weekly-1-rocky-mountain-red-boletus-rubriceps",
+            "docs/species/2026-09-27-us-porcini.md"
           ]
         }
       }

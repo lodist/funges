@@ -252,9 +252,14 @@
     },
     "empiricalSeason": {
       "enabled": true,
-      "taxonKeys": [5954958],
-      "references": ["https://www.gbif.org/species/5954958"]
+      "taxonKeys": [5954958, 6015464, 6015325],
+      "references": [
+        "https://www.gbif.org/species/5954958",
+        "https://www.gbif.org/species/6015464",
+        "https://www.gbif.org/species/6015325",
+        "docs/species/2026-09-27-us-porcini.md"
+      ]
     },
-    "rangePrior": { "taxonKeys": [5954958] }
+    "rangePrior": { "taxonKeys": [5954958, 6015464, 6015325] }
   }
 }

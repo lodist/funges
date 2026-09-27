@@ -139,4 +139,18 @@ export const GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG = {
       'Winter Chanterelle',
     ],
   },
+  eastern_king: {
+    scorePropertyAliases: [
+      'eastern_king',
+      'eastern_king_score',
+      'Eastern King Bolete',
+    ],
+  },
+  rocky_king: {
+    scorePropertyAliases: [
+      'rocky_king',
+      'rocky_king_score',
+      'Rocky Mountain King',
+    ],
+  },
 } as const;

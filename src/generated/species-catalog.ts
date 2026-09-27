@@ -485,6 +485,32 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     showOnMap: true,
     forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
+  {
+    id: 'eastern_king',
+    nameKey: 'eastern_king.name',
+    scientificName: 'Boletus variipes',
+    category: 'mushroom',
+    emoji: '🍄‍🟫',
+    descriptionKey: 'eastern_king.description',
+    howToKey: 'eastern_king.howTo',
+    season: 'summer',
+    habitat: 'forest',
+    showOnMap: true,
+    forecastRegions: ['USE', 'USW'],
+  },
+  {
+    id: 'rocky_king',
+    nameKey: 'rocky_king.name',
+    scientificName: 'Boletus rubriceps',
+    category: 'mushroom',
+    emoji: '🍄‍🟫',
+    descriptionKey: 'rocky_king.description',
+    howToKey: 'rocky_king.howTo',
+    season: 'summer',
+    habitat: 'forest',
+    showOnMap: true,
+    forecastRegions: ['USE', 'USW'],
+  },
 ];
 
 export const GENERATED_REGION_BOUNDARIES = {

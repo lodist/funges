@@ -253,6 +253,16 @@
       "name": "Chanterelle en Tube",
       "description": "Une petite chanterelle au chapeau brun sur un pied jaune et creux, qui fructifie jusqu'aux premières gelées",
       "howTo": "Cherchez-la dans la litière moussue des conifères en fin de saison, souvent en troupes denses sur bois pourri"
+    },
+    "eastern_king": {
+      "name": "Cèpe de l'Est Américain",
+      "description": "Les cèpes des chênaies de l'est américain : chapeau fauve à brun lilacin, pores blancs jaunissant avec l'âge et pied réticulé, jamais bleuissants",
+      "howTo": "Cherchez-le sous les chênes et les hêtres des forêts feuillues de l'est, dès juin, quelques jours après une pluie d'été chaude"
+    },
+    "rocky_king": {
+      "name": "Cèpe des Rocheuses",
+      "description": "Un cèpe trapu de haute montagne, au chapeau rouge brique à brun-rouge, aux pores blancs et au gros pied clair réticulé au sommet",
+      "howTo": "Cherchez-le sous les épicéas et les sapins en altitude dans les Rocheuses du Sud, dès l'arrivée des pluies de mousson estivales, de juillet à septembre"
     }
   }
 }

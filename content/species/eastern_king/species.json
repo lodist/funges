@@ -1,0 +1,179 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "eastern_king",
+  "scientificName": "Boletus variipes",
+  "catalog": {
+    "enabled": true,
+    "order": 39,
+    "translationKey": "eastern_king",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "summer",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/eastern_king.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Eastern King Bolete",
+      "description": "The king boletes of eastern oak woods: a tan to lilac-brown cap, white pores that turn yellow with age and a netted stem, never bruising blue",
+      "howTo": "Look under oak, beech and hickory in eastern hardwood forest from June, a few days after warm summer rain"
+    },
+    "it": {
+      "name": "Porcino dell'Est Americano",
+      "description": "I porcini dei querceti dell'est americano: cappello da nocciola a bruno-lilla, pori bianchi che ingialliscono con l'età e gambo reticolato, mai viranti al blu",
+      "howTo": "Cercalo sotto querce e faggi nei boschi di latifoglie dell'est, da giugno, pochi giorni dopo una pioggia estiva calda"
+    },
+    "fr": {
+      "name": "Cèpe de l'Est Américain",
+      "description": "Les cèpes des chênaies de l'est américain : chapeau fauve à brun lilacin, pores blancs jaunissant avec l'âge et pied réticulé, jamais bleuissants",
+      "howTo": "Cherchez-le sous les chênes et les hêtres des forêts feuillues de l'est, dès juin, quelques jours après une pluie d'été chaude"
+    },
+    "de": {
+      "name": "Ostamerika-Steinpilz",
+      "description": "Die Steinpilze der ostamerikanischen Eichenwälder: hellbrauner bis lilabrauner Hut, weisse, im Alter gilbende Poren und genetzter Stiel, nie blau verfärbend",
+      "howTo": "Suche unter Eichen, Buchen und Hickorys in den Laubwäldern des Ostens ab Juni, wenige Tage nach warmem Sommerregen"
+    },
+    "es": {
+      "name": "Boleto Rey del Este",
+      "description": "Los boletos de los robledales del este americano: sombrero pardo claro a pardo lila, poros blancos que amarillean con la edad y pie reticulado, sin azulear nunca",
+      "howTo": "Búscalo bajo robles, hayas y nogales americanos en los bosques caducifolios del este, desde junio, pocos días después de una lluvia cálida de verano"
+    },
+    "pt": {
+      "name": "Boleto Rei do Leste",
+      "description": "Os cogumelos boleto dos carvalhais do leste americano: chapéu castanho claro a castanho-lilás, poros brancos que amarelecem com a idade e pé reticulado, sem nunca azular",
+      "howTo": "Procure sob carvalhos, faias e nogueiras-americanas nas florestas caducifólias do leste, a partir de junho, poucos dias depois de uma chuva quente de verão"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Boletus variipes",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-27-us-porcini.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Eastern King Bolete"],
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 24,
+          "temp_sigma": 5,
+          "min_temp": 12,
+          "max_temp": 32,
+          "optimal_alt": 400,
+          "alt_sigma": 900,
+          "optimal_humidity": 75,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.3,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.3, 6.5],
+          "optimal_soil_temp": 22,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [6, 7, 8, 9],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "oak_hickory",
+            "oak_pine",
+            "oak_gum_cypress",
+            "maple_beech_birch",
+            "loblolly_shortleaf_pine",
+            "longleaf_slash_pine"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/7240439",
+          "https://www.gbif.org/species/2524722",
+          "https://www.mushroomexpert.com/boletus_variipes.html",
+          "https://www.mushroomexpert.com/boletus_separans.html",
+          "https://www.mushroomexpert.com/boletus_nobilis.html",
+          "https://www.mushroomexpert.com/boletus_atkinsonii.html",
+          "docs/species/2026-09-27-us-porcini.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 24,
+          "temp_sigma": 5,
+          "min_temp": 12,
+          "max_temp": 32,
+          "optimal_alt": 400,
+          "alt_sigma": 900,
+          "optimal_humidity": 75,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.3,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.3, 6.5],
+          "optimal_soil_temp": 22,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [6, 7, 8, 9],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "oak_hickory",
+            "oak_pine",
+            "oak_gum_cypress",
+            "maple_beech_birch",
+            "loblolly_shortleaf_pine",
+            "longleaf_slash_pine"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/7240439",
+          "https://www.gbif.org/species/2524722",
+          "https://www.mushroomexpert.com/boletus_variipes.html",
+          "https://www.mushroomexpert.com/boletus_separans.html",
+          "https://www.mushroomexpert.com/boletus_nobilis.html",
+          "https://www.mushroomexpert.com/boletus_atkinsonii.html",
+          "docs/species/2026-09-27-us-porcini.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [2524722, 7240439, 6015430, 6015920],
+      "references": [
+        "https://www.gbif.org/species/2524722",
+        "https://www.gbif.org/species/7240439",
+        "https://www.gbif.org/species/6015430",
+        "https://www.gbif.org/species/6015920"
+      ]
+    },
+    "rangePrior": { "taxonKeys": [2524722, 7240439, 6015430, 6015920] }
+  }
+}

@@ -76,7 +76,7 @@ describe('genus-level catalog entries', () => {
     ).toBe('morel');
   });
 
-  // Boletus is no longer bridged: the four porcini are separate catalog
+  // Boletus is no longer bridged: the six porcini are separate catalog
   // entries, so each resolves under its own binomial rather than through the
   // genus allow-list.
   it('resolves each bolete species to its own catalog entry', () => {
@@ -85,6 +85,8 @@ describe('genus-level catalog entries', () => {
       ['Boletus aereus', 'bronze_bolete'],
       ['Boletus pinophilus', 'pine_bolete'],
       ['Boletus reticulatus', 'summer_bolete'],
+      ['Boletus variipes', 'eastern_king'],
+      ['Boletus rubriceps', 'rocky_king'],
     ];
     for (const [name, id] of boletes) {
       const got = resolvePrediction(p(name));

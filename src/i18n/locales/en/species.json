@@ -253,6 +253,16 @@
       "name": "Winter Chanterelle",
       "description": "A small brown-capped chanterelle on a hollow yellow stem, fruiting on through the first frosts",
       "howTo": "Look in mossy conifer litter late in the season, often in dense troops on rotting wood"
+    },
+    "eastern_king": {
+      "name": "Eastern King Bolete",
+      "description": "The king boletes of eastern oak woods: a tan to lilac-brown cap, white pores that turn yellow with age and a netted stem, never bruising blue",
+      "howTo": "Look under oak, beech and hickory in eastern hardwood forest from June, a few days after warm summer rain"
+    },
+    "rocky_king": {
+      "name": "Rocky Mountain King",
+      "description": "A stout high-mountain porcino with a brick-red to red-brown cap, white pores and a thick pale stem netted at the top",
+      "howTo": "Look under spruce and fir high in the southern Rockies once the summer monsoon rains arrive, from July to September"
     }
   }
 }

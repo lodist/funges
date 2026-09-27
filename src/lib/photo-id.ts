@@ -42,9 +42,10 @@ export interface Candidate {
  * "this genus".
  *
  * *Boletus* used to be bridged here. It no longer is: the catalog carries
- * `Boletus edulis`, `aereus`, `pinophilus` and `reticulatus` as four separate
- * species entries, so each resolves under its own name and a bare-genus
- * prediction is no longer something the vocabulary emits. The reasoning above
+ * `Boletus edulis`, `aereus`, `pinophilus`, `reticulatus`, `variipes` and
+ * `rubriceps` as separate species entries, so each resolves under its own
+ * name and a bare-genus prediction is no longer something the vocabulary
+ * emits. The reasoning above
  * still governs what may be added back — an allow-list, never a prefix.
  */
 const GENUS_LEVEL_CATALOG: Record<

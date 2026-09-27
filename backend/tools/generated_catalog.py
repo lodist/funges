@@ -151,6 +151,14 @@ CATALOG = [
   [
     "Craterellus tubaeformis",
     "species"
+  ],
+  [
+    "Boletus variipes",
+    "species"
+  ],
+  [
+    "Boletus rubriceps",
+    "species"
   ]
 ]
 CATALOG_NAMES = {name for name, _rank in CATALOG}

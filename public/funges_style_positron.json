@@ -3658,6 +3658,174 @@
       }
     },
     {
+      "id": "eastern_king_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "eastern_king_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "eastern_king_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "eastern_king_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "rocky_king_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "rocky_king_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "rocky_king_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "rocky_king_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "chant_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -7802,6 +7970,206 @@
           ["<", ["get", "smooth_chant_score"], 1],
           "",
           ["to-string", ["floor", ["get", "smooth_chant_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "eastern_king_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "eastern_king_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "eastern_king_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "eastern_king_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "eastern_king_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "eastern_king_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "eastern_king_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "eastern_king_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "rocky_king_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "rocky_king_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "rocky_king_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "rocky_king_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "rocky_king_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "rocky_king_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "rocky_king_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "rocky_king_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
