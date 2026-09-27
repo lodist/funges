@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button';
 import { getRepresentativeLngLat } from '@/lib/geo';
 import { getSpeciesImage } from '@/lib/utils';
 import { getScoreColor } from '@/lib/scoreColor';
-import { SPECIES_DATA } from '@/data/species';
+import { SPECIES_DATA, speciesNameKey } from '@/data/species';
 import type { RegionId } from '@/lib/data';
 import { Navigation, BarChart2, Copy, Check, AlertTriangle } from '@/lib/icons';
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
@@ -76,8 +76,12 @@ export default function FeatureInfoModal({
     const cleanKey = key.replace('_score', '');
 
     // Check if this is a species key that has a translation
-    if (tSpecies(`list_of_species.${cleanKey}.name`, { defaultValue: null })) {
-      return tSpecies(`list_of_species.${cleanKey}.name`);
+    if (
+      tSpecies(`list_of_species.${speciesNameKey(cleanKey)}`, {
+        defaultValue: null,
+      })
+    ) {
+      return tSpecies(`list_of_species.${speciesNameKey(cleanKey)}`);
     }
 
     // Return the original key if no translation found
