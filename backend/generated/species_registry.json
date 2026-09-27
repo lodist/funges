@@ -1031,21 +1031,21 @@
           "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 11,
+            "optimal_temp": 12,
             "temp_sigma": 6,
             "min_temp": -1,
-            "max_temp": 20,
-            "optimal_alt": 500,
-            "alt_sigma": 1550,
-            "optimal_humidity": 80,
+            "max_temp": 22,
+            "optimal_alt": 50,
+            "alt_sigma": 800,
+            "optimal_humidity": 75,
             "humidity_sigma": 17,
-            "optimal_pH": 6.25,
+            "optimal_pH": 4.6,
             "pH_sigma_near": 1.5,
             "pH_sigma_far": 1.5,
-            "pH_range_near": [5, 7.5],
-            "optimal_soil_temp": 9,
-            "soil_temp_sigma": 4,
-            "min_cumulative_rain": 10,
+            "pH_range_near": [3.1, 6.1],
+            "optimal_soil_temp": 11,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 20,
             "rain_weight": 0,
             "weather_preference": {
               "rain_first": false
@@ -1056,7 +1056,8 @@
             "sea_relevance": false
           },
           "scoringReferences": [
-            "https://data.fung.es/EU/NE/NE_species_params.txt"
+            "https://data.fung.es/EU/NE/NE_species_params.txt",
+            "docs/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
         },
@@ -1321,34 +1322,35 @@
           "landCoverScheme": "CORINE",
           "scoring": {
             "optimal_temp": 10,
-            "temp_sigma": 5,
+            "temp_sigma": 6,
             "min_temp": -2,
-            "max_temp": 15,
-            "optimal_alt": 600,
-            "alt_sigma": 950,
-            "optimal_humidity": 85,
-            "humidity_sigma": 18,
-            "optimal_pH": 6,
+            "max_temp": 20,
+            "optimal_alt": 50,
+            "alt_sigma": 800,
+            "optimal_humidity": 75,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.5,
             "pH_sigma_near": 1.5,
             "pH_sigma_far": 1.5,
-            "pH_range_near": [4.25, 7.75],
+            "pH_range_near": [3, 6],
             "optimal_soil_temp": 9,
-            "soil_temp_sigma": 5,
-            "min_cumulative_rain": 30,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 18,
             "rain_weight": 0,
             "weather_preference": {
               "rain_first": false
             },
             "wind_sensitive": false,
             "season_months": [3, 4, 5],
-            "water_relevance": true,
+            "water_relevance": false,
             "sea_relevance": false,
             "distance_thresholds": {
               "water": 1800
             }
           },
           "scoringReferences": [
-            "https://data.fung.es/EU/NE/NE_species_params.txt"
+            "https://data.fung.es/EU/NE/NE_species_params.txt",
+            "docs/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
         },
@@ -1371,7 +1373,6 @@
             "optimal_soil_temp": 9,
             "soil_temp_sigma": 5,
             "min_cumulative_rain": 30,
-            "rain_weight": 0,
             "weather_preference": {
               "rain_first": false
             },
@@ -1699,33 +1700,34 @@
           "landCoverScheme": "CORINE",
           "scoring": {
             "optimal_temp": 15,
-            "temp_sigma": 4,
-            "min_temp": 7,
+            "temp_sigma": 6,
+            "min_temp": 5,
             "max_temp": 25,
-            "optimal_alt": 700,
+            "optimal_alt": 100,
             "alt_sigma": 800,
-            "optimal_humidity": 85,
-            "humidity_sigma": 18,
-            "optimal_pH": 6,
+            "optimal_humidity": 75,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.6,
             "pH_sigma_near": 1.5,
             "pH_sigma_far": 1.5,
-            "pH_range_near": [4.75, 7.25],
-            "optimal_soil_temp": 16,
-            "soil_temp_sigma": 4,
-            "min_cumulative_rain": 25,
+            "pH_range_near": [3.1, 6.1],
+            "optimal_soil_temp": 14,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 34,
             "weather_preference": {
               "rain_first": true
             },
             "wind_sensitive": false,
             "season_months": [6, 7, 8],
-            "water_relevance": true,
+            "water_relevance": false,
             "sea_relevance": false,
             "distance_thresholds": {
               "water": 2000
             }
           },
           "scoringReferences": [
-            "https://data.fung.es/EU/NE/NE_species_params.txt"
+            "https://data.fung.es/EU/NE/NE_species_params.txt",
+            "docs/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
         },
@@ -1733,21 +1735,21 @@
           "landCover": [311, 324],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 15,
-            "temp_sigma": 4,
+            "optimal_temp": 18,
+            "temp_sigma": 6,
             "min_temp": 7,
-            "max_temp": 25,
-            "optimal_alt": 700,
-            "alt_sigma": 800,
-            "optimal_humidity": 85,
-            "humidity_sigma": 18,
-            "optimal_pH": 6,
+            "max_temp": 28,
+            "optimal_alt": 1450,
+            "alt_sigma": 1700,
+            "optimal_humidity": 60,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.5,
             "pH_sigma_near": 1.5,
             "pH_sigma_far": 1.5,
-            "pH_range_near": [4.75, 7.25],
-            "optimal_soil_temp": 16,
-            "soil_temp_sigma": 4,
-            "min_cumulative_rain": 25,
+            "pH_range_near": [4, 7],
+            "optimal_soil_temp": 17,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 27,
             "weather_preference": {
               "rain_first": true
             },
@@ -1760,7 +1762,8 @@
             }
           },
           "scoringReferences": [
-            "https://data.fung.es/EU/SE/SE_species_params.txt"
+            "https://data.fung.es/EU/SE/SE_species_params.txt",
+            "docs/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
         },
@@ -1992,21 +1995,22 @@
           "landCover": [311, 313, 324],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 15,
-            "optimal_alt": 500,
-            "temp_sigma": 5,
+            "optimal_temp": 16,
+            "optimal_alt": 50,
+            "temp_sigma": 6,
             "min_temp": 4,
-            "max_temp": 24,
+            "max_temp": 26,
             "alt_sigma": 800,
-            "optimal_humidity": 85,
-            "humidity_sigma": 18,
-            "optimal_pH": 5.8,
+            "optimal_humidity": 75,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.6,
             "pH_sigma_near": 1.5,
             "pH_sigma_far": 1.5,
-            "pH_range_near": [4.6, 7],
-            "optimal_soil_temp": 16,
-            "soil_temp_sigma": 5,
-            "min_cumulative_rain": 20,
+            "pH_range_near": [3.1, 6.1],
+            "optimal_soil_temp": 15,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 33,
+            "rain_weight": 0,
             "weather_preference": {
               "rain_first": false
             },
@@ -2016,7 +2020,8 @@
             "sea_relevance": false
           },
           "scoringReferences": [
-            "https://data.fung.es/EU/NE/NE_species_params.txt"
+            "https://data.fung.es/EU/NE/NE_species_params.txt",
+            "docs/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
         },
@@ -2024,21 +2029,21 @@
           "landCover": [311, 313, 324],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 15,
-            "optimal_alt": 500,
-            "temp_sigma": 5,
+            "optimal_temp": 17,
+            "optimal_alt": 600,
+            "temp_sigma": 6,
             "min_temp": 4,
-            "max_temp": 24,
-            "alt_sigma": 800,
-            "optimal_humidity": 85,
-            "humidity_sigma": 18,
-            "optimal_pH": 5.8,
+            "max_temp": 27,
+            "alt_sigma": 1100,
+            "optimal_humidity": 70,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.3,
             "pH_sigma_near": 1.5,
             "pH_sigma_far": 1.5,
-            "pH_range_near": [4.6, 7],
+            "pH_range_near": [3.8, 6.8],
             "optimal_soil_temp": 16,
-            "soil_temp_sigma": 5,
-            "min_cumulative_rain": 20,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 28,
             "weather_preference": {
               "rain_first": false
             },
@@ -2048,7 +2053,8 @@
             "sea_relevance": false
           },
           "scoringReferences": [
-            "https://data.fung.es/EU/SE/SE_species_params.txt"
+            "https://data.fung.es/EU/SE/SE_species_params.txt",
+            "docs/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
         },
@@ -2090,19 +2096,19 @@
           "scoring": {
             "optimal_temp": 15,
             "optimal_alt": 500,
-            "temp_sigma": 5,
+            "temp_sigma": 6,
             "min_temp": 4,
-            "max_temp": 24,
-            "alt_sigma": 800,
-            "optimal_humidity": 85,
-            "humidity_sigma": 18,
-            "optimal_pH": 5.8,
+            "max_temp": 25,
+            "alt_sigma": 2100,
+            "optimal_humidity": 65,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.7,
             "pH_sigma_near": 1.5,
             "pH_sigma_far": 1.5,
-            "pH_range_near": [4.6, 7],
-            "optimal_soil_temp": 16,
-            "soil_temp_sigma": 5,
-            "min_cumulative_rain": 20,
+            "pH_range_near": [4.2, 7.2],
+            "optimal_soil_temp": 14,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 4,
             "rain_weight": 0,
             "weather_preference": {
               "rain_first": false
@@ -2113,7 +2119,8 @@
             "sea_relevance": false
           },
           "scoringReferences": [
-            "https://data.fung.es/USA/USW/USW_species_params.txt"
+            "https://data.fung.es/USA/USW/USW_species_params.txt",
+            "docs/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
         }
@@ -3369,7 +3376,6 @@
             "optimal_soil_temp": 12,
             "soil_temp_sigma": 4,
             "min_cumulative_rain": 10,
-            "rain_weight": 0,
             "weather_preference": {
               "rain_first": false
             },
@@ -4059,34 +4065,36 @@
           "landCover": [321, 324],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 13,
-            "temp_sigma": 5,
-            "min_temp": 4,
+            "optimal_temp": 12,
+            "temp_sigma": 6,
+            "min_temp": 2,
             "max_temp": 22,
-            "optimal_alt": 500,
-            "alt_sigma": 1000,
-            "optimal_humidity": 80,
-            "humidity_sigma": 11,
-            "optimal_pH": 5.75,
+            "optimal_alt": 50,
+            "alt_sigma": 800,
+            "optimal_humidity": 75,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.7,
             "pH_sigma_near": 1.5,
             "pH_sigma_far": 1.5,
-            "pH_range_near": [4.5, 7],
-            "optimal_soil_temp": 12.5,
-            "soil_temp_sigma": 4,
-            "min_cumulative_rain": 10,
+            "pH_range_near": [3.2, 6.2],
+            "optimal_soil_temp": 11,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 26,
+            "rain_weight": 0,
             "weather_preference": {
               "rain_first": false
             },
             "wind_sensitive": false,
             "season_months": [3, 4, 5, 6, 9, 10, 11],
-            "water_relevance": true,
+            "water_relevance": false,
             "sea_relevance": false,
             "distance_thresholds": {
               "water": 1300
             }
           },
           "scoringReferences": [
-            "https://data.fung.es/EU/NE/NE_species_params.txt"
+            "https://data.fung.es/EU/NE/NE_species_params.txt",
+            "docs/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
         },
@@ -4094,21 +4102,21 @@
           "landCover": [321, 324],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 13,
-            "temp_sigma": 5,
+            "optimal_temp": 14,
+            "temp_sigma": 6,
             "min_temp": 4,
-            "max_temp": 22,
+            "max_temp": 24,
             "optimal_alt": 500,
             "alt_sigma": 1000,
-            "optimal_humidity": 80,
-            "humidity_sigma": 11,
-            "optimal_pH": 5.75,
+            "optimal_humidity": 70,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.3,
             "pH_sigma_near": 1.5,
             "pH_sigma_far": 1.5,
-            "pH_range_near": [4.5, 7],
-            "optimal_soil_temp": 12.5,
-            "soil_temp_sigma": 4,
-            "min_cumulative_rain": 10,
+            "pH_range_near": [3.8, 6.8],
+            "optimal_soil_temp": 13,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 28,
             "weather_preference": {
               "rain_first": false
             },
@@ -4121,7 +4129,8 @@
             }
           },
           "scoringReferences": [
-            "https://data.fung.es/EU/SE/SE_species_params.txt"
+            "https://data.fung.es/EU/SE/SE_species_params.txt",
+            "docs/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
         },
@@ -4165,34 +4174,35 @@
           "landCoverScheme": "NLCD",
           "scoring": {
             "optimal_temp": 13,
-            "temp_sigma": 5,
-            "min_temp": 4,
-            "max_temp": 22,
-            "optimal_alt": 500,
-            "alt_sigma": 1000,
-            "optimal_humidity": 80,
-            "humidity_sigma": 11,
-            "optimal_pH": 5.75,
+            "temp_sigma": 6,
+            "min_temp": 3,
+            "max_temp": 23,
+            "optimal_alt": 150,
+            "alt_sigma": 800,
+            "optimal_humidity": 75,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.7,
             "pH_sigma_near": 1.5,
             "pH_sigma_far": 1.5,
-            "pH_range_near": [4.5, 7],
-            "optimal_soil_temp": 12.5,
-            "soil_temp_sigma": 4,
-            "min_cumulative_rain": 10,
+            "pH_range_near": [4.2, 7.2],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 12,
             "rain_weight": 0,
             "weather_preference": {
               "rain_first": false
             },
             "wind_sensitive": false,
             "season_months": [3, 4, 5, 6, 9, 10, 11],
-            "water_relevance": true,
+            "water_relevance": false,
             "sea_relevance": false,
             "distance_thresholds": {
               "water": 1300
             }
           },
           "scoringReferences": [
-            "https://data.fung.es/USA/USW/USW_species_params.txt"
+            "https://data.fung.es/USA/USW/USW_species_params.txt",
+            "docs/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
         }

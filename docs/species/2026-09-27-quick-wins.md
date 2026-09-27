@@ -319,23 +319,23 @@ and the rule keeps it there.
 | Chickweed       | 1.5 | 1.5 | 1.5 | 1.5 |
 | Common Daisy    | 0   | 0   | 1.5 | 0   |
 | Common Plantain | 0   | 1.5 | 1.5 | 0   |
-| Common Sorrel   | 1.5 | 1.5 | 1.5 | 0   |
+| Common Sorrel   | 0   | 1.5 | 1.5 | 0   |
 | Dandelion       | 0   | 1.5 | 1.5 | 0   |
 | Elderberry      | 0   | 0.3 | 1.5 | 0   |
 | Elderflower     | 0   | 1.5 | 1.5 | 0   |
 | Hazelnut        | 0   | 1.5 | 0   | 0   |
 | Lingonberry     | 1.5 | 1.5 | 1.5 | 1.5 |
 | Masterwort      | 1.5 | 1.5 | —   | —   |
-| Nettle          | 1.5 | 1.5 | 1.5 | 0   |
+| Nettle          | 0   | 1.5 | 1.5 | 0   |
 | Sweet Violet    | 0   | 0   | 1.5 | 0   |
 | Walnut          | 0   | 1.5 | 0   | 0   |
-| Wild Artichoke  | 0   | 0   | 1.5 | 0   |
+| Wild Artichoke  | 1.5 | 0   | 1.5 | 0   |
 | Wild Asparagus  | 1.5 | 0   | —   | —   |
 | Wild Blueberry  | 1.5 | 1.5 | 0   | 0   |
-| Wild Garlic     | 0   | 0   | —   | —   |
+| Wild Garlic     | 0   | 1.5 | —   | —   |
 | Wild Mint       | 0   | 0   | 1.5 | 0   |
 | Wild Raspberry  | 1.5 | 1.5 | 1.5 | 1.5 |
-| Wild Strawberry | 1.5 | 1.5 | 1.5 | 0   |
+| Wild Strawberry | 0   | 1.5 | 1.5 | 0   |
 
 **Untested regions follow their closest tested relative.** Sweet violet
 follows daisy, chestnut and walnut follow hazelnut, and wild blueberry in the
@@ -383,14 +383,14 @@ random points.
 | Wild Raspberry  | NE     | 7.1 · 0.56   | 6.9 · 0.56 | 6.8 · 0.57 | 6.7 · 0.56 | 1.5    |
 | Wild Raspberry  | SE     | 5.7 · 0.70   | 5.5 · 0.69 | 5.3 · 0.68 | 5.2 · 0.67 | 1.5    |
 | Wild Raspberry  | USE    | 5.8 · 0.78   | 5.5 · 0.78 | 5.3 · 0.78 | 5.1 · 0.78 | 1.5    |
-| Wild Strawberry | NE     | 8.2 · 0.59   | 8.1 · 0.60 | 8.1 · 0.61 | 8.0 · 0.61 | 1.5    |
+| Wild Strawberry | NE     | 8.2 · 0.59   | 8.1 · 0.60 | 8.1 · 0.61 | 8.0 · 0.61 | 0      |
 | Wild Strawberry | SE     | 7.4 · 0.62   | 7.3 · 0.62 | 7.2 · 0.62 | 7.1 · 0.62 | 1.5    |
 | Wild Strawberry | USE    | 7.9 · 0.80   | 7.7 · 0.80 | 7.5 · 0.80 | 7.4 · 0.80 | 1.5    |
 | Wild Strawberry | USW    | 6.5 · 0.76   | 6.7 · 0.79 | 6.8 · 0.81 | 7.0 · 0.82 | 0      |
 | Lingonberry     | NE     | 8.4 · 0.48   | 8.4 · 0.48 | 8.4 · 0.48 | 8.4 · 0.48 | 1.5    |
 | Lingonberry     | SE     | 7.1 · 0.88   | 6.9 · 0.88 | 6.8 · 0.88 | 6.6 · 0.87 | 1.5    |
 | Lingonberry     | USE    | 7.3 · 0.94   | 7.0 · 0.94 | 6.9 · 0.94 | 6.7 · 0.94 | 1.5    |
-| Nettle          | NE     | 5.9 · 0.41   | 5.9 · 0.43 | 5.9 · 0.45 | 5.9 · 0.47 | 1.5    |
+| Nettle          | NE     | 5.9 · 0.41   | 5.9 · 0.43 | 5.9 · 0.45 | 5.9 · 0.47 | 0      |
 | Nettle          | SE     | 5.7 · 0.65   | 5.5 · 0.65 | 5.4 · 0.65 | 5.4 · 0.64 | 1.5    |
 | Nettle          | USE    | 5.7 · 0.72   | 5.4 · 0.72 | 5.2 · 0.72 | 5.0 · 0.72 | 1.5    |
 | Nettle          | USW    | 4.8 · 0.67   | 4.9 · 0.70 | 5.0 · 0.72 | 5.1 · 0.74 | 0      |
@@ -402,59 +402,89 @@ random points.
 | Chickweed       | SE     | 6.1 · 0.67   | 6.0 · 0.68 | 6.0 · 0.69 | 6.0 · 0.69 | 1.5    |
 | Chickweed       | USE    | 5.5 · 0.64   | 5.4 · 0.67 | 5.3 · 0.69 | 5.3 · 0.70 | 1.5    |
 | Chickweed       | USW    | 6.3 · 0.85   | 6.2 · 0.87 | 6.2 · 0.88 | 6.2 · 0.89 | 1.5    |
-| Common Sorrel   | NE     | 7.4 · 0.59   | 7.3 · 0.60 | 7.2 · 0.61 | 7.1 · 0.62 | 1.5    |
+| Common Sorrel   | NE     | 7.4 · 0.59   | 7.3 · 0.60 | 7.2 · 0.61 | 7.1 · 0.62 | 0      |
 | Common Sorrel   | SE     | 6.7 · 0.68   | 6.5 · 0.68 | 6.5 · 0.68 | 6.4 · 0.68 | 1.5    |
 | Common Sorrel   | USE    | 6.5 · 0.75   | 6.3 · 0.76 | 6.2 · 0.76 | 6.0 · 0.76 | 1.5    |
 | Common Sorrel   | USW    | 6.7 · 0.85   | 6.7 · 0.87 | 6.8 · 0.89 | 6.8 · 0.89 | 0      |
 | Wild Garlic     | NE     | 6.2 · 0.54   | 6.5 · 0.61 | 6.8 · 0.68 | 7.1 · 0.74 | 0      |
-| Wild Garlic     | SE     | 6.5 · 0.65   | 6.7 · 0.69 | 6.9 · 0.72 | 7.0 · 0.74 | 0      |
+| Wild Garlic     | SE     | 6.5 · 0.65   | 6.7 · 0.69 | 6.9 · 0.72 | 7.0 · 0.74 | 1.5    |
 | Amaranth        | SE     | 7.1 · 0.58   | 7.3 · 0.59 | 7.6 · 0.59 | 7.9 · 0.59 | 0      |
 | Amaranth        | USE    | 9.0 · 0.71   | 8.9 · 0.71 | 8.9 · 0.71 | 8.8 · 0.71 | 1.5    |
 | Amaranth        | USW    | 5.2 · 0.47   | 5.5 · 0.49 | 5.8 · 0.52 | 6.2 · 0.55 | 0      |
 | Wild Asparagus  | SE     | 5.0 · 0.46   | 5.2 · 0.48 | 5.3 · 0.50 | 5.5 · 0.51 | 0      |
-| Wild Artichoke  | NE     | 5.5 · 0.34   | 5.6 · 0.37 | 5.8 · 0.41 | 6.0 · 0.46 | 0      |
+| Wild Artichoke  | NE     | 5.5 · 0.34   | 5.6 · 0.37 | 5.8 · 0.41 | 6.0 · 0.46 | 1.5    |
 | Wild Artichoke  | SE     | 4.8 · 0.41   | 5.1 · 0.45 | 5.5 · 0.48 | 5.8 · 0.52 | 0      |
 | Wild Artichoke  | USE    | 4.4 · 0.47   | 4.1 · 0.47 | 3.8 · 0.47 | 3.7 · 0.47 | 1.5    |
 | Wild Artichoke  | USW    | 5.2 · 0.67   | 6.0 · 0.80 | 6.8 · 0.88 | 7.6 · 0.93 | 0      |
 | Masterwort      | SE     | 7.3 · 0.92   | 7.0 · 0.93 | 6.9 · 0.93 | 6.8 · 0.92 | 1.5    |
 
-**Recalibrated existing plants.** Five plants scored lower at real sightings
-than at random points with their old values: artichoke, nettle, asparagus,
-lingonberry and amaranth. Each was recalibrated with the method above:
-
-- in-season sightings only, from 3 May, once the 21-day lookback is complete;
-- missing weather days skipped, as the scorer does;
-- nettle's water factor tested as well.
-
+For the existing plants these rows use all April–September sightings. Where the in-season check
+below disagrees, it supersedes them, and the chosen column shows the value now in the manifest.
+**Recalibrated existing plants.** All twelve existing plants were checked on
+their in-season 2026 sightings: from 3 May, when the 21-day lookback is
+complete, with missing weather days skipped as the scorer does. Each was
+recalibrated with the method above, and nettle's water factor was tested too.
 A region takes the new values under the rain-weight rule: the ranking holds
 (within 0.01), the score at sightings does not drop, and one of them clearly
-improves. Regions with fewer than 30 in-season sightings keep their values:
-artichoke in NE and USE, asparagus in NE, lingonberry in USW, amaranth in NE.
+improves.
 
-| plant          | region | sightings | before     | after      |             | new values                                                         |
-| -------------- | ------ | --------: | ---------- | ---------- | ----------- | ------------------------------------------------------------------ |
-| Wild Artichoke | SE     |        71 | 7.8 · 0.63 | 8.6 · 0.72 | **applied** | 17 °C, 70%, 100 ± 800 m, pH 5.9, rain 11 mm, weight 0              |
-| Wild Artichoke | USW    |        64 | 8.5 · 0.96 | 9.1 · 0.98 | **applied** | 17 °C, 70%, 100 ± 800 m, pH 6.7, rain 5 mm, weight 0               |
-| Nettle         | NE     |        83 | 6.3 · 0.43 | 8.9 · 0.68 | **applied** | 15 °C, 75%, 50 ± 800 m, pH 4.6, rain 22 mm, weight 0, water off    |
-| Nettle         | SE     |       260 | 5.1 · 0.59 | 7.0 · 0.59 | **applied** | 19 °C, 65%, 450 ± 1300 m, pH 5.5, rain 16 mm, weight 1.5           |
-| Nettle         | USE    |       227 | 5.4 · 0.71 | 8.2 · 0.60 | kept        | 20 °C, 70%, 200 ± 800 m, pH 5.8, rain 45 mm, weight 1.5, water off |
-| Nettle         | USW    |       227 | 4.8 · 0.71 | 7.7 · 0.74 | **applied** | 17 °C, 60%, 450 ± 2200 m, pH 6.0, rain 3 mm, weight 0, water off   |
-| Wild Asparagus | SE     |        53 | 8.1 · 0.65 | 8.8 · 0.72 | **applied** | 16 °C, 70%, 200 ± 800 m, pH 6.3, rain 20 mm, weight 0              |
-| Lingonberry    | NE     |       101 | 8.4 · 0.48 | 8.9 · 0.67 | **applied** | 15 °C, 75%, 100 ± 800 m, pH 4.7, rain 32 mm, weight 1.5            |
-| Lingonberry    | SE     |        78 | 7.1 · 0.89 | 8.5 · 0.86 | kept        | 16 °C, 70%, 1100 ± 2100 m, pH 5.4, rain 38 mm, weight 1.5          |
-| Lingonberry    | USE    |        47 | 7.3 · 0.94 | 9.2 · 0.91 | kept        | 18 °C, 70%, 350 ± 800 m, pH 4.9, rain 40 mm, weight 1.5            |
-| Amaranth       | SE     |       459 | 7.9 · 0.58 | 8.5 · 0.63 | **applied** | 22 °C, 55%, 200 ± 800 m, pH 5.5, rain 11 mm, weight 0              |
-| Amaranth       | USE    |       298 | 9.0 · 0.70 | 8.8 · 0.66 | kept        | 23 °C, 70%, 200 ± 800 m, pH 5.9, rain 50 mm, weight 1.5            |
-| Amaranth       | USW    |       290 | 6.2 · 0.55 | 8.4 · 0.62 | **applied** | 22 °C, 40%, 1350 ± 1900 m, pH 7.0, rain 3 mm, weight 0             |
+| plant           | region | sightings | before     | after      |             | new values                                                         |
+| --------------- | ------ | --------: | ---------- | ---------- | ----------- | ------------------------------------------------------------------ |
+| Wild Artichoke  | SE     |        71 | 7.8 · 0.63 | 8.6 · 0.72 | **applied** | 17 °C, 70%, 100 ± 800 m, pH 5.9, rain 11 mm, weight 0              |
+| Wild Artichoke  | USW    |        64 | 8.5 · 0.96 | 9.1 · 0.98 | **applied** | 17 °C, 70%, 100 ± 800 m, pH 6.7, rain 5 mm, weight 0               |
+| Wild Asparagus  | SE     |        53 | 8.1 · 0.65 | 8.8 · 0.72 | **applied** | 16 °C, 70%, 200 ± 800 m, pH 6.3, rain 20 mm, weight 0              |
+| Amaranth        | SE     |       459 | 7.9 · 0.58 | 8.5 · 0.63 | **applied** | 22 °C, 55%, 200 ± 800 m, pH 5.5, rain 11 mm, weight 0              |
+| Amaranth        | USE    |       298 | 9.0 · 0.70 | 8.8 · 0.66 | kept        | 23 °C, 70%, 200 ± 800 m, pH 5.9, rain 50 mm, weight 1.5            |
+| Amaranth        | USW    |       290 | 6.2 · 0.55 | 8.4 · 0.62 | **applied** | 22 °C, 40%, 1350 ± 1900 m, pH 7.0, rain 3 mm, weight 0             |
+| Dandelion       | NE     |        31 | 7.7 · 0.49 | 8.9 · 0.62 | **applied** | 12 °C, 75%, 50 ± 800 m, pH 4.6, rain 20 mm, weight 0               |
+| Dandelion       | SE     |       160 | 7.3 · 0.65 | 7.7 · 0.62 | kept        | 15 °C, 70%, 450 ± 1400 m, pH 5.9, rain 31 mm, weight 1.5           |
+| Dandelion       | USE    |       176 | 7.4 · 0.77 | 7.9 · 0.68 | kept        | 16 °C, 75%, 200 ± 800 m, pH 5.8, rain 57 mm, weight 1.5            |
+| Dandelion       | USW    |       172 | 5.7 · 0.70 | 7.7 · 0.69 | kept        | 16 °C, 55%, 1000 ± 2700 m, pH 6.5, rain 3 mm, weight 0             |
+| Wild Garlic     | NE     |        36 | 6.9 · 0.67 | 9.3 · 0.84 | **applied** | 10 °C, 75%, 50 ± 800 m, pH 4.5, rain 18 mm, weight 0               |
+| Wild Garlic     | SE     |       101 | 7.1 · 0.72 | 7.8 · 0.68 | kept        | 12 °C, 75%, 550 ± 1000 m, pH 5.7, rain 32 mm, weight 1.5           |
+| Lingonberry     | NE     |       101 | 8.4 · 0.48 | 8.9 · 0.67 | **applied** | 15 °C, 75%, 100 ± 800 m, pH 4.7, rain 32 mm, weight 1.5            |
+| Lingonberry     | SE     |        78 | 7.1 · 0.89 | 8.5 · 0.86 | kept        | 16 °C, 70%, 1100 ± 2100 m, pH 5.4, rain 38 mm, weight 1.5          |
+| Lingonberry     | USE    |        47 | 7.3 · 0.94 | 9.2 · 0.91 | kept        | 18 °C, 70%, 350 ± 800 m, pH 4.9, rain 40 mm, weight 1.5            |
+| Nettle          | NE     |        83 | 6.3 · 0.43 | 8.9 · 0.68 | **applied** | 15 °C, 75%, 50 ± 800 m, pH 4.6, rain 22 mm, weight 0, water off    |
+| Nettle          | SE     |       260 | 5.1 · 0.59 | 7.0 · 0.59 | **applied** | 19 °C, 65%, 450 ± 1300 m, pH 5.5, rain 16 mm, weight 1.5           |
+| Nettle          | USE    |       227 | 5.4 · 0.71 | 8.2 · 0.60 | kept        | 20 °C, 70%, 200 ± 800 m, pH 5.8, rain 45 mm, weight 1.5, water off |
+| Nettle          | USW    |       227 | 4.8 · 0.71 | 7.7 · 0.74 | **applied** | 17 °C, 60%, 450 ± 2200 m, pH 6.0, rain 3 mm, weight 0, water off   |
+| Wild Raspberry  | NE     |        46 | 7.1 · 0.55 | 8.9 · 0.69 | **applied** | 15 °C, 75%, 100 ± 800 m, pH 4.6, rain 34 mm, weight 1.5            |
+| Wild Raspberry  | SE     |        86 | 5.7 · 0.70 | 7.5 · 0.74 | **applied** | 18 °C, 60%, 1450 ± 1700 m, pH 5.5, rain 27 mm, weight 1.5          |
+| Wild Raspberry  | USE    |        79 | 5.7 · 0.79 | 9.0 · 0.69 | kept        | 22 °C, 70%, 200 ± 800 m, pH 5.4, rain 41 mm, weight 1.5            |
+| Common Sorrel   | NE     |       126 | 7.6 · 0.63 | 9.1 · 0.71 | **applied** | 12 °C, 75%, 50 ± 800 m, pH 4.7, rain 26 mm, weight 0               |
+| Common Sorrel   | SE     |       184 | 7.0 · 0.62 | 7.6 · 0.63 | **applied** | 14 °C, 70%, 500 ± 1000 m, pH 5.3, rain 28 mm, weight 1.5           |
+| Common Sorrel   | USE    |       178 | 7.2 · 0.79 | 8.5 · 0.76 | kept        | 15 °C, 75%, 200 ± 800 m, pH 5.3, rain 54 mm, weight 1.5            |
+| Common Sorrel   | USW    |       178 | 7.1 · 0.91 | 8.5 · 0.91 | **applied** | 13 °C, 75%, 150 ± 800 m, pH 5.7, rain 12 mm, weight 0              |
+| Wild Strawberry | NE     |        52 | 8.3 · 0.60 | 9.2 · 0.76 | **applied** | 16 °C, 75%, 50 ± 800 m, pH 4.6, rain 33 mm, weight 0               |
+| Wild Strawberry | SE     |        96 | 7.5 · 0.60 | 8.3 · 0.61 | **applied** | 17 °C, 70%, 600 ± 1100 m, pH 5.3, rain 28 mm, weight 1.5           |
+| Wild Strawberry | USE    |        63 | 7.9 · 0.80 | 8.8 · 0.75 | kept        | 19 °C, 75%, 200 ± 800 m, pH 5.5, rain 49 mm, weight 1.5            |
+| Wild Strawberry | USW    |        33 | 6.7 · 0.78 | 8.3 · 0.84 | **applied** | 15 °C, 65%, 500 ± 2100 m, pH 5.7, rain 4 mm, weight 0              |
+| Masterwort      | SE     |       430 | 7.3 · 0.94 | 8.6 · 0.92 | kept        | 15 °C, 70%, 1800 ± 1400 m, pH 5.4, rain 67 mm, weight 1.5          |
 
-Nettle's old values put its optimum at 700 ± 800 m and 85% humidity, and
-applied the water-distance factor. Its sightings sit near 50 m at 75%, most of
-them far from mapped water. In North Europe this lifts it from 6.3 to 8.9, and
-its ranking from 0.43 to 0.68. Lingonberry's optimum moves from 10.5 °C to the
-15 °C at which its fruit is found.
+- **Nettle:** its old values put its optimum at 700 ± 800 m and 85% humidity,
+  and applied the water-distance factor. Its sightings sit near 50 m at 75%,
+  most of them far from mapped water. In North Europe it now scores 8.9 at
+  sightings instead of 6.3.
+- **Lingonberry:** its optimum moves from 10.5 °C to the 15 °C at which its
+  fruit is found.
+- **Wild garlic, North Europe:** 6.9 → 9.3.
 
-Some regions keep their old values because the new ones would rank worse:
-nettle in USE (0.71 → 0.60), lingonberry in SE and USE, amaranth in USE.
+**Not checked:**
+
+- **Too few in-season sightings (under 30):** artichoke in NE and USE,
+  asparagus in NE, lingonberry, raspberry and masterwort in the regions
+  missing above, amaranth in NE.
+- **Chickweed, everywhere:** its season (October–April) falls outside the
+  weather files.
+
+**Rain weight rechecked in season.** Two rain weights had been set from all
+April–September sightings. On in-season sightings the rule no longer supports
+them, so they are back at 1.5:
+
+- wild garlic in South Europe, where summer sightings had carried it;
+- artichoke in North Europe, foraged in spring but chosen on summer sightings
+  of flowering plants.
 
 ## Photo identification and look-alikes
 
