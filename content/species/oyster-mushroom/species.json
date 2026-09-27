@@ -72,17 +72,17 @@
           "temp_sigma": 7,
           "min_temp": 0,
           "max_temp": 28,
-          "optimal_alt": 70,
+          "optimal_alt": 60,
           "alt_sigma": 1200,
           "optimal_humidity": 75,
           "humidity_sigma": 17,
-          "optimal_pH": 5.8,
+          "optimal_pH": 4.8,
           "pH_sigma_near": 2.5,
           "pH_sigma_far": 2.5,
-          "pH_range_near": [4.3, 7.3],
+          "pH_range_near": [3.3, 6.3],
           "optimal_soil_temp": 12,
           "soil_temp_sigma": 7,
-          "min_cumulative_rain": 21,
+          "min_cumulative_rain": 25,
           "weather_preference": {
             "rain_first": true
           },
@@ -108,17 +108,17 @@
           "temp_sigma": 7,
           "min_temp": 0,
           "max_temp": 28,
-          "optimal_alt": 600,
+          "optimal_alt": 300,
           "alt_sigma": 1200,
-          "optimal_humidity": 75,
+          "optimal_humidity": 65,
           "humidity_sigma": 17,
-          "optimal_pH": 5.8,
+          "optimal_pH": 5.2,
           "pH_sigma_near": 2.5,
           "pH_sigma_far": 2.5,
-          "pH_range_near": [4.3, 7.3],
+          "pH_range_near": [3.7, 6.7],
           "optimal_soil_temp": 12,
           "soil_temp_sigma": 7,
-          "min_cumulative_rain": 24,
+          "min_cumulative_rain": 26,
           "weather_preference": {
             "rain_first": true
           },
@@ -212,8 +212,6 @@
       "taxonKeys": [2518610],
       "references": ["https://www.gbif.org/species/2518610"]
     },
-    "rangePrior": {
-      "taxonKeys": [2518610]
-    }
+    "rangePrior": { "taxonKeys": [2518610] }
   }
 }

@@ -83,6 +83,7 @@
           "optimal_soil_temp": 9,
           "soil_temp_sigma": 5,
           "min_cumulative_rain": 30,
+          "rain_weight": 0,
           "weather_preference": {
             "rain_first": false
           },
@@ -119,6 +120,7 @@
           "optimal_soil_temp": 9,
           "soil_temp_sigma": 5,
           "min_cumulative_rain": 30,
+          "rain_weight": 0,
           "weather_preference": {
             "rain_first": false
           },

@@ -157,74 +157,110 @@ the stage that is foraged:
 The method is the one used for the US porcini
 (`docs/species/2026-09-27-us-porcini.md`):
 
-- **Weather:** the production regional parquets, at the base point nearest
+- **Weather:** the production regional parquets, at the scoring point nearest
   each 2026 sighting. For plants, these are iNaturalist observations annotated
-  with the forageable stage.
+  with the forageable stage. Only sightings within 0.25° of a scoring point
+  count.
+- **Europe:** each sighting takes the weather, and the region's parameters, of
+  its nearest scoring point across both European sets. North Europe's points
+  start at 49.5° N and South Europe's reach 54.8° N. A first pass split
+  sightings at 47° N, which matched southern Germany, Austria and Switzerland
+  to North Europe points up to 7–9° away. The values below come from the
+  corrected matching.
 - **Values:** optima at the sighting medians. The rain threshold sits at the
-  lower quartile of 21-day rain, so dry-season sightings are not all zeroed.
+  lower quartile of 21-day rain.
 - **Plants:** wider temperature sigmas (6) than fungi, and no wind
   sensitivity or `rain_first`.
 - **Wood-decay fungi:** a neutral pH sigma (2.5), because they grow on wood,
   not soil.
 
-| species              | region | temp (°C) | humidity (%) | altitude (m) |  pH | rain (mm, 21 days) |
-| -------------------- | ------ | --------: | -----------: | -----------: | --: | -----------------: |
-| Chicken of the Woods | NE     |    17 ± 5 |           65 |    50 ± 1000 | 5.0 |                 13 |
-| Chicken of the Woods | SE     |    20 ± 5 |           65 |   330 ± 1000 | 5.3 |                 12 |
-| Chicken of the Woods | USE    |    23 ± 5 |           70 |   230 ± 1000 | 5.4 |                 44 |
-| Chicken of the Woods | USW    |    19 ± 5 |           64 |   240 ± 1000 | 6.0 |                  5 |
-| Oyster Mushroom      | NE     |    13 ± 7 |           75 |    70 ± 1200 | 5.8 |                 21 |
-| Oyster Mushroom      | SE     |    13 ± 7 |           75 |   600 ± 1200 | 5.8 |                 24 |
-| Oyster Mushroom      | USE    |    15 ± 7 |           75 |   240 ± 1200 | 5.8 |                 48 |
-| Oyster Mushroom      | USW    |    13 ± 7 |           75 |   530 ± 1200 | 5.8 |                 10 |
-| Elderflower          | NE     |    10 ± 6 |           85 |    100 ± 800 | 5.0 |                 23 |
-| Elderflower          | SE     |    14 ± 6 |           65 |   450 ± 1000 | 6.0 |                 22 |
-| Elderflower          | USE    |    23 ± 6 |           70 |    100 ± 800 | 5.5 |                 57 |
-| Elderflower          | USW    |    19 ± 6 |           45 |   200 ± 1300 | 6.6 |                  2 |
-| Elderberry           | NE     |    18 ± 6 |           70 |    100 ± 800 | 5.0 |                  6 |
-| Elderberry           | SE     |    23 ± 6 |           55 |   650 ± 1200 | 5.7 |                  7 |
-| Elderberry           | USE    |    25 ± 6 |           70 |    100 ± 800 | 5.6 |                 47 |
-| Elderberry           | USW    |    20 ± 6 |           50 |   200 ± 1300 | 6.6 |                  1 |
-| Blackberry           | NE     |    18 ± 6 |           70 |    100 ± 800 | 5.0 |                  7 |
-| Blackberry           | SE     |    24 ± 6 |           55 |   350 ± 1100 | 6.0 |                  4 |
-| Blackberry           | USE    |    22 ± 6 |           70 |    150 ± 800 | 5.6 |                 35 |
-| Blackberry           | USW    |    18 ± 6 |           65 |    250 ± 800 | 5.7 |                  1 |
-| Wild Blueberry       | NE     |    15 ± 6 |           75 |    150 ± 800 | 4.8 |                 35 |
-| Wild Blueberry       | SE     |    18 ± 6 |           55 |  1600 ± 1400 | 5.6 |                 25 |
-| Wild Blueberry       | USE    |    22 ± 6 |           70 |    150 ± 800 | 5.2 |                 40 |
-| Wild Blueberry       | USW    |    16 ± 6 |           65 |  1500 ± 1500 | 5.0 |                  5 |
-| Hazelnut             | NE     |    18 ± 6 |           70 |    100 ± 800 | 5.0 |                 10 |
-| Hazelnut             | SE     |    22 ± 6 |           55 |   850 ± 1500 | 5.7 |                 15 |
-| Hazelnut             | USE    |    22 ± 6 |           70 |    250 ± 800 | 5.6 |                 45 |
-| Hazelnut             | USW    |    17 ± 6 |           65 |    150 ± 800 | 5.6 |                  4 |
-| Wild Mint            | NE     |    17 ± 6 |           70 |    100 ± 800 | 5.0 |                  9 |
-| Wild Mint            | SE     |    22 ± 6 |           55 |   350 ± 1100 | 5.8 |                  5 |
-| Wild Mint            | USE    |    22 ± 6 |           70 |    200 ± 800 | 5.6 |                 44 |
-| Wild Mint            | USW    |    19 ± 6 |           60 |   250 ± 1400 | 6.0 |                  1 |
-| Sweet Violet         | NE     |     7 ± 6 |           80 |    150 ± 800 | 6.0 |                 10 |
-| Sweet Violet         | SE     |     9 ± 6 |           75 |   500 ± 1000 | 6.0 |                 10 |
-| Sweet Violet         | USE    |    12 ± 6 |           70 |    200 ± 800 | 6.0 |                 10 |
-| Sweet Violet         | USW    |    11 ± 6 |           70 |   300 ± 1000 | 6.0 |                 10 |
-| Common Plantain      | NE     |    16 ± 6 |           75 |    150 ± 800 | 5.2 |                 14 |
-| Common Plantain      | SE     |    20 ± 6 |           65 |    350 ± 900 | 5.8 |                 12 |
-| Common Plantain      | USE    |    21 ± 6 |           70 |    150 ± 800 | 5.5 |                 42 |
-| Common Plantain      | USW    |    19 ± 6 |           60 |   250 ± 1300 | 6.3 |                  3 |
-| Common Daisy         | NE     |     8 ± 6 |           75 |    100 ± 800 | 5.0 |                  3 |
-| Common Daisy         | SE     |    12 ± 6 |           55 |   350 ± 1100 | 5.8 |                 12 |
-| Common Daisy         | USE    |    11 ± 6 |           70 |    200 ± 800 | 5.8 |                 44 |
-| Common Daisy         | USW    |    14 ± 6 |           80 |    150 ± 800 | 5.7 |                  2 |
+| species              | region | temp (°C) | humidity (%) | altitude (m) |  pH | rain (mm, 21 days) | rain weight |
+| -------------------- | ------ | --------: | -----------: | -----------: | --: | -----------------: | ----------: |
+| Chicken of the Woods | NE     |    17 ± 5 |           64 |    30 ± 1000 | 4.7 |                  9 |         1.5 |
+| Chicken of the Woods | SE     |    18 ± 5 |           61 |   190 ± 1000 | 5.2 |                 19 |         1.5 |
+| Chicken of the Woods | USE    |    23 ± 5 |           70 |   230 ± 1000 | 5.4 |                 44 |         1.5 |
+| Chicken of the Woods | USW    |    19 ± 5 |           64 |   240 ± 1000 | 6.0 |                  5 |         1.5 |
+| Oyster Mushroom      | NE     |    13 ± 7 |           75 |    60 ± 1200 | 4.8 |                 25 |         1.5 |
+| Oyster Mushroom      | SE     |    13 ± 7 |           65 |   300 ± 1200 | 5.2 |                 26 |         1.5 |
+| Oyster Mushroom      | USE    |    15 ± 7 |           75 |   240 ± 1200 | 5.8 |                 48 |         1.5 |
+| Oyster Mushroom      | USW    |    13 ± 7 |           75 |   530 ± 1200 | 5.8 |                 10 |         1.5 |
+| Elderflower          | NE     |    11 ± 6 |           85 |     50 ± 800 | 4.7 |                 19 |           0 |
+| Elderflower          | SE     |    14 ± 6 |           65 |    350 ± 800 | 5.6 |                 23 |         1.5 |
+| Elderflower          | USE    |    23 ± 6 |           70 |    100 ± 800 | 5.5 |                 57 |         1.5 |
+| Elderflower          | USW    |    19 ± 6 |           45 |   200 ± 1300 | 6.6 |                  2 |           0 |
+| Elderberry           | NE     |    18 ± 6 |           65 |     50 ± 800 | 4.8 |                  2 |           0 |
+| Elderberry           | SE     |    21 ± 6 |           55 |    250 ± 800 | 5.4 |                 12 |         0.3 |
+| Elderberry           | USE    |    25 ± 6 |           70 |    100 ± 800 | 5.6 |                 47 |         1.5 |
+| Elderberry           | USW    |    20 ± 6 |           50 |   200 ± 1300 | 6.6 |                  1 |           0 |
+| Blackberry           | NE     |    18 ± 6 |           65 |     50 ± 800 | 4.8 |                  1 |           0 |
+| Blackberry           | SE     |    22 ± 6 |           60 |    250 ± 800 | 5.5 |                  9 |           0 |
+| Blackberry           | USE    |    22 ± 6 |           70 |    150 ± 800 | 5.6 |                 35 |           0 |
+| Blackberry           | USW    |    18 ± 6 |           65 |    250 ± 800 | 5.7 |                  1 |           0 |
+| Wild Blueberry       | NE     |    14 ± 6 |           75 |    150 ± 800 | 4.7 |                 34 |         1.5 |
+| Wild Blueberry       | SE     |    18 ± 6 |           65 |   850 ± 1900 | 5.3 |                 28 |         1.5 |
+| Wild Blueberry       | USE    |    22 ± 6 |           70 |    150 ± 800 | 5.2 |                 40 |           0 |
+| Wild Blueberry       | USW    |    16 ± 6 |           65 |  1500 ± 1500 | 5.0 |                  5 |           0 |
+| Hazelnut             | NE     |    17 ± 6 |           70 |     50 ± 800 | 4.6 |                  8 |           0 |
+| Hazelnut             | SE     |    21 ± 6 |           55 |   500 ± 1200 | 5.3 |                 15 |         1.5 |
+| Hazelnut             | USE    |    22 ± 6 |           70 |    250 ± 800 | 5.6 |                 45 |           0 |
+| Hazelnut             | USW    |    17 ± 6 |           65 |    150 ± 800 | 5.6 |                  4 |           0 |
+| Wild Mint            | NE     |    17 ± 6 |           70 |     50 ± 800 | 4.6 |                  5 |           0 |
+| Wild Mint            | SE     |    21 ± 6 |           60 |    300 ± 900 | 5.4 |                  7 |           0 |
+| Wild Mint            | USE    |    22 ± 6 |           70 |    200 ± 800 | 5.6 |                 44 |         1.5 |
+| Wild Mint            | USW    |    19 ± 6 |           60 |   250 ± 1400 | 6.0 |                  1 |           0 |
+| Sweet Violet         | NE     |     7 ± 6 |           80 |    150 ± 800 | 6.0 |                 10 |           0 |
+| Sweet Violet         | SE     |     9 ± 6 |           75 |   500 ± 1000 | 6.0 |                 10 |           0 |
+| Sweet Violet         | USE    |    12 ± 6 |           70 |    200 ± 800 | 6.0 |                 10 |         1.5 |
+| Sweet Violet         | USW    |    11 ± 6 |           70 |   300 ± 1000 | 6.0 |                 10 |           0 |
+| Common Plantain      | NE     |    16 ± 6 |           70 |     50 ± 800 | 4.6 |                  8 |           0 |
+| Common Plantain      | SE     |    18 ± 6 |           60 |    300 ± 800 | 5.5 |                 14 |         1.5 |
+| Common Plantain      | USE    |    21 ± 6 |           70 |    150 ± 800 | 5.5 |                 42 |         1.5 |
+| Common Plantain      | USW    |    19 ± 6 |           60 |   250 ± 1300 | 6.3 |                  3 |           0 |
+| Common Daisy         | NE     |    10 ± 6 |           80 |     50 ± 800 | 4.7 |                 12 |           0 |
+| Common Daisy         | SE     |    11 ± 6 |           60 |    200 ± 800 | 5.5 |                  9 |           0 |
+| Common Daisy         | USE    |    11 ± 6 |           70 |    200 ± 800 | 5.8 |                 44 |         1.5 |
+| Common Daisy         | USW    |    14 ± 6 |           80 |    150 ± 800 | 5.7 |                  2 |           0 |
 
-**Against the siblings.** Compared with raspberry's values (berries, nuts) or
-nettle's (greens, flowers), these raise the mean weather score at real
-sightings in every species and region. For example:
+**Against the siblings.** These values are compared with raspberry's (for
+berries and nuts) and nettle's (for greens and flowers). Each cell is the mean
+weather score at real sightings, then how often a sighting outscores a random
+point of its region on the same day.
 
-- Elderberry, US East: 4.3 → 8.8.
-- Blackberry, South Europe: 3.3 → 6.3.
-- Wild mint, US East: 4.8 → 8.6.
+| species         | region | sibling    | final      |
+| --------------- | ------ | ---------- | ---------- |
+| Blackberry      | NE     | 5.2 · 0.30 | 9.2 · 0.79 |
+| Blackberry      | SE     | 4.5 · 0.54 | 8.1 · 0.58 |
+| Blackberry      | USE    | 5.3 · 0.61 | 9.0 · 0.71 |
+| Blackberry      | USW    | 5.0 · 0.71 | 8.7 · 0.93 |
+| Elderberry      | NE     | 4.8 · 0.26 | 9.0 · 0.72 |
+| Elderberry      | SE     | 4.6 · 0.56 | 8.0 · 0.59 |
+| Elderberry      | USE    | 4.3 · 0.52 | 8.8 · 0.65 |
+| Elderberry      | USW    | 3.3 · 0.48 | 8.4 · 0.78 |
+| Wild Blueberry  | NE     | 7.0 · 0.56 | 8.8 · 0.62 |
+| Wild Blueberry  | SE     | 6.1 · 0.69 | 8.3 · 0.68 |
+| Wild Blueberry  | USE    | 5.9 · 0.72 | 8.8 · 0.69 |
+| Hazelnut        | NE     | 6.0 · 0.36 | 9.1 · 0.72 |
+| Hazelnut        | SE     | 5.1 · 0.59 | 7.9 · 0.61 |
+| Hazelnut        | USE    | 5.7 · 0.76 | 9.0 · 0.72 |
+| Hazelnut        | USW    | 6.1 · 0.80 | 8.8 · 0.93 |
+| Elderflower     | NE     | 6.7 · 0.60 | 8.8 · 0.74 |
+| Elderflower     | SE     | 6.7 · 0.66 | 8.3 · 0.65 |
+| Elderflower     | USE    | 4.4 · 0.48 | 8.8 · 0.71 |
+| Elderflower     | USW    | 4.3 · 0.58 | 8.6 · 0.81 |
+| Common Daisy    | NE     | 6.0 · 0.53 | 8.7 · 0.69 |
+| Common Daisy    | SE     | 6.1 · 0.58 | 8.7 · 0.70 |
+| Common Daisy    | USE    | 6.4 · 0.72 | 8.1 · 0.77 |
+| Common Daisy    | USW    | 6.1 · 0.81 | 8.5 · 0.94 |
+| Wild Mint       | NE     | 5.2 · 0.31 | 8.7 · 0.69 |
+| Wild Mint       | SE     | 4.5 · 0.50 | 7.8 · 0.55 |
+| Wild Mint       | USE    | 4.8 · 0.67 | 8.6 · 0.67 |
+| Wild Mint       | USW    | 4.1 · 0.62 | 8.0 · 0.78 |
+| Common Plantain | NE     | 5.7 · 0.41 | 8.7 · 0.66 |
+| Common Plantain | SE     | 5.2 · 0.59 | 7.2 · 0.54 |
+| Common Plantain | USE    | 5.2 · 0.66 | 8.2 · 0.59 |
+| Common Plantain | USW    | 4.5 · 0.64 | 7.8 · 0.74 |
 
-Against random points of the region on the same days they rank sightings
-higher in most cases, a little lower in a few. The range prior and land cover
-do that ranking anyway.
+The score at sightings rises in every species and region. Ranking improves in most, and drops in a few: Common Plantain SE (0.59 → 0.54), Wild Blueberry USE (0.72 → 0.69), Hazelnut USE (0.76 → 0.72), Common Plantain USE (0.66 → 0.59). The range prior and land cover do most of the spatial ranking.
 
 **Values not calibrated from 2026 weather:**
 
@@ -236,8 +272,7 @@ do that ranking anyway.
 - **Oyster:** the April–September sample holds only the summer oysters, so the
   temperature is from the literature. _P. ostreatus_ fruits from October to
   early April (MushroomExpert), so the optimum is a winter-tolerant
-  13 ± 7 °C, or 15 ± 7 °C in the summer-dominated US East. That keeps the
-  summer oysters in the sample at a mean of 7.3–8.1.
+  13 ± 7 °C, or 15 ± 7 °C in the summer-dominated US East.
 
 **Known limits:**
 
@@ -258,58 +293,146 @@ altitude 0.75 and soil pH 1.0. After a dry spell the rain term sat at its floor,
 and because the score multiplies its terms, that capped these plants near 4/10.
 No parameter could lift it: even a 1 mm rain target floors when no rain falls.
 
-`scoring.rain_weight` makes the weight per species. It defaults to 1.5, so every
-species that does not set it scores exactly as before. The golden-master
-scoring tests are unchanged.
+`scoring.rain_weight` makes the weight per species and region. It defaults to
+1.5, so every species that does not set it scores exactly as before. The
+golden-master scoring tests are unchanged.
 
-**Tested** with the production scoring on the same 2026 stage sightings as the
-parameters (weather only). Each cell shows the mean score at sightings, then how
-often a sighting outscores a random point of its region on the same day.
+**How each value was chosen.** Each species and region was scored at 2026
+sightings with weights 1.5, 0.75, 0.3 and 0, using the same stage sightings and
+production scoring as the parameters, on weather alone. The weight is the
+lowest one that meets all three conditions:
 
-| species     | region | 1.5 (before) | 0.75       | 0.3        | 0              |
-| ----------- | ------ | ------------ | ---------- | ---------- | -------------- |
-| Blackberry  | NE     | 8.0 · 0.56   | 8.3 · 0.60 | 8.7 · 0.66 | **9.0 · 0.74** |
-| Blackberry  | SE     | 6.3 · 0.48   | 6.9 · 0.50 | 7.5 · 0.53 | **8.2 · 0.58** |
-| Blackberry  | USE    | 8.4 · 0.65   | 8.6 · 0.67 | 8.8 · 0.69 | **9.0 · 0.71** |
-| Blackberry  | USW    | 6.5 · 0.67   | 7.2 · 0.76 | 8.0 · 0.87 | **8.7 · 0.93** |
-| Elderberry  | NE     | 7.6 · 0.53   | 8.0 · 0.56 | 8.4 · 0.61 | **8.8 · 0.71** |
-| Elderberry  | SE     | 6.8 · 0.53   | 7.3 · 0.53 | 7.8 · 0.55 | **8.4 · 0.57** |
-| Elderberry  | USE    | 8.8 · 0.65   | 8.8 · 0.65 | 8.9 · 0.65 | 9.0 · 0.64     |
-| Elderberry  | USW    | 5.1 · 0.43   | 6.1 · 0.47 | 7.3 · 0.61 | **8.4 · 0.78** |
-| Blueberry   | NE     | 8.7 · 0.59   | 8.8 · 0.61 | 8.8 · 0.61 | 8.8 · 0.61     |
-| Blueberry   | SE     | 8.0 · 0.72   | 8.1 · 0.73 | 8.2 · 0.73 | 8.4 · 0.72     |
-| Blueberry   | USE    | 8.7 · 0.65   | 8.8 · 0.67 | 8.8 · 0.68 | **8.8 · 0.69** |
-| Hazelnut    | NE     | 8.1 · 0.55   | 8.4 · 0.60 | 8.6 · 0.65 | **8.9 · 0.71** |
-| Hazelnut    | SE     | 8.0 · 0.65   | 8.2 · 0.65 | 8.4 · 0.64 | 8.5 · 0.60     |
-| Hazelnut    | USE    | 8.8 · 0.67   | 8.9 · 0.69 | 8.9 · 0.72 | **9.0 · 0.72** |
-| Hazelnut    | USW    | 7.6 · 0.78   | 8.0 · 0.84 | 8.4 · 0.90 | **8.8 · 0.93** |
-| Elderflower | NE     | 8.2 · 0.61   | 8.3 · 0.63 | 8.3 · 0.65 | **8.4 · 0.68** |
-| Elderflower | SE     | 8.3 · 0.65   | 8.4 · 0.65 | 8.5 · 0.65 | 8.6 · 0.64     |
-| Elderflower | USE    | 8.8 · 0.71   | 8.8 · 0.72 | 8.9 · 0.72 | **8.9 · 0.72** |
-| Elderflower | USW    | 6.3 · 0.57   | 7.0 · 0.60 | 7.8 · 0.70 | **8.6 · 0.81** |
-| Daisy       | NE     | 7.6 · 0.53   | 7.9 · 0.55 | 8.3 · 0.59 | **8.7 · 0.69** |
-| Daisy       | SE     | 8.0 · 0.60   | 8.2 · 0.61 | 8.4 · 0.61 | 8.6 · 0.60     |
-| Daisy       | USE    | 8.1 · 0.77   | 8.1 · 0.78 | 8.2 · 0.79 | **8.4 · 0.79** |
-| Daisy       | USW    | 7.5 · 0.81   | 7.8 · 0.87 | 8.2 · 0.92 | **8.5 · 0.94** |
-| Wild Mint   | NE     | 7.8 · 0.57   | 8.1 · 0.60 | 8.4 · 0.64 | **8.7 · 0.70** |
-| Wild Mint   | SE     | 6.6 · 0.48   | 6.9 · 0.49 | 7.3 · 0.51 | **7.7 · 0.52** |
-| Wild Mint   | USE    | 8.6 · 0.67   | 8.7 · 0.69 | 8.7 · 0.70 | **8.8 · 0.70** |
-| Wild Mint   | USW    | 6.0 · 0.57   | 6.6 · 0.61 | 7.3 · 0.70 | **8.0 · 0.78** |
-| Plantain    | NE     | 7.9 · 0.55   | 8.0 · 0.57 | 8.2 · 0.58 | **8.3 · 0.60** |
-| Plantain    | SE     | 7.1 · 0.53   | 7.2 · 0.53 | 7.4 · 0.53 | **7.5 · 0.53** |
-| Plantain    | USE    | 8.2 · 0.59   | 8.2 · 0.59 | 8.3 · 0.60 | 8.3 · 0.59     |
-| Plantain    | USW    | 6.4 · 0.59   | 6.9 · 0.62 | 7.3 · 0.69 | **7.8 · 0.74** |
+- the ranking against random points on the same days drops by no more than
+  0.01;
+- the mean score at sightings does not drop;
+- something clearly improves: ranking up by at least 0.03, or the score at
+  sightings up by at least 0.5.
 
-Weight 0 is best, or within 0.05 of the best, on both numbers in all 30 pairs.
-The gains are largest where summers are dry, where the rain term had been
-working against the plants.
+Otherwise the species keeps 1.5. Rain does carry information for some plants,
+and the rule keeps it there.
 
-**Set to 0:** blackberry, elderberry, blueberry, hazelnut, elderflower, daisy,
-wild mint and plantain (tested), plus sweet violet, chestnut and walnut, which
-could not be tested. Violet flowers in February–April and the two nuts drop in
-late September–October, outside the weather files (12 April – today). They
-follow the tested flowers and hazelnut, and can be checked once this autumn's
-sightings are in the files.
+| species         | NE  | SE  | USE | USW |
+| --------------- | --- | --- | --- | --- |
+| Amaranth        | 1.5 | 0   | 1.5 | 0   |
+| Blackberry      | 0   | 0   | 0   | 0   |
+| Chestnut        | 0   | 1.5 | —   | —   |
+| Chickweed       | 1.5 | 1.5 | 1.5 | 1.5 |
+| Common Daisy    | 0   | 0   | 1.5 | 0   |
+| Common Plantain | 0   | 1.5 | 1.5 | 0   |
+| Common Sorrel   | 1.5 | 1.5 | 1.5 | 0   |
+| Dandelion       | 0   | 1.5 | 1.5 | 0   |
+| Elderberry      | 0   | 0.3 | 1.5 | 0   |
+| Elderflower     | 0   | 1.5 | 1.5 | 0   |
+| Hazelnut        | 0   | 1.5 | 0   | 0   |
+| Lingonberry     | 1.5 | 1.5 | 1.5 | 1.5 |
+| Masterwort      | 1.5 | 1.5 | —   | —   |
+| Nettle          | 1.5 | 1.5 | 1.5 | 0   |
+| Sweet Violet    | 0   | 0   | 1.5 | 0   |
+| Walnut          | 0   | 1.5 | 0   | 0   |
+| Wild Artichoke  | 0   | 0   | 1.5 | 0   |
+| Wild Asparagus  | 1.5 | 0   | —   | —   |
+| Wild Blueberry  | 1.5 | 1.5 | 0   | 0   |
+| Wild Garlic     | 0   | 0   | —   | —   |
+| Wild Mint       | 0   | 0   | 1.5 | 0   |
+| Wild Raspberry  | 1.5 | 1.5 | 1.5 | 1.5 |
+| Wild Strawberry | 1.5 | 1.5 | 1.5 | 0   |
+
+**Untested regions follow their closest tested relative.** Sweet violet
+follows daisy, chestnut and walnut follow hazelnut, and wild blueberry in the
+US West follows the US East. Violet flowers in February–April and the two nuts
+drop in late September–October, outside the weather files (12 April – today),
+so all three can be checked once those sightings exist. The mushrooms keep
+1.5.
+
+**The evidence**: each cell is the score at sightings · the ranking against
+random points.
+
+| species         | region | 1.5 (before) | 0.75       | 0.3        | 0          | chosen |
+| --------------- | ------ | ------------ | ---------- | ---------- | ---------- | ------ |
+| Blackberry      | NE     | 7.4 · 0.48   | 8.0 · 0.53 | 8.6 · 0.62 | 9.2 · 0.79 | 0      |
+| Blackberry      | SE     | 7.1 · 0.58   | 7.4 · 0.59 | 7.8 · 0.59 | 8.1 · 0.58 | 0      |
+| Blackberry      | USE    | 8.4 · 0.65   | 8.6 · 0.67 | 8.8 · 0.69 | 9.0 · 0.71 | 0      |
+| Blackberry      | USW    | 6.5 · 0.67   | 7.2 · 0.76 | 8.0 · 0.87 | 8.7 · 0.93 | 0      |
+| Elderberry      | NE     | 6.7 · 0.40   | 7.4 · 0.44 | 8.2 · 0.53 | 9.0 · 0.72 | 0      |
+| Elderberry      | SE     | 7.3 · 0.59   | 7.6 · 0.59 | 8.0 · 0.59 | 8.3 · 0.57 | 0.3    |
+| Elderberry      | USE    | 8.8 · 0.65   | 8.8 · 0.65 | 8.9 · 0.65 | 9.0 · 0.64 | 1.5    |
+| Elderberry      | USW    | 5.1 · 0.43   | 6.2 · 0.47 | 7.3 · 0.61 | 8.4 · 0.78 | 0      |
+| Wild Blueberry  | NE     | 8.8 · 0.61   | 8.9 · 0.63 | 8.9 · 0.63 | 8.9 · 0.63 | 1.5    |
+| Wild Blueberry  | SE     | 8.2 · 0.69   | 8.3 · 0.67 | 8.3 · 0.65 | 8.4 · 0.61 | 1.5    |
+| Wild Blueberry  | USE    | 8.7 · 0.65   | 8.8 · 0.67 | 8.8 · 0.68 | 8.8 · 0.69 | 0      |
+| Hazelnut        | NE     | 8.2 · 0.53   | 8.5 · 0.58 | 8.8 · 0.64 | 9.1 · 0.72 | 0      |
+| Hazelnut        | SE     | 7.9 · 0.61   | 8.1 · 0.61 | 8.3 · 0.61 | 8.5 · 0.57 | 1.5    |
+| Hazelnut        | USE    | 8.8 · 0.67   | 8.9 · 0.69 | 8.9 · 0.72 | 9.0 · 0.72 | 0      |
+| Hazelnut        | USW    | 7.6 · 0.78   | 8.0 · 0.84 | 8.4 · 0.90 | 8.8 · 0.93 | 0      |
+| Elderflower     | NE     | 8.4 · 0.63   | 8.6 · 0.66 | 8.7 · 0.69 | 8.8 · 0.74 | 0      |
+| Elderflower     | SE     | 8.3 · 0.65   | 8.4 · 0.65 | 8.5 · 0.64 | 8.6 · 0.62 | 1.5    |
+| Elderflower     | USE    | 8.8 · 0.71   | 8.8 · 0.72 | 8.9 · 0.72 | 8.9 · 0.72 | 1.5    |
+| Elderflower     | USW    | 6.3 · 0.57   | 7.0 · 0.60 | 7.8 · 0.70 | 8.6 · 0.81 | 0      |
+| Common Daisy    | NE     | 8.2 · 0.58   | 8.3 · 0.61 | 8.5 · 0.65 | 8.7 · 0.69 | 0      |
+| Common Daisy    | SE     | 8.1 · 0.65   | 8.3 · 0.67 | 8.5 · 0.69 | 8.7 · 0.70 | 0      |
+| Common Daisy    | USE    | 8.1 · 0.77   | 8.1 · 0.78 | 8.2 · 0.79 | 8.3 · 0.79 | 1.5    |
+| Common Daisy    | USW    | 7.5 · 0.81   | 7.8 · 0.87 | 8.2 · 0.92 | 8.5 · 0.94 | 0      |
+| Wild Mint       | NE     | 7.6 · 0.53   | 8.0 · 0.56 | 8.3 · 0.61 | 8.7 · 0.69 | 0      |
+| Wild Mint       | SE     | 6.9 · 0.53   | 7.2 · 0.54 | 7.5 · 0.55 | 7.8 · 0.55 | 0      |
+| Wild Mint       | USE    | 8.6 · 0.67   | 8.7 · 0.69 | 8.7 · 0.70 | 8.8 · 0.70 | 1.5    |
+| Wild Mint       | USW    | 6.0 · 0.57   | 6.6 · 0.61 | 7.3 · 0.70 | 8.0 · 0.79 | 0      |
+| Common Plantain | NE     | 8.1 · 0.58   | 8.3 · 0.60 | 8.5 · 0.62 | 8.7 · 0.66 | 0      |
+| Common Plantain | SE     | 7.2 · 0.54   | 7.3 · 0.54 | 7.5 · 0.53 | 7.6 · 0.52 | 1.5    |
+| Common Plantain | USE    | 8.2 · 0.59   | 8.2 · 0.59 | 8.2 · 0.60 | 8.3 · 0.59 | 1.5    |
+| Common Plantain | USW    | 6.4 · 0.59   | 6.9 · 0.62 | 7.3 · 0.69 | 7.8 · 0.74 | 0      |
+| Wild Raspberry  | NE     | 7.1 · 0.56   | 6.9 · 0.56 | 6.8 · 0.57 | 6.7 · 0.56 | 1.5    |
+| Wild Raspberry  | SE     | 5.7 · 0.70   | 5.5 · 0.69 | 5.3 · 0.68 | 5.2 · 0.67 | 1.5    |
+| Wild Raspberry  | USE    | 5.8 · 0.78   | 5.5 · 0.78 | 5.3 · 0.78 | 5.1 · 0.78 | 1.5    |
+| Wild Strawberry | NE     | 8.2 · 0.59   | 8.1 · 0.60 | 8.1 · 0.61 | 8.0 · 0.61 | 1.5    |
+| Wild Strawberry | SE     | 7.4 · 0.62   | 7.3 · 0.62 | 7.2 · 0.62 | 7.1 · 0.62 | 1.5    |
+| Wild Strawberry | USE    | 7.9 · 0.80   | 7.7 · 0.80 | 7.5 · 0.80 | 7.4 · 0.80 | 1.5    |
+| Wild Strawberry | USW    | 6.5 · 0.76   | 6.7 · 0.79 | 6.8 · 0.81 | 7.0 · 0.82 | 0      |
+| Lingonberry     | NE     | 8.4 · 0.48   | 8.4 · 0.48 | 8.4 · 0.48 | 8.4 · 0.48 | 1.5    |
+| Lingonberry     | SE     | 7.1 · 0.88   | 6.9 · 0.88 | 6.8 · 0.88 | 6.6 · 0.87 | 1.5    |
+| Lingonberry     | USE    | 7.3 · 0.94   | 7.0 · 0.94 | 6.9 · 0.94 | 6.7 · 0.94 | 1.5    |
+| Nettle          | NE     | 5.9 · 0.41   | 5.9 · 0.43 | 5.9 · 0.45 | 5.9 · 0.47 | 1.5    |
+| Nettle          | SE     | 5.7 · 0.65   | 5.5 · 0.65 | 5.4 · 0.65 | 5.4 · 0.64 | 1.5    |
+| Nettle          | USE    | 5.7 · 0.72   | 5.4 · 0.72 | 5.2 · 0.72 | 5.0 · 0.72 | 1.5    |
+| Nettle          | USW    | 4.8 · 0.67   | 4.9 · 0.70 | 5.0 · 0.72 | 5.1 · 0.74 | 0      |
+| Dandelion       | NE     | 7.4 · 0.51   | 7.6 · 0.55 | 7.8 · 0.59 | 7.9 · 0.65 | 0      |
+| Dandelion       | SE     | 8.0 · 0.74   | 8.0 · 0.74 | 8.0 · 0.74 | 8.0 · 0.73 | 1.5    |
+| Dandelion       | USE    | 7.3 · 0.73   | 7.2 · 0.75 | 7.2 · 0.76 | 7.1 · 0.76 | 1.5    |
+| Dandelion       | USW    | 6.2 · 0.70   | 6.3 · 0.72 | 6.4 · 0.73 | 6.5 · 0.75 | 0      |
+| Chickweed       | NE     | 6.5 · 0.50   | 6.3 · 0.53 | 6.3 · 0.55 | 6.2 · 0.55 | 1.5    |
+| Chickweed       | SE     | 6.1 · 0.67   | 6.0 · 0.68 | 6.0 · 0.69 | 6.0 · 0.69 | 1.5    |
+| Chickweed       | USE    | 5.5 · 0.64   | 5.4 · 0.67 | 5.3 · 0.69 | 5.3 · 0.70 | 1.5    |
+| Chickweed       | USW    | 6.3 · 0.85   | 6.2 · 0.87 | 6.2 · 0.88 | 6.2 · 0.89 | 1.5    |
+| Common Sorrel   | NE     | 7.4 · 0.59   | 7.3 · 0.60 | 7.2 · 0.61 | 7.1 · 0.62 | 1.5    |
+| Common Sorrel   | SE     | 6.7 · 0.68   | 6.5 · 0.68 | 6.5 · 0.68 | 6.4 · 0.68 | 1.5    |
+| Common Sorrel   | USE    | 6.5 · 0.75   | 6.3 · 0.76 | 6.2 · 0.76 | 6.0 · 0.76 | 1.5    |
+| Common Sorrel   | USW    | 6.7 · 0.85   | 6.7 · 0.87 | 6.8 · 0.89 | 6.8 · 0.89 | 0      |
+| Wild Garlic     | NE     | 6.2 · 0.54   | 6.5 · 0.61 | 6.8 · 0.68 | 7.1 · 0.74 | 0      |
+| Wild Garlic     | SE     | 6.5 · 0.65   | 6.7 · 0.69 | 6.9 · 0.72 | 7.0 · 0.74 | 0      |
+| Amaranth        | SE     | 7.1 · 0.58   | 7.3 · 0.59 | 7.6 · 0.59 | 7.9 · 0.59 | 0      |
+| Amaranth        | USE    | 9.0 · 0.71   | 8.9 · 0.71 | 8.9 · 0.71 | 8.8 · 0.71 | 1.5    |
+| Amaranth        | USW    | 5.2 · 0.47   | 5.5 · 0.49 | 5.8 · 0.52 | 6.2 · 0.55 | 0      |
+| Wild Asparagus  | SE     | 5.0 · 0.46   | 5.2 · 0.48 | 5.3 · 0.50 | 5.5 · 0.51 | 0      |
+| Wild Artichoke  | NE     | 5.5 · 0.34   | 5.6 · 0.37 | 5.8 · 0.41 | 6.0 · 0.46 | 0      |
+| Wild Artichoke  | SE     | 4.8 · 0.41   | 5.1 · 0.45 | 5.5 · 0.48 | 5.8 · 0.52 | 0      |
+| Wild Artichoke  | USE    | 4.4 · 0.47   | 4.1 · 0.47 | 3.8 · 0.47 | 3.7 · 0.47 | 1.5    |
+| Wild Artichoke  | USW    | 5.2 · 0.67   | 6.0 · 0.80 | 6.8 · 0.88 | 7.6 · 0.93 | 0      |
+| Masterwort      | SE     | 7.3 · 0.92   | 7.0 · 0.93 | 6.9 · 0.93 | 6.8 · 0.92 | 1.5    |
+
+**A finding beyond rain.** With their current parameters, some existing
+plants score lower at real sightings than at random points of the region
+(ranking under 0.5):
+
+- Amaranth, USW (0.47);
+- Wild Artichoke, NE (0.34);
+- Wild Artichoke, SE (0.41);
+- Wild Artichoke, USE (0.47);
+- Wild Asparagus, SE (0.46);
+- Lingonberry, NE (0.48);
+- Nettle, NE (0.41).
+
+Their temperature, humidity or altitude optima do not match where they are
+found. That is worth the same weather-at-sightings recalibration these eleven
+species received, as a separate change.
 
 ## Photo identification and look-alikes
 

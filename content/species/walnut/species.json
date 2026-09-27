@@ -117,7 +117,6 @@
           "optimal_soil_temp": 11,
           "soil_temp_sigma": 5,
           "min_cumulative_rain": 15,
-          "rain_weight": 0,
           "weather_preference": {
             "rain_first": false
           },
@@ -206,8 +205,6 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": {
-      "taxonKeys": [3054368, 3054357]
-    }
+    "rangePrior": { "taxonKeys": [3054368, 3054357] }
   }
 }
