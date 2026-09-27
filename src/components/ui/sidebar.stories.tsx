@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
+import { Logo } from '@/components/Logo';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import {
   Sidebar,
@@ -126,16 +127,12 @@ const HELP_ITEMS = [
 ];
 
 /**
- * The brand lockup carries the app name, so it is the accessible name of the
- * image rather than decoration beside a wordmark.
+ * The brand lockup: the mark plus a live-text wordmark, so the name reads in
+ * both themes.
  */
 const Header = () => (
   <div className='flex items-center gap-2 px-3 pt-4 pb-4 group-data-[collapsible=icon]:px-0'>
-    <img
-      src='/icons/logo_funges.png'
-      alt='Funges'
-      className='min-w-0 flex-1 object-contain group-data-[collapsible=icon]:hidden'
-    />
+    <Logo className='min-w-0 flex-1 text-2xl group-data-[collapsible=icon]:hidden' />
     <SidebarTrigger className='shrink-0 group-data-[collapsible=icon]:mx-auto' />
   </div>
 );
