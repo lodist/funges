@@ -1,9 +1,9 @@
 import geopandas as gpd
 import numpy as np
 from geopandas import GeoDataFrame
-from io import StringIO, BytesIO
 from datetime import datetime
 import pandas as pd
+import pyarrow.parquet as pq
 import requests
 from shapely.geometry import Polygon, Point, box, MultiPolygon
 from scipy.spatial import Delaunay, cKDTree
@@ -45,16 +45,21 @@ load_dotenv(_ROOT / ".env")
 load_dotenv(_ROOT / ".env.secret")
 
 def load_weather_df(file_path):
-    """Load a dataframe from a local or remote file (parquet or csv)"""
-    if is_remote_path(file_path):
-        response = requests.get(file_path, timeout=600)
-        response.raise_for_status()
-        if str(file_path).endswith('.parquet'):
-            return pd.read_parquet(BytesIO(response.content))
-        return pd.read_csv(StringIO(response.text))
-    if str(file_path).endswith('.parquet'):
-        return pd.read_parquet(file_path)
-    return pd.read_csv(file_path)
+    """Load only what the map uses from the season score parquet: Date, coordinates and
+    the *_score columns, from a week before the latest day up to today onwards. Anchoring
+    on the latest past day (not today) keeps a stale file mapping its last week."""
+    local = download_remote_file_to_temp(file_path, ".parquet") if is_remote_path(file_path) else file_path
+    try:
+        dates = pd.read_parquet(local, columns=["Date"])["Date"]
+        today = pd.Timestamp(datetime.now()).normalize()
+        past = dates[dates <= today]
+        start = (past.max() if len(past) else dates.max()).normalize() - pd.Timedelta(days=7)
+        del dates, past
+        cols = ["Date", "Latitude", "Longitude"] + [c for c in pq.read_schema(local).names if c.endswith("_score")]
+        return pd.read_parquet(local, columns=cols, filters=[("Date", ">=", start)])
+    finally:
+        if local != file_path:
+            os.unlink(local)
 
 def load_geojson_from_local(file_path):
     """Load a GeoDataFrame from a local file"""
@@ -90,11 +95,12 @@ def load_geojson_from_source(path):
     return load_geojson_from_local(path)
 
 def download_remote_file_to_temp(url, suffix):
-    response = requests.get(url, timeout=300)
-    response.raise_for_status()
-    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
-        tmp.write(response.content)
-        return tmp.name
+    with requests.get(url, timeout=600, stream=True) as response:
+        response.raise_for_status()
+        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+            for chunk in response.iter_content(chunk_size=8 * 1024 * 1024):
+                tmp.write(chunk)
+            return tmp.name
 
 
 def assign_ids_corrected(tri_gdf):
@@ -171,7 +177,7 @@ df = load_weather_df(FILE_PATH)
 print("Weather data fetched successfully!")
 
 df['Date'] = pd.to_datetime(df['Date'])
-full_df = df.copy()  # forward window (today..+6) for the forecast tileset; today path collapses df below
+full_df = df  # the filter below rebinds df, never mutates it; forward window (today..+6) for the forecast tileset; today path collapses df below
 
 # Select TODAY's scores for each coordinate. The master now holds a 7-day forward
 # window (today..today+6); the map shows a single day, so we drop the future and take
@@ -179,8 +185,7 @@ full_df = df.copy()  # forward window (today..+6) for the forecast tileset; toda
 # the latest available date if today's scoring hasn't landed yet (map never blanks).
 today = pd.Timestamp(datetime.now()).normalize()
 df = df[df['Date'] <= today]
-df_sorted = df.sort_values(by="Date", ascending=False)
-df = df_sorted.groupby(['Latitude', 'Longitude']).first().reset_index()
+df = df.sort_values(by="Date", ascending=False).groupby(['Latitude', 'Longitude']).first().reset_index()
 
 # Convert DataFrame to GeoDataFrame
 geometry = gpd.points_from_xy(df.Longitude, df.Latitude)
@@ -195,17 +200,12 @@ tri_gdf = gpd.GeoDataFrame(geometry=triangles)
 tri_gdf['tri_id'] = range(len(tri_gdf))
 tri_gdf = tri_gdf.set_crs("EPSG:4326")
 
-print("Fetching wilderness GeoJSON from configured source...")
-clipped_triangles_geojson = load_geojson_from_source(GEOJSON_FILE_PATH)
-print("GeoJSON fetched and loaded into GeoDataFrame successfully!")
 
 
 tri_gdf['geometry'] = tri_gdf.geometry.buffer(0)  # Clean geometries
-clipped_triangles_geojson['geometry'] = clipped_triangles_geojson.geometry.buffer(0)  # Clean geometries
 
 # Validate geometries and remove invalid ones
 tri_gdf = tri_gdf[tri_gdf.is_valid]
-clipped_triangles_geojson = clipped_triangles_geojson[clipped_triangles_geojson.is_valid]
 
 print("start Set CRS and clip")
 CLIPPED_TRIANGLES_PATH = get_required_env("USE_CLIPPED_GPKG")
@@ -218,6 +218,10 @@ elif os.path.exists(CLIPPED_TRIANGLES_PATH):
     clipped_tri_gdf = gpd.read_file(CLIPPED_TRIANGLES_PATH)[['raster_val', 'geometry']]
 else:
     print("🛠 Clipping triangles to forest and saving...")
+    print("Fetching wilderness GeoJSON from configured source...")
+    clipped_triangles_geojson = load_geojson_from_source(GEOJSON_FILE_PATH)
+    clipped_triangles_geojson['geometry'] = clipped_triangles_geojson.geometry.buffer(0)  # Clean geometries
+    clipped_triangles_geojson = clipped_triangles_geojson[clipped_triangles_geojson.is_valid]
     tri_gdf = tri_gdf.set_crs(clipped_triangles_geojson.crs)
     clipped_tri_gdf = gpd.clip(tri_gdf, clipped_triangles_geojson)
     clipped_tri_gdf = gpd.sjoin(clipped_tri_gdf, clipped_triangles_geojson[['raster_val', 'geometry']], how="left", predicate="intersects").drop(columns='index_right')
@@ -232,13 +236,10 @@ matched_triangles = gpd.sjoin(clipped_tri_gdf, tri_gdf[['tri_id', 'geometry']], 
 
 for specie, valid_rasters in species_forest_mapping.items():
     score_col = f'{specie}_score'
-    details_col = f'{specie}_details'
 
     clipped_tri_gdf[score_col] = clipped_tri_gdf['raster_val'].apply(
         lambda val: np.nan if pd.notna(val) and val in valid_rasters else 0.0
     )
-
-    clipped_tri_gdf[details_col] = None
 print("Assigning species scores (dominant-habitat, optimized)...")
 
 # --- 0) Compute DOMINANT raster per triangle (area-weighted in EPSG:5070) ---
@@ -250,6 +251,7 @@ _dom = (_clipped_proj.dropna(subset=["raster_val"])
         .groupby(["tri_id", "raster_val"], as_index=False)["__area_m2"].sum())
 _dom = _dom.sort_values(["tri_id", "__area_m2"], ascending=[True, False])
 _dominant = _dom.drop_duplicates(subset=["tri_id"], keep="first")
+del _clipped_proj, _dom
 
 # Map tri_id -> dominant raster
 tri_id_to_raster = dict(zip(_dominant["tri_id"], _dominant["raster_val"]))
@@ -390,6 +392,7 @@ for tri_id in tri_ids:
         clipped_tri_gdf.loc[mask_tri, f"{s}_score"] = v
 
 print("Finished optimized score calculation for all triangles.")
+del df, gdf, matched_triangles, species_to_array
 
 # --- 8) Fill remaining NaNs with 0.0 (no neighbor backfill) ---
 score_columns = [c for c in clipped_tri_gdf.columns if c.endswith('_score')]
@@ -399,7 +402,8 @@ print("All NaN scores replaced with 0.0 — backfill skipped.")
 
 clipped_tri_gdf = clipped_tri_gdf.drop_duplicates(subset=['geometry'])
 
-gdf_full = clipped_tri_gdf.copy().reset_index(drop=True)
+gdf_full = clipped_tri_gdf.reset_index(drop=True)
+del clipped_tri_gdf
 
 # Function to remove Z coordinates
 def drop_z(geometry):
@@ -417,7 +421,7 @@ def drop_z(geometry):
 
 # Apply the function to remove Z
 gdf_full['geometry'] = gdf_full['geometry'].apply(drop_z)
-_tri_geom = clipped_tri_gdf.drop_duplicates(subset=['tri_id']).set_index('tri_id')['geometry'].apply(drop_z)  # forecast: tri_id -> clean geometry
+_tri_geom = gdf_full.drop_duplicates(subset=['tri_id']).set_index('tri_id')['geometry']  # already drop_z-ed; forecast: tri_id -> clean geometry
 
 
 # ---------- FORECAST SCORING (day-6 endpoint + unified keep-set) ----------
@@ -442,7 +446,7 @@ print(f"Forecast window: {[str(pd.Timestamp(d).date()) for d in fwd_dates]}")
 
 # Per-day species arrays aligned to the points' order; only the two endpoints needed.
 canon_keys = _canon_latlon
-fwd = full_df.copy(); fwd['Date'] = fwd['Date'].dt.normalize()
+fwd = full_df; del full_df; fwd['Date'] = fwd['Date'].dt.normalize()
 fwd['_lat'] = fwd['Latitude'].round(3); fwd['_lon'] = fwd['Longitude'].round(3)
 species_arrays_by_day = []
 # Endpoint day is pinned PER COORDINATE, not one global date. The fetch runs near UTC
@@ -462,8 +466,10 @@ for keep in ('first', 'last'):  # first -> d0 (earliest); last -> d6 (latest ava
         arrays[s] = series.reindex(canon_keys).to_numpy(dtype=float)
     species_arrays_by_day.append(arrays)
 
+del fwd, win, day_df
 per_tri = score_days(tree, xy_m, tri_centroids_m, valid_tris,
                      tri_id_to_raster, species_validsets, species_arrays_by_day)
+del species_arrays_by_day
 
 # d0 = production today; d6 = today + (sd6 - sd0) (real forward delta, clamped 0..10).
 fc_props_by_tri, keep_ids = {}, set()
@@ -490,6 +496,7 @@ for tid, today_row in today_by_tri.items():
         keep_ids.add(tid)
         fc_props_by_tri[tid] = props
 print(f"Unified keep-set (today == forecast): {len(keep_ids)} triangles")
+del today_by_tri, per_tri
 
 def handle_geometry_collection(geometry):
     """Convert GeometryCollection into individual supported geometries."""
@@ -584,12 +591,14 @@ with tempfile.TemporaryDirectory() as tmpdir:
             continue
         emitted_keys.update(props)
         fc_features.append({'geometry': tri_geom.loc[tri_id], **props})
+    del fc_props_by_tri
 
     # Always build (never skip): this is the only tileset now, so a run with no deltas
     # above threshold must still emit today's polygons or the map would go blank.
     fc_gdf = (gpd.GeoDataFrame(fc_features, crs=gdf_full.crs) if fc_features
               else gpd.GeoDataFrame(geometry=[], crs=gdf_full.crs))
     minx, miny, maxx, maxy = fc_gdf.total_bounds if fc_features else gdf_full.total_bounds
+    del fc_features
     # 0/10 colour-scale anchors per emitted key (empty run: anchor every species).
     anchors = [
         {'geometry': Polygon([(minx, -89.99), (maxx, -89.99), ((minx + maxx) / 2, -89.99)])},
@@ -604,8 +613,17 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
     fc_geojson_path = Path(tmpdir) / f"{region_code}_forecast.geojson"
     fc_mbtiles_path = Path(tmpdir) / f"{region_code}_forecast.mbtiles"
+    # Streamed feature by feature: to_json() is json.dumps over this same iterfeatures()
+    # list, plus a "crs" member only for non-WGS84 frames, which these never are.
+    assert fc_gdf.crs is None or fc_gdf.crs.equals("epsg:4326"), fc_gdf.crs
     with open(fc_geojson_path, 'w', encoding='utf-8') as f:
-        json.dump(json.loads(fc_gdf.to_json()), f, ensure_ascii=False)
+        f.write('{"type": "FeatureCollection", "features": [')
+        for i, feature in enumerate(fc_gdf.iterfeatures()):
+            f.write(', ' if i else '')
+            json.dump(feature, f, ensure_ascii=False)
+        f.write(']}')
+    del fc_gdf
+    gc.collect()  # tippecanoe runs next, in the same WSL memory budget
     build_mbtiles_from_geojson(fc_geojson_path, fc_mbtiles_path, f"{region_code}_forecast")
     if fc_mbtiles_path.exists():
         print(f"Forecast mbtiles: {fc_mbtiles_path.stat().st_size/1048576:.1f} MB")

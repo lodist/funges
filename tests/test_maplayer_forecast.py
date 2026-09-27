@@ -35,6 +35,14 @@ def test_interp_props_drops_triangle_below_threshold():
     assert interp_props({"mushroom": 3.0, "chant": 4.4}, {"mushroom": 4.0, "chant": 4.4}, threshold=4.5) == {}
 
 
+def test_interp_props_keeps_species_order():
+    # dict == ignores order; the GeoJSON bytes don't, so compare the key sequence.
+    names = [f"sp{i}" for i in range(30)]
+    today = {s: 6.0 for s in names}
+    d6 = {s: 7.0 for s in names}
+    assert list(interp_props(today, d6)) == [k for s in names for k in (f"{s}_score", f"{s}_score_d6")]
+
+
 import numpy as np
 from scipy.spatial import cKDTree
 from maplayer_forecast import score_days
@@ -71,6 +79,7 @@ if __name__ == "__main__":
     test_interp_props_omits_d6_when_flat()
     test_interp_props_emits_zero_d6_for_real_decline()
     test_interp_props_drops_triangle_below_threshold()
+    test_interp_props_keeps_species_order()
     test_score_days_interpolates_per_day()
     test_score_days_skips_invalid_habitat()
     print("OK")
