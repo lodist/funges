@@ -245,14 +245,71 @@ do that ranking anyway.
   chicken of the woods or oyster stays up for weeks, and the day it is logged
   says more about who walked past than about the rain. Their timing comes
   from the season curve.
-- **Plants in dry summers.** Elder, blackberry and mint fruit or grow through
-  the dry Californian and Mediterranean summers (median 21-day rain at US West
-  sightings: 2–6 mm). The model always scores rain, so without recent rain it
-  caps these at roughly 4/10. A per-species rain weight for perennials would
-  fix it. That is a model change, left for a separate decision.
 - **The water-distance factor was tested for wild mint and rejected.** Only
   1–5% of mint sightings are within 500 m of mapped water, no more than random
   points.
+
+## Rain weight
+
+Elder, blackberry and mint fruit or grow through the dry Californian and
+Mediterranean summers (median 21-day rain at US West sightings: 2–6 mm). Every
+score used to weigh recent rain at 1.5, against temperature 1.75, humidity 1.0,
+altitude 0.75 and soil pH 1.0. After a dry spell the rain term sat at its floor,
+and because the score multiplies its terms, that capped these plants near 4/10.
+No parameter could lift it: even a 1 mm rain target floors when no rain falls.
+
+`scoring.rain_weight` makes the weight per species. It defaults to 1.5, so every
+species that does not set it scores exactly as before. The golden-master
+scoring tests are unchanged.
+
+**Tested** with the production scoring on the same 2026 stage sightings as the
+parameters (weather only). Each cell shows the mean score at sightings, then how
+often a sighting outscores a random point of its region on the same day.
+
+| species     | region | 1.5 (before) | 0.75       | 0.3        | 0              |
+| ----------- | ------ | ------------ | ---------- | ---------- | -------------- |
+| Blackberry  | NE     | 8.0 · 0.56   | 8.3 · 0.60 | 8.7 · 0.66 | **9.0 · 0.74** |
+| Blackberry  | SE     | 6.3 · 0.48   | 6.9 · 0.50 | 7.5 · 0.53 | **8.2 · 0.58** |
+| Blackberry  | USE    | 8.4 · 0.65   | 8.6 · 0.67 | 8.8 · 0.69 | **9.0 · 0.71** |
+| Blackberry  | USW    | 6.5 · 0.67   | 7.2 · 0.76 | 8.0 · 0.87 | **8.7 · 0.93** |
+| Elderberry  | NE     | 7.6 · 0.53   | 8.0 · 0.56 | 8.4 · 0.61 | **8.8 · 0.71** |
+| Elderberry  | SE     | 6.8 · 0.53   | 7.3 · 0.53 | 7.8 · 0.55 | **8.4 · 0.57** |
+| Elderberry  | USE    | 8.8 · 0.65   | 8.8 · 0.65 | 8.9 · 0.65 | 9.0 · 0.64     |
+| Elderberry  | USW    | 5.1 · 0.43   | 6.1 · 0.47 | 7.3 · 0.61 | **8.4 · 0.78** |
+| Blueberry   | NE     | 8.7 · 0.59   | 8.8 · 0.61 | 8.8 · 0.61 | 8.8 · 0.61     |
+| Blueberry   | SE     | 8.0 · 0.72   | 8.1 · 0.73 | 8.2 · 0.73 | 8.4 · 0.72     |
+| Blueberry   | USE    | 8.7 · 0.65   | 8.8 · 0.67 | 8.8 · 0.68 | **8.8 · 0.69** |
+| Hazelnut    | NE     | 8.1 · 0.55   | 8.4 · 0.60 | 8.6 · 0.65 | **8.9 · 0.71** |
+| Hazelnut    | SE     | 8.0 · 0.65   | 8.2 · 0.65 | 8.4 · 0.64 | 8.5 · 0.60     |
+| Hazelnut    | USE    | 8.8 · 0.67   | 8.9 · 0.69 | 8.9 · 0.72 | **9.0 · 0.72** |
+| Hazelnut    | USW    | 7.6 · 0.78   | 8.0 · 0.84 | 8.4 · 0.90 | **8.8 · 0.93** |
+| Elderflower | NE     | 8.2 · 0.61   | 8.3 · 0.63 | 8.3 · 0.65 | **8.4 · 0.68** |
+| Elderflower | SE     | 8.3 · 0.65   | 8.4 · 0.65 | 8.5 · 0.65 | 8.6 · 0.64     |
+| Elderflower | USE    | 8.8 · 0.71   | 8.8 · 0.72 | 8.9 · 0.72 | **8.9 · 0.72** |
+| Elderflower | USW    | 6.3 · 0.57   | 7.0 · 0.60 | 7.8 · 0.70 | **8.6 · 0.81** |
+| Daisy       | NE     | 7.6 · 0.53   | 7.9 · 0.55 | 8.3 · 0.59 | **8.7 · 0.69** |
+| Daisy       | SE     | 8.0 · 0.60   | 8.2 · 0.61 | 8.4 · 0.61 | 8.6 · 0.60     |
+| Daisy       | USE    | 8.1 · 0.77   | 8.1 · 0.78 | 8.2 · 0.79 | **8.4 · 0.79** |
+| Daisy       | USW    | 7.5 · 0.81   | 7.8 · 0.87 | 8.2 · 0.92 | **8.5 · 0.94** |
+| Wild Mint   | NE     | 7.8 · 0.57   | 8.1 · 0.60 | 8.4 · 0.64 | **8.7 · 0.70** |
+| Wild Mint   | SE     | 6.6 · 0.48   | 6.9 · 0.49 | 7.3 · 0.51 | **7.7 · 0.52** |
+| Wild Mint   | USE    | 8.6 · 0.67   | 8.7 · 0.69 | 8.7 · 0.70 | **8.8 · 0.70** |
+| Wild Mint   | USW    | 6.0 · 0.57   | 6.6 · 0.61 | 7.3 · 0.70 | **8.0 · 0.78** |
+| Plantain    | NE     | 7.9 · 0.55   | 8.0 · 0.57 | 8.2 · 0.58 | **8.3 · 0.60** |
+| Plantain    | SE     | 7.1 · 0.53   | 7.2 · 0.53 | 7.4 · 0.53 | **7.5 · 0.53** |
+| Plantain    | USE    | 8.2 · 0.59   | 8.2 · 0.59 | 8.3 · 0.60 | 8.3 · 0.59     |
+| Plantain    | USW    | 6.4 · 0.59   | 6.9 · 0.62 | 7.3 · 0.69 | **7.8 · 0.74** |
+
+Weight 0 is best, or within 0.05 of the best, on both numbers in all 30 pairs.
+The gains are largest where summers are dry, where the rain term had been
+working against the plants.
+
+**Set to 0:** blackberry, elderberry, blueberry, hazelnut, elderflower, daisy,
+wild mint and plantain (tested), plus sweet violet, chestnut and walnut, which
+could not be tested. Violet flowers in February–April and the two nuts drop in
+late September–October, outside the weather files (12 April – today). They
+follow the tested flowers and hazelnut, and can be checked once this autumn's
+sightings are in the files.
 
 ## Photo identification and look-alikes
 
