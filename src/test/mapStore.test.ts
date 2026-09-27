@@ -62,7 +62,7 @@ describe('regional species options', () => {
     expect(speciesOptions.some(option => option.code === 'masterwort')).toBe(
       true
     );
-    expect(speciesOptions.some(option => option.code === 'asparagus')).toBe(
+    expect(speciesOptions.some(option => option.code === 'pacific_chant')).toBe(
       false
     );
   });
@@ -107,15 +107,18 @@ describe('regional species options', () => {
     expect(localStorage.getItem('selectedSpecies')).toBe('masterwort');
   });
 
-  it('filters the catalog per region, not per continent', () => {
+  it('filters the catalog per region', () => {
     expect(
-      getSpeciesOptions('USE').some(option => option.code === 'asparagus')
+      getSpeciesOptions('USE').some(option => option.code === 'garlic')
     ).toBe(false);
     expect(
-      getSpeciesOptions('NE').some(option => option.code === 'asparagus')
+      getSpeciesOptions('NE').some(option => option.code === 'garlic')
+    ).toBe(true);
+    expect(
+      getSpeciesOptions('NE').some(option => option.code === 'pacific_chant')
     ).toBe(false);
     expect(
-      getSpeciesOptions('SE').some(option => option.code === 'asparagus')
+      getSpeciesOptions('USE').some(option => option.code === 'pacific_chant')
     ).toBe(true);
   });
 });

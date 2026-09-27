@@ -33,8 +33,12 @@ def test_regional_registry_excludes_unavailable_species_and_keeps_overrides():
     }:
         assert species_id not in use
 
-    assert "asparagus" not in ne
-    assert "truffle_b" not in ne
+    # Species no longer stop at the NE/SE or USE/USW line: the range prior and host
+    # trees decide where in its continent each grows. Black truffle is the exception:
+    # 68 European GBIF records cannot draw its range, so it stays South Europe only.
+    usw = species_registry.get_species_params("USW")
+    assert "asparagus" in ne and "truffle_b" not in ne
+    assert "smooth_chant" in usw and "pacific_chant" in use
     for species_id in {"artichoke", "walnut", "black_chant"}:
         assert species_id in use
         assert species_id in ne

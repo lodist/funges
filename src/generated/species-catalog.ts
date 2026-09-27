@@ -314,7 +314,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'spring',
     habitat: 'hedgerow',
     showOnMap: true,
-    forecastRegions: ['SE'],
+    forecastRegions: ['NE', 'SE'],
   },
   {
     id: 'black_chant',
@@ -457,7 +457,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'fall-winter',
     habitat: 'forest',
     showOnMap: true,
-    forecastRegions: ['USW'],
+    forecastRegions: ['USE', 'USW'],
   },
   {
     id: 'smooth_chant',
@@ -470,7 +470,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'summer',
     habitat: 'forest',
     showOnMap: true,
-    forecastRegions: ['USE'],
+    forecastRegions: ['USE', 'USW'],
   },
   {
     id: 'winter_chant',

@@ -72,7 +72,45 @@
         "available": false
       },
       "USE": {
-        "available": false
+        "available": true,
+        "landCover": [42, 43, 52],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 4,
+          "min_temp": 3,
+          "max_temp": 22,
+          "optimal_alt": 500,
+          "alt_sigma": 900,
+          "optimal_humidity": 88,
+          "humidity_sigma": 16,
+          "optimal_pH": 5.0,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4, 6.5],
+          "optimal_soil_temp": 14,
+          "soil_temp_sigma": 4,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": false,
+          "season_months": [9, 10, 11, 12, 1],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "douglas_fir",
+            "hemlock_sitka_spruce",
+            "fir_spruce_mountain_hemlock",
+            "redwood",
+            "tanoak_laurel",
+            "california_mixed_conifer"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5466954",
+          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+        ],
+        "landCoverScheme": "NLCD"
       },
       "USW": {
         "available": true,
