@@ -1000,6 +1000,112 @@
       "servings": "2–4",
       "tags": ["vegetarian", "drink", "easy"],
       "safetyNotes": []
+    },
+    "lions-mane-crab-cakes": {
+      "title": "Polpette di criniera di leone \"al granchio\"",
+      "ingredients": [
+        "300 g di criniera di leone, sfilacciata",
+        "1 uovo",
+        "3 cucchiai di maionese",
+        "1 cucchiaino di senape di Digione",
+        "1 cucchiaino di paprika dolce",
+        "1 cipollotto tritato finemente",
+        "Scorza e succo di mezzo limone",
+        "6 cucchiai di pangrattato",
+        "Sale e pepe",
+        "Olio o burro per friggere"
+      ],
+      "instructions": [
+        "Asciugare: Cuoci il fungo sfilacciato in una padella senza grassi a fuoco medio, premendolo, finché ha perso l'acqua e inizia a dorarsi (8–10 minuti). Lascia raffreddare.",
+        "Impastare: Mescola uovo, maionese, senape, paprika, cipollotto, scorza e succo di limone, poi incorpora il fungo e 4 cucchiai di pangrattato. Regola di sale e pepe.",
+        "Formare: Forma 6 piccole polpette e passale nel pangrattato rimasto. Mettile in frigo 15 minuti perché restino compatte.",
+        "Friggere: Friggile in olio o burro a fuoco medio finché sono dorate e croccanti, circa 3–4 minuti per lato.",
+        "Servire: Con spicchi di limone e un'insalata verde o salsa tartara."
+      ],
+      "species": ["lions_mane"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Asciugare: Cuoci il fungo sfilacciato in una padella senza grassi a fuoco medio, premendolo, finché ha perso l'acqua e inizia a dorarsi (8–10 minuti). Lascia raffreddare."
+        },
+        {
+          "step": 2,
+          "instruction": "Impastare: Mescola uovo, maionese, senape, paprika, cipollotto, scorza e succo di limone, poi incorpora il fungo e 4 cucchiai di pangrattato. Regola di sale e pepe."
+        },
+        {
+          "step": 3,
+          "instruction": "Formare: Forma 6 piccole polpette e passale nel pangrattato rimasto. Mettile in frigo 15 minuti perché restino compatte."
+        },
+        {
+          "step": 4,
+          "instruction": "Friggere: Friggile in olio o burro a fuoco medio finché sono dorate e croccanti, circa 3–4 minuti per lato."
+        },
+        {
+          "step": 5,
+          "instruction": "Servire: Con spicchi di limone e un'insalata verde o salsa tartara."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "20 min",
+      "servings": "2–3",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cuoci bene la criniera di leone e assaggiane poca la prima volta: alcune persone reagiscono.",
+        "In Gran Bretagna raccoglierla è illegale, e in gran parte d'Europa è nella lista rossa. Raccoglila solo dove è comune, come in Nord America."
+      ]
+    },
+    "crispy-roasted-hen-of-the-woods": {
+      "title": "Grifola croccante al forno",
+      "ingredients": [
+        "400 g di grifola, divisa in piccoli ciuffi",
+        "3 cucchiai di olio d'oliva",
+        "1 cucchiaio di salsa di soia o tamari",
+        "2 spicchi d'aglio tritati finemente",
+        "Qualche rametto di timo",
+        "Pepe",
+        "Spicchi di limone per servire"
+      ],
+      "instructions": [
+        "Pulire: Spazzola via terra e sabbia tra le fronde ed elimina il cuore duro alla base. Non metterla a bagno.",
+        "Condire: Mescola i ciuffi con olio, salsa di soia, aglio e timo, e aggiungi il pepe. Il sale lo porta la soia.",
+        "Arrostire: Disponili in un solo strato su una teglia e cuoci a 220 °C per 20–25 minuti, girandoli una volta, finché i bordi sono bruniti e croccanti.",
+        "Servire: Caldi, con spicchi di limone, su riso, polenta o pane tostato."
+      ],
+      "species": ["hen_of_the_woods"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pulire: Spazzola via terra e sabbia tra le fronde ed elimina il cuore duro alla base. Non metterla a bagno."
+        },
+        {
+          "step": 2,
+          "instruction": "Condire: Mescola i ciuffi con olio, salsa di soia, aglio e timo, e aggiungi il pepe. Il sale lo porta la soia."
+        },
+        {
+          "step": 3,
+          "instruction": "Arrostire: Disponili in un solo strato su una teglia e cuoci a 220 °C per 20–25 minuti, girandoli una volta, finché i bordi sono bruniti e croccanti."
+        },
+        {
+          "step": 4,
+          "instruction": "Servire: Caldi, con spicchi di limone, su riso, polenta o pane tostato."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Cuoci bene la grifola: poco cotta, a qualcuno dà disturbi di stomaco.",
+        "Il suo sosia, il Meripilus giganteus, è commestibile ma coriaceo; annerisce dove viene toccato."
+      ]
     }
   }
 }

@@ -263,6 +263,16 @@
       "name": "Rocky-Mountains-Steinpilz",
       "description": "Ein gedrungener Hochgebirgs-Steinpilz mit ziegelrotem bis rotbraunem Hut, weissen Poren und dickem hellem Stiel, oben genetzt",
       "howTo": "Suche unter Fichten und Tannen in den Hochlagen der südlichen Rocky Mountains, sobald der Sommermonsun Regen bringt, von Juli bis September"
+    },
+    "lions_mane": {
+      "name": "Igel-Stachelbart",
+      "description": "Ein weißer, zotteliger Schopf aus langen, herabhängenden Stacheln an Laubbäumen, der gebraten an Krabbenfleisch erinnert",
+      "howTo": "Suche an verletzten oder toten Eichen, Buchen und Ahornen vom Spätsommer bis in den Herbst, oft hoch am Stamm. In Europa ist er selten und vielerorts geschützt: lass ihn stehen"
+    },
+    "hen_of_the_woods": {
+      "name": "Klapperschwamm",
+      "description": "Eine große Rosette aus sich überlappenden, graubraunen Hütchen am Fuß alter Eichen, unterseits mit weißen Poren",
+      "howTo": "Suche am Fuß alter oder absterbender Eichen von Ende August bis Oktober; er erscheint oft Jahr für Jahr am selben Baum. In Teilen Mittel- und Nordeuropas ist er geschützt"
     }
   }
 }

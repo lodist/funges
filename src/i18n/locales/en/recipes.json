@@ -986,6 +986,112 @@
       "servings": "2–4",
       "tags": ["vegetarian", "drink", "easy"],
       "safetyNotes": []
+    },
+    "lions-mane-crab-cakes": {
+      "title": "Lion's Mane \"Crab\" Cakes",
+      "ingredients": [
+        "300 g lion's mane, torn into shreds",
+        "1 egg",
+        "3 tablespoons mayonnaise",
+        "1 teaspoon Dijon mustard",
+        "1 teaspoon sweet paprika or seafood seasoning",
+        "1 spring onion, finely chopped",
+        "Zest and juice of half a lemon",
+        "6 tablespoons breadcrumbs",
+        "Salt and pepper",
+        "Oil or butter for frying"
+      ],
+      "instructions": [
+        "Dry-fry: Cook the shredded mushroom in a dry pan over medium heat, pressing it down, until it has given up its water and starts to brown (8–10 minutes). Let it cool.",
+        "Mix: Stir the egg, mayonnaise, mustard, paprika, spring onion, lemon zest and juice together, then fold in the mushroom and 4 tablespoons of breadcrumbs. Season.",
+        "Shape: Form 6 small cakes and coat them in the remaining breadcrumbs. Chill for 15 minutes so they hold together.",
+        "Fry: Fry the cakes in oil or butter over medium heat until golden and crisp, about 3–4 minutes per side.",
+        "Serve: With lemon wedges and a green salad or tartare sauce."
+      ],
+      "species": ["lions_mane"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Dry-fry: Cook the shredded mushroom in a dry pan over medium heat, pressing it down, until it has given up its water and starts to brown (8–10 minutes). Let it cool."
+        },
+        {
+          "step": 2,
+          "instruction": "Mix: Stir the egg, mayonnaise, mustard, paprika, spring onion, lemon zest and juice together, then fold in the mushroom and 4 tablespoons of breadcrumbs. Season."
+        },
+        {
+          "step": 3,
+          "instruction": "Shape: Form 6 small cakes and coat them in the remaining breadcrumbs. Chill for 15 minutes so they hold together."
+        },
+        {
+          "step": 4,
+          "instruction": "Fry: Fry the cakes in oil or butter over medium heat until golden and crisp, about 3–4 minutes per side."
+        },
+        {
+          "step": 5,
+          "instruction": "Serve: With lemon wedges and a green salad or tartare sauce."
+        }
+      ],
+      "warnings": [
+        "Do not consume wild mushrooms unless identified by an expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "20 min",
+      "servings": "2–3",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cook lion's mane through, and eat a small portion the first time: a few people react to it.",
+        "It is illegal to pick wild lion's mane in Britain, and it is red-listed across much of Europe. Forage it only where it is common, as in North America."
+      ]
+    },
+    "crispy-roasted-hen-of-the-woods": {
+      "title": "Crispy Roasted Hen of the Woods",
+      "ingredients": [
+        "400 g hen of the woods, torn into small clusters",
+        "3 tablespoons olive oil",
+        "1 tablespoon soy sauce or tamari",
+        "2 cloves garlic, finely chopped",
+        "A few sprigs of thyme",
+        "Pepper",
+        "Lemon wedges to serve"
+      ],
+      "instructions": [
+        "Clean: Brush the soil and grit out from between the fronds and trim the tough core at the base. Do not soak it.",
+        "Season: Toss the clusters with the olive oil, soy sauce, garlic and thyme, and add pepper. The soy sauce brings the salt.",
+        "Roast: Spread them on a baking tray in a single layer and roast at 220 °C for 20–25 minutes, turning once, until the edges are brown and crisp.",
+        "Serve: Hot, with lemon wedges, over rice, polenta or toast."
+      ],
+      "species": ["hen_of_the_woods"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Clean: Brush the soil and grit out from between the fronds and trim the tough core at the base. Do not soak it."
+        },
+        {
+          "step": 2,
+          "instruction": "Season: Toss the clusters with the olive oil, soy sauce, garlic and thyme, and add pepper. The soy sauce brings the salt."
+        },
+        {
+          "step": 3,
+          "instruction": "Roast: Spread them on a baking tray in a single layer and roast at 220 °C for 20–25 minutes, turning once, until the edges are brown and crisp."
+        },
+        {
+          "step": 4,
+          "instruction": "Serve: Hot, with lemon wedges, over rice, polenta or toast."
+        }
+      ],
+      "warnings": [
+        "Do not consume wild mushrooms unless identified by an expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Cook hen of the woods thoroughly: undercooked, it upsets some stomachs.",
+        "Its look-alike, the black-staining polypore, is edible but tough; it bruises black where it is handled."
+      ]
     }
   }
 }

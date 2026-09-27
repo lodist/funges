@@ -1,0 +1,152 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "hen_of_the_woods",
+  "scientificName": "Grifola frondosa",
+  "catalog": {
+    "enabled": true,
+    "order": 42,
+    "translationKey": "hen_of_the_woods",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/hen_of_the_woods.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Hen of the Woods",
+      "description": "A big rosette of overlapping grey-brown fronds at the foot of old oaks, with white pores underneath",
+      "howTo": "Look at the base of old or dying oaks from late August to October; it often comes back to the same tree year after year. It is protected in parts of central and northern Europe"
+    },
+    "it": {
+      "name": "Grifola (maitake)",
+      "description": "Una grossa rosetta di fronde grigio-brune sovrapposte ai piedi delle vecchie querce, con i pori bianchi sotto",
+      "howTo": "Cercala alla base di querce vecchie o deperienti da fine agosto a ottobre; spesso ricompare sullo stesso albero anno dopo anno. È protetta in parte dell'Europa centrale e settentrionale"
+    },
+    "fr": {
+      "name": "Polypore en touffe",
+      "description": "Une grosse rosette de lobes gris-brun imbriqués au pied des vieux chênes, aux pores blancs dessous",
+      "howTo": "Cherchez au pied des chênes vieux ou dépérissants de fin août à octobre ; il revient souvent au même arbre d'une année sur l'autre. Il est protégé dans une partie de l'Europe centrale et du Nord"
+    },
+    "de": {
+      "name": "Klapperschwamm",
+      "description": "Eine große Rosette aus sich überlappenden, graubraunen Hütchen am Fuß alter Eichen, unterseits mit weißen Poren",
+      "howTo": "Suche am Fuß alter oder absterbender Eichen von Ende August bis Oktober; er erscheint oft Jahr für Jahr am selben Baum. In Teilen Mittel- und Nordeuropas ist er geschützt"
+    },
+    "es": {
+      "name": "Maitake",
+      "description": "Una gran roseta de lóbulos pardo-grisáceos superpuestos al pie de robles viejos, con poros blancos por debajo",
+      "howTo": "Búscalo en la base de robles viejos o decaídos de finales de agosto a octubre; suele volver al mismo árbol año tras año. Está protegido en parte de Europa central y del norte"
+    },
+    "pt": {
+      "name": "Maitake",
+      "description": "Uma grande roseta de lóbulos castanho-acinzentados sobrepostos ao pé de carvalhos velhos, com poros brancos por baixo",
+      "howTo": "Procure na base de carvalhos velhos ou debilitados do fim de agosto a outubro; costuma voltar à mesma árvore ano após ano. É protegido em parte da Europa central e do norte"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Grifola frondosa",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-27-lions-mane-hen-of-the-woods.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Hen of the Woods"],
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 18,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 240,
+          "alt_sigma": 800,
+          "optimal_humidity": 73,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.5,
+          "pH_sigma_near": 2.5,
+          "pH_sigma_far": 2.5,
+          "pH_range_near": [4.0, 7.0],
+          "optimal_soil_temp": 17,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2540800",
+          "https://www.mushroomexpert.com/grifola_frondosa.html",
+          "docs/species/2026-09-27-lions-mane-hen-of-the-woods.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 18,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 240,
+          "alt_sigma": 800,
+          "optimal_humidity": 73,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.5,
+          "pH_sigma_near": 2.5,
+          "pH_sigma_far": 2.5,
+          "pH_range_near": [4.0, 7.0],
+          "optimal_soil_temp": 17,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2540800",
+          "https://www.mushroomexpert.com/grifola_frondosa.html",
+          "docs/species/2026-09-27-lions-mane-hen-of-the-woods.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [2540800],
+      "references": ["https://www.gbif.org/species/2540800"]
+    },
+    "rangePrior": {
+      "taxonKeys": [2540800]
+    }
+  }
+}

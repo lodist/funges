@@ -263,6 +263,16 @@
       "name": "Boleto Rey de las Rocosas",
       "description": "Un boleto robusto de alta montaña, de sombrero rojo ladrillo a pardo rojizo, poros blancos y pie grueso y claro reticulado en lo alto",
       "howTo": "Búscalo bajo píceas y abetos en lo alto de las Montañas Rocosas del sur, cuando llegan las lluvias del monzón de verano, de julio a septiembre"
+    },
+    "lions_mane": {
+      "name": "Melena de león",
+      "description": "Una mata blanca y desgreñada de largas púas colgantes que crece en árboles de hoja ancha y, cocinada, recuerda al cangrejo",
+      "howTo": "Búscala en robles, hayas y arces heridos o muertos desde finales del verano hasta el otoño, a menudo en lo alto del tronco. En Europa es rara y está protegida en algunos lugares: déjala donde está"
+    },
+    "hen_of_the_woods": {
+      "name": "Maitake",
+      "description": "Una gran roseta de lóbulos pardo-grisáceos superpuestos al pie de robles viejos, con poros blancos por debajo",
+      "howTo": "Búscalo en la base de robles viejos o decaídos de finales de agosto a octubre; suele volver al mismo árbol año tras año. Está protegido en parte de Europa central y del norte"
     }
   }
 }

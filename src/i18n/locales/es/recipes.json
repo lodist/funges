@@ -996,6 +996,112 @@
       "servings": "2–4",
       "tags": ["vegetarian", "drink", "easy"],
       "safetyNotes": []
+    },
+    "lions-mane-crab-cakes": {
+      "title": "Tortitas de melena de león «como de cangrejo»",
+      "ingredients": [
+        "300 g de melena de león, desmenuzada",
+        "1 huevo",
+        "3 cucharadas de mayonesa",
+        "1 cucharadita de mostaza de Dijon",
+        "1 cucharadita de pimentón dulce",
+        "1 cebolleta picada fina",
+        "Ralladura y zumo de medio limón",
+        "6 cucharadas de pan rallado",
+        "Sal y pimienta",
+        "Aceite o mantequilla para freír"
+      ],
+      "instructions": [
+        "Secar: Cocina la seta desmenuzada en una sartén sin grasa a fuego medio, presionándola, hasta que suelte el agua y empiece a dorarse (8–10 minutos). Deja que se enfríe.",
+        "Mezclar: Mezcla el huevo, la mayonesa, la mostaza, el pimentón, la cebolleta, la ralladura y el zumo de limón, y añade la seta y 4 cucharadas de pan rallado. Salpimienta.",
+        "Formar: Forma 6 tortitas pequeñas y rebózalas en el pan rallado restante. Enfríalas 15 minutos para que no se deshagan.",
+        "Freír: Fríelas en aceite o mantequilla a fuego medio hasta que estén doradas y crujientes, unos 3–4 minutos por lado.",
+        "Servir: Con gajos de limón y una ensalada verde o salsa tártara."
+      ],
+      "species": ["lions_mane"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Secar: Cocina la seta desmenuzada en una sartén sin grasa a fuego medio, presionándola, hasta que suelte el agua y empiece a dorarse (8–10 minutos). Deja que se enfríe."
+        },
+        {
+          "step": 2,
+          "instruction": "Mezclar: Mezcla el huevo, la mayonesa, la mostaza, el pimentón, la cebolleta, la ralladura y el zumo de limón, y añade la seta y 4 cucharadas de pan rallado. Salpimienta."
+        },
+        {
+          "step": 3,
+          "instruction": "Formar: Forma 6 tortitas pequeñas y rebózalas en el pan rallado restante. Enfríalas 15 minutos para que no se deshagan."
+        },
+        {
+          "step": 4,
+          "instruction": "Freír: Fríelas en aceite o mantequilla a fuego medio hasta que estén doradas y crujientes, unos 3–4 minutos por lado."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Con gajos de limón y una ensalada verde o salsa tártara."
+        }
+      ],
+      "warnings": [
+        "No consumas setas silvestres si no las ha identificado un experto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "20 min",
+      "servings": "2–3",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cocina bien la melena de león y come poca la primera vez: a algunas personas les sienta mal.",
+        "En Gran Bretaña es ilegal recogerla y en gran parte de Europa está en la lista roja. Recógela solo donde es común, como en Norteamérica."
+      ]
+    },
+    "crispy-roasted-hen-of-the-woods": {
+      "title": "Maitake crujiente al horno",
+      "ingredients": [
+        "400 g de maitake, en ramilletes pequeños",
+        "3 cucharadas de aceite de oliva",
+        "1 cucharada de salsa de soja o tamari",
+        "2 dientes de ajo picados finos",
+        "Unas ramitas de tomillo",
+        "Pimienta",
+        "Gajos de limón para servir"
+      ],
+      "instructions": [
+        "Limpiar: Cepilla la tierra y la arena de entre los lóbulos y corta el corazón duro de la base. No lo pongas en remojo.",
+        "Aliñar: Mezcla los ramilletes con el aceite, la soja, el ajo y el tomillo, y añade pimienta. La soja aporta la sal.",
+        "Asar: Repártelos en una sola capa en una bandeja y ásalos a 220 °C durante 20–25 minutos, dándoles la vuelta una vez, hasta que los bordes estén dorados y crujientes.",
+        "Servir: Calientes, con gajos de limón, sobre arroz, polenta o pan tostado."
+      ],
+      "species": ["hen_of_the_woods"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpiar: Cepilla la tierra y la arena de entre los lóbulos y corta el corazón duro de la base. No lo pongas en remojo."
+        },
+        {
+          "step": 2,
+          "instruction": "Aliñar: Mezcla los ramilletes con el aceite, la soja, el ajo y el tomillo, y añade pimienta. La soja aporta la sal."
+        },
+        {
+          "step": 3,
+          "instruction": "Asar: Repártelos en una sola capa en una bandeja y ásalos a 220 °C durante 20–25 minutos, dándoles la vuelta una vez, hasta que los bordes estén dorados y crujientes."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir: Calientes, con gajos de limón, sobre arroz, polenta o pan tostado."
+        }
+      ],
+      "warnings": [
+        "No consumas setas silvestres si no las ha identificado un experto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Cocina bien el maitake: poco hecho, a algunas personas les sienta mal.",
+        "Su doble, el políporo gigante, es comestible pero correoso; se ennegrece donde se toca."
+      ]
     }
   }
 }

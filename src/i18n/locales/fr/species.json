@@ -263,6 +263,16 @@
       "name": "Cèpe des Rocheuses",
       "description": "Un cèpe trapu de haute montagne, au chapeau rouge brique à brun-rouge, aux pores blancs et au gros pied clair réticulé au sommet",
       "howTo": "Cherchez-le sous les épicéas et les sapins en altitude dans les Rocheuses du Sud, dès l'arrivée des pluies de mousson estivales, de juillet à septembre"
+    },
+    "lions_mane": {
+      "name": "Hydne hérisson",
+      "description": "Une touffe blanche et hirsute de longs aiguillons pendants qui pousse sur les feuillus et rappelle le crabe une fois cuite",
+      "howTo": "Cherchez-le sur les chênes, hêtres et érables blessés ou morts, de la fin de l'été à l'automne, souvent haut sur le tronc. En Europe il est rare et protégé par endroits : laissez-le en place"
+    },
+    "hen_of_the_woods": {
+      "name": "Polypore en touffe",
+      "description": "Une grosse rosette de lobes gris-brun imbriqués au pied des vieux chênes, aux pores blancs dessous",
+      "howTo": "Cherchez au pied des chênes vieux ou dépérissants de fin août à octobre ; il revient souvent au même arbre d'une année sur l'autre. Il est protégé dans une partie de l'Europe centrale et du Nord"
     }
   }
 }

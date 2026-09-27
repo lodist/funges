@@ -1,0 +1,159 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "lions_mane",
+  "scientificName": "Hericium erinaceus",
+  "catalog": {
+    "enabled": true,
+    "order": 41,
+    "translationKey": "lions_mane",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/lions_mane.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Lion's Mane",
+      "description": "A white, shaggy clump of long hanging spines on hardwood trees that cooks up like crab",
+      "howTo": "Look on wounded or dead oak, beech and maple from late summer into autumn, often high on the trunk. In Europe it is rare and protected in places, so leave it there"
+    },
+    "it": {
+      "name": "Criniera di leone",
+      "description": "Un cespo bianco e arruffato di lunghi aculei pendenti che cresce sulle latifoglie e, cotto, ricorda la polpa di granchio",
+      "howTo": "Cercala su querce, faggi e aceri feriti o morti da fine estate all'autunno, spesso in alto sul tronco. In Europa è rara e in alcuni paesi protetta: lasciala dov'è"
+    },
+    "fr": {
+      "name": "Hydne hérisson",
+      "description": "Une touffe blanche et hirsute de longs aiguillons pendants qui pousse sur les feuillus et rappelle le crabe une fois cuite",
+      "howTo": "Cherchez-le sur les chênes, hêtres et érables blessés ou morts, de la fin de l'été à l'automne, souvent haut sur le tronc. En Europe il est rare et protégé par endroits : laissez-le en place"
+    },
+    "de": {
+      "name": "Igel-Stachelbart",
+      "description": "Ein weißer, zotteliger Schopf aus langen, herabhängenden Stacheln an Laubbäumen, der gebraten an Krabbenfleisch erinnert",
+      "howTo": "Suche an verletzten oder toten Eichen, Buchen und Ahornen vom Spätsommer bis in den Herbst, oft hoch am Stamm. In Europa ist er selten und vielerorts geschützt: lass ihn stehen"
+    },
+    "es": {
+      "name": "Melena de león",
+      "description": "Una mata blanca y desgreñada de largas púas colgantes que crece en árboles de hoja ancha y, cocinada, recuerda al cangrejo",
+      "howTo": "Búscala en robles, hayas y arces heridos o muertos desde finales del verano hasta el otoño, a menudo en lo alto del tronco. En Europa es rara y está protegida en algunos lugares: déjala donde está"
+    },
+    "pt": {
+      "name": "Juba-de-leão",
+      "description": "Um tufo branco e desgrenhado de longos espinhos pendentes que cresce em árvores de folha larga e, cozinhado, lembra caranguejo",
+      "howTo": "Procure em carvalhos, faias e bordos feridos ou mortos, do fim do verão ao outono, muitas vezes no alto do tronco. Na Europa é rara e protegida em alguns sítios: deixe-a onde está"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Hericium erinaceus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-27-lions-mane-hen-of-the-woods.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Lion's Mane"],
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 17,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 270,
+          "alt_sigma": 800,
+          "optimal_humidity": 73,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.4,
+          "pH_sigma_near": 2.5,
+          "pH_sigma_far": 2.5,
+          "pH_range_near": [3.9, 6.9],
+          "optimal_soil_temp": 16,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 50,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10, 11, 12],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5248508",
+          "https://www.gbif.org/species/5248551",
+          "https://www.mushroomexpert.com/hericium_erinaceus.html",
+          "https://www.mushroomexpert.com/hericium_americanum.html",
+          "docs/species/2026-09-27-lions-mane-hen-of-the-woods.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 17,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 270,
+          "alt_sigma": 800,
+          "optimal_humidity": 73,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.4,
+          "pH_sigma_near": 2.5,
+          "pH_sigma_far": 2.5,
+          "pH_range_near": [3.9, 6.9],
+          "optimal_soil_temp": 16,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 50,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10, 11, 12, 1, 2],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5248508",
+          "https://www.gbif.org/species/5248551",
+          "https://www.mushroomexpert.com/hericium_erinaceus.html",
+          "https://www.mushroomexpert.com/hericium_americanum.html",
+          "docs/species/2026-09-27-lions-mane-hen-of-the-woods.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [5248508, 5248551],
+      "references": [
+        "https://www.gbif.org/species/5248508",
+        "https://www.gbif.org/species/5248551"
+      ]
+    },
+    "rangePrior": {
+      "taxonKeys": [5248508, 5248551]
+    }
+  }
+}
