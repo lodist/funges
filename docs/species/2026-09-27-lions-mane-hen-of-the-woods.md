@@ -362,8 +362,18 @@ embedded with the PyTorch BioCLIP model and ranked against the shipped matrix:
 
 ## Illustrations and recipes
 
-- **Catalog images:** `src/assets/species/lions_mane.webp` and
-  `hen_of_the_woods.webp`, in the house style, from the prompts in the PR.
+- **All four images are drawn for this PR.** They are vector illustrations
+  written as SVG, rendered with Chromium at 2× and downscaled, with the house
+  grain added and saved as WebP at quality 75. There is no third-party imagery.
+  The README asks for a human check of the depicted features.
+- **Catalog images, 512 px:**
+  - `src/assets/species/lions_mane.webp`: a rounded white clump whose spines
+    hang in tiers.
+  - `hen_of_the_woods.webp`: a rosette of spoon-shaped grey-brown fronds with
+    pale margins on a white branching base.
+- **Recipe images, 768 px:**
+  - `src/assets/recipes/lions-mane-crab-cakes.webp`
+  - `crispy-roasted-hen-of-the-woods.webp`
 - **Recipes:**
   - `lions-mane-crab-cakes`: lion's mane "crab" cakes, dry-fried first to drive
     out the water.
@@ -377,9 +387,9 @@ embedded with the PyTorch BioCLIP model and ranked against the shipped matrix:
 
 ## Rollout
 
-- **Before merging:** the four images. Also land #278 (MapLayer memory) first,
-  because each species adds two columns to the season file the tile build holds
-  three times.
+- **Before merging:** approval of the settings and the images. Also land #278
+  (MapLayer memory) first, because each species adds two columns to the season
+  file the tile build holds three times.
 - **Scoring:** the first run after merging builds both range priors (new keys).
   The first run on or after 2026-10-01 builds both season curves.
 - **Late October:** check the temperature optima against the October sightings.
