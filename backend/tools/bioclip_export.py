@@ -425,7 +425,15 @@ def stage_verify_shipped():
     if len(vectors) != len(photos):
         raise SystemExit("cached embeddings do not match embed_order.json")
 
+    # A test photo whose true label no longer ships as catalog or toxic cannot be
+    # scored right or wrong. The 30 genus-`Boletus` photos from before the #266
+    # split are that case: as catalog photos they could never hit, and the warning
+    # metric counted them as toxic, which read 93.8% where toxic photos had 97.6%.
+    shipped = {name for name, kind in labels if kind in ("catalog", "toxic")}
     idx = [i for i, p in enumerate(photos) if p["split"] == "test"]
+    retired = sorted({photos[i]["label"] for i in idx if photos[i]["label"] not in shipped})
+    dropped = sum(1 for i in idx if photos[i]["label"] not in shipped)
+    idx = [i for i in idx if photos[i]["label"] in shipped]
     rows = [photos[i] for i in idx]
     preds = _predictions(vectors[idx] @ text.T, names, rows)
 
@@ -434,7 +442,7 @@ def stage_verify_shipped():
         kinds.setdefault(kind, 0)
         kinds[kind] += 1
     rate = false_edible_rate(preds, CATALOG_NAMES, k=1)
-    toxic_rows = [p for p in preds if p["truth"] not in CATALOG_NAMES]
+    toxic_rows = [p for p in preds if p["truth"] in TOXIC_NAMES]
 
     # Reported together, deliberately. Vocabulary size moves these in OPPOSITE
     # directions, so false-edible alone can show a 7x improvement while the
@@ -446,6 +454,8 @@ def stage_verify_shipped():
     ) / max(1, len(toxic_rows))
 
     print(f"labels: {len(names)} ({kinds})")
+    if dropped:
+        print(f"skipped {dropped} test photos whose label no longer ships: {retired}")
     print(f"test photos: {len(rows)}, of which toxic: {len(toxic_rows)}")
     print(f"false-edible@1 (SHIPPED artifacts): {rate:.2%}")
     print(f"catalog top-1: {catalog_1:.1%}   catalog top-3: {catalog_3:.1%}")

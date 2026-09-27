@@ -115,7 +115,9 @@
       "stemMarkings": "Se o caule é oco, canelado ou manchado de púrpura - e se cheira mal quando esmagado.",
       "berryArrangement": "Se os cachos de bagas pendem por baixo dos ramos ou se mantêm eretos acima da folhagem.",
       "plantHabit": "Se a planta é um arbusto lenhoso ou uma erva tenra que seca todos os anos.",
-      "interiorPattern": "Corta-o ao meio. Uma trufa verdadeira é marmoreada com veias pálidas ramificadas. Uma falsa trufa é uma massa escura e compacta, arroxeada a negra, sem padrão."
+      "interiorPattern": "Corta-o ao meio. Uma trufa verdadeira é marmoreada com veias pálidas ramificadas. Uma falsa trufa é uma massa escura e compacta, arroxeada a negra, sem padrão.",
+      "berryColour": "Cor das bagas maduras: o sabugueiro-negro tem bagas negro-arroxeadas. Bagas vermelhas em cachos eretos em forma de cúpula são de sabugueiro-vermelho, tóxico cru.",
+      "flowerShape": "Forma da flor: as violetas têm cinco pétalas desiguais com um esporão atrás; a ficária tem 8 a 12 pétalas amarelas e brilhantes."
     },
     "critical": {
       "lepiotaMacrolepiota": "As Lepiota mortais estão entre os sósias mais perigosos do frade, e nos nossos testes foi o erro mais frequente de todos. Um frade verdadeiro é grande, com um anel que se move e um pé com padrão de pele de cobra. Os exemplares pequenos com o pé liso devem ser deixados onde estão, mesmo que pareçam os corretos.",

@@ -51,6 +51,14 @@ export const useSpeciesData = (): SpeciesWithTranslations[] => {
 export const getSpeciesById = (id: string): Species | undefined =>
   SPECIES_DATA.find(species => species.id === id);
 
+/**
+ * The `list_of_species.*` name key for an id. Keys follow the manifest's
+ * translationKey, which differs from the id for a few species
+ * (`chicken-of-the-woods` → `chickenOfTheWoods`), so `${id}.name` is not safe.
+ */
+export const speciesNameKey = (id: string): string =>
+  getSpeciesById(id)?.nameKey ?? `${id}.name`;
+
 export const getSpeciesByCategory = (
   category: Species['category']
 ): Species[] => SPECIES_DATA.filter(species => species.category === category);

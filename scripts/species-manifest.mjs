@@ -502,6 +502,15 @@ export function validateManifests(
             where,
             `forecast.regions.${region}.scoring.hosts must list distinct classes from content/species/_host_classes.json`
           );
+        if (
+          scoring?.rain_weight !== undefined &&
+          (!Number.isFinite(scoring.rain_weight) || scoring.rain_weight < 0)
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.rain_weight must be a number of at least 0`
+          );
         if (typeof scoring?.weather_preference?.rain_first !== 'boolean')
           fail(
             errors,

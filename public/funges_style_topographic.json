@@ -757,6 +757,342 @@
       }
     },
     {
+      "id": "blackberry_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blackberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blackberry_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blackberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blackberry_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blackberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blackberry_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blackberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderberry_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderberry_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderberry_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderberry_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "nettle_ne",
       "type": "fill",
       "paint": {
@@ -1093,6 +1429,174 @@
       }
     },
     {
+      "id": "hazelnut_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "hazelnut_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "hazelnut_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "hazelnut_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "hazelnut_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "hazelnut_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "hazelnut_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "hazelnut_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "garlic_ne",
       "type": "fill",
       "paint": {
@@ -1172,6 +1676,342 @@
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "chicken-of-the-woods_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "chicken-of-the-woods_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "chicken-of-the-woods_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "chicken-of-the-woods_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "chicken-of-the-woods_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "chicken-of-the-woods_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "chicken-of-the-woods_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "chicken-of-the-woods_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "oyster-mushroom_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "oyster-mushroom_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "oyster-mushroom_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "oyster-mushroom_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "oyster-mushroom_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "oyster-mushroom_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "oyster-mushroom_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "oyster-mushroom_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1312,6 +2152,174 @@
           ["get", "raspberry_score"],
           0,
           "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blueberry_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blueberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blueberry_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blueberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blueberry_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blueberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blueberry_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blueberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
           0.5,
           "#ffffcc",
           1,
@@ -1513,6 +2521,174 @@
       }
     },
     {
+      "id": "wild-mint_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wild-mint_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "wild-mint_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wild-mint_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "wild-mint_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wild-mint_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "wild-mint_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wild-mint_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "chickweed_ne",
       "type": "fill",
       "paint": {
@@ -1648,6 +2824,174 @@
           ["get", "chickweed_score"],
           0,
           "hsla(60, 92%, 95%, 0.16)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "plantain_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "plantain_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "plantain_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "plantain_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "plantain_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "plantain_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "plantain_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "plantain_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
           0.5,
           "#ffffcc",
           1,
@@ -1928,6 +3272,510 @@
       },
       "source": "overlay-se",
       "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderflower_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderflower_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderflower_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderflower_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderflower_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderflower_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderflower_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderflower_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "daisy_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "daisy_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "daisy_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "daisy_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "daisy_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "daisy_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "daisy_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "daisy_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "violets_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "violets_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "violets_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "violets_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "violets_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "violets_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "violets_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "violets_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe4b5",
+          3,
+          "#ffdab9",
+          4,
+          "#fec99a",
+          5,
+          "#fbae7e",
+          6,
+          "#fa733d",
+          7,
+          "#fb6d51",
+          8,
+          "#fb4646",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4507,6 +6355,406 @@
       }
     },
     {
+      "id": "blackberry_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blackberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "blackberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "blackberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blackberry_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blackberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "blackberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "blackberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blackberry_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blackberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "blackberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "blackberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blackberry_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blackberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "blackberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "blackberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderberry_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "elderberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "elderberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderberry_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "elderberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "elderberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderberry_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "elderberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "elderberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderberry_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "elderberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "elderberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "nettle_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -4907,6 +7155,206 @@
       }
     },
     {
+      "id": "hazelnut_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "hazelnut_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "hazelnut_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "hazelnut_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "hazelnut_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "hazelnut_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "hazelnut_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "hazelnut_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "hazelnut_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "hazelnut_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "hazelnut_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "hazelnut_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "hazelnut_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "hazelnut_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "hazelnut_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "hazelnut_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "garlic_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -5001,6 +7449,406 @@
           ["<", ["get", "garlic_score"], 1],
           "",
           ["to-string", ["floor", ["get", "garlic_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "chicken-of-the-woods_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "chicken-of-the-woods_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "chicken-of-the-woods_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "chicken-of-the-woods_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "chicken-of-the-woods_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "chicken-of-the-woods_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "chicken-of-the-woods_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "chicken-of-the-woods_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "chicken-of-the-woods_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "chicken-of-the-woods_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "chicken-of-the-woods_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "chicken-of-the-woods_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "chicken-of-the-woods_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "chicken-of-the-woods_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "chicken-of-the-woods_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "chicken-of-the-woods_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "oyster-mushroom_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "oyster-mushroom_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "oyster-mushroom_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "oyster-mushroom_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "oyster-mushroom_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "oyster-mushroom_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "oyster-mushroom_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "oyster-mushroom_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "oyster-mushroom_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "oyster-mushroom_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "oyster-mushroom_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "oyster-mushroom_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "oyster-mushroom_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "oyster-mushroom_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "oyster-mushroom_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "oyster-mushroom_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5207,6 +8055,206 @@
       }
     },
     {
+      "id": "blueberry_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blueberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "blueberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "blueberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blueberry_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blueberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "blueberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "blueberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blueberry_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blueberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "blueberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "blueberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "blueberry_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blueberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "blueberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "blueberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "strawberry_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -5407,6 +8455,206 @@
       }
     },
     {
+      "id": "wild-mint_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wild-mint_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "wild-mint_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "wild-mint_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "wild-mint_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wild-mint_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "wild-mint_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "wild-mint_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "wild-mint_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wild-mint_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "wild-mint_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "wild-mint_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "wild-mint_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wild-mint_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "wild-mint_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "wild-mint_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "chickweed_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -5601,6 +8849,206 @@
           ["<", ["get", "chickweed_score"], 1],
           "",
           ["to-string", ["floor", ["get", "chickweed_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "plantain_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "plantain_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "plantain_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "plantain_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "plantain_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "plantain_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "plantain_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "plantain_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "plantain_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "plantain_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "plantain_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "plantain_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "plantain_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "plantain_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "plantain_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "plantain_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"
@@ -5901,6 +9349,606 @@
           ["<", ["get", "chestnut_score"], 1],
           "",
           ["to-string", ["floor", ["get", "chestnut_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderflower_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderflower_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "elderflower_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "elderflower_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderflower_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderflower_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "elderflower_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "elderflower_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderflower_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderflower_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "elderflower_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "elderflower_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderflower_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderflower_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "elderflower_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "elderflower_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "daisy_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "daisy_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "daisy_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "daisy_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "daisy_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "daisy_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "daisy_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "daisy_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "daisy_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "daisy_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "daisy_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "daisy_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "daisy_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "daisy_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "daisy_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "daisy_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "violets_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "violets_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "violets_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "violets_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "violets_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "violets_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "violets_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "violets_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "violets_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "violets_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "violets_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "violets_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "violets_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "violets_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "violets_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "violets_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"

@@ -115,7 +115,9 @@
       "stemMarkings": "Si el tallo es hueco, acanalado o manchado de púrpura, y si huele mal al estrujarlo.",
       "berryArrangement": "Si los racimos de frutos cuelgan por debajo de las ramas o se mantienen erguidos por encima del follaje.",
       "plantHabit": "Si la planta es un arbusto leñoso o una hierba blanda que se seca cada año.",
-      "interiorPattern": "Córtala por la mitad. Una trufa verdadera está veteada con nervaduras pálidas ramificadas. Una falsa trufa es una masa oscura y compacta, violácea o negra, sin dibujo."
+      "interiorPattern": "Córtala por la mitad. Una trufa verdadera está veteada con nervaduras pálidas ramificadas. Una falsa trufa es una masa oscura y compacta, violácea o negra, sin dibujo.",
+      "berryColour": "Color de las bayas maduras: el saúco negro tiene bayas negro violáceas. Las bayas rojas en racimos erguidos en forma de cúpula son de saúco rojo, tóxico en crudo.",
+      "flowerShape": "Forma de la flor: las violetas tienen cinco pétalos desiguales con un espolón detrás; la celidonia menor tiene de 8 a 12 pétalos amarillos y brillantes."
     },
     "critical": {
       "lepiotaMacrolepiota": "Las Lepiota mortales están entre los sósias más peligrosos de la parasol, y en nuestras pruebas fue el error más frecuente de todos. Una parasol auténtica es grande, con un anillo que se puede mover y un pie con dibujo de piel de serpiente. Los ejemplares pequeños con el pie liso hay que dejarlos, aunque parezcan los correctos.",

@@ -83,11 +83,12 @@
           "optimal_soil_temp": 12,
           "soil_temp_sigma": 4,
           "min_cumulative_rain": 25,
+          "rain_weight": 0,
           "weather_preference": {
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [10, 11],
+          "season_months": [9, 10],
           "water_relevance": false,
           "sea_relevance": false
         },
@@ -120,7 +121,7 @@
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [10, 11],
+          "season_months": [9, 10, 11],
           "water_relevance": false,
           "sea_relevance": false
         },

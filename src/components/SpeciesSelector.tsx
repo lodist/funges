@@ -36,7 +36,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
     : undefined;
 
   const speciesName = selected
-    ? tSpecies(`list_of_species.${selected.id}.name`)
+    ? tSpecies(`list_of_species.${selected.nameKey}`)
     : null;
 
   return (

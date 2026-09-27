@@ -68,21 +68,21 @@
         "available": true,
         "landCover": [312, 322],
         "scoring": {
-          "optimal_temp": 10.5,
+          "optimal_temp": 15,
           "temp_sigma": 6,
           "min_temp": -10,
-          "max_temp": 20,
-          "optimal_alt": 200,
-          "alt_sigma": 1400,
-          "optimal_humidity": 78,
-          "humidity_sigma": 16,
-          "optimal_pH": 4.75,
+          "max_temp": 25,
+          "optimal_alt": 100,
+          "alt_sigma": 800,
+          "optimal_humidity": 75,
+          "humidity_sigma": 17,
+          "optimal_pH": 4.7,
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
-          "pH_range_near": [3.5, 6],
-          "optimal_soil_temp": 10,
-          "soil_temp_sigma": 4,
-          "min_cumulative_rain": 30,
+          "pH_range_near": [3.2, 6.2],
+          "optimal_soil_temp": 14,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 32,
           "weather_preference": {
             "rain_first": false
           },
@@ -92,7 +92,8 @@
           "sea_relevance": false
         },
         "scoringReferences": [
-          "https://data.fung.es/EU/NE/NE_species_params.txt"
+          "https://data.fung.es/EU/NE/NE_species_params.txt",
+          "docs/species/2026-09-27-quick-wins.md"
         ],
         "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
         "landCoverScheme": "CORINE"

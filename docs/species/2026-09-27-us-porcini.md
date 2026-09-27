@@ -324,9 +324,10 @@ _R. rhodoxanthus_, _Tylopilus felleus_) warn against both new ids through
 matters in eastern oak woods.
 
 **Gap, not introduced here:** the eastern North American toxic boletes
-(_Boletus huronensis_, _B. sensibilis_, _B. subvelutipes_) are not in the
-vocabulary, for porcini either. Adding them needs test photos to measure, so it
-is a follow-up.
+(_Boletus huronensis_, _B. sensibilis_, _B. subvelutipes_) were not in the
+vocabulary, for porcini either. #277 adds them as toxic labels, with the bitter
+_Tylopilus_ and western _Rubroboletus_ look-alikes, and measures them on
+iNaturalist photos.
 
 ### Measured gate result
 
@@ -357,7 +358,7 @@ What moved, photo by photo:
 - **Top-1 on the new labels:** 12 photos, 11 of them the genus-`Boletus`
   porcini photos and one the _R. satanas_ photo above.
 
-Worth fixing separately: relabel or drop those 30 genus-`Boletus` test photos,
+Fixed in #277, where the gate skips those 30 genus-`Boletus` test photos,
 so the gate's warning figure measures toxic photos only again.
 
 ## Illustrations

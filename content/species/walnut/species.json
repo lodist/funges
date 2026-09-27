@@ -83,11 +83,12 @@
           "optimal_soil_temp": 11,
           "soil_temp_sigma": 5,
           "min_cumulative_rain": 15,
+          "rain_weight": 0,
           "weather_preference": {
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [10, 11],
+          "season_months": [9, 10],
           "water_relevance": false,
           "sea_relevance": false
         },
@@ -120,7 +121,7 @@
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [10, 11],
+          "season_months": [9, 10],
           "water_relevance": false,
           "sea_relevance": false
         },
@@ -149,11 +150,12 @@
           "optimal_soil_temp": 11,
           "soil_temp_sigma": 5,
           "min_cumulative_rain": 15,
+          "rain_weight": 0,
           "weather_preference": {
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [10, 11],
+          "season_months": [9, 10],
           "water_relevance": false,
           "sea_relevance": false
         },
@@ -182,11 +184,12 @@
           "optimal_soil_temp": 11,
           "soil_temp_sigma": 5,
           "min_cumulative_rain": 15,
+          "rain_weight": 0,
           "weather_preference": {
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [10, 11],
+          "season_months": [9, 10],
           "water_relevance": false,
           "sea_relevance": false
         },
@@ -202,6 +205,6 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [3054368] }
+    "rangePrior": { "taxonKeys": [3054368, 3054357] }
   }
 }

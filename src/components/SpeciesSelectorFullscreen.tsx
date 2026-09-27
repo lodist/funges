@@ -8,7 +8,7 @@ import { getSpeciesImage } from '@/lib/utils';
 import { useNavigate } from '@tanstack/react-router';
 import { useOfflineStore } from '@/store/offlineStore';
 import { usePWA } from '@/hooks/use-pwa';
-import { SPECIES_DATA } from '@/data/species';
+import { SPECIES_DATA, speciesNameKey } from '@/data/species';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
 import { DURATION_BASE, EASE_STANDARD } from '@/lib/motion';
@@ -92,7 +92,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
 
       const matchesSearch =
         searchTerm === '' ||
-        tSpecies(`list_of_species.${option.code}.name`)
+        tSpecies(`list_of_species.${speciesNameKey(option.code)}`)
           .toLowerCase()
           .includes(searchTerm.toLowerCase());
 
@@ -103,8 +103,8 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) =>
-      tSpecies(`list_of_species.${a.code}.name`).localeCompare(
-        tSpecies(`list_of_species.${b.code}.name`)
+      tSpecies(`list_of_species.${speciesNameKey(a.code)}`).localeCompare(
+        tSpecies(`list_of_species.${speciesNameKey(b.code)}`)
       )
     );
 
@@ -236,7 +236,9 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                     title={
                       disabled
                         ? t('species.notAvailableOffline')
-                        : tSpecies(`list_of_species.${species.code}.name`)
+                        : tSpecies(
+                            `list_of_species.${speciesNameKey(species.code)}`
+                          )
                     }
                     aria-disabled={disabled}
                     // Trailhead (#213): no border — selection is a shadow
@@ -269,7 +271,9 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                       {getSpeciesImage(species.code) ? (
                         <img
                           src={getSpeciesImage(species.code)!}
-                          alt={tSpecies(`list_of_species.${species.code}.name`)}
+                          alt={tSpecies(
+                            `list_of_species.${speciesNameKey(species.code)}`
+                          )}
                           className='w-full h-full object-cover object-center'
                           loading='lazy'
                         />
@@ -289,7 +293,9 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                           isSelected && 'text-secondary-foreground'
                         )}
                       >
-                        {tSpecies(`list_of_species.${species.code}.name`)}
+                        {tSpecies(
+                          `list_of_species.${speciesNameKey(species.code)}`
+                        )}
                       </h3>
 
                       {/* Scientific name */}

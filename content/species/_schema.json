@@ -49,6 +49,11 @@
         "optimal_soil_temp": { "type": "number" },
         "soil_temp_sigma": { "type": "number", "exclusiveMinimum": 0 },
         "min_cumulative_rain": { "type": "number", "minimum": 0 },
+        "rain_weight": {
+          "description": "How much recent rain counts in the score, against temperature 1.75, humidity 1.0, altitude 0.75 and soil pH 1.0. Omit for the default 1.5, right for fungi, which rain makes fruit; 0 for plants whose flowers, fruit or nuts do not wait for rain.",
+          "type": "number",
+          "minimum": 0
+        },
         "weather_preference": {
           "type": "object",
           "required": ["rain_first"],

@@ -5,6 +5,7 @@ import MapInfoCard from '@/components/MapInfoCard';
 import ForecastSlider from '@/components/ForecastSlider';
 import { Logo } from '@/components/Logo';
 import { Button } from '@/components/ui/button';
+import { speciesNameKey } from '@/data/species';
 import { ArrowRight } from '@/lib/icons';
 import { getScoreColor } from '@/lib/scoreColor';
 import { getRecipeImage, getSpeciesImage } from '@/lib/utils';
@@ -173,7 +174,7 @@ export default function LandingPage() {
                     <img
                       key={id}
                       src={getSpeciesImage(id) ?? undefined}
-                      alt={tSpecies(`list_of_species.${id}.name`)}
+                      alt={tSpecies(`list_of_species.${speciesNameKey(id)}`)}
                       loading='lazy'
                       className={[
                         'landing-row-visual absolute top-4 h-52 w-40 rounded-card object-cover elevation-raised',

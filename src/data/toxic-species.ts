@@ -267,8 +267,12 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     category: 'plant',
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.coniine',
-    checkKeys: ['toxicity.checks.stemMarkings', 'toxicity.checks.smell'],
-    confusedWithSpeciesIds: ['masterwort'],
+    checkKeys: [
+      'toxicity.checks.stemMarkings',
+      'toxicity.checks.smell',
+      'toxicity.checks.plantHabit',
+    ],
+    confusedWithSpeciesIds: ['masterwort', 'elderflower'],
   },
   {
     id: 'aethusa-cynapium',
@@ -662,8 +666,9 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.hollowStem',
       'toxicity.checks.stemMarkings',
       'toxicity.checks.smell',
+      'toxicity.checks.plantHabit',
     ],
-    confusedWithSpeciesIds: ['masterwort'],
+    confusedWithSpeciesIds: ['masterwort', 'elderflower'],
   },
   {
     id: 'oenanthe-crocata',
@@ -917,6 +922,111 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.plantHabit',
     ],
     confusedWithSpeciesIds: [],
+  },
+
+  // --- promoted from tier 2 (2026-09) with the elder and violet forecasts. All
+  // three were in the vocabulary as neutral rows. Pokeweed is the classic
+  // elderberry confusion in North America, red elder's berries are poisonous
+  // raw, and lesser celandine's leaves are picked for violet leaves in spring. ---
+  {
+    id: 'phytolacca-americana',
+    scientificName: 'Phytolacca americana',
+    category: 'berry',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.plantHabit', 'toxicity.checks.stemMarkings'],
+    confusedWithSpeciesIds: ['elderberry'],
+  },
+  {
+    id: 'sambucus-racemosa',
+    scientificName: 'Sambucus racemosa',
+    category: 'berry',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.berryColour',
+      'toxicity.checks.berryArrangement',
+    ],
+    confusedWithSpeciesIds: ['elderberry', 'elderflower'],
+  },
+  {
+    id: 'ficaria-verna',
+    scientificName: 'Ficaria verna',
+    category: 'flower',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.leafShape', 'toxicity.checks.flowerShape'],
+    confusedWithSpeciesIds: ['violets'],
+  },
+
+  // --- North American bolete look-alikes (2026-09), added with the US king
+  // boletes. None was in the vocabulary, so a photo of one could only surface as
+  // a neighbouring label: the three eastern boletes that make people sick, the
+  // two bitter Tylopilus that pass for the Eastern King (T. plumbeoviolaceus is
+  // as violet as X. separans), and the two western Rubroboletus that grow with
+  // porcini on the Pacific coast (R. pulcherrimus has caused a death). ---
+  {
+    id: 'neoboletus-subvelutipes',
+    scientificName: 'Neoboletus subvelutipes',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.fleshBruising'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'boletus-sensibilis',
+    scientificName: 'Boletus sensibilis',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.fleshBruising', 'toxicity.checks.poreColour'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'boletus-huronensis',
+    scientificName: 'Boletus huronensis',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.fleshBruising', 'toxicity.checks.stemNetwork'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'tylopilus-rubrobrunneus',
+    scientificName: 'Tylopilus rubrobrunneus',
+    category: 'mushroom',
+    severity: 'inedible',
+    reasonKey: 'toxicity.mechanisms.bitter',
+    checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.stemNetwork'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'tylopilus-plumbeoviolaceus',
+    scientificName: 'Tylopilus plumbeoviolaceus',
+    category: 'mushroom',
+    severity: 'inedible',
+    reasonKey: 'toxicity.mechanisms.bitter',
+    checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.stemNetwork'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'rubroboletus-pulcherrimus',
+    scientificName: 'Rubroboletus pulcherrimus',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.fleshBruising'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'rubroboletus-eastwoodiae',
+    scientificName: 'Rubroboletus eastwoodiae',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.fleshBruising'],
+    confusedWithSpeciesIds: BOLETE_IDS,
   },
 ];
 
