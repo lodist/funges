@@ -306,6 +306,22 @@ The plants' seasons come from iNaturalist phenology rather than from a
 literature source. Hazelnut is the exception, where the annotations mix green
 and ripe nuts.
 
+## Chestnut and walnut seasons, one month earlier
+
+Both existing nuts were set to October–November, which misses the September
+fall and runs into November after the best weeks. The new windows follow the
+ripe end of the iNaturalist fruit annotations (green fruit dominates earlier
+months) and the harvest timing:
+
+| species               | before  | after                  | evidence                                                           |
+| --------------------- | ------- | ---------------------- | ------------------------------------------------------------------ |
+| Chestnut              | Oct–Nov | NE Sep–Oct, SE Sep–Nov | burr annotations: NE Sep 31%, Oct 27%; SE Sep 25%, Oct 26%, Nov 8% |
+| Walnut / black walnut | Oct–Nov | Sep–Oct everywhere     | black walnut, US East: Sep 22%, Oct 15%, Nov 3%                    |
+
+Walnut's European annotations peak in June–July on green fruit, so they say
+little about ripening. Its window follows the September–October harvest of
+_J. regia_ and matches the black walnut's.
+
 ## Rollout
 
 - **Range priors:** rebuilt on the next scoring run, because the published

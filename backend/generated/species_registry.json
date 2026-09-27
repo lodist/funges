@@ -2558,7 +2558,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [10, 11],
+            "season_months": [9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -2590,7 +2590,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [10, 11],
+            "season_months": [9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -2622,7 +2622,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [10, 11],
+            "season_months": [9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -2654,7 +2654,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [10, 11],
+            "season_months": [9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -2696,7 +2696,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [10, 11],
+            "season_months": [9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -2728,7 +2728,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [10, 11],
+            "season_months": [9, 10, 11],
             "water_relevance": false,
             "sea_relevance": false
           },
