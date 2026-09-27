@@ -115,7 +115,9 @@
       "stemMarkings": "Ob der Stängel hohl, gerieft oder purpurn gefleckt ist - und ob er beim Zerreiben unangenehm riecht.",
       "berryArrangement": "Ob die Beerenstände unter den Zweigen herabhängen oder aufrecht über dem Laub stehen.",
       "plantHabit": "Ob die Pflanze ein verholzter Strauch ist oder ein weiches Kraut, das jedes Jahr zurückstirbt.",
-      "interiorPattern": "Halbiere ihn. Ein echter Trüffel ist mit hellen, verzweigten Adern marmoriert. Ein falscher Trüffel ist eine feste dunkle Masse, violett bis schwarz, ohne Muster."
+      "interiorPattern": "Halbiere ihn. Ein echter Trüffel ist mit hellen, verzweigten Adern marmoriert. Ein falscher Trüffel ist eine feste dunkle Masse, violett bis schwarz, ohne Muster.",
+      "berryColour": "Farbe der reifen Beeren: Beim Schwarzen Holunder sind sie violettschwarz. Rote Beeren in aufrechten, kuppelförmigen Dolden gehören zum Roten Holunder und sind roh giftig.",
+      "flowerShape": "Blütenform: Veilchen haben fünf ungleiche Blütenblätter mit einem Sporn hinten; das Scharbockskraut hat 8–12 glänzend gelbe Blütenblätter."
     },
     "critical": {
       "lepiotaMacrolepiota": "Tödliche Schirmlinge der Gattung Lepiota gehören zu den gefährlichsten Doppelgängern des Parasolpilzes, und das war in unseren Tests der häufigste Fehler überhaupt. Ein echter Parasol ist groß, hat einen verschiebbaren Ring und einen schlangenhautartig genatterten Stiel. Kleine Exemplare mit glattem Stiel solltest du stehen lassen, auch wenn sie richtig aussehen.",

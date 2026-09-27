@@ -60,7 +60,160 @@
     }
   },
   "forecast": {
-    "enabled": false,
-    "dataColumns": []
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Chicken of the Woods"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [311, 312, 313],
+        "scoring": {
+          "optimal_temp": 17,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 50,
+          "alt_sigma": 1000,
+          "optimal_humidity": 65,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.0,
+          "pH_sigma_near": 2.5,
+          "pH_sigma_far": 2.5,
+          "pH_range_near": [3.5, 6.5],
+          "optimal_soil_temp": 16,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 13,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [5, 6, 7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": ["quercus", "other_broadleaf", "fagus"]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2542160",
+          "https://www.mushroomexpert.com/laetiporus_sulphureus.html",
+          "https://www.mushroomexpert.com/laetiporus_gilbertsonii.html",
+          "docs/species/2026-09-27-quick-wins.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [311, 312, 313],
+        "scoring": {
+          "optimal_temp": 20,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 330,
+          "alt_sigma": 1000,
+          "optimal_humidity": 65,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.3,
+          "pH_sigma_near": 2.5,
+          "pH_sigma_far": 2.5,
+          "pH_range_near": [3.8, 6.8],
+          "optimal_soil_temp": 19,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 12,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [5, 6, 7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": ["quercus", "other_broadleaf", "fagus"]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2542160",
+          "https://www.mushroomexpert.com/laetiporus_sulphureus.html",
+          "https://www.mushroomexpert.com/laetiporus_gilbertsonii.html",
+          "docs/species/2026-09-27-quick-wins.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 23,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 31,
+          "optimal_alt": 230,
+          "alt_sigma": 1000,
+          "optimal_humidity": 70,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.4,
+          "pH_sigma_near": 2.5,
+          "pH_sigma_far": 2.5,
+          "pH_range_near": [3.9, 6.9],
+          "optimal_soil_temp": 22,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 44,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [5, 6, 7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2542160",
+          "https://www.mushroomexpert.com/laetiporus_sulphureus.html",
+          "https://www.mushroomexpert.com/laetiporus_gilbertsonii.html",
+          "docs/species/2026-09-27-quick-wins.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 19,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 240,
+          "alt_sigma": 1000,
+          "optimal_humidity": 64,
+          "humidity_sigma": 17,
+          "optimal_pH": 6.0,
+          "pH_sigma_near": 2.5,
+          "pH_sigma_far": 2.5,
+          "pH_range_near": [4.5, 7.5],
+          "optimal_soil_temp": 18,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 5,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2542160",
+          "https://www.mushroomexpert.com/laetiporus_sulphureus.html",
+          "https://www.mushroomexpert.com/laetiporus_gilbertsonii.html",
+          "docs/species/2026-09-27-quick-wins.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [2542160],
+      "references": ["https://www.gbif.org/species/2542160"]
+    },
+    "rangePrior": {
+      "taxonKeys": [2542160]
+    }
   }
 }

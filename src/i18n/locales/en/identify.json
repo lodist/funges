@@ -115,7 +115,9 @@
       "stemMarkings": "Whether the stem is hollow, ridged, or blotched with purple - and whether it smells unpleasant when crushed.",
       "berryArrangement": "Whether berry clusters droop below the branches or stand upright above the foliage.",
       "plantHabit": "Whether the plant is a woody shrub or a soft green herb dying back each year.",
-      "interiorPattern": "Cut it in half. A true truffle is marbled with pale branching veins. A false truffle is a solid dark mass, purple to black, with no pattern."
+      "interiorPattern": "Cut it in half. A true truffle is marbled with pale branching veins. A false truffle is a solid dark mass, purple to black, with no pattern.",
+      "berryColour": "Ripe berry colour: elderberries for eating are purple-black. Red berries in upright, dome-shaped clusters are red elder, poisonous raw.",
+      "flowerShape": "Flower shape: violets have five uneven petals with a spur at the back; lesser celandine has 8–12 glossy yellow petals."
     },
     "critical": {
       "lepiotaMacrolepiota": "Deadly Lepiota species are among the most dangerous look-alikes for the Parasol mushroom, and this was the single most frequent mistake in our testing. A true Parasol is large, with a movable ring and a snakeskin-patterned stem. Small specimens with a plain stem should be left alone even if they look right.",

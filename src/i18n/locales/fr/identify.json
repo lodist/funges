@@ -115,7 +115,9 @@
       "stemMarkings": "Si la tige est creuse, cannelée ou tachée de pourpre - et si elle sent mauvais quand on la froisse.",
       "berryArrangement": "Si les grappes de baies pendent sous les rameaux ou se tiennent dressées au-dessus du feuillage.",
       "plantHabit": "Si la plante est un arbuste ligneux ou une herbe tendre qui disparaît chaque année.",
-      "interiorPattern": "Coupe-la en deux. Une vraie truffe est marbrée de veines pâles ramifiées. Une fausse truffe est une masse sombre et compacte, violacée à noire, sans motif."
+      "interiorPattern": "Coupe-la en deux. Une vraie truffe est marbrée de veines pâles ramifiées. Une fausse truffe est une masse sombre et compacte, violacée à noire, sans motif.",
+      "berryColour": "Couleur des baies mûres : le sureau noir a des baies noir violacé. Des baies rouges en grappes dressées en dôme sont du sureau rouge, toxique cru.",
+      "flowerShape": "Forme de la fleur : les violettes ont cinq pétales inégaux avec un éperon à l'arrière ; la ficaire a 8 à 12 pétales jaunes et brillants."
     },
     "critical": {
       "lepiotaMacrolepiota": "Les lépiotes mortelles figurent parmi les sosies les plus dangereux de la coulemelle, et c'était l'erreur la plus fréquente de tous nos tests. Une vraie coulemelle est grande, avec un anneau coulissant et un pied à motif de peau de serpent. Les petits spécimens à pied lisse doivent être laissés sur place, même s'ils semblent corrects.",

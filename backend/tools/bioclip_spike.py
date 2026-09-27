@@ -113,6 +113,10 @@ TOXIC = [
     ("Scleroderma verrucosum", "species"),
     ("Rubroboletus rhodoxanthus", "species"),
     ("Kalmia procumbens", "species"),
+    # --- promoted from tier 2 with the elder and violet forecasts (2026-09) ---
+    ("Phytolacca americana", "species"),     # -> elderberry (North America)
+    ("Sambucus racemosa", "species"),        # -> elderberry; raw berries poisonous
+    ("Ficaria verna", "species"),            # -> violet leaves in spring
 ]
 
 

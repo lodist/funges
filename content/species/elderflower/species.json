@@ -61,7 +61,158 @@
     }
   },
   "forecast": {
-    "enabled": false,
-    "dataColumns": []
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Elderflower"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [311, 313, 324],
+        "scoring": {
+          "optimal_temp": 10,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 100,
+          "alt_sigma": 800,
+          "optimal_humidity": 85,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.0,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.5, 6.5],
+          "optimal_soil_temp": 9,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 23,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [5, 6],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2888728",
+          "https://www.gbif.org/species/6369819",
+          "https://www.gbif.org/species/2888726",
+          "docs/species/2026-09-27-quick-wins.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [311, 313, 324],
+        "scoring": {
+          "optimal_temp": 14,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 450,
+          "alt_sigma": 1000,
+          "optimal_humidity": 65,
+          "humidity_sigma": 17,
+          "optimal_pH": 6.0,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.5, 7.5],
+          "optimal_soil_temp": 13,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 22,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [4, 5, 6],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2888728",
+          "https://www.gbif.org/species/6369819",
+          "https://www.gbif.org/species/2888726",
+          "docs/species/2026-09-27-quick-wins.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 43, 52],
+        "scoring": {
+          "optimal_temp": 23,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 33,
+          "optimal_alt": 100,
+          "alt_sigma": 800,
+          "optimal_humidity": 70,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.0, 7.0],
+          "optimal_soil_temp": 22,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 57,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [5, 6, 7],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2888728",
+          "https://www.gbif.org/species/6369819",
+          "https://www.gbif.org/species/2888726",
+          "docs/species/2026-09-27-quick-wins.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 43, 52],
+        "scoring": {
+          "optimal_temp": 19,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 200,
+          "alt_sigma": 1300,
+          "optimal_humidity": 45,
+          "humidity_sigma": 17,
+          "optimal_pH": 6.6,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [5.1, 8.1],
+          "optimal_soil_temp": 18,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 2,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5, 6, 7],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2888728",
+          "https://www.gbif.org/species/6369819",
+          "https://www.gbif.org/species/2888726",
+          "docs/species/2026-09-27-quick-wins.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [2888728, 6369819, 2888726]
+    }
   }
 }

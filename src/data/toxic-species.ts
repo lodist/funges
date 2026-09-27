@@ -267,8 +267,12 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     category: 'plant',
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.coniine',
-    checkKeys: ['toxicity.checks.stemMarkings', 'toxicity.checks.smell'],
-    confusedWithSpeciesIds: ['masterwort'],
+    checkKeys: [
+      'toxicity.checks.stemMarkings',
+      'toxicity.checks.smell',
+      'toxicity.checks.plantHabit',
+    ],
+    confusedWithSpeciesIds: ['masterwort', 'elderflower'],
   },
   {
     id: 'aethusa-cynapium',
@@ -662,8 +666,9 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.hollowStem',
       'toxicity.checks.stemMarkings',
       'toxicity.checks.smell',
+      'toxicity.checks.plantHabit',
     ],
-    confusedWithSpeciesIds: ['masterwort'],
+    confusedWithSpeciesIds: ['masterwort', 'elderflower'],
   },
   {
     id: 'oenanthe-crocata',
@@ -917,6 +922,41 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.plantHabit',
     ],
     confusedWithSpeciesIds: [],
+  },
+
+  // --- promoted from tier 2 (2026-09) with the elder and violet forecasts. All
+  // three were in the vocabulary as neutral rows. Pokeweed is the classic
+  // elderberry confusion in North America, red elder's berries are poisonous
+  // raw, and lesser celandine's leaves are picked for violet leaves in spring. ---
+  {
+    id: 'phytolacca-americana',
+    scientificName: 'Phytolacca americana',
+    category: 'berry',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.plantHabit', 'toxicity.checks.stemMarkings'],
+    confusedWithSpeciesIds: ['elderberry'],
+  },
+  {
+    id: 'sambucus-racemosa',
+    scientificName: 'Sambucus racemosa',
+    category: 'berry',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.berryColour',
+      'toxicity.checks.berryArrangement',
+    ],
+    confusedWithSpeciesIds: ['elderberry', 'elderflower'],
+  },
+  {
+    id: 'ficaria-verna',
+    scientificName: 'Ficaria verna',
+    category: 'flower',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.leafShape', 'toxicity.checks.flowerShape'],
+    confusedWithSpeciesIds: ['violets'],
   },
 ];
 

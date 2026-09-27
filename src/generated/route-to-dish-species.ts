@@ -20,14 +20,37 @@ export const GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG = {
   morel: {
     scorePropertyAliases: ['morel', 'morel_score', 'Morel', 'Morchella'],
   },
+  blackberry: {
+    scorePropertyAliases: ['blackberry', 'blackberry_score', 'Blackberry'],
+  },
+  elderberry: {
+    scorePropertyAliases: ['elderberry', 'elderberry_score', 'Elderberry'],
+  },
   nettle: {
     scorePropertyAliases: ['nettle', 'nettle_score', 'Nettle'],
   },
   dandelion: {
     scorePropertyAliases: ['dandelion', 'dandelion_score', 'Dandelion'],
   },
+  hazelnut: {
+    scorePropertyAliases: ['hazelnut', 'hazelnut_score', 'Hazelnut'],
+  },
   garlic: {
     scorePropertyAliases: ['garlic', 'garlic_score', 'Wild Garlic', 'Garlic'],
+  },
+  'chicken-of-the-woods': {
+    scorePropertyAliases: [
+      'chicken-of-the-woods',
+      'chicken-of-the-woods_score',
+      'Chicken of the Woods',
+    ],
+  },
+  'oyster-mushroom': {
+    scorePropertyAliases: [
+      'oyster-mushroom',
+      'oyster-mushroom_score',
+      'Oyster Mushroom',
+    ],
   },
   raspberry: {
     scorePropertyAliases: [
@@ -37,6 +60,9 @@ export const GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG = {
       'Wild Raspberry',
     ],
   },
+  blueberry: {
+    scorePropertyAliases: ['blueberry', 'blueberry_score', 'Wild Blueberry'],
+  },
   strawberry: {
     scorePropertyAliases: [
       'strawberry',
@@ -45,14 +71,29 @@ export const GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG = {
       'Strawberry',
     ],
   },
+  'wild-mint': {
+    scorePropertyAliases: ['wild-mint', 'wild-mint_score', 'Wild Mint'],
+  },
   chickweed: {
     scorePropertyAliases: ['chickweed', 'chickweed_score', 'Chickweed'],
+  },
+  plantain: {
+    scorePropertyAliases: ['plantain', 'plantain_score', 'Common Plantain'],
   },
   walnut: {
     scorePropertyAliases: ['walnut', 'walnut_score', 'Wild Walnut', 'Walnut'],
   },
   chestnut: {
     scorePropertyAliases: ['chestnut', 'chestnut_score', 'Chestnut'],
+  },
+  elderflower: {
+    scorePropertyAliases: ['elderflower', 'elderflower_score', 'Elderflower'],
+  },
+  daisy: {
+    scorePropertyAliases: ['daisy', 'daisy_score', 'Common Daisy'],
+  },
+  violets: {
+    scorePropertyAliases: ['violets', 'violets_score', 'Sweet Violet'],
   },
   amaranth: {
     scorePropertyAliases: ['amaranth', 'amaranth_score', 'Amaranth'],

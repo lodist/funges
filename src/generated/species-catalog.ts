@@ -51,6 +51,8 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     howToKey: 'blackberry.howTo',
     season: 'summer-fall',
     habitat: 'hedgerow',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'elderberry',
@@ -62,6 +64,8 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     howToKey: 'elderberry.howTo',
     season: 'fall',
     habitat: 'hedgerow',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'nettle',
@@ -99,6 +103,8 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     howToKey: 'hazelnut.howTo',
     season: 'fall',
     habitat: 'forest',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'garlic',
@@ -123,6 +129,8 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     howToKey: 'chickenOfTheWoods.howTo',
     season: 'summer-fall',
     habitat: 'forest',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'oyster-mushroom',
@@ -134,6 +142,8 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     howToKey: 'oysterMushroom.howTo',
     season: 'fall-winter',
     habitat: 'forest',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'shiitake',
@@ -169,6 +179,8 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     howToKey: 'blueberry.howTo',
     season: 'summer-fall',
     habitat: 'forest',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'strawberry',
@@ -193,6 +205,8 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     howToKey: 'wildMint.howTo',
     season: 'spring-summer',
     habitat: 'meadow',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'chickweed',
@@ -217,6 +231,8 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     howToKey: 'plantain.howTo',
     season: 'spring-fall',
     habitat: 'meadow',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'walnut',
@@ -254,6 +270,8 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     howToKey: 'elderflower.howTo',
     season: 'spring-summer',
     habitat: 'hedgerow',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'daisy',
@@ -265,6 +283,8 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     howToKey: 'daisy.howTo',
     season: 'spring-summer',
     habitat: 'meadow',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'violets',
@@ -276,6 +296,8 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     howToKey: 'violets.howTo',
     season: 'spring',
     habitat: 'meadow',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'amaranth',

@@ -115,7 +115,9 @@
       "stemMarkings": "Se il fusto è cavo, scanalato o macchiato di porpora - e se ha un odore sgradevole quando lo strofini.",
       "berryArrangement": "Se i grappoli di bacche pendono sotto i rami o restano eretti sopra il fogliame.",
       "plantHabit": "Se la pianta è un arbusto legnoso o un'erba tenera che secca ogni anno.",
-      "interiorPattern": "Taglialo a metà. Un tartufo vero è marmorizzato da venature chiare ramificate. Un falso tartufo è una massa scura e compatta, dal violaceo al nero, senza disegno."
+      "interiorPattern": "Taglialo a metà. Un tartufo vero è marmorizzato da venature chiare ramificate. Un falso tartufo è una massa scura e compatta, dal violaceo al nero, senza disegno.",
+      "berryColour": "Colore delle bacche mature: il sambuco nero ha bacche nero-violacee. Bacche rosse in grappoli eretti a cupola sono di sambuco rosso, velenose crude.",
+      "flowerShape": "Forma del fiore: le viole hanno cinque petali disuguali con uno sperone sul retro; il favagello ha 8–12 petali gialli e lucidi."
     },
     "critical": {
       "lepiotaMacrolepiota": "Le Lepiota mortali sono tra i sosia più pericolosi della mazza di tamburo, e nei nostri test è stato l'errore più frequente in assoluto. Una vera mazza di tamburo è grande, con un anello scorrevole e un gambo con disegno a pelle di serpente. Gli esemplari piccoli con il gambo liscio vanno lasciati dove sono, anche se sembrano quelli giusti.",
