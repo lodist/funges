@@ -117,6 +117,15 @@ TOXIC = [
     ("Phytolacca americana", "species"),     # -> elderberry (North America)
     ("Sambucus racemosa", "species"),        # -> elderberry; raw berries poisonous
     ("Ficaria verna", "species"),            # -> violet leaves in spring
+    # --- North American bolete look-alikes, added with the US king boletes (2026-09).
+    # None was in the vocabulary, so their photos could only land on a neighbour. ---
+    ("Neoboletus subvelutipes", "species"),  # -> king boletes; red pores, instant blue
+    ("Boletus sensibilis", "species"),       # -> king boletes; instant blue
+    ("Boletus huronensis", "species"),       # -> porcini in the Great Lakes
+    ("Tylopilus rubrobrunneus", "species"),  # bitter -> Eastern King
+    ("Tylopilus plumbeoviolaceus", "species"),  # bitter, violet -> X. separans
+    ("Rubroboletus pulcherrimus", "species"),   # -> Pacific porcini; a fatality recorded
+    ("Rubroboletus eastwoodiae", "species"),    # -> Pacific porcini
 ]
 
 

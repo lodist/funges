@@ -958,6 +958,76 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: ['toxicity.checks.leafShape', 'toxicity.checks.flowerShape'],
     confusedWithSpeciesIds: ['violets'],
   },
+
+  // --- North American bolete look-alikes (2026-09), added with the US king
+  // boletes. None was in the vocabulary, so a photo of one could only surface as
+  // a neighbouring label: the three eastern boletes that make people sick, the
+  // two bitter Tylopilus that pass for the Eastern King (T. plumbeoviolaceus is
+  // as violet as X. separans), and the two western Rubroboletus that grow with
+  // porcini on the Pacific coast (R. pulcherrimus has caused a death). ---
+  {
+    id: 'neoboletus-subvelutipes',
+    scientificName: 'Neoboletus subvelutipes',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.fleshBruising'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'boletus-sensibilis',
+    scientificName: 'Boletus sensibilis',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.fleshBruising', 'toxicity.checks.poreColour'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'boletus-huronensis',
+    scientificName: 'Boletus huronensis',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.fleshBruising', 'toxicity.checks.stemNetwork'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'tylopilus-rubrobrunneus',
+    scientificName: 'Tylopilus rubrobrunneus',
+    category: 'mushroom',
+    severity: 'inedible',
+    reasonKey: 'toxicity.mechanisms.bitter',
+    checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.stemNetwork'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'tylopilus-plumbeoviolaceus',
+    scientificName: 'Tylopilus plumbeoviolaceus',
+    category: 'mushroom',
+    severity: 'inedible',
+    reasonKey: 'toxicity.mechanisms.bitter',
+    checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.stemNetwork'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'rubroboletus-pulcherrimus',
+    scientificName: 'Rubroboletus pulcherrimus',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.fleshBruising'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'rubroboletus-eastwoodiae',
+    scientificName: 'Rubroboletus eastwoodiae',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.fleshBruising'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
 ];
 
 /** Exact-match lookup table. Built once; the matcher never scans the array. */

@@ -455,17 +455,56 @@ vocabulary. What changed:
 - Existing warnings already covered oyster (_Omphalotus_, sulphur tuft, angel
   wings), elder (dwarf elder) and blueberry (deadly nightshade, herb Paris).
 
-`--stage verify-shipped`, same 1,590 test photos:
+- **North American bolete look-alikes, new to the vocabulary:** the three
+  eastern boletes that make people sick (_Neoboletus subvelutipes_,
+  _Boletus sensibilis_, _B. huronensis_), the two bitter _Tylopilus_ that pass
+  for the Eastern King (_T. rubrobrunneus_, and _T. plumbeoviolaceus_, as violet
+  as _X. separans_), and the two western _Rubroboletus_ that grow with Pacific
+  porcini (_R. pulcherrimus_ has caused a death). None was in the vocabulary,
+  so a photo of one could only surface as a neighbouring label. Every entry
+  reuses existing reason and check texts.
 
-|                                       | before                  | after                   | gate              |
+**The gate now measures what it says.** Since #266, 30 test photos still
+carried the retired genus label `Boletus`. As catalog photos they could never
+be answered correctly, and the warning metric counted them as toxic.
+`--stage verify-shipped` now skips test photos whose label no longer ships as
+catalog or toxic, and counts a photo as toxic only when its species is flagged
+toxic. On the same artifacts, this lifts the figures:
+
+- warning availability: 93.9% → 97.7%;
+- catalog top-1 / top-3: 79.1% / 89.1% → 81.8% / 92.1%;
+- false-edible: unchanged at 1.36%.
+
+`--stage verify-shipped` (corrected), 1,560 test photos, 660 of them toxic:
+
+|                                       | `main` (after #276)     | this change             | gate              |
 | ------------------------------------- | ----------------------- | ----------------------- | ----------------- |
-| labels (catalog / toxic / other)      | 2,625 (40 / 65 / 2,520) | 2,628 (40 / 68 / 2,520) | —                 |
+| labels (catalog / toxic / other)      | 2,625 (40 / 65 / 2,520) | 2,635 (40 / 75 / 2,520) | —                 |
 | false-edible@1                        | 1.36%                   | 1.36%                   | ceiling 2% — pass |
-| toxic label in top-3 of a toxic photo | 93.8%                   | 93.9%                   | floor 92% — pass  |
-| catalog top-1 / top-3                 | 79.1% / 89.1%           | 79.1% / 89.1%           | not gated         |
+| toxic label in top-3 of a toxic photo | 97.6%                   | 97.7%                   | floor 92% — pass  |
+| catalog top-1 / top-3                 | 81.8% / 92.1%           | 81.8% / 92.1%           | not gated         |
 
-The three promoted names left tier 2, and the observation-ranked cap let three
-more regional names in, so tier 2 stays at 2,520.
+The promoted and new names took ten tier-2 slots, and the observation-ranked
+cap let as many regional names in, so tier 2 stays at 2,520.
+
+**The new bolete labels on real photos.** The test set has no photos of the
+seven new boletes. So 14–15 recent research-grade iNaturalist photos of each
+were scored against the vocabulary before and after:
+
+| species                      | edible label first (before → after) | toxic label in top 3 (before → after) |
+| ---------------------------- | ----------------------------------: | ------------------------------------: |
+| _Boletus huronensis_         |                            64% → 7% |                             43% → 93% |
+| _Tylopilus plumbeoviolaceus_ |                            33% → 0% |                            20% → 100% |
+| _Tylopilus rubrobrunneus_    |                            13% → 0% |                            87% → 100% |
+| _Neoboletus subvelutipes_    |                             0% → 0% |                            60% → 100% |
+| _Boletus sensibilis_         |                             0% → 0% |                            67% → 100% |
+| _Rubroboletus pulcherrimus_  |                             0% → 0% |                            93% → 100% |
+| _Rubroboletus eastwoodiae_   |                             0% → 0% |                           100% → 100% |
+
+Before, most Huron bolete photos came back as _B. edulis_ or _B. variipes_,
+edible labels with no warning. BioCLIP may have seen some of these photos in
+training, so the "after" figures are optimistic. The "before" column shows the
+risk either way.
 
 ## Literature check (fungi)
 
