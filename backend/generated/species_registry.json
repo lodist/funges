@@ -717,7 +717,7 @@
       "scientificName": "Taraxacum officinale",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
-      "rangeTaxonKeys": [7787708],
+      "rangeTaxonKeys": [],
       "dataColumns": ["dandelion_score", "Dandelion"],
       "regions": {
         "NE": {
@@ -1864,6 +1864,37 @@
       "rangeTaxonKeys": [2768995],
       "dataColumns": ["asparagus_score", "Wild Asparagus", "Asparagus"],
       "regions": {
+        "NE": {
+          "landCover": [323, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 14,
+            "optimal_alt": 400,
+            "temp_sigma": 4,
+            "min_temp": 5,
+            "max_temp": 18,
+            "alt_sigma": 700,
+            "optimal_humidity": 65,
+            "humidity_sigma": 12,
+            "optimal_pH": 6.4,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [5.2, 7.6],
+            "optimal_soil_temp": 10.5,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://data.fung.es/EU/SE/SE_species_params.txt"
+          ]
+        },
         "SE": {
           "landCover": [323, 324],
           "landCoverScheme": "CORINE",
@@ -2891,6 +2922,46 @@
       "rangeTaxonKeys": [5466954],
       "dataColumns": ["pacific_chant_score", "Pacific Chanterelle"],
       "regions": {
+        "USE": {
+          "landCover": [42, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 4,
+            "min_temp": 3,
+            "max_temp": 22,
+            "optimal_alt": 500,
+            "alt_sigma": 900,
+            "optimal_humidity": 88,
+            "humidity_sigma": 16,
+            "optimal_pH": 5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 6.5],
+            "optimal_soil_temp": 14,
+            "soil_temp_sigma": 4,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": false,
+            "season_months": [9, 10, 11, 12, 1],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "douglas_fir",
+              "hemlock_sitka_spruce",
+              "fir_spruce_mountain_hemlock",
+              "redwood",
+              "tanoak_laurel",
+              "california_mixed_conifer"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5466954",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
         "USW": {
           "landCover": [42, 43, 52],
           "landCoverScheme": "NLCD",
@@ -2942,6 +3013,46 @@
       "dataColumns": ["smooth_chant_score", "Smooth Chanterelle"],
       "regions": {
         "USE": {
+          "landCover": [41, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 22,
+            "temp_sigma": 4.5,
+            "min_temp": 12,
+            "max_temp": 32,
+            "optimal_alt": 250,
+            "alt_sigma": 700,
+            "optimal_humidity": 85,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.2, 6.8],
+            "optimal_soil_temp": 22,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": false,
+            "season_months": [6, 7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "oak_hickory",
+              "oak_pine",
+              "oak_gum_cypress",
+              "maple_beech_birch",
+              "loblolly_shortleaf_pine",
+              "longleaf_slash_pine"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7241861",
+            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          ]
+        },
+        "USW": {
           "landCover": [41, 43, 52],
           "landCoverScheme": "NLCD",
           "scoring": {
