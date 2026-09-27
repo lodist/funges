@@ -263,6 +263,16 @@
       "name": "Rocky Mountain King",
       "description": "A stout high-mountain porcino with a brick-red to red-brown cap, white pores and a thick pale stem netted at the top",
       "howTo": "Look under spruce and fir high in the southern Rockies once the summer monsoon rains arrive, from July to September"
+    },
+    "lions_mane": {
+      "name": "Lion's Mane",
+      "description": "A white, shaggy clump of long hanging spines on hardwood trees that cooks up like crab",
+      "howTo": "Look on wounded or dead oak, beech and maple from late summer into autumn, often high on the trunk. In Europe it is rare and protected in places, so leave it there"
+    },
+    "hen_of_the_woods": {
+      "name": "Hen of the Woods",
+      "description": "A big rosette of overlapping grey-brown fronds at the foot of old oaks, with white pores underneath",
+      "howTo": "Look at the base of old or dying oaks from late August to October; it often comes back to the same tree year after year. It is protected in parts of central and northern Europe"
     }
   }
 }

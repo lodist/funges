@@ -194,4 +194,14 @@ export const GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG = {
       'Rocky Mountain King',
     ],
   },
+  lions_mane: {
+    scorePropertyAliases: ['lions_mane', 'lions_mane_score', "Lion's Mane"],
+  },
+  hen_of_the_woods: {
+    scorePropertyAliases: [
+      'hen_of_the_woods',
+      'hen_of_the_woods_score',
+      'Hen of the Woods',
+    ],
+  },
 } as const;

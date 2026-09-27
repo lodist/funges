@@ -113,10 +113,45 @@ Spot checks of the range prior:
 | oyster: beech, oak, other broadleaf (EU)  |       0.2% |          — |
 | oyster: any US forest                     |          — |       3.9% |
 
-Both get host lists in Europe only. In the US even "any forest" hides 7.6% of
-chicken and 3.9% of oyster sightings: park and street trees, and California
-eucalyptus, which the USFS forest-type map does not see. Both are wood-decay
-fungi that are found on park trees more than most.
+**Correction (PR #279): both now have US host lists too.** The US figures above
+count every sighting. Nearly all the hidden ones are in towns and farmland,
+with less than 10% forest within ~5 km, where the forest-only map (NLCD 41–43)
+cannot show a score whatever the host list says.
+
+The test that matters is the share hidden among sightings made in forest. It
+uses all-year GBIF records with coordinate uncertainty ≤ 1 km and the 2026
+iNaturalist sightings:
+
+| species, region  | host classes                     | forest sightings hidden (all years / 2026) | hardwood share of the forest there |
+| ---------------- | -------------------------------- | -----------------------------------------: | ---------------------------------: |
+| chicken, US East | all 12 hardwood classes          |                                0.0% / 0.0% |                                99% |
+| chicken, US West | all hardwoods                    |                              29.7% / 23.8% |                                 3% |
+| chicken, US West | hardwoods + wet western conifers |                                1.1% / 0.0% |                                    |
+| oyster, US East  | all 12 hardwood classes          |                                0.0% / 0.0% |                                99% |
+| oyster, US West  | all hardwoods                    |                                4.4% / 5.3% |                                27% |
+| oyster, US West  | hardwoods + wet western conifers |                                0.0% / 0.0% |                                    |
+
+"Wet western conifers" means Douglas-fir, hemlock–Sitka spruce, fir–spruce–
+mountain hemlock, California mixed conifer and redwood. The West needs them:
+
+- _L. conifericola_ and the western oysters grow on conifer wood;
+- the dry interior pines, pinyon–juniper and lodgepole stay closed.
+
+**Chosen:**
+
+- **US East:** all hardwoods, for both.
+- **US West:** hardwoods plus the wet western conifers, for both.
+
+**What it does to the score.** On #277's calibration sightings made in forest,
+the score at the sightings does not move:
+
+- **Chicken, US West:** random forest points drop from 4.10 to 3.65, and
+  spatial AUC rises from 0.566 to 0.615.
+- **Oyster, US West:** random forest points drop from 6.30 to 5.74, and spatial
+  AUC rises from 0.860 to 0.866.
+- **US East:** no measurable change, because its forest is almost all hardwood.
+  The list closes only pure conifer stands, such as pine plantations and
+  spruce–fir.
 
 ## Seasons
 

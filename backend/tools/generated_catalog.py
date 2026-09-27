@@ -159,6 +159,14 @@ CATALOG = [
   [
     "Boletus rubriceps",
     "species"
+  ],
+  [
+    "Hericium erinaceus",
+    "species"
+  ],
+  [
+    "Grifola frondosa",
+    "species"
   ]
 ]
 CATALOG_NAMES = {name for name, _rank in CATALOG}

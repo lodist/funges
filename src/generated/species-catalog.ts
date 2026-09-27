@@ -533,6 +533,32 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     showOnMap: true,
     forecastRegions: ['USE', 'USW'],
   },
+  {
+    id: 'lions_mane',
+    nameKey: 'lions_mane.name',
+    scientificName: 'Hericium erinaceus',
+    category: 'mushroom',
+    emoji: '🍄',
+    descriptionKey: 'lions_mane.description',
+    howToKey: 'lions_mane.howTo',
+    season: 'fall',
+    habitat: 'forest',
+    showOnMap: true,
+    forecastRegions: ['USE', 'USW'],
+  },
+  {
+    id: 'hen_of_the_woods',
+    nameKey: 'hen_of_the_woods.name',
+    scientificName: 'Grifola frondosa',
+    category: 'mushroom',
+    emoji: '🍄',
+    descriptionKey: 'hen_of_the_woods.description',
+    howToKey: 'hen_of_the_woods.howTo',
+    season: 'fall',
+    habitat: 'forest',
+    showOnMap: true,
+    forecastRegions: ['USE', 'USW'],
+  },
 ];
 
 export const GENERATED_REGION_BOUNDARIES = {

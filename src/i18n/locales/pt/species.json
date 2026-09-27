@@ -263,6 +263,16 @@
       "name": "Boleto Rei das Rochosas",
       "description": "Um cogumelo boleto robusto de alta montanha, de chapéu vermelho-tijolo a castanho-avermelhado, poros brancos e pé grosso e claro reticulado no alto",
       "howTo": "Procure sob píceas e abetos nas altitudes das Montanhas Rochosas do sul, quando chegam as chuvas de monção de verão, de julho a setembro"
+    },
+    "lions_mane": {
+      "name": "Juba-de-leão",
+      "description": "Um tufo branco e desgrenhado de longos espinhos pendentes que cresce em árvores de folha larga e, cozinhado, lembra caranguejo",
+      "howTo": "Procure em carvalhos, faias e bordos feridos ou mortos, do fim do verão ao outono, muitas vezes no alto do tronco. Na Europa é rara e protegida em alguns sítios: deixe-a onde está"
+    },
+    "hen_of_the_woods": {
+      "name": "Maitake",
+      "description": "Uma grande roseta de lóbulos castanho-acinzentados sobrepostos ao pé de carvalhos velhos, com poros brancos por baixo",
+      "howTo": "Procure na base de carvalhos velhos ou debilitados do fim de agosto a outubro; costuma voltar à mesma árvore ano após ano. É protegido em parte da Europa central e do norte"
     }
   }
 }

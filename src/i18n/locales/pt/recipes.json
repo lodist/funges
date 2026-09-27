@@ -996,6 +996,112 @@
       "servings": "2–4",
       "tags": ["vegetarian", "drink", "easy"],
       "safetyNotes": []
+    },
+    "lions-mane-crab-cakes": {
+      "title": "Bolinhos de juba-de-leão «à moda de caranguejo»",
+      "ingredients": [
+        "300 g de juba-de-leão, desfiada",
+        "1 ovo",
+        "3 colheres de sopa de maionese",
+        "1 colher de chá de mostarda de Dijon",
+        "1 colher de chá de colorau doce",
+        "1 cebolinho picado fino",
+        "Raspa e sumo de meio limão",
+        "6 colheres de sopa de pão ralado",
+        "Sal e pimenta",
+        "Óleo ou manteiga para fritar"
+      ],
+      "instructions": [
+        "Secar: Cozinhe o cogumelo desfiado numa frigideira sem gordura em lume médio, pressionando-o, até largar a água e começar a alourar (8–10 minutos). Deixe arrefecer.",
+        "Misturar: Misture o ovo, a maionese, a mostarda, o colorau, o cebolinho, a raspa e o sumo de limão, e junte o cogumelo e 4 colheres de pão ralado. Tempere.",
+        "Moldar: Forme 6 bolinhos pequenos e passe-os pelo resto do pão ralado. Leve ao frio 15 minutos para ganharem firmeza.",
+        "Fritar: Frite-os em óleo ou manteiga em lume médio até ficarem dourados e estaladiços, cerca de 3–4 minutos de cada lado.",
+        "Servir: Com gomos de limão e uma salada verde ou molho tártaro."
+      ],
+      "species": ["lions_mane"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Secar: Cozinhe o cogumelo desfiado numa frigideira sem gordura em lume médio, pressionando-o, até largar a água e começar a alourar (8–10 minutos). Deixe arrefecer."
+        },
+        {
+          "step": 2,
+          "instruction": "Misturar: Misture o ovo, a maionese, a mostarda, o colorau, o cebolinho, a raspa e o sumo de limão, e junte o cogumelo e 4 colheres de pão ralado. Tempere."
+        },
+        {
+          "step": 3,
+          "instruction": "Moldar: Forme 6 bolinhos pequenos e passe-os pelo resto do pão ralado. Leve ao frio 15 minutos para ganharem firmeza."
+        },
+        {
+          "step": 4,
+          "instruction": "Fritar: Frite-os em óleo ou manteiga em lume médio até ficarem dourados e estaladiços, cerca de 3–4 minutos de cada lado."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Com gomos de limão e uma salada verde ou molho tártaro."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos silvestres sem identificação por um especialista."
+      ],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "20 min",
+      "servings": "2–3",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cozinhe bem a juba-de-leão e coma pouca da primeira vez: algumas pessoas reagem a ela.",
+        "Na Grã-Bretanha é ilegal apanhá-la, e em grande parte da Europa está na lista vermelha. Apanhe-a só onde é comum, como na América do Norte."
+      ]
+    },
+    "crispy-roasted-hen-of-the-woods": {
+      "title": "Maitake estaladiço no forno",
+      "ingredients": [
+        "400 g de maitake, em pequenos tufos",
+        "3 colheres de sopa de azeite",
+        "1 colher de sopa de molho de soja ou tamari",
+        "2 dentes de alho picados finos",
+        "Alguns raminhos de tomilho",
+        "Pimenta",
+        "Gomos de limão para servir"
+      ],
+      "instructions": [
+        "Limpar: Escove a terra e a areia de entre os lóbulos e corte o miolo duro da base. Não o deixe de molho.",
+        "Temperar: Envolva os tufos no azeite, na soja, no alho e no tomilho, e junte pimenta. O sal vem da soja.",
+        "Assar: Espalhe-os numa só camada num tabuleiro e asse a 220 °C durante 20–25 minutos, virando uma vez, até as bordas ficarem douradas e estaladiças.",
+        "Servir: Quentes, com gomos de limão, sobre arroz, polenta ou pão torrado."
+      ],
+      "species": ["hen_of_the_woods"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpar: Escove a terra e a areia de entre os lóbulos e corte o miolo duro da base. Não o deixe de molho."
+        },
+        {
+          "step": 2,
+          "instruction": "Temperar: Envolva os tufos no azeite, na soja, no alho e no tomilho, e junte pimenta. O sal vem da soja."
+        },
+        {
+          "step": 3,
+          "instruction": "Assar: Espalhe-os numa só camada num tabuleiro e asse a 220 °C durante 20–25 minutos, virando uma vez, até as bordas ficarem douradas e estaladiças."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir: Quentes, com gomos de limão, sobre arroz, polenta ou pão torrado."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos silvestres sem identificação por um especialista."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Cozinhe bem o maitake: mal cozinhado, faz mal ao estômago de algumas pessoas.",
+        "O seu sósia, o políporo-gigante, é comestível mas rijo; escurece onde é tocado."
+      ]
     }
   }
 }

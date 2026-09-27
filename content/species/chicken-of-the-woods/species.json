@@ -22,7 +22,7 @@
       "howTo": "Look for it growing on dead or dying trees, especially oaks"
     },
     "it": {
-      "name": "Grifola Frondosa",
+      "name": "Poliporo sulfureo",
       "description": "Un fungo a mensola arancione-giallo brillante che cresce sugli alberi",
       "howTo": "Cercalo che cresce su alberi morti o morenti, specialmente querce"
     },
@@ -161,7 +161,21 @@
           "wind_sensitive": true,
           "season_months": [5, 6, 7, 8, 9, 10],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": [
+            "oak_pine",
+            "oak_hickory",
+            "oak_gum_cypress",
+            "elm_ash_cottonwood",
+            "maple_beech_birch",
+            "aspen_birch",
+            "alder_maple",
+            "western_oak",
+            "tanoak_laurel",
+            "other_western_hardwoods",
+            "tropical_hardwoods",
+            "exotic_hardwoods"
+          ]
         },
         "scoringReferences": [
           "https://www.gbif.org/species/2542160",
@@ -196,7 +210,26 @@
           "wind_sensitive": true,
           "season_months": [8, 9, 10, 11],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "hosts": [
+            "oak_pine",
+            "oak_hickory",
+            "oak_gum_cypress",
+            "elm_ash_cottonwood",
+            "maple_beech_birch",
+            "aspen_birch",
+            "alder_maple",
+            "western_oak",
+            "tanoak_laurel",
+            "other_western_hardwoods",
+            "tropical_hardwoods",
+            "exotic_hardwoods",
+            "douglas_fir",
+            "hemlock_sitka_spruce",
+            "fir_spruce_mountain_hemlock",
+            "california_mixed_conifer",
+            "redwood"
+          ]
         },
         "scoringReferences": [
           "https://www.gbif.org/species/2542160",

@@ -1000,6 +1000,112 @@
       "servings": "2–4",
       "tags": ["vegetarian", "drink", "easy"],
       "safetyNotes": []
+    },
+    "lions-mane-crab-cakes": {
+      "title": "Galettes d'hydne hérisson « façon crabe »",
+      "ingredients": [
+        "300 g d'hydne hérisson, effiloché",
+        "1 œuf",
+        "3 cuillères à soupe de mayonnaise",
+        "1 cuillère à café de moutarde de Dijon",
+        "1 cuillère à café de paprika doux",
+        "1 oignon nouveau finement haché",
+        "Le zeste et le jus d'un demi-citron",
+        "6 cuillères à soupe de chapelure",
+        "Sel et poivre",
+        "Huile ou beurre pour la cuisson"
+      ],
+      "instructions": [
+        "Assécher : Faites revenir le champignon effiloché dans une poêle sans matière grasse à feu moyen, en le pressant, jusqu'à ce qu'il ait rendu son eau et commence à dorer (8–10 minutes). Laissez refroidir.",
+        "Mélanger : Mélangez l'œuf, la mayonnaise, la moutarde, le paprika, l'oignon, le zeste et le jus de citron, puis incorporez le champignon et 4 cuillères de chapelure. Assaisonnez.",
+        "Façonner : Formez 6 petites galettes et roulez-les dans le reste de chapelure. Réservez 15 minutes au frais pour qu'elles se tiennent.",
+        "Cuire : Faites-les dorer dans l'huile ou le beurre à feu moyen, 3–4 minutes de chaque côté.",
+        "Servir : Avec des quartiers de citron et une salade verte ou une sauce tartare."
+      ],
+      "species": ["lions_mane"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Assécher : Faites revenir le champignon effiloché dans une poêle sans matière grasse à feu moyen, en le pressant, jusqu'à ce qu'il ait rendu son eau et commence à dorer (8–10 minutes). Laissez refroidir."
+        },
+        {
+          "step": 2,
+          "instruction": "Mélanger : Mélangez l'œuf, la mayonnaise, la moutarde, le paprika, l'oignon, le zeste et le jus de citron, puis incorporez le champignon et 4 cuillères de chapelure. Assaisonnez."
+        },
+        {
+          "step": 3,
+          "instruction": "Façonner : Formez 6 petites galettes et roulez-les dans le reste de chapelure. Réservez 15 minutes au frais pour qu'elles se tiennent."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuire : Faites-les dorer dans l'huile ou le beurre à feu moyen, 3–4 minutes de chaque côté."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir : Avec des quartiers de citron et une salade verte ou une sauce tartare."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "20 min",
+      "servings": "2–3",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cuisez bien l'hydne hérisson et goûtez-en peu la première fois : quelques personnes y réagissent.",
+        "Sa cueillette est interdite en Grande-Bretagne et il figure sur la liste rouge d'une grande partie de l'Europe. Ne le récoltez que là où il est commun, comme en Amérique du Nord."
+      ]
+    },
+    "crispy-roasted-hen-of-the-woods": {
+      "title": "Polypore en touffe rôti et croustillant",
+      "ingredients": [
+        "400 g de polypore en touffe, détaillé en petits bouquets",
+        "3 cuillères à soupe d'huile d'olive",
+        "1 cuillère à soupe de sauce soja ou tamari",
+        "2 gousses d'ail finement hachées",
+        "Quelques brins de thym",
+        "Poivre",
+        "Quartiers de citron pour servir"
+      ],
+      "instructions": [
+        "Nettoyer : Brossez la terre et le sable entre les lobes et retirez le cœur dur à la base. Ne le faites pas tremper.",
+        "Assaisonner : Mélangez les bouquets avec l'huile, la sauce soja, l'ail et le thym, puis poivrez. Le soja apporte le sel.",
+        "Rôtir : Étalez-les en une seule couche sur une plaque et enfournez à 220 °C pendant 20–25 minutes, en les retournant une fois, jusqu'à ce que les bords soient dorés et croustillants.",
+        "Servir : Bien chaud, avec des quartiers de citron, sur du riz, de la polenta ou du pain grillé."
+      ],
+      "species": ["hen_of_the_woods"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Nettoyer : Brossez la terre et le sable entre les lobes et retirez le cœur dur à la base. Ne le faites pas tremper."
+        },
+        {
+          "step": 2,
+          "instruction": "Assaisonner : Mélangez les bouquets avec l'huile, la sauce soja, l'ail et le thym, puis poivrez. Le soja apporte le sel."
+        },
+        {
+          "step": 3,
+          "instruction": "Rôtir : Étalez-les en une seule couche sur une plaque et enfournez à 220 °C pendant 20–25 minutes, en les retournant une fois, jusqu'à ce que les bords soient dorés et croustillants."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir : Bien chaud, avec des quartiers de citron, sur du riz, de la polenta ou du pain grillé."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Cuisez bien le polypore en touffe : pas assez cuit, il dérange certains estomacs.",
+        "Son sosie, le polypore géant, est comestible mais coriace ; il noircit là où on le touche."
+      ]
     }
   }
 }

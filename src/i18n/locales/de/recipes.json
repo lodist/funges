@@ -990,6 +990,112 @@
       "servings": "2–4",
       "tags": ["vegetarian", "drink", "easy"],
       "safetyNotes": []
+    },
+    "lions-mane-crab-cakes": {
+      "title": "Igel-Stachelbart-Küchlein „nach Krabbenart“",
+      "ingredients": [
+        "300 g Igel-Stachelbart, in Fasern gezupft",
+        "1 Ei",
+        "3 EL Mayonnaise",
+        "1 TL Dijon-Senf",
+        "1 TL edelsüßes Paprikapulver",
+        "1 Frühlingszwiebel, fein gehackt",
+        "Abrieb und Saft einer halben Zitrone",
+        "6 EL Semmelbrösel",
+        "Salz und Pfeffer",
+        "Öl oder Butter zum Braten"
+      ],
+      "instructions": [
+        "Trocken anbraten: Den gezupften Pilz in einer Pfanne ohne Fett bei mittlerer Hitze andrücken und braten, bis er sein Wasser abgegeben hat und bräunt (8–10 Minuten). Abkühlen lassen.",
+        "Mischen: Ei, Mayonnaise, Senf, Paprika, Frühlingszwiebel, Zitronenabrieb und -saft verrühren, dann den Pilz und 4 EL Brösel unterheben. Abschmecken.",
+        "Formen: 6 kleine Küchlein formen und in den restlichen Bröseln wenden. 15 Minuten kühlen, damit sie halten.",
+        "Braten: In Öl oder Butter bei mittlerer Hitze goldbraun und knusprig braten, etwa 3–4 Minuten pro Seite.",
+        "Servieren: Mit Zitronenspalten und grünem Salat oder Remoulade."
+      ],
+      "species": ["lions_mane"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Trocken anbraten: Den gezupften Pilz in einer Pfanne ohne Fett bei mittlerer Hitze andrücken und braten, bis er sein Wasser abgegeben hat und bräunt (8–10 Minuten). Abkühlen lassen."
+        },
+        {
+          "step": 2,
+          "instruction": "Mischen: Ei, Mayonnaise, Senf, Paprika, Frühlingszwiebel, Zitronenabrieb und -saft verrühren, dann den Pilz und 4 EL Brösel unterheben. Abschmecken."
+        },
+        {
+          "step": 3,
+          "instruction": "Formen: 6 kleine Küchlein formen und in den restlichen Bröseln wenden. 15 Minuten kühlen, damit sie halten."
+        },
+        {
+          "step": 4,
+          "instruction": "Braten: In Öl oder Butter bei mittlerer Hitze goldbraun und knusprig braten, etwa 3–4 Minuten pro Seite."
+        },
+        {
+          "step": 5,
+          "instruction": "Servieren: Mit Zitronenspalten und grünem Salat oder Remoulade."
+        }
+      ],
+      "warnings": [
+        "Wildpilze nur essen, wenn sie von einem Experten bestimmt wurden."
+      ],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "20 min",
+      "servings": "2–3",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Igel-Stachelbart gut durchgaren und beim ersten Mal nur wenig essen: Manche Menschen reagieren darauf.",
+        "In Großbritannien ist das Sammeln verboten, und in weiten Teilen Europas steht er auf der Roten Liste. Sammle ihn nur, wo er häufig ist, etwa in Nordamerika."
+      ]
+    },
+    "crispy-roasted-hen-of-the-woods": {
+      "title": "Knusprig gerösteter Klapperschwamm",
+      "ingredients": [
+        "400 g Klapperschwamm, in kleine Büschel gezupft",
+        "3 EL Olivenöl",
+        "1 EL Sojasauce oder Tamari",
+        "2 Knoblauchzehen, fein gehackt",
+        "Einige Zweige Thymian",
+        "Pfeffer",
+        "Zitronenspalten zum Servieren"
+      ],
+      "instructions": [
+        "Putzen: Erde und Sand zwischen den Hütchen herausbürsten und den harten Strunk an der Basis abschneiden. Nicht einweichen.",
+        "Würzen: Die Büschel mit Olivenöl, Sojasauce, Knoblauch und Thymian mischen und pfeffern. Das Salz bringt die Sojasauce.",
+        "Rösten: In einer Lage auf einem Blech verteilen und bei 220 °C 20–25 Minuten rösten, einmal wenden, bis die Ränder braun und knusprig sind.",
+        "Servieren: Heiß, mit Zitronenspalten, zu Reis, Polenta oder auf geröstetem Brot."
+      ],
+      "species": ["hen_of_the_woods"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Putzen: Erde und Sand zwischen den Hütchen herausbürsten und den harten Strunk an der Basis abschneiden. Nicht einweichen."
+        },
+        {
+          "step": 2,
+          "instruction": "Würzen: Die Büschel mit Olivenöl, Sojasauce, Knoblauch und Thymian mischen und pfeffern. Das Salz bringt die Sojasauce."
+        },
+        {
+          "step": 3,
+          "instruction": "Rösten: In einer Lage auf einem Blech verteilen und bei 220 °C 20–25 Minuten rösten, einmal wenden, bis die Ränder braun und knusprig sind."
+        },
+        {
+          "step": 4,
+          "instruction": "Servieren: Heiß, mit Zitronenspalten, zu Reis, Polenta oder auf geröstetem Brot."
+        }
+      ],
+      "warnings": [
+        "Wildpilze nur essen, wenn sie von einem Experten bestimmt wurden."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Klapperschwamm gut durchgaren: Halbgar verträgt ihn nicht jeder Magen.",
+        "Sein Doppelgänger, der Riesenporling, ist essbar, aber zäh; er schwärzt sich, wo man ihn anfasst."
+      ]
     }
   }
 }

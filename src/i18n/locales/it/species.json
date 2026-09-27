@@ -104,7 +104,7 @@
       "howTo": "Trovato in boschi decidui in primavera, spesso forma grandi macchie"
     },
     "chickenOfTheWoods": {
-      "name": "Grifola Frondosa",
+      "name": "Poliporo sulfureo",
       "description": "Un fungo a mensola arancione-giallo brillante che cresce sugli alberi",
       "howTo": "Cercalo che cresce su alberi morti o morenti, specialmente querce"
     },
@@ -262,6 +262,16 @@
       "name": "Porcino delle Rocciose",
       "description": "Un porcino tozzo d'alta montagna, con cappello rosso mattone o bruno-rossastro, pori bianchi e gambo chiaro e grosso reticolato in alto",
       "howTo": "Cercalo sotto abeti rossi e abeti bianchi in alta quota nelle Montagne Rocciose meridionali, quando arrivano le piogge monsoniche estive, da luglio a settembre"
+    },
+    "lions_mane": {
+      "name": "Criniera di leone",
+      "description": "Un cespo bianco e arruffato di lunghi aculei pendenti che cresce sulle latifoglie e, cotto, ricorda la polpa di granchio",
+      "howTo": "Cercala su querce, faggi e aceri feriti o morti da fine estate all'autunno, spesso in alto sul tronco. In Europa è rara e in alcuni paesi protetta: lasciala dov'è"
+    },
+    "hen_of_the_woods": {
+      "name": "Grifola (maitake)",
+      "description": "Una grossa rosetta di fronde grigio-brune sovrapposte ai piedi delle vecchie querce, con i pori bianchi sotto",
+      "howTo": "Cercala alla base di querce vecchie o deperienti da fine agosto a ottobre; spesso ricompare sullo stesso albero anno dopo anno. È protetta in parte dell'Europa centrale e settentrionale"
     }
   },
   "search_placeholder": "Cerca una specie"
