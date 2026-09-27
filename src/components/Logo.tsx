@@ -1,13 +1,30 @@
+import type { CSSProperties } from 'react';
 import { cn } from '@/lib/utils';
 
 const base = import.meta.env.BASE_URL;
 
+const mask = (file: string): CSSProperties => ({
+  maskImage: `url(${base}icons/${file})`,
+  maskSize: 'contain',
+  maskRepeat: 'no-repeat',
+});
+
+/** The mark alone, for the collapsed sidebar rail. Size it with a height class. */
+export const LogoMark = ({ className }: { className?: string }) => (
+  <span
+    aria-hidden='true'
+    className={cn('block aspect-square h-full shrink-0 bg-logo', className)}
+    style={mask('logo_mark_mask.png')}
+  />
+);
+
 /**
  * Brand lockup: the squirrel-and-mushroom mark plus the original FUNGES
- * lettering. The lettering used to be baked into logo_funges.png at a fifth
- * of the mark's height, in a red that fell to 2.19:1 on the dark theme. Here
- * it is a mask (wordmark_funges.png, cut from that file) filled with
- * `--wordmark`, so the letterforms stay and only the red adapts.
+ * lettering. Both are masks cut from the original artwork (logo_1.png and
+ * logo_funges.png), filled with `--logo`: the logo red on light, white on
+ * dark, where the red fell to 2.19:1. The white highlights in the artwork are
+ * cut-outs in the masks, so the detail survives the recolour. The lettering
+ * sits at 40% of the mark's height; it was a fifth in logo_funges.png.
  * Size it with a height class — both parts scale with it.
  */
 export const Logo = ({ className }: { className?: string }) => (
@@ -16,18 +33,10 @@ export const Logo = ({ className }: { className?: string }) => (
     aria-label='Funges'
     className={cn('inline-flex h-10 items-center gap-2', className)}
   >
-    <img
-      src={`${base}icons/logo_1.png`}
-      alt=''
-      className='aspect-square h-full shrink-0 object-contain'
-    />
+    <LogoMark />
     <span
-      className='aspect-[531/84] h-[40%] shrink-0 bg-wordmark'
-      style={{
-        maskImage: `url(${base}icons/wordmark_funges.png)`,
-        maskSize: 'contain',
-        maskRepeat: 'no-repeat',
-      }}
+      className='aspect-[531/84] h-[40%] shrink-0 bg-logo'
+      style={mask('wordmark_funges.png')}
     />
   </span>
 );

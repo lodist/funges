@@ -33,7 +33,7 @@ describe('palette hues', () => {
   // green stand-in it replaced made a delete look like a confirm, and red is
   // the foraging domain's own "do not eat" signal rather than a generic UI
   // convention. It is a single angle, used only by the --destructive tokens
-  // and --wordmark, the logo's own red.
+  // and --logo, the logo's own red.
   //
   // Hues 55 and 245 are the second (#246): the DataPage measurement charts.
   // Species categories are identity and stay on the brand ramp, but a chart
