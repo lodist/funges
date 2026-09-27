@@ -30,6 +30,7 @@ import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 import MapLastUpdated from '@/components/MapLastUpdated';
 import ThemeToggle from '@/components/ThemeToggle';
+import { Logo, LogoMark } from '@/components/Logo';
 
 const basePath = import.meta.env.BASE_URL || '/';
 
@@ -167,11 +168,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             aria-label={tCommon('sidebar.toggle')}
             className='focus-ring mx-auto flex size-11 items-center justify-center rounded-full'
           >
-            <img
-              src='icons/logo_1.png'
-              alt=''
-              className='size-8 object-contain'
-            />
+            <LogoMark className='h-8' />
           </button>
         ) : (
           <div className='flex items-center gap-2'>
@@ -183,11 +180,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
               className='focus-ring min-w-0 flex-1 rounded-md'
               aria-label={t('appName', { defaultValue: 'Funges' })}
             >
-              <img
-                src='icons/logo_funges.png'
-                alt=''
-                className='w-full object-contain'
-              />
+              <Logo />
             </Link>
             {!isMobile && <SidebarTrigger className='shrink-0' />}
           </div>

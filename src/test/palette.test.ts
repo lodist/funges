@@ -32,7 +32,8 @@ describe('palette hues', () => {
   // Hue 28 is the first sanctioned exception (#225): destructive actions. The
   // green stand-in it replaced made a delete look like a confirm, and red is
   // the foraging domain's own "do not eat" signal rather than a generic UI
-  // convention. It is a single angle, used only by the --destructive tokens.
+  // convention. It is a single angle, used only by the --destructive tokens
+  // and --logo, the logo's own red.
   //
   // Hues 55 and 245 are the second (#246): the DataPage measurement charts.
   // Species categories are identity and stay on the brand ramp, but a chart

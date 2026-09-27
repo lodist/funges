@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import MapInfoCard from '@/components/MapInfoCard';
 import ForecastSlider from '@/components/ForecastSlider';
+import { Logo } from '@/components/Logo';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from '@/lib/icons';
 import { getScoreColor } from '@/lib/scoreColor';
@@ -116,11 +117,7 @@ export default function LandingPage() {
               nav bar. Desktop: the copy sits beside the map. */}
           <div className='flex flex-col px-6 pt-10 md:min-h-[88dvh] md:justify-center md:px-12 md:pt-0 xl:px-20 2xl:px-28'>
             <div className='max-w-xl md:max-w-md xl:max-w-xl'>
-              <img
-                src={`${base}icons/logo_funges.png`}
-                alt={t('home.title')}
-                className='h-10 w-auto object-contain md:h-12'
-              />
+              <Logo className='h-12 md:h-14' />
               <h1 className='mt-6 text-4xl font-semibold leading-[1.05] text-foreground md:text-5xl xl:text-6xl'>
                 {t('home.headline')}
               </h1>
