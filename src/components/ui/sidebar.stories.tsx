@@ -132,7 +132,7 @@ const HELP_ITEMS = [
  */
 const Header = () => (
   <div className='flex items-center gap-2 px-3 pt-4 pb-4 group-data-[collapsible=icon]:px-0'>
-    <Logo className='min-w-0 flex-1 text-2xl group-data-[collapsible=icon]:hidden' />
+    <Logo className='flex-1 group-data-[collapsible=icon]:hidden' />
     <SidebarTrigger className='shrink-0 group-data-[collapsible=icon]:mx-auto' />
   </div>
 );

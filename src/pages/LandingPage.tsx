@@ -117,7 +117,7 @@ export default function LandingPage() {
               nav bar. Desktop: the copy sits beside the map. */}
           <div className='flex flex-col px-6 pt-10 md:min-h-[88dvh] md:justify-center md:px-12 md:pt-0 xl:px-20 2xl:px-28'>
             <div className='max-w-xl md:max-w-md xl:max-w-xl'>
-              <Logo className='text-2xl md:text-3xl' />
+              <Logo className='h-12 md:h-14' />
               <h1 className='mt-6 text-4xl font-semibold leading-[1.05] text-foreground md:text-5xl xl:text-6xl'>
                 {t('home.headline')}
               </h1>

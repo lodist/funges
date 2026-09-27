@@ -184,7 +184,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
               className='focus-ring min-w-0 flex-1 rounded-md'
               aria-label={t('appName', { defaultValue: 'Funges' })}
             >
-              <Logo className='text-2xl' />
+              <Logo />
             </Link>
             {!isMobile && <SidebarTrigger className='shrink-0' />}
           </div>

@@ -37,6 +37,7 @@
   --color-ring: var(--ring);
   --color-chart-warm: var(--chart-warm);
   --color-chart-brand: var(--chart-brand);
+  --color-wordmark: var(--wordmark);
   --color-chart-cool: var(--chart-cool);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
@@ -364,6 +365,8 @@
      all clear of the 3:1 non-text floor. */
   --chart-warm: oklch(0.66 0.156 55);
   --chart-brand: oklch(0.56 0.147 150);
+  /* The logo's own red (#b21900): 6.25:1 on --sidebar. */
+  --wordmark: #b21900;
   --chart-cool: oklch(0.46 0.111 245);
 
   /* Sidebar colors */
@@ -602,6 +605,9 @@
      stagger too (0.12), which lifts the worst colour-vision pair from 8 to 31.
      Verified on --card: 8.82, 5.18, 3.49. */
   --chart-brand: oklch(0.87 0.228 150);
+  /* The logo red lifted to 0.68 lightness, same hue: #b21900 was 2.19:1
+     on --background here, this is 4.84:1. */
+  --wordmark: oklch(0.68 0.19 31.4);
   --chart-warm: oklch(0.75 0.165 55);
   --chart-cool: oklch(0.63 0.151 245);
 
