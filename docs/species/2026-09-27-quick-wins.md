@@ -7,8 +7,8 @@ Eleven catalog species had pages and photo identification but no forecast
 black walnut to the walnut range, and the look-alike warnings that came with
 them. It is the reviewed source the manifests cite in `scoringReferences`.
 
-**The parameter values below are agent-derived and await approval by Loris Di
-Stefano.** The validator checks types, ranges and sigmas; it cannot establish
+**The parameter values below are agent-derived and were approved by Loris Di
+Stefano on 2026-09-27.** The validator checks types, ranges and sigmas; it cannot establish
 scientific authority, and no mycologist or botanist has reviewed them.
 
 Shiitake stays without a forecast: it is not wild in Europe or the US.
