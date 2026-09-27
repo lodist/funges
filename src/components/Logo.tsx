@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 export const Logo = ({ className }: { className?: string }) => (
   <span
     className={cn(
-      'inline-flex items-center gap-[0.3em] font-display font-bold leading-none tracking-tight text-foreground',
+      'inline-flex items-center gap-2 font-display font-bold leading-none tracking-tight text-foreground',
       className
     )}
   >
