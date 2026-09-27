@@ -34,6 +34,8 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Boletus edulis', kind: 'catalog' },
   { scientificName: 'Boletus pinophilus', kind: 'catalog' },
   { scientificName: 'Boletus reticulatus', kind: 'catalog' },
+  { scientificName: 'Boletus rubriceps', kind: 'catalog' },
+  { scientificName: 'Boletus variipes', kind: 'catalog' },
   { scientificName: 'Calocybe gambosa', kind: 'catalog' },
   { scientificName: 'Cantharellus cibarius', kind: 'catalog' },
   { scientificName: 'Cantharellus formosus', kind: 'catalog' },
