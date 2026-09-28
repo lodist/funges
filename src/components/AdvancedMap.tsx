@@ -1583,11 +1583,13 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 the instant onDrawRoute fired and put it back seconds later
                 with no transition, which reads as the card closing itself.
                 The right inset clears the control column (right-4 + size-11 +
-                gap-2) so the card never slides under the buttons. */}
+                gap-2). `absolute`, not `fixed`: the inset only holds when the
+                card and the column share a containing block, and this one
+                keeps its mount-time innerWidth when the window is resized. */}
             {isRoutePanelOpen ? (
               <div
                 ref={routePanelRef}
-                className={`fixed left-3 right-[4.25rem] top-20 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+                className={`absolute left-3 right-[4.25rem] top-20 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
               >
                 <RouteToDishPanel
                   className='mx-auto'
@@ -1623,7 +1625,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             {isRoutePanelOpen ? (
               <div
                 ref={routePanelRef}
-                className={`absolute top-14 right-16 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+                className={`absolute top-14 right-16 z-10 w-[24rem] transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
               >
                 <RouteToDishPanel
                   plans={routeDishResult?.plans ?? []}
