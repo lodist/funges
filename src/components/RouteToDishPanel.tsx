@@ -76,7 +76,7 @@ export default function RouteToDishPanel({
       surface='glass'
       padding='none'
       media
-      className={`w-[min(21.5rem,calc(100vw-1.5rem))] sm:w-[24rem] max-h-[36vh] sm:max-h-[48vh] ${className}`}
+      className={`w-full max-w-[21.5rem] sm:w-[24rem] sm:max-w-none max-h-[36vh] sm:max-h-[48vh] ${className}`}
     >
       <div className='p-2.5 sm:p-3 space-y-2.5 sm:space-y-3'>
         <div className='flex items-start justify-between gap-3'>

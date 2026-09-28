@@ -1581,11 +1581,13 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             {/* Recedes while the route draws instead of unmounting: the
                 conditional render this replaced tore the card out of the DOM
                 the instant onDrawRoute fired and put it back seconds later
-                with no transition, which reads as the card closing itself. */}
+                with no transition, which reads as the card closing itself.
+                The right inset clears the control column (right-4 + size-11 +
+                gap-2) so the card never slides under the buttons. */}
             {isRoutePanelOpen ? (
               <div
                 ref={routePanelRef}
-                className={`fixed left-3 right-3 top-20 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+                className={`fixed left-3 right-[4.25rem] top-20 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
               >
                 <RouteToDishPanel
                   className='mx-auto'
