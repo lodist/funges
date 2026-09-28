@@ -30,16 +30,13 @@
   "view_recipe": "Ver receita",
   "routePanel": {
     "title": "Receitas proximas",
-    "subtitle": "Primeiro a melhor combinacao, depois o trajeto mais curto.",
+    "subtitle": "Pratos que você pode colher aqui, o mais fácil primeiro.",
     "loading": "Verificando ingredientes proximos...",
     "empty": "Ainda nao ha receitas prontas para rota nesta area. Tente mover o mapa ou usar sua localizacao.",
-    "stopsEstimated_one": "{{count}} parada, {{distance}} km estimados",
-    "stopsEstimated_other": "{{count}} paradas, {{distance}} km estimados",
+    "stopsEstimated_one": "{{count}} parada · ~{{distance}} km",
+    "stopsEstimated_other": "{{count}} paradas · ~{{distance}} km",
     "missingSpecies": "falta {{species}}",
-    "routeStops": "Paradas da rota",
-    "refreshRoute": "Atualizar rota",
     "drawRoute": "Traçar rota",
-    "recipesButton": "Receitas",
     "openInMaps": "Abrir no Google Maps",
     "clearRoute": "Limpar rota",
     "walkingSummary": "{{distance}} km a pé · {{duration}}",
@@ -47,7 +44,11 @@
     "durationHours": "{{hours}} h {{minutes}} min",
     "routingPending": "A procurar trilhos...",
     "routingUnavailable": "Sem trilhos disponíveis - a mostrar linhas retas.",
-    "drivingSummary": "{{distance}} km de carro · {{duration}}"
+    "drivingSummary": "{{distance}} km de carro · {{duration}}",
+    "coverageFull_one": "O ingrediente cresce perto",
+    "coverageFull_other": "Os {{count}} ingredientes por perto",
+    "coveragePartial": "{{covered}} de {{count}} ingredientes por perto",
+    "openInMapsShort": "Google Maps"
   },
   "species": {
     "amaranth": "Amaranto",

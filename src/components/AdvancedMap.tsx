@@ -342,7 +342,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     title: recipe.title,
     species: recipe.species,
   }));
-  const selectedRouteRecipeId = activeRoute?.plan.recipeId ?? null;
   const activeRouteSummary: RouteSummary | null = routePath
     ? {
         status: routePath.status,
@@ -1575,24 +1574,35 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               ref={bottomOverlayRef}
               className='fixed left-4 right-4 bottom-24 z-10 flex flex-col gap-2'
             >
-              <ForecastSlider />
-              <MapInfoCard />
+              {/* Out of the way while a route is drawn: on a short phone the
+                  panel and these cards left the route almost no room, and the
+                  fit then slid it under the panel. Hidden, not unmounted, and
+                  the wrapper stays: empty, its top is the nav's edge, which is
+                  what the fit pads the bottom to. */}
+              <div className={activeRoute ? 'hidden' : 'contents'}>
+                <ForecastSlider />
+                <MapInfoCard />
+              </div>
             </div>
             {/* Recedes while the route draws instead of unmounting: the
                 conditional render this replaced tore the card out of the DOM
                 the instant onDrawRoute fired and put it back seconds later
-                with no transition, which reads as the card closing itself. */}
+                with no transition, which reads as the card closing itself.
+                The right inset clears the control column (right-4 + size-11 +
+                gap-2). `absolute`, not `fixed`: the inset only holds when the
+                card and the column share a containing block, and this one
+                keeps its mount-time innerWidth when the window is resized. */}
             {isRoutePanelOpen ? (
               <div
                 ref={routePanelRef}
-                className={`fixed left-3 right-3 top-20 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+                className={`absolute left-3 right-[4.25rem] top-20 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
               >
                 <RouteToDishPanel
                   className='mx-auto'
                   plans={routeDishResult?.plans ?? []}
                   error={routeDishError}
                   isLoading={isRouteDishLoading}
-                  selectedRecipeId={selectedRouteRecipeId}
+                  activePlan={activeRoute?.plan ?? null}
                   activeRouteSummary={activeRouteSummary}
                   onDrawRoute={plan =>
                     setActiveRoute({
@@ -1621,13 +1631,13 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             {isRoutePanelOpen ? (
               <div
                 ref={routePanelRef}
-                className={`absolute top-14 right-16 z-10 transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
+                className={`absolute top-14 right-16 z-10 w-[24rem] transition-opacity duration-base ease-standard ${isRouteAnimating ? 'pointer-events-none opacity-0' : ''}`}
               >
                 <RouteToDishPanel
                   plans={routeDishResult?.plans ?? []}
                   error={routeDishError}
                   isLoading={isRouteDishLoading}
-                  selectedRecipeId={selectedRouteRecipeId}
+                  activePlan={activeRoute?.plan ?? null}
                   activeRouteSummary={activeRouteSummary}
                   onDrawRoute={plan =>
                     setActiveRoute({
