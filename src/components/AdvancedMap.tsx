@@ -342,7 +342,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     title: recipe.title,
     species: recipe.species,
   }));
-  const selectedRouteRecipeId = activeRoute?.plan.recipeId ?? null;
   const activeRouteSummary: RouteSummary | null = routePath
     ? {
         status: routePath.status,
@@ -1575,8 +1574,15 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               ref={bottomOverlayRef}
               className='fixed left-4 right-4 bottom-24 z-10 flex flex-col gap-2'
             >
-              <ForecastSlider />
-              <MapInfoCard />
+              {/* Out of the way while a route is drawn: on a short phone the
+                  panel and these cards left the route almost no room, and the
+                  fit then slid it under the panel. Hidden, not unmounted, and
+                  the wrapper stays: empty, its top is the nav's edge, which is
+                  what the fit pads the bottom to. */}
+              <div className={activeRoute ? 'hidden' : 'contents'}>
+                <ForecastSlider />
+                <MapInfoCard />
+              </div>
             </div>
             {/* Recedes while the route draws instead of unmounting: the
                 conditional render this replaced tore the card out of the DOM
@@ -1596,7 +1602,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                   plans={routeDishResult?.plans ?? []}
                   error={routeDishError}
                   isLoading={isRouteDishLoading}
-                  selectedRecipeId={selectedRouteRecipeId}
+                  activePlan={activeRoute?.plan ?? null}
                   activeRouteSummary={activeRouteSummary}
                   onDrawRoute={plan =>
                     setActiveRoute({
@@ -1631,7 +1637,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                   plans={routeDishResult?.plans ?? []}
                   error={routeDishError}
                   isLoading={isRouteDishLoading}
-                  selectedRecipeId={selectedRouteRecipeId}
+                  activePlan={activeRoute?.plan ?? null}
                   activeRouteSummary={activeRouteSummary}
                   onDrawRoute={plan =>
                     setActiveRoute({
