@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-27T11:20:08.051266Z",
+  "generatedAt": "2026-09-28T03:11:58.345986Z",
   "packages": [
     {
       "id": "eu",
@@ -15,8 +15,8 @@
       ],
       "minZoom": 3,
       "maxZoom": 8,
-      "version": "7f2aa6b011d0",
-      "updatedAt": "2026-09-27T02:42:40Z",
+      "version": "49c23c2a39d4",
+      "updatedAt": "2026-09-28T02:24:28Z",
       "published": true,
       "resources": [
         {
@@ -31,18 +31,18 @@
         {
           "id": "ne-forecast",
           "kind": "forecast",
-          "version": "19b6396a3abd11d30854c6c569793992",
+          "version": "4b4fb4f0c90d64485f1250086fe6950a",
           "sourceUrl": "https://data.fung.es/EU/NE/ne_forecast.pmtiles",
-          "sizeBytes": 7123999,
-          "etag": "19b6396a3abd11d30854c6c569793992"
+          "sizeBytes": 7634054,
+          "etag": "4b4fb4f0c90d64485f1250086fe6950a"
         },
         {
           "id": "se-forecast",
           "kind": "forecast",
-          "version": "8fbcacedcd021a750eae7cffb1a8b34c",
+          "version": "5fab6acf33ff84e5b059a442b4c5ced9",
           "sourceUrl": "https://data.fung.es/EU/SE/se_forecast.pmtiles",
-          "sizeBytes": 9115825,
-          "etag": "8fbcacedcd021a750eae7cffb1a8b34c"
+          "sizeBytes": 11470997,
+          "etag": "5fab6acf33ff84e5b059a442b4c5ced9"
         }
       ]
     },
@@ -59,8 +59,8 @@
       ],
       "minZoom": 3,
       "maxZoom": 8,
-      "version": "4543a54fbd7c",
-      "updatedAt": "2026-09-27T03:59:52Z",
+      "version": "4318dad031a2",
+      "updatedAt": "2026-09-28T02:48:07Z",
       "published": true,
       "resources": [
         {
@@ -75,10 +75,10 @@
         {
           "id": "use-forecast",
           "kind": "forecast",
-          "version": "07cf99b50cf5b2251b1a5086383ba5be",
+          "version": "cc6d6dd18565d9b2faec6384ba4fb0ed",
           "sourceUrl": "https://data.fung.es/USA/USE/use_forecast.pmtiles",
-          "sizeBytes": 5118600,
-          "etag": "07cf99b50cf5b2251b1a5086383ba5be"
+          "sizeBytes": 6421949,
+          "etag": "cc6d6dd18565d9b2faec6384ba4fb0ed"
         },
         {
           "id": "usw-forecast",
