@@ -30,16 +30,13 @@
   "view_recipe": "Voir la recette",
   "routePanel": {
     "title": "Recettes proches",
-    "subtitle": "Meilleure correspondance d'abord, trajet le plus court ensuite.",
+    "subtitle": "Plats à cueillir ici, le plus simple d’abord.",
     "loading": "Verification des ingredients a proximite...",
     "empty": "Aucune recette prete pour un itineraire ici pour le moment. Essayez de deplacer la carte ou d'utiliser votre position.",
-    "stopsEstimated_one": "{{count}} arret, {{distance}} km estimes",
-    "stopsEstimated_other": "{{count}} arrets, {{distance}} km estimes",
+    "stopsEstimated_one": "{{count}} arrêt · ~{{distance}} km",
+    "stopsEstimated_other": "{{count}} arrêts · ~{{distance}} km",
     "missingSpecies": "{{species}} manquant",
-    "routeStops": "Arrets du trajet",
-    "refreshRoute": "Actualiser le trajet",
     "drawRoute": "Tracer le trajet",
-    "recipesButton": "Recettes",
     "openInMaps": "Ouvrir dans Google Maps",
     "clearRoute": "Effacer l'itinéraire",
     "walkingSummary": "{{distance}} km à pied · {{duration}}",
@@ -47,7 +44,11 @@
     "durationHours": "{{hours}} h {{minutes}} min",
     "routingPending": "Recherche de sentiers...",
     "routingUnavailable": "Aucun sentier disponible : lignes droites affichées.",
-    "drivingSummary": "{{distance}} km en voiture · {{duration}}"
+    "drivingSummary": "{{distance}} km en voiture · {{duration}}",
+    "coverageFull_one": "L’ingrédient pousse à proximité",
+    "coverageFull_other": "Les {{count}} ingrédients à proximité",
+    "coveragePartial": "{{covered}} ingrédients sur {{count}} à proximité",
+    "openInMapsShort": "Google Maps"
   },
   "species": {
     "amaranth": "Amarante",

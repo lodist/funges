@@ -30,16 +30,13 @@
   "view_recipe": "Rezept anzeigen",
   "routePanel": {
     "title": "Rezepte in der Nähe",
-    "subtitle": "Beste Treffer zuerst, kürzeste Route danach.",
+    "subtitle": "Gerichte, die du hier sammeln kannst – das einfachste zuerst.",
     "loading": "Nahe Zutaten werden geprüft...",
     "empty": "Hier wurden noch keine routentauglichen Rezepte gefunden. Verschiebe die Karte oder nutze deinen Standort.",
-    "stopsEstimated_one": "{{count}} Stopp, ca. {{distance}} km",
-    "stopsEstimated_other": "{{count}} Stopps, ca. {{distance}} km",
+    "stopsEstimated_one": "{{count}} Stopp · ~{{distance}} km",
+    "stopsEstimated_other": "{{count}} Stopps · ~{{distance}} km",
     "missingSpecies": "{{species}} fehlt",
-    "routeStops": "Routenstopps",
-    "refreshRoute": "Route aktualisieren",
     "drawRoute": "Route zeichnen",
-    "recipesButton": "Rezepte",
     "openInMaps": "In Google Maps öffnen",
     "clearRoute": "Route löschen",
     "walkingSummary": "{{distance}} km zu Fuß · {{duration}}",
@@ -47,7 +44,11 @@
     "durationHours": "{{hours}} Std. {{minutes}} Min.",
     "routingPending": "Wanderwege werden gesucht ...",
     "routingUnavailable": "Keine Wanderwege verfügbar - es werden Luftlinien gezeigt.",
-    "drivingSummary": "{{distance}} km mit dem Auto · {{duration}}"
+    "drivingSummary": "{{distance}} km mit dem Auto · {{duration}}",
+    "coverageFull_one": "Die Zutat wächst in der Nähe",
+    "coverageFull_other": "Alle {{count}} Zutaten in der Nähe",
+    "coveragePartial": "{{covered}} von {{count}} Zutaten in der Nähe",
+    "openInMapsShort": "Google Maps"
   },
   "species": {
     "amaranth": "Amarant",

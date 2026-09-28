@@ -1,7 +1,7 @@
 import {
+  BookOpen,
   ChefHat,
   ExternalLink,
-  MapPinned,
   RouteIcon,
   RouteOff,
   X,
@@ -76,49 +76,29 @@ export default function RouteToDishPanel({
       surface='glass'
       padding='none'
       media
-      className={`w-full max-w-[21.5rem] sm:w-[24rem] sm:max-w-none max-h-[36vh] sm:max-h-[48vh] ${className}`}
+      className={`w-full max-w-[21.5rem] sm:w-[24rem] sm:max-w-none max-h-[40vh] sm:max-h-[48vh] ${className}`}
     >
-      <div className='p-2.5 sm:p-3 space-y-2.5 sm:space-y-3'>
-        <div className='flex items-start justify-between gap-3'>
-          <div>
-            <div className='flex items-center gap-2 text-xs sm:text-sm font-semibold text-foreground'>
-              <ChefHat className='size-3 sm:size-4 text-primary-text' />
+      <div className='p-2.5 sm:p-3 space-y-2.5'>
+        <div className='flex items-start justify-between gap-2'>
+          <div className='min-w-0'>
+            <div className='flex items-center gap-2 text-sm font-semibold text-foreground'>
+              <ChefHat className='size-4 text-primary-text' />
               <span>{t('routePanel.title')}</span>
             </div>
-            <p className='mt-1 text-xs text-muted-foreground'>
+            <p className='mt-0.5 text-xs text-muted-foreground'>
               {t('routePanel.subtitle')}
             </p>
           </div>
-          <div className='flex gap-1.5 sm:gap-2'>
-            {selectedRecipeId ? (
-              <>
-                <Button
-                  type='button'
-                  variant='outline'
-                  onClick={onOpenInGoogleMaps}
-                  aria-label={t('routePanel.openInMaps')}
-                >
-                  <ExternalLink />
-                </Button>
-                <Button
-                  type='button'
-                  variant='outline'
-                  onClick={onClearRoute}
-                  aria-label={t('routePanel.clearRoute')}
-                >
-                  <RouteOff />
-                </Button>
-              </>
-            ) : null}
-            <Button
-              type='button'
-              variant='outline'
-              onClick={onClose}
-              aria-label={t('common:common.close')}
-            >
-              <X />
-            </Button>
-          </div>
+          <Button
+            type='button'
+            variant='ghost'
+            size='icon'
+            className='-mr-1 -mt-1 shrink-0'
+            onClick={onClose}
+            aria-label={t('common:common.close')}
+          >
+            <X />
+          </Button>
         </div>
 
         {error ? (
@@ -130,16 +110,11 @@ export default function RouteToDishPanel({
             {[0, 1].map(placeholder => (
               <div
                 key={placeholder}
-                className='rounded-lg border border-border px-2.5 py-2 sm:px-3'
+                className='rounded-lg border border-border px-2.5 py-2 space-y-1.5'
               >
-                <div className='flex items-start justify-between gap-2'>
-                  <div className='min-w-0 flex-1 space-y-1.5'>
-                    <Skeleton className='h-4 w-4/5' />
-                    <Skeleton className='h-3 w-1/2' />
-                  </div>
-                  <Skeleton className='h-5 w-9 shrink-0 rounded-full' />
-                </div>
-                <div className='mt-2 flex flex-wrap gap-1'>
+                <Skeleton className='h-4 w-4/5' />
+                <Skeleton className='h-3 w-1/2' />
+                <div className='flex gap-1'>
                   <Skeleton className='h-5 w-16 rounded-full' />
                   <Skeleton className='h-5 w-12 rounded-full' />
                 </div>
@@ -154,68 +129,43 @@ export default function RouteToDishPanel({
           </div>
         ) : null}
 
-        <div className='space-y-2 overflow-y-auto pr-1 max-h-[calc(36vh-5.25rem)] sm:max-h-[calc(48vh-6rem)]'>
+        <div className='space-y-2 overflow-y-auto overflow-x-hidden max-h-[calc(40vh-5rem)] sm:max-h-[calc(48vh-5.5rem)]'>
           {topPlans.map(plan => {
             const isSelected = selectedRecipeId === plan.recipeId;
+            const recipeHref = `${recipesHref}?q=${encodeURIComponent(plan.recipeTitle)}`;
 
             return (
               <div
                 key={plan.recipeId}
-                className={`rounded-lg border px-2.5 py-2 sm:px-3 ${
+                className={`rounded-lg border px-2.5 py-2 ${
                   isSelected
                     ? 'border-secondary bg-secondary'
                     : 'border-border bg-muted'
                 }`}
               >
-                <div className='flex items-start justify-between gap-2'>
-                  <div className='min-w-0'>
-                    <p className='text-xs sm:text-sm font-medium text-foreground line-clamp-2'>
-                      {plan.recipeTitle}
-                    </p>
-                    <p className='mt-1 text-xs text-muted-foreground'>
-                      {t('routePanel.stopsEstimated', {
+                <p className='text-sm font-medium text-foreground line-clamp-2'>
+                  {plan.recipeTitle}
+                </p>
+                <p
+                  className={`mt-0.5 text-xs ${plan.fullyCovered ? 'text-primary-text' : 'text-status-warning-text'}`}
+                >
+                  {plan.fullyCovered
+                    ? t('routePanel.coverageFull', {
+                        count: plan.requiredSpecies.length,
+                      })
+                    : t('routePanel.coveragePartial', {
+                        covered: plan.coveredSpecies.length,
+                        count: plan.requiredSpecies.length,
+                      })}
+                  {plan.orderedStops.length > 0
+                    ? ` · ${t('routePanel.stopsEstimated', {
                         count: plan.orderedStops.length,
                         distance: plan.estimatedDistanceKm.toFixed(1),
-                      })}
-                    </p>
-                    {isSelected && activeRouteSummary ? (
-                      <>
-                        <p className='mt-0.5 text-xs text-primary-text'>
-                          {activeRouteSummary.status === 'pending'
-                            ? t('routePanel.routingPending')
-                            : activeRouteSummary.status === 'straight'
-                              ? t('routePanel.routingUnavailable')
-                              : t('routePanel.walkingSummary', {
-                                  distance:
-                                    activeRouteSummary.distanceKm.toFixed(1),
-                                  duration: formatDuration(
-                                    activeRouteSummary.durationMinutes ?? 0
-                                  ),
-                                })}
-                        </p>
-                        {activeRouteSummary.drive ? (
-                          <p className='mt-0.5 text-xs text-muted-foreground'>
-                            {t('routePanel.drivingSummary', {
-                              distance:
-                                activeRouteSummary.drive.distanceKm.toFixed(1),
-                              duration: formatDuration(
-                                activeRouteSummary.drive.durationMinutes
-                              ),
-                            })}
-                          </p>
-                        ) : null}
-                      </>
-                    ) : null}
-                  </div>
-                  <Badge
-                    variant={plan.fullyCovered ? 'default' : 'outline'}
-                    className='shrink-0'
-                  >
-                    {plan.coveredSpecies.length}/{plan.requiredSpecies.length}
-                  </Badge>
-                </div>
+                      })}`
+                    : null}
+                </p>
 
-                <div className='mt-2 flex flex-wrap gap-1'>
+                <div className='mt-1.5 flex flex-wrap gap-1'>
                   {plan.coveredSpecies.map(speciesId => (
                     <Badge
                       key={`${plan.recipeId}-${speciesId}`}
@@ -237,50 +187,91 @@ export default function RouteToDishPanel({
                 </div>
 
                 {isSelected ? (
-                  <div className='mt-3 rounded-lg border border-dashed border-status-warning-border bg-status-warning-background/60 px-3 py-2'>
-                    <p className='type-micro text-status-warning-text'>
-                      {t('routePanel.routeStops')}
-                    </p>
-                    <div className='mt-2 space-y-1.5'>
-                      {plan.orderedStops.map((stop, index) => {
-                        const stopSpecies = stop.coveredSpecies.filter(
-                          speciesId => plan.requiredSpecies.includes(speciesId)
-                        );
-
-                        return (
-                          <div
-                            key={`${plan.recipeId}-${stop.id}`}
-                            className='flex items-start gap-2 text-xs text-foreground'
-                          >
-                            <span className='inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-happy-500 px-1.5 font-semibold text-happy-900'>
-                              {index + 1}
-                            </span>
-                            <span className='pt-0.5'>
-                              {stopSpecies.map(getSpeciesLabel).join(', ')}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
+                  <div className='mt-2 space-y-1.5'>
+                    {activeRouteSummary ? (
+                      <div className='text-xs'>
+                        <p className='text-primary-text'>
+                          {activeRouteSummary.status === 'pending'
+                            ? t('routePanel.routingPending')
+                            : activeRouteSummary.status === 'straight'
+                              ? t('routePanel.routingUnavailable')
+                              : t('routePanel.walkingSummary', {
+                                  distance:
+                                    activeRouteSummary.distanceKm.toFixed(1),
+                                  duration: formatDuration(
+                                    activeRouteSummary.durationMinutes ?? 0
+                                  ),
+                                })}
+                        </p>
+                        {activeRouteSummary.drive ? (
+                          <p className='text-muted-foreground'>
+                            {t('routePanel.drivingSummary', {
+                              distance:
+                                activeRouteSummary.drive.distanceKm.toFixed(1),
+                              duration: formatDuration(
+                                activeRouteSummary.drive.durationMinutes
+                              ),
+                            })}
+                          </p>
+                        ) : null}
+                      </div>
+                    ) : null}
+                    <ol className='space-y-1'>
+                      {plan.orderedStops.map((stop, index) => (
+                        <li
+                          key={`${plan.recipeId}-${stop.id}`}
+                          className='flex items-start gap-2 text-xs text-foreground'
+                        >
+                          <span className='inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-happy-500 px-1.5 font-semibold text-happy-900'>
+                            {index + 1}
+                          </span>
+                          <span className='pt-0.5'>
+                            {stop.coveredSpecies
+                              .filter(speciesId =>
+                                plan.requiredSpecies.includes(speciesId)
+                              )
+                              .map(getSpeciesLabel)
+                              .join(', ')}
+                          </span>
+                        </li>
+                      ))}
+                    </ol>
                   </div>
                 ) : null}
 
-                <div className='mt-3 flex gap-2'>
-                  <Button
-                    type='button'
-                    className='flex-1'
-                    disabled={plan.orderedStops.length === 0}
-                    onClick={() => onDrawRoute(plan)}
-                  >
-                    <RouteIcon className='h-4 w-4' />
-                    {isSelected
-                      ? t('routePanel.refreshRoute')
-                      : t('routePanel.drawRoute')}
-                  </Button>
-                  <Button type='button' variant='outline' asChild>
-                    <a href={recipesHref}>
-                      <MapPinned className='h-4 w-4' />
-                      {t('routePanel.recipesButton')}
+                {/* One primary action per state: draw the route, or — once
+                    drawn — take it to Maps. The per-row link goes to this
+                    recipe, not the whole recipes page. */}
+                <div className='mt-2 flex flex-wrap gap-1.5'>
+                  {isSelected ? (
+                    <>
+                      <Button type='button' onClick={onOpenInGoogleMaps}>
+                        <ExternalLink />
+                        {t('routePanel.openInMapsShort')}
+                      </Button>
+                      <Button
+                        type='button'
+                        variant='outline'
+                        onClick={onClearRoute}
+                      >
+                        <RouteOff />
+                        {t('routePanel.clearRoute')}
+                      </Button>
+                    </>
+                  ) : (
+                    <Button
+                      type='button'
+                      disabled={plan.orderedStops.length === 0}
+                      onClick={() => onDrawRoute(plan)}
+                    >
+                      <RouteIcon />
+                      {t('routePanel.drawRoute')}
+                    </Button>
+                  )}
+                  <Button type='button' variant='ghost' asChild>
+                    <a href={recipeHref}>
+                      <BookOpen />
+                      {t('view_recipe')}
                     </a>
                   </Button>
                 </div>
