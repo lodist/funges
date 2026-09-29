@@ -131,23 +131,7 @@
           "season_months": [9, 10, 11],
           "water_relevance": false,
           "sea_relevance": false,
-          "hosts": [
-            "white_red_jack_pine",
-            "spruce_fir",
-            "longleaf_slash_pine",
-            "loblolly_shortleaf_pine",
-            "douglas_fir",
-            "ponderosa_pine",
-            "western_white_pine",
-            "fir_spruce_mountain_hemlock",
-            "lodgepole_pine",
-            "hemlock_sitka_spruce",
-            "western_larch",
-            "redwood",
-            "other_western_softwood",
-            "california_mixed_conifer",
-            "exotic_softwoods"
-          ]
+          "hosts": ["white_red_jack_pine", "spruce_fir", "maple_beech_birch"]
         },
         "scoringReferences": [
           "https://www.gbif.org/species/5241820",
@@ -187,8 +171,6 @@
           "hosts": [
             "white_red_jack_pine",
             "spruce_fir",
-            "longleaf_slash_pine",
-            "loblolly_shortleaf_pine",
             "douglas_fir",
             "ponderosa_pine",
             "western_white_pine",

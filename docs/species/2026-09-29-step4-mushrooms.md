@@ -150,7 +150,8 @@ or without a host list.
 | saffron milk cap, USW | all conifers                                        |                                      0.3% / 0.0% |
 | hedgehog, all regions | every forest class                                  |                                      0.0% / 0.0% |
 | matsutake, NE         | pine                                                |                                     0.0% (4,200) |
-| matsutake, USE        | all conifers                                        |                            0.0% / 0.0% (40 / 28) |
+| matsutake, USE        | all conifers                                        |                              0% of 24 / 0% of 11 |
+| matsutake, USE        | white/red/jack pine, spruce–fir, maple–beech–birch  |                              8% of 24 / 0% of 11 |
 
 - **Saffron milk cap needs more than pine.** _L. deterrimus_ grows with spruce,
   and the Alpine 2026 sample is 59% spruce. Other conifers carry the fir of
@@ -162,9 +163,21 @@ or without a host list.
 - **Pinyon–juniper is left out** of the saffron milk cap and matsutake lists.
   Neither grows in the dry pinyon woodland, and the class also carries eastern
   redcedar.
+- **Matsutake, US East: northern conifers only.**
+  - _T. magnivelare_ grows from Michigan and New England down the Appalachians
+    (GBIF: 43 records in Michigan, 27 in Massachusetts, 1 in Florida).
+  - Its range prior cannot close the South, because it is too rarely recorded
+    for the possibility test.
+  - With all conifers, the southern pine classes opened 31% of the US East
+    points south of 35° N. The northern list opens none of them and keeps 41%
+    of the points further north.
+  - It hides 2 of the 24 forest sightings, probably pitch pine in the New Jersey
+    and Cape Cod barrens, which the map files with loblolly–shortleaf. Adding
+    that class would reopen the whole southern pine belt.
 - **Matsutake, US West: literature.** Its 37 precise records are too few, and 92%
-  of them are not in mapped forest. The list is all conifers except
-  pinyon–juniper, plus tanoak for California.
+  of them are not in mapped forest. The list is the western conifers (all
+  conifers except pinyon–juniper and the two southern pine groups), plus tanoak
+  for California. That keeps US West's Kansas–Kentucky band closed.
 - **Hedgehog lists every forest class.** It grows with conifers and broadleaves
   alike, so the list only closes open country: 3% of NE points, 11% of US East,
   26% of US West.
@@ -404,7 +417,7 @@ matsutake 12 °C, 80%, 300 m, pH 4.5, 40 mm.
   North Europe's 45 mm rain.
 - **US West's points reach 81.7° W**, and its tiles draw over US East's, so US
   West's values also score the Kansas–Kentucky band. There the host lists keep
-  the saffron milk cap and matsutake to conifer stands.
+  the saffron milk cap to conifer stands and close matsutake.
 - The winter checks below cover the coast.
 
 ## Literature check
