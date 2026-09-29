@@ -84,6 +84,7 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Lepiota subincarnata', kind: 'toxic' },
   { scientificName: 'Macrolepiota procera', kind: 'catalog' },
   { scientificName: 'Matteuccia struthiopteris', kind: 'catalog' },
+  { scientificName: 'Melanthium parviflorum', kind: 'toxic' },
   { scientificName: 'Mentha arvensis', kind: 'catalog' },
   { scientificName: 'Morchella', kind: 'catalog' },
   { scientificName: 'Neoboletus subvelutipes', kind: 'toxic' },

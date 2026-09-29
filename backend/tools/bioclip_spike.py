@@ -129,6 +129,7 @@ TOXIC = [
     # --- look-alikes of the step-4 plants (2026-09) ---
     ("Pteridium aquilinum", "species"),      # -> fiddleheads; carcinogenic bracken
     ("Rhamnus cathartica", "species"),       # -> sloes; purgative berries
+    ("Melanthium parviflorum", "species"),   # -> ramps; eaten for ramps in Georgia and North Carolina
 ]
 
 

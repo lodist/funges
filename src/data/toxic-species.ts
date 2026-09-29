@@ -1054,6 +1054,24 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       },
     ],
   },
+  // Appalachian bunchflower, formerly Veratrum parviflorum. It is the plant that
+  // eight people in Georgia and North Carolina ate as ramps in 2020-21.
+  {
+    id: 'melanthium-parviflorum',
+    scientificName: 'Melanthium parviflorum',
+    category: 'plant',
+    severity: 'lethal',
+    reasonKey: 'toxicity.mechanisms.veratrumAlkaloid',
+    checkKeys: [
+      'toxicity.checks.leafArrangement',
+      'toxicity.checks.leafShape',
+      'toxicity.checks.smell',
+    ],
+    confusedWithSpeciesIds: ['ramps'],
+    criticalConfusions: [
+      { catalogId: 'ramps', noteKey: 'toxicity.critical.rampsPair' },
+    ],
+  },
   {
     id: 'rhamnus-cathartica',
     scientificName: 'Rhamnus cathartica',
