@@ -70,7 +70,14 @@
     "garlic_wild": "Aglio Selvatico",
     "artichoke": "Carciofo Selvatico",
     "asparagus": "Asparago Selvatico",
-    "strawberry": "Fragola di Bosco"
+    "strawberry": "Fragola di Bosco",
+    "saffron_milk_cap": "Sanguinello",
+    "hedgehog_mushroom": "Steccherino dorato",
+    "shaggy_mane": "Coprino chiomato",
+    "giant_puffball": "Vescia gigante",
+    "matsutake": "Matsutake",
+    "lions_mane": "Criniera di leone",
+    "hen_of_the_woods": "Grifola (maitake)"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -1106,6 +1113,343 @@
       "safetyNotes": [
         "Cuoci bene la grifola: poco cotta, a qualcuno dà disturbi di stomaco.",
         "Il suo sosia, il Meripilus giganteus, è commestibile ma coriaceo; annerisce dove viene toccato."
+      ]
+    },
+    "grilled-saffron-milk-caps": {
+      "title": "Sanguinelli alla griglia con aglio e prezzemolo",
+      "ingredients": [
+        "500 g di sanguinelli giovani e sodi",
+        "5 cucchiai di olio extravergine d'oliva",
+        "3 spicchi d'aglio tritati finemente",
+        "Un mazzetto di prezzemolo tritato finemente",
+        "Sale in fiocchi",
+        "Pepe nero",
+        "Pane casereccio per servire"
+      ],
+      "instructions": [
+        "Pulire: Taglia i gambi a filo del cappello ed elimina aghi di pino e terriccio con un pennello. Passa i cappelli con un panno umido, senza lavarli.",
+        "Condire: Mescola l'aglio e il prezzemolo con 4 cucchiai d'olio e un pizzico di sale.",
+        "Grigliare: Scalda bene una griglia, una piastra o il barbecue. Spennella i cappelli con l'olio rimasto e disponili con le lamelle verso l'alto. Cuocili 5–6 minuti senza girarli, finché si ammorbidiscono e si riempiono del loro succo.",
+        "Finire: Versa l'olio all'aglio e prezzemolo sulle lamelle, macina un po' di pepe e cuoci ancora 1 minuto.",
+        "Servire: Subito, con un pizzico di sale in fiocchi e pane per raccogliere il sugo."
+      ],
+      "species": ["saffron_milk_cap"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pulire: Taglia i gambi a filo del cappello ed elimina aghi di pino e terriccio con un pennello. Passa i cappelli con un panno umido, senza lavarli."
+        },
+        {
+          "step": 2,
+          "instruction": "Condire: Mescola l'aglio e il prezzemolo con 4 cucchiai d'olio e un pizzico di sale."
+        },
+        {
+          "step": 3,
+          "instruction": "Grigliare: Scalda bene una griglia, una piastra o il barbecue. Spennella i cappelli con l'olio rimasto e disponili con le lamelle verso l'alto. Cuocili 5–6 minuti senza girarli, finché si ammorbidiscono e si riempiono del loro succo."
+        },
+        {
+          "step": 4,
+          "instruction": "Finire: Versa l'olio all'aglio e prezzemolo sulle lamelle, macina un po' di pepe e cuoci ancora 1 minuto."
+        },
+        {
+          "step": 5,
+          "instruction": "Servire: Subito, con un pizzico di sale in fiocchi e pane per raccogliere il sugo."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "10 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Prima di cuocerli, incidi un cappello o un gambo: il sanguinello emette un latte arancio carota o rosso. Un latte bianco o giallo indica un altro lattario: il Lactarius torminosus (cappello rosato con il bordo lanoso e arrotolato, latte bianco) e altre specie a latte bianco provocano forti disturbi gastrointestinali.",
+        "I sanguinelli si macchiano di verde dove vengono toccati e dopo il pasto possono tingere di rossastro l'urina. Entrambe le cose sono innocue."
+      ]
+    },
+    "saffron-milk-cap-potato-stew": {
+      "title": "Sanguinelli e patate in umido",
+      "ingredients": [
+        "400 g di sanguinelli",
+        "600 g di patate",
+        "1 cipolla tritata finemente",
+        "2 spicchi d'aglio a fettine",
+        "1 cucchiaino di paprika dolce (pimentón dulce spagnolo)",
+        "1 foglia di alloro",
+        "100 ml di vino bianco secco",
+        "4 cucchiai di olio d'oliva",
+        "Circa 500 ml di acqua calda o brodo vegetale",
+        "Sale e un po' di prezzemolo tritato"
+      ],
+      "instructions": [
+        "Preparare: Pulisci i funghi con un pennello, spunta i gambi e tagliali a pezzi grossi. Sbuccia le patate, incidile e spezzale a tocchi: i bordi irregolari rilasciano amido e addensano il sugo.",
+        "Soffriggere: Fai appassire la cipolla nell'olio a fuoco basso per 8–10 minuti. Aggiungi l'aglio e cuoci ancora 1 minuto.",
+        "Aggiungere i funghi: Alza la fiamma, unisci i sanguinelli e cuocili 5 minuti, finché rilasciano la loro acqua. Togli dal fuoco e incorpora la paprika (brucia facilmente), poi rimetti sul fuoco, sfuma con il vino e lascia sobbollire 2 minuti.",
+        "Stufare: Aggiungi le patate, l'alloro e acqua o brodo caldo quanto basta a coprirle appena. Sala e cuoci a fuoco dolce, semicoperto, per 20–25 minuti, finché le patate sono tenere e il sugo si è addensato.",
+        "Servire: Lascia riposare 5 minuti, cospargi di prezzemolo e servi con del pane."
+      ],
+      "species": ["saffron_milk_cap"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparare: Pulisci i funghi con un pennello, spunta i gambi e tagliali a pezzi grossi. Sbuccia le patate, incidile e spezzale a tocchi: i bordi irregolari rilasciano amido e addensano il sugo."
+        },
+        {
+          "step": 2,
+          "instruction": "Soffriggere: Fai appassire la cipolla nell'olio a fuoco basso per 8–10 minuti. Aggiungi l'aglio e cuoci ancora 1 minuto."
+        },
+        {
+          "step": 3,
+          "instruction": "Aggiungere i funghi: Alza la fiamma, unisci i sanguinelli e cuocili 5 minuti, finché rilasciano la loro acqua. Togli dal fuoco e incorpora la paprika (brucia facilmente), poi rimetti sul fuoco, sfuma con il vino e lascia sobbollire 2 minuti."
+        },
+        {
+          "step": 4,
+          "instruction": "Stufare: Aggiungi le patate, l'alloro e acqua o brodo caldo quanto basta a coprirle appena. Sala e cuoci a fuoco dolce, semicoperto, per 20–25 minuti, finché le patate sono tenere e il sugo si è addensato."
+        },
+        {
+          "step": 5,
+          "instruction": "Servire: Lascia riposare 5 minuti, cospargi di prezzemolo e servi con del pane."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "40 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "safetyNotes": [
+        "Prima di cuocerli, incidi un cappello o un gambo: il sanguinello emette un latte arancio carota o rosso. Un latte bianco o giallo indica un altro lattario: il Lactarius torminosus (cappello rosato con il bordo lanoso e arrotolato, latte bianco) e altre specie a latte bianco provocano forti disturbi gastrointestinali.",
+        "I sanguinelli si macchiano di verde dove vengono toccati e dopo il pasto possono tingere di rossastro l'urina. Entrambe le cose sono innocue."
+      ]
+    },
+    "hedgehog-mushroom-risotto": {
+      "title": "Risotto agli steccherini dorati",
+      "ingredients": [
+        "300 g di steccherini dorati",
+        "320 g di riso Carnaroli o Arborio",
+        "1 litro di brodo vegetale caldo",
+        "1 cipolla piccola tritata finemente",
+        "40 g di burro",
+        "2 cucchiai di olio d'oliva",
+        "100 ml di vino bianco secco",
+        "Qualche rametto di timo",
+        "60 g di Parmigiano grattugiato",
+        "Sale e pepe"
+      ],
+      "instructions": [
+        "Pulire: Spazzola i cappelli e sfrega gli aculei con le dita per far cadere aghi e terriccio. Negli esemplari grandi e più vecchi raschia via gli aculei con un coltello, perché possono essere amarognoli. Taglia a pezzetti.",
+        "Rosolare: Salta i funghi nell'olio a fuoco vivo per 6–8 minuti, senza affollare la padella, finché sono dorati. Aggiungi le foglie di timo, regola di sale e pepe e tienili da parte.",
+        "Tostare: In una casseruola larga fai appassire la cipolla in metà del burro, aggiungi il riso e tostalo 2 minuti, mescolando, finché i chicchi diventano traslucidi ai bordi. Sfuma con il vino e lascialo evaporare.",
+        "Cuocere: Aggiungi il brodo caldo un mestolo alla volta, mescolando spesso e aspettando che sia assorbito prima del successivo, per circa 18 minuti, finché il riso è cremoso ma ancora al dente. Unisci i funghi negli ultimi 5 minuti.",
+        "Mantecare: Fuori dal fuoco, manteca con il burro rimasto e il Parmigiano. Copri, lascia riposare 2 minuti e servi con qualche fogliolina di timo."
+      ],
+      "species": ["hedgehog_mushroom"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pulire: Spazzola i cappelli e sfrega gli aculei con le dita per far cadere aghi e terriccio. Negli esemplari grandi e più vecchi raschia via gli aculei con un coltello, perché possono essere amarognoli. Taglia a pezzetti."
+        },
+        {
+          "step": 2,
+          "instruction": "Rosolare: Salta i funghi nell'olio a fuoco vivo per 6–8 minuti, senza affollare la padella, finché sono dorati. Aggiungi le foglie di timo, regola di sale e pepe e tienili da parte."
+        },
+        {
+          "step": 3,
+          "instruction": "Tostare: In una casseruola larga fai appassire la cipolla in metà del burro, aggiungi il riso e tostalo 2 minuti, mescolando, finché i chicchi diventano traslucidi ai bordi. Sfuma con il vino e lascialo evaporare."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuocere: Aggiungi il brodo caldo un mestolo alla volta, mescolando spesso e aspettando che sia assorbito prima del successivo, per circa 18 minuti, finché il riso è cremoso ma ancora al dente. Unisci i funghi negli ultimi 5 minuti."
+        },
+        {
+          "step": 5,
+          "instruction": "Mantecare: Fuori dal fuoco, manteca con il burro rimasto e il Parmigiano. Copri, lascia riposare 2 minuti e servi con qualche fogliolina di timo."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "medium",
+      "prepTime": "15 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": [
+        "Prima di cuocerlo, guarda sotto il cappello: lo steccherino dorato ha aculei morbidi, non lamelle. Gli esemplari vecchi possono essere amari, quindi in quelli grandi raschia via gli aculei.",
+        "Non ha sosia pericolosi, ma mangia comunque solo funghi che hai identificato con certezza."
+      ]
+    },
+    "shaggy-mane-soup": {
+      "title": "Vellutata di coprini chiomati",
+      "ingredients": [
+        "500 g di coprini chiomati giovani, raccolti in giornata",
+        "1 cipolla tritata finemente",
+        "1 patata farinosa, sbucciata e a dadini",
+        "30 g di burro",
+        "750 ml di brodo vegetale",
+        "150 ml di panna fresca",
+        "Qualche goccia di succo di limone",
+        "Un mazzetto di erba cipollina tritata",
+        "Sale e pepe bianco"
+      ],
+      "instructions": [
+        "Selezionare: Cuocili entro poche ore dalla raccolta. Usa solo cappelli giovani e sodi, con le lamelle bianche fino in cima: bordi rosa o neri vogliono dire che stanno diventando inchiostro. Spunta la base dei gambi, elimina la terra e affettali.",
+        "Appassire: Sciogli il burro in una pentola e fai appassire la cipolla a fuoco basso per 5 minuti. Aggiungi la patata e i funghi e cuoci, mescolando, per 5 minuti, finché i funghi si afflosciano.",
+        "Cuocere: Versa il brodo, regola di sale e cuoci a fuoco dolce per 15 minuti, finché la patata è morbida.",
+        "Frullare: Frulla fino a ottenere una crema liscia, unisci la panna e il limone e scalda senza far bollire. Regola di sale e pepe.",
+        "Servire: Calda, con l'erba cipollina e crostini di pane. Accompagnala con acqua o succo, non con vino o birra."
+      ],
+      "species": ["shaggy_mane"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Selezionare: Cuocili entro poche ore dalla raccolta. Usa solo cappelli giovani e sodi, con le lamelle bianche fino in cima: bordi rosa o neri vogliono dire che stanno diventando inchiostro. Spunta la base dei gambi, elimina la terra e affettali."
+        },
+        {
+          "step": 2,
+          "instruction": "Appassire: Sciogli il burro in una pentola e fai appassire la cipolla a fuoco basso per 5 minuti. Aggiungi la patata e i funghi e cuoci, mescolando, per 5 minuti, finché i funghi si afflosciano."
+        },
+        {
+          "step": 3,
+          "instruction": "Cuocere: Versa il brodo, regola di sale e cuoci a fuoco dolce per 15 minuti, finché la patata è morbida."
+        },
+        {
+          "step": 4,
+          "instruction": "Frullare: Frulla fino a ottenere una crema liscia, unisci la panna e il limone e scalda senza far bollire. Regola di sale e pepe."
+        },
+        {
+          "step": 5,
+          "instruction": "Servire: Calda, con l'erba cipollina e crostini di pane. Accompagnala con acqua o succo, non con vino o birra."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "easy"],
+      "safetyNotes": [
+        "Cuoci i coprini chiomati entro poche ore dalla raccolta: si autodigeriscono trasformandosi in inchiostro nero. Usa solo esemplari giovani, con le lamelle ancora completamente bianche.",
+        "Il suo sosia, il coprino atramentario (Coprinopsis atramentaria: grigio, liscio, senza squame arruffate), provoca una reazione violenta con l'alcol bevuto fino a tre giorni prima o dopo il pasto. Per questo la vellutata si prepara e si serve senza alcol: se hai il minimo dubbio su cosa hai raccolto, non bere alcolici.",
+        "Non raccogliere coprini chiomati ai bordi delle strade o su terreni inquinati: accumulano metalli pesanti."
+      ]
+    },
+    "giant-puffball-parmigiana": {
+      "title": "Parmigiana di vescia gigante",
+      "ingredients": [
+        "1 vescia gigante giovane (circa 600 g), bianchissima all'interno",
+        "50 g di farina 00",
+        "Olio d'oliva per friggere",
+        "700 g di passata di pomodoro",
+        "1 spicchio d'aglio schiacciato",
+        "Un mazzetto di basilico",
+        "250 g di mozzarella, a fette e ben sgocciolata",
+        "60 g di Parmigiano grattugiato",
+        "Sale e pepe"
+      ],
+      "instructions": [
+        "Controllare: Taglia la vescia a metà dall'alto in basso e verifica che sia bianca, soda e uniforme fino al centro. Elimina la pellicina esterna e taglia la polpa a fette di 1 cm.",
+        "Sugo: Scalda l'aglio in 2 cucchiai d'olio, unisci la passata e qualche foglia di basilico, sala e cuoci a fuoco dolce per 15 minuti.",
+        "Friggere: Infarina le fette e friggile poche alla volta in un dito d'olio ben caldo, 2–3 minuti per lato, finché sono dorate. Scolale su carta da cucina e salale leggermente.",
+        "Comporre: Stendi un velo di sugo in una pirofila, poi alterna fette di vescia, sugo, mozzarella, basilico e Parmigiano. Ripeti e finisci con sugo, mozzarella e Parmigiano.",
+        "Infornare: Cuoci in forno a 200 °C per 25 minuti, finché bolle ed è dorata in superficie. Lascia riposare 10 minuti prima di tagliarla."
+      ],
+      "species": ["giant_puffball"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Controllare: Taglia la vescia a metà dall'alto in basso e verifica che sia bianca, soda e uniforme fino al centro. Elimina la pellicina esterna e taglia la polpa a fette di 1 cm."
+        },
+        {
+          "step": 2,
+          "instruction": "Sugo: Scalda l'aglio in 2 cucchiai d'olio, unisci la passata e qualche foglia di basilico, sala e cuoci a fuoco dolce per 15 minuti."
+        },
+        {
+          "step": 3,
+          "instruction": "Friggere: Infarina le fette e friggile poche alla volta in un dito d'olio ben caldo, 2–3 minuti per lato, finché sono dorate. Scolale su carta da cucina e salale leggermente."
+        },
+        {
+          "step": 4,
+          "instruction": "Comporre: Stendi un velo di sugo in una pirofila, poi alterna fette di vescia, sugo, mozzarella, basilico e Parmigiano. Ripeti e finisci con sugo, mozzarella e Parmigiano."
+        },
+        {
+          "step": 5,
+          "instruction": "Infornare: Cuoci in forno a 200 °C per 25 minuti, finché bolle ed è dorata in superficie. Lascia riposare 10 minuti prima di tagliarla."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "45 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": [
+        "Taglia sempre ogni vescia a metà dall'alto in basso. Se all'interno vedi la sagoma di un cappello, di lamelle o di un gambo, è un'amanita giovane ancora chiusa nel suo «ovolo», e può essere mortale.",
+        "Mangiala solo finché la polpa è bianchissima, soda e uniforme fino al centro, come una mozzarella fresca. Una polpa gialla, olivastra, bruna o violacea vuol dire che si sta guastando, oppure che è uno Scleroderma, velenoso e nero-violaceo all'interno.",
+        "La vescia gigante va sempre cotta."
+      ]
+    },
+    "matsutake-rice": {
+      "title": "Riso al matsutake (matsutake gohan)",
+      "ingredients": [
+        "300 g di riso giapponese a chicco tondo (2 misurini del cuociriso)",
+        "150 g di matsutake (1–2 funghi)",
+        "Circa 320 ml di dashi di kombu",
+        "1 cucchiaio di salsa di soia chiara (usukuchi)",
+        "1 cucchiaio di mirin",
+        "1 cucchiaio di sake",
+        "½ cucchiaino di sale",
+        "Qualche rametto di mitsuba o erba cipollina per servire"
+      ],
+      "instructions": [
+        "Sciacquare: Lava il riso in acqua fredda, cambiandola finché resta quasi limpida. Lascialo in ammollo in acqua pulita per 30 minuti, poi scolalo bene.",
+        "Pulire: Non lavare i matsutake. Raschia la terra dalla base del gambo con un coltello, passa i cappelli con un panno umido e tagliali per il lungo a fette di circa 3 mm.",
+        "Condire: Metti il riso in una pentola dal fondo spesso o nel cuociriso con la salsa di soia, il mirin, il sake e il sale, versa il dashi e mescola una volta. Adagia sopra i matsutake senza mescolarli.",
+        "Cuocere: Copri, porta a bollore, poi cuoci a fiamma minima per 13 minuti (oppure usa il programma normale del cuociriso). Spegni e lascia riposare 10 minuti con il coperchio.",
+        "Servire: Mescola delicatamente i matsutake al riso con una spatola e servi nelle ciotole con mitsuba o erba cipollina."
+      ],
+      "species": ["matsutake"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sciacquare: Lava il riso in acqua fredda, cambiandola finché resta quasi limpida. Lascialo in ammollo in acqua pulita per 30 minuti, poi scolalo bene."
+        },
+        {
+          "step": 2,
+          "instruction": "Pulire: Non lavare i matsutake. Raschia la terra dalla base del gambo con un coltello, passa i cappelli con un panno umido e tagliali per il lungo a fette di circa 3 mm."
+        },
+        {
+          "step": 3,
+          "instruction": "Condire: Metti il riso in una pentola dal fondo spesso o nel cuociriso con la salsa di soia, il mirin, il sake e il sale, versa il dashi e mescola una volta. Adagia sopra i matsutake senza mescolarli."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuocere: Copri, porta a bollore, poi cuoci a fiamma minima per 13 minuti (oppure usa il programma normale del cuociriso). Spegni e lascia riposare 10 minuti con il coperchio."
+        },
+        {
+          "step": 5,
+          "instruction": "Servire: Mescola delicatamente i matsutake al riso con una spatola e servi nelle ciotole con mitsuba o erba cipollina."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "40 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "safetyNotes": [
+        "Nel Nord-ovest del Pacifico, in Nord America, il matsutake ha un sosia mortale, l'Amanita smithiana: bianca, con la base del gambo ingrossata che si assottiglia nel terreno come una radice ed è cinta da resti bianchi di velo, e senza il profumo speziato di cannella. Distrugge i reni: controlla la base e l'odore di ogni fungo.",
+        "Raccogli i matsutake senza rastrellare né smuovere il terreno: il rastrello distrugge il micelio, e rastrellare è vietato in molte foreste nazionali degli Stati Uniti, dove per raccoglierli serve anche un permesso."
       ]
     }
   }

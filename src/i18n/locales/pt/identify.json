@@ -90,7 +90,8 @@
       "ricin": "As sementes contêm um dos venenos naturais mais letais conhecidos. Poucas sementes mastigadas podem matar um adulto e não existe antídoto.",
       "cytisine": "Todas as partes, sobretudo as vagens, contêm citisina. Morreram crianças depois de comerem as vagens, tomando-as por ervilhas.",
       "grayanotoxin": "As folhas, flores e néctar contêm graianotoxinas, que alteram o ritmo cardíaco. O mel feito destas flores já intoxicou pessoas.",
-      "veratrumAlkaloid": "Faz colapsar a tensão arterial e o ritmo cardíaco em poucas horas. As folhas jovens são repetidamente confundidas com alho-dos-ursos, e essas confusões foram fatais."
+      "veratrumAlkaloid": "Faz colapsar a tensão arterial e o ritmo cardíaco em poucas horas. As folhas jovens são repetidamente confundidas com alho-dos-ursos, e essas confusões foram fatais.",
+      "coprine": "Contém coprina, que impede o organismo de eliminar o álcool. O álcool bebido pouco antes da refeição ou até três dias depois provoca rubor, taquicardia, náuseas e vómitos."
     },
     "checks": {
       "volva": "Observa a própria base do pé, abaixo do nível do solo: uma volva em forma de saco ou uma taça inchada nesse ponto é um sinal de alarme grave.",
@@ -117,13 +118,19 @@
       "plantHabit": "Se a planta é um arbusto lenhoso ou uma erva tenra que seca todos os anos.",
       "interiorPattern": "Corta-o ao meio. Uma trufa verdadeira é marmoreada com veias pálidas ramificadas. Uma falsa trufa é uma massa escura e compacta, arroxeada a negra, sem padrão.",
       "berryColour": "Cor das bagas maduras: o sabugueiro-negro tem bagas negro-arroxeadas. Bagas vermelhas em cachos eretos em forma de cúpula são de sabugueiro-vermelho, tóxico cru.",
-      "flowerShape": "Forma da flor: as violetas têm cinco pétalas desiguais com um esporão atrás; a ficária tem 8 a 12 pétalas amarelas e brilhantes."
+      "flowerShape": "Forma da flor: as violetas têm cinco pétalas desiguais com um esporão atrás; a ficária tem 8 a 12 pétalas amarelas e brilhantes.",
+      "latexColour": "Parte uma lâmina ou a borda do chapéu e observa o leite que sai. As sanchas vertem um leite cor de cenoura a vermelho-vinho; um leite branco ou que amarelece indica outro Lactarius.",
+      "capMargin": "Se a borda do chapéu está enrolada e franjada de pelos longos e lanosos.",
+      "capScales": "Se o chapéu está coberto de escamas brancas, desgrenhadas e levantadas, ou é liso, castanho-acinzentado e finamente estriado."
     },
     "critical": {
       "lepiotaMacrolepiota": "As Lepiota mortais estão entre os sósias mais perigosos do frade, e nos nossos testes foi o erro mais frequente de todos. Um frade verdadeiro é grande, com um anel que se move e um pé com padrão de pele de cobra. Os exemplares pequenos com o pé liso devem ser deixados onde estão, mesmo que pareçam os corretos.",
       "trufflePair": "Entre as correspondências estão tanto uma trufa como uma falsa trufa venenosa. Por fora são genuinamente difíceis de distinguir. Corta o achado antes de mais: veias pálidas marmoreadas indicam trufa, um interior escuro e compacto indica falsa trufa.",
       "angelWingPair": "Entre as correspondências estão tanto um pleuroto como a orelha-de-anjo. Esta última provocou inflamações cerebrais mortais. É mais fina, branco puro, e cresce em madeira de conífera: verifica antes de mais a madeira e a espessura da carne.",
-      "veratrumPair": "Entre as correspondências estão tanto alho-dos-ursos como veratro branco. Esta confusão já matou. Esmaga uma folha: o alho-dos-ursos cheira intensamente a alho, o veratro não. As folhas de veratro são também muito nervuradas e alternas ao longo do caule."
+      "veratrumPair": "Entre as correspondências estão tanto alho-dos-ursos como veratro branco. Esta confusão já matou. Esmaga uma folha: o alho-dos-ursos cheira intensamente a alho, o veratro não. As folhas de veratro são também muito nervuradas e alternas ao longo do caule.",
+      "inkCapAlcohol": "Entre as correspondências estão tanto um coprino-cabeludo como a Coprinopsis atramentaria. A Coprinopsis atramentaria reage violentamente com o álcool, mesmo bebido dias depois da refeição. O coprino-cabeludo é alto, branco e coberto de escamas desgrenhadas; a outra é mais pequena, castanho-acinzentada e lisa. Na dúvida, deixa-o, e nunca bebas álcool com coprinos.",
+      "matsutakeSmithiana": "Entre as correspondências estão tanto um matsutake como a Amanita smithiana. A Amanita smithiana destrói os rins e já foi apanhada por matsutake no noroeste do Pacífico. Cheira-o e tira a base inteira: o matsutake tem um cheiro picante, a canela. A Amanita smithiana não, e a sua base engrossa e depois afina no solo como uma raiz, rodeada de restos brancos de véu.",
+      "puffballPair": "Entre as correspondências estão tanto uma bufa-do-diabo como um sósia venenoso. Antes de mais, corta-a ao meio de cima para baixo. Uma bufa-do-diabo é branca e uniforme até ao centro. Um interior negro-violáceo indica um Scleroderma; a silhueta de um chapéu, lâminas e pé indica uma amanita jovem, que pode ser mortal."
     }
   }
 }

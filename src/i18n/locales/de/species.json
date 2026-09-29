@@ -273,6 +273,31 @@
       "name": "Klapperschwamm",
       "description": "Eine große Rosette aus sich überlappenden, graubraunen Hütchen am Fuß alter Eichen, unterseits mit weißen Poren",
       "howTo": "Suche am Fuß alter oder absterbender Eichen von Ende August bis Oktober; er erscheint oft Jahr für Jahr am selben Baum. In Teilen Mittel- und Nordeuropas ist er geschützt"
+    },
+    "saffron_milk_cap": {
+      "name": "Edel-Reizker",
+      "description": "Ein orangefarbener Hut mit dunkleren Ringen, der karottenorange Milch blutet und grün anläuft; in Spanien und Italien heiß begehrt",
+      "howTo": "Suche unter Kiefern und Fichten vom Spätsommer bis November, am Mittelmeer und an der US-Pazifikküste bis in den Winter. Brich eine Lamelle ab: Die Milch muss orange bis rot sein, niemals weiß"
+    },
+    "hedgehog_mushroom": {
+      "name": "Semmel-Stoppelpilz",
+      "description": "Ein semmelgelber bis orangefarbener Hut mit weichen Stacheln statt Lamellen: einer der sichersten Wildpilze für Einsteiger",
+      "howTo": "Suche in moosigen Nadel- und Laubwäldern vom Spätsommer bis zum Spätherbst, oft in Ringen oder Reihen; an der US-Pazifikküste den ganzen Winter über. Dreh ihn um: Stacheln, keine Lamellen"
+    },
+    "shaggy_mane": {
+      "name": "Schopf-Tintling",
+      "description": "Ein hoher weißer, zottig beschuppter Zylinder auf Rasen und an Wegrändern, der sich binnen eines Tages nach dem Pflücken in schwarze Tinte auflöst",
+      "howTo": "Suche auf Rasen, an Wegrändern und auf aufgewühltem Boden einige Tage nach Herbstregen, auch nach Frühjahrsregen. Nimm nur junge, ganz weiße Exemplare und koche sie noch am selben Tag; meide stark befahrene Straßen, dort nimmt er Schwermetalle auf"
+    },
+    "giant_puffball": {
+      "name": "Riesenbovist",
+      "description": "Eine glatte weiße Kugel, fußballgroß oder größer, auf Wiesen und Weiden, mit festem, weißem Fleisch wie frischer Mozzarella",
+      "howTo": "Suche auf Wiesen, Weiden, in Parks und an Waldrändern vom Spätsommer bis in den Herbst, oft bei Brennnesseln. Schneide jeden von oben nach unten durch: Innen muss er rein weiß sein, ohne jede Spur von Hut oder Stiel"
+    },
+    "matsutake": {
+      "name": "Matsutake",
+      "description": "Ein fester, weiß-brauner Pilz mit würzigem, zimtartigem Duft, in Japan der begehrteste aller Speisepilze",
+      "howTo": "Suche ab August in trockenen, sandigen Kiefernheiden Skandinaviens und Finnlands und von September bis November unter Nadelbäumen und Tanoak im Westen der USA. Recht nie den Boden auf; in den US-Nationalforsten brauchst du eine Genehmigung"
     }
   }
 }

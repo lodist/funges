@@ -5378,6 +5378,865 @@
           ]
         }
       }
+    },
+    "saffron_milk_cap": {
+      "name": "Saffron Milk Cap",
+      "scientificName": "Lactarius deliciosus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [
+        5248629, 7925734, 5248648, 5248649, 5248788, 5248728, 5462971, 5463706,
+        7526756
+      ],
+      "rangeTaxonKeys": [
+        5248629, 7925734, 5248648, 5248649, 5248788, 5248728, 5462971, 5463706,
+        7526756
+      ],
+      "dataColumns": ["saffron_milk_cap_score", "Saffron Milk Cap"],
+      "regions": {
+        "NE": {
+          "landCover": [312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 5,
+            "min_temp": 3,
+            "max_temp": 30,
+            "optimal_alt": 80,
+            "alt_sigma": 800,
+            "optimal_humidity": 79,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.3, 6.3],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": ["pinus", "picea", "other_needleleaf"]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5248629",
+            "https://www.gbif.org/species/7925734",
+            "https://www.gbif.org/species/5248648",
+            "https://www.gbif.org/species/5463706",
+            "https://www.mushroomexpert.com/lactarius_deliciosus.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "SE": {
+          "landCover": [312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 5,
+            "min_temp": 3,
+            "max_temp": 30,
+            "optimal_alt": 740,
+            "alt_sigma": 1600,
+            "optimal_humidity": 73,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.8, 6.8],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 30,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10, 11, 12, 1],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": ["pinus", "picea", "other_needleleaf"]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5248629",
+            "https://www.gbif.org/species/7925734",
+            "https://www.gbif.org/species/5248648",
+            "https://www.gbif.org/species/5463706",
+            "https://www.mushroomexpert.com/lactarius_deliciosus.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "USE": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 17,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 30,
+            "optimal_alt": 350,
+            "alt_sigma": 800,
+            "optimal_humidity": 72,
+            "humidity_sigma": 17,
+            "optimal_pH": 5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6.5],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 55,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "white_red_jack_pine",
+              "spruce_fir",
+              "longleaf_slash_pine",
+              "loblolly_shortleaf_pine",
+              "douglas_fir",
+              "ponderosa_pine",
+              "western_white_pine",
+              "fir_spruce_mountain_hemlock",
+              "lodgepole_pine",
+              "hemlock_sitka_spruce",
+              "western_larch",
+              "redwood",
+              "other_western_softwood",
+              "california_mixed_conifer",
+              "exotic_softwoods",
+              "oak_pine",
+              "aspen_birch",
+              "maple_beech_birch"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5248629",
+            "https://www.gbif.org/species/7925734",
+            "https://www.gbif.org/species/5248648",
+            "https://www.gbif.org/species/5463706",
+            "https://www.mushroomexpert.com/lactarius_deliciosus.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 12,
+            "temp_sigma": 5,
+            "min_temp": 2,
+            "max_temp": 30,
+            "optimal_alt": 1500,
+            "alt_sigma": 2000,
+            "optimal_humidity": 48,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.9,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.4, 7.4],
+            "optimal_soil_temp": 11,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 30,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10, 11, 12, 1, 2],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "white_red_jack_pine",
+              "spruce_fir",
+              "longleaf_slash_pine",
+              "loblolly_shortleaf_pine",
+              "douglas_fir",
+              "ponderosa_pine",
+              "western_white_pine",
+              "fir_spruce_mountain_hemlock",
+              "lodgepole_pine",
+              "hemlock_sitka_spruce",
+              "western_larch",
+              "redwood",
+              "other_western_softwood",
+              "california_mixed_conifer",
+              "exotic_softwoods"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5248629",
+            "https://www.gbif.org/species/7925734",
+            "https://www.gbif.org/species/5248648",
+            "https://www.gbif.org/species/5463706",
+            "https://www.mushroomexpert.com/lactarius_deliciosus.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        }
+      }
+    },
+    "hedgehog_mushroom": {
+      "name": "Hedgehog Mushroom",
+      "scientificName": "Hydnum repandum",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [2513763],
+      "rangeTaxonKeys": [2513763],
+      "dataColumns": ["hedgehog_mushroom_score", "Hedgehog Mushroom"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 312, 313],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 14,
+            "temp_sigma": 5,
+            "min_temp": 4,
+            "max_temp": 30,
+            "optimal_alt": 80,
+            "alt_sigma": 800,
+            "optimal_humidity": 76,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3, 6],
+            "optimal_soil_temp": 13,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "larix",
+              "picea",
+              "pinus",
+              "fagus",
+              "quercus",
+              "other_needleleaf",
+              "other_broadleaf"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2513763",
+            "https://www.mushroomexpert.com/hydnum_repandum.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 312, 313],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 16,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 30,
+            "optimal_alt": 760,
+            "alt_sigma": 1500,
+            "optimal_humidity": 70,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.8, 6.8],
+            "optimal_soil_temp": 15,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 20,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10, 11, 12, 1, 2],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "larix",
+              "picea",
+              "pinus",
+              "fagus",
+              "quercus",
+              "other_needleleaf",
+              "other_broadleaf"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2513763",
+            "https://www.mushroomexpert.com/hydnum_repandum.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "USE": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 20,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 30,
+            "optimal_alt": 350,
+            "alt_sigma": 800,
+            "optimal_humidity": 72,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.1,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.6, 6.6],
+            "optimal_soil_temp": 19,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 45,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "white_red_jack_pine",
+              "spruce_fir",
+              "longleaf_slash_pine",
+              "loblolly_shortleaf_pine",
+              "pinyon_juniper",
+              "douglas_fir",
+              "ponderosa_pine",
+              "western_white_pine",
+              "fir_spruce_mountain_hemlock",
+              "lodgepole_pine",
+              "hemlock_sitka_spruce",
+              "western_larch",
+              "redwood",
+              "other_western_softwood",
+              "california_mixed_conifer",
+              "exotic_softwoods",
+              "oak_pine",
+              "oak_hickory",
+              "oak_gum_cypress",
+              "elm_ash_cottonwood",
+              "maple_beech_birch",
+              "aspen_birch",
+              "alder_maple",
+              "western_oak",
+              "tanoak_laurel",
+              "other_western_hardwoods",
+              "tropical_hardwoods",
+              "exotic_hardwoods"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2513763",
+            "https://www.mushroomexpert.com/hydnum_repandum.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 30,
+            "optimal_alt": 600,
+            "alt_sigma": 1200,
+            "optimal_humidity": 73,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.1,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.6, 6.6],
+            "optimal_soil_temp": 14,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 20,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10, 11, 12, 1, 2, 3],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "white_red_jack_pine",
+              "spruce_fir",
+              "longleaf_slash_pine",
+              "loblolly_shortleaf_pine",
+              "pinyon_juniper",
+              "douglas_fir",
+              "ponderosa_pine",
+              "western_white_pine",
+              "fir_spruce_mountain_hemlock",
+              "lodgepole_pine",
+              "hemlock_sitka_spruce",
+              "western_larch",
+              "redwood",
+              "other_western_softwood",
+              "california_mixed_conifer",
+              "exotic_softwoods",
+              "oak_pine",
+              "oak_hickory",
+              "oak_gum_cypress",
+              "elm_ash_cottonwood",
+              "maple_beech_birch",
+              "aspen_birch",
+              "alder_maple",
+              "western_oak",
+              "tanoak_laurel",
+              "other_western_hardwoods",
+              "tropical_hardwoods",
+              "exotic_hardwoods"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2513763",
+            "https://www.mushroomexpert.com/hydnum_repandum.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        }
+      }
+    },
+    "shaggy_mane": {
+      "name": "Shaggy Mane",
+      "scientificName": "Coprinus comatus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [7987658],
+      "rangeTaxonKeys": [7987658],
+      "dataColumns": ["shaggy_mane_score", "Shaggy Mane"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 313, 321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 5,
+            "min_temp": 3,
+            "max_temp": 30,
+            "optimal_alt": 60,
+            "alt_sigma": 800,
+            "optimal_humidity": 79,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.6,
+            "pH_sigma_near": 2.5,
+            "pH_sigma_far": 2.5,
+            "pH_range_near": [3.1, 6.1],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 35,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7987658",
+            "https://www.mushroomexpert.com/coprinus_comatus.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 313, 321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 30,
+            "optimal_alt": 240,
+            "alt_sigma": 1100,
+            "optimal_humidity": 70,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.3,
+            "pH_sigma_near": 2.5,
+            "pH_sigma_far": 2.5,
+            "pH_range_near": [3.8, 6.8],
+            "optimal_soil_temp": 14,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 25,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [3, 4, 5, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7987658",
+            "https://www.mushroomexpert.com/coprinus_comatus.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "USE": {
+          "landCover": [41, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 17,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 30,
+            "optimal_alt": 240,
+            "alt_sigma": 800,
+            "optimal_humidity": 76,
+            "humidity_sigma": 17,
+            "optimal_pH": 6.2,
+            "pH_sigma_near": 2.5,
+            "pH_sigma_far": 2.5,
+            "pH_range_near": [4.7, 7.7],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 30,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [4, 5, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7987658",
+            "https://www.mushroomexpert.com/coprinus_comatus.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 5,
+            "min_temp": 3,
+            "max_temp": 30,
+            "optimal_alt": 720,
+            "alt_sigma": 2300,
+            "optimal_humidity": 65,
+            "humidity_sigma": 17,
+            "optimal_pH": 6.2,
+            "pH_sigma_near": 2.5,
+            "pH_sigma_far": 2.5,
+            "pH_range_near": [4.7, 7.7],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 20,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [4, 5, 6, 9, 10, 11, 12, 1],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7987658",
+            "https://www.mushroomexpert.com/coprinus_comatus.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        }
+      }
+    },
+    "giant_puffball": {
+      "name": "Giant Puffball",
+      "scientificName": "Calvatia gigantea",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [2536058, 3339928],
+      "rangeTaxonKeys": [2536058, 3339928],
+      "dataColumns": ["giant_puffball_score", "Giant Puffball"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 313, 321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 16,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 30,
+            "optimal_alt": 50,
+            "alt_sigma": 800,
+            "optimal_humidity": 76,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.7,
+            "pH_sigma_near": 2.5,
+            "pH_sigma_far": 2.5,
+            "pH_range_near": [3.2, 6.2],
+            "optimal_soil_temp": 15,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 30,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2536058",
+            "https://www.gbif.org/species/3339928",
+            "https://www.mushroomexpert.com/calvatia_gigantea.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 313, 321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 17,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 30,
+            "optimal_alt": 110,
+            "alt_sigma": 800,
+            "optimal_humidity": 67,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.2,
+            "pH_sigma_near": 2.5,
+            "pH_sigma_far": 2.5,
+            "pH_range_near": [3.7, 6.7],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 30,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [6, 7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2536058",
+            "https://www.gbif.org/species/3339928",
+            "https://www.mushroomexpert.com/calvatia_gigantea.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "USE": {
+          "landCover": [41, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 20,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 30,
+            "optimal_alt": 240,
+            "alt_sigma": 800,
+            "optimal_humidity": 73,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.9,
+            "pH_sigma_near": 2.5,
+            "pH_sigma_far": 2.5,
+            "pH_range_near": [4.4, 7.4],
+            "optimal_soil_temp": 19,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 65,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2536058",
+            "https://www.gbif.org/species/3339928",
+            "https://www.mushroomexpert.com/calvatia_gigantea.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 5,
+            "min_temp": 5,
+            "max_temp": 30,
+            "optimal_alt": 950,
+            "alt_sigma": 2900,
+            "optimal_humidity": 56,
+            "humidity_sigma": 17,
+            "optimal_pH": 6.3,
+            "pH_sigma_near": 2.5,
+            "pH_sigma_far": 2.5,
+            "pH_range_near": [4.8, 7.8],
+            "optimal_soil_temp": 14,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 10,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [4, 5, 6, 7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2536058",
+            "https://www.gbif.org/species/3339928",
+            "https://www.mushroomexpert.com/calvatia_gigantea.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        }
+      }
+    },
+    "matsutake": {
+      "name": "Matsutake",
+      "scientificName": "Tricholoma matsutake",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5241820, 5241743, 5241741],
+      "rangeTaxonKeys": [5241820, 5241743, 5241741],
+      "dataColumns": ["matsutake_score", "Matsutake"],
+      "regions": {
+        "NE": {
+          "landCover": [312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 12,
+            "temp_sigma": 5,
+            "min_temp": 2,
+            "max_temp": 30,
+            "optimal_alt": 230,
+            "alt_sigma": 800,
+            "optimal_humidity": 78,
+            "humidity_sigma": 17,
+            "optimal_pH": 5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6.5],
+            "optimal_soil_temp": 11,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 45,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": ["pinus"]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5241820",
+            "https://www.gbif.org/species/5241743",
+            "https://www.gbif.org/species/5241741",
+            "https://www.mushroomexpert.com/tricholoma_magnivelare.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "USE": {
+          "landCover": [42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 5,
+            "min_temp": 3,
+            "max_temp": 30,
+            "optimal_alt": 490,
+            "alt_sigma": 800,
+            "optimal_humidity": 74,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.4,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [2.9, 5.9],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 45,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "white_red_jack_pine",
+              "spruce_fir",
+              "longleaf_slash_pine",
+              "loblolly_shortleaf_pine",
+              "douglas_fir",
+              "ponderosa_pine",
+              "western_white_pine",
+              "fir_spruce_mountain_hemlock",
+              "lodgepole_pine",
+              "hemlock_sitka_spruce",
+              "western_larch",
+              "redwood",
+              "other_western_softwood",
+              "california_mixed_conifer",
+              "exotic_softwoods"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5241820",
+            "https://www.gbif.org/species/5241743",
+            "https://www.gbif.org/species/5241741",
+            "https://www.mushroomexpert.com/tricholoma_magnivelare.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "USW": {
+          "landCover": [42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 11,
+            "temp_sigma": 5,
+            "min_temp": 1,
+            "max_temp": 30,
+            "optimal_alt": 900,
+            "alt_sigma": 1200,
+            "optimal_humidity": 75,
+            "humidity_sigma": 17,
+            "optimal_pH": 5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.5, 6.5],
+            "optimal_soil_temp": 10,
+            "soil_temp_sigma": 5,
+            "min_cumulative_rain": 45,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [9, 10, 11, 12],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "white_red_jack_pine",
+              "spruce_fir",
+              "longleaf_slash_pine",
+              "loblolly_shortleaf_pine",
+              "douglas_fir",
+              "ponderosa_pine",
+              "western_white_pine",
+              "fir_spruce_mountain_hemlock",
+              "lodgepole_pine",
+              "hemlock_sitka_spruce",
+              "western_larch",
+              "redwood",
+              "other_western_softwood",
+              "california_mixed_conifer",
+              "exotic_softwoods",
+              "tanoak_laurel"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/5241820",
+            "https://www.gbif.org/species/5241743",
+            "https://www.gbif.org/species/5241741",
+            "https://www.mushroomexpert.com/tricholoma_magnivelare.html",
+            "docs/species/2026-09-29-step4-mushrooms.md"
+          ]
+        }
+      }
     }
   }
 }

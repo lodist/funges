@@ -1,0 +1,281 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "saffron_milk_cap",
+  "scientificName": "Lactarius deliciosus",
+  "catalog": {
+    "enabled": true,
+    "order": 43,
+    "translationKey": "saffron_milk_cap",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/saffron_milk_cap.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Saffron Milk Cap",
+      "description": "An orange cap with darker rings that bleeds carrot-orange milk and bruises green; a favourite in Spain and Italy",
+      "howTo": "Look under pines and spruces from late summer to November, into winter on the Mediterranean and US Pacific coasts. Break a gill: the milk must be orange to red, never white"
+    },
+    "it": {
+      "name": "Sanguinello",
+      "description": "Un cappello arancione ad anelli più scuri che stilla latte arancio carota e macchia di verde; amatissimo in Spagna e in Italia",
+      "howTo": "Cercalo sotto pini e abeti rossi da fine estate a novembre, fino all'inverno sulle coste del Mediterraneo e sulla costa pacifica degli Stati Uniti. Spezza una lamella: il latte deve essere arancio o rosso, mai bianco"
+    },
+    "fr": {
+      "name": "Lactaire délicieux",
+      "description": "Un chapeau orange à cercles plus foncés, qui saigne un lait orange carotte et verdit au toucher ; très prisé en Espagne et en Italie",
+      "howTo": "Cherchez-le sous les pins et les épicéas de la fin de l'été à novembre, jusqu'en hiver sur les côtes de la Méditerranée et sur la côte pacifique des États-Unis. Cassez une lame : le lait doit être orange à rouge, jamais blanc"
+    },
+    "de": {
+      "name": "Edel-Reizker",
+      "description": "Ein orangefarbener Hut mit dunkleren Ringen, der karottenorange Milch blutet und grün anläuft; in Spanien und Italien heiß begehrt",
+      "howTo": "Suche unter Kiefern und Fichten vom Spätsommer bis November, am Mittelmeer und an der US-Pazifikküste bis in den Winter. Brich eine Lamelle ab: Die Milch muss orange bis rot sein, niemals weiß"
+    },
+    "es": {
+      "name": "Níscalo",
+      "description": "Un sombrero anaranjado con anillos más oscuros que suelta una leche naranja zanahoria y se mancha de verde; el rovellón de Cataluña",
+      "howTo": "Búscalo bajo pinos y abetos rojos desde finales del verano hasta noviembre, y hasta el invierno en el Mediterráneo y en la costa del Pacífico de EE. UU. Rompe una lámina: la leche debe ser naranja o roja, nunca blanca"
+    },
+    "pt": {
+      "name": "Sancha",
+      "description": "Um chapéu cor de laranja com anéis mais escuros que verte um leite cor de cenoura e mancha de verde; muito apreciado em Espanha e Itália",
+      "howTo": "Procure debaixo de pinheiros e espruces do fim do verão a novembro, e até ao inverno no Mediterrâneo e na costa do Pacífico dos EUA. Parta uma lâmina: o leite tem de ser laranja a vermelho, nunca branco"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Lactarius deliciosus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-29-step4-mushrooms.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Saffron Milk Cap"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [312, 313, 324],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 5,
+          "min_temp": 3,
+          "max_temp": 30,
+          "optimal_alt": 80,
+          "alt_sigma": 800,
+          "optimal_humidity": 79,
+          "humidity_sigma": 17,
+          "optimal_pH": 4.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.3, 6.3],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": ["pinus", "picea", "other_needleleaf"]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5248629",
+          "https://www.gbif.org/species/7925734",
+          "https://www.gbif.org/species/5248648",
+          "https://www.gbif.org/species/5463706",
+          "https://www.mushroomexpert.com/lactarius_deliciosus.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [312, 313, 324],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 5,
+          "min_temp": 3,
+          "max_temp": 30,
+          "optimal_alt": 740,
+          "alt_sigma": 1600,
+          "optimal_humidity": 73,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.3,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.8, 6.8],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 30,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10, 11, 12, 1],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": ["pinus", "picea", "other_needleleaf"]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5248629",
+          "https://www.gbif.org/species/7925734",
+          "https://www.gbif.org/species/5248648",
+          "https://www.gbif.org/species/5463706",
+          "https://www.mushroomexpert.com/lactarius_deliciosus.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 17,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 350,
+          "alt_sigma": 800,
+          "optimal_humidity": 72,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.0,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.5, 6.5],
+          "optimal_soil_temp": 16,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 55,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "white_red_jack_pine",
+            "spruce_fir",
+            "longleaf_slash_pine",
+            "loblolly_shortleaf_pine",
+            "douglas_fir",
+            "ponderosa_pine",
+            "western_white_pine",
+            "fir_spruce_mountain_hemlock",
+            "lodgepole_pine",
+            "hemlock_sitka_spruce",
+            "western_larch",
+            "redwood",
+            "other_western_softwood",
+            "california_mixed_conifer",
+            "exotic_softwoods",
+            "oak_pine",
+            "aspen_birch",
+            "maple_beech_birch"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5248629",
+          "https://www.gbif.org/species/7925734",
+          "https://www.gbif.org/species/5248648",
+          "https://www.gbif.org/species/5463706",
+          "https://www.mushroomexpert.com/lactarius_deliciosus.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 12,
+          "temp_sigma": 5,
+          "min_temp": 2,
+          "max_temp": 30,
+          "optimal_alt": 1500,
+          "alt_sigma": 2000,
+          "optimal_humidity": 48,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.9,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.4, 7.4],
+          "optimal_soil_temp": 11,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 30,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10, 11, 12, 1, 2],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "white_red_jack_pine",
+            "spruce_fir",
+            "longleaf_slash_pine",
+            "loblolly_shortleaf_pine",
+            "douglas_fir",
+            "ponderosa_pine",
+            "western_white_pine",
+            "fir_spruce_mountain_hemlock",
+            "lodgepole_pine",
+            "hemlock_sitka_spruce",
+            "western_larch",
+            "redwood",
+            "other_western_softwood",
+            "california_mixed_conifer",
+            "exotic_softwoods"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5248629",
+          "https://www.gbif.org/species/7925734",
+          "https://www.gbif.org/species/5248648",
+          "https://www.gbif.org/species/5463706",
+          "https://www.mushroomexpert.com/lactarius_deliciosus.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [
+        5248629, 7925734, 5248648, 5248649, 5248788, 5248728, 5462971, 5463706,
+        7526756
+      ],
+      "references": [
+        "https://www.gbif.org/species/5248629",
+        "https://www.gbif.org/species/7925734",
+        "https://www.gbif.org/species/5248648",
+        "https://www.gbif.org/species/5248649",
+        "https://www.gbif.org/species/5248788",
+        "https://www.gbif.org/species/5248728",
+        "https://www.gbif.org/species/5462971",
+        "https://www.gbif.org/species/5463706",
+        "https://www.gbif.org/species/7526756"
+      ]
+    },
+    "rangePrior": {
+      "taxonKeys": [
+        5248629, 7925734, 5248648, 5248649, 5248788, 5248728, 5462971, 5463706,
+        7526756
+      ]
+    }
+  }
+}

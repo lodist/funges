@@ -70,7 +70,14 @@
     "garlic_wild": "Ajo silvestre",
     "artichoke": "Alcachofa silvestre",
     "asparagus": "Espárrago silvestre",
-    "strawberry": "Fresa silvestre"
+    "strawberry": "Fresa silvestre",
+    "saffron_milk_cap": "Níscalo",
+    "hedgehog_mushroom": "Lengua de vaca",
+    "shaggy_mane": "Barbuda",
+    "giant_puffball": "Bejín gigante",
+    "matsutake": "Matsutake",
+    "lions_mane": "Melena de león",
+    "hen_of_the_woods": "Maitake"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -1102,6 +1109,343 @@
       "safetyNotes": [
         "Cocina bien el maitake: poco hecho, a algunas personas les sienta mal.",
         "Su doble, el políporo gigante, es comestible pero correoso; se ennegrece donde se toca."
+      ]
+    },
+    "grilled-saffron-milk-caps": {
+      "title": "Níscalos a la plancha con ajo y perejil",
+      "ingredients": [
+        "500 g de níscalos (rovellones) jóvenes y firmes",
+        "5 cucharadas de aceite de oliva virgen extra",
+        "3 dientes de ajo picados finos",
+        "Un manojo pequeño de perejil picado fino",
+        "Sal en escamas",
+        "Pimienta negra",
+        "Pan de pueblo para acompañar"
+      ],
+      "instructions": [
+        "Limpiar: Corta los pies a ras del sombrero y retira con un pincel las agujas de pino y la tierra. Pasa un paño húmedo por los sombreros en lugar de lavarlos.",
+        "Mezclar: Mezcla el ajo y el perejil con 4 cucharadas de aceite y una pizca de sal.",
+        "Asar: Calienta bien una plancha, una parrilla o las brasas. Pinta los sombreros con el aceite restante y colócalos con las láminas hacia arriba. Ásalos 5–6 minutos sin darles la vuelta, hasta que se ablanden y se llenen de su propio jugo.",
+        "Terminar: Reparte el aceite de ajo y perejil sobre las láminas, añade pimienta y déjalos 1 minuto más.",
+        "Servir: Enseguida, con sal en escamas y pan para mojar en el jugo."
+      ],
+      "species": ["saffron_milk_cap"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpiar: Corta los pies a ras del sombrero y retira con un pincel las agujas de pino y la tierra. Pasa un paño húmedo por los sombreros en lugar de lavarlos."
+        },
+        {
+          "step": 2,
+          "instruction": "Mezclar: Mezcla el ajo y el perejil con 4 cucharadas de aceite y una pizca de sal."
+        },
+        {
+          "step": 3,
+          "instruction": "Asar: Calienta bien una plancha, una parrilla o las brasas. Pinta los sombreros con el aceite restante y colócalos con las láminas hacia arriba. Ásalos 5–6 minutos sin darles la vuelta, hasta que se ablanden y se llenen de su propio jugo."
+        },
+        {
+          "step": 4,
+          "instruction": "Terminar: Reparte el aceite de ajo y perejil sobre las láminas, añade pimienta y déjalos 1 minuto más."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Enseguida, con sal en escamas y pan para mojar en el jugo."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "10 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Antes de cocinarlos, corta un sombrero o un pie: el níscalo suelta una leche de color naranja zanahoria o rojizo. Una leche blanca o amarilla indica otro Lactarius: el falso níscalo (Lactarius torminosus: sombrero rosado con el borde lanoso y enrollado, y leche blanca) y otras especies de leche blanca provocan fuertes trastornos digestivos.",
+        "Los níscalos se manchan de verde al tocarlos y pueden teñir la orina de rojizo después de comerlos. Ambas cosas son inofensivas."
+      ]
+    },
+    "saffron-milk-cap-potato-stew": {
+      "title": "Níscalos con patatas",
+      "ingredients": [
+        "400 g de níscalos",
+        "600 g de patatas",
+        "1 cebolla picada fina",
+        "2 dientes de ajo laminados",
+        "1 cucharadita de pimentón dulce",
+        "1 hoja de laurel",
+        "100 ml de vino blanco seco",
+        "4 cucharadas de aceite de oliva",
+        "Unos 500 ml de agua caliente o caldo de verduras",
+        "Sal y un poco de perejil picado"
+      ],
+      "instructions": [
+        "Preparar: Limpia los níscalos con un pincel, recorta los pies y trocéalos en pedazos grandes. Pela las patatas y cáscalas: haz un corte y parte el trozo, así sueltan almidón y espesan el guiso.",
+        "Pochar: Pocha la cebolla en el aceite a fuego suave durante 8–10 minutos. Añade el ajo y rehógalo 1 minuto más.",
+        "Añadir los níscalos: Sube el fuego, añade los níscalos y cocínalos 5 minutos, hasta que suelten su agua. Aparta la cazuela del fuego y añade el pimentón (se quema enseguida); vuelve a ponerla al fuego, riega con el vino y deja que hierva 2 minutos.",
+        "Guisar: Incorpora las patatas, el laurel y agua o caldo caliente justo hasta cubrir. Sala y deja cocer a fuego suave, medio tapado, 20–25 minutos, hasta que las patatas estén tiernas y el caldo haya espesado.",
+        "Servir: Deja reposar 5 minutos, espolvorea perejil y sirve con pan."
+      ],
+      "species": ["saffron_milk_cap"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar: Limpia los níscalos con un pincel, recorta los pies y trocéalos en pedazos grandes. Pela las patatas y cáscalas: haz un corte y parte el trozo, así sueltan almidón y espesan el guiso."
+        },
+        {
+          "step": 2,
+          "instruction": "Pochar: Pocha la cebolla en el aceite a fuego suave durante 8–10 minutos. Añade el ajo y rehógalo 1 minuto más."
+        },
+        {
+          "step": 3,
+          "instruction": "Añadir los níscalos: Sube el fuego, añade los níscalos y cocínalos 5 minutos, hasta que suelten su agua. Aparta la cazuela del fuego y añade el pimentón (se quema enseguida); vuelve a ponerla al fuego, riega con el vino y deja que hierva 2 minutos."
+        },
+        {
+          "step": 4,
+          "instruction": "Guisar: Incorpora las patatas, el laurel y agua o caldo caliente justo hasta cubrir. Sala y deja cocer a fuego suave, medio tapado, 20–25 minutos, hasta que las patatas estén tiernas y el caldo haya espesado."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Deja reposar 5 minutos, espolvorea perejil y sirve con pan."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "40 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "safetyNotes": [
+        "Antes de cocinarlos, corta un sombrero o un pie: el níscalo suelta una leche de color naranja zanahoria o rojizo. Una leche blanca o amarilla indica otro Lactarius: el falso níscalo (Lactarius torminosus: sombrero rosado con el borde lanoso y enrollado, y leche blanca) y otras especies de leche blanca provocan fuertes trastornos digestivos.",
+        "Los níscalos se manchan de verde al tocarlos y pueden teñir la orina de rojizo después de comerlos. Ambas cosas son inofensivas."
+      ]
+    },
+    "hedgehog-mushroom-risotto": {
+      "title": "Risotto de setas lengua de vaca",
+      "ingredients": [
+        "300 g de setas lengua de vaca (gamuzas)",
+        "320 g de arroz para risotto (carnaroli o arborio)",
+        "1 litro de caldo de verduras caliente",
+        "1 cebolla pequeña picada fina",
+        "40 g de mantequilla",
+        "2 cucharadas de aceite de oliva",
+        "100 ml de vino blanco seco",
+        "Unas ramitas de tomillo",
+        "60 g de parmesano rallado",
+        "Sal y pimienta"
+      ],
+      "instructions": [
+        "Limpiar: Cepilla los sombreros y frota las púas de debajo con los dedos para que caigan las agujas y la tierra. En los ejemplares grandes y viejos, raspa las púas con un cuchillo, porque pueden amargar. Córtalas en trozos de un bocado.",
+        "Dorar: Saltea las setas en el aceite a fuego fuerte durante 6–8 minutos, sin amontonarlas, hasta que estén doradas. Añade las hojas de tomillo, salpimienta y resérvalas.",
+        "Nacarar: En una cazuela ancha, pocha la cebolla en la mitad de la mantequilla, añade el arroz y remueve 2 minutos, hasta que los granos se vuelvan translúcidos por los bordes. Vierte el vino y deja que se evapore.",
+        "Cocer: Añade el caldo caliente cazo a cazo, removiendo a menudo y esperando a que cada cazo se absorba, durante unos 18 minutos, hasta que el arroz esté cremoso pero aún al dente. Incorpora las setas en los últimos 5 minutos.",
+        "Terminar: Fuera del fuego, incorpora el resto de la mantequilla y el parmesano, removiendo con energía. Tapa, deja reposar 2 minutos y sirve con unas hojas de tomillo por encima."
+      ],
+      "species": ["hedgehog_mushroom"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpiar: Cepilla los sombreros y frota las púas de debajo con los dedos para que caigan las agujas y la tierra. En los ejemplares grandes y viejos, raspa las púas con un cuchillo, porque pueden amargar. Córtalas en trozos de un bocado."
+        },
+        {
+          "step": 2,
+          "instruction": "Dorar: Saltea las setas en el aceite a fuego fuerte durante 6–8 minutos, sin amontonarlas, hasta que estén doradas. Añade las hojas de tomillo, salpimienta y resérvalas."
+        },
+        {
+          "step": 3,
+          "instruction": "Nacarar: En una cazuela ancha, pocha la cebolla en la mitad de la mantequilla, añade el arroz y remueve 2 minutos, hasta que los granos se vuelvan translúcidos por los bordes. Vierte el vino y deja que se evapore."
+        },
+        {
+          "step": 4,
+          "instruction": "Cocer: Añade el caldo caliente cazo a cazo, removiendo a menudo y esperando a que cada cazo se absorba, durante unos 18 minutos, hasta que el arroz esté cremoso pero aún al dente. Incorpora las setas en los últimos 5 minutos."
+        },
+        {
+          "step": 5,
+          "instruction": "Terminar: Fuera del fuego, incorpora el resto de la mantequilla y el parmesano, removiendo con energía. Tapa, deja reposar 2 minutos y sirve con unas hojas de tomillo por encima."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "medium",
+      "prepTime": "15 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": [
+        "Mira debajo del sombrero antes de cocinarla: la lengua de vaca tiene púas blandas, no láminas. Los ejemplares viejos pueden amargar, así que raspa las púas de los grandes.",
+        "No tiene dobles peligrosos, pero come solo setas que hayas identificado con total seguridad."
+      ]
+    },
+    "shaggy-mane-soup": {
+      "title": "Crema de barbudas",
+      "ingredients": [
+        "500 g de barbudas (Coprinus comatus) jóvenes, recogidas el mismo día",
+        "1 cebolla picada fina",
+        "1 patata harinosa, pelada y en dados",
+        "30 g de mantequilla",
+        "750 ml de caldo de verduras",
+        "150 ml de nata para cocinar",
+        "Unas gotas de zumo de limón",
+        "Un manojo pequeño de cebollino picado",
+        "Sal y pimienta blanca"
+      ],
+      "instructions": [
+        "Seleccionar: Cocínalas pocas horas después de recogerlas. Usa solo sombreros jóvenes y firmes, con las láminas blancas hasta arriba: los bordes rosados o negros indican que ya se están convirtiendo en tinta. Corta la base del pie, quita la tierra y córtalas en láminas.",
+        "Pochar: Derrite la mantequilla en una olla y pocha la cebolla a fuego suave 5 minutos. Añade la patata y las setas y cocina 5 minutos, removiendo, hasta que las setas se ablanden.",
+        "Cocer: Vierte el caldo, sala y deja cocer a fuego suave 15 minutos, hasta que la patata esté tierna.",
+        "Triturar: Tritura hasta obtener una crema fina, añade la nata y el limón y calienta sin que llegue a hervir. Rectifica de sal y pimienta.",
+        "Servir: Bien caliente, con cebollino y picatostes. Acompáñala con agua o zumo, no con vino ni cerveza."
+      ],
+      "species": ["shaggy_mane"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Seleccionar: Cocínalas pocas horas después de recogerlas. Usa solo sombreros jóvenes y firmes, con las láminas blancas hasta arriba: los bordes rosados o negros indican que ya se están convirtiendo en tinta. Corta la base del pie, quita la tierra y córtalas en láminas."
+        },
+        {
+          "step": 2,
+          "instruction": "Pochar: Derrite la mantequilla en una olla y pocha la cebolla a fuego suave 5 minutos. Añade la patata y las setas y cocina 5 minutos, removiendo, hasta que las setas se ablanden."
+        },
+        {
+          "step": 3,
+          "instruction": "Cocer: Vierte el caldo, sala y deja cocer a fuego suave 15 minutos, hasta que la patata esté tierna."
+        },
+        {
+          "step": 4,
+          "instruction": "Triturar: Tritura hasta obtener una crema fina, añade la nata y el limón y calienta sin que llegue a hervir. Rectifica de sal y pimienta."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Bien caliente, con cebollino y picatostes. Acompáñala con agua o zumo, no con vino ni cerveza."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "easy"],
+      "safetyNotes": [
+        "Cocina las barbudas pocas horas después de recogerlas: se autodigieren y se convierten en tinta negra. Usa solo ejemplares jóvenes, con las láminas aún completamente blancas.",
+        "Su doble, el coprino entintado (Coprinopsis atramentaria: gris, liso y sin escamas lanosas), provoca una reacción violenta con el alcohol que se beba hasta tres días antes o después de la comida. Por eso esta crema se prepara y se sirve sin alcohol: si tienes la menor duda sobre lo que has recogido, no bebas alcohol con ella.",
+        "No recojas barbudas en cunetas ni en suelos contaminados: acumulan metales pesados."
+      ]
+    },
+    "giant-puffball-parmigiana": {
+      "title": "Parmigiana de bejín gigante",
+      "ingredients": [
+        "1 bejín gigante joven (unos 600 g), blanquísimo por dentro",
+        "50 g de harina",
+        "Aceite de oliva para freír",
+        "700 g de tomate triturado",
+        "1 diente de ajo machacado",
+        "Un puñado de hojas de albahaca",
+        "250 g de mozzarella en rodajas y bien escurrida",
+        "60 g de parmesano rallado",
+        "Sal y pimienta"
+      ],
+      "instructions": [
+        "Comprobar: Corta el bejín por la mitad de arriba abajo y asegúrate de que está blanco, firme y uniforme hasta el centro. Quítale la piel exterior y corta la carne en rodajas de 1 cm.",
+        "Salsa: Calienta el ajo en 2 cucharadas de aceite, añade el tomate y unas hojas de albahaca, sala y deja cocer a fuego suave 15 minutos.",
+        "Freír: Enharina las rodajas y fríelas por tandas en un dedo de aceite bien caliente, 2–3 minutos por lado, hasta que estén doradas. Escúrrelas sobre papel de cocina y sálalas ligeramente.",
+        "Montar: Extiende un poco de salsa en una fuente de horno y alterna capas de bejín, salsa, mozzarella, albahaca y parmesano. Repite y termina con salsa, mozzarella y parmesano.",
+        "Hornear: Hornea a 200 °C durante 25 minutos, hasta que burbujee y la superficie esté dorada. Déjala reposar 10 minutos antes de cortarla."
+      ],
+      "species": ["giant_puffball"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Comprobar: Corta el bejín por la mitad de arriba abajo y asegúrate de que está blanco, firme y uniforme hasta el centro. Quítale la piel exterior y corta la carne en rodajas de 1 cm."
+        },
+        {
+          "step": 2,
+          "instruction": "Salsa: Calienta el ajo en 2 cucharadas de aceite, añade el tomate y unas hojas de albahaca, sala y deja cocer a fuego suave 15 minutos."
+        },
+        {
+          "step": 3,
+          "instruction": "Freír: Enharina las rodajas y fríelas por tandas en un dedo de aceite bien caliente, 2–3 minutos por lado, hasta que estén doradas. Escúrrelas sobre papel de cocina y sálalas ligeramente."
+        },
+        {
+          "step": 4,
+          "instruction": "Montar: Extiende un poco de salsa en una fuente de horno y alterna capas de bejín, salsa, mozzarella, albahaca y parmesano. Repite y termina con salsa, mozzarella y parmesano."
+        },
+        {
+          "step": 5,
+          "instruction": "Hornear: Hornea a 200 °C durante 25 minutos, hasta que burbujee y la superficie esté dorada. Déjala reposar 10 minutos antes de cortarla."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "45 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": [
+        "Corta siempre cada bejín por la mitad de arriba abajo. Si ves dentro el contorno de un sombrero, de láminas o de un pie, es una amanita joven aún dentro de su «huevo», y puede ser mortal.",
+        "Cómelo solo mientras la carne esté blanquísima, firme y uniforme hasta el centro, como una mozzarella fresca. Una carne amarilla, oliva, marrón o morada significa que se está estropeando, o que es un Scleroderma, venenoso y de interior negro violáceo.",
+        "El bejín gigante debe comerse siempre cocinado."
+      ]
+    },
+    "matsutake-rice": {
+      "title": "Arroz con matsutake (matsutake gohan)",
+      "ingredients": [
+        "300 g de arroz japonés de grano corto (2 medidas de arrocera)",
+        "150 g de matsutake (1–2 setas)",
+        "Unos 320 ml de dashi de kombu",
+        "1 cucharada de salsa de soja clara (usukuchi)",
+        "1 cucharada de mirin",
+        "1 cucharada de sake",
+        "½ cucharadita de sal",
+        "Unas ramitas de mitsuba o cebollino para servir"
+      ],
+      "instructions": [
+        "Lavar: Lava el arroz en agua fría, cambiándola hasta que salga casi transparente. Déjalo en remojo en agua limpia 30 minutos y escúrrelo bien.",
+        "Limpiar: No laves los matsutake. Raspa la tierra de la base del pie con un cuchillo, pasa un paño húmedo por los sombreros y córtalos a lo largo en láminas de unos 3 mm.",
+        "Sazonar: Pon el arroz en una olla de fondo grueso o en la arrocera con la soja, el mirin, el sake y la sal, vierte el dashi y remueve una vez. Coloca los matsutake encima sin mezclarlos.",
+        "Cocer: Tapa, lleva a ebullición y cuece a fuego mínimo 13 minutos (o usa el programa normal de la arrocera). Apaga el fuego y deja reposar 10 minutos sin destapar.",
+        "Servir: Mezcla con cuidado los matsutake con el arroz usando una pala y sirve en cuencos con mitsuba o cebollino."
+      ],
+      "species": ["matsutake"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Lavar: Lava el arroz en agua fría, cambiándola hasta que salga casi transparente. Déjalo en remojo en agua limpia 30 minutos y escúrrelo bien."
+        },
+        {
+          "step": 2,
+          "instruction": "Limpiar: No laves los matsutake. Raspa la tierra de la base del pie con un cuchillo, pasa un paño húmedo por los sombreros y córtalos a lo largo en láminas de unos 3 mm."
+        },
+        {
+          "step": 3,
+          "instruction": "Sazonar: Pon el arroz en una olla de fondo grueso o en la arrocera con la soja, el mirin, el sake y la sal, vierte el dashi y remueve una vez. Coloca los matsutake encima sin mezclarlos."
+        },
+        {
+          "step": 4,
+          "instruction": "Cocer: Tapa, lleva a ebullición y cuece a fuego mínimo 13 minutos (o usa el programa normal de la arrocera). Apaga el fuego y deja reposar 10 minutos sin destapar."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Mezcla con cuidado los matsutake con el arroz usando una pala y sirve en cuencos con mitsuba o cebollino."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "40 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "safetyNotes": [
+        "En el noroeste del Pacífico, en Norteamérica, el matsutake tiene un doble mortal, Amanita smithiana: blanca, con la base del pie engrosada que se afina en el suelo como una raíz y está rodeada de restos blancos de velo, y sin el olor especiado a canela. Destruye los riñones: revisa la base y el olor de cada seta.",
+        "Recoge los matsutake sin rastrillar ni remover el suelo: el rastrillo destruye el micelio, y rastrillar está prohibido en muchos bosques nacionales de Estados Unidos, donde además necesitas un permiso para recolectarlos."
       ]
     }
   }
