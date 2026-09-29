@@ -44,8 +44,8 @@ people pick as one mushroom.
   them as one:
   - _L. deliciosus_, _L. sanguifluus_ and _L. semisanguifluus_ with pines. The
     last two are the Catalan _rovelló_ and the Italian _sanguinello_.
-  - _L. deterrimus_ with spruce: 22,111 of the 38,000 European records, the
-    _rydz_ and _ryzhik_ of Poland and Russia.
+  - _L. deterrimus_ with spruce: 25,379 of the group's 47,775 European records,
+    the _rydz_ and _ryzhik_ of Poland and Russia.
   - _L. salmonicolor_ with fir, and _L. quieticolor_ and _L. vinosus_ with pines.
   - In North America: _L. rubrilacteus_ (Douglas-fir) and _L. aestivus_ in the
     West. GBIF files the eastern cedar-swamp _L. thyinos_ under
@@ -75,7 +75,7 @@ GBIF human observations with coordinates, 1990–2025 (training) / 2026:
 | _L. deterrimus_               |   22,111/363 |      3,268/9 |     239/11 |      52/3 |
 | _L. salmonicolor_ (+ thyinos) |      3,516/1 |      1,889/4 |     387/31 |       4/0 |
 | _L. rubrilacteus_             |            0 |            0 |          0 |   1,173/5 |
-| other _Deliciosi_ (4)         |     3,528/11 |      1,448/2 |        1/0 |     103/1 |
+| other _Deliciosi_ (5)         |     3,528/11 |      1,448/2 |        2/0 |      65/0 |
 | genus _Hydnum_                |   44,257/418 |     5,405/24 |   1,086/15 |    646/47 |
 | _Coprinus comatus_            |  107,718/700 |    6,164/167 | 10,597/228 | 7,861/227 |
 | _Calvatia gigantea_           |   13,818/500 |       321/10 |  5,929/235 |      30/1 |
@@ -89,7 +89,7 @@ calibration uses iNaturalist instead: verifiable observations from 12 April to
 28 September 2026 (the weather files' observed days), without obscured
 locations or accuracy worse than 5 km, and within 0.25° of a scoring point.
 That last filter drops sightings in Canada, Russia and Belarus, which the search
-boxes include and the grid does not (13–47% of each sample).
+boxes include and the grid does not (5–55% of each sample).
 
 | species          |       Europe |    US |
 | ---------------- | -----------: | ----: |
@@ -201,8 +201,8 @@ are not in it.
 - **Hedgehog:** all forest (CORINE 311–313, NLCD 41–43).
 - **Shaggy mane and giant puffball: broadleaf and mixed forest, natural
   grassland and scrub** (CORINE 311, 313, 321, 324; NLCD 41, 43, 52, 71).
-  - Most of their finds are in towns and farmland: 56–63% of US sightings have
-    less than 10% forest within ~5 km (16–30% in Europe). The map cannot show
+  - Many of their finds are in towns and farmland: 37–63% of US sightings have
+    less than 10% forest within ~5 km (3–30% in Europe). The map cannot show
     those places.
   - It shows the forecast in the nearest wild ground instead, the way it does
     for dandelion and nettle. The "how to find" text sends people to lawns,
@@ -236,8 +236,8 @@ Share of all-year precise records by month (≥ 5% in bold):
 | matsutake (USE, n=40)  |      0 |      0 |     0 |      0 |      0 |      0 |  **5** |  **8** | **35** | **42** |  **8** |      2 |
 | matsutake (USW, n=37)  |      0 |      0 |     0 |      0 |      0 |      0 |      0 |      0 | **16** | **19** | **49** | **16** |
 
-- **US West is two seasons.** The Pacific coast holds 93% of its saffron milk
-  cap and hedgehog records and fruits from October into February. The Rockies
+- **US West is two seasons.** The Pacific coast holds 93–94% of its saffron
+  milk cap and hedgehog records and fruits from October into February. The Rockies
   fruit in August and September with the monsoon.
 - **The western giant puffball fruits in spring** (April–June in California),
   the eastern one in late summer and autumn.
@@ -294,10 +294,10 @@ below.
 | shaggy mane, SE       |            15 ± 5 |                70 |           240 ± 1100 |  5.3 ± 2.5 |                 25 |         1.5 | Mar–May, Aug–Oct |
 | shaggy mane, USE      |            17 ± 5 |                76 |            240 ± 800 |  6.2 ± 2.5 |                 30 |         1.5 | Apr–May, Sep–Nov |
 | shaggy mane, USW      |            13 ± 5 |                65 |           720 ± 2300 |  6.2 ± 2.5 |                 20 |         1.5 | Sep–Jan, Apr–Jun |
-| giant puffball, NE    |            16 ± 5 |                76 |             50 ± 800 |  4.7 ± 2.5 |                 30 |        0.75 | Jul–Oct          |
+| giant puffball, NE    |            16 ± 5 |                76 |             50 ± 800 |  4.7 ± 2.5 |                 30 |         1.5 | Jul–Oct          |
 | giant puffball, SE    |            17 ± 5 |                67 |            110 ± 800 |  5.2 ± 2.5 |                 30 |         1.5 | Jun–Oct          |
 | giant puffball, USE   |            20 ± 5 |                73 |            240 ± 800 |  5.9 ± 2.5 |                 65 |         1.5 | Aug–Oct          |
-| giant puffball, USW   |            15 ± 5 |                56 |           950 ± 2900 |  6.3 ± 2.5 |                 10 |         0.3 | Apr–Sep          |
+| giant puffball, USW   |            15 ± 5 |                56 |           950 ± 2900 |  6.3 ± 2.5 |                 10 |         1.5 | Apr–Sep          |
 | matsutake, NE         |            12 ± 5 |                78 |            230 ± 800 |  5.0 ± 1.5 |                 45 |         1.5 | Aug–Oct          |
 | matsutake, USE        |            13 ± 5 |                74 |            490 ± 800 |  4.4 ± 1.5 |                 45 |         1.5 | Sep–Nov          |
 | matsutake, USW        |            11 ± 5 |                75 |           900 ± 1200 |  5.0 ± 1.5 |                 45 |         1.5 | Sep–Dec          |
@@ -328,50 +328,55 @@ How each value was set:
     within 0.01, does not lower the mean score at sightings, and gains (spatial
     AUC +0.03 or mean +0.5).
   - The added condition: the day-to-day AUC may not drop by more than 0.01
-    either. For plants the rule looked only at places. For fungi the day-to-day
-    signal is the forecast, and on the giant puffball the rule alone would have
-    traded 0.06 of it for places.
+    either. The rule looked at places and at the score at sightings, not at
+    days. For fungi the day-to-day signal is the forecast, and on the giant
+    puffball the rule alone would have traded 0.06 of it for places.
 
 | rain weight: temporal / spatial AUC, mean | 1.5                 | 0.75                | 0.3                 | 0                   | chosen |
 | ----------------------------------------- | ------------------- | ------------------- | ------------------- | ------------------- | -----: |
-| shaggy mane, NE                           | 0.687 / 0.584, 8.62 | 0.701 / 0.606, 8.65 | 0.707 / 0.619, 8.68 | 0.703 / 0.628, 8.70 |      0 |
-| giant puffball, NE                        | 0.691 / 0.684, 8.42 | 0.681 / 0.716, 8.51 | 0.667 / 0.736, 8.59 | 0.631 / 0.748, 8.65 |   0.75 |
-| giant puffball, USW                       | 0.704 / 0.763, 7.23 | 0.703 / 0.786, 7.37 | 0.694 / 0.803, 7.52 | 0.644 / 0.811, 7.67 |    0.3 |
+| shaggy mane, NE                           | 0.687 / 0.579, 8.71 | 0.701 / 0.600, 8.75 | 0.707 / 0.613, 8.79 | 0.703 / 0.622, 8.81 |      0 |
+| giant puffball, NE                        | 0.691 / 0.676, 8.50 | 0.681 / 0.708, 8.60 | 0.667 / 0.727, 8.68 | 0.631 / 0.740, 8.76 |    1.5 |
+| giant puffball, USW                       | 0.704 / 0.756, 7.30 | 0.703 / 0.778, 7.44 | 0.694 / 0.795, 7.60 | 0.642 / 0.801, 7.77 |    1.5 |
 
-Every other species and region stays at 1.5. For the shaggy mane in North
-Europe, rain carried no signal in the 2026 autumn at any threshold (35–80 mm):
-it rained enough nearly everywhere.
+- **The shaggy mane in North Europe goes to 0.** It gains on days and on places.
+  Rain carried no signal there in the 2026 autumn at any threshold (35–80 mm):
+  it rained enough nearly everywhere.
+- **The giant puffball stays at 1.5.** In North Europe and US West, the first
+  lower weight that gains on places costs 0.0101 and 0.0106 of day-to-day AUC.
+- Every other species and region stays at 1.5: no lower weight passes the rule.
 
 **Against a literature starting point** (weather-only score; temporal AUC:
 each sighting's day against the other in-season days at the same point;
 spatial AUC: sighting points against 400 random points of the region on the
 same days):
 
-| species, region       | literature start: temporal / spatial AUC | chosen: temporal / spatial AUC | mean at sightings, chosen |
-| --------------------- | ---------------------------------------: | -----------------------------: | ------------------------: |
-| saffron milk cap, NE  |                            0.688 / 0.675 |                  0.706 / 0.613 |                      8.69 |
-| saffron milk cap, SE  |                            0.701 / 0.860 |                  0.728 / 0.881 |                      8.38 |
-| saffron milk cap, USE |                            0.670 / 0.931 |                  0.643 / 0.907 |                      8.81 |
-| hedgehog, NE          |                            0.504 / 0.633 |                  0.515 / 0.700 |                      8.76 |
-| hedgehog, SE          |                            0.555 / 0.814 |                  0.548 / 0.799 |                      8.01 |
-| hedgehog, USE         |                            0.627 / 0.850 |                  0.556 / 0.811 |                      8.73 |
-| hedgehog, USW         |                            0.573 / 0.916 |                  0.573 / 0.907 |                      7.43 |
-| shaggy mane, NE       |                            0.649 / 0.600 |                  0.703 / 0.628 |                      8.70 |
-| shaggy mane, SE       |                            0.731 / 0.783 |                  0.738 / 0.785 |                      8.11 |
-| shaggy mane, USE      |                            0.747 / 0.688 |                  0.735 / 0.698 |                      7.59 |
-| shaggy mane, USW      |                            0.677 / 0.770 |                  0.670 / 0.807 |                      7.65 |
-| giant puffball, NE    |                            0.670 / 0.692 |                  0.681 / 0.716 |                      8.51 |
-| giant puffball, SE    |                            0.543 / 0.797 |                  0.545 / 0.826 |                      8.15 |
-| giant puffball, USE   |                            0.608 / 0.804 |                  0.561 / 0.791 |                      8.67 |
-| giant puffball, USW   |                            0.702 / 0.679 |                  0.694 / 0.803 |                      7.52 |
-| matsutake, NE         |                            0.602 / 0.696 |                  0.599 / 0.737 |                      9.09 |
+| species, region         | literature start: temporal / spatial AUC | chosen: temporal / spatial AUC | mean at sightings, chosen |
+| ----------------------- | ---------------------------------------: | -----------------------------: | ------------------------: |
+| saffron milk cap, NE    |                            0.688 / 0.675 |                  0.706 / 0.613 |                      8.69 |
+| saffron milk cap, SE    |                            0.701 / 0.860 |                  0.728 / 0.881 |                      8.38 |
+| saffron milk cap, USE   |                            0.670 / 0.931 |                  0.643 / 0.907 |                      8.81 |
+| saffron milk cap, USW   |                            0.626 / 0.791 |                  0.629 / 0.893 |                      7.20 |
+| hedgehog, NE            |                            0.504 / 0.633 |                  0.515 / 0.700 |                      8.76 |
+| hedgehog, SE            |                            0.555 / 0.814 |                  0.548 / 0.799 |                      8.01 |
+| hedgehog, USE           |                            0.627 / 0.850 |                  0.556 / 0.811 |                      8.73 |
+| hedgehog, USW           |                            0.573 / 0.916 |                  0.573 / 0.907 |                      7.43 |
+| shaggy mane, NE         |                            0.649 / 0.600 |                  0.703 / 0.622 |                      8.81 |
+| shaggy mane, SE         |                            0.731 / 0.783 |                  0.738 / 0.781 |                      8.19 |
+| shaggy mane, USE        |                            0.747 / 0.688 |                  0.735 / 0.705 |                      7.73 |
+| shaggy mane, USW        |                            0.677 / 0.770 |                  0.670 / 0.807 |                      7.77 |
+| giant puffball, NE      |                            0.670 / 0.692 |                  0.691 / 0.676 |                      8.50 |
+| giant puffball, SE      |                            0.543 / 0.797 |                  0.544 / 0.821 |                      8.22 |
+| giant puffball, USE     |                            0.608 / 0.804 |                  0.561 / 0.787 |                      8.74 |
+| giant puffball, USW     |                            0.702 / 0.679 |                  0.704 / 0.756 |                      7.30 |
+| matsutake, NE           |                            0.602 / 0.696 |                  0.599 / 0.737 |                      9.09 |
+| matsutake, USE (n = 12) |                            0.750 / 0.938 |                  0.698 / 0.934 |                      8.44 |
 
 The literature starting points: saffron milk cap 14 °C, 80%, 600 m, pH 5.5,
 30 mm; hedgehog 14 °C, 85%, 600 m, pH 5.0, 35 mm; shaggy mane 14 °C, 75%,
 300 m, pH 6.5, 25 mm; giant puffball 17 °C, 70%, 300 m, pH 6.5, 30 mm;
 matsutake 12 °C, 80%, 300 m, pH 4.5, 40 mm.
 
-- **Hedgehogs barely follow the weather day to day** (temporal AUC 0.51–0.57):
+- **Hedgehogs barely follow the weather day to day** (temporal AUC 0.52–0.57):
   they last for weeks once up. The forecast still tells their places apart
   (0.70–0.91).
 - **Where the literature start scores higher, it is cooler.** In US East
@@ -381,24 +386,26 @@ matsutake 12 °C, 80%, 300 m, pH 4.5, 40 mm.
 
 ### US West
 
-- **Saffron milk cap and hedgehog: the coast is not in the sample.** US West's
-  2026 sightings in the window are the Rockies in August and September (saffron
-  milk cap: median elevation 2,925 m, 48% humidity). The Pacific coast, with 93%
-  of the all-year records, fruits from October to February.
-  - Saffron milk cap: 12 ± 5 °C, a humidity optimum at the Rockies' 48% (the
-    humidity term does not penalise the wet coast), and 1,500 ± 2,000 m, so
-    neither the coast nor the Rockies loses more than a fifth of the altitude
-    term.
-  - Hedgehog: the sample's own values (15 ± 5 °C). A 10 °C winter day on the
-    coast keeps 73% of the temperature term.
-  - Both get checked against the coast's winter sightings.
+- **Saffron milk cap: the coast is not in the sample.** Its 71 US West
+  sightings in the window are mostly the Rockies in August and September (median
+  elevation 2,925 m, 48% humidity). The Pacific coast, with 93% of the all-year
+  records, fruits from October to February. So:
+  - 12 ± 5 °C;
+  - a humidity optimum at the Rockies' 48%, which does not penalise the wet
+    coast (the humidity term has no penalty above its optimum);
+  - 1,500 ± 2,000 m, so the coast and the Rockies each lose about a fifth of the
+    altitude term.
+- **Hedgehog: the sample is the Pacific Northwest's early autumn** (60 of 108
+  July–September sightings), plus 28 in the Kansas–Kentucky band. California's
+  winter season is missing. It keeps the sample's own values (15 ± 5 °C); an
+  11 °C winter day keeps 73% of the temperature term.
 - **Matsutake: literature.** 11 ± 5 °C for the October–November fruiting in the
   Cascades, the Sierra and the coast ranges, 75% humidity, 900 ± 1,200 m, and
   North Europe's 45 mm rain.
-- **US West's points reach 81.7° W**, and its tiles draw over US East's. The
-  species with a separate US West value set (all but the hedgehog, whose values
-  are close) score the Kansas–Kentucky band with it. The host lists and range
-  priors keep the saffron milk cap and matsutake out of most of that band.
+- **US West's points reach 81.7° W**, and its tiles draw over US East's, so US
+  West's values also score the Kansas–Kentucky band. There the host lists keep
+  the saffron milk cap and matsutake to conifer stands.
+- The winter checks below cover the coast.
 
 ## Literature check
 
@@ -406,7 +413,86 @@ matsutake 12 °C, 80%, 300 m, pH 4.5, 40 mm.
 
 ## Photo identification
 
-(filled in below)
+**Vocabulary.**
+
+- Three of the five labels were new to it: _Lactarius deliciosus_, _Hydnum
+  repandum_ and _Tricholoma matsutake_.
+- Two moved from tier 2 ("other") to catalog: _Coprinus comatus_ and _Calvatia
+  gigantea_.
+- Two look-alikes join as toxic: the common ink cap (_Coprinopsis
+  atramentaria_) and the woolly milk cap (_Lactarius torminosus_). Neither was
+  in the vocabulary, so a photo of one could only land on the edible species.
+- The matrix has 2,644 rows: 47 catalog, 77 toxic and 2,520 other. The
+  2,500-name tier-2 cap refilled the freed slots.
+
+**Look-alike warnings.** Each toxic entry names the checks that tell it apart,
+and a pair gets an escalated note when both appear in one result:
+
+| toxic label                                                              | mechanism                                      | checks                                 | escalated note, next to             |
+| ------------------------------------------------------------------------ | ---------------------------------------------- | -------------------------------------- | ----------------------------------- |
+| _Coprinopsis atramentaria_ (new)                                         | coprine: a violent reaction with alcohol (new) | cap scales (new), ring and stem        | shaggy mane                         |
+| _Lactarius torminosus_ (new)                                             | stomach upset                                  | milk colour (new), woolly margin (new) | none                                |
+| _Amanita smithiana_                                                      | kidney failure                                 | unchanged                              | matsutake (new)                     |
+| _A. phalloides_, _A. virosa_, _A. bisporigera_, _A. ocreata_             | amatoxins                                      | unchanged                              | giant puffball (new): the egg stage |
+| _Scleroderma citrinum_, _S. polyrhizum_, _S. areolatum_, _S. verrucosum_ | stomach upset                                  | unchanged                              | giant puffball (new)                |
+
+All texts are in the six locales. The earthball and _Amanita_ notes are one text
+("cut it in half from top to bottom before anything else").
+
+### Measured gate result
+
+`bioclip_export.py --stage verify-shipped` gives the same result as before the
+change, because its test split has no photos of the new species:
+
+- **False-edible:** 1.36% (ceiling 2%).
+- **Toxic photos warned** (a toxic label in the top 3): 97.7%.
+- **Catalog accuracy:** top-1 81.8%, top-3 92.1%.
+
+### Spot check on new photos
+
+20 recent research-grade iNaturalist photos per taxon (one per observation),
+embedded with the PyTorch BioCLIP model and ranked against the shipped matrix:
+
+| photos of                 | catalog label expected | first | in top 3 | a toxic label in top 3 |
+| ------------------------- | ---------------------- | ----: | -------: | ---------------------: |
+| _Lactarius deliciosus_    | saffron milk cap       |  100% |     100% |                    95% |
+| _Lactarius deterrimus_    | saffron milk cap       |   95% |     100% |                    90% |
+| _Lactarius thyinos_       | saffron milk cap       |   95% |     100% |                    70% |
+| _Lactarius rubrilacteus_  | saffron milk cap       |   85% |     100% |                    45% |
+| _Hydnum repandum_         | hedgehog               |  100% |     100% |                    15% |
+| _Hydnum umbilicatum_      | hedgehog               |   70% |      95% |                    15% |
+| _Hydnum oregonense_       | hedgehog               |   90% |      90% |                    10% |
+| _Coprinus comatus_        | shaggy mane            |  100% |     100% |                    65% |
+| _Calvatia gigantea_       | giant puffball         |   90% |      95% |                    60% |
+| _Calvatia booniana_       | giant puffball         |   50% |      85% |                    75% |
+| _Tricholoma matsutake_    | matsutake              |   80% |      80% |                    50% |
+| _Tricholoma magnivelare_  | matsutake              |   65% |      70% |                    35% |
+| _Tricholoma murrillianum_ | matsutake              |   20% |      70% |                    85% |
+
+| photos of the look-alike   | its own name first | an edible label first | a toxic label in top 3 |
+| -------------------------- | -----------------: | --------------------: | ---------------------: |
+| _Coprinopsis atramentaria_ |                90% |                    5% |                   100% |
+| _Lactarius torminosus_     |               100% |                    0% |                   100% |
+| _Lactarius pubescens_      |      (not a label) |                    0% |                   100% |
+| _Amanita smithiana_        |                75% |                    0% |                   100% |
+| _Scleroderma citrinum_     |                90% |                    0% |                    95% |
+
+- **The errors run the safe way.** No look-alike photo reached an edible label
+  first, except one common ink cap photo, which ranked shaggy mane first with
+  the ink cap second: the alcohol note fires on it. _L. pubescens_, which has no
+  label, lands on the woolly milk cap (90%).
+- **Western matsutake is the weak spot.** Its photos rank _Amanita smithiana_
+  first 30% of the time, and matsutake is in the top 3 of 70%. In that case the
+  matsutake–_A. smithiana_ note fires, which is the advice Pacific Northwest
+  guides give for this pair. The Nordic _T. matsutake_ is the label because it
+  is the name people search for; a _T. murrillianum_ label would cost the
+  Nordic photos.
+- **Frequent warnings on the edible side are false alarms at rank 2–3,** and
+  they point at the right check:
+  - the woolly milk cap next to a saffron milk cap: check the milk;
+  - the ink cap next to a shaggy mane: the alcohol note;
+  - earthballs, _Entoloma_ and young _Amanita_ next to a puffball: cut it in
+    half.
 
 ## Recipes
 
