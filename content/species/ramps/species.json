@@ -1,0 +1,152 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "ramps",
+  "scientificName": "Allium tricoccum",
+  "catalog": {
+    "enabled": true,
+    "order": 48,
+    "translationKey": "ramps",
+    "category": "plant",
+    "emoji": "🧄",
+    "season": "spring",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/ramps.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Ramps",
+      "description": "America's wild garlic: broad, smooth green leaves on purplish stems that smell strongly of onion and garlic",
+      "howTo": "Look in rich, moist hardwood forest in the eastern US from March to May, before the trees leaf out. Take one leaf per plant and leave the bulb; some parks ban picking, and Quebec bans selling them"
+    },
+    "it": {
+      "name": "Aglio selvatico americano",
+      "description": "L'aglio orsino d'America: foglie larghe, lisce e verdi su steli violacei, dal forte odore di cipolla e aglio",
+      "howTo": "Cercalo nei boschi di latifoglie ricchi e umidi dell'est degli Stati Uniti da marzo a maggio, prima che gli alberi mettano le foglie. Prendi una foglia per pianta e lascia il bulbo; alcuni parchi ne vietano la raccolta e il Québec ne vieta la vendita"
+    },
+    "fr": {
+      "name": "Ail des bois",
+      "description": "L'ail sauvage d'Amérique : de larges feuilles vertes et lisses sur des tiges violacées, à forte odeur d'oignon et d'ail",
+      "howTo": "Cherchez-le dans les forêts de feuillus riches et humides de l'est des États-Unis de mars à mai, avant la feuillaison des arbres. Prenez une feuille par plant et laissez le bulbe ; certains parcs en interdisent la cueillette et le Québec en interdit la vente"
+    },
+    "de": {
+      "name": "Ramp-Lauch",
+      "description": "Der wilde Knoblauch Amerikas: breite, glatte grüne Blätter an violetten Stielen, die stark nach Zwiebel und Knoblauch riechen",
+      "howTo": "Suche in reichen, feuchten Laubwäldern im Osten der USA von März bis Mai, bevor die Bäume austreiben. Nimm ein Blatt pro Pflanze und lass die Zwiebel stehen; manche Parks verbieten das Sammeln, und Québec verbietet den Verkauf"
+    },
+    "es": {
+      "name": "Puerro silvestre americano",
+      "description": "El ajo silvestre de América: hojas anchas, lisas y verdes sobre tallos violáceos, con un fuerte olor a cebolla y ajo",
+      "howTo": "Búscalo en bosques de frondosas ricos y húmedos del este de EE. UU. de marzo a mayo, antes de que los árboles echen hojas. Coge una hoja por planta y deja el bulbo; algunos parques prohíben la recolección y Quebec prohíbe su venta"
+    },
+    "pt": {
+      "name": "Alho-porro-selvagem",
+      "description": "O alho-selvagem da América: folhas largas, lisas e verdes em caules arroxeados, com um forte cheiro a cebola e alho",
+      "howTo": "Procure em florestas de folhosas ricas e húmidas do leste dos EUA de março a maio, antes de as árvores ganharem folhas. Apanhe uma folha por planta e deixe o bolbo; alguns parques proíbem a apanha e o Quebeque proíbe a venda"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Allium tricoccum",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-30-step4-plants.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Ramps"],
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 43],
+        "scoring": {
+          "optimal_temp": 10,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 260,
+          "alt_sigma": 800,
+          "optimal_humidity": 75,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.9,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.4, 7.4],
+          "optimal_soil_temp": 9,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 47,
+          "rain_weight": 0,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2856301",
+          "docs/species/2026-09-30-step4-plants.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 43],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 570,
+          "alt_sigma": 900,
+          "optimal_humidity": 66,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.0, 7.0],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 27,
+          "rain_weight": 0,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [3, 4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2856301",
+          "docs/species/2026-09-30-step4-plants.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [2856301]
+    }
+  }
+}

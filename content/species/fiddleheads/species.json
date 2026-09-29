@@ -1,0 +1,151 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "fiddleheads",
+  "scientificName": "Matteuccia struthiopteris",
+  "catalog": {
+    "enabled": true,
+    "order": 49,
+    "translationKey": "fiddleheads",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "spring",
+    "habitat": "wetland",
+    "image": {
+      "path": "src/assets/species/fiddleheads.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Fiddleheads",
+      "description": "The tightly coiled young fronds of the ostrich fern: smooth, bright green, with brown papery scales",
+      "howTo": "Look on river floodplains and in moist woods from late April to May, while the fronds are still coiled. Always boil them before eating, and take no more than half the fiddleheads of a clump"
+    },
+    "it": {
+      "name": "Felce penna di struzzo",
+      "description": "Le giovani fronde arrotolate della felce penna di struzzo: lisce, verde brillante, con squame brune cartacee",
+      "howTo": "Cercali nelle piane alluvionali dei fiumi e nei boschi umidi da fine aprile a maggio, finché le fronde sono ancora arrotolate. Bollili sempre prima di mangiarli e prendi al massimo metà dei germogli di un cespo"
+    },
+    "fr": {
+      "name": "Têtes de violon",
+      "description": "Les jeunes frondes enroulées de la fougère-à-l'autruche : lisses, d'un vert vif, avec des écailles brunes comme du papier",
+      "howTo": "Cherchez-les dans les plaines inondables et les bois humides de fin avril à mai, tant que les frondes sont enroulées. Faites-les toujours bouillir avant de les manger et ne prenez pas plus de la moitié des crosses d'une touffe"
+    },
+    "de": {
+      "name": "Straußenfarn-Triebe",
+      "description": "Die fest eingerollten jungen Wedel des Straußenfarns: glatt, leuchtend grün, mit braunen, papierartigen Schuppen",
+      "howTo": "Suche in Flussauen und feuchten Wäldern von Ende April bis Mai, solange die Wedel noch eingerollt sind. Koche sie immer vor dem Essen ab und nimm höchstens die Hälfte der Triebe eines Horsts"
+    },
+    "es": {
+      "name": "Helecho avestruz",
+      "description": "Las frondas jóvenes y enroscadas del helecho pluma de avestruz: lisas, de un verde vivo y con escamas pardas como de papel",
+      "howTo": "Búscalos en llanuras de inundación y bosques húmedos de finales de abril a mayo, mientras las frondas siguen enroscadas. Hiérvelos siempre antes de comerlos y no cojas más de la mitad de los brotes de una mata"
+    },
+    "pt": {
+      "name": "Feto-de-avestruz",
+      "description": "As frondes jovens e enroladas do feto-avestruz: lisas, verde-vivo, com escamas castanhas como papel",
+      "howTo": "Procure em várzeas de rios e bosques húmidos do fim de abril a maio, enquanto as frondes ainda estão enroladas. Coza-os sempre antes de os comer e não apanhe mais de metade dos rebentos de uma touceira"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Matteuccia struthiopteris",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-30-step4-plants.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Fiddleheads"],
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 43],
+        "scoring": {
+          "optimal_temp": 12,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 220,
+          "alt_sigma": 800,
+          "optimal_humidity": 73,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.7,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.2, 7.2],
+          "optimal_soil_temp": 11,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 49,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2650999",
+          "docs/species/2026-09-30-step4-plants.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 43],
+        "scoring": {
+          "optimal_temp": 16,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 240,
+          "alt_sigma": 800,
+          "optimal_humidity": 68,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.7,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.2, 7.2],
+          "optimal_soil_temp": 15,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 34,
+          "rain_weight": 0,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [4, 5],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2650999",
+          "docs/species/2026-09-30-step4-plants.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [2650999]
+    }
+  }
+}

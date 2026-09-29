@@ -90,7 +90,8 @@
       "ricin": "As sementes contêm um dos venenos naturais mais letais conhecidos. Poucas sementes mastigadas podem matar um adulto e não existe antídoto.",
       "cytisine": "Todas as partes, sobretudo as vagens, contêm citisina. Morreram crianças depois de comerem as vagens, tomando-as por ervilhas.",
       "grayanotoxin": "As folhas, flores e néctar contêm graianotoxinas, que alteram o ritmo cardíaco. O mel feito destas flores já intoxicou pessoas.",
-      "veratrumAlkaloid": "Faz colapsar a tensão arterial e o ritmo cardíaco em poucas horas. As folhas jovens são repetidamente confundidas com alho-dos-ursos, e essas confusões foram fatais."
+      "veratrumAlkaloid": "Faz colapsar a tensão arterial e o ritmo cardíaco em poucas horas. As folhas jovens são repetidamente confundidas com alho-dos-ursos, e essas confusões foram fatais.",
+      "ptaquiloside": "Contém ptaquilosídeo, que provoca cancro (o feto-comum é classificado como possível cancerígeno para o ser humano), e uma enzima que destrói a vitamina B1. Cozinhar reduz a toxina, mas não a elimina."
     },
     "checks": {
       "volva": "Observa a própria base do pé, abaixo do nível do solo: uma volva em forma de saco ou uma taça inchada nesse ponto é um sinal de alarme grave.",
@@ -117,13 +118,17 @@
       "plantHabit": "Se a planta é um arbusto lenhoso ou uma erva tenra que seca todos os anos.",
       "interiorPattern": "Corta-o ao meio. Uma trufa verdadeira é marmoreada com veias pálidas ramificadas. Uma falsa trufa é uma massa escura e compacta, arroxeada a negra, sem padrão.",
       "berryColour": "Cor das bagas maduras: o sabugueiro-negro tem bagas negro-arroxeadas. Bagas vermelhas em cachos eretos em forma de cúpula são de sabugueiro-vermelho, tóxico cru.",
-      "flowerShape": "Forma da flor: as violetas têm cinco pétalas desiguais com um esporão atrás; a ficária tem 8 a 12 pétalas amarelas e brilhantes."
+      "flowerShape": "Forma da flor: as violetas têm cinco pétalas desiguais com um esporão atrás; a ficária tem 8 a 12 pétalas amarelas e brilhantes.",
+      "fernStem": "Observa o caule jovem. Os rebentos do feto-de-avestruz são lisos, com escamas castanhas como papel e um sulco profundo em U na face interna do caule. O feto-comum é peludo, de caule redondo e com o topo que se divide em três.",
+      "berryBloom": "Os abrunhos crescem isolados no abrunheiro espinhoso e têm uma pruína azulada que sai ao esfregar. As bagas do espinheiro-cerval são negras e brilhantes, em cachos ao longo dos raminhos, sem pruína."
     },
     "critical": {
       "lepiotaMacrolepiota": "As Lepiota mortais estão entre os sósias mais perigosos do frade, e nos nossos testes foi o erro mais frequente de todos. Um frade verdadeiro é grande, com um anel que se move e um pé com padrão de pele de cobra. Os exemplares pequenos com o pé liso devem ser deixados onde estão, mesmo que pareçam os corretos.",
       "trufflePair": "Entre as correspondências estão tanto uma trufa como uma falsa trufa venenosa. Por fora são genuinamente difíceis de distinguir. Corta o achado antes de mais: veias pálidas marmoreadas indicam trufa, um interior escuro e compacto indica falsa trufa.",
       "angelWingPair": "Entre as correspondências estão tanto um pleuroto como a orelha-de-anjo. Esta última provocou inflamações cerebrais mortais. É mais fina, branco puro, e cresce em madeira de conífera: verifica antes de mais a madeira e a espessura da carne.",
-      "veratrumPair": "Entre as correspondências estão tanto alho-dos-ursos como veratro branco. Esta confusão já matou. Esmaga uma folha: o alho-dos-ursos cheira intensamente a alho, o veratro não. As folhas de veratro são também muito nervuradas e alternas ao longo do caule."
+      "veratrumPair": "Entre as correspondências estão tanto alho-dos-ursos como veratro branco. Esta confusão já matou. Esmaga uma folha: o alho-dos-ursos cheira intensamente a alho, o veratro não. As folhas de veratro são também muito nervuradas e alternas ao longo do caule.",
+      "rampsPair": "Entre as correspondências estão tanto alho-porro-selvagem como um sósia venenoso. O lírio-do-vale, o veratro-verde e o cólquico têm folhas parecidas e são os três tóxicos. Esmaga uma folha: o alho-porro-selvagem cheira intensamente a cebola ou alho, os sósias não. O lírio-do-vale tem duas folhas enroladas à volta de um único pé; as folhas do veratro são profundamente pregueadas e sobem por um caule robusto.",
+      "fiddleheadBracken": "Entre as correspondências estão tanto rebentos de feto-de-avestruz como feto-comum. O feto-comum provoca cancro e não se come. Os rebentos do feto-de-avestruz são lisos, com escamas castanhas como papel e um sulco profundo em U no caule; o feto-comum é peludo e divide-se em três no topo."
     }
   }
 }

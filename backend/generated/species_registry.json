@@ -5378,6 +5378,650 @@
           ]
         }
       }
+    },
+    "ramps": {
+      "name": "Ramps",
+      "scientificName": "Allium tricoccum",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2856301],
+      "dataColumns": ["ramps_score", "Ramps"],
+      "regions": {
+        "USE": {
+          "landCover": [41, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 10,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 260,
+            "alt_sigma": 800,
+            "optimal_humidity": 75,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.9,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.4, 7.4],
+            "optimal_soil_temp": 9,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 47,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2856301",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 13,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 570,
+            "alt_sigma": 900,
+            "optimal_humidity": 66,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 7],
+            "optimal_soil_temp": 12,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 27,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [3, 4, 5],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2856301",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        }
+      }
+    },
+    "fiddleheads": {
+      "name": "Fiddleheads",
+      "scientificName": "Matteuccia struthiopteris",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2650999],
+      "dataColumns": ["fiddleheads_score", "Fiddleheads"],
+      "regions": {
+        "USE": {
+          "landCover": [41, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 12,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 220,
+            "alt_sigma": 800,
+            "optimal_humidity": 73,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.7,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.2, 7.2],
+            "optimal_soil_temp": 11,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 49,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [4, 5],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2650999",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 16,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 240,
+            "alt_sigma": 800,
+            "optimal_humidity": 68,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.7,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.2, 7.2],
+            "optimal_soil_temp": 15,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 34,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [4, 5],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2650999",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        }
+      }
+    },
+    "cloudberry": {
+      "name": "Cloudberry",
+      "scientificName": "Rubus chamaemorus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2998290],
+      "dataColumns": ["cloudberry_score", "Cloudberry"],
+      "regions": {
+        "NE": {
+          "landCover": [312, 322, 324, 333],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 300,
+            "alt_sigma": 800,
+            "optimal_humidity": 69,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.7,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.2, 6.2],
+            "optimal_soil_temp": 14,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 28,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [7, 8],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/2998290",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        }
+      }
+    },
+    "huckleberry": {
+      "name": "Huckleberry",
+      "scientificName": "Vaccinium membranaceum",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [9060377, 2882961, 2882894],
+      "dataColumns": ["huckleberry_score", "Huckleberry"],
+      "regions": {
+        "USE": {
+          "landCover": [42, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 20,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 1220,
+            "alt_sigma": 1400,
+            "optimal_humidity": 55,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.8, 6.8],
+            "optimal_soil_temp": 19,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 1,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/9060377",
+            "https://www.gbif.org/species/2882961",
+            "https://www.gbif.org/species/2882894",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        },
+        "USW": {
+          "landCover": [42, 43, 52],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 20,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 1220,
+            "alt_sigma": 1400,
+            "optimal_humidity": 55,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.3,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.8, 6.8],
+            "optimal_soil_temp": 19,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 1,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [7, 8, 9],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/9060377",
+            "https://www.gbif.org/species/2882961",
+            "https://www.gbif.org/species/2882894",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        }
+      }
+    },
+    "pawpaw": {
+      "name": "Pawpaw",
+      "scientificName": "Asimina triloba",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [3158040],
+      "dataColumns": ["pawpaw_score", "Pawpaw"],
+      "regions": {
+        "USE": {
+          "landCover": [41, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 24,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 34,
+            "optimal_alt": 130,
+            "alt_sigma": 800,
+            "optimal_humidity": 71,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.4,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.9, 6.9],
+            "optimal_soil_temp": 23,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 62,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/3158040",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 25,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 35,
+            "optimal_alt": 240,
+            "alt_sigma": 800,
+            "optimal_humidity": 68,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.7,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.2, 7.2],
+            "optimal_soil_temp": 24,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 13,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/3158040",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        }
+      }
+    },
+    "rose_hips": {
+      "name": "Rose Hips",
+      "scientificName": "Rosa canina",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [8395064],
+      "dataColumns": ["rose_hips_score", "Rose Hips"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 313, 321, 322, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 14,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 50,
+            "alt_sigma": 800,
+            "optimal_humidity": 76,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.6,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.1, 6.1],
+            "optimal_soil_temp": 13,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 29,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/8395064",
+            "https://www.gbif.org/species/3002461",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 313, 321, 322, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 17,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 320,
+            "alt_sigma": 1100,
+            "optimal_humidity": 63,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.4,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.9, 6.9],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 15,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/8395064",
+            "https://www.gbif.org/species/3002461",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        },
+        "USE": {
+          "landCover": [41, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 19,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 120,
+            "alt_sigma": 800,
+            "optimal_humidity": 72,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.2,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.7, 6.7],
+            "optimal_soil_temp": 18,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 42,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/8395064",
+            "https://www.gbif.org/species/3002461",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 16,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 620,
+            "alt_sigma": 2400,
+            "optimal_humidity": 58,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.9,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.4, 7.4],
+            "optimal_soil_temp": 15,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 8,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/8395064",
+            "https://www.gbif.org/species/3002461",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        }
+      }
+    },
+    "sloes": {
+      "name": "Sloes",
+      "scientificName": "Prunus spinosa",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [3023221],
+      "dataColumns": ["sloes_score", "Sloes"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 313, 321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 15,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 40,
+            "alt_sigma": 800,
+            "optimal_humidity": 74,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.7,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.2, 6.2],
+            "optimal_soil_temp": 14,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 41,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/3023221",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 313, 321, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 19,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 280,
+            "alt_sigma": 800,
+            "optimal_humidity": 63,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.2,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.7, 6.7],
+            "optimal_soil_temp": 18,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 22,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/3023221",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        }
+      }
+    },
+    "sea_buckthorn": {
+      "name": "Sea Buckthorn",
+      "scientificName": "Hippophae rhamnoides",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [3039285],
+      "dataColumns": ["sea_buckthorn_score", "Sea Buckthorn"],
+      "regions": {
+        "NE": {
+          "landCover": [321, 322, 324, 333],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 17,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 10,
+            "alt_sigma": 800,
+            "optimal_humidity": 68,
+            "humidity_sigma": 17,
+            "optimal_pH": 4.8,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [3.3, 6.3],
+            "optimal_soil_temp": 16,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 10,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/3039285",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        },
+        "SE": {
+          "landCover": [321, 322, 324, 333],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 19,
+            "temp_sigma": 6,
+            "min_temp": 0,
+            "max_temp": 30,
+            "optimal_alt": 110,
+            "alt_sigma": 900,
+            "optimal_humidity": 63,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.7,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.2, 7.2],
+            "optimal_soil_temp": 18,
+            "soil_temp_sigma": 6,
+            "min_cumulative_rain": 12,
+            "rain_weight": 0,
+            "weather_preference": {
+              "rain_first": false
+            },
+            "wind_sensitive": false,
+            "season_months": [8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/3039285",
+            "docs/species/2026-09-30-step4-plants.md"
+          ]
+        }
+      }
     }
   }
 }

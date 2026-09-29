@@ -273,6 +273,46 @@
       "name": "Polypore en touffe",
       "description": "Une grosse rosette de lobes gris-brun imbriqués au pied des vieux chênes, aux pores blancs dessous",
       "howTo": "Cherchez au pied des chênes vieux ou dépérissants de fin août à octobre ; il revient souvent au même arbre d'une année sur l'autre. Il est protégé dans une partie de l'Europe centrale et du Nord"
+    },
+    "ramps": {
+      "name": "Ail des bois",
+      "description": "L'ail sauvage d'Amérique : de larges feuilles vertes et lisses sur des tiges violacées, à forte odeur d'oignon et d'ail",
+      "howTo": "Cherchez-le dans les forêts de feuillus riches et humides de l'est des États-Unis de mars à mai, avant la feuillaison des arbres. Prenez une feuille par plant et laissez le bulbe ; certains parcs en interdisent la cueillette et le Québec en interdit la vente"
+    },
+    "fiddleheads": {
+      "name": "Têtes de violon",
+      "description": "Les jeunes frondes enroulées de la fougère-à-l'autruche : lisses, d'un vert vif, avec des écailles brunes comme du papier",
+      "howTo": "Cherchez-les dans les plaines inondables et les bois humides de fin avril à mai, tant que les frondes sont enroulées. Faites-les toujours bouillir avant de les manger et ne prenez pas plus de la moitié des crosses d'une touffe"
+    },
+    "cloudberry": {
+      "name": "Plaquebière",
+      "description": "Une baie orange ambré des tourbières du Nord, semblable à une framboise tendre, très prisée dans les pays nordiques",
+      "howTo": "Cherchez-la dans les tourbières ouvertes et les landes humides de Fennoscandie en juillet et août, quand les baies passent du rouge dur au jaune ambré et tendre. Une gelée pendant la floraison peut ruiner la récolte d'une année"
+    },
+    "huckleberry": {
+      "name": "Huckleberry",
+      "description": "Une baie de montagne noir violacé du nord-ouest des États-Unis, plus sucrée et plus acidulée qu'une myrtille",
+      "howTo": "Cherchez-la sur les pentes subalpines et les anciens brûlis entre 1 000 et 2 000 m au Montana, en Idaho et dans les Cascades de juillet à septembre. C'est le pays des ours : faites du bruit et emportez du gaz anti-ours"
+    },
+    "pawpaw": {
+      "name": "Asimine",
+      "description": "Le plus gros fruit indigène d'Amérique du Nord : vert, en forme de mangue, à la chair crémeuse au goût de banane et de mangue",
+      "howTo": "Cherchez-la dans le sous-bois des forêts alluviales de l'est des États-Unis de fin août à octobre, quand le fruit ramollit et tombe. Ne mangez que la chair : la peau et les graines sont toxiques"
+    },
+    "rose_hips": {
+      "name": "Cynorrhodons",
+      "description": "Les fruits rouges d'automne des rosiers sauvages, riches en vitamine C et pleins de graines entourées de poils irritants",
+      "howTo": "Cherchez-les dans les haies, les fourrés et les lisières de fin août à novembre ; ils sont plus tendres après les premières gelées. Retirez les graines et les poils, qui irritent la bouche et l'intestin"
+    },
+    "sloes": {
+      "name": "Prunelles",
+      "description": "Les petits fruits bleu-noir du prunellier épineux, couverts de pruine et d'une âpreté redoutable",
+      "howTo": "Cherchez-les dans les haies et les coteaux broussailleux de septembre à novembre ; elles s'adoucissent après les premières gelées. N'écrasez pas les noyaux et méfiez-vous des sosies noirs et brillants comme le nerprun et la belladone"
+    },
+    "sea_buckthorn": {
+      "name": "Argousier",
+      "description": "Des baies orange vif serrées le long de rameaux épineux aux feuilles argentées : acides et riches en vitamine C",
+      "howTo": "Cherchez-le sur les dunes littorales et les berges caillouteuses d'août à octobre. Portez des gants contre les épines et renseignez-vous : la cueillette est souvent interdite dans les réserves dunaires"
     }
   }
 }
