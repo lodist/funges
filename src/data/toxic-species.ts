@@ -239,7 +239,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.colchicine',
     checkKeys: ['toxicity.checks.smell', 'toxicity.checks.leafArrangement'],
-    confusedWithSpeciesIds: ['garlic'],
+    confusedWithSpeciesIds: ['garlic', 'ramps'],
+    criticalConfusions: [
+      { catalogId: 'ramps', noteKey: 'toxicity.critical.rampsPair' },
+    ],
   },
   {
     id: 'convallaria-majalis',
@@ -248,7 +251,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.cardiacGlycoside',
     checkKeys: ['toxicity.checks.smell', 'toxicity.checks.leafArrangement'],
-    confusedWithSpeciesIds: ['garlic'],
+    confusedWithSpeciesIds: ['garlic', 'ramps'],
+    criticalConfusions: [
+      { catalogId: 'ramps', noteKey: 'toxicity.critical.rampsPair' },
+    ],
   },
   {
     id: 'arum-maculatum',
@@ -295,7 +301,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.berryArrangement',
       'toxicity.checks.plantHabit',
     ],
-    confusedWithSpeciesIds: ['blueberry', 'lingonb'],
+    confusedWithSpeciesIds: ['blueberry', 'lingonb', 'sloes'],
   },
   {
     id: 'sambucus-ebulus',
@@ -853,7 +859,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.leafShape',
       'toxicity.checks.smell',
     ],
-    confusedWithSpeciesIds: ['garlic'],
+    confusedWithSpeciesIds: ['garlic', 'ramps'],
+    criticalConfusions: [
+      { catalogId: 'ramps', noteKey: 'toxicity.critical.rampsPair' },
+    ],
   },
   {
     id: 'veratrum-californicum',
@@ -1027,6 +1036,32 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.fleshBruising'],
     confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  // --- look-alikes of the step-4 plants (2026-09). Both were tier-2 names, so
+  // a photo of one showed no safety information next to fiddleheads or sloes. ---
+  {
+    id: 'pteridium-aquilinum',
+    scientificName: 'Pteridium aquilinum',
+    category: 'plant',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.ptaquiloside',
+    checkKeys: ['toxicity.checks.fernStem'],
+    confusedWithSpeciesIds: ['fiddleheads'],
+    criticalConfusions: [
+      {
+        catalogId: 'fiddleheads',
+        noteKey: 'toxicity.critical.fiddleheadBracken',
+      },
+    ],
+  },
+  {
+    id: 'rhamnus-cathartica',
+    scientificName: 'Rhamnus cathartica',
+    category: 'plant',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.berryBloom'],
+    confusedWithSpeciesIds: ['sloes'],
   },
 ];
 

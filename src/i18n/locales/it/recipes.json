@@ -70,7 +70,15 @@
     "garlic_wild": "Aglio Selvatico",
     "artichoke": "Carciofo Selvatico",
     "asparagus": "Asparago Selvatico",
-    "strawberry": "Fragola di Bosco"
+    "strawberry": "Fragola di Bosco",
+    "ramps": "Aglio selvatico americano",
+    "fiddleheads": "Felce penna di struzzo",
+    "cloudberry": "Camemoro",
+    "huckleberry": "Huckleberry",
+    "pawpaw": "Asimina",
+    "rose_hips": "Bacche di rosa canina",
+    "sloes": "Prugnole",
+    "sea_buckthorn": "Olivello spinoso"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -1106,6 +1114,417 @@
       "safetyNotes": [
         "Cuoci bene la grifola: poco cotta, a qualcuno dà disturbi di stomaco.",
         "Il suo sosia, il Meripilus giganteus, è commestibile ma coriaceo; annerisce dove viene toccato."
+      ]
+    },
+    "pickled-ramps": {
+      "title": "Aglio selvatico americano sott'aceto alla maniera degli Appalachi",
+      "ingredients": [
+        "Circa 200 g di aglio selvatico americano (ramps) con i bulbi, una quarantina di piante, comprato o raccolto poco per volta da colonie grandi",
+        "150 ml di aceto di mele",
+        "150 ml d'acqua",
+        "1 cucchiaio di zucchero",
+        "1 cucchiaino e mezzo di sale fino",
+        "1 cucchiaino di semi di senape gialla",
+        "½ cucchiaino di pepe nero in grani",
+        "1 foglia di alloro",
+        "Un pizzico di peperoncino in fiocchi (facoltativo)"
+      ],
+      "instructions": [
+        "Pulire: Taglia le radici e sfila la pellicina esterna di ogni bulbo. Taglia le foglie dove si attaccano al gambo e tienile per un altro uso, per esempio un pesto o le uova strapazzate. Lava bene bulbi e gambi in acqua fredda.",
+        "Invasare: Sistema bulbi e gambi in piedi in un vasetto di vetro sterilizzato da circa 400 ml, accorciandoli se serve.",
+        "Salamoia: Porta a bollore l'aceto con l'acqua, lo zucchero, il sale, la senape, il pepe, l'alloro e il peperoncino, mescolando finché zucchero e sale si sciolgono.",
+        "Riempire: Versa la salamoia bollente sui bulbi fino a coprirli di 1 cm, infilando la foglia di alloro lungo il vetro. Batti il vasetto sul piano per far uscire le bolle d'aria e chiudilo.",
+        "Riposare: Lascia raffreddare, poi conserva in frigorifero. Aspetta almeno 3 giorni prima di mangiarli; in frigo si conservano fino a 2 mesi. Servili con fagioli e pane di mais, nei panini o con i formaggi."
+      ],
+      "species": ["ramps"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pulire: Taglia le radici e sfila la pellicina esterna di ogni bulbo. Taglia le foglie dove si attaccano al gambo e tienile per un altro uso, per esempio un pesto o le uova strapazzate. Lava bene bulbi e gambi in acqua fredda."
+        },
+        {
+          "step": 2,
+          "instruction": "Invasare: Sistema bulbi e gambi in piedi in un vasetto di vetro sterilizzato da circa 400 ml, accorciandoli se serve."
+        },
+        {
+          "step": 3,
+          "instruction": "Salamoia: Porta a bollore l'aceto con l'acqua, lo zucchero, il sale, la senape, il pepe, l'alloro e il peperoncino, mescolando finché zucchero e sale si sciolgono."
+        },
+        {
+          "step": 4,
+          "instruction": "Riempire: Versa la salamoia bollente sui bulbi fino a coprirli di 1 cm, infilando la foglia di alloro lungo il vetro. Batti il vasetto sul piano per far uscire le bolle d'aria e chiudilo."
+        },
+        {
+          "step": 5,
+          "instruction": "Riposare: Lascia raffreddare, poi conserva in frigorifero. Aspetta almeno 3 giorni prima di mangiarli; in frigo si conservano fino a 2 mesi. Servili con fagioli e pane di mais, nei panini o con i formaggi."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Raccogli in modo sostenibile. L'aglio selvatico americano cresce lentamente: passano anni dal seme alla raccolta, e la raccolta eccessiva ha fatto sparire intere colonie. Prendi una sola foglia per pianta e lascia il bulbo, oppure al massimo pochi bulbi da una colonia grande e fitta. Non svuotare mai una colonia.",
+        "In alcuni parchi la raccolta è vietata, tra cui il parco nazionale delle Great Smoky Mountains. Il Québec vieta la vendita dell'aglio selvatico americano spontaneo e limita la raccolta personale a 200 g, o 50 bulbi o piante, a persona all'anno.",
+        "Ha sosia velenosi: il mughetto e il veratro verde (Veratrum viride). Stropiccia una foglia di ogni pianta: l'aglio selvatico americano ha un forte odore di cipolla o di aglio, i sosia no. L'odore resta sulle dita, quindi non fidarti più del test quando hai già le mani che ne sanno."
+      ]
+    },
+    "sauteed-fiddleheads": {
+      "title": "Teste di violino al burro, aglio e limone",
+      "ingredients": [
+        "400 g di teste di violino di felce penna di struzzo",
+        "Sale grosso per l'acqua di cottura",
+        "30 g di burro",
+        "1 cucchiaio di olio extravergine d'oliva",
+        "2 spicchi d'aglio a fettine sottili",
+        "La scorza grattugiata di ½ limone e 1 cucchiaio di succo",
+        "Sale e pepe nero"
+      ],
+      "instructions": [
+        "Pulire: Spunta le estremità brune dei gambi. Togli con le dita le scaglie brune simili a carta, poi lava le teste di violino in più acque fredde, finché l'acqua resta limpida.",
+        "Lessare: Porta a bollore abbondante acqua salata, tuffa le teste di violino e lessale per 15 minuti (oppure cuocile al vapore per 10–12 minuti). Scolale e butta via l'acqua di cottura.",
+        "Saltare: Scalda il burro con l'olio in una padella larga, aggiungi l'aglio e fallo appassire a fuoco dolce per 1 minuto. Unisci le teste di violino e saltale a fuoco medio-alto per 3–4 minuti, finché sono appena dorate.",
+        "Condire: Togli dal fuoco, aggiungi la scorza e il succo di limone e regola di sale e pepe.",
+        "Servire: Subito, come contorno per pesce o uova, oppure su fette di pane tostato e imburrato."
+      ],
+      "species": ["fiddleheads"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pulire: Spunta le estremità brune dei gambi. Togli con le dita le scaglie brune simili a carta, poi lava le teste di violino in più acque fredde, finché l'acqua resta limpida."
+        },
+        {
+          "step": 2,
+          "instruction": "Lessare: Porta a bollore abbondante acqua salata, tuffa le teste di violino e lessale per 15 minuti (oppure cuocile al vapore per 10–12 minuti). Scolale e butta via l'acqua di cottura."
+        },
+        {
+          "step": 3,
+          "instruction": "Saltare: Scalda il burro con l'olio in una padella larga, aggiungi l'aglio e fallo appassire a fuoco dolce per 1 minuto. Unisci le teste di violino e saltale a fuoco medio-alto per 3–4 minuti, finché sono appena dorate."
+        },
+        {
+          "step": 4,
+          "instruction": "Condire: Togli dal fuoco, aggiungi la scorza e il succo di limone e regola di sale e pepe."
+        },
+        {
+          "step": 5,
+          "instruction": "Servire: Subito, come contorno per pesce o uova, oppure su fette di pane tostato e imburrato."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "side", "easy"],
+      "safetyNotes": [
+        "Raccogli solo la felce penna di struzzo. Le sue teste di violino sono lisce e verde brillante, con scaglie brune simili a carta, e lungo la parte interna del gambo corre una scanalatura profonda a forma di U. Non raccogliere mai la felce aquilina, che è lanuginosa, ha la cima ramificata ed è cancerogena.",
+        "Non mangiare mai le teste di violino crude o poco cotte: hanno causato focolai di intossicazione alimentare. Lavale, poi lessale per 15 minuti (o cuocile al vapore per 10–12 minuti) e butta via l'acqua, prima di saltarle in padella.",
+        "Non raccogliere più della metà delle teste di violino di un cespo, così la pianta sopravvive. In Germania la felce penna di struzzo è protetta e raccoglierla in natura è vietato."
+      ]
+    },
+    "cloudberry-cream": {
+      "title": "Crema di camemori alla norvegese (multekrem)",
+      "ingredients": [
+        "300 g di camemori maturi, freschi o surgelati e scongelati",
+        "2 cucchiai di zucchero semolato, per le bacche",
+        "300 ml di panna fresca da montare, ben fredda",
+        "1 cucchiaio di zucchero a velo, per la panna",
+        "1 cucchiaino di zucchero vanigliato, o qualche goccia di estratto di vaniglia",
+        "Cialde krumkake o biscotti croccanti alle mandorle per servire (facoltativi)"
+      ],
+      "instructions": [
+        "Zuccherare: Controlla le bacche e tieni da parte le più belle per decorare. Cospargi le altre con lo zucchero semolato e lasciale riposare 15 minuti, finché rilasciano un po' di succo.",
+        "Montare: Monta la panna fredda con lo zucchero a velo e lo zucchero vanigliato, tenendola morbida. Non montarla troppo: deve appena stare in piedi.",
+        "Incorporare: Unisci delicatamente alla panna le bacche con il loro succo, con una spatola e in pochi movimenti, perché restino intere.",
+        "Servire: Distribuisci nei bicchieri o nelle coppette, decora con le bacche tenute da parte e servi fredda, con le cialde o i biscotti. In Norvegia è il dolce di Natale."
+      ],
+      "species": ["cloudberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Zuccherare: Controlla le bacche e tieni da parte le più belle per decorare. Cospargi le altre con lo zucchero semolato e lasciale riposare 15 minuti, finché rilasciano un po' di succo."
+        },
+        {
+          "step": 2,
+          "instruction": "Montare: Monta la panna fredda con lo zucchero a velo e lo zucchero vanigliato, tenendola morbida. Non montarla troppo: deve appena stare in piedi."
+        },
+        {
+          "step": 3,
+          "instruction": "Incorporare: Unisci delicatamente alla panna le bacche con il loro succo, con una spatola e in pochi movimenti, perché restino intere."
+        },
+        {
+          "step": 4,
+          "instruction": "Servire: Distribuisci nei bicchieri o nelle coppette, decora con le bacche tenute da parte e servi fredda, con le cialde o i biscotti. In Norvegia è il dolce di Natale."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "0 min",
+      "servings": "4–6",
+      "tags": ["vegetarian", "dessert", "easy"],
+      "safetyNotes": [
+        "Raccogli solo bacche mature, morbide, giallo ambra. Quelle acerbe sono dure e rosse.",
+        "Rispetta le regole locali di raccolta. Nel nord della Norvegia, nelle contee di Nordland, Troms e Finnmark, i proprietari possono vietare la raccolta dei camemori sui loro terreni: fai attenzione ai cartelli (mangiarli sul posto è sempre permesso)."
+      ]
+    },
+    "huckleberry-pie": {
+      "title": "Torta di huckleberry del Montana",
+      "ingredients": [
+        "700 g di huckleberry, freschi o surgelati (non serve scongelarli)",
+        "150 g di zucchero, più 1 cucchiaio da spolverare",
+        "30 g di amido di mais",
+        "1 cucchiaio di succo di limone",
+        "320 g di farina 00",
+        "225 g di burro freddo a cubetti",
+        "1 cucchiaino di sale",
+        "90–120 ml di acqua ghiacciata",
+        "1 uovo sbattuto per spennellare"
+      ],
+      "instructions": [
+        "Preparare la pasta: Lavora il burro con la farina e il sale tra le dita, fino a ottenere grosse briciole con qualche pezzetto di burro grande come un pisello. Aggiungi l'acqua ghiacciata un cucchiaio alla volta e compatta l'impasto. Dividilo in due dischi, avvolgili nella pellicola e mettili in frigo per almeno 30 minuti.",
+        "Farcire: Scalda il forno a 220 °C. Stendi un disco e fodera una tortiera da 23 cm. Mescola gli huckleberry con lo zucchero, l'amido e il succo di limone e versali nel guscio di pasta.",
+        "Coprire: Stendi il secondo disco, adagialo sul ripieno, rifila e pizzica i bordi per sigillarli. Pratica qualche taglio sulla superficie, spennella con l'uovo e spolverizza con lo zucchero rimasto.",
+        "Cuocere: Inforna per 20 minuti, poi abbassa a 180 °C e cuoci per altri 40 minuti, finché la crosta è ben dorata e dai tagli esce un succo denso che bolle. Metti una teglia sotto per raccogliere le gocce.",
+        "Raffreddare: Lascia raffreddare la torta per almeno 3 ore, perché il ripieno si rapprenda prima di tagliarla. Servila con gelato alla vaniglia o panna montata."
+      ],
+      "species": ["huckleberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparare la pasta: Lavora il burro con la farina e il sale tra le dita, fino a ottenere grosse briciole con qualche pezzetto di burro grande come un pisello. Aggiungi l'acqua ghiacciata un cucchiaio alla volta e compatta l'impasto. Dividilo in due dischi, avvolgili nella pellicola e mettili in frigo per almeno 30 minuti."
+        },
+        {
+          "step": 2,
+          "instruction": "Farcire: Scalda il forno a 220 °C. Stendi un disco e fodera una tortiera da 23 cm. Mescola gli huckleberry con lo zucchero, l'amido e il succo di limone e versali nel guscio di pasta."
+        },
+        {
+          "step": 3,
+          "instruction": "Coprire: Stendi il secondo disco, adagialo sul ripieno, rifila e pizzica i bordi per sigillarli. Pratica qualche taglio sulla superficie, spennella con l'uovo e spolverizza con lo zucchero rimasto."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuocere: Inforna per 20 minuti, poi abbassa a 180 °C e cuoci per altri 40 minuti, finché la crosta è ben dorata e dai tagli esce un succo denso che bolle. Metti una teglia sotto per raccogliere le gocce."
+        },
+        {
+          "step": 5,
+          "instruction": "Raffreddare: Lascia raffreddare la torta per almeno 3 ore, perché il ripieno si rapprenda prima di tagliarla. Servila con gelato alla vaniglia o panna montata."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "45 min",
+      "cookTime": "60 min",
+      "servings": "6–8",
+      "tags": ["vegetarian", "dessert", "medium"],
+      "safetyNotes": [
+        "Gli huckleberry sono di colore dal blu-nero al viola, con una piccola corona sulla punta come i mirtilli. Non mangiare bacche rosse o bianche a grappolo (quelle dell'actea sono velenose) né bacche di cui non sei sicuro.",
+        "Le zone di huckleberry sono territorio di orsi: fai rumore e porta con te lo spray anti-orso."
+      ]
+    },
+    "pawpaw-ice-cream": {
+      "title": "Gelato all'asimina senza gelatiera",
+      "ingredients": [
+        "400 g di polpa di asimina matura (da circa 4–6 frutti)",
+        "1 lattina (397 g) di latte condensato zuccherato",
+        "400 ml di panna fresca da montare, ben fredda",
+        "Il succo di 1 lime",
+        "Un pizzico di sale",
+        "1 cucchiaino di estratto di vaniglia (facoltativo)"
+      ],
+      "instructions": [
+        "Preparare la polpa: Taglia a metà le asimine mature e raccogli la polpa con un cucchiaio, lasciando la buccia. Togli a mano tutti i semi: nel frullatore non deve finirne nemmeno uno.",
+        "Frullare: Frulla la polpa con il succo di lime, il latte condensato, il sale e la vaniglia fino a ottenere una crema liscia. Il lime mantiene vivo il colore.",
+        "Montare: In una ciotola capiente, monta la panna morbida.",
+        "Amalgamare: Incorpora la crema di asimina alla panna in due o tre volte, con movimenti dal basso verso l'alto, finché non restano striature. Versa in uno stampo da plumcake o in un contenitore per il congelatore.",
+        "Congelare: Copri e metti in freezer per almeno 6 ore, o per tutta la notte. Lascialo ammorbidire 10 minuti prima di fare le palline."
+      ],
+      "species": ["pawpaw"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparare la polpa: Taglia a metà le asimine mature e raccogli la polpa con un cucchiaio, lasciando la buccia. Togli a mano tutti i semi: nel frullatore non deve finirne nemmeno uno."
+        },
+        {
+          "step": 2,
+          "instruction": "Frullare: Frulla la polpa con il succo di lime, il latte condensato, il sale e la vaniglia fino a ottenere una crema liscia. Il lime mantiene vivo il colore."
+        },
+        {
+          "step": 3,
+          "instruction": "Montare: In una ciotola capiente, monta la panna morbida."
+        },
+        {
+          "step": 4,
+          "instruction": "Amalgamare: Incorpora la crema di asimina alla panna in due o tre volte, con movimenti dal basso verso l'alto, finché non restano striature. Versa in uno stampo da plumcake o in un contenitore per il congelatore."
+        },
+        {
+          "step": 5,
+          "instruction": "Congelare: Copri e metti in freezer per almeno 6 ore, o per tutta la notte. Lascialo ammorbidire 10 minuti prima di fare le palline."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "0 min",
+      "servings": "6–8",
+      "tags": ["vegetarian", "dessert", "easy"],
+      "safetyNotes": [
+        "Mangia solo frutti maturi, e mai la buccia né i grossi semi. I semi sono velenosi: non schiacciarli e non frullarli.",
+        "Alcune persone reagiscono all'asimina con disturbi di stomaco o un'eruzione cutanea: la prima volta assaggiane poca."
+      ]
+    },
+    "rose-hip-syrup": {
+      "title": "Sciroppo di rosa canina all'inglese",
+      "ingredients": [
+        "1 kg di bacche di rosa canina mature",
+        "3 litri d'acqua",
+        "500 g di zucchero",
+        "Il succo di 1 limone (facoltativo)",
+        "Un sacchetto filtrante o un telo a trama fitta, e bottiglie sterilizzate"
+      ],
+      "instructions": [
+        "Preparare: Lava le bacche, elimina i piccioli e le punte secche e tritale grossolanamente nel mixer o con un coltello.",
+        "Prima infusione: Porta a bollore 2 litri d'acqua, aggiungi le bacche e riporta a bollore, poi togli dal fuoco e lascia in infusione 15 minuti. Versa tutto nel sacchetto o nel telo scottati e lascia sgocciolare il succo.",
+        "Seconda infusione: Rimetti la polpa nella pentola con il litro d'acqua rimasto, porta a bollore, lascia riposare 10 minuti e filtra di nuovo. Poi passa tutto il succo ancora una volta in un telo fine e pulito, per trattenere anche l'ultimo pelo.",
+        "Ridurre: Fai bollire il succo finché si riduce a circa 1 litro. Aggiungi lo zucchero e il succo di limone, mescola finché lo zucchero si scioglie e fai bollire per 5 minuti.",
+        "Imbottigliare: Versa lo sciroppo bollente nelle bottiglie sterilizzate calde e chiudile. Una volta aperto, conservalo in frigo e consumalo entro 2 settimane. Versalo su pancake o gelato, oppure allungalo con acqua per una bibita."
+      ],
+      "species": ["rose_hips"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparare: Lava le bacche, elimina i piccioli e le punte secche e tritale grossolanamente nel mixer o con un coltello."
+        },
+        {
+          "step": 2,
+          "instruction": "Prima infusione: Porta a bollore 2 litri d'acqua, aggiungi le bacche e riporta a bollore, poi togli dal fuoco e lascia in infusione 15 minuti. Versa tutto nel sacchetto o nel telo scottati e lascia sgocciolare il succo."
+        },
+        {
+          "step": 3,
+          "instruction": "Seconda infusione: Rimetti la polpa nella pentola con il litro d'acqua rimasto, porta a bollore, lascia riposare 10 minuti e filtra di nuovo. Poi passa tutto il succo ancora una volta in un telo fine e pulito, per trattenere anche l'ultimo pelo."
+        },
+        {
+          "step": 4,
+          "instruction": "Ridurre: Fai bollire il succo finché si riduce a circa 1 litro. Aggiungi lo zucchero e il succo di limone, mescola finché lo zucchero si scioglie e fai bollire per 5 minuti."
+        },
+        {
+          "step": 5,
+          "instruction": "Imbottigliare: Versa lo sciroppo bollente nelle bottiglie sterilizzate calde e chiudile. Una volta aperto, conservalo in frigo e consumalo entro 2 settimane. Versalo su pancake o gelato, oppure allungalo con acqua per una bibita."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "60 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "drink", "medium"],
+      "safetyNotes": [
+        "I peli che circondano i semi irritano la bocca e l'intestino: sono la vecchia 'polverina che fa prurito'. Filtra lo sciroppo due volte attraverso un telo fine o un sacchetto filtrante.",
+        "Raccogli bacche rosso intenso e leggermente morbide, se puoi dopo le prime gelate. Non raccoglierle lungo le strade trafficate."
+      ]
+    },
+    "sloe-jelly": {
+      "title": "Gelatina di prugnole e mele",
+      "ingredients": [
+        "1 kg di prugnole mature",
+        "1 kg di mele da cuocere, tipo renetta",
+        "Circa 1,2 litri d'acqua",
+        "Zucchero: 750 g per ogni litro di succo",
+        "Un sacchetto filtrante e vasetti sterilizzati"
+      ],
+      "instructions": [
+        "Preparare: Sciacqua le prugnole ed elimina piccioli e foglie. Taglia le mele a pezzi grossolani senza sbucciarle né togliere il torsolo: buccia e torsoli contengono la pectina che fa rapprendere la gelatina.",
+        "Cuocere: Metti prugnole e mele in una pentola capiente con acqua appena sufficiente a coprirle. Cuoci a fuoco dolce per circa 45 minuti, mescolando ogni tanto, finché la frutta è molto morbida. Schiaccia leggermente le mele con un cucchiaio, ma non le prugnole, perché i noccioli restino interi.",
+        "Filtrare: Versa tutto nel sacchetto filtrante scottato, appeso sopra una ciotola, e lascia sgocciolare per qualche ora o per tutta la notte. Non strizzare il sacchetto, o la gelatina verrà torbida.",
+        "Bollire: Misura il succo in una pentola pulita e aggiungi 750 g di zucchero per ogni litro. Mescola a fuoco basso finché lo zucchero si scioglie, poi fai bollire a fuoco vivo per 10–15 minuti, fino al punto di gelificazione: 105 °C, oppure una goccia su un piattino freddo si increspa quando la spingi con un dito.",
+        "Invasare: Schiuma, versa nei vasetti sterilizzati caldi e chiudili. Servila con l'agnello arrosto, la selvaggina o i formaggi."
+      ],
+      "species": ["sloes"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparare: Sciacqua le prugnole ed elimina piccioli e foglie. Taglia le mele a pezzi grossolani senza sbucciarle né togliere il torsolo: buccia e torsoli contengono la pectina che fa rapprendere la gelatina."
+        },
+        {
+          "step": 2,
+          "instruction": "Cuocere: Metti prugnole e mele in una pentola capiente con acqua appena sufficiente a coprirle. Cuoci a fuoco dolce per circa 45 minuti, mescolando ogni tanto, finché la frutta è molto morbida. Schiaccia leggermente le mele con un cucchiaio, ma non le prugnole, perché i noccioli restino interi."
+        },
+        {
+          "step": 3,
+          "instruction": "Filtrare: Versa tutto nel sacchetto filtrante scottato, appeso sopra una ciotola, e lascia sgocciolare per qualche ora o per tutta la notte. Non strizzare il sacchetto, o la gelatina verrà torbida."
+        },
+        {
+          "step": 4,
+          "instruction": "Bollire: Misura il succo in una pentola pulita e aggiungi 750 g di zucchero per ogni litro. Mescola a fuoco basso finché lo zucchero si scioglie, poi fai bollire a fuoco vivo per 10–15 minuti, fino al punto di gelificazione: 105 °C, oppure una goccia su un piattino freddo si increspa quando la spingi con un dito."
+        },
+        {
+          "step": 5,
+          "instruction": "Invasare: Schiuma, versa nei vasetti sterilizzati caldi e chiudili. Servila con l'agnello arrosto, la selvaggina o i formaggi."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "60 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "medium"],
+      "safetyNotes": [
+        "Le prugnole sono blu-nere, coperte da una pruina opaca, e crescono isolate sul prugnolo, un arbusto spinoso. Crude sono molto aspre. I noccioli contengono amigdalina, che può liberare cianuro: non schiacciarli.",
+        "Hanno sosia velenosi: la belladonna, con bacche nere lucide appoggiate su una stella verde, su una pianta erbacea e non legnosa; lo spincervino (Rhamnus cathartica), con bacche nere lucide a grappoli, fortemente purgative."
+      ]
+    },
+    "sea-buckthorn-curd": {
+      "title": "Crema di olivello spinoso (tipo lemon curd)",
+      "ingredients": [
+        "Circa 300 g di bacche di olivello spinoso, per 150 ml di succo",
+        "175 g di zucchero",
+        "3 uova",
+        "1 tuorlo",
+        "100 g di burro a cubetti",
+        "Un pizzico di sale",
+        "Vasetti sterilizzati"
+      ],
+      "instructions": [
+        "Estrarre il succo: Sciacqua le bacche e passale in un colino a maglie fitte schiacciandole con il dorso di un cucchiaio, fino a ottenere circa 150 ml di succo. Butta bucce e semi.",
+        "Mescolare: In una ciotola resistente al calore sbatti le uova, il tuorlo, lo zucchero e il sale, poi unisci il succo.",
+        "Cuocere: Appoggia la ciotola su una pentola d'acqua che sobbolle appena, senza che tocchi l'acqua. Mescola di continuo per 10–12 minuti, finché la crema vela il dorso del cucchiaio (circa 80 °C). Non farla bollire.",
+        "Rifinire: Togli dal fuoco e incorpora il burro qualche pezzetto alla volta, finché la crema è liscia. Per una crema vellutata, passala al colino.",
+        "Conservare: Versa nei vasetti sterilizzati tiepidi, chiudi e lascia raffreddare. Conserva in frigo e consuma entro 2 settimane. Spalmala sul pane tostato o sugli scones, oppure usala per farcire crostatine."
+      ],
+      "species": ["sea_buckthorn"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Estrarre il succo: Sciacqua le bacche e passale in un colino a maglie fitte schiacciandole con il dorso di un cucchiaio, fino a ottenere circa 150 ml di succo. Butta bucce e semi."
+        },
+        {
+          "step": 2,
+          "instruction": "Mescolare: In una ciotola resistente al calore sbatti le uova, il tuorlo, lo zucchero e il sale, poi unisci il succo."
+        },
+        {
+          "step": 3,
+          "instruction": "Cuocere: Appoggia la ciotola su una pentola d'acqua che sobbolle appena, senza che tocchi l'acqua. Mescola di continuo per 10–12 minuti, finché la crema vela il dorso del cucchiaio (circa 80 °C). Non farla bollire."
+        },
+        {
+          "step": 4,
+          "instruction": "Rifinire: Togli dal fuoco e incorpora il burro qualche pezzetto alla volta, finché la crema è liscia. Per una crema vellutata, passala al colino."
+        },
+        {
+          "step": 5,
+          "instruction": "Conservare: Versa nei vasetti sterilizzati tiepidi, chiudi e lascia raffreddare. Conserva in frigo e consuma entro 2 settimane. Spalmala sul pane tostato o sugli scones, oppure usala per farcire crostatine."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "dessert", "medium"],
+      "safetyNotes": [
+        "Raccogli bacche arancione vivo e succose, da fine estate in poi. Se tagli qualche rametto e lo congeli, le bacche si staccano facilmente.",
+        "La raccolta può essere vietata nelle dune protette e nelle riserve naturali: informati sulle regole locali. L'arbusto è molto spinoso: usa i guanti."
       ]
     }
   }

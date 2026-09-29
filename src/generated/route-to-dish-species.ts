@@ -204,4 +204,32 @@ export const GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG = {
       'Hen of the Woods',
     ],
   },
+  ramps: {
+    scorePropertyAliases: ['ramps', 'ramps_score', 'Ramps'],
+  },
+  fiddleheads: {
+    scorePropertyAliases: ['fiddleheads', 'fiddleheads_score', 'Fiddleheads'],
+  },
+  cloudberry: {
+    scorePropertyAliases: ['cloudberry', 'cloudberry_score', 'Cloudberry'],
+  },
+  huckleberry: {
+    scorePropertyAliases: ['huckleberry', 'huckleberry_score', 'Huckleberry'],
+  },
+  pawpaw: {
+    scorePropertyAliases: ['pawpaw', 'pawpaw_score', 'Pawpaw'],
+  },
+  rose_hips: {
+    scorePropertyAliases: ['rose_hips', 'rose_hips_score', 'Rose Hips'],
+  },
+  sloes: {
+    scorePropertyAliases: ['sloes', 'sloes_score', 'Sloes'],
+  },
+  sea_buckthorn: {
+    scorePropertyAliases: [
+      'sea_buckthorn',
+      'sea_buckthorn_score',
+      'Sea Buckthorn',
+    ],
+  },
 } as const;

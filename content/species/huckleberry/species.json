@@ -1,0 +1,156 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "huckleberry",
+  "scientificName": "Vaccinium membranaceum",
+  "catalog": {
+    "enabled": true,
+    "order": 51,
+    "translationKey": "huckleberry",
+    "category": "berry",
+    "emoji": "🫐",
+    "season": "summer-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/huckleberry.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Huckleberry",
+      "description": "A purple-black mountain berry of the US Northwest, sweeter and tarter than a blueberry",
+      "howTo": "Look on subalpine slopes and old burns at 1,000–2,000 m in Montana, Idaho and the Cascades from July to September. Huckleberry patches are bear country: make noise and carry bear spray"
+    },
+    "it": {
+      "name": "Huckleberry",
+      "description": "Una bacca di montagna nero-violacea del nord-ovest degli Stati Uniti, più dolce e più aspra di un mirtillo",
+      "howTo": "Cercala sui pendii subalpini e nelle vecchie aree bruciate tra 1.000 e 2.000 m in Montana, Idaho e nelle Cascate da luglio a settembre. È territorio degli orsi: fai rumore e porta lo spray antiorso"
+    },
+    "fr": {
+      "name": "Huckleberry",
+      "description": "Une baie de montagne noir violacé du nord-ouest des États-Unis, plus sucrée et plus acidulée qu'une myrtille",
+      "howTo": "Cherchez-la sur les pentes subalpines et les anciens brûlis entre 1 000 et 2 000 m au Montana, en Idaho et dans les Cascades de juillet à septembre. C'est le pays des ours : faites du bruit et emportez du gaz anti-ours"
+    },
+    "de": {
+      "name": "Huckleberry",
+      "description": "Eine violettschwarze Bergbeere aus dem Nordwesten der USA, süßer und herber als eine Heidelbeere",
+      "howTo": "Suche von Juli bis September an subalpinen Hängen und auf alten Brandflächen in 1.000–2.000 m in Montana, Idaho und den Cascades. Dort leben Bären: Mach dich bemerkbar und trag Bärenspray bei dir"
+    },
+    "es": {
+      "name": "Huckleberry",
+      "description": "Una baya de montaña negro violácea del noroeste de EE. UU., más dulce y más ácida que un arándano",
+      "howTo": "Búscala en laderas subalpinas y antiguas zonas quemadas entre 1.000 y 2.000 m en Montana, Idaho y las Cascadas de julio a septiembre. Es territorio de osos: haz ruido y lleva espray antiosos"
+    },
+    "pt": {
+      "name": "Huckleberry",
+      "description": "Uma baga de montanha negro-arroxeada do noroeste dos EUA, mais doce e mais ácida do que um mirtilo",
+      "howTo": "Procure em encostas subalpinas e antigas áreas ardidas entre 1000 e 2000 m no Montana, Idaho e Cascades de julho a setembro. É território de ursos: faça barulho e leve spray anti-urso"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Vaccinium membranaceum",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-30-step4-plants.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Huckleberry"],
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": true,
+        "landCover": [42, 43, 52],
+        "scoring": {
+          "optimal_temp": 20,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 1220,
+          "alt_sigma": 1400,
+          "optimal_humidity": 55,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.3,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.8, 6.8],
+          "optimal_soil_temp": 19,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 1,
+          "rain_weight": 0,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [7, 8, 9],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/9060377",
+          "https://www.gbif.org/species/2882961",
+          "https://www.gbif.org/species/2882894",
+          "docs/species/2026-09-30-step4-plants.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [42, 43, 52],
+        "scoring": {
+          "optimal_temp": 20,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 1220,
+          "alt_sigma": 1400,
+          "optimal_humidity": 55,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.3,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.8, 6.8],
+          "optimal_soil_temp": 19,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 1,
+          "rain_weight": 0,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [7, 8, 9],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/9060377",
+          "https://www.gbif.org/species/2882961",
+          "https://www.gbif.org/species/2882894",
+          "docs/species/2026-09-30-step4-plants.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [9060377, 2882961, 2882894]
+    }
+  }
+}

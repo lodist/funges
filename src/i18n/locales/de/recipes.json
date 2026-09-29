@@ -70,7 +70,15 @@
     "garlic_wild": "Bärlauch",
     "artichoke": "Wilder Artischocke",
     "asparagus": "Wilder Spargel",
-    "strawberry": "Wald-Erdbeere"
+    "strawberry": "Wald-Erdbeere",
+    "ramps": "Ramp-Lauch",
+    "fiddleheads": "Straußenfarn-Triebe",
+    "cloudberry": "Moltebeere",
+    "huckleberry": "Huckleberry",
+    "pawpaw": "Indianerbanane",
+    "rose_hips": "Hagebutten",
+    "sloes": "Schlehen",
+    "sea_buckthorn": "Sanddorn"
   },
   "tags": {
     "vegetarian": "Vegetarisch",
@@ -1096,6 +1104,417 @@
       "safetyNotes": [
         "Klapperschwamm gut durchgaren: Halbgar verträgt ihn nicht jeder Magen.",
         "Sein Doppelgänger, der Riesenporling, ist essbar, aber zäh; er schwärzt sich, wo man ihn anfasst."
+      ]
+    },
+    "pickled-ramps": {
+      "title": "Eingelegter Ramp-Lauch nach Appalachen-Art",
+      "ingredients": [
+        "Etwa 200 g Ramp-Lauch (Ramps) mit Zwiebeln, rund 40 Pflanzen, gekauft oder aus großen Beständen nur vereinzelt gesammelt",
+        "150 ml Apfelessig",
+        "150 ml Wasser",
+        "1 EL Zucker",
+        "1½ TL feines Salz",
+        "1 TL gelbe Senfsaat",
+        "½ TL schwarze Pfefferkörner",
+        "1 Lorbeerblatt",
+        "1 Prise Chiliflocken (nach Belieben)"
+      ],
+      "instructions": [
+        "Putzen: Die Wurzeln abschneiden und die lose äußere Haut von jeder Zwiebel abstreifen. Die Blätter am Stielansatz abschneiden und anderweitig verwenden, etwa für Pesto oder Rührei. Zwiebeln und Stiele gründlich in kaltem Wasser waschen.",
+        "Einschichten: Zwiebeln und Stiele aufrecht in ein sterilisiertes Glas von etwa 400 ml stellen und bei Bedarf kürzen.",
+        "Sud: Essig, Wasser, Zucker, Salz, Senfsaat, Pfeffer, Lorbeer und Chili aufkochen und rühren, bis sich Zucker und Salz gelöst haben.",
+        "Aufgießen: Den kochend heißen Sud über den Lauch gießen, bis er 1 cm hoch bedeckt ist, und das Lorbeerblatt am Rand hineinschieben. Das Glas leicht aufstoßen, damit Luftblasen entweichen, und verschließen.",
+        "Durchziehen lassen: Abkühlen lassen und im Kühlschrank aufbewahren. Frühestens nach 3 Tagen essen; im Kühlschrank hält er sich bis zu 2 Monate. Dazu passen Bohneneintopf und Maisbrot, Sandwiches oder Käse."
+      ],
+      "species": ["ramps"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Putzen: Die Wurzeln abschneiden und die lose äußere Haut von jeder Zwiebel abstreifen. Die Blätter am Stielansatz abschneiden und anderweitig verwenden, etwa für Pesto oder Rührei. Zwiebeln und Stiele gründlich in kaltem Wasser waschen."
+        },
+        {
+          "step": 2,
+          "instruction": "Einschichten: Zwiebeln und Stiele aufrecht in ein sterilisiertes Glas von etwa 400 ml stellen und bei Bedarf kürzen."
+        },
+        {
+          "step": 3,
+          "instruction": "Sud: Essig, Wasser, Zucker, Salz, Senfsaat, Pfeffer, Lorbeer und Chili aufkochen und rühren, bis sich Zucker und Salz gelöst haben."
+        },
+        {
+          "step": 4,
+          "instruction": "Aufgießen: Den kochend heißen Sud über den Lauch gießen, bis er 1 cm hoch bedeckt ist, und das Lorbeerblatt am Rand hineinschieben. Das Glas leicht aufstoßen, damit Luftblasen entweichen, und verschließen."
+        },
+        {
+          "step": 5,
+          "instruction": "Durchziehen lassen: Abkühlen lassen und im Kühlschrank aufbewahren. Frühestens nach 3 Tagen essen; im Kühlschrank hält er sich bis zu 2 Monate. Dazu passen Bohneneintopf und Maisbrot, Sandwiches oder Käse."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Nachhaltig sammeln: Ramp-Lauch wächst langsam, vom Samen bis zur Ernte vergehen Jahre, und zu starkes Sammeln hat ganze Bestände ausgelöscht. Nimm pro Pflanze nur ein Blatt und lass die Zwiebel stehen, oder höchstens ein paar Zwiebeln aus einem großen, dichten Bestand. Ernte nie einen ganzen Bestand ab.",
+        "In manchen Parks ist das Sammeln verboten, etwa im Great-Smoky-Mountains-Nationalpark. Québec verbietet den Verkauf von wildem Ramp-Lauch und begrenzt das Sammeln für den Eigenbedarf auf 200 g oder 50 Zwiebeln bzw. Pflanzen pro Person und Jahr.",
+        "Seine Doppelgänger sind giftig: Maiglöckchen und Grüner Germer (Veratrum viride). Zerreibe von jeder Pflanze ein Blatt: Ramp-Lauch riecht stark nach Zwiebel oder Knoblauch, die Doppelgänger nicht. Der Geruch bleibt an den Fingern haften, verlass dich also nicht mehr darauf, wenn deine Hände schon danach riechen."
+      ]
+    },
+    "sauteed-fiddleheads": {
+      "title": "Gebratene Straußenfarn-Triebe mit Knoblauch und Zitrone",
+      "ingredients": [
+        "400 g junge, eingerollte Straußenfarn-Triebe (Fiddleheads)",
+        "Salz für das Kochwasser",
+        "30 g Butter",
+        "1 EL Olivenöl",
+        "2 Knoblauchzehen, in dünnen Scheiben",
+        "Abrieb von ½ Zitrone und 1 EL Zitronensaft",
+        "Salz und schwarzer Pfeffer"
+      ],
+      "instructions": [
+        "Putzen: Die braunen Stielenden abschneiden. Die braunen, papierartigen Schuppen mit den Fingern abreiben und die Triebe in mehrmals gewechseltem kaltem Wasser waschen, bis das Wasser klar bleibt.",
+        "Abkochen: Reichlich Salzwasser aufkochen und die Triebe darin 15 Minuten kochen (oder 10–12 Minuten dämpfen). Abgießen und das Kochwasser wegschütten.",
+        "Braten: Butter und Öl in einer großen Pfanne erhitzen, den Knoblauch zugeben und 1 Minute sanft anschwitzen. Die Triebe zugeben und bei mittlerer bis starker Hitze 3–4 Minuten braten, bis sie leicht Farbe nehmen.",
+        "Abschmecken: Vom Herd nehmen, Zitronenabrieb und -saft zugeben, salzen und pfeffern.",
+        "Servieren: Sofort, als Beilage zu Fisch oder Eiern oder auf gebuttertem Röstbrot."
+      ],
+      "species": ["fiddleheads"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Putzen: Die braunen Stielenden abschneiden. Die braunen, papierartigen Schuppen mit den Fingern abreiben und die Triebe in mehrmals gewechseltem kaltem Wasser waschen, bis das Wasser klar bleibt."
+        },
+        {
+          "step": 2,
+          "instruction": "Abkochen: Reichlich Salzwasser aufkochen und die Triebe darin 15 Minuten kochen (oder 10–12 Minuten dämpfen). Abgießen und das Kochwasser wegschütten."
+        },
+        {
+          "step": 3,
+          "instruction": "Braten: Butter und Öl in einer großen Pfanne erhitzen, den Knoblauch zugeben und 1 Minute sanft anschwitzen. Die Triebe zugeben und bei mittlerer bis starker Hitze 3–4 Minuten braten, bis sie leicht Farbe nehmen."
+        },
+        {
+          "step": 4,
+          "instruction": "Abschmecken: Vom Herd nehmen, Zitronenabrieb und -saft zugeben, salzen und pfeffern."
+        },
+        {
+          "step": 5,
+          "instruction": "Servieren: Sofort, als Beilage zu Fisch oder Eiern oder auf gebuttertem Röstbrot."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "side", "easy"],
+      "safetyNotes": [
+        "Sammle nur Straußenfarn. Seine Triebe sind glatt und leuchtend grün, mit braunen, papierartigen Schuppen, und auf der Innenseite des Stiels verläuft eine tiefe, U-förmige Rinne. Sammle niemals Adlerfarn: Er ist behaart, hat eine verzweigte Spitze und ist krebserregend.",
+        "Iss die Triebe nie roh oder zu kurz gegart: Sie haben schon Lebensmittelvergiftungen ausgelöst, auch bei vielen Menschen zugleich. Wasche sie, koche sie dann 15 Minuten (oder dämpfe sie 10–12 Minuten) und gieß das Wasser weg, bevor du sie anbrätst.",
+        "Nimm höchstens die Hälfte der Triebe eines Horstes, damit die Pflanze überlebt. In Deutschland ist der Straußenfarn besonders geschützt: Wild wachsende Pflanzen dürfen nicht gesammelt werden."
+      ]
+    },
+    "cloudberry-cream": {
+      "title": "Norwegische Moltebeerencreme (Multekrem)",
+      "ingredients": [
+        "300 g reife Moltebeeren, frisch oder tiefgekühlt und aufgetaut",
+        "2 EL Zucker für die Beeren",
+        "300 ml kalte Schlagsahne",
+        "1 EL Puderzucker für die Sahne",
+        "1 TL Vanillezucker oder ein paar Tropfen Vanilleextrakt",
+        "Krumkaker-Waffelröllchen oder knusprige Mandelkekse zum Servieren (nach Belieben)"
+      ],
+      "instructions": [
+        "Zuckern: Die Beeren verlesen und ein paar schöne zum Garnieren beiseitelegen. Die übrigen mit dem Zucker bestreuen und 15 Minuten ziehen lassen, bis sie etwas Saft abgeben.",
+        "Schlagen: Die kalte Sahne mit Puderzucker und Vanillezucker cremig aufschlagen. Nicht zu steif schlagen: Sie soll gerade eben ihre Form halten.",
+        "Unterheben: Die gezuckerten Beeren samt Saft mit einem Teigschaber in wenigen Zügen behutsam unter die Sahne heben, damit sie ganz bleiben.",
+        "Servieren: In Gläser oder Schalen füllen, mit den beiseitegelegten Beeren garnieren und gut gekühlt servieren, mit Krumkaker oder Keksen. In Norwegen ist es ein Weihnachtsdessert."
+      ],
+      "species": ["cloudberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Zuckern: Die Beeren verlesen und ein paar schöne zum Garnieren beiseitelegen. Die übrigen mit dem Zucker bestreuen und 15 Minuten ziehen lassen, bis sie etwas Saft abgeben."
+        },
+        {
+          "step": 2,
+          "instruction": "Schlagen: Die kalte Sahne mit Puderzucker und Vanillezucker cremig aufschlagen. Nicht zu steif schlagen: Sie soll gerade eben ihre Form halten."
+        },
+        {
+          "step": 3,
+          "instruction": "Unterheben: Die gezuckerten Beeren samt Saft mit einem Teigschaber in wenigen Zügen behutsam unter die Sahne heben, damit sie ganz bleiben."
+        },
+        {
+          "step": 4,
+          "instruction": "Servieren: In Gläser oder Schalen füllen, mit den beiseitegelegten Beeren garnieren und gut gekühlt servieren, mit Krumkaker oder Keksen. In Norwegen ist es ein Weihnachtsdessert."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "0 min",
+      "servings": "4–6",
+      "tags": ["vegetarian", "dessert", "easy"],
+      "safetyNotes": [
+        "Pflücke nur reife, weiche, bernsteingelbe Beeren. Unreife sind hart und rot.",
+        "Halte dich an die örtlichen Regeln. In Nordnorwegen, in Nordland, Troms und Finnmark, können Grundbesitzer das Pflücken von Moltebeeren auf ihrem Land verbieten: Achte auf Schilder (an Ort und Stelle essen ist immer erlaubt)."
+      ]
+    },
+    "huckleberry-pie": {
+      "title": "Huckleberry-Pie aus Montana",
+      "ingredients": [
+        "700 g Huckleberrys, frisch oder tiefgekühlt (nicht auftauen)",
+        "150 g Zucker und 1 EL zum Bestreuen",
+        "30 g Speisestärke",
+        "1 EL Zitronensaft",
+        "320 g Weizenmehl (Type 405)",
+        "225 g kalte Butter, gewürfelt",
+        "1 TL Salz",
+        "90–120 ml Eiswasser",
+        "1 Ei, verquirlt, zum Bestreichen"
+      ],
+      "instructions": [
+        "Teig zubereiten: Die Butter mit Mehl und Salz zwischen den Fingern zu groben Krümeln verreiben, dabei dürfen einige erbsengroße Butterstücke bleiben. Das Eiswasser löffelweise zugeben und alles rasch zu einem Teig zusammenfügen. Halbieren, zu zwei flachen Scheiben formen, in Folie wickeln und mindestens 30 Minuten kühlen.",
+        "Füllen: Den Backofen auf 220 °C vorheizen. Eine Teigscheibe ausrollen und eine Pie-Form von 23 cm damit auslegen. Die Huckleberrys mit Zucker, Stärke und Zitronensaft mischen und in die Form geben.",
+        "Abdecken: Die zweite Scheibe ausrollen und auf die Füllung legen, den Überstand abschneiden und die Ränder fest zusammendrücken. Die Oberfläche einige Male einschneiden, mit Ei bestreichen und mit dem restlichen Zucker bestreuen.",
+        "Backen: 20 Minuten backen, dann auf 180 °C herunterschalten und weitere 40 Minuten backen, bis die Kruste tief goldbraun ist und dicker Saft aus den Schlitzen blubbert. Ein Blech darunterstellen, das Tropfen auffängt.",
+        "Abkühlen: Mindestens 3 Stunden abkühlen lassen, damit die Füllung fest wird, und erst dann anschneiden. Mit Vanilleeis oder Schlagsahne servieren."
+      ],
+      "species": ["huckleberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Teig zubereiten: Die Butter mit Mehl und Salz zwischen den Fingern zu groben Krümeln verreiben, dabei dürfen einige erbsengroße Butterstücke bleiben. Das Eiswasser löffelweise zugeben und alles rasch zu einem Teig zusammenfügen. Halbieren, zu zwei flachen Scheiben formen, in Folie wickeln und mindestens 30 Minuten kühlen."
+        },
+        {
+          "step": 2,
+          "instruction": "Füllen: Den Backofen auf 220 °C vorheizen. Eine Teigscheibe ausrollen und eine Pie-Form von 23 cm damit auslegen. Die Huckleberrys mit Zucker, Stärke und Zitronensaft mischen und in die Form geben."
+        },
+        {
+          "step": 3,
+          "instruction": "Abdecken: Die zweite Scheibe ausrollen und auf die Füllung legen, den Überstand abschneiden und die Ränder fest zusammendrücken. Die Oberfläche einige Male einschneiden, mit Ei bestreichen und mit dem restlichen Zucker bestreuen."
+        },
+        {
+          "step": 4,
+          "instruction": "Backen: 20 Minuten backen, dann auf 180 °C herunterschalten und weitere 40 Minuten backen, bis die Kruste tief goldbraun ist und dicker Saft aus den Schlitzen blubbert. Ein Blech darunterstellen, das Tropfen auffängt."
+        },
+        {
+          "step": 5,
+          "instruction": "Abkühlen: Mindestens 3 Stunden abkühlen lassen, damit die Füllung fest wird, und erst dann anschneiden. Mit Vanilleeis oder Schlagsahne servieren."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "45 min",
+      "cookTime": "60 min",
+      "servings": "6–8",
+      "tags": ["vegetarian", "dessert", "medium"],
+      "safetyNotes": [
+        "Huckleberrys sind blauschwarz bis violett und tragen an der Spitze ein kleines Krönchen wie Heidelbeeren. Iss keine roten oder weißen Beeren in Trauben (die des Christophskrauts sind giftig) und keine Beere, bei der du dir nicht sicher bist.",
+        "Huckleberry-Gebiete sind Bärenland: Mach Lärm und trag Bärenspray bei dir."
+      ]
+    },
+    "pawpaw-ice-cream": {
+      "title": "Indianerbananen-Eis ohne Eismaschine",
+      "ingredients": [
+        "400 g Fruchtfleisch von reifen Indianerbananen (aus etwa 4–6 Früchten)",
+        "1 Dose (397 g) gezuckerte Kondensmilch",
+        "400 ml kalte Schlagsahne",
+        "Saft von 1 Limette",
+        "1 Prise Salz",
+        "1 TL Vanilleextrakt (nach Belieben)"
+      ],
+      "instructions": [
+        "Fruchtfleisch auslösen: Die reifen Früchte halbieren und das Fruchtfleisch mit einem Löffel aus der Schale lösen. Alle Samen von Hand herauslesen: Kein einziger darf in den Mixer.",
+        "Pürieren: Das Fruchtfleisch mit Limettensaft, Kondensmilch, Salz und Vanille glatt pürieren. Die Limette erhält die helle Farbe.",
+        "Schlagen: Die Sahne in einer großen Schüssel cremig aufschlagen.",
+        "Unterheben: Das Püree in zwei bis drei Portionen unter die Sahne heben, bis keine Schlieren mehr zu sehen sind. In eine Kastenform oder eine Gefrierdose füllen.",
+        "Gefrieren: Abgedeckt mindestens 6 Stunden oder über Nacht gefrieren lassen. Vor dem Portionieren 10 Minuten antauen lassen."
+      ],
+      "species": ["pawpaw"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Fruchtfleisch auslösen: Die reifen Früchte halbieren und das Fruchtfleisch mit einem Löffel aus der Schale lösen. Alle Samen von Hand herauslesen: Kein einziger darf in den Mixer."
+        },
+        {
+          "step": 2,
+          "instruction": "Pürieren: Das Fruchtfleisch mit Limettensaft, Kondensmilch, Salz und Vanille glatt pürieren. Die Limette erhält die helle Farbe."
+        },
+        {
+          "step": 3,
+          "instruction": "Schlagen: Die Sahne in einer großen Schüssel cremig aufschlagen."
+        },
+        {
+          "step": 4,
+          "instruction": "Unterheben: Das Püree in zwei bis drei Portionen unter die Sahne heben, bis keine Schlieren mehr zu sehen sind. In eine Kastenform oder eine Gefrierdose füllen."
+        },
+        {
+          "step": 5,
+          "instruction": "Gefrieren: Abgedeckt mindestens 6 Stunden oder über Nacht gefrieren lassen. Vor dem Portionieren 10 Minuten antauen lassen."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "0 min",
+      "servings": "6–8",
+      "tags": ["vegetarian", "dessert", "easy"],
+      "safetyNotes": [
+        "Iss nur reife Früchte, nie die Schale oder die großen Samen. Die Samen sind giftig: Zerdrücke sie nicht und püriere sie nicht mit.",
+        "Manche Menschen reagieren auf Indianerbananen mit Magenbeschwerden oder Hautausschlag: Probiere zuerst nur wenig."
+      ]
+    },
+    "rose-hip-syrup": {
+      "title": "Hagebuttensirup nach britischer Art",
+      "ingredients": [
+        "1 kg reife Hagebutten",
+        "3 l Wasser",
+        "500 g Zucker",
+        "Saft von 1 Zitrone (nach Belieben)",
+        "Ein Geleebeutel oder ein feines Passiertuch und sterilisierte Flaschen"
+      ],
+      "instructions": [
+        "Vorbereiten: Die Hagebutten waschen, Stiele und trockene Blütenreste entfernen und im Mixer oder mit dem Messer grob hacken.",
+        "Erster Auszug: 2 l Wasser aufkochen, die Hagebutten zugeben und wieder aufkochen lassen, dann vom Herd nehmen und 15 Minuten ziehen lassen. In den ausgebrühten Geleebeutel oder das Tuch gießen und den Saft abtropfen lassen.",
+        "Zweiter Auszug: Das Mark mit dem restlichen Liter Wasser zurück in den Topf geben, aufkochen, 10 Minuten ziehen lassen und erneut abseihen. Dann den gesamten Saft noch einmal durch ein sauberes, feines Tuch gießen, damit auch das letzte Härchen zurückbleibt.",
+        "Einkochen: Den Saft auf etwa 1 l einkochen. Zucker und Zitronensaft zugeben, rühren, bis sich der Zucker gelöst hat, und 5 Minuten sprudelnd kochen.",
+        "Abfüllen: Den heißen Sirup in heiße, sterilisierte Flaschen füllen und verschließen. Angebrochen im Kühlschrank aufbewahren und innerhalb von 2 Wochen verbrauchen. Über Pfannkuchen oder Eis träufeln oder mit Wasser verdünnt trinken."
+      ],
+      "species": ["rose_hips"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Vorbereiten: Die Hagebutten waschen, Stiele und trockene Blütenreste entfernen und im Mixer oder mit dem Messer grob hacken."
+        },
+        {
+          "step": 2,
+          "instruction": "Erster Auszug: 2 l Wasser aufkochen, die Hagebutten zugeben und wieder aufkochen lassen, dann vom Herd nehmen und 15 Minuten ziehen lassen. In den ausgebrühten Geleebeutel oder das Tuch gießen und den Saft abtropfen lassen."
+        },
+        {
+          "step": 3,
+          "instruction": "Zweiter Auszug: Das Mark mit dem restlichen Liter Wasser zurück in den Topf geben, aufkochen, 10 Minuten ziehen lassen und erneut abseihen. Dann den gesamten Saft noch einmal durch ein sauberes, feines Tuch gießen, damit auch das letzte Härchen zurückbleibt."
+        },
+        {
+          "step": 4,
+          "instruction": "Einkochen: Den Saft auf etwa 1 l einkochen. Zucker und Zitronensaft zugeben, rühren, bis sich der Zucker gelöst hat, und 5 Minuten sprudelnd kochen."
+        },
+        {
+          "step": 5,
+          "instruction": "Abfüllen: Den heißen Sirup in heiße, sterilisierte Flaschen füllen und verschließen. Angebrochen im Kühlschrank aufbewahren und innerhalb von 2 Wochen verbrauchen. Über Pfannkuchen oder Eis träufeln oder mit Wasser verdünnt trinken."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "60 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "drink", "medium"],
+      "safetyNotes": [
+        "Die Härchen um die Kerne reizen Mund und Darm: Sie sind das alte Juckpulver. Seihe den Sirup zweimal durch ein feines Tuch oder einen Geleebeutel.",
+        "Pflücke tiefrote, leicht weiche Hagebutten, am besten nach den ersten Frösten. Sammle nicht an viel befahrenen Straßen."
+      ]
+    },
+    "sloe-jelly": {
+      "title": "Schlehen-Apfel-Gelee",
+      "ingredients": [
+        "1 kg reife Schlehen",
+        "1 kg Kochäpfel, z. B. Boskop",
+        "Etwa 1,2 l Wasser",
+        "Zucker: 750 g pro Liter Saft",
+        "Ein Geleebeutel und sterilisierte Gläser"
+      ],
+      "instructions": [
+        "Vorbereiten: Die Schlehen abbrausen, Stiele und Blätter entfernen. Die Äpfel ungeschält und samt Kerngehäuse grob würfeln: Schale und Kerngehäuse enthalten das Pektin, das das Gelee fest werden lässt.",
+        "Weich kochen: Schlehen und Äpfel mit so viel Wasser in einen großen Topf geben, dass sie knapp bedeckt sind. Etwa 45 Minuten sanft köcheln lassen und gelegentlich umrühren, bis die Früchte ganz weich sind. Die Äpfel mit einem Löffel leicht andrücken, die Schlehen aber nicht zerdrücken, damit die Kerne heil bleiben.",
+        "Abtropfen: Alles in einen ausgebrühten Geleebeutel über einer Schüssel geben und einige Stunden oder über Nacht abtropfen lassen. Den Beutel nicht auspressen, sonst wird das Gelee trüb.",
+        "Kochen: Den Saft abmessen, in einen sauberen Topf geben und pro Liter 750 g Zucker zufügen. Bei schwacher Hitze rühren, bis sich der Zucker gelöst hat, dann 10–15 Minuten sprudelnd kochen, bis die Gelierprobe gelingt: 105 °C, oder ein Tropfen auf einem kalten Teller wirft Falten, wenn man ihn mit dem Finger anschiebt.",
+        "Abfüllen: Den Schaum abschöpfen, das Gelee in heiße, sterilisierte Gläser füllen und verschließen. Passt zu Lammbraten, Wild oder Käse."
+      ],
+      "species": ["sloes"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Vorbereiten: Die Schlehen abbrausen, Stiele und Blätter entfernen. Die Äpfel ungeschält und samt Kerngehäuse grob würfeln: Schale und Kerngehäuse enthalten das Pektin, das das Gelee fest werden lässt."
+        },
+        {
+          "step": 2,
+          "instruction": "Weich kochen: Schlehen und Äpfel mit so viel Wasser in einen großen Topf geben, dass sie knapp bedeckt sind. Etwa 45 Minuten sanft köcheln lassen und gelegentlich umrühren, bis die Früchte ganz weich sind. Die Äpfel mit einem Löffel leicht andrücken, die Schlehen aber nicht zerdrücken, damit die Kerne heil bleiben."
+        },
+        {
+          "step": 3,
+          "instruction": "Abtropfen: Alles in einen ausgebrühten Geleebeutel über einer Schüssel geben und einige Stunden oder über Nacht abtropfen lassen. Den Beutel nicht auspressen, sonst wird das Gelee trüb."
+        },
+        {
+          "step": 4,
+          "instruction": "Kochen: Den Saft abmessen, in einen sauberen Topf geben und pro Liter 750 g Zucker zufügen. Bei schwacher Hitze rühren, bis sich der Zucker gelöst hat, dann 10–15 Minuten sprudelnd kochen, bis die Gelierprobe gelingt: 105 °C, oder ein Tropfen auf einem kalten Teller wirft Falten, wenn man ihn mit dem Finger anschiebt."
+        },
+        {
+          "step": 5,
+          "instruction": "Abfüllen: Den Schaum abschöpfen, das Gelee in heiße, sterilisierte Gläser füllen und verschließen. Passt zu Lammbraten, Wild oder Käse."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "60 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "medium"],
+      "safetyNotes": [
+        "Schlehen sind blauschwarz mit einem matten Reif und wachsen einzeln am dornigen Schlehdorn. Roh sind sie sehr herb. Ihre Kerne enthalten Amygdalin, das Blausäure freisetzen kann: Zerdrücke die Kerne nicht.",
+        "Ihre Doppelgänger sind giftig: die Tollkirsche mit glänzend schwarzen Beeren, die auf einem grünen Stern sitzen, an einer krautigen, nicht verholzten Pflanze; der Purgier-Kreuzdorn (Rhamnus cathartica) mit glänzend schwarzen Beeren in Büscheln, die stark abführen."
+      ]
+    },
+    "sea-buckthorn-curd": {
+      "title": "Sanddorn-Curd",
+      "ingredients": [
+        "Etwa 300 g Sanddornbeeren für 150 ml Saft",
+        "175 g Zucker",
+        "3 Eier",
+        "1 Eigelb",
+        "100 g Butter, gewürfelt",
+        "1 Prise Salz",
+        "Sterilisierte Gläser"
+      ],
+      "instructions": [
+        "Entsaften: Die Beeren abbrausen und mit dem Rücken eines Löffels durch ein feines Sieb streichen, bis etwa 150 ml Saft zusammenkommen. Schalen und Kerne wegwerfen.",
+        "Verrühren: In einer hitzefesten Schüssel Eier, Eigelb, Zucker und Salz verquirlen, dann den Saft einrühren.",
+        "Garen: Die Schüssel über einen Topf mit knapp siedendem Wasser setzen, ohne dass sie das Wasser berührt. 10–12 Minuten ständig rühren, bis die Creme dick genug ist, um den Löffelrücken zu überziehen (etwa 80 °C). Nicht kochen lassen.",
+        "Fertigstellen: Vom Herd nehmen und die Butter stückchenweise einrühren, bis die Creme glatt ist. Für eine seidige Textur durch ein Sieb streichen.",
+        "Aufbewahren: In warme, sterilisierte Gläser füllen, verschließen und abkühlen lassen. Im Kühlschrank aufbewahren und innerhalb von 2 Wochen verbrauchen. Schmeckt auf Toast oder Scones oder als Füllung für Tartelettes."
+      ],
+      "species": ["sea_buckthorn"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Entsaften: Die Beeren abbrausen und mit dem Rücken eines Löffels durch ein feines Sieb streichen, bis etwa 150 ml Saft zusammenkommen. Schalen und Kerne wegwerfen."
+        },
+        {
+          "step": 2,
+          "instruction": "Verrühren: In einer hitzefesten Schüssel Eier, Eigelb, Zucker und Salz verquirlen, dann den Saft einrühren."
+        },
+        {
+          "step": 3,
+          "instruction": "Garen: Die Schüssel über einen Topf mit knapp siedendem Wasser setzen, ohne dass sie das Wasser berührt. 10–12 Minuten ständig rühren, bis die Creme dick genug ist, um den Löffelrücken zu überziehen (etwa 80 °C). Nicht kochen lassen."
+        },
+        {
+          "step": 4,
+          "instruction": "Fertigstellen: Vom Herd nehmen und die Butter stückchenweise einrühren, bis die Creme glatt ist. Für eine seidige Textur durch ein Sieb streichen."
+        },
+        {
+          "step": 5,
+          "instruction": "Aufbewahren: In warme, sterilisierte Gläser füllen, verschließen und abkühlen lassen. Im Kühlschrank aufbewahren und innerhalb von 2 Wochen verbrauchen. Schmeckt auf Toast oder Scones oder als Füllung für Tartelettes."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "dessert", "medium"],
+      "safetyNotes": [
+        "Pflücke leuchtend orange, saftige Beeren ab dem Spätsommer. Wenn du ein paar Zweige abschneidest und einfrierst, lassen sich die Beeren leicht abschlagen.",
+        "In geschützten Dünen und Naturschutzgebieten kann das Pflücken verboten sein: Informiere dich über die örtlichen Regeln. Der Strauch ist sehr dornig: Trag Handschuhe."
       ]
     }
   }

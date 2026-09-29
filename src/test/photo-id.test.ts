@@ -247,10 +247,10 @@ describe('data integrity', () => {
   // Pinned on purpose. The count is not interesting in itself, but an accidental
   // deletion here silently removes a warning, and a duplicate id or name makes
   // one entry unreachable — neither throws anywhere else.
-  it('has 75 toxic species with unique ids and names', () => {
-    expect(TOXIC_SPECIES).toHaveLength(75);
-    expect(new Set(TOXIC_SPECIES.map(t => t.id)).size).toBe(75);
-    expect(new Set(TOXIC_SPECIES.map(t => t.scientificName)).size).toBe(75);
+  it('has 77 toxic species with unique ids and names', () => {
+    expect(TOXIC_SPECIES).toHaveLength(77);
+    expect(new Set(TOXIC_SPECIES.map(t => t.id)).size).toBe(77);
+    expect(new Set(TOXIC_SPECIES.map(t => t.scientificName)).size).toBe(77);
   });
 
   it('references only real catalog ids in confusedWithSpeciesIds', () => {
@@ -462,6 +462,9 @@ describe('toxic species have their everyday counterpart in the vocabulary', () =
     ['Conium maculatum', ['Petroselinum crispum']],
     ['Aethusa cynapium', ['Petroselinum crispum']],
     ['Veratrum album', ['Allium ursinum']],
+    ['Veratrum viride', ['Allium tricoccum']],
+    ['Pteridium aquilinum', ['Matteuccia struthiopteris']],
+    ['Rhamnus cathartica', ['Prunus spinosa']],
     ['Pleurocybella porrigens', ['Pleurotus ostreatus']],
     ['Colchicum autumnale', ['Allium ursinum']],
     ['Convallaria majalis', ['Allium ursinum']],

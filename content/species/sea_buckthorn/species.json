@@ -1,0 +1,152 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "sea_buckthorn",
+  "scientificName": "Hippophae rhamnoides",
+  "catalog": {
+    "enabled": true,
+    "order": 55,
+    "translationKey": "sea_buckthorn",
+    "category": "berry",
+    "emoji": "🫐",
+    "season": "fall",
+    "habitat": "grassland",
+    "image": {
+      "path": "src/assets/species/sea_buckthorn.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Sea Buckthorn",
+      "description": "Bright orange berries packed along thorny, silver-leaved branches: sour and rich in vitamin C",
+      "howTo": "Look on coastal dunes and gravelly riverbanks from August to October. Wear gloves against the thorns, and check the rules: picking is often forbidden in dune reserves"
+    },
+    "it": {
+      "name": "Olivello spinoso",
+      "description": "Bacche arancione vivo fitte lungo rami spinosi dalle foglie argentate: aspre e ricche di vitamina C",
+      "howTo": "Cercalo sulle dune costiere e sulle rive ghiaiose dei fiumi da agosto a ottobre. Usa i guanti per le spine e informati sulle regole: nelle riserve dunali la raccolta è spesso vietata"
+    },
+    "fr": {
+      "name": "Argousier",
+      "description": "Des baies orange vif serrées le long de rameaux épineux aux feuilles argentées : acides et riches en vitamine C",
+      "howTo": "Cherchez-le sur les dunes littorales et les berges caillouteuses d'août à octobre. Portez des gants contre les épines et renseignez-vous : la cueillette est souvent interdite dans les réserves dunaires"
+    },
+    "de": {
+      "name": "Sanddorn",
+      "description": "Leuchtend orange Beeren dicht an dornigen, silbrig belaubten Zweigen: sauer und reich an Vitamin C",
+      "howTo": "Suche von August bis Oktober in Küstendünen und an kiesigen Flussufern. Trag Handschuhe gegen die Dornen und informiere dich: In Dünenschutzgebieten ist das Pflücken oft verboten"
+    },
+    "es": {
+      "name": "Espino amarillo",
+      "description": "Bayas de un naranja intenso apretadas a lo largo de ramas espinosas de hojas plateadas: ácidas y ricas en vitamina C",
+      "howTo": "Búscalo en dunas costeras y riberas de grava de agosto a octubre. Usa guantes por las espinas e infórmate: en las reservas de dunas la recolección suele estar prohibida"
+    },
+    "pt": {
+      "name": "Espinheiro-marítimo",
+      "description": "Bagas cor de laranja viva apertadas ao longo de ramos espinhosos de folhas prateadas: ácidas e ricas em vitamina C",
+      "howTo": "Procure em dunas costeiras e margens de rio com cascalho de agosto a outubro. Use luvas por causa dos espinhos e informe-se: nas reservas de dunas a apanha é muitas vezes proibida"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Hippophae rhamnoides",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-30-step4-plants.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Sea Buckthorn"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [321, 322, 324, 333],
+        "scoring": {
+          "optimal_temp": 17,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 10,
+          "alt_sigma": 800,
+          "optimal_humidity": 68,
+          "humidity_sigma": 17,
+          "optimal_pH": 4.8,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.3, 6.3],
+          "optimal_soil_temp": 16,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 10,
+          "rain_weight": 0,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/3039285",
+          "docs/species/2026-09-30-step4-plants.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [321, 322, 324, 333],
+        "scoring": {
+          "optimal_temp": 19,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 110,
+          "alt_sigma": 900,
+          "optimal_humidity": 63,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.7,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.2, 7.2],
+          "optimal_soil_temp": 18,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 12,
+          "rain_weight": 0,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/3039285",
+          "docs/species/2026-09-30-step4-plants.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [3039285]
+    }
+  }
+}

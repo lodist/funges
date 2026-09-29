@@ -70,7 +70,15 @@
     "garlic_wild": "Wild Garlic",
     "artichoke": "Wild Artichoke",
     "asparagus": "Wild Asparagus",
-    "strawberry": "Wild Strawberry"
+    "strawberry": "Wild Strawberry",
+    "ramps": "Ramps",
+    "fiddleheads": "Fiddleheads",
+    "cloudberry": "Cloudberry",
+    "huckleberry": "Huckleberry",
+    "pawpaw": "Pawpaw",
+    "rose_hips": "Rose Hips",
+    "sloes": "Sloes",
+    "sea_buckthorn": "Sea Buckthorn"
   },
   "tags": {
     "vegetarian": "Vegetarian",
@@ -1092,6 +1100,417 @@
       "safetyNotes": [
         "Cook hen of the woods thoroughly: undercooked, it upsets some stomachs.",
         "Its look-alike, the black-staining polypore, is edible but tough; it bruises black where it is handled."
+      ]
+    },
+    "pickled-ramps": {
+      "title": "Appalachian Pickled Ramps",
+      "ingredients": [
+        "About 200 g ramps with their bulbs (40 or so), bought or gathered a few from each large patch",
+        "150 ml cider vinegar",
+        "150 ml water",
+        "1 tablespoon sugar",
+        "1½ teaspoons fine salt",
+        "1 teaspoon yellow mustard seeds",
+        "½ teaspoon black peppercorns",
+        "1 bay leaf",
+        "A pinch of chilli flakes (optional)"
+      ],
+      "instructions": [
+        "Clean: Cut off the roots and slip the loose outer skin off each bulb. Cut the leaves off where they meet the stem and keep them for another use, such as pesto or scrambled eggs. Wash the bulbs and stems well in cold water.",
+        "Pack: Stand the bulbs and stems upright in a clean, sterilised jar of about 400 ml, trimming them to fit.",
+        "Brine: Bring the vinegar, water, sugar, salt, mustard seeds, peppercorns, bay leaf and chilli to the boil, stirring until the sugar and salt dissolve.",
+        "Fill: Pour the hot brine over the ramps until they are covered by 1 cm, tucking the bay leaf down the side. Tap the jar to release any air bubbles and close it.",
+        "Mature: Leave to cool, then keep in the fridge. Wait at least 3 days before eating; they keep for up to 2 months in the fridge. Serve with soup beans and cornbread, in sandwiches or with cheese."
+      ],
+      "species": ["ramps"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Clean: Cut off the roots and slip the loose outer skin off each bulb. Cut the leaves off where they meet the stem and keep them for another use, such as pesto or scrambled eggs. Wash the bulbs and stems well in cold water."
+        },
+        {
+          "step": 2,
+          "instruction": "Pack: Stand the bulbs and stems upright in a clean, sterilised jar of about 400 ml, trimming them to fit."
+        },
+        {
+          "step": 3,
+          "instruction": "Brine: Bring the vinegar, water, sugar, salt, mustard seeds, peppercorns, bay leaf and chilli to the boil, stirring until the sugar and salt dissolve."
+        },
+        {
+          "step": 4,
+          "instruction": "Fill: Pour the hot brine over the ramps until they are covered by 1 cm, tucking the bay leaf down the side. Tap the jar to release any air bubbles and close it."
+        },
+        {
+          "step": 5,
+          "instruction": "Mature: Leave to cool, then keep in the fridge. Wait at least 3 days before eating; they keep for up to 2 months in the fridge. Serve with soup beans and cornbread, in sandwiches or with cheese."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Harvest sustainably. Ramps grow slowly, taking years from seed to harvest, and over-harvesting has wiped out whole patches. Take one leaf per plant and leave the bulb, or at most a few bulbs from a large, dense patch. Never clear a patch.",
+        "Picking is banned in some parks, including Great Smoky Mountains National Park. Quebec bans selling wild ramps and limits personal harvest to 200 g, or 50 bulbs or plants, per person per year.",
+        "Look-alikes are poisonous: lily of the valley, and false hellebore (Veratrum viride). Crush a leaf of every plant: ramps smell strongly of onion or garlic, and the look-alikes don't. The smell lingers on your fingers, so don't trust it once your hands already smell."
+      ]
+    },
+    "sauteed-fiddleheads": {
+      "title": "Sautéed Fiddleheads with Garlic and Lemon",
+      "ingredients": [
+        "400 g ostrich fern fiddleheads",
+        "Salt for the cooking water",
+        "30 g butter",
+        "1 tablespoon olive oil",
+        "2 cloves garlic, thinly sliced",
+        "Grated zest of ½ lemon and 1 tablespoon lemon juice",
+        "Salt and black pepper"
+      ],
+      "instructions": [
+        "Clean: Trim the brown ends of the stems. Rub off the brown papery scales with your fingers, then wash the fiddleheads in several changes of cold water, until the water stays clear.",
+        "Boil: Bring a large pan of salted water to the boil, add the fiddleheads and boil them for 15 minutes (or steam them for 10–12 minutes). Drain them and throw the cooking water away.",
+        "Sauté: Heat the butter and oil in a wide frying pan, add the garlic and cook gently for 1 minute. Add the fiddleheads and sauté over a medium-high heat for 3–4 minutes, until lightly browned.",
+        "Season: Take the pan off the heat, add the lemon zest and juice, and season with salt and pepper.",
+        "Serve: Straight away, as a side with fish or eggs, or piled on buttered toast."
+      ],
+      "species": ["fiddleheads"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Clean: Trim the brown ends of the stems. Rub off the brown papery scales with your fingers, then wash the fiddleheads in several changes of cold water, until the water stays clear."
+        },
+        {
+          "step": 2,
+          "instruction": "Boil: Bring a large pan of salted water to the boil, add the fiddleheads and boil them for 15 minutes (or steam them for 10–12 minutes). Drain them and throw the cooking water away."
+        },
+        {
+          "step": 3,
+          "instruction": "Sauté: Heat the butter and oil in a wide frying pan, add the garlic and cook gently for 1 minute. Add the fiddleheads and sauté over a medium-high heat for 3–4 minutes, until lightly browned."
+        },
+        {
+          "step": 4,
+          "instruction": "Season: Take the pan off the heat, add the lemon zest and juice, and season with salt and pepper."
+        },
+        {
+          "step": 5,
+          "instruction": "Serve: Straight away, as a side with fish or eggs, or piled on buttered toast."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "side", "easy"],
+      "safetyNotes": [
+        "Pick only the ostrich fern. Its fiddleheads are smooth and bright green, with brown papery scales, and a deep U-shaped groove runs along the inside of the stem. Never pick bracken, which is fuzzy, has a branched top and is carcinogenic.",
+        "Never eat fiddleheads raw or undercooked: they have caused outbreaks of food poisoning. Wash them, then boil them for 15 minutes (or steam for 10–12 minutes) and throw the water away, before sautéing.",
+        "Pick no more than half of the fiddleheads from one crown, so the plant survives. In Germany the ostrich fern is protected, and picking it in the wild is forbidden."
+      ]
+    },
+    "cloudberry-cream": {
+      "title": "Norwegian Cloudberry Cream (Multekrem)",
+      "ingredients": [
+        "300 g ripe cloudberries, fresh or frozen and thawed",
+        "2 tablespoons caster sugar, for the berries",
+        "300 ml cold whipping cream",
+        "1 tablespoon icing sugar, for the cream",
+        "1 teaspoon vanilla sugar, or a few drops of vanilla extract",
+        "Krumkake cones or crisp almond biscuits to serve (optional)"
+      ],
+      "instructions": [
+        "Sweeten: Pick over the berries and set a few of the best aside for the top. Sprinkle the rest with the caster sugar and leave for 15 minutes, until they release some juice.",
+        "Whip: Whip the cold cream with the icing sugar and vanilla sugar to soft peaks. Don't overwhip it: it should only just hold its shape.",
+        "Fold: Fold the sugared berries and their juice gently into the cream with a spatula, in a few strokes, so the berries stay whole.",
+        "Serve: Spoon into glasses or bowls, top with the reserved berries and serve cold, with krumkake or biscuits. In Norway it is a Christmas dessert."
+      ],
+      "species": ["cloudberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sweeten: Pick over the berries and set a few of the best aside for the top. Sprinkle the rest with the caster sugar and leave for 15 minutes, until they release some juice."
+        },
+        {
+          "step": 2,
+          "instruction": "Whip: Whip the cold cream with the icing sugar and vanilla sugar to soft peaks. Don't overwhip it: it should only just hold its shape."
+        },
+        {
+          "step": 3,
+          "instruction": "Fold: Fold the sugared berries and their juice gently into the cream with a spatula, in a few strokes, so the berries stay whole."
+        },
+        {
+          "step": 4,
+          "instruction": "Serve: Spoon into glasses or bowls, top with the reserved berries and serve cold, with krumkake or biscuits. In Norway it is a Christmas dessert."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "0 min",
+      "servings": "4–6",
+      "tags": ["vegetarian", "dessert", "easy"],
+      "safetyNotes": [
+        "Pick only ripe, soft, amber-yellow berries. Unripe ones are hard and red.",
+        "Respect local picking rules. In Nordland, Troms and Finnmark in northern Norway, landowners can ban cloudberry picking on their land, so look out for signs (eating berries on the spot is always allowed)."
+      ]
+    },
+    "huckleberry-pie": {
+      "title": "Montana Huckleberry Pie",
+      "ingredients": [
+        "700 g huckleberries, fresh or frozen (no need to thaw)",
+        "150 g sugar, plus 1 tablespoon to sprinkle",
+        "30 g cornflour",
+        "1 tablespoon lemon juice",
+        "320 g plain flour",
+        "225 g cold butter, diced",
+        "1 teaspoon salt",
+        "90–120 ml iced water",
+        "1 egg, beaten, to glaze"
+      ],
+      "instructions": [
+        "Make the pastry: Rub the butter into the flour and salt until it looks like coarse crumbs with a few pea-sized lumps of butter. Add the iced water a spoonful at a time and bring it together into a dough. Divide it in two, flatten into discs, wrap and chill for at least 30 minutes.",
+        "Fill: Heat the oven to 220 °C. Roll out one disc and line a 23 cm pie dish with it. Mix the huckleberries with the sugar, cornflour and lemon juice and tip them into the pastry case.",
+        "Cover: Roll out the second disc, lay it over the filling, then trim and crimp the edges to seal. Cut a few slits in the top, brush with the egg and sprinkle with the extra sugar.",
+        "Bake: Bake for 20 minutes, then lower the oven to 180 °C and bake for another 40 minutes, until the crust is deep golden and thick juice bubbles through the slits. Put a tray underneath to catch any drips.",
+        "Cool: Leave the pie to cool for at least 3 hours, so the filling sets before you slice it. Serve with vanilla ice cream or whipped cream."
+      ],
+      "species": ["huckleberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Make the pastry: Rub the butter into the flour and salt until it looks like coarse crumbs with a few pea-sized lumps of butter. Add the iced water a spoonful at a time and bring it together into a dough. Divide it in two, flatten into discs, wrap and chill for at least 30 minutes."
+        },
+        {
+          "step": 2,
+          "instruction": "Fill: Heat the oven to 220 °C. Roll out one disc and line a 23 cm pie dish with it. Mix the huckleberries with the sugar, cornflour and lemon juice and tip them into the pastry case."
+        },
+        {
+          "step": 3,
+          "instruction": "Cover: Roll out the second disc, lay it over the filling, then trim and crimp the edges to seal. Cut a few slits in the top, brush with the egg and sprinkle with the extra sugar."
+        },
+        {
+          "step": 4,
+          "instruction": "Bake: Bake for 20 minutes, then lower the oven to 180 °C and bake for another 40 minutes, until the crust is deep golden and thick juice bubbles through the slits. Put a tray underneath to catch any drips."
+        },
+        {
+          "step": 5,
+          "instruction": "Cool: Leave the pie to cool for at least 3 hours, so the filling sets before you slice it. Serve with vanilla ice cream or whipped cream."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "45 min",
+      "cookTime": "60 min",
+      "servings": "6–8",
+      "tags": ["vegetarian", "dessert", "medium"],
+      "safetyNotes": [
+        "Huckleberries are blue-black to purple, with a small crown at the tip like a blueberry. Don't eat red or white berries in clusters (baneberry is poisonous) or any berry you're not sure of.",
+        "Huckleberry patches are bear country: make noise and carry bear spray."
+      ]
+    },
+    "pawpaw-ice-cream": {
+      "title": "No-Churn Pawpaw Ice Cream",
+      "ingredients": [
+        "400 g ripe pawpaw pulp (from about 4–6 fruits)",
+        "1 tin (397 g) sweetened condensed milk",
+        "400 ml cold whipping cream",
+        "Juice of 1 lime",
+        "A pinch of salt",
+        "1 teaspoon vanilla extract (optional)"
+      ],
+      "instructions": [
+        "Prepare the pulp: Halve the ripe pawpaws and scoop out the flesh with a spoon, leaving the skin behind. Pick out every seed by hand: not one should go into the blender.",
+        "Blend: Blend the pulp with the lime juice, condensed milk, salt and vanilla until smooth. The lime keeps the colour bright.",
+        "Whip: In a large bowl, whip the cream to soft peaks.",
+        "Fold: Fold the pawpaw mixture into the cream in two or three batches, until no streaks remain. Pour into a loaf tin or a freezer box.",
+        "Freeze: Cover and freeze for at least 6 hours, or overnight. Let it soften for 10 minutes before scooping."
+      ],
+      "species": ["pawpaw"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Prepare the pulp: Halve the ripe pawpaws and scoop out the flesh with a spoon, leaving the skin behind. Pick out every seed by hand: not one should go into the blender."
+        },
+        {
+          "step": 2,
+          "instruction": "Blend: Blend the pulp with the lime juice, condensed milk, salt and vanilla until smooth. The lime keeps the colour bright."
+        },
+        {
+          "step": 3,
+          "instruction": "Whip: In a large bowl, whip the cream to soft peaks."
+        },
+        {
+          "step": 4,
+          "instruction": "Fold: Fold the pawpaw mixture into the cream in two or three batches, until no streaks remain. Pour into a loaf tin or a freezer box."
+        },
+        {
+          "step": 5,
+          "instruction": "Freeze: Cover and freeze for at least 6 hours, or overnight. Let it soften for 10 minutes before scooping."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "0 min",
+      "servings": "6–8",
+      "tags": ["vegetarian", "dessert", "easy"],
+      "safetyNotes": [
+        "Eat only ripe fruit, and never the skin or the large seeds. The seeds are poisonous: don't crush or blend them.",
+        "Some people react to pawpaw with a stomach upset or a skin rash, so try a little first."
+      ]
+    },
+    "rose-hip-syrup": {
+      "title": "Rose Hip Syrup",
+      "ingredients": [
+        "1 kg ripe rose hips",
+        "3 litres water",
+        "500 g sugar",
+        "Juice of 1 lemon (optional)",
+        "A jelly bag or fine cloth, and sterilised bottles"
+      ],
+      "instructions": [
+        "Prepare: Wash the hips, pull off the stalks and the dry tips, and chop them roughly in a food processor or with a knife.",
+        "First infusion: Bring 2 litres of the water to the boil, add the hips and bring back to the boil, then take off the heat and leave for 15 minutes. Pour into a scalded jelly bag or fine cloth and let the juice drip through.",
+        "Second infusion: Put the pulp back in the pan with the remaining litre of water, bring to the boil, leave for 10 minutes and strain again. Then pour all the juice through a clean, fine cloth once more, to catch every last hair.",
+        "Reduce: Boil the juice until it has reduced to about 1 litre. Add the sugar and lemon juice, stir until the sugar dissolves and boil for 5 minutes.",
+        "Bottle: Pour the hot syrup into hot sterilised bottles and seal them. Once opened, keep in the fridge and use within 2 weeks. Pour it over pancakes or ice cream, or dilute it with water for a drink."
+      ],
+      "species": ["rose_hips"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Prepare: Wash the hips, pull off the stalks and the dry tips, and chop them roughly in a food processor or with a knife."
+        },
+        {
+          "step": 2,
+          "instruction": "First infusion: Bring 2 litres of the water to the boil, add the hips and bring back to the boil, then take off the heat and leave for 15 minutes. Pour into a scalded jelly bag or fine cloth and let the juice drip through."
+        },
+        {
+          "step": 3,
+          "instruction": "Second infusion: Put the pulp back in the pan with the remaining litre of water, bring to the boil, leave for 10 minutes and strain again. Then pour all the juice through a clean, fine cloth once more, to catch every last hair."
+        },
+        {
+          "step": 4,
+          "instruction": "Reduce: Boil the juice until it has reduced to about 1 litre. Add the sugar and lemon juice, stir until the sugar dissolves and boil for 5 minutes."
+        },
+        {
+          "step": 5,
+          "instruction": "Bottle: Pour the hot syrup into hot sterilised bottles and seal them. Once opened, keep in the fridge and use within 2 weeks. Pour it over pancakes or ice cream, or dilute it with water for a drink."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "60 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "drink", "medium"],
+      "safetyNotes": [
+        "The hairs around the seeds irritate the mouth and gut: they are the old 'itching powder'. Strain the syrup twice through a fine cloth or jelly bag.",
+        "Pick hips that are deep red and slightly soft, after the first frosts if you can. Don't pick beside busy roads."
+      ]
+    },
+    "sloe-jelly": {
+      "title": "Sloe and Apple Jelly",
+      "ingredients": [
+        "1 kg ripe sloes",
+        "1 kg cooking apples, such as Bramley",
+        "About 1.2 litres water",
+        "Sugar: 750 g for each litre of juice",
+        "A jelly bag and sterilised jars"
+      ],
+      "instructions": [
+        "Prepare: Rinse the sloes and pick off any stalks and leaves. Chop the apples roughly without peeling or coring them: the peel and cores hold the pectin that sets the jelly.",
+        "Simmer: Put the sloes and apples in a large pan with just enough water to cover them. Simmer gently for about 45 minutes, stirring now and then, until the fruit is very soft. Press the apples lightly with a spoon, but don't mash the sloes, so the stones stay whole.",
+        "Strain: Tip everything into a scalded jelly bag set over a bowl and let it drip for several hours or overnight. Don't squeeze the bag, or the jelly will be cloudy.",
+        "Boil: Measure the juice into a clean pan and add 750 g of sugar for every litre. Stir over a low heat until the sugar dissolves, then boil hard for 10–15 minutes, until it reaches setting point: 105 °C, or a drop on a cold plate wrinkles when you push it.",
+        "Pot: Skim off any foam, pour into hot sterilised jars and seal. Serve with roast lamb, game or cheese."
+      ],
+      "species": ["sloes"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Prepare: Rinse the sloes and pick off any stalks and leaves. Chop the apples roughly without peeling or coring them: the peel and cores hold the pectin that sets the jelly."
+        },
+        {
+          "step": 2,
+          "instruction": "Simmer: Put the sloes and apples in a large pan with just enough water to cover them. Simmer gently for about 45 minutes, stirring now and then, until the fruit is very soft. Press the apples lightly with a spoon, but don't mash the sloes, so the stones stay whole."
+        },
+        {
+          "step": 3,
+          "instruction": "Strain: Tip everything into a scalded jelly bag set over a bowl and let it drip for several hours or overnight. Don't squeeze the bag, or the jelly will be cloudy."
+        },
+        {
+          "step": 4,
+          "instruction": "Boil: Measure the juice into a clean pan and add 750 g of sugar for every litre. Stir over a low heat until the sugar dissolves, then boil hard for 10–15 minutes, until it reaches setting point: 105 °C, or a drop on a cold plate wrinkles when you push it."
+        },
+        {
+          "step": 5,
+          "instruction": "Pot: Skim off any foam, pour into hot sterilised jars and seal. Serve with roast lamb, game or cheese."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "60 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "medium"],
+      "safetyNotes": [
+        "Sloes are blue-black with a dusty bloom, and grow singly on the thorny blackthorn. They are very sour raw. Their stones contain amygdalin, which can release cyanide, so don't crush the stones.",
+        "Look-alikes are poisonous: deadly nightshade has shiny black berries sitting on a green star, on a soft, non-woody plant; buckthorn (Rhamnus cathartica) has shiny black berries in clusters and is strongly purgative."
+      ]
+    },
+    "sea-buckthorn-curd": {
+      "title": "Sea Buckthorn Curd",
+      "ingredients": [
+        "About 300 g sea buckthorn berries, for 150 ml juice",
+        "175 g sugar",
+        "3 eggs",
+        "1 egg yolk",
+        "100 g butter, diced",
+        "A pinch of salt",
+        "Sterilised jars"
+      ],
+      "instructions": [
+        "Juice: Rinse the berries and press them through a fine sieve with the back of a spoon, to get about 150 ml of juice. Throw away the skins and seeds.",
+        "Mix: In a heatproof bowl, whisk the eggs, egg yolk, sugar and salt, then whisk in the juice.",
+        "Cook: Set the bowl over a pan of barely simmering water, without letting it touch the water. Stir all the time for 10–12 minutes, until the curd is thick enough to coat the back of a spoon (about 80 °C). Don't let it boil.",
+        "Finish: Take the bowl off the heat and stir in the butter a few pieces at a time, until smooth. For a silky curd, pass it through a sieve.",
+        "Store: Pour into warm sterilised jars, cover and leave to cool. Keep in the fridge and eat within 2 weeks. Spread it on toast or scones, or use it to fill tarts."
+      ],
+      "species": ["sea_buckthorn"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Juice: Rinse the berries and press them through a fine sieve with the back of a spoon, to get about 150 ml of juice. Throw away the skins and seeds."
+        },
+        {
+          "step": 2,
+          "instruction": "Mix: In a heatproof bowl, whisk the eggs, egg yolk, sugar and salt, then whisk in the juice."
+        },
+        {
+          "step": 3,
+          "instruction": "Cook: Set the bowl over a pan of barely simmering water, without letting it touch the water. Stir all the time for 10–12 minutes, until the curd is thick enough to coat the back of a spoon (about 80 °C). Don't let it boil."
+        },
+        {
+          "step": 4,
+          "instruction": "Finish: Take the bowl off the heat and stir in the butter a few pieces at a time, until smooth. For a silky curd, pass it through a sieve."
+        },
+        {
+          "step": 5,
+          "instruction": "Store: Pour into warm sterilised jars, cover and leave to cool. Keep in the fridge and eat within 2 weeks. Spread it on toast or scones, or use it to fill tarts."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "dessert", "medium"],
+      "safetyNotes": [
+        "Pick bright orange, juicy berries from late summer on. Cutting a few sprigs and freezing them makes the berries easy to knock off.",
+        "Picking may be forbidden in protected dunes and nature reserves, so check local rules. The shrub is very thorny: wear gloves."
       ]
     }
   }

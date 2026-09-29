@@ -70,7 +70,15 @@
     "garlic_wild": "Ail des ours",
     "artichoke": "Artichaut sauvage",
     "asparagus": "Asperge sauvage",
-    "strawberry": "Fraise des bois"
+    "strawberry": "Fraise des bois",
+    "ramps": "Ail des bois",
+    "fiddleheads": "Têtes de violon",
+    "cloudberry": "Plaquebière",
+    "huckleberry": "Huckleberry",
+    "pawpaw": "Asimine",
+    "rose_hips": "Cynorrhodons",
+    "sloes": "Prunelles",
+    "sea_buckthorn": "Argousier"
   },
   "tags": {
     "vegetarian": "Végétarien",
@@ -1106,6 +1114,417 @@
       "safetyNotes": [
         "Cuisez bien le polypore en touffe : pas assez cuit, il dérange certains estomacs.",
         "Son sosie, le polypore géant, est comestible mais coriace ; il noircit là où on le touche."
+      ]
+    },
+    "pickled-ramps": {
+      "title": "Ail des bois au vinaigre, façon Appalaches",
+      "ingredients": [
+        "Environ 200 g d'ail des bois avec les bulbes (une quarantaine de plants), acheté ou cueilli par petites quantités dans de grandes colonies",
+        "150 ml de vinaigre de cidre",
+        "150 ml d'eau",
+        "1 cuillère à soupe de sucre",
+        "1 cuillère à café et demie de sel fin",
+        "1 cuillère à café de graines de moutarde jaune",
+        "½ cuillère à café de poivre noir en grains",
+        "1 feuille de laurier",
+        "Une pincée de piment en flocons (facultatif)"
+      ],
+      "instructions": [
+        "Nettoyer : Coupez les racines et retirez la fine peau extérieure de chaque bulbe. Coupez les feuilles à la jonction avec la tige et gardez-les pour un autre usage, comme un pesto ou des œufs brouillés. Lavez soigneusement bulbes et tiges à l'eau froide.",
+        "Remplir le bocal : Rangez les bulbes et les tiges debout dans un bocal stérilisé d'environ 400 ml, en les recoupant au besoin.",
+        "Saumure : Portez à ébullition le vinaigre, l'eau, le sucre, le sel, la moutarde, le poivre, le laurier et le piment, en remuant jusqu'à ce que le sucre et le sel soient dissous.",
+        "Verser : Versez la saumure bouillante sur l'ail des bois pour le recouvrir de 1 cm, en glissant la feuille de laurier contre la paroi. Tapotez le bocal pour chasser les bulles d'air et fermez-le.",
+        "Laisser mariner : Laissez refroidir, puis gardez au réfrigérateur. Attendez au moins 3 jours avant de déguster ; il se conserve jusqu'à 2 mois au frais. Servez-le avec des haricots et du pain de maïs, dans un sandwich ou avec du fromage."
+      ],
+      "species": ["ramps"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Nettoyer : Coupez les racines et retirez la fine peau extérieure de chaque bulbe. Coupez les feuilles à la jonction avec la tige et gardez-les pour un autre usage, comme un pesto ou des œufs brouillés. Lavez soigneusement bulbes et tiges à l'eau froide."
+        },
+        {
+          "step": 2,
+          "instruction": "Remplir le bocal : Rangez les bulbes et les tiges debout dans un bocal stérilisé d'environ 400 ml, en les recoupant au besoin."
+        },
+        {
+          "step": 3,
+          "instruction": "Saumure : Portez à ébullition le vinaigre, l'eau, le sucre, le sel, la moutarde, le poivre, le laurier et le piment, en remuant jusqu'à ce que le sucre et le sel soient dissous."
+        },
+        {
+          "step": 4,
+          "instruction": "Verser : Versez la saumure bouillante sur l'ail des bois pour le recouvrir de 1 cm, en glissant la feuille de laurier contre la paroi. Tapotez le bocal pour chasser les bulles d'air et fermez-le."
+        },
+        {
+          "step": 5,
+          "instruction": "Laisser mariner : Laissez refroidir, puis gardez au réfrigérateur. Attendez au moins 3 jours avant de déguster ; il se conserve jusqu'à 2 mois au frais. Servez-le avec des haricots et du pain de maïs, dans un sandwich ou avec du fromage."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Récoltez de façon durable. L'ail des bois pousse lentement, il faut des années entre la graine et la récolte, et la surcueillette a fait disparaître des colonies entières. Prenez une seule feuille par plant et laissez le bulbe, ou tout au plus quelques bulbes dans une colonie grande et dense. Ne videz jamais une colonie.",
+        "La cueillette est interdite dans certains parcs, dont le parc national des Great Smoky Mountains. Le Québec interdit la vente d'ail des bois sauvage et limite la récolte personnelle à 200 g, ou 50 bulbes ou plants, par personne et par année.",
+        "Ses sosies sont toxiques : le muguet et le vératre vert (Veratrum viride). Froissez une feuille de chaque plant : l'ail des bois dégage une forte odeur d'oignon ou d'ail, pas ses sosies. L'odeur reste sur les doigts, donc ne vous y fiez plus une fois vos mains imprégnées."
+      ]
+    },
+    "sauteed-fiddleheads": {
+      "title": "Têtes de violon sautées à l'ail et au citron",
+      "ingredients": [
+        "400 g de têtes de violon (crosses de fougère-à-l'autruche)",
+        "Gros sel pour l'eau de cuisson",
+        "30 g de beurre",
+        "1 cuillère à soupe d'huile d'olive",
+        "2 gousses d'ail finement émincées",
+        "Le zeste râpé d'un demi-citron et 1 cuillère à soupe de jus",
+        "Sel et poivre noir"
+      ],
+      "instructions": [
+        "Nettoyer : Coupez l'extrémité brune des tiges. Retirez avec les doigts les écailles brunes, fines comme du papier, puis lavez les têtes de violon dans plusieurs eaux froides, jusqu'à ce que l'eau reste claire.",
+        "Cuire à l'eau : Portez à ébullition une grande casserole d'eau salée, plongez-y les têtes de violon et faites-les bouillir 15 minutes (ou cuire 10 à 12 minutes à la vapeur). Égouttez-les et jetez l'eau de cuisson.",
+        "Faire sauter : Faites chauffer le beurre et l'huile dans une grande poêle, ajoutez l'ail et faites-le revenir doucement 1 minute. Ajoutez les têtes de violon et faites-les sauter 3 à 4 minutes à feu moyen-vif, jusqu'à ce qu'elles soient légèrement dorées.",
+        "Assaisonner : Retirez du feu, ajoutez le zeste et le jus de citron, salez et poivrez.",
+        "Servir : Aussitôt, en accompagnement d'un poisson ou d'œufs, ou sur une tartine grillée et beurrée."
+      ],
+      "species": ["fiddleheads"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Nettoyer : Coupez l'extrémité brune des tiges. Retirez avec les doigts les écailles brunes, fines comme du papier, puis lavez les têtes de violon dans plusieurs eaux froides, jusqu'à ce que l'eau reste claire."
+        },
+        {
+          "step": 2,
+          "instruction": "Cuire à l'eau : Portez à ébullition une grande casserole d'eau salée, plongez-y les têtes de violon et faites-les bouillir 15 minutes (ou cuire 10 à 12 minutes à la vapeur). Égouttez-les et jetez l'eau de cuisson."
+        },
+        {
+          "step": 3,
+          "instruction": "Faire sauter : Faites chauffer le beurre et l'huile dans une grande poêle, ajoutez l'ail et faites-le revenir doucement 1 minute. Ajoutez les têtes de violon et faites-les sauter 3 à 4 minutes à feu moyen-vif, jusqu'à ce qu'elles soient légèrement dorées."
+        },
+        {
+          "step": 4,
+          "instruction": "Assaisonner : Retirez du feu, ajoutez le zeste et le jus de citron, salez et poivrez."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir : Aussitôt, en accompagnement d'un poisson ou d'œufs, ou sur une tartine grillée et beurrée."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "side", "easy"],
+      "safetyNotes": [
+        "Ne cueillez que la fougère-à-l'autruche. Ses têtes de violon sont lisses et vert vif, couvertes d'écailles brunes comme du papier, et un sillon profond en forme de U court sur la face interne de la tige. Ne cueillez jamais la fougère aigle, duveteuse, à la tête ramifiée, qui est cancérogène.",
+        "Ne mangez jamais de têtes de violon crues ou mal cuites : elles ont déjà causé des intoxications alimentaires collectives. Lavez-les, puis faites-les bouillir 15 minutes (ou cuire 10 à 12 minutes à la vapeur) et jetez l'eau, avant de les faire sauter.",
+        "Ne cueillez pas plus de la moitié des crosses d'une même touffe, pour que la plante survive. En Allemagne, la fougère-à-l'autruche est protégée et sa cueillette dans la nature est interdite."
+      ]
+    },
+    "cloudberry-cream": {
+      "title": "Crème aux plaquebières à la norvégienne (multekrem)",
+      "ingredients": [
+        "300 g de plaquebières (chicoutés) bien mûres, fraîches ou surgelées et décongelées",
+        "2 cuillères à soupe de sucre en poudre, pour les baies",
+        "300 ml de crème liquide entière bien froide",
+        "1 cuillère à soupe de sucre glace, pour la crème",
+        "1 cuillère à café de sucre vanillé, ou quelques gouttes d'extrait de vanille",
+        "Cornets krumkake ou biscuits croquants aux amandes pour servir (facultatif)"
+      ],
+      "instructions": [
+        "Sucrer : Triez les baies et gardez les plus belles pour le décor. Saupoudrez les autres de sucre en poudre et laissez reposer 15 minutes, jusqu'à ce qu'elles rendent un peu de jus.",
+        "Fouetter : Fouettez la crème froide avec le sucre glace et le sucre vanillé en une chantilly souple. Ne la fouettez pas trop : elle doit tout juste se tenir.",
+        "Incorporer : Incorporez délicatement les baies et leur jus à la crème avec une spatule, en quelques gestes, pour qu'elles restent entières.",
+        "Servir : Répartissez dans des verres ou des coupes, décorez avec les baies réservées et servez bien frais, avec les cornets ou les biscuits. En Norvège, c'est le dessert de Noël."
+      ],
+      "species": ["cloudberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sucrer : Triez les baies et gardez les plus belles pour le décor. Saupoudrez les autres de sucre en poudre et laissez reposer 15 minutes, jusqu'à ce qu'elles rendent un peu de jus."
+        },
+        {
+          "step": 2,
+          "instruction": "Fouetter : Fouettez la crème froide avec le sucre glace et le sucre vanillé en une chantilly souple. Ne la fouettez pas trop : elle doit tout juste se tenir."
+        },
+        {
+          "step": 3,
+          "instruction": "Incorporer : Incorporez délicatement les baies et leur jus à la crème avec une spatule, en quelques gestes, pour qu'elles restent entières."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir : Répartissez dans des verres ou des coupes, décorez avec les baies réservées et servez bien frais, avec les cornets ou les biscuits. En Norvège, c'est le dessert de Noël."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "0 min",
+      "servings": "4–6",
+      "tags": ["vegetarian", "dessert", "easy"],
+      "safetyNotes": [
+        "Ne cueillez que des baies mûres, molles et jaune ambré. Les baies pas encore mûres sont dures et rouges.",
+        "Respectez les règles locales de cueillette. Dans le nord de la Norvège, dans le Nordland, le Troms et le Finnmark, les propriétaires peuvent interdire la cueillette des plaquebières sur leurs terres : repérez les panneaux (les manger sur place reste toujours permis)."
+      ]
+    },
+    "huckleberry-pie": {
+      "title": "Tarte couverte aux huckleberries du Montana",
+      "ingredients": [
+        "700 g de huckleberries, fraîches ou surgelées (inutile de les décongeler)",
+        "150 g de sucre, plus 1 cuillère à soupe pour le dessus",
+        "30 g de fécule de maïs",
+        "1 cuillère à soupe de jus de citron",
+        "320 g de farine",
+        "225 g de beurre froid en dés",
+        "1 cuillère à café de sel",
+        "90 à 120 ml d'eau glacée",
+        "1 œuf battu pour dorer"
+      ],
+      "instructions": [
+        "Préparer la pâte : Sablez le beurre avec la farine et le sel du bout des doigts, jusqu'à obtenir de grosses miettes avec quelques morceaux de beurre de la taille d'un petit pois. Ajoutez l'eau glacée cuillère par cuillère et rassemblez la pâte. Partagez-la en deux disques, filmez-les et réservez-les au moins 30 minutes au réfrigérateur.",
+        "Garnir : Préchauffez le four à 220 °C. Abaissez un disque et foncez-en un moule à tarte de 23 cm. Mélangez les huckleberries avec le sucre, la fécule et le jus de citron, puis versez-les sur la pâte.",
+        "Couvrir : Abaissez le second disque, posez-le sur la garniture, coupez l'excédent et pincez les bords pour les souder. Faites quelques entailles sur le dessus, badigeonnez d'œuf et saupoudrez du reste de sucre.",
+        "Cuire : Enfournez pour 20 minutes, puis baissez à 180 °C et poursuivez 40 minutes, jusqu'à ce que la croûte soit bien dorée et qu'un jus épais bouillonne par les entailles. Glissez une plaque dessous pour recueillir les coulures.",
+        "Laisser refroidir : Laissez refroidir la tarte au moins 3 heures pour que la garniture prenne avant de la découper. Servez avec une glace à la vanille ou de la crème fouettée."
+      ],
+      "species": ["huckleberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Préparer la pâte : Sablez le beurre avec la farine et le sel du bout des doigts, jusqu'à obtenir de grosses miettes avec quelques morceaux de beurre de la taille d'un petit pois. Ajoutez l'eau glacée cuillère par cuillère et rassemblez la pâte. Partagez-la en deux disques, filmez-les et réservez-les au moins 30 minutes au réfrigérateur."
+        },
+        {
+          "step": 2,
+          "instruction": "Garnir : Préchauffez le four à 220 °C. Abaissez un disque et foncez-en un moule à tarte de 23 cm. Mélangez les huckleberries avec le sucre, la fécule et le jus de citron, puis versez-les sur la pâte."
+        },
+        {
+          "step": 3,
+          "instruction": "Couvrir : Abaissez le second disque, posez-le sur la garniture, coupez l'excédent et pincez les bords pour les souder. Faites quelques entailles sur le dessus, badigeonnez d'œuf et saupoudrez du reste de sucre."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuire : Enfournez pour 20 minutes, puis baissez à 180 °C et poursuivez 40 minutes, jusqu'à ce que la croûte soit bien dorée et qu'un jus épais bouillonne par les entailles. Glissez une plaque dessous pour recueillir les coulures."
+        },
+        {
+          "step": 5,
+          "instruction": "Laisser refroidir : Laissez refroidir la tarte au moins 3 heures pour que la garniture prenne avant de la découper. Servez avec une glace à la vanille ou de la crème fouettée."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "45 min",
+      "cookTime": "60 min",
+      "servings": "6–8",
+      "tags": ["vegetarian", "dessert", "medium"],
+      "safetyNotes": [
+        "Les huckleberries sont bleu-noir à violettes, avec une petite couronne au bout comme les myrtilles. Ne mangez pas de baies rouges ou blanches en grappes (celles de l'actée sont toxiques) ni aucune baie dont vous n'êtes pas sûr.",
+        "Les coins à huckleberries sont le territoire des ours : faites du bruit et emportez un vaporisateur anti-ours."
+      ]
+    },
+    "pawpaw-ice-cream": {
+      "title": "Glace à l'asimine sans sorbetière",
+      "ingredients": [
+        "400 g de pulpe d'asimines bien mûres (4 à 6 fruits environ)",
+        "1 boîte (397 g) de lait concentré sucré",
+        "400 ml de crème liquide entière bien froide",
+        "Le jus d'un citron vert",
+        "Une pincée de sel",
+        "1 cuillère à café d'extrait de vanille (facultatif)"
+      ],
+      "instructions": [
+        "Préparer la pulpe : Coupez les asimines mûres en deux et prélevez la chair à la cuillère, sans la peau. Retirez toutes les graines à la main : aucune ne doit aller dans le mixeur.",
+        "Mixer : Mixez la pulpe avec le jus de citron vert, le lait concentré, le sel et la vanille jusqu'à obtenir une crème lisse. Le citron vert préserve sa couleur.",
+        "Fouetter : Dans un grand saladier, fouettez la crème en chantilly souple.",
+        "Incorporer : Incorporez la crème d'asimine à la chantilly en deux ou trois fois, en soulevant la masse, jusqu'à ce qu'il ne reste plus de traces. Versez dans un moule à cake ou une boîte allant au congélateur.",
+        "Congeler : Couvrez et placez au congélateur au moins 6 heures, ou toute une nuit. Laissez ramollir 10 minutes avant de former les boules."
+      ],
+      "species": ["pawpaw"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Préparer la pulpe : Coupez les asimines mûres en deux et prélevez la chair à la cuillère, sans la peau. Retirez toutes les graines à la main : aucune ne doit aller dans le mixeur."
+        },
+        {
+          "step": 2,
+          "instruction": "Mixer : Mixez la pulpe avec le jus de citron vert, le lait concentré, le sel et la vanille jusqu'à obtenir une crème lisse. Le citron vert préserve sa couleur."
+        },
+        {
+          "step": 3,
+          "instruction": "Fouetter : Dans un grand saladier, fouettez la crème en chantilly souple."
+        },
+        {
+          "step": 4,
+          "instruction": "Incorporer : Incorporez la crème d'asimine à la chantilly en deux ou trois fois, en soulevant la masse, jusqu'à ce qu'il ne reste plus de traces. Versez dans un moule à cake ou une boîte allant au congélateur."
+        },
+        {
+          "step": 5,
+          "instruction": "Congeler : Couvrez et placez au congélateur au moins 6 heures, ou toute une nuit. Laissez ramollir 10 minutes avant de former les boules."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "0 min",
+      "servings": "6–8",
+      "tags": ["vegetarian", "dessert", "easy"],
+      "safetyNotes": [
+        "Ne mangez que des fruits mûrs, et jamais la peau ni les grosses graines. Les graines sont toxiques : ne les écrasez pas et ne les mixez pas.",
+        "Certaines personnes réagissent à l'asimine par des maux d'estomac ou une éruption cutanée : goûtez-en d'abord un peu."
+      ]
+    },
+    "rose-hip-syrup": {
+      "title": "Sirop de cynorrhodons à l'anglaise",
+      "ingredients": [
+        "1 kg de cynorrhodons bien mûrs",
+        "3 litres d'eau",
+        "500 g de sucre",
+        "Le jus d'un citron (facultatif)",
+        "Un sac à gelée ou une étamine fine, et des bouteilles stérilisées"
+      ],
+      "instructions": [
+        "Préparer : Lavez les cynorrhodons, ôtez les queues et les pointes sèches, puis hachez-les grossièrement au robot ou au couteau.",
+        "Première infusion : Portez 2 litres d'eau à ébullition, ajoutez les cynorrhodons et laissez reprendre l'ébullition, puis retirez du feu et laissez infuser 15 minutes. Versez dans le sac à gelée ou l'étamine ébouillantés et laissez le jus s'écouler.",
+        "Seconde infusion : Remettez la pulpe dans la casserole avec le litre d'eau restant, portez à ébullition, laissez infuser 10 minutes et filtrez de nouveau. Passez ensuite tout le jus une dernière fois à travers une étamine fine et propre, pour retenir jusqu'au dernier poil.",
+        "Réduire : Faites bouillir le jus jusqu'à ce qu'il ait réduit à environ 1 litre. Ajoutez le sucre et le jus de citron, remuez jusqu'à dissolution du sucre et faites bouillir 5 minutes.",
+        "Mettre en bouteilles : Versez le sirop bouillant dans des bouteilles stérilisées chaudes et fermez-les. Une fois ouvert, gardez-le au réfrigérateur et consommez-le sous 2 semaines. Nappez-en des crêpes ou une glace, ou allongez-le d'eau pour une boisson."
+      ],
+      "species": ["rose_hips"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Préparer : Lavez les cynorrhodons, ôtez les queues et les pointes sèches, puis hachez-les grossièrement au robot ou au couteau."
+        },
+        {
+          "step": 2,
+          "instruction": "Première infusion : Portez 2 litres d'eau à ébullition, ajoutez les cynorrhodons et laissez reprendre l'ébullition, puis retirez du feu et laissez infuser 15 minutes. Versez dans le sac à gelée ou l'étamine ébouillantés et laissez le jus s'écouler."
+        },
+        {
+          "step": 3,
+          "instruction": "Seconde infusion : Remettez la pulpe dans la casserole avec le litre d'eau restant, portez à ébullition, laissez infuser 10 minutes et filtrez de nouveau. Passez ensuite tout le jus une dernière fois à travers une étamine fine et propre, pour retenir jusqu'au dernier poil."
+        },
+        {
+          "step": 4,
+          "instruction": "Réduire : Faites bouillir le jus jusqu'à ce qu'il ait réduit à environ 1 litre. Ajoutez le sucre et le jus de citron, remuez jusqu'à dissolution du sucre et faites bouillir 5 minutes."
+        },
+        {
+          "step": 5,
+          "instruction": "Mettre en bouteilles : Versez le sirop bouillant dans des bouteilles stérilisées chaudes et fermez-les. Une fois ouvert, gardez-le au réfrigérateur et consommez-le sous 2 semaines. Nappez-en des crêpes ou une glace, ou allongez-le d'eau pour une boisson."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "60 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "drink", "medium"],
+      "safetyNotes": [
+        "Les poils qui entourent les graines irritent la bouche et l'intestin : c'est le fameux poil à gratter. Filtrez le sirop deux fois à travers une étamine fine ou un sac à gelée.",
+        "Cueillez des cynorrhodons rouge profond et légèrement mous, après les premières gelées si possible. Ne cueillez pas au bord des routes passantes."
+      ]
+    },
+    "sloe-jelly": {
+      "title": "Gelée de prunelles et de pommes",
+      "ingredients": [
+        "1 kg de prunelles bien mûres",
+        "1 kg de pommes à cuire, type reinette",
+        "Environ 1,2 litre d'eau",
+        "Sucre : 750 g par litre de jus",
+        "Un sac à gelée et des pots stérilisés"
+      ],
+      "instructions": [
+        "Préparer : Rincez les prunelles et ôtez les queues et les feuilles. Coupez les pommes en gros morceaux sans les éplucher ni les épépiner : la peau et les trognons contiennent la pectine qui fait prendre la gelée.",
+        "Cuire : Mettez les prunelles et les pommes dans une grande casserole avec juste assez d'eau pour les couvrir. Laissez frémir environ 45 minutes en remuant de temps en temps, jusqu'à ce que les fruits soient très tendres. Écrasez légèrement les pommes à la cuillère, mais pas les prunelles, pour que les noyaux restent entiers.",
+        "Filtrer : Versez le tout dans un sac à gelée ébouillanté, suspendu au-dessus d'un saladier, et laissez égoutter plusieurs heures ou toute une nuit. Ne pressez pas le sac, sinon la gelée sera trouble.",
+        "Cuire la gelée : Mesurez le jus dans une casserole propre et ajoutez 750 g de sucre par litre. Remuez à feu doux jusqu'à dissolution du sucre, puis faites bouillir à gros bouillons 10 à 15 minutes, jusqu'au point de gélification : 105 °C, ou une goutte déposée sur une assiette froide se ride quand on la pousse du doigt.",
+        "Mettre en pots : Écumez, versez dans des pots stérilisés chauds et fermez. Servez avec un gigot d'agneau, du gibier ou du fromage."
+      ],
+      "species": ["sloes"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Préparer : Rincez les prunelles et ôtez les queues et les feuilles. Coupez les pommes en gros morceaux sans les éplucher ni les épépiner : la peau et les trognons contiennent la pectine qui fait prendre la gelée."
+        },
+        {
+          "step": 2,
+          "instruction": "Cuire : Mettez les prunelles et les pommes dans une grande casserole avec juste assez d'eau pour les couvrir. Laissez frémir environ 45 minutes en remuant de temps en temps, jusqu'à ce que les fruits soient très tendres. Écrasez légèrement les pommes à la cuillère, mais pas les prunelles, pour que les noyaux restent entiers."
+        },
+        {
+          "step": 3,
+          "instruction": "Filtrer : Versez le tout dans un sac à gelée ébouillanté, suspendu au-dessus d'un saladier, et laissez égoutter plusieurs heures ou toute une nuit. Ne pressez pas le sac, sinon la gelée sera trouble."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuire la gelée : Mesurez le jus dans une casserole propre et ajoutez 750 g de sucre par litre. Remuez à feu doux jusqu'à dissolution du sucre, puis faites bouillir à gros bouillons 10 à 15 minutes, jusqu'au point de gélification : 105 °C, ou une goutte déposée sur une assiette froide se ride quand on la pousse du doigt."
+        },
+        {
+          "step": 5,
+          "instruction": "Mettre en pots : Écumez, versez dans des pots stérilisés chauds et fermez. Servez avec un gigot d'agneau, du gibier ou du fromage."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "60 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "medium"],
+      "safetyNotes": [
+        "Les prunelles sont bleu-noir, couvertes d'une pruine mate, et poussent isolées sur le prunellier, un arbuste épineux. Crues, elles sont très âpres. Leurs noyaux contiennent de l'amygdaline, qui peut libérer du cyanure : n'écrasez pas les noyaux.",
+        "Leurs sosies sont toxiques : la belladone, aux baies noires et brillantes posées sur une étoile verte, sur une plante herbacée non ligneuse ; le nerprun purgatif (Rhamnus cathartica), aux baies noires et brillantes en grappes, fortement purgatives."
+      ]
+    },
+    "sea-buckthorn-curd": {
+      "title": "Crème d'argousier façon lemon curd",
+      "ingredients": [
+        "Environ 300 g de baies d'argousier, pour 150 ml de jus",
+        "175 g de sucre",
+        "3 œufs",
+        "1 jaune d'œuf",
+        "100 g de beurre en dés",
+        "Une pincée de sel",
+        "Des pots stérilisés"
+      ],
+      "instructions": [
+        "Extraire le jus : Rincez les baies et pressez-les à travers une passoire fine avec le dos d'une cuillère, pour obtenir environ 150 ml de jus. Jetez les peaux et les graines.",
+        "Mélanger : Dans un bol résistant à la chaleur, fouettez les œufs, le jaune, le sucre et le sel, puis ajoutez le jus en fouettant.",
+        "Cuire : Posez le bol sur une casserole d'eau à peine frémissante, sans qu'il touche l'eau. Remuez sans arrêt 10 à 12 minutes, jusqu'à ce que la crème nappe le dos de la cuillère (environ 80 °C). Ne la laissez pas bouillir.",
+        "Finir : Retirez du feu et incorporez le beurre morceau par morceau, jusqu'à ce que la crème soit lisse. Pour une texture soyeuse, passez-la au tamis.",
+        "Conserver : Versez dans des pots stérilisés tièdes, fermez et laissez refroidir. Gardez au réfrigérateur et consommez sous 2 semaines. À tartiner sur des toasts ou des scones, ou pour garnir des tartelettes."
+      ],
+      "species": ["sea_buckthorn"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Extraire le jus : Rincez les baies et pressez-les à travers une passoire fine avec le dos d'une cuillère, pour obtenir environ 150 ml de jus. Jetez les peaux et les graines."
+        },
+        {
+          "step": 2,
+          "instruction": "Mélanger : Dans un bol résistant à la chaleur, fouettez les œufs, le jaune, le sucre et le sel, puis ajoutez le jus en fouettant."
+        },
+        {
+          "step": 3,
+          "instruction": "Cuire : Posez le bol sur une casserole d'eau à peine frémissante, sans qu'il touche l'eau. Remuez sans arrêt 10 à 12 minutes, jusqu'à ce que la crème nappe le dos de la cuillère (environ 80 °C). Ne la laissez pas bouillir."
+        },
+        {
+          "step": 4,
+          "instruction": "Finir : Retirez du feu et incorporez le beurre morceau par morceau, jusqu'à ce que la crème soit lisse. Pour une texture soyeuse, passez-la au tamis."
+        },
+        {
+          "step": 5,
+          "instruction": "Conserver : Versez dans des pots stérilisés tièdes, fermez et laissez refroidir. Gardez au réfrigérateur et consommez sous 2 semaines. À tartiner sur des toasts ou des scones, ou pour garnir des tartelettes."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "dessert", "medium"],
+      "safetyNotes": [
+        "Cueillez des baies orange vif et juteuses, à partir de la fin de l'été. Si vous coupez quelques rameaux et les congelez, les baies se détachent facilement.",
+        "La cueillette peut être interdite dans les dunes protégées et les réserves naturelles : renseignez-vous sur les règles locales. L'arbuste est très épineux : portez des gants."
       ]
     }
   }
