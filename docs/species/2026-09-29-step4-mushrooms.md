@@ -42,8 +42,9 @@ people pick as one mushroom.
 - **Saffron milk cap: the orange-milk _Lactarius_ (section _Deliciosi_).** All
   bleed orange to red milk, all are edible, and field guides and markets treat
   them as one:
-  - _L. deliciosus_, _L. sanguifluus_ and _L. semisanguifluus_ with pines. The
-    last two are the Catalan _rovelló_ and the Italian _sanguinello_.
+  - _L. deliciosus_, _L. sanguifluus_ and _L. semisanguifluus_ with pines: the
+    Spanish _níscalo_, the Catalan _rovelló_ (a name sources give to both
+    _L. sanguifluus_ and _L. deliciosus_) and the Italian _sanguinello_.
   - _L. deterrimus_ with spruce: 25,379 of the group's 47,775 European records,
     the _rydz_ and _ryzhik_ of Poland and Russia.
   - _L. salmonicolor_ with fir, and _L. quieticolor_ and _L. vinosus_ with pines.
@@ -303,7 +304,7 @@ below.
 | hedgehog, SE          |            16 ± 5 |                70 |           760 ± 1500 |  5.3 ± 1.5 |                 20 |         1.5 | Aug–Feb          |
 | hedgehog, USE         |            20 ± 5 |                72 |            350 ± 800 |  5.1 ± 1.5 |                 45 |         1.5 | Jul–Nov          |
 | hedgehog, USW         |            15 ± 5 |                73 |           600 ± 1200 |  5.1 ± 1.5 |                 20 |         1.5 | Aug–Mar          |
-| shaggy mane, NE       |            13 ± 5 |                79 |             60 ± 800 |  4.6 ± 2.5 |                 35 |           0 | Aug–Oct          |
+| shaggy mane, NE       |            13 ± 5 |                79 |             60 ± 800 |  4.6 ± 2.5 |                 35 |         1.5 | Aug–Oct          |
 | shaggy mane, SE       |            15 ± 5 |                70 |           240 ± 1100 |  5.3 ± 2.5 |                 25 |         1.5 | Mar–May, Aug–Oct |
 | shaggy mane, USE      |            17 ± 5 |                76 |            240 ± 800 |  6.2 ± 2.5 |                 30 |         1.5 | Apr–May, Sep–Nov |
 | shaggy mane, USW      |            13 ± 5 |                65 |           720 ± 2300 |  6.2 ± 2.5 |                 20 |         1.5 | Sep–Jan, Apr–Jun |
@@ -336,27 +337,28 @@ How each value was set:
 - **pH sigma:** 1.5 for the mycorrhizal three, whose soil matters. 2.5 for the
   shaggy mane and giant puffball: they grow on lawns, verges and pastures, where
   the ground is disturbed, manured or limed, so the soil map says little.
-- **Rain weight: the #277 rule, plus one condition.**
-  - The rule takes the lowest of 1.5, 0.75, 0.3 and 0 that keeps spatial AUC
-    within 0.01, does not lower the mean score at sightings, and gains (spatial
-    AUC +0.03 or mean +0.5).
-  - The added condition: the day-to-day AUC may not drop by more than 0.01
-    either. The rule looked at places and at the score at sightings, not at
-    days. For fungi the day-to-day signal is the forecast, and on the giant
-    puffball the rule alone would have traded 0.06 of it for places.
+- **Rain weight: the fungal default, 1.5, everywhere.**
+  - The #277 rule takes the lowest of 1.5, 0.75, 0.3 and 0 that keeps spatial
+    AUC within 0.01, does not lower the mean score at sightings, and gains
+    (spatial AUC +0.03 or mean +0.5).
+  - It would lower the weight in three places. In each, the evidence is one
+    autumn in which it rained enough nearly everywhere; at 35–80 mm the rain
+    term carried no signal for the shaggy mane in North Europe.
+  - The literature ties both species to rain. The shaggy mane is in "greatest
+    abundance soon after rain" (First Nature). The giant puffball usually
+    appears after the first heavy late-summer rain (Naturbasen).
+  - For the puffball, the rule's pick also costs day-to-day signal, which the
+    rule does not look at: 0.06 of temporal AUC at weight 0.
+  - The README keeps 1.5 for fungi because "rain is what makes them fruit", and
+    every fungus so far (#277, #279) kept it.
 
-| rain weight: temporal / spatial AUC, mean | 1.5                 | 0.75                | 0.3                 | 0                   | chosen |
-| ----------------------------------------- | ------------------- | ------------------- | ------------------- | ------------------- | -----: |
-| shaggy mane, NE                           | 0.687 / 0.579, 8.71 | 0.701 / 0.600, 8.75 | 0.707 / 0.613, 8.79 | 0.703 / 0.622, 8.81 |      0 |
-| giant puffball, NE                        | 0.691 / 0.676, 8.50 | 0.681 / 0.708, 8.60 | 0.667 / 0.727, 8.68 | 0.631 / 0.740, 8.76 |    1.5 |
-| giant puffball, USW                       | 0.704 / 0.756, 7.30 | 0.703 / 0.778, 7.44 | 0.694 / 0.795, 7.60 | 0.642 / 0.801, 7.77 |    1.5 |
+| rain weight: temporal / spatial AUC, mean | 1.5                 | 0.75                | 0.3                 | 0                   | rule picks |
+| ----------------------------------------- | ------------------- | ------------------- | ------------------- | ------------------- | ---------: |
+| shaggy mane, NE                           | 0.687 / 0.579, 8.71 | 0.701 / 0.600, 8.75 | 0.707 / 0.613, 8.79 | 0.703 / 0.622, 8.81 |          0 |
+| giant puffball, NE                        | 0.691 / 0.676, 8.50 | 0.681 / 0.708, 8.60 | 0.667 / 0.727, 8.68 | 0.631 / 0.740, 8.76 |          0 |
+| giant puffball, USW                       | 0.704 / 0.756, 7.30 | 0.703 / 0.778, 7.44 | 0.694 / 0.795, 7.60 | 0.642 / 0.801, 7.77 |          0 |
 
-- **The shaggy mane in North Europe goes to 0.** It gains on days and on places.
-  Rain carried no signal there in the 2026 autumn at any threshold (35–80 mm):
-  it rained enough nearly everywhere.
-- **The giant puffball stays at 1.5.** In North Europe and US West, the first
-  lower weight that gains on places costs 0.0101 and 0.0106 of day-to-day AUC.
-- Every other species and region stays at 1.5: no lower weight passes the rule.
+Every other species and region: no lower weight passes the rule.
 
 **Against a literature starting point** (weather-only score; temporal AUC:
 each sighting's day against the other in-season days at the same point;
@@ -373,7 +375,7 @@ same days):
 | hedgehog, SE            |                            0.555 / 0.814 |                  0.548 / 0.799 |                      8.01 |
 | hedgehog, USE           |                            0.627 / 0.850 |                  0.556 / 0.811 |                      8.73 |
 | hedgehog, USW           |                            0.573 / 0.916 |                  0.573 / 0.907 |                      7.43 |
-| shaggy mane, NE         |                            0.649 / 0.600 |                  0.703 / 0.622 |                      8.81 |
+| shaggy mane, NE         |                            0.649 / 0.600 |                  0.687 / 0.579 |                      8.71 |
 | shaggy mane, SE         |                            0.731 / 0.783 |                  0.738 / 0.781 |                      8.19 |
 | shaggy mane, USE        |                            0.747 / 0.688 |                  0.735 / 0.705 |                      7.73 |
 | shaggy mane, USW        |                            0.677 / 0.770 |                  0.670 / 0.807 |                      7.77 |
@@ -422,7 +424,174 @@ matsutake 12 °C, 80%, 300 m, pH 4.5, 40 mm.
 
 ## Literature check
 
-(filled in below)
+### Matsutake in Europe: red-listed, but picking is not the threat
+
+North Europe is on. That departs from #279, which kept lion's mane and hen of the
+woods out of Europe because they are protected or red-listed there, so the
+reasons are set out here for review.
+
+- **Status:**
+  - Sweden: VU (Rödlistan 2025, published 24 March 2026, SLU dataset
+    [2026-63](https://researchdata.se/sv/catalogue/dataset/2026-63)).
+  - Norway: VU (Norsk rødliste 2021,
+    [Artsdatabanken](https://lister.artsdatabanken.no/rodlisteforarter/2021/18597);
+    the next list is due in 2027).
+  - Finland: LC in 2000, 2010 and 2019 ([laji.fi](https://laji.fi/taxon/MX.72541)).
+  - Globally: VU ([IUCN 2020](https://doi.org/10.2305/IUCN.UK.2020-3.RLTS.T76267712A177054645.en)).
+  - Germany, as _T. nauseosum_: "Gefährdung unbekannten Ausmaßes … sehr selten";
+    the range prior closes most of Germany anyway.
+- **Why it is listed:**
+  - The Swedish assessment: "Svampplockning har ingen negativ inverkan på arten"
+    (picking does not harm the species). The decline comes from "slutavverkning
+    av tallhedar i norra Sverige" (clear-felling of northern pine heaths).
+  - IUCN names pine diseases, nitrogen deposition and clear-cutting.
+- **Picking is legal, commercially too:**
+  - It is not one of Sweden's five protected fungi
+    ([Naturvårdsverket](https://www.naturvardsverket.se/amnesomraden/arter-och-artskydd/fridlysta-arter/)),
+    and the right of public access "kan användas kommersiellt".
+  - Finland's food authority lists it as a recommended edible mushroom
+    ([Ruokavirasto](https://www.ruokavirasto.fi/elintarvikkeet/ohjeita-kuluttajille/turvallisen-kayton-ohjeet/ruokasienet/suositeltavat-ruokasienet/)).
+  - Swedish and Finnish pickers have exported it to Japan since the early 2000s.
+- **In the app:** the catalog text says it is red-listed in Sweden and Norway,
+  where logging, not picking, is the threat. If that is not enough, setting
+  `NE.available` to `false` in `content/species/matsutake/species.json` switches
+  Europe off, as #279 did.
+
+### Hosts, habitats and seasons
+
+- **Saffron milk cap.**
+  - _L. deliciosus_ is "esclusivamente associato a Pinus, dall'estate
+    all'autunno inoltrato"
+    ([Provincia di Cuneo](https://natura.provincia.cuneo.it/funghi/commestibili/lactarius-deliciosus/)).
+  - _L. deterrimus_ is "mycorrhizal with spruces"
+    ([Kuo](https://www.mushroomexpert.com/lactarius_deterrimus.html)).
+  - _L. salmonicolor_ is "obligater Mykorrhizapilz der Weißtanne"
+    ([de.wikipedia](https://de.wikipedia.org/wiki/Lachs-Reizker)).
+  - _L. sanguifluus_ grows in "pinedes de sòl calcari sobretot a la regió
+    mediterrània" ([ca.wikipedia](https://ca.wikipedia.org/wiki/Rovell%C3%B3)).
+  - Young stands fruit well: "high yield in young stands (11-20 years)"
+    ([PubMed 23982870](https://pubmed.ncbi.nlm.nih.gov/23982870/)). That is why
+    transitional woodland (CORINE 324) is in the land cover.
+  - Yield is "positively correlated with precipitation and relative humidity and
+    negatively correlated with maximum and minimum temperatures"
+    ([PubMed 23392533](https://pubmed.ncbi.nlm.nih.gov/23392533/)).
+  - North America: true _L. deliciosus_ "does not occur in North America"
+    ([Kuo](https://www.mushroomexpert.com/lactarius_deliciosus.html);
+    [Nuytinck et al. 2007](https://pubmed.ncbi.nlm.nih.gov/18333506/)).
+    - What is recorded under the name there: var. _areolatus_ in the West, with
+      "Engelmann spruce, lodgepole pine … summer and fall".
+    - In the Northeast: "var. _deterrimus_ sensu Hesler & Smith", with "northern
+      white-cedar and eastern white pine … cold conifer bogs".
+    - _L. thyinos_: "usually with northern white cedar … northeastern North
+      America and the upper Great Lakes".
+    - _L. rubrilacteus_: "Douglas-fir and … pines … fall and winter along the
+      West Coast".
+    - California pine material fruits "from late fall to mid-winter"
+      ([MykoWeb](https://www.mykoweb.com/CAF/species/Lactarius_deliciosus.html)).
+  - **Agrees with:** the conifer host lists, US East's cedar and northern-hardwood
+    classes, the autumn seasons, and US West's winter season.
+- **Hedgehog.**
+  - _H. repandum_ grows with "hardwoods or conifers, especially spruces and
+    beech", and "does not occur in North America"
+    ([Kuo](https://www.mushroomexpert.com/hydnum_repandum.html)).
+  - _H. oregonense_: "Douglas-fir, Bishop pine, and western hemlock … winter and
+    spring" ([Kuo](https://www.mushroomexpert.com/hydnum_oregonense.html)). In
+    California it is "often common under tanbark oak … and madrone … mid-winter
+    to early spring"
+    ([MykoWeb](https://www.mykoweb.com/CAF/species/Hydnum_oregonense.html)).
+  - **Agrees with:** every forest class as host, and US West's winter season.
+- **Shaggy mane.**
+  - It grows on "lawns, wood chips, or hard-packed ground; summer and fall"
+    ([Kuo](https://www.mushroomexpert.com/coprinus_comatus.html)).
+  - In Britain it fruits "April to November … greatest abundance soon after rain"
+    ([First Nature](https://www.first-nature.com/fungi/coprinus-comatus.php)).
+  - It has to be eaten "within an hour or two of gathering" (First Nature), or
+    "consumed, processed, or iced within 4–6 hr"
+    ([Nowakowski et al. 2020](https://pmc.ncbi.nlm.nih.gov/articles/PMC7754439/)).
+  - It takes up mercury in step with the soil, so town specimens carry "Hg at
+    relatively high dose" ([PubMed 26705753](https://pubmed.ncbi.nlm.nih.gov/26705753/)).
+  - **Agrees with:** the open land cover, the spring and autumn seasons, and the
+    recipe's cook-the-same-day and roadside notes.
+- **Giant puffball.**
+  - _C. gigantea_: "edges of meadows, in drainage ditches, or under brush; late
+    summer and early fall … from the Great Plains eastward"
+    ([Kuo](https://www.mushroomexpert.com/calvatia_gigantea.html)). In Europe it
+    grows among "nettles and other rank vegetation in nutrient-rich waste ground"
+    ([First Nature](https://www.first-nature.com/fungi/calvatia-gigantea.php)).
+  - It usually appears after the first heavy late-summer rain
+    ([Naturbasen](https://www.naturbasen.dk/art/3154/kaempestoevbold)).
+  - _C. booniana_: "grassy areas or under sage brush … summer and fall"
+    ([Kuo](https://www.mushroomexpert.com/calvatia_booniana.html)); on the
+    California coast "mid-winter to spring"
+    ([MykoWeb](https://www.mykoweb.com/CAF/species/Calvatia_booniana.html)).
+  - **Agrees with:** the open land cover with scrub, the eastern late-summer
+    season, and US West's spring season.
+- **Matsutake.**
+  - Europe: "dry, often lichen-dominated, sandy pine forests on glacifluvial
+    deposits" (IUCN). In Finland the season runs "between July and October …
+    full swing in August"
+    ([Fungi, 2016](https://www.fungimag.com/winter-2016-articles/LR_V8I5%20Matsutake.pdf)).
+  - West: "lodgepole pine and other true pines, Douglas-fir, hemlock, and fir …
+    tanoak and madrone … fall and winter"
+    ([Kuo](https://www.mushroomexpert.com/tricholoma_murrillianum.html)).
+  - East: "jack pine, red pine, and pitch pine—and with eastern hemlock … fall and
+    early winter" ([Kuo](https://www.mushroomexpert.com/tricholoma_magnivelare.html)).
+  - **Fruiting triggers:**
+    - In Japan, 19 °C at 5 cm is "the upper limit"
+      ([Kinugawa](https://www.jstage.jst.go.jp/article/msb/28/2/28_80/_pdf)).
+    - In Finland no onset threshold was found. High yields followed "90–110% of
+      the long-term average precipitation"
+      ([Scand. J. For. Res.](https://doi.org/10.1080/02827581.2015.1006246)).
+    - In the Washington Cascades, fruiting started "when accumulative rainfall
+      reached 14 centimeters"
+      ([USFS](https://research.fs.usda.gov/treesearch/7599)).
+  - **US rules:** the Deschutes, Willamette and Fremont-Winema forests require a
+    commercial permit, and "raking and other ground disturbance are prohibited"
+    ([Bend Bulletin](https://bendbulletin.com/2026/09/04/commercial-matsutake-mushroom-season-opens-sept-8/),
+    [Cascade Mycological Society](https://cascademyco.org/mushroom-info-menu-guide/mushroom-picking-permits/)).
+  - **Agrees with:** pine in Europe, the northern conifers and hemlock in US
+    East (pitch pine is the class the list gives up), the western conifers and
+    tanoak, and the seasons.
+  - **From the sightings only:** the 12 °C optimum and the 45 mm threshold.
+
+### Look-alikes
+
+- **Common ink cap.**
+  - The reaction follows alcohol drunk with the meal "or minutes to 8 hours
+    after the alcohol" ([Duffy, _Toxic Fungi of Western North America_](https://www.mykoweb.com/TFWNA/P-51.html)).
+  - After the meal, "if ethanol is consumed in time of 30 min to 3 days"
+    (Nowakowski et al. 2020). Duffy had milder recurrences at 24, 48 and 72
+    hours.
+  - The texts therefore say "in the hours before the meal or up to three days
+    after it".
+  - The shaggy mane itself "does not contain coprine" (Nowakowski et al. 2020).
+- **Woolly milk cap:** "white or pale cream latex … does not change colour"
+  ([First Nature](https://www.first-nature.com/fungi/lactarius-torminosus.php)),
+  "highly irritating to the digestive system when eaten raw". The saffron milk
+  cap's latex is "carrot coloured".
+- **_Amanita smithiana_:**
+  - "In all of the A smithiana poisoning cases in the Pacific Northwest, the
+    victims thought they were eating matsutake"
+    ([West et al. 2009](https://pubmed.ncbi.nlm.nih.gov/19191214/)).
+  - It has no "obvious ring (annulus) or volva" but a "spindle-shaped (fusiform)
+    base". Smell is the reliable test, so the note leads with it.
+  - Kidney failure develops "over the first 1 to 4 days".
+- **Giant puffball:** "cut open; edible puffballs have a solid white interior with
+  no gills"; an earthball's interior "becomes dark purplish-black"
+  ([Wikipedia](https://en.wikipedia.org/wiki/Calvatia_gigantea)).
+
+### Other status notes
+
+- **Hedgehog:** _H. repandum_ is VU in the Netherlands (2008) only. Germany
+  (2016), Norway and Finland list it as not threatened.
+- **Saffron milk cap:** _L. sanguifluus_ is endangered in Germany and
+  _L. semisanguifluus_ threatened, at the northern edge of their range. The main
+  species (_L. deliciosus_, _L. deterrimus_, _L. salmonicolor_) are not
+  threatened.
+  - Picking limits: 3 kg per person and day in Italy and Castilla y León, 6 kg in
+    Catalonia's Poblet pilot scheme.
+- **Giant puffball:** protected in Poland until 2014. Not threatened in Germany,
+  Finland or Denmark.
 
 ## Photo identification
 
@@ -545,7 +714,8 @@ Not in this PR yet: five catalog images (512 px) and six recipe images
 
 ## Rollout
 
-- **Before merging:** approval of the settings, and the eleven images.
+- **Before merging:** approval of the settings, including matsutake in North
+  Europe (red-listed in Sweden and Norway; see above), and the eleven images.
 - **Scoring:** the first run after merging builds the five range priors (new
   keys). The first run on or after 2026-10-01 builds their season curves.
 - **Late October:** check the temperature optima against October sightings,
