@@ -38,12 +38,23 @@ export const unixDay = (date: Date): number =>
   );
 
 /** "12 April" in the given language. */
-export const formatBloomDate = (day: number, language: string): string =>
+/** "12 April", or "12 Apr" with `month: 'short'`, in the given language. */
+export const formatBloomDate = (
+  day: number,
+  language: string,
+  month: 'long' | 'short' = 'long'
+): string =>
   new Intl.DateTimeFormat(language, {
     day: 'numeric',
-    month: 'long',
+    month,
     timeZone: 'UTC',
   }).format(new Date(day * 86_400_000));
+
+// Cultivar names, the same in every language.
+export const BLOOM_VARIETY_NAME = {
+  yoshino: 'Yoshino',
+  kanzan: 'Kanzan',
+} as const;
 
 const PEAK_DAYS = 2; // peak is ±2 days
 const SOON_DAYS = 21; // pink from three weeks out

@@ -128,6 +128,7 @@
     "past": "Past",
     "offSeason": "The cherry blossom forecast starts on 1 February.",
     "peakOn": "Peak bloom around {{date}}",
+    "peakShort": "Peak {{date}}",
     "inDays_one": "in {{count}} day",
     "inDays_other": "in {{count}} days",
     "atPeak": "at peak now",

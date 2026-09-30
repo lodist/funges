@@ -128,6 +128,7 @@
     "past": "Pasada",
     "offSeason": "La previsión de la floración de los cerezos empieza el 1 de febrero.",
     "peakOn": "Plena floración hacia el {{date}}",
+    "peakShort": "Floración {{date}}",
     "inDays_one": "en {{count}} día",
     "inDays_other": "en {{count}} días",
     "atPeak": "en plena floración",

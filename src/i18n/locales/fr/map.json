@@ -128,6 +128,7 @@
     "past": "Passée",
     "offSeason": "La prévision de la floraison des cerisiers commence le 1er février.",
     "peakOn": "Pleine floraison vers le {{date}}",
+    "peakShort": "Floraison {{date}}",
     "inDays_one": "dans {{count}} jour",
     "inDays_other": "dans {{count}} jours",
     "atPeak": "en pleine floraison",

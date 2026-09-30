@@ -128,6 +128,7 @@
     "past": "Passada",
     "offSeason": "A previsão da floração das cerejeiras começa a 1 de fevereiro.",
     "peakOn": "Floração plena por volta de {{date}}",
+    "peakShort": "Floração {{date}}",
     "inDays_one": "daqui a {{count}} dia",
     "inDays_other": "daqui a {{count}} dias",
     "atPeak": "em plena floração",

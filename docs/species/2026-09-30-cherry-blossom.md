@@ -176,7 +176,7 @@ A single requirement for all Sato-zakura cultivars can't do better. Spring 2027 
 - **The spots** are soft circles on the same scale, each for its own variety, with sfumato edges and a soft dark falloff so they stay findable on a cell of their own colour.
   - Off-season, after their bloom, or without a forecast they show the idle yellow, never last year's date.
   - They are drawn over the roads and under the basemap's labels.
-- **A click** on a cell or a spot opens a popover card, the same surface as the map's theme menu: the name, the variety, and a swatch with the date ("Peak bloom around 20 April · in 5 days", or off-season "Forecast from 1 February").
+- **A click** on a cell or a spot opens a small popover card, two lines sized like the Tooltip: the name, then a swatch with the variety and the date ("Kanzan · Peak 20 Apr · in 5 days", or off-season "Forecast from 1 February").
 - **The bloom panel** replaces the score legend: the ramp, and the viewing spots sorted by days to peak.
   - A row flies to its spot and opens its popup.
   - Before the season, or on last season's file, it says the forecast starts on 1 February.

@@ -67,6 +67,7 @@ import {
   BLOOM_IDLE,
   BLOOM_SPOTS,
   BLOOM_STATUS_COLOR,
+  BLOOM_VARIETY_NAME,
   bloomFillColor,
   bloomInSeason,
   bloomStatus,
@@ -142,28 +143,27 @@ const ROUTE_FIT_MAX_ZOOM = 13;
 // The bloom popup is the app's popover card, the same surface as the theme
 // menu; `.bloom-popup` in globals.scss strips MapLibre's own box and tip. Built
 // from text nodes, never HTML, since the names come from JSON.
+// Two lines, sized like the Tooltip: it covers the spot it describes, so it
+// stays small.
 function bloomPopupContent(
   title: string,
-  subtitle: string,
   swatch: string,
   detail: string
 ): HTMLElement {
   const card = document.createElement('div');
   card.className =
-    'min-w-44 max-w-64 rounded-card bg-popover px-3 py-2.5 text-popover-foreground elevation-floating';
+    'w-max max-w-64 rounded-card bg-popover px-3 py-1.5 text-popover-foreground elevation-floating';
   const heading = document.createElement('p');
-  heading.className = 'text-sm font-semibold leading-snug';
+  heading.className = 'text-xs font-semibold leading-snug';
   heading.textContent = title;
-  const sub = document.createElement('p');
-  sub.className = 'text-xs text-muted-foreground';
-  sub.textContent = subtitle;
   const row = document.createElement('p');
-  row.className = 'mt-1.5 flex items-center gap-1.5 text-xs leading-snug';
+  row.className =
+    'flex items-center gap-1.5 text-xs leading-snug text-muted-foreground';
   const dot = document.createElement('span');
-  dot.className = 'size-2.5 shrink-0 rounded-full ring-1 ring-border';
+  dot.className = 'size-2 shrink-0 rounded-full ring-1 ring-border';
   dot.style.background = swatch;
   row.append(dot, document.createTextNode(detail));
-  card.append(heading, sub, row);
+  card.append(heading, row);
   return card;
 }
 
@@ -1473,7 +1473,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         className: 'bloom-popup',
         closeButton: false,
         maxWidth: 'none',
-        offset: 22,
+        offset: 16,
       })
         .setLngLat(at)
         .setDOMContent(content)
@@ -1487,11 +1487,11 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       const day = unixDay(new Date()) + activeDay;
       const peak = bloomPeaks[spot.id];
       const inSeason = bloomInSeason(bloomPeaks, day);
-      const [swatch, detail] =
+      const [swatch, when] =
         typeof peak === 'number' && inSeason
           ? [
               BLOOM_STATUS_COLOR[bloomStatus(peak, day)],
-              `${t('bloom.peakOn', { date: formatBloomDate(peak, i18n.language) })} · ${bloomWhen(t, peak, day)}`,
+              `${t('bloom.peakShort', { date: formatBloomDate(peak, i18n.language, 'short') })} · ${bloomWhen(t, peak, day)}`,
             ]
           : [
               BLOOM_IDLE,
@@ -1501,9 +1501,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         [spot.lon, spot.lat],
         bloomPopupContent(
           t(`bloom.spots.${spot.id}`),
-          t(`bloom.variety.${spot.variety}`),
           swatch,
-          detail
+          `${BLOOM_VARIETY_NAME[spot.variety]} · ${when}`
         )
       );
     },
@@ -1546,9 +1545,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             [e.lngLat.lng, e.lngLat.lat],
             bloomPopupContent(
               t('bloom.name'),
-              t('bloom.variety.kanzan'),
               BLOOM_STATUS_COLOR[bloomStatus(peak, day)],
-              `${t('bloom.peakOn', { date: formatBloomDate(peak, i18n.language) })} · ${bloomWhen(t, peak, day)}`
+              `${t('bloom.peakShort', { date: formatBloomDate(peak, i18n.language, 'short') })} · ${bloomWhen(t, peak, day)}`
             )
           );
         }

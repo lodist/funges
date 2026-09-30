@@ -128,6 +128,7 @@
     "past": "Passata",
     "offSeason": "La previsione della fioritura dei ciliegi parte il 1° febbraio.",
     "peakOn": "Piena fioritura verso il {{date}}",
+    "peakShort": "Fioritura {{date}}",
     "inDays_one": "tra {{count}} giorno",
     "inDays_other": "tra {{count}} giorni",
     "atPeak": "in piena fioritura",
