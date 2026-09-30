@@ -632,5 +632,11 @@ with tempfile.TemporaryDirectory() as tmpdir:
         if convert_mbtiles_to_pmtiles(fc_mbtiles_path, fc_pmtiles_path):
             upload_mbtiles_to_r2(fc_pmtiles_path, f"USA/USW/{region_code}_forecast.pmtiles")
 
+# ---------- CHERRY BLOSSOM (roadmap #272 step 5): its own tileset, drawn over towns too ----------
+# 1 February - 30 June only; see backend/bloom.py.
+from bloom import build_bloom
+build_bloom(FILE_PATH, region_code, "USA/USW", build_mbtiles_from_geojson, convert_mbtiles_to_pmtiles,
+            upload_mbtiles_to_r2)
+
 print(f"✅ Processing & Upload Completed at {datetime.now()}")
 print(f"Script ended at {datetime.now()}")
