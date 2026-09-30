@@ -134,6 +134,7 @@
     "daysAgo_one": "{{count}} giorno fa",
     "daysAgo_other": "{{count}} giorni fa",
     "noForecast": "Ancora nessuna previsione",
+    "fromFebruary": "Previsione dal 1° febbraio",
     "spotsTitle": "Dove vederli",
     "variety": {
       "yoshino": "Ciliegio Yoshino",

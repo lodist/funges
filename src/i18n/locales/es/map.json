@@ -134,6 +134,7 @@
     "daysAgo_one": "hace {{count}} día",
     "daysAgo_other": "hace {{count}} días",
     "noForecast": "Aún sin previsión",
+    "fromFebruary": "Previsión desde el 1 de febrero",
     "spotsTitle": "Dónde verlos",
     "variety": {
       "yoshino": "Cerezo Yoshino",

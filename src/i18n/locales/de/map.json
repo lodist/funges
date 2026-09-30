@@ -134,6 +134,7 @@
     "daysAgo_one": "vor {{count}} Tag",
     "daysAgo_other": "vor {{count}} Tagen",
     "noForecast": "Noch keine Prognose",
+    "fromFebruary": "Prognose ab 1. Februar",
     "spotsTitle": "Sehenswerte Orte",
     "variety": {
       "yoshino": "Yoshino-Kirsche",

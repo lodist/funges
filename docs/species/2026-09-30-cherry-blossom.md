@@ -16,7 +16,7 @@ The map for 15 April 2026, from the dry run below (winter from normals), with ti
 
 ![On a phone](2026-09-30-cherry-blossom/phone.webp)
 
-Off-season (today), a spot shows the idle yellow:
+Off-season (today), a spot shows the idle yellow, and its popup says when the forecast starts:
 
 ![Hamburg off-season](2026-09-30-cherry-blossom/off-season.webp)
 
@@ -173,10 +173,10 @@ A single requirement for all Sato-zakura cultivars can't do better. Spring 2027 
   - deep pink at peak ±2 days;
   - leaf green as the petals drop, fading for two weeks;
   - then transparent.
-- **The spots** are soft circles on the same scale, each for its own variety, with a white rim and a shadow so they stay readable on a cell of their own colour.
+- **The spots** are soft circles on the same scale, each for its own variety, with sfumato edges and a soft dark falloff so they stay findable on a cell of their own colour.
   - Off-season, after their bloom, or without a forecast they show the idle yellow, never last year's date.
   - They are drawn over the roads and under the basemap's labels.
-- **A click** on a cell or a spot gives the date ("Peak bloom around 20 April · in 5 days").
+- **A click** on a cell or a spot opens a popover card, the same surface as the map's theme menu: the name, the variety, and a swatch with the date ("Peak bloom around 20 April · in 5 days", or off-season "Forecast from 1 February").
 - **The bloom panel** replaces the score legend: the ramp, and the viewing spots sorted by days to peak.
   - A row flies to its spot and opens its popup.
   - Before the season, or on last season's file, it says the forecast starts on 1 February.

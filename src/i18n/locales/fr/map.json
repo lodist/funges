@@ -134,6 +134,7 @@
     "daysAgo_one": "il y a {{count}} jour",
     "daysAgo_other": "il y a {{count}} jours",
     "noForecast": "Pas encore de prévision",
+    "fromFebruary": "Prévision à partir du 1er février",
     "spotsTitle": "Où les voir",
     "variety": {
       "yoshino": "Cerisier Yoshino",

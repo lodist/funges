@@ -79,6 +79,15 @@ export const BLOOM_RAMP: readonly (readonly [number, string])[] = [
   [SOON_DAYS + 7, BLOOM_IDLE],
 ];
 
+// One colour per stage, for the list's dots and the popup's swatch.
+export const BLOOM_STATUS_COLOR: Record<BloomStatus, string> = {
+  later: BLOOM_IDLE,
+  soon: '#f7b8cf',
+  peak: '#c2185b',
+  past: '#9cc494',
+  over: BLOOM_IDLE,
+};
+
 export function bloomFillColor(day: number): ExpressionSpecification {
   return [
     'interpolate',
@@ -178,15 +187,15 @@ export const bloomSpotRadius = (extra: number): ExpressionSpecification =>
     ['linear'],
     ['zoom'],
     3,
-    7 + extra,
+    10 + extra,
     6,
-    11 + extra,
+    15 + extra,
     9,
-    16 + extra,
-    12,
     22 + extra,
-    15,
+    12,
     30 + extra,
+    15,
+    42 + extra,
   ] as unknown as ExpressionSpecification;
 
 export function bloomSpotColor(day: number): ExpressionSpecification {

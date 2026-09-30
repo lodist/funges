@@ -134,6 +134,7 @@
     "daysAgo_one": "há {{count}} dia",
     "daysAgo_other": "há {{count}} dias",
     "noForecast": "Ainda sem previsão",
+    "fromFebruary": "Previsão a partir de 1 de fevereiro",
     "spotsTitle": "Onde ver",
     "variety": {
       "yoshino": "Cerejeira Yoshino",

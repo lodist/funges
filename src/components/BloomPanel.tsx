@@ -4,8 +4,8 @@ import { ChevronDown } from '@/lib/icons';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {
-  BLOOM_IDLE,
   BLOOM_SPOTS,
+  BLOOM_STATUS_COLOR,
   bloomGradientCss,
   bloomInSeason,
   bloomStatus,
@@ -14,18 +14,7 @@ import {
   sortSpots,
   type BloomPeaks,
   type BloomSpot,
-  type BloomStatus,
 } from '@/lib/bloom';
-
-// A dot per spot in the colour the map paints it; the list is read, not looked at,
-// so one colour per stage is enough.
-const STATUS_DOT: Record<BloomStatus, string> = {
-  later: BLOOM_IDLE,
-  soon: '#f7b8cf',
-  peak: '#c2185b',
-  past: '#9cc494',
-  over: BLOOM_IDLE,
-};
 
 export interface BloomPanelProps {
   /** Predicted peak per spot id, days since 1970-01-01 (lib/bloom.ts). */
@@ -105,8 +94,8 @@ export default function BloomPanel({
                       style={{
                         background:
                           spot.peak === null
-                            ? STATUS_DOT.over
-                            : STATUS_DOT[bloomStatus(spot.peak, day)],
+                            ? BLOOM_STATUS_COLOR.over
+                            : BLOOM_STATUS_COLOR[bloomStatus(spot.peak, day)],
                       }}
                     />
                     <span className='min-w-0 flex-1'>

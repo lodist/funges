@@ -64,9 +64,12 @@ import {
   BLOOM_SPOT_LAYER,
   BLOOM_SPOT_SHADOW_LAYER,
   BLOOM_SPOT_SOURCE,
+  BLOOM_IDLE,
   BLOOM_SPOTS,
+  BLOOM_STATUS_COLOR,
   bloomFillColor,
   bloomInSeason,
+  bloomStatus,
   bloomLayerId,
   bloomSourceId,
   bloomSpotColor,
@@ -136,20 +139,32 @@ const ROUTE_PITCH = 45;
 const ROUTE_FIT_MS = 1000;
 const ROUTE_FIT_MAX_ZOOM = 13;
 
-// Popups keep MapLibre's white card in every theme, so their text is dark in
-// every theme too; built from text nodes, never HTML, since names come from JSON.
-function bloomPopupContent(title: string, lines: string[]): HTMLElement {
-  const content = document.createElement('div');
-  content.style.cssText = 'color:#1c1917;font-size:13px;line-height:1.4';
-  const heading = document.createElement('strong');
+// The bloom popup is the app's popover card, the same surface as the theme
+// menu; `.bloom-popup` in globals.scss strips MapLibre's own box and tip. Built
+// from text nodes, never HTML, since the names come from JSON.
+function bloomPopupContent(
+  title: string,
+  subtitle: string,
+  swatch: string,
+  detail: string
+): HTMLElement {
+  const card = document.createElement('div');
+  card.className =
+    'min-w-44 max-w-64 rounded-card bg-popover px-3 py-2.5 text-popover-foreground elevation-floating';
+  const heading = document.createElement('p');
+  heading.className = 'text-sm font-semibold leading-snug';
   heading.textContent = title;
-  content.append(heading);
-  for (const line of lines) {
-    const row = document.createElement('div');
-    row.textContent = line;
-    content.append(row);
-  }
-  return content;
+  const sub = document.createElement('p');
+  sub.className = 'text-xs text-muted-foreground';
+  sub.textContent = subtitle;
+  const row = document.createElement('p');
+  row.className = 'mt-1.5 flex items-center gap-1.5 text-xs leading-snug';
+  const dot = document.createElement('span');
+  dot.className = 'size-2.5 shrink-0 rounded-full ring-1 ring-border';
+  dot.style.background = swatch;
+  row.append(dot, document.createTextNode(detail));
+  card.append(heading, sub, row);
+  return card;
 }
 
 // Module-level, so it survives the map unmounting between routes: the fly-in
@@ -1389,8 +1404,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     instance.addSource(BLOOM_SPOT_SOURCE, { type: 'geojson', data });
     // Over the fills and roads, under the basemap's labels. The first symbol layer
     // is no anchor: the species' number layers sit inside the overlay block, under
-    // the roads. A spot usually peaks with its own cell, so a white rim and a soft
-    // shadow keep it readable on a cell of the same colour and on any basemap.
+    // the roads. A spot usually peaks with its own cell, so a wider soft shadow
+    // under it keeps it readable on a cell of the same colour.
     const beforeId = instance
       .getStyle()
       ?.layers?.find(
@@ -1407,10 +1422,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         type: 'circle',
         source: BLOOM_SPOT_SOURCE,
         paint: {
-          'circle-color': 'rgba(28, 25, 23, 0.4)',
+          'circle-color': 'rgba(28, 25, 23, 0.55)',
           'circle-blur': 1,
-          'circle-radius': bloomSpotRadius(9),
-          'circle-translate': [0, 1.5],
+          'circle-radius': bloomSpotRadius(16),
         },
       },
       beforeId
@@ -1422,10 +1436,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         source: BLOOM_SPOT_SOURCE,
         paint: {
           'circle-color': bloomSpotColor(day),
-          'circle-blur': 0.1,
+          // Sfumato: no rim, the colour fades out into the map.
+          'circle-blur': 0.55,
           'circle-radius': bloomSpotRadius(0),
-          'circle-stroke-color': 'rgba(255, 255, 255, 0.95)',
-          'circle-stroke-width': 3,
         },
       },
       beforeId
@@ -1453,12 +1466,17 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   // One bloom popup at a time, for a spot (its own variety) or a map cell.
   const showBloomPopup = useCallback(
-    (at: [number, number], title: string, lines: string[]) => {
+    (at: [number, number], content: HTMLElement) => {
       if (!map.current) return;
       bloomPopupRef.current?.remove();
-      bloomPopupRef.current = new maplibregl.Popup({ offset: 14 })
+      bloomPopupRef.current = new maplibregl.Popup({
+        className: 'bloom-popup',
+        closeButton: false,
+        maxWidth: 'none',
+        offset: 22,
+      })
         .setLngLat(at)
-        .setDOMContent(bloomPopupContent(title, lines))
+        .setDOMContent(content)
         .addTo(map.current);
     },
     []
@@ -1468,19 +1486,26 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     (spot: BloomSpot) => {
       const day = unixDay(new Date()) + activeDay;
       const peak = bloomPeaks[spot.id];
-      const when =
-        typeof peak === 'number' && bloomInSeason(bloomPeaks, day)
+      const inSeason = bloomInSeason(bloomPeaks, day);
+      const [swatch, detail] =
+        typeof peak === 'number' && inSeason
           ? [
-              t('bloom.peakOn', {
-                date: formatBloomDate(peak, i18n.language),
-              }),
-              bloomWhen(t, peak, day),
+              BLOOM_STATUS_COLOR[bloomStatus(peak, day)],
+              `${t('bloom.peakOn', { date: formatBloomDate(peak, i18n.language) })} · ${bloomWhen(t, peak, day)}`,
             ]
-          : [t('bloom.noForecast')];
-      showBloomPopup([spot.lon, spot.lat], t(`bloom.spots.${spot.id}`), [
-        t(`bloom.variety.${spot.variety}`),
-        ...when,
-      ]);
+          : [
+              BLOOM_IDLE,
+              inSeason ? t('bloom.noForecast') : t('bloom.fromFebruary'),
+            ];
+      showBloomPopup(
+        [spot.lon, spot.lat],
+        bloomPopupContent(
+          t(`bloom.spots.${spot.id}`),
+          t(`bloom.variety.${spot.variety}`),
+          swatch,
+          detail
+        )
+      );
     },
     [activeDay, bloomPeaks, t, i18n.language, showBloomPopup]
   );
@@ -1516,12 +1541,16 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             ?.properties?.peak
         );
         if (Number.isFinite(peak)) {
-          showBloomPopup([e.lngLat.lng, e.lngLat.lat], t('bloom.name'), [
-            t('bloom.peakOn', {
-              date: formatBloomDate(peak, i18n.language),
-            }),
-            bloomWhen(t, peak, unixDay(new Date()) + activeDay),
-          ]);
+          const day = unixDay(new Date()) + activeDay;
+          showBloomPopup(
+            [e.lngLat.lng, e.lngLat.lat],
+            bloomPopupContent(
+              t('bloom.name'),
+              t('bloom.variety.kanzan'),
+              BLOOM_STATUS_COLOR[bloomStatus(peak, day)],
+              `${t('bloom.peakOn', { date: formatBloomDate(peak, i18n.language) })} · ${bloomWhen(t, peak, day)}`
+            )
+          );
         }
         return;
       }

@@ -134,6 +134,7 @@
     "daysAgo_one": "{{count}} day ago",
     "daysAgo_other": "{{count}} days ago",
     "noForecast": "No forecast yet",
+    "fromFebruary": "Forecast from 1 February",
     "spotsTitle": "Viewing spots",
     "variety": {
       "yoshino": "Yoshino cherry",
