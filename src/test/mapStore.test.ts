@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Map as MapLibreMap } from 'maplibre-gl';
 import { getSpeciesOptions } from '@/data/species';
+import { BLOOM_CODE, bloomFillColor, unixDay } from '@/lib/bloom';
 import {
   forecastRegionForCoordinate,
   layerRegion,
@@ -266,6 +267,7 @@ describe('updateVisibleLayers with a selection from another region', () => {
 
   function fakeMap(layerIds: string[]) {
     const visibility: Record<string, string> = {};
+    const paint: Record<string, unknown> = {};
     const map = {
       getStyle: () => ({ layers: layerIds.map(id => ({ id })) }),
       getBounds: () => ({
@@ -278,9 +280,11 @@ describe('updateVisibleLayers with a selection from another region', () => {
         visibility[id] = value;
       },
       getPaintProperty: () => undefined,
-      setPaintProperty: () => {},
+      setPaintProperty: (id: string, _key: string, value: unknown) => {
+        paint[id] = value;
+      },
     };
-    return { visibility, map: map as unknown as MapLibreMap };
+    return { visibility, paint, map: map as unknown as MapLibreMap };
   }
 
   function run(selectedSpecies: string, layerIds: string[]) {
@@ -303,6 +307,29 @@ describe('updateVisibleLayers with a selection from another region', () => {
 
     expect(visibility.smooth_chant_use).toBe('visible');
     expect(visibility.pacific_chant_usw).toBe('none');
+    expect(useMapStore.getState().selectedSpeciesOnMap).toBe(true);
+  });
+
+  it('draws the cherry blossom layer, coloured for the slider day', () => {
+    const { visibility, paint, map } = fakeMap([
+      'cherry_blossom_usw',
+      'cherry_blossom_ne',
+      'mushroom_usw',
+    ]);
+    useMapStore.setState({
+      mapRef: map,
+      selectedSpecies: BLOOM_CODE,
+      activeDay: 3,
+    });
+    useMapStore.getState().updateVisibleLayers();
+    useMapStore.setState({ activeDay: 0 });
+
+    expect(visibility.cherry_blossom_usw).toBe('visible');
+    expect(visibility.cherry_blossom_ne).toBe('none'); // Europe is out of view
+    expect(visibility.mushroom_usw).toBe('none');
+    expect(paint.cherry_blossom_usw).toEqual(
+      bloomFillColor(unixDay(new Date()) + 3)
+    );
     expect(useMapStore.getState().selectedSpeciesOnMap).toBe(true);
   });
 

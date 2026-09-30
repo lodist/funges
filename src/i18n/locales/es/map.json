@@ -119,5 +119,53 @@
     "title": "Sin conexión",
     "noPackageMessage": "Ningún paquete descargado cubre esta zona. Vuelve a conectarte o regresa a una zona guardada.",
     "forecastOnlyMessage": "Previsión sin conexión cargada. El mapa base detallado necesita conexión."
+  },
+  "bloom": {
+    "name": "Flor del cerezo",
+    "spectacles": "Espectáculos",
+    "legend": "Plena floración",
+    "later": "3+ semanas",
+    "past": "Pasada",
+    "offSeason": "La previsión de la floración de los cerezos empieza el 1 de febrero.",
+    "peakOn": "Plena floración hacia el {{date}}",
+    "inDays_one": "en {{count}} día",
+    "inDays_other": "en {{count}} días",
+    "atPeak": "en plena floración",
+    "daysAgo_one": "hace {{count}} día",
+    "daysAgo_other": "hace {{count}} días",
+    "noForecast": "Aún sin previsión",
+    "spotsTitle": "Dónde verlos",
+    "variety": {
+      "yoshino": "Cerezo Yoshino",
+      "kanzan": "Cerezo Kanzan"
+    },
+    "spots": {
+      "washington_tidal_basin": "Tidal Basin, Washington DC",
+      "brooklyn_botanic_garden": "Brooklyn Botanic Garden, Nueva York",
+      "newark_branch_brook_park": "Branch Brook Park, Newark",
+      "macon_third_street_park": "Third Street Park, Macon",
+      "portland_waterfront_park": "Waterfront Park, Portland",
+      "seattle_uw_quad": "UW Quad, Seattle",
+      "san_francisco_japanese_tea_garden": "Japanese Tea Garden, San Francisco",
+      "nashville_public_square_park": "Public Square Park, Nashville",
+      "bonn_altstadt": "Altstadt, Bonn",
+      "hamburg_binnenalster": "Binnenalster, Hamburgo",
+      "berlin_tv_asahi_avenue": "Paseo de los cerezos TV Asahi, Berlín",
+      "paris_parc_de_sceaux": "Parc de Sceaux, París",
+      "amsterdam_bloesempark": "Bloesempark, Ámsterdam",
+      "rome_passeggiata_del_giappone": "Passeggiata del Giappone, Roma",
+      "prague_dejvice_campus": "Campus de Dejvice, Praga",
+      "london_greenwich_park": "Greenwich Park, Londres",
+      "edinburgh_meadows": "The Meadows, Edimburgo",
+      "copenhagen_langelinie": "Langelinie, Copenhague",
+      "vienna_kirschenhain": "Kirschenhain, Viena",
+      "warsaw_sakura_park": "Sakura Park, Varsovia",
+      "budapest_toth_arpad_promenade": "Paseo Tóth Árpád, Budapest",
+      "brussels_avenue_emile_max": "Avenue Émile Max, Bruselas",
+      "dublin_herbert_park": "Herbert Park, Dublín",
+      "madrid_parque_juan_carlos_i": "Parque Juan Carlos I, Madrid",
+      "gothenburg_jarntorget": "Järntorget, Gotemburgo",
+      "bucharest_japanese_garden": "Jardín Japonés, Bucarest"
+    }
   }
 }

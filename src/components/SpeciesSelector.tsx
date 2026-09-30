@@ -5,6 +5,7 @@ import { useMapStore } from '@/store/mapStore';
 import { cn } from '@/lib/utils';
 import { getSpeciesImage } from '@/lib/utils';
 import { getSpeciesById } from '@/data/species';
+import { BLOOM_CODE, BLOOM_EMOJI, BLOOM_SCIENTIFIC_NAME } from '@/lib/bloom';
 import SpeciesSelectorFullscreen from './SpeciesSelectorFullscreen';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -31,13 +32,27 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
   //
   // Resolved from the whole catalog, not the region's options: the selection
   // survives panning into a region that has no forecast for it.
-  const selected = selectedSpecies
-    ? getSpeciesById(selectedSpecies)
-    : undefined;
+  const species = selectedSpecies ? getSpeciesById(selectedSpecies) : undefined;
+  // The cherry blossom layer is picked like a species but has no catalog entry,
+  // and no photo: the emoji stands in.
+  const selected =
+    selectedSpecies === BLOOM_CODE
+      ? {
+          id: BLOOM_CODE,
+          emoji: BLOOM_EMOJI,
+          name: t('bloom.name'),
+          scientificName: BLOOM_SCIENTIFIC_NAME,
+          photo: false,
+        }
+      : species && {
+          id: species.id,
+          emoji: species.emoji,
+          name: tSpecies(`list_of_species.${species.nameKey}`),
+          scientificName: species.scientificName || species.id,
+          photo: true,
+        };
 
-  const speciesName = selected
-    ? tSpecies(`list_of_species.${selected.nameKey}`)
-    : null;
+  const speciesName = selected ? selected.name : null;
 
   return (
     <div className={cn('relative', className)}>
@@ -101,16 +116,18 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
                 a broken-image glyph instead. `key` remounts the img per species
                 so the hidden flag cannot survive a selection change. */}
             {selected.emoji}
-            <img
-              key={selected.id}
-              src={getSpeciesImage(selected.id) ?? undefined}
-              alt=''
-              className='absolute inset-0 h-full w-full object-cover object-center'
-              loading='lazy'
-              onError={e => {
-                e.currentTarget.hidden = true;
-              }}
-            />
+            {selected.photo && (
+              <img
+                key={selected.id}
+                src={getSpeciesImage(selected.id) ?? undefined}
+                alt=''
+                className='absolute inset-0 h-full w-full object-cover object-center'
+                loading='lazy'
+                onError={e => {
+                  e.currentTarget.hidden = true;
+                }}
+              />
+            )}
             {/* The 10% black wash that used to sit here darkened the one asset
                 the whole recognition strategy rests on and carried no text to
                 make legible. */}
@@ -127,7 +144,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           </span>
           {selected && (
             <span className='mt-1 block truncate text-xs italic leading-tight text-muted-foreground'>
-              {selected.scientificName || selected.id}
+              {selected.scientificName}
             </span>
           )}
         </span>

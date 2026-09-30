@@ -119,5 +119,53 @@
     "title": "You're offline",
     "noPackageMessage": "No downloaded map package covers this area. Reconnect or return to an area you saved.",
     "forecastOnlyMessage": "Offline forecast loaded. The detailed basemap needs a connection."
+  },
+  "bloom": {
+    "name": "Cherry blossom",
+    "spectacles": "Spectacles",
+    "legend": "Peak bloom",
+    "later": "3+ weeks",
+    "past": "Past",
+    "offSeason": "The cherry blossom forecast starts on 1 February.",
+    "peakOn": "Peak bloom around {{date}}",
+    "inDays_one": "in {{count}} day",
+    "inDays_other": "in {{count}} days",
+    "atPeak": "at peak now",
+    "daysAgo_one": "{{count}} day ago",
+    "daysAgo_other": "{{count}} days ago",
+    "noForecast": "No forecast yet",
+    "spotsTitle": "Viewing spots",
+    "variety": {
+      "yoshino": "Yoshino cherry",
+      "kanzan": "Kanzan cherry"
+    },
+    "spots": {
+      "washington_tidal_basin": "Tidal Basin, Washington DC",
+      "brooklyn_botanic_garden": "Brooklyn Botanic Garden, New York",
+      "newark_branch_brook_park": "Branch Brook Park, Newark",
+      "macon_third_street_park": "Third Street Park, Macon",
+      "portland_waterfront_park": "Waterfront Park, Portland",
+      "seattle_uw_quad": "UW Quad, Seattle",
+      "san_francisco_japanese_tea_garden": "Japanese Tea Garden, San Francisco",
+      "nashville_public_square_park": "Public Square Park, Nashville",
+      "bonn_altstadt": "Altstadt, Bonn",
+      "hamburg_binnenalster": "Binnenalster, Hamburg",
+      "berlin_tv_asahi_avenue": "TV Asahi Cherry Avenue, Berlin",
+      "paris_parc_de_sceaux": "Parc de Sceaux, Paris",
+      "amsterdam_bloesempark": "Bloesempark, Amsterdam",
+      "rome_passeggiata_del_giappone": "Passeggiata del Giappone, Rome",
+      "prague_dejvice_campus": "Dejvice Campus, Prague",
+      "london_greenwich_park": "Greenwich Park, London",
+      "edinburgh_meadows": "The Meadows, Edinburgh",
+      "copenhagen_langelinie": "Langelinie, Copenhagen",
+      "vienna_kirschenhain": "Kirschenhain, Vienna",
+      "warsaw_sakura_park": "Sakura Park, Warsaw",
+      "budapest_toth_arpad_promenade": "Tóth Árpád Promenade, Budapest",
+      "brussels_avenue_emile_max": "Avenue Émile Max, Brussels",
+      "dublin_herbert_park": "Herbert Park, Dublin",
+      "madrid_parque_juan_carlos_i": "Parque Juan Carlos I, Madrid",
+      "gothenburg_jarntorget": "Järntorget, Gothenburg",
+      "bucharest_japanese_garden": "Japanese Garden, Bucharest"
+    }
   }
 }

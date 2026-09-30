@@ -119,5 +119,53 @@
     "title": "Keine Verbindung",
     "noPackageMessage": "Kein heruntergeladenes Kartenpaket deckt dieses Gebiet ab. Stelle eine Verbindung her oder kehre zu einem gespeicherten Gebiet zurück.",
     "forecastOnlyMessage": "Offline-Prognose geladen. Die detaillierte Grundkarte benötigt eine Verbindung."
+  },
+  "bloom": {
+    "name": "Kirschblüte",
+    "spectacles": "Naturschauspiele",
+    "legend": "Vollblüte",
+    "later": "3+ Wochen",
+    "past": "Vorbei",
+    "offSeason": "Die Kirschblüten-Prognose beginnt am 1. Februar.",
+    "peakOn": "Vollblüte um den {{date}}",
+    "inDays_one": "in {{count}} Tag",
+    "inDays_other": "in {{count}} Tagen",
+    "atPeak": "jetzt in Vollblüte",
+    "daysAgo_one": "vor {{count}} Tag",
+    "daysAgo_other": "vor {{count}} Tagen",
+    "noForecast": "Noch keine Prognose",
+    "spotsTitle": "Sehenswerte Orte",
+    "variety": {
+      "yoshino": "Yoshino-Kirsche",
+      "kanzan": "Kanzan-Kirsche"
+    },
+    "spots": {
+      "washington_tidal_basin": "Tidal Basin, Washington DC",
+      "brooklyn_botanic_garden": "Brooklyn Botanic Garden, New York",
+      "newark_branch_brook_park": "Branch Brook Park, Newark",
+      "macon_third_street_park": "Third Street Park, Macon",
+      "portland_waterfront_park": "Waterfront Park, Portland",
+      "seattle_uw_quad": "UW Quad, Seattle",
+      "san_francisco_japanese_tea_garden": "Japanese Tea Garden, San Francisco",
+      "nashville_public_square_park": "Public Square Park, Nashville",
+      "bonn_altstadt": "Altstadt, Bonn",
+      "hamburg_binnenalster": "Binnenalster, Hamburg",
+      "berlin_tv_asahi_avenue": "TV-Asahi-Kirschblütenallee, Berlin",
+      "paris_parc_de_sceaux": "Parc de Sceaux, Paris",
+      "amsterdam_bloesempark": "Bloesempark, Amsterdam",
+      "rome_passeggiata_del_giappone": "Passeggiata del Giappone, Rom",
+      "prague_dejvice_campus": "Campus Dejvice, Prag",
+      "london_greenwich_park": "Greenwich Park, London",
+      "edinburgh_meadows": "The Meadows, Edinburgh",
+      "copenhagen_langelinie": "Langelinie, Kopenhagen",
+      "vienna_kirschenhain": "Kirschenhain, Wien",
+      "warsaw_sakura_park": "Sakura Park, Warschau",
+      "budapest_toth_arpad_promenade": "Tóth-Árpád-Promenade, Budapest",
+      "brussels_avenue_emile_max": "Avenue Émile Max, Brüssel",
+      "dublin_herbert_park": "Herbert Park, Dublin",
+      "madrid_parque_juan_carlos_i": "Parque Juan Carlos I, Madrid",
+      "gothenburg_jarntorget": "Järntorget, Göteborg",
+      "bucharest_japanese_garden": "Japanischer Garten, Bukarest"
+    }
   }
 }

@@ -57,6 +57,22 @@ import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import MapInfoCard from '@/components/MapInfoCard';
+import BloomPanel from '@/components/BloomPanel';
+import {
+  BLOOM_CODE,
+  BLOOM_REGION_CODES,
+  BLOOM_SPOTS,
+  bloomFillColor,
+  bloomLayerId,
+  bloomSourceId,
+  bloomTilesUrl,
+  bloomWhen,
+  formatBloomDate,
+  loadBloomPeaks,
+  unixDay,
+  type BloomPeaks,
+  type BloomSpot,
+} from '@/lib/bloom';
 import RouteToDishPanel, {
   type RouteSummary,
 } from '@/components/RouteToDishPanel';
@@ -112,6 +128,22 @@ const CAMERA_EASE_MS = 900;
 const ROUTE_PITCH = 45;
 const ROUTE_FIT_MS = 1000;
 const ROUTE_FIT_MAX_ZOOM = 13;
+
+// Popups keep MapLibre's white card in every theme, so their text is dark in
+// every theme too; built from text nodes, never HTML, since names come from JSON.
+function bloomPopupContent(title: string, lines: string[]): HTMLElement {
+  const content = document.createElement('div');
+  content.style.cssText = 'color:#1c1917;font-size:13px;line-height:1.4';
+  const heading = document.createElement('strong');
+  heading.textContent = title;
+  content.append(heading);
+  for (const line of lines) {
+    const row = document.createElement('div');
+    row.textContent = line;
+    content.append(row);
+  }
+  return content;
+}
 
 // Module-level, so it survives the map unmounting between routes: the fly-in
 // plays on the first map of a session (PWA start, deep link) and whenever the
@@ -272,7 +304,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   // equal to it is an echo of the camera, not a request to move the camera.
   const cameraEchoRef = useRef<[number, number, number] | null>(null);
 
-  const { t } = useTranslation('map');
+  const { t, i18n } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
   const { t: tIdentify } = useTranslation('identify');
   const [isIdentifyOpen, setIsIdentifyOpen] = useState(false);
@@ -1261,6 +1293,107 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     visibleAnimatedStopCount,
   ]);
 
+  // Cherry blossom (lib/bloom.ts). Its tiles are added the first time it is picked,
+  // not with the style: the style's overlay block is species scores only, and
+  // species:check and the style tests hold it to that.
+  const isBloom = selectedSpecies === BLOOM_CODE;
+  const [bloomPeaks, setBloomPeaks] = useState<BloomPeaks>({});
+  const bloomMarkersRef = useRef(new Map<string, maplibregl.Marker>());
+
+  useEffect(() => {
+    if (!isBloom) return;
+    let cancelled = false;
+    loadBloomPeaks().then(peaks => {
+      if (!cancelled) setBloomPeaks(peaks);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [isBloom]);
+
+  useEffect(() => {
+    const instance = map.current;
+    if (!instance || !mapLoaded || !isBloom) return;
+    // Same place in the stack as the species fills: over the basemap's land and
+    // towns, under its roads and labels.
+    const beforeId = instance
+      .getStyle()
+      ?.layers?.find(
+        layer =>
+          'source' in layer &&
+          typeof layer.source === 'string' &&
+          layer.source.startsWith('overlay')
+      )?.id;
+    for (const region of BLOOM_REGION_CODES) {
+      if (!instance.getSource(bloomSourceId(region))) {
+        instance.addSource(bloomSourceId(region), {
+          type: 'vector',
+          url: bloomTilesUrl(region),
+        });
+      }
+      if (!instance.getLayer(bloomLayerId(region))) {
+        instance.addLayer(
+          {
+            id: bloomLayerId(region),
+            type: 'fill',
+            source: bloomSourceId(region),
+            'source-layer': `${region}_bloom`,
+            layout: { visibility: 'none' },
+            paint: {
+              'fill-color': bloomFillColor(unixDay(new Date())),
+              'fill-antialias': false,
+            },
+          },
+          beforeId
+        );
+      }
+    }
+    updateVisibleLayers();
+  }, [mapLoaded, isBloom, updateVisibleLayers]);
+
+  // Viewing spots: a pin each, whose popup gives the peak for the spot's own variety.
+  useEffect(() => {
+    const instance = map.current;
+    if (!instance || !mapLoaded || !isBloom) return;
+    const day = unixDay(new Date()) + activeDay;
+    const markers = bloomMarkersRef.current;
+    for (const spot of BLOOM_SPOTS) {
+      const peak = bloomPeaks[spot.id];
+      const when =
+        typeof peak === 'number'
+          ? [
+              t('bloom.peakOn', {
+                date: formatBloomDate(peak, i18n.language),
+              }),
+              bloomWhen(t, peak, day),
+            ]
+          : [t('bloom.noForecast')];
+      const popup = new maplibregl.Popup({ offset: 25 }).setDOMContent(
+        bloomPopupContent(t(`bloom.spots.${spot.id}`), [
+          t(`bloom.variety.${spot.variety}`),
+          ...when,
+        ])
+      );
+      markers.set(
+        spot.id,
+        new maplibregl.Marker({ color: '#c2185b' })
+          .setLngLat([spot.lon, spot.lat])
+          .setPopup(popup)
+          .addTo(instance)
+      );
+    }
+    return () => {
+      markers.forEach(marker => marker.remove());
+      markers.clear();
+    };
+  }, [mapLoaded, isBloom, bloomPeaks, activeDay, t, i18n.language]);
+
+  const flyToBloomSpot = (spot: BloomSpot) => {
+    map.current?.flyTo({ center: [spot.lon, spot.lat], zoom: 11 });
+    const marker = bloomMarkersRef.current.get(spot.id);
+    if (marker && !marker.getPopup()?.isOpen()) marker.togglePopup();
+  };
+
   // Show feature info on click
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -1282,6 +1415,23 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       });
       if (features && features.length > 0) {
         const f = features[0];
+        if (selectedSpecies === BLOOM_CODE) {
+          const peak = Number(f.properties?.peak);
+          if (Number.isFinite(peak) && map.current) {
+            new maplibregl.Popup({ offset: 8 })
+              .setLngLat(e.lngLat)
+              .setDOMContent(
+                bloomPopupContent(t('bloom.name'), [
+                  t('bloom.peakOn', {
+                    date: formatBloomDate(peak, i18n.language),
+                  }),
+                  bloomWhen(t, peak, unixDay(new Date()) + activeDay),
+                ])
+              )
+              .addTo(map.current);
+          }
+          return;
+        }
         // Each feature carries both endpoints (`_score` = d0/today, `_score_d6` = day 6).
         // Always fold them to the active day's value (frac 0 on day 0 == today exactly) so
         // the modal shows day-appropriate scores and never the raw `_score_d6` keys.
@@ -1302,7 +1452,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     return () => {
       map.current?.off('click', handleClick);
     };
-  }, [mapLoaded, selectedSpecies, activeDay]);
+  }, [mapLoaded, selectedSpecies, activeDay, t, i18n.language]);
 
   // Locate-me button: delegates to the standard MapLibre GeolocateControl
   // (set up in the "Initialize map" effect above) instead of a hand-rolled
@@ -1581,7 +1731,15 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                   what the fit pads the bottom to. */}
               <div className={activeRoute ? 'hidden' : 'contents'}>
                 <ForecastSlider />
-                <MapInfoCard />
+                {isBloom ? (
+                  <BloomPanel
+                    peaks={bloomPeaks}
+                    day={unixDay(new Date()) + activeDay}
+                    onSelectSpot={flyToBloomSpot}
+                  />
+                ) : (
+                  <MapInfoCard />
+                )}
               </div>
             </div>
             {/* Recedes while the route draws instead of unmounting: the
@@ -1626,7 +1784,15 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               className='absolute bottom-2 left-2 z-10 flex flex-col gap-2 md:w-96'
             >
               <ForecastSlider />
-              <MapInfoCard />
+              {isBloom ? (
+                <BloomPanel
+                  peaks={bloomPeaks}
+                  day={unixDay(new Date()) + activeDay}
+                  onSelectSpot={flyToBloomSpot}
+                />
+              ) : (
+                <MapInfoCard />
+              )}
             </div>
             {isRoutePanelOpen ? (
               <div
