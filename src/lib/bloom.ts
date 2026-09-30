@@ -60,18 +60,23 @@ export function bloomStatus(peak: number, day: number): BloomStatus {
   return 'over';
 }
 
-// Days to peak -> colour. Grey more than three weeks out, pink deepening to the
-// peak, fading for two weeks after, then nothing: last season's file, which the
-// map keeps until the first run on 1 February, reads as long over.
+// Nothing in bloom: the light yellow the score layers start from.
+export const BLOOM_IDLE = 'rgba(255, 255, 204, 0.9)';
+
+// Days to peak -> colour. Light yellow more than three weeks out, pink deepening
+// to the peak, then leaf green as the petals drop, fading out two weeks after:
+// last season's file, which the map keeps until the first run on 1 February,
+// reads as long over.
 export const BLOOM_RAMP: readonly (readonly [number, string])[] = [
-  [-PAST_DAYS - 1, 'rgba(240, 98, 146, 0)'],
-  [-PAST_DAYS, 'rgba(240, 98, 146, 0.3)'],
-  [-PEAK_DAYS - 1, 'rgba(216, 27, 96, 0.65)'],
+  [-PAST_DAYS - 1, 'rgba(156, 196, 148, 0)'],
+  [-PAST_DAYS, 'rgba(156, 196, 148, 0.35)'],
+  [-6, '#9cc494'],
   [-PEAK_DAYS, '#c2185b'],
   [PEAK_DAYS, '#c2185b'],
-  [7, '#e0608f'],
-  [SOON_DAYS, '#f8c8da'],
-  [SOON_DAYS + 1, 'rgba(120, 120, 120, 0.22)'],
+  [7, '#ec6f9c'],
+  [14, '#f7b8cf'],
+  [SOON_DAYS, '#fce4ec'],
+  [SOON_DAYS + 7, BLOOM_IDLE],
 ];
 
 export function bloomFillColor(day: number): ExpressionSpecification {
@@ -133,6 +138,65 @@ export const bloomInSeason = (peaks: BloomPeaks, day: number): boolean =>
   Object.values(peaks).some(
     peak => peak !== null && bloomStatus(peak, day) !== 'over'
   );
+
+/**
+ * The spots as map points. A spot carries its `peak` only while its bloom is
+ * ahead or under way, so off-season, after its bloom or with no forecast it
+ * paints as idle instead of as last year's date.
+ */
+export function bloomSpotFeatures(
+  peaks: BloomPeaks,
+  day: number
+): GeoJSON.FeatureCollection<GeoJSON.Point> {
+  const inSeason = bloomInSeason(peaks, day);
+  return {
+    type: 'FeatureCollection',
+    features: BLOOM_SPOTS.map(spot => {
+      const peak = peaks[spot.id];
+      const active =
+        inSeason &&
+        typeof peak === 'number' &&
+        bloomStatus(peak, day) !== 'over';
+      return {
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [spot.lon, spot.lat] },
+        properties: active ? { id: spot.id, peak } : { id: spot.id },
+      };
+    }),
+  };
+}
+
+export const BLOOM_SPOT_SOURCE = 'bloom-spots';
+// Not `cherry_blossom_*`: the store treats those as fill layers.
+export const BLOOM_SPOT_LAYER = 'bloom-spots';
+export const BLOOM_SPOT_SHADOW_LAYER = 'bloom-spots-shadow';
+
+/** Grows with zoom; `extra` widens the shadow around the dot. */
+export const bloomSpotRadius = (extra: number): ExpressionSpecification =>
+  [
+    'interpolate',
+    ['linear'],
+    ['zoom'],
+    3,
+    7 + extra,
+    6,
+    11 + extra,
+    9,
+    16 + extra,
+    12,
+    22 + extra,
+    15,
+    30 + extra,
+  ] as unknown as ExpressionSpecification;
+
+export function bloomSpotColor(day: number): ExpressionSpecification {
+  return [
+    'case',
+    ['has', 'peak'],
+    bloomFillColor(day),
+    BLOOM_IDLE,
+  ] as unknown as ExpressionSpecification;
+}
 
 let peaksRequest: Promise<BloomPeaks> | null = null;
 

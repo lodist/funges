@@ -16,6 +16,10 @@ The map for 15 April 2026, from the dry run below (winter from normals), with ti
 
 ![On a phone](2026-09-30-cherry-blossom/phone.webp)
 
+Off-season (today), a spot shows the idle yellow:
+
+![Hamburg off-season](2026-09-30-cherry-blossom/off-season.webp)
+
 ## What it follows
 
 - **The map: _Prunus serrulata_**, the Japanese flowering cherry (Sato-zakura cultivars, mostly 'Kanzan'). It is the ornamental cherry of European and US streets and parks.
@@ -164,14 +168,17 @@ A single requirement for all Sato-zakura cultivars can't do better. Spring 2027 
   - It is not a catalog species: no page, no photo ID, no score.
 - **The layers** are added at runtime the first time it is picked, below the basemap's roads and labels (`AdvancedMap.tsx`). The style JSONs, and `species:check` and the style tests that hold them to species scores, are untouched.
 - **The colour** is days to peak on the slider's day (`src/lib/bloom.ts`):
-  - grey more than three weeks out;
+  - light yellow more than three weeks out, where the score layers start too;
   - pink deepening to the peak;
   - deep pink at peak ±2 days;
-  - fading for two weeks;
+  - leaf green as the petals drop, fading for two weeks;
   - then transparent.
-- **A click** gives the date ("Peak bloom around 20 April · in 5 days").
+- **The spots** are soft circles on the same scale, each for its own variety, with a white rim and a shadow so they stay readable on a cell of their own colour.
+  - Off-season, after their bloom, or without a forecast they show the idle yellow, never last year's date.
+  - They are drawn over the roads and under the basemap's labels.
+- **A click** on a cell or a spot gives the date ("Peak bloom around 20 April · in 5 days").
 - **The bloom panel** replaces the score legend: the ramp, and the viewing spots sorted by days to peak.
-  - A row flies to its spot and opens its pin.
+  - A row flies to its spot and opens its popup.
   - Before the season, or on last season's file, it says the forecast starts on 1 February.
 
 ## Viewing spots
@@ -179,6 +186,7 @@ A single requirement for all Sato-zakura cultivars can't do better. Spring 2027 
 - **26 spots** (`src/data/bloom-spots.json`): 8 in the US and 18 in Europe, 10 Yoshino and 16 Kanzan, each checked against a source for its variety.
   - A spot's region is the one with the nearest weather point; all are within 0.05°.
   - Hamburg, Langelinie, Herbert Park and Bucharest have no cultivar source and default to Kanzan.
+  - Every point was checked against OpenStreetMap. Hamburg was moved off the Binnenalster's water onto the eight _P. serrulata_ mapped on its west bank (Neuer Jungfernstieg). Sceaux sits on its 150 mapped Kanzan, and Greenwich on the mapped Cherry Blossom Avenue.
 - **Left out on purpose:**
   - **Stockholm, Kungsträdgården** and **Copenhagen, Bispebjerg:** the trees are _Prunus_ 'Accolade', a _P. sargentii_ hybrid, not a Japanese cherry this model follows. Gothenburg's Järntorget (Yoshino) and Langelinie replace them.
   - **Prague, Petřín:** a fruit-tree orchard. The Kanzan row at the Dejvice campus replaces it.

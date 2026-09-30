@@ -4,6 +4,7 @@ import { ChevronDown } from '@/lib/icons';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {
+  BLOOM_IDLE,
   BLOOM_SPOTS,
   bloomGradientCss,
   bloomInSeason,
@@ -17,13 +18,13 @@ import {
 } from '@/lib/bloom';
 
 // A dot per spot in the colour the map paints it; the list is read, not looked at,
-// so the ramp's end points are enough.
+// so one colour per stage is enough.
 const STATUS_DOT: Record<BloomStatus, string> = {
-  later: 'rgba(120, 120, 120, 0.45)',
-  soon: '#f8c8da',
+  later: BLOOM_IDLE,
+  soon: '#f7b8cf',
   peak: '#c2185b',
-  past: 'rgba(216, 27, 96, 0.4)',
-  over: 'transparent',
+  past: '#9cc494',
+  over: BLOOM_IDLE,
 };
 
 export interface BloomPanelProps {
@@ -100,7 +101,7 @@ export default function BloomPanel({
                   >
                     <span
                       aria-hidden='true'
-                      className='size-2.5 shrink-0 rounded-full'
+                      className='size-2.5 shrink-0 rounded-full ring-1 ring-border'
                       style={{
                         background:
                           spot.peak === null

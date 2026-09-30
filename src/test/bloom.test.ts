@@ -1,12 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import {
   BLOOM_CODE,
+  BLOOM_IDLE,
   BLOOM_RAMP,
   BLOOM_SPOTS,
   bloomFillColor,
   bloomGradientCss,
   bloomInSeason,
   bloomLayerId,
+  bloomSpotColor,
+  bloomSpotFeatures,
   bloomStatus,
   bloomTilesUrl,
   bloomWhen,
@@ -64,12 +67,20 @@ describe('bloomFillColor', () => {
     expect(BLOOM_RAMP[0][1]).toMatch(/, 0\)$/);
   });
 
-  it('draws the legend from later to past', () => {
+  it('draws the legend from later to past: yellow, pink, then green', () => {
     const css = bloomGradientCss();
-    expect(css.startsWith('linear-gradient(to right, rgba(120, 120, 120')).toBe(
+    expect(css.startsWith(`linear-gradient(to right, ${BLOOM_IDLE} 0%`)).toBe(
       true
     );
-    expect(css.endsWith('rgba(240, 98, 146, 0) 100%)')).toBe(true);
+    expect(css).toContain('#c2185b');
+    expect(css.endsWith('rgba(156, 196, 148, 0) 100%)')).toBe(true);
+  });
+
+  it('never paints the days after the peak pink', () => {
+    const past = BLOOM_RAMP.filter(([toPeak]) => toPeak < -2);
+    expect(past.length).toBeGreaterThan(0);
+    for (const [, colour] of past)
+      expect(colour).not.toMatch(/#c2185b|216, 27, 96/);
   });
 });
 
@@ -110,6 +121,40 @@ describe('sortSpots', () => {
     expect(bloomInSeason({ a: 90, b: null }, 100)).toBe(true);
     expect(bloomInSeason({ a: 50, b: null }, 100)).toBe(false);
     expect(bloomInSeason({}, 100)).toBe(false);
+  });
+});
+
+describe('bloomSpotFeatures', () => {
+  const [a, b, c] = BLOOM_SPOTS;
+  const peakOf = (fc: ReturnType<typeof bloomSpotFeatures>, id: string) =>
+    fc.features.find(f => f.properties?.id === id)?.properties?.peak;
+
+  it('gives a spot its peak while its bloom is ahead or under way', () => {
+    const fc = bloomSpotFeatures(
+      { [a.id]: 110, [b.id]: 60, [c.id]: null },
+      100
+    );
+    expect(fc.features).toHaveLength(BLOOM_SPOTS.length);
+    expect(peakOf(fc, a.id)).toBe(110);
+    expect(peakOf(fc, b.id)).toBeUndefined(); // 40 days past: over, idle again
+    expect(peakOf(fc, c.id)).toBeUndefined(); // no forecast
+    expect(fc.features[0].geometry.coordinates).toEqual([a.lon, a.lat]);
+  });
+
+  it('paints every spot idle off-season, not as last year', () => {
+    const fc = bloomSpotFeatures({ [a.id]: 100 - 300, [b.id]: 100 - 290 }, 100);
+    expect(fc.features.every(f => !('peak' in (f.properties ?? {})))).toBe(
+      true
+    );
+  });
+
+  it('colours a spot on the fills’ scale, idle yellow without a peak', () => {
+    expect(bloomSpotColor(20900)).toEqual([
+      'case',
+      ['has', 'peak'],
+      bloomFillColor(20900),
+      BLOOM_IDLE,
+    ]);
   });
 });
 

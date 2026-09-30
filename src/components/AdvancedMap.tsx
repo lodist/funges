@@ -61,10 +61,17 @@ import BloomPanel from '@/components/BloomPanel';
 import {
   BLOOM_CODE,
   BLOOM_REGION_CODES,
+  BLOOM_SPOT_LAYER,
+  BLOOM_SPOT_SHADOW_LAYER,
+  BLOOM_SPOT_SOURCE,
   BLOOM_SPOTS,
   bloomFillColor,
+  bloomInSeason,
   bloomLayerId,
   bloomSourceId,
+  bloomSpotColor,
+  bloomSpotFeatures,
+  bloomSpotRadius,
   bloomTilesUrl,
   bloomWhen,
   formatBloomDate,
@@ -1298,7 +1305,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   // species:check and the style tests hold it to that.
   const isBloom = selectedSpecies === BLOOM_CODE;
   const [bloomPeaks, setBloomPeaks] = useState<BloomPeaks>({});
-  const bloomMarkersRef = useRef(new Map<string, maplibregl.Marker>());
+  const bloomPopupRef = useRef<maplibregl.Popup | null>(null);
 
   useEffect(() => {
     if (!isBloom) return;
@@ -1351,16 +1358,118 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     updateVisibleLayers();
   }, [mapLoaded, isBloom, updateVisibleLayers]);
 
-  // Viewing spots: a pin each, whose popup gives the peak for the spot's own variety.
+  // Viewing spots: soft circles on the polygons' own scale, each for its own
+  // variety, and idle yellow off-season, after its bloom or without a forecast.
+  useEffect(() => {
+    const instance = map.current;
+    if (!instance || !mapLoaded) return;
+    if (!isBloom) {
+      for (const id of [BLOOM_SPOT_LAYER, BLOOM_SPOT_SHADOW_LAYER]) {
+        if (instance.getLayer(id)) instance.removeLayer(id);
+      }
+      if (instance.getSource(BLOOM_SPOT_SOURCE)) {
+        instance.removeSource(BLOOM_SPOT_SOURCE);
+      }
+      return;
+    }
+    const day = unixDay(new Date()) + activeDay;
+    const data = bloomSpotFeatures(bloomPeaks, day);
+    const source = instance.getSource(BLOOM_SPOT_SOURCE) as
+      | maplibregl.GeoJSONSource
+      | undefined;
+    if (source) {
+      source.setData(data);
+      instance.setPaintProperty(
+        BLOOM_SPOT_LAYER,
+        'circle-color',
+        bloomSpotColor(day)
+      );
+      return;
+    }
+    instance.addSource(BLOOM_SPOT_SOURCE, { type: 'geojson', data });
+    // Over the fills and roads, under the basemap's labels. The first symbol layer
+    // is no anchor: the species' number layers sit inside the overlay block, under
+    // the roads. A spot usually peaks with its own cell, so a white rim and a soft
+    // shadow keep it readable on a cell of the same colour and on any basemap.
+    const beforeId = instance
+      .getStyle()
+      ?.layers?.find(
+        layer =>
+          layer.type === 'symbol' &&
+          !(
+            typeof layer.source === 'string' &&
+            layer.source.startsWith('overlay')
+          )
+      )?.id;
+    instance.addLayer(
+      {
+        id: BLOOM_SPOT_SHADOW_LAYER,
+        type: 'circle',
+        source: BLOOM_SPOT_SOURCE,
+        paint: {
+          'circle-color': 'rgba(28, 25, 23, 0.4)',
+          'circle-blur': 1,
+          'circle-radius': bloomSpotRadius(9),
+          'circle-translate': [0, 1.5],
+        },
+      },
+      beforeId
+    );
+    instance.addLayer(
+      {
+        id: BLOOM_SPOT_LAYER,
+        type: 'circle',
+        source: BLOOM_SPOT_SOURCE,
+        paint: {
+          'circle-color': bloomSpotColor(day),
+          'circle-blur': 0.1,
+          'circle-radius': bloomSpotRadius(0),
+          'circle-stroke-color': 'rgba(255, 255, 255, 0.95)',
+          'circle-stroke-width': 3,
+        },
+      },
+      beforeId
+    );
+  }, [mapLoaded, isBloom, bloomPeaks, activeDay]);
+
   useEffect(() => {
     const instance = map.current;
     if (!instance || !mapLoaded || !isBloom) return;
-    const day = unixDay(new Date()) + activeDay;
-    const markers = bloomMarkersRef.current;
-    for (const spot of BLOOM_SPOTS) {
+    const canvas = instance.getCanvas();
+    const enter = () => {
+      canvas.style.cursor = 'pointer';
+    };
+    const leave = () => {
+      canvas.style.cursor = '';
+    };
+    instance.on('mouseenter', BLOOM_SPOT_LAYER, enter);
+    instance.on('mouseleave', BLOOM_SPOT_LAYER, leave);
+    return () => {
+      instance.off('mouseenter', BLOOM_SPOT_LAYER, enter);
+      instance.off('mouseleave', BLOOM_SPOT_LAYER, leave);
+      canvas.style.cursor = '';
+    };
+  }, [mapLoaded, isBloom]);
+
+  // One bloom popup at a time, for a spot (its own variety) or a map cell.
+  const showBloomPopup = useCallback(
+    (at: [number, number], title: string, lines: string[]) => {
+      if (!map.current) return;
+      bloomPopupRef.current?.remove();
+      bloomPopupRef.current = new maplibregl.Popup({ offset: 14 })
+        .setLngLat(at)
+        .setDOMContent(bloomPopupContent(title, lines))
+        .addTo(map.current);
+    },
+    []
+  );
+
+  const openBloomSpot = useCallback(
+    (spot: BloomSpot) => {
+      const day = unixDay(new Date()) + activeDay;
       const peak = bloomPeaks[spot.id];
       const when =
-        typeof peak === 'number'
+        typeof peak === 'number' && bloomInSeason(bloomPeaks, day)
           ? [
               t('bloom.peakOn', {
                 date: formatBloomDate(peak, i18n.language),
@@ -1368,36 +1477,54 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               bloomWhen(t, peak, day),
             ]
           : [t('bloom.noForecast')];
-      const popup = new maplibregl.Popup({ offset: 25 }).setDOMContent(
-        bloomPopupContent(t(`bloom.spots.${spot.id}`), [
-          t(`bloom.variety.${spot.variety}`),
-          ...when,
-        ])
-      );
-      markers.set(
-        spot.id,
-        new maplibregl.Marker({ color: '#c2185b' })
-          .setLngLat([spot.lon, spot.lat])
-          .setPopup(popup)
-          .addTo(instance)
-      );
-    }
-    return () => {
-      markers.forEach(marker => marker.remove());
-      markers.clear();
-    };
-  }, [mapLoaded, isBloom, bloomPeaks, activeDay, t, i18n.language]);
+      showBloomPopup([spot.lon, spot.lat], t(`bloom.spots.${spot.id}`), [
+        t(`bloom.variety.${spot.variety}`),
+        ...when,
+      ]);
+    },
+    [activeDay, bloomPeaks, t, i18n.language, showBloomPopup]
+  );
 
   const flyToBloomSpot = (spot: BloomSpot) => {
     map.current?.flyTo({ center: [spot.lon, spot.lat], zoom: 11 });
-    const marker = bloomMarkersRef.current.get(spot.id);
-    if (marker && !marker.getPopup()?.isOpen()) marker.togglePopup();
+    openBloomSpot(spot);
   };
 
   // Show feature info on click
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
     const handleClick = (e: maplibregl.MapMouseEvent) => {
+      const instance = map.current;
+      if (instance && selectedSpecies === BLOOM_CODE) {
+        const hit = instance.getLayer(BLOOM_SPOT_LAYER)
+          ? instance.queryRenderedFeatures(e.point, {
+              layers: [BLOOM_SPOT_LAYER],
+            })[0]
+          : undefined;
+        const spot = BLOOM_SPOTS.find(item => item.id === hit?.properties?.id);
+        if (spot) {
+          openBloomSpot(spot);
+          return;
+        }
+        const cells = BLOOM_REGION_CODES.map(bloomLayerId).filter(
+          id =>
+            instance.getLayer(id) &&
+            instance.getLayoutProperty(id, 'visibility') === 'visible'
+        );
+        const peak = Number(
+          instance.queryRenderedFeatures(e.point, { layers: cells })[0]
+            ?.properties?.peak
+        );
+        if (Number.isFinite(peak)) {
+          showBloomPopup([e.lngLat.lng, e.lngLat.lat], t('bloom.name'), [
+            t('bloom.peakOn', {
+              date: formatBloomDate(peak, i18n.language),
+            }),
+            bloomWhen(t, peak, unixDay(new Date()) + activeDay),
+          ]);
+        }
+        return;
+      }
       // One fill layer per species is visible for the selected species on every day;
       // its feature carries the endpoints we interpolate below for forecast days.
       const layers =
@@ -1415,23 +1542,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       });
       if (features && features.length > 0) {
         const f = features[0];
-        if (selectedSpecies === BLOOM_CODE) {
-          const peak = Number(f.properties?.peak);
-          if (Number.isFinite(peak) && map.current) {
-            new maplibregl.Popup({ offset: 8 })
-              .setLngLat(e.lngLat)
-              .setDOMContent(
-                bloomPopupContent(t('bloom.name'), [
-                  t('bloom.peakOn', {
-                    date: formatBloomDate(peak, i18n.language),
-                  }),
-                  bloomWhen(t, peak, unixDay(new Date()) + activeDay),
-                ])
-              )
-              .addTo(map.current);
-          }
-          return;
-        }
         // Each feature carries both endpoints (`_score` = d0/today, `_score_d6` = day 6).
         // Always fold them to the active day's value (frac 0 on day 0 == today exactly) so
         // the modal shows day-appropriate scores and never the raw `_score_d6` keys.
@@ -1452,7 +1562,15 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     return () => {
       map.current?.off('click', handleClick);
     };
-  }, [mapLoaded, selectedSpecies, activeDay, t, i18n.language]);
+  }, [
+    mapLoaded,
+    selectedSpecies,
+    activeDay,
+    t,
+    i18n.language,
+    openBloomSpot,
+    showBloomPopup,
+  ]);
 
   // Locate-me button: delegates to the standard MapLibre GeolocateControl
   // (set up in the "Initialize map" effect above) instead of a hand-rolled
