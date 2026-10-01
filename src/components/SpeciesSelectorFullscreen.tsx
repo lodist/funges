@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Input } from '@/components/ui/input';
 import { Search, X } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
@@ -119,7 +120,10 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
 
   if (!isOpen) return null;
 
-  return (
+  // Portalled to <body>: the trigger sits in the map's `z-20` corner wrapper,
+  // a stacking context that otherwise traps this overlay below the map's
+  // right-hand control buttons (also `z-20`, later in the DOM).
+  return createPortal(
     <motion.div
       layoutId='species-selector'
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -319,7 +323,8 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
           )}
         </div>
       </div>
-    </motion.div>
+    </motion.div>,
+    document.body
   );
 };
 
