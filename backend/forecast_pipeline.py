@@ -201,7 +201,7 @@ class RegionConfig:
     # Rain/soil moisture has a materially longer memory than temperature. The
     # scoring helpers still cap temperature at 12 days and humidity at 21 days.
     lag_days: int = 42
-    cutoff_days: int = 365
+    cutoff_days: int = 3 * 365
     # Performance: WeatherAPI calls are network-bound. 3 was extremely conservative;
     # raise substantially, tunable via env for rate-limit headroom.
     max_workers: int = int(os.getenv("FORECAST_MAX_WORKERS", "16"))
