@@ -119,5 +119,18 @@
     "title": "You're offline",
     "noPackageMessage": "No downloaded map package covers this area. Reconnect or return to an area you saved.",
     "forecastOnlyMessage": "Offline forecast loaded. The detailed basemap needs a connection."
+  },
+  "bloom": {
+    "name": "Cherry blossom",
+    "spectacles": "Spectacles",
+    "legend": "Peak bloom",
+    "later": "3+ weeks",
+    "past": "Past",
+    "offSeason": "The cherry blossom forecast starts on 1 February.",
+    "atPeak": "at peak now",
+    "inDays_one": "in {{count}} day",
+    "inDays_other": "in {{count}} days",
+    "daysAgo_one": "{{count}} day ago",
+    "daysAgo_other": "{{count}} days ago"
   }
 }

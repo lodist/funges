@@ -57,6 +57,18 @@ import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import MapInfoCard from '@/components/MapInfoCard';
+import {
+  BLOOM_CODE,
+  BLOOM_REGION_CODES,
+  bloomFillColor,
+  bloomGradientCss,
+  bloomLayerId,
+  bloomSourceId,
+  bloomStatus,
+  bloomTilesUrl,
+  unixDay,
+} from '@/lib/bloom';
+import { DEFAULT_MAP_SPECIES } from '@/data/species';
 import RouteToDishPanel, {
   type RouteSummary,
 } from '@/components/RouteToDishPanel';
@@ -1261,6 +1273,65 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     visibleAnimatedStopCount,
   ]);
 
+  // Cherry blossom (lib/bloom.ts). Its tiles are added the first time it is picked,
+  // not with the style: the style's overlay block is species scores only, and
+  // species:check and the style tests hold it to that. The rest works as for a
+  // species: the slider, the legend (with its own scale) and the info modal.
+  const isBloom = selectedSpecies === BLOOM_CODE;
+  const bloomLegend = isBloom
+    ? {
+        gradient: bloomGradientCss(),
+        low: t('bloom.later'),
+        label: t('bloom.legend'),
+        high: t('bloom.past'),
+      }
+    : {};
+
+  useEffect(() => {
+    const instance = map.current;
+    if (!instance || !mapLoaded || !isBloom) return;
+    const layers = instance.getStyle()?.layers ?? [];
+    // Same place in the stack as the species fills, and the same opacity: over
+    // the basemap's land and towns, under its roads and labels.
+    const beforeId = layers.find(
+      layer =>
+        'source' in layer &&
+        typeof layer.source === 'string' &&
+        layer.source.startsWith('overlay')
+    )?.id;
+    const species = layers.find(
+      layer => layer.id === `${DEFAULT_MAP_SPECIES}_ne` && layer.type === 'fill'
+    ) as maplibregl.FillLayerSpecification | undefined;
+    for (const region of BLOOM_REGION_CODES) {
+      if (!instance.getSource(bloomSourceId(region))) {
+        instance.addSource(bloomSourceId(region), {
+          type: 'vector',
+          url: bloomTilesUrl(region),
+        });
+      }
+      if (!instance.getLayer(bloomLayerId(region))) {
+        instance.addLayer(
+          {
+            id: bloomLayerId(region),
+            type: 'fill',
+            source: bloomSourceId(region),
+            'source-layer': `${region}_bloom`,
+            layout: { visibility: 'none' },
+            paint: {
+              'fill-color': bloomFillColor(unixDay(new Date())),
+              'fill-opacity': species?.paint?.['fill-opacity'] ?? 0.85,
+              // Off at every zoom: the cells share their edges, and an
+              // antialiased edge draws them as a faint grid.
+              'fill-antialias': false,
+            },
+          },
+          beforeId
+        );
+      }
+    }
+    updateVisibleLayers();
+  }, [mapLoaded, isBloom, updateVisibleLayers]);
+
   // Show feature info on click
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -1282,6 +1353,17 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       });
       if (features && features.length > 0) {
         const f = features[0];
+        // A cherry blossom cell carries a peak date. One whose bloom is long over,
+        // as all of last season's file is, has nothing to list.
+        if (
+          selectedSpecies === BLOOM_CODE &&
+          bloomStatus(
+            Number(f.properties?.peak),
+            unixDay(new Date()) + activeDay
+          ) === 'over'
+        ) {
+          return;
+        }
         // Each feature carries both endpoints (`_score` = d0/today, `_score_d6` = day 6).
         // Always fold them to the active day's value (frac 0 on day 0 == today exactly) so
         // the modal shows day-appropriate scores and never the raw `_score_d6` keys.
@@ -1581,7 +1663,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                   what the fit pads the bottom to. */}
               <div className={activeRoute ? 'hidden' : 'contents'}>
                 <ForecastSlider />
-                <MapInfoCard />
+                <MapInfoCard {...bloomLegend} />
               </div>
             </div>
             {/* Recedes while the route draws instead of unmounting: the
@@ -1626,7 +1708,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               className='absolute bottom-2 left-2 z-10 flex flex-col gap-2 md:w-96'
             >
               <ForecastSlider />
-              <MapInfoCard />
+              <MapInfoCard {...bloomLegend} />
             </div>
             {isRoutePanelOpen ? (
               <div
@@ -1681,6 +1763,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         }}
         hideDirections={isModalFromLocateMe || !isOnline}
         dataNerdRegion={isOnline ? dataNerdRegion : null}
+        bloomDay={isBloom ? unixDay(new Date()) + activeDay : undefined}
       />
 
       {/* Mounted only once opened, so the ONNX chunk is never fetched by a user

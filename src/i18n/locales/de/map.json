@@ -119,5 +119,18 @@
     "title": "Keine Verbindung",
     "noPackageMessage": "Kein heruntergeladenes Kartenpaket deckt dieses Gebiet ab. Stelle eine Verbindung her oder kehre zu einem gespeicherten Gebiet zurück.",
     "forecastOnlyMessage": "Offline-Prognose geladen. Die detaillierte Grundkarte benötigt eine Verbindung."
+  },
+  "bloom": {
+    "name": "Kirschblüte",
+    "spectacles": "Naturschauspiele",
+    "legend": "Vollblüte",
+    "later": "3+ Wochen",
+    "past": "Vorbei",
+    "offSeason": "Die Kirschblüten-Prognose beginnt am 1. Februar.",
+    "atPeak": "jetzt in Vollblüte",
+    "inDays_one": "in {{count}} Tag",
+    "inDays_other": "in {{count}} Tagen",
+    "daysAgo_one": "vor {{count}} Tag",
+    "daysAgo_other": "vor {{count}} Tagen"
   }
 }

@@ -119,5 +119,18 @@
     "title": "Hors connexion",
     "noPackageMessage": "Aucun forfait téléchargé ne couvre cette zone. Reconnectez-vous ou revenez dans une zone enregistrée.",
     "forecastOnlyMessage": "Prévisions hors ligne chargées. Le fond de carte détaillé nécessite une connexion."
+  },
+  "bloom": {
+    "name": "Cerisiers en fleurs",
+    "spectacles": "Spectacles",
+    "legend": "Pleine floraison",
+    "later": "3 sem. et +",
+    "past": "Passée",
+    "offSeason": "La prévision de la floraison des cerisiers commence le 1er février.",
+    "atPeak": "en pleine floraison",
+    "inDays_one": "dans {{count}} jour",
+    "inDays_other": "dans {{count}} jours",
+    "daysAgo_one": "il y a {{count}} jour",
+    "daysAgo_other": "il y a {{count}} jours"
   }
 }
