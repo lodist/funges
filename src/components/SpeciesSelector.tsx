@@ -10,6 +10,7 @@ import {
   BLOOM_EMOJI,
   BLOOM_SCIENTIFIC_NAME,
   bloomInSeason,
+  bloomToday,
 } from '@/lib/bloom';
 import SpeciesSelectorFullscreen from './SpeciesSelectorFullscreen';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -175,7 +176,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           notice says when it starts, or its empty map reads as a bug too. */}
       <div role='status'>
         {selected &&
-          (selectedSpecies === BLOOM_CODE && !bloomInSeason(new Date()) ? (
+          (selectedSpecies === BLOOM_CODE && !bloomInSeason(bloomToday()) ? (
             <p className='elevation-raised mt-2 max-w-[min(18rem,calc(100vw-5.5rem))] rounded-card bg-card px-3 py-2 text-xs text-muted-foreground'>
               {t('bloom.offSeason')}
             </p>

@@ -22,12 +22,26 @@ export const BLOOM_REGIONS = {
 export type BloomRegion = keyof typeof BLOOM_REGIONS;
 export const BLOOM_REGION_CODES = Object.keys(BLOOM_REGIONS) as BloomRegion[];
 
+// Dev server only: with VITE_BLOOM_PREVIEW=2026-04-15 in .env.local the layer
+// reads the tiles in public/bloom-preview/ (local, gitignored) and draws them as
+// on that day, so it can be seen out of season. Tests and builds never read it.
+const PREVIEW_DAY: string | undefined =
+  import.meta.env.MODE === 'development'
+    ? import.meta.env.VITE_BLOOM_PREVIEW
+    : undefined;
+
+/** Today, or the preview day on the dev server. */
+export const bloomToday = (): Date =>
+  PREVIEW_DAY ? new Date(`${PREVIEW_DAY}T12:00:00`) : new Date();
+
 export const bloomSourceId = (region: BloomRegion) => `bloom-${region}`;
 // `<code>_<region>`, like a species fill, so the store's region and selection
 // matching apply to it unchanged.
 export const bloomLayerId = (region: BloomRegion) => `${BLOOM_CODE}_${region}`;
 export const bloomTilesUrl = (region: BloomRegion) =>
-  `pmtiles://${R2}/${BLOOM_REGIONS[region]}/${region}_bloom.pmtiles`;
+  PREVIEW_DAY
+    ? `pmtiles://${window.location.origin}/bloom-preview/${region}_bloom.pmtiles`
+    : `pmtiles://${R2}/${BLOOM_REGIONS[region]}/${region}_bloom.pmtiles`;
 export const isBloomLayer = (id: string) => id.startsWith(`${BLOOM_CODE}_`);
 
 /** The backend builds the layer from 1 February to 30 June. */

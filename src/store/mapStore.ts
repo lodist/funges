@@ -20,7 +20,13 @@ import {
   FORECAST_DAYS,
 } from '@/lib/forecast';
 import type { RegionId } from '@/lib/data';
-import { BLOOM_CODE, bloomFillColor, isBloomLayer, unixDay } from '@/lib/bloom';
+import {
+  BLOOM_CODE,
+  bloomFillColor,
+  bloomToday,
+  isBloomLayer,
+  unixDay,
+} from '@/lib/bloom';
 
 export interface MapViewport {
   latitude: number;
@@ -562,7 +568,7 @@ export const useMapStore = create<MapState>()(
                 mapRef.setPaintProperty(
                   id,
                   'fill-color',
-                  bloomFillColor(unixDay(new Date()) + activeDay)
+                  bloomFillColor(unixDay(bloomToday()) + activeDay)
                 );
                 mapRef.setLayoutProperty(id, 'visibility', 'visible');
                 drawn = true;
