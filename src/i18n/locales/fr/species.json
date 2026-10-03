@@ -273,6 +273,31 @@
       "name": "Polypore en touffe",
       "description": "Une grosse rosette de lobes gris-brun imbriqués au pied des vieux chênes, aux pores blancs dessous",
       "howTo": "Cherchez au pied des chênes vieux ou dépérissants de fin août à octobre ; il revient souvent au même arbre d'une année sur l'autre. Il est protégé dans une partie de l'Europe centrale et du Nord"
+    },
+    "saffron_milk_cap": {
+      "name": "Lactaire délicieux",
+      "description": "Un chapeau orange à cercles plus foncés, qui saigne un lait orange carotte et verdit au toucher ; très prisé en Espagne et en Italie",
+      "howTo": "Cherchez-le sous les pins et les épicéas de la fin de l'été à novembre, jusqu'en hiver sur les côtes de la Méditerranée et sur la côte pacifique des États-Unis. Cassez une lame : le lait doit être orange à rouge, jamais blanc"
+    },
+    "hedgehog_mushroom": {
+      "name": "Pied-de-mouton",
+      "description": "Un chapeau chamois à orangé avec de petits aiguillons tendres au lieu de lames : l'un des champignons sauvages les plus sûrs à apprendre",
+      "howTo": "Cherchez-le dans les bois moussus de conifères et de feuillus de la fin de l'été à la fin de l'automne, souvent en cercles ou en lignes ; tout l'hiver sur la côte pacifique des États-Unis. Retournez-le : des aiguillons, pas des lames"
+    },
+    "shaggy_mane": {
+      "name": "Coprin chevelu",
+      "description": "Un haut cylindre blanc couvert de mèches, sur les pelouses et les bords de route, qui se change en encre noire dans la journée qui suit la cueillette",
+      "howTo": "Cherchez-le sur les pelouses, les bas-côtés et les sols remués quelques jours après les pluies d'automne, et aussi après celles du printemps. Ne cueillez que des jeunes, entièrement blancs, et cuisinez-les le jour même ; évitez les routes passantes, où il absorbe des métaux lourds"
+    },
+    "giant_puffball": {
+      "name": "Vesse-de-loup géante",
+      "description": "Une boule blanche et lisse, grosse comme un ballon ou plus, dans les prés et les pâtures, à la chair ferme et blanche comme une mozzarella fraîche",
+      "howTo": "Cherchez-la dans les prés, les pâtures, les parcs et les lisières de la fin de l'été à l'automne, souvent là où poussent les orties. Coupez-la toujours en deux de haut en bas : l'intérieur doit être d'un blanc pur, sans trace de chapeau ni de pied"
+    },
+    "matsutake": {
+      "name": "Matsutake",
+      "description": "Un champignon ferme, blanc et brun, à l'odeur épicée de cannelle, le plus prisé de tous au Japon",
+      "howTo": "Cherchez-le dans les pinèdes sèches et sableuses dès le mois d'août dans les pays nordiques, et sous les conifères et les tanoaks de septembre à novembre dans l'ouest des États-Unis. Ne ratissez jamais le sol. Il est sur la liste rouge en Suède et en Norvège à cause des coupes forestières, pas de la cueillette ; dans les forêts nationales américaines, un permis est nécessaire"
     }
   }
 }

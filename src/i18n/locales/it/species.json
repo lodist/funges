@@ -272,6 +272,31 @@
       "name": "Grifola (maitake)",
       "description": "Una grossa rosetta di fronde grigio-brune sovrapposte ai piedi delle vecchie querce, con i pori bianchi sotto",
       "howTo": "Cercala alla base di querce vecchie o deperienti da fine agosto a ottobre; spesso ricompare sullo stesso albero anno dopo anno. È protetta in parte dell'Europa centrale e settentrionale"
+    },
+    "saffron_milk_cap": {
+      "name": "Sanguinello",
+      "description": "Un cappello arancione ad anelli più scuri che stilla latte arancio carota e macchia di verde; amatissimo in Spagna e in Italia",
+      "howTo": "Cercalo sotto pini e abeti rossi da fine estate a novembre, fino all'inverno sulle coste del Mediterraneo e sulla costa pacifica degli Stati Uniti. Spezza una lamella: il latte deve essere arancio o rosso, mai bianco"
+    },
+    "hedgehog_mushroom": {
+      "name": "Steccherino dorato",
+      "description": "Un cappello color camoscio o arancio con morbidi aculei al posto delle lamelle: uno dei funghi selvatici più sicuri da imparare",
+      "howTo": "Cercalo nei boschi muschiosi di conifere e latifoglie da fine estate a fine autunno, spesso in cerchi o file; sulla costa pacifica degli Stati Uniti per tutto l'inverno. Giralo: sotto ha aculei, non lamelle"
+    },
+    "shaggy_mane": {
+      "name": "Coprino chiomato",
+      "description": "Un alto cilindro bianco di squame arruffate su prati e bordi delle strade, che entro un giorno dalla raccolta si scioglie in inchiostro nero",
+      "howTo": "Cercalo su prati, cigli e terreni smossi qualche giorno dopo le piogge autunnali, e anche dopo quelle primaverili. Raccogli solo esemplari giovani e tutti bianchi e cucinali in giornata; evita le strade trafficate, dove assorbe metalli pesanti"
+    },
+    "giant_puffball": {
+      "name": "Vescia gigante",
+      "description": "Una palla bianca e liscia, grande come un pallone o più, in prati e pascoli, dalla polpa soda e bianca come mozzarella fresca",
+      "howTo": "Cercala in prati, pascoli, parchi e margini dei boschi da fine estate all'autunno, spesso dove crescono le ortiche. Tagliala sempre a metà dall'alto in basso: dentro deve essere bianca pura, senza traccia di cappello o gambo"
+    },
+    "matsutake": {
+      "name": "Matsutake",
+      "description": "Un fungo sodo, bianco e bruno, dal profumo speziato di cannella, il più pregiato di tutti in Giappone",
+      "howTo": "Cercalo nelle pinete secche e sabbiose da agosto nei paesi nordici, e sotto conifere e tanoak da settembre a novembre nell'ovest degli Stati Uniti. Non rastrellare mai il terreno. In Svezia e Norvegia è nella lista rossa per i tagli forestali, non per la raccolta; nelle foreste nazionali statunitensi serve un permesso"
     }
   },
   "search_placeholder": "Cerca una specie"

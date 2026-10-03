@@ -1,0 +1,221 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "giant_puffball",
+  "scientificName": "Calvatia gigantea",
+  "catalog": {
+    "enabled": true,
+    "order": 46,
+    "translationKey": "giant_puffball",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "summer-fall",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/giant_puffball.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Giant Puffball",
+      "description": "A smooth white ball, football-sized or bigger, in meadows and pastures, with firm white flesh like fresh mozzarella",
+      "howTo": "Look in meadows, pastures, parks and woodland edges from late summer to autumn, often where nettles grow. Cut every one in half from top to bottom: it must be pure white inside, with no trace of a cap or stem"
+    },
+    "it": {
+      "name": "Vescia gigante",
+      "description": "Una palla bianca e liscia, grande come un pallone o più, in prati e pascoli, dalla polpa soda e bianca come mozzarella fresca",
+      "howTo": "Cercala in prati, pascoli, parchi e margini dei boschi da fine estate all'autunno, spesso dove crescono le ortiche. Tagliala sempre a metà dall'alto in basso: dentro deve essere bianca pura, senza traccia di cappello o gambo"
+    },
+    "fr": {
+      "name": "Vesse-de-loup géante",
+      "description": "Une boule blanche et lisse, grosse comme un ballon ou plus, dans les prés et les pâtures, à la chair ferme et blanche comme une mozzarella fraîche",
+      "howTo": "Cherchez-la dans les prés, les pâtures, les parcs et les lisières de la fin de l'été à l'automne, souvent là où poussent les orties. Coupez-la toujours en deux de haut en bas : l'intérieur doit être d'un blanc pur, sans trace de chapeau ni de pied"
+    },
+    "de": {
+      "name": "Riesenbovist",
+      "description": "Eine glatte weiße Kugel, fußballgroß oder größer, auf Wiesen und Weiden, mit festem, weißem Fleisch wie frischer Mozzarella",
+      "howTo": "Suche auf Wiesen, Weiden, in Parks und an Waldrändern vom Spätsommer bis in den Herbst, oft bei Brennnesseln. Schneide jeden von oben nach unten durch: Innen muss er rein weiß sein, ohne jede Spur von Hut oder Stiel"
+    },
+    "es": {
+      "name": "Bejín gigante",
+      "description": "Una bola blanca y lisa, del tamaño de un balón o mayor, en prados y pastos, de carne firme y blanca como la mozzarella fresca",
+      "howTo": "Búscalo en prados, pastos, parques y lindes de bosque desde finales del verano hasta el otoño, a menudo junto a las ortigas. Córtalo siempre por la mitad de arriba abajo: por dentro debe ser blanco puro, sin rastro de sombrero ni pie"
+    },
+    "pt": {
+      "name": "Bufa-do-diabo",
+      "description": "Uma bola branca e lisa, do tamanho de uma bola de futebol ou maior, em prados e pastagens, de carne firme e branca como mozzarella fresca",
+      "howTo": "Procure em prados, pastagens, parques e orlas de bosque do fim do verão ao outono, muitas vezes junto às urtigas. Corte sempre cada exemplar ao meio de cima para baixo: por dentro tem de ser branco puro, sem vestígios de chapéu ou pé"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Calvatia gigantea",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-29-step4-mushrooms.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Giant Puffball"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [311, 313, 321, 324],
+        "scoring": {
+          "optimal_temp": 16,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 50,
+          "alt_sigma": 800,
+          "optimal_humidity": 76,
+          "humidity_sigma": 17,
+          "optimal_pH": 4.7,
+          "pH_sigma_near": 2.5,
+          "pH_sigma_far": 2.5,
+          "pH_range_near": [3.2, 6.2],
+          "optimal_soil_temp": 15,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 30,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2536058",
+          "https://www.gbif.org/species/3339928",
+          "https://www.mushroomexpert.com/calvatia_gigantea.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [311, 313, 321, 324],
+        "scoring": {
+          "optimal_temp": 17,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 110,
+          "alt_sigma": 800,
+          "optimal_humidity": 67,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.2,
+          "pH_sigma_near": 2.5,
+          "pH_sigma_far": 2.5,
+          "pH_range_near": [3.7, 6.7],
+          "optimal_soil_temp": 16,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 30,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [6, 7, 8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2536058",
+          "https://www.gbif.org/species/3339928",
+          "https://www.mushroomexpert.com/calvatia_gigantea.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 43, 52, 71],
+        "scoring": {
+          "optimal_temp": 20,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 240,
+          "alt_sigma": 800,
+          "optimal_humidity": 73,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.9,
+          "pH_sigma_near": 2.5,
+          "pH_sigma_far": 2.5,
+          "pH_range_near": [4.4, 7.4],
+          "optimal_soil_temp": 19,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 65,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2536058",
+          "https://www.gbif.org/species/3339928",
+          "https://www.mushroomexpert.com/calvatia_gigantea.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 43, 52, 71],
+        "scoring": {
+          "optimal_temp": 15,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 950,
+          "alt_sigma": 2900,
+          "optimal_humidity": 56,
+          "humidity_sigma": 17,
+          "optimal_pH": 6.3,
+          "pH_sigma_near": 2.5,
+          "pH_sigma_far": 2.5,
+          "pH_range_near": [4.8, 7.8],
+          "optimal_soil_temp": 14,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 10,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [4, 5, 6, 7, 8, 9],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2536058",
+          "https://www.gbif.org/species/3339928",
+          "https://www.mushroomexpert.com/calvatia_gigantea.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [2536058, 3339928],
+      "references": [
+        "https://www.gbif.org/species/2536058",
+        "https://www.gbif.org/species/3339928"
+      ]
+    },
+    "rangePrior": {
+      "taxonKeys": [2536058, 3339928]
+    }
+  }
+}

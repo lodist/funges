@@ -70,7 +70,14 @@
     "garlic_wild": "Ail des ours",
     "artichoke": "Artichaut sauvage",
     "asparagus": "Asperge sauvage",
-    "strawberry": "Fraise des bois"
+    "strawberry": "Fraise des bois",
+    "saffron_milk_cap": "Lactaire délicieux",
+    "hedgehog_mushroom": "Pied-de-mouton",
+    "shaggy_mane": "Coprin chevelu",
+    "giant_puffball": "Vesse-de-loup géante",
+    "matsutake": "Matsutake",
+    "lions_mane": "Hydne hérisson",
+    "hen_of_the_woods": "Polypore en touffe"
   },
   "tags": {
     "vegetarian": "Végétarien",
@@ -1106,6 +1113,343 @@
       "safetyNotes": [
         "Cuisez bien le polypore en touffe : pas assez cuit, il dérange certains estomacs.",
         "Son sosie, le polypore géant, est comestible mais coriace ; il noircit là où on le touche."
+      ]
+    },
+    "grilled-saffron-milk-caps": {
+      "title": "Lactaires délicieux grillés à l'ail et au persil",
+      "ingredients": [
+        "500 g de lactaires délicieux jeunes et fermes",
+        "5 cuillères à soupe d'huile d'olive vierge extra",
+        "3 gousses d'ail finement hachées",
+        "Un petit bouquet de persil plat finement haché",
+        "Fleur de sel",
+        "Poivre noir",
+        "Pain de campagne pour servir"
+      ],
+      "instructions": [
+        "Nettoyer : Coupez les pieds au ras des chapeaux et brossez les aiguilles de pin et la terre. Essuyez les chapeaux avec un linge humide au lieu de les laver.",
+        "Mélanger : Mélangez l'ail et le persil avec 4 cuillères d'huile et une pincée de sel.",
+        "Griller : Faites bien chauffer une poêle-gril, une plancha ou un barbecue. Badigeonnez les chapeaux du reste d'huile et posez-les lamelles vers le haut. Faites-les cuire 5–6 minutes sans les retourner, jusqu'à ce qu'ils ramollissent et se remplissent de leur jus.",
+        "Finir : Versez l'huile à l'ail et au persil sur les lamelles, poivrez et laissez cuire encore 1 minute.",
+        "Servir : Aussitôt, parsemés de fleur de sel, avec du pain pour saucer."
+      ],
+      "species": ["saffron_milk_cap"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Nettoyer : Coupez les pieds au ras des chapeaux et brossez les aiguilles de pin et la terre. Essuyez les chapeaux avec un linge humide au lieu de les laver."
+        },
+        {
+          "step": 2,
+          "instruction": "Mélanger : Mélangez l'ail et le persil avec 4 cuillères d'huile et une pincée de sel."
+        },
+        {
+          "step": 3,
+          "instruction": "Griller : Faites bien chauffer une poêle-gril, une plancha ou un barbecue. Badigeonnez les chapeaux du reste d'huile et posez-les lamelles vers le haut. Faites-les cuire 5–6 minutes sans les retourner, jusqu'à ce qu'ils ramollissent et se remplissent de leur jus."
+        },
+        {
+          "step": 4,
+          "instruction": "Finir : Versez l'huile à l'ail et au persil sur les lamelles, poivrez et laissez cuire encore 1 minute."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir : Aussitôt, parsemés de fleur de sel, avec du pain pour saucer."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "10 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Avant la cuisson, entaillez un chapeau ou un pied : le lactaire délicieux laisse couler un lait orange carotte à rouge. Un lait blanc ou jaune signale un autre lactaire : le lactaire à toison (Lactarius torminosus : chapeau rosé à la marge laineuse et enroulée, lait blanc) et les espèces voisines à lait blanc provoquent de sérieux troubles digestifs.",
+        "Les lactaires délicieux verdissent là où on les touche et peuvent rendre l'urine rougeâtre après le repas. C'est sans danger."
+      ]
+    },
+    "saffron-milk-cap-potato-stew": {
+      "title": "Ragoût de lactaires délicieux aux pommes de terre",
+      "ingredients": [
+        "400 g de lactaires délicieux",
+        "600 g de pommes de terre",
+        "1 oignon finement haché",
+        "2 gousses d'ail émincées",
+        "1 cuillère à café de paprika doux (pimentón dulce espagnol)",
+        "1 feuille de laurier",
+        "100 ml de vin blanc sec",
+        "4 cuillères à soupe d'huile d'olive",
+        "Environ 500 ml d'eau chaude ou de bouillon de légumes",
+        "Sel et un peu de persil haché"
+      ],
+      "instructions": [
+        "Préparer : Brossez les champignons, coupez le bout des pieds et taillez-les en gros morceaux. Épluchez les pommes de terre, entaillez-les puis cassez-les en morceaux : les bords irréguliers libèrent de l'amidon qui épaissit le ragoût.",
+        "Faire suer : Faites suer l'oignon dans l'huile à feu doux pendant 8–10 minutes. Ajoutez l'ail et laissez cuire encore 1 minute.",
+        "Ajouter les champignons : Montez le feu, ajoutez les lactaires et faites-les cuire 5 minutes, jusqu'à ce qu'ils rendent leur jus. Retirez du feu et incorporez le paprika (il brûle facilement), puis remettez sur le feu, versez le vin et laissez bouillonner 2 minutes.",
+        "Mijoter : Ajoutez les pommes de terre, le laurier et juste assez d'eau chaude ou de bouillon pour les couvrir à peine. Salez et laissez mijoter à demi couvert pendant 20–25 minutes, jusqu'à ce que les pommes de terre soient tendres et le jus épaissi.",
+        "Servir : Laissez reposer 5 minutes, parsemez de persil et servez avec du pain."
+      ],
+      "species": ["saffron_milk_cap"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Préparer : Brossez les champignons, coupez le bout des pieds et taillez-les en gros morceaux. Épluchez les pommes de terre, entaillez-les puis cassez-les en morceaux : les bords irréguliers libèrent de l'amidon qui épaissit le ragoût."
+        },
+        {
+          "step": 2,
+          "instruction": "Faire suer : Faites suer l'oignon dans l'huile à feu doux pendant 8–10 minutes. Ajoutez l'ail et laissez cuire encore 1 minute."
+        },
+        {
+          "step": 3,
+          "instruction": "Ajouter les champignons : Montez le feu, ajoutez les lactaires et faites-les cuire 5 minutes, jusqu'à ce qu'ils rendent leur jus. Retirez du feu et incorporez le paprika (il brûle facilement), puis remettez sur le feu, versez le vin et laissez bouillonner 2 minutes."
+        },
+        {
+          "step": 4,
+          "instruction": "Mijoter : Ajoutez les pommes de terre, le laurier et juste assez d'eau chaude ou de bouillon pour les couvrir à peine. Salez et laissez mijoter à demi couvert pendant 20–25 minutes, jusqu'à ce que les pommes de terre soient tendres et le jus épaissi."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir : Laissez reposer 5 minutes, parsemez de persil et servez avec du pain."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "40 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "safetyNotes": [
+        "Avant la cuisson, entaillez un chapeau ou un pied : le lactaire délicieux laisse couler un lait orange carotte à rouge. Un lait blanc ou jaune signale un autre lactaire : le lactaire à toison (Lactarius torminosus : chapeau rosé à la marge laineuse et enroulée, lait blanc) et les espèces voisines à lait blanc provoquent de sérieux troubles digestifs.",
+        "Les lactaires délicieux verdissent là où on les touche et peuvent rendre l'urine rougeâtre après le repas. C'est sans danger."
+      ]
+    },
+    "hedgehog-mushroom-risotto": {
+      "title": "Risotto aux pieds-de-mouton",
+      "ingredients": [
+        "300 g de pieds-de-mouton",
+        "320 g de riz à risotto (carnaroli ou arborio)",
+        "1 litre de bouillon de légumes chaud",
+        "1 petit oignon finement haché",
+        "40 g de beurre",
+        "2 cuillères à soupe d'huile d'olive",
+        "100 ml de vin blanc sec",
+        "Quelques brins de thym",
+        "60 g de parmesan râpé",
+        "Sel et poivre"
+      ],
+      "instructions": [
+        "Nettoyer : Brossez les chapeaux et frottez les aiguillons du dessous avec les doigts pour faire tomber les aiguilles et la terre. Sur les gros sujets plus âgés, grattez les aiguillons au couteau : ils peuvent être amers. Coupez en bouchées.",
+        "Dorer : Faites sauter les champignons dans l'huile d'olive à feu vif pendant 6–8 minutes, sans surcharger la poêle, jusqu'à ce qu'ils soient dorés. Ajoutez les feuilles de thym, salez, poivrez et réservez.",
+        "Nacrer : Dans une sauteuse, faites fondre l'oignon dans la moitié du beurre, ajoutez le riz et remuez 2 minutes, jusqu'à ce que les grains deviennent translucides sur les bords. Versez le vin et laissez-le s'évaporer.",
+        "Cuire : Ajoutez le bouillon chaud louche par louche, en remuant souvent et en attendant que chaque louche soit absorbée, pendant environ 18 minutes, jusqu'à ce que le riz soit crémeux mais encore ferme sous la dent. Incorporez les champignons pendant les 5 dernières minutes.",
+        "Finir : Hors du feu, incorporez vivement le reste du beurre et le parmesan. Couvrez, laissez reposer 2 minutes et servez avec quelques feuilles de thym."
+      ],
+      "species": ["hedgehog_mushroom"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Nettoyer : Brossez les chapeaux et frottez les aiguillons du dessous avec les doigts pour faire tomber les aiguilles et la terre. Sur les gros sujets plus âgés, grattez les aiguillons au couteau : ils peuvent être amers. Coupez en bouchées."
+        },
+        {
+          "step": 2,
+          "instruction": "Dorer : Faites sauter les champignons dans l'huile d'olive à feu vif pendant 6–8 minutes, sans surcharger la poêle, jusqu'à ce qu'ils soient dorés. Ajoutez les feuilles de thym, salez, poivrez et réservez."
+        },
+        {
+          "step": 3,
+          "instruction": "Nacrer : Dans une sauteuse, faites fondre l'oignon dans la moitié du beurre, ajoutez le riz et remuez 2 minutes, jusqu'à ce que les grains deviennent translucides sur les bords. Versez le vin et laissez-le s'évaporer."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuire : Ajoutez le bouillon chaud louche par louche, en remuant souvent et en attendant que chaque louche soit absorbée, pendant environ 18 minutes, jusqu'à ce que le riz soit crémeux mais encore ferme sous la dent. Incorporez les champignons pendant les 5 dernières minutes."
+        },
+        {
+          "step": 5,
+          "instruction": "Finir : Hors du feu, incorporez vivement le reste du beurre et le parmesan. Couvrez, laissez reposer 2 minutes et servez avec quelques feuilles de thym."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "medium",
+      "prepTime": "15 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": [
+        "Regardez sous le chapeau avant la cuisson : le pied-de-mouton porte des aiguillons souples, pas des lamelles. Les vieux sujets peuvent être amers : grattez les aiguillons des plus gros.",
+        "Il n'a pas de sosie dangereux, mais ne mangez que des champignons que vous avez identifiés avec certitude."
+      ]
+    },
+    "shaggy-mane-soup": {
+      "title": "Velouté de coprins chevelus",
+      "ingredients": [
+        "500 g de jeunes coprins chevelus, cueillis le jour même",
+        "1 oignon finement haché",
+        "1 pomme de terre farineuse, épluchée et coupée en dés",
+        "30 g de beurre",
+        "750 ml de bouillon de légumes",
+        "150 ml de crème liquide",
+        "Un filet de jus de citron",
+        "Un petit bouquet de ciboulette ciselée",
+        "Sel et poivre blanc"
+      ],
+      "instructions": [
+        "Trier : Cuisinez-les dans les heures qui suivent la cueillette. Ne gardez que des chapeaux jeunes et fermes, aux lamelles blanches jusqu'en haut : des bords roses ou noirs signifient qu'ils se changent en encre. Coupez la base des pieds, retirez la terre et émincez-les.",
+        "Faire suer : Faites fondre le beurre dans une casserole et faites suer l'oignon à feu doux pendant 5 minutes. Ajoutez la pomme de terre et les champignons et laissez cuire 5 minutes en remuant, jusqu'à ce que les champignons s'affaissent.",
+        "Mijoter : Versez le bouillon, salez et laissez mijoter 15 minutes, jusqu'à ce que la pomme de terre soit tendre.",
+        "Mixer : Mixez finement, ajoutez la crème et le citron et réchauffez sans faire bouillir. Rectifiez l'assaisonnement.",
+        "Servir : Bien chaud, parsemé de ciboulette, avec des croûtons. Accompagnez-le d'eau ou de jus, pas de vin ni de bière."
+      ],
+      "species": ["shaggy_mane"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Trier : Cuisinez-les dans les heures qui suivent la cueillette. Ne gardez que des chapeaux jeunes et fermes, aux lamelles blanches jusqu'en haut : des bords roses ou noirs signifient qu'ils se changent en encre. Coupez la base des pieds, retirez la terre et émincez-les."
+        },
+        {
+          "step": 2,
+          "instruction": "Faire suer : Faites fondre le beurre dans une casserole et faites suer l'oignon à feu doux pendant 5 minutes. Ajoutez la pomme de terre et les champignons et laissez cuire 5 minutes en remuant, jusqu'à ce que les champignons s'affaissent."
+        },
+        {
+          "step": 3,
+          "instruction": "Mijoter : Versez le bouillon, salez et laissez mijoter 15 minutes, jusqu'à ce que la pomme de terre soit tendre."
+        },
+        {
+          "step": 4,
+          "instruction": "Mixer : Mixez finement, ajoutez la crème et le citron et réchauffez sans faire bouillir. Rectifiez l'assaisonnement."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir : Bien chaud, parsemé de ciboulette, avec des croûtons. Accompagnez-le d'eau ou de jus, pas de vin ni de bière."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "easy"],
+      "safetyNotes": [
+        "Cuisinez les coprins chevelus dans les heures qui suivent la cueillette : ils s'autodigèrent en encre noire. N'utilisez que de jeunes sujets aux lamelles encore entièrement blanches.",
+        "Son sosie, le coprin noir d'encre (Coprinopsis atramentaria : gris, lisse, sans mèches hirsutes), provoque une réaction violente avec l'alcool bu dans les heures qui précèdent le repas ou jusqu'à trois jours après. Ce velouté se prépare donc et se sert sans alcool : au moindre doute sur votre cueillette, ne buvez pas d'alcool.",
+        "Ne cueillez pas de coprins chevelus au bord des routes ni sur des sols pollués : ils accumulent les métaux lourds."
+      ]
+    },
+    "giant-puffball-parmigiana": {
+      "title": "Parmigiana de vesse-de-loup géante",
+      "ingredients": [
+        "1 jeune vesse-de-loup géante (environ 600 g), bien blanche à l'intérieur",
+        "50 g de farine",
+        "Huile d'olive pour la friture",
+        "700 g de coulis de tomate (passata)",
+        "1 gousse d'ail écrasée",
+        "Une poignée de feuilles de basilic",
+        "250 g de mozzarella tranchée et égouttée",
+        "60 g de parmesan râpé",
+        "Sel et poivre"
+      ],
+      "instructions": [
+        "Vérifier : Coupez la vesse-de-loup en deux de haut en bas et assurez-vous qu'elle est bien blanche, ferme et homogène jusqu'au cœur. Retirez la peau et coupez la chair en tranches de 1 cm.",
+        "Sauce : Faites chauffer l'ail dans 2 cuillères à soupe d'huile, ajoutez le coulis et quelques feuilles de basilic, salez et laissez mijoter 15 minutes.",
+        "Frire : Farinez les tranches et faites-les frire en plusieurs fois dans un fond d'huile bien chaude, 2–3 minutes de chaque côté, jusqu'à ce qu'elles soient dorées. Égouttez-les sur du papier absorbant et salez légèrement.",
+        "Monter : Étalez un peu de sauce dans un plat à gratin, puis alternez tranches de vesse-de-loup, sauce, mozzarella, basilic et parmesan. Recommencez et terminez par la sauce, la mozzarella et le parmesan.",
+        "Cuire : Enfournez à 200 °C pendant 25 minutes, jusqu'à ce que le plat bouillonne et que le dessus soit doré. Laissez reposer 10 minutes avant de découper."
+      ],
+      "species": ["giant_puffball"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Vérifier : Coupez la vesse-de-loup en deux de haut en bas et assurez-vous qu'elle est bien blanche, ferme et homogène jusqu'au cœur. Retirez la peau et coupez la chair en tranches de 1 cm."
+        },
+        {
+          "step": 2,
+          "instruction": "Sauce : Faites chauffer l'ail dans 2 cuillères à soupe d'huile, ajoutez le coulis et quelques feuilles de basilic, salez et laissez mijoter 15 minutes."
+        },
+        {
+          "step": 3,
+          "instruction": "Frire : Farinez les tranches et faites-les frire en plusieurs fois dans un fond d'huile bien chaude, 2–3 minutes de chaque côté, jusqu'à ce qu'elles soient dorées. Égouttez-les sur du papier absorbant et salez légèrement."
+        },
+        {
+          "step": 4,
+          "instruction": "Monter : Étalez un peu de sauce dans un plat à gratin, puis alternez tranches de vesse-de-loup, sauce, mozzarella, basilic et parmesan. Recommencez et terminez par la sauce, la mozzarella et le parmesan."
+        },
+        {
+          "step": 5,
+          "instruction": "Cuire : Enfournez à 200 °C pendant 25 minutes, jusqu'à ce que le plat bouillonne et que le dessus soit doré. Laissez reposer 10 minutes avant de découper."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "45 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": [
+        "Coupez toujours chaque vesse-de-loup en deux de haut en bas. Si vous voyez à l'intérieur la silhouette d'un chapeau, de lamelles ou d'un pied, c'est une jeune amanite encore enfermée dans son « œuf », qui peut être mortelle.",
+        "Ne la mangez que tant que sa chair est d'un blanc pur, ferme et homogène jusqu'au cœur, comme une mozzarella fraîche. Une chair jaune, olive, brune ou violacée signifie qu'elle se gâte, ou qu'il s'agit d'un scléroderme (Scleroderma), toxique et noir violacé à l'intérieur.",
+        "La vesse-de-loup géante se mange toujours cuite."
+      ]
+    },
+    "matsutake-rice": {
+      "title": "Riz au matsutake (matsutake gohan)",
+      "ingredients": [
+        "300 g de riz japonais à grains ronds (2 mesures de cuiseur à riz)",
+        "150 g de matsutake (1 ou 2 champignons)",
+        "Environ 320 ml de dashi de kombu",
+        "1 cuillère à soupe de sauce soja claire (usukuchi)",
+        "1 cuillère à soupe de mirin",
+        "1 cuillère à soupe de saké",
+        "½ cuillère à café de sel",
+        "Quelques brins de mitsuba ou de ciboulette pour servir"
+      ],
+      "instructions": [
+        "Rincer : Lavez le riz à l'eau froide en la changeant jusqu'à ce qu'elle soit presque claire. Laissez-le tremper 30 minutes dans de l'eau propre, puis égouttez-le bien.",
+        "Nettoyer : Ne lavez pas les matsutake. Grattez la terre à la base du pied avec un couteau, essuyez les chapeaux avec un linge humide et émincez-les dans la longueur, sur 3 mm d'épaisseur environ.",
+        "Assaisonner : Mettez le riz dans une cocotte à fond épais ou dans le cuiseur avec la sauce soja, le mirin, le saké et le sel, versez le dashi et remuez une fois. Disposez les matsutake dessus sans les mélanger.",
+        "Cuire : Couvrez, portez à ébullition, puis laissez cuire 13 minutes à feu très doux (ou lancez le programme normal du cuiseur). Coupez le feu et laissez reposer 10 minutes à couvert.",
+        "Servir : Mélangez délicatement les matsutake au riz avec une spatule et servez en bols, garni de mitsuba ou de ciboulette."
+      ],
+      "species": ["matsutake"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Rincer : Lavez le riz à l'eau froide en la changeant jusqu'à ce qu'elle soit presque claire. Laissez-le tremper 30 minutes dans de l'eau propre, puis égouttez-le bien."
+        },
+        {
+          "step": 2,
+          "instruction": "Nettoyer : Ne lavez pas les matsutake. Grattez la terre à la base du pied avec un couteau, essuyez les chapeaux avec un linge humide et émincez-les dans la longueur, sur 3 mm d'épaisseur environ."
+        },
+        {
+          "step": 3,
+          "instruction": "Assaisonner : Mettez le riz dans une cocotte à fond épais ou dans le cuiseur avec la sauce soja, le mirin, le saké et le sel, versez le dashi et remuez une fois. Disposez les matsutake dessus sans les mélanger."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuire : Couvrez, portez à ébullition, puis laissez cuire 13 minutes à feu très doux (ou lancez le programme normal du cuiseur). Coupez le feu et laissez reposer 10 minutes à couvert."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir : Mélangez délicatement les matsutake au riz avec une spatule et servez en bols, garni de mitsuba ou de ciboulette."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "40 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "safetyNotes": [
+        "Dans le Nord-Ouest Pacifique, en Amérique du Nord, le matsutake a un sosie mortel, l'Amanita smithiana : blanche, avec une base de pied renflée qui s'effile dans le sol comme une racine et porte des restes blancs de voile, et sans l'odeur épicée de cannelle. Elle détruit les reins : vérifiez la base et l'odeur de chaque champignon.",
+        "Cueillez les matsutake sans ratisser ni retourner le sol : le râteau détruit le mycélium. Le ratissage est interdit dans de nombreuses forêts nationales des États-Unis, où la cueillette exige aussi un permis."
       ]
     }
   }

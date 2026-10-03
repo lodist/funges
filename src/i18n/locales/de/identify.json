@@ -90,7 +90,8 @@
       "ricin": "Die Samen enthalten eines der tödlichsten bekannten Naturgifte. Wenige zerkaute Samen können einen Erwachsenen töten, und ein Gegenmittel gibt es nicht.",
       "cytisine": "Alle Teile, besonders die Hülsen, enthalten Cytisin. Kinder sind gestorben, nachdem sie die Hülsen für Erbsen gehalten und gegessen hatten.",
       "grayanotoxin": "Blätter, Blüten und Nektar enthalten Grayanotoxine, die den Herzrhythmus stören. Honig aus den Blüten hat schon Menschen vergiftet.",
-      "veratrumAlkaloid": "Lässt Blutdruck und Herzfrequenz innerhalb von Stunden einbrechen. Die jungen Blätter werden immer wieder mit Bärlauch verwechselt, und solche Verwechslungen sind tödlich verlaufen."
+      "veratrumAlkaloid": "Lässt Blutdruck und Herzfrequenz innerhalb von Stunden einbrechen. Die jungen Blätter werden immer wieder mit Bärlauch verwechselt, und solche Verwechslungen sind tödlich verlaufen.",
+      "coprine": "Enthält Coprin, das den Abbau von Alkohol blockiert. Alkohol in den Stunden vor der Mahlzeit oder bis zu drei Tage danach verursacht Hitzewallungen, Herzrasen, Übelkeit und Erbrechen."
     },
     "checks": {
       "volva": "Schau ganz unten am Stiel, unterhalb der Erdoberfläche: eine häutige Scheide oder ein aufgeblasener Becher dort ist ein ernstes Warnzeichen.",
@@ -117,13 +118,19 @@
       "plantHabit": "Ob die Pflanze ein verholzter Strauch ist oder ein weiches Kraut, das jedes Jahr zurückstirbt.",
       "interiorPattern": "Halbiere ihn. Ein echter Trüffel ist mit hellen, verzweigten Adern marmoriert. Ein falscher Trüffel ist eine feste dunkle Masse, violett bis schwarz, ohne Muster.",
       "berryColour": "Farbe der reifen Beeren: Beim Schwarzen Holunder sind sie violettschwarz. Rote Beeren in aufrechten, kuppelförmigen Dolden gehören zum Roten Holunder und sind roh giftig.",
-      "flowerShape": "Blütenform: Veilchen haben fünf ungleiche Blütenblätter mit einem Sporn hinten; das Scharbockskraut hat 8–12 glänzend gelbe Blütenblätter."
+      "flowerShape": "Blütenform: Veilchen haben fünf ungleiche Blütenblätter mit einem Sporn hinten; das Scharbockskraut hat 8–12 glänzend gelbe Blütenblätter.",
+      "latexColour": "Brich eine Lamelle oder den Hutrand ab und achte auf die austretende Milch. Edel-Reizker bluten karottenorange bis weinrote Milch; weiße oder gilbende Milch bedeutet einen anderen Milchling.",
+      "capMargin": "Ob der Hutrand eingerollt und mit langen, wolligen Haaren gesäumt ist.",
+      "capScales": "Ob der Hut mit zotteligen, abstehenden weißen Schuppen bedeckt ist oder glatt, graubraun und fein gerieft."
     },
     "critical": {
       "lepiotaMacrolepiota": "Tödliche Schirmlinge der Gattung Lepiota gehören zu den gefährlichsten Doppelgängern des Parasolpilzes, und das war in unseren Tests der häufigste Fehler überhaupt. Ein echter Parasol ist groß, hat einen verschiebbaren Ring und einen schlangenhautartig genatterten Stiel. Kleine Exemplare mit glattem Stiel solltest du stehen lassen, auch wenn sie richtig aussehen.",
       "trufflePair": "Unter den Treffern sind sowohl ein Trüffel als auch ein giftiger falscher Trüffel. Von aussen sind sie kaum zu unterscheiden. Schneide den Fund zuerst auf: helle marmorierte Adern bedeuten Trüffel, ein festes dunkles Inneres bedeutet falscher Trüffel.",
       "angelWingPair": "Unter den Treffern sind sowohl ein Austernseitling als auch der Ohrförmige Seitling. Letzterer hat tödliche Hirnentzündungen verursacht. Er ist dünner, reinweiss und wächst an Nadelholz: prüfe zuerst das Holz und die Fleischdicke.",
-      "veratrumPair": "Unter den Treffern sind sowohl Bärlauch als auch Weisser Germer. Diese Verwechslung hat Menschen getötet. Zerreibe ein Blatt: Bärlauch riecht stark nach Knoblauch, Germer nicht. Germerblätter sind zudem stark gerippt und stehen wechselständig am Stängel."
+      "veratrumPair": "Unter den Treffern sind sowohl Bärlauch als auch Weisser Germer. Diese Verwechslung hat Menschen getötet. Zerreibe ein Blatt: Bärlauch riecht stark nach Knoblauch, Germer nicht. Germerblätter sind zudem stark gerippt und stehen wechselständig am Stängel.",
+      "inkCapAlcohol": "Unter den Treffern sind sowohl ein Schopf-Tintling als auch der Graue Faltentintling. Der Faltentintling reagiert heftig mit Alkohol, selbst wenn er Tage nach der Mahlzeit getrunken wird. Der Schopf-Tintling ist hoch, weiß und zottig beschuppt; der Faltentintling ist kleiner, graubraun und glatt. Im Zweifel stehen lassen, und zu Tintlingen nie Alkohol trinken.",
+      "matsutakeSmithiana": "Unter den Treffern sind sowohl ein Matsutake als auch Amanita smithiana. Amanita smithiana zerstört die Nieren und wurde im pazifischen Nordwesten der USA für Matsutake gehalten. Riech daran und grab die ganze Stielbasis aus: Matsutake duftet würzig nach Zimt. Amanita smithiana nicht, und ihre Basis ist verdickt und läuft dann wurzelartig in den Boden aus, umgeben von weißen Hüllresten.",
+      "puffballPair": "Unter den Treffern sind sowohl ein Riesenbovist als auch ein giftiger Doppelgänger. Schneide ihn zuerst von oben nach unten durch. Ein Bovist ist innen durchgehend rein weiß und gleichmäßig. Ein violettschwarzes Inneres bedeutet einen Kartoffelbovist; die Umrisse von Hut, Lamellen und Stiel bedeuten einen jungen Wulstling wie den Knollenblätterpilz, der tödlich sein kann."
     }
   }
 }
