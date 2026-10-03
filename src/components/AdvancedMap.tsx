@@ -66,7 +66,6 @@ import {
   bloomSourceId,
   bloomStatus,
   bloomTilesUrl,
-  bloomToday,
   unixDay,
 } from '@/lib/bloom';
 import { DEFAULT_MAP_SPECIES } from '@/data/species';
@@ -1319,7 +1318,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             'source-layer': `${region}_bloom`,
             layout: { visibility: 'none' },
             paint: {
-              'fill-color': bloomFillColor(unixDay(bloomToday())),
+              'fill-color': bloomFillColor(unixDay(new Date())),
               'fill-opacity': species?.paint?.['fill-opacity'] ?? 0.85,
               // Off at every zoom: the cells share their edges, and an
               // antialiased edge draws them as a faint grid.
@@ -1360,7 +1359,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           selectedSpecies === BLOOM_CODE &&
           bloomStatus(
             Number(f.properties?.peak),
-            unixDay(bloomToday()) + activeDay
+            unixDay(new Date()) + activeDay
           ) === 'stale'
         ) {
           return;
@@ -1764,7 +1763,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         }}
         hideDirections={isModalFromLocateMe || !isOnline}
         dataNerdRegion={isOnline ? dataNerdRegion : null}
-        bloomDay={isBloom ? unixDay(bloomToday()) + activeDay : undefined}
+        bloomDay={isBloom ? unixDay(new Date()) + activeDay : undefined}
       />
 
       {/* Mounted only once opened, so the ONNX chunk is never fetched by a user

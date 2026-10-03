@@ -36,6 +36,10 @@ CHILL_DAYS = 120
 FORCE_BASE = -3.0  # °C
 FORCING = {"yoshino": 285.0, "kanzan": 485.0}  # °C·days above FORCE_BASE
 MAP_VARIETY = "kanzan"
+# Where the trees can be planted at all: a town is drawn only if a normal (1991-2020)
+# year brings its bloom by this day. The latest place with planted Japanese cherries
+# on iNaturalist, Umeå, comes on 2 June; Tromsø (14 June) and the ski towns have none.
+LATEST_NORMAL_PEAK = (6, 7)  # month, day
 CELL = 0.1  # degrees; base points are averaged into cells this size
 LAPSE = 0.0065  # °C per metre, moves a normal to a cell's elevation
 EPOCH = date(1970, 1, 1)
@@ -202,15 +206,20 @@ def build_bloom(master_path, region_code, r2_prefix, to_pmtiles, upload,
     finally:
         if downloaded:
             os.unlink(local)
-    tmean = np.where(np.isfinite(obs), obs, daily_normals(normals, cy * CELL, cx * CELL, elev, first, n_days))
+    normal = daily_normals(normals, cy * CELL, cx * CELL, elev, first, n_days)
+    tmean = np.where(np.isfinite(obs), obs, normal)
     del obs
+    # The normal year decides where the trees grow, this year's weather when they bloom.
+    grows = peak_index(normal, FORCING[MAP_VARIETY]) <= (date(last.year, *LATEST_NORMAL_PEAK) - first).days
+    del normal
     base = (first - EPOCH).days
     peak = base + peak_index(tmean, FORCING[MAP_VARIETY])
     # Every town with a peak stays all season, green once it is done: one that
     # vanished after its bloom read as a town without cherries.
-    drawn = np.isfinite(peak)
+    drawn = np.isfinite(peak) & grows
     print(f"Bloom {region_code}: {int(drawn.sum())} of {len(peak)} cells drawn "
-          f"({int(np.isnan(peak).sum())} without a peak)")
+          f"({int(np.isnan(peak).sum())} without a peak, "
+          f"{int((np.isfinite(peak) & ~grows).sum())} outside the trees' climate)")
 
     bands = 0
     with tempfile.TemporaryDirectory() as tmpdir:

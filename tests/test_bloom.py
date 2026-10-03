@@ -5,6 +5,7 @@ from pathlib import Path
 import geopandas as gpd
 import numpy as np
 import pandas as pd
+import pytest
 from shapely.geometry import box
 
 from bloom import (CHILL_DAYS, EPOCH, FORCE_BASE, FORCING, LAPSE, build_bloom, daily_normals, peak_index,
@@ -125,6 +126,19 @@ def test_build_bloom_draws_nothing_away_from_towns(tmp_path):
                       build_mbtiles=lambda *a: built.append(a), today=today,
                       normals=_normals(t2m=np.full((9, 12), 10.0), elev=100.0), towns=towns)
     assert out["drawn"] == 1 and out["bands"] == 0 and built == []
+
+
+@pytest.mark.parametrize("normal_t, drawn", [(2.5, 1), (1.5, 0)])
+def test_build_bloom_draws_only_where_a_normal_year_blooms_by_7_june(tmp_path, normal_t, drawn):
+    # This year's 10 °C up to 26 March brings an April peak either way. A normal
+    # year at 2.5 °C blooms on 27 May; at 1.5 °C only on 15 June, too cold for the trees.
+    today = date(2027, 3, 20)
+    _master(tmp_path / "m.parquet", today, {(50.0, 8.0): 10.0})
+    towns = gpd.GeoDataFrame(geometry=[box(7.98, 49.98, 8.02, 50.02)], crs="EPSG:4326")
+    out = build_bloom(tmp_path / "m.parquet", "ne", "EU/NE", lambda *a: True, lambda *a: None,
+                      build_mbtiles=lambda *a: None, today=today,
+                      normals=_normals(t2m=np.full((9, 12), normal_t), elev=100.0), towns=towns)
+    assert out["drawn"] == drawn
 
 
 def test_build_bloom_skips_out_of_season(tmp_path):

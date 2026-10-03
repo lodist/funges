@@ -24,7 +24,6 @@ import {
   BLOOM_CODE,
   bloomFillColor,
   bloomInSeason,
-  bloomToday,
   isBloomLayer,
   unixDay,
 } from '@/lib/bloom';
@@ -568,11 +567,11 @@ export const useMapStore = create<MapState>()(
                 // Coloured by days to peak on the slider's day, not by a score.
                 // Out of season (July-January) there is nothing to show: finished
                 // towns stay green until 30 June, then the layer goes.
-                if (bloomInSeason(bloomToday())) {
+                if (bloomInSeason(new Date())) {
                   mapRef.setPaintProperty(
                     id,
                     'fill-color',
-                    bloomFillColor(unixDay(bloomToday()) + activeDay)
+                    bloomFillColor(unixDay(new Date()) + activeDay)
                   );
                   mapRef.setLayoutProperty(id, 'visibility', 'visible');
                   drawn = true;
