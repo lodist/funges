@@ -2,8 +2,10 @@ import json
 from datetime import date, timedelta
 from pathlib import Path
 
+import geopandas as gpd
 import numpy as np
 import pandas as pd
+from shapely.geometry import box
 
 from bloom import (CHILL_DAYS, EPOCH, FORCE_BASE, FORCING, LAPSE, build_bloom, daily_normals, peak_index,
                    season)
@@ -95,22 +97,39 @@ def test_build_bloom_end_to_end(tmp_path):
     def upload(path, key):
         uploads[key] = Path(path).read_bytes()
 
-    out = build_bloom(tmp_path / "m.parquet", "ne", "EU/NE", build_mbtiles, to_pmtiles, upload,
-                      today=today, normals=normals)
+    # A town over each cell, and one over neither: only built-up ground is drawn.
+    towns = gpd.GeoDataFrame(geometry=[box(7.98, 49.98, 8.02, 50.02), box(7.98, 50.48, 8.02, 50.52),
+                                       box(20.0, 60.0, 20.1, 60.1)], crs="EPSG:4326")
+    out = build_bloom(tmp_path / "m.parquet", "ne", "EU/NE", to_pmtiles, upload, build_mbtiles=build_mbtiles,
+                      today=today, normals=normals, towns=towns)
 
     assert set(uploads) == {"EU/NE/ne_bloom.pmtiles"}
     geojson, layer = layers[0]
     assert layer == "ne_bloom"
     peaks = [f["properties"]["peak"] for f in geojson["features"]]
     assert all(isinstance(p, int) for p in peaks) and len(peaks) == len(set(peaks)) == out["bands"] == 2
+    # Each band is its town, not its 0.1° cell.
+    bounds = gpd.GeoDataFrame.from_features(geojson["features"]).total_bounds
+    assert tuple(round(float(v), 2) for v in bounds) == (7.98, 49.98, 8.02, 50.52)
     # Observed days and normals are both 10 °C at the warmer cell (6 °C observed at the other).
     first_unix = (date(2026, 11, 1) - EPOCH).days
     assert min(peaks) == first_unix + 156
+
+
+def test_build_bloom_draws_nothing_away_from_towns(tmp_path):
+    today = date(2027, 3, 20)
+    _master(tmp_path / "m.parquet", today, {(50.0, 8.0): 10.0})
+    built = []
+    towns = gpd.GeoDataFrame(geometry=[box(20.0, 60.0, 20.1, 60.1)], crs="EPSG:4326")
+    out = build_bloom(tmp_path / "m.parquet", "ne", "EU/NE", lambda *a: True, lambda *a: built.append(a),
+                      build_mbtiles=lambda *a: built.append(a), today=today,
+                      normals=_normals(t2m=np.full((9, 12), 10.0), elev=100.0), towns=towns)
+    assert out["drawn"] == 1 and out["bands"] == 0 and built == []
 
 
 def test_build_bloom_skips_out_of_season(tmp_path):
     def fail(*args):
         raise AssertionError("touched out of season")
 
-    assert build_bloom(tmp_path / "missing.parquet", "ne", "EU/NE", fail, fail, fail,
+    assert build_bloom(tmp_path / "missing.parquet", "ne", "EU/NE", fail, fail, build_mbtiles=fail,
                        today=date(2026, 10, 1)) is None

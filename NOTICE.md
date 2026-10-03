@@ -130,6 +130,10 @@ restrictions; the project asks to be acknowledged:
   Project funded through the NASA Earth Science/Applied Science Program."
 - <https://power.larc.nasa.gov/>
 
+The layer is drawn on Natural Earth's 1:10m urban areas, cut to its land polygons
+(`backend/generated/bloom_towns_*.geojson`, `backend/tools/build_bloom_towns.py`).
+Natural Earth is in the public domain: "Made with Natural Earth", <https://www.naturalearthdata.com/>.
+
 The model was fitted on the National Park Service's Tidal Basin peak-bloom dates,
 the Japan Meteorological Agency's Yoshino first-bloom dates (both as cleaned by the
 GMU cherry blossom prediction competition) and iNaturalist observation dates. None

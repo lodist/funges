@@ -7,6 +7,10 @@ warm), each day adds its mean above FORCE_BASE, and the peak is the day the sum
 reaches the variety's FORCING. Where winter never gets there (south Florida) or the
 sum is not reached by 30 June there is no peak, and nothing is drawn.
 
+The trees are planted in towns and cities, so the cells are clipped to Natural
+Earth's built-up areas (backend/generated/bloom_towns_*.geojson, from
+backend/tools/build_bloom_towns.py): the layer shows where they are, not the land.
+
 Fitted on NASA POWER temperatures, the source of the normals as well:
 docs/species/2026-09-30-cherry-blossom.md. The map follows Prunus serrulata
 ('Kanzan'); FORCING keeps the Yoshino requirement the DC fit gives as well.
@@ -17,6 +21,8 @@ helpers; it does nothing outside 1 February - 30 June.
 from __future__ import annotations
 
 import os
+import shutil
+import subprocess
 import tempfile
 from datetime import date, timedelta
 from pathlib import Path
@@ -144,8 +150,8 @@ def _local_master(path):
     return name, True
 
 
-def _bands(cy, cx, peak):
-    """One feature per peak day: the cells' squares dissolved, so tiles carry ~100 features."""
+def _bands(cy, cx, peak, towns):
+    """One feature per peak day: the built-up part of the cells' squares, dissolved."""
     import geopandas as gpd
     from shapely.geometry import box
 
@@ -154,16 +160,28 @@ def _bands(cy, cx, peak):
     squares = [box((x - 0.5) * CELL, (y - 0.5) * CELL, (x + 0.5) * CELL, (y + 0.5) * CELL)
                for y, x in zip(cy, cx)]
     cells = gpd.GeoDataFrame({"peak": peak.astype(int)}, geometry=squares, crs="EPSG:4326")
+    w, s, e, n = cells.total_bounds
+    cells = gpd.overlay(cells, towns.cx[w:e, s:n][["geometry"]], how="intersection", keep_geom_type=True)
     return cells.dissolve(by="peak", as_index=False)
 
 
-def build_bloom(master_path, region_code, r2_prefix, build_mbtiles, to_pmtiles, upload,
-                *, today=None, normals=None):
+def _tippecanoe(geojson, mbtiles, layer):
+    """Town-sized shapes keep their outline to zoom 10. The forecast's settings (z6,
+    -d9, simplification 4) are tuned for the species mesh and shave a town to a shard."""
+    exe = shutil.which("tippecanoe")
+    if exe is None:
+        print("tippecanoe not found; bloom tiles skipped.")
+        return
+    subprocess.run([exe, "-o", str(mbtiles), "-l", layer, "-z10", "--force",
+                    "--drop-densest-as-needed", str(geojson)], check=True)
+
+
+def build_bloom(master_path, region_code, r2_prefix, to_pmtiles, upload,
+                *, build_mbtiles=_tippecanoe, today=None, normals=None, towns=None):
     """Build and upload `<region>_bloom.pmtiles`.
 
-    build_mbtiles(geojson, mbtiles, layer), to_pmtiles(mbtiles, pmtiles) -> bool and
-    upload(path, key) are the calling MapLayer script's own helpers. Returns a small
-    summary, or None out of season.
+    to_pmtiles(mbtiles, pmtiles) -> bool and upload(path, key) are the calling
+    MapLayer script's own helpers. Returns a small summary, or None out of season.
     """
     today = today or date.today()
     span = season(today)
@@ -174,6 +192,10 @@ def build_bloom(master_path, region_code, r2_prefix, build_mbtiles, to_pmtiles, 
     n_days = (last - first).days + 1
     if normals is None:
         normals = dict(np.load(_BACKEND / "generated" / f"bloom_normals_{NORMALS_MACRO[region_code]}.npz"))
+    if towns is None:
+        import geopandas as gpd
+
+        towns = gpd.read_file(_BACKEND / "generated" / f"bloom_towns_{NORMALS_MACRO[region_code]}.geojson")
 
     local, downloaded = _local_master(master_path)
     try:
@@ -194,9 +216,9 @@ def build_bloom(master_path, region_code, r2_prefix, build_mbtiles, to_pmtiles, 
         tmp = Path(tmpdir)
         # Nothing left to draw late in June: the last tileset's cells are all past by
         # then, which the map paints transparent, so it can stay.
-        if drawn.any():
+        features = _bands(cy[drawn], cx[drawn], peak[drawn], towns) if drawn.any() else []
+        if len(features):
             geojson = tmp / f"{region_code}_bloom.geojson"
-            features = _bands(cy[drawn], cx[drawn], peak[drawn])
             bands = len(features)
             geojson.write_text(features.to_json(), encoding="utf-8")
             mbtiles, pmtiles = tmp / f"{region_code}_bloom.mbtiles", tmp / f"{region_code}_bloom.pmtiles"

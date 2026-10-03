@@ -12,6 +12,10 @@ The map for 15 April 2026, from the dry run below (winter from normals), with ti
 
 ![Europe on 15 April 2026](2026-09-30-cherry-blossom/europe.webp)
 
+Only built-up areas are drawn, where the trees are planted:
+
+![Towns around Cologne and Frankfurt](2026-09-30-cherry-blossom/towns.webp)
+
 A click opens the same info modal as a species, with cherry blossom's peak date where a species has its score:
 
 ![The info modal](2026-09-30-cherry-blossom/modal.webp)
@@ -118,6 +122,7 @@ It is as good in DC and the iNaturalist cities. But it blooms the warm south of 
   - A cell stays on the map until 14 days after its peak.
   - The map paints anything older transparent, which is how last season's file stays harmless until the first run on 1 February.
 - **Cost:** one extra download of the region's master; 10–17 s and under 400 MB traced for the model and the dissolve.
+- **Tiles:** bloom.py runs its own tippecanoe, to zoom 10 at normal detail, giving 0.3–1.8 MB per region. The forecast's settings (z6, `-d9`, simplification 4) suit the species mesh and shave a town into a shard.
 
 **A dry run on 15 April 2026** at well-known cherry places, each for its own variety, with normals standing in for the winter the master doesn't hold yet (it starts on 12 April 2026). It is a check of the model; the app has no list of places:
 
@@ -170,7 +175,9 @@ Cherry blossom looks and behaves like a species layer, with its own colour scale
   - Its code, `cherry_blossom`, passes `isMapSpecies` and works in `?species=`.
   - It is not a catalog species: no page, no photo ID, no score.
 - **The layers** are added at runtime the first time it is picked, in the species fills' place in the stack and with their opacity (`AdvancedMap.tsx`). The style JSONs, and `species:check` and the style tests that hold them to species scores, are untouched.
-  - Unlike the species, it covers towns, where the trees are; it is not clipped to wild habitat.
+  - Unlike the species, it is drawn on towns, where the trees are planted, not on wild habitat.
+  - The cells are clipped to Natural Earth's 1:10m urban areas (public domain; `backend/generated/bloom_towns_{EU,US}.geojson` from `backend/tools/build_bloom_towns.py`), rounded off and cut to land. Europe has 3,956 of them, the US 1,167, about 3% of the land.
+  - A first version covered every land cell, which painted the whole continent.
 - **The colour** is days to peak on the slider's day (`src/lib/bloom.ts`):
   - light yellow more than three weeks out, where the score layers start too;
   - pink deepening to the peak;
