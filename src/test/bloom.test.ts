@@ -96,6 +96,15 @@ describe('bloomFillColor', () => {
     expect(css.endsWith('rgba(156, 196, 148, 0.45) 100%)')).toBe(true);
   });
 
+  it('puts the deep pink in the middle of the legend, under its label', () => {
+    const at = [...bloomGradientCss().matchAll(/#c2185b ([\d.]+)%/g)].map(m =>
+      Number(m[1])
+    );
+    expect(at.length).toBe(2);
+    expect(Math.min(...at)).toBeGreaterThan(40);
+    expect(Math.max(...at)).toBeLessThan(60);
+  });
+
   it('never paints the days after the peak pink', () => {
     const past = BLOOM_RAMP.filter(([toPeak]) => toPeak < -2);
     expect(past.length).toBeGreaterThan(0);

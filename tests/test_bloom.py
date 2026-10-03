@@ -1,4 +1,5 @@
 import json
+import tempfile
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -8,8 +9,8 @@ import pandas as pd
 import pytest
 from shapely.geometry import box
 
-from bloom import (CHILL_DAYS, EPOCH, FORCE_BASE, FORCING, LAPSE, build_bloom, daily_normals, peak_index,
-                   season)
+from bloom import (CHILL_DAYS, EPOCH, FORCE_BASE, FORCING, LAPSE, _local_master, build_bloom, daily_normals,
+                   peak_index, season)
 
 
 def test_season_runs_february_to_june():
@@ -139,6 +140,28 @@ def test_build_bloom_draws_only_where_a_normal_year_blooms_by_7_june(tmp_path, n
                       build_mbtiles=lambda *a: None, today=today,
                       normals=_normals(t2m=np.full((9, 12), normal_t), elev=100.0), towns=towns)
     assert out["drawn"] == drawn
+
+
+def test_local_master_removes_a_broken_download(tmp_path, monkeypatch):
+    class Dropped:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *exc):
+            return False
+
+        def raise_for_status(self):
+            pass
+
+        def iter_content(self, chunk_size):
+            yield b"PAR1"
+            raise ConnectionError("dropped")
+
+    monkeypatch.setattr(tempfile, "tempdir", str(tmp_path))
+    monkeypatch.setattr("requests.get", lambda *a, **k: Dropped())
+    with pytest.raises(ConnectionError):
+        _local_master("https://data.example/master.parquet")
+    assert list(tmp_path.iterdir()) == []
 
 
 def test_build_bloom_skips_out_of_season(tmp_path):

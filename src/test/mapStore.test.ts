@@ -126,6 +126,7 @@ describe('regional species options', () => {
 
 afterEach(() => {
   vi.unstubAllGlobals();
+  vi.useRealTimers();
 });
 
 describe('layerRegion', () => {
@@ -333,7 +334,6 @@ describe('updateVisibleLayers with a selection from another region', () => {
       bloomFillColor(unixDay(new Date()) + 3)
     );
     expect(useMapStore.getState().selectedSpeciesOnMap).toBe(true);
-    vi.useRealTimers();
   });
 
   it('hides the cherry blossom layer out of season', () => {
@@ -345,7 +345,6 @@ describe('updateVisibleLayers with a selection from another region', () => {
 
     expect(visibility.cherry_blossom_usw).toBe('none');
     expect(useMapStore.getState().selectedSpeciesOnMap).toBe(false);
-    vi.useRealTimers();
   });
 
   it('hides a Europe-only selection over the US and reports nothing drawn', () => {

@@ -19,7 +19,9 @@ import numpy as np
 import shapely
 from shapely.geometry import box
 
-NE = "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/{}.geojson"
+# Pinned to master's last commit (2 June 2022), so a rebuild reads the same data.
+NE = ("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/"
+      "ca96624a56bd078437bca8184e78163e5039ad19/geojson/{}.geojson")
 # The same boxes as build_range_priors.py's macros.
 MACROS = {"EU": (-25.0, 34.0, 42.5, 71.5), "US": (-125.5, 24.0, -67.0, 49.5)}
 ROUND = 0.01  # degrees, ~1 km: grown by this and shrunk back, corners come out round
@@ -44,8 +46,10 @@ def main():
         part = shapely.buffer(shapely.buffer(part, ROUND * 1.2, quad_segs=4), -ROUND, quad_segs=4)
         part = shapely.intersection(part, shore)
         part = shapely.simplify(part, SIMPLIFY, preserve_topology=True)
-        # np.round, not shapely.set_precision: grid-snapped floats print as
-        # 37.389000000000003, decimal-rounded ones as 37.389.
+        # Snapped to the grid by set_precision, which keeps every shape valid (plain
+        # rounding collapsed two rings), then np.round, so the floats print as
+        # 37.389 rather than 37.389000000000003.
+        part = shapely.set_precision(part, 10.0 ** -DECIMALS)
         part = shapely.transform(part, lambda xy: np.round(xy, DECIMALS))
         frame = gpd.GeoDataFrame(geometry=part[~shapely.is_empty(part)], crs="EPSG:4326")
         out = OUT / f"bloom_towns_{macro}.geojson"

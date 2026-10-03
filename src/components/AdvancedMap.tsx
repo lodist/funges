@@ -64,6 +64,7 @@ import {
   bloomGradientCss,
   bloomLayerId,
   bloomSourceId,
+  bloomInSeason,
   bloomStatus,
   bloomTilesUrl,
   unixDay,
@@ -367,10 +368,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     window.open(getGoogleMapsDirectionsUrl(activeRoute), '_blank');
   }, [activeRoute]);
 
+  // Offline, or under the cherry blossom layer (which hides every species
+  // layer, so no species tiles load), the route planner has nothing to read.
   useEffect(() => {
-    if (isOnline) return;
+    if (isOnline && selectedSpecies !== BLOOM_CODE) return;
     closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
-  }, [isOnline]);
+  }, [isOnline, selectedSpecies]);
 
   // routeStart deliberately read, not depended on: re-centering on every GPS
   // tick would fight the user panning around while the panel is open.
@@ -1289,7 +1292,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   useEffect(() => {
     const instance = map.current;
-    if (!instance || !mapLoaded || !isBloom) return;
+    // Off-season there is nothing to fetch: no tiles yet, or last season's.
+    if (!instance || !mapLoaded || !isBloom || !bloomInSeason(new Date()))
+      return;
     const layers = instance.getStyle()?.layers ?? [];
     // Same place in the stack as the species fills, and the same opacity: over
     // the basemap's land and towns, under its roads and labels.
@@ -1348,28 +1353,46 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               id.startsWith(selectedSpecies) &&
               map.current?.getLayoutProperty(id, 'visibility') === 'visible'
           ) || [];
-      const features = map.current?.queryRenderedFeatures(e.point, {
-        layers,
-      });
-      if (features && features.length > 0) {
-        const f = features[0];
-        // A cherry blossom cell carries a peak date. Only last season's file,
-        // waiting for 1 February's run, has nothing to list.
-        if (
-          selectedSpecies === BLOOM_CODE &&
-          bloomStatus(
-            Number(f.properties?.peak),
-            unixDay(new Date()) + activeDay
-          ) === 'stale'
-        ) {
-          return;
-        }
+      const isBloomClick = selectedSpecies === BLOOM_CODE;
+      // Towns are a few pixels wide at country zoom, so a cherry blossom tap
+      // counts within 5 px.
+      const { x, y } = e.point;
+      const features = map.current?.queryRenderedFeatures(
+        isBloomClick
+          ? [
+              [x - 5, y - 5],
+              [x + 5, y + 5],
+            ]
+          : e.point,
+        { layers }
+      );
+      // A cherry blossom cell carries a peak date. Only last season's file,
+      // waiting for 1 February's run, has nothing to list; where two regions
+      // overlap, the other one may already hold this season's.
+      const f = isBloomClick
+        ? features?.find(
+            candidate =>
+              bloomStatus(
+                Number(candidate.properties?.peak),
+                unixDay(new Date()) + activeDay
+              ) !== 'stale'
+          )
+        : features?.[0];
+      if (f) {
         // Each feature carries both endpoints (`_score` = d0/today, `_score_d6` = day 6).
         // Always fold them to the active day's value (frac 0 on day 0 == today exactly) so
         // the modal shows day-appropriate scores and never the raw `_score_d6` keys.
         const feature = {
           ...f,
-          geometry: f.geometry, // getter on MapGeoJSONFeature; spread drops it
+          // A getter on MapGeoJSONFeature, which the spread drops. A cherry
+          // blossom feature is every town with that peak day, so its place is
+          // the tap, not the biggest of those towns.
+          geometry: isBloomClick
+            ? {
+                type: 'Point' as const,
+                coordinates: [e.lngLat.lng, e.lngLat.lat],
+              }
+            : f.geometry,
           properties: interpolateScores(
             f.properties || {},
             activeDay / (FORECAST_DAYS - 1)
@@ -1605,7 +1628,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           {/* Map theme selector (Light/Dark/White/Dark Matter/Topographic) */}
           <MapThemeSelector isOnline={isOnline} />
 
-          {isOnline && (
+          {isOnline && !isBloom && (
             <Button
               variant='outline'
               size='icon'

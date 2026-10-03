@@ -113,14 +113,18 @@ export function bloomFillColor(day: number): ExpressionSpecification {
 
 /** The ramp as a legend, in the order a place goes through it: later -> done. */
 export function bloomGradientCss(): string {
-  // From four weeks before the peak to the steady "done" green; the months of
-  // that green after it, and the stale stop, would only stretch the bar.
-  const shown = BLOOM_RAMP.filter(([toPeak]) => toPeak >= -FADE_DAYS);
-  const [far] = shown[shown.length - 1];
-  const span = far - shown[0][0];
-  const stops = [...shown]
+  // Four weeks either side of the peak, so the deep pink sits in the middle,
+  // under "Peak bloom"; after the fade it is the steady "done" green.
+  const [far] = BLOOM_RAMP[BLOOM_RAMP.length - 1];
+  const shown = [
+    [-far, BLOOM_DONE] as const,
+    ...BLOOM_RAMP.filter(([toPeak]) => toPeak > -far),
+  ];
+  const stops = shown
     .reverse()
-    .map(([toPeak, colour]) => `${colour} ${((far - toPeak) / span) * 100}%`);
+    .map(
+      ([toPeak, colour]) => `${colour} ${((far - toPeak) / (2 * far)) * 100}%`
+    );
   return `linear-gradient(to right, ${stops.join(', ')})`;
 }
 

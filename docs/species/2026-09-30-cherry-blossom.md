@@ -4,7 +4,7 @@ Date: 2026-09-30 (roadmap #272, step 5)
 
 The first "spectacle" layer. It forecasts when the Japanese flowering cherries peak, not where something can be foraged. So it has its own model, driven by winter cold and spring warmth rather than rain. This record is its design and the evidence behind `backend/bloom.py`'s constants.
 
-**The values below are agent-derived and wait on Loris's approval.** They come from public bloom records and NASA POWER temperatures; no phenologist has reviewed them. `backend/tools/calibrate_bloom.py` reproduces every number here.
+**The values below are agent-derived and wait on Loris's approval.** They come from public bloom records and NASA POWER temperatures; no phenologist has reviewed them. `backend/tools/calibrate_bloom.py` reproduces the three tests below and, with `--grid`, the last stage of the parameter search; the other comparisons were one-off checks.
 
 ## What it looks like
 
@@ -99,7 +99,7 @@ It is as good in DC and the iNaturalist cities. But it blooms the warm south of 
 
 **The parameter search:**
 
-- **The grid**, searched in stages: chill threshold 5–25 °C, 15–150 days, base −6 to 7 °C. The totals of the three errors are flat near the optimum: a dozen settings sit within 0.4 days.
+- **The grid**, searched in stages: chill threshold 5–25 °C, 15–150 days, base −6 to 7 °C. `--grid` repeats the last stage: 13–21 °C, 90–135 days, −4 to 0 °C. The totals of the three errors are flat near the optimum: a dozen settings sit within 0.4 days.
 - **Why 17 °C / 120 days / −3 °C:** it is best on DC and iNaturalist, the places this map serves. It costs Japan 1 day against the setting best there (21 °C / 140 days, 4.8 days).
 
 ## The forecast
@@ -117,7 +117,7 @@ It is as good in DC and the iNaturalist cities. But it blooms the warm south of 
 | USW    | 49,168 |
 
 - Cells with the same peak day are dissolved into one feature, so a tileset holds 56–68 features.
-- NE and SE share 60 cells, USE and USW 290; there both draw.
+- NE and SE share 60 cells, USE and USW 290. Both draw there, so those towns are a shade darker.
 - **Season:** 1 February – 30 June. Outside it the step returns before downloading anything.
   - Every town with a peak stays in the tiles all season, green once its bloom is done. One that vanished after its peak read as a town without cherries.
   - From July the map hides the layer. A peak over 150 days old is last season's: the map paints it transparent and a click opens nothing, which keeps last season's file harmless until the first run on 1 February.
@@ -125,7 +125,9 @@ It is as good in DC and the iNaturalist cities. But it blooms the warm south of 
   - iNaturalist has 7 records of _P. serrulata_ north of 62° N, all planted: Umeå, Örnsköldsvik, Jyväskylä, Syvde, Reykjavík and one undated in Bodø. Of those, Umeå blooms latest in a normal year, on 2 June. Tromsø, which the first build drew, comes on 14 June and has none.
   - On the 15 April 2026 dry run it removes 128 of 16,502 town cells: Tromsø and Rovaniemi, the ski towns of the Alps and the Rockies (Zermatt, St. Moritz, Aspen, Vail), upland towns in Norway, and a few warm-winter cells on the southern edges of Houston and San Antonio, where a normal winter is too mild for the chill.
   - A town takes its 0.1° cell's average height, so a valley town in a high cell blooms late on the map. Innsbruck (574 m) is drawn as if at 1,600 m; Chamonix (1,035 m, in a cell averaging 2,056 m) and Bormio drop out.
-- **Cost:** one extra download of the region's master; 7–12 s and under 500 MB traced for the model and the dissolve, measured on the dry run.
+- **Cost:** 7–12 s and under 500 MB traced for the model and the dissolve, measured on the dry run.
+  - It downloads the region's master a second time: 0.4–0.8 GB today, growing with its 3-year history. Reading only its six columns over range requests would cut that about tenfold.
+  - The hook in each MapLayer script catches and prints a failure: the forecast is uploaded by then, so the run carries on.
 - **Tiles:** bloom.py runs its own tippecanoe, to zoom 10 at normal detail, giving 0.3–1.8 MB per region. The forecast's settings (z6, `-d9`, simplification 4) suit the species mesh and shave a town into a shard.
 
 **A dry run on 15 April 2026** at well-known cherry places, each for its own variety, with normals standing in for the winter the master doesn't hold yet (it starts on 12 April 2026). It is a check of the model; the app has no list of places:
@@ -191,6 +193,8 @@ Cherry blossom looks and behaves like a species layer, with its own colour scale
   - then, from two weeks after the peak, a steady pale green until 30 June.
 - **The legend** is the score legend's card, with this scale and "3+ weeks · Peak bloom · Past".
 - **A click** opens the same info modal as a species. Its one row reads "Cherry blossom, _Prunus serrulata_", then a swatch, the peak date and "Peak bloom · in 3 days" where a species has its score. A finished town opens it too ("Peak bloom · 14 days ago").
+  - A tap counts within 5 px, since towns are small at country zoom. The modal's place, for "Navigate" and the coordinates, is the tap: a feature is every town with that peak day.
+- **The recipe-route button** hides while the layer is picked, as it does offline: the route planner reads the species tiles, and none load under this layer.
 - **Off-season** (July–January) the selector's notice, the one that says a species isn't forecast here, says the forecast starts on 1 February.
 
 ## Places looked at
