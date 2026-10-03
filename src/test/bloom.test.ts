@@ -3,19 +3,15 @@ import {
   BLOOM_CODE,
   BLOOM_IDLE,
   BLOOM_RAMP,
-  BLOOM_SPOTS,
   bloomFillColor,
   bloomGradientCss,
   bloomInSeason,
   bloomLayerId,
-  bloomSpotColor,
-  bloomSpotFeatures,
   bloomStatus,
   bloomTilesUrl,
   bloomWhen,
   formatBloomDate,
   isBloomLayer,
-  sortSpots,
   unixDay,
 } from '@/lib/bloom';
 import { isMapSpecies } from '@/data/species';
@@ -33,6 +29,14 @@ describe('bloom days', () => {
   it('formats a peak day as a date in the given language', () => {
     expect(formatBloomDate(20914, 'en')).toBe('April 6');
     expect(formatBloomDate(20914, 'de')).toBe('6. April');
+    expect(formatBloomDate(20914, 'en', 'short')).toBe('Apr 6');
+  });
+
+  it('is in season from February to June, when the backend builds it', () => {
+    expect(bloomInSeason(new Date(2027, 0, 31))).toBe(false);
+    expect(bloomInSeason(new Date(2027, 1, 1))).toBe(true);
+    expect(bloomInSeason(new Date(2027, 5, 30))).toBe(true);
+    expect(bloomInSeason(new Date(2027, 6, 1))).toBe(false);
   });
 });
 
@@ -49,6 +53,10 @@ describe('bloomStatus', () => {
     [115, 'over'],
   ])('on day %i is %s', (day, status) => {
     expect(bloomStatus(peak, day)).toBe(status);
+  });
+
+  it('treats a cell without a peak as over, so a click lists nothing', () => {
+    expect(bloomStatus(Number(undefined), 100)).toBe('over');
   });
 });
 
@@ -79,8 +87,9 @@ describe('bloomFillColor', () => {
   it('never paints the days after the peak pink', () => {
     const past = BLOOM_RAMP.filter(([toPeak]) => toPeak < -2);
     expect(past.length).toBeGreaterThan(0);
-    for (const [, colour] of past)
+    for (const [, colour] of past) {
       expect(colour).not.toMatch(/#c2185b|216, 27, 96/);
+    }
   });
 });
 
@@ -97,67 +106,6 @@ describe('bloomWhen', () => {
   });
 });
 
-describe('sortSpots', () => {
-  it('puts upcoming spots first, then past ones, then unknown', () => {
-    const spots = [
-      { id: 'past', peak: 90 },
-      { id: 'none', peak: null },
-      { id: 'later', peak: 130 },
-      { id: 'peak', peak: 99 },
-      { id: 'longAgo', peak: 60 },
-      { id: 'soon', peak: 105 },
-    ];
-    expect(sortSpots(spots, 100).map(spot => spot.id)).toEqual([
-      'peak',
-      'soon',
-      'later',
-      'past',
-      'longAgo',
-      'none',
-    ]);
-  });
-
-  it('is in season while any spot is not over', () => {
-    expect(bloomInSeason({ a: 90, b: null }, 100)).toBe(true);
-    expect(bloomInSeason({ a: 50, b: null }, 100)).toBe(false);
-    expect(bloomInSeason({}, 100)).toBe(false);
-  });
-});
-
-describe('bloomSpotFeatures', () => {
-  const [a, b, c] = BLOOM_SPOTS;
-  const peakOf = (fc: ReturnType<typeof bloomSpotFeatures>, id: string) =>
-    fc.features.find(f => f.properties?.id === id)?.properties?.peak;
-
-  it('gives a spot its peak while its bloom is ahead or under way', () => {
-    const fc = bloomSpotFeatures(
-      { [a.id]: 110, [b.id]: 60, [c.id]: null },
-      100
-    );
-    expect(fc.features).toHaveLength(BLOOM_SPOTS.length);
-    expect(peakOf(fc, a.id)).toBe(110);
-    expect(peakOf(fc, b.id)).toBeUndefined(); // 40 days past: over, idle again
-    expect(peakOf(fc, c.id)).toBeUndefined(); // no forecast
-    expect(fc.features[0].geometry.coordinates).toEqual([a.lon, a.lat]);
-  });
-
-  it('paints every spot idle off-season, not as last year', () => {
-    const fc = bloomSpotFeatures({ [a.id]: 100 - 300, [b.id]: 100 - 290 }, 100);
-    expect(fc.features.every(f => !('peak' in (f.properties ?? {})))).toBe(
-      true
-    );
-  });
-
-  it('colours a spot on the fills’ scale, idle yellow without a peak', () => {
-    expect(bloomSpotColor(20900)).toEqual([
-      'case',
-      ['has', 'peak'],
-      bloomFillColor(20900),
-      BLOOM_IDLE,
-    ]);
-  });
-});
-
 describe('the bloom layer on the map', () => {
   it('is a valid map code without a catalog entry', () => {
     expect(isMapSpecies(BLOOM_CODE)).toBe(true);
@@ -171,14 +119,5 @@ describe('the bloom layer on the map', () => {
     expect(bloomTilesUrl('se')).toBe(
       'pmtiles://https://data.fung.es/EU/SE/se_bloom.pmtiles'
     );
-  });
-
-  it('has spots with unique ids and a known variety', () => {
-    const ids = BLOOM_SPOTS.map(spot => spot.id);
-    expect(new Set(ids).size).toBe(ids.length);
-    for (const spot of BLOOM_SPOTS) {
-      expect(['yoshino', 'kanzan']).toContain(spot.variety);
-      expect(['NE', 'SE', 'USE', 'USW']).toContain(spot.region);
-    }
   });
 });

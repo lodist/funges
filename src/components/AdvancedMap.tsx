@@ -57,33 +57,18 @@ import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import MapInfoCard from '@/components/MapInfoCard';
-import BloomPanel from '@/components/BloomPanel';
 import {
   BLOOM_CODE,
   BLOOM_REGION_CODES,
-  BLOOM_SPOT_LAYER,
-  BLOOM_SPOT_SHADOW_LAYER,
-  BLOOM_SPOT_SOURCE,
-  BLOOM_IDLE,
-  BLOOM_SPOTS,
-  BLOOM_STATUS_COLOR,
-  BLOOM_VARIETY_NAME,
   bloomFillColor,
-  bloomInSeason,
-  bloomStatus,
+  bloomGradientCss,
   bloomLayerId,
   bloomSourceId,
-  bloomSpotColor,
-  bloomSpotFeatures,
-  bloomSpotRadius,
+  bloomStatus,
   bloomTilesUrl,
-  bloomWhen,
-  formatBloomDate,
-  loadBloomPeaks,
   unixDay,
-  type BloomPeaks,
-  type BloomSpot,
 } from '@/lib/bloom';
+import { DEFAULT_MAP_SPECIES } from '@/data/species';
 import RouteToDishPanel, {
   type RouteSummary,
 } from '@/components/RouteToDishPanel';
@@ -139,33 +124,6 @@ const CAMERA_EASE_MS = 900;
 const ROUTE_PITCH = 45;
 const ROUTE_FIT_MS = 1000;
 const ROUTE_FIT_MAX_ZOOM = 13;
-
-// The bloom popup is the app's popover card, the same surface as the theme
-// menu; `.bloom-popup` in globals.scss strips MapLibre's own box and tip. Built
-// from text nodes, never HTML, since the names come from JSON.
-// Two lines, sized like the Tooltip: it covers the spot it describes, so it
-// stays small.
-function bloomPopupContent(
-  title: string,
-  swatch: string,
-  detail: string
-): HTMLElement {
-  const card = document.createElement('div');
-  card.className =
-    'w-max max-w-64 rounded-card bg-popover px-3 py-1.5 text-popover-foreground elevation-floating';
-  const heading = document.createElement('p');
-  heading.className = 'text-xs font-semibold leading-snug';
-  heading.textContent = title;
-  const row = document.createElement('p');
-  row.className =
-    'flex items-center gap-1.5 text-xs leading-snug text-muted-foreground';
-  const dot = document.createElement('span');
-  dot.className = 'size-2 shrink-0 rounded-full ring-1 ring-border';
-  dot.style.background = swatch;
-  row.append(dot, document.createTextNode(detail));
-  card.append(heading, row);
-  return card;
-}
 
 // Module-level, so it survives the map unmounting between routes: the fly-in
 // plays on the first map of a session (PWA start, deep link) and whenever the
@@ -326,7 +284,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   // equal to it is an echo of the camera, not a request to move the camera.
   const cameraEchoRef = useRef<[number, number, number] | null>(null);
 
-  const { t, i18n } = useTranslation('map');
+  const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
   const { t: tIdentify } = useTranslation('identify');
   const [isIdentifyOpen, setIsIdentifyOpen] = useState(false);
@@ -1317,35 +1275,33 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   // Cherry blossom (lib/bloom.ts). Its tiles are added the first time it is picked,
   // not with the style: the style's overlay block is species scores only, and
-  // species:check and the style tests hold it to that.
+  // species:check and the style tests hold it to that. The rest works as for a
+  // species: the slider, the legend (with its own scale) and the info modal.
   const isBloom = selectedSpecies === BLOOM_CODE;
-  const [bloomPeaks, setBloomPeaks] = useState<BloomPeaks>({});
-  const bloomPopupRef = useRef<maplibregl.Popup | null>(null);
-
-  useEffect(() => {
-    if (!isBloom) return;
-    let cancelled = false;
-    loadBloomPeaks().then(peaks => {
-      if (!cancelled) setBloomPeaks(peaks);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [isBloom]);
+  const bloomLegend = isBloom
+    ? {
+        gradient: bloomGradientCss(),
+        low: t('bloom.later'),
+        label: t('bloom.legend'),
+        high: t('bloom.past'),
+      }
+    : {};
 
   useEffect(() => {
     const instance = map.current;
     if (!instance || !mapLoaded || !isBloom) return;
-    // Same place in the stack as the species fills: over the basemap's land and
-    // towns, under its roads and labels.
-    const beforeId = instance
-      .getStyle()
-      ?.layers?.find(
-        layer =>
-          'source' in layer &&
-          typeof layer.source === 'string' &&
-          layer.source.startsWith('overlay')
-      )?.id;
+    const layers = instance.getStyle()?.layers ?? [];
+    // Same place in the stack as the species fills, and the same opacity: over
+    // the basemap's land and towns, under its roads and labels.
+    const beforeId = layers.find(
+      layer =>
+        'source' in layer &&
+        typeof layer.source === 'string' &&
+        layer.source.startsWith('overlay')
+    )?.id;
+    const species = layers.find(
+      layer => layer.id === `${DEFAULT_MAP_SPECIES}_ne` && layer.type === 'fill'
+    ) as maplibregl.FillLayerSpecification | undefined;
     for (const region of BLOOM_REGION_CODES) {
       if (!instance.getSource(bloomSourceId(region))) {
         instance.addSource(bloomSourceId(region), {
@@ -1363,6 +1319,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             layout: { visibility: 'none' },
             paint: {
               'fill-color': bloomFillColor(unixDay(new Date())),
+              'fill-opacity': species?.paint?.['fill-opacity'] ?? 0.85,
+              // Off at every zoom: the cells share their edges, and an
+              // antialiased edge draws them as a faint grid.
               'fill-antialias': false,
             },
           },
@@ -1373,185 +1332,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     updateVisibleLayers();
   }, [mapLoaded, isBloom, updateVisibleLayers]);
 
-  // Viewing spots: soft circles on the polygons' own scale, each for its own
-  // variety, and idle yellow off-season, after its bloom or without a forecast.
-  useEffect(() => {
-    const instance = map.current;
-    if (!instance || !mapLoaded) return;
-    if (!isBloom) {
-      for (const id of [BLOOM_SPOT_LAYER, BLOOM_SPOT_SHADOW_LAYER]) {
-        if (instance.getLayer(id)) instance.removeLayer(id);
-      }
-      if (instance.getSource(BLOOM_SPOT_SOURCE)) {
-        instance.removeSource(BLOOM_SPOT_SOURCE);
-      }
-      return;
-    }
-    const day = unixDay(new Date()) + activeDay;
-    const data = bloomSpotFeatures(bloomPeaks, day);
-    const source = instance.getSource(BLOOM_SPOT_SOURCE) as
-      | maplibregl.GeoJSONSource
-      | undefined;
-    if (source) {
-      source.setData(data);
-      instance.setPaintProperty(
-        BLOOM_SPOT_LAYER,
-        'circle-color',
-        bloomSpotColor(day)
-      );
-      return;
-    }
-    instance.addSource(BLOOM_SPOT_SOURCE, { type: 'geojson', data });
-    // Over the fills and roads, under the basemap's labels. The first symbol layer
-    // is no anchor: the species' number layers sit inside the overlay block, under
-    // the roads. A spot usually peaks with its own cell, so a wider soft shadow
-    // under it keeps it readable on a cell of the same colour.
-    const beforeId = instance
-      .getStyle()
-      ?.layers?.find(
-        layer =>
-          layer.type === 'symbol' &&
-          !(
-            typeof layer.source === 'string' &&
-            layer.source.startsWith('overlay')
-          )
-      )?.id;
-    instance.addLayer(
-      {
-        id: BLOOM_SPOT_SHADOW_LAYER,
-        type: 'circle',
-        source: BLOOM_SPOT_SOURCE,
-        paint: {
-          'circle-color': 'rgba(28, 25, 23, 0.55)',
-          'circle-blur': 1,
-          'circle-radius': bloomSpotRadius(16),
-        },
-      },
-      beforeId
-    );
-    instance.addLayer(
-      {
-        id: BLOOM_SPOT_LAYER,
-        type: 'circle',
-        source: BLOOM_SPOT_SOURCE,
-        paint: {
-          'circle-color': bloomSpotColor(day),
-          // Sfumato: no rim, the colour fades out into the map.
-          'circle-blur': 0.55,
-          'circle-radius': bloomSpotRadius(0),
-        },
-      },
-      beforeId
-    );
-  }, [mapLoaded, isBloom, bloomPeaks, activeDay]);
-
-  useEffect(() => {
-    const instance = map.current;
-    if (!instance || !mapLoaded || !isBloom) return;
-    const canvas = instance.getCanvas();
-    const enter = () => {
-      canvas.style.cursor = 'pointer';
-    };
-    const leave = () => {
-      canvas.style.cursor = '';
-    };
-    instance.on('mouseenter', BLOOM_SPOT_LAYER, enter);
-    instance.on('mouseleave', BLOOM_SPOT_LAYER, leave);
-    return () => {
-      instance.off('mouseenter', BLOOM_SPOT_LAYER, enter);
-      instance.off('mouseleave', BLOOM_SPOT_LAYER, leave);
-      canvas.style.cursor = '';
-    };
-  }, [mapLoaded, isBloom]);
-
-  // One bloom popup at a time, for a spot (its own variety) or a map cell.
-  const showBloomPopup = useCallback(
-    (at: [number, number], content: HTMLElement) => {
-      if (!map.current) return;
-      bloomPopupRef.current?.remove();
-      bloomPopupRef.current = new maplibregl.Popup({
-        className: 'bloom-popup',
-        closeButton: false,
-        maxWidth: 'none',
-        offset: 16,
-      })
-        .setLngLat(at)
-        .setDOMContent(content)
-        .addTo(map.current);
-    },
-    []
-  );
-
-  const openBloomSpot = useCallback(
-    (spot: BloomSpot) => {
-      const day = unixDay(new Date()) + activeDay;
-      const peak = bloomPeaks[spot.id];
-      const inSeason = bloomInSeason(bloomPeaks, day);
-      const [swatch, when] =
-        typeof peak === 'number' && inSeason
-          ? [
-              BLOOM_STATUS_COLOR[bloomStatus(peak, day)],
-              `${t('bloom.peakShort', { date: formatBloomDate(peak, i18n.language, 'short') })} · ${bloomWhen(t, peak, day)}`,
-            ]
-          : [
-              BLOOM_IDLE,
-              inSeason ? t('bloom.noForecast') : t('bloom.fromFebruary'),
-            ];
-      showBloomPopup(
-        [spot.lon, spot.lat],
-        bloomPopupContent(
-          t(`bloom.spots.${spot.id}`),
-          swatch,
-          `${BLOOM_VARIETY_NAME[spot.variety]} · ${when}`
-        )
-      );
-    },
-    [activeDay, bloomPeaks, t, i18n.language, showBloomPopup]
-  );
-
-  const flyToBloomSpot = (spot: BloomSpot) => {
-    map.current?.flyTo({ center: [spot.lon, spot.lat], zoom: 11 });
-    openBloomSpot(spot);
-  };
-
   // Show feature info on click
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
     const handleClick = (e: maplibregl.MapMouseEvent) => {
-      const instance = map.current;
-      if (instance && selectedSpecies === BLOOM_CODE) {
-        const hit = instance.getLayer(BLOOM_SPOT_LAYER)
-          ? instance.queryRenderedFeatures(e.point, {
-              layers: [BLOOM_SPOT_LAYER],
-            })[0]
-          : undefined;
-        const spot = BLOOM_SPOTS.find(item => item.id === hit?.properties?.id);
-        if (spot) {
-          openBloomSpot(spot);
-          return;
-        }
-        const cells = BLOOM_REGION_CODES.map(bloomLayerId).filter(
-          id =>
-            instance.getLayer(id) &&
-            instance.getLayoutProperty(id, 'visibility') === 'visible'
-        );
-        const peak = Number(
-          instance.queryRenderedFeatures(e.point, { layers: cells })[0]
-            ?.properties?.peak
-        );
-        if (Number.isFinite(peak)) {
-          const day = unixDay(new Date()) + activeDay;
-          showBloomPopup(
-            [e.lngLat.lng, e.lngLat.lat],
-            bloomPopupContent(
-              t('bloom.name'),
-              BLOOM_STATUS_COLOR[bloomStatus(peak, day)],
-              `${t('bloom.peakShort', { date: formatBloomDate(peak, i18n.language, 'short') })} · ${bloomWhen(t, peak, day)}`
-            )
-          );
-        }
-        return;
-      }
       // One fill layer per species is visible for the selected species on every day;
       // its feature carries the endpoints we interpolate below for forecast days.
       const layers =
@@ -1569,6 +1353,17 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       });
       if (features && features.length > 0) {
         const f = features[0];
+        // A cherry blossom cell carries a peak date. One whose bloom is long over,
+        // as all of last season's file is, has nothing to list.
+        if (
+          selectedSpecies === BLOOM_CODE &&
+          bloomStatus(
+            Number(f.properties?.peak),
+            unixDay(new Date()) + activeDay
+          ) === 'over'
+        ) {
+          return;
+        }
         // Each feature carries both endpoints (`_score` = d0/today, `_score_d6` = day 6).
         // Always fold them to the active day's value (frac 0 on day 0 == today exactly) so
         // the modal shows day-appropriate scores and never the raw `_score_d6` keys.
@@ -1589,15 +1384,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     return () => {
       map.current?.off('click', handleClick);
     };
-  }, [
-    mapLoaded,
-    selectedSpecies,
-    activeDay,
-    t,
-    i18n.language,
-    openBloomSpot,
-    showBloomPopup,
-  ]);
+  }, [mapLoaded, selectedSpecies, activeDay]);
 
   // Locate-me button: delegates to the standard MapLibre GeolocateControl
   // (set up in the "Initialize map" effect above) instead of a hand-rolled
@@ -1876,15 +1663,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                   what the fit pads the bottom to. */}
               <div className={activeRoute ? 'hidden' : 'contents'}>
                 <ForecastSlider />
-                {isBloom ? (
-                  <BloomPanel
-                    peaks={bloomPeaks}
-                    day={unixDay(new Date()) + activeDay}
-                    onSelectSpot={flyToBloomSpot}
-                  />
-                ) : (
-                  <MapInfoCard />
-                )}
+                <MapInfoCard {...bloomLegend} />
               </div>
             </div>
             {/* Recedes while the route draws instead of unmounting: the
@@ -1929,15 +1708,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               className='absolute bottom-2 left-2 z-10 flex flex-col gap-2 md:w-96'
             >
               <ForecastSlider />
-              {isBloom ? (
-                <BloomPanel
-                  peaks={bloomPeaks}
-                  day={unixDay(new Date()) + activeDay}
-                  onSelectSpot={flyToBloomSpot}
-                />
-              ) : (
-                <MapInfoCard />
-              )}
+              <MapInfoCard {...bloomLegend} />
             </div>
             {isRoutePanelOpen ? (
               <div
@@ -1992,6 +1763,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         }}
         hideDirections={isModalFromLocateMe || !isOnline}
         dataNerdRegion={isOnline ? dataNerdRegion : null}
+        bloomDay={isBloom ? unixDay(new Date()) + activeDay : undefined}
       />
 
       {/* Mounted only once opened, so the ONNX chunk is never fetched by a user

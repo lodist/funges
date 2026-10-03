@@ -469,17 +469,6 @@
 // AdvancedMap wires its own "locate me" button to GeolocateControl.trigger()
 // instead of showing MapLibre's default corner button — hide the native one
 // without touching its (still-functional) DOM element.
-// Bloom popups (AdvancedMap): the card is the app's popover, built in
-// bloomPopupContent, so MapLibre's own white box and tip go.
-.bloom-popup .maplibregl-popup-content {
-  padding: 0;
-  background: none;
-  box-shadow: none;
-}
-.bloom-popup .maplibregl-popup-tip {
-  display: none;
-}
-
 .maplibregl-ctrl-geolocate {
   display: none !important;
 }

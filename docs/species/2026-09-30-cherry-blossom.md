@@ -12,20 +12,21 @@ The map for 15 April 2026, from the dry run below (winter from normals), with ti
 
 ![Europe on 15 April 2026](2026-09-30-cherry-blossom/europe.webp)
 
-![The US, with the viewing spots open](2026-09-30-cherry-blossom/us-spots.webp)
+A click opens the same info modal as a species, with cherry blossom's peak date where a species has its score:
+
+![The info modal](2026-09-30-cherry-blossom/modal.webp)
 
 ![On a phone](2026-09-30-cherry-blossom/phone.webp)
 
-Off-season (today), a spot shows the idle yellow, and its popup says when the forecast starts:
+Off-season (today) the selector's notice says when the forecast starts:
 
-![Hamburg off-season](2026-09-30-cherry-blossom/off-season.webp)
+![Off-season](2026-09-30-cherry-blossom/off-season.webp)
 
 ## What it follows
 
 - **The map: _Prunus serrulata_**, the Japanese flowering cherry (Sato-zakura cultivars, mostly 'Kanzan'). It is the ornamental cherry of European and US streets and parks.
   - iNaturalist has 42,963 observations of it, 12,891 of them from February–May 2024–26 with coordinates good to 1 km.
   - It has 1,698 of Yoshino (_P. × yedoensis_), 226 of them in those springs.
-- **Spots name their variety.** Yoshino where it is the famous tree (the Tidal Basin, Macon, Seattle, Portland); Kanzan elsewhere.
 - **Not followed:**
   - wild cherry (_P. avium_) and orchards: another species, another season;
   - _P. sargentii_ parks.
@@ -118,9 +119,9 @@ It is as good in DC and the iNaturalist cities. But it blooms the warm south of 
   - The map paints anything older transparent, which is how last season's file stays harmless until the first run on 1 February.
 - **Cost:** one extra download of the region's master; 10–17 s and under 400 MB traced for the model and the dissolve.
 
-**A dry run on 15 April 2026**, with normals standing in for the winter the master doesn't hold yet (it starts on 12 April 2026):
+**A dry run on 15 April 2026** at well-known cherry places, each for its own variety, with normals standing in for the winter the master doesn't hold yet (it starts on 12 April 2026). It is a check of the model; the app has no list of places:
 
-| spot                               | variety | predicted peak |
+| place                              | variety | predicted peak |
 | ---------------------------------- | ------- | -------------- |
 | Third Street Park, Macon           | Yoshino | 18 March       |
 | Japanese Tea Garden, San Francisco | Yoshino | 19 March       |
@@ -163,39 +164,31 @@ A single requirement for all Sato-zakura cultivars can't do better. Spring 2027 
 
 ## The map
 
+Cherry blossom looks and behaves like a species layer, with its own colour scale:
+
 - **Picking it:** "Cherry blossom" is under a **Spectacles** filter in the species panel.
   - Its code, `cherry_blossom`, passes `isMapSpecies` and works in `?species=`.
   - It is not a catalog species: no page, no photo ID, no score.
-- **The layers** are added at runtime the first time it is picked, below the basemap's roads and labels (`AdvancedMap.tsx`). The style JSONs, and `species:check` and the style tests that hold them to species scores, are untouched.
+- **The layers** are added at runtime the first time it is picked, in the species fills' place in the stack and with their opacity (`AdvancedMap.tsx`). The style JSONs, and `species:check` and the style tests that hold them to species scores, are untouched.
+  - Unlike the species, it covers towns, where the trees are; it is not clipped to wild habitat.
 - **The colour** is days to peak on the slider's day (`src/lib/bloom.ts`):
   - light yellow more than three weeks out, where the score layers start too;
   - pink deepening to the peak;
   - deep pink at peak ±2 days;
   - leaf green as the petals drop, fading for two weeks;
   - then transparent.
-- **The spots** are soft circles on the same scale, each for its own variety, with sfumato edges and a soft dark falloff so they stay findable on a cell of their own colour.
-  - Off-season, after their bloom, or without a forecast they show the idle yellow, never last year's date.
-  - They are drawn over the roads and under the basemap's labels.
-- **A click** on a cell or a spot opens a small popover card, two lines sized like the Tooltip: the name, then a swatch with the variety and the date ("Kanzan · Peak 20 Apr · in 5 days", or off-season "Forecast from 1 February").
-- **The bloom panel** replaces the score legend: the ramp, and the viewing spots sorted by days to peak.
-  - A row flies to its spot and opens its popup.
-  - Before the season, or on last season's file, it says the forecast starts on 1 February.
+- **The legend** is the score legend's card, with this scale and "3+ weeks · Peak bloom · Past".
+- **A click** opens the same info modal as a species. Its one row reads "Cherry blossom, _Prunus serrulata_", then a swatch, the peak date and "Peak bloom · in 3 days" where a species has its score. A cell whose bloom is long over opens nothing.
+- **Off-season** (July–January) the selector's notice, the one that says a species isn't forecast here, says the forecast starts on 1 February.
 
-## Viewing spots
+## Places looked at
 
-- **26 spots** (`src/data/bloom-spots.json`): 8 in the US and 18 in Europe, 10 Yoshino and 16 Kanzan, each checked against a source for its variety.
-  - A spot's region is the one with the nearest weather point; all are within 0.05°.
-  - Hamburg, Langelinie, Herbert Park and Bucharest have no cultivar source and default to Kanzan.
-  - Every point was checked against OpenStreetMap. Hamburg was moved off the Binnenalster's water onto the eight _P. serrulata_ mapped on its west bank (Neuer Jungfernstieg). Sceaux sits on its 150 mapped Kanzan, and Greenwich on the mapped Cherry Blossom Avenue.
-- **Left out on purpose:**
-  - **Stockholm, Kungsträdgården** and **Copenhagen, Bispebjerg:** the trees are _Prunus_ 'Accolade', a _P. sargentii_ hybrid, not a Japanese cherry this model follows. Gothenburg's Järntorget (Yoshino) and Langelinie replace them.
-  - **Prague, Petřín:** a fruit-tree orchard. The Kanzan row at the Dejvice campus replaces it.
-  - **Los Angeles** and **San Diego:** low-chill cultivars ('Pink Cloud', Taiwan cherry hybrids).
-  - **Helsinki, Roihuvuori:** _P. sargentii_.
-  - **Madrid, Quinta de los Molinos:** almonds.
-- **To revisit:**
-  - Amsterdam's Bloesempark trees are replanted after the 2028 bloom, possibly with another variety.
-  - Newark's mix comes from a 2005 inventory (78% Sato-zakura), and more than 3,000 trees have been planted since.
+The dry run's places were checked for their variety against public sources (park pages, city inventories, OpenStreetMap):
+
+- Yoshino at the Tidal Basin, Macon, Seattle, Portland, Nashville, San Francisco, Amsterdam's Bloesempark, Rome's EUR, Madrid and Gothenburg;
+- Kanzan elsewhere.
+
+Stockholm's Kungsträdgården and Copenhagen's Bispebjerg avenue are 'Accolade', a _P. sargentii_ hybrid, not a Japanese cherry this model follows.
 
 ## Rechecks, spring 2027
 

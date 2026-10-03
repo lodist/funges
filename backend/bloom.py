@@ -9,14 +9,13 @@ sum is not reached by 30 June there is no peak, and nothing is drawn.
 
 Fitted on NASA POWER temperatures, the source of the normals as well:
 docs/species/2026-09-30-cherry-blossom.md. The map follows Prunus serrulata
-('Kanzan'); each spot names its own variety.
+('Kanzan'); FORCING keeps the Yoshino requirement the DC fit gives as well.
 
 Called at the end of each *_MapLayer.py, which hands over its own tile and upload
 helpers; it does nothing outside 1 February - 30 June.
 """
 from __future__ import annotations
 
-import json
 import os
 import tempfile
 from datetime import date, timedelta
@@ -37,7 +36,6 @@ PAST_DAYS = 14  # a cell stays on the map this long after its peak
 EPOCH = date(1970, 1, 1)
 
 _BACKEND = Path(__file__).resolve().parent
-SPOTS_PATH = _BACKEND.parent / "src" / "data" / "bloom-spots.json"
 NORMALS_MACRO = {"ne": "EU", "se": "EU", "use": "US", "usw": "US"}
 # Day of year at the middle of each month, where a monthly normal applies exactly.
 _MID = np.array([15.5, 45.0, 74.5, 105.0, 135.5, 166.0, 196.5, 227.5, 258.0, 288.5, 319.0, 349.5])
@@ -160,8 +158,8 @@ def _bands(cy, cx, peak):
 
 
 def build_bloom(master_path, region_code, r2_prefix, build_mbtiles, to_pmtiles, upload,
-                *, today=None, spots=None, normals=None):
-    """Build and upload `<region>_bloom.pmtiles` and `<region>_bloom_spots.json`.
+                *, today=None, normals=None):
+    """Build and upload `<region>_bloom.pmtiles`.
 
     build_mbtiles(geojson, mbtiles, layer), to_pmtiles(mbtiles, pmtiles) -> bool and
     upload(path, key) are the calling MapLayer script's own helpers. Returns a small
@@ -174,8 +172,6 @@ def build_bloom(master_path, region_code, r2_prefix, build_mbtiles, to_pmtiles, 
         return None
     first, last = span
     n_days = (last - first).days + 1
-    spots = spots if spots is not None else json.loads(SPOTS_PATH.read_text(encoding="utf-8"))
-    spots = [s for s in spots if s["region"].lower() == region_code]
     if normals is None:
         normals = dict(np.load(_BACKEND / "generated" / f"bloom_normals_{NORMALS_MACRO[region_code]}.npz"))
 
@@ -193,19 +189,6 @@ def build_bloom(master_path, region_code, r2_prefix, build_mbtiles, to_pmtiles, 
     print(f"Bloom {region_code}: {int(drawn.sum())} of {len(peak)} cells drawn "
           f"({int(np.isnan(peak).sum())} without a peak)")
 
-    spot_peaks = {}
-    if spots and len(cy):
-        from scipy.spatial import cKDTree
-
-        dist, rows = cKDTree(_unit(cy * CELL, cx * CELL)).query(
-            _unit([s["lat"] for s in spots], [s["lon"] for s in spots]))
-        for s, d, r in zip(spots, dist, rows):
-            if d > np.radians(3 * CELL):  # no cell of this region near it: a wrong `region` in the spots file
-                print(f"Bloom {region_code}: spot {s['id']} is {np.degrees(d):.1f}° from the nearest cell, skipped")
-                continue
-            i = peak_index(tmean[r:r + 1], FORCING[s["variety"]])[0]
-            spot_peaks[s["id"]] = None if np.isnan(i) else int(base + i)
-
     bands = 0
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp = Path(tmpdir)
@@ -220,7 +203,4 @@ def build_bloom(master_path, region_code, r2_prefix, build_mbtiles, to_pmtiles, 
             build_mbtiles(geojson, mbtiles, f"{region_code}_bloom")
             if Path(mbtiles).exists() and to_pmtiles(mbtiles, pmtiles):
                 upload(pmtiles, f"{r2_prefix}/{region_code}_bloom.pmtiles")
-        spots_json = tmp / f"{region_code}_bloom_spots.json"
-        spots_json.write_text(json.dumps({"generated": today.isoformat(), "peaks": spot_peaks}), encoding="utf-8")
-        upload(spots_json, f"{r2_prefix}/{region_code}_bloom_spots.json")
-    return {"cells": len(peak), "drawn": int(drawn.sum()), "bands": bands, "spots": spot_peaks}
+    return {"cells": len(peak), "drawn": int(drawn.sum()), "bands": bands}

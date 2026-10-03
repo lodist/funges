@@ -95,12 +95,10 @@ def test_build_bloom_end_to_end(tmp_path):
     def upload(path, key):
         uploads[key] = Path(path).read_bytes()
 
-    spots = [{"id": "warm", "lat": 50.0, "lon": 8.0, "region": "NE", "variety": "yoshino"},
-             {"id": "elsewhere", "lat": 40.0, "lon": -80.0, "region": "USE", "variety": "kanzan"}]
     out = build_bloom(tmp_path / "m.parquet", "ne", "EU/NE", build_mbtiles, to_pmtiles, upload,
-                      today=today, spots=spots, normals=normals)
+                      today=today, normals=normals)
 
-    assert set(uploads) == {"EU/NE/ne_bloom.pmtiles", "EU/NE/ne_bloom_spots.json"}
+    assert set(uploads) == {"EU/NE/ne_bloom.pmtiles"}
     geojson, layer = layers[0]
     assert layer == "ne_bloom"
     peaks = [f["properties"]["peak"] for f in geojson["features"]]
@@ -108,10 +106,6 @@ def test_build_bloom_end_to_end(tmp_path):
     # Observed days and normals are both 10 °C at the warmer cell (6 °C observed at the other).
     first_unix = (date(2026, 11, 1) - EPOCH).days
     assert min(peaks) == first_unix + 156
-    spot = json.loads(uploads["EU/NE/ne_bloom_spots.json"])
-    assert spot["generated"] == "2027-03-20"
-    assert set(spot["peaks"]) == {"warm"}  # only this region's spots
-    assert spot["peaks"]["warm"] < min(peaks)  # Yoshino needs less warmth than Kanzan
 
 
 def test_build_bloom_skips_out_of_season(tmp_path):
@@ -120,11 +114,3 @@ def test_build_bloom_skips_out_of_season(tmp_path):
 
     assert build_bloom(tmp_path / "missing.parquet", "ne", "EU/NE", fail, fail, fail,
                        today=date(2026, 10, 1)) is None
-
-
-def test_spots_file_is_well_formed():
-    spots = json.loads((Path(__file__).resolve().parents[1] / "src" / "data" / "bloom-spots.json").read_text("utf-8"))
-    assert len({s["id"] for s in spots}) == len(spots) >= 20
-    for s in spots:
-        assert s["region"] in {"NE", "SE", "USE", "USW"} and s["variety"] in FORCING
-        assert -125 < s["lon"] < 45 and 24 < s["lat"] < 72

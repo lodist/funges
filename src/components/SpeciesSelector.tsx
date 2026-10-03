@@ -5,7 +5,12 @@ import { useMapStore } from '@/store/mapStore';
 import { cn } from '@/lib/utils';
 import { getSpeciesImage } from '@/lib/utils';
 import { getSpeciesById } from '@/data/species';
-import { BLOOM_CODE, BLOOM_EMOJI, BLOOM_SCIENTIFIC_NAME } from '@/lib/bloom';
+import {
+  BLOOM_CODE,
+  BLOOM_EMOJI,
+  BLOOM_SCIENTIFIC_NAME,
+  bloomInSeason,
+} from '@/lib/bloom';
 import SpeciesSelectorFullscreen from './SpeciesSelectorFullscreen';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -166,12 +171,21 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           tile above, for the same contrast reasons. */}
       {/* The live region stays mounted and only its content changes: many
           screen readers skip a status element that arrives already filled. */}
+      {/* Cherry blossom is drawn from 1 February to 30 June; outside that the same
+          notice says when it starts, or its empty map reads as a bug too. */}
       <div role='status'>
-        {selected && !selectedSpeciesOnMap && (
-          <p className='elevation-raised mt-2 max-w-[min(18rem,calc(100vw-5.5rem))] rounded-card bg-card px-3 py-2 text-xs text-muted-foreground'>
-            {t('species.notForecastHere', { species: speciesName })}
-          </p>
-        )}
+        {selected &&
+          (selectedSpecies === BLOOM_CODE && !bloomInSeason(new Date()) ? (
+            <p className='elevation-raised mt-2 max-w-[min(18rem,calc(100vw-5.5rem))] rounded-card bg-card px-3 py-2 text-xs text-muted-foreground'>
+              {t('bloom.offSeason')}
+            </p>
+          ) : (
+            !selectedSpeciesOnMap && (
+              <p className='elevation-raised mt-2 max-w-[min(18rem,calc(100vw-5.5rem))] rounded-card bg-card px-3 py-2 text-xs text-muted-foreground'>
+                {t('species.notForecastHere', { species: speciesName })}
+              </p>
+            )
+          ))}
       </div>
 
       {/* Gated here rather than inside the child. AnimatePresence only plays an

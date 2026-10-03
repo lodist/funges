@@ -16,6 +16,14 @@ import { getScoreColor } from '@/lib/scoreColor';
 import { SPECIES_DATA, speciesNameKey } from '@/data/species';
 import type { RegionId } from '@/lib/data';
 import { Navigation, BarChart2, Copy, Check, AlertTriangle } from '@/lib/icons';
+import {
+  BLOOM_EMOJI,
+  BLOOM_SCIENTIFIC_NAME,
+  BLOOM_STATUS_COLOR,
+  bloomStatus,
+  bloomWhen,
+  formatBloomDate,
+} from '@/lib/bloom';
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 
 interface FeatureInfoModalProps {
@@ -24,6 +32,11 @@ interface FeatureInfoModalProps {
   onClose: () => void;
   hideDirections?: boolean;
   dataNerdRegion?: RegionId | null;
+  /**
+   * The slider's day (days since 1970-01-01) when the feature is a cherry
+   * blossom cell: it carries a `peak` date instead of species scores.
+   */
+  bloomDay?: number;
 }
 
 // Builds a Google Maps navigation URL for consistent cross-platform behavior
@@ -39,8 +52,9 @@ export default function FeatureInfoModal({
   onClose,
   hideDirections,
   dataNerdRegion,
+  bloomDay,
 }: FeatureInfoModalProps) {
-  const { t } = useTranslation('map');
+  const { t, i18n } = useTranslation('map');
   const { t: tSpecies } = useTranslation('species');
   const { t: tCommon } = useTranslation('common');
   const navigate = useNavigate({ from: '/' });
@@ -88,9 +102,16 @@ export default function FeatureInfoModal({
     return key;
   };
 
+  // A cherry blossom cell lists one row, cherry blossom, in the same markup as
+  // a species, with its peak date where a species has its score.
+  const bloomPeak =
+    bloomDay !== undefined && typeof props.peak === 'number'
+      ? props.peak
+      : null;
+
   // Get species entries with scores, filtered and sorted. `_score_d6` is the forecast
   // day-6 endpoint (folded into its base `_score` before display) — never a species row.
-  const speciesEntries = Object.entries(props)
+  const speciesEntries = (bloomPeak !== null ? [] : Object.entries(props))
     .filter(([key, value]) => value !== 0 && !key.endsWith('_score_d6'))
     .map(([key, value]) => {
       const cleanKey = key.replace('_score', '');
@@ -144,6 +165,44 @@ export default function FeatureInfoModal({
         </DialogHeader>
         <div className='max-h-[70vh] overflow-y-auto pr-2'>
           <div className='space-y-3'>
+            {bloomPeak !== null && bloomDay !== undefined && (
+              <div className='flex items-center space-x-3 p-2 sm:p-3 bg-muted rounded-lg'>
+                <div className='flex-shrink-0'>
+                  <div
+                    aria-hidden='true'
+                    className='flex w-14 h-14 sm:w-16 sm:h-16 items-center justify-center rounded-lg bg-secondary text-2xl'
+                  >
+                    {BLOOM_EMOJI}
+                  </div>
+                </div>
+                <div className='flex-1 min-w-0'>
+                  <h3 className='font-semibold text-foreground text-sm sm:text-base leading-tight mb-1'>
+                    {t('bloom.name')}
+                  </h3>
+                  <p className='text-xs sm:text-sm text-muted-foreground italic leading-tight'>
+                    {BLOOM_SCIENTIFIC_NAME}
+                  </p>
+                </div>
+                <div className='flex-shrink-0 text-right'>
+                  <div className='flex items-center justify-end gap-1.5'>
+                    <span
+                      aria-hidden
+                      className='size-2.5 shrink-0 rounded-full'
+                      style={{
+                        backgroundColor:
+                          BLOOM_STATUS_COLOR[bloomStatus(bloomPeak, bloomDay)],
+                      }}
+                    />
+                    <span className='text-xl sm:text-2xl font-bold text-foreground leading-tight'>
+                      {formatBloomDate(bloomPeak, i18n.language, 'short')}
+                    </span>
+                  </div>
+                  <div className='text-xs text-muted-foreground leading-tight'>
+                    {t('bloom.legend')} · {bloomWhen(t, bloomPeak, bloomDay)}
+                  </div>
+                </div>
+              </div>
+            )}
             {speciesEntries.map(
               ({ key, score, name, image, scientificName }) => (
                 <div
