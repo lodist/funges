@@ -116,12 +116,16 @@ It is as good in DC and the iNaturalist cities. But it blooms the warm south of 
 | USE    | 33,125 |
 | USW    | 49,168 |
 
-- Cells with the same peak day are dissolved into one feature, so a tileset holds about 70–90 features and weighs 0.2–0.7 MB.
+- Cells with the same peak day are dissolved into one feature, so a tileset holds 56–68 features.
 - NE and SE share 60 cells, USE and USW 290; there both draw.
 - **Season:** 1 February – 30 June. Outside it the step returns before downloading anything.
   - Every town with a peak stays in the tiles all season, green once its bloom is done. One that vanished after its peak read as a town without cherries.
   - From July the map hides the layer. A peak over 150 days old is last season's: the map paints it transparent and a click opens nothing, which keeps last season's file harmless until the first run on 1 February.
-- **Cost:** one extra download of the region's master; 10–17 s and under 400 MB traced for the model and the dissolve.
+- **Where the trees grow:** a town is drawn only if a normal year, from the 1991–2020 normals alone, brings its bloom by 7 June (`LATEST_NORMAL_PEAK`). This year's weather still sets when, so a town doesn't come and go between years.
+  - iNaturalist has 7 records of _P. serrulata_ north of 62° N, all planted: Umeå, Örnsköldsvik, Jyväskylä, Syvde, Reykjavík and one undated in Bodø. Of those, Umeå blooms latest in a normal year, on 2 June. Tromsø, which the first build drew, comes on 14 June and has none.
+  - On the 15 April 2026 dry run it removes 128 of 16,502 town cells: Tromsø and Rovaniemi, the ski towns of the Alps and the Rockies (Zermatt, St. Moritz, Aspen, Vail), upland towns in Norway, and a few warm-winter cells on the southern edges of Houston and San Antonio, where a normal winter is too mild for the chill.
+  - A town takes its 0.1° cell's average height, so a valley town in a high cell blooms late on the map. Innsbruck (574 m) is drawn as if at 1,600 m; Chamonix (1,035 m, in a cell averaging 2,056 m) and Bormio drop out.
+- **Cost:** one extra download of the region's master; 7–12 s and under 500 MB traced for the model and the dissolve, measured on the dry run.
 - **Tiles:** bloom.py runs its own tippecanoe, to zoom 10 at normal detail, giving 0.3–1.8 MB per region. The forecast's settings (z6, `-d9`, simplification 4) suit the species mesh and shave a town into a shard.
 
 **A dry run on 15 April 2026** at well-known cherry places, each for its own variety, with normals standing in for the winter the master doesn't hold yet (it starts on 12 April 2026). It is a check of the model; the app has no list of places:
@@ -203,10 +207,11 @@ Stockholm's Kungsträdgården and Copenhagen's Bispebjerg avenue are 'Accolade',
 - The WeatherAPI–POWER offset in February–March, at the iNaturalist cells.
 - The Kanzan requirement against 2027 iNaturalist records, and the latitude drift above.
 - The Tidal Basin 2027 peak against the Yoshino forecast.
+- The 7 June cutoff against 2027 iNaturalist records of planted trees in the north.
 
 ## Sources
 
 - **NPS Tidal Basin peak bloom dates and JMA Yoshino first-bloom dates:** the GMU cherry blossom prediction competition's cleaned data, <https://github.com/GMU-CherryBlossomCompetition/peak-bloom-prediction>. Used for fitting only; not shipped.
 - **NASA POWER** daily and climatology API, <https://power.larc.nasa.gov/>: MERRA-2 T2M, 1981–2026 daily, 1991–2020 monthly.
-- **iNaturalist** API, taxon 125742 (_P. serrulata_) and 47352 (_P. × yedoensis_). Records with coordinates, not obscured, accuracy ≤ 1 km.
+- **iNaturalist** API, taxon 125742 (_P. serrulata_) and 47352 (_P. × yedoensis_). Records with coordinates, not obscured, accuracy ≤ 1 km; for the cutoff, every record north of 62° N, planted ones included.
 - **NOAA GHCN-Daily**, USW00013743 (Reagan National): only for the station comparison above.
