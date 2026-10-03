@@ -23,6 +23,7 @@ import type { RegionId } from '@/lib/data';
 import {
   BLOOM_CODE,
   bloomFillColor,
+  bloomInSeason,
   bloomToday,
   isBloomLayer,
   unixDay,
@@ -565,13 +566,19 @@ export const useMapStore = create<MapState>()(
                 }
               } else if (isBloomLayer(id)) {
                 // Coloured by days to peak on the slider's day, not by a score.
-                mapRef.setPaintProperty(
-                  id,
-                  'fill-color',
-                  bloomFillColor(unixDay(bloomToday()) + activeDay)
-                );
-                mapRef.setLayoutProperty(id, 'visibility', 'visible');
-                drawn = true;
+                // Out of season (July-January) there is nothing to show: finished
+                // towns stay green until 30 June, then the layer goes.
+                if (bloomInSeason(bloomToday())) {
+                  mapRef.setPaintProperty(
+                    id,
+                    'fill-color',
+                    bloomFillColor(unixDay(bloomToday()) + activeDay)
+                  );
+                  mapRef.setLayoutProperty(id, 'visibility', 'visible');
+                  drawn = true;
+                } else {
+                  mapRef.setLayoutProperty(id, 'visibility', 'none');
+                }
               } else {
                 const current = mapRef.getPaintProperty(
                   id,

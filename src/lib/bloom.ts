@@ -68,29 +68,36 @@ export const formatBloomDate = (
 
 const PEAK_DAYS = 2; // peak is ±2 days
 const SOON_DAYS = 21; // pink from three weeks out
-const PAST_DAYS = 14; // fades for two weeks after, as long as the backend keeps a cell
+const FADE_DAYS = 14; // green fades to its steady "done" tone over two weeks
+// No peak of this season is older than this (the earliest come around 1 March),
+// so an older one is last season's file, which waits on R2 until 1 February's run.
+const STALE_DAYS = 150;
 
-export type BloomStatus = 'later' | 'soon' | 'peak' | 'past' | 'over';
+export type BloomStatus = 'later' | 'soon' | 'peak' | 'past' | 'stale';
 
 export function bloomStatus(peak: number, day: number): BloomStatus {
   const toPeak = peak - day;
   if (toPeak > SOON_DAYS) return 'later';
   if (toPeak > PEAK_DAYS) return 'soon';
   if (toPeak >= -PEAK_DAYS) return 'peak';
-  if (toPeak >= -PAST_DAYS) return 'past';
-  return 'over';
+  if (toPeak >= -STALE_DAYS) return 'past';
+  return 'stale';
 }
 
 // Nothing in bloom: the light yellow the score layers start from.
 export const BLOOM_IDLE = 'rgba(255, 255, 204, 0.9)';
 
+// Done for this year: the steady pale green a town keeps until 30 June.
+const BLOOM_DONE = 'rgba(156, 196, 148, 0.45)';
+
 // Days to peak -> colour. Light yellow more than three weeks out, pink deepening
-// to the peak, then leaf green as the petals drop, fading out two weeks after:
-// last season's file, which the map keeps until the first run on 1 February,
-// reads as long over.
+// to the peak, then leaf green as the petals drop, settling to a pale green that
+// stays: a town never vanishes, which read as "no cherries here". Only last
+// season's file is invisible.
 export const BLOOM_RAMP: readonly (readonly [number, string])[] = [
-  [-PAST_DAYS - 1, 'rgba(156, 196, 148, 0)'],
-  [-PAST_DAYS, 'rgba(156, 196, 148, 0.35)'],
+  [-STALE_DAYS - 1, 'rgba(156, 196, 148, 0)'],
+  [-STALE_DAYS, BLOOM_DONE],
+  [-FADE_DAYS, BLOOM_DONE],
   [-6, '#9cc494'],
   [-PEAK_DAYS, '#c2185b'],
   [PEAK_DAYS, '#c2185b'],
@@ -106,7 +113,7 @@ export const BLOOM_STATUS_COLOR: Record<BloomStatus, string> = {
   soon: '#f7b8cf',
   peak: '#c2185b',
   past: '#9cc494',
-  over: BLOOM_IDLE,
+  stale: BLOOM_IDLE,
 };
 
 export function bloomFillColor(day: number): ExpressionSpecification {
@@ -118,11 +125,14 @@ export function bloomFillColor(day: number): ExpressionSpecification {
   ] as unknown as ExpressionSpecification;
 }
 
-/** The ramp as a legend, in the order a place goes through it: later -> past. */
+/** The ramp as a legend, in the order a place goes through it: later -> done. */
 export function bloomGradientCss(): string {
-  const [far] = BLOOM_RAMP[BLOOM_RAMP.length - 1];
-  const span = far - BLOOM_RAMP[0][0];
-  const stops = [...BLOOM_RAMP]
+  // From four weeks before the peak to the steady "done" green; the months of
+  // that green after it, and the stale stop, would only stretch the bar.
+  const shown = BLOOM_RAMP.filter(([toPeak]) => toPeak >= -FADE_DAYS);
+  const [far] = shown[shown.length - 1];
+  const span = far - shown[0][0];
+  const stops = [...shown]
     .reverse()
     .map(([toPeak, colour]) => `${colour} ${((far - toPeak) / span) * 100}%`);
   return `linear-gradient(to right, ${stops.join(', ')})`;

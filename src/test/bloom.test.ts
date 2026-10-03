@@ -50,13 +50,15 @@ describe('bloomStatus', () => {
     [102, 'peak'],
     [103, 'past'],
     [114, 'past'],
-    [115, 'over'],
+    [115, 'past'],
+    [250, 'past'],
+    [251, 'stale'],
   ])('on day %i is %s', (day, status) => {
     expect(bloomStatus(peak, day)).toBe(status);
   });
 
-  it('treats a cell without a peak as over, so a click lists nothing', () => {
-    expect(bloomStatus(Number(undefined), 100)).toBe('over');
+  it('treats a cell without a peak as stale, so a click lists nothing', () => {
+    expect(bloomStatus(Number(undefined), 100)).toBe('stale');
   });
 });
 
@@ -71,8 +73,17 @@ describe('bloomFillColor', () => {
     expect(expression.slice(3)).toEqual(BLOOM_RAMP.flat());
   });
 
-  it('is transparent once a place is over, so last season reads as nothing', () => {
-    expect(BLOOM_RAMP[0][1]).toMatch(/, 0\)$/);
+  it('keeps a finished town a steady pale green, never transparent', () => {
+    const done = BLOOM_RAMP.filter(
+      ([toPeak]) => toPeak >= -150 && toPeak <= -14
+    );
+    expect(done.length).toBe(2);
+    expect(done[0][1]).toBe(done[1][1]);
+    expect(done[0][1]).not.toMatch(/, 0\)$/);
+  });
+
+  it('is transparent only for last season, peaks over 150 days old', () => {
+    expect(BLOOM_RAMP[0]).toEqual([-151, 'rgba(156, 196, 148, 0)']);
   });
 
   it('draws the legend from later to past: yellow, pink, then green', () => {
@@ -81,7 +92,8 @@ describe('bloomFillColor', () => {
       true
     );
     expect(css).toContain('#c2185b');
-    expect(css.endsWith('rgba(156, 196, 148, 0) 100%)')).toBe(true);
+    // It ends on the steady "done" green, not on the months of it after.
+    expect(css.endsWith('rgba(156, 196, 148, 0.45) 100%)')).toBe(true);
   });
 
   it('never paints the days after the peak pink', () => {

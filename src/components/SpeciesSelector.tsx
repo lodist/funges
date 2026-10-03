@@ -39,8 +39,8 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
   // Resolved from the whole catalog, not the region's options: the selection
   // survives panning into a region that has no forecast for it.
   const species = selectedSpecies ? getSpeciesById(selectedSpecies) : undefined;
-  // The cherry blossom layer is picked like a species but has no catalog entry,
-  // and no photo: the emoji stands in.
+  // The cherry blossom layer is picked like a species but has no catalog entry;
+  // its picture sits with the species' in src/assets/species.
   const selected =
     selectedSpecies === BLOOM_CODE
       ? {
@@ -48,7 +48,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           emoji: BLOOM_EMOJI,
           name: t('bloom.name'),
           scientificName: BLOOM_SCIENTIFIC_NAME,
-          photo: false,
+          photo: true,
         }
       : species && {
           id: species.id,

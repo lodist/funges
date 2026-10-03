@@ -17,7 +17,7 @@ import { SPECIES_DATA, speciesNameKey } from '@/data/species';
 import type { RegionId } from '@/lib/data';
 import { Navigation, BarChart2, Copy, Check, AlertTriangle } from '@/lib/icons';
 import {
-  BLOOM_EMOJI,
+  BLOOM_CODE,
   BLOOM_SCIENTIFIC_NAME,
   BLOOM_STATUS_COLOR,
   bloomStatus,
@@ -168,11 +168,14 @@ export default function FeatureInfoModal({
             {bloomPeak !== null && bloomDay !== undefined && (
               <div className='flex items-center space-x-3 p-2 sm:p-3 bg-muted rounded-lg'>
                 <div className='flex-shrink-0'>
-                  <div
-                    aria-hidden='true'
-                    className='flex w-14 h-14 sm:w-16 sm:h-16 items-center justify-center rounded-lg bg-secondary text-2xl'
-                  >
-                    {BLOOM_EMOJI}
+                  <div className='relative w-14 h-14 sm:w-16 sm:h-16 bg-secondary overflow-hidden rounded-lg'>
+                    <img
+                      src={getSpeciesImage(BLOOM_CODE) ?? undefined}
+                      alt={t('bloom.name')}
+                      className='w-full h-full object-cover object-center'
+                      loading='lazy'
+                    />
+                    <div className='absolute inset-0 bg-black/10' />
                   </div>
                 </div>
                 <div className='flex-1 min-w-0'>

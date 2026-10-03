@@ -1354,14 +1354,14 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       });
       if (features && features.length > 0) {
         const f = features[0];
-        // A cherry blossom cell carries a peak date. One whose bloom is long over,
-        // as all of last season's file is, has nothing to list.
+        // A cherry blossom cell carries a peak date. Only last season's file,
+        // waiting for 1 February's run, has nothing to list.
         if (
           selectedSpecies === BLOOM_CODE &&
           bloomStatus(
             Number(f.properties?.peak),
             unixDay(bloomToday()) + activeDay
-          ) === 'over'
+          ) === 'stale'
         ) {
           return;
         }

@@ -38,7 +38,6 @@ FORCING = {"yoshino": 285.0, "kanzan": 485.0}  # °C·days above FORCE_BASE
 MAP_VARIETY = "kanzan"
 CELL = 0.1  # degrees; base points are averaged into cells this size
 LAPSE = 0.0065  # °C per metre, moves a normal to a cell's elevation
-PAST_DAYS = 14  # a cell stays on the map this long after its peak
 EPOCH = date(1970, 1, 1)
 
 _BACKEND = Path(__file__).resolve().parent
@@ -207,15 +206,15 @@ def build_bloom(master_path, region_code, r2_prefix, to_pmtiles, upload,
     del obs
     base = (first - EPOCH).days
     peak = base + peak_index(tmean, FORCING[MAP_VARIETY])
-    drawn = np.isfinite(peak) & (peak >= (today - EPOCH).days - PAST_DAYS)
+    # Every town with a peak stays all season, green once it is done: one that
+    # vanished after its bloom read as a town without cherries.
+    drawn = np.isfinite(peak)
     print(f"Bloom {region_code}: {int(drawn.sum())} of {len(peak)} cells drawn "
           f"({int(np.isnan(peak).sum())} without a peak)")
 
     bands = 0
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp = Path(tmpdir)
-        # Nothing left to draw late in June: the last tileset's cells are all past by
-        # then, which the map paints transparent, so it can stay.
         features = _bands(cy[drawn], cx[drawn], peak[drawn], towns) if drawn.any() else []
         if len(features):
             geojson = tmp / f"{region_code}_bloom.geojson"

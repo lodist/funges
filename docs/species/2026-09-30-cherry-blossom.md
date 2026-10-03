@@ -119,8 +119,8 @@ It is as good in DC and the iNaturalist cities. But it blooms the warm south of 
 - Cells with the same peak day are dissolved into one feature, so a tileset holds about 70–90 features and weighs 0.2–0.7 MB.
 - NE and SE share 60 cells, USE and USW 290; there both draw.
 - **Season:** 1 February – 30 June. Outside it the step returns before downloading anything.
-  - A cell stays on the map until 14 days after its peak.
-  - The map paints anything older transparent, which is how last season's file stays harmless until the first run on 1 February.
+  - Every town with a peak stays in the tiles all season, green once its bloom is done. One that vanished after its peak read as a town without cherries.
+  - From July the map hides the layer. A peak over 150 days old is last season's: the map paints it transparent and a click opens nothing, which keeps last season's file harmless until the first run on 1 February.
 - **Cost:** one extra download of the region's master; 10–17 s and under 400 MB traced for the model and the dissolve.
 - **Tiles:** bloom.py runs its own tippecanoe, to zoom 10 at normal detail, giving 0.3–1.8 MB per region. The forecast's settings (z6, `-d9`, simplification 4) suit the species mesh and shave a town into a shard.
 
@@ -174,6 +174,7 @@ Cherry blossom looks and behaves like a species layer, with its own colour scale
 - **Picking it:** "Cherry blossom" is under a **Spectacles** filter in the species panel.
   - Its code, `cherry_blossom`, passes `isMapSpecies` and works in `?species=`.
   - It is not a catalog species: no page, no photo ID, no score.
+  - Its picture, a 'Kanzan' sprig in the catalog's style, is `src/assets/species/cherry_blossom.webp`, made with Codex's image tool. The selector, the species panel and the info modal show it.
 - **The layers** are added at runtime the first time it is picked, in the species fills' place in the stack and with their opacity (`AdvancedMap.tsx`). The style JSONs, and `species:check` and the style tests that hold them to species scores, are untouched.
   - Unlike the species, it is drawn on towns, where the trees are planted, not on wild habitat.
   - The cells are clipped to Natural Earth's 1:10m urban areas (public domain; `backend/generated/bloom_towns_{EU,US}.geojson` from `backend/tools/build_bloom_towns.py`), rounded off and cut to land. Europe has 3,956 of them, the US 1,167, about 3% of the land.
@@ -182,10 +183,10 @@ Cherry blossom looks and behaves like a species layer, with its own colour scale
   - light yellow more than three weeks out, where the score layers start too;
   - pink deepening to the peak;
   - deep pink at peak ±2 days;
-  - leaf green as the petals drop, fading for two weeks;
-  - then transparent.
+  - leaf green as the petals drop;
+  - then, from two weeks after the peak, a steady pale green until 30 June.
 - **The legend** is the score legend's card, with this scale and "3+ weeks · Peak bloom · Past".
-- **A click** opens the same info modal as a species. Its one row reads "Cherry blossom, _Prunus serrulata_", then a swatch, the peak date and "Peak bloom · in 3 days" where a species has its score. A cell whose bloom is long over opens nothing.
+- **A click** opens the same info modal as a species. Its one row reads "Cherry blossom, _Prunus serrulata_", then a swatch, the peak date and "Peak bloom · in 3 days" where a species has its score. A finished town opens it too ("Peak bloom · 14 days ago").
 - **Off-season** (July–January) the selector's notice, the one that says a species isn't forecast here, says the forecast starts on 1 February.
 
 ## Places looked at

@@ -87,7 +87,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
   ];
 
   // Species, plus the cherry blossom layer under "Spectacles": it is picked like
-  // a species but is not in the catalog, so it brings its own name and has no photo.
+  // a species but is not in the catalog, so it brings its own name.
   const options = [
     ...speciesOptions.map(option => {
       const speciesData = SPECIES_DATA.find(item => item.id === option.code);
@@ -106,7 +106,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
       category: 'spectacle' as string | undefined,
       name: t('bloom.name'),
       scientificName: BLOOM_SCIENTIFIC_NAME,
-      image: null,
+      image: getSpeciesImage(BLOOM_CODE),
     },
   ];
 
