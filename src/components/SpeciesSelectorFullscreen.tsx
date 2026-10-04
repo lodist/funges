@@ -10,6 +10,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { useOfflineStore } from '@/store/offlineStore';
 import { usePWA } from '@/hooks/use-pwa';
 import { SPECIES_DATA, speciesNameKey } from '@/data/species';
+import { BLOOM_CODE, BLOOM_EMOJI, BLOOM_SCIENTIFIC_NAME } from '@/lib/bloom';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
 import { DURATION_BASE, EASE_STANDARD } from '@/lib/motion';
@@ -82,32 +83,44 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
     { value: 'berry', label: tSpecies('berries'), icon: '🫐' },
     { value: 'nut', label: tSpecies('nuts'), icon: '🌰' },
     { value: 'flower', label: tSpecies('flowers'), icon: '🌸' },
+    { value: 'spectacle', label: t('bloom.spectacles'), icon: '✨' },
+  ];
+
+  // Species, plus the cherry blossom layer under "Spectacles": it is picked like
+  // a species but is not in the catalog, so it brings its own name.
+  const options = [
+    ...speciesOptions.map(option => {
+      const speciesData = SPECIES_DATA.find(item => item.id === option.code);
+      return {
+        code: option.code,
+        emoji: option.emoji,
+        category: speciesData?.category as string | undefined,
+        name: tSpecies(`list_of_species.${speciesNameKey(option.code)}`),
+        scientificName: speciesData?.scientificName || option.code,
+        image: getSpeciesImage(option.code),
+      };
+    }),
+    {
+      code: BLOOM_CODE,
+      emoji: BLOOM_EMOJI,
+      category: 'spectacle' as string | undefined,
+      name: t('bloom.name'),
+      scientificName: BLOOM_SCIENTIFIC_NAME,
+      image: getSpeciesImage(BLOOM_CODE),
+    },
   ];
 
   // Filter and sort species based on search term and category
-  const filteredSpecies = speciesOptions
+  const filteredSpecies = options
     .filter(option => {
-      const speciesData = SPECIES_DATA.find(
-        speciesData => speciesData.id === option.code
-      );
-
       const matchesSearch =
         searchTerm === '' ||
-        tSpecies(`list_of_species.${speciesNameKey(option.code)}`)
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase());
-
+        option.name.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory =
-        selectedCategory === 'all' ||
-        (speciesData && speciesData.category === selectedCategory);
-
+        selectedCategory === 'all' || option.category === selectedCategory;
       return matchesSearch && matchesCategory;
     })
-    .sort((a, b) =>
-      tSpecies(`list_of_species.${speciesNameKey(a.code)}`).localeCompare(
-        tSpecies(`list_of_species.${speciesNameKey(b.code)}`)
-      )
-    );
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   const handleSpeciesSelect = (speciesCode: string) => {
     setSelectedSpecies(speciesCode);
@@ -238,11 +251,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                     disabled={disabled}
                     tabIndex={disabled ? -1 : 0}
                     title={
-                      disabled
-                        ? t('species.notAvailableOffline')
-                        : tSpecies(
-                            `list_of_species.${speciesNameKey(species.code)}`
-                          )
+                      disabled ? t('species.notAvailableOffline') : species.name
                     }
                     aria-disabled={disabled}
                     // Trailhead (#213): no border — selection is a shadow
@@ -272,12 +281,10 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                         'flex-shrink-0 transition-transform duration-base group-hover:scale-110'
                       )}
                     >
-                      {getSpeciesImage(species.code) ? (
+                      {species.image ? (
                         <img
-                          src={getSpeciesImage(species.code)!}
-                          alt={tSpecies(
-                            `list_of_species.${speciesNameKey(species.code)}`
-                          )}
+                          src={species.image}
+                          alt={species.name}
                           className='w-full h-full object-cover object-center'
                           loading='lazy'
                         />
@@ -297,16 +304,12 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
                           isSelected && 'text-secondary-foreground'
                         )}
                       >
-                        {tSpecies(
-                          `list_of_species.${speciesNameKey(species.code)}`
-                        )}
+                        {species.name}
                       </h3>
 
                       {/* Scientific name */}
                       <p className='text-xs text-muted-foreground italic leading-tight break-words'>
-                        {SPECIES_DATA.find(
-                          speciesData => speciesData.id === species.code
-                        )?.scientificName || species.code}
+                        {species.scientificName}
                       </p>
                     </div>
 

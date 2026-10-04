@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GENERATED_SPECIES_DATA } from '@/generated/species-catalog';
+import { BLOOM_CODE } from '@/lib/bloom';
 
 export interface Species {
   id: string;
@@ -77,6 +78,12 @@ export const getSpeciesOptions = (region: ForecastRegion): SpeciesOption[] =>
 /** Forecast in every region, so it is always a valid map fallback. */
 export const DEFAULT_MAP_SPECIES = 'mushroom';
 
-/** A species the map can show somewhere — the check a URL or saved code must pass. */
+/**
+ * A species the map can show somewhere — the check a URL or saved code must pass.
+ * The cherry blossom layer passes too: it is picked like a species, but it is not
+ * in the catalog (see lib/bloom.ts).
+ */
 export const isMapSpecies = (code: string | null | undefined): boolean =>
-  !!code && SPECIES_DATA.some(({ id, showOnMap }) => id === code && showOnMap);
+  !!code &&
+  (code === BLOOM_CODE ||
+    SPECIES_DATA.some(({ id, showOnMap }) => id === code && showOnMap));

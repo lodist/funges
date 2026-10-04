@@ -119,5 +119,18 @@
     "title": "Sem conexão",
     "noPackageMessage": "Nenhum pacote transferido cobre esta área. Volte a ligar-se ou regresse a uma área guardada.",
     "forecastOnlyMessage": "Previsão offline carregada. O mapa base detalhado requer ligação."
+  },
+  "bloom": {
+    "name": "Flor de cerejeira",
+    "spectacles": "Espetáculos",
+    "legend": "Floração plena",
+    "later": "3+ semanas",
+    "past": "Passada",
+    "offSeason": "A previsão da floração das cerejeiras começa a 1 de fevereiro.",
+    "atPeak": "em plena floração",
+    "inDays_one": "daqui a {{count}} dia",
+    "inDays_other": "daqui a {{count}} dias",
+    "daysAgo_one": "há {{count}} dia",
+    "daysAgo_other": "há {{count}} dias"
   }
 }

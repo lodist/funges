@@ -57,6 +57,19 @@ import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import MapInfoCard from '@/components/MapInfoCard';
+import {
+  BLOOM_CODE,
+  BLOOM_REGION_CODES,
+  bloomFillColor,
+  bloomGradientCss,
+  bloomLayerId,
+  bloomSourceId,
+  bloomInSeason,
+  bloomStatus,
+  bloomTilesUrl,
+  unixDay,
+} from '@/lib/bloom';
+import { DEFAULT_MAP_SPECIES } from '@/data/species';
 import RouteToDishPanel, {
   type RouteSummary,
 } from '@/components/RouteToDishPanel';
@@ -355,10 +368,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     window.open(getGoogleMapsDirectionsUrl(activeRoute), '_blank');
   }, [activeRoute]);
 
+  // Offline, or under the cherry blossom layer (which hides every species
+  // layer, so no species tiles load), the route planner has nothing to read.
   useEffect(() => {
-    if (isOnline) return;
+    if (isOnline && selectedSpecies !== BLOOM_CODE) return;
     closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
-  }, [isOnline]);
+  }, [isOnline, selectedSpecies]);
 
   // routeStart deliberately read, not depended on: re-centering on every GPS
   // tick would fight the user panning around while the panel is open.
@@ -1261,6 +1276,67 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     visibleAnimatedStopCount,
   ]);
 
+  // Cherry blossom (lib/bloom.ts). Its tiles are added the first time it is picked,
+  // not with the style: the style's overlay block is species scores only, and
+  // species:check and the style tests hold it to that. The rest works as for a
+  // species: the slider, the legend (with its own scale) and the info modal.
+  const isBloom = selectedSpecies === BLOOM_CODE;
+  const bloomLegend = isBloom
+    ? {
+        gradient: bloomGradientCss(),
+        low: t('bloom.later'),
+        label: t('bloom.legend'),
+        high: t('bloom.past'),
+      }
+    : {};
+
+  useEffect(() => {
+    const instance = map.current;
+    // Off-season there is nothing to fetch: no tiles yet, or last season's.
+    if (!instance || !mapLoaded || !isBloom || !bloomInSeason(new Date()))
+      return;
+    const layers = instance.getStyle()?.layers ?? [];
+    // Same place in the stack as the species fills, and the same opacity: over
+    // the basemap's land and towns, under its roads and labels.
+    const beforeId = layers.find(
+      layer =>
+        'source' in layer &&
+        typeof layer.source === 'string' &&
+        layer.source.startsWith('overlay')
+    )?.id;
+    const species = layers.find(
+      layer => layer.id === `${DEFAULT_MAP_SPECIES}_ne` && layer.type === 'fill'
+    ) as maplibregl.FillLayerSpecification | undefined;
+    for (const region of BLOOM_REGION_CODES) {
+      if (!instance.getSource(bloomSourceId(region))) {
+        instance.addSource(bloomSourceId(region), {
+          type: 'vector',
+          url: bloomTilesUrl(region),
+        });
+      }
+      if (!instance.getLayer(bloomLayerId(region))) {
+        instance.addLayer(
+          {
+            id: bloomLayerId(region),
+            type: 'fill',
+            source: bloomSourceId(region),
+            'source-layer': `${region}_bloom`,
+            layout: { visibility: 'none' },
+            paint: {
+              'fill-color': bloomFillColor(unixDay(new Date())),
+              'fill-opacity': species?.paint?.['fill-opacity'] ?? 0.85,
+              // Off at every zoom: the cells share their edges, and an
+              // antialiased edge draws them as a faint grid.
+              'fill-antialias': false,
+            },
+          },
+          beforeId
+        );
+      }
+    }
+    updateVisibleLayers();
+  }, [mapLoaded, isBloom, updateVisibleLayers]);
+
   // Show feature info on click
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -1277,17 +1353,46 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               id.startsWith(selectedSpecies) &&
               map.current?.getLayoutProperty(id, 'visibility') === 'visible'
           ) || [];
-      const features = map.current?.queryRenderedFeatures(e.point, {
-        layers,
-      });
-      if (features && features.length > 0) {
-        const f = features[0];
+      const isBloomClick = selectedSpecies === BLOOM_CODE;
+      // Towns are a few pixels wide at country zoom, so a cherry blossom tap
+      // counts within 5 px.
+      const { x, y } = e.point;
+      const features = map.current?.queryRenderedFeatures(
+        isBloomClick
+          ? [
+              [x - 5, y - 5],
+              [x + 5, y + 5],
+            ]
+          : e.point,
+        { layers }
+      );
+      // A cherry blossom cell carries a peak date. Only last season's file,
+      // waiting for 1 February's run, has nothing to list; where two regions
+      // overlap, the other one may already hold this season's.
+      const f = isBloomClick
+        ? features?.find(
+            candidate =>
+              bloomStatus(
+                Number(candidate.properties?.peak),
+                unixDay(new Date()) + activeDay
+              ) !== 'stale'
+          )
+        : features?.[0];
+      if (f) {
         // Each feature carries both endpoints (`_score` = d0/today, `_score_d6` = day 6).
         // Always fold them to the active day's value (frac 0 on day 0 == today exactly) so
         // the modal shows day-appropriate scores and never the raw `_score_d6` keys.
         const feature = {
           ...f,
-          geometry: f.geometry, // getter on MapGeoJSONFeature; spread drops it
+          // A getter on MapGeoJSONFeature, which the spread drops. A cherry
+          // blossom feature is every town with that peak day, so its place is
+          // the tap, not the biggest of those towns.
+          geometry: isBloomClick
+            ? {
+                type: 'Point' as const,
+                coordinates: [e.lngLat.lng, e.lngLat.lat],
+              }
+            : f.geometry,
           properties: interpolateScores(
             f.properties || {},
             activeDay / (FORECAST_DAYS - 1)
@@ -1523,7 +1628,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           {/* Map theme selector (Light/Dark/White/Dark Matter/Topographic) */}
           <MapThemeSelector isOnline={isOnline} />
 
-          {isOnline && (
+          {isOnline && !isBloom && (
             <Button
               variant='outline'
               size='icon'
@@ -1581,7 +1686,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                   what the fit pads the bottom to. */}
               <div className={activeRoute ? 'hidden' : 'contents'}>
                 <ForecastSlider />
-                <MapInfoCard />
+                <MapInfoCard {...bloomLegend} />
               </div>
             </div>
             {/* Recedes while the route draws instead of unmounting: the
@@ -1626,7 +1731,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               className='absolute bottom-2 left-2 z-10 flex flex-col gap-2 md:w-96'
             >
               <ForecastSlider />
-              <MapInfoCard />
+              <MapInfoCard {...bloomLegend} />
             </div>
             {isRoutePanelOpen ? (
               <div
@@ -1681,6 +1786,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         }}
         hideDirections={isModalFromLocateMe || !isOnline}
         dataNerdRegion={isOnline ? dataNerdRegion : null}
+        bloomDay={isBloom ? unixDay(new Date()) + activeDay : undefined}
       />
 
       {/* Mounted only once opened, so the ONNX chunk is never fetched by a user
