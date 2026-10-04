@@ -119,5 +119,18 @@
     "title": "Nessuna connessione",
     "noPackageMessage": "Nessun pacchetto scaricato copre quest'area. Riconnettiti o torna in un'area salvata.",
     "forecastOnlyMessage": "Previsione offline caricata. La mappa di base dettagliata richiede una connessione."
+  },
+  "bloom": {
+    "name": "Fioritura dei ciliegi",
+    "spectacles": "Spettacoli",
+    "legend": "Piena fioritura",
+    "later": "3+ settimane",
+    "past": "Passata",
+    "offSeason": "La previsione della fioritura dei ciliegi parte il 1° febbraio.",
+    "atPeak": "in piena fioritura",
+    "inDays_one": "tra {{count}} giorno",
+    "inDays_other": "tra {{count}} giorni",
+    "daysAgo_one": "{{count}} giorno fa",
+    "daysAgo_other": "{{count}} giorni fa"
   }
 }

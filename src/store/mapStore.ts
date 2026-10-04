@@ -20,6 +20,13 @@ import {
   FORECAST_DAYS,
 } from '@/lib/forecast';
 import type { RegionId } from '@/lib/data';
+import {
+  BLOOM_CODE,
+  bloomFillColor,
+  bloomInSeason,
+  isBloomLayer,
+  unixDay,
+} from '@/lib/bloom';
 
 export interface MapViewport {
   latitude: number;
@@ -147,7 +154,10 @@ export function forecastRegionForCoordinate([longitude, latitude]: [
   return latitude < seMaxLatitude ? 'SE' : 'NE';
 }
 
-const MAP_SPECIES_CODES = SPECIES_DATA.filter(s => s.showOnMap).map(s => s.id);
+const MAP_SPECIES_CODES = [
+  ...SPECIES_DATA.filter(s => s.showOnMap).map(s => s.id),
+  BLOOM_CODE,
+];
 
 // The species LIST follows the viewport: a US GPS fix does not make US-only species
 // meaningful while the map shows Europe. The SELECTION does not. Panning a pine
@@ -550,6 +560,21 @@ export const useMapStore = create<MapState>()(
                     );
                   }
                   mapRef.setLayoutProperty(id, 'visibility', 'visible');
+                } else {
+                  mapRef.setLayoutProperty(id, 'visibility', 'none');
+                }
+              } else if (isBloomLayer(id)) {
+                // Coloured by days to peak on the slider's day, not by a score.
+                // Out of season (July-January) there is nothing to show: finished
+                // towns stay green until 30 June, then the layer goes.
+                if (bloomInSeason(new Date())) {
+                  mapRef.setPaintProperty(
+                    id,
+                    'fill-color',
+                    bloomFillColor(unixDay(new Date()) + activeDay)
+                  );
+                  mapRef.setLayoutProperty(id, 'visibility', 'visible');
+                  drawn = true;
                 } else {
                   mapRef.setLayoutProperty(id, 'visibility', 'none');
                 }
