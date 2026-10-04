@@ -23,7 +23,7 @@
           "id": "basemap",
           "kind": "basemap",
           "version": "4fa1f6eaa3bd4bb4255ddff41be4f32aec0cf4e5908737a89dae7a5a0de04f82",
-          "sourceUrl": "https://data.fung.es/basemap/world_z12_20260619.pmtiles",
+          "sourceUrl": "https://data.fung.es/basemap/world_z11_20260619.pmtiles",
           "downloadUrl": "https://data.fung.es/basemap/europe_z8_20260901.pmtiles",
           "sizeBytes": 185153517,
           "sha256": "4fa1f6eaa3bd4bb4255ddff41be4f32aec0cf4e5908737a89dae7a5a0de04f82"
@@ -67,7 +67,7 @@
           "id": "basemap",
           "kind": "basemap",
           "version": "c6cf3598edef85273e387c5c8d794278abade00a2b102dc79ca40841cbbc70a8",
-          "sourceUrl": "https://data.fung.es/basemap/world_z12_20260619.pmtiles",
+          "sourceUrl": "https://data.fung.es/basemap/world_z11_20260619.pmtiles",
           "downloadUrl": "https://data.fung.es/basemap/usa_z8_20260901.pmtiles",
           "sizeBytes": 55283201,
           "sha256": "c6cf3598edef85273e387c5c8d794278abade00a2b102dc79ca40841cbbc70a8"

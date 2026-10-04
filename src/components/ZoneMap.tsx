@@ -28,7 +28,7 @@ const REGION_BOUNDS: Record<string, LatLngBounds> = {
   ],
 };
 
-const BASEMAP_URL = 'https://data.fung.es/basemap/world_z12_20260619.pmtiles';
+const BASEMAP_URL = 'https://data.fung.es/basemap/world_z11_20260619.pmtiles';
 
 function SelfHostedBasemap({ language }: { language: string }) {
   const map = useMap();
