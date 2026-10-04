@@ -297,6 +297,46 @@
       "name": "Matsutake",
       "description": "Un fungo sodo, bianco e bruno, dal profumo speziato di cannella, il più pregiato di tutti in Giappone",
       "howTo": "Cercalo nelle pinete secche e sabbiose da agosto nei paesi nordici, e sotto conifere e tanoak da settembre a novembre nell'ovest degli Stati Uniti. Non rastrellare mai il terreno. In Svezia e Norvegia è nella lista rossa per i tagli forestali, non per la raccolta; nelle foreste nazionali statunitensi serve un permesso"
+    },
+    "ramps": {
+      "name": "Aglio selvatico americano",
+      "description": "L'aglio orsino d'America: foglie larghe, lisce e verdi su steli violacei, dal forte odore di cipolla e aglio",
+      "howTo": "Cercalo nei boschi di latifoglie ricchi e umidi dell'est degli Stati Uniti da marzo a maggio, prima che gli alberi mettano le foglie. Prendi una foglia per pianta e lascia il bulbo; alcuni parchi ne vietano la raccolta e il Québec ne vieta la vendita"
+    },
+    "fiddleheads": {
+      "name": "Felce penna di struzzo",
+      "description": "Le giovani fronde arrotolate della felce penna di struzzo: lisce, verde brillante, con squame brune cartacee",
+      "howTo": "Cercali nelle piane alluvionali dei fiumi e nei boschi umidi da fine aprile a maggio, finché le fronde sono ancora arrotolate. Bollili sempre prima di mangiarli e prendi al massimo metà dei germogli di un cespo"
+    },
+    "cloudberry": {
+      "name": "Camemoro",
+      "description": "Una bacca color ambra delle torbiere del nord, simile a un lampone morbido, amatissima nei paesi nordici",
+      "howTo": "Cercalo nelle torbiere aperte e nelle brughiere umide della Fennoscandia a luglio e agosto, quando le bacche passano da rosse e dure a morbide e giallo ambra. Una gelata durante la fioritura può rovinare il raccolto di un anno"
+    },
+    "huckleberry": {
+      "name": "Huckleberry",
+      "description": "Una bacca di montagna nero-violacea del nord-ovest degli Stati Uniti, più dolce e più aspra di un mirtillo",
+      "howTo": "Cercala sui pendii subalpini e nelle vecchie aree bruciate tra 1.000 e 2.000 m in Montana, Idaho e nelle Cascate da luglio a settembre. È territorio degli orsi: fai rumore e porta lo spray antiorso"
+    },
+    "pawpaw": {
+      "name": "Asimina",
+      "description": "Il più grande frutto nativo del Nord America: verde, a forma di mango, con una polpa cremosa che sa di banana e mango",
+      "howTo": "Cercala nel sottobosco delle foreste di fondovalle fluviale dell'est degli Stati Uniti da fine agosto a ottobre, quando il frutto si ammorbidisce e cade. Mangia solo la polpa: buccia e semi sono velenosi"
+    },
+    "rose_hips": {
+      "name": "Bacche di rosa canina",
+      "description": "I frutti rossi autunnali delle rose selvatiche, ricchi di vitamina C e pieni di semi avvolti da peli urticanti",
+      "howTo": "Cercale su siepi, arbusteti e margini dei boschi da fine agosto a novembre; sono più morbide dopo le prime gelate. Togli semi e peli, che irritano bocca e intestino"
+    },
+    "sloes": {
+      "name": "Prugnole",
+      "description": "I piccoli frutti blu-neri del prugnolo spinoso, coperti di pruina e dal sapore asprissimo",
+      "howTo": "Cercale su siepi e pendii cespugliosi da settembre a novembre; si addolciscono dopo le prime gelate. Non schiacciare i noccioli e attenzione ai sosia neri e lucidi come lo spincervino e la belladonna"
+    },
+    "sea_buckthorn": {
+      "name": "Olivello spinoso",
+      "description": "Bacche arancione vivo fitte lungo rami spinosi dalle foglie argentate: aspre e ricche di vitamina C",
+      "howTo": "Cercalo sulle dune costiere e sulle rive ghiaiose dei fiumi da agosto a ottobre. Usa i guanti per le spine e informati sulle regole: nelle riserve dunali la raccolta è spesso vietata"
     }
   },
   "search_placeholder": "Cerca una specie"

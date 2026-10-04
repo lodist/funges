@@ -77,7 +77,15 @@
     "giant_puffball": "Bejín gigante",
     "matsutake": "Matsutake",
     "lions_mane": "Melena de león",
-    "hen_of_the_woods": "Maitake"
+    "hen_of_the_woods": "Maitake",
+    "ramps": "Puerro silvestre americano",
+    "fiddleheads": "Helecho avestruz",
+    "cloudberry": "Mora de los pantanos",
+    "huckleberry": "Huckleberry",
+    "pawpaw": "Asimina",
+    "rose_hips": "Escaramujos",
+    "sloes": "Endrinas",
+    "sea_buckthorn": "Espino amarillo"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -1446,6 +1454,417 @@
       "safetyNotes": [
         "En el noroeste del Pacífico, en Norteamérica, el matsutake tiene un doble mortal, Amanita smithiana: blanca, con la base del pie engrosada que se afina en el suelo como una raíz y está rodeada de restos blancos de velo, y sin el olor especiado a canela. Destruye los riñones: revisa la base y el olor de cada seta.",
         "Recoge los matsutake sin rastrillar ni remover el suelo: el rastrillo destruye el micelio, y rastrillar está prohibido en muchos bosques nacionales de Estados Unidos, donde además necesitas un permiso para recolectarlos."
+      ]
+    },
+    "pickled-ramps": {
+      "title": "Puerros silvestres encurtidos al estilo de los Apalaches",
+      "ingredients": [
+        "Unos 200 g de puerros silvestres (ramps) con su bulbo, unas 40 plantas, comprados o recogidos de pocos en pocos en colonias grandes",
+        "150 ml de vinagre de manzana",
+        "150 ml de agua",
+        "1 cucharada de azúcar",
+        "1 cucharadita y media de sal fina",
+        "1 cucharadita de semillas de mostaza amarilla",
+        "½ cucharadita de pimienta negra en grano",
+        "1 hoja de laurel",
+        "Una pizca de guindilla en copos (opcional)"
+      ],
+      "instructions": [
+        "Limpiar: Corta las raíces y quita la piel exterior suelta de cada bulbo. Corta las hojas donde se unen al tallo y guárdalas para otro uso, como un pesto o unos huevos revueltos. Lava bien los bulbos y los tallos con agua fría.",
+        "Envasar: Coloca los bulbos y los tallos de pie en un tarro esterilizado de unos 400 ml, recortándolos si hace falta.",
+        "Salmuera: Lleva a ebullición el vinagre con el agua, el azúcar, la sal, la mostaza, la pimienta, el laurel y la guindilla, removiendo hasta que se disuelvan el azúcar y la sal.",
+        "Cubrir: Vierte la salmuera hirviendo sobre los puerros hasta cubrirlos 1 cm, metiendo la hoja de laurel junto al cristal. Da unos golpecitos al tarro para que salgan las burbujas de aire y ciérralo.",
+        "Reposar: Deja que se enfríe y guárdalo en la nevera. Espera al menos 3 días antes de comerlos; aguantan hasta 2 meses en la nevera. Sírvelos con alubias y pan de maíz, en bocadillos o con queso."
+      ],
+      "species": ["ramps"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpiar: Corta las raíces y quita la piel exterior suelta de cada bulbo. Corta las hojas donde se unen al tallo y guárdalas para otro uso, como un pesto o unos huevos revueltos. Lava bien los bulbos y los tallos con agua fría."
+        },
+        {
+          "step": 2,
+          "instruction": "Envasar: Coloca los bulbos y los tallos de pie en un tarro esterilizado de unos 400 ml, recortándolos si hace falta."
+        },
+        {
+          "step": 3,
+          "instruction": "Salmuera: Lleva a ebullición el vinagre con el agua, el azúcar, la sal, la mostaza, la pimienta, el laurel y la guindilla, removiendo hasta que se disuelvan el azúcar y la sal."
+        },
+        {
+          "step": 4,
+          "instruction": "Cubrir: Vierte la salmuera hirviendo sobre los puerros hasta cubrirlos 1 cm, metiendo la hoja de laurel junto al cristal. Da unos golpecitos al tarro para que salgan las burbujas de aire y ciérralo."
+        },
+        {
+          "step": 5,
+          "instruction": "Reposar: Deja que se enfríe y guárdalo en la nevera. Espera al menos 3 días antes de comerlos; aguantan hasta 2 meses en la nevera. Sírvelos con alubias y pan de maíz, en bocadillos o con queso."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Recoge de forma sostenible. El puerro silvestre crece despacio, pasan años desde la semilla hasta la cosecha, y la recolección excesiva ha acabado con colonias enteras. Toma una sola hoja por planta y deja el bulbo, o como mucho unos pocos bulbos de una colonia grande y densa. No arrases nunca una colonia.",
+        "En algunos parques está prohibido recogerlo, como en el Parque Nacional de las Grandes Montañas Humeantes. Quebec prohíbe vender puerro silvestre recolectado en la naturaleza y limita la recogida personal a 200 g, o 50 bulbos o plantas, por persona y año.",
+        "Tiene dobles venenosos: el lirio de los valles y el falso eléboro verde (Veratrum viride). Estruja una hoja de cada planta: el puerro silvestre huele mucho a cebolla o a ajo, y sus dobles no. El olor se queda en los dedos, así que no te fíes de él cuando ya tengas las manos impregnadas."
+      ]
+    },
+    "sauteed-fiddleheads": {
+      "title": "Brotes de helecho avestruz salteados con ajo y limón",
+      "ingredients": [
+        "400 g de brotes enrollados de helecho avestruz",
+        "Sal gorda para el agua de cocción",
+        "30 g de mantequilla",
+        "1 cucharada de aceite de oliva",
+        "2 dientes de ajo en láminas finas",
+        "La ralladura de ½ limón y 1 cucharada de zumo",
+        "Sal y pimienta negra"
+      ],
+      "instructions": [
+        "Limpiar: Recorta los extremos marrones de los tallos. Quita con los dedos las escamas marrones, finas como el papel, y lava los brotes en varias aguas frías hasta que el agua salga limpia.",
+        "Hervir: Lleva a ebullición una olla grande de agua con sal, echa los brotes y hiérvelos 15 minutos (o cuécelos al vapor 10–12 minutos). Escúrrelos y tira el agua de cocción.",
+        "Saltear: Calienta la mantequilla con el aceite en una sartén amplia, añade el ajo y rehógalo a fuego suave 1 minuto. Incorpora los brotes y saltéalos 3–4 minutos a fuego medio-alto, hasta que se doren un poco.",
+        "Sazonar: Aparta del fuego, añade la ralladura y el zumo de limón y salpimienta.",
+        "Servir: Enseguida, como guarnición de pescado o huevos, o sobre una tostada con mantequilla."
+      ],
+      "species": ["fiddleheads"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpiar: Recorta los extremos marrones de los tallos. Quita con los dedos las escamas marrones, finas como el papel, y lava los brotes en varias aguas frías hasta que el agua salga limpia."
+        },
+        {
+          "step": 2,
+          "instruction": "Hervir: Lleva a ebullición una olla grande de agua con sal, echa los brotes y hiérvelos 15 minutos (o cuécelos al vapor 10–12 minutos). Escúrrelos y tira el agua de cocción."
+        },
+        {
+          "step": 3,
+          "instruction": "Saltear: Calienta la mantequilla con el aceite en una sartén amplia, añade el ajo y rehógalo a fuego suave 1 minuto. Incorpora los brotes y saltéalos 3–4 minutos a fuego medio-alto, hasta que se doren un poco."
+        },
+        {
+          "step": 4,
+          "instruction": "Sazonar: Aparta del fuego, añade la ralladura y el zumo de limón y salpimienta."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Enseguida, como guarnición de pescado o huevos, o sobre una tostada con mantequilla."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "side", "easy"],
+      "safetyNotes": [
+        "Recoge solo helecho avestruz. Sus brotes son lisos y de un verde intenso, con escamas marrones como de papel, y por la cara interna del tallo corre un surco profundo en forma de U. No recojas nunca helecho águila, que es velloso, tiene la punta ramificada y es cancerígeno.",
+        "No comas nunca los brotes crudos o poco hechos: han provocado intoxicaciones alimentarias colectivas. Lávalos y hiérvelos 15 minutos (o cuécelos al vapor 10–12 minutos) y tira el agua, antes de saltearlos.",
+        "No cojas más de la mitad de los brotes de una misma mata, para que la planta sobreviva. En Alemania el helecho avestruz está protegido y está prohibido recogerlo en la naturaleza."
+      ]
+    },
+    "cloudberry-cream": {
+      "title": "Crema de moras de los pantanos a la noruega (multekrem)",
+      "ingredients": [
+        "300 g de moras de los pantanos maduras, frescas o congeladas y descongeladas",
+        "2 cucharadas de azúcar, para las bayas",
+        "300 ml de nata para montar muy fría",
+        "1 cucharada de azúcar glas, para la nata",
+        "1 cucharadita de azúcar avainillado o unas gotas de extracto de vainilla",
+        "Barquillos krumkake o galletas crujientes de almendra para servir (opcional)"
+      ],
+      "instructions": [
+        "Azucarar: Repasa las bayas y aparta unas cuantas de las más bonitas para decorar. Espolvorea el resto con el azúcar y déjalas reposar 15 minutos, hasta que suelten algo de jugo.",
+        "Montar: Monta la nata fría con el azúcar glas y el azúcar avainillado hasta que forme picos suaves. No la montes demasiado: solo tiene que sostenerse.",
+        "Mezclar: Incorpora con cuidado las bayas y su jugo a la nata con una espátula, con pocos movimientos envolventes, para que queden enteras.",
+        "Servir: Reparte en vasos o cuencos, decora con las bayas reservadas y sirve bien frío, con los barquillos o las galletas. En Noruega es un postre de Navidad."
+      ],
+      "species": ["cloudberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Azucarar: Repasa las bayas y aparta unas cuantas de las más bonitas para decorar. Espolvorea el resto con el azúcar y déjalas reposar 15 minutos, hasta que suelten algo de jugo."
+        },
+        {
+          "step": 2,
+          "instruction": "Montar: Monta la nata fría con el azúcar glas y el azúcar avainillado hasta que forme picos suaves. No la montes demasiado: solo tiene que sostenerse."
+        },
+        {
+          "step": 3,
+          "instruction": "Mezclar: Incorpora con cuidado las bayas y su jugo a la nata con una espátula, con pocos movimientos envolventes, para que queden enteras."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir: Reparte en vasos o cuencos, decora con las bayas reservadas y sirve bien frío, con los barquillos o las galletas. En Noruega es un postre de Navidad."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "0 min",
+      "servings": "4–6",
+      "tags": ["vegetarian", "dessert", "easy"],
+      "safetyNotes": [
+        "Recoge solo bayas maduras, blandas y de color amarillo ámbar. Las que aún no están maduras son duras y rojas.",
+        "Respeta las normas locales de recolección. En el norte de Noruega, en Nordland, Troms y Finnmark, los propietarios pueden prohibir la recogida de moras de los pantanos en sus tierras: fíjate en los carteles (comerlas allí mismo siempre está permitido)."
+      ]
+    },
+    "huckleberry-pie": {
+      "title": "Tarta de huckleberries de Montana",
+      "ingredients": [
+        "700 g de huckleberries, frescos o congelados (no hace falta descongelarlos)",
+        "150 g de azúcar, más 1 cucharada para espolvorear",
+        "30 g de maicena",
+        "1 cucharada de zumo de limón",
+        "320 g de harina de trigo",
+        "225 g de mantequilla fría en dados",
+        "1 cucharadita de sal",
+        "90–120 ml de agua helada",
+        "1 huevo batido para pintar"
+      ],
+      "instructions": [
+        "Hacer la masa: Frota la mantequilla con la harina y la sal con la punta de los dedos hasta obtener unas migas gruesas, con algunos trocitos de mantequilla del tamaño de un guisante. Añade el agua helada cucharada a cucharada y junta la masa. Divídela en dos discos, envuélvelos en film y déjalos en la nevera al menos 30 minutos.",
+        "Rellenar: Precalienta el horno a 220 °C. Estira un disco y forra con él un molde de 23 cm. Mezcla los huckleberries con el azúcar, la maicena y el zumo de limón y vuélcalos sobre la masa.",
+        "Cubrir: Estira el segundo disco, colócalo sobre el relleno, recorta lo que sobre y pellizca los bordes para sellarlos. Haz unos cortes en la superficie, píntala con el huevo y espolvorea el azúcar restante.",
+        "Hornear: Hornea 20 minutos, luego baja a 180 °C y hornea 40 minutos más, hasta que la masa esté bien dorada y por los cortes burbujee un jugo espeso. Pon una bandeja debajo para recoger lo que gotee.",
+        "Enfriar: Deja que la tarta se enfríe al menos 3 horas para que el relleno cuaje antes de cortarla. Sírvela con helado de vainilla o nata montada."
+      ],
+      "species": ["huckleberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Hacer la masa: Frota la mantequilla con la harina y la sal con la punta de los dedos hasta obtener unas migas gruesas, con algunos trocitos de mantequilla del tamaño de un guisante. Añade el agua helada cucharada a cucharada y junta la masa. Divídela en dos discos, envuélvelos en film y déjalos en la nevera al menos 30 minutos."
+        },
+        {
+          "step": 2,
+          "instruction": "Rellenar: Precalienta el horno a 220 °C. Estira un disco y forra con él un molde de 23 cm. Mezcla los huckleberries con el azúcar, la maicena y el zumo de limón y vuélcalos sobre la masa."
+        },
+        {
+          "step": 3,
+          "instruction": "Cubrir: Estira el segundo disco, colócalo sobre el relleno, recorta lo que sobre y pellizca los bordes para sellarlos. Haz unos cortes en la superficie, píntala con el huevo y espolvorea el azúcar restante."
+        },
+        {
+          "step": 4,
+          "instruction": "Hornear: Hornea 20 minutos, luego baja a 180 °C y hornea 40 minutos más, hasta que la masa esté bien dorada y por los cortes burbujee un jugo espeso. Pon una bandeja debajo para recoger lo que gotee."
+        },
+        {
+          "step": 5,
+          "instruction": "Enfriar: Deja que la tarta se enfríe al menos 3 horas para que el relleno cuaje antes de cortarla. Sírvela con helado de vainilla o nata montada."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "45 min",
+      "cookTime": "60 min",
+      "servings": "6–8",
+      "tags": ["vegetarian", "dessert", "medium"],
+      "safetyNotes": [
+        "Los huckleberries son de color negro azulado a morado, con una pequeña corona en la punta como los arándanos. No comas bayas rojas o blancas en racimos (las de Actaea son venenosas) ni ninguna baya de la que no estés seguro.",
+        "Las zonas de huckleberries son territorio de osos: haz ruido y lleva espray antiosos."
+      ]
+    },
+    "pawpaw-ice-cream": {
+      "title": "Helado de asimina sin heladera",
+      "ingredients": [
+        "400 g de pulpa de asimina madura (de unos 4–6 frutos)",
+        "1 lata (397 g) de leche condensada",
+        "400 ml de nata para montar muy fría",
+        "El zumo de 1 lima",
+        "Una pizca de sal",
+        "1 cucharadita de extracto de vainilla (opcional)"
+      ],
+      "instructions": [
+        "Sacar la pulpa: Parte las asiminas maduras por la mitad y saca la pulpa con una cuchara, sin la piel. Quita a mano todas las semillas: no puede ir ni una a la batidora.",
+        "Triturar: Tritura la pulpa con el zumo de lima, la leche condensada, la sal y la vainilla hasta obtener una crema fina. La lima mantiene vivo el color.",
+        "Montar: En un bol grande, monta la nata hasta que forme picos suaves.",
+        "Mezclar: Incorpora la crema de asimina a la nata en dos o tres veces, con movimientos envolventes, hasta que no queden vetas. Vierte en un molde de cake o en un recipiente apto para el congelador.",
+        "Congelar: Tapa y congela al menos 6 horas, o toda la noche. Deja que se ablande 10 minutos antes de servir las bolas."
+      ],
+      "species": ["pawpaw"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sacar la pulpa: Parte las asiminas maduras por la mitad y saca la pulpa con una cuchara, sin la piel. Quita a mano todas las semillas: no puede ir ni una a la batidora."
+        },
+        {
+          "step": 2,
+          "instruction": "Triturar: Tritura la pulpa con el zumo de lima, la leche condensada, la sal y la vainilla hasta obtener una crema fina. La lima mantiene vivo el color."
+        },
+        {
+          "step": 3,
+          "instruction": "Montar: En un bol grande, monta la nata hasta que forme picos suaves."
+        },
+        {
+          "step": 4,
+          "instruction": "Mezclar: Incorpora la crema de asimina a la nata en dos o tres veces, con movimientos envolventes, hasta que no queden vetas. Vierte en un molde de cake o en un recipiente apto para el congelador."
+        },
+        {
+          "step": 5,
+          "instruction": "Congelar: Tapa y congela al menos 6 horas, o toda la noche. Deja que se ablande 10 minutos antes de servir las bolas."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "0 min",
+      "servings": "6–8",
+      "tags": ["vegetarian", "dessert", "easy"],
+      "safetyNotes": [
+        "Come solo fruta madura, y nunca la piel ni las semillas grandes. Las semillas son venenosas: no las aplastes ni las tritures.",
+        "A algunas personas la asimina les provoca malestar de estómago o una erupción en la piel, así que prueba un poco primero."
+      ]
+    },
+    "rose-hip-syrup": {
+      "title": "Jarabe de escaramujo a la inglesa",
+      "ingredients": [
+        "1 kg de escaramujos maduros",
+        "3 litros de agua",
+        "500 g de azúcar",
+        "El zumo de 1 limón (opcional)",
+        "Una bolsa de tela para colar o un paño fino, y botellas esterilizadas"
+      ],
+      "instructions": [
+        "Preparar: Lava los escaramujos, quítales el rabito y la punta seca y pícalos en trozos gruesos con la picadora o con un cuchillo.",
+        "Primera infusión: Lleva 2 litros de agua a ebullición, añade los escaramujos y deja que vuelva a hervir; retira del fuego y déjalo reposar 15 minutos. Viértelo en la bolsa o el paño escaldados y deja que escurra el jugo.",
+        "Segunda infusión: Vuelve a poner la pulpa en la olla con el litro de agua restante, llévala a ebullición, deja reposar 10 minutos y cuela otra vez. Después pasa todo el jugo una vez más por un paño fino y limpio, para retener hasta el último pelillo.",
+        "Reducir: Hierve el jugo hasta que se reduzca a 1 litro, más o menos. Añade el azúcar y el zumo de limón, remueve hasta que se disuelva el azúcar y hierve 5 minutos.",
+        "Embotellar: Vierte el jarabe caliente en botellas esterilizadas calientes y ciérralas. Una vez abierto, guárdalo en la nevera y consúmelo en 2 semanas. Úsalo sobre tortitas o helado, o diluido en agua como refresco."
+      ],
+      "species": ["rose_hips"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar: Lava los escaramujos, quítales el rabito y la punta seca y pícalos en trozos gruesos con la picadora o con un cuchillo."
+        },
+        {
+          "step": 2,
+          "instruction": "Primera infusión: Lleva 2 litros de agua a ebullición, añade los escaramujos y deja que vuelva a hervir; retira del fuego y déjalo reposar 15 minutos. Viértelo en la bolsa o el paño escaldados y deja que escurra el jugo."
+        },
+        {
+          "step": 3,
+          "instruction": "Segunda infusión: Vuelve a poner la pulpa en la olla con el litro de agua restante, llévala a ebullición, deja reposar 10 minutos y cuela otra vez. Después pasa todo el jugo una vez más por un paño fino y limpio, para retener hasta el último pelillo."
+        },
+        {
+          "step": 4,
+          "instruction": "Reducir: Hierve el jugo hasta que se reduzca a 1 litro, más o menos. Añade el azúcar y el zumo de limón, remueve hasta que se disuelva el azúcar y hierve 5 minutos."
+        },
+        {
+          "step": 5,
+          "instruction": "Embotellar: Vierte el jarabe caliente en botellas esterilizadas calientes y ciérralas. Una vez abierto, guárdalo en la nevera y consúmelo en 2 semanas. Úsalo sobre tortitas o helado, o diluido en agua como refresco."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "60 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "drink", "medium"],
+      "safetyNotes": [
+        "Los pelillos que rodean las semillas irritan la boca y el intestino: son los polvos pica-pica de toda la vida. Cuela el jarabe dos veces por un paño fino o una bolsa de tela.",
+        "Recoge escaramujos de un rojo intenso y algo blandos, a ser posible después de las primeras heladas. No los recojas junto a carreteras con mucho tráfico."
+      ]
+    },
+    "sloe-jelly": {
+      "title": "Jalea de endrinas y manzana",
+      "ingredients": [
+        "1 kg de endrinas maduras",
+        "1 kg de manzanas para cocinar, tipo reineta",
+        "Unos 1,2 litros de agua",
+        "Azúcar: 750 g por cada litro de jugo",
+        "Una bolsa de tela para colar y tarros esterilizados"
+      ],
+      "instructions": [
+        "Preparar: Enjuaga las endrinas y quítales los rabitos y las hojas. Trocea las manzanas sin pelarlas ni quitarles el corazón: la piel y el corazón tienen la pectina que hace cuajar la jalea.",
+        "Cocer: Pon las endrinas y las manzanas en una olla grande con agua justo hasta cubrirlas. Cuece a fuego suave unos 45 minutos, removiendo de vez en cuando, hasta que la fruta esté muy blanda. Aplasta un poco las manzanas con una cuchara, pero no las endrinas, para que los huesos queden enteros.",
+        "Colar: Vuelca todo en la bolsa de tela escaldada, colgada sobre un bol, y deja que gotee varias horas o toda la noche. No aprietes la bolsa o la jalea saldrá turbia.",
+        "Hervir: Mide el jugo, ponlo en una olla limpia y añade 750 g de azúcar por cada litro. Remueve a fuego suave hasta que se disuelva el azúcar y luego hierve a fuego fuerte 10–15 minutos, hasta el punto de gelificación: 105 °C, o una gota en un plato frío se arruga al empujarla con el dedo.",
+        "Envasar: Espuma, vierte en tarros esterilizados calientes y ciérralos. Sírvela con cordero asado, caza o queso."
+      ],
+      "species": ["sloes"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar: Enjuaga las endrinas y quítales los rabitos y las hojas. Trocea las manzanas sin pelarlas ni quitarles el corazón: la piel y el corazón tienen la pectina que hace cuajar la jalea."
+        },
+        {
+          "step": 2,
+          "instruction": "Cocer: Pon las endrinas y las manzanas en una olla grande con agua justo hasta cubrirlas. Cuece a fuego suave unos 45 minutos, removiendo de vez en cuando, hasta que la fruta esté muy blanda. Aplasta un poco las manzanas con una cuchara, pero no las endrinas, para que los huesos queden enteros."
+        },
+        {
+          "step": 3,
+          "instruction": "Colar: Vuelca todo en la bolsa de tela escaldada, colgada sobre un bol, y deja que gotee varias horas o toda la noche. No aprietes la bolsa o la jalea saldrá turbia."
+        },
+        {
+          "step": 4,
+          "instruction": "Hervir: Mide el jugo, ponlo en una olla limpia y añade 750 g de azúcar por cada litro. Remueve a fuego suave hasta que se disuelva el azúcar y luego hierve a fuego fuerte 10–15 minutos, hasta el punto de gelificación: 105 °C, o una gota en un plato frío se arruga al empujarla con el dedo."
+        },
+        {
+          "step": 5,
+          "instruction": "Envasar: Espuma, vierte en tarros esterilizados calientes y ciérralos. Sírvela con cordero asado, caza o queso."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "60 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "medium"],
+      "safetyNotes": [
+        "Las endrinas son de color negro azulado con una pruina mate, y crecen sueltas en el endrino, un arbusto espinoso. Crudas son muy ásperas. Sus huesos contienen amigdalina, que puede liberar cianuro: no los aplastes.",
+        "Tienen dobles venenosos: la belladona, de bayas negras y brillantes asentadas sobre una estrella verde, en una planta herbácea, no leñosa; y el espino cerval (Rhamnus cathartica), de bayas negras y brillantes en racimos, muy purgantes."
+      ]
+    },
+    "sea-buckthorn-curd": {
+      "title": "Crema de espino amarillo al estilo lemon curd",
+      "ingredients": [
+        "Unos 300 g de bayas de espino amarillo, para 150 ml de zumo",
+        "175 g de azúcar",
+        "3 huevos",
+        "1 yema",
+        "100 g de mantequilla en dados",
+        "Una pizca de sal",
+        "Tarros esterilizados"
+      ],
+      "instructions": [
+        "Sacar el zumo: Enjuaga las bayas y pásalas por un colador fino, presionando con el dorso de una cuchara, hasta obtener unos 150 ml de zumo. Tira las pieles y las semillas.",
+        "Mezclar: En un bol resistente al calor, bate los huevos, la yema, el azúcar y la sal, y añade el zumo sin dejar de batir.",
+        "Cocer: Pon el bol sobre una olla con agua que apenas hierva, sin que toque el agua. Remueve sin parar 10–12 minutos, hasta que la crema nape el dorso de la cuchara (unos 80 °C). No dejes que hierva.",
+        "Terminar: Retira del fuego y añade la mantequilla poco a poco, removiendo hasta que quede lisa. Para una textura sedosa, pásala por un colador.",
+        "Conservar: Viértela en tarros esterilizados templados, ciérralos y deja que se enfríe. Guárdala en la nevera y consúmela en 2 semanas. Úntala en tostadas o scones, o úsala para rellenar tartaletas."
+      ],
+      "species": ["sea_buckthorn"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sacar el zumo: Enjuaga las bayas y pásalas por un colador fino, presionando con el dorso de una cuchara, hasta obtener unos 150 ml de zumo. Tira las pieles y las semillas."
+        },
+        {
+          "step": 2,
+          "instruction": "Mezclar: En un bol resistente al calor, bate los huevos, la yema, el azúcar y la sal, y añade el zumo sin dejar de batir."
+        },
+        {
+          "step": 3,
+          "instruction": "Cocer: Pon el bol sobre una olla con agua que apenas hierva, sin que toque el agua. Remueve sin parar 10–12 minutos, hasta que la crema nape el dorso de la cuchara (unos 80 °C). No dejes que hierva."
+        },
+        {
+          "step": 4,
+          "instruction": "Terminar: Retira del fuego y añade la mantequilla poco a poco, removiendo hasta que quede lisa. Para una textura sedosa, pásala por un colador."
+        },
+        {
+          "step": 5,
+          "instruction": "Conservar: Viértela en tarros esterilizados templados, ciérralos y deja que se enfríe. Guárdala en la nevera y consúmela en 2 semanas. Úntala en tostadas o scones, o úsala para rellenar tartaletas."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "dessert", "medium"],
+      "safetyNotes": [
+        "Recoge bayas de color naranja vivo y jugosas desde finales del verano, a mano o en un cuenco. No rompas ni cortes ramas de los arbustos silvestres: los daña, y en Finlandia está prohibido.",
+        "Recogerlas puede estar prohibido en dunas protegidas y reservas naturales: infórmate de las normas locales. El arbusto tiene muchas espinas: ponte guantes."
       ]
     }
   }

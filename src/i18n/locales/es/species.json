@@ -298,6 +298,46 @@
       "name": "Matsutake",
       "description": "Una seta firme, blanca y parda, de olor especiado a canela, la más apreciada de todas en Japón",
       "howTo": "Búscala en pinares secos y arenosos desde agosto en los países nórdicos, y bajo coníferas y tanoaks de septiembre a noviembre en el oeste de EE. UU. No rastrilles nunca el suelo. En Suecia y Noruega está en la lista roja por las talas, no por la recolección; en los bosques nacionales de EE. UU. se necesita un permiso"
+    },
+    "ramps": {
+      "name": "Puerro silvestre americano",
+      "description": "El ajo silvestre de América: hojas anchas, lisas y verdes sobre tallos violáceos, con un fuerte olor a cebolla y ajo",
+      "howTo": "Búscalo en bosques de frondosas ricos y húmedos del este de EE. UU. de marzo a mayo, antes de que los árboles echen hojas. Coge una hoja por planta y deja el bulbo; algunos parques prohíben la recolección y Quebec prohíbe su venta"
+    },
+    "fiddleheads": {
+      "name": "Helecho avestruz",
+      "description": "Las frondas jóvenes y enroscadas del helecho pluma de avestruz: lisas, de un verde vivo y con escamas pardas como de papel",
+      "howTo": "Búscalos en llanuras de inundación y bosques húmedos de finales de abril a mayo, mientras las frondas siguen enroscadas. Hiérvelos siempre antes de comerlos y no cojas más de la mitad de los brotes de una mata"
+    },
+    "cloudberry": {
+      "name": "Mora de los pantanos",
+      "description": "Una baya ámbar de las turberas del norte, parecida a una frambuesa blanda, muy apreciada en los países nórdicos",
+      "howTo": "Búscala en turberas abiertas y brezales húmedos de Fenoscandia en julio y agosto, cuando las bayas pasan de rojas y duras a blandas y amarillo ámbar. Una helada durante la floración puede arruinar la cosecha de un año"
+    },
+    "huckleberry": {
+      "name": "Huckleberry",
+      "description": "Una baya de montaña negro violácea del noroeste de EE. UU., más dulce y más ácida que un arándano",
+      "howTo": "Búscala en laderas subalpinas y antiguas zonas quemadas entre 1.000 y 2.000 m en Montana, Idaho y las Cascadas de julio a septiembre. Es territorio de osos: haz ruido y lleva espray antiosos"
+    },
+    "pawpaw": {
+      "name": "Asimina",
+      "description": "La mayor fruta nativa de Norteamérica: verde y con forma de mango, de pulpa cremosa que sabe a plátano y mango",
+      "howTo": "Búscala en el sotobosque de los bosques de ribera del este de EE. UU. de finales de agosto a octubre, cuando la fruta se ablanda y cae. Come solo la pulpa: la piel y las semillas son venenosas"
+    },
+    "rose_hips": {
+      "name": "Escaramujos",
+      "description": "Los frutos rojos otoñales de las rosas silvestres, ricos en vitamina C y llenos de semillas envueltas en pelos irritantes",
+      "howTo": "Búscalos en setos, matorrales y lindes de bosque de finales de agosto a noviembre; están más blandos tras las primeras heladas. Quita las semillas y los pelos, que irritan la boca y el intestino"
+    },
+    "sloes": {
+      "name": "Endrinas",
+      "description": "Los pequeños frutos azul negruzco del endrino espinoso, con pruina y un sabor muy áspero",
+      "howTo": "Búscalas en setos y laderas con matorral de septiembre a noviembre; se suavizan tras las primeras heladas. No machaques los huesos y cuidado con los parecidos negros y brillantes, como el espino cerval y la belladona"
+    },
+    "sea_buckthorn": {
+      "name": "Espino amarillo",
+      "description": "Bayas de un naranja intenso apretadas a lo largo de ramas espinosas de hojas plateadas: ácidas y ricas en vitamina C",
+      "howTo": "Búscalo en dunas costeras y riberas de grava de agosto a octubre. Usa guantes por las espinas e infórmate: en las reservas de dunas la recolección suele estar prohibida"
     }
   }
 }

@@ -77,7 +77,15 @@
     "giant_puffball": "Bufa-do-diabo",
     "matsutake": "Matsutake",
     "lions_mane": "Juba-de-leão",
-    "hen_of_the_woods": "Maitake"
+    "hen_of_the_woods": "Maitake",
+    "ramps": "Alho-porro-selvagem",
+    "fiddleheads": "Feto-de-avestruz",
+    "cloudberry": "Amora-ártica",
+    "huckleberry": "Huckleberry",
+    "pawpaw": "Asimina",
+    "rose_hips": "Cinórrodos",
+    "sloes": "Abrunhos",
+    "sea_buckthorn": "Espinheiro-marítimo"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -1446,6 +1454,417 @@
       "safetyNotes": [
         "No noroeste do Pacífico, na América do Norte, o matsutake tem um sósia mortal, a Amanita smithiana: branca, com a base do pé engrossada que se afila no solo como uma raiz e está rodeada de restos brancos de véu, e sem o cheiro condimentado a canela. Destrói os rins: verifique a base e o cheiro de cada cogumelo.",
         "Apanhe os matsutake sem usar ancinho nem revolver o solo: o ancinho destrói o micélio, e o seu uso é proibido em muitas florestas nacionais dos Estados Unidos, onde também precisa de uma licença para os apanhar."
+      ]
+    },
+    "pickled-ramps": {
+      "title": "Alho-porro-selvagem em vinagre à moda dos Apalaches",
+      "ingredients": [
+        "Cerca de 200 g de alho-porro-selvagem (ramps) com os bolbos, umas 40 plantas, comprado ou apanhado aos poucos em colónias grandes",
+        "150 ml de vinagre de sidra",
+        "150 ml de água",
+        "1 colher de sopa de açúcar",
+        "1 colher de chá e meia de sal fino",
+        "1 colher de chá de sementes de mostarda amarela",
+        "½ colher de chá de pimenta-preta em grão",
+        "1 folha de louro",
+        "Uma pitada de malagueta em flocos (opcional)"
+      ],
+      "instructions": [
+        "Limpar: Corte as raízes e retire a pele exterior solta de cada bolbo. Corte as folhas onde se juntam ao talo e guarde-as para outro uso, como um pesto ou ovos mexidos. Lave bem os bolbos e os talos em água fria.",
+        "Encher o frasco: Arrume os bolbos e os talos na vertical num frasco esterilizado de cerca de 400 ml, aparando-os se for preciso.",
+        "Salmoura: Leve a ferver o vinagre com a água, o açúcar, o sal, a mostarda, a pimenta, o louro e a malagueta, mexendo até o açúcar e o sal se dissolverem.",
+        "Cobrir: Deite a salmoura a ferver sobre o alho-porro até o cobrir 1 cm, encostando a folha de louro ao vidro. Bata levemente com o frasco na bancada para soltar as bolhas de ar e feche-o.",
+        "Repousar: Deixe arrefecer e guarde no frigorífico. Espere pelo menos 3 dias antes de comer; conserva-se até 2 meses no frigorífico. Sirva com feijão e broa de milho, em sandes ou com queijo."
+      ],
+      "species": ["ramps"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpar: Corte as raízes e retire a pele exterior solta de cada bolbo. Corte as folhas onde se juntam ao talo e guarde-as para outro uso, como um pesto ou ovos mexidos. Lave bem os bolbos e os talos em água fria."
+        },
+        {
+          "step": 2,
+          "instruction": "Encher o frasco: Arrume os bolbos e os talos na vertical num frasco esterilizado de cerca de 400 ml, aparando-os se for preciso."
+        },
+        {
+          "step": 3,
+          "instruction": "Salmoura: Leve a ferver o vinagre com a água, o açúcar, o sal, a mostarda, a pimenta, o louro e a malagueta, mexendo até o açúcar e o sal se dissolverem."
+        },
+        {
+          "step": 4,
+          "instruction": "Cobrir: Deite a salmoura a ferver sobre o alho-porro até o cobrir 1 cm, encostando a folha de louro ao vidro. Bata levemente com o frasco na bancada para soltar as bolhas de ar e feche-o."
+        },
+        {
+          "step": 5,
+          "instruction": "Repousar: Deixe arrefecer e guarde no frigorífico. Espere pelo menos 3 dias antes de comer; conserva-se até 2 meses no frigorífico. Sirva com feijão e broa de milho, em sandes ou com queijo."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Apanhe de forma sustentável. O alho-porro-selvagem cresce devagar, leva anos desde a semente até à colheita, e a apanha excessiva já fez desaparecer colónias inteiras. Tire uma só folha por planta e deixe o bolbo, ou no máximo alguns bolbos de uma colónia grande e densa. Nunca esvazie uma colónia.",
+        "A apanha é proibida em alguns parques, como o Parque Nacional das Great Smoky Mountains. O Quebeque proíbe a venda de alho-porro-selvagem silvestre e limita a apanha para consumo próprio a 200 g, ou 50 bolbos ou plantas, por pessoa e por ano.",
+        "Tem sósias venenosos: o lírio-do-vale e o veratro-verde (Veratrum viride). Esmague uma folha de cada planta: o alho-porro-selvagem cheira intensamente a cebola ou a alho, e os sósias não. O cheiro fica nos dedos, por isso não confie no teste quando as mãos já cheirarem."
+      ]
+    },
+    "sauteed-fiddleheads": {
+      "title": "Rebentos de feto-de-avestruz salteados com alho e limão",
+      "ingredients": [
+        "400 g de rebentos enrolados de feto-de-avestruz",
+        "Sal grosso para a água de cozedura",
+        "30 g de manteiga",
+        "1 colher de sopa de azeite",
+        "2 dentes de alho às lâminas finas",
+        "A raspa de ½ limão e 1 colher de sopa de sumo",
+        "Sal e pimenta-preta"
+      ],
+      "instructions": [
+        "Limpar: Apare as pontas castanhas dos pés. Retire com os dedos as escamas castanhas, finas como papel, e lave os rebentos em várias águas frias, até a água sair limpa.",
+        "Cozer: Leve ao lume uma panela grande com água e sal; quando ferver, junte os rebentos e coza-os 15 minutos (ou 10–12 minutos a vapor). Escorra-os e deite fora a água da cozedura.",
+        "Saltear: Aqueça a manteiga com o azeite numa frigideira larga, junte o alho e deixe-o alourar em lume brando 1 minuto. Junte os rebentos e salteie 3–4 minutos em lume médio-forte, até ganharem um pouco de cor.",
+        "Temperar: Retire do lume, junte a raspa e o sumo de limão e tempere com sal e pimenta.",
+        "Servir: De imediato, a acompanhar peixe ou ovos, ou sobre uma torrada com manteiga."
+      ],
+      "species": ["fiddleheads"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpar: Apare as pontas castanhas dos pés. Retire com os dedos as escamas castanhas, finas como papel, e lave os rebentos em várias águas frias, até a água sair limpa."
+        },
+        {
+          "step": 2,
+          "instruction": "Cozer: Leve ao lume uma panela grande com água e sal; quando ferver, junte os rebentos e coza-os 15 minutos (ou 10–12 minutos a vapor). Escorra-os e deite fora a água da cozedura."
+        },
+        {
+          "step": 3,
+          "instruction": "Saltear: Aqueça a manteiga com o azeite numa frigideira larga, junte o alho e deixe-o alourar em lume brando 1 minuto. Junte os rebentos e salteie 3–4 minutos em lume médio-forte, até ganharem um pouco de cor."
+        },
+        {
+          "step": 4,
+          "instruction": "Temperar: Retire do lume, junte a raspa e o sumo de limão e tempere com sal e pimenta."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: De imediato, a acompanhar peixe ou ovos, ou sobre uma torrada com manteiga."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "20 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "side", "easy"],
+      "safetyNotes": [
+        "Apanhe só feto-de-avestruz. Os seus rebentos são lisos e de um verde vivo, com escamas castanhas como papel, e ao longo da face interior do pé corre um sulco profundo em forma de U. Nunca apanhe feto-comum (Pteridium), que é peludo, tem a ponta ramificada e é cancerígeno.",
+        "Nunca coma os rebentos crus ou mal cozinhados: já causaram surtos de intoxicação alimentar. Lave-os, coza-os 15 minutos (ou 10–12 minutos a vapor) e deite a água fora, antes de os saltear.",
+        "Não apanhe mais de metade dos rebentos de uma mesma touceira, para a planta sobreviver. Na Alemanha, o feto-de-avestruz é protegido e é proibido apanhá-lo na natureza."
+      ]
+    },
+    "cloudberry-cream": {
+      "title": "Creme de amoras-árticas à norueguesa (multekrem)",
+      "ingredients": [
+        "300 g de amoras-árticas maduras, frescas ou congeladas e descongeladas",
+        "2 colheres de sopa de açúcar, para as bagas",
+        "300 ml de natas para bater bem frias",
+        "1 colher de sopa de açúcar em pó, para as natas",
+        "1 colher de chá de açúcar baunilhado ou algumas gotas de extrato de baunilha",
+        "Cones krumkake ou bolachas estaladiças de amêndoa para servir (opcional)"
+      ],
+      "instructions": [
+        "Açucarar: Escolha as bagas e reserve algumas das mais bonitas para decorar. Polvilhe as restantes com o açúcar e deixe repousar 15 minutos, até largarem um pouco de sumo.",
+        "Bater: Bata as natas frias com o açúcar em pó e o açúcar baunilhado até formarem picos suaves. Não bata demasiado: só têm de se aguentar.",
+        "Envolver: Envolva delicadamente as bagas e o sumo nas natas com uma espátula, em poucos movimentos, para que fiquem inteiras.",
+        "Servir: Distribua por copos ou taças, decore com as bagas reservadas e sirva bem fresco, com os cones ou as bolachas. Na Noruega é uma sobremesa de Natal."
+      ],
+      "species": ["cloudberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Açucarar: Escolha as bagas e reserve algumas das mais bonitas para decorar. Polvilhe as restantes com o açúcar e deixe repousar 15 minutos, até largarem um pouco de sumo."
+        },
+        {
+          "step": 2,
+          "instruction": "Bater: Bata as natas frias com o açúcar em pó e o açúcar baunilhado até formarem picos suaves. Não bata demasiado: só têm de se aguentar."
+        },
+        {
+          "step": 3,
+          "instruction": "Envolver: Envolva delicadamente as bagas e o sumo nas natas com uma espátula, em poucos movimentos, para que fiquem inteiras."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir: Distribua por copos ou taças, decore com as bagas reservadas e sirva bem fresco, com os cones ou as bolachas. Na Noruega é uma sobremesa de Natal."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "0 min",
+      "servings": "4–6",
+      "tags": ["vegetarian", "dessert", "easy"],
+      "safetyNotes": [
+        "Apanhe só bagas maduras, moles e cor de âmbar. As que ainda não estão maduras são duras e vermelhas.",
+        "Respeite as regras locais de apanha. No norte da Noruega, em Nordland, Troms e Finnmark, os proprietários podem proibir a apanha de amoras-árticas nas suas terras: esteja atento às placas (comê-las no local é sempre permitido)."
+      ]
+    },
+    "huckleberry-pie": {
+      "title": "Tarte de huckleberries do Montana",
+      "ingredients": [
+        "700 g de huckleberries, frescas ou congeladas (não é preciso descongelar)",
+        "150 g de açúcar, mais 1 colher de sopa para polvilhar",
+        "30 g de amido de milho",
+        "1 colher de sopa de sumo de limão",
+        "320 g de farinha de trigo",
+        "225 g de manteiga fria em cubos",
+        "1 colher de chá de sal",
+        "90–120 ml de água gelada",
+        "1 ovo batido para pincelar"
+      ],
+      "instructions": [
+        "Fazer a massa: Esfarele a manteiga com a farinha e o sal com a ponta dos dedos até obter migalhas grossas, com alguns pedaços de manteiga do tamanho de uma ervilha. Junte a água gelada às colheradas e ligue a massa. Divida-a em dois discos, embrulhe-os em película e leve ao frigorífico pelo menos 30 minutos.",
+        "Rechear: Aqueça o forno a 220 °C. Estenda um disco e forre com ele uma tarteira de 23 cm. Misture as huckleberries com o açúcar, o amido e o sumo de limão e deite-as sobre a massa.",
+        "Tapar: Estenda o segundo disco, coloque-o sobre o recheio, apare o excesso e aperte as bordas para selar. Faça alguns cortes na superfície, pincele com o ovo e polvilhe com o resto do açúcar.",
+        "Levar ao forno: Asse 20 minutos, depois baixe para 180 °C e asse mais 40 minutos, até a massa estar bem dourada e um sumo espesso borbulhar pelos cortes. Ponha um tabuleiro por baixo para apanhar os pingos.",
+        "Arrefecer: Deixe a tarte arrefecer pelo menos 3 horas para o recheio ganhar consistência antes de cortar. Sirva com gelado de baunilha ou natas batidas."
+      ],
+      "species": ["huckleberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Fazer a massa: Esfarele a manteiga com a farinha e o sal com a ponta dos dedos até obter migalhas grossas, com alguns pedaços de manteiga do tamanho de uma ervilha. Junte a água gelada às colheradas e ligue a massa. Divida-a em dois discos, embrulhe-os em película e leve ao frigorífico pelo menos 30 minutos."
+        },
+        {
+          "step": 2,
+          "instruction": "Rechear: Aqueça o forno a 220 °C. Estenda um disco e forre com ele uma tarteira de 23 cm. Misture as huckleberries com o açúcar, o amido e o sumo de limão e deite-as sobre a massa."
+        },
+        {
+          "step": 3,
+          "instruction": "Tapar: Estenda o segundo disco, coloque-o sobre o recheio, apare o excesso e aperte as bordas para selar. Faça alguns cortes na superfície, pincele com o ovo e polvilhe com o resto do açúcar."
+        },
+        {
+          "step": 4,
+          "instruction": "Levar ao forno: Asse 20 minutos, depois baixe para 180 °C e asse mais 40 minutos, até a massa estar bem dourada e um sumo espesso borbulhar pelos cortes. Ponha um tabuleiro por baixo para apanhar os pingos."
+        },
+        {
+          "step": 5,
+          "instruction": "Arrefecer: Deixe a tarte arrefecer pelo menos 3 horas para o recheio ganhar consistência antes de cortar. Sirva com gelado de baunilha ou natas batidas."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "45 min",
+      "cookTime": "60 min",
+      "servings": "6–8",
+      "tags": ["vegetarian", "dessert", "medium"],
+      "safetyNotes": [
+        "As huckleberries são de um negro-azulado a roxo, com uma pequena coroa na ponta, como os mirtilos. Não coma bagas vermelhas ou brancas em cachos (as de Actaea são venenosas) nem nenhuma baga de que não tenha a certeza.",
+        "As zonas de huckleberries são território de ursos: faça barulho e leve spray anti-ursos."
+      ]
+    },
+    "pawpaw-ice-cream": {
+      "title": "Gelado de asimina sem máquina",
+      "ingredients": [
+        "400 g de polpa de asimina madura (de cerca de 4–6 frutos)",
+        "1 lata (397 g) de leite condensado",
+        "400 ml de natas para bater bem frias",
+        "O sumo de 1 lima",
+        "Uma pitada de sal",
+        "1 colher de chá de extrato de baunilha (opcional)"
+      ],
+      "instructions": [
+        "Tirar a polpa: Corte as asiminas maduras ao meio e retire a polpa com uma colher, sem a casca. Tire à mão todas as sementes: nenhuma pode ir para a liquidificadora.",
+        "Triturar: Triture a polpa com o sumo de lima, o leite condensado, o sal e a baunilha até obter um creme liso. A lima mantém a cor viva.",
+        "Bater: Numa taça grande, bata as natas até formarem picos suaves.",
+        "Envolver: Envolva o creme de asimina nas natas em duas ou três vezes, até não haver riscos. Deite numa forma de bolo inglês ou numa caixa para o congelador.",
+        "Congelar: Tape e leve ao congelador pelo menos 6 horas, ou de um dia para o outro. Deixe amolecer 10 minutos antes de fazer as bolas."
+      ],
+      "species": ["pawpaw"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Tirar a polpa: Corte as asiminas maduras ao meio e retire a polpa com uma colher, sem a casca. Tire à mão todas as sementes: nenhuma pode ir para a liquidificadora."
+        },
+        {
+          "step": 2,
+          "instruction": "Triturar: Triture a polpa com o sumo de lima, o leite condensado, o sal e a baunilha até obter um creme liso. A lima mantém a cor viva."
+        },
+        {
+          "step": 3,
+          "instruction": "Bater: Numa taça grande, bata as natas até formarem picos suaves."
+        },
+        {
+          "step": 4,
+          "instruction": "Envolver: Envolva o creme de asimina nas natas em duas ou três vezes, até não haver riscos. Deite numa forma de bolo inglês ou numa caixa para o congelador."
+        },
+        {
+          "step": 5,
+          "instruction": "Congelar: Tape e leve ao congelador pelo menos 6 horas, ou de um dia para o outro. Deixe amolecer 10 minutos antes de fazer as bolas."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "0 min",
+      "servings": "6–8",
+      "tags": ["vegetarian", "dessert", "easy"],
+      "safetyNotes": [
+        "Coma apenas fruta madura, e nunca a casca nem as sementes grandes. As sementes são venenosas: não as esmague nem as triture.",
+        "Algumas pessoas reagem à asimina com indisposição de estômago ou uma erupção na pele, por isso prove primeiro um pouco."
+      ]
+    },
+    "rose-hip-syrup": {
+      "title": "Xarope de rosa-canina à inglesa",
+      "ingredients": [
+        "1 kg de cinórrodos (frutos da rosa-canina) maduros",
+        "3 litros de água",
+        "500 g de açúcar",
+        "O sumo de 1 limão (opcional)",
+        "Um saco de coar ou um pano fino, e garrafas esterilizadas"
+      ],
+      "instructions": [
+        "Preparar: Lave os cinórrodos, tire-lhes o pé e a ponta seca e pique-os grosseiramente na picadora ou à faca.",
+        "Primeira infusão: Leve 2 litros de água a ferver, junte os cinórrodos e deixe levantar fervura; retire do lume e deixe em infusão 15 minutos. Deite tudo no saco ou no pano escaldados e deixe o sumo escorrer.",
+        "Segunda infusão: Volte a pôr a polpa no tacho com o litro de água restante, leve a ferver, deixe repousar 10 minutos e coe outra vez. Depois passe todo o sumo mais uma vez por um pano fino e limpo, para reter até ao último pelo.",
+        "Reduzir: Ferva o sumo até reduzir a cerca de 1 litro. Junte o açúcar e o sumo de limão, mexa até o açúcar dissolver e deixe ferver 5 minutos.",
+        "Engarrafar: Deite o xarope a ferver em garrafas esterilizadas quentes e feche-as. Depois de aberto, guarde no frigorífico e consuma em 2 semanas. Regue panquecas ou gelado, ou dilua em água para uma bebida."
+      ],
+      "species": ["rose_hips"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar: Lave os cinórrodos, tire-lhes o pé e a ponta seca e pique-os grosseiramente na picadora ou à faca."
+        },
+        {
+          "step": 2,
+          "instruction": "Primeira infusão: Leve 2 litros de água a ferver, junte os cinórrodos e deixe levantar fervura; retire do lume e deixe em infusão 15 minutos. Deite tudo no saco ou no pano escaldados e deixe o sumo escorrer."
+        },
+        {
+          "step": 3,
+          "instruction": "Segunda infusão: Volte a pôr a polpa no tacho com o litro de água restante, leve a ferver, deixe repousar 10 minutos e coe outra vez. Depois passe todo o sumo mais uma vez por um pano fino e limpo, para reter até ao último pelo."
+        },
+        {
+          "step": 4,
+          "instruction": "Reduzir: Ferva o sumo até reduzir a cerca de 1 litro. Junte o açúcar e o sumo de limão, mexa até o açúcar dissolver e deixe ferver 5 minutos."
+        },
+        {
+          "step": 5,
+          "instruction": "Engarrafar: Deite o xarope a ferver em garrafas esterilizadas quentes e feche-as. Depois de aberto, guarde no frigorífico e consuma em 2 semanas. Regue panquecas ou gelado, ou dilua em água para uma bebida."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "60 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "drink", "medium"],
+      "safetyNotes": [
+        "Os pelos à volta das sementes irritam a boca e o intestino: são o velho pó-de-mico. Coe o xarope duas vezes por um pano fino ou um saco de coar.",
+        "Apanhe cinórrodos de um vermelho intenso e ligeiramente moles, de preferência depois das primeiras geadas. Não os apanhe junto a estradas movimentadas."
+      ]
+    },
+    "sloe-jelly": {
+      "title": "Geleia de abrunhos e maçã",
+      "ingredients": [
+        "1 kg de abrunhos maduros",
+        "1 kg de maçãs reinetas",
+        "Cerca de 1,2 litros de água",
+        "Açúcar: 750 g por cada litro de sumo",
+        "Um saco de coar e frascos esterilizados"
+      ],
+      "instructions": [
+        "Preparar: Passe os abrunhos por água e retire os pés e as folhas. Corte as maçãs em pedaços grandes sem as descascar nem lhes tirar o coração: a casca e o coração têm a pectina que faz a geleia ganhar ponto.",
+        "Cozer: Ponha os abrunhos e as maçãs num tacho grande com água só até os cobrir. Deixe cozer em lume brando cerca de 45 minutos, mexendo de vez em quando, até a fruta ficar muito mole. Esmague ligeiramente as maçãs com uma colher, mas não os abrunhos, para que os caroços fiquem inteiros.",
+        "Coar: Deite tudo no saco de coar escaldado, pendurado sobre uma taça, e deixe pingar várias horas ou de um dia para o outro. Não esprema o saco, senão a geleia fica turva.",
+        "Ferver: Meça o sumo, ponha-o num tacho limpo e junte 750 g de açúcar por cada litro. Mexa em lume brando até o açúcar dissolver e depois ferva em lume forte 10–15 minutos, até atingir o ponto: 105 °C, ou uma gota num pires frio enruga quando a empurra com o dedo.",
+        "Enfrascar: Retire a espuma, deite em frascos esterilizados quentes e feche-os. Sirva com borrego assado, caça ou queijo."
+      ],
+      "species": ["sloes"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar: Passe os abrunhos por água e retire os pés e as folhas. Corte as maçãs em pedaços grandes sem as descascar nem lhes tirar o coração: a casca e o coração têm a pectina que faz a geleia ganhar ponto."
+        },
+        {
+          "step": 2,
+          "instruction": "Cozer: Ponha os abrunhos e as maçãs num tacho grande com água só até os cobrir. Deixe cozer em lume brando cerca de 45 minutos, mexendo de vez em quando, até a fruta ficar muito mole. Esmague ligeiramente as maçãs com uma colher, mas não os abrunhos, para que os caroços fiquem inteiros."
+        },
+        {
+          "step": 3,
+          "instruction": "Coar: Deite tudo no saco de coar escaldado, pendurado sobre uma taça, e deixe pingar várias horas ou de um dia para o outro. Não esprema o saco, senão a geleia fica turva."
+        },
+        {
+          "step": 4,
+          "instruction": "Ferver: Meça o sumo, ponha-o num tacho limpo e junte 750 g de açúcar por cada litro. Mexa em lume brando até o açúcar dissolver e depois ferva em lume forte 10–15 minutos, até atingir o ponto: 105 °C, ou uma gota num pires frio enruga quando a empurra com o dedo."
+        },
+        {
+          "step": 5,
+          "instruction": "Enfrascar: Retire a espuma, deite em frascos esterilizados quentes e feche-os. Sirva com borrego assado, caça ou queijo."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "60 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "sauce", "medium"],
+      "safetyNotes": [
+        "Os abrunhos são negro-azulados, com uma pruína baça, e crescem isolados no abrunheiro-bravo, um arbusto espinhoso. Crus são muito adstringentes. Os caroços contêm amigdalina, que pode libertar cianeto: não os esmague.",
+        "Têm sósias venenosos: a beladona, de bagas negras e brilhantes pousadas numa estrela verde, numa planta herbácea e não lenhosa; e o espinheiro-cerval (Rhamnus cathartica), de bagas negras e brilhantes em cachos, fortemente purgativas."
+      ]
+    },
+    "sea-buckthorn-curd": {
+      "title": "Creme de espinheiro-marítimo (tipo lemon curd)",
+      "ingredients": [
+        "Cerca de 300 g de bagas de espinheiro-marítimo, para 150 ml de sumo",
+        "175 g de açúcar",
+        "3 ovos",
+        "1 gema",
+        "100 g de manteiga em cubos",
+        "Uma pitada de sal",
+        "Frascos esterilizados"
+      ],
+      "instructions": [
+        "Extrair o sumo: Passe as bagas por água e esmague-as num passador fino com as costas de uma colher, até obter cerca de 150 ml de sumo. Deite fora as peles e as sementes.",
+        "Misturar: Numa taça resistente ao calor, bata os ovos, a gema, o açúcar e o sal, e junte o sumo sem parar de bater.",
+        "Cozinhar: Ponha a taça sobre um tacho com água a ferver muito devagar, sem tocar na água. Mexa sempre durante 10–12 minutos, até o creme cobrir as costas da colher (cerca de 80 °C). Não o deixe ferver.",
+        "Terminar: Retire do lume e junte a manteiga aos poucos, mexendo até ficar liso. Para um creme aveludado, passe-o por um passador.",
+        "Guardar: Deite em frascos esterilizados mornos, feche e deixe arrefecer. Guarde no frigorífico e consuma em 2 semanas. Barre em torradas ou scones, ou use para rechear tarteletes."
+      ],
+      "species": ["sea_buckthorn"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Extrair o sumo: Passe as bagas por água e esmague-as num passador fino com as costas de uma colher, até obter cerca de 150 ml de sumo. Deite fora as peles e as sementes."
+        },
+        {
+          "step": 2,
+          "instruction": "Misturar: Numa taça resistente ao calor, bata os ovos, a gema, o açúcar e o sal, e junte o sumo sem parar de bater."
+        },
+        {
+          "step": 3,
+          "instruction": "Cozinhar: Ponha a taça sobre um tacho com água a ferver muito devagar, sem tocar na água. Mexa sempre durante 10–12 minutos, até o creme cobrir as costas da colher (cerca de 80 °C). Não o deixe ferver."
+        },
+        {
+          "step": 4,
+          "instruction": "Terminar: Retire do lume e junte a manteiga aos poucos, mexendo até ficar liso. Para um creme aveludado, passe-o por um passador."
+        },
+        {
+          "step": 5,
+          "instruction": "Guardar: Deite em frascos esterilizados mornos, feche e deixe arrefecer. Guarde no frigorífico e consuma em 2 semanas. Barre em torradas ou scones, ou use para rechear tarteletes."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "dessert", "medium"],
+      "safetyNotes": [
+        "Apanhe bagas cor de laranja vivo e sumarentas a partir do fim do verão, à mão ou para uma tigela. Não parta nem corte ramos dos arbustos silvestres: danifica-os, e na Finlândia é proibido.",
+        "A apanha pode ser proibida em dunas protegidas e reservas naturais: informe-se sobre as regras locais. O arbusto tem muitos espinhos: use luvas."
       ]
     }
   }
