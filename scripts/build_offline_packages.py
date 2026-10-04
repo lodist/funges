@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 WORLD_SOURCE_URL = (
-    "https://data.fung.es/basemap/world_z12_20260619.pmtiles"
+    "https://data.fung.es/basemap/world_z11_20260619.pmtiles"
 )
 
 def sha256(path: Path) -> str:

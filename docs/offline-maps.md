@@ -11,18 +11,18 @@ must reference only complete, publicly accessible packages.
 
    ```powershell
    python scripts/build_offline_packages.py `
-     --world https://data.fung.es/basemap/world_z12_20260619.pmtiles `
+     --world https://data.fung.es/basemap/world_z11_20260619.pmtiles `
      --version 2026-09-01 `
      --output-dir dist-offline
    ```
 
    `--world` also takes a local path. The CLI reads the remote archive over
    range requests and transfers only the tiles each extract needs, so the
-   17 GB world archive does not have to be downloaded first.
+   7.9 GB world archive does not have to be downloaded first.
 
 4. Upload every generated archive beside the world archive under `basemap/`.
    Regional filenames follow `<region>_z<zoom>_<YYYYMMDD>.pmtiles`, matching
-   `world_z12_<YYYYMMDD>.pmtiles` and remaining immutable without dated folders.
+   `world_z11_<YYYYMMDD>.pmtiles` and remaining immutable without dated folders.
 5. Check the remote `Content-Length`, CORS, range support, and checksum.
 6. Deploy the manifest only after every referenced archive is available.
 7. Verify the package in staging, then deploy the updated manifest.

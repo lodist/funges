@@ -545,8 +545,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         zoom: arriving
           ? Math.max(3.01, Math.min(ARRIVE_REGION_ZOOM, zoom - ARRIVE_MIN_GAP))
           : zoom,
-        // Basemap tiles are baked to z12 natively; MapLibre overzooms past that
-        // (reuses/upscales the z12 tile) so labels/roads keep rendering using the
+        // Basemap tiles are baked to z11 natively; MapLibre overzooms past that
+        // (reuses/upscales the z11 tile) so labels/roads keep rendering using the
         // interpolation stops already authored up to z20-22 in the style files.
         maxZoom: ONLINE_MAX_ZOOM,
         minZoom: 2.01,

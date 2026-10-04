@@ -39,7 +39,7 @@ export interface OfflinePackageManifest {
 }
 
 /**
- * Camera ceiling with the online source, whose tiles are baked to z12 and
+ * Camera ceiling with the online source, whose tiles are baked to z11 and
  * overzoomed past that by MapLibre.
  */
 export const ONLINE_MAX_ZOOM = 20;

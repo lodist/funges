@@ -106,7 +106,7 @@ RAIN_MAX_MM_DAY = 300.0
 # Place names come from the basemap ZoneMap draws (keep in sync with
 # BASEMAP_URL in src/components/ZoneMap.tsx), so hotspots are named after the
 # labels the reader sees on the map, in every UI language.
-BASEMAP_URL = "https://data.fung.es/basemap/world_z12_20260619.pmtiles"
+BASEMAP_URL = "https://data.fung.es/basemap/world_z11_20260619.pmtiles"
 PLACE_ZOOM = 7  # regional cities; bigger hotspots step down to fewer, larger places
 MAX_PLACE_TILES = 4
 PLACE_LANGS = ("en", "de", "es", "fr", "it", "pt")  # src/i18n/locales
