@@ -167,6 +167,26 @@ CATALOG = [
   [
     "Grifola frondosa",
     "species"
+  ],
+  [
+    "Lactarius deliciosus",
+    "species"
+  ],
+  [
+    "Hydnum repandum",
+    "species"
+  ],
+  [
+    "Coprinus comatus",
+    "species"
+  ],
+  [
+    "Calvatia gigantea",
+    "species"
+  ],
+  [
+    "Tricholoma matsutake",
+    "species"
   ]
 ]
 CATALOG_NAMES = {name for name, _rank in CATALOG}

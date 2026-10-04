@@ -1,0 +1,292 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "hedgehog_mushroom",
+  "scientificName": "Hydnum repandum",
+  "catalog": {
+    "enabled": true,
+    "order": 44,
+    "translationKey": "hedgehog_mushroom",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "summer-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/hedgehog_mushroom.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Hedgehog Mushroom",
+      "description": "A buff to orange cap with soft spines instead of gills underneath: one of the safest wild mushrooms to learn",
+      "howTo": "Look in mossy conifer and broadleaf woods from late summer to late autumn, often in rings or rows; on the US Pacific coast through the winter. Turn it over: spines, not gills"
+    },
+    "it": {
+      "name": "Steccherino dorato",
+      "description": "Un cappello color camoscio o arancio con morbidi aculei al posto delle lamelle: uno dei funghi selvatici più sicuri da imparare",
+      "howTo": "Cercalo nei boschi muschiosi di conifere e latifoglie da fine estate a fine autunno, spesso in cerchi o file; sulla costa pacifica degli Stati Uniti per tutto l'inverno. Giralo: sotto ha aculei, non lamelle"
+    },
+    "fr": {
+      "name": "Pied-de-mouton",
+      "description": "Un chapeau chamois à orangé avec de petits aiguillons tendres au lieu de lames : l'un des champignons sauvages les plus sûrs à apprendre",
+      "howTo": "Cherchez-le dans les bois moussus de conifères et de feuillus de la fin de l'été à la fin de l'automne, souvent en cercles ou en lignes ; tout l'hiver sur la côte pacifique des États-Unis. Retournez-le : des aiguillons, pas des lames"
+    },
+    "de": {
+      "name": "Semmel-Stoppelpilz",
+      "description": "Ein semmelgelber bis orangefarbener Hut mit weichen Stacheln statt Lamellen: einer der sichersten Wildpilze für Einsteiger",
+      "howTo": "Suche in moosigen Nadel- und Laubwäldern vom Spätsommer bis zum Spätherbst, oft in Ringen oder Reihen; an der US-Pazifikküste den ganzen Winter über. Dreh ihn um: Stacheln, keine Lamellen"
+    },
+    "es": {
+      "name": "Lengua de vaca",
+      "description": "Un sombrero de color gamuza a anaranjado con púas blandas en lugar de láminas: una de las setas silvestres más seguras para aprender",
+      "howTo": "Búscala en bosques musgosos de coníferas y frondosas desde finales del verano hasta finales del otoño, a menudo en corros o hileras; en la costa del Pacífico de EE. UU., todo el invierno. Dale la vuelta: púas, no láminas"
+    },
+    "pt": {
+      "name": "Pé-de-carneiro",
+      "description": "Um chapéu cor de camurça a alaranjado com espinhos macios em vez de lâminas: um dos cogumelos silvestres mais seguros para aprender",
+      "howTo": "Procure em bosques musgosos de coníferas e folhosas do fim do verão ao fim do outono, muitas vezes em círculos ou filas; na costa do Pacífico dos EUA durante todo o inverno. Vire-o: espinhos, não lâminas"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Hydnum repandum",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-29-step4-mushrooms.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Hedgehog Mushroom"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [311, 312, 313],
+        "scoring": {
+          "optimal_temp": 14,
+          "temp_sigma": 5,
+          "min_temp": 4,
+          "max_temp": 30,
+          "optimal_alt": 80,
+          "alt_sigma": 800,
+          "optimal_humidity": 76,
+          "humidity_sigma": 17,
+          "optimal_pH": 4.5,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.0, 6.0],
+          "optimal_soil_temp": 13,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 40,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "larix",
+            "picea",
+            "pinus",
+            "fagus",
+            "quercus",
+            "other_needleleaf",
+            "other_broadleaf"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2513763",
+          "https://www.mushroomexpert.com/hydnum_repandum.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [311, 312, 313],
+        "scoring": {
+          "optimal_temp": 16,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 760,
+          "alt_sigma": 1500,
+          "optimal_humidity": 70,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.3,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.8, 6.8],
+          "optimal_soil_temp": 15,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 20,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10, 11, 12, 1, 2],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "larix",
+            "picea",
+            "pinus",
+            "fagus",
+            "quercus",
+            "other_needleleaf",
+            "other_broadleaf"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2513763",
+          "https://www.mushroomexpert.com/hydnum_repandum.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 20,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 350,
+          "alt_sigma": 800,
+          "optimal_humidity": 72,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.1,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.6, 6.6],
+          "optimal_soil_temp": 19,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 45,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [7, 8, 9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "white_red_jack_pine",
+            "spruce_fir",
+            "longleaf_slash_pine",
+            "loblolly_shortleaf_pine",
+            "pinyon_juniper",
+            "douglas_fir",
+            "ponderosa_pine",
+            "western_white_pine",
+            "fir_spruce_mountain_hemlock",
+            "lodgepole_pine",
+            "hemlock_sitka_spruce",
+            "western_larch",
+            "redwood",
+            "other_western_softwood",
+            "california_mixed_conifer",
+            "exotic_softwoods",
+            "oak_pine",
+            "oak_hickory",
+            "oak_gum_cypress",
+            "elm_ash_cottonwood",
+            "maple_beech_birch",
+            "aspen_birch",
+            "alder_maple",
+            "western_oak",
+            "tanoak_laurel",
+            "other_western_hardwoods",
+            "tropical_hardwoods",
+            "exotic_hardwoods"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2513763",
+          "https://www.mushroomexpert.com/hydnum_repandum.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 42, 43],
+        "scoring": {
+          "optimal_temp": 15,
+          "temp_sigma": 5,
+          "min_temp": 5,
+          "max_temp": 30,
+          "optimal_alt": 600,
+          "alt_sigma": 1200,
+          "optimal_humidity": 73,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.1,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.6, 6.6],
+          "optimal_soil_temp": 14,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 20,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10, 11, 12, 1, 2, 3],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "white_red_jack_pine",
+            "spruce_fir",
+            "longleaf_slash_pine",
+            "loblolly_shortleaf_pine",
+            "pinyon_juniper",
+            "douglas_fir",
+            "ponderosa_pine",
+            "western_white_pine",
+            "fir_spruce_mountain_hemlock",
+            "lodgepole_pine",
+            "hemlock_sitka_spruce",
+            "western_larch",
+            "redwood",
+            "other_western_softwood",
+            "california_mixed_conifer",
+            "exotic_softwoods",
+            "oak_pine",
+            "oak_hickory",
+            "oak_gum_cypress",
+            "elm_ash_cottonwood",
+            "maple_beech_birch",
+            "aspen_birch",
+            "alder_maple",
+            "western_oak",
+            "tanoak_laurel",
+            "other_western_hardwoods",
+            "tropical_hardwoods",
+            "exotic_hardwoods"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/2513763",
+          "https://www.mushroomexpert.com/hydnum_repandum.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [2513763],
+      "references": ["https://www.gbif.org/species/2513763"]
+    },
+    "rangePrior": {
+      "taxonKeys": [2513763]
+    }
+  }
+}
