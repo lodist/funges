@@ -192,7 +192,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.amatoxin',
     checkKeys: ['toxicity.checks.volva', 'toxicity.checks.gillColour'],
-    confusedWithSpeciesIds: [],
+    confusedWithSpeciesIds: ['giant_puffball'],
+    criticalConfusions: [
+      {
+        catalogId: 'giant_puffball',
+        noteKey: 'toxicity.critical.puffballPair',
+      },
+    ],
   },
   {
     id: 'amanita-virosa',
@@ -201,7 +207,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.amatoxin',
     checkKeys: ['toxicity.checks.volva', 'toxicity.checks.gillColour'],
-    confusedWithSpeciesIds: [],
+    confusedWithSpeciesIds: ['giant_puffball'],
+    criticalConfusions: [
+      {
+        catalogId: 'giant_puffball',
+        noteKey: 'toxicity.critical.puffballPair',
+      },
+    ],
   },
   {
     id: 'amanita-muscaria',
@@ -239,7 +251,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.colchicine',
     checkKeys: ['toxicity.checks.smell', 'toxicity.checks.leafArrangement'],
-    confusedWithSpeciesIds: ['garlic'],
+    confusedWithSpeciesIds: ['garlic', 'ramps'],
+    criticalConfusions: [
+      { catalogId: 'ramps', noteKey: 'toxicity.critical.rampsPair' },
+    ],
   },
   {
     id: 'convallaria-majalis',
@@ -248,7 +263,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.cardiacGlycoside',
     checkKeys: ['toxicity.checks.smell', 'toxicity.checks.leafArrangement'],
-    confusedWithSpeciesIds: ['garlic'],
+    confusedWithSpeciesIds: ['garlic', 'ramps'],
+    criticalConfusions: [
+      { catalogId: 'ramps', noteKey: 'toxicity.critical.rampsPair' },
+    ],
   },
   {
     id: 'arum-maculatum',
@@ -295,7 +313,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.berryArrangement',
       'toxicity.checks.plantHabit',
     ],
-    confusedWithSpeciesIds: ['blueberry', 'lingonb'],
+    confusedWithSpeciesIds: ['blueberry', 'lingonb', 'sloes'],
   },
   {
     id: 'sambucus-ebulus',
@@ -329,9 +347,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.interiorPattern',
       'toxicity.checks.capStructure',
     ],
-    confusedWithSpeciesIds: ['truffle_b'],
+    confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
     criticalConfusions: [
       { catalogId: 'truffle_b', noteKey: 'toxicity.critical.trufflePair' },
+      {
+        catalogId: 'giant_puffball',
+        noteKey: 'toxicity.critical.puffballPair',
+      },
     ],
   },
   {
@@ -344,9 +366,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.interiorPattern',
       'toxicity.checks.capStructure',
     ],
-    confusedWithSpeciesIds: ['truffle_b'],
+    confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
     criticalConfusions: [
       { catalogId: 'truffle_b', noteKey: 'toxicity.critical.trufflePair' },
+      {
+        catalogId: 'giant_puffball',
+        noteKey: 'toxicity.critical.puffballPair',
+      },
     ],
   },
 
@@ -533,7 +559,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.ringAndStem',
       'toxicity.checks.sporePrint',
     ],
-    confusedWithSpeciesIds: [],
+    confusedWithSpeciesIds: ['giant_puffball'],
+    criticalConfusions: [
+      {
+        catalogId: 'giant_puffball',
+        noteKey: 'toxicity.critical.puffballPair',
+      },
+    ],
   },
   {
     id: 'amanita-ocreata',
@@ -547,7 +579,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.ringAndStem',
       'toxicity.checks.sporePrint',
     ],
-    confusedWithSpeciesIds: [],
+    confusedWithSpeciesIds: ['giant_puffball'],
+    criticalConfusions: [
+      {
+        catalogId: 'giant_puffball',
+        noteKey: 'toxicity.critical.puffballPair',
+      },
+    ],
   },
   {
     id: 'amanita-smithiana',
@@ -560,7 +598,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.ringAndStem',
       'toxicity.checks.capWarts',
     ],
-    confusedWithSpeciesIds: [],
+    confusedWithSpeciesIds: ['matsutake'],
+    criticalConfusions: [
+      {
+        catalogId: 'matsutake',
+        noteKey: 'toxicity.critical.matsutakeSmithiana',
+      },
+    ],
   },
   {
     id: 'galerina-badipes',
@@ -853,7 +897,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.leafShape',
       'toxicity.checks.smell',
     ],
-    confusedWithSpeciesIds: ['garlic'],
+    confusedWithSpeciesIds: ['garlic', 'ramps'],
+    criticalConfusions: [
+      { catalogId: 'ramps', noteKey: 'toxicity.critical.rampsPair' },
+    ],
   },
   {
     id: 'veratrum-californicum',
@@ -883,7 +930,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.interiorPattern',
       'toxicity.checks.capStructure',
     ],
-    confusedWithSpeciesIds: ['truffle_b'],
+    confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    criticalConfusions: [
+      {
+        catalogId: 'giant_puffball',
+        noteKey: 'toxicity.critical.puffballPair',
+      },
+    ],
   },
   {
     id: 'scleroderma-verrucosum',
@@ -895,7 +948,13 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.interiorPattern',
       'toxicity.checks.capStructure',
     ],
-    confusedWithSpeciesIds: ['truffle_b'],
+    confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    criticalConfusions: [
+      {
+        catalogId: 'giant_puffball',
+        noteKey: 'toxicity.critical.puffballPair',
+      },
+    ],
   },
   {
     id: 'rubroboletus-rhodoxanthus',
@@ -1027,6 +1086,73 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.fleshBruising'],
     confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  // --- look-alikes of the step-4 mushrooms (2026-09). Neither was in the
+  // vocabulary, so a photo of one could only land on the edible species. ---
+  {
+    id: 'coprinopsis-atramentaria',
+    scientificName: 'Coprinopsis atramentaria',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.coprine',
+    checkKeys: ['toxicity.checks.capScales', 'toxicity.checks.ringAndStem'],
+    confusedWithSpeciesIds: ['shaggy_mane'],
+    criticalConfusions: [
+      { catalogId: 'shaggy_mane', noteKey: 'toxicity.critical.inkCapAlcohol' },
+    ],
+  },
+  {
+    id: 'lactarius-torminosus',
+    scientificName: 'Lactarius torminosus',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.latexColour', 'toxicity.checks.capMargin'],
+    confusedWithSpeciesIds: ['saffron_milk_cap'],
+  },
+  // --- look-alikes of the step-4 plants (2026-09). Both were tier-2 names, so
+  // a photo of one showed no safety information next to fiddleheads or sloes. ---
+  {
+    id: 'pteridium-aquilinum',
+    scientificName: 'Pteridium aquilinum',
+    category: 'plant',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.ptaquiloside',
+    checkKeys: ['toxicity.checks.fernStem'],
+    confusedWithSpeciesIds: ['fiddleheads'],
+    criticalConfusions: [
+      {
+        catalogId: 'fiddleheads',
+        noteKey: 'toxicity.critical.fiddleheadBracken',
+      },
+    ],
+  },
+  // Appalachian bunchflower, formerly Veratrum parviflorum. It is the plant that
+  // eight people in Georgia and North Carolina ate as ramps in 2020-21.
+  {
+    id: 'melanthium-parviflorum',
+    scientificName: 'Melanthium parviflorum',
+    category: 'plant',
+    severity: 'lethal',
+    reasonKey: 'toxicity.mechanisms.veratrumAlkaloid',
+    checkKeys: [
+      'toxicity.checks.leafArrangement',
+      'toxicity.checks.leafShape',
+      'toxicity.checks.smell',
+    ],
+    confusedWithSpeciesIds: ['ramps'],
+    criticalConfusions: [
+      { catalogId: 'ramps', noteKey: 'toxicity.critical.rampsPair' },
+    ],
+  },
+  {
+    id: 'rhamnus-cathartica',
+    scientificName: 'Rhamnus cathartica',
+    category: 'plant',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.berryBloom'],
+    confusedWithSpeciesIds: ['sloes'],
   },
 ];
 

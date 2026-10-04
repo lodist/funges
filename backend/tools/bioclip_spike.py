@@ -126,6 +126,13 @@ TOXIC = [
     ("Tylopilus plumbeoviolaceus", "species"),  # bitter, violet -> X. separans
     ("Rubroboletus pulcherrimus", "species"),   # -> Pacific porcini; a fatality recorded
     ("Rubroboletus eastwoodiae", "species"),    # -> Pacific porcini
+    # --- look-alikes of the step-4 mushrooms (2026-09) ---
+    ("Coprinopsis atramentaria", "species"),  # -> shaggy mane; coprine reacts with alcohol
+    ("Lactarius torminosus", "species"),      # -> saffron milk cap; white milk, woolly edge
+    # --- look-alikes of the step-4 plants (2026-09) ---
+    ("Pteridium aquilinum", "species"),      # -> fiddleheads; carcinogenic bracken
+    ("Rhamnus cathartica", "species"),       # -> sloes; purgative berries
+    ("Melanthium parviflorum", "species"),   # -> ramps; eaten for ramps in Georgia and North Carolina
 ]
 
 

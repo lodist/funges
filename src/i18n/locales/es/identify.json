@@ -90,7 +90,9 @@
       "ricin": "Las semillas contienen uno de los venenos naturales más letales conocidos. Unas pocas semillas masticadas pueden matar a un adulto y no hay antídoto.",
       "cytisine": "Todas las partes, especialmente las vainas, contienen citisina. Han muerto niños tras comer las vainas tomándolas por guisantes.",
       "grayanotoxin": "Las hojas, las flores y el néctar contienen grayanotoxinas, que alteran el ritmo cardíaco. La miel hecha con sus flores ha intoxicado a personas.",
-      "veratrumAlkaloid": "Hunde la tensión arterial y el pulso en pocas horas. Las hojas jóvenes se confunden repetidamente con el ajo de oso, y esas confusiones han sido mortales."
+      "veratrumAlkaloid": "Hunde la tensión arterial y el pulso en pocas horas. Las hojas jóvenes se confunden repetidamente con el ajo de oso, y esas confusiones han sido mortales.",
+      "coprine": "Contiene coprina, que impide al organismo eliminar el alcohol. El alcohol tomado en las horas previas a la comida o hasta tres días después provoca sofocos, taquicardia, náuseas y vómitos.",
+      "ptaquiloside": "Contiene ptaquilósido, que causa cáncer (el helecho común está clasificado como posible cancerígeno para las personas), y una enzima que destruye la vitamina B1. La cocción reduce la toxina, pero no la elimina."
     },
     "checks": {
       "volva": "Mira la base del pie, por debajo del nivel del suelo: una envoltura a modo de saco o una copa hinchada ahí es una señal de alarma grave.",
@@ -117,13 +119,23 @@
       "plantHabit": "Si la planta es un arbusto leñoso o una hierba blanda que se seca cada año.",
       "interiorPattern": "Córtala por la mitad. Una trufa verdadera está veteada con nervaduras pálidas ramificadas. Una falsa trufa es una masa oscura y compacta, violácea o negra, sin dibujo.",
       "berryColour": "Color de las bayas maduras: el saúco negro tiene bayas negro violáceas. Las bayas rojas en racimos erguidos en forma de cúpula son de saúco rojo, tóxico en crudo.",
-      "flowerShape": "Forma de la flor: las violetas tienen cinco pétalos desiguales con un espolón detrás; la celidonia menor tiene de 8 a 12 pétalos amarillos y brillantes."
+      "flowerShape": "Forma de la flor: las violetas tienen cinco pétalos desiguales con un espolón detrás; la celidonia menor tiene de 8 a 12 pétalos amarillos y brillantes.",
+      "latexColour": "Rompe una lámina o el borde del sombrero y fíjate en la leche que sale. Los níscalos sangran una leche naranja zanahoria a rojo vino; una leche blanca o que amarillea indica otro Lactarius.",
+      "capMargin": "Si el borde del sombrero está enrollado y orlado de largos pelos lanosos.",
+      "capScales": "Si el sombrero está cubierto de escamas blancas, desgreñadas y levantadas, o es liso, gris pardo y finamente estriado.",
+      "fernStem": "Mira el tallo joven. Los brotes del helecho avestruz son lisos, con escamas pardas como de papel y un surco profundo en forma de U por la cara interna del tallo. El helecho común es velloso, de tallo redondo y con la punta que se divide en tres.",
+      "berryBloom": "Las endrinas crecen sueltas en el endrino espinoso y tienen una pruina azulada que se va al frotar. Las bayas del espino cerval son negras y brillantes, en racimos a lo largo de las ramitas, sin pruina."
     },
     "critical": {
       "lepiotaMacrolepiota": "Las Lepiota mortales están entre los sósias más peligrosos de la parasol, y en nuestras pruebas fue el error más frecuente de todos. Una parasol auténtica es grande, con un anillo que se puede mover y un pie con dibujo de piel de serpiente. Los ejemplares pequeños con el pie liso hay que dejarlos, aunque parezcan los correctos.",
       "trufflePair": "Entre las coincidencias hay tanto una trufa como una falsa trufa venenosa. Por fuera son realmente difíciles de distinguir. Corta el hallazgo antes de nada: vetas pálidas marmoreadas indican trufa, un interior oscuro y compacto indica falsa trufa.",
       "angelWingPair": "Entre las coincidencias hay tanto una seta de ostra como la oreja de ángel. Esta última ha provocado inflamaciones cerebrales mortales. Es más delgada, blanco puro y crece sobre madera de conífera: comprueba antes de nada la madera y el grosor de la carne.",
-      "veratrumPair": "Entre las coincidencias hay tanto ajo de oso como vedegambre blanco. Esta confusión ha matado a personas. Estruja una hoja: el ajo de oso huele fuerte a ajo, el vedegambre no. Las hojas del vedegambre también están muy nervadas y salen alternas a lo largo del tallo."
+      "veratrumPair": "Entre las coincidencias hay tanto ajo de oso como vedegambre blanco. Esta confusión ha matado a personas. Estruja una hoja: el ajo de oso huele fuerte a ajo, el vedegambre no. Las hojas del vedegambre también están muy nervadas y salen alternas a lo largo del tallo.",
+      "inkCapAlcohol": "Entre las coincidencias hay tanto una barbuda como el coprino entintado. El coprino entintado reacciona violentamente con el alcohol, incluso tomado días después de la comida. La barbuda es alta, blanca y cubierta de escamas desgreñadas; el coprino entintado es más pequeño, gris pardo y liso. Ante la duda, déjalo, y no bebas nunca alcohol con coprinos.",
+      "matsutakeSmithiana": "Entre las coincidencias hay tanto un matsutake como Amanita smithiana. Amanita smithiana destruye los riñones y se ha recogido por matsutake en el noroeste del Pacífico. Huélelo y saca la base entera: el matsutake huele especiado, a canela. Amanita smithiana no, y su base se engrosa y luego se afina en el suelo como una raíz, rodeada de jirones blancos de velo.",
+      "puffballPair": "Entre las coincidencias hay tanto un bejín gigante como un parecido venenoso. Antes de nada, córtalo por la mitad de arriba abajo. Un bejín es blanco y uniforme hasta el centro. Un interior negro violáceo indica un Scleroderma; la silueta de un sombrero, láminas y pie indica una amanita joven, que puede ser mortal.",
+      "rampsPair": "Entre las coincidencias hay tanto puerro silvestre americano como un parecido venenoso. El lirio de los valles, el vedegambre verde y el cólquico tienen hojas parecidas y los tres son tóxicos. Aplasta una hoja: el puerro silvestre americano huele mucho a cebolla o ajo, sus parecidos no. El lirio de los valles tiene dos hojas envueltas alrededor de un solo tallo; las hojas del vedegambre están muy plegadas y suben por un tallo robusto.",
+      "fiddleheadBracken": "Entre las coincidencias hay tanto brotes de helecho avestruz como helecho común. El helecho común causa cáncer y no se come. Los brotes del helecho avestruz son lisos, con escamas pardas como de papel y un surco profundo en U en el tallo; el helecho común es velloso y se divide en tres en la punta."
     }
   }
 }

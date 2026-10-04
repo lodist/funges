@@ -1,0 +1,151 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "pawpaw",
+  "scientificName": "Asimina triloba",
+  "catalog": {
+    "enabled": true,
+    "order": 52,
+    "translationKey": "pawpaw",
+    "category": "berry",
+    "emoji": "🥭",
+    "season": "fall",
+    "habitat": "woodland",
+    "image": {
+      "path": "src/assets/species/pawpaw.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Pawpaw",
+      "description": "North America's largest native fruit: green and mango-shaped, with custardy flesh that tastes of banana and mango",
+      "howTo": "Look in the understory of river-bottom forests in the eastern US from late August to October, when the fruit softens and drops. Eat only the flesh: the skin and seeds are poisonous"
+    },
+    "it": {
+      "name": "Asimina",
+      "description": "Il più grande frutto nativo del Nord America: verde, a forma di mango, con una polpa cremosa che sa di banana e mango",
+      "howTo": "Cercala nel sottobosco delle foreste di fondovalle fluviale dell'est degli Stati Uniti da fine agosto a ottobre, quando il frutto si ammorbidisce e cade. Mangia solo la polpa: buccia e semi sono velenosi"
+    },
+    "fr": {
+      "name": "Asimine",
+      "description": "Le plus gros fruit indigène d'Amérique du Nord : vert, en forme de mangue, à la chair crémeuse au goût de banane et de mangue",
+      "howTo": "Cherchez-la dans le sous-bois des forêts alluviales de l'est des États-Unis de fin août à octobre, quand le fruit ramollit et tombe. Ne mangez que la chair : la peau et les graines sont toxiques"
+    },
+    "de": {
+      "name": "Indianerbanane",
+      "description": "Die größte heimische Frucht Nordamerikas: grün, mangoförmig, mit cremigem Fruchtfleisch, das nach Banane und Mango schmeckt",
+      "howTo": "Suche von Ende August bis Oktober im Unterholz der Auwälder im Osten der USA, wenn die Früchte weich werden und fallen. Iss nur das Fruchtfleisch: Schale und Samen sind giftig"
+    },
+    "es": {
+      "name": "Asimina",
+      "description": "La mayor fruta nativa de Norteamérica: verde y con forma de mango, de pulpa cremosa que sabe a plátano y mango",
+      "howTo": "Búscala en el sotobosque de los bosques de ribera del este de EE. UU. de finales de agosto a octubre, cuando la fruta se ablanda y cae. Come solo la pulpa: la piel y las semillas son venenosas"
+    },
+    "pt": {
+      "name": "Asimina",
+      "description": "O maior fruto nativo da América do Norte: verde, em forma de manga, com uma polpa cremosa que sabe a banana e manga",
+      "howTo": "Procure no sub-bosque das florestas ribeirinhas do leste dos EUA do fim de agosto a outubro, quando o fruto amolece e cai. Coma só a polpa: a casca e as sementes são venenosas"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Asimina triloba",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-30-step4-plants.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Pawpaw"],
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 43],
+        "scoring": {
+          "optimal_temp": 24,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 34,
+          "optimal_alt": 130,
+          "alt_sigma": 800,
+          "optimal_humidity": 71,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.4,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.9, 6.9],
+          "optimal_soil_temp": 23,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 62,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/3158040",
+          "docs/species/2026-09-30-step4-plants.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 43],
+        "scoring": {
+          "optimal_temp": 25,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 35,
+          "optimal_alt": 240,
+          "alt_sigma": 800,
+          "optimal_humidity": 68,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.7,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [4.2, 7.2],
+          "optimal_soil_temp": 24,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 13,
+          "rain_weight": 0,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/3158040",
+          "docs/species/2026-09-30-step4-plants.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [3158040]
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "sloes",
+  "scientificName": "Prunus spinosa",
+  "catalog": {
+    "enabled": true,
+    "order": 54,
+    "translationKey": "sloes",
+    "category": "berry",
+    "emoji": "🫐",
+    "season": "fall",
+    "habitat": "hedgerow",
+    "image": {
+      "path": "src/assets/species/sloes.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Sloes",
+      "description": "The small blue-black fruits of the thorny blackthorn, with a dusty bloom and a fiercely sour taste",
+      "howTo": "Look on hedgerows and scrubby slopes from September to November; they mellow after the first frosts. Don't crush the stones, and watch for shiny black look-alikes such as buckthorn and deadly nightshade"
+    },
+    "it": {
+      "name": "Prugnole",
+      "description": "I piccoli frutti blu-neri del prugnolo spinoso, coperti di pruina e dal sapore asprissimo",
+      "howTo": "Cercale su siepi e pendii cespugliosi da settembre a novembre; si addolciscono dopo le prime gelate. Non schiacciare i noccioli e attenzione ai sosia neri e lucidi come lo spincervino e la belladonna"
+    },
+    "fr": {
+      "name": "Prunelles",
+      "description": "Les petits fruits bleu-noir du prunellier épineux, couverts de pruine et d'une âpreté redoutable",
+      "howTo": "Cherchez-les dans les haies et les coteaux broussailleux de septembre à novembre ; elles s'adoucissent après les premières gelées. N'écrasez pas les noyaux et méfiez-vous des sosies noirs et brillants comme le nerprun et la belladone"
+    },
+    "de": {
+      "name": "Schlehen",
+      "description": "Die kleinen blauschwarzen Früchte des dornigen Schwarzdorns, bereift und herb-sauer",
+      "howTo": "Suche von September bis November an Hecken und buschigen Hängen; nach den ersten Frösten werden sie milder. Zerdrück die Kerne nicht und achte auf glänzend schwarze Doppelgänger wie Kreuzdorn und Tollkirsche"
+    },
+    "es": {
+      "name": "Endrinas",
+      "description": "Los pequeños frutos azul negruzco del endrino espinoso, con pruina y un sabor muy áspero",
+      "howTo": "Búscalas en setos y laderas con matorral de septiembre a noviembre; se suavizan tras las primeras heladas. No machaques los huesos y cuidado con los parecidos negros y brillantes, como el espino cerval y la belladona"
+    },
+    "pt": {
+      "name": "Abrunhos",
+      "description": "Os pequenos frutos azul-escuros do abrunheiro espinhoso, com pruína e um sabor muito adstringente",
+      "howTo": "Procure em sebes e encostas com mato de setembro a novembro; ficam mais suaves depois das primeiras geadas. Não esmague os caroços e cuidado com os sósias negros e brilhantes, como o espinheiro-cerval e a beladona"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Prunus spinosa",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-30-step4-plants.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Sloes"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [311, 313, 321, 324],
+        "scoring": {
+          "optimal_temp": 15,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 40,
+          "alt_sigma": 800,
+          "optimal_humidity": 74,
+          "humidity_sigma": 17,
+          "optimal_pH": 4.7,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.2, 6.2],
+          "optimal_soil_temp": 14,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 41,
+          "rain_weight": 0,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/3023221",
+          "docs/species/2026-09-30-step4-plants.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [311, 313, 321, 324],
+        "scoring": {
+          "optimal_temp": 19,
+          "temp_sigma": 6,
+          "min_temp": 0,
+          "max_temp": 30,
+          "optimal_alt": 280,
+          "alt_sigma": 800,
+          "optimal_humidity": 63,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.2,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.7, 6.7],
+          "optimal_soil_temp": 18,
+          "soil_temp_sigma": 6,
+          "min_cumulative_rain": 22,
+          "rain_weight": 0,
+          "weather_preference": {
+            "rain_first": false
+          },
+          "wind_sensitive": false,
+          "season_months": [9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/3023221",
+          "docs/species/2026-09-30-step4-plants.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      }
+    },
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [3023221]
+    }
+  }
+}

@@ -90,7 +90,9 @@
       "ricin": "Les graines contiennent l'un des poisons naturels les plus mortels connus. Quelques graines mâchées peuvent tuer un adulte, et il n'existe pas d'antidote.",
       "cytisine": "Toutes les parties, surtout les gousses, contiennent de la cytisine. Des enfants sont morts après avoir mangé les gousses, les prenant pour des petits pois.",
       "grayanotoxin": "Les feuilles, les fleurs et le nectar contiennent des grayanotoxines, qui perturbent le rythme cardiaque. Du miel issu de ces fleurs a empoisonné des gens.",
-      "veratrumAlkaloid": "Fait s'effondrer la tension et le rythme cardiaque en quelques heures. Les jeunes feuilles sont régulièrement prises pour de l'ail des ours, et ces confusions ont été mortelles."
+      "veratrumAlkaloid": "Fait s'effondrer la tension et le rythme cardiaque en quelques heures. Les jeunes feuilles sont régulièrement prises pour de l'ail des ours, et ces confusions ont été mortelles.",
+      "coprine": "Contient de la coprine, qui empêche l'organisme d'éliminer l'alcool. L'alcool bu dans les heures qui précèdent le repas ou jusqu'à trois jours après provoque bouffées de chaleur, cœur qui s'emballe, nausées et vomissements.",
+      "ptaquiloside": "Contient du ptaquiloside, qui provoque des cancers (la fougère aigle est classée cancérogène possible pour l'homme), et une enzyme qui détruit la vitamine B1. La cuisson réduit la toxine sans l'éliminer."
     },
     "checks": {
       "volva": "Regarde tout en bas du pied, sous le niveau du sol : une volve en forme de sac ou une coupe renflée à cet endroit est un signal d'alarme sérieux.",
@@ -117,13 +119,23 @@
       "plantHabit": "Si la plante est un arbuste ligneux ou une herbe tendre qui disparaît chaque année.",
       "interiorPattern": "Coupe-la en deux. Une vraie truffe est marbrée de veines pâles ramifiées. Une fausse truffe est une masse sombre et compacte, violacée à noire, sans motif.",
       "berryColour": "Couleur des baies mûres : le sureau noir a des baies noir violacé. Des baies rouges en grappes dressées en dôme sont du sureau rouge, toxique cru.",
-      "flowerShape": "Forme de la fleur : les violettes ont cinq pétales inégaux avec un éperon à l'arrière ; la ficaire a 8 à 12 pétales jaunes et brillants."
+      "flowerShape": "Forme de la fleur : les violettes ont cinq pétales inégaux avec un éperon à l'arrière ; la ficaire a 8 à 12 pétales jaunes et brillants.",
+      "latexColour": "Casse une lame ou le bord du chapeau et observe le lait qui en sort. Les lactaires délicieux saignent un lait orange carotte à rouge vineux ; un lait blanc ou qui jaunit indique un autre lactaire.",
+      "capMargin": "Si le bord du chapeau est enroulé et frangé de longs poils laineux.",
+      "capScales": "Si le chapeau est couvert de mèches blanches retroussées, ou lisse, gris-brun et finement strié.",
+      "fernStem": "Regarde la jeune tige. Les têtes de violon de la fougère-à-l'autruche sont lisses, avec des écailles brunes comme du papier et un sillon profond en U sur la face interne de la tige. La fougère aigle est duveteuse, à tige ronde et à sommet qui se divise en trois.",
+      "berryBloom": "Les prunelles poussent isolément sur le prunellier épineux et portent une pruine bleutée qui s'efface au toucher. Les baies du nerprun sont d'un noir brillant, en grappes le long des rameaux, sans pruine."
     },
     "critical": {
       "lepiotaMacrolepiota": "Les lépiotes mortelles figurent parmi les sosies les plus dangereux de la coulemelle, et c'était l'erreur la plus fréquente de tous nos tests. Une vraie coulemelle est grande, avec un anneau coulissant et un pied à motif de peau de serpent. Les petits spécimens à pied lisse doivent être laissés sur place, même s'ils semblent corrects.",
       "trufflePair": "Parmi les correspondances il y a à la fois une truffe et une fausse truffe toxique. De l'extérieur elles sont vraiment difficiles à distinguer. Coupe la trouvaille avant tout : des veines pâles marbrées indiquent une truffe, un intérieur sombre et compact une fausse truffe.",
       "angelWingPair": "Parmi les correspondances il y a à la fois un pleurote et l'oreille d'ange. Cette dernière a provoqué des inflammations cérébrales mortelles. Elle est plus fine, d'un blanc pur, et pousse sur bois de conifère : vérifie d'abord le bois et l'épaisseur de la chair.",
-      "veratrumPair": "Parmi les correspondances il y a à la fois de l'ail des ours et de l'hellébore blanc. Cette confusion a déjà tué. Froisse une feuille : l'ail des ours sent fortement l'ail, l'hellébore non. Les feuilles d'hellébore sont aussi fortement nervurées et alternes le long de la tige."
+      "veratrumPair": "Parmi les correspondances il y a à la fois de l'ail des ours et de l'hellébore blanc. Cette confusion a déjà tué. Froisse une feuille : l'ail des ours sent fortement l'ail, l'hellébore non. Les feuilles d'hellébore sont aussi fortement nervurées et alternes le long de la tige.",
+      "inkCapAlcohol": "Parmi les correspondances il y a à la fois un coprin chevelu et le coprin noir d'encre. Le coprin noir d'encre réagit violemment avec l'alcool, même bu plusieurs jours après le repas. Le coprin chevelu est haut, blanc et couvert de mèches ; le coprin noir d'encre est plus petit, gris-brun et lisse. Dans le doute, laisse-le, et ne bois jamais d'alcool avec des coprins.",
+      "matsutakeSmithiana": "Parmi les correspondances il y a à la fois un matsutake et Amanita smithiana. Elle détruit les reins et a été cueillie à la place du matsutake dans le nord-ouest du Pacifique. Sens-le et dégage toute la base : le matsutake a une odeur épicée de cannelle. Amanita smithiana ne l'a pas, et sa base s'épaissit puis s'effile dans le sol comme une racine, entourée de lambeaux blancs de voile.",
+      "puffballPair": "Parmi les correspondances il y a à la fois une vesse-de-loup géante et un sosie toxique. Avant tout, coupe-la en deux de haut en bas. Une vesse-de-loup est blanche et homogène jusqu'au cœur. Un intérieur noir violacé indique un scléroderme ; la silhouette d'un chapeau, de lames et d'un pied indique une jeune amanite, qui peut être mortelle.",
+      "rampsPair": "Parmi les correspondances il y a à la fois de l'ail des bois et un sosie toxique. Le muguet, le vérâtre vert et le colchique ont des feuilles semblables et sont toxiques tous les trois. Écrase une feuille : l'ail des bois sent fortement l'oignon ou l'ail, pas ses sosies. Le muguet a deux feuilles enroulées autour d'une seule hampe ; les feuilles du vérâtre sont profondément plissées et montent le long d'une tige robuste.",
+      "fiddleheadBracken": "Parmi les correspondances il y a à la fois des têtes de violon de fougère-à-l'autruche et de la fougère aigle. La fougère aigle provoque des cancers et ne se mange pas. Les têtes de violon sont lisses, avec des écailles brunes comme du papier et un sillon profond en U dans la tige ; la fougère aigle est duveteuse et se divise en trois au sommet."
     }
   }
 }

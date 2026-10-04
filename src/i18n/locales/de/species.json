@@ -273,6 +273,71 @@
       "name": "Klapperschwamm",
       "description": "Eine große Rosette aus sich überlappenden, graubraunen Hütchen am Fuß alter Eichen, unterseits mit weißen Poren",
       "howTo": "Suche am Fuß alter oder absterbender Eichen von Ende August bis Oktober; er erscheint oft Jahr für Jahr am selben Baum. In Teilen Mittel- und Nordeuropas ist er geschützt"
+    },
+    "saffron_milk_cap": {
+      "name": "Edel-Reizker",
+      "description": "Ein orangefarbener Hut mit dunkleren Ringen, der karottenorange Milch blutet und grün anläuft; in Spanien und Italien heiß begehrt",
+      "howTo": "Suche unter Kiefern und Fichten vom Spätsommer bis November, am Mittelmeer und an der US-Pazifikküste bis in den Winter. Brich eine Lamelle ab: Die Milch muss orange bis rot sein, niemals weiß"
+    },
+    "hedgehog_mushroom": {
+      "name": "Semmel-Stoppelpilz",
+      "description": "Ein semmelgelber bis orangefarbener Hut mit weichen Stacheln statt Lamellen: einer der sichersten Wildpilze für Einsteiger",
+      "howTo": "Suche in moosigen Nadel- und Laubwäldern vom Spätsommer bis zum Spätherbst, oft in Ringen oder Reihen; an der US-Pazifikküste den ganzen Winter über. Dreh ihn um: Stacheln, keine Lamellen"
+    },
+    "shaggy_mane": {
+      "name": "Schopf-Tintling",
+      "description": "Ein hoher weißer, zottig beschuppter Zylinder auf Rasen und an Wegrändern, der sich binnen eines Tages nach dem Pflücken in schwarze Tinte auflöst",
+      "howTo": "Suche auf Rasen, an Wegrändern und auf aufgewühltem Boden einige Tage nach Herbstregen, auch nach Frühjahrsregen. Nimm nur junge, ganz weiße Exemplare und koche sie noch am selben Tag; meide stark befahrene Straßen, dort nimmt er Schwermetalle auf"
+    },
+    "giant_puffball": {
+      "name": "Riesenbovist",
+      "description": "Eine glatte weiße Kugel, fußballgroß oder größer, auf Wiesen und Weiden, mit festem, weißem Fleisch wie frischer Mozzarella",
+      "howTo": "Suche auf Wiesen, Weiden, in Parks und an Waldrändern vom Spätsommer bis in den Herbst, oft bei Brennnesseln. Schneide jeden von oben nach unten durch: Innen muss er rein weiß sein, ohne jede Spur von Hut oder Stiel"
+    },
+    "matsutake": {
+      "name": "Matsutake",
+      "description": "Ein fester, weiß-brauner Pilz mit würzigem, zimtartigem Duft, in Japan der begehrteste aller Speisepilze",
+      "howTo": "Suche ab August in trockenen, sandigen Kiefernheiden Skandinaviens und Finnlands und von September bis November unter Nadelbäumen und Tanoak im Westen der USA. Harke nie den Waldboden auf. In Schweden und Norwegen steht er wegen der Kahlschläge auf der Roten Liste, nicht wegen des Sammelns; in den US-Nationalforsten brauchst du eine Genehmigung"
+    },
+    "ramps": {
+      "name": "Ramp-Lauch",
+      "description": "Der wilde Knoblauch Amerikas: breite, glatte grüne Blätter an violetten Stielen, die stark nach Zwiebel und Knoblauch riechen",
+      "howTo": "Suche in reichen, feuchten Laubwäldern im Osten der USA von März bis Mai, bevor die Bäume austreiben. Nimm ein Blatt pro Pflanze und lass die Zwiebel stehen; manche Parks verbieten das Sammeln, und Québec verbietet den Verkauf"
+    },
+    "fiddleheads": {
+      "name": "Straußenfarn-Triebe",
+      "description": "Die fest eingerollten jungen Wedel des Straußenfarns: glatt, leuchtend grün, mit braunen, papierartigen Schuppen",
+      "howTo": "Suche in Flussauen und feuchten Wäldern von Ende April bis Mai, solange die Wedel noch eingerollt sind. Koche sie immer vor dem Essen ab und nimm höchstens die Hälfte der Triebe eines Horsts"
+    },
+    "cloudberry": {
+      "name": "Moltebeere",
+      "description": "Eine bernsteinorange Beere nordischer Moore, wie eine weiche Himbeere, in Skandinavien heiß begehrt",
+      "howTo": "Suche im Juli und August auf offenen Mooren und feuchten Heiden Fennoskandiens, wenn die Beeren von hartem Rot zu weichem Bernsteingelb wechseln. Frost zur Blütezeit kann die Ernte eines Jahres vernichten"
+    },
+    "huckleberry": {
+      "name": "Huckleberry",
+      "description": "Eine violettschwarze Bergbeere aus dem Nordwesten der USA, süßer und herber als eine Heidelbeere",
+      "howTo": "Suche von Juli bis September an subalpinen Hängen und auf alten Brandflächen in 1.000–2.000 m in Montana, Idaho und den Cascades. Dort leben Bären: Mach dich bemerkbar und trag Bärenspray bei dir"
+    },
+    "pawpaw": {
+      "name": "Indianerbanane",
+      "description": "Die größte heimische Frucht Nordamerikas: grün, mangoförmig, mit cremigem Fruchtfleisch, das nach Banane und Mango schmeckt",
+      "howTo": "Suche von Ende August bis Oktober im Unterholz der Auwälder im Osten der USA, wenn die Früchte weich werden und fallen. Iss nur das Fruchtfleisch: Schale und Samen sind giftig"
+    },
+    "rose_hips": {
+      "name": "Hagebutten",
+      "description": "Die roten Herbstfrüchte der Wildrosen, reich an Vitamin C und voller Samen mit juckenden Haaren",
+      "howTo": "Suche von Ende August bis November an Hecken, Gebüschen und Waldrändern; nach den ersten Frösten sind sie am weichsten. Entferne Samen und Haare, sie reizen Mund und Darm"
+    },
+    "sloes": {
+      "name": "Schlehen",
+      "description": "Die kleinen blauschwarzen Früchte des dornigen Schwarzdorns, bereift und herb-sauer",
+      "howTo": "Suche von September bis November an Hecken und buschigen Hängen; nach den ersten Frösten werden sie milder. Zerdrück die Kerne nicht und achte auf glänzend schwarze Doppelgänger wie Kreuzdorn und Tollkirsche"
+    },
+    "sea_buckthorn": {
+      "name": "Sanddorn",
+      "description": "Leuchtend orange Beeren dicht an dornigen, silbrig belaubten Zweigen: sauer und reich an Vitamin C",
+      "howTo": "Suche von August bis Oktober in Küstendünen und an kiesigen Flussufern. Trag Handschuhe gegen die Dornen und informiere dich: In Dünenschutzgebieten ist das Pflücken oft verboten"
     }
   }
 }

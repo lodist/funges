@@ -273,6 +273,71 @@
       "name": "Hen of the Woods",
       "description": "A big rosette of overlapping grey-brown fronds at the foot of old oaks, with white pores underneath",
       "howTo": "Look at the base of old or dying oaks from late August to October; it often comes back to the same tree year after year. It is protected in parts of central and northern Europe"
+    },
+    "saffron_milk_cap": {
+      "name": "Saffron Milk Cap",
+      "description": "An orange cap with darker rings that bleeds carrot-orange milk and bruises green; a favourite in Spain and Italy",
+      "howTo": "Look under pines and spruces from late summer to November, into winter on the Mediterranean and US Pacific coasts. Break a gill: the milk must be orange to red, never white"
+    },
+    "hedgehog_mushroom": {
+      "name": "Hedgehog Mushroom",
+      "description": "A buff to orange cap with soft spines instead of gills underneath: one of the safest wild mushrooms to learn",
+      "howTo": "Look in mossy conifer and broadleaf woods from late summer to late autumn, often in rings or rows; on the US Pacific coast through the winter. Turn it over: spines, not gills"
+    },
+    "shaggy_mane": {
+      "name": "Shaggy Mane",
+      "description": "A tall white cylinder of shaggy scales on lawns and roadsides that dissolves into black ink within a day of picking",
+      "howTo": "Look on lawns, verges and disturbed ground a few days after autumn rain, and after spring rain too. Pick only young, all-white ones and cook them the same day; avoid busy roads, where it takes up heavy metals"
+    },
+    "giant_puffball": {
+      "name": "Giant Puffball",
+      "description": "A smooth white ball, football-sized or bigger, in meadows and pastures, with firm white flesh like fresh mozzarella",
+      "howTo": "Look in meadows, pastures, parks and woodland edges from late summer to autumn, often where nettles grow. Cut every one in half from top to bottom: it must be pure white inside, with no trace of a cap or stem"
+    },
+    "matsutake": {
+      "name": "Matsutake",
+      "description": "A firm white-and-brown mushroom with a spicy, cinnamon-like smell, prized above all others in Japan",
+      "howTo": "Look in dry, sandy pine heaths from August in the Nordics, and under conifers and tanoak from September to November in the western US. Never rake the ground. It is red-listed in Sweden and Norway, where logging, not picking, is the threat; US national forests require a permit"
+    },
+    "ramps": {
+      "name": "Ramps",
+      "description": "America's wild garlic: broad, smooth green leaves on purplish stems that smell strongly of onion and garlic",
+      "howTo": "Look in rich, moist hardwood forest in the eastern US from March to May, before the trees leaf out. Take one leaf per plant and leave the bulb; some parks ban picking, and Quebec bans selling them"
+    },
+    "fiddleheads": {
+      "name": "Fiddleheads",
+      "description": "The tightly coiled young fronds of the ostrich fern: smooth, bright green, with brown papery scales",
+      "howTo": "Look on river floodplains and in moist woods from late April to May, while the fronds are still coiled. Always boil them before eating, and take no more than half the fiddleheads of a clump"
+    },
+    "cloudberry": {
+      "name": "Cloudberry",
+      "description": "An amber-orange berry of northern bogs, like a soft raspberry, prized across the Nordic countries",
+      "howTo": "Look on open bogs and wet heath in Fennoscandia in July and August, when the berries turn from hard red to soft amber-yellow. A frost at flowering time can ruin a year's crop"
+    },
+    "huckleberry": {
+      "name": "Huckleberry",
+      "description": "A purple-black mountain berry of the US Northwest, sweeter and tarter than a blueberry",
+      "howTo": "Look on subalpine slopes and old burns at 1,000–2,000 m in Montana, Idaho and the Cascades from July to September. Huckleberry patches are bear country: make noise and carry bear spray"
+    },
+    "pawpaw": {
+      "name": "Pawpaw",
+      "description": "North America's largest native fruit: green and mango-shaped, with custardy flesh that tastes of banana and mango",
+      "howTo": "Look in the understory of river-bottom forests in the eastern US from late August to October, when the fruit softens and drops. Eat only the flesh: the skin and seeds are poisonous"
+    },
+    "rose_hips": {
+      "name": "Rose Hips",
+      "description": "The red autumn fruits of wild roses, rich in vitamin C and full of seeds wrapped in itchy hairs",
+      "howTo": "Look on hedgerows, scrub and woodland edges from late August to November; they are softest after the first frosts. Remove the seeds and hairs, which irritate the mouth and gut"
+    },
+    "sloes": {
+      "name": "Sloes",
+      "description": "The small blue-black fruits of the thorny blackthorn, with a dusty bloom and a fiercely sour taste",
+      "howTo": "Look on hedgerows and scrubby slopes from September to November; they mellow after the first frosts. Don't crush the stones, and watch for shiny black look-alikes such as buckthorn and deadly nightshade"
+    },
+    "sea_buckthorn": {
+      "name": "Sea Buckthorn",
+      "description": "Bright orange berries packed along thorny, silver-leaved branches: sour and rich in vitamin C",
+      "howTo": "Look on coastal dunes and gravelly riverbanks from August to October. Wear gloves against the thorns, and check the rules: picking is often forbidden in dune reserves"
     }
   }
 }

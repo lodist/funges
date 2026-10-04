@@ -167,6 +167,58 @@ CATALOG = [
   [
     "Grifola frondosa",
     "species"
+  ],
+  [
+    "Lactarius deliciosus",
+    "species"
+  ],
+  [
+    "Hydnum repandum",
+    "species"
+  ],
+  [
+    "Coprinus comatus",
+    "species"
+  ],
+  [
+    "Calvatia gigantea",
+    "species"
+  ],
+  [
+    "Tricholoma matsutake",
+    "species"
+  ],
+  [
+    "Allium tricoccum",
+    "species"
+  ],
+  [
+    "Matteuccia struthiopteris",
+    "species"
+  ],
+  [
+    "Rubus chamaemorus",
+    "species"
+  ],
+  [
+    "Vaccinium membranaceum",
+    "species"
+  ],
+  [
+    "Asimina triloba",
+    "species"
+  ],
+  [
+    "Rosa canina",
+    "species"
+  ],
+  [
+    "Prunus spinosa",
+    "species"
+  ],
+  [
+    "Hippophae rhamnoides",
+    "species"
   ]
 ]
 CATALOG_NAMES = {name for name, _rank in CATALOG}

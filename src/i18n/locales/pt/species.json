@@ -273,6 +273,71 @@
       "name": "Maitake",
       "description": "Uma grande roseta de lóbulos castanho-acinzentados sobrepostos ao pé de carvalhos velhos, com poros brancos por baixo",
       "howTo": "Procure na base de carvalhos velhos ou debilitados do fim de agosto a outubro; costuma voltar à mesma árvore ano após ano. É protegido em parte da Europa central e do norte"
+    },
+    "saffron_milk_cap": {
+      "name": "Sancha",
+      "description": "Um chapéu cor de laranja com anéis mais escuros que verte um leite cor de cenoura e mancha de verde; muito apreciado em Espanha e Itália",
+      "howTo": "Procure debaixo de pinheiros e espruces do fim do verão a novembro, e até ao inverno no Mediterrâneo e na costa do Pacífico dos EUA. Parta uma lâmina: o leite tem de ser laranja a vermelho, nunca branco"
+    },
+    "hedgehog_mushroom": {
+      "name": "Pé-de-carneiro",
+      "description": "Um chapéu cor de camurça a alaranjado com espinhos macios em vez de lâminas: um dos cogumelos silvestres mais seguros para aprender",
+      "howTo": "Procure em bosques musgosos de coníferas e folhosas do fim do verão ao fim do outono, muitas vezes em círculos ou filas; na costa do Pacífico dos EUA durante todo o inverno. Vire-o: espinhos, não lâminas"
+    },
+    "shaggy_mane": {
+      "name": "Coprino-cabeludo",
+      "description": "Um cilindro alto e branco de escamas desgrenhadas em relvados e bermas que se desfaz em tinta negra um dia depois de apanhado",
+      "howTo": "Procure em relvados, bermas e terrenos revolvidos alguns dias depois das chuvas de outono, e também depois das de primavera. Apanhe apenas exemplares jovens e totalmente brancos e cozinhe-os no mesmo dia; evite estradas movimentadas, onde absorve metais pesados"
+    },
+    "giant_puffball": {
+      "name": "Bufa-do-diabo",
+      "description": "Uma bola branca e lisa, do tamanho de uma bola de futebol ou maior, em prados e pastagens, de carne firme e branca como mozzarella fresca",
+      "howTo": "Procure em prados, pastagens, parques e orlas de bosque do fim do verão ao outono, muitas vezes junto às urtigas. Corte sempre cada exemplar ao meio de cima para baixo: por dentro tem de ser branco puro, sem vestígios de chapéu ou pé"
+    },
+    "matsutake": {
+      "name": "Matsutake",
+      "description": "Um cogumelo firme, branco e castanho, com um cheiro picante a canela, o mais apreciado de todos no Japão",
+      "howTo": "Procure em pinhais secos e arenosos a partir de agosto nos países nórdicos, e debaixo de coníferas e tanoaks de setembro a novembro no oeste dos EUA. Nunca revolva o solo com ancinho. Na Suécia e na Noruega está na lista vermelha por causa dos cortes rasos, não da apanha; nas florestas nacionais dos EUA é preciso uma licença"
+    },
+    "ramps": {
+      "name": "Alho-porro-selvagem",
+      "description": "O alho-selvagem da América: folhas largas, lisas e verdes em caules arroxeados, com um forte cheiro a cebola e alho",
+      "howTo": "Procure em florestas de folhosas ricas e húmidas do leste dos EUA de março a maio, antes de as árvores ganharem folhas. Apanhe uma folha por planta e deixe o bolbo; alguns parques proíbem a apanha e o Quebeque proíbe a venda"
+    },
+    "fiddleheads": {
+      "name": "Feto-de-avestruz",
+      "description": "As frondes jovens e enroladas do feto-avestruz: lisas, verde-vivo, com escamas castanhas como papel",
+      "howTo": "Procure em várzeas de rios e bosques húmidos do fim de abril a maio, enquanto as frondes ainda estão enroladas. Coza-os sempre antes de os comer e não apanhe mais de metade dos rebentos de uma touceira"
+    },
+    "cloudberry": {
+      "name": "Amora-ártica",
+      "description": "Uma baga cor de âmbar das turfeiras do norte, parecida com uma framboesa macia, muito apreciada nos países nórdicos",
+      "howTo": "Procure em turfeiras abertas e charnecas húmidas da Fenoscândia em julho e agosto, quando as bagas passam de vermelhas e duras a macias e amarelo-âmbar. Uma geada durante a floração pode estragar a colheita de um ano"
+    },
+    "huckleberry": {
+      "name": "Huckleberry",
+      "description": "Uma baga de montanha negro-arroxeada do noroeste dos EUA, mais doce e mais ácida do que um mirtilo",
+      "howTo": "Procure em encostas subalpinas e antigas áreas ardidas entre 1000 e 2000 m no Montana, Idaho e Cascades de julho a setembro. É território de ursos: faça barulho e leve spray anti-urso"
+    },
+    "pawpaw": {
+      "name": "Asimina",
+      "description": "O maior fruto nativo da América do Norte: verde, em forma de manga, com uma polpa cremosa que sabe a banana e manga",
+      "howTo": "Procure no sub-bosque das florestas ribeirinhas do leste dos EUA do fim de agosto a outubro, quando o fruto amolece e cai. Coma só a polpa: a casca e as sementes são venenosas"
+    },
+    "rose_hips": {
+      "name": "Cinórrodos",
+      "description": "Os frutos vermelhos de outono das roseiras silvestres, ricos em vitamina C e cheios de sementes envoltas em pelos irritantes",
+      "howTo": "Procure em sebes, matagais e orlas de bosque do fim de agosto a novembro; ficam mais macios depois das primeiras geadas. Retire as sementes e os pelos, que irritam a boca e o intestino"
+    },
+    "sloes": {
+      "name": "Abrunhos",
+      "description": "Os pequenos frutos azul-escuros do abrunheiro espinhoso, com pruína e um sabor muito adstringente",
+      "howTo": "Procure em sebes e encostas com mato de setembro a novembro; ficam mais suaves depois das primeiras geadas. Não esmague os caroços e cuidado com os sósias negros e brilhantes, como o espinheiro-cerval e a beladona"
+    },
+    "sea_buckthorn": {
+      "name": "Espinheiro-marítimo",
+      "description": "Bagas cor de laranja viva apertadas ao longo de ramos espinhosos de folhas prateadas: ácidas e ricas em vitamina C",
+      "howTo": "Procure em dunas costeiras e margens de rio com cascalho de agosto a outubro. Use luvas por causa dos espinhos e informe-se: nas reservas de dunas a apanha é muitas vezes proibida"
     }
   }
 }

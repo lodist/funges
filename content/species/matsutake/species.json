@@ -1,0 +1,211 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "matsutake",
+  "scientificName": "Tricholoma matsutake",
+  "catalog": {
+    "enabled": true,
+    "order": 47,
+    "translationKey": "matsutake",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/matsutake.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Matsutake",
+      "description": "A firm white-and-brown mushroom with a spicy, cinnamon-like smell, prized above all others in Japan",
+      "howTo": "Look in dry, sandy pine heaths from August in the Nordics, and under conifers and tanoak from September to November in the western US. Never rake the ground. It is red-listed in Sweden and Norway, where logging, not picking, is the threat; US national forests require a permit"
+    },
+    "it": {
+      "name": "Matsutake",
+      "description": "Un fungo sodo, bianco e bruno, dal profumo speziato di cannella, il più pregiato di tutti in Giappone",
+      "howTo": "Cercalo nelle pinete secche e sabbiose da agosto nei paesi nordici, e sotto conifere e tanoak da settembre a novembre nell'ovest degli Stati Uniti. Non rastrellare mai il terreno. In Svezia e Norvegia è nella lista rossa per i tagli forestali, non per la raccolta; nelle foreste nazionali statunitensi serve un permesso"
+    },
+    "fr": {
+      "name": "Matsutake",
+      "description": "Un champignon ferme, blanc et brun, à l'odeur épicée de cannelle, le plus prisé de tous au Japon",
+      "howTo": "Cherchez-le dans les pinèdes sèches et sableuses dès le mois d'août dans les pays nordiques, et sous les conifères et les tanoaks de septembre à novembre dans l'ouest des États-Unis. Ne ratissez jamais le sol. Il est sur la liste rouge en Suède et en Norvège à cause des coupes forestières, pas de la cueillette ; dans les forêts nationales américaines, un permis est nécessaire"
+    },
+    "de": {
+      "name": "Matsutake",
+      "description": "Ein fester, weiß-brauner Pilz mit würzigem, zimtartigem Duft, in Japan der begehrteste aller Speisepilze",
+      "howTo": "Suche ab August in trockenen, sandigen Kiefernheiden Skandinaviens und Finnlands und von September bis November unter Nadelbäumen und Tanoak im Westen der USA. Harke nie den Waldboden auf. In Schweden und Norwegen steht er wegen der Kahlschläge auf der Roten Liste, nicht wegen des Sammelns; in den US-Nationalforsten brauchst du eine Genehmigung"
+    },
+    "es": {
+      "name": "Matsutake",
+      "description": "Una seta firme, blanca y parda, de olor especiado a canela, la más apreciada de todas en Japón",
+      "howTo": "Búscala en pinares secos y arenosos desde agosto en los países nórdicos, y bajo coníferas y tanoaks de septiembre a noviembre en el oeste de EE. UU. No rastrilles nunca el suelo. En Suecia y Noruega está en la lista roja por las talas, no por la recolección; en los bosques nacionales de EE. UU. se necesita un permiso"
+    },
+    "pt": {
+      "name": "Matsutake",
+      "description": "Um cogumelo firme, branco e castanho, com um cheiro picante a canela, o mais apreciado de todos no Japão",
+      "howTo": "Procure em pinhais secos e arenosos a partir de agosto nos países nórdicos, e debaixo de coníferas e tanoaks de setembro a novembro no oeste dos EUA. Nunca revolva o solo com ancinho. Na Suécia e na Noruega está na lista vermelha por causa dos cortes rasos, não da apanha; nas florestas nacionais dos EUA é preciso uma licença"
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Tricholoma matsutake",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "docs/species/2026-09-29-step4-mushrooms.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": true,
+    "dataColumns": ["Matsutake"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [312, 313, 324],
+        "scoring": {
+          "optimal_temp": 12,
+          "temp_sigma": 5,
+          "min_temp": 2,
+          "max_temp": 30,
+          "optimal_alt": 230,
+          "alt_sigma": 800,
+          "optimal_humidity": 78,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.0,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.5, 6.5],
+          "optimal_soil_temp": 11,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 45,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [8, 9, 10],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": ["pinus"]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5241820",
+          "https://www.gbif.org/species/5241743",
+          "https://www.gbif.org/species/5241741",
+          "https://www.mushroomexpert.com/tricholoma_magnivelare.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": true,
+        "landCover": [42, 43],
+        "scoring": {
+          "optimal_temp": 13,
+          "temp_sigma": 5,
+          "min_temp": 3,
+          "max_temp": 30,
+          "optimal_alt": 490,
+          "alt_sigma": 800,
+          "optimal_humidity": 74,
+          "humidity_sigma": 17,
+          "optimal_pH": 4.4,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [2.9, 5.9],
+          "optimal_soil_temp": 12,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 45,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [9, 10, 11],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": ["white_red_jack_pine", "spruce_fir", "maple_beech_birch"]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5241820",
+          "https://www.gbif.org/species/5241743",
+          "https://www.gbif.org/species/5241741",
+          "https://www.mushroomexpert.com/tricholoma_magnivelare.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [42, 43],
+        "scoring": {
+          "optimal_temp": 11,
+          "temp_sigma": 5,
+          "min_temp": 1,
+          "max_temp": 30,
+          "optimal_alt": 900,
+          "alt_sigma": 1200,
+          "optimal_humidity": 75,
+          "humidity_sigma": 17,
+          "optimal_pH": 5.0,
+          "pH_sigma_near": 1.5,
+          "pH_sigma_far": 1.5,
+          "pH_range_near": [3.5, 6.5],
+          "optimal_soil_temp": 10,
+          "soil_temp_sigma": 5,
+          "min_cumulative_rain": 45,
+          "weather_preference": {
+            "rain_first": true
+          },
+          "wind_sensitive": true,
+          "season_months": [9, 10, 11, 12],
+          "water_relevance": false,
+          "sea_relevance": false,
+          "hosts": [
+            "white_red_jack_pine",
+            "spruce_fir",
+            "douglas_fir",
+            "ponderosa_pine",
+            "western_white_pine",
+            "fir_spruce_mountain_hemlock",
+            "lodgepole_pine",
+            "hemlock_sitka_spruce",
+            "western_larch",
+            "redwood",
+            "other_western_softwood",
+            "california_mixed_conifer",
+            "exotic_softwoods",
+            "tanoak_laurel"
+          ]
+        },
+        "scoringReferences": [
+          "https://www.gbif.org/species/5241820",
+          "https://www.gbif.org/species/5241743",
+          "https://www.gbif.org/species/5241741",
+          "https://www.mushroomexpert.com/tricholoma_magnivelare.html",
+          "docs/species/2026-09-29-step4-mushrooms.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [5241820, 5241743, 5241741],
+      "references": [
+        "https://www.gbif.org/species/5241820",
+        "https://www.gbif.org/species/5241743",
+        "https://www.gbif.org/species/5241741"
+      ]
+    },
+    "rangePrior": {
+      "taxonKeys": [5241820, 5241743, 5241741]
+    }
+  }
+}

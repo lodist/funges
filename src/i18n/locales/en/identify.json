@@ -90,7 +90,9 @@
       "ricin": "The seeds contain one of the most lethal natural poisons known. A few chewed seeds can kill an adult, and there is no antidote.",
       "cytisine": "All parts, especially the seed pods, contain cytisine. Children have died after eating the pods, having taken them for peas.",
       "grayanotoxin": "Leaves, flowers and nectar contain grayanotoxins, which disturb heart rhythm. Honey made from the flowers has poisoned people.",
-      "veratrumAlkaloid": "Collapses blood pressure and heart rate within hours. The young leaves are repeatedly mistaken for wild garlic, and those confusions have been fatal."
+      "veratrumAlkaloid": "Collapses blood pressure and heart rate within hours. The young leaves are repeatedly mistaken for wild garlic, and those confusions have been fatal.",
+      "coprine": "Contains coprine, which stops the body breaking down alcohol. Alcohol drunk in the hours before the meal or up to three days after it causes flushing, a racing heart, nausea and vomiting.",
+      "ptaquiloside": "Contains ptaquiloside, which causes cancer (bracken is rated possibly carcinogenic to humans), and an enzyme that destroys vitamin B1. Cooking lowers the toxin but does not remove it."
     },
     "checks": {
       "volva": "Look at the very base of the stem, below ground level: a sac-like bag or swollen cup there is a serious warning sign.",
@@ -117,13 +119,23 @@
       "plantHabit": "Whether the plant is a woody shrub or a soft green herb dying back each year.",
       "interiorPattern": "Cut it in half. A true truffle is marbled with pale branching veins. A false truffle is a solid dark mass, purple to black, with no pattern.",
       "berryColour": "Ripe berry colour: elderberries for eating are purple-black. Red berries in upright, dome-shaped clusters are red elder, poisonous raw.",
-      "flowerShape": "Flower shape: violets have five uneven petals with a spur at the back; lesser celandine has 8–12 glossy yellow petals."
+      "flowerShape": "Flower shape: violets have five uneven petals with a spur at the back; lesser celandine has 8–12 glossy yellow petals.",
+      "latexColour": "Break a gill or the cap edge and watch the milk that appears. Saffron milk caps bleed carrot-orange to wine-red milk; white or yellowing milk means another milk cap.",
+      "capMargin": "Whether the cap edge is rolled under and fringed with long, woolly hairs.",
+      "capScales": "Whether the cap is covered in shaggy, upturned white scales, or is smooth, grey-brown and finely grooved.",
+      "fernStem": "Look at the young stem. Ostrich fern fiddleheads are smooth, with brown papery scales and a deep U-shaped groove along the inside of the stem. Bracken is fuzzy, with a round stem and a top that branches in three.",
+      "berryBloom": "Sloes grow singly on thorny blackthorn and have a dusty blue bloom that rubs off. Buckthorn berries are shiny black, in clusters along the twigs, with no bloom."
     },
     "critical": {
       "lepiotaMacrolepiota": "Deadly Lepiota species are among the most dangerous look-alikes for the Parasol mushroom, and this was the single most frequent mistake in our testing. A true Parasol is large, with a movable ring and a snakeskin-patterned stem. Small specimens with a plain stem should be left alone even if they look right.",
       "trufflePair": "Both a truffle and a poisonous false truffle are among the matches. From the outside they are genuinely hard to tell apart. Cut the find open before anything else: marbled pale veins mean truffle, a solid dark interior means false truffle.",
       "angelWingPair": "Both an oyster mushroom and the angel wing are among the matches. The angel wing has caused fatal brain inflammation. It is thinner, pure white, and grows on conifer wood: check the wood and the flesh thickness before anything else.",
-      "veratrumPair": "Both wild garlic and white hellebore are among the matches. This confusion has killed people. Crush a leaf: wild garlic smells strongly of garlic, hellebore does not. Hellebore leaves are also strongly ribbed and grow alternately up the stem."
+      "veratrumPair": "Both wild garlic and white hellebore are among the matches. This confusion has killed people. Crush a leaf: wild garlic smells strongly of garlic, hellebore does not. Hellebore leaves are also strongly ribbed and grow alternately up the stem.",
+      "inkCapAlcohol": "Both a shaggy mane and the common ink cap are among the matches. The common ink cap reacts violently with alcohol, even alcohol drunk days after the meal. A shaggy mane is tall, white and covered in shaggy scales; the common ink cap is smaller, grey-brown and smooth. If in doubt, leave it, and never drink alcohol with ink caps.",
+      "matsutakeSmithiana": "Both a matsutake and Amanita smithiana are among the matches. Amanita smithiana destroys the kidneys and has been picked for matsutake in the Pacific Northwest. Smell it and dig out the whole base: a matsutake smells spicy, like cinnamon. Amanita smithiana does not, and its base swells and then tapers into the soil like a root, ringed with white scraps of veil.",
+      "puffballPair": "Both a giant puffball and a poisonous look-alike are among the matches. Cut it in half from top to bottom before anything else. A puffball is pure white and even all the way through. A purple-black interior means an earthball; the outline of a cap, gills and stem means a young Amanita, which can be deadly.",
+      "rampsPair": "Both ramps and a poisonous look-alike are among the matches. Lily of the valley, false hellebore and autumn crocus have similar leaves, and all three are toxic. Crush a leaf: ramps smell strongly of onion or garlic, the look-alikes do not. Lily of the valley has two leaves wrapped around one stalk; false hellebore leaves are deeply pleated and climb a stout stem.",
+      "fiddleheadBracken": "Both ostrich fern fiddleheads and bracken are among the matches. Bracken causes cancer and is not a fiddlehead to eat. Ostrich fern fiddleheads are smooth, with brown papery scales and a deep U-shaped groove inside the stem; bracken is fuzzy and branches in three at the top."
     }
   }
 }
