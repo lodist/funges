@@ -45,6 +45,29 @@ describe('FeatureInfoModal', () => {
     expect(screen.queryByText(/specie rilevate/i)).not.toBeInTheDocument();
   });
 
+  it('lists a cherry blossom cell as one row with its peak date, not species', () => {
+    // 6 April 2027, three days after the slider's day.
+    render(
+      <FeatureInfoModal
+        feature={makeFeature({ peak: 20914 })}
+        open
+        onClose={vi.fn()}
+        bloomDay={20911}
+      />
+    );
+
+    expect(
+      screen.getByRole('heading', { name: 'Fioritura dei ciliegi' })
+    ).toBeInTheDocument();
+    expect(screen.getByText('Prunus serrulata')).toBeInTheDocument();
+    expect(screen.getByText('6 apr')).toBeInTheDocument();
+    expect(
+      screen.getByText(/Piena fioritura · tra 3 giorni/)
+    ).toBeInTheDocument();
+    // `peak` is a date, never a species row.
+    expect(screen.queryByText('peak')).not.toBeInTheDocument();
+  });
+
   it('shows exactly one close button, icon-only, and closes on click', async () => {
     const onClose = vi.fn();
     const user = userEvent.setup();

@@ -169,6 +169,26 @@ CATALOG = [
     "species"
   ],
   [
+    "Lactarius deliciosus",
+    "species"
+  ],
+  [
+    "Hydnum repandum",
+    "species"
+  ],
+  [
+    "Coprinus comatus",
+    "species"
+  ],
+  [
+    "Calvatia gigantea",
+    "species"
+  ],
+  [
+    "Tricholoma matsutake",
+    "species"
+  ],
+  [
     "Allium tricoccum",
     "species"
   ],

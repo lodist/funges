@@ -91,6 +91,7 @@
       "cytisine": "Todas as partes, sobretudo as vagens, contêm citisina. Morreram crianças depois de comerem as vagens, tomando-as por ervilhas.",
       "grayanotoxin": "As folhas, flores e néctar contêm graianotoxinas, que alteram o ritmo cardíaco. O mel feito destas flores já intoxicou pessoas.",
       "veratrumAlkaloid": "Faz colapsar a tensão arterial e o ritmo cardíaco em poucas horas. As folhas jovens são repetidamente confundidas com alho-dos-ursos, e essas confusões foram fatais.",
+      "coprine": "Contém coprina, que impede o organismo de eliminar o álcool. O álcool bebido nas horas antes da refeição ou até três dias depois provoca rubor, taquicardia, náuseas e vómitos.",
       "ptaquiloside": "Contém ptaquilosídeo, que provoca cancro (o feto-comum é classificado como possível cancerígeno para o ser humano), e uma enzima que destrói a vitamina B1. Cozinhar reduz a toxina, mas não a elimina."
     },
     "checks": {
@@ -119,6 +120,9 @@
       "interiorPattern": "Corta-o ao meio. Uma trufa verdadeira é marmoreada com veias pálidas ramificadas. Uma falsa trufa é uma massa escura e compacta, arroxeada a negra, sem padrão.",
       "berryColour": "Cor das bagas maduras: o sabugueiro-negro tem bagas negro-arroxeadas. Bagas vermelhas em cachos eretos em forma de cúpula são de sabugueiro-vermelho, tóxico cru.",
       "flowerShape": "Forma da flor: as violetas têm cinco pétalas desiguais com um esporão atrás; a ficária tem 8 a 12 pétalas amarelas e brilhantes.",
+      "latexColour": "Parte uma lâmina ou a borda do chapéu e observa o leite que sai. As sanchas vertem um leite cor de cenoura a vermelho-vinho; um leite branco ou que amarelece indica outro Lactarius.",
+      "capMargin": "Se a borda do chapéu está enrolada e franjada de pelos longos e lanosos.",
+      "capScales": "Se o chapéu está coberto de escamas brancas, desgrenhadas e levantadas, ou é liso, castanho-acinzentado e finamente estriado.",
       "fernStem": "Observa o caule jovem. Os rebentos do feto-de-avestruz são lisos, com escamas castanhas como papel e um sulco profundo em U na face interna do caule. O feto-comum é peludo, de caule redondo e com o topo que se divide em três.",
       "berryBloom": "Os abrunhos crescem isolados no abrunheiro espinhoso e têm uma pruína azulada que sai ao esfregar. As bagas do espinheiro-cerval são negras e brilhantes, em cachos ao longo dos raminhos, sem pruína."
     },
@@ -127,6 +131,9 @@
       "trufflePair": "Entre as correspondências estão tanto uma trufa como uma falsa trufa venenosa. Por fora são genuinamente difíceis de distinguir. Corta o achado antes de mais: veias pálidas marmoreadas indicam trufa, um interior escuro e compacto indica falsa trufa.",
       "angelWingPair": "Entre as correspondências estão tanto um pleuroto como a orelha-de-anjo. Esta última provocou inflamações cerebrais mortais. É mais fina, branco puro, e cresce em madeira de conífera: verifica antes de mais a madeira e a espessura da carne.",
       "veratrumPair": "Entre as correspondências estão tanto alho-dos-ursos como veratro branco. Esta confusão já matou. Esmaga uma folha: o alho-dos-ursos cheira intensamente a alho, o veratro não. As folhas de veratro são também muito nervuradas e alternas ao longo do caule.",
+      "inkCapAlcohol": "Entre as correspondências estão tanto um coprino-cabeludo como a Coprinopsis atramentaria. A Coprinopsis atramentaria reage violentamente com o álcool, mesmo bebido dias depois da refeição. O coprino-cabeludo é alto, branco e coberto de escamas desgrenhadas; a outra é mais pequena, castanho-acinzentada e lisa. Na dúvida, deixa-o, e nunca bebas álcool com coprinos.",
+      "matsutakeSmithiana": "Entre as correspondências estão tanto um matsutake como a Amanita smithiana. A Amanita smithiana destrói os rins e já foi apanhada por matsutake no noroeste do Pacífico. Cheira-o e tira a base inteira: o matsutake tem um cheiro picante, a canela. A Amanita smithiana não, e a sua base engrossa e depois afina no solo como uma raiz, rodeada de restos brancos de véu.",
+      "puffballPair": "Entre as correspondências estão tanto uma bufa-do-diabo como um sósia venenoso. Antes de mais, corta-a ao meio de cima para baixo. Uma bufa-do-diabo é branca e uniforme até ao centro. Um interior negro-violáceo indica um Scleroderma; a silhueta de um chapéu, lâminas e pé indica uma amanita jovem, que pode ser mortal.",
       "rampsPair": "Entre as correspondências estão tanto alho-porro-selvagem como um sósia venenoso. O lírio-do-vale, o veratro-verde e o cólquico têm folhas parecidas e são os três tóxicos. Esmaga uma folha: o alho-porro-selvagem cheira intensamente a cebola ou alho, os sósias não. O lírio-do-vale tem duas folhas enroladas à volta de um único pé; as folhas do veratro são profundamente pregueadas e sobem por um caule robusto.",
       "fiddleheadBracken": "Entre as correspondências estão tanto rebentos de feto-de-avestruz como feto-comum. O feto-comum provoca cancro e não se come. Os rebentos do feto-de-avestruz são lisos, com escamas castanhas como papel e um sulco profundo em U no caule; o feto-comum é peludo e divide-se em três no topo."
     }

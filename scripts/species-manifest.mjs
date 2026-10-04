@@ -37,7 +37,9 @@ const HOST_CLASSES = JSON.parse(
 );
 const CATEGORIES = new Set(['mushroom', 'plant', 'berry', 'nut', 'flower']);
 const ID_RE = /^[a-z0-9]+(?:[-_][a-z0-9]+)*$/;
-const TODO_RE = /\bTODO\b/i;
+// Case-sensitive: the scaffold writes TODO in capitals, and /i also rejected the
+// Spanish and Portuguese word "todo" (all).
+const TODO_RE = /\bTODO\b/;
 const REQUIRED_SCORING_NUMBERS = [
   'optimal_temp',
   'temp_sigma',

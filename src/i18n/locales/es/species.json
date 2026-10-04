@@ -274,6 +274,31 @@
       "description": "Una gran roseta de lóbulos pardo-grisáceos superpuestos al pie de robles viejos, con poros blancos por debajo",
       "howTo": "Búscalo en la base de robles viejos o decaídos de finales de agosto a octubre; suele volver al mismo árbol año tras año. Está protegido en parte de Europa central y del norte"
     },
+    "saffron_milk_cap": {
+      "name": "Níscalo",
+      "description": "Un sombrero anaranjado con anillos más oscuros que suelta una leche naranja zanahoria y se mancha de verde; el rovellón de Cataluña",
+      "howTo": "Búscalo bajo pinos y abetos rojos desde finales del verano hasta noviembre, y hasta el invierno en el Mediterráneo y en la costa del Pacífico de EE. UU. Rompe una lámina: la leche debe ser naranja o roja, nunca blanca"
+    },
+    "hedgehog_mushroom": {
+      "name": "Lengua de vaca",
+      "description": "Un sombrero de color gamuza a anaranjado con púas blandas en lugar de láminas: una de las setas silvestres más seguras para aprender",
+      "howTo": "Búscala en bosques musgosos de coníferas y frondosas desde finales del verano hasta finales del otoño, a menudo en corros o hileras; en la costa del Pacífico de EE. UU., todo el invierno. Dale la vuelta: púas, no láminas"
+    },
+    "shaggy_mane": {
+      "name": "Barbuda",
+      "description": "Un alto cilindro blanco de escamas desgreñadas en céspedes y cunetas que se deshace en tinta negra en menos de un día tras cogerlo",
+      "howTo": "Búscala en céspedes, cunetas y suelos removidos unos días después de las lluvias de otoño, y también tras las de primavera. Coge solo ejemplares jóvenes y completamente blancos y cocínalos el mismo día; evita las carreteras con mucho tráfico, donde absorbe metales pesados"
+    },
+    "giant_puffball": {
+      "name": "Bejín gigante",
+      "description": "Una bola blanca y lisa, del tamaño de un balón o mayor, en prados y pastos, de carne firme y blanca como la mozzarella fresca",
+      "howTo": "Búscalo en prados, pastos, parques y lindes de bosque desde finales del verano hasta el otoño, a menudo junto a las ortigas. Córtalo siempre por la mitad de arriba abajo: por dentro debe ser blanco puro, sin rastro de sombrero ni pie"
+    },
+    "matsutake": {
+      "name": "Matsutake",
+      "description": "Una seta firme, blanca y parda, de olor especiado a canela, la más apreciada de todas en Japón",
+      "howTo": "Búscala en pinares secos y arenosos desde agosto en los países nórdicos, y bajo coníferas y tanoaks de septiembre a noviembre en el oeste de EE. UU. No rastrilles nunca el suelo. En Suecia y Noruega está en la lista roja por las talas, no por la recolección; en los bosques nacionales de EE. UU. se necesita un permiso"
+    },
     "ramps": {
       "name": "Puerro silvestre americano",
       "description": "El ajo silvestre de América: hojas anchas, lisas y verdes sobre tallos violáceos, con un fuerte olor a cebolla y ajo",

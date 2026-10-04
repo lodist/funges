@@ -1,7 +1,20 @@
 import { useTranslation } from 'react-i18next';
 import { getScoreGradientCss } from '@/lib/scoreColor';
 
-export default function MapInfoCard() {
+interface MapInfoCardProps {
+  /** A layer with its own scale (cherry blossom) passes its ramp and labels. */
+  gradient?: string;
+  low?: string;
+  label?: string;
+  high?: string;
+}
+
+export default function MapInfoCard({
+  gradient,
+  low,
+  label,
+  high,
+}: MapInfoCardProps = {}) {
   const { t } = useTranslation('map');
 
   // Glass Regular at elevation raised — the sanctioned material for small
@@ -11,16 +24,18 @@ export default function MapInfoCard() {
   return (
     <div className='flex flex-col justify-center elevation-raised glass-regular px-3 md:px-4 rounded-lg md:w-96 h-14 md:h-[68px]'>
       <div className='flex items-center justify-between text-xs leading-none mb-1 md:mb-2'>
-        <span className='text-muted-foreground'>{t('scale.low')}</span>
-        <span className='font-bold text-foreground'>{t('scale.label')}</span>
-        <span className='text-muted-foreground'>{t('scale.high')}</span>
+        <span className='text-muted-foreground'>{low ?? t('scale.low')}</span>
+        <span className='font-bold text-foreground'>
+          {label ?? t('scale.label')}
+        </span>
+        <span className='text-muted-foreground'>{high ?? t('scale.high')}</span>
       </div>
       {/* Real fill-color ramp from the map style (getScoreGradientCss), not an
           approximated 2-stop gradient — a faithful legend for what's actually
           painted on the map, not just a same-hued decoration. */}
       <div
         className='h-2 md:h-3 rounded-full'
-        style={{ background: getScoreGradientCss() }}
+        style={{ background: gradient ?? getScoreGradientCss() }}
       />
     </div>
   );

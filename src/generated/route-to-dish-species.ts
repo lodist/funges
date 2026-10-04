@@ -204,6 +204,33 @@ export const GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG = {
       'Hen of the Woods',
     ],
   },
+  saffron_milk_cap: {
+    scorePropertyAliases: [
+      'saffron_milk_cap',
+      'saffron_milk_cap_score',
+      'Saffron Milk Cap',
+    ],
+  },
+  hedgehog_mushroom: {
+    scorePropertyAliases: [
+      'hedgehog_mushroom',
+      'hedgehog_mushroom_score',
+      'Hedgehog Mushroom',
+    ],
+  },
+  shaggy_mane: {
+    scorePropertyAliases: ['shaggy_mane', 'shaggy_mane_score', 'Shaggy Mane'],
+  },
+  giant_puffball: {
+    scorePropertyAliases: [
+      'giant_puffball',
+      'giant_puffball_score',
+      'Giant Puffball',
+    ],
+  },
+  matsutake: {
+    scorePropertyAliases: ['matsutake', 'matsutake_score', 'Matsutake'],
+  },
   ramps: {
     scorePropertyAliases: ['ramps', 'ramps_score', 'Ramps'],
   },

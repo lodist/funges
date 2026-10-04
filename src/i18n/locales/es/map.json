@@ -119,5 +119,18 @@
     "title": "Sin conexión",
     "noPackageMessage": "Ningún paquete descargado cubre esta zona. Vuelve a conectarte o regresa a una zona guardada.",
     "forecastOnlyMessage": "Previsión sin conexión cargada. El mapa base detallado necesita conexión."
+  },
+  "bloom": {
+    "name": "Flor del cerezo",
+    "spectacles": "Espectáculos",
+    "legend": "Plena floración",
+    "later": "3+ semanas",
+    "past": "Pasada",
+    "offSeason": "La previsión de la floración de los cerezos empieza el 1 de febrero.",
+    "atPeak": "en plena floración",
+    "inDays_one": "en {{count}} día",
+    "inDays_other": "en {{count}} días",
+    "daysAgo_one": "hace {{count}} día",
+    "daysAgo_other": "hace {{count}} días"
   }
 }

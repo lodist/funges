@@ -247,10 +247,10 @@ describe('data integrity', () => {
   // Pinned on purpose. The count is not interesting in itself, but an accidental
   // deletion here silently removes a warning, and a duplicate id or name makes
   // one entry unreachable — neither throws anywhere else.
-  it('has 78 toxic species with unique ids and names', () => {
-    expect(TOXIC_SPECIES).toHaveLength(78);
-    expect(new Set(TOXIC_SPECIES.map(t => t.id)).size).toBe(78);
-    expect(new Set(TOXIC_SPECIES.map(t => t.scientificName)).size).toBe(78);
+  it('has 80 toxic species with unique ids and names', () => {
+    expect(TOXIC_SPECIES).toHaveLength(80);
+    expect(new Set(TOXIC_SPECIES.map(t => t.id)).size).toBe(80);
+    expect(new Set(TOXIC_SPECIES.map(t => t.scientificName)).size).toBe(80);
   });
 
   it('references only real catalog ids in confusedWithSpeciesIds', () => {
@@ -458,7 +458,10 @@ describe('toxic species have their everyday counterpart in the vocabulary', () =
   const PAIRS: Array<[string, string[]]> = [
     ['Agaricus xanthodermus', ['Agaricus bisporus', 'Agaricus campestris']],
     ['Hypholoma fasciculare', ['Hypholoma capnoides']],
-    ['Scleroderma citrinum', ['Tuber melanosporum']],
+    ['Scleroderma citrinum', ['Tuber melanosporum', 'Calvatia gigantea']],
+    ['Coprinopsis atramentaria', ['Coprinus comatus']],
+    ['Lactarius torminosus', ['Lactarius deliciosus']],
+    ['Amanita smithiana', ['Tricholoma matsutake']],
     ['Conium maculatum', ['Petroselinum crispum']],
     ['Aethusa cynapium', ['Petroselinum crispum']],
     ['Veratrum album', ['Allium ursinum']],

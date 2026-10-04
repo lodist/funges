@@ -274,6 +274,31 @@
       "description": "A big rosette of overlapping grey-brown fronds at the foot of old oaks, with white pores underneath",
       "howTo": "Look at the base of old or dying oaks from late August to October; it often comes back to the same tree year after year. It is protected in parts of central and northern Europe"
     },
+    "saffron_milk_cap": {
+      "name": "Saffron Milk Cap",
+      "description": "An orange cap with darker rings that bleeds carrot-orange milk and bruises green; a favourite in Spain and Italy",
+      "howTo": "Look under pines and spruces from late summer to November, into winter on the Mediterranean and US Pacific coasts. Break a gill: the milk must be orange to red, never white"
+    },
+    "hedgehog_mushroom": {
+      "name": "Hedgehog Mushroom",
+      "description": "A buff to orange cap with soft spines instead of gills underneath: one of the safest wild mushrooms to learn",
+      "howTo": "Look in mossy conifer and broadleaf woods from late summer to late autumn, often in rings or rows; on the US Pacific coast through the winter. Turn it over: spines, not gills"
+    },
+    "shaggy_mane": {
+      "name": "Shaggy Mane",
+      "description": "A tall white cylinder of shaggy scales on lawns and roadsides that dissolves into black ink within a day of picking",
+      "howTo": "Look on lawns, verges and disturbed ground a few days after autumn rain, and after spring rain too. Pick only young, all-white ones and cook them the same day; avoid busy roads, where it takes up heavy metals"
+    },
+    "giant_puffball": {
+      "name": "Giant Puffball",
+      "description": "A smooth white ball, football-sized or bigger, in meadows and pastures, with firm white flesh like fresh mozzarella",
+      "howTo": "Look in meadows, pastures, parks and woodland edges from late summer to autumn, often where nettles grow. Cut every one in half from top to bottom: it must be pure white inside, with no trace of a cap or stem"
+    },
+    "matsutake": {
+      "name": "Matsutake",
+      "description": "A firm white-and-brown mushroom with a spicy, cinnamon-like smell, prized above all others in Japan",
+      "howTo": "Look in dry, sandy pine heaths from August in the Nordics, and under conifers and tanoak from September to November in the western US. Never rake the ground. It is red-listed in Sweden and Norway, where logging, not picking, is the threat; US national forests require a permit"
+    },
     "ramps": {
       "name": "Ramps",
       "description": "America's wild garlic: broad, smooth green leaves on purplish stems that smell strongly of onion and garlic",

@@ -71,6 +71,13 @@
     "artichoke": "Alcachofra-selvagem",
     "asparagus": "Aspargo-selvagem",
     "strawberry": "Morangos-silvestres",
+    "saffron_milk_cap": "Sancha",
+    "hedgehog_mushroom": "Pé-de-carneiro",
+    "shaggy_mane": "Coprino-cabeludo",
+    "giant_puffball": "Bufa-do-diabo",
+    "matsutake": "Matsutake",
+    "lions_mane": "Juba-de-leão",
+    "hen_of_the_woods": "Maitake",
     "ramps": "Alho-porro-selvagem",
     "fiddleheads": "Feto-de-avestruz",
     "cloudberry": "Amora-ártica",
@@ -1110,6 +1117,343 @@
       "safetyNotes": [
         "Cozinhe bem o maitake: mal cozinhado, faz mal ao estômago de algumas pessoas.",
         "O seu sósia, o políporo-gigante, é comestível mas rijo; escurece onde é tocado."
+      ]
+    },
+    "grilled-saffron-milk-caps": {
+      "title": "Sanchas grelhadas com alho e salsa",
+      "ingredients": [
+        "500 g de sanchas jovens e firmes",
+        "5 colheres de sopa de azeite virgem extra",
+        "3 dentes de alho picados finos",
+        "Um raminho de salsa picada fina",
+        "Flor de sal",
+        "Pimenta preta",
+        "Pão rústico para acompanhar"
+      ],
+      "instructions": [
+        "Limpar: Corte os pés rente ao chapéu e retire com um pincel as agulhas de pinheiro e a terra. Passe um pano húmido pelos chapéus em vez de os lavar.",
+        "Misturar: Misture o alho e a salsa com 4 colheres de azeite e uma pitada de sal.",
+        "Grelhar: Aqueça bem uma chapa, uma grelha ou as brasas do grelhador. Pincele os chapéus com o resto do azeite e disponha-os com as lâminas para cima. Grelhe-os 5–6 minutos sem os virar, até amolecerem e se encherem do próprio suco.",
+        "Terminar: Regue as lâminas com o azeite de alho e salsa, junte pimenta e deixe grelhar mais 1 minuto.",
+        "Servir: De imediato, com flor de sal e pão para molhar no suco."
+      ],
+      "species": ["saffron_milk_cap"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpar: Corte os pés rente ao chapéu e retire com um pincel as agulhas de pinheiro e a terra. Passe um pano húmido pelos chapéus em vez de os lavar."
+        },
+        {
+          "step": 2,
+          "instruction": "Misturar: Misture o alho e a salsa com 4 colheres de azeite e uma pitada de sal."
+        },
+        {
+          "step": 3,
+          "instruction": "Grelhar: Aqueça bem uma chapa, uma grelha ou as brasas do grelhador. Pincele os chapéus com o resto do azeite e disponha-os com as lâminas para cima. Grelhe-os 5–6 minutos sem os virar, até amolecerem e se encherem do próprio suco."
+        },
+        {
+          "step": 4,
+          "instruction": "Terminar: Regue as lâminas com o azeite de alho e salsa, junte pimenta e deixe grelhar mais 1 minuto."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: De imediato, com flor de sal e pão para molhar no suco."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "10 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "safetyNotes": [
+        "Antes de cozinhar, corte um chapéu ou um pé: a sancha liberta um leite cor de cenoura, entre o laranja e o vermelho. Um leite branco ou amarelo indica outro Lactarius: o Lactarius torminosus (chapéu rosado com a margem lanosa e enrolada, e leite branco) e outras espécies de leite branco causam fortes perturbações digestivas.",
+        "As sanchas ganham manchas verdes onde são tocadas e podem deixar a urina avermelhada depois da refeição. Ambas as coisas são inofensivas."
+      ]
+    },
+    "saffron-milk-cap-potato-stew": {
+      "title": "Sanchas guisadas com batatas",
+      "ingredients": [
+        "400 g de sanchas",
+        "600 g de batatas",
+        "1 cebola picada fina",
+        "2 dentes de alho laminados",
+        "1 colher de chá de colorau (pimentão-doce)",
+        "1 folha de louro",
+        "100 ml de vinho branco seco",
+        "4 colheres de sopa de azeite",
+        "Cerca de 500 ml de água quente ou caldo de legumes",
+        "Sal e um pouco de salsa picada"
+      ],
+      "instructions": [
+        "Preparar: Limpe as sanchas com um pincel, apare os pés e corte-as em pedaços grandes. Descasque as batatas, dê-lhes um corte e parta-as em pedaços: as arestas irregulares largam amido e engrossam o guisado.",
+        "Refogar: Deixe a cebola amolecer no azeite em lume brando durante 8–10 minutos. Junte o alho e deixe mais 1 minuto.",
+        "Juntar as sanchas: Aumente o lume, junte as sanchas e cozinhe 5 minutos, até largarem a água. Retire o tacho do lume e junte o colorau (queima-se facilmente); volte a pô-lo ao lume, regue com o vinho e deixe ferver 2 minutos.",
+        "Guisar: Junte as batatas, o louro e água ou caldo quente até quase cobrir. Tempere de sal e deixe cozinhar em lume brando, meio tapado, 20–25 minutos, até as batatas estarem macias e o molho engrossar.",
+        "Servir: Deixe repousar 5 minutos, polvilhe com salsa e sirva com pão."
+      ],
+      "species": ["saffron_milk_cap"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar: Limpe as sanchas com um pincel, apare os pés e corte-as em pedaços grandes. Descasque as batatas, dê-lhes um corte e parta-as em pedaços: as arestas irregulares largam amido e engrossam o guisado."
+        },
+        {
+          "step": 2,
+          "instruction": "Refogar: Deixe a cebola amolecer no azeite em lume brando durante 8–10 minutos. Junte o alho e deixe mais 1 minuto."
+        },
+        {
+          "step": 3,
+          "instruction": "Juntar as sanchas: Aumente o lume, junte as sanchas e cozinhe 5 minutos, até largarem a água. Retire o tacho do lume e junte o colorau (queima-se facilmente); volte a pô-lo ao lume, regue com o vinho e deixe ferver 2 minutos."
+        },
+        {
+          "step": 4,
+          "instruction": "Guisar: Junte as batatas, o louro e água ou caldo quente até quase cobrir. Tempere de sal e deixe cozinhar em lume brando, meio tapado, 20–25 minutos, até as batatas estarem macias e o molho engrossar."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Deixe repousar 5 minutos, polvilhe com salsa e sirva com pão."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "40 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "safetyNotes": [
+        "Antes de cozinhar, corte um chapéu ou um pé: a sancha liberta um leite cor de cenoura, entre o laranja e o vermelho. Um leite branco ou amarelo indica outro Lactarius: o Lactarius torminosus (chapéu rosado com a margem lanosa e enrolada, e leite branco) e outras espécies de leite branco causam fortes perturbações digestivas.",
+        "As sanchas ganham manchas verdes onde são tocadas e podem deixar a urina avermelhada depois da refeição. Ambas as coisas são inofensivas."
+      ]
+    },
+    "hedgehog-mushroom-risotto": {
+      "title": "Risotto de pés-de-carneiro",
+      "ingredients": [
+        "300 g de pés-de-carneiro",
+        "320 g de arroz para risotto (carnaroli ou arbório)",
+        "1 litro de caldo de legumes quente",
+        "1 cebola pequena picada fina",
+        "40 g de manteiga",
+        "2 colheres de sopa de azeite",
+        "100 ml de vinho branco seco",
+        "Alguns raminhos de tomilho",
+        "60 g de parmesão ralado",
+        "Sal e pimenta"
+      ],
+      "instructions": [
+        "Limpar: Escove os chapéus e esfregue os espinhos da parte de baixo com os dedos para soltar as agulhas e a terra. Nos exemplares grandes e mais velhos, raspe os espinhos com uma faca, porque podem amargar. Corte em pedaços pequenos.",
+        "Alourar: Salteie os cogumelos no azeite em lume forte durante 6–8 minutos, sem encher demasiado a frigideira, até ficarem dourados. Junte as folhas de tomilho, tempere e reserve.",
+        "Nacarar: Num tacho largo, deixe a cebola amolecer em metade da manteiga, junte o arroz e mexa 2 minutos, até os grãos ficarem translúcidos nas bordas. Regue com o vinho e deixe evaporar.",
+        "Cozinhar: Junte o caldo quente uma concha de cada vez, mexendo com frequência e esperando que cada concha seja absorvida, durante cerca de 18 minutos, até o arroz ficar cremoso mas ainda al dente. Junte os cogumelos nos últimos 5 minutos.",
+        "Terminar: Fora do lume, envolva o resto da manteiga e o parmesão, mexendo com energia. Tape, deixe repousar 2 minutos e sirva com algumas folhas de tomilho por cima."
+      ],
+      "species": ["hedgehog_mushroom"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpar: Escove os chapéus e esfregue os espinhos da parte de baixo com os dedos para soltar as agulhas e a terra. Nos exemplares grandes e mais velhos, raspe os espinhos com uma faca, porque podem amargar. Corte em pedaços pequenos."
+        },
+        {
+          "step": 2,
+          "instruction": "Alourar: Salteie os cogumelos no azeite em lume forte durante 6–8 minutos, sem encher demasiado a frigideira, até ficarem dourados. Junte as folhas de tomilho, tempere e reserve."
+        },
+        {
+          "step": 3,
+          "instruction": "Nacarar: Num tacho largo, deixe a cebola amolecer em metade da manteiga, junte o arroz e mexa 2 minutos, até os grãos ficarem translúcidos nas bordas. Regue com o vinho e deixe evaporar."
+        },
+        {
+          "step": 4,
+          "instruction": "Cozinhar: Junte o caldo quente uma concha de cada vez, mexendo com frequência e esperando que cada concha seja absorvida, durante cerca de 18 minutos, até o arroz ficar cremoso mas ainda al dente. Junte os cogumelos nos últimos 5 minutos."
+        },
+        {
+          "step": 5,
+          "instruction": "Terminar: Fora do lume, envolva o resto da manteiga e o parmesão, mexendo com energia. Tape, deixe repousar 2 minutos e sirva com algumas folhas de tomilho por cima."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "medium",
+      "prepTime": "15 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": [
+        "Veja por baixo do chapéu antes de cozinhar: o pé-de-carneiro tem espinhos moles, não lâminas. Os exemplares velhos podem amargar, por isso raspe os espinhos dos maiores.",
+        "Não tem sósias perigosos, mas coma apenas cogumelos que identificou com toda a certeza."
+      ]
+    },
+    "shaggy-mane-soup": {
+      "title": "Creme de coprinos-cabeludos",
+      "ingredients": [
+        "500 g de coprinos-cabeludos jovens, apanhados no próprio dia",
+        "1 cebola picada fina",
+        "1 batata farinhenta, descascada e em cubos",
+        "30 g de manteiga",
+        "750 ml de caldo de legumes",
+        "150 ml de natas",
+        "Umas gotas de sumo de limão",
+        "Um raminho de cebolinho picado",
+        "Sal e pimenta-branca"
+      ],
+      "instructions": [
+        "Escolher: Cozinhe-os poucas horas depois de os apanhar. Use apenas chapéus jovens e firmes, com as lâminas brancas até cima: bordas cor-de-rosa ou negras indicam que já se estão a transformar em tinta. Corte a base dos pés, retire a terra e corte-os às fatias.",
+        "Refogar: Derreta a manteiga num tacho e deixe a cebola amolecer em lume brando durante 5 minutos. Junte a batata e os cogumelos e cozinhe 5 minutos, mexendo, até os cogumelos murcharem.",
+        "Cozer: Junte o caldo, tempere de sal e deixe cozer em lume brando 15 minutos, até a batata estar macia.",
+        "Triturar: Triture até obter um creme liso, junte as natas e o limão e aqueça sem deixar ferver. Retifique o sal e a pimenta.",
+        "Servir: Bem quente, com cebolinho e pão torrado. Acompanhe com água ou sumo, não com vinho nem cerveja."
+      ],
+      "species": ["shaggy_mane"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Escolher: Cozinhe-os poucas horas depois de os apanhar. Use apenas chapéus jovens e firmes, com as lâminas brancas até cima: bordas cor-de-rosa ou negras indicam que já se estão a transformar em tinta. Corte a base dos pés, retire a terra e corte-os às fatias."
+        },
+        {
+          "step": 2,
+          "instruction": "Refogar: Derreta a manteiga num tacho e deixe a cebola amolecer em lume brando durante 5 minutos. Junte a batata e os cogumelos e cozinhe 5 minutos, mexendo, até os cogumelos murcharem."
+        },
+        {
+          "step": 3,
+          "instruction": "Cozer: Junte o caldo, tempere de sal e deixe cozer em lume brando 15 minutos, até a batata estar macia."
+        },
+        {
+          "step": 4,
+          "instruction": "Triturar: Triture até obter um creme liso, junte as natas e o limão e aqueça sem deixar ferver. Retifique o sal e a pimenta."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Bem quente, com cebolinho e pão torrado. Acompanhe com água ou sumo, não com vinho nem cerveja."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "25 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "soup", "easy"],
+      "safetyNotes": [
+        "Cozinhe os coprinos-cabeludos poucas horas depois de os apanhar: autodigerem-se e transformam-se em tinta negra. Use apenas exemplares jovens, com as lâminas ainda totalmente brancas.",
+        "O seu sósia, o Coprinopsis atramentaria (cinzento, liso, sem escamas felpudas), provoca uma reação violenta com o álcool bebido nas horas antes da refeição ou até três dias depois. Por isso, este creme é feito e servido sem álcool: se tiver a mínima dúvida sobre o que apanhou, não beba álcool com ele.",
+        "Não apanhe coprinos-cabeludos à beira das estradas nem em solos poluídos: acumulam metais pesados."
+      ]
+    },
+    "giant-puffball-parmigiana": {
+      "title": "Parmigiana de bufa-do-diabo",
+      "ingredients": [
+        "1 bufa-do-diabo (bufa-de-lobo-gigante) jovem, com cerca de 600 g, bem branca por dentro",
+        "50 g de farinha",
+        "Azeite para fritar",
+        "700 g de polpa de tomate",
+        "1 dente de alho esmagado",
+        "Um punhado de folhas de manjericão",
+        "250 g de mozzarella às fatias e bem escorrida",
+        "60 g de parmesão ralado",
+        "Sal e pimenta"
+      ],
+      "instructions": [
+        "Verificar: Corte a bufa ao meio, de cima a baixo, e confirme que está branca, firme e uniforme até ao centro. Retire a pele exterior e corte a polpa em fatias de 1 cm.",
+        "Molho: Aqueça o alho em 2 colheres de sopa de azeite, junte a polpa de tomate e algumas folhas de manjericão, tempere de sal e deixe cozinhar em lume brando 15 minutos.",
+        "Fritar: Passe as fatias por farinha e frite-as aos poucos num dedo de azeite bem quente, 2–3 minutos de cada lado, até ficarem douradas. Escorra-as em papel de cozinha e tempere-as com um pouco de sal.",
+        "Montar: Espalhe um pouco de molho numa travessa de ir ao forno e alterne camadas de bufa, molho, mozzarella, manjericão e parmesão. Repita e termine com molho, mozzarella e parmesão.",
+        "Levar ao forno: Asse a 200 °C durante 25 minutos, até borbulhar e a superfície ficar dourada. Deixe repousar 10 minutos antes de cortar."
+      ],
+      "species": ["giant_puffball"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Verificar: Corte a bufa ao meio, de cima a baixo, e confirme que está branca, firme e uniforme até ao centro. Retire a pele exterior e corte a polpa em fatias de 1 cm."
+        },
+        {
+          "step": 2,
+          "instruction": "Molho: Aqueça o alho em 2 colheres de sopa de azeite, junte a polpa de tomate e algumas folhas de manjericão, tempere de sal e deixe cozinhar em lume brando 15 minutos."
+        },
+        {
+          "step": 3,
+          "instruction": "Fritar: Passe as fatias por farinha e frite-as aos poucos num dedo de azeite bem quente, 2–3 minutos de cada lado, até ficarem douradas. Escorra-as em papel de cozinha e tempere-as com um pouco de sal."
+        },
+        {
+          "step": 4,
+          "instruction": "Montar: Espalhe um pouco de molho numa travessa de ir ao forno e alterne camadas de bufa, molho, mozzarella, manjericão e parmesão. Repita e termine com molho, mozzarella e parmesão."
+        },
+        {
+          "step": 5,
+          "instruction": "Levar ao forno: Asse a 200 °C durante 25 minutos, até borbulhar e a superfície ficar dourada. Deixe repousar 10 minutos antes de cortar."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "medium",
+      "prepTime": "20 min",
+      "cookTime": "45 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "main", "medium"],
+      "safetyNotes": [
+        "Corte sempre cada bufa ao meio, de cima a baixo. Se vir no interior o contorno de um chapéu, de lâminas ou de um pé, é uma amanita jovem ainda dentro do seu «ovo», e pode ser mortal.",
+        "Coma-a apenas enquanto a polpa estiver branquíssima, firme e uniforme até ao centro, como uma mozzarella fresca. Polpa amarela, cor de azeitona, castanha ou arroxeada significa que se está a estragar, ou que é um Scleroderma, uma das «bufas-de-lobo» venenosas, de interior negro-arroxeado.",
+        "A bufa-do-diabo tem de ser sempre cozinhada."
+      ]
+    },
+    "matsutake-rice": {
+      "title": "Arroz de matsutake (matsutake gohan)",
+      "ingredients": [
+        "300 g de arroz japonês de grão curto (2 medidas da panela de arroz)",
+        "150 g de matsutake (1–2 cogumelos)",
+        "Cerca de 320 ml de dashi de kombu",
+        "1 colher de sopa de molho de soja claro (usukuchi)",
+        "1 colher de sopa de mirin",
+        "1 colher de sopa de saqué",
+        "½ colher de chá de sal",
+        "Alguns raminhos de mitsuba ou cebolinho para servir"
+      ],
+      "instructions": [
+        "Lavar: Lave o arroz em água fria, mudando-a até sair quase limpa. Deixe-o de molho em água limpa 30 minutos e escorra-o bem.",
+        "Limpar: Não lave os matsutake. Raspe a terra da base do pé com uma faca, passe um pano húmido pelos chapéus e corte-os ao comprido em fatias de cerca de 3 mm.",
+        "Temperar: Ponha o arroz num tacho de fundo espesso ou na panela de arroz com o molho de soja, o mirin, o saqué e o sal, junte o dashi e mexa uma vez. Disponha os matsutake por cima, sem os misturar.",
+        "Cozer: Tape, leve a ferver e depois deixe cozer em lume mínimo 13 minutos (ou use o programa normal da panela de arroz). Desligue o lume e deixe repousar 10 minutos, sem destapar.",
+        "Servir: Envolva delicadamente os matsutake no arroz com uma espátula e sirva em taças com mitsuba ou cebolinho."
+      ],
+      "species": ["matsutake"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Lavar: Lave o arroz em água fria, mudando-a até sair quase limpa. Deixe-o de molho em água limpa 30 minutos e escorra-o bem."
+        },
+        {
+          "step": 2,
+          "instruction": "Limpar: Não lave os matsutake. Raspe a terra da base do pé com uma faca, passe um pano húmido pelos chapéus e corte-os ao comprido em fatias de cerca de 3 mm."
+        },
+        {
+          "step": 3,
+          "instruction": "Temperar: Ponha o arroz num tacho de fundo espesso ou na panela de arroz com o molho de soja, o mirin, o saqué e o sal, junte o dashi e mexa uma vez. Disponha os matsutake por cima, sem os misturar."
+        },
+        {
+          "step": 4,
+          "instruction": "Cozer: Tape, leve a ferver e depois deixe cozer em lume mínimo 13 minutos (ou use o programa normal da panela de arroz). Desligue o lume e deixe repousar 10 minutos, sem destapar."
+        },
+        {
+          "step": 5,
+          "instruction": "Servir: Envolva delicadamente os matsutake no arroz com uma espátula e sirva em taças com mitsuba ou cebolinho."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "easy",
+      "prepTime": "40 min",
+      "cookTime": "30 min",
+      "servings": "2–4",
+      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "safetyNotes": [
+        "No noroeste do Pacífico, na América do Norte, o matsutake tem um sósia mortal, a Amanita smithiana: branca, com a base do pé engrossada que se afila no solo como uma raiz e está rodeada de restos brancos de véu, e sem o cheiro condimentado a canela. Destrói os rins: verifique a base e o cheiro de cada cogumelo.",
+        "Apanhe os matsutake sem usar ancinho nem revolver o solo: o ancinho destrói o micélio, e o seu uso é proibido em muitas florestas nacionais dos Estados Unidos, onde também precisa de uma licença para os apanhar."
       ]
     },
     "pickled-ramps": {

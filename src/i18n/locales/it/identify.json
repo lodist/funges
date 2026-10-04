@@ -91,6 +91,7 @@
       "cytisine": "Tutte le parti, soprattutto i legumi, contengono citisina. Alcuni bambini sono morti dopo aver mangiato i legumi credendoli piselli.",
       "grayanotoxin": "Foglie, fiori e nettare contengono graianotossine, che alterano il ritmo cardiaco. Il miele ottenuto dai fiori ha avvelenato delle persone.",
       "veratrumAlkaloid": "Fa crollare pressione e battito in poche ore. Le foglie giovani vengono ripetutamente confuse con l'aglio orsino, e quelle confusioni sono state fatali.",
+      "coprine": "Contiene coprina, che impedisce all'organismo di smaltire l'alcol. L'alcol bevuto nelle ore prima del pasto o fino a tre giorni dopo provoca vampate, battito accelerato, nausea e vomito.",
       "ptaquiloside": "Contiene ptachiloside, che provoca il cancro (la felce aquilina è classificata come possibile cancerogeno per l'uomo), e un enzima che distrugge la vitamina B1. La cottura riduce la tossina ma non la elimina."
     },
     "checks": {
@@ -119,6 +120,9 @@
       "interiorPattern": "Taglialo a metà. Un tartufo vero è marmorizzato da venature chiare ramificate. Un falso tartufo è una massa scura e compatta, dal violaceo al nero, senza disegno.",
       "berryColour": "Colore delle bacche mature: il sambuco nero ha bacche nero-violacee. Bacche rosse in grappoli eretti a cupola sono di sambuco rosso, velenose crude.",
       "flowerShape": "Forma del fiore: le viole hanno cinque petali disuguali con uno sperone sul retro; il favagello ha 8–12 petali gialli e lucidi.",
+      "latexColour": "Spezza una lamella o il bordo del cappello e osserva il latte che esce. I sanguinelli stillano latte arancio carota o rosso vino; un latte bianco o che ingiallisce indica un altro lattario.",
+      "capMargin": "Se il bordo del cappello è arrotolato verso il basso e frangiato di lunghi peli lanosi.",
+      "capScales": "Se il cappello è coperto di squame bianche arruffate e rivolte all'insù, oppure è liscio, grigio-bruno e finemente striato.",
       "fernStem": "Guarda il fusto giovane. I germogli della felce penna di struzzo sono lisci, con squame brune cartacee e una profonda scanalatura a U sul lato interno del fusto. La felce aquilina è pelosa, con il fusto tondo e la cima che si divide in tre.",
       "berryBloom": "Le prugnole crescono isolate sul prugnolo spinoso e hanno una pruina azzurra che si toglie strofinando. Le bacche dello spincervino sono nere lucide, a grappoli lungo i rametti, senza pruina."
     },
@@ -127,6 +131,9 @@
       "trufflePair": "Tra le corrispondenze ci sono sia un tartufo sia un falso tartufo velenoso. Da fuori sono davvero difficili da distinguere. Taglia il ritrovamento prima di tutto: venature chiare marmorizzate indicano tartufo, un interno scuro e compatto indica falso tartufo.",
       "angelWingPair": "Tra le corrispondenze ci sono sia un pleuroto sia l'orecchia d'angelo. Quest'ultima ha provocato encefaliti mortali. È più sottile, bianco puro, e cresce su legno di conifera: controlla prima di tutto il legno e lo spessore della carne.",
       "veratrumPair": "Tra le corrispondenze ci sono sia l'aglio orsino sia il veratro bianco. Questa confusione ha ucciso. Strofina una foglia: l'aglio orsino odora forte di aglio, il veratro no. Le foglie di veratro sono inoltre fortemente nervate e alterne lungo il fusto.",
+      "inkCapAlcohol": "Tra le corrispondenze ci sono sia un coprino chiomato sia il coprino atramentario. Il coprino atramentario reagisce violentemente con l'alcol, anche bevuto giorni dopo il pasto. Il coprino chiomato è alto, bianco e coperto di squame arruffate; l'atramentario è più piccolo, grigio-bruno e liscio. Nel dubbio lascialo stare, e non bere mai alcol con i coprini.",
+      "matsutakeSmithiana": "Tra le corrispondenze ci sono sia un matsutake sia l'Amanita smithiana. L'Amanita smithiana distrugge i reni ed è stata raccolta al posto del matsutake nel Nord-Ovest del Pacifico. Annusalo ed estrai tutta la base: il matsutake ha un profumo speziato di cannella. L'Amanita smithiana no, e la sua base si ingrossa e poi si assottiglia nel terreno come una radice, cinta da brandelli bianchi di velo.",
+      "puffballPair": "Tra le corrispondenze ci sono sia una vescia gigante sia un sosia velenoso. Prima di tutto tagliala a metà dall'alto in basso. Una vescia è bianca e uniforme fino al centro. Un interno nero-violaceo indica uno Scleroderma; la sagoma di cappello, lamelle e gambo indica una giovane amanita, che può essere mortale.",
       "rampsPair": "Tra le corrispondenze ci sono sia l'aglio selvatico americano sia un sosia velenoso. Mughetto, veratro verde e colchico hanno foglie simili e sono tutti e tre tossici. Schiaccia una foglia: l'aglio selvatico americano sa fortemente di cipolla o aglio, i sosia no. Il mughetto ha due foglie avvolte attorno a un unico stelo; le foglie del veratro sono profondamente pieghettate e salgono lungo un fusto robusto.",
       "fiddleheadBracken": "Tra le corrispondenze ci sono sia i germogli della felce penna di struzzo sia la felce aquilina. La felce aquilina provoca il cancro e non va mangiata. I germogli della felce penna di struzzo sono lisci, con squame brune cartacee e una profonda scanalatura a U nel fusto; la felce aquilina è pelosa e in cima si divide in tre."
     }
