@@ -77,10 +77,10 @@
           "alt_sigma": 1100,
           "optimal_humidity": 90,
           "humidity_sigma": 18,
-          "optimal_pH": 4.6,
+          "optimal_pH": 5.1,
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
-          "pH_range_near": [3.5, 6.0],
+          "pH_range_near": [4.0, 6.5],
           "optimal_soil_temp": 12,
           "soil_temp_sigma": 4,
           "min_cumulative_rain": 40,
@@ -95,7 +95,8 @@
         },
         "scoringReferences": [
           "https://www.gbif.org/species/2554536",
-          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          "docs/species/2026-09-06-boletus-chanterelle-split.md",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "landCoverScheme": "CORINE"
       },
@@ -111,10 +112,10 @@
           "alt_sigma": 1100,
           "optimal_humidity": 90,
           "humidity_sigma": 18,
-          "optimal_pH": 4.6,
+          "optimal_pH": 5.8,
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
-          "pH_range_near": [3.5, 6.0],
+          "pH_range_near": [4.7, 7.2],
           "optimal_soil_temp": 12,
           "soil_temp_sigma": 4,
           "min_cumulative_rain": 40,
@@ -129,7 +130,8 @@
         },
         "scoringReferences": [
           "https://www.gbif.org/species/2554536",
-          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          "docs/species/2026-09-06-boletus-chanterelle-split.md",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "landCoverScheme": "CORINE"
       },

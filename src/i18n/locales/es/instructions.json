@@ -79,12 +79,6 @@
         "source": "Fuente: Agencia Europea de Medio Ambiente (EEA)",
         "citation": "Cita: Bossard, M., Feranec, J., & Otahel, J. (2000). CORINE Land Cover Technical Guide – Addendum 2000."
       },
-      "soilPh": {
-        "title": "2. pH del suelo en Europa",
-        "description": "Creado por el Centro Común de Investigación (JRC) de la Comisión Europea, este conjunto de datos mapea la acidez del suelo usando más de 12,000 muestras en 25 países, modeladas mediante Regression-Kriging con 54 covariables ambientales.",
-        "source": "Fuente: Centro Europeo de Datos del Suelo (ESDAC), Centro Común de Investigación (JRC)",
-        "citation": "Cita: Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
-      },
       "nlcd": {
         "title": "3. NLCD para la Cobertura Forestal en EE. UU.",
         "description": "Proporcionado por el U.S. Geological Survey (USGS) en colaboración con el consorcio MRLC, el National Land Cover Database (NLCD) ofrece datos detallados de cobertura del suelo y cubierta arbórea en Estados Unidos con una resolución de 30 metros. Esto ayuda a identificar zonas boscosas y hábitats potenciales para especies de hongos y plantas en América del Norte.",
@@ -104,25 +98,25 @@
         "citation": "Cita: Lehner, B., Verdin, K., & Jarvis, A. (2008). New global hydrography derived from spaceborne elevation data. Eos, Transactions AGU, 89(10), 93-94."
       },
       "soilgrids": {
-        "title": "6. SoilGrids (pH del suelo en EE. UU.)",
-        "description": "Los mapas globales de suelos de ISRIC, modelados a partir de perfiles de suelo de todo el mundo. Funges toma de ellos el pH superficial para las zonas de recolección de EE. UU., como complemento del mapa europeo de pH.",
+        "title": "2. SoilGrids (pH del suelo)",
+        "description": "Los mapas globales de suelos de ISRIC, modelados a partir de perfiles de suelo de todo el mundo. Funges toma de ellos el pH del suelo para Europa y EE. UU., lo que distingue los suelos ácidos que prefieren los arándanos y los rebozuelos de los suelos más ricos donde crecen ortigas y endrinos.",
         "source": "Fuente: ISRIC – World Soil Information",
         "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
       },
       "treeGenus": {
-        "title": "7. Mapa europeo de géneros arbóreos",
+        "title": "6. Mapa europeo de géneros arbóreos",
         "description": "Un mapa a 10 metros del género de árbol dominante en Europa (pícea, pino, alerce, haya, roble y otros), obtenido de los satélites Sentinel-1 y Sentinel-2. Setas como los boletus y los rebozuelos solo fructifican cerca de sus árboles hospedadores, así que cada especie se valora según cuántos de sus hospedadores crecen cerca.",
         "source": "Fuente: proyecto ForestPaths (versión de acceso anticipado en Zenodo)",
         "citation": "Citation: De Keersmaecker, W., Zanaga, D., Senf, C., et al. (2025). European Tree Genus Map 2020 (Early Access Release). Zenodo. https://doi.org/10.5281/zenodo.13341104. CC BY 4.0."
       },
       "forestTypes": {
-        "title": "8. Grupos de tipos forestales de EE. UU.",
+        "title": "7. Grupos de tipos forestales de EE. UU.",
         "description": "Un mapa del USDA Forest Service con los tipos de bosque (como pícea–abeto, roble–nogal americano o abeto de Douglas) de los Estados Unidos contiguos a 250 metros, elaborado a partir de parcelas de inventario forestal. Aporta los árboles hospedadores de las setas de EE. UU.",
         "source": "Fuente: USDA Forest Service, Forest Inventory and Analysis (FIA)",
         "citation": "Citation: Ruefenacht, B., Finco, M.V., Nelson, M.D., et al. (2008). Conterminous U.S. and Alaska forest type mapping using forest inventory and analysis data. Photogrammetric Engineering & Remote Sensing, 74(11), 1379–1388."
       },
       "gbif": {
-        "title": "9. Observaciones de especies de GBIF",
+        "title": "8. Observaciones de especies de GBIF",
         "description": "El Global Biodiversity Information Facility reúne avistamientos de inventarios y de ciencia ciudadana, incluido iNaturalist. Funges los usa para saber dónde puede crecer cada especie, teniendo en cuenta cuánto se observa cada zona, y en qué época del año aparece.",
         "source": "Fuente: Global Biodiversity Information Facility (GBIF.org)",
         "citation": "Citation: GBIF.org (2026). GBIF occurrence data, accessed via the GBIF API. https://www.gbif.org"

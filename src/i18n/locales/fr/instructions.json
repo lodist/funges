@@ -79,12 +79,6 @@
         "source": "Source : Agence européenne pour l'environnement (AEE)",
         "citation": "Citation : Bossard, M., Feranec, J., & Otahel, J. (2000). CORINE Land Cover Technical Guide – Addendum 2000."
       },
-      "soilPh": {
-        "title": "2. pH des sols en Europe",
-        "description": "Créé par le Centre commun de recherche (JRC) de la Commission européenne, ce jeu de données cartographie l'acidité des sols à partir de plus de 12 000 échantillons dans 25 pays, modélisés par régression-krigeage avec 54 covariables environnementales.",
-        "source": "Source : European Soil Data Centre (ESDAC), Joint Research Centre (JRC)",
-        "citation": "Citation : Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
-      },
       "nlcd": {
         "title": "3. NLCD pour la couverture forestière aux États-Unis",
         "description": "Fourni par l'U.S. Geological Survey (USGS) en partenariat avec le consortium MRLC, le National Land Cover Database (NLCD) propose des données détaillées sur l'occupation du sol et la couverture arborée aux États-Unis à une résolution de 30 mètres. Cela aide à identifier les zones forestières et les habitats potentiels pour les espèces de champignons et de plantes en Amérique du Nord.",
@@ -104,25 +98,25 @@
         "citation": "Citation : Lehner, B., Verdin, K., & Jarvis, A. (2008). New global hydrography derived from spaceborne elevation data. Eos, Transactions AGU, 89(10), 93-94."
       },
       "soilgrids": {
-        "title": "6. SoilGrids (pH du sol aux États-Unis)",
-        "description": "Les cartes mondiales des sols de l'ISRIC, modélisées à partir de profils de sol du monde entier. Funges y lit le pH de surface pour les zones de cueillette aux États-Unis, en complément de la carte européenne du pH.",
+        "title": "2. SoilGrids (pH du sol)",
+        "description": "Les cartes mondiales des sols de l'ISRIC, modélisées à partir de profils de sol du monde entier. Funges y lit le pH du sol pour l'Europe et les États-Unis, ce qui distingue les sols acides qu'aiment les myrtilles et les girolles des sols plus riches où poussent orties et prunelliers.",
         "source": "Source : ISRIC – World Soil Information",
         "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
       },
       "treeGenus": {
-        "title": "7. Carte européenne des genres d'arbres",
+        "title": "6. Carte européenne des genres d'arbres",
         "description": "Une carte à 10 mètres du genre d'arbre dominant en Europe (épicéa, pin, mélèze, hêtre, chêne et autres), issue des satellites Sentinel-1 et Sentinel-2. Les champignons comme les cèpes et les girolles ne fructifient qu'à proximité de leurs arbres hôtes : chaque espèce est donc notée selon la quantité de ses hôtes aux alentours.",
         "source": "Source : projet ForestPaths (version en accès anticipé sur Zenodo)",
         "citation": "Citation: De Keersmaecker, W., Zanaga, D., Senf, C., et al. (2025). European Tree Genus Map 2020 (Early Access Release). Zenodo. https://doi.org/10.5281/zenodo.13341104. CC BY 4.0."
       },
       "forestTypes": {
-        "title": "8. Groupes de types forestiers des États-Unis",
+        "title": "7. Groupes de types forestiers des États-Unis",
         "description": "Une carte de l'USDA Forest Service des types de forêt (par exemple épicéa–sapin, chêne–caryer ou douglas) sur les États-Unis contigus à 250 mètres, construite à partir des placettes d'inventaire forestier. Elle fournit les arbres hôtes des champignons américains.",
         "source": "Source : USDA Forest Service, Forest Inventory and Analysis (FIA)",
         "citation": "Citation: Ruefenacht, B., Finco, M.V., Nelson, M.D., et al. (2008). Conterminous U.S. and Alaska forest type mapping using forest inventory and analysis data. Photogrammetric Engineering & Remote Sensing, 74(11), 1379–1388."
       },
       "gbif": {
-        "title": "9. Observations d'espèces GBIF",
+        "title": "8. Observations d'espèces GBIF",
         "description": "Le Global Biodiversity Information Facility rassemble des observations issues d'inventaires et de la science participative, dont iNaturalist. Funges s'en sert pour savoir où chaque espèce peut pousser, en tenant compte de l'intensité d'observation de chaque zone, et à quel moment de l'année elle apparaît.",
         "source": "Source : Global Biodiversity Information Facility (GBIF.org)",
         "citation": "Citation: GBIF.org (2026). GBIF occurrence data, accessed via the GBIF API. https://www.gbif.org"

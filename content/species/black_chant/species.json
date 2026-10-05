@@ -76,10 +76,10 @@
           "alt_sigma": 1000,
           "optimal_humidity": 90,
           "humidity_sigma": 20,
-          "optimal_pH": 6.25,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [5, 7.5],
+          "optimal_pH": 5.3,
+          "pH_sigma_near": 5.0,
+          "pH_sigma_far": 5.0,
+          "pH_range_near": [4.05, 6.55],
           "optimal_soil_temp": 13.5,
           "min_cumulative_rain": 45,
           "soil_temp_sigma": 4,
@@ -93,7 +93,8 @@
           "hosts": ["fagus", "quercus", "other_needleleaf", "other_broadleaf"]
         },
         "scoringReferences": [
-          "https://data.fung.es/EU/NE/NE_species_params.txt"
+          "https://data.fung.es/EU/NE/NE_species_params.txt",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
         "landCoverScheme": "CORINE"
@@ -110,10 +111,10 @@
           "alt_sigma": 1000,
           "optimal_humidity": 90,
           "humidity_sigma": 20,
-          "optimal_pH": 6.25,
+          "optimal_pH": 6.0,
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
-          "pH_range_near": [5, 7.5],
+          "pH_range_near": [4.75, 7.25],
           "optimal_soil_temp": 13.5,
           "min_cumulative_rain": 45,
           "soil_temp_sigma": 4,
@@ -127,7 +128,8 @@
           "hosts": ["fagus", "quercus", "other_needleleaf", "other_broadleaf"]
         },
         "scoringReferences": [
-          "https://data.fung.es/EU/SE/SE_species_params.txt"
+          "https://data.fung.es/EU/SE/SE_species_params.txt",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
         "landCoverScheme": "CORINE"
@@ -144,10 +146,10 @@
           "alt_sigma": 1000,
           "optimal_humidity": 90,
           "humidity_sigma": 20,
-          "optimal_pH": 6.25,
+          "optimal_pH": 5.2,
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
-          "pH_range_near": [5, 7.5],
+          "pH_range_near": [3.95, 6.45],
           "optimal_soil_temp": 13.5,
           "min_cumulative_rain": 45,
           "soil_temp_sigma": 4,
@@ -190,7 +192,8 @@
           ]
         },
         "scoringReferences": [
-          "https://data.fung.es/USA/USE/USE_species_params.txt"
+          "https://data.fung.es/USA/USE/USE_species_params.txt",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
         "landCoverScheme": "NLCD"
@@ -207,10 +210,10 @@
           "alt_sigma": 1000,
           "optimal_humidity": 90,
           "humidity_sigma": 20,
-          "optimal_pH": 6.25,
+          "optimal_pH": 5.4,
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
-          "pH_range_near": [5, 7.5],
+          "pH_range_near": [4.15, 6.65],
           "optimal_soil_temp": 13.5,
           "min_cumulative_rain": 45,
           "soil_temp_sigma": 4,
@@ -253,7 +256,8 @@
           ]
         },
         "scoringReferences": [
-          "https://data.fung.es/USA/USW/USW_species_params.txt"
+          "https://data.fung.es/USA/USW/USW_species_params.txt",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
         "landCoverScheme": "NLCD"
