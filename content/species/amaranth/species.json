@@ -72,7 +72,7 @@
           "temp_sigma": 6,
           "min_temp": 13,
           "max_temp": 35,
-          "optimal_alt": 500,
+          "optimal_alt": 20,
           "alt_sigma": 700,
           "optimal_humidity": 63,
           "humidity_sigma": 16,
