@@ -1425,8 +1425,8 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
 
     valid_score_columns = {f"{s}_score" for s in species_params}
     species_score_columns = [c for c in updated_df.columns if c.endswith("_score") and c in valid_score_columns]
-    updated_df[species_score_columns] = updated_df[species_score_columns].mask(
-        updated_df[species_score_columns] > 9.5, 10).round(2)
+    # No snap to 10 above 9.5: it tied whole species lists at 100% and hid their order.
+    updated_df[species_score_columns] = updated_df[species_score_columns].round(2)
     confidence_columns = [c for c in confidence_cols if c in updated_df.columns]
     updated_df[confidence_columns] = updated_df[confidence_columns].round(3)
 

@@ -53,6 +53,20 @@ def test_raw_scores_are_identical_within_each_coord(monkeypatch):
         pd.testing.assert_frame_equal(va, vb)
 
 
+def test_scores_above_nine_and_a_half_are_not_snapped_to_ten(monkeypatch):
+    """Near-top scores keep their value, so the area list keeps its order."""
+    score = fp.calculate_mushroom_score
+
+    def high(df, params, curves):
+        out = score(df, params, curves)
+        out["sp_water_score"] = 9.73
+        return out
+
+    monkeypatch.setattr(fp, "calculate_mushroom_score", high)
+    monkeypatch.setattr(fp, "spatial_smooth_scores", lambda frame, _cols: frame)
+    assert (run_pipeline_scores()["sp_water_score"] == 9.73).all()
+
+
 def test_merge_drops_historical_score_columns_without_current_parameters():
     """Unavailable species must disappear from the rewritten rolling parquet schema."""
     fwd = fx.forward_df()
