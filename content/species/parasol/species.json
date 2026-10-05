@@ -76,10 +76,10 @@
           "max_temp": 26,
           "optimal_humidity": 70,
           "humidity_sigma": 12,
-          "optimal_pH": 6,
+          "optimal_pH": 5.7,
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
-          "pH_range_near": [4.8, 7.2],
+          "pH_range_near": [4.5, 6.9],
           "optimal_soil_temp": 16.5,
           "soil_temp_sigma": 5,
           "min_cumulative_rain": 35,
@@ -92,7 +92,8 @@
           "sea_relevance": false
         },
         "scoringReferences": [
-          "https://data.fung.es/EU/NE/NE_species_params.txt"
+          "https://data.fung.es/EU/NE/NE_species_params.txt",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
         "landCoverScheme": "CORINE"
@@ -109,7 +110,7 @@
           "max_temp": 26,
           "optimal_humidity": 70,
           "humidity_sigma": 12,
-          "optimal_pH": 6,
+          "optimal_pH": 6.0,
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
           "pH_range_near": [4.8, 7.2],
@@ -125,7 +126,8 @@
           "sea_relevance": false
         },
         "scoringReferences": [
-          "https://data.fung.es/EU/SE/SE_species_params.txt"
+          "https://data.fung.es/EU/SE/SE_species_params.txt",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
         "landCoverScheme": "CORINE"

@@ -76,10 +76,10 @@
           "alt_sigma": 800,
           "optimal_humidity": 70,
           "humidity_sigma": 17,
-          "optimal_pH": 4.6,
+          "optimal_pH": 6.1,
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
-          "pH_range_near": [3.1, 6.1],
+          "pH_range_near": [4.6, 7.6],
           "optimal_soil_temp": 15,
           "soil_temp_sigma": 6,
           "min_cumulative_rain": 8,
@@ -95,7 +95,8 @@
         "scoringReferences": [
           "https://www.gbif.org/species/3189767",
           "https://www.gbif.org/species/3189781",
-          "docs/species/2026-09-27-quick-wins.md"
+          "docs/species/2026-09-27-quick-wins.md",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "landCoverScheme": "CORINE"
       },
@@ -111,10 +112,10 @@
           "alt_sigma": 800,
           "optimal_humidity": 60,
           "humidity_sigma": 17,
-          "optimal_pH": 5.5,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [4.0, 7.0],
+          "optimal_pH": 6.0,
+          "pH_sigma_near": 1.0,
+          "pH_sigma_far": 1.0,
+          "pH_range_near": [4.5, 7.5],
           "optimal_soil_temp": 17,
           "soil_temp_sigma": 6,
           "min_cumulative_rain": 14,
@@ -129,7 +130,8 @@
         "scoringReferences": [
           "https://www.gbif.org/species/3189767",
           "https://www.gbif.org/species/3189781",
-          "docs/species/2026-09-27-quick-wins.md"
+          "docs/species/2026-09-27-quick-wins.md",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "landCoverScheme": "CORINE"
       },

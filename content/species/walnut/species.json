@@ -76,10 +76,10 @@
           "alt_sigma": 600,
           "optimal_humidity": 70,
           "humidity_sigma": 14,
-          "optimal_pH": 6.5,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [5.25, 7.75],
+          "optimal_pH": 6.1,
+          "pH_sigma_near": 1.0,
+          "pH_sigma_far": 1.0,
+          "pH_range_near": [4.85, 7.35],
           "optimal_soil_temp": 11,
           "soil_temp_sigma": 5,
           "min_cumulative_rain": 15,
@@ -93,7 +93,8 @@
           "sea_relevance": false
         },
         "scoringReferences": [
-          "https://data.fung.es/EU/NE/NE_species_params.txt"
+          "https://data.fung.es/EU/NE/NE_species_params.txt",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
         "landCoverScheme": "CORINE"
@@ -126,7 +127,8 @@
           "sea_relevance": false
         },
         "scoringReferences": [
-          "https://data.fung.es/EU/SE/SE_species_params.txt"
+          "https://data.fung.es/EU/SE/SE_species_params.txt",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
         "landCoverScheme": "CORINE"
@@ -177,10 +179,10 @@
           "alt_sigma": 600,
           "optimal_humidity": 70,
           "humidity_sigma": 14,
-          "optimal_pH": 6.5,
+          "optimal_pH": 5.8,
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
-          "pH_range_near": [5.25, 7.75],
+          "pH_range_near": [4.55, 7.05],
           "optimal_soil_temp": 11,
           "soil_temp_sigma": 5,
           "min_cumulative_rain": 15,
@@ -194,7 +196,8 @@
           "sea_relevance": false
         },
         "scoringReferences": [
-          "https://data.fung.es/USA/USW/USW_species_params.txt"
+          "https://data.fung.es/USA/USW/USW_species_params.txt",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
         "landCoverScheme": "NLCD"

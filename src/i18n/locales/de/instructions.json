@@ -79,12 +79,6 @@
         "source": "Quelle: Europäische Umweltagentur (EEA)",
         "citation": "Zitat: Bossard, M., Feranec, J., & Otahel, J. (2000). CORINE Land Cover Technical Guide – Addendum 2000."
       },
-      "soilPh": {
-        "title": "2. Boden-pH in Europa",
-        "description": "Erstellt vom Joint Research Centre (JRC) der Europäischen Kommission, kartiert dieser Datensatz die Bodenazidität anhand von über 12.000 Proben aus 25 Ländern, modelliert mittels Regression-Kriging mit 54 Umweltvariablen.",
-        "source": "Quelle: European Soil Data Centre (ESDAC), Joint Research Centre (JRC)",
-        "citation": "Zitat: Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
-      },
       "nlcd": {
         "title": "3. NLCD zur Waldabdeckung in den USA",
         "description": "Bereitgestellt vom U.S. Geological Survey (USGS) in Zusammenarbeit mit dem MRLC-Konsortium, bietet die National Land Cover Database (NLCD) detaillierte Daten zur Landbedeckung und Baumkronenbedeckung in den Vereinigten Staaten mit einer Auflösung von 30 Metern. Dies hilft, bewaldete Gebiete und potenzielle Lebensräume für Pilz- und Pflanzenarten in Nordamerika zu identifizieren.",
@@ -104,25 +98,25 @@
         "citation": "Zitat: Lehner, B., Verdin, K., & Jarvis, A. (2008). New global hydrography derived from spaceborne elevation data. Eos, Transactions AGU, 89(10), 93-94."
       },
       "soilgrids": {
-        "title": "6. SoilGrids (Boden-pH in den USA)",
-        "description": "Die globalen Bodenkarten von ISRIC, modelliert aus Bodenprofilen weltweit. Funges liest daraus den pH-Wert des Oberbodens für die Sammelgebiete in den USA, ergänzend zur europäischen Boden-pH-Karte.",
+        "title": "2. SoilGrids (Boden-pH)",
+        "description": "Die globalen Bodenkarten von ISRIC, modelliert aus Bodenprofilen weltweit. Funges liest daraus den Boden-pH für Europa und die USA und unterscheidet so die sauren Böden, die Heidelbeeren und Pfifferlinge bevorzugen, vom reicheren Boden, auf dem Brennnesseln und Schlehen wachsen.",
         "source": "Quelle: ISRIC – World Soil Information",
         "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
       },
       "treeGenus": {
-        "title": "7. Europäische Baumgattungskarte",
+        "title": "6. Europäische Baumgattungskarte",
         "description": "Eine 10-Meter-Karte der vorherrschenden Baumgattung in Europa (Fichte, Kiefer, Lärche, Buche, Eiche und weitere), abgeleitet aus Sentinel-1- und Sentinel-2-Satellitendaten. Pilze wie Steinpilze und Pfifferlinge fruchten nur in der Nähe ihrer Wirtsbäume, daher wird jede Art danach bewertet, wie viele ihrer Wirte in der Nähe wachsen.",
         "source": "Quelle: Projekt ForestPaths (Early-Access-Version auf Zenodo)",
         "citation": "Citation: De Keersmaecker, W., Zanaga, D., Senf, C., et al. (2025). European Tree Genus Map 2020 (Early Access Release). Zenodo. https://doi.org/10.5281/zenodo.13341104. CC BY 4.0."
       },
       "forestTypes": {
-        "title": "8. Waldtypgruppen der USA",
+        "title": "7. Waldtypgruppen der USA",
         "description": "Eine Karte des USDA Forest Service mit Waldtypen (etwa Fichte–Tanne, Eiche–Hickory oder Douglasie) für die zusammenhängenden USA in 250 Metern Auflösung, erstellt aus Waldinventur-Probeflächen. Sie liefert die Wirtsbäume für Pilze in den USA.",
         "source": "Quelle: USDA Forest Service, Forest Inventory and Analysis (FIA)",
         "citation": "Citation: Ruefenacht, B., Finco, M.V., Nelson, M.D., et al. (2008). Conterminous U.S. and Alaska forest type mapping using forest inventory and analysis data. Photogrammetric Engineering & Remote Sensing, 74(11), 1379–1388."
       },
       "gbif": {
-        "title": "9. GBIF-Artbeobachtungen",
+        "title": "8. GBIF-Artbeobachtungen",
         "description": "Die Global Biodiversity Information Facility sammelt Sichtungen aus Erhebungen und Citizen Science, darunter iNaturalist. Funges nutzt sie, um zu lernen, wo jede Art wachsen kann – abgewogen gegen die Beobachtungsdichte des Gebiets – und wann im Jahr sie erscheint.",
         "source": "Quelle: Global Biodiversity Information Facility (GBIF.org)",
         "citation": "Citation: GBIF.org (2026). GBIF occurrence data, accessed via the GBIF API. https://www.gbif.org"

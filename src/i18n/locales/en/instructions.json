@@ -79,12 +79,6 @@
         "source": "Source: European Environment Agency (EEA)",
         "citation": "Citation: Bossard, M., Feranec, J., & Otahel, J. (2000). CORINE Land Cover Technical Guide – Addendum 2000."
       },
-      "soilPh": {
-        "title": "2. Soil pH in Europe",
-        "description": "Created by the Joint Research Centre (JRC) of the European Commission, this dataset maps soil acidity using over 12,000 samples across 25 countries, modeled via Regression-Kriging with 54 environmental covariates.",
-        "source": "Source: European Soil Data Centre (ESDAC), Joint Research Centre (JRC)",
-        "citation": "Citation: Reuter, H.I., Rodriguez-Lado, L., Hengl, T., & Montanarella, L. (2010). Map of Soil pH in Europe. JRC, ESDAC."
-      },
       "nlcd": {
         "title": "3. NLCD for U.S. Forest Cover",
         "description": "Provided by the U.S. Geological Survey (USGS) in partnership with the MRLC Consortium, the National Land Cover Database (NLCD) offers detailed land cover and tree canopy data across the United States at 30-meter resolution. This helps identify forested areas and potential habitats for mushroom and plant species in North America.",
@@ -104,25 +98,25 @@
         "citation": "Citation: Lehner, B., Verdin, K., & Jarvis, A. (2008). New global hydrography derived from spaceborne elevation data. Eos, Transactions AGU, 89(10), 93-94."
       },
       "soilgrids": {
-        "title": "6. SoilGrids (U.S. Soil pH)",
-        "description": "ISRIC's global soil maps, modeled from soil profiles worldwide. Funges reads topsoil pH from them for U.S. foraging areas, complementing the European soil pH map.",
+        "title": "2. SoilGrids (Soil pH)",
+        "description": "ISRIC's global soil maps, modeled from soil profiles worldwide. Funges reads soil pH from them across Europe and the U.S., telling the acid soils that blueberries and chanterelles favor from the richer ground where nettles and sloes grow.",
         "source": "Source: ISRIC – World Soil Information",
         "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
       },
       "treeGenus": {
-        "title": "7. European Tree Genus Map",
+        "title": "6. European Tree Genus Map",
         "description": "A 10-meter map of the dominant tree genus across Europe (spruce, pine, larch, beech, oak and others), derived from Sentinel-1 and Sentinel-2 satellite data. Mushrooms such as porcini and chanterelles fruit only near their host trees, so each species is scored by how much of its hosts grow nearby.",
         "source": "Source: ForestPaths project (early-access release on Zenodo)",
         "citation": "Citation: De Keersmaecker, W., Zanaga, D., Senf, C., et al. (2025). European Tree Genus Map 2020 (Early Access Release). Zenodo. https://doi.org/10.5281/zenodo.13341104. CC BY 4.0."
       },
       "forestTypes": {
-        "title": "8. U.S. Forest Type Groups",
+        "title": "7. U.S. Forest Type Groups",
         "description": "A USDA Forest Service map of forest types (such as spruce–fir, oak–hickory or Douglas-fir) across the contiguous United States at 250-meter resolution, built from forest inventory plots. It supplies the host trees for U.S. mushrooms.",
         "source": "Source: USDA Forest Service, Forest Inventory and Analysis (FIA)",
         "citation": "Citation: Ruefenacht, B., Finco, M.V., Nelson, M.D., et al. (2008). Conterminous U.S. and Alaska forest type mapping using forest inventory and analysis data. Photogrammetric Engineering & Remote Sensing, 74(11), 1379–1388."
       },
       "gbif": {
-        "title": "9. GBIF Species Observations",
+        "title": "8. GBIF Species Observations",
         "description": "The Global Biodiversity Information Facility gathers survey and citizen-science sightings, including iNaturalist. Funges uses them to learn where each species can grow—weighed against how thoroughly each area is observed—and when in the year it appears.",
         "source": "Source: Global Biodiversity Information Facility (GBIF.org)",
         "citation": "Citation: GBIF.org (2026). GBIF occurrence data, accessed via the GBIF API. https://www.gbif.org"

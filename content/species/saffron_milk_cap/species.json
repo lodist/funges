@@ -77,10 +77,10 @@
           "alt_sigma": 800,
           "optimal_humidity": 79,
           "humidity_sigma": 17,
-          "optimal_pH": 4.8,
+          "optimal_pH": 5.1,
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
-          "pH_range_near": [3.3, 6.3],
+          "pH_range_near": [3.6, 6.6],
           "optimal_soil_temp": 12,
           "soil_temp_sigma": 5,
           "min_cumulative_rain": 40,
@@ -99,7 +99,8 @@
           "https://www.gbif.org/species/5248648",
           "https://www.gbif.org/species/5463706",
           "https://www.mushroomexpert.com/lactarius_deliciosus.html",
-          "docs/species/2026-09-29-step4-mushrooms.md"
+          "docs/species/2026-09-29-step4-mushrooms.md",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "landCoverScheme": "CORINE"
       },
@@ -115,10 +116,10 @@
           "alt_sigma": 1600,
           "optimal_humidity": 73,
           "humidity_sigma": 17,
-          "optimal_pH": 5.3,
+          "optimal_pH": 6.0,
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
-          "pH_range_near": [3.8, 6.8],
+          "pH_range_near": [4.5, 7.5],
           "optimal_soil_temp": 12,
           "soil_temp_sigma": 5,
           "min_cumulative_rain": 30,
@@ -137,7 +138,8 @@
           "https://www.gbif.org/species/5248648",
           "https://www.gbif.org/species/5463706",
           "https://www.mushroomexpert.com/lactarius_deliciosus.html",
-          "docs/species/2026-09-29-step4-mushrooms.md"
+          "docs/species/2026-09-29-step4-mushrooms.md",
+          "docs/species/2026-10-05-soil-ph.md"
         ],
         "landCoverScheme": "CORINE"
       },

@@ -27,11 +27,10 @@ import {
 // Every dataset the forecast reads, in the order the page credits them.
 const KEY_DATASETS = [
   ['corine', 'bg-muted'],
-  ['soilPh', 'bg-secondary'],
+  ['soilgrids', 'bg-secondary'],
   ['nlcd', 'bg-status-warning-background'],
   ['eudem', 'bg-muted'],
   ['hydrosheds', 'bg-muted'],
-  ['soilgrids', 'bg-secondary'],
   ['treeGenus', 'bg-muted'],
   ['forestTypes', 'bg-status-warning-background'],
   ['gbif', 'bg-secondary'],
