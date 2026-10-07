@@ -121,6 +121,12 @@
         "source": "Fonte: Global Biodiversity Information Facility (GBIF.org)",
         "citation": "Citation: GBIF.org (2026). GBIF occurrence data, accessed via the GBIF API. https://www.gbif.org"
       },
+      "era5": {
+        "title": "9. Rianalisi ERA5 (pioggia passata)",
+        "description": "La rianalisi dell'ECMWF combina modelli meteorologici e osservazioni da tutto il mondo. Le previsioni sbagliano spesso dove è caduta la pioggia: quando ERA5 pubblica un giorno, circa cinque giorni dopo, Funges sostituisce la pioggia prevista quel giorno con quella di ERA5.",
+        "source": "Fonte: Copernicus Climate Change Service (C3S), ECMWF",
+        "citation": "Citazione: Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.adbb2d47. Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains."
+      },
       "additional": "Il meteo giornaliero proviene dalle previsioni di WeatherAPI.com, e ogni modifica del modello viene verificata su avvistamenti recenti che il modello non ha mai visto."
     }
   },
