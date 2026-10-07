@@ -6,6 +6,7 @@ import pyarrow.parquet as pq
 import pytest
 
 import forecast_pipeline as fp  # backend/ is on sys.path via conftest.py
+import _phase2_fixture as fx
 
 FIXTURE = json.loads((Path(__file__).parent / "fixtures" / "forecast_sample.json").read_text(encoding="utf-8"))
 NDP = 3
@@ -49,6 +50,17 @@ def test_parse_carries_day_fields_and_location_id():
     assert r0["Description"] == d0["condition"]["text"]
     assert len({r["Location_Id"] for r in rows}) == 1
     assert r0["climate_zone"] == "temperate"
+
+
+def test_parse_derives_radiation_mean_wind_rain_hours_and_snow():
+    rows = fp.parse_forecast_days(FIXTURE, _static(), 59.330, 18.070, NDP)
+    fday = FIXTURE["forecast"]["forecastday"][3]
+    hours = fday["hour"]
+    row = [r for r in rows if r["Date"] == fday["date"]][0]
+    assert row["Solar Radiation (Wh/m2)"] == pytest.approx(sum(h["short_rad"] for h in hours))
+    assert row["Wind Speed Mean (kph)"] == pytest.approx(np.mean([h["wind_kph"] for h in hours]))
+    assert row["Rain Hours"] == sum(h["precip_mm"] >= 0.1 for h in hours)
+    assert row["Snowfall (cm)"] == fday["day"]["totalsnow_cm"]
 
 
 def _mk(loc, dates, precip):
@@ -145,6 +157,97 @@ def test_fetch_builds_forecast_request_and_counts_one_call(monkeypatch):
     assert "dt" not in captured["params"]
     assert captured["params"]["q"] == "59.33,18.07"
     assert counter.count == 1
+
+
+MEASURED_DAY = fx.TODAY - pd.Timedelta(days=6)
+
+
+def _measured_rows(rain=42.0):
+    """ERA5 rain rows for every fixture base point on MEASURED_DAY, as _join_to_base emits
+    them: rain and rain hours only, every other weather field empty."""
+    rows = fx.forward_df()
+    rows = rows[rows["Date"] == fx.TODAY][["Location_Id", "Latitude", "Longitude",
+                                          "_coord_lat", "_coord_lon"]].copy()
+    rows["Date"] = MEASURED_DAY
+    rows["TotalPrecipitation_mm"] = rain
+    rows["Rain Hours"] = 5
+    rows["Rain Measured"] = True
+    return rows
+
+
+def _fetched_with_measured_day():
+    return pd.concat([fx.forward_df(), _measured_rows()], ignore_index=True)
+
+
+def _merge(history, df, tmp_path):
+    path = tmp_path / "history.parquet"
+    history.to_parquet(path, index=False)
+    out = fp._merge_and_score(fx.config(), df, fx.species_params(), fx.zone_curves(),
+                              main_data_path=str(path))
+    out["Date"] = pd.to_datetime(out["Date"])
+    return out
+
+
+def test_measured_rain_replaces_the_forecast_rain_and_nothing_else(tmp_path):
+    history = fx.history_df()
+    frozen = history[pd.to_datetime(history["Date"]) == MEASURED_DAY].set_index("Location_Id")
+    out = _merge(history, _fetched_with_measured_day(), tmp_path)
+
+    day = out[out["Date"] == MEASURED_DAY].set_index("Location_Id")
+    assert len(day) == 6
+    assert (day["TotalPrecipitation_mm"] == 42.0).all()
+    assert (day["Rain Hours"] == 5).all()
+    assert day["Rain Measured"].eq(True).all()
+    # Stored temperature and humidity already match measurements: they stay.
+    assert np.allclose(day["Temperature (C)"], frozen.loc[day.index, "Temperature (C)"])
+    assert np.allclose(day["Humidity (%)"], frozen.loc[day.index, "Humidity (%)"])
+    assert (day[fx.score_columns()] == 1.23).all().all()  # a frozen day is not rescored
+
+
+def test_forward_scores_read_the_measured_rain(tmp_path, monkeypatch):
+    seen = {}
+    score = fp.calculate_mushroom_score
+
+    def spy(df, species_params, zone_curves):
+        seen["lags"] = df.loc[pd.to_datetime(df["Date"]) == fx.TODAY, "TotalPrecipitation_mm_6days_ago"]
+        return score(df, species_params, zone_curves)
+
+    monkeypatch.setattr(fp, "calculate_mushroom_score", spy)
+    out = _merge(fx.history_df(), _fetched_with_measured_day(), tmp_path)
+    assert (seen["lags"] == 42.0).all()
+    assert out.loc[out["Date"] >= fx.TODAY, fx.score_columns()].notna().all().all()
+
+
+def test_measured_rain_fills_a_day_the_master_lacks(tmp_path):
+    history = fx.history_df()
+    history = history[pd.to_datetime(history["Date"]) != MEASURED_DAY]
+    out = _merge(history, _fetched_with_measured_day(), tmp_path)
+
+    day = out[out["Date"] == MEASURED_DAY]
+    assert len(day) == 6
+    assert (day["TotalPrecipitation_mm"] == 42.0).all()
+    assert day[fx.score_columns()].isna().all().all()
+
+
+def test_merge_writes_the_new_weather_columns(tmp_path):
+    out = _merge(fx.history_df(), _fetched_with_measured_day(), tmp_path)
+    for col in ("Solar Radiation (Wh/m2)", "Wind Speed Mean (kph)", "Rain Hours",
+                "Snowfall (cm)", "Rain Measured"):
+        assert col in out.columns
+
+
+def test_bounded_parquet_update_applies_the_measured_rain(tmp_path):
+    path = tmp_path / "history.parquet"
+    fx.history_df().to_parquet(path, index=False)
+    fp.update_parquet_master(fx.config(), _fetched_with_measured_day(), fx.species_params(),
+                             fx.zone_curves(), str(path))
+
+    out = pd.read_parquet(path)
+    out["Date"] = pd.to_datetime(out["Date"])
+    day = out[out["Date"] == MEASURED_DAY]
+    assert (day["TotalPrecipitation_mm"] == 42.0).all()
+    assert (day[fx.score_columns()] == 1.23).all().all()
+    assert out.loc[out["Date"] >= fx.TODAY, fx.score_columns()].notna().all().all()
 
 
 def test_prev_elevation_fill_uses_location_max():

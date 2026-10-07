@@ -139,6 +139,18 @@ def test_join_coord_key_follows_reroute_when_baked_coord_absent(tmp_path):
     assert (round(r["_coord_lat"], 3), round(r["_coord_lon"], 3)) == COORDS[0]  # rerouted to C0
 
 
+def test_join_carries_the_extra_weather_columns(tmp_path):
+    extras = {"Solar Radiation (Wh/m2)": 1500.0, "Wind Speed Mean (kph)": 7.0,
+              "Rain Hours": 3, "Snowfall (cm)": 0.5, "Rain Measured": True}
+    base = _write_base(tmp_path, [
+        {"Location_Id": lid, "Latitude": la, "Longitude": lo, "Elevation (m)": np.nan}
+        for lid, la, lo, _ in BASE_PTS
+    ])
+    out = fp._join_to_base(_cfg(), _weather_long().assign(**extras), base)
+    for col, value in extras.items():
+        assert (out[col] == value).all(), col
+
+
 def test_lag_slice_is_identical_for_forward_rows():
     """compute_lag_features on [today - lag_days ..] must give the same lag columns for
     forward rows (Date >= today) as computing on the full history."""

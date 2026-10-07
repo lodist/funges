@@ -4,6 +4,10 @@ One WeatherAPI forecast.json call per coordinate returns up to 7 forecast days
 (billed as ONE call). We emit one dated row per forecast day, so the master time
 series gains [today .. today+6] each run. Overlapping future dates are replaced by
 the fresher forecast on the next run; the day that rolls out of the window freezes.
+
+A frozen day is its day-0 forecast, whose rain correlated only 0.71 with ERA5 reanalysis
+(60 coords, 1-3 Oct 2026). Once ERA5 publishes a day, about five days later, era5_rain
+writes its rain over that day, at no WeatherAPI cost.
 """
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from contextlib import contextmanager
@@ -31,12 +35,20 @@ from shapely.ops import unary_union
 from shapely.geometry import shape, Point
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasonality
+import era5_rain
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
 from species_registry import get_species_params
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
+RAIN_HOUR_MM = 0.1
+# How long the run waits for ERA5 after the WeatherAPI fetch, which it overlaps.
+ERA5_EXTRA_WAIT_S = 120
+
+
+def _hourly(hours, field):
+    return [h[field] for h in hours if h.get(field) is not None]
 
 
 def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp):
@@ -54,11 +66,10 @@ def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp):
     for fday in forecast:
         day = fday.get("day", {}) or {}
         hours = fday.get("hour", []) or []
-        pressure_mb = None
-        if hours:
-            vals = [h.get("pressure_mb") for h in hours if h.get("pressure_mb") is not None]
-            if vals:
-                pressure_mb = float(np.mean(vals))
+        pressure = _hourly(hours, "pressure_mb")
+        wind = _hourly(hours, "wind_kph")
+        precip = _hourly(hours, "precip_mm")
+        radiation = _hourly(hours, "short_rad")  # a day's energy only adds up over all its hours
         rows.append({
             "Date": fday.get("date"),
             "Location_Id": location_id,
@@ -72,10 +83,15 @@ def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp):
             "Temperature (C) Min": day.get("mintemp_c"),
             "Temperature (C)": day.get("avgtemp_c"),
             "Wind Speed (kph)": day.get("maxwind_kph"),
-            "Pressure (hPa)": pressure_mb,
+            "Wind Speed Mean (kph)": float(np.mean(wind)) if wind else None,
+            "Pressure (hPa)": float(np.mean(pressure)) if pressure else None,
             "Humidity (%)": day.get("avghumidity"),
             "Description": (day.get("condition") or {}).get("text"),
             "TotalPrecipitation_mm": day.get("totalprecip_mm", 0),
+            "Rain Hours": sum(p >= RAIN_HOUR_MM for p in precip) if precip else None,
+            "Snowfall (cm)": day.get("totalsnow_cm"),
+            "Solar Radiation (Wh/m2)": (float(sum(radiation))
+                                        if hours and len(radiation) == len(hours) else None),
             "ph_level": static_fields.get("ph_level"),
         })
     return rows
@@ -1184,9 +1200,21 @@ def run_pipeline(config: RegionConfig):
     coordinates = _load_or_build_coords(config, coordinates_file_path, geojson_path)
     print(f"Final number of coordinates: {len(coordinates)}")
 
+    # ERA5 rain for past days downloads while WeatherAPI is fetched, so it adds little
+    # or nothing to the run; whatever is not back by then comes again tomorrow.
+    measured_rain = era5_rain.start(
+        config.lat_range, config.lon_range,
+        [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates],
+        datetime.now().date())
     counter = CallCounter()
     weather_long = _fetch_all(config, coordinates, static_map, api_key, counter)
     print(f"API calls made: {counter.count} for {len(coordinates)} coordinates")
+    # Only coords whose forecast arrived: a coord with rain alone would look fetched and
+    # keep its base points from falling back to a neighbour's forecast.
+    rain = measured_rain(ERA5_EXTRA_WAIT_S)
+    fetched = set(zip(weather_long["Latitude"], weather_long["Longitude"]))
+    rain = rain[[point in fetched for point in zip(rain["Latitude"], rain["Longitude"])]]
+    weather_long = pd.concat([weather_long, rain], ignore_index=True)
 
     df = _join_to_base(config, weather_long, base_file_path)
     if str(main_data_path).endswith('.parquet'):
@@ -1291,10 +1319,12 @@ def _join_to_base(config, weather_long, base_file_path):
     weather_cols = [
         "coord_id", "Date",
         "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
-        "Wind Speed (kph)", "Pressure (hPa)", "TotalPrecipitation_mm", "Humidity (%)",
-        "Description", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
-        "Elevation (m)",
+        "Wind Speed (kph)", "Wind Speed Mean (kph)", "Pressure (hPa)",
+        "TotalPrecipitation_mm", "Rain Hours", "Snowfall (cm)", "Solar Radiation (Wh/m2)",
+        "Humidity (%)", "Description", "Rain Measured",
+        "dist_m_water", "dist_m_sea", "climate_zone", "ph_level", "Elevation (m)",
     ]
+    weather_cols = [c for c in weather_cols if c in weather_long.columns]
     drop_cols = [c for c in weather_cols if c in base_df.columns and c != "coord_id"]
     drop_cols += [c for c in ("coord_lat", "coord_lon") if c in base_df.columns]
     base_keep = base_df.drop(columns=drop_cols)
@@ -1324,21 +1354,59 @@ def apply_forward_scores(combined_df, forward, score_cols):
     return base.reset_index()
 
 
+# What a measured (ERA5) day overwrites: rain only. Stored temperature and humidity
+# already agree with measurements (correlation 0.95-0.99); scores and statics stay.
+MEASURED_COLUMNS = ["TotalPrecipitation_mm", "Rain Hours", "Rain Measured"]
+
+
+def _measured_mask(df):
+    if "Rain Measured" not in df.columns:
+        return pd.Series(False, index=df.index)
+    return df["Rain Measured"].eq(True)
+
+
+def _first_forecast_day(df):
+    """Anchor "today" to the EARLIEST forecast date actually fetched (coordinate-local),
+    not the server clock: forecast.json returns each coord's local 7 days, so US
+    regions legitimately start a day behind a UTC/Europe runner. Using the server date
+    would mis-align the forward window and the contiguity guarantee for those regions.
+    Measured days are older than any forecast day and must not drag it back."""
+    dates = pd.to_datetime(df.loc[~_measured_mask(df), "Date"])
+    if dates.notna().any():
+        return dates.min().normalize()
+    return pd.Timestamp(datetime.now().date())
+
+
+def apply_measured_weather(master, measured):
+    """Write measured rain over the frozen days it covers and add the days the master
+    lacks. Only MEASURED_COLUMNS change. Scores stay, since a frozen day is never
+    rescored; the forward window reads the new rain through its lags."""
+    key = ["Location_Id", "Date"]
+    measured = (measured.assign(Date=pd.to_datetime(measured["Date"]))
+                .drop_duplicates(key, keep="last"))
+    where = pd.MultiIndex.from_frame(master[key]).get_indexer(
+        pd.MultiIndex.from_frame(measured[key]))
+    known = where >= 0
+    for col in MEASURED_COLUMNS:
+        if col not in measured.columns or col not in master.columns:
+            continue
+        values = measured[col].to_numpy()
+        take = known & pd.notna(values)
+        master.iloc[where[take], master.columns.get_loc(col)] = values[take]
+    if known.all():
+        return master
+    added = measured.loc[~known, [c for c in master.columns if c in measured.columns]]
+    return pd.concat([master, added], ignore_index=True)
+
+
 def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
                      *, existing_df=None, existing_exists=None, cutoff_date=None):
-    # Anchor "today" to the EARLIEST forecast date actually fetched (coordinate-local),
-    # not the server clock: forecast.json returns each coord's local 7 days, so US
-    # regions legitimately start a day behind a UTC/Europe runner. Using the server date
-    # would mis-align the forward window and the contiguity guarantee for those regions.
-    new_dates = pd.to_datetime(df["Date"])
-    if new_dates.notna().any():
-        today = new_dates.min().normalize()
-    else:
-        today = pd.Timestamp(datetime.now().date())
-
     # NOTE: the Date=today override is intentionally GONE — dates are the real forecast dates.
     if "Wind Speed (m/s)" not in df.columns and "Wind Speed (kph)" in df.columns:
         df["Wind Speed (m/s)"] = df["Wind Speed (kph)"] / 3.6
+    is_measured = _measured_mask(df)
+    measured, df = df[is_measured], df[~is_measured].copy()
+    today = _first_forecast_day(df)
 
     for specie in species_params:
         col = f"{specie}_score"
@@ -1365,6 +1433,8 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         combined_df = df.copy()
         combined_df["Date"] = pd.to_datetime(combined_df["Date"])
         combined_df = combined_df.drop_duplicates(subset=["Location_Id", "Date"], keep="last").reset_index(drop=True)
+    if len(measured):
+        combined_df = apply_measured_weather(combined_df, measured)
 
     combined_df = combined_df[np.isfinite(combined_df["Latitude"]) & np.isfinite(combined_df["Longitude"])]
     combined_df = combined_df[combined_df["Location_Id"] != ""]
@@ -1434,7 +1504,8 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         "Location_Id", "Date", "Latitude", "Longitude", "Elevation (m)",
         "Pressure (hPa)", "TotalPrecipitation_mm", "Humidity (%)", "Wind Speed (m/s)",
         "Description", "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
-        "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
+        "Wind Speed Mean (kph)", "Rain Hours", "Snowfall (cm)", "Solar Radiation (Wh/m2)",
+        "Rain Measured", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
     ]
     updated_df = updated_df.reindex(
         columns=masterfile_columns + species_score_columns + confidence_columns)
@@ -1444,9 +1515,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
 def update_parquet_master(config, df, species_params, zone_curves, main_data_path):
     """Replace the mutable tail of a parquet master. Only ``lag_days`` of existing
     rows enter pandas; frozen history is streamed through in Arrow batches."""
-    new_dates = pd.to_datetime(df["Date"])
-    today = (new_dates.min().normalize() if new_dates.notna().any()
-             else pd.Timestamp(datetime.now().date()))
+    today = _first_forecast_day(df)
     split_date = today - pd.Timedelta(days=config.lag_days)
     cutoff_date = pd.Timestamp(datetime.now() - timedelta(days=config.cutoff_days))
     exists = remote_file_exists(main_data_path)
