@@ -6,6 +6,7 @@ import pyarrow.parquet as pq
 import pytest
 
 import forecast_pipeline as fp  # backend/ is on sys.path via conftest.py
+import _phase2_fixture as fx
 
 FIXTURE = json.loads((Path(__file__).parent / "fixtures" / "forecast_sample.json").read_text(encoding="utf-8"))
 NDP = 3
@@ -49,6 +50,39 @@ def test_parse_carries_day_fields_and_location_id():
     assert r0["Description"] == d0["condition"]["text"]
     assert len({r["Location_Id"] for r in rows}) == 1
     assert r0["climate_zone"] == "temperate"
+
+
+def _without_radiation(payload):
+    """history.json on our plan: forecast.json's shape, but its hours carry no short_rad."""
+    out = json.loads(json.dumps(payload))
+    for fday in out["forecast"]["forecastday"]:
+        for hour in fday["hour"]:
+            hour.pop("short_rad", None)
+    return out
+
+
+def test_parse_derives_radiation_mean_wind_rain_hours_and_snow():
+    rows = fp.parse_forecast_days(FIXTURE, _static(), 59.330, 18.070, NDP)
+    fday = FIXTURE["forecast"]["forecastday"][3]
+    hours = fday["hour"]
+    row = [r for r in rows if r["Date"] == fday["date"]][0]
+    assert row["Solar Radiation (Wh/m2)"] == pytest.approx(sum(h["short_rad"] for h in hours))
+    assert row["Wind Speed Mean (kph)"] == pytest.approx(np.mean([h["wind_kph"] for h in hours]))
+    assert row["Rain Hours"] == sum(h["precip_mm"] >= 0.1 for h in hours)
+    assert row["Snowfall (cm)"] == fday["day"]["totalsnow_cm"]
+
+
+def test_parse_leaves_radiation_empty_when_hours_lack_it():
+    # Not 0: a 0 would overwrite the forecast's radiation when the measured day lands.
+    rows = fp.parse_forecast_days(_without_radiation(FIXTURE), _static(), 59.330, 18.070, NDP)
+    assert all(r["Solar Radiation (Wh/m2)"] is None for r in rows)
+
+
+def test_parse_marks_only_history_rows_observed():
+    forecast = fp.parse_forecast_days(FIXTURE, _static(), 59.330, 18.070, NDP)
+    measured = fp.parse_forecast_days(FIXTURE, _static(), 59.330, 18.070, NDP, observed=True)
+    assert not any(r["Observed"] for r in forecast)
+    assert all(r["Observed"] for r in measured)
 
 
 def _mk(loc, dates, precip):
@@ -145,6 +179,153 @@ def test_fetch_builds_forecast_request_and_counts_one_call(monkeypatch):
     assert "dt" not in captured["params"]
     assert captured["params"]["q"] == "59.33,18.07"
     assert counter.count == 1
+
+
+def test_history_fetch_requests_one_day_and_counts_one_call(monkeypatch):
+    captured = {}
+
+    class _Resp:
+        status_code = 200
+        def json(self):
+            return {"ok": True}
+
+    def fake_get(url, params=None, timeout=None):
+        captured["url"] = url
+        captured["params"] = params
+        return _Resp()
+
+    monkeypatch.setattr(fp.requests, "get", fake_get)
+    counter = fp.CallCounter()
+    out = fp.fetch_history_day(59.33, 18.07, "2026-06-11", api_key="K", counter=counter)
+    assert out == {"ok": True}
+    assert captured["url"] == fp.HISTORY_URL
+    assert captured["params"]["dt"] == "2026-06-11"
+    assert captured["params"]["q"] == "59.33,18.07"
+    assert "end_dt" not in captured["params"] and "days" not in captured["params"]
+    assert counter.count == 1
+
+
+def _history_for(dt):
+    """A history.json reply for one date."""
+    out = _without_radiation(FIXTURE)
+    fday = out["forecast"]["forecastday"][0]
+    fday["date"] = dt
+    out["forecast"]["forecastday"] = [fday]
+    return out
+
+
+def _fetch_one_coord(monkeypatch, history):
+    asked = []
+    monkeypatch.setattr(fp, "fetch_weather_data", lambda lat, lon, api_key, counter=None: FIXTURE)
+
+    def fake_history(lat, lon, dt, api_key, counter=None):
+        asked.append(dt)
+        return history(dt)
+
+    monkeypatch.setattr(fp, "fetch_history_day", fake_history)
+    out = fp._fetch_all(fx.config(), [(59.33, 18.07)], pd.DataFrame(), "K", fp.CallCounter())
+    return out, asked
+
+
+def test_fetch_all_adds_the_measured_day_before_the_forecast(monkeypatch):
+    out, asked = _fetch_one_coord(monkeypatch, _history_for)
+    first = pd.Timestamp(FIXTURE["forecast"]["forecastday"][0]["date"])
+    expected = (first - pd.Timedelta(days=fp.MEASURED_DAY_LAG)).strftime("%Y-%m-%d")
+    assert asked == [expected]
+    assert out.loc[out["Observed"], "Date"].tolist() == [expected]
+    assert (~out["Observed"]).sum() == 7
+
+
+def test_fetch_all_keeps_the_forecast_when_history_fails(monkeypatch):
+    out, _ = _fetch_one_coord(monkeypatch, lambda dt: None)
+    assert len(out) == 7
+    assert not out["Observed"].any()
+
+
+MEASURED_DAY = fx.TODAY - pd.Timedelta(days=2)
+
+
+def _measured_rows(rain=42.0, temp=35.0):
+    """history.json rows for every fixture base point on MEASURED_DAY, as _join_to_base
+    emits them: same columns as the forecast rows, no radiation, Observed."""
+    rows = fx.forward_df()
+    rows = rows[rows["Date"] == fx.TODAY].copy()
+    rows["Date"] = MEASURED_DAY
+    rows["TotalPrecipitation_mm"] = rain
+    rows["Temperature (C)"] = temp
+    rows["Solar Radiation (Wh/m2)"] = np.nan
+    rows["Observed"] = True
+    return rows
+
+
+def _fetched_with_measured_day():
+    return pd.concat([fx.forward_df().assign(Observed=False), _measured_rows()], ignore_index=True)
+
+
+def _merge(history, df, tmp_path):
+    path = tmp_path / "history.parquet"
+    history.to_parquet(path, index=False)
+    out = fp._merge_and_score(fx.config(), df, fx.species_params(), fx.zone_curves(),
+                              main_data_path=str(path))
+    out["Date"] = pd.to_datetime(out["Date"])
+    return out
+
+
+def test_measured_day_replaces_frozen_weather_but_keeps_score_and_radiation(tmp_path):
+    history = fx.history_df()
+    history["Solar Radiation (Wh/m2)"] = 2000.0
+    out = _merge(history, _fetched_with_measured_day(), tmp_path)
+
+    day = out[out["Date"] == MEASURED_DAY]
+    assert len(day) == 6
+    assert (day["TotalPrecipitation_mm"] == 42.0).all()
+    assert day["Observed"].eq(True).all()
+    assert (day["Solar Radiation (Wh/m2)"] == 2000.0).all()  # history has none: keep the forecast's
+    assert (day[fx.score_columns()] == 1.23).all().all()     # a frozen day is not rescored
+
+
+def test_forward_scores_read_the_measured_day(tmp_path):
+    out = _merge(fx.history_df(), _fetched_with_measured_day(), tmp_path)
+    forward = (out[out["Date"] >= fx.TODAY].sort_values(["Location_Id", "Date"])
+               .reset_index(drop=True)[["Location_Id", "Date"] + fx.score_columns()])
+    golden = pd.read_parquet(Path(__file__).parent / "fixtures" / "phase2_golden_scores.parquet")
+    assert len(forward) == len(golden)
+    assert forward[fx.score_columns()].notna().all().all()
+    # 35 °C two days back moves the temperature lags, so the scores must move too.
+    assert not np.allclose(forward[fx.score_columns()].to_numpy(float),
+                           golden[fx.score_columns()].to_numpy(float))
+
+
+def test_measured_day_fills_a_day_the_master_lacks(tmp_path):
+    history = fx.history_df()
+    history = history[pd.to_datetime(history["Date"]) != MEASURED_DAY]
+    out = _merge(history, _fetched_with_measured_day(), tmp_path)
+
+    day = out[out["Date"] == MEASURED_DAY]
+    assert len(day) == 6
+    assert (day["TotalPrecipitation_mm"] == 42.0).all()
+    assert day[fx.score_columns()].isna().all().all()
+
+
+def test_merge_writes_the_new_weather_columns(tmp_path):
+    out = _merge(fx.history_df(), _fetched_with_measured_day(), tmp_path)
+    for col in ("Solar Radiation (Wh/m2)", "Wind Speed Mean (kph)", "Rain Hours",
+                "Snowfall (cm)", "Observed"):
+        assert col in out.columns
+
+
+def test_bounded_parquet_update_applies_the_measured_day(tmp_path):
+    path = tmp_path / "history.parquet"
+    fx.history_df().to_parquet(path, index=False)
+    fp.update_parquet_master(fx.config(), _fetched_with_measured_day(), fx.species_params(),
+                             fx.zone_curves(), str(path))
+
+    out = pd.read_parquet(path)
+    out["Date"] = pd.to_datetime(out["Date"])
+    day = out[out["Date"] == MEASURED_DAY]
+    assert (day["TotalPrecipitation_mm"] == 42.0).all()
+    assert (day[fx.score_columns()] == 1.23).all().all()
+    assert out.loc[out["Date"] >= fx.TODAY, fx.score_columns()].notna().all().all()
 
 
 def test_prev_elevation_fill_uses_location_max():
