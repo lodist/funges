@@ -57,6 +57,13 @@ def test_a_day_without_all_its_hours_is_left_out():
     assert _rain(hourly, times, [(50.0, 0.0)]).empty
 
 
+def test_a_day_with_a_blank_hour_is_left_out():
+    times = _hours()
+    hourly = _one_cell(times, {"2026-10-01 02:00": 3.0})
+    hourly[times.get_loc(pd.Timestamp("2026-10-01 05:00")), 0, 0] = np.nan
+    assert _rain(hourly, times, [(50.0, 0.0)]).empty
+
+
 def test_each_coord_reads_its_nearest_cell():
     times = _hours()
     hourly = np.zeros((len(times), 1, 2))

@@ -79,7 +79,8 @@ def local_day_rain(hourly, times, lats, lons, coords, days) -> pd.DataFrame:
     """Each coord's rain total and rain hours over its local days, from the nearest cell.
 
     A local day at longitude L runs from midnight at UTC-L/15 h. Each hourly value is the
-    rain of the hour ending at its time. A day missing any of its 24 hours is left out."""
+    rain of the hour ending at its time. A day missing any of its 24 hours, or with one
+    left blank, is left out: it comes again on a later run."""
     coords = np.asarray(coords, float).reshape(-1, 2)
     rows = np.abs(lats[None, :] - coords[:, :1]).argmin(axis=1)
     cols = np.abs(lons[None, :] - coords[:, 1:]).argmin(axis=1)
@@ -89,7 +90,8 @@ def local_day_rain(hourly, times, lats, lons, coords, days) -> pd.DataFrame:
     frames = []
     for day in days:
         start = np.datetime64(pd.Timestamp(day)) - offset           # local midnight, in UTC
-        inside = (stamps > start[None, :]) & (stamps <= (start + np.timedelta64(1, "D"))[None, :])
+        inside = ((stamps > start[None, :]) & (stamps <= (start + np.timedelta64(1, "D"))[None, :])
+                  & np.isfinite(series))                         # a blank hour is a missing hour
         complete = inside.sum(axis=0) == 24
         rain = np.where(inside, series, 0.0)
         frames.append(pd.DataFrame({
