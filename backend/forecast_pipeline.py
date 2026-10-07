@@ -5,9 +5,9 @@ One WeatherAPI forecast.json call per coordinate returns up to 7 forecast days
 series gains [today .. today+6] each run. Overlapping future dates are replaced by
 the fresher forecast on the next run; the day that rolls out of the window freezes.
 
-A second call, history.json, then writes what was measured over one frozen day. A
-frozen day is otherwise its day-0 forecast: against ERA5, 60 coords, 1-3 Oct 2026,
-day-0 rain correlated 0.71 with reanalysis, history.json rain 0.94.
+A frozen day is its day-0 forecast, whose rain correlated only 0.71 with ERA5 reanalysis
+(60 coords, 1-3 Oct 2026). Once ERA5 publishes a day, about five days later, era5_rain
+writes its rain over that day, at no WeatherAPI cost.
 """
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from contextlib import contextmanager
@@ -35,28 +35,24 @@ from shapely.ops import unary_union
 from shapely.geometry import shape, Point
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasonality
+import era5_rain
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
 from species_registry import get_species_params
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
-HISTORY_URL = "https://api.weatherapi.com/v1/history.json"
 FORECAST_DAYS = 7
-# The measured day is this many days before a coord's first forecast day. Not 1: the
-# run starts near UTC midnight, when Europe's yesterday ended an hour or two ago. The
-# day before has had a full day to settle, and the gap costs nothing the model uses
-# (its rain windows reach back 7-42 days).
-MEASURED_DAY_LAG = 2
 RAIN_HOUR_MM = 0.1
+# How long the run waits for ERA5 after the WeatherAPI fetch, which it overlaps.
+ERA5_EXTRA_WAIT_S = 120
 
 
 def _hourly(hours, field):
     return [h[field] for h in hours if h.get(field) is not None]
 
 
-def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp, observed=False):
-    """Return ONE row per day from a forecast.json response, or from a history.json
-    response (same shape) with observed=True.
+def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp):
+    """Return ONE row per forecast day from a single forecast.json response.
 
     static_fields: dict with Altitude, dist_m_water, dist_m_sea, climate_zone, ph_level
     (looked up once per coord; identical across the coord's days).
@@ -73,9 +69,7 @@ def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp, observed
         pressure = _hourly(hours, "pressure_mb")
         wind = _hourly(hours, "wind_kph")
         precip = _hourly(hours, "precip_mm")
-        # A day's energy only adds up over all its hours. history.json has none on our
-        # plan, which leaves the day's forecast value in place (apply_measured_weather).
-        radiation = _hourly(hours, "short_rad")
+        radiation = _hourly(hours, "short_rad")  # a day's energy only adds up over all its hours
         rows.append({
             "Date": fday.get("date"),
             "Location_Id": location_id,
@@ -98,7 +92,6 @@ def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp, observed
             "Snowfall (cm)": day.get("totalsnow_cm"),
             "Solar Radiation (Wh/m2)": (float(sum(radiation))
                                         if hours and len(radiation) == len(hours) else None),
-            "Observed": observed,
             "ph_level": static_fields.get("ph_level"),
         })
     return rows
@@ -174,28 +167,6 @@ class CallCounter:
             self.count += 1
 
 
-def _get_json(url, params, lat, lon, counter, retries):
-    endpoint = url.rsplit("/", 1)[-1]
-    for attempt in range(retries):
-        try:
-            if counter is not None:
-                counter.incr()
-            resp = requests.get(url, params=params, timeout=(5, 12))
-            if resp.status_code == 200:
-                return resp.json()
-            if resp.status_code == 429 and attempt < retries - 1:
-                time.sleep(2 ** attempt)        # rate-limit backoff (higher concurrency)
-                continue
-            print(f"[{lat},{lon}] {endpoint} bad status {resp.status_code}")
-            return None
-        except requests.RequestException as e:
-            if attempt < retries - 1:
-                time.sleep(1)
-                continue
-            print(f"[{lat},{lon}] {endpoint} request error after {retries} tries: {e}")
-            return None
-
-
 def fetch_weather_data(lat, lon, api_key, counter=None, retries=4):
     """One forecast.json call per coordinate -> up to FORECAST_DAYS days in ONE response.
 
@@ -208,17 +179,24 @@ def fetch_weather_data(lat, lon, api_key, counter=None, retries=4):
         "aqi": "no",
         "alerts": "no",
     }
-    return _get_json(BASE_URL, params, lat, lon, counter, retries)
-
-
-def fetch_history_day(lat, lon, dt, api_key, counter=None, retries=4):
-    """One history.json call: what WeatherAPI measured at this coordinate on `dt`.
-
-    One day per call. end_dt also works on our plan, but whether a range is billed as
-    one call is not documented, and two calls per coord already use ~2.3M of 3M a month.
-    """
-    params = {"key": api_key, "q": f"{lat},{lon}", "dt": dt}
-    return _get_json(HISTORY_URL, params, lat, lon, counter, retries)
+    for attempt in range(retries):
+        try:
+            if counter is not None:
+                counter.incr()
+            resp = requests.get(BASE_URL, params=params, timeout=(5, 12))
+            if resp.status_code == 200:
+                return resp.json()
+            if resp.status_code == 429 and attempt < retries - 1:
+                time.sleep(2 ** attempt)        # rate-limit backoff (higher concurrency)
+                continue
+            print(f"[{lat},{lon}] bad status {resp.status_code}")
+            return None
+        except requests.RequestException as e:
+            if attempt < retries - 1:
+                time.sleep(1)
+                continue
+            print(f"[{lat},{lon}] request error after {retries} tries: {e}")
+            return None
 
 
 @dataclass
@@ -1222,9 +1200,21 @@ def run_pipeline(config: RegionConfig):
     coordinates = _load_or_build_coords(config, coordinates_file_path, geojson_path)
     print(f"Final number of coordinates: {len(coordinates)}")
 
+    # ERA5 rain for past days downloads while WeatherAPI is fetched, so it adds little
+    # or nothing to the run; whatever is not back by then comes again tomorrow.
+    measured_rain = era5_rain.start(
+        config.lat_range, config.lon_range,
+        [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates],
+        datetime.now().date())
     counter = CallCounter()
     weather_long = _fetch_all(config, coordinates, static_map, api_key, counter)
     print(f"API calls made: {counter.count} for {len(coordinates)} coordinates")
+    # Only coords whose forecast arrived: a coord with rain alone would look fetched and
+    # keep its base points from falling back to a neighbour's forecast.
+    rain = measured_rain(ERA5_EXTRA_WAIT_S)
+    fetched = set(zip(weather_long["Latitude"], weather_long["Longitude"]))
+    rain = rain[[point in fetched for point in zip(rain["Latitude"], rain["Longitude"])]]
+    weather_long = pd.concat([weather_long, rain], ignore_index=True)
 
     df = _join_to_base(config, weather_long, base_file_path)
     if str(main_data_path).endswith('.parquet'):
@@ -1260,15 +1250,7 @@ def _fetch_all(config, coordinates, static_map, api_key, counter):
         weather = fetch_weather_data(lat_r, lon_r, api_key=api_key, counter=counter)
         if not weather:
             return None
-        static = _static_for(lat_r, lon_r)
-        rows = parse_forecast_days(weather, static, lat_r, lon_r, ndp)
-        if rows:
-            first = min(pd.Timestamp(r["Date"]) for r in rows)
-            day = (first - pd.Timedelta(days=MEASURED_DAY_LAG)).strftime("%Y-%m-%d")
-            measured = fetch_history_day(lat_r, lon_r, day, api_key=api_key, counter=counter)
-            if measured:
-                rows += parse_forecast_days(measured, static, lat_r, lon_r, ndp, observed=True)
-        return rows
+        return parse_forecast_days(weather, _static_for(lat_r, lon_r), lat_r, lon_r, ndp)
 
     print(f"Started API calls at {datetime.now()} (max_workers={config.max_workers})")
     rows = []
@@ -1339,7 +1321,7 @@ def _join_to_base(config, weather_long, base_file_path):
         "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
         "Wind Speed (kph)", "Wind Speed Mean (kph)", "Pressure (hPa)",
         "TotalPrecipitation_mm", "Rain Hours", "Snowfall (cm)", "Solar Radiation (Wh/m2)",
-        "Humidity (%)", "Description", "Observed",
+        "Humidity (%)", "Description", "Rain Measured",
         "dist_m_water", "dist_m_sea", "climate_zone", "ph_level", "Elevation (m)",
     ]
     weather_cols = [c for c in weather_cols if c in weather_long.columns]
@@ -1372,19 +1354,15 @@ def apply_forward_scores(combined_df, forward, score_cols):
     return base.reset_index()
 
 
-# What a measured (history.json) day overwrites. Its scores and static fields stay.
-MEASURED_COLUMNS = [
-    "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
-    "Wind Speed (m/s)", "Wind Speed Mean (kph)", "Pressure (hPa)", "TotalPrecipitation_mm",
-    "Rain Hours", "Snowfall (cm)", "Solar Radiation (Wh/m2)", "Humidity (%)",
-    "Description", "Observed",
-]
+# What a measured (ERA5) day overwrites: rain only. Stored temperature and humidity
+# already agree with measurements (correlation 0.95-0.99); scores and statics stay.
+MEASURED_COLUMNS = ["TotalPrecipitation_mm", "Rain Hours", "Rain Measured"]
 
 
 def _measured_mask(df):
-    if "Observed" not in df.columns:
+    if "Rain Measured" not in df.columns:
         return pd.Series(False, index=df.index)
-    return df["Observed"].eq(True)
+    return df["Rain Measured"].eq(True)
 
 
 def _first_forecast_day(df):
@@ -1400,11 +1378,9 @@ def _first_forecast_day(df):
 
 
 def apply_measured_weather(master, measured):
-    """Write measured weather over the frozen days it covers and add the days the master
-    lacks. A missing measured value keeps the master's: solar radiation is not in
-    history.json on our plan, so the day keeps its forecast radiation. Scores stay,
-    since a frozen day is never rescored; the forward window reads the new weather
-    through its lags."""
+    """Write measured rain over the frozen days it covers and add the days the master
+    lacks. Only MEASURED_COLUMNS change. Scores stay, since a frozen day is never
+    rescored; the forward window reads the new rain through its lags."""
     key = ["Location_Id", "Date"]
     measured = (measured.assign(Date=pd.to_datetime(measured["Date"]))
                 .drop_duplicates(key, keep="last"))
@@ -1529,7 +1505,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         "Pressure (hPa)", "TotalPrecipitation_mm", "Humidity (%)", "Wind Speed (m/s)",
         "Description", "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
         "Wind Speed Mean (kph)", "Rain Hours", "Snowfall (cm)", "Solar Radiation (Wh/m2)",
-        "Observed", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
+        "Rain Measured", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
     ]
     updated_df = updated_df.reindex(
         columns=masterfile_columns + species_score_columns + confidence_columns)

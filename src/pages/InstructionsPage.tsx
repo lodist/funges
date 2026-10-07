@@ -34,6 +34,7 @@ const KEY_DATASETS = [
   ['treeGenus', 'bg-muted'],
   ['forestTypes', 'bg-status-warning-background'],
   ['gbif', 'bg-secondary'],
+  ['era5', 'bg-muted'],
 ] as const;
 
 export default function InstructionsPage() {

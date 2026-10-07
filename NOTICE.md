@@ -119,6 +119,20 @@ under its own terms; see <https://www.inaturalist.org/pages/terms>.
 No iNaturalist photographs are redistributed by this app — they were used only
 offline, to measure accuracy.
 
+## ERA5 reanalysis
+
+Past days' rain in the forecast is replaced with **ERA5** hourly total precipitation
+once it is published, about five days after the day (`backend/era5_rain.py`). ERA5 is
+distributed under the Licence to use Copernicus Products, which is free and permits
+commercial use, with this attribution:
+
+- "Contains modified Copernicus Climate Change Service information 2026. Neither the
+  European Commission nor ECMWF is responsible for any use that may be made of the
+  Copernicus information or data it contains."
+- Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single
+  levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data
+  Store (CDS). <https://doi.org/10.24381/cds.adbb2d47>
+
 ## Cherry blossom forecast
 
 The cherry blossom layer's normals are NASA POWER's 1991–2020 monthly mean

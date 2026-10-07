@@ -141,7 +141,7 @@ def test_join_coord_key_follows_reroute_when_baked_coord_absent(tmp_path):
 
 def test_join_carries_the_extra_weather_columns(tmp_path):
     extras = {"Solar Radiation (Wh/m2)": 1500.0, "Wind Speed Mean (kph)": 7.0,
-              "Rain Hours": 3, "Snowfall (cm)": 0.5, "Observed": True}
+              "Rain Hours": 3, "Snowfall (cm)": 0.5, "Rain Measured": True}
     base = _write_base(tmp_path, [
         {"Location_Id": lid, "Latitude": la, "Longitude": lo, "Elevation (m)": np.nan}
         for lid, la, lo, _ in BASE_PTS

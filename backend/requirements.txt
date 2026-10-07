@@ -7,3 +7,5 @@ pyproj
 requests
 scipy
 shapely
+cdsapi
+netCDF4

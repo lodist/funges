@@ -121,6 +121,12 @@
         "source": "Quelle: Global Biodiversity Information Facility (GBIF.org)",
         "citation": "Citation: GBIF.org (2026). GBIF occurrence data, accessed via the GBIF API. https://www.gbif.org"
       },
+      "era5": {
+        "title": "9. ERA5-Reanalyse (vergangener Regen)",
+        "description": "Die Reanalyse des EZMW verbindet Wettermodelle mit Beobachtungen aus der ganzen Welt. Vorhersagen liegen oft falsch, wo Regen gefallen ist. Sobald ERA5 einen Tag veröffentlicht, etwa fünf Tage später, ersetzt Funges den vorhergesagten Regen dieses Tages durch den von ERA5.",
+        "source": "Quelle: Copernicus Climate Change Service (C3S), EZMW",
+        "citation": "Zitierung: Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.adbb2d47. Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains."
+      },
       "additional": "Das tägliche Wetter stammt aus Vorhersagen von WeatherAPI.com, und jede Modelländerung wird an aktuellen Sichtungen geprüft, die das Modell noch nicht kennt."
     }
   },
