@@ -86,7 +86,6 @@ def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp):
             "Wind Speed Mean (kph)": float(np.mean(wind)) if wind else None,
             "Pressure (hPa)": float(np.mean(pressure)) if pressure else None,
             "Humidity (%)": day.get("avghumidity"),
-            "Description": (day.get("condition") or {}).get("text"),
             "TotalPrecipitation_mm": day.get("totalprecip_mm", 0),
             "Rain Hours": sum(p >= RAIN_HOUR_MM for p in precip) if precip else None,
             "Snowfall (cm)": day.get("totalsnow_cm"),
@@ -1321,7 +1320,7 @@ def _join_to_base(config, weather_long, base_file_path):
         "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
         "Wind Speed (kph)", "Wind Speed Mean (kph)", "Pressure (hPa)",
         "TotalPrecipitation_mm", "Rain Hours", "Snowfall (cm)", "Solar Radiation (Wh/m2)",
-        "Humidity (%)", "Description", "Rain Measured",
+        "Humidity (%)", "Rain Measured",
         "dist_m_water", "dist_m_sea", "climate_zone", "ph_level", "Elevation (m)",
     ]
     weather_cols = [c for c in weather_cols if c in weather_long.columns]
@@ -1503,7 +1502,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
     masterfile_columns = [
         "Location_Id", "Date", "Latitude", "Longitude", "Elevation (m)",
         "Pressure (hPa)", "TotalPrecipitation_mm", "Humidity (%)", "Wind Speed (m/s)",
-        "Description", "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
+        "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
         "Wind Speed Mean (kph)", "Rain Hours", "Snowfall (cm)", "Solar Radiation (Wh/m2)",
         "Rain Measured", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
     ]
