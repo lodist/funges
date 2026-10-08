@@ -117,19 +117,25 @@ def bootstrap(a: np.ndarray, b: np.ndarray | None = None, seed: int = 20261007) 
 
 
 def get_with_retry(session: requests.Session, url: str, params, what: str, attempts: int = 8) -> dict:
+    problem = ""
     for attempt in range(attempts):
-        response = session.get(url, params=params, timeout=120)
-        if response.status_code == 429 or response.status_code >= 500:
-            time.sleep(min(60, 2 ** attempt))
-            continue
-        response.raise_for_status()
-        return response.json()
-    raise RuntimeError(f"{what} kept failing: {response.status_code} {response.text[:200]}")
+        try:
+            response = session.get(url, params=params, timeout=120)
+            if response.status_code == 429 or response.status_code >= 500:
+                problem = f"{response.status_code} {response.text[:200]}"
+            else:
+                response.raise_for_status()
+                return response.json()
+        except (requests.ConnectionError, requests.Timeout, requests.exceptions.ChunkedEncodingError) as error:
+            problem = str(error)  # a dropped connection is as passing as a 503
+        time.sleep(min(60, 2 ** attempt))
+    raise RuntimeError(f"{what} kept failing: {problem}")
 
 
 def fetch_finds(session: requests.Session, keys: list[int], start: str, end: str,
-                box: tuple) -> pd.DataFrame:
-    """Every coordinate-precise human observation of `keys` inside `box`, one row each."""
+                box: tuple, max_records: int | None = None) -> pd.DataFrame:
+    """Every coordinate-precise human observation of `keys` inside `box`, one row each;
+    with max_records, an even sample of pages across the whole result instead."""
     west, south, east, north = box
     params = [("taxonKey", key) for key in keys] + [
         ("basisOfRecord", "HUMAN_OBSERVATION"), ("occurrenceStatus", "PRESENT"),
@@ -139,9 +145,18 @@ def fetch_finds(session: requests.Session, keys: list[int], start: str, end: str
         ("decimalLatitude", f"{south},{north}"), ("decimalLongitude", f"{west},{east}"),
         ("limit", 300),
     ]
-    rows, offset = [], 0
-    while True:
-        page = get_with_retry(session, GBIF, params + [("offset", offset)], "GBIF")
+    first = get_with_retry(session, GBIF, params + [("offset", 0)], "GBIF")
+    total = first.get("count", 0)
+    if total > 100_000:
+        print(f"    [warn] {total:,} records, past GBIF's 100k paging limit")
+    reachable = min(total, 100_000)
+    if max_records and reachable > max_records:
+        offsets = sorted(set(np.linspace(0, reachable - 300, max_records // 300, dtype=int).tolist()))
+    else:
+        offsets = list(range(0, reachable, 300))
+    rows = []
+    for offset in offsets:
+        page = first if offset == 0 else get_with_retry(session, GBIF, params + [("offset", offset)], "GBIF")
         for record in page.get("results", []):
             parts = (record.get("year"), record.get("month"), record.get("day"))
             if None in parts or record.get("decimalLatitude") is None:
@@ -152,11 +167,6 @@ def fetch_finds(session: requests.Session, keys: list[int], start: str, end: str
                 continue
             if start <= observed <= end:
                 rows.append((record["decimalLatitude"], record["decimalLongitude"], observed))
-        offset += 300
-        if page.get("endOfRecords", True) or offset >= 100_000:
-            if offset >= 100_000:
-                print(f"    [warn] stopped at GBIF's 100k paging limit of {page.get('count')}")
-            break
     return pd.DataFrame(rows, columns=["lat", "lon", "date"])
 
 
