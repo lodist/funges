@@ -47,7 +47,6 @@ def test_parse_carries_day_fields_and_location_id():
     assert r0["Wind Speed (kph)"] == d0["maxwind_kph"]
     assert r0["Humidity (%)"] == d0["avghumidity"]
     assert r0["TotalPrecipitation_mm"] == d0["totalprecip_mm"]
-    assert r0["Description"] == d0["condition"]["text"]
     assert len({r["Location_Id"] for r in rows}) == 1
     assert r0["climate_zone"] == "temperate"
 
@@ -227,6 +226,16 @@ def test_measured_rain_fills_a_day_the_master_lacks(tmp_path):
     assert len(day) == 6
     assert (day["TotalPrecipitation_mm"] == 42.0).all()
     assert day[fx.score_columns()].isna().all().all()
+
+
+def test_weather_text_is_not_stored(tmp_path):
+    # Nothing reads it, and as one string per row it cost the full-file readers about
+    # 1 GB of memory per region; the existing history loses it on the next write.
+    assert all("Description" not in r for r in fp.parse_forecast_days(FIXTURE, _static(), 59.330, 18.070, NDP))
+    history = fx.history_df()
+    assert "Description" in history.columns
+    out = _merge(history, _fetched_with_measured_day(), tmp_path)
+    assert "Description" not in out.columns
 
 
 def test_merge_writes_the_new_weather_columns(tmp_path):
