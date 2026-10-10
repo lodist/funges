@@ -43,8 +43,6 @@ from species_registry import get_species_params
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
 RAIN_HOUR_MM = 0.1
-# How long the run waits for ERA5 after the WeatherAPI fetch, which it overlaps.
-ERA5_EXTRA_WAIT_S = 120
 
 
 def _hourly(hours, field):
@@ -1199,8 +1197,8 @@ def run_pipeline(config: RegionConfig):
     coordinates = _load_or_build_coords(config, coordinates_file_path, geojson_path)
     print(f"Final number of coordinates: {len(coordinates)}")
 
-    # ERA5 rain for past days downloads while WeatherAPI is fetched, so it adds little
-    # or nothing to the run; whatever is not back by then comes again tomorrow.
+    # Tonight's ERA5 rain order goes in before the WeatherAPI fetch; the orders that have
+    # finished since earlier runs, tonight's too on a quiet night, download after it.
     measured_rain = era5_rain.start(
         config.lat_range, config.lon_range,
         [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates],
@@ -1210,7 +1208,7 @@ def run_pipeline(config: RegionConfig):
     print(f"API calls made: {counter.count} for {len(coordinates)} coordinates")
     # Only coords whose forecast arrived: a coord with rain alone would look fetched and
     # keep its base points from falling back to a neighbour's forecast.
-    rain = measured_rain(ERA5_EXTRA_WAIT_S)
+    rain = measured_rain()
     fetched = set(zip(weather_long["Latitude"], weather_long["Longitude"]))
     rain = rain[[point in fetched for point in zip(rain["Latitude"], rain["Longitude"])]]
     weather_long = pd.concat([weather_long, rain], ignore_index=True)
