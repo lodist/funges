@@ -263,10 +263,13 @@ def load_normals(region_code):
 
 
 def load_ground(stem, region_code):
-    """Where a spectacle is drawn: backend/generated/<stem>_<EU|US>.geojson."""
+    """Where a spectacle is drawn: backend/generated/<stem>_<EU|US>.parquet or .geojson."""
     import geopandas as gpd
 
-    return gpd.read_file(_BACKEND / "generated" / f"{stem}_{NORMALS_MACRO[region_code]}.geojson")
+    path = _BACKEND / "generated" / f"{stem}_{NORMALS_MACRO[region_code]}"
+    if path.with_suffix(".parquet").exists():
+        return gpd.read_parquet(path.with_suffix(".parquet"))
+    return gpd.read_file(path.with_suffix(".geojson"))
 
 
 def publish(features, region_code, tiles, r2_prefix, to_pmtiles, upload, build_mbtiles=_tippecanoe):

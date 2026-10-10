@@ -10,9 +10,9 @@ about 12 °C·days (1.5 days) earlier. Fitted on NASA POWER temperatures, the so
 of the normals: docs/species/2026-10-10-bluebell.md, from
 backend/tools/calibrate_bluebell.py.
 
-The cells are clipped to bluebell ground (backend/generated/bluebell_ground_EU.geojson,
-from backend/tools/build_spectacle_ground.py): within its native range and on
-ground with broadleaf trees.
+The cells are drawn on bluebell woods (backend/generated/bluebell_woods_EU.parquet,
+from backend/tools/build_spectacle_ground.py): the broadleaf and mixed woods the
+species layers are drawn on, within the bluebell's native range.
 """
 from __future__ import annotations
 
@@ -49,10 +49,10 @@ def peak_index(tmean, forcing=FORCING):
 
 def build_bluebell(master_path, region_code, r2_prefix, to_pmtiles, upload,
                    *, build_mbtiles=bloom._tippecanoe, today=None, normals=None, ground=None):
-    """Build and upload `<region>_bluebell.pmtiles`, on bluebell ground."""
+    """Build and upload `<region>_bluebell.pmtiles`, on bluebell woods."""
     today = today or date.today()
     if ground is None and season(today) is not None:
-        ground = bloom.load_ground("bluebell_ground", region_code)
+        ground = bloom.load_ground("bluebell_woods", region_code)
     return bloom.build_peaks(master_path, region_code, r2_prefix, to_pmtiles, upload, label="Bluebell",
                              tiles="bluebell", season=season, peak_index=peak_index,
                              latest_normal_peak=LATEST_NORMAL_PEAK, ground=ground, build_mbtiles=build_mbtiles,
