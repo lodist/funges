@@ -922,16 +922,17 @@ def _ph_score_vectorized(ph_values, optimal_pH, pH_sigma_near, pH_sigma_far, pH_
 # --- Fitted fruiting response (#291) ---------------------------------------------------
 # tools/fit_fruiting.py fits a conditional logit on these features: ERA5 weather at every
 # GBIF find since 2016 against the same place 14 and 21 days either side. Where its index
-# ranked find days clearly better than the hand-set weather part on 2025-2026, which no fit
-# saw, generated/fruiting_fit.json carries the coefficients, and the index replaces that
-# species' weather part in that region. tests/test_fruiting.py checks these features match
-# the training table's exactly.
+# ranked find days better than the hand-set weather part in more held-out years than chance
+# would give, generated/fruiting_fit.json carries the coefficients, and the index replaces
+# that species' weather part in that region. tests/test_fruiting.py checks these features
+# match the training table's exactly. No sunshine: it is stored only since 8 October 2026,
+# its gap to ERA5 is unmeasured, and leaving it out cost the fit nothing.
 FRUITING_FIT_PATH = Path(__file__).resolve().parent / "generated" / "fruiting_fit.json"
 FRUITING_RAIN_WINDOWS = {"rain_1_3": (1, 3), "rain_4_7": (4, 7), "rain_8_14": (8, 14),
                          "rain_15_28": (15, 28), "rain_29_42": (29, 42)}
 FRUITING_FEATURES = ["rain_0", *FRUITING_RAIN_WINDOWS, "dry_days", "temp", "temp_sq",
-                     "tmin_drop", "frost", "humidity", "humidity_early", "sun"]
-FRUITING_LAG_COLUMNS = ["Temperature (C) Min", "Solar Radiation (Wh/m2)"]
+                     "tmin_drop", "frost", "humidity", "humidity_early"]
+FRUITING_LAG_COLUMNS = ["Temperature (C) Min"]
 DRY_DAYS_CAP = 43          # no 5 mm day within the 42 days the lags reach
 RAIN_MAX_MM_DAY = 300.0    # the US parquets carry impossible days (2415 mm); ERA5 never does
 
@@ -955,7 +956,6 @@ def fruiting_raw_features(df):
         "frost_days_1_14": np.where(np.isnan(tmin).any(axis=1), np.nan, (tmin < 0).sum(axis=1)),
         "humidity_1_7": humidity[:, :7].mean(axis=1),
         "humidity_8_21": humidity[:, 7:21].mean(axis=1),
-        "sun_1_7_kwh": _lag_matrix(df, "Solar Radiation (Wh/m2)", 7).sum(axis=1) / 1000.0,
     }, index=df.index)
     out["tmin_drop"] = out["tmin_1_3"] - out["tmin_8_14"]
     return out
@@ -971,19 +971,31 @@ def fruiting_design(raw):
     out["frost"] = raw["frost_days_1_14"]
     out["humidity"] = raw["humidity_1_7"]
     out["humidity_early"] = raw["humidity_8_21"]
-    out["sun"] = raw["sun_1_7_kwh"]
     return out[FRUITING_FEATURES]
 
 
 def fruiting_weather_part(df, model):
-    """The fitted index, put on the hand-set weather part's own scale: model["map"] pairs
-    quantiles of the index with the same quantiles of the hand-set part, so a score keeps
-    its range and threshold and only its order changes. A feature the row lacks (sunshine
-    before it was stored) counts as average."""
-    z = (fruiting_design(fruiting_raw_features(df)).to_numpy(float) - np.asarray(model["means"])) \
-        / np.asarray(model["sds"])
+    """The fitted index, put on the hand-set weather part's own scale. model["map"] holds one
+    map per calendar month, pairing quantiles of the index with the same quantiles of the
+    hand-set part at that time of year, so a score keeps its range, threshold and seasonal
+    level and only its order changes; a day blends the two months either side of it. The
+    fit learned on ERA5, whose humidity reads higher than the stored WeatherAPI values, so
+    model["humidity_from_stored"] = (a, b) puts stored humidity on ERA5's level first. A
+    feature the row lacks counts as average."""
+    design = fruiting_design(fruiting_raw_features(df))
+    a, b = model.get("humidity_from_stored", (0.0, 1.0))
+    design[["humidity", "humidity_early"]] = a + b * design[["humidity", "humidity_early"]]
+    z = (design.to_numpy(float) - np.asarray(model["means"])) / np.asarray(model["sds"])
     eta = np.nan_to_num(z, nan=0.0) @ np.asarray(model["beta"], float)
-    return np.interp(eta, model["map"]["eta"], model["map"]["weather_part"])
+    months = (pd.to_datetime(df["Date"]).dt.dayofyear.to_numpy() - 15.0) / (365.25 / 12)  # 0 = mid-January
+    before = np.floor(months).astype(int)
+    weight = months - before
+    out = np.empty(len(eta))
+    for month in np.unique(before):
+        rows = before == month
+        part = [np.interp(eta[rows], m["eta"], m["weather_part"]) for m in (model["map"][month % 12], model["map"][(month + 1) % 12])]
+        out[rows] = (1 - weight[rows]) * part[0] + weight[rows] * part[1]
+    return out
 
 
 def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
@@ -997,7 +1009,8 @@ def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
     for specie, params in species_params.items():
         model = fit.get("models", {}).get(specie, {}).get(region)
         if model:
-            params["fruiting"] = {"means": fit["means"], "sds": fit["sds"], **model}
+            params["fruiting"] = {"means": fit["means"], "sds": fit["sds"],
+                                  "humidity_from_stored": fit["humidity_from_stored"][region], **model}
 
 
 def calculate_mushroom_score(df, species_params, zone_curves):

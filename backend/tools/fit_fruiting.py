@@ -11,9 +11,17 @@ it is still fitted, per continent, for the report.
 
 Each species is fitted on all its regions together; each region with enough finds is then
 refitted with a penalty that pulls it toward that shared answer, so a thin region stays
-close to it. Fits use 2016-2024 only. 2025-2026 is scored with the rank test of
-scripts/qa_weather_skill.py, next to today's model on the very same days, and each region
-is also scored by a fit that never saw it. 2025 is reported on its own as well: some
+close to it. Two tests, both with the rank test of scripts/qa_weather_skill.py next to
+today's model on the very same days:
+
+- Leaving one year out: every year is scored by a fit on all the other years. This decides
+  what ships: a species-region whose fit beats today's model in more years than chance
+  would give (one-sided sign test, p < 0.1, over at least 6 years). A single test period
+  is not enough: porcini in North Europe won 9 of 11 years, but lost summer 2026.
+- 2025-2026 held out from a fit on 2016-2024, and each region scored by a fit that never
+  saw it, for the report.
+
+What ships is refitted on every year. 2025 is reported on its own as well: some
 species' hand-set parameters were tuned on 2026 sightings, which favours today's model there.
 
     python backend/tools/fit_fruiting.py --out ../era5_training
@@ -28,6 +36,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy.optimize import minimize
+from scipy.stats import binomtest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -42,6 +51,12 @@ MIN_TRAIN_STRATA = 300       # a species with fewer keeps its hand-set parameter
 MIN_REGION_STRATA = 100      # a region with fewer uses its species' shared answer
 ALPHA_SHARED, ALPHA_REGION = 1.0, 50.0
 MIN_TEST_STRATA = 50
+SHIP_P, SHIP_MIN_YEARS = 0.1, 6
+MAP_CELLS, MAP_DAY_STEP = 100, 3   # the scale map's sample: places, and every n-th day
+# The forecast fetch that stores today's rows (one per forecast day, the past frozen) started
+# on 14 June 2026. Days stored before it came from another setup and read differently: their
+# humidity sat above ERA5's, the current fetch's below it.
+STORED_FROM = pd.Timestamp("2026-07-01")
 FEATURES = fp.FRUITING_FEATURES
 MAP_QUANTILES = np.linspace(0, 1, 101)
 
@@ -113,6 +128,137 @@ def baseline_index(scores: pd.DataFrame, cases: pd.DataFrame, species: str) -> n
     return wide.to_numpy(float)
 
 
+def month_maps(dates, eta: np.ndarray, part: np.ndarray) -> list[dict]:
+    """Per calendar month: quantiles of the fitted index and of today's weather part."""
+    month = pd.DatetimeIndex(dates).month.to_numpy()
+    return [{"eta": np.quantile(eta[month == m], MAP_QUANTILES).round(6).tolist(),
+             "weather_part": np.quantile(part[month == m], MAP_QUANTILES).round(6).tolist(),
+             "days": int((month == m).sum())} for m in range(1, 13)]
+
+
+def season_maps(table, out, species, region, beta, means, sds, specs, humidity) -> list[dict]:
+    """month_maps over every MAP_DAY_STEP-th day of every year at up to MAP_CELLS of the
+    species' places in the region. One map per month keeps today's level at each time of
+    year: the fit only compares a day with the same place 2-3 weeks either side, so it says
+    nothing about how one season compares with another, and a single map for the whole year
+    moved early October's share of 4+ scores by up to 45 points. Today's side is computed on
+    stored-level humidity, as production computes it; the index on ERA5's level, which
+    production reaches through humidity_from_stored."""
+    import build_training_table as tt
+
+    a, b = humidity
+    finds = table[(table["species"] == species) & (table["region"] == region) & (table["offset"] == 0)]
+    cells = finds[["cell_lat", "cell_lon"]].drop_duplicates()
+    cells = cells.sample(min(MAP_CELLS, len(cells)), random_state=291)
+    cells["block"] = [f"{np.floor(lat / 0.5) * 0.5:.2f}_{np.floor(lon / 0.5) * 0.5:.2f}"
+                      for lat, lon in zip(cells["cell_lat"], cells["cell_lon"])]
+    dates, etas, parts = [], [], []
+    for name, group in cells.groupby("block"):
+        path = out / "era5_blocks" / f"{name}.parquet"
+        if not path.exists():
+            continue
+        block = pd.read_parquet(path)
+        rows = []
+        for lat, lon in zip(group["cell_lat"], group["cell_lon"]):
+            cell = block[(block["Latitude"].round(2) == lat) & (block["Longitude"].round(2) == lon)]
+            days = pd.DatetimeIndex(cell["Date"].sort_values().iloc[42::MAP_DAY_STEP])
+            z = (fp.fruiting_design(tt.features(cell, days)).to_numpy(float) - means) / sds
+            rows.append(pd.DataFrame({"species": species, "region": region, "cell_lat": lat, "cell_lon": lon,
+                                      "date": days, "offset": 0, "eta": z @ beta}))
+        rows = pd.concat(rows, ignore_index=True)
+        rows["case_id"] = np.arange(len(rows))
+        stored_level = block.assign(**{"Humidity (%)": ((block["Humidity (%)"] - a) / b).clip(0, 100)})
+        today = tt.baseline(stored_level, rows, specs)[["case_id", "weather_part"]]
+        both = rows.merge(today, on="case_id").dropna(subset=["eta", "weather_part"])
+        dates.append(both["date"].to_numpy())
+        etas.append(both["eta"].to_numpy())
+        parts.append(both["weather_part"].to_numpy())
+    return month_maps(np.concatenate(dates), np.concatenate(etas), np.concatenate(parts))
+
+
+def humidity_correction(stored: np.ndarray, era5: np.ndarray) -> tuple[float, float]:
+    """(a, b) such that a + b * stored has ERA5's mean and spread on the same places and days."""
+    b = float(np.std(era5) / np.std(stored))
+    return float(np.mean(era5) - b * np.mean(stored)), b
+
+
+def stored_humidity_correction(out: Path, region: str, points: int = 1500) -> tuple[float, float]:
+    """humidity_correction between the region's stored weather (WeatherAPI) at a sample of map
+    points and ERA5 at their cell, over every day both have since STORED_FROM. Stored humidity
+    reads 2-7 points lower, most on dry days."""
+    import pyarrow as pa
+    import pyarrow.compute as pc
+    import pyarrow.parquet as pq
+    from qa_weather_skill import r2_filesystem
+
+    key = f"{fp.get_required_env('R2_BUCKET_NAME')}/{fp._r2_key(fp.get_required_env(f'{region}_WEATHER_DATA'))}"
+    parquet = pq.ParquetFile(r2_filesystem().open_input_file(key))
+    places = (parquet.read_row_group(parquet.num_row_groups - 1, columns=["Location_Id", "Latitude", "Longitude"])
+              .to_pandas().drop_duplicates("Location_Id"))
+    places["cell_lat"] = (np.round(places["Latitude"] / 0.25) * 0.25).round(2)
+    places["cell_lon"] = (np.round(places["Longitude"] / 0.25) * 0.25).round(2)
+    places["block"] = [f"{np.floor(lat / 0.5) * 0.5:.2f}_{np.floor(lon / 0.5) * 0.5:.2f}"
+                       for lat, lon in zip(places["cell_lat"], places["cell_lon"])]
+    places = places[[(out / "era5_blocks" / f"{name}.parquet").exists() for name in places["block"]]]
+    places = places.sample(min(points, len(places)), random_state=291)
+    wanted = pa.array(places["Location_Id"].tolist())
+    pieces = []
+    for group in range(parquet.num_row_groups):
+        rows = parquet.read_row_group(group, columns=["Location_Id", "Date", "Humidity (%)"])
+        pieces.append(rows.filter(pc.is_in(rows["Location_Id"], value_set=wanted)).to_pandas())
+    stored = pd.concat(pieces, ignore_index=True)
+    stored["Date"] = pd.to_datetime(stored["Date"]).dt.normalize()
+    stored = stored.drop_duplicates(["Location_Id", "Date"], keep="last").merge(places, on="Location_Id")
+    era5 = pd.concat([pd.read_parquet(out / "era5_blocks" / f"{name}.parquet",
+                                      columns=["Latitude", "Longitude", "Date", "Humidity (%)"])
+                      for name in stored["block"].unique()], ignore_index=True)
+    era5 = era5.rename(columns={"Latitude": "cell_lat", "Longitude": "cell_lon"})
+    both = stored.merge(era5, on=["cell_lat", "cell_lon", "Date"], suffixes=("", "_era5"))
+    both = both[both["Date"] >= STORED_FROM].dropna(subset=["Humidity (%)", "Humidity (%)_era5"])
+    a, b = humidity_correction(both["Humidity (%)"].to_numpy(float), both["Humidity (%)_era5"].to_numpy(float))
+    log(f"{region}: ERA5 humidity = {a:.1f} + {b:.3f} x stored ({len(both):,} place-days, "
+        f"{both['Date'].min():%d %b} - {both['Date'].max():%d %b %Y})")
+    return a, b
+
+
+def leave_one_year_out(cases, x, mask, mine, is_placebo, days, today_index) -> dict:
+    """Per region: (year, today's net, fitted net) with each year scored by a fit on the others."""
+    years = cases["year"].to_numpy()
+    regions = cases["region"].to_numpy()
+    results = {}
+    for year in sorted(set(years[mine])):
+        train = mine & (years != year)
+        if train.sum() < MIN_TRAIN_STRATA:
+            continue
+        shared = fit(x[train], mask[train], alpha=ALPHA_SHARED)
+        for region in sorted(set(regions[mine])):
+            here = regions == region
+            tc = mine & here & (years == year) & days[:, 0]
+            tp = is_placebo & here & (years == year) & days[:, 0]
+            if tc.sum() < MIN_TEST_STRATA or tp.sum() < MIN_TEST_STRATA:
+                continue
+            beta = (fit(x[train & here], mask[train & here], center=shared, alpha=ALPHA_REGION)
+                    if (train & here).sum() >= MIN_REGION_STRATA else shared)
+
+            def net(index):
+                return float(find_day_rank(index[tc], days[tc]).mean() - find_day_rank(index[tp], days[tp]).mean())
+
+            results.setdefault(region, []).append((int(year), net(today_index), net(x @ beta)))
+    return results
+
+
+def sign_test(results) -> tuple[int, float, float]:
+    """Years the fit beat today's model, the one-sided sign test's p, and the mean gain."""
+    wins = sum(f > t for _, t, f in results)
+    p = binomtest(wins, len(results), 0.5, alternative="greater").pvalue
+    return wins, p, float(np.mean([f - t for _, t, f in results]))
+
+
+def ships(results) -> bool:
+    _, p, gain = sign_test(results)
+    return len(results) >= SHIP_MIN_YEARS and p < SHIP_P and gain > 0
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True)
@@ -127,11 +273,22 @@ def main() -> None:
     cases, x, mask = strata(table, transform(table))
     cases["continent"] = cases["region"].map(CONTINENT)
     train = (cases["year"] <= LAST_TRAIN_YEAR).to_numpy()
-    flat = x[train][mask[train]]
+    flat = x[mask]
     means, sds = flat.mean(axis=0), flat.std(axis=0)
     x = np.where(mask[..., None], (x - means) / sds, 0.0)
     log(f"{len(cases):,} strata ({train.sum():,} train, {(~train).sum():,} test), {len(FEATURES)} features")
 
+    specs = {}
+    if args.export:
+        import requests
+        sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
+        from qa_season_branch_replay import load_specs
+        session = requests.Session()
+        specs = {region: load_specs(session, region) for region in ("NE", "SE", "USE", "USW")}
+        root = Path(__file__).resolve().parents[2]
+        fp.load_dotenv(root / ".env")
+        fp.load_dotenv(root / ".env.secret")
+        humidity = {region: stored_humidity_correction(out, region) for region in specs}
     is_placebo = (cases["species"] == PLACEBO).to_numpy()
     outing = {}
     for continent in ("EU", "US"):
@@ -189,20 +346,6 @@ def main() -> None:
                 pooled[name][0].append(target)
                 pooled[name][1].append(placebo)
             report[species][region] = entry
-            # Ship only where the fit's whole 95% interval is above today's score. Its index is
-            # then mapped onto today's weather part through their quantiles on the training
-            # days, so the score keeps its scale and only its order changes.
-            if entry["fitted"]["net_ci"][0] > entry["today"]["net"]:
-                rows = mine & train & here
-                eta = (x[rows] @ by_region[region])[days[rows]]
-                part = today[rows][days[rows]]
-                shipped.setdefault(species, {})[region] = {
-                    "beta": by_region[region].round(6).tolist(),
-                    "map": {"eta": np.quantile(eta, MAP_QUANTILES).round(6).tolist(),
-                            "weather_part": np.quantile(part, MAP_QUANTILES).round(6).tolist()},
-                    "test_2025_2026": {"today": entry["today"]["net"], "fitted": entry["fitted"]["net"],
-                                       "fitted_ci": entry["fitted"]["net_ci"], "cases": entry["n"]},
-                }
             log(f"{species:22s} {region:4s} n={entry['n']:5d}  today {entry['today']['net']:+.3f}  "
                 f"fitted {entry['fitted']['net']:+.3f} {entry['fitted']['net_ci']}  unseen region "
                 f"{entry['region_unseen']['net'] if 'region_unseen' in entry else float('nan'):+.3f}  "
@@ -218,10 +361,36 @@ def main() -> None:
             log(f"{species:22s} ALL  n={summary['today']['n']:5d}  today {summary['today']['net']:+.3f}  "
                 f"fitted {summary['fitted']['net']:+.3f} {summary['fitted']['net_ci']}")
 
+        by_year = leave_one_year_out(cases, x, mask, mine, is_placebo, days, indices["today"])
+        everything = fit(x[mine], mask[mine], alpha=ALPHA_SHARED)
+        for region, results in sorted(by_year.items()):
+            wins, p, gain = sign_test(results)
+            report[species].setdefault(region, {})["by_year"] = {
+                "years": len(results), "wins": wins, "p": round(p, 4), "mean_gain": round(gain, 3),
+                "per_year": [{"year": y, "today": round(t, 3), "fitted": round(f, 3)} for y, t, f in results]}
+            log(f"{species:22s} {region:4s} each year held out: fitted beats today {wins}/{len(results)} "
+                f"(p {p:.3f}), mean gain {gain:+.3f}")
+            if not ships(results):
+                continue
+            here = mine & (cases["region"] == region).to_numpy()
+            beta = (fit(x[here], mask[here], center=everything, alpha=ALPHA_REGION)
+                    if here.sum() >= MIN_REGION_STRATA else everything)
+            shipped.setdefault(species, {})[region] = {
+                "beta": beta.round(6).tolist(),
+                "map": season_maps(table, out, species, region, beta, means, sds, specs, humidity[region])
+                if specs else None,
+                "each_year_held_out": {"years": len(results), "wins": wins, "p": round(p, 4),
+                                       "mean_today": round(float(np.mean([t for _, t, _ in results])), 3),
+                                       "mean_fitted": round(float(np.mean([f for _, _, f in results])), 3)},
+            }
+
     (out / "fruiting_fit.json").write_text(json.dumps(coefficients, indent=1), encoding="utf-8")
     if args.export:
         export = {"features": FEATURES, "means": means.round(6).tolist(), "sds": sds.round(6).tolist(),
-                  "trained": f"2016-{LAST_TRAIN_YEAR}", "tested": f"{LAST_TRAIN_YEAR + 1}-",
+                  "trained": f"{int(cases['year'].min())}-{int(cases['year'].max())}",
+                  "humidity_from_stored": {region: [round(a, 4), round(b, 4)] for region, (a, b) in humidity.items()},
+                  "shipped_if": f"beats today's model in more held-out years than chance (sign test p < {SHIP_P}, "
+                                f"at least {SHIP_MIN_YEARS} years)",
                   "models": shipped}
         Path(args.export).write_text(json.dumps(export, indent=1) + "\n", encoding="utf-8")
         log(f"shipped {sum(len(r) for r in shipped.values())} species-regions to {args.export}: "

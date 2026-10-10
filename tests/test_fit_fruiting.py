@@ -1,5 +1,6 @@
 """The fruiting fit: a conditional logit over each find's own day and its controls."""
 import numpy as np
+import pandas as pd
 
 import fit_fruiting as ff
 
@@ -51,3 +52,29 @@ def test_rank_of_the_find_day_among_its_controls():
                       [1.0, 0.0, 0.0, 0.0, 0.0]])   # beats all -> 1.0
     mask = np.ones((2, 5), bool)
     assert ff.find_day_rank(index, mask).tolist() == [0.625, 1.0]
+
+
+def test_a_fit_ships_only_where_it_wins_more_years_than_chance():
+    def years(wins, losses):
+        return [(2016 + i, 0.05, 0.10) for i in range(wins)] + [(2030 + i, 0.10, 0.05) for i in range(losses)]
+
+    assert ff.ships(years(9, 2))            # 9 of 11: p 0.03
+    assert not ff.ships(years(6, 5))        # a coin could do that
+    assert not ff.ships(years(5, 0))        # too few years to tell
+
+
+def test_humidity_correction_matches_the_level_and_spread():
+    stored = np.random.default_rng(4).uniform(30, 100, 5000)
+    a, b = ff.humidity_correction(stored, 12.0 + 0.85 * stored)
+    assert abs(a - 12.0) < 1e-6 and abs(b - 0.85) < 1e-6
+
+
+def test_each_month_gets_its_own_scale():
+    dates = pd.to_datetime([f"2020-{m:02d}-10" for m in range(1, 13) for _ in range(50)])
+    month = dates.month.to_numpy()
+    eta = np.where(month == 1, -1.0, np.where(month == 7, 1.0, 0.0)) + np.tile(np.linspace(0, 1, 50), 12)
+    part = np.where(month == 1, 0.2, np.where(month == 7, 0.7, 0.5))
+    months = ff.month_maps(dates, eta, part)
+    assert len(months) == 12 and all(m["days"] == 50 for m in months)
+    assert months[0]["eta"][0] == -1.0 and months[6]["eta"][0] == 1.0
+    assert set(months[0]["weather_part"]) == {0.2} and set(months[6]["weather_part"]) == {0.7}
