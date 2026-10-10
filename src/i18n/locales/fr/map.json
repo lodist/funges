@@ -132,5 +132,20 @@
     "inDays_other": "dans {{count}} jours",
     "daysAgo_one": "il y a {{count}} jour",
     "daysAgo_other": "il y a {{count}} jours"
+  },
+  "bluebell": {
+    "name": "Bois de jacinthes",
+    "offSeason": "La prévision des jacinthes des bois commence le 1er mars."
+  },
+  "superbloom": {
+    "name": "Floraison du désert",
+    "offSeason": "La prévision de la floraison du désert commence le 1er janvier.",
+    "dry": "Trop peu de pluie cet hiver",
+    "levels": {
+      "none": "Pas de floraison",
+      "ordinary": "Floraison ordinaire",
+      "good": "Belle floraison",
+      "superbloom": "Superbloom possible"
+    }
   }
 }

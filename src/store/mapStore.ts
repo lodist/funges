@@ -21,10 +21,10 @@ import {
 } from '@/lib/forecast';
 import type { RegionId } from '@/lib/data';
 import {
-  BLOOM_CODE,
+  SPECTACLES,
   bloomFillColor,
   bloomInSeason,
-  isBloomLayer,
+  spectacleOfLayer,
   unixDay,
 } from '@/lib/bloom';
 
@@ -156,7 +156,7 @@ export function forecastRegionForCoordinate([longitude, latitude]: [
 
 const MAP_SPECIES_CODES = [
   ...SPECIES_DATA.filter(s => s.showOnMap).map(s => s.id),
-  BLOOM_CODE,
+  ...SPECTACLES.map(spectacle => spectacle.code),
 ];
 
 // The species LIST follows the viewport: a US GPS fix does not make US-only species
@@ -563,15 +563,17 @@ export const useMapStore = create<MapState>()(
                 } else {
                   mapRef.setLayoutProperty(id, 'visibility', 'none');
                 }
-              } else if (isBloomLayer(id)) {
+              } else if (spectacleOfLayer(id)) {
                 // Coloured by days to peak on the slider's day, not by a score.
-                // Out of season (July-January) there is nothing to show: finished
-                // towns stay green until 30 June, then the layer goes.
-                if (bloomInSeason(new Date())) {
+                // Out of its season there is nothing to show: finished places
+                // stay in their "done" colour until the season ends, then the
+                // layer goes.
+                const spectacle = spectacleOfLayer(id)!;
+                if (bloomInSeason(new Date(), spectacle)) {
                   mapRef.setPaintProperty(
                     id,
                     'fill-color',
-                    bloomFillColor(unixDay(new Date()) + activeDay)
+                    bloomFillColor(unixDay(new Date()) + activeDay, spectacle)
                   );
                   mapRef.setLayoutProperty(id, 'visibility', 'visible');
                   drawn = true;
