@@ -144,7 +144,9 @@
     "yes": "Sì",
     "no": "No",
     "score": "Punteggio",
-    "copied": "Copiato!"
+    "copied": "Copiato!",
+    "enlargeImage": "Ingrandisci l'immagine",
+    "shrinkImage": "Riduci l'immagine"
   },
   "html": {
     "title": "Fung.es - Trova Funghi e Piante Commestibili Vicino a Te",

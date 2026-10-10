@@ -23,6 +23,22 @@ const finishExit = () =>
   fireEvent.animationEnd(screen.getByTestId('zoomed-image'));
 
 describe('ZoomableImage', () => {
+  it('zooms on a page card too, outside any dialog', async () => {
+    await i18n.changeLanguage('en');
+    const user = userEvent.setup();
+    render(
+      <ZoomableImage src='/sloes.webp' alt='Sloes' className='h-20 w-20' />
+    );
+    const thumb = screen.getByRole('button', { name: 'Enlarge image Sloes' });
+
+    await user.click(thumb);
+    expect(screen.getByTestId('zoomed-image')).toBeInTheDocument();
+    await user.click(document.body);
+    finishExit();
+    expect(screen.queryByTestId('zoomed-image')).not.toBeInTheDocument();
+    expect(thumb).toHaveAttribute('aria-expanded', 'false');
+  });
+
   it('enlarges on click and shrinks on the next press, on the picture or not', async () => {
     await i18n.changeLanguage('en');
     const user = userEvent.setup();

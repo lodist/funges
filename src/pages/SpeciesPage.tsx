@@ -34,6 +34,7 @@ import {
 import { getSpeciesImage } from '@/lib/utils';
 import { Link } from '@tanstack/react-router';
 import { Route } from '@/routes/species';
+import { ZoomableImage } from '@/components/ZoomableImage';
 
 const basePath = import.meta.env.BASE_URL || '/';
 
@@ -167,15 +168,14 @@ export default function SpeciesPage() {
                     {/* Species Image */}
                     {speciesImage && (
                       <div className='flex-shrink-0'>
-                        <div className='relative w-20 h-20 bg-secondary bg-secondary overflow-hidden rounded-lg'>
-                          <img
-                            src={speciesImage}
-                            alt={species.name}
-                            className='w-full h-full object-cover object-center'
-                            loading='lazy'
-                          />
-                          <div className='absolute inset-0 bg-black/10' />
-                        </div>
+                        <ZoomableImage
+                          src={speciesImage}
+                          alt={species.name}
+                          className='w-20 h-20 bg-secondary rounded-lg'
+                          imgClassName='object-center'
+                        >
+                          <span className='absolute inset-0 bg-black/10' />
+                        </ZoomableImage>
                       </div>
                     )}
 

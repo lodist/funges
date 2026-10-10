@@ -18,6 +18,7 @@ import { RecipeModalWrapper } from '@/components';
 import FilterModal from '@/components/FilterModal';
 import { getRecipeImage } from '@/lib/utils';
 import { SPECIES_DATA } from '@/data/species';
+import { ZoomableImage } from '@/components/ZoomableImage';
 
 const MUSHROOM_IDS = new Set(
   SPECIES_DATA.filter(s => s.category === 'mushroom').map(s => s.id)
@@ -235,16 +236,17 @@ export default function RecipesPage() {
                       {recipeImage && (
                         <div className='mb-4'>
                           <div className='relative w-full aspect-square bg-secondary overflow-hidden rounded-lg'>
-                            <img
+                            <ZoomableImage
                               src={recipeImage}
                               alt={recipe.title}
-                              className='w-full h-full object-cover object-center'
-                              loading='lazy'
-                            />
-                            <div className='absolute inset-0 bg-black/10' />
+                              className='size-full'
+                              imgClassName='object-center'
+                            >
+                              <span className='absolute inset-0 bg-black/10' />
+                            </ZoomableImage>
 
-                            {/* Title overlay at bottom */}
-                            <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent p-4'>
+                            {/* Title overlay at bottom; taps go through to the picture */}
+                            <div className='pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent p-4'>
                               <CardTitle className='text-lg line-clamp-2 text-white'>
                                 {recipe.title}
                               </CardTitle>
@@ -282,15 +284,14 @@ export default function RecipesPage() {
                       {/* Recipe Image */}
                       {recipeImage && (
                         <div className='flex-shrink-0'>
-                          <div className='relative w-35 h-35 bg-secondary overflow-hidden rounded-lg'>
-                            <img
-                              src={recipeImage}
-                              alt={recipe.title}
-                              className='w-full h-full object-cover object-center'
-                              loading='lazy'
-                            />
-                            <div className='absolute inset-0 bg-black/10' />
-                          </div>
+                          <ZoomableImage
+                            src={recipeImage}
+                            alt={recipe.title}
+                            className='w-35 h-35 bg-secondary rounded-lg'
+                            imgClassName='object-center'
+                          >
+                            <span className='absolute inset-0 bg-black/10' />
+                          </ZoomableImage>
                         </div>
                       )}
 

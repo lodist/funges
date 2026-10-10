@@ -30,7 +30,10 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
       <DialogContent className='flex max-h-[85vh] w-full max-w-lg flex-col'>
         <header className='shrink-0 space-y-3 pr-6'>
           {recipe.image && (
-            <ZoomableImage src={recipe.image} className='h-32 w-full' />
+            <ZoomableImage
+              src={recipe.image}
+              className='h-32 w-full rounded-xl'
+            />
           )}
           <DialogTitle className='text-xl font-bold leading-tight text-foreground'>
             {recipe.title}

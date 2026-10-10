@@ -34,7 +34,10 @@ export const RecipeModalDesktop = ({
       <DialogContent className='flex max-h-[85vh] w-full max-w-4xl flex-col'>
         <header className='flex shrink-0 items-start gap-6 pr-8'>
           {recipe.image && (
-            <ZoomableImage src={recipe.image} className='h-28 w-28' />
+            <ZoomableImage
+              src={recipe.image}
+              className='h-28 w-28 rounded-xl'
+            />
           )}
           <div className='min-w-0 flex-1 space-y-2'>
             <DialogTitle className='text-2xl font-bold leading-tight text-foreground'>
