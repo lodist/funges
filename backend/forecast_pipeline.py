@@ -919,6 +919,87 @@ def _ph_score_vectorized(ph_values, optimal_pH, pH_sigma_near, pH_sigma_far, pH_
     return np.where(isnan, 0.0, score)
 
 
+# --- Fitted fruiting response (#291) ---------------------------------------------------
+# tools/fit_fruiting.py fits a conditional logit on these features: ERA5 weather at every
+# GBIF find since 2016 against the same place 14 and 21 days either side. Where its index
+# ranked find days clearly better than the hand-set weather part on 2025-2026, which no fit
+# saw, generated/fruiting_fit.json carries the coefficients, and the index replaces that
+# species' weather part in that region. tests/test_fruiting.py checks these features match
+# the training table's exactly.
+FRUITING_FIT_PATH = Path(__file__).resolve().parent / "generated" / "fruiting_fit.json"
+FRUITING_RAIN_WINDOWS = {"rain_1_3": (1, 3), "rain_4_7": (4, 7), "rain_8_14": (8, 14),
+                         "rain_15_28": (15, 28), "rain_29_42": (29, 42)}
+FRUITING_FEATURES = ["rain_0", *FRUITING_RAIN_WINDOWS, "dry_days", "temp", "temp_sq",
+                     "tmin_drop", "frost", "humidity", "humidity_early", "sun"]
+FRUITING_LAG_COLUMNS = ["Temperature (C) Min", "Solar Radiation (Wh/m2)"]
+DRY_DAYS_CAP = 43          # no 5 mm day within the 42 days the lags reach
+RAIN_MAX_MM_DAY = 300.0    # the US parquets carry impossible days (2415 mm); ERA5 never does
+
+
+def fruiting_raw_features(df):
+    """Each row's raw features from the frame's lag columns, defined as in
+    tools/build_training_table.features: a window over days d-far..d-near, NaN if any
+    of them is missing; days since 5 mm counts back from yesterday."""
+    rain = np.clip(_lag_matrix(df, "TotalPrecipitation_mm", 42), 0, RAIN_MAX_MM_DAY)
+    temp = _lag_matrix(df, "Temperature (C)", 7)
+    tmin = _lag_matrix(df, "Temperature (C) Min", 14)
+    humidity = _lag_matrix(df, "Humidity (%)", 21)
+    wet = rain >= 5.0
+    out = pd.DataFrame({
+        "rain_0": np.clip(df["TotalPrecipitation_mm"].to_numpy(float), 0, RAIN_MAX_MM_DAY),
+        **{name: rain[:, near - 1:far].sum(axis=1) for name, (near, far) in FRUITING_RAIN_WINDOWS.items()},
+        "days_since_rain5": np.where(wet.any(axis=1), wet.argmax(axis=1) + 1, DRY_DAYS_CAP),
+        "temp_1_7": temp.mean(axis=1),
+        "tmin_1_3": tmin[:, :3].mean(axis=1),
+        "tmin_8_14": tmin[:, 7:14].mean(axis=1),
+        "frost_days_1_14": np.where(np.isnan(tmin).any(axis=1), np.nan, (tmin < 0).sum(axis=1)),
+        "humidity_1_7": humidity[:, :7].mean(axis=1),
+        "humidity_8_21": humidity[:, 7:21].mean(axis=1),
+        "sun_1_7_kwh": _lag_matrix(df, "Solar Radiation (Wh/m2)", 7).sum(axis=1) / 1000.0,
+    }, index=df.index)
+    out["tmin_drop"] = out["tmin_1_3"] - out["tmin_8_14"]
+    return out
+
+
+def fruiting_design(raw):
+    """Raw features -> the fit's columns. Rain on a log scale: the 30th mm matters less than the 3rd."""
+    out = pd.DataFrame({name: np.log1p(raw[name]) for name in ["rain_0", *FRUITING_RAIN_WINDOWS]})
+    out["dry_days"] = np.log1p(raw["days_since_rain5"].fillna(DRY_DAYS_CAP).clip(upper=DRY_DAYS_CAP))
+    out["temp"] = raw["temp_1_7"]
+    out["temp_sq"] = (raw["temp_1_7"] - 12.0) ** 2 / 10.0   # lets an optimum emerge
+    out["tmin_drop"] = raw["tmin_drop"]
+    out["frost"] = raw["frost_days_1_14"]
+    out["humidity"] = raw["humidity_1_7"]
+    out["humidity_early"] = raw["humidity_8_21"]
+    out["sun"] = raw["sun_1_7_kwh"]
+    return out[FRUITING_FEATURES]
+
+
+def fruiting_weather_part(df, model):
+    """The fitted index, put on the hand-set weather part's own scale: model["map"] pairs
+    quantiles of the index with the same quantiles of the hand-set part, so a score keeps
+    its range and threshold and only its order changes. A feature the row lacks (sunshine
+    before it was stored) counts as average."""
+    z = (fruiting_design(fruiting_raw_features(df)).to_numpy(float) - np.asarray(model["means"])) \
+        / np.asarray(model["sds"])
+    eta = np.nan_to_num(z, nan=0.0) @ np.asarray(model["beta"], float)
+    return np.interp(eta, model["map"]["eta"], model["map"]["weather_part"])
+
+
+def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
+    """Give each species the region's fitted model, where generated/fruiting_fit.json has one."""
+    if not Path(path).exists():
+        return
+    fit = json.loads(Path(path).read_text(encoding="utf-8"))
+    if fit.get("features") != FRUITING_FEATURES:
+        print(f"[warn] {path}: features differ from this code's; hand-set weather parts used")
+        return
+    for specie, params in species_params.items():
+        model = fit.get("models", {}).get(specie, {}).get(region)
+        if model:
+            params["fruiting"] = {"means": fit["means"], "sds": fit["sds"], **model}
+
+
 def calculate_mushroom_score(df, species_params, zone_curves):
     if 'TotalPrecipitation_mm' not in df.columns:
         df['TotalPrecipitation_mm'] = np.nan
@@ -963,6 +1044,12 @@ def calculate_mushroom_score(df, species_params, zone_curves):
 
         df[f'{specie}_Temp_Score'] = np.clip(temp_score, 0, 1)
         df[f'{specie}_Humidity_Score'] = np.clip(humidity_score, 0, 1)
+        if params.get("fruiting"):
+            # All three weather components take the fitted part, so their weighted
+            # geometric mean is that part and the static components weigh as before.
+            fitted = fruiting_weather_part(df, params["fruiting"])
+            for part in ("Temp", "Humidity", "Weather"):
+                df[f'{specie}_{part}_Score'] = fitted
         df[f'{specie}_Alt_Score'] = np.clip(
             altitude_score(df['Elevation (m)'].to_numpy(float), optimal_alt, alt_sigma), 0, 1)
         df[f'{specie}_PH_Score'] = _ph_score_vectorized(
@@ -1123,6 +1210,10 @@ def _load_species_and_curves(config):
             print(f"Loaded host cover for {sum('host_prior' in p for p in species_params.values())} species.")
         except Exception as _e:
             print(f"[warn] could not load host cover from {_cover_path}: {_e}; scoring without it")
+
+    attach_fruiting_models(species_params, config.region)
+    _fitted = sorted(s for s, p in species_params.items() if "fruiting" in p)
+    print(f"Fitted fruiting model for {len(_fitted)} species: {', '.join(_fitted) or 'none'}")
     return species_params, zone_curves
 
 
@@ -1440,7 +1531,8 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
 
     combined_df = combined_df.sort_values(["Location_Id", "Date"])
     lag_columns = ["Temperature (C)", "TotalPrecipitation_mm", "Pressure (hPa)",
-                   "Humidity (%)", "Wind Speed (m/s)"]
+                   "Humidity (%)", "Wind Speed (m/s)",
+                   *(c for c in FRUITING_LAG_COLUMNS if c in combined_df.columns)]
     # Only the forward window (Date >= today) is rescored, and a forward row's deepest
     # lag reaches back exactly lag_days. So lag only [today - lag_days .. ]: frozen older
     # rows are never rescored and need no lag features. Bit-identical for forward rows

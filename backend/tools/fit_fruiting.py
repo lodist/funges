@@ -30,6 +30,8 @@ import pandas as pd
 from scipy.optimize import minimize
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import forecast_pipeline as fp  # noqa: E402
 from download_era5_points import log  # noqa: E402
 
 SLOTS = {0: 0, -21: 1, -14: 2, 14: 3, 21: 4}
@@ -40,24 +42,13 @@ MIN_TRAIN_STRATA = 300       # a species with fewer keeps its hand-set parameter
 MIN_REGION_STRATA = 100      # a region with fewer uses its species' shared answer
 ALPHA_SHARED, ALPHA_REGION = 1.0, 50.0
 MIN_TEST_STRATA = 50
-RAIN_WINDOWS = ["rain_0", "rain_1_3", "rain_4_7", "rain_8_14", "rain_15_28", "rain_29_42"]
-FEATURES = [*RAIN_WINDOWS, "dry_days", "temp", "temp_sq", "tmin_drop", "frost",
-            "humidity", "humidity_early", "sun"]
+FEATURES = fp.FRUITING_FEATURES
+MAP_QUANTILES = np.linspace(0, 1, 101)
 
 
 def transform(table: pd.DataFrame) -> pd.DataFrame:
-    """Training-table columns -> the fit's features (rain on a log scale: the 30th mm
-    matters less than the 3rd)."""
-    out = pd.DataFrame({column: np.log1p(table[column]) for column in RAIN_WINDOWS})
-    out["dry_days"] = np.log1p(table["days_since_rain5"].fillna(60).clip(upper=60))
-    out["temp"] = table["temp_1_7"]
-    out["temp_sq"] = (table["temp_1_7"] - 12.0) ** 2 / 10.0   # lets an optimum emerge
-    out["tmin_drop"] = table["tmin_drop"]
-    out["frost"] = table["frost_days_1_14"]
-    out["humidity"] = table["humidity_1_7"]
-    out["humidity_early"] = table["humidity_8_21"]
-    out["sun"] = table["sun_1_7_kwh"]
-    return out[FEATURES]
+    """Training-table columns -> the fit's features, with the production pipeline's code."""
+    return fp.fruiting_design(table)
 
 
 def strata(table: pd.DataFrame, values: pd.DataFrame) -> tuple[pd.DataFrame, np.ndarray, np.ndarray]:
@@ -125,6 +116,7 @@ def baseline_index(scores: pd.DataFrame, cases: pd.DataFrame, species: str) -> n
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True)
+    parser.add_argument("--export", help="write the shipped models here (backend/generated/fruiting_fit.json)")
     args = parser.parse_args()
     out = Path(args.out)
 
@@ -152,6 +144,7 @@ def main() -> None:
 
     report, coefficients = {}, {"features": FEATURES, "means": means.tolist(), "sds": sds.tolist(),
                                 "outing": {c: b.tolist() for c, b in outing.items()}, "species": {}}
+    shipped = {}
     for species in sorted(set(cases["species"]) - {PLACEBO}):
         mine = (cases["species"] == species).to_numpy()
         if (mine & train).sum() < MIN_TRAIN_STRATA:
@@ -196,6 +189,20 @@ def main() -> None:
                 pooled[name][0].append(target)
                 pooled[name][1].append(placebo)
             report[species][region] = entry
+            # Ship only where the fit's whole 95% interval is above today's score. Its index is
+            # then mapped onto today's weather part through their quantiles on the training
+            # days, so the score keeps its scale and only its order changes.
+            if entry["fitted"]["net_ci"][0] > entry["today"]["net"]:
+                rows = mine & train & here
+                eta = (x[rows] @ by_region[region])[days[rows]]
+                part = today[rows][days[rows]]
+                shipped.setdefault(species, {})[region] = {
+                    "beta": by_region[region].round(6).tolist(),
+                    "map": {"eta": np.quantile(eta, MAP_QUANTILES).round(6).tolist(),
+                            "weather_part": np.quantile(part, MAP_QUANTILES).round(6).tolist()},
+                    "test_2025_2026": {"today": entry["today"]["net"], "fitted": entry["fitted"]["net"],
+                                       "fitted_ci": entry["fitted"]["net_ci"], "cases": entry["n"]},
+                }
             log(f"{species:22s} {region:4s} n={entry['n']:5d}  today {entry['today']['net']:+.3f}  "
                 f"fitted {entry['fitted']['net']:+.3f} {entry['fitted']['net_ci']}  unseen region "
                 f"{entry['region_unseen']['net'] if 'region_unseen' in entry else float('nan'):+.3f}  "
@@ -212,6 +219,13 @@ def main() -> None:
                 f"fitted {summary['fitted']['net']:+.3f} {summary['fitted']['net_ci']}")
 
     (out / "fruiting_fit.json").write_text(json.dumps(coefficients, indent=1), encoding="utf-8")
+    if args.export:
+        export = {"features": FEATURES, "means": means.round(6).tolist(), "sds": sds.round(6).tolist(),
+                  "trained": f"2016-{LAST_TRAIN_YEAR}", "tested": f"{LAST_TRAIN_YEAR + 1}-",
+                  "models": shipped}
+        Path(args.export).write_text(json.dumps(export, indent=1) + "\n", encoding="utf-8")
+        log(f"shipped {sum(len(r) for r in shipped.values())} species-regions to {args.export}: "
+            + "; ".join(f"{s} {', '.join(r)}" for s, r in sorted(shipped.items())))
     (out / "fruiting_report.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
     log(f"wrote {out / 'fruiting_fit.json'} and {out / 'fruiting_report.json'}")
 

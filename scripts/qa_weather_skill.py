@@ -219,7 +219,8 @@ def read_weather(s3, region: str, location_ids: set, first, last) -> pd.DataFram
     for group in range(parquet.num_row_groups):
         if not fp._row_group_may_overlap(parquet, group, after=after, before=before):
             continue
-        table = parquet.read_row_group(group, columns=RAW_COLUMNS)
+        table = parquet.read_row_group(group, columns=RAW_COLUMNS + [
+            c for c in fp.FRUITING_LAG_COLUMNS if c in parquet.schema_arrow.names])
         table = table.filter(pc.and_(fp._arrow_date_mask(table, after=after, before=before),
                                      pc.is_in(table["Location_Id"], value_set=pa.array(wanted))))
         if len(table):
@@ -358,6 +359,8 @@ def main() -> None:
     parser.add_argument("--finds", default=None, help="matched-finds CSV to reuse (written on first run)")
     parser.add_argument("--output", default="docs/qa/weather-skill")
     parser.add_argument("--cache", default=None, help="directory for weather read from R2 / Open-Meteo")
+    parser.add_argument("--fruiting", default=None,
+                        help="score with the fitted fruiting models in this file (generated/fruiting_fit.json)")
     args = parser.parse_args()
     cache = Path(args.cache) if args.cache else None
     if cache:
@@ -414,9 +417,12 @@ def main() -> None:
         days = pd.concat([here[["Location_Id", "Date"]].assign(Date=here.Date + pd.Timedelta(days=o))
                           for o in (0, *CONTROL_OFFSETS)]).drop_duplicates()
         target = history.merge(days, on=["Location_Id", "Date"])
-        frame = fp.compute_lag_features(history, BRANCH_LAG_COLUMNS, LAG_DAYS, target=target)
+        lags = BRANCH_LAG_COLUMNS + [c for c in fp.FRUITING_LAG_COLUMNS if c in history.columns]
+        frame = fp.compute_lag_features(history, lags, LAG_DAYS, target=target)
         frame = frame.reset_index(drop=True)
         params, zone_curves = load_specs(session, region)
+        if args.fruiting:
+            fp.attach_fruiting_models(params, region, args.fruiting)
         placebo_cases = here[here.species == PLACEBO]
         results[region] = {}
         for species in sorted(set(here.species) - {PLACEBO}):
@@ -456,7 +462,7 @@ def main() -> None:
         "regions": results,
         "pooled": pooled_summary,
     }
-    suffix = f"-{args.max_locations}loc" if args.max_locations else ""
+    suffix = (f"-{args.max_locations}loc" if args.max_locations else "") + ("-fitted" if args.fruiting else "")
     path = output / f"weather-skill-{args.weather}{suffix}-{args.start}_{args.end}.json"
     path.write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(f"\nwrote {path}\npooled across regions (net = species minus bracket placebo):")
