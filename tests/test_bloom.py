@@ -170,3 +170,34 @@ def test_build_bloom_skips_out_of_season(tmp_path):
 
     assert build_bloom(tmp_path / "missing.parquet", "ne", "EU/NE", fail, fail, build_mbtiles=fail,
                        today=date(2026, 10, 1)) is None
+
+
+def test_build_spectacles_downloads_once_and_survives_a_failing_spectacle(tmp_path, monkeypatch):
+    import bloom
+
+    downloads, calls = [], []
+    monkeypatch.setattr(bloom, "_local_master", lambda path: (downloads.append(path) or str(tmp_path / "local"), False))
+
+    def ok(path, region, prefix, to_pmtiles, upload, *, today):
+        calls.append(("ok", path))
+        return {"drawn": 1}
+
+    def broken(path, region, prefix, to_pmtiles, upload, *, today):
+        calls.append(("broken", path))
+        raise RuntimeError("boom")
+
+    always = lambda today: True
+    out = bloom.build_spectacles("https://data.example/m.parquet", "ne", "EU/NE", None, None, today=date(2027, 4, 1),
+                                 spectacles=[("a", {"ne"}, always, broken), ("b", {"ne"}, always, ok),
+                                             ("c", {"usw"}, always, ok), ("d", {"ne"}, lambda today: False, ok)])
+    assert downloads == ["https://data.example/m.parquet"]  # once, for both spectacles due
+    assert calls == [("broken", str(tmp_path / "local")), ("ok", str(tmp_path / "local"))]
+    assert out == {"a": None, "b": {"drawn": 1}}
+
+
+def test_build_spectacles_downloads_nothing_when_none_is_due(monkeypatch):
+    import bloom
+
+    monkeypatch.setattr(bloom, "_local_master", lambda path: pytest.fail("downloaded"))
+    assert bloom.build_spectacles("https://data.example/m.parquet", "ne", "EU/NE", None, None,
+                                  today=date(2027, 8, 1)) == {}

@@ -238,3 +238,38 @@ def build_bloom(master_path, region_code, r2_prefix, to_pmtiles, upload,
             if Path(mbtiles).exists() and to_pmtiles(mbtiles, pmtiles):
                 upload(pmtiles, f"{r2_prefix}/{region_code}_bloom.pmtiles")
     return {"cells": len(peak), "drawn": int(drawn.sum()), "bands": bands}
+
+
+def _spectacles():
+    """(name, regions, season, build) for every spectacle, cherry blossom first."""
+    return [("cherry_blossom", frozenset(NORMALS_MACRO), season, build_bloom)]
+
+
+def build_spectacles(master_path, region_code, r2_prefix, to_pmtiles, upload, *, today=None, spectacles=None):
+    """Build every spectacle drawn in this region and in season, from one download.
+
+    Each MapLayer script calls this once at its end. The master is downloaded once
+    for all of them, and a spectacle that fails is printed while the others still
+    run. Returns {name: that builder's summary, or None if it failed}.
+    """
+    import traceback
+
+    today = today or date.today()
+    due = [(name, build) for name, regions, in_season, build in (spectacles or _spectacles())
+           if region_code in regions and in_season(today)]
+    if not due:
+        print(f"Spectacles: none in season on {today}, skipped.")
+        return {}
+    local, downloaded = _local_master(master_path)
+    out = {}
+    try:
+        for name, build in due:
+            try:
+                out[name] = build(local, region_code, r2_prefix, to_pmtiles, upload, today=today)
+            except Exception:
+                traceback.print_exc()
+                out[name] = None
+    finally:
+        if downloaded:
+            os.unlink(local)
+    return out
