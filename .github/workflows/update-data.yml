@@ -2,6 +2,11 @@ name: Update site data
 
 on:
   workflow_dispatch:
+  # Refresh the "updated" label as soon as the nightly scores upload lands;
+  # the cron alone fires only every ~9 h in practice.
+  push:
+    branches: [main]
+    paths: [public/data/foraging_scores.parquet]
   schedule:
     - cron: '0 */3 * * *'
 

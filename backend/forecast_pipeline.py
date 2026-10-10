@@ -43,8 +43,6 @@ from species_registry import get_species_params
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
 RAIN_HOUR_MM = 0.1
-# How long the run waits for ERA5 after the WeatherAPI fetch, which it overlaps.
-ERA5_EXTRA_WAIT_S = 120
 
 
 def _hourly(hours, field):
@@ -86,7 +84,6 @@ def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp):
             "Wind Speed Mean (kph)": float(np.mean(wind)) if wind else None,
             "Pressure (hPa)": float(np.mean(pressure)) if pressure else None,
             "Humidity (%)": day.get("avghumidity"),
-            "Description": (day.get("condition") or {}).get("text"),
             "TotalPrecipitation_mm": day.get("totalprecip_mm", 0),
             "Rain Hours": sum(p >= RAIN_HOUR_MM for p in precip) if precip else None,
             "Snowfall (cm)": day.get("totalsnow_cm"),
@@ -1200,8 +1197,8 @@ def run_pipeline(config: RegionConfig):
     coordinates = _load_or_build_coords(config, coordinates_file_path, geojson_path)
     print(f"Final number of coordinates: {len(coordinates)}")
 
-    # ERA5 rain for past days downloads while WeatherAPI is fetched, so it adds little
-    # or nothing to the run; whatever is not back by then comes again tomorrow.
+    # Tonight's ERA5 rain order goes in before the WeatherAPI fetch; the orders that have
+    # finished since earlier runs, tonight's too on a quiet night, download after it.
     measured_rain = era5_rain.start(
         config.lat_range, config.lon_range,
         [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates],
@@ -1211,7 +1208,7 @@ def run_pipeline(config: RegionConfig):
     print(f"API calls made: {counter.count} for {len(coordinates)} coordinates")
     # Only coords whose forecast arrived: a coord with rain alone would look fetched and
     # keep its base points from falling back to a neighbour's forecast.
-    rain = measured_rain(ERA5_EXTRA_WAIT_S)
+    rain = measured_rain()
     fetched = set(zip(weather_long["Latitude"], weather_long["Longitude"]))
     rain = rain[[point in fetched for point in zip(rain["Latitude"], rain["Longitude"])]]
     weather_long = pd.concat([weather_long, rain], ignore_index=True)
@@ -1321,7 +1318,7 @@ def _join_to_base(config, weather_long, base_file_path):
         "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
         "Wind Speed (kph)", "Wind Speed Mean (kph)", "Pressure (hPa)",
         "TotalPrecipitation_mm", "Rain Hours", "Snowfall (cm)", "Solar Radiation (Wh/m2)",
-        "Humidity (%)", "Description", "Rain Measured",
+        "Humidity (%)", "Rain Measured",
         "dist_m_water", "dist_m_sea", "climate_zone", "ph_level", "Elevation (m)",
     ]
     weather_cols = [c for c in weather_cols if c in weather_long.columns]
@@ -1503,7 +1500,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
     masterfile_columns = [
         "Location_Id", "Date", "Latitude", "Longitude", "Elevation (m)",
         "Pressure (hPa)", "TotalPrecipitation_mm", "Humidity (%)", "Wind Speed (m/s)",
-        "Description", "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
+        "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
         "Wind Speed Mean (kph)", "Rain Hours", "Snowfall (cm)", "Solar Radiation (Wh/m2)",
         "Rain Measured", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
     ]
