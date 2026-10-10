@@ -5,6 +5,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
+import { ZoomableImage } from '@/components/ZoomableImage';
 import type { Recipe } from '@/data/recipes';
 import { Clock, Users, AlertTriangle, Info } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
@@ -29,12 +30,7 @@ export const RecipeModal = ({ recipe, isOpen, onClose }: RecipeModalProps) => {
       <DialogContent className='flex max-h-[85vh] w-full max-w-lg flex-col'>
         <header className='shrink-0 space-y-3 pr-6'>
           {recipe.image && (
-            <img
-              src={recipe.image}
-              alt=''
-              className='h-32 w-full rounded-xl object-cover'
-              loading='lazy'
-            />
+            <ZoomableImage src={recipe.image} className='h-32 w-full' />
           )}
           <DialogTitle className='text-xl font-bold leading-tight text-foreground'>
             {recipe.title}

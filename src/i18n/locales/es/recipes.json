@@ -85,7 +85,18 @@
     "pawpaw": "Asimina",
     "rose_hips": "Escaramujos",
     "sloes": "Endrinas",
-    "sea_buckthorn": "Espino amarillo"
+    "sea_buckthorn": "Espino amarillo",
+    "chicken-of-the-woods": "Pollo de los bosques",
+    "oyster-mushroom": "Seta de ostra",
+    "elderflower": "Flor de saúco",
+    "elderberry": "Saúco",
+    "blackberry": "Mora",
+    "blueberry": "Arándano silvestre",
+    "hazelnut": "Avellana",
+    "wild-mint": "Menta silvestre",
+    "violets": "Violeta dulce",
+    "plantain": "Llantén común",
+    "daisy": "Margarita común"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -110,6 +121,8 @@
     "snack": "Tentempié",
     "beverage": "Bebida"
   },
+  "enlargeImage": "Ampliar la imagen",
+  "shrinkImage": "Reducir la imagen",
   "list_of_recipes": {
     "amaranth-wild-greens-patties": {
       "title": "Tortitas de amaranto y hierbas silvestres",

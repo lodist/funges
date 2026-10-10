@@ -85,7 +85,18 @@
     "pawpaw": "Asimina",
     "rose_hips": "Cinórrodos",
     "sloes": "Abrunhos",
-    "sea_buckthorn": "Espinheiro-marítimo"
+    "sea_buckthorn": "Espinheiro-marítimo",
+    "chicken-of-the-woods": "Frango-da-mata",
+    "oyster-mushroom": "Cogumelo-ostra",
+    "elderflower": "Flor de sabugueiro",
+    "elderberry": "Sabugueiro",
+    "blackberry": "Amora",
+    "blueberry": "Mirtilo-selvagem",
+    "hazelnut": "Avelã",
+    "wild-mint": "Hortelã-selvagem",
+    "violets": "Violeta-doce",
+    "plantain": "Tanchagem",
+    "daisy": "Margarida-comum"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -110,6 +121,8 @@
     "snack": "Lanche",
     "beverage": "Bebida"
   },
+  "enlargeImage": "Ampliar a imagem",
+  "shrinkImage": "Reduzir a imagem",
   "list_of_recipes": {
     "amaranth-wild-greens-patties": {
       "title": "Bolinhos de Amaranto e Verduras Selvagens",

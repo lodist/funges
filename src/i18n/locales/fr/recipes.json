@@ -85,7 +85,18 @@
     "pawpaw": "Asimine",
     "rose_hips": "Cynorrhodons",
     "sloes": "Prunelles",
-    "sea_buckthorn": "Argousier"
+    "sea_buckthorn": "Argousier",
+    "chicken-of-the-woods": "Polypore soufré",
+    "oyster-mushroom": "Pleurote",
+    "elderflower": "Fleur de sureau",
+    "elderberry": "Sureau noir",
+    "blackberry": "Mûre",
+    "blueberry": "Myrtille sauvage",
+    "hazelnut": "Noisette",
+    "wild-mint": "Menthe sauvage",
+    "violets": "Violette odorante",
+    "plantain": "Plantain majeur",
+    "daisy": "Pâquerette"
   },
   "tags": {
     "vegetarian": "Végétarien",
@@ -110,6 +121,8 @@
     "snack": "En-cas",
     "beverage": "Boisson"
   },
+  "enlargeImage": "Agrandir l'image",
+  "shrinkImage": "Réduire l'image",
   "list_of_recipes": {
     "amaranth-wild-greens-patties": {
       "title": "Galettes d'amarante et d'herbes sauvages",

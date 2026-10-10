@@ -85,7 +85,18 @@
     "pawpaw": "Asimina",
     "rose_hips": "Bacche di rosa canina",
     "sloes": "Prugnole",
-    "sea_buckthorn": "Olivello spinoso"
+    "sea_buckthorn": "Olivello spinoso",
+    "chicken-of-the-woods": "Poliporo sulfureo",
+    "oyster-mushroom": "Pleurotus ostreatus",
+    "elderflower": "Fiori di Sambuco",
+    "elderberry": "Sambuco",
+    "blackberry": "More",
+    "blueberry": "Mirtillo Selvatico",
+    "hazelnut": "Nocciola",
+    "wild-mint": "Menta Selvatica",
+    "violets": "Viola Mammola",
+    "plantain": "Piantaggine Comune",
+    "daisy": "Margherita Comune"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -110,6 +121,8 @@
     "snack": "Spuntino",
     "beverage": "Bevanda"
   },
+  "enlargeImage": "Ingrandisci l'immagine",
+  "shrinkImage": "Riduci l'immagine",
   "list_of_recipes": {
     "amaranth-wild-greens-patties": {
       "title": "Frittelle di Amaranto e Erbe Selvatiche",

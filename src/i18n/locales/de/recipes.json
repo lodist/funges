@@ -85,7 +85,18 @@
     "pawpaw": "Indianerbanane",
     "rose_hips": "Hagebutten",
     "sloes": "Schlehen",
-    "sea_buckthorn": "Sanddorn"
+    "sea_buckthorn": "Sanddorn",
+    "chicken-of-the-woods": "Schwefelporling",
+    "oyster-mushroom": "Austernpilz",
+    "elderflower": "Holunderblüte",
+    "elderberry": "Holunderbeere",
+    "blackberry": "Brombeere",
+    "blueberry": "Waldheidelbeere",
+    "hazelnut": "Haselnuss",
+    "wild-mint": "Wilde Minze",
+    "violets": "Duftveilchen",
+    "plantain": "Breitwegerich",
+    "daisy": "Gänseblümchen"
   },
   "tags": {
     "vegetarian": "Vegetarisch",
@@ -110,6 +121,8 @@
     "snack": "Snack",
     "beverage": "Getränk"
   },
+  "enlargeImage": "Bild vergrößern",
+  "shrinkImage": "Bild verkleinern",
   "list_of_recipes": {
     "amaranth-wild-greens-patties": {
       "title": "Amarant-Wildkräuter-Puffer",
