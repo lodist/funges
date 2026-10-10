@@ -85,7 +85,18 @@
     "pawpaw": "Asimina",
     "rose_hips": "Escaramujos",
     "sloes": "Endrinas",
-    "sea_buckthorn": "Espino amarillo"
+    "sea_buckthorn": "Espino amarillo",
+    "chicken-of-the-woods": "Pollo de los bosques",
+    "oyster-mushroom": "Seta de ostra",
+    "elderflower": "Flor de saúco",
+    "elderberry": "Saúco",
+    "blackberry": "Mora",
+    "blueberry": "Arándano silvestre",
+    "hazelnut": "Avellana",
+    "wild-mint": "Menta silvestre",
+    "violets": "Violeta dulce",
+    "plantain": "Llantén común",
+    "daisy": "Margarita común"
   },
   "tags": {
     "vegetarian": "Vegetariano",
@@ -1865,6 +1876,541 @@
       "safetyNotes": [
         "Recoge bayas de color naranja vivo y jugosas desde finales del verano, a mano o en un cuenco. No rompas ni cortes ramas de los arbustos silvestres: los daña, y en Finlandia está prohibido.",
         "Recogerlas puede estar prohibido en dunas protegidas y reservas naturales: infórmate de las normas locales. El arbusto tiene muchas espinas: ponte guantes."
+      ]
+    },
+    "chicken-of-the-woods-piccata": {
+      "title": "Piccata de pollo de los bosques",
+      "ingredients": [
+        "400 g de pollo de los bosques joven, los bordes exteriores tiernos",
+        "2 cucharadas de harina",
+        "2 cucharadas de aceite de oliva",
+        "30 g de mantequilla",
+        "1 diente de ajo, picado fino",
+        "120 ml de caldo de verduras",
+        "El zumo de 1 limón",
+        "1 cucharada de alcaparras, enjuagadas",
+        "Un puñado de perejil, picado",
+        "Sal y pimienta"
+      ],
+      "instructions": [
+        "Limpiar: Usa solo los 5–10 cm exteriores y blandos de ejemplares jóvenes y quita todo lo duro o leñoso. Límpialos con un pincel y córtalos en láminas de 1 cm.",
+        "Freír: Salpimienta las láminas, enharínalas y fríelas en el aceite a fuego medio-alto 4–5 minutos por cada lado, hasta que estén doradas y bien hechas. Resérvalas.",
+        "Salsa: Derrite la mantequilla en la misma sartén y sofríe el ajo 30 segundos. Añade el caldo, el zumo de limón y las alcaparras y deja que hierva suavemente 2 minutos.",
+        "Terminar: Vuelve a poner las setas en la sartén, dales la vuelta en la salsa durante un minuto y espolvorea el perejil. Sirve con arroz, pasta o pan."
+      ],
+      "species": ["chicken-of-the-woods"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpiar: Usa solo los 5–10 cm exteriores y blandos de ejemplares jóvenes y quita todo lo duro o leñoso. Límpialos con un pincel y córtalos en láminas de 1 cm."
+        },
+        {
+          "step": 2,
+          "instruction": "Freír: Salpimienta las láminas, enharínalas y fríelas en el aceite a fuego medio-alto 4–5 minutos por cada lado, hasta que estén doradas y bien hechas. Resérvalas."
+        },
+        {
+          "step": 3,
+          "instruction": "Salsa: Derrite la mantequilla en la misma sartén y sofríe el ajo 30 segundos. Añade el caldo, el zumo de limón y las alcaparras y deja que hierva suavemente 2 minutos."
+        },
+        {
+          "step": 4,
+          "instruction": "Terminar: Vuelve a poner las setas en la sartén, dales la vuelta en la salsa durante un minuto y espolvorea el perejil. Sirve con arroz, pasta o pan."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "15 min",
+      "servings": "2",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cocina siempre bien el pollo de los bosques: crudo o poco hecho, sienta mal al estómago.",
+        "Algunas personas reaccionan incluso cocinado. La primera vez, come una ración pequeña y espera un día.",
+        "No recojas ejemplares que crezcan sobre tejo, eucalipto o coníferas, asociados a más reacciones, ni ejemplares viejos que se hayan vuelto pálidos, quebradizos o calcáreos."
+      ]
+    },
+    "garlic-oyster-mushroom-noodles": {
+      "title": "Fideos al ajo con setas de ostra",
+      "ingredients": [
+        "300 g de setas de ostra",
+        "200 g de fideos de trigo o de huevo",
+        "2 cucharadas de aceite neutro",
+        "3 dientes de ajo, laminados",
+        "2 cebolletas, en rodajas, la parte blanca y la verde por separado",
+        "2 cucharadas de salsa de soja",
+        "1 cucharadita de aceite de sésamo",
+        "1 cucharadita de azúcar o miel",
+        "1 cucharadita de sésamo tostado",
+        "Copos de guindilla (opcional)"
+      ],
+      "instructions": [
+        "Preparar: Desgarra las setas en tiras siguiendo las láminas y corta las bases duras del pie. Cuece los fideos según el paquete y escúrrelos.",
+        "Dorar: Calienta el aceite en una sartén amplia y pon las setas en una sola capa. Fríelas sin remover 3–4 minutos, dales la vuelta y cocínalas 3 minutos más, hasta que se doren los bordes.",
+        "Sazonar: Añade el ajo y la parte blanca de las cebolletas 1 minuto, y después la salsa de soja, el azúcar y el aceite de sésamo.",
+        "Saltear: Añade los fideos y saltéalos hasta que estén brillantes y calientes. Sirve con la parte verde de las cebolletas, el sésamo y la guindilla."
+      ],
+      "species": ["oyster-mushroom"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar: Desgarra las setas en tiras siguiendo las láminas y corta las bases duras del pie. Cuece los fideos según el paquete y escúrrelos."
+        },
+        {
+          "step": 2,
+          "instruction": "Dorar: Calienta el aceite en una sartén amplia y pon las setas en una sola capa. Fríelas sin remover 3–4 minutos, dales la vuelta y cocínalas 3 minutos más, hasta que se doren los bordes."
+        },
+        {
+          "step": 3,
+          "instruction": "Sazonar: Añade el ajo y la parte blanca de las cebolletas 1 minuto, y después la salsa de soja, el azúcar y el aceite de sésamo."
+        },
+        {
+          "step": 4,
+          "instruction": "Saltear: Añade los fideos y saltéalos hasta que estén brillantes y calientes. Sirve con la parte verde de las cebolletas, el sésamo y la guindilla."
+        }
+      ],
+      "warnings": [
+        "No consumir hongos silvestres si no han sido identificados por un experto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "15 min",
+      "servings": "2",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cocina bien las setas de ostra y no las comas crudas.",
+        "Usa ejemplares jóvenes y firmes: los viejos se vuelven duros y a menudo esconden larvas de escarabajo.",
+        "No las confundas con la seta de alas de ángel (Pleurocybella porrigens), que es tóxica: fina, blanca pura y crece sobre madera de conífera."
+      ]
+    },
+    "elderflower-cordial": {
+      "title": "Sirope de flor de saúco",
+      "ingredients": [
+        "20 umbelas de flor de saúco, recién abiertas",
+        "1 litro de agua",
+        "1 kg de azúcar",
+        "2 limones sin tratar, en rodajas",
+        "25 g de ácido cítrico (opcional, ayuda a conservarlo)",
+        "Botellas esterilizadas"
+      ],
+      "instructions": [
+        "Recoger: Recoge umbelas de color crema y bien abiertas una mañana seca y soleada, lejos de carreteras con tráfico. Sacúdelas para quitar los insectos, pero no las laves: el aroma está en el polen.",
+        "Almíbar: Lleva a ebullición el agua con el azúcar, removiendo hasta que se disuelva, y deja que se temple.",
+        "Macerar: Añade las flores, las rodajas de limón y el ácido cítrico, tapa y deja en un lugar fresco 24–48 horas, removiendo una vez al día.",
+        "Embotellar: Cuela a través de un colador forrado con una gasa en botellas esterilizadas y ciérralas. Se conserva hasta 6 semanas en la nevera, o en el congelador. Diluye aproximadamente 1 a 10 con agua sin gas o con gas."
+      ],
+      "species": ["elderflower"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Recoger: Recoge umbelas de color crema y bien abiertas una mañana seca y soleada, lejos de carreteras con tráfico. Sacúdelas para quitar los insectos, pero no las laves: el aroma está en el polen."
+        },
+        {
+          "step": 2,
+          "instruction": "Almíbar: Lleva a ebullición el agua con el azúcar, removiendo hasta que se disuelva, y deja que se temple."
+        },
+        {
+          "step": 3,
+          "instruction": "Macerar: Añade las flores, las rodajas de limón y el ácido cítrico, tapa y deja en un lugar fresco 24–48 horas, removiendo una vez al día."
+        },
+        {
+          "step": 4,
+          "instruction": "Embotellar: Cuela a través de un colador forrado con una gasa en botellas esterilizadas y ciérralas. Se conserva hasta 6 semanas en la nevera, o en el congelador. Diluye aproximadamente 1 a 10 con agua sin gas o con gas."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min + 24–48 h de maceración",
+      "servings": "Aproximadamente 1,5 litros",
+      "tags": ["drink", "vegan", "easy"],
+      "safetyNotes": [
+        "Usa solo las flores y los tallos más finos: las hojas, la corteza y los tallos gruesos del saúco contienen sustancias tóxicas.",
+        "El saúco es un arbusto leñoso o un árbol pequeño. No uses el yezgo (Sambucus ebulus), una planta herbácea con partes tóxicas, ni las umbelas blancas que crecen a ras de suelo de plantas venenosas como la cicuta."
+      ]
+    },
+    "elderberry-syrup": {
+      "title": "Sirope especiado de bayas de saúco",
+      "ingredients": [
+        "500 g de bayas de saúco maduras, desgranadas",
+        "500 ml de agua",
+        "1 rama de canela",
+        "4 clavos",
+        "Un trozo de jengibre del tamaño de un pulgar, en láminas",
+        "El zumo de 1 limón",
+        "Unos 300 g de azúcar o miel",
+        "Botellas esterilizadas"
+      ],
+      "instructions": [
+        "Desgranar: Usa solo bayas negras bien maduras. Desgránalas con un tenedor y tira las bayas verdes y cualquier trozo de rabillo.",
+        "Cocer: Pon las bayas, el agua y las especias en un cazo, lleva a ebullición y deja cocer a fuego suave 20 minutos.",
+        "Colar: Aplasta un poco las bayas y cuela el zumo por un colador fino o una gasa, presionando suavemente.",
+        "Endulzar: Vuelve a poner el zumo en el cazo con el zumo de limón y el azúcar y cuece 5 minutos, hasta que el azúcar se disuelva. Si usas miel, añádela fuera del fuego cuando el zumo esté templado. Embotella y guarda en la nevera hasta 3 meses. Una cucharada en agua caliente es una bebida de invierno."
+      ],
+      "species": ["elderberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Desgranar: Usa solo bayas negras bien maduras. Desgránalas con un tenedor y tira las bayas verdes y cualquier trozo de rabillo."
+        },
+        {
+          "step": 2,
+          "instruction": "Cocer: Pon las bayas, el agua y las especias en un cazo, lleva a ebullición y deja cocer a fuego suave 20 minutos."
+        },
+        {
+          "step": 3,
+          "instruction": "Colar: Aplasta un poco las bayas y cuela el zumo por un colador fino o una gasa, presionando suavemente."
+        },
+        {
+          "step": 4,
+          "instruction": "Endulzar: Vuelve a poner el zumo en el cazo con el zumo de limón y el azúcar y cuece 5 minutos, hasta que el azúcar se disuelva. Si usas miel, añádela fuera del fuego cuando el zumo esté templado. Embotella y guarda en la nevera hasta 3 meses. Una cucharada en agua caliente es una bebida de invierno."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "30 min",
+      "servings": "Unos 500 ml",
+      "tags": ["drink", "easy"],
+      "safetyNotes": [
+        "No comas nunca bayas de saúco crudas. Las bayas y semillas crudas, y sobre todo las bayas verdes, los rabillos y las hojas, provocan náuseas y vómitos. Cocer las bayas maduras al menos 20 minutos las hace seguras.",
+        "Usa solo saúco negro (Sambucus nigra) o saúco del Canadá (S. canadensis), arbustos con racimos de bayas planos. El saúco rojo (S. racemosa) y el yezgo (S. ebulus) no se usan."
+      ]
+    },
+    "blackberry-apple-crumble": {
+      "title": "Crumble de moras y manzana",
+      "ingredients": [
+        "400 g de moras",
+        "2 manzanas para cocinar, peladas y en láminas",
+        "50 g de azúcar",
+        "1 cucharadita de zumo de limón",
+        "Para el crumble: 150 g de harina",
+        "100 g de mantequilla fría, en dados",
+        "75 g de azúcar moreno",
+        "50 g de copos de avena",
+        "Una pizca de sal"
+      ],
+      "instructions": [
+        "Fruta: Precalienta el horno a 190 °C. Mezcla las moras y las manzanas con el azúcar y el zumo de limón y repártelas en una fuente de horno.",
+        "Crumble: Frota la mantequilla con la harina con la punta de los dedos hasta que parezca pan rallado, y después añade el azúcar moreno, la avena y la sal.",
+        "Cubrir: Esparce el crumble sobre la fruta sin apretarlo.",
+        "Hornear: Hornea 35–40 minutos, hasta que la superficie esté dorada y el jugo burbujee en los bordes. Deja reposar 10 minutos y sirve con nata, natillas o helado."
+      ],
+      "species": ["blackberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Fruta: Precalienta el horno a 190 °C. Mezcla las moras y las manzanas con el azúcar y el zumo de limón y repártelas en una fuente de horno."
+        },
+        {
+          "step": 2,
+          "instruction": "Crumble: Frota la mantequilla con la harina con la punta de los dedos hasta que parezca pan rallado, y después añade el azúcar moreno, la avena y la sal."
+        },
+        {
+          "step": 3,
+          "instruction": "Cubrir: Esparce el crumble sobre la fruta sin apretarlo."
+        },
+        {
+          "step": 4,
+          "instruction": "Hornear: Hornea 35–40 minutos, hasta que la superficie esté dorada y el jugo burbujee en los bordes. Deja reposar 10 minutos y sirve con nata, natillas o helado."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "40 min",
+      "servings": "4–6",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Recoge por encima de la altura de la rodilla y lejos de carreteras con tráfico y de lindes de campos fumigados.",
+        "Lava las moras justo antes de usarlas y comprueba que no tengan insectos pequeños ni moho."
+      ]
+    },
+    "wild-blueberry-pancakes": {
+      "title": "Tortitas con arándanos silvestres",
+      "ingredients": [
+        "150 g de arándanos silvestres",
+        "200 g de harina",
+        "2 cucharaditas de levadura química",
+        "1 cucharada de azúcar",
+        "Una pizca de sal",
+        "2 huevos",
+        "250 ml de leche",
+        "30 g de mantequilla derretida, y más para la sartén",
+        "Sirope de arce o miel para servir"
+      ],
+      "instructions": [
+        "Masa: Mezcla la harina, la levadura, el azúcar y la sal. Bate aparte los huevos, la leche y la mantequilla derretida e incorpóralos justo hasta mezclar: algún grumo no importa.",
+        "Cocinar: Derrite un poco de mantequilla en una sartén a fuego medio. Vierte cucharones pequeños de masa y esparce arándanos sobre cada uno.",
+        "Dar la vuelta: Cuando salgan burbujas y los bordes cuajen, a los 2 minutos más o menos, dales la vuelta y cocínalas 1–2 minutos más.",
+        "Servir: Apílalas calientes con el resto de los arándanos y el sirope."
+      ],
+      "species": ["blueberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Masa: Mezcla la harina, la levadura, el azúcar y la sal. Bate aparte los huevos, la leche y la mantequilla derretida e incorpóralos justo hasta mezclar: algún grumo no importa."
+        },
+        {
+          "step": 2,
+          "instruction": "Cocinar: Derrite un poco de mantequilla en una sartén a fuego medio. Vierte cucharones pequeños de masa y esparce arándanos sobre cada uno."
+        },
+        {
+          "step": 3,
+          "instruction": "Dar la vuelta: Cuando salgan burbujas y los bordes cuajen, a los 2 minutos más o menos, dales la vuelta y cocínalas 1–2 minutos más."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir: Apílalas calientes con el resto de los arándanos y el sirope."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4 (unas 12 tortitas)",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "En gran parte de Europa, las bayas que crecen a ras de suelo pueden llevar huevos de la tenia del zorro (Echinococcus multilocularis). Lávalas bien. Cocinarlas mata los huevos y congelarlas no, así que allí las bayas cocinadas son la opción más segura.",
+        "Los arándanos crecen en arbustos bajos. La belladona, muy venenosa, tiene bayas negras brillantes sueltas sobre una estrella verde, en una planta herbácea alta."
+      ]
+    },
+    "hazelnut-cocoa-spread": {
+      "title": "Crema casera de avellana y cacao",
+      "ingredients": [
+        "200 g de avellanas peladas",
+        "2 cucharadas de cacao en polvo",
+        "60 g de azúcar glas o sirope de arce",
+        "100 g de chocolate negro derretido (opcional)",
+        "Una pizca de sal",
+        "1 cucharadita de extracto de vainilla",
+        "2–4 cucharadas de aceite neutro o leche",
+        "Un tarro limpio"
+      ],
+      "instructions": [
+        "Tostar: Tuesta las avellanas a 180 °C durante 10–12 minutos, hasta que huelan y la piel se agriete.",
+        "Pelar: Frota las avellanas aún calientes en un paño limpio para quitar casi toda la piel.",
+        "Triturar: Tritura las avellanas en un robot de cocina 5–10 minutos, rebañando las paredes de vez en cuando, hasta que se conviertan en una pasta fluida.",
+        "Aromatizar: Añade el cacao, el azúcar, el chocolate, la sal y la vainilla y vuelve a triturar, añadiendo el aceite cucharada a cucharada hasta que quede lisa y untable. Guárdala en un tarro limpio en la nevera hasta 3 semanas."
+      ],
+      "species": ["hazelnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Tostar: Tuesta las avellanas a 180 °C durante 10–12 minutos, hasta que huelan y la piel se agriete."
+        },
+        {
+          "step": 2,
+          "instruction": "Pelar: Frota las avellanas aún calientes en un paño limpio para quitar casi toda la piel."
+        },
+        {
+          "step": 3,
+          "instruction": "Triturar: Tritura las avellanas en un robot de cocina 5–10 minutos, rebañando las paredes de vez en cuando, hasta que se conviertan en una pasta fluida."
+        },
+        {
+          "step": 4,
+          "instruction": "Aromatizar: Añade el cacao, el azúcar, el chocolate, la sal y la vainilla y vuelve a triturar, añadiendo el aceite cucharada a cucharada hasta que quede lisa y untable. Guárdala en un tarro limpio en la nevera hasta 3 semanas."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "12 min",
+      "servings": "1 tarro (unos 350 g)",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "La avellana es un alérgeno común: avisa a quien vaya a compartirla contigo.",
+        "Recoge solo avellanas maduras, caídas al final del verano y en otoño. Tira las que tengan agujeros del gorgojo de la avellana y las que sepan a moho o amargas."
+      ]
+    },
+    "wild-mint-pea-soup": {
+      "title": "Sopa de guisantes con menta silvestre",
+      "ingredients": [
+        "1 cebolla pequeña, picada",
+        "1 cucharada de mantequilla o aceite",
+        "1 patata, en dados",
+        "750 ml de caldo de verduras",
+        "500 g de guisantes (valen congelados)",
+        "Un buen puñado de hojas de menta silvestre (unos 15 g), y unas pocas pequeñas para decorar",
+        "3 cucharadas de nata o yogur",
+        "Sal, pimienta y un chorrito de limón"
+      ],
+      "instructions": [
+        "Pochar: Pocha la cebolla en la mantequilla a fuego suave 5 minutos, y después añade la patata y el caldo y deja hervir suavemente 10 minutos.",
+        "Guisantes: Añade los guisantes y cuécelos 3–4 minutos, solo hasta que estén tiernos, para que sigan de un verde intenso.",
+        "Triturar: Retira del fuego, añade las hojas de menta y tritura hasta que quede fina. Sazona con sal, pimienta y limón.",
+        "Servir: Añade la nata en espiral y esparce las hojitas de menta. Está buena caliente o fría."
+      ],
+      "species": ["wild-mint"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pochar: Pocha la cebolla en la mantequilla a fuego suave 5 minutos, y después añade la patata y el caldo y deja hervir suavemente 10 minutos."
+        },
+        {
+          "step": 2,
+          "instruction": "Guisantes: Añade los guisantes y cuécelos 3–4 minutos, solo hasta que estén tiernos, para que sigan de un verde intenso."
+        },
+        {
+          "step": 3,
+          "instruction": "Triturar: Retira del fuego, añade las hojas de menta y tritura hasta que quede fina. Sazona con sal, pimienta y limón."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir: Añade la nata en espiral y esparce las hojitas de menta. Está buena caliente o fría."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "4",
+      "tags": ["soup", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Una menta silvestre huele claramente a menta al frotar una hoja: sin olor a menta, no es menta.",
+        "Deja fuera el poleo (Mentha pulegium: hojas pequeñas y redondeadas, tallos rastreros, flores en anillos a lo largo del tallo). Es tóxico en cantidades mayores y debe evitarse en el embarazo.",
+        "Recoge la menta de agua en arroyos limpios, no en prados húmedos con ovejas o vacas, donde puede transmitir la fasciola del hígado."
+      ]
+    },
+    "candied-violets": {
+      "title": "Violetas confitadas",
+      "ingredients": [
+        "30–40 flores de violeta dulce con un tallo corto",
+        "1 clara de huevo muy fresca, pasteurizada si es posible",
+        "Azúcar extrafino, molido fino",
+        "Un pincel pequeño y suave",
+        "Papel de horno"
+      ],
+      "instructions": [
+        "Recoger: Recoge flores recién abiertas un día seco y deja un tallo corto para sujetarlas. Comprueba que no tengan insectos.",
+        "Pintar: Bate ligeramente la clara hasta que apenas espume. Sujetando una flor por el tallo, pinta cada pétalo, por delante y por detrás, con una capa fina.",
+        "Azucarar: Espolvorea toda la flor con azúcar, sacude el exceso y colócala boca arriba sobre papel de horno.",
+        "Secar: Déjalas en un lugar cálido y seco 1–2 días, hasta que estén completamente crujientes, y después corta los tallos. Guárdalas unas semanas en una lata hermética entre capas de papel y úsalas en tartas y postres."
+      ],
+      "species": ["violets"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Recoger: Recoge flores recién abiertas un día seco y deja un tallo corto para sujetarlas. Comprueba que no tengan insectos."
+        },
+        {
+          "step": 2,
+          "instruction": "Pintar: Bate ligeramente la clara hasta que apenas espume. Sujetando una flor por el tallo, pinta cada pétalo, por delante y por detrás, con una capa fina."
+        },
+        {
+          "step": 3,
+          "instruction": "Azucarar: Espolvorea toda la flor con azúcar, sacude el exceso y colócala boca arriba sobre papel de horno."
+        },
+        {
+          "step": 4,
+          "instruction": "Secar: Déjalas en un lugar cálido y seco 1–2 días, hasta que estén completamente crujientes, y después corta los tallos. Guárdalas unas semanas en una lata hermética entre capas de papel y úsalas en tartas y postres."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "45 min",
+      "cookTime": "1–2 días de secado",
+      "servings": "30–40 flores",
+      "tags": ["dessert", "vegetarian", "medium"],
+      "safetyNotes": [
+        "Usa solo violetas dulces (Viola odorata) u otras violetas silvestres. Las violetas africanas (Saintpaulia) no están emparentadas y no se comen.",
+        "La clara cruda tiene un pequeño riesgo de salmonela: usa clara pasteurizada para niños pequeños, embarazadas y personas mayores.",
+        "Recoge donde no se fumiguen herbicidas y lejos de caminos frecuentados por perros."
+      ]
+    },
+    "plantain-leaf-crisps": {
+      "title": "Chips de hojas de llantén",
+      "ingredients": [
+        "2 buenos puñados de hojas jóvenes de llantén",
+        "1 cucharada de aceite de oliva",
+        "Sal en escamas",
+        "Pimentón ahumado o ajo en polvo (opcional)"
+      ],
+      "instructions": [
+        "Precalentar: Precalienta el horno a 150 °C (130 °C con ventilador).",
+        "Preparar: Recoge hojas jóvenes y tiernas, no más grandes que la palma de la mano. Lávalas y sécalas por completo: el agua que quede las cuece al vapor en lugar de dejarlas crujientes.",
+        "Aliñar: Mezcla las hojas con el aceite y las especias para que cada una quede ligeramente untada, y extiéndelas planas sobre papel de horno sin que se solapen.",
+        "Hornear: Hornea 15–20 minutos, dándoles la vuelta una vez, hasta que estén crujientes pero aún verdes. Déjalas enfriar en la bandeja y cómelas el mismo día."
+      ],
+      "species": ["plantain"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Precalentar: Precalienta el horno a 150 °C (130 °C con ventilador)."
+        },
+        {
+          "step": 2,
+          "instruction": "Preparar: Recoge hojas jóvenes y tiernas, no más grandes que la palma de la mano. Lávalas y sécalas por completo: el agua que quede las cuece al vapor en lugar de dejarlas crujientes."
+        },
+        {
+          "step": 3,
+          "instruction": "Aliñar: Mezcla las hojas con el aceite y las especias para que cada una quede ligeramente untada, y extiéndelas planas sobre papel de horno sin que se solapen."
+        },
+        {
+          "step": 4,
+          "instruction": "Hornear: Hornea 15–20 minutos, dándoles la vuelta una vez, hasta que estén crujientes pero aún verdes. Déjalas enfriar en la bandeja y cómelas el mismo día."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2",
+      "tags": ["appetizer", "vegan", "easy"],
+      "safetyNotes": [
+        "Recoge lejos de cunetas, caminos de paseo de perros y céspedes fumigados: al llantén le gusta el suelo pisoteado.",
+        "Las hojas de llantén tienen nervios paralelos fuertes que salen como hilos. Las hojas de la dedalera, venenosas, tienen una red de nervios y son suavemente vellosas."
+      ]
+    },
+    "pickled-daisy-buds": {
+      "title": "Botones de margarita encurtidos",
+      "ingredients": [
+        "50 g de botones cerrados de margarita",
+        "1 cucharada de sal",
+        "100 ml de vinagre de vino blanco",
+        "100 ml de agua",
+        "1 cucharadita de azúcar",
+        "1 ramita de eneldo",
+        "1 hoja de laurel",
+        "Unos granos de pimienta",
+        "Un tarro pequeño esterilizado"
+      ],
+      "instructions": [
+        "Recoger: Recoge botones verdes bien cerrados, antes de que asome el blanco, en céspedes y prados limpios. Enjuágalos y escúrrelos.",
+        "Salar: Mezcla los botones con la sal y déjalos 12 horas para que suelten el agua, y después enjuágalos y sécalos.",
+        "Salmuera: Lleva a ebullición el vinagre, el agua, el azúcar, el laurel y la pimienta.",
+        "Envasar: Mete los botones y el eneldo en el tarro, cúbrelos con el vinagre caliente y cierra. Espera al menos 2 semanas antes de comerlos. Úsalos como alcaparras en ensaladas, salsas y con pescado."
+      ],
+      "species": ["daisy"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Recoger: Recoge botones verdes bien cerrados, antes de que asome el blanco, en céspedes y prados limpios. Enjuágalos y escúrrelos."
+        },
+        {
+          "step": 2,
+          "instruction": "Salar: Mezcla los botones con la sal y déjalos 12 horas para que suelten el agua, y después enjuágalos y sécalos."
+        },
+        {
+          "step": 3,
+          "instruction": "Salmuera: Lleva a ebullición el vinagre, el agua, el azúcar, el laurel y la pimienta."
+        },
+        {
+          "step": 4,
+          "instruction": "Envasar: Mete los botones y el eneldo en el tarro, cúbrelos con el vinagre caliente y cierra. Espera al menos 2 semanas antes de comerlos. Úsalos como alcaparras en ensaladas, salsas y con pescado."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min",
+      "servings": "1 tarro pequeño",
+      "tags": ["side", "vegan", "easy"],
+      "safetyNotes": [
+        "Asegúrate de que son margaritas comunes (Bellis perennis): flores sueltas sobre tallos sin hojas que salen de una roseta plana de hojas en forma de espátula.",
+        "Recoge en céspedes que no se fumiguen ni abonen, lejos de zonas frecuentadas por perros.",
+        "Las personas alérgicas a las asteráceas, por ejemplo a la ambrosía o la manzanilla, pueden reaccionar."
       ]
     }
   }

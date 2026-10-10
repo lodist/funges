@@ -25,6 +25,7 @@ import {
   formatBloomDate,
 } from '@/lib/bloom';
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
+import { ZoomableImage } from '@/components/ZoomableImage';
 
 interface FeatureInfoModalProps {
   feature: GeoJSONFeature | null;
@@ -215,15 +216,14 @@ export default function FeatureInfoModal({
                   {/* Thumbnail */}
                   <div className='flex-shrink-0'>
                     {image && (
-                      <div className='relative w-14 h-14 sm:w-16 sm:h-16 bg-secondary bg-secondary overflow-hidden rounded-lg'>
-                        <img
-                          src={image}
-                          alt={name}
-                          className='w-full h-full object-cover object-center'
-                          loading='lazy'
-                        />
-                        <div className='absolute inset-0 bg-black/10' />
-                      </div>
+                      <ZoomableImage
+                        src={image}
+                        alt={name}
+                        className='w-14 h-14 sm:w-16 sm:h-16 bg-secondary rounded-lg'
+                        imgClassName='object-center'
+                      >
+                        <span className='absolute inset-0 bg-black/10' />
+                      </ZoomableImage>
                     )}
                   </div>
 

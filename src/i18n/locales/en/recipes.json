@@ -85,7 +85,18 @@
     "pawpaw": "Pawpaw",
     "rose_hips": "Rose Hips",
     "sloes": "Sloes",
-    "sea_buckthorn": "Sea Buckthorn"
+    "sea_buckthorn": "Sea Buckthorn",
+    "chicken-of-the-woods": "Chicken of the Woods",
+    "oyster-mushroom": "Oyster Mushroom",
+    "elderflower": "Elderflower",
+    "elderberry": "Elderberry",
+    "blackberry": "Blackberry",
+    "blueberry": "Wild Blueberry",
+    "hazelnut": "Hazelnut",
+    "wild-mint": "Wild Mint",
+    "violets": "Sweet Violet",
+    "plantain": "Common Plantain",
+    "daisy": "Common Daisy"
   },
   "tags": {
     "vegetarian": "Vegetarian",
@@ -1855,6 +1866,541 @@
       "safetyNotes": [
         "Pick bright orange, juicy berries from late summer on, by hand or into a bowl. Don't break or cut branches off wild shrubs: it damages them, and in Finland it is forbidden.",
         "Picking may be forbidden in protected dunes and nature reserves, so check local rules. The shrub is very thorny: wear gloves."
+      ]
+    },
+    "chicken-of-the-woods-piccata": {
+      "title": "Chicken of the Woods Piccata",
+      "ingredients": [
+        "400 g young chicken of the woods, the tender outer edges",
+        "2 tbsp flour",
+        "2 tbsp olive oil",
+        "30 g butter",
+        "1 garlic clove, finely chopped",
+        "120 ml vegetable stock",
+        "Juice of 1 lemon",
+        "1 tbsp capers, rinsed",
+        "A handful of parsley, chopped",
+        "Salt and pepper"
+      ],
+      "instructions": [
+        "Trim: Use only the soft outer 5–10 cm of young brackets and cut away anything tough or woody. Brush them clean and slice them 1 cm thick.",
+        "Fry: Season the slices, dust them with flour and fry them in the oil over a medium-high heat for 4–5 minutes a side, until golden and cooked through. Set them aside.",
+        "Sauce: Melt the butter in the same pan and cook the garlic for 30 seconds. Add the stock, lemon juice and capers and simmer for 2 minutes.",
+        "Finish: Return the mushrooms to the pan, turn them in the sauce for a minute and scatter with parsley. Serve with rice, pasta or bread."
+      ],
+      "species": ["chicken-of-the-woods"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Trim: Use only the soft outer 5–10 cm of young brackets and cut away anything tough or woody. Brush them clean and slice them 1 cm thick."
+        },
+        {
+          "step": 2,
+          "instruction": "Fry: Season the slices, dust them with flour and fry them in the oil over a medium-high heat for 4–5 minutes a side, until golden and cooked through. Set them aside."
+        },
+        {
+          "step": 3,
+          "instruction": "Sauce: Melt the butter in the same pan and cook the garlic for 30 seconds. Add the stock, lemon juice and capers and simmer for 2 minutes."
+        },
+        {
+          "step": 4,
+          "instruction": "Finish: Return the mushrooms to the pan, turn them in the sauce for a minute and scatter with parsley. Serve with rice, pasta or bread."
+        }
+      ],
+      "warnings": [
+        "Do not consume wild mushrooms unless identified by an expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "15 min",
+      "servings": "2",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Always cook chicken of the woods through: raw or undercooked, it upsets the stomach.",
+        "Some people react to it even when it is cooked. The first time, eat a small portion and wait a day.",
+        "Don't pick brackets growing on yew, eucalyptus or conifers, which are linked to more reactions, or old ones that have turned pale, crumbly or chalky."
+      ]
+    },
+    "garlic-oyster-mushroom-noodles": {
+      "title": "Garlic Oyster Mushroom Noodles",
+      "ingredients": [
+        "300 g oyster mushrooms",
+        "200 g wheat or egg noodles",
+        "2 tbsp neutral oil",
+        "3 garlic cloves, sliced",
+        "2 spring onions, sliced, white and green parts apart",
+        "2 tbsp soy sauce",
+        "1 tsp sesame oil",
+        "1 tsp sugar or honey",
+        "1 tsp toasted sesame seeds",
+        "Chilli flakes (optional)"
+      ],
+      "instructions": [
+        "Prepare: Tear the mushrooms into strips along the gills and cut off any tough stem bases. Cook the noodles as the packet says and drain them.",
+        "Sear: Heat the oil in a wide pan and lay the mushrooms in one layer. Fry them without stirring for 3–4 minutes, then turn them and cook 3 minutes more, until browned at the edges.",
+        "Season: Add the garlic and the white parts of the spring onions for 1 minute, then the soy sauce, sugar and sesame oil.",
+        "Toss: Add the noodles and toss until glossy and hot. Serve with the spring onion greens, sesame seeds and chilli."
+      ],
+      "species": ["oyster-mushroom"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Prepare: Tear the mushrooms into strips along the gills and cut off any tough stem bases. Cook the noodles as the packet says and drain them."
+        },
+        {
+          "step": 2,
+          "instruction": "Sear: Heat the oil in a wide pan and lay the mushrooms in one layer. Fry them without stirring for 3–4 minutes, then turn them and cook 3 minutes more, until browned at the edges."
+        },
+        {
+          "step": 3,
+          "instruction": "Season: Add the garlic and the white parts of the spring onions for 1 minute, then the soy sauce, sugar and sesame oil."
+        },
+        {
+          "step": 4,
+          "instruction": "Toss: Add the noodles and toss until glossy and hot. Serve with the spring onion greens, sesame seeds and chilli."
+        }
+      ],
+      "warnings": [
+        "Do not consume wild mushrooms unless identified by an expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "15 min",
+      "servings": "2",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cook oyster mushrooms well and don't eat them raw.",
+        "Use young, firm specimens: old ones go tough and often hide beetle larvae.",
+        "Don't confuse them with angel's wings (Pleurocybella porrigens), which is toxic: thin, pure white and growing on conifer wood."
+      ]
+    },
+    "elderflower-cordial": {
+      "title": "Elderflower Cordial",
+      "ingredients": [
+        "20 elderflower heads, freshly opened",
+        "1 litre water",
+        "1 kg sugar",
+        "2 unwaxed lemons, sliced",
+        "25 g citric acid (optional, helps it keep)",
+        "Sterilised bottles"
+      ],
+      "instructions": [
+        "Pick: Pick creamy, fully open heads on a dry, sunny morning, away from busy roads. Shake out any insects, but don't wash them: the scent is in the pollen.",
+        "Syrup: Bring the water and sugar to the boil, stirring until the sugar has dissolved, then leave it to cool until lukewarm.",
+        "Steep: Add the flowers, lemon slices and citric acid, cover and leave in a cool place for 24–48 hours, stirring once a day.",
+        "Bottle: Strain through a sieve lined with muslin into sterilised bottles and seal. Keep in the fridge for up to 6 weeks, or freeze it. Dilute about 1 to 10 with still or sparkling water."
+      ],
+      "species": ["elderflower"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pick: Pick creamy, fully open heads on a dry, sunny morning, away from busy roads. Shake out any insects, but don't wash them: the scent is in the pollen."
+        },
+        {
+          "step": 2,
+          "instruction": "Syrup: Bring the water and sugar to the boil, stirring until the sugar has dissolved, then leave it to cool until lukewarm."
+        },
+        {
+          "step": 3,
+          "instruction": "Steep: Add the flowers, lemon slices and citric acid, cover and leave in a cool place for 24–48 hours, stirring once a day."
+        },
+        {
+          "step": 4,
+          "instruction": "Bottle: Strain through a sieve lined with muslin into sterilised bottles and seal. Keep in the fridge for up to 6 weeks, or freeze it. Dilute about 1 to 10 with still or sparkling water."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min + 24–48 h steeping",
+      "servings": "About 1.5 litres",
+      "tags": ["drink", "vegan", "easy"],
+      "safetyNotes": [
+        "Use only the flowers and the finest stalks: elder leaves, bark and thick stems contain toxic compounds.",
+        "Elder is a woody shrub or small tree. Don't use dwarf elder (Sambucus ebulus), a non-woody plant with toxic parts, or the ground-growing white umbels of poisonous plants such as hemlock."
+      ]
+    },
+    "elderberry-syrup": {
+      "title": "Spiced Elderberry Syrup",
+      "ingredients": [
+        "500 g ripe elderberries, stripped from the stalks",
+        "500 ml water",
+        "1 cinnamon stick",
+        "4 cloves",
+        "A thumb of ginger, sliced",
+        "Juice of 1 lemon",
+        "About 300 g sugar or honey",
+        "Sterilised bottles"
+      ],
+      "instructions": [
+        "Strip: Use only fully ripe, black berries. Strip them from the stalks with a fork and throw away any green berries and every bit of stalk.",
+        "Simmer: Put the berries, water and spices in a pan, bring to the boil and simmer gently for 20 minutes.",
+        "Strain: Mash the berries lightly and strain the juice through a fine sieve or muslin, pressing gently.",
+        "Sweeten: Return the juice to the pan with the lemon juice and sugar and simmer for 5 minutes, until the sugar has dissolved. If you use honey, stir it in off the heat once the juice is lukewarm. Bottle and keep in the fridge for up to 3 months. A spoonful in hot water makes a winter drink."
+      ],
+      "species": ["elderberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Strip: Use only fully ripe, black berries. Strip them from the stalks with a fork and throw away any green berries and every bit of stalk."
+        },
+        {
+          "step": 2,
+          "instruction": "Simmer: Put the berries, water and spices in a pan, bring to the boil and simmer gently for 20 minutes."
+        },
+        {
+          "step": 3,
+          "instruction": "Strain: Mash the berries lightly and strain the juice through a fine sieve or muslin, pressing gently."
+        },
+        {
+          "step": 4,
+          "instruction": "Sweeten: Return the juice to the pan with the lemon juice and sugar and simmer for 5 minutes, until the sugar has dissolved. If you use honey, stir it in off the heat once the juice is lukewarm. Bottle and keep in the fridge for up to 3 months. A spoonful in hot water makes a winter drink."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "30 min",
+      "servings": "About 500 ml",
+      "tags": ["drink", "easy"],
+      "safetyNotes": [
+        "Never eat elderberries raw. Raw berries and seeds, and above all green berries, stalks and leaves, cause nausea and vomiting. Simmering the ripe berries for at least 20 minutes makes them safe.",
+        "Use only black elder (Sambucus nigra) or American elder (S. canadensis), shrubs with flat clusters of berries. Red elder (S. racemosa) and dwarf elder (S. ebulus) are not used."
+      ]
+    },
+    "blackberry-apple-crumble": {
+      "title": "Blackberry and Apple Crumble",
+      "ingredients": [
+        "400 g blackberries",
+        "2 cooking apples, peeled and sliced",
+        "50 g sugar",
+        "1 tsp lemon juice",
+        "For the crumble: 150 g flour",
+        "100 g cold butter, diced",
+        "75 g brown sugar",
+        "50 g rolled oats",
+        "A pinch of salt"
+      ],
+      "instructions": [
+        "Fruit: Heat the oven to 190 °C. Toss the blackberries and apples with the sugar and lemon juice and spread them in a baking dish.",
+        "Crumble: Rub the butter into the flour with your fingertips until it looks like breadcrumbs, then stir in the brown sugar, oats and salt.",
+        "Top: Scatter the crumble loosely over the fruit without pressing it down.",
+        "Bake: Bake for 35–40 minutes, until golden on top and bubbling at the edges. Leave it to rest for 10 minutes and serve with cream, custard or ice cream."
+      ],
+      "species": ["blackberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Fruit: Heat the oven to 190 °C. Toss the blackberries and apples with the sugar and lemon juice and spread them in a baking dish."
+        },
+        {
+          "step": 2,
+          "instruction": "Crumble: Rub the butter into the flour with your fingertips until it looks like breadcrumbs, then stir in the brown sugar, oats and salt."
+        },
+        {
+          "step": 3,
+          "instruction": "Top: Scatter the crumble loosely over the fruit without pressing it down."
+        },
+        {
+          "step": 4,
+          "instruction": "Bake: Bake for 35–40 minutes, until golden on top and bubbling at the edges. Leave it to rest for 10 minutes and serve with cream, custard or ice cream."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "40 min",
+      "servings": "4–6",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Pick above knee height and away from busy roads and sprayed field edges.",
+        "Rinse the berries just before using them and check them for small insects and mould."
+      ]
+    },
+    "wild-blueberry-pancakes": {
+      "title": "Wild Blueberry Pancakes",
+      "ingredients": [
+        "150 g wild blueberries or bilberries",
+        "200 g flour",
+        "2 tsp baking powder",
+        "1 tbsp sugar",
+        "A pinch of salt",
+        "2 eggs",
+        "250 ml milk",
+        "30 g butter, melted, plus butter for the pan",
+        "Maple syrup or honey to serve"
+      ],
+      "instructions": [
+        "Batter: Whisk the flour, baking powder, sugar and salt. Whisk the eggs, milk and melted butter separately and stir them in until just combined: a few lumps are fine.",
+        "Fry: Melt a little butter in a frying pan over a medium heat. Pour in small ladles of batter and scatter blueberries over each.",
+        "Turn: When bubbles appear and the edges set, after about 2 minutes, turn the pancakes and cook them for 1–2 minutes more.",
+        "Serve: Stack them warm with the rest of the berries and the syrup."
+      ],
+      "species": ["blueberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Batter: Whisk the flour, baking powder, sugar and salt. Whisk the eggs, milk and melted butter separately and stir them in until just combined: a few lumps are fine."
+        },
+        {
+          "step": 2,
+          "instruction": "Fry: Melt a little butter in a frying pan over a medium heat. Pour in small ladles of batter and scatter blueberries over each."
+        },
+        {
+          "step": 3,
+          "instruction": "Turn: When bubbles appear and the edges set, after about 2 minutes, turn the pancakes and cook them for 1–2 minutes more."
+        },
+        {
+          "step": 4,
+          "instruction": "Serve: Stack them warm with the rest of the berries and the syrup."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4 (about 12 pancakes)",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "In much of Europe low-growing berries can carry eggs of the fox tapeworm (Echinococcus multilocularis). Wash them well. Cooking kills the eggs, freezing doesn't, so cooked berries are the safer choice there.",
+        "Bilberries and blueberries grow on low shrubs. Deadly nightshade, which is very poisonous, has single shiny black berries sitting on a green star, on a tall soft plant."
+      ]
+    },
+    "hazelnut-cocoa-spread": {
+      "title": "Homemade Hazelnut Cocoa Spread",
+      "ingredients": [
+        "200 g shelled hazelnuts",
+        "2 tbsp cocoa powder",
+        "60 g icing sugar or maple syrup",
+        "100 g dark chocolate, melted (optional)",
+        "A pinch of salt",
+        "1 tsp vanilla extract",
+        "2–4 tbsp neutral oil or milk",
+        "A clean jar"
+      ],
+      "instructions": [
+        "Roast: Roast the hazelnuts at 180 °C for 10–12 minutes, until fragrant and the skins crack.",
+        "Skin: Rub the warm nuts in a clean tea towel to take off most of the skins.",
+        "Grind: Blend the nuts in a food processor for 5–10 minutes, scraping down the sides now and then, until they turn into a runny butter.",
+        "Flavour: Add the cocoa, sugar, chocolate, salt and vanilla and blend again, adding the oil a spoonful at a time until smooth and spreadable. Keep it in a clean jar in the fridge for up to 3 weeks."
+      ],
+      "species": ["hazelnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Roast: Roast the hazelnuts at 180 °C for 10–12 minutes, until fragrant and the skins crack."
+        },
+        {
+          "step": 2,
+          "instruction": "Skin: Rub the warm nuts in a clean tea towel to take off most of the skins."
+        },
+        {
+          "step": 3,
+          "instruction": "Grind: Blend the nuts in a food processor for 5–10 minutes, scraping down the sides now and then, until they turn into a runny butter."
+        },
+        {
+          "step": 4,
+          "instruction": "Flavour: Add the cocoa, sugar, chocolate, salt and vanilla and blend again, adding the oil a spoonful at a time until smooth and spreadable. Keep it in a clean jar in the fridge for up to 3 weeks."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "12 min",
+      "servings": "1 jar (about 350 g)",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Hazelnuts are a common allergen: tell anyone you share this with.",
+        "Gather only nuts that have ripened and fallen in late summer and autumn. Throw away nuts with holes, which weevils have bored, and any that taste mouldy or bitter."
+      ]
+    },
+    "wild-mint-pea-soup": {
+      "title": "Pea Soup with Wild Mint",
+      "ingredients": [
+        "1 small onion, chopped",
+        "1 tbsp butter or oil",
+        "1 potato, diced",
+        "750 ml vegetable stock",
+        "500 g peas (frozen are fine)",
+        "A large handful of wild mint leaves (about 15 g), plus a few small ones to garnish",
+        "3 tbsp cream or yoghurt",
+        "Salt, pepper and a squeeze of lemon"
+      ],
+      "instructions": [
+        "Soften: Cook the onion gently in the butter for 5 minutes, then add the potato and the stock and simmer for 10 minutes.",
+        "Peas: Add the peas and simmer for 3–4 minutes, just until tender, so they stay bright green.",
+        "Blend: Take the pan off the heat, add the mint leaves and blend until smooth. Season with salt, pepper and lemon.",
+        "Serve: Swirl in the cream and scatter with the small mint leaves. It is good hot or chilled."
+      ],
+      "species": ["wild-mint"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Soften: Cook the onion gently in the butter for 5 minutes, then add the potato and the stock and simmer for 10 minutes."
+        },
+        {
+          "step": 2,
+          "instruction": "Peas: Add the peas and simmer for 3–4 minutes, just until tender, so they stay bright green."
+        },
+        {
+          "step": 3,
+          "instruction": "Blend: Take the pan off the heat, add the mint leaves and blend until smooth. Season with salt, pepper and lemon."
+        },
+        {
+          "step": 4,
+          "instruction": "Serve: Swirl in the cream and scatter with the small mint leaves. It is good hot or chilled."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "4",
+      "tags": ["soup", "vegetarian", "easy"],
+      "safetyNotes": [
+        "A wild mint smells clearly of mint when you crush a leaf: no mint smell, no mint.",
+        "Leave out pennyroyal (Mentha pulegium: small, rounded leaves, creeping stems, flowers in rings up the stem). It is toxic in larger amounts and must be avoided in pregnancy.",
+        "Pick water mint from clean streams, not from wet pasture grazed by sheep or cattle, where it can carry liver fluke."
+      ]
+    },
+    "candied-violets": {
+      "title": "Candied Sweet Violets",
+      "ingredients": [
+        "30–40 sweet violet flowers with a short stem",
+        "1 very fresh egg white, pasteurised if you can get it",
+        "Caster sugar, finely ground",
+        "A small, soft paintbrush",
+        "Baking paper"
+      ],
+      "instructions": [
+        "Pick: Pick freshly opened flowers on a dry day and leave a short stem to hold them by. Check them for insects.",
+        "Paint: Beat the egg white lightly until just frothy. Holding a flower by its stem, paint every petal, front and back, with a thin layer.",
+        "Sugar: Sprinkle the flower all over with caster sugar, shake off the excess and set it face up on baking paper.",
+        "Dry: Leave them in a warm, dry place for 1–2 days, until completely crisp, then snip off the stems. Store them in an airtight tin between layers of paper for a few weeks and use them on cakes and desserts."
+      ],
+      "species": ["violets"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pick: Pick freshly opened flowers on a dry day and leave a short stem to hold them by. Check them for insects."
+        },
+        {
+          "step": 2,
+          "instruction": "Paint: Beat the egg white lightly until just frothy. Holding a flower by its stem, paint every petal, front and back, with a thin layer."
+        },
+        {
+          "step": 3,
+          "instruction": "Sugar: Sprinkle the flower all over with caster sugar, shake off the excess and set it face up on baking paper."
+        },
+        {
+          "step": 4,
+          "instruction": "Dry: Leave them in a warm, dry place for 1–2 days, until completely crisp, then snip off the stems. Store them in an airtight tin between layers of paper for a few weeks and use them on cakes and desserts."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "45 min",
+      "cookTime": "1–2 days drying",
+      "servings": "30–40 flowers",
+      "tags": ["dessert", "vegetarian", "medium"],
+      "safetyNotes": [
+        "Use only sweet violets (Viola odorata) or other wild violets. African violets (Saintpaulia) are not related and should not be eaten.",
+        "Raw egg white carries a small risk of salmonella: use pasteurised egg white for small children, pregnant people and the elderly.",
+        "Pick where no herbicides are sprayed and away from paths used by dogs."
+      ]
+    },
+    "plantain-leaf-crisps": {
+      "title": "Plantain Leaf Crisps",
+      "ingredients": [
+        "2 large handfuls of young plantain leaves",
+        "1 tbsp olive oil",
+        "Flaky salt",
+        "Smoked paprika or garlic powder (optional)"
+      ],
+      "instructions": [
+        "Heat: Heat the oven to 150 °C (130 °C fan).",
+        "Prepare: Pick young, tender leaves no bigger than your palm. Wash them and dry them completely: any water left steams them instead of crisping them.",
+        "Season: Toss the leaves with the oil and seasonings so each is lightly coated, then lay them flat on baking paper without overlapping.",
+        "Bake: Bake for 15–20 minutes, turning them once, until crisp but still green. Let them cool on the tray and eat them the same day."
+      ],
+      "species": ["plantain"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Heat: Heat the oven to 150 °C (130 °C fan)."
+        },
+        {
+          "step": 2,
+          "instruction": "Prepare: Pick young, tender leaves no bigger than your palm. Wash them and dry them completely: any water left steams them instead of crisping them."
+        },
+        {
+          "step": 3,
+          "instruction": "Season: Toss the leaves with the oil and seasonings so each is lightly coated, then lay them flat on baking paper without overlapping."
+        },
+        {
+          "step": 4,
+          "instruction": "Bake: Bake for 15–20 minutes, turning them once, until crisp but still green. Let them cool on the tray and eat them the same day."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2",
+      "tags": ["appetizer", "vegan", "easy"],
+      "safetyNotes": [
+        "Pick away from roadsides, dog-walking paths and sprayed lawns: plantain likes trampled ground.",
+        "Plantain leaves have strong parallel veins that pull out like strings. Foxglove leaves, which are poisonous, have a network of veins and are softly hairy."
+      ]
+    },
+    "pickled-daisy-buds": {
+      "title": "Pickled Daisy Buds",
+      "ingredients": [
+        "50 g closed daisy buds",
+        "1 tbsp salt",
+        "100 ml white wine vinegar",
+        "100 ml water",
+        "1 tsp sugar",
+        "1 small sprig of dill",
+        "1 bay leaf",
+        "A few peppercorns",
+        "A small sterilised jar"
+      ],
+      "instructions": [
+        "Pick: Pick tight green buds, before any white shows, from clean lawns and meadows. Rinse and drain them.",
+        "Salt: Toss the buds with the salt and leave them for 12 hours to draw out the moisture, then rinse them and pat them dry.",
+        "Brine: Bring the vinegar, water, sugar, bay leaf and peppercorns to the boil.",
+        "Jar: Pack the buds and the dill into the jar, pour the hot vinegar over to cover them and seal. Leave for at least 2 weeks before eating. Use them like capers in salads, sauces and with fish."
+      ],
+      "species": ["daisy"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pick: Pick tight green buds, before any white shows, from clean lawns and meadows. Rinse and drain them."
+        },
+        {
+          "step": 2,
+          "instruction": "Salt: Toss the buds with the salt and leave them for 12 hours to draw out the moisture, then rinse them and pat them dry."
+        },
+        {
+          "step": 3,
+          "instruction": "Brine: Bring the vinegar, water, sugar, bay leaf and peppercorns to the boil."
+        },
+        {
+          "step": 4,
+          "instruction": "Jar: Pack the buds and the dill into the jar, pour the hot vinegar over to cover them and seal. Leave for at least 2 weeks before eating. Use them like capers in salads, sauces and with fish."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min",
+      "servings": "1 small jar",
+      "tags": ["side", "vegan", "easy"],
+      "safetyNotes": [
+        "Make sure they are common daisies (Bellis perennis): single flowers on leafless stalks rising from a flat rosette of spoon-shaped leaves.",
+        "Pick from lawns that are not sprayed or fertilised, away from areas used by dogs.",
+        "People allergic to the daisy family (Asteraceae), for example to ragweed or chamomile, can react to them."
       ]
     }
   }
