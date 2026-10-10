@@ -262,7 +262,7 @@ export const BLUEBELL: Spectacle = {
   },
 };
 
-// Poppy orange deepening to the peak, then dry gold; a winter too dry for a
+// Poppy orange deepening to the peak, then a pale sand that steps back; a winter too dry for a
 // bloom is grey sand, and the weaker a bloom the fainter it is drawn.
 export const SUPERBLOOM: Spectacle = {
   code: 'superbloom',
@@ -275,14 +275,14 @@ export const SUPERBLOOM: Spectacle = {
   ramp: peakRamp(
     ['#f08a3c', '#f6bd6e', '#fbe3b0'],
     '#d9480f',
-    'rgba(201, 176, 120, 0.45)',
-    '#c9a75e'
+    'rgba(226, 211, 176, 0.35)',
+    '#e0c48e'
   ),
   statusColor: {
     later: BLOOM_IDLE,
     soon: '#f6bd6e',
     peak: '#d9480f',
-    past: '#c9a75e',
+    past: '#e0c48e',
     stale: BLOOM_IDLE,
   },
   levels: {

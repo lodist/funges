@@ -43,6 +43,7 @@ MAP_VARIETY = "kanzan"
 # on iNaturalist, Umeå, comes on 2 June; Tromsø (14 June) and the ski towns have none.
 LATEST_NORMAL_PEAK = (6, 7)  # month, day
 CELL = 0.1  # degrees; base points are averaged into cells this size
+FINE = 5  # sub-cells per cell side the bands are smoothed on (0.02°)
 LAPSE = 0.0065  # °C per metre, moves a normal to a cell's elevation
 EPOCH = date(1970, 1, 1)
 
@@ -179,31 +180,69 @@ def _local_master(path):
 
 
 def _bands(cy, cx, props, ground):
-    """One feature per combination of `props` (name -> an int per cell, such as the
-    peak day): the part of the cells' squares on `ground` (towns, woods, desert),
-    dissolved."""
-    import geopandas as gpd
-    from shapely.geometry import box
+    """One feature per combination of `props` (name -> a number per cell, such as the
+    peak day), on `ground` (towns, woods, desert).
 
-    # Edges from the integer lattice, so neighbouring squares share them bit for bit
-    # and the dissolve leaves no slivers between them.
-    squares = [box((x - 0.5) * CELL, (y - 0.5) * CELL, (x + 0.5) * CELL, (y + 0.5) * CELL)
-               for y, x in zip(cy, cx)]
-    cells = gpd.GeoDataFrame({k: np.asarray(v).astype(int) for k, v in props.items()}, geometry=squares,
-                             crs="EPSG:4326")
-    w, s, e, n = cells.total_bounds
-    cells = gpd.overlay(cells, ground.cx[w:e, s:n][["geometry"]], how="intersection", keep_geom_type=True)
-    return cells.dissolve(by=list(props), as_index=False)
+    The cells' values are interpolated bilinearly to FINE x FINE sub-cells and
+    rounded, so a band's edge runs smoothly between the cells instead of along their
+    squares. The drawn area ends halfway to a cell without a value, its corners cut.
+    """
+    import geopandas as gpd
+    import shapely
+    from scipy.ndimage import map_coordinates
+
+    cy, cx = np.asarray(cy), np.asarray(cx)
+    squares = shapely.box((cx - 0.5) * CELL, (cy - 0.5) * CELL, (cx + 0.5) * CELL, (cy + 0.5) * CELL)
+    near = np.unique(shapely.STRtree(ground.geometry.values).query(squares, predicate="intersects")[0])
+    if not len(near):
+        return gpd.GeoDataFrame({k: [] for k in props}, geometry=[], crs="EPSG:4326")
+    cy, cx = cy[near], cx[near]
+    y0, x0 = cy.min() - 1, cx.min() - 1
+    shape = (cy.max() - y0 + 2, cx.max() - x0 + 2)
+    rr, cc = np.meshgrid((np.arange(shape[0] * FINE) + 0.5) / FINE - 0.5,
+                         (np.arange(shape[1] * FINE) + 0.5) / FINE - 0.5, indexing="ij")
+
+    def fine(values):
+        grid = np.zeros(shape)
+        grid[cy - y0, cx - x0] = values
+        return map_coordinates(grid, [rr, cc], order=1)
+
+    weight = fine(1.0)
+    inside = weight >= 0.5
+    values = np.column_stack([np.rint(fine(np.asarray(v, float)[near])[inside] / weight[inside])
+                              for v in props.values()]).astype(np.int64)
+    combos, label = np.unique(values, axis=0, return_inverse=True)
+    grid = np.zeros(inside.shape, np.int64)
+    grid[inside] = label.ravel() + 1
+    # Each row's runs of one label become strips, unioned per label.
+    edge = np.diff(grid, axis=1, prepend=-1) != 0
+    row, start = np.nonzero(edge)
+    stop = np.r_[start[1:], 0]
+    stop[np.r_[row[1:] != row[:-1], True]] = grid.shape[1]
+    lab = grid[row, start]
+    keep = lab > 0
+    row, start, stop, lab = row[keep], start[keep], stop[keep], lab[keep]
+    step, south, west = CELL / FINE, (y0 - 0.5) * CELL, (x0 - 0.5) * CELL
+    strips = shapely.box(west + start * step, south + row * step, west + stop * step, south + (row + 1) * step)
+    order = np.argsort(lab, kind="stable")
+    parts = np.split(strips[order], np.flatnonzero(np.diff(lab[order])) + 1)
+    bands = gpd.GeoDataFrame({k: combos[:, i] for i, k in enumerate(props)},
+                             geometry=[shapely.union_all(p) for p in parts], crs="EPSG:4326")
+    w, s, e, n = bands.total_bounds
+    bands = gpd.overlay(bands, ground.cx[w:e, s:n][["geometry"]], how="intersection", keep_geom_type=True)
+    return bands.dissolve(by=list(props), as_index=False)
 
 
 def _tippecanoe(geojson, mbtiles, layer):
     """Town-sized shapes keep their outline to zoom 10. The forecast's settings (z6,
-    -d9, simplification 4) are tuned for the species mesh and shave a town to a shard."""
+    -d9, simplification 4) are tuned for the species mesh and shave a town to a shard.
+    Neighbouring bands are simplified along their shared borders alike, so lower
+    zooms smooth the steps without opening gaps between them."""
     exe = shutil.which("tippecanoe")
     if exe is None:
         print("tippecanoe not found; bloom tiles skipped.")
         return
-    subprocess.run([exe, "-o", str(mbtiles), "-l", layer, "-z10", "--force",
+    subprocess.run([exe, "-o", str(mbtiles), "-l", layer, "-z10", "--force", "--detect-shared-borders",
                     "--drop-densest-as-needed", str(geojson)], check=True)
 
 

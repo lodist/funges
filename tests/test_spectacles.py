@@ -149,6 +149,16 @@ def test_superbloom_refuses_a_master_without_measured_rain(tmp_path):
                                     normals=_normals(15.0, prec=1.0), ground=gpd.GeoDataFrame(geometry=[]))
 
 
+def test_bands_blend_between_cells_and_end_halfway_to_an_empty_one():
+    # Two neighbouring cells peaking 10 days apart: the days in between are drawn
+    # between them, and the drawn area stops halfway to the cells around, corners cut.
+    ground = gpd.GeoDataFrame(geometry=[box(7.0, 49.0, 9.0, 51.0)], crs="EPSG:4326")
+    out = bloom._bands(np.array([500, 500]), np.array([80, 81]), {"peak": np.array([100.0, 110.0])}, ground)
+    assert sorted(out.peak) == [100, 102, 104, 106, 108, 110]
+    assert np.allclose(out.total_bounds, [7.95, 49.95, 8.15, 50.05])
+    assert out.area.sum() < 0.2 * 0.1
+
+
 def test_every_spectacle_is_registered():
     names = [name for name, *_ in bloom._spectacles()]
     assert names == ["cherry_blossom", "bluebell", "superbloom"]

@@ -117,6 +117,7 @@ It is as good in DC and the iNaturalist cities. But it blooms the warm south of 
 | USW    | 49,168 |
 
 - Cells with the same peak day are dissolved into one feature, so a tileset holds 56–68 features.
+- Since PR #299 (bluebell and superbloom) the cells' peaks are interpolated to 0.02° sub-cells before they are dissolved, so a day's edge runs smoothly between cells rather than along their squares; inside a large city the bands blend instead of stepping.
 - NE and SE share 60 cells, USE and USW 290. Both draw there, so those towns are a shade darker.
 - **Season:** 1 February – 30 June. Outside it the step returns before downloading anything.
   - Every town with a peak stays in the tiles all season, green once its bloom is done. One that vanished after its peak read as a town without cherries.

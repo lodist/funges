@@ -41,7 +41,8 @@ NE_LAND = ("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/"
 BLUEBELL_SHARE, BLUEBELL_BROADLEAF = 0.1, 0.03
 NLCD_OPEN = (31, 52, 71)
 PIXEL = 0.01  # degrees, the superbloom ground's resolution
-ROUND = 0.01  # degrees: grown by 1.2x this and shrunk back, the pixel corners come out round
+ROUND = 0.03  # degrees: grown by 1.2x this and shrunk back, steps and notches come out round
+SPECK = 0.02  # degrees: then shrunk by this and grown back, specks narrower than twice it drop out
 SIMPLIFY = 0.002
 DECIMALS = 4
 
@@ -54,8 +55,12 @@ def polygons(grid, west, south, step):
     return shapely.union_all(parts)
 
 
-def finish(geom, out):
+def smooth(geom):
     geom = shapely.buffer(shapely.buffer(geom, ROUND * 1.2, quad_segs=4), -ROUND, quad_segs=4)
+    return shapely.buffer(shapely.buffer(geom, -SPECK, quad_segs=4), SPECK, quad_segs=4)
+
+
+def finish(geom, out):
     geom = shapely.simplify(geom, SIMPLIFY, preserve_topology=True)
     geom = shapely.set_precision(geom, 10.0 ** -DECIMALS)
     geom = shapely.transform(geom, lambda xy: np.round(xy, DECIMALS))
@@ -74,7 +79,7 @@ def bluebell(cache):
     in_range = np.repeat(np.repeat(rel >= BLUEBELL_SHARE, 2, axis=0), 2, axis=1)
     ground = in_range & (broadleaf >= BLUEBELL_BROADLEAF) & cover["mapped"]
     print(f"bluebell: {int(ground.sum())} cells of 0.05°", file=sys.stderr)
-    geom = polygons(ground, cover["lon0"], cover["lat0"], cover["step"])
+    geom = smooth(polygons(ground, cover["lon0"], cover["lat0"], cover["step"]))
     units = cb.map_units(cache).to_crs(4326)
     geom = shapely.difference(geom, units[units.GU_A3 == "NOR"].union_all())
     with tempfile.TemporaryDirectory() as tmp:
@@ -121,7 +126,7 @@ def superbloom(cache):
                   PIXEL, PIXEL), dst_crs="EPSG:4326", resampling=Resampling.mode, dst_nodata=0)
     ground = cells & np.isin(top[::-1], NLCD_OPEN)
     print(f"superbloom: {ground.mean() / cells.mean():.0%} of the cells' pixels are open ground", file=sys.stderr)
-    finish(polygons(ground, west, south, PIXEL), OUT / "superbloom_ground_US.geojson")
+    finish(smooth(polygons(ground, west, south, PIXEL)), OUT / "superbloom_ground_US.geojson")
 
 
 if __name__ == "__main__":

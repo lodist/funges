@@ -8,9 +8,15 @@ The third "spectacle" layer, after [cherry blossom](2026-09-30-cherry-blossom.md
 
 ## What it looks like
 
-A dry run on the real USW master for 10 March 2027, served into the app locally. **For this picture only the levels are set by longitude** (superbloom in the west, then good, ordinary and no bloom), so all four show: on 10 October nearly every day of the season is still a normal.
+The masters hold measured rain only from 28 September 2026, so these are replays of past winters through `build_superbloom` unchanged, on NASA POWER's daily weather (a stand-in master with POWER's rain flagged as measured and the WeatherAPI corrections undone), served into the app locally.
 
-![The four levels](2026-10-10-desert-superbloom/levels.webp)
+25 March 2019, the superbloom year: the low desert past its peak, the foothills and the Mojave at it, the north still to come.
+
+![25 March 2019](2026-10-10-desert-superbloom/2019.webp)
+
+25 March 2021, a drought winter: no bloom anywhere but a corner of the Carrizo.
+
+![25 March 2021](2026-10-10-desert-superbloom/2021.webp)
 
 A click gives the strength and the peak:
 
@@ -100,7 +106,7 @@ Cells are drawn on bloom ground (`backend/generated/superbloom_ground_US.geojson
 3. at least 25 research-grade desert-annual records within 50 km;
 4. the 0.01° pixels that are mostly barren, scrub or grassland in NLCD 2024 (31, 52, 71): no towns, farms, water or forest.
 
-It keeps 92% of the desert-annual sightings and all seven places. Rejected: Köppen BW (56% of sightings; loses Antelope Valley, Carrizo and Picacho), under 250 mm (loses Carrizo and Walker Canyon), and no range term (25% of the West, the Columbia and Great Basin). Strength shows as opacity: ordinary is drawn faintest, a superbloom strongest.
+Its edges are rounded at 3 km and specks under 4 km dropped. It keeps 95% of the desert-annual sightings and all seven places. Rejected: Köppen BW (56% of sightings; loses Antelope Valley, Carrizo and Picacho), under 250 mm (loses Carrizo and Walker Canyon), and no range term (25% of the West, the Columbia and Great Basin). Strength shows as opacity: ordinary is drawn faintest, a superbloom strongest.
 
 ## Caveats
 
