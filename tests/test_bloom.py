@@ -109,7 +109,7 @@ def test_build_bloom_end_to_end(tmp_path):
     geojson, layer = layers[0]
     assert layer == "ne_bloom"
     peaks = [f["properties"]["peak"] for f in geojson["features"]]
-    assert all(isinstance(p, int) for p in peaks) and len(peaks) == len(set(peaks)) == out["bands"] == 2
+    assert all((4 * p).is_integer() for p in map(float, peaks)) and len(peaks) == len(set(peaks)) == out["bands"] == 2
     # Each band is its town, not its 0.1° cell.
     bounds = gpd.GeoDataFrame.from_features(geojson["features"]).total_bounds
     assert tuple(round(float(v), 2) for v in bounds) == (7.98, 49.98, 8.02, 50.52)

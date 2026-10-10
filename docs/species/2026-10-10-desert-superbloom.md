@@ -102,11 +102,13 @@ A day not yet measured counts as its normal, so early in the season the share le
 Cells are drawn on bloom ground (`backend/generated/superbloom_ground_US.geojson`, built by `backend/tools/build_spectacle_ground.py`):
 
 1. normal rain under 350 mm a year;
-2. ground under 1,500 m (HydroSHEDS);
+2. ground under 1,500 m (HydroSHEDS, averaged to 0.01°);
 3. at least 25 research-grade desert-annual records within 50 km;
-4. the 0.01° pixels that are mostly barren, scrub or grassland in NLCD 2024 (31, 52, 71): no towns, farms, water or forest.
+4. mostly barren, scrub or grassland in NLCD 2024 (31, 52, 71): no towns, farms, water or forest.
 
-Its edges are rounded at 3 km and specks under 4 km dropped. It keeps 95% of the desert-annual sightings and all seven places. Rejected: Köppen BW (56% of sightings; loses Antelope Valley, Carrizo and Picacho), under 250 mm (loses Carrizo and Walker Canyon), and no range term (25% of the West, the Columbia and Great Basin). Strength shows as opacity: ordinary is drawn faintest, a superbloom strongest.
+It keeps 92% of the desert-annual sightings and all seven places. Rejected: Köppen BW (56% of sightings; loses Antelope Valley, Carrizo and Picacho), under 250 mm (loses Carrizo and Walker Canyon), and no range term (25% of the West, the Columbia and Great Basin). Strength shows as opacity: ordinary is drawn faintest, a superbloom strongest, fading between them in quarter levels.
+
+**How the map draws it.** Every rule is read on a 0.01° (1 km) grid, from its field interpolated smoothly between the field's own cells, so the edges follow the land instead of the coarse grids' squares. Within the ground, each 0.1° forecast cell's peak is interpolated to 0.02° and banded in quarter days, so colours blend between cells; holes of up to four cells without base points take their neighbours' values. The layer sits under the basemap's sea and lakes, whose coastline is finer than any of this, so it ends at the real shore.
 
 ## Caveats
 

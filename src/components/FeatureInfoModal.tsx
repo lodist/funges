@@ -107,13 +107,18 @@ export default function FeatureInfoModal({
 
   // A spectacle cell lists one row, the spectacle, in the same markup as a
   // species, with its peak date where a species has its score.
+  // Tiles carry the peak in quarter days, so their colours blend; the row says
+  // the day.
   const bloomPeak =
     bloomDay !== undefined && typeof props.peak === 'number'
-      ? props.peak
+      ? Math.round(props.peak)
       : null;
-  // The superbloom's strength: level 0 is a winter too dry for a bloom.
+  // The superbloom's strength, also in quarter steps: level 0 is a winter too
+  // dry for a bloom.
   const bloomLevel =
-    spectacle.levels && typeof props.level === 'number' ? props.level : null;
+    spectacle.levels && typeof props.level === 'number'
+      ? Math.round(props.level)
+      : null;
   const levelName =
     bloomLevel !== null ? spectacle.levels?.names[bloomLevel] : undefined;
 

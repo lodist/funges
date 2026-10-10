@@ -44,6 +44,8 @@ MAP_VARIETY = "kanzan"
 LATEST_NORMAL_PEAK = (6, 7)  # month, day
 CELL = 0.1  # degrees; base points are averaged into cells this size
 FINE = 5  # sub-cells per cell side the bands are smoothed on (0.02°)
+PEAK_STEP = 0.25  # days: bands this far apart, so the colour ramp's steep part has no visible edges
+GAP = 2  # cells: holes in a region's lattice up to twice this wide are filled from their neighbours
 LAPSE = 0.0065  # °C per metre, moves a normal to a cell's elevation
 EPOCH = date(1970, 1, 1)
 
@@ -179,17 +181,18 @@ def _local_master(path):
     return name, True
 
 
-def _bands(cy, cx, props, ground):
+def _bands(cy, cx, props, ground, steps=None):
     """One feature per combination of `props` (name -> a number per cell, such as the
-    peak day), on `ground` (towns, woods, desert).
+    peak day), on `ground` (towns, woods, desert), each rounded to its `steps` (1).
 
     The cells' values are interpolated bilinearly to FINE x FINE sub-cells and
     rounded, so a band's edge runs smoothly between the cells instead of along their
-    squares. The drawn area ends halfway to a cell without a value, its corners cut.
+    squares. Small holes in the lattice are filled from their neighbours; past the
+    region's edge the drawn area ends halfway to the next cell, its corners cut.
     """
     import geopandas as gpd
     import shapely
-    from scipy.ndimage import map_coordinates
+    from scipy.ndimage import binary_closing, distance_transform_edt, map_coordinates
 
     cy, cx = np.asarray(cy), np.asarray(cx)
     squares = shapely.box((cx - 0.5) * CELL, (cy - 0.5) * CELL, (cx + 0.5) * CELL, (cy + 0.5) * CELL)
@@ -197,20 +200,29 @@ def _bands(cy, cx, props, ground):
     if not len(near):
         return gpd.GeoDataFrame({k: [] for k in props}, geometry=[], crs="EPSG:4326")
     cy, cx = cy[near], cx[near]
-    y0, x0 = cy.min() - 1, cx.min() - 1
-    shape = (cy.max() - y0 + 2, cx.max() - x0 + 2)
+    pad = GAP + 1
+    y0, x0 = cy.min() - pad, cx.min() - pad
+    shape = (cy.max() - y0 + pad + 1, cx.max() - x0 + pad + 1)
     rr, cc = np.meshgrid((np.arange(shape[0] * FINE) + 0.5) / FINE - 0.5,
                          (np.arange(shape[1] * FINE) + 0.5) / FINE - 0.5, indexing="ij")
+    # Holes up to 2 * GAP cells wide (no base points under a farm or a town) take
+    # their nearest cell's values, so the ground, not the lattice, draws the outline.
+    have = np.zeros(shape, bool)
+    have[cy - y0, cx - x0] = True
+    filled = binary_closing(have, np.ones((3, 3), bool), iterations=GAP)
+    nearest = distance_transform_edt(~have, return_distances=False, return_indices=True)
 
     def fine(values):
         grid = np.zeros(shape)
         grid[cy - y0, cx - x0] = values
+        grid = np.where(filled, grid[nearest[0], nearest[1]], 0.0)
         return map_coordinates(grid, [rr, cc], order=1)
 
     weight = fine(1.0)
     inside = weight >= 0.5
-    values = np.column_stack([np.rint(fine(np.asarray(v, float)[near])[inside] / weight[inside])
-                              for v in props.values()]).astype(np.int64)
+    steps = {k: (steps or {}).get(k, 1) for k in props}
+    values = np.column_stack([np.rint(fine(np.asarray(v, float)[near])[inside] / weight[inside] / steps[k])
+                              for k, v in props.items()]).astype(np.int64)
     combos, label = np.unique(values, axis=0, return_inverse=True)
     grid = np.zeros(inside.shape, np.int64)
     grid[inside] = label.ravel() + 1
@@ -226,7 +238,7 @@ def _bands(cy, cx, props, ground):
     strips = shapely.box(west + start * step, south + row * step, west + stop * step, south + (row + 1) * step)
     order = np.argsort(lab, kind="stable")
     parts = np.split(strips[order], np.flatnonzero(np.diff(lab[order])) + 1)
-    bands = gpd.GeoDataFrame({k: combos[:, i] for i, k in enumerate(props)},
+    bands = gpd.GeoDataFrame({k: combos[:, i] * steps[k] for i, k in enumerate(props)},
                              geometry=[shapely.union_all(p) for p in parts], crs="EPSG:4326")
     w, s, e, n = bands.total_bounds
     bands = gpd.overlay(bands, ground.cx[w:e, s:n][["geometry"]], how="intersection", keep_geom_type=True)
@@ -311,7 +323,9 @@ def build_peaks(master_path, region_code, r2_prefix, to_pmtiles, upload, *, labe
     print(f"{label} {region_code}: {int(drawn.sum())} of {len(peak)} cells drawn "
           f"({int(np.isnan(peak).sum())} without a peak, "
           f"{int((np.isfinite(peak) & ~grows).sum())} outside its climate)")
-    features = _bands(cy[drawn], cx[drawn], {"peak": peak[drawn]}, ground) if drawn.any() else []
+    features = []
+    if drawn.any():
+        features = _bands(cy[drawn], cx[drawn], {"peak": peak[drawn]}, ground, {"peak": PEAK_STEP})
     bands = publish(features, region_code, tiles, r2_prefix, to_pmtiles, upload, build_mbtiles)
     return {"cells": len(peak), "drawn": int(drawn.sum()), "bands": bands}
 

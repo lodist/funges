@@ -5,7 +5,8 @@ import type { TFunction } from 'i18next';
  * The spectacle layers (roadmap #272 step 5): cherry blossom, bluebell woods and
  * the desert superbloom. Each is picked like a species and clicked like one, but
  * it is not a catalog species: no page, no photo ID, no score. Their tiles carry
- * `peak`, the predicted peak day as days since 1970-01-01, built in season by
+ * `peak`, the predicted peak day as days since 1970-01-01 (in quarter days, so
+ * colours blend between cells), built in season by
  * backend/bloom.py, bluebell.py and superbloom.py; the superbloom's carry its
  * strength, `level`, as well.
  */
@@ -144,11 +145,14 @@ export function bloomFillColor(
     ...spectacle.ramp.flat(),
   ];
   return (spectacle.levels
-    ? ['case', ['==', ['get', 'level'], 0], spectacle.levels.noneColor, ramp]
+    ? ['case', ['<', ['get', 'level'], 0.5], spectacle.levels.noneColor, ramp]
     : ramp) as unknown as ExpressionSpecification;
 }
 
-/** A spectacle with levels is drawn fainter the weaker its bloom. */
+/**
+ * A spectacle with levels is drawn fainter the weaker its bloom. Tiles carry the
+ * level in quarter steps between neighbouring cells, so the opacity fades.
+ */
 export function bloomFillOpacity<T>(
   spectacle: Spectacle,
   fallback: T
@@ -156,10 +160,10 @@ export function bloomFillOpacity<T>(
   if (!spectacle.levels) return fallback;
   const { opacity } = spectacle.levels;
   return [
-    'match',
+    'interpolate',
+    ['linear'],
     ['get', 'level'],
-    ...opacity.slice(0, -1).flatMap((value, level) => [level, value]),
-    opacity[opacity.length - 1],
+    ...opacity.flatMap((value, level) => [level, value]),
   ] as unknown as ExpressionSpecification;
 }
 

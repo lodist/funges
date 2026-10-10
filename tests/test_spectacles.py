@@ -159,6 +159,17 @@ def test_bands_blend_between_cells_and_end_halfway_to_an_empty_one():
     assert out.area.sum() < 0.2 * 0.1
 
 
+def test_bands_fill_a_hole_in_the_lattice_but_not_past_its_edge():
+    # A 5 x 5 block of cells without its centre (no base points there): the hole is
+    # drawn from its neighbours, while the block's outer edge stays where it was.
+    ground = gpd.GeoDataFrame(geometry=[box(7.0, 49.0, 9.0, 51.0)], crs="EPSG:4326")
+    cy, cx = np.meshgrid(np.arange(498, 503), np.arange(78, 83), indexing="ij")
+    keep = ~((cy == 500) & (cx == 80))
+    out = bloom._bands(cy[keep], cx[keep], {"peak": np.full(keep.sum(), 100.0)}, ground)
+    assert out.contains(gpd.points_from_xy([8.0], [50.0])[0]).any()
+    assert np.allclose(out.total_bounds, [7.75, 49.75, 8.25, 50.25])
+
+
 def test_every_spectacle_is_registered():
     names = [name for name, *_ in bloom._spectacles()]
     assert names == ["cherry_blossom", "bluebell", "superbloom"]

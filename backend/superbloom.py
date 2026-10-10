@@ -40,6 +40,7 @@ FORCE_START = (1, 15)  # degree-days for the peak count from here at the earlies
 START_SHARE = 0.40  # ... and not before the season's rain reaches this share of its normal
 FORCE_BASE = 0.0  # °C, daily mean (Tmax + Tmin) / 2
 FORCING = 840.0  # °C·days above FORCE_BASE from the start to the peak
+LEVEL_STEP = 0.25  # bands step the level this finely between cells, so the opacity fades
 REGIONS = frozenset({"usw"})
 
 
@@ -124,6 +125,7 @@ def build_superbloom(master_path, region_code, r2_prefix, to_pmtiles, upload,
           f"({int((~drawn).sum())} without a peak), by level {counts}")
     features = []
     if drawn.any():
-        features = bloom._bands(cy[drawn], cx[drawn], {"peak": peak[drawn], "level": level[drawn]}, ground)
+        features = bloom._bands(cy[drawn], cx[drawn], {"peak": peak[drawn], "level": level[drawn]}, ground,
+                                {"peak": bloom.PEAK_STEP, "level": LEVEL_STEP})
     bands = bloom.publish(features, region_code, "superbloom", r2_prefix, to_pmtiles, upload, build_mbtiles)
     return {"cells": len(peak), "drawn": int(drawn.sum()), "bands": bands, "levels": counts}

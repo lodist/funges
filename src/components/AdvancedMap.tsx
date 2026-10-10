@@ -1303,14 +1303,22 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     )
       return;
     const layers = instance.getStyle()?.layers ?? [];
-    // Same place in the stack as the species fills, and the same opacity: over
-    // the basemap's land and towns, under its roads and labels.
-    const beforeId = layers.find(
-      layer =>
-        'source' in layer &&
-        typeof layer.source === 'string' &&
-        layer.source.startsWith('overlay')
-    )?.id;
+    // The species fills' opacity, over the basemap's land and towns but under
+    // its sea and lakes: their coastline is finer than the cells' ground, so the
+    // water hides any of it past the shore. Roads and labels stay on top.
+    const beforeId =
+      layers.find(
+        layer =>
+          layer.type === 'fill' &&
+          'source-layer' in layer &&
+          layer['source-layer'] === 'water'
+      )?.id ??
+      layers.find(
+        layer =>
+          'source' in layer &&
+          typeof layer.source === 'string' &&
+          layer.source.startsWith('overlay')
+      )?.id;
     const species = layers.find(
       layer => layer.id === `${DEFAULT_MAP_SPECIES}_ne` && layer.type === 'fill'
     ) as maplibregl.FillLayerSpecification | undefined;

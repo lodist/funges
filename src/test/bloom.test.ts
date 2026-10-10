@@ -167,10 +167,11 @@ describe('bluebell and superbloom', () => {
   it('draws a superbloom cell without a bloom in sand, fainter the weaker it is', () => {
     const [op, dry, sand] = bloomFillColor(100, SUPERBLOOM) as unknown[];
     expect(op).toBe('case');
-    expect(dry).toEqual(['==', ['get', 'level'], 0]);
+    expect(dry).toEqual(['<', ['get', 'level'], 0.5]);
     expect(sand).toBe(SUPERBLOOM.levels?.noneColor);
     expect(bloomFillOpacity(SUPERBLOOM, 0.85)).toEqual([
-      'match',
+      'interpolate',
+      ['linear'],
       ['get', 'level'],
       0,
       0.6,
@@ -178,6 +179,7 @@ describe('bluebell and superbloom', () => {
       0.45,
       2,
       0.7,
+      3,
       0.9,
     ]);
     // Without levels, the species layers' opacity and the plain ramp.
