@@ -1870,6 +1870,541 @@
         "Cueillez des baies orange vif et juteuses à partir de la fin de l'été, à la main ou dans un bol. Ne cassez ni ne coupez les rameaux des arbustes sauvages : cela les abîme, et c'est interdit en Finlande.",
         "La cueillette peut être interdite dans les dunes protégées et les réserves naturelles : renseignez-vous sur les règles locales. L'arbuste est très épineux : portez des gants."
       ]
+    },
+    "chicken-of-the-woods-piccata": {
+      "title": "Piccata de polypore soufré",
+      "ingredients": [
+        "400 g de polypore soufré jeune, les bords extérieurs tendres",
+        "2 c. à soupe de farine",
+        "2 c. à soupe d'huile d'olive",
+        "30 g de beurre",
+        "1 gousse d'ail, finement hachée",
+        "120 ml de bouillon de légumes",
+        "Le jus d'1 citron",
+        "1 c. à soupe de câpres, rincées",
+        "1 poignée de persil, haché",
+        "Sel et poivre"
+      ],
+      "instructions": [
+        "Parer : N'utilisez que les 5 à 10 cm extérieurs et tendres de jeunes spécimens et retirez toute partie dure ou ligneuse. Nettoyez-les au pinceau et coupez-les en tranches de 1 cm.",
+        "Poêler : Salez et poivrez les tranches, farinez-les et faites-les dorer dans l'huile à feu moyen-vif 4 à 5 minutes de chaque côté, jusqu'à ce qu'elles soient bien cuites. Réservez.",
+        "Sauce : Faites fondre le beurre dans la même poêle et faites revenir l'ail 30 secondes. Ajoutez le bouillon, le jus de citron et les câpres et laissez frémir 2 minutes.",
+        "Finir : Remettez les champignons dans la poêle, retournez-les une minute dans la sauce et parsemez de persil. Servez avec du riz, des pâtes ou du pain."
+      ],
+      "species": ["chicken-of-the-woods"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Parer : N'utilisez que les 5 à 10 cm extérieurs et tendres de jeunes spécimens et retirez toute partie dure ou ligneuse. Nettoyez-les au pinceau et coupez-les en tranches de 1 cm."
+        },
+        {
+          "step": 2,
+          "instruction": "Poêler : Salez et poivrez les tranches, farinez-les et faites-les dorer dans l'huile à feu moyen-vif 4 à 5 minutes de chaque côté, jusqu'à ce qu'elles soient bien cuites. Réservez."
+        },
+        {
+          "step": 3,
+          "instruction": "Sauce : Faites fondre le beurre dans la même poêle et faites revenir l'ail 30 secondes. Ajoutez le bouillon, le jus de citron et les câpres et laissez frémir 2 minutes."
+        },
+        {
+          "step": 4,
+          "instruction": "Finir : Remettez les champignons dans la poêle, retournez-les une minute dans la sauce et parsemez de persil. Servez avec du riz, des pâtes ou du pain."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "15 min",
+      "servings": "2",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cuisez toujours le polypore soufré à cœur : cru ou mal cuit, il irrite l'estomac.",
+        "Certaines personnes y réagissent même cuit. La première fois, mangez-en une petite portion et attendez un jour.",
+        "Ne cueillez pas de spécimens poussant sur l'if, l'eucalyptus ou des conifères, associés à davantage de réactions, ni de vieux spécimens devenus pâles, friables ou crayeux."
+      ]
+    },
+    "garlic-oyster-mushroom-noodles": {
+      "title": "Nouilles à l'ail et aux pleurotes",
+      "ingredients": [
+        "300 g de pleurotes",
+        "200 g de nouilles de blé ou aux œufs",
+        "2 c. à soupe d'huile neutre",
+        "3 gousses d'ail, émincées",
+        "2 oignons nouveaux, émincés, le blanc et le vert séparés",
+        "2 c. à soupe de sauce soja",
+        "1 c. à café d'huile de sésame",
+        "1 c. à café de sucre ou de miel",
+        "1 c. à café de graines de sésame grillées",
+        "Piment en flocons (facultatif)"
+      ],
+      "instructions": [
+        "Préparer : Déchirez les pleurotes en lanières dans le sens des lamelles et coupez les bases de pied dures. Faites cuire les nouilles selon le paquet et égouttez-les.",
+        "Saisir : Faites chauffer l'huile dans une grande poêle et étalez les pleurotes en une seule couche. Faites-les cuire 3 à 4 minutes sans remuer, retournez-les et poursuivez 3 minutes, jusqu'à ce que les bords soient dorés.",
+        "Assaisonner : Ajoutez l'ail et le blanc des oignons nouveaux 1 minute, puis la sauce soja, le sucre et l'huile de sésame.",
+        "Mélanger : Ajoutez les nouilles et mélangez jusqu'à ce qu'elles soient brillantes et chaudes. Servez avec le vert des oignons, le sésame et le piment."
+      ],
+      "species": ["oyster-mushroom"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Préparer : Déchirez les pleurotes en lanières dans le sens des lamelles et coupez les bases de pied dures. Faites cuire les nouilles selon le paquet et égouttez-les."
+        },
+        {
+          "step": 2,
+          "instruction": "Saisir : Faites chauffer l'huile dans une grande poêle et étalez les pleurotes en une seule couche. Faites-les cuire 3 à 4 minutes sans remuer, retournez-les et poursuivez 3 minutes, jusqu'à ce que les bords soient dorés."
+        },
+        {
+          "step": 3,
+          "instruction": "Assaisonner : Ajoutez l'ail et le blanc des oignons nouveaux 1 minute, puis la sauce soja, le sucre et l'huile de sésame."
+        },
+        {
+          "step": 4,
+          "instruction": "Mélanger : Ajoutez les nouilles et mélangez jusqu'à ce qu'elles soient brillantes et chaudes. Servez avec le vert des oignons, le sésame et le piment."
+        }
+      ],
+      "warnings": [
+        "Ne consommez pas de champignons sauvages sans identification par un expert."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "15 min",
+      "servings": "2",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Faites bien cuire les pleurotes et ne les mangez pas crues.",
+        "Choisissez des spécimens jeunes et fermes : les vieux deviennent coriaces et abritent souvent des larves de coléoptères.",
+        "Ne les confondez pas avec le pleurote en oreille (Pleurocybella porrigens), toxique : fin, blanc pur et poussant sur du bois de conifère."
+      ]
+    },
+    "elderflower-cordial": {
+      "title": "Sirop de fleurs de sureau",
+      "ingredients": [
+        "20 ombelles de fleurs de sureau, fraîchement écloses",
+        "1 litre d'eau",
+        "1 kg de sucre",
+        "2 citrons non traités, en rondelles",
+        "25 g d'acide citrique (facultatif, il aide à la conservation)",
+        "Des bouteilles stérilisées"
+      ],
+      "instructions": [
+        "Cueillir : Cueillez des ombelles crème, bien ouvertes, par une matinée sèche et ensoleillée, loin des routes passantes. Secouez-les pour chasser les insectes, mais ne les lavez pas : le parfum est dans le pollen.",
+        "Sirop : Portez l'eau et le sucre à ébullition en remuant jusqu'à ce que le sucre soit dissous, puis laissez tiédir.",
+        "Infuser : Ajoutez les fleurs, les rondelles de citron et l'acide citrique, couvrez et laissez infuser au frais 24 à 48 heures, en remuant une fois par jour.",
+        "Mettre en bouteille : Filtrez à travers un tamis garni d'une mousseline dans des bouteilles stérilisées et fermez. Se conserve 6 semaines au réfrigérateur, ou au congélateur. Diluez environ 1 pour 10 dans de l'eau plate ou gazeuse."
+      ],
+      "species": ["elderflower"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Cueillir : Cueillez des ombelles crème, bien ouvertes, par une matinée sèche et ensoleillée, loin des routes passantes. Secouez-les pour chasser les insectes, mais ne les lavez pas : le parfum est dans le pollen."
+        },
+        {
+          "step": 2,
+          "instruction": "Sirop : Portez l'eau et le sucre à ébullition en remuant jusqu'à ce que le sucre soit dissous, puis laissez tiédir."
+        },
+        {
+          "step": 3,
+          "instruction": "Infuser : Ajoutez les fleurs, les rondelles de citron et l'acide citrique, couvrez et laissez infuser au frais 24 à 48 heures, en remuant une fois par jour."
+        },
+        {
+          "step": 4,
+          "instruction": "Mettre en bouteille : Filtrez à travers un tamis garni d'une mousseline dans des bouteilles stérilisées et fermez. Se conserve 6 semaines au réfrigérateur, ou au congélateur. Diluez environ 1 pour 10 dans de l'eau plate ou gazeuse."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min + 24–48 h d'infusion",
+      "servings": "Environ 1,5 litre",
+      "tags": ["drink", "vegan", "easy"],
+      "safetyNotes": [
+        "N'utilisez que les fleurs et les tiges les plus fines : les feuilles, l'écorce et les tiges épaisses du sureau contiennent des composés toxiques.",
+        "Le sureau est un arbuste ligneux ou un petit arbre. N'utilisez pas l'hièble (Sambucus ebulus), une plante herbacée aux parties toxiques, ni les ombelles blanches poussant au sol de plantes vénéneuses comme la ciguë."
+      ]
+    },
+    "elderberry-syrup": {
+      "title": "Sirop de baies de sureau épicé",
+      "ingredients": [
+        "500 g de baies de sureau mûres, égrappées",
+        "500 ml d'eau",
+        "1 bâton de cannelle",
+        "4 clous de girofle",
+        "Un morceau de gingembre de la taille d'un pouce, en lamelles",
+        "Le jus d'1 citron",
+        "Environ 300 g de sucre ou de miel",
+        "Des bouteilles stérilisées"
+      ],
+      "instructions": [
+        "Égrapper : N'utilisez que des baies noires bien mûres. Égrappez-les à la fourchette et jetez les baies vertes et le moindre morceau de rafle.",
+        "Mijoter : Mettez les baies, l'eau et les épices dans une casserole, portez à ébullition et laissez frémir 20 minutes.",
+        "Filtrer : Écrasez légèrement les baies et filtrez le jus à travers un tamis fin ou une mousseline, en pressant doucement.",
+        "Sucrer : Remettez le jus dans la casserole avec le jus de citron et le sucre et laissez frémir 5 minutes, jusqu'à dissolution du sucre. Si vous utilisez du miel, ajoutez-le hors du feu une fois le jus tiède. Mettez en bouteille et conservez jusqu'à 3 mois au réfrigérateur. Une cuillerée dans de l'eau chaude fait une boisson d'hiver."
+      ],
+      "species": ["elderberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Égrapper : N'utilisez que des baies noires bien mûres. Égrappez-les à la fourchette et jetez les baies vertes et le moindre morceau de rafle."
+        },
+        {
+          "step": 2,
+          "instruction": "Mijoter : Mettez les baies, l'eau et les épices dans une casserole, portez à ébullition et laissez frémir 20 minutes."
+        },
+        {
+          "step": 3,
+          "instruction": "Filtrer : Écrasez légèrement les baies et filtrez le jus à travers un tamis fin ou une mousseline, en pressant doucement."
+        },
+        {
+          "step": 4,
+          "instruction": "Sucrer : Remettez le jus dans la casserole avec le jus de citron et le sucre et laissez frémir 5 minutes, jusqu'à dissolution du sucre. Si vous utilisez du miel, ajoutez-le hors du feu une fois le jus tiède. Mettez en bouteille et conservez jusqu'à 3 mois au réfrigérateur. Une cuillerée dans de l'eau chaude fait une boisson d'hiver."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "30 min",
+      "servings": "Environ 500 ml",
+      "tags": ["drink", "easy"],
+      "safetyNotes": [
+        "Ne mangez jamais de baies de sureau crues. Les baies et les graines crues, et surtout les baies vertes, les rafles et les feuilles, provoquent nausées et vomissements. Une cuisson d'au moins 20 minutes rend les baies mûres sans danger.",
+        "N'utilisez que le sureau noir (Sambucus nigra) ou le sureau du Canada (S. canadensis), des arbustes aux grappes de baies plates. Le sureau rouge (S. racemosa) et l'hièble (S. ebulus) ne s'utilisent pas."
+      ]
+    },
+    "blackberry-apple-crumble": {
+      "title": "Crumble aux mûres et aux pommes",
+      "ingredients": [
+        "400 g de mûres",
+        "2 pommes à cuire, pelées et émincées",
+        "50 g de sucre",
+        "1 c. à café de jus de citron",
+        "Pour le crumble : 150 g de farine",
+        "100 g de beurre froid, en dés",
+        "75 g de sucre roux",
+        "50 g de flocons d'avoine",
+        "Une pincée de sel"
+      ],
+      "instructions": [
+        "Fruits : Préchauffez le four à 190 °C. Mélangez les mûres et les pommes avec le sucre et le jus de citron et étalez-les dans un plat à gratin.",
+        "Crumble : Sablez le beurre et la farine du bout des doigts jusqu'à obtenir une texture de chapelure, puis incorporez le sucre roux, les flocons d'avoine et le sel.",
+        "Recouvrir : Parsemez le crumble sur les fruits sans le tasser.",
+        "Cuire : Enfournez 35 à 40 minutes, jusqu'à ce que le dessus soit doré et que le jus bouillonne sur les bords. Laissez reposer 10 minutes et servez avec de la crème, de la crème anglaise ou une glace."
+      ],
+      "species": ["blackberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Fruits : Préchauffez le four à 190 °C. Mélangez les mûres et les pommes avec le sucre et le jus de citron et étalez-les dans un plat à gratin."
+        },
+        {
+          "step": 2,
+          "instruction": "Crumble : Sablez le beurre et la farine du bout des doigts jusqu'à obtenir une texture de chapelure, puis incorporez le sucre roux, les flocons d'avoine et le sel."
+        },
+        {
+          "step": 3,
+          "instruction": "Recouvrir : Parsemez le crumble sur les fruits sans le tasser."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuire : Enfournez 35 à 40 minutes, jusqu'à ce que le dessus soit doré et que le jus bouillonne sur les bords. Laissez reposer 10 minutes et servez avec de la crème, de la crème anglaise ou une glace."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "40 min",
+      "servings": "4–6",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Cueillez au-dessus de la hauteur du genou, loin des routes passantes et des bords de champs traités.",
+        "Rincez les mûres juste avant de les utiliser et vérifiez l'absence de petits insectes et de moisissure."
+      ]
+    },
+    "wild-blueberry-pancakes": {
+      "title": "Pancakes aux myrtilles sauvages",
+      "ingredients": [
+        "150 g de myrtilles sauvages",
+        "200 g de farine",
+        "2 c. à café de levure chimique",
+        "1 c. à soupe de sucre",
+        "Une pincée de sel",
+        "2 œufs",
+        "250 ml de lait",
+        "30 g de beurre fondu, plus du beurre pour la poêle",
+        "Sirop d'érable ou miel pour servir"
+      ],
+      "instructions": [
+        "Pâte : Mélangez la farine, la levure, le sucre et le sel. Fouettez à part les œufs, le lait et le beurre fondu, puis incorporez-les juste assez pour mélanger : quelques grumeaux ne posent pas de problème.",
+        "Cuire : Faites fondre un peu de beurre dans une poêle à feu moyen. Versez de petites louches de pâte et parsemez chacune de myrtilles.",
+        "Retourner : Quand des bulles apparaissent et que les bords prennent, au bout de 2 minutes environ, retournez les pancakes et poursuivez 1 à 2 minutes.",
+        "Servir : Empilez-les chauds avec le reste des myrtilles et le sirop."
+      ],
+      "species": ["blueberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pâte : Mélangez la farine, la levure, le sucre et le sel. Fouettez à part les œufs, le lait et le beurre fondu, puis incorporez-les juste assez pour mélanger : quelques grumeaux ne posent pas de problème."
+        },
+        {
+          "step": 2,
+          "instruction": "Cuire : Faites fondre un peu de beurre dans une poêle à feu moyen. Versez de petites louches de pâte et parsemez chacune de myrtilles."
+        },
+        {
+          "step": 3,
+          "instruction": "Retourner : Quand des bulles apparaissent et que les bords prennent, au bout de 2 minutes environ, retournez les pancakes et poursuivez 1 à 2 minutes."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir : Empilez-les chauds avec le reste des myrtilles et le sirop."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2 à 4 (environ 12 pancakes)",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Dans une grande partie de l'Europe, les baies poussant près du sol peuvent porter des œufs du ténia du renard (Echinococcus multilocularis). Lavez-les bien. La cuisson tue les œufs, la congélation non : là-bas, les baies cuites sont le choix le plus sûr.",
+        "Les myrtilles poussent sur des arbrisseaux bas. La belladone, très toxique, porte des baies noires brillantes isolées, posées sur une étoile verte, sur une grande plante herbacée."
+      ]
+    },
+    "hazelnut-cocoa-spread": {
+      "title": "Pâte à tartiner maison noisette-cacao",
+      "ingredients": [
+        "200 g de noisettes décortiquées",
+        "2 c. à soupe de cacao en poudre",
+        "60 g de sucre glace ou de sirop d'érable",
+        "100 g de chocolat noir fondu (facultatif)",
+        "Une pincée de sel",
+        "1 c. à café d'extrait de vanille",
+        "2 à 4 c. à soupe d'huile neutre ou de lait",
+        "Un bocal propre"
+      ],
+      "instructions": [
+        "Torréfier : Faites griller les noisettes à 180 °C pendant 10 à 12 minutes, jusqu'à ce qu'elles embaument et que leur peau craquelle.",
+        "Monder : Frottez les noisettes encore chaudes dans un torchon propre pour retirer l'essentiel des peaux.",
+        "Mixer : Mixez les noisettes au robot 5 à 10 minutes, en raclant les parois de temps en temps, jusqu'à obtenir une purée coulante.",
+        "Parfumer : Ajoutez le cacao, le sucre, le chocolat, le sel et la vanille et mixez de nouveau, en ajoutant l'huile cuillerée par cuillerée jusqu'à obtenir une pâte lisse et tartinable. Conservez-la dans un bocal propre au réfrigérateur jusqu'à 3 semaines."
+      ],
+      "species": ["hazelnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Torréfier : Faites griller les noisettes à 180 °C pendant 10 à 12 minutes, jusqu'à ce qu'elles embaument et que leur peau craquelle."
+        },
+        {
+          "step": 2,
+          "instruction": "Monder : Frottez les noisettes encore chaudes dans un torchon propre pour retirer l'essentiel des peaux."
+        },
+        {
+          "step": 3,
+          "instruction": "Mixer : Mixez les noisettes au robot 5 à 10 minutes, en raclant les parois de temps en temps, jusqu'à obtenir une purée coulante."
+        },
+        {
+          "step": 4,
+          "instruction": "Parfumer : Ajoutez le cacao, le sucre, le chocolat, le sel et la vanille et mixez de nouveau, en ajoutant l'huile cuillerée par cuillerée jusqu'à obtenir une pâte lisse et tartinable. Conservez-la dans un bocal propre au réfrigérateur jusqu'à 3 semaines."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "12 min",
+      "servings": "1 bocal (environ 350 g)",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "La noisette est un allergène courant : prévenez les personnes avec qui vous la partagez.",
+        "Ne ramassez que des noisettes mûres, tombées à la fin de l'été et en automne. Jetez les noisettes trouées par le balanin et celles qui ont un goût de moisi ou d'amertume."
+      ]
+    },
+    "wild-mint-pea-soup": {
+      "title": "Soupe de petits pois à la menthe sauvage",
+      "ingredients": [
+        "1 petit oignon, haché",
+        "1 c. à soupe de beurre ou d'huile",
+        "1 pomme de terre, en dés",
+        "750 ml de bouillon de légumes",
+        "500 g de petits pois (surgelés, c'est très bien)",
+        "Une grosse poignée de feuilles de menthe sauvage (environ 15 g), plus quelques petites pour décorer",
+        "3 c. à soupe de crème ou de yaourt",
+        "Sel, poivre et un filet de citron"
+      ],
+      "instructions": [
+        "Faire suer : Faites suer l'oignon dans le beurre 5 minutes à feu doux, puis ajoutez la pomme de terre et le bouillon et laissez frémir 10 minutes.",
+        "Petits pois : Ajoutez les petits pois et laissez frémir 3 à 4 minutes, juste le temps qu'ils soient tendres, pour qu'ils restent bien verts.",
+        "Mixer : Retirez du feu, ajoutez les feuilles de menthe et mixez finement. Salez, poivrez et ajoutez le citron.",
+        "Servir : Ajoutez la crème en spirale et parsemez des petites feuilles de menthe. Elle se déguste chaude ou froide."
+      ],
+      "species": ["wild-mint"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Faire suer : Faites suer l'oignon dans le beurre 5 minutes à feu doux, puis ajoutez la pomme de terre et le bouillon et laissez frémir 10 minutes."
+        },
+        {
+          "step": 2,
+          "instruction": "Petits pois : Ajoutez les petits pois et laissez frémir 3 à 4 minutes, juste le temps qu'ils soient tendres, pour qu'ils restent bien verts."
+        },
+        {
+          "step": 3,
+          "instruction": "Mixer : Retirez du feu, ajoutez les feuilles de menthe et mixez finement. Salez, poivrez et ajoutez le citron."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir : Ajoutez la crème en spirale et parsemez des petites feuilles de menthe. Elle se déguste chaude ou froide."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "4",
+      "tags": ["soup", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Une menthe sauvage sent nettement la menthe quand on froisse une feuille : pas d'odeur de menthe, pas de menthe.",
+        "Écartez la menthe pouliot (Mentha pulegium : petites feuilles arrondies, tiges rampantes, fleurs en anneaux le long de la tige). Elle est toxique en grande quantité et à éviter pendant la grossesse.",
+        "Cueillez la menthe aquatique au bord de ruisseaux propres, pas dans des prairies humides pâturées par des moutons ou des bovins, où elle peut transmettre la douve du foie."
+      ]
+    },
+    "candied-violets": {
+      "title": "Violettes cristallisées",
+      "ingredients": [
+        "30 à 40 fleurs de violette odorante avec une courte tige",
+        "1 blanc d'œuf très frais, pasteurisé si possible",
+        "Du sucre semoule, finement moulu",
+        "Un petit pinceau souple",
+        "Du papier cuisson"
+      ],
+      "instructions": [
+        "Cueillir : Cueillez des fleurs fraîchement écloses par temps sec en laissant une courte tige pour les tenir. Vérifiez l'absence d'insectes.",
+        "Badigeonner : Battez légèrement le blanc d'œuf jusqu'à ce qu'il mousse à peine. En tenant une fleur par la tige, badigeonnez chaque pétale, dessus et dessous, d'une fine couche.",
+        "Sucrer : Saupoudrez toute la fleur de sucre, secouez l'excédent et posez-la, la corolle vers le haut, sur du papier cuisson.",
+        "Sécher : Laissez sécher dans un endroit chaud et sec 1 à 2 jours, jusqu'à ce qu'elles soient bien croquantes, puis coupez les tiges. Conservez-les quelques semaines dans une boîte hermétique, entre des feuilles de papier, pour décorer gâteaux et desserts."
+      ],
+      "species": ["violets"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Cueillir : Cueillez des fleurs fraîchement écloses par temps sec en laissant une courte tige pour les tenir. Vérifiez l'absence d'insectes."
+        },
+        {
+          "step": 2,
+          "instruction": "Badigeonner : Battez légèrement le blanc d'œuf jusqu'à ce qu'il mousse à peine. En tenant une fleur par la tige, badigeonnez chaque pétale, dessus et dessous, d'une fine couche."
+        },
+        {
+          "step": 3,
+          "instruction": "Sucrer : Saupoudrez toute la fleur de sucre, secouez l'excédent et posez-la, la corolle vers le haut, sur du papier cuisson."
+        },
+        {
+          "step": 4,
+          "instruction": "Sécher : Laissez sécher dans un endroit chaud et sec 1 à 2 jours, jusqu'à ce qu'elles soient bien croquantes, puis coupez les tiges. Conservez-les quelques semaines dans une boîte hermétique, entre des feuilles de papier, pour décorer gâteaux et desserts."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "45 min",
+      "cookTime": "1 à 2 jours de séchage",
+      "servings": "30 à 40 fleurs",
+      "tags": ["dessert", "vegetarian", "medium"],
+      "safetyNotes": [
+        "N'utilisez que des violettes odorantes (Viola odorata) ou d'autres violettes sauvages. Les violettes africaines (Saintpaulia) ne sont pas apparentées et ne se mangent pas.",
+        "Le blanc d'œuf cru présente un petit risque de salmonelle : utilisez du blanc pasteurisé pour les jeunes enfants, les femmes enceintes et les personnes âgées.",
+        "Cueillez là où aucun désherbant n'est pulvérisé et loin des chemins fréquentés par les chiens."
+      ]
+    },
+    "plantain-leaf-crisps": {
+      "title": "Chips de feuilles de plantain",
+      "ingredients": [
+        "2 grosses poignées de jeunes feuilles de plantain",
+        "1 c. à soupe d'huile d'olive",
+        "Fleur de sel",
+        "Paprika fumé ou ail en poudre (facultatif)"
+      ],
+      "instructions": [
+        "Préchauffer : Préchauffez le four à 150 °C (130 °C chaleur tournante).",
+        "Préparer : Cueillez des feuilles jeunes et tendres, pas plus grandes que la paume. Lavez-les et séchez-les complètement : l'eau restante les ferait cuire à la vapeur au lieu de les rendre croustillantes.",
+        "Assaisonner : Mélangez les feuilles avec l'huile et les épices pour les enrober légèrement, puis étalez-les à plat sur du papier cuisson sans qu'elles se chevauchent.",
+        "Cuire : Enfournez 15 à 20 minutes en les retournant une fois, jusqu'à ce qu'elles soient croustillantes mais encore vertes. Laissez-les refroidir sur la plaque et mangez-les le jour même."
+      ],
+      "species": ["plantain"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Préchauffer : Préchauffez le four à 150 °C (130 °C chaleur tournante)."
+        },
+        {
+          "step": 2,
+          "instruction": "Préparer : Cueillez des feuilles jeunes et tendres, pas plus grandes que la paume. Lavez-les et séchez-les complètement : l'eau restante les ferait cuire à la vapeur au lieu de les rendre croustillantes."
+        },
+        {
+          "step": 3,
+          "instruction": "Assaisonner : Mélangez les feuilles avec l'huile et les épices pour les enrober légèrement, puis étalez-les à plat sur du papier cuisson sans qu'elles se chevauchent."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuire : Enfournez 15 à 20 minutes en les retournant une fois, jusqu'à ce qu'elles soient croustillantes mais encore vertes. Laissez-les refroidir sur la plaque et mangez-les le jour même."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2",
+      "tags": ["appetizer", "vegan", "easy"],
+      "safetyNotes": [
+        "Cueillez loin des bords de route, des chemins de promenade des chiens et des pelouses traitées : le plantain aime les sols piétinés.",
+        "Les feuilles de plantain ont de fortes nervures parallèles qui s'arrachent comme des fils. Les feuilles de digitale, toxiques, ont des nervures en réseau et sont finement duveteuses."
+      ]
+    },
+    "pickled-daisy-buds": {
+      "title": "Boutons de pâquerette au vinaigre",
+      "ingredients": [
+        "50 g de boutons de pâquerette fermés",
+        "1 c. à soupe de sel",
+        "100 ml de vinaigre de vin blanc",
+        "100 ml d'eau",
+        "1 c. à café de sucre",
+        "1 petit brin d'aneth",
+        "1 feuille de laurier",
+        "Quelques grains de poivre",
+        "Un petit bocal stérilisé"
+      ],
+      "instructions": [
+        "Cueillir : Cueillez des boutons verts bien fermés, avant que le blanc n'apparaisse, sur des pelouses et des prés propres. Rincez-les et égouttez-les.",
+        "Saler : Mélangez les boutons avec le sel et laissez-les 12 heures pour qu'ils rendent leur eau, puis rincez-les et séchez-les.",
+        "Saumure : Portez à ébullition le vinaigre, l'eau, le sucre, le laurier et le poivre.",
+        "Mettre en bocal : Mettez les boutons et l'aneth dans le bocal, couvrez de vinaigre chaud et fermez. Attendez au moins 2 semaines avant de les manger. Utilisez-les comme des câpres dans les salades, les sauces et avec le poisson."
+      ],
+      "species": ["daisy"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Cueillir : Cueillez des boutons verts bien fermés, avant que le blanc n'apparaisse, sur des pelouses et des prés propres. Rincez-les et égouttez-les."
+        },
+        {
+          "step": 2,
+          "instruction": "Saler : Mélangez les boutons avec le sel et laissez-les 12 heures pour qu'ils rendent leur eau, puis rincez-les et séchez-les."
+        },
+        {
+          "step": 3,
+          "instruction": "Saumure : Portez à ébullition le vinaigre, l'eau, le sucre, le laurier et le poivre."
+        },
+        {
+          "step": 4,
+          "instruction": "Mettre en bocal : Mettez les boutons et l'aneth dans le bocal, couvrez de vinaigre chaud et fermez. Attendez au moins 2 semaines avant de les manger. Utilisez-les comme des câpres dans les salades, les sauces et avec le poisson."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min",
+      "servings": "1 petit bocal",
+      "tags": ["side", "vegan", "easy"],
+      "safetyNotes": [
+        "Assurez-vous qu'il s'agit de pâquerettes (Bellis perennis) : des fleurs solitaires sur des tiges sans feuilles, partant d'une rosette plate de feuilles en forme de spatule.",
+        "Cueillez sur des pelouses non traitées et non fertilisées, loin des zones fréquentées par les chiens.",
+        "Les personnes allergiques aux Astéracées, par exemple à l'ambroisie ou à la camomille, peuvent y réagir."
+      ]
     }
   }
 }

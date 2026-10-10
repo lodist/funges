@@ -1870,6 +1870,541 @@
         "Raccogli bacche arancione vivo e succose, da fine estate in poi, a mano o in una ciotola. Non spezzare né tagliare i rami degli arbusti selvatici: li danneggia, e in Finlandia è vietato.",
         "La raccolta può essere vietata nelle dune protette e nelle riserve naturali: informati sulle regole locali. L'arbusto è molto spinoso: usa i guanti."
       ]
+    },
+    "chicken-of-the-woods-piccata": {
+      "title": "Piccata di poliporo sulfureo",
+      "ingredients": [
+        "400 g di poliporo sulfureo giovane, i bordi esterni teneri",
+        "2 cucchiai di farina",
+        "2 cucchiai di olio d'oliva",
+        "30 g di burro",
+        "1 spicchio d'aglio, tritato finemente",
+        "120 ml di brodo vegetale",
+        "Il succo di 1 limone",
+        "1 cucchiaio di capperi, sciacquati",
+        "Una manciata di prezzemolo, tritato",
+        "Sale e pepe"
+      ],
+      "instructions": [
+        "Pulire: Usa solo i 5–10 cm esterni e morbidi degli esemplari giovani ed elimina le parti dure o legnose. Puliscili con un pennello e tagliali a fette di 1 cm.",
+        "Rosolare: Condisci le fette, infarinale e rosolale nell'olio a fuoco medio-alto per 4–5 minuti per lato, finché sono dorate e ben cotte. Mettile da parte.",
+        "Salsa: Sciogli il burro nella stessa padella e soffriggi l'aglio per 30 secondi. Aggiungi il brodo, il succo di limone e i capperi e fai sobbollire per 2 minuti.",
+        "Finire: Rimetti i funghi in padella, girali nella salsa per un minuto e cospargili di prezzemolo. Servi con riso, pasta o pane."
+      ],
+      "species": ["chicken-of-the-woods"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pulire: Usa solo i 5–10 cm esterni e morbidi degli esemplari giovani ed elimina le parti dure o legnose. Puliscili con un pennello e tagliali a fette di 1 cm."
+        },
+        {
+          "step": 2,
+          "instruction": "Rosolare: Condisci le fette, infarinale e rosolale nell'olio a fuoco medio-alto per 4–5 minuti per lato, finché sono dorate e ben cotte. Mettile da parte."
+        },
+        {
+          "step": 3,
+          "instruction": "Salsa: Sciogli il burro nella stessa padella e soffriggi l'aglio per 30 secondi. Aggiungi il brodo, il succo di limone e i capperi e fai sobbollire per 2 minuti."
+        },
+        {
+          "step": 4,
+          "instruction": "Finire: Rimetti i funghi in padella, girali nella salsa per un minuto e cospargili di prezzemolo. Servi con riso, pasta o pane."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "15 min",
+      "servings": "2",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cuoci sempre bene il poliporo sulfureo: crudo o poco cotto, irrita lo stomaco.",
+        "Alcune persone reagiscono anche da cotto. La prima volta mangiane una piccola porzione e aspetta un giorno.",
+        "Non raccogliere esemplari che crescono su tasso, eucalipto o conifere, associati a più reazioni, né esemplari vecchi diventati pallidi, friabili o gessosi."
+      ]
+    },
+    "garlic-oyster-mushroom-noodles": {
+      "title": "Noodles all'aglio con pleurotus",
+      "ingredients": [
+        "300 g di pleurotus",
+        "200 g di noodles di grano o all'uovo",
+        "2 cucchiai di olio di semi",
+        "3 spicchi d'aglio, a fettine",
+        "2 cipollotti, a rondelle, parte bianca e verde separate",
+        "2 cucchiai di salsa di soia",
+        "1 cucchiaino di olio di sesamo",
+        "1 cucchiaino di zucchero o miele",
+        "1 cucchiaino di semi di sesamo tostati",
+        "Peperoncino in fiocchi (facoltativo)"
+      ],
+      "instructions": [
+        "Preparare: Strappa i funghi a listarelle seguendo le lamelle ed elimina le basi del gambo dure. Cuoci i noodles come indicato sulla confezione e scolali.",
+        "Rosolare: Scalda l'olio in una padella larga e disponi i funghi in un solo strato. Cuocili senza mescolare per 3–4 minuti, poi girali e cuoci altri 3 minuti, finché i bordi sono dorati.",
+        "Insaporire: Aggiungi l'aglio e la parte bianca dei cipollotti per 1 minuto, poi la salsa di soia, lo zucchero e l'olio di sesamo.",
+        "Saltare: Aggiungi i noodles e saltali finché sono lucidi e caldi. Servi con la parte verde dei cipollotti, il sesamo e il peperoncino."
+      ],
+      "species": ["oyster-mushroom"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparare: Strappa i funghi a listarelle seguendo le lamelle ed elimina le basi del gambo dure. Cuoci i noodles come indicato sulla confezione e scolali."
+        },
+        {
+          "step": 2,
+          "instruction": "Rosolare: Scalda l'olio in una padella larga e disponi i funghi in un solo strato. Cuocili senza mescolare per 3–4 minuti, poi girali e cuoci altri 3 minuti, finché i bordi sono dorati."
+        },
+        {
+          "step": 3,
+          "instruction": "Insaporire: Aggiungi l'aglio e la parte bianca dei cipollotti per 1 minuto, poi la salsa di soia, lo zucchero e l'olio di sesamo."
+        },
+        {
+          "step": 4,
+          "instruction": "Saltare: Aggiungi i noodles e saltali finché sono lucidi e caldi. Servi con la parte verde dei cipollotti, il sesamo e il peperoncino."
+        }
+      ],
+      "warnings": [
+        "Non consumare funghi selvatici se non identificati da un esperto."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "15 min",
+      "servings": "2",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cuoci bene i pleurotus e non mangiarli crudi.",
+        "Usa esemplari giovani e sodi: quelli vecchi diventano duri e spesso nascondono larve di coleotteri.",
+        "Non confonderli con il Pleurocybella porrigens, tossico: sottile, bianco puro e cresce sul legno di conifera."
+      ]
+    },
+    "elderflower-cordial": {
+      "title": "Sciroppo di fiori di sambuco",
+      "ingredients": [
+        "20 ombrelle di fiori di sambuco, appena sbocciate",
+        "1 litro d'acqua",
+        "1 kg di zucchero",
+        "2 limoni non trattati, a fette",
+        "25 g di acido citrico (facoltativo, aiuta la conservazione)",
+        "Bottiglie sterilizzate"
+      ],
+      "instructions": [
+        "Raccogliere: Raccogli ombrelle color crema, ben aperte, in una mattina asciutta e soleggiata, lontano dalle strade trafficate. Scuotile per far uscire gli insetti, ma non lavarle: il profumo è nel polline.",
+        "Sciroppo: Porta a ebollizione l'acqua con lo zucchero mescolando finché si scioglie, poi lascia intiepidire.",
+        "Macerare: Aggiungi i fiori, le fette di limone e l'acido citrico, copri e lascia in un luogo fresco per 24–48 ore, mescolando una volta al giorno.",
+        "Imbottigliare: Filtra attraverso un colino foderato con una garza in bottiglie sterilizzate e chiudi. Si conserva in frigorifero fino a 6 settimane, oppure in freezer. Diluisci circa 1 a 10 con acqua naturale o frizzante."
+      ],
+      "species": ["elderflower"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Raccogliere: Raccogli ombrelle color crema, ben aperte, in una mattina asciutta e soleggiata, lontano dalle strade trafficate. Scuotile per far uscire gli insetti, ma non lavarle: il profumo è nel polline."
+        },
+        {
+          "step": 2,
+          "instruction": "Sciroppo: Porta a ebollizione l'acqua con lo zucchero mescolando finché si scioglie, poi lascia intiepidire."
+        },
+        {
+          "step": 3,
+          "instruction": "Macerare: Aggiungi i fiori, le fette di limone e l'acido citrico, copri e lascia in un luogo fresco per 24–48 ore, mescolando una volta al giorno."
+        },
+        {
+          "step": 4,
+          "instruction": "Imbottigliare: Filtra attraverso un colino foderato con una garza in bottiglie sterilizzate e chiudi. Si conserva in frigorifero fino a 6 settimane, oppure in freezer. Diluisci circa 1 a 10 con acqua naturale o frizzante."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min + 24–48 h di macerazione",
+      "servings": "Circa 1,5 litri",
+      "tags": ["drink", "vegan", "easy"],
+      "safetyNotes": [
+        "Usa solo i fiori e i gambi più sottili: foglie, corteccia e fusti spessi del sambuco contengono sostanze tossiche.",
+        "Il sambuco è un arbusto legnoso o un piccolo albero. Non usare il sambuco ebbio (Sambucus ebulus), una pianta erbacea con parti tossiche, né le ombrelle bianche che crescono a terra di piante velenose come la cicuta."
+      ]
+    },
+    "elderberry-syrup": {
+      "title": "Sciroppo speziato di bacche di sambuco",
+      "ingredients": [
+        "500 g di bacche di sambuco mature, sgranate",
+        "500 ml d'acqua",
+        "1 stecca di cannella",
+        "4 chiodi di garofano",
+        "Un pezzo di zenzero grande come un pollice, a fettine",
+        "Il succo di 1 limone",
+        "Circa 300 g di zucchero o miele",
+        "Bottiglie sterilizzate"
+      ],
+      "instructions": [
+        "Sgranare: Usa solo bacche nere ben mature. Sgranale con una forchetta ed elimina le bacche verdi e ogni pezzetto di raspo.",
+        "Sobbollire: Metti le bacche, l'acqua e le spezie in una pentola, porta a ebollizione e fai sobbollire dolcemente per 20 minuti.",
+        "Filtrare: Schiaccia leggermente le bacche e filtra il succo attraverso un colino fine o una garza, premendo con delicatezza.",
+        "Dolcificare: Rimetti il succo nella pentola con il succo di limone e lo zucchero e fai sobbollire per 5 minuti, finché lo zucchero si scioglie. Se usi il miele, aggiungilo fuori dal fuoco quando il succo è tiepido. Imbottiglia e conserva in frigorifero fino a 3 mesi. Un cucchiaio in acqua calda è una bevanda invernale."
+      ],
+      "species": ["elderberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sgranare: Usa solo bacche nere ben mature. Sgranale con una forchetta ed elimina le bacche verdi e ogni pezzetto di raspo."
+        },
+        {
+          "step": 2,
+          "instruction": "Sobbollire: Metti le bacche, l'acqua e le spezie in una pentola, porta a ebollizione e fai sobbollire dolcemente per 20 minuti."
+        },
+        {
+          "step": 3,
+          "instruction": "Filtrare: Schiaccia leggermente le bacche e filtra il succo attraverso un colino fine o una garza, premendo con delicatezza."
+        },
+        {
+          "step": 4,
+          "instruction": "Dolcificare: Rimetti il succo nella pentola con il succo di limone e lo zucchero e fai sobbollire per 5 minuti, finché lo zucchero si scioglie. Se usi il miele, aggiungilo fuori dal fuoco quando il succo è tiepido. Imbottiglia e conserva in frigorifero fino a 3 mesi. Un cucchiaio in acqua calda è una bevanda invernale."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "30 min",
+      "servings": "Circa 500 ml",
+      "tags": ["drink", "easy"],
+      "safetyNotes": [
+        "Non mangiare mai bacche di sambuco crude. Le bacche e i semi crudi, e soprattutto le bacche verdi, i raspi e le foglie, provocano nausea e vomito. Una cottura di almeno 20 minuti rende sicure le bacche mature.",
+        "Usa solo il sambuco nero (Sambucus nigra) o il sambuco canadese (S. canadensis), arbusti con grappoli di bacche piatti. Il sambuco rosso (S. racemosa) e l'ebbio (S. ebulus) non si usano."
+      ]
+    },
+    "blackberry-apple-crumble": {
+      "title": "Crumble di more e mele",
+      "ingredients": [
+        "400 g di more",
+        "2 mele da cuocere, sbucciate e a fette",
+        "50 g di zucchero",
+        "1 cucchiaino di succo di limone",
+        "Per il crumble: 150 g di farina",
+        "100 g di burro freddo, a dadini",
+        "75 g di zucchero di canna",
+        "50 g di fiocchi d'avena",
+        "Un pizzico di sale"
+      ],
+      "instructions": [
+        "Frutta: Scalda il forno a 190 °C. Mescola le more e le mele con lo zucchero e il succo di limone e distribuiscile in una pirofila.",
+        "Crumble: Lavora il burro con la farina con la punta delle dita finché sembra pangrattato, poi unisci lo zucchero di canna, l'avena e il sale.",
+        "Coprire: Distribuisci il crumble sulla frutta senza schiacciarlo.",
+        "Cuocere: Inforna per 35–40 minuti, finché la superficie è dorata e il succo bolle ai bordi. Lascia riposare 10 minuti e servi con panna, crema inglese o gelato."
+      ],
+      "species": ["blackberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Frutta: Scalda il forno a 190 °C. Mescola le more e le mele con lo zucchero e il succo di limone e distribuiscile in una pirofila."
+        },
+        {
+          "step": 2,
+          "instruction": "Crumble: Lavora il burro con la farina con la punta delle dita finché sembra pangrattato, poi unisci lo zucchero di canna, l'avena e il sale."
+        },
+        {
+          "step": 3,
+          "instruction": "Coprire: Distribuisci il crumble sulla frutta senza schiacciarlo."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuocere: Inforna per 35–40 minuti, finché la superficie è dorata e il succo bolle ai bordi. Lascia riposare 10 minuti e servi con panna, crema inglese o gelato."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "40 min",
+      "servings": "4–6",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Raccogli sopra l'altezza del ginocchio, lontano dalle strade trafficate e dai bordi dei campi trattati.",
+        "Sciacqua le more appena prima di usarle e controlla che non ci siano piccoli insetti o muffa."
+      ]
+    },
+    "wild-blueberry-pancakes": {
+      "title": "Pancake ai mirtilli selvatici",
+      "ingredients": [
+        "150 g di mirtilli selvatici",
+        "200 g di farina",
+        "2 cucchiaini di lievito per dolci",
+        "1 cucchiaio di zucchero",
+        "Un pizzico di sale",
+        "2 uova",
+        "250 ml di latte",
+        "30 g di burro fuso, più burro per la padella",
+        "Sciroppo d'acero o miele per servire"
+      ],
+      "instructions": [
+        "Pastella: Mescola la farina, il lievito, lo zucchero e il sale. Sbatti a parte le uova, il latte e il burro fuso e uniscili appena quanto basta: qualche grumo va bene.",
+        "Cuocere: Sciogli un po' di burro in una padella a fuoco medio. Versa piccoli mestoli di pastella e cospargi ognuno di mirtilli.",
+        "Girare: Quando compaiono le bolle e i bordi si rapprendono, dopo circa 2 minuti, gira i pancake e cuocili per altri 1–2 minuti.",
+        "Servire: Impilali caldi con il resto dei mirtilli e lo sciroppo."
+      ],
+      "species": ["blueberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pastella: Mescola la farina, il lievito, lo zucchero e il sale. Sbatti a parte le uova, il latte e il burro fuso e uniscili appena quanto basta: qualche grumo va bene."
+        },
+        {
+          "step": 2,
+          "instruction": "Cuocere: Sciogli un po' di burro in una padella a fuoco medio. Versa piccoli mestoli di pastella e cospargi ognuno di mirtilli."
+        },
+        {
+          "step": 3,
+          "instruction": "Girare: Quando compaiono le bolle e i bordi si rapprendono, dopo circa 2 minuti, gira i pancake e cuocili per altri 1–2 minuti."
+        },
+        {
+          "step": 4,
+          "instruction": "Servire: Impilali caldi con il resto dei mirtilli e lo sciroppo."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4 (circa 12 pancake)",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "In gran parte d'Europa i frutti di bosco che crescono vicino al suolo possono portare uova di tenia della volpe (Echinococcus multilocularis). Lavali bene. La cottura uccide le uova, il congelamento no, quindi lì i mirtilli cotti sono la scelta più sicura.",
+        "I mirtilli crescono su arbusti bassi. La belladonna, molto velenosa, ha bacche nere lucide singole posate su una stella verde, su una pianta erbacea alta."
+      ]
+    },
+    "hazelnut-cocoa-spread": {
+      "title": "Crema spalmabile fatta in casa nocciole e cacao",
+      "ingredients": [
+        "200 g di nocciole sgusciate",
+        "2 cucchiai di cacao in polvere",
+        "60 g di zucchero a velo o sciroppo d'acero",
+        "100 g di cioccolato fondente fuso (facoltativo)",
+        "Un pizzico di sale",
+        "1 cucchiaino di estratto di vaniglia",
+        "2–4 cucchiai di olio di semi o latte",
+        "Un barattolo pulito"
+      ],
+      "instructions": [
+        "Tostare: Tosta le nocciole a 180 °C per 10–12 minuti, finché profumano e la pellicina si crepa.",
+        "Spellare: Strofina le nocciole ancora calde in un canovaccio pulito per togliere la maggior parte della pellicina.",
+        "Frullare: Frulla le nocciole nel mixer per 5–10 minuti, raschiando ogni tanto le pareti, finché diventano una pasta fluida.",
+        "Insaporire: Aggiungi il cacao, lo zucchero, il cioccolato, il sale e la vaniglia e frulla di nuovo, unendo l'olio un cucchiaio alla volta finché la crema è liscia e spalmabile. Conservala in un barattolo pulito in frigorifero fino a 3 settimane."
+      ],
+      "species": ["hazelnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Tostare: Tosta le nocciole a 180 °C per 10–12 minuti, finché profumano e la pellicina si crepa."
+        },
+        {
+          "step": 2,
+          "instruction": "Spellare: Strofina le nocciole ancora calde in un canovaccio pulito per togliere la maggior parte della pellicina."
+        },
+        {
+          "step": 3,
+          "instruction": "Frullare: Frulla le nocciole nel mixer per 5–10 minuti, raschiando ogni tanto le pareti, finché diventano una pasta fluida."
+        },
+        {
+          "step": 4,
+          "instruction": "Insaporire: Aggiungi il cacao, lo zucchero, il cioccolato, il sale e la vaniglia e frulla di nuovo, unendo l'olio un cucchiaio alla volta finché la crema è liscia e spalmabile. Conservala in un barattolo pulito in frigorifero fino a 3 settimane."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "12 min",
+      "servings": "1 barattolo (circa 350 g)",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Le nocciole sono un allergene comune: avvisa chi la condivide con te.",
+        "Raccogli solo nocciole maturate e cadute a fine estate e in autunno. Butta quelle bucate dal balanino e quelle che sanno di muffa o di amaro."
+      ]
+    },
+    "wild-mint-pea-soup": {
+      "title": "Zuppa di piselli alla menta selvatica",
+      "ingredients": [
+        "1 cipolla piccola, tritata",
+        "1 cucchiaio di burro o olio",
+        "1 patata, a dadini",
+        "750 ml di brodo vegetale",
+        "500 g di piselli (vanno bene anche surgelati)",
+        "Una grossa manciata di foglie di menta selvatica (circa 15 g), più qualche fogliolina per guarnire",
+        "3 cucchiai di panna o yogurt",
+        "Sale, pepe e una spruzzata di limone"
+      ],
+      "instructions": [
+        "Appassire: Fai appassire la cipolla nel burro a fuoco dolce per 5 minuti, poi aggiungi la patata e il brodo e fai sobbollire per 10 minuti.",
+        "Piselli: Aggiungi i piselli e fai sobbollire per 3–4 minuti, solo finché sono teneri, così restano verde brillante.",
+        "Frullare: Togli dal fuoco, aggiungi le foglie di menta e frulla fino a renderla liscia. Regola di sale, pepe e limone.",
+        "Servire: Aggiungi la panna a spirale e cospargi con le foglioline di menta. È buona calda o fredda."
+      ],
+      "species": ["wild-mint"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Appassire: Fai appassire la cipolla nel burro a fuoco dolce per 5 minuti, poi aggiungi la patata e il brodo e fai sobbollire per 10 minuti."
+        },
+        {
+          "step": 2,
+          "instruction": "Piselli: Aggiungi i piselli e fai sobbollire per 3–4 minuti, solo finché sono teneri, così restano verde brillante."
+        },
+        {
+          "step": 3,
+          "instruction": "Frullare: Togli dal fuoco, aggiungi le foglie di menta e frulla fino a renderla liscia. Regola di sale, pepe e limone."
+        },
+        {
+          "step": 4,
+          "instruction": "Servire: Aggiungi la panna a spirale e cospargi con le foglioline di menta. È buona calda o fredda."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "4",
+      "tags": ["soup", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Una menta selvatica sa chiaramente di menta quando ne sfreghi una foglia: niente profumo di menta, niente menta.",
+        "Escludi il puleggio (Mentha pulegium: foglie piccole e arrotondate, fusti striscianti, fiori in verticilli lungo il fusto). È tossica in quantità maggiori e va evitata in gravidanza.",
+        "Raccogli la menta acquatica lungo ruscelli puliti, non nei pascoli umidi frequentati da pecore o bovini, dove può trasmettere la fasciola epatica."
+      ]
+    },
+    "candied-violets": {
+      "title": "Violette candite",
+      "ingredients": [
+        "30–40 fiori di viola mammola con un gambo corto",
+        "1 albume freschissimo, pastorizzato se possibile",
+        "Zucchero semolato, macinato fine",
+        "Un pennellino morbido",
+        "Carta da forno"
+      ],
+      "instructions": [
+        "Raccogliere: Raccogli fiori appena sbocciati in una giornata asciutta e lascia un gambo corto per tenerli. Controlla che non ci siano insetti.",
+        "Spennellare: Sbatti leggermente l'albume finché fa appena la schiuma. Tenendo un fiore per il gambo, spennella ogni petalo, davanti e dietro, con uno strato sottile.",
+        "Zuccherare: Cospargi tutto il fiore di zucchero, scuoti via l'eccesso e appoggialo a faccia in su sulla carta da forno.",
+        "Essiccare: Lasciali in un luogo caldo e asciutto per 1–2 giorni, finché sono completamente croccanti, poi taglia i gambi. Conservali per qualche settimana in una scatola ermetica tra strati di carta e usali su torte e dolci."
+      ],
+      "species": ["violets"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Raccogliere: Raccogli fiori appena sbocciati in una giornata asciutta e lascia un gambo corto per tenerli. Controlla che non ci siano insetti."
+        },
+        {
+          "step": 2,
+          "instruction": "Spennellare: Sbatti leggermente l'albume finché fa appena la schiuma. Tenendo un fiore per il gambo, spennella ogni petalo, davanti e dietro, con uno strato sottile."
+        },
+        {
+          "step": 3,
+          "instruction": "Zuccherare: Cospargi tutto il fiore di zucchero, scuoti via l'eccesso e appoggialo a faccia in su sulla carta da forno."
+        },
+        {
+          "step": 4,
+          "instruction": "Essiccare: Lasciali in un luogo caldo e asciutto per 1–2 giorni, finché sono completamente croccanti, poi taglia i gambi. Conservali per qualche settimana in una scatola ermetica tra strati di carta e usali su torte e dolci."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "45 min",
+      "cookTime": "1–2 giorni di essiccazione",
+      "servings": "30–40 fiori",
+      "tags": ["dessert", "vegetarian", "medium"],
+      "safetyNotes": [
+        "Usa solo viole mammole (Viola odorata) o altre viole selvatiche. Le violette africane (Saintpaulia) non sono imparentate e non si mangiano.",
+        "L'albume crudo comporta un piccolo rischio di salmonella: usa albume pastorizzato per bambini piccoli, donne in gravidanza e anziani.",
+        "Raccogli dove non si spruzzano diserbanti e lontano dai sentieri frequentati dai cani."
+      ]
+    },
+    "plantain-leaf-crisps": {
+      "title": "Chips di foglie di piantaggine",
+      "ingredients": [
+        "2 grosse manciate di foglie giovani di piantaggine",
+        "1 cucchiaio di olio d'oliva",
+        "Sale in fiocchi",
+        "Paprika affumicata o aglio in polvere (facoltativi)"
+      ],
+      "instructions": [
+        "Scaldare: Scalda il forno a 150 °C (130 °C ventilato).",
+        "Preparare: Raccogli foglie giovani e tenere, non più grandi del palmo della mano. Lavale e asciugale completamente: l'acqua rimasta le farebbe cuocere al vapore invece di renderle croccanti.",
+        "Condire: Mescola le foglie con l'olio e le spezie in modo che ognuna sia appena unta, poi stendile piatte sulla carta da forno senza sovrapporle.",
+        "Cuocere: Inforna per 15–20 minuti, girandole una volta, finché sono croccanti ma ancora verdi. Lasciale raffreddare sulla teglia e mangiale in giornata."
+      ],
+      "species": ["plantain"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Scaldare: Scalda il forno a 150 °C (130 °C ventilato)."
+        },
+        {
+          "step": 2,
+          "instruction": "Preparare: Raccogli foglie giovani e tenere, non più grandi del palmo della mano. Lavale e asciugale completamente: l'acqua rimasta le farebbe cuocere al vapore invece di renderle croccanti."
+        },
+        {
+          "step": 3,
+          "instruction": "Condire: Mescola le foglie con l'olio e le spezie in modo che ognuna sia appena unta, poi stendile piatte sulla carta da forno senza sovrapporle."
+        },
+        {
+          "step": 4,
+          "instruction": "Cuocere: Inforna per 15–20 minuti, girandole una volta, finché sono croccanti ma ancora verdi. Lasciale raffreddare sulla teglia e mangiale in giornata."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2",
+      "tags": ["appetizer", "vegan", "easy"],
+      "safetyNotes": [
+        "Raccogli lontano dai bordi delle strade, dai sentieri dei cani e dai prati trattati: la piantaggine ama il terreno calpestato.",
+        "Le foglie di piantaggine hanno robuste nervature parallele che si sfilano come fili. Le foglie di digitale, velenose, hanno una rete di nervature e sono vellutate."
+      ]
+    },
+    "pickled-daisy-buds": {
+      "title": "Boccioli di margherita sott'aceto",
+      "ingredients": [
+        "50 g di boccioli chiusi di margherita",
+        "1 cucchiaio di sale",
+        "100 ml di aceto di vino bianco",
+        "100 ml d'acqua",
+        "1 cucchiaino di zucchero",
+        "1 rametto di aneto",
+        "1 foglia di alloro",
+        "Qualche grano di pepe",
+        "Un barattolino sterilizzato"
+      ],
+      "instructions": [
+        "Raccogliere: Raccogli boccioli verdi ben chiusi, prima che si veda il bianco, su prati puliti. Sciacquali e scolali.",
+        "Salare: Mescola i boccioli con il sale e lasciali riposare 12 ore perché perdano l'acqua, poi sciacquali e asciugali.",
+        "Salamoia: Porta a ebollizione l'aceto, l'acqua, lo zucchero, l'alloro e il pepe.",
+        "Invasare: Metti i boccioli e l'aneto nel barattolo, coprili con l'aceto caldo e chiudi. Aspetta almeno 2 settimane prima di mangiarli. Usali come capperi in insalate, salse e con il pesce."
+      ],
+      "species": ["daisy"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Raccogliere: Raccogli boccioli verdi ben chiusi, prima che si veda il bianco, su prati puliti. Sciacquali e scolali."
+        },
+        {
+          "step": 2,
+          "instruction": "Salare: Mescola i boccioli con il sale e lasciali riposare 12 ore perché perdano l'acqua, poi sciacquali e asciugali."
+        },
+        {
+          "step": 3,
+          "instruction": "Salamoia: Porta a ebollizione l'aceto, l'acqua, lo zucchero, l'alloro e il pepe."
+        },
+        {
+          "step": 4,
+          "instruction": "Invasare: Metti i boccioli e l'aneto nel barattolo, coprili con l'aceto caldo e chiudi. Aspetta almeno 2 settimane prima di mangiarli. Usali come capperi in insalate, salse e con il pesce."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min",
+      "servings": "1 barattolino",
+      "tags": ["side", "vegan", "easy"],
+      "safetyNotes": [
+        "Assicurati che siano margheritine (Bellis perennis): fiori singoli su steli senza foglie che nascono da una rosetta piatta di foglie a spatola.",
+        "Raccogli su prati non trattati né concimati, lontano dalle aree frequentate dai cani.",
+        "Chi è allergico alle Asteraceae, per esempio all'ambrosia o alla camomilla, può reagire."
+      ]
     }
   }
 }

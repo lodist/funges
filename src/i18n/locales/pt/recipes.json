@@ -1866,6 +1866,541 @@
         "Apanhe bagas cor de laranja vivo e sumarentas a partir do fim do verão, à mão ou para uma tigela. Não parta nem corte ramos dos arbustos silvestres: danifica-os, e na Finlândia é proibido.",
         "A apanha pode ser proibida em dunas protegidas e reservas naturais: informe-se sobre as regras locais. O arbusto tem muitos espinhos: use luvas."
       ]
+    },
+    "chicken-of-the-woods-piccata": {
+      "title": "Piccata de frango-da-mata",
+      "ingredients": [
+        "400 g de frango-da-mata jovem, as margens exteriores tenras",
+        "2 colheres de sopa de farinha",
+        "2 colheres de sopa de azeite",
+        "30 g de manteiga",
+        "1 dente de alho, finamente picado",
+        "120 ml de caldo de legumes",
+        "Sumo de 1 limão",
+        "1 colher de sopa de alcaparras, passadas por água",
+        "Uma mão-cheia de salsa, picada",
+        "Sal e pimenta"
+      ],
+      "instructions": [
+        "Limpar: Use apenas os 5–10 cm exteriores e macios de exemplares jovens e retire tudo o que for duro ou lenhoso. Limpe-os com um pincel e corte-os em fatias de 1 cm.",
+        "Fritar: Tempere as fatias, passe-as por farinha e frite-as no azeite em lume médio-alto 4–5 minutos de cada lado, até ficarem douradas e bem cozinhadas. Reserve.",
+        "Molho: Derreta a manteiga na mesma frigideira e aloure o alho 30 segundos. Junte o caldo, o sumo de limão e as alcaparras e deixe ferver em lume brando 2 minutos.",
+        "Terminar: Volte a pôr os cogumelos na frigideira, envolva-os no molho durante um minuto e polvilhe com salsa. Sirva com arroz, massa ou pão."
+      ],
+      "species": ["chicken-of-the-woods"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Limpar: Use apenas os 5–10 cm exteriores e macios de exemplares jovens e retire tudo o que for duro ou lenhoso. Limpe-os com um pincel e corte-os em fatias de 1 cm."
+        },
+        {
+          "step": 2,
+          "instruction": "Fritar: Tempere as fatias, passe-as por farinha e frite-as no azeite em lume médio-alto 4–5 minutos de cada lado, até ficarem douradas e bem cozinhadas. Reserve."
+        },
+        {
+          "step": 3,
+          "instruction": "Molho: Derreta a manteiga na mesma frigideira e aloure o alho 30 segundos. Junte o caldo, o sumo de limão e as alcaparras e deixe ferver em lume brando 2 minutos."
+        },
+        {
+          "step": 4,
+          "instruction": "Terminar: Volte a pôr os cogumelos na frigideira, envolva-os no molho durante um minuto e polvilhe com salsa. Sirva com arroz, massa ou pão."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "15 min",
+      "servings": "2",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cozinhe sempre bem o frango-da-mata: cru ou mal cozinhado, faz mal ao estômago.",
+        "Algumas pessoas reagem mesmo cozinhado. Da primeira vez, coma uma porção pequena e espere um dia.",
+        "Não colha exemplares que cresçam em teixo, eucalipto ou coníferas, associados a mais reações, nem exemplares velhos que tenham ficado pálidos, quebradiços ou calcários."
+      ]
+    },
+    "garlic-oyster-mushroom-noodles": {
+      "title": "Noodles com alho e cogumelos-ostra",
+      "ingredients": [
+        "300 g de cogumelos-ostra",
+        "200 g de noodles de trigo ou de ovo",
+        "2 colheres de sopa de óleo neutro",
+        "3 dentes de alho, laminados",
+        "2 cebolinhas, às rodelas, a parte branca e a verde separadas",
+        "2 colheres de sopa de molho de soja",
+        "1 colher de chá de óleo de sésamo",
+        "1 colher de chá de açúcar ou mel",
+        "1 colher de chá de sementes de sésamo torradas",
+        "Flocos de malagueta (opcional)"
+      ],
+      "instructions": [
+        "Preparar: Rasgue os cogumelos em tiras no sentido das lamelas e corte as bases duras do pé. Coza os noodles como indicado na embalagem e escorra-os.",
+        "Alourar: Aqueça o óleo numa frigideira larga e disponha os cogumelos numa só camada. Frite-os sem mexer durante 3–4 minutos, vire-os e cozinhe mais 3 minutos, até as margens alourarem.",
+        "Temperar: Junte o alho e a parte branca das cebolinhas durante 1 minuto e depois o molho de soja, o açúcar e o óleo de sésamo.",
+        "Saltear: Junte os noodles e salteie até ficarem brilhantes e quentes. Sirva com a parte verde das cebolinhas, o sésamo e a malagueta."
+      ],
+      "species": ["oyster-mushroom"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Preparar: Rasgue os cogumelos em tiras no sentido das lamelas e corte as bases duras do pé. Coza os noodles como indicado na embalagem e escorra-os."
+        },
+        {
+          "step": 2,
+          "instruction": "Alourar: Aqueça o óleo numa frigideira larga e disponha os cogumelos numa só camada. Frite-os sem mexer durante 3–4 minutos, vire-os e cozinhe mais 3 minutos, até as margens alourarem."
+        },
+        {
+          "step": 3,
+          "instruction": "Temperar: Junte o alho e a parte branca das cebolinhas durante 1 minuto e depois o molho de soja, o açúcar e o óleo de sésamo."
+        },
+        {
+          "step": 4,
+          "instruction": "Saltear: Junte os noodles e salteie até ficarem brilhantes e quentes. Sirva com a parte verde das cebolinhas, o sésamo e a malagueta."
+        }
+      ],
+      "warnings": [
+        "Não consuma cogumelos selvagens sem identificação de um especialista."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "15 min",
+      "servings": "2",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Cozinhe bem os cogumelos-ostra e não os coma crus.",
+        "Use exemplares jovens e firmes: os velhos ficam rijos e escondem muitas vezes larvas de escaravelho.",
+        "Não os confunda com o Pleurocybella porrigens, que é tóxico: fino, branco puro e cresce em madeira de coníferas."
+      ]
+    },
+    "elderflower-cordial": {
+      "title": "Xarope de flor de sabugueiro",
+      "ingredients": [
+        "20 umbelas de flor de sabugueiro, acabadas de abrir",
+        "1 litro de água",
+        "1 kg de açúcar",
+        "2 limões não tratados, às rodelas",
+        "25 g de ácido cítrico (opcional, ajuda a conservar)",
+        "Garrafas esterilizadas"
+      ],
+      "instructions": [
+        "Colher: Colha umbelas cor de creme, bem abertas, numa manhã seca e soalheira, longe de estradas movimentadas. Sacuda-as para tirar os insetos, mas não as lave: o aroma está no pólen.",
+        "Calda: Leve a água e o açúcar a ferver, mexendo até o açúcar dissolver, e deixe arrefecer até ficar morno.",
+        "Macerar: Junte as flores, as rodelas de limão e o ácido cítrico, tape e deixe num local fresco durante 24–48 horas, mexendo uma vez por dia.",
+        "Engarrafar: Coe por um passador forrado com gaze para garrafas esterilizadas e feche. Conserva-se até 6 semanas no frigorífico, ou no congelador. Dilua cerca de 1 para 10 em água lisa ou com gás."
+      ],
+      "species": ["elderflower"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Colher: Colha umbelas cor de creme, bem abertas, numa manhã seca e soalheira, longe de estradas movimentadas. Sacuda-as para tirar os insetos, mas não as lave: o aroma está no pólen."
+        },
+        {
+          "step": 2,
+          "instruction": "Calda: Leve a água e o açúcar a ferver, mexendo até o açúcar dissolver, e deixe arrefecer até ficar morno."
+        },
+        {
+          "step": 3,
+          "instruction": "Macerar: Junte as flores, as rodelas de limão e o ácido cítrico, tape e deixe num local fresco durante 24–48 horas, mexendo uma vez por dia."
+        },
+        {
+          "step": 4,
+          "instruction": "Engarrafar: Coe por um passador forrado com gaze para garrafas esterilizadas e feche. Conserva-se até 6 semanas no frigorífico, ou no congelador. Dilua cerca de 1 para 10 em água lisa ou com gás."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min + 24–48 h de maceração",
+      "servings": "Cerca de 1,5 litros",
+      "tags": ["drink", "vegan", "easy"],
+      "safetyNotes": [
+        "Use apenas as flores e os pés mais finos: as folhas, a casca e os caules grossos do sabugueiro contêm compostos tóxicos.",
+        "O sabugueiro é um arbusto lenhoso ou uma pequena árvore. Não use o engos (Sambucus ebulus), uma planta herbácea com partes tóxicas, nem as umbelas brancas rente ao chão de plantas venenosas como a cicuta."
+      ]
+    },
+    "elderberry-syrup": {
+      "title": "Xarope de bagas de sabugueiro com especiarias",
+      "ingredients": [
+        "500 g de bagas de sabugueiro maduras, sem os pés",
+        "500 ml de água",
+        "1 pau de canela",
+        "4 cravinhos",
+        "Um pedaço de gengibre do tamanho de um polegar, às lâminas",
+        "Sumo de 1 limão",
+        "Cerca de 300 g de açúcar ou mel",
+        "Garrafas esterilizadas"
+      ],
+      "instructions": [
+        "Desbagoar: Use apenas bagas pretas bem maduras. Solte-as dos pés com um garfo e deite fora as bagas verdes e qualquer bocado de pé.",
+        "Cozer: Coloque as bagas, a água e as especiarias num tacho, leve a ferver e deixe cozer em lume brando durante 20 minutos.",
+        "Coar: Esmague ligeiramente as bagas e coe o sumo por um passador fino ou uma gaze, pressionando com cuidado.",
+        "Adoçar: Volte a pôr o sumo no tacho com o sumo de limão e o açúcar e deixe cozer 5 minutos, até o açúcar dissolver. Se usar mel, junte-o fora do lume quando o sumo estiver morno. Engarrafe e guarde no frigorífico até 3 meses. Uma colher em água quente dá uma bebida de inverno."
+      ],
+      "species": ["elderberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Desbagoar: Use apenas bagas pretas bem maduras. Solte-as dos pés com um garfo e deite fora as bagas verdes e qualquer bocado de pé."
+        },
+        {
+          "step": 2,
+          "instruction": "Cozer: Coloque as bagas, a água e as especiarias num tacho, leve a ferver e deixe cozer em lume brando durante 20 minutos."
+        },
+        {
+          "step": 3,
+          "instruction": "Coar: Esmague ligeiramente as bagas e coe o sumo por um passador fino ou uma gaze, pressionando com cuidado."
+        },
+        {
+          "step": 4,
+          "instruction": "Adoçar: Volte a pôr o sumo no tacho com o sumo de limão e o açúcar e deixe cozer 5 minutos, até o açúcar dissolver. Se usar mel, junte-o fora do lume quando o sumo estiver morno. Engarrafe e guarde no frigorífico até 3 meses. Uma colher em água quente dá uma bebida de inverno."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "30 min",
+      "servings": "Cerca de 500 ml",
+      "tags": ["drink", "easy"],
+      "safetyNotes": [
+        "Nunca coma bagas de sabugueiro cruas. As bagas e sementes cruas, e sobretudo as bagas verdes, os pés e as folhas, provocam náuseas e vómitos. Cozer as bagas maduras pelo menos 20 minutos torna-as seguras.",
+        "Use apenas sabugueiro-negro (Sambucus nigra) ou sabugueiro-do-canadá (S. canadensis), arbustos com cachos de bagas planos. O sabugueiro-vermelho (S. racemosa) e o engos (S. ebulus) não se usam."
+      ]
+    },
+    "blackberry-apple-crumble": {
+      "title": "Crumble de amoras e maçã",
+      "ingredients": [
+        "400 g de amoras",
+        "2 maçãs para cozinhar, descascadas e às fatias",
+        "50 g de açúcar",
+        "1 colher de chá de sumo de limão",
+        "Para o crumble: 150 g de farinha",
+        "100 g de manteiga fria, em cubos",
+        "75 g de açúcar mascavado",
+        "50 g de flocos de aveia",
+        "Uma pitada de sal"
+      ],
+      "instructions": [
+        "Fruta: Aqueça o forno a 190 °C. Misture as amoras e as maçãs com o açúcar e o sumo de limão e espalhe-as num pirex.",
+        "Crumble: Esfregue a manteiga na farinha com as pontas dos dedos até parecer pão ralado e depois junte o açúcar mascavado, a aveia e o sal.",
+        "Cobrir: Espalhe o crumble por cima da fruta sem o calcar.",
+        "Cozer: Leve ao forno 35–40 minutos, até a superfície alourar e o sumo borbulhar nas margens. Deixe repousar 10 minutos e sirva com natas, creme inglês ou gelado."
+      ],
+      "species": ["blackberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Fruta: Aqueça o forno a 190 °C. Misture as amoras e as maçãs com o açúcar e o sumo de limão e espalhe-as num pirex."
+        },
+        {
+          "step": 2,
+          "instruction": "Crumble: Esfregue a manteiga na farinha com as pontas dos dedos até parecer pão ralado e depois junte o açúcar mascavado, a aveia e o sal."
+        },
+        {
+          "step": 3,
+          "instruction": "Cobrir: Espalhe o crumble por cima da fruta sem o calcar."
+        },
+        {
+          "step": 4,
+          "instruction": "Cozer: Leve ao forno 35–40 minutos, até a superfície alourar e o sumo borbulhar nas margens. Deixe repousar 10 minutos e sirva com natas, creme inglês ou gelado."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "40 min",
+      "servings": "4–6",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Colha acima da altura do joelho e longe de estradas movimentadas e de bordas de campos pulverizados.",
+        "Lave as amoras só antes de as usar e verifique se não têm pequenos insetos nem bolor."
+      ]
+    },
+    "wild-blueberry-pancakes": {
+      "title": "Panquecas com mirtilos-selvagens",
+      "ingredients": [
+        "150 g de mirtilos-selvagens",
+        "200 g de farinha",
+        "2 colheres de chá de fermento em pó",
+        "1 colher de sopa de açúcar",
+        "Uma pitada de sal",
+        "2 ovos",
+        "250 ml de leite",
+        "30 g de manteiga derretida, e mais para a frigideira",
+        "Xarope de ácer ou mel para servir"
+      ],
+      "instructions": [
+        "Massa: Misture a farinha, o fermento, o açúcar e o sal. Bata à parte os ovos, o leite e a manteiga derretida e envolva-os só até misturar: alguns grumos não fazem mal.",
+        "Cozinhar: Derreta um pouco de manteiga numa frigideira em lume médio. Deite pequenas conchas de massa e espalhe mirtilos sobre cada uma.",
+        "Virar: Quando aparecerem bolhas e as margens prenderem, ao fim de cerca de 2 minutos, vire as panquecas e cozinhe mais 1–2 minutos.",
+        "Servir: Empilhe-as quentes com o resto dos mirtilos e o xarope."
+      ],
+      "species": ["blueberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Massa: Misture a farinha, o fermento, o açúcar e o sal. Bata à parte os ovos, o leite e a manteiga derretida e envolva-os só até misturar: alguns grumos não fazem mal."
+        },
+        {
+          "step": 2,
+          "instruction": "Cozinhar: Derreta um pouco de manteiga numa frigideira em lume médio. Deite pequenas conchas de massa e espalhe mirtilos sobre cada uma."
+        },
+        {
+          "step": 3,
+          "instruction": "Virar: Quando aparecerem bolhas e as margens prenderem, ao fim de cerca de 2 minutos, vire as panquecas e cozinhe mais 1–2 minutos."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir: Empilhe-as quentes com o resto dos mirtilos e o xarope."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4 (cerca de 12 panquecas)",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Em grande parte da Europa, os frutos que crescem rente ao chão podem ter ovos da ténia-da-raposa (Echinococcus multilocularis). Lave-os bem. Cozinhar mata os ovos e congelar não, por isso aí os frutos cozinhados são a escolha mais segura.",
+        "Os mirtilos crescem em arbustos baixos. A beladona, muito venenosa, tem bagas pretas brilhantes isoladas sobre uma estrela verde, numa planta herbácea alta."
+      ]
+    },
+    "hazelnut-cocoa-spread": {
+      "title": "Creme caseiro de avelã e cacau",
+      "ingredients": [
+        "200 g de avelãs descascadas",
+        "2 colheres de sopa de cacau em pó",
+        "60 g de açúcar em pó ou xarope de ácer",
+        "100 g de chocolate negro derretido (opcional)",
+        "Uma pitada de sal",
+        "1 colher de chá de extrato de baunilha",
+        "2–4 colheres de sopa de óleo neutro ou leite",
+        "Um frasco limpo"
+      ],
+      "instructions": [
+        "Torrar: Torre as avelãs a 180 °C durante 10–12 minutos, até cheirarem bem e a pele estalar.",
+        "Pelar: Esfregue as avelãs ainda quentes num pano limpo para tirar quase toda a pele.",
+        "Triturar: Triture as avelãs num robot de cozinha durante 5–10 minutos, raspando as paredes de vez em quando, até se transformarem numa pasta fluida.",
+        "Aromatizar: Junte o cacau, o açúcar, o chocolate, o sal e a baunilha e triture de novo, juntando o óleo uma colher de cada vez até ficar liso e fácil de barrar. Guarde num frasco limpo no frigorífico até 3 semanas."
+      ],
+      "species": ["hazelnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Torrar: Torre as avelãs a 180 °C durante 10–12 minutos, até cheirarem bem e a pele estalar."
+        },
+        {
+          "step": 2,
+          "instruction": "Pelar: Esfregue as avelãs ainda quentes num pano limpo para tirar quase toda a pele."
+        },
+        {
+          "step": 3,
+          "instruction": "Triturar: Triture as avelãs num robot de cozinha durante 5–10 minutos, raspando as paredes de vez em quando, até se transformarem numa pasta fluida."
+        },
+        {
+          "step": 4,
+          "instruction": "Aromatizar: Junte o cacau, o açúcar, o chocolate, o sal e a baunilha e triture de novo, juntando o óleo uma colher de cada vez até ficar liso e fácil de barrar. Guarde num frasco limpo no frigorífico até 3 semanas."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "12 min",
+      "servings": "1 frasco (cerca de 350 g)",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "A avelã é um alergénio comum: avise quem for partilhar consigo.",
+        "Apanhe apenas avelãs maduras, caídas no fim do verão e no outono. Deite fora as que tiverem furos do gorgulho e as que souberem a bolor ou a amargo."
+      ]
+    },
+    "wild-mint-pea-soup": {
+      "title": "Sopa de ervilhas com hortelã-selvagem",
+      "ingredients": [
+        "1 cebola pequena, picada",
+        "1 colher de sopa de manteiga ou azeite",
+        "1 batata, aos cubos",
+        "750 ml de caldo de legumes",
+        "500 g de ervilhas (congeladas servem)",
+        "Uma boa mão-cheia de folhas de hortelã-selvagem (cerca de 15 g), e algumas pequenas para decorar",
+        "3 colheres de sopa de natas ou iogurte",
+        "Sal, pimenta e um pouco de sumo de limão"
+      ],
+      "instructions": [
+        "Refogar: Deixe a cebola amolecer na manteiga em lume brando durante 5 minutos, junte a batata e o caldo e deixe ferver em lume brando 10 minutos.",
+        "Ervilhas: Junte as ervilhas e deixe cozer 3–4 minutos, só até ficarem tenras, para se manterem verde vivo.",
+        "Triturar: Retire do lume, junte as folhas de hortelã e triture até ficar liso. Tempere com sal, pimenta e limão.",
+        "Servir: Junte as natas em espiral e espalhe as folhinhas de hortelã. Fica boa quente ou fria."
+      ],
+      "species": ["wild-mint"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Refogar: Deixe a cebola amolecer na manteiga em lume brando durante 5 minutos, junte a batata e o caldo e deixe ferver em lume brando 10 minutos."
+        },
+        {
+          "step": 2,
+          "instruction": "Ervilhas: Junte as ervilhas e deixe cozer 3–4 minutos, só até ficarem tenras, para se manterem verde vivo."
+        },
+        {
+          "step": 3,
+          "instruction": "Triturar: Retire do lume, junte as folhas de hortelã e triture até ficar liso. Tempere com sal, pimenta e limão."
+        },
+        {
+          "step": 4,
+          "instruction": "Servir: Junte as natas em espiral e espalhe as folhinhas de hortelã. Fica boa quente ou fria."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "4",
+      "tags": ["soup", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Uma hortelã-selvagem cheira claramente a hortelã quando se esfrega uma folha: sem cheiro a hortelã, não é hortelã.",
+        "Deixe de fora o poejo (Mentha pulegium: folhas pequenas e arredondadas, caules rastejantes, flores em anéis ao longo do caule). É tóxico em quantidades maiores e deve ser evitado na gravidez.",
+        "Colha a hortelã-da-água em ribeiros limpos, não em pastagens húmidas com ovelhas ou vacas, onde pode transmitir a fasciola hepática."
+      ]
+    },
+    "candied-violets": {
+      "title": "Violetas cristalizadas",
+      "ingredients": [
+        "30–40 flores de violeta-doce com um pé curto",
+        "1 clara de ovo muito fresca, pasteurizada se possível",
+        "Açúcar fino, bem moído",
+        "Um pincel pequeno e macio",
+        "Papel vegetal"
+      ],
+      "instructions": [
+        "Colher: Colha flores acabadas de abrir num dia seco e deixe um pé curto para as segurar. Verifique se não têm insetos.",
+        "Pincelar: Bata ligeiramente a clara até mal fazer espuma. Segurando uma flor pelo pé, pincele cada pétala, à frente e atrás, com uma camada fina.",
+        "Açucarar: Polvilhe a flor toda com açúcar, sacuda o excesso e pouse-a virada para cima no papel vegetal.",
+        "Secar: Deixe-as num local quente e seco durante 1–2 dias, até ficarem completamente estaladiças, e depois corte os pés. Guarde-as algumas semanas numa lata hermética entre camadas de papel e use-as em bolos e sobremesas."
+      ],
+      "species": ["violets"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Colher: Colha flores acabadas de abrir num dia seco e deixe um pé curto para as segurar. Verifique se não têm insetos."
+        },
+        {
+          "step": 2,
+          "instruction": "Pincelar: Bata ligeiramente a clara até mal fazer espuma. Segurando uma flor pelo pé, pincele cada pétala, à frente e atrás, com uma camada fina."
+        },
+        {
+          "step": 3,
+          "instruction": "Açucarar: Polvilhe a flor toda com açúcar, sacuda o excesso e pouse-a virada para cima no papel vegetal."
+        },
+        {
+          "step": 4,
+          "instruction": "Secar: Deixe-as num local quente e seco durante 1–2 dias, até ficarem completamente estaladiças, e depois corte os pés. Guarde-as algumas semanas numa lata hermética entre camadas de papel e use-as em bolos e sobremesas."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "45 min",
+      "cookTime": "1–2 dias de secagem",
+      "servings": "30–40 flores",
+      "tags": ["dessert", "vegetarian", "medium"],
+      "safetyNotes": [
+        "Use apenas violetas-doces (Viola odorata) ou outras violetas selvagens. As violetas-africanas (Saintpaulia) não são aparentadas e não se comem.",
+        "A clara crua tem um pequeno risco de salmonela: use clara pasteurizada para crianças pequenas, grávidas e idosos.",
+        "Colha onde não se pulverizam herbicidas e longe de caminhos frequentados por cães."
+      ]
+    },
+    "plantain-leaf-crisps": {
+      "title": "Chips de folhas de tanchagem",
+      "ingredients": [
+        "2 boas mãos-cheias de folhas jovens de tanchagem",
+        "1 colher de sopa de azeite",
+        "Flor de sal",
+        "Colorau fumado ou alho em pó (opcional)"
+      ],
+      "instructions": [
+        "Aquecer: Aqueça o forno a 150 °C (130 °C com ventilação).",
+        "Preparar: Colha folhas jovens e tenras, não maiores do que a palma da mão. Lave-as e seque-as completamente: a água que ficar coze-as a vapor em vez de as deixar estaladiças.",
+        "Temperar: Envolva as folhas no azeite e nos temperos para que cada uma fique ligeiramente coberta e estenda-as planas no papel vegetal sem se sobreporem.",
+        "Cozer: Leve ao forno 15–20 minutos, virando-as uma vez, até ficarem estaladiças mas ainda verdes. Deixe-as arrefecer no tabuleiro e coma-as no próprio dia."
+      ],
+      "species": ["plantain"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Aquecer: Aqueça o forno a 150 °C (130 °C com ventilação)."
+        },
+        {
+          "step": 2,
+          "instruction": "Preparar: Colha folhas jovens e tenras, não maiores do que a palma da mão. Lave-as e seque-as completamente: a água que ficar coze-as a vapor em vez de as deixar estaladiças."
+        },
+        {
+          "step": 3,
+          "instruction": "Temperar: Envolva as folhas no azeite e nos temperos para que cada uma fique ligeiramente coberta e estenda-as planas no papel vegetal sem se sobreporem."
+        },
+        {
+          "step": 4,
+          "instruction": "Cozer: Leve ao forno 15–20 minutos, virando-as uma vez, até ficarem estaladiças mas ainda verdes. Deixe-as arrefecer no tabuleiro e coma-as no próprio dia."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2",
+      "tags": ["appetizer", "vegan", "easy"],
+      "safetyNotes": [
+        "Colha longe de bermas de estrada, caminhos de passeio de cães e relvados pulverizados: a tanchagem gosta de solo pisado.",
+        "As folhas de tanchagem têm nervuras paralelas fortes que se puxam como fios. As folhas da dedaleira, venenosas, têm uma rede de nervuras e são macias e pilosas."
+      ]
+    },
+    "pickled-daisy-buds": {
+      "title": "Botões de margarida em conserva",
+      "ingredients": [
+        "50 g de botões fechados de margarida",
+        "1 colher de sopa de sal",
+        "100 ml de vinagre de vinho branco",
+        "100 ml de água",
+        "1 colher de chá de açúcar",
+        "1 raminho de endro",
+        "1 folha de louro",
+        "Alguns grãos de pimenta",
+        "Um frasco pequeno esterilizado"
+      ],
+      "instructions": [
+        "Colher: Colha botões verdes bem fechados, antes de se ver o branco, em relvados e prados limpos. Passe-os por água e escorra-os.",
+        "Salgar: Envolva os botões no sal e deixe-os 12 horas para largarem a água; depois passe-os por água e seque-os.",
+        "Salmoura: Leve a ferver o vinagre, a água, o açúcar, o louro e a pimenta.",
+        "Enfrascar: Coloque os botões e o endro no frasco, cubra com o vinagre quente e feche. Espere pelo menos 2 semanas antes de comer. Use-os como alcaparras em saladas, molhos e com peixe."
+      ],
+      "species": ["daisy"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Colher: Colha botões verdes bem fechados, antes de se ver o branco, em relvados e prados limpos. Passe-os por água e escorra-os."
+        },
+        {
+          "step": 2,
+          "instruction": "Salgar: Envolva os botões no sal e deixe-os 12 horas para largarem a água; depois passe-os por água e seque-os."
+        },
+        {
+          "step": 3,
+          "instruction": "Salmoura: Leve a ferver o vinagre, a água, o açúcar, o louro e a pimenta."
+        },
+        {
+          "step": 4,
+          "instruction": "Enfrascar: Coloque os botões e o endro no frasco, cubra com o vinagre quente e feche. Espere pelo menos 2 semanas antes de comer. Use-os como alcaparras em saladas, molhos e com peixe."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min",
+      "servings": "1 frasco pequeno",
+      "tags": ["side", "vegan", "easy"],
+      "safetyNotes": [
+        "Confirme que são margaridas-comuns (Bellis perennis): flores isoladas em pés sem folhas que nascem de uma roseta rasa de folhas em forma de espátula.",
+        "Colha em relvados que não sejam pulverizados nem adubados, longe de zonas frequentadas por cães.",
+        "Pessoas alérgicas às asteráceas, por exemplo à ambrósia ou à camomila, podem reagir."
+      ]
     }
   }
 }
