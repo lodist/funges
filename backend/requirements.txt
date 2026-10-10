@@ -8,3 +8,4 @@ requests
 scipy
 shapely
 netCDF4
+lightgbm
