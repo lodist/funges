@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { createPortal } from 'react-dom';
+import { createPortal, flushSync } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 
@@ -86,14 +86,20 @@ export function ZoomableImage({
             data-state={state}
             data-testid='zoomed-image'
             style={{ pointerEvents: 'auto' }}
-            onAnimationEnd={() => phase === 'closing' && setPhase('closed')}
-            className='data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 fixed inset-0 z-[60] grid cursor-zoom-out place-items-center bg-scrim p-6 transition-none duration-base ease-standard [container-type:size]'
+            onAnimationEnd={event => {
+              // Only the layer's own fade, not the picture's zoom bubbling up.
+              // Unmount in the same frame, as Radix Presence does: a render
+              // later the finished animation has already let go of opacity 0.
+              if (event.target === event.currentTarget && phase === 'closing')
+                flushSync(() => setPhase('closed'));
+            }}
+            className='data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=closed]:fill-mode-forwards fixed inset-0 z-[60] grid cursor-zoom-out place-items-center bg-scrim p-6 transition-none duration-base ease-standard [container-type:size]'
           >
             <img
               src={src}
               alt=''
               data-state={state}
-              className='data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:zoom-in-90 data-[state=closed]:zoom-out-90 size-[min(100cqw,100cqh,36rem)] rounded-card object-contain elevation-floating transition-none duration-base ease-standard'
+              className='data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:zoom-in-90 data-[state=closed]:zoom-out-90 data-[state=closed]:fill-mode-forwards size-[min(100cqw,100cqh,36rem)] rounded-card object-contain elevation-floating transition-none duration-base ease-standard'
             />
           </div>,
           document.body
