@@ -84,24 +84,40 @@ def test_requests_split_at_month_ends():
     assert requests[0]["variable"] == ["total_precipitation"]
 
 
-def test_cds_netcdf_is_read_in_millimetres(tmp_path):
-    path = tmp_path / "tp.nc"
+def _netcdf(path, hours, metres):
     with netCDF4.Dataset(path, "w") as nc:
-        nc.createDimension("valid_time", 2)
+        nc.createDimension("valid_time", len(hours))
         nc.createDimension("latitude", 1)
         nc.createDimension("longitude", 1)
         time = nc.createVariable("valid_time", "i8", ("valid_time",))
         time.units = "seconds since 1970-01-01"
-        time[:] = [pd.Timestamp("2026-10-01 01:00").timestamp(), pd.Timestamp("2026-10-01 02:00").timestamp()]
+        time[:] = [pd.Timestamp(hour).timestamp() for hour in hours]
         nc.createVariable("latitude", "f4", ("latitude",))[:] = [50.0]
         nc.createVariable("longitude", "f4", ("longitude",))[:] = [0.0]
-        nc.createVariable("tp", "f4", ("valid_time", "latitude", "longitude"))[:] = [[[0.002]], [[-1e-7]]]
+        nc.createVariable("tp", "f4", ("valid_time", "latitude", "longitude"))[:] = [
+            [[m]] for m in metres]
+    return path
+
+
+def test_cds_netcdf_is_read_in_millimetres(tmp_path):
+    path = _netcdf(tmp_path / "tp.nc", ["2026-10-01 01:00", "2026-10-01 02:00"], [0.002, -1e-7])
     hourly, times, lats, lons = er.read_hourly([path])
     assert np.allclose(hourly[:, 0, 0], [2.0, 0.0])  # metres to mm, packing noise clipped
     assert list(times) == [pd.Timestamp("2026-10-01 01:00"), pd.Timestamp("2026-10-01 02:00")]
 
 
+def test_orders_from_two_nights_count_each_hour_once(tmp_path):
+    # Two nights' orders share 1 Oct; counted twice, the day would have 48 hours and drop.
+    hours = _hours("2026-09-30 01:00", 48)
+    older = _netcdf(tmp_path / "a.nc", hours[:36], [0.001] * 36)
+    newer = _netcdf(tmp_path / "b.nc", hours[12:], [0.001] * 36)
+    hourly, times, lats, lons = er.read_hourly([older, newer])
+    assert list(times) == list(hours)
+    row = er.local_day_rain(hourly, times, lats, lons, [(50.0, 0.0)], [DAY]).iloc[0]
+    assert row["TotalPrecipitation_mm"] == 24.0
+
+
 def test_without_a_key_rain_is_skipped(monkeypatch):
     monkeypatch.delenv("CDSAPI_KEY", raising=False)
     rows = er.start((49.0, 71.5), (-25.0, 32.0), [(60.0, 10.0)], date(2026, 10, 8))
-    assert rows(0).empty
+    assert rows().empty
