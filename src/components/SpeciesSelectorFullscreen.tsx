@@ -10,7 +10,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { useOfflineStore } from '@/store/offlineStore';
 import { usePWA } from '@/hooks/use-pwa';
 import { SPECIES_DATA, speciesNameKey } from '@/data/species';
-import { BLOOM_CODE, BLOOM_EMOJI, BLOOM_SCIENTIFIC_NAME } from '@/lib/bloom';
+import { SPECTACLES } from '@/lib/bloom';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
 import { DURATION_BASE, EASE_STANDARD } from '@/lib/motion';
@@ -86,8 +86,8 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
     { value: 'spectacle', label: t('bloom.spectacles'), icon: '✨' },
   ];
 
-  // Species, plus the cherry blossom layer under "Spectacles": it is picked like
-  // a species but is not in the catalog, so it brings its own name.
+  // Species, plus the spectacle layers under "Spectacles": they are picked like
+  // a species but are not in the catalog, so each brings its own name.
   const options = [
     ...speciesOptions.map(option => {
       const speciesData = SPECIES_DATA.find(item => item.id === option.code);
@@ -100,14 +100,14 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
         image: getSpeciesImage(option.code),
       };
     }),
-    {
-      code: BLOOM_CODE,
-      emoji: BLOOM_EMOJI,
+    ...SPECTACLES.map(spectacle => ({
+      code: spectacle.code,
+      emoji: spectacle.emoji,
       category: 'spectacle' as string | undefined,
-      name: t('bloom.name'),
-      scientificName: BLOOM_SCIENTIFIC_NAME,
-      image: getSpeciesImage(BLOOM_CODE),
-    },
+      name: t(`${spectacle.keys}.name`),
+      scientificName: spectacle.scientificName,
+      image: getSpeciesImage(spectacle.code),
+    })),
   ];
 
   // Filter and sort species based on search term and category

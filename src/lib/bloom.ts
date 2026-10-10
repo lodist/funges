@@ -22,17 +22,31 @@ export const BLOOM_REGIONS = {
 export type BloomRegion = keyof typeof BLOOM_REGIONS;
 export const BLOOM_REGION_CODES = Object.keys(BLOOM_REGIONS) as BloomRegion[];
 
-export const bloomSourceId = (region: BloomRegion) => `bloom-${region}`;
+export const bloomSourceId = (
+  region: BloomRegion,
+  spectacle: Spectacle = CHERRY_BLOSSOM
+) => `${spectacle.tiles}-${region}`;
 // `<code>_<region>`, like a species fill, so the store's region and selection
 // matching apply to it unchanged.
-export const bloomLayerId = (region: BloomRegion) => `${BLOOM_CODE}_${region}`;
-export const bloomTilesUrl = (region: BloomRegion) =>
-  `pmtiles://${R2}/${BLOOM_REGIONS[region]}/${region}_bloom.pmtiles`;
-export const isBloomLayer = (id: string) => id.startsWith(`${BLOOM_CODE}_`);
+export const bloomLayerId = (
+  region: BloomRegion,
+  spectacle: Spectacle = CHERRY_BLOSSOM
+) => `${spectacle.code}_${region}`;
+export const bloomTilesUrl = (
+  region: BloomRegion,
+  spectacle: Spectacle = CHERRY_BLOSSOM
+) =>
+  `pmtiles://${R2}/${BLOOM_REGIONS[region]}/${region}_${spectacle.tiles}.pmtiles`;
+/** The spectacle a map layer id belongs to, if any. */
+export const spectacleOfLayer = (id: string): Spectacle | undefined =>
+  SPECTACLES.find(spectacle => id.startsWith(`${spectacle.code}_`));
+export const isBloomLayer = (id: string) => spectacleOfLayer(id) !== undefined;
 
-/** The backend builds the layer from 1 February to 30 June. */
-export const bloomInSeason = (date: Date): boolean =>
-  date.getMonth() >= 1 && date.getMonth() <= 5;
+/** Whether the backend builds the layer in `date`'s month (cherry: February-June). */
+export const bloomInSeason = (
+  date: Date,
+  spectacle: Spectacle = CHERRY_BLOSSOM
+): boolean => spectacle.months.includes(date.getMonth());
 
 /** A local calendar day as days since 1970-01-01, the unit of `peak`. */
 export const unixDay = (date: Date): number =>
@@ -102,23 +116,30 @@ export const BLOOM_STATUS_COLOR: Record<BloomStatus, string> = {
   stale: BLOOM_IDLE,
 };
 
-export function bloomFillColor(day: number): ExpressionSpecification {
+export function bloomFillColor(
+  day: number,
+  spectacle: Spectacle = CHERRY_BLOSSOM
+): ExpressionSpecification {
   return [
     'interpolate',
     ['linear'],
     ['-', ['get', 'peak'], day],
-    ...BLOOM_RAMP.flat(),
+    ...spectacle.ramp.flat(),
   ] as unknown as ExpressionSpecification;
 }
 
 /** The ramp as a legend, in the order a place goes through it: later -> done. */
-export function bloomGradientCss(): string {
+export function bloomGradientCss(
+  spectacle: Spectacle = CHERRY_BLOSSOM
+): string {
   // Four weeks either side of the peak, so the deep pink sits in the middle,
   // under "Peak bloom"; after the fade it is the steady "done" green.
-  const [far] = BLOOM_RAMP[BLOOM_RAMP.length - 1];
+  const { ramp } = spectacle;
+  const [far] = ramp[ramp.length - 1];
+  const done = ramp[1][1];
   const shown = [
-    [-far, BLOOM_DONE] as const,
-    ...BLOOM_RAMP.filter(([toPeak]) => toPeak > -far),
+    [-far, done] as const,
+    ...ramp.filter(([toPeak]) => toPeak > -far),
   ];
   const stops = shown
     .reverse()
@@ -136,3 +157,45 @@ export function bloomWhen(t: TFunction, peak: number, day: number): string {
     ? t('bloom.inDays', { count: toPeak })
     : t('bloom.daysAgo', { count: -toPeak });
 }
+
+/**
+ * A layer picked like a species and clicked like one, but timed by the season
+ * rather than scored: its tiles carry `peak`, built by the backend (bloom.py)
+ * in its months only.
+ */
+export interface Spectacle {
+  /** Its map code: `?species=`, and layer ids `<code>_<region>`. */
+  code: string;
+  scientificName: string;
+  emoji: string;
+  /** Where its strings sit in map.json: `<keys>.name`, `<keys>.offSeason`. */
+  keys: string;
+  /** Its tileset `<region>_<tiles>.pmtiles` on R2, and the tiles' layer name. */
+  tiles: string;
+  regions: readonly BloomRegion[];
+  /** The months (0-11) the backend builds it. */
+  months: readonly number[];
+  /** Days to peak -> colour; [1] is the steady "done" colour. */
+  ramp: readonly (readonly [number, string])[];
+  statusColor: Record<BloomStatus, string>;
+}
+
+export const CHERRY_BLOSSOM: Spectacle = {
+  code: BLOOM_CODE,
+  scientificName: BLOOM_SCIENTIFIC_NAME,
+  emoji: BLOOM_EMOJI,
+  keys: 'bloom',
+  // Its tilesets predate the other spectacles and keep their name.
+  tiles: 'bloom',
+  regions: BLOOM_REGION_CODES,
+  months: [1, 2, 3, 4, 5],
+  ramp: BLOOM_RAMP,
+  statusColor: BLOOM_STATUS_COLOR,
+};
+
+export const SPECTACLES: readonly Spectacle[] = [CHERRY_BLOSSOM];
+
+export const spectacleByCode = (
+  code: string | null | undefined
+): Spectacle | undefined =>
+  SPECTACLES.find(spectacle => spectacle.code === code);

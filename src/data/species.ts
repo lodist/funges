@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GENERATED_SPECIES_DATA } from '@/generated/species-catalog';
-import { BLOOM_CODE } from '@/lib/bloom';
+import { spectacleByCode } from '@/lib/bloom';
 
 export interface Species {
   id: string;
@@ -80,10 +80,10 @@ export const DEFAULT_MAP_SPECIES = 'mushroom';
 
 /**
  * A species the map can show somewhere — the check a URL or saved code must pass.
- * The cherry blossom layer passes too: it is picked like a species, but it is not
- * in the catalog (see lib/bloom.ts).
+ * The spectacle layers (cherry blossom, ...) pass too: they are picked like a
+ * species, but they are not in the catalog (see lib/bloom.ts).
  */
 export const isMapSpecies = (code: string | null | undefined): boolean =>
   !!code &&
-  (code === BLOOM_CODE ||
+  (spectacleByCode(code) !== undefined ||
     SPECIES_DATA.some(({ id, showOnMap }) => id === code && showOnMap));
