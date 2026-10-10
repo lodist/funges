@@ -5,12 +5,7 @@ import { useMapStore } from '@/store/mapStore';
 import { cn } from '@/lib/utils';
 import { getSpeciesImage } from '@/lib/utils';
 import { getSpeciesById } from '@/data/species';
-import {
-  BLOOM_CODE,
-  BLOOM_EMOJI,
-  BLOOM_SCIENTIFIC_NAME,
-  bloomInSeason,
-} from '@/lib/bloom';
+import { bloomInSeason, spectacleByCode } from '@/lib/bloom';
 import SpeciesSelectorFullscreen from './SpeciesSelectorFullscreen';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -38,22 +33,22 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
   // Resolved from the whole catalog, not the region's options: the selection
   // survives panning into a region that has no forecast for it.
   const species = selectedSpecies ? getSpeciesById(selectedSpecies) : undefined;
-  // The cherry blossom layer is picked like a species but has no catalog entry;
-  // its picture sits with the species' in src/assets/species.
-  const selected =
-    selectedSpecies === BLOOM_CODE
-      ? {
-          id: BLOOM_CODE,
-          emoji: BLOOM_EMOJI,
-          name: t('bloom.name'),
-          scientificName: BLOOM_SCIENTIFIC_NAME,
-        }
-      : species && {
-          id: species.id,
-          emoji: species.emoji,
-          name: tSpecies(`list_of_species.${species.nameKey}`),
-          scientificName: species.scientificName || species.id,
-        };
+  // A spectacle (cherry blossom, ...) is picked like a species but has no catalog
+  // entry; its picture sits with the species' in src/assets/species.
+  const spectacle = spectacleByCode(selectedSpecies);
+  const selected = spectacle
+    ? {
+        id: spectacle.code,
+        emoji: spectacle.emoji,
+        name: t(`${spectacle.keys}.name`),
+        scientificName: spectacle.scientificName,
+      }
+    : species && {
+        id: species.id,
+        emoji: species.emoji,
+        name: tSpecies(`list_of_species.${species.nameKey}`),
+        scientificName: species.scientificName || species.id,
+      };
 
   const speciesName = selected ? selected.name : null;
 
@@ -171,9 +166,9 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           notice says when it starts, or its empty map reads as a bug too. */}
       <div role='status'>
         {selected &&
-          (selectedSpecies === BLOOM_CODE && !bloomInSeason(new Date()) ? (
+          (spectacle && !bloomInSeason(new Date(), spectacle) ? (
             <p className='elevation-raised mt-2 max-w-[min(18rem,calc(100vw-5.5rem))] rounded-card bg-card px-3 py-2 text-xs text-muted-foreground'>
-              {t('bloom.offSeason')}
+              {t(`${spectacle.keys}.offSeason`)}
             </p>
           ) : (
             !selectedSpeciesOnMap && (

@@ -132,5 +132,20 @@
     "inDays_other": "daqui a {{count}} dias",
     "daysAgo_one": "há {{count}} dia",
     "daysAgo_other": "há {{count}} dias"
+  },
+  "bluebell": {
+    "name": "Bosques de jacintos",
+    "offSeason": "A previsão dos jacintos-dos-bosques começa a 1 de março."
+  },
+  "superbloom": {
+    "name": "Floração do deserto",
+    "offSeason": "A previsão da floração do deserto começa a 1 de janeiro.",
+    "dry": "Pouca chuva este inverno",
+    "levels": {
+      "none": "Sem floração",
+      "ordinary": "Floração normal",
+      "good": "Boa floração",
+      "superbloom": "Superfloração possível"
+    }
   }
 }

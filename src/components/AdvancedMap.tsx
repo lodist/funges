@@ -58,15 +58,15 @@ import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import MapInfoCard from '@/components/MapInfoCard';
 import {
-  BLOOM_CODE,
-  BLOOM_REGION_CODES,
   bloomFillColor,
+  bloomFillOpacity,
   bloomGradientCss,
   bloomLayerId,
   bloomSourceId,
   bloomInSeason,
   bloomStatus,
   bloomTilesUrl,
+  spectacleByCode,
   unixDay,
 } from '@/lib/bloom';
 import { DEFAULT_MAP_SPECIES } from '@/data/species';
@@ -371,7 +371,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   // Offline, or under the cherry blossom layer (which hides every species
   // layer, so no species tiles load), the route planner has nothing to read.
   useEffect(() => {
-    if (isOnline && selectedSpecies !== BLOOM_CODE) return;
+    if (isOnline && !spectacleByCode(selectedSpecies)) return;
     closeRoutePanel(setIsRoutePanelOpen, setActiveRoute);
   }, [isOnline, selectedSpecies]);
 
@@ -1276,14 +1276,16 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     visibleAnimatedStopCount,
   ]);
 
-  // Cherry blossom (lib/bloom.ts). Its tiles are added the first time it is picked,
-  // not with the style: the style's overlay block is species scores only, and
-  // species:check and the style tests hold it to that. The rest works as for a
-  // species: the slider, the legend (with its own scale) and the info modal.
-  const isBloom = selectedSpecies === BLOOM_CODE;
-  const bloomLegend = isBloom
+  // The spectacles (lib/bloom.ts): cherry blossom, ... Their tiles are added the
+  // first time one is picked, not with the style: the style's overlay block is
+  // species scores only, and species:check and the style tests hold it to that.
+  // The rest works as for a species: the slider, the legend (with the
+  // spectacle's own scale) and the info modal.
+  const spectacle = spectacleByCode(selectedSpecies);
+  const isBloom = spectacle !== undefined;
+  const bloomLegend = spectacle
     ? {
-        gradient: bloomGradientCss(),
+        gradient: bloomGradientCss(spectacle),
         low: t('bloom.later'),
         label: t('bloom.legend'),
         high: t('bloom.past'),
@@ -1293,7 +1295,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   useEffect(() => {
     const instance = map.current;
     // Off-season there is nothing to fetch: no tiles yet, or last season's.
-    if (!instance || !mapLoaded || !isBloom || !bloomInSeason(new Date()))
+    if (
+      !instance ||
+      !mapLoaded ||
+      !spectacle ||
+      !bloomInSeason(new Date(), spectacle)
+    )
       return;
     const layers = instance.getStyle()?.layers ?? [];
     // Same place in the stack as the species fills, and the same opacity: over
@@ -1307,24 +1314,27 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     const species = layers.find(
       layer => layer.id === `${DEFAULT_MAP_SPECIES}_ne` && layer.type === 'fill'
     ) as maplibregl.FillLayerSpecification | undefined;
-    for (const region of BLOOM_REGION_CODES) {
-      if (!instance.getSource(bloomSourceId(region))) {
-        instance.addSource(bloomSourceId(region), {
+    for (const region of spectacle.regions) {
+      if (!instance.getSource(bloomSourceId(region, spectacle))) {
+        instance.addSource(bloomSourceId(region, spectacle), {
           type: 'vector',
-          url: bloomTilesUrl(region),
+          url: bloomTilesUrl(region, spectacle),
         });
       }
-      if (!instance.getLayer(bloomLayerId(region))) {
+      if (!instance.getLayer(bloomLayerId(region, spectacle))) {
         instance.addLayer(
           {
-            id: bloomLayerId(region),
+            id: bloomLayerId(region, spectacle),
             type: 'fill',
-            source: bloomSourceId(region),
-            'source-layer': `${region}_bloom`,
+            source: bloomSourceId(region, spectacle),
+            'source-layer': `${region}_${spectacle.tiles}`,
             layout: { visibility: 'none' },
             paint: {
-              'fill-color': bloomFillColor(unixDay(new Date())),
-              'fill-opacity': species?.paint?.['fill-opacity'] ?? 0.85,
+              'fill-color': bloomFillColor(unixDay(new Date()), spectacle),
+              'fill-opacity': bloomFillOpacity(
+                spectacle,
+                species?.paint?.['fill-opacity'] ?? 0.85
+              ),
               // Off at every zoom: the cells share their edges, and an
               // antialiased edge draws them as a faint grid.
               'fill-antialias': false,
@@ -1335,7 +1345,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       }
     }
     updateVisibleLayers();
-  }, [mapLoaded, isBloom, updateVisibleLayers]);
+  }, [mapLoaded, spectacle, updateVisibleLayers]);
 
   // Show feature info on click
   useEffect(() => {
@@ -1353,9 +1363,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               id.startsWith(selectedSpecies) &&
               map.current?.getLayoutProperty(id, 'visibility') === 'visible'
           ) || [];
-      const isBloomClick = selectedSpecies === BLOOM_CODE;
-      // Towns are a few pixels wide at country zoom, so a cherry blossom tap
-      // counts within 5 px.
+      const isBloomClick = spectacleByCode(selectedSpecies) !== undefined;
+      // Towns and woods are a few pixels wide at country zoom, so a spectacle
+      // tap counts within 5 px.
       const { x, y } = e.point;
       const features = map.current?.queryRenderedFeatures(
         isBloomClick
@@ -1787,6 +1797,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         hideDirections={isModalFromLocateMe || !isOnline}
         dataNerdRegion={isOnline ? dataNerdRegion : null}
         bloomDay={isBloom ? unixDay(new Date()) + activeDay : undefined}
+        spectacle={spectacle}
       />
 
       {/* Mounted only once opened, so the ONNX chunk is never fetched by a user

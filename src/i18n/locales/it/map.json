@@ -132,5 +132,20 @@
     "inDays_other": "tra {{count}} giorni",
     "daysAgo_one": "{{count}} giorno fa",
     "daysAgo_other": "{{count}} giorni fa"
+  },
+  "bluebell": {
+    "name": "Boschi di giacinti",
+    "offSeason": "La previsione dei giacinti dei boschi parte il 1° marzo."
+  },
+  "superbloom": {
+    "name": "Fioritura del deserto",
+    "offSeason": "La previsione della fioritura del deserto parte il 1° gennaio.",
+    "dry": "Poca pioggia quest'inverno",
+    "levels": {
+      "none": "Nessuna fioritura",
+      "ordinary": "Fioritura normale",
+      "good": "Bella fioritura",
+      "superbloom": "Superbloom possibile"
+    }
   }
 }

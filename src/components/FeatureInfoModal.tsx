@@ -17,9 +17,8 @@ import { SPECIES_DATA, speciesNameKey } from '@/data/species';
 import type { RegionId } from '@/lib/data';
 import { Navigation, BarChart2, Copy, Check, AlertTriangle } from '@/lib/icons';
 import {
-  BLOOM_CODE,
-  BLOOM_SCIENTIFIC_NAME,
-  BLOOM_STATUS_COLOR,
+  CHERRY_BLOSSOM,
+  type Spectacle,
   bloomStatus,
   bloomWhen,
   formatBloomDate,
@@ -34,10 +33,12 @@ interface FeatureInfoModalProps {
   hideDirections?: boolean;
   dataNerdRegion?: RegionId | null;
   /**
-   * The slider's day (days since 1970-01-01) when the feature is a cherry
-   * blossom cell: it carries a `peak` date instead of species scores.
+   * The slider's day (days since 1970-01-01) when the feature is a spectacle
+   * cell (cherry blossom, ...): it carries a `peak` date instead of scores.
    */
   bloomDay?: number;
+  /** Which spectacle the cell belongs to; cherry blossom when not given. */
+  spectacle?: Spectacle;
 }
 
 // Builds a Google Maps navigation URL for consistent cross-platform behavior
@@ -54,6 +55,7 @@ export default function FeatureInfoModal({
   hideDirections,
   dataNerdRegion,
   bloomDay,
+  spectacle = CHERRY_BLOSSOM,
 }: FeatureInfoModalProps) {
   const { t, i18n } = useTranslation('map');
   const { t: tSpecies } = useTranslation('species');
@@ -103,12 +105,17 @@ export default function FeatureInfoModal({
     return key;
   };
 
-  // A cherry blossom cell lists one row, cherry blossom, in the same markup as
-  // a species, with its peak date where a species has its score.
+  // A spectacle cell lists one row, the spectacle, in the same markup as a
+  // species, with its peak date where a species has its score.
   const bloomPeak =
     bloomDay !== undefined && typeof props.peak === 'number'
       ? props.peak
       : null;
+  // The superbloom's strength: level 0 is a winter too dry for a bloom.
+  const bloomLevel =
+    spectacle.levels && typeof props.level === 'number' ? props.level : null;
+  const levelName =
+    bloomLevel !== null ? spectacle.levels?.names[bloomLevel] : undefined;
 
   // Get species entries with scores, filtered and sorted. `_score_d6` is the forecast
   // day-6 endpoint (folded into its base `_score` before display) — never a species row.
@@ -169,22 +176,23 @@ export default function FeatureInfoModal({
             {bloomPeak !== null && bloomDay !== undefined && (
               <div className='flex items-center space-x-3 p-2 sm:p-3 bg-muted rounded-lg'>
                 <div className='flex-shrink-0'>
-                  <div className='relative w-14 h-14 sm:w-16 sm:h-16 bg-secondary overflow-hidden rounded-lg'>
-                    <img
-                      src={getSpeciesImage(BLOOM_CODE) ?? undefined}
-                      alt={t('bloom.name')}
-                      className='w-full h-full object-cover object-center'
-                      loading='lazy'
-                    />
-                    <div className='absolute inset-0 bg-black/10' />
-                  </div>
+                  {getSpeciesImage(spectacle.code) && (
+                    <ZoomableImage
+                      src={getSpeciesImage(spectacle.code)!}
+                      alt={t(`${spectacle.keys}.name`)}
+                      className='w-14 h-14 sm:w-16 sm:h-16 bg-secondary rounded-lg'
+                      imgClassName='object-center'
+                    >
+                      <span className='absolute inset-0 bg-black/10' />
+                    </ZoomableImage>
+                  )}
                 </div>
                 <div className='flex-1 min-w-0'>
                   <h3 className='font-semibold text-foreground text-sm sm:text-base leading-tight mb-1'>
-                    {t('bloom.name')}
+                    {t(`${spectacle.keys}.name`)}
                   </h3>
                   <p className='text-xs sm:text-sm text-muted-foreground italic leading-tight'>
-                    {BLOOM_SCIENTIFIC_NAME}
+                    {spectacle.scientificName}
                   </p>
                 </div>
                 <div className='flex-shrink-0 text-right'>
@@ -194,15 +202,23 @@ export default function FeatureInfoModal({
                       className='size-2.5 shrink-0 rounded-full'
                       style={{
                         backgroundColor:
-                          BLOOM_STATUS_COLOR[bloomStatus(bloomPeak, bloomDay)],
+                          bloomLevel === 0
+                            ? spectacle.levels?.noneColor
+                            : spectacle.statusColor[
+                                bloomStatus(bloomPeak, bloomDay)
+                              ],
                       }}
                     />
                     <span className='text-xl sm:text-2xl font-bold text-foreground leading-tight'>
-                      {formatBloomDate(bloomPeak, i18n.language, 'short')}
+                      {bloomLevel === 0
+                        ? t(`${spectacle.keys}.levels.none`)
+                        : formatBloomDate(bloomPeak, i18n.language, 'short')}
                     </span>
                   </div>
                   <div className='text-xs text-muted-foreground leading-tight'>
-                    {t('bloom.legend')} · {bloomWhen(t, bloomPeak, bloomDay)}
+                    {bloomLevel === 0
+                      ? t(`${spectacle.keys}.dry`)
+                      : `${levelName ? t(`${spectacle.keys}.levels.${levelName}`) : t('bloom.legend')} · ${bloomWhen(t, bloomPeak, bloomDay)}`}
                   </div>
                 </div>
               </div>
