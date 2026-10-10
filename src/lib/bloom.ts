@@ -2,10 +2,12 @@ import type { ExpressionSpecification } from 'maplibre-gl';
 import type { TFunction } from 'i18next';
 
 /**
- * The cherry blossom layer (roadmap #272 step 5). It is picked like a species and
- * clicked like one, but it is not a catalog species: no page, no photo ID, no
- * score. Its tiles carry one property, `peak`: the predicted peak-bloom day as
- * days since 1970-01-01, built by backend/bloom.py from 1 February to 30 June.
+ * The spectacle layers (roadmap #272 step 5): cherry blossom, bluebell woods and
+ * the desert superbloom. Each is picked like a species and clicked like one, but
+ * it is not a catalog species: no page, no photo ID, no score. Their tiles carry
+ * `peak`, the predicted peak day as days since 1970-01-01, built in season by
+ * backend/bloom.py, bluebell.py and superbloom.py; the superbloom's carry its
+ * strength, `level`, as well.
  */
 export const BLOOM_CODE = 'cherry_blossom';
 export const BLOOM_SCIENTIFIC_NAME = 'Prunus serrulata';
@@ -90,22 +92,37 @@ export const BLOOM_IDLE = 'rgba(255, 255, 204, 0.9)';
 // Done for this year: the steady pale green a town keeps until 30 June.
 const BLOOM_DONE = 'rgba(156, 196, 148, 0.45)';
 
-// Days to peak -> colour. Light yellow more than three weeks out, pink deepening
-// to the peak, then leaf green as the petals drop, settling to a pale green that
-// stays: a town never vanishes, which read as "no cherries here". Only last
-// season's file is invisible.
-export const BLOOM_RAMP: readonly (readonly [number, string])[] = [
-  [-STALE_DAYS - 1, 'rgba(156, 196, 148, 0)'],
-  [-STALE_DAYS, BLOOM_DONE],
-  [-FADE_DAYS, BLOOM_DONE],
-  [-6, '#9cc494'],
-  [-PEAK_DAYS, '#c2185b'],
-  [PEAK_DAYS, '#c2185b'],
-  [7, '#ec6f9c'],
-  [14, '#f7b8cf'],
-  [SOON_DAYS, '#fce4ec'],
+/**
+ * Days to peak -> colour. Light yellow more than three weeks out, `soon` (one
+ * week, two, three out) deepening to `peak`, then `after` as the flowers drop,
+ * settling to `done`, which stays: a place never vanishes, which read as "none
+ * here". Only last season's file is invisible.
+ */
+const peakRamp = (
+  soon: readonly [string, string, string],
+  peak: string,
+  done: string,
+  after: string
+): readonly (readonly [number, string])[] => [
+  [-STALE_DAYS - 1, done.replace(/[\d.]+\)$/, '0)')],
+  [-STALE_DAYS, done],
+  [-FADE_DAYS, done],
+  [-6, after],
+  [-PEAK_DAYS, peak],
+  [PEAK_DAYS, peak],
+  [7, soon[0]],
+  [14, soon[1]],
+  [SOON_DAYS, soon[2]],
   [SOON_DAYS + 7, BLOOM_IDLE],
 ];
+
+// Cherry pink, then leaf green as the petals drop.
+export const BLOOM_RAMP = peakRamp(
+  ['#ec6f9c', '#f7b8cf', '#fce4ec'],
+  '#c2185b',
+  BLOOM_DONE,
+  '#9cc494'
+);
 
 // One colour per stage, for the info modal's swatch.
 export const BLOOM_STATUS_COLOR: Record<BloomStatus, string> = {
@@ -120,11 +137,29 @@ export function bloomFillColor(
   day: number,
   spectacle: Spectacle = CHERRY_BLOSSOM
 ): ExpressionSpecification {
-  return [
+  const ramp = [
     'interpolate',
     ['linear'],
     ['-', ['get', 'peak'], day],
     ...spectacle.ramp.flat(),
+  ];
+  return (spectacle.levels
+    ? ['case', ['==', ['get', 'level'], 0], spectacle.levels.noneColor, ramp]
+    : ramp) as unknown as ExpressionSpecification;
+}
+
+/** A spectacle with levels is drawn fainter the weaker its bloom. */
+export function bloomFillOpacity<T>(
+  spectacle: Spectacle,
+  fallback: T
+): T | ExpressionSpecification {
+  if (!spectacle.levels) return fallback;
+  const { opacity } = spectacle.levels;
+  return [
+    'match',
+    ['get', 'level'],
+    ...opacity.slice(0, -1).flatMap((value, level) => [level, value]),
+    opacity[opacity.length - 1],
   ] as unknown as ExpressionSpecification;
 }
 
@@ -178,6 +213,16 @@ export interface Spectacle {
   /** Days to peak -> colour; [1] is the steady "done" colour. */
   ramp: readonly (readonly [number, string])[];
   statusColor: Record<BloomStatus, string>;
+  /**
+   * Strength levels, when the tiles carry `level` (superbloom): their names
+   * (`<keys>.levels.<name>`; level 0 is no bloom, drawn in `noneColor`) and the
+   * fill opacity of each.
+   */
+  levels?: {
+    names: readonly string[];
+    opacity: readonly number[];
+    noneColor: string;
+  };
 }
 
 export const CHERRY_BLOSSOM: Spectacle = {
@@ -193,7 +238,65 @@ export const CHERRY_BLOSSOM: Spectacle = {
   statusColor: BLOOM_STATUS_COLOR,
 };
 
-export const SPECTACLES: readonly Spectacle[] = [CHERRY_BLOSSOM];
+// Bluebell violet deepening to the peak, then the wood's leaf green.
+export const BLUEBELL: Spectacle = {
+  code: 'bluebell',
+  scientificName: 'Hyacinthoides non-scripta',
+  emoji: '🪻',
+  keys: 'bluebell',
+  tiles: 'bluebell',
+  regions: ['ne', 'se'],
+  months: [2, 3, 4, 5],
+  ramp: peakRamp(
+    ['#7a6fd0', '#b6aee8', '#e4e0f7'],
+    '#4a3f9f',
+    BLOOM_DONE,
+    '#9cc494'
+  ),
+  statusColor: {
+    later: BLOOM_IDLE,
+    soon: '#b6aee8',
+    peak: '#4a3f9f',
+    past: '#9cc494',
+    stale: BLOOM_IDLE,
+  },
+};
+
+// Poppy orange deepening to the peak, then dry gold; a winter too dry for a
+// bloom is grey sand, and the weaker a bloom the fainter it is drawn.
+export const SUPERBLOOM: Spectacle = {
+  code: 'superbloom',
+  scientificName: 'Geraea, Abronia, Eschscholzia',
+  emoji: '🌼',
+  keys: 'superbloom',
+  tiles: 'superbloom',
+  regions: ['usw'],
+  months: [0, 1, 2, 3, 4],
+  ramp: peakRamp(
+    ['#f08a3c', '#f6bd6e', '#fbe3b0'],
+    '#d9480f',
+    'rgba(201, 176, 120, 0.45)',
+    '#c9a75e'
+  ),
+  statusColor: {
+    later: BLOOM_IDLE,
+    soon: '#f6bd6e',
+    peak: '#d9480f',
+    past: '#c9a75e',
+    stale: BLOOM_IDLE,
+  },
+  levels: {
+    names: ['none', 'ordinary', 'good', 'superbloom'],
+    opacity: [0.6, 0.45, 0.7, 0.9],
+    noneColor: 'rgba(205, 196, 180, 0.8)',
+  },
+};
+
+export const SPECTACLES: readonly Spectacle[] = [
+  CHERRY_BLOSSOM,
+  BLUEBELL,
+  SUPERBLOOM,
+];
 
 export const spectacleByCode = (
   code: string | null | undefined

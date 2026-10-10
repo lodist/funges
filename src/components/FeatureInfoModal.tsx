@@ -111,6 +111,11 @@ export default function FeatureInfoModal({
     bloomDay !== undefined && typeof props.peak === 'number'
       ? props.peak
       : null;
+  // The superbloom's strength: level 0 is a winter too dry for a bloom.
+  const bloomLevel =
+    spectacle.levels && typeof props.level === 'number' ? props.level : null;
+  const levelName =
+    bloomLevel !== null ? spectacle.levels?.names[bloomLevel] : undefined;
 
   // Get species entries with scores, filtered and sorted. `_score_d6` is the forecast
   // day-6 endpoint (folded into its base `_score` before display) — never a species row.
@@ -197,17 +202,23 @@ export default function FeatureInfoModal({
                       className='size-2.5 shrink-0 rounded-full'
                       style={{
                         backgroundColor:
-                          spectacle.statusColor[
-                            bloomStatus(bloomPeak, bloomDay)
-                          ],
+                          bloomLevel === 0
+                            ? spectacle.levels?.noneColor
+                            : spectacle.statusColor[
+                                bloomStatus(bloomPeak, bloomDay)
+                              ],
                       }}
                     />
                     <span className='text-xl sm:text-2xl font-bold text-foreground leading-tight'>
-                      {formatBloomDate(bloomPeak, i18n.language, 'short')}
+                      {bloomLevel === 0
+                        ? t(`${spectacle.keys}.levels.none`)
+                        : formatBloomDate(bloomPeak, i18n.language, 'short')}
                     </span>
                   </div>
                   <div className='text-xs text-muted-foreground leading-tight'>
-                    {t('bloom.legend')} · {bloomWhen(t, bloomPeak, bloomDay)}
+                    {bloomLevel === 0
+                      ? t(`${spectacle.keys}.dry`)
+                      : `${levelName ? t(`${spectacle.keys}.levels.${levelName}`) : t('bloom.legend')} · ${bloomWhen(t, bloomPeak, bloomDay)}`}
                   </div>
                 </div>
               </div>

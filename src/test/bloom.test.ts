@@ -3,7 +3,10 @@ import {
   BLOOM_CODE,
   BLOOM_IDLE,
   BLOOM_RAMP,
+  BLUEBELL,
+  SUPERBLOOM,
   bloomFillColor,
+  bloomFillOpacity,
   bloomGradientCss,
   bloomInSeason,
   bloomLayerId,
@@ -12,6 +15,7 @@ import {
   bloomWhen,
   formatBloomDate,
   isBloomLayer,
+  spectacleOfLayer,
   unixDay,
 } from '@/lib/bloom';
 import { isMapSpecies } from '@/data/species';
@@ -140,5 +144,44 @@ describe('the bloom layer on the map', () => {
     expect(bloomTilesUrl('se')).toBe(
       'pmtiles://https://data.fung.es/EU/SE/se_bloom.pmtiles'
     );
+  });
+});
+
+describe('bluebell and superbloom', () => {
+  it('are map codes whose layers and tiles follow the cherry pattern', () => {
+    expect(isMapSpecies('bluebell') && isMapSpecies('superbloom')).toBe(true);
+    expect(spectacleOfLayer(bloomLayerId('se', BLUEBELL))).toBe(BLUEBELL);
+    expect(spectacleOfLayer('superbloom_usw')).toBe(SUPERBLOOM);
+    expect(bloomTilesUrl('usw', SUPERBLOOM)).toBe(
+      'pmtiles://https://data.fung.es/USA/USW/usw_superbloom.pmtiles'
+    );
+  });
+
+  it('are in season when the backend builds them', () => {
+    expect(bloomInSeason(new Date(2027, 2, 1), BLUEBELL)).toBe(true);
+    expect(bloomInSeason(new Date(2027, 1, 28), BLUEBELL)).toBe(false);
+    expect(bloomInSeason(new Date(2027, 0, 1), SUPERBLOOM)).toBe(true);
+    expect(bloomInSeason(new Date(2027, 5, 1), SUPERBLOOM)).toBe(false);
+  });
+
+  it('draws a superbloom cell without a bloom in sand, fainter the weaker it is', () => {
+    const [op, dry, sand] = bloomFillColor(100, SUPERBLOOM) as unknown[];
+    expect(op).toBe('case');
+    expect(dry).toEqual(['==', ['get', 'level'], 0]);
+    expect(sand).toBe(SUPERBLOOM.levels?.noneColor);
+    expect(bloomFillOpacity(SUPERBLOOM, 0.85)).toEqual([
+      'match',
+      ['get', 'level'],
+      0,
+      0.6,
+      1,
+      0.45,
+      2,
+      0.7,
+      0.9,
+    ]);
+    // Without levels, the species layers' opacity and the plain ramp.
+    expect(bloomFillOpacity(BLUEBELL, 0.85)).toBe(0.85);
+    expect((bloomFillColor(100, BLUEBELL) as unknown[])[0]).toBe('interpolate');
   });
 });

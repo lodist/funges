@@ -132,5 +132,20 @@
     "inDays_other": "in {{count}} days",
     "daysAgo_one": "{{count}} day ago",
     "daysAgo_other": "{{count}} days ago"
+  },
+  "bluebell": {
+    "name": "Bluebell woods",
+    "offSeason": "The bluebell forecast starts on 1 March."
+  },
+  "superbloom": {
+    "name": "Desert superbloom",
+    "offSeason": "The desert bloom forecast starts on 1 January.",
+    "dry": "Too little winter rain",
+    "levels": {
+      "none": "No bloom",
+      "ordinary": "Ordinary bloom",
+      "good": "Good bloom",
+      "superbloom": "Superbloom possible"
+    }
   }
 }

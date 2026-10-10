@@ -59,6 +59,7 @@ import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import MapInfoCard from '@/components/MapInfoCard';
 import {
   bloomFillColor,
+  bloomFillOpacity,
   bloomGradientCss,
   bloomLayerId,
   bloomSourceId,
@@ -1330,7 +1331,10 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             layout: { visibility: 'none' },
             paint: {
               'fill-color': bloomFillColor(unixDay(new Date()), spectacle),
-              'fill-opacity': species?.paint?.['fill-opacity'] ?? 0.85,
+              'fill-opacity': bloomFillOpacity(
+                spectacle,
+                species?.paint?.['fill-opacity'] ?? 0.85
+              ),
               // Off at every zoom: the cells share their edges, and an
               // antialiased edge draws them as a faint grid.
               'fill-antialias': false,
