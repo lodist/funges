@@ -17,14 +17,13 @@ A bracket-fitted outing model held fixed as an offset was tried and cost skill, 
 
 ## What ships
 
-A species-region ships when its fit beats today's model in more held-out years than chance (sign test p < 0.1, at least 6 years). Each year is scored by a fit on all the other years; a single test period is not enough (porcini in North Europe won 9 of 11 years but lost 2026). What ships is then refitted on every year. **24 species-regions ship**; every other species and region keeps today's hand-set weather part.
+A species-region ships when its fit beats today's model in more held-out years than chance (sign test p < 0.1, at least 6 years). Each year is scored by a fit on all the other years; a single test period is not enough (porcini in North Europe won 9 of 11 years but lost 2026). What ships is then refitted on every year. **23 species-regions ship**; every other species and region keeps today's hand-set weather part. Chicken-of-the-woods in US West passed the rule but is held back on review: little skill on either side (+0.050 against +0.017, about zero in summer 2026) for 20–36 points fewer 4+ places in September and October.
 
 | Species | Region | Years won | p | Today (mean) | Fitted (mean) |
 | --- | --- | ---: | ---: | ---: | ---: |
 | black_chant | NE | 8 of 10 | 0.055 | +0.046 | **+0.056** |
 | black_chant | USE | 9 of 9 | 0.002 | +0.006 | **+0.183** |
 | chant | SE | 9 of 11 | 0.033 | +0.078 | **+0.098** |
-| chicken-of-the-woods | USW | 9 of 10 | 0.011 | +0.017 | **+0.050** |
 | giant_puffball | NE | 9 of 11 | 0.033 | +0.026 | **+0.080** |
 | giant_puffball | SE | 8 of 9 | 0.019 | +0.052 | **+0.121** |
 | giant_puffball | USW | 7 of 7 | 0.008 | +0.074 | **+0.102** |
@@ -71,7 +70,6 @@ Share of map points scoring 4+, today's model vs the fitted one, in two weeks of
 | black_chant | NE | 100% → 100% (+0) | 99% → 100% (+1) | 100% → 100% (+0) | 100% → 100% (-0) |
 | black_chant | USE | 46% → 71% (+25) | 71% → 79% (+8) | 67% → 82% (+15) | 86% → 92% (+6) |
 | chant | SE | 60% → 63% (+2) | 61% → 40% (-21) | 90% → 90% (+0) | 80% → 56% (-25) |
-| chicken-of-the-woods | USW | 75% → 39% (-36) | 80% → 60% (-20) | 80% → 55% (-26) | 78% → 78% (+0) |
 | giant_puffball | NE | 99% → 100% (+1) | 96% → 100% (+4) | 100% → 100% (+0) | 100% → 100% (+0) |
 | giant_puffball | SE | 70% → 89% (+19) | 76% → 74% (-2) | 94% → 99% (+5) | 93% → 90% (-3) |
 | giant_puffball | USW | 68% → 60% (-8) | 87% → 90% (+3) | 70% → 63% (-8) | 76% → 87% (+12) |
@@ -92,7 +90,7 @@ Share of map points scoring 4+, today's model vs the fitted one, in two weeks of
 | smooth_chant | USE | 84% → 95% (+11) | 72% → 86% (+14) | 85% → 99% (+14) | 80% → 91% (+11) |
 | summer_bolete | NE | 73% → 94% (+21) | 47% → 68% (+21) | 97% → 98% (+1) | 88% → 72% (-17) |
 
-Mean change, all points: +2.1 points (typical size 7.5); near finds: +0.3 (typical size 5.0).
+Mean change, all points: +3.5 points (typical size 6.6); near finds: +0.9 (typical size 4.6).
 
 ## Summer 2026 with the app's stored weather
 
@@ -103,7 +101,6 @@ Mean change, all points: +2.1 points (typical size 7.5); near finds: +0.3 (typic
 | black_chant | NE | 37 | +0.115 | **+0.109** (+0.010 to +0.205) | about equal |
 | black_chant | USE | 176 | -0.014 | **+0.114** (+0.061 to +0.165) | better |
 | chant | SE | 126 | +0.025 | **+0.132** (+0.068 to +0.192) | better |
-| chicken-of-the-woods | USW | 428 | -0.065 | **-0.017** (-0.072 to +0.040) | about equal |
 | giant_puffball | NE | 142 | +0.118 | **+0.086** (+0.023 to +0.148) | about equal |
 | giant_puffball | SE | 108 | +0.101 | **+0.154** (+0.082 to +0.230) | about equal |
 | giant_puffball | USW | 19 | | | not testable |
@@ -125,7 +122,7 @@ Mean change, all points: +2.1 points (typical size 7.5); near finds: +0.3 (typic
 | smooth_chant | USE | 38 | +0.035 | **+0.127** (+0.025 to +0.232) | about equal |
 | summer_bolete | NE | 113 | +0.132 | **+0.189** (+0.124 to +0.251) | about equal |
 
-6 better, 14 about equal, 1 worse. Some hand-set parameters were tuned on 2026 sightings, which favours today's model here: today's porcini scores 2026 at +0.175 in North Europe against at most +0.106 in 2016–2025.
+6 better, 13 about equal, 1 worse. Some hand-set parameters were tuned on 2026 sightings, which favours today's model here: today's porcini scores 2026 at +0.175 in North Europe against at most +0.106 in 2016–2025.
 
 ## Held out: 2025–2026, from a fit on 2016–2024
 
