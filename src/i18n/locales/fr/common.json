@@ -35,7 +35,9 @@
     "sort": "Trier",
     "email": "E-mail",
     "score": "Score",
-    "copied": "Copié !"
+    "copied": "Copié !",
+    "enlargeImage": "Agrandir l'image",
+    "shrinkImage": "Réduire l'image"
   },
   "offline": {
     "mode": "Mode hors ligne",

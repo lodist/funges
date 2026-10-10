@@ -10,6 +10,7 @@ import {
   type Candidate,
 } from '@/lib/photo-id';
 import { getSpeciesImage } from '@/lib/utils';
+import { ZoomableImage } from '@/components/ZoomableImage';
 
 /**
  * Renders the ~3 candidates from a photo.
@@ -162,12 +163,7 @@ function CandidateRow({
       <div className='h-12 w-12 shrink-0 rounded-md overflow-hidden bg-secondary flex items-center justify-center'>
         {/* Toxic and tier-2 rows have no photo asset and must still render. */}
         {image ? (
-          <img
-            src={image}
-            alt=''
-            className='h-full w-full object-cover'
-            loading='lazy'
-          />
+          <ZoomableImage src={image} className='size-full' />
         ) : isToxic ? (
           <Skull className='h-6 w-6' aria-hidden='true' />
         ) : (
