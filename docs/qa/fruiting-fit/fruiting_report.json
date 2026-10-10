@@ -1,0 +1,5208 @@
+{
+ "black_chant": {
+  "NE": {
+   "n": 349,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.084,
+    "net_ci": [
+     0.053,
+     0.119
+    ],
+    "net_2025": 0.073
+   },
+   "fitted": {
+    "net": 0.101,
+    "net_ci": [
+     0.067,
+     0.135
+    ],
+    "net_2025": 0.095
+   },
+   "region_unseen": {
+    "net": 0.072,
+    "net_ci": [
+     0.039,
+     0.107
+    ],
+    "net_2025": 0.069
+   },
+   "by_year": {
+    "years": 10,
+    "wins": 8,
+    "p": 0.0547,
+    "mean_gain": 0.009,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.097,
+      "fitted": 0.046
+     },
+     {
+      "year": 2017,
+      "today": 0.078,
+      "fitted": 0.098
+     },
+     {
+      "year": 2018,
+      "today": 0.032,
+      "fitted": 0.036
+     },
+     {
+      "year": 2019,
+      "today": -0.005,
+      "fitted": 0.02
+     },
+     {
+      "year": 2020,
+      "today": 0.026,
+      "fitted": 0.038
+     },
+     {
+      "year": 2021,
+      "today": 0.058,
+      "fitted": 0.1
+     },
+     {
+      "year": 2022,
+      "today": 0.028,
+      "fitted": 0.042
+     },
+     {
+      "year": 2023,
+      "today": 0.035,
+      "fitted": 0.075
+     },
+     {
+      "year": 2024,
+      "today": 0.043,
+      "fitted": 0.002
+     },
+     {
+      "year": 2025,
+      "today": 0.073,
+      "fitted": 0.101
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 298,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.08,
+    "net_ci": [
+     0.047,
+     0.117
+    ],
+    "net_2025": 0.1
+   },
+   "fitted": {
+    "net": 0.178,
+    "net_ci": [
+     0.139,
+     0.213
+    ],
+    "net_2025": 0.218
+   },
+   "region_unseen": {
+    "net": 0.164,
+    "net_ci": [
+     0.122,
+     0.201
+    ],
+    "net_2025": 0.197
+   },
+   "by_year": {
+    "years": 8,
+    "wins": 6,
+    "p": 0.1445,
+    "mean_gain": 0.031,
+    "per_year": [
+     {
+      "year": 2017,
+      "today": 0.006,
+      "fitted": 0.092
+     },
+     {
+      "year": 2019,
+      "today": 0.076,
+      "fitted": 0.082
+     },
+     {
+      "year": 2020,
+      "today": 0.124,
+      "fitted": 0.227
+     },
+     {
+      "year": 2021,
+      "today": 0.179,
+      "fitted": 0.099
+     },
+     {
+      "year": 2022,
+      "today": 0.105,
+      "fitted": 0.094
+     },
+     {
+      "year": 2023,
+      "today": 0.044,
+      "fitted": 0.062
+     },
+     {
+      "year": 2024,
+      "today": 0.113,
+      "fitted": 0.124
+     },
+     {
+      "year": 2025,
+      "today": 0.1,
+      "fitted": 0.218
+     }
+    ]
+   }
+  },
+  "USE": {
+   "n": 422,
+   "placebo_n": 2195,
+   "today": {
+    "net": -0.039,
+    "net_ci": [
+     -0.074,
+     -0.003
+    ],
+    "net_2025": -0.039
+   },
+   "fitted": {
+    "net": 0.16,
+    "net_ci": [
+     0.128,
+     0.191
+    ],
+    "net_2025": 0.148
+   },
+   "region_unseen": {
+    "net": 0.101,
+    "net_ci": [
+     0.064,
+     0.132
+    ],
+    "net_2025": 0.085
+   },
+   "by_year": {
+    "years": 9,
+    "wins": 9,
+    "p": 0.002,
+    "mean_gain": 0.177,
+    "per_year": [
+     {
+      "year": 2018,
+      "today": -0.023,
+      "fitted": 0.215
+     },
+     {
+      "year": 2019,
+      "today": 0.016,
+      "fitted": 0.181
+     },
+     {
+      "year": 2020,
+      "today": 0.064,
+      "fitted": 0.221
+     },
+     {
+      "year": 2021,
+      "today": 0.05,
+      "fitted": 0.15
+     },
+     {
+      "year": 2022,
+      "today": 0.045,
+      "fitted": 0.154
+     },
+     {
+      "year": 2023,
+      "today": -0.083,
+      "fitted": 0.157
+     },
+     {
+      "year": 2024,
+      "today": 0.058,
+      "fitted": 0.243
+     },
+     {
+      "year": 2025,
+      "today": -0.039,
+      "fitted": 0.145
+     },
+     {
+      "year": 2026,
+      "today": -0.039,
+      "fitted": 0.177
+     }
+    ]
+   }
+  },
+  "USW": {
+   "n": 54,
+   "placebo_n": 1853,
+   "today": {
+    "net": 0.018,
+    "net_ci": [
+     -0.043,
+     0.075
+    ]
+   },
+   "fitted": {
+    "net": 0.164,
+    "net_ci": [
+     0.092,
+     0.243
+    ]
+   },
+   "region_unseen": {
+    "net": 0.177,
+    "net_ci": [
+     0.101,
+     0.25
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.035,
+    "net_ci": [
+     0.016,
+     0.054
+    ],
+    "n": 1123
+   },
+   "fitted": {
+    "net": 0.147,
+    "net_ci": [
+     0.126,
+     0.168
+    ],
+    "n": 1123
+   },
+   "region_unseen": {
+    "net": 0.117,
+    "net_ci": [
+     0.096,
+     0.137
+    ],
+    "n": 1123
+   }
+  }
+ },
+ "bronze_bolete": {
+  "SE": {
+   "n": 123,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.245,
+    "net_ci": [
+     0.196,
+     0.299
+    ],
+    "net_2025": 0.24
+   },
+   "fitted": {
+    "net": 0.319,
+    "net_ci": [
+     0.263,
+     0.372
+    ],
+    "net_2025": 0.352
+   },
+   "by_year": {
+    "years": 4,
+    "wins": 3,
+    "p": 0.3125,
+    "mean_gain": 0.056,
+    "per_year": [
+     {
+      "year": 2022,
+      "today": 0.221,
+      "fitted": 0.22
+     },
+     {
+      "year": 2023,
+      "today": 0.214,
+      "fitted": 0.233
+     },
+     {
+      "year": 2024,
+      "today": 0.132,
+      "fitted": 0.232
+     },
+     {
+      "year": 2025,
+      "today": 0.24,
+      "fitted": 0.346
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.245,
+    "net_ci": [
+     0.196,
+     0.299
+    ],
+    "n": 123
+   },
+   "fitted": {
+    "net": 0.319,
+    "net_ci": [
+     0.263,
+     0.372
+    ],
+    "n": 123
+   }
+  }
+ },
+ "chant": {
+  "NE": {
+   "n": 2777,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.09,
+    "net_ci": [
+     0.076,
+     0.106
+    ],
+    "net_2025": 0.083
+   },
+   "fitted": {
+    "net": 0.096,
+    "net_ci": [
+     0.081,
+     0.114
+    ],
+    "net_2025": 0.093
+   },
+   "region_unseen": {
+    "net": 0.1,
+    "net_ci": [
+     0.084,
+     0.116
+    ],
+    "net_2025": 0.092
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 7,
+    "p": 0.2744,
+    "mean_gain": 0.007,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.077,
+      "fitted": 0.076
+     },
+     {
+      "year": 2017,
+      "today": 0.054,
+      "fitted": 0.077
+     },
+     {
+      "year": 2018,
+      "today": 0.038,
+      "fitted": 0.059
+     },
+     {
+      "year": 2019,
+      "today": 0.023,
+      "fitted": 0.025
+     },
+     {
+      "year": 2020,
+      "today": 0.058,
+      "fitted": 0.079
+     },
+     {
+      "year": 2021,
+      "today": 0.082,
+      "fitted": 0.078
+     },
+     {
+      "year": 2022,
+      "today": 0.041,
+      "fitted": 0.039
+     },
+     {
+      "year": 2023,
+      "today": 0.049,
+      "fitted": 0.061
+     },
+     {
+      "year": 2024,
+      "today": 0.038,
+      "fitted": 0.027
+     },
+     {
+      "year": 2025,
+      "today": 0.083,
+      "fitted": 0.093
+     },
+     {
+      "year": 2026,
+      "today": 0.092,
+      "fitted": 0.096
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 549,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.165,
+    "net_ci": [
+     0.136,
+     0.195
+    ],
+    "net_2025": 0.199
+   },
+   "fitted": {
+    "net": 0.175,
+    "net_ci": [
+     0.143,
+     0.204
+    ],
+    "net_2025": 0.205
+   },
+   "region_unseen": {
+    "net": 0.169,
+    "net_ci": [
+     0.135,
+     0.198
+    ],
+    "net_2025": 0.206
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 9,
+    "p": 0.0327,
+    "mean_gain": 0.02,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.04,
+      "fitted": 0.058
+     },
+     {
+      "year": 2017,
+      "today": -0.009,
+      "fitted": 0.045
+     },
+     {
+      "year": 2018,
+      "today": 0.047,
+      "fitted": 0.084
+     },
+     {
+      "year": 2019,
+      "today": 0.059,
+      "fitted": 0.092
+     },
+     {
+      "year": 2020,
+      "today": 0.127,
+      "fitted": 0.131
+     },
+     {
+      "year": 2021,
+      "today": 0.129,
+      "fitted": 0.11
+     },
+     {
+      "year": 2022,
+      "today": 0.051,
+      "fitted": 0.041
+     },
+     {
+      "year": 2023,
+      "today": 0.036,
+      "fitted": 0.079
+     },
+     {
+      "year": 2024,
+      "today": 0.079,
+      "fitted": 0.105
+     },
+     {
+      "year": 2025,
+      "today": 0.199,
+      "fitted": 0.204
+     },
+     {
+      "year": 2026,
+      "today": 0.099,
+      "fitted": 0.13
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.119,
+    "net_ci": [
+     0.106,
+     0.133
+    ],
+    "n": 3326
+   },
+   "fitted": {
+    "net": 0.124,
+    "net_ci": [
+     0.111,
+     0.137
+    ],
+    "n": 3326
+   },
+   "region_unseen": {
+    "net": 0.127,
+    "net_ci": [
+     0.114,
+     0.141
+    ],
+    "n": 3326
+   }
+  }
+ },
+ "chicken-of-the-woods": {
+  "NE": {
+   "n": 7662,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.014,
+    "net_ci": [
+     0.002,
+     0.025
+    ],
+    "net_2025": 0.014
+   },
+   "fitted": {
+    "net": 0.04,
+    "net_ci": [
+     0.028,
+     0.052
+    ],
+    "net_2025": 0.031
+   },
+   "region_unseen": {
+    "net": 0.021,
+    "net_ci": [
+     0.008,
+     0.034
+    ],
+    "net_2025": 0.022
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 8,
+    "p": 0.1133,
+    "mean_gain": 0.011,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.027,
+      "fitted": 0.069
+     },
+     {
+      "year": 2017,
+      "today": 0.032,
+      "fitted": -0.01
+     },
+     {
+      "year": 2018,
+      "today": 0.019,
+      "fitted": 0.027
+     },
+     {
+      "year": 2019,
+      "today": 0.005,
+      "fitted": 0.002
+     },
+     {
+      "year": 2020,
+      "today": 0.017,
+      "fitted": 0.034
+     },
+     {
+      "year": 2021,
+      "today": 0.068,
+      "fitted": 0.022
+     },
+     {
+      "year": 2022,
+      "today": -0.003,
+      "fitted": 0.061
+     },
+     {
+      "year": 2023,
+      "today": 0.003,
+      "fitted": 0.008
+     },
+     {
+      "year": 2024,
+      "today": 0.023,
+      "fitted": 0.048
+     },
+     {
+      "year": 2025,
+      "today": 0.014,
+      "fitted": 0.019
+     },
+     {
+      "year": 2026,
+      "today": 0.012,
+      "fitted": 0.054
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 5474,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.086,
+    "net_ci": [
+     0.072,
+     0.099
+    ],
+    "net_2025": 0.112
+   },
+   "fitted": {
+    "net": 0.065,
+    "net_ci": [
+     0.05,
+     0.079
+    ],
+    "net_2025": 0.058
+   },
+   "region_unseen": {
+    "net": 0.061,
+    "net_ci": [
+     0.047,
+     0.076
+    ],
+    "net_2025": 0.063
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 5,
+    "p": 0.7256,
+    "mean_gain": -0.017,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.051,
+      "fitted": 0.051
+     },
+     {
+      "year": 2017,
+      "today": 0.082,
+      "fitted": 0.011
+     },
+     {
+      "year": 2018,
+      "today": 0.01,
+      "fitted": 0.036
+     },
+     {
+      "year": 2019,
+      "today": 0.031,
+      "fitted": -0.032
+     },
+     {
+      "year": 2020,
+      "today": 0.084,
+      "fitted": 0.056
+     },
+     {
+      "year": 2021,
+      "today": 0.078,
+      "fitted": 0.034
+     },
+     {
+      "year": 2022,
+      "today": 0.01,
+      "fitted": 0.037
+     },
+     {
+      "year": 2023,
+      "today": 0.009,
+      "fitted": -0.036
+     },
+     {
+      "year": 2024,
+      "today": 0.051,
+      "fitted": 0.071
+     },
+     {
+      "year": 2025,
+      "today": 0.112,
+      "fitted": 0.085
+     },
+     {
+      "year": 2026,
+      "today": 0.065,
+      "fitted": 0.077
+     }
+    ]
+   }
+  },
+  "USE": {
+   "n": 5075,
+   "placebo_n": 2195,
+   "today": {
+    "net": 0.057,
+    "net_ci": [
+     0.041,
+     0.071
+    ],
+    "net_2025": 0.049
+   },
+   "fitted": {
+    "net": 0.057,
+    "net_ci": [
+     0.04,
+     0.072
+    ],
+    "net_2025": 0.05
+   },
+   "region_unseen": {
+    "net": 0.035,
+    "net_ci": [
+     0.02,
+     0.049
+    ],
+    "net_2025": 0.027
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 6,
+    "p": 0.5,
+    "mean_gain": 0.002,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.041,
+      "fitted": 0.078
+     },
+     {
+      "year": 2017,
+      "today": 0.043,
+      "fitted": 0.026
+     },
+     {
+      "year": 2018,
+      "today": 0.09,
+      "fitted": 0.085
+     },
+     {
+      "year": 2019,
+      "today": 0.042,
+      "fitted": 0.042
+     },
+     {
+      "year": 2020,
+      "today": 0.067,
+      "fitted": 0.069
+     },
+     {
+      "year": 2021,
+      "today": 0.058,
+      "fitted": 0.063
+     },
+     {
+      "year": 2022,
+      "today": 0.059,
+      "fitted": 0.047
+     },
+     {
+      "year": 2023,
+      "today": 0.036,
+      "fitted": 0.036
+     },
+     {
+      "year": 2024,
+      "today": 0.045,
+      "fitted": 0.048
+     },
+     {
+      "year": 2025,
+      "today": 0.049,
+      "fitted": 0.054
+     },
+     {
+      "year": 2026,
+      "today": 0.069,
+      "fitted": 0.069
+     }
+    ]
+   }
+  },
+  "USW": {
+   "n": 2025,
+   "placebo_n": 1853,
+   "today": {
+    "net": 0.042,
+    "net_ci": [
+     0.021,
+     0.06
+    ],
+    "net_2025": 0.038
+   },
+   "fitted": {
+    "net": 0.063,
+    "net_ci": [
+     0.041,
+     0.083
+    ],
+    "net_2025": 0.055
+   },
+   "region_unseen": {
+    "net": 0.043,
+    "net_ci": [
+     0.021,
+     0.066
+    ],
+    "net_2025": 0.03
+   },
+   "by_year": {
+    "years": 10,
+    "wins": 9,
+    "p": 0.0107,
+    "mean_gain": 0.033,
+    "per_year": [
+     {
+      "year": 2017,
+      "today": -0.003,
+      "fitted": -0.007
+     },
+     {
+      "year": 2018,
+      "today": 0.01,
+      "fitted": 0.07
+     },
+     {
+      "year": 2019,
+      "today": -0.025,
+      "fitted": 0.068
+     },
+     {
+      "year": 2020,
+      "today": 0.011,
+      "fitted": 0.039
+     },
+     {
+      "year": 2021,
+      "today": 0.021,
+      "fitted": 0.028
+     },
+     {
+      "year": 2022,
+      "today": 0.006,
+      "fitted": 0.066
+     },
+     {
+      "year": 2023,
+      "today": 0.021,
+      "fitted": 0.04
+     },
+     {
+      "year": 2024,
+      "today": 0.045,
+      "fitted": 0.077
+     },
+     {
+      "year": 2025,
+      "today": 0.038,
+      "fitted": 0.051
+     },
+     {
+      "year": 2026,
+      "today": 0.043,
+      "fitted": 0.067
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.045,
+    "net_ci": [
+     0.038,
+     0.052
+    ],
+    "n": 20236
+   },
+   "fitted": {
+    "net": 0.055,
+    "net_ci": [
+     0.048,
+     0.062
+    ],
+    "n": 20236
+   },
+   "region_unseen": {
+    "net": 0.039,
+    "net_ci": [
+     0.032,
+     0.047
+    ],
+    "n": 20236
+   }
+  }
+ },
+ "eastern_king": {
+  "USE": {
+   "n": 174,
+   "placebo_n": 2195,
+   "today": {
+    "net": 0.264,
+    "net_ci": [
+     0.223,
+     0.306
+    ],
+    "net_2025": 0.218
+   },
+   "fitted": {
+    "net": 0.23,
+    "net_ci": [
+     0.181,
+     0.278
+    ],
+    "net_2025": 0.164
+   },
+   "by_year": {
+    "years": 6,
+    "wins": 3,
+    "p": 0.6562,
+    "mean_gain": 0.027,
+    "per_year": [
+     {
+      "year": 2021,
+      "today": 0.25,
+      "fitted": 0.239
+     },
+     {
+      "year": 2022,
+      "today": 0.197,
+      "fitted": 0.251
+     },
+     {
+      "year": 2023,
+      "today": 0.204,
+      "fitted": 0.243
+     },
+     {
+      "year": 2024,
+      "today": 0.199,
+      "fitted": 0.355
+     },
+     {
+      "year": 2025,
+      "today": 0.218,
+      "fitted": 0.163
+     },
+     {
+      "year": 2026,
+      "today": 0.31,
+      "fitted": 0.287
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.264,
+    "net_ci": [
+     0.223,
+     0.306
+    ],
+    "n": 174
+   },
+   "fitted": {
+    "net": 0.23,
+    "net_ci": [
+     0.181,
+     0.278
+    ],
+    "n": 174
+   }
+  }
+ },
+ "giant_puffball": {
+  "NE": {
+   "n": 1202,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.023,
+    "net_ci": [
+     0.003,
+     0.043
+    ],
+    "net_2025": -0.005
+   },
+   "fitted": {
+    "net": 0.114,
+    "net_ci": [
+     0.092,
+     0.138
+    ],
+    "net_2025": 0.128
+   },
+   "region_unseen": {
+    "net": 0.108,
+    "net_ci": [
+     0.085,
+     0.13
+    ],
+    "net_2025": 0.106
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 9,
+    "p": 0.0327,
+    "mean_gain": 0.054,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": -0.016,
+      "fitted": 0.066
+     },
+     {
+      "year": 2017,
+      "today": -0.009,
+      "fitted": 0.082
+     },
+     {
+      "year": 2018,
+      "today": 0.077,
+      "fitted": 0.065
+     },
+     {
+      "year": 2019,
+      "today": 0.006,
+      "fitted": 0.048
+     },
+     {
+      "year": 2020,
+      "today": 0.068,
+      "fitted": 0.11
+     },
+     {
+      "year": 2021,
+      "today": 0.074,
+      "fitted": 0.131
+     },
+     {
+      "year": 2022,
+      "today": -0.001,
+      "fitted": 0.077
+     },
+     {
+      "year": 2023,
+      "today": 0.002,
+      "fitted": 0.079
+     },
+     {
+      "year": 2024,
+      "today": 0.001,
+      "fitted": -0.013
+     },
+     {
+      "year": 2025,
+      "today": -0.005,
+      "fitted": 0.126
+     },
+     {
+      "year": 2026,
+      "today": 0.089,
+      "fitted": 0.104
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 426,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.136,
+    "net_ci": [
+     0.104,
+     0.169
+    ],
+    "net_2025": 0.141
+   },
+   "fitted": {
+    "net": 0.232,
+    "net_ci": [
+     0.195,
+     0.262
+    ],
+    "net_2025": 0.255
+   },
+   "region_unseen": {
+    "net": 0.224,
+    "net_ci": [
+     0.189,
+     0.254
+    ],
+    "net_2025": 0.262
+   },
+   "by_year": {
+    "years": 9,
+    "wins": 8,
+    "p": 0.0195,
+    "mean_gain": 0.068,
+    "per_year": [
+     {
+      "year": 2017,
+      "today": -0.055,
+      "fitted": 0.013
+     },
+     {
+      "year": 2019,
+      "today": 0.049,
+      "fitted": 0.141
+     },
+     {
+      "year": 2020,
+      "today": 0.116,
+      "fitted": 0.14
+     },
+     {
+      "year": 2021,
+      "today": 0.128,
+      "fitted": 0.132
+     },
+     {
+      "year": 2022,
+      "today": -0.111,
+      "fitted": 0.093
+     },
+     {
+      "year": 2023,
+      "today": -0.003,
+      "fitted": 0.08
+     },
+     {
+      "year": 2024,
+      "today": 0.056,
+      "fitted": 0.049
+     },
+     {
+      "year": 2025,
+      "today": 0.141,
+      "fitted": 0.26
+     },
+     {
+      "year": 2026,
+      "today": 0.149,
+      "fitted": 0.176
+     }
+    ]
+   }
+  },
+  "USE": {
+   "n": 672,
+   "placebo_n": 2195,
+   "today": {
+    "net": 0.085,
+    "net_ci": [
+     0.06,
+     0.109
+    ],
+    "net_2025": 0.075
+   },
+   "fitted": {
+    "net": 0.109,
+    "net_ci": [
+     0.083,
+     0.137
+    ],
+    "net_2025": 0.113
+   },
+   "region_unseen": {
+    "net": 0.078,
+    "net_ci": [
+     0.047,
+     0.11
+    ],
+    "net_2025": 0.097
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 8,
+    "p": 0.1133,
+    "mean_gain": 0.024,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.087,
+      "fitted": 0.11
+     },
+     {
+      "year": 2017,
+      "today": 0.058,
+      "fitted": 0.119
+     },
+     {
+      "year": 2018,
+      "today": 0.103,
+      "fitted": 0.127
+     },
+     {
+      "year": 2019,
+      "today": 0.09,
+      "fitted": 0.047
+     },
+     {
+      "year": 2020,
+      "today": 0.13,
+      "fitted": 0.17
+     },
+     {
+      "year": 2021,
+      "today": 0.193,
+      "fitted": 0.141
+     },
+     {
+      "year": 2022,
+      "today": 0.064,
+      "fitted": 0.101
+     },
+     {
+      "year": 2023,
+      "today": 0.129,
+      "fitted": 0.188
+     },
+     {
+      "year": 2024,
+      "today": 0.11,
+      "fitted": 0.214
+     },
+     {
+      "year": 2025,
+      "today": 0.075,
+      "fitted": 0.113
+     },
+     {
+      "year": 2026,
+      "today": 0.107,
+      "fitted": 0.083
+     }
+    ]
+   }
+  },
+  "USW": {
+   "n": 180,
+   "placebo_n": 1853,
+   "today": {
+    "net": 0.098,
+    "net_ci": [
+     0.048,
+     0.152
+    ],
+    "net_2025": 0.076
+   },
+   "fitted": {
+    "net": 0.139,
+    "net_ci": [
+     0.091,
+     0.19
+    ],
+    "net_2025": 0.127
+   },
+   "region_unseen": {
+    "net": 0.15,
+    "net_ci": [
+     0.101,
+     0.202
+    ],
+    "net_2025": 0.102
+   },
+   "by_year": {
+    "years": 7,
+    "wins": 7,
+    "p": 0.0078,
+    "mean_gain": 0.028,
+    "per_year": [
+     {
+      "year": 2020,
+      "today": 0.05,
+      "fitted": 0.064
+     },
+     {
+      "year": 2021,
+      "today": -0.022,
+      "fitted": 0.023
+     },
+     {
+      "year": 2022,
+      "today": 0.108,
+      "fitted": 0.139
+     },
+     {
+      "year": 2023,
+      "today": 0.056,
+      "fitted": 0.069
+     },
+     {
+      "year": 2024,
+      "today": 0.116,
+      "fitted": 0.138
+     },
+     {
+      "year": 2025,
+      "today": 0.076,
+      "fitted": 0.12
+     },
+     {
+      "year": 2026,
+      "today": 0.136,
+      "fitted": 0.161
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.072,
+    "net_ci": [
+     0.058,
+     0.085
+    ],
+    "n": 2480
+   },
+   "fitted": {
+    "net": 0.138,
+    "net_ci": [
+     0.122,
+     0.152
+    ],
+    "n": 2480
+   },
+   "region_unseen": {
+    "net": 0.127,
+    "net_ci": [
+     0.11,
+     0.143
+    ],
+    "n": 2480
+   }
+  }
+ },
+ "hedgehog_mushroom": {
+  "NE": {
+   "n": 1497,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.019,
+    "net_ci": [
+     0.001,
+     0.039
+    ],
+    "net_2025": -0.002
+   },
+   "fitted": {
+    "net": 0.018,
+    "net_ci": [
+     -0.0,
+     0.037
+    ],
+    "net_2025": 0.009
+   },
+   "region_unseen": {
+    "net": 0.014,
+    "net_ci": [
+     -0.003,
+     0.032
+    ],
+    "net_2025": 0.022
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 8,
+    "p": 0.1133,
+    "mean_gain": 0.0,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.045,
+      "fitted": 0.03
+     },
+     {
+      "year": 2017,
+      "today": 0.053,
+      "fitted": 0.069
+     },
+     {
+      "year": 2018,
+      "today": -0.025,
+      "fitted": 0.01
+     },
+     {
+      "year": 2019,
+      "today": 0.012,
+      "fitted": 0.025
+     },
+     {
+      "year": 2020,
+      "today": 0.018,
+      "fitted": 0.023
+     },
+     {
+      "year": 2021,
+      "today": 0.026,
+      "fitted": 0.032
+     },
+     {
+      "year": 2022,
+      "today": 0.001,
+      "fitted": 0.012
+     },
+     {
+      "year": 2023,
+      "today": 0.019,
+      "fitted": 0.023
+     },
+     {
+      "year": 2024,
+      "today": 0.026,
+      "fitted": -0.003
+     },
+     {
+      "year": 2025,
+      "today": -0.002,
+      "fitted": 0.009
+     },
+     {
+      "year": 2026,
+      "today": 0.072,
+      "fitted": 0.016
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 286,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.092,
+    "net_ci": [
+     0.057,
+     0.129
+    ],
+    "net_2025": 0.108
+   },
+   "fitted": {
+    "net": 0.089,
+    "net_ci": [
+     0.052,
+     0.132
+    ],
+    "net_2025": 0.109
+   },
+   "region_unseen": {
+    "net": 0.092,
+    "net_ci": [
+     0.053,
+     0.129
+    ],
+    "net_2025": 0.131
+   },
+   "by_year": {
+    "years": 10,
+    "wins": 4,
+    "p": 0.8281,
+    "mean_gain": 0.002,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.011,
+      "fitted": -0.014
+     },
+     {
+      "year": 2017,
+      "today": -0.009,
+      "fitted": -0.023
+     },
+     {
+      "year": 2018,
+      "today": 0.045,
+      "fitted": 0.066
+     },
+     {
+      "year": 2019,
+      "today": 0.0,
+      "fitted": 0.046
+     },
+     {
+      "year": 2020,
+      "today": 0.064,
+      "fitted": 0.1
+     },
+     {
+      "year": 2021,
+      "today": 0.057,
+      "fitted": 0.063
+     },
+     {
+      "year": 2022,
+      "today": 0.034,
+      "fitted": 0.022
+     },
+     {
+      "year": 2023,
+      "today": -0.02,
+      "fitted": -0.038
+     },
+     {
+      "year": 2024,
+      "today": 0.078,
+      "fitted": 0.06
+     },
+     {
+      "year": 2025,
+      "today": 0.108,
+      "fitted": 0.101
+     }
+    ]
+   }
+  },
+  "USE": {
+   "n": 50,
+   "placebo_n": 2195,
+   "today": {
+    "net": -0.049,
+    "net_ci": [
+     -0.149,
+     0.05
+    ]
+   },
+   "fitted": {
+    "net": -0.01,
+    "net_ci": [
+     -0.112,
+     0.097
+    ]
+   },
+   "region_unseen": {
+    "net": -0.036,
+    "net_ci": [
+     -0.134,
+     0.062
+    ]
+   },
+   "by_year": {
+    "years": 4,
+    "wins": 3,
+    "p": 0.3125,
+    "mean_gain": 0.026,
+    "per_year": [
+     {
+      "year": 2021,
+      "today": 0.08,
+      "fitted": 0.061
+     },
+     {
+      "year": 2022,
+      "today": -0.024,
+      "fitted": 0.048
+     },
+     {
+      "year": 2023,
+      "today": 0.019,
+      "fitted": 0.05
+     },
+     {
+      "year": 2024,
+      "today": 0.023,
+      "fitted": 0.042
+     }
+    ]
+   }
+  },
+  "USW": {
+   "n": 79,
+   "placebo_n": 1853,
+   "today": {
+    "net": -0.047,
+    "net_ci": [
+     -0.12,
+     0.032
+    ],
+    "net_2025": -0.034
+   },
+   "fitted": {
+    "net": 0.053,
+    "net_ci": [
+     -0.029,
+     0.144
+    ],
+    "net_2025": 0.043
+   },
+   "region_unseen": {
+    "net": 0.046,
+    "net_ci": [
+     -0.019,
+     0.124
+    ],
+    "net_2025": 0.074
+   },
+   "by_year": {
+    "years": 4,
+    "wins": 3,
+    "p": 0.3125,
+    "mean_gain": 0.065,
+    "per_year": [
+     {
+      "year": 2022,
+      "today": 0.052,
+      "fitted": 0.05
+     },
+     {
+      "year": 2023,
+      "today": -0.076,
+      "fitted": 0.067
+     },
+     {
+      "year": 2024,
+      "today": -0.036,
+      "fitted": 0.005
+     },
+     {
+      "year": 2025,
+      "today": -0.034,
+      "fitted": 0.043
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.043,
+    "net_ci": [
+     0.028,
+     0.059
+    ],
+    "n": 1912
+   },
+   "fitted": {
+    "net": 0.039,
+    "net_ci": [
+     0.023,
+     0.055
+    ],
+    "n": 1912
+   },
+   "region_unseen": {
+    "net": 0.034,
+    "net_ci": [
+     0.017,
+     0.049
+    ],
+    "n": 1912
+   }
+  }
+ },
+ "hen_of_the_woods": {
+  "USE": {
+   "n": 742,
+   "placebo_n": 2195,
+   "today": {
+    "net": 0.048,
+    "net_ci": [
+     0.022,
+     0.073
+    ],
+    "net_2025": 0.072
+   },
+   "fitted": {
+    "net": 0.021,
+    "net_ci": [
+     -0.005,
+     0.047
+    ],
+    "net_2025": 0.021
+   },
+   "region_unseen": {
+    "net": -0.141,
+    "net_ci": [
+     -0.169,
+     -0.112
+    ],
+    "net_2025": -0.131
+   },
+   "by_year": {
+    "years": 9,
+    "wins": 5,
+    "p": 0.5,
+    "mean_gain": 0.029,
+    "per_year": [
+     {
+      "year": 2018,
+      "today": 0.124,
+      "fitted": 0.104
+     },
+     {
+      "year": 2019,
+      "today": 0.018,
+      "fitted": 0.113
+     },
+     {
+      "year": 2020,
+      "today": 0.092,
+      "fitted": 0.034
+     },
+     {
+      "year": 2021,
+      "today": 0.164,
+      "fitted": 0.139
+     },
+     {
+      "year": 2022,
+      "today": 0.007,
+      "fitted": 0.028
+     },
+     {
+      "year": 2023,
+      "today": 0.084,
+      "fitted": 0.09
+     },
+     {
+      "year": 2024,
+      "today": 0.011,
+      "fitted": 0.101
+     },
+     {
+      "year": 2025,
+      "today": 0.072,
+      "fitted": 0.038
+     },
+     {
+      "year": 2026,
+      "today": -0.143,
+      "fitted": 0.038
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.048,
+    "net_ci": [
+     0.022,
+     0.073
+    ],
+    "n": 742
+   },
+   "fitted": {
+    "net": 0.021,
+    "net_ci": [
+     -0.005,
+     0.047
+    ],
+    "n": 742
+   },
+   "region_unseen": {
+    "net": -0.141,
+    "net_ci": [
+     -0.169,
+     -0.112
+    ],
+    "n": 742
+   }
+  }
+ },
+ "lions_mane": {
+  "USE": {
+   "n": 589,
+   "placebo_n": 2195,
+   "today": {
+    "net": 0.041,
+    "net_ci": [
+     0.011,
+     0.071
+    ],
+    "net_2025": 0.046
+   },
+   "fitted": {
+    "net": 0.084,
+    "net_ci": [
+     0.055,
+     0.114
+    ],
+    "net_2025": 0.079
+   },
+   "region_unseen": {
+    "net": -0.018,
+    "net_ci": [
+     -0.048,
+     0.015
+    ],
+    "net_2025": -0.01
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 10,
+    "p": 0.0059,
+    "mean_gain": 0.038,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": -0.041,
+      "fitted": 0.056
+     },
+     {
+      "year": 2017,
+      "today": -0.088,
+      "fitted": -0.022
+     },
+     {
+      "year": 2018,
+      "today": 0.016,
+      "fitted": 0.034
+     },
+     {
+      "year": 2019,
+      "today": 0.007,
+      "fitted": 0.061
+     },
+     {
+      "year": 2020,
+      "today": 0.078,
+      "fitted": 0.067
+     },
+     {
+      "year": 2021,
+      "today": 0.065,
+      "fitted": 0.103
+     },
+     {
+      "year": 2022,
+      "today": 0.039,
+      "fitted": 0.044
+     },
+     {
+      "year": 2023,
+      "today": 0.025,
+      "fitted": 0.062
+     },
+     {
+      "year": 2024,
+      "today": 0.079,
+      "fitted": 0.086
+     },
+     {
+      "year": 2025,
+      "today": 0.046,
+      "fitted": 0.083
+     },
+     {
+      "year": 2026,
+      "today": 0.008,
+      "fitted": 0.082
+     }
+    ]
+   }
+  },
+  "USW": {
+   "n": 305,
+   "placebo_n": 1853,
+   "today": {
+    "net": 0.03,
+    "net_ci": [
+     -0.015,
+     0.074
+    ],
+    "net_2025": 0.023
+   },
+   "fitted": {
+    "net": 0.056,
+    "net_ci": [
+     0.012,
+     0.1
+    ],
+    "net_2025": 0.05
+   },
+   "region_unseen": {
+    "net": 0.045,
+    "net_ci": [
+     0.002,
+     0.085
+    ],
+    "net_2025": 0.039
+   },
+   "by_year": {
+    "years": 8,
+    "wins": 6,
+    "p": 0.1445,
+    "mean_gain": 0.024,
+    "per_year": [
+     {
+      "year": 2018,
+      "today": -0.107,
+      "fitted": 0.001
+     },
+     {
+      "year": 2019,
+      "today": -0.004,
+      "fitted": 0.046
+     },
+     {
+      "year": 2020,
+      "today": 0.005,
+      "fitted": 0.047
+     },
+     {
+      "year": 2021,
+      "today": 0.03,
+      "fitted": -0.0
+     },
+     {
+      "year": 2022,
+      "today": 0.103,
+      "fitted": 0.014
+     },
+     {
+      "year": 2023,
+      "today": 0.029,
+      "fitted": 0.03
+     },
+     {
+      "year": 2024,
+      "today": 0.004,
+      "fitted": 0.088
+     },
+     {
+      "year": 2025,
+      "today": 0.023,
+      "fitted": 0.051
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.039,
+    "net_ci": [
+     0.013,
+     0.064
+    ],
+    "n": 894
+   },
+   "fitted": {
+    "net": 0.074,
+    "net_ci": [
+     0.05,
+     0.101
+    ],
+    "n": 894
+   },
+   "region_unseen": {
+    "net": 0.007,
+    "net_ci": [
+     -0.019,
+     0.032
+    ],
+    "n": 894
+   }
+  }
+ },
+ "matsutake": {
+  "NE": {
+   "n": 159,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.133,
+    "net_ci": [
+     0.083,
+     0.193
+    ],
+    "net_2025": 0.123
+   },
+   "fitted": {
+    "net": 0.115,
+    "net_ci": [
+     0.066,
+     0.171
+    ],
+    "net_2025": 0.127
+   },
+   "by_year": {
+    "years": 9,
+    "wins": 8,
+    "p": 0.0195,
+    "mean_gain": 0.031,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.031,
+      "fitted": -0.033
+     },
+     {
+      "year": 2018,
+      "today": 0.116,
+      "fitted": 0.138
+     },
+     {
+      "year": 2019,
+      "today": 0.097,
+      "fitted": 0.182
+     },
+     {
+      "year": 2020,
+      "today": -0.045,
+      "fitted": -0.042
+     },
+     {
+      "year": 2021,
+      "today": 0.082,
+      "fitted": 0.089
+     },
+     {
+      "year": 2022,
+      "today": -0.081,
+      "fitted": 0.098
+     },
+     {
+      "year": 2023,
+      "today": 0.049,
+      "fitted": 0.079
+     },
+     {
+      "year": 2024,
+      "today": 0.088,
+      "fitted": 0.11
+     },
+     {
+      "year": 2025,
+      "today": 0.123,
+      "fitted": 0.124
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.133,
+    "net_ci": [
+     0.083,
+     0.193
+    ],
+    "n": 159
+   },
+   "fitted": {
+    "net": 0.115,
+    "net_ci": [
+     0.066,
+     0.171
+    ],
+    "n": 159
+   }
+  }
+ },
+ "morel": {
+  "NE": {
+   "n": 686,
+   "placebo_n": 5748,
+   "today": {
+    "net": -0.025,
+    "net_ci": [
+     -0.048,
+     0.001
+    ],
+    "net_2025": -0.003
+   },
+   "fitted": {
+    "net": 0.086,
+    "net_ci": [
+     0.063,
+     0.113
+    ],
+    "net_2025": -0.009
+   },
+   "region_unseen": {
+    "net": 0.097,
+    "net_ci": [
+     0.071,
+     0.124
+    ],
+    "net_2025": 0.073
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 7,
+    "p": 0.2744,
+    "mean_gain": 0.04,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.124,
+      "fitted": 0.111
+     },
+     {
+      "year": 2017,
+      "today": -0.127,
+      "fitted": -0.088
+     },
+     {
+      "year": 2018,
+      "today": 0.191,
+      "fitted": 0.076
+     },
+     {
+      "year": 2019,
+      "today": -0.076,
+      "fitted": -0.013
+     },
+     {
+      "year": 2020,
+      "today": 0.019,
+      "fitted": 0.091
+     },
+     {
+      "year": 2021,
+      "today": -0.06,
+      "fitted": 0.101
+     },
+     {
+      "year": 2022,
+      "today": 0.117,
+      "fitted": 0.077
+     },
+     {
+      "year": 2023,
+      "today": -0.074,
+      "fitted": 0.049
+     },
+     {
+      "year": 2024,
+      "today": 0.079,
+      "fitted": 0.039
+     },
+     {
+      "year": 2025,
+      "today": -0.003,
+      "fitted": -0.002
+     },
+     {
+      "year": 2026,
+      "today": -0.026,
+      "fitted": 0.164
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 439,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.144,
+    "net_ci": [
+     0.115,
+     0.179
+    ],
+    "net_2025": 0.179
+   },
+   "fitted": {
+    "net": 0.114,
+    "net_ci": [
+     0.084,
+     0.144
+    ],
+    "net_2025": 0.126
+   },
+   "region_unseen": {
+    "net": 0.109,
+    "net_ci": [
+     0.072,
+     0.142
+    ],
+    "net_2025": 0.17
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 4,
+    "p": 0.8867,
+    "mean_gain": -0.005,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.081,
+      "fitted": 0.033
+     },
+     {
+      "year": 2017,
+      "today": 0.042,
+      "fitted": 0.002
+     },
+     {
+      "year": 2018,
+      "today": 0.104,
+      "fitted": 0.065
+     },
+     {
+      "year": 2019,
+      "today": -0.038,
+      "fitted": -0.017
+     },
+     {
+      "year": 2020,
+      "today": 0.123,
+      "fitted": 0.082
+     },
+     {
+      "year": 2021,
+      "today": 0.037,
+      "fitted": 0.138
+     },
+     {
+      "year": 2022,
+      "today": 0.148,
+      "fitted": 0.15
+     },
+     {
+      "year": 2023,
+      "today": -0.014,
+      "fitted": 0.074
+     },
+     {
+      "year": 2024,
+      "today": 0.163,
+      "fitted": 0.116
+     },
+     {
+      "year": 2025,
+      "today": 0.179,
+      "fitted": 0.139
+     },
+     {
+      "year": 2026,
+      "today": 0.116,
+      "fitted": 0.103
+     }
+    ]
+   }
+  },
+  "USE": {
+   "n": 1171,
+   "placebo_n": 2195,
+   "today": {
+    "net": -0.003,
+    "net_ci": [
+     -0.027,
+     0.019
+    ],
+    "net_2025": 0.037
+   },
+   "fitted": {
+    "net": 0.074,
+    "net_ci": [
+     0.052,
+     0.096
+    ],
+    "net_2025": 0.121
+   },
+   "region_unseen": {
+    "net": -0.036,
+    "net_ci": [
+     -0.058,
+     -0.012
+    ],
+    "net_2025": -0.012
+   },
+   "by_year": {
+    "years": 10,
+    "wins": 8,
+    "p": 0.0547,
+    "mean_gain": 0.056,
+    "per_year": [
+     {
+      "year": 2017,
+      "today": 0.006,
+      "fitted": 0.06
+     },
+     {
+      "year": 2018,
+      "today": 0.104,
+      "fitted": 0.231
+     },
+     {
+      "year": 2019,
+      "today": 0.239,
+      "fitted": 0.218
+     },
+     {
+      "year": 2020,
+      "today": 0.075,
+      "fitted": 0.055
+     },
+     {
+      "year": 2021,
+      "today": 0.057,
+      "fitted": 0.087
+     },
+     {
+      "year": 2022,
+      "today": 0.105,
+      "fitted": 0.252
+     },
+     {
+      "year": 2023,
+      "today": 0.075,
+      "fitted": 0.11
+     },
+     {
+      "year": 2024,
+      "today": 0.158,
+      "fitted": 0.219
+     },
+     {
+      "year": 2025,
+      "today": 0.037,
+      "fitted": 0.11
+     },
+     {
+      "year": 2026,
+      "today": -0.032,
+      "fitted": 0.041
+     }
+    ]
+   }
+  },
+  "USW": {
+   "n": 688,
+   "placebo_n": 1853,
+   "today": {
+    "net": 0.084,
+    "net_ci": [
+     0.058,
+     0.114
+    ],
+    "net_2025": 0.096
+   },
+   "fitted": {
+    "net": 0.065,
+    "net_ci": [
+     0.036,
+     0.095
+    ],
+    "net_2025": 0.058
+   },
+   "region_unseen": {
+    "net": 0.071,
+    "net_ci": [
+     0.043,
+     0.098
+    ],
+    "net_2025": 0.064
+   },
+   "by_year": {
+    "years": 8,
+    "wins": 4,
+    "p": 0.6367,
+    "mean_gain": 0.017,
+    "per_year": [
+     {
+      "year": 2019,
+      "today": 0.046,
+      "fitted": 0.126
+     },
+     {
+      "year": 2020,
+      "today": 0.012,
+      "fitted": 0.007
+     },
+     {
+      "year": 2021,
+      "today": -0.031,
+      "fitted": -0.046
+     },
+     {
+      "year": 2022,
+      "today": 0.037,
+      "fitted": 0.086
+     },
+     {
+      "year": 2023,
+      "today": 0.072,
+      "fitted": 0.08
+     },
+     {
+      "year": 2024,
+      "today": 0.056,
+      "fitted": 0.111
+     },
+     {
+      "year": 2025,
+      "today": 0.096,
+      "fitted": 0.064
+     },
+     {
+      "year": 2026,
+      "today": 0.074,
+      "fitted": 0.069
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.036,
+    "net_ci": [
+     0.023,
+     0.05
+    ],
+    "n": 2984
+   },
+   "fitted": {
+    "net": 0.084,
+    "net_ci": [
+     0.071,
+     0.097
+    ],
+    "n": 2984
+   },
+   "region_unseen": {
+    "net": 0.044,
+    "net_ci": [
+     0.031,
+     0.056
+    ],
+    "n": 2984
+   }
+  }
+ },
+ "mushroom": {
+  "NE": {
+   "n": 2643,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.058,
+    "net_ci": [
+     0.045,
+     0.072
+    ],
+    "net_2025": 0.017
+   },
+   "fitted": {
+    "net": 0.164,
+    "net_ci": [
+     0.15,
+     0.18
+    ],
+    "net_2025": 0.179
+   },
+   "region_unseen": {
+    "net": 0.165,
+    "net_ci": [
+     0.15,
+     0.18
+    ],
+    "net_2025": 0.177
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 9,
+    "p": 0.0327,
+    "mean_gain": 0.056,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.043,
+      "fitted": 0.112
+     },
+     {
+      "year": 2017,
+      "today": 0.036,
+      "fitted": 0.132
+     },
+     {
+      "year": 2018,
+      "today": 0.061,
+      "fitted": 0.089
+     },
+     {
+      "year": 2019,
+      "today": 0.074,
+      "fitted": 0.077
+     },
+     {
+      "year": 2020,
+      "today": 0.106,
+      "fitted": 0.204
+     },
+     {
+      "year": 2021,
+      "today": 0.087,
+      "fitted": 0.158
+     },
+     {
+      "year": 2022,
+      "today": -0.046,
+      "fitted": 0.085
+     },
+     {
+      "year": 2023,
+      "today": 0.027,
+      "fitted": 0.055
+     },
+     {
+      "year": 2024,
+      "today": 0.058,
+      "fitted": 0.032
+     },
+     {
+      "year": 2025,
+      "today": 0.017,
+      "fitted": 0.18
+     },
+     {
+      "year": 2026,
+      "today": 0.175,
+      "fitted": 0.133
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 1451,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.172,
+    "net_ci": [
+     0.153,
+     0.192
+    ],
+    "net_2025": 0.161
+   },
+   "fitted": {
+    "net": 0.234,
+    "net_ci": [
+     0.212,
+     0.256
+    ],
+    "net_2025": 0.239
+   },
+   "region_unseen": {
+    "net": 0.248,
+    "net_ci": [
+     0.227,
+     0.27
+    ],
+    "net_2025": 0.267
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 9,
+    "p": 0.0327,
+    "mean_gain": 0.045,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.042,
+      "fitted": 0.09
+     },
+     {
+      "year": 2017,
+      "today": 0.024,
+      "fitted": 0.101
+     },
+     {
+      "year": 2018,
+      "today": 0.045,
+      "fitted": 0.096
+     },
+     {
+      "year": 2019,
+      "today": 0.102,
+      "fitted": 0.127
+     },
+     {
+      "year": 2020,
+      "today": 0.154,
+      "fitted": 0.188
+     },
+     {
+      "year": 2021,
+      "today": 0.153,
+      "fitted": 0.116
+     },
+     {
+      "year": 2022,
+      "today": -0.028,
+      "fitted": 0.094
+     },
+     {
+      "year": 2023,
+      "today": 0.058,
+      "fitted": 0.134
+     },
+     {
+      "year": 2024,
+      "today": 0.114,
+      "fitted": 0.152
+     },
+     {
+      "year": 2025,
+      "today": 0.161,
+      "fitted": 0.245
+     },
+     {
+      "year": 2026,
+      "today": 0.265,
+      "fitted": 0.236
+     }
+    ]
+   }
+  },
+  "USE": {
+   "n": 101,
+   "placebo_n": 2195,
+   "today": {
+    "net": 0.118,
+    "net_ci": [
+     0.053,
+     0.174
+    ],
+    "net_2025": 0.154
+   },
+   "fitted": {
+    "net": 0.116,
+    "net_ci": [
+     0.053,
+     0.172
+    ],
+    "net_2025": 0.132
+   },
+   "region_unseen": {
+    "net": 0.054,
+    "net_ci": [
+     -0.008,
+     0.107
+    ],
+    "net_2025": 0.07
+   },
+   "by_year": {
+    "years": 3,
+    "wins": 2,
+    "p": 0.5,
+    "mean_gain": 0.029,
+    "per_year": [
+     {
+      "year": 2021,
+      "today": 0.154,
+      "fitted": 0.095
+     },
+     {
+      "year": 2023,
+      "today": -0.029,
+      "fitted": 0.115
+     },
+     {
+      "year": 2025,
+      "today": 0.154,
+      "fitted": 0.158
+     }
+    ]
+   }
+  },
+  "USW": {
+   "n": 433,
+   "placebo_n": 1853,
+   "today": {
+    "net": 0.05,
+    "net_ci": [
+     0.018,
+     0.085
+    ],
+    "net_2025": 0.026
+   },
+   "fitted": {
+    "net": 0.081,
+    "net_ci": [
+     0.048,
+     0.113
+    ],
+    "net_2025": 0.072
+   },
+   "region_unseen": {
+    "net": 0.083,
+    "net_ci": [
+     0.048,
+     0.121
+    ],
+    "net_2025": 0.079
+   },
+   "by_year": {
+    "years": 8,
+    "wins": 5,
+    "p": 0.3633,
+    "mean_gain": 0.01,
+    "per_year": [
+     {
+      "year": 2019,
+      "today": 0.005,
+      "fitted": 0.089
+     },
+     {
+      "year": 2020,
+      "today": 0.025,
+      "fitted": 0.014
+     },
+     {
+      "year": 2021,
+      "today": 0.008,
+      "fitted": 0.042
+     },
+     {
+      "year": 2022,
+      "today": 0.029,
+      "fitted": 0.037
+     },
+     {
+      "year": 2023,
+      "today": 0.1,
+      "fitted": 0.027
+     },
+     {
+      "year": 2024,
+      "today": 0.01,
+      "fitted": 0.033
+     },
+     {
+      "year": 2025,
+      "today": 0.026,
+      "fitted": 0.073
+     },
+     {
+      "year": 2026,
+      "today": 0.114,
+      "fitted": 0.084
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.092,
+    "net_ci": [
+     0.082,
+     0.102
+    ],
+    "n": 4628
+   },
+   "fitted": {
+    "net": 0.172,
+    "net_ci": [
+     0.161,
+     0.184
+    ],
+    "n": 4628
+   },
+   "region_unseen": {
+    "net": 0.174,
+    "net_ci": [
+     0.163,
+     0.187
+    ],
+    "n": 4628
+   }
+  }
+ },
+ "oyster-mushroom": {
+  "NE": {
+   "n": 3018,
+   "placebo_n": 5748,
+   "today": {
+    "net": -0.014,
+    "net_ci": [
+     -0.03,
+     0.001
+    ],
+    "net_2025": -0.014
+   },
+   "fitted": {
+    "net": 0.008,
+    "net_ci": [
+     -0.006,
+     0.023
+    ],
+    "net_2025": 0.007
+   },
+   "region_unseen": {
+    "net": 0.003,
+    "net_ci": [
+     -0.013,
+     0.018
+    ],
+    "net_2025": -0.002
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 10,
+    "p": 0.0059,
+    "mean_gain": 0.026,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.012,
+      "fitted": 0.048
+     },
+     {
+      "year": 2017,
+      "today": -0.035,
+      "fitted": 0.007
+     },
+     {
+      "year": 2018,
+      "today": -0.004,
+      "fitted": -0.001
+     },
+     {
+      "year": 2019,
+      "today": -0.025,
+      "fitted": -0.013
+     },
+     {
+      "year": 2020,
+      "today": 0.019,
+      "fitted": 0.058
+     },
+     {
+      "year": 2021,
+      "today": -0.039,
+      "fitted": 0.014
+     },
+     {
+      "year": 2022,
+      "today": -0.024,
+      "fitted": -0.006
+     },
+     {
+      "year": 2023,
+      "today": 0.006,
+      "fitted": 0.04
+     },
+     {
+      "year": 2024,
+      "today": 0.012,
+      "fitted": 0.003
+     },
+     {
+      "year": 2025,
+      "today": -0.014,
+      "fitted": 0.007
+     },
+     {
+      "year": 2026,
+      "today": -0.031,
+      "fitted": 0.002
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 1611,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.033,
+    "net_ci": [
+     0.013,
+     0.052
+    ],
+    "net_2025": 0.078
+   },
+   "fitted": {
+    "net": 0.092,
+    "net_ci": [
+     0.074,
+     0.112
+    ],
+    "net_2025": 0.135
+   },
+   "region_unseen": {
+    "net": 0.07,
+    "net_ci": [
+     0.048,
+     0.091
+    ],
+    "net_2025": 0.083
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 11,
+    "p": 0.0005,
+    "mean_gain": 0.041,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": -0.005,
+      "fitted": 0.059
+     },
+     {
+      "year": 2017,
+      "today": -0.067,
+      "fitted": -0.006
+     },
+     {
+      "year": 2018,
+      "today": 0.011,
+      "fitted": 0.024
+     },
+     {
+      "year": 2019,
+      "today": -0.022,
+      "fitted": 0.042
+     },
+     {
+      "year": 2020,
+      "today": 0.084,
+      "fitted": 0.086
+     },
+     {
+      "year": 2021,
+      "today": -0.013,
+      "fitted": 0.049
+     },
+     {
+      "year": 2022,
+      "today": -0.008,
+      "fitted": 0.018
+     },
+     {
+      "year": 2023,
+      "today": 0.003,
+      "fitted": 0.032
+     },
+     {
+      "year": 2024,
+      "today": 0.051,
+      "fitted": 0.059
+     },
+     {
+      "year": 2025,
+      "today": 0.078,
+      "fitted": 0.131
+     },
+     {
+      "year": 2026,
+      "today": -0.047,
+      "fitted": 0.023
+     }
+    ]
+   }
+  },
+  "USE": {
+   "n": 5085,
+   "placebo_n": 2195,
+   "today": {
+    "net": -0.042,
+    "net_ci": [
+     -0.057,
+     -0.027
+    ],
+    "net_2025": -0.041
+   },
+   "fitted": {
+    "net": 0.056,
+    "net_ci": [
+     0.04,
+     0.071
+    ],
+    "net_2025": 0.053
+   },
+   "region_unseen": {
+    "net": 0.039,
+    "net_ci": [
+     0.024,
+     0.054
+    ],
+    "net_2025": 0.029
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 11,
+    "p": 0.0005,
+    "mean_gain": 0.064,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": -0.027,
+      "fitted": 0.126
+     },
+     {
+      "year": 2017,
+      "today": 0.019,
+      "fitted": 0.093
+     },
+     {
+      "year": 2018,
+      "today": 0.013,
+      "fitted": 0.063
+     },
+     {
+      "year": 2019,
+      "today": 0.034,
+      "fitted": 0.047
+     },
+     {
+      "year": 2020,
+      "today": 0.049,
+      "fitted": 0.07
+     },
+     {
+      "year": 2021,
+      "today": -0.031,
+      "fitted": 0.036
+     },
+     {
+      "year": 2022,
+      "today": 0.022,
+      "fitted": 0.065
+     },
+     {
+      "year": 2023,
+      "today": -0.042,
+      "fitted": 0.0
+     },
+     {
+      "year": 2024,
+      "today": 0.018,
+      "fitted": 0.062
+     },
+     {
+      "year": 2025,
+      "today": -0.041,
+      "fitted": 0.056
+     },
+     {
+      "year": 2026,
+      "today": -0.039,
+      "fitted": 0.062
+     }
+    ]
+   }
+  },
+  "USW": {
+   "n": 649,
+   "placebo_n": 1853,
+   "today": {
+    "net": 0.031,
+    "net_ci": [
+     -0.005,
+     0.064
+    ],
+    "net_2025": 0.001
+   },
+   "fitted": {
+    "net": 0.053,
+    "net_ci": [
+     0.022,
+     0.083
+    ],
+    "net_2025": 0.032
+   },
+   "region_unseen": {
+    "net": 0.07,
+    "net_ci": [
+     0.038,
+     0.102
+    ],
+    "net_2025": 0.046
+   },
+   "by_year": {
+    "years": 10,
+    "wins": 7,
+    "p": 0.1719,
+    "mean_gain": 0.006,
+    "per_year": [
+     {
+      "year": 2017,
+      "today": 0.029,
+      "fitted": 0.062
+     },
+     {
+      "year": 2018,
+      "today": 0.134,
+      "fitted": 0.04
+     },
+     {
+      "year": 2019,
+      "today": 0.052,
+      "fitted": 0.03
+     },
+     {
+      "year": 2020,
+      "today": -0.013,
+      "fitted": 0.036
+     },
+     {
+      "year": 2021,
+      "today": 0.016,
+      "fitted": 0.029
+     },
+     {
+      "year": 2022,
+      "today": 0.004,
+      "fitted": 0.059
+     },
+     {
+      "year": 2023,
+      "today": 0.05,
+      "fitted": 0.073
+     },
+     {
+      "year": 2024,
+      "today": 0.047,
+      "fitted": 0.071
+     },
+     {
+      "year": 2025,
+      "today": 0.001,
+      "fitted": 0.034
+     },
+     {
+      "year": 2026,
+      "today": 0.116,
+      "fitted": 0.067
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": -0.008,
+    "net_ci": [
+     -0.017,
+     0.001
+    ],
+    "n": 10363
+   },
+   "fitted": {
+    "net": 0.055,
+    "net_ci": [
+     0.046,
+     0.064
+    ],
+    "n": 10363
+   },
+   "region_unseen": {
+    "net": 0.042,
+    "net_ci": [
+     0.033,
+     0.051
+    ],
+    "n": 10363
+   }
+  }
+ },
+ "pacific_chant": {
+  "USW": {
+   "n": 336,
+   "placebo_n": 1853,
+   "today": {
+    "net": 0.054,
+    "net_ci": [
+     0.015,
+     0.095
+    ],
+    "net_2025": 0.056
+   },
+   "fitted": {
+    "net": 0.071,
+    "net_ci": [
+     0.029,
+     0.111
+    ],
+    "net_2025": 0.076
+   },
+   "by_year": {
+    "years": 8,
+    "wins": 5,
+    "p": 0.3633,
+    "mean_gain": 0.004,
+    "per_year": [
+     {
+      "year": 2019,
+      "today": 0.046,
+      "fitted": -0.044
+     },
+     {
+      "year": 2020,
+      "today": 0.049,
+      "fitted": 0.013
+     },
+     {
+      "year": 2021,
+      "today": 0.019,
+      "fitted": 0.084
+     },
+     {
+      "year": 2022,
+      "today": 0.017,
+      "fitted": 0.031
+     },
+     {
+      "year": 2023,
+      "today": 0.027,
+      "fitted": 0.054
+     },
+     {
+      "year": 2024,
+      "today": 0.021,
+      "fitted": 0.015
+     },
+     {
+      "year": 2025,
+      "today": 0.056,
+      "fitted": 0.076
+     },
+     {
+      "year": 2026,
+      "today": 0.011,
+      "fitted": 0.05
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.054,
+    "net_ci": [
+     0.015,
+     0.095
+    ],
+    "n": 336
+   },
+   "fitted": {
+    "net": 0.071,
+    "net_ci": [
+     0.029,
+     0.111
+    ],
+    "n": 336
+   }
+  }
+ },
+ "parasol": {
+  "NE": {
+   "n": 1535,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.126,
+    "net_ci": [
+     0.11,
+     0.144
+    ],
+    "net_2025": 0.095
+   },
+   "fitted": {
+    "net": 0.143,
+    "net_ci": [
+     0.125,
+     0.16
+    ],
+    "net_2025": 0.129
+   },
+   "region_unseen": {
+    "net": 0.153,
+    "net_ci": [
+     0.135,
+     0.17
+    ],
+    "net_2025": 0.154
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 8,
+    "p": 0.1133,
+    "mean_gain": 0.047,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.039,
+      "fitted": 0.162
+     },
+     {
+      "year": 2017,
+      "today": 0.024,
+      "fitted": 0.117
+     },
+     {
+      "year": 2018,
+      "today": 0.058,
+      "fitted": 0.044
+     },
+     {
+      "year": 2019,
+      "today": 0.061,
+      "fitted": 0.118
+     },
+     {
+      "year": 2020,
+      "today": 0.01,
+      "fitted": 0.171
+     },
+     {
+      "year": 2021,
+      "today": 0.067,
+      "fitted": 0.153
+     },
+     {
+      "year": 2022,
+      "today": 0.092,
+      "fitted": -0.012
+     },
+     {
+      "year": 2023,
+      "today": 0.055,
+      "fitted": 0.139
+     },
+     {
+      "year": 2024,
+      "today": 0.008,
+      "fitted": 0.062
+     },
+     {
+      "year": 2025,
+      "today": 0.095,
+      "fitted": 0.128
+     },
+     {
+      "year": 2026,
+      "today": 0.247,
+      "fitted": 0.186
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 1523,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.174,
+    "net_ci": [
+     0.154,
+     0.192
+    ],
+    "net_2025": 0.178
+   },
+   "fitted": {
+    "net": 0.251,
+    "net_ci": [
+     0.231,
+     0.27
+    ],
+    "net_2025": 0.275
+   },
+   "region_unseen": {
+    "net": 0.242,
+    "net_ci": [
+     0.223,
+     0.261
+    ],
+    "net_2025": 0.273
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 11,
+    "p": 0.0005,
+    "mean_gain": 0.058,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.113,
+      "fitted": 0.175
+     },
+     {
+      "year": 2017,
+      "today": 0.035,
+      "fitted": 0.112
+     },
+     {
+      "year": 2018,
+      "today": 0.13,
+      "fitted": 0.161
+     },
+     {
+      "year": 2019,
+      "today": 0.078,
+      "fitted": 0.152
+     },
+     {
+      "year": 2020,
+      "today": 0.104,
+      "fitted": 0.245
+     },
+     {
+      "year": 2021,
+      "today": 0.117,
+      "fitted": 0.13
+     },
+     {
+      "year": 2022,
+      "today": 0.011,
+      "fitted": 0.066
+     },
+     {
+      "year": 2023,
+      "today": 0.081,
+      "fitted": 0.134
+     },
+     {
+      "year": 2024,
+      "today": 0.095,
+      "fitted": 0.118
+     },
+     {
+      "year": 2025,
+      "today": 0.178,
+      "fitted": 0.279
+     },
+     {
+      "year": 2026,
+      "today": 0.227,
+      "fitted": 0.237
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.142,
+    "net_ci": [
+     0.13,
+     0.154
+    ],
+    "n": 3058
+   },
+   "fitted": {
+    "net": 0.19,
+    "net_ci": [
+     0.178,
+     0.204
+    ],
+    "n": 3058
+   },
+   "region_unseen": {
+    "net": 0.192,
+    "net_ci": [
+     0.179,
+     0.204
+    ],
+    "n": 3058
+   }
+  }
+ },
+ "pine_bolete": {
+  "NE": {
+   "n": 368,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.075,
+    "net_ci": [
+     0.037,
+     0.108
+    ],
+    "net_2025": 0.041
+   },
+   "fitted": {
+    "net": 0.137,
+    "net_ci": [
+     0.098,
+     0.173
+    ],
+    "net_2025": 0.167
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 10,
+    "p": 0.0059,
+    "mean_gain": 0.055,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.063,
+      "fitted": 0.133
+     },
+     {
+      "year": 2017,
+      "today": 0.084,
+      "fitted": 0.129
+     },
+     {
+      "year": 2018,
+      "today": 0.008,
+      "fitted": 0.085
+     },
+     {
+      "year": 2019,
+      "today": 0.041,
+      "fitted": 0.138
+     },
+     {
+      "year": 2020,
+      "today": 0.028,
+      "fitted": 0.093
+     },
+     {
+      "year": 2021,
+      "today": 0.109,
+      "fitted": 0.132
+     },
+     {
+      "year": 2022,
+      "today": -0.015,
+      "fitted": 0.061
+     },
+     {
+      "year": 2023,
+      "today": 0.038,
+      "fitted": 0.1
+     },
+     {
+      "year": 2024,
+      "today": 0.038,
+      "fitted": 0.041
+     },
+     {
+      "year": 2025,
+      "today": 0.041,
+      "fitted": 0.165
+     },
+     {
+      "year": 2026,
+      "today": 0.139,
+      "fitted": 0.097
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 51,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.148,
+    "net_ci": [
+     0.068,
+     0.236
+    ]
+   },
+   "fitted": {
+    "net": 0.168,
+    "net_ci": [
+     0.079,
+     0.249
+    ]
+   },
+   "region_unseen": {
+    "net": 0.128,
+    "net_ci": [
+     0.032,
+     0.214
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.104,
+    "net_ci": [
+     0.074,
+     0.136
+    ],
+    "n": 419
+   },
+   "fitted": {
+    "net": 0.149,
+    "net_ci": [
+     0.113,
+     0.185
+    ],
+    "n": 419
+   },
+   "region_unseen": {
+    "net": 0.128,
+    "net_ci": [
+     0.032,
+     0.214
+    ],
+    "n": 51
+   }
+  }
+ },
+ "rocky_king": {
+  "USW": {
+   "n": 95,
+   "placebo_n": 1853,
+   "today": {
+    "net": 0.118,
+    "net_ci": [
+     0.058,
+     0.171
+    ]
+   },
+   "fitted": {
+    "net": 0.12,
+    "net_ci": [
+     0.04,
+     0.188
+    ]
+   },
+   "by_year": {
+    "years": 4,
+    "wins": 3,
+    "p": 0.3125,
+    "mean_gain": 0.03,
+    "per_year": [
+     {
+      "year": 2021,
+      "today": 0.132,
+      "fitted": 0.176
+     },
+     {
+      "year": 2022,
+      "today": 0.034,
+      "fitted": 0.122
+     },
+     {
+      "year": 2024,
+      "today": 0.11,
+      "fitted": 0.096
+     },
+     {
+      "year": 2026,
+      "today": 0.157,
+      "fitted": 0.16
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.118,
+    "net_ci": [
+     0.058,
+     0.171
+    ],
+    "n": 95
+   },
+   "fitted": {
+    "net": 0.12,
+    "net_ci": [
+     0.04,
+     0.188
+    ],
+    "n": 95
+   }
+  }
+ },
+ "saffron_milk_cap": {
+  "NE": {
+   "n": 1322,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.074,
+    "net_ci": [
+     0.057,
+     0.093
+    ],
+    "net_2025": 0.054
+   },
+   "fitted": {
+    "net": 0.107,
+    "net_ci": [
+     0.086,
+     0.127
+    ],
+    "net_2025": 0.11
+   },
+   "region_unseen": {
+    "net": 0.059,
+    "net_ci": [
+     0.041,
+     0.079
+    ],
+    "net_2025": 0.061
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 9,
+    "p": 0.0327,
+    "mean_gain": 0.022,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.058,
+      "fitted": 0.108
+     },
+     {
+      "year": 2017,
+      "today": 0.097,
+      "fitted": 0.111
+     },
+     {
+      "year": 2018,
+      "today": 0.078,
+      "fitted": 0.102
+     },
+     {
+      "year": 2019,
+      "today": -0.001,
+      "fitted": 0.023
+     },
+     {
+      "year": 2020,
+      "today": 0.042,
+      "fitted": 0.076
+     },
+     {
+      "year": 2021,
+      "today": 0.103,
+      "fitted": 0.12
+     },
+     {
+      "year": 2022,
+      "today": 0.009,
+      "fitted": 0.016
+     },
+     {
+      "year": 2023,
+      "today": 0.013,
+      "fitted": 0.051
+     },
+     {
+      "year": 2024,
+      "today": 0.039,
+      "fitted": 0.034
+     },
+     {
+      "year": 2025,
+      "today": 0.054,
+      "fitted": 0.107
+     },
+     {
+      "year": 2026,
+      "today": 0.112,
+      "fitted": 0.091
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 675,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.11,
+    "net_ci": [
+     0.085,
+     0.136
+    ],
+    "net_2025": 0.139
+   },
+   "fitted": {
+    "net": 0.185,
+    "net_ci": [
+     0.162,
+     0.209
+    ],
+    "net_2025": 0.209
+   },
+   "region_unseen": {
+    "net": 0.182,
+    "net_ci": [
+     0.158,
+     0.206
+    ],
+    "net_2025": 0.201
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 10,
+    "p": 0.0059,
+    "mean_gain": 0.043,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.06,
+      "fitted": 0.097
+     },
+     {
+      "year": 2017,
+      "today": 0.036,
+      "fitted": 0.061
+     },
+     {
+      "year": 2018,
+      "today": 0.066,
+      "fitted": 0.091
+     },
+     {
+      "year": 2019,
+      "today": 0.022,
+      "fitted": 0.087
+     },
+     {
+      "year": 2020,
+      "today": 0.165,
+      "fitted": 0.166
+     },
+     {
+      "year": 2021,
+      "today": 0.039,
+      "fitted": 0.087
+     },
+     {
+      "year": 2022,
+      "today": 0.041,
+      "fitted": 0.07
+     },
+     {
+      "year": 2023,
+      "today": -0.007,
+      "fitted": -0.016
+     },
+     {
+      "year": 2024,
+      "today": 0.1,
+      "fitted": 0.129
+     },
+     {
+      "year": 2025,
+      "today": 0.139,
+      "fitted": 0.211
+     },
+     {
+      "year": 2026,
+      "today": -0.003,
+      "fitted": 0.152
+     }
+    ]
+   }
+  },
+  "USW": {
+   "n": 126,
+   "placebo_n": 1853,
+   "today": {
+    "net": 0.05,
+    "net_ci": [
+     -0.017,
+     0.111
+    ],
+    "net_2025": 0.041
+   },
+   "fitted": {
+    "net": 0.058,
+    "net_ci": [
+     -0.008,
+     0.124
+    ],
+    "net_2025": 0.06
+   },
+   "region_unseen": {
+    "net": 0.069,
+    "net_ci": [
+     0.019,
+     0.123
+    ],
+    "net_2025": 0.055
+   },
+   "by_year": {
+    "years": 8,
+    "wins": 6,
+    "p": 0.1445,
+    "mean_gain": 0.021,
+    "per_year": [
+     {
+      "year": 2018,
+      "today": 0.055,
+      "fitted": 0.114
+     },
+     {
+      "year": 2019,
+      "today": 0.051,
+      "fitted": 0.091
+     },
+     {
+      "year": 2020,
+      "today": 0.045,
+      "fitted": 0.023
+     },
+     {
+      "year": 2021,
+      "today": -0.046,
+      "fitted": -0.03
+     },
+     {
+      "year": 2022,
+      "today": 0.054,
+      "fitted": 0.05
+     },
+     {
+      "year": 2023,
+      "today": 0.076,
+      "fitted": 0.096
+     },
+     {
+      "year": 2024,
+      "today": 0.082,
+      "fitted": 0.117
+     },
+     {
+      "year": 2025,
+      "today": 0.041,
+      "fitted": 0.063
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.087,
+    "net_ci": [
+     0.073,
+     0.102
+    ],
+    "n": 2123
+   },
+   "fitted": {
+    "net": 0.13,
+    "net_ci": [
+     0.117,
+     0.144
+    ],
+    "n": 2123
+   },
+   "region_unseen": {
+    "net": 0.101,
+    "net_ci": [
+     0.089,
+     0.115
+    ],
+    "n": 2123
+   }
+  }
+ },
+ "shaggy_mane": {
+  "NE": {
+   "n": 9818,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.104,
+    "net_ci": [
+     0.094,
+     0.115
+    ],
+    "net_2025": 0.089
+   },
+   "fitted": {
+    "net": 0.058,
+    "net_ci": [
+     0.048,
+     0.069
+    ],
+    "net_2025": 0.052
+   },
+   "region_unseen": {
+    "net": 0.091,
+    "net_ci": [
+     0.081,
+     0.102
+    ],
+    "net_2025": 0.086
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 7,
+    "p": 0.2744,
+    "mean_gain": 0.015,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.161,
+      "fitted": 0.17
+     },
+     {
+      "year": 2017,
+      "today": 0.148,
+      "fitted": 0.135
+     },
+     {
+      "year": 2018,
+      "today": 0.016,
+      "fitted": 0.068
+     },
+     {
+      "year": 2019,
+      "today": 0.065,
+      "fitted": 0.069
+     },
+     {
+      "year": 2020,
+      "today": 0.073,
+      "fitted": 0.098
+     },
+     {
+      "year": 2021,
+      "today": 0.125,
+      "fitted": 0.117
+     },
+     {
+      "year": 2022,
+      "today": 0.041,
+      "fitted": 0.106
+     },
+     {
+      "year": 2023,
+      "today": 0.005,
+      "fitted": 0.056
+     },
+     {
+      "year": 2024,
+      "today": 0.075,
+      "fitted": 0.056
+     },
+     {
+      "year": 2025,
+      "today": 0.089,
+      "fitted": 0.049
+     },
+     {
+      "year": 2026,
+      "today": 0.078,
+      "fitted": 0.121
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 2929,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.103,
+    "net_ci": [
+     0.088,
+     0.118
+    ],
+    "net_2025": 0.116
+   },
+   "fitted": {
+    "net": 0.154,
+    "net_ci": [
+     0.14,
+     0.171
+    ],
+    "net_2025": 0.156
+   },
+   "region_unseen": {
+    "net": 0.166,
+    "net_ci": [
+     0.152,
+     0.183
+    ],
+    "net_2025": 0.17
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 10,
+    "p": 0.0059,
+    "mean_gain": 0.067,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.07,
+      "fitted": 0.219
+     },
+     {
+      "year": 2017,
+      "today": 0.07,
+      "fitted": 0.134
+     },
+     {
+      "year": 2018,
+      "today": 0.082,
+      "fitted": 0.115
+     },
+     {
+      "year": 2019,
+      "today": 0.065,
+      "fitted": 0.103
+     },
+     {
+      "year": 2020,
+      "today": 0.028,
+      "fitted": 0.187
+     },
+     {
+      "year": 2021,
+      "today": 0.089,
+      "fitted": 0.082
+     },
+     {
+      "year": 2022,
+      "today": -0.053,
+      "fitted": 0.119
+     },
+     {
+      "year": 2023,
+      "today": 0.027,
+      "fitted": 0.044
+     },
+     {
+      "year": 2024,
+      "today": 0.065,
+      "fitted": 0.084
+     },
+     {
+      "year": 2025,
+      "today": 0.116,
+      "fitted": 0.158
+     },
+     {
+      "year": 2026,
+      "today": 0.109,
+      "fitted": 0.158
+     }
+    ]
+   }
+  },
+  "USE": {
+   "n": 743,
+   "placebo_n": 2195,
+   "today": {
+    "net": 0.036,
+    "net_ci": [
+     0.015,
+     0.058
+    ],
+    "net_2025": 0.02
+   },
+   "fitted": {
+    "net": 0.202,
+    "net_ci": [
+     0.18,
+     0.225
+    ],
+    "net_2025": 0.181
+   },
+   "region_unseen": {
+    "net": 0.154,
+    "net_ci": [
+     0.133,
+     0.178
+    ],
+    "net_2025": 0.137
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 11,
+    "p": 0.0005,
+    "mean_gain": 0.108,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.032,
+      "fitted": 0.165
+     },
+     {
+      "year": 2017,
+      "today": 0.07,
+      "fitted": 0.208
+     },
+     {
+      "year": 2018,
+      "today": 0.138,
+      "fitted": 0.192
+     },
+     {
+      "year": 2019,
+      "today": 0.082,
+      "fitted": 0.211
+     },
+     {
+      "year": 2020,
+      "today": 0.102,
+      "fitted": 0.177
+     },
+     {
+      "year": 2021,
+      "today": 0.207,
+      "fitted": 0.251
+     },
+     {
+      "year": 2022,
+      "today": 0.035,
+      "fitted": 0.138
+     },
+     {
+      "year": 2023,
+      "today": 0.135,
+      "fitted": 0.199
+     },
+     {
+      "year": 2024,
+      "today": 0.047,
+      "fitted": 0.153
+     },
+     {
+      "year": 2025,
+      "today": 0.02,
+      "fitted": 0.178
+     },
+     {
+      "year": 2026,
+      "today": 0.096,
+      "fitted": 0.279
+     }
+    ]
+   }
+  },
+  "USW": {
+   "n": 1035,
+   "placebo_n": 1853,
+   "today": {
+    "net": 0.033,
+    "net_ci": [
+     0.008,
+     0.06
+    ],
+    "net_2025": 0.008
+   },
+   "fitted": {
+    "net": 0.086,
+    "net_ci": [
+     0.061,
+     0.11
+    ],
+    "net_2025": 0.07
+   },
+   "region_unseen": {
+    "net": 0.031,
+    "net_ci": [
+     0.004,
+     0.059
+    ],
+    "net_2025": 0.011
+   },
+   "by_year": {
+    "years": 10,
+    "wins": 8,
+    "p": 0.0547,
+    "mean_gain": 0.041,
+    "per_year": [
+     {
+      "year": 2017,
+      "today": 0.047,
+      "fitted": 0.08
+     },
+     {
+      "year": 2018,
+      "today": 0.022,
+      "fitted": 0.127
+     },
+     {
+      "year": 2019,
+      "today": 0.051,
+      "fitted": 0.122
+     },
+     {
+      "year": 2020,
+      "today": 0.021,
+      "fitted": 0.083
+     },
+     {
+      "year": 2021,
+      "today": 0.028,
+      "fitted": 0.042
+     },
+     {
+      "year": 2022,
+      "today": 0.06,
+      "fitted": 0.133
+     },
+     {
+      "year": 2023,
+      "today": 0.103,
+      "fitted": 0.1
+     },
+     {
+      "year": 2024,
+      "today": 0.056,
+      "fitted": 0.101
+     },
+     {
+      "year": 2025,
+      "today": 0.008,
+      "fitted": 0.068
+     },
+     {
+      "year": 2026,
+      "today": 0.112,
+      "fitted": 0.059
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.105,
+    "net_ci": [
+     0.098,
+     0.114
+    ],
+    "n": 14525
+   },
+   "fitted": {
+    "net": 0.089,
+    "net_ci": [
+     0.08,
+     0.097
+    ],
+    "n": 14525
+   },
+   "region_unseen": {
+    "net": 0.109,
+    "net_ci": [
+     0.101,
+     0.117
+    ],
+    "n": 14525
+   }
+  }
+ },
+ "smooth_chant": {
+  "USE": {
+   "n": 82,
+   "placebo_n": 2195,
+   "today": {
+    "net": 0.129,
+    "net_ci": [
+     0.064,
+     0.203
+    ]
+   },
+   "fitted": {
+    "net": 0.208,
+    "net_ci": [
+     0.14,
+     0.273
+    ]
+   },
+   "by_year": {
+    "years": 6,
+    "wins": 6,
+    "p": 0.0156,
+    "mean_gain": 0.045,
+    "per_year": [
+     {
+      "year": 2018,
+      "today": 0.096,
+      "fitted": 0.122
+     },
+     {
+      "year": 2019,
+      "today": 0.026,
+      "fitted": 0.113
+     },
+     {
+      "year": 2020,
+      "today": 0.113,
+      "fitted": 0.143
+     },
+     {
+      "year": 2021,
+      "today": 0.097,
+      "fitted": 0.153
+     },
+     {
+      "year": 2022,
+      "today": 0.07,
+      "fitted": 0.097
+     },
+     {
+      "year": 2023,
+      "today": 0.136,
+      "fitted": 0.179
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.129,
+    "net_ci": [
+     0.064,
+     0.203
+    ],
+    "n": 82
+   },
+   "fitted": {
+    "net": 0.208,
+    "net_ci": [
+     0.14,
+     0.273
+    ],
+    "n": 82
+   }
+  }
+ },
+ "st_george": {
+  "NE": {
+   "n": 769,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.099,
+    "net_ci": [
+     0.076,
+     0.123
+    ],
+    "net_2025": 0.156
+   },
+   "fitted": {
+    "net": 0.117,
+    "net_ci": [
+     0.093,
+     0.142
+    ],
+    "net_2025": 0.134
+   },
+   "region_unseen": {
+    "net": 0.116,
+    "net_ci": [
+     0.092,
+     0.139
+    ],
+    "net_2025": 0.178
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 6,
+    "p": 0.5,
+    "mean_gain": 0.007,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.007,
+      "fitted": 0.043
+     },
+     {
+      "year": 2017,
+      "today": 0.12,
+      "fitted": 0.098
+     },
+     {
+      "year": 2018,
+      "today": 0.112,
+      "fitted": 0.087
+     },
+     {
+      "year": 2019,
+      "today": 0.165,
+      "fitted": 0.166
+     },
+     {
+      "year": 2020,
+      "today": 0.147,
+      "fitted": 0.17
+     },
+     {
+      "year": 2021,
+      "today": 0.229,
+      "fitted": 0.249
+     },
+     {
+      "year": 2022,
+      "today": 0.184,
+      "fitted": 0.146
+     },
+     {
+      "year": 2023,
+      "today": 0.051,
+      "fitted": 0.083
+     },
+     {
+      "year": 2024,
+      "today": 0.086,
+      "fitted": 0.086
+     },
+     {
+      "year": 2025,
+      "today": 0.156,
+      "fitted": 0.138
+     },
+     {
+      "year": 2026,
+      "today": 0.059,
+      "fitted": 0.121
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 346,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.199,
+    "net_ci": [
+     0.155,
+     0.232
+    ],
+    "net_2025": 0.213
+   },
+   "fitted": {
+    "net": 0.197,
+    "net_ci": [
+     0.159,
+     0.232
+    ],
+    "net_2025": 0.243
+   },
+   "region_unseen": {
+    "net": 0.184,
+    "net_ci": [
+     0.145,
+     0.218
+    ],
+    "net_2025": 0.191
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 4,
+    "p": 0.8867,
+    "mean_gain": -0.004,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": -0.023,
+      "fitted": 0.068
+     },
+     {
+      "year": 2017,
+      "today": 0.179,
+      "fitted": 0.15
+     },
+     {
+      "year": 2018,
+      "today": 0.052,
+      "fitted": 0.047
+     },
+     {
+      "year": 2019,
+      "today": 0.133,
+      "fitted": 0.089
+     },
+     {
+      "year": 2020,
+      "today": 0.343,
+      "fitted": 0.277
+     },
+     {
+      "year": 2021,
+      "today": 0.213,
+      "fitted": 0.27
+     },
+     {
+      "year": 2022,
+      "today": 0.103,
+      "fitted": 0.072
+     },
+     {
+      "year": 2023,
+      "today": 0.124,
+      "fitted": 0.093
+     },
+     {
+      "year": 2024,
+      "today": 0.087,
+      "fitted": 0.096
+     },
+     {
+      "year": 2025,
+      "today": 0.213,
+      "fitted": 0.241
+     },
+     {
+      "year": 2026,
+      "today": 0.186,
+      "fitted": 0.162
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.134,
+    "net_ci": [
+     0.113,
+     0.157
+    ],
+    "n": 1115
+   },
+   "fitted": {
+    "net": 0.146,
+    "net_ci": [
+     0.126,
+     0.165
+    ],
+    "n": 1115
+   },
+   "region_unseen": {
+    "net": 0.141,
+    "net_ci": [
+     0.12,
+     0.158
+    ],
+    "n": 1115
+   }
+  }
+ },
+ "summer_bolete": {
+  "NE": {
+   "n": 592,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.14,
+    "net_ci": [
+     0.115,
+     0.163
+    ],
+    "net_2025": 0.135
+   },
+   "fitted": {
+    "net": 0.234,
+    "net_ci": [
+     0.206,
+     0.26
+    ],
+    "net_2025": 0.252
+   },
+   "region_unseen": {
+    "net": 0.225,
+    "net_ci": [
+     0.197,
+     0.253
+    ],
+    "net_2025": 0.239
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 11,
+    "p": 0.0005,
+    "mean_gain": 0.092,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.049,
+      "fitted": 0.221
+     },
+     {
+      "year": 2017,
+      "today": 0.068,
+      "fitted": 0.17
+     },
+     {
+      "year": 2018,
+      "today": 0.09,
+      "fitted": 0.157
+     },
+     {
+      "year": 2019,
+      "today": 0.166,
+      "fitted": 0.188
+     },
+     {
+      "year": 2020,
+      "today": 0.087,
+      "fitted": 0.156
+     },
+     {
+      "year": 2021,
+      "today": 0.075,
+      "fitted": 0.168
+     },
+     {
+      "year": 2022,
+      "today": -0.013,
+      "fitted": 0.15
+     },
+     {
+      "year": 2023,
+      "today": 0.074,
+      "fitted": 0.167
+     },
+     {
+      "year": 2024,
+      "today": 0.015,
+      "fitted": 0.077
+     },
+     {
+      "year": 2025,
+      "today": 0.135,
+      "fitted": 0.247
+     },
+     {
+      "year": 2026,
+      "today": 0.151,
+      "fitted": 0.204
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 532,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.249,
+    "net_ci": [
+     0.22,
+     0.276
+    ],
+    "net_2025": 0.259
+   },
+   "fitted": {
+    "net": 0.321,
+    "net_ci": [
+     0.291,
+     0.349
+    ],
+    "net_2025": 0.388
+   },
+   "region_unseen": {
+    "net": 0.311,
+    "net_ci": [
+     0.282,
+     0.338
+    ],
+    "net_2025": 0.379
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 6,
+    "p": 0.5,
+    "mean_gain": 0.017,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.22,
+      "fitted": 0.158
+     },
+     {
+      "year": 2017,
+      "today": 0.022,
+      "fitted": 0.05
+     },
+     {
+      "year": 2018,
+      "today": 0.114,
+      "fitted": 0.172
+     },
+     {
+      "year": 2019,
+      "today": 0.129,
+      "fitted": 0.088
+     },
+     {
+      "year": 2020,
+      "today": 0.226,
+      "fitted": 0.213
+     },
+     {
+      "year": 2021,
+      "today": 0.14,
+      "fitted": 0.11
+     },
+     {
+      "year": 2022,
+      "today": 0.132,
+      "fitted": 0.165
+     },
+     {
+      "year": 2023,
+      "today": 0.114,
+      "fitted": 0.169
+     },
+     {
+      "year": 2024,
+      "today": 0.104,
+      "fitted": 0.17
+     },
+     {
+      "year": 2025,
+      "today": 0.259,
+      "fitted": 0.395
+     },
+     {
+      "year": 2026,
+      "today": 0.261,
+      "fitted": 0.214
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.186,
+    "net_ci": [
+     0.167,
+     0.206
+    ],
+    "n": 1124
+   },
+   "fitted": {
+    "net": 0.272,
+    "net_ci": [
+     0.253,
+     0.291
+    ],
+    "n": 1124
+   },
+   "region_unseen": {
+    "net": 0.261,
+    "net_ci": [
+     0.242,
+     0.281
+    ],
+    "n": 1124
+   }
+  }
+ },
+ "winter_chant": {
+  "NE": {
+   "n": 1090,
+   "placebo_n": 5748,
+   "today": {
+    "net": 0.074,
+    "net_ci": [
+     0.055,
+     0.096
+    ],
+    "net_2025": 0.068
+   },
+   "fitted": {
+    "net": 0.071,
+    "net_ci": [
+     0.051,
+     0.092
+    ],
+    "net_2025": 0.064
+   },
+   "region_unseen": {
+    "net": 0.064,
+    "net_ci": [
+     0.043,
+     0.085
+    ],
+    "net_2025": 0.071
+   },
+   "by_year": {
+    "years": 11,
+    "wins": 4,
+    "p": 0.8867,
+    "mean_gain": 0.003,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": 0.048,
+      "fitted": 0.053
+     },
+     {
+      "year": 2017,
+      "today": 0.087,
+      "fitted": 0.081
+     },
+     {
+      "year": 2018,
+      "today": 0.05,
+      "fitted": 0.029
+     },
+     {
+      "year": 2019,
+      "today": 0.024,
+      "fitted": 0.023
+     },
+     {
+      "year": 2020,
+      "today": 0.079,
+      "fitted": 0.068
+     },
+     {
+      "year": 2021,
+      "today": 0.052,
+      "fitted": 0.09
+     },
+     {
+      "year": 2022,
+      "today": 0.051,
+      "fitted": 0.046
+     },
+     {
+      "year": 2023,
+      "today": 0.01,
+      "fitted": 0.05
+     },
+     {
+      "year": 2024,
+      "today": 0.05,
+      "fitted": 0.03
+     },
+     {
+      "year": 2025,
+      "today": 0.068,
+      "fitted": 0.065
+     },
+     {
+      "year": 2026,
+      "today": 0.038,
+      "fitted": 0.054
+     }
+    ]
+   }
+  },
+  "SE": {
+   "n": 280,
+   "placebo_n": 3610,
+   "today": {
+    "net": 0.129,
+    "net_ci": [
+     0.096,
+     0.164
+    ],
+    "net_2025": 0.173
+   },
+   "fitted": {
+    "net": 0.13,
+    "net_ci": [
+     0.093,
+     0.167
+    ],
+    "net_2025": 0.167
+   },
+   "region_unseen": {
+    "net": 0.141,
+    "net_ci": [
+     0.109,
+     0.18
+    ],
+    "net_2025": 0.179
+   },
+   "by_year": {
+    "years": 10,
+    "wins": 6,
+    "p": 0.377,
+    "mean_gain": 0.015,
+    "per_year": [
+     {
+      "year": 2016,
+      "today": -0.016,
+      "fitted": 0.054
+     },
+     {
+      "year": 2017,
+      "today": 0.046,
+      "fitted": 0.02
+     },
+     {
+      "year": 2018,
+      "today": 0.027,
+      "fitted": 0.069
+     },
+     {
+      "year": 2019,
+      "today": 0.012,
+      "fitted": 0.048
+     },
+     {
+      "year": 2020,
+      "today": 0.143,
+      "fitted": 0.187
+     },
+     {
+      "year": 2021,
+      "today": 0.075,
+      "fitted": 0.066
+     },
+     {
+      "year": 2022,
+      "today": 0.077,
+      "fitted": 0.085
+     },
+     {
+      "year": 2023,
+      "today": 0.039,
+      "fitted": 0.031
+     },
+     {
+      "year": 2024,
+      "today": 0.113,
+      "fitted": 0.118
+     },
+     {
+      "year": 2025,
+      "today": 0.173,
+      "fitted": 0.165
+     }
+    ]
+   }
+  },
+  "USE": {
+   "n": 51,
+   "placebo_n": 2195,
+   "today": {
+    "net": -0.079,
+    "net_ci": [
+     -0.161,
+     0.004
+    ]
+   },
+   "fitted": {
+    "net": -0.017,
+    "net_ci": [
+     -0.114,
+     0.079
+    ]
+   },
+   "region_unseen": {
+    "net": -0.079,
+    "net_ci": [
+     -0.162,
+     0.014
+    ]
+   },
+   "by_year": {
+    "years": 3,
+    "wins": 3,
+    "p": 0.125,
+    "mean_gain": 0.035,
+    "per_year": [
+     {
+      "year": 2021,
+      "today": 0.006,
+      "fitted": 0.018
+     },
+     {
+      "year": 2022,
+      "today": 0.084,
+      "fitted": 0.114
+     },
+     {
+      "year": 2023,
+      "today": -0.021,
+      "fitted": 0.041
+     }
+    ]
+   }
+  },
+  "USW": {
+   "n": 280,
+   "placebo_n": 1853,
+   "today": {
+    "net": 0.031,
+    "net_ci": [
+     -0.015,
+     0.075
+    ],
+    "net_2025": 0.036
+   },
+   "fitted": {
+    "net": 0.077,
+    "net_ci": [
+     0.029,
+     0.122
+    ],
+    "net_2025": 0.073
+   },
+   "region_unseen": {
+    "net": 0.02,
+    "net_ci": [
+     -0.02,
+     0.068
+    ],
+    "net_2025": 0.043
+   },
+   "by_year": {
+    "years": 8,
+    "wins": 5,
+    "p": 0.3633,
+    "mean_gain": 0.026,
+    "per_year": [
+     {
+      "year": 2019,
+      "today": -0.027,
+      "fitted": -0.078
+     },
+     {
+      "year": 2020,
+      "today": 0.021,
+      "fitted": -0.013
+     },
+     {
+      "year": 2021,
+      "today": 0.033,
+      "fitted": 0.075
+     },
+     {
+      "year": 2022,
+      "today": -0.002,
+      "fitted": 0.107
+     },
+     {
+      "year": 2023,
+      "today": -0.006,
+      "fitted": 0.073
+     },
+     {
+      "year": 2024,
+      "today": 0.042,
+      "fitted": 0.009
+     },
+     {
+      "year": 2025,
+      "today": 0.036,
+      "fitted": 0.079
+     },
+     {
+      "year": 2026,
+      "today": 0.012,
+      "fitted": 0.064
+     }
+    ]
+   }
+  },
+  "ALL": {
+   "today": {
+    "net": 0.078,
+    "net_ci": [
+     0.063,
+     0.093
+    ],
+    "n": 1701
+   },
+   "fitted": {
+    "net": 0.086,
+    "net_ci": [
+     0.07,
+     0.101
+    ],
+    "n": 1701
+   },
+   "region_unseen": {
+    "net": 0.068,
+    "net_ci": [
+     0.051,
+     0.084
+    ],
+    "n": 1701
+   }
+  }
+ }
+}

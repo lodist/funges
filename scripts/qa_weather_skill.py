@@ -117,19 +117,25 @@ def bootstrap(a: np.ndarray, b: np.ndarray | None = None, seed: int = 20261007) 
 
 
 def get_with_retry(session: requests.Session, url: str, params, what: str, attempts: int = 8) -> dict:
+    problem = ""
     for attempt in range(attempts):
-        response = session.get(url, params=params, timeout=120)
-        if response.status_code == 429 or response.status_code >= 500:
-            time.sleep(min(60, 2 ** attempt))
-            continue
-        response.raise_for_status()
-        return response.json()
-    raise RuntimeError(f"{what} kept failing: {response.status_code} {response.text[:200]}")
+        try:
+            response = session.get(url, params=params, timeout=120)
+            if response.status_code == 429 or response.status_code >= 500:
+                problem = f"{response.status_code} {response.text[:200]}"
+            else:
+                response.raise_for_status()
+                return response.json()
+        except (requests.ConnectionError, requests.Timeout, requests.exceptions.ChunkedEncodingError) as error:
+            problem = str(error)  # a dropped connection is as passing as a 503
+        time.sleep(min(60, 2 ** attempt))
+    raise RuntimeError(f"{what} kept failing: {problem}")
 
 
 def fetch_finds(session: requests.Session, keys: list[int], start: str, end: str,
-                box: tuple) -> pd.DataFrame:
-    """Every coordinate-precise human observation of `keys` inside `box`, one row each."""
+                box: tuple, max_records: int | None = None) -> pd.DataFrame:
+    """Every coordinate-precise human observation of `keys` inside `box`, one row each;
+    with max_records, an even sample of pages across the whole result instead."""
     west, south, east, north = box
     params = [("taxonKey", key) for key in keys] + [
         ("basisOfRecord", "HUMAN_OBSERVATION"), ("occurrenceStatus", "PRESENT"),
@@ -139,9 +145,18 @@ def fetch_finds(session: requests.Session, keys: list[int], start: str, end: str
         ("decimalLatitude", f"{south},{north}"), ("decimalLongitude", f"{west},{east}"),
         ("limit", 300),
     ]
-    rows, offset = [], 0
-    while True:
-        page = get_with_retry(session, GBIF, params + [("offset", offset)], "GBIF")
+    first = get_with_retry(session, GBIF, params + [("offset", 0)], "GBIF")
+    total = first.get("count", 0)
+    if total > 100_000:
+        print(f"    [warn] {total:,} records, past GBIF's 100k paging limit")
+    reachable = min(total, 100_000)
+    if max_records and reachable > max_records:
+        offsets = sorted(set(np.linspace(0, reachable - 300, max_records // 300, dtype=int).tolist()))
+    else:
+        offsets = list(range(0, reachable, 300))
+    rows = []
+    for offset in offsets:
+        page = first if offset == 0 else get_with_retry(session, GBIF, params + [("offset", offset)], "GBIF")
         for record in page.get("results", []):
             parts = (record.get("year"), record.get("month"), record.get("day"))
             if None in parts or record.get("decimalLatitude") is None:
@@ -152,11 +167,6 @@ def fetch_finds(session: requests.Session, keys: list[int], start: str, end: str
                 continue
             if start <= observed <= end:
                 rows.append((record["decimalLatitude"], record["decimalLongitude"], observed))
-        offset += 300
-        if page.get("endOfRecords", True) or offset >= 100_000:
-            if offset >= 100_000:
-                print(f"    [warn] stopped at GBIF's 100k paging limit of {page.get('count')}")
-            break
     return pd.DataFrame(rows, columns=["lat", "lon", "date"])
 
 
@@ -209,7 +219,8 @@ def read_weather(s3, region: str, location_ids: set, first, last) -> pd.DataFram
     for group in range(parquet.num_row_groups):
         if not fp._row_group_may_overlap(parquet, group, after=after, before=before):
             continue
-        table = parquet.read_row_group(group, columns=RAW_COLUMNS)
+        table = parquet.read_row_group(group, columns=RAW_COLUMNS + [
+            c for c in fp.FRUITING_LAG_COLUMNS if c in parquet.schema_arrow.names])
         table = table.filter(pc.and_(fp._arrow_date_mask(table, after=after, before=before),
                                      pc.is_in(table["Location_Id"], value_set=pa.array(wanted))))
         if len(table):
@@ -348,6 +359,8 @@ def main() -> None:
     parser.add_argument("--finds", default=None, help="matched-finds CSV to reuse (written on first run)")
     parser.add_argument("--output", default="docs/qa/weather-skill")
     parser.add_argument("--cache", default=None, help="directory for weather read from R2 / Open-Meteo")
+    parser.add_argument("--fruiting", default=None,
+                        help="score with the fitted fruiting models in this file (generated/fruiting_fit.json)")
     args = parser.parse_args()
     cache = Path(args.cache) if args.cache else None
     if cache:
@@ -404,9 +417,12 @@ def main() -> None:
         days = pd.concat([here[["Location_Id", "Date"]].assign(Date=here.Date + pd.Timedelta(days=o))
                           for o in (0, *CONTROL_OFFSETS)]).drop_duplicates()
         target = history.merge(days, on=["Location_Id", "Date"])
-        frame = fp.compute_lag_features(history, BRANCH_LAG_COLUMNS, LAG_DAYS, target=target)
+        lags = BRANCH_LAG_COLUMNS + [c for c in fp.FRUITING_LAG_COLUMNS if c in history.columns]
+        frame = fp.compute_lag_features(history, lags, LAG_DAYS, target=target)
         frame = frame.reset_index(drop=True)
         params, zone_curves = load_specs(session, region)
+        if args.fruiting:
+            fp.attach_fruiting_models(params, region, args.fruiting)
         placebo_cases = here[here.species == PLACEBO]
         results[region] = {}
         for species in sorted(set(here.species) - {PLACEBO}):
@@ -446,7 +462,7 @@ def main() -> None:
         "regions": results,
         "pooled": pooled_summary,
     }
-    suffix = f"-{args.max_locations}loc" if args.max_locations else ""
+    suffix = (f"-{args.max_locations}loc" if args.max_locations else "") + ("-fitted" if args.fruiting else "")
     path = output / f"weather-skill-{args.weather}{suffix}-{args.start}_{args.end}.json"
     path.write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(f"\nwrote {path}\npooled across regions (net = species minus bracket placebo):")
