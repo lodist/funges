@@ -49,3 +49,13 @@ def test_missing_days_are_left_out_of_their_stratum():
     model = gbm.fit(x, mask, rounds=100)
     test_x, test_mask = _strata(800, lambda v: 1.5 * v, seed=4)
     assert gbm.find_day_rank(gbm.predict(model, test_x), test_mask).mean() > 0.65
+
+
+def test_early_stopping_on_held_out_strata_stops_where_there_is_nothing_to_learn():
+    x, mask = _strata(2000, lambda v: 0.0 * v, seed=5)               # find day independent of x
+    valid_x, valid_mask = _strata(600, lambda v: 0.0 * v, seed=6)
+    model = gbm.fit(x, mask, rounds=400, valid=(valid_x, valid_mask))
+    assert model.best_iteration < 100
+    x, mask = _strata(2000, lambda v: 1.5 * v, seed=7)               # and keeps going where there is
+    valid_x, valid_mask = _strata(600, lambda v: 1.5 * v, seed=8)
+    assert gbm.fit(x, mask, rounds=400, valid=(valid_x, valid_mask)).best_iteration > 50

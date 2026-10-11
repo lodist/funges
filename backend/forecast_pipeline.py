@@ -25,6 +25,10 @@ import time
 import threading
 import tempfile
 
+try:  # before pandas/pyarrow: pyarrow 17 bundles an old msvcp140.dll that crashes LightGBM 4.7
+    import lightgbm as lgb
+except ImportError:  # no GBM then: the linear fits and hand-set settings still score
+    lgb = None
 import boto3
 import numpy as np
 import pandas as pd
@@ -36,6 +40,7 @@ from shapely.ops import unary_union
 from shapely.geometry import shape, Point
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasonality
+import era5_normals
 import era5_rain
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
@@ -947,12 +952,20 @@ FRUITING_GBM_LAGS = {"rain": ("TotalPrecipitation_mm", range(0, 43)),
                      "rh": ("Humidity (%)", range(1, 22))}
 
 
+# Then the find cell's ERA5 normals for the month, its latitude and the day of year: constant
+# within a training stratum, so in the nightly scoring they are the run's, on every day scored.
+FRUITING_GBM_STATIC = ["norm_rain", "norm_tmean", "norm_rh", "lat", "find_doy"]
+FRUITING_GBM_REGIONS = ["NE", "SE", "USE", "USW"]
+FRUITING_GBM_PATH = Path(__file__).resolve().parent / "generated" / "fruiting_gbm.json"
+
+
 def fruiting_gbm_lags(df):
     """Each row's daily lags from the frame's "<column>_<k>days_ago" columns."""
     out = {}
     for name, (column, days) in FRUITING_GBM_LAGS.items():
         for k in days:
-            values = df[column if k == 0 else f"{column}_{k}days_ago"].to_numpy(float)
+            name_k = column if k == 0 else f"{column}_{k}days_ago"
+            values = df[name_k].to_numpy(float) if name_k in df else np.full(len(df), np.nan)
             out[f"{name}_d{k}"] = np.log1p(np.clip(values, 0, RAIN_MAX_MM_DAY)) if name == "rain" else values
     return pd.DataFrame(out, index=df.index)
 
@@ -981,6 +994,11 @@ def fruiting_raw_features(df):
     return out
 
 
+FRUITING_GBM_FEATURES = [*FRUITING_FEATURES,
+                         *(f"{name}_d{k}" for name, (_, days) in FRUITING_GBM_LAGS.items() for k in days),
+                         *FRUITING_GBM_STATIC, "region"]
+
+
 def fruiting_design(raw):
     """Raw features -> the fit's columns. Rain on a log scale: the 30th mm matters less than the 3rd."""
     out = pd.DataFrame({name: np.log1p(raw[name]) for name in ["rain_0", *FRUITING_RAIN_WINDOWS]})
@@ -1007,15 +1025,51 @@ def fruiting_weather_part(df, model):
     design[["humidity", "humidity_early"]] = a + b * design[["humidity", "humidity_early"]]
     z = (design.to_numpy(float) - np.asarray(model["means"])) / np.asarray(model["sds"])
     eta = np.nan_to_num(z, nan=0.0) @ np.asarray(model["beta"], float)
-    months = (pd.to_datetime(df["Date"]).dt.dayofyear.to_numpy() - 15.0) / (365.25 / 12)  # 0 = mid-January
+    return _monthly_map(eta, df["Date"], model["map"])
+
+
+def _monthly_map(index, dates, maps):
+    """The index on the hand-set weather part's scale: one map per calendar month, a day
+    blending the two months either side of it."""
+    months = (pd.to_datetime(dates).dt.dayofyear.to_numpy() - 15.0) / (365.25 / 12)  # 0 = mid-January
     before = np.floor(months).astype(int)
     weight = months - before
-    out = np.empty(len(eta))
+    out = np.empty(len(index))
     for month in np.unique(before):
         rows = before == month
-        part = [np.interp(eta[rows], m["eta"], m["weather_part"]) for m in (model["map"][month % 12], model["map"][(month + 1) % 12])]
+        part = [np.interp(index[rows], m["eta"], m["weather_part"]) for m in (maps[month % 12], maps[(month + 1) % 12])]
         out[rows] = (1 - weight[rows]) * part[0] + weight[rows] * part[1]
     return out
+
+
+def fruiting_gbm_features(df, model):
+    """The GBM's inputs per row, in FRUITING_GBM_FEATURES order. Stored inputs are put on
+    ERA5's level first (model["corrections"]: column -> a, b), as the GBM learned on ERA5.
+    Normals and day of year are those of model["anchor"], the run's date."""
+    light = {}
+    for column in ("TotalPrecipitation_mm", "Temperature (C)", "Temperature (C) Min", "Humidity (%)"):
+        a, b = model["corrections"].get(column, (0.0, 1.0))
+        for name in [column, *(f"{column}_{k}days_ago" for k in range(1, 43))]:
+            if name in df:
+                light[name] = a + b * pd.to_numeric(df[name], errors="coerce").to_numpy(float)
+    light = pd.DataFrame(light, index=df.index)
+    if "TotalPrecipitation_mm" not in light:
+        light["TotalPrecipitation_mm"] = np.nan
+    anchor = pd.Timestamp(model["anchor"])
+    lats, lons = df["Latitude"].to_numpy(float), df["Longitude"].to_numpy(float)
+    normals = era5_normals.lookup(model["normals"], lats, lons, np.full(len(df), anchor.month))
+    return np.column_stack([
+        fruiting_design(fruiting_raw_features(light)).to_numpy(float),
+        fruiting_gbm_lags(light).to_numpy(float),
+        normals["norm_rain"], normals["norm_tmean"], normals["norm_rh"],
+        np.round(lats / era5_normals.STEP) * era5_normals.STEP,
+        np.full(len(df), anchor.dayofyear, float),
+        np.full(len(df), model["region_code"], float)])
+
+
+def fruiting_gbm_weather_part(features, df, model):
+    """The GBM's raw score through its monthly maps onto the hand-set weather part's scale."""
+    return _monthly_map(model["booster"].predict(features, raw_score=True), df["Date"], model["map"])
 
 
 def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
@@ -1033,10 +1087,35 @@ def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
                                   "humidity_from_stored": fit["humidity_from_stored"][region], **model}
 
 
+def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH):
+    """Give each species the region's GBM, where generated/fruiting_gbm.json ships one; it
+    replaces that species' linear fit. `today` anchors the normals and day of year."""
+    if lgb is None or not Path(path).exists():
+        return
+    spec = json.loads(Path(path).read_text(encoding="utf-8"))
+    if spec.get("features") != FRUITING_GBM_FEATURES:
+        print(f"[warn] {path}: features differ from this code's; GBM not used")
+        return
+    normals = None
+    for specie, params in species_params.items():
+        model = spec.get("models", {}).get(specie, {})
+        if region not in model.get("regions", {}):
+            continue
+        if normals is None:
+            normals = era5_normals.load(region)
+        params.pop("fruiting", None)
+        params["fruiting_gbm"] = {
+            "booster": lgb.Booster(model_file=str(Path(path).parent / model["file"])),
+            "map": model["regions"][region]["map"], "corrections": spec["inputs_from_stored"][region],
+            "region_code": FRUITING_GBM_REGIONS.index(region), "anchor": pd.Timestamp(today),
+            "normals": normals}
+
+
 def calculate_mushroom_score(df, species_params, zone_curves):
     if 'TotalPrecipitation_mm' not in df.columns:
         df['TotalPrecipitation_mm'] = np.nan
     wind_factor = _lagged_wind_factor(df)
+    gbm_features = None
 
     for specie, params in species_params.items():
         cum_thr = float(params.get('min_cumulative_rain', 20.0))
@@ -1077,10 +1156,15 @@ def calculate_mushroom_score(df, species_params, zone_curves):
 
         df[f'{specie}_Temp_Score'] = np.clip(temp_score, 0, 1)
         df[f'{specie}_Humidity_Score'] = np.clip(humidity_score, 0, 1)
-        if params.get("fruiting"):
-            # All three weather components take the fitted part, so their weighted
-            # geometric mean is that part and the static components weigh as before.
+        # All three weather components take the fitted part, so their weighted
+        # geometric mean is that part and the static components weigh as before.
+        if params.get("fruiting_gbm"):
+            if gbm_features is None:   # the same for every species of a region run
+                gbm_features = fruiting_gbm_features(df, params["fruiting_gbm"])
+            fitted = fruiting_gbm_weather_part(gbm_features, df, params["fruiting_gbm"])
+        elif params.get("fruiting"):
             fitted = fruiting_weather_part(df, params["fruiting"])
+        if params.get("fruiting_gbm") or params.get("fruiting"):
             for part in ("Temp", "Humidity", "Weather"):
                 df[f'{specie}_{part}_Score'] = fitted
         df[f'{specie}_Alt_Score'] = np.clip(
@@ -1245,8 +1329,11 @@ def _load_species_and_curves(config):
             print(f"[warn] could not load host cover from {_cover_path}: {_e}; scoring without it")
 
     attach_fruiting_models(species_params, config.region)
+    attach_fruiting_gbm(species_params, config.region, datetime.now())
     _fitted = sorted(s for s, p in species_params.items() if "fruiting" in p)
     print(f"Fitted fruiting model for {len(_fitted)} species: {', '.join(_fitted) or 'none'}")
+    _gbm = sorted(s for s, p in species_params.items() if "fruiting_gbm" in p)
+    print(f"Fruiting GBM for {len(_gbm)} species: {', '.join(_gbm) or 'none'}")
     return species_params, zone_curves
 
 
