@@ -275,11 +275,11 @@ export const BLUEBELL: Spectacle = {
 // they are down.
 export const FOLIAGE: Spectacle = {
   code: 'foliage',
-  scientificName: 'Acer, Betula, Populus',
+  scientificName: 'Acer, Fagus, Larix, Populus',
   emoji: '🍁',
   keys: 'foliage',
   tiles: 'foliage',
-  regions: ['use', 'usw'],
+  regions: ['use', 'usw', 'ne', 'se'],
   months: [8, 9, 10],
   ramp: peakRamp(
     ['#EE9A26', '#E2C23A', '#A8C24A'],

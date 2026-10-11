@@ -19,6 +19,8 @@ instead of the coarse grids' squares:
   kept whole where their middle lies where Calluna's share of plant records within 50 km
   is at least 0.1 of its typical share, and north of 58° N below 300 m (higher, it is
   fjell heath).
+- larch_mask_EU.npz: the host-cover cells (0.05°) where larch is at least a tenth of the
+  trees; fall foliage draws a coniferous (CORINE 312) wood there as larch.
 - superbloom_ground_US.geojson: a 1991-2020 normal rain under 350 mm a year
   (bloom_normals_US.npz), ground under 1,500 m (HydroSHEDS, averaged to 0.01°), at
   least 25 research-grade desert-annual records within 50 km
@@ -46,6 +48,7 @@ import bloom  # noqa: E402
 OUT = _TOOLS.parent / "generated"
 BLUEBELL_SHARE = 0.1  # the bluebell's share of plant records within 50 km, of its typical share
 BLUEBELL_WOODS = (311, 313)  # CORINE broadleaf and mixed forest in the regions' wilderness polygons
+LARCH_SHARE = 0.1  # larch's share of the host cover's trees where a coniferous wood counts as larch
 HEATHER_SHARE = 0.1  # Calluna's share of plant records within 50 km, of its typical share
 HEATHER_MOORS = (322,)  # CORINE moors and heathland in the wilderness polygons
 FJELL = (58.0, 300.0)  # north of this latitude, a heath whose middle is higher (m) is fjell heath, not ling
@@ -200,6 +203,21 @@ def heather(cache, wilderness):
           file=sys.stderr)
 
 
+def larch(cache):
+    """The host-cover cells (0.05°) where larch is at least LARCH_SHARE of the trees, for fall
+    foliage's European larch woods."""
+    import calibrate_bluebell as cb
+
+    cover, _ = cb.host_cover(cache)
+    larix = cover["classes"]["larix"].astype(float)
+    trees = sum(v.astype(float) for v in cover["classes"].values())
+    with np.errstate(invalid="ignore", divide="ignore"):
+        mask = np.where(trees > 0, larix / trees, 0.0) >= LARCH_SHARE
+    out = OUT / "larch_mask_EU.npz"
+    np.savez_compressed(out, lat0=cover["lat0"], lon0=cover["lon0"], step=cover["step"], mask=mask)
+    print(f"wrote {out} ({int(mask.sum())} cells, {out.stat().st_size // 1024} KB)", file=sys.stderr)
+
+
 def superbloom(cache):
     import calibrate_superbloom as cs
     from rasterio.warp import Resampling
@@ -240,11 +258,14 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--bluebell-cache", type=Path)
     ap.add_argument("--heather-cache", type=Path)
+    ap.add_argument("--larch-cache", type=Path, help="a cache with EU_host_cover.npz (calibrate_bluebell.host_cover)")
     ap.add_argument("--wilderness", nargs="+", help="NE and SE wilderness GeoJSON (*_WILDERNESS_DATA_SOURCE)")
     ap.add_argument("--superbloom-cache", type=Path)
     args = ap.parse_args()
     if args.bluebell_cache:
         bluebell(args.bluebell_cache, args.wilderness)
+    if args.larch_cache:
+        larch(args.larch_cache)
     if args.heather_cache:
         heather(args.heather_cache, args.wilderness)
     if args.superbloom_cache:

@@ -258,9 +258,10 @@ def _bands(cy, cx, props, ground, steps=None):
 
 
 def _sample(cy, cx, props, pieces, steps=None):
-    """`pieces` (the land-cover polygons a species layer is drawn on) each with the
-    cells' `props` at its middle, interpolated as for _bands and rounded to `steps` (1);
-    pieces off the drawn area are dropped. For a ground too fine to cut into bands."""
+    """`pieces` (the land-cover polygons a species layer is drawn on, with their own
+    columns) each with the cells' `props` at its middle, interpolated as for _bands and
+    rounded to `steps` (1); pieces off the drawn area are dropped. For a ground too fine
+    to cut into bands."""
     import geopandas as gpd
 
     south, west, grids = _fine(cy, cx, props)
@@ -273,7 +274,8 @@ def _sample(cy, cx, props, pieces, steps=None):
     ok[ok] = np.isfinite(first[i[ok], j[ok]])
     steps = {k: (steps or {}).get(k, 1) for k in props}
     values = {k: np.rint(grids[k][i[ok], j[ok]] / steps[k]) * steps[k] for k in props}
-    return gpd.GeoDataFrame(values, geometry=pieces.geometry.values[ok], crs="EPSG:4326")
+    own = {c: pieces[c].to_numpy()[ok] for c in pieces.columns if c != pieces.geometry.name}
+    return gpd.GeoDataFrame({**own, **values}, geometry=pieces.geometry.values[ok], crs="EPSG:4326")
 
 
 def _tippecanoe(geojson, mbtiles, layer, options=("-z10", "--detect-shared-borders")):

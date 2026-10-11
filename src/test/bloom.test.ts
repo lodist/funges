@@ -170,6 +170,9 @@ describe('bluebell and superbloom', () => {
     expect(bloomInSeason(new Date(2026, 8, 1), FOLIAGE)).toBe(true);
     expect(bloomInSeason(new Date(2026, 11, 1), FOLIAGE)).toBe(false);
     expect(spectacleOfLayer('foliage_usw')).toBe(FOLIAGE);
+    expect(bloomTilesUrl('ne', FOLIAGE)).toBe(
+      'pmtiles://https://data.fung.es/EU/NE/ne_foliage.pmtiles'
+    );
   });
 
   it('draws a superbloom cell without a bloom in sand, fainter the weaker it is', () => {

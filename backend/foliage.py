@@ -1,4 +1,4 @@
-"""Fall foliage: a peak-colour forecast for the US hardwoods and aspens (roadmap #272 step 5).
+"""Fall foliage: a peak-colour forecast for the US and Europe (roadmap #272 step 5).
 
 Leaves turn as the season cools. From 15 August, each day adds how far its mean falls
 below BASE, and the peak is the day the sum reaches the requirement. At 33 °C nearly
@@ -9,15 +9,23 @@ eastern hardwoods, the Pacific lowlands' oaks and maples (west of PACIFIC_LON) o
 larger one; the interior lowlands keep the eastern one. A photoperiod term added
 nothing.
 
-Weather adds little over geography here: the model beats one fixed date clearly and a
-latitude + elevation line only a little, and its year-to-year skill is weak. Fitted on
-iNaturalist "colored leaves" records and NASA POWER temperatures, checked on PhenoCam
-and USA-NPN: docs/species/2026-10-11-fall-foliage.md, from
-backend/tools/calibrate_foliage.py.
+Europe keeps the clock but not the US requirement: its peak, as people photograph it, is
+a later stage, about when half the beech leaves have fallen at the stations, two weeks
+after half are coloured. So the temperate forests take EU_REQUIREMENT, and the boreal
+north from BOREAL_LAT its smaller one. The larch takes the temperate requirement; it
+only needs its own ground.
 
-Drawn on the deciduous and mixed forest (NLCD 41, 43) pieces the region's species
-layers are drawn on, handed over by the MapLayer script, each coloured by the forecast
-at its middle.
+Weather adds little over geography here: in the US the model beats one fixed date
+clearly and a latitude + elevation line only a little, and its year-to-year skill is
+weak; in Europe the year-to-year evidence comes from the station networks alone. Fitted on
+iNaturalist "colored leaves" records and NASA POWER temperatures, checked on PhenoCam
+and USA-NPN (the US) and the DWD and MeteoSwiss phenology networks (Europe):
+docs/species/2026-10-11-fall-foliage.md, from backend/tools/calibrate_foliage.py and
+calibrate_foliage_eu.py.
+
+Drawn on the deciduous and mixed forest pieces the region's species layers are drawn on
+(NLCD 41, 43 in the US; CORINE 311, 313 in Europe, and the larch's 312), handed over by
+the MapLayer script, each coloured by the forecast at its middle.
 """
 from __future__ import annotations
 
@@ -41,7 +49,17 @@ SIMPLIFY = 0.01  # degrees: the pieces simplified as the species forecast's are,
 # A cell is drawn only where a normal year peaks by this day: that hides Florida, the
 # Gulf coast, south Texas and the low deserts (4.4% of USE's cells, 1.1% of USW's).
 LATEST_NORMAL_PEAK = (11, 30)  # month, day
-REGIONS = frozenset({"use", "usw"})
+# Europe (CORINE): the temperate forests, and the boreal north from BOREAL_LAT.
+EU_REQUIREMENT = 1539.0  # stations: beech leaf fall 1,501 (DWD), 1,525 (MeteoSwiss); larch needles 1,482
+BOREAL_LAT = 60.0
+BOREAL_REQUIREMENT = 869.0  # Fennoscandia's birch, rowan and aspen
+EU_LAND = (311, 313)  # CORINE broadleaf and mixed forest
+LARCH_LAND = 312  # CORINE coniferous, drawn where it is larch: its middle in a host-cover cell
+# where larch is at least a tenth of the trees (backend/generated/larch_mask_EU.npz), or in
+# the Alps from LARCH_ALPS_MIN_ELEV up (the host cover gives the Dolomites 2%).
+ALPS = (5.0, 43.5, 16.5, 48.2)  # west, south, east, north
+LARCH_ALPS_MIN_ELEV = 1300.0  # m, the cell's mean elevation at the piece's middle
+REGIONS = frozenset({"use", "usw", "ne", "se"})
 
 
 def season(today):
@@ -52,10 +70,33 @@ def season(today):
 
 
 def requirement_of(lon, elev):
-    """Each cell's requirement from its longitude and mean elevation (NaN counts as low)."""
+    """Each US cell's requirement from its longitude and mean elevation (NaN counts as low)."""
     lon, high = np.asarray(lon, float), np.nan_to_num(np.asarray(elev, float)) >= ASPEN_MIN_ELEV
     return np.where(lon >= WEST_LON, REQUIREMENT,
                     np.where(high, ASPEN_REQUIREMENT, np.where(lon < PACIFIC_LON, PACIFIC_REQUIREMENT, REQUIREMENT)))
+
+
+def eu_requirement_of(lat):
+    """Each European cell's requirement from its latitude."""
+    return np.where(np.asarray(lat, float) >= BOREAL_LAT, BOREAL_REQUIREMENT, EU_REQUIREMENT)
+
+
+def larch_mask():
+    """The host-cover cells where larch is at least a tenth of the trees: (lat0, lon0, step, mask)."""
+    m = np.load(bloom._BACKEND / "generated" / "larch_mask_EU.npz")
+    return float(m["lat0"]), float(m["lon0"]), float(m["step"]), m["mask"].astype(bool)
+
+
+def is_larch(lat, lon, elev):
+    """Whether a CORINE 312 piece with its middle here (and its cell this high) is larch."""
+    lat, lon = np.asarray(lat, float), np.asarray(lon, float)
+    lat0, lon0, step, mask = larch_mask()
+    i, j = np.floor((lat - lat0) / step).astype(int), np.floor((lon - lon0) / step).astype(int)
+    inside = (i >= 0) & (i < mask.shape[0]) & (j >= 0) & (j < mask.shape[1])
+    share = np.zeros(len(lat), bool)
+    share[inside] = mask[i[inside], j[inside]]
+    alps = (lon >= ALPS[0]) & (lat >= ALPS[1]) & (lon < ALPS[2]) & (lat < ALPS[3])
+    return share | (alps & (np.nan_to_num(np.asarray(elev, float)) >= LARCH_ALPS_MIN_ELEV))
 
 
 def peak_index(tmean, requirement=REQUIREMENT):
@@ -95,15 +136,24 @@ def build_foliage(master_path, region_code, r2_prefix, to_pmtiles, upload,
     normal = bloom.daily_normals(normals, cy * bloom.CELL, cx * bloom.CELL, elev, first, n_days)
     tmean = np.where(np.isfinite(obs), obs, normal)
     del obs
-    requirement = requirement_of(cx * bloom.CELL, elev)
+    europe = bloom.NORMALS_MACRO[region_code] == "EU"
+    requirement = eu_requirement_of(cy * bloom.CELL) if europe else requirement_of(cx * bloom.CELL, elev)
     grows = peak_index(normal, requirement) <= (date(last.year, *LATEST_NORMAL_PEAK) - first).days
     del normal
     peak = (first - bloom.EPOCH).days + peak_index(tmean, requirement)
     drawn = np.isfinite(peak) & grows
-    woods = land[land["raster_val"].isin(LAND)]
+    classes = (*EU_LAND, LARCH_LAND) if europe else LAND
+    woods = land.loc[land["raster_val"].isin(classes), ["raster_val", "geometry"]]
     features = []
     if drawn.any():
-        features = bloom._sample(cy[drawn], cx[drawn], {"peak": peak[drawn]}, woods, {"peak": bloom.PEAK_STEP})
+        features = bloom._sample(cy[drawn], cx[drawn], {"peak": peak[drawn], "elev": np.nan_to_num(elev[drawn])},
+                                 woods, {"peak": bloom.PEAK_STEP})
+        if europe:
+            middle = features.geometry.representative_point()
+            conifer = features["raster_val"].to_numpy() == LARCH_LAND
+            larch = is_larch(middle.y.to_numpy(), middle.x.to_numpy(), features["elev"].to_numpy())
+            features = features[~conifer | larch]
+        features = features.drop(columns=["raster_val", "elev"])
         # Simplified multi-part pieces often cross themselves; buffer(0) mends them, where
         # dropping them, as the forecast does, lost three in four woods.
         features["geometry"] = features.geometry.simplify(SIMPLIFY, preserve_topology=True).buffer(0)

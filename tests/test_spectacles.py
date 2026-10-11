@@ -227,6 +227,33 @@ def test_foliage_requirement_by_place():
         foliage.PACIFIC_REQUIREMENT, foliage.PACIFIC_REQUIREMENT]
 
 
+def test_foliage_europe_requirement_and_larch(monkeypatch):
+    assert list(foliage.eu_requirement_of([50.0, 65.0])) == [foliage.EU_REQUIREMENT, foliage.BOREAL_REQUIREMENT]
+    mask = np.zeros((10, 10), bool)
+    mask[2, 3] = True  # one larch cell: 52-53 N, 3-4 E
+    monkeypatch.setattr(foliage, "larch_mask", lambda: (50.0, 0.0, 1.0, mask))
+    # A larch cell at any height; the Alps from 1,300 m only; elsewhere no.
+    assert list(foliage.is_larch([52.5, 46.5, 46.5, 55.0], [3.5, 9.8, 9.8, 5.0],
+                                 [0.0, 1800.0, 900.0, 1800.0])) == [True, True, False, False]
+    assert foliage.larch_mask is not None and np.load(bloom._BACKEND / "generated" / "larch_mask_EU.npz")["mask"].any()
+
+
+def test_build_foliage_in_europe_colours_broadleaf_woods_on_its_requirement(tmp_path):
+    today = date(2026, 10, 1)
+    _master(tmp_path / "m.parquet", date(2026, 7, 1), today + timedelta(days=6), {(50.0, 8.0): 13.0})
+    land = gpd.GeoDataFrame({"raster_val": [311, 322, 312]},
+                            geometry=[box(7.96, 49.96, 8.04, 50.04), box(7.96, 50.0, 8.04, 50.04),
+                                      box(7.96, 49.96, 8.0, 50.0)], crs="EPSG:4326")
+    uploads, layers, build_mbtiles, to_pmtiles, upload = _capture()
+    out = foliage.build_foliage(tmp_path / "m.parquet", "ne", "EU/NE", to_pmtiles, upload, land=land,
+                                build_mbtiles=build_mbtiles, today=today, normals=_normals(13.0))
+    assert set(uploads) == {"EU/NE/ne_foliage.pmtiles"}
+    # The broadleaf wood only: heath is no wood, and a lowland conifer wood off the larch
+    # cells is not larch. 13 °C adds 20 a day from 15 August: 1,539 on 30 October.
+    [feature] = layers[0][0]["features"]
+    assert feature["properties"] == {"peak": (date(2026, 10, 30) - bloom.EPOCH).days} and out["pieces"] == 1
+
+
 def test_sample_colours_each_piece_by_the_forecast_at_its_middle():
     pieces = gpd.GeoDataFrame(geometry=[box(7.99, 49.99, 8.01, 50.01), box(8.09, 49.99, 8.11, 50.01),
                                         box(20.0, 60.0, 20.1, 60.1)], crs="EPSG:4326")

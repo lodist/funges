@@ -1,8 +1,8 @@
-# Fall foliage: a peak-colour forecast
+# Fall foliage: a peak-colour forecast for the US and Europe
 
 Date: 2026-10-11 (roadmap #272, step 5)
 
-The fifth "spectacle" layer, after [cherry blossom](2026-09-30-cherry-blossom.md), [bluebell woods](2026-10-10-bluebell.md), the [desert superbloom](2026-10-10-desert-superbloom.md) and [heather](2026-10-11-heather.md). It forecasts when the US hardwood forests, the Rocky Mountain aspens and the Pacific lowlands' oaks and maples reach peak autumn colour. This record is its design and the evidence behind `backend/foliage.py`'s constants.
+The fifth "spectacle" layer, after [cherry blossom](2026-09-30-cherry-blossom.md), [bluebell woods](2026-10-10-bluebell.md), the [desert superbloom](2026-10-10-desert-superbloom.md) and [heather](2026-10-11-heather.md). It forecasts when the US hardwood forests, the Rocky Mountain aspens and the Pacific lowlands' oaks and maples, and Europe's beech, oak, birch and larch, reach peak autumn colour. The US sections come first; Europe has its own section. This record is its design and the evidence behind `backend/foliage.py`'s constants.
 
 **The values below are agent-derived and wait on Loris's approval.** They come from iNaturalist records, the PhenoCam network, USA-NPN and NASA POWER temperatures; no forester has reviewed them. `backend/tools/calibrate_foliage.py` reproduces every table (`--grid` for the parameter search).
 
@@ -90,7 +90,83 @@ A normal year on production's 0.1° cells:
 
 Thirteen of the sixteen eastern places fall inside their published window; the misses (Kancamagus Pass, Mt Pisgah, Newfound Gap) are high sites whose 0.1° cell averages 650–970 m. All five aspen places fall inside theirs.
 
-## Caveats
+## Europe
+
+Calibrated separately (`backend/tools/calibrate_foliage_eu.py`). The values wait on Loris's approval like the US ones.
+
+### The model
+
+- **Europe keeps the US clock, not its requirement:** cold degree-days below 33 °C from 15 August, `foliage.peak_index` unchanged. On the US requirement (1,031) European iNaturalist peaks come 14.8 days too early (20.2 days off; one fixed date 17.0).
+- **Europe's peak is a later stage.** At the station networks the US requirement lands on 50% leaf colouring (DWD beech −1.5 days, MeteoSwiss −0.7), but the European peak, as people photograph it, sits at 50% leaf fall, about two weeks later.
+- **Temperate requirement: 1,539 °C·days** (`EU_REQUIREMENT`). Every European source agrees: iNaturalist 1,539; DWD beech leaf fall 1,501; MeteoSwiss beech leaf fall 1,525; MeteoSwiss larch needle colouring 1,482; the published windows. Bootstrap 90%: 1,448–1,571.
+- **Boreal north from 60° N: 869** (`BOREAL_REQUIREMENT`; Fennoscandia's birch, rowan and aspen). On one requirement the 60–72° N cells come out 23 days late; leave one year out drops from 14.26 to 11.67 days with the two. There are no cell-years at 58–60° N, so the line could sit anywhere in that band.
+- **The larch needs no requirement of its own,** only its own ground: its 6 alpine cell-years give 1,538 (bias −3.1 days on the temperate value), and at the stations its 50% needle colouring falls at beech's 50% leaf fall.
+- **The shape held at the stations:** DWD beech leaf fall, own requirement, leave one year out 8.68 days against 8.63 for the grid's best, with the best yearly-means r (0.69). On the iNaturalist-weighted total the grid preferred a Delpierre setting by 2.8 days, but on 98 cell-years (81% from 2024–25), with a worse DWD yearly r (0.53) and a degenerate boreal requirement; the US shape was kept.
+
+### Data
+
+- **iNaturalist:** research-grade, Leaves-annotated records of the European colour trees (beech, the oaks, birch, the maples, larch, rowan, sweet chestnut, hornbeam, ash, aspen, wild cherry), Europe, August–December 2016–2026: 8,810 records, 2,892 coloured. 98 cell-years with ≥ 6 coloured records in 74 cells, 79 of them from 2024–25 and only 3 in Germany. Split-half reliability r 0.85.
+- **DWD annual reporters,** 2000–2025: 281,490 station-years at 2,336 stations; colouring and leaf fall of beech, pedunculate oak, silver birch, horse chestnut, rowan and larch.
+- **MeteoSwiss phenology** (open data): 27,832 station-years at 173 stations; 50% colouring and leaf fall of beech, larch, sweet chestnut, birch and rowan.
+
+### Tests
+
+| test (MAE, days)                              |            model | one fixed date | lat + elev line |
+| --------------------------------------------- | ---------------: | -------------: | --------------: |
+| leave one year out, two requirements          |            11.67 |          17.02 |           10.65 |
+| leave one year out, one requirement           |            14.26 |              – |               – |
+| temperate west → east / east → west           |      13.1 / 16.4 |    20.2 / 20.1 |     13.6 / 14.9 |
+| DWD beech leaf fall (iNaturalist requirement) | 8.79 (bias +1.9) |              – |               – |
+| MeteoSwiss beech leaf fall                    | 8.70 (bias +0.6) |              – |               – |
+| MeteoSwiss larch needle colouring             | 9.33 (bias +3.9) |              – |               – |
+
+- **Year to year:** DWD's yearly means r 0.69–0.80, within a station about 0.2; iNaturalist cannot test it (16 cell-years in cells with ≥ 3 years).
+- **WeatherAPI against POWER,** 1 September – 7 October 2026: −0.19 °C (peaks −0.5 days). No correction.
+- **Season:** 1 September – 30 November, as in the US. The 30 November cutoff hides 2.4% of the cells with broadleaf or mixed ground (Mediterranean lowlands), 0.2% of the sightings.
+
+### The map
+
+The European MapLayer scripts hand over their land-cover pieces too (CORINE classes):
+
+- **Broadleaf and mixed woods (311, 313),** and **the larch:** coniferous pieces (312) whose middle lies in a host-cover cell where larch is at least a tenth of the trees (`backend/generated/larch_mask_EU.npz`, 1,998 cells of 0.05°, from `build_spectacle_ground.py --larch-cache`), or in the Alps (5–16.5° E, 43.5–48.2° N) where the cell's mean elevation at the middle is 1,300 m or more. The host cover alone is too thin there: larch sightings sit at a median share of 5%, the Dolomites at 2%. All of 312 would add 279,000 km² of spruce for 7 points of sightings.
+- **Sightings:** of the coloured records, 9.5% lie in a drawn piece, 17.4% within 300 m and 31.1% within 1 km (European records are urban: 31% within 1 km against the US's 58%); of the larch's, 21.5% / 33.2% / 48.4%, against 8.1% / 11.7% / 22.0% without the larch rule. The calibration read the middle's elevation from EU-DEM; production reads its cell's mean, as the US aspens do.
+
+### Places looked at (a normal year)
+
+| place                     | predicted | published                          |
+| ------------------------- | --------: | ---------------------------------- |
+| Black Forest (Feldberg)   |    23 Oct | mid – late Oct                     |
+| Bavarian Forest (Lusen)   |    18 Oct | mid – late Oct                     |
+| Vosges (Gérardmer)        |    27 Oct | mid – late Oct                     |
+| Fontainebleau             |     5 Nov | mid Oct – early Nov                |
+| Ardennes (La Roche)       |    27 Oct | mid Oct – early Nov                |
+| Perthshire (Dunkeld)      |    20 Oct | October; mid Oct                   |
+| Lake District (Grasmere)  |    20 Oct | mid Oct – early Nov                |
+| Engadin (St. Moritz)      |    11 Oct | mid Oct (2025: 16 Oct)             |
+| South Tyrol (Seiser Alm)  |    18 Oct | from mid Oct                       |
+| Dolomites (Cortina)       |    20 Oct | mid Oct – early Nov (2025: 20 Oct) |
+| Ticino (Valle Maggia)     |    17 Oct | 10 Oct – 15 Nov                    |
+| Cévennes (Florac)         |    30 Oct | late Oct                           |
+| Picos de Europa (Liébana) |    21 Oct | 1st – 3rd week Oct                 |
+| Lapland (Saariselkä)      |    18 Sep | ~ 2nd week Sep                     |
+
+15 of 23 places fall inside their window and two more at its late end. The misses: high alpine cells whose base points average far above the larch belt (Pontresina 2,741 m, Evolène 2,771 m) come out 10+ days early; Plitvice (10 days late) and Monte Generoso (8) rest on weak sources; Lapland's Levi is 2–5 days late, where birch alone would want less still.
+
+### Caveats
+
+- **A thin target:** 98 cell-years, 79 from 2024–25; the year-to-year evidence comes from the stations alone.
+- **The stage:** if the map should mean "colour well under way" rather than "at its fullest", the European requirement drops toward 1,100, about two weeks earlier.
+- **West against east:** the maritime west wants about 200 °C·days more than the continental east; one temperate requirement costs roughly ±9 days there.
+- **2026 is not in the fit:** by 10 October only 7 cell-years, 6 of them in Finland. PhenoCam's 39 European sites were not fetched.
+
+### Sources (Europe)
+
+1. iNaturalist API v2 observations (place 97391; term 36, value 39).
+2. DWD Climate Data Center, phenology, annual reporters, wild plants: <https://opendata.dwd.de/climate_environment/CDC/observations_germany/phenology/annual_reporters/wild/>
+3. MeteoSwiss open data, phenological observations: <https://data.geo.admin.ch/api/stac/v1/collections/ch.meteoschweiz.ogd-phenology>
+4. Published windows: Rough Guides (Black Forest), VisitScotland (Perthshire), the Swiss National Park and Graubünden (Engadin larches), PeakVisor's 2025 larch peaks (<https://peakvisor.com/en/news/golden-larch-season-2026-alps.html>), dolomiti.it, ticino.ch (the foliage train), Visit Finland and Metsähallitus (ruska); the full list with URLs is in the calibration's write-up.
+
+## Caveats (the US)
 
 - **The target is noisy** and clusters in 2024–25; the year-to-year evidence rests on PhenoCam (r 0.31).
 - **Drought browning, an early frost or a windstorm** can end a season early; nothing here sees them.
@@ -104,7 +180,7 @@ Thirteen of the sixteen eastern places fall inside their published window; the m
 - **WeatherAPI against POWER** over a full September – November.
 - **The high-elevation lag:** each wood with its own height instead of its cell's mean.
 
-## Sources
+## Sources (the US)
 
 1. Go Stowe, Stowe fall foliage: <https://gostowe.com/blog-stowe-fall-foliage-facts>; Visit Vermont, Fall Foliage: <https://www.visit-vermont.com/state/foliage/>
 2. Kancamagus Highway, Fall Foliage: <https://kancamagushighway.com/fall-foliage-on-kancamagus-highway-nh-fall-foliage/>
