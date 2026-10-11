@@ -17,6 +17,7 @@ from io import StringIO, BytesIO
 from pathlib import Path
 from urllib.parse import urlparse
 import faulthandler
+import gzip
 import math
 import os
 import sys
@@ -1105,7 +1106,7 @@ def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH):
             normals = era5_normals.load(region)
         params.pop("fruiting", None)
         params["fruiting_gbm"] = {
-            "booster": lgb.Booster(model_file=str(Path(path).parent / model["file"])),
+            "booster": lgb.Booster(model_str=gzip.decompress((Path(path).parent / model["file"]).read_bytes()).decode()),
             "map": model["regions"][region]["map"], "corrections": spec["inputs_from_stored"][region],
             "region_code": FRUITING_GBM_REGIONS.index(region), "anchor": pd.Timestamp(today),
             "normals": normals}

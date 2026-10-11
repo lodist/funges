@@ -84,6 +84,9 @@ def predict(model, x: np.ndarray, rounds: int | None = None) -> np.ndarray:
 STATIC = ["norm_rain", "norm_tmean", "norm_rh", "lat", "find_doy"]
 REGIONS = ["NE", "SE", "USE", "USW"]
 MAX_ROUNDS, VALID_SHARE = 2000, 0.15
+# Passed the rule but kept on today's settings on review: tiny skill either way, and the
+# linear fit there cost 20-36 points of 4+ places (held back from it on 11 Oct 2026 too).
+HELD_BACK = {("chicken-of-the-woods", "USW")}
 
 
 def load(out):
@@ -176,11 +179,14 @@ def gbm_index(booster, region):
 def export(table_rows, cases, x, mask, loyo, gate, names, out, root):
     """The shipped species' models on every year, their regions' monthly maps and the regions'
     stored-input corrections -> backend/generated/fruiting_gbm.json + fruiting_gbm/<species>.txt."""
+    import gzip
     import json
+    import sys
     import requests
     import fit_fruiting as ff
     import forecast_pipeline as fp
     from download_era5_points import log
+    sys.path.insert(0, str(root / "scripts"))
     from qa_season_branch_replay import load_specs
 
     fp.load_dotenv(root / ".env")
@@ -189,17 +195,23 @@ def export(table_rows, cases, x, mask, loyo, gate, names, out, root):
     specs = {region: load_specs(session, region) for region in REGIONS}
     shipped = gate[gate["ships"]]
     columns = ("Humidity (%)", "Temperature (C)", "Temperature (C) Min")
-    corrections = {region: ff.stored_corrections(out, region, columns) for region in sorted(set(shipped["region"]))}
+    saved = out / "stored_corrections.json"   # measured ahead, e.g. before a weekend R2 block
+    if saved.exists():
+        corrections = {region: {c: tuple(ab) for c, ab in cols.items()}
+                       for region, cols in json.loads(saved.read_text(encoding="utf-8")).items()}
+    else:
+        corrections = {region: ff.stored_corrections(out, region, columns) for region in sorted(set(shipped["region"]))}
+    corrections = {region: corrections[region] for region in sorted(set(shipped["region"]))}
     folder = root / "backend" / "generated" / "fruiting_gbm"
     folder.mkdir(exist_ok=True)
-    for old in folder.glob("*.txt"):
+    for old in folder.glob("*.txt.gz"):
         old.unlink()
     models = {}
     for species, rows in shipped.groupby("species"):
         mine = (cases["species"] == species).to_numpy()
         rounds = max(int(loyo.loc[loyo["species"] == species, "rounds"].median()), 50)
         booster = fit(x[mine], mask[mine], rounds=rounds, categorical=[x.shape[2] - 1])
-        booster.save_model(str(folder / f"{species}.txt"))
+        (folder / f"{species}.txt.gz").write_bytes(gzip.compress(booster.model_to_string().encode(), mtime=0))
         regions = {}
         for row in rows.itertuples(index=False):
             regions[row.region] = {
@@ -208,7 +220,7 @@ def export(table_rows, cases, x, mask, loyo, gate, names, out, root):
                 "each_year_held_out": {"years": int(row.years), "wins": int(row.wins), "p": float(row.p),
                                        "in_use": row.in_use, "mean_in_use": float(row.current),
                                        "mean_gbm": float(row.gbm)}}
-        models[species] = {"file": f"fruiting_gbm/{species}.txt", "rounds": rounds, "regions": regions}
+        models[species] = {"file": f"fruiting_gbm/{species}.txt.gz", "rounds": rounds, "regions": regions}
         log(f"exported {species}: {rounds} rounds, {', '.join(regions)}")
     spec = {"features": names, "trained": f"{int(cases['year'].min())}-{int(cases['year'].max())}",
             "shipped_if": "beats the model in use (the linear fit where it ships, else today's) in more held-out "
@@ -264,7 +276,8 @@ def main() -> None:
         wins, p, gain = ff.sign_test(results)
         gate.append({"species": species, "region": region, "in_use": g["in_use"].iloc[0], "years": len(g),
                      "wins": wins, "p": round(p, 4), "current": round(float(current.mean()), 3),
-                     "gbm": round(float(g["gbm"].mean()), 3), "ships": ff.ships(results),
+                     "gbm": round(float(g["gbm"].mean()), 3),
+                     "ships": ff.ships(results) and (species, region) not in HELD_BACK,
                      "rounds": int(g["rounds"].median())})
     gate = pd.DataFrame(gate)
     gate.to_csv(out / "gbm_gate.csv", index=False)

@@ -77,12 +77,13 @@ def _write_gbm(tmp_path, features=None):
     k = len(fp.FRUITING_GBM_FEATURES)
     booster = gbm.fit(np.random.default_rng(1).normal(size=(300, 5, k)), np.ones((300, 5), bool), rounds=5)
     (tmp_path / "fruiting_gbm").mkdir()
-    booster.save_model(str(tmp_path / "fruiting_gbm" / "chant.txt"))
+    import gzip
+    (tmp_path / "fruiting_gbm" / "chant.txt.gz").write_bytes(gzip.compress(booster.model_to_string().encode()))
     path = tmp_path / "fruiting_gbm.json"
     path.write_text(json.dumps({
         "features": features or fp.FRUITING_GBM_FEATURES,
         "inputs_from_stored": {"SE": {"Humidity (%)": [12.0, 0.89]}},
-        "models": {"chant": {"file": "fruiting_gbm/chant.txt",
+        "models": {"chant": {"file": "fruiting_gbm/chant.txt.gz",
                              "regions": {"SE": {"map": [{"eta": [-1, 1], "weather_part": [0, 1]}] * 12}}}}}))
     return path
 
