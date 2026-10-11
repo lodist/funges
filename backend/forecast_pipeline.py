@@ -16,6 +16,7 @@ from datetime import datetime, timedelta
 from io import StringIO, BytesIO
 from pathlib import Path
 from urllib.parse import urlparse
+import faulthandler
 import math
 import os
 import sys
@@ -1283,7 +1284,46 @@ def _load_or_build_coords(config, coordinates_file_path, geojson_path):
 
 # --- Orchestration ---------------------------------------------------------
 
+# The scheduler keeps no console output, so a region that failed at night left no trace (USW,
+# 11 Oct 2026). Each run copies its output to app_operation/logs, outside the repo.
+LOG_DIR = Path(__file__).resolve().parents[2] / "logs"
+LOG_KEEP_DAYS = 30
+
+
+class _Tee:
+    """Writes to the console and the log at once."""
+
+    def __init__(self, *streams):
+        self.streams = [stream for stream in streams if stream is not None]
+
+    def write(self, text):
+        for stream in self.streams:
+            stream.write(text)
+        return len(text)
+
+    def flush(self):
+        for stream in self.streams:
+            stream.flush()
+
+    def __getattr__(self, name):
+        return getattr(self.streams[0], name)
+
+
+def log_run_to_file(region):
+    """Copy this run's prints, warnings and tracebacks to LOG_DIR/<region>_<date>.log (line
+    buffered, so a crash loses at most a line) and drop logs older than LOG_KEEP_DAYS.
+    Returns the open log."""
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    for old in LOG_DIR.glob("*.log"):
+        if time.time() - old.stat().st_mtime > LOG_KEEP_DAYS * 86400:
+            old.unlink()
+    log = open(LOG_DIR / f"{region}_{datetime.now():%Y-%m-%d}.log", "a", encoding="utf-8", buffering=1)
+    sys.stdout, sys.stderr = _Tee(sys.stdout, log), _Tee(sys.stderr, log)
+    return log
+
+
 def run_pipeline(config: RegionConfig):
+    faulthandler.enable(log_run_to_file(config.region))   # a hard crash dumps its stack there too
     print(f"Script started at {datetime.now()}")
     _root = Path(__file__).resolve().parent.parent
     load_dotenv(_root / ".env")

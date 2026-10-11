@@ -17,7 +17,6 @@ from __future__ import annotations
 import os
 import tempfile
 from datetime import timedelta
-from itertools import groupby
 from pathlib import Path
 
 import netCDF4
@@ -43,21 +42,20 @@ def area(lat_range, lon_range) -> list:
     return [lat_range[1], lon_range[0], lat_range[0], lon_range[1]]
 
 
-def cds_requests(utc_days, lat_range, lon_range) -> list[dict]:
-    """One request per month: year/month/day lists are crossed, so a request spanning a
-    month end would ask for days that do not exist yet."""
+def cds_request(utc_days, lat_range, lon_range) -> dict:
+    """One order for the whole window, as a date range: year/month/day lists are crossed,
+    so a window across a month end took two orders, and Copernicus queues only a few per
+    user (US West's were rejected on 11 Oct 2026, eight orders into the night)."""
     days = sorted(pd.Timestamp(d) for d in utc_days)
-    return [{
+    return {
         "product_type": ["reanalysis"],
         "variable": ["total_precipitation"],
-        "year": [f"{year}"],
-        "month": [f"{month:02d}"],
-        "day": [f"{d.day:02d}" for d in group],
+        "date": [f"{days[0]:%Y-%m-%d}/{days[-1]:%Y-%m-%d}"],
         "time": [f"{hour:02d}:00" for hour in range(24)],
         "data_format": "netcdf",
         "download_format": "unarchived",
         "area": area(lat_range, lon_range),
-    } for (year, month), group in groupby(days, key=lambda d: (d.year, d.month))]
+    }
 
 
 def read_hourly(paths) -> tuple[np.ndarray, pd.DatetimeIndex, np.ndarray, np.ndarray]:
@@ -121,12 +119,12 @@ def place_orders(key, lat_range, lon_range, today) -> None:
     days = [today - timedelta(days=back) for back in range(OLDEST_DAY, NEWEST_DAY - 1, -1)]
     # Every longitude's local day fits inside the UTC days either side of it.
     utc_days = pd.date_range(days[0] - timedelta(days=1), days[-1] + timedelta(days=1)).date
-    for request in cds_requests(utc_days, lat_range, lon_range):
-        try:  # one month's order failing (a 502 on 10 Oct 2026) leaves the other placed
-            requests.post(f"{CDS_API}/processes/{DATASET}/execution", json={"inputs": request},
-                          headers={"PRIVATE-TOKEN": key}, timeout=60).raise_for_status()
-        except requests.RequestException as error:  # its days are ordered again tomorrow
-            print(f"[warn] ERA5 order not placed: {error}", flush=True)
+    try:
+        requests.post(f"{CDS_API}/processes/{DATASET}/execution",
+                      json={"inputs": cds_request(utc_days, lat_range, lon_range)},
+                      headers={"PRIVATE-TOKEN": key}, timeout=60).raise_for_status()
+    except requests.RequestException as error:  # its days are ordered again tomorrow
+        print(f"[warn] ERA5 order not placed: {error}", flush=True)
 
 
 def finished_orders(key, lat_range, lon_range, since) -> list[str]:

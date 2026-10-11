@@ -73,15 +73,15 @@ def test_each_coord_reads_its_nearest_cell():
     assert rows["Rain Measured"].all()
 
 
-def test_requests_split_at_month_ends():
-    # A year/month/day request is a cross product: one month per request, or it asks for
-    # dates that do not exist yet.
+def test_one_order_covers_a_month_end():
+    # Copernicus queues only a few orders per user: two per region at month ends meant eight
+    # a night, and US West's were rejected (11 Oct 2026). A date range crosses months in one.
     days = pd.date_range("2026-09-28", "2026-10-02").date
-    requests = er.cds_requests(days, (49.0, 71.5), (-25.0, 32.0))
-    assert [(r["month"], r["day"]) for r in requests] == [
-        (["09"], ["28", "29", "30"]), (["10"], ["01", "02"])]
-    assert requests[0]["area"] == [71.5, -25.0, 49.0, 32.0]
-    assert requests[0]["variable"] == ["total_precipitation"]
+    request = er.cds_request(days, (49.0, 71.5), (-25.0, 32.0))
+    assert request["date"] == ["2026-09-28/2026-10-02"]
+    assert not {"year", "month", "day"} & set(request)
+    assert request["area"] == [71.5, -25.0, 49.0, 32.0]
+    assert request["variable"] == ["total_precipitation"]
 
 
 def _netcdf(path, hours, metres):
