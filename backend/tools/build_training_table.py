@@ -25,6 +25,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import pyarrow.parquet as pq
 import requests
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -107,6 +108,23 @@ def features(cell: pd.DataFrame, dates: pd.DatetimeIndex) -> pd.DataFrame:
     return out
 
 
+def daily_lags(cell: pd.DataFrame, dates: pd.DatetimeIndex) -> pd.DataFrame:
+    """One cell's daily ERA5 -> the GBM's daily lags of each date (fp.FRUITING_GBM_LAGS)."""
+    cell = cell.set_index("Date").sort_index()
+    cell = cell.reindex(pd.date_range(cell.index[0], cell.index[-1]))
+    idx = np.asarray((pd.DatetimeIndex(dates) - cell.index[0]).days)
+    out = {}
+    for name, (column, days) in fp.FRUITING_GBM_LAGS.items():
+        values = cell[column].to_numpy(float)
+        if name == "rain":
+            values = np.log1p(np.clip(values, 0, fp.RAIN_MAX_MM_DAY))
+        for k in days:
+            at = idx - k
+            ok = (at >= 0) & (at < len(values))
+            out[f"{name}_d{k}"] = np.where(ok, values[np.clip(at, 0, len(values) - 1)], np.nan)
+    return pd.DataFrame(out)
+
+
 def _history(block: pd.DataFrame) -> pd.DataFrame:
     """ERA5 daily as the master parquet's raw columns. The statics are placeholders: they
     only enter the static part, never the weather part read here."""
@@ -173,11 +191,45 @@ def process_block(job) -> str:
     return name
 
 
+def process_lags(job) -> int:
+    """The GBM's daily lags for one block's training rows -> training_lags/<block>.parquet."""
+    training_path, block_path, out = job
+    rows = pd.read_parquet(training_path, columns=["case_id", "offset", "date", "cell_lat", "cell_lon"])
+    block = pd.read_parquet(block_path)
+    pieces = []
+    for (lat, lon), here in rows.groupby(["cell_lat", "cell_lon"]):
+        cell = block[(block["Latitude"].round(2) == round(lat, 2)) & (block["Longitude"].round(2) == round(lon, 2))]
+        if len(cell):
+            lags = daily_lags(cell, pd.DatetimeIndex(here["date"])).astype(np.float32)
+            pieces.append(pd.concat([here[["case_id", "offset"]].reset_index(drop=True), lags], axis=1))
+    if pieces:
+        pd.concat(pieces, ignore_index=True).to_parquet(out / "training_lags" / training_path.name, index=False)
+    return sum(len(p) for p in pieces)
+
+
+def build_lags(out: Path, workers: int) -> None:
+    (out / "training_lags").mkdir(exist_ok=True)
+    done = {p.name for p in (out / "training_lags").glob("*.parquet")}
+    jobs = [(p, out / "era5_blocks" / p.name, out) for p in sorted((out / "training").glob("*.parquet"))
+            if p.name not in done and "case_id" in pq.read_schema(p).names]
+    log(f"{len(jobs):,} blocks of daily lags to build")
+    with Pool(workers) as pool:
+        rows = 0
+        for n, count in enumerate(pool.imap_unordered(process_lags, jobs, chunksize=8), start=1):
+            rows += count
+            if n % 1000 == 0 or n == len(jobs):
+                log(f"  {n:,}/{len(jobs):,} blocks, {rows:,} rows")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True)
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--lags", action="store_true", help="only the GBM's daily lags (training_lags/)")
     args = parser.parse_args()
+    if args.lags:
+        build_lags(Path(args.out), args.workers)
+        return
     fp.load_dotenv(ROOT / ".env")
     fp.load_dotenv(ROOT / ".env.secret")
     from qa_season_branch_replay import load_specs
