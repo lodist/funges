@@ -32,6 +32,7 @@ ASPEN_REQUIREMENT = 897.0  # ... and the aspens
 ASPEN_LON = -102.0  # cells west of this take the aspen requirement
 ASPEN_MIN_ELEV = 1500.0  # m: west of ASPEN_LON, only woods this high (the aspen zone) are drawn
 LAND = (41, 43)  # NLCD deciduous and mixed forest
+SIMPLIFY = 0.01  # degrees: the pieces simplified as the species forecast's are, so they look alike
 # A cell is drawn only where a normal year peaks by this day: that hides Florida, the
 # Gulf coast, south Texas and the low deserts (4.4% of USE's cells, 1.1% of USW's).
 LATEST_NORMAL_PEAK = (11, 30)  # month, day
@@ -94,6 +95,8 @@ def build_foliage(master_path, region_code, r2_prefix, to_pmtiles, upload,
                                  woods, {"peak": bloom.PEAK_STEP})
         west = features.geometry.representative_point().x.to_numpy() < ASPEN_LON
         features = features[~west | (features["elev"].to_numpy() >= ASPEN_MIN_ELEV)].drop(columns="elev")
+        features["geometry"] = features.geometry.simplify(SIMPLIFY, preserve_topology=True)
+        features = features[features.is_valid & ~features.is_empty]
     print(f"Foliage {region_code}: {int(drawn.sum())} of {len(peak)} cells drawn, "
           f"{len(features)} of {len(woods)} wood pieces coloured")
     pieces = bloom.publish(features, region_code, "foliage", r2_prefix, to_pmtiles, upload, build_mbtiles)
