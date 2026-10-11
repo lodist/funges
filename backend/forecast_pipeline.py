@@ -1127,14 +1127,15 @@ def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, f
 HABITAT_PATH = Path(__file__).resolve().parent / "generated" / "habitat_factor.json"
 
 
-def attach_habitat(species_params, region, path=HABITAT_PATH, fetch=None):
+def attach_habitat(species_params, region, path=None, fetch=None):
     """The learned habitat factor (tools/fit_habitat.py) for the region's species that ship
     one: per location, on R2 and checked against the sha256 recorded here. A file that cannot
     be fetched or fails its checksum leaves the scores without it."""
-    if not Path(path).exists():
+    path = Path(path or HABITAT_PATH)
+    if not path.exists():
         return
-    entry = json.loads(Path(path).read_text(encoding="utf-8")).get("regions", {}).get(region)
-    if not entry:
+    entry = json.loads(path.read_text(encoding="utf-8")).get("regions", {}).get(region)
+    if not entry or not set(entry["species"]) & set(species_params):
         return
     try:
         data = (fetch or r2_fetch)(entry["file"])
