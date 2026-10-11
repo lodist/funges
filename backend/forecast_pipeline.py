@@ -938,6 +938,25 @@ DRY_DAYS_CAP = 43          # no 5 mm day within the 42 days the lags reach
 RAIN_MAX_MM_DAY = 300.0    # the US parquets carry impossible days (2415 mm); ERA5 never does
 
 
+# The GBM reads each day itself rather than window sums: rain d0-42 (log1p), mean and
+# minimum temperature d1-14, humidity d1-21. tests/test_fruiting_gbm.py checks they match
+# tools/build_training_table.daily_lags exactly.
+FRUITING_GBM_LAGS = {"rain": ("TotalPrecipitation_mm", range(0, 43)),
+                     "tmean": ("Temperature (C)", range(1, 15)),
+                     "tmin": ("Temperature (C) Min", range(1, 15)),
+                     "rh": ("Humidity (%)", range(1, 22))}
+
+
+def fruiting_gbm_lags(df):
+    """Each row's daily lags from the frame's "<column>_<k>days_ago" columns."""
+    out = {}
+    for name, (column, days) in FRUITING_GBM_LAGS.items():
+        for k in days:
+            values = df[column if k == 0 else f"{column}_{k}days_ago"].to_numpy(float)
+            out[f"{name}_d{k}"] = np.log1p(np.clip(values, 0, RAIN_MAX_MM_DAY)) if name == "rain" else values
+    return pd.DataFrame(out, index=df.index)
+
+
 def fruiting_raw_features(df):
     """Each row's raw features from the frame's lag columns, defined as in
     tools/build_training_table.features: a window over days d-far..d-near, NaN if any
