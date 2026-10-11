@@ -72,25 +72,28 @@ def test_a_species_with_a_gbm_scores_with_it():
 
 
 def _write_gbm(tmp_path, features=None):
+    """A model on 'R2' (a dict served by fetch) and its index file; returns (path, fetch)."""
+    import gzip
+    import hashlib
     import json
     import fit_fruiting_gbm as gbm
     k = len(fp.FRUITING_GBM_FEATURES)
     booster = gbm.fit(np.random.default_rng(1).normal(size=(300, 5, k)), np.ones((300, 5), bool), rounds=5)
-    (tmp_path / "fruiting_gbm").mkdir()
-    import gzip
-    (tmp_path / "fruiting_gbm" / "chant.txt.gz").write_bytes(gzip.compress(booster.model_to_string().encode()))
+    data = gzip.compress(booster.model_to_string().encode())
+    store = {"models/fruiting_gbm/test/chant.txt.gz": data}
     path = tmp_path / "fruiting_gbm.json"
     path.write_text(json.dumps({
         "features": features or fp.FRUITING_GBM_FEATURES,
         "inputs_from_stored": {"SE": {"Humidity (%)": [12.0, 0.89]}},
-        "models": {"chant": {"file": "fruiting_gbm/chant.txt.gz",
+        "models": {"chant": {"file": "models/fruiting_gbm/test/chant.txt.gz",
+                             "sha256": hashlib.sha256(data).hexdigest(),
                              "regions": {"SE": {"map": [{"eta": [-1, 1], "weather_part": [0, 1]}] * 12}}}}}))
-    return path
+    return path, store.__getitem__
 
 
 def test_a_shipped_gbm_replaces_the_linear_fit(tmp_path):
     params = {"chant": {"fruiting": {"beta": [0]}}, "parasol": {"fruiting": {"beta": [0]}}}
-    fp.attach_fruiting_gbm(params, "SE", pd.Timestamp("2026-10-12"), _write_gbm(tmp_path))
+    fp.attach_fruiting_gbm(params, "SE", pd.Timestamp("2026-10-12"), *_write_gbm(tmp_path))
     assert "fruiting" not in params["chant"] and params["chant"]["fruiting_gbm"]["region_code"] == 1
     assert params["chant"]["fruiting_gbm"]["corrections"] == {"Humidity (%)": [12.0, 0.89]}
     assert "fruiting" in params["parasol"] and "fruiting_gbm" not in params["parasol"]
@@ -98,7 +101,7 @@ def test_a_shipped_gbm_replaces_the_linear_fit(tmp_path):
 
 def test_a_gbm_file_for_other_features_is_not_used(tmp_path, capsys):
     params = {"chant": {"fruiting": {"beta": [0]}}}
-    fp.attach_fruiting_gbm(params, "SE", pd.Timestamp("2026-10-12"), _write_gbm(tmp_path, features=["x"]))
+    fp.attach_fruiting_gbm(params, "SE", pd.Timestamp("2026-10-12"), *_write_gbm(tmp_path, features=["x"]))
     assert "fruiting_gbm" not in params["chant"] and "fruiting" in params["chant"]
     assert "features differ" in capsys.readouterr().out
 
@@ -109,8 +112,26 @@ def test_scoring_uses_the_gbm_weather_part(tmp_path):
     df["Wind Speed (m/s)"] = df.pop("Wind Speed (kph)") / 3.6
     params = fx.species_params()
     shipped = {"sp_curve": dict(params["sp_curve"])}
-    fp.attach_fruiting_gbm({"chant": shipped["sp_curve"]}, "SE", pd.Timestamp("2026-06-13"), _write_gbm(tmp_path))
+    fp.attach_fruiting_gbm({"chant": shipped["sp_curve"]}, "SE", pd.Timestamp("2026-06-13"), *_write_gbm(tmp_path))
     out = fp.calculate_mushroom_score(df.copy(), shipped, fx.zone_curves())
     model = shipped["sp_curve"]["fruiting_gbm"]
     expected = fp.fruiting_gbm_weather_part(fp.fruiting_gbm_features(df, model), df, model)
     assert np.allclose(out["sp_curve_Weather_Score"], np.clip(expected, 0, 1))
+
+
+def test_a_model_that_fails_its_checksum_keeps_the_linear_fit(tmp_path, capsys):
+    path, fetch = _write_gbm(tmp_path)
+    params = {"chant": {"fruiting": {"beta": [0]}}}
+    fp.attach_fruiting_gbm(params, "SE", pd.Timestamp("2026-10-12"), path, lambda key: fetch(key) + b"x")
+    assert "fruiting_gbm" not in params["chant"] and "fruiting" in params["chant"]
+    assert "linear fit stays" in capsys.readouterr().out
+
+
+def test_a_model_that_cannot_be_fetched_keeps_the_linear_fit(tmp_path):
+    path, _ = _write_gbm(tmp_path)
+    params = {"chant": {"fruiting": {"beta": [0]}}}
+
+    def blocked(key):
+        raise ConnectionError("R2 unreachable")
+    fp.attach_fruiting_gbm(params, "SE", pd.Timestamp("2026-10-12"), path, blocked)
+    assert "fruiting_gbm" not in params["chant"] and "fruiting" in params["chant"]

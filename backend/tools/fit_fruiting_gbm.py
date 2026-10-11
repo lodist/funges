@@ -87,6 +87,7 @@ MAX_ROUNDS, VALID_SHARE = 2000, 0.15
 # Passed the rule but kept on today's settings on review: tiny skill either way, and the
 # linear fit there cost 20-36 points of 4+ places (held back from it on 11 Oct 2026 too).
 HELD_BACK = {("chicken-of-the-woods", "USW")}
+R2_FOLDER = "models/fruiting_gbm"    # model files on R2; generated/fruiting_gbm.json points at them
 
 
 def load(out):
@@ -178,10 +179,13 @@ def gbm_index(booster, region):
 
 def export(table_rows, cases, x, mask, loyo, gate, names, out, root):
     """The shipped species' models on every year, their regions' monthly maps and the regions'
-    stored-input corrections -> backend/generated/fruiting_gbm.json + fruiting_gbm/<species>.txt."""
+    stored-input corrections -> R2 (R2_FOLDER/<date>/<species>.txt.gz) and
+    backend/generated/fruiting_gbm.json, which names each file and its sha256."""
     import gzip
+    import hashlib
     import json
     import sys
+    import time
     import requests
     import fit_fruiting as ff
     import forecast_pipeline as fp
@@ -202,16 +206,15 @@ def export(table_rows, cases, x, mask, loyo, gate, names, out, root):
     else:
         corrections = {region: ff.stored_corrections(out, region, columns) for region in sorted(set(shipped["region"]))}
     corrections = {region: corrections[region] for region in sorted(set(shipped["region"]))}
-    folder = root / "backend" / "generated" / "fruiting_gbm"
-    folder.mkdir(exist_ok=True)
-    for old in folder.glob("*.txt.gz"):
-        old.unlink()
+    folder = f"{R2_FOLDER}/{time.strftime('%Y%m%d')}"   # each run its own: main keeps pointing at the old
+    client, bucket = fp._r2_client(), fp.get_required_env("R2_BUCKET_NAME")
     models = {}
     for species, rows in shipped.groupby("species"):
         mine = (cases["species"] == species).to_numpy()
         rounds = max(int(loyo.loc[loyo["species"] == species, "rounds"].median()), 50)
         booster = fit(x[mine], mask[mine], rounds=rounds, categorical=[x.shape[2] - 1])
-        (folder / f"{species}.txt.gz").write_bytes(gzip.compress(booster.model_to_string().encode(), mtime=0))
+        data = gzip.compress(booster.model_to_string().encode(), mtime=0)
+        client.put_object(Bucket=bucket, Key=f"{folder}/{species}.txt.gz", Body=data, ContentType="application/gzip")
         regions = {}
         for row in rows.itertuples(index=False):
             regions[row.region] = {
@@ -220,7 +223,8 @@ def export(table_rows, cases, x, mask, loyo, gate, names, out, root):
                 "each_year_held_out": {"years": int(row.years), "wins": int(row.wins), "p": float(row.p),
                                        "in_use": row.in_use, "mean_in_use": float(row.current),
                                        "mean_gbm": float(row.gbm)}}
-        models[species] = {"file": f"fruiting_gbm/{species}.txt.gz", "rounds": rounds, "regions": regions}
+        models[species] = {"file": f"{folder}/{species}.txt.gz", "sha256": hashlib.sha256(data).hexdigest(),
+                           "rounds": rounds, "regions": regions}
         log(f"exported {species}: {rounds} rounds, {', '.join(regions)}")
     spec = {"features": names, "trained": f"{int(cases['year'].min())}-{int(cases['year'].max())}",
             "shipped_if": "beats the model in use (the linear fit where it ships, else today's) in more held-out "

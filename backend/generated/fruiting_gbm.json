@@ -160,7 +160,8 @@
  },
  "models": {
   "hen_of_the_woods": {
-   "file": "fruiting_gbm/hen_of_the_woods.txt.gz",
+   "file": "models/fruiting_gbm/20261011/hen_of_the_woods.txt.gz",
+   "sha256": "128c842d3471fccfa0ed4df51e7866c4887b2ae6bbb23a6db101d2b174d942a6",
    "rounds": 2000,
    "regions": {
     "USE": {
@@ -2686,7 +2687,8 @@
    }
   },
   "mushroom": {
-   "file": "fruiting_gbm/mushroom.txt.gz",
+   "file": "models/fruiting_gbm/20261011/mushroom.txt.gz",
+   "sha256": "d151dd91b0d7065026213708247f346d5eee4b0f7bb324040544bba1de765b47",
    "rounds": 2000,
    "regions": {
     "NE": {
@@ -5212,7 +5214,8 @@
    }
   },
   "parasol": {
-   "file": "fruiting_gbm/parasol.txt.gz",
+   "file": "models/fruiting_gbm/20261011/parasol.txt.gz",
+   "sha256": "a3b7bc99cc025b042dfe612e2a5135a9d62c9a39e8d53f10300b7d1e50d14bdb",
    "rounds": 2000,
    "regions": {
     "NE": {
@@ -10258,7 +10261,8 @@
    }
   },
   "pine_bolete": {
-   "file": "fruiting_gbm/pine_bolete.txt.gz",
+   "file": "models/fruiting_gbm/20261011/pine_bolete.txt.gz",
+   "sha256": "7d6b0c28444fdc8b935b47150b4038787b202dbb566a625628627f09ee486946",
    "rounds": 489,
    "regions": {
     "NE": {
@@ -12784,7 +12788,8 @@
    }
   },
   "saffron_milk_cap": {
-   "file": "fruiting_gbm/saffron_milk_cap.txt.gz",
+   "file": "models/fruiting_gbm/20261011/saffron_milk_cap.txt.gz",
+   "sha256": "bebdc7878814b517eda34423af1c205ef64375a5bcecd5eab194b3bbf83cce26",
    "rounds": 1999,
    "regions": {
     "SE": {
@@ -15310,7 +15315,8 @@
    }
   },
   "shaggy_mane": {
-   "file": "fruiting_gbm/shaggy_mane.txt.gz",
+   "file": "models/fruiting_gbm/20261011/shaggy_mane.txt.gz",
+   "sha256": "5f5337a72f600ad97b091054e64850c0a90e1179ce8378631dd4e218ed3831f0",
    "rounds": 2000,
    "regions": {
     "NE": {
@@ -17836,7 +17842,8 @@
    }
   },
   "st_george": {
-   "file": "fruiting_gbm/st_george.txt.gz",
+   "file": "models/fruiting_gbm/20261011/st_george.txt.gz",
+   "sha256": "754e32f5ec2552dea64a9c1c1f57a32a3fb68f7bcdfc5c7270a6629655137cf7",
    "rounds": 1838,
    "regions": {
     "NE": {
@@ -20362,7 +20369,8 @@
    }
   },
   "summer_bolete": {
-   "file": "fruiting_gbm/summer_bolete.txt.gz",
+   "file": "models/fruiting_gbm/20261011/summer_bolete.txt.gz",
+   "sha256": "eef51175b9291bc1b7905e8e9bfd6b0f0021e13b109c1ddaee3a245d57ad95db",
    "rounds": 992,
    "regions": {
     "NE": {

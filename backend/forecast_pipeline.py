@@ -18,6 +18,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 import faulthandler
 import gzip
+import hashlib
 import math
 import os
 import sys
@@ -1088,26 +1089,37 @@ def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
                                   "humidity_from_stored": fit["humidity_from_stored"][region], **model}
 
 
-def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH):
+def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, fetch=None):
     """Give each species the region's GBM, where generated/fruiting_gbm.json ships one; it
-    replaces that species' linear fit. `today` anchors the normals and day of year."""
+    replaces that species' linear fit. The models live on R2 (each training run in its own
+    folder, checked against the sha256 recorded here); one that cannot be fetched or fails its
+    checksum leaves the species on its linear fit. `today` anchors normals and day of year."""
     if lgb is None or not Path(path).exists():
         return
     spec = json.loads(Path(path).read_text(encoding="utf-8"))
     if spec.get("features") != FRUITING_GBM_FEATURES:
         print(f"[warn] {path}: features differ from this code's; GBM not used")
         return
+    fetch = fetch or r2_fetch
     normals = None
     for specie, params in species_params.items():
         model = spec.get("models", {}).get(specie, {})
         if region not in model.get("regions", {}):
             continue
+        try:
+            data = fetch(model["file"])
+            if hashlib.sha256(data).hexdigest() != model["sha256"]:
+                raise ValueError("checksum differs")
+            booster = lgb.Booster(model_str=gzip.decompress(data).decode())
+        except Exception as error:
+            print(f"[warn] GBM for {specie} not loaded ({error}); its linear fit stays")
+            continue
         if normals is None:
             normals = era5_normals.load(region)
         params.pop("fruiting", None)
         params["fruiting_gbm"] = {
-            "booster": lgb.Booster(model_str=gzip.decompress((Path(path).parent / model["file"]).read_bytes()).decode()),
-            "map": model["regions"][region]["map"], "corrections": spec["inputs_from_stored"][region],
+            "booster": booster, "map": model["regions"][region]["map"],
+            "corrections": spec["inputs_from_stored"][region],
             "region_code": FRUITING_GBM_REGIONS.index(region), "anchor": pd.Timestamp(today),
             "normals": normals}
 
