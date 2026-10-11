@@ -91,6 +91,7 @@ def load(out):
     import pandas as pd
     import pyarrow.parquet as pq
     import era5_normals
+    import forecast_pipeline as fp
 
     def read(folder):
         return pd.concat([pd.read_parquet(p) for p in sorted((out / folder).glob("*.parquet"))
@@ -118,7 +119,8 @@ def load(out):
     x = np.concatenate([raw.astype(np.float32), daily, np.repeat(static[:, None, :], 5, axis=1),
                         np.repeat(region[:, None, None], 5, axis=1)], axis=2)
     names = [*ff.FEATURES, *lag_names, *STATIC, "region"]
-    return cases, x, mask, scores, names
+    assert names == fp.FRUITING_GBM_FEATURES, "training and production features differ"
+    return table, cases, x, mask, scores, names
 
 
 def leave_one_year_out(cases, x, mask, species, today, rng):
@@ -150,6 +152,73 @@ def leave_one_year_out(cases, x, mask, species, today, rng):
     return results
 
 
+def gbm_index(booster, region):
+    """index(cell, days) for fit_fruiting.season_maps: the GBM on one cell's ERA5 days, each
+    day its own anchor for normals and day of year."""
+    import pandas as pd
+    import build_training_table as tt
+    import era5_normals
+    import forecast_pipeline as fp
+    grid, code = era5_normals.load(region), REGIONS.index(region)
+
+    def index(cell, days):
+        days = pd.DatetimeIndex(days)
+        lat, lon = float(cell["Latitude"].iloc[0]), float(cell["Longitude"].iloc[0])
+        normal = era5_normals.lookup(grid, np.full(len(days), lat), np.full(len(days), lon), days.month)
+        x = np.column_stack([fp.fruiting_design(tt.features(cell, days)).to_numpy(float),
+                             tt.daily_lags(cell, days).to_numpy(float),
+                             normal["norm_rain"], normal["norm_tmean"], normal["norm_rh"],
+                             np.full(len(days), lat), days.dayofyear.to_numpy(float), np.full(len(days), code)])
+        return booster.predict(x, raw_score=True)
+    return index
+
+
+def export(table_rows, cases, x, mask, loyo, gate, names, out, root):
+    """The shipped species' models on every year, their regions' monthly maps and the regions'
+    stored-input corrections -> backend/generated/fruiting_gbm.json + fruiting_gbm/<species>.txt."""
+    import json
+    import requests
+    import fit_fruiting as ff
+    import forecast_pipeline as fp
+    from download_era5_points import log
+    from qa_season_branch_replay import load_specs
+
+    fp.load_dotenv(root / ".env")
+    fp.load_dotenv(root / ".env.secret")
+    session = requests.Session()
+    specs = {region: load_specs(session, region) for region in REGIONS}
+    shipped = gate[gate["ships"]]
+    columns = ("Humidity (%)", "Temperature (C)", "Temperature (C) Min")
+    corrections = {region: ff.stored_corrections(out, region, columns) for region in sorted(set(shipped["region"]))}
+    folder = root / "backend" / "generated" / "fruiting_gbm"
+    folder.mkdir(exist_ok=True)
+    for old in folder.glob("*.txt"):
+        old.unlink()
+    models = {}
+    for species, rows in shipped.groupby("species"):
+        mine = (cases["species"] == species).to_numpy()
+        rounds = max(int(loyo.loc[loyo["species"] == species, "rounds"].median()), 50)
+        booster = fit(x[mine], mask[mine], rounds=rounds, categorical=[x.shape[2] - 1])
+        booster.save_model(str(folder / f"{species}.txt"))
+        regions = {}
+        for row in rows.itertuples(index=False):
+            regions[row.region] = {
+                "map": ff.season_maps(table_rows, out, species, row.region, gbm_index(booster, row.region),
+                                      specs, corrections[row.region]),
+                "each_year_held_out": {"years": int(row.years), "wins": int(row.wins), "p": float(row.p),
+                                       "in_use": row.in_use, "mean_in_use": float(row.current),
+                                       "mean_gbm": float(row.gbm)}}
+        models[species] = {"file": f"fruiting_gbm/{species}.txt", "rounds": rounds, "regions": regions}
+        log(f"exported {species}: {rounds} rounds, {', '.join(regions)}")
+    spec = {"features": names, "trained": f"{int(cases['year'].min())}-{int(cases['year'].max())}",
+            "shipped_if": "beats the model in use (the linear fit where it ships, else today's) in more held-out "
+                          f"years than chance (sign test p < {ff.SHIP_P}, at least {ff.SHIP_MIN_YEARS} years)",
+            "inputs_from_stored": {r: {c: [round(a, 4), round(b, 4)] for c, (a, b) in cols.items()}
+                                   for r, cols in corrections.items()},
+            "models": models}
+    (root / "backend" / "generated" / "fruiting_gbm.json").write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     import argparse
     import json
@@ -162,17 +231,19 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True)
     parser.add_argument("--export", action="store_true", help="write backend/generated/fruiting_gbm*")
+    parser.add_argument("--reuse", action="store_true", help="take the year-by-year results from gbm_loyo.csv")
     args = parser.parse_args()
     out = Path(args.out)
     root = Path(__file__).resolve().parents[2]
     linear = json.loads((out / "fruiting_report.json").read_text(encoding="utf-8"))
     live = json.loads((root / "backend" / "generated" / "fruiting_fit.json").read_text(encoding="utf-8"))["models"]
 
-    cases, x, mask, scores, names = load(out)
+    table_rows, cases, x, mask, scores, names = load(out)
     log(f"{len(cases):,} strata, {x.shape[2]} features")
     rng = np.random.default_rng(291)
     rows = []
-    for species in sorted(set(cases["species"]) - {ff.PLACEBO}):
+    species_list = [] if args.reuse else sorted(set(cases["species"]) - {ff.PLACEBO})
+    for species in species_list:
         if (cases["species"] == species).sum() < ff.MIN_TRAIN_STRATA:
             continue
         today = ff.baseline_index(scores, cases, species)
@@ -185,7 +256,7 @@ def main() -> None:
                                  "today": per_year[year]["today"], "linear": per_year[year]["fitted"], "in_use": in_use})
         log(f"{species} done")
         pd.DataFrame(rows).to_csv(out / "gbm_loyo.csv", index=False)
-    table = pd.DataFrame(rows)
+    table = pd.read_csv(out / "gbm_loyo.csv") if args.reuse else pd.DataFrame(rows)
     gate = []
     for (species, region), g in table.groupby(["species", "region"]):
         current = g["linear"] if g["in_use"].iloc[0] == "linear" else g["today"]
@@ -200,6 +271,8 @@ def main() -> None:
     log(f"GBM ships in {gate['ships'].sum()} species-regions "
         f"({(gate['ships'] & (gate['in_use'] == 'linear')).sum()} replacing the linear fit)")
     print(gate[gate["ships"]].to_string(index=False), flush=True)
+    if args.export:
+        export(table_rows, cases, x, mask, table, gate, names, out, root)
 
 
 if __name__ == "__main__":

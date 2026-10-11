@@ -128,6 +128,12 @@ def baseline_index(scores: pd.DataFrame, cases: pd.DataFrame, species: str) -> n
     return wide.to_numpy(float)
 
 
+def linear_index(beta, means, sds):
+    """index(cell, days) for season_maps: the linear fit on one cell's ERA5 days."""
+    import build_training_table as tt
+    return lambda cell, days: ((fp.fruiting_design(tt.features(cell, days)).to_numpy(float) - means) / sds) @ beta
+
+
 def month_maps(dates, eta: np.ndarray, part: np.ndarray) -> list[dict]:
     """Per calendar month: quantiles of the fitted index and of today's weather part."""
     month = pd.DatetimeIndex(dates).month.to_numpy()
@@ -136,17 +142,16 @@ def month_maps(dates, eta: np.ndarray, part: np.ndarray) -> list[dict]:
              "days": int((month == m).sum())} for m in range(1, 13)]
 
 
-def season_maps(table, out, species, region, beta, means, sds, specs, humidity) -> list[dict]:
+def season_maps(table, out, species, region, index, specs, corrections) -> list[dict]:
     """month_maps over every MAP_DAY_STEP-th day of every year at up to MAP_CELLS of the
     species' places in the region. One map per month keeps today's level at each time of
     year: the fit only compares a day with the same place 2-3 weeks either side, so it says
     nothing about how one season compares with another, and a single map for the whole year
-    moved early October's share of 4+ scores by up to 45 points. Today's side is computed on
-    stored-level humidity, as production computes it; the index on ERA5's level, which
-    production reaches through humidity_from_stored."""
+    moved early October's share of 4+ scores by up to 45 points. index(cell, days) gives the
+    fitted index on ERA5's level, which production reaches through its stored-input
+    corrections; today's side is computed on stored-level inputs (corrections undone), as
+    production computes it."""
     import build_training_table as tt
-
-    a, b = humidity
     finds = table[(table["species"] == species) & (table["region"] == region) & (table["offset"] == 0)]
     cells = finds[["cell_lat", "cell_lon"]].drop_duplicates()
     cells = cells.sample(min(MAP_CELLS, len(cells)), random_state=291)
@@ -162,12 +167,13 @@ def season_maps(table, out, species, region, beta, means, sds, specs, humidity) 
         for lat, lon in zip(group["cell_lat"], group["cell_lon"]):
             cell = block[(block["Latitude"].round(2) == lat) & (block["Longitude"].round(2) == lon)]
             days = pd.DatetimeIndex(cell["Date"].sort_values().iloc[42::MAP_DAY_STEP])
-            z = (fp.fruiting_design(tt.features(cell, days)).to_numpy(float) - means) / sds
             rows.append(pd.DataFrame({"species": species, "region": region, "cell_lat": lat, "cell_lon": lon,
-                                      "date": days, "offset": 0, "eta": z @ beta}))
+                                      "date": days, "offset": 0, "eta": index(cell, days)}))
         rows = pd.concat(rows, ignore_index=True)
         rows["case_id"] = np.arange(len(rows))
-        stored_level = block.assign(**{"Humidity (%)": ((block["Humidity (%)"] - a) / b).clip(0, 100)})
+        stored_level = block.assign(**{column: (block[column] - a) / b for column, (a, b) in corrections.items()})
+        if "Humidity (%)" in corrections:
+            stored_level["Humidity (%)"] = stored_level["Humidity (%)"].clip(0, 100)
         today = tt.baseline(stored_level, rows, specs)[["case_id", "weather_part"]]
         both = rows.merge(today, on="case_id").dropna(subset=["eta", "weather_part"])
         dates.append(both["date"].to_numpy())
@@ -182,15 +188,16 @@ def humidity_correction(stored: np.ndarray, era5: np.ndarray) -> tuple[float, fl
     return float(np.mean(era5) - b * np.mean(stored)), b
 
 
-def stored_humidity_correction(out: Path, region: str, points: int = 1500) -> tuple[float, float]:
-    """humidity_correction between the region's stored weather (WeatherAPI) at a sample of map
-    points and ERA5 at their cell, over every day both have since STORED_FROM. Stored humidity
-    reads 2-7 points lower, most on dry days."""
+def stored_corrections(out: Path, region: str, columns=("Humidity (%)",), points: int = 1500) -> dict:
+    """humidity_correction-style (a, b) per column, between the region's stored weather
+    (WeatherAPI) at a sample of map points and ERA5 at their cell, over every day both have
+    since STORED_FROM. Stored humidity reads 2-7 points lower, most on dry days."""
     import pyarrow as pa
     import pyarrow.compute as pc
     import pyarrow.parquet as pq
     from qa_weather_skill import r2_filesystem
 
+    columns = list(columns)
     key = f"{fp.get_required_env('R2_BUCKET_NAME')}/{fp._r2_key(fp.get_required_env(f'{region}_WEATHER_DATA'))}"
     parquet = pq.ParquetFile(r2_filesystem().open_input_file(key))
     places = (parquet.read_row_group(parquet.num_row_groups - 1, columns=["Location_Id", "Latitude", "Longitude"])
@@ -204,21 +211,28 @@ def stored_humidity_correction(out: Path, region: str, points: int = 1500) -> tu
     wanted = pa.array(places["Location_Id"].tolist())
     pieces = []
     for group in range(parquet.num_row_groups):
-        rows = parquet.read_row_group(group, columns=["Location_Id", "Date", "Humidity (%)"])
+        rows = parquet.read_row_group(group, columns=["Location_Id", "Date", *columns])
         pieces.append(rows.filter(pc.is_in(rows["Location_Id"], value_set=wanted)).to_pandas())
     stored = pd.concat(pieces, ignore_index=True)
     stored["Date"] = pd.to_datetime(stored["Date"]).dt.normalize()
     stored = stored.drop_duplicates(["Location_Id", "Date"], keep="last").merge(places, on="Location_Id")
     era5 = pd.concat([pd.read_parquet(out / "era5_blocks" / f"{name}.parquet",
-                                      columns=["Latitude", "Longitude", "Date", "Humidity (%)"])
+                                      columns=["Latitude", "Longitude", "Date", *columns])
                       for name in stored["block"].unique()], ignore_index=True)
     era5 = era5.rename(columns={"Latitude": "cell_lat", "Longitude": "cell_lon"})
     both = stored.merge(era5, on=["cell_lat", "cell_lon", "Date"], suffixes=("", "_era5"))
-    both = both[both["Date"] >= STORED_FROM].dropna(subset=["Humidity (%)", "Humidity (%)_era5"])
-    a, b = humidity_correction(both["Humidity (%)"].to_numpy(float), both["Humidity (%)_era5"].to_numpy(float))
-    log(f"{region}: ERA5 humidity = {a:.1f} + {b:.3f} x stored ({len(both):,} place-days, "
-        f"{both['Date'].min():%d %b} - {both['Date'].max():%d %b %Y})")
-    return a, b
+    both = both[both["Date"] >= STORED_FROM]
+    found = {}
+    for column in columns:
+        pair = both.dropna(subset=[column, f"{column}_era5"])
+        found[column] = humidity_correction(pair[column].to_numpy(float), pair[f"{column}_era5"].to_numpy(float))
+        log(f"{region}: ERA5 {column} = {found[column][0]:.2f} + {found[column][1]:.3f} x stored "
+            f"({len(pair):,} place-days, {pair['Date'].min():%d %b} - {pair['Date'].max():%d %b %Y})")
+    return found
+
+
+def stored_humidity_correction(out: Path, region: str, points: int = 1500) -> tuple[float, float]:
+    return stored_corrections(out, region, ("Humidity (%)",), points)["Humidity (%)"]
 
 
 def leave_one_year_out(cases, x, mask, mine, is_placebo, days, today_index) -> dict:
@@ -377,7 +391,8 @@ def main() -> None:
                     if here.sum() >= MIN_REGION_STRATA else everything)
             shipped.setdefault(species, {})[region] = {
                 "beta": beta.round(6).tolist(),
-                "map": season_maps(table, out, species, region, beta, means, sds, specs, humidity[region])
+                "map": season_maps(table, out, species, region, linear_index(beta, means, sds), specs,
+                                   {"Humidity (%)": humidity[region]})
                 if specs else None,
                 "each_year_held_out": {"years": len(results), "wins": wins, "p": round(p, 4),
                                        "mean_today": round(float(np.mean([t for _, t, _ in results])), 3),
