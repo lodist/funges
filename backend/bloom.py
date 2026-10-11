@@ -290,7 +290,8 @@ def publish(features, region_code, tiles, r2_prefix, to_pmtiles, upload, build_m
 def build_peaks(master_path, region_code, r2_prefix, to_pmtiles, upload, *, label, tiles, season, peak_index,
                 latest_normal_peak, ground, build_mbtiles=_tippecanoe, today=None, normals=None):
     """Build and upload `<region>_<tiles>.pmtiles` for a spectacle timed by temperature
-    alone: `peak_index(tmean)` over its `season`, on observed days, then normals.
+    alone: `peak_index(tmean, normal)` over its `season`, on observed days then normals
+    (`tmean`) and on normals alone (`normal`, for a model that moves a normal date).
 
     to_pmtiles(mbtiles, pmtiles) -> bool and upload(path, key) are the calling
     MapLayer script's own helpers. A cell is drawn on `ground` only, and only where
@@ -317,9 +318,9 @@ def build_peaks(master_path, region_code, r2_prefix, to_pmtiles, upload, *, labe
     tmean = np.where(np.isfinite(obs), obs, normal)
     del obs
     # The normal year decides where it grows, this year's weather when it peaks.
-    grows = peak_index(normal) <= (date(last.year, *latest_normal_peak) - first).days
+    grows = peak_index(normal, normal) <= (date(last.year, *latest_normal_peak) - first).days
+    peak = (first - EPOCH).days + peak_index(tmean, normal)
     del normal
-    peak = (first - EPOCH).days + peak_index(tmean)
     # Every place with a peak stays all season, green once it is done: one that
     # vanished after its bloom read as a place without any.
     drawn = np.isfinite(peak) & grows
@@ -340,7 +341,7 @@ def build_bloom(master_path, region_code, r2_prefix, to_pmtiles, upload,
     if towns is None and season(today) is not None:
         towns = load_ground("bloom_towns", region_code)
     return build_peaks(master_path, region_code, r2_prefix, to_pmtiles, upload, label="Bloom", tiles="bloom",
-                       season=season, peak_index=lambda t: peak_index(t, FORCING[MAP_VARIETY]),
+                       season=season, peak_index=lambda t, _: peak_index(t, FORCING[MAP_VARIETY]),
                        latest_normal_peak=LATEST_NORMAL_PEAK, ground=towns, build_mbtiles=build_mbtiles,
                        today=today, normals=normals)
 
@@ -348,10 +349,12 @@ def build_bloom(master_path, region_code, r2_prefix, to_pmtiles, upload,
 def _spectacles():
     """(name, regions, season, build) for every spectacle, cherry blossom first."""
     import bluebell
+    import heather
     import superbloom
 
     return [("cherry_blossom", frozenset(NORMALS_MACRO), season, build_bloom),
             ("bluebell", bluebell.REGIONS, bluebell.season, bluebell.build_bluebell),
+            ("heather", heather.REGIONS, heather.season, heather.build_heather),
             ("superbloom", superbloom.REGIONS, superbloom.season, superbloom.build_superbloom)]
 
 

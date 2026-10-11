@@ -10,6 +10,7 @@ from shapely.geometry import box
 
 import bloom
 import bluebell
+import heather
 import superbloom
 
 
@@ -82,6 +83,36 @@ def test_build_bluebell_skips_out_of_season(tmp_path):
 
     assert bluebell.build_bluebell(tmp_path / "missing.parquet", "ne", "EU/NE", fail, fail, build_mbtiles=fail,
                                    today=date(2027, 2, 1)) is None
+
+
+# --- heather ----------------------------------------------------------------------
+
+def test_heather_season_runs_july_to_september():
+    assert heather.season(date(2027, 7, 1)) == (date(2027, 1, 1), date(2027, 10, 31))
+    assert heather.season(date(2027, 6, 30)) is None and heather.season(date(2027, 10, 1)) is None
+
+
+def test_heather_peaks_on_its_normal_date_moved_by_a_quarter_of_the_lead():
+    normal = np.full((2, 304), 12.0)
+    warm = normal.copy()
+    warm[1] += 2.0  # 14 °C instead of 12: the normal sum at 19 August comes 24 days earlier
+    peak = heather.peak_index(warm, normal)
+    assert peak[0] == heather.NORMAL_PEAK
+    lead = (heather.NORMAL_PEAK - heather.START + 1) * 12.0 / 14.0 - (heather.NORMAL_PEAK - heather.START + 1)
+    assert np.isclose(peak[1], heather.NORMAL_PEAK + heather.K * np.ceil(lead), atol=heather.K)
+
+
+def test_build_heather_end_to_end(tmp_path):
+    today = date(2027, 8, 1)
+    _master(tmp_path / "m.parquet", date(2027, 1, 1), today + timedelta(days=6), {(50.0, 8.0): 12.0})
+    uploads, layers, build_mbtiles, to_pmtiles, upload = _capture()
+    ground = gpd.GeoDataFrame(geometry=[box(7.9, 49.9, 8.1, 50.1)], crs="EPSG:4326")
+    heather.build_heather(tmp_path / "m.parquet", "ne", "EU/NE", to_pmtiles, upload, build_mbtiles=build_mbtiles,
+                          today=today, normals=_normals(12.0), ground=ground)
+    assert set(uploads) == {"EU/NE/ne_heather.pmtiles"} and layers[0][1] == "ne_heather"
+    # Observed and normal temperatures alike: the normal date, 19 August.
+    [feature] = layers[0][0]["features"]
+    assert feature["properties"]["peak"] == (date(2027, 8, 19) - bloom.EPOCH).days
 
 
 # --- superbloom -------------------------------------------------------------------
@@ -172,4 +203,4 @@ def test_bands_fill_a_hole_in_the_lattice_but_not_past_its_edge():
 
 def test_every_spectacle_is_registered():
     names = [name for name, *_ in bloom._spectacles()]
-    assert names == ["cherry_blossom", "bluebell", "superbloom"]
+    assert names == ["cherry_blossom", "bluebell", "heather", "superbloom"]
