@@ -10,6 +10,8 @@ from shapely.geometry import box
 
 import bloom
 import bluebell
+import foliage
+import heather
 import superbloom
 
 
@@ -82,6 +84,36 @@ def test_build_bluebell_skips_out_of_season(tmp_path):
 
     assert bluebell.build_bluebell(tmp_path / "missing.parquet", "ne", "EU/NE", fail, fail, build_mbtiles=fail,
                                    today=date(2027, 2, 1)) is None
+
+
+# --- heather ----------------------------------------------------------------------
+
+def test_heather_season_runs_july_to_september():
+    assert heather.season(date(2027, 7, 1)) == (date(2027, 1, 1), date(2027, 10, 31))
+    assert heather.season(date(2027, 6, 30)) is None and heather.season(date(2027, 10, 1)) is None
+
+
+def test_heather_peaks_on_its_normal_date_moved_by_a_quarter_of_the_lead():
+    normal = np.full((2, 304), 12.0)
+    warm = normal.copy()
+    warm[1] += 2.0  # 14 °C instead of 12: the normal sum at 19 August comes 24 days earlier
+    peak = heather.peak_index(warm, normal)
+    assert peak[0] == heather.NORMAL_PEAK
+    lead = (heather.NORMAL_PEAK - heather.START + 1) * 12.0 / 14.0 - (heather.NORMAL_PEAK - heather.START + 1)
+    assert np.isclose(peak[1], heather.NORMAL_PEAK + heather.K * np.ceil(lead), atol=heather.K)
+
+
+def test_build_heather_end_to_end(tmp_path):
+    today = date(2027, 8, 1)
+    _master(tmp_path / "m.parquet", date(2027, 1, 1), today + timedelta(days=6), {(50.0, 8.0): 12.0})
+    uploads, layers, build_mbtiles, to_pmtiles, upload = _capture()
+    ground = gpd.GeoDataFrame(geometry=[box(7.9, 49.9, 8.1, 50.1)], crs="EPSG:4326")
+    heather.build_heather(tmp_path / "m.parquet", "ne", "EU/NE", to_pmtiles, upload, build_mbtiles=build_mbtiles,
+                          today=today, normals=_normals(12.0), ground=ground)
+    assert set(uploads) == {"EU/NE/ne_heather.pmtiles"} and layers[0][1] == "ne_heather"
+    # Observed and normal temperatures alike: the normal date, 19 August.
+    [feature] = layers[0][0]["features"]
+    assert feature["properties"]["peak"] == (date(2027, 8, 19) - bloom.EPOCH).days
 
 
 # --- superbloom -------------------------------------------------------------------
@@ -170,6 +202,85 @@ def test_bands_fill_a_hole_in_the_lattice_but_not_past_its_edge():
     assert np.allclose(out.total_bounds, [7.75, 49.75, 8.25, 50.25])
 
 
+# --- fall foliage -----------------------------------------------------------------
+
+def test_foliage_season_runs_september_to_november():
+    assert foliage.season(date(2026, 9, 1)) == (date(2026, 7, 1), date(2026, 12, 31))
+    assert foliage.season(date(2026, 8, 31)) is None and foliage.season(date(2026, 12, 1)) is None
+
+
+def test_foliage_counts_cooling_from_15_august_with_a_requirement_per_row():
+    # 13 °C adds 20 a day from 15 August (index 45): 1,031 is reached on its 52nd day
+    # (5 October), the aspens' 897 on its 45th.
+    t = np.full((2, 184), 13.0)
+    peak = foliage.peak_index(t, np.array([foliage.REQUIREMENT, foliage.ASPEN_REQUIREMENT]))
+    assert list(peak) == [foliage.START + 51, foliage.START + 44]
+    t[0, : foliage.START] = -20.0  # cold before 15 August does not count
+    assert foliage.peak_index(t)[0] == foliage.START + 51
+
+
+def test_foliage_requirement_by_place():
+    lon = np.array([-80.0, -105.0, -105.0, -120.0, -120.0])
+    elev = np.array([2000.0, 2500.0, 800.0, 300.0, np.nan])
+    assert list(foliage.requirement_of(lon, elev)) == [
+        foliage.REQUIREMENT, foliage.ASPEN_REQUIREMENT, foliage.REQUIREMENT,
+        foliage.PACIFIC_REQUIREMENT, foliage.PACIFIC_REQUIREMENT]
+
+
+def test_foliage_europe_requirement_and_larch(monkeypatch):
+    assert list(foliage.eu_requirement_of([50.0, 65.0])) == [foliage.EU_REQUIREMENT, foliage.BOREAL_REQUIREMENT]
+    mask = np.zeros((10, 10), bool)
+    mask[2, 3] = True  # one larch cell: 52-53 N, 3-4 E
+    monkeypatch.setattr(foliage, "larch_mask", lambda: (50.0, 0.0, 1.0, mask))
+    # A larch cell at any height; the Alps from 1,300 m only; elsewhere no.
+    assert list(foliage.is_larch([52.5, 46.5, 46.5, 55.0], [3.5, 9.8, 9.8, 5.0],
+                                 [0.0, 1800.0, 900.0, 1800.0])) == [True, True, False, False]
+    assert foliage.larch_mask is not None and np.load(bloom._BACKEND / "generated" / "larch_mask_EU.npz")["mask"].any()
+
+
+def test_build_foliage_in_europe_colours_broadleaf_woods_on_its_requirement(tmp_path):
+    today = date(2026, 10, 1)
+    _master(tmp_path / "m.parquet", date(2026, 7, 1), today + timedelta(days=6), {(50.0, 8.0): 13.0})
+    land = gpd.GeoDataFrame({"raster_val": [311, 322, 312]},
+                            geometry=[box(7.96, 49.96, 8.04, 50.04), box(7.96, 50.0, 8.04, 50.04),
+                                      box(7.96, 49.96, 8.0, 50.0)], crs="EPSG:4326")
+    uploads, layers, build_mbtiles, to_pmtiles, upload = _capture()
+    out = foliage.build_foliage(tmp_path / "m.parquet", "ne", "EU/NE", to_pmtiles, upload, land=land,
+                                build_mbtiles=build_mbtiles, today=today, normals=_normals(13.0))
+    assert set(uploads) == {"EU/NE/ne_foliage.pmtiles"}
+    # The broadleaf wood only: heath is no wood, and a lowland conifer wood off the larch
+    # cells is not larch. 13 °C adds 20 a day from 15 August: 1,539 on 30 October.
+    [feature] = layers[0][0]["features"]
+    assert feature["properties"] == {"peak": (date(2026, 10, 30) - bloom.EPOCH).days} and out["pieces"] == 1
+
+
+def test_sample_colours_each_piece_by_the_forecast_at_its_middle():
+    pieces = gpd.GeoDataFrame(geometry=[box(7.99, 49.99, 8.01, 50.01), box(8.09, 49.99, 8.11, 50.01),
+                                        box(20.0, 60.0, 20.1, 60.1)], crs="EPSG:4326")
+    out = bloom._sample(np.array([500, 500]), np.array([80, 81]), {"peak": np.array([100.0, 110.0])}, pieces)
+    assert list(out.peak) == [100, 110]  # each cell's own value; the piece far from any cell is dropped
+
+
+def test_build_foliage_colours_the_woods_only(tmp_path):
+    today = date(2026, 10, 1)
+    _master(tmp_path / "m.parquet", date(2026, 7, 1), today + timedelta(days=6),
+            {(40.0, -80.0): 13.0, (40.0, -105.0): 13.0})
+    land = gpd.GeoDataFrame({"raster_val": [41, 42, 43]},
+                            geometry=[box(-80.04, 39.96, -79.96, 40.04), box(-80.04, 40.0, -79.96, 40.04),
+                                      box(-105.04, 39.96, -104.96, 40.04)], crs="EPSG:4326")
+    uploads, layers, build_mbtiles, to_pmtiles, upload = _capture()
+    normals = _normals(13.0)
+    normals["lat"], normals["lon"] = np.repeat([39.5, 40.0, 40.5, 41.0], 4), np.tile([-105.0, -104.375, -80.0, -79.375], 4)
+    out = foliage.build_foliage(tmp_path / "m.parquet", "use", "USA/USE", to_pmtiles, upload, land=land,
+                                build_mbtiles=build_mbtiles, today=today, normals=normals)
+    assert set(uploads) == {"USA/USE/use_foliage.pmtiles"} and layers[0][1] == "use_foliage"
+    # The deciduous and mixed pieces, not the evergreen one. The western one lies at 100 m
+    # in the interior, which keeps the eastern requirement: both peak on 5 October.
+    peaks = [f["properties"]["peak"] for f in layers[0][0]["features"]]
+    assert peaks == [(date(2026, 10, 5) - bloom.EPOCH).days] * 2 and out["pieces"] == 2
+    assert foliage.build_foliage(tmp_path / "m.parquet", "use", "USA/USE", to_pmtiles, upload, today=today) is None
+
+
 def test_every_spectacle_is_registered():
     names = [name for name, *_ in bloom._spectacles()]
-    assert names == ["cherry_blossom", "bluebell", "superbloom"]
+    assert names == ["cherry_blossom", "bluebell", "heather", "superbloom", "foliage"]

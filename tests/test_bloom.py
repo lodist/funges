@@ -200,4 +200,4 @@ def test_build_spectacles_downloads_nothing_when_none_is_due(monkeypatch):
 
     monkeypatch.setattr(bloom, "_local_master", lambda path: pytest.fail("downloaded"))
     assert bloom.build_spectacles("https://data.example/m.parquet", "ne", "EU/NE", None, None,
-                                  today=date(2027, 8, 1)) == {}
+                                  today=date(2027, 12, 15)) == {}

@@ -137,6 +137,15 @@
     "name": "Bluebell woods",
     "offSeason": "The bluebell forecast starts on 1 March."
   },
+  "foliage": {
+    "name": "Fall foliage",
+    "offSeason": "The fall foliage forecast starts on 1 September.",
+    "legend": "Peak colour"
+  },
+  "heather": {
+    "name": "Heather in bloom",
+    "offSeason": "The heather forecast starts on 1 July."
+  },
   "superbloom": {
     "name": "Desert superbloom",
     "offSeason": "The desert bloom forecast starts on 1 January.",

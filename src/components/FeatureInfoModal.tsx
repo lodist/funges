@@ -223,7 +223,7 @@ export default function FeatureInfoModal({
                   <div className='text-xs text-muted-foreground leading-tight'>
                     {bloomLevel === 0
                       ? t(`${spectacle.keys}.dry`)
-                      : `${levelName ? t(`${spectacle.keys}.levels.${levelName}`) : t('bloom.legend')} · ${bloomWhen(t, bloomPeak, bloomDay)}`}
+                      : `${levelName ? t(`${spectacle.keys}.levels.${levelName}`) : t([`${spectacle.keys}.legend`, 'bloom.legend'])} · ${bloomWhen(t, bloomPeak, bloomDay)}`}
                   </div>
                 </div>
               </div>

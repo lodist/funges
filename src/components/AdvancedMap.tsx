@@ -1287,7 +1287,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     ? {
         gradient: bloomGradientCss(spectacle),
         low: t('bloom.later'),
-        label: t('bloom.legend'),
+        label: t([`${spectacle.keys}.legend`, 'bloom.legend']),
         high: t('bloom.past'),
       }
     : {};
