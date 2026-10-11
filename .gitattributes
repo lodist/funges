@@ -7,3 +7,4 @@ backend/tools/generated_catalog.py text eol=lf
 src/generated/** text eol=lf
 src/i18n/locales/*/species.json text eol=lf
 backend/generated/*.npz binary
+backend/generated/*.parquet binary
