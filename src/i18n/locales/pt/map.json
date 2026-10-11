@@ -137,6 +137,11 @@
     "name": "Bosques de jacintos",
     "offSeason": "A previsão dos jacintos-dos-bosques começa a 1 de março."
   },
+  "foliage": {
+    "name": "Folhagem de outono",
+    "offSeason": "A previsão da folhagem de outono começa a 1 de setembro.",
+    "legend": "Pico das cores"
+  },
   "heather": {
     "name": "Urze em flor",
     "offSeason": "A previsão da floração da urze começa a 1 de julho."

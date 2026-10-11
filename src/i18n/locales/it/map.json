@@ -137,6 +137,11 @@
     "name": "Boschi di giacinti",
     "offSeason": "La previsione dei giacinti dei boschi parte il 1° marzo."
   },
+  "foliage": {
+    "name": "Foliage autunnale",
+    "offSeason": "La previsione del foliage parte il 1° settembre.",
+    "legend": "Picco dei colori"
+  },
   "heather": {
     "name": "Brugo in fiore",
     "offSeason": "La previsione della fioritura del brugo parte il 1° luglio."

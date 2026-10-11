@@ -22,6 +22,8 @@ outside 1 February - 30 June.
 """
 from __future__ import annotations
 
+import inspect
+import json
 import os
 import shutil
 import subprocess
@@ -181,25 +183,14 @@ def _local_master(path):
     return name, True
 
 
-def _bands(cy, cx, props, ground, steps=None):
-    """One feature per combination of `props` (name -> a number per cell, such as the
-    peak day), on `ground` (towns, woods, desert), each rounded to its `steps` (1).
-
-    The cells' values are interpolated bilinearly to FINE x FINE sub-cells and
-    rounded, so a band's edge runs smoothly between the cells instead of along their
-    squares. Small holes in the lattice are filled from their neighbours; past the
-    region's edge the drawn area ends halfway to the next cell, its corners cut.
-    """
-    import geopandas as gpd
-    import shapely
+def _fine(cy, cx, props):
+    """The cells' `props` (name -> a number per cell) interpolated bilinearly to FINE x
+    FINE sub-cells: (south, west, {name: grid}), grids with row 0 south and NaN off the
+    drawn area. Small holes in the lattice are filled from their neighbours; past the
+    region's edge the drawn area ends halfway to the next cell, its corners cut."""
     from scipy.ndimage import binary_closing, distance_transform_edt, map_coordinates
 
     cy, cx = np.asarray(cy), np.asarray(cx)
-    squares = shapely.box((cx - 0.5) * CELL, (cy - 0.5) * CELL, (cx + 0.5) * CELL, (cy + 0.5) * CELL)
-    near = np.unique(shapely.STRtree(ground.geometry.values).query(squares, predicate="intersects")[0])
-    if not len(near):
-        return gpd.GeoDataFrame({k: [] for k in props}, geometry=[], crs="EPSG:4326")
-    cy, cx = cy[near], cx[near]
     pad = GAP + 1
     y0, x0 = cy.min() - pad, cx.min() - pad
     shape = (cy.max() - y0 + pad + 1, cx.max() - x0 + pad + 1)
@@ -220,9 +211,30 @@ def _bands(cy, cx, props, ground, steps=None):
 
     weight = fine(1.0)
     inside = weight >= 0.5
+    with np.errstate(invalid="ignore", divide="ignore"):
+        grids = {k: np.where(inside, fine(np.asarray(v, float)) / weight, np.nan) for k, v in props.items()}
+    return (y0 - 0.5) * CELL, (x0 - 0.5) * CELL, grids
+
+
+def _bands(cy, cx, props, ground, steps=None):
+    """One feature per combination of `props` (name -> a number per cell, such as the
+    peak day), on `ground` (towns, woods, desert), each rounded to its `steps` (1).
+
+    The values are interpolated to sub-cells (_fine) and rounded, so a band's edge runs
+    smoothly between the cells instead of along their squares.
+    """
+    import geopandas as gpd
+    import shapely
+
+    cy, cx = np.asarray(cy), np.asarray(cx)
+    squares = shapely.box((cx - 0.5) * CELL, (cy - 0.5) * CELL, (cx + 0.5) * CELL, (cy + 0.5) * CELL)
+    near = np.unique(shapely.STRtree(ground.geometry.values).query(squares, predicate="intersects")[0])
+    if not len(near):
+        return gpd.GeoDataFrame({k: [] for k in props}, geometry=[], crs="EPSG:4326")
+    south, west, grids = _fine(cy[near], cx[near], {k: np.asarray(v, float)[near] for k, v in props.items()})
+    inside = np.isfinite(next(iter(grids.values())))
     steps = {k: (steps or {}).get(k, 1) for k in props}
-    values = np.column_stack([np.rint(fine(np.asarray(v, float)[near])[inside] / weight[inside] / steps[k])
-                              for k, v in props.items()]).astype(np.int64)
+    values = np.column_stack([np.rint(grids[k][inside] / steps[k]) for k in props]).astype(np.int64)
     combos, label = np.unique(values, axis=0, return_inverse=True)
     grid = np.zeros(inside.shape, np.int64)
     grid[inside] = label.ravel() + 1
@@ -234,7 +246,7 @@ def _bands(cy, cx, props, ground, steps=None):
     lab = grid[row, start]
     keep = lab > 0
     row, start, stop, lab = row[keep], start[keep], stop[keep], lab[keep]
-    step, south, west = CELL / FINE, (y0 - 0.5) * CELL, (x0 - 0.5) * CELL
+    step = CELL / FINE
     strips = shapely.box(west + start * step, south + row * step, west + stop * step, south + (row + 1) * step)
     order = np.argsort(lab, kind="stable")
     parts = np.split(strips[order], np.flatnonzero(np.diff(lab[order])) + 1)
@@ -243,6 +255,25 @@ def _bands(cy, cx, props, ground, steps=None):
     w, s, e, n = bands.total_bounds
     bands = gpd.overlay(bands, ground.cx[w:e, s:n][["geometry"]], how="intersection", keep_geom_type=True)
     return bands.dissolve(by=list(props), as_index=False)
+
+
+def _sample(cy, cx, props, pieces, steps=None):
+    """`pieces` (the land-cover polygons a species layer is drawn on) each with the
+    cells' `props` at its middle, interpolated as for _bands and rounded to `steps` (1);
+    pieces off the drawn area are dropped. For a ground too fine to cut into bands."""
+    import geopandas as gpd
+
+    south, west, grids = _fine(cy, cx, props)
+    step = CELL / FINE
+    middle = pieces.geometry.representative_point()
+    i = np.floor((middle.y.to_numpy() - south) / step).astype(np.int64)
+    j = np.floor((middle.x.to_numpy() - west) / step).astype(np.int64)
+    first = next(iter(grids.values()))
+    ok = (i >= 0) & (i < first.shape[0]) & (j >= 0) & (j < first.shape[1])
+    ok[ok] = np.isfinite(first[i[ok], j[ok]])
+    steps = {k: (steps or {}).get(k, 1) for k in props}
+    values = {k: np.rint(grids[k][i[ok], j[ok]] / steps[k]) * steps[k] for k in props}
+    return gpd.GeoDataFrame(values, geometry=pieces.geometry.values[ok], crs="EPSG:4326")
 
 
 def _tippecanoe(geojson, mbtiles, layer):
@@ -280,7 +311,13 @@ def publish(features, region_code, tiles, r2_prefix, to_pmtiles, upload, build_m
     name = f"{region_code}_{tiles}"
     with tempfile.TemporaryDirectory() as tmpdir:
         geojson, mbtiles, pmtiles = (Path(tmpdir) / f"{name}.{ext}" for ext in ("geojson", "mbtiles", "pmtiles"))
-        geojson.write_text(features.to_json(), encoding="utf-8")
+        # Streamed feature by feature, as the forecast is: a ground of pieces runs to 100,000s.
+        with open(geojson, "w", encoding="utf-8") as f:
+            f.write('{"type": "FeatureCollection", "features": [')
+            for i, feature in enumerate(features.iterfeatures()):
+                f.write(", " if i else "")
+                json.dump(feature, f)
+            f.write("]}")
         build_mbtiles(geojson, mbtiles, name)
         if Path(mbtiles).exists() and to_pmtiles(mbtiles, pmtiles):
             upload(pmtiles, f"{r2_prefix}/{name}.pmtiles")
@@ -349,21 +386,26 @@ def build_bloom(master_path, region_code, r2_prefix, to_pmtiles, upload,
 def _spectacles():
     """(name, regions, season, build) for every spectacle, cherry blossom first."""
     import bluebell
+    import foliage
     import heather
     import superbloom
 
     return [("cherry_blossom", frozenset(NORMALS_MACRO), season, build_bloom),
             ("bluebell", bluebell.REGIONS, bluebell.season, bluebell.build_bluebell),
             ("heather", heather.REGIONS, heather.season, heather.build_heather),
-            ("superbloom", superbloom.REGIONS, superbloom.season, superbloom.build_superbloom)]
+            ("superbloom", superbloom.REGIONS, superbloom.season, superbloom.build_superbloom),
+            ("foliage", foliage.REGIONS, foliage.season, foliage.build_foliage)]
 
 
-def build_spectacles(master_path, region_code, r2_prefix, to_pmtiles, upload, *, today=None, spectacles=None):
+def build_spectacles(master_path, region_code, r2_prefix, to_pmtiles, upload, *, today=None, spectacles=None,
+                     land=None):
     """Build every spectacle drawn in this region and in season, from one download.
 
     Each MapLayer script calls this once at its end. The master is downloaded once
     for all of them, and a spectacle that fails is printed while the others still
-    run. Returns {name: that builder's summary, or None if it failed}.
+    run. `land` (the land-cover pieces the region's species layers are drawn on,
+    `raster_val` and geometry) goes to the builders that take it. Returns {name: that
+    builder's summary, or None if it failed}.
     """
     import traceback
 
@@ -378,7 +420,8 @@ def build_spectacles(master_path, region_code, r2_prefix, to_pmtiles, upload, *,
     try:
         for name, build in due:
             try:
-                out[name] = build(local, region_code, r2_prefix, to_pmtiles, upload, today=today)
+                extra = {"land": land} if "land" in inspect.signature(build).parameters else {}
+                out[name] = build(local, region_code, r2_prefix, to_pmtiles, upload, today=today, **extra)
             except Exception:
                 traceback.print_exc()
                 out[name] = None

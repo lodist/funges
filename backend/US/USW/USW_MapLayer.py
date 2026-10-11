@@ -528,6 +528,8 @@ gdf_full = gdf_full[~gdf_full['geometry'].isnull()]
 
 # Keep geometry + score columns; gdf_full is reused below only for CRS and bounds.
 score_columns = [col for col in gdf_full.columns if col.endswith('_score')]
+# Each piece's land cover, for the spectacles at the end (fall foliage colours the woods).
+land = gdf_full[['raster_val', 'geometry']]
 gdf_full = gdf_full[['geometry', 'tri_id'] + score_columns]
 
 
@@ -637,7 +639,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
 # failure here is printed and the run carries on.
 try:
     from bloom import build_spectacles
-    build_spectacles(FILE_PATH, region_code, "USA/USW", convert_mbtiles_to_pmtiles, upload_mbtiles_to_r2)
+    build_spectacles(FILE_PATH, region_code, "USA/USW", convert_mbtiles_to_pmtiles, upload_mbtiles_to_r2,
+                     land=land)
 except Exception:
     import traceback
     traceback.print_exc()

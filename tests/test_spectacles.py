@@ -10,6 +10,7 @@ from shapely.geometry import box
 
 import bloom
 import bluebell
+import foliage
 import heather
 import superbloom
 
@@ -201,6 +202,51 @@ def test_bands_fill_a_hole_in_the_lattice_but_not_past_its_edge():
     assert np.allclose(out.total_bounds, [7.75, 49.75, 8.25, 50.25])
 
 
+# --- fall foliage -----------------------------------------------------------------
+
+def test_foliage_season_runs_september_to_november():
+    assert foliage.season(date(2026, 9, 1)) == (date(2026, 7, 1), date(2026, 12, 31))
+    assert foliage.season(date(2026, 8, 31)) is None and foliage.season(date(2026, 12, 1)) is None
+
+
+def test_foliage_counts_cooling_from_15_august_with_a_requirement_per_row():
+    # 13 °C adds 20 a day from 15 August (index 45): 1,031 is reached on its 52nd day
+    # (5 October), the aspens' 897 on its 45th.
+    t = np.full((2, 184), 13.0)
+    peak = foliage.peak_index(t, np.array([foliage.REQUIREMENT, foliage.ASPEN_REQUIREMENT]))
+    assert list(peak) == [foliage.START + 51, foliage.START + 44]
+    t[0, : foliage.START] = -20.0  # cold before 15 August does not count
+    assert foliage.peak_index(t)[0] == foliage.START + 51
+
+
+def test_sample_colours_each_piece_by_the_forecast_at_its_middle():
+    pieces = gpd.GeoDataFrame(geometry=[box(7.99, 49.99, 8.01, 50.01), box(8.09, 49.99, 8.11, 50.01),
+                                        box(20.0, 60.0, 20.1, 60.1)], crs="EPSG:4326")
+    out = bloom._sample(np.array([500, 500]), np.array([80, 81]), {"peak": np.array([100.0, 110.0])}, pieces)
+    assert list(out.peak) == [100, 110]  # each cell's own value; the piece far from any cell is dropped
+
+
+def test_build_foliage_colours_woods_only_and_the_aspen_zone_in_the_west(tmp_path):
+    today = date(2026, 10, 1)
+    _master(tmp_path / "m.parquet", date(2026, 7, 1), today + timedelta(days=6),
+            {(40.0, -80.0): 13.0, (40.0, -105.0): 13.0})
+    land = gpd.GeoDataFrame({"raster_val": [41, 42, 43]},
+                            geometry=[box(-80.04, 39.96, -79.96, 40.04), box(-80.04, 40.0, -79.96, 40.04),
+                                      box(-105.04, 39.96, -104.96, 40.04)], crs="EPSG:4326")
+    uploads, layers, build_mbtiles, to_pmtiles, upload = _capture()
+    normals = _normals(13.0)
+    normals["lat"], normals["lon"] = np.repeat([39.5, 40.0, 40.5, 41.0], 4), np.tile([-105.0, -104.375, -80.0, -79.375], 4)
+    out = foliage.build_foliage(tmp_path / "m.parquet", "use", "USA/USE", to_pmtiles, upload, land=land,
+                                build_mbtiles=build_mbtiles, today=today, normals=normals)
+    assert set(uploads) == {"USA/USE/use_foliage.pmtiles"} and layers[0][1] == "use_foliage"
+    # The eastern deciduous piece only: the evergreen piece is not a wood here, and the
+    # western one lies at 100 m, below the aspen zone.
+    [feature] = layers[0][0]["features"]
+    assert feature["properties"] == {"peak": (date(2026, 10, 5) - bloom.EPOCH).days}
+    assert out["pieces"] == 1
+    assert foliage.build_foliage(tmp_path / "m.parquet", "use", "USA/USE", to_pmtiles, upload, today=today) is None
+
+
 def test_every_spectacle_is_registered():
     names = [name for name, *_ in bloom._spectacles()]
-    assert names == ["cherry_blossom", "bluebell", "heather", "superbloom"]
+    assert names == ["cherry_blossom", "bluebell", "heather", "superbloom", "foliage"]

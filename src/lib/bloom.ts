@@ -3,12 +3,12 @@ import type { TFunction } from 'i18next';
 
 /**
  * The spectacle layers (roadmap #272 step 5): cherry blossom, bluebell woods,
- * heather in bloom and the desert superbloom. Each is picked like a species and
- * clicked like one, but it is not a catalog species: no page, no photo ID, no
- * score. Their tiles carry `peak`, the predicted peak day as days since
- * 1970-01-01 (in quarter days, so colours blend between cells), built in season
- * by backend/bloom.py, bluebell.py, heather.py and superbloom.py; the
- * superbloom's carry its strength, `level`, as well.
+ * heather in bloom, the desert superbloom and fall foliage. Each is picked like a
+ * species and clicked like one, but it is not a catalog species: no page, no
+ * photo ID, no score. Their tiles carry `peak`, the predicted peak day as days
+ * since 1970-01-01 (in quarter days, so colours blend between cells), built in
+ * season by backend/bloom.py, bluebell.py, heather.py, superbloom.py and
+ * foliage.py; the superbloom's carry its strength, `level`, as well.
  */
 export const BLOOM_CODE = 'cherry_blossom';
 export const BLOOM_SCIENTIFIC_NAME = 'Prunus serrulata';
@@ -103,7 +103,8 @@ const peakRamp = (
   soon: readonly [string, string, string],
   peak: string,
   done: string,
-  after: string
+  after: string,
+  idle: string = BLOOM_IDLE
 ): readonly (readonly [number, string])[] => [
   [-STALE_DAYS - 1, done.replace(/[\d.]+\)$/, '0)')],
   [-STALE_DAYS, done],
@@ -114,7 +115,7 @@ const peakRamp = (
   [7, soon[0]],
   [14, soon[1]],
   [SOON_DAYS, soon[2]],
-  [SOON_DAYS + 7, BLOOM_IDLE],
+  [SOON_DAYS + 7, idle],
 ];
 
 // Cherry pink, then leaf green as the petals drop.
@@ -207,7 +208,10 @@ export interface Spectacle {
   code: string;
   scientificName: string;
   emoji: string;
-  /** Where its strings sit in map.json: `<keys>.name`, `<keys>.offSeason`. */
+  /**
+   * Where its strings sit in map.json: `<keys>.name`, `<keys>.offSeason`, and
+   * `<keys>.legend` if its peak is not a bloom ("Peak colour").
+   */
   keys: string;
   /** Its tileset `<region>_<tiles>.pmtiles` on R2, and the tiles' layer name. */
   tiles: string;
@@ -262,6 +266,32 @@ export const BLUEBELL: Spectacle = {
     soon: '#b6aee8',
     peak: '#4a3f9f',
     past: '#9cc494',
+    stale: BLOOM_IDLE,
+  },
+};
+
+// Summer green, through gold and orange to a red peak, then russet as the leaves
+// fall and a fading grey-brown once they are down.
+export const FOLIAGE: Spectacle = {
+  code: 'foliage',
+  scientificName: 'Acer, Betula, Populus',
+  emoji: '🍁',
+  keys: 'foliage',
+  tiles: 'foliage',
+  regions: ['use', 'usw'],
+  months: [8, 9, 10],
+  ramp: peakRamp(
+    ['#E3A21A', '#B5B33F', '#8EA04A'],
+    '#D6451B',
+    'rgba(124, 110, 98, 0.45)',
+    '#8E4A2C',
+    'rgba(110, 139, 78, 0.6)'
+  ),
+  statusColor: {
+    later: '#6E8B4E',
+    soon: '#E3A21A',
+    peak: '#D6451B',
+    past: '#8E4A2C',
     stale: BLOOM_IDLE,
   },
 };
@@ -325,6 +355,7 @@ export const SPECTACLES: readonly Spectacle[] = [
   BLUEBELL,
   HEATHER,
   SUPERBLOOM,
+  FOLIAGE,
 ];
 
 export const spectacleByCode = (
