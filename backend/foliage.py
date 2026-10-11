@@ -95,8 +95,10 @@ def build_foliage(master_path, region_code, r2_prefix, to_pmtiles, upload,
                                  woods, {"peak": bloom.PEAK_STEP})
         west = features.geometry.representative_point().x.to_numpy() < ASPEN_LON
         features = features[~west | (features["elev"].to_numpy() >= ASPEN_MIN_ELEV)].drop(columns="elev")
-        features["geometry"] = features.geometry.simplify(SIMPLIFY, preserve_topology=True)
-        features = features[features.is_valid & ~features.is_empty]
+        # Simplified multi-part pieces often cross themselves; buffer(0) mends them, where
+        # dropping them, as the forecast does, lost three in four woods.
+        features["geometry"] = features.geometry.simplify(SIMPLIFY, preserve_topology=True).buffer(0)
+        features = features[~features.is_empty]
     print(f"Foliage {region_code}: {int(drawn.sum())} of {len(peak)} cells drawn, "
           f"{len(features)} of {len(woods)} wood pieces coloured")
     pieces = bloom.publish(features, region_code, "foliage", r2_prefix, to_pmtiles, upload, build_mbtiles)
