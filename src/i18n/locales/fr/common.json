@@ -73,7 +73,11 @@
       "heading": "Prêt à explorer ?",
       "cta": "Ouvrir la carte"
     },
-    "coverage": "Les prévisions couvrent actuellement le nord et le sud de l'Europe ainsi que l'est et l'ouest des États-Unis."
+    "coverage": "Les prévisions couvrent actuellement le nord et le sud de l'Europe ainsi que l'est et l'ouest des États-Unis.",
+    "coverHeadline": "Le bon pousse à l’état sauvage.",
+    "specimenPicker": "Choisir un spécimen",
+    "exploreFeatures": "Explorer Funges",
+    "mapPreview": "Exemple de carte de prévision · conditions non actualisées"
   },
   "worthForagingNow": {
     "title": "Qu'est-ce qui vaut le coup d'aller cueillir maintenant ?",

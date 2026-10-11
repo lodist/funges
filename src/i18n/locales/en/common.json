@@ -73,7 +73,11 @@
       "heading": "Ready to explore?",
       "cta": "Open the map"
     },
-    "coverage": "Forecasts currently cover Northern and Southern Europe and the eastern and western United States."
+    "coverage": "Forecasts currently cover Northern and Southern Europe and the eastern and western United States.",
+    "coverHeadline": "Good things grow wild.",
+    "specimenPicker": "Choose a specimen",
+    "exploreFeatures": "Explore Funges",
+    "mapPreview": "Example forecast map · not live conditions"
   },
   "worthForagingNow": {
     "title": "Worth Foraging Now",

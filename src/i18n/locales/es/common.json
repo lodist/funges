@@ -73,7 +73,11 @@
       "heading": "¿Listo para explorar?",
       "cta": "Abrir el mapa"
     },
-    "coverage": "Las previsiones cubren actualmente el norte y el sur de Europa y el este y el oeste de Estados Unidos."
+    "coverage": "Las previsiones cubren actualmente el norte y el sur de Europa y el este y el oeste de Estados Unidos.",
+    "coverHeadline": "Lo bueno crece silvestre.",
+    "specimenPicker": "Elige una especie",
+    "exploreFeatures": "Explora Funges",
+    "mapPreview": "Ejemplo de mapa de previsión · no son condiciones actuales"
   },
   "worthForagingNow": {
     "title": "Qué merece la pena recolectar ahora",

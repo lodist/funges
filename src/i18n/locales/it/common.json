@@ -33,7 +33,11 @@
       "heading": "Pronto a esplorare?",
       "cta": "Apri la mappa"
     },
-    "coverage": "Le previsioni coprono attualmente il Nord e il Sud Europa e l'Est e l'Ovest degli Stati Uniti."
+    "coverage": "Le previsioni coprono attualmente il Nord e il Sud Europa e l'Est e l'Ovest degli Stati Uniti.",
+    "coverHeadline": "Il buono cresce spontaneo.",
+    "specimenPicker": "Scegli una specie",
+    "exploreFeatures": "Esplora Funges",
+    "mapPreview": "Esempio di mappa delle previsioni · non sono condizioni attuali"
   },
   "worthForagingNow": {
     "title": "Cosa vale la pena raccogliere adesso?",

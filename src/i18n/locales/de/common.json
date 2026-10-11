@@ -73,7 +73,11 @@
       "heading": "Bereit zum Erkunden?",
       "cta": "Karte öffnen"
     },
-    "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab."
+    "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab.",
+    "coverHeadline": "Das Gute wächst wild.",
+    "specimenPicker": "Ein Fundstück auswählen",
+    "exploreFeatures": "Funges entdecken",
+    "mapPreview": "Beispiel einer Vorhersagekarte · keine aktuellen Bedingungen"
   },
   "worthForagingNow": {
     "title": "Was lohnt sich jetzt zu sammeln?",

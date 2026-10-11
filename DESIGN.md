@@ -844,6 +844,14 @@ Three durations and one curve, and everything references them: `--transition-dur
 
 **The Weight-Not-Movement Rule.** Interaction feedback changes shadow and background. It does not scale, translate, or rotate chrome. Two transforms are sanctioned, and both report state rather than feedback: the mobile nav's active-item scale, and a disclosure chevron's rotation, which the Collapsible owns rather than each caller. A collapsible's height animation is not a transform and is exempt.
 
+### Landing field-guide cover (scoped extension)
+
+`src/pages/LandingPage.tsx` extends The Trailhead for the public entry surface. It retains Space Grotesk, Public Sans, the shared Logo and Button, and theme-aware `--primary-text`. Its larger display type is local: 56–96px on desktop and 52–80px below 768px, with 40–72px section headings. Introductory copy is 18px (16px on mobile); captions, coverage and safety copy use 14px. The app's global type ramp is unchanged.
+
+Botanical imagery sits on source-matched paper (`--plate-paper: #fdfbdf`), confined to illustration plates and specimen selectors. This is an image mount, not a new theme neutral. The hero plate has an arched top; the identification illustration and recipe photograph retain simple rectangular framing. Broad sections remain flat, while actions keep the shared pill treatment. The forecast section pairs `--happy-900` with `--happy-50` and identifies its map image as a static preview.
+
+The page uses a fluid gutter, paired text/image columns that stack below 768px, and a three-link feature index. Its specimen selector has 44px targets, pressed state and a live name announcement. Only the illustration enters with a brief transform using the existing slow duration; reduced-motion disables that animation. This does not extend transform feedback to controls. Asset provenance and this page's narrative sequence are recorded in `.impeccable/surfaces/src-pages-landingpage-tsx.md`; no global palette, elevation or component token is introduced.
+
 ## Do's and Don'ts
 
 ### Do:
