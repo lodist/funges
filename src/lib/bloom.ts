@@ -2,13 +2,13 @@ import type { ExpressionSpecification } from 'maplibre-gl';
 import type { TFunction } from 'i18next';
 
 /**
- * The spectacle layers (roadmap #272 step 5): cherry blossom, bluebell woods and
- * the desert superbloom. Each is picked like a species and clicked like one, but
- * it is not a catalog species: no page, no photo ID, no score. Their tiles carry
- * `peak`, the predicted peak day as days since 1970-01-01 (in quarter days, so
- * colours blend between cells), built in season by
- * backend/bloom.py, bluebell.py and superbloom.py; the superbloom's carry its
- * strength, `level`, as well.
+ * The spectacle layers (roadmap #272 step 5): cherry blossom, bluebell woods,
+ * heather in bloom and the desert superbloom. Each is picked like a species and
+ * clicked like one, but it is not a catalog species: no page, no photo ID, no
+ * score. Their tiles carry `peak`, the predicted peak day as days since
+ * 1970-01-01 (in quarter days, so colours blend between cells), built in season
+ * by backend/bloom.py, bluebell.py, heather.py and superbloom.py; the
+ * superbloom's carry its strength, `level`, as well.
  */
 export const BLOOM_CODE = 'cherry_blossom';
 export const BLOOM_SCIENTIFIC_NAME = 'Prunus serrulata';
@@ -266,6 +266,30 @@ export const BLUEBELL: Spectacle = {
   },
 };
 
+// Heather purple deepening to the peak, then the rust of spent ling.
+export const HEATHER: Spectacle = {
+  code: 'heather',
+  scientificName: 'Calluna vulgaris',
+  emoji: '💜',
+  keys: 'heather',
+  tiles: 'heather',
+  regions: ['ne', 'se'],
+  months: [6, 7, 8],
+  ramp: peakRamp(
+    ['#b0549c', '#d49ac6', '#f0dcea'],
+    '#7b2d6e',
+    'rgba(180, 138, 106, 0.45)',
+    '#b48a6a'
+  ),
+  statusColor: {
+    later: BLOOM_IDLE,
+    soon: '#d49ac6',
+    peak: '#7b2d6e',
+    past: '#b48a6a',
+    stale: BLOOM_IDLE,
+  },
+};
+
 // Poppy orange deepening to the peak, then a pale sand that steps back; a winter too dry for a
 // bloom is grey sand, and the weaker a bloom the fainter it is drawn.
 export const SUPERBLOOM: Spectacle = {
@@ -299,6 +323,7 @@ export const SUPERBLOOM: Spectacle = {
 export const SPECTACLES: readonly Spectacle[] = [
   CHERRY_BLOSSOM,
   BLUEBELL,
+  HEATHER,
   SUPERBLOOM,
 ];
 

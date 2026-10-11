@@ -137,6 +137,10 @@
     "name": "Hasenglöckchen-Wälder",
     "offSeason": "Die Hasenglöckchen-Prognose beginnt am 1. März."
   },
+  "heather": {
+    "name": "Heideblüte",
+    "offSeason": "Die Heideblüten-Prognose beginnt am 1. Juli."
+  },
   "superbloom": {
     "name": "Wüstenblüte",
     "offSeason": "Die Wüstenblüten-Prognose beginnt am 1. Januar.",

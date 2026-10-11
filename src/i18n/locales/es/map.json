@@ -137,6 +137,10 @@
     "name": "Bosques de jacintos",
     "offSeason": "La previsión de los jacintos silvestres empieza el 1 de marzo."
   },
+  "heather": {
+    "name": "Brezo en flor",
+    "offSeason": "La previsión de la floración del brezo empieza el 1 de julio."
+  },
   "superbloom": {
     "name": "Floración del desierto",
     "offSeason": "La previsión de la floración del desierto empieza el 1 de enero.",
