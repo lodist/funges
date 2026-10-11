@@ -1124,6 +1124,33 @@ def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, f
             "normals": normals}
 
 
+HABITAT_PATH = Path(__file__).resolve().parent / "generated" / "habitat_factor.json"
+
+
+def attach_habitat(species_params, region, path=HABITAT_PATH, fetch=None):
+    """The learned habitat factor (tools/fit_habitat.py) for the region's species that ship
+    one: per location, on R2 and checked against the sha256 recorded here. A file that cannot
+    be fetched or fails its checksum leaves the scores without it."""
+    if not Path(path).exists():
+        return
+    entry = json.loads(Path(path).read_text(encoding="utf-8")).get("regions", {}).get(region)
+    if not entry:
+        return
+    try:
+        data = (fetch or r2_fetch)(entry["file"])
+        if hashlib.sha256(data).hexdigest() != entry["sha256"]:
+            raise ValueError("checksum differs")
+        with np.load(BytesIO(data)) as z:
+            ids, species, factor = z["ids"], [str(s) for s in z["species"]], z["factor"]
+    except Exception as error:
+        print(f"[warn] habitat factor not loaded ({error}); scores go without it")
+        return
+    index = pd.Index(ids)
+    for column, specie in enumerate(species):
+        if specie in species_params:
+            species_params[specie]["habitat"] = {"index": index, "factor": factor[:, column] / 255.0}
+
+
 def calculate_mushroom_score(df, species_params, zone_curves):
     if 'TotalPrecipitation_mm' not in df.columns:
         df['TotalPrecipitation_mm'] = np.nan
@@ -1343,10 +1370,13 @@ def _load_species_and_curves(config):
 
     attach_fruiting_models(species_params, config.region)
     attach_fruiting_gbm(species_params, config.region, datetime.now())
+    attach_habitat(species_params, config.region)
     _fitted = sorted(s for s, p in species_params.items() if "fruiting" in p)
     print(f"Fitted fruiting model for {len(_fitted)} species: {', '.join(_fitted) or 'none'}")
     _gbm = sorted(s for s, p in species_params.items() if "fruiting_gbm" in p)
     print(f"Fruiting GBM for {len(_gbm)} species: {', '.join(_gbm) or 'none'}")
+    _habitat = sorted(s for s, p in species_params.items() if "habitat" in p)
+    print(f"Habitat factor for {len(_habitat)} species: {', '.join(_habitat) or 'none'}")
     return species_params, zone_curves
 
 

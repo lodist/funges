@@ -38,13 +38,17 @@ def region_config(region):
 
 
 def host_shares(cover, lats, lons) -> dict:
+    """Tree shares, and whether the tree map reaches the place at all. Where it does not
+    (94% of Turkey, North Africa, the Canaries) the shares are unknown, not zero: read as
+    zero they told the model "no oak, no beech" in Turkey's Black Sea forests."""
     i = np.floor((lats - cover["lat0"]) / cover["step"]).astype(int)
     j = np.floor((lons - cover["lon0"]) / cover["step"]).astype(int)
-    out = {}
+    ok = (i >= 0) & (i < cover["mapped"].shape[0]) & (j >= 0) & (j < cover["mapped"].shape[1])
+    i, j = np.clip(i, 0, cover["mapped"].shape[0] - 1), np.clip(j, 0, cover["mapped"].shape[1] - 1)
+    mapped = ok & cover["mapped"][i, j]
+    out = {"tree_map": mapped}
     for name, grid in cover["classes"].items():
-        ok = (i >= 0) & (i < grid.shape[0]) & (j >= 0) & (j < grid.shape[1])
-        out[f"tree_{name}"] = np.where(ok, grid[np.clip(i, 0, grid.shape[0] - 1), np.clip(j, 0, grid.shape[1] - 1)]
-                                       / COVER_SCALE, np.nan)
+        out[f"tree_{name}"] = np.where(mapped, grid[i, j] / COVER_SCALE, np.nan)
     return out
 
 
