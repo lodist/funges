@@ -219,6 +219,14 @@ def test_foliage_counts_cooling_from_15_august_with_a_requirement_per_row():
     assert foliage.peak_index(t)[0] == foliage.START + 51
 
 
+def test_foliage_requirement_by_place():
+    lon = np.array([-80.0, -105.0, -105.0, -120.0, -120.0])
+    elev = np.array([2000.0, 2500.0, 800.0, 300.0, np.nan])
+    assert list(foliage.requirement_of(lon, elev)) == [
+        foliage.REQUIREMENT, foliage.ASPEN_REQUIREMENT, foliage.REQUIREMENT,
+        foliage.PACIFIC_REQUIREMENT, foliage.PACIFIC_REQUIREMENT]
+
+
 def test_sample_colours_each_piece_by_the_forecast_at_its_middle():
     pieces = gpd.GeoDataFrame(geometry=[box(7.99, 49.99, 8.01, 50.01), box(8.09, 49.99, 8.11, 50.01),
                                         box(20.0, 60.0, 20.1, 60.1)], crs="EPSG:4326")
@@ -226,7 +234,7 @@ def test_sample_colours_each_piece_by_the_forecast_at_its_middle():
     assert list(out.peak) == [100, 110]  # each cell's own value; the piece far from any cell is dropped
 
 
-def test_build_foliage_colours_woods_only_and_the_aspen_zone_in_the_west(tmp_path):
+def test_build_foliage_colours_the_woods_only(tmp_path):
     today = date(2026, 10, 1)
     _master(tmp_path / "m.parquet", date(2026, 7, 1), today + timedelta(days=6),
             {(40.0, -80.0): 13.0, (40.0, -105.0): 13.0})
@@ -239,11 +247,10 @@ def test_build_foliage_colours_woods_only_and_the_aspen_zone_in_the_west(tmp_pat
     out = foliage.build_foliage(tmp_path / "m.parquet", "use", "USA/USE", to_pmtiles, upload, land=land,
                                 build_mbtiles=build_mbtiles, today=today, normals=normals)
     assert set(uploads) == {"USA/USE/use_foliage.pmtiles"} and layers[0][1] == "use_foliage"
-    # The eastern deciduous piece only: the evergreen piece is not a wood here, and the
-    # western one lies at 100 m, below the aspen zone.
-    [feature] = layers[0][0]["features"]
-    assert feature["properties"] == {"peak": (date(2026, 10, 5) - bloom.EPOCH).days}
-    assert out["pieces"] == 1
+    # The deciduous and mixed pieces, not the evergreen one. The western one lies at 100 m
+    # in the interior, which keeps the eastern requirement: both peak on 5 October.
+    peaks = [f["properties"]["peak"] for f in layers[0][0]["features"]]
+    assert peaks == [(date(2026, 10, 5) - bloom.EPOCH).days] * 2 and out["pieces"] == 2
     assert foliage.build_foliage(tmp_path / "m.parquet", "use", "USA/USE", to_pmtiles, upload, today=today) is None
 
 

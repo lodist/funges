@@ -270,8 +270,9 @@ export const BLUEBELL: Spectacle = {
   },
 };
 
-// Summer green, through gold and orange to a red peak, then russet as the leaves
-// fall and a fading grey-brown once they are down.
+// A fresh summer green, clear on the basemap's darker forests, through yellow and
+// orange to a red peak, then russet as the leaves fall and a fading grey-brown once
+// they are down.
 export const FOLIAGE: Spectacle = {
   code: 'foliage',
   scientificName: 'Acer, Betula, Populus',
@@ -281,15 +282,15 @@ export const FOLIAGE: Spectacle = {
   regions: ['use', 'usw'],
   months: [8, 9, 10],
   ramp: peakRamp(
-    ['#E3A21A', '#B5B33F', '#8EA04A'],
+    ['#EE9A26', '#E2C23A', '#A8C24A'],
     '#D6451B',
     'rgba(124, 110, 98, 0.45)',
     '#8E4A2C',
-    'rgba(110, 139, 78, 0.6)'
+    '#5FAF4A'
   ),
   statusColor: {
-    later: '#6E8B4E',
-    soon: '#E3A21A',
+    later: '#5FAF4A',
+    soon: '#E2C23A',
     peak: '#D6451B',
     past: '#8E4A2C',
     stale: BLOOM_IDLE,

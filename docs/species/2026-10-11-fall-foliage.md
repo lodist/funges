@@ -2,7 +2,7 @@
 
 Date: 2026-10-11 (roadmap #272, step 5)
 
-The fifth "spectacle" layer, after [cherry blossom](2026-09-30-cherry-blossom.md), [bluebell woods](2026-10-10-bluebell.md), the [desert superbloom](2026-10-10-desert-superbloom.md) and [heather](2026-10-11-heather.md). It forecasts when the US hardwood forests and the Rocky Mountain aspens reach peak autumn colour. This record is its design and the evidence behind `backend/foliage.py`'s constants.
+The fifth "spectacle" layer, after [cherry blossom](2026-09-30-cherry-blossom.md), [bluebell woods](2026-10-10-bluebell.md), the [desert superbloom](2026-10-10-desert-superbloom.md) and [heather](2026-10-11-heather.md). It forecasts when the US hardwood forests, the Rocky Mountain aspens and the Pacific lowlands' oaks and maples reach peak autumn colour. This record is its design and the evidence behind `backend/foliage.py`'s constants.
 
 **The values below are agent-derived and wait on Loris's approval.** They come from iNaturalist records, the PhenoCam network, USA-NPN and NASA POWER temperatures; no forester has reviewed them. `backend/tools/calibrate_foliage.py` reproduces every table (`--grid` for the parameter search).
 
@@ -18,7 +18,7 @@ The woods are the species layers' pieces, tiled as the forecast is:
 
 ## The model
 
-Cold degree-days: from **15 August** (`START`, index 45 of a season from 1 July), each day adds how far its mean falls below **33 °C** (`BASE`); the peak is the day the sum reaches **1,031 °C·days** in the east (`REQUIREMENT`), **897** for the aspens west of 102° W (`ASPEN_REQUIREMENT`).
+Cold degree-days: from **15 August** (`START`, index 45 of a season from 1 July), each day adds how far its mean falls below **33 °C** (`BASE`); the peak is the day the sum reaches **1,031 °C·days** in the east (`REQUIREMENT`). West of 102° W the requirement depends on the cell (`requirement_of`): **897** from 1,500 m up, the aspens (`ASPEN_REQUIREMENT`); **1,247** lower down west of 116° W, the Pacific lowlands (`PACIFIC_REQUIREMENT`); and the eastern one in the interior lowlands.
 
 - **33 °C is not a physiological threshold.** At that base nearly every day counts, so the sum is a cooling clock: about 2.5–3 days later per 1 °C warmer. The grid has a flat ridge from (1 August, 36 °C) to (1 September, 27–30 °C), and every sensitivity variant lands on it.
 - **A photoperiod term adds nothing:** the day-length variant totals 25.20 against plain cold degree-days' 25.19; Delpierre's model 25.59; a photoperiod start 26.37.
@@ -46,7 +46,10 @@ Mean absolute error in days:
 
 - **Year to year:** r 0.12 on iNaturalist and 0.31 at PhenoCam.
 - **The aspens** come out +4.9 days late on the eastern requirement in every variant (+3 to +9.5), so they get their own; it rests on 26 cell-years from two autumns.
+- **The western lowlands** (108 cell-years below 1,500 m in 43 cells, mostly valley oak, bigleaf maple, Oregon white oak and Fremont cottonwood): on the eastern requirement 13.9 days off and 9.4 early, 99 of them on the Pacific side, 10 days early there; the interior's 9 run 2.8 early. Their own requirement (1,247) scores 11.5 leave one year out against 11.8 for one fixed date: geography, without the bias.
 - **WeatherAPI against POWER,** 1 September – 7 October 2026: +0.07 °C at 200 eastern cells (peaks +0.2 days), −0.26 °C at 19 aspen cells (−0.7 days). No correction.
+
+**Colours:** a fresh summer green more than three weeks out (the basemap's forests are darker, so it shows), yellow and orange as the peak nears, red at it, then russet and a fading grey-brown, like the Old Farmer's Almanac's scale.
 
 ## The forecast
 
@@ -59,7 +62,7 @@ Mean absolute error in days:
 It is drawn on the land the species layers are drawn on. Each US MapLayer script keeps its pieces' land cover (the triangles clipped to the wilderness polygons, with their dominant NLCD class) and hands it to `build_spectacles`:
 
 - **The woods:** pieces of deciduous and mixed forest (NLCD 41, 43). Evergreen (42) would add little (sightings within 300 m 32.9% → 36.5%) and paint the conifers.
-- **West of 102° W, only from 1,500 m up** (the cell's mean elevation), the aspen zone; that drops nearly all the Pacific lowland woods.
+- **The whole West** too: the aspen zone from 1,500 m (the cell's mean elevation), the Pacific lowlands and the interior, each on its requirement.
 - **Each piece takes the forecast at its middle** (`bloom._sample`), on the same interpolation the bands use, rather than being cut into bands: the ground is too fine for that (419,000 polygons, 160 MB, on the wilderness polygons).
 - **Simplified at 0.01° and tiled as the species forecast is** (z6, -d9, simplification 4: 3.7 MB for USE against 71 MB at the other spectacles' z10), so they look alike; the simplified multi-part pieces are mended with `buffer(0)`, which keeps 96% of the woods' area where dropping invalid ones, as the forecast does, lost three quarters.
 - **Sightings:** of the eastern coloured-leaf records, 13.4% lie in a wood, 32.9% within 300 m and 57.9% within 1 km.
