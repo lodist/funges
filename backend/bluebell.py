@@ -54,6 +54,6 @@ def build_bluebell(master_path, region_code, r2_prefix, to_pmtiles, upload,
     if ground is None and season(today) is not None:
         ground = bloom.load_ground("bluebell_woods", region_code)
     return bloom.build_peaks(master_path, region_code, r2_prefix, to_pmtiles, upload, label="Bluebell",
-                             tiles="bluebell", season=season, peak_index=peak_index,
+                             tiles="bluebell", season=season, peak_index=lambda t, _: peak_index(t),
                              latest_normal_peak=LATEST_NORMAL_PEAK, ground=ground, build_mbtiles=build_mbtiles,
                              today=today, normals=normals)

@@ -4,6 +4,8 @@ import {
   BLOOM_IDLE,
   BLOOM_RAMP,
   BLUEBELL,
+  FOLIAGE,
+  HEATHER,
   SUPERBLOOM,
   bloomFillColor,
   bloomFillOpacity,
@@ -162,6 +164,15 @@ describe('bluebell and superbloom', () => {
     expect(bloomInSeason(new Date(2027, 1, 28), BLUEBELL)).toBe(false);
     expect(bloomInSeason(new Date(2027, 0, 1), SUPERBLOOM)).toBe(true);
     expect(bloomInSeason(new Date(2027, 5, 1), SUPERBLOOM)).toBe(false);
+    expect(bloomInSeason(new Date(2027, 6, 1), HEATHER)).toBe(true);
+    expect(bloomInSeason(new Date(2027, 9, 1), HEATHER)).toBe(false);
+    expect(spectacleOfLayer('heather_ne')).toBe(HEATHER);
+    expect(bloomInSeason(new Date(2026, 8, 1), FOLIAGE)).toBe(true);
+    expect(bloomInSeason(new Date(2026, 11, 1), FOLIAGE)).toBe(false);
+    expect(spectacleOfLayer('foliage_usw')).toBe(FOLIAGE);
+    expect(bloomTilesUrl('ne', FOLIAGE)).toBe(
+      'pmtiles://https://data.fung.es/EU/NE/ne_foliage.pmtiles'
+    );
   });
 
   it('draws a superbloom cell without a bloom in sand, fainter the weaker it is', () => {
