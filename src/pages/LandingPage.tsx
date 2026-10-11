@@ -14,7 +14,6 @@ const base = import.meta.env.BASE_URL;
  */
 export default function LandingPage() {
   const { t } = useTranslation('common');
-  const { t: tSpecies } = useTranslation('species');
 
   return (
     <>
@@ -70,7 +69,12 @@ export default function LandingPage() {
           <div className={styles.mapFigure}>
             <Link
               to='/map'
-              search={{ species: 'chant', lat: 47.38, lng: 10.21, zoom: 8.38 }}
+              search={{
+                species: 'hedgehog_mushroom',
+                lat: 47.38,
+                lng: 10.21,
+                zoom: 8.7,
+              }}
               className={`${styles.mapLink} focus-ring`}
               aria-label={t('home.cta')}
             >
@@ -79,7 +83,7 @@ export default function LandingPage() {
                 alt=''
                 loading='lazy'
                 width='1280'
-                height='860'
+                height='528'
               />
               <span className={styles.mapAction}>
                 {t('home.cta')}
@@ -146,7 +150,7 @@ export default function LandingPage() {
                 {t('home.identify.link')}
                 <ArrowUpRight aria-hidden='true' className='size-5' />
               </Link>
-              <p className={styles.safety}>{tSpecies('safetyWarning')}</p>
+              <p className={styles.safety}>{t('home.identify.safety')}</p>
             </div>
           </section>
           <section className={styles.feature} aria-labelledby='cook-title'>

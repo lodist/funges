@@ -48,35 +48,36 @@
   "home": {
     "title": "Funges",
     "headline": "Explore o que cresce à sua volta",
-    "description": "Previsões de recolha, espetáculos naturais, identificação privada por fotografia e receitas silvestres.",
+    "description": "Previsões de recolha, espetáculos naturais, identificação privada por fotografia e receitas silvestres",
     "cta": "Explorar o mapa",
     "ctaSecondary": "O que está na época",
     "forecast": {
       "label": "Previsão",
       "heading": "Vale a pena sair hoje?",
-      "body": "Descobre como a estação e o tempo influenciam as tuas possibilidades. Compara as zonas próximas antes de sair.",
+      "body": "Descobre como a estação e o tempo influenciam as tuas possibilidades; Compara as zonas próximas antes de sair",
       "link": "Abrir a previsão"
     },
     "identify": {
       "label": "Identificar",
       "heading": "O que encontrou?",
-      "body": "Tira uma foto e explora as correspondências possíveis. A identificação acontece no teu dispositivo e as tuas fotos continuam privadas.",
-      "link": "Experimentar a identificação"
+      "body": "Tira uma foto e explora as correspondências possíveis; A identificação acontece no teu dispositivo e as tuas fotos continuam privadas",
+      "link": "Experimentar a identificação",
+      "safety": "Sempre consulte um especialista antes de consumir qualquer alimento silvestre; Esta informação é apenas para fins educativos"
     },
     "cook": {
       "label": "Cozinhar",
       "heading": "Da natureza para a mesa",
-      "body": "Encontra receitas para os ingredientes que recolhes, com dicas de preparação e instruções passo a passo.",
+      "body": "Encontra receitas para os ingredientes que recolhes, com dicas de preparação e instruções passo a passo",
       "link": "Ver receitas"
     },
     "closing": {
       "heading": "Pronto para explorar?",
       "cta": "Abrir o mapa"
     },
-    "coverage": "As previsões cobrem atualmente o Norte e o Sul da Europa e o Leste e o Oeste dos Estados Unidos.",
+    "coverage": "As previsões cobrem atualmente o Norte e o Sul da Europa e o Leste e o Oeste dos Estados Unidos",
     "spectacles": {
       "heading": "Espetáculos naturais",
-      "body": "Das cerejeiras em flor e dos bosques de campainhas às folhas de outono. Acompanha as estações e explora as previsões para estes momentos fugazes da natureza.",
+      "body": "Das cerejeiras em flor e dos bosques de campainhas às folhas de outono; Acompanha as estações e explora as previsões para estes momentos fugazes da natureza",
       "link": "Explorar as cores do outono"
     }
   },

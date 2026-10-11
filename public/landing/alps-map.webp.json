@@ -1,5 +1,7 @@
 {
-  "prompt": "Source: actual Fung.es MapLibre map capture matching the user-provided Lake Constance, Liechtenstein and Innsbruck view. Original olive style (funges_style.json), public data.fung.es tiles; Golden Chanterelle overlay; center 10.21E, 47.38N, zoom 8.38. Captured 2026-10-12 at 1280 by 860 for the landing panel. No generated geography or altered scores. Map data: OpenStreetMap contributors; terrain: Mapzen / AWS. Browser range requests proxied through Node solely for local capture; image encoded as WebP quality 78.",
+  "prompt": "Source: actual Fung.es MapLibre map capture matching the user-provided red-to-peach hedgehog mushroom overlay and wide Lake Constance, Liechtenstein and Innsbruck view. Original olive style (funges_style.json), public data.fung.es tiles; hedgehog_mushroom overlay, forecast day 0; center 10.21E, 47.38N, zoom 8.7. Captured 2026-10-12 at 1602 by 660 and resized proportionally to 1280 by 528. No generated geography, changed palette or altered scores. Map data: OpenStreetMap contributors; terrain: Mapzen / AWS. Browser range requests proxied through Node solely for local capture; WebP quality 78.",
   "source": "Fung.es application map",
-  "captureDate": "2026-10-12"
+  "captureDate": "2026-10-12",
+  "species": "hedgehog_mushroom",
+  "forecastDay": 0
 }

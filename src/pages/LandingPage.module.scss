@@ -92,7 +92,9 @@
 }
 .mapFigure {
   position: relative;
-  min-height: 30rem;
+  min-height: 0;
+  aspect-ratio: 1280 / 528;
+  align-self: center;
 }
 .mapLink {
   display: block;
@@ -249,7 +251,7 @@
   }
   .mapFigure {
     min-height: 0;
-    aspect-ratio: 1280 / 860;
+    aspect-ratio: 1280 / 528;
   }
 }
 @media (max-width: 767px) {
@@ -296,7 +298,7 @@
     }
   }
   .mapFigure {
-    aspect-ratio: 1280 / 860;
+    aspect-ratio: 1280 / 528;
   }
   .mapAction {
     top: 1rem;

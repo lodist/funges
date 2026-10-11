@@ -48,35 +48,36 @@
   "home": {
     "title": "Funges",
     "headline": "Entdecke, was um dich herum wächst",
-    "description": "Sammelprognosen, Naturschauspiele, private Fotobestimmung und Wildkostrezepte.",
+    "description": "Sammelprognosen, Naturschauspiele, private Fotobestimmung und Wildkostrezepte",
     "cta": "Karte erkunden",
     "ctaSecondary": "Was gerade Saison hat",
     "forecast": {
       "label": "Prognose",
       "heading": "Lohnt es sich heute rauszugehen?",
-      "body": "Sieh, wie Jahreszeit und Wetter die Fundchancen beeinflussen. Vergleiche Gebiete in deiner Nähe, bevor du losziehst.",
+      "body": "Sieh, wie Jahreszeit und Wetter die Fundchancen beeinflussen; Vergleiche Gebiete in deiner Nähe, bevor du losziehst",
       "link": "Prognose öffnen"
     },
     "identify": {
       "label": "Bestimmen",
       "heading": "Was hast du gefunden?",
-      "body": "Mach ein Foto und entdecke mögliche Treffer. Die Bestimmung läuft auf deinem Gerät, damit deine Fotos privat bleiben.",
-      "link": "Bestimmung ausprobieren"
+      "body": "Mach ein Foto und entdecke mögliche Treffer; Die Bestimmung läuft auf deinem Gerät, damit deine Fotos privat bleiben",
+      "link": "Bestimmung ausprobieren",
+      "safety": "Konsultiere immer eine Expertin oder einen Experten, bevor du Wildpflanzen isst; Diese Informationen dienen nur zu Bildungszwecken"
     },
     "cook": {
       "label": "Kochen",
       "heading": "Die Natur auf deinem Teller",
-      "body": "Entdecke Rezepte für deine gesammelten Zutaten, mit Zubereitungstipps und Schritt-für-Schritt-Anleitungen.",
+      "body": "Entdecke Rezepte für deine gesammelten Zutaten, mit Zubereitungstipps und Schritt-für-Schritt-Anleitungen",
       "link": "Rezepte ansehen"
     },
     "closing": {
       "heading": "Bereit zum Erkunden?",
       "cta": "Karte öffnen"
     },
-    "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab.",
+    "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab",
     "spectacles": {
       "heading": "Schauspiele der Natur",
-      "body": "Von Kirschblüten und Hasenglöckchenwäldern bis zum bunten Herbstlaub. Folge den Jahreszeiten und entdecke Prognosen für die vergängliche Pracht der Natur.",
+      "body": "Von Kirschblüten und Hasenglöckchenwäldern bis zum bunten Herbstlaub; Folge den Jahreszeiten und entdecke Prognosen für die vergängliche Pracht der Natur",
       "link": "Herbstlaub entdecken"
     }
   },
