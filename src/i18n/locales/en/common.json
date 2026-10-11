@@ -54,30 +54,26 @@
     "forecast": {
       "label": "Forecast",
       "heading": "Is it worth going out today?",
-      "body": "Know where and when conditions are good.",
+      "body": "See how season and weather shape your chances. Compare nearby areas before you head out.",
       "link": "Open the forecast"
     },
     "identify": {
       "label": "Identify",
       "heading": "What did you find?",
-      "body": "Identify mushrooms and plants privately on your device.",
+      "body": "Take a photo and explore possible matches. Identification runs on your device, keeping your photos private.",
       "link": "Try identification"
     },
     "cook": {
       "label": "Cook",
-      "heading": "Back home",
-      "body": "Turn what you find into wild-food recipes.",
+      "heading": "Bring the wild to the table",
+      "body": "Find recipes for your foraged ingredients, with preparation tips and step-by-step instructions.",
       "link": "Browse recipes"
     },
     "closing": {
       "heading": "Ready to explore?",
       "cta": "Open the map"
     },
-    "coverage": "Forecasts currently cover Northern and Southern Europe and the eastern and western United States.",
-    "coverHeadline": "Good things grow wild.",
-    "specimenPicker": "Choose a specimen",
-    "exploreFeatures": "Explore Funges",
-    "mapPreview": "Example forecast map · not live conditions"
+    "coverage": "Forecasts currently cover Northern and Southern Europe and the eastern and western United States."
   },
   "worthForagingNow": {
     "title": "Worth Foraging Now",

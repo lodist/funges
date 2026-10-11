@@ -1,6 +1,5 @@
 ﻿.page {
   --page-gutter: clamp(1.5rem, 5vw, 5rem);
-  --plate-paper: #fdfbdf;
   max-width: 112rem;
   margin-inline: auto;
   color: var(--foreground);
@@ -40,14 +39,13 @@
   grid-template-columns: 1.1fr 1fr;
   align-items: center;
   gap: clamp(2rem, 5vw, 6rem);
-  padding: 2.5rem var(--page-gutter) 4rem;
-  min-height: min(48rem, calc(100svh - 11rem));
+  padding: 1.5rem var(--page-gutter) 4rem;
 }
 .heroCopy h1 {
-  max-width: 9ch;
+  max-width: 11ch;
   color: var(--primary-text);
-  font-size: clamp(3.5rem, 7.4vw, 6rem);
-  line-height: 0.98;
+  font-size: clamp(3.5rem, 6.6vw, 6rem);
+  line-height: 1.02;
 }
 .intro {
   max-width: 31rem;
@@ -59,107 +57,33 @@
 .primaryAction {
   margin-top: 2rem;
 }
-.specimen {
-  min-width: 0;
-}
-.plate {
-  position: relative;
-  aspect-ratio: 1;
-  background: var(--plate-paper);
-  overflow: hidden;
-  border-radius: 50% 50% 0 0;
-}
-.specimenImage {
+.heroPhoto {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  mix-blend-mode: multiply;
-  animation: open-plate var(--transition-duration-slow)
-    cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-.specimenFooter {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-top: 1.25rem;
-}
-.caption {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  span {
-    font-weight: 600;
-  }
-  i {
-    color: var(--muted-foreground);
-    font-size: 0.875rem;
-  }
-}
-.specimenChoices {
-  display: flex;
-  gap: 0.5rem;
-  flex-shrink: 0;
-}
-.specimenChoice {
-  width: 2.75rem;
-  height: 2.75rem;
-  padding: 2px;
-  border: 2px solid transparent;
-  border-radius: 50%;
-  cursor: pointer;
-  background: var(--plate-paper);
-  transition: border-color var(--transition-duration-fast) var(--ease-standard);
-  img {
-    border-radius: 50%;
-    mix-blend-mode: multiply;
-  }
-  &[aria-pressed='true'],
-  &:hover {
-    border-color: var(--primary-text);
-  }
-}
-.chapterLinks {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-inline: var(--page-gutter);
-  border-top: 1px solid var(--border);
-  padding-block: 1.25rem 2.5rem;
-  gap: 2rem;
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    min-height: 2.75rem;
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    &:hover {
-      text-decoration: underline;
-      text-underline-offset: 0.3em;
-    }
-  }
+  height: min(43rem, 75svh);
+  min-height: 30rem;
+  object-fit: cover;
+  object-position: 50% 60%;
 }
 .forecast {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.85fr 1.15fr;
   background: var(--happy-900);
   color: var(--happy-50);
 }
 .forecastCopy {
-  padding: clamp(2rem, 5vw, 5rem) var(--page-gutter);
+  padding: clamp(2rem, 4vw, 4rem) var(--page-gutter);
   align-self: center;
   h2 {
     max-width: 12ch;
-    font-size: clamp(2.5rem, 4.5vw, 4.5rem);
-    line-height: 1.05;
+    font-size: clamp(2.5rem, 3.8vw, 3.75rem);
+    line-height: 1.08;
   }
   > p {
     margin-block: 1.5rem;
     line-height: 1.6;
   }
   .coverage {
-    max-width: 38ch;
+    max-width: 42ch;
     margin-top: 2rem;
     margin-bottom: 0;
     font-size: 0.875rem;
@@ -168,51 +92,79 @@
 }
 .mapFigure {
   position: relative;
-  min-height: 28rem;
+  min-height: 30rem;
+}
+.mapLink {
+  display: block;
+  height: 100%;
+  min-height: inherit;
   img {
     position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 40% 50%;
   }
-  figcaption {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 1.5rem;
-    right: 1.5rem;
-    width: fit-content;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius);
-    background: var(--background);
-    color: var(--foreground);
-    font-size: 0.875rem;
+  &:focus-visible {
+    outline-offset: -4px;
+  }
+  &:hover .mapAction {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
   }
 }
-.identify,
-.cook {
+.mapAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  background: var(--background);
+  color: var(--primary-text);
+  box-shadow: var(--elevation-control);
+}
+.attribution {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 0.25rem 0.5rem;
+  background: var(--background);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+}
+.featureGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 7vw, 7rem);
-  align-items: center;
-  padding: 6rem var(--page-gutter);
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: 4rem var(--page-gutter);
 }
-.identifyArtwork {
-  background: var(--plate-paper);
-  img {
+.feature {
+  min-width: 0;
+  > img {
     width: 100%;
+    aspect-ratio: 4 / 3;
     height: auto;
-    mix-blend-mode: multiply;
+    object-fit: cover;
   }
 }
 .sectionCopy {
+  padding-top: 1.75rem;
   h2 {
-    max-width: 12ch;
-    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-size: clamp(2rem, 3vw, 3rem);
     line-height: 1.1;
   }
   p {
-    max-width: 34ch;
-    margin-top: 1.5rem;
+    max-width: 44ch;
+    margin-top: 1rem;
     color: var(--muted-foreground);
     font-size: 1.125rem;
     line-height: 1.65;
@@ -221,24 +173,9 @@
     margin-top: 1rem;
   }
   .safety {
-    max-width: 44ch;
+    max-width: 56ch;
     font-size: 0.875rem;
-    margin-top: 2rem;
-  }
-}
-.cook {
-  padding-top: 0;
-}
-.recipeFigure {
-  img {
-    width: 100%;
-    aspect-ratio: 5 / 4;
-    object-fit: cover;
-  }
-  figcaption {
-    margin-top: 1rem;
-    color: var(--muted-foreground);
-    font-size: 0.875rem;
+    margin-top: 1.5rem;
   }
 }
 .closing {
@@ -246,24 +183,40 @@
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  padding: 4rem var(--page-gutter) 5rem;
+  padding: 3rem var(--page-gutter) 4rem;
   background: var(--muted);
   h2 {
     color: var(--primary-text);
     font-size: clamp(2.5rem, 5vw, 4.5rem);
   }
 }
-@keyframes open-plate {
-  from {
-    transform: translateY(0.75rem) rotate(-2deg) scale(0.97);
+@media (max-width: 1023px) {
+  .forecast {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: none;
+  .forecastCopy {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+    h2 {
+      grid-row: span 2;
+      max-width: 14ch;
+    }
+    > p {
+      margin: 0;
+    }
+    > a {
+      width: fit-content;
+    }
+    .coverage {
+      grid-column: 1 / -1;
+      margin: 0;
+      max-width: 65ch;
+    }
   }
-}
-@media (prefers-reduced-motion: reduce) {
-  .specimenImage {
-    animation: none;
+  .mapFigure {
+    min-height: 0;
+    aspect-ratio: 1280 / 860;
   }
 }
 @media (max-width: 767px) {
@@ -278,13 +231,13 @@
   }
   .hero {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
     padding-top: 1.5rem;
     padding-bottom: 2rem;
   }
   .heroCopy h1 {
-    max-width: 11ch;
-    font-size: clamp(3.25rem, 12vw, 5rem);
+    max-width: 12ch;
+    font-size: clamp(3rem, 10.5vw, 4.5rem);
   }
   .intro {
     margin-top: 1.25rem;
@@ -293,53 +246,48 @@
   .primaryAction {
     margin-top: 1.5rem;
   }
-  .specimen {
-    width: 100%;
-    max-width: 28rem;
-    justify-self: center;
-  }
-  .plate {
-    aspect-ratio: 1;
-  }
-  .caption {
-    font-size: 0.875rem;
-  }
-  .specimenFooter {
-    flex-wrap: wrap;
-  }
-  .chapterLinks {
-    gap: 1rem;
-    padding-block: 1rem 2rem;
-    a {
-      font-size: 1rem;
-      flex-wrap: wrap;
-    }
-  }
-  .forecast,
-  .identify,
-  .cook {
-    grid-template-columns: 1fr;
+  .heroPhoto {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    object-position: 50% 55%;
   }
   .forecastCopy {
-    padding-block: 3rem;
+    display: block;
+    padding-block: 2.5rem;
+    > p {
+      margin-block: 1.25rem;
+    }
+    .coverage {
+      margin-top: 1.5rem;
+    }
   }
   .mapFigure {
-    min-height: 20rem;
+    aspect-ratio: 1.1;
   }
-  .identify,
-  .cook {
-    gap: 2rem;
-    padding-block: 3.5rem;
+  .mapAction {
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.875rem;
   }
-  .identifyArtwork {
-    order: 2;
+  .attribution {
+    max-width: 100%;
+    font-size: 0.75rem;
   }
-  .cook {
-    padding-top: 0;
+  .featureGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-block: 3rem;
+  }
+  .sectionCopy {
+    padding-top: 1.5rem;
+    p {
+      font-size: 1rem;
+    }
   }
   .closing {
     flex-direction: column;
     align-items: flex-start;
-    padding-block: 3rem 4rem;
+    padding-block: 2.5rem 4rem;
   }
 }

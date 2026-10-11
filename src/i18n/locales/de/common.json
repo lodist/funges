@@ -54,30 +54,26 @@
     "forecast": {
       "label": "Prognose",
       "heading": "Lohnt es sich heute rauszugehen?",
-      "body": "Wissen, wo und wann die Bedingungen gut sind.",
+      "body": "Sieh, wie Jahreszeit und Wetter die Fundchancen beeinflussen. Vergleiche Gebiete in deiner Nähe, bevor du losziehst.",
       "link": "Prognose öffnen"
     },
     "identify": {
       "label": "Bestimmen",
       "heading": "Was hast du gefunden?",
-      "body": "Pilze und Pflanzen privat auf deinem Gerät bestimmen.",
+      "body": "Mach ein Foto und entdecke mögliche Treffer. Die Bestimmung läuft auf deinem Gerät, damit deine Fotos privat bleiben.",
       "link": "Bestimmung ausprobieren"
     },
     "cook": {
       "label": "Kochen",
-      "heading": "Wieder zu Hause",
-      "body": "Aus deinen Funden Wildkräuter- und Pilzgerichte machen.",
+      "heading": "Die Natur auf deinem Teller",
+      "body": "Entdecke Rezepte für deine gesammelten Zutaten, mit Zubereitungstipps und Schritt-für-Schritt-Anleitungen.",
       "link": "Rezepte ansehen"
     },
     "closing": {
       "heading": "Bereit zum Erkunden?",
       "cta": "Karte öffnen"
     },
-    "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab.",
-    "coverHeadline": "Das Gute wächst wild.",
-    "specimenPicker": "Ein Fundstück auswählen",
-    "exploreFeatures": "Funges entdecken",
-    "mapPreview": "Beispiel einer Vorhersagekarte · keine aktuellen Bedingungen"
+    "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab."
   },
   "worthForagingNow": {
     "title": "Was lohnt sich jetzt zu sammeln?",

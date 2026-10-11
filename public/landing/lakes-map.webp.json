@@ -1,0 +1,5 @@
+{
+  "prompt": "Source: actual Funges MapLibre map capture, topographic style (funges_style_topographic.json), public data.fung.es tiles; Golden Chanterelle overlay; center 7.98E, 46.72N, zoom 10.1; Lake Thun, Lake Brienz and Interlaken. Captured 2026-10-12. No generated geography or altered scores. Map data: OpenStreetMap contributors; terrain: Mapzen / AWS. Browser range requests proxied through Node solely for local capture; image encoded as WebP quality 78.",
+  "source": "Funges application map",
+  "captureDate": "2026-10-12"
+}

@@ -54,30 +54,26 @@
     "forecast": {
       "label": "Previsão",
       "heading": "Vale a pena sair hoje?",
-      "body": "Saber onde e quando as condições são boas.",
+      "body": "Descobre como a estação e o tempo influenciam as tuas possibilidades. Compara as zonas próximas antes de sair.",
       "link": "Abrir a previsão"
     },
     "identify": {
       "label": "Identificar",
       "heading": "O que encontrou?",
-      "body": "Identifique cogumelos e plantas em privado, no seu dispositivo.",
+      "body": "Tira uma foto e explora as correspondências possíveis. A identificação acontece no teu dispositivo e as tuas fotos continuam privadas.",
       "link": "Experimentar a identificação"
     },
     "cook": {
       "label": "Cozinhar",
-      "heading": "De volta a casa",
-      "body": "Transforme o que encontra em receitas silvestres.",
+      "heading": "Da natureza para a mesa",
+      "body": "Encontra receitas para os ingredientes que recolhes, com dicas de preparação e instruções passo a passo.",
       "link": "Ver receitas"
     },
     "closing": {
       "heading": "Pronto para explorar?",
       "cta": "Abrir o mapa"
     },
-    "coverage": "As previsões cobrem atualmente o Norte e o Sul da Europa e o Leste e o Oeste dos Estados Unidos.",
-    "coverHeadline": "O melhor cresce na natureza.",
-    "specimenPicker": "Escolher uma espécie",
-    "exploreFeatures": "Explorar Funges",
-    "mapPreview": "Exemplo de mapa de previsão · não são condições atuais"
+    "coverage": "As previsões cobrem atualmente o Norte e o Sul da Europa e o Leste e o Oeste dos Estados Unidos."
   },
   "worthForagingNow": {
     "title": "O que vale a pena procurar agora?",

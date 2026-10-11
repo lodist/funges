@@ -54,30 +54,26 @@
     "forecast": {
       "label": "Prévision",
       "heading": "Ça vaut le coup de sortir aujourd'hui ?",
-      "body": "Savoir où et quand les conditions sont bonnes.",
+      "body": "Découvre comment la saison et la météo influencent tes chances. Compare les zones proches avant de partir.",
       "link": "Ouvrir la prévision"
     },
     "identify": {
       "label": "Identifier",
       "heading": "Qu'avez-vous trouvé ?",
-      "body": "Identifiez champignons et plantes en privé, sur votre appareil.",
+      "body": "Prends une photo et explore les correspondances possibles. L’identification se fait sur ton appareil, tes photos restent privées.",
       "link": "Essayer l'identification"
     },
     "cook": {
       "label": "Cuisiner",
-      "heading": "De retour à la maison",
-      "body": "Transformez vos trouvailles en recettes sauvages.",
+      "heading": "De la nature à l’assiette",
+      "body": "Trouve des recettes pour ta cueillette, avec des conseils de préparation et des instructions étape par étape.",
       "link": "Voir les recettes"
     },
     "closing": {
       "heading": "Prêt à explorer ?",
       "cta": "Ouvrir la carte"
     },
-    "coverage": "Les prévisions couvrent actuellement le nord et le sud de l'Europe ainsi que l'est et l'ouest des États-Unis.",
-    "coverHeadline": "Le bon pousse à l’état sauvage.",
-    "specimenPicker": "Choisir un spécimen",
-    "exploreFeatures": "Explorer Funges",
-    "mapPreview": "Exemple de carte de prévision · conditions non actualisées"
+    "coverage": "Les prévisions couvrent actuellement le nord et le sud de l'Europe ainsi que l'est et l'ouest des États-Unis."
   },
   "worthForagingNow": {
     "title": "Qu'est-ce qui vaut le coup d'aller cueillir maintenant ?",

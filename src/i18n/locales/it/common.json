@@ -14,30 +14,26 @@
     "forecast": {
       "label": "Previsione",
       "heading": "Vale la pena uscire oggi?",
-      "body": "Sapere dove e quando le condizioni sono buone.",
+      "body": "Scopri come la stagione e il meteo influenzano le possibilità di raccolta. Confronta le zone vicine prima di partire.",
       "link": "Apri la previsione"
     },
     "identify": {
       "label": "Identifica",
       "heading": "Cosa hai trovato?",
-      "body": "Identifica funghi e piante in privato, sul tuo dispositivo.",
+      "body": "Scatta una foto ed esplora le possibili corrispondenze. Il riconoscimento avviene sul tuo dispositivo e le tue foto restano private.",
       "link": "Prova l'identificazione"
     },
     "cook": {
       "label": "Cucina",
-      "heading": "Di nuovo a casa",
-      "body": "Trasforma ciò che trovi in ricette selvatiche.",
+      "heading": "Dal bosco alla tavola",
+      "body": "Trova ricette per gli ingredienti che raccogli, con consigli di preparazione e istruzioni passo dopo passo.",
       "link": "Sfoglia le ricette"
     },
     "closing": {
       "heading": "Pronto a esplorare?",
       "cta": "Apri la mappa"
     },
-    "coverage": "Le previsioni coprono attualmente il Nord e il Sud Europa e l'Est e l'Ovest degli Stati Uniti.",
-    "coverHeadline": "Il buono cresce spontaneo.",
-    "specimenPicker": "Scegli una specie",
-    "exploreFeatures": "Esplora Funges",
-    "mapPreview": "Esempio di mappa delle previsioni · non sono condizioni attuali"
+    "coverage": "Le previsioni coprono attualmente il Nord e il Sud Europa e l'Est e l'Ovest degli Stati Uniti."
   },
   "worthForagingNow": {
     "title": "Cosa vale la pena raccogliere adesso?",
