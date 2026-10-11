@@ -276,7 +276,7 @@ def _sample(cy, cx, props, pieces, steps=None):
     return gpd.GeoDataFrame(values, geometry=pieces.geometry.values[ok], crs="EPSG:4326")
 
 
-def _tippecanoe(geojson, mbtiles, layer):
+def _tippecanoe(geojson, mbtiles, layer, options=("-z10", "--detect-shared-borders")):
     """Town-sized shapes keep their outline to zoom 10. The forecast's settings (z6,
     -d9, simplification 4) are tuned for the species mesh and shave a town to a shard.
     Neighbouring bands are simplified along their shared borders alike, so lower
@@ -285,8 +285,14 @@ def _tippecanoe(geojson, mbtiles, layer):
     if exe is None:
         print("tippecanoe not found; bloom tiles skipped.")
         return
-    subprocess.run([exe, "-o", str(mbtiles), "-l", layer, "-z10", "--force", "--detect-shared-borders",
-                    "--drop-densest-as-needed", str(geojson)], check=True)
+    subprocess.run([exe, "-o", str(mbtiles), "-l", layer, *options, "--force", "--drop-densest-as-needed",
+                    str(geojson)], check=True)
+
+
+def _tippecanoe_mesh(geojson, mbtiles, layer):
+    """A mesh of land-cover pieces (fall foliage's woods), tiled as the species forecast
+    is (z6, -d9, simplification 4), so it looks like it and stays as small."""
+    _tippecanoe(geojson, mbtiles, layer, ("-z6", "--simplification=4", "-d9"))
 
 
 def load_normals(region_code):

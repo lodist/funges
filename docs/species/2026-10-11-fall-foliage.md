@@ -6,6 +6,16 @@ The fifth "spectacle" layer, after [cherry blossom](2026-09-30-cherry-blossom.md
 
 **The values below are agent-derived and wait on Loris's approval.** They come from iNaturalist records, the PhenoCam network, USA-NPN and NASA POWER temperatures; no forester has reviewed them. `backend/tools/calibrate_foliage.py` reproduces every table (`--grid` for the parameter search).
 
+## What it looks like
+
+11 October 2026, the forecast on the real USE master, with tiles from the production tooling served into the app locally. Northern New England and the Adirondacks are at their peak, the south still green:
+
+![New England on 11 October 2026](2026-10-11-fall-foliage/new-england.webp)
+
+The woods are the species layers' pieces, tiled as the forecast is:
+
+![Vermont](2026-10-11-fall-foliage/vermont.webp)
+
 ## The model
 
 Cold degree-days: from **15 August** (`START`, index 45 of a season from 1 July), each day adds how far its mean falls below **33 °C** (`BASE`); the peak is the day the sum reaches **1,031 °C·days** in the east (`REQUIREMENT`), **897** for the aspens west of 102° W (`ASPEN_REQUIREMENT`).
@@ -51,7 +61,7 @@ It is drawn on the land the species layers are drawn on. Each US MapLayer script
 - **The woods:** pieces of deciduous and mixed forest (NLCD 41, 43). Evergreen (42) would add little (sightings within 300 m 32.9% → 36.5%) and paint the conifers.
 - **West of 102° W, only from 1,500 m up** (the cell's mean elevation), the aspen zone; that drops nearly all the Pacific lowland woods.
 - **Each piece takes the forecast at its middle** (`bloom._sample`), on the same interpolation the bands use, rather than being cut into bands: the ground is too fine for that (419,000 polygons, 160 MB, on the wilderness polygons).
-- **Simplified at 0.01°**, as the species forecast's pieces are, so they look alike; the simplified multi-part pieces are mended with `buffer(0)`, which keeps 96% of the woods' area where dropping invalid ones, as the forecast does, lost three quarters.
+- **Simplified at 0.01° and tiled as the species forecast is** (z6, -d9, simplification 4: 3.7 MB for USE against 71 MB at the other spectacles' z10), so they look alike; the simplified multi-part pieces are mended with `buffer(0)`, which keeps 96% of the woods' area where dropping invalid ones, as the forecast does, lost three quarters.
 - **Sightings:** of the eastern coloured-leaf records, 13.4% lie in a wood, 32.9% within 300 m and 57.9% within 1 km.
 
 ## Places looked at

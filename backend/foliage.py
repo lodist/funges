@@ -57,7 +57,7 @@ def peak_index(tmean, requirement=REQUIREMENT):
 
 
 def build_foliage(master_path, region_code, r2_prefix, to_pmtiles, upload,
-                  *, land=None, build_mbtiles=bloom._tippecanoe, today=None, normals=None):
+                  *, land=None, build_mbtiles=bloom._tippecanoe_mesh, today=None, normals=None):
     """Build and upload `<region>_foliage.pmtiles` on the woods of `land` (the MapLayer
     script's land-cover pieces, `raster_val` and geometry). Returns a small summary, or
     None out of season or without land."""
