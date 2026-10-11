@@ -1,0 +1,5 @@
+{
+  "prompt": "Source: actual Fung.es MapLibre map capture matching the user-provided Lake Constance, Liechtenstein and Innsbruck view. Original olive style (funges_style.json), public data.fung.es tiles; Golden Chanterelle overlay; center 10.21E, 47.38N, zoom 8.38. Captured 2026-10-12 at 1280 by 860 for the landing panel. No generated geography or altered scores. Map data: OpenStreetMap contributors; terrain: Mapzen / AWS. Browser range requests proxied through Node solely for local capture; image encoded as WebP quality 78.",
+  "source": "Fung.es application map",
+  "captureDate": "2026-10-12"
+}

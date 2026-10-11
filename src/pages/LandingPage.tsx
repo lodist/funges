@@ -70,12 +70,12 @@ export default function LandingPage() {
           <div className={styles.mapFigure}>
             <Link
               to='/map'
-              search={{ species: 'chant', lat: 46.72, lng: 7.98, zoom: 10.1 }}
+              search={{ species: 'chant', lat: 47.38, lng: 10.21, zoom: 8.38 }}
               className={`${styles.mapLink} focus-ring`}
               aria-label={t('home.cta')}
             >
               <img
-                src={`${base}landing/lakes-map.webp`}
+                src={`${base}landing/alps-map.webp`}
                 alt=''
                 loading='lazy'
                 width='1280'
