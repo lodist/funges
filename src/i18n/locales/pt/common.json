@@ -48,7 +48,7 @@
   "home": {
     "title": "Funges",
     "headline": "Explore o que cresce à sua volta",
-    "description": "Previsões de colheita, mapas de espécies, identificação por foto privada e receitas silvestres.",
+    "description": "Previsões de recolha, espetáculos naturais, identificação privada por fotografia e receitas silvestres.",
     "cta": "Explorar o mapa",
     "ctaSecondary": "O que está na época",
     "forecast": {
@@ -73,7 +73,12 @@
       "heading": "Pronto para explorar?",
       "cta": "Abrir o mapa"
     },
-    "coverage": "As previsões cobrem atualmente o Norte e o Sul da Europa e o Leste e o Oeste dos Estados Unidos."
+    "coverage": "As previsões cobrem atualmente o Norte e o Sul da Europa e o Leste e o Oeste dos Estados Unidos.",
+    "spectacles": {
+      "heading": "Espetáculos naturais",
+      "body": "Das cerejeiras em flor e dos bosques de campainhas às folhas de outono. Acompanha as estações e explora as previsões para estes momentos fugazes da natureza.",
+      "link": "Explorar as cores do outono"
+    }
   },
   "worthForagingNow": {
     "title": "O que vale a pena procurar agora?",

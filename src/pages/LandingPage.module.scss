@@ -141,6 +141,39 @@
     text-underline-offset: 0.15em;
   }
 }
+.spectacles {
+  padding: 4rem var(--page-gutter) 0;
+
+  > img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+    object-position: 50% 55%;
+  }
+}
+.spectaclesCopy {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  padding-top: 2rem;
+
+  h2 {
+    overflow-wrap: anywhere;
+    color: var(--primary-text);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 1.1;
+  }
+  p {
+    max-width: 50ch;
+    color: var(--muted-foreground);
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+  .textLink {
+    margin-top: 1rem;
+  }
+}
 .featureGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -273,6 +306,20 @@
   .attribution {
     max-width: 100%;
     font-size: 0.75rem;
+  }
+  .spectacles {
+    padding-top: 3rem;
+    > img {
+      aspect-ratio: 4 / 5;
+    }
+  }
+  .spectaclesCopy {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    padding-top: 1.5rem;
+    p {
+      font-size: 1rem;
+    }
   }
   .featureGrid {
     grid-template-columns: 1fr;

@@ -48,7 +48,7 @@
   "home": {
     "title": "Funges",
     "headline": "Explorez ce qui pousse autour de vous",
-    "description": "Prévisions de cueillette, cartes des espèces, identification par photo privée et recettes sauvages.",
+    "description": "Prévisions de cueillette, spectacles naturels, identification photo privée et recettes sauvages.",
     "cta": "Explorer la carte",
     "ctaSecondary": "Ce qui est de saison",
     "forecast": {
@@ -73,7 +73,12 @@
       "heading": "Prêt à explorer ?",
       "cta": "Ouvrir la carte"
     },
-    "coverage": "Les prévisions couvrent actuellement le nord et le sud de l'Europe ainsi que l'est et l'ouest des États-Unis."
+    "coverage": "Les prévisions couvrent actuellement le nord et le sud de l'Europe ainsi que l'est et l'ouest des États-Unis.",
+    "spectacles": {
+      "heading": "Spectacles naturels",
+      "body": "Des cerisiers en fleurs aux sous-bois de jacinthes et aux feuilles d’automne. Suivez les saisons et explorez les prévisions de ces spectacles éphémères.",
+      "link": "Explorer les couleurs d’automne"
+    }
   },
   "worthForagingNow": {
     "title": "Qu'est-ce qui vaut le coup d'aller cueillir maintenant ?",

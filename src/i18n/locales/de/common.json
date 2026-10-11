@@ -48,7 +48,7 @@
   "home": {
     "title": "Funges",
     "headline": "Entdecke, was um dich herum wächst",
-    "description": "Sammelprognosen, Artenkarten, private Fotobestimmung und Wildkräuter-Rezepte.",
+    "description": "Sammelprognosen, Naturschauspiele, private Fotobestimmung und Wildkostrezepte.",
     "cta": "Karte erkunden",
     "ctaSecondary": "Was gerade Saison hat",
     "forecast": {
@@ -73,7 +73,12 @@
       "heading": "Bereit zum Erkunden?",
       "cta": "Karte öffnen"
     },
-    "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab."
+    "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab.",
+    "spectacles": {
+      "heading": "Schauspiele der Natur",
+      "body": "Von Kirschblüten und Hasenglöckchenwäldern bis zum bunten Herbstlaub. Folge den Jahreszeiten und entdecke Prognosen für die vergängliche Pracht der Natur.",
+      "link": "Herbstlaub entdecken"
+    }
   },
   "worthForagingNow": {
     "title": "Was lohnt sich jetzt zu sammeln?",

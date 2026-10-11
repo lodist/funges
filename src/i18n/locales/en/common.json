@@ -48,7 +48,7 @@
   "home": {
     "title": "Funges",
     "headline": "Explore what grows around you",
-    "description": "Foraging forecasts, species maps, private photo identification and wild-food recipes.",
+    "description": "Foraging forecasts, natural spectacles, private photo identification and wild-food recipes.",
     "cta": "Explore the map",
     "ctaSecondary": "See what's in season",
     "forecast": {
@@ -73,7 +73,12 @@
       "heading": "Ready to explore?",
       "cta": "Open the map"
     },
-    "coverage": "Forecasts currently cover Northern and Southern Europe and the eastern and western United States."
+    "coverage": "Forecasts currently cover Northern and Southern Europe and the eastern and western United States.",
+    "spectacles": {
+      "heading": "Natural spectacles",
+      "body": "From cherry blossom and bluebell woods to autumn leaves. Follow the seasons and explore forecasts for nature’s fleeting displays.",
+      "link": "Explore fall foliage"
+    }
   },
   "worthForagingNow": {
     "title": "Worth Foraging Now",

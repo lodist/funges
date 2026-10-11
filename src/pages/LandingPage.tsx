@@ -99,6 +99,33 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <section
+          className={styles.spectacles}
+          aria-labelledby='spectacles-title'
+        >
+          <img
+            src={`${base}landing/autumn-forest.webp`}
+            alt=''
+            loading='lazy'
+            width='1280'
+            height='720'
+          />
+          <div className={styles.spectaclesCopy}>
+            <h2 id='spectacles-title'>{t('home.spectacles.heading')}</h2>
+            <div>
+              <p>{t('home.spectacles.body')}</p>
+              <Link
+                to='/map'
+                search={{ species: 'foliage' }}
+                className={`${styles.textLink} focus-ring`}
+              >
+                {t('home.spectacles.link')}
+                <ArrowUpRight aria-hidden='true' className='size-5' />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <div className={styles.featureGrid}>
           <section className={styles.feature} aria-labelledby='identify-title'>
             <img
