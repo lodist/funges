@@ -35,8 +35,7 @@ PARAMS = {"num_leaves": 15, "min_data_in_leaf": 100}
 STRENGTH, FLOOR, REFERENCE_QUANTILE = 0.5, 0.5, 0.10
 R2_FOLDER = "models/habitat"
 # Each region's factor also covers its neighbour's places: the nightly run scores the places
-# across the split with the neighbour's model, habitat too (forecast_pipeline.blend_neighbour_settings,
-# the US for now).
+# across the split with the neighbour's model, habitat too (forecast_pipeline.blend_neighbour_settings).
 NEIGHBOUR = {"NE": "SE", "SE": "NE", "USE": "USW", "USW": "USE"}
 
 
