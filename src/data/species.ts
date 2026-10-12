@@ -77,9 +77,8 @@ export const getSpeciesOptions = (region: ForecastRegion): SpeciesOption[] =>
       showOnMap && forecastRegions?.includes(region)
   ).map(({ id, emoji, category }) => ({ code: id, emoji, category }));
 
-/** Boletus (all porcini), the best of the king boletes: forecast in every region,
- * so it is always a valid map fallback. */
-export const DEFAULT_MAP_SPECIES = 'boletus';
+/** Forecast in every region, so it is always a valid map fallback. */
+export const DEFAULT_MAP_SPECIES = 'mushroom';
 
 /**
  * A species the map can show somewhere — the check a URL or saved code must pass.

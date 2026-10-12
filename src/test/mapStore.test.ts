@@ -94,11 +94,10 @@ describe('regional species options', () => {
     useMapStore.setState({ selectedSpecies: 'no-such-species' });
     useMapStore.getState().setCenter(USE_CENTER);
 
-    // Boletus (all porcini), the best of the king boletes: the map opens on it.
-    expect(useMapStore.getState().selectedSpecies).toBe('boletus');
+    expect(useMapStore.getState().selectedSpecies).toBe('mushroom');
   });
 
-  // MapPage mirrors the URL's ?species here, falling back to the default when the
+  // MapPage mirrors the URL's ?species here, falling back to mushroom when the
   // query names no map species. That fallback must not overwrite what the user
   // last picked.
   it('does not persist a species mirrored from the URL', () => {
