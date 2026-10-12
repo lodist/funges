@@ -369,6 +369,85 @@ test('forecast generation emits only available regional parameters and map layer
   }
 });
 
+function composite(members = ['chant', 'new-species'], regions = {}) {
+  return manifest({
+    id: 'all-kinds',
+    scientificName: 'Examplea',
+    catalog: {
+      ...manifest().catalog,
+      order: 2,
+      translationKey: 'all-kinds',
+      image: { path: 'src/assets/species/all-kinds.webp' },
+    },
+    forecast: {
+      enabled: true,
+      routeToDish: false,
+      dataColumns: ['All Kinds'],
+      compositeOf: members,
+      empiricalSeason: { enabled: false, taxonKeys: [], references: [] },
+      rangePrior: { taxonKeys: [] },
+      regions: Object.fromEntries(
+        REGIONS.map(region => [region, regions[region] ?? { available: true }])
+      ),
+    },
+  });
+}
+
+test('a composite takes its members land cover and is drawn like a species', async () => {
+  const root = fixtureRoot();
+  addForecastSpecies(root);
+  fs.mkdirSync(path.join(root, 'content/species/all-kinds'));
+  fs.writeFileSync(
+    path.join(root, 'content/species/all-kinds/species.json'),
+    JSON.stringify(composite())
+  );
+  fs.writeFileSync(
+    path.join(root, 'src/assets/species/all-kinds.webp'),
+    webp()
+  );
+  await generate(root);
+  const registry = JSON.parse(
+    fs.readFileSync(
+      path.join(root, 'backend/generated/species_registry.json'),
+      'utf8'
+    )
+  );
+  const regions = registry.species['all-kinds'].regions;
+  assert.deepEqual(regions.NE, {
+    landCover: [10],
+    landCoverScheme: 'CORINE',
+    compositeOf: ['chant', 'new-species'],
+  });
+  assert.deepEqual(regions.USW.compositeOf, ['chant']); // new-species is not in USW
+  const style = JSON.parse(
+    fs.readFileSync(path.join(root, 'public/funges_style.json'), 'utf8')
+  );
+  const ids = new Set(style.layers.map(layer => layer.id));
+  for (const region of REGIONS.map(value => value.toLowerCase()))
+    assert.ok(
+      ids.has(`all-kinds_${region}`) && ids.has(`all-kinds_${region}_numbers`)
+    );
+});
+
+test('rejects a composite of unknown members or with settings of its own', () => {
+  const chant = manifest({ forecast: forecast() });
+  const lost = composite(['chant', 'missing']);
+  const own = composite(['chant'], {
+    NE: { available: true, landCover: [10], landCoverScheme: 'CORINE' },
+  });
+  const errors = validateManifests(
+    [
+      entry(chant),
+      entry(lost),
+      entry({ ...own, id: 'own-kinds' }, 'own-kinds'),
+    ],
+    process.cwd(),
+    { checkImages: false }
+  ).join('\n');
+  assert.match(errors, /compositeOf: missing must be a forecast species/);
+  assert.match(errors, /landCover is not allowed in a composite/);
+});
+
 test('route-to-dish requires explicit manifest opt-in', async () => {
   const root = fixtureRoot();
   addForecastSpecies(root);

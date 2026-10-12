@@ -46,7 +46,7 @@ import era5_normals
 import era5_rain
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
-from species_registry import get_species_params
+from species_registry import get_composites, get_species_params
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
@@ -1001,6 +1001,29 @@ FRUITING_GBM_FEATURES = [*FRUITING_FEATURES,
                          *FRUITING_GBM_STATIC, "region"]
 
 
+# Humidity and temperature as departures from the place's normal for the time of year (the
+# window's middle day, era5_normals 2016-2025). The fit learns only from days at one place,
+# where absolute values and departures give the same coefficients, but read as absolute values
+# a drier or warmer climate lowered every day there, which no test checked (central Apennines
+# in a wet autumn 7.5, the Alps 9). Feature -> (normal, days back to the window's middle).
+FRUITING_RELATIVE = {"temp": ("tmean", 4), "humidity": ("rh", 4), "humidity_early": ("rh", 14)}
+
+
+def fruiting_relative(design, grid, lats, lons, dates):
+    """The linear fit's humidity and temperature as departures from the place's normals, the
+    temperature optimum's term against the normal's own. Off the normals grid they are unknown
+    and count as average. The GBM reads the normals as inputs instead."""
+    out = design.copy()
+    lats, lons = np.asarray(lats, float), np.asarray(lons, float)
+    dates = pd.DatetimeIndex(pd.to_datetime(dates))
+    for name, (normal, back) in FRUITING_RELATIVE.items():
+        n = era5_normals.on_days(grid, lats, lons, dates - pd.Timedelta(days=back))[f"norm_{normal}"]
+        out[name] = design[name].to_numpy(float) - n
+        if name == "temp":
+            out["temp_sq"] = design["temp_sq"].to_numpy(float) - (n - 12.0) ** 2 / 10.0
+    return out
+
+
 def fruiting_design(raw):
     """Raw features -> the fit's columns. Rain on a log scale: the 30th mm matters less than the 3rd."""
     out = pd.DataFrame({name: np.log1p(raw[name]) for name in ["rain_0", *FRUITING_RAIN_WINDOWS]})
@@ -1025,6 +1048,8 @@ def fruiting_weather_part(df, model):
     design = fruiting_design(fruiting_raw_features(df))
     a, b = model.get("humidity_from_stored", (0.0, 1.0))
     design[["humidity", "humidity_early"]] = a + b * design[["humidity", "humidity_early"]]
+    if model.get("normals") is not None:
+        design = fruiting_relative(design, model["normals"], df["Latitude"], df["Longitude"], df["Date"])
     z = (design.to_numpy(float) - np.asarray(model["means"])) / np.asarray(model["sds"])
     eta = np.nan_to_num(z, nan=0.0) @ np.asarray(model["beta"], float)
     return _monthly_map(eta, df["Date"], model["map"])
@@ -1082,11 +1107,15 @@ def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
     if fit.get("features") != FRUITING_FEATURES:
         print(f"[warn] {path}: features differ from this code's; hand-set weather parts used")
         return
+    normals = None
     for specie, params in species_params.items():
         model = fit.get("models", {}).get(specie, {}).get(region)
         if model:
             params["fruiting"] = {"means": fit["means"], "sds": fit["sds"],
                                   "humidity_from_stored": fit["humidity_from_stored"][region], **model}
+            if fit.get("relative_to_normal"):
+                normals = era5_normals.load(region) if normals is None else normals
+                params["fruiting"]["normals"] = normals
 
 
 def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, fetch=None):
@@ -1122,6 +1151,34 @@ def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, f
             "corrections": spec["inputs_from_stored"][region],
             "region_code": FRUITING_GBM_REGIONS.index(region), "anchor": pd.Timestamp(today),
             "normals": normals}
+
+
+HABITAT_PATH = Path(__file__).resolve().parent / "generated" / "habitat_factor.json"
+
+
+def attach_habitat(species_params, region, path=None, fetch=None):
+    """The learned habitat factor (tools/fit_habitat.py) for the region's species that ship
+    one: per location, on R2 and checked against the sha256 recorded here. A file that cannot
+    be fetched or fails its checksum leaves the scores without it."""
+    path = Path(path or HABITAT_PATH)
+    if not path.exists():
+        return
+    entry = json.loads(path.read_text(encoding="utf-8")).get("regions", {}).get(region)
+    if not entry or not set(entry["species"]) & set(species_params):
+        return
+    try:
+        data = (fetch or r2_fetch)(entry["file"])
+        if hashlib.sha256(data).hexdigest() != entry["sha256"]:
+            raise ValueError("checksum differs")
+        with np.load(BytesIO(data)) as z:
+            ids, species, factor = z["ids"], [str(s) for s in z["species"]], z["factor"]
+    except Exception as error:
+        print(f"[warn] habitat factor not loaded ({error}); scores go without it")
+        return
+    index = pd.Index(ids)
+    for column, specie in enumerate(species):
+        if specie in species_params:
+            species_params[specie]["habitat"] = {"index": index, "factor": factor[:, column] / 255.0}
 
 
 def calculate_mushroom_score(df, species_params, zone_curves):
@@ -1343,10 +1400,13 @@ def _load_species_and_curves(config):
 
     attach_fruiting_models(species_params, config.region)
     attach_fruiting_gbm(species_params, config.region, datetime.now())
+    attach_habitat(species_params, config.region)
     _fitted = sorted(s for s, p in species_params.items() if "fruiting" in p)
     print(f"Fitted fruiting model for {len(_fitted)} species: {', '.join(_fitted) or 'none'}")
     _gbm = sorted(s for s, p in species_params.items() if "fruiting_gbm" in p)
     print(f"Fruiting GBM for {len(_gbm)} species: {', '.join(_gbm) or 'none'}")
+    _habitat = sorted(s for s, p in species_params.items() if "habitat" in p)
+    print(f"Habitat factor for {len(_habitat)} species: {', '.join(_habitat) or 'none'}")
     return species_params, zone_curves
 
 
@@ -1462,10 +1522,8 @@ def run_pipeline(config: RegionConfig):
 
     # Tonight's ERA5 rain order goes in before the WeatherAPI fetch; the orders that have
     # finished since earlier runs, tonight's too on a quiet night, download after it.
-    measured_rain = era5_rain.start(
-        config.lat_range, config.lon_range,
-        [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates],
-        datetime.now().date())
+    points = [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates]
+    measured_rain = era5_rain.start(points, datetime.now().date())
     counter = CallCounter()
     weather_long = _fetch_all(config, coordinates, static_map, api_key, counter)
     print(f"API calls made: {counter.count} for {len(coordinates)} coordinates")
@@ -1694,7 +1752,10 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         combined_df["Date"] = pd.to_datetime(combined_df["Date"])
         combined_df = combined_df.drop_duplicates(subset=["Location_Id", "Date"], keep="last").reset_index(drop=True)
     if len(measured):
-        combined_df = apply_measured_weather(combined_df, measured)
+        try:
+            combined_df = apply_measured_weather(combined_df, measured)
+        except Exception as error:  # the stored rain stays, as it did before ERA5
+            print(f"[warn] ERA5 rain not merged, stored rain kept: {error}", flush=True)
 
     combined_df = combined_df[np.isfinite(combined_df["Latitude"]) & np.isfinite(combined_df["Longitude"])]
     combined_df = combined_df[combined_df["Location_Id"] != ""]
@@ -1747,6 +1808,11 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
 
     score_cols = [f"{s}_score" for s in species_params]
     forward = spatial_smooth_scores(forward, score_cols)
+    # A composite (every porcini-type bolete) is the best of its members at each place and day.
+    for composite, members in get_composites(config.region).items():
+        present = [f"{m}_score" for m in members if f"{m}_score" in forward.columns]
+        forward[f"{composite}_score"] = forward[present].max(axis=1) if present else np.nan
+        score_cols.append(f"{composite}_score")
     confidence_cols = [f"{s}_confidence" for s in species_params]
     updated_df = apply_forward_scores(combined_df, forward, score_cols + confidence_cols)
 
@@ -1754,7 +1820,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         cutoff_date = datetime.now() - timedelta(days=config.cutoff_days)
     updated_df = updated_df[updated_df["Date"] > cutoff_date]
 
-    valid_score_columns = {f"{s}_score" for s in species_params}
+    valid_score_columns = set(score_cols)
     species_score_columns = [c for c in updated_df.columns if c.endswith("_score") and c in valid_score_columns]
     # No snap to 10 above 9.5: it tied whole species lists at 100% and hid their order.
     updated_df[species_score_columns] = updated_df[species_score_columns].round(2)

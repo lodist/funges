@@ -338,6 +338,11 @@
       "name": "Sea Buckthorn",
       "description": "Bright orange berries packed along thorny, silver-leaved branches: sour and rich in vitamin C",
       "howTo": "Look on coastal dunes and gravelly riverbanks from August to October. Wear gloves against the thorns, and check the rules: picking is often forbidden in dune reserves"
+    },
+    "boletus": {
+      "name": "Boletus (all porcini)",
+      "description": "Every porcini-type bolete in one score: porcini, pine, bronze and summer boletes, and the North American kings",
+      "howTo": "Each place shows the best of their scores; look in beech, oak, chestnut, pine and spruce woods two to four weeks after a soaking rain"
     }
   }
 }

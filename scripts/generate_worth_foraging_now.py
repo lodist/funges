@@ -22,6 +22,8 @@ def resolve_species_columns(available_columns: set[str]) -> dict[str, str]:
     """Choose the first available score alias for each manifest species."""
     resolved = {}
     for species_id, config in get_species_metadata().items():
+        if config.get("composite"):   # a composite repeats its members' scores
+            continue
         column = next(
             (candidate for candidate in config["dataColumns"] if candidate in available_columns),
             None,

@@ -73,6 +73,39 @@ def test_each_coord_reads_its_nearest_cell():
     assert rows["Rain Measured"].all()
 
 
+def test_the_order_holds_every_coords_nearest_cell():
+    # South Europe's box stopped at 12° E while its coords reach 18° W: from 28 Sep 2026
+    # Spain, France and north-west Italy read the rain of the box's edge.
+    coords = [(40.4, -3.7), (45.07, 7.69), (27.66, 44.73)]
+    assert er.box(coords) == ((27.5, 45.25), (-3.75, 44.75))
+    (south, north), (west, east) = er.box(coords)
+    hourly = np.zeros((72, int((north - south) * 4) + 1, int((east - west) * 4) + 1))
+    lats, lons = np.arange(south, north + 0.01, 0.25), np.arange(west, east + 0.01, 0.25)
+    hourly[:, 52, 0] = 1.0                                    # the cell over Madrid only
+    rows = er.local_day_rain(hourly, _hours(), lats, lons, coords, [DAY])
+    assert rows["TotalPrecipitation_mm"].tolist() == [24.0, 0.0, 0.0]
+
+
+def test_a_coord_off_the_downloaded_grid_keeps_its_stored_rain():
+    # No measured row means the stored rain stays. Read from the grid's edge instead, a
+    # coord carries another place's rain, as South Europe's west of 12° E did.
+    times = _hours()
+    hourly = np.ones((len(times), 1, 2))
+    rows = _rain(hourly, times, [(50.0, 0.4), (50.0, 5.0), (52.0, 0.0)], lons=(0.0, 0.5))
+    assert rows["Longitude"].tolist() == [0.4]
+
+
+def test_era5_trouble_never_stops_the_night(monkeypatch):
+    # Whatever goes wrong with Copernicus, the run goes on with the stored rain.
+    def down(*args, **kwargs):
+        raise RuntimeError("Copernicus is down")
+    monkeypatch.setenv("CDSAPI_KEY", "x")
+    monkeypatch.setattr(er.requests, "post", down)
+    monkeypatch.setattr(er.requests, "get", down)
+    assert er.start([(60.0, 10.0)], date(2026, 10, 12))().empty
+    assert er.start([], date(2026, 10, 12))().empty
+
+
 def test_one_order_covers_a_month_end():
     # Copernicus queues only a few orders per user: two per region at month ends meant eight
     # a night, and US West's were rejected (11 Oct 2026). A date range crosses months in one.
@@ -119,5 +152,5 @@ def test_orders_from_two_nights_count_each_hour_once(tmp_path):
 
 def test_without_a_key_rain_is_skipped(monkeypatch):
     monkeypatch.delenv("CDSAPI_KEY", raising=False)
-    rows = er.start((49.0, 71.5), (-25.0, 32.0), [(60.0, 10.0)], date(2026, 10, 8))
+    rows = er.start([(60.0, 10.0)], date(2026, 10, 8))
     assert rows().empty
