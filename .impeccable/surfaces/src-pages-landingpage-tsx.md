@@ -30,7 +30,7 @@ Four photorealistic marketing images were generated with OpenAI image_gen and en
 - `public/landing/astra-porcini.webp` — 960×1200, Astra-generated porcino woodland hero with soil and leaf litter.
 - `public/landing/astra-lingonberries.webp` — 768×576, Astra-generated northern lingonberry patch beside a pine trunk.
 - `public/landing/wild-mushroom-toast.webp` — 768×576, cooking feature.
-- `public/landing/astra-autumn-trail.webp` — 1280×720, natural spectacles; Astra-generated autumn woodland with an uneven earth trail rather than a specific location.
+- `public/landing/autumn-trail-mossy.webp` — 1280×720, natural spectacles; colorful autumn woodland with an uneven mossy trail rather than a specific location.
 
 `public/landing/alps-map.webp` (1280×528) is an actual Fung.es MapLibre capture of Lake Constance, Liechtenstein and Innsbruck, centered at 10.21E, 47.38N, zoom 8.7 with the Pine Bolete overlay. Captured 2026-10-12 from the original olive `funges_style.json` style and `data.fung.es` tiles with the app's day-zero missing-score fallback; no geography or scores were generated or altered. It is encoded as WebP quality 78. Each of these five assets has an adjacent `.webp.json` provenance sidecar; generated-image sidecars retain their prompts. The two superseded chanterelle photos were removed. The porcino, lingonberry and autumn-trail replacements use the user's photographic references; the chanterelle bruschetta photo is retained.
 

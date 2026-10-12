@@ -108,7 +108,7 @@ export default function LandingPage() {
           aria-labelledby='spectacles-title'
         >
           <img
-            src={`${base}landing/astra-autumn-trail.webp`}
+            src={`${base}landing/autumn-trail-mossy.webp`}
             alt=''
             loading='lazy'
             width='1280'
