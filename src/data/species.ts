@@ -15,6 +15,8 @@ export interface Species {
   habitat?: string;
   showOnMap?: boolean;
   forecastRegions?: readonly ForecastRegion[];
+  /** A map layer scored as the best of these species, not a taxon of its own. */
+  compositeOf?: readonly string[];
 }
 
 export type ForecastRegion = 'NE' | 'SE' | 'USE' | 'USW';

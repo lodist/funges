@@ -338,6 +338,11 @@
       "name": "Espinheiro-marítimo",
       "description": "Bagas cor de laranja viva apertadas ao longo de ramos espinhosos de folhas prateadas: ácidas e ricas em vitamina C",
       "howTo": "Procure em dunas costeiras e margens de rio com cascalho de agosto a outubro. Use luvas por causa dos espinhos e informe-se: nas reservas de dunas a apanha é muitas vezes proibida"
+    },
+    "boletus": {
+      "name": "Boletus (todos os porcini)",
+      "description": "Todos os boletos do tipo porcini numa só pontuação: porcini, de pinheiro, bronzeado e de verão, mais os reis norte-americanos",
+      "howTo": "Cada lugar mostra a melhor das suas pontuações; procure em faiais, carvalhais, soutos, pinhais e abetais duas a quatro semanas após uma chuva forte"
     }
   }
 }

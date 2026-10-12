@@ -46,7 +46,7 @@ import era5_normals
 import era5_rain
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
-from species_registry import get_species_params
+from species_registry import get_composites, get_species_params
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
@@ -1808,6 +1808,11 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
 
     score_cols = [f"{s}_score" for s in species_params]
     forward = spatial_smooth_scores(forward, score_cols)
+    # A composite (every porcini-type bolete) is the best of its members at each place and day.
+    for composite, members in get_composites(config.region).items():
+        present = [f"{m}_score" for m in members if f"{m}_score" in forward.columns]
+        forward[f"{composite}_score"] = forward[present].max(axis=1) if present else np.nan
+        score_cols.append(f"{composite}_score")
     confidence_cols = [f"{s}_confidence" for s in species_params]
     updated_df = apply_forward_scores(combined_df, forward, score_cols + confidence_cols)
 
@@ -1815,7 +1820,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         cutoff_date = datetime.now() - timedelta(days=config.cutoff_days)
     updated_df = updated_df[updated_df["Date"] > cutoff_date]
 
-    valid_score_columns = {f"{s}_score" for s in species_params}
+    valid_score_columns = set(score_cols)
     species_score_columns = [c for c in updated_df.columns if c.endswith("_score") and c in valid_score_columns]
     # No snap to 10 above 9.5: it tied whole species lists at 100% and hid their order.
     updated_df[species_score_columns] = updated_df[species_score_columns].round(2)

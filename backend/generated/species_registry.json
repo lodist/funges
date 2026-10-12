@@ -6952,6 +6952,46 @@
           ]
         }
       }
+    },
+    "boletus": {
+      "name": "Boletus (all porcini)",
+      "scientificName": "Boletus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [],
+      "dataColumns": ["boletus_score", "Boletus Group"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "compositeOf": [
+            "mushroom",
+            "pine_bolete",
+            "bronze_bolete",
+            "summer_bolete"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "compositeOf": [
+            "mushroom",
+            "pine_bolete",
+            "bronze_bolete",
+            "summer_bolete"
+          ]
+        },
+        "USE": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "compositeOf": ["mushroom", "eastern_king", "rocky_king"]
+        },
+        "USW": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "compositeOf": ["mushroom", "eastern_king", "rocky_king"]
+        }
+      }
     }
   }
 }
