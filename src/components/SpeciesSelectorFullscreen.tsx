@@ -10,11 +10,16 @@ import { useNavigate } from '@tanstack/react-router';
 import { useOfflineStore } from '@/store/offlineStore';
 import { usePWA } from '@/hooks/use-pwa';
 import { SPECIES_DATA, speciesNameKey } from '@/data/species';
-import { BLOOM_CODE, BLOOM_EMOJI, BLOOM_SCIENTIFIC_NAME } from '@/lib/bloom';
+import { SPECTACLES } from '@/lib/bloom';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
 import { DURATION_BASE, EASE_STANDARD } from '@/lib/motion';
 import { useIsMobile } from '@/hooks/use-mobile';
+
+// The panel unmounts on close, so the chosen category lives here: someone
+// browsing mushrooms who opens the panel again lands back on mushrooms.
+// ponytail: module scope = remembered for the session, not across reloads.
+let lastCategory = 'all';
 
 interface SpeciesSelectorFullscreenProps {
   isOpen: boolean;
@@ -45,7 +50,11 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
   const isMobile = useIsMobile();
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setCategory] = useState(lastCategory);
+  const setSelectedCategory = (category: string) => {
+    lastCategory = category;
+    setCategory(category);
+  };
 
   // Close on escape key
   useEffect(() => {
@@ -67,14 +76,6 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
     };
   }, [isOpen, onClose]);
 
-  // Reset search and category when opening
-  useEffect(() => {
-    if (isOpen) {
-      setSearchTerm('');
-      setSelectedCategory('all');
-    }
-  }, [isOpen]);
-
   // Category options for quick filters
   const categories = [
     { value: 'all', label: tSpecies('allTypes'), icon: '🍃' },
@@ -86,8 +87,8 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
     { value: 'spectacle', label: t('bloom.spectacles'), icon: '✨' },
   ];
 
-  // Species, plus the cherry blossom layer under "Spectacles": it is picked like
-  // a species but is not in the catalog, so it brings its own name.
+  // Species, plus the spectacle layers under "Spectacles": they are picked like
+  // a species but are not in the catalog, so each brings its own name.
   const options = [
     ...speciesOptions.map(option => {
       const speciesData = SPECIES_DATA.find(item => item.id === option.code);
@@ -100,22 +101,23 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
         image: getSpeciesImage(option.code),
       };
     }),
-    {
-      code: BLOOM_CODE,
-      emoji: BLOOM_EMOJI,
+    ...SPECTACLES.map(spectacle => ({
+      code: spectacle.code,
+      emoji: spectacle.emoji,
       category: 'spectacle' as string | undefined,
-      name: t('bloom.name'),
-      scientificName: BLOOM_SCIENTIFIC_NAME,
-      image: getSpeciesImage(BLOOM_CODE),
-    },
+      name: t(`${spectacle.keys}.name`),
+      scientificName: spectacle.scientificName,
+      image: getSpeciesImage(spectacle.code),
+    })),
   ];
 
   // Filter and sort species based on search term and category
   const filteredSpecies = options
     .filter(option => {
+      const term = searchTerm.toLowerCase();
       const matchesSearch =
-        searchTerm === '' ||
-        option.name.toLowerCase().includes(searchTerm.toLowerCase());
+        option.name.toLowerCase().includes(term) ||
+        option.scientificName.toLowerCase().includes(term);
       const matchesCategory =
         selectedCategory === 'all' || option.category === selectedCategory;
       return matchesSearch && matchesCategory;

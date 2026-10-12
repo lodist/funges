@@ -109,7 +109,7 @@ def test_build_bloom_end_to_end(tmp_path):
     geojson, layer = layers[0]
     assert layer == "ne_bloom"
     peaks = [f["properties"]["peak"] for f in geojson["features"]]
-    assert all(isinstance(p, int) for p in peaks) and len(peaks) == len(set(peaks)) == out["bands"] == 2
+    assert all((4 * p).is_integer() for p in map(float, peaks)) and len(peaks) == len(set(peaks)) == out["bands"] == 2
     # Each band is its town, not its 0.1° cell.
     bounds = gpd.GeoDataFrame.from_features(geojson["features"]).total_bounds
     assert tuple(round(float(v), 2) for v in bounds) == (7.98, 49.98, 8.02, 50.52)
@@ -143,22 +143,15 @@ def test_build_bloom_draws_only_where_a_normal_year_blooms_by_7_june(tmp_path, n
 
 
 def test_local_master_removes_a_broken_download(tmp_path, monkeypatch):
-    class Dropped:
-        def __enter__(self):
-            return self
+    import r2
 
-        def __exit__(self, *exc):
-            return False
-
-        def raise_for_status(self):
-            pass
-
-        def iter_content(self, chunk_size):
-            yield b"PAR1"
-            raise ConnectionError("dropped")
+    def dropped(path, dest):
+        with open(dest, "wb") as f:
+            f.write(b"PAR1")
+        raise ConnectionError("dropped")
 
     monkeypatch.setattr(tempfile, "tempdir", str(tmp_path))
-    monkeypatch.setattr("requests.get", lambda *a, **k: Dropped())
+    monkeypatch.setattr(r2, "download", dropped)
     with pytest.raises(ConnectionError):
         _local_master("https://data.example/master.parquet")
     assert list(tmp_path.iterdir()) == []
@@ -170,3 +163,34 @@ def test_build_bloom_skips_out_of_season(tmp_path):
 
     assert build_bloom(tmp_path / "missing.parquet", "ne", "EU/NE", fail, fail, build_mbtiles=fail,
                        today=date(2026, 10, 1)) is None
+
+
+def test_build_spectacles_downloads_once_and_survives_a_failing_spectacle(tmp_path, monkeypatch):
+    import bloom
+
+    downloads, calls = [], []
+    monkeypatch.setattr(bloom, "_local_master", lambda path: (downloads.append(path) or str(tmp_path / "local"), False))
+
+    def ok(path, region, prefix, to_pmtiles, upload, *, today):
+        calls.append(("ok", path))
+        return {"drawn": 1}
+
+    def broken(path, region, prefix, to_pmtiles, upload, *, today):
+        calls.append(("broken", path))
+        raise RuntimeError("boom")
+
+    always = lambda today: True
+    out = bloom.build_spectacles("https://data.example/m.parquet", "ne", "EU/NE", None, None, today=date(2027, 4, 1),
+                                 spectacles=[("a", {"ne"}, always, broken), ("b", {"ne"}, always, ok),
+                                             ("c", {"usw"}, always, ok), ("d", {"ne"}, lambda today: False, ok)])
+    assert downloads == ["https://data.example/m.parquet"]  # once, for both spectacles due
+    assert calls == [("broken", str(tmp_path / "local")), ("ok", str(tmp_path / "local"))]
+    assert out == {"a": None, "b": {"drawn": 1}}
+
+
+def test_build_spectacles_downloads_nothing_when_none_is_due(monkeypatch):
+    import bloom
+
+    monkeypatch.setattr(bloom, "_local_master", lambda path: pytest.fail("downloaded"))
+    assert bloom.build_spectacles("https://data.example/m.parquet", "ne", "EU/NE", None, None,
+                                  today=date(2027, 12, 15)) == {}

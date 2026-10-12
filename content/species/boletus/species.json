@@ -1,0 +1,88 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "boletus",
+  "scientificName": "Boletus",
+  "catalog": {
+    "enabled": true,
+    "order": 56,
+    "translationKey": "boletus",
+    "category": "mushroom",
+    "emoji": "🍄‍🟫",
+    "season": "summer-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/boletus.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Boletus (all porcini)",
+      "description": "Every porcini-type bolete in one score: porcini, pine, bronze and summer boletes, and the North American kings",
+      "howTo": "Each place shows the best of their scores; look in beech, oak, chestnut, pine and spruce woods two to four weeks after a soaking rain"
+    },
+    "it": {
+      "name": "Boletus (tutti i porcini)",
+      "description": "Tutti i porcini in un solo punteggio: porcino, porcino dei pini, porcino nero e porcino estivo, più i re boleti nordamericani",
+      "howTo": "Ogni luogo mostra il punteggio migliore tra loro; cerca in faggete, querceti, castagneti, pinete e abetaie due-quattro settimane dopo una pioggia abbondante"
+    },
+    "fr": {
+      "name": "Boletus (tous les cèpes)",
+      "description": "Tous les cèpes en un seul score : cèpe de Bordeaux, cèpe des pins, cèpe bronzé et cèpe d'été, plus les bolets royaux d'Amérique du Nord",
+      "howTo": "Chaque lieu affiche le meilleur de leurs scores ; cherchez dans les hêtraies, chênaies, châtaigneraies, pinèdes et pessières deux à quatre semaines après une bonne pluie"
+    },
+    "de": {
+      "name": "Boletus (alle Steinpilze)",
+      "description": "Alle Steinpilze in einem Wert: Fichten-, Kiefern-, Bronze- und Sommer-Steinpilz sowie die nordamerikanischen Königsröhrlinge",
+      "howTo": "Jeder Ort zeigt den besten ihrer Werte; such in Buchen-, Eichen-, Kastanien-, Kiefern- und Fichtenwäldern zwei bis vier Wochen nach ergiebigem Regen"
+    },
+    "es": {
+      "name": "Boletus (todos los boletos)",
+      "description": "Todos los boletos tipo porcini en una sola puntuación: boleto comestible, de pino, negro y de verano, más los reyes norteamericanos",
+      "howTo": "Cada lugar muestra la mejor de sus puntuaciones; busca en hayedos, robledales, castañares, pinares y abetales dos a cuatro semanas después de una lluvia abundante"
+    },
+    "pt": {
+      "name": "Boletus (todos os porcini)",
+      "description": "Todos os boletos do tipo porcini numa só pontuação: porcini, de pinheiro, bronzeado e de verão, mais os reis norte-americanos",
+      "howTo": "Cada lugar mostra a melhor das suas pontuações; procure em faiais, carvalhais, soutos, pinhais e abetais duas a quatro semanas após uma chuva forte"
+    }
+  },
+  "identification": {
+    "enabled": false
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": false,
+    "dataColumns": ["Boletus Group"],
+    "compositeOf": [
+      "mushroom",
+      "pine_bolete",
+      "bronze_bolete",
+      "summer_bolete",
+      "eastern_king",
+      "rocky_king"
+    ],
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": []
+    },
+    "regions": {
+      "NE": {
+        "available": true
+      },
+      "SE": {
+        "available": true
+      },
+      "USE": {
+        "available": true
+      },
+      "USW": {
+        "available": true
+      }
+    }
+  }
+}

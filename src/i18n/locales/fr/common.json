@@ -35,7 +35,9 @@
     "sort": "Trier",
     "email": "E-mail",
     "score": "Score",
-    "copied": "Copié !"
+    "copied": "Copié !",
+    "enlargeImage": "Agrandir l'image",
+    "shrinkImage": "Réduire l'image"
   },
   "offline": {
     "mode": "Mode hors ligne",
@@ -44,34 +46,36 @@
     "reloadForUpdate": "Recharger pour mettre à jour"
   },
   "home": {
-    "title": "Funges",
     "headline": "Explorez ce qui pousse autour de vous",
-    "description": "Prévisions de cueillette, cartes des espèces, identification par photo privée et recettes sauvages.",
+    "description": "Prévisions de cueillette, spectacles naturels, identification photo privée et recettes sauvages",
     "cta": "Explorer la carte",
     "ctaSecondary": "Ce qui est de saison",
     "forecast": {
-      "label": "Prévision",
-      "heading": "Ça vaut le coup de sortir aujourd'hui ?",
-      "body": "Savoir où et quand les conditions sont bonnes.",
+      "heading": "Ça vaut le coup de sortir aujourd'hui ?",
+      "body": "Découvrez comment la saison et la météo influencent vos chances, et comparez les zones proches avant de partir",
       "link": "Ouvrir la prévision"
     },
     "identify": {
-      "label": "Identifier",
-      "heading": "Qu'avez-vous trouvé ?",
-      "body": "Identifiez champignons et plantes en privé, sur votre appareil.",
-      "link": "Essayer l'identification"
+      "heading": "Qu'avez-vous trouvé ?",
+      "body": "Prenez une photo et explorez les correspondances possibles : l'identification se fait sur votre appareil, vos photos restent privées",
+      "link": "Essayer l'identification",
+      "safety": "Consultez toujours un expert avant de consommer un aliment sauvage : ces informations sont à but éducatif uniquement"
     },
     "cook": {
-      "label": "Cuisiner",
-      "heading": "De retour à la maison",
-      "body": "Transformez vos trouvailles en recettes sauvages.",
+      "heading": "De la nature à l'assiette",
+      "body": "Trouvez des recettes pour votre cueillette, avec des conseils de préparation et des instructions étape par étape",
       "link": "Voir les recettes"
     },
     "closing": {
-      "heading": "Prêt à explorer ?",
+      "heading": "Prêt à explorer ?",
       "cta": "Ouvrir la carte"
     },
-    "coverage": "Les prévisions couvrent actuellement le nord et le sud de l'Europe ainsi que l'est et l'ouest des États-Unis."
+    "coverage": "Les prévisions couvrent actuellement le nord et le sud de l'Europe ainsi que l'est et l'ouest des États-Unis",
+    "spectacles": {
+      "heading": "Spectacles naturels",
+      "body": "Des cerisiers en fleurs aux sous-bois de jacinthes et aux feuilles d'automne : suivez les saisons et explorez les prévisions de ces spectacles éphémères",
+      "link": "Explorer les couleurs d'automne"
+    }
   },
   "worthForagingNow": {
     "title": "Qu'est-ce qui vaut le coup d'aller cueillir maintenant ?",

@@ -338,6 +338,11 @@
       "name": "Espino amarillo",
       "description": "Bayas de un naranja intenso apretadas a lo largo de ramas espinosas de hojas plateadas: ácidas y ricas en vitamina C",
       "howTo": "Búscalo en dunas costeras y riberas de grava de agosto a octubre. Usa guantes por las espinas e infórmate: en las reservas de dunas la recolección suele estar prohibida"
+    },
+    "boletus": {
+      "name": "Boletus (todos los boletos)",
+      "description": "Todos los boletos tipo porcini en una sola puntuación: boleto comestible, de pino, negro y de verano, más los reyes norteamericanos",
+      "howTo": "Cada lugar muestra la mejor de sus puntuaciones; busca en hayedos, robledales, castañares, pinares y abetales dos a cuatro semanas después de una lluvia abundante"
     }
   }
 }

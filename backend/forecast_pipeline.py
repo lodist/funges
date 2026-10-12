@@ -16,6 +16,9 @@ from datetime import datetime, timedelta
 from io import StringIO, BytesIO
 from pathlib import Path
 from urllib.parse import urlparse
+import faulthandler
+import gzip
+import hashlib
 import math
 import os
 import sys
@@ -24,6 +27,10 @@ import time
 import threading
 import tempfile
 
+try:  # before pandas/pyarrow: pyarrow 17 bundles an old msvcp140.dll that crashes LightGBM 4.7
+    import lightgbm as lgb
+except ImportError:  # no GBM then: the linear fits and hand-set settings still score
+    lgb = None
 import boto3
 import numpy as np
 import pandas as pd
@@ -35,16 +42,15 @@ from shapely.ops import unary_union
 from shapely.geometry import shape, Point
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasonality
+import era5_normals
 import era5_rain
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
-from species_registry import get_species_params
+from species_registry import get_composites, get_species_params
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
 RAIN_HOUR_MM = 0.1
-# How long the run waits for ERA5 after the WeatherAPI fetch, which it overlaps.
-ERA5_EXTRA_WAIT_S = 120
 
 
 def _hourly(hours, field):
@@ -86,7 +92,6 @@ def parse_forecast_days(weather_json, static_fields, lat_r, lon_r, ndp):
             "Wind Speed Mean (kph)": float(np.mean(wind)) if wind else None,
             "Pressure (hPa)": float(np.mean(pressure)) if pressure else None,
             "Humidity (%)": day.get("avghumidity"),
-            "Description": (day.get("condition") or {}).get("text"),
             "TotalPrecipitation_mm": day.get("totalprecip_mm", 0),
             "Rain Hours": sum(p >= RAIN_HOUR_MM for p in precip) if precip else None,
             "Snowfall (cm)": day.get("totalsnow_cm"),
@@ -922,10 +927,265 @@ def _ph_score_vectorized(ph_values, optimal_pH, pH_sigma_near, pH_sigma_far, pH_
     return np.where(isnan, 0.0, score)
 
 
+# --- Fitted fruiting response (#291) ---------------------------------------------------
+# tools/fit_fruiting.py fits a conditional logit on these features: ERA5 weather at every
+# GBIF find since 2016 against the same place 14 and 21 days either side. Where its index
+# ranked find days better than the hand-set weather part in more held-out years than chance
+# would give, generated/fruiting_fit.json carries the coefficients, and the index replaces
+# that species' weather part in that region. tests/test_fruiting.py checks these features
+# match the training table's exactly. No sunshine: it is stored only since 8 October 2026,
+# its gap to ERA5 is unmeasured, and leaving it out cost the fit nothing.
+FRUITING_FIT_PATH = Path(__file__).resolve().parent / "generated" / "fruiting_fit.json"
+FRUITING_RAIN_WINDOWS = {"rain_1_3": (1, 3), "rain_4_7": (4, 7), "rain_8_14": (8, 14),
+                         "rain_15_28": (15, 28), "rain_29_42": (29, 42)}
+FRUITING_FEATURES = ["rain_0", *FRUITING_RAIN_WINDOWS, "dry_days", "temp", "temp_sq",
+                     "tmin_drop", "frost", "humidity", "humidity_early"]
+FRUITING_LAG_COLUMNS = ["Temperature (C) Min"]
+DRY_DAYS_CAP = 43          # no 5 mm day within the 42 days the lags reach
+RAIN_MAX_MM_DAY = 300.0    # the US parquets carry impossible days (2415 mm); ERA5 never does
+
+
+# The GBM reads each day itself rather than window sums: rain d0-42 (log1p), mean and
+# minimum temperature d1-14, humidity d1-21. tests/test_fruiting_gbm.py checks they match
+# tools/build_training_table.daily_lags exactly.
+FRUITING_GBM_LAGS = {"rain": ("TotalPrecipitation_mm", range(0, 43)),
+                     "tmean": ("Temperature (C)", range(1, 15)),
+                     "tmin": ("Temperature (C) Min", range(1, 15)),
+                     "rh": ("Humidity (%)", range(1, 22))}
+
+
+# Then the find cell's ERA5 normals for the month, its latitude and the day of year: constant
+# within a training stratum, so in the nightly scoring they are the run's, on every day scored.
+FRUITING_GBM_STATIC = ["norm_rain", "norm_tmean", "norm_rh", "lat", "find_doy"]
+FRUITING_GBM_REGIONS = ["NE", "SE", "USE", "USW"]
+FRUITING_GBM_PATH = Path(__file__).resolve().parent / "generated" / "fruiting_gbm.json"
+
+
+def fruiting_gbm_lags(df):
+    """Each row's daily lags from the frame's "<column>_<k>days_ago" columns."""
+    out = {}
+    for name, (column, days) in FRUITING_GBM_LAGS.items():
+        for k in days:
+            name_k = column if k == 0 else f"{column}_{k}days_ago"
+            values = df[name_k].to_numpy(float) if name_k in df else np.full(len(df), np.nan)
+            out[f"{name}_d{k}"] = np.log1p(np.clip(values, 0, RAIN_MAX_MM_DAY)) if name == "rain" else values
+    return pd.DataFrame(out, index=df.index)
+
+
+def fruiting_raw_features(df):
+    """Each row's raw features from the frame's lag columns, defined as in
+    tools/build_training_table.features: a window over days d-far..d-near, NaN if any
+    of them is missing; days since 5 mm counts back from yesterday."""
+    rain = np.clip(_lag_matrix(df, "TotalPrecipitation_mm", 42), 0, RAIN_MAX_MM_DAY)
+    temp = _lag_matrix(df, "Temperature (C)", 7)
+    tmin = _lag_matrix(df, "Temperature (C) Min", 14)
+    humidity = _lag_matrix(df, "Humidity (%)", 21)
+    wet = rain >= 5.0
+    out = pd.DataFrame({
+        "rain_0": np.clip(df["TotalPrecipitation_mm"].to_numpy(float), 0, RAIN_MAX_MM_DAY),
+        **{name: rain[:, near - 1:far].sum(axis=1) for name, (near, far) in FRUITING_RAIN_WINDOWS.items()},
+        "days_since_rain5": np.where(wet.any(axis=1), wet.argmax(axis=1) + 1, DRY_DAYS_CAP),
+        "temp_1_7": temp.mean(axis=1),
+        "tmin_1_3": tmin[:, :3].mean(axis=1),
+        "tmin_8_14": tmin[:, 7:14].mean(axis=1),
+        "frost_days_1_14": np.where(np.isnan(tmin).any(axis=1), np.nan, (tmin < 0).sum(axis=1)),
+        "humidity_1_7": humidity[:, :7].mean(axis=1),
+        "humidity_8_21": humidity[:, 7:21].mean(axis=1),
+    }, index=df.index)
+    out["tmin_drop"] = out["tmin_1_3"] - out["tmin_8_14"]
+    return out
+
+
+FRUITING_GBM_FEATURES = [*FRUITING_FEATURES,
+                         *(f"{name}_d{k}" for name, (_, days) in FRUITING_GBM_LAGS.items() for k in days),
+                         *FRUITING_GBM_STATIC, "region"]
+
+
+# Humidity and temperature as departures from the place's normal for the time of year (the
+# window's middle day, era5_normals 2016-2025). The fit learns only from days at one place,
+# where absolute values and departures give the same coefficients, but read as absolute values
+# a drier or warmer climate lowered every day there, which no test checked (central Apennines
+# in a wet autumn 7.5, the Alps 9). Feature -> (normal, days back to the window's middle).
+FRUITING_RELATIVE = {"temp": ("tmean", 4), "humidity": ("rh", 4), "humidity_early": ("rh", 14)}
+
+
+def fruiting_relative(design, grid, lats, lons, dates):
+    """The linear fit's humidity and temperature as departures from the place's normals, the
+    temperature optimum's term against the normal's own. Off the normals grid they are unknown
+    and count as average. The GBM reads the normals as inputs instead."""
+    out = design.copy()
+    lats, lons = np.asarray(lats, float), np.asarray(lons, float)
+    dates = pd.DatetimeIndex(pd.to_datetime(dates))
+    for name, (normal, back) in FRUITING_RELATIVE.items():
+        n = era5_normals.on_days(grid, lats, lons, dates - pd.Timedelta(days=back))[f"norm_{normal}"]
+        out[name] = design[name].to_numpy(float) - n
+        if name == "temp":
+            out["temp_sq"] = design["temp_sq"].to_numpy(float) - (n - 12.0) ** 2 / 10.0
+    return out
+
+
+def fruiting_design(raw):
+    """Raw features -> the fit's columns. Rain on a log scale: the 30th mm matters less than the 3rd."""
+    out = pd.DataFrame({name: np.log1p(raw[name]) for name in ["rain_0", *FRUITING_RAIN_WINDOWS]})
+    out["dry_days"] = np.log1p(raw["days_since_rain5"].fillna(DRY_DAYS_CAP).clip(upper=DRY_DAYS_CAP))
+    out["temp"] = raw["temp_1_7"]
+    out["temp_sq"] = (raw["temp_1_7"] - 12.0) ** 2 / 10.0   # lets an optimum emerge
+    out["tmin_drop"] = raw["tmin_drop"]
+    out["frost"] = raw["frost_days_1_14"]
+    out["humidity"] = raw["humidity_1_7"]
+    out["humidity_early"] = raw["humidity_8_21"]
+    return out[FRUITING_FEATURES]
+
+
+def fruiting_weather_part(df, model):
+    """The fitted index, put on the hand-set weather part's own scale. model["map"] holds one
+    map per calendar month, pairing quantiles of the index with the same quantiles of the
+    hand-set part at that time of year, so a score keeps its range, threshold and seasonal
+    level and only its order changes; a day blends the two months either side of it. The
+    fit learned on ERA5, whose humidity reads higher than the stored WeatherAPI values, so
+    model["humidity_from_stored"] = (a, b) puts stored humidity on ERA5's level first. A
+    feature the row lacks counts as average."""
+    design = fruiting_design(fruiting_raw_features(df))
+    a, b = model.get("humidity_from_stored", (0.0, 1.0))
+    design[["humidity", "humidity_early"]] = a + b * design[["humidity", "humidity_early"]]
+    if model.get("normals") is not None:
+        design = fruiting_relative(design, model["normals"], df["Latitude"], df["Longitude"], df["Date"])
+    z = (design.to_numpy(float) - np.asarray(model["means"])) / np.asarray(model["sds"])
+    eta = np.nan_to_num(z, nan=0.0) @ np.asarray(model["beta"], float)
+    return _monthly_map(eta, df["Date"], model["map"])
+
+
+def _monthly_map(index, dates, maps):
+    """The index on the hand-set weather part's scale: one map per calendar month, a day
+    blending the two months either side of it."""
+    months = (pd.to_datetime(dates).dt.dayofyear.to_numpy() - 15.0) / (365.25 / 12)  # 0 = mid-January
+    before = np.floor(months).astype(int)
+    weight = months - before
+    out = np.empty(len(index))
+    for month in np.unique(before):
+        rows = before == month
+        part = [np.interp(index[rows], m["eta"], m["weather_part"]) for m in (maps[month % 12], maps[(month + 1) % 12])]
+        out[rows] = (1 - weight[rows]) * part[0] + weight[rows] * part[1]
+    return out
+
+
+def fruiting_gbm_features(df, model):
+    """The GBM's inputs per row, in FRUITING_GBM_FEATURES order. Stored inputs are put on
+    ERA5's level first (model["corrections"]: column -> a, b), as the GBM learned on ERA5.
+    Normals and day of year are those of model["anchor"], the run's date."""
+    light = {}
+    for column in ("TotalPrecipitation_mm", "Temperature (C)", "Temperature (C) Min", "Humidity (%)"):
+        a, b = model["corrections"].get(column, (0.0, 1.0))
+        for name in [column, *(f"{column}_{k}days_ago" for k in range(1, 43))]:
+            if name in df:
+                light[name] = a + b * pd.to_numeric(df[name], errors="coerce").to_numpy(float)
+    light = pd.DataFrame(light, index=df.index)
+    if "TotalPrecipitation_mm" not in light:
+        light["TotalPrecipitation_mm"] = np.nan
+    anchor = pd.Timestamp(model["anchor"])
+    lats, lons = df["Latitude"].to_numpy(float), df["Longitude"].to_numpy(float)
+    normals = era5_normals.lookup(model["normals"], lats, lons, np.full(len(df), anchor.month))
+    return np.column_stack([
+        fruiting_design(fruiting_raw_features(light)).to_numpy(float),
+        fruiting_gbm_lags(light).to_numpy(float),
+        normals["norm_rain"], normals["norm_tmean"], normals["norm_rh"],
+        np.round(lats / era5_normals.STEP) * era5_normals.STEP,
+        np.full(len(df), anchor.dayofyear, float),
+        np.full(len(df), model["region_code"], float)])
+
+
+def fruiting_gbm_weather_part(features, df, model):
+    """The GBM's raw score through its monthly maps onto the hand-set weather part's scale."""
+    return _monthly_map(model["booster"].predict(features, raw_score=True), df["Date"], model["map"])
+
+
+def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
+    """Give each species the region's fitted model, where generated/fruiting_fit.json has one."""
+    if not Path(path).exists():
+        return
+    fit = json.loads(Path(path).read_text(encoding="utf-8"))
+    if fit.get("features") != FRUITING_FEATURES:
+        print(f"[warn] {path}: features differ from this code's; hand-set weather parts used")
+        return
+    normals = None
+    for specie, params in species_params.items():
+        model = fit.get("models", {}).get(specie, {}).get(region)
+        if model:
+            params["fruiting"] = {"means": fit["means"], "sds": fit["sds"],
+                                  "humidity_from_stored": fit["humidity_from_stored"][region], **model}
+            if fit.get("relative_to_normal"):
+                normals = era5_normals.load(region) if normals is None else normals
+                params["fruiting"]["normals"] = normals
+
+
+def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, fetch=None):
+    """Give each species the region's GBM, where generated/fruiting_gbm.json ships one; it
+    replaces that species' linear fit. The models live on R2 (each training run in its own
+    folder, checked against the sha256 recorded here); one that cannot be fetched or fails its
+    checksum leaves the species on its linear fit. `today` anchors normals and day of year."""
+    if lgb is None or not Path(path).exists():
+        return
+    spec = json.loads(Path(path).read_text(encoding="utf-8"))
+    if spec.get("features") != FRUITING_GBM_FEATURES:
+        print(f"[warn] {path}: features differ from this code's; GBM not used")
+        return
+    fetch = fetch or r2_fetch
+    normals = None
+    for specie, params in species_params.items():
+        model = spec.get("models", {}).get(specie, {})
+        if region not in model.get("regions", {}):
+            continue
+        try:
+            data = fetch(model["file"])
+            if hashlib.sha256(data).hexdigest() != model["sha256"]:
+                raise ValueError("checksum differs")
+            booster = lgb.Booster(model_str=gzip.decompress(data).decode())
+        except Exception as error:
+            print(f"[warn] GBM for {specie} not loaded ({error}); its linear fit stays")
+            continue
+        if normals is None:
+            normals = era5_normals.load(region)
+        params.pop("fruiting", None)
+        params["fruiting_gbm"] = {
+            "booster": booster, "map": model["regions"][region]["map"],
+            "corrections": spec["inputs_from_stored"][region],
+            "region_code": FRUITING_GBM_REGIONS.index(region), "anchor": pd.Timestamp(today),
+            "normals": normals}
+
+
+HABITAT_PATH = Path(__file__).resolve().parent / "generated" / "habitat_factor.json"
+
+
+def attach_habitat(species_params, region, path=None, fetch=None):
+    """The learned habitat factor (tools/fit_habitat.py) for the region's species that ship
+    one: per location, on R2 and checked against the sha256 recorded here. A file that cannot
+    be fetched or fails its checksum leaves the scores without it."""
+    path = Path(path or HABITAT_PATH)
+    if not path.exists():
+        return
+    entry = json.loads(path.read_text(encoding="utf-8")).get("regions", {}).get(region)
+    if not entry or not set(entry["species"]) & set(species_params):
+        return
+    try:
+        data = (fetch or r2_fetch)(entry["file"])
+        if hashlib.sha256(data).hexdigest() != entry["sha256"]:
+            raise ValueError("checksum differs")
+        with np.load(BytesIO(data)) as z:
+            ids, species, factor = z["ids"], [str(s) for s in z["species"]], z["factor"]
+    except Exception as error:
+        print(f"[warn] habitat factor not loaded ({error}); scores go without it")
+        return
+    index = pd.Index(ids)
+    for column, specie in enumerate(species):
+        if specie in species_params:
+            species_params[specie]["habitat"] = {"index": index, "factor": factor[:, column] / 255.0}
+
+
 def calculate_mushroom_score(df, species_params, zone_curves):
     if 'TotalPrecipitation_mm' not in df.columns:
         df['TotalPrecipitation_mm'] = np.nan
     wind_factor = _lagged_wind_factor(df)
+    gbm_features = None
 
     for specie, params in species_params.items():
         cum_thr = float(params.get('min_cumulative_rain', 20.0))
@@ -966,6 +1226,17 @@ def calculate_mushroom_score(df, species_params, zone_curves):
 
         df[f'{specie}_Temp_Score'] = np.clip(temp_score, 0, 1)
         df[f'{specie}_Humidity_Score'] = np.clip(humidity_score, 0, 1)
+        # All three weather components take the fitted part, so their weighted
+        # geometric mean is that part and the static components weigh as before.
+        if params.get("fruiting_gbm"):
+            if gbm_features is None:   # the same for every species of a region run
+                gbm_features = fruiting_gbm_features(df, params["fruiting_gbm"])
+            fitted = fruiting_gbm_weather_part(gbm_features, df, params["fruiting_gbm"])
+        elif params.get("fruiting"):
+            fitted = fruiting_weather_part(df, params["fruiting"])
+        if params.get("fruiting_gbm") or params.get("fruiting"):
+            for part in ("Temp", "Humidity", "Weather"):
+                df[f'{specie}_{part}_Score'] = fitted
         df[f'{specie}_Alt_Score'] = np.clip(
             altitude_score(df['Elevation (m)'].to_numpy(float), optimal_alt, alt_sigma), 0, 1)
         df[f'{specie}_PH_Score'] = _ph_score_vectorized(
@@ -1126,6 +1397,16 @@ def _load_species_and_curves(config):
             print(f"Loaded host cover for {sum('host_prior' in p for p in species_params.values())} species.")
         except Exception as _e:
             print(f"[warn] could not load host cover from {_cover_path}: {_e}; scoring without it")
+
+    attach_fruiting_models(species_params, config.region)
+    attach_fruiting_gbm(species_params, config.region, datetime.now())
+    attach_habitat(species_params, config.region)
+    _fitted = sorted(s for s, p in species_params.items() if "fruiting" in p)
+    print(f"Fitted fruiting model for {len(_fitted)} species: {', '.join(_fitted) or 'none'}")
+    _gbm = sorted(s for s, p in species_params.items() if "fruiting_gbm" in p)
+    print(f"Fruiting GBM for {len(_gbm)} species: {', '.join(_gbm) or 'none'}")
+    _habitat = sorted(s for s, p in species_params.items() if "habitat" in p)
+    print(f"Habitat factor for {len(_habitat)} species: {', '.join(_habitat) or 'none'}")
     return species_params, zone_curves
 
 
@@ -1182,7 +1463,46 @@ def _load_or_build_coords(config, coordinates_file_path, geojson_path):
 
 # --- Orchestration ---------------------------------------------------------
 
+# The scheduler keeps no console output, so a region that failed at night left no trace (USW,
+# 11 Oct 2026). Each run copies its output to app_operation/logs, outside the repo.
+LOG_DIR = Path(__file__).resolve().parents[2] / "logs"
+LOG_KEEP_DAYS = 30
+
+
+class _Tee:
+    """Writes to the console and the log at once."""
+
+    def __init__(self, *streams):
+        self.streams = [stream for stream in streams if stream is not None]
+
+    def write(self, text):
+        for stream in self.streams:
+            stream.write(text)
+        return len(text)
+
+    def flush(self):
+        for stream in self.streams:
+            stream.flush()
+
+    def __getattr__(self, name):
+        return getattr(self.streams[0], name)
+
+
+def log_run_to_file(region):
+    """Copy this run's prints, warnings and tracebacks to LOG_DIR/<region>_<date>.log (line
+    buffered, so a crash loses at most a line) and drop logs older than LOG_KEEP_DAYS.
+    Returns the open log."""
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    for old in LOG_DIR.glob("*.log"):
+        if time.time() - old.stat().st_mtime > LOG_KEEP_DAYS * 86400:
+            old.unlink()
+    log = open(LOG_DIR / f"{region}_{datetime.now():%Y-%m-%d}.log", "a", encoding="utf-8", buffering=1)
+    sys.stdout, sys.stderr = _Tee(sys.stdout, log), _Tee(sys.stderr, log)
+    return log
+
+
 def run_pipeline(config: RegionConfig):
+    faulthandler.enable(log_run_to_file(config.region))   # a hard crash dumps its stack there too
     print(f"Script started at {datetime.now()}")
     _root = Path(__file__).resolve().parent.parent
     load_dotenv(_root / ".env")
@@ -1200,18 +1520,16 @@ def run_pipeline(config: RegionConfig):
     coordinates = _load_or_build_coords(config, coordinates_file_path, geojson_path)
     print(f"Final number of coordinates: {len(coordinates)}")
 
-    # ERA5 rain for past days downloads while WeatherAPI is fetched, so it adds little
-    # or nothing to the run; whatever is not back by then comes again tomorrow.
-    measured_rain = era5_rain.start(
-        config.lat_range, config.lon_range,
-        [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates],
-        datetime.now().date())
+    # Tonight's ERA5 rain order goes in before the WeatherAPI fetch; the orders that have
+    # finished since earlier runs, tonight's too on a quiet night, download after it.
+    points = [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates]
+    measured_rain = era5_rain.start(points, datetime.now().date())
     counter = CallCounter()
     weather_long = _fetch_all(config, coordinates, static_map, api_key, counter)
     print(f"API calls made: {counter.count} for {len(coordinates)} coordinates")
     # Only coords whose forecast arrived: a coord with rain alone would look fetched and
     # keep its base points from falling back to a neighbour's forecast.
-    rain = measured_rain(ERA5_EXTRA_WAIT_S)
+    rain = measured_rain()
     fetched = set(zip(weather_long["Latitude"], weather_long["Longitude"]))
     rain = rain[[point in fetched for point in zip(rain["Latitude"], rain["Longitude"])]]
     weather_long = pd.concat([weather_long, rain], ignore_index=True)
@@ -1321,7 +1639,7 @@ def _join_to_base(config, weather_long, base_file_path):
         "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
         "Wind Speed (kph)", "Wind Speed Mean (kph)", "Pressure (hPa)",
         "TotalPrecipitation_mm", "Rain Hours", "Snowfall (cm)", "Solar Radiation (Wh/m2)",
-        "Humidity (%)", "Description", "Rain Measured",
+        "Humidity (%)", "Rain Measured",
         "dist_m_water", "dist_m_sea", "climate_zone", "ph_level", "Elevation (m)",
     ]
     weather_cols = [c for c in weather_cols if c in weather_long.columns]
@@ -1434,7 +1752,10 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         combined_df["Date"] = pd.to_datetime(combined_df["Date"])
         combined_df = combined_df.drop_duplicates(subset=["Location_Id", "Date"], keep="last").reset_index(drop=True)
     if len(measured):
-        combined_df = apply_measured_weather(combined_df, measured)
+        try:
+            combined_df = apply_measured_weather(combined_df, measured)
+        except Exception as error:  # the stored rain stays, as it did before ERA5
+            print(f"[warn] ERA5 rain not merged, stored rain kept: {error}", flush=True)
 
     combined_df = combined_df[np.isfinite(combined_df["Latitude"]) & np.isfinite(combined_df["Longitude"])]
     combined_df = combined_df[combined_df["Location_Id"] != ""]
@@ -1443,7 +1764,8 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
 
     combined_df = combined_df.sort_values(["Location_Id", "Date"])
     lag_columns = ["Temperature (C)", "TotalPrecipitation_mm", "Pressure (hPa)",
-                   "Humidity (%)", "Wind Speed (m/s)"]
+                   "Humidity (%)", "Wind Speed (m/s)",
+                   *(c for c in FRUITING_LAG_COLUMNS if c in combined_df.columns)]
     # Only the forward window (Date >= today) is rescored, and a forward row's deepest
     # lag reaches back exactly lag_days. So lag only [today - lag_days .. ]: frozen older
     # rows are never rescored and need no lag features. Bit-identical for forward rows
@@ -1486,6 +1808,11 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
 
     score_cols = [f"{s}_score" for s in species_params]
     forward = spatial_smooth_scores(forward, score_cols)
+    # A composite (every porcini-type bolete) is the best of its members at each place and day.
+    for composite, members in get_composites(config.region).items():
+        present = [f"{m}_score" for m in members if f"{m}_score" in forward.columns]
+        forward[f"{composite}_score"] = forward[present].max(axis=1) if present else np.nan
+        score_cols.append(f"{composite}_score")
     confidence_cols = [f"{s}_confidence" for s in species_params]
     updated_df = apply_forward_scores(combined_df, forward, score_cols + confidence_cols)
 
@@ -1493,7 +1820,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         cutoff_date = datetime.now() - timedelta(days=config.cutoff_days)
     updated_df = updated_df[updated_df["Date"] > cutoff_date]
 
-    valid_score_columns = {f"{s}_score" for s in species_params}
+    valid_score_columns = set(score_cols)
     species_score_columns = [c for c in updated_df.columns if c.endswith("_score") and c in valid_score_columns]
     # No snap to 10 above 9.5: it tied whole species lists at 100% and hid their order.
     updated_df[species_score_columns] = updated_df[species_score_columns].round(2)
@@ -1503,7 +1830,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
     masterfile_columns = [
         "Location_Id", "Date", "Latitude", "Longitude", "Elevation (m)",
         "Pressure (hPa)", "TotalPrecipitation_mm", "Humidity (%)", "Wind Speed (m/s)",
-        "Description", "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
+        "Temperature (C) Max", "Temperature (C) Min", "Temperature (C)",
         "Wind Speed Mean (kph)", "Rain Hours", "Snowfall (cm)", "Solar Radiation (Wh/m2)",
         "Rain Measured", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
     ]

@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import io
 import json
 import math
 import time
@@ -19,7 +20,6 @@ from datetime import date, timedelta
 from pathlib import Path
 from urllib.parse import urlencode
 
-import fsspec
 import numpy as np
 import pyarrow.parquet as pq
 import requests
@@ -29,6 +29,7 @@ ROOT = Path(__file__).resolve().parents[1]
 import sys
 sys.path.insert(0, str(ROOT / "backend"))
 from species_registry import get_empirical_taxon_map, get_species_metadata, get_species_params
+import r2  # noqa: E402
 
 
 R2_ROOT = "https://data.fung.es"
@@ -86,9 +87,7 @@ def load_season_specs(session: requests.Session) -> dict:
         params = get_species_params(region)
         for url in (REGION_CURVE_URLS[region], ZONE_CURVE_URLS[region]):
             if url not in json_cache:
-                response = session.get(url, timeout=60)
-                response.raise_for_status()
-                json_cache[url] = response.json()
+                json_cache[url] = json.loads(r2.fetch(url))
         specs[region] = {
             "params": params,
             "region_curves": json_cache[REGION_CURVE_URLS[region]],
@@ -237,8 +236,7 @@ def analyse_region(
     region: str, url: str, occurrences: list[dict], start: str, end: str, specs: dict
 ) -> tuple[list[dict], dict]:
     print(f"R2 {region}: reading coordinates and score columns", flush=True)
-    fs = fsspec.filesystem("https")
-    with fs.open(url, "rb", block_size=16 * 1024 * 1024) as handle:
+    with io.BytesIO(r2.fetch(url)) as handle:
         parquet = pq.ParquetFile(handle)
         coordinate_parts = []
         for batch in parquet.iter_batches(

@@ -85,7 +85,18 @@
     "pawpaw": "Indianerbanane",
     "rose_hips": "Hagebutten",
     "sloes": "Schlehen",
-    "sea_buckthorn": "Sanddorn"
+    "sea_buckthorn": "Sanddorn",
+    "chicken-of-the-woods": "Schwefelporling",
+    "oyster-mushroom": "Austernpilz",
+    "elderflower": "Holunderblüte",
+    "elderberry": "Holunderbeere",
+    "blackberry": "Brombeere",
+    "blueberry": "Waldheidelbeere",
+    "hazelnut": "Haselnuss",
+    "wild-mint": "Wilde Minze",
+    "violets": "Duftveilchen",
+    "plantain": "Breitwegerich",
+    "daisy": "Gänseblümchen"
   },
   "tags": {
     "vegetarian": "Vegetarisch",
@@ -1859,6 +1870,541 @@
       "safetyNotes": [
         "Pflücke leuchtend orange, saftige Beeren ab dem Spätsommer, von Hand oder in eine Schüssel. Brich oder schneide keine Zweige von wilden Sträuchern ab: Das schadet ihnen, und in Finnland ist es verboten.",
         "In geschützten Dünen und Naturschutzgebieten kann das Pflücken verboten sein: Informiere dich über die örtlichen Regeln. Der Strauch ist sehr dornig: Trag Handschuhe."
+      ]
+    },
+    "chicken-of-the-woods-piccata": {
+      "title": "Schwefelporling-Piccata",
+      "ingredients": [
+        "400 g junger Schwefelporling, die zarten äußeren Ränder",
+        "2 EL Mehl",
+        "2 EL Olivenöl",
+        "30 g Butter",
+        "1 Knoblauchzehe, fein gehackt",
+        "120 ml Gemüsebrühe",
+        "Saft von 1 Zitrone",
+        "1 EL Kapern, abgespült",
+        "1 Handvoll Petersilie, gehackt",
+        "Salz und Pfeffer"
+      ],
+      "instructions": [
+        "Putzen: Nur die weichen äußeren 5–10 cm junger Fruchtkörper verwenden und alles Zähe oder Holzige abschneiden. Mit einem Pinsel säubern und in 1 cm dicke Scheiben schneiden.",
+        "Braten: Die Scheiben würzen, mit Mehl bestäuben und im Öl bei mittlerer bis starker Hitze 4–5 Minuten pro Seite goldbraun und durchgegart braten. Beiseitestellen.",
+        "Soße: Die Butter in derselben Pfanne schmelzen und den Knoblauch 30 Sekunden anbraten. Brühe, Zitronensaft und Kapern zugeben und 2 Minuten köcheln lassen.",
+        "Fertigstellen: Die Pilze zurück in die Pfanne geben, eine Minute in der Soße wenden und mit Petersilie bestreuen. Mit Reis, Nudeln oder Brot servieren."
+      ],
+      "species": ["chicken-of-the-woods"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Putzen: Nur die weichen äußeren 5–10 cm junger Fruchtkörper verwenden und alles Zähe oder Holzige abschneiden. Mit einem Pinsel säubern und in 1 cm dicke Scheiben schneiden."
+        },
+        {
+          "step": 2,
+          "instruction": "Braten: Die Scheiben würzen, mit Mehl bestäuben und im Öl bei mittlerer bis starker Hitze 4–5 Minuten pro Seite goldbraun und durchgegart braten. Beiseitestellen."
+        },
+        {
+          "step": 3,
+          "instruction": "Soße: Die Butter in derselben Pfanne schmelzen und den Knoblauch 30 Sekunden anbraten. Brühe, Zitronensaft und Kapern zugeben und 2 Minuten köcheln lassen."
+        },
+        {
+          "step": 4,
+          "instruction": "Fertigstellen: Die Pilze zurück in die Pfanne geben, eine Minute in der Soße wenden und mit Petersilie bestreuen. Mit Reis, Nudeln oder Brot servieren."
+        }
+      ],
+      "warnings": [
+        "Keine Wildpilze essen, wenn sie nicht von einem Experten bestimmt wurden."
+      ],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "15 min",
+      "servings": "2",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Schwefelporling immer durchgaren: Roh oder halb gar schlägt er auf den Magen.",
+        "Manche Menschen vertragen ihn auch gekocht nicht. Iss beim ersten Mal nur eine kleine Portion und warte einen Tag ab.",
+        "Sammle keine Fruchtkörper von Eiben, Eukalyptus oder Nadelbäumen, die mit mehr Unverträglichkeiten in Verbindung gebracht werden, und keine alten, die blass, bröckelig oder kreidig geworden sind."
+      ]
+    },
+    "garlic-oyster-mushroom-noodles": {
+      "title": "Knoblauch-Nudeln mit Austernpilzen",
+      "ingredients": [
+        "300 g Austernpilze",
+        "200 g Weizen- oder Eiernudeln",
+        "2 EL neutrales Öl",
+        "3 Knoblauchzehen, in Scheiben",
+        "2 Frühlingszwiebeln, in Ringen, weiße und grüne Teile getrennt",
+        "2 EL Sojasoße",
+        "1 TL Sesamöl",
+        "1 TL Zucker oder Honig",
+        "1 TL geröstete Sesamsamen",
+        "Chiliflocken (nach Belieben)"
+      ],
+      "instructions": [
+        "Vorbereiten: Die Pilze entlang der Lamellen in Streifen reißen und harte Stielansätze abschneiden. Die Nudeln nach Packungsangabe kochen und abgießen.",
+        "Anbraten: Das Öl in einer weiten Pfanne erhitzen und die Pilze in einer Lage hineinlegen. 3–4 Minuten braten, ohne zu rühren, dann wenden und weitere 3 Minuten braten, bis die Ränder gebräunt sind.",
+        "Würzen: Knoblauch und die weißen Teile der Frühlingszwiebeln 1 Minute mitbraten, dann Sojasoße, Zucker und Sesamöl zugeben.",
+        "Schwenken: Die Nudeln zugeben und schwenken, bis sie glänzen und heiß sind. Mit dem Grün der Frühlingszwiebeln, Sesam und Chili servieren."
+      ],
+      "species": ["oyster-mushroom"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Vorbereiten: Die Pilze entlang der Lamellen in Streifen reißen und harte Stielansätze abschneiden. Die Nudeln nach Packungsangabe kochen und abgießen."
+        },
+        {
+          "step": 2,
+          "instruction": "Anbraten: Das Öl in einer weiten Pfanne erhitzen und die Pilze in einer Lage hineinlegen. 3–4 Minuten braten, ohne zu rühren, dann wenden und weitere 3 Minuten braten, bis die Ränder gebräunt sind."
+        },
+        {
+          "step": 3,
+          "instruction": "Würzen: Knoblauch und die weißen Teile der Frühlingszwiebeln 1 Minute mitbraten, dann Sojasoße, Zucker und Sesamöl zugeben."
+        },
+        {
+          "step": 4,
+          "instruction": "Schwenken: Die Nudeln zugeben und schwenken, bis sie glänzen und heiß sind. Mit dem Grün der Frühlingszwiebeln, Sesam und Chili servieren."
+        }
+      ],
+      "warnings": [
+        "Keine Wildpilze essen, wenn sie nicht von einem Experten bestimmt wurden."
+      ],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "15 min",
+      "servings": "2",
+      "tags": ["vegetarian", "main", "easy"],
+      "safetyNotes": [
+        "Austernpilze gut durchgaren und nicht roh essen.",
+        "Junge, feste Exemplare verwenden: Alte werden zäh und beherbergen oft Käferlarven.",
+        "Nicht mit dem giftigen Ohrförmigen Seitling (Pleurocybella porrigens) verwechseln: dünn, reinweiß und auf Nadelholz wachsend."
+      ]
+    },
+    "elderflower-cordial": {
+      "title": "Holunderblütensirup",
+      "ingredients": [
+        "20 Holunderblütendolden, frisch aufgeblüht",
+        "1 Liter Wasser",
+        "1 kg Zucker",
+        "2 unbehandelte Zitronen, in Scheiben",
+        "25 g Zitronensäure (nach Belieben, macht ihn haltbarer)",
+        "Sterilisierte Flaschen"
+      ],
+      "instructions": [
+        "Sammeln: Cremeweiße, voll aufgeblühte Dolden an einem trockenen, sonnigen Vormittag abseits stark befahrener Straßen pflücken. Insekten ausschütteln, aber nicht waschen: Der Duft steckt im Pollen.",
+        "Sirup: Wasser und Zucker aufkochen und rühren, bis sich der Zucker gelöst hat, dann lauwarm abkühlen lassen.",
+        "Ziehen lassen: Blüten, Zitronenscheiben und Zitronensäure zugeben, abdecken und 24–48 Stunden an einem kühlen Ort ziehen lassen, einmal täglich umrühren.",
+        "Abfüllen: Durch ein mit einem Tuch ausgelegtes Sieb in sterilisierte Flaschen abseihen und verschließen. Im Kühlschrank bis zu 6 Wochen haltbar, oder einfrieren. Etwa 1 zu 10 mit stillem oder sprudelndem Wasser verdünnen."
+      ],
+      "species": ["elderflower"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Sammeln: Cremeweiße, voll aufgeblühte Dolden an einem trockenen, sonnigen Vormittag abseits stark befahrener Straßen pflücken. Insekten ausschütteln, aber nicht waschen: Der Duft steckt im Pollen."
+        },
+        {
+          "step": 2,
+          "instruction": "Sirup: Wasser und Zucker aufkochen und rühren, bis sich der Zucker gelöst hat, dann lauwarm abkühlen lassen."
+        },
+        {
+          "step": 3,
+          "instruction": "Ziehen lassen: Blüten, Zitronenscheiben und Zitronensäure zugeben, abdecken und 24–48 Stunden an einem kühlen Ort ziehen lassen, einmal täglich umrühren."
+        },
+        {
+          "step": 4,
+          "instruction": "Abfüllen: Durch ein mit einem Tuch ausgelegtes Sieb in sterilisierte Flaschen abseihen und verschließen. Im Kühlschrank bis zu 6 Wochen haltbar, oder einfrieren. Etwa 1 zu 10 mit stillem oder sprudelndem Wasser verdünnen."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min + 24–48 h Ziehzeit",
+      "servings": "Etwa 1,5 Liter",
+      "tags": ["drink", "vegan", "easy"],
+      "safetyNotes": [
+        "Nur die Blüten und die feinsten Stiele verwenden: Blätter, Rinde und dicke Stängel des Holunders enthalten giftige Stoffe.",
+        "Holunder ist ein verholzter Strauch oder kleiner Baum. Keinen Zwerg-Holunder (Sambucus ebulus) verwenden, eine krautige Pflanze mit giftigen Teilen, und keine bodennah wachsenden weißen Dolden giftiger Pflanzen wie des Schierlings."
+      ]
+    },
+    "elderberry-syrup": {
+      "title": "Würziger Holunderbeerensirup",
+      "ingredients": [
+        "500 g reife Holunderbeeren, von den Stielen gestreift",
+        "500 ml Wasser",
+        "1 Zimtstange",
+        "4 Gewürznelken",
+        "1 daumengroßes Stück Ingwer, in Scheiben",
+        "Saft von 1 Zitrone",
+        "Etwa 300 g Zucker oder Honig",
+        "Sterilisierte Flaschen"
+      ],
+      "instructions": [
+        "Abstreifen: Nur vollreife, schwarze Beeren verwenden. Mit einer Gabel von den Stielen streifen und alle grünen Beeren und jedes Stielstück entfernen.",
+        "Köcheln: Beeren, Wasser und Gewürze in einen Topf geben, aufkochen und 20 Minuten sanft köcheln lassen.",
+        "Abseihen: Die Beeren leicht zerdrücken und den Saft durch ein feines Sieb oder ein Tuch abseihen, dabei sanft drücken.",
+        "Süßen: Den Saft mit Zitronensaft und Zucker zurück in den Topf geben und 5 Minuten köcheln, bis sich der Zucker gelöst hat. Honig erst einrühren, wenn der Saft vom Herd genommen und lauwarm ist. In Flaschen füllen und im Kühlschrank bis zu 3 Monate aufbewahren. Ein Löffel in heißem Wasser ergibt ein Wintergetränk."
+      ],
+      "species": ["elderberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Abstreifen: Nur vollreife, schwarze Beeren verwenden. Mit einer Gabel von den Stielen streifen und alle grünen Beeren und jedes Stielstück entfernen."
+        },
+        {
+          "step": 2,
+          "instruction": "Köcheln: Beeren, Wasser und Gewürze in einen Topf geben, aufkochen und 20 Minuten sanft köcheln lassen."
+        },
+        {
+          "step": 3,
+          "instruction": "Abseihen: Die Beeren leicht zerdrücken und den Saft durch ein feines Sieb oder ein Tuch abseihen, dabei sanft drücken."
+        },
+        {
+          "step": 4,
+          "instruction": "Süßen: Den Saft mit Zitronensaft und Zucker zurück in den Topf geben und 5 Minuten köcheln, bis sich der Zucker gelöst hat. Honig erst einrühren, wenn der Saft vom Herd genommen und lauwarm ist. In Flaschen füllen und im Kühlschrank bis zu 3 Monate aufbewahren. Ein Löffel in heißem Wasser ergibt ein Wintergetränk."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "30 min",
+      "servings": "Etwa 500 ml",
+      "tags": ["drink", "easy"],
+      "safetyNotes": [
+        "Holunderbeeren nie roh essen. Rohe Beeren und Kerne, vor allem aber grüne Beeren, Stiele und Blätter verursachen Übelkeit und Erbrechen. Mindestens 20 Minuten Köcheln macht die reifen Beeren unbedenklich.",
+        "Nur Schwarzen Holunder (Sambucus nigra) oder Kanadischen Holunder (S. canadensis) verwenden, Sträucher mit flachen Beerendolden. Roter Holunder (S. racemosa) und Zwerg-Holunder (S. ebulus) werden nicht verwendet."
+      ]
+    },
+    "blackberry-apple-crumble": {
+      "title": "Brombeer-Apfel-Crumble",
+      "ingredients": [
+        "400 g Brombeeren",
+        "2 Kochäpfel, geschält und in Scheiben",
+        "50 g Zucker",
+        "1 TL Zitronensaft",
+        "Für die Streusel: 150 g Mehl",
+        "100 g kalte Butter, gewürfelt",
+        "75 g brauner Zucker",
+        "50 g Haferflocken",
+        "1 Prise Salz"
+      ],
+      "instructions": [
+        "Obst: Den Ofen auf 190 °C vorheizen. Brombeeren und Äpfel mit Zucker und Zitronensaft mischen und in einer Auflaufform verteilen.",
+        "Streusel: Die Butter mit den Fingerspitzen in das Mehl reiben, bis die Masse wie Semmelbrösel aussieht, dann braunen Zucker, Haferflocken und Salz unterrühren.",
+        "Bedecken: Die Streusel locker über dem Obst verteilen, ohne sie anzudrücken.",
+        "Backen: 35–40 Minuten backen, bis die Oberfläche goldbraun ist und es am Rand blubbert. 10 Minuten ruhen lassen und mit Sahne, Vanillesoße oder Eis servieren."
+      ],
+      "species": ["blackberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Obst: Den Ofen auf 190 °C vorheizen. Brombeeren und Äpfel mit Zucker und Zitronensaft mischen und in einer Auflaufform verteilen."
+        },
+        {
+          "step": 2,
+          "instruction": "Streusel: Die Butter mit den Fingerspitzen in das Mehl reiben, bis die Masse wie Semmelbrösel aussieht, dann braunen Zucker, Haferflocken und Salz unterrühren."
+        },
+        {
+          "step": 3,
+          "instruction": "Bedecken: Die Streusel locker über dem Obst verteilen, ohne sie anzudrücken."
+        },
+        {
+          "step": 4,
+          "instruction": "Backen: 35–40 Minuten backen, bis die Oberfläche goldbraun ist und es am Rand blubbert. 10 Minuten ruhen lassen und mit Sahne, Vanillesoße oder Eis servieren."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "40 min",
+      "servings": "4–6",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Oberhalb der Kniehöhe und abseits stark befahrener Straßen und gespritzter Feldränder pflücken.",
+        "Die Beeren erst kurz vor der Verwendung waschen und auf kleine Insekten und Schimmel prüfen."
+      ]
+    },
+    "wild-blueberry-pancakes": {
+      "title": "Pfannkuchen mit Waldheidelbeeren",
+      "ingredients": [
+        "150 g Waldheidelbeeren",
+        "200 g Mehl",
+        "2 TL Backpulver",
+        "1 EL Zucker",
+        "1 Prise Salz",
+        "2 Eier",
+        "250 ml Milch",
+        "30 g Butter, geschmolzen, plus Butter für die Pfanne",
+        "Ahornsirup oder Honig zum Servieren"
+      ],
+      "instructions": [
+        "Teig: Mehl, Backpulver, Zucker und Salz verquirlen. Eier, Milch und geschmolzene Butter getrennt verquirlen und unterrühren, bis alles gerade verbunden ist: Ein paar Klümpchen sind in Ordnung.",
+        "Braten: Etwas Butter in einer Pfanne bei mittlerer Hitze schmelzen. Kleine Kellen Teig hineingeben und auf jeden Pfannkuchen Heidelbeeren streuen.",
+        "Wenden: Wenn sich Blasen bilden und die Ränder fest werden, nach etwa 2 Minuten, die Pfannkuchen wenden und weitere 1–2 Minuten braten.",
+        "Servieren: Warm stapeln und mit den restlichen Beeren und dem Sirup servieren."
+      ],
+      "species": ["blueberry"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Teig: Mehl, Backpulver, Zucker und Salz verquirlen. Eier, Milch und geschmolzene Butter getrennt verquirlen und unterrühren, bis alles gerade verbunden ist: Ein paar Klümpchen sind in Ordnung."
+        },
+        {
+          "step": 2,
+          "instruction": "Braten: Etwas Butter in einer Pfanne bei mittlerer Hitze schmelzen. Kleine Kellen Teig hineingeben und auf jeden Pfannkuchen Heidelbeeren streuen."
+        },
+        {
+          "step": 3,
+          "instruction": "Wenden: Wenn sich Blasen bilden und die Ränder fest werden, nach etwa 2 Minuten, die Pfannkuchen wenden und weitere 1–2 Minuten braten."
+        },
+        {
+          "step": 4,
+          "instruction": "Servieren: Warm stapeln und mit den restlichen Beeren und dem Sirup servieren."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2–4 (etwa 12 Pfannkuchen)",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "In weiten Teilen Europas können bodennah wachsende Beeren Eier des Fuchsbandwurms (Echinococcus multilocularis) tragen. Gründlich waschen. Erhitzen tötet die Eier ab, Einfrieren nicht, deshalb sind gegarte Beeren dort die sicherere Wahl.",
+        "Heidelbeeren wachsen an niedrigen Sträuchern. Die sehr giftige Tollkirsche trägt einzelne glänzend schwarze Beeren auf einem grünen Stern, an einer hohen, krautigen Pflanze."
+      ]
+    },
+    "hazelnut-cocoa-spread": {
+      "title": "Hausgemachte Nuss-Nougat-Creme",
+      "ingredients": [
+        "200 g geschälte Haselnüsse",
+        "2 EL Kakaopulver",
+        "60 g Puderzucker oder Ahornsirup",
+        "100 g Zartbitterschokolade, geschmolzen (nach Belieben)",
+        "1 Prise Salz",
+        "1 TL Vanilleextrakt",
+        "2–4 EL neutrales Öl oder Milch",
+        "Ein sauberes Glas"
+      ],
+      "instructions": [
+        "Rösten: Die Haselnüsse bei 180 °C 10–12 Minuten rösten, bis sie duften und die Häutchen aufplatzen.",
+        "Häuten: Die warmen Nüsse in einem sauberen Geschirrtuch reiben, um den Großteil der Häutchen zu entfernen.",
+        "Mahlen: Die Nüsse im Mixer 5–10 Minuten mahlen, dabei ab und zu die Seiten abstreifen, bis ein flüssiges Mus entsteht.",
+        "Abschmecken: Kakao, Zucker, Schokolade, Salz und Vanille zugeben und erneut mixen, dabei löffelweise Öl zugeben, bis die Creme glatt und streichfähig ist. In einem sauberen Glas im Kühlschrank bis zu 3 Wochen aufbewahren."
+      ],
+      "species": ["hazelnut"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Rösten: Die Haselnüsse bei 180 °C 10–12 Minuten rösten, bis sie duften und die Häutchen aufplatzen."
+        },
+        {
+          "step": 2,
+          "instruction": "Häuten: Die warmen Nüsse in einem sauberen Geschirrtuch reiben, um den Großteil der Häutchen zu entfernen."
+        },
+        {
+          "step": 3,
+          "instruction": "Mahlen: Die Nüsse im Mixer 5–10 Minuten mahlen, dabei ab und zu die Seiten abstreifen, bis ein flüssiges Mus entsteht."
+        },
+        {
+          "step": 4,
+          "instruction": "Abschmecken: Kakao, Zucker, Schokolade, Salz und Vanille zugeben und erneut mixen, dabei löffelweise Öl zugeben, bis die Creme glatt und streichfähig ist. In einem sauberen Glas im Kühlschrank bis zu 3 Wochen aufbewahren."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "15 min",
+      "cookTime": "12 min",
+      "servings": "1 Glas (etwa 350 g)",
+      "tags": ["dessert", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Haselnüsse sind ein häufiges Allergen: Sag allen Bescheid, mit denen du die Creme teilst.",
+        "Nur Nüsse sammeln, die im Spätsommer und Herbst gereift und heruntergefallen sind. Nüsse mit Löchern, die Nussbohrer gebohrt haben, und solche, die schimmelig oder bitter schmecken, wegwerfen."
+      ]
+    },
+    "wild-mint-pea-soup": {
+      "title": "Erbsensuppe mit Wilder Minze",
+      "ingredients": [
+        "1 kleine Zwiebel, gehackt",
+        "1 EL Butter oder Öl",
+        "1 Kartoffel, gewürfelt",
+        "750 ml Gemüsebrühe",
+        "500 g Erbsen (tiefgekühlt geht auch)",
+        "1 große Handvoll Blätter wilder Minze (etwa 15 g), plus ein paar kleine zum Garnieren",
+        "3 EL Sahne oder Joghurt",
+        "Salz, Pfeffer und ein Spritzer Zitrone"
+      ],
+      "instructions": [
+        "Andünsten: Die Zwiebel in der Butter 5 Minuten sanft andünsten, dann Kartoffel und Brühe zugeben und 10 Minuten köcheln lassen.",
+        "Erbsen: Die Erbsen zugeben und 3–4 Minuten köcheln, nur bis sie weich sind, damit sie leuchtend grün bleiben.",
+        "Pürieren: Den Topf vom Herd nehmen, die Minzblätter zugeben und fein pürieren. Mit Salz, Pfeffer und Zitrone abschmecken.",
+        "Servieren: Die Sahne einrühren und mit den kleinen Minzblättern bestreuen. Schmeckt heiß oder gekühlt."
+      ],
+      "species": ["wild-mint"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Andünsten: Die Zwiebel in der Butter 5 Minuten sanft andünsten, dann Kartoffel und Brühe zugeben und 10 Minuten köcheln lassen."
+        },
+        {
+          "step": 2,
+          "instruction": "Erbsen: Die Erbsen zugeben und 3–4 Minuten köcheln, nur bis sie weich sind, damit sie leuchtend grün bleiben."
+        },
+        {
+          "step": 3,
+          "instruction": "Pürieren: Den Topf vom Herd nehmen, die Minzblätter zugeben und fein pürieren. Mit Salz, Pfeffer und Zitrone abschmecken."
+        },
+        {
+          "step": 4,
+          "instruction": "Servieren: Die Sahne einrühren und mit den kleinen Minzblättern bestreuen. Schmeckt heiß oder gekühlt."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "4",
+      "tags": ["soup", "vegetarian", "easy"],
+      "safetyNotes": [
+        "Eine wilde Minze riecht deutlich nach Minze, wenn man ein Blatt zerreibt: kein Minzduft, keine Minze.",
+        "Polei-Minze weglassen (Mentha pulegium: kleine, rundliche Blätter, kriechende Stängel, Blüten in Quirlen den Stängel hinauf). Sie ist in größeren Mengen giftig und in der Schwangerschaft zu meiden.",
+        "Wasserminze nur an sauberen Bächen pflücken, nicht auf nassen Weiden mit Schafen oder Rindern, wo sie Leberegel übertragen kann."
+      ]
+    },
+    "candied-violets": {
+      "title": "Kandierte Duftveilchen",
+      "ingredients": [
+        "30–40 Duftveilchenblüten mit kurzem Stiel",
+        "1 sehr frisches Eiweiß, wenn möglich pasteurisiert",
+        "Feiner Zucker, fein gemahlen",
+        "Ein kleiner, weicher Pinsel",
+        "Backpapier"
+      ],
+      "instructions": [
+        "Pflücken: Frisch aufgeblühte Blüten an einem trockenen Tag pflücken und einen kurzen Stiel zum Festhalten lassen. Auf Insekten prüfen.",
+        "Bepinseln: Das Eiweiß leicht schaumig schlagen. Eine Blüte am Stiel halten und jedes Blütenblatt vorn und hinten dünn bepinseln.",
+        "Zuckern: Die Blüte rundum mit Zucker bestreuen, den Überschuss abschütteln und mit der Blüte nach oben auf Backpapier legen.",
+        "Trocknen: An einem warmen, trockenen Ort 1–2 Tage trocknen lassen, bis sie ganz knusprig sind, dann die Stiele abschneiden. Zwischen Papierlagen in einer luftdichten Dose einige Wochen aufbewahren und für Kuchen und Desserts verwenden."
+      ],
+      "species": ["violets"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pflücken: Frisch aufgeblühte Blüten an einem trockenen Tag pflücken und einen kurzen Stiel zum Festhalten lassen. Auf Insekten prüfen."
+        },
+        {
+          "step": 2,
+          "instruction": "Bepinseln: Das Eiweiß leicht schaumig schlagen. Eine Blüte am Stiel halten und jedes Blütenblatt vorn und hinten dünn bepinseln."
+        },
+        {
+          "step": 3,
+          "instruction": "Zuckern: Die Blüte rundum mit Zucker bestreuen, den Überschuss abschütteln und mit der Blüte nach oben auf Backpapier legen."
+        },
+        {
+          "step": 4,
+          "instruction": "Trocknen: An einem warmen, trockenen Ort 1–2 Tage trocknen lassen, bis sie ganz knusprig sind, dann die Stiele abschneiden. Zwischen Papierlagen in einer luftdichten Dose einige Wochen aufbewahren und für Kuchen und Desserts verwenden."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "medium",
+      "prepTime": "45 min",
+      "cookTime": "1–2 Tage Trocknen",
+      "servings": "30–40 Blüten",
+      "tags": ["dessert", "vegetarian", "medium"],
+      "safetyNotes": [
+        "Nur Duftveilchen (Viola odorata) oder andere wilde Veilchen verwenden. Usambaraveilchen (Saintpaulia) sind nicht verwandt und nicht zum Essen geeignet.",
+        "Rohes Eiweiß birgt ein geringes Salmonellenrisiko: Für kleine Kinder, Schwangere und ältere Menschen pasteurisiertes Eiweiß verwenden.",
+        "Nur dort pflücken, wo keine Unkrautvernichter gespritzt werden, und abseits von Hundewegen."
+      ]
+    },
+    "plantain-leaf-crisps": {
+      "title": "Breitwegerich-Chips",
+      "ingredients": [
+        "2 große Handvoll junge Breitwegerichblätter",
+        "1 EL Olivenöl",
+        "Flockensalz",
+        "Geräuchertes Paprikapulver oder Knoblauchpulver (nach Belieben)"
+      ],
+      "instructions": [
+        "Vorheizen: Den Ofen auf 150 °C (130 °C Umluft) vorheizen.",
+        "Vorbereiten: Junge, zarte Blätter pflücken, nicht größer als eine Handfläche. Waschen und vollständig trocknen: Restliches Wasser lässt sie dämpfen statt knusprig werden.",
+        "Würzen: Die Blätter mit Öl und Gewürzen mischen, sodass jedes leicht überzogen ist, dann flach und ohne Überlappung auf Backpapier legen.",
+        "Backen: 15–20 Minuten backen, einmal wenden, bis sie knusprig, aber noch grün sind. Auf dem Blech abkühlen lassen und am selben Tag essen."
+      ],
+      "species": ["plantain"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Vorheizen: Den Ofen auf 150 °C (130 °C Umluft) vorheizen."
+        },
+        {
+          "step": 2,
+          "instruction": "Vorbereiten: Junge, zarte Blätter pflücken, nicht größer als eine Handfläche. Waschen und vollständig trocknen: Restliches Wasser lässt sie dämpfen statt knusprig werden."
+        },
+        {
+          "step": 3,
+          "instruction": "Würzen: Die Blätter mit Öl und Gewürzen mischen, sodass jedes leicht überzogen ist, dann flach und ohne Überlappung auf Backpapier legen."
+        },
+        {
+          "step": 4,
+          "instruction": "Backen: 15–20 Minuten backen, einmal wenden, bis sie knusprig, aber noch grün sind. Auf dem Blech abkühlen lassen und am selben Tag essen."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "servings": "2",
+      "tags": ["appetizer", "vegan", "easy"],
+      "safetyNotes": [
+        "Abseits von Straßenrändern, Hundewegen und gespritzten Rasenflächen pflücken: Breitwegerich liebt festgetretenen Boden.",
+        "Breitwegerichblätter haben kräftige parallele Nerven, die sich wie Fäden herausziehen lassen. Die giftigen Blätter des Fingerhuts haben ein Netz von Adern und sind weich behaart."
+      ]
+    },
+    "pickled-daisy-buds": {
+      "title": "Eingelegte Gänseblümchenknospen",
+      "ingredients": [
+        "50 g geschlossene Gänseblümchenknospen",
+        "1 EL Salz",
+        "100 ml Weißweinessig",
+        "100 ml Wasser",
+        "1 TL Zucker",
+        "1 kleiner Zweig Dill",
+        "1 Lorbeerblatt",
+        "Ein paar Pfefferkörner",
+        "Ein kleines sterilisiertes Glas"
+      ],
+      "instructions": [
+        "Pflücken: Feste grüne Knospen pflücken, bevor Weiß zu sehen ist, von sauberen Rasenflächen und Wiesen. Abspülen und abtropfen lassen.",
+        "Salzen: Die Knospen mit dem Salz mischen und 12 Stunden ziehen lassen, damit sie Wasser verlieren, dann abspülen und trocken tupfen.",
+        "Sud: Essig, Wasser, Zucker, Lorbeerblatt und Pfefferkörner aufkochen.",
+        "Einlegen: Knospen und Dill ins Glas füllen, mit dem heißen Essig bedecken und verschließen. Mindestens 2 Wochen ziehen lassen. Wie Kapern in Salaten, Soßen und zu Fisch verwenden."
+      ],
+      "species": ["daisy"],
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Pflücken: Feste grüne Knospen pflücken, bevor Weiß zu sehen ist, von sauberen Rasenflächen und Wiesen. Abspülen und abtropfen lassen."
+        },
+        {
+          "step": 2,
+          "instruction": "Salzen: Die Knospen mit dem Salz mischen und 12 Stunden ziehen lassen, damit sie Wasser verlieren, dann abspülen und trocken tupfen."
+        },
+        {
+          "step": 3,
+          "instruction": "Sud: Essig, Wasser, Zucker, Lorbeerblatt und Pfefferkörner aufkochen."
+        },
+        {
+          "step": 4,
+          "instruction": "Einlegen: Knospen und Dill ins Glas füllen, mit dem heißen Essig bedecken und verschließen. Mindestens 2 Wochen ziehen lassen. Wie Kapern in Salaten, Soßen und zu Fisch verwenden."
+        }
+      ],
+      "warnings": [],
+      "difficulty": "easy",
+      "prepTime": "20 min",
+      "cookTime": "5 min",
+      "servings": "1 kleines Glas",
+      "tags": ["side", "vegan", "easy"],
+      "safetyNotes": [
+        "Sicherstellen, dass es Gänseblümchen sind (Bellis perennis): einzelne Blüten auf blattlosen Stielen, die aus einer flachen Rosette spatelförmiger Blätter wachsen.",
+        "Von Rasenflächen pflücken, die nicht gespritzt oder gedüngt werden, abseits von Hundewiesen.",
+        "Menschen mit einer Allergie gegen Korbblütler (Asteraceae), etwa gegen Ambrosia oder Kamille, können darauf reagieren."
       ]
     }
   }
