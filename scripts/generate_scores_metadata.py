@@ -1,34 +1,37 @@
+"""Write public/data/scores_metadata.json: when the forecast map was last refreshed.
+
+The time is the upload time (Last-Modified) of the regions' public forecast tiles. The
+oldest of the four is used, so the label never claims a fresher map than the stalest
+region shows.
+"""
+
 import json
-from datetime import datetime
+from datetime import timezone
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
-import pyarrow.parquet as pq
+import requests
+
+FORECAST_TILES = [
+    "https://data.fung.es/EU/NE/ne_forecast.pmtiles",
+    "https://data.fung.es/EU/SE/se_forecast.pmtiles",
+    "https://data.fung.es/USA/USE/use_forecast.pmtiles",
+    "https://data.fung.es/USA/USW/usw_forecast.pmtiles",
+]
+JSON_PATH = Path("public/data/scores_metadata.json")
+
+
+def uploaded_at(url: str):
+    response = requests.head(url, timeout=30)
+    response.raise_for_status()
+    return parsedate_to_datetime(response.headers["Last-Modified"])
 
 
 def main() -> None:
-    parquet_path = Path("public/data/foraging_scores.parquet")
-    json_path = Path("public/data/scores_metadata.json")
-
-    table = pq.read_table(parquet_path, columns=["Date"])
-    if table.num_rows == 0:
-        raise RuntimeError("Parquet file does not contain any rows")
-
-    # The parquet now holds a rolling forecast window [today .. today+6]. The
-    # "last updated" label must reflect TODAY, not the forecast end (max(Date) ==
-    # today+6, which renders a broken future "in X minutes"). Pick today; if it
-    # isn't present yet, fall back to the earliest available day, else latest.
-    today = datetime.now().strftime("%Y-%m-%d")
-    dates = sorted(str(d).strip() for d in table.column("Date").to_pylist())
-    date_str = next((d for d in dates if d >= today), dates[-1])
-    try:
-        dt = datetime.strptime(date_str, "%Y-%m-%d")
-        iso = dt.isoformat() + "Z"
-    except ValueError:
-        iso = date_str
-
-    metadata = {"updated_at": iso}
-    json_path.parent.mkdir(parents=True, exist_ok=True)
-    with json_path.open("w", encoding="utf-8") as f:
+    oldest = min(uploaded_at(url) for url in FORECAST_TILES)
+    metadata = {"updated_at": oldest.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}
+    JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with JSON_PATH.open("w", encoding="utf-8") as f:
         json.dump(metadata, f, indent=2)
 
 
