@@ -46,34 +46,36 @@
     "reloadForUpdate": "Zum Aktualisieren neu laden"
   },
   "home": {
-    "title": "Funges",
     "headline": "Entdecke, was um dich herum wächst",
-    "description": "Sammelprognosen, Artenkarten, private Fotobestimmung und Wildkräuter-Rezepte.",
+    "description": "Sammelprognosen, Naturschauspiele, private Fotobestimmung und Rezepte mit Wildpflanzen und Pilzen",
     "cta": "Karte erkunden",
     "ctaSecondary": "Was gerade Saison hat",
     "forecast": {
-      "label": "Prognose",
       "heading": "Lohnt es sich heute rauszugehen?",
-      "body": "Wissen, wo und wann die Bedingungen gut sind.",
+      "body": "Sieh, wie Jahreszeit und Wetter die Fundchancen beeinflussen, und vergleiche Gebiete in deiner Nähe, bevor du losziehst",
       "link": "Prognose öffnen"
     },
     "identify": {
-      "label": "Bestimmen",
       "heading": "Was hast du gefunden?",
-      "body": "Pilze und Pflanzen privat auf deinem Gerät bestimmen.",
-      "link": "Bestimmung ausprobieren"
+      "body": "Mach ein Foto und entdecke mögliche Treffer: Die Bestimmung läuft auf deinem Gerät, damit deine Fotos privat bleiben",
+      "link": "Bestimmung ausprobieren",
+      "safety": "Konsultiere immer eine Expertin oder einen Experten, bevor du Wildpflanzen oder Pilze isst – diese Informationen dienen nur zu Bildungszwecken"
     },
     "cook": {
-      "label": "Kochen",
-      "heading": "Wieder zu Hause",
-      "body": "Aus deinen Funden Wildkräuter- und Pilzgerichte machen.",
+      "heading": "Die Natur auf deinem Teller",
+      "body": "Entdecke Rezepte für deine gesammelten Zutaten, mit Zubereitungstipps und Schritt-für-Schritt-Anleitungen",
       "link": "Rezepte ansehen"
     },
     "closing": {
       "heading": "Bereit zum Erkunden?",
       "cta": "Karte öffnen"
     },
-    "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab."
+    "coverage": "Prognosen decken derzeit Nord- und Südeuropa sowie den Osten und Westen der USA ab",
+    "spectacles": {
+      "heading": "Schauspiele der Natur",
+      "body": "Von Kirschblüten und Hasenglöckchenwäldern bis zum bunten Herbstlaub: Folge den Jahreszeiten und entdecke Prognosen für die vergängliche Pracht der Natur",
+      "link": "Herbstlaub entdecken"
+    }
   },
   "worthForagingNow": {
     "title": "Was lohnt sich jetzt zu sammeln?",
