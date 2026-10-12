@@ -9,6 +9,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import date
+from functools import lru_cache
 from io import BytesIO
 from pathlib import Path
 from urllib.parse import urlparse
@@ -21,7 +22,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from species_registry import get_empirical_taxon_map
+from species_registry import get_empirical_taxon_map, infer_region
 
 _THIS_YEAR = date.today().year
 
@@ -31,19 +32,18 @@ FUNGI_KEY = 5  # Kingdom Fungi
 # Fungi only — plants excluded (sighting date ≠ forageable date for perennials).
 TAXON_MAP = get_empirical_taxon_map()
 
+# GBIF boxes come from sampling_boxes(), not from here.
 REGIONS = {
-    "NE":  {"lat": (49.0, 71.5), "lon": (-25.0, 32.0),    "env": "NE_SEASON_CURVES"},
-    "SE":  {"lat": (34.0, 55.5), "lon": (12.0, 42.5),     "env": "SE_SEASON_CURVES"},
-    "USE": {"lat": (24.0, 37.5), "lon": (-106.5, -75.0),  "env": "USE_SEASON_CURVES"},
-    "USW": {"lat": (33.0, 49.5), "lon": (-125.5, -81.5),  "env": "USW_SEASON_CURVES"},
+    "NE":  {"env": "NE_SEASON_CURVES"},
+    "SE":  {"env": "SE_SEASON_CURVES"},
+    "USE": {"env": "USE_SEASON_CURVES"},
+    "USW": {"env": "USW_SEASON_CURVES"},
 }
 
 # Macro-regions for zone curves (EU = NE∪SE, US = USE∪USW); both EU scripts share the EU file.
 MACROS = {
-    "EU": {"lat": (34.0, 71.5), "lon": (-25.0, 42.5),
-           "static_env": "EU_STATIC_INFO", "out_env": "EU_ZONE_SEASON_CURVES"},
-    "US": {"lat": (24.0, 49.5), "lon": (-125.5, -75.0),
-           "static_env": "US_STATIC_INFO", "out_env": "US_ZONE_SEASON_CURVES"},
+    "EU": {"static_env": "EU_STATIC_INFO", "out_env": "EU_ZONE_SEASON_CURVES"},
+    "US": {"static_env": "US_STATIC_INFO", "out_env": "US_ZONE_SEASON_CURVES"},
 }
 
 _ROOT = Path(__file__).resolve().parents[2]
@@ -253,6 +253,7 @@ def build_zone_curves(cell_results, low, high, min_total):
     return out
 
 
+@lru_cache(maxsize=None)
 def load_static_coords(env_name):
     """Load labeled (lat, lon, climate_zone) from a static-info CSV (local or remote)."""
     src = get_required_env(env_name)
@@ -268,6 +269,32 @@ def load_static_coords(env_name):
     )
 
 
+def _bounds(lats, lons):
+    return {"lat": (float(lats.min()), float(lats.max())),
+            "lon": (float(lons.min()), float(lons.max()))}
+
+
+def sampling_boxes():
+    """GBIF box per region and macro-region: the bounds of the coordinates it scores.
+
+    A region curve scores every coordinate of its region that has no zone curve, so it
+    has to be sampled there. The boxes used to be typed in and drifted from the regions:
+    South Europe's stopped at 12° E and reached 55.5° N, so its curve came from Poland
+    and Czechia and none of it from Spain, Portugal or north-west Italy, and the
+    Mediterranean zones (no zone curves) scored on it. East US stopped at 37.5° N; West
+    US reached 81.5° W, deep into the Midwest.
+    """
+    boxes = {}
+    for code, macro in MACROS.items():
+        lats, lons, _zones = load_static_coords(macro["static_env"])
+        boxes[code] = _bounds(lats, lons)
+        regions = np.array([infer_region(lon, lat) for lat, lon in zip(lats, lons)])
+        for region in np.unique(regions):
+            mask = regions == region
+            boxes[str(region)] = _bounds(lats[mask], lons[mask])
+    return boxes
+
+
 def fetch_cell_counts(cell, taxon_map, years):
     """GBIF month-facets for one cell: returns (fungi_counts, {species: counts})."""
     region = {"lat": (cell[0], cell[1]), "lon": (cell[2], cell[3])}
@@ -279,10 +306,10 @@ def fetch_cell_counts(cell, taxon_map, years):
     return fungi_counts, sp_counts
 
 
-def build_zone_curves_for_macro(macro, years, low, high, min_total, cell_size, workers):
+def build_zone_curves_for_macro(macro, box, years, low, high, min_total, cell_size, workers):
     """Tile a macro-region, fetch GBIF facets per land cell in parallel, aggregate to zone curves."""
     lats, lons, zones = load_static_coords(macro["static_env"])
-    cells = generate_cells(macro["lat"], macro["lon"], cell_size)
+    cells = generate_cells(box["lat"], box["lon"], cell_size)
     land = [(c, z) for c in cells for z in [majority_zone_in_cell(c, lats, lons, zones)] if z]
     print(f"  {len(land)} land cells of {len(cells)} total; fetching with {workers} workers")
 
@@ -338,13 +365,17 @@ def main():
     if not args.local_only and not args.force and not needs_rebuild():
         return
 
+    boxes = sampling_boxes()
+
     # 1) Region curves (fallback layer): one curve set per NE/SE/USE/USW.
     for region, reg in REGIONS.items():
-        fungi, fungi_total = _facet_month([FUNGI_KEY], reg, args.years)
+        box = boxes[region]
+        print(f"[{region}] GBIF box lat {box['lat']} lon {box['lon']}")
+        fungi, fungi_total = _facet_month([FUNGI_KEY], box, args.years)
         time.sleep(0.2)
         curves = {}
         for sp, keys in TAXON_MAP.items():
-            tgt, _ = _facet_month(keys, reg, args.years)
+            tgt, _ = _facet_month(keys, box, args.years)
             time.sleep(0.2)
             curve, total = build_curve(tgt, fungi, args.low, args.high, args.min_total)
             status = "ok" if curve else f"SKIP (only {total} sightings < {args.min_total})"
@@ -364,7 +395,7 @@ def main():
     for macro_code, macro in MACROS.items():
         print(f"[{macro_code}] building zone curves...")
         curves = build_zone_curves_for_macro(
-            macro, args.years, args.low, args.high, args.min_total,
+            macro, boxes[macro_code], args.years, args.low, args.high, args.min_total,
             args.cell_size, args.workers)
         n_curves = sum(len(v) for v in curves.values())
         print(f"[{macro_code}] {n_curves} curve(s) across {len(curves)} zone(s)")

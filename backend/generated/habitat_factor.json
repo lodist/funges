@@ -6,8 +6,8 @@
  "shipped_if": "score x habitat ranks held-out 2026 finds above the places searched that week better than the score alone (other fungi's finds), and no worse against bracket fungi",
  "regions": {
   "NE": {
-   "file": "models/habitat/20261011-2352/habitat_NE.npz",
-   "sha256": "1d005ead7ed82485f7547fcc7ef7be360f8207df5d067e8c856168bf2dfe2e66",
+   "file": "models/habitat/20261012-2106/habitat_NE.npz",
+   "sha256": "52687dada5743cb8848f778b4c001cc28d160289328f33f09074226d9435f2e5",
    "species": [
     "chant",
     "chicken-of-the-woods",
@@ -25,8 +25,8 @@
    ]
   },
   "SE": {
-   "file": "models/habitat/20261011-2352/habitat_SE.npz",
-   "sha256": "caf0e51a2b075fbb7bd9a7559b8f080267cf9ee33ff34e233b5448969e32d956",
+   "file": "models/habitat/20261012-2106/habitat_SE.npz",
+   "sha256": "0f229f3579f15a4a0c1e516a4af875f2b895ebd9436a06ca6edf022a27e2d4da",
    "species": [
     "chant",
     "chicken-of-the-woods",
@@ -40,8 +40,8 @@
    ]
   },
   "USE": {
-   "file": "models/habitat/20261011-2352/habitat_USE.npz",
-   "sha256": "b355d920b3e5a6fffa08d9736a70bd5ab7a04562c0e3b521a3291178c32f9d94",
+   "file": "models/habitat/20261012-2106/habitat_USE.npz",
+   "sha256": "517d021303a161da66b68ba6de44dc9dccc1154fa90659ed8942fb7ce17b7580",
    "species": [
     "black_chant",
     "chicken-of-the-woods",
@@ -53,8 +53,8 @@
    ]
   },
   "USW": {
-   "file": "models/habitat/20261011-2352/habitat_USW.npz",
-   "sha256": "aa3a2c255ca8de8b3bbc4df808ec0e9eb86a0c87e83f49a806f68bf4ad496b64",
+   "file": "models/habitat/20261012-2106/habitat_USW.npz",
+   "sha256": "1eb22bf621dd11377b17fbbf51510464d8be8a7ca8c731c04537a13c3555aa15",
    "species": [
     "chicken-of-the-woods",
     "mushroom",
