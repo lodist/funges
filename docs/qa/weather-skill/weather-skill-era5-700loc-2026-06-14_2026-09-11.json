@@ -1,0 +1,1107 @@
+{
+  "meta": {
+    "start": "2026-06-14",
+    "end": "2026-09-11",
+    "weather": "era5",
+    "max_locations": 700,
+    "control_offsets": [
+      -21,
+      -14,
+      14,
+      21
+    ],
+    "placebo_keys": [
+      8068867,
+      2542395,
+      2549834,
+      10825597
+    ],
+    "generated": "2026-10-07"
+  },
+  "regions": {
+    "NE": {
+      "black_chant": {
+        "n": 2,
+        "placebo_n": 140,
+        "verdict": "not testable"
+      },
+      "chant": {
+        "n": 50,
+        "placebo_n": 140,
+        "weather_part": 0.595,
+        "temp": 0.525,
+        "humidity": 0.595,
+        "moisture": 0.57,
+        "static_part": 0.507,
+        "season_part": 0.545,
+        "full_score": 0.64,
+        "weather_part_ci": [
+          0.505,
+          0.685
+        ],
+        "weather_part_placebo": 0.523,
+        "weather_part_net": 0.072,
+        "weather_part_net_ci": [
+          -0.036,
+          0.179
+        ],
+        "temp_placebo": 0.517,
+        "temp_net": 0.008,
+        "temp_net_ci": [
+          -0.099,
+          0.113
+        ],
+        "humidity_placebo": 0.495,
+        "humidity_net": 0.1,
+        "humidity_net_ci": [
+          -0.005,
+          0.2
+        ],
+        "moisture_placebo": 0.522,
+        "moisture_net": 0.048,
+        "moisture_net_ci": [
+          -0.049,
+          0.142
+        ]
+      },
+      "chicken-of-the-woods": {
+        "n": 129,
+        "placebo_n": 140,
+        "weather_part": 0.49,
+        "temp": 0.545,
+        "humidity": 0.437,
+        "moisture": 0.488,
+        "static_part": 0.509,
+        "season_part": 0.599,
+        "full_score": 0.554,
+        "weather_part_ci": [
+          0.428,
+          0.55
+        ],
+        "weather_part_placebo": 0.515,
+        "weather_part_net": -0.025,
+        "weather_part_net_ci": [
+          -0.107,
+          0.064
+        ],
+        "temp_placebo": 0.537,
+        "temp_net": 0.007,
+        "temp_net_ci": [
+          -0.077,
+          0.092
+        ],
+        "humidity_placebo": 0.518,
+        "humidity_net": -0.081,
+        "humidity_net_ci": [
+          -0.151,
+          -0.008
+        ],
+        "moisture_placebo": 0.483,
+        "moisture_net": 0.005,
+        "moisture_net_ci": [
+          -0.064,
+          0.074
+        ]
+      },
+      "giant_puffball": {
+        "n": 12,
+        "placebo_n": 140,
+        "verdict": "not testable"
+      },
+      "hedgehog_mushroom": {
+        "n": 23,
+        "placebo_n": 140,
+        "weather_part": 0.533,
+        "temp": 0.696,
+        "humidity": 0.315,
+        "moisture": 0.402,
+        "static_part": 0.5,
+        "season_part": 0.554,
+        "full_score": 0.652,
+        "weather_part_ci": [
+          0.38,
+          0.674
+        ],
+        "weather_part_placebo": 0.494,
+        "weather_part_net": 0.039,
+        "weather_part_net_ci": [
+          -0.115,
+          0.194
+        ],
+        "temp_placebo": 0.494,
+        "temp_net": 0.202,
+        "temp_net_ci": [
+          0.075,
+          0.328
+        ],
+        "humidity_placebo": 0.496,
+        "humidity_net": -0.181,
+        "humidity_net_ci": [
+          -0.313,
+          -0.044
+        ],
+        "moisture_placebo": 0.532,
+        "moisture_net": -0.13,
+        "moisture_net_ci": [
+          -0.285,
+          0.017
+        ]
+      },
+      "matsutake": {
+        "n": 3,
+        "placebo_n": 140,
+        "verdict": "not testable"
+      },
+      "mushroom": {
+        "n": 41,
+        "placebo_n": 140,
+        "weather_part": 0.689,
+        "temp": 0.634,
+        "humidity": 0.476,
+        "moisture": 0.595,
+        "static_part": 0.5,
+        "season_part": 0.738,
+        "full_score": 0.762,
+        "weather_part_ci": [
+          0.585,
+          0.787
+        ],
+        "weather_part_placebo": 0.544,
+        "weather_part_net": 0.145,
+        "weather_part_net_ci": [
+          0.034,
+          0.256
+        ],
+        "temp_placebo": 0.537,
+        "temp_net": 0.097,
+        "temp_net_ci": [
+          -0.001,
+          0.198
+        ],
+        "humidity_placebo": 0.502,
+        "humidity_net": -0.026,
+        "humidity_net_ci": [
+          -0.13,
+          0.083
+        ],
+        "moisture_placebo": 0.522,
+        "moisture_net": 0.073,
+        "moisture_net_ci": [
+          -0.035,
+          0.178
+        ]
+      },
+      "oyster-mushroom": {
+        "n": 28,
+        "placebo_n": 140,
+        "weather_part": 0.411,
+        "temp": 0.455,
+        "humidity": 0.375,
+        "moisture": 0.393,
+        "static_part": 0.522,
+        "season_part": 0.562,
+        "full_score": 0.384,
+        "weather_part_ci": [
+          0.303,
+          0.527
+        ],
+        "weather_part_placebo": 0.499,
+        "weather_part_net": -0.088,
+        "weather_part_net_ci": [
+          -0.208,
+          0.041
+        ],
+        "temp_placebo": 0.477,
+        "temp_net": -0.022,
+        "temp_net_ci": [
+          -0.128,
+          0.089
+        ],
+        "humidity_placebo": 0.507,
+        "humidity_net": -0.132,
+        "humidity_net_ci": [
+          -0.23,
+          -0.032
+        ],
+        "moisture_placebo": 0.506,
+        "moisture_net": -0.113,
+        "moisture_net_ci": [
+          -0.246,
+          0.018
+        ]
+      },
+      "parasol": {
+        "n": 17,
+        "placebo_n": 140,
+        "verdict": "not testable"
+      },
+      "pine_bolete": {
+        "n": 11,
+        "placebo_n": 140,
+        "verdict": "not testable"
+      },
+      "saffron_milk_cap": {
+        "n": 23,
+        "placebo_n": 140,
+        "weather_part": 0.63,
+        "temp": 0.554,
+        "humidity": 0.554,
+        "moisture": 0.505,
+        "static_part": 0.5,
+        "season_part": 0.576,
+        "full_score": 0.674,
+        "weather_part_ci": [
+          0.467,
+          0.783
+        ],
+        "weather_part_placebo": 0.492,
+        "weather_part_net": 0.138,
+        "weather_part_net_ci": [
+          -0.025,
+          0.286
+        ],
+        "temp_placebo": 0.472,
+        "temp_net": 0.082,
+        "temp_net_ci": [
+          -0.061,
+          0.213
+        ],
+        "humidity_placebo": 0.502,
+        "humidity_net": 0.053,
+        "humidity_net_ci": [
+          -0.084,
+          0.185
+        ],
+        "moisture_placebo": 0.532,
+        "moisture_net": -0.026,
+        "moisture_net_ci": [
+          -0.142,
+          0.087
+        ]
+      },
+      "shaggy_mane": {
+        "n": 28,
+        "placebo_n": 140,
+        "weather_part": 0.64,
+        "temp": 0.61,
+        "humidity": 0.571,
+        "moisture": 0.542,
+        "static_part": 0.515,
+        "season_part": 0.568,
+        "full_score": 0.56,
+        "weather_part_ci": [
+          0.539,
+          0.732
+        ],
+        "weather_part_placebo": 0.498,
+        "weather_part_net": 0.142,
+        "weather_part_net_ci": [
+          0.032,
+          0.256
+        ],
+        "temp_placebo": 0.472,
+        "temp_net": 0.138,
+        "temp_net_ci": [
+          0.031,
+          0.254
+        ],
+        "humidity_placebo": 0.502,
+        "humidity_net": 0.07,
+        "humidity_net_ci": [
+          -0.043,
+          0.189
+        ],
+        "moisture_placebo": 0.522,
+        "moisture_net": 0.02,
+        "moisture_net_ci": [
+          -0.117,
+          0.155
+        ]
+      },
+      "st_george": {
+        "n": 1,
+        "placebo_n": 140,
+        "verdict": "not testable"
+      },
+      "summer_bolete": {
+        "n": 9,
+        "placebo_n": 140,
+        "verdict": "not testable"
+      },
+      "winter_chant": {
+        "n": 4,
+        "placebo_n": 140,
+        "verdict": "not testable"
+      }
+    },
+    "SE": {
+      "chant": {
+        "n": 15,
+        "placebo_n": 75,
+        "verdict": "not testable"
+      },
+      "chicken-of-the-woods": {
+        "n": 82,
+        "placebo_n": 75,
+        "weather_part": 0.525,
+        "temp": 0.535,
+        "humidity": 0.456,
+        "moisture": 0.54,
+        "static_part": 0.506,
+        "season_part": 0.55,
+        "full_score": 0.592,
+        "weather_part_ci": [
+          0.455,
+          0.594
+        ],
+        "weather_part_placebo": 0.559,
+        "weather_part_net": -0.033,
+        "weather_part_net_ci": [
+          -0.137,
+          0.066
+        ],
+        "temp_placebo": 0.563,
+        "temp_net": -0.029,
+        "temp_net_ci": [
+          -0.148,
+          0.087
+        ],
+        "humidity_placebo": 0.568,
+        "humidity_net": -0.112,
+        "humidity_net_ci": [
+          -0.207,
+          -0.019
+        ],
+        "moisture_placebo": 0.497,
+        "moisture_net": 0.043,
+        "moisture_net_ci": [
+          -0.057,
+          0.135
+        ]
+      },
+      "giant_puffball": {
+        "n": 11,
+        "placebo_n": 75,
+        "verdict": "not testable"
+      },
+      "hedgehog_mushroom": {
+        "n": 1,
+        "placebo_n": 75,
+        "verdict": "not testable"
+      },
+      "mushroom": {
+        "n": 22,
+        "placebo_n": 75,
+        "weather_part": 0.761,
+        "temp": 0.795,
+        "humidity": 0.545,
+        "moisture": 0.693,
+        "static_part": 0.5,
+        "season_part": 0.818,
+        "full_score": 0.807,
+        "weather_part_ci": [
+          0.67,
+          0.852
+        ],
+        "weather_part_placebo": 0.562,
+        "weather_part_net": 0.199,
+        "weather_part_net_ci": [
+          0.088,
+          0.323
+        ],
+        "temp_placebo": 0.527,
+        "temp_net": 0.269,
+        "temp_net_ci": [
+          0.153,
+          0.379
+        ],
+        "humidity_placebo": 0.55,
+        "humidity_net": -0.005,
+        "humidity_net_ci": [
+          -0.127,
+          0.112
+        ],
+        "moisture_placebo": 0.547,
+        "moisture_net": 0.146,
+        "moisture_net_ci": [
+          0.025,
+          0.264
+        ]
+      },
+      "oyster-mushroom": {
+        "n": 9,
+        "placebo_n": 75,
+        "verdict": "not testable"
+      },
+      "parasol": {
+        "n": 18,
+        "placebo_n": 75,
+        "verdict": "not testable"
+      },
+      "saffron_milk_cap": {
+        "n": 3,
+        "placebo_n": 75,
+        "verdict": "not testable"
+      },
+      "shaggy_mane": {
+        "n": 13,
+        "placebo_n": 75,
+        "verdict": "not testable"
+      },
+      "summer_bolete": {
+        "n": 9,
+        "placebo_n": 75,
+        "verdict": "not testable"
+      }
+    },
+    "USE": {
+      "black_chant": {
+        "n": 16,
+        "placebo_n": 22,
+        "verdict": "not testable"
+      },
+      "chicken-of-the-woods": {
+        "n": 127,
+        "placebo_n": 22,
+        "weather_part": 0.575,
+        "temp": 0.594,
+        "humidity": 0.49,
+        "moisture": 0.535,
+        "static_part": 0.501,
+        "season_part": 0.52,
+        "full_score": 0.575,
+        "weather_part_ci": [
+          0.52,
+          0.632
+        ],
+        "weather_part_placebo": 0.466,
+        "weather_part_net": 0.11,
+        "weather_part_net_ci": [
+          -0.032,
+          0.259
+        ],
+        "temp_placebo": 0.432,
+        "temp_net": 0.162,
+        "temp_net_ci": [
+          0.027,
+          0.305
+        ],
+        "humidity_placebo": 0.625,
+        "humidity_net": -0.135,
+        "humidity_net_ci": [
+          -0.288,
+          0.02
+        ],
+        "moisture_placebo": 0.602,
+        "moisture_net": -0.067,
+        "moisture_net_ci": [
+          -0.203,
+          0.079
+        ]
+      },
+      "eastern_king": {
+        "n": 3,
+        "placebo_n": 22,
+        "verdict": "not testable"
+      },
+      "giant_puffball": {
+        "n": 6,
+        "placebo_n": 22,
+        "verdict": "not testable"
+      },
+      "hen_of_the_woods": {
+        "n": 3,
+        "placebo_n": 22,
+        "verdict": "not testable"
+      },
+      "lions_mane": {
+        "n": 5,
+        "placebo_n": 22,
+        "verdict": "not testable"
+      },
+      "mushroom": {
+        "n": 2,
+        "placebo_n": 22,
+        "verdict": "not testable"
+      },
+      "oyster-mushroom": {
+        "n": 108,
+        "placebo_n": 22,
+        "weather_part": 0.451,
+        "temp": 0.424,
+        "humidity": 0.549,
+        "moisture": 0.563,
+        "static_part": 0.5,
+        "season_part": 0.512,
+        "full_score": 0.481,
+        "weather_part_ci": [
+          0.388,
+          0.519
+        ],
+        "weather_part_placebo": 0.659,
+        "weather_part_net": -0.208,
+        "weather_part_net_ci": [
+          -0.363,
+          -0.047
+        ],
+        "temp_placebo": 0.598,
+        "temp_net": -0.175,
+        "temp_net_ci": [
+          -0.34,
+          0.015
+        ],
+        "humidity_placebo": 0.67,
+        "humidity_net": -0.121,
+        "humidity_net_ci": [
+          -0.267,
+          0.039
+        ],
+        "moisture_placebo": 0.557,
+        "moisture_net": 0.006,
+        "moisture_net_ci": [
+          -0.135,
+          0.157
+        ]
+      },
+      "saffron_milk_cap": {
+        "n": 0,
+        "placebo_n": 22,
+        "verdict": "not testable"
+      },
+      "smooth_chant": {
+        "n": 1,
+        "placebo_n": 22,
+        "verdict": "not testable"
+      }
+    },
+    "USW": {
+      "chant": {
+        "n": 1,
+        "placebo_n": 14,
+        "verdict": "not testable"
+      },
+      "chicken-of-the-woods": {
+        "n": 29,
+        "placebo_n": 14,
+        "weather_part": 0.552,
+        "temp": 0.483,
+        "humidity": 0.552,
+        "moisture": 0.534,
+        "static_part": 0.5,
+        "season_part": 0.526,
+        "full_score": 0.552,
+        "weather_part_ci": [
+          0.422,
+          0.69
+        ]
+      },
+      "eastern_king": {
+        "n": 1,
+        "placebo_n": 14,
+        "verdict": "not testable"
+      },
+      "giant_puffball": {
+        "n": 1,
+        "placebo_n": 14,
+        "verdict": "not testable"
+      },
+      "lions_mane": {
+        "n": 2,
+        "placebo_n": 14,
+        "verdict": "not testable"
+      },
+      "morel": {
+        "n": 1,
+        "placebo_n": 14,
+        "verdict": "not testable"
+      },
+      "mushroom": {
+        "n": 8,
+        "placebo_n": 14,
+        "verdict": "not testable"
+      },
+      "oyster-mushroom": {
+        "n": 3,
+        "placebo_n": 14,
+        "verdict": "not testable"
+      },
+      "pacific_chant": {
+        "n": 2,
+        "placebo_n": 14,
+        "verdict": "not testable"
+      },
+      "rocky_king": {
+        "n": 10,
+        "placebo_n": 14,
+        "verdict": "not testable"
+      },
+      "shaggy_mane": {
+        "n": 4,
+        "placebo_n": 14,
+        "verdict": "not testable"
+      },
+      "smooth_chant": {
+        "n": 3,
+        "placebo_n": 14,
+        "verdict": "not testable"
+      }
+    }
+  },
+  "pooled": {
+    "black_chant": {
+      "n": 18,
+      "placebo_n": 162,
+      "verdict": "not testable"
+    },
+    "chant": {
+      "n": 66,
+      "placebo_n": 229,
+      "weather_part": 0.576,
+      "temp": 0.527,
+      "humidity": 0.549,
+      "moisture": 0.574,
+      "static_part": 0.506,
+      "season_part": 0.564,
+      "full_score": 0.617,
+      "weather_part_ci": [
+        0.492,
+        0.659
+      ],
+      "weather_part_placebo": 0.526,
+      "weather_part_net": 0.05,
+      "weather_part_net_ci": [
+        -0.047,
+        0.142
+      ],
+      "temp_placebo": 0.507,
+      "temp_net": 0.02,
+      "temp_net_ci": [
+        -0.071,
+        0.109
+      ],
+      "humidity_placebo": 0.505,
+      "humidity_net": 0.044,
+      "humidity_net_ci": [
+        -0.041,
+        0.129
+      ],
+      "moisture_placebo": 0.529,
+      "moisture_net": 0.045,
+      "moisture_net_ci": [
+        -0.04,
+        0.119
+      ]
+    },
+    "chicken-of-the-woods": {
+      "n": 367,
+      "placebo_n": 251,
+      "weather_part": 0.532,
+      "temp": 0.554,
+      "humidity": 0.469,
+      "moisture": 0.52,
+      "static_part": 0.505,
+      "season_part": 0.555,
+      "full_score": 0.57,
+      "weather_part_ci": [
+        0.499,
+        0.567
+      ],
+      "weather_part_placebo": 0.522,
+      "weather_part_net": 0.01,
+      "weather_part_net_ci": [
+        -0.047,
+        0.067
+      ],
+      "temp_placebo": 0.532,
+      "temp_net": 0.023,
+      "temp_net_ci": [
+        -0.035,
+        0.078
+      ],
+      "humidity_placebo": 0.536,
+      "humidity_net": -0.067,
+      "humidity_net_ci": [
+        -0.119,
+        -0.017
+      ],
+      "moisture_placebo": 0.5,
+      "moisture_net": 0.02,
+      "moisture_net_ci": [
+        -0.026,
+        0.066
+      ]
+    },
+    "giant_puffball": {
+      "n": 30,
+      "placebo_n": 251,
+      "weather_part": 0.572,
+      "temp": 0.633,
+      "humidity": 0.601,
+      "moisture": 0.607,
+      "static_part": 0.5,
+      "season_part": 0.608,
+      "full_score": 0.706,
+      "weather_part_ci": [
+        0.453,
+        0.681
+      ],
+      "weather_part_placebo": 0.531,
+      "weather_part_net": 0.041,
+      "weather_part_net_ci": [
+        -0.087,
+        0.156
+      ],
+      "temp_placebo": 0.52,
+      "temp_net": 0.113,
+      "temp_net_ci": [
+        -0.033,
+        0.246
+      ],
+      "humidity_placebo": 0.526,
+      "humidity_net": 0.075,
+      "humidity_net_ci": [
+        -0.024,
+        0.177
+      ],
+      "moisture_placebo": 0.525,
+      "moisture_net": 0.082,
+      "moisture_net_ci": [
+        -0.037,
+        0.203
+      ]
+    },
+    "hedgehog_mushroom": {
+      "n": 24,
+      "placebo_n": 215,
+      "weather_part": 0.51,
+      "temp": 0.667,
+      "humidity": 0.312,
+      "moisture": 0.406,
+      "static_part": 0.5,
+      "season_part": 0.552,
+      "full_score": 0.635,
+      "weather_part_ci": [
+        0.365,
+        0.656
+      ],
+      "weather_part_placebo": 0.492,
+      "weather_part_net": 0.018,
+      "weather_part_net_ci": [
+        -0.141,
+        0.163
+      ],
+      "temp_placebo": 0.491,
+      "temp_net": 0.175,
+      "temp_net_ci": [
+        0.042,
+        0.293
+      ],
+      "humidity_placebo": 0.512,
+      "humidity_net": -0.199,
+      "humidity_net_ci": [
+        -0.331,
+        -0.061
+      ],
+      "moisture_placebo": 0.523,
+      "moisture_net": -0.116,
+      "moisture_net_ci": [
+        -0.264,
+        0.031
+      ]
+    },
+    "matsutake": {
+      "n": 3,
+      "placebo_n": 140,
+      "verdict": "not testable"
+    },
+    "mushroom": {
+      "n": 73,
+      "placebo_n": 251,
+      "weather_part": 0.699,
+      "temp": 0.688,
+      "humidity": 0.497,
+      "moisture": 0.618,
+      "static_part": 0.5,
+      "season_part": 0.75,
+      "full_score": 0.76,
+      "weather_part_ci": [
+        0.63,
+        0.764
+      ],
+      "weather_part_placebo": 0.559,
+      "weather_part_net": 0.14,
+      "weather_part_net_ci": [
+        0.051,
+        0.222
+      ],
+      "temp_placebo": 0.537,
+      "temp_net": 0.152,
+      "temp_net_ci": [
+        0.068,
+        0.231
+      ],
+      "humidity_placebo": 0.527,
+      "humidity_net": -0.03,
+      "humidity_net_ci": [
+        -0.114,
+        0.05
+      ],
+      "moisture_placebo": 0.531,
+      "moisture_net": 0.087,
+      "moisture_net_ci": [
+        0.012,
+        0.163
+      ]
+    },
+    "oyster-mushroom": {
+      "n": 148,
+      "placebo_n": 251,
+      "weather_part": 0.435,
+      "temp": 0.429,
+      "humidity": 0.499,
+      "moisture": 0.517,
+      "static_part": 0.505,
+      "season_part": 0.524,
+      "full_score": 0.451,
+      "weather_part_ci": [
+        0.381,
+        0.493
+      ],
+      "weather_part_placebo": 0.494,
+      "weather_part_net": -0.059,
+      "weather_part_net_ci": [
+        -0.127,
+        0.007
+      ],
+      "temp_placebo": 0.47,
+      "temp_net": -0.041,
+      "temp_net_ci": [
+        -0.11,
+        0.027
+      ],
+      "humidity_placebo": 0.533,
+      "humidity_net": -0.034,
+      "humidity_net_ci": [
+        -0.099,
+        0.03
+      ],
+      "moisture_placebo": 0.522,
+      "moisture_net": -0.005,
+      "moisture_net_ci": [
+        -0.071,
+        0.06
+      ]
+    },
+    "parasol": {
+      "n": 35,
+      "placebo_n": 215,
+      "weather_part": 0.831,
+      "temp": 0.771,
+      "humidity": 0.675,
+      "moisture": 0.712,
+      "static_part": 0.481,
+      "season_part": 0.445,
+      "full_score": 0.829,
+      "weather_part_ci": [
+        0.75,
+        0.9
+      ],
+      "weather_part_placebo": 0.574,
+      "weather_part_net": 0.257,
+      "weather_part_net_ci": [
+        0.171,
+        0.342
+      ],
+      "temp_placebo": 0.534,
+      "temp_net": 0.238,
+      "temp_net_ci": [
+        0.137,
+        0.338
+      ],
+      "humidity_placebo": 0.51,
+      "humidity_net": 0.165,
+      "humidity_net_ci": [
+        0.047,
+        0.271
+      ],
+      "moisture_placebo": 0.531,
+      "moisture_net": 0.181,
+      "moisture_net_ci": [
+        0.096,
+        0.268
+      ]
+    },
+    "pine_bolete": {
+      "n": 11,
+      "placebo_n": 140,
+      "verdict": "not testable"
+    },
+    "saffron_milk_cap": {
+      "n": 26,
+      "placebo_n": 237,
+      "weather_part": 0.615,
+      "temp": 0.548,
+      "humidity": 0.538,
+      "moisture": 0.514,
+      "static_part": 0.5,
+      "season_part": 0.567,
+      "full_score": 0.654,
+      "weather_part_ci": [
+        0.471,
+        0.76
+      ],
+      "weather_part_placebo": 0.486,
+      "weather_part_net": 0.129,
+      "weather_part_net_ci": [
+        -0.016,
+        0.276
+      ],
+      "temp_placebo": 0.466,
+      "temp_net": 0.082,
+      "temp_net_ci": [
+        -0.046,
+        0.21
+      ],
+      "humidity_placebo": 0.528,
+      "humidity_net": 0.01,
+      "humidity_net_ci": [
+        -0.127,
+        0.141
+      ],
+      "moisture_placebo": 0.537,
+      "moisture_net": -0.023,
+      "moisture_net_ci": [
+        -0.122,
+        0.07
+      ]
+    },
+    "shaggy_mane": {
+      "n": 45,
+      "placebo_n": 229,
+      "weather_part": 0.587,
+      "temp": 0.535,
+      "humidity": 0.611,
+      "moisture": 0.526,
+      "static_part": 0.515,
+      "season_part": 0.52,
+      "full_score": 0.531,
+      "weather_part_ci": [
+        0.498,
+        0.67
+      ],
+      "weather_part_placebo": 0.482,
+      "weather_part_net": 0.105,
+      "weather_part_net_ci": [
+        0.005,
+        0.208
+      ],
+      "temp_placebo": 0.467,
+      "temp_net": 0.069,
+      "temp_net_ci": [
+        -0.026,
+        0.165
+      ],
+      "humidity_placebo": 0.509,
+      "humidity_net": 0.102,
+      "humidity_net_ci": [
+        0.018,
+        0.192
+      ],
+      "moisture_placebo": 0.527,
+      "moisture_net": -0.001,
+      "moisture_net_ci": [
+        -0.111,
+        0.106
+      ]
+    },
+    "st_george": {
+      "n": 1,
+      "placebo_n": 140,
+      "verdict": "not testable"
+    },
+    "summer_bolete": {
+      "n": 18,
+      "placebo_n": 215,
+      "verdict": "not testable"
+    },
+    "winter_chant": {
+      "n": 4,
+      "placebo_n": 140,
+      "verdict": "not testable"
+    },
+    "eastern_king": {
+      "n": 4,
+      "placebo_n": 36,
+      "verdict": "not testable"
+    },
+    "hen_of_the_woods": {
+      "n": 3,
+      "placebo_n": 22,
+      "verdict": "not testable"
+    },
+    "lions_mane": {
+      "n": 7,
+      "placebo_n": 36,
+      "verdict": "not testable"
+    },
+    "smooth_chant": {
+      "n": 4,
+      "placebo_n": 36,
+      "verdict": "not testable"
+    },
+    "morel": {
+      "n": 1,
+      "placebo_n": 14,
+      "verdict": "not testable"
+    },
+    "pacific_chant": {
+      "n": 2,
+      "placebo_n": 14,
+      "verdict": "not testable"
+    },
+    "rocky_king": {
+      "n": 10,
+      "placebo_n": 14,
+      "verdict": "not testable"
+    },
+    "ALL": {
+      "n": 900,
+      "placebo_n": 3238,
+      "weather_part": 0.556,
+      "temp": 0.55,
+      "humidity": 0.516,
+      "moisture": 0.541,
+      "static_part": 0.504,
+      "season_part": 0.571,
+      "full_score": 0.592,
+      "weather_part_ci": [
+        0.533,
+        0.578
+      ],
+      "weather_part_placebo": 0.519,
+      "weather_part_net": 0.037,
+      "weather_part_net_ci": [
+        0.01,
+        0.063
+      ],
+      "temp_placebo": 0.505,
+      "temp_net": 0.046,
+      "temp_net_ci": [
+        0.02,
+        0.071
+      ],
+      "humidity_placebo": 0.521,
+      "humidity_net": -0.004,
+      "humidity_net_ci": [
+        -0.027,
+        0.019
+      ],
+      "moisture_placebo": 0.526,
+      "moisture_net": 0.015,
+      "moisture_net_ci": [
+        -0.009,
+        0.037
+      ]
+    }
+  }
+}

@@ -65,6 +65,17 @@ def grid_values(df, prior):
     return out
 
 
+def habitat_values(df, params):
+    """Per-row learned habitat factor (tools/fit_habitat.py); 1.0 without one, or at a
+    location it does not list."""
+    habitat = params.get("habitat")
+    if habitat is None:
+        return 1.0
+    position = habitat["index"].get_indexer(df["Location_Id"])
+    return np.where(position >= 0, habitat["factor"][np.clip(position, 0, None)], 1.0)
+
+
 def range_prior_for_species(df, params):
-    """Range prior times host prior, per row."""
-    return grid_values(df, params.get("range_prior")) * grid_values(df, params.get("host_prior"))
+    """Range prior times host prior times the learned habitat factor, per row."""
+    return (grid_values(df, params.get("range_prior")) * grid_values(df, params.get("host_prior"))
+            * habitat_values(df, params))

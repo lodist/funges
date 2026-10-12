@@ -338,6 +338,11 @@
       "name": "Argousier",
       "description": "Des baies orange vif serrées le long de rameaux épineux aux feuilles argentées : acides et riches en vitamine C",
       "howTo": "Cherchez-le sur les dunes littorales et les berges caillouteuses d'août à octobre. Portez des gants contre les épines et renseignez-vous : la cueillette est souvent interdite dans les réserves dunaires"
+    },
+    "boletus": {
+      "name": "Boletus (tous les cèpes)",
+      "description": "Tous les cèpes en un seul score : cèpe de Bordeaux, cèpe des pins, cèpe bronzé et cèpe d'été, plus les bolets royaux d'Amérique du Nord",
+      "howTo": "Chaque lieu affiche le meilleur de leurs scores ; cherchez dans les hêtraies, chênaies, châtaigneraies, pinèdes et pessières deux à quatre semaines après une bonne pluie"
     }
   }
 }

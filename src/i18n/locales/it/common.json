@@ -6,34 +6,36 @@
     "reloadForUpdate": "Ricarica per Aggiornare"
   },
   "home": {
-    "title": "Funges",
     "headline": "Esplora ciò che cresce intorno a te",
-    "description": "Previsioni di raccolta, mappe delle specie, identificazione da foto privata e ricette selvatiche.",
+    "description": "Previsioni di raccolta, spettacoli naturali, identificazione fotografica privata e ricette selvatiche",
     "cta": "Esplora la mappa",
     "ctaSecondary": "Cosa è di stagione",
     "forecast": {
-      "label": "Previsione",
       "heading": "Vale la pena uscire oggi?",
-      "body": "Sapere dove e quando le condizioni sono buone.",
+      "body": "Scopri come la stagione e il meteo influenzano le possibilità di raccolta e confronta le zone vicine prima di partire",
       "link": "Apri la previsione"
     },
     "identify": {
-      "label": "Identifica",
       "heading": "Cosa hai trovato?",
-      "body": "Identifica funghi e piante in privato, sul tuo dispositivo.",
-      "link": "Prova l'identificazione"
+      "body": "Scatta una foto ed esplora le possibili corrispondenze: il riconoscimento avviene sul tuo dispositivo e le tue foto restano private",
+      "link": "Prova l'identificazione",
+      "safety": "Consulta sempre un esperto prima di consumare qualsiasi cibo selvatico: queste informazioni sono solo a scopo educativo"
     },
     "cook": {
-      "label": "Cucina",
-      "heading": "Di nuovo a casa",
-      "body": "Trasforma ciò che trovi in ricette selvatiche.",
+      "heading": "Dal bosco alla tavola",
+      "body": "Trova ricette per gli ingredienti che raccogli, con consigli di preparazione e istruzioni passo dopo passo",
       "link": "Sfoglia le ricette"
     },
     "closing": {
       "heading": "Pronto a esplorare?",
       "cta": "Apri la mappa"
     },
-    "coverage": "Le previsioni coprono attualmente il Nord e il Sud Europa e l'Est e l'Ovest degli Stati Uniti."
+    "coverage": "Le previsioni coprono attualmente il Nord e il Sud Europa e l'Est e l'Ovest degli Stati Uniti",
+    "spectacles": {
+      "heading": "Spettacoli naturali",
+      "body": "Dai ciliegi in fiore e i boschi di giacinti alle foglie autunnali: segui le stagioni ed esplora le previsioni per questi spettacoli effimeri della natura",
+      "link": "Esplora il foliage autunnale"
+    }
   },
   "worthForagingNow": {
     "title": "Cosa vale la pena raccogliere adesso?",
@@ -144,7 +146,9 @@
     "yes": "Sì",
     "no": "No",
     "score": "Punteggio",
-    "copied": "Copiato!"
+    "copied": "Copiato!",
+    "enlargeImage": "Ingrandisci l'immagine",
+    "shrinkImage": "Riduci l'immagine"
   },
   "html": {
     "title": "Fung.es - Trova Funghi e Piante Commestibili Vicino a Te",

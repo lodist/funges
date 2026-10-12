@@ -132,5 +132,29 @@
     "inDays_other": "in {{count}} Tagen",
     "daysAgo_one": "vor {{count}} Tag",
     "daysAgo_other": "vor {{count}} Tagen"
+  },
+  "bluebell": {
+    "name": "Hasenglöckchen-Wälder",
+    "offSeason": "Die Hasenglöckchen-Prognose beginnt am 1. März."
+  },
+  "foliage": {
+    "name": "Herbstlaub",
+    "offSeason": "Die Herbstlaub-Prognose beginnt am 1. September.",
+    "legend": "Farbhöhepunkt"
+  },
+  "heather": {
+    "name": "Heideblüte",
+    "offSeason": "Die Heideblüten-Prognose beginnt am 1. Juli."
+  },
+  "superbloom": {
+    "name": "Wüstenblüte",
+    "offSeason": "Die Wüstenblüten-Prognose beginnt am 1. Januar.",
+    "dry": "Zu wenig Winterregen",
+    "levels": {
+      "none": "Keine Blüte",
+      "ordinary": "Normale Blüte",
+      "good": "Gute Blüte",
+      "superbloom": "Superbloom möglich"
+    }
   }
 }

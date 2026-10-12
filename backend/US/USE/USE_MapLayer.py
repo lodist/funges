@@ -4,7 +4,6 @@ from geopandas import GeoDataFrame
 from datetime import datetime
 import pandas as pd
 import pyarrow.parquet as pq
-import requests
 from shapely.geometry import Polygon, Point, box, MultiPolygon
 from scipy.spatial import Delaunay, cKDTree
 import gc
@@ -22,6 +21,7 @@ from pyproj import Transformer
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from species_registry import get_land_cover_mapping
+import r2
 
 region_code = 'use'
 
@@ -83,24 +83,15 @@ def is_remote_path(path):
 
 def load_geojson_from_source(path):
     if is_remote_path(path):
-        with requests.get(path, timeout=600, stream=True) as response:
-            response.raise_for_status()
-            with tempfile.NamedTemporaryFile(suffix='.geojson', delete=False) as tmp:
-                for chunk in response.iter_content(chunk_size=8 * 1024 * 1024):
-                    tmp.write(chunk)
-                tmp_path = tmp.name
+        tmp_path = download_remote_file_to_temp(path, '.geojson')
         result = gpd.read_file(tmp_path)
         os.unlink(tmp_path)
         return result
     return load_geojson_from_local(path)
 
 def download_remote_file_to_temp(url, suffix):
-    with requests.get(url, timeout=600, stream=True) as response:
-        response.raise_for_status()
-        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
-            for chunk in response.iter_content(chunk_size=8 * 1024 * 1024):
-                tmp.write(chunk)
-            return tmp.name
+    # Authenticated: data.fung.es no longer serves the masters publicly.
+    return r2.download_to_temp(url, suffix)
 
 
 def assign_ids_corrected(tri_gdf):
@@ -528,6 +519,8 @@ gdf_full = gdf_full[~gdf_full['geometry'].isnull()]
 
 # Keep geometry + score columns; gdf_full is reused below only for CRS and bounds.
 score_columns = [col for col in gdf_full.columns if col.endswith('_score')]
+# Each piece's land cover, for the spectacles at the end (fall foliage colours the woods).
+land = gdf_full[['raster_val', 'geometry']]
 gdf_full = gdf_full[['geometry', 'tri_id'] + score_columns]
 
 
@@ -632,12 +625,13 @@ with tempfile.TemporaryDirectory() as tmpdir:
         if convert_mbtiles_to_pmtiles(fc_mbtiles_path, fc_pmtiles_path):
             upload_mbtiles_to_r2(fc_pmtiles_path, f"USA/USE/{region_code}_forecast.pmtiles")
 
-# ---------- CHERRY BLOSSOM (roadmap #272 step 5): its own tileset, drawn over towns too ----------
-# 1 February - 30 June only; see backend/bloom.py. The forecast is up by now, so a
+# ---------- SPECTACLES (roadmap #272 step 5): cherry blossom, ...; their own tilesets ----------
+# Each only in its season; see backend/bloom.py. The forecast is up by now, so a
 # failure here is printed and the run carries on.
 try:
-    from bloom import build_bloom
-    build_bloom(FILE_PATH, region_code, "USA/USE", convert_mbtiles_to_pmtiles, upload_mbtiles_to_r2)
+    from bloom import build_spectacles
+    build_spectacles(FILE_PATH, region_code, "USA/USE", convert_mbtiles_to_pmtiles, upload_mbtiles_to_r2,
+                     land=land)
 except Exception:
     import traceback
     traceback.print_exc()

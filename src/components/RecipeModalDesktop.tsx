@@ -5,6 +5,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
+import { ZoomableImage } from '@/components/ZoomableImage';
 import type { Recipe } from '@/data/recipes';
 import { Clock, Users, AlertTriangle, Info } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
@@ -33,11 +34,9 @@ export const RecipeModalDesktop = ({
       <DialogContent className='flex max-h-[85vh] w-full max-w-4xl flex-col'>
         <header className='flex shrink-0 items-start gap-6 pr-8'>
           {recipe.image && (
-            <img
+            <ZoomableImage
               src={recipe.image}
-              alt=''
-              className='h-28 w-28 flex-shrink-0 rounded-xl object-cover'
-              loading='lazy'
+              className='h-28 w-28 rounded-xl'
             />
           )}
           <div className='min-w-0 flex-1 space-y-2'>
