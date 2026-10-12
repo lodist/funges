@@ -1001,6 +1001,29 @@ FRUITING_GBM_FEATURES = [*FRUITING_FEATURES,
                          *FRUITING_GBM_STATIC, "region"]
 
 
+# Humidity and temperature as departures from the place's normal for the time of year (the
+# window's middle day, era5_normals 2016-2025). The fit learns only from days at one place,
+# where absolute values and departures give the same coefficients, but read as absolute values
+# a drier or warmer climate lowered every day there, which no test checked (central Apennines
+# in a wet autumn 7.5, the Alps 9). Feature -> (normal, days back to the window's middle).
+FRUITING_RELATIVE = {"temp": ("tmean", 4), "humidity": ("rh", 4), "humidity_early": ("rh", 14)}
+
+
+def fruiting_relative(design, grid, lats, lons, dates):
+    """The linear fit's humidity and temperature as departures from the place's normals, the
+    temperature optimum's term against the normal's own. Off the normals grid they are unknown
+    and count as average. The GBM reads the normals as inputs instead."""
+    out = design.copy()
+    lats, lons = np.asarray(lats, float), np.asarray(lons, float)
+    dates = pd.DatetimeIndex(pd.to_datetime(dates))
+    for name, (normal, back) in FRUITING_RELATIVE.items():
+        n = era5_normals.on_days(grid, lats, lons, dates - pd.Timedelta(days=back))[f"norm_{normal}"]
+        out[name] = design[name].to_numpy(float) - n
+        if name == "temp":
+            out["temp_sq"] = design["temp_sq"].to_numpy(float) - (n - 12.0) ** 2 / 10.0
+    return out
+
+
 def fruiting_design(raw):
     """Raw features -> the fit's columns. Rain on a log scale: the 30th mm matters less than the 3rd."""
     out = pd.DataFrame({name: np.log1p(raw[name]) for name in ["rain_0", *FRUITING_RAIN_WINDOWS]})
@@ -1025,6 +1048,8 @@ def fruiting_weather_part(df, model):
     design = fruiting_design(fruiting_raw_features(df))
     a, b = model.get("humidity_from_stored", (0.0, 1.0))
     design[["humidity", "humidity_early"]] = a + b * design[["humidity", "humidity_early"]]
+    if model.get("normals") is not None:
+        design = fruiting_relative(design, model["normals"], df["Latitude"], df["Longitude"], df["Date"])
     z = (design.to_numpy(float) - np.asarray(model["means"])) / np.asarray(model["sds"])
     eta = np.nan_to_num(z, nan=0.0) @ np.asarray(model["beta"], float)
     return _monthly_map(eta, df["Date"], model["map"])
@@ -1082,11 +1107,15 @@ def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
     if fit.get("features") != FRUITING_FEATURES:
         print(f"[warn] {path}: features differ from this code's; hand-set weather parts used")
         return
+    normals = None
     for specie, params in species_params.items():
         model = fit.get("models", {}).get(specie, {}).get(region)
         if model:
             params["fruiting"] = {"means": fit["means"], "sds": fit["sds"],
                                   "humidity_from_stored": fit["humidity_from_stored"][region], **model}
+            if fit.get("relative_to_normal"):
+                normals = era5_normals.load(region) if normals is None else normals
+                params["fruiting"]["normals"] = normals
 
 
 def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, fetch=None):

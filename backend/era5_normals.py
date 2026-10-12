@@ -6,6 +6,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 GENERATED = Path(__file__).resolve().parent / "generated"
 CONTINENT = {"NE": "EU", "SE": "EU", "USE": "US", "USW": "US"}
@@ -20,6 +21,17 @@ def relative_humidity(t, td):
 def load(region: str) -> dict:
     with np.load(GENERATED / f"era5_normals_{CONTINENT[region]}.npz") as z:
         return {name: z[name] for name in z.files}
+
+
+def on_days(grid: dict, lats, lons, dates) -> dict:
+    """lookup() blended between the months either side of each date, mid-month being that
+    month's normal, so a normal never jumps at the turn of a month."""
+    position = (pd.DatetimeIndex(dates).dayofyear.to_numpy() - 15.0) / (365.25 / 12)  # 0 = mid-January
+    before = np.floor(position).astype(int)
+    weight = position - before
+    a = lookup(grid, lats, lons, before % 12 + 1)
+    b = lookup(grid, lats, lons, (before + 1) % 12 + 1)
+    return {name: (1 - weight) * a[name] + weight * b[name] for name in a}
 
 
 def lookup(grid: dict, lats, lons, months) -> dict:

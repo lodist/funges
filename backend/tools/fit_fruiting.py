@@ -40,6 +40,7 @@ from scipy.stats import binomtest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import era5_normals  # noqa: E402
 import forecast_pipeline as fp  # noqa: E402
 from download_era5_points import log  # noqa: E402
 
@@ -52,6 +53,9 @@ MIN_REGION_STRATA = 100      # a region with fewer uses its species' shared answ
 ALPHA_SHARED, ALPHA_REGION = 1.0, 50.0
 MIN_TEST_STRATA = 50
 SHIP_P, SHIP_MIN_YEARS = 0.1, 6
+# Passed the rule (9 of 10 years) with little skill for either model (+0.050 vs +0.017, about
+# zero in summer 2026) while removing 20-36 points of 4+ places in September and October.
+HELD_BACK = {("chicken-of-the-woods", "USW")}
 MAP_CELLS, MAP_DAY_STEP = 100, 3   # the scale map's sample: places, and every n-th day
 # The forecast fetch that stores today's rows (one per forecast day, the past frozen) started
 # on 14 June 2026. Days stored before it came from another setup and read differently: their
@@ -64,6 +68,24 @@ MAP_QUANTILES = np.linspace(0, 1, 101)
 def transform(table: pd.DataFrame) -> pd.DataFrame:
     """Training-table columns -> the fit's features, with the production pipeline's code."""
     return fp.fruiting_design(table)
+
+
+def departures(table: pd.DataFrame, design: pd.DataFrame) -> pd.DataFrame:
+    """The design with humidity and temperature as departures from each cell's normals for the
+    time of year (fp.fruiting_relative), one normals grid per continent.
+
+    The fit itself stays on the absolute values: it compares a day with the same place two to
+    three weeks either side, where that place's normal is the same for every day, so departures
+    give the very same coefficients. Refitted on departures from each day's own seasonal normal
+    instead, it lost the seasonal drift inside those weeks and two shipped models fell under
+    the shipping rule. Departures set how places compare: the scale maps and production."""
+    out = design.copy()
+    for region in ("NE", "USE"):
+        rows = (table["region"].map(CONTINENT) == CONTINENT[region]).to_numpy()
+        if rows.any():
+            out.loc[rows] = fp.fruiting_relative(design[rows], era5_normals.load(region), table.loc[rows, "cell_lat"],
+                                                 table.loc[rows, "cell_lon"], table.loc[rows, "date"]).to_numpy()
+    return out
 
 
 def strata(table: pd.DataFrame, values: pd.DataFrame) -> tuple[pd.DataFrame, np.ndarray, np.ndarray]:
@@ -128,10 +150,17 @@ def baseline_index(scores: pd.DataFrame, cases: pd.DataFrame, species: str) -> n
     return wide.to_numpy(float)
 
 
-def linear_index(beta, means, sds):
+def linear_index(beta, means, sds, grid):
     """index(cell, days) for season_maps: the linear fit on one cell's ERA5 days."""
     import build_training_table as tt
-    return lambda cell, days: ((fp.fruiting_design(tt.features(cell, days)).to_numpy(float) - means) / sds) @ beta
+
+    def index(cell, days):
+        n = len(days)
+        design = fp.fruiting_relative(fp.fruiting_design(tt.features(cell, days)), grid,
+                                      np.full(n, float(cell["Latitude"].iloc[0])),
+                                      np.full(n, float(cell["Longitude"].iloc[0])), days)
+        return ((design.to_numpy(float) - means) / sds) @ beta
+    return index
 
 
 def month_maps(dates, eta: np.ndarray, part: np.ndarray) -> list[dict]:
@@ -277,6 +306,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True)
     parser.add_argument("--export", help="write the shipped models here (backend/generated/fruiting_fit.json)")
+    parser.add_argument("--humidity-from", help="reuse this fit file's humidity_from_stored instead of measuring it on R2")
     args = parser.parse_args()
     out = Path(args.out)
 
@@ -284,11 +314,19 @@ def main() -> None:
                       ignore_index=True)
     scores = pd.concat([s for s in (pd.read_parquet(p) for p in (out / "training_scores").glob("*.parquet"))
                         if len(s)], ignore_index=True)
-    cases, x, mask = strata(table, transform(table))
+    design = transform(table)
+    cases, x, mask = strata(table, design)
     cases["continent"] = cases["region"].map(CONTINENT)
     train = (cases["year"] <= LAST_TRAIN_YEAR).to_numpy()
     flat = x[mask]
     means, sds = flat.mean(axis=0), flat.std(axis=0)
+    # Production reads humidity and temperature as departures: their own means, so a normal day
+    # counts as average, and the absolute values' spread, so the coefficients hold as fitted.
+    level = means.copy()
+    moved = departures(table, design)
+    for k, name in enumerate(FEATURES):
+        if name in fp.FRUITING_RELATIVE or name == "temp_sq":
+            level[k] = float(np.nanmean(moved[name].to_numpy(float)))
     x = np.where(mask[..., None], (x - means) / sds, 0.0)
     log(f"{len(cases):,} strata ({train.sum():,} train, {(~train).sum():,} test), {len(FEATURES)} features")
 
@@ -302,7 +340,8 @@ def main() -> None:
         root = Path(__file__).resolve().parents[2]
         fp.load_dotenv(root / ".env")
         fp.load_dotenv(root / ".env.secret")
-        humidity = {region: stored_humidity_correction(out, region) for region in specs}
+        humidity = ({region: tuple(ab) for region, ab in json.loads(Path(args.humidity_from).read_text())["humidity_from_stored"].items()}
+                    if args.humidity_from else {region: stored_humidity_correction(out, region) for region in specs})
     is_placebo = (cases["species"] == PLACEBO).to_numpy()
     outing = {}
     for continent in ("EU", "US"):
@@ -384,14 +423,14 @@ def main() -> None:
                 "per_year": [{"year": y, "today": round(t, 3), "fitted": round(f, 3)} for y, t, f in results]}
             log(f"{species:22s} {region:4s} each year held out: fitted beats today {wins}/{len(results)} "
                 f"(p {p:.3f}), mean gain {gain:+.3f}")
-            if not ships(results):
+            if not ships(results) or (species, region) in HELD_BACK:
                 continue
             here = mine & (cases["region"] == region).to_numpy()
             beta = (fit(x[here], mask[here], center=everything, alpha=ALPHA_REGION)
                     if here.sum() >= MIN_REGION_STRATA else everything)
             shipped.setdefault(species, {})[region] = {
                 "beta": beta.round(6).tolist(),
-                "map": season_maps(table, out, species, region, linear_index(beta, means, sds), specs,
+                "map": season_maps(table, out, species, region, linear_index(beta, level, sds, era5_normals.load(region)), specs,
                                    {"Humidity (%)": humidity[region]})
                 if specs else None,
                 "each_year_held_out": {"years": len(results), "wins": wins, "p": round(p, 4),
@@ -401,13 +440,14 @@ def main() -> None:
 
     (out / "fruiting_fit.json").write_text(json.dumps(coefficients, indent=1), encoding="utf-8")
     if args.export:
-        export = {"features": FEATURES, "means": means.round(6).tolist(), "sds": sds.round(6).tolist(),
+        export = {"features": FEATURES, "relative_to_normal": True,
+                  "means": level.round(6).tolist(), "sds": sds.round(6).tolist(),
                   "trained": f"{int(cases['year'].min())}-{int(cases['year'].max())}",
                   "humidity_from_stored": {region: [round(a, 4), round(b, 4)] for region, (a, b) in humidity.items()},
                   "shipped_if": f"beats today's model in more held-out years than chance (sign test p < {SHIP_P}, "
                                 f"at least {SHIP_MIN_YEARS} years)",
                   "models": shipped}
-        Path(args.export).write_text(json.dumps(export, indent=1) + "\n", encoding="utf-8")
+        Path(args.export).write_text(json.dumps(export, indent=1) + "\n", encoding="utf-8", newline="\n")
         log(f"shipped {sum(len(r) for r in shipped.values())} species-regions to {args.export}: "
             + "; ".join(f"{s} {', '.join(r)}" for s, r in sorted(shipped.items())))
     (out / "fruiting_report.json").write_text(json.dumps(report, indent=1), encoding="utf-8")

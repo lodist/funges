@@ -146,3 +146,64 @@ def test_a_shipped_model_carries_its_region_humidity_correction(tmp_path):
     fp.attach_fruiting_models(params, "SE", path)
     assert params["chant"]["fruiting"]["humidity_from_stored"] == [21.0, 0.9]
     assert "fruiting" not in params["parasol"]
+
+
+def _grid(rh=75.0, tmean=14.0, lat=(45.0, 44.75), lon=(10.0, 10.25)):
+    """A normals grid whose every month holds the same values (per longitude when given as tuples)."""
+    shape = (12, len(lat), len(lon))
+    return {"lat": np.array(lat), "lon": np.array(lon), "rain": np.full(shape, 2.0),
+            "tmean": np.broadcast_to(np.array(tmean), shape).copy(), "rh": np.broadcast_to(np.array(rh), shape).copy()}
+
+
+def _place(name, lat, lon, humidity, temperature, days=120):
+    series = _series(days).assign(Location_Id=name, Latitude=lat, Longitude=lon)
+    series["Humidity (%)"], series["Temperature (C)"] = humidity, temperature
+    return series
+
+
+_CLIMATE = {"temp": 0.1, "temp_sq": -0.1, "humidity": 0.05, "humidity_early": 0.05}
+
+
+def _climate_model(**extra):
+    beta = np.zeros(len(fp.FRUITING_FEATURES))
+    for name, b in _CLIMATE.items():
+        beta[fp.FRUITING_FEATURES.index(name)] = b
+    return {**_model(beta, months=[{"eta": [-50.0, 50.0], "weather_part": [0.0, 1.0]}] * 12), **extra}
+
+
+def test_a_normal_day_scores_the_same_in_a_dry_and_a_wet_climate():
+    # The fit learns only from days at the same place, so a drier or warmer climate lowered
+    # every day there, which no test checked (central Apennines, autumn 2024: 7.5 vs 9 in the Alps).
+    grid = _grid(rh=(85.0, 60.0), tmean=(12.0, 18.0), lon=(10.0, 15.0))
+    wet, dry = _place("wet", 45.0, 10.0, 85.0, 12.0), _place("dry", 45.0, 15.0, 60.0, 18.0)
+    day = pd.DatetimeIndex(wet["Date"].iloc[[90]])
+    frame = pd.concat([_production_frame(wet, day), _production_frame(dry, day)], ignore_index=True)
+    absolute = fp.fruiting_weather_part(frame, _climate_model())
+    relative = fp.fruiting_weather_part(frame, _climate_model(normals=grid))
+    assert not np.isclose(absolute[0], absolute[1])
+    assert np.isclose(relative[0], relative[1])
+
+
+def test_days_at_one_place_rank_as_before():
+    series = _series().assign(Latitude=45.0, Longitude=10.0)
+    frame = _production_frame(series, pd.DatetimeIndex(series["Date"].iloc[60:110]))
+    absolute = fp.fruiting_weather_part(frame, _climate_model())
+    relative = fp.fruiting_weather_part(frame, _climate_model(normals=_grid()))
+    assert np.allclose(relative - absolute, (relative - absolute)[0])     # one shift for the place
+
+
+def test_off_the_normals_grid_humidity_and_temperature_count_as_average():
+    series = _series().assign(Latitude=28.3, Longitude=-16.5)              # the Canaries
+    frame = _production_frame(series, pd.DatetimeIndex(series["Date"].iloc[[60, 90]]))
+    assert np.allclose(fp.fruiting_weather_part(frame, _climate_model(normals=_grid())), 0.5)
+
+
+def test_a_fit_on_departures_gives_its_models_the_region_normals(tmp_path):
+    k = len(fp.FRUITING_FEATURES)
+    path = tmp_path / "fruiting_fit.json"
+    path.write_text(json.dumps({"features": fp.FRUITING_FEATURES, "means": [0] * k, "sds": [1] * k,
+                                "relative_to_normal": True, "humidity_from_stored": {"SE": [21.0, 0.9]},
+                                "models": {"chant": {"SE": {"beta": [0] * k, "map": []}}}}))
+    params = {"chant": {}}
+    fp.attach_fruiting_models(params, "SE", path)
+    assert params["chant"]["fruiting"]["normals"]["rh"].shape[0] == 12
