@@ -90,7 +90,7 @@
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [1, 2, 3, 4, 10, 11, 12],
+          "season_months": [12, 1, 2, 3],
           "water_relevance": false,
           "sea_relevance": false,
           "hosts": ["quercus", "other_broadleaf"]
