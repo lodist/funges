@@ -7,13 +7,13 @@ related_targets: ['src/pages/LandingPage.module.scss']
 
 # Landing: a walk into the wild
 
-Status: implemented; finish-review disposition: ship. The latest reviewer approved the user-requested map replacement with no fixes. Natural spectacles, the prominent fall-foliage photograph and the app's established identity remain intact.
+Status: implemented. The landing photographs now show a candid porcino find in woodland leaf litter in the hero, a northern lingonberry patch in the identification section, and the retained chanterelle bruschetta in the cooking section. The Alps preview and its link use pine bolete. Natural spectacles, the prominent fall-foliage photograph and the app's established identity remain intact.
 
 ## Direction and composition
 
 The original localized `home.headline` leads the split hero: “Explore what grows around you” in English, without a terminal period. The shared Logo, forecast link, introductory copy and primary map Button accompany a rectangular woodland photograph. The established Space Grotesk, Public Sans, green palette and controls remain intact.
 
-A full deep-green forecast section pairs useful copy, regional coverage and its action with a captured map of Lake Constance, Liechtenstein and Innsbruck in the app's original olive style. The map links to `/map` with species `chant`, latitude 47.38, longitude 10.21 and zoom 8.38. Its map action is visible and OpenStreetMap / Mapzen / AWS attribution remains; no preview disclaimer is displayed. A natural-spectacle section follows with a prominent autumn-forest photograph, explanatory copy and a link to `/map?species=foliage`. Adjacent identification and cooking features each contain a photograph, heading, explanatory copy and link. Identification keeps the existing safety guidance visible. A closing map action completes the page. There is no feature-navigation strip, botanical arch, specimen selector or catalog illustration.
+A full deep-green forecast section pairs useful copy, regional coverage and its action with a captured map of Lake Constance, Liechtenstein and Innsbruck in the app's original olive style. The map links to `/map` with species `pine_bolete`, latitude 47.38, longitude 10.21 and zoom 8.7. Its map action is visible and OpenStreetMap / Mapzen / AWS attribution remains; no preview disclaimer is displayed. A natural-spectacle section follows with a prominent autumn-forest photograph, explanatory copy and a link to `/map?species=foliage`. Adjacent identification and cooking features each contain a photograph, heading, explanatory copy and link. Identification keeps the existing safety guidance visible. A closing map action completes the page. There is no feature-navigation strip, botanical arch, specimen selector or catalog illustration.
 
 ## Local visual extension
 
@@ -27,12 +27,12 @@ Home copy uses the common namespace in en, de, es, fr, it and pt. The introducti
 
 Four photorealistic marketing images were generated with OpenAI image_gen and encoded as WebP quality 75. They provide atmosphere rather than species-identification evidence or a current forecast:
 
-- `public/landing/forest-floor.webp` — 960×1200, woodland hero.
-- `public/landing/forest-find.webp` — 768×576, identification feature.
+- `public/landing/porcini-forest.webp` — 960×1200, reference-based porcino woodland hero with soil and leaf litter.
+- `public/landing/lingonberry-find.webp` — 768×576, reference-based northern lingonberry patch beside a pine trunk.
 - `public/landing/wild-mushroom-toast.webp` — 768×576, cooking feature.
-- `public/landing/autumn-forest.webp` — 1280×720, natural spectacles; 261084 bytes, atmospheric autumn woodland rather than a specific location.
+- `public/landing/autumn-forest.webp` — 1280×720, natural spectacles; reference-based autumn woodland with an uneven earth trail rather than a specific location.
 
-`public/landing/alps-map.webp` (1280×860, 232788 bytes) is an actual Fung.es MapLibre capture of Lake Constance, Liechtenstein and Innsbruck, centered at 10.21E, 47.38N, zoom 8.38 with the Golden Chanterelle overlay. Captured 2026-10-12 from the original olive `funges_style.json` style and `data.fung.es` tiles; no geography or scores were generated or altered. It is encoded as WebP quality 78. Each of these five assets has an adjacent `.webp.json` provenance sidecar; generated-image sidecars retain their prompts. Combined imagery is 755840 bytes, approximately 756KB. The superseded map asset was removed; all four photographic assets are unchanged.
+`public/landing/alps-map.webp` (1280×528) is an actual Fung.es MapLibre capture of Lake Constance, Liechtenstein and Innsbruck, centered at 10.21E, 47.38N, zoom 8.7 with the Pine Bolete overlay. Captured 2026-10-12 from the original olive `funges_style.json` style and `data.fung.es` tiles with the app's day-zero missing-score fallback; no geography or scores were generated or altered. It is encoded as WebP quality 78. Each of these five assets has an adjacent `.webp.json` provenance sidecar; generated-image sidecars retain their prompts. The two superseded chanterelle photos were removed. The porcino, lingonberry and autumn-trail replacements use the user's photographic references; the chanterelle bruschetta photo is retained.
 
 ## Review evidence
 

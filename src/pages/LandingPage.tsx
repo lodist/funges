@@ -46,7 +46,7 @@ export default function LandingPage() {
           </div>
           <img
             className={styles.heroPhoto}
-            src={`${base}landing/forest-floor.webp`}
+            src={`${base}landing/porcini-forest.webp`}
             alt=''
             width='960'
             height='1200'
@@ -70,7 +70,7 @@ export default function LandingPage() {
             <Link
               to='/map'
               search={{
-                species: 'hedgehog_mushroom',
+                species: 'pine_bolete',
                 lat: 47.38,
                 lng: 10.21,
                 zoom: 8.7,
@@ -133,7 +133,7 @@ export default function LandingPage() {
         <div className={styles.featureGrid}>
           <section className={styles.feature} aria-labelledby='identify-title'>
             <img
-              src={`${base}landing/forest-find.webp`}
+              src={`${base}landing/lingonberry-find.webp`}
               alt=''
               loading='lazy'
               width='768'

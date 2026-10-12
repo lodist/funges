@@ -1,6 +1,7 @@
 {
-  "prompt": "Photorealistic premium outdoor editorial photograph for a minimalist nature exploration website. Wide landscape 16:9 composition of a beautiful European deciduous forest at peak autumn, a winding narrow walking path leading from lower center through tall beech and maple trees. Canopy rich copper, burnt orange and golden yellow interspersed with remaining olive green; fallen leaves covering forest floor. Low morning sunlight gently filters between real textured trunks, slight natural atmospheric haze deeper in forest, intimate and inviting, not oversaturated. Eye-level photograph with a 35mm full-frame lens, realistic organic detail and subtle film grain. The path forms a clear visual invitation to step outdoors. Strong photographic composition, quiet emotional scale, cinematic natural light. No people, no text, no logos, no illustration, no CGI, no fantasy glow, no artificial perfectly aligned trees. This is marketing atmosphere, not a specific geographical location.",
-  "generator": "OpenAI built-in image_gen",
-  "purpose": "Photorealistic marketing atmosphere, not a specific location or current forecast",
-  "encoding": "WebP quality 75, 1280 by 720"
+  "prompt": "A natural photograph of an irregular leaf-covered woodland trail on a slope in autumn. Mixed beech and conifer forest, exposed roots, stones, moss and restrained green, yellow and orange foliage in ordinary diffuse daylight. A quiet, believable walking path with an unstaged composition.",
+  "generator": "OpenAI image generation directed by Astra",
+  "references": "User-supplied photographic references, 2026-10-12",
+  "purpose": "Photorealistic marketing atmosphere; not a specific location or current forecast",
+  "encoding": "WebP, 1280x720, quality 75"
 }
