@@ -228,6 +228,19 @@ def test_measured_rain_fills_a_day_the_master_lacks(tmp_path):
     assert day[fx.score_columns()].isna().all().all()
 
 
+def test_a_failed_rain_merge_keeps_the_stored_rain(tmp_path, monkeypatch):
+    def broken(master, measured):
+        raise ValueError("odd ERA5 rows")
+    monkeypatch.setattr(fp, "apply_measured_weather", broken)
+    history = fx.history_df()
+    stored = history[pd.to_datetime(history["Date"]) == MEASURED_DAY].set_index("Location_Id")
+    out = _merge(history, _fetched_with_measured_day(), tmp_path)
+
+    day = out[out["Date"] == MEASURED_DAY].set_index("Location_Id")
+    assert np.allclose(day["TotalPrecipitation_mm"], stored.loc[day.index, "TotalPrecipitation_mm"])
+    assert out.loc[out["Date"] >= fx.TODAY, fx.score_columns()].notna().all().all()
+
+
 def test_weather_text_is_not_stored(tmp_path):
     # Nothing reads it, and as one string per row it cost the full-file readers about
     # 1 GB of memory per region; the existing history loses it on the next write.

@@ -1494,7 +1494,7 @@ def run_pipeline(config: RegionConfig):
     # Tonight's ERA5 rain order goes in before the WeatherAPI fetch; the orders that have
     # finished since earlier runs, tonight's too on a quiet night, download after it.
     points = [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates]
-    measured_rain = era5_rain.start(*era5_rain.box(points), points, datetime.now().date())
+    measured_rain = era5_rain.start(points, datetime.now().date())
     counter = CallCounter()
     weather_long = _fetch_all(config, coordinates, static_map, api_key, counter)
     print(f"API calls made: {counter.count} for {len(coordinates)} coordinates")
@@ -1723,7 +1723,10 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         combined_df["Date"] = pd.to_datetime(combined_df["Date"])
         combined_df = combined_df.drop_duplicates(subset=["Location_Id", "Date"], keep="last").reset_index(drop=True)
     if len(measured):
-        combined_df = apply_measured_weather(combined_df, measured)
+        try:
+            combined_df = apply_measured_weather(combined_df, measured)
+        except Exception as error:  # the stored rain stays, as it did before ERA5
+            print(f"[warn] ERA5 rain not merged, stored rain kept: {error}", flush=True)
 
     combined_df = combined_df[np.isfinite(combined_df["Latitude"]) & np.isfinite(combined_df["Longitude"])]
     combined_df = combined_df[combined_df["Location_Id"] != ""]

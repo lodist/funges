@@ -33,6 +33,7 @@ LOOKBACK = timedelta(days=2)
 # not out yet only delays it.
 NEWEST_DAY, OLDEST_DAY = 6, 10
 RAIN_HOUR_MM = 0.1
+GRID = 0.25                     # ERA5's grid step in degrees, as Copernicus delivers it
 EMPTY = pd.DataFrame(columns=["Latitude", "Longitude", "Date", "TotalPrecipitation_mm",
                               "Rain Hours", "Rain Measured"])
 
@@ -43,7 +44,7 @@ def box(coords) -> tuple[tuple, tuple]:
     while its coords reach 18° W, and from 28 Sep 2026 Spain, France and north-west Italy
     read the rain of the box's edge."""
     c = np.asarray(coords, float).reshape(-1, 2)
-    lo, hi = np.floor(c.min(axis=0) * 4) / 4, np.ceil(c.max(axis=0) * 4) / 4
+    lo, hi = np.floor(c.min(axis=0) / GRID) * GRID, np.ceil(c.max(axis=0) / GRID) * GRID
     return (float(lo[0]), float(hi[0])), (float(lo[1]), float(hi[1]))
 
 
@@ -100,10 +101,15 @@ def local_day_rain(hourly, times, lats, lons, coords, days) -> pd.DataFrame:
 
     A local day at longitude L runs from midnight at UTC-L/15 h. Each hourly value is the
     rain of the hour ending at its time. A day missing any of its 24 hours, or with one
-    left blank, is left out: it comes again on a later run."""
+    left blank, is left out: it comes again on a later run. A coord whose nearest cell is
+    more than half a cell away is off the downloaded grid and gets no row: its stored rain
+    stays, where the grid's edge would have given it another place's rain."""
     coords = np.asarray(coords, float).reshape(-1, 2)
     rows = np.abs(lats[None, :] - coords[:, :1]).argmin(axis=1)
     cols = np.abs(lons[None, :] - coords[:, 1:]).argmin(axis=1)
+    on_grid = ((np.abs(lats[rows] - coords[:, 0]) <= GRID / 2 + 1e-9)
+               & (np.abs(lons[cols] - coords[:, 1]) <= GRID / 2 + 1e-9))
+    coords, rows, cols = coords[on_grid], rows[on_grid], cols[on_grid]
     series = hourly[:, rows, cols]                                  # [time, coord]
     offset = pd.to_timedelta(np.round(coords[:, 1] / 15.0), unit="h").values
     stamps = pd.DatetimeIndex(times).values[:, None]
@@ -133,7 +139,7 @@ def place_orders(key, lat_range, lon_range, today) -> None:
         requests.post(f"{CDS_API}/processes/{DATASET}/execution",
                       json={"inputs": cds_request(utc_days, lat_range, lon_range)},
                       headers={"PRIVATE-TOKEN": key}, timeout=60).raise_for_status()
-    except requests.RequestException as error:  # its days are ordered again tomorrow
+    except Exception as error:  # its days are ordered again tomorrow
         print(f"[warn] ERA5 order not placed: {error}", flush=True)
 
 
@@ -180,13 +186,18 @@ def measured_rain(key, lat_range, lon_range, coords) -> pd.DataFrame:
     return local_day_rain(hourly, times, lats, lons, coords, days)
 
 
-def start(lat_range, lon_range, coords, today):
-    """Place tonight's order now, while WeatherAPI is fetched. Returns rows(): the rain of
-    every finished order, downloaded when it is called, after the fetch. Any failure means
-    forecast rain one more day; the days come again tomorrow."""
-    key = os.environ.get("CDSAPI_KEY")
-    if not key:
-        print("[warn] ERA5 rain skipped: CDSAPI_KEY is not set", flush=True)
+def start(coords, today):
+    """Place tonight's order for the box around the coords now, while WeatherAPI is fetched.
+    Returns rows(): the rain of every finished order, downloaded when it is called, after
+    the fetch. Nothing here stops the night: any failure means no measured rows, so the
+    stored rain stays as it did before ERA5, and the days come again tomorrow."""
+    try:
+        key = os.environ.get("CDSAPI_KEY")
+        if not key:
+            raise RuntimeError("CDSAPI_KEY is not set")
+        lat_range, lon_range = box(coords)
+    except Exception as error:
+        print(f"[warn] ERA5 rain skipped: {error}", flush=True)
         return lambda: EMPTY.copy()
     place_orders(key, lat_range, lon_range, today)
 
