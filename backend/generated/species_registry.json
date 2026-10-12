@@ -4424,7 +4424,7 @@
       "identificationRank": "species",
       "empiricalTaxonKeys": [5258468],
       "rangeTaxonKeys": [5258468],
-      "dataColumns": ["truffle_b_score"],
+      "dataColumns": ["truffle_b_score", "Burgundy Truffle"],
       "regions": {
         "SE": {
           "landCover": [311],
