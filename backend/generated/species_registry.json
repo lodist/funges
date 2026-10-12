@@ -121,7 +121,7 @@
               "rain_first": true
             },
             "wind_sensitive": false,
-            "season_months": [7, 8, 9, 10, 11],
+            "season_months": [6, 7, 8, 9],
             "water_relevance": false,
             "sea_relevance": false,
             "hosts": [
@@ -639,7 +639,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8, 9, 10],
+            "season_months": [7, 8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -755,7 +755,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [7, 8, 9],
+            "season_months": [8, 9],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -791,7 +791,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8, 9],
+            "season_months": [8, 9],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -826,7 +826,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8, 9],
+            "season_months": [8, 9],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -906,7 +906,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "season_months": [3, 4, 5, 6, 7, 8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false,
             "distance_thresholds": {
@@ -943,7 +943,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "season_months": [3, 4, 5, 6, 7, 8, 9, 10],
             "water_relevance": true,
             "sea_relevance": false,
             "distance_thresholds": {
@@ -980,7 +980,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "season_months": [3, 4, 5, 6, 7, 8, 9, 10],
             "water_relevance": true,
             "sea_relevance": false,
             "distance_thresholds": {
@@ -1016,7 +1016,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "season_months": [3, 4, 5, 6, 7, 8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false,
             "distance_thresholds": {
@@ -1806,7 +1806,7 @@
               "rain_first": true
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8],
+            "season_months": [7, 8],
             "water_relevance": false,
             "sea_relevance": false,
             "distance_thresholds": {
@@ -1843,7 +1843,7 @@
               "rain_first": true
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8],
+            "season_months": [7, 8],
             "water_relevance": true,
             "sea_relevance": false,
             "distance_thresholds": {
@@ -1880,7 +1880,7 @@
               "rain_first": true
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8],
+            "season_months": [7, 8],
             "water_relevance": true,
             "sea_relevance": false,
             "distance_thresholds": {
@@ -1915,7 +1915,7 @@
               "rain_first": true
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8],
+            "season_months": [7, 8, 9],
             "water_relevance": true,
             "sea_relevance": false,
             "distance_thresholds": {
@@ -1960,7 +1960,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8, 9],
+            "season_months": [7, 8, 9],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -1994,7 +1994,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8, 9],
+            "season_months": [7, 8, 9],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -3918,7 +3918,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [7, 8, 9, 10],
+            "season_months": [8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -3952,7 +3952,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [7, 8, 9, 10],
+            "season_months": [8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -3985,7 +3985,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [7, 8, 9, 10],
+            "season_months": [8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -4018,7 +4018,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [7, 8, 9, 10],
+            "season_months": [8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -4449,7 +4449,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [1, 2, 3, 4, 10, 11, 12],
+            "season_months": [12, 1, 2, 3],
             "water_relevance": false,
             "sea_relevance": false,
             "hosts": ["quercus", "other_broadleaf"]
