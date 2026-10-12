@@ -25,6 +25,57 @@ GATE_FULL = 0.10
 SEASON_MONTHS_GATE_FLOOR = 0.25
 
 
+# The learned plant season (tools/fit_phenology.py): per 0.25 degree cell of the ERA5 normals
+# grid, each week's share of a plant's sightings in the stage people pick, against its yearly
+# peak there (uint8: x 254, 255 off the grid). Weeks centre on these days of the year; a day
+# blends the two either side. It becomes the multiplier and gate as an empirical curve does.
+PHENOLOGY_WEEK_DOY = np.arange(4, 365, 7)
+# The plant gate is stricter than the fungi curves' (fully open at 10% of the peak): a
+# plant's out-of-season tail is reports of the odd late fruit, 8-10% of the peak per
+# sighting for wild strawberry in North Europe from September, and should not reopen it.
+PHENOLOGY_GATE_OFF, PHENOLOGY_GATE_FULL = 0.10, 0.30
+# Inside the open season the plant multiplier only tilts, between 0.8 and 1.0, not the fungi
+# curves' 0.6: the months it replaces held the whole window at 1.0 and the gate already shuts
+# the off-season. The tilt sets the map's level, not the ranking (the held-out AUC is the same
+# at 0.6 and 0.8).
+PHENOLOGY_LOW = 0.8
+
+
+def phenology_multiplier(ratio):
+    return PHENOLOGY_LOW + (1.0 - PHENOLOGY_LOW) * np.asarray(ratio, float)
+
+
+def phenology_gate(ratio):
+    return np.clip((np.asarray(ratio, float) - PHENOLOGY_GATE_OFF) / (PHENOLOGY_GATE_FULL - PHENOLOGY_GATE_OFF), 0.0, 1.0)
+
+
+def blend_weeks(values_at, doys):
+    """values_at(week index per row) -> that week's ratio per row; each day of the year
+    blends the weeks either side of it, across the turn of the year too."""
+    position = (np.asarray(doys, float) - PHENOLOGY_WEEK_DOY[0]) / 7.0
+    before = np.floor(position).astype(int)
+    weight = position - before
+    n = len(PHENOLOGY_WEEK_DOY)
+    return (1 - weight) * values_at(before % n) + weight * values_at((before + 1) % n)
+
+
+def phenology_ratio(df, model):
+    """The learned season at each row's place and day (1 = its peak week there). NaN where the
+    grid does not reach, which leaves the row to the curves or the months."""
+    lat, lon = model["lat"], model["lon"]
+    i = np.rint((lat[0] - df["Latitude"].to_numpy(float)) / (lat[0] - lat[1])).astype(int)
+    j = np.rint((df["Longitude"].to_numpy(float) - lon[0]) / (lon[1] - lon[0])).astype(int)
+    inside = (i >= 0) & (i < len(lat)) & (j >= 0) & (j < len(lon))
+    i, j = np.clip(i, 0, len(lat) - 1), np.clip(j, 0, len(lon) - 1)
+
+    def values_at(week):
+        v = model["ratio"][week, i, j].astype(float)
+        return np.where(v == 255, np.nan, v / 254.0)
+
+    r = blend_weeks(values_at, pd.to_datetime(df["Date"]).dt.dayofyear.to_numpy())
+    return np.where(inside, r, np.nan)
+
+
 def _as_month_map(values):
     return {int(k): float(v) for k, v in values.items()}
 
@@ -99,8 +150,8 @@ def _months_ramp(dates, allowed_months, factor, ramp_days=31):
 def _resolve_curve(df, specie, params, zone_curves):
     """Per-row (multiplier, ratio) with zone curves overriding the region curve.
 
-    Precedence matches the model: zone curve -> region curve -> None. `ratio` is None
-    for any row whose winning curve predates the two-part schema.
+    Precedence matches the model: learned plant season -> zone curve -> region curve ->
+    None. `ratio` is None for any row whose winning curve predates the two-part schema.
     """
     n = len(df)
     dates = df['Date']
@@ -123,6 +174,11 @@ def _resolve_curve(df, specie, params, zone_curves):
             continue
         multiplier[mask] = _interpolate_months(dates[mask], zone_curve)
         ratio[mask] = _interpolate_months(dates[mask], zone_ratio) if zone_ratio else np.nan
+    if params.get("phenology") is not None:     # the learned plant season comes first
+        learned = phenology_ratio(df, params["phenology"])
+        on = np.isfinite(learned)
+        multiplier[on] = phenology_multiplier(learned[on])
+        ratio[on] = learned[on]
     return multiplier, ratio
 
 
@@ -162,4 +218,8 @@ def season_gate_for_species(df, specie, params, zone_curves):
         else:
             fallback = np.ones(len(df), dtype=float)
         gate = np.where(missing, fallback, gate)
+    if params.get("phenology") is not None:
+        learned = phenology_ratio(df, params["phenology"])
+        on = np.isfinite(learned)
+        gate = np.where(on, phenology_gate(np.where(on, learned, 0.0)), gate)
     return gate

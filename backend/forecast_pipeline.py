@@ -11,7 +11,7 @@ writes its rain over that day, at no WeatherAPI cost.
 """
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from contextlib import contextmanager
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import datetime, timedelta
 from io import StringIO, BytesIO
 from pathlib import Path
@@ -46,7 +46,7 @@ import era5_normals
 import era5_rain
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
-from species_registry import get_composites, get_species_params
+from species_registry import get_composites, get_region_boundaries, get_species_params
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
@@ -1153,6 +1153,33 @@ def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, f
             "normals": normals}
 
 
+PHENOLOGY_PATH = Path(__file__).resolve().parent / "generated" / "phenology.json"
+
+
+def attach_phenology(species_params, region, path=None, fetch=None):
+    """The learned plant seasons (tools/fit_phenology.py) for the region's species that ship
+    one: a weekly grid per continent, on R2 and checked against the sha256 recorded here. A
+    file that cannot be fetched or fails its checksum leaves those species on their months."""
+    path = Path(path or PHENOLOGY_PATH)
+    if not path.exists():
+        return
+    entry = json.loads(path.read_text(encoding="utf-8"))["continents"].get(era5_normals.CONTINENT[region])
+    if not entry or not set(entry["species"]) & set(species_params):
+        return
+    try:
+        data = (fetch or r2_fetch)(entry["file"])
+        if hashlib.sha256(data).hexdigest() != entry["sha256"]:
+            raise ValueError("checksum differs")
+        with np.load(BytesIO(data)) as z:
+            grid = {name: z[name] for name in z.files}
+    except Exception as error:
+        print(f"[warn] learned plant seasons not loaded ({error}); their months stay")
+        return
+    for k, specie in enumerate(grid["species"].tolist()):
+        if specie in species_params:
+            species_params[specie]["phenology"] = {"lat": grid["lat"], "lon": grid["lon"], "ratio": grid["ratio"][k]}
+
+
 HABITAT_PATH = Path(__file__).resolve().parent / "generated" / "habitat_factor.json"
 
 
@@ -1342,6 +1369,55 @@ def calculate_mushroom_score(df, species_params, zone_curves):
     return df
 
 
+# A species scored in both regions of a continent jumped where their place lists meet: wild
+# mint on 12 Oct 2026 read 9.3 in Kentucky, on US West's list, and 4.3 next door in Indiana, on
+# US East's; shaggy mane drew Missouri's and Tennessee's borders, its two regions' fitted models
+# disagreeing. Across a band around the split (species_registry.infer_region) each region's
+# model (settings, season curves, fitted models, habitat factor: tools/fit_habitat.py lists each
+# region's for its neighbour's places too) fades into the other's, so a place takes its own
+# side's and the line goes. Europe is not blended yet: its lists meet along the Dutch, Danish
+# and Polish borders (North Europe from 49.5 N, South Europe up to 54.8 N), not at infer_region's
+# 47 N, so a band there would move Germany, Poland and Czechia onto North Europe's model, trained
+# without their finds; its band has to follow the lists' own boundary.
+SETTINGS_BAND = 5.0                            # half-width in degrees of longitude: 105-95 W
+NEIGHBOUR_REGION = {"USE": "USW", "USW": "USE"}
+BLEND_CHUNK = 100_000                          # rows rescored at a time, to bound the memory
+
+
+def own_settings_weight(region, lat, lon):
+    """Per row, the share of the region's own model against its neighbour's: 1 on its side of
+    the band, 0 on the other, linear across it."""
+    split = get_region_boundaries()["uswMaxLongitude"]
+    east = np.clip((lon - split + SETTINGS_BAND) / (2 * SETTINGS_BAND), 0, 1)
+    return east if region == "USE" else 1 - east
+
+
+def blend_neighbour_settings(df, species_params, config, neighbour=None):
+    """Rescore the rows leaning to the neighbour region with its model, for every species both
+    regions score, and mix the two scores by own_settings_weight. `neighbour` is the neighbour's
+    (species_params, zone_curves); loaded as the region's own are when not given."""
+    other = NEIGHBOUR_REGION.get(config.region)
+    if other is None:
+        return df
+    w = own_settings_weight(config.region, df["Latitude"].to_numpy(float), df["Longitude"].to_numpy(float))
+    rows = np.flatnonzero(w < 1)
+    if not len(rows):
+        return df
+    if neighbour is None:
+        print(f"{other}'s model, for the places leaning to it:")
+        neighbour = _load_species_and_curves(replace(config, region=other, season_curves_env=f"{other}_SEASON_CURVES"))
+    theirs, their_zone_curves = neighbour
+    both = [s for s in species_params if s in theirs]
+    inputs = [i for i, c in enumerate(df.columns) if not c.endswith(("_score", "_Score", "_confidence"))]
+    cols = [df.columns.get_loc(f"{s}_score") for s in both]
+    for part in np.array_split(rows, -(-len(rows) // BLEND_CHUNK)):
+        scored = calculate_mushroom_score(df.iloc[part, inputs].copy(), {s: theirs[s] for s in both}, their_zone_curves)
+        mine = df.iloc[part, cols].to_numpy(float)
+        df.iloc[part, cols] = w[part, None] * mine + (1 - w[part, None]) * scored[[f"{s}_score" for s in both]].to_numpy(float)
+    print(f"Scores blended with {other}'s on {len(rows)} rows for {len(both)} species")
+    return df
+
+
 # --- Loader helpers (wrap original top-of-script blocks) -------------------
 
 def _load_species_and_curves(config):
@@ -1401,12 +1477,15 @@ def _load_species_and_curves(config):
     attach_fruiting_models(species_params, config.region)
     attach_fruiting_gbm(species_params, config.region, datetime.now())
     attach_habitat(species_params, config.region)
+    attach_phenology(species_params, config.region)
     _fitted = sorted(s for s, p in species_params.items() if "fruiting" in p)
     print(f"Fitted fruiting model for {len(_fitted)} species: {', '.join(_fitted) or 'none'}")
     _gbm = sorted(s for s, p in species_params.items() if "fruiting_gbm" in p)
     print(f"Fruiting GBM for {len(_gbm)} species: {', '.join(_gbm) or 'none'}")
     _habitat = sorted(s for s, p in species_params.items() if "habitat" in p)
     print(f"Habitat factor for {len(_habitat)} species: {', '.join(_habitat) or 'none'}")
+    _learned = sorted(s for s, p in species_params.items() if p.get("phenology") is not None)
+    print(f"Learned season for {len(_learned)} species: {', '.join(_learned) or 'none'}")
     return species_params, zone_curves
 
 
@@ -1805,6 +1884,10 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
     print(f"Scoring {len(forward)} forward rows (Date >= {today.date()}) "
           f"across {forward['Location_Id'].nunique()} locations")
     forward = calculate_mushroom_score(forward, species_params, zone_curves)
+    try:
+        forward = blend_neighbour_settings(forward, species_params, config)
+    except Exception as error:      # the region's own scores stand, as before the blend
+        print(f"[warn] scores not blended with the neighbour region's ({error}); the region's own stand")
 
     score_cols = [f"{s}_score" for s in species_params]
     forward = spatial_smooth_scores(forward, score_cols)

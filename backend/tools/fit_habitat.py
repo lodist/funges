@@ -34,6 +34,10 @@ PARAMS = {"num_leaves": 15, "min_data_in_leaf": 100}
 # finds; at the 10th percentile the ranking keeps three quarters of the gain (0.645 -> 0.730).
 STRENGTH, FLOOR, REFERENCE_QUANTILE = 0.5, 0.5, 0.10
 R2_FOLDER = "models/habitat"
+# Each region's factor also covers its neighbour's places: the nightly run scores the places
+# across the split with the neighbour's model, habitat too (forecast_pipeline.blend_neighbour_settings,
+# the US for now).
+NEIGHBOUR = {"NE": "SE", "SE": "NE", "USE": "USW", "USW": "USE"}
 
 
 def factor(eta, reference, mapped):
@@ -72,6 +76,27 @@ def strata(finds, species, features, rng, max_cases=MAX_CASES, background_all=Tr
     rows = rows[keep]
     values = features[columns(features)].to_numpy(np.float32)
     return values[np.clip(rows, 0, None)], rows >= 0, cases[keep]
+
+
+def from_models(table, finds, out):
+    """The shipped factors from habitat_models/, each region's on its own places and then its
+    neighbour's; the reference stays the region's own training finds."""
+    factors, ids_by_region = {}, {}
+    train = finds[finds["Date"].dt.year < TEST_YEAR]
+    for region, rows in table[table["ships"]].groupby("region"):
+        own = pd.read_parquet(out / f"habitat_features_{region}.parquet")
+        other = pd.read_parquet(out / f"habitat_features_{NEIGHBOUR[region]}.parquet")
+        cols = columns(own)                       # as trained
+        features = pd.concat([own, other[~other["Location_Id"].isin(own["Location_Id"])]], ignore_index=True)
+        ids_by_region[region] = features["Location_Id"].to_numpy()
+        where = pd.Series(np.arange(len(own)), index=own["Location_Id"].to_numpy())
+        for species in rows["species"]:
+            model = lgb.Booster(model_file=str(out / "habitat_models" / f"{species}_{region}.txt"))
+            eta_all = model.predict(features[cols].to_numpy(np.float32), raw_score=True)
+            at = where.reindex(train.loc[(train["species"] == species) & (train["region"] == region), "Location_Id"]).dropna().astype(int)
+            factors[(species, region)] = factor(eta_all, float(np.quantile(eta_all[at.to_numpy()], REFERENCE_QUANTILE)),
+                                                 features["tree_map"].to_numpy(bool))
+    return factors, ids_by_region
 
 
 def export(table, factors, ids_by_region, out) -> None:
@@ -115,30 +140,17 @@ def main() -> None:
     finds = pd.read_parquet(out / "finds_2016_2026.parquet")
     finds["Date"] = pd.to_datetime(finds["Date"])
     if args.reuse:
-        table, factors, ids_by_region = pd.read_csv(out / "habitat_result.csv"), {}, {}
-        train = finds[finds["Date"].dt.year < TEST_YEAR]
-        for region, rows in table[table["ships"]].groupby("region"):
-            features = pd.read_parquet(out / f"habitat_features_{region}.parquet")
-            ids_by_region[region] = features["Location_Id"].to_numpy()
-            where = pd.Series(np.arange(len(features)), index=ids_by_region[region])
-            for species in rows["species"]:
-                model = lgb.Booster(model_file=str(out / "habitat_models" / f"{species}_{region}.txt"))
-                eta_all = model.predict(features[columns(features)].to_numpy(np.float32), raw_score=True)
-                at = where.reindex(train.loc[(train["species"] == species) & (train["region"] == region), "Location_Id"]).dropna().astype(int)
-                factors[(species, region)] = factor(eta_all, float(np.quantile(eta_all[at.to_numpy()], REFERENCE_QUANTILE)),
-                                                     features["tree_map"].to_numpy(bool))
+        table = pd.read_csv(out / "habitat_result.csv")
         if args.export:
-            export(table, factors, ids_by_region, out)
+            export(table, *from_models(table, finds, out), out)
         return
     summers = {"bracket": pd.read_parquet(out / "spatial_placebo" / "spatial_strata.parquet"),
                "all": pd.read_parquet(out / "spatial" / "spatial_strata.parquet")}
     (out / "habitat_models").mkdir(exist_ok=True)
-    factors, ids_by_region = {}, {}
     results = []
     for region in ("NE", "SE", "USE", "USW"):
         features = pd.read_parquet(out / f"habitat_features_{region}.parquet")
         cols = columns(features)
-        ids_by_region[region] = features["Location_Id"].to_numpy()
         here = finds[finds["region"] == region]
         train, test = here[here["Date"].dt.year < TEST_YEAR], here[here["Date"].dt.year == TEST_YEAR]
         for species in sorted(set(here["species"]) - {PLACEBO}):
@@ -157,7 +169,6 @@ def main() -> None:
             at = pd.Series(np.arange(len(features)), index=features["Location_Id"].to_numpy()).reindex(
                 train.loc[train["species"] == species, "Location_Id"]).dropna().astype(int).to_numpy()
             reference = float(np.quantile(eta_all[at], REFERENCE_QUANTILE))
-            factors[(species, region)] = factor(eta_all, reference, features["tree_map"].to_numpy(bool))
             for label, summer in summers.items():
                 g = summer[(summer["species"] == species) & (summer["region"] == region)]
                 if g["case"].nunique() >= 30:
@@ -188,7 +199,7 @@ def main() -> None:
         table.get("bracket_with_factor") < table.get("bracket_score"))
     table.to_csv(out / "habitat_result.csv", index=False)
     if args.export:
-        export(table, factors, ids_by_region, out)
+        export(table, *from_models(table, finds, out), out)
     pd.set_option("display.width", 250)
     print(table.drop(columns=["top_features"]).to_string(index=False))
 
