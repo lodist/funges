@@ -75,6 +75,38 @@ Mean score on 12 October either side of the old lines, each region's own model /
 | wild-mint        |          5.1 / 5.8 |        7.3 / 6.8 |      5.1 / 5.4 |      7.0 / 6.6 |     5.0 / 5.7 |               7.3 / 6.6 |       4.8 / 5.7 |           7.3 / 6.9 |        5.0 / 5.3 |      6.9 / 6.4 | 5.2 / 5.6 |               8.0 / 7.2 |               7.2 / 7.2 |                4.0 / 4.0 |
 | nettle           |          9.2 / 8.8 |        7.8 / 8.1 |      9.4 / 9.1 |      7.8 / 8.2 |     9.0 / 8.6 |               7.4 / 7.8 |       8.7 / 8.2 |           7.6 / 7.8 |        9.4 / 9.2 |      7.8 / 8.2 | 9.4 / 9.2 |               7.9 / 8.2 |               7.7 / 7.7 |                7.9 / 7.9 |
 
+Does the blend still pick out where species are found? `scripts/qa_region_blend.py` scores qa_spatial_weights.py's summer 2026 strata (each held-out find with up to 10 places searched within 3 days, on the app's stored weather) with each region's own model and blended, on the cases the blend touches. Find-day rank, 0.5 = no skill; no species-region changes beyond its bootstrap interval:
+
+| Region | Species              | Cases touched |   Own | Blended | 95% CI of the difference |
+| ------ | -------------------- | ------------: | ----: | ------: | ------------------------ |
+| USW    | chicken-of-the-woods |           268 | 0.571 |   0.583 | [-0.047, 0.074]          |
+| USW    | mushroom             |            38 | 0.700 |   0.697 | [-0.122, 0.107]          |
+| USW    | oyster-mushroom      |            42 | 0.642 |   0.680 | [-0.071, 0.153]          |
+| USW    | rocky_king           |            39 | 0.974 |   0.974 | [-0.018, 0.018]          |
+| USW    | shaggy_mane          |            39 | 0.603 |   0.544 | [-0.191, 0.072]          |
+| USE    | chicken-of-the-woods |            61 | 0.594 |   0.590 | [-0.11, 0.115]           |
+| USE    | oyster-mushroom      |           157 | 0.712 |   0.712 | [-0.051, 0.057]          |
+| NE     | chant                |           559 | 0.778 |   0.772 | [-0.028, 0.017]          |
+| NE     | chicken-of-the-woods |          1144 | 0.705 |   0.702 | [-0.024, 0.018]          |
+| NE     | giant_puffball       |           104 | 0.784 |   0.791 | [-0.051, 0.064]          |
+| NE     | hedgehog_mushroom    |           171 | 0.788 |   0.787 | [-0.044, 0.042]          |
+| NE     | mushroom             |           287 | 0.737 |   0.738 | [-0.038, 0.037]          |
+| NE     | oyster-mushroom      |           267 | 0.617 |   0.620 | [-0.044, 0.048]          |
+| NE     | parasol              |           124 | 0.788 |   0.792 | [-0.056, 0.061]          |
+| NE     | pine_bolete          |            61 | 0.880 |   0.880 | [-0.051, 0.054]          |
+| NE     | saffron_milk_cap     |           138 | 0.790 |   0.790 | [-0.044, 0.04]           |
+| NE     | shaggy_mane          |           189 | 0.733 |   0.731 | [-0.062, 0.052]          |
+| NE     | summer_bolete        |            99 | 0.799 |   0.797 | [-0.059, 0.057]          |
+| NE     | winter_chant         |            49 | 0.766 |   0.766 | [-0.089, 0.089]          |
+| SE     | chant                |            91 | 0.760 |   0.762 | [-0.081, 0.08]           |
+| SE     | chicken-of-the-woods |           646 | 0.550 |   0.560 | [-0.02, 0.041]           |
+| SE     | giant_puffball       |            80 | 0.741 |   0.743 | [-0.075, 0.091]          |
+| SE     | mushroom             |           187 | 0.700 |   0.703 | [-0.047, 0.055]          |
+| SE     | oyster-mushroom      |            67 | 0.507 |   0.513 | [-0.099, 0.102]          |
+| SE     | parasol              |           160 | 0.690 |   0.684 | [-0.068, 0.048]          |
+| SE     | shaggy_mane          |            79 | 0.662 |   0.666 | [-0.084, 0.094]          |
+| SE     | summer_bolete        |            86 | 0.698 |   0.702 | [-0.087, 0.086]          |
+
 The plants' state-line boxes from the map check below, before / after:
 
 | Plant      |   Indiana |      Ohio |      Iowa |  Kentucky | Tennessee |    Kansas |  Nebraska |
