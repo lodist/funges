@@ -16,6 +16,11 @@ import { motion } from 'framer-motion';
 import { DURATION_BASE, EASE_STANDARD } from '@/lib/motion';
 import { useIsMobile } from '@/hooks/use-mobile';
 
+// The panel unmounts on close, so the chosen category lives here: someone
+// browsing mushrooms who opens the panel again lands back on mushrooms.
+// ponytail: module scope = remembered for the session, not across reloads.
+let lastCategory = 'all';
+
 interface SpeciesSelectorFullscreenProps {
   isOpen: boolean;
   onClose: () => void;
@@ -45,7 +50,11 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
   const isMobile = useIsMobile();
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setCategory] = useState(lastCategory);
+  const setSelectedCategory = (category: string) => {
+    lastCategory = category;
+    setCategory(category);
+  };
 
   // Close on escape key
   useEffect(() => {
@@ -66,14 +75,6 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
       document.body.style.overflow = 'unset';
     };
   }, [isOpen, onClose]);
-
-  // Reset search and category when opening
-  useEffect(() => {
-    if (isOpen) {
-      setSearchTerm('');
-      setSelectedCategory('all');
-    }
-  }, [isOpen]);
 
   // Category options for quick filters
   const categories = [
@@ -113,9 +114,10 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
   // Filter and sort species based on search term and category
   const filteredSpecies = options
     .filter(option => {
+      const term = searchTerm.toLowerCase();
       const matchesSearch =
-        searchTerm === '' ||
-        option.name.toLowerCase().includes(searchTerm.toLowerCase());
+        option.name.toLowerCase().includes(term) ||
+        option.scientificName.toLowerCase().includes(term);
       const matchesCategory =
         selectedCategory === 'all' || option.category === selectedCategory;
       return matchesSearch && matchesCategory;
