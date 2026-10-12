@@ -143,22 +143,15 @@ def test_build_bloom_draws_only_where_a_normal_year_blooms_by_7_june(tmp_path, n
 
 
 def test_local_master_removes_a_broken_download(tmp_path, monkeypatch):
-    class Dropped:
-        def __enter__(self):
-            return self
+    import r2
 
-        def __exit__(self, *exc):
-            return False
-
-        def raise_for_status(self):
-            pass
-
-        def iter_content(self, chunk_size):
-            yield b"PAR1"
-            raise ConnectionError("dropped")
+    def dropped(path, dest):
+        with open(dest, "wb") as f:
+            f.write(b"PAR1")
+        raise ConnectionError("dropped")
 
     monkeypatch.setattr(tempfile, "tempdir", str(tmp_path))
-    monkeypatch.setattr("requests.get", lambda *a, **k: Dropped())
+    monkeypatch.setattr(r2, "download", dropped)
     with pytest.raises(ConnectionError):
         _local_master("https://data.example/master.parquet")
     assert list(tmp_path.iterdir()) == []

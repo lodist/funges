@@ -105,9 +105,6 @@ jobs:
         run: |
           echo "🏗️ Starting build process..."
           npm run build
-          # The raw scores grid only feeds the data scripts; the app never
-          # fetches it, so don't publish it on the site.
-          rm -f dist/data/foraging_scores.parquet
 
           echo "✅ Build completed successfully"
 
