@@ -1375,31 +1375,50 @@ def calculate_mushroom_score(df, species_params, zone_curves):
 # disagreeing. Across a band around the split (species_registry.infer_region) each region's
 # model (settings, season curves, fitted models, habitat factor: tools/fit_habitat.py lists each
 # region's for its neighbour's places too) fades into the other's, so a place takes its own
-# side's and the line goes. Europe is not blended yet: its lists meet along the Dutch, Danish
-# and Polish borders (North Europe from 49.5 N, South Europe up to 54.8 N), not at infer_region's
-# 47 N, so a band there would move Germany, Poland and Czechia onto North Europe's model, trained
-# without their finds; its band has to follow the lists' own boundary.
-SETTINGS_BAND = 5.0                            # half-width in degrees of longitude: 105-95 W
-NEIGHBOUR_REGION = {"USE": "USW", "USW": "USE"}
+# side's and the line goes. In the US the band runs 105-95 W around the app's split at 100 W, so
+# Missouri, Kentucky and Tennessee, on US West's list, take US East's model like their
+# neighbours. Europe's lists meet along the Dutch, Belgian, Danish and Polish borders (North
+# Europe from 49.5 N, South Europe up to 54.8 N), far from infer_region's 47 N, where a band
+# would move Germany, Poland and Czechia onto North Europe's model, trained without their
+# finds; there the band follows the lists themselves, BAND_KM either side of where they meet.
+SETTINGS_BAND = 5.0                            # US: half-width in degrees of longitude, 105-95 W
+BAND_KM = 75.0                                 # Europe: half-width either side of where the lists meet
+NEIGHBOUR_REGION = {"NE": "SE", "SE": "NE", "USE": "USW", "USW": "USE"}
 BLEND_CHUNK = 100_000                          # rows rescored at a time, to bound the memory
 
 
-def own_settings_weight(region, lat, lon):
+def _nearest_km(points, lat, lon):
+    """Great-circle km from each (lat, lon) to the nearest of `points`, an array of (lat, lon)."""
+    from scipy.spatial import cKDTree
+
+    def xyz(la, lo):
+        la, lo = np.radians(la), np.radians(lo)
+        return np.column_stack([np.cos(la) * np.cos(lo), np.cos(la) * np.sin(lo), np.sin(la)])
+    chord, _ = cKDTree(xyz(points[:, 0], points[:, 1])).query(xyz(lat, lon))
+    return 2 * 6371.0 * np.arcsin(np.clip(chord / 2, 0, 1))
+
+
+def own_settings_weight(region, lat, lon, lists=None):
     """Per row, the share of the region's own model against its neighbour's: 1 on its side of
-    the band, 0 on the other, linear across it."""
-    split = get_region_boundaries()["uswMaxLongitude"]
-    east = np.clip((lon - split + SETTINGS_BAND) / (2 * SETTINGS_BAND), 0, 1)
-    return east if region == "USE" else 1 - east
+    the band, 0 on the other, linear across it; a half each where they meet. In Europe `lists`
+    is (the region's place coordinates, the neighbour's), and the band follows them."""
+    if region in ("USE", "USW"):
+        split = get_region_boundaries()["uswMaxLongitude"]
+        east = np.clip((lon - split + SETTINGS_BAND) / (2 * SETTINGS_BAND), 0, 1)
+        return east if region == "USE" else 1 - east
+    own, theirs = lists
+    return np.clip(0.5 + (_nearest_km(theirs, lat, lon) - _nearest_km(own, lat, lon)) / (2 * BAND_KM), 0, 1)
 
 
 def blend_neighbour_settings(df, species_params, config, neighbour=None):
     """Rescore the rows leaning to the neighbour region with its model, for every species both
     regions score, and mix the two scores by own_settings_weight. `neighbour` is the neighbour's
     (species_params, zone_curves); loaded as the region's own are when not given."""
-    other = NEIGHBOUR_REGION.get(config.region)
-    if other is None:
-        return df
-    w = own_settings_weight(config.region, df["Latitude"].to_numpy(float), df["Longitude"].to_numpy(float))
+    other = NEIGHBOUR_REGION[config.region]
+    lists = None
+    if config.region in ("NE", "SE"):
+        lists = tuple(_load_coords_any(get_required_env(f"{r}_UNIQUE_COORDINATES")) for r in (config.region, other))
+    w = own_settings_weight(config.region, df["Latitude"].to_numpy(float), df["Longitude"].to_numpy(float), lists)
     rows = np.flatnonzero(w < 1)
     if not len(rows):
         return df

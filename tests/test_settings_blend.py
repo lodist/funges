@@ -67,7 +67,16 @@ def test_a_place_across_the_split_takes_the_neighbours_habitat_factor():
     assert blended["wild-mint_score"].iloc[0] == pytest.approx(0.5 * as_east.iloc[0])
 
 
-def test_europe_is_not_blended_yet():
-    """Its lists meet far from 47 N; the run must not even load South Europe's model."""
-    rows = _rows()
-    assert fp.blend_neighbour_settings(rows, {}, SimpleNamespace(region="NE")) is rows
+def test_europe_fades_along_where_its_lists_meet():
+    """North and South Europe's lists meet along borders, not a parallel: half each where they
+    meet, the place's own model from BAND_KM inside its list, continuous across."""
+    north = np.array([[52.0, lon] for lon in np.arange(6.0, 9.0, 0.1)])       # own list, east of 6 E
+    south = np.array([[52.0, lon] for lon in np.arange(3.0, 5.95, 0.1)])      # neighbour's, west of it
+    lat = np.full(3, 52.0)
+    lon = np.array([5.95, 6.0 + fp.BAND_KM / (111.2 * np.cos(np.radians(52.0))), 4.0])
+    w = fp.own_settings_weight("NE", lat, lon, (north, south))
+    assert w[0] == pytest.approx(0.5, abs=0.02)      # where the lists meet
+    assert w[1] == pytest.approx(1.0, abs=0.02)      # BAND_KM inside its own list
+    assert w[2] == 0                                 # deep in the neighbour's
+    mirrored = fp.own_settings_weight("SE", lat[:1], lon[:1], (south, north))
+    assert w[0] + mirrored[0] == pytest.approx(1.0)  # the two runs agree at the meeting point

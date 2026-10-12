@@ -1,4 +1,4 @@
-# Learned plant seasons and no lines between the US regions
+# Learned plant seasons and no lines between regions
 
 Date: 2026-10-12
 
@@ -45,11 +45,11 @@ Today and Learned: AUC of the stage sightings against all plant sightings on eac
 
 Not tested: the plants eaten whatever their stage (chickweed, plantain, amaranth, masterwort, wild mint) and dandelion. Their sightings peak when they flower and stand out, not when they are best to eat: learned that way, wild mint in North Europe fell from 100% of places at 4+ to 1% on 25 June. Fiddleheads carry no tags (ferns do not flower).
 
-## 2. No lines between the US regions
+## 2. No lines between regions
 
 The forecast regions are lists of places, and a species scored in both regions of a continent used each region's own model: hand-set settings (optimal temperature and humidity, rain, altitude, pH, months), season curves and, for mushrooms, the fitted models and GBMs that ship per region. US West's list reaches Missouri, Kentucky and Tennessee, so the map jumped along state lines: wild mint on 12 October read 9.3 in Kentucky and 4.3 next door in Indiana, and shaggy mane drew Missouri's and Tennessee's borders. Now each US region's model fades into its neighbour's across a band around the app's split at 100 W (`infer_region`): 105-95 W. A place takes its own side's model: Missouri, Kentucky and Tennessee, on US West's list but east of 95 W, score with US East's, as Iowa, Indiana and Alabama do. Each run loads its neighbour's model as it loads its own (a few MB from R2); if that fails, the region's own scores stand. The learned habitat factor is listed per place, and each region's now also covers its neighbour's places (`tools/fit_habitat.py`, same models, the region's own places unchanged to the last of 255 steps), so a place across the split takes the neighbour's factor too: shaggy mane has one in US West and none in US East, giant puffball the reverse. The range prior, host trees and the learned plant season are already the continent's.
 
-Europe is not blended yet. Its lists meet along the Dutch, Danish and Polish borders (North Europe from 49.5 N, South Europe up to 54.8 N), not at the app's 47 N: a band there would move Germany, Poland and Czechia onto North Europe's model, trained without their finds. Its band has to follow the lists' own boundary, a follow-up.
+Europe's lists meet along the Dutch, Belgian, Danish and Polish borders (North Europe from 49.5 N, South Europe up to 54.8 N), far from the app's 47 N, where a band would have moved Germany, Poland and Czechia onto North Europe's model, trained without their finds. There the band follows the lists themselves: a place takes half of each model where they meet and its own region's from 75 km inside its list, by its distance to the nearest place on each list. Places deep inside a list, Bavaria or southern Sweden, do not change.
 
 Mean score on 12 October either side of the old lines, each region's own model / blended:
 
@@ -63,6 +63,17 @@ Mean score on 12 October either side of the old lines, each region's own model /
 | oyster-mushroom  |  5.2 / 5.2 |        5.3 / 5.4 |     5.3 / 5.3 |      5.1 / 5.7 |                   5.6 / 5.6 |         5.0 / 5.6 |    1.9 / 2.0 |      2.5 / 2.6 |
 | wild-mint        |  4.6 / 4.6 |        9.2 / 4.8 |     4.2 / 4.2 |      8.8 / 4.5 |                   4.6 / 4.6 |         8.9 / 4.9 |    8.6 / 5.8 |      8.9 / 5.9 |
 | nettle           |  6.6 / 6.6 |        9.4 / 5.9 |     4.6 / 4.6 |      5.8 / 3.5 |                   2.0 / 2.0 |         3.8 / 2.2 |    8.3 / 5.9 |      8.9 / 6.6 |
+
+| Species          | E Netherlands (NE) | Munsterland (SE) | S Denmark (NE) | Schleswig (SE) | Wallonia (NE) | Champagne-Ardennes (SE) | Luxembourg (NE) | Saarland-Pfalz (SE) | S Lithuania (NE) | NE Poland (SE) | Kent (NE) | Nord-Pas-de-Calais (SE) | Bavaria (interior) (SE) | S Sweden (interior) (NE) |
+| ---------------- | -----------------: | ---------------: | -------------: | -------------: | ------------: | ----------------------: | --------------: | ------------------: | ---------------: | -------------: | --------: | ----------------------: | ----------------------: | -----------------------: |
+| shaggy_mane      |          4.4 / 5.1 |        6.6 / 6.2 |      5.7 / 6.0 |      7.5 / 7.2 |     3.7 / 4.2 |               4.2 / 4.2 |       3.6 / 4.2 |           4.6 / 4.5 |        7.3 / 7.3 |      7.9 / 7.5 | 5.7 / 5.6 |               5.6 / 5.3 |               7.3 / 7.3 |                3.8 / 3.8 |
+| mushroom         |          1.8 / 2.6 |        3.8 / 3.3 |      3.6 / 3.9 |      5.0 / 4.7 |     1.4 / 2.1 |               2.3 / 1.9 |       1.5 / 2.4 |           2.7 / 2.5 |        4.5 / 4.6 |      5.5 / 5.0 | 2.0 / 2.1 |               2.8 / 2.4 |               4.7 / 4.7 |                4.0 / 4.0 |
+| saffron_milk_cap |          3.2 / 3.1 |        2.4 / 2.5 |      4.8 / 4.7 |      2.7 / 2.7 |     2.4 / 2.1 |               1.1 / 1.2 |       2.6 / 2.5 |           1.7 / 1.8 |        5.9 / 5.7 |      5.4 / 5.6 | 1.1 / 1.2 |               0.2 / 0.2 |               6.8 / 6.8 |                6.8 / 6.8 |
+| chant            |          4.3 / 4.4 |        3.4 / 3.5 |      4.9 / 4.9 |      4.4 / 4.3 |     3.4 / 3.5 |               3.6 / 3.3 |       3.4 / 3.8 |           3.6 / 3.5 |        4.6 / 4.6 |      4.1 / 4.4 | 2.9 / 3.0 |               2.7 / 2.7 |               4.4 / 4.4 |                5.0 / 5.0 |
+| giant_puffball   |          5.1 / 4.9 |        4.5 / 4.6 |      5.5 / 5.4 |      5.0 / 5.3 |     4.7 / 4.5 |               2.7 / 2.6 |       2.9 / 3.3 |           2.9 / 2.8 |        6.3 / 6.1 |      5.0 / 5.2 | 4.1 / 4.1 |               3.9 / 4.1 |               4.2 / 4.2 |                3.0 / 3.0 |
+| oyster-mushroom  |          5.1 / 5.2 |        5.4 / 5.3 |      5.5 / 5.5 |      5.7 / 5.7 |     4.3 / 4.2 |               3.4 / 3.5 |       3.9 / 3.9 |           4.1 / 4.2 |        4.8 / 4.9 |      5.5 / 5.1 | 4.7 / 4.6 |               3.9 / 4.1 |               5.4 / 5.4 |                5.3 / 5.3 |
+| wild-mint        |          5.1 / 5.8 |        7.3 / 6.8 |      5.1 / 5.4 |      7.0 / 6.6 |     5.0 / 5.7 |               7.3 / 6.6 |       4.8 / 5.7 |           7.3 / 6.9 |        5.0 / 5.3 |      6.9 / 6.4 | 5.2 / 5.6 |               8.0 / 7.2 |               7.2 / 7.2 |                4.0 / 4.0 |
+| nettle           |          9.2 / 8.8 |        7.8 / 8.1 |      9.4 / 9.1 |      7.8 / 8.2 |     9.0 / 8.6 |               7.4 / 7.8 |       8.7 / 8.2 |           7.6 / 7.8 |        9.4 / 9.2 |      7.8 / 8.2 | 9.4 / 9.2 |               7.9 / 8.2 |               7.7 / 7.7 |                7.9 / 7.9 |
 
 The plants' state-line boxes from the map check below, before / after:
 
@@ -132,7 +143,7 @@ Tried first and not shipped: one set of settings per continent, picked by which 
 | Plant       | Region |    25 May |    25 Jun |     20 Aug |     12 Oct |
 | ----------- | ------ | --------: | --------: | ---------: | ---------: |
 | blackberry  | NE     |   0% / 5% | 98% / 15% | 100% / 89% |  95% / 93% |
-| blackberry  | SE     |   0% / 5% | 95% / 78% |  98% / 95% |  94% / 75% |
+| blackberry  | SE     |   0% / 5% | 95% / 77% |  98% / 95% |  94% / 75% |
 | blackberry  | USW    | 69% / 69% | 77% / 77% |  62% / 72% |  89% / 61% |
 | blueberry   | USW    |  0% / 36% | 77% / 79% |  72% / 86% |    0% / 0% |
 | elderberry  | USW    | 84% / 42% | 94% / 59% |  95% / 91% |  99% / 97% |
@@ -153,6 +164,5 @@ Tried first and not shipped: one set of settings per continent, picked by which 
 
 ## Not in this change
 
-- Europe's lines between North and South Europe: a band along the lists' own boundary (Dutch, Danish and Polish borders), checked as the US one.
 - Recalibrating plant settings with a same-day test (the per-year test above found some that rank below chance).
 - This year's weather on top of the calendar (warmth since 1 January, winter cold): it added +0.002 to +0.008 AUC for elder, the berries and strawberry, and needs a warmth-to-date sum the nightly run does not keep yet.
