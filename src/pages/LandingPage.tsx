@@ -46,7 +46,7 @@ export default function LandingPage() {
           </div>
           <img
             className={styles.heroPhoto}
-            src={`${base}landing/porcini-forest.webp`}
+            src={`${base}landing/astra-porcini.webp`}
             alt=''
             width='960'
             height='1200'
@@ -108,7 +108,7 @@ export default function LandingPage() {
           aria-labelledby='spectacles-title'
         >
           <img
-            src={`${base}landing/autumn-forest.webp`}
+            src={`${base}landing/astra-autumn-trail.webp`}
             alt=''
             loading='lazy'
             width='1280'
@@ -133,7 +133,7 @@ export default function LandingPage() {
         <div className={styles.featureGrid}>
           <section className={styles.feature} aria-labelledby='identify-title'>
             <img
-              src={`${base}landing/lingonberry-find.webp`}
+              src={`${base}landing/astra-lingonberries.webp`}
               alt=''
               loading='lazy'
               width='768'
