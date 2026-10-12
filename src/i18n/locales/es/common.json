@@ -46,26 +46,22 @@
     "reloadForUpdate": "Recargar para actualizar"
   },
   "home": {
-    "title": "Funges",
     "headline": "Explora lo que crece a tu alrededor",
     "description": "Previsiones de recolección, espectáculos naturales, identificación privada por foto y recetas silvestres",
     "cta": "Explorar el mapa",
     "ctaSecondary": "Qué está de temporada",
     "forecast": {
-      "label": "Previsión",
       "heading": "¿Merece la pena salir hoy?",
-      "body": "Descubre cómo influyen la estación y el tiempo en tus posibilidades; Compara las zonas cercanas antes de salir",
+      "body": "Descubre cómo influyen la estación y el tiempo en tus posibilidades y compara las zonas cercanas antes de salir",
       "link": "Abrir la previsión"
     },
     "identify": {
-      "label": "Identificar",
       "heading": "¿Qué has encontrado?",
-      "body": "Haz una foto y explora las posibles coincidencias; La identificación se realiza en tu dispositivo y tus fotos siguen siendo privadas",
+      "body": "Haz una foto y explora las posibles coincidencias: la identificación se realiza en tu dispositivo y tus fotos siguen siendo privadas",
       "link": "Probar la identificación",
-      "safety": "Consulta siempre a un experto antes de consumir cualquier alimento silvestre; Esta información es solo para fines educativos"
+      "safety": "Consulta siempre a un experto antes de consumir cualquier alimento silvestre: esta información es solo para fines educativos"
     },
     "cook": {
-      "label": "Cocinar",
       "heading": "Del bosque a la mesa",
       "body": "Encuentra recetas para tus ingredientes silvestres, con consejos de preparación e instrucciones paso a paso",
       "link": "Ver recetas"
@@ -77,8 +73,8 @@
     "coverage": "Las previsiones cubren actualmente el norte y el sur de Europa y el este y el oeste de Estados Unidos",
     "spectacles": {
       "heading": "Espectáculos naturales",
-      "body": "De los cerezos en flor y los bosques de campanillas a las hojas de otoño; Sigue las estaciones y explora las previsiones para estos momentos fugaces de la naturaleza",
-      "link": "Explorar los colores del otoño"
+      "body": "De los cerezos en flor y los bosques de jacintos a las hojas de otoño: sigue las estaciones y explora las previsiones para estos momentos fugaces de la naturaleza",
+      "link": "Explorar el follaje de otoño"
     }
   },
   "worthForagingNow": {

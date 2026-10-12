@@ -1,12 +1,12 @@
-﻿.page {
-  --page-gutter: clamp(1.5rem, 5vw, 5rem);
-  max-width: 112rem;
-  margin-inline: auto;
+.page {
+  // Sections run full-bleed and their content keeps a fluid gutter; past
+  // 112rem the second term centres a 112rem page, so the green forecast band
+  // and the closing band still reach both edges on wide screens.
+  --page-gutter: max(
+    clamp(1.5rem, 5vw, 5rem),
+    calc((100vw - 112rem) / 2 + 5rem)
+  );
   color: var(--foreground);
-  ::selection {
-    background: var(--happy-300);
-    color: var(--happy-900);
-  }
   h1,
   h2 {
     text-wrap: balance;
@@ -36,7 +36,7 @@
 }
 .hero {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   align-items: center;
   gap: clamp(2rem, 5vw, 6rem);
   padding: 1.5rem var(--page-gutter) 4rem;
@@ -59,19 +59,26 @@
 }
 .heroPhoto {
   width: 100%;
-  height: min(43rem, 75svh);
-  min-height: 30rem;
+  height: auto;
+  // The photo's own 4:5, so a narrow column never slices the porcino; the cap
+  // keeps it inside the first screen on short desktops.
+  aspect-ratio: 4 / 5;
+  max-height: min(43rem, 75svh);
   object-fit: cover;
   object-position: 50% 60%;
 }
 .forecast {
+  // --ring (--happy-700) reads 1.9:1 on this green; this step clears 3:1 on
+  // the band and on the map capture.
+  --ring: var(--happy-100);
+  --band-pad: clamp(2rem, 4vw, 4rem);
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   background: var(--happy-900);
   color: var(--happy-50);
 }
 .forecastCopy {
-  padding: clamp(2rem, 4vw, 4rem) var(--page-gutter);
+  padding: var(--band-pad) var(--band-pad) var(--band-pad) var(--page-gutter);
   align-self: center;
   h2 {
     max-width: 12ch;
@@ -99,10 +106,10 @@
 .mapLink {
   display: block;
   height: 100%;
-  min-height: inherit;
+  // In flow, not absolute: a positioned image paints over the link's inset
+  // outline and the focus ring disappears.
   img {
-    position: absolute;
-    inset: 0;
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -178,18 +185,15 @@
 }
 .featureGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(2rem, 5vw, 5rem);
   padding: 4rem var(--page-gutter);
 }
-.feature {
-  min-width: 0;
-  > img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    height: auto;
-    object-fit: cover;
-  }
+.feature > img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
 }
 .sectionCopy {
   padding-top: 1.75rem;
@@ -207,32 +211,71 @@
   .textLink {
     margin-top: 1rem;
   }
+  // IdentifyPanel's permanent notice: warning wash, 2px ring, text-safe step.
   .safety {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
     max-width: 56ch;
-    font-size: 0.875rem;
     margin-top: 1.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-lg);
+    background: var(--status-warning-background);
+    box-shadow: 0 0 0 2px
+      color-mix(in oklab, var(--status-warning-border) 60%, transparent);
+    color: var(--status-warning-text);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    svg {
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
   }
 }
 .closing {
+  // 4rem below the help links clears the desktop language switcher, which
+  // floats 16px off the bottom-right corner.
+  padding: 3rem var(--page-gutter) 4rem;
+  background: var(--muted);
+}
+.invite {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  padding: 3rem var(--page-gutter) 4rem;
-  background: var(--muted);
   h2 {
     color: var(--primary-text);
     font-size: clamp(2.5rem, 5vw, 4.5rem);
   }
 }
+.helpLinks {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.5rem;
+  margin-top: 2.5rem;
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    text-underline-offset: 0.3em;
+    &:hover {
+      color: var(--foreground);
+      text-decoration: underline;
+    }
+  }
+}
 @media (max-width: 1023px) {
   .forecast {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .forecastCopy {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem 2rem;
+    padding-inline: var(--page-gutter);
     h2 {
       grid-row: span 2;
       max-width: 14ch;
@@ -249,23 +292,18 @@
       max-width: 65ch;
     }
   }
-  .mapFigure {
-    min-height: 0;
-    aspect-ratio: 1280 / 528;
-  }
 }
 @media (max-width: 767px) {
   .header {
     padding-block: 1.25rem;
-    gap: 1.5rem;
+    // The mobile nav bar already carries "In season", and the forecast
+    // button follows the hero; at phone width the link only crowded the logo.
     .textLink {
-      max-width: 11rem;
-      font-size: 0.875rem;
-      line-height: 1.4;
+      display: none;
     }
   }
   .hero {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
     padding-top: 1.5rem;
     padding-bottom: 2rem;
@@ -282,9 +320,8 @@
     margin-top: 1.5rem;
   }
   .heroPhoto {
-    height: auto;
-    min-height: 0;
     aspect-ratio: 4 / 3;
+    max-height: none;
     object-position: 50% 55%;
   }
   .forecastCopy {
@@ -298,16 +335,14 @@
     }
   }
   .mapFigure {
-    aspect-ratio: 1280 / 528;
+    // Taller than the desktop strip, so the map stays readable under its
+    // action pill; the crop keeps Lake Constance and Liechtenstein.
+    aspect-ratio: 1280 / 860;
   }
   .mapAction {
     top: 1rem;
     right: 1rem;
     font-size: 0.875rem;
-  }
-  .attribution {
-    max-width: 100%;
-    font-size: 0.75rem;
   }
   .spectacles {
     padding-top: 3rem;
@@ -324,7 +359,7 @@
     }
   }
   .featureGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 3rem;
     padding-block: 3rem;
   }
@@ -335,8 +370,13 @@
     }
   }
   .closing {
+    padding-block: 2.5rem 2rem;
+  }
+  .invite {
     flex-direction: column;
     align-items: flex-start;
-    padding-block: 2.5rem 4rem;
+  }
+  .helpLinks {
+    margin-top: 2rem;
   }
 }

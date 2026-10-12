@@ -46,28 +46,24 @@
     "reloadForUpdate": "Recarregar para atualizar"
   },
   "home": {
-    "title": "Funges",
     "headline": "Explore o que cresce à sua volta",
     "description": "Previsões de recolha, espetáculos naturais, identificação privada por fotografia e receitas silvestres",
     "cta": "Explorar o mapa",
     "ctaSecondary": "O que está na época",
     "forecast": {
-      "label": "Previsão",
       "heading": "Vale a pena sair hoje?",
-      "body": "Descobre como a estação e o tempo influenciam as tuas possibilidades; Compara as zonas próximas antes de sair",
+      "body": "Descubra como a estação e o tempo influenciam as suas possibilidades e compare as zonas próximas antes de sair",
       "link": "Abrir a previsão"
     },
     "identify": {
-      "label": "Identificar",
       "heading": "O que encontrou?",
-      "body": "Tira uma foto e explora as correspondências possíveis; A identificação acontece no teu dispositivo e as tuas fotos continuam privadas",
+      "body": "Tire uma fotografia e explore as correspondências possíveis: a identificação acontece no seu dispositivo e as suas fotografias continuam privadas",
       "link": "Experimentar a identificação",
-      "safety": "Sempre consulte um especialista antes de consumir qualquer alimento silvestre; Esta informação é apenas para fins educativos"
+      "safety": "Consulte sempre um especialista antes de consumir qualquer alimento silvestre: esta informação é apenas para fins educativos"
     },
     "cook": {
-      "label": "Cozinhar",
       "heading": "Da natureza para a mesa",
-      "body": "Encontra receitas para os ingredientes que recolhes, com dicas de preparação e instruções passo a passo",
+      "body": "Encontre receitas para os ingredientes que recolhe, com dicas de preparação e instruções passo a passo",
       "link": "Ver receitas"
     },
     "closing": {
@@ -77,8 +73,8 @@
     "coverage": "As previsões cobrem atualmente o Norte e o Sul da Europa e o Leste e o Oeste dos Estados Unidos",
     "spectacles": {
       "heading": "Espetáculos naturais",
-      "body": "Das cerejeiras em flor e dos bosques de campainhas às folhas de outono; Acompanha as estações e explora as previsões para estes momentos fugazes da natureza",
-      "link": "Explorar as cores do outono"
+      "body": "Das cerejeiras em flor e dos bosques de jacintos às folhas de outono: acompanhe as estações e explore as previsões para estes momentos fugazes da natureza",
+      "link": "Explorar a folhagem de outono"
     }
   },
   "worthForagingNow": {

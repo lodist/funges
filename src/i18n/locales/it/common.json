@@ -6,26 +6,22 @@
     "reloadForUpdate": "Ricarica per Aggiornare"
   },
   "home": {
-    "title": "Funges",
     "headline": "Esplora ciò che cresce intorno a te",
     "description": "Previsioni di raccolta, spettacoli naturali, identificazione fotografica privata e ricette selvatiche",
     "cta": "Esplora la mappa",
     "ctaSecondary": "Cosa è di stagione",
     "forecast": {
-      "label": "Previsione",
       "heading": "Vale la pena uscire oggi?",
-      "body": "Scopri come la stagione e il meteo influenzano le possibilità di raccolta; Confronta le zone vicine prima di partire",
+      "body": "Scopri come la stagione e il meteo influenzano le possibilità di raccolta e confronta le zone vicine prima di partire",
       "link": "Apri la previsione"
     },
     "identify": {
-      "label": "Identifica",
       "heading": "Cosa hai trovato?",
-      "body": "Scatta una foto ed esplora le possibili corrispondenze; Il riconoscimento avviene sul tuo dispositivo e le tue foto restano private",
+      "body": "Scatta una foto ed esplora le possibili corrispondenze: il riconoscimento avviene sul tuo dispositivo e le tue foto restano private",
       "link": "Prova l'identificazione",
-      "safety": "Consulta sempre un esperto prima di consumare qualsiasi cibo selvatico; Queste informazioni sono solo a scopo educativo"
+      "safety": "Consulta sempre un esperto prima di consumare qualsiasi cibo selvatico: queste informazioni sono solo a scopo educativo"
     },
     "cook": {
-      "label": "Cucina",
       "heading": "Dal bosco alla tavola",
       "body": "Trova ricette per gli ingredienti che raccogli, con consigli di preparazione e istruzioni passo dopo passo",
       "link": "Sfoglia le ricette"
@@ -37,8 +33,8 @@
     "coverage": "Le previsioni coprono attualmente il Nord e il Sud Europa e l'Est e l'Ovest degli Stati Uniti",
     "spectacles": {
       "heading": "Spettacoli naturali",
-      "body": "Dai ciliegi in fiore e i boschi di campanule alle foglie autunnali; Segui le stagioni ed esplora le previsioni per questi spettacoli effimeri della natura",
-      "link": "Esplora i colori autunnali"
+      "body": "Dai ciliegi in fiore e i boschi di giacinti alle foglie autunnali: segui le stagioni ed esplora le previsioni per questi spettacoli effimeri della natura",
+      "link": "Esplora il foliage autunnale"
     }
   },
   "worthForagingNow": {
