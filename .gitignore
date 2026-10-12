@@ -94,3 +94,6 @@ docs/*
 
 .serena/
 
+
+# Private: lives on R2 (scores/), CI fetches it with backend/r2.py
+public/data/foraging_scores.parquet

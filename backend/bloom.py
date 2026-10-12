@@ -169,18 +169,9 @@ def _local_master(path):
     """A local copy of a remote master (the caller deletes it), or the path itself."""
     if not str(path).startswith(("http://", "https://")):
         return str(path), False
-    import requests
+    import r2
 
-    fd, name = tempfile.mkstemp(suffix=".parquet")
-    try:
-        with os.fdopen(fd, "wb") as f, requests.get(path, timeout=600, stream=True) as r:
-            r.raise_for_status()
-            for chunk in r.iter_content(chunk_size=8 * 1024 * 1024):
-                f.write(chunk)
-    except BaseException:
-        os.unlink(name)  # a broken download would leave up to GBs in /tmp
-        raise
-    return name, True
+    return r2.download_to_temp(path, ".parquet"), True
 
 
 def _fine(cy, cx, props):
