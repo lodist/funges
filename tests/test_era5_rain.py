@@ -73,6 +73,19 @@ def test_each_coord_reads_its_nearest_cell():
     assert rows["Rain Measured"].all()
 
 
+def test_the_order_holds_every_coords_nearest_cell():
+    # South Europe's box stopped at 12° E while its coords reach 18° W: from 28 Sep 2026
+    # Spain, France and north-west Italy read the rain of the box's edge.
+    coords = [(40.4, -3.7), (45.07, 7.69), (27.66, 44.73)]
+    assert er.box(coords) == ((27.5, 45.25), (-3.75, 44.75))
+    (south, north), (west, east) = er.box(coords)
+    hourly = np.zeros((72, int((north - south) * 4) + 1, int((east - west) * 4) + 1))
+    lats, lons = np.arange(south, north + 0.01, 0.25), np.arange(west, east + 0.01, 0.25)
+    hourly[:, 52, 0] = 1.0                                    # the cell over Madrid only
+    rows = er.local_day_rain(hourly, _hours(), lats, lons, coords, [DAY])
+    assert rows["TotalPrecipitation_mm"].tolist() == [24.0, 0.0, 0.0]
+
+
 def test_one_order_covers_a_month_end():
     # Copernicus queues only a few orders per user: two per region at month ends meant eight
     # a night, and US West's were rejected (11 Oct 2026). A date range crosses months in one.

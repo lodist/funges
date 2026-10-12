@@ -37,6 +37,16 @@ EMPTY = pd.DataFrame(columns=["Latitude", "Longitude", "Date", "TotalPrecipitati
                               "Rain Hours", "Rain Measured"])
 
 
+def box(coords) -> tuple[tuple, tuple]:
+    """The coords' bounds on ERA5's 0.25° grid, so every coord's nearest cell is ordered.
+    The regions' own boxes are for building their grids: South Europe's stopped at 12° E
+    while its coords reach 18° W, and from 28 Sep 2026 Spain, France and north-west Italy
+    read the rain of the box's edge."""
+    c = np.asarray(coords, float).reshape(-1, 2)
+    lo, hi = np.floor(c.min(axis=0) * 4) / 4, np.ceil(c.max(axis=0) * 4) / 4
+    return (float(lo[0]), float(hi[0])), (float(lo[1]), float(hi[1]))
+
+
 def area(lat_range, lon_range) -> list:
     """The region's box in CDS order: north, west, south, east."""
     return [lat_range[1], lon_range[0], lat_range[0], lon_range[1]]

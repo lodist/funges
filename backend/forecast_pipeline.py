@@ -1493,10 +1493,8 @@ def run_pipeline(config: RegionConfig):
 
     # Tonight's ERA5 rain order goes in before the WeatherAPI fetch; the orders that have
     # finished since earlier runs, tonight's too on a quiet night, download after it.
-    measured_rain = era5_rain.start(
-        config.lat_range, config.lon_range,
-        [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates],
-        datetime.now().date())
+    points = [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates]
+    measured_rain = era5_rain.start(*era5_rain.box(points), points, datetime.now().date())
     counter = CallCounter()
     weather_long = _fetch_all(config, coordinates, static_map, api_key, counter)
     print(f"API calls made: {counter.count} for {len(coordinates)} coordinates")
