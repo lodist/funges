@@ -61,7 +61,7 @@ jobs:
       - name: Fetch today's scores from R2
         run: python backend/r2.py scores/foraging_scores.parquet public/data/foraging_scores.parquet
 
-      - name: Generate scores metadata (max date)
+      - name: Generate scores metadata (forecast tiles' upload time)
         run: python scripts/generate_scores_metadata.py
 
       - name: Generate data nerd JSON
