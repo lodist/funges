@@ -1,0 +1,382 @@
+.page {
+  // Sections run full-bleed and their content keeps a fluid gutter; past
+  // 112rem the second term centres a 112rem page, so the green forecast band
+  // and the closing band still reach both edges on wide screens.
+  --page-gutter: max(
+    clamp(1.5rem, 5vw, 5rem),
+    calc((100vw - 112rem) / 2 + 5rem)
+  );
+  color: var(--foreground);
+  h1,
+  h2 {
+    text-wrap: balance;
+    letter-spacing: -0.04em;
+  }
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.75rem var(--page-gutter);
+}
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  color: var(--primary-text);
+  text-underline-offset: 0.3em;
+  svg {
+    flex-shrink: 0;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 6rem);
+  padding: 1.5rem var(--page-gutter) 4rem;
+}
+.heroCopy h1 {
+  max-width: 11ch;
+  color: var(--primary-text);
+  font-size: clamp(3.5rem, 6.6vw, 6rem);
+  line-height: 1.02;
+}
+.intro {
+  max-width: 31rem;
+  margin-top: 2rem;
+  color: var(--muted-foreground);
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+.primaryAction {
+  margin-top: 2rem;
+}
+.heroPhoto {
+  width: 100%;
+  height: auto;
+  // The photo's own 4:5, so a narrow column never slices the porcino; the cap
+  // keeps it inside the first screen on short desktops.
+  aspect-ratio: 4 / 5;
+  max-height: min(43rem, 75svh);
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+.forecast {
+  // --ring (--happy-700) reads 1.9:1 on this green; this step clears 3:1 on
+  // the band and on the map capture.
+  --ring: var(--happy-100);
+  --band-pad: clamp(2rem, 4vw, 4rem);
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  background: var(--happy-900);
+  color: var(--happy-50);
+}
+.forecastCopy {
+  padding: var(--band-pad) var(--band-pad) var(--band-pad) var(--page-gutter);
+  align-self: center;
+  h2 {
+    max-width: 12ch;
+    font-size: clamp(2.5rem, 3.8vw, 3.75rem);
+    line-height: 1.08;
+  }
+  > p {
+    margin-block: 1.5rem;
+    line-height: 1.6;
+  }
+  .coverage {
+    max-width: 42ch;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    font-size: 0.875rem;
+    color: var(--happy-100);
+  }
+}
+.mapFigure {
+  position: relative;
+  min-height: 0;
+  aspect-ratio: 1280 / 528;
+  align-self: center;
+}
+.mapLink {
+  display: block;
+  height: 100%;
+  // In flow, not absolute: a positioned image paints over the link's inset
+  // outline and the focus ring disappears.
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 40% 50%;
+  }
+  &:focus-visible {
+    outline-offset: -4px;
+  }
+  &:hover .mapAction {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+}
+.mapAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  background: var(--background);
+  color: var(--primary-text);
+  box-shadow: var(--elevation-control);
+}
+.attribution {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 0.25rem 0.5rem;
+  background: var(--background);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+}
+.spectacles {
+  padding: 4rem var(--page-gutter) 0;
+
+  > img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+    object-position: 50% 55%;
+  }
+}
+.spectaclesCopy {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  padding-top: 2rem;
+
+  h2 {
+    overflow-wrap: anywhere;
+    color: var(--primary-text);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 1.1;
+  }
+  p {
+    max-width: 50ch;
+    color: var(--muted-foreground);
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+  .textLink {
+    margin-top: 1rem;
+  }
+}
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: 4rem var(--page-gutter);
+}
+.feature > img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
+}
+.sectionCopy {
+  padding-top: 1.75rem;
+  h2 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.1;
+  }
+  p {
+    max-width: 44ch;
+    margin-top: 1rem;
+    color: var(--muted-foreground);
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+  .textLink {
+    margin-top: 1rem;
+  }
+  // IdentifyPanel's permanent notice: warning wash, 2px ring, text-safe step.
+  .safety {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    max-width: 56ch;
+    margin-top: 1.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-lg);
+    background: var(--status-warning-background);
+    box-shadow: 0 0 0 2px
+      color-mix(in oklab, var(--status-warning-border) 60%, transparent);
+    color: var(--status-warning-text);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    svg {
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+  }
+}
+.closing {
+  // 4rem below the help links clears the desktop language switcher, which
+  // floats 16px off the bottom-right corner.
+  padding: 3rem var(--page-gutter) 4rem;
+  background: var(--muted);
+}
+.invite {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  h2 {
+    color: var(--primary-text);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+  }
+}
+.helpLinks {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.5rem;
+  margin-top: 2.5rem;
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    text-underline-offset: 0.3em;
+    &:hover {
+      color: var(--foreground);
+      text-decoration: underline;
+    }
+  }
+}
+@media (max-width: 1023px) {
+  .forecast {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .forecastCopy {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 2rem;
+    padding-inline: var(--page-gutter);
+    h2 {
+      grid-row: span 2;
+      max-width: 14ch;
+    }
+    > p {
+      margin: 0;
+    }
+    > a {
+      width: fit-content;
+    }
+    .coverage {
+      grid-column: 1 / -1;
+      margin: 0;
+      max-width: 65ch;
+    }
+  }
+}
+@media (max-width: 767px) {
+  .header {
+    padding-block: 1.25rem;
+    // The mobile nav bar already carries "In season", and the forecast
+    // button follows the hero; at phone width the link only crowded the logo.
+    .textLink {
+      display: none;
+    }
+  }
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
+  .heroCopy h1 {
+    max-width: 12ch;
+    font-size: clamp(3rem, 10.5vw, 4.5rem);
+  }
+  .intro {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+  }
+  .primaryAction {
+    margin-top: 1.5rem;
+  }
+  .heroPhoto {
+    aspect-ratio: 4 / 3;
+    max-height: none;
+    object-position: 50% 55%;
+  }
+  .forecastCopy {
+    display: block;
+    padding-block: 2.5rem;
+    > p {
+      margin-block: 1.25rem;
+    }
+    .coverage {
+      margin-top: 1.5rem;
+    }
+  }
+  .mapFigure {
+    // Taller than the desktop strip, so the map stays readable under its
+    // action pill; the crop keeps Lake Constance and Liechtenstein.
+    aspect-ratio: 1280 / 860;
+  }
+  .mapAction {
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.875rem;
+  }
+  .spectacles {
+    padding-top: 3rem;
+    > img {
+      aspect-ratio: 4 / 5;
+    }
+  }
+  .spectaclesCopy {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    padding-top: 1.5rem;
+    p {
+      font-size: 1rem;
+    }
+  }
+  .featureGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3rem;
+    padding-block: 3rem;
+  }
+  .sectionCopy {
+    padding-top: 1.5rem;
+    p {
+      font-size: 1rem;
+    }
+  }
+  .closing {
+    padding-block: 2.5rem 2rem;
+  }
+  .invite {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .helpLinks {
+    margin-top: 2rem;
+  }
+}

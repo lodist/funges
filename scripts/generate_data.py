@@ -18,6 +18,7 @@ zones used by the scoring model.
 import gzip
 import json
 import math
+import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -29,6 +30,9 @@ import pyarrow.parquet as pq
 import requests
 import mapbox_vector_tile
 from pmtiles.reader import Reader
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
+import r2  # noqa: E402
 
 REGION_URLS: dict[str, str] = {
     "NE": "https://data.fung.es/EU/NE/NE_weather_data.parquet",
@@ -111,7 +115,6 @@ PLACE_ZOOM = 7  # regional cities; bigger hotspots step down to fewer, larger pl
 MAX_PLACE_TILES = 4
 PLACE_LANGS = ("en", "de", "es", "fr", "it", "pt")  # src/i18n/locales
 BATCH_SIZE = 100_000
-DOWNLOAD_CHUNK_SIZE = 1024 * 1024
 OUTPUT_PATH = Path("public/data/data_nerd.json")
 
 WEATHER_COLS: dict[str, str] = {
@@ -126,14 +129,9 @@ WEATHER_COLS: dict[str, str] = {
 
 
 def download_parquet(url: str, destination: Path) -> None:
-    """Stream a parquet to disk without retaining the response in memory."""
+    """Stream a private master to disk with the R2 credentials."""
     print(f"Fetching {url} ...", flush=True)
-    with requests.get(url, timeout=(30, 180), stream=True) as resp:
-        resp.raise_for_status()
-        with destination.open("wb") as output:
-            for chunk in resp.iter_content(chunk_size=DOWNLOAD_CHUNK_SIZE):
-                if chunk:
-                    output.write(chunk)
+    r2.download(url, destination)
 
 
 def _safe_float(value: object, decimals: int) -> float | None:

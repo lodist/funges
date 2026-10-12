@@ -24,7 +24,6 @@ import {
 } from '@/lib/chart-chrome';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
-import { Button } from '@/components/ui/button';
 import {
   Select,
   SelectContent,
@@ -32,7 +31,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Loader2, Download, MapPin } from '@/lib/icons';
+import { Loader2, MapPin } from '@/lib/icons';
 import {
   ALL_ZONE,
   loadForagingDataset,
@@ -61,139 +60,6 @@ const DAY_OPTIONS = [7, 14, 30, 90, 365] as const;
 function dayLabel(d: number): string {
   return d === 365 ? '1y' : `${d}d`;
 }
-
-const R2 = 'https://data.fung.es';
-
-const REGION_FILES: Record<RegionId, { label: string; url: string }[]> = {
-  NE: [
-    {
-      label: 'Weather data (.parquet)',
-      url: `${R2}/EU/NE/NE_weather_data.parquet`,
-    },
-    { label: 'Base data (.csv)', url: `${R2}/EU/NE/NE_base.csv` },
-    {
-      label: 'Boundaries (.geojson)',
-      url: `${R2}/EU/NE/NE_boundaries.geojson`,
-    },
-    {
-      label: 'Wilderness triangles (.gpkg)',
-      url: `${R2}/EU/NE/NE_clipped_triangles_wilderness.gpkg`,
-    },
-    {
-      label: 'Species params (.txt)',
-      url: `${R2}/EU/NE/NE_species_params.txt`,
-    },
-    {
-      label: 'Unique coordinates (.json)',
-      url: `${R2}/EU/NE/NE_unique_coordinates.json`,
-    },
-    {
-      label: 'Wilderness data (.geojson)',
-      url: `${R2}/EU/NE/NE_wilderness_data.geojson`,
-    },
-    {
-      label: 'Forecast tiles (.mbtiles)',
-      url: `${R2}/EU/NE/ne_forecast.mbtiles`,
-    },
-    { label: 'EU static info (.csv)', url: `${R2}/EU/EU_static_info.csv` },
-  ],
-  SE: [
-    {
-      label: 'Weather data (.parquet)',
-      url: `${R2}/EU/SE/SE_weather_data.parquet`,
-    },
-    { label: 'Base data (.csv)', url: `${R2}/EU/SE/SE_base.csv` },
-    {
-      label: 'Boundaries (.geojson)',
-      url: `${R2}/EU/SE/SE_boundaries.geojson`,
-    },
-    {
-      label: 'Wilderness triangles (.gpkg)',
-      url: `${R2}/EU/SE/SE_clipped_triangles_wilderness.gpkg`,
-    },
-    {
-      label: 'Species params (.txt)',
-      url: `${R2}/EU/SE/SE_species_params.txt`,
-    },
-    {
-      label: 'Unique coordinates (.json)',
-      url: `${R2}/EU/SE/SE_unique_coordinates.json`,
-    },
-    {
-      label: 'Wilderness data (.geojson)',
-      url: `${R2}/EU/SE/SE_wilderness_data.geojson`,
-    },
-    {
-      label: 'Forecast tiles (.mbtiles)',
-      url: `${R2}/EU/SE/se_forecast.mbtiles`,
-    },
-    { label: 'EU static info (.csv)', url: `${R2}/EU/EU_static_info.csv` },
-  ],
-  USE: [
-    {
-      label: 'Weather data (.parquet)',
-      url: `${R2}/USA/USE/USE_weather_data.parquet`,
-    },
-    { label: 'Base data (.csv)', url: `${R2}/USA/USE/USE_base.csv` },
-    {
-      label: 'Boundaries (.geojson)',
-      url: `${R2}/USA/USE/USE_boundaries.geojson`,
-    },
-    {
-      label: 'Wilderness triangles (.gpkg)',
-      url: `${R2}/USA/USE/USE_clipped_triangles_wilderness.gpkg`,
-    },
-    {
-      label: 'Species params (.txt)',
-      url: `${R2}/USA/USE/USE_species_params.txt`,
-    },
-    {
-      label: 'Unique coordinates (.json)',
-      url: `${R2}/USA/USE/USE_unique_coordinates.json`,
-    },
-    {
-      label: 'Wilderness data (.geojson)',
-      url: `${R2}/USA/USE/USE_wilderness_data.geojson`,
-    },
-    {
-      label: 'Forecast tiles (.mbtiles)',
-      url: `${R2}/USA/USE/use_forecast.mbtiles`,
-    },
-    { label: 'US static info (.csv)', url: `${R2}/USA/US_static_info.csv` },
-  ],
-  USW: [
-    {
-      label: 'Weather data (.parquet)',
-      url: `${R2}/USA/USW/USW_weather_data.parquet`,
-    },
-    { label: 'Base data (.csv)', url: `${R2}/USA/USW/USW_base.csv` },
-    {
-      label: 'Boundaries (.geojson)',
-      url: `${R2}/USA/USW/USW_boundaries.geojson`,
-    },
-    {
-      label: 'Wilderness triangles (.gpkg)',
-      url: `${R2}/USA/USW/USW_clipped_triangles_wilderness.gpkg`,
-    },
-    {
-      label: 'Species params (.txt)',
-      url: `${R2}/USA/USW/USW_species_params.txt`,
-    },
-    {
-      label: 'Unique coordinates (.json)',
-      url: `${R2}/USA/USW/USW_unique_coordinates.json`,
-    },
-    {
-      label: 'Wilderness data (.geojson)',
-      url: `${R2}/USA/USW/USW_wilderness_data.geojson`,
-    },
-    {
-      label: 'Forecast tiles (.mbtiles)',
-      url: `${R2}/USA/USW/usw_forecast.mbtiles`,
-    },
-    { label: 'US static info (.csv)', url: `${R2}/USA/US_static_info.csv` },
-  ],
-};
 
 function formatDate(iso: string) {
   return iso.slice(5).replace('-', '/');
@@ -1057,19 +923,6 @@ export default function DataPage() {
             />
           </div>
         </div>
-
-        {/* Download current region's data */}
-        <Button asChild variant='outline' className='gap-1.5'>
-          <a
-            href={REGION_FILES[region][0].url}
-            target='_blank'
-            rel='noreferrer'
-            aria-label={`${t('common:common.download', { defaultValue: 'Download' })}: ${regionLabel}`}
-          >
-            <Download />
-            {t('common:common.download', { defaultValue: 'Download' })}
-          </a>
-        </Button>
       </div>
 
       {/* Zone map */}

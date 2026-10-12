@@ -46,34 +46,36 @@
     "reloadForUpdate": "Reload for Update"
   },
   "home": {
-    "title": "Funges",
     "headline": "Explore what grows around you",
-    "description": "Foraging forecasts, species maps, private photo identification and wild-food recipes.",
+    "description": "Foraging forecasts, natural spectacles, private photo identification and wild-food recipes",
     "cta": "Explore the map",
     "ctaSecondary": "See what's in season",
     "forecast": {
-      "label": "Forecast",
       "heading": "Is it worth going out today?",
-      "body": "Know where and when conditions are good.",
+      "body": "See how season and weather shape your chances, and compare nearby areas before you head out",
       "link": "Open the forecast"
     },
     "identify": {
-      "label": "Identify",
       "heading": "What did you find?",
-      "body": "Identify mushrooms and plants privately on your device.",
-      "link": "Try identification"
+      "body": "Take a photo and explore possible matches with identification that runs on your device, keeping your photos private",
+      "link": "Try identification",
+      "safety": "Always consult an expert before consuming any wild food — this information is for educational purposes only"
     },
     "cook": {
-      "label": "Cook",
-      "heading": "Back home",
-      "body": "Turn what you find into wild-food recipes.",
+      "heading": "Bring the wild to the table",
+      "body": "Find recipes for your foraged ingredients, with preparation tips and step-by-step instructions",
       "link": "Browse recipes"
     },
     "closing": {
       "heading": "Ready to explore?",
       "cta": "Open the map"
     },
-    "coverage": "Forecasts currently cover Northern and Southern Europe and the eastern and western United States."
+    "coverage": "Forecasts currently cover Northern and Southern Europe and the eastern and western United States",
+    "spectacles": {
+      "heading": "Natural spectacles",
+      "body": "Follow the seasons from cherry blossom and bluebell woods to autumn leaves, with forecasts for nature's fleeting displays",
+      "link": "Explore fall foliage"
+    }
   },
   "worthForagingNow": {
     "title": "Worth Foraging Now",

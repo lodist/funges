@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-12T03:53:15.419162Z",
+  "generatedAt": "2026-10-12T09:30:33.128302Z",
   "packages": [
     {
       "id": "eu",
@@ -59,8 +59,8 @@
       ],
       "minZoom": 3,
       "maxZoom": 8,
-      "version": "a8bfa5da473e",
-      "updatedAt": "2026-10-12T03:22:57Z",
+      "version": "a690778f7c1f",
+      "updatedAt": "2026-10-12T03:53:50Z",
       "published": true,
       "resources": [
         {
@@ -83,10 +83,10 @@
         {
           "id": "usw-forecast",
           "kind": "forecast",
-          "version": "88759ae4983d89fabab52fddf5ad81b8",
+          "version": "397c11bc8e685ee2c743c69f6957570b",
           "sourceUrl": "https://data.fung.es/USA/USW/usw_forecast.pmtiles",
-          "sizeBytes": 7740409,
-          "etag": "88759ae4983d89fabab52fddf5ad81b8"
+          "sizeBytes": 7809899,
+          "etag": "397c11bc8e685ee2c743c69f6957570b"
         }
       ]
     }
