@@ -1,0 +1,23 @@
+Copyright (c) 2024-2026 Loris Di Stefano. All rights reserved.
+
+This repository is published so its source can be read. Reading it grants no
+licence. Without prior written permission you may not use, copy, modify, merge,
+publish, distribute, sublicense or sell any part of it, including:
+
+- the source code;
+- the species parameters, calibrations, host lists, range priors and trained
+  models (for example content/species/*/species.json and backend/generated/);
+- the forecasts, scores and any other data produced by Fung.es, whether taken
+  from this repository, from fung.es or from data.fung.es.
+
+Third-party libraries, data and map content keep their own licences and
+attributions (for example OpenStreetMap data, (c) OpenStreetMap contributors,
+ODbL; Copernicus ERA5 and CORINE; GBIF occurrence data; SoilGrids). Nothing here
+restricts rights you already hold in those.
+
+THE SOFTWARE AND DATA ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. IN NO
+EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY
+ARISING FROM THEIR USE. Forecasts are not advice on whether a wild food is safe
+to eat.
+
+Requests for permission: open an issue at https://github.com/lodist/funges.

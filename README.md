@@ -256,7 +256,7 @@ npm run build
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+All rights reserved. The source is public to read, not to reuse: see [LICENSE](LICENSE).
 
 ## ⚠️ Safety Notice
 

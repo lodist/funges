@@ -5,10 +5,11 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "backend"))
+import r2  # noqa: E402
 from qa_season_analysis import CLIMATOLOGY_YEARS, monthly_rate, month_labels
 
 QA = ROOT / "docs/qa/season-timing-2026"
@@ -19,8 +20,7 @@ analysis = json.loads((QA / "season-analysis.json").read_text())
 R2 = "https://data.fung.es"
 CURVE_URLS = {"NE": f"{R2}/EU/NE/NE_season_curves.json", "SE": f"{R2}/EU/SE/SE_season_curves.json",
               "USE": f"{R2}/USA/USE/USE_season_curves.json", "USW": f"{R2}/USA/USW/USW_season_curves.json"}
-session = requests.Session()
-curves = {region: session.get(url, timeout=60).json() for region, url in CURVE_URLS.items()}
+curves = {region: json.loads(r2.fetch(url)) for region, url in CURVE_URLS.items()}
 
 LABEL = {"mushroom": "Porcini", "chant": "Chanterelle", "black_chant": "Black chanterelle",
          "parasol": "Parasol", "morel": "Morel", "st_george": "St George's"}
