@@ -256,7 +256,7 @@ npm run build
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+The app is open source under the MIT License. The forecasting engine (`backend/`), the species calibrations, the models and all forecast data are proprietary, all rights reserved. See [LICENSE](LICENSE) for exactly which parts.
 
 ## ⚠️ Safety Notice
 

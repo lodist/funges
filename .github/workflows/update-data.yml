@@ -2,11 +2,10 @@ name: Update site data
 
 on:
   workflow_dispatch:
-  # Refresh the "updated" label as soon as the nightly scores upload lands;
-  # the cron alone fires only every ~9 h in practice.
-  push:
-    branches: [main]
-    paths: [public/data/foraging_scores.parquet]
+  # Refresh the "updated" label as soon as the nightly scores upload lands
+  # (Upload_Scores sends this event); the cron alone fires only every ~9 h.
+  repository_dispatch:
+    types: [scores-uploaded]
   schedule:
     - cron: '0 */3 * * *'
 
@@ -19,6 +18,11 @@ jobs:
     env:
       CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
       CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+      # Read-only R2 credentials: the masters and scores are private.
+      R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      R2_ENDPOINT_URL: ${{ secrets.R2_ENDPOINT_URL }}
+      R2_BUCKET_NAME: ${{ secrets.R2_BUCKET_NAME }}
 
     steps:
       - name: Create GitHub App token
@@ -49,12 +53,15 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests pandas pyarrow shapely pmtiles mapbox-vector-tile
+          pip install requests pandas pyarrow shapely pmtiles mapbox-vector-tile boto3
 
       - name: Run visitor script
         run: python scripts/fetch_visitors.py
 
-      - name: Generate scores metadata (max date)
+      - name: Fetch today's scores from R2
+        run: python backend/r2.py scores/foraging_scores.parquet public/data/foraging_scores.parquet
+
+      - name: Generate scores metadata (forecast tiles' upload time)
         run: python scripts/generate_scores_metadata.py
 
       - name: Generate data nerd JSON

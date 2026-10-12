@@ -1,0 +1,7 @@
+{
+  "prompt": "Source: actual Fung.es MapLibre map capture of Lake Constance, Liechtenstein and Innsbruck. Original olive style (funges_style.json), public data.fung.es tiles; pine_bolete overlay, forecast day 0; center 10.21E, 47.38N, zoom 8.7. Captured 2026-10-12 at 1602 by 660 and resized proportionally to 1280 by 528. No generated geography, changed palette or altered scores. Map data: OpenStreetMap contributors; terrain: Mapzen / AWS. Browser range requests proxied through Node solely for local capture; WebP quality 78. Verified 863 rendered features with pine bolete scores between 4.1 and 8.5.",
+  "source": "Fung.es application map",
+  "captureDate": "2026-10-12",
+  "species": "pine_bolete",
+  "forecastDay": 0
+}
