@@ -46,6 +46,12 @@ def infer_region(longitude, latitude):
     return "SE" if latitude < boundaries["seMaxLatitude"] else "NE"
 
 
+def get_region_boundaries():
+    """Where the forecast regions split: US West below uswMaxLongitude, South Europe below
+    seMaxLatitude (infer_region)."""
+    return dict(_registry()["regionBoundaries"])
+
+
 def get_land_cover_mapping(region):
     """Return the canonical species -> land-cover mapping for one region."""
     _require_region(region)
