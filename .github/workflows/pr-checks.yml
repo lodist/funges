@@ -54,3 +54,26 @@ jobs:
       # See the Taskfile's `ci-check-only` task for the exact steps.
       - name: Run CI checks
         run: task ci-check-only
+
+  # The backend's tests (pytest), next to the Node checks: scoring, seasons, tools.
+  python-tests:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: |
+            backend/requirements-dev.txt
+            backend/constraints.txt
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements-dev.txt -c backend/constraints.txt
+
+      - name: Run tests
+        run: python -m pytest -q
