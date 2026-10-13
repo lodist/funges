@@ -253,7 +253,9 @@
             "other_western_hardwoods",
             "tropical_hardwoods",
             "exotic_hardwoods"
-          ]
+          ],
+          "rain_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://data.fung.es/USA/USW/USW_species_params.txt",
