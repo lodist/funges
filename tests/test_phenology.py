@@ -102,3 +102,13 @@ def test_the_season_reads_warmth_to_date_from_the_normals():
     rows = fph.calendar_rows(np.array([60.0, 40.0, 40.0]), np.zeros(3), np.array([105, 105, 196]), grid)
     assert rows.loc[0, "gdd_normal"] < rows.loc[1, "gdd_normal"] < rows.loc[2, "gdd_normal"]  # cold north, then later in the year
     assert rows.loc[1, "norm_tmean_day"] == pytest.approx(16.0, abs=0.6)   # mid-April between April 10 and May 15, +6
+
+
+def test_ripe_keeps_the_fruit_photographed_ripe_and_unbudded_leaves_drop_the_buds():
+    import fit_phenology as fph
+    s = pd.DataFrame({"id": [1, 2, 3, 4], "fruiting": [True, True, False, False], "flowering": [False] * 4,
+                      "budding": [False, False, True, False], "no_flowers": [False, False, True, True]})
+    tags = fph.stages(s, ripe=[1, 3])
+    assert tags["ripe"].tolist() == [True, False, False, False]          # 3 is "ripe" but not fruiting
+    assert tags["leaves"].tolist() == [False, False, True, True]
+    assert tags["leaves_unbudded"].tolist() == [False, False, False, True]

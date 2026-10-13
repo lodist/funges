@@ -47,11 +47,15 @@ import era5_normals  # noqa: E402
 import forecast_pipeline as fp  # noqa: E402
 import seasonality as sn  # noqa: E402
 from species_registry import get_species_params, infer_region  # noqa: E402
+from tag_ripeness import RIPE  # noqa: E402
 
-STAGE = {**dict.fromkeys(("blackberry", "blueberry", "cloudberry", "elderberry", "huckleberry", "lingonb", "pawpaw", "raspberry",
-                          "rose_hips", "sea_buckthorn", "sloes", "strawberry", "chestnut", "hazelnut", "walnut"), "fruiting"),
+STAGE = {**dict.fromkeys(("blackberry", "cloudberry", "huckleberry", "lingonb", "pawpaw", "raspberry",
+                          "rose_hips", "sea_buckthorn", "strawberry", "chestnut", "hazelnut", "walnut"), "fruiting"),
+         # fruiting sightings whose photo shows ripe fruit (tools/tag_ripeness.py)
+         **dict.fromkeys(("blueberry", "elderberry", "sloes"), "ripe"),
          **dict.fromkeys(("daisy", "dandelion", "elderflower", "violets"), "flowering"),
-         **dict.fromkeys(("garlic", "ramps", "nettle", "sorrel", "asparagus"), "leaves"),
+         **dict.fromkeys(("garlic", "nettle", "sorrel", "asparagus"), "leaves"),
+         "ramps": "leaves_unbudded",      # its June buds stand on bare stalks, the leaves gone
          "artichoke": "budding",
          **dict.fromkeys(("chickweed", "plantain", "amaranth", "masterwort", "wild-mint"), "any")}
 # A learned season only where the tagged stage is what people pick, in a window: a plant eaten
@@ -61,16 +65,19 @@ STAGE = {**dict.fromkeys(("blackberry", "blueberry", "cloudberry", "elderberry",
 SEASON = [s for s, stage in STAGE.items() if stage != "any" and s != "dandelion"]
 # Fruiting tags include green fruit. Where it hangs green for weeks the learned season opened
 # that early, at 35-80% of places at 4+ on 25 June for hazelnut, walnut, pawpaw and sloes, 45%
-# for elderberry, whose green berries are toxic: they keep their months. US blackberries mix
-# spring dewberries with late Pacific blackberries, and the learned season kept Kansas and
-# Nebraska at 6-7 on 12 October: blackberry ships in Europe only. Ramps' "leaves" count its
-# budding stalks, leafless by late June: the learned season shut it on 25 May and opened it
-# on 25 June (20-47% of places at 4+). Sorrel's leaves stay up all winter, so its share peaks
-# in December, when few other plants are photographed, and its spring reads under half of that.
-# Blueberry passes the sightings yet opens unripe places on the map: South Europe's mountains on
-# 25 May (0% to 40% of in-range places at 4+), US East on 20 April, US West on 12 October; few
-# people photograph those places then.
-HELD_BACK = {"elderberry", "hazelnut", "walnut", "pawpaw", "sloes", "ramps", "sorrel", "blueberry"}
+# for elderberry, whose green berries are toxic. The dark berries now read only the sightings
+# whose photo shows them ripe (stage "ripe"), and elderberry ships. Sloes still keep their
+# months: they colour in July in the south and August in the north, but are picked from
+# September, after the first frosts, so dark is not ripe (20 August, South Europe: 41% to 90% of
+# places at 4+). Blueberry opens a June band in South Europe, and US West has under 20 ripe tags
+# a band, so its 45% on 12 October there is US East's clock. The nuts and pawpaw keep their
+# months: their ripest-looking photos are last year's husks, shells and seeds on winter ground.
+# US blackberries mix spring dewberries with late Pacific blackberries, and the learned season
+# kept Kansas and Nebraska at 6-7 on 12 October: blackberry ships in Europe only. Sorrel's leaves
+# stay up all winter, so its share peaks in December, when few other plants are photographed,
+# and its spring reads under half of that. (Ramps, read as "leaves", counted its June budding
+# stalks and opened on 25 June; leaves_unbudded fixed that.)
+HELD_BACK = {"blueberry", "hazelnut", "pawpaw", "sloes", "sorrel", "walnut"}
 HELD_BACK_IN = {("blackberry", "US")}
 # Elderflower and elderberry are one plant: its sightings, read for flowers or for fruit.
 TAXA = {"elderflower": "elderberry"}
@@ -206,14 +213,23 @@ def download(out: Path) -> None:
         print(f"{species}: {len(rows):,} tagged sightings", flush=True)
 
 
+def stages(s: pd.DataFrame, ripe=()) -> dict:
+    """Each stage's sightings, read off their tags; ripe: the ids whose photo shows ripe fruit."""
+    leaves = s["no_flowers"] | s["budding"]
+    return {"fruiting": s["fruiting"], "flowering": s["flowering"], "budding": s["budding"],
+            "ripe": s["fruiting"] & s["id"].isin(set(ripe)),
+            "leaves": leaves & ~s["flowering"] & ~s["fruiting"],
+            "leaves_unbudded": s["no_flowers"] & ~s["budding"] & ~s["flowering"] & ~s["fruiting"],
+            "any": pd.Series(True, index=s.index)}
+
+
 def table(out: Path) -> pd.DataFrame:
     """Every tagged sighting of the app's plants once, with its calendar features and, per
     candidate, whether it is that species in the stage people pick."""
     frames = [pd.read_parquet(f).assign(species=f.stem) for f in sorted((out / "inat").glob("*.parquet"))]
     s = pd.concat([f for f in frames if len(f)], ignore_index=True)
-    leaves = s["no_flowers"] | s["budding"]
-    tagged = {"fruiting": s["fruiting"], "flowering": s["flowering"], "budding": s["budding"],
-              "leaves": leaves & ~s["flowering"] & ~s["fruiting"], "any": pd.Series(True, index=s.index)}
+    ripeness = out / "ripeness.parquet"
+    tagged = stages(s, pd.read_parquet(ripeness).query(f"p_ripe >= {RIPE}")["id"] if ripeness.exists() else ())
     for species, stage in STAGE.items():
         own = s["species"] == TAXA.get(species, species)
         s[species] = s["id"].isin(set(s.loc[own & tagged[stage], "id"]))
