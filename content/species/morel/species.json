@@ -92,9 +92,7 @@
           "sea_relevance": false,
           "distance_thresholds": {
             "water": 1500
-          },
-          "humidity_weight": 0,
-          "temp_weight": 0
+          }
         },
         "scoringReferences": [
           "https://data.fung.es/EU/NE/NE_species_params.txt",

@@ -116,7 +116,7 @@
         "available": true,
         "landCover": [42, 43, 52],
         "scoring": {
-          "optimal_temp": 13,
+          "optimal_temp": 10,
           "temp_sigma": 4,
           "min_temp": 3,
           "max_temp": 22,

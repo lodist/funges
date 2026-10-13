@@ -4,6 +4,8 @@ Date: 2026-10-13
 
 Tool: `backend/tools/fit_fruiting_parts.py`. Production is unchanged: a manifest already sets `temp_weight`, `humidity_weight` and `rain_weight` (#316), and 0 drops that part from the score's weighted mean.
 
+Update, the same evening: morel in North Europe is switched back. Its parts were tested for timing only, and on the training years its places rank much worse with temperature and humidity off: 0.673 to 0.539 against that day's bracket-fungus finds elsewhere, CI [-0.161, -0.103]. Every change now needs that place test too; see `2026-10-13-mushroom-temperature-optima.md`.
+
 ## Why
 
 42 mushroom species-regions have no fitted weather model (#300, #303) and keep their hand-set temperature, humidity and rain parts, weighted 1.75, 1.0 and 1.5. 40 have finds in the ERA5 training table (#300); pacific chanterelle and rocky king in US East have none. Against the same place 14 and 21 days either side, net of bracket-fungus days (where people walk anyway), some time their finds no better than the walkers: morel in North Europe at -0.015, hedgehog in US West at -0.026.

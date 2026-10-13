@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Switch off the hand-set weather parts that time a mushroom's finds the wrong way.
+"""Hand-set mushroom weather settings: switch a part off, or move the temperature optimum, where
+that times the finds better and ranks their places no worse.
 
 Where no fitted model ships (tools/fit_fruiting.py, tools/fit_fruiting_gbm.py), a mushroom's
 weather is its hand-set temperature, humidity and rain parts in a geometric mean weighted 1.75,
@@ -7,21 +8,32 @@ weather is its hand-set temperature, humidity and rain parts in a geometric mean
 Europe (-0.015 net of the bracket-fungus days), hedgehog in US West (-0.026). The test is
 fit_fruiting's: each find's own day against the same place 14 and 21 days either side, net of
 bracket-placebo days, on the training table's ERA5 days with the parts as
-tools/build_training_table.py stored them. Parts go one at a time while that lifts the net by MIN_GAIN; each year is scored with the
-parts chosen on the other years, and a species-region ships where that beats today's model in
-more years than chance (sign test p < 0.1, at least 6 years), as the fits ship. Where fewer than
-6 years have 50 finds, all its held-out years together: at least MIN_POOLED finds and a gain whose
-95% CI, resampling whole weeks within each year (a week's finds share its weather), is above 0.
-A part that times the finds badly can still rank places well, so a pick still has to pass the
-spatial test and the map before it is written.
+tools/build_training_table.py stored them. Parts go one at a time while that lifts the net by
+MIN_GAIN; each year is scored with the parts chosen on the other years, and a species-region
+ships where that beats today's model in more years than chance (sign test p < 0.1, at least 6
+years), as the fits ship. Where fewer than 6 years have 50 finds, all its held-out years
+together: at least MIN_POOLED finds and a gain whose 95% CI, resampling whole weeks within each
+year (a week's finds share its weather), is above 0.
+A part that times the finds badly can still tell their places apart: morel in North Europe timed
+its finds better without temperature and humidity (10 of 11 years) and ranked its places far
+worse (#320, switched back). So a pick also has to rank places no worse: each find's own day
+against up to K_PLACES bracket-fungus finds in its region that day elsewhere, on the full score
+(the place parts from the production scorer at each find's place), 95% CI resampling weeks. The
+summer 2026 strata (--spatial) and the map come after.
+
+--optima moves the temperature optimum instead (by SHIFTS, chosen and tested the same way), the
+temperature part rebuilt from the 12 days' ERA5 temperatures in training_lags/. ERA5 reads within
+about 1 C of the app's stored temperature (fit_fruiting.stored_corrections), so a move carries over.
 
     python backend/tools/fit_fruiting_parts.py --out ../era5_training             # -> parts_fruiting.csv
     python backend/tools/fit_fruiting_parts.py --out ../era5_training --spatial   # the picks on summer 2026
+    python backend/tools/fit_fruiting_parts.py --out ../era5_training --optima [--spatial]
 """
 import lightgbm  # noqa: F401  before pandas/pyarrow: see tests/conftest.py
 import argparse
 import json
 import sys
+from io import StringIO
 from pathlib import Path
 
 import numpy as np
@@ -29,13 +41,17 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "backend" / "tools"), str(ROOT / "backend"), str(ROOT / "scripts")]
-from fit_fruiting import (MIN_TEST_STRATA, PLACEBO, SHIP_MIN_YEARS, SLOTS, find_day_rank, sign_test, ships,  # noqa: E402
-                          strata, transform)
+from fit_fruiting import (CONTINENT, MIN_TEST_STRATA, PLACEBO, SHIP_MIN_YEARS, SLOTS, find_day_rank, sign_test,  # noqa: E402
+                          ships, strata, transform)
 from species_registry import get_species_params  # noqa: E402
 
 PARTS = {"temp_weight": ("temp", 1.75), "humidity_weight": ("humidity", 1.0), "rain_weight": ("moisture", 1.5)}
+# build_training_table stored every mushroom's parts at these weights (10 Oct 2026, before #320)
+STORED_WITH = {k: default for k, (_, default) in PARTS.items()}
 MIN_GAIN = 0.002
 MIN_POOLED = 150
+SHIFTS = np.arange(-6.0, 6.5, 1.0)       # C, the moves of the temperature optimum tried
+K_PLACES = 10
 
 
 def wide(scores: pd.DataFrame, cases: pd.DataFrame, column: str) -> np.ndarray:
@@ -74,15 +90,115 @@ def choose(parts, today, wind, days, target, placebo) -> dict:
         weights[k], current = 0.0, best
 
 
-def pooled_gain(held_out: list, seed: int = 291) -> tuple[float, list]:
+def temp_part(lags: np.ndarray, mu: float, sigma: float) -> np.ndarray:
+    """forecast_pipeline's temperature part from the 12 days before ([..., 12], C): a gaussian
+    around the optimum on each day, weighted most around 4 days back."""
+    d = np.arange(1, 13)
+    w = 0.6 * np.exp(-0.5 * ((d - 4) / 3.0) ** 2) + 0.4 * np.exp(-0.08 * d)
+    return np.clip((w / w.sum() * np.exp(-((lags - mu) ** 2) / (2 * sigma ** 2))).sum(axis=-1), 0, 1)
+
+
+def choose_shift(index_of, days, target, placebo) -> float:
+    """The move of the temperature optimum (one of SHIFTS) that ranks these find days highest,
+    kept where it beats today's optimum by MIN_GAIN."""
+    nets = {float(s): net(index_of(float(s)), days, target, placebo) for s in SHIFTS}
+    best = max(nets, key=nets.get)
+    return best if nets[best] >= nets[0.0] + MIN_GAIN else 0.0
+
+
+def held_out(index_of, choose_on, days, mine, plac, years, weeks) -> tuple[list, list]:
+    """Each year scored with the setting chosen on the other years: per year (today's net, the
+    choice's net) for the sign test, and every held-out stratum's change in rank for the pooled one."""
+    today = index_of(None)
+    results, changes = [], []
+    for year in sorted(set(years[mine])):
+        held = years == year
+        tc, tp = mine & held, plac & held
+        if not tp.any():
+            continue
+        after = index_of(choose_on(mine & ~held, plac & ~held))
+        (f0, f1), (p0, p1) = [[find_day_rank(i[s], days[s]) for i in (today, after)] for s in (tc, tp)]
+        changes.append(((f1 - f0, weeks[tc]), (p1 - p0, weeks[tp])))
+        if tc.sum() >= MIN_TEST_STRATA and tp.sum() >= MIN_TEST_STRATA:
+            results.append((int(year), float(f0.mean() - p0.mean()), float(f1.mean() - p1.mean())))
+    return results, changes
+
+
+def place_parts(species: str, params: dict, zone_curves: dict, sites, dates, base, static) -> tuple:
+    """The score's place parts at each case's own place on its find day, from the production
+    scorer (scripts/qa_spatial_weights.parts): the weighted log of the altitude, pH and water parts,
+    their total weight, and range prior x hosts x habitat x season. The weather given it is a
+    placeholder: the weather parts come from the training table."""
+    from scipy.spatial import cKDTree
+    from qa_spatial_weights import parts
+    where = base.reindex(sites)
+    near = cKDTree(static[["Latitude", "Longitude"]].to_numpy(float)).query(
+        where[["Latitude", "Longitude"]].fillna(0).to_numpy(float))[1]
+    frame = pd.DataFrame({
+        "Location_Id": sites, "Latitude": where["Latitude"].to_numpy(float), "Longitude": where["Longitude"].to_numpy(float),
+        "Date": pd.to_datetime(dates.astype("datetime64[D]")), "Elevation (m)": static["Altitude"].to_numpy(float)[near],
+        "ph_level": static["ph_level"].to_numpy(float)[near], "dist_m_water": static["dist_m_water"].to_numpy(float)[near],
+        "dist_m_sea": static["dist_m_sea"].to_numpy(float)[near], "climate_zone": static["climate_zone"].to_numpy()[near],
+        "Temperature (C)": 12.0, "Humidity (%)": 80.0, "TotalPrecipitation_mm": 2.0, "Wind Speed (m/s)": 3.0,
+        "Pressure (hPa)": np.nan})
+    placed, w = parts(frame, species, {species: params}, zone_curves)
+    has_ph = frame["ph_level"].notna().to_numpy()
+    log_sum = (w["altitude"] * np.log(placed["altitude"].to_numpy(float))
+               + np.where(has_ph, w["ph"] * np.log(placed["ph"].to_numpy(float)), 0.0)
+               + (w["water"] * np.log(placed["water"].to_numpy(float)) if w["water"] > 0 else 0.0))
+    return (log_sum, w["altitude"] + np.where(has_ph, w["ph"], 0.0) + w["water"],
+            placed["range"].to_numpy(float) * placed["season"].to_numpy(float))
+
+
+def full_score(index: np.ndarray, weights: dict, wind: np.ndarray, place: tuple) -> np.ndarray:
+    """The score from a weather index (weather() with these weights) and the place parts, combined
+    as calculate_mushroom_score does: one weighted geometric mean, then the multipliers."""
+    log_sum, place_weight, multiplier = place
+    weather_weight = sum(weights.values())
+    return np.exp((weather_weight * np.log(index / wind) + log_sum) / (weather_weight + place_weight)) * multiplier * wind
+
+
+def places(today: np.ndarray, after: np.ndarray, mine, plac, dates, sites, weeks, seed: int = 291) -> dict:
+    """The place test on the training years: each find's own day against up to K_PLACES
+    bracket-fungus finds in its region that day at other places (where people walked), ranked on
+    the find day's score ([case] values) with today's settings and the new ones, and a 95% CI of
+    the change resampling whole weeks."""
+    rng = np.random.default_rng(seed)
+    pool = pd.DataFrame({"i": np.flatnonzero(plac), "date": dates[plac], "site": sites[plac]})
+    by_date = dict(tuple(pool.groupby("date")))
+    finds, controls = [], []
+    for i in np.flatnonzero(mine):
+        other = by_date.get(dates[i])
+        other = other["i"].to_numpy()[other["site"].to_numpy() != sites[i]] if other is not None else []
+        if len(other) >= 3:
+            finds.append(i)
+            controls.append(rng.choice(other, min(K_PLACES, len(other)), replace=False))
+    if len(finds) < MIN_TEST_STRATA:
+        return {}
+    at = np.full((len(finds), K_PLACES + 1), -1)
+    at[:, 0] = finds
+    for row, c in enumerate(controls):
+        at[row, 1:len(c) + 1] = c
+    present = at >= 0
+    before, moved = (find_day_rank(np.where(present, v[np.clip(at, 0, None)], 0.0), present) for v in (today, after))
+    change, week = moved - before, weeks[np.asarray(finds)]
+    index = np.unique(week, return_inverse=True)[1]
+    total, count = np.bincount(index, change), np.bincount(index)
+    draws = [total[d].sum() / count[d].sum() for d in (rng.integers(0, len(total), len(total)) for _ in range(1000))]
+    return {"place finds": len(finds), "places today": round(float(before.mean()), 4),
+            "places after": round(float(moved.mean()), 4),
+            "places ci": [round(float(q), 4) for q in np.quantile(draws, [0.025, 0.975])]}
+
+
+def pooled_gain(changes: list, seed: int = 291) -> tuple[float, list]:
     """All held-out years together: the net's gain, each year weighted by its finds, and its 95% CI
-    resampling whole weeks of finds and of placebo days within each year. held_out: per year,
+    resampling whole weeks of finds and of placebo days within each year. changes: per year,
     ((finds' change in rank, their weeks), (placebo days' change, their weeks))."""
     def by_week(change, weeks):
         index = np.unique(weeks, return_inverse=True)[1]
         return np.bincount(index, change), np.bincount(index)
 
-    years = [(by_week(*finds), by_week(*placebo)) for finds, placebo in held_out]
+    years = [(by_week(*finds), by_week(*placebo)) for finds, placebo in changes]
     n = np.array([f[1].sum() for f, _ in years], float)
 
     def gain(draw):
@@ -100,10 +216,17 @@ def hand_set(species: str, region: str, fits: dict, gbms: dict) -> bool:
     return region not in fits.get(species, {}) and region not in gbms.get(species, {}).get("regions", {})
 
 
+def settings(pick) -> dict:
+    """A pick's settings for the manifest: its parts off, or its temperature optimum moved."""
+    if "move" in pick:
+        return {"optimal_temp": float(pick["optimal_temp"]) + float(pick["move"])}
+    return {k: 0 for k in str(pick["switched off"]).split()}
+
+
 def spatial(out: Path, picks: pd.DataFrame) -> pd.DataFrame:
     """Each pick on scripts/qa_spatial_weights.py's summer 2026 strata (a find against other
     species' finds in its region that week, on the app's stored weather): the find's rank with
-    today's parts and with the pick's parts off, the full score as the nightly run scores it."""
+    today's settings and with the pick's, the full score as the nightly run scores it."""
     import forecast_pipeline as fp
     from fit_plant_settings import paired_ci
     from qa_season_branch_replay import BRANCH_LAG_COLUMNS
@@ -126,88 +249,144 @@ def spatial(out: Path, picks: pd.DataFrame) -> pd.DataFrame:
         frame = fp.compute_lag_features(history, BRANCH_LAG_COLUMNS + fp.FRUITING_LAG_COLUMNS, LAG_DAYS,
                                         target=history.merge(need, on=["Location_Id", "Date"]))
         frame = frame.drop_duplicates(["Location_Id", "Date"], keep="last").reset_index(drop=True)
-        for species, off in zip(mine["species"], mine["switched off"]):
+        for _, pick in mine.iterrows():
+            species, change = pick["species"], settings(pick)
             table = layout[layout["species"] == species]
             if table["case"].nunique() < MIN_CASES:
                 continue
             here = frame[frame["Date"].isin(table["Date"].unique())].reset_index(drop=True)
             scored = here[["Location_Id", "Date"]].copy()
-            for name, p in (("before", params[species]), ("after", {**params[species], **{k: 0.0 for k in off.split()}})):
+            for name, p in (("before", params[species]), ("after", {**params[species], **change})):
                 scored[name] = fp.calculate_mushroom_score(here.copy(), {species: p}, zone_curves)[f"{species}_score"].to_numpy()
             x, mask, _ = stack(table.merge(scored, on=["Location_Id", "Date"], how="left"), ["before", "after"])
             before, after = find_day_rank(x[..., 0], mask), find_day_rank(x[..., 1], mask)
-            rows.append({"species": species, "region": region, "switched off": off, "finds": len(before),
+            rows.append({"species": species, "region": region, "change": change, "finds": len(before),
                          "today": round(float(before.mean()), 4), "after": round(float(after.mean()), 4),
                          "ci": paired_ci(after, before)})
             print(rows[-1], flush=True)
     return pd.DataFrame(rows)
 
 
+def daily_temps(out: Path, table: pd.DataFrame, cases: pd.DataFrame) -> np.ndarray:
+    """[case, 5 days, 12] ERA5 mean temperature of the 12 days before each stratum day
+    (training_lags/), a missing day as the day's own, as forecast_pipeline fills it."""
+    names = [f"tmean_d{d}" for d in range(1, 13)]
+    lags = pd.concat([pd.read_parquet(p, columns=["case_id", "offset", *names])
+                      for p in (out / "training_lags").glob("*.parquet")], ignore_index=True)
+    row = pd.Series(np.arange(len(cases)), index=cases["case_id"].to_numpy())
+    at = row.reindex(lags["case_id"].to_numpy()).to_numpy()
+    ok = np.isfinite(at)
+    temps = np.full((len(cases), len(SLOTS), 12), np.nan, np.float32)
+    temps[at[ok].astype(int), lags["offset"].map(SLOTS).to_numpy()[ok]] = lags.loc[ok, names].to_numpy(np.float32)
+    return np.where(np.isnan(temps), wide(table, cases, "temp_0")[..., None], temps)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True, help="the training folder (training/, training_scores/)")
     parser.add_argument("--spatial", action="store_true", help="the timing picks on the summer 2026 strata")
+    parser.add_argument("--optima", action="store_true", help="move the temperature optimum instead")
     args = parser.parse_args()
     out = Path(args.out)
+    name = "optima_fruiting" if args.optima else "parts_fruiting"
     if args.spatial:
-        picks = pd.read_csv(out / "parts_fruiting.csv")
+        picks = pd.read_csv(out / f"{name}.csv")
         result = spatial(out, picks[picks["ships"].astype(str) == "True"])
-        result.to_csv(out / "parts_fruiting_spatial.csv", index=False)
+        result.to_csv(out / f"{name}_spatial.csv", index=False)
         print(result.to_string(index=False))
         return
     table = pd.concat([t for t in (pd.read_parquet(p) for p in (out / "training").glob("*.parquet")) if len(t)], ignore_index=True)
     scores = pd.concat([s for s in (pd.read_parquet(p) for p in (out / "training_scores").glob("*.parquet")) if len(s)],
                        ignore_index=True)
     cases, _, mask = strata(table, transform(table))
+    temps = daily_temps(out, table, cases) if args.optima else None
     is_placebo = (cases["species"] == PLACEBO).to_numpy()
     fits = json.loads((ROOT / "backend" / "generated" / "fruiting_fit.json").read_text(encoding="utf-8")).get("models", {})
     gbms = json.loads((ROOT / "backend" / "generated" / "fruiting_gbm.json").read_text(encoding="utf-8")).get("models", {})
     params = {r: get_species_params(r) for r in ("NE", "SE", "USE", "USW")}
-    years, regions = cases["year"].to_numpy(), cases["region"].to_numpy()
+    years_all, regions = cases["year"].to_numpy(), cases["region"].to_numpy()
     found = pd.to_datetime(cases["find_date"])
-    weeks = (found.dt.isocalendar().year * 100 + found.dt.isocalendar().week).to_numpy(int)
+    weeks_all = (found.dt.isocalendar().year * 100 + found.dt.isocalendar().week).to_numpy(int)
+    dates_all = found.to_numpy().astype("datetime64[D]").astype(np.int64)
+    sites_all = (table[table["offset"] == 0].drop_duplicates("case_id").set_index("case_id")["Location_Id"]
+                 .reindex(cases["case_id"]).to_numpy())
+    import forecast_pipeline as fp
+    from fit_plant_settings import static_info
+    from qa_spatial_weights import region_config
+    fp.load_dotenv(ROOT / ".env")
+    fp.load_dotenv(ROOT / ".env.secret")
+    base = pd.concat([pd.read_csv(StringIO(fp.r2_fetch(fp.get_required_env(f"{r}_BASE_DATA")).decode("utf-8")),
+                                  usecols=["Location_Id", "Latitude", "Longitude"]) for r in ("NE", "SE", "USE", "USW")]
+                     ).drop_duplicates("Location_Id").set_index("Location_Id")
+    statics, specs = {c: static_info(c) for c in ("EU", "US")}, {}
     rows = []
     for species in sorted(set(cases["species"]) - {PLACEBO}):
         mine_all = (cases["species"] == species).to_numpy()
         own = scores[scores["species"] == species]
-        parts = {name: wide(own, cases, name) for name, _ in PARTS.values()}
-        stored = wide(own, cases, "weather_part")
+        parts_all = {name: wide(own, cases, name) for name, _ in PARTS.values()}
+        stored_all = wide(own, cases, "weather_part")
         for region in sorted(set(regions[mine_all])):
             if region not in params or species not in params[region] or not hand_set(species, region, fits, gbms):
                 continue
             p = params[region][species]
             today = {k: float(p.get(k, default)) for k, (_, default) in PARTS.items()}
-            base = weather(parts, today, np.ones_like(stored))
-            wind = np.where(base > 0, stored / base, 1.0)        # wind-sensitive species: stored / rebuilt
-            days = mask & np.isfinite(stored)
-            mine = mine_all & (regions == region) & days[:, 0]
-            plac = is_placebo & (regions == region) & days[:, 0]
-            results, held_out = [], []
-            for year in sorted(set(years[mine])):
-                held = years == year
-                tc, tp = mine & held, plac & held
-                if not tp.any():
-                    continue
-                after = weather(parts, choose(parts, today, wind, days, mine & ~held, plac & ~held), wind)
-                (f0, f1), (p0, p1) = [[find_day_rank(i[s], days[s]) for i in (stored, after)] for s in (tc, tp)]
-                held_out.append(((f1 - f0, weeks[tc]), (p1 - p0, weeks[tp])))
-                if tc.sum() >= MIN_TEST_STRATA and tp.sum() >= MIN_TEST_STRATA:
-                    results.append((int(year), float(f0.mean() - p0.mean()), float(f1.mean() - p1.mean())))
-            final = choose(parts, today, wind, days, mine, plac)
-            off = sorted(k for k in PARTS if today[k] > 0 and final[k] == 0)
+            if args.optima and today["temp_weight"] <= 0:
+                continue
+            here = np.flatnonzero((mine_all | is_placebo) & (regions == region) & mask[:, 0] & np.isfinite(stored_all[:, 0]))
+            parts = {name: part[here] for name, part in parts_all.items()}
+            stored, years, weeks = stored_all[here], years_all[here], weeks_all[here]
+            wind = stored / weather(parts, STORED_WITH, np.ones_like(stored))   # 1 unless wind-sensitive
+            days = mask[here] & np.isfinite(stored)
+            mine, plac = mine_all[here], is_placebo[here]
+            if args.optima:
+                mu, sigma, lags = float(p["optimal_temp"]), float(p["temp_sigma"]), temps[here]
+                cache = {}
+
+                def index_of(shift):
+                    shift = shift or 0.0
+                    if shift not in cache:
+                        cache[shift] = weather({**parts, "temp": temp_part(lags, mu + shift, sigma)}, today, wind)
+                    return cache[shift]
+
+                def choose_on(target, placebo):
+                    return choose_shift(index_of, days, target, placebo)
+            else:
+                def index_of(weights):
+                    return weather(parts, weights or today, wind)
+
+                def choose_on(target, placebo):
+                    return choose(parts, today, wind, days, target, placebo)
+            results, changes = held_out(index_of, choose_on, days, mine, plac, years, weeks)
+            final = choose_on(mine, plac)
+            if args.optima:
+                rebuilt = np.clip(temp_part(lags, mu, sigma), 0.02, 1) - np.clip(parts["temp"], 0.02, 1)
+                change = {"optimal_temp": mu, "move": final, "rebuilt vs stored": round(float(np.nanmax(np.abs(rebuilt))), 4)}
+                changed = final != 0
+            else:
+                off = sorted(k for k in PARTS if today[k] > 0 and final[k] == 0)
+                change, changed = {"switched off": " ".join(off)}, bool(off)
+            if changed:
+                if region not in specs:
+                    specs[region] = fp._load_species_and_curves(region_config(region))
+                place = place_parts(species, specs[region][0][species], specs[region][1], sites_all[here],
+                                    dates_all[here], base, statics[CONTINENT[region]])
+                after_weights = today if args.optima else final
+                change.update(places(full_score(index_of(None)[:, 0], today, wind[:, 0], place),
+                                     full_score(index_of(final)[:, 0], after_weights, wind[:, 0], place),
+                                     mine, plac, dates_all[here], sites_all[here], weeks))
             wins, pval, gain = sign_test(results) if results else (0, 1.0, 0.0)
-            pooled, ci = pooled_gain(held_out) if held_out else (0.0, [0.0, 0.0])
+            pooled, ci = pooled_gain(changes) if changes else (0.0, [0.0, 0.0])
             thin = len(results) < SHIP_MIN_YEARS
+            timing = mine.sum() >= MIN_POOLED and ci[0] > 0 if thin else ships(results)
             rows.append({"species": species, "region": region, "finds": int(mine.sum()), "years": len(results),
                          "wins": wins, "p": round(pval, 4), "mean gain": round(gain, 4),
                          "pooled gain": round(pooled, 4), "pooled ci": ci,
-                         "today net": round(net(stored, days, mine, plac), 4),
-                         "after net": round(net(weather(parts, final, wind), days, mine, plac), 4),
-                         "switched off": " ".join(off),
-                         "ships": bool(off) and (mine.sum() >= MIN_POOLED and ci[0] > 0 if thin else ships(results))})
+                         "today net": round(net(index_of(None), days, mine, plac), 4),
+                         "after net": round(net(index_of(final), days, mine, plac), 4), **change,
+                         "ships": changed and timing and change.get("places ci", [0, 0])[1] >= 0})
             print(rows[-1], flush=True)
     result = pd.DataFrame(rows)
-    result.to_csv(out / "parts_fruiting.csv", index=False)
+    result.to_csv(out / f"{name}.csv", index=False)
     pd.set_option("display.width", 220)
     print(result.to_string(index=False))
 
