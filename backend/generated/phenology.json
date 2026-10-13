@@ -4,7 +4,9 @@
   "daylength_h",
   "lat",
   "norm_tmean_year",
-  "norm_rain_year"
+  "norm_rain_year",
+  "norm_tmean_day",
+  "gdd_normal"
  ],
  "weeks": [
   4,
@@ -64,18 +66,21 @@
  "shipped_if": "ranks the species' stage sightings above all plant sightings better than today's season factor in more held-out years than chance (sign test p < 0.1, at least 6 years)",
  "continents": {
   "EU": {
-   "file": "models/phenology/20261012-2053/phenology_EU.npz",
-   "sha256": "016a08428dce6198944a9e88d1f65242d7d558c63a9c80707084cf5b1a0abecf",
+   "file": "models/phenology/20261013-1220/phenology_EU.npz",
+   "sha256": "06d1ac2426d2e21744b4022c1bbf35f29e18be2d8d2670cbb7bb786844a56cc7",
    "species": [
     "blackberry",
+    "daisy",
     "elderflower",
     "garlic",
-    "rose_hips"
+    "rose_hips",
+    "strawberry",
+    "violets"
    ]
   },
   "US": {
-   "file": "models/phenology/20261012-2053/phenology_US.npz",
-   "sha256": "f301b8400ec3f7f04b035e8093a2c057944f9b8b677178c1f73fff54e87ef5c3",
+   "file": "models/phenology/20261013-1220/phenology_US.npz",
+   "sha256": "4a473831363fd4330de54cf996a34e7715ee6f6142afecee66ecbf99050bcec5",
    "species": [
     "elderflower",
     "rose_hips"

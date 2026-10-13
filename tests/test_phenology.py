@@ -5,6 +5,7 @@ import json
 
 import numpy as np
 import pandas as pd
+import pytest
 
 import forecast_pipeline as fp
 import seasonality as sn
@@ -86,3 +87,18 @@ def test_a_tail_below_a_tenth_of_the_peak_stays_closed():
     params = {"season_months": [6, 7], "phenology": tail}
     assert sn.season_gate_for_species(row, "x", params, {})[0] == 0.0
     assert sn.phenology_gate(1.0) == 1.0 and 0 < sn.phenology_gate(0.2) < 1
+
+
+def test_the_season_reads_warmth_to_date_from_the_normals():
+    """A place's normal warmth since 1 January (degree-days over 5 C) and its normal temperature
+    that day: the learned season's clock, so a southern spring does not leak north."""
+    import numpy as np
+    import fit_phenology as fph
+    lat = np.array([60.0, 50.0, 40.0])
+    grid = {"lat": lat, "lon": np.array([0.0, 1.0]),
+            "tmean": np.stack([np.full((3, 2), t) for t in (0, 0, 5, 10, 15, 20, 22, 20, 15, 10, 5, 0)], axis=0) +
+                     np.array([-6.0, 0.0, 6.0])[None, :, None],
+            "rain": np.ones((12, 3, 2)), "rh": np.ones((12, 3, 2))}
+    rows = fph.calendar_rows(np.array([60.0, 40.0, 40.0]), np.zeros(3), np.array([105, 105, 196]), grid)
+    assert rows.loc[0, "gdd_normal"] < rows.loc[1, "gdd_normal"] < rows.loc[2, "gdd_normal"]  # cold north, then later in the year
+    assert rows.loc[1, "norm_tmean_day"] == pytest.approx(16.0, abs=0.6)   # mid-April between April 10 and May 15, +6
