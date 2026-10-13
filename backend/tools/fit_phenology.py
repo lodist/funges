@@ -69,12 +69,9 @@ SEASON = [s for s, stage in STAGE.items() if stage != "any" and s != "dandelion"
 # in December, when few other plants are photographed, and its spring reads under half of that.
 # Blueberry passes the sightings yet opens unripe places on the map: South Europe's mountains on
 # 25 May (0% to 40% of in-range places at 4+), US East on 20 April, US West on 12 October; few
-# people photograph those places then. In the US, strawberry and violets shut the north while it
-# still fruits and flowers (strawberry 92% to 48% on 25 June, violets 91% to 0% on 25 May): in late
-# spring every plant flowers, the sightings they are measured against swell, and an early plant's
-# share drops while it is still there.
+# people photograph those places then.
 HELD_BACK = {"elderberry", "hazelnut", "walnut", "pawpaw", "sloes", "ramps", "sorrel", "blueberry"}
-HELD_BACK_IN = {("blackberry", "US"), ("strawberry", "US"), ("violets", "US")}
+HELD_BACK_IN = {("blackberry", "US")}
 # Elderflower and elderberry are one plant: its sightings, read for flowers or for fruit.
 TAXA = {"elderflower": "elderberry"}
 DEAD_MONTH, OPEN = 0.10, 0.5     # a month under a tenth of the peak per sighting must stay below half open
