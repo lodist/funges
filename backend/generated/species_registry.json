@@ -452,9 +452,7 @@
             "sea_relevance": false,
             "distance_thresholds": {
               "water": 1500
-            },
-            "humidity_weight": 0,
-            "temp_weight": 0
+            }
           },
           "scoringReferences": [
             "https://data.fung.es/EU/NE/NE_species_params.txt",
@@ -4798,7 +4796,7 @@
           "landCover": [42, 43, 52],
           "landCoverScheme": "NLCD",
           "scoring": {
-            "optimal_temp": 13,
+            "optimal_temp": 10,
             "temp_sigma": 4,
             "min_temp": 3,
             "max_temp": 22,
@@ -5760,7 +5758,7 @@
           "landCover": [311, 312, 313],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 16,
+            "optimal_temp": 15,
             "temp_sigma": 5,
             "min_temp": 5,
             "max_temp": 30,
