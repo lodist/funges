@@ -131,7 +131,11 @@
           "sea_relevance": false,
           "distance_thresholds": {
             "water": 1000
-          }
+          },
+          "humidity_weight": 0,
+          "ph_weight": 0,
+          "rain_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://data.fung.es/EU/SE/SE_species_params.txt",
@@ -206,7 +210,10 @@
           "sea_relevance": false,
           "distance_thresholds": {
             "water": 1000
-          }
+          },
+          "humidity_weight": 0,
+          "ph_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://data.fung.es/USA/USW/USW_species_params.txt",

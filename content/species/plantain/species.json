@@ -160,7 +160,10 @@
           "wind_sensitive": false,
           "season_months": [4, 5, 6, 7, 8, 9, 10],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "ph_weight": 0,
+          "rain_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://www.gbif.org/species/3189767",

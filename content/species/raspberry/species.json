@@ -92,7 +92,9 @@
           "sea_relevance": false,
           "distance_thresholds": {
             "water": 2000
-          }
+          },
+          "rain_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://data.fung.es/EU/NE/NE_species_params.txt",
@@ -204,7 +206,10 @@
           "sea_relevance": false,
           "distance_thresholds": {
             "water": 2000
-          }
+          },
+          "alt_weight": 0,
+          "humidity_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://data.fung.es/USA/USW/USW_species_params.txt"
