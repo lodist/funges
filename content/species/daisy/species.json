@@ -125,7 +125,8 @@
           "wind_sensitive": false,
           "season_months": [2, 3, 4, 5],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "ph_weight": 0
         },
         "scoringReferences": [
           "https://www.gbif.org/species/3117424",
@@ -193,7 +194,8 @@
           "wind_sensitive": false,
           "season_months": [2, 3, 4, 5, 6],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://www.gbif.org/species/3117424",

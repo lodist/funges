@@ -90,7 +90,11 @@
           "wind_sensitive": false,
           "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "alt_weight": 0,
+          "humidity_weight": 0,
+          "ph_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://data.fung.es/EU/NE/NE_species_params.txt",
@@ -159,7 +163,9 @@
           "wind_sensitive": false,
           "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "humidity_weight": 0,
+          "rain_weight": 0
         },
         "scoringReferences": [
           "https://data.fung.es/USA/USE/USE_species_params.txt"
@@ -193,7 +199,11 @@
           "wind_sensitive": false,
           "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "alt_weight": 0,
+          "humidity_weight": 0,
+          "ph_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://data.fung.es/USA/USW/USW_species_params.txt"

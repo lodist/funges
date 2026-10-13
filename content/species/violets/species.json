@@ -125,7 +125,8 @@
           "wind_sensitive": false,
           "season_months": [2, 3, 4],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "alt_weight": 0
         },
         "scoringReferences": [
           "https://www.gbif.org/species/5331181",
@@ -159,7 +160,9 @@
           "wind_sensitive": false,
           "season_months": [3, 4, 5],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "ph_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://www.gbif.org/species/5331181",
@@ -193,7 +196,9 @@
           "wind_sensitive": false,
           "season_months": [1, 2, 3, 4],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "alt_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://www.gbif.org/species/5331181",

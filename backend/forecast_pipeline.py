@@ -1297,8 +1297,13 @@ def calculate_mushroom_score(df, species_params, zone_curves):
         # Weight of each sub-score. Rain sits above humidity because it is what makes
         # fungi fruit. Plants whose flowers, fruit or nuts do not wait for rain set a
         # lower `rain_weight`: against 2026 sightings in the forageable stage, 0 scored
-        # them higher and told their places from random ones better than 1.5 did.
-        wT, wH, wA, wPH = 1.75, 1.0, 0.75, 1.0
+        # them higher and told their places from random ones better than 1.5 did. Any part
+        # can be set the same way; 0 drops a part that ranks a plant's places the wrong way
+        # (tools/fit_plant_settings.py --parts).
+        wT = float(params.get("temp_weight", 1.75))
+        wH = float(params.get("humidity_weight", 1.0))
+        wA = float(params.get("alt_weight", 0.75))
+        wPH = float(params.get("ph_weight", 1.0))
         wW = float(params.get("rain_weight", 1.5))
         wWater = 0.7 if water_active else 0.0
 
