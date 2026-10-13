@@ -17,7 +17,7 @@ reads it per 0.25 degree cell and week as a ratio to the place's own peak week
 Each year is held out in turn: does the learned season, as production computes it, rank the
 species' stage sightings above everyone's sightings that year better than today's season
 factor? A species ships if it does in more years than chance would give (sign test p < 0.1,
-at least 6 years), and if its learned season stays shut in the months where the tags show
+at least 6 years), and if its learned season stays shut, in each latitude band where it grows, in the months where the tags show
 under a tenth of its peak per sighting (DEAD_MONTH): fruit that hangs on for months, nuts on
 the ground and green fruit tagged as fruiting can spread a stage over half the year.
 
@@ -67,17 +67,33 @@ SEASON = [s for s, stage in STAGE.items() if stage != "any" and s != "dandelion"
 # budding stalks, leafless by late June: the learned season shut it on 25 May and opened it
 # on 25 June (20-47% of places at 4+). Sorrel's leaves stay up all winter, so its share peaks
 # in December, when few other plants are photographed, and its spring reads under half of that.
-HELD_BACK = {"elderberry", "hazelnut", "walnut", "pawpaw", "sloes", "ramps", "sorrel"}
-HELD_BACK_IN = {("blackberry", "US")}
+# Blueberry passes the sightings yet opens unripe places on the map: South Europe's mountains on
+# 25 May (0% to 40% of in-range places at 4+), US East on 20 April, US West on 12 October; few
+# people photograph those places then. In the US, strawberry and violets shut the north while it
+# still fruits and flowers (strawberry 92% to 48% on 25 June, violets 91% to 0% on 25 May): in late
+# spring every plant flowers, the sightings they are measured against swell, and an early plant's
+# share drops while it is still there.
+HELD_BACK = {"elderberry", "hazelnut", "walnut", "pawpaw", "sloes", "ramps", "sorrel", "blueberry"}
+HELD_BACK_IN = {("blackberry", "US"), ("strawberry", "US"), ("violets", "US")}
 # Elderflower and elderberry are one plant: its sightings, read for flowers or for fruit.
 TAXA = {"elderflower": "elderberry"}
 DEAD_MONTH, OPEN = 0.10, 0.5     # a month under a tenth of the peak per sighting must stay below half open
+# Dead months are judged per region and BAND_DEGREES latitude band, against the band's own peak,
+# where the band holds at least BAND_MIN_STAGE stage sightings: across a whole region, February
+# was "dead" for violets in US East although it is their peak at 32-36 N, while daisy's January
+# opening at 32-40 N hid in the average.
+BAND_DEGREES, BAND_MIN_STAGE = 4, 20
 INAT = "https://api.inaturalist.org"
 FIELDS = ("id,observed_on,location,positional_accuracy,quality_grade,taxon.id,taxon.name,"
           "annotations.controlled_attribute_id,annotations.controlled_value_id,annotations.vote_score")
 BOXES = {"EU": (27.0, -25.0, 72.0, 46.0), "US": (24.0, -126.0, 50.5, -66.0)}
 STAGES = {13: "flowering", 14: "fruiting", 15: "budding", 21: "no_flowers"}
-CALENDAR = ["doy", "daylength_h", "lat", "norm_tmean_year", "norm_rain_year"]
+CALENDAR = ["doy", "daylength_h", "lat", "norm_tmean_year", "norm_rain_year", "norm_tmean_day", "gdd_normal"]
+# The season's clock is warmth: day of year and latitude alone let a southern spring leak north
+# (violets open in February at 36-44 N in US East, where the tags show none). Each place's normal
+# temperature on the day and its normal degree-days over GDD_BASE since 1 January say when its own
+# spring arrives.
+GDD_BASE = 5.0
 PARAMS = {"objective": "binary", "learning_rate": 0.05, "num_leaves": 15, "min_data_in_leaf": 50,
           "feature_fraction": 0.9, "bagging_fraction": 0.8, "bagging_freq": 1, "verbose": -1, "seed": 291}
 MIN_TEST, SHIP_P, SHIP_MIN_YEARS = 30, 0.1, 6
@@ -90,13 +106,35 @@ def daylength(lat, doy):
     return 24 / np.pi * np.arccos(np.clip(x, -1, 1))
 
 
+def thermal(grid, lats, lons, doys):
+    """(normal temperature on the day, normal degree-days over GDD_BASE since 1 January) per row,
+    from its cell's monthly normals blended between mid-months; worked out once per cell."""
+    lat, lon = grid["lat"], grid["lon"]
+    i = np.rint((lat[0] - lats) / (lat[0] - lat[1])).astype(int)
+    j = np.rint((lons - lon[0]) / (lon[1] - lon[0])).astype(int)
+    inside = (i >= 0) & (i < len(lat)) & (j >= 0) & (j < len(lon))
+    cell = np.where(inside, np.clip(i, 0, len(lat) - 1) * len(lon) + np.clip(j, 0, len(lon) - 1), -1)
+    cells, at = np.unique(cell, return_inverse=True)
+    monthly = np.full((12, len(cells)), np.nan)
+    monthly[:, cells >= 0] = np.asarray(grid["tmean"], float).reshape(12, -1)[:, cells[cells >= 0]]
+    position = (np.arange(1, 366) - 15.0) / (365.25 / 12)               # 0 = mid-January
+    before = np.floor(position).astype(int)
+    weight = (position - before)[:, None]
+    daily = (1 - weight) * monthly[before % 12] + weight * monthly[(before + 1) % 12]
+    gdd = np.cumsum(np.clip(daily - GDD_BASE, 0, None), axis=0)
+    day = np.clip(np.asarray(doys, int), 1, 365) - 1
+    return daily[day, at], gdd[day, at]
+
+
 def calendar_rows(lats, lons, doys, grid):
     """The calendar features for places and days of the year, from one continent's normals."""
     lats, lons, doys = (np.asarray(v, float) for v in (lats, lons, doys))
     months = [era5_normals.lookup(grid, lats, lons, np.full(len(lats), m)) for m in range(1, 13)]
+    t_day, gdd = thermal(grid, lats, lons, doys)
     return pd.DataFrame({"doy": doys, "daylength_h": daylength(lats, doys), "lat": lats,
                          "norm_tmean_year": np.mean([m["norm_tmean"] for m in months], axis=0),
-                         "norm_rain_year": np.mean([m["norm_rain"] for m in months], axis=0)})
+                         "norm_rain_year": np.mean([m["norm_rain"] for m in months], axis=0),
+                         "norm_tmean_day": t_day, "gdd_normal": gdd})
 
 
 def week_ratio(model, lats, lons, grid):
@@ -241,20 +279,18 @@ def fit(train: pd.DataFrame, species: str) -> lgb.Booster:
 
 
 def dead_months(t: pd.DataFrame, species: str, grids: dict) -> list:
-    """Region-months where the tags show under DEAD_MONTH of the peak per sighting, yet the
-    learned season, fitted on every year, is on average at least OPEN at the sightings."""
-    factor = shipped_factor(fit(t, species), t, grids)
-    month = t["date"].dt.month
-    found = []
-    for region, here in t.groupby("region").groups.items():
-        rows = t.loc[here]
-        share = rows.groupby(month[here])[species].mean().reindex(range(1, 13), fill_value=0)
-        if share.max() <= 0:
-            continue
-        opened = pd.Series(factor[t.index.get_indexer(here)], index=here).groupby(month[here]).mean()
-        found += [f"{region}-{m}" for m in range(1, 13)
-                  if share[m] / share.max() < DEAD_MONTH and opened.get(m, 0) >= OPEN and (month[here] == m).sum() >= 30]
-    return found
+    """Region-band-months where the tags show under DEAD_MONTH of the band's peak per sighting,
+    yet the learned season, fitted on every year, is on average at least OPEN at the sightings and
+    opens more than today's factor there: a month today's months open as well is no reason to keep
+    them (elderflower at 44-48 N in US West in May: learned 0.77, its months 1.0)."""
+    g = t.assign(factor=shipped_factor(fit(t, species), t, grids), month=t["date"].dt.month,
+                 band=(t["lat"] // BAND_DEGREES * BAND_DEGREES).astype(int)).groupby(["region", "band", "month"]).agg(
+        n=(species, "size"), share=(species, "mean"), opened=("factor", "mean"), today=("today", "mean"))
+    peak = g["share"].groupby(level=["region", "band"]).transform("max")
+    stage = (g["n"] * g["share"]).groupby(level=["region", "band"]).transform("sum")
+    dead = g[(stage >= BAND_MIN_STAGE) & (g["n"] >= 30) & (g["share"] < DEAD_MONTH * peak)
+             & (g["opened"] >= OPEN) & (g["opened"] > g["today"])]
+    return [f"{region}-{band}N-{month}" for region, band, month in dead.index]
 
 
 def evaluate(s: pd.DataFrame, only=None) -> pd.DataFrame:
@@ -288,6 +324,20 @@ def evaluate(s: pd.DataFrame, only=None) -> pd.DataFrame:
     return pd.DataFrame(results)
 
 
+def shipping(result: pd.DataFrame) -> dict:
+    """{continent: species} that ship there: better than today's months on the held-out years,
+    no dead band-month open in that continent, not held back. A dead month belongs to a place:
+    elderflower opens early at 44-48 N in US West in May and stays on its months there, not in Europe."""
+    won = result[(result["years"] >= SHIP_MIN_YEARS) & (result["p"] < SHIP_P) & (result["learned"] > result["today"])]
+    out = {}
+    for continent, regions in (("EU", ("NE", "SE")), ("US", ("USE", "USW"))):
+        out[continent] = sorted(
+            r.species for r in won.itertuples()
+            if r.species not in HELD_BACK and (r.species, continent) not in HELD_BACK_IN
+            and not any(d.split("-")[0] in regions for d in str(r.dead_months_open if isinstance(r.dead_months_open, str) else "").split()))
+    return out
+
+
 def export(s: pd.DataFrame, result: pd.DataFrame) -> None:
     """Per continent one file on R2 (R2_FOLDER/<date>/phenology_<EU|US>.npz: the normals
     grid's lat/lon, the species, and each week's ratio x 254 as uint8, 255 off the grid)
@@ -299,15 +349,16 @@ def export(s: pd.DataFrame, result: pd.DataFrame) -> None:
     client, bucket = fp._r2_client(), fp.get_required_env("R2_BUCKET_NAME")
     folder = f"{R2_FOLDER}/{time.strftime('%Y%m%d-%H%M')}"
     params = {r: get_species_params(r) for r in ("NE", "SE", "USE", "USW")}
-    species = sorted(set(result.loc[result["ships"], "species"]) - HELD_BACK)
+    ships = shipping(result)
+    species = sorted(set(ships["EU"]) | set(ships["US"]))
     models = {sp: fit(scope(s, sp, params), sp) for sp in species}
     spec = {"features": CALENDAR, "weeks": sn.PHENOLOGY_WEEK_DOY.tolist(), "trained": f"2016-{s['year'].max()}",
             "shipped_if": f"ranks the species' stage sightings above all plant sightings better than today's season "
                           f"factor in more held-out years than chance (sign test p < {SHIP_P}, at least {SHIP_MIN_YEARS} years)",
             "continents": {}}
     for continent, region in (("EU", "NE"), ("US", "USE")):
-        here = [sp for sp in species if (sp, continent) not in HELD_BACK_IN
-                and any(params[r].get(sp) for r in (("NE", "SE") if continent == "EU" else ("USE", "USW")))]
+        here = [sp for sp in ships[continent]
+                if any(params[r].get(sp) for r in (("NE", "SE") if continent == "EU" else ("USE", "USW")))]
         grid = era5_normals.load(region)
         la, lo = np.meshgrid(grid["lat"], grid["lon"], indexing="ij")
         lats, lons = la.ravel(), lo.ravel()
