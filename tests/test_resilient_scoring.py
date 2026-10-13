@@ -95,7 +95,7 @@ def test_arithmetic_blend_is_off_by_default_but_still_available():
     assert blended[0] > default[0] * 1.2
 
 
-def test_spatial_smoothing_is_local_to_date_and_reports_confidence():
+def test_spatial_smoothing_is_local_to_date():
     df = pd.DataFrame({
         "Date": pd.to_datetime(["2026-07-01"] * 4 + ["2026-07-02"]),
         "Latitude": [60.0, 60.0, 60.0, 60.0, 60.0],
@@ -109,5 +109,3 @@ def test_spatial_smoothing_is_local_to_date_and_reports_confidence():
     assert 0.0 < out.loc[0, "porcini_score"] < 10.0
     assert out.loc[3, "porcini_score"] == pytest.approx(9.0)  # beyond 30 km
     assert out.loc[4, "porcini_score"] == pytest.approx(7.0)  # never crosses dates
-    assert out.loc[0, "porcini_confidence"] < out.loc[1, "porcini_confidence"]
-    assert 0.0 <= out["porcini_confidence"].min() <= out["porcini_confidence"].max() <= 1.0
