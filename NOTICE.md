@@ -121,10 +121,24 @@ offline, to measure accuracy.
 
 ## ERA5 reanalysis
 
-Past days' rain in the forecast is replaced with **ERA5** hourly total precipitation
-once it is published, about five days after the day (`backend/era5_rain.py`). ERA5 is
-distributed under the Licence to use Copernicus Products, which is free and permits
-commercial use, with this attribution:
+Funges uses three **ERA5** datasets from the Copernicus Climate Change Service (C3S)
+Climate Data Store. Each is licensed under the Creative Commons Attribution 4.0
+International licence (CC BY 4.0, <https://creativecommons.org/licenses/by/4.0/>),
+which permits commercial use with attribution. Funges modifies all three:
+
+- **ERA5 hourly data on single levels.** Once ERA5 publishes a day, about five days
+  later, its hourly total precipitation, summed to each place's local day, replaces
+  that day's forecast rain (`backend/era5_rain.py`).
+- **ERA5 monthly averaged data on single levels.** Its 2016–2025 monthly means of
+  temperature, dew point and precipitation become each place's normal rain,
+  temperature and humidity for the month, which the scoring reads the weather
+  against (`backend/tools/build_era5_normals.py`, shipped as
+  `backend/generated/era5_normals_*.npz`).
+- **ERA5 hourly time-series data on single levels.** Daily weather at past finds,
+  2016 onwards, on which the fruiting models in `backend/generated/fruiting_fit.json`
+  and `fruiting_gbm.json` were fitted (`backend/tools/download_era5_points.py`).
+
+Attribution:
 
 - "Contains modified Copernicus Climate Change Service information 2026. Neither the
   European Commission nor ECMWF is responsible for any use that may be made of the
@@ -132,6 +146,11 @@ commercial use, with this attribution:
 - Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single
   levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data
   Store (CDS). <https://doi.org/10.24381/cds.adbb2d47>
+- Copernicus Climate Change Service (C3S) (2019). ERA5 monthly averaged data on single
+  levels from 1940 to present. C3S Climate Data Store (CDS).
+  <https://doi.org/10.24381/cds.f17050d7>
+- Copernicus Climate Change Service (C3S) (2025). ERA5 hourly time-series data on
+  single levels from 1940 to present. ECMWF. <https://doi.org/10.24381/1cf1ad76>
 
 ## Cherry blossom forecast
 
