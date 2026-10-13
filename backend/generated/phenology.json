@@ -66,7 +66,7 @@
  "shipped_if": "ranks the species' stage sightings above all plant sightings better than today's season factor in more held-out years than chance (sign test p < 0.1, at least 6 years)",
  "continents": {
   "EU": {
-   "file": "models/phenology/20261013-1220/phenology_EU.npz",
+   "file": "models/phenology/20261013-1413/phenology_EU.npz",
    "sha256": "06d1ac2426d2e21744b4022c1bbf35f29e18be2d8d2670cbb7bb786844a56cc7",
    "species": [
     "blackberry",
@@ -79,11 +79,13 @@
    ]
   },
   "US": {
-   "file": "models/phenology/20261013-1220/phenology_US.npz",
-   "sha256": "4a473831363fd4330de54cf996a34e7715ee6f6142afecee66ecbf99050bcec5",
+   "file": "models/phenology/20261013-1413/phenology_US.npz",
+   "sha256": "b1372cb8d98c5443e27aa37ca80d60b0f8f7999c2d5e3c8c08986c317cec9fcf",
    "species": [
     "elderflower",
-    "rose_hips"
+    "rose_hips",
+    "strawberry",
+    "violets"
    ]
   }
  }
