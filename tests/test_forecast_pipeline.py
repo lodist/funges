@@ -473,3 +473,13 @@ def test_a_composite_scores_the_best_of_its_members_on_the_forward_days(tmp_path
     best = forward[["sp_water_score", "sp_curve_score"]].astype(float).max(axis=1)
     assert np.allclose(forward["group_score"].astype(float), best, atol=0.01)   # members are rounded to 2 places
     assert out.loc[out["Date"] < fx.TODAY, "group_score"].isna().all()      # frozen days are not rescored
+
+
+def test_smoothing_writes_no_confidence_columns():
+    """The per-species confidence was never read and was ~6 GB of South Europe's master in the
+    nightly upload's memory: smoothing returns the scores alone."""
+    df = pd.DataFrame({"Date": pd.to_datetime(["2026-10-13"] * 3), "Latitude": [45.0, 45.01, 45.02],
+                       "Longitude": [9.0, 9.01, 9.02], "a_score": [2.0, 4.0, 6.0]})
+    out = fp.spatial_smooth_scores(df, ["a_score"])
+    assert [c for c in out.columns if c.endswith("_confidence")] == []
+    assert out["a_score"].between(2.0, 6.0).all()

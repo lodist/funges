@@ -822,13 +822,13 @@ def _hybrid_component_mean_rows(components, weights, geometric_share=1.0):
 
 
 def spatial_smooth_scores(df, score_cols, *, neighbours=5, radius_km=30.0):
-    """Smooth scores locally per date and attach coverage/disagreement confidence."""
+    """Smooth scores locally per date. (A per-species confidence from coverage and agreement
+    was written beside them until Oct 2026: nothing read it, and it was ~6 GB of South Europe's
+    master in the nightly upload's memory.)"""
     from scipy.spatial import cKDTree
 
     out = df.copy()
     earth_radius_km = 6371.0088
-    for score_col in score_cols:
-        out[f"{score_col[:-6]}_confidence"] = np.nan
 
     for _, index in out.groupby(pd.to_datetime(out["Date"]).dt.normalize()).groups.items():
         idx = np.asarray(list(index))
@@ -864,28 +864,6 @@ def spatial_smooth_scores(df, score_cols, *, neighbours=5, radius_km=30.0):
                 where=weight_sum > 0,
             )
             out.loc[valid_idx, score_col] = smoothed
-
-            count = usable.sum(axis=1)
-            expected = max(1, min(neighbours, len(valid_idx)))
-            coverage = count / expected
-            mean_distance = np.divide(
-                (distances * usable).sum(axis=1),
-                count,
-                out=np.full(len(valid_idx), radius_km),
-                where=count > 0,
-            )
-            centred = neighbour_values - smoothed[:, None]
-            variance = np.divide(
-                np.nansum(weights * centred**2, axis=1),
-                weight_sum,
-                out=np.full(len(valid_idx), 4.0),
-                where=weight_sum > 0,
-            )
-            agreement = np.exp(-np.sqrt(np.maximum(variance, 0.0)) / 2.0)
-            confidence = coverage * np.exp(-mean_distance / radius_km) * agreement
-            out.loc[valid_idx, f"{score_col[:-6]}_confidence"] = np.clip(
-                confidence, 0.0, 1.0
-            )
     return out
 
 
@@ -1920,8 +1898,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         present = [f"{m}_score" for m in members if f"{m}_score" in forward.columns]
         forward[f"{composite}_score"] = forward[present].max(axis=1) if present else np.nan
         score_cols.append(f"{composite}_score")
-    confidence_cols = [f"{s}_confidence" for s in species_params]
-    updated_df = apply_forward_scores(combined_df, forward, score_cols + confidence_cols)
+    updated_df = apply_forward_scores(combined_df, forward, score_cols)
 
     if cutoff_date is None:
         cutoff_date = datetime.now() - timedelta(days=config.cutoff_days)
@@ -1931,8 +1908,6 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
     species_score_columns = [c for c in updated_df.columns if c.endswith("_score") and c in valid_score_columns]
     # No snap to 10 above 9.5: it tied whole species lists at 100% and hid their order.
     updated_df[species_score_columns] = updated_df[species_score_columns].round(2)
-    confidence_columns = [c for c in confidence_cols if c in updated_df.columns]
-    updated_df[confidence_columns] = updated_df[confidence_columns].round(3)
 
     masterfile_columns = [
         "Location_Id", "Date", "Latitude", "Longitude", "Elevation (m)",
@@ -1942,7 +1917,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         "Rain Measured", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
     ]
     updated_df = updated_df.reindex(
-        columns=masterfile_columns + species_score_columns + confidence_columns)
+        columns=masterfile_columns + species_score_columns)
     return updated_df
 
 
