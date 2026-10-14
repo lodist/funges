@@ -737,8 +737,11 @@ def _lag_matrix(df, base_col, days):
     return np.column_stack(values) if values else np.empty((len(df), 0), dtype=float)
 
 
-def _moisture_memory_score(df, *, cumulative_rain_target, rain_first):
-    """Estimate available moisture over 7, 21 and 42-day horizons."""
+def _moisture_memory_score(df, *, cumulative_rain_target, rain_first, delay=0):
+    """Estimate available moisture over 7, 21 and 42-day horizons. `delay` (a species'
+    rain_delay_days) moves them all that many days back, so rain counts only once it is that old:
+    boletes fruit 14-19 days after rain, not within the week. The 42 days the lags reach stay the
+    limit, so the longest window shrinks and its rain target with it."""
     windows = (7, 21, 42)
     max_days = max(windows)
     rain = np.nan_to_num(_lag_matrix(df, "TotalPrecipitation_mm", max_days), nan=0.0)
@@ -757,10 +760,12 @@ def _moisture_memory_score(df, *, cumulative_rain_target, rain_first):
         + 0.12 * np.maximum(wind - 3.0, 0.0)
     )
     drying = np.clip(drying, 0.0, 4.0)
+    rain, drying = rain[:, delay:], drying[:, delay:]
 
     target = max(float(cumulative_rain_target), 1.0)
     ratios = []
     for days in windows:
+        days = min(days, max_days - delay)
         # Longer horizons represent stored soil moisture and need less than a
         # linear multiple of the old 21-day rainfall threshold.
         horizon_target = target * (days / 21.0) ** 0.75
@@ -1236,7 +1241,8 @@ def calculate_mushroom_score(df, species_params, zone_curves):
         cum_thr = float(params.get('min_cumulative_rain', 20.0))
         rain_first = bool(params.get('weather_preference', {}).get('rain_first', False))
         df[f'{specie}_Weather_Score'] = _moisture_memory_score(
-            df, cumulative_rain_target=cum_thr, rain_first=rain_first)
+            df, cumulative_rain_target=cum_thr, rain_first=rain_first,
+            delay=int(params.get('rain_delay_days', 0)))
 
     for specie, params in species_params.items():
         optimal_temp, temp_sigma = params["optimal_temp"], params["temp_sigma"]

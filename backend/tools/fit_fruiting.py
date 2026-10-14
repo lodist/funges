@@ -58,7 +58,18 @@ SHIP_P, SHIP_MIN_YEARS = 0.1, 6
 # With the warmth-dependent lag (14 Oct 2026) two more passed and ranked their places worse than
 # their hand-set parts, all training years (scripts/qa_fruiting_candidate.py check a): saffron
 # milk cap USW 0.605 -> 0.476, giant puffball USE 0.847 -> 0.830 (95% CIs below 0).
-HELD_BACK = {("chicken-of-the-woods", "USW"), ("saffron_milk_cap", "USW"), ("giant_puffball", "USE")}
+# Bronze bolete SE: its group fit times its finds better (pooled +0.073, CI from +0.026) but ranks its
+# places worse than the hand-set part (0.822 to 0.777, CI [-0.083, -0.005], scripts/qa_fruiting_candidate.py).
+HELD_BACK = {("chicken-of-the-woods", "USW"), ("saffron_milk_cap", "USW"), ("giant_puffball", "USE"),
+             ("bronze_bolete", "SE")}
+# Mushrooms whose finds answer rain alike (net of placebo, 14 Oct 2026: every bolete peaks 14-19 days
+# after rain, Cantharellus 2-6 days), so a member its own fit cannot ship, for too few finds or years,
+# is fitted toward its group's shared answer instead (--groups). Black chanterelle (Craterellus, 9-19
+# days) and winter chanterelle (no clear lag) stay with their own fits.
+GROUPS = {"boletes": ["mushroom", "pine_bolete", "bronze_bolete", "summer_bolete", "eastern_king", "rocky_king"],
+          "cantharellus": ["chant", "smooth_chant", "pacific_chant"]}
+MIN_MEMBER_STRATA = 30     # a member with fewer takes the group's answer as it is
+MIN_POOLED = 150           # finds a member with fewer than SHIP_MIN_YEARS test years needs to ship pooled
 MAP_CELLS, MAP_DAY_STEP = 100, 3   # the scale map's sample: places, and every n-th day
 # The forecast fetch that stores today's rows (one per forecast day, the past frozen) started
 # on 14 June 2026. Days stored before it came from another setup and read differently: their
@@ -317,11 +328,86 @@ def ships(results) -> bool:
     return len(results) >= SHIP_MIN_YEARS and p < SHIP_P and gain > 0
 
 
+def member_fit(x: np.ndarray, mask: np.ndarray, group: np.ndarray) -> np.ndarray:
+    """A group member's fit: its own strata, pulled toward the group's answer as a region is toward
+    its species'; with fewer than MIN_MEMBER_STRATA, the group's answer as it is."""
+    return fit(x, mask, center=group, alpha=ALPHA_REGION) if len(x) >= MIN_MEMBER_STRATA else group
+
+
+def group_ships(results, finds: int, pooled_ci) -> bool:
+    """The fits' rule where the member has the years; otherwise all its held-out years together:
+    at least MIN_POOLED finds and a gain whose 95% CI (resampling weeks) is above 0."""
+    if len(results) >= SHIP_MIN_YEARS:
+        return ships(results)
+    return finds >= MIN_POOLED and pooled_ci[0] > 0
+
+
+def group_fits(table, out, cases, x, mask, scores, shipped, level, sds, specs, humidity) -> dict:
+    """Group models for the members no fit or GBM ships: each year held out, the group fitted on the
+    other years (all members, all regions) and the member-region pulled toward it, against today's
+    model on the same days; shipped by group_ships."""
+    from fit_fruiting_parts import pooled_gain
+    gbm = json.loads(fp.FRUITING_GBM_PATH.read_text(encoding="utf-8"))["models"]
+    species_all, regions, years = cases["species"].to_numpy(), cases["region"].to_numpy(), cases["year"].to_numpy()
+    is_placebo = species_all == PLACEBO
+    found = pd.to_datetime(cases["find_date"])
+    weeks = (found.dt.isocalendar().year * 100 + found.dt.isocalendar().week).to_numpy(int)
+    added, cache = {}, {}
+    for group, members in GROUPS.items():
+        in_group = np.isin(species_all, members)
+        everything = fit(x[in_group], mask[in_group], alpha=ALPHA_SHARED)
+        for species in members:
+            mine = species_all == species
+            if not mine.any():
+                continue
+            today = baseline_index(scores, cases, species)
+            days = mask & np.isfinite(today)
+            for region in sorted(set(regions[mine])):
+                if (region in shipped.get(species, {}) or region in gbm.get(species, {}).get("regions", {})
+                        or (species, region) in HELD_BACK):
+                    continue
+                here = mine & (regions == region)
+                tc_all, tp_all = here & days[:, 0], is_placebo & (regions == region) & days[:, 0]
+                results, changes = [], []
+                for year in sorted(set(years[tc_all])):
+                    held = years == year
+                    tc, tp = tc_all & held, tp_all & held
+                    if not tp.any():
+                        continue
+                    if (group, year) not in cache:
+                        gt = in_group & ~held
+                        cache[(group, year)] = fit(x[gt], mask[gt], alpha=ALPHA_SHARED)
+                    after = x @ member_fit(x[here & ~held], mask[here & ~held], cache[(group, year)])
+                    (f0, f1), (p0, p1) = [[find_day_rank(i[s], days[s]) for i in (today, after)] for s in (tc, tp)]
+                    changes.append(((f1 - f0, weeks[tc]), (p1 - p0, weeks[tp])))
+                    if tc.sum() >= MIN_TEST_STRATA and tp.sum() >= MIN_TEST_STRATA:
+                        results.append((int(year), float(f0.mean() - p0.mean()), float(f1.mean() - p1.mean())))
+                pooled, ci = pooled_gain(changes) if changes else (0.0, [0.0, 0.0])
+                wins, p, gain = sign_test(results) if results else (0, 1.0, 0.0)
+                finds = int(tc_all.sum())
+                ok = group_ships(results, finds, ci)
+                log(f"{species:16s} {region:4s} group {group}: {finds} finds, beats today {wins}/{len(results)} "
+                    f"(p {p:.3f}), pooled {pooled:+.3f} {ci} -> {'ships' if ok else 'no'}")
+                if not ok:
+                    continue
+                beta = member_fit(x[here], mask[here], everything)
+                added.setdefault(species, {})[region] = {
+                    "beta": beta.round(6).tolist(),
+                    "map": season_maps(table, out, species, region, linear_index(beta, level, sds, era5_normals.load(region)),
+                                       specs, {"Humidity (%)": humidity[region]}),
+                    "each_year_held_out": {"years": len(results), "wins": wins, "p": round(p, 4),
+                                           "mean_gain": round(gain, 3)},
+                    "group": group, "pooled": {"finds": finds, "gain": round(pooled, 4), "ci": ci},
+                }
+    return added
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True)
     parser.add_argument("--export", help="write the shipped models here (backend/generated/fruiting_fit.json)")
     parser.add_argument("--humidity-from", help="reuse this fit file's humidity_from_stored instead of measuring it on R2")
+    parser.add_argument("--groups", help="add the group fits (GROUPS) to this exported fit file, its models unchanged")
     args = parser.parse_args()
     out = Path(args.out)
 
@@ -344,6 +430,28 @@ def main() -> None:
             level[k] = float(np.nanmean(moved[name].to_numpy(float)))
     x = np.where(mask[..., None], (x - means) / sds, 0.0)
     log(f"{len(cases):,} strata ({train.sum():,} train, {(~train).sum():,} test), {len(FEATURES)} features")
+    if args.groups:
+        export = json.loads(Path(args.groups).read_text(encoding="utf-8"))
+        assert export["features"] == FEATURES and np.allclose(export["means"], level.round(6)) \
+            and np.allclose(export["sds"], sds.round(6)), "the training table changed since that export"
+        import requests
+        sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
+        from qa_season_branch_replay import load_specs
+        root = Path(__file__).resolve().parents[2]
+        fp.load_dotenv(root / ".env")
+        fp.load_dotenv(root / ".env.secret")
+        session = requests.Session()
+        specs = {region: load_specs(session, region) for region in ("NE", "SE", "USE", "USW")}
+        humidity = {region: tuple(ab) for region, ab in export["humidity_from_stored"].items()}
+        added = group_fits(table, out, cases, x, mask, scores, export["models"], level, sds, specs, humidity)
+        for species, regions_ in added.items():
+            export["models"].setdefault(species, {}).update(regions_)
+        export["groups"] = {"members": GROUPS, "shipped_if": f"the fits' rule, or with fewer than {SHIP_MIN_YEARS} "
+                            f"test years: at least {MIN_POOLED} finds and a pooled held-out gain whose 95% CI is above 0"}
+        Path(args.groups).write_text(json.dumps(export, indent=1) + "\n", encoding="utf-8", newline="\n")
+        log(f"added {sum(len(r) for r in added.values())} group fits to {args.groups}: "
+            + "; ".join(f"{s} {', '.join(r)}" for s, r in sorted(added.items())))
+        return
 
     specs = {}
     if args.export:
