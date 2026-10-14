@@ -915,9 +915,23 @@ def _ph_score_vectorized(ph_values, optimal_pH, pH_sigma_near, pH_sigma_far, pH_
 # its gap to ERA5 is unmeasured, and leaving it out cost the fit nothing.
 FRUITING_FIT_PATH = Path(__file__).resolve().parent / "generated" / "fruiting_fit.json"
 FRUITING_RAIN_WINDOWS = {"rain_1_3": (1, 3), "rain_4_7": (4, 7), "rain_8_14": (8, 14),
-                         "rain_15_28": (15, 28), "rain_29_42": (29, 42)}
-FRUITING_FEATURES = ["rain_0", *FRUITING_RAIN_WINDOWS, "dry_days", "temp", "temp_sq",
-                     "tmin_drop", "frost", "humidity", "humidity_early"]
+                         "rain_15_21": (15, 21), "rain_22_28": (22, 28), "rain_15_28": (15, 28),
+                         "rain_29_42": (29, 42)}
+# How long a soaking takes to show depends on warmth: porcini finds peak 16 days after rain
+# where the time of year's normal is 13 C or more, 23-25 days where it is cooler (14 Oct 2026,
+# 23,000 EU finds). Each window from a week back is also read times warmth, the place's ERA5
+# normal mean temperature for the day less WARMTH_BASE_C, so a warm place leans on the second
+# and third weeks and a cold one on the fourth to sixth. Porcini in South Europe timed its
+# finds better than with one lag everywhere in 10 of 11 held-out years.
+FRUITING_WARM_WINDOWS = ["rain_8_14", "rain_15_21", "rain_22_28", "rain_29_42"]
+WARMTH_BASE_C = 12.0
+FRUITING_FEATURES = ["rain_0", "rain_1_3", "rain_4_7", "rain_8_14", "rain_15_21", "rain_22_28", "rain_29_42",
+                     "dry_days", "temp", "temp_sq", "tmin_drop", "frost", "humidity", "humidity_early",
+                     *(f"{name}_x_warmth" for name in FRUITING_WARM_WINDOWS)]
+# The window features the shipped GBMs were trained on. The GBM reads the daily lags and the
+# normals itself, so it keeps one 15-28 window and no warmth terms.
+FRUITING_GBM_BASE = ["rain_0", "rain_1_3", "rain_4_7", "rain_8_14", "rain_15_28", "rain_29_42", "dry_days",
+                     "temp", "temp_sq", "tmin_drop", "frost", "humidity", "humidity_early"]
 FRUITING_LAG_COLUMNS = ["Temperature (C) Min"]
 DRY_DAYS_CAP = 43          # no 5 mm day within the 42 days the lags reach
 RAIN_MAX_MM_DAY = 300.0    # the US parquets carry impossible days (2415 mm); ERA5 never does
@@ -974,7 +988,7 @@ def fruiting_raw_features(df):
     return out
 
 
-FRUITING_GBM_FEATURES = [*FRUITING_FEATURES,
+FRUITING_GBM_FEATURES = [*FRUITING_GBM_BASE,
                          *(f"{name}_d{k}" for name, (_, days) in FRUITING_GBM_LAGS.items() for k in days),
                          *FRUITING_GBM_STATIC, "region"]
 
@@ -1002,8 +1016,15 @@ def fruiting_relative(design, grid, lats, lons, dates):
     return out
 
 
-def fruiting_design(raw):
-    """Raw features -> the fit's columns. Rain on a log scale: the 30th mm matters less than the 3rd."""
+def fruiting_warmth(grid, lats, lons, dates):
+    """The place's ERA5 normal mean temperature for the day less WARMTH_BASE_C; NaN off the grid."""
+    return era5_normals.on_days(grid, np.asarray(lats, float), np.asarray(lons, float),
+                                pd.DatetimeIndex(pd.to_datetime(dates)))["norm_tmean"] - WARMTH_BASE_C
+
+
+def fruiting_design(raw, warmth=None, names=FRUITING_FEATURES):
+    """Raw features -> the fit's columns (`names`). Rain on a log scale: the 30th mm matters less
+    than the 3rd. Without `warmth` the warmth terms are unknown (NaN), so they count as average."""
     out = pd.DataFrame({name: np.log1p(raw[name]) for name in ["rain_0", *FRUITING_RAIN_WINDOWS]})
     out["dry_days"] = np.log1p(raw["days_since_rain5"].fillna(DRY_DAYS_CAP).clip(upper=DRY_DAYS_CAP))
     out["temp"] = raw["temp_1_7"]
@@ -1012,7 +1033,10 @@ def fruiting_design(raw):
     out["frost"] = raw["frost_days_1_14"]
     out["humidity"] = raw["humidity_1_7"]
     out["humidity_early"] = raw["humidity_8_21"]
-    return out[FRUITING_FEATURES]
+    warm = np.full(len(out), np.nan) if warmth is None else np.asarray(warmth, float)
+    for name in FRUITING_WARM_WINDOWS:
+        out[f"{name}_x_warmth"] = out[name].to_numpy(float) * warm
+    return out[names]
 
 
 def fruiting_weather_part(df, model):
@@ -1023,7 +1047,10 @@ def fruiting_weather_part(df, model):
     fit learned on ERA5, whose humidity reads higher than the stored WeatherAPI values, so
     model["humidity_from_stored"] = (a, b) puts stored humidity on ERA5's level first. A
     feature the row lacks counts as average."""
-    design = fruiting_design(fruiting_raw_features(df))
+    warmth = None
+    if model.get("normals") is not None:
+        warmth = fruiting_warmth(model["normals"], df["Latitude"], df["Longitude"], df["Date"])
+    design = fruiting_design(fruiting_raw_features(df), warmth)
     a, b = model.get("humidity_from_stored", (0.0, 1.0))
     design[["humidity", "humidity_early"]] = a + b * design[["humidity", "humidity_early"]]
     if model.get("normals") is not None:
@@ -1064,7 +1091,7 @@ def fruiting_gbm_features(df, model):
     lats, lons = df["Latitude"].to_numpy(float), df["Longitude"].to_numpy(float)
     normals = era5_normals.lookup(model["normals"], lats, lons, np.full(len(df), anchor.month))
     return np.column_stack([
-        fruiting_design(fruiting_raw_features(light)).to_numpy(float),
+        fruiting_design(fruiting_raw_features(light), names=FRUITING_GBM_BASE).to_numpy(float),
         fruiting_gbm_lags(light).to_numpy(float),
         normals["norm_rain"], normals["norm_tmean"], normals["norm_rh"],
         np.round(lats / era5_normals.STEP) * era5_normals.STEP,

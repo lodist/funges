@@ -65,9 +65,21 @@ FEATURES = fp.FRUITING_FEATURES
 MAP_QUANTILES = np.linspace(0, 1, 101)
 
 
+def warmth(table: pd.DataFrame) -> np.ndarray:
+    """Each row's warmth (fp.fruiting_warmth) on its find's day, so a find's five days share it:
+    it says when in the season and where, not how warm the day was. Production reads the scored day's."""
+    out = np.full(len(table), np.nan)
+    for region in ("NE", "USE"):
+        rows = (table["region"].map(CONTINENT) == CONTINENT[region]).to_numpy()
+        if rows.any():
+            out[rows] = fp.fruiting_warmth(era5_normals.load(region), table.loc[rows, "cell_lat"],
+                                           table.loc[rows, "cell_lon"], table.loc[rows, "find_date"])
+    return out
+
+
 def transform(table: pd.DataFrame) -> pd.DataFrame:
     """Training-table columns -> the fit's features, with the production pipeline's code."""
-    return fp.fruiting_design(table)
+    return fp.fruiting_design(table, warmth(table))
 
 
 def departures(table: pd.DataFrame, design: pd.DataFrame) -> pd.DataFrame:
@@ -156,9 +168,9 @@ def linear_index(beta, means, sds, grid):
 
     def index(cell, days):
         n = len(days)
-        design = fp.fruiting_relative(fp.fruiting_design(tt.features(cell, days)), grid,
-                                      np.full(n, float(cell["Latitude"].iloc[0])),
-                                      np.full(n, float(cell["Longitude"].iloc[0])), days)
+        lats, lons = np.full(n, float(cell["Latitude"].iloc[0])), np.full(n, float(cell["Longitude"].iloc[0]))
+        design = fp.fruiting_relative(fp.fruiting_design(tt.features(cell, days), fp.fruiting_warmth(grid, lats, lons, days)),
+                                      grid, lats, lons, days)
         return ((design.to_numpy(float) - means) / sds) @ beta
     return index
 

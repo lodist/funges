@@ -39,6 +39,31 @@ def test_production_features_match_the_training_table():
                                   check_dtype=False, atol=1e-9)
 
 
+def test_warmth_terms_are_each_window_times_the_normal_less_the_base():
+    series = _series()
+    dates = pd.DatetimeIndex(series["Date"].iloc[[50, 75]])
+    warmth = np.array([3.0, -2.0])
+    design = fp.fruiting_design(tt.features(series, dates), warmth)
+    for name in fp.FRUITING_WARM_WINDOWS:
+        np.testing.assert_allclose(design[f"{name}_x_warmth"], design[name] * warmth)
+    assert fp.fruiting_design(tt.features(series, dates))["rain_8_14_x_warmth"].isna().all()   # unknown, so average
+
+
+def test_production_reads_warmth_from_the_scored_day_as_the_maps_do():
+    grid = {"lat": np.array([46.0, 45.75], np.float32), "lon": np.array([8.0, 8.25], np.float32),
+            "tmean": np.repeat(np.arange(1.0, 13.0)[:, None, None] * 2, 2, axis=1).repeat(2, axis=2).astype(np.float16),
+            "rain": np.ones((12, 2, 2), np.float16), "rh": np.full((12, 2, 2), 80, np.float16)}
+    days = pd.DatetimeIndex(["2026-07-15", "2026-10-15"])
+    warmth = fp.fruiting_warmth(grid, [46.0, 46.0], [8.0, 8.0], days)
+    np.testing.assert_allclose(warmth, [14.0 - fp.WARMTH_BASE_C, 20.0 - fp.WARMTH_BASE_C], atol=0.15)   # mid-July, mid-October
+
+
+def test_the_gbm_keeps_the_window_features_it_shipped_with():
+    shipped = json.loads((fp.FRUITING_GBM_PATH).read_text(encoding="utf-8"))
+    assert shipped["features"] == fp.FRUITING_GBM_FEATURES
+    assert fp.FRUITING_GBM_FEATURES[:len(fp.FRUITING_GBM_BASE)] == fp.FRUITING_GBM_BASE
+
+
 def test_a_dry_spell_longer_than_the_lags_is_capped_the_same_way():
     series = _series()
     series.loc[:, "TotalPrecipitation_mm"] = 0.0

@@ -102,7 +102,7 @@ def load(out):
                           if "case_id" in pq.read_schema(p).names or folder == "training_scores"], ignore_index=True)
 
     table, scores, lags = read("training"), read("training_scores"), read("training_lags")
-    cases, raw, mask = ff.strata(table, ff.transform(table))
+    cases, raw, mask = ff.strata(table, fp.fruiting_design(table, names=fp.FRUITING_GBM_BASE))
     where = (table[table["offset"] == 0].drop_duplicates("case_id")
              .set_index("case_id")[["cell_lat", "cell_lon"]].reindex(cases["case_id"]))
     row = pd.Series(np.arange(len(cases)), index=cases["case_id"].to_numpy())
@@ -122,7 +122,7 @@ def load(out):
     region = pd.Categorical(cases["region"], categories=REGIONS).codes.astype(np.float32)
     x = np.concatenate([raw.astype(np.float32), daily, np.repeat(static[:, None, :], 5, axis=1),
                         np.repeat(region[:, None, None], 5, axis=1)], axis=2)
-    names = [*ff.FEATURES, *lag_names, *STATIC, "region"]
+    names = [*fp.FRUITING_GBM_BASE, *lag_names, *STATIC, "region"]
     assert names == fp.FRUITING_GBM_FEATURES, "training and production features differ"
     return table, cases, x, mask, scores, names
 
@@ -169,7 +169,7 @@ def gbm_index(booster, region):
         days = pd.DatetimeIndex(days)
         lat, lon = float(cell["Latitude"].iloc[0]), float(cell["Longitude"].iloc[0])
         normal = era5_normals.lookup(grid, np.full(len(days), lat), np.full(len(days), lon), days.month)
-        x = np.column_stack([fp.fruiting_design(tt.features(cell, days)).to_numpy(float),
+        x = np.column_stack([fp.fruiting_design(tt.features(cell, days), names=fp.FRUITING_GBM_BASE).to_numpy(float),
                              tt.daily_lags(cell, days).to_numpy(float),
                              normal["norm_rain"], normal["norm_tmean"], normal["norm_rh"],
                              np.full(len(days), lat), days.dayofyear.to_numpy(float), np.full(len(days), code)])
