@@ -65,9 +65,12 @@ def load_main_pipeline() -> object:
 
 
 def load_specs(session: requests.Session, region: str) -> tuple[dict, dict]:
+    # data.fung.es serves only tiles and models since 12 Oct 2026: the curves are read from R2.
+    import r2
+
     all_params = get_species_params(region)
-    region_curves = session.get(REGION_CURVE_URLS[region], timeout=60).json()
-    zone_curves = session.get(ZONE_CURVE_URLS[region], timeout=60).json()
+    region_curves = json.loads(r2.fetch(REGION_CURVE_URLS[region]))
+    zone_curves = json.loads(r2.fetch(ZONE_CURVE_URLS[region]))
     params = {}
     for species in FUNGI:
         if species not in all_params:
