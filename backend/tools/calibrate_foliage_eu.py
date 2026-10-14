@@ -129,8 +129,8 @@ MS_TARGET = "MeteoSwiss beech leaf fall"
 LATEST_START = 62  # 1 September: a setting must start counting by then (Lapland peaks in early September)
 BOREAL_LAT = 60.0  # cells at or north of this take the boreal requirement (Fennoscandia's birch, rowan, aspen)
 # The transitions compared in section 1: a cut at BOREAL_LAT, or the requirement moving evenly between two
-# latitudes. backend/foliage.py ships (57, 61): the cut drew a straight line across Fennoscandia.
-BOREAL_RAMPS = ((60.0, 60.0), (58.0, 60.0), (57.0, 61.0), (56.0, 62.0), (55.0, 63.0))
+# latitudes. backend/foliage.py ships (54, 61): the cut drew a straight line across Fennoscandia.
+BOREAL_RAMPS = ((60.0, 60.0), (57.0, 61.0), (55.0, 61.0), (54.0, 61.0), (54.0, 62.0), (52.0, 62.0))
 LARCH_SHARE = 0.1  # 312 pieces whose middle has at least this larch share of the trees are drawn (larch),
 LARCH_ALPS_MIN_ELEV = 1300.0  # ... and 312 pieces in the Alps whose middle is this high (m)
 # Published typical peaks (sources in the write-up); [i] = no dated source, inferred by the researcher.
@@ -734,16 +734,12 @@ def main():
     big = (c.colored >= 15).to_numpy()
     print(f"Cell-years with >= 15 colored records ({int(big.sum())}): model {cf.mae(e['model'], big)[0]:.2f}, fixed "
           f"{cf.mae(e['fixed'], big)[0]:.2f}, line {cf.mae(e['line'], big)[0]:.2f} d\n")
-    print(f"## 1. The boreal transition (LOYO, days; the requirements fitted either side of {BOREAL_LAT:g} N)\n")
-    rows, north = [], (c.lat >= 54).to_numpy()
-    for lo_, hi_ in BOREAL_RAMPS:
-        er = ramped(c, cv, (lo_, hi_))
-        inside = ((c.lat > lo_) & (c.lat < hi_)).to_numpy()
-        rows.append((f"cut at {hi_:g} N" if lo_ == hi_ else f"ramp {lo_:g}-{hi_:g} N", f"{cf.mae(er)[0]:.2f}",
-                     f"{np.nanmean(er):+.1f}", int(inside.sum()),
-                     f"{cf.mae(er, inside)[0]:.2f} ({np.nanmean(er[inside]):+.1f})" if inside.any() else "-",
-                     f"{cf.mae(er, north)[0]:.2f}"))
-    table(["transition", "MAE", "bias", "cell-years inside", "their MAE (bias)", "MAE >= 54 N"], rows)
+    rows, n_out, n_beech = transitions(c, cv, m, f_temp, f_bor, rec, series_[DWD_TARGET], args.cache,
+                                       args.tmean, lapse)
+    print(f"## 1. The boreal transition (days; the requirements fitted either side of {BOREAL_LAT:g} N)\n")
+    table(["transition", "LOYO MAE", "bias 54-60 N", "bias 60-72 N",
+           f"left-out cell-years 54-64 N ({n_out}): MAE (bias)", f"{DWD_TARGET} >= 53 N ({n_beech}): MAE (bias)"],
+          rows)
 
     # 2. transfer
     print("## 2. Geographic transfer (MAE, days)\n")
@@ -831,18 +827,47 @@ def grouped(c, cv, split=None, folds=None):
     return err
 
 
+def boreal_weight(lat, ramp):
+    """0 temperate, 1 boreal, moving evenly across `ramp` (south, north latitude; a cut when equal)."""
+    lat, (lo, hi) = np.asarray(lat, float), ramp
+    return (lat >= hi).astype(float) if lo == hi else np.clip((lat - lo) / (hi - lo), 0.0, 1.0)
+
+
 def ramped(c, cv, ramp, split=BOREAL_LAT):
     """LOYO errors with the two requirements fitted on the training cell-years either side of `split`,
-    the requirement moving evenly across `ramp` (south, north latitude; a cut when they are equal)."""
+    the requirement moving evenly across `ramp`."""
     obs, lat = c.obs.to_numpy(), c.lat.to_numpy()
     f_at = cf.at(cv, obs)
-    lo, hi = ramp
-    w = (lat >= hi).astype(float) if lo == hi else np.clip((lat - lo) / (hi - lo), 0.0, 1.0)
+    w = boreal_weight(lat, ramp)
     err = np.full(len(c), np.nan)
     for train, test in loyo_folds(c):
         f_temp, f_bor = np.nanmedian(f_at[train & (lat < split)]), np.nanmedian(f_at[train & (lat >= split)])
         err[test] = cf.predict(cv[test], f_temp + w[test] * (f_bor - f_temp)) - obs[test]
     return err
+
+
+def transitions(c, cv, m, f_temp, f_bor, rec, beech, cache, kind="t2m", lapse=True):
+    """Section 1's rows for BOREAL_RAMPS: LOYO on the fitted cell-years (all; bias at 54-60 and 60-72 N);
+    the cell-years at 54-64 N the fit left out (3 to MIN_COLORED - 1 coloured records, 2016-2025); and
+    the DWD beech leaf fall series north of 53 N (`beech`: stations()' series and temperatures)."""
+    ce, _ = cf.observed(rec[rec.year.isin(FIT_YEARS)], 3)
+    o = ce[ce["median"].notna() & (ce.colored < MIN_COLORED) & ce.lat.between(54, 64)].reset_index(drop=True)
+    o_cv = cf.cold_sum(temperatures(o, cache, kind, lapse)[0], m, o.lat.to_numpy())
+    s, st = beech
+    k = (s.lat >= 53).to_numpy()
+    s_lat = s.lat.to_numpy()[k]
+    s_cv = cf.cold_sum(st[k], m, s_lat)
+    lat = c.lat.to_numpy()
+    rows = []
+    for ramp in BOREAL_RAMPS:
+        e = ramped(c, cv, ramp)
+        eo = cf.predict(o_cv, f_temp + boreal_weight(o.lat, ramp) * (f_bor - f_temp)) - o["median"].to_numpy()
+        es = cf.predict(s_cv, f_temp + boreal_weight(s_lat, ramp) * (f_bor - f_temp)) - s.obs.to_numpy()[k]
+        rows.append((f"cut at {ramp[1]:g} N" if ramp[0] == ramp[1] else f"ramp {ramp[0]:g}-{ramp[1]:g} N",
+                     f"{cf.mae(e)[0]:.2f}", f"{np.nanmean(e[(lat >= 54) & (lat < 60)]):+.1f}",
+                     f"{np.nanmean(e[lat >= 60]):+.1f}", f"{cf.mae(eo)[0]:.2f} ({np.nanmean(eo):+.1f})",
+                     f"{cf.mae(es)[0]:.2f} ({np.nanmean(es):+.1f})"))
+    return rows, len(o), int(k.sum())
 
 
 def temperate_folds(c):

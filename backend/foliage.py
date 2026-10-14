@@ -53,10 +53,11 @@ LATEST_NORMAL_PEAK = (11, 30)  # month, day
 EU_REQUIREMENT = 1539.0  # stations: beech leaf fall 1,501 (DWD), 1,525 (MeteoSwiss); larch needles 1,482
 BOREAL_REQUIREMENT = 869.0  # Fennoscandia's birch, rowan and aspen
 # The requirement moves evenly between these latitudes. A cut at 60 N moved the peak about four weeks
-# from one cell to the next and drew a straight line across Norway, Sweden and Finland; no
-# calibration cell lies at 58-60 N, and the ramp fits the cells either side as well (LOYO 11.65 d
-# against 11.67; calibrate_foliage_eu.py, section 1).
-BOREAL_RAMP = (57.0, 61.0)
+# from one cell to the next and drew a straight line across Norway, Sweden and Finland. The ramp fits
+# better (LOYO 11.15 d against 11.67): the cut ran 8 days late at 54-60 N, the Baltics, northern Britain
+# and southern Scandinavia, and the DWD beech stations north of 53 N keep their fit (calibrate_foliage_eu.py,
+# section 1). No calibration cell lies at 58-60 N.
+BOREAL_RAMP = (54.0, 61.0)
 EU_LAND = (311, 313)  # CORINE broadleaf and mixed forest
 LARCH_LAND = 312  # CORINE coniferous, drawn where it is larch: its middle in a host-cover cell
 # where larch is at least a tenth of the trees (backend/generated/larch_mask_EU.npz), or in

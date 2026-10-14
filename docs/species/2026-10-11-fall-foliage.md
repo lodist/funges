@@ -100,17 +100,22 @@ Calibrated separately (`backend/tools/calibrate_foliage_eu.py`). The values wait
 - **Europe's peak is a later stage.** At the station networks the US requirement lands on 50% leaf colouring (DWD beech −1.5 days, MeteoSwiss −0.7), but the European peak, as people photograph it, sits at 50% leaf fall, about two weeks later.
 - **Temperate requirement: 1,539 °C·days** (`EU_REQUIREMENT`). Every European source agrees: iNaturalist 1,539; DWD beech leaf fall 1,501; MeteoSwiss beech leaf fall 1,525; MeteoSwiss larch needle colouring 1,482; the published windows. Bootstrap 90%: 1,448–1,571.
 - **Boreal north: 869** (`BOREAL_REQUIREMENT`; Fennoscandia's birch, rowan and aspen). On one requirement the 60–72° N cells come out 23 days late; leave one year out drops from 14.26 to 11.67 days with the two. There are no cell-years at 58–60° N, so the switch could sit anywhere in that band.
-- **A ramp, not a cut** (`BOREAL_RAMP`, 15 October 2026): the requirement moves evenly from 1,539 at 57° N to 869 at 61° N. The first version cut at 60° N, which moved the peak by about four weeks from one 0.1° cell to the next (59.5° N 26 October, 60° N 29 September near Stockholm in a normal year) and drew a straight line across Norway, Sweden and Finland. Leave one year out, the requirements fitted either side of 60° N as before:
+- **A ramp, not a cut** (`BOREAL_RAMP`, 15 October 2026): the requirement moves evenly from 1,539 at 54° N to 869 at 61° N. The first version cut at 60° N, which moved the peak by about four weeks from one 0.1° cell to the next (59.5° N 26 October, 60° N 29 September near Stockholm in a normal year) and drew a straight line across Norway, Sweden and Finland. The requirements stay fitted either side of 60° N; only the transition changes (`calibrate_foliage_eu.py`, section 1). Days:
 
-  | transition        |       MAE | bias | cell-years inside | their MAE (bias) | MAE ≥ 54° N |
-  | ----------------- | --------: | ---: | ----------------: | ---------------- | ----------: |
-  | cut at 60° N      |     11.67 | +1.2 |                 – | –                |       13.52 |
-  | ramp 58–60° N     |     11.67 | +1.2 |                 0 | –                |       13.52 |
-  | **ramp 57–61° N** | **11.65** | +1.7 |                 9 | 11.89 (−2.1)     |   **13.45** |
-  | ramp 56–62° N     |     11.61 | +2.0 |                12 | 11.38 (+4.0)     |       13.32 |
-  | ramp 55–63° N     |     11.51 | +2.1 |                21 | 11.83 (+6.1)     |       12.98 |
+  | transition        |  LOYO MAE | bias 54–60° N | bias 60–72° N | left-out cell-years 54–64° N (39): MAE (bias) | DWD beech leaf fall ≥ 53° N (3,509): MAE (bias) |
+  | ----------------- | --------: | ------------: | ------------: | --------------------------------------------- | ----------------------------------------------- |
+  | cut at 60° N      |     11.67 |          +8.0 |          −3.1 | 12.69 (+1.4)                                  | 8.46 (+0.3)                                     |
+  | ramp 57–61° N     |     11.65 |          +8.0 |          −0.4 | 12.54 (+2.2)                                  | 8.46 (+0.3)                                     |
+  | ramp 55–61° N     |     11.35 |          +5.5 |          −1.3 | 12.36 (+0.2)                                  | 8.46 (+0.3)                                     |
+  | **ramp 54–61° N** | **11.15** |      **+3.1** |          −1.6 | **12.23 (−0.8)**                              | **8.40 (−0.1)**                                 |
+  | ramp 54–62° N     |     11.23 |          +3.6 |          +0.7 | 12.03 (+0.7)                                  | 8.40 (−0.1)                                     |
+  | ramp 52–62° N     |     11.24 |          −1.2 |          +0.0 | 11.77 (−1.3)                                  | 9.24 (−4.5)                                     |
+  - **The cut ran late south of it,** 8 days at 54–60° N (the Baltics, northern Britain, southern Scandinavia: birch-rich woods on a beech requirement), and 3 days early just north of it.
+  - **The left-out cell-years** are the 39 at 54–64° N with 3–5 coloured records, below the fit's 6: never fitted on.
+  - **54–61° N** leaves the temperate cell-years south of 54° N as they were and fits the DWD beech stations north of 53° N as well; starting at 52° N puts those stations 4.5 days early.
+  - **The 59–60° N band has no cell-years at all,** even at 3 records, so the dates there are interpolated.
 
-  The differences are within the noise of 98 cell-years; 57–61° N is centred on the empty band and leaves the cells inside it least biased. A normal year's peak, cut → ramp: Gothenburg 28 → 23 Oct, Tallinn 26 → 11 Oct, Stockholm 26 → 11 Oct, Uppsala 24 → 6 Oct, Oslo 20 → 2 Oct, Helsinki 29 Sep → 5 Oct, Turku 28 Sep → 2 Oct; Riga, Trondheim and Lapland unchanged. Between 58 and 60° N these dates are interpolated, not fitted.
+  A normal year's peak at the point (normals not moved for height), cut → ramp: Edinburgh 25 → 17 Oct, Copenhagen 31 → 25 Oct, Riga 26 → 15 Oct, Gothenburg 28 → 13 Oct, Tallinn and Stockholm 26 Oct → 6 Oct, Oslo 20 Oct → 29 Sep, Helsinki 29 Sep → 3 Oct; Trondheim and Lapland unchanged.
 
 - **The larch needs no requirement of its own,** only its own ground: its 6 alpine cell-years give 1,538 (bias −3.1 days on the temperate value), and at the stations its 50% needle colouring falls at beech's 50% leaf fall.
 - **The shape held at the stations:** DWD beech leaf fall, own requirement, leave one year out 8.68 days against 8.63 for the grid's best, with the best yearly-means r (0.69). On the iNaturalist-weighted total the grid preferred a Delpierre setting by 2.8 days, but on 98 cell-years (81% from 2024–25), with a worse DWD yearly r (0.53) and a degenerate boreal requirement; the US shape was kept.
@@ -152,8 +157,8 @@ The European MapLayer scripts hand over their land-cover pieces too (CORINE clas
 | Vosges (Gérardmer)        |    27 Oct | mid – late Oct                     |
 | Fontainebleau             |     5 Nov | mid Oct – early Nov                |
 | Ardennes (La Roche)       |    27 Oct | mid Oct – early Nov                |
-| Perthshire (Dunkeld)      |    20 Oct | October; mid Oct                   |
-| Lake District (Grasmere)  |    20 Oct | mid Oct – early Nov                |
+| Perthshire (Dunkeld)      |    10 Oct | October; mid Oct                   |
+| Lake District (Grasmere)  |    18 Oct | mid Oct – early Nov                |
 | Engadin (St. Moritz)      |    11 Oct | mid Oct (2025: 16 Oct)             |
 | South Tyrol (Seiser Alm)  |    18 Oct | from mid Oct                       |
 | Dolomites (Cortina)       |    20 Oct | mid Oct – early Nov (2025: 20 Oct) |
@@ -162,7 +167,7 @@ The European MapLayer scripts hand over their land-cover pieces too (CORINE clas
 | Picos de Europa (Liébana) |    21 Oct | 1st – 3rd week Oct                 |
 | Lapland (Saariselkä)      |    18 Sep | ~ 2nd week Sep                     |
 
-15 of 23 places fall inside their window and two more at its late end. The misses: high alpine cells whose base points average far above the larch belt (Pontresina 2,741 m, Evolène 2,771 m) come out 10+ days early; Plitvice (10 days late) and Monte Generoso (8) rest on weak sources; Lapland's Levi is 2–5 days late, where birch alone would want less still.
+15 of 23 places fall inside their window and two more at its late end (Perthshire and the Lake District moved 10 and 2 days earlier with the boreal ramp; Perthshire is now early in its October window). The misses: high alpine cells whose base points average far above the larch belt (Pontresina 2,741 m, Evolène 2,771 m) come out 10+ days early; Plitvice (10 days late) and Monte Generoso (8) rest on weak sources; Lapland's Levi is 2–5 days late, where birch alone would want less still.
 
 ### Caveats
 
