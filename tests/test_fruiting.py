@@ -272,3 +272,33 @@ def test_a_member_ships_on_its_years_or_pooled_when_its_years_are_few():
     assert ff.group_ships(few, finds=400, pooled_ci=[0.01, 0.2])
     assert not ff.group_ships(few, finds=100, pooled_ci=[0.01, 0.2])             # too few finds to pool
     assert not ff.group_ships(few, finds=400, pooled_ci=[-0.01, 0.2])
+
+
+def _rain_frame(days_back_of_rain, mm=60.0):
+    row = {f"TotalPrecipitation_mm_{k}days_ago": (mm if k in days_back_of_rain else 0.0) for k in range(1, 43)}
+    row.update({f"Temperature (C)_{k}days_ago": 10.0 for k in range(1, 43)})
+    row.update({f"Humidity (%)_{k}days_ago": 70.0 for k in range(1, 43)})
+    row.update({f"Wind Speed (m/s)_{k}days_ago": 3.0 for k in range(1, 43)})
+    return pd.DataFrame([row])
+
+
+def test_a_rain_delay_ignores_the_last_days_and_reads_the_weeks_before():
+    recent, older = _rain_frame({2}), _rain_frame({16})
+    m = lambda df, d: fp._moisture_memory_score(df, cumulative_rain_target=35, rain_first=True, delay=d)[0]
+    assert m(recent, 0) > 0.5 and m(recent, 10) == 0.02          # rain 2 days ago: soaked now, nothing yet with a 10-day delay
+    assert m(older, 10) > m(older, 0)                             # rain 16 days ago counts in full only once delayed
+    assert m(recent, 0) == fp._moisture_memory_score(recent, cumulative_rain_target=35, rain_first=True)[0]
+
+
+def test_the_rain_delay_is_read_from_the_species_settings():
+    df = _rain_frame({2})
+    for col, v in (("Temperature (C)", 12.0), ("Humidity (%)", 80.0), ("TotalPrecipitation_mm", 0.0), ("Wind Speed (m/s)", 2.0),
+                   ("Elevation (m)", 500.0), ("ph_level", 6.0), ("dist_m_water", 100.0), ("dist_m_sea", 1e5)):
+        df[col] = v
+    df["climate_zone"], df["Date"], df["Latitude"], df["Longitude"] = "temperate", pd.Timestamp("2026-09-20"), 45.0, 10.0
+    base = {"optimal_temp": 15, "temp_sigma": 5, "optimal_alt": 500, "alt_sigma": 800, "optimal_humidity": 80,
+            "humidity_sigma": 15, "optimal_pH": 6, "pH_sigma_near": 1.5, "pH_sigma_far": 1.5, "pH_range_near": [5, 7],
+            "min_cumulative_rain": 35, "weather_preference": {"rain_first": True}, "season_months": list(range(1, 13))}
+    now = fp.calculate_mushroom_score(df.copy(), {"x": base}, {})["x_score"][0]
+    later = fp.calculate_mushroom_score(df.copy(), {"x": {**base, "rain_delay_days": 10}}, {})["x_score"][0]
+    assert later < now

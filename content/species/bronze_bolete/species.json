@@ -126,12 +126,14 @@
           "season_months": [8, 9, 10, 11],
           "water_relevance": false,
           "sea_relevance": false,
-          "hosts": ["fagus", "quercus", "other_broadleaf"]
+          "hosts": ["fagus", "quercus", "other_broadleaf"],
+          "rain_delay_days": 10
         },
         "scoringReferences": [
           "https://www.gbif.org/species/8733688",
           "docs/species/2026-09-06-boletus-chanterelle-split.md",
-          "docs/species/2026-10-05-soil-ph.md"
+          "docs/species/2026-10-05-soil-ph.md",
+          "docs/species/2026-10-14-mushroom-group-fit.md"
         ],
         "landCoverScheme": "CORINE"
       },

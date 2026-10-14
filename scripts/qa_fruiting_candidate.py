@@ -83,8 +83,10 @@ fp.fruiting_weather_part = _patched_weather_part      # calculate_mushroom_score
 
 
 def with_fit(params: dict, spec: dict, species: str, region: str, stored: bool) -> dict:
-    """The species' production params with this file's model, or with none (hand-set)."""
+    """The species' production params with this file's model, or with none (hand-set), and the
+    file's hand-set settings for it ("settings": {species: {region: {name: value}}}), if any."""
     p = {k: v for k, v in params.items() if k != "fruiting"}
+    p.update(spec.get("settings", {}).get(species, {}).get(region, {}))
     model = spec["models"].get(species, {}).get(region)
     if model:
         p["fruiting"] = {**model, "spec": spec, "region": region, "stored": stored}
@@ -96,7 +98,8 @@ def pairs_to_check(shipped, candidate) -> list:
     gbm = json.loads((ROOT / "backend/generated/fruiting_gbm.json").read_text(encoding="utf-8"))["models"]
     keys = {(s, r) for spec in (shipped, candidate) for s, regions in spec["models"].items() for r in regions}
     differ = [k for k in keys if shipped["models"].get(k[0], {}).get(k[1]) != candidate["models"].get(k[0], {}).get(k[1])]
-    return sorted(k for k in differ if k[1] not in gbm.get(k[0], {}).get("regions", {}))
+    differ += [(s, r) for s, regions in candidate.get("settings", {}).items() for r in regions]
+    return sorted(k for k in set(differ) if k[1] not in gbm.get(k[0], {}).get("regions", {}))
 
 
 def check_places(out: Path, shipped, candidate, pairs) -> pd.DataFrame:
@@ -249,6 +252,10 @@ def main() -> None:
     out, report = Path(args.out), Path(args.report)
     shipped = json.loads(Path(args.shipped or shipped_default()).read_text(encoding="utf-8"))
     candidate = json.loads(Path(args.candidate).read_text(encoding="utf-8"))
+    candidate.setdefault("models", shipped["models"])
+    if candidate.get("settings") and "a" in args.checks.split(","):
+        print("(a) skipped: a settings change needs its weather parts recomputed (tools/fit_rain_delay.py --test)")
+        args.checks = ",".join(c for c in args.checks.split(",") if c != "a")
     pairs = pairs_to_check(shipped, candidate)
     print(f"{len(pairs)} species-regions differ: {pairs}", flush=True)
     pd.set_option("display.width", 220)

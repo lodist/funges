@@ -49,4 +49,19 @@ Chanterelle USE (61 finds), USW (6) and smooth chanterelle USW (84) have too few
 | bronze bolete NE | 0.800 to 0.805 [-0.022, +0.033] | -                                         | Sep 61% to 64%, Oct 16% to 15%  |
 | bronze bolete SE | 0.822 to 0.777 [-0.083, -0.005] | -                                         | Oct 66% to 72%, Nov 21% to 32%  |
 
-Bronze bolete SE times its finds better but ranks Italian places worse, so it stays hand-set (`HELD_BACK`), and the Italian Boletus layer keeps following it. (c) reads raw ERA5 humidity in the hand-set parts: compare before with after, not with production's levels.
+Bronze bolete SE times its finds better but ranks Italian places worse, so its group fit is held back (`HELD_BACK`).
+
+## A rain delay for the hand-set boletes
+
+Where no fit ships, a hand-set bolete's rain part can now wait: `rain_delay_days` moves its 7-, 21- and 42-day windows back that many days (a delay of 10 reads days 11-17, 11-31 and 11-42; the lags reach 42 days, so the longest window and its rain target shrink). Default 0, so nothing else changes.
+
+`backend/tools/fit_rain_delay.py` recomputes the weather parts of every find and bracket-fungus day from the ERA5 blocks with the code that built `training_scores` (at delay 0 it reproduces them exactly), at delays of 0, 3, 7, 10 and 14 days. Each year is scored with the delay chosen on the other years; it ships by the group rule above and the place test.
+
+| Bolete                           | Delay chosen (in each held-out year) | Timing                                            | Places                          | Ships              |
+| -------------------------------- | ------------------------------------ | ------------------------------------------------- | ------------------------------- | ------------------ |
+| bronze SE                        | 10 (all 11 years)                    | 4 of 4 test years, pooled +0.028 [+0.005, +0.048] | 0.822 to 0.815 [-0.028, +0.011] | yes                |
+| pine SE                          | 10 (all 11 years)                    | pooled +0.028 [-0.002, +0.054]                    | 0.642 to 0.645 [-0.016, +0.020] | no (CI includes 0) |
+| eastern king USE                 | 3                                    | pooled -0.004                                     | not worse                       | no                 |
+| eastern king USW, rocky king USW | 0                                    | -                                                 | -                               | no                 |
+
+Bronze bolete SE ships with `rain_delay_days: 10`. On the ERA5 autumn sample its share at 4+ falls a few points (September 86% to 82%, October 66% to 62%, November 21% to 21%). In Italy in October 2026 (stored weather, 1,500 places), today's bronze answered the 6-10 October rain within days (5.2-5.6 on 12-16 October; the Boletus layer at 5+ in 84-87% of places); delayed, that rain counts from about the 16th (bronze 3.9-4.5, rising again by the 18th; the layer at 61-71%). (c) reads raw ERA5 humidity in the hand-set parts: compare before with after, not with production's levels.
