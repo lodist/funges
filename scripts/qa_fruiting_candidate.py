@@ -122,7 +122,9 @@ def check_places(out: Path, shipped, candidate, pairs) -> pd.DataFrame:
                               & mask[:, 0] & np.isfinite(stored))
         if region not in specs:
             specs[region] = fp._load_species_and_curves(region_config(region))
-        params = specs[region][0][species]
+        # The place parts need no weather model; the one production attached from the working
+        # copy's fit file would go through the patched weather part without its file's spec.
+        params = {k: v for k, v in specs[region][0][species].items() if k not in ("fruiting", "fruiting_gbm")}
         today = {k: float(params.get(k, default)) for k, (_, default) in PARTS.items()}
         p, wind = {k: v[here] for k, v in parts.items()}, stored[here] / weather({k: v[here] for k, v in parts.items()},
                                                                                      STORED_WITH, np.ones(len(here)))
