@@ -18,6 +18,8 @@ Ramps was read as "leaves": sightings tagged with no flowers or with buds. Its b
 | 40-44 N       |      1.00 |     0.51 |      0.36 |     0.12 |      0.03 |     0.00 |
 | 44-48 N       |      0.34 |     1.00 |      0.96 |     0.56 |      0.14 |     0.01 |
 
+Update, 14 Oct: ramps' learned season had an autumn bump where the plant is rare (Minnesota, the Dakotas, 44-49 N): the ratio to each place's own small spring peak rose to about 0.4 from late September to mid-October, on one leaf tag in October against 42 in April there, and 856 US East places read 4+ on 14 October. The band dead-month check averages the whole 4-degree band, so it stayed under its 0.5 threshold. Ramps' season may now open only within a month of its months (March-May): the export shuts January and July-December, and leaves February-June, its spring, as fitted (`MONTHS_GUARD` in `fit_phenology.py`; grids `models/phenology/20261014-0849/`, every other species identical to the byte).
+
 ## Ripe or green
 
 iNaturalist's fruiting tag counts green fruit, and flower heads, too. Where fruit hangs green for weeks, the learned season opened that early: elderberry at 45% of places at 4+ on 25 June. `tag_ripeness.py` scores each fruiting sighting's first photo with a general CLIP model (LAION ViT-B/32), zero-shot, against "ripe black elderberries" and "green unripe elderberries", and the like for each plant. The new stage `ripe` keeps the sightings scored ripe (P at least 0.5).
