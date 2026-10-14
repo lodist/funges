@@ -123,9 +123,9 @@
       },
       "era5": {
         "title": "9. ERA5 Reanalysis (Past Rain)",
-        "description": "ECMWF's reanalysis combines weather models with observations from across the world. Forecasts are often wrong about where rain fell, so once ERA5 publishes a day, about five days later, Funges replaces that day's forecast rain with ERA5's.",
+        "description": "ECMWF's reanalysis combines weather models with observations from across the world. Forecasts are often wrong about where rain fell, so once ERA5 publishes a day, about five days later, Funges replaces that day's forecast rain with ERA5's. Its monthly averages give each place's normal weather for the time of year, and the models that predict when mushrooms appear were trained on its hourly time series.",
         "source": "Source: Copernicus Climate Change Service (C3S), ECMWF",
-        "citation": "Citation: Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.adbb2d47. Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains."
+        "citation": "Citation: Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.adbb2d47. Copernicus Climate Change Service (C3S) (2019). ERA5 monthly averaged data on single levels from 1940 to present. C3S Climate Data Store (CDS). https://doi.org/10.24381/cds.f17050d7. Copernicus Climate Change Service (C3S) (2025). ERA5 hourly time-series data on single levels from 1940 to present. ECMWF. https://doi.org/10.24381/1cf1ad76. Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains. CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
       },
       "additional": "Daily weather comes from WeatherAPI.com forecasts, and every model change is checked against recent sightings the model has not seen."
     }

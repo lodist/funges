@@ -28,6 +28,14 @@ def test_rain_windows_count_days_before_and_never_the_day_itself():
     assert row["rain_29_42"] == 0.0
 
 
+def test_the_third_and_fourth_weeks_split_the_15_28_window():
+    cell = _cell(TotalPrecipitation_mm={"2026-07-26": 5.0, "2026-07-20": 8.0, "2026-07-19": 3.0, "2026-07-13": 2.0})
+    row = tt.features(cell, pd.DatetimeIndex(["2026-08-10"])).iloc[0]
+    assert row["rain_15_21"] == 13.0     # 20-26 Jul
+    assert row["rain_22_28"] == 5.0      # 13-19 Jul
+    assert row["rain_15_21"] + row["rain_22_28"] == row["rain_15_28"]
+
+
 def test_days_since_real_rain_looks_only_backwards():
     cell = _cell(TotalPrecipitation_mm={"2026-08-01": 6.0, "2026-08-05": 4.9, "2026-08-10": 20.0})
     rows = tt.features(cell, pd.DatetimeIndex(["2026-08-10", "2026-08-11"]))

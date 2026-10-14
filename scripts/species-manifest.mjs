@@ -537,6 +537,17 @@ export function validateManifests(
               where,
               `forecast.regions.${region}.scoring.${key} must be a number of at least 0`
             );
+        if (
+          scoring?.rain_delay_days !== undefined &&
+          (!Number.isInteger(scoring.rain_delay_days) ||
+            scoring.rain_delay_days < 0 ||
+            scoring.rain_delay_days > 30)
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.rain_delay_days must be a whole number of days from 0 to 30`
+          );
         if (typeof scoring?.weather_preference?.rain_first !== 'boolean')
           fail(
             errors,

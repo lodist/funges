@@ -783,9 +783,6 @@ export default function DataPage() {
       ...(avgHumidity != null
         ? [{ label: tn('chipHumidity'), value: `${avgHumidity.toFixed(0)}%` }]
         : []),
-      ...(topScore > 0
-        ? [{ label: tn('chipTopScore'), value: `${topScore.toFixed(1)} / 10` }]
-        : []),
       ...(pressureTrend
         ? [
             {

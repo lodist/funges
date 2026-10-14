@@ -481,6 +481,7 @@ test('rejects scoring data for unavailable regions and temperature sentinels', (
   regions.NE = { available: false, scoring: scoring() };
   regions.USE.scoring.optimal_temp = 1000;
   regions.USW.scoring.hosts = ['oak_hickory', 'picea'];
+  regions.SE.scoring.rain_delay_days = 40;
   const errors = validateManifests(
     [
       entry(
@@ -501,6 +502,10 @@ test('rejects scoring data for unavailable regions and temperature sentinels', (
   assert.match(errors, /USE\.scoring\.optimal_temp must be between/);
   assert.match(errors, /forecast\.rangePrior\.taxonKeys must contain/);
   assert.match(errors, /USW\.scoring\.hosts must list distinct classes/);
+  assert.match(
+    errors,
+    /SE\.scoring\.rain_delay_days must be a whole number of days from 0 to 30/
+  );
 });
 
 test('repository check is read-only', async () => {

@@ -39,6 +39,49 @@ def test_production_features_match_the_training_table():
                                   check_dtype=False, atol=1e-9)
 
 
+def test_warmth_terms_are_each_window_times_the_normal_less_the_base():
+    series = _series()
+    dates = pd.DatetimeIndex(series["Date"].iloc[[50, 75]])
+    warmth = np.array([3.0, -2.0])
+    design = fp.fruiting_design(tt.features(series, dates), warmth)
+    for name in fp.FRUITING_WARM_WINDOWS:
+        np.testing.assert_allclose(design[f"{name}_x_warmth"], design[name] * warmth)
+    assert fp.fruiting_design(tt.features(series, dates))["rain_8_14_x_warmth"].isna().all()   # unknown, so average
+
+
+def test_production_reads_warmth_from_the_scored_day_as_the_maps_do():
+    grid = {"lat": np.array([46.0, 45.75], np.float32), "lon": np.array([8.0, 8.25], np.float32),
+            "tmean": np.repeat(np.arange(1.0, 13.0)[:, None, None] * 2, 2, axis=1).repeat(2, axis=2).astype(np.float16),
+            "rain": np.ones((12, 2, 2), np.float16), "rh": np.full((12, 2, 2), 80, np.float16)}
+    days = pd.DatetimeIndex(["2026-07-15", "2026-10-15"])
+    warmth = fp.fruiting_warmth(grid, [46.0, 46.0], [8.0, 8.0], days)
+    np.testing.assert_allclose(warmth, [14.0 - fp.WARMTH_BASE_C, 20.0 - fp.WARMTH_BASE_C], atol=0.15)   # mid-July, mid-October
+
+
+def test_a_place_at_its_normal_rain_gets_nothing_from_the_warmth_terms():
+    grid = {"lat": np.array([46.0, 45.75], np.float32), "lon": np.array([8.0, 8.25], np.float32),
+            "tmean": np.stack([np.full((2, 2), t) for t in np.linspace(2, 24, 12)]).astype(np.float16),
+            "rain": np.full((12, 2, 2), 3.0, np.float16), "rh": np.full((12, 2, 2), 80, np.float16)}
+    days = pd.DatetimeIndex(["2026-02-15", "2026-08-15"])          # a cold and a warm time of year
+    design = pd.DataFrame({name: np.zeros(2) for name in fp.FRUITING_FEATURES})
+    for w in fp.FRUITING_WARM_WINDOWS:
+        near, far = fp.FRUITING_RAIN_WINDOWS[w]
+        design[w] = np.log1p(3.0 * (far - near + 1))             # exactly the normal rain
+        design[f"{w}_x_warmth"] = design[w] * 5.0
+    out = fp.fruiting_relative(design, grid, [46.0, 46.0], [8.0, 8.0], days)
+    for w in fp.FRUITING_WARM_WINDOWS:
+        np.testing.assert_allclose(out[f"{w}_x_warmth"], 0.0, atol=1e-2)
+    wetter = design.assign(rain_15_21=design["rain_15_21"] + 1.0)
+    moved = fp.fruiting_relative(wetter, grid, [46.0, 46.0], [8.0, 8.0], days)["rain_15_21_x_warmth"].to_numpy()
+    assert moved[1] > 0 > moved[0]                                  # extra rain counts up when warm, down when cold
+
+
+def test_the_gbm_keeps_the_window_features_it_shipped_with():
+    shipped = json.loads((fp.FRUITING_GBM_PATH).read_text(encoding="utf-8"))
+    assert shipped["features"] == fp.FRUITING_GBM_FEATURES
+    assert fp.FRUITING_GBM_FEATURES[:len(fp.FRUITING_GBM_BASE)] == fp.FRUITING_GBM_BASE
+
+
 def test_a_dry_spell_longer_than_the_lags_is_capped_the_same_way():
     series = _series()
     series.loc[:, "TotalPrecipitation_mm"] = 0.0
@@ -207,3 +250,55 @@ def test_a_fit_on_departures_gives_its_models_the_region_normals(tmp_path):
     params = {"chant": {}}
     fp.attach_fruiting_models(params, "SE", path)
     assert params["chant"]["fruiting"]["normals"]["rh"].shape[0] == 12
+
+
+def test_a_thin_member_takes_its_groups_answer_and_a_rich_one_keeps_its_own():
+    import fit_fruiting as ff
+    rng = np.random.default_rng(0)
+    group = np.array([1.0, -0.5])
+    x = rng.normal(size=(400, 5, 2))
+    mask = np.ones((400, 5), bool)
+    assert np.allclose(ff.member_fit(x[:10], mask[:10], group), group)          # too few strata: the group's
+    x[:, 0, 0] += 2.0                                                           # the member's own finds lean on feature 0
+    own = ff.member_fit(x, mask, group)
+    assert own[0] > group[0]
+
+
+def test_a_member_ships_on_its_years_or_pooled_when_its_years_are_few():
+    import fit_fruiting as ff
+    many = [(y, 0.0, 0.1) for y in range(2016, 2024)]                            # better in 8 of 8 years
+    assert ff.group_ships(many, finds=1000, pooled_ci=[-0.1, 0.2])
+    few = many[:3]
+    assert ff.group_ships(few, finds=400, pooled_ci=[0.01, 0.2])
+    assert not ff.group_ships(few, finds=100, pooled_ci=[0.01, 0.2])             # too few finds to pool
+    assert not ff.group_ships(few, finds=400, pooled_ci=[-0.01, 0.2])
+
+
+def _rain_frame(days_back_of_rain, mm=60.0):
+    row = {f"TotalPrecipitation_mm_{k}days_ago": (mm if k in days_back_of_rain else 0.0) for k in range(1, 43)}
+    row.update({f"Temperature (C)_{k}days_ago": 10.0 for k in range(1, 43)})
+    row.update({f"Humidity (%)_{k}days_ago": 70.0 for k in range(1, 43)})
+    row.update({f"Wind Speed (m/s)_{k}days_ago": 3.0 for k in range(1, 43)})
+    return pd.DataFrame([row])
+
+
+def test_a_rain_delay_ignores_the_last_days_and_reads_the_weeks_before():
+    recent, older = _rain_frame({2}), _rain_frame({16})
+    m = lambda df, d: fp._moisture_memory_score(df, cumulative_rain_target=35, rain_first=True, delay=d)[0]
+    assert m(recent, 0) > 0.5 and m(recent, 10) == 0.02          # rain 2 days ago: soaked now, nothing yet with a 10-day delay
+    assert m(older, 10) > m(older, 0)                             # rain 16 days ago counts in full only once delayed
+    assert m(recent, 0) == fp._moisture_memory_score(recent, cumulative_rain_target=35, rain_first=True)[0]
+
+
+def test_the_rain_delay_is_read_from_the_species_settings():
+    df = _rain_frame({2})
+    for col, v in (("Temperature (C)", 12.0), ("Humidity (%)", 80.0), ("TotalPrecipitation_mm", 0.0), ("Wind Speed (m/s)", 2.0),
+                   ("Elevation (m)", 500.0), ("ph_level", 6.0), ("dist_m_water", 100.0), ("dist_m_sea", 1e5)):
+        df[col] = v
+    df["climate_zone"], df["Date"], df["Latitude"], df["Longitude"] = "temperate", pd.Timestamp("2026-09-20"), 45.0, 10.0
+    base = {"optimal_temp": 15, "temp_sigma": 5, "optimal_alt": 500, "alt_sigma": 800, "optimal_humidity": 80,
+            "humidity_sigma": 15, "optimal_pH": 6, "pH_sigma_near": 1.5, "pH_sigma_far": 1.5, "pH_range_near": [5, 7],
+            "min_cumulative_rain": 35, "weather_preference": {"rain_first": True}, "season_months": list(range(1, 13))}
+    now = fp.calculate_mushroom_score(df.copy(), {"x": base}, {})["x_score"][0]
+    later = fp.calculate_mushroom_score(df.copy(), {"x": {**base, "rain_delay_days": 10}}, {})["x_score"][0]
+    assert later < now
