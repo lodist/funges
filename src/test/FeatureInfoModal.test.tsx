@@ -68,6 +68,44 @@ describe('FeatureInfoModal', () => {
     expect(screen.queryByText('peak')).not.toBeInTheDocument();
   });
 
+  it('filters the rows by type, with chips only for the types the cell has', async () => {
+    const user = userEvent.setup();
+    render(
+      <FeatureInfoModal
+        feature={makeFeature({
+          chant_score: 6.7,
+          boletus_score: 7.2,
+          dandelion_score: 8.9,
+        })}
+        open
+        onClose={vi.fn()}
+      />
+    );
+
+    // No berries here, so no berries chip.
+    expect(
+      screen.queryByRole('button', { name: 'Bacche' })
+    ).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Fiori' }));
+    expect(screen.getByText('Tarassaco')).toBeInTheDocument();
+    expect(screen.queryByText('Galletti')).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Funghi' }));
+    expect(screen.queryByText('Tarassaco')).not.toBeInTheDocument();
+    expect(screen.getByText('Galletti')).toBeInTheDocument();
+  });
+
+  it('shows no type chips when the cell has one type', () => {
+    render(
+      <FeatureInfoModal feature={twoSpeciesFeature} open onClose={vi.fn()} />
+    );
+
+    expect(
+      screen.queryByRole('button', { name: 'Funghi' })
+    ).not.toBeInTheDocument();
+  });
+
   it('shows exactly one close button, icon-only, and closes on click', async () => {
     const onClose = vi.fn();
     const user = userEvent.setup();

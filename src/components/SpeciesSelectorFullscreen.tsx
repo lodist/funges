@@ -9,7 +9,7 @@ import { getSpeciesImage } from '@/lib/utils';
 import { useNavigate } from '@tanstack/react-router';
 import { useOfflineStore } from '@/store/offlineStore';
 import { usePWA } from '@/hooks/use-pwa';
-import { SPECIES_DATA, speciesNameKey } from '@/data/species';
+import { CATEGORY_FILTERS, SPECIES_DATA, speciesNameKey } from '@/data/species';
 import { SPECTACLES } from '@/lib/bloom';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
@@ -79,11 +79,10 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
   // Category options for quick filters
   const categories = [
     { value: 'all', label: tSpecies('allTypes'), icon: '🍃' },
-    { value: 'mushroom', label: tSpecies('mushrooms'), icon: '🍄' },
-    { value: 'plant', label: tSpecies('plants'), icon: '🌿' },
-    { value: 'berry', label: tSpecies('berries'), icon: '🫐' },
-    { value: 'nut', label: tSpecies('nuts'), icon: '🌰' },
-    { value: 'flower', label: tSpecies('flowers'), icon: '🌸' },
+    ...CATEGORY_FILTERS.map(({ labelKey, ...chip }) => ({
+      ...chip,
+      label: tSpecies(labelKey),
+    })),
     { value: 'spectacle', label: t('bloom.spectacles'), icon: '✨' },
   ];
 
@@ -122,7 +121,7 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
         selectedCategory === 'all' || option.category === selectedCategory;
       return matchesSearch && matchesCategory;
     })
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .sort((a, b) => a.scientificName.localeCompare(b.scientificName));
 
   const handleSpeciesSelect = (speciesCode: string) => {
     setSelectedSpecies(speciesCode);
