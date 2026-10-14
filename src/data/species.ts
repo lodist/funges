@@ -15,6 +15,8 @@ export interface Species {
   habitat?: string;
   showOnMap?: boolean;
   forecastRegions?: readonly ForecastRegion[];
+  /** A map layer scored as the best of these species, not a taxon of its own. */
+  compositeOf?: readonly string[];
 }
 
 export type ForecastRegion = 'NE' | 'SE' | 'USE' | 'USW';
@@ -66,6 +68,20 @@ export const getSpeciesByCategory = (
 
 export const getAllSpecies = (): Species[] => SPECIES_DATA;
 
+/** The species-type filter chips (map species panel, "Species in this area"):
+ * `labelKey` is in the `species` namespace. */
+export const CATEGORY_FILTERS: readonly {
+  value: Species['category'];
+  labelKey: string;
+  icon: string;
+}[] = [
+  { value: 'mushroom', labelKey: 'mushrooms', icon: '🍄' },
+  { value: 'plant', labelKey: 'plants', icon: '🌿' },
+  { value: 'berry', labelKey: 'berries', icon: '🫐' },
+  { value: 'nut', labelKey: 'nuts', icon: '🌰' },
+  { value: 'flower', labelKey: 'flowers', icon: '🌸' },
+];
+
 // region is mandatory on purpose: an optional one degraded to "no filter", so a
 // caller that forgot it silently got the all-regions list back (parasol selectable
 // in the US, asparagus in NE). Now that mistake is a type error.
@@ -75,8 +91,9 @@ export const getSpeciesOptions = (region: ForecastRegion): SpeciesOption[] =>
       showOnMap && forecastRegions?.includes(region)
   ).map(({ id, emoji, category }) => ({ code: id, emoji, category }));
 
-/** Forecast in every region, so it is always a valid map fallback. */
-export const DEFAULT_MAP_SPECIES = 'mushroom';
+/** Boletus (all porcini), the best of the king boletes: forecast in every region,
+ * so it is always a valid map fallback. */
+export const DEFAULT_MAP_SPECIES = 'boletus';
 
 /**
  * A species the map can show somewhere — the check a URL or saved code must pass.

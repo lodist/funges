@@ -11,7 +11,7 @@ writes its rain over that day, at no WeatherAPI cost.
 """
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from contextlib import contextmanager
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import datetime, timedelta
 from io import StringIO, BytesIO
 from pathlib import Path
@@ -46,7 +46,7 @@ import era5_normals
 import era5_rain
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
-from species_registry import get_species_params
+from species_registry import get_composites, get_region_boundaries, get_species_params
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 FORECAST_DAYS = 7
@@ -822,13 +822,13 @@ def _hybrid_component_mean_rows(components, weights, geometric_share=1.0):
 
 
 def spatial_smooth_scores(df, score_cols, *, neighbours=5, radius_km=30.0):
-    """Smooth scores locally per date and attach coverage/disagreement confidence."""
+    """Smooth scores locally per date. (A per-species confidence from coverage and agreement
+    was written beside them until Oct 2026: nothing read it, and it was ~6 GB of South Europe's
+    master in the nightly upload's memory.)"""
     from scipy.spatial import cKDTree
 
     out = df.copy()
     earth_radius_km = 6371.0088
-    for score_col in score_cols:
-        out[f"{score_col[:-6]}_confidence"] = np.nan
 
     for _, index in out.groupby(pd.to_datetime(out["Date"]).dt.normalize()).groups.items():
         idx = np.asarray(list(index))
@@ -864,28 +864,6 @@ def spatial_smooth_scores(df, score_cols, *, neighbours=5, radius_km=30.0):
                 where=weight_sum > 0,
             )
             out.loc[valid_idx, score_col] = smoothed
-
-            count = usable.sum(axis=1)
-            expected = max(1, min(neighbours, len(valid_idx)))
-            coverage = count / expected
-            mean_distance = np.divide(
-                (distances * usable).sum(axis=1),
-                count,
-                out=np.full(len(valid_idx), radius_km),
-                where=count > 0,
-            )
-            centred = neighbour_values - smoothed[:, None]
-            variance = np.divide(
-                np.nansum(weights * centred**2, axis=1),
-                weight_sum,
-                out=np.full(len(valid_idx), 4.0),
-                where=weight_sum > 0,
-            )
-            agreement = np.exp(-np.sqrt(np.maximum(variance, 0.0)) / 2.0)
-            confidence = coverage * np.exp(-mean_distance / radius_km) * agreement
-            out.loc[valid_idx, f"{score_col[:-6]}_confidence"] = np.clip(
-                confidence, 0.0, 1.0
-            )
     return out
 
 
@@ -1001,6 +979,29 @@ FRUITING_GBM_FEATURES = [*FRUITING_FEATURES,
                          *FRUITING_GBM_STATIC, "region"]
 
 
+# Humidity and temperature as departures from the place's normal for the time of year (the
+# window's middle day, era5_normals 2016-2025). The fit learns only from days at one place,
+# where absolute values and departures give the same coefficients, but read as absolute values
+# a drier or warmer climate lowered every day there, which no test checked (central Apennines
+# in a wet autumn 7.5, the Alps 9). Feature -> (normal, days back to the window's middle).
+FRUITING_RELATIVE = {"temp": ("tmean", 4), "humidity": ("rh", 4), "humidity_early": ("rh", 14)}
+
+
+def fruiting_relative(design, grid, lats, lons, dates):
+    """The linear fit's humidity and temperature as departures from the place's normals, the
+    temperature optimum's term against the normal's own. Off the normals grid they are unknown
+    and count as average. The GBM reads the normals as inputs instead."""
+    out = design.copy()
+    lats, lons = np.asarray(lats, float), np.asarray(lons, float)
+    dates = pd.DatetimeIndex(pd.to_datetime(dates))
+    for name, (normal, back) in FRUITING_RELATIVE.items():
+        n = era5_normals.on_days(grid, lats, lons, dates - pd.Timedelta(days=back))[f"norm_{normal}"]
+        out[name] = design[name].to_numpy(float) - n
+        if name == "temp":
+            out["temp_sq"] = design["temp_sq"].to_numpy(float) - (n - 12.0) ** 2 / 10.0
+    return out
+
+
 def fruiting_design(raw):
     """Raw features -> the fit's columns. Rain on a log scale: the 30th mm matters less than the 3rd."""
     out = pd.DataFrame({name: np.log1p(raw[name]) for name in ["rain_0", *FRUITING_RAIN_WINDOWS]})
@@ -1025,6 +1026,8 @@ def fruiting_weather_part(df, model):
     design = fruiting_design(fruiting_raw_features(df))
     a, b = model.get("humidity_from_stored", (0.0, 1.0))
     design[["humidity", "humidity_early"]] = a + b * design[["humidity", "humidity_early"]]
+    if model.get("normals") is not None:
+        design = fruiting_relative(design, model["normals"], df["Latitude"], df["Longitude"], df["Date"])
     z = (design.to_numpy(float) - np.asarray(model["means"])) / np.asarray(model["sds"])
     eta = np.nan_to_num(z, nan=0.0) @ np.asarray(model["beta"], float)
     return _monthly_map(eta, df["Date"], model["map"])
@@ -1082,11 +1085,15 @@ def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
     if fit.get("features") != FRUITING_FEATURES:
         print(f"[warn] {path}: features differ from this code's; hand-set weather parts used")
         return
+    normals = None
     for specie, params in species_params.items():
         model = fit.get("models", {}).get(specie, {}).get(region)
         if model:
             params["fruiting"] = {"means": fit["means"], "sds": fit["sds"],
                                   "humidity_from_stored": fit["humidity_from_stored"][region], **model}
+            if fit.get("relative_to_normal"):
+                normals = era5_normals.load(region) if normals is None else normals
+                params["fruiting"]["normals"] = normals
 
 
 def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, fetch=None):
@@ -1122,6 +1129,61 @@ def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, f
             "corrections": spec["inputs_from_stored"][region],
             "region_code": FRUITING_GBM_REGIONS.index(region), "anchor": pd.Timestamp(today),
             "normals": normals}
+
+
+PHENOLOGY_PATH = Path(__file__).resolve().parent / "generated" / "phenology.json"
+
+
+def attach_phenology(species_params, region, path=None, fetch=None):
+    """The learned plant seasons (tools/fit_phenology.py) for the region's species that ship
+    one: a weekly grid per continent, on R2 and checked against the sha256 recorded here. A
+    file that cannot be fetched or fails its checksum leaves those species on their months."""
+    path = Path(path or PHENOLOGY_PATH)
+    if not path.exists():
+        return
+    entry = json.loads(path.read_text(encoding="utf-8"))["continents"].get(era5_normals.CONTINENT[region])
+    if not entry or not set(entry["species"]) & set(species_params):
+        return
+    try:
+        data = (fetch or r2_fetch)(entry["file"])
+        if hashlib.sha256(data).hexdigest() != entry["sha256"]:
+            raise ValueError("checksum differs")
+        with np.load(BytesIO(data)) as z:
+            grid = {name: z[name] for name in z.files}
+    except Exception as error:
+        print(f"[warn] learned plant seasons not loaded ({error}); their months stay")
+        return
+    for k, specie in enumerate(grid["species"].tolist()):
+        if specie in species_params:
+            species_params[specie]["phenology"] = {"lat": grid["lat"], "lon": grid["lon"], "ratio": grid["ratio"][k]}
+
+
+HABITAT_PATH = Path(__file__).resolve().parent / "generated" / "habitat_factor.json"
+
+
+def attach_habitat(species_params, region, path=None, fetch=None):
+    """The learned habitat factor (tools/fit_habitat.py) for the region's species that ship
+    one: per location, on R2 and checked against the sha256 recorded here. A file that cannot
+    be fetched or fails its checksum leaves the scores without it."""
+    path = Path(path or HABITAT_PATH)
+    if not path.exists():
+        return
+    entry = json.loads(path.read_text(encoding="utf-8")).get("regions", {}).get(region)
+    if not entry or not set(entry["species"]) & set(species_params):
+        return
+    try:
+        data = (fetch or r2_fetch)(entry["file"])
+        if hashlib.sha256(data).hexdigest() != entry["sha256"]:
+            raise ValueError("checksum differs")
+        with np.load(BytesIO(data)) as z:
+            ids, species, factor = z["ids"], [str(s) for s in z["species"]], z["factor"]
+    except Exception as error:
+        print(f"[warn] habitat factor not loaded ({error}); scores go without it")
+        return
+    index = pd.Index(ids)
+    for column, specie in enumerate(species):
+        if specie in species_params:
+            species_params[specie]["habitat"] = {"index": index, "factor": factor[:, column] / 255.0}
 
 
 def calculate_mushroom_score(df, species_params, zone_curves):
@@ -1213,8 +1275,13 @@ def calculate_mushroom_score(df, species_params, zone_curves):
         # Weight of each sub-score. Rain sits above humidity because it is what makes
         # fungi fruit. Plants whose flowers, fruit or nuts do not wait for rain set a
         # lower `rain_weight`: against 2026 sightings in the forageable stage, 0 scored
-        # them higher and told their places from random ones better than 1.5 did.
-        wT, wH, wA, wPH = 1.75, 1.0, 0.75, 1.0
+        # them higher and told their places from random ones better than 1.5 did. Any part
+        # can be set the same way; 0 drops a part that ranks a plant's places the wrong way
+        # (tools/fit_plant_settings.py --parts).
+        wT = float(params.get("temp_weight", 1.75))
+        wH = float(params.get("humidity_weight", 1.0))
+        wA = float(params.get("alt_weight", 0.75))
+        wPH = float(params.get("ph_weight", 1.0))
         wW = float(params.get("rain_weight", 1.5))
         wWater = 0.7 if water_active else 0.0
 
@@ -1285,6 +1352,74 @@ def calculate_mushroom_score(df, species_params, zone_curves):
     return df
 
 
+# A species scored in both regions of a continent jumped where their place lists meet: wild
+# mint on 12 Oct 2026 read 9.3 in Kentucky, on US West's list, and 4.3 next door in Indiana, on
+# US East's; shaggy mane drew Missouri's and Tennessee's borders, its two regions' fitted models
+# disagreeing. Across a band around the split (species_registry.infer_region) each region's
+# model (settings, season curves, fitted models, habitat factor: tools/fit_habitat.py lists each
+# region's for its neighbour's places too) fades into the other's, so a place takes its own
+# side's and the line goes. In the US the band runs 105-95 W around the app's split at 100 W, so
+# Missouri, Kentucky and Tennessee, on US West's list, take US East's model like their
+# neighbours. Europe's lists meet along the Dutch, Belgian, Danish and Polish borders (North
+# Europe from 49.5 N, South Europe up to 54.8 N), far from infer_region's 47 N, where a band
+# would move Germany, Poland and Czechia onto North Europe's model, trained without their
+# finds; there the band follows the lists themselves, BAND_KM either side of where they meet.
+SETTINGS_BAND = 5.0                            # US: half-width in degrees of longitude, 105-95 W
+BAND_KM = 75.0                                 # Europe: half-width either side of where the lists meet
+NEIGHBOUR_REGION = {"NE": "SE", "SE": "NE", "USE": "USW", "USW": "USE"}
+BLEND_CHUNK = 100_000                          # rows rescored at a time, to bound the memory
+
+
+def _nearest_km(points, lat, lon):
+    """Great-circle km from each (lat, lon) to the nearest of `points`, an array of (lat, lon)."""
+    from scipy.spatial import cKDTree
+
+    def xyz(la, lo):
+        la, lo = np.radians(la), np.radians(lo)
+        return np.column_stack([np.cos(la) * np.cos(lo), np.cos(la) * np.sin(lo), np.sin(la)])
+    chord, _ = cKDTree(xyz(points[:, 0], points[:, 1])).query(xyz(lat, lon))
+    return 2 * 6371.0 * np.arcsin(np.clip(chord / 2, 0, 1))
+
+
+def own_settings_weight(region, lat, lon, lists=None):
+    """Per row, the share of the region's own model against its neighbour's: 1 on its side of
+    the band, 0 on the other, linear across it; a half each where they meet. In Europe `lists`
+    is (the region's place coordinates, the neighbour's), and the band follows them."""
+    if region in ("USE", "USW"):
+        split = get_region_boundaries()["uswMaxLongitude"]
+        east = np.clip((lon - split + SETTINGS_BAND) / (2 * SETTINGS_BAND), 0, 1)
+        return east if region == "USE" else 1 - east
+    own, theirs = lists
+    return np.clip(0.5 + (_nearest_km(theirs, lat, lon) - _nearest_km(own, lat, lon)) / (2 * BAND_KM), 0, 1)
+
+
+def blend_neighbour_settings(df, species_params, config, neighbour=None):
+    """Rescore the rows leaning to the neighbour region with its model, for every species both
+    regions score, and mix the two scores by own_settings_weight. `neighbour` is the neighbour's
+    (species_params, zone_curves); loaded as the region's own are when not given."""
+    other = NEIGHBOUR_REGION[config.region]
+    lists = None
+    if config.region in ("NE", "SE"):
+        lists = tuple(_load_coords_any(get_required_env(f"{r}_UNIQUE_COORDINATES")) for r in (config.region, other))
+    w = own_settings_weight(config.region, df["Latitude"].to_numpy(float), df["Longitude"].to_numpy(float), lists)
+    rows = np.flatnonzero(w < 1)
+    if not len(rows):
+        return df
+    if neighbour is None:
+        print(f"{other}'s model, for the places leaning to it:")
+        neighbour = _load_species_and_curves(replace(config, region=other, season_curves_env=f"{other}_SEASON_CURVES"))
+    theirs, their_zone_curves = neighbour
+    both = [s for s in species_params if s in theirs]
+    inputs = [i for i, c in enumerate(df.columns) if not c.endswith(("_score", "_Score", "_confidence"))]
+    cols = [df.columns.get_loc(f"{s}_score") for s in both]
+    for part in np.array_split(rows, -(-len(rows) // BLEND_CHUNK)):
+        scored = calculate_mushroom_score(df.iloc[part, inputs].copy(), {s: theirs[s] for s in both}, their_zone_curves)
+        mine = df.iloc[part, cols].to_numpy(float)
+        df.iloc[part, cols] = w[part, None] * mine + (1 - w[part, None]) * scored[[f"{s}_score" for s in both]].to_numpy(float)
+    print(f"Scores blended with {other}'s on {len(rows)} rows for {len(both)} species")
+    return df
+
+
 # --- Loader helpers (wrap original top-of-script blocks) -------------------
 
 def _load_species_and_curves(config):
@@ -1343,10 +1478,16 @@ def _load_species_and_curves(config):
 
     attach_fruiting_models(species_params, config.region)
     attach_fruiting_gbm(species_params, config.region, datetime.now())
+    attach_habitat(species_params, config.region)
+    attach_phenology(species_params, config.region)
     _fitted = sorted(s for s, p in species_params.items() if "fruiting" in p)
     print(f"Fitted fruiting model for {len(_fitted)} species: {', '.join(_fitted) or 'none'}")
     _gbm = sorted(s for s, p in species_params.items() if "fruiting_gbm" in p)
     print(f"Fruiting GBM for {len(_gbm)} species: {', '.join(_gbm) or 'none'}")
+    _habitat = sorted(s for s, p in species_params.items() if "habitat" in p)
+    print(f"Habitat factor for {len(_habitat)} species: {', '.join(_habitat) or 'none'}")
+    _learned = sorted(s for s, p in species_params.items() if p.get("phenology") is not None)
+    print(f"Learned season for {len(_learned)} species: {', '.join(_learned) or 'none'}")
     return species_params, zone_curves
 
 
@@ -1462,10 +1603,8 @@ def run_pipeline(config: RegionConfig):
 
     # Tonight's ERA5 rain order goes in before the WeatherAPI fetch; the orders that have
     # finished since earlier runs, tonight's too on a quiet night, download after it.
-    measured_rain = era5_rain.start(
-        config.lat_range, config.lon_range,
-        [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates],
-        datetime.now().date())
+    points = [(round(float(lat), config.ndp), round(float(lon), config.ndp)) for lat, lon in coordinates]
+    measured_rain = era5_rain.start(points, datetime.now().date())
     counter = CallCounter()
     weather_long = _fetch_all(config, coordinates, static_map, api_key, counter)
     print(f"API calls made: {counter.count} for {len(coordinates)} coordinates")
@@ -1694,7 +1833,10 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         combined_df["Date"] = pd.to_datetime(combined_df["Date"])
         combined_df = combined_df.drop_duplicates(subset=["Location_Id", "Date"], keep="last").reset_index(drop=True)
     if len(measured):
-        combined_df = apply_measured_weather(combined_df, measured)
+        try:
+            combined_df = apply_measured_weather(combined_df, measured)
+        except Exception as error:  # the stored rain stays, as it did before ERA5
+            print(f"[warn] ERA5 rain not merged, stored rain kept: {error}", flush=True)
 
     combined_df = combined_df[np.isfinite(combined_df["Latitude"]) & np.isfinite(combined_df["Longitude"])]
     combined_df = combined_df[combined_df["Location_Id"] != ""]
@@ -1744,22 +1886,28 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
     print(f"Scoring {len(forward)} forward rows (Date >= {today.date()}) "
           f"across {forward['Location_Id'].nunique()} locations")
     forward = calculate_mushroom_score(forward, species_params, zone_curves)
+    try:
+        forward = blend_neighbour_settings(forward, species_params, config)
+    except Exception as error:      # the region's own scores stand, as before the blend
+        print(f"[warn] scores not blended with the neighbour region's ({error}); the region's own stand")
 
     score_cols = [f"{s}_score" for s in species_params]
     forward = spatial_smooth_scores(forward, score_cols)
-    confidence_cols = [f"{s}_confidence" for s in species_params]
-    updated_df = apply_forward_scores(combined_df, forward, score_cols + confidence_cols)
+    # A composite (every porcini-type bolete) is the best of its members at each place and day.
+    for composite, members in get_composites(config.region).items():
+        present = [f"{m}_score" for m in members if f"{m}_score" in forward.columns]
+        forward[f"{composite}_score"] = forward[present].max(axis=1) if present else np.nan
+        score_cols.append(f"{composite}_score")
+    updated_df = apply_forward_scores(combined_df, forward, score_cols)
 
     if cutoff_date is None:
         cutoff_date = datetime.now() - timedelta(days=config.cutoff_days)
     updated_df = updated_df[updated_df["Date"] > cutoff_date]
 
-    valid_score_columns = {f"{s}_score" for s in species_params}
+    valid_score_columns = set(score_cols)
     species_score_columns = [c for c in updated_df.columns if c.endswith("_score") and c in valid_score_columns]
     # No snap to 10 above 9.5: it tied whole species lists at 100% and hid their order.
     updated_df[species_score_columns] = updated_df[species_score_columns].round(2)
-    confidence_columns = [c for c in confidence_cols if c in updated_df.columns]
-    updated_df[confidence_columns] = updated_df[confidence_columns].round(3)
 
     masterfile_columns = [
         "Location_Id", "Date", "Latitude", "Longitude", "Elevation (m)",
@@ -1769,7 +1917,7 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         "Rain Measured", "dist_m_water", "dist_m_sea", "climate_zone", "ph_level",
     ]
     updated_df = updated_df.reindex(
-        columns=masterfile_columns + species_score_columns + confidence_columns)
+        columns=masterfile_columns + species_score_columns)
     return updated_df
 
 

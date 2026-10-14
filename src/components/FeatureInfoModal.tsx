@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { GeoJSONFeature } from 'maplibre-gl';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from '@tanstack/react-router';
@@ -11,9 +11,9 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { getRepresentativeLngLat } from '@/lib/geo';
-import { getSpeciesImage } from '@/lib/utils';
+import { cn, getSpeciesImage } from '@/lib/utils';
 import { getScoreColor } from '@/lib/scoreColor';
-import { SPECIES_DATA, speciesNameKey } from '@/data/species';
+import { CATEGORY_FILTERS, SPECIES_DATA, speciesNameKey } from '@/data/species';
 import type { RegionId } from '@/lib/data';
 import { Navigation, BarChart2, Copy, Check, AlertTriangle } from '@/lib/icons';
 import {
@@ -62,6 +62,9 @@ export default function FeatureInfoModal({
   const { t: tCommon } = useTranslation('common');
   const navigate = useNavigate({ from: '/' });
   const { status: copyStatus, copy } = useCopyToClipboard();
+  // Kept across cells: someone after mushrooms stays on mushrooms while they
+  // click around the map.
+  const [category, setCategory] = useState('all');
 
   // lock body scroll when modal open
   useEffect(() => {
@@ -135,11 +138,29 @@ export default function FeatureInfoModal({
         score: value as number,
         name: getSpeciesDisplayName(key),
         scientificName: speciesData?.scientificName || cleanKey,
+        category: speciesData?.category,
         image: getSpeciesImage(cleanKey),
       };
     })
     .filter(entry => entry.image) // Only show species with available images
     .sort((a, b) => b.score - a.score); // Sort by score descending
+
+  // Chips only for the types this cell has; a remembered type the cell lacks
+  // falls back to all rather than an empty list.
+  const categoryFilters = CATEGORY_FILTERS.filter(({ value }) =>
+    speciesEntries.some(entry => entry.category === value)
+  );
+  const activeCategory = categoryFilters.some(({ value }) => value === category)
+    ? category
+    : 'all';
+  const shownEntries =
+    activeCategory === 'all'
+      ? speciesEntries
+      : speciesEntries.filter(entry => entry.category === activeCategory);
+  const chips = [
+    { value: 'all', labelKey: 'allTypes', icon: '🍃' },
+    ...categoryFilters,
+  ];
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
@@ -175,6 +196,30 @@ export default function FeatureInfoModal({
               {copyStatus === 'copied' && tCommon('common.copied')}
             </p>
           </div>
+          {categoryFilters.length > 1 && (
+            <div className='flex flex-wrap justify-center gap-2'>
+              {chips.map(({ value, labelKey, icon }) => (
+                <button
+                  key={value}
+                  type='button'
+                  onClick={() => setCategory(value)}
+                  aria-pressed={activeCategory === value}
+                  aria-label={tSpecies(labelKey)}
+                  // Same chip as the map species panel: selected is marked by
+                  // weight only (Trailhead #213).
+                  className={cn(
+                    'flex items-center gap-1.5 rounded-full border-0 bg-muted px-3 py-1.5 text-sm text-foreground transition-all duration-base',
+                    activeCategory === value
+                      ? 'font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
+                      : 'font-medium hover:bg-muted/80'
+                  )}
+                >
+                  <span className='text-base'>{icon}</span>
+                  <span className='hidden sm:inline'>{tSpecies(labelKey)}</span>
+                </button>
+              ))}
+            </div>
+          )}
         </DialogHeader>
         <div className='max-h-[70vh] overflow-y-auto pr-2'>
           <div className='space-y-3'>
@@ -228,59 +273,57 @@ export default function FeatureInfoModal({
                 </div>
               </div>
             )}
-            {speciesEntries.map(
-              ({ key, score, name, image, scientificName }) => (
-                <div
-                  key={key}
-                  className='flex items-center space-x-3 p-2 sm:p-3 bg-muted rounded-lg'
-                >
-                  {/* Thumbnail */}
-                  <div className='flex-shrink-0'>
-                    {image && (
-                      <ZoomableImage
-                        src={image}
-                        alt={name}
-                        className='w-14 h-14 sm:w-16 sm:h-16 bg-secondary rounded-lg'
-                        imgClassName='object-center'
-                      >
-                        <span className='absolute inset-0 bg-black/10' />
-                      </ZoomableImage>
-                    )}
-                  </div>
+            {shownEntries.map(({ key, score, name, image, scientificName }) => (
+              <div
+                key={key}
+                className='flex items-center space-x-3 p-2 sm:p-3 bg-muted rounded-lg'
+              >
+                {/* Thumbnail */}
+                <div className='flex-shrink-0'>
+                  {image && (
+                    <ZoomableImage
+                      src={image}
+                      alt={name}
+                      className='w-14 h-14 sm:w-16 sm:h-16 bg-secondary rounded-lg'
+                      imgClassName='object-center'
+                    >
+                      <span className='absolute inset-0 bg-black/10' />
+                    </ZoomableImage>
+                  )}
+                </div>
 
-                  {/* Species info */}
-                  <div className='flex-1 min-w-0'>
-                    <h3 className='font-semibold text-foreground text-sm sm:text-base leading-tight mb-1'>
-                      {name}
-                    </h3>
-                    <p className='text-xs sm:text-sm text-muted-foreground italic leading-tight'>
-                      {scientificName}
-                    </p>
-                  </div>
+                {/* Species info */}
+                <div className='flex-1 min-w-0'>
+                  <h3 className='font-semibold text-foreground text-sm sm:text-base leading-tight mb-1'>
+                    {name}
+                  </h3>
+                  <p className='text-xs sm:text-sm text-muted-foreground italic leading-tight'>
+                    {scientificName}
+                  </p>
+                </div>
 
-                  {/* Score display */}
-                  <div className='flex-shrink-0 text-right'>
-                    <div className='flex items-center justify-end gap-1.5'>
-                      {/* The ramp colour reads as a swatch, matching the map
+                {/* Score display */}
+                <div className='flex-shrink-0 text-right'>
+                  <div className='flex items-center justify-end gap-1.5'>
+                    {/* The ramp colour reads as a swatch, matching the map
                           polygon, while the number itself stays on Ink. It used
                           to be the number's text colour, which never rendered
                           and would have been unreadable at the pale end. */}
-                      <span
-                        aria-hidden
-                        className='size-2.5 shrink-0 rounded-full'
-                        style={{ backgroundColor: getScoreColor(score) }}
-                      />
-                      <span className='text-xl sm:text-2xl font-bold text-foreground leading-tight'>
-                        {Math.round(score * 10)}%
-                      </span>
-                    </div>
-                    <div className='text-xs text-muted-foreground leading-tight'>
-                      {tCommon('common.score')}: {score.toFixed(1)}/10
-                    </div>
+                    <span
+                      aria-hidden
+                      className='size-2.5 shrink-0 rounded-full'
+                      style={{ backgroundColor: getScoreColor(score) }}
+                    />
+                    <span className='text-xl sm:text-2xl font-bold text-foreground leading-tight'>
+                      {Math.round(score * 10)}%
+                    </span>
+                  </div>
+                  <div className='text-xs text-muted-foreground leading-tight'>
+                    {tCommon('common.score')}: {score.toFixed(1)}/10
                   </div>
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </div>
         </div>
         <DialogFooter className='pt-2 sm:pt-4 flex flex-row flex-wrap justify-end gap-2'>

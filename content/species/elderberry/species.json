@@ -89,7 +89,7 @@
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [7, 8, 9],
+          "season_months": [8, 9],
           "water_relevance": false,
           "sea_relevance": false
         },
@@ -126,7 +126,7 @@
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [6, 7, 8, 9],
+          "season_months": [8, 9],
           "water_relevance": false,
           "sea_relevance": false
         },
@@ -162,7 +162,7 @@
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [6, 7, 8, 9],
+          "season_months": [8, 9],
           "water_relevance": false,
           "sea_relevance": false
         },
@@ -200,7 +200,10 @@
           "wind_sensitive": false,
           "season_months": [6, 7, 8, 9, 10],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "alt_weight": 0,
+          "humidity_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://www.gbif.org/species/2888728",

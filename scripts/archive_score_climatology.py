@@ -1,11 +1,10 @@
 """Append monthly score aggregates to a durable archive, so seasons stay testable.
 
-R2 keeps roughly four months of score history, which means the autumn peak of every
-autumn species (parasol in October, black chanterelle in September, truffle in winter)
-has always aged out by the time anyone tries to validate it. Season QA can therefore
-never see the model's hardest cases.
-
-This costs a few kilobytes per month and fixes that permanently. Run it on the same
+Until #286 (1 Oct 2026) the masters kept roughly four months of score history, so the
+autumn peak of every autumn species (parasol in October, black chanterelle in September,
+truffle in winter) had aged out by the time anyone tried to validate it. They now keep
+three years (forecast_pipeline's cutoff_days), every day's scores included; this monthly
+summary stays as a few-kilobyte record for season QA. Run it on the same
 schedule as the site data; it is idempotent, and re-running within a month overwrites
 that month's partial entry rather than duplicating it.
 """

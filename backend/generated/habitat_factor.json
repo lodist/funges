@@ -1,0 +1,67 @@
+{
+ "strength": 0.5,
+ "floor": 0.5,
+ "reference_quantile": 0.1,
+ "trained": "2016-2025",
+ "shipped_if": "score x habitat ranks held-out 2026 finds above the places searched that week better than the score alone (other fungi's finds), and no worse against bracket fungi",
+ "regions": {
+  "NE": {
+   "file": "models/habitat/20261012-2106/habitat_NE.npz",
+   "sha256": "52687dada5743cb8848f778b4c001cc28d160289328f33f09074226d9435f2e5",
+   "species": [
+    "chant",
+    "chicken-of-the-woods",
+    "giant_puffball",
+    "hedgehog_mushroom",
+    "matsutake",
+    "mushroom",
+    "oyster-mushroom",
+    "parasol",
+    "pine_bolete",
+    "saffron_milk_cap",
+    "shaggy_mane",
+    "summer_bolete",
+    "winter_chant"
+   ]
+  },
+  "SE": {
+   "file": "models/habitat/20261012-2106/habitat_SE.npz",
+   "sha256": "0f229f3579f15a4a0c1e516a4af875f2b895ebd9436a06ca6edf022a27e2d4da",
+   "species": [
+    "chant",
+    "chicken-of-the-woods",
+    "giant_puffball",
+    "mushroom",
+    "oyster-mushroom",
+    "parasol",
+    "saffron_milk_cap",
+    "shaggy_mane",
+    "summer_bolete"
+   ]
+  },
+  "USE": {
+   "file": "models/habitat/20261012-2106/habitat_USE.npz",
+   "sha256": "517d021303a161da66b68ba6de44dc9dccc1154fa90659ed8942fb7ce17b7580",
+   "species": [
+    "black_chant",
+    "chicken-of-the-woods",
+    "eastern_king",
+    "giant_puffball",
+    "lions_mane",
+    "oyster-mushroom",
+    "smooth_chant"
+   ]
+  },
+  "USW": {
+   "file": "models/habitat/20261012-2106/habitat_USW.npz",
+   "sha256": "1eb22bf621dd11377b17fbbf51510464d8be8a7ca8c731c04537a13c3555aa15",
+   "species": [
+    "chicken-of-the-woods",
+    "mushroom",
+    "oyster-mushroom",
+    "rocky_king",
+    "shaggy_mane"
+   ]
+  }
+ }
+}

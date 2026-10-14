@@ -228,6 +228,19 @@ def test_measured_rain_fills_a_day_the_master_lacks(tmp_path):
     assert day[fx.score_columns()].isna().all().all()
 
 
+def test_a_failed_rain_merge_keeps_the_stored_rain(tmp_path, monkeypatch):
+    def broken(master, measured):
+        raise ValueError("odd ERA5 rows")
+    monkeypatch.setattr(fp, "apply_measured_weather", broken)
+    history = fx.history_df()
+    stored = history[pd.to_datetime(history["Date"]) == MEASURED_DAY].set_index("Location_Id")
+    out = _merge(history, _fetched_with_measured_day(), tmp_path)
+
+    day = out[out["Date"] == MEASURED_DAY].set_index("Location_Id")
+    assert np.allclose(day["TotalPrecipitation_mm"], stored.loc[day.index, "TotalPrecipitation_mm"])
+    assert out.loc[out["Date"] >= fx.TODAY, fx.score_columns()].notna().all().all()
+
+
 def test_weather_text_is_not_stored(tmp_path):
     # Nothing reads it, and as one string per row it cost the full-file readers about
     # 1 GB of memory per region; the existing history loses it on the next write.
@@ -451,3 +464,22 @@ def test_narrower_tail_dtype_does_not_truncate_history(tmp_path):
     got = pd.read_parquet(output).sort_values("Date").reset_index(drop=True)
     frozen = got[got["Date"] < pd.Timestamp("2026-04-01")]["score"].tolist()
     assert frozen == [1.7, 2.9], f"history truncated to {frozen}"
+
+
+def test_a_composite_scores_the_best_of_its_members_on_the_forward_days(tmp_path, monkeypatch):
+    monkeypatch.setattr(fp, "get_composites", lambda region: {"group": ["sp_water", "sp_curve", "absent"]})
+    out = _merge(fx.history_df(), _fetched_with_measured_day(), tmp_path)
+    forward = out[out["Date"] >= fx.TODAY]
+    best = forward[["sp_water_score", "sp_curve_score"]].astype(float).max(axis=1)
+    assert np.allclose(forward["group_score"].astype(float), best, atol=0.01)   # members are rounded to 2 places
+    assert out.loc[out["Date"] < fx.TODAY, "group_score"].isna().all()      # frozen days are not rescored
+
+
+def test_smoothing_writes_no_confidence_columns():
+    """The per-species confidence was never read and was ~6 GB of South Europe's master in the
+    nightly upload's memory: smoothing returns the scores alone."""
+    df = pd.DataFrame({"Date": pd.to_datetime(["2026-10-13"] * 3), "Latitude": [45.0, 45.01, 45.02],
+                       "Longitude": [9.0, 9.01, 9.02], "a_score": [2.0, 4.0, 6.0]})
+    out = fp.spatial_smooth_scores(df, ["a_score"])
+    assert [c for c in out.columns if c.endswith("_confidence")] == []
+    assert out["a_score"].between(2.0, 6.0).all()

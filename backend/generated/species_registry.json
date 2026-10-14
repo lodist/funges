@@ -121,7 +121,7 @@
               "rain_first": true
             },
             "wind_sensitive": false,
-            "season_months": [7, 8, 9, 10, 11],
+            "season_months": [6, 7, 8, 9],
             "water_relevance": false,
             "sea_relevance": false,
             "hosts": [
@@ -639,7 +639,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8, 9, 10],
+            "season_months": [7, 8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -755,7 +755,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [7, 8, 9],
+            "season_months": [8, 9],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -791,7 +791,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8, 9],
+            "season_months": [8, 9],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -826,7 +826,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8, 9],
+            "season_months": [8, 9],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -863,7 +863,10 @@
             "wind_sensitive": false,
             "season_months": [6, 7, 8, 9, 10],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "alt_weight": 0,
+            "humidity_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/2888728",
@@ -906,7 +909,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "season_months": [3, 4, 5, 6, 7, 8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false,
             "distance_thresholds": {
@@ -943,12 +946,16 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "season_months": [3, 4, 5, 6, 7, 8, 9, 10],
             "water_relevance": true,
             "sea_relevance": false,
             "distance_thresholds": {
               "water": 1000
-            }
+            },
+            "humidity_weight": 0,
+            "ph_weight": 0,
+            "rain_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://data.fung.es/EU/SE/SE_species_params.txt",
@@ -980,7 +987,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "season_months": [3, 4, 5, 6, 7, 8, 9, 10],
             "water_relevance": true,
             "sea_relevance": false,
             "distance_thresholds": {
@@ -1016,12 +1023,15 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [4, 5, 6, 7, 8, 9, 10],
+            "season_months": [3, 4, 5, 6, 7, 8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false,
             "distance_thresholds": {
               "water": 1000
-            }
+            },
+            "humidity_weight": 0,
+            "ph_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://data.fung.es/USA/USW/USW_species_params.txt",
@@ -1065,7 +1075,11 @@
             "wind_sensitive": false,
             "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "alt_weight": 0,
+            "humidity_weight": 0,
+            "ph_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://data.fung.es/EU/NE/NE_species_params.txt",
@@ -1132,7 +1146,9 @@
             "wind_sensitive": false,
             "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "humidity_weight": 0,
+            "rain_weight": 0
           },
           "scoringReferences": [
             "https://data.fung.es/USA/USE/USE_species_params.txt"
@@ -1165,7 +1181,11 @@
             "wind_sensitive": false,
             "season_months": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "alt_weight": 0,
+            "humidity_weight": 0,
+            "ph_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://data.fung.es/USA/USW/USW_species_params.txt"
@@ -1581,7 +1601,8 @@
               "fir_spruce_mountain_hemlock",
               "california_mixed_conifer",
               "redwood"
-            ]
+            ],
+            "rain_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/2542160",
@@ -1806,12 +1827,14 @@
               "rain_first": true
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8],
+            "season_months": [7, 8],
             "water_relevance": false,
             "sea_relevance": false,
             "distance_thresholds": {
               "water": 2000
-            }
+            },
+            "rain_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://data.fung.es/EU/NE/NE_species_params.txt",
@@ -1843,7 +1866,7 @@
               "rain_first": true
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8],
+            "season_months": [7, 8],
             "water_relevance": true,
             "sea_relevance": false,
             "distance_thresholds": {
@@ -1880,7 +1903,7 @@
               "rain_first": true
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8],
+            "season_months": [7, 8],
             "water_relevance": true,
             "sea_relevance": false,
             "distance_thresholds": {
@@ -1915,12 +1938,15 @@
               "rain_first": true
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8],
+            "season_months": [7, 8, 9],
             "water_relevance": true,
             "sea_relevance": false,
             "distance_thresholds": {
               "water": 2000
-            }
+            },
+            "alt_weight": 0,
+            "humidity_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://data.fung.es/USA/USW/USW_species_params.txt"
@@ -1960,9 +1986,12 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8, 9],
+            "season_months": [7, 8, 9],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "alt_weight": 0,
+            "humidity_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/2882833",
@@ -1994,7 +2023,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [6, 7, 8, 9],
+            "season_months": [7, 8, 9],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -2210,7 +2239,9 @@
             "wind_sensitive": false,
             "season_months": [5, 6, 7],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "alt_weight": 0,
+            "humidity_weight": 0
           },
           "scoringReferences": [
             "https://data.fung.es/USA/USW/USW_species_params.txt",
@@ -2288,7 +2319,10 @@
             "wind_sensitive": false,
             "season_months": [4, 5, 6, 7, 8, 9, 10],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "alt_weight": 0,
+            "humidity_weight": 0,
+            "ph_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/2927173",
@@ -2617,7 +2651,10 @@
             "wind_sensitive": false,
             "season_months": [4, 5, 6, 7, 8, 9, 10],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "ph_weight": 0,
+            "rain_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/3189767",
@@ -3100,7 +3137,8 @@
             "wind_sensitive": false,
             "season_months": [2, 3, 4, 5],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "ph_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/3117424",
@@ -3166,7 +3204,8 @@
             "wind_sensitive": false,
             "season_months": [2, 3, 4, 5, 6],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/3117424",
@@ -3243,7 +3282,8 @@
             "wind_sensitive": false,
             "season_months": [2, 3, 4],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "alt_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/5331181",
@@ -3276,7 +3316,9 @@
             "wind_sensitive": false,
             "season_months": [3, 4, 5],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "ph_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/5331181",
@@ -3309,7 +3351,9 @@
             "wind_sensitive": false,
             "season_months": [1, 2, 3, 4],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "alt_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/5331181",
@@ -3877,7 +3921,9 @@
               "other_western_hardwoods",
               "tropical_hardwoods",
               "exotic_hardwoods"
-            ]
+            ],
+            "rain_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://data.fung.es/USA/USW/USW_species_params.txt",
@@ -3918,9 +3964,12 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [7, 8, 9, 10],
+            "season_months": [8, 9, 10],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "humidity_weight": 0,
+            "rain_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://data.fung.es/EU/NE/NE_species_params.txt",
@@ -3952,7 +4001,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [7, 8, 9, 10],
+            "season_months": [8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -3985,7 +4034,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [7, 8, 9, 10],
+            "season_months": [8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -4018,7 +4067,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [7, 8, 9, 10],
+            "season_months": [8, 9, 10],
             "water_relevance": false,
             "sea_relevance": false
           },
@@ -4424,7 +4473,7 @@
       "identificationRank": "species",
       "empiricalTaxonKeys": [5258468],
       "rangeTaxonKeys": [5258468],
-      "dataColumns": ["truffle_b_score"],
+      "dataColumns": ["truffle_b_score", "Burgundy Truffle"],
       "regions": {
         "SE": {
           "landCover": [311],
@@ -4449,7 +4498,7 @@
               "rain_first": false
             },
             "wind_sensitive": false,
-            "season_months": [1, 2, 3, 4, 10, 11, 12],
+            "season_months": [12, 1, 2, 3],
             "water_relevance": false,
             "sea_relevance": false,
             "hosts": ["quercus", "other_broadleaf"]
@@ -4747,7 +4796,7 @@
           "landCover": [42, 43, 52],
           "landCoverScheme": "NLCD",
           "scoring": {
-            "optimal_temp": 13,
+            "optimal_temp": 10,
             "temp_sigma": 4,
             "min_temp": 3,
             "max_temp": 22,
@@ -5709,7 +5758,7 @@
           "landCover": [311, 312, 313],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 16,
+            "optimal_temp": 15,
             "temp_sigma": 5,
             "min_temp": 5,
             "max_temp": 30,
@@ -6565,7 +6614,9 @@
             "wind_sensitive": false,
             "season_months": [7, 8, 9],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "humidity_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/9060377",
@@ -6609,7 +6660,9 @@
             "wind_sensitive": false,
             "season_months": [8, 9, 10],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "humidity_weight": 0,
+            "rain_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/3158040",
@@ -6753,7 +6806,11 @@
             "wind_sensitive": false,
             "season_months": [8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "alt_weight": 0,
+            "ph_weight": 0,
+            "rain_weight": 0,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/8395064",
@@ -6787,7 +6844,8 @@
             "wind_sensitive": false,
             "season_months": [8, 9, 10, 11],
             "water_relevance": false,
-            "sea_relevance": false
+            "sea_relevance": false,
+            "temp_weight": 0
           },
           "scoringReferences": [
             "https://www.gbif.org/species/8395064",
@@ -6950,6 +7008,46 @@
             "docs/species/2026-09-30-step4-plants.md",
             "docs/species/2026-10-05-soil-ph.md"
           ]
+        }
+      }
+    },
+    "boletus": {
+      "name": "Boletus (all porcini)",
+      "scientificName": "Boletus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [],
+      "dataColumns": ["boletus_score", "Boletus Group"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "compositeOf": [
+            "mushroom",
+            "pine_bolete",
+            "bronze_bolete",
+            "summer_bolete"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "compositeOf": [
+            "mushroom",
+            "pine_bolete",
+            "bronze_bolete",
+            "summer_bolete"
+          ]
+        },
+        "USE": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "compositeOf": ["mushroom", "eastern_king", "rocky_king"]
+        },
+        "USW": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "compositeOf": ["mushroom", "eastern_king", "rocky_king"]
         }
       }
     }

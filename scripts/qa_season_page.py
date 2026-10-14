@@ -758,9 +758,9 @@ S Europe porcini, Jul–Aug (observed 80–100% of peak): 33.5% of cell-days ≥
   correctly score 0.00, and the one zone that matters (<code>marine_west_coast</code>, holding
   18 of 27 chanterelle finds) is only testable in July–August, which is early for Pacific
   Northwest chanterelles. Bringing humidity, temperature and moisture all to N Europe levels
-  would still only reach ~4.2, so no single parameter rescues it. It needs autumn data — which
-  is now being accumulated at 13 KB/month, because R2's four-month retention is why nobody
-  could ever check this.</p>
+  would still only reach ~4.2, so no single parameter rescues it. It needs autumn data, which
+  the masters now keep: three years of every day's scores since #286, where they used to keep
+  about four months, which is why nobody could ever check this.</p>
 </section>
 
 <section class="sec">

@@ -338,6 +338,11 @@
       "name": "Sanddorn",
       "description": "Leuchtend orange Beeren dicht an dornigen, silbrig belaubten Zweigen: sauer und reich an Vitamin C",
       "howTo": "Suche von August bis Oktober in Küstendünen und an kiesigen Flussufern. Trag Handschuhe gegen die Dornen und informiere dich: In Dünenschutzgebieten ist das Pflücken oft verboten"
+    },
+    "boletus": {
+      "name": "Boletus (alle Steinpilze)",
+      "description": "Alle Steinpilze in einem Wert: Fichten-, Kiefern-, Bronze- und Sommer-Steinpilz sowie die nordamerikanischen Königsröhrlinge",
+      "howTo": "Jeder Ort zeigt den besten ihrer Werte; such in Buchen-, Eichen-, Kastanien-, Kiefern- und Fichtenwäldern zwei bis vier Wochen nach ergiebigem Regen"
     }
   }
 }

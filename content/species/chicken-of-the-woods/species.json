@@ -231,7 +231,8 @@
             "fir_spruce_mountain_hemlock",
             "california_mixed_conifer",
             "redwood"
-          ]
+          ],
+          "rain_weight": 0
         },
         "scoringReferences": [
           "https://www.gbif.org/species/2542160",

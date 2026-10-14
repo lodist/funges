@@ -133,7 +133,9 @@
           "wind_sensitive": false,
           "season_months": [7, 8, 9],
           "water_relevance": false,
-          "sea_relevance": false
+          "sea_relevance": false,
+          "humidity_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://www.gbif.org/species/9060377",

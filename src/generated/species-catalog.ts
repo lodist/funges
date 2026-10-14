@@ -728,6 +728,27 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     showOnMap: true,
     forecastRegions: ['NE', 'SE'],
   },
+  {
+    id: 'boletus',
+    nameKey: 'boletus.name',
+    scientificName: 'Boletus',
+    category: 'mushroom',
+    emoji: '🍄‍🟫',
+    descriptionKey: 'boletus.description',
+    howToKey: 'boletus.howTo',
+    season: 'summer-fall',
+    habitat: 'forest',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
+    compositeOf: [
+      'mushroom',
+      'pine_bolete',
+      'bronze_bolete',
+      'summer_bolete',
+      'eastern_king',
+      'rocky_king',
+    ],
+  },
 ];
 
 export const GENERATED_REGION_BOUNDARIES = {

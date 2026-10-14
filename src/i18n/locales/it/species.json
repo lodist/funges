@@ -337,6 +337,11 @@
       "name": "Olivello spinoso",
       "description": "Bacche arancione vivo fitte lungo rami spinosi dalle foglie argentate: aspre e ricche di vitamina C",
       "howTo": "Cercalo sulle dune costiere e sulle rive ghiaiose dei fiumi da agosto a ottobre. Usa i guanti per le spine e informati sulle regole: nelle riserve dunali la raccolta è spesso vietata"
+    },
+    "boletus": {
+      "name": "Boletus (tutti i porcini)",
+      "description": "Tutti i porcini in un solo punteggio: porcino, porcino dei pini, porcino nero e porcino estivo, più i re boleti nordamericani",
+      "howTo": "Ogni luogo mostra il punteggio migliore tra loro; cerca in faggete, querceti, castagneti, pinete e abetaie due-quattro settimane dopo una pioggia abbondante"
     }
   },
   "search_placeholder": "Cerca una specie"

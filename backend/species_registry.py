@@ -46,6 +46,12 @@ def infer_region(longitude, latitude):
     return "SE" if latitude < boundaries["seMaxLatitude"] else "NE"
 
 
+def get_region_boundaries():
+    """Where the forecast regions split: US West below uswMaxLongitude, South Europe below
+    seMaxLatitude (infer_region)."""
+    return dict(_registry()["regionBoundaries"])
+
+
 def get_land_cover_mapping(region):
     """Return the canonical species -> land-cover mapping for one region."""
     _require_region(region)
@@ -57,12 +63,24 @@ def get_land_cover_mapping(region):
 
 
 def get_species_params(region):
-    """Return a mutable copy of the canonical scoring parameters for one region."""
+    """Return a mutable copy of the canonical scoring parameters for one region. A
+    composite has none of its own (get_composites) and is left out."""
     _require_region(region)
     return {
         species_id: copy.deepcopy(config["regions"][region]["scoring"])
         for species_id, config in _registry()["species"].items()
-        if region in config["regions"]
+        if "scoring" in config["regions"].get(region, {})
+    }
+
+
+def get_composites(region):
+    """Return each composite available in one region -> its members there. A composite
+    (every porcini-type bolete) scores the best of its members at each place and day."""
+    _require_region(region)
+    return {
+        species_id: list(config["regions"][region]["compositeOf"])
+        for species_id, config in _registry()["species"].items()
+        if "compositeOf" in config["regions"].get(region, {})
     }
 
 
@@ -102,6 +120,7 @@ def get_species_metadata():
             "scientificName": config["scientificName"],
             "identificationRank": config["identificationRank"],
             "dataColumns": copy.deepcopy(config["dataColumns"]),
+            "composite": any("compositeOf" in r for r in config["regions"].values()),
         }
         for species_id, config in _registry()["species"].items()
     }

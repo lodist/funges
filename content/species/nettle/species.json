@@ -88,7 +88,7 @@
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [4, 5, 6, 7, 8, 9, 10],
+          "season_months": [3, 4, 5, 6, 7, 8, 9, 10],
           "water_relevance": false,
           "sea_relevance": false,
           "distance_thresholds": {
@@ -126,12 +126,16 @@
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [4, 5, 6, 7, 8, 9, 10],
+          "season_months": [3, 4, 5, 6, 7, 8, 9, 10],
           "water_relevance": true,
           "sea_relevance": false,
           "distance_thresholds": {
             "water": 1000
-          }
+          },
+          "humidity_weight": 0,
+          "ph_weight": 0,
+          "rain_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://data.fung.es/EU/SE/SE_species_params.txt",
@@ -164,7 +168,7 @@
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [4, 5, 6, 7, 8, 9, 10],
+          "season_months": [3, 4, 5, 6, 7, 8, 9, 10],
           "water_relevance": true,
           "sea_relevance": false,
           "distance_thresholds": {
@@ -201,12 +205,15 @@
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [4, 5, 6, 7, 8, 9, 10],
+          "season_months": [3, 4, 5, 6, 7, 8, 9, 10],
           "water_relevance": false,
           "sea_relevance": false,
           "distance_thresholds": {
             "water": 1000
-          }
+          },
+          "humidity_weight": 0,
+          "ph_weight": 0,
+          "temp_weight": 0
         },
         "scoringReferences": [
           "https://data.fung.es/USA/USW/USW_species_params.txt",
