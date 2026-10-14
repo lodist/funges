@@ -55,7 +55,10 @@ MIN_TEST_STRATA = 50
 SHIP_P, SHIP_MIN_YEARS = 0.1, 6
 # Passed the rule (9 of 10 years) with little skill for either model (+0.050 vs +0.017, about
 # zero in summer 2026) while removing 20-36 points of 4+ places in September and October.
-HELD_BACK = {("chicken-of-the-woods", "USW")}
+# With the warmth-dependent lag (14 Oct 2026) two more passed and ranked their places worse than
+# their hand-set parts, all training years (scripts/qa_fruiting_candidate.py check a): saffron
+# milk cap USW 0.605 -> 0.476, giant puffball USE 0.847 -> 0.830 (95% CIs below 0).
+HELD_BACK = {("chicken-of-the-woods", "USW"), ("saffron_milk_cap", "USW"), ("giant_puffball", "USE")}
 MAP_CELLS, MAP_DAY_STEP = 100, 3   # the scale map's sample: places, and every n-th day
 # The forecast fetch that stores today's rows (one per forecast day, the past frozen) started
 # on 14 June 2026. Days stored before it came from another setup and read differently: their
@@ -65,9 +68,21 @@ FEATURES = fp.FRUITING_FEATURES
 MAP_QUANTILES = np.linspace(0, 1, 101)
 
 
+def warmth(table: pd.DataFrame) -> np.ndarray:
+    """Each row's warmth (fp.fruiting_warmth) on its find's day, so a find's five days share it:
+    it says when in the season and where, not how warm the day was. Production reads the scored day's."""
+    out = np.full(len(table), np.nan)
+    for region in ("NE", "USE"):
+        rows = (table["region"].map(CONTINENT) == CONTINENT[region]).to_numpy()
+        if rows.any():
+            out[rows] = fp.fruiting_warmth(era5_normals.load(region), table.loc[rows, "cell_lat"],
+                                           table.loc[rows, "cell_lon"], table.loc[rows, "find_date"])
+    return out
+
+
 def transform(table: pd.DataFrame) -> pd.DataFrame:
     """Training-table columns -> the fit's features, with the production pipeline's code."""
-    return fp.fruiting_design(table)
+    return fp.fruiting_design(table, warmth(table))
 
 
 def departures(table: pd.DataFrame, design: pd.DataFrame) -> pd.DataFrame:
@@ -156,9 +171,9 @@ def linear_index(beta, means, sds, grid):
 
     def index(cell, days):
         n = len(days)
-        design = fp.fruiting_relative(fp.fruiting_design(tt.features(cell, days)), grid,
-                                      np.full(n, float(cell["Latitude"].iloc[0])),
-                                      np.full(n, float(cell["Longitude"].iloc[0])), days)
+        lats, lons = np.full(n, float(cell["Latitude"].iloc[0])), np.full(n, float(cell["Longitude"].iloc[0]))
+        design = fp.fruiting_relative(fp.fruiting_design(tt.features(cell, days), fp.fruiting_warmth(grid, lats, lons, days)),
+                                      grid, lats, lons, days)
         return ((design.to_numpy(float) - means) / sds) @ beta
     return index
 
@@ -325,7 +340,7 @@ def main() -> None:
     level = means.copy()
     moved = departures(table, design)
     for k, name in enumerate(FEATURES):
-        if name in fp.FRUITING_RELATIVE or name == "temp_sq":
+        if name in fp.FRUITING_RELATIVE or name == "temp_sq" or name.endswith("_x_warmth"):
             level[k] = float(np.nanmean(moved[name].to_numpy(float)))
     x = np.where(mask[..., None], (x - means) / sds, 0.0)
     log(f"{len(cases):,} strata ({train.sum():,} train, {(~train).sum():,} test), {len(FEATURES)} features")

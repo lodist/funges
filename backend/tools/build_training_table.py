@@ -14,6 +14,7 @@ One output pair per downloaded ERA5 block, under <out>/training/ and
 that came in since.
 
     python backend/tools/build_training_table.py --out ../era5_training
+    python backend/tools/build_training_table.py --out ../era5_training --features   # new feature, same rows
 """
 from __future__ import annotations
 
@@ -90,6 +91,8 @@ def features(cell: pd.DataFrame, dates: pd.DatetimeIndex) -> pd.DataFrame:
         "rain_1_3": _window(rain, idx, 1, 3),
         "rain_4_7": _window(rain, idx, 4, 7),
         "rain_8_14": _window(rain, idx, 8, 14),
+        "rain_15_21": _window(rain, idx, 15, 21),
+        "rain_22_28": _window(rain, idx, 22, 28),
         "rain_15_28": _window(rain, idx, 15, 28),
         "rain_29_42": _window(rain, idx, 29, 42),
         "days_since_rain5": np.where(seen >= 0, idx - seen, np.nan),
@@ -207,6 +210,41 @@ def process_lags(job) -> int:
     return sum(len(p) for p in pieces)
 
 
+CASE_COLUMNS = ["case_id", "species", "Location_Id", "region", "find_date", "offset", "date", "cell_lat", "cell_lon"]
+
+
+def process_features(job) -> int:
+    """Recompute one block's training rows' weather features from its ERA5 block, keeping the
+    rows (and training_scores/) as they are, so a new feature needs no rescoring."""
+    training_path, block_path = job
+    table = pd.read_parquet(training_path)
+    if "case_id" not in table:
+        return 0
+    block = pd.read_parquet(block_path)
+    pieces = []
+    for (lat, lon), here in table[CASE_COLUMNS].groupby(["cell_lat", "cell_lon"]):
+        cell = block[(block["Latitude"].round(2) == round(lat, 2)) & (block["Longitude"].round(2) == round(lon, 2))]
+        pieces.append(pd.concat([here.reset_index(drop=True), features(cell, pd.DatetimeIndex(here["date"]))], axis=1))
+    rebuilt = pd.concat(pieces, ignore_index=True)
+    if len(rebuilt) != len(table):
+        raise ValueError(f"{training_path.name}: {len(rebuilt)} rows rebuilt, {len(table)} stored")
+    temporary = training_path.with_suffix(".tmp")
+    rebuilt.to_parquet(temporary, index=False)
+    temporary.replace(training_path)        # a reader never sees half a file
+    return len(rebuilt)
+
+
+def build_features(out: Path, workers: int) -> None:
+    jobs = [(p, out / "era5_blocks" / p.name) for p in sorted((out / "training").glob("*.parquet"))]
+    log(f"{len(jobs):,} blocks of features to rebuild")
+    with Pool(workers) as pool:
+        rows = 0
+        for n, count in enumerate(pool.imap_unordered(process_features, jobs, chunksize=8), start=1):
+            rows += count
+            if n % 1000 == 0 or n == len(jobs):
+                log(f"  {n:,}/{len(jobs):,} blocks, {rows:,} rows")
+
+
 def build_lags(out: Path, workers: int) -> None:
     (out / "training_lags").mkdir(exist_ok=True)
     done = {p.name for p in (out / "training_lags").glob("*.parquet")}
@@ -226,9 +264,14 @@ def main() -> None:
     parser.add_argument("--out", required=True)
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--lags", action="store_true", help="only the GBM's daily lags (training_lags/)")
+    parser.add_argument("--features", action="store_true",
+                        help="recompute the weather features of the rows in training/, nothing else")
     args = parser.parse_args()
     if args.lags:
         build_lags(Path(args.out), args.workers)
+        return
+    if args.features:
+        build_features(Path(args.out), args.workers)
         return
     fp.load_dotenv(ROOT / ".env")
     fp.load_dotenv(ROOT / ".env.secret")
