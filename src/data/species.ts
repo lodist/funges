@@ -68,6 +68,20 @@ export const getSpeciesByCategory = (
 
 export const getAllSpecies = (): Species[] => SPECIES_DATA;
 
+/** The species-type filter chips (map species panel, "Species in this area"):
+ * `labelKey` is in the `species` namespace. */
+export const CATEGORY_FILTERS: readonly {
+  value: Species['category'];
+  labelKey: string;
+  icon: string;
+}[] = [
+  { value: 'mushroom', labelKey: 'mushrooms', icon: '🍄' },
+  { value: 'plant', labelKey: 'plants', icon: '🌿' },
+  { value: 'berry', labelKey: 'berries', icon: '🫐' },
+  { value: 'nut', labelKey: 'nuts', icon: '🌰' },
+  { value: 'flower', labelKey: 'flowers', icon: '🌸' },
+];
+
 // region is mandatory on purpose: an optional one degraded to "no filter", so a
 // caller that forgot it silently got the all-regions list back (parasol selectable
 // in the US, asparagus in NE). Now that mistake is a type error.
