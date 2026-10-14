@@ -38,14 +38,15 @@ export function CategoryChips({
             key={chip.value}
             type='button'
             variant='ghost'
-            size='sm'
             aria-pressed={selected}
             aria-label={chip.label}
             onClick={() => onChange(chip.value)}
             // Ghost brings the focus ring and pill; its green hover is
             // replaced in both themes, since a filter is not a call to action.
+            // Default size: 44px is the touch floor (touch-target.test.ts);
+            // only the side padding is trimmed to chip width.
             className={cn(
-              'text-foreground hover:text-foreground dark:hover:text-foreground',
+              'px-4 text-foreground hover:text-foreground dark:hover:text-foreground',
               tone === 'glass'
                 ? 'backdrop-blur-sm hover:bg-card dark:hover:bg-card'
                 : 'bg-muted hover:bg-muted/80 dark:hover:bg-muted/80',
@@ -55,7 +56,7 @@ export function CategoryChips({
                 : 'font-medium'
             )}
           >
-            <img src={chip.icon} alt='' className='size-5' />
+            <img src={chip.icon} alt='' className='size-6' />
             <span className='hidden sm:inline'>{chip.label}</span>
           </Button>
         );

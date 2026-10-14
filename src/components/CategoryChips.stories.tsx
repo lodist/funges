@@ -10,7 +10,7 @@ import { CATEGORY_ICONS } from '@/lib/categoryIcons';
  *
  * The species-type filter: a row of pill chips, each one of our own type icons
  * plus its label, that filters a list in place. It composes only the Button
- * atom (ghost, `sm`) and owns no state — the caller holds the value — so it
+ * atom (ghost, default 44px size — the touch floor) and owns no state — the caller holds the value — so it
  * meets both molecule conditions. Rendered on three screens: the map species
  * panel, the "Species in this area" list and the Species page. Before this,
  * the first two each hand-rolled the chip and the Species page used a Select,
