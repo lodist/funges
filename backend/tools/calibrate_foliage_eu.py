@@ -128,6 +128,9 @@ DWD_TARGET = "DWD beech leaf fall"
 MS_TARGET = "MeteoSwiss beech leaf fall"
 LATEST_START = 62  # 1 September: a setting must start counting by then (Lapland peaks in early September)
 BOREAL_LAT = 60.0  # cells at or north of this take the boreal requirement (Fennoscandia's birch, rowan, aspen)
+# The transitions compared in section 1: a cut at BOREAL_LAT, or the requirement moving evenly between two
+# latitudes. backend/foliage.py ships (57, 61): the cut drew a straight line across Fennoscandia.
+BOREAL_RAMPS = ((60.0, 60.0), (58.0, 60.0), (57.0, 61.0), (56.0, 62.0), (55.0, 63.0))
 LARCH_SHARE = 0.1  # 312 pieces whose middle has at least this larch share of the trees are drawn (larch),
 LARCH_ALPS_MIN_ELEV = 1300.0  # ... and 312 pieces in the Alps whose middle is this high (m)
 # Published typical peaks (sources in the write-up); [i] = no dated source, inferred by the researcher.
@@ -731,6 +734,16 @@ def main():
     big = (c.colored >= 15).to_numpy()
     print(f"Cell-years with >= 15 colored records ({int(big.sum())}): model {cf.mae(e['model'], big)[0]:.2f}, fixed "
           f"{cf.mae(e['fixed'], big)[0]:.2f}, line {cf.mae(e['line'], big)[0]:.2f} d\n")
+    print(f"## 1. The boreal transition (LOYO, days; the requirements fitted either side of {BOREAL_LAT:g} N)\n")
+    rows, north = [], (c.lat >= 54).to_numpy()
+    for lo_, hi_ in BOREAL_RAMPS:
+        er = ramped(c, cv, (lo_, hi_))
+        inside = ((c.lat > lo_) & (c.lat < hi_)).to_numpy()
+        rows.append((f"cut at {hi_:g} N" if lo_ == hi_ else f"ramp {lo_:g}-{hi_:g} N", f"{cf.mae(er)[0]:.2f}",
+                     f"{np.nanmean(er):+.1f}", int(inside.sum()),
+                     f"{cf.mae(er, inside)[0]:.2f} ({np.nanmean(er[inside]):+.1f})" if inside.any() else "-",
+                     f"{cf.mae(er, north)[0]:.2f}"))
+    table(["transition", "MAE", "bias", "cell-years inside", "their MAE (bias)", "MAE >= 54 N"], rows)
 
     # 2. transfer
     print("## 2. Geographic transfer (MAE, days)\n")
@@ -815,6 +828,20 @@ def grouped(c, cv, split=None, folds=None):
             tr, te = train & g, test & g
             if te.any() and tr.sum() >= 3:
                 err[te] = cf.predict(cv[te], np.nanmedian(f_at[tr])) - obs[te]
+    return err
+
+
+def ramped(c, cv, ramp, split=BOREAL_LAT):
+    """LOYO errors with the two requirements fitted on the training cell-years either side of `split`,
+    the requirement moving evenly across `ramp` (south, north latitude; a cut when they are equal)."""
+    obs, lat = c.obs.to_numpy(), c.lat.to_numpy()
+    f_at = cf.at(cv, obs)
+    lo, hi = ramp
+    w = (lat >= hi).astype(float) if lo == hi else np.clip((lat - lo) / (hi - lo), 0.0, 1.0)
+    err = np.full(len(c), np.nan)
+    for train, test in loyo_folds(c):
+        f_temp, f_bor = np.nanmedian(f_at[train & (lat < split)]), np.nanmedian(f_at[train & (lat >= split)])
+        err[test] = cf.predict(cv[test], f_temp + w[test] * (f_bor - f_temp)) - obs[test]
     return err
 
 

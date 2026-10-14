@@ -12,7 +12,7 @@ nothing.
 Europe keeps the clock but not the US requirement: its peak, as people photograph it, is
 a later stage, about when half the beech leaves have fallen at the stations, two weeks
 after half are coloured. So the temperate forests take EU_REQUIREMENT, and the boreal
-north from BOREAL_LAT its smaller one. The larch takes the temperate requirement; it
+north its smaller one, with a ramp across BOREAL_RAMP between them. The larch takes the temperate requirement; it
 only needs its own ground.
 
 Weather adds little over geography here: in the US the model beats one fixed date
@@ -49,10 +49,14 @@ SIMPLIFY = 0.01  # degrees: the pieces simplified as the species forecast's are,
 # A cell is drawn only where a normal year peaks by this day: that hides Florida, the
 # Gulf coast, south Texas and the low deserts (4.4% of USE's cells, 1.1% of USW's).
 LATEST_NORMAL_PEAK = (11, 30)  # month, day
-# Europe (CORINE): the temperate forests, and the boreal north from BOREAL_LAT.
+# Europe (CORINE): the temperate forests, and the boreal north, with a ramp between them.
 EU_REQUIREMENT = 1539.0  # stations: beech leaf fall 1,501 (DWD), 1,525 (MeteoSwiss); larch needles 1,482
-BOREAL_LAT = 60.0
 BOREAL_REQUIREMENT = 869.0  # Fennoscandia's birch, rowan and aspen
+# The requirement moves evenly between these latitudes. A cut at 60 N moved the peak about four weeks
+# from one cell to the next and drew a straight line across Norway, Sweden and Finland; no
+# calibration cell lies at 58-60 N, and the ramp fits the cells either side as well (LOYO 11.65 d
+# against 11.67; calibrate_foliage_eu.py, section 1).
+BOREAL_RAMP = (57.0, 61.0)
 EU_LAND = (311, 313)  # CORINE broadleaf and mixed forest
 LARCH_LAND = 312  # CORINE coniferous, drawn where it is larch: its middle in a host-cover cell
 # where larch is at least a tenth of the trees (backend/generated/larch_mask_EU.npz), or in
@@ -78,7 +82,7 @@ def requirement_of(lon, elev):
 
 def eu_requirement_of(lat):
     """Each European cell's requirement from its latitude."""
-    return np.where(np.asarray(lat, float) >= BOREAL_LAT, BOREAL_REQUIREMENT, EU_REQUIREMENT)
+    return np.interp(np.asarray(lat, float), BOREAL_RAMP, (EU_REQUIREMENT, BOREAL_REQUIREMENT))
 
 
 def larch_mask():
