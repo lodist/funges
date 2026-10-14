@@ -78,6 +78,12 @@ SEASON = [s for s, stage in STAGE.items() if stage != "any" and s != "dandelion"
 # and its spring reads under half of that. (Ramps, read as "leaves", counted its June budding
 # stalks and opened on 25 June; leaves_unbudded fixed that.)
 HELD_BACK = {"blueberry", "hazelnut", "pawpaw", "sloes", "sorrel", "walnut"}
+# Learned seasons that may open only within a month of the plant's months. Ramps' leaves are
+# picked in spring, but where the plant is rare (Minnesota, the Dakotas) the ratio to a place's
+# own small spring peak rose to 0.4 from late September to mid-October, on one leaf tag in
+# October against 42 in April there: 856 US East places read 4+ on 14 Oct 2026. Its spring, which
+# shuts by late May as the tags do, is kept.
+MONTHS_GUARD = {"ramps"}
 HELD_BACK_IN = {("blackberry", "US")}
 # Elderflower and elderberry are one plant: its sightings, read for flowers or for fruit.
 TAXA = {"elderflower": "elderberry"}
@@ -337,6 +343,12 @@ def evaluate(s: pd.DataFrame, only=None) -> pd.DataFrame:
     return pd.DataFrame(results)
 
 
+def outside_months(months) -> np.ndarray:
+    """Per learned-season week: more than a month from every one of these months (round the year)."""
+    week = (pd.Timestamp("2026-01-01") + pd.to_timedelta(np.asarray(sn.PHENOLOGY_WEEK_DOY) - 1, unit="D")).month
+    return np.array([min(min(abs(m - x), 12 - abs(m - x)) for x in months) > 1 for m in week])
+
+
 def shipping(result: pd.DataFrame) -> dict:
     """{continent: species} that ship there: better than today's months on the held-out years,
     no dead band-month open in that continent, not held back. A dead month belongs to a place:
@@ -378,8 +390,12 @@ def export(s: pd.DataFrame, result: pd.DataFrame) -> None:
         mapped = np.isfinite(calendar_rows(lats, lons, np.ones(len(lats)), grid)["norm_tmean_year"].to_numpy())
         weeks = len(sn.PHENOLOGY_WEEK_DOY)
         ratio = np.full((len(here), weeks, len(lats)), 255, np.uint8)
+        regions = ("NE", "SE") if continent == "EU" else ("USE", "USW")
         for k, sp in enumerate(here):
             ratio[k][:, mapped] = np.rint(week_ratio(models[sp], lats[mapped], lons[mapped], grid).T * 254).astype(np.uint8)
+            if sp in MONTHS_GUARD:
+                shut = outside_months({m for r in regions for m in params[r].get(sp, {}).get("season_months", [])})
+                ratio[k][np.ix_(shut, mapped)] = 0
         buffer = io.BytesIO()
         np.savez_compressed(buffer, lat=grid["lat"], lon=grid["lon"], species=np.array(here),
                             ratio=ratio.reshape(len(here), weeks, len(grid["lat"]), len(grid["lon"])))

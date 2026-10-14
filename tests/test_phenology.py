@@ -104,6 +104,14 @@ def test_the_season_reads_warmth_to_date_from_the_normals():
     assert rows.loc[1, "norm_tmean_day"] == pytest.approx(16.0, abs=0.6)   # mid-April between April 10 and May 15, +6
 
 
+def test_a_guarded_season_stays_within_a_month_of_its_months():
+    import fit_phenology as fph
+    week_month = (pd.Timestamp("2026-01-01") + pd.to_timedelta(np.asarray(sn.PHENOLOGY_WEEK_DOY) - 1, unit="D")).month
+    shut = fph.outside_months([3, 4, 5])
+    assert set(week_month[shut]) == {1, 7, 8, 9, 10, 11, 12}
+    assert not set(week_month[shut]) & {2, 3, 4, 5, 6}
+
+
 def test_ripe_keeps_the_fruit_photographed_ripe_and_unbudded_leaves_drop_the_buds():
     import fit_phenology as fph
     s = pd.DataFrame({"id": [1, 2, 3, 4], "fruiting": [True, True, False, False], "flowering": [False] * 4,
