@@ -74,7 +74,12 @@ def fitted_part(raw, lats, lons, dates, spec, model, region, stored) -> np.ndarr
     return fp._monthly_map(eta, dates, model["map"])
 
 
+_production_weather_part = fp.fruiting_weather_part
+
+
 def _patched_weather_part(df, model):
+    if "spec" not in model:                    # a model production attached itself
+        return _production_weather_part(df, model)
     return fitted_part(fp.fruiting_raw_features(df), df["Latitude"], df["Longitude"], df["Date"],
                        model["spec"], model, model["region"], stored=model["stored"])
 
@@ -122,7 +127,8 @@ def check_places(out: Path, shipped, candidate, pairs) -> pd.DataFrame:
                               & mask[:, 0] & np.isfinite(stored))
         if region not in specs:
             specs[region] = fp._load_species_and_curves(region_config(region))
-        params = specs[region][0][species]
+        # the place parts need no weather model; the working copy's fit may be attached
+        params = {k: v for k, v in specs[region][0][species].items() if k not in ("fruiting", "fruiting_gbm")}
         today = {k: float(params.get(k, default)) for k, (_, default) in PARTS.items()}
         p, wind = {k: v[here] for k, v in parts.items()}, stored[here] / weather({k: v[here] for k, v in parts.items()},
                                                                                      STORED_WITH, np.ones(len(here)))
