@@ -11,9 +11,11 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { getRepresentativeLngLat } from '@/lib/geo';
-import { cn, getSpeciesImage } from '@/lib/utils';
+import { getSpeciesImage } from '@/lib/utils';
 import { getScoreColor } from '@/lib/scoreColor';
 import { CATEGORY_FILTERS, SPECIES_DATA, speciesNameKey } from '@/data/species';
+import { CATEGORY_ICONS } from '@/lib/categoryIcons';
+import { CategoryChips } from '@/components/CategoryChips';
 import type { RegionId } from '@/lib/data';
 import { Navigation, BarChart2, Copy, Check, AlertTriangle } from '@/lib/icons';
 import {
@@ -158,8 +160,12 @@ export default function FeatureInfoModal({
       ? speciesEntries
       : speciesEntries.filter(entry => entry.category === activeCategory);
   const chips = [
-    { value: 'all', labelKey: 'allTypes', icon: '🍃' },
-    ...categoryFilters,
+    { value: 'all', label: tSpecies('allTypes'), icon: CATEGORY_ICONS.all },
+    ...categoryFilters.map(({ value, labelKey }) => ({
+      value,
+      label: tSpecies(labelKey),
+      icon: CATEGORY_ICONS[value],
+    })),
   ];
 
   return (
@@ -197,28 +203,11 @@ export default function FeatureInfoModal({
             </p>
           </div>
           {categoryFilters.length > 1 && (
-            <div className='flex flex-wrap justify-center gap-2'>
-              {chips.map(({ value, labelKey, icon }) => (
-                <button
-                  key={value}
-                  type='button'
-                  onClick={() => setCategory(value)}
-                  aria-pressed={activeCategory === value}
-                  aria-label={tSpecies(labelKey)}
-                  // Same chip as the map species panel: selected is marked by
-                  // weight only (Trailhead #213).
-                  className={cn(
-                    'flex items-center gap-1.5 rounded-full border-0 bg-muted px-3 py-1.5 text-sm text-foreground transition-all duration-base',
-                    activeCategory === value
-                      ? 'font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
-                      : 'font-medium hover:bg-muted/80'
-                  )}
-                >
-                  <span className='text-base'>{icon}</span>
-                  <span className='hidden sm:inline'>{tSpecies(labelKey)}</span>
-                </button>
-              ))}
-            </div>
+            <CategoryChips
+              chips={chips}
+              value={activeCategory}
+              onChange={setCategory}
+            />
           )}
         </DialogHeader>
         <div className='max-h-[70vh] overflow-y-auto pr-2'>

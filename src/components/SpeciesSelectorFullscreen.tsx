@@ -10,6 +10,8 @@ import { useNavigate } from '@tanstack/react-router';
 import { useOfflineStore } from '@/store/offlineStore';
 import { usePWA } from '@/hooks/use-pwa';
 import { CATEGORY_FILTERS, SPECIES_DATA, speciesNameKey } from '@/data/species';
+import { CATEGORY_ICONS } from '@/lib/categoryIcons';
+import { CategoryChips } from '@/components/CategoryChips';
 import { SPECTACLES } from '@/lib/bloom';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
@@ -78,12 +80,17 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
 
   // Category options for quick filters
   const categories = [
-    { value: 'all', label: tSpecies('allTypes'), icon: '🍃' },
-    ...CATEGORY_FILTERS.map(({ labelKey, ...chip }) => ({
-      ...chip,
+    { value: 'all', label: tSpecies('allTypes'), icon: CATEGORY_ICONS.all },
+    ...CATEGORY_FILTERS.map(({ value, labelKey }) => ({
+      value,
       label: tSpecies(labelKey),
+      icon: CATEGORY_ICONS[value],
     })),
-    { value: 'spectacle', label: t('bloom.spectacles'), icon: '✨' },
+    {
+      value: 'spectacle',
+      label: t('bloom.spectacles'),
+      icon: CATEGORY_ICONS.spectacle,
+    },
   ];
 
   // Species, plus the spectacle layers under "Spectacles": they are picked like
@@ -177,26 +184,12 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
 
       {/* Quick Filters */}
       <div className='px-6 py-3 bg-white/3 backdrop-blur-lg'>
-        <div className='flex flex-wrap gap-2 justify-center'>
-          {categories.map(category => (
-            <button
-              key={category.value}
-              onClick={() => setSelectedCategory(category.value)}
-              // Trailhead (#213): filter chip — selected stays the same
-              // neutral fill as unselected, marked by weight only (no
-              // colour swap), no border.
-              className={cn(
-                'flex items-center gap-2 px-3 py-2 rounded-full text-sm transition-all duration-base border-0 backdrop-blur-sm',
-                selectedCategory === category.value
-                  ? 'bg-card text-foreground font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
-                  : 'bg-card/90 text-foreground font-medium hover:bg-card'
-              )}
-            >
-              <span className='text-base'>{category.icon}</span>
-              <span className='hidden sm:inline'>{category.label}</span>
-            </button>
-          ))}
-        </div>
+        <CategoryChips
+          tone='glass'
+          chips={categories}
+          value={selectedCategory}
+          onChange={setSelectedCategory}
+        />
 
         {/* Results Count */}
         <div className='text-sm text-white/60 mt-3 text-center'>
