@@ -58,6 +58,24 @@ def test_production_reads_warmth_from_the_scored_day_as_the_maps_do():
     np.testing.assert_allclose(warmth, [14.0 - fp.WARMTH_BASE_C, 20.0 - fp.WARMTH_BASE_C], atol=0.15)   # mid-July, mid-October
 
 
+def test_a_place_at_its_normal_rain_gets_nothing_from_the_warmth_terms():
+    grid = {"lat": np.array([46.0, 45.75], np.float32), "lon": np.array([8.0, 8.25], np.float32),
+            "tmean": np.stack([np.full((2, 2), t) for t in np.linspace(2, 24, 12)]).astype(np.float16),
+            "rain": np.full((12, 2, 2), 3.0, np.float16), "rh": np.full((12, 2, 2), 80, np.float16)}
+    days = pd.DatetimeIndex(["2026-02-15", "2026-08-15"])          # a cold and a warm time of year
+    design = pd.DataFrame({name: np.zeros(2) for name in fp.FRUITING_FEATURES})
+    for w in fp.FRUITING_WARM_WINDOWS:
+        near, far = fp.FRUITING_RAIN_WINDOWS[w]
+        design[w] = np.log1p(3.0 * (far - near + 1))             # exactly the normal rain
+        design[f"{w}_x_warmth"] = design[w] * 5.0
+    out = fp.fruiting_relative(design, grid, [46.0, 46.0], [8.0, 8.0], days)
+    for w in fp.FRUITING_WARM_WINDOWS:
+        np.testing.assert_allclose(out[f"{w}_x_warmth"], 0.0, atol=1e-2)
+    wetter = design.assign(rain_15_21=design["rain_15_21"] + 1.0)
+    moved = fp.fruiting_relative(wetter, grid, [46.0, 46.0], [8.0, 8.0], days)["rain_15_21_x_warmth"].to_numpy()
+    assert moved[1] > 0 > moved[0]                                  # extra rain counts up when warm, down when cold
+
+
 def test_the_gbm_keeps_the_window_features_it_shipped_with():
     shipped = json.loads((fp.FRUITING_GBM_PATH).read_text(encoding="utf-8"))
     assert shipped["features"] == fp.FRUITING_GBM_FEATURES

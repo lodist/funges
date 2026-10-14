@@ -55,7 +55,10 @@ MIN_TEST_STRATA = 50
 SHIP_P, SHIP_MIN_YEARS = 0.1, 6
 # Passed the rule (9 of 10 years) with little skill for either model (+0.050 vs +0.017, about
 # zero in summer 2026) while removing 20-36 points of 4+ places in September and October.
-HELD_BACK = {("chicken-of-the-woods", "USW")}
+# With the warmth-dependent lag (14 Oct 2026) two more passed and ranked their places worse than
+# their hand-set parts, all training years (scripts/qa_fruiting_candidate.py check a): saffron
+# milk cap USW 0.605 -> 0.476, giant puffball USE 0.847 -> 0.830 (95% CIs below 0).
+HELD_BACK = {("chicken-of-the-woods", "USW"), ("saffron_milk_cap", "USW"), ("giant_puffball", "USE")}
 MAP_CELLS, MAP_DAY_STEP = 100, 3   # the scale map's sample: places, and every n-th day
 # The forecast fetch that stores today's rows (one per forecast day, the past frozen) started
 # on 14 June 2026. Days stored before it came from another setup and read differently: their
@@ -337,7 +340,7 @@ def main() -> None:
     level = means.copy()
     moved = departures(table, design)
     for k, name in enumerate(FEATURES):
-        if name in fp.FRUITING_RELATIVE or name == "temp_sq":
+        if name in fp.FRUITING_RELATIVE or name == "temp_sq" or name.endswith("_x_warmth"):
             level[k] = float(np.nanmean(moved[name].to_numpy(float)))
     x = np.where(mask[..., None], (x - means) / sds, 0.0)
     log(f"{len(cases):,} strata ({train.sum():,} train, {(~train).sum():,} test), {len(FEATURES)} features")

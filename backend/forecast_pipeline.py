@@ -1004,7 +1004,13 @@ FRUITING_RELATIVE = {"temp": ("tmean", 4), "humidity": ("rh", 4), "humidity_earl
 def fruiting_relative(design, grid, lats, lons, dates):
     """The linear fit's humidity and temperature as departures from the place's normals, the
     temperature optimum's term against the normal's own. Off the normals grid they are unknown
-    and count as average. The GBM reads the normals as inputs instead."""
+    and count as average. The GBM reads the normals as inputs instead.
+
+    The warmth terms likewise read each window's rain against the place's normal rain for it.
+    Read as absolute rain times warmth they ranked the places of shaggy mane in the US, morel and
+    oyster mushroom 0.02-0.06 worse (warm wet places rose whatever the day); against the normal,
+    a place at its normal rain gets 0 from them, warm or cold. The fit is unchanged: within a
+    find's stratum the normal is the same on every day, so it cancels."""
     out = design.copy()
     lats, lons = np.asarray(lats, float), np.asarray(lons, float)
     dates = pd.DatetimeIndex(pd.to_datetime(dates))
@@ -1013,6 +1019,13 @@ def fruiting_relative(design, grid, lats, lons, dates):
         out[name] = design[name].to_numpy(float) - n
         if name == "temp":
             out["temp_sq"] = design["temp_sq"].to_numpy(float) - (n - 12.0) ** 2 / 10.0
+    warm_terms = [w for w in FRUITING_WARM_WINDOWS if f"{w}_x_warmth" in design]
+    if warm_terms:
+        warmth = fruiting_warmth(grid, lats, lons, dates)
+        for w in warm_terms:
+            near, far = FRUITING_RAIN_WINDOWS[w]
+            normal = era5_normals.on_days(grid, lats, lons, dates - pd.Timedelta(days=(near + far) // 2))["norm_rain"]
+            out[f"{w}_x_warmth"] = (design[w].to_numpy(float) - np.log1p(normal * (far - near + 1))) * warmth
     return out
 
 
