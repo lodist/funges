@@ -68,18 +68,18 @@ export const getSpeciesByCategory = (
 
 export const getAllSpecies = (): Species[] => SPECIES_DATA;
 
-/** The species-type filter chips (map species panel, "Species in this area"):
- * `labelKey` is in the `species` namespace. */
+/** The species-type filter chips (map species panel, "Species in this area",
+ * Species page): `labelKey` is in the `species` namespace, the icon is
+ * `CATEGORY_ICONS[value]`. */
 export const CATEGORY_FILTERS: readonly {
   value: Species['category'];
   labelKey: string;
-  icon: string;
 }[] = [
-  { value: 'mushroom', labelKey: 'mushrooms', icon: '🍄' },
-  { value: 'plant', labelKey: 'plants', icon: '🌿' },
-  { value: 'berry', labelKey: 'berries', icon: '🫐' },
-  { value: 'nut', labelKey: 'nuts', icon: '🌰' },
-  { value: 'flower', labelKey: 'flowers', icon: '🌸' },
+  { value: 'mushroom', labelKey: 'mushrooms' },
+  { value: 'plant', labelKey: 'plants' },
+  { value: 'berry', labelKey: 'berries' },
+  { value: 'nut', labelKey: 'nuts' },
+  { value: 'flower', labelKey: 'flowers' },
 ];
 
 // region is mandatory on purpose: an optional one degraded to "no filter", so a

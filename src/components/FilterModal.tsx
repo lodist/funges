@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { X } from '@/lib/icons';
+import { CATEGORY_ICONS, type CategoryIconKey } from '@/lib/categoryIcons';
 
 interface FilterModalProps {
   isOpen: boolean;
@@ -35,20 +36,8 @@ export default function FilterModal({
 
   if (!isOpen) return null;
 
-  const getCategoryEmoji = (cat: string) => {
-    switch (cat) {
-      case 'mushroom':
-        return '🍄';
-      case 'plant':
-        return '🌿';
-      case 'berry':
-        return '🫐';
-      case 'nut':
-        return '🌰';
-      default:
-        return '';
-    }
-  };
+  const categoryIcon = (cat: string) =>
+    CATEGORY_ICONS[cat as CategoryIconKey] as string | undefined;
 
   const getDifficultyEmoji = (diff: string) => {
     switch (diff.toLowerCase()) {
@@ -98,7 +87,7 @@ export default function FilterModal({
                 }`}
               >
                 <span className='flex items-center gap-2'>
-                  <span className='text-lg'>🍃</span>
+                  <img src={CATEGORY_ICONS.all} alt='' className='size-6' />
                   <span className='font-medium'>{t('all')}</span>
                 </span>
               </Button>
@@ -116,9 +105,13 @@ export default function FilterModal({
                   }`}
                 >
                   <span className='flex items-center gap-2'>
-                    <span className='text-lg'>
-                      {getCategoryEmoji(category)}
-                    </span>
+                    {categoryIcon(category) && (
+                      <img
+                        src={categoryIcon(category)}
+                        alt=''
+                        className='size-6'
+                      />
+                    )}
                     <span className='font-medium'>{t(category)}</span>
                   </span>
                 </Button>
