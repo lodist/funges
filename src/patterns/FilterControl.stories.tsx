@@ -12,8 +12,9 @@ import {
  * Pattern: filter control.
  *
  * A label paired with a Select that narrows a list in place. Rendered on the
- * data, worth-foraging-now and species screens — three, so it clears the
- * two-screen bar for admissibility comfortably.
+ * data and worth-foraging-now screens — two, so it clears the two-screen bar
+ * for admissibility. The species screen filters by type with
+ * `Molecules/Category chips` instead, like the map species panel.
  *
  * The distinguishing detail is that it filters immediately rather than feeding
  * a submit, which is why the caption is a plain span rather than a form label
@@ -33,7 +34,7 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          'A label and Select pair that filters a list as soon as it changes. Rendered on the data, worth-foraging-now and species screens.',
+          'A label and Select pair that filters a list as soon as it changes. Rendered on the data and worth-foraging-now screens.',
       },
     },
   },
