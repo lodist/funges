@@ -250,3 +250,25 @@ def test_a_fit_on_departures_gives_its_models_the_region_normals(tmp_path):
     params = {"chant": {}}
     fp.attach_fruiting_models(params, "SE", path)
     assert params["chant"]["fruiting"]["normals"]["rh"].shape[0] == 12
+
+
+def test_a_thin_member_takes_its_groups_answer_and_a_rich_one_keeps_its_own():
+    import fit_fruiting as ff
+    rng = np.random.default_rng(0)
+    group = np.array([1.0, -0.5])
+    x = rng.normal(size=(400, 5, 2))
+    mask = np.ones((400, 5), bool)
+    assert np.allclose(ff.member_fit(x[:10], mask[:10], group), group)          # too few strata: the group's
+    x[:, 0, 0] += 2.0                                                           # the member's own finds lean on feature 0
+    own = ff.member_fit(x, mask, group)
+    assert own[0] > group[0]
+
+
+def test_a_member_ships_on_its_years_or_pooled_when_its_years_are_few():
+    import fit_fruiting as ff
+    many = [(y, 0.0, 0.1) for y in range(2016, 2024)]                            # better in 8 of 8 years
+    assert ff.group_ships(many, finds=1000, pooled_ci=[-0.1, 0.2])
+    few = many[:3]
+    assert ff.group_ships(few, finds=400, pooled_ci=[0.01, 0.2])
+    assert not ff.group_ships(few, finds=100, pooled_ci=[0.01, 0.2])             # too few finds to pool
+    assert not ff.group_ships(few, finds=400, pooled_ci=[-0.01, 0.2])
