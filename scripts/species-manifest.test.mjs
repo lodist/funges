@@ -502,7 +502,10 @@ test('rejects scoring data for unavailable regions and temperature sentinels', (
   assert.match(errors, /USE\.scoring\.optimal_temp must be between/);
   assert.match(errors, /forecast\.rangePrior\.taxonKeys must contain/);
   assert.match(errors, /USW\.scoring\.hosts must list distinct classes/);
-  assert.match(errors, /SE\.scoring\.rain_delay_days must be a whole number of days from 0 to 30/);
+  assert.match(
+    errors,
+    /SE\.scoring\.rain_delay_days must be a whole number of days from 0 to 30/
+  );
 });
 
 test('repository check is read-only', async () => {
