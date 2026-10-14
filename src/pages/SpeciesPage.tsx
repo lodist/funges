@@ -66,7 +66,7 @@ export default function SpeciesPage() {
 
         return matchesSearch && matchesCategory;
       })
-      .sort((a, b) => a.name.localeCompare(b.name));
+      .sort((a, b) => a.scientificName.localeCompare(b.scientificName));
   }, [speciesData, searchQuery, selectedCategory]);
 
   const categories = [
