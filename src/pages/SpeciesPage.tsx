@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSpeciesData } from '@/data/species';
+import { CATEGORY_FILTERS, useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
 import {
   Card,
@@ -12,25 +12,9 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import {
-  Search,
-  Leaf,
-  Calendar,
-  MapPin,
-  AlertTriangle,
-  List,
-  Mushroom,
-  Grape,
-  Bean,
-  Flower2,
-} from '@/lib/icons';
+import { Search, Leaf, Calendar, MapPin, AlertTriangle } from '@/lib/icons';
+import { CategoryChips } from '@/components/CategoryChips';
+import { CATEGORY_ICONS } from '@/lib/categoryIcons';
 import { getSpeciesImage } from '@/lib/utils';
 import { Link } from '@tanstack/react-router';
 import { Route } from '@/routes/species';
@@ -70,12 +54,12 @@ export default function SpeciesPage() {
   }, [speciesData, searchQuery, selectedCategory]);
 
   const categories = [
-    { value: 'all', label: t('allTypes'), Icon: List },
-    { value: 'mushroom', label: t('mushrooms'), Icon: Mushroom },
-    { value: 'plant', label: t('plants'), Icon: Leaf },
-    { value: 'berry', label: t('berries'), Icon: Grape },
-    { value: 'nut', label: t('nuts'), Icon: Bean },
-    { value: 'flower', label: t('flowers'), Icon: Flower2 },
+    { value: 'all', label: t('allTypes'), icon: CATEGORY_ICONS.all },
+    ...CATEGORY_FILTERS.map(({ value, labelKey }) => ({
+      value,
+      label: t(labelKey),
+      icon: CATEGORY_ICONS[value],
+    })),
   ];
 
   return (
@@ -98,47 +82,23 @@ export default function SpeciesPage() {
 
         {/* Search and Filter Controls */}
         <div className='mb-8 space-y-4'>
-          <div className='flex flex-col sm:flex-row sm:items-end gap-4'>
-            {/* Search Input */}
-            <div className='relative flex-1'>
-              <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4' />
-              <Input
-                placeholder={t('search.placeholder')}
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-                className='pl-10'
-              />
-            </div>
-
-            {/* Category Filter */}
-            <div className='flex w-full flex-col gap-2 sm:w-auto'>
-              <span
-                id='species-category-filter'
-                className='type-micro text-muted-foreground'
-              >
-                {t('filterByType')}
-              </span>
-              <Select
-                value={selectedCategory}
-                onValueChange={setSelectedCategory}
-              >
-                <SelectTrigger
-                  className='w-full sm:w-48'
-                  aria-labelledby='species-category-filter'
-                >
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map(({ value, label, Icon }) => (
-                    <SelectItem key={value} value={value}>
-                      <Icon />
-                      {label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+          {/* Search Input */}
+          <div className='relative'>
+            <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4' />
+            <Input
+              placeholder={t('search.placeholder')}
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              className='pl-10'
+            />
           </div>
+
+          {/* Type filter: the same chips as the map species panel */}
+          <CategoryChips
+            chips={categories}
+            value={selectedCategory}
+            onChange={setSelectedCategory}
+          />
         </div>
 
         {/* Safety Notes - shown once, above the species grid */}
