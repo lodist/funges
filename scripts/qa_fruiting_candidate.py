@@ -74,12 +74,9 @@ def fitted_part(raw, lats, lons, dates, spec, model, region, stored) -> np.ndarr
     return fp._monthly_map(eta, dates, model["map"])
 
 
-_production_weather_part = fp.fruiting_weather_part
-
-
 def _patched_weather_part(df, model):
-    if "spec" not in model:                    # a model production attached itself
-        return _production_weather_part(df, model)
+    if "spec" not in model:   # never fall back: it would score the working copy's fit as "before"
+        raise RuntimeError("a fitted model reached the scorer without going through with_fit")
     return fitted_part(fp.fruiting_raw_features(df), df["Latitude"], df["Longitude"], df["Date"],
                        model["spec"], model, model["region"], stored=model["stored"])
 
