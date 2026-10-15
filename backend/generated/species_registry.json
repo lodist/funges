@@ -7084,24 +7084,36 @@
       "dataColumns": ["cantharellus_score", "Chanterelle Group"],
       "regions": {
         "NE": {
-          "landCover": [311, 313, 324],
+          "landCover": [311, 312, 313, 324],
           "landCoverScheme": "CORINE",
-          "compositeOf": ["chant"]
+          "compositeOf": ["chant", "black_chant", "winter_chant"]
         },
         "SE": {
-          "landCover": [311, 313, 324],
+          "landCover": [311, 312, 313, 324],
           "landCoverScheme": "CORINE",
-          "compositeOf": ["chant"]
+          "compositeOf": ["chant", "black_chant", "winter_chant"]
         },
         "USE": {
           "landCover": [41, 42, 43, 52],
           "landCoverScheme": "NLCD",
-          "compositeOf": ["chant", "smooth_chant", "pacific_chant"]
+          "compositeOf": [
+            "chant",
+            "smooth_chant",
+            "pacific_chant",
+            "black_chant",
+            "winter_chant"
+          ]
         },
         "USW": {
           "landCover": [41, 42, 43, 52],
           "landCoverScheme": "NLCD",
-          "compositeOf": ["chant", "smooth_chant", "pacific_chant"]
+          "compositeOf": [
+            "chant",
+            "smooth_chant",
+            "pacific_chant",
+            "black_chant",
+            "winter_chant"
+          ]
         }
       }
     }
