@@ -263,15 +263,22 @@ export default function DataPage() {
     [zoneData, resolvedSpecies]
   );
 
+  // Group layers (Boletus, Chanterelles) take their score from their members,
+  // so ranking them beside those members would list the same find twice.
+  const groupIds = useMemo(
+    () => new Set(speciesData.filter(s => s.compositeOf).map(s => s.id)),
+    [speciesData]
+  );
+
   const topSpeciesToday = useMemo(() => {
     const latest = zoneData[zoneData.length - 1];
     if (!latest?.scores) return [];
     return Object.entries(latest.scores)
+      .filter(([id, score]) => score > 0 && !groupIds.has(id))
       .map(([id, score]) => ({ id, name: speciesMap.get(id) ?? id, score }))
-      .filter(s => s.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 8);
-  }, [zoneData, speciesMap]);
+  }, [zoneData, speciesMap, groupIds]);
 
   const narrativeInsight = useMemo(() => {
     if (zoneData.length === 0) return null;
