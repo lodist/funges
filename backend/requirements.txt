@@ -8,4 +8,5 @@ requests
 scipy
 shapely
 netCDF4
+eccodes>=2.50
 lightgbm
