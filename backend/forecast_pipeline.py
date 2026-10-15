@@ -1203,6 +1203,34 @@ def attach_phenology(species_params, region, path=None, fetch=None):
             species_params[specie]["phenology"] = {"lat": grid["lat"], "lon": grid["lon"], "ratio": grid["ratio"][k]}
 
 
+LOCAL_SEASON_PATH = Path(__file__).resolve().parent / "generated" / "local_season.json"
+
+
+def attach_local_season(species_params, region, path=None, fetch=None):
+    """The mushrooms' local season curves (tools/build_local_season.py) for the region's species
+    that ship one: a monthly grid per continent, on R2 and checked against the sha256 recorded
+    here. A file that cannot be fetched or fails its checksum leaves the region and zone curves."""
+    path = Path(path or LOCAL_SEASON_PATH)
+    if not path.exists():
+        return
+    entry = json.loads(path.read_text(encoding="utf-8"))["continents"].get(era5_normals.CONTINENT[region])
+    shipped = set(entry.get("regions", {}).get(region, [])) & set(species_params) if entry else set()
+    if not shipped:
+        return
+    try:
+        data = (fetch or r2_fetch)(entry["file"])
+        if hashlib.sha256(data).hexdigest() != entry["sha256"]:
+            raise ValueError("checksum differs")
+        with np.load(BytesIO(data)) as z:
+            grid = {name: z[name] for name in z.files}
+    except Exception as error:
+        print(f"[warn] local season curves not loaded ({error}); the region and zone curves stay")
+        return
+    for k, specie in enumerate(grid["species"].tolist()):
+        if specie in shipped:
+            species_params[specie]["local_season"] = {"lat": grid["lat"], "lon": grid["lon"], "ratio": grid["ratio"][k]}
+
+
 HABITAT_PATH = Path(__file__).resolve().parent / "generated" / "habitat_factor.json"
 
 
@@ -1526,6 +1554,7 @@ def _load_species_and_curves(config):
     attach_fruiting_gbm(species_params, config.region, datetime.now())
     attach_habitat(species_params, config.region)
     attach_phenology(species_params, config.region)
+    attach_local_season(species_params, config.region)
     _fitted = sorted(s for s, p in species_params.items() if "fruiting" in p)
     print(f"Fitted fruiting model for {len(_fitted)} species: {', '.join(_fitted) or 'none'}")
     _gbm = sorted(s for s, p in species_params.items() if "fruiting_gbm" in p)
@@ -1534,6 +1563,8 @@ def _load_species_and_curves(config):
     print(f"Habitat factor for {len(_habitat)} species: {', '.join(_habitat) or 'none'}")
     _learned = sorted(s for s, p in species_params.items() if p.get("phenology") is not None)
     print(f"Learned season for {len(_learned)} species: {', '.join(_learned) or 'none'}")
+    _local = sorted(s for s, p in species_params.items() if p.get("local_season") is not None)
+    print(f"Local season for {len(_local)} species: {', '.join(_local) or 'none'}")
     return species_params, zone_curves
 
 
