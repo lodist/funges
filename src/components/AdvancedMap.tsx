@@ -580,6 +580,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         trackUserLocation: true,
         showUserLocation: true,
         showAccuracyCircle: true,
+        // MapLibre's default is 15 - street level, too close to see the
+        // forecast around you.
+        fitBoundsOptions: { maxZoom: 11 },
       });
       geolocateControl.current = geolocate;
 
