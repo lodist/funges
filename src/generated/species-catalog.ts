@@ -761,7 +761,13 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     habitat: 'forest',
     showOnMap: true,
     forecastRegions: ['NE', 'SE', 'USE', 'USW'],
-    compositeOf: ['chant', 'smooth_chant', 'pacific_chant'],
+    compositeOf: [
+      'chant',
+      'smooth_chant',
+      'pacific_chant',
+      'black_chant',
+      'winter_chant',
+    ],
   },
 ];
 

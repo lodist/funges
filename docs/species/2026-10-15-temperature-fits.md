@@ -73,7 +73,7 @@ Elderberry in US East (the whole year 0.896 → 0.895, interval from -0.0045) an
 
 ## The chanterelle layer
 
-`cantharellus`, "Chanterelles (all)": like the Boletus layer, the best of its members at each place and day. The true chanterelles: the golden chanterelle everywhere, and the smooth and Pacific chanterelles in North America (in Europe the layer is the golden chanterelle). Black and winter chanterelle (_Craterellus_) are left out; adding them is one line. The card reuses the golden chanterelle's photo for now. The app's score list needs its upload column (`Chanterelle Group`) once merged.
+`cantharellus`, "Chanterelles (all)": like the Boletus layer, the best of its members at each place and day. The true chanterelles: the golden chanterelle everywhere, and the smooth and Pacific chanterelles in North America (in Europe the layer is the golden chanterelle). Black and winter chanterelle (_Craterellus_) were left out at first; since #335 the layer holds all five chanterelles in the app, and its card shows golden chanterelle, black trumpet and winter chanterelle together (the three look nothing alike; golden, smooth and Pacific chanterelle do). Its upload column is `Chanterelle Group`.
 
 ## Rechecks
 
