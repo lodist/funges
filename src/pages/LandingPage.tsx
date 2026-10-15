@@ -119,7 +119,7 @@ export default function LandingPage() {
           aria-labelledby='spectacles-title'
         >
           <img
-            src={`${base}landing/autumn-ledge.webp`}
+            src={`${base}landing/autumn-beech-road.webp`}
             alt=''
             loading='lazy'
             width='1280'
