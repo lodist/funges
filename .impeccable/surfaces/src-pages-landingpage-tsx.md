@@ -28,7 +28,7 @@ Home copy uses the common namespace in en, de, es, fr, it and pt; legal link lab
 The landing images provide atmosphere rather than species-identification evidence or a current forecast:
 
 - `public/landing/astra-porcini.webp` — 960×1200, generated with OpenAI image generation from the user's photographic references; porcino in woodland soil and leaf litter.
-- `public/landing/astra-lingonberries.webp` — 768×576, generated the same way; northern lingonberry patch beside a pine trunk.
+- `public/landing/lingonberries-pine-forest.webp` — 768×576, Pexels (erik-karits, 28338525; free licence, no credit required); low-angle lingonberries in a sunny pine forest.
 - `public/landing/wild-mushroom-toast.webp` — 768×576, generated; chanterelle bruschetta for the cooking feature.
 - `public/landing/autumn-beech-road.webp` — 1280×720, Pexels (fabio-photo, 34490278; free licence, no credit required); road through a yellow-orange beech tunnel, symmetric so the phone crop stays centred.
 - `public/landing/alps-map.webp` — 1280×528, an actual Fung.es MapLibre capture centered at 10.21E, 47.38N, zoom 8.7 with the Pine Bolete overlay, captured 2026-10-12 from the original olive `funges_style.json` style and `data.fung.es` tiles with the app's day-zero missing-score fallback; no geography or scores were generated or altered.
