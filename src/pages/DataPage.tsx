@@ -57,6 +57,9 @@ const REGIONS: { id: RegionId; label: string }[] = [
 
 const DAY_OPTIONS = [7, 14, 30, 90, 365] as const;
 
+// Hidden while the score history spans several algorithm versions; flip back to true once it is consistent
+const SHOW_SCORE_OVER_TIME = false;
+
 function dayLabel(d: number): string {
   return d === 365 ? '1y' : `${d}d`;
 }
@@ -1339,9 +1342,11 @@ export default function DataPage() {
       </div>
 
       {/* Charts — row 3: score over time + top species */}
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+      <div
+        className={`grid grid-cols-1 gap-4 ${SHOW_SCORE_OVER_TIME ? 'md:grid-cols-2' : ''}`}
+      >
         {/* Score over time */}
-        {availableSpecies.length > 0 && (
+        {SHOW_SCORE_OVER_TIME && availableSpecies.length > 0 && (
           <ChartCard
             title={t('common:data.charts.speciesScore', {
               defaultValue: 'Score Over Time',
