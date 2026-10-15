@@ -1,8 +1,8 @@
-# Habitat factors tested on held-out years
+# Habitat factors tested on held-out years, and bronze bolete's fitted weather part
 
 Date: 2026-10-15
 
-Tools: `backend/tools/fit_fruiting_parts.py --habitat` (the test, on the ERA5 training table) and `backend/tools/fit_habitat.py --reuse --export` (the decision and the files). Follows #304 (the habitat factor).
+Tools: `backend/tools/fit_fruiting_parts.py --habitat` (the test, on the ERA5 training table) and `backend/tools/fit_habitat.py --reuse --export` (the decision and the files). Follows #304 (the habitat factor) and #328 (the group fits).
 
 ## Why
 
@@ -54,7 +54,31 @@ Its factor by altitude (mean over places; 1 = no change):
 
 In brackets: porcini's factor, shipped since #304.
 
-Over South Europe's places, 60% keep their score and 25% are halved (the floor). North of 44° N it now falls with altitude. In Tuscany and the south it stays at 1 at every altitude, also in the beech belt above 900 m where porcini belongs. The finds say bronze is absent there: in the Tuscan box, 0 of bronze's 26 finds lie above 900 m, against 8 of porcini's 16. But that is too few to learn from when the factor's reference keeps 9 in 10 find places at full score. Taking beech out of its host list changes nothing: around every one of the 68 Tuscan places above 900 m, oak and other broadleaf (chestnut among them) cover 30% of the ground (median; beech 47%), and 2% within about 5 km is the host part's full cover. What is left for the Tuscan mountains is its weather part: hand-set and absolute, it does not compare a dry autumn with a normal one as porcini's fit does. Its group fit (held back on 14 October for ranking places worse) can be tested again with this factor in the score.
+Over South Europe's places, 60% keep their score and 25% are halved (the floor). North of 44° N it now falls with altitude. In Tuscany and the south it stays at 1 at every altitude, also in the beech belt above 900 m where porcini belongs. The finds say bronze is absent there: in the Tuscan box, 0 of bronze's 26 finds lie above 900 m, against 8 of porcini's 16. But that is too few to learn from when the factor's reference keeps 9 in 10 find places at full score. Taking beech out of its host list changes nothing: around every one of the 68 Tuscan places above 900 m, oak and other broadleaf (chestnut among them) cover 30% of the ground (median; beech 47%), and 2% within about 5 km is the host part's full cover. What is left for the Tuscan mountains is its weather part: hand-set and absolute, it does not compare a dry autumn with a normal one as porcini's fit does.
+
+### Its weather part, fitted
+
+Bronze's group fit (#328: the boletes' shared answer, pulled toward its 628 finds) times its finds better than the hand-set part (+0.073 [+0.026, +0.123]). It was held back on 14 October because it ranked bronze's places worse. Fitted again on the same training table (the golden chanterelle supplement left out, as when it was fitted; it reproduces the 14 October numbers) and checked with `scripts/qa_fruiting_candidate.py`, the place test (find against that day's bracket finds, all training years) reads:
+
+| bronze's score in the place test       | hand-set weather | fitted weather | change (95%)            |
+| -------------------------------------- | ---------------: | -------------: | ----------------------- |
+| 14 October                             |            0.822 |          0.777 | -0.045 [-0.083, -0.005] |
+| local season curves (#332), no habitat |            0.883 |          0.846 | -0.037 [-0.060, -0.012] |
+| local season curves and habitat factor |            0.947 |          0.951 | +0.005 [-0.007, +0.017] |
+
+The habitat factor is what clears it. Its places at 4+ in September to November 2023-2025 (ERA5 days at map places) barely move: September 47.9% → 47.3%, October 40.0% → 35.8%, November 16.5% → 15.5%. So it ships, and `HELD_BACK` (`tools/fit_fruiting.py`) loses it. `rain_delay_days` 10 stays in its settings as the fallback if the fit file cannot load.
+
+This week (15-21 October, the app's stored weather, rescored; it matches the live scores to 0.001), bronze's mean score:
+
+| places                        |     porcini | bronze today | with habitat | with habitat and fit |
+| ----------------------------- | ----------: | -----------: | -----------: | -------------------: |
+| Italy (1,500 places), 15 → 21 | 3.37 → 3.19 |  3.97 → 4.70 |  3.61 → 4.33 |          3.36 → 3.26 |
+| Tuscany box, 15 → 21          | 3.02 → 3.02 |  4.54 → 6.14 |  4.52 → 6.12 |          4.05 → 4.01 |
+| Tuscany above 900 m, 21       |        3.90 |         4.16 |         4.09 |                 2.96 |
+| Italy north of 44° N, 21      |        3.05 |         3.83 |         3.19 |                 2.32 |
+| Italy south of 40.5° N, 21    |        3.20 |         6.66 |         6.66 |                 4.75 |
+
+Bronze no longer turns Tuscany deep red on one 40 mm rain (97% of its places at 4+ on 21 October, now 41%). It still leads porcini in the low hills and the south, as the finds do (Tuscany in October: 27 bronze records against 10 porcini), and now trails it above 900 m and north of 44° N.
 
 ## Not tested here
 

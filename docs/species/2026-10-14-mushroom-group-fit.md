@@ -49,7 +49,7 @@ Chanterelle USE (61 finds), USW (6) and smooth chanterelle USW (84) have too few
 | bronze bolete NE | 0.800 to 0.805 [-0.022, +0.033] | -                                         | Sep 61% to 64%, Oct 16% to 15%  |
 | bronze bolete SE | 0.822 to 0.777 [-0.083, -0.005] | -                                         | Oct 66% to 72%, Nov 21% to 32%  |
 
-Bronze bolete SE times its finds better but ranks Italian places worse, so its group fit is held back (`HELD_BACK`).
+Bronze bolete SE times its finds better but ranks Italian places worse, so its group fit is held back (`HELD_BACK`). It shipped on 15 October, once its habitat factor held its places (`2026-10-15-habitat-held-out.md`).
 
 ## A rain delay for the hand-set boletes
 

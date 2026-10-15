@@ -58,10 +58,11 @@ SHIP_P, SHIP_MIN_YEARS = 0.1, 6
 # With the warmth-dependent lag (14 Oct 2026) two more passed and ranked their places worse than
 # their hand-set parts, all training years (scripts/qa_fruiting_candidate.py check a): saffron
 # milk cap USW 0.605 -> 0.476, giant puffball USE 0.847 -> 0.830 (95% CIs below 0).
-# Bronze bolete SE: its group fit times its finds better (pooled +0.073, CI from +0.026) but ranks its
-# places worse than the hand-set part (0.822 to 0.777, CI [-0.083, -0.005], scripts/qa_fruiting_candidate.py).
-HELD_BACK = {("chicken-of-the-woods", "USW"), ("saffron_milk_cap", "USW"), ("giant_puffball", "USE"),
-             ("bronze_bolete", "SE")}
+# Bronze bolete SE's group fit (timing +0.073, CI from +0.026) ranked its places worse than the
+# hand-set part (0.822 to 0.777, CI [-0.083, -0.005]) until it had a habitat factor (15 Oct 2026):
+# with it 0.947 to 0.951 [-0.007, +0.017]; without it, local season curves in, still 0.883 to 0.846
+# [-0.060, -0.012]. It ships.
+HELD_BACK = {("chicken-of-the-woods", "USW"), ("saffron_milk_cap", "USW"), ("giant_puffball", "USE")}
 # Mushrooms whose finds answer rain alike (net of placebo, 14 Oct 2026: every bolete peaks 14-19 days
 # after rain, Cantharellus 2-6 days), so a member its own fit cannot ship, for too few finds or years,
 # is fitted toward its group's shared answer instead (--groups). Black chanterelle (Craterellus, 9-19
