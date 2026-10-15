@@ -73,3 +73,43 @@ def test_frame_has_a_row_per_hour_and_point_and_names_its_source():
     assert frame["lat"].tolist() == [45.0, 46.0, 45.0, 46.0]
     assert frame["t2m_c"].tolist() == [2.0, 1.0, 2.0, 1.0]
     assert frame["source"].tolist() == ["coarse", "fine", "coarse", "fine"]
+
+
+def _night(region_dir, init, hours=48):
+    """A night's file whose temperature is its lead minus one, so nights tell apart."""
+    times = pd.date_range(init + H, periods=hours, freq="h")
+    frame = pd.DataFrame({"time": times, "lat": 45.0, "lon": 7.0, "t2m_c": np.arange(hours, dtype=np.float32)})
+    return hw.write_night(region_dir, frame, init)
+
+
+def test_passed_hours_move_into_the_past_once(tmp_path):
+    first, second, third = INIT, INIT + 24 * H, INIT + 48 * H
+    _night(tmp_path, first)
+    assert hw.roll_past(tmp_path, first) == []          # nothing earlier yet
+    _night(tmp_path, second)
+    hw.roll_past(tmp_path, second)
+    _night(tmp_path, third)
+    written = hw.roll_past(tmp_path, third)
+    assert [p.name for p in written] == ["2026-10.parquet"]
+    past = pd.read_parquet(written[0])
+    assert past["time"].tolist() == list(pd.date_range(first + H, third, freq="h"))
+    assert past["t2m_c"].tolist() == [*range(24), *range(24)]  # each hour from its newest run
+
+
+def test_a_missed_night_is_filled_from_the_older_run(tmp_path):
+    _night(tmp_path, INIT, hours=72)
+    _night(tmp_path, INIT + 48 * H)
+    past = pd.read_parquet(hw.roll_past(tmp_path, INIT + 48 * H)[0])
+    assert len(past) == 48
+
+
+def test_prune_deletes_old_files_and_empty_folders(tmp_path):
+    old = tmp_path / "a" / "old.grib2"
+    old.parent.mkdir()
+    old.write_bytes(b"x")
+    os.utime(old, (0, 0))
+    new = tmp_path / "b" / "new.grib2"
+    new.parent.mkdir()
+    new.write_bytes(b"x")
+    hw.prune(tmp_path, days=2)
+    assert not (tmp_path / "a").exists() and new.exists()

@@ -124,3 +124,51 @@ def to_frame(hours, lats, lons, layers, names):
         if var == "t2m_c":
             frame["source"] = np.asarray([*names, ""])[src.ravel()]
     return frame
+
+
+def write_night(region_dir, frame, start):
+    """Tonight's file, named by the first model's run start."""
+    path = Path(region_dir) / "forecast" / f"{start:%Y%m%d%H}.parquet"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    frame.to_parquet(path, index=False, compression="zstd")
+    return path
+
+
+def roll_past(region_dir, start):
+    """Add to the monthly past files the hours the newest earlier night covered up to
+    tonight's run start and the past does not have yet: each hour once, from the newest run
+    that started before it. A missed night is filled from the older run's longer leads.
+    Returns the past files written."""
+    region_dir = Path(region_dir)
+    earlier = sorted(p for p in (region_dir / "forecast").glob("*.parquet") if p.stem < f"{start:%Y%m%d%H}")
+    if not earlier:
+        return []
+    rows = pd.read_parquet(earlier[-1])
+    rows = rows[rows["time"] <= start]
+    past_dir = region_dir / "past"
+    past_dir.mkdir(exist_ok=True)
+    months = sorted(past_dir.glob("*.parquet"))
+    if months:
+        rows = rows[rows["time"] > pd.read_parquet(months[-1], columns=["time"])["time"].max()]
+    written = []
+    for month, part in rows.groupby(rows["time"].dt.strftime("%Y-%m")):
+        path = past_dir / f"{month}.parquet"
+        if path.exists():
+            part = pd.concat([pd.read_parquet(path), part], ignore_index=True)
+        part.to_parquet(path, index=False, compression="zstd")
+        written.append(path)
+    return written
+
+
+def prune(folder, days):
+    """Delete the files under `folder` older than `days`, then the folders left empty."""
+    folder = Path(folder)
+    if not folder.exists():
+        return
+    cutoff = time.time() - days * 86400
+    for path in folder.rglob("*"):
+        if path.is_file() and path.stat().st_mtime < cutoff:
+            path.unlink()
+    for path in sorted(folder.rglob("*"), reverse=True):
+        if path.is_dir() and not any(path.iterdir()):
+            path.rmdir()
