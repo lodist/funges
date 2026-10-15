@@ -252,7 +252,8 @@ def timing(out: Path, picks: dict, max_rows: int = 60000) -> pd.DataFrame:
         here = here.reset_index(drop=True)
         today, prior = get_species_params(region)[species], prior_of(priors, species, region)
         scores = {}
-        for name, p in (("before", dict(today)), ("after", {**today, **{k: 0.0 for k in off}})):
+        change = off if isinstance(off, dict) else {k: 0.0 for k in off}
+        for name, p in (("before", dict(today)), ("after", {**today, **change})):
             p = {species: {**p, **({"range_prior": prior} if prior is not None else {})}}
             fp.attach_phenology(p, region)
             scores[name] = fp.calculate_mushroom_score(here.copy(), p, {})[f"{species}_score"].to_numpy(float)
@@ -270,7 +271,8 @@ def timing(out: Path, picks: dict, max_rows: int = 60000) -> pd.DataFrame:
             b = rng.integers(0, len(here), len(here))
             if 0 < y[b].sum() < len(b):
                 draws.append(roc_auc_score(y[b], scores["after"][b]) - roc_auc_score(y[b], scores["before"][b]))
-        rows.append({"species": species, "region": region, "switched off": " ".join(off),
+        rows.append({"species": species, "region": region,
+                     "switched off": json.dumps(off) if isinstance(off, dict) else " ".join(off),
                      "sightings": len(here), "stage": int(y.sum()),
                      "auc before": round(float(np.mean([v["before"] for v in years])), 4) if years else np.nan,
                      "auc after": round(float(np.mean([v["after"] for v in years])), 4) if years else np.nan,
@@ -279,6 +281,71 @@ def timing(out: Path, picks: dict, max_rows: int = 60000) -> pd.DataFrame:
                      "dead at 4+ after": round(opened["after"], 3)})
         print(rows[-1], flush=True)
     return pd.DataFrame(rows)
+
+
+# The temperature optimum and width tried (the optimum's move in C, the width x today's): bounded,
+# since an open search on these strata ran to its edges (dandelion in US West at -1 C).
+TEMP_SHIFTS, TEMP_WIDTHS = (-6.0, -4.0, -2.0, 0.0, 2.0, 4.0, 6.0), (0.67, 1.0, 1.5)
+
+
+def temperature_one(layout, weather, s_year, species: str, region: str, prior=None) -> dict:
+    """Test 1 for the temperature: the optimum and width (TEMP_SHIFTS x TEMP_WIDTHS) that rank the
+    training cases highest, then today's against it on the held-out cases. A pick at the grid's edge
+    does not ship: there the optimum is encoding the season's gradient, not a temperature."""
+    frame, at, mask, year = cases_of(layout, weather, s_year, species, region)
+    train, test = year < TEST_FROM, year >= TEST_FROM
+    entry = {"species": species, "region": region, "train cases": int(train.sum()), "test cases": int(test.sum())}
+    today = get_species_params(region)[species]
+    if train.sum() < MIN_CASES or test.sum() < MIN_CASES or float(today.get("temp_weight", PARTS["temp_weight"])) <= 0:
+        return entry
+    mu, sigma = float(today["optimal_temp"]), float(today["temp_sigma"])
+    grid = [(mu + d, sigma * w) for d in TEMP_SHIFTS for w in TEMP_WIDTHS]
+    train_rank = {g: ranks(frame, at[train], mask[train], species, {**today, "optimal_temp": g[0], "temp_sigma": g[1]},
+                           prior).mean() for g in grid}
+    best = max(train_rank, key=train_rank.get)
+    before = ranks(frame, at[test], mask[test], species, today, prior)
+    after = ranks(frame, at[test], mask[test], species, {**today, "optimal_temp": best[0], "temp_sigma": best[1]}, prior)
+    edge = best[0] - mu in (min(TEMP_SHIFTS), max(TEMP_SHIFTS))
+    entry.update({"optimal_temp": mu, "temp_sigma": sigma, "fitted optimum": best[0], "fitted sigma": round(best[1], 2),
+                  "today test": round(float(before.mean()), 4), "tuned test": round(float(after.mean()), 4),
+                  "ci": paired_ci(after, before), "edge": edge})
+    entry["ships"] = best != (mu, sigma) and not edge and entry["ci"][0] > 0
+    return entry
+
+
+def run_temperature(out: Path, part: int, of: int) -> None:
+    """temperature_one for every plant and region (this process's share), then tests 2 and 3 on the
+    winners -> temperature_final.json {"species|region": {"optimal_temp": .., "temp_sigma": ..}}."""
+    layout = pd.read_parquet(out / "settings_strata.parquet")
+    weather = pd.read_parquet(out / "settings_weather.parquet")
+    s_year = pd.read_parquet(out / "phenology_table.parquet", columns=["id", "year"]).drop_duplicates("id").set_index("id")["year"]
+    priors = range_priors()
+    done_path = out / f"temperature_result_{part}.csv"
+    done = pd.read_csv(done_path) if done_path.exists() else pd.DataFrame(columns=["species", "region"])
+    for species, region in sorted(set(zip(layout["species"], layout["region"])))[part::of]:
+        if ((done["species"] == species) & (done["region"] == region)).any():
+            continue
+        entry = temperature_one(layout, weather, s_year, species, region, prior_of(priors, species, region))
+        print(entry, flush=True)
+        done = pd.concat([done, pd.DataFrame([entry])], ignore_index=True)
+        done.to_csv(done_path, index=False)
+
+
+def select_temperature(out: Path) -> dict:
+    """The same-day temperature winners through tests 2 and 3 (HELD left out)."""
+    same_day = pd.concat([pd.read_csv(f) for f in sorted(out.glob("temperature_result_*.csv"))], ignore_index=True)
+    same_day = same_day[same_day["ships"].astype(str) == "True"]
+    picks = {f"{s}|{r}": {"optimal_temp": float(m), "temp_sigma": float(w)}
+             for s, r, m, w in same_day[["species", "region", "fitted optimum", "fitted sigma"]].itertuples(index=False)
+             if s not in HELD}
+    year = timing(out, picks)
+    year.to_csv(out / "temperature_timing.csv", index=False)
+    ok = (year["timing ci"].apply(lambda ci: ci is not None and ci[0] >= -0.001)
+          & (year["dead at 4+ after"] - year["dead at 4+ before"] <= DEAD_RISE))
+    final = {f"{s}|{r}": json.loads(c) for s, r, c in year.loc[ok, ["species", "region", "switched off"]].itertuples(index=False)}
+    (out / "temperature_final.json").write_text(json.dumps(final, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    print(f"{len(final)} of {len(picks)} pass the year and the dead months", flush=True)
+    return final
 
 
 def run_parts(out: Path, part: int, of: int) -> None:
@@ -334,6 +401,10 @@ def main() -> None:
     parser.add_argument("--of", type=int, default=1)
     parser.add_argument("--select", action="store_true", help="tests 2 and 3 on test 1's winners -> parts_final.json")
     parser.add_argument("--apply", action="store_true", help="write parts_final.json into the manifests")
+    parser.add_argument("--temperature", action="store_true",
+                        help="the temperature optimum and width per plant and region (--part k --of n)")
+    parser.add_argument("--select-temperature", action="store_true",
+                        help="tests 2 and 3 on --temperature's winners -> temperature_final.json")
     args = parser.parse_args()
     out = Path(args.out)
     fp.load_dotenv(ROOT / ".env")
@@ -346,6 +417,10 @@ def main() -> None:
         select(out)
     elif args.apply:
         apply(out)
+    elif args.temperature:
+        run_temperature(out, args.part, args.of)
+    elif args.select_temperature:
+        select_temperature(out)
 
 
 if __name__ == "__main__":
