@@ -119,7 +119,7 @@ export default function LandingPage() {
           aria-labelledby='spectacles-title'
         >
           <img
-            src={`${base}landing/autumn-trail-mossy.webp`}
+            src={`${base}landing/autumn-beech-road.webp`}
             alt=''
             loading='lazy'
             width='1280'
@@ -144,7 +144,7 @@ export default function LandingPage() {
         <div className={styles.featureGrid}>
           <section className={styles.feature} aria-labelledby='identify-title'>
             <img
-              src={`${base}landing/astra-lingonberries.webp`}
+              src={`${base}landing/lingonberries-pine-forest.webp`}
               alt=''
               loading='lazy'
               width='768'
