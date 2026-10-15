@@ -16,8 +16,10 @@ Stages (each resumable, run in order):
 
   python scripts/build_hillshade_tiles.py sample Z X Y   # one tile + preview
 
-Coverage is the two score continents at z0-z11. Cache and output live in
-../terrain_cache, outside the repo.
+Coverage is the two score continents at z0-z10; the map stretches z10 past
+that. Stopping at z10 keeps the file under the 512 MB Cloudflare caches on the
+free plan, so tile reads come from the edge cache instead of R2. Cache and
+output live in ../terrain_cache, outside the repo.
 """
 
 from __future__ import annotations
@@ -41,13 +43,13 @@ ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT.parent / "terrain_cache"
 PNG_DIR = CACHE / "terrarium"
 WEBP_DIR = CACHE / "hillshade"
-OUT_PMTILES = CACHE / "hillshade_z11.pmtiles"
-R2_KEY = "basemap/hillshade_z11.pmtiles"
+OUT_PMTILES = CACHE / "hillshade_z10.pmtiles"
+R2_KEY = "basemap/hillshade_z10.pmtiles"
 
 SOURCE = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
 # West, south, east, north. Same boxes as REGION_BBOX in src/store/mapStore.ts.
 BOXES = {"eu": (-25.0, 27.0, 45.0, 72.0), "us": (-125.0, 24.0, -66.0, 50.0)}
-MIN_ZOOM, MAX_ZOOM = 0, 11
+MIN_ZOOM, MAX_ZOOM = 0, 10
 
 # Shading parameters. Azimuth/altitude match MapLibre's hillshade defaults
 # (light from the north-west, 45 degrees up). EXAGGERATION scales slopes the
