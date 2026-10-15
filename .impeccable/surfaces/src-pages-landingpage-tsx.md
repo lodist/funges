@@ -30,7 +30,7 @@ The landing images provide atmosphere rather than species-identification evidenc
 - `public/landing/astra-porcini.webp` — 960×1200, generated with OpenAI image generation from the user's photographic references; porcino in woodland soil and leaf litter.
 - `public/landing/astra-lingonberries.webp` — 768×576, generated the same way; northern lingonberry patch beside a pine trunk.
 - `public/landing/wild-mushroom-toast.webp` — 768×576, generated; chanterelle bruschetta for the cooking feature.
-- `public/landing/autumn-ledge.webp` — 1280×720, generated (Codex imagegen); overcast misty autumn valley, overhanging ledge with a small couple on the right. Phone crop keeps the ledge in frame.
+- `public/landing/autumn-beech-road.webp` — 1280×720, Pexels (fabio-photo, 34490278; free licence, no credit required); road through a yellow-orange beech tunnel, symmetric so the phone crop stays centred.
 - `public/landing/alps-map.webp` — 1280×528, an actual Fung.es MapLibre capture centered at 10.21E, 47.38N, zoom 8.7 with the Pine Bolete overlay, captured 2026-10-12 from the original olive `funges_style.json` style and `data.fung.es` tiles with the app's day-zero missing-score fallback; no geography or scores were generated or altered.
 
 Images are WebP at quality 75 (the trail and the map at 78). Each has a provenance record, with the generation prompt where there was one, in `landing-assets/` beside this brief; they live outside `public/` so the deploy does not ship them.
