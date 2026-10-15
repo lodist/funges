@@ -342,6 +342,11 @@
       "name": "Boletus (todos los boletos)",
       "description": "Todos los boletos tipo porcini en una sola puntuación: boleto comestible, de pino, negro y de verano, más los reyes norteamericanos",
       "howTo": "Cada lugar muestra la mejor de sus puntuaciones; busca en hayedos, robledales, castañares, pinares y abetales dos a cuatro semanas después de una lluvia abundante"
+    },
+    "cantharellus": {
+      "name": "Rebozuelos (todos)",
+      "description": "Todos los rebozuelos verdaderos en una sola puntuación: los rebozuelos dorados y, en Norteamérica, el rebozuelo liso y el rebozuelo del Pacífico",
+      "howTo": "Cada lugar muestra la mejor de sus puntuaciones; busca en laderas con musgo bajo robles, hayas, abedules y coníferas de unos días a una semana después de una lluvia templada"
     }
   }
 }

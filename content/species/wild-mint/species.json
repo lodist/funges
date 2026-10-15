@@ -174,8 +174,8 @@
         "available": true,
         "landCover": [31, 41, 42, 43, 52, 71],
         "scoring": {
-          "optimal_temp": 19,
-          "temp_sigma": 6,
+          "optimal_temp": 23,
+          "temp_sigma": 9,
           "min_temp": 0,
           "max_temp": 30,
           "optimal_alt": 250,
@@ -200,7 +200,8 @@
         },
         "scoringReferences": [
           "https://www.gbif.org/species/2927173",
-          "docs/species/2026-09-27-quick-wins.md"
+          "docs/species/2026-09-27-quick-wins.md",
+          "docs/species/2026-10-15-temperature-fits.md"
         ],
         "landCoverScheme": "NLCD"
       }

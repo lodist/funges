@@ -104,8 +104,8 @@
         "available": true,
         "landCover": [312, 313, 324],
         "scoring": {
-          "optimal_temp": 11,
-          "temp_sigma": 4.5,
+          "optimal_temp": 12,
+          "temp_sigma": 9.9,
           "min_temp": 1,
           "max_temp": 20,
           "optimal_alt": 600,
@@ -131,7 +131,8 @@
         "scoringReferences": [
           "https://www.gbif.org/species/2554536",
           "docs/species/2026-09-06-boletus-chanterelle-split.md",
-          "docs/species/2026-10-05-soil-ph.md"
+          "docs/species/2026-10-05-soil-ph.md",
+          "docs/species/2026-10-15-temperature-fits.md"
         ],
         "landCoverScheme": "CORINE"
       },
@@ -139,8 +140,8 @@
         "available": true,
         "landCover": [42, 43, 52],
         "scoring": {
-          "optimal_temp": 11,
-          "temp_sigma": 4.5,
+          "optimal_temp": 19,
+          "temp_sigma": 9.9,
           "min_temp": 1,
           "max_temp": 20,
           "optimal_alt": 600,
@@ -180,7 +181,8 @@
         },
         "scoringReferences": [
           "https://www.gbif.org/species/2554536",
-          "docs/species/2026-09-06-boletus-chanterelle-split.md"
+          "docs/species/2026-09-06-boletus-chanterelle-split.md",
+          "docs/species/2026-10-15-temperature-fits.md"
         ],
         "landCoverScheme": "NLCD"
       },

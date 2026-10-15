@@ -69,8 +69,8 @@
         "available": true,
         "landCover": [311, 313, 324],
         "scoring": {
-          "optimal_temp": 16,
-          "temp_sigma": 4.5,
+          "optimal_temp": 15,
+          "temp_sigma": 9.9,
           "min_temp": 6,
           "max_temp": 25,
           "optimal_alt": 850,
@@ -103,7 +103,8 @@
         },
         "scoringReferences": [
           "https://data.fung.es/EU/NE/NE_species_params.txt",
-          "docs/species/2026-10-05-soil-ph.md"
+          "docs/species/2026-10-05-soil-ph.md",
+          "docs/species/2026-10-15-temperature-fits.md"
         ],
         "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
         "landCoverScheme": "CORINE"
@@ -155,10 +156,10 @@
         "available": true,
         "landCover": [41, 43, 52],
         "scoring": {
-          "optimal_temp": 16,
+          "optimal_temp": 28,
           "temp_sigma": 4,
           "min_temp": 6,
-          "max_temp": 25,
+          "max_temp": 34,
           "optimal_alt": 850,
           "alt_sigma": 1200,
           "optimal_humidity": 85,
@@ -209,7 +210,8 @@
           ]
         },
         "scoringReferences": [
-          "https://data.fung.es/USA/USE/USE_species_params.txt"
+          "https://data.fung.es/USA/USE/USE_species_params.txt",
+          "docs/species/2026-10-15-temperature-fits.md"
         ],
         "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
         "landCoverScheme": "NLCD"

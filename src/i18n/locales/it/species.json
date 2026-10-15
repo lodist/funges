@@ -341,6 +341,11 @@
       "name": "Boletus (tutti i porcini)",
       "description": "Tutti i porcini in un solo punteggio: porcino, porcino dei pini, porcino nero e porcino estivo, più i re boleti nordamericani",
       "howTo": "Ogni luogo mostra il punteggio migliore tra loro; cerca in faggete, querceti, castagneti, pinete e abetaie due-quattro settimane dopo una pioggia abbondante"
+    },
+    "cantharellus": {
+      "name": "Finferli (tutti)",
+      "description": "Tutti i veri finferli in un solo punteggio: i gallinacci dorati e, in Nord America, il finferlo liscio e il finferlo del Pacifico",
+      "howTo": "Ogni luogo mostra il punteggio migliore tra loro; cerca sui pendii muschiosi sotto querce, faggi, betulle e conifere da pochi giorni a una settimana dopo una pioggia calda"
     }
   },
   "search_placeholder": "Cerca una specie"
