@@ -113,3 +113,20 @@ def test_prune_deletes_old_files_and_empty_folders(tmp_path):
     new.write_bytes(b"x")
     hw.prune(tmp_path, days=2)
     assert not (tmp_path / "a").exists() and new.exists()
+
+
+class _Heads:
+    """A session whose HEAD answers 200 for the given URLs only."""
+    def __init__(self, ok):
+        self.ok = set(ok)
+
+    def head(self, url, timeout):
+        return type("Response", (), {"status_code": 200 if url in self.ok else 404})()
+
+
+def test_newest_run_is_the_newest_complete_one():
+    source = Source(name="test", cycles=(0, 12), probe=lambda init: [f"{init:%d%H}"], files=None, vars={})
+    now = pd.Timestamp("2026-10-16 05:00", tz="UTC")
+    assert hw.newest_run(source, _Heads({"1600", "1512"}), now) == pd.Timestamp("2026-10-16 00:00", tz="UTC")
+    assert hw.newest_run(source, _Heads({"1512"}), now) == pd.Timestamp("2026-10-15 12:00", tz="UTC")
+    assert hw.newest_run(source, _Heads(set()), now) is None

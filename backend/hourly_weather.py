@@ -172,3 +172,137 @@ def prune(folder, days):
     for path in sorted(folder.rglob("*"), reverse=True):
         if path.is_dir() and not any(path.iterdir()):
             path.rmdir()
+
+
+def newest_run(source, session, now):
+    """The newest run of the last two days whose last files are up, or None."""
+    for back in range(48):
+        init = (now - back * HOUR).floor("h")
+        if init.hour in source.cycles and all(
+                session.head(url, timeout=30).status_code == 200 for url in source.probe(init)):
+            return init
+    return None
+
+
+def download(session, url, span, folder):
+    """The file, or its byte span, in the cache folder; fetched unless already there."""
+    path = Path(folder) / (hashlib.sha1(f"{url} {span}".encode()).hexdigest() + ".grib2")
+    if not path.exists():
+        headers = {"Range": f"bytes={span[0]}-{'' if span[1] is None else span[1]}"} if span else {}
+        response = session.get(url, headers=headers, timeout=180)
+        response.raise_for_status()
+        data = bz2.decompress(response.content) if url.endswith(".bz2") else response.content
+        part = path.with_suffix(".part")
+        part.write_bytes(data)
+        part.replace(path)
+    return path
+
+
+def decode(data, with_grid=False):
+    """(valid time, values with NaN where the field has none, (lats, lons) or None) of one
+    GRIB message. For an amount or a mean the valid time is the end of its window."""
+    import eccodes  # here, not at the top: only the nightly weather needs it, after LightGBM loads
+    gid = eccodes.codes_new_from_message(data)
+    try:
+        values = eccodes.codes_get_values(gid).astype(np.float32)
+        if eccodes.codes_get(gid, "bitmapPresent"):
+            values[values == eccodes.codes_get(gid, "missingValue")] = np.nan
+        stamp = f"{eccodes.codes_get(gid, 'validityDate')}{eccodes.codes_get(gid, 'validityTime'):04d}"
+        valid = pd.to_datetime(stamp, format="%Y%m%d%H%M", utc=True)
+        grid = ((eccodes.codes_get_array(gid, "latitudes"), eccodes.codes_get_array(gid, "longitudes"))
+                if with_grid else None)
+    finally:
+        eccodes.codes_release(gid)
+    return valid, values, grid
+
+
+def read_source(source, init, last, lats, lons, session):
+    """{field: {valid time: values at the points}} of one run, NaN where the model does not
+    reach. Downloads run in parallel and are decoded as they land; up to 5% may fail."""
+    files = source.files(session, init, last)
+    folder = OUT_DIR / "cache" / source.name / f"{init:%Y%m%d%H}"
+    folder.mkdir(parents=True, exist_ok=True)
+    fields, cells, failed = {}, None, 0
+    with ThreadPoolExecutor(WORKERS) as pool:
+        jobs = {pool.submit(download, session, url, span, folder): field for field, url, span in files}
+        for job in as_completed(jobs):
+            try:
+                data = job.result().read_bytes()
+            except requests.RequestException as e:
+                failed += 1
+                print(f"Hourly weather: {source.name} download failed: {e!r}")
+                continue
+            valid, values, grid = decode(data, with_grid=cells is None)
+            if cells is None:
+                cells = nearest_cells(*grid, lats, lons)
+            fields.setdefault(jobs[job], {})[valid] = np.where(cells >= 0, values[cells], np.nan).astype(np.float32)
+    if failed > 0.05 * len(files):
+        raise RuntimeError(f"{source.name}: {failed} of {len(files)} downloads failed")
+    return fields
+
+
+def upload(paths):
+    """Copy the files to R2 under hourly_weather/, as they lie under OUT_DIR."""
+    import r2
+    s3 = r2.client()  # loads .env.secret, which holds the bucket name
+    for path in paths:
+        s3.upload_file(str(path), os.environ["R2_BUCKET_NAME"],
+                       f"hourly_weather/{Path(path).relative_to(OUT_DIR).as_posix()}")
+
+
+def summary(frame, seconds):
+    """What tonight's file holds, for the run log."""
+    print(f"Hourly weather: {len(frame):,} rows, {frame['time'].min()} to {frame['time'].max()}, {seconds:.0f} s")
+    for var in VARS:
+        print(f"  {var}: missing {frame[var].isna().mean():.1%}, {frame[var].min()} to {frame[var].max()}")
+    print(f"  from: {frame['source'].value_counts(normalize=True).round(3).to_dict()}")
+
+
+def _session():
+    session = requests.Session()
+    retry = Retry(total=4, backoff_factor=2, status_forcelist=(429, 500, 502, 503, 504),
+                  allowed_methods=("GET", "HEAD"))
+    session.mount("https://", HTTPAdapter(max_retries=retry, pool_maxsize=2 * WORKERS))
+    return session
+
+
+def run(region, points, now=None):
+    """Tonight's hourly forecast at the region's points, the hours since last night added to
+    the past, both copied to R2."""
+    started = time.time()
+    now = pd.Timestamp.now(tz="UTC") if now is None else now
+    lats, lons = np.asarray(points, float).T
+    session = _session()
+    prune(OUT_DIR / "cache", KEEP_CACHE_DAYS)
+    runs = []
+    for source in SOURCES[CONTINENT[region]]:
+        init = newest_run(source, session, now)
+        print(f"Hourly weather: {source.name} run {init}")
+        if init is not None:
+            runs.append((source, init))
+    if not runs:
+        raise RuntimeError("no complete model run")
+    start = runs[0][1]
+    hours = pd.date_range(start + HOUR, periods=HOURS, freq="h")
+    end = hours[-1] + 6 * HOUR  # a step past the last hour, to interpolate up to it
+    layers = [source_vars(s, read_source(s, i, int((end - i) / HOUR), lats, lons, session), hours, i)
+              for s, i in runs]
+    frame = to_frame(hours, lats, lons, layers, [f"{s.name} {i:%Y-%m-%d %H}z" for s, i in runs])
+    region_dir = OUT_DIR / region
+    written = [write_night(region_dir, frame, start), *roll_past(region_dir, start)]
+    prune(region_dir / "forecast", KEEP_FORECAST_DAYS)
+    upload(written)
+    summary(frame, time.time() - started)
+
+
+if __name__ == "__main__":
+    # python backend/hourly_weather.py NE: one region by hand, at its Earth coordinates.
+    import sys
+
+    from forecast_pipeline import _load_coords_any, get_required_env, load_dotenv
+    root = Path(__file__).resolve().parents[1]
+    load_dotenv(root / ".env")
+    load_dotenv(root / ".env.secret")
+    region = sys.argv[1]
+    coords = _load_coords_any(get_required_env(f"{region}_UNIQUE_COORDINATES"))
+    run(region, [(round(lat, 3), round(lon, 3)) for lat, lon in coords])
