@@ -342,6 +342,11 @@
       "name": "Boletus (all porcini)",
       "description": "Every porcini-type bolete in one score: porcini, pine, bronze and summer boletes, and the North American kings",
       "howTo": "Each place shows the best of their scores; look in beech, oak, chestnut, pine and spruce woods two to four weeks after a soaking rain"
+    },
+    "cantharellus": {
+      "name": "Chanterelles (all)",
+      "description": "Every chanterelle in one score: the golden chanterelles, the black trumpet and the winter chanterelle, and in North America the smooth and Pacific chanterelles",
+      "howTo": "Each place shows the best of their scores; golden chanterelles on mossy slopes under oak, beech and conifers after warm rain, black trumpets in damp leaf litter under broadleaves, winter chanterelles on wet moss under conifers late in the season"
     }
   }
 }

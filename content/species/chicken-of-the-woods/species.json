@@ -191,8 +191,8 @@
         "available": true,
         "landCover": [41, 42, 43],
         "scoring": {
-          "optimal_temp": 19,
-          "temp_sigma": 5,
+          "optimal_temp": 21,
+          "temp_sigma": 3.35,
           "min_temp": 5,
           "max_temp": 30,
           "optimal_alt": 240,
@@ -238,7 +238,8 @@
           "https://www.gbif.org/species/2542160",
           "https://www.mushroomexpert.com/laetiporus_sulphureus.html",
           "https://www.mushroomexpert.com/laetiporus_gilbertsonii.html",
-          "docs/species/2026-09-27-quick-wins.md"
+          "docs/species/2026-09-27-quick-wins.md",
+          "docs/species/2026-10-15-temperature-fits.md"
         ],
         "landCoverScheme": "NLCD"
       }

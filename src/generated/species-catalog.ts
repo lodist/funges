@@ -749,6 +749,26 @@ export const GENERATED_SPECIES_DATA: Species[] = [
       'rocky_king',
     ],
   },
+  {
+    id: 'cantharellus',
+    nameKey: 'cantharellus.name',
+    scientificName: 'Cantharellus',
+    category: 'mushroom',
+    emoji: '🍄',
+    descriptionKey: 'cantharellus.description',
+    howToKey: 'cantharellus.howTo',
+    season: 'summer-fall',
+    habitat: 'forest',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
+    compositeOf: [
+      'chant',
+      'smooth_chant',
+      'pacific_chant',
+      'black_chant',
+      'winter_chant',
+    ],
+  },
 ];
 
 export const GENERATED_REGION_BOUNDARIES = {

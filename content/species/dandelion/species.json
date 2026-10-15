@@ -142,7 +142,7 @@
         "available": true,
         "landCover": [31, 41, 42, 43, 52, 71],
         "scoring": {
-          "optimal_temp": 11,
+          "optimal_temp": 7,
           "temp_sigma": 6,
           "min_temp": -1,
           "max_temp": 20,
@@ -168,7 +168,8 @@
           "rain_weight": 0
         },
         "scoringReferences": [
-          "https://data.fung.es/USA/USE/USE_species_params.txt"
+          "https://data.fung.es/USA/USE/USE_species_params.txt",
+          "docs/species/2026-10-15-temperature-fits.md"
         ],
         "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
         "landCoverScheme": "NLCD"

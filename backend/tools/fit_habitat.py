@@ -49,8 +49,9 @@ def columns(features: pd.DataFrame) -> list[str]:
 
 
 def strata(finds, species, features, rng, max_cases=MAX_CASES, background_all=True):
-    """x [case, 1+K, k], mask: each of the species' finds at a place with features, and up to
-    K other places searched in the same region within +-WINDOW_DAYS (other fungi's finds)."""
+    """x [case, 1+K, k], mask, the cases and their feature rows (-1 pads): each of the species'
+    finds at a place with features, and up to K other places searched in the same region within
+    +-WINDOW_DAYS (other fungi's finds)."""
     index = pd.Series(np.arange(len(features)), index=features["Location_Id"].to_numpy())
     known = finds["Location_Id"].isin(index.index)
     cases = finds[known & (finds["species"] == species)]
@@ -74,7 +75,88 @@ def strata(finds, species, features, rng, max_cases=MAX_CASES, background_all=Tr
     keep = (rows[:, 1:] >= 0).sum(axis=1) >= 3
     rows = rows[keep]
     values = features[columns(features)].to_numpy(np.float32)
-    return values[np.clip(rows, 0, None)], rows >= 0, cases[keep]
+    return values[np.clip(rows, 0, None)], rows >= 0, cases[keep], rows
+
+
+def held_out_years(species, score, at, years, weeks, sites, finds, features, place_score=None, seed=291) -> dict:
+    """The factor tested on the training table's held-out years, for where 2026 is too thin to
+    test it (bronze bolete in South Europe: 26 finds; spring species have no summer strata). For
+    each year a model trained on the other years' finds, and each of that year's finds ranked with
+    the factor and without, two ways as in 2026: among that day's bracket finds elsewhere (at:
+    fit_fruiting_parts.control_sets) on the full score ([case] values), and among the places other
+    fungi were found within +-WINDOW_DAYS (strata) on place_score(sites, dates), the score's place
+    parts on the find's day (the training table has no weather there). Each change is pooled over
+    the years, its 95% CI resampling whole weeks."""
+    from fit_fruiting_parts import place_ranks, week_ci
+    rng = np.random.default_rng(seed)
+    index = pd.Series(np.arange(len(features)), index=features["Location_Id"].to_numpy())
+    position = index.reindex(sites).to_numpy()
+    listed = np.isfinite(position)
+    position = np.where(listed, position, 0).astype(int)
+    ids = features["Location_Id"].to_numpy()
+    values, mapped = features[columns(features)].to_numpy(np.float32), features["tree_map"].to_numpy(bool)
+    before, change = place_ranks(score, at), np.full(len(at), np.nan)
+    other = []                                  # per year: (rank without, change, weeks) among other fungi
+    test_year = years[at[:, 0]]
+    for year in np.unique(test_year):
+        in_year = finds["Date"].dt.year == year
+        x, mask, *_ = strata(finds[~in_year], species, features, rng)
+        if len(x) < MIN_CASES:
+            continue
+        held = rng.random(len(x)) < 0.15
+        model = gbm.fit(x[~held], mask[~held], rounds=1000, params=PARAMS, valid=(x[held], mask[held]))
+        eta = model.predict(values, num_iteration=model.best_iteration, raw_score=True)
+        own = index.reindex(finds.loc[~in_year & (finds["species"] == species), "Location_Id"]).dropna().astype(int)
+        h = factor(eta, float(np.quantile(eta[own.to_numpy()], REFERENCE_QUANTILE)), mapped)
+        rows = test_year == year
+        change[rows] = place_ranks(score * np.where(listed, h[position], 1.0), at[rows]) - before[rows]
+        if place_score is not None:
+            _, tmask, cases, slots = strata(finds[in_year], species, features, rng)
+            if len(cases):
+                slots = np.clip(slots, 0, None)
+                s = place_score(ids[slots].ravel(), np.repeat(cases["Date"].to_numpy(), slots.shape[1])).reshape(slots.shape)
+                r0, iso = find_day_rank(s, tmask), cases["Date"].dt.isocalendar()
+                other.append((r0, find_day_rank(s * h[slots], tmask) - r0, (iso.year * 100 + iso.week).to_numpy(int)))
+
+    def summary(name, b, c, w):
+        ci = week_ci(c, w)
+        return {f"years_{name}_finds": len(c), f"years_{name}_score": round(float(b.mean()), 4),
+                f"years_{name}_with_factor": round(float((b + c).mean()), 4),
+                f"years_{name}_gain": round(float(c.mean()), 4), f"years_{name}_ci_low": ci[0], f"years_{name}_ci_high": ci[1]}
+
+    ok = np.isfinite(change)
+    result = summary("bracket", before[ok], change[ok], weeks[at[ok, 0]]) if ok.any() else {}
+    if other:
+        result.update(summary("all", *(np.concatenate(v) for v in zip(*other))))
+    return result
+
+
+def ships(table: pd.DataFrame) -> pd.Series:
+    """Where the held-out years ran (held_out_years) they decide, as the temperature fit does: better
+    beyond doubt on one of their two tests (against bracket finds, against other fungi's places) and
+    not worse beyond doubt on the other, and summer 2026's finds, where there are any, rank no worse
+    among the places searched that week. A few dozen 2026 finds against bracket fungi weigh nothing
+    next to thousands held out (black chanterelle in North Europe: 37 finds 0.812 -> 0.788; held out,
+    2,854 finds +0.060 [+0.050, +0.070]). Elsewhere (fitted weather parts) 2026 decides: better than
+    the score alone among other fungi's finds, and no worse against bracket fungi."""
+    t = table.reindex(columns=["all_finds", "all_score", "all_with_factor", "bracket_score", "bracket_with_factor",
+                               "years_bracket_ci_low", "years_bracket_ci_high", "years_all_ci_low", "years_all_ci_high"])
+    in_2026 = t["all_finds"].notna() & (t["all_with_factor"] > t["all_score"]) & ~(
+        t["bracket_with_factor"] < t["bracket_score"])
+    years = (((t["years_bracket_ci_low"] > 0) & ~(t["years_all_ci_high"] < 0))
+             | ((t["years_all_ci_low"] > 0) & ~(t["years_bracket_ci_high"] < 0))) & ~(t["all_with_factor"] < t["all_score"])
+    return in_2026.where(t["years_bracket_ci_low"].isna() & t["years_all_ci_low"].isna(), years)
+
+
+def with_years(table: pd.DataFrame, out: Path) -> pd.DataFrame:
+    """The results with the held-out years' test where it ran (fit_fruiting_parts.py --habitat)."""
+    path = out / "habitat_years.csv"
+    if not path.exists():
+        return table
+    years = pd.read_csv(path)
+    names = [c for c in years.columns if c.startswith("years_")]
+    return table.drop(columns=names, errors="ignore").merge(years[["species", "region", *names]],
+                                                            on=["species", "region"], how="left")
 
 
 def from_models(table, finds, out):
@@ -113,8 +195,11 @@ def export(table, factors, ids_by_region, out) -> None:
     folder = f"{R2_FOLDER}/{time.strftime('%Y%m%d-%H%M')}"
     spec = {"strength": STRENGTH, "floor": FLOOR, "reference_quantile": REFERENCE_QUANTILE,
             "trained": f"2016-{TEST_YEAR - 1}",
-            "shipped_if": "score x habitat ranks held-out 2026 finds above the places searched that week better than "
-                          "the score alone (other fungi's finds), and no worse against bracket fungi", "regions": {}}
+            "shipped_if": "score x habitat ranks held-out finds better than the score alone: on the training table's "
+                          "held-out years (hand-set weather), better beyond doubt against that day's bracket finds or "
+                          "other fungi's places and not worse beyond doubt on the other; otherwise 2026's finds above "
+                          "the places searched that week (other fungi's finds), and no worse against bracket fungi",
+            "regions": {}}
     for region, rows in table[table["ships"]].groupby("region"):
         species = sorted(rows["species"])
         matrix = np.column_stack([np.rint(factors[(s, region)] * 255) for s in species]).astype(np.uint8)
@@ -125,7 +210,8 @@ def export(table, factors, ids_by_region, out) -> None:
         client.put_object(Bucket=bucket, Key=key, Body=data, ContentType="application/octet-stream")
         spec["regions"][region] = {"file": key, "sha256": hashlib.sha256(data).hexdigest(), "species": species}
         print(f"uploaded {key}: {len(species)} species, {len(data) / 1e6:.1f} MB", flush=True)
-    (root / "backend" / "generated" / "habitat_factor.json").write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8")
+    (root / "backend" / "generated" / "habitat_factor.json").write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8",
+                                                                       newline="\n")
 
 
 def main() -> None:
@@ -139,7 +225,9 @@ def main() -> None:
     finds = pd.read_parquet(out / "finds_2016_2026.parquet")
     finds["Date"] = pd.to_datetime(finds["Date"])
     if args.reuse:
-        table = pd.read_csv(out / "habitat_result.csv")
+        table = with_years(pd.read_csv(out / "habitat_result.csv"), out)
+        table["ships"] = ships(table)
+        table.to_csv(out / "habitat_result.csv", index=False)
         if args.export:
             export(table, *from_models(table, finds, out), out)
         return
@@ -153,12 +241,12 @@ def main() -> None:
         here = finds[finds["region"] == region]
         train, test = here[here["Date"].dt.year < TEST_YEAR], here[here["Date"].dt.year == TEST_YEAR]
         for species in sorted(set(here["species"]) - {PLACEBO}):
-            x, mask, _ = strata(train, species, features, rng)
+            x, mask, *_ = strata(train, species, features, rng)
             if len(x) < MIN_CASES:
                 continue
             held = rng.random(len(x)) < 0.15
             model = gbm.fit(x[~held], mask[~held], rounds=1000, params=PARAMS, valid=(x[held], mask[held]))
-            tx, tmask, _ = strata(test, species, features, rng)
+            tx, tmask, *_ = strata(test, species, features, rng)
             entry = {"species": species, "region": region, "train": len(x), "test_2026": len(tx),
                      "rounds": model.best_iteration}
             if len(tx) >= 30:
@@ -192,10 +280,8 @@ def main() -> None:
             entry["top_features"] = ", ".join(importance.sort_values(ascending=False).index[:4])
             results.append(entry)
             print(entry, flush=True)
-    table = pd.DataFrame(results)
-    has = table["all_finds"].notna() if "all_finds" in table else pd.Series(False, index=table.index)
-    table["ships"] = has & (table.get("all_with_factor") > table.get("all_score")) & ~(
-        table.get("bracket_with_factor") < table.get("bracket_score"))
+    table = with_years(pd.DataFrame(results), out)
+    table["ships"] = ships(table)
     table.to_csv(out / "habitat_result.csv", index=False)
     if args.export:
         export(table, *from_models(table, finds, out), out)

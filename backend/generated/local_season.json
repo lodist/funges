@@ -1,0 +1,115 @@
+{
+ "variant": "joint: 50 km, k 10, climate kernel x1",
+ "kernel_km": 50.0,
+ "prior_records": 10.0,
+ "climate_scale": 1.0,
+ "periods": [
+  "2010,2019",
+  "2020,2026"
+ ],
+ "shipped_if": "held-out log-likelihood per record, 95% intervals over 1\u00b0 blocks: better beyond doubt than today's method refitted on the same years (both periods) or than the map's curves on the 2010-2019 records (neither built on them), worse beyond doubt in neither, no region over 5+ blocks worse beyond doubt; at least 150 records; the seam check",
+ "continents": {
+  "EU": {
+   "file": "models/local_season/20261015-0548/local_season_EU.npz",
+   "sha256": "b1f29847a10ca9822f919fe87f9bfec7b150b02c61800f4460412be8586e4eaf",
+   "species": [
+    "black_chant",
+    "bronze_bolete",
+    "chant",
+    "chicken-of-the-woods",
+    "hedgehog_mushroom",
+    "morel",
+    "mushroom",
+    "oyster-mushroom",
+    "parasol",
+    "pine_bolete",
+    "saffron_milk_cap",
+    "shaggy_mane",
+    "st_george",
+    "winter_chant"
+   ],
+   "regions": {
+    "NE": [
+     "black_chant",
+     "bronze_bolete",
+     "chant",
+     "chicken-of-the-woods",
+     "hedgehog_mushroom",
+     "morel",
+     "mushroom",
+     "oyster-mushroom",
+     "parasol",
+     "pine_bolete",
+     "saffron_milk_cap",
+     "shaggy_mane",
+     "st_george",
+     "winter_chant"
+    ],
+    "SE": [
+     "black_chant",
+     "bronze_bolete",
+     "chant",
+     "chicken-of-the-woods",
+     "hedgehog_mushroom",
+     "morel",
+     "mushroom",
+     "oyster-mushroom",
+     "parasol",
+     "pine_bolete",
+     "saffron_milk_cap",
+     "shaggy_mane",
+     "st_george",
+     "winter_chant"
+    ]
+   }
+  },
+  "US": {
+   "file": "models/local_season/20261015-0548/local_season_US.npz",
+   "sha256": "4e8a3f0ddec7f156f9c9aa4829d746371ef3f70cfeec9bf849c3ac046fd528ac",
+   "species": [
+    "black_chant",
+    "chant",
+    "chicken-of-the-woods",
+    "hen_of_the_woods",
+    "lions_mane",
+    "morel",
+    "mushroom",
+    "oyster-mushroom",
+    "saffron_milk_cap",
+    "shaggy_mane",
+    "smooth_chant",
+    "winter_chant"
+   ],
+   "regions": {
+    "USE": [
+     "black_chant",
+     "chant",
+     "chicken-of-the-woods",
+     "hen_of_the_woods",
+     "lions_mane",
+     "morel",
+     "mushroom",
+     "oyster-mushroom",
+     "saffron_milk_cap",
+     "shaggy_mane",
+     "smooth_chant",
+     "winter_chant"
+    ],
+    "USW": [
+     "black_chant",
+     "chant",
+     "chicken-of-the-woods",
+     "hen_of_the_woods",
+     "lions_mane",
+     "morel",
+     "mushroom",
+     "oyster-mushroom",
+     "saffron_milk_cap",
+     "shaggy_mane",
+     "smooth_chant",
+     "winter_chant"
+    ]
+   }
+  }
+ }
+}

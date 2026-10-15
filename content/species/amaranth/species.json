@@ -102,7 +102,7 @@
         "available": true,
         "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
         "scoring": {
-          "optimal_temp": 22,
+          "optimal_temp": 24,
           "temp_sigma": 6,
           "min_temp": 12,
           "max_temp": 35,
@@ -129,7 +129,8 @@
         "scoringReferences": [
           "https://data.fung.es/EU/SE/SE_species_params.txt",
           "docs/species/2026-09-27-quick-wins.md",
-          "docs/species/2026-10-05-soil-ph.md"
+          "docs/species/2026-10-05-soil-ph.md",
+          "docs/species/2026-10-15-temperature-fits.md"
         ],
         "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
         "landCoverScheme": "CORINE"

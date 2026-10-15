@@ -10,16 +10,24 @@
       "name": "Golden Chanterelle",
       "scientificName": "Cantharellus cibarius",
       "identificationRank": "species",
-      "empiricalTaxonKeys": [5249504],
-      "rangeTaxonKeys": [5249504],
+      "empiricalTaxonKeys": [
+        5249504, 7994006, 7581943, 7701489, 9658405, 9791500, 5467036, 7986474,
+        7443622, 7865102, 5249497, 9803955, 7751173, 5249496, 5249523, 5249494,
+        5249555, 8010163, 5467096, 5249532, 7684414
+      ],
+      "rangeTaxonKeys": [
+        5249504, 7994006, 7581943, 7701489, 9658405, 9791500, 5467036, 7986474,
+        7443622, 7865102, 5249497, 9803955, 7751173, 5249496, 5249523, 5249494,
+        5249555, 8010163, 5467096, 5249532, 7684414
+      ],
       "dataColumns": ["chant_score", "Chanterelle"],
       "regions": {
         "NE": {
           "landCover": [311, 313, 324],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 16,
-            "temp_sigma": 4.5,
+            "optimal_temp": 15,
+            "temp_sigma": 9.9,
             "min_temp": 6,
             "max_temp": 25,
             "optimal_alt": 850,
@@ -52,7 +60,8 @@
           },
           "scoringReferences": [
             "https://data.fung.es/EU/NE/NE_species_params.txt",
-            "docs/species/2026-10-05-soil-ph.md"
+            "docs/species/2026-10-05-soil-ph.md",
+            "docs/species/2026-10-15-temperature-fits.md"
           ],
           "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
         },
@@ -102,10 +111,10 @@
           "landCover": [41, 43, 52],
           "landCoverScheme": "NLCD",
           "scoring": {
-            "optimal_temp": 16,
+            "optimal_temp": 28,
             "temp_sigma": 4,
             "min_temp": 6,
-            "max_temp": 25,
+            "max_temp": 34,
             "optimal_alt": 850,
             "alt_sigma": 1200,
             "optimal_humidity": 85,
@@ -156,7 +165,8 @@
             ]
           },
           "scoringReferences": [
-            "https://data.fung.es/USA/USE/USE_species_params.txt"
+            "https://data.fung.es/USA/USE/USE_species_params.txt",
+            "docs/species/2026-10-15-temperature-fits.md"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
         },
@@ -428,8 +438,8 @@
           "landCover": [311, 313, 324],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 12,
-            "temp_sigma": 4.5,
+            "optimal_temp": 8,
+            "temp_sigma": 3.02,
             "min_temp": 1.5,
             "max_temp": 22.5,
             "optimal_alt": 800,
@@ -456,7 +466,8 @@
           },
           "scoringReferences": [
             "https://data.fung.es/EU/NE/NE_species_params.txt",
-            "docs/species/2026-10-05-soil-ph.md"
+            "docs/species/2026-10-05-soil-ph.md",
+            "docs/species/2026-10-15-temperature-fits.md"
           ],
           "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d"
         },
@@ -735,7 +746,7 @@
           "landCover": [311, 313, 324],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 18,
+            "optimal_temp": 20,
             "temp_sigma": 6,
             "min_temp": 0,
             "max_temp": 30,
@@ -764,7 +775,8 @@
             "https://www.gbif.org/species/6369819",
             "https://www.gbif.org/species/2888726",
             "docs/species/2026-09-27-quick-wins.md",
-            "docs/species/2026-10-05-soil-ph.md"
+            "docs/species/2026-10-05-soil-ph.md",
+            "docs/species/2026-10-15-temperature-fits.md"
           ]
         },
         "SE": {
@@ -1125,7 +1137,7 @@
           "landCover": [31, 41, 42, 43, 52, 71],
           "landCoverScheme": "NLCD",
           "scoring": {
-            "optimal_temp": 11,
+            "optimal_temp": 7,
             "temp_sigma": 6,
             "min_temp": -1,
             "max_temp": 20,
@@ -1151,7 +1163,8 @@
             "rain_weight": 0
           },
           "scoringReferences": [
-            "https://data.fung.es/USA/USE/USE_species_params.txt"
+            "https://data.fung.es/USA/USE/USE_species_params.txt",
+            "docs/species/2026-10-15-temperature-fits.md"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
         },
@@ -1561,8 +1574,8 @@
           "landCover": [41, 42, 43],
           "landCoverScheme": "NLCD",
           "scoring": {
-            "optimal_temp": 19,
-            "temp_sigma": 5,
+            "optimal_temp": 21,
+            "temp_sigma": 3.35,
             "min_temp": 5,
             "max_temp": 30,
             "optimal_alt": 240,
@@ -1608,7 +1621,8 @@
             "https://www.gbif.org/species/2542160",
             "https://www.mushroomexpert.com/laetiporus_sulphureus.html",
             "https://www.mushroomexpert.com/laetiporus_gilbertsonii.html",
-            "docs/species/2026-09-27-quick-wins.md"
+            "docs/species/2026-09-27-quick-wins.md",
+            "docs/species/2026-10-15-temperature-fits.md"
           ]
         }
       }
@@ -2366,8 +2380,8 @@
           "landCover": [31, 41, 42, 43, 52, 71],
           "landCoverScheme": "NLCD",
           "scoring": {
-            "optimal_temp": 19,
-            "temp_sigma": 6,
+            "optimal_temp": 23,
+            "temp_sigma": 9,
             "min_temp": 0,
             "max_temp": 30,
             "optimal_alt": 250,
@@ -2392,7 +2406,8 @@
           },
           "scoringReferences": [
             "https://www.gbif.org/species/2927173",
-            "docs/species/2026-09-27-quick-wins.md"
+            "docs/species/2026-09-27-quick-wins.md",
+            "docs/species/2026-10-15-temperature-fits.md"
           ]
         }
       }
@@ -3150,8 +3165,8 @@
           "landCover": [31, 41, 42, 43, 52, 71],
           "landCoverScheme": "NLCD",
           "scoring": {
-            "optimal_temp": 11,
-            "temp_sigma": 6,
+            "optimal_temp": 7,
+            "temp_sigma": 9,
             "min_temp": 0,
             "max_temp": 30,
             "optimal_alt": 200,
@@ -3175,7 +3190,8 @@
           },
           "scoringReferences": [
             "https://www.gbif.org/species/3117424",
-            "docs/species/2026-09-27-quick-wins.md"
+            "docs/species/2026-09-27-quick-wins.md",
+            "docs/species/2026-10-15-temperature-fits.md"
           ]
         },
         "USW": {
@@ -3260,8 +3276,8 @@
           "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 9,
-            "temp_sigma": 6,
+            "optimal_temp": 7,
+            "temp_sigma": 4.02,
             "min_temp": -1,
             "max_temp": 30,
             "optimal_alt": 500,
@@ -3288,7 +3304,8 @@
           "scoringReferences": [
             "https://www.gbif.org/species/5331181",
             "docs/species/2026-09-27-quick-wins.md",
-            "docs/species/2026-10-05-soil-ph.md"
+            "docs/species/2026-10-05-soil-ph.md",
+            "docs/species/2026-10-15-temperature-fits.md"
           ]
         },
         "USE": {
@@ -3407,7 +3424,7 @@
           "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 22,
+            "optimal_temp": 24,
             "temp_sigma": 6,
             "min_temp": 12,
             "max_temp": 35,
@@ -3434,7 +3451,8 @@
           "scoringReferences": [
             "https://data.fung.es/EU/SE/SE_species_params.txt",
             "docs/species/2026-09-27-quick-wins.md",
-            "docs/species/2026-10-05-soil-ph.md"
+            "docs/species/2026-10-05-soil-ph.md",
+            "docs/species/2026-10-15-temperature-fits.md"
           ],
           "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
         },
@@ -3773,8 +3791,8 @@
           "landCover": [311, 313],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 14.5,
-            "temp_sigma": 4.5,
+            "optimal_temp": 15.5,
+            "temp_sigma": 6.75,
             "min_temp": 5,
             "max_temp": 23,
             "optimal_alt": 900,
@@ -3799,7 +3817,8 @@
           },
           "scoringReferences": [
             "https://data.fung.es/EU/SE/SE_species_params.txt",
-            "docs/species/2026-10-05-soil-ph.md"
+            "docs/species/2026-10-05-soil-ph.md",
+            "docs/species/2026-10-15-temperature-fits.md"
           ],
           "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748"
         },
@@ -4972,8 +4991,8 @@
           "landCover": [312, 313, 324],
           "landCoverScheme": "CORINE",
           "scoring": {
-            "optimal_temp": 11,
-            "temp_sigma": 4.5,
+            "optimal_temp": 12,
+            "temp_sigma": 9.9,
             "min_temp": 1,
             "max_temp": 20,
             "optimal_alt": 600,
@@ -4999,15 +5018,16 @@
           "scoringReferences": [
             "https://www.gbif.org/species/2554536",
             "docs/species/2026-09-06-boletus-chanterelle-split.md",
-            "docs/species/2026-10-05-soil-ph.md"
+            "docs/species/2026-10-05-soil-ph.md",
+            "docs/species/2026-10-15-temperature-fits.md"
           ]
         },
         "USE": {
           "landCover": [42, 43, 52],
           "landCoverScheme": "NLCD",
           "scoring": {
-            "optimal_temp": 11,
-            "temp_sigma": 4.5,
+            "optimal_temp": 19,
+            "temp_sigma": 9.9,
             "min_temp": 1,
             "max_temp": 20,
             "optimal_alt": 600,
@@ -5047,7 +5067,8 @@
           },
           "scoringReferences": [
             "https://www.gbif.org/species/2554536",
-            "docs/species/2026-09-06-boletus-chanterelle-split.md"
+            "docs/species/2026-09-06-boletus-chanterelle-split.md",
+            "docs/species/2026-10-15-temperature-fits.md"
           ]
         },
         "USW": {
@@ -5353,8 +5374,8 @@
           "landCover": [41, 42, 43],
           "landCoverScheme": "NLCD",
           "scoring": {
-            "optimal_temp": 17,
-            "temp_sigma": 5,
+            "optimal_temp": 23,
+            "temp_sigma": 3.35,
             "min_temp": 5,
             "max_temp": 30,
             "optimal_alt": 270,
@@ -5395,7 +5416,8 @@
             "https://www.gbif.org/species/5248551",
             "https://www.mushroomexpert.com/hericium_erinaceus.html",
             "https://www.mushroomexpert.com/hericium_americanum.html",
-            "docs/species/2026-09-27-lions-mane-hen-of-the-woods.md"
+            "docs/species/2026-09-27-lions-mane-hen-of-the-woods.md",
+            "docs/species/2026-10-15-temperature-fits.md"
           ]
         }
       }
@@ -7050,6 +7072,48 @@
           "landCover": [41, 42, 43],
           "landCoverScheme": "NLCD",
           "compositeOf": ["mushroom", "eastern_king", "rocky_king"]
+        }
+      }
+    },
+    "cantharellus": {
+      "name": "Chanterelles (all)",
+      "scientificName": "Cantharellus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [],
+      "dataColumns": ["cantharellus_score", "Chanterelle Group"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "compositeOf": ["chant", "black_chant", "winter_chant"]
+        },
+        "SE": {
+          "landCover": [311, 312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "compositeOf": ["chant", "black_chant", "winter_chant"]
+        },
+        "USE": {
+          "landCover": [41, 42, 43, 52],
+          "landCoverScheme": "NLCD",
+          "compositeOf": [
+            "chant",
+            "smooth_chant",
+            "pacific_chant",
+            "black_chant",
+            "winter_chant"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 42, 43, 52],
+          "landCoverScheme": "NLCD",
+          "compositeOf": [
+            "chant",
+            "smooth_chant",
+            "pacific_chant",
+            "black_chant",
+            "winter_chant"
+          ]
         }
       }
     }

@@ -229,6 +229,13 @@ def test_foliage_requirement_by_place():
 
 def test_foliage_europe_requirement_and_larch(monkeypatch):
     assert list(foliage.eu_requirement_of([50.0, 65.0])) == [foliage.EU_REQUIREMENT, foliage.BOREAL_REQUIREMENT]
+    # No line on the map: from 57 to 61 N the requirement moves evenly from the temperate to the boreal one.
+    lo, hi = foliage.BOREAL_RAMP
+    ramp = foliage.eu_requirement_of([lo, (lo + hi) / 2, hi])
+    assert list(ramp) == [foliage.EU_REQUIREMENT, (foliage.EU_REQUIREMENT + foliage.BOREAL_REQUIREMENT) / 2,
+                          foliage.BOREAL_REQUIREMENT]
+    steps = np.abs(np.diff(foliage.eu_requirement_of(np.arange(55.0, 63.0, 0.1))))
+    assert steps.max() < 20.0  # °C·days per 0.1° cell: under a day's cooling
     mask = np.zeros((10, 10), bool)
     mask[2, 3] = True  # one larch cell: 52-53 N, 3-4 E
     monkeypatch.setattr(foliage, "larch_mask", lambda: (50.0, 0.0, 1.0, mask))

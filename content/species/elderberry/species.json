@@ -69,7 +69,7 @@
         "available": true,
         "landCover": [311, 313, 324],
         "scoring": {
-          "optimal_temp": 18,
+          "optimal_temp": 20,
           "temp_sigma": 6,
           "min_temp": 0,
           "max_temp": 30,
@@ -98,7 +98,8 @@
           "https://www.gbif.org/species/6369819",
           "https://www.gbif.org/species/2888726",
           "docs/species/2026-09-27-quick-wins.md",
-          "docs/species/2026-10-05-soil-ph.md"
+          "docs/species/2026-10-05-soil-ph.md",
+          "docs/species/2026-10-15-temperature-fits.md"
         ],
         "landCoverScheme": "CORINE"
       },

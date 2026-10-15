@@ -1,0 +1,87 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "cantharellus",
+  "scientificName": "Cantharellus",
+  "catalog": {
+    "enabled": true,
+    "order": 57,
+    "translationKey": "cantharellus",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "summer-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/cantharellus.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Chanterelles (all)",
+      "description": "Every chanterelle in one score: the golden chanterelles, the black trumpet and the winter chanterelle, and in North America the smooth and Pacific chanterelles",
+      "howTo": "Each place shows the best of their scores; golden chanterelles on mossy slopes under oak, beech and conifers after warm rain, black trumpets in damp leaf litter under broadleaves, winter chanterelles on wet moss under conifers late in the season"
+    },
+    "it": {
+      "name": "Finferli (tutti)",
+      "description": "Tutti i finferli in un solo punteggio: i gallinacci dorati, la trombetta dei morti e la finferla e, in Nord America, il galletto liscio e il galletto del Pacifico",
+      "howTo": "Ogni luogo mostra il punteggio migliore tra loro; i gallinacci sui pendii muschiosi sotto querce, faggi e conifere dopo una pioggia calda, le trombette dei morti nella lettiera umida sotto le latifoglie, le finferle sul muschio bagnato sotto le conifere a fine stagione"
+    },
+    "fr": {
+      "name": "Chanterelles (toutes)",
+      "description": "Toutes les chanterelles en un seul score : les girolles, la trompette de la mort et la chanterelle en tube et, en Amérique du Nord, la girolle lisse et la girolle du Pacifique",
+      "howTo": "Chaque lieu affiche le meilleur de leurs scores ; les girolles sur les pentes moussues sous les chênes, hêtres et conifères après une pluie chaude, les trompettes de la mort dans la litière humide sous les feuillus, les chanterelles en tube sur la mousse mouillée sous les conifères en fin de saison"
+    },
+    "de": {
+      "name": "Pfifferlinge (alle)",
+      "description": "Alle Pfifferlinge in einem Wert: die goldenen Pfifferlinge, die Totentrompete und der Trompetenpfifferling und in Nordamerika der glatte Pfifferling und der Pazifik-Pfifferling",
+      "howTo": "Jeder Ort zeigt den besten ihrer Werte; goldene Pfifferlinge an moosigen Hängen unter Eichen, Buchen und Nadelbäumen nach warmem Regen, Totentrompeten in feuchtem Laub unter Laubbäumen, Trompetenpfifferlinge auf nassem Moos unter Nadelbäumen spät in der Saison"
+    },
+    "es": {
+      "name": "Rebozuelos (todos)",
+      "description": "Todos los rebozuelos en una sola puntuación: los rebozuelos dorados, la trompeta de los muertos y el rebozuelo de invierno y, en Norteamérica, el rebozuelo liso y el rebozuelo del Pacífico",
+      "howTo": "Cada lugar muestra la mejor de sus puntuaciones; los rebozuelos dorados en laderas con musgo bajo robles, hayas y coníferas tras una lluvia templada, las trompetas de los muertos en la hojarasca húmeda bajo frondosas, los rebozuelos de invierno sobre musgo mojado bajo coníferas al final de la temporada"
+    },
+    "pt": {
+      "name": "Cantarelos (todos)",
+      "description": "Todos os cantarelos numa só pontuação: os cantarelos dourados, a trombeta-da-morte e o cantarelo de inverno e, na América do Norte, o cantarelo liso e o cantarelo do Pacífico",
+      "howTo": "Cada lugar mostra a melhor das suas pontuações; os cantarelos dourados em encostas com musgo sob carvalhos, faias e coníferas após chuva morna, as trombetas-da-morte na folhada húmida sob folhosas, os cantarelos de inverno sobre musgo molhado sob coníferas no fim da época"
+    }
+  },
+  "identification": {
+    "enabled": false
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": false,
+    "dataColumns": ["Chanterelle Group"],
+    "compositeOf": [
+      "chant",
+      "smooth_chant",
+      "pacific_chant",
+      "black_chant",
+      "winter_chant"
+    ],
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": []
+    },
+    "regions": {
+      "NE": {
+        "available": true
+      },
+      "SE": {
+        "available": true
+      },
+      "USE": {
+        "available": true
+      },
+      "USW": {
+        "available": true
+      }
+    }
+  }
+}

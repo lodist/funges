@@ -342,6 +342,11 @@
       "name": "Boletus (todos os porcini)",
       "description": "Todos os boletos do tipo porcini numa só pontuação: porcini, de pinheiro, bronzeado e de verão, mais os reis norte-americanos",
       "howTo": "Cada lugar mostra a melhor das suas pontuações; procure em faiais, carvalhais, soutos, pinhais e abetais duas a quatro semanas após uma chuva forte"
+    },
+    "cantharellus": {
+      "name": "Cantarelos (todos)",
+      "description": "Todos os cantarelos numa só pontuação: os cantarelos dourados, a trombeta-da-morte e o cantarelo de inverno e, na América do Norte, o cantarelo liso e o cantarelo do Pacífico",
+      "howTo": "Cada lugar mostra a melhor das suas pontuações; os cantarelos dourados em encostas com musgo sob carvalhos, faias e coníferas após chuva morna, as trombetas-da-morte na folhada húmida sob folhosas, os cantarelos de inverno sobre musgo molhado sob coníferas no fim da época"
     }
   }
 }

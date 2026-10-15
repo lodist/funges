@@ -28,6 +28,7 @@ about 1 C of the app's stored temperature (fit_fruiting.stored_corrections), so 
     python backend/tools/fit_fruiting_parts.py --out ../era5_training             # -> parts_fruiting.csv
     python backend/tools/fit_fruiting_parts.py --out ../era5_training --spatial   # the picks on summer 2026
     python backend/tools/fit_fruiting_parts.py --out ../era5_training --optima [--spatial]
+    python backend/tools/fit_fruiting_parts.py --out ../era5_training --habitat   # -> habitat_years.csv (fit_habitat.py)
 """
 import lightgbm  # noqa: F401  before pandas/pyarrow: see tests/conftest.py
 import argparse
@@ -281,14 +282,110 @@ def daily_temps(out: Path, table: pd.DataFrame, cases: pd.DataFrame) -> np.ndarr
     return np.where(np.isnan(temps), wide(table, cases, "temp_0")[..., None], temps)
 
 
+TEMP_SHIFTS = (-12.0, -10.0, -8.0, -6.0, -4.0, -2.0, -1.0, 0.0, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0)  # C, optimum moves
+TEMP_WIDTHS = (0.67, 1.0, 1.5, 2.2)  # x today's temp_sigma
+TIMING_FLOOR = -0.005  # a temperature setting may not time the finds worse than this (held-out gain)
+
+
+def control_sets(mine, plac, dates, sites, seed: int = 291) -> np.ndarray:
+    """[find, 1 + K_PLACES] rows of the place test: each find (column 0) and up to K_PLACES
+    bracket-fungus finds that day at other places (-1 pads); finds with fewer than 3 left out."""
+    rng = np.random.default_rng(seed)
+    pool = pd.DataFrame({"i": np.flatnonzero(plac), "date": dates[plac], "site": sites[plac]})
+    by_date = dict(tuple(pool.groupby("date")))
+    rows = []
+    for i in np.flatnonzero(mine):
+        other = by_date.get(dates[i])
+        other = other["i"].to_numpy()[other["site"].to_numpy() != sites[i]] if other is not None else []
+        if len(other) >= 3:
+            pick = rng.choice(other, min(K_PLACES, len(other)), replace=False)
+            rows.append(np.concatenate([[i], pick, np.full(K_PLACES - len(pick), -1)]))
+    return np.array(rows, int).reshape(-1, K_PLACES + 1)
+
+
+def place_ranks(score: np.ndarray, at: np.ndarray) -> np.ndarray:
+    """Each find's rank among its same-day controls on `score` ([case] values)."""
+    present = at >= 0
+    return find_day_rank(np.where(present, score[np.clip(at, 0, None)], 0.0), present)
+
+
+def week_ci(change: np.ndarray, weeks: np.ndarray, seed: int = 291) -> list:
+    """95% interval of a mean change, resampling whole weeks."""
+    index = np.unique(weeks, return_inverse=True)[1]
+    total, count = np.bincount(index, change), np.bincount(index)
+    rng = np.random.default_rng(seed)
+    draws = [total[d].sum() / count[d].sum() for d in (rng.integers(0, len(total), len(total)) for _ in range(1000))]
+    return [round(float(q), 4) for q in np.quantile(draws, [0.025, 0.975])]
+
+
+def fit_temperature(p: dict, parts: dict, lags: np.ndarray, today: dict, wind: np.ndarray, place: tuple,
+                    days, mine, plac, years, weeks, dates, sites) -> dict:
+    """The temperature optimum and width that best place and time the finds, chosen on the other
+    years for each held-out year: the place test (each find's place against where people walked
+    that day, on the full score) plus the timing (find day against the same place 14 and 21 days
+    either side, net of bracket days). Chosen on places alone, a fixed optimum bends to encode the
+    geography of the finds (golden chanterelle in North Europe ran to 8 C, chicken of the woods in
+    the US East to 33 C) and the timing gets worse; timing alone moves almost nothing (#321).
+    Ships when it is better beyond doubt on one, not worse on the other, its timing gain at least
+    TIMING_FLOOR, and not at the grid's edge (where a fit wants more than a temperature can mean)."""
+    mu, sigma = float(p["optimal_temp"]), float(p["temp_sigma"])
+    grid = [(mu + s, sigma * w) for s in TEMP_SHIFTS for w in TEMP_WIDTHS]
+    now = grid.index((mu, sigma))
+    at = control_sets(mine, plac, dates, sites)
+    if len(at) < MIN_POOLED:
+        return {}
+    ranks, timing_f, timing_p = [], [], []          # [combo, find] / [combo, find] / [combo, placebo day]
+    for m, s in grid:
+        index = weather({**parts, "temp": temp_part(lags, m, s)}, today, wind)
+        ranks.append(place_ranks(full_score(index[:, 0], today, wind[:, 0], place), at))
+        timing_f.append(find_day_rank(index[mine], days[mine]))
+        timing_p.append(find_day_rank(index[plac], days[plac]))
+    ranks, timing_f, timing_p = np.array(ranks), np.array(timing_f), np.array(timing_p)
+    year_p, week_p = years[at[:, 0]], weeks[at[:, 0]]
+    year_f, year_c, week_f, week_c = years[mine], years[plac], weeks[mine], weeks[plac]
+    held_place, held_week, changes, picks = [], [], [], []
+    def objective(place_rows, find_rows, placebo_rows):
+        return (ranks[:, place_rows].mean(axis=1) + timing_f[:, find_rows].mean(axis=1)
+                - timing_p[:, placebo_rows].mean(axis=1))
+
+    for year in sorted(set(year_p)):
+        train, test = year_p != year, year_p == year
+        best = int(np.argmax(objective(train, year_f != year, year_c != year)))
+        picks.append(grid[best])
+        held_place.append(ranks[best, test] - ranks[now, test])
+        held_week.append(week_p[test])
+        tf, tc = year_f == year, year_c == year
+        changes.append(((timing_f[best, tf] - timing_f[now, tf], week_f[tf]),
+                        (timing_p[best, tc] - timing_p[now, tc], week_c[tc])))
+    place_change, place_weeks = np.concatenate(held_place), np.concatenate(held_week)
+    timing, timing_ci = pooled_gain([c for c in changes if len(c[0][0]) and len(c[1][0])])
+    final = grid[int(np.argmax(objective(np.ones(len(year_p), bool), np.ones(len(year_f), bool),
+                                         np.ones(len(year_c), bool))))]
+    place_ci = week_ci(place_change, place_weeks)
+    edge = final[0] - mu in (min(TEMP_SHIFTS), max(TEMP_SHIFTS))
+    return {"optimal_temp": mu, "temp_sigma": sigma, "fitted optimum": final[0], "fitted sigma": round(final[1], 2),
+            "held-out picks": sorted({(round(a, 1), round(b, 2)) for a, b in picks}),
+            "place finds": len(at), "places today": round(float(ranks[now].mean()), 4),
+            "places held out": round(float(ranks[now].mean() + place_change.mean()), 4),
+            "place gain": round(float(place_change.mean()), 4), "place ci": place_ci,
+            "timing gain": round(timing, 4), "timing ci": timing_ci,
+            "edge": edge,
+            "ships": bool(final != (mu, sigma) and not edge and timing >= TIMING_FLOOR
+                          and ((place_ci[0] > 0 and timing_ci[1] >= 0) or (timing_ci[0] > 0 and place_ci[1] >= 0)))}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True, help="the training folder (training/, training_scores/)")
     parser.add_argument("--spatial", action="store_true", help="the timing picks on the summer 2026 strata")
     parser.add_argument("--optima", action="store_true", help="move the temperature optimum instead")
+    parser.add_argument("--temperature", action="store_true",
+                        help="fit the temperature optimum and width on the place test (fit_temperature)")
+    parser.add_argument("--habitat", action="store_true",
+                        help="test a habitat factor on held-out years where none ships (fit_habitat.held_out_years)")
     args = parser.parse_args()
     out = Path(args.out)
-    name = "optima_fruiting" if args.optima else "parts_fruiting"
+    name = "habitat_years" if args.habitat else "temperature_fruiting" if args.temperature else "optima_fruiting" if args.optima else "parts_fruiting"
     if args.spatial:
         picks = pd.read_csv(out / f"{name}.csv")
         result = spatial(out, picks[picks["ships"].astype(str) == "True"])
@@ -299,7 +396,7 @@ def main() -> None:
     scores = pd.concat([s for s in (pd.read_parquet(p) for p in (out / "training_scores").glob("*.parquet")) if len(s)],
                        ignore_index=True)
     cases, _, mask = strata(table, transform(table))
-    temps = daily_temps(out, table, cases) if args.optima else None
+    temps = daily_temps(out, table, cases) if args.optima or args.temperature or args.habitat else None
     is_placebo = (cases["species"] == PLACEBO).to_numpy()
     fits = json.loads((ROOT / "backend" / "generated" / "fruiting_fit.json").read_text(encoding="utf-8")).get("models", {})
     gbms = json.loads((ROOT / "backend" / "generated" / "fruiting_gbm.json").read_text(encoding="utf-8")).get("models", {})
@@ -319,6 +416,13 @@ def main() -> None:
                                   usecols=["Location_Id", "Latitude", "Longitude"]) for r in ("NE", "SE", "USE", "USW")]
                      ).drop_duplicates("Location_Id").set_index("Location_Id")
     statics, specs = {c: static_info(c) for c in ("EU", "US")}, {}
+    if args.habitat:
+        from fit_habitat import held_out_years
+        shipped = json.loads((ROOT / "backend" / "generated" / "habitat_factor.json").read_text(encoding="utf-8"))["regions"]
+        finds = pd.read_parquet(out / "finds_2016_2026.parquet")
+        finds["Date"] = pd.to_datetime(finds["Date"])
+        habitat = {r: (finds[finds["region"] == r], pd.read_parquet(out / f"habitat_features_{r}.parquet"))
+                   for r in ("NE", "SE", "USE", "USW")}
     rows = []
     for species in sorted(set(cases["species"]) - {PLACEBO}):
         mine_all = (cases["species"] == species).to_numpy()
@@ -330,7 +434,7 @@ def main() -> None:
                 continue
             p = params[region][species]
             today = {k: float(p.get(k, default)) for k, (_, default) in PARTS.items()}
-            if args.optima and today["temp_weight"] <= 0:
+            if (args.optima or args.temperature) and today["temp_weight"] <= 0:
                 continue
             here = np.flatnonzero((mine_all | is_placebo) & (regions == region) & mask[:, 0] & np.isfinite(stored_all[:, 0]))
             parts = {name: part[here] for name, part in parts_all.items()}
@@ -338,6 +442,39 @@ def main() -> None:
             wind = stored / weather(parts, STORED_WITH, np.ones_like(stored))   # 1 unless wind-sensitive
             days = mask[here] & np.isfinite(stored)
             mine, plac = mine_all[here], is_placebo[here]
+            if args.habitat:
+                if species in shipped.get(region, {}).get("species", ()):
+                    continue
+                if region not in specs:
+                    specs[region] = fp._load_species_and_curves(region_config(region))
+                place = place_parts(species, specs[region][0][species], specs[region][1], sites_all[here],
+                                    dates_all[here], base, statics[CONTINENT[region]])
+                index = weather({**parts, "temp": temp_part(temps[here], float(p["optimal_temp"]), float(p["temp_sigma"]))},
+                                today, wind)
+                at = control_sets(mine, plac, dates_all[here], sites_all[here])
+
+                def place_score(s, d):        # the score's place parts on a perfect weather day
+                    return full_score(np.ones(len(s)), today, np.ones(len(s)), place_parts(
+                        species, specs[region][0][species], specs[region][1], s, d, base, statics[CONTINENT[region]]))
+
+                fit = held_out_years(species, full_score(index[:, 0], today, wind[:, 0], place), at, years, weeks,
+                                     sites_all[here], *habitat[region], place_score) if len(at) >= MIN_POOLED else {}
+                if fit:
+                    rows.append({"species": species, "region": region, "finds": int(mine.sum()), **fit})
+                    print(rows[-1], flush=True)
+                continue
+            if args.temperature:
+                if region not in specs:
+                    specs[region] = fp._load_species_and_curves(region_config(region))
+                place = place_parts(species, {k: v for k, v in specs[region][0][species].items()
+                                              if k not in ("fruiting", "fruiting_gbm")},
+                                    specs[region][1], sites_all[here], dates_all[here], base, statics[CONTINENT[region]])
+                fit = fit_temperature(p, parts, temps[here], today, wind, place, days, mine, plac, years, weeks,
+                                      dates_all[here], sites_all[here])
+                if fit:
+                    rows.append({"species": species, "region": region, "finds": int(mine.sum()), **fit})
+                    print(rows[-1], flush=True)
+                continue
             if args.optima:
                 mu, sigma, lags = float(p["optimal_temp"]), float(p["temp_sigma"]), temps[here]
                 cache = {}

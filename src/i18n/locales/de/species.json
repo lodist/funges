@@ -342,6 +342,11 @@
       "name": "Boletus (alle Steinpilze)",
       "description": "Alle Steinpilze in einem Wert: Fichten-, Kiefern-, Bronze- und Sommer-Steinpilz sowie die nordamerikanischen Königsröhrlinge",
       "howTo": "Jeder Ort zeigt den besten ihrer Werte; such in Buchen-, Eichen-, Kastanien-, Kiefern- und Fichtenwäldern zwei bis vier Wochen nach ergiebigem Regen"
+    },
+    "cantharellus": {
+      "name": "Pfifferlinge (alle)",
+      "description": "Alle Pfifferlinge in einem Wert: die goldenen Pfifferlinge, die Totentrompete und der Trompetenpfifferling und in Nordamerika der glatte Pfifferling und der Pazifik-Pfifferling",
+      "howTo": "Jeder Ort zeigt den besten ihrer Werte; goldene Pfifferlinge an moosigen Hängen unter Eichen, Buchen und Nadelbäumen nach warmem Regen, Totentrompeten in feuchtem Laub unter Laubbäumen, Trompetenpfifferlinge auf nassem Moos unter Nadelbäumen spät in der Saison"
     }
   }
 }

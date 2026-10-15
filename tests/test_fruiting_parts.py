@@ -66,3 +66,37 @@ def test_the_pooled_gain_weights_each_year_by_its_finds():
     gain, ci = pooled_gain([year_a, year_b])
     assert np.isclose(gain, (3 * 0.2 + 1 * -0.1) / 4)
     assert np.allclose(ci, gain)
+
+
+def _warm_finds(n=400, warmth=8.0, years=6, seed=3):
+    """Finds at places and on days `warmth` C warmer than the walkers' that day (bracket finds),
+    over `years` years; a flat place part, so only temperature can tell them apart."""
+    rng = np.random.default_rng(seed)
+    mine = np.r_[np.ones(n, bool), np.zeros(4 * n, bool)]
+    plac = ~mine
+    lags = rng.uniform(5, 15, (5 * n, 5, 12))
+    lags[:n] += warmth
+    dates = np.r_[np.arange(n) % 60, np.tile(np.arange(n) % 60, 4)]
+    sites = np.arange(5 * n)
+    year = 2016 + dates % years
+    weeks = year * 100 + dates // 7
+    other = {"humidity": np.full((5 * n, 5), 0.5), "moisture": np.full((5 * n, 5), 0.5)}
+    place = (np.zeros(5 * n), 0.0, np.ones(5 * n))
+    return dict(parts=other, lags=lags, today={"temp_weight": 1.75, "humidity_weight": 1.0, "rain_weight": 1.5},
+                wind=np.ones((5 * n, 5)), place=place, days=np.ones((5 * n, 5), bool), mine=mine, plac=plac,
+                years=year, weeks=weeks, dates=dates, sites=sites)
+
+
+def test_the_temperature_fit_finds_a_warmer_optimum_and_ships_it():
+    from fit_fruiting_parts import fit_temperature
+    d = _warm_finds()
+    fit = fit_temperature({"optimal_temp": 10.0, "temp_sigma": 4.0}, **d)
+    assert fit["fitted optimum"] > 14 and not fit["edge"]
+    assert fit["place ci"][0] > 0 and fit["ships"]
+
+
+def test_an_optimum_at_the_grids_edge_does_not_ship():
+    from fit_fruiting_parts import TEMP_SHIFTS, fit_temperature
+    d = _warm_finds(warmth=25.0)                  # wants an optimum past the grid (10 + 14 C)
+    fit = fit_temperature({"optimal_temp": 10.0, "temp_sigma": 4.0}, **d)
+    assert fit["fitted optimum"] == 10.0 + max(TEMP_SHIFTS) and fit["edge"] and not fit["ships"]

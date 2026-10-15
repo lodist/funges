@@ -41,6 +41,35 @@ PHENOLOGY_GATE_OFF, PHENOLOGY_GATE_FULL = 0.10, 0.30
 PHENOLOGY_LOW = 0.8
 
 
+# The mushrooms' local season (tools/build_local_season.py): per 0.2 degree cell, each month's
+# effort-corrected activity against the peak month there, from the records around it (uint8:
+# x 254, 255 where it has no curve). A day blends the months either side, as the region curves
+# do. It replaces the region and zone curves, which gave half a continent one season.
+LOCAL_LOW = 0.6  # the multiplier's floor, the region curves' (build_season_curves --low)
+
+
+def local_season_ratio(df, model):
+    """The local season at each row's place and day (1 = its peak month there). NaN where the
+    grid does not reach or has no curve, which leaves the row to the region and zone curves."""
+    lat, lon = model["lat"], model["lon"]
+    i = np.rint((lat[0] - df["Latitude"].to_numpy(float)) / (lat[0] - lat[1])).astype(int)
+    j = np.rint((df["Longitude"].to_numpy(float) - lon[0]) / (lon[1] - lon[0])).astype(int)
+    inside = (i >= 0) & (i < len(lat)) & (j >= 0) & (j < len(lon))
+    i, j = np.clip(i, 0, len(lat) - 1), np.clip(j, 0, len(lon) - 1)
+    doy = pd.to_datetime(df["Date"]).dt.dayofyear.to_numpy(float)
+    ext = np.concatenate([[_MONTH_MID_DOY[-1] - 365], _MONTH_MID_DOY, [_MONTH_MID_DOY[0] + 365]])
+    month = np.concatenate([[11], np.arange(12), [0]])
+    hi = np.searchsorted(ext, doy, side="right").clip(1, len(ext) - 1)
+    frac = (doy - ext[hi - 1]) / (ext[hi] - ext[hi - 1])
+
+    def values_at(m):
+        v = model["ratio"][m, i, j].astype(float)
+        return np.where(v == 255, np.nan, v / 254.0)
+
+    r = (1 - frac) * values_at(month[hi - 1]) + frac * values_at(month[hi])
+    return np.where(inside, r, np.nan)
+
+
 def phenology_multiplier(ratio):
     return PHENOLOGY_LOW + (1.0 - PHENOLOGY_LOW) * np.asarray(ratio, float)
 
@@ -150,8 +179,9 @@ def _months_ramp(dates, allowed_months, factor, ramp_days=31):
 def _resolve_curve(df, specie, params, zone_curves):
     """Per-row (multiplier, ratio) with zone curves overriding the region curve.
 
-    Precedence matches the model: learned plant season -> zone curve -> region curve ->
-    None. `ratio` is None for any row whose winning curve predates the two-part schema.
+    Precedence matches the model: learned plant season -> local season -> zone curve ->
+    region curve -> None. `ratio` is None for any row whose winning curve predates the
+    two-part schema.
     """
     n = len(df)
     dates = df['Date']
@@ -174,6 +204,11 @@ def _resolve_curve(df, specie, params, zone_curves):
             continue
         multiplier[mask] = _interpolate_months(dates[mask], zone_curve)
         ratio[mask] = _interpolate_months(dates[mask], zone_ratio) if zone_ratio else np.nan
+    if params.get("local_season") is not None:  # the mushrooms' season where they grow
+        local = local_season_ratio(df, params["local_season"])
+        on = np.isfinite(local)
+        multiplier[on] = LOCAL_LOW + (1.0 - LOCAL_LOW) * local[on]
+        ratio[on] = local[on]
     if params.get("phenology") is not None:     # the learned plant season comes first
         learned = phenology_ratio(df, params["phenology"])
         on = np.isfinite(learned)
