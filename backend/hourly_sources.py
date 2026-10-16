@@ -2,7 +2,7 @@
 
 Europe: DWD's ICON-EU (0.0625°, about 7 km; hourly to 78 h, then 3-hourly to 120 h) and,
 beyond it and north of its 70.5° N edge, ECMWF's IFS (0.25°; 3-hourly to 144 h, then
-6-hourly) from ECMWF's AWS mirror. US: NOAA's National Blend of Models (2.5 km), the
+6-hourly), from ECMWF's own server or its AWS mirror. US: NOAA's National Blend of Models (2.5 km), the
 01/07/13/19z runs, whose rain is hourly all the way out and the rest hourly to 48 h, then
 3-hourly. Probed 15-16 Oct 2026: docs/superpowers/plans/2026-10-16-hourly-weather.md.
 
@@ -21,6 +21,7 @@ from dataclasses import dataclass
 from typing import Callable
 
 import numpy as np
+import requests
 
 K = 273.15
 WORKERS = 8
@@ -68,10 +69,15 @@ ICON_EU = Source(
     },
 )
 
-ECMWF_URL = ("https://ecmwf-forecasts.s3.eu-central-1.amazonaws.com/{init:%Y%m%d}/{init:%H}z/"
-             "ifs/0p25/oper/{init:%Y%m%d%H}0000-{step}h-oper-fc")
+# ECMWF's own server first: its AWS mirror answered "SlowDown" (HTTP 503) even to single
+# requests on the night of 15-16 Oct 2026, when data.ecmwf.int served them.
+ECMWF_HOSTS = ("https://data.ecmwf.int/forecasts", "https://ecmwf-forecasts.s3.eu-central-1.amazonaws.com")
 ECMWF_STEPS = (*range(0, 145, 3), *range(150, 361, 6))
 ECMWF_FIELDS = ("2t", "2d", "tp", "10u", "10v", "ssrd", "tcc")
+
+
+def ecmwf_url(host, init, step):
+    return f"{host}/{init:%Y%m%d}/{init:%H}z/ifs/0p25/oper/{init:%Y%m%d%H}0000-{step}h-oper-fc"
 
 
 def ecmwf_messages(index_text):
@@ -86,17 +92,25 @@ def ecmwf_messages(index_text):
 
 def _ecmwf_files(session, init, last):
     def step_files(step):
-        url = ECMWF_URL.format(init=init, step=step)
-        response = session.get(url + ".index", timeout=60)
-        response.raise_for_status()
-        return [(param, url + ".grib2", (first, end)) for param, first, end in ecmwf_messages(response.text)]
+        """The step's messages from the first host that serves its index; none if no host
+        does (a missing step is bridged by its neighbours)."""
+        for host in ECMWF_HOSTS:
+            url = ecmwf_url(host, init, step)
+            try:
+                response = session.get(url + ".index", timeout=60)
+                response.raise_for_status()
+            except requests.RequestException as e:
+                print(f"Hourly weather: ECMWF {url}.index failed: {e!r}")
+                continue
+            return [(param, url + ".grib2", (first, end)) for param, first, end in ecmwf_messages(response.text)]
+        return []
     return [f for files in _map(step_files, [s for s in ECMWF_STEPS if s <= last]) for f in files]
 
 
 ECMWF = Source(
     name="ecmwf_ifs",
     cycles=(0, 12),  # the 06/18z runs stop at 144 h
-    probe=lambda init: [ECMWF_URL.format(init=init, step=180) + ".index"],
+    probe=lambda init: [ecmwf_url(ECMWF_HOSTS[0], init, 180) + ".index"],
     files=_ecmwf_files,
     vars={
         "t2m_c": ("state", ("2t",), lambda t: t - K),

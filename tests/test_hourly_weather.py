@@ -130,3 +130,24 @@ def test_newest_run_is_the_newest_complete_one():
     assert hw.newest_run(source, _Heads({"1600", "1512"}), now) == pd.Timestamp("2026-10-16 00:00", tz="UTC")
     assert hw.newest_run(source, _Heads({"1512"}), now) == pd.Timestamp("2026-10-15 12:00", tz="UTC")
     assert hw.newest_run(source, _Heads(set()), now) is None
+
+
+def test_one_model_failing_does_not_cost_the_others(tmp_path, monkeypatch):
+    good = Source(name="good", cycles=(18,), probe=None, files=None,
+                  vars={"t2m_c": ("state", ("t",), lambda t: t)})
+    bad = Source(name="bad", cycles=(18,), probe=None, files=None, vars={})
+
+    def read(source, init, last, lats, lons, session):
+        if source is bad:
+            raise RuntimeError("mirror throttled")
+        return {"t": {INIT + k * H: np.full(len(lats), 10.0) for k in range(175)}}
+
+    monkeypatch.setattr(hw, "SOURCES", {"EU": (bad, good)})
+    monkeypatch.setattr(hw, "newest_run", lambda source, session, now: INIT)
+    monkeypatch.setattr(hw, "read_source", read)
+    monkeypatch.setattr(hw, "upload", lambda paths: None)
+    monkeypatch.setattr(hw, "OUT_DIR", tmp_path)
+    hw.run("SE", [(45.0, 7.0)], now=INIT + 5 * H)
+    frame = pd.read_parquet(tmp_path / "SE" / "forecast" / "2026101518.parquet")
+    assert len(frame) == hw.HOURS and (frame["t2m_c"] == 10.0).all()
+    assert set(frame["source"]) == {"good 2026-10-15 18z"}

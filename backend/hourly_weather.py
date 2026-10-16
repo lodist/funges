@@ -285,9 +285,18 @@ def run(region, points, now=None):
     start = runs[0][1]
     hours = pd.date_range(start + HOUR, periods=HOURS, freq="h")
     end = hours[-1] + 6 * HOUR  # a step past the last hour, to interpolate up to it
-    layers = [source_vars(s, read_source(s, i, int((end - i) / HOUR), lats, lons, session), hours, i)
-              for s, i in runs]
-    frame = to_frame(hours, lats, lons, layers, [f"{s.name} {i:%Y-%m-%d %H}z" for s, i in runs])
+    layers, names = [], []
+    for source, init in runs:
+        try:
+            fields = read_source(source, init, int((end - init) / HOUR), lats, lons, session)
+        except Exception as e:  # noqa: BLE001  one model's outage must not cost the others
+            print(f"Hourly weather: {source.name} failed: {e!r}")
+            continue
+        layers.append(source_vars(source, fields, hours, init))
+        names.append(f"{source.name} {init:%Y-%m-%d %H}z")
+    if not layers:
+        raise RuntimeError("no model run could be read")
+    frame = to_frame(hours, lats, lons, layers, names)
     region_dir = OUT_DIR / region
     written = [write_night(region_dir, frame, start), *roll_past(region_dir, start)]
     prune(region_dir / "forecast", KEEP_FORECAST_DAYS)

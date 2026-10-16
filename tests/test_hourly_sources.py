@@ -1,5 +1,6 @@
 """Where the free model files are, and which of their messages we read."""
 import pandas as pd
+import requests
 
 import hourly_sources as hs
 
@@ -46,3 +47,24 @@ def test_icon_eu_lists_every_field_at_every_step_it_has():
     assert len(files) == 8 * 93
     assert files[0] == ("t_2m", hs.icon_eu_url(INIT, "t_2m", 0), None)
     assert len(hs.ICON_EU.files(None, INIT, 2)) == 8 * 3
+
+
+class _Index:
+    """A session serving one .index line from the hosts in `ok`; the others fail as a
+    throttled mirror does once its retries run out."""
+    def __init__(self, ok):
+        self.ok = ok
+
+    def get(self, url, timeout):
+        if not any(url.startswith(host) for host in self.ok):
+            raise requests.exceptions.RetryError("too many 503 error responses")
+        text = '{"levtype": "sfc", "param": "2t", "_offset": 0, "_length": 5}'
+        return type("Response", (), {"text": text, "raise_for_status": lambda self: None})()
+
+
+def test_ecmwf_falls_back_to_its_other_host_and_skips_a_step_none_serves():
+    data, aws = hs.ECMWF_HOSTS
+    files = hs.ECMWF.files(_Index({aws}), INIT, 3)
+    assert [url for _, url, _ in files] == [hs.ecmwf_url(aws, INIT, 0) + ".grib2",
+                                            hs.ecmwf_url(aws, INIT, 3) + ".grib2"]
+    assert hs.ECMWF.files(_Index(set()), INIT, 3) == []
