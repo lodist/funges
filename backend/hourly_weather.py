@@ -207,6 +207,13 @@ def decode(data, with_grid=False):
         values = eccodes.codes_get_values(gid).astype(np.float32)
         if eccodes.codes_get(gid, "bitmapPresent"):
             values[values == eccodes.codes_get(gid, "missingValue")] = np.nan
+        if eccodes.codes_get(gid, "alternativeRowScanning"):
+            # NBM's rows alternate direction. ecCodes 2.50 lists every row's coordinates west
+            # to east but returns values in file order: put every other row back, or half the
+            # points read the mirror place across the US (the Finger Lakes' 17 Oct 2026 read
+            # 20 °C; it is 8 °C, as WeatherAPI's 6 °C and GDAL's decoding agree).
+            rows = values.reshape(-1, eccodes.codes_get(gid, "Ni"))
+            rows[1::2] = rows[1::2, ::-1].copy()
         stamp = f"{eccodes.codes_get(gid, 'validityDate')}{eccodes.codes_get(gid, 'validityTime'):04d}"
         valid = pd.to_datetime(stamp, format="%Y%m%d%H%M", utc=True)
         grid = ((eccodes.codes_get_array(gid, "latitudes"), eccodes.codes_get_array(gid, "longitudes"))

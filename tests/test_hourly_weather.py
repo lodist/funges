@@ -1,4 +1,5 @@
 """Hourly weather from free model files: sampling, hours, blending and the past."""
+import base64
 import os
 
 import numpy as np
@@ -156,3 +157,18 @@ def test_one_model_failing_does_not_cost_the_others(tmp_path, monkeypatch):
     frame = pd.read_parquet(tmp_path / "SE" / "forecast" / "2026101518.parquet")
     assert len(frame) == hw.HOURS and (frame["t2m_c"] == 10.0).all()
     assert set(frame["source"]) == {"good 2026-10-15 18z"}
+
+
+# A 4x2 Lambert message cut from a real NBM one: rows alternate direction (scanning mode
+# 0x50), so its values, in file order, are 1 2 3 4 | 8 7 6 5 west to east 1..8.
+ALTERNATING_ROWS = base64.b64decode(
+    "R1JJQgAAAAIAAAAAAAAAxAAAABUBAAcADgEBAQfqCg4MAAAAAQAAAFEDAAAAAAgAAAAeAQAAYTeA/wAAAP//AAAA/wAAAAQA"
+    "AAACASVpSA3uVggwAX14QA/LlEAAJsC3ACbAtwBQAX14QAF9eECFXUqAAAAAAAAAACIEAAAAAAAAAv9o////AQAAAAhnAAAA"
+    "AAL/AAAAAAAAAAAVBQAAAAgAAEEgAAAAAAABBwAAAAAHBgD/AAAADAcAKKHozxkoNzc3Nw==")
+
+
+def test_decode_puts_rows_that_alternate_direction_back_west_to_east():
+    valid, values, (lats, lons) = hw.decode(ALTERNATING_ROWS, with_grid=True)
+    assert values.tolist() == [1, 2, 3, 4, 5, 6, 7, 8]
+    assert (np.diff(lons.reshape(2, 4), axis=1) > 0).all()  # ecCodes lists every row west to east
+    assert valid == pd.Timestamp("2026-10-14 20:00", tz="UTC")
