@@ -2266,9 +2266,9 @@
       }
     },
     "wild-mint": {
-      "name": "Wild Mint",
-      "scientificName": "Mentha arvensis",
-      "identificationRank": "species",
+      "name": "Wild mints",
+      "scientificName": "Mentha",
+      "identificationRank": "genus",
       "empiricalTaxonKeys": [],
       "rangeTaxonKeys": [2927173],
       "dataColumns": ["wild-mint_score", "Wild Mint"],

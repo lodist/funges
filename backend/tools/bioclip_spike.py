@@ -166,7 +166,8 @@ CULTIVATED = [
     ("Melissa officinalis", "species"),
     ("Artemisia dracunculus", "species"),
     ("Levisticum officinale", "species"),
-    ("Mentha spicata", "species"),
+    # Spearmint left with the genus: "Mentha" (wild mints) is a catalog label now, and the
+    # export drops every other Mentha name, so a spearmint photo reads as wild mints.
 ]
 
 CULTIVATED_NAMES = {name for name, _ in CULTIVATED}
