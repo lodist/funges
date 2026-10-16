@@ -2,7 +2,6 @@
   "title": "Unterstütze das Projekt",
   "subtitle": "Hilf uns, Fung.es kostenlos und verfügbar zu halten",
   "description": "Wenn du dazu beitragen möchtest, das Projekt am Laufen zu halten und die Verfügbarkeit zu verbessern, unterstütze uns bitte. Deine Beiträge helfen uns, den Service zu erhalten und neue Funktionen hinzuzufügen.",
-  "donate": "Spenden:",
   "bitcoin": {
     "name": "Bitcoin (BTC)",
     "description": "Unterstütze mit der Kryptowährung Bitcoin"
@@ -27,7 +26,6 @@
   "showQR": "QR",
   "copied": "Kopiert!",
   "whySupport": {
-    "title": "Warum Fung.es unterstützen?",
     "reasons": [
       "Den Service für alle kostenlos halten",
       "Verfügbarkeit und Leistung der Karte verbessern",
@@ -41,10 +39,11 @@
     "description": "Bei Fragen zu Unterstützung oder Spenden kontaktiere uns bitte:",
     "email": "lorisdistefano@pm.me"
   },
-  "platformSupport": "Plattform-Unterstützung",
   "address": "Adresse",
   "close": "Schliessen",
   "thankYou": "Danke für deine Unterstützung! 🍄",
   "credits": "Besonderen Dank an Alberto Forcato für seine Beiträge zur App.",
-  "qrCode": "QR-Code"
+  "qrCode": "QR-Code",
+  "keepsRunning": "Was deine Unterstützung am Laufen hält",
+  "cryptoTitle": "Mit Krypto spenden"
 }

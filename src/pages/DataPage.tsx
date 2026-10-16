@@ -44,6 +44,7 @@ import {
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
 import { Route as DataRoute } from '@/routes/data';
+import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
 
 const ZoneMap = lazy(() => import('@/components/ZoneMap'));
@@ -822,8 +823,8 @@ export default function DataPage() {
 
   if (isLoading) {
     return (
-      <SkeletonGroup className='flex flex-col gap-6 p-4 md:p-6'>
-        <div className='flex flex-col items-center gap-2'>
+      <SkeletonGroup className='container mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8'>
+        <div className='flex flex-col gap-2'>
           <Skeleton className='h-10 w-40' />
           <Skeleton className='h-4 w-72 max-w-full' />
         </div>
@@ -856,15 +857,15 @@ export default function DataPage() {
   }
 
   return (
-    <div className='flex flex-col gap-6 p-4 md:p-6'>
+    <div className='container mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8'>
       <SEO title={t('sidebar:data', { defaultValue: 'Data' })} />
 
       {/* Header */}
-      <div className='text-center'>
-        <h1 className='mb-2 text-4xl font-bold text-foreground'>
+      <div>
+        <h1 className='text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
           {t('sidebar:data', { defaultValue: 'Data' })}
         </h1>
-        <p className='text-sm text-muted-foreground'>
+        <p className='mt-3 text-lg text-muted-foreground'>
           {t('common:data.subtitle', {
             defaultValue:
               'Explore the data behind the foraging recommendations.',
@@ -932,6 +933,43 @@ export default function DataPage() {
         </div>
       </div>
 
+      {/* The report: the first sentence is the verdict, the chips are its
+          numbers, the rest is the detail. On the band, like the day's lead on
+          the other pages; the zone map below is its filter. */}
+      {narrativeInsight ? (
+        <section
+          aria-labelledby='data-report'
+          className={cn(BAND_SURFACE_CLASS, 'rounded-card p-6 sm:p-8 lg:p-10')}
+        >
+          <h2
+            id='data-report'
+            className='max-w-4xl text-2xl leading-tight font-semibold text-balance text-happy-50 sm:text-3xl lg:text-4xl'
+          >
+            {narrativeInsight.sentences[0]}
+          </h2>
+          <dl className='mt-8 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3 lg:grid-cols-6'>
+            {narrativeInsight.statChips.map(chip => (
+              <div key={chip.label} className='min-w-0'>
+                <dt className='type-micro text-happy-100'>{chip.label}</dt>
+                <dd className='mt-1 text-xl leading-tight font-semibold break-words text-happy-50 tabular-nums sm:text-2xl'>
+                  {chip.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          {narrativeInsight.sentences.length > 1 ? (
+            <ul className='mt-8 grid gap-x-8 gap-y-2 text-happy-100 md:grid-cols-2'>
+              {narrativeInsight.sentences.slice(1).map((sentence, i) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={i} className='leading-snug'>
+                  {sentence}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </section>
+      ) : null}
+
       {/* Zone map */}
       <div className='flex flex-col gap-1.5'>
         <div
@@ -977,35 +1015,6 @@ export default function DataPage() {
           />
         </Suspense>
       </div>
-
-      {/* Dynamic narrative */}
-      {narrativeInsight && (
-        <div className='rounded-lg border bg-muted/20 px-4 py-3 space-y-2.5'>
-          <div className='flex flex-wrap gap-2'>
-            {narrativeInsight.statChips.map(chip => (
-              <div
-                key={chip.label}
-                className='flex flex-col items-center rounded-md border bg-background px-3 py-1.5 text-center min-w-[72px]'
-              >
-                <span className='type-micro text-muted-foreground mb-0.5'>
-                  {chip.label}
-                </span>
-                <span className='text-sm font-medium leading-tight'>
-                  {chip.value}
-                </span>
-              </div>
-            ))}
-          </div>
-          <div className='space-y-1'>
-            {narrativeInsight.sentences.map((s, i) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <p key={i} className='text-sm text-muted-foreground leading-snug'>
-                {s}
-              </p>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* Charts — row 1: rainfall + temperature */}
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>

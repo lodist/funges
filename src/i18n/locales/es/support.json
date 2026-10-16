@@ -2,7 +2,6 @@
   "title": "Apoya el proyecto",
   "subtitle": "Ayúdanos a mantener Fung.es gratis y mejorar su disponibilidad",
   "description": "Si deseas ayudar a que el proyecto siga funcionando y mejorar su disponibilidad, por favor considera apoyarnos. Tus contribuciones nos ayudan a mantener el servicio y añadir nuevas funciones.",
-  "donate": "Donar:",
   "bitcoin": {
     "name": "Bitcoin (BTC)",
     "description": "Apoya con la criptomoneda Bitcoin"
@@ -27,7 +26,6 @@
   "showQR": "QR",
   "copied": "¡Copiado!",
   "whySupport": {
-    "title": "¿Por qué apoyar Fung.es?",
     "reasons": [
       "Mantener el servicio gratis para todos",
       "Mejorar la disponibilidad y el rendimiento del mapa",
@@ -41,10 +39,11 @@
     "description": "Para preguntas sobre apoyo o donaciones, por favor contáctanos:",
     "email": "lorisdistefano@pm.me"
   },
-  "platformSupport": "Soporte de plataforma",
   "address": "Dirección",
   "close": "Cerrar",
   "thankYou": "¡Gracias por tu apoyo! 🍄",
   "credits": "Agradecimiento especial a Alberto Forcato por sus contribuciones a la aplicación.",
-  "qrCode": "Código QR"
+  "qrCode": "Código QR",
+  "keepsRunning": "Lo que tu apoyo mantiene en marcha",
+  "cryptoTitle": "Donar con criptomonedas"
 }

@@ -29,7 +29,14 @@
     "open": "Abrir mapa",
     "cancel": "Cancelar",
     "progress": "Descargando… {{percent}}%",
-    "downloaded": "Descargado el {{date}} · versión {{version}} · válido durante 7 días",
-    "expired": "Caducado · conéctate a Internet y actualiza el paquete"
+    "expired": "Caducado · conéctate a Internet y actualiza el paquete",
+    "validUntil": "Válido hasta el {{date}}"
+  },
+  "status": {
+    "ready": "Listo para usar sin conexión",
+    "readyDetail": "{{regions}} · válido hasta el {{date}}",
+    "expired": "Tu mapa sin conexión ha caducado",
+    "expiredDetail": "Conéctate a internet y actualízalo antes de salir",
+    "notReady": "Aún no está listo para usar sin conexión"
   }
 }

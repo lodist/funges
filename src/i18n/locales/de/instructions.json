@@ -1,7 +1,6 @@
 {
   "title": "Anleitung",
   "subtitle": "Lerne, wie du Fung.es sicher und effektiv nutzt",
-  "downloadDataset": "Täglichen Datensatz herunterladen",
   "mapDescription": {
     "intro": "Die Karte hebt geografische Gebiete mit günstigen Bedingungen zum Sammeln von Wildpilzen und essbaren Pflanzen hervor.",
     "selection": "Wähle deine bevorzugte Art über das Dropdown-Menü oben auf der Seite aus.",
@@ -20,12 +19,10 @@
     "unavailable": "Die Foto-ID bleibt nach dem einmaligen Modelldownload verfügbar. Route zum Gericht, Google-Maps-Navigation und Gebietsdaten werden offline ausgeblendet, da sie eine Internetverbindung benötigen."
   },
   "functions": {
-    "title": "Funktionen:",
     "recipes": "Zeigt Rezepte in der Nähe und Routen zu Zutatenstopps",
     "location": "Zentriert die Karte auf den Standort des Nutzers",
     "theme": "Wähle ein Kartenthema: Hell, Dunkel, Weiß, Dark Matter oder Topografisch",
-    "identify": "Identifiziert mögliche Arten anhand eines Fotos, auf deinem Gerät",
-    "numbers": "Zeigt numerische Bewertung an"
+    "identify": "Identifiziert mögliche Arten anhand eines Fotos, auf deinem Gerät"
   },
   "mapInteraction": {
     "title": "Klicke auf eine Zone, um Arten und ihren Fundprozentsatz zu sehen:",
@@ -136,5 +133,6 @@
     "onDevice": "Die Erkennung läuft vollständig auf deinem Handy. Fotos werden niemals hochgeladen und von der App niemals gespeichert. Deshalb ist beim ersten Mal ein einmaliger Modell-Download nötig: ohne ihn müsste die Identifizierung deine Fotos an einen Server senden.",
     "howTo": "Tippe auf ID, erlaube den einmaligen Download über WLAN, und mache dann ein Foto oder wähle eines aus der Galerie. Fülle das Bild möglichst mit dem ganzen Exemplar, einschliesslich Stielbasis, und fotografiere das, was du tatsächlich ausgegraben oder gesammelt hast, nicht eine entfernte Gruppe. Zwei Fotos desselben Fundes - Oberseite und Unterseite einschliesslich Stielgrund - liefern einen deutlich besseren Treffer als eines.",
     "limits": "Die Identifizierung dauert je nach Gerät etwa fünf bis zwanzig Sekunden, weil die Arbeit auf deinem Gerät statt in einem Rechenzentrum passiert. Sie deckt die Arten dieser App ab, plus etwa zweieinhalbtausend weitere aus denselben Regionen; alles darüber hinaus wird nur mit dem wissenschaftlichen Namen und ohne Sicherheitsangaben gezeigt. Iss nichts auf Grundlage dieser App - eine falsche Identifizierung kann tödlich sein."
-  }
+  },
+  "controlsTitle": "Auf der Karte"
 }

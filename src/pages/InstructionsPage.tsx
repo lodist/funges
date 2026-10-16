@@ -1,69 +1,79 @@
+import type { ComponentType, ReactNode } from 'react';
+import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-
-import { getScoreGradientCss } from '@/lib/scoreColor';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import SEO from '@/components/SEO';
+import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import {
-  Map,
-  ScanSearch,
-  Navigation,
-  Palette,
+  AlertTriangle,
+  BarChart3,
   ChefHat,
-  Globe,
-  Thermometer,
-  FlaskConical,
-  Sprout,
-  Mountain,
   Clock,
   Database,
+  FlaskConical,
+  Globe,
   Leaf,
-  Target,
+  MapPinned,
+  Mountain,
+  Navigation,
+  Palette,
+  ScanSearch,
+  ShieldCheck,
+  Sprout,
+  Thermometer,
   Users,
-  BarChart3,
-  Lightbulb,
   WifiOff,
 } from '@/lib/icons';
+import { getScoreGradientCss, SCORE_COLOR_RAMP } from '@/lib/scoreColor';
+import { cn } from '@/lib/utils';
 
 // Every dataset the forecast reads, in the order the page credits them.
 const KEY_DATASETS = [
-  ['corine', 'bg-muted'],
-  ['soilgrids', 'bg-secondary'],
-  ['nlcd', 'bg-status-warning-background'],
-  ['eudem', 'bg-muted'],
-  ['hydrosheds', 'bg-muted'],
-  ['treeGenus', 'bg-muted'],
-  ['forestTypes', 'bg-status-warning-background'],
-  ['gbif', 'bg-secondary'],
-  ['era5', 'bg-muted'],
+  'corine',
+  'soilgrids',
+  'nlcd',
+  'eudem',
+  'hydrosheds',
+  'treeGenus',
+  'forestTypes',
+  'gbif',
+  'era5',
 ] as const;
 
+const VARIABLES = [
+  { key: 'temperature', icon: Thermometer },
+  { key: 'soil', icon: FlaskConical },
+  { key: 'vegetation', icon: Sprout },
+  { key: 'topography', icon: Mountain },
+  { key: 'trends', icon: Clock },
+] as const;
+
+const FEATURES = [
+  { key: 'environmentalData', icon: Database },
+  { key: 'probabilityModels', icon: BarChart3 },
+  { key: 'climateAdaptation', icon: Leaf },
+  { key: 'scalability', icon: Users },
+] as const;
+
+// The ramp's own ends, so the ticks sit where the map paints those scores.
+const RAMP_MIN = SCORE_COLOR_RAMP[0][0];
+const RAMP_MAX = SCORE_COLOR_RAMP[SCORE_COLOR_RAMP.length - 1][0];
+const rampAt = (score: number) =>
+  `${((Math.max(score, RAMP_MIN) - RAMP_MIN) / (RAMP_MAX - RAMP_MIN)) * 100}%`;
+
+/** The conditions words the meters use, on the stretch of the ramp they
+ *  cover (getConfidence's 6.8 and 8.2). */
+const CONDITION_BANDS = [
+  { level: 'low', from: RAMP_MIN, to: 6.8 },
+  { level: 'medium', from: 6.8, to: 8.2 },
+  { level: 'high', from: 8.2, to: RAMP_MAX },
+] as const;
+
+/** A heading the copy ends with a colon; the glossary row reads without it. */
+const withoutColon = (text: string) => text.replace(/\s*:\s*$/, '');
+
 export default function InstructionsPage() {
-  const { t } = useTranslation('instructions');
-
-  const functions = [
-    { icon: ChefHat, text: t('functions.recipes') },
-    { icon: Navigation, text: t('functions.location') },
-    { icon: Palette, text: t('functions.theme') },
-    { icon: ScanSearch, text: t('functions.identify') },
-  ];
-
-  const variables = [
-    {
-      icon: Thermometer,
-      text: t('prediction.variables.temperature'),
-    },
-    { icon: FlaskConical, text: t('prediction.variables.soil') },
-    { icon: Sprout, text: t('prediction.variables.vegetation') },
-    { icon: Mountain, text: t('prediction.variables.topography') },
-    { icon: Clock, text: t('prediction.variables.trends') },
-  ];
-
-  const keyFeatures = [
-    { icon: Database, text: t('about.keyFeatures.environmentalData') },
-    { icon: BarChart3, text: t('about.keyFeatures.probabilityModels') },
-    { icon: Leaf, text: t('about.keyFeatures.climateAdaptation') },
-    { icon: Users, text: t('about.keyFeatures.scalability') },
-  ];
+  const { t, i18n } = useTranslation(['instructions', 'common', 'offline']);
+  const number = new Intl.NumberFormat(i18n.language);
 
   return (
     <>
@@ -72,278 +82,245 @@ export default function InstructionsPage() {
         description={t('subtitle')}
         canonicalUrl={`${import.meta.env.BASE_URL}instructions`}
       />
-      <div className='instructions-page max-w-6xl mx-auto px-4 py-8'>
-        <div className='space-y-8'>
-          {/* Header */}
-          <div className='text-center'>
-            <h1 className='text-3xl font-bold text-foreground dark:text-white mb-2'>
-              {t('title')}
-            </h1>
-            <h2 className='text-xl font-medium text-muted-foreground'>
-              {t('subtitle')}
-            </h2>
-          </div>
+      <div className='container mx-auto max-w-6xl px-4 py-8'>
+        <header className='mb-8'>
+          <h1 className='text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
+            {t('title')}
+          </h1>
+          <p className='mt-3 text-lg text-muted-foreground'>{t('subtitle')}</p>
+        </header>
 
-          {/* Map Description Section */}
-          <Card>
-            <CardHeader>
-              <CardTitle className='flex items-center gap-3 text-2xl'>
-                <Map className='h-8 w-8 text-primary-text hidden lg:block' />
-                {t('mapDescription.intro')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className='space-y-4'>
-              <p className='text-foreground leading-relaxed'>
-                {t('mapDescription.selection')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('mapDescription.colorCoding')}
-              </p>
-              {/* The label used to sit on top of the gradient in white, which
-                  measured 1.03:1 against its pale end — invisible for the first
-                  third of the bar. Same treatment as MapInfoCard now: caption
-                  outside, bar as a pure swatch, and the real ramp from the map
-                  style rather than a 2-stop approximation of it. */}
-              <div className='space-y-1.5'>
-                <div
-                  className='h-3 rounded-full'
-                  style={{ background: getScoreGradientCss() }}
-                />
-                <p className='text-xs text-muted-foreground text-center'>
-                  {t('mapDescription.scale')}
-                </p>
-              </div>
-              <p className='text-foreground leading-relaxed'>
-                {t('mapDescription.scores')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('mapDescription.polygons')}
-              </p>
-            </CardContent>
-          </Card>
+        {/* The map's key: what the colours mean, drawn with the map's own ramp. */}
+        <section
+          aria-labelledby='legend-colours'
+          className={cn(BAND_SURFACE_CLASS, 'rounded-card p-6 sm:p-8 lg:p-10')}
+        >
+          <h2
+            id='legend-colours'
+            className='max-w-4xl text-2xl leading-tight font-semibold text-balance text-happy-50 sm:text-3xl lg:text-4xl'
+          >
+            {t('mapDescription.intro')}
+          </h2>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className='flex items-center gap-3 text-2xl'>
-                <WifiOff className='h-8 w-8 text-green-600 hidden lg:block' />
-                {t('offline.title')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className='space-y-5 text-gray-700 dark:text-gray-300'>
-              {(['prepare', 'available', 'unavailable'] as const).map(item => (
-                <div key={item}>
-                  <h3 className='mb-1 text-base font-semibold text-gray-900 dark:text-white'>
-                    {t(`offline.${item}Title`)}
-                  </h3>
-                  <p className='leading-relaxed'>{t(`offline.${item}`)}</p>
-                </div>
+          <div className='mt-8' aria-hidden='true'>
+            <div
+              className='h-4 rounded-full'
+              style={{ background: getScoreGradientCss() }}
+            />
+            <div className='relative mt-2 h-5 text-xs text-happy-100 tabular-nums'>
+              {[0, 2, 4, 6, 8, 10].map(score => (
+                <span
+                  key={score}
+                  className='absolute -translate-x-1/2 first:translate-x-0 last:-translate-x-full'
+                  style={{ left: rampAt(score) }}
+                >
+                  {score}
+                </span>
               ))}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
+          {/* The words the meters use, each with the scores it covers: a list,
+              not labels under the bar, which collided on a phone where the
+              6.8–8.2 stretch is 45px wide. */}
+          <ul className='mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
+            {CONDITION_BANDS.map(({ level, from, to }) => (
+              <li key={level} className='flex items-baseline gap-2'>
+                <span className='font-medium text-happy-50'>
+                  {t(`common:worthForagingNow.conditions.${level}`)}
+                </span>
+                <span className='text-happy-100 tabular-nums'>
+                  {`${number.format(level === 'low' ? 0 : from)}–${number.format(to)}`}
+                </span>
+              </li>
+            ))}
+          </ul>
+          {/* The bar is drawn for the eye; the scale is said in words. */}
+          <p className='sr-only'>{t('mapDescription.scale')}</p>
 
-          {/* Functions Section */}
-          <Card className='mb-8'>
-            <CardHeader>
-              <CardTitle className='text-2xl'>{t('functions.title')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className='grid md:grid-cols-2 gap-4'>
-                {functions.map(func => (
-                  <div
-                    key={func.text}
-                    className='flex items-center gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors'
-                  >
-                    <func.icon className='h-6 w-6 text-primary-text flex-shrink-0' />
-                    <span className='text-foreground'>{func.text}</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <div className='mt-6 grid gap-4 text-happy-100 md:grid-cols-3'>
+            <p className='leading-relaxed'>{t('mapDescription.colorCoding')}</p>
+            <p className='leading-relaxed'>{t('mapDescription.scores')}</p>
+            <p className='leading-relaxed'>{t('mapDescription.polygons')}</p>
+          </div>
+        </section>
 
-          {/* Photo identification. Its own card rather than a line in the
-              functions list: it is the only feature that downloads anything, and
-              the only one where a misread costs more than a wasted walk. */}
-          <Card className='mb-8'>
-            <CardHeader>
-              <CardTitle className='flex items-center gap-3 text-2xl'>
-                <ScanSearch className='h-6 w-6 text-primary-text' />
-                {t('identify.title')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className='space-y-4 text-foreground'>
+        <Section id='legend-controls' title={t('controlsTitle')}>
+          <ul className='grid gap-3 sm:grid-cols-2 lg:grid-cols-3'>
+            <KeyItem icon={Sprout}>{t('mapDescription.selection')}</KeyItem>
+            <KeyItem icon={Navigation}>{t('functions.location')}</KeyItem>
+            <KeyItem icon={Palette}>{t('functions.theme')}</KeyItem>
+            <KeyItem icon={ScanSearch}>{t('functions.identify')}</KeyItem>
+            <KeyItem icon={ChefHat}>{t('functions.recipes')}</KeyItem>
+            <KeyItem icon={MapPinned}>
+              {withoutColon(t('mapInteraction.title'))}
+            </KeyItem>
+            <KeyItem icon={Globe}>{t('mapInteraction.maps')}</KeyItem>
+            <KeyItem icon={WifiOff}>
+              {t('offline:intro')}{' '}
+              <Link
+                to='/offline'
+                className='focus-ring rounded-sm font-medium text-primary-text underline underline-offset-4 hover:no-underline'
+              >
+                {t('offline:title')}
+              </Link>
+            </KeyItem>
+          </ul>
+        </Section>
+
+        <Section id='legend-identify' title={t('identify.title')}>
+          <div className='grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]'>
+            <div className='flex flex-col gap-4 leading-relaxed text-foreground'>
               <p>{t('identify.intro')}</p>
               <p>{t('identify.onDevice')}</p>
               <p>{t('identify.howTo')}</p>
-              <p className='rounded-lg bg-status-warning-background border border-status-warning-border p-4 text-sm text-status-warning-text'>
-                {t('identify.limits')}
-              </p>
-            </CardContent>
-          </Card>
+            </div>
+            <p className='flex h-fit items-start gap-2 rounded-lg bg-status-warning-background px-4 py-3 text-sm leading-relaxed font-medium text-status-warning-text ring-2 ring-status-warning-border/60'>
+              <AlertTriangle className='mt-0.5 size-4 shrink-0' />
+              {t('identify.limits')}
+            </p>
+          </div>
+        </Section>
 
-          {/* Map Interaction Section */}
-          <Card className='mb-8'>
-            <CardHeader>
-              <CardTitle className='text-2xl'>
-                {t('mapInteraction.title')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className='flex items-center gap-4 p-4 rounded-lg bg-muted'>
-                <Globe className='h-6 w-6 text-primary-text' />
-                <span className='text-foreground'>
-                  {t('mapInteraction.maps')}
-                </span>
-              </div>
-            </CardContent>
-          </Card>
+        <Section id='legend-forecast' title={t('prediction.title')}>
+          <p className='max-w-3xl leading-relaxed text-foreground'>
+            {t('prediction.description')}
+          </p>
+          <ul className='mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5'>
+            {VARIABLES.map(({ key, icon }) => (
+              <KeyItem key={key} icon={icon}>
+                {t(`prediction.variables.${key}`)}
+              </KeyItem>
+            ))}
+          </ul>
+          <p className='mt-5 max-w-3xl leading-relaxed text-foreground'>
+            {t('prediction.goal')}
+          </p>
+        </Section>
 
-          {/* About Section */}
-          <Card className='mb-8'>
-            <CardHeader>
-              <CardTitle className='text-2xl'>{t('about.title')}</CardTitle>
-            </CardHeader>
-            <CardContent className='space-y-6'>
-              <p className='text-foreground leading-relaxed'>
-                {t('about.description')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('about.dataCombination')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('about.climateChange')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('about.currentStatus')}
-              </p>
-
-              <div>
-                <h4 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
-                  {t('about.keyFeatures.title')}
+        <Section id='legend-sources' title={t('prediction.methodology.title')}>
+          <div className='flex max-w-3xl flex-col gap-3 leading-relaxed text-foreground'>
+            <p>{t('prediction.methodology.description')}</p>
+            <p>{t('prediction.methodology.datasets')}</p>
+          </div>
+          <h3 className='mt-8 mb-4 text-xl font-semibold text-foreground'>
+            {t('prediction.keyDatasets.title')}
+          </h3>
+          <ul className='grid gap-4 md:grid-cols-2'>
+            {KEY_DATASETS.map(key => (
+              <li
+                key={key}
+                className='flex flex-col gap-2 rounded-card bg-card p-5 elevation-raised'
+              >
+                <h4 className='leading-snug font-semibold text-foreground'>
+                  {t(`prediction.keyDatasets.${key}.title`)}
                 </h4>
-                <div className='grid md:grid-cols-2 gap-4'>
-                  {keyFeatures.map(feature => (
-                    <div
-                      key={feature.text}
-                      className='flex items-start gap-3 p-3 rounded-lg bg-muted/50'
-                    >
-                      <feature.icon className='h-5 w-5 text-primary-text mt-0.5 flex-shrink-0' />
-                      <span className='text-foreground text-sm'>
-                        {feature.text}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Mission Section */}
-          <Card className='mb-8'>
-            <CardHeader>
-              <CardTitle className='flex items-center gap-3 text-2xl'>
-                <Target className='h-8 w-8 text-primary-text hidden lg:block' />
-                {t('mission.title')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className='space-y-4'>
-              <p className='text-foreground leading-relaxed'>
-                {t('mission.commitment')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('mission.goal')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('mission.sustainability')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('mission.community')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('mission.openAccess')}
-              </p>
-              <p>{t('mission.privacy')}</p>
-            </CardContent>
-          </Card>
-
-          {/* Prediction Section */}
-          <Card className='mb-8'>
-            <CardHeader>
-              <CardTitle className='flex items-center gap-3 text-2xl'>
-                <Lightbulb className='h-8 w-8 text-primary-text hidden lg:block' />
-                {t('prediction.title')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className='space-y-6'>
-              <p className='text-foreground leading-relaxed'>
-                {t('prediction.description')}
-              </p>
-
-              <div>
-                <p className='font-semibold text-foreground dark:text-white mb-3'>
-                  {t('prediction.monitorTitle')}
+                <p className='text-sm leading-relaxed text-foreground'>
+                  {t(`prediction.keyDatasets.${key}.description`)}
                 </p>
-                <div className='space-y-2'>
-                  {variables.map(variable => (
-                    <div
-                      key={variable.text}
-                      className='flex items-center gap-3 p-3 rounded-lg bg-muted/50'
-                    >
-                      <variable.icon className='h-5 w-5 text-primary-text flex-shrink-0' />
-                      <span className='text-foreground'>{variable.text}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <p className='text-foreground leading-relaxed'>
-                {t('prediction.goal')}
-              </p>
-
-              <div>
-                <h4 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
-                  {t('prediction.methodology.title')}
-                </h4>
-                <p className='text-foreground leading-relaxed mb-3'>
-                  {t('prediction.methodology.description')}
+                <p className='mt-auto text-xs text-muted-foreground'>
+                  {t(`prediction.keyDatasets.${key}.source`)}
                 </p>
-                <p className='text-foreground leading-relaxed'>
-                  {t('prediction.methodology.datasets')}
+                <p className='text-xs text-muted-foreground'>
+                  {t(`prediction.keyDatasets.${key}.citation`)}
                 </p>
-              </div>
+              </li>
+            ))}
+          </ul>
+          <p className='mt-4 text-sm text-muted-foreground'>
+            {t('prediction.keyDatasets.additional')}
+          </p>
+        </Section>
 
-              <div>
-                <h4 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
-                  {t('prediction.keyDatasets.title')}
-                </h4>
+        <div className='mt-12 grid gap-10 lg:grid-cols-2'>
+          <section aria-labelledby='legend-about'>
+            <h2
+              id='legend-about'
+              className='mb-4 text-2xl font-semibold text-foreground sm:text-3xl'
+            >
+              {t('about.title')}
+            </h2>
+            <div className='flex flex-col gap-4 leading-relaxed text-foreground'>
+              <p>{t('about.description')}</p>
+              <p>{t('about.dataCombination')}</p>
+              <p>{t('about.climateChange')}</p>
+              <p>{t('about.currentStatus')}</p>
+            </div>
+            <h3 className='mt-6 mb-3 text-lg font-semibold text-foreground'>
+              {t('about.keyFeatures.title')}
+            </h3>
+            <ul className='grid gap-3'>
+              {FEATURES.map(({ key, icon }) => (
+                <KeyItem key={key} icon={icon}>
+                  {t(`about.keyFeatures.${key}`)}
+                </KeyItem>
+              ))}
+            </ul>
+          </section>
 
-                <div className='space-y-6'>
-                  {KEY_DATASETS.map(([key, background]) => (
-                    <div key={key} className={`p-4 rounded-lg ${background}`}>
-                      <h5 className='font-semibold text-foreground dark:text-white mb-2'>
-                        {t(`prediction.keyDatasets.${key}.title`)}
-                      </h5>
-                      <p className='text-foreground text-sm mb-2'>
-                        {t(`prediction.keyDatasets.${key}.description`)}
-                      </p>
-                      <p className='text-muted-foreground text-xs'>
-                        {t(`prediction.keyDatasets.${key}.source`)}
-                      </p>
-                      <p className='text-muted-foreground text-xs'>
-                        {t(`prediction.keyDatasets.${key}.citation`)}
-                      </p>
-                    </div>
-                  ))}
-
-                  <p className='text-foreground text-sm'>
-                    {t('prediction.keyDatasets.additional')}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <section aria-labelledby='legend-mission'>
+            <h2
+              id='legend-mission'
+              className='mb-4 text-2xl font-semibold text-foreground sm:text-3xl'
+            >
+              {t('mission.title')}
+            </h2>
+            <div className='flex flex-col gap-4 leading-relaxed text-foreground'>
+              <p>{t('mission.commitment')}</p>
+              <p>{t('mission.goal')}</p>
+              <p>{t('mission.sustainability')}</p>
+              <p>{t('mission.community')}</p>
+              <p>{t('mission.openAccess')}</p>
+            </div>
+            {/* The promise the product is built on gets more than a line. */}
+            <p className='mt-6 flex items-start gap-3 rounded-card bg-secondary p-5 leading-relaxed text-secondary-foreground'>
+              <ShieldCheck className='mt-0.5 size-5 shrink-0' />
+              {t('mission.privacy')}
+            </p>
+          </section>
         </div>
       </div>
     </>
+  );
+}
+
+function Section({
+  id,
+  title,
+  children,
+}: {
+  id: string;
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <section aria-labelledby={id} className='mt-12'>
+      <h2
+        id={id}
+        className='mb-5 text-2xl font-semibold text-foreground sm:text-3xl'
+      >
+        {title}
+      </h2>
+      {children}
+    </section>
+  );
+}
+
+/** One entry of the map's key: its icon and what it does. */
+function KeyItem({
+  icon: Icon,
+  children,
+}: {
+  icon: ComponentType<{ className?: string }>;
+  children: ReactNode;
+}) {
+  return (
+    <li className='flex items-start gap-3 rounded-card bg-card p-4 elevation-raised'>
+      <span className='grid size-9 shrink-0 place-items-center rounded-full bg-secondary'>
+        <Icon className='size-4 text-primary-text' />
+      </span>
+      <span className='min-w-0 pt-1.5 text-sm leading-relaxed text-foreground'>
+        {children}
+      </span>
+    </li>
   );
 }

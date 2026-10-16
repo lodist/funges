@@ -29,7 +29,14 @@
     "open": "Abrir mapa",
     "cancel": "Cancelar",
     "progress": "A transferir… {{percent}}%",
-    "downloaded": "Transferido em {{date}} · versão {{version}} · válido durante 7 dias",
-    "expired": "Expirado · ligue-se à Internet e atualize o pacote"
+    "expired": "Expirado · ligue-se à Internet e atualize o pacote",
+    "validUntil": "Válido até {{date}}"
+  },
+  "status": {
+    "ready": "Pronto para usar offline",
+    "readyDetail": "{{regions}} · válido até {{date}}",
+    "expired": "Seu mapa offline expirou",
+    "expiredDetail": "Conecte-se à internet e atualize-o antes de sair",
+    "notReady": "Ainda não está pronto para usar offline"
   }
 }
