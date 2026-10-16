@@ -141,13 +141,19 @@
   right: 0;
   bottom: 0;
   padding: 0.25rem 0.5rem;
-  background: var(--background);
-  color: var(--muted-foreground);
-  font-size: 0.75rem;
+  // Required credit, kept quiet: light text straight on the map, a soft
+  // shadow keeps it legible over snow and lakes alike.
+  color: rgb(255 255 255 / 0.8);
+  font-size: 0.625rem;
+  text-shadow: 0 0 3px rgb(0 0 0 / 0.8);
   a {
     color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
+    text-decoration: none;
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
   }
 }
 .spectacles {
