@@ -77,6 +77,16 @@ project is not an extra test suite bolted onto the docs — the stories _are_ th
 design-system documentation and its test at once, so a story that cannot render
 is a failing build, and the a11y addon is configured to fail on axe violations.
 
+### Changing how scores are computed
+
+The stored scores are no test of the scoring code: each day keeps whatever model
+ran that night. Before merging a scoring change, replay it with
+`scripts/qa_replay.py` from main and from the branch on the same day (the
+branch with `--against` main's output) and paste the report's tables into the
+PR. It scores the past again from the weather in `app_operation/backups/masters`
+(about 2 hours for all regions; `--regions`/`--species` take minutes) and needs
+the system Python with LightGBM, not `backend/.venv`.
+
 ### Writing a story
 
 - Storybook is the canonical design-system documentation (`#205`, `#206`). Look
