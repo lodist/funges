@@ -13,7 +13,8 @@ shares of scores below its own, ties counting half, so 0.5 is chance:
           people record fungi (or plants), so following observers earns nothing
   timing  the same place within 3 weeks either side of the find: the weather's timing
   season  the same place over the whole window: mostly the season curve
-Each also for the stored scores and, with --against, for another run's.
+The same for the stored scores (compared with today's code on the place-days they have: a
+species added in October has no stored September) and, with --against, for another run's.
 
 Run from the checkout whose code is tested; for a branch, main first, the same day:
   python scripts/qa_replay.py --out ../qa/main
@@ -209,49 +210,64 @@ def score_region(region, finds, grid, masters, species, without, days):
 
 
 def evaluate(region, finds, tables, days):
-    """One row per find and source: its score, where, timing and season. Every find is someone's
-    background; species without a score column (not scored in this run) get no rows."""
+    """One row per find and source: its score, where, timing and season, for today's code, the
+    stored scores, and today's code on the place-days the stored scores have ("today@stored"): a
+    species added in October has no stored September, and its 3 weeks must be the same days on
+    both sides. Every find is someone's background; species this run did not score get no rows."""
     place, day = pd.Index(finds["loc"].unique()), pd.DatetimeIndex(days)
     rows, cols = place.get_indexer(finds["loc"]), day.get_indexer(pd.to_datetime(finds.date))
-    out = []
+    cells = {}
     for source, table in tables.items():
         pi, dj = place.get_indexer(table.Location_Id), day.get_indexer(table.Date)
-        keep = (pi >= 0) & (dj >= 0)
-        for species, mine in finds.groupby("species_id").groups.items():
-            column = f"{species}_score"
-            if column not in table:
-                continue
-            matrix = np.full((len(place), len(day)), np.nan)
-            matrix[pi[keep], dj[keep]] = table[column].to_numpy(float)[keep]
-            kingdom = finds.kingdom[mine[0]]
-            others = finds.loc[(finds.kingdom == kingdom) & (finds.species_id != species), "loc"].value_counts()
-            index = finds.index.get_indexer(mine)
-            where, timing, season = percentiles(matrix, rows[index], cols[index],
-                                                place.get_indexer(others.index), others.to_numpy())
+        cells[source] = (pi >= 0) & (dj >= 0), pi, dj
+
+    def matrix(source, column):
+        keep, pi, dj = cells[source]
+        values = np.full((len(place), len(day)), np.nan)
+        if column in tables[source]:
+            values[pi[keep], dj[keep]] = tables[source][column].to_numpy(float)[keep]
+        return values
+
+    out = []
+    for species, mine in finds.groupby("species_id").groups.items():
+        column = f"{species}_score"
+        if column not in tables["today"]:
+            continue
+        today, stored = matrix("today", column), matrix("stored", column)
+        kingdom = finds.kingdom[mine[0]]
+        others = finds.loc[(finds.kingdom == kingdom) & (finds.species_id != species), "loc"].value_counts()
+        index = finds.index.get_indexer(mine)
+        r, c = rows[index], cols[index]
+        for source, values in (("today", today), ("stored", stored),
+                               ("today@stored", np.where(np.isfinite(stored), today, np.nan))):
+            where, timing, season = percentiles(values, r, c, place.get_indexer(others.index), others.to_numpy())
             out.append(pd.DataFrame({
                 "region": region, "species": species, "kingdom": kingdom, "source": source,
                 "date": finds.date.to_numpy()[index], "loc": finds["loc"].to_numpy()[index],
-                "score": matrix[rows[index], cols[index]], "where": where, "timing": timing, "season": season}))
+                "score": values[r, c], "where": where, "timing": timing, "season": season}))
     return pd.concat(out, ignore_index=True)
 
 
 def summarise(results, reference):
-    """Per region and species (and 'all'): finds scored, mean where/timing/season of today's code,
-    and today minus `reference` on the finds both scored."""
+    """Per region, kingdom ('all Fungi', 'all Plantae') and species: finds scored and the mean
+    where/timing/season of today's code; and today minus `reference` ('stored' or 'against') on
+    the finds both scored, today's read on the stored scores' place-days against 'stored'."""
     key = ["region", "species", "date", "loc"]
     today = results[(results.source == "today") & np.isfinite(results.score)]
-    paired = today.merge(results[results.source == reference], on=key, suffixes=("", "_ref"))
-    paired = paired[np.isfinite(paired.score_ref)]
+    mine = results[results.source == ("today@stored" if reference == "stored" else "today")]
+    paired = mine.merge(results[results.source == reference], on=key, suffixes=("", "_ref"))
+    paired = paired[np.isfinite(paired.score) & np.isfinite(paired.score_ref)]
+    paired = paired.assign(d_where=paired["where"] - paired.where_ref, d_timing=paired.timing - paired.timing_ref)
     out = []
-    for group in (["region"], ["region", "species"]):
-        mine = today.groupby(group)[["where", "timing", "season"]].mean().join(today.groupby(group).size().rename("n"))
-        both = paired.assign(d_where=paired["where"] - paired.where_ref, d_timing=paired.timing - paired.timing_ref)
-        both = both.groupby(group)[["d_where", "d_timing"]].mean().join(both.groupby(group).size().rename("paired"))
-        out.append(mine.join(both).reset_index())
+    for group in (["region", "kingdom"], ["region", "species"]):
+        means = today.groupby(group)[["where", "timing", "season"]].mean().join(today.groupby(group).size().rename("n"))
+        deltas = paired.groupby(group)[["d_where", "d_timing"]].mean().join(paired.groupby(group).size().rename("paired"))
+        out.append(means.join(deltas).reset_index())
     summary = pd.concat(out, ignore_index=True)
-    summary["species"] = summary.species.fillna("all")
+    pooled = summary.species.isna()
+    summary.loc[pooled, "species"] = "all " + summary.kingdom[pooled].fillna("other")
     summary["paired"] = summary.paired.fillna(0).astype(int)
-    return summary.sort_values(["region", "n"], ascending=[True, False])
+    return summary.drop(columns="kingdom").sort_values(["region", "n"], ascending=[True, False])
 
 
 def number(value, sign=False):
@@ -260,12 +276,13 @@ def number(value, sign=False):
 
 def write_report(path, summary, meta):
     names = {s: c["name"] for s, c in get_species_metadata().items()}
-    reference = f"`{meta['against']}`" if meta["against"] else "the stored scores"
+    reference = (f"`{meta['against']}`, on the finds both scored" if meta["against"] else
+                 "the stored scores, on the finds and place-days they have")
     lines = [
         f"# Replay QA, {meta['start']} to {meta['end']}", "",
         f"Code: `{meta['branch']}` at `{meta['commit']}`{' (uncommitted changes)' if meta['dirty'] else ''}"
         + (f", without {', '.join(meta['without'])}" if meta["without"] else "")
-        + f". Weather: the masters as of {meta['masters_date']}. Reference (Δ): {reference}, on the finds both scored.",
+        + f". Weather: the masters as of {meta['masters_date']}. Δ: today minus {reference}.",
         "",
         "Shares of scores below the find's, ties half; 0.5 is chance. **where**: the same day at the other "
         "species' finds of its kingdom (fungi or plants) in the region. **timing**: the same place, 3 weeks "
@@ -278,12 +295,14 @@ def write_report(path, summary, meta):
         "",
     ]
     for region in meta["regions"]:
-        rows = summary[(summary.region == region) & ((summary.species == "all") | (summary.n >= MIN_FINDS))]
+        mine = summary[summary.region == region]
+        pooled = mine.species.str.startswith("all ")
+        rows = pd.concat([mine[pooled], mine[~pooled & (mine.n >= MIN_FINDS)]])
         lines += [f"## {region} ({meta['seconds'].get(region, 0) // 60} min)", "",
                   "| | finds | where | timing | season | Δ where | Δ timing | paired |",
                   "|---|---:|---:|---:|---:|---:|---:|---:|"]
-        for r in sorted(rows.itertuples(), key=lambda r: (r.species != "all", -r.n)):
-            label = "**all**" if r.species == "all" else names.get(r.species, r.species)
+        for r in rows.itertuples():
+            label = f"**{r.species}**" if r.species.startswith("all ") else names.get(r.species, r.species)
             lines.append(f"| {label} | {r.n} | {number(r.where)} | {number(r.timing)} | {number(r.season)} | "
                          f"{number(r.d_where, True)} | {number(r.d_timing, True)} | {r.paired} |")
         lines.append("")
