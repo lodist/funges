@@ -288,10 +288,10 @@ def write_report(path, summary, meta):
         "species' finds of its kingdom (fungi or plants) in the region. **timing**: the same place, 3 weeks "
         "either side. **season**: the same place, the whole window.",
         "",
-        "Caveats: GBIF plant records include flowering and fruiting plants, not only the stage that is "
-        f"foraged. Trained on finds up to: fruiting fits {meta['trained'].get('fruiting_fit')}, GBM "
-        f"{meta['trained'].get('fruiting_gbm')}, habitat {meta['trained'].get('habitat_factor')}: this "
-        "year's numbers flatter what learned from this year. The stored scores are each night's model.",
+        "Caveats: GBIF plant records include flowering and fruiting plants, not only the stage people "
+        f"forage. The years of finds the models learned from: fruiting fits {meta['trained'].get('fruiting_fit')}, "
+        f"GBM {meta['trained'].get('fruiting_gbm')}, habitat factor {meta['trained'].get('habitat_factor')}; "
+        "where that includes this year, its numbers flatter them a little. The stored scores are each night's model.",
         "",
     ]
     for region in meta["regions"]:
