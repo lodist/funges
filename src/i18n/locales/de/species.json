@@ -348,5 +348,33 @@
       "description": "Alle Pfifferlinge in einem Wert: die goldenen Pfifferlinge, die Totentrompete und der Trompetenpfifferling und in Nordamerika der glatte Pfifferling und der Pazifik-Pfifferling",
       "howTo": "Jeder Ort zeigt den besten ihrer Werte; goldene Pfifferlinge an moosigen Hängen unter Eichen, Buchen und Nadelbäumen nach warmem Regen, Totentrompeten in feuchtem Laub unter Laubbäumen, Trompetenpfifferlinge auf nassem Moos unter Nadelbäumen spät in der Saison"
     }
+  },
+  "place": {
+    "before": "Vorbei",
+    "now": "Jetzt",
+    "next": "Als Nächstes",
+    "later": "Später"
+  },
+  "groups": {
+    "now": "Jetzt in Saison",
+    "next": "Als Nächstes",
+    "before": "Gerade vorbei",
+    "later": "Später im Jahr",
+    "elsewhere": "Wächst in anderen Regionen"
+  },
+  "speciesCount_one": "{{count}} Art",
+  "speciesCount_other": "{{count}} Arten",
+  "band": {
+    "summary_one": "{{count}} Art in Saison · {{place}}",
+    "summary_other": "{{count}} Arten in Saison · {{place}}",
+    "summaryCalendar_one": "{{count}} Art in Saison",
+    "summaryCalendar_other": "{{count}} Arten in Saison"
+  },
+  "sheet": {
+    "today": "Heute · {{place}}",
+    "notToday": "Heute nicht in Saison",
+    "whereItGrows": "Wo sie wächst",
+    "lookalikes": "Giftige Doppelgänger",
+    "tellApart": "So unterscheidest du sie"
   }
 }

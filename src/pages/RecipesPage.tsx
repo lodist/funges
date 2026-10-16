@@ -1,162 +1,97 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import { useRecipesData, type Recipe } from '@/data/recipes';
 import SEO from '@/components/SEO';
-import { Route as RecipesRoute } from '@/routes/recipes';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { RecipeModalWrapper } from '@/components';
+import { CategoryChips } from '@/components/CategoryChips';
+import { ScopeHeader } from '@/components/ScopeHeader';
+import { ConditionsMeter } from '@/components/SpeciesSignals';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Search, Clock, Users, ChefHat, Filter } from '@/lib/icons';
-import { RecipeModalWrapper } from '@/components';
-import FilterModal from '@/components/FilterModal';
-import { getRecipeImage } from '@/lib/utils';
-import { SPECIES_DATA } from '@/data/species';
-import { ZoomableImage } from '@/components/ZoomableImage';
-
-const MUSHROOM_IDS = new Set(
-  SPECIES_DATA.filter(s => s.category === 'mushroom').map(s => s.id)
-);
+import { useRecipesData, type Recipe } from '@/data/recipes';
+import {
+  CATEGORY_FILTERS,
+  getSpeciesById,
+  speciesNameKey,
+} from '@/data/species';
+import { useCurrentScores } from '@/hooks/use-current-scores';
+import { BAND_OUTLINE_CLASS, BAND_SURFACE_CLASS } from '@/lib/band-surface';
+import { CATEGORY_ICONS } from '@/lib/categoryIcons';
+import { ChefHat, Clock, MapPinned, Search, Users } from '@/lib/icons';
+import { monthsLabel, seasonOf, speciesSeasons } from '@/lib/seasons';
+import { comingBack, readyBy, type ReadyBy } from '@/lib/recipe-season';
+import { cn, getSpeciesImage } from '@/lib/utils';
+import { Route as RecipesRoute } from '@/routes/recipes';
 
 export default function RecipesPage() {
-  const { t } = useTranslation('recipes');
+  const { t } = useTranslation(['recipes', 'species', 'common']);
   const { q } = RecipesRoute.useSearch();
   const recipes = useRecipesData();
+  const current = useCurrentScores();
   const [searchQuery, setSearchQuery] = useState(q ?? '');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
-  const [selectedTag, setSelectedTag] = useState<string>('all');
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
-  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
-
-  // Get unique categories from species data
-  const categories = useMemo(() => {
-    const categorySet = new Set<string>();
-    recipes.forEach(recipe => {
-      recipe.species.forEach(species => {
-        // Map species to categories (this would ideally come from species data)
-        if (MUSHROOM_IDS.has(species)) {
-          categorySet.add('mushroom');
-        } else if (
-          [
-            'elderberry',
-            'blackberry',
-            'raspberry',
-            'blueberry',
-            'strawberry',
-            'lingonb',
-          ].includes(species)
-        ) {
-          categorySet.add('berry');
-        } else if (
-          [
-            'nettle',
-            'garlic',
-            'dandelion',
-            'wild-mint',
-            'chickweed',
-            'plantain',
-            'sorrel',
-            'artichoke',
-            'asparagus',
-          ].includes(species)
-        ) {
-          categorySet.add('plant');
-        } else if (['hazelnut', 'walnut', 'chestnut'].includes(species)) {
-          categorySet.add('nut');
-        }
-      });
-    });
-    return Array.from(categorySet).sort();
-  }, [recipes]);
-
-  // Get unique difficulties
-  const difficulties = useMemo(() => {
-    const difficultySet = new Set<string>();
-    recipes.forEach(recipe => {
-      difficultySet.add(recipe.difficulty);
-    });
-    return Array.from(difficultySet).sort();
-  }, [recipes]);
-
-  // Get unique tags
-  const tags = useMemo(() => {
-    const tagSet = new Set<string>();
-    recipes.forEach(recipe => {
-      recipe.tags.forEach(tag => {
-        tagSet.add(tag);
-      });
-    });
-    return Array.from(tagSet).sort();
-  }, [recipes]);
-
-  // Filter recipes based on search query and category
-  const filteredRecipes = useMemo(() => {
-    return recipes.filter(recipe => {
-      const matchesSearch =
-        searchQuery === '' ||
-        recipe.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        recipe.tags.some(tag =>
-          tag.toLowerCase().includes(searchQuery.toLowerCase())
-        ) ||
-        recipe.ingredients.some(ingredient =>
-          ingredient.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-
-      const matchesCategory =
-        selectedCategory === 'all' ||
-        recipe.species.some(species => {
-          if (selectedCategory === 'mushroom') {
-            return MUSHROOM_IDS.has(species);
-          } else if (selectedCategory === 'berry') {
-            return [
-              'elderberry',
-              'blackberry',
-              'raspberry',
-              'blueberry',
-              'strawberry',
-              'lingonb',
-            ].includes(species);
-          } else if (selectedCategory === 'plant') {
-            return [
-              'nettle',
-              'garlic',
-              'dandelion',
-              'wild-mint',
-              'chickweed',
-              'plantain',
-              'sorrel',
-              'artichoke',
-              'asparagus',
-            ].includes(species);
-          } else if (selectedCategory === 'nut') {
-            return ['hazelnut', 'walnut', 'chestnut'].includes(species);
-          }
-          return false;
-        });
-
-      const matchesDifficulty =
-        selectedDifficulty === 'all' ||
-        recipe.difficulty === selectedDifficulty;
-
-      const matchesTag =
-        selectedTag === 'all' || recipe.tags.includes(selectedTag);
-
-      return (
-        matchesSearch && matchesCategory && matchesDifficulty && matchesTag
-      );
-    });
-  }, [recipes, searchQuery, selectedCategory, selectedDifficulty, selectedTag]);
 
   useEffect(() => {
     setSearchQuery(q ?? '');
   }, [q]);
+
+  const season = seasonOf(new Date());
+  const scores = current?.scores ?? null;
+
+  const filtered = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    return recipes.filter(
+      recipe =>
+        (selectedCategory === 'all' ||
+          recipe.species.some(
+            id => getSpeciesById(id)?.category === selectedCategory
+          )) &&
+        (query === '' ||
+          recipe.title.toLowerCase().includes(query) ||
+          recipe.tags.some(tag => tag.toLowerCase().includes(query)) ||
+          recipe.ingredients.some(ingredient =>
+            ingredient.toLowerCase().includes(query)
+          ))
+    );
+  }, [recipes, searchQuery, selectedCategory]);
+
+  const { ready, later } = useMemo(() => {
+    const ready: { recipe: Recipe; by: ReadyBy }[] = [];
+    const later: Recipe[] = [];
+    for (const recipe of filtered) {
+      const by = readyBy(recipe, scores, season);
+      if (by) ready.push({ recipe, by });
+      else later.push(recipe);
+    }
+    ready.sort(
+      (a, b) =>
+        (b.by.score ?? 0) - (a.by.score ?? 0) ||
+        a.recipe.title.localeCompare(b.recipe.title)
+    );
+    later.sort(
+      (a, b) =>
+        comingBack(a, season) - comingBack(b, season) ||
+        a.title.localeCompare(b.title)
+    );
+    return { ready, later };
+  }, [filtered, scores, season]);
+
+  const categories = [
+    { value: 'all', label: t('species:allTypes'), icon: CATEGORY_ICONS.all },
+    ...CATEGORY_FILTERS.map(({ value, labelKey }) => ({
+      value,
+      label: t(`species:${labelKey}`),
+      icon: CATEGORY_ICONS[value],
+    })),
+  ];
+
+  const scopeLabel = current
+    ? current.scope === 'radius'
+      ? t('common:worthForagingNow.scopeRadius', { radius: 100 })
+      : current.regionLabel
+    : undefined;
+  const [lead, ...rest] = ready;
 
   return (
     <>
@@ -165,227 +100,316 @@ export default function RecipesPage() {
         description={t('description')}
         canonicalUrl={`${import.meta.env.BASE_URL}recipes`}
       />
-      <div className='recipes-page max-w-7xl mx-auto px-4 py-8'>
-        {/* Header */}
-        <div className='text-center mb-8'>
-          <h1 className='text-4xl font-bold text-foreground mb-4'>
-            {t('title')}
-          </h1>
-          <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
-            {t('description')}
-          </p>
-        </div>
-
-        {/* Search and Filters */}
-        <div className='mb-8 space-y-4'>
-          <div className='flex flex-col sm:flex-row gap-4'>
-            {/* Search Input */}
-            <div className='relative flex-1'>
-              <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4' />
+      <div className='container mx-auto max-w-7xl px-4 py-8'>
+        <header className='mb-10 flex flex-col gap-6'>
+          <ScopeHeader title={t('title')} scopeLabel={scopeLabel} />
+          <div className='flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between'>
+            <div className='relative lg:w-72'>
+              <Search className='pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-muted-foreground' />
               <Input
                 placeholder={t('search.placeholder')}
                 value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-                className='pl-10'
+                onChange={event => setSearchQuery(event.target.value)}
+                className='pl-11'
               />
             </div>
+            <CategoryChips
+              chips={categories}
+              value={selectedCategory}
+              onChange={setSelectedCategory}
+              className='justify-start'
+            />
+          </div>
+        </header>
 
-            {/* Filter Button */}
-            <Button
-              onClick={() => setIsFilterModalOpen(true)}
-              className='w-full sm:w-48'
+        {lead ? (
+          <section aria-labelledby='recipes-ready' className='mb-12'>
+            <h2
+              id='recipes-ready'
+              className='mb-5 text-2xl font-semibold text-foreground sm:text-3xl'
             >
-              <span className='flex items-center gap-2'>
-                <Filter className='h-4 w-4' />
-                <span>{t('filters')}</span>
-                {/* Active filters indicator */}
-                {(selectedCategory !== 'all' ||
-                  selectedDifficulty !== 'all' ||
-                  selectedTag !== 'all') && (
-                  <Badge variant='secondary'>
-                    {(selectedCategory !== 'all' ? 1 : 0) +
-                      (selectedDifficulty !== 'all' ? 1 : 0) +
-                      (selectedTag !== 'all' ? 1 : 0)}
-                  </Badge>
-                )}
-              </span>
+              {t('readyNow')}
+            </h2>
+            <RecipeHero
+              recipe={lead.recipe}
+              by={lead.by}
+              onOpen={() => setSelectedRecipe(lead.recipe)}
+            />
+            {rest.length > 0 ? (
+              <ul className='mt-5 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4'>
+                {rest.map(({ recipe, by }) => (
+                  <li key={recipe.id}>
+                    <RecipeCard
+                      recipe={recipe}
+                      by={by}
+                      onOpen={() => setSelectedRecipe(recipe)}
+                    />
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </section>
+        ) : null}
+
+        {later.length > 0 ? (
+          <section aria-labelledby='recipes-later' className='mb-12'>
+            <div className='mb-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1'>
+              <h2
+                id='recipes-later'
+                className='text-2xl font-semibold text-foreground sm:text-3xl'
+              >
+                {t('later')}
+              </h2>
+              <p className='text-sm text-muted-foreground'>
+                {t('recipeCount', { count: later.length })}
+              </p>
+            </div>
+            <ul className='grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 xl:grid-cols-5'>
+              {later.map(recipe => (
+                <li key={recipe.id}>
+                  <RecipeCard
+                    recipe={recipe}
+                    compact
+                    onOpen={() => setSelectedRecipe(recipe)}
+                  />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {filtered.length === 0 ? (
+          <div className='flex flex-col items-center gap-4 py-12 text-center'>
+            <ChefHat className='size-12 text-muted-foreground' />
+            <h2 className='text-lg font-medium text-foreground'>
+              {t('search.no_results')}
+            </h2>
+            <p className='text-muted-foreground'>{t('search.try_adjusting')}</p>
+            <Button
+              variant='outline'
+              onClick={() => {
+                setSearchQuery('');
+                setSelectedCategory('all');
+              }}
+            >
+              {t('species:search.clear')}
             </Button>
           </div>
-        </div>
+        ) : null}
 
-        {/* Recipes Grid */}
-        {filteredRecipes.length === 0 ? (
-          <div className='text-center py-12'>
-            <ChefHat className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
-            <h3 className='text-lg font-medium text-foreground mb-2'>
-              {t('search.no_results')}
-            </h3>
-            <p className='text-muted-foreground'>{t('search.try_adjusting')}</p>
-          </div>
-        ) : (
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-            {filteredRecipes.map(recipe => {
-              const recipeImage = getRecipeImage(recipe.id);
-
-              return (
-                <Card key={recipe.id} className='h-full'>
-                  <CardHeader>
-                    {/* Mobile: Image on top, then title */}
-                    <div className='block md:hidden'>
-                      {/* Recipe Image for mobile - above title */}
-                      {recipeImage && (
-                        <div className='mb-4'>
-                          <div className='relative w-full aspect-square bg-secondary overflow-hidden rounded-lg'>
-                            <ZoomableImage
-                              src={recipeImage}
-                              alt={recipe.title}
-                              className='size-full'
-                              imgClassName='object-center'
-                            >
-                              <span className='absolute inset-0 bg-black/10' />
-                            </ZoomableImage>
-
-                            {/* Title overlay at bottom; taps go through to the picture */}
-                            <div className='pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent p-4'>
-                              <CardTitle className='text-lg line-clamp-2 text-white'>
-                                {recipe.title}
-                              </CardTitle>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Title for mobile - only show if no image */}
-                      {!recipeImage && (
-                        <CardTitle className='text-lg line-clamp-2 mb-2'>
-                          {recipe.title}
-                        </CardTitle>
-                      )}
-
-                      {/* Recipe Stats for mobile */}
-                      <div className='flex items-center gap-4 text-sm text-muted-foreground mb-2'>
-                        <div className='flex items-center gap-1'>
-                          <Clock className='h-4 w-4' />
-                          <span>{recipe.prepTime}</span>
-                        </div>
-                        <div className='flex items-center gap-1'>
-                          <Users className='h-4 w-4' />
-                          <span>{recipe.servings}</span>
-                        </div>
-                      </div>
-
-                      <CardDescription className='line-clamp-2'>
-                        {recipe.ingredients.slice(0, 3).join(', ')}...
-                      </CardDescription>
-                    </div>
-
-                    {/* Desktop: Image on left, title and difficulty on right */}
-                    <div className='hidden md:flex items-start gap-4'>
-                      {/* Recipe Image */}
-                      {recipeImage && (
-                        <div className='flex-shrink-0'>
-                          <ZoomableImage
-                            src={recipeImage}
-                            alt={recipe.title}
-                            className='w-35 h-35 bg-secondary rounded-lg'
-                            imgClassName='object-center'
-                          >
-                            <span className='absolute inset-0 bg-black/10' />
-                          </ZoomableImage>
-                        </div>
-                      )}
-
-                      {/* Title and Difficulty */}
-                      <div className='flex-1 min-w-0'>
-                        <div className='flex items-start justify-between'>
-                          <CardTitle className='text-lg line-clamp-2 flex-1'>
-                            {recipe.title}
-                          </CardTitle>
-                        </div>
-
-                        {/* Recipe Stats for desktop */}
-                        <div className='flex items-center gap-4 text-sm text-muted-foreground my-2'>
-                          <div className='flex items-center gap-1'>
-                            <Clock className='h-4 w-4' />
-                            <span>{recipe.prepTime}</span>
-                          </div>
-                          <div className='flex items-center gap-1'>
-                            <Users className='h-4 w-4' />
-                            <span>{recipe.servings}</span>
-                          </div>
-                        </div>
-
-                        <CardDescription className='line-clamp-2'>
-                          {recipe.ingredients.slice(0, 3).join(', ')}...
-                        </CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-
-                  <CardContent className='flex-1 flex flex-col'>
-                    {/* Tags */}
-                    <div className='flex flex-wrap gap-1 mb-4'>
-                      {recipe.tags.slice(0, 3).map(tag => (
-                        <Badge key={tag} variant='secondary'>
-                          {t(`tags.${tag}`)}
-                        </Badge>
-                      ))}
-                      {recipe.tags.length > 3 && (
-                        <Badge variant='secondary'>
-                          +{recipe.tags.length - 3} {t('more')}
-                        </Badge>
-                      )}
-                    </div>
-
-                    {/* Species */}
-                    <div className='flex flex-wrap gap-1 mb-4'>
-                      {recipe.species.map(species => (
-                        <Badge key={species} variant='outline'>
-                          {t(`species.${species}`)}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {/* View Recipe Button */}
-                    <Button
-                      className='mt-auto'
-                      onClick={() => setSelectedRecipe(recipe)}
-                    >
-                      {t('view_recipe')}
-                    </Button>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        )}
         <RecipeModalWrapper
           recipe={selectedRecipe}
           isOpen={!!selectedRecipe}
           onClose={() => setSelectedRecipe(null)}
         />
-
-        {/* Filter Modal */}
-        <FilterModal
-          isOpen={isFilterModalOpen}
-          onClose={() => setIsFilterModalOpen(false)}
-          categories={categories}
-          difficulties={difficulties}
-          tags={tags}
-          selectedCategory={selectedCategory}
-          selectedDifficulty={selectedDifficulty}
-          selectedTag={selectedTag}
-          onCategoryChange={setSelectedCategory}
-          onDifficultyChange={setSelectedDifficulty}
-          onTagChange={setSelectedTag}
-          onClearFilters={() => {
-            setSearchQuery('');
-            setSelectedCategory('all');
-            setSelectedDifficulty('all');
-            setSelectedTag('all');
-          }}
-        />
       </div>
     </>
+  );
+}
+
+/** The best recipe to cook today, on the band like the day's top pick. */
+function RecipeHero({
+  recipe,
+  by,
+  onOpen,
+}: {
+  recipe: Recipe;
+  by: ReadyBy;
+  onOpen: () => void;
+}) {
+  const { t } = useTranslation(['recipes', 'species']);
+  const shown = recipe.ingredients.slice(0, 5);
+
+  return (
+    <article
+      className={cn(
+        BAND_SURFACE_CLASS,
+        'grid overflow-hidden rounded-card elevation-raised md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)]'
+      )}
+    >
+      <div className='relative aspect-square min-w-0 md:aspect-auto md:min-h-[28rem]'>
+        {recipe.image ? (
+          <img
+            src={recipe.image}
+            alt=''
+            className='absolute inset-0 size-full bg-muted object-cover'
+          />
+        ) : null}
+      </div>
+      <div className='flex min-w-0 flex-col gap-6 p-6 sm:p-8 lg:p-10'>
+        <div>
+          <h3 className='text-3xl leading-[1.05] font-semibold text-balance hyphens-auto break-words text-happy-50 sm:text-4xl lg:text-5xl'>
+            {recipe.title}
+          </h3>
+          <p className='mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-happy-100'>
+            <span className='inline-flex items-center gap-1.5'>
+              <Clock className='size-4' />
+              {recipe.prepTime}
+            </span>
+            <span>{t(`tags.${recipe.difficulty}`)}</span>
+            <span className='inline-flex items-center gap-1.5'>
+              <Users className='size-4' />
+              {recipe.servings}
+            </span>
+          </p>
+        </div>
+
+        <ReadySpecies by={by} tone='band' />
+
+        <div>
+          <p className='type-micro text-happy-100'>{t('ingredients')}</p>
+          <ul className='mt-2 space-y-1 text-sm text-happy-50'>
+            {shown.map(ingredient => (
+              <li key={ingredient}>{ingredient}</li>
+            ))}
+            {recipe.ingredients.length > shown.length ? (
+              <li className='text-happy-100'>
+                {t('moreCount', {
+                  count: recipe.ingredients.length - shown.length,
+                })}
+              </li>
+            ) : null}
+          </ul>
+        </div>
+
+        <div className='mt-auto flex flex-wrap gap-3'>
+          <Button onClick={onOpen}>{t('view_recipe')}</Button>
+          <Button asChild variant='outline' className={BAND_OUTLINE_CLASS}>
+            <Link to='/map' search={{ species: by.speciesId }}>
+              <MapPinned />
+              {t('findOnMap')}
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/** A dish: its photo first, then what it takes and when its wild
+ *  ingredient is (or will be) out there. Opens the recipe. */
+function RecipeCard({
+  recipe,
+  by,
+  compact = false,
+  onOpen,
+}: {
+  recipe: Recipe;
+  by?: ReadyBy;
+  compact?: boolean;
+  onOpen: () => void;
+}) {
+  const { t, i18n } = useTranslation(['recipes', 'species']);
+  // Not ready: name the main ingredient, with the months it comes back.
+  const nextUp = by ? undefined : recipe.species[0];
+
+  return (
+    <button
+      type='button'
+      onClick={onOpen}
+      className='focus-ring flex h-full w-full flex-col overflow-hidden rounded-card bg-card text-left elevation-raised elevation-interactive'
+    >
+      <span className='relative block aspect-[4/3]'>
+        {recipe.image ? (
+          <img
+            src={recipe.image}
+            alt=''
+            loading='lazy'
+            decoding='async'
+            className='absolute inset-0 size-full bg-muted object-cover'
+          />
+        ) : null}
+      </span>
+      <span
+        className={cn(
+          'flex flex-1 flex-col gap-2 p-3',
+          !compact && 'sm:gap-3 sm:p-4'
+        )}
+      >
+        <span
+          className={cn(
+            'leading-snug font-semibold text-foreground',
+            compact ? 'text-base' : 'text-base sm:text-lg'
+          )}
+        >
+          {recipe.title}
+        </span>
+        <span className='flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground'>
+          <span className='inline-flex items-center gap-1'>
+            <Clock className='size-4' />
+            {recipe.prepTime}
+          </span>
+          <span>{t(`tags.${recipe.difficulty}`)}</span>
+        </span>
+        <span className='mt-auto'>
+          {by ? (
+            <ReadySpecies by={by} />
+          ) : nextUp ? (
+            <SpeciesLine speciesId={nextUp}>
+              <span className='block text-xs text-muted-foreground'>
+                {monthsLabel(
+                  speciesSeasons(getSpeciesById(nextUp)?.season),
+                  i18n.language
+                )}
+              </span>
+            </SpeciesLine>
+          ) : null}
+        </span>
+      </span>
+    </button>
+  );
+}
+
+/** The ingredient that is in season, with today's conditions when known. */
+function ReadySpecies({
+  by,
+  tone = 'paper',
+}: {
+  by: ReadyBy;
+  tone?: 'band' | 'paper';
+}) {
+  return (
+    <SpeciesLine speciesId={by.speciesId} tone={tone}>
+      {by.score !== undefined ? (
+        <ConditionsMeter score={by.score} tone={tone} compact />
+      ) : null}
+    </SpeciesLine>
+  );
+}
+
+function SpeciesLine({
+  speciesId,
+  tone = 'paper',
+  children,
+}: {
+  speciesId: string;
+  tone?: 'band' | 'paper';
+  children?: ReactNode;
+}) {
+  const { t } = useTranslation('species');
+  const image = getSpeciesImage(speciesId);
+  return (
+    <span className='flex items-center gap-2.5'>
+      {image ? (
+        <img
+          src={image}
+          alt=''
+          loading='lazy'
+          decoding='async'
+          className='size-9 shrink-0 rounded-full bg-muted object-cover'
+        />
+      ) : null}
+      <span className='min-w-0 flex-1'>
+        <span
+          className={cn(
+            'block truncate text-sm font-medium',
+            tone === 'band' ? 'text-happy-50' : 'text-foreground'
+          )}
+        >
+          {t(`list_of_species.${speciesNameKey(speciesId)}`)}
+        </span>
+        {children}
+      </span>
+    </span>
   );
 }

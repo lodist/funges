@@ -127,7 +127,7 @@ const SEVERITY_RANK: Record<ToxicSeverity, number> = {
 
 // ponytail: first entry of the worst severity, not region-aware; the table has
 // no region field, so a US-only look-alike can name itself on a European pick.
-function getWorstLookalike(
+export function getWorstLookalike(
   speciesId: string
 ): WorthForagingNowRecommendation['lookalike'] {
   const worst = TOXIC_SPECIES.filter(toxic =>
@@ -138,7 +138,7 @@ function getWorstLookalike(
     : null;
 }
 
-function getConfidence(
+export function getConfidence(
   score: number
 ): WorthForagingNowRecommendation['confidence'] {
   if (score >= 8.2) return 'high';
@@ -472,5 +472,76 @@ export async function fetchWorthForagingNowRecommendations(
   return deriveWorthForagingNowRecommendations({
     ...inputs,
     dataset,
+  });
+}
+
+export interface CurrentScores {
+  scope: RecommendationContext['scope'];
+  regionId: ScoreRegionId;
+  regionLabel: string;
+  referenceDate: string | null;
+  /** Today's best score per species id within the scope; absent = not scoring. */
+  scores: Record<string, number>;
+}
+
+/**
+ * Every species' score today: the best point within 100 km of the reader when
+ * a position is known and anything scores there, otherwise the best in the
+ * map's region. The catalog pages read this; the picks above rank from it.
+ */
+export function deriveCurrentScores({
+  dataset,
+  mapCenter,
+  userLocation,
+}: {
+  dataset: RecommendationDataset;
+  mapCenter: [number, number];
+  userLocation: [number, number] | null;
+}): CurrentScores {
+  const regionId = inferScoreRegion(userLocation ?? mapCenter);
+  const base = {
+    regionId,
+    regionLabel: getRegionLabel(regionId),
+    referenceDate: dataset.updated_at,
+  };
+
+  if (userLocation) {
+    const scores: Record<string, number> = {};
+    dataset.points.forEach(point => {
+      if (haversineKm(userLocation, [point.lng, point.lat]) > RADIUS_KM) {
+        return;
+      }
+      Object.entries(point.scores).forEach(([speciesId, score]) => {
+        if (score === undefined) return;
+        scores[speciesId] = Math.max(
+          scores[speciesId] ?? 0,
+          formatScore(score)
+        );
+      });
+    });
+    if (Object.keys(scores).length > 0) {
+      return { ...base, scope: 'radius', scores };
+    }
+  }
+
+  return {
+    ...base,
+    scope: 'region',
+    scores: Object.fromEntries(
+      (dataset.regions[regionId] ?? []).map(entry => [
+        entry.speciesId,
+        formatScore(entry.score),
+      ])
+    ),
+  };
+}
+
+export async function fetchCurrentScores(inputs: {
+  mapCenter: [number, number];
+  userLocation: [number, number] | null;
+}) {
+  return deriveCurrentScores({
+    ...inputs,
+    dataset: await loadRecommendationDataset(),
   });
 }

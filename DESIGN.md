@@ -866,6 +866,21 @@ The score reads as a ten-pill meter of one green: `--primary-text` on paper, `--
 
 Every pick with a lethal or toxic look-alike names it in IdentifyPanel's permanent-notice treatment, compact tiles included. Photos are the 512px species squares. The lead pick and the tiles show them uncropped as squares below 768px. The runners-up crop them to 16:9 below 640px and to a 176px column above that. A strip of three or fewer tiles turns them sideways, so they fill the line without out-sizing the runners-up. Dishes appear as 40px round thumbnails in pill links. The surface brief holds the direction contract.
 
+### Today-first pages: Species and Recipes (scoped extension)
+
+`src/pages/SpeciesPage.tsx` and `src/pages/RecipesPage.tsx` lead with today, like Worth Foraging Now. All three share two pieces. `ScopeHeader` is the title over the place the scores come from, with "Use my location" until the reader shares one; no page shows an update time. `BAND_SURFACE_CLASS` in `src/lib/band-surface.ts` is the deep-green band, so the three cannot drift, the same way `NAV_SURFACE_CLASS` holds the nav. `useCurrentScores` gives each page the day's score per species: within 100 km once a location is known, otherwise for the region. Without it, a page falls back to the calendar alone.
+
+**Species** opens on a season line on the band: the season just ended, today's season with a dot at today, the next season and the one after. The bars sit first so they read as one line however the labels wrap. Each segment jumps to its section: In season now (scoring today, or in season by the calendar), Coming next (everything the next season holds, including what carries on from today), Just ended and Later in the year. Species the region's forecast leaves out wait behind a disclosure. A plate opens `SpeciesSheet`, a dialog with:
+
+- today's conditions and a 12-month season bar
+- habitat and regions, and how to find it
+- every toxic look-alike, with the critical note and the checks deduplicated
+- recipes, and a link to the map
+
+**Recipes** splits into Ready to cook now (a wild ingredient, or a sibling that cooks like it, scores today) and Later in the year, ordered by when the ingredient returns. The best recipe takes the band as a split hero. Type chips replace the filter dialog.
+
+The meter and the compact look-alike tag are `SpeciesSignals` (Storybook: Molecules/Species signals), so a score and a warning look the same on all three pages.
+
 ## Do's and Don'ts
 
 ### Do:

@@ -12,16 +12,6 @@
   "tips": "Consigli",
   "warnings": "Avvertimenti",
   "description": "Scopri deliziose ricette usando ingredienti raccolti",
-  "filterBy": "Ingrediente",
-  "filters": "Filtri",
-  "clear": "Azzera filtri",
-  "apply": "Applica",
-  "all": "Tutti",
-  "mushroom": "Fungo",
-  "berry": "Bacca",
-  "plant": "Pianta",
-  "nut": "Noce",
-  "more": "altro",
   "search": {
     "placeholder": "Cerca ricette, ingredienti o tag",
     "no_results": "Nessuna ricetta trovata",
@@ -2417,5 +2407,11 @@
         "Chi è allergico alle Asteraceae, per esempio all'ambrosia o alla camomilla, può reagire."
       ]
     }
-  }
+  },
+  "readyNow": "Da cucinare ora",
+  "later": "Più avanti nell'anno",
+  "findOnMap": "Trovalo sulla mappa",
+  "recipeCount_one": "{{count}} ricetta",
+  "recipeCount_other": "{{count}} ricette",
+  "moreCount": "+{{count}} altre"
 }

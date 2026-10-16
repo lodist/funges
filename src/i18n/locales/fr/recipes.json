@@ -12,16 +12,6 @@
   "tips": "Astuces",
   "warnings": "Avertissements",
   "description": "Découvrez de délicieuses recettes utilisant des ingrédients cueillis",
-  "filterBy": "Ingrédient",
-  "filters": "Filtres",
-  "clear": "Réinitialiser les filtres",
-  "apply": "Appliquer",
-  "all": "Tous",
-  "mushroom": "Champignon",
-  "berry": "Baie",
-  "plant": "Plante",
-  "nut": "Noix",
-  "more": "plus",
   "search": {
     "placeholder": "Rechercher des recettes, ingrédients ou tags",
     "no_results": "Aucune recette trouvée",
@@ -2417,5 +2407,11 @@
         "Les personnes allergiques aux Astéracées, par exemple à l'ambroisie ou à la camomille, peuvent y réagir."
       ]
     }
-  }
+  },
+  "readyNow": "À cuisiner maintenant",
+  "later": "Plus tard dans l'année",
+  "findOnMap": "Le trouver sur la carte",
+  "recipeCount_one": "{{count}} recette",
+  "recipeCount_other": "{{count}} recettes",
+  "moreCount": "+{{count}} autres"
 }

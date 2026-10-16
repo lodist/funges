@@ -10,6 +10,8 @@ import { Trans, useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
 import SEO from '@/components/SEO';
 import { CategoryChips } from '@/components/CategoryChips';
+import { ScopeHeader } from '@/components/ScopeHeader';
+import { ConditionsMeter, LookalikeTag } from '@/components/SpeciesSignals';
 import { useSpeciesData } from '@/data/species';
 import { useRecipesData } from '@/data/recipes';
 import {
@@ -29,10 +31,13 @@ import {
   CalendarRange,
   ChefHat,
   MapPinned,
-  Navigation,
   Sprout,
 } from '@/lib/icons';
 import { cn, getSpeciesImage } from '@/lib/utils';
+import {
+  BAND_OUTLINE_CLASS as BAND_OUTLINE,
+  BAND_SURFACE_CLASS as BAND,
+} from '@/lib/band-surface';
 import { useMapStore } from '@/store/mapStore';
 
 type Pick = WorthForagingNowRecommendation;
@@ -46,28 +51,6 @@ const FOCUSES: readonly { value: ForagingFocus; icon: string }[] = [
   { value: 'plants', icon: CATEGORY_ICONS.plant },
   { value: 'berries', icon: CATEGORY_ICONS.berry },
 ];
-
-// --ring (--happy-700) reads 1.9:1 on happy-900, so the band re-points it to
-// the step the landing's forecast band uses. The band is happy-900 in both
-// themes, so its happy-50 washes are too: their `dark:` twins repeat the light
-// value on purpose, which is what theme-blind-fill.test.ts asks a call site to say.
-const BAND = 'bg-happy-900 text-happy-50 [--ring:var(--happy-100)]';
-// `outline` paints its stroke and label in --primary-text, which vanishes on
-// the band; happy-100 holds the same stroke there.
-const BAND_OUTLINE =
-  'border-happy-100 text-happy-50 hover:bg-happy-50/10 hover:text-happy-50 dark:bg-transparent dark:hover:bg-happy-50/10 dark:hover:text-happy-50';
-
-/** "today" / "yesterday": calendar days between the scoring day and the
- *  reader's own date, so a midnight-UTC stamp never reads as yesterday. */
-function scoringDayLabel(iso: string | null, language: string) {
-  if (!iso) return null;
-  const day = (ymd: string) => Date.parse(`${ymd}T00:00:00Z`) / 86_400_000;
-  const today = new Date().toLocaleDateString('en-CA');
-  return new Intl.RelativeTimeFormat(language, { numeric: 'auto' }).format(
-    Math.round(day(iso.slice(0, 10)) - day(today)),
-    'day'
-  );
-}
 
 function whereLabel(pick: Pick, t: TFunction) {
   if (pick.distanceKm === null) return null;
@@ -97,14 +80,11 @@ export default function WorthForagingNowPage() {
   const recipes = useRecipesData();
   const center = useMapStore(state => state.center);
   const userLocation = useMapStore(state => state.userLocation);
-  const getUserLocation = useMapStore(state => state.getUserLocation);
   const [focus, setFocus] = useState<ForagingFocus>('mixed');
   const [recommendations, setRecommendations] = useState<Pick[]>([]);
   const [context, setContext] = useState<RecommendationContext | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [locating, setLocating] = useState(false);
-  const [locationFailed, setLocationFailed] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -156,25 +136,11 @@ export default function WorthForagingNowPage() {
     [t]
   );
 
-  // The store only learns a position from the map's locate control, so a
-  // visitor who lands here first never got the nearby picks.
-  const locate = () => {
-    setLocating(true);
-    setLocationFailed(false);
-    getUserLocation()
-      .catch(() => setLocationFailed(true))
-      .finally(() => setLocating(false));
-  };
-
   const scopeLabel = context
     ? context.scope === 'radius'
       ? t('worthForagingNow.scopeRadius', { radius: context.radiusKm ?? 100 })
       : context.regionLabel
     : null;
-  const scoringDay = scoringDayLabel(
-    context?.referenceDate ?? null,
-    i18n.language
-  );
 
   return (
     <>
@@ -185,44 +151,10 @@ export default function WorthForagingNowPage() {
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
         <header className='mb-8 flex flex-col gap-6'>
-          <div className='flex flex-wrap items-end justify-between gap-x-8 gap-y-4'>
-            <div className='min-w-0 max-w-3xl'>
-              <h1 className='text-3xl font-semibold leading-tight text-balance text-foreground sm:text-4xl'>
-                {t('worthForagingNow.title')}
-              </h1>
-              {scopeLabel ? (
-                <p className='mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground'>
-                  <MapPinned className='size-4 text-primary-text' />
-                  <span className='font-medium text-foreground'>
-                    {scopeLabel}
-                  </span>
-                  {scoringDay ? (
-                    <>
-                      <span aria-hidden='true'>{'·'}</span>
-                      <span>
-                        {t('map:updatedAt')} {scoringDay}
-                      </span>
-                    </>
-                  ) : null}
-                </p>
-              ) : null}
-            </div>
-            {!userLocation ? (
-              <div className='flex flex-col items-start gap-1'>
-                <Button variant='outline' onClick={locate} disabled={locating}>
-                  <Navigation />
-                  {locating
-                    ? t('worthForagingNow.locating')
-                    : t('worthForagingNow.useLocation')}
-                </Button>
-                {locationFailed ? (
-                  <p className='text-sm text-destructive-text'>
-                    {t('worthForagingNow.locationFailed')}
-                  </p>
-                ) : null}
-              </div>
-            ) : null}
-          </div>
+          <ScopeHeader
+            title={t('worthForagingNow.title')}
+            scopeLabel={scopeLabel ?? undefined}
+          />
           <div role='group' aria-label={t('worthForagingNow.focus.label')}>
             <CategoryChips
               chips={chips}
@@ -339,7 +271,7 @@ function LeadPick({ pick }: { pick: Pick }) {
           <p className='mt-2 italic text-happy-100'>{pick.scientificName}</p>
         </div>
 
-        <ConditionsMeter pick={pick} tone='band' />
+        <ConditionsMeter score={pick.score} tone='band' />
 
         <dl className='grid gap-4 sm:grid-cols-2'>
           {where ? (
@@ -401,7 +333,7 @@ function BenchCard({ pick }: { pick: Pick }) {
             {pick.scientificName}
           </p>
         </div>
-        <ConditionsMeter pick={pick} tone='paper' />
+        <ConditionsMeter score={pick.score} tone='paper' />
         {where ? (
           <p className='flex items-center gap-2 text-sm text-foreground'>
             <MapPinned className='size-4 shrink-0 text-primary-text' />
@@ -446,20 +378,16 @@ function PickTile({ pick, row = false }: { pick: Pick; row?: boolean }) {
           </span>
           <ArrowUpRight className='mt-0.5 size-4 shrink-0 text-primary-text' />
         </span>
-        <ConditionsMeter pick={pick} tone='paper' compact />
+        <ConditionsMeter score={pick.score} tone='paper' compact />
         {where ? (
           <span className='text-xs text-muted-foreground'>{where}</span>
         ) : null}
         {pick.lookalike && (severity === 'lethal' || severity === 'toxic') ? (
-          <span className='mt-auto flex items-start gap-1.5 rounded-lg bg-status-warning-background px-2 py-1.5 text-xs text-status-warning-text ring-1 ring-status-warning-border/60'>
-            <AlertTriangle className='mt-px size-3 shrink-0' />
-            <span>
-              <span className='font-semibold'>
-                {t(`worthForagingNow.lookalikeBadge.${severity}`)}
-              </span>{' '}
-              <i>{pick.lookalike.scientificName}</i>
-            </span>
-          </span>
+          <LookalikeTag
+            scientificName={pick.lookalike.scientificName}
+            severity={severity}
+            className='mt-auto'
+          />
         ) : null}
       </span>
     </Link>
@@ -487,69 +415,6 @@ function PickPhoto({
       decoding='async'
       className={cn('size-full bg-muted object-cover', className)}
     />
-  );
-}
-
-/** Ten steps of one green: the score as depth, never as a new hue. */
-function ConditionsMeter({
-  pick,
-  tone,
-  compact = false,
-}: {
-  pick: Pick;
-  tone: Tone;
-  compact?: boolean;
-}) {
-  const { t } = useTranslation('common');
-  const band = tone === 'band';
-  const filled = Math.round(pick.score);
-  const label = t(`worthForagingNow.conditions.${pick.confidence}`);
-
-  return (
-    <div
-      className={cn(
-        'flex items-center',
-        compact ? 'gap-2' : 'flex-wrap gap-x-3 gap-y-1.5'
-      )}
-    >
-      <span
-        aria-hidden='true'
-        className={cn(
-          'flex shrink-0',
-          compact ? 'w-24 gap-0.5' : 'w-36 gap-1 sm:w-44'
-        )}
-      >
-        {Array.from({ length: 10 }, (_, step) => (
-          <span
-            key={step}
-            className={cn(
-              'flex-1 rounded-full',
-              compact ? 'h-1.5' : 'h-2',
-              step < filled
-                ? band
-                  ? 'bg-happy-500'
-                  : 'bg-primary-text'
-                : band
-                  ? 'bg-happy-50/15 dark:bg-happy-50/15'
-                  : 'bg-muted'
-            )}
-          />
-        ))}
-      </span>
-      <span
-        className={cn(
-          'min-w-0 font-medium',
-          compact ? 'text-xs' : 'text-sm',
-          band ? 'text-happy-50' : 'text-foreground'
-        )}
-      >
-        <span className={compact ? 'sr-only' : undefined}>
-          {label}
-          {' · '}
-        </span>
-        <span className='tabular-nums'>{pick.score}</span>
-      </span>
-    </div>
   );
 }
 

@@ -348,5 +348,33 @@
       "howTo": "Ogni luogo mostra il punteggio migliore tra loro; i gallinacci sui pendii muschiosi sotto querce, faggi e conifere dopo una pioggia calda, le trombette dei morti nella lettiera umida sotto le latifoglie, le finferle sul muschio bagnato sotto le conifere a fine stagione"
     }
   },
-  "search_placeholder": "Cerca una specie"
+  "search_placeholder": "Cerca una specie",
+  "place": {
+    "before": "Finita",
+    "now": "Ora",
+    "next": "Poi",
+    "later": "Più avanti"
+  },
+  "groups": {
+    "now": "Di stagione ora",
+    "next": "In arrivo",
+    "before": "Appena finita",
+    "later": "Più avanti nell'anno",
+    "elsewhere": "Cresce in altre regioni"
+  },
+  "speciesCount_one": "{{count}} specie",
+  "speciesCount_other": "{{count}} specie",
+  "band": {
+    "summary_one": "{{count}} specie di stagione · {{place}}",
+    "summary_other": "{{count}} specie di stagione · {{place}}",
+    "summaryCalendar_one": "{{count}} specie di stagione",
+    "summaryCalendar_other": "{{count}} specie di stagione"
+  },
+  "sheet": {
+    "today": "Oggi · {{place}}",
+    "notToday": "Oggi non è di stagione",
+    "whereItGrows": "Dove cresce",
+    "lookalikes": "Sosia tossici",
+    "tellApart": "Come distinguerli"
+  }
 }

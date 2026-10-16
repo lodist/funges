@@ -12,16 +12,6 @@
   "tips": "Tipps",
   "warnings": "Warnhinweise",
   "description": "Entdecke köstliche Rezepte mit gesammelten Zutaten",
-  "filterBy": "Zutat",
-  "filters": "Filter",
-  "clear": "Filter zurücksetzen",
-  "apply": "Anwenden",
-  "all": "Alle",
-  "mushroom": "Pilz",
-  "berry": "Beere",
-  "plant": "Pflanze",
-  "nut": "Nuss",
-  "more": "mehr",
   "search": {
     "placeholder": "Suche nach Rezepten, Zutaten oder Tags",
     "no_results": "Kein Rezept gefunden",
@@ -2407,5 +2397,11 @@
         "Menschen mit einer Allergie gegen Korbblütler (Asteraceae), etwa gegen Ambrosia oder Kamille, können darauf reagieren."
       ]
     }
-  }
+  },
+  "readyNow": "Jetzt kochen",
+  "later": "Später im Jahr",
+  "findOnMap": "Auf der Karte finden",
+  "recipeCount_one": "{{count}} Rezept",
+  "recipeCount_other": "{{count}} Rezepte",
+  "moreCount": "+{{count}} weitere"
 }
