@@ -12,16 +12,6 @@
   "tips": "Tips",
   "warnings": "Warnings",
   "description": "Discover delicious recipes using foraged ingredients",
-  "filterBy": "Ingredient",
-  "filters": "Filters",
-  "clear": "Clear filters",
-  "apply": "Apply",
-  "all": "All",
-  "mushroom": "Mushroom",
-  "berry": "Berry",
-  "plant": "Plant",
-  "nut": "Nut",
-  "more": "more",
   "search": {
     "placeholder": "Search recipes, ingredients or tags",
     "no_results": "No recipes found",
@@ -93,7 +83,7 @@
     "blackberry": "Blackberry",
     "blueberry": "Wild Blueberry",
     "hazelnut": "Hazelnut",
-    "wild-mint": "Wild Mint",
+    "wild-mint": "Wild mints",
     "violets": "Sweet Violet",
     "plantain": "Common Plantain",
     "daisy": "Common Daisy"
@@ -2403,5 +2393,11 @@
         "People allergic to the daisy family (Asteraceae), for example to ragweed or chamomile, can react to them."
       ]
     }
-  }
+  },
+  "readyNow": "Ready to cook now",
+  "later": "Later in the year",
+  "findOnMap": "Find it on the map",
+  "recipeCount_one": "{{count}} recipe",
+  "recipeCount_other": "{{count}} recipes",
+  "moreCount": "+{{count}} more"
 }

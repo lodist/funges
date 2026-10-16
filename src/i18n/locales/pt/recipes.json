@@ -12,16 +12,6 @@
   "tips": "Dicas",
   "warnings": "Avisos",
   "description": "Descubra deliciosas receitas usando ingredientes colhidos",
-  "filterBy": "Ingrediente",
-  "filters": "Filtros",
-  "clear": "Limpar filtros",
-  "apply": "Aplicar",
-  "all": "Todos",
-  "mushroom": "Cogumelo",
-  "berry": "Baga",
-  "plant": "Planta",
-  "nut": "Noz",
-  "more": "mais",
   "search": {
     "placeholder": "Buscar receitas, ingredientes ou tags",
     "no_results": "Nenhuma receita encontrada",
@@ -93,7 +83,7 @@
     "blackberry": "Amora",
     "blueberry": "Mirtilo-selvagem",
     "hazelnut": "Avelã",
-    "wild-mint": "Hortelã-selvagem",
+    "wild-mint": "Hortelãs-selvagens",
     "violets": "Violeta-doce",
     "plantain": "Tanchagem",
     "daisy": "Margarida-comum"
@@ -2413,5 +2403,11 @@
         "Pessoas alérgicas às asteráceas, por exemplo à ambrósia ou à camomila, podem reagir."
       ]
     }
-  }
+  },
+  "readyNow": "Para cozinhar agora",
+  "later": "Mais adiante no ano",
+  "findOnMap": "Encontrar no mapa",
+  "recipeCount_one": "{{count}} receita",
+  "recipeCount_other": "{{count}} receitas",
+  "moreCount": "+{{count}} mais"
 }

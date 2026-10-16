@@ -22,8 +22,8 @@ under a tenth of its peak per sighting (DEAD_MONTH): fruit that hangs on for mon
 the ground and green fruit tagged as fruiting can spread a stage over half the year.
 
 The stage people pick, per plant (STAGE): fruit for berries and nuts, flowers for elderflower,
-daisy, dandelion and violets, the bud for wild artichoke, leaves before flowering for wild
-garlic, ramps, nettle, sorrel and asparagus, and any sighting for the plants eaten whatever
+daisy, dandelion and violets, the bud for wild artichoke, leaves before flowering for ramps,
+nettle, sorrel and asparagus, leaves to green seed pods for wild garlic, and any sighting for the plants eaten whatever
 their stage (chickweed, plantain, amaranth, masterwort, wild mint), which with dandelion
 keep their months (SEASON). Fiddleheads carry no tags: ferns do not flower.
 
@@ -54,7 +54,13 @@ STAGE = {**dict.fromkeys(("blackberry", "cloudberry", "huckleberry", "lingonb", 
          # fruiting sightings whose photo shows ripe fruit (tools/tag_ripeness.py)
          **dict.fromkeys(("blueberry", "elderberry", "sloes"), "ripe"),
          **dict.fromkeys(("daisy", "dandelion", "elderflower", "violets"), "flowering"),
-         **dict.fromkeys(("garlic", "nettle", "sorrel", "asparagus"), "leaves"),
+         **dict.fromkeys(("nettle", "sorrel", "asparagus"), "leaves"),
+         # Its leaves are picked through the flowering, the flowers too, and the green seed pods
+         # (fruiting sightings whose photo shows them green) until the seeds ripen black. Kept as
+         # one stage: the leaves' own season on top, open where either is, ranked worse (held-out
+         # AUC 0.817 vs 0.837, 8 of 11 years) and opened February at 40-44 N in South Europe,
+         # where the tags show under a tenth of the peak.
+         "garlic": "leaves_to_pods",
          "ramps": "leaves_unbudded",      # its June buds stand on bare stalks, the leaves gone
          "artichoke": "budding",
          **dict.fromkeys(("chickweed", "plantain", "amaranth", "masterwort", "wild-mint"), "any")}
@@ -219,12 +225,15 @@ def download(out: Path) -> None:
         print(f"{species}: {len(rows):,} tagged sightings", flush=True)
 
 
-def stages(s: pd.DataFrame, ripe=()) -> dict:
-    """Each stage's sightings, read off their tags; ripe: the ids whose photo shows ripe fruit."""
+def stages(s: pd.DataFrame, ripe=(), unripe=()) -> dict:
+    """Each stage's sightings, read off their tags; ripe and unripe: the ids whose photo shows
+    ripe or green fruit (tools/tag_ripeness.py)."""
     leaves = s["no_flowers"] | s["budding"]
+    green = s["fruiting"] & s["id"].isin(set(unripe))
     return {"fruiting": s["fruiting"], "flowering": s["flowering"], "budding": s["budding"],
             "ripe": s["fruiting"] & s["id"].isin(set(ripe)),
             "leaves": leaves & ~s["flowering"] & ~s["fruiting"],
+            "leaves_to_pods": (leaves & ~s["fruiting"]) | s["flowering"] | green,
             "leaves_unbudded": s["no_flowers"] & ~s["budding"] & ~s["flowering"] & ~s["fruiting"],
             "any": pd.Series(True, index=s.index)}
 
@@ -235,7 +244,8 @@ def table(out: Path) -> pd.DataFrame:
     frames = [pd.read_parquet(f).assign(species=f.stem) for f in sorted((out / "inat").glob("*.parquet"))]
     s = pd.concat([f for f in frames if len(f)], ignore_index=True)
     ripeness = out / "ripeness.parquet"
-    tagged = stages(s, pd.read_parquet(ripeness).query(f"p_ripe >= {RIPE}")["id"] if ripeness.exists() else ())
+    photos = pd.read_parquet(ripeness) if ripeness.exists() else pd.DataFrame({"id": [], "p_ripe": []})
+    tagged = stages(s, photos.query(f"p_ripe >= {RIPE}")["id"], photos.query(f"p_ripe < {RIPE}")["id"])
     for species, stage in STAGE.items():
         own = s["species"] == TAXA.get(species, species)
         s[species] = s["id"].isin(set(s.loc[own & tagged[stage], "id"]))

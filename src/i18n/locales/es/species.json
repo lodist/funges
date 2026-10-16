@@ -134,9 +134,9 @@
       "howTo": "Búscalas en praderas, bordes de bosques y áreas herbosas en primavera y verano"
     },
     "wildMint": {
-      "name": "Menta silvestre",
-      "description": "Hierba aromática con tallos cuadrados y hojas opuestas que desprenden aroma a menta al frotarlas",
-      "howTo": "Se encuentra en zonas húmedas, a lo largo de arroyos y en praderas húmedas en primavera y verano"
+      "name": "Mentas silvestres",
+      "description": "Cualquier menta silvestre: menta acuática, menta de caballo, mastranzo, menta de campo y poleo. Tallos cuadrados, hojas opuestas y aroma a menta al frotarlas",
+      "howTo": "Crece en suelos húmedos, acequias y a lo largo de arroyos. El poleo está bien en una infusión ligera (poleo menta), pero es tóxico como aceite o en cantidad: evítalo en el embarazo"
     },
     "chickweed": {
       "name": "Pamplina",
@@ -348,5 +348,33 @@
       "description": "Todos los rebozuelos en una sola puntuación: los rebozuelos dorados, la trompeta de los muertos y el rebozuelo de invierno y, en Norteamérica, el rebozuelo liso y el rebozuelo del Pacífico",
       "howTo": "Cada lugar muestra la mejor de sus puntuaciones; los rebozuelos dorados en laderas con musgo bajo robles, hayas y coníferas tras una lluvia templada, las trompetas de los muertos en la hojarasca húmeda bajo frondosas, los rebozuelos de invierno sobre musgo mojado bajo coníferas al final de la temporada"
     }
+  },
+  "place": {
+    "before": "Terminó",
+    "now": "Ahora",
+    "next": "Después",
+    "later": "Más tarde"
+  },
+  "groups": {
+    "now": "De temporada ahora",
+    "next": "Lo siguiente",
+    "before": "Acaba de terminar",
+    "later": "Más adelante en el año",
+    "elsewhere": "Crece en otras regiones"
+  },
+  "speciesCount_one": "{{count}} especie",
+  "speciesCount_other": "{{count}} especies",
+  "band": {
+    "summary_one": "{{count}} especie de temporada · {{place}}",
+    "summary_other": "{{count}} especies de temporada · {{place}}",
+    "summaryCalendar_one": "{{count}} especie de temporada",
+    "summaryCalendar_other": "{{count}} especies de temporada"
+  },
+  "sheet": {
+    "today": "Hoy · {{place}}",
+    "notToday": "Hoy no está de temporada",
+    "whereItGrows": "Dónde crece",
+    "lookalikes": "Parecidos tóxicos",
+    "tellApart": "Cómo distinguirlas"
   }
 }

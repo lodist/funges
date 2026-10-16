@@ -131,7 +131,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     category: 'mushroom',
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.muscarine',
-    checkKeys: ['toxicity.checks.fleshReddening', 'toxicity.checks.smell'],
+    checkKeys: [
+      'toxicity.checks.fleshReddening',
+      'toxicity.checks.smellCompare',
+    ],
     confusedWithSpeciesIds: ['st_george'],
   },
   {
@@ -140,7 +143,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     category: 'mushroom',
     severity: 'toxic',
     reasonKey: 'toxicity.mechanisms.giIrritant',
-    checkKeys: ['toxicity.checks.sporePrint', 'toxicity.checks.smell'],
+    checkKeys: ['toxicity.checks.sporePrint', 'toxicity.checks.smellCompare'],
     confusedWithSpeciesIds: ['st_george'],
   },
 
@@ -287,7 +290,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.coniine',
     checkKeys: [
       'toxicity.checks.stemMarkings',
-      'toxicity.checks.smell',
+      'toxicity.checks.smellCompare',
       'toxicity.checks.plantHabit',
     ],
     confusedWithSpeciesIds: ['masterwort', 'elderflower'],
@@ -298,7 +301,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     category: 'plant',
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.coniine',
-    checkKeys: ['toxicity.checks.stemMarkings', 'toxicity.checks.smell'],
+    checkKeys: ['toxicity.checks.stemMarkings', 'toxicity.checks.smellCompare'],
     confusedWithSpeciesIds: ['masterwort'],
   },
 
@@ -490,7 +493,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: [
       'toxicity.checks.fleshBruising',
-      'toxicity.checks.smell',
+      'toxicity.checks.smellCompare',
       'toxicity.checks.ringAndStem',
     ],
     confusedWithSpeciesIds: [],
@@ -507,7 +510,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: [
       'toxicity.checks.gillColour',
       'toxicity.checks.capAttachment',
-      'toxicity.checks.smell',
+      'toxicity.checks.smellCompare',
     ],
     confusedWithSpeciesIds: ['oyster-mushroom'],
   },
@@ -628,7 +631,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: [
       'toxicity.checks.overallSize',
       'toxicity.checks.ringAndStem',
-      'toxicity.checks.smell',
+      'toxicity.checks.smellCompare',
     ],
     confusedWithSpeciesIds: ['parasol'],
   },
@@ -709,7 +712,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.leafShape',
       'toxicity.checks.hollowStem',
       'toxicity.checks.stemMarkings',
-      'toxicity.checks.smell',
+      'toxicity.checks.smellCompare',
       'toxicity.checks.plantHabit',
     ],
     confusedWithSpeciesIds: ['masterwort', 'elderflower'],
@@ -723,7 +726,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: [
       'toxicity.checks.leafShape',
       'toxicity.checks.hollowStem',
-      'toxicity.checks.smell',
+      'toxicity.checks.smellCompare',
     ],
     confusedWithSpeciesIds: ['masterwort'],
   },
@@ -762,7 +765,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: [
       'toxicity.checks.leafShape',
       'toxicity.checks.plantHabit',
-      'toxicity.checks.smell',
+      'toxicity.checks.smellCompare',
     ],
     confusedWithSpeciesIds: [],
   },
@@ -775,7 +778,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: [
       'toxicity.checks.leafShape',
       'toxicity.checks.plantHabit',
-      'toxicity.checks.smell',
+      'toxicity.checks.smellCompare',
     ],
     confusedWithSpeciesIds: [],
   },
@@ -788,7 +791,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: [
       'toxicity.checks.leafShape',
       'toxicity.checks.plantHabit',
-      'toxicity.checks.smell',
+      'toxicity.checks.smellCompare',
     ],
     confusedWithSpeciesIds: [],
   },

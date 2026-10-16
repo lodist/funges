@@ -1,5 +1,6 @@
 import { getRecipesBySpecies, type Recipe } from '@/data/recipes';
 import type { SpeciesWithTranslations } from '@/data/species';
+import { TOXIC_SPECIES, type ToxicSeverity } from '@/data/toxic-species';
 import i18n from '@/i18n';
 
 export type ForagingFocus = 'mixed' | 'mushrooms' | 'plants' | 'berries';
@@ -12,16 +13,19 @@ export interface WorthForagingNowRecommendation {
   category: SpeciesWithTranslations['category'];
   score: number;
   confidence: 'high' | 'medium' | 'low';
-  seasonLabel: string;
   habitatLabel: string | null;
   recipes: Array<{
     id: string;
     title: string;
+    image: string | null;
   }>;
-  whyNow: string[];
+  /** The most dangerous toxic look-alike, so a pick never ships without it. */
+  lookalike: { scientificName: string; severity: ToxicSeverity } | null;
   bestWindow: string;
   coordinate: [number, number];
   distanceKm: number | null;
+  /** Compass bearing from the reader to the best point, 0 = north. */
+  bearingDeg: number | null;
 }
 
 export interface RecommendationContext {
@@ -67,6 +71,7 @@ interface RankedSpeciesCandidate {
   score: number;
   coordinate: [number, number];
   distanceKm: number | null;
+  bearingDeg: number | null;
   rankingScore: number;
 }
 
@@ -74,7 +79,7 @@ const SCORE_DATA_URL = `${import.meta.env.BASE_URL}data/worth_foraging_now.json`
 const STORAGE_KEY = 'worth-foraging-now:v1';
 const STORAGE_TTL_MS = 6 * 60 * 60 * 1000;
 const RADIUS_KM = 100;
-const MAX_RECOMMENDATIONS = 3;
+const MAX_RECOMMENDATIONS = 9;
 
 const REGION_MATCHERS: Record<
   ScoreRegionId,
@@ -110,10 +115,30 @@ function getRecipeMatches(recipes: Recipe[], speciesId: string) {
     .map(recipe => ({
       id: recipe.id,
       title: recipe.title,
+      image: recipe.image,
     }));
 }
 
-function getConfidence(
+const SEVERITY_RANK: Record<ToxicSeverity, number> = {
+  lethal: 0,
+  toxic: 1,
+  inedible: 2,
+};
+
+// ponytail: first entry of the worst severity, not region-aware; the table has
+// no region field, so a US-only look-alike can name itself on a European pick.
+export function getWorstLookalike(
+  speciesId: string
+): WorthForagingNowRecommendation['lookalike'] {
+  const worst = TOXIC_SPECIES.filter(toxic =>
+    toxic.confusedWithSpeciesIds.includes(speciesId)
+  ).sort((a, b) => SEVERITY_RANK[a.severity] - SEVERITY_RANK[b.severity])[0];
+  return worst
+    ? { scientificName: worst.scientificName, severity: worst.severity }
+    : null;
+}
+
+export function getConfidence(
   score: number
 ): WorthForagingNowRecommendation['confidence'] {
   if (score >= 8.2) return 'high';
@@ -142,6 +167,25 @@ function haversineKm(from: [number, number], to: [number, number]) {
   return 2 * earthRadiusKm * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
+function bearingDeg(from: [number, number], to: [number, number]) {
+  const toRad = (degrees: number) => (degrees * Math.PI) / 180;
+  const [lng1, lat1] = from.map(toRad);
+  const [lng2, lat2] = to.map(toRad);
+  const y = Math.sin(lng2 - lng1) * Math.cos(lat2);
+  const x =
+    Math.cos(lat1) * Math.sin(lat2) -
+    Math.sin(lat1) * Math.cos(lat2) * Math.cos(lng2 - lng1);
+  return ((Math.atan2(y, x) * 180) / Math.PI + 360) % 360;
+}
+
+const COMPASS_POINTS = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'] as const;
+export type CompassPoint = (typeof COMPASS_POINTS)[number];
+
+/** Eight-point compass name for a bearing, 0 = north. */
+export function compassPoint(bearing: number): CompassPoint {
+  return COMPASS_POINTS[Math.round(bearing / 45) % 8];
+}
+
 function distanceAwareRanking(score: number, distanceKm: number | null) {
   if (distanceKm === null) return score;
   const clampedDistance = Math.min(Math.max(distanceKm, 0), RADIUS_KM);
@@ -151,16 +195,6 @@ function distanceAwareRanking(score: number, distanceKm: number | null) {
 
 function getRegionLabel(regionId: ScoreRegionId) {
   return i18n.t(`common:worthForagingNow.regions.${regionId}`);
-}
-
-function getTranslatedSeasonLabel(season: string | null | undefined) {
-  if (!season) {
-    return i18n.t('common:worthForagingNow.variedSeason');
-  }
-
-  return i18n.t(`species:seasons.${season}`, {
-    defaultValue: season,
-  });
 }
 
 function getTranslatedHabitatLabel(habitat: string | null | undefined) {
@@ -299,6 +333,7 @@ function rankRegionSpecies({
         score,
         coordinate: [entry.lng, entry.lat],
         distanceKm: null,
+        bearingDeg: null,
         rankingScore: score,
       };
     })
@@ -343,6 +378,7 @@ function rankNearbySpecies({
         score,
         coordinate,
         distanceKm: Number(distanceKm.toFixed(1)),
+        bearingDeg: bearingDeg(userLocation, coordinate),
         rankingScore: distanceAwareRanking(score, distanceKm),
       };
       const existing = rankedBySpecies.get(speciesId);
@@ -361,60 +397,27 @@ function rankNearbySpecies({
 function buildRecommendationsFromRanked({
   ranked,
   recipes,
-  regionLabel,
-  scope,
 }: {
   ranked: RankedSpeciesCandidate[];
   recipes: Recipe[];
-  regionLabel: string;
-  scope: RecommendationContext['scope'];
 }) {
-  return ranked.map<WorthForagingNowRecommendation>(candidate => {
-    const recipeMatches = getRecipeMatches(recipes, candidate.species.id);
-    const habitatLabel = getTranslatedHabitatLabel(candidate.species.habitat);
-    const scopeLine =
-      scope === 'radius'
-        ? candidate.distanceKm !== null
-          ? i18n.t('common:worthForagingNow.reasons.scopeRadiusWithDistance', {
-              distance: candidate.distanceKm,
-            })
-          : i18n.t('common:worthForagingNow.reasons.scopeRadius')
-        : i18n.t('common:worthForagingNow.reasons.scopeRegion', {
-            region: regionLabel,
-          });
-    const kitchenLine =
-      recipeMatches.length > 0
-        ? i18n.t('common:worthForagingNow.reasons.kitchenRecipes', {
-            count: recipeMatches.length,
-          })
-        : i18n.t('common:worthForagingNow.reasons.kitchenNone');
-
-    return {
-      speciesId: candidate.species.id,
-      speciesName: candidate.species.name,
-      scientificName: candidate.species.scientificName,
-      category: candidate.species.category,
-      score: candidate.score,
-      confidence: getConfidence(candidate.score),
-      seasonLabel: getTranslatedSeasonLabel(candidate.species.season),
-      habitatLabel,
-      recipes: recipeMatches,
-      whyNow: [
-        scopeLine,
-        kitchenLine,
-        habitatLabel
-          ? i18n.t('common:worthForagingNow.reasons.habitat', {
-              habitat: habitatLabel,
-            })
-          : i18n.t('common:worthForagingNow.reasons.habitatFallback'),
-      ],
-      bestWindow: i18n.t(
-        `common:worthForagingNow.bestWindowByCategory.${candidate.species.category}`
-      ),
-      coordinate: candidate.coordinate,
-      distanceKm: candidate.distanceKm,
-    };
-  });
+  return ranked.map<WorthForagingNowRecommendation>(candidate => ({
+    speciesId: candidate.species.id,
+    speciesName: candidate.species.name,
+    scientificName: candidate.species.scientificName,
+    category: candidate.species.category,
+    score: candidate.score,
+    confidence: getConfidence(candidate.score),
+    habitatLabel: getTranslatedHabitatLabel(candidate.species.habitat),
+    recipes: getRecipeMatches(recipes, candidate.species.id),
+    lookalike: getWorstLookalike(candidate.species.id),
+    bestWindow: i18n.t(
+      `common:worthForagingNow.bestWindowByCategory.${candidate.species.category}`
+    ),
+    coordinate: candidate.coordinate,
+    distanceKm: candidate.distanceKm,
+    bearingDeg: candidate.bearingDeg,
+  }));
 }
 
 export function deriveWorthForagingNowRecommendations({
@@ -451,12 +454,7 @@ export function deriveWorthForagingNowRecommendations({
         });
 
   return {
-    recommendations: buildRecommendationsFromRanked({
-      ranked,
-      recipes,
-      regionLabel,
-      scope: effectiveScope,
-    }),
+    recommendations: buildRecommendationsFromRanked({ ranked, recipes }),
     context: {
       scope: effectiveScope,
       regionId,
@@ -474,5 +472,76 @@ export async function fetchWorthForagingNowRecommendations(
   return deriveWorthForagingNowRecommendations({
     ...inputs,
     dataset,
+  });
+}
+
+export interface CurrentScores {
+  scope: RecommendationContext['scope'];
+  regionId: ScoreRegionId;
+  regionLabel: string;
+  referenceDate: string | null;
+  /** Today's best score per species id within the scope; absent = not scoring. */
+  scores: Record<string, number>;
+}
+
+/**
+ * Every species' score today: the best point within 100 km of the reader when
+ * a position is known and anything scores there, otherwise the best in the
+ * map's region. The catalog pages read this; the picks above rank from it.
+ */
+export function deriveCurrentScores({
+  dataset,
+  mapCenter,
+  userLocation,
+}: {
+  dataset: RecommendationDataset;
+  mapCenter: [number, number];
+  userLocation: [number, number] | null;
+}): CurrentScores {
+  const regionId = inferScoreRegion(userLocation ?? mapCenter);
+  const base = {
+    regionId,
+    regionLabel: getRegionLabel(regionId),
+    referenceDate: dataset.updated_at,
+  };
+
+  if (userLocation) {
+    const scores: Record<string, number> = {};
+    dataset.points.forEach(point => {
+      if (haversineKm(userLocation, [point.lng, point.lat]) > RADIUS_KM) {
+        return;
+      }
+      Object.entries(point.scores).forEach(([speciesId, score]) => {
+        if (score === undefined) return;
+        scores[speciesId] = Math.max(
+          scores[speciesId] ?? 0,
+          formatScore(score)
+        );
+      });
+    });
+    if (Object.keys(scores).length > 0) {
+      return { ...base, scope: 'radius', scores };
+    }
+  }
+
+  return {
+    ...base,
+    scope: 'region',
+    scores: Object.fromEntries(
+      (dataset.regions[regionId] ?? []).map(entry => [
+        entry.speciesId,
+        formatScore(entry.score),
+      ])
+    ),
+  };
+}
+
+export async function fetchCurrentScores(inputs: {
+  mapCenter: [number, number];
+  userLocation: [number, number] | null;
+}) {
+  return deriveCurrentScores({
+    ...inputs,
+    dataset: await loadRecommendationDataset(),
   });
 }

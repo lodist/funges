@@ -134,9 +134,9 @@
       "howTo": "Look for them in meadows, woodland edges, and grassy areas in spring and summer"
     },
     "wildMint": {
-      "name": "Wild Mint",
-      "description": "Aromatic herb with square stems and opposite leaves that release mint scent when crushed",
-      "howTo": "Found in wet areas, along streams, and in wet meadows in spring and summer"
+      "name": "Wild mints",
+      "description": "Any wild mint: water mint, horse mint, apple mint, corn mint and pennyroyal. Square stems, opposite leaves and a mint scent when crushed",
+      "howTo": "Found in damp ground, ditches and along streams. Pennyroyal is fine as a light tea (poleo menta) but toxic as an oil or in quantity: avoid it in pregnancy"
     },
     "chickweed": {
       "name": "Chickweed",
@@ -348,5 +348,33 @@
       "description": "Every chanterelle in one score: the golden chanterelles, the black trumpet and the winter chanterelle, and in North America the smooth and Pacific chanterelles",
       "howTo": "Each place shows the best of their scores; golden chanterelles on mossy slopes under oak, beech and conifers after warm rain, black trumpets in damp leaf litter under broadleaves, winter chanterelles on wet moss under conifers late in the season"
     }
+  },
+  "place": {
+    "before": "Just ended",
+    "now": "Now",
+    "next": "Next",
+    "later": "Later"
+  },
+  "groups": {
+    "now": "In season now",
+    "next": "Coming next",
+    "before": "Just ended",
+    "later": "Later in the year",
+    "elsewhere": "Grows in other regions"
+  },
+  "speciesCount_one": "{{count}} species",
+  "speciesCount_other": "{{count}} species",
+  "band": {
+    "summary_one": "{{count}} species in season · {{place}}",
+    "summary_other": "{{count}} species in season · {{place}}",
+    "summaryCalendar_one": "{{count}} species in season",
+    "summaryCalendar_other": "{{count}} species in season"
+  },
+  "sheet": {
+    "today": "Today · {{place}}",
+    "notToday": "Not in season today",
+    "whereItGrows": "Where it grows",
+    "lookalikes": "Toxic look-alikes",
+    "tellApart": "How to tell them apart"
   }
 }

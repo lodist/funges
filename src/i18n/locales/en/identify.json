@@ -112,6 +112,7 @@
       "fleshReddening": "Whether the flesh reddens where handled or damaged.",
       "stemNetwork": "Any raised net-like pattern on the stem, and its colour.",
       "smell": "Crush a leaf or piece and smell it. Wild garlic smells strongly of garlic; its deadly look-alikes do not.",
+      "smellCompare": "Smell a crushed leaf or the freshly cut flesh and compare it with the edible species: an unexpected or unpleasant smell is a warning sign.",
       "leafArrangement": "How leaves emerge: singly from the base on their own stalk, or paired and sheathed together.",
       "leafShape": "Leaf outline and veining, including whether the base is arrow-shaped.",
       "stemMarkings": "Whether the stem is hollow, ridged, or blotched with purple - and whether it smells unpleasant when crushed.",

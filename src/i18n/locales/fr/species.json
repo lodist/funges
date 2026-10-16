@@ -134,9 +134,9 @@
       "howTo": "Cherchez-les dans les prairies, lisières de bois et zones herbeuses au printemps et en été"
     },
     "wildMint": {
-      "name": "Menthe sauvage",
-      "description": "Herbe aromatique à tiges carrées et feuilles opposées dégageant une odeur de menthe quand on les froisse",
-      "howTo": "Se trouve dans les zones humides, le long des ruisseaux et prairies humides au printemps et en été"
+      "name": "Menthes sauvages",
+      "description": "Toute menthe sauvage : menthe aquatique, menthe à longues feuilles, menthe à feuilles rondes, menthe des champs et menthe pouliot. Tiges carrées, feuilles opposées et odeur de menthe quand on les froisse",
+      "howTo": "Se trouve sur les sols humides, dans les fossés et au bord des ruisseaux. La menthe pouliot convient en tisane légère, mais elle est toxique en huile ou en grande quantité : à éviter pendant la grossesse"
     },
     "chickweed": {
       "name": "Mouron des oiseaux",
@@ -348,5 +348,33 @@
       "description": "Toutes les chanterelles en un seul score : les girolles, la trompette de la mort et la chanterelle en tube et, en Amérique du Nord, la girolle lisse et la girolle du Pacifique",
       "howTo": "Chaque lieu affiche le meilleur de leurs scores ; les girolles sur les pentes moussues sous les chênes, hêtres et conifères après une pluie chaude, les trompettes de la mort dans la litière humide sous les feuillus, les chanterelles en tube sur la mousse mouillée sous les conifères en fin de saison"
     }
+  },
+  "place": {
+    "before": "Terminé",
+    "now": "Maintenant",
+    "next": "Ensuite",
+    "later": "Plus tard"
+  },
+  "groups": {
+    "now": "De saison maintenant",
+    "next": "Bientôt",
+    "before": "Tout juste terminé",
+    "later": "Plus tard dans l'année",
+    "elsewhere": "Pousse dans d'autres régions"
+  },
+  "speciesCount_one": "{{count}} espèce",
+  "speciesCount_other": "{{count}} espèces",
+  "band": {
+    "summary_one": "{{count}} espèce de saison · {{place}}",
+    "summary_other": "{{count}} espèces de saison · {{place}}",
+    "summaryCalendar_one": "{{count}} espèce de saison",
+    "summaryCalendar_other": "{{count}} espèces de saison"
+  },
+  "sheet": {
+    "today": "Aujourd'hui · {{place}}",
+    "notToday": "Pas de saison aujourd'hui",
+    "whereItGrows": "Où elle pousse",
+    "lookalikes": "Sosies toxiques",
+    "tellApart": "Comment les distinguer"
   }
 }

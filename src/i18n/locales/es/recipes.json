@@ -12,16 +12,6 @@
   "tips": "Consejos",
   "warnings": "Advertencias",
   "description": "Descubre deliciosas recetas usando ingredientes recolectados",
-  "filterBy": "Ingrediente",
-  "filters": "Filtros",
-  "clear": "Borrar filtros",
-  "apply": "Aplicar",
-  "all": "Todos",
-  "mushroom": "Hongo",
-  "berry": "Baya",
-  "plant": "Planta",
-  "nut": "Nuez",
-  "more": "más",
   "search": {
     "placeholder": "Buscar recetas, ingredientes o etiquetas",
     "no_results": "No se encontraron recetas",
@@ -93,7 +83,7 @@
     "blackberry": "Mora",
     "blueberry": "Arándano silvestre",
     "hazelnut": "Avellana",
-    "wild-mint": "Menta silvestre",
+    "wild-mint": "Mentas silvestres",
     "violets": "Violeta dulce",
     "plantain": "Llantén común",
     "daisy": "Margarita común"
@@ -2413,5 +2403,11 @@
         "Las personas alérgicas a las asteráceas, por ejemplo a la ambrosía o la manzanilla, pueden reaccionar."
       ]
     }
-  }
+  },
+  "readyNow": "Para cocinar ahora",
+  "later": "Más adelante en el año",
+  "findOnMap": "Buscarlo en el mapa",
+  "recipeCount_one": "{{count}} receta",
+  "recipeCount_other": "{{count}} recetas",
+  "moreCount": "+{{count}} más"
 }
