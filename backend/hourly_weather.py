@@ -36,6 +36,10 @@ VARS = ("t2m_c", "td2m_c", "precip_mm", "wind10_kmh", "swdown_wm2", "cloud_pct")
 DECIMALS = {"t2m_c": 1, "td2m_c": 1, "precip_mm": 2, "wind10_kmh": 1, "swdown_wm2": 0, "cloud_pct": 0}
 OUT_DIR = Path(os.getenv("HOURLY_WEATHER_DIR") or Path(__file__).resolve().parents[2] / "hourly_weather")
 KEEP_FORECAST_DAYS, KEEP_CACHE_DAYS = 30, 2
+MAX_GAP = 6  # hours: the longest stretch between two steps we bridge; past it, the next model
+# A region's whole run. The regions score back to back and the scores upload at 04:10, so a
+# server that hangs must cost one night's hourly file, never the other regions' scores.
+DEADLINE_MINUTES = 10
 
 
 def _xyz(lats, lons):
@@ -58,7 +62,7 @@ def to_hours(kind, valid, values, hours, init):
     end of its hour). 'state': instant values, linear between steps. 'accum': amount since
     the run started; 'mean': mean since the run started (ICON's radiation); 'hourly': amount
     in the hour ending at the step. Those three come out as the amount in, or the mean over,
-    each hour. NaN where the model's steps do not reach."""
+    each hour. NaN where the model's steps do not reach, or lie more than MAX_GAP apart."""
     t = np.asarray((valid - init) / HOUR, float)
     h = np.asarray((hours - init) / HOUR, float)
     out = np.full((len(h), values.shape[1]), np.nan)
@@ -68,7 +72,7 @@ def to_hours(kind, valid, values, hours, init):
         i = np.clip(np.searchsorted(t, h), 1, len(t) - 1)
         w = ((h - t[i - 1]) / (t[i] - t[i - 1]))[:, None]
         out = values[i - 1] * (1 - w) + values[i] * w
-        out[(h < t[0]) | (h > t[-1])] = np.nan
+        out[(h < t[0]) | (h > t[-1]) | (t[i] - t[i - 1] > MAX_GAP)] = np.nan
         return out
     if kind == "hourly":
         start, rate = t - 1, values
@@ -84,7 +88,7 @@ def to_hours(kind, valid, values, hours, init):
     i = np.searchsorted(t, h)  # the first step ending at or after the hour's end
     ok = i < len(t)
     i = np.minimum(i, len(t) - 1)
-    ok &= start[i] <= h - 1    # ... whose window holds the whole hour
+    ok &= (start[i] <= h - 1) & (t[i] - start[i] <= MAX_GAP)  # ... whose window holds the hour
     out[ok] = rate[i[ok]]
     return out
 
@@ -121,24 +125,33 @@ def to_frame(hours, lats, lons, layers, names):
     for var in VARS:
         values, src = blend([layer.get(var, missing) for layer in layers])
         frame[var] = np.round(values.ravel(), DECIMALS[var]).astype(np.float32)
-        if var == "t2m_c":
-            frame["source"] = np.asarray([*names, ""])[src.ravel()]
+        if var == "t2m_c":  # categorical: as text it was 166 of the frame's 266 MiB
+            frame["source"] = pd.Categorical.from_codes(src.ravel(), categories=names)
     return frame
+
+
+def _write(frame, path):
+    """Write by renaming a finished file into place: a run killed mid-write leaves the old
+    file, not a broken one every later night would trip over."""
+    part = Path(path).with_suffix(".tmp")
+    frame.to_parquet(part, index=False, compression="zstd")
+    part.replace(path)
 
 
 def write_night(region_dir, frame, start):
     """Tonight's file, named by the first model's run start."""
     path = Path(region_dir) / "forecast" / f"{start:%Y%m%d%H}.parquet"
     path.parent.mkdir(parents=True, exist_ok=True)
-    frame.to_parquet(path, index=False, compression="zstd")
+    _write(frame, path)
     return path
 
 
 def roll_past(region_dir, start):
-    """Add to the daily past files (UTC days) the hours the newest earlier night covered up
-    to tonight's run start and the past does not have yet: each hour once, from the newest
-    run that started before it. A missed night is filled from the older run's longer leads.
-    Daily, so a night rewrites two small files, not a month's. Returns the files written."""
+    """Add to the daily past files the hours the newest earlier night covered up to tonight's
+    run start and the past does not have yet: each hour once, from the newest run that
+    started before it. A missed night is filled from the older run's longer leads. An hour
+    belongs to the UTC day it starts in, as era5_rain's days. Daily, so a night rewrites two
+    small files, not a month's. Returns the files written."""
     region_dir = Path(region_dir)
     earlier = sorted(p for p in (region_dir / "forecast").glob("*.parquet") if p.stem < f"{start:%Y%m%d%H}")
     if not earlier:
@@ -151,11 +164,11 @@ def roll_past(region_dir, start):
     if days:
         rows = rows[rows["time"] > pd.read_parquet(days[-1], columns=["time"])["time"].max()]
     written = []
-    for day, part in rows.groupby(rows["time"].dt.strftime("%Y-%m-%d")):
+    for day, part in rows.groupby((rows["time"] - HOUR).dt.strftime("%Y-%m-%d")):
         path = past_dir / f"{day}.parquet"
         if path.exists():
             part = pd.concat([pd.read_parquet(path), part], ignore_index=True)
-        part.to_parquet(path, index=False, compression="zstd")
+        _write(part, path)
         written.append(path)
     return written
 
@@ -175,11 +188,10 @@ def prune(folder, days):
 
 
 def newest_run(source, session, now):
-    """The newest run of the last two days whose last files are up, or None."""
-    for back in range(48):
+    """The newest complete run of the last day, or None. (ICON-EU's files last about a day.)"""
+    for back in range(24):
         init = (now - back * HOUR).floor("h")
-        if init.hour in source.cycles and all(
-                session.head(url, timeout=30).status_code == 200 for url in source.probe(init)):
+        if init.hour in source.cycles and source.ready(session, init):
             return init
     return None
 
@@ -189,7 +201,7 @@ def download(session, url, span, folder):
     path = Path(folder) / (hashlib.sha1(f"{url} {span}".encode()).hexdigest() + ".grib2")
     if not path.exists():
         headers = {"Range": f"bytes={span[0]}-{'' if span[1] is None else span[1]}"} if span else {}
-        response = session.get(url, headers=headers, timeout=180)
+        response = session.get(url, headers=headers, timeout=(10, 60))
         response.raise_for_status()
         data = bz2.decompress(response.content) if url.endswith(".bz2") else response.content
         part = path.with_suffix(".part")
@@ -205,7 +217,7 @@ def decode(data, with_grid=False):
     gid = eccodes.codes_new_from_message(data)
     try:
         values = eccodes.codes_get_values(gid).astype(np.float32)
-        if eccodes.codes_get(gid, "bitmapPresent"):
+        if eccodes.codes_get(gid, "numberOfMissing"):  # by bitmap or, as NBM may, by packing
             values[values == eccodes.codes_get(gid, "missingValue")] = np.nan
         if eccodes.codes_get(gid, "alternativeRowScanning"):
             # NBM's rows alternate direction. ecCodes 2.50 lists every row's coordinates west
@@ -223,38 +235,50 @@ def decode(data, with_grid=False):
     return valid, values, grid
 
 
-def read_source(source, init, last, lats, lons, session):
+def read_source(source, init, last, lats, lons, session, deadline):
     """{field: {valid time: values at the points}} of one run, NaN where the model does not
-    reach. Downloads run in parallel and are decoded as they land; up to 5% may fail."""
+    reach. Downloads run in parallel and are decoded as they land. Up to 5% of the files may
+    fail (fields no server would list count too); past `deadline` (epoch seconds) the run is
+    given up (TimeoutError)."""
     files = source.files(session, init, last)
     folder = OUT_DIR / "cache" / source.name / f"{init:%Y%m%d%H}"
     folder.mkdir(parents=True, exist_ok=True)
-    fields, cells, failed = {}, None, 0
-    with ThreadPoolExecutor(WORKERS) as pool:
-        jobs = {pool.submit(download, session, url, span, folder): field for field, url, span in files}
-        for job in as_completed(jobs):
+    fields, cells = {}, None
+    failed = sum(url is None for _, url, _ in files)
+    pool = ThreadPoolExecutor(WORKERS)
+    try:
+        jobs = {pool.submit(download, session, url, span, folder): field for field, url, span in files if url}
+        for job in as_completed(jobs, timeout=max(0.0, deadline - time.time())):
+            path = None
             try:
-                data = job.result().read_bytes()
-            except requests.RequestException as e:
+                path = job.result()
+                valid, values, grid = decode(path.read_bytes(), with_grid=cells is None)
+            except Exception as e:  # noqa: BLE001  a file that won't download or decode counts as failed
                 failed += 1
-                print(f"Hourly weather: {source.name} download failed: {e!r}")
+                print(f"Hourly weather: {source.name} file failed: {e!r}")
+                if path is not None:
+                    path.unlink(missing_ok=True)  # or the next region reads it from the cache
                 continue
-            valid, values, grid = decode(data, with_grid=cells is None)
             if cells is None:
                 cells = nearest_cells(*grid, lats, lons)
             fields.setdefault(jobs[job], {})[valid] = np.where(cells >= 0, values[cells], np.nan).astype(np.float32)
+    finally:
+        pool.shutdown(wait=False, cancel_futures=True)
     if failed > 0.05 * len(files):
-        raise RuntimeError(f"{source.name}: {failed} of {len(files)} downloads failed")
+        raise RuntimeError(f"{source.name}: {failed} of {len(files)} files failed")
     return fields
 
 
-def upload(paths):
-    """Copy the files to R2 under hourly_weather/, as they lie under OUT_DIR."""
+def upload(region_dir, days=2):
+    """Copy the region's files written in the last `days` to R2 under hourly_weather/, as
+    they lie under OUT_DIR: a night whose upload failed goes again the next night."""
     import r2
     s3 = r2.client()  # loads .env.secret, which holds the bucket name
-    for path in paths:
-        s3.upload_file(str(path), os.environ["R2_BUCKET_NAME"],
-                       f"hourly_weather/{Path(path).relative_to(OUT_DIR).as_posix()}")
+    cutoff = time.time() - days * 86400
+    for path in Path(region_dir).rglob("*.parquet"):
+        if path.stat().st_mtime >= cutoff:
+            s3.upload_file(str(path), os.environ["R2_BUCKET_NAME"],
+                           f"hourly_weather/{path.relative_to(OUT_DIR).as_posix()}")
 
 
 def summary(frame, seconds):
@@ -267,7 +291,7 @@ def summary(frame, seconds):
 
 def _session():
     session = requests.Session()
-    retry = Retry(total=4, backoff_factor=2, status_forcelist=(429, 500, 502, 503, 504),
+    retry = Retry(total=3, backoff_factor=2, status_forcelist=(429, 500, 502, 503, 504),
                   allowed_methods=("GET", "HEAD"))
     session.mount("https://", HTTPAdapter(max_retries=retry, pool_maxsize=2 * WORKERS))
     return session
@@ -275,15 +299,21 @@ def _session():
 
 def run(region, points, now=None):
     """Tonight's hourly forecast at the region's points, the hours since last night added to
-    the past, both copied to R2."""
+    the past, both copied to R2. Each model is found and read on its own: one model's
+    outage costs that model, not the night."""
     started = time.time()
+    deadline = started + DEADLINE_MINUTES * 60
     now = pd.Timestamp.now(tz="UTC") if now is None else now
     lats, lons = np.asarray(points, float).T
     session = _session()
     prune(OUT_DIR / "cache", KEEP_CACHE_DAYS)
     runs = []
     for source in SOURCES[CONTINENT[region]]:
-        init = newest_run(source, session, now)
+        try:
+            init = newest_run(source, session, now)
+        except Exception as e:  # noqa: BLE001
+            init = None
+            print(f"Hourly weather: {source.name} run unknown: {e!r}")
         print(f"Hourly weather: {source.name} run {init}")
         if init is not None:
             runs.append((source, init))
@@ -295,19 +325,21 @@ def run(region, points, now=None):
     layers, names = [], []
     for source, init in runs:
         try:
-            fields = read_source(source, init, int((end - init) / HOUR), lats, lons, session)
-        except Exception as e:  # noqa: BLE001  one model's outage must not cost the others
+            fields = read_source(source, init, int((end - init) / HOUR), lats, lons, session, deadline)
+            layers.append(source_vars(source, fields, hours, init))
+            names.append(f"{source.name} {init:%Y-%m-%d %H}z")
+        except Exception as e:  # noqa: BLE001
             print(f"Hourly weather: {source.name} failed: {e!r}")
-            continue
-        layers.append(source_vars(source, fields, hours, init))
-        names.append(f"{source.name} {init:%Y-%m-%d %H}z")
     if not layers:
         raise RuntimeError("no model run could be read")
     frame = to_frame(hours, lats, lons, layers, names)
+    if frame["t2m_c"].isna().all():
+        raise RuntimeError("no temperature at any point: nothing written")
     region_dir = OUT_DIR / region
-    written = [write_night(region_dir, frame, start), *roll_past(region_dir, start)]
+    write_night(region_dir, frame, start)
+    roll_past(region_dir, start)
     prune(region_dir / "forecast", KEEP_FORECAST_DAYS)
-    upload(written)
+    upload(region_dir)
     summary(frame, time.time() - started)
 
 

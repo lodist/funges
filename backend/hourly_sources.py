@@ -31,9 +31,19 @@ WORKERS = 8
 class Source:
     name: str
     cycles: tuple    # UTC run hours that reach far enough ahead
-    probe: Callable  # run start -> URLs that answer once that run is complete
-    files: Callable  # (session, run start, last lead hour) -> [(field, url, (first, last byte) or None)]
+    ready: Callable  # (session, run start) -> whether that run is complete
+    # (session, run start, last lead hour) -> [(field, url, (first, last byte) or None)];
+    # url None for a field no server would list, which read_source counts as failed.
+    files: Callable
     vars: dict       # our variable -> (kind, fields, convert); kinds as in hourly_weather.to_hours
+
+
+def answers(session, url):
+    """Whether the URL is there; a server still failing after its retries counts as no."""
+    try:
+        return session.head(url, timeout=30).status_code == 200
+    except requests.RequestException:
+        return False
 
 
 def _map(fn, items):
@@ -55,7 +65,7 @@ ICON_EU = Source(
     name="icon_eu",
     cycles=(0, 6, 12, 18),  # the 03/09/15/21z runs stop at 48 h
     # DWD keeps one run per cycle hour, about a day, and writes a new one over ~45 minutes.
-    probe=lambda init: [icon_eu_url(init, field, 120) for field in ICON_EU_FIELDS],
+    ready=lambda session, init: all(answers(session, icon_eu_url(init, field, 120)) for field in ICON_EU_FIELDS),
     files=lambda session, init, last: [(field, icon_eu_url(init, field, step), None)
                                        for field in ICON_EU_FIELDS
                                        for step in ICON_EU_STEPS if step <= last],
@@ -92,8 +102,8 @@ def ecmwf_messages(index_text):
 
 def _ecmwf_files(session, init, last):
     def step_files(step):
-        """The step's messages from the first host that serves its index; none if no host
-        does (a missing step is bridged by its neighbours)."""
+        """The step's messages from the first host that serves its index; failed ones if
+        no host does."""
         for host in ECMWF_HOSTS:
             url = ecmwf_url(host, init, step)
             try:
@@ -103,14 +113,14 @@ def _ecmwf_files(session, init, last):
                 print(f"Hourly weather: ECMWF {url}.index failed: {e!r}")
                 continue
             return [(param, url + ".grib2", (first, end)) for param, first, end in ecmwf_messages(response.text)]
-        return []
+        return [(param, None, None) for param in ECMWF_FIELDS]
     return [f for files in _map(step_files, [s for s in ECMWF_STEPS if s <= last]) for f in files]
 
 
 ECMWF = Source(
     name="ecmwf_ifs",
     cycles=(0, 12),  # the 06/18z runs stop at 144 h
-    probe=lambda init: [ecmwf_url(ECMWF_HOSTS[0], init, 180) + ".index"],
+    ready=lambda session, init: any(answers(session, ecmwf_url(host, init, 180) + ".index") for host in ECMWF_HOSTS),
     files=_ecmwf_files,
     vars={
         "t2m_c": ("state", ("2t",), lambda t: t - K),
@@ -152,11 +162,15 @@ def nbm_messages(idx_text):
 
 def _nbm_files(session, init, last):
     def step_files(step):
+        """The step's messages; failed ones if its .idx can't be read (these runs have a
+        file for every hour, so a missing one is a failure, not the run's end)."""
         url = NBM_URL.format(init=init, step=step)
-        response = session.get(url + ".idx", timeout=60)
-        if response.status_code == 404:
-            return []
-        response.raise_for_status()
+        try:
+            response = session.get(url + ".idx", timeout=60)
+            response.raise_for_status()
+        except requests.RequestException as e:
+            print(f"Hourly weather: NBM {url}.idx failed: {e!r}")
+            return [(field, None, None) for field in NBM_FIELDS]
         return [(field, url, (first, end)) for field, first, end in nbm_messages(response.text)]
     return [f for files in _map(step_files, range(1, last + 1)) for f in files]
 
@@ -164,7 +178,7 @@ def _nbm_files(session, init, last):
 NBM = Source(
     name="nbm",
     cycles=(1, 7, 13, 19),  # the runs with hourly rain all the way out
-    probe=lambda init: [NBM_URL.format(init=init, step=174) + ".idx"],
+    ready=lambda session, init: answers(session, NBM_URL.format(init=init, step=174) + ".idx"),
     files=_nbm_files,
     vars={
         "t2m_c": ("state", ("TMP",), lambda t: t - K),

@@ -49,22 +49,42 @@ def test_icon_eu_lists_every_field_at_every_step_it_has():
     assert len(hs.ICON_EU.files(None, INIT, 2)) == 8 * 3
 
 
-class _Index:
-    """A session serving one .index line from the hosts in `ok`; the others fail as a
-    throttled mirror does once its retries run out."""
+class _Hosts:
+    """A session that answers from the hosts in `ok` (one .index line to a GET, 200 to a
+    HEAD); the others fail as a throttled server does once its retries run out."""
     def __init__(self, ok):
         self.ok = ok
 
-    def get(self, url, timeout):
+    def _check(self, url):
         if not any(url.startswith(host) for host in self.ok):
             raise requests.exceptions.RetryError("too many 503 error responses")
+
+    def get(self, url, timeout):
+        self._check(url)
         text = '{"levtype": "sfc", "param": "2t", "_offset": 0, "_length": 5}'
         return type("Response", (), {"text": text, "raise_for_status": lambda self: None})()
 
+    def head(self, url, timeout):
+        self._check(url)
+        return type("Response", (), {"status_code": 200})()
 
-def test_ecmwf_falls_back_to_its_other_host_and_skips_a_step_none_serves():
+
+def test_ecmwf_falls_back_to_its_other_host():
     data, aws = hs.ECMWF_HOSTS
-    files = hs.ECMWF.files(_Index({aws}), INIT, 3)
+    files = hs.ECMWF.files(_Hosts({aws}), INIT, 3)
     assert [url for _, url, _ in files] == [hs.ecmwf_url(aws, INIT, 0) + ".grib2",
                                             hs.ecmwf_url(aws, INIT, 3) + ".grib2"]
-    assert hs.ECMWF.files(_Index(set()), INIT, 3) == []
+
+
+def test_a_step_no_host_serves_comes_back_as_failed_fields():
+    # url None: read_source counts each as a failed file, so a night of throttled servers
+    # fails the model instead of passing with empty hours.
+    assert hs.ECMWF.files(_Hosts(set()), INIT, 3) == [(p, None, None) for p in hs.ECMWF_FIELDS] * 2
+    assert hs.NBM.files(_Hosts(set()), INIT, 2) == [(f, None, None) for f in hs.NBM_FIELDS] * 2
+
+
+def test_a_run_is_ready_when_any_ecmwf_host_has_it_and_a_failing_server_means_not_ready():
+    data, aws = hs.ECMWF_HOSTS
+    assert hs.ECMWF.ready(_Hosts({aws}), INIT)
+    assert not hs.ECMWF.ready(_Hosts(set()), INIT)
+    assert not hs.ICON_EU.ready(_Hosts(set()), INIT)

@@ -8,5 +8,5 @@ requests
 scipy
 shapely
 netCDF4
-eccodes>=2.50
+eccodes==2.50.*  # hourly_weather.decode relies on 2.50 returning NBM values in file order
 lightgbm
