@@ -34,12 +34,18 @@ def on_days(grid: dict, lats, lons, dates) -> dict:
     return {name: (1 - weight) * a[name] + weight * b[name] for name in a}
 
 
-def lookup(grid: dict, lats, lons, months) -> dict:
-    """Each place's nearest cell, for its month (1-12); NaN outside the grid."""
+def cells(grid: dict, lats, lons):
+    """Each place's nearest cell (row, column) and whether that cell is on the grid."""
     lat, lon = grid["lat"], grid["lon"]
     i = np.rint((lat[0] - np.asarray(lats, float)) / (lat[0] - lat[1])).astype(int)
     j = np.rint((np.asarray(lons, float) - lon[0]) / (lon[1] - lon[0])).astype(int)
     inside = (i >= 0) & (i < len(lat)) & (j >= 0) & (j < len(lon))
-    i, j, m = np.clip(i, 0, len(lat) - 1), np.clip(j, 0, len(lon) - 1), np.asarray(months) - 1
+    return np.clip(i, 0, len(lat) - 1), np.clip(j, 0, len(lon) - 1), inside
+
+
+def lookup(grid: dict, lats, lons, months) -> dict:
+    """Each place's nearest cell, for its month (1-12); NaN outside the grid."""
+    i, j, inside = cells(grid, lats, lons)
+    m = np.asarray(months) - 1
     return {f"norm_{name}": np.where(inside, grid[name][m, i, j].astype(float), np.nan)
             for name in ("rain", "tmean", "rh")}

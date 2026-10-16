@@ -1058,14 +1058,28 @@ def fruiting_design(raw, warmth=None, names=FRUITING_FEATURES):
     return out[names]
 
 
-def fruiting_weather_part(df, model):
+def fit_level_offset(level, df):
+    """The place's shift to a fitted index on the row's day (attach_fit_levels), the months
+    either side blended as the maps are; 0 where there is none."""
+    if level is None:
+        return 0.0
+    i, j, inside = era5_normals.cells(level, df["Latitude"].to_numpy(float), df["Longitude"].to_numpy(float))
+    months = (pd.to_datetime(df["Date"]).dt.dayofyear.to_numpy() - 15.0) / (365.25 / 12)  # 0 = mid-January
+    before = np.floor(months).astype(int)
+    weight = months - before
+    offset = level["offset"]
+    shift = (1 - weight) * offset[before % 12, i, j] + weight * offset[(before + 1) % 12, i, j]
+    return np.where(inside & np.isfinite(shift), shift, 0.0)
+
+
+def fruiting_weather_part(df, model, level=None):
     """The fitted index, put on the hand-set weather part's own scale. model["map"] holds one
     map per calendar month, pairing quantiles of the index with the same quantiles of the
     hand-set part at that time of year, so a score keeps its range, threshold and seasonal
     level and only its order changes; a day blends the two months either side of it. The
     fit learned on ERA5, whose humidity reads higher than the stored WeatherAPI values, so
     model["humidity_from_stored"] = (a, b) puts stored humidity on ERA5's level first. A
-    feature the row lacks counts as average."""
+    feature the row lacks counts as average. `level` shifts the index per place first."""
     warmth = None
     if model.get("normals") is not None:
         warmth = fruiting_warmth(model["normals"], df["Latitude"], df["Longitude"], df["Date"])
@@ -1076,7 +1090,7 @@ def fruiting_weather_part(df, model):
         design = fruiting_relative(design, model["normals"], df["Latitude"], df["Longitude"], df["Date"])
     z = (design.to_numpy(float) - np.asarray(model["means"])) / np.asarray(model["sds"])
     eta = np.nan_to_num(z, nan=0.0) @ np.asarray(model["beta"], float)
-    return _monthly_map(eta, df["Date"], model["map"])
+    return _monthly_map(eta + fit_level_offset(level, df), df["Date"], model["map"])
 
 
 def _monthly_map(index, dates, maps):
@@ -1118,9 +1132,11 @@ def fruiting_gbm_features(df, model):
         np.full(len(df), model["region_code"], float)])
 
 
-def fruiting_gbm_weather_part(features, df, model):
-    """The GBM's raw score through its monthly maps onto the hand-set weather part's scale."""
-    return _monthly_map(model["booster"].predict(features, raw_score=True), df["Date"], model["map"])
+def fruiting_gbm_weather_part(features, df, model, level=None):
+    """The GBM's raw score, shifted per place by `level`, through its monthly maps onto the
+    hand-set weather part's scale."""
+    index = model["booster"].predict(features, raw_score=True) + fit_level_offset(level, df)
+    return _monthly_map(index, df["Date"], model["map"])
 
 
 def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
@@ -1175,6 +1191,32 @@ def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, f
             "corrections": spec["inputs_from_stored"][region],
             "region_code": FRUITING_GBM_REGIONS.index(region), "anchor": pd.Timestamp(today),
             "normals": normals}
+
+
+FIT_LEVELS_DIR = Path(__file__).resolve().parent / "generated"
+FIT_LEVEL_SCALE, FIT_LEVEL_NONE = 100.0, -32768   # stored as int16 hundredths of the index
+
+
+def attach_fit_levels(species_params, region, folder=FIT_LEVELS_DIR):
+    """Each fitted model's place level (tools/build_fit_levels.py): per place and month, the
+    shift to its index that puts the place where the hand-set weather part has it. The fits
+    learn from a find day against the same place's other days, so a place's level against
+    another's is not something they learned; shifted, the fit moves the days and the hand-set
+    parts rank the places. Attached for the model a species scores with (its GBM, else its
+    linear fit); a model without one keeps its index as fitted."""
+    path = Path(folder) / f"fit_levels_{era5_normals.CONTINENT[region]}.npz"
+    if not path.exists():
+        return
+    with np.load(path) as z:
+        grid, names = {"lat": z["lat"], "lon": z["lon"]}, set(z.files)
+        for specie, params in species_params.items():
+            kind = "gbm" if params.get("fruiting_gbm") else "linear" if params.get("fruiting") else None
+            name = f"{specie}.{region}.{kind}"
+            params.pop("fit_level", None)
+            if kind and name in names:
+                stored = z[name]
+                offset = np.where(stored == FIT_LEVEL_NONE, np.nan, stored / FIT_LEVEL_SCALE).astype(np.float32)
+                params["fit_level"] = {**grid, "offset": offset}
 
 
 PHENOLOGY_PATH = Path(__file__).resolve().parent / "generated" / "phenology.json"
@@ -1311,9 +1353,9 @@ def calculate_mushroom_score(df, species_params, zone_curves):
         if params.get("fruiting_gbm"):
             if gbm_features is None:   # the same for every species of a region run
                 gbm_features = fruiting_gbm_features(df, params["fruiting_gbm"])
-            fitted = fruiting_gbm_weather_part(gbm_features, df, params["fruiting_gbm"])
+            fitted = fruiting_gbm_weather_part(gbm_features, df, params["fruiting_gbm"], params.get("fit_level"))
         elif params.get("fruiting"):
-            fitted = fruiting_weather_part(df, params["fruiting"])
+            fitted = fruiting_weather_part(df, params["fruiting"], params.get("fit_level"))
         if params.get("fruiting_gbm") or params.get("fruiting"):
             for part in ("Temp", "Humidity", "Weather"):
                 df[f'{specie}_{part}_Score'] = fitted
@@ -1553,6 +1595,7 @@ def _load_species_and_curves(config):
 
     attach_fruiting_models(species_params, config.region)
     attach_fruiting_gbm(species_params, config.region, datetime.now())
+    attach_fit_levels(species_params, config.region)
     attach_habitat(species_params, config.region)
     attach_phenology(species_params, config.region)
     attach_local_season(species_params, config.region)
@@ -1560,6 +1603,8 @@ def _load_species_and_curves(config):
     print(f"Fitted fruiting model for {len(_fitted)} species: {', '.join(_fitted) or 'none'}")
     _gbm = sorted(s for s, p in species_params.items() if "fruiting_gbm" in p)
     print(f"Fruiting GBM for {len(_gbm)} species: {', '.join(_gbm) or 'none'}")
+    _levelled = sorted(s for s, p in species_params.items() if "fit_level" in p)
+    print(f"Fitted part levelled to the hand-set places for {len(_levelled)} species: {', '.join(_levelled) or 'none'}")
     _habitat = sorted(s for s, p in species_params.items() if "habitat" in p)
     print(f"Habitat factor for {len(_habitat)} species: {', '.join(_habitat) or 'none'}")
     _learned = sorted(s for s, p in species_params.items() if p.get("phenology") is not None)

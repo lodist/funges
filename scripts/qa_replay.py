@@ -13,8 +13,10 @@ shares of scores below its own, ties counting half, so 0.5 is chance:
           people record fungi (or plants), so following observers earns nothing
   timing  the same place within 3 weeks either side of the find: the weather's timing
   season  the same place over the whole window: mostly the season curve
-The same for the stored scores (compared with today's code on the place-days they have: a
-species added in October has no stored September) and, with --against, for another run's.
+The same for the stored scores (compared with today's code on the place-days they have, a
+species added in October having no stored September, and with each day's mean over the places
+off both sides, as the stored scores step on the nights the code changed) and, with --against,
+for another run's. Days the masters lack are filled from the days either side (up to 2).
 
 Run from the checkout whose code is tested; for a branch, main first, the same day:
   python scripts/qa_replay.py --out ../qa/main
@@ -58,7 +60,13 @@ CONFIGS = {
     "USE": "backend/US/USE/USE_Scoring.py",
     "USW": "backend/US/USW/USW_Scoring.py",
 }
-PARTS = ("fruiting_gbm", "fruiting", "habitat", "local_season", "phenology", "range_prior", "host_prior")
+PARTS = ("fruiting_gbm", "fruiting", "fit_level", "habitat", "local_season", "phenology", "range_prior", "host_prior")
+# Weather the masters lack on whole days (1 May, 22 May and 3 Jun 2026 in every region): read
+# across such a hole, a day's lags would come from nothing. The nightly run no longer reads them.
+WEATHER = ["Pressure (hPa)", "TotalPrecipitation_mm", "Humidity (%)", "Wind Speed (m/s)", "Temperature (C) Max",
+           "Temperature (C) Min", "Temperature (C)", "Wind Speed Mean (kph)", "Rain Hours", "Snowfall (cm)",
+           "Solar Radiation (Wh/m2)"]
+GAP_DAYS = 2
 INPUTS = [
     "Location_Id", "Date", "Latitude", "Longitude", "Elevation (m)", "Pressure (hPa)",
     "TotalPrecipitation_mm", "Humidity (%)", "Wind Speed (m/s)", "Temperature (C) Max",
@@ -128,7 +136,35 @@ def settings(config, species, without):
             p.pop(part, None)
     if "fruiting_gbm" in without and "fruiting" not in without:
         fp.attach_fruiting_models(params, config.region)  # the GBM had replaced the linear fit
+        if "fit_level" not in without:
+            fp.attach_fit_levels(params, config.region)    # and the linear fit has its own level
     return params, zone_curves
+
+
+def fill_gaps(inputs):
+    """Each place's missing days, up to GAP_DAYS in a row, as the days either side interpolated
+    (weather) or carried (the place's own columns); longer holes stay holes."""
+    inputs = inputs.sort_values(["Location_Id", "Date"])
+    locs, days = inputs.Location_Id.unique(), pd.date_range(inputs.Date.min(), inputs.Date.max())
+    frame = inputs.set_index(["Location_Id", "Date"]).reindex(pd.MultiIndex.from_product([locs, days]))
+    present = frame["Latitude"].notna().to_numpy().reshape(len(locs), len(days))
+    position = np.broadcast_to(np.arange(len(days)), present.shape)
+    before = np.maximum.accumulate(np.where(present, position, -1), axis=1)
+    after = np.minimum.accumulate(np.where(present, position, len(days))[:, ::-1], axis=1)[:, ::-1]
+    fill = ~present & (before >= 0) & (after < len(days)) & (after - before - 1 <= GAP_DAYS)
+    rows, cols = np.nonzero(fill)
+    b, a = before[rows, cols], after[rows, cols]
+    share = (cols - b) / (a - b)
+    for column in frame.columns:
+        values = frame[column].to_numpy().reshape(len(locs), len(days)).copy()
+        if column in WEATHER:
+            start, end = values[rows, b].astype(float), values[rows, a].astype(float)
+            values[rows, cols] = start + share * (end - start)
+        else:
+            values[rows, cols] = values[rows, b]
+        frame[column] = values.reshape(-1)
+    keep = (present | fill).reshape(-1)
+    return frame[keep].rename_axis(["Location_Id", "Date"]).reset_index()
 
 
 def places(masters, region, day):
@@ -189,7 +225,7 @@ def score_region(region, finds, grid, masters, species, without, days):
     history = history.drop_duplicates(["Location_Id", "Date"], keep="last").sort_values(["Location_Id", "Date"])
     stored = history.loc[history.Location_Id.isin(targets) & history.Date.isin(days),
                          ["Location_Id", "Date", *(c for c in columns if c in history)]]
-    inputs = history[[c for c in INPUTS if c in history]]
+    inputs = fill_gaps(history[[c for c in INPUTS if c in history]])
     del history
 
     parts, started = [], time.time()
@@ -207,6 +243,13 @@ def score_region(region, finds, grid, masters, species, without, days):
         parts.append(frame.loc[frame.Location_Id.isin(targets), ["Location_Id", "Date", *columns]])
         print(f"  {region}: {chunk[0].date()}..{chunk[-1].date()} ({time.time() - started:.0f}s)", flush=True)
     return {"today": pd.concat(parts, ignore_index=True), "stored": stored}
+
+
+def day_steps_off(values):
+    """A place x day matrix less each day's mean over the places (days without any stay NaN)."""
+    counts = np.isfinite(values).sum(axis=0)
+    means = np.divide(np.nansum(values, axis=0), counts, out=np.full(values.shape[1], np.nan), where=counts > 0)
+    return values - means
 
 
 def evaluate(region, finds, tables, days):
@@ -238,8 +281,11 @@ def evaluate(region, finds, tables, days):
         others = finds.loc[(finds.kingdom == kingdom) & (finds.species_id != species), "loc"].value_counts()
         index = finds.index.get_indexer(mine)
         r, c = rows[index], cols[index]
-        for source, values in (("today", today), ("stored", stored),
-                               ("today@stored", np.where(np.isfinite(stored), today, np.nan))):
+        # Against the stored scores, each day's mean over the places comes off both sides: the
+        # stored scores step on the nights the code changed (winter chanterelle North Europe -1.0
+        # on 12 Oct), and read as timing those steps are the code's, not the weather's.
+        for source, values in (("today", today), ("stored", day_steps_off(stored)),
+                               ("today@stored", day_steps_off(np.where(np.isfinite(stored), today, np.nan)))):
             where, timing, season = percentiles(values, r, c, place.get_indexer(others.index), others.to_numpy())
             out.append(pd.DataFrame({
                 "region": region, "species": species, "kingdom": kingdom, "source": source,
@@ -277,7 +323,7 @@ def number(value, sign=False):
 def write_report(path, summary, meta):
     names = {s: c["name"] for s, c in get_species_metadata().items()}
     reference = (f"`{meta['against']}`, on the finds both scored" if meta["against"] else
-                 "the stored scores, on the finds and place-days they have")
+                 "the stored scores, on the finds and place-days they have, each day's mean off both")
     lines = [
         f"# Replay QA, {meta['start']} to {meta['end']}", "",
         f"Code: `{meta['branch']}` at `{meta['commit']}`{' (uncommitted changes)' if meta['dirty'] else ''}"
