@@ -196,6 +196,15 @@ const RECIPE_BASE_SPECIES: Record<string, string> = {
   winter_chant: 'chant',
 };
 
+/** A recipe species and the split-off siblings that cook like it: a
+ *  chanterelle tart is in season when any of the four chanterelles is. */
+export const recipeSpeciesFamily = (speciesId: string): string[] => [
+  speciesId,
+  ...Object.keys(RECIPE_BASE_SPECIES).filter(
+    id => RECIPE_BASE_SPECIES[id] === speciesId
+  ),
+];
+
 export const getRecipesBySpecies = (
   speciesId: string,
   recipes: Recipe[]

@@ -348,5 +348,33 @@
       "description": "Toutes les chanterelles en un seul score : les girolles, la trompette de la mort et la chanterelle en tube et, en Amérique du Nord, la girolle lisse et la girolle du Pacifique",
       "howTo": "Chaque lieu affiche le meilleur de leurs scores ; les girolles sur les pentes moussues sous les chênes, hêtres et conifères après une pluie chaude, les trompettes de la mort dans la litière humide sous les feuillus, les chanterelles en tube sur la mousse mouillée sous les conifères en fin de saison"
     }
+  },
+  "place": {
+    "before": "Terminé",
+    "now": "Maintenant",
+    "next": "Ensuite",
+    "later": "Plus tard"
+  },
+  "groups": {
+    "now": "De saison maintenant",
+    "next": "Bientôt",
+    "before": "Tout juste terminé",
+    "later": "Plus tard dans l'année",
+    "elsewhere": "Pousse dans d'autres régions"
+  },
+  "speciesCount_one": "{{count}} espèce",
+  "speciesCount_other": "{{count}} espèces",
+  "band": {
+    "summary_one": "{{count}} espèce de saison · {{place}}",
+    "summary_other": "{{count}} espèces de saison · {{place}}",
+    "summaryCalendar_one": "{{count}} espèce de saison",
+    "summaryCalendar_other": "{{count}} espèces de saison"
+  },
+  "sheet": {
+    "today": "Aujourd'hui · {{place}}",
+    "notToday": "Pas de saison aujourd'hui",
+    "whereItGrows": "Où elle pousse",
+    "lookalikes": "Sosies toxiques",
+    "tellApart": "Comment les distinguer"
   }
 }

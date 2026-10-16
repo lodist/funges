@@ -12,16 +12,6 @@
   "tips": "Tipps",
   "warnings": "Warnhinweise",
   "description": "Entdecke köstliche Rezepte mit gesammelten Zutaten",
-  "filterBy": "Zutat",
-  "filters": "Filter",
-  "clear": "Filter zurücksetzen",
-  "apply": "Anwenden",
-  "all": "Alle",
-  "mushroom": "Pilz",
-  "berry": "Beere",
-  "plant": "Pflanze",
-  "nut": "Nuss",
-  "more": "mehr",
   "search": {
     "placeholder": "Suche nach Rezepten, Zutaten oder Tags",
     "no_results": "Kein Rezept gefunden",
@@ -139,7 +129,12 @@
         "Braten: In einer Pfanne mit Öl 3–4 Min. pro Seite goldbraun braten.",
         "Servieren: Mit Joghurtsosse, Pesto oder als vegetarische Burger-Alternative servieren."
       ],
-      "species": ["amaranth", "chickweed", "sorrel", "dandelion"],
+      "species": [
+        "amaranth",
+        "chickweed",
+        "sorrel",
+        "dandelion"
+      ],
       "steps": [
         {
           "step": 1,
@@ -167,7 +162,11 @@
       "prepTime": "15 Min.",
       "cookTime": "25 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "black-chanterelle-cream-sauce": {
@@ -190,7 +189,9 @@
         "Sahne zugeben: Sahne einrühren, 5 Min. köcheln lassen, bis die Sauce leicht eindickt. Mit Salz, Pfeffer, Thymian abschmecken.",
         "Servieren: Perfekt zu frischer Pasta, Polenta oder Bratkartoffeln."
       ],
-      "species": ["black_chant"],
+      "species": [
+        "black_chant"
+      ],
       "steps": [
         {
           "step": 1,
@@ -224,8 +225,14 @@
       "prepTime": "20 Min.",
       "cookTime": "15 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "sauce", "easy"],
-      "safetyNotes": ["Sichere Bestimmung der gesammelten Pilze gewährleisten."]
+      "tags": [
+        "vegetarian",
+        "sauce",
+        "easy"
+      ],
+      "safetyNotes": [
+        "Sichere Bestimmung der gesammelten Pilze gewährleisten."
+      ]
     },
     "chanterelle-herb-tart": {
       "title": "Pfifferling-Kräuter-Tarte",
@@ -247,7 +254,9 @@
         "Backen: Bei 180°C 25–30 Min. goldbraun backen.",
         "Servieren: Warm oder kalt, ideal für ein Wald-Brunch."
       ],
-      "species": ["chant"],
+      "species": [
+        "chant"
+      ],
       "steps": [
         {
           "step": 1,
@@ -281,8 +290,14 @@
       "prepTime": "20 Min.",
       "cookTime": "30 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "medium"],
-      "safetyNotes": ["Sichere Bestimmung der gesammelten Pilze gewährleisten."]
+      "tags": [
+        "vegetarian",
+        "main",
+        "medium"
+      ],
+      "safetyNotes": [
+        "Sichere Bestimmung der gesammelten Pilze gewährleisten."
+      ]
     },
     "chickweed-sorrel-salad-with-walnut-vinaigrette": {
       "title": "Vogelmiere-Sauerampfer-Salat mit Walnuss-Vinaigrette",
@@ -302,7 +317,11 @@
         "Salat mischen: In einer grossen Schüssel Vogelmiere, Sauerampfer und Walnüsse vermengen. Mit Vinaigrette beträufeln und leicht mischen.",
         "Servieren: Sofort als frischen, leicht säuerlichen Salat geniessen."
       ],
-      "species": ["chickweed", "sorrel", "walnut"],
+      "species": [
+        "chickweed",
+        "sorrel",
+        "walnut"
+      ],
       "steps": [
         {
           "step": 1,
@@ -330,7 +349,11 @@
       "prepTime": "10 Min.",
       "cookTime": "5 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "salad", "easy"],
+      "tags": [
+        "vegetarian",
+        "salad",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "chestnut-mushroom-soup": {
@@ -355,7 +378,12 @@
         "Abschliessen: Nach Wunsch Sahne zugeben, mit Salz und Pfeffer abschmecken.",
         "Heiss servieren, dazu rustikales Brot oder etwas Trüffelöl."
       ],
-      "species": ["chestnut", "mushroom", "black_chant", "chant"],
+      "species": [
+        "chestnut",
+        "mushroom",
+        "black_chant",
+        "chant"
+      ],
       "steps": [
         {
           "step": 1,
@@ -393,8 +421,14 @@
       "prepTime": "10 Min.",
       "cookTime": "25 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "soup", "medium"],
-      "safetyNotes": ["Sichere Bestimmung der gesammelten Pilze gewährleisten."]
+      "tags": [
+        "vegetarian",
+        "soup",
+        "medium"
+      ],
+      "safetyNotes": [
+        "Sichere Bestimmung der gesammelten Pilze gewährleisten."
+      ]
     },
     "dandelion-flower-syrup": {
       "title": "Löwenzahnblüten-Sirup",
@@ -412,7 +446,9 @@
         "Einkochen: Bei niedriger Hitze 20–30 Min. köcheln lassen, bis ein Sirup entsteht.",
         "Abfüllen: In sterilisierte Gläser füllen. Lecker zu Pfannkuchen, Käse oder im Tee."
       ],
-      "species": ["dandelion"],
+      "species": [
+        "dandelion"
+      ],
       "steps": [
         {
           "step": 1,
@@ -444,7 +480,13 @@
       "prepTime": "20 Min.",
       "cookTime": "30 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "sauce", "dessert", "medium"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "sauce",
+        "dessert",
+        "medium"
+      ],
       "safetyNotes": []
     },
     "nettle-soup": {
@@ -468,7 +510,9 @@
         "Abschliessen: Nach Wunsch Sahne oder Hafermilch zugeben. Mit Salz und Pfeffer abschmecken.",
         "Heiss servieren, mit etwas Öl oder Croûtons."
       ],
-      "species": ["nettle"],
+      "species": [
+        "nettle"
+      ],
       "steps": [
         {
           "step": 1,
@@ -504,7 +548,11 @@
       "prepTime": "10 Min.",
       "cookTime": "20 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "soup", "medium"],
+      "tags": [
+        "vegetarian",
+        "soup",
+        "medium"
+      ],
       "safetyNotes": [
         "Beim Umgang mit frischen Brennnesseln Handschuhe tragen."
       ]
@@ -526,7 +574,9 @@
         "Braten: Öl oder Butter in der Pfanne erhitzen. Hüte bei mittlerer Hitze ca. 3 Min. pro Seite goldbraun braten.",
         "Servieren: Mit Zitronenspalten und frischem Salat servieren. Ein vegetarischer Klassiker."
       ],
-      "species": ["parasol"],
+      "species": [
+        "parasol"
+      ],
       "steps": [
         {
           "step": 1,
@@ -556,8 +606,14 @@
       "prepTime": "10 Min.",
       "cookTime": "6 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "easy"],
-      "safetyNotes": ["Sichere Bestimmung der gesammelten Pilze gewährleisten."]
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
+      "safetyNotes": [
+        "Sichere Bestimmung der gesammelten Pilze gewährleisten."
+      ]
     },
     "masterwort-infused-honey-glaze": {
       "title": "Meisterwurz-Honigglasur",
@@ -574,7 +630,9 @@
         "Abfüllen: In ein sauberes Glas füllen.",
         "Verwendung: Perfekt zu geröstetem Gemüse, gegrilltem Obst oder Wild. Im Kühlschrank wochenlang haltbar."
       ],
-      "species": ["masterwort"],
+      "species": [
+        "masterwort"
+      ],
       "steps": [
         {
           "step": 1,
@@ -602,7 +660,11 @@
       "prepTime": "5 Min.",
       "cookTime": "10 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "sauce", "medium"],
+      "tags": [
+        "vegetarian",
+        "sauce",
+        "medium"
+      ],
       "safetyNotes": []
     },
     "morel-chestnut-stuffing": {
@@ -625,7 +687,12 @@
         "Backen: In eine Auflaufform geben und bei 180°C 20 Min. goldbraun backen.",
         "Als Beilage zu Braten oder als vegetarisches Hauptgericht servieren."
       ],
-      "species": ["morel", "chestnut", "garlic", "bread"],
+      "species": [
+        "morel",
+        "chestnut",
+        "garlic",
+        "bread"
+      ],
       "steps": [
         {
           "step": 1,
@@ -659,8 +726,14 @@
       "prepTime": "15 Min.",
       "cookTime": "25 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "side", "medium"],
-      "safetyNotes": ["Sichere Bestimmung der gesammelten Pilze gewährleisten."]
+      "tags": [
+        "vegetarian",
+        "side",
+        "medium"
+      ],
+      "safetyNotes": [
+        "Sichere Bestimmung der gesammelten Pilze gewährleisten."
+      ]
     },
     "nettle-potato-frittata": {
       "title": "Brennnessel-Kartoffel-Frittata",
@@ -680,7 +753,9 @@
         "Stocken lassen: Bei niedriger Hitze stocken lassen, dann unter dem Grill fertig garen oder wenden.",
         "Warm oder kalt servieren, perfekt für Picknick oder Frühstück."
       ],
-      "species": ["nettle"],
+      "species": [
+        "nettle"
+      ],
       "steps": [
         {
           "step": 1,
@@ -712,7 +787,11 @@
       "prepTime": "10 Min.",
       "cookTime": "20 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Beim Umgang mit frischen Brennnesseln Handschuhe tragen."
       ]
@@ -736,7 +815,10 @@
         "Fertigstellen: Im Ofen oder unter dem Grill 5 Min. goldbraun backen (oder vorsichtig wenden).",
         "Servieren: Warm oder bei Zimmertemperatur – perfekt für Frühlingspicknick oder Brunch."
       ],
-      "species": ["st_george", "nettle"],
+      "species": [
+        "st_george",
+        "nettle"
+      ],
       "steps": [
         {
           "step": 1,
@@ -770,7 +852,11 @@
       "prepTime": "10 Min.",
       "cookTime": "20 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Beim Umgang mit frischen Brennnesseln Handschuhe tragen.",
         "Sichere Bestimmung der gesammelten Pilze gewährleisten."
@@ -792,7 +878,12 @@
         "Abschmecken: Mit Salz und Pfeffer würzen. Pulsierend mixen, bis eine grobe, streichfähige Paste entsteht.",
         "Servieren: Ideal auf Brot, als Dip oder zu Käse und gegrilltem Gemüse."
       ],
-      "species": ["walnut", "lingonb", "garlic", "masterwort"],
+      "species": [
+        "walnut",
+        "lingonb",
+        "garlic",
+        "masterwort"
+      ],
       "steps": [
         {
           "step": 1,
@@ -816,7 +907,12 @@
       "prepTime": "5 Min.",
       "cookTime": "5 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "appetizer", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "appetizer",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "wild-artichoke-lemon-pasta": {
@@ -837,7 +933,10 @@
         "Vermengen: Pasta mit Artischocken, Zitronensaft und -schale sowie Kochwasser mischen.",
         "Servieren: Mit Salz, Pfeffer und frischen Kräutern garnieren. Frisch, wild, mediterran."
       ],
-      "species": ["artichoke", "garlic"],
+      "species": [
+        "artichoke",
+        "garlic"
+      ],
       "steps": [
         {
           "step": 1,
@@ -865,7 +964,13 @@
       "prepTime": "15 Min.",
       "cookTime": "20 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "pasta", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "pasta",
+        "main",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "wild-asparagus-dandelion-stir-fry": {
@@ -886,7 +991,11 @@
         "Abschmecken: Mit Salz, Pfeffer und Zitronenschale würzen.",
         "Servieren: Lecker auf geröstetem Brot, Getreide oder als wilde Beilage."
       ],
-      "species": ["asparagus", "dandelion", "garlic"],
+      "species": [
+        "asparagus",
+        "dandelion",
+        "garlic"
+      ],
       "steps": [
         {
           "step": 1,
@@ -914,7 +1023,12 @@
       "prepTime": "10 Min.",
       "cookTime": "5 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "side",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "wild-garlic-pesto": {
@@ -935,7 +1049,10 @@
         "Abschmecken: Mit Salz würzen.",
         "Aufbewahren: In einem verschlossenen Glas im Kühlschrank eine Woche haltbar. Lecker zu Pasta, Sandwiches oder Ofengemüse."
       ],
-      "species": ["garlic", "walnut"],
+      "species": [
+        "garlic",
+        "walnut"
+      ],
       "steps": [
         {
           "step": 1,
@@ -967,7 +1084,11 @@
       "prepTime": "10 Min.",
       "cookTime": "5 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "sauce", "easy"],
+      "tags": [
+        "vegetarian",
+        "sauce",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "wild-strawberry-sorrel-cooler": {
@@ -987,7 +1108,10 @@
         "Abseihen (optional): Für ein klares Getränk abseihen oder mit Fruchtfleisch servieren.",
         "Garnieren: Mit Erdbeere und Sauerampferblatt dekorieren. Perfektes Sommergetränk."
       ],
-      "species": ["strawberry", "sorrel"],
+      "species": [
+        "strawberry",
+        "sorrel"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1015,7 +1139,11 @@
       "prepTime": "5 Min.",
       "cookTime": "0 Min.",
       "servings": "2–4",
-      "tags": ["vegetarian", "drink", "easy"],
+      "tags": [
+        "vegetarian",
+        "drink",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "lions-mane-crab-cakes": {
@@ -1039,7 +1167,9 @@
         "Braten: In Öl oder Butter bei mittlerer Hitze goldbraun und knusprig braten, etwa 3–4 Minuten pro Seite.",
         "Servieren: Mit Zitronenspalten und grünem Salat oder Remoulade."
       ],
-      "species": ["lions_mane"],
+      "species": [
+        "lions_mane"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1069,7 +1199,11 @@
       "prepTime": "20 min",
       "cookTime": "20 min",
       "servings": "2–3",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Igel-Stachelbart gut durchgaren und beim ersten Mal nur wenig essen: Manche Menschen reagieren darauf.",
         "In Großbritannien ist das Sammeln verboten, und in weiten Teilen Europas steht er auf der Roten Liste. Sammle ihn nur, wo er häufig ist, etwa in Nordamerika."
@@ -1092,7 +1226,9 @@
         "Rösten: In einer Lage auf einem Blech verteilen und bei 220 °C 20–25 Minuten rösten, einmal wenden, bis die Ränder braun und knusprig sind.",
         "Servieren: Heiß, mit Zitronenspalten, zu Reis, Polenta oder auf geröstetem Brot."
       ],
-      "species": ["hen_of_the_woods"],
+      "species": [
+        "hen_of_the_woods"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1118,7 +1254,12 @@
       "prepTime": "10 min",
       "cookTime": "25 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "side",
+        "easy"
+      ],
       "safetyNotes": [
         "Klapperschwamm gut durchgaren: Halbgar verträgt ihn nicht jeder Magen.",
         "Sein Doppelgänger, der Riesenporling, ist essbar, aber zäh; er schwärzt sich, wo man ihn anfasst."
@@ -1142,7 +1283,9 @@
         "Fertigstellen: Das Knoblauch-Petersilien-Öl auf die Lamellen löffeln, pfeffern und noch 1 Minute weitergrillen.",
         "Servieren: Sofort, mit Flockensalz bestreut, mit Brot zum Auftunken des Safts."
       ],
-      "species": ["saffron_milk_cap"],
+      "species": [
+        "saffron_milk_cap"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1172,7 +1315,12 @@
       "prepTime": "10 min",
       "cookTime": "10 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "side",
+        "easy"
+      ],
       "safetyNotes": [
         "Vor dem Kochen einen Hut oder Stiel anschneiden: Der Edel-Reizker gibt karottenorange bis rote Milch ab. Weiße oder gelbe Milch bedeutet einen anderen Milchling: Der Birken-Reizker (Lactarius torminosus: rosa Hut mit wolligem, eingerolltem Rand und weißer Milch) und ähnliche weißmilchende Arten verursachen heftige Magen-Darm-Beschwerden.",
         "Edel-Reizker verfärben sich bei Druck grün und können den Urin nach dem Essen rötlich färben. Beides ist harmlos."
@@ -1199,7 +1347,9 @@
         "Schmoren: Kartoffeln, Lorbeer und so viel heißes Wasser oder Brühe zugeben, dass alles knapp bedeckt ist. Salzen und halb zugedeckt 20–25 Minuten köcheln lassen, bis die Kartoffeln weich sind und die Brühe sämig ist.",
         "Servieren: 5 Minuten ruhen lassen, mit Petersilie bestreuen und mit Brot servieren."
       ],
-      "species": ["saffron_milk_cap"],
+      "species": [
+        "saffron_milk_cap"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1229,7 +1379,12 @@
       "prepTime": "15 min",
       "cookTime": "40 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Vor dem Kochen einen Hut oder Stiel anschneiden: Der Edel-Reizker gibt karottenorange bis rote Milch ab. Weiße oder gelbe Milch bedeutet einen anderen Milchling: Der Birken-Reizker (Lactarius torminosus: rosa Hut mit wolligem, eingerolltem Rand und weißer Milch) und ähnliche weißmilchende Arten verursachen heftige Magen-Darm-Beschwerden.",
         "Edel-Reizker verfärben sich bei Druck grün und können den Urin nach dem Essen rötlich färben. Beides ist harmlos."
@@ -1256,7 +1411,9 @@
         "Garen: Die heiße Brühe kellenweise zugießen, dabei oft rühren und jede Kelle einziehen lassen, bevor die nächste kommt, etwa 18 Minuten lang, bis der Reis cremig, aber noch bissfest ist. Die Pilze in den letzten 5 Minuten unterrühren.",
         "Fertigstellen: Vom Herd nehmen, die restliche Butter und den Parmesan kräftig unterrühren. Zugedeckt 2 Minuten ruhen lassen und mit ein paar Thymianblättchen servieren."
       ],
-      "species": ["hedgehog_mushroom"],
+      "species": [
+        "hedgehog_mushroom"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1286,7 +1443,11 @@
       "prepTime": "15 min",
       "cookTime": "30 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "medium"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "medium"
+      ],
       "safetyNotes": [
         "Vor dem Kochen unter den Hut schauen: Der Semmel-Stoppelpilz hat weiche Stacheln, keine Lamellen. Ältere Exemplare können bitter sein, schabe deshalb bei großen die Stacheln ab.",
         "Er hat keine gefährlichen Doppelgänger, aber iss trotzdem nur Pilze, die du sicher bestimmt hast."
@@ -1312,7 +1473,9 @@
         "Pürieren: Fein pürieren, Sahne und Zitronensaft einrühren und erhitzen, ohne dass die Suppe kocht. Mit Salz und Pfeffer abschmecken.",
         "Servieren: Heiß, mit Schnittlauch bestreut und mit geröstetem Brot. Dazu Wasser oder Saft trinken, keinen Wein und kein Bier."
       ],
-      "species": ["shaggy_mane"],
+      "species": [
+        "shaggy_mane"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1342,7 +1505,11 @@
       "prepTime": "10 min",
       "cookTime": "25 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "soup", "easy"],
+      "tags": [
+        "vegetarian",
+        "soup",
+        "easy"
+      ],
       "safetyNotes": [
         "Schopf-Tintlinge innerhalb weniger Stunden nach dem Sammeln kochen: Sie verdauen sich selbst zu schwarzer Tinte. Nur junge Exemplare verwenden, deren Lamellen noch ganz weiß sind.",
         "Sein Doppelgänger, der Graue Faltentintling (Coprinopsis atramentaria: grau, glatt, ohne zottige Schuppen), löst mit Alkohol, der in den Stunden vor der Mahlzeit oder bis zu drei Tage danach getrunken wird, eine heftige Reaktion aus. Deshalb wird diese Suppe ohne Alkohol gekocht und serviert: Trink keinen Alkohol dazu, wenn du dir bei deinem Fund nicht ganz sicher bist.",
@@ -1369,7 +1536,9 @@
         "Schichten: Etwas Sauce in eine Auflaufform streichen, dann Bovistscheiben, Sauce, Mozzarella, Basilikum und Parmesan einschichten. Wiederholen und mit Sauce, Mozzarella und Parmesan abschließen.",
         "Backen: Bei 200 °C 25 Minuten backen, bis es blubbert und die Oberfläche gebräunt ist. Vor dem Anschneiden 10 Minuten ruhen lassen."
       ],
-      "species": ["giant_puffball"],
+      "species": [
+        "giant_puffball"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1399,7 +1568,11 @@
       "prepTime": "20 min",
       "cookTime": "45 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "medium"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "medium"
+      ],
       "safetyNotes": [
         "Schneide jeden Bovist immer von oben nach unten durch. Zeichnen sich innen die Umrisse von Hut, Lamellen oder Stiel ab, ist es ein junger Wulstling (Amanita) im Ei-Stadium, und der kann tödlich sein.",
         "Iss ihn nur, solange das Fleisch durch und durch rein weiß, fest und gleichmäßig ist wie frischer Mozzarella. Gelbes, olivfarbenes, braunes oder violettes Fleisch bedeutet, dass er verdirbt, oder dass es ein Kartoffelbovist (Scleroderma) ist, der giftig und innen violettschwarz ist.",
@@ -1425,7 +1598,9 @@
         "Garen: Zugedeckt aufkochen, dann bei kleinster Hitze 13 Minuten garen (oder das normale Programm des Reiskochers nutzen). Den Herd ausschalten und den Reis zugedeckt 10 Minuten nachquellen lassen.",
         "Servieren: Die Matsutake mit einem Spatel behutsam unter den Reis heben und in Schalen anrichten, mit Mitsuba oder Schnittlauch."
       ],
-      "species": ["matsutake"],
+      "species": [
+        "matsutake"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1455,7 +1630,12 @@
       "prepTime": "40 min",
       "cookTime": "30 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Im pazifischen Nordwesten Nordamerikas hat der Matsutake einen tödlichen Doppelgänger, Amanita smithiana: weiß, mit einer verdickten Stielbasis, die sich wie eine Wurzel in den Boden verjüngt und von weißen Velumresten umgürtet ist, und ohne den würzigen Zimtduft. Er zerstört die Nieren: Prüfe bei jedem Pilz die Stielbasis und den Geruch.",
         "Sammle Matsutake, ohne den Boden zu rechen oder aufzuwühlen: Das Rechen zerstört das Myzel und ist in vielen US-Nationalforsten verboten, wo du zum Sammeln außerdem eine Genehmigung brauchst."
@@ -1481,7 +1661,9 @@
         "Aufgießen: Den kochend heißen Sud über den Lauch gießen, bis er 1 cm hoch bedeckt ist, und das Lorbeerblatt am Rand hineinschieben. Das Glas leicht aufstoßen, damit Luftblasen entweichen, und verschließen.",
         "Durchziehen lassen: Abkühlen lassen und im Kühlschrank aufbewahren. Frühestens nach 3 Tagen essen; im Kühlschrank hält er sich bis zu 2 Monate. Dazu passen Bohneneintopf und Maisbrot, Sandwiches oder Käse."
       ],
-      "species": ["ramps"],
+      "species": [
+        "ramps"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1509,7 +1691,12 @@
       "prepTime": "20 min",
       "cookTime": "5 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "side",
+        "easy"
+      ],
       "safetyNotes": [
         "Nachhaltig sammeln: Ramp-Lauch wächst langsam, vom Samen bis zur Ernte vergehen Jahre, und zu starkes Sammeln hat ganze Bestände ausgelöscht. Nimm pro Pflanze nur ein Blatt und lass die Zwiebel stehen, oder höchstens ein paar Zwiebeln aus einem großen, dichten Bestand. Ernte nie einen ganzen Bestand ab.",
         "In manchen Parks ist das Sammeln verboten, etwa im Great-Smoky-Mountains-Nationalpark. Québec verbietet den Verkauf von wildem Ramp-Lauch und begrenzt das Sammeln für den Eigenbedarf auf 200 g oder 50 Zwiebeln bzw. Pflanzen pro Person und Jahr.",
@@ -1534,7 +1721,9 @@
         "Abschmecken: Vom Herd nehmen, Zitronenabrieb und -saft zugeben, salzen und pfeffern.",
         "Servieren: Sofort, als Beilage zu Fisch oder Eiern oder auf gebuttertem Röstbrot."
       ],
-      "species": ["fiddleheads"],
+      "species": [
+        "fiddleheads"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1562,7 +1751,11 @@
       "prepTime": "15 min",
       "cookTime": "20 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "side",
+        "easy"
+      ],
       "safetyNotes": [
         "Sammle nur Straußenfarn. Seine Triebe sind glatt und leuchtend grün, mit braunen, papierartigen Schuppen, und auf der Innenseite des Stiels verläuft eine tiefe, U-förmige Rinne. Sammle niemals Adlerfarn: Er ist behaart, hat eine verzweigte Spitze und ist krebserregend.",
         "Iss die Triebe nie roh oder zu kurz gegart: Sie haben schon Lebensmittelvergiftungen ausgelöst, auch bei vielen Menschen zugleich. Wasche sie, koche sie dann 15 Minuten (oder dämpfe sie 10–12 Minuten) und gieß das Wasser weg, bevor du sie anbrätst.",
@@ -1585,7 +1778,9 @@
         "Unterheben: Die gezuckerten Beeren samt Saft mit einem Teigschaber in wenigen Zügen behutsam unter die Sahne heben, damit sie ganz bleiben.",
         "Servieren: In Gläser oder Schalen füllen, mit den beiseitegelegten Beeren garnieren und gut gekühlt servieren, mit Krumkaker oder Keksen. In Norwegen ist es ein Weihnachtsdessert."
       ],
-      "species": ["cloudberry"],
+      "species": [
+        "cloudberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1609,7 +1804,11 @@
       "prepTime": "20 min",
       "cookTime": "0 min",
       "servings": "4–6",
-      "tags": ["vegetarian", "dessert", "easy"],
+      "tags": [
+        "vegetarian",
+        "dessert",
+        "easy"
+      ],
       "safetyNotes": [
         "Pflücke nur reife, weiche, bernsteingelbe Beeren. Unreife sind hart und rot.",
         "Halte dich an die örtlichen Regeln. In Nordnorwegen, in Nordland, Troms und Finnmark, können Grundbesitzer das Pflücken von Moltebeeren auf ihrem Land verbieten: Achte auf Schilder (an Ort und Stelle essen ist immer erlaubt)."
@@ -1635,7 +1834,9 @@
         "Backen: 20 Minuten backen, dann auf 180 °C herunterschalten und weitere 40 Minuten backen, bis die Kruste tief goldbraun ist und dicker Saft aus den Schlitzen blubbert. Ein Blech darunterstellen, das Tropfen auffängt.",
         "Abkühlen: Mindestens 3 Stunden abkühlen lassen, damit die Füllung fest wird, und erst dann anschneiden. Mit Vanilleeis oder Schlagsahne servieren."
       ],
-      "species": ["huckleberry"],
+      "species": [
+        "huckleberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1663,7 +1864,11 @@
       "prepTime": "45 min",
       "cookTime": "60 min",
       "servings": "6–8",
-      "tags": ["vegetarian", "dessert", "medium"],
+      "tags": [
+        "vegetarian",
+        "dessert",
+        "medium"
+      ],
       "safetyNotes": [
         "Huckleberrys sind blauschwarz bis violett und tragen an der Spitze ein kleines Krönchen wie Heidelbeeren. Iss keine roten oder weißen Beeren in Trauben (die des Christophskrauts sind giftig) und keine Beere, bei der du dir nicht sicher bist.",
         "Huckleberry-Gebiete sind Bärenland: Mach Lärm und trag Bärenspray bei dir."
@@ -1686,7 +1891,9 @@
         "Unterheben: Das Püree in zwei bis drei Portionen unter die Sahne heben, bis keine Schlieren mehr zu sehen sind. In eine Kastenform oder eine Gefrierdose füllen.",
         "Gefrieren: Abgedeckt mindestens 6 Stunden oder über Nacht gefrieren lassen. Vor dem Portionieren 10 Minuten antauen lassen."
       ],
-      "species": ["pawpaw"],
+      "species": [
+        "pawpaw"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1714,7 +1921,11 @@
       "prepTime": "20 min",
       "cookTime": "0 min",
       "servings": "6–8",
-      "tags": ["vegetarian", "dessert", "easy"],
+      "tags": [
+        "vegetarian",
+        "dessert",
+        "easy"
+      ],
       "safetyNotes": [
         "Iss nur reife Früchte, nie die Schale oder die großen Samen. Die Samen sind giftig: Zerdrücke sie nicht und püriere sie nicht mit.",
         "Manche Menschen reagieren auf Indianerbananen mit Magenbeschwerden oder Hautausschlag: Probiere zuerst nur wenig."
@@ -1736,7 +1947,9 @@
         "Einkochen: Den Saft auf etwa 1 l einkochen. Zucker und Zitronensaft zugeben, rühren, bis sich der Zucker gelöst hat, und 5 Minuten sprudelnd kochen.",
         "Abfüllen: Den heißen Sirup in heiße, sterilisierte Flaschen füllen und verschließen. Angebrochen im Kühlschrank aufbewahren und innerhalb von 2 Wochen verbrauchen. Über Pfannkuchen oder Eis träufeln oder mit Wasser verdünnt trinken."
       ],
-      "species": ["rose_hips"],
+      "species": [
+        "rose_hips"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1764,7 +1977,13 @@
       "prepTime": "20 min",
       "cookTime": "60 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "sauce", "drink", "medium"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "sauce",
+        "drink",
+        "medium"
+      ],
       "safetyNotes": [
         "Die Härchen um die Kerne reizen Mund und Darm: Sie sind das alte Juckpulver. Seihe den Sirup zweimal durch ein feines Tuch oder einen Geleebeutel.",
         "Pflücke tiefrote, leicht weiche Hagebutten, am besten nach den ersten Frösten. Sammle nicht an viel befahrenen Straßen."
@@ -1786,7 +2005,9 @@
         "Kochen: Den Saft abmessen, in einen sauberen Topf geben und pro Liter 750 g Zucker zufügen. Bei schwacher Hitze rühren, bis sich der Zucker gelöst hat, dann 10–15 Minuten sprudelnd kochen, bis die Gelierprobe gelingt: 105 °C, oder ein Tropfen auf einem kalten Teller wirft Falten, wenn man ihn mit dem Finger anschiebt.",
         "Abfüllen: Den Schaum abschöpfen, das Gelee in heiße, sterilisierte Gläser füllen und verschließen. Passt zu Lammbraten, Wild oder Käse."
       ],
-      "species": ["sloes"],
+      "species": [
+        "sloes"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1814,7 +2035,12 @@
       "prepTime": "20 min",
       "cookTime": "60 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "sauce", "medium"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "sauce",
+        "medium"
+      ],
       "safetyNotes": [
         "Schlehen sind blauschwarz mit einem matten Reif und wachsen einzeln am dornigen Schlehdorn. Roh sind sie sehr herb. Ihre Kerne enthalten Amygdalin, das Blausäure freisetzen kann: Zerdrücke die Kerne nicht.",
         "Ihre Doppelgänger sind giftig: die Tollkirsche mit glänzend schwarzen Beeren, die auf einem grünen Stern sitzen, an einer krautigen, nicht verholzten Pflanze; der Purgier-Kreuzdorn (Rhamnus cathartica) mit glänzend schwarzen Beeren in Büscheln, die stark abführen."
@@ -1838,7 +2064,9 @@
         "Fertigstellen: Vom Herd nehmen und die Butter stückchenweise einrühren, bis die Creme glatt ist. Für eine seidige Textur durch ein Sieb streichen.",
         "Aufbewahren: In warme, sterilisierte Gläser füllen, verschließen und abkühlen lassen. Im Kühlschrank aufbewahren und innerhalb von 2 Wochen verbrauchen. Schmeckt auf Toast oder Scones oder als Füllung für Tartelettes."
       ],
-      "species": ["sea_buckthorn"],
+      "species": [
+        "sea_buckthorn"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1866,7 +2094,11 @@
       "prepTime": "20 min",
       "cookTime": "15 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "dessert", "medium"],
+      "tags": [
+        "vegetarian",
+        "dessert",
+        "medium"
+      ],
       "safetyNotes": [
         "Pflücke leuchtend orange, saftige Beeren ab dem Spätsommer, von Hand oder in eine Schüssel. Brich oder schneide keine Zweige von wilden Sträuchern ab: Das schadet ihnen, und in Finnland ist es verboten.",
         "In geschützten Dünen und Naturschutzgebieten kann das Pflücken verboten sein: Informiere dich über die örtlichen Regeln. Der Strauch ist sehr dornig: Trag Handschuhe."
@@ -1892,7 +2124,9 @@
         "Soße: Die Butter in derselben Pfanne schmelzen und den Knoblauch 30 Sekunden anbraten. Brühe, Zitronensaft und Kapern zugeben und 2 Minuten köcheln lassen.",
         "Fertigstellen: Die Pilze zurück in die Pfanne geben, eine Minute in der Soße wenden und mit Petersilie bestreuen. Mit Reis, Nudeln oder Brot servieren."
       ],
-      "species": ["chicken-of-the-woods"],
+      "species": [
+        "chicken-of-the-woods"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1918,7 +2152,11 @@
       "prepTime": "15 min",
       "cookTime": "15 min",
       "servings": "2",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Schwefelporling immer durchgaren: Roh oder halb gar schlägt er auf den Magen.",
         "Manche Menschen vertragen ihn auch gekocht nicht. Iss beim ersten Mal nur eine kleine Portion und warte einen Tag ab.",
@@ -1945,7 +2183,9 @@
         "Würzen: Knoblauch und die weißen Teile der Frühlingszwiebeln 1 Minute mitbraten, dann Sojasoße, Zucker und Sesamöl zugeben.",
         "Schwenken: Die Nudeln zugeben und schwenken, bis sie glänzen und heiß sind. Mit dem Grün der Frühlingszwiebeln, Sesam und Chili servieren."
       ],
-      "species": ["oyster-mushroom"],
+      "species": [
+        "oyster-mushroom"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1971,7 +2211,11 @@
       "prepTime": "10 min",
       "cookTime": "15 min",
       "servings": "2",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Austernpilze gut durchgaren und nicht roh essen.",
         "Junge, feste Exemplare verwenden: Alte werden zäh und beherbergen oft Käferlarven.",
@@ -1994,7 +2238,9 @@
         "Ziehen lassen: Blüten, Zitronenscheiben und Zitronensäure zugeben, abdecken und 24–48 Stunden an einem kühlen Ort ziehen lassen, einmal täglich umrühren.",
         "Abfüllen: Durch ein mit einem Tuch ausgelegtes Sieb in sterilisierte Flaschen abseihen und verschließen. Im Kühlschrank bis zu 6 Wochen haltbar, oder einfrieren. Etwa 1 zu 10 mit stillem oder sprudelndem Wasser verdünnen."
       ],
-      "species": ["elderflower"],
+      "species": [
+        "elderflower"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2018,7 +2264,11 @@
       "prepTime": "20 min",
       "cookTime": "5 min + 24–48 h Ziehzeit",
       "servings": "Etwa 1,5 Liter",
-      "tags": ["drink", "vegan", "easy"],
+      "tags": [
+        "drink",
+        "vegan",
+        "easy"
+      ],
       "safetyNotes": [
         "Nur die Blüten und die feinsten Stiele verwenden: Blätter, Rinde und dicke Stängel des Holunders enthalten giftige Stoffe.",
         "Holunder ist ein verholzter Strauch oder kleiner Baum. Keinen Zwerg-Holunder (Sambucus ebulus) verwenden, eine krautige Pflanze mit giftigen Teilen, und keine bodennah wachsenden weißen Dolden giftiger Pflanzen wie des Schierlings."
@@ -2042,7 +2292,9 @@
         "Abseihen: Die Beeren leicht zerdrücken und den Saft durch ein feines Sieb oder ein Tuch abseihen, dabei sanft drücken.",
         "Süßen: Den Saft mit Zitronensaft und Zucker zurück in den Topf geben und 5 Minuten köcheln, bis sich der Zucker gelöst hat. Honig erst einrühren, wenn der Saft vom Herd genommen und lauwarm ist. In Flaschen füllen und im Kühlschrank bis zu 3 Monate aufbewahren. Ein Löffel in heißem Wasser ergibt ein Wintergetränk."
       ],
-      "species": ["elderberry"],
+      "species": [
+        "elderberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2066,7 +2318,10 @@
       "prepTime": "15 min",
       "cookTime": "30 min",
       "servings": "Etwa 500 ml",
-      "tags": ["drink", "easy"],
+      "tags": [
+        "drink",
+        "easy"
+      ],
       "safetyNotes": [
         "Holunderbeeren nie roh essen. Rohe Beeren und Kerne, vor allem aber grüne Beeren, Stiele und Blätter verursachen Übelkeit und Erbrechen. Mindestens 20 Minuten Köcheln macht die reifen Beeren unbedenklich.",
         "Nur Schwarzen Holunder (Sambucus nigra) oder Kanadischen Holunder (S. canadensis) verwenden, Sträucher mit flachen Beerendolden. Roter Holunder (S. racemosa) und Zwerg-Holunder (S. ebulus) werden nicht verwendet."
@@ -2091,7 +2346,9 @@
         "Bedecken: Die Streusel locker über dem Obst verteilen, ohne sie anzudrücken.",
         "Backen: 35–40 Minuten backen, bis die Oberfläche goldbraun ist und es am Rand blubbert. 10 Minuten ruhen lassen und mit Sahne, Vanillesoße oder Eis servieren."
       ],
-      "species": ["blackberry"],
+      "species": [
+        "blackberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2115,7 +2372,11 @@
       "prepTime": "20 min",
       "cookTime": "40 min",
       "servings": "4–6",
-      "tags": ["dessert", "vegetarian", "easy"],
+      "tags": [
+        "dessert",
+        "vegetarian",
+        "easy"
+      ],
       "safetyNotes": [
         "Oberhalb der Kniehöhe und abseits stark befahrener Straßen und gespritzter Feldränder pflücken.",
         "Die Beeren erst kurz vor der Verwendung waschen und auf kleine Insekten und Schimmel prüfen."
@@ -2140,7 +2401,9 @@
         "Wenden: Wenn sich Blasen bilden und die Ränder fest werden, nach etwa 2 Minuten, die Pfannkuchen wenden und weitere 1–2 Minuten braten.",
         "Servieren: Warm stapeln und mit den restlichen Beeren und dem Sirup servieren."
       ],
-      "species": ["blueberry"],
+      "species": [
+        "blueberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2164,7 +2427,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "2–4 (etwa 12 Pfannkuchen)",
-      "tags": ["dessert", "vegetarian", "easy"],
+      "tags": [
+        "dessert",
+        "vegetarian",
+        "easy"
+      ],
       "safetyNotes": [
         "In weiten Teilen Europas können bodennah wachsende Beeren Eier des Fuchsbandwurms (Echinococcus multilocularis) tragen. Gründlich waschen. Erhitzen tötet die Eier ab, Einfrieren nicht, deshalb sind gegarte Beeren dort die sicherere Wahl.",
         "Heidelbeeren wachsen an niedrigen Sträuchern. Die sehr giftige Tollkirsche trägt einzelne glänzend schwarze Beeren auf einem grünen Stern, an einer hohen, krautigen Pflanze."
@@ -2188,7 +2455,9 @@
         "Mahlen: Die Nüsse im Mixer 5–10 Minuten mahlen, dabei ab und zu die Seiten abstreifen, bis ein flüssiges Mus entsteht.",
         "Abschmecken: Kakao, Zucker, Schokolade, Salz und Vanille zugeben und erneut mixen, dabei löffelweise Öl zugeben, bis die Creme glatt und streichfähig ist. In einem sauberen Glas im Kühlschrank bis zu 3 Wochen aufbewahren."
       ],
-      "species": ["hazelnut"],
+      "species": [
+        "hazelnut"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2212,7 +2481,11 @@
       "prepTime": "15 min",
       "cookTime": "12 min",
       "servings": "1 Glas (etwa 350 g)",
-      "tags": ["dessert", "vegetarian", "easy"],
+      "tags": [
+        "dessert",
+        "vegetarian",
+        "easy"
+      ],
       "safetyNotes": [
         "Haselnüsse sind ein häufiges Allergen: Sag allen Bescheid, mit denen du die Creme teilst.",
         "Nur Nüsse sammeln, die im Spätsommer und Herbst gereift und heruntergefallen sind. Nüsse mit Löchern, die Nussbohrer gebohrt haben, und solche, die schimmelig oder bitter schmecken, wegwerfen."
@@ -2236,7 +2509,9 @@
         "Pürieren: Den Topf vom Herd nehmen, die Minzblätter zugeben und fein pürieren. Mit Salz, Pfeffer und Zitrone abschmecken.",
         "Servieren: Die Sahne einrühren und mit den kleinen Minzblättern bestreuen. Schmeckt heiß oder gekühlt."
       ],
-      "species": ["wild-mint"],
+      "species": [
+        "wild-mint"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2260,7 +2535,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "4",
-      "tags": ["soup", "vegetarian", "easy"],
+      "tags": [
+        "soup",
+        "vegetarian",
+        "easy"
+      ],
       "safetyNotes": [
         "Eine wilde Minze riecht deutlich nach Minze, wenn man ein Blatt zerreibt: kein Minzduft, keine Minze.",
         "Polei-Minze weglassen (Mentha pulegium: kleine, rundliche Blätter, kriechende Stängel, Blüten in Quirlen den Stängel hinauf). Sie ist in größeren Mengen giftig und in der Schwangerschaft zu meiden.",
@@ -2282,7 +2561,9 @@
         "Zuckern: Die Blüte rundum mit Zucker bestreuen, den Überschuss abschütteln und mit der Blüte nach oben auf Backpapier legen.",
         "Trocknen: An einem warmen, trockenen Ort 1–2 Tage trocknen lassen, bis sie ganz knusprig sind, dann die Stiele abschneiden. Zwischen Papierlagen in einer luftdichten Dose einige Wochen aufbewahren und für Kuchen und Desserts verwenden."
       ],
-      "species": ["violets"],
+      "species": [
+        "violets"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2306,7 +2587,11 @@
       "prepTime": "45 min",
       "cookTime": "1–2 Tage Trocknen",
       "servings": "30–40 Blüten",
-      "tags": ["dessert", "vegetarian", "medium"],
+      "tags": [
+        "dessert",
+        "vegetarian",
+        "medium"
+      ],
       "safetyNotes": [
         "Nur Duftveilchen (Viola odorata) oder andere wilde Veilchen verwenden. Usambaraveilchen (Saintpaulia) sind nicht verwandt und nicht zum Essen geeignet.",
         "Rohes Eiweiß birgt ein geringes Salmonellenrisiko: Für kleine Kinder, Schwangere und ältere Menschen pasteurisiertes Eiweiß verwenden.",
@@ -2327,7 +2612,9 @@
         "Würzen: Die Blätter mit Öl und Gewürzen mischen, sodass jedes leicht überzogen ist, dann flach und ohne Überlappung auf Backpapier legen.",
         "Backen: 15–20 Minuten backen, einmal wenden, bis sie knusprig, aber noch grün sind. Auf dem Blech abkühlen lassen und am selben Tag essen."
       ],
-      "species": ["plantain"],
+      "species": [
+        "plantain"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2351,7 +2638,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "2",
-      "tags": ["appetizer", "vegan", "easy"],
+      "tags": [
+        "appetizer",
+        "vegan",
+        "easy"
+      ],
       "safetyNotes": [
         "Abseits von Straßenrändern, Hundewegen und gespritzten Rasenflächen pflücken: Breitwegerich liebt festgetretenen Boden.",
         "Breitwegerichblätter haben kräftige parallele Nerven, die sich wie Fäden herausziehen lassen. Die giftigen Blätter des Fingerhuts haben ein Netz von Adern und sind weich behaart."
@@ -2376,7 +2667,9 @@
         "Sud: Essig, Wasser, Zucker, Lorbeerblatt und Pfefferkörner aufkochen.",
         "Einlegen: Knospen und Dill ins Glas füllen, mit dem heißen Essig bedecken und verschließen. Mindestens 2 Wochen ziehen lassen. Wie Kapern in Salaten, Soßen und zu Fisch verwenden."
       ],
-      "species": ["daisy"],
+      "species": [
+        "daisy"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2400,12 +2693,22 @@
       "prepTime": "20 min",
       "cookTime": "5 min",
       "servings": "1 kleines Glas",
-      "tags": ["side", "vegan", "easy"],
+      "tags": [
+        "side",
+        "vegan",
+        "easy"
+      ],
       "safetyNotes": [
         "Sicherstellen, dass es Gänseblümchen sind (Bellis perennis): einzelne Blüten auf blattlosen Stielen, die aus einer flachen Rosette spatelförmiger Blätter wachsen.",
         "Von Rasenflächen pflücken, die nicht gespritzt oder gedüngt werden, abseits von Hundewiesen.",
         "Menschen mit einer Allergie gegen Korbblütler (Asteraceae), etwa gegen Ambrosia oder Kamille, können darauf reagieren."
       ]
     }
-  }
+  },
+  "readyNow": "Jetzt kochen",
+  "later": "Später im Jahr",
+  "findOnMap": "Auf der Karte finden",
+  "recipeCount_one": "{{count}} Rezept",
+  "recipeCount_other": "{{count}} Rezepte",
+  "moreCount": "+{{count}} weitere"
 }

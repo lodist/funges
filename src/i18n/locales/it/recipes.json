@@ -12,16 +12,6 @@
   "tips": "Consigli",
   "warnings": "Avvertimenti",
   "description": "Scopri deliziose ricette usando ingredienti raccolti",
-  "filterBy": "Ingrediente",
-  "filters": "Filtri",
-  "clear": "Azzera filtri",
-  "apply": "Applica",
-  "all": "Tutti",
-  "mushroom": "Fungo",
-  "berry": "Bacca",
-  "plant": "Pianta",
-  "nut": "Noce",
-  "more": "altro",
   "search": {
     "placeholder": "Cerca ricette, ingredienti o tag",
     "no_results": "Nessuna ricetta trovata",
@@ -139,7 +129,12 @@
         "Saltare: Cuocere in padella con olio per 3–4 min per lato fino a doratura.",
         "Servire: Con salsa allo yogurt, pesto o come alternativa vegetariana al burger."
       ],
-      "species": ["amaranth", "chickweed", "sorrel", "dandelion"],
+      "species": [
+        "amaranth",
+        "chickweed",
+        "sorrel",
+        "dandelion"
+      ],
       "steps": [
         {
           "step": 1,
@@ -167,7 +162,11 @@
       "prepTime": "15 min",
       "cookTime": "25 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "black-chanterelle-cream-sauce": {
@@ -190,7 +189,9 @@
         "Aggiungere panna: Versare la panna, cuocere 5 min fino a leggero addensamento. Regolare di sale, pepe, timo.",
         "Servire: Perfetta con pasta fresca, polenta o patate arrosto."
       ],
-      "species": ["black_chant"],
+      "species": [
+        "black_chant"
+      ],
       "steps": [
         {
           "step": 1,
@@ -224,7 +225,11 @@
       "prepTime": "20 min",
       "cookTime": "15 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "sauce", "easy"],
+      "tags": [
+        "vegetarian",
+        "sauce",
+        "easy"
+      ],
       "safetyNotes": [
         "Assicurarsi del riconoscimento sicuro dei funghi raccolti."
       ]
@@ -249,7 +254,9 @@
         "Cottura: Inforna a 180°C per 25–30 minuti fino a doratura.",
         "Servi: Calda o fredda, ideale per un brunch nei boschi."
       ],
-      "species": ["chant"],
+      "species": [
+        "chant"
+      ],
       "steps": [
         {
           "step": 1,
@@ -283,7 +290,11 @@
       "prepTime": "20 min",
       "cookTime": "30 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "medium"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "medium"
+      ],
       "safetyNotes": [
         "Assicurarsi del riconoscimento sicuro dei funghi raccolti."
       ]
@@ -306,7 +317,11 @@
         "Mescolare l’insalata: In una ciotola grande, unire centocchio, acetosa e noci. Condire con la vinaigrette e mescolare leggermente.",
         "Servire: Gustare subito come insalata fresca e leggermente acidula."
       ],
-      "species": ["chickweed", "sorrel", "walnut"],
+      "species": [
+        "chickweed",
+        "sorrel",
+        "walnut"
+      ],
       "steps": [
         {
           "step": 1,
@@ -334,7 +349,11 @@
       "prepTime": "10 min",
       "cookTime": "5 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "salad", "easy"],
+      "tags": [
+        "vegetarian",
+        "salad",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "chestnut-mushroom-soup": {
@@ -359,7 +378,12 @@
         "Finire: Aggiungere la panna se desiderato, regolare di sale e pepe.",
         "Servire caldo, accompagnato da pane rustico o un filo d'olio al tartufo."
       ],
-      "species": ["chestnut", "mushroom", "black_chant", "chant"],
+      "species": [
+        "chestnut",
+        "mushroom",
+        "black_chant",
+        "chant"
+      ],
       "steps": [
         {
           "step": 1,
@@ -397,7 +421,11 @@
       "prepTime": "10 min",
       "cookTime": "25 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "soup", "medium"],
+      "tags": [
+        "vegetarian",
+        "soup",
+        "medium"
+      ],
       "safetyNotes": [
         "Assicurarsi del riconoscimento sicuro dei funghi raccolti."
       ]
@@ -418,7 +446,9 @@
         "Cuocere: Far sobbollire a fuoco basso fino a che si addensa in uno sciroppo (20–30 minuti).",
         "Conservare: Versare in vasetti sterilizzati. Ottimo su pancakes, formaggi o nel tè."
       ],
-      "species": ["dandelion"],
+      "species": [
+        "dandelion"
+      ],
       "steps": [
         {
           "step": 1,
@@ -450,7 +480,13 @@
       "prepTime": "20 min",
       "cookTime": "30 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "sauce", "dessert", "medium"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "sauce",
+        "dessert",
+        "medium"
+      ],
       "safetyNotes": []
     },
     "nettle-soup": {
@@ -474,7 +510,9 @@
         "Finire: Aggiungere panna o latte d'avena se desiderato. Regolare di sale e pepe.",
         "Servire calda, con un filo d'olio o crostini."
       ],
-      "species": ["nettle"],
+      "species": [
+        "nettle"
+      ],
       "steps": [
         {
           "step": 1,
@@ -510,7 +548,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "soup", "medium"],
+      "tags": [
+        "vegetarian",
+        "soup",
+        "medium"
+      ],
       "safetyNotes": [
         "Usare guanti durante la manipolazione delle ortiche fresche."
       ]
@@ -532,7 +574,9 @@
         "Friggere: Scaldare olio o burro in padella. Friggere i cappelli a fuoco medio finché dorati e croccanti (circa 3 minuti per lato).",
         "Servire: Con spicchi di limone e insalata fresca. Un classico vegetariano."
       ],
-      "species": ["parasol"],
+      "species": [
+        "parasol"
+      ],
       "steps": [
         {
           "step": 1,
@@ -562,7 +606,11 @@
       "prepTime": "10 min",
       "cookTime": "6 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Assicurarsi del riconoscimento sicuro dei funghi raccolti."
       ]
@@ -582,7 +630,9 @@
         "Imbottigliare: Versare in un vasetto pulito.",
         "Uso: Perfetto su verdure arrostite, frutta grigliata o selvaggina. Si conserva in frigo per settimane."
       ],
-      "species": ["masterwort"],
+      "species": [
+        "masterwort"
+      ],
       "steps": [
         {
           "step": 1,
@@ -610,7 +660,11 @@
       "prepTime": "5 min",
       "cookTime": "10 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "sauce", "medium"],
+      "tags": [
+        "vegetarian",
+        "sauce",
+        "medium"
+      ],
       "safetyNotes": []
     },
     "morel-chestnut-stuffing": {
@@ -633,7 +687,12 @@
         "Cuocere in forno: Trasferire in una teglia e cuocere a 180°C per 20 minuti fino a doratura.",
         "Servire come contorno per carni arrosto o come piatto vegetariano principale."
       ],
-      "species": ["morel", "chestnut", "garlic", "bread"],
+      "species": [
+        "morel",
+        "chestnut",
+        "garlic",
+        "bread"
+      ],
       "steps": [
         {
           "step": 1,
@@ -667,7 +726,11 @@
       "prepTime": "15 min",
       "cookTime": "25 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "side", "medium"],
+      "tags": [
+        "vegetarian",
+        "side",
+        "medium"
+      ],
       "safetyNotes": [
         "Assicurarsi del riconoscimento sicuro dei funghi raccolti."
       ]
@@ -690,7 +753,9 @@
         "Cuocere: Cuocere a fuoco basso fino a che si rapprende sotto, poi finire sotto il grill o capovolgere per cuocere sopra.",
         "Servire calda o fredda, perfetta per picnic o colazione."
       ],
-      "species": ["nettle"],
+      "species": [
+        "nettle"
+      ],
       "steps": [
         {
           "step": 1,
@@ -722,7 +787,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Usare guanti durante la manipolazione delle ortiche fresche."
       ]
@@ -746,7 +815,10 @@
         "Finire: Passare in forno o sotto il grill per 5 minuti per dorare (oppure girare con attenzione).",
         "Servire: Calda o a temperatura ambiente — perfetta per picnic di primavera o brunch."
       ],
-      "species": ["st_george", "nettle"],
+      "species": [
+        "st_george",
+        "nettle"
+      ],
       "steps": [
         {
           "step": 1,
@@ -780,7 +852,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Usare guanti durante la manipolazione delle ortiche fresche.",
         "Assicurarsi del riconoscimento sicuro dei funghi raccolti."
@@ -802,7 +878,12 @@
         "Condire: Aggiustare di sale e pepe. Frullare a impulsi fino a ottenere una pasta grossolana e spalmabile.",
         "Servire: Ideale su pane, come salsa o con formaggi e verdure grigliate."
       ],
-      "species": ["walnut", "lingonb", "garlic", "masterwort"],
+      "species": [
+        "walnut",
+        "lingonb",
+        "garlic",
+        "masterwort"
+      ],
       "steps": [
         {
           "step": 1,
@@ -826,7 +907,12 @@
       "prepTime": "5 min",
       "cookTime": "5 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "appetizer", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "appetizer",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "wild-artichoke-lemon-pasta": {
@@ -847,7 +933,10 @@
         "Condire: Mescolare la pasta con carciofi, succo e scorza di limone, e l'acqua di cottura.",
         "Servire: Aggiungere sale, pepe e guarnire con erbe fresche. Fresca, selvatica, mediterranea."
       ],
-      "species": ["artichoke", "garlic"],
+      "species": [
+        "artichoke",
+        "garlic"
+      ],
       "steps": [
         {
           "step": 1,
@@ -875,7 +964,13 @@
       "prepTime": "15 min",
       "cookTime": "20 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "pasta", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "pasta",
+        "main",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "wild-asparagus-dandelion-stir-fry": {
@@ -896,7 +991,11 @@
         "Completare: Condire con sale, pepe e scorza di limone.",
         "Servire: Ottimo su pane tostato, cereali o come contorno selvatico."
       ],
-      "species": ["asparagus", "dandelion", "garlic"],
+      "species": [
+        "asparagus",
+        "dandelion",
+        "garlic"
+      ],
       "steps": [
         {
           "step": 1,
@@ -924,7 +1023,12 @@
       "prepTime": "10 min",
       "cookTime": "5 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "side",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "wild-garlic-pesto": {
@@ -945,7 +1049,10 @@
         "Condire: Aggiustare di sale.",
         "Conservare: In vasetto chiuso in frigo per una settimana. Ottimo per pasta, panini o verdure arrosto."
       ],
-      "species": ["garlic", "walnut"],
+      "species": [
+        "garlic",
+        "walnut"
+      ],
       "steps": [
         {
           "step": 1,
@@ -977,7 +1084,11 @@
       "prepTime": "10 min",
       "cookTime": "5 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "sauce", "easy"],
+      "tags": [
+        "vegetarian",
+        "sauce",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "wild-strawberry-sorrel-cooler": {
@@ -997,7 +1108,10 @@
         "Filtrare (opzionale): Filtrare per una bevanda limpida oppure servire con la polpa.",
         "Guarnire: Decorare con fragolina e foglia di acetosa. Bevanda estiva perfetta."
       ],
-      "species": ["strawberry", "sorrel"],
+      "species": [
+        "strawberry",
+        "sorrel"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1025,7 +1139,11 @@
       "prepTime": "5 min",
       "cookTime": "0 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "drink", "easy"],
+      "tags": [
+        "vegetarian",
+        "drink",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "lions-mane-crab-cakes": {
@@ -1049,7 +1167,9 @@
         "Friggere: Friggile in olio o burro a fuoco medio finché sono dorate e croccanti, circa 3–4 minuti per lato.",
         "Servire: Con spicchi di limone e un'insalata verde o salsa tartara."
       ],
-      "species": ["lions_mane"],
+      "species": [
+        "lions_mane"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1079,7 +1199,11 @@
       "prepTime": "20 min",
       "cookTime": "20 min",
       "servings": "2–3",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Cuoci bene la criniera di leone e assaggiane poca la prima volta: alcune persone reagiscono.",
         "In Gran Bretagna raccoglierla è illegale, e in gran parte d'Europa è nella lista rossa. Raccoglila solo dove è comune, come in Nord America."
@@ -1102,7 +1226,9 @@
         "Arrostire: Disponili in un solo strato su una teglia e cuoci a 220 °C per 20–25 minuti, girandoli una volta, finché i bordi sono bruniti e croccanti.",
         "Servire: Caldi, con spicchi di limone, su riso, polenta o pane tostato."
       ],
-      "species": ["hen_of_the_woods"],
+      "species": [
+        "hen_of_the_woods"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1128,7 +1254,12 @@
       "prepTime": "10 min",
       "cookTime": "25 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "side",
+        "easy"
+      ],
       "safetyNotes": [
         "Cuoci bene la grifola: poco cotta, a qualcuno dà disturbi di stomaco.",
         "Il suo sosia, il Meripilus giganteus, è commestibile ma coriaceo; annerisce dove viene toccato."
@@ -1152,7 +1283,9 @@
         "Finire: Versa l'olio all'aglio e prezzemolo sulle lamelle, macina un po' di pepe e cuoci ancora 1 minuto.",
         "Servire: Subito, con un pizzico di sale in fiocchi e pane per raccogliere il sugo."
       ],
-      "species": ["saffron_milk_cap"],
+      "species": [
+        "saffron_milk_cap"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1182,7 +1315,12 @@
       "prepTime": "10 min",
       "cookTime": "10 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "side",
+        "easy"
+      ],
       "safetyNotes": [
         "Prima di cuocerli, incidi un cappello o un gambo: il sanguinello emette un latte arancio carota o rosso. Un latte bianco o giallo indica un altro lattario: il Lactarius torminosus (cappello rosato con il bordo lanoso e arrotolato, latte bianco) e altre specie a latte bianco provocano forti disturbi gastrointestinali.",
         "I sanguinelli si macchiano di verde dove vengono toccati e dopo il pasto possono tingere di rossastro l'urina. Entrambe le cose sono innocue."
@@ -1209,7 +1347,9 @@
         "Stufare: Aggiungi le patate, l'alloro e acqua o brodo caldo quanto basta a coprirle appena. Sala e cuoci a fuoco dolce, semicoperto, per 20–25 minuti, finché le patate sono tenere e il sugo si è addensato.",
         "Servire: Lascia riposare 5 minuti, cospargi di prezzemolo e servi con del pane."
       ],
-      "species": ["saffron_milk_cap"],
+      "species": [
+        "saffron_milk_cap"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1239,7 +1379,12 @@
       "prepTime": "15 min",
       "cookTime": "40 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Prima di cuocerli, incidi un cappello o un gambo: il sanguinello emette un latte arancio carota o rosso. Un latte bianco o giallo indica un altro lattario: il Lactarius torminosus (cappello rosato con il bordo lanoso e arrotolato, latte bianco) e altre specie a latte bianco provocano forti disturbi gastrointestinali.",
         "I sanguinelli si macchiano di verde dove vengono toccati e dopo il pasto possono tingere di rossastro l'urina. Entrambe le cose sono innocue."
@@ -1266,7 +1411,9 @@
         "Cuocere: Aggiungi il brodo caldo un mestolo alla volta, mescolando spesso e aspettando che sia assorbito prima del successivo, per circa 18 minuti, finché il riso è cremoso ma ancora al dente. Unisci i funghi negli ultimi 5 minuti.",
         "Mantecare: Fuori dal fuoco, manteca con il burro rimasto e il Parmigiano. Copri, lascia riposare 2 minuti e servi con qualche fogliolina di timo."
       ],
-      "species": ["hedgehog_mushroom"],
+      "species": [
+        "hedgehog_mushroom"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1296,7 +1443,11 @@
       "prepTime": "15 min",
       "cookTime": "30 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "medium"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "medium"
+      ],
       "safetyNotes": [
         "Prima di cuocerlo, guarda sotto il cappello: lo steccherino dorato ha aculei morbidi, non lamelle. Gli esemplari vecchi possono essere amari, quindi in quelli grandi raschia via gli aculei.",
         "Non ha sosia pericolosi, ma mangia comunque solo funghi che hai identificato con certezza."
@@ -1322,7 +1473,9 @@
         "Frullare: Frulla fino a ottenere una crema liscia, unisci la panna e il limone e scalda senza far bollire. Regola di sale e pepe.",
         "Servire: Calda, con l'erba cipollina e crostini di pane. Accompagnala con acqua o succo, non con vino o birra."
       ],
-      "species": ["shaggy_mane"],
+      "species": [
+        "shaggy_mane"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1352,7 +1505,11 @@
       "prepTime": "10 min",
       "cookTime": "25 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "soup", "easy"],
+      "tags": [
+        "vegetarian",
+        "soup",
+        "easy"
+      ],
       "safetyNotes": [
         "Cuoci i coprini chiomati entro poche ore dalla raccolta: si autodigeriscono trasformandosi in inchiostro nero. Usa solo esemplari giovani, con le lamelle ancora completamente bianche.",
         "Il suo sosia, il coprino atramentario (Coprinopsis atramentaria: grigio, liscio, senza squame arruffate), provoca una reazione violenta con l'alcol bevuto nelle ore prima del pasto o fino a tre giorni dopo. Per questo la vellutata si prepara e si serve senza alcol: se hai il minimo dubbio su cosa hai raccolto, non bere alcolici.",
@@ -1379,7 +1536,9 @@
         "Comporre: Stendi un velo di sugo in una pirofila, poi alterna fette di vescia, sugo, mozzarella, basilico e Parmigiano. Ripeti e finisci con sugo, mozzarella e Parmigiano.",
         "Infornare: Cuoci in forno a 200 °C per 25 minuti, finché bolle ed è dorata in superficie. Lascia riposare 10 minuti prima di tagliarla."
       ],
-      "species": ["giant_puffball"],
+      "species": [
+        "giant_puffball"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1409,7 +1568,11 @@
       "prepTime": "20 min",
       "cookTime": "45 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "medium"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "medium"
+      ],
       "safetyNotes": [
         "Taglia sempre ogni vescia a metà dall'alto in basso. Se all'interno vedi la sagoma di un cappello, di lamelle o di un gambo, è un'amanita giovane ancora chiusa nel suo «ovolo», e può essere mortale.",
         "Mangiala solo finché la polpa è bianchissima, soda e uniforme fino al centro, come una mozzarella fresca. Una polpa gialla, olivastra, bruna o violacea vuol dire che si sta guastando, oppure che è uno Scleroderma, velenoso e nero-violaceo all'interno.",
@@ -1435,7 +1598,9 @@
         "Cuocere: Copri, porta a bollore, poi cuoci a fiamma minima per 13 minuti (oppure usa il programma normale del cuociriso). Spegni e lascia riposare 10 minuti con il coperchio.",
         "Servire: Mescola delicatamente i matsutake al riso con una spatola e servi nelle ciotole con mitsuba o erba cipollina."
       ],
-      "species": ["matsutake"],
+      "species": [
+        "matsutake"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1465,7 +1630,12 @@
       "prepTime": "40 min",
       "cookTime": "30 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Nel Nord-ovest del Pacifico, in Nord America, il matsutake ha un sosia mortale, l'Amanita smithiana: bianca, con la base del gambo ingrossata che si assottiglia nel terreno come una radice ed è cinta da resti bianchi di velo, e senza il profumo speziato di cannella. Distrugge i reni: controlla la base e l'odore di ogni fungo.",
         "Raccogli i matsutake senza rastrellare né smuovere il terreno: il rastrello distrugge il micelio, e rastrellare è vietato in molte foreste nazionali degli Stati Uniti, dove per raccoglierli serve anche un permesso."
@@ -1491,7 +1661,9 @@
         "Riempire: Versa la salamoia bollente sui bulbi fino a coprirli di 1 cm, infilando la foglia di alloro lungo il vetro. Batti il vasetto sul piano per far uscire le bolle d'aria e chiudilo.",
         "Riposare: Lascia raffreddare, poi conserva in frigorifero. Aspetta almeno 3 giorni prima di mangiarli; in frigo si conservano fino a 2 mesi. Servili con fagioli e pane di mais, nei panini o con i formaggi."
       ],
-      "species": ["ramps"],
+      "species": [
+        "ramps"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1519,7 +1691,12 @@
       "prepTime": "20 min",
       "cookTime": "5 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "side",
+        "easy"
+      ],
       "safetyNotes": [
         "Raccogli in modo sostenibile. L'aglio selvatico americano cresce lentamente: passano anni dal seme alla raccolta, e la raccolta eccessiva ha fatto sparire intere colonie. Prendi una sola foglia per pianta e lascia il bulbo, oppure al massimo pochi bulbi da una colonia grande e fitta. Non svuotare mai una colonia.",
         "In alcuni parchi la raccolta è vietata, tra cui il parco nazionale delle Great Smoky Mountains. Il Québec vieta la vendita dell'aglio selvatico americano spontaneo e limita la raccolta personale a 200 g, o 50 bulbi o piante, a persona all'anno.",
@@ -1544,7 +1721,9 @@
         "Condire: Togli dal fuoco, aggiungi la scorza e il succo di limone e regola di sale e pepe.",
         "Servire: Subito, come contorno per pesce o uova, oppure su fette di pane tostato e imburrato."
       ],
-      "species": ["fiddleheads"],
+      "species": [
+        "fiddleheads"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1572,7 +1751,11 @@
       "prepTime": "15 min",
       "cookTime": "20 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "side",
+        "easy"
+      ],
       "safetyNotes": [
         "Raccogli solo la felce penna di struzzo. Le sue teste di violino sono lisce e verde brillante, con scaglie brune simili a carta, e lungo la parte interna del gambo corre una scanalatura profonda a forma di U. Non raccogliere mai la felce aquilina, che è lanuginosa, ha la cima ramificata ed è cancerogena.",
         "Non mangiare mai le teste di violino crude o poco cotte: hanno causato focolai di intossicazione alimentare. Lavale, poi lessale per 15 minuti (o cuocile al vapore per 10–12 minuti) e butta via l'acqua, prima di saltarle in padella.",
@@ -1595,7 +1778,9 @@
         "Incorporare: Unisci delicatamente alla panna le bacche con il loro succo, con una spatola e in pochi movimenti, perché restino intere.",
         "Servire: Distribuisci nei bicchieri o nelle coppette, decora con le bacche tenute da parte e servi fredda, con le cialde o i biscotti. In Norvegia è il dolce di Natale."
       ],
-      "species": ["cloudberry"],
+      "species": [
+        "cloudberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1619,7 +1804,11 @@
       "prepTime": "20 min",
       "cookTime": "0 min",
       "servings": "4–6",
-      "tags": ["vegetarian", "dessert", "easy"],
+      "tags": [
+        "vegetarian",
+        "dessert",
+        "easy"
+      ],
       "safetyNotes": [
         "Raccogli solo bacche mature, morbide, giallo ambra. Quelle acerbe sono dure e rosse.",
         "Rispetta le regole locali di raccolta. Nel nord della Norvegia, nelle contee di Nordland, Troms e Finnmark, i proprietari possono vietare la raccolta dei camemori sui loro terreni: fai attenzione ai cartelli (mangiarli sul posto è sempre permesso)."
@@ -1645,7 +1834,9 @@
         "Cuocere: Inforna per 20 minuti, poi abbassa a 180 °C e cuoci per altri 40 minuti, finché la crosta è ben dorata e dai tagli esce un succo denso che bolle. Metti una teglia sotto per raccogliere le gocce.",
         "Raffreddare: Lascia raffreddare la torta per almeno 3 ore, perché il ripieno si rapprenda prima di tagliarla. Servila con gelato alla vaniglia o panna montata."
       ],
-      "species": ["huckleberry"],
+      "species": [
+        "huckleberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1673,7 +1864,11 @@
       "prepTime": "45 min",
       "cookTime": "60 min",
       "servings": "6–8",
-      "tags": ["vegetarian", "dessert", "medium"],
+      "tags": [
+        "vegetarian",
+        "dessert",
+        "medium"
+      ],
       "safetyNotes": [
         "Gli huckleberry sono di colore dal blu-nero al viola, con una piccola corona sulla punta come i mirtilli. Non mangiare bacche rosse o bianche a grappolo (quelle dell'actea sono velenose) né bacche di cui non sei sicuro.",
         "Le zone di huckleberry sono territorio di orsi: fai rumore e porta con te lo spray anti-orso."
@@ -1696,7 +1891,9 @@
         "Amalgamare: Incorpora la crema di asimina alla panna in due o tre volte, con movimenti dal basso verso l'alto, finché non restano striature. Versa in uno stampo da plumcake o in un contenitore per il congelatore.",
         "Congelare: Copri e metti in freezer per almeno 6 ore, o per tutta la notte. Lascialo ammorbidire 10 minuti prima di fare le palline."
       ],
-      "species": ["pawpaw"],
+      "species": [
+        "pawpaw"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1724,7 +1921,11 @@
       "prepTime": "20 min",
       "cookTime": "0 min",
       "servings": "6–8",
-      "tags": ["vegetarian", "dessert", "easy"],
+      "tags": [
+        "vegetarian",
+        "dessert",
+        "easy"
+      ],
       "safetyNotes": [
         "Mangia solo frutti maturi, e mai la buccia né i grossi semi. I semi sono velenosi: non schiacciarli e non frullarli.",
         "Alcune persone reagiscono all'asimina con disturbi di stomaco o un'eruzione cutanea: la prima volta assaggiane poca."
@@ -1746,7 +1947,9 @@
         "Ridurre: Fai bollire il succo finché si riduce a circa 1 litro. Aggiungi lo zucchero e il succo di limone, mescola finché lo zucchero si scioglie e fai bollire per 5 minuti.",
         "Imbottigliare: Versa lo sciroppo bollente nelle bottiglie sterilizzate calde e chiudile. Una volta aperto, conservalo in frigo e consumalo entro 2 settimane. Versalo su pancake o gelato, oppure allungalo con acqua per una bibita."
       ],
-      "species": ["rose_hips"],
+      "species": [
+        "rose_hips"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1774,7 +1977,13 @@
       "prepTime": "20 min",
       "cookTime": "60 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "sauce", "drink", "medium"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "sauce",
+        "drink",
+        "medium"
+      ],
       "safetyNotes": [
         "I peli che circondano i semi irritano la bocca e l'intestino: sono la vecchia 'polverina che fa prurito'. Filtra lo sciroppo due volte attraverso un telo fine o un sacchetto filtrante.",
         "Raccogli bacche rosso intenso e leggermente morbide, se puoi dopo le prime gelate. Non raccoglierle lungo le strade trafficate."
@@ -1796,7 +2005,9 @@
         "Bollire: Misura il succo in una pentola pulita e aggiungi 750 g di zucchero per ogni litro. Mescola a fuoco basso finché lo zucchero si scioglie, poi fai bollire a fuoco vivo per 10–15 minuti, fino al punto di gelificazione: 105 °C, oppure una goccia su un piattino freddo si increspa quando la spingi con un dito.",
         "Invasare: Schiuma, versa nei vasetti sterilizzati caldi e chiudili. Servila con l'agnello arrosto, la selvaggina o i formaggi."
       ],
-      "species": ["sloes"],
+      "species": [
+        "sloes"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1824,7 +2035,12 @@
       "prepTime": "20 min",
       "cookTime": "60 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "sauce", "medium"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "sauce",
+        "medium"
+      ],
       "safetyNotes": [
         "Le prugnole sono blu-nere, coperte da una pruina opaca, e crescono isolate sul prugnolo, un arbusto spinoso. Crude sono molto aspre. I noccioli contengono amigdalina, che può liberare cianuro: non schiacciarli.",
         "Hanno sosia velenosi: la belladonna, con bacche nere lucide appoggiate su una stella verde, su una pianta erbacea e non legnosa; lo spincervino (Rhamnus cathartica), con bacche nere lucide a grappoli, fortemente purgative."
@@ -1848,7 +2064,9 @@
         "Rifinire: Togli dal fuoco e incorpora il burro qualche pezzetto alla volta, finché la crema è liscia. Per una crema vellutata, passala al colino.",
         "Conservare: Versa nei vasetti sterilizzati tiepidi, chiudi e lascia raffreddare. Conserva in frigo e consuma entro 2 settimane. Spalmala sul pane tostato o sugli scones, oppure usala per farcire crostatine."
       ],
-      "species": ["sea_buckthorn"],
+      "species": [
+        "sea_buckthorn"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1876,7 +2094,11 @@
       "prepTime": "20 min",
       "cookTime": "15 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "dessert", "medium"],
+      "tags": [
+        "vegetarian",
+        "dessert",
+        "medium"
+      ],
       "safetyNotes": [
         "Raccogli bacche arancione vivo e succose, da fine estate in poi, a mano o in una ciotola. Non spezzare né tagliare i rami degli arbusti selvatici: li danneggia, e in Finlandia è vietato.",
         "La raccolta può essere vietata nelle dune protette e nelle riserve naturali: informati sulle regole locali. L'arbusto è molto spinoso: usa i guanti."
@@ -1902,7 +2124,9 @@
         "Salsa: Sciogli il burro nella stessa padella e soffriggi l'aglio per 30 secondi. Aggiungi il brodo, il succo di limone e i capperi e fai sobbollire per 2 minuti.",
         "Finire: Rimetti i funghi in padella, girali nella salsa per un minuto e cospargili di prezzemolo. Servi con riso, pasta o pane."
       ],
-      "species": ["chicken-of-the-woods"],
+      "species": [
+        "chicken-of-the-woods"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1928,7 +2152,11 @@
       "prepTime": "15 min",
       "cookTime": "15 min",
       "servings": "2",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Cuoci sempre bene il poliporo sulfureo: crudo o poco cotto, irrita lo stomaco.",
         "Alcune persone reagiscono anche da cotto. La prima volta mangiane una piccola porzione e aspetta un giorno.",
@@ -1955,7 +2183,9 @@
         "Insaporire: Aggiungi l'aglio e la parte bianca dei cipollotti per 1 minuto, poi la salsa di soia, lo zucchero e l'olio di sesamo.",
         "Saltare: Aggiungi i noodles e saltali finché sono lucidi e caldi. Servi con la parte verde dei cipollotti, il sesamo e il peperoncino."
       ],
-      "species": ["oyster-mushroom"],
+      "species": [
+        "oyster-mushroom"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1981,7 +2211,11 @@
       "prepTime": "10 min",
       "cookTime": "15 min",
       "servings": "2",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Cuoci bene i pleurotus e non mangiarli crudi.",
         "Usa esemplari giovani e sodi: quelli vecchi diventano duri e spesso nascondono larve di coleotteri.",
@@ -2004,7 +2238,9 @@
         "Macerare: Aggiungi i fiori, le fette di limone e l'acido citrico, copri e lascia in un luogo fresco per 24–48 ore, mescolando una volta al giorno.",
         "Imbottigliare: Filtra attraverso un colino foderato con una garza in bottiglie sterilizzate e chiudi. Si conserva in frigorifero fino a 6 settimane, oppure in freezer. Diluisci circa 1 a 10 con acqua naturale o frizzante."
       ],
-      "species": ["elderflower"],
+      "species": [
+        "elderflower"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2028,7 +2264,11 @@
       "prepTime": "20 min",
       "cookTime": "5 min + 24–48 h di macerazione",
       "servings": "Circa 1,5 litri",
-      "tags": ["drink", "vegan", "easy"],
+      "tags": [
+        "drink",
+        "vegan",
+        "easy"
+      ],
       "safetyNotes": [
         "Usa solo i fiori e i gambi più sottili: foglie, corteccia e fusti spessi del sambuco contengono sostanze tossiche.",
         "Il sambuco è un arbusto legnoso o un piccolo albero. Non usare il sambuco ebbio (Sambucus ebulus), una pianta erbacea con parti tossiche, né le ombrelle bianche che crescono a terra di piante velenose come la cicuta."
@@ -2052,7 +2292,9 @@
         "Filtrare: Schiaccia leggermente le bacche e filtra il succo attraverso un colino fine o una garza, premendo con delicatezza.",
         "Dolcificare: Rimetti il succo nella pentola con il succo di limone e lo zucchero e fai sobbollire per 5 minuti, finché lo zucchero si scioglie. Se usi il miele, aggiungilo fuori dal fuoco quando il succo è tiepido. Imbottiglia e conserva in frigorifero fino a 3 mesi. Un cucchiaio in acqua calda è una bevanda invernale."
       ],
-      "species": ["elderberry"],
+      "species": [
+        "elderberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2076,7 +2318,10 @@
       "prepTime": "15 min",
       "cookTime": "30 min",
       "servings": "Circa 500 ml",
-      "tags": ["drink", "easy"],
+      "tags": [
+        "drink",
+        "easy"
+      ],
       "safetyNotes": [
         "Non mangiare mai bacche di sambuco crude. Le bacche e i semi crudi, e soprattutto le bacche verdi, i raspi e le foglie, provocano nausea e vomito. Una cottura di almeno 20 minuti rende sicure le bacche mature.",
         "Usa solo il sambuco nero (Sambucus nigra) o il sambuco canadese (S. canadensis), arbusti con grappoli di bacche piatti. Il sambuco rosso (S. racemosa) e l'ebbio (S. ebulus) non si usano."
@@ -2101,7 +2346,9 @@
         "Coprire: Distribuisci il crumble sulla frutta senza schiacciarlo.",
         "Cuocere: Inforna per 35–40 minuti, finché la superficie è dorata e il succo bolle ai bordi. Lascia riposare 10 minuti e servi con panna, crema inglese o gelato."
       ],
-      "species": ["blackberry"],
+      "species": [
+        "blackberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2125,7 +2372,11 @@
       "prepTime": "20 min",
       "cookTime": "40 min",
       "servings": "4–6",
-      "tags": ["dessert", "vegetarian", "easy"],
+      "tags": [
+        "dessert",
+        "vegetarian",
+        "easy"
+      ],
       "safetyNotes": [
         "Raccogli sopra l'altezza del ginocchio, lontano dalle strade trafficate e dai bordi dei campi trattati.",
         "Sciacqua le more appena prima di usarle e controlla che non ci siano piccoli insetti o muffa."
@@ -2150,7 +2401,9 @@
         "Girare: Quando compaiono le bolle e i bordi si rapprendono, dopo circa 2 minuti, gira i pancake e cuocili per altri 1–2 minuti.",
         "Servire: Impilali caldi con il resto dei mirtilli e lo sciroppo."
       ],
-      "species": ["blueberry"],
+      "species": [
+        "blueberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2174,7 +2427,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "2–4 (circa 12 pancake)",
-      "tags": ["dessert", "vegetarian", "easy"],
+      "tags": [
+        "dessert",
+        "vegetarian",
+        "easy"
+      ],
       "safetyNotes": [
         "In gran parte d'Europa i frutti di bosco che crescono vicino al suolo possono portare uova di tenia della volpe (Echinococcus multilocularis). Lavali bene. La cottura uccide le uova, il congelamento no, quindi lì i mirtilli cotti sono la scelta più sicura.",
         "I mirtilli crescono su arbusti bassi. La belladonna, molto velenosa, ha bacche nere lucide singole posate su una stella verde, su una pianta erbacea alta."
@@ -2198,7 +2455,9 @@
         "Frullare: Frulla le nocciole nel mixer per 5–10 minuti, raschiando ogni tanto le pareti, finché diventano una pasta fluida.",
         "Insaporire: Aggiungi il cacao, lo zucchero, il cioccolato, il sale e la vaniglia e frulla di nuovo, unendo l'olio un cucchiaio alla volta finché la crema è liscia e spalmabile. Conservala in un barattolo pulito in frigorifero fino a 3 settimane."
       ],
-      "species": ["hazelnut"],
+      "species": [
+        "hazelnut"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2222,7 +2481,11 @@
       "prepTime": "15 min",
       "cookTime": "12 min",
       "servings": "1 barattolo (circa 350 g)",
-      "tags": ["dessert", "vegetarian", "easy"],
+      "tags": [
+        "dessert",
+        "vegetarian",
+        "easy"
+      ],
       "safetyNotes": [
         "Le nocciole sono un allergene comune: avvisa chi la condivide con te.",
         "Raccogli solo nocciole maturate e cadute a fine estate e in autunno. Butta quelle bucate dal balanino e quelle che sanno di muffa o di amaro."
@@ -2246,7 +2509,9 @@
         "Frullare: Togli dal fuoco, aggiungi le foglie di menta e frulla fino a renderla liscia. Regola di sale, pepe e limone.",
         "Servire: Aggiungi la panna a spirale e cospargi con le foglioline di menta. È buona calda o fredda."
       ],
-      "species": ["wild-mint"],
+      "species": [
+        "wild-mint"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2270,7 +2535,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "4",
-      "tags": ["soup", "vegetarian", "easy"],
+      "tags": [
+        "soup",
+        "vegetarian",
+        "easy"
+      ],
       "safetyNotes": [
         "Una menta selvatica sa chiaramente di menta quando ne sfreghi una foglia: niente profumo di menta, niente menta.",
         "Escludi il puleggio (Mentha pulegium: foglie piccole e arrotondate, fusti striscianti, fiori in verticilli lungo il fusto). È tossica in quantità maggiori e va evitata in gravidanza.",
@@ -2292,7 +2561,9 @@
         "Zuccherare: Cospargi tutto il fiore di zucchero, scuoti via l'eccesso e appoggialo a faccia in su sulla carta da forno.",
         "Essiccare: Lasciali in un luogo caldo e asciutto per 1–2 giorni, finché sono completamente croccanti, poi taglia i gambi. Conservali per qualche settimana in una scatola ermetica tra strati di carta e usali su torte e dolci."
       ],
-      "species": ["violets"],
+      "species": [
+        "violets"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2316,7 +2587,11 @@
       "prepTime": "45 min",
       "cookTime": "1–2 giorni di essiccazione",
       "servings": "30–40 fiori",
-      "tags": ["dessert", "vegetarian", "medium"],
+      "tags": [
+        "dessert",
+        "vegetarian",
+        "medium"
+      ],
       "safetyNotes": [
         "Usa solo viole mammole (Viola odorata) o altre viole selvatiche. Le violette africane (Saintpaulia) non sono imparentate e non si mangiano.",
         "L'albume crudo comporta un piccolo rischio di salmonella: usa albume pastorizzato per bambini piccoli, donne in gravidanza e anziani.",
@@ -2337,7 +2612,9 @@
         "Condire: Mescola le foglie con l'olio e le spezie in modo che ognuna sia appena unta, poi stendile piatte sulla carta da forno senza sovrapporle.",
         "Cuocere: Inforna per 15–20 minuti, girandole una volta, finché sono croccanti ma ancora verdi. Lasciale raffreddare sulla teglia e mangiale in giornata."
       ],
-      "species": ["plantain"],
+      "species": [
+        "plantain"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2361,7 +2638,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "2",
-      "tags": ["appetizer", "vegan", "easy"],
+      "tags": [
+        "appetizer",
+        "vegan",
+        "easy"
+      ],
       "safetyNotes": [
         "Raccogli lontano dai bordi delle strade, dai sentieri dei cani e dai prati trattati: la piantaggine ama il terreno calpestato.",
         "Le foglie di piantaggine hanno robuste nervature parallele che si sfilano come fili. Le foglie di digitale, velenose, hanno una rete di nervature e sono vellutate."
@@ -2386,7 +2667,9 @@
         "Salamoia: Porta a ebollizione l'aceto, l'acqua, lo zucchero, l'alloro e il pepe.",
         "Invasare: Metti i boccioli e l'aneto nel barattolo, coprili con l'aceto caldo e chiudi. Aspetta almeno 2 settimane prima di mangiarli. Usali come capperi in insalate, salse e con il pesce."
       ],
-      "species": ["daisy"],
+      "species": [
+        "daisy"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2410,12 +2693,22 @@
       "prepTime": "20 min",
       "cookTime": "5 min",
       "servings": "1 barattolino",
-      "tags": ["side", "vegan", "easy"],
+      "tags": [
+        "side",
+        "vegan",
+        "easy"
+      ],
       "safetyNotes": [
         "Assicurati che siano margheritine (Bellis perennis): fiori singoli su steli senza foglie che nascono da una rosetta piatta di foglie a spatola.",
         "Raccogli su prati non trattati né concimati, lontano dalle aree frequentate dai cani.",
         "Chi è allergico alle Asteraceae, per esempio all'ambrosia o alla camomilla, può reagire."
       ]
     }
-  }
+  },
+  "readyNow": "Da cucinare ora",
+  "later": "Più avanti nell'anno",
+  "findOnMap": "Trovalo sulla mappa",
+  "recipeCount_one": "{{count}} ricetta",
+  "recipeCount_other": "{{count}} ricette",
+  "moreCount": "+{{count}} altre"
 }

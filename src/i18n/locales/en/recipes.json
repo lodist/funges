@@ -12,16 +12,6 @@
   "tips": "Tips",
   "warnings": "Warnings",
   "description": "Discover delicious recipes using foraged ingredients",
-  "filterBy": "Ingredient",
-  "filters": "Filters",
-  "clear": "Clear filters",
-  "apply": "Apply",
-  "all": "All",
-  "mushroom": "Mushroom",
-  "berry": "Berry",
-  "plant": "Plant",
-  "nut": "Nut",
-  "more": "more",
   "search": {
     "placeholder": "Search recipes, ingredients or tags",
     "no_results": "No recipes found",
@@ -139,7 +129,12 @@
         "Sauté: Cook in a pan with oil for 3–4 min per side until golden.",
         "Serve: With yogurt sauce, pesto, or as a vegetarian burger alternative."
       ],
-      "species": ["amaranth", "chickweed", "sorrel", "dandelion"],
+      "species": [
+        "amaranth",
+        "chickweed",
+        "sorrel",
+        "dandelion"
+      ],
       "steps": [
         {
           "step": 1,
@@ -167,7 +162,11 @@
       "prepTime": "15 min",
       "cookTime": "25 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "black-chanterelle-cream-sauce": {
@@ -190,7 +189,9 @@
         "Add cream: Pour in cream, cook 5 min until slightly thickened. Adjust salt, pepper, thyme.",
         "Serve: Perfect with fresh pasta, polenta, or roasted potatoes."
       ],
-      "species": ["black_chant"],
+      "species": [
+        "black_chant"
+      ],
       "steps": [
         {
           "step": 1,
@@ -224,8 +225,14 @@
       "prepTime": "20 min",
       "cookTime": "15 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "sauce", "easy"],
-      "safetyNotes": ["Ensure safe identification of foraged mushrooms."]
+      "tags": [
+        "vegetarian",
+        "sauce",
+        "easy"
+      ],
+      "safetyNotes": [
+        "Ensure safe identification of foraged mushrooms."
+      ]
     },
     "chanterelle-herb-tart": {
       "title": "Chanterelle and Herb Tart",
@@ -247,7 +254,9 @@
         "Bake: Bake at 180°C for 25–30 minutes until golden.",
         "Serve: Hot or cold, perfect for a woodland brunch."
       ],
-      "species": ["chant"],
+      "species": [
+        "chant"
+      ],
       "steps": [
         {
           "step": 1,
@@ -281,8 +290,14 @@
       "prepTime": "20 min",
       "cookTime": "30 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "medium"],
-      "safetyNotes": ["Ensure safe identification of foraged mushrooms."]
+      "tags": [
+        "vegetarian",
+        "main",
+        "medium"
+      ],
+      "safetyNotes": [
+        "Ensure safe identification of foraged mushrooms."
+      ]
     },
     "chickweed-sorrel-salad-with-walnut-vinaigrette": {
       "title": "Chickweed and Sorrel Salad with Walnut Vinaigrette",
@@ -302,7 +317,11 @@
         "Toss the salad: In a large bowl, combine chickweed, sorrel, and walnuts. Dress with vinaigrette and toss gently.",
         "Serve: Enjoy immediately as a fresh, slightly tangy salad."
       ],
-      "species": ["chickweed", "sorrel", "walnut"],
+      "species": [
+        "chickweed",
+        "sorrel",
+        "walnut"
+      ],
       "steps": [
         {
           "step": 1,
@@ -330,7 +349,11 @@
       "prepTime": "10 min",
       "cookTime": "5 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "salad", "easy"],
+      "tags": [
+        "vegetarian",
+        "salad",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "chestnut-mushroom-soup": {
@@ -355,7 +378,12 @@
         "Finish: Add cream if desired, adjust salt and pepper.",
         "Serve hot, with rustic bread or a drizzle of truffle oil."
       ],
-      "species": ["chestnut", "mushroom", "black_chant", "chant"],
+      "species": [
+        "chestnut",
+        "mushroom",
+        "black_chant",
+        "chant"
+      ],
       "steps": [
         {
           "step": 1,
@@ -393,8 +421,14 @@
       "prepTime": "10 min",
       "cookTime": "25 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "soup", "medium"],
-      "safetyNotes": ["Ensure safe identification of foraged mushrooms."]
+      "tags": [
+        "vegetarian",
+        "soup",
+        "medium"
+      ],
+      "safetyNotes": [
+        "Ensure safe identification of foraged mushrooms."
+      ]
     },
     "dandelion-flower-syrup": {
       "title": "Dandelion Flower Syrup",
@@ -412,7 +446,9 @@
         "Cook: Simmer over low heat until it thickens into a syrup (20–30 minutes).",
         "Store: Pour into sterilized jars. Great on pancakes, cheese, or in tea."
       ],
-      "species": ["dandelion"],
+      "species": [
+        "dandelion"
+      ],
       "steps": [
         {
           "step": 1,
@@ -444,7 +480,13 @@
       "prepTime": "20 min",
       "cookTime": "30 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "sauce", "dessert", "medium"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "sauce",
+        "dessert",
+        "medium"
+      ],
       "safetyNotes": []
     },
     "nettle-soup": {
@@ -468,7 +510,9 @@
         "Finish: Add cream or oat milk if desired. Adjust salt and pepper.",
         "Serve hot, with a drizzle of oil or croutons."
       ],
-      "species": ["nettle"],
+      "species": [
+        "nettle"
+      ],
       "steps": [
         {
           "step": 1,
@@ -504,8 +548,14 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "soup", "medium"],
-      "safetyNotes": ["Use gloves when handling fresh nettles."]
+      "tags": [
+        "vegetarian",
+        "soup",
+        "medium"
+      ],
+      "safetyNotes": [
+        "Use gloves when handling fresh nettles."
+      ]
     },
     "parasol-mushroom-schnitzel": {
       "title": "Parasol Mushroom Schnitzel",
@@ -524,7 +574,9 @@
         "Fry: Heat oil or butter in a pan. Fry the caps over medium heat until golden and crispy (about 3 minutes per side).",
         "Serve: With lemon wedges and fresh salad. A vegetarian classic."
       ],
-      "species": ["parasol"],
+      "species": [
+        "parasol"
+      ],
       "steps": [
         {
           "step": 1,
@@ -554,8 +606,14 @@
       "prepTime": "10 min",
       "cookTime": "6 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "easy"],
-      "safetyNotes": ["Ensure safe identification of foraged mushrooms."]
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
+      "safetyNotes": [
+        "Ensure safe identification of foraged mushrooms."
+      ]
     },
     "masterwort-infused-honey-glaze": {
       "title": "Masterwort Root Honey Glaze",
@@ -572,7 +630,9 @@
         "Bottle: Pour into a clean jar.",
         "Use: Perfect on roasted vegetables, grilled fruit, or game. Keeps in the fridge for weeks."
       ],
-      "species": ["masterwort"],
+      "species": [
+        "masterwort"
+      ],
       "steps": [
         {
           "step": 1,
@@ -600,7 +660,11 @@
       "prepTime": "5 min",
       "cookTime": "10 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "sauce", "medium"],
+      "tags": [
+        "vegetarian",
+        "sauce",
+        "medium"
+      ],
       "safetyNotes": []
     },
     "morel-chestnut-stuffing": {
@@ -623,7 +687,12 @@
         "Bake: Transfer to a baking dish and bake at 180°C for 20 minutes until golden.",
         "Serve as a side for roast meats or as a main vegetarian dish."
       ],
-      "species": ["morel", "chestnut", "garlic", "bread"],
+      "species": [
+        "morel",
+        "chestnut",
+        "garlic",
+        "bread"
+      ],
       "steps": [
         {
           "step": 1,
@@ -657,8 +726,14 @@
       "prepTime": "15 min",
       "cookTime": "25 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "side", "medium"],
-      "safetyNotes": ["Ensure safe identification of foraged mushrooms."]
+      "tags": [
+        "vegetarian",
+        "side",
+        "medium"
+      ],
+      "safetyNotes": [
+        "Ensure safe identification of foraged mushrooms."
+      ]
     },
     "nettle-potato-frittata": {
       "title": "Nettle and Potato Frittata",
@@ -678,7 +753,9 @@
         "Cook: Cook over low heat until set underneath, then finish under the grill or flip to cook the top.",
         "Serve hot or cold, perfect for picnics or breakfast."
       ],
-      "species": ["nettle"],
+      "species": [
+        "nettle"
+      ],
       "steps": [
         {
           "step": 1,
@@ -710,8 +787,14 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "easy"],
-      "safetyNotes": ["Use gloves when handling fresh nettles."]
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
+      "safetyNotes": [
+        "Use gloves when handling fresh nettles."
+      ]
     },
     "st-george-s-mushroom-spring-frittata": {
       "title": "Spring Frittata with St. George's Mushrooms and Nettles",
@@ -732,7 +815,10 @@
         "Finish: Place in oven or under grill for 5 minutes to brown (or carefully flip).",
         "Serve: Hot or at room temperature — perfect for spring picnics or brunch."
       ],
-      "species": ["st_george", "nettle"],
+      "species": [
+        "st_george",
+        "nettle"
+      ],
       "steps": [
         {
           "step": 1,
@@ -766,7 +852,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Use gloves when handling fresh nettles.",
         "Ensure safe identification of foraged mushrooms."
@@ -788,7 +878,12 @@
         "Season: Adjust salt and pepper. Pulse until a coarse, spreadable paste forms.",
         "Serve: Ideal on bread, as a sauce, or with cheese and grilled vegetables."
       ],
-      "species": ["walnut", "lingonb", "garlic", "masterwort"],
+      "species": [
+        "walnut",
+        "lingonb",
+        "garlic",
+        "masterwort"
+      ],
       "steps": [
         {
           "step": 1,
@@ -812,7 +907,12 @@
       "prepTime": "5 min",
       "cookTime": "5 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "appetizer", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "appetizer",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "wild-artichoke-lemon-pasta": {
@@ -833,7 +933,10 @@
         "Toss: Mix pasta with artichokes, lemon juice and zest, and the cooking water.",
         "Serve: Add salt, pepper, and garnish with fresh herbs. Fresh, wild, Mediterranean."
       ],
-      "species": ["artichoke", "garlic"],
+      "species": [
+        "artichoke",
+        "garlic"
+      ],
       "steps": [
         {
           "step": 1,
@@ -861,7 +964,13 @@
       "prepTime": "15 min",
       "cookTime": "20 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "pasta", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "pasta",
+        "main",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "wild-asparagus-dandelion-stir-fry": {
@@ -882,7 +991,11 @@
         "Finish: Season with salt, pepper, and lemon zest.",
         "Serve: Great on toast, grains, or as a wild side dish."
       ],
-      "species": ["asparagus", "dandelion", "garlic"],
+      "species": [
+        "asparagus",
+        "dandelion",
+        "garlic"
+      ],
       "steps": [
         {
           "step": 1,
@@ -910,7 +1023,12 @@
       "prepTime": "10 min",
       "cookTime": "5 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "side",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "wild-garlic-pesto": {
@@ -931,7 +1049,10 @@
         "Season: Adjust salt.",
         "Store: In a closed jar in the fridge for a week. Great for pasta, sandwiches, or roasted vegetables."
       ],
-      "species": ["garlic", "walnut"],
+      "species": [
+        "garlic",
+        "walnut"
+      ],
       "steps": [
         {
           "step": 1,
@@ -963,7 +1084,11 @@
       "prepTime": "10 min",
       "cookTime": "5 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "sauce", "easy"],
+      "tags": [
+        "vegetarian",
+        "sauce",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "wild-strawberry-sorrel-cooler": {
@@ -983,7 +1108,10 @@
         "Strain (optional): Strain for a clear drink or serve with the pulp.",
         "Garnish: Decorate with a strawberry and sorrel leaf. Perfect summer drink."
       ],
-      "species": ["strawberry", "sorrel"],
+      "species": [
+        "strawberry",
+        "sorrel"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1011,7 +1139,11 @@
       "prepTime": "5 min",
       "cookTime": "0 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "drink", "easy"],
+      "tags": [
+        "vegetarian",
+        "drink",
+        "easy"
+      ],
       "safetyNotes": []
     },
     "lions-mane-crab-cakes": {
@@ -1035,7 +1167,9 @@
         "Fry: Fry the cakes in oil or butter over medium heat until golden and crisp, about 3–4 minutes per side.",
         "Serve: With lemon wedges and a green salad or tartare sauce."
       ],
-      "species": ["lions_mane"],
+      "species": [
+        "lions_mane"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1065,7 +1199,11 @@
       "prepTime": "20 min",
       "cookTime": "20 min",
       "servings": "2–3",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Cook lion's mane through, and eat a small portion the first time: a few people react to it.",
         "It is illegal to pick wild lion's mane in Britain, and it is red-listed across much of Europe. Forage it only where it is common, as in North America."
@@ -1088,7 +1226,9 @@
         "Roast: Spread them on a baking tray in a single layer and roast at 220 °C for 20–25 minutes, turning once, until the edges are brown and crisp.",
         "Serve: Hot, with lemon wedges, over rice, polenta or toast."
       ],
-      "species": ["hen_of_the_woods"],
+      "species": [
+        "hen_of_the_woods"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1114,7 +1254,12 @@
       "prepTime": "10 min",
       "cookTime": "25 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "side",
+        "easy"
+      ],
       "safetyNotes": [
         "Cook hen of the woods thoroughly: undercooked, it upsets some stomachs.",
         "Its look-alike, the black-staining polypore, is edible but tough; it bruises black where it is handled."
@@ -1138,7 +1283,9 @@
         "Finish: Spoon the garlic and parsley oil into the gills, grind over some pepper and cook for 1 more minute.",
         "Serve: Straight away, sprinkled with flaky salt, with bread to mop up the juices."
       ],
-      "species": ["saffron_milk_cap"],
+      "species": [
+        "saffron_milk_cap"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1168,7 +1315,12 @@
       "prepTime": "10 min",
       "cookTime": "10 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "side",
+        "easy"
+      ],
       "safetyNotes": [
         "Before cooking, cut a cap or stem: a saffron milk cap bleeds carrot-orange to red milk. White or yellow milk means another milk cap. The woolly milk cap (Lactarius torminosus: a pinkish cap with a woolly, rolled-in edge and white milk) and similar white-milk species cause severe stomach upsets.",
         "Saffron milk caps bruise green where handled, and they can turn your urine reddish after the meal. Both are harmless."
@@ -1195,7 +1347,9 @@
         "Simmer: Add the potatoes, the bay leaf and enough hot water or stock to barely cover. Season with salt and simmer, partly covered, for 20–25 minutes, until the potatoes are tender and the broth has thickened.",
         "Serve: Let it rest for 5 minutes, sprinkle with parsley and serve with bread."
       ],
-      "species": ["saffron_milk_cap"],
+      "species": [
+        "saffron_milk_cap"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1225,7 +1379,12 @@
       "prepTime": "15 min",
       "cookTime": "40 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Before cooking, cut a cap or stem: a saffron milk cap bleeds carrot-orange to red milk. White or yellow milk means another milk cap. The woolly milk cap (Lactarius torminosus: a pinkish cap with a woolly, rolled-in edge and white milk) and similar white-milk species cause severe stomach upsets.",
         "Saffron milk caps bruise green where handled, and they can turn your urine reddish after the meal. Both are harmless."
@@ -1252,7 +1411,9 @@
         "Cook: Add the hot stock a ladle at a time, stirring often and letting each ladle be absorbed before the next, for about 18 minutes, until the rice is creamy but still firm to the bite. Stir in the mushrooms for the last 5 minutes.",
         "Finish: Off the heat, beat in the rest of the butter and the Parmesan. Cover, rest for 2 minutes and serve with a few thyme leaves on top."
       ],
-      "species": ["hedgehog_mushroom"],
+      "species": [
+        "hedgehog_mushroom"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1282,7 +1443,11 @@
       "prepTime": "15 min",
       "cookTime": "30 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "medium"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "medium"
+      ],
       "safetyNotes": [
         "Check underneath before cooking: a hedgehog mushroom has soft spines (teeth) under the cap, not gills. Older ones can taste bitter, so scrape the spines off big ones.",
         "It has no dangerous look-alikes, but still only eat mushrooms you have identified with certainty."
@@ -1308,7 +1473,9 @@
         "Blend: Blend until smooth, stir in the cream and the lemon juice, and heat through without boiling. Adjust the salt and pepper.",
         "Serve: Hot, sprinkled with chives, with toasted bread. Drink water or juice with it, not wine or beer."
       ],
-      "species": ["shaggy_mane"],
+      "species": [
+        "shaggy_mane"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1338,7 +1505,11 @@
       "prepTime": "10 min",
       "cookTime": "25 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "soup", "easy"],
+      "tags": [
+        "vegetarian",
+        "soup",
+        "easy"
+      ],
       "safetyNotes": [
         "Cook shaggy manes within a few hours of picking: they digest themselves into black ink. Only use young ones that are still white all through the gills.",
         "Its look-alike, the common ink cap (Coprinopsis atramentaria: grey, smooth, with no shaggy scales), causes a violent reaction with alcohol drunk in the hours before the meal or up to three days after it. So this soup is made and served without alcohol: if there is any doubt about what you picked, don't drink with it.",
@@ -1365,7 +1536,9 @@
         "Layer: Spread a little sauce in a baking dish, then layer puffball slices, sauce, mozzarella, basil and Parmesan. Repeat, finishing with sauce, mozzarella and Parmesan.",
         "Bake: Bake at 200 °C for 25 minutes, until bubbling and browned. Let it rest for 10 minutes before cutting."
       ],
-      "species": ["giant_puffball"],
+      "species": [
+        "giant_puffball"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1395,7 +1568,11 @@
       "prepTime": "20 min",
       "cookTime": "45 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "main", "medium"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "medium"
+      ],
       "safetyNotes": [
         "Always cut every puffball in half from top to bottom. If you see the outline of a cap, gills or a stem inside, it is a young Amanita still in its 'egg', which can be deadly.",
         "Only eat it while the flesh is pure white, firm and even all the way through, like fresh mozzarella. Yellow, olive, brown or purple flesh means it is spoiling, or that it is an earthball (Scleroderma), which is poisonous and dark purple-black inside.",
@@ -1421,7 +1598,9 @@
         "Cook: Cover, bring to the boil, then cook on the lowest heat for 13 minutes (or use the rice cooker's normal setting). Turn off the heat and leave it to steam, lid on, for 10 minutes.",
         "Serve: Gently fold the matsutake through the rice and serve in bowls, topped with mitsuba or chives."
       ],
-      "species": ["matsutake"],
+      "species": [
+        "matsutake"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1451,7 +1630,12 @@
       "prepTime": "40 min",
       "cookTime": "30 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "In North America's Pacific Northwest, matsutake has a deadly look-alike, Amanita smithiana: white, with a swollen stem base that tapers into the soil like a root and is ringed with white scraps of veil, and without the spicy cinnamon smell. It destroys the kidneys, so check the base and the smell of every mushroom.",
         "Pick matsutake without raking the ground or disturbing the soil: raking destroys the mycelium, and it is banned in many US national forests, where you also need a permit to pick."
@@ -1477,7 +1661,9 @@
         "Fill: Pour the hot brine over the ramps until they are covered by 1 cm, tucking the bay leaf down the side. Tap the jar to release any air bubbles and close it.",
         "Mature: Leave to cool, then keep in the fridge. Wait at least 3 days before eating; they keep for up to 2 months in the fridge. Serve with soup beans and cornbread, in sandwiches or with cheese."
       ],
-      "species": ["ramps"],
+      "species": [
+        "ramps"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1505,7 +1691,12 @@
       "prepTime": "20 min",
       "cookTime": "5 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "side",
+        "easy"
+      ],
       "safetyNotes": [
         "Harvest sustainably. Ramps grow slowly, taking years from seed to harvest, and over-harvesting has wiped out whole patches. Take one leaf per plant and leave the bulb, or at most a few bulbs from a large, dense patch. Never clear a patch.",
         "Picking is banned in some parks, including Great Smoky Mountains National Park. Quebec bans selling wild ramps and limits personal harvest to 200 g, or 50 bulbs or plants, per person per year.",
@@ -1530,7 +1721,9 @@
         "Season: Take the pan off the heat, add the lemon zest and juice, and season with salt and pepper.",
         "Serve: Straight away, as a side with fish or eggs, or piled on buttered toast."
       ],
-      "species": ["fiddleheads"],
+      "species": [
+        "fiddleheads"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1558,7 +1751,11 @@
       "prepTime": "15 min",
       "cookTime": "20 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "side", "easy"],
+      "tags": [
+        "vegetarian",
+        "side",
+        "easy"
+      ],
       "safetyNotes": [
         "Pick only the ostrich fern. Its fiddleheads are smooth and bright green, with brown papery scales, and a deep U-shaped groove runs along the inside of the stem. Never pick bracken, which is fuzzy, has a branched top and is carcinogenic.",
         "Never eat fiddleheads raw or undercooked: they have caused outbreaks of food poisoning. Wash them, then boil them for 15 minutes (or steam for 10–12 minutes) and throw the water away, before sautéing.",
@@ -1581,7 +1778,9 @@
         "Fold: Fold the sugared berries and their juice gently into the cream with a spatula, in a few strokes, so the berries stay whole.",
         "Serve: Spoon into glasses or bowls, top with the reserved berries and serve cold, with krumkake or biscuits. In Norway it is a Christmas dessert."
       ],
-      "species": ["cloudberry"],
+      "species": [
+        "cloudberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1605,7 +1804,11 @@
       "prepTime": "20 min",
       "cookTime": "0 min",
       "servings": "4–6",
-      "tags": ["vegetarian", "dessert", "easy"],
+      "tags": [
+        "vegetarian",
+        "dessert",
+        "easy"
+      ],
       "safetyNotes": [
         "Pick only ripe, soft, amber-yellow berries. Unripe ones are hard and red.",
         "Respect local picking rules. In Nordland, Troms and Finnmark in northern Norway, landowners can ban cloudberry picking on their land, so look out for signs (eating berries on the spot is always allowed)."
@@ -1631,7 +1834,9 @@
         "Bake: Bake for 20 minutes, then lower the oven to 180 °C and bake for another 40 minutes, until the crust is deep golden and thick juice bubbles through the slits. Put a tray underneath to catch any drips.",
         "Cool: Leave the pie to cool for at least 3 hours, so the filling sets before you slice it. Serve with vanilla ice cream or whipped cream."
       ],
-      "species": ["huckleberry"],
+      "species": [
+        "huckleberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1659,7 +1864,11 @@
       "prepTime": "45 min",
       "cookTime": "60 min",
       "servings": "6–8",
-      "tags": ["vegetarian", "dessert", "medium"],
+      "tags": [
+        "vegetarian",
+        "dessert",
+        "medium"
+      ],
       "safetyNotes": [
         "Huckleberries are blue-black to purple, with a small crown at the tip like a blueberry. Don't eat red or white berries in clusters (baneberry is poisonous) or any berry you're not sure of.",
         "Huckleberry patches are bear country: make noise and carry bear spray."
@@ -1682,7 +1891,9 @@
         "Fold: Fold the pawpaw mixture into the cream in two or three batches, until no streaks remain. Pour into a loaf tin or a freezer box.",
         "Freeze: Cover and freeze for at least 6 hours, or overnight. Let it soften for 10 minutes before scooping."
       ],
-      "species": ["pawpaw"],
+      "species": [
+        "pawpaw"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1710,7 +1921,11 @@
       "prepTime": "20 min",
       "cookTime": "0 min",
       "servings": "6–8",
-      "tags": ["vegetarian", "dessert", "easy"],
+      "tags": [
+        "vegetarian",
+        "dessert",
+        "easy"
+      ],
       "safetyNotes": [
         "Eat only ripe fruit, and never the skin or the large seeds. The seeds are poisonous: don't crush or blend them.",
         "Some people react to pawpaw with a stomach upset or a skin rash, so try a little first."
@@ -1732,7 +1947,9 @@
         "Reduce: Boil the juice until it has reduced to about 1 litre. Add the sugar and lemon juice, stir until the sugar dissolves and boil for 5 minutes.",
         "Bottle: Pour the hot syrup into hot sterilised bottles and seal them. Once opened, keep in the fridge and use within 2 weeks. Pour it over pancakes or ice cream, or dilute it with water for a drink."
       ],
-      "species": ["rose_hips"],
+      "species": [
+        "rose_hips"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1760,7 +1977,13 @@
       "prepTime": "20 min",
       "cookTime": "60 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "sauce", "drink", "medium"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "sauce",
+        "drink",
+        "medium"
+      ],
       "safetyNotes": [
         "The hairs around the seeds irritate the mouth and gut: they are the old 'itching powder'. Strain the syrup twice through a fine cloth or jelly bag.",
         "Pick hips that are deep red and slightly soft, after the first frosts if you can. Don't pick beside busy roads."
@@ -1782,7 +2005,9 @@
         "Boil: Measure the juice into a clean pan and add 750 g of sugar for every litre. Stir over a low heat until the sugar dissolves, then boil hard for 10–15 minutes, until it reaches setting point: 105 °C, or a drop on a cold plate wrinkles when you push it.",
         "Pot: Skim off any foam, pour into hot sterilised jars and seal. Serve with roast lamb, game or cheese."
       ],
-      "species": ["sloes"],
+      "species": [
+        "sloes"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1810,7 +2035,12 @@
       "prepTime": "20 min",
       "cookTime": "60 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "vegan", "sauce", "medium"],
+      "tags": [
+        "vegetarian",
+        "vegan",
+        "sauce",
+        "medium"
+      ],
       "safetyNotes": [
         "Sloes are blue-black with a dusty bloom, and grow singly on the thorny blackthorn. They are very sour raw. Their stones contain amygdalin, which can release cyanide, so don't crush the stones.",
         "Look-alikes are poisonous: deadly nightshade has shiny black berries sitting on a green star, on a soft, non-woody plant; buckthorn (Rhamnus cathartica) has shiny black berries in clusters and is strongly purgative."
@@ -1834,7 +2064,9 @@
         "Finish: Take the bowl off the heat and stir in the butter a few pieces at a time, until smooth. For a silky curd, pass it through a sieve.",
         "Store: Pour into warm sterilised jars, cover and leave to cool. Keep in the fridge and eat within 2 weeks. Spread it on toast or scones, or use it to fill tarts."
       ],
-      "species": ["sea_buckthorn"],
+      "species": [
+        "sea_buckthorn"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1862,7 +2094,11 @@
       "prepTime": "20 min",
       "cookTime": "15 min",
       "servings": "2–4",
-      "tags": ["vegetarian", "dessert", "medium"],
+      "tags": [
+        "vegetarian",
+        "dessert",
+        "medium"
+      ],
       "safetyNotes": [
         "Pick bright orange, juicy berries from late summer on, by hand or into a bowl. Don't break or cut branches off wild shrubs: it damages them, and in Finland it is forbidden.",
         "Picking may be forbidden in protected dunes and nature reserves, so check local rules. The shrub is very thorny: wear gloves."
@@ -1888,7 +2124,9 @@
         "Sauce: Melt the butter in the same pan and cook the garlic for 30 seconds. Add the stock, lemon juice and capers and simmer for 2 minutes.",
         "Finish: Return the mushrooms to the pan, turn them in the sauce for a minute and scatter with parsley. Serve with rice, pasta or bread."
       ],
-      "species": ["chicken-of-the-woods"],
+      "species": [
+        "chicken-of-the-woods"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1914,7 +2152,11 @@
       "prepTime": "15 min",
       "cookTime": "15 min",
       "servings": "2",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Always cook chicken of the woods through: raw or undercooked, it upsets the stomach.",
         "Some people react to it even when it is cooked. The first time, eat a small portion and wait a day.",
@@ -1941,7 +2183,9 @@
         "Season: Add the garlic and the white parts of the spring onions for 1 minute, then the soy sauce, sugar and sesame oil.",
         "Toss: Add the noodles and toss until glossy and hot. Serve with the spring onion greens, sesame seeds and chilli."
       ],
-      "species": ["oyster-mushroom"],
+      "species": [
+        "oyster-mushroom"
+      ],
       "steps": [
         {
           "step": 1,
@@ -1967,7 +2211,11 @@
       "prepTime": "10 min",
       "cookTime": "15 min",
       "servings": "2",
-      "tags": ["vegetarian", "main", "easy"],
+      "tags": [
+        "vegetarian",
+        "main",
+        "easy"
+      ],
       "safetyNotes": [
         "Cook oyster mushrooms well and don't eat them raw.",
         "Use young, firm specimens: old ones go tough and often hide beetle larvae.",
@@ -1990,7 +2238,9 @@
         "Steep: Add the flowers, lemon slices and citric acid, cover and leave in a cool place for 24–48 hours, stirring once a day.",
         "Bottle: Strain through a sieve lined with muslin into sterilised bottles and seal. Keep in the fridge for up to 6 weeks, or freeze it. Dilute about 1 to 10 with still or sparkling water."
       ],
-      "species": ["elderflower"],
+      "species": [
+        "elderflower"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2014,7 +2264,11 @@
       "prepTime": "20 min",
       "cookTime": "5 min + 24–48 h steeping",
       "servings": "About 1.5 litres",
-      "tags": ["drink", "vegan", "easy"],
+      "tags": [
+        "drink",
+        "vegan",
+        "easy"
+      ],
       "safetyNotes": [
         "Use only the flowers and the finest stalks: elder leaves, bark and thick stems contain toxic compounds.",
         "Elder is a woody shrub or small tree. Don't use dwarf elder (Sambucus ebulus), a non-woody plant with toxic parts, or the ground-growing white umbels of poisonous plants such as hemlock."
@@ -2038,7 +2292,9 @@
         "Strain: Mash the berries lightly and strain the juice through a fine sieve or muslin, pressing gently.",
         "Sweeten: Return the juice to the pan with the lemon juice and sugar and simmer for 5 minutes, until the sugar has dissolved. If you use honey, stir it in off the heat once the juice is lukewarm. Bottle and keep in the fridge for up to 3 months. A spoonful in hot water makes a winter drink."
       ],
-      "species": ["elderberry"],
+      "species": [
+        "elderberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2062,7 +2318,10 @@
       "prepTime": "15 min",
       "cookTime": "30 min",
       "servings": "About 500 ml",
-      "tags": ["drink", "easy"],
+      "tags": [
+        "drink",
+        "easy"
+      ],
       "safetyNotes": [
         "Never eat elderberries raw. Raw berries and seeds, and above all green berries, stalks and leaves, cause nausea and vomiting. Simmering the ripe berries for at least 20 minutes makes them safe.",
         "Use only black elder (Sambucus nigra) or American elder (S. canadensis), shrubs with flat clusters of berries. Red elder (S. racemosa) and dwarf elder (S. ebulus) are not used."
@@ -2087,7 +2346,9 @@
         "Top: Scatter the crumble loosely over the fruit without pressing it down.",
         "Bake: Bake for 35–40 minutes, until golden on top and bubbling at the edges. Leave it to rest for 10 minutes and serve with cream, custard or ice cream."
       ],
-      "species": ["blackberry"],
+      "species": [
+        "blackberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2111,7 +2372,11 @@
       "prepTime": "20 min",
       "cookTime": "40 min",
       "servings": "4–6",
-      "tags": ["dessert", "vegetarian", "easy"],
+      "tags": [
+        "dessert",
+        "vegetarian",
+        "easy"
+      ],
       "safetyNotes": [
         "Pick above knee height and away from busy roads and sprayed field edges.",
         "Rinse the berries just before using them and check them for small insects and mould."
@@ -2136,7 +2401,9 @@
         "Turn: When bubbles appear and the edges set, after about 2 minutes, turn the pancakes and cook them for 1–2 minutes more.",
         "Serve: Stack them warm with the rest of the berries and the syrup."
       ],
-      "species": ["blueberry"],
+      "species": [
+        "blueberry"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2160,7 +2427,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "2–4 (about 12 pancakes)",
-      "tags": ["dessert", "vegetarian", "easy"],
+      "tags": [
+        "dessert",
+        "vegetarian",
+        "easy"
+      ],
       "safetyNotes": [
         "In much of Europe low-growing berries can carry eggs of the fox tapeworm (Echinococcus multilocularis). Wash them well. Cooking kills the eggs, freezing doesn't, so cooked berries are the safer choice there.",
         "Bilberries and blueberries grow on low shrubs. Deadly nightshade, which is very poisonous, has single shiny black berries sitting on a green star, on a tall soft plant."
@@ -2184,7 +2455,9 @@
         "Grind: Blend the nuts in a food processor for 5–10 minutes, scraping down the sides now and then, until they turn into a runny butter.",
         "Flavour: Add the cocoa, sugar, chocolate, salt and vanilla and blend again, adding the oil a spoonful at a time until smooth and spreadable. Keep it in a clean jar in the fridge for up to 3 weeks."
       ],
-      "species": ["hazelnut"],
+      "species": [
+        "hazelnut"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2208,7 +2481,11 @@
       "prepTime": "15 min",
       "cookTime": "12 min",
       "servings": "1 jar (about 350 g)",
-      "tags": ["dessert", "vegetarian", "easy"],
+      "tags": [
+        "dessert",
+        "vegetarian",
+        "easy"
+      ],
       "safetyNotes": [
         "Hazelnuts are a common allergen: tell anyone you share this with.",
         "Gather only nuts that have ripened and fallen in late summer and autumn. Throw away nuts with holes, which weevils have bored, and any that taste mouldy or bitter."
@@ -2232,7 +2509,9 @@
         "Blend: Take the pan off the heat, add the mint leaves and blend until smooth. Season with salt, pepper and lemon.",
         "Serve: Swirl in the cream and scatter with the small mint leaves. It is good hot or chilled."
       ],
-      "species": ["wild-mint"],
+      "species": [
+        "wild-mint"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2256,7 +2535,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "4",
-      "tags": ["soup", "vegetarian", "easy"],
+      "tags": [
+        "soup",
+        "vegetarian",
+        "easy"
+      ],
       "safetyNotes": [
         "A wild mint smells clearly of mint when you crush a leaf: no mint smell, no mint.",
         "Leave out pennyroyal (Mentha pulegium: small, rounded leaves, creeping stems, flowers in rings up the stem). It is toxic in larger amounts and must be avoided in pregnancy.",
@@ -2278,7 +2561,9 @@
         "Sugar: Sprinkle the flower all over with caster sugar, shake off the excess and set it face up on baking paper.",
         "Dry: Leave them in a warm, dry place for 1–2 days, until completely crisp, then snip off the stems. Store them in an airtight tin between layers of paper for a few weeks and use them on cakes and desserts."
       ],
-      "species": ["violets"],
+      "species": [
+        "violets"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2302,7 +2587,11 @@
       "prepTime": "45 min",
       "cookTime": "1–2 days drying",
       "servings": "30–40 flowers",
-      "tags": ["dessert", "vegetarian", "medium"],
+      "tags": [
+        "dessert",
+        "vegetarian",
+        "medium"
+      ],
       "safetyNotes": [
         "Use only sweet violets (Viola odorata) or other wild violets. African violets (Saintpaulia) are not related and should not be eaten.",
         "Raw egg white carries a small risk of salmonella: use pasteurised egg white for small children, pregnant people and the elderly.",
@@ -2323,7 +2612,9 @@
         "Season: Toss the leaves with the oil and seasonings so each is lightly coated, then lay them flat on baking paper without overlapping.",
         "Bake: Bake for 15–20 minutes, turning them once, until crisp but still green. Let them cool on the tray and eat them the same day."
       ],
-      "species": ["plantain"],
+      "species": [
+        "plantain"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2347,7 +2638,11 @@
       "prepTime": "10 min",
       "cookTime": "20 min",
       "servings": "2",
-      "tags": ["appetizer", "vegan", "easy"],
+      "tags": [
+        "appetizer",
+        "vegan",
+        "easy"
+      ],
       "safetyNotes": [
         "Pick away from roadsides, dog-walking paths and sprayed lawns: plantain likes trampled ground.",
         "Plantain leaves have strong parallel veins that pull out like strings. Foxglove leaves, which are poisonous, have a network of veins and are softly hairy."
@@ -2372,7 +2667,9 @@
         "Brine: Bring the vinegar, water, sugar, bay leaf and peppercorns to the boil.",
         "Jar: Pack the buds and the dill into the jar, pour the hot vinegar over to cover them and seal. Leave for at least 2 weeks before eating. Use them like capers in salads, sauces and with fish."
       ],
-      "species": ["daisy"],
+      "species": [
+        "daisy"
+      ],
       "steps": [
         {
           "step": 1,
@@ -2396,12 +2693,22 @@
       "prepTime": "20 min",
       "cookTime": "5 min",
       "servings": "1 small jar",
-      "tags": ["side", "vegan", "easy"],
+      "tags": [
+        "side",
+        "vegan",
+        "easy"
+      ],
       "safetyNotes": [
         "Make sure they are common daisies (Bellis perennis): single flowers on leafless stalks rising from a flat rosette of spoon-shaped leaves.",
         "Pick from lawns that are not sprayed or fertilised, away from areas used by dogs.",
         "People allergic to the daisy family (Asteraceae), for example to ragweed or chamomile, can react to them."
       ]
     }
-  }
+  },
+  "readyNow": "Ready to cook now",
+  "later": "Later in the year",
+  "findOnMap": "Find it on the map",
+  "recipeCount_one": "{{count}} recipe",
+  "recipeCount_other": "{{count}} recipes",
+  "moreCount": "+{{count}} more"
 }
