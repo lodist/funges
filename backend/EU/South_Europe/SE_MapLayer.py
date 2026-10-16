@@ -546,7 +546,9 @@ def build_mbtiles_from_geojson(geojson_path: Path, mbtiles_path: Path, layer_nam
             "-o", str(part),
             "-Z" + str(zoom if low_zoom_paths else 0), "-z" + str(zoom),
             "--force",
-            "--drop-densest-as-needed",
+            # A cell grid still overflows the busiest low-zoom tiles: merge cells into their
+            # neighbours there rather than drop them, so the coverage stays whole.
+            "--coalesce-densest-as-needed" if zoom < 6 else "--drop-densest-as-needed",
             "--simplification=4",
             "-d9",  # ~1.2km coord grid at z6: ~half the vertices of -d10 again; drops the smallest slivers. today+forecast use the same detail so the slider stays consistent
             "-l", layer_name,
