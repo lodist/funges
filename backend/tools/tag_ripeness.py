@@ -8,7 +8,9 @@ the plant, zero-shot. Checked by eye on contact sheets of the most and least rip
 for the dark berries below. Not for the nuts and pawpaw: their ripest-looking photos are last
 year's empty husks, shells and seeds on winter ground, so they keep their months. BioCLIP, trained
 for taxonomy, scored green July elderberries as ripe as September's. Wild garlic the other way
-round: its green seed pods are picked, the dry heads of black seeds are not.
+round: its green seed pods are picked, the dry heads of black seeds are not. Not for blackberries:
+a bunch ripens berry by berry, so a photo shows black and red together, and none of five wordings
+told them apart by month (Europe: 12-23% "ripe" in June, 31-39% in September).
 
     python -P -E backend/tools/tag_ripeness.py --out ../plant_training   # -> photos/, ripeness.parquet
     python -P -E backend/tools/tag_ripeness.py --out ../plant_training --plants garlic   # the others' rows kept
@@ -26,7 +28,9 @@ MODEL = "hf-hub:laion/CLIP-ViT-B-32-laion2B-s34B-b79K"
 PROMPTS = {"elderberry": ("ripe black elderberries", "green unripe elderberries"),
            "sloes": ("ripe dark blue sloe berries", "green unripe sloe berries"),
            "blueberry": ("ripe blue blueberries", "green unripe blueberries"),
-           "garlic": ("dry withered wild garlic seed heads with black seeds", "green seed pods of wild garlic")}
+           "garlic": ("dry withered wild garlic seed heads with black seeds", "green seed pods of wild garlic"),
+           "rose_hips": ("ripe red rose hips", "green unripe rose hips"),
+           "strawberry": ("ripe red wild strawberries", "white and green unripe wild strawberries")}
 RIPE = 0.5                      # P(ripe) from which fit_phenology counts a sighting ripe
 
 
