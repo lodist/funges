@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { Recipe } from '@/data/recipes';
 import type { SpeciesWithTranslations } from '@/data/species';
 import {
+  compassPoint,
   deriveWorthForagingNowRecommendations,
   inferScoreRegion,
 } from '@/lib/worth-foraging-now';
@@ -209,6 +210,48 @@ describe('worth foraging now recommendations', () => {
     expect(result.context.scope).toBe('radius');
     expect(result.recommendations[0]?.speciesId).toBe('morel');
     expect(result.recommendations[0]?.distanceKm).toBeLessThan(5);
+  });
+
+  it('names the compass point for a bearing, wrapping past north', () => {
+    expect(compassPoint(0)).toBe('N');
+    expect(compassPoint(44)).toBe('NE');
+    expect(compassPoint(180)).toBe('S');
+    expect(compassPoint(250)).toBe('W');
+    expect(compassPoint(350)).toBe('N');
+  });
+
+  it('points the way to the best spot and names the worst look-alike', () => {
+    const result = deriveWorthForagingNowRecommendations({
+      dataset: {
+        updated_at: null,
+        grid_size_degrees: 0.5,
+        min_score: 4,
+        regions: { NE: [], SE: [], USE: [], USW: [] },
+        points: [
+          {
+            regionId: 'NE',
+            lat: 47.9,
+            lng: 8.55,
+            scores: { morel: 9.2 },
+          },
+        ],
+      },
+      species,
+      recipes,
+      focus: 'mushrooms',
+      mapCenter: [7.3, 47.8],
+      userLocation: [7.5, 47.6],
+    });
+
+    const [morel] = result.recommendations;
+    // ~80 km east and ~33 km north of the reader.
+    expect(compassPoint(morel.bearingDeg ?? -1)).toBe('NE');
+    // Gyromitra (lethal) outranks Verpa (toxic) among the morel's look-alikes.
+    expect(morel.lookalike).toEqual({
+      scientificName: 'Gyromitra esculenta',
+      severity: 'lethal',
+    });
+    expect(morel.recipes[0]).toMatchObject({ id: 'morel-toast', image: null });
   });
 
   it('excludes species not shown on map', () => {
