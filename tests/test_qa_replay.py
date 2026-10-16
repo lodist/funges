@@ -6,7 +6,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from qa_replay import evaluate, on_day, percentiles, summarise  # noqa: E402
+from qa_replay import evaluate, fill_gaps, on_day, percentiles, summarise  # noqa: E402
 
 
 def test_percentiles_weigh_background_and_count_ties_half():
@@ -53,6 +53,29 @@ def test_stored_scores_are_compared_on_their_own_days():
     summary = summarise(rows, "stored").set_index("species")
     assert summary.d_timing["a"] == 1.0 - 18 / 19
     assert summary.paired["a"] == 1 and summary.n["all Fungi"] == 2
+
+
+def test_a_step_in_the_stored_scores_is_not_timing():
+    days = pd.date_range("2026-09-01", periods=40)
+    finds = pd.DataFrame({"species_id": ["a", "b"], "date": [str(days[10].date())] * 2,
+                          "loc": ["p0", "p1"], "kingdom": ["Fungi", "Fungi"]})
+    today = pd.DataFrame({"Location_Id": np.repeat(["p0", "p1"], 40), "Date": np.tile(days, 2),
+                          "a_score": 3.0, "b_score": 3.0})
+    stored = today.copy()
+    stored.loc[stored.Date >= days[20], ["a_score", "b_score"]] -= 1.0    # the code changed on day 20
+    rows = evaluate("NE", finds, {"today": today, "stored": stored}, days).set_index(["species", "source"])
+    assert rows.timing[("a", "stored")] == rows.timing[("a", "today@stored")] == 0.5
+
+
+def test_fill_gaps_interpolates_short_holes_and_leaves_long_ones():
+    days = pd.date_range("2026-05-01", periods=9)
+    present = [0, 1, 3, 4, 8]
+    inputs = pd.DataFrame({"Location_Id": "p", "Date": days[present], "Latitude": 50.0, "Longitude": 10.0,
+                           "TotalPrecipitation_mm": [d * 10.0 for d in present], "climate_zone": "Cfb"})
+    out = fill_gaps(inputs).set_index("Date")
+    assert out.loc[days[2], "TotalPrecipitation_mm"] == 20.0
+    assert out.loc[days[2], "climate_zone"] == "Cfb"
+    assert days[5] not in out.index and len(out) == 6
 
 
 def test_on_day_anchors_the_gbm_without_touching_the_settings():
