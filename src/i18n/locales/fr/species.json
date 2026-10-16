@@ -134,9 +134,9 @@
       "howTo": "Cherchez-les dans les prairies, lisières de bois et zones herbeuses au printemps et en été"
     },
     "wildMint": {
-      "name": "Menthe sauvage",
-      "description": "Herbe aromatique à tiges carrées et feuilles opposées dégageant une odeur de menthe quand on les froisse",
-      "howTo": "Se trouve dans les zones humides, le long des ruisseaux et prairies humides au printemps et en été"
+      "name": "Menthes sauvages",
+      "description": "Toute menthe sauvage : menthe aquatique, menthe à longues feuilles, menthe à feuilles rondes, menthe des champs et menthe pouliot. Tiges carrées, feuilles opposées et odeur de menthe quand on les froisse",
+      "howTo": "Se trouve sur les sols humides, dans les fossés et au bord des ruisseaux. La menthe pouliot convient en tisane légère, mais elle est toxique en huile ou en grande quantité : à éviter pendant la grossesse"
     },
     "chickweed": {
       "name": "Mouron des oiseaux",

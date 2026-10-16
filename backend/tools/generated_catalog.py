@@ -61,8 +61,8 @@ CATALOG = [
     "species"
   ],
   [
-    "Mentha arvensis",
-    "species"
+    "Mentha",
+    "genus"
   ],
   [
     "Stellaria media",
