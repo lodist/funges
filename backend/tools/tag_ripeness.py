@@ -7,9 +7,11 @@ CLIP model scores each fruiting sighting's first photo against a ripe and a gree
 the plant, zero-shot. Checked by eye on contact sheets of the most and least ripe of a pilot: right
 for the dark berries below. Not for the nuts and pawpaw: their ripest-looking photos are last
 year's empty husks, shells and seeds on winter ground, so they keep their months. BioCLIP, trained
-for taxonomy, scored green July elderberries as ripe as September's.
+for taxonomy, scored green July elderberries as ripe as September's. Wild garlic the other way
+round: its green seed pods are picked, the dry heads of black seeds are not.
 
     python -P -E backend/tools/tag_ripeness.py --out ../plant_training   # -> photos/, ripeness.parquet
+    python -P -E backend/tools/tag_ripeness.py --out ../plant_training --plants garlic   # the others' rows kept
 """
 import argparse
 import time
@@ -23,7 +25,8 @@ import requests
 MODEL = "hf-hub:laion/CLIP-ViT-B-32-laion2B-s34B-b79K"
 PROMPTS = {"elderberry": ("ripe black elderberries", "green unripe elderberries"),
            "sloes": ("ripe dark blue sloe berries", "green unripe sloe berries"),
-           "blueberry": ("ripe blue blueberries", "green unripe blueberries")}
+           "blueberry": ("ripe blue blueberries", "green unripe blueberries"),
+           "garlic": ("dry withered wild garlic seed heads with black seeds", "green seed pods of wild garlic")}
 RIPE = 0.5                      # P(ripe) from which fit_phenology counts a sighting ripe
 
 
@@ -92,13 +95,18 @@ def main() -> None:
     import open_clip
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True, help="the plant training folder (inat/)")
+    parser.add_argument("--plants", help="tag only these (comma-separated), keeping the others' rows")
     args = parser.parse_args()
     out = Path(args.out)
+    plants = args.plants.split(",") if args.plants else list(PROMPTS)
     model, _, preprocess = open_clip.create_model_and_transforms(MODEL)
     tokenizer = open_clip.get_tokenizer(MODEL)
     model.eval()
     frames = []
-    for plant, prompts in PROMPTS.items():
+    if args.plants and (out / "ripeness.parquet").exists():
+        frames.append(pd.read_parquet(out / "ripeness.parquet").query("plant not in @plants"))
+    for plant in plants:
+        prompts = PROMPTS[plant]
         t = pd.read_parquet(out / "inat" / f"{plant}.parquet")
         ids = t.loc[t["fruiting"], "id"].drop_duplicates().tolist()
         urls = photo_urls(ids, out / "photo_urls.parquet").reindex(ids).dropna()
