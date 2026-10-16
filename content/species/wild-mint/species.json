@@ -2,7 +2,7 @@
   "$schema": "../_schema.json",
   "schemaVersion": 1,
   "id": "wild-mint",
-  "scientificName": "Mentha arvensis",
+  "scientificName": "Mentha spp.",
   "catalog": {
     "enabled": true,
     "order": 15,
@@ -10,47 +10,47 @@
     "category": "plant",
     "emoji": "🌿",
     "season": "spring-summer",
-    "habitat": "meadow",
+    "habitat": "wetland",
     "image": {
       "path": "src/assets/species/wild-mint.webp"
     }
   },
   "locales": {
     "en": {
-      "name": "Wild Mint",
-      "description": "Aromatic herb with square stems and opposite leaves that release mint scent when crushed",
-      "howTo": "Found in wet areas, along streams, and in wet meadows in spring and summer"
+      "name": "Wild mints",
+      "description": "Any wild mint: water mint, horse mint, apple mint, corn mint and pennyroyal. Square stems, opposite leaves and a mint scent when crushed",
+      "howTo": "Found in damp ground, ditches and along streams. Pennyroyal is fine as a light tea (poleo menta) but toxic as an oil or in quantity: avoid it in pregnancy"
     },
     "it": {
-      "name": "Menta Selvatica",
-      "description": "Erba aromatica con steli quadrati e foglie opposte che rilasciano profumo di menta quando schiacciate",
-      "howTo": "Trovata in aree umide, lungo i ruscelli e in praterie umide in primavera ed estate"
+      "name": "Mente selvatiche",
+      "description": "Qualsiasi menta selvatica: menta acquatica, mentastro verde, menta a foglie rotonde, menta campestre e menta puleggio. Fusti quadrati, foglie opposte e profumo di menta quando si strofinano",
+      "howTo": "Cresce su terreni umidi, nei fossi e lungo i ruscelli. La menta puleggio va bene in una tisana leggera, ma è tossica come olio o in grandi quantità: da evitare in gravidanza"
     },
     "fr": {
-      "name": "Menthe sauvage",
-      "description": "Herbe aromatique à tiges carrées et feuilles opposées dégageant une odeur de menthe quand on les froisse",
-      "howTo": "Se trouve dans les zones humides, le long des ruisseaux et prairies humides au printemps et en été"
+      "name": "Menthes sauvages",
+      "description": "Toute menthe sauvage : menthe aquatique, menthe à longues feuilles, menthe à feuilles rondes, menthe des champs et menthe pouliot. Tiges carrées, feuilles opposées et odeur de menthe quand on les froisse",
+      "howTo": "Se trouve sur les sols humides, dans les fossés et au bord des ruisseaux. La menthe pouliot convient en tisane légère, mais elle est toxique en huile ou en grande quantité : à éviter pendant la grossesse"
     },
     "de": {
-      "name": "Wilde Minze",
-      "description": "Aromatisches Kraut mit vierkantigen Stängeln und gegenständigen Blättern, verströmt Minzduft beim Zerreiben",
-      "howTo": "Zu finden in feuchten Gebieten, an Bächen und in nassen Wiesen im Frühling und Sommer"
+      "name": "Wilde Minzen",
+      "description": "Jede wilde Minze: Wasserminze, Rossminze, Apfelminze, Ackerminze und Polei-Minze. Vierkantige Stängel, gegenständige Blätter und Minzduft beim Zerreiben",
+      "howTo": "Zu finden auf feuchten Böden, in Gräben und an Bächen. Polei-Minze ist als leichter Tee unbedenklich, als Öl oder in grösseren Mengen aber giftig: in der Schwangerschaft meiden"
     },
     "es": {
-      "name": "Menta silvestre",
-      "description": "Hierba aromática con tallos cuadrados y hojas opuestas que desprenden aroma a menta al frotarlas",
-      "howTo": "Se encuentra en zonas húmedas, a lo largo de arroyos y en praderas húmedas en primavera y verano"
+      "name": "Mentas silvestres",
+      "description": "Cualquier menta silvestre: menta acuática, menta de caballo, mastranzo, menta de campo y poleo. Tallos cuadrados, hojas opuestas y aroma a menta al frotarlas",
+      "howTo": "Crece en suelos húmedos, acequias y a lo largo de arroyos. El poleo está bien en una infusión ligera (poleo menta), pero es tóxico como aceite o en cantidad: evítalo en el embarazo"
     },
     "pt": {
-      "name": "Hortelã-selvagem",
-      "description": "Erva aromática com caules quadrados e folhas opostas que liberam aroma de menta ao serem esmagadas",
-      "howTo": "Encontrada em áreas úmidas, ao longo de riachos e prados úmidos na primavera e verão"
+      "name": "Hortelãs-selvagens",
+      "description": "Qualquer hortelã silvestre: hortelã-da-água, hortelã-brava, mentrasto, hortelã-do-campo e poejo. Caules quadrados, folhas opostas e cheiro a menta quando esmagadas",
+      "howTo": "Encontra-se em terrenos húmidos, valas e ao longo de ribeiros. O poejo pode ser usado num chá leve, mas é tóxico como óleo ou em quantidade: evitar na gravidez"
     }
   },
   "identification": {
     "enabled": true,
-    "label": "Mentha arvensis",
-    "rank": "species",
+    "label": "Mentha",
+    "rank": "genus",
     "safetyReview": {
       "status": "approved",
       "reviewedBy": "BioCLIP shipped-vocabulary safety suite",

@@ -72,7 +72,12 @@ export const GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG = {
     ],
   },
   'wild-mint': {
-    scorePropertyAliases: ['wild-mint', 'wild-mint_score', 'Wild Mint'],
+    scorePropertyAliases: [
+      'wild-mint',
+      'wild-mint_score',
+      'Wild Mint',
+      'Wild mints',
+    ],
   },
   chickweed: {
     scorePropertyAliases: ['chickweed', 'chickweed_score', 'Chickweed'],

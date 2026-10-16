@@ -134,9 +134,9 @@
       "howTo": "Búscalas en praderas, bordes de bosques y áreas herbosas en primavera y verano"
     },
     "wildMint": {
-      "name": "Menta silvestre",
-      "description": "Hierba aromática con tallos cuadrados y hojas opuestas que desprenden aroma a menta al frotarlas",
-      "howTo": "Se encuentra en zonas húmedas, a lo largo de arroyos y en praderas húmedas en primavera y verano"
+      "name": "Mentas silvestres",
+      "description": "Cualquier menta silvestre: menta acuática, menta de caballo, mastranzo, menta de campo y poleo. Tallos cuadrados, hojas opuestas y aroma a menta al frotarlas",
+      "howTo": "Crece en suelos húmedos, acequias y a lo largo de arroyos. El poleo está bien en una infusión ligera (poleo menta), pero es tóxico como aceite o en cantidad: evítalo en el embarazo"
     },
     "chickweed": {
       "name": "Pamplina",

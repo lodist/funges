@@ -62,6 +62,20 @@ const GENUS_LEVEL_CATALOG: Record<
       'Morchella importuna',
     ],
   },
+  // Wild mints are picked whatever the species; pennyroyal is among them, with
+  // its warning on the species page.
+  Mentha: {
+    catalogName: 'Mentha spp.',
+    accepted: [
+      'Mentha',
+      'Mentha aquatica',
+      'Mentha arvensis',
+      'Mentha longifolia',
+      'Mentha pulegium',
+      'Mentha spicata',
+      'Mentha suaveolens',
+    ],
+  },
 };
 
 /** scientificName -> catalog entries. A name can map to several (see below). */
