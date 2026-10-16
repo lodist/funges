@@ -856,6 +856,16 @@ Rectangular photographic marketing imagery carries atmosphere; the landing uses 
 
 The page uses a fluid gutter and a split hero, followed by the forecast/map band, a prominent autumn-forest photograph and adjacent identification and cooking features. Sections run full-bleed and inset their content by the gutter; past 112rem the gutter grows so the content keeps a 112rem page while the forecast and closing bands still reach both edges. The hero photograph holds its own 4:5 (capped to the first screen) instead of a viewport height, so a narrow tablet column never slices the subject. The natural-spectacle section crops its photograph to 16:7 on desktop and 4:5 on mobile; two columns of heading and explanatory copy lead to the foliage map. The forecast stacks below 1024px; the hero, natural-spectacle copy and features stack below 768px, where the header drops its in-season link because the mobile nav bar already carries it. The page has no sidebar, so the closing band ends with the sidebar's Help links — Support, Legal Notice, Privacy Policy, Terms of Use — and its bottom padding clears the floating language switcher. There is no page-specific entrance animation. Asset provenance and this page's narrative sequence are recorded in `.impeccable/surfaces/src-pages-landingpage-tsx.md`; no global palette, elevation or component token is introduced.
 
+### Worth Foraging Now (scoped extension, proof of concept)
+
+`src/pages/WorthForagingNowPage.tsx` borrows the landing's deep-green band for an app route. On the band (`--happy-900` under `--happy-50` text), the ring is re-pointed to `--happy-100` and the outline button takes a `--happy-100` stroke. In front-page layout the top pick sits on it; in deck layout the cards do. The band is absolute in both themes, so its `--happy-50` washes carry `dark:` twins that repeat the light value. Below 640px the deck band runs edge to edge.
+
+Species names are Space Grotesk 600 at local sizes: 36/48/60px on the lead pick, 30/36px on deck cards and 24px on the runners-up. The app's type ramp is unchanged.
+
+The score reads as a ten-pill meter of one green: `--primary-text` on paper, `--happy-500` on the band. Depth is the signal and no hue is added. The conditions label and the number sit beside it.
+
+Every pick with a lethal or toxic look-alike names it in IdentifyPanel's permanent-notice treatment, compact tiles included. Photos are the 512px species squares. The lead pick, the deck cards and the tiles show them uncropped as squares below 768px. The runners-up crop them to 16:9 below 640px and to a 176px column above that. Dishes appear as 40px round thumbnails in pill links. Until a layout is chosen, a switch toggles the front page and the deck. The surface brief holds the direction contract.
+
 ## Do's and Don'ts
 
 ### Do:

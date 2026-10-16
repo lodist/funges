@@ -21,7 +21,6 @@ import {
   type WorthForagingNowRecommendation,
 } from '@/lib/worth-foraging-now';
 import { CATEGORY_ICONS } from '@/lib/categoryIcons';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import {
@@ -367,10 +366,16 @@ function FrontPage({ picks }: { picks: Pick[] }) {
           >
             {t('worthForagingNow.alsoGood')}
           </h2>
-          <ul className='grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6'>
+          <ul
+            className={cn(
+              'grid grid-cols-2 gap-4 sm:grid-cols-3',
+              // A short strip (one type chosen) fills its line with row tiles.
+              more.length > 3 ? 'lg:grid-cols-6' : 'lg:grid-cols-3'
+            )}
+          >
             {more.map(pick => (
               <li key={pick.speciesId}>
-                <PickTile pick={pick} />
+                <PickTile pick={pick} row={more.length <= 3} />
               </li>
             ))}
           </ul>
@@ -418,27 +423,23 @@ function PickDeck({ picks }: { picks: Pick[] }) {
   };
 
   return (
-    <section className={cn(BAND, 'overflow-hidden rounded-card py-6 sm:py-8')}>
+    // Edge to edge on phones, the landing's band rather than a card holding
+    // cards: -mx-8 undoes this page's px-4 and the root <main>'s p-4.
+    <section
+      className={cn(
+        BAND,
+        'overflow-hidden rounded-card py-6 max-sm:-mx-8 max-sm:rounded-none sm:py-8'
+      )}
+    >
       {/* Controls above the cards, so a tall card never pushes them off the
           first screen. */}
       <div className='mb-4 flex items-center justify-between gap-4 px-4 sm:mb-6 sm:px-8'>
-        <div className='flex flex-col gap-2'>
-          <span className='text-sm font-medium tabular-nums' aria-live='polite'>
-            {t('worthForagingNow.deck.position', {
-              current: active + 1,
-              total,
-            })}
-          </span>
-          <span
-            aria-hidden='true'
-            className='h-1 w-28 overflow-hidden rounded-full bg-happy-50/15 dark:bg-happy-50/15'
-          >
-            <span
-              className='block h-full rounded-full bg-happy-500 transition-[width] duration-base'
-              style={{ width: `${((active + 1) / total) * 100}%` }}
-            />
-          </span>
-        </div>
+        <span className='text-sm font-medium tabular-nums' aria-live='polite'>
+          {t('worthForagingNow.deck.position', {
+            current: active + 1,
+            total,
+          })}
+        </span>
         <div className='flex gap-3'>
           <Button
             variant='outline'
@@ -461,13 +462,14 @@ function PickDeck({ picks }: { picks: Pick[] }) {
         </div>
       </div>
       {/* Start-aligned on the grid's own padding, the next card peeking in
-          from the right edge to say there is more. */}
+          from the right edge to say there is more. The gap equals the padding,
+          so the card before the current one sits exactly off-screen. */}
       <ul
         ref={trackRef}
         onScroll={onScroll}
         tabIndex={0}
         aria-label={t('worthForagingNow.title')}
-        className='focus-ring relative flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto overscroll-x-contain px-4 [scrollbar-width:none] sm:scroll-px-8 sm:px-8'
+        className='focus-ring relative flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto overscroll-x-contain px-4 [scrollbar-width:none] sm:scroll-px-8 sm:gap-8 sm:px-8'
       >
         {picks.map((pick, index) => (
           <li
@@ -512,7 +514,7 @@ function PickFeature({
         <PickPhoto
           pick={pick}
           eager={eager}
-          alt={pick.speciesName}
+          alt=''
           className='absolute inset-0'
         />
       </div>
@@ -589,7 +591,13 @@ function PickFeature({
 
         <Kitchen recipes={pick.recipes} tone={tone} />
 
-        <PickActions pick={pick} tone={tone} className='mt-auto' />
+        {/* Deck cards share the tallest card's height; their actions stay with
+            the content and the spare height falls below them, on paper. */}
+        <PickActions
+          pick={pick}
+          tone={tone}
+          className={band ? 'mt-auto' : undefined}
+        />
       </div>
     </div>
   );
@@ -603,11 +611,7 @@ function BenchCard({ pick }: { pick: Pick }) {
   return (
     <article className='flex flex-col overflow-hidden rounded-card bg-card elevation-raised sm:flex-row'>
       <div className='relative aspect-[16/9] shrink-0 sm:aspect-auto sm:w-44'>
-        <PickPhoto
-          pick={pick}
-          alt={pick.speciesName}
-          className='absolute inset-0'
-        />
+        <PickPhoto pick={pick} alt='' className='absolute inset-0' />
       </div>
       <div className='flex min-w-0 flex-1 flex-col gap-4 p-5'>
         <div>
@@ -632,8 +636,9 @@ function BenchCard({ pick }: { pick: Pick }) {
   );
 }
 
-/** A compact pick that is itself the map link. */
-function PickTile({ pick }: { pick: Pick }) {
+/** A compact pick that is itself the map link. `row` lays it out sideways,
+ *  so a short strip fills its line without out-sizing the runners-up. */
+function PickTile({ pick, row = false }: { pick: Pick; row?: boolean }) {
   const { t } = useTranslation('common');
   const where = whereLabel(pick, t);
   const severity = pick.lookalike?.severity;
@@ -642,9 +647,17 @@ function PickTile({ pick }: { pick: Pick }) {
     <Link
       to='/map'
       search={mapSearch(pick)}
-      className='focus-ring flex h-full flex-col overflow-hidden rounded-card bg-card elevation-raised elevation-interactive'
+      className={cn(
+        'focus-ring flex h-full flex-col overflow-hidden rounded-card bg-card elevation-raised elevation-interactive',
+        row && 'lg:flex-row'
+      )}
     >
-      <span className='relative block aspect-square'>
+      <span
+        className={cn(
+          'relative block aspect-square',
+          row && 'lg:aspect-auto lg:w-32 lg:shrink-0'
+        )}
+      >
         <PickPhoto pick={pick} alt='' className='absolute inset-0' />
       </span>
       <span className='flex flex-1 flex-col gap-2 p-3'>
@@ -658,16 +671,16 @@ function PickTile({ pick }: { pick: Pick }) {
         {where ? (
           <span className='text-xs text-muted-foreground'>{where}</span>
         ) : null}
-        {severity === 'lethal' || severity === 'toxic' ? (
-          // An element child, not a string: Badge truncates bare text, and a
-          // safety label cut to "Giftiger Doppel…" says nothing.
-          <Badge
-            variant='warning'
-            className='mt-auto justify-start whitespace-normal text-left'
-          >
-            <AlertTriangle />
-            <span>{t(`worthForagingNow.lookalikeBadge.${severity}`)}</span>
-          </Badge>
+        {pick.lookalike && (severity === 'lethal' || severity === 'toxic') ? (
+          <span className='mt-auto flex items-start gap-1.5 rounded-lg bg-status-warning-background px-2 py-1.5 text-xs text-status-warning-text ring-1 ring-status-warning-border/60'>
+            <AlertTriangle className='mt-px size-3 shrink-0' />
+            <span>
+              <span className='font-semibold'>
+                {t(`worthForagingNow.lookalikeBadge.${severity}`)}
+              </span>{' '}
+              <i>{pick.lookalike.scientificName}</i>
+            </span>
+          </span>
         ) : null}
       </span>
     </Link>
