@@ -424,7 +424,7 @@ _tri_geom = gdf_full.drop_duplicates(subset=['tri_id']).set_index('tri_id')['geo
 # kept polygon is present in today AND forecast and never pops in/out.
 import sys as _sys
 _sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # repo backend/
-from maplayer_forecast import score_days, interp_props
+from maplayer_forecast import score_days, interp_props, low_zoom_features, LOW_ZOOMS
 
 _score_cols_full = [c for c in gdf_full.columns if c.endswith('_score')]
 today_by_tri = gdf_full.set_index('tri_id')[_score_cols_full].to_dict('index')
@@ -529,24 +529,36 @@ land = gdf_full[['raster_val', 'geometry']]
 gdf_full = gdf_full[['geometry', 'tri_id'] + score_columns]
 
 
-def build_mbtiles_from_geojson(geojson_path: Path, mbtiles_path: Path, layer_name: str) -> None:
+def build_mbtiles_from_geojson(geojson_path: Path, mbtiles_path: Path, layer_name: str,
+                               low_zoom_paths: dict | None = None) -> None:
+    """z6 from the triangles; each zoom in low_zoom_paths from its own cell grid
+    (maplayer_forecast.low_zoom_features), joined into one file."""
     tippecanoe_path = shutil.which("tippecanoe")
     if tippecanoe_path is None:
         print("tippecanoe not found. MBTiles generation skipped.")
         return
-    cmd = [
-        tippecanoe_path,
-        "-o", str(mbtiles_path),
-        "-z6",
-        "--force",
-        "--drop-densest-as-needed",
-        "--simplification=4",
-        "-d9",  # ~1.2km coord grid at z6: ~half the vertices of -d10 again; drops the smallest slivers. today+forecast use the same detail so the slider stays consistent
-        "-l", layer_name,
-        str(geojson_path),
-    ]
-    print("Running tippecanoe...")
-    subprocess.run(cmd, check=True)
+    low_zoom_paths = low_zoom_paths or {}
+    parts = []
+    for zoom, path in [*low_zoom_paths.items(), (6, geojson_path)]:
+        part = mbtiles_path.with_name(f"{mbtiles_path.stem}_z{zoom}.mbtiles") if low_zoom_paths else mbtiles_path
+        cmd = [
+            tippecanoe_path,
+            "-o", str(part),
+            "-Z" + str(zoom if low_zoom_paths else 0), "-z" + str(zoom),
+            "--force",
+            "--drop-densest-as-needed",
+            "--simplification=4",
+            "-d9",  # ~1.2km coord grid at z6: ~half the vertices of -d10 again; drops the smallest slivers. today+forecast use the same detail so the slider stays consistent
+            "-l", layer_name,
+            str(path),
+        ]
+        print(f"Running tippecanoe (z{zoom})...")
+        subprocess.run(cmd, check=True)
+        parts.append(part)
+    if low_zoom_paths:
+        # Each part already fits tippecanoe's tile limit; tile-join only stacks the zooms.
+        subprocess.run([shutil.which("tile-join"), "-o", str(mbtiles_path), "--force",
+                        "--no-tile-size-limit", *map(str, parts)], check=True)
     print(f"MBTiles saved to: {mbtiles_path}")
 
 def convert_mbtiles_to_pmtiles(mbtiles_path: Path, pmtiles_path: Path) -> bool:
@@ -597,6 +609,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
               else gpd.GeoDataFrame(geometry=[], crs=gdf_full.crs))
     minx, miny, maxx, maxy = fc_gdf.total_bounds if fc_features else gdf_full.total_bounds
     del fc_features
+    low_zoom = {z: low_zoom_features(fc_gdf, z) for z in LOW_ZOOMS}
     # 0/10 colour-scale anchors per emitted key (empty run: anchor every species).
     anchors = [
         {'geometry': Polygon([(minx, -89.99), (maxx, -89.99), ((minx + maxx) / 2, -89.99)])},
@@ -614,15 +627,23 @@ with tempfile.TemporaryDirectory() as tmpdir:
     # Streamed feature by feature: to_json() is json.dumps over this same iterfeatures()
     # list, plus a "crs" member only for non-WGS84 frames, which these never are.
     assert fc_gdf.crs is None or fc_gdf.crs.equals("epsg:4326"), fc_gdf.crs
-    with open(fc_geojson_path, 'w', encoding='utf-8') as f:
-        f.write('{"type": "FeatureCollection", "features": [')
-        for i, feature in enumerate(fc_gdf.iterfeatures()):
-            f.write(', ' if i else '')
-            json.dump(feature, f, ensure_ascii=False)
-        f.write(']}')
+    def write_geojson(path, features):
+        with open(path, 'w', encoding='utf-8') as f:
+            f.write('{"type": "FeatureCollection", "features": [')
+            for i, feature in enumerate(features):
+                f.write(', ' if i else '')
+                json.dump(feature, f, ensure_ascii=False)
+            f.write(']}')
+    anchor_features = list(fc_gdf[fc_gdf.geometry.bounds["miny"].abs() > 89].iterfeatures())
+    write_geojson(fc_geojson_path, fc_gdf.iterfeatures())
+    low_zoom_paths = {}
+    for z, cells in low_zoom.items():
+        low_zoom_paths[z] = Path(tmpdir) / f"{region_code}_forecast_z{z}.geojson"
+        write_geojson(low_zoom_paths[z], cells + anchor_features)
+    del low_zoom
     del fc_gdf
     gc.collect()  # tippecanoe runs next, in the same WSL memory budget
-    build_mbtiles_from_geojson(fc_geojson_path, fc_mbtiles_path, f"{region_code}_forecast")
+    build_mbtiles_from_geojson(fc_geojson_path, fc_mbtiles_path, f"{region_code}_forecast", low_zoom_paths)
     if fc_mbtiles_path.exists():
         print(f"Forecast mbtiles: {fc_mbtiles_path.stat().st_size/1048576:.1f} MB")
         upload_mbtiles_to_r2(fc_mbtiles_path, f"EU/SE/{region_code}_forecast.mbtiles")
