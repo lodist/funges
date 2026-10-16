@@ -90,17 +90,22 @@ def test_passed_hours_move_into_the_past_once(tmp_path):
     hw.roll_past(tmp_path, second)
     _night(tmp_path, third)
     written = hw.roll_past(tmp_path, third)
-    assert [p.name for p in written] == ["2026-10.parquet"]
-    past = pd.read_parquet(written[0])
+    # The night after the 16th's 18z run: its last 5 hours of the 16th and 19 of the 17th.
+    assert [p.name for p in written] == ["2026-10-16.parquet", "2026-10-17.parquet"]
+    past = _past(tmp_path)
     assert past["time"].tolist() == list(pd.date_range(first + H, third, freq="h"))
     assert past["t2m_c"].tolist() == [*range(24), *range(24)]  # each hour from its newest run
+
+
+def _past(region_dir):
+    return pd.concat(pd.read_parquet(p) for p in sorted((region_dir / "past").glob("*.parquet")))
 
 
 def test_a_missed_night_is_filled_from_the_older_run(tmp_path):
     _night(tmp_path, INIT, hours=72)
     _night(tmp_path, INIT + 48 * H)
-    past = pd.read_parquet(hw.roll_past(tmp_path, INIT + 48 * H)[0])
-    assert len(past) == 48
+    hw.roll_past(tmp_path, INIT + 48 * H)
+    assert len(_past(tmp_path)) == 48
 
 
 def test_prune_deletes_old_files_and_empty_folders(tmp_path):

@@ -3,12 +3,12 @@
 Each night this takes the newest complete run of each model in hourly_sources, reads only
 the fields we use, samples them at the region's points and writes one parquet: every hour
 from the first model's run start to 7 days ahead, each from the finest model that reaches
-it. Passed hours move into monthly past files, so an hourly history builds up from the first
+it. Passed hours move into daily past files, so an hourly history builds up from the first
 night: the short-range forecast, as Earth's master keeps its day-0 forecast, until measured
 weather replaces it.
 
 Under HOURLY_WEATHER_DIR (default app_operation/hourly_weather): <REGION>/forecast/<run>.parquet
-(30 days here, for good on R2 under hourly_weather/) and <REGION>/past/<YYYY-MM>.parquet.
+(30 days here, for good on R2 under hourly_weather/) and <REGION>/past/<YYYY-MM-DD>.parquet.
 Downloads stay two days in cache/, so a continent's second region reads the first one's.
 """
 from __future__ import annotations
@@ -135,10 +135,10 @@ def write_night(region_dir, frame, start):
 
 
 def roll_past(region_dir, start):
-    """Add to the monthly past files the hours the newest earlier night covered up to
-    tonight's run start and the past does not have yet: each hour once, from the newest run
-    that started before it. A missed night is filled from the older run's longer leads.
-    Returns the past files written."""
+    """Add to the daily past files (UTC days) the hours the newest earlier night covered up
+    to tonight's run start and the past does not have yet: each hour once, from the newest
+    run that started before it. A missed night is filled from the older run's longer leads.
+    Daily, so a night rewrites two small files, not a month's. Returns the files written."""
     region_dir = Path(region_dir)
     earlier = sorted(p for p in (region_dir / "forecast").glob("*.parquet") if p.stem < f"{start:%Y%m%d%H}")
     if not earlier:
@@ -147,12 +147,12 @@ def roll_past(region_dir, start):
     rows = rows[rows["time"] <= start]
     past_dir = region_dir / "past"
     past_dir.mkdir(exist_ok=True)
-    months = sorted(past_dir.glob("*.parquet"))
-    if months:
-        rows = rows[rows["time"] > pd.read_parquet(months[-1], columns=["time"])["time"].max()]
+    days = sorted(past_dir.glob("*.parquet"))
+    if days:
+        rows = rows[rows["time"] > pd.read_parquet(days[-1], columns=["time"])["time"].max()]
     written = []
-    for month, part in rows.groupby(rows["time"].dt.strftime("%Y-%m")):
-        path = past_dir / f"{month}.parquet"
+    for day, part in rows.groupby(rows["time"].dt.strftime("%Y-%m-%d")):
+        path = past_dir / f"{day}.parquet"
         if path.exists():
             part = pd.concat([pd.read_parquet(path), part], ignore_index=True)
         part.to_parquet(path, index=False, compression="zstd")
