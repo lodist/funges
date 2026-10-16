@@ -76,6 +76,14 @@ describe('genus-level catalog entries', () => {
     ).toBe('morel');
   });
 
+  it('reads any wild mint as wild mints', () => {
+    for (const name of ['Mentha', 'Mentha aquatica', 'Mentha pulegium']) {
+      expect(resolvePrediction(p(name)).catalogSpecies[0]?.id).toBe(
+        'wild-mint'
+      );
+    }
+  });
+
   // Boletus is no longer bridged: the six porcini are separate catalog
   // entries, so each resolves under its own binomial rather than through the
   // genus allow-list.
@@ -374,6 +382,7 @@ describe('catalog is reachable from the model vocabulary', () => {
   // bare genus, because that is what the model was prompted with.
   const GENUS_FORMS: Record<string, string> = {
     'Morchella spp.': 'Morchella',
+    'Mentha spp.': 'Mentha',
   };
 
   /**
@@ -513,7 +522,6 @@ describe('toxic species have their everyday counterpart in the vocabulary', () =
       'Melissa officinalis',
       'Artemisia dracunculus',
       'Levisticum officinale',
-      'Mentha spicata',
       'Agaricus bisporus',
       'Hypsizygus tessulatus',
       'Tremella fuciformis',

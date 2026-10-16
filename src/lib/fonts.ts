@@ -17,6 +17,9 @@
  * expecting a lighter heading — there isn't one.
  */
 import '@fontsource/public-sans/400.css';
+// Scientific names are set in italic, and `font-synthesis: none` leaves them
+// upright without a real italic. The browser fetches it only when one shows.
+import '@fontsource/public-sans/400-italic.css';
 import '@fontsource/public-sans/500.css';
 import '@fontsource/public-sans/600.css';
 import '@fontsource/public-sans/700.css';

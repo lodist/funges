@@ -67,6 +67,7 @@ FUNGI = set(get_empirical_taxon_map())
 ACTIVE_CURVE_THRESHOLD = 0.8
 TAXON_KEY_OVERRIDES = {
     "morel": 2594601,
+    "wild-mint": 2927173,   # the genus Mentha, as its range prior
 }
 
 
