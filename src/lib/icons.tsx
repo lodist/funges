@@ -19,6 +19,7 @@ import {
   ChefHat as LucideChefHat,
   ChevronDown as LucideChevronDown,
   ChevronDownIcon as LucideChevronDownIcon,
+  ChevronLeft as LucideChevronLeft,
   ChevronRight as LucideChevronRight,
   ChevronRightIcon as LucideChevronRightIcon,
   ChevronUpIcon as LucideChevronUpIcon,
@@ -135,6 +136,7 @@ export const CheckIcon = decorativeByDefault(LucideCheckIcon);
 export const ChefHat = decorativeByDefault(LucideChefHat);
 export const ChevronDown = decorativeByDefault(LucideChevronDown);
 export const ChevronDownIcon = decorativeByDefault(LucideChevronDownIcon);
+export const ChevronLeft = decorativeByDefault(LucideChevronLeft);
 export const ChevronRight = decorativeByDefault(LucideChevronRight);
 export const ChevronRightIcon = decorativeByDefault(LucideChevronRightIcon);
 export const ChevronUpIcon = decorativeByDefault(LucideChevronUpIcon);
