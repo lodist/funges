@@ -121,3 +121,5 @@ def test_ripe_keeps_the_fruit_photographed_ripe_and_unbudded_leaves_drop_the_bud
     assert tags["leaves_to_pods"].tolist() == [False, True, True, True]  # 1 ripe seeds, 2 green pods, 3-4 leaves
     assert tags["leaves"].tolist() == [False, False, True, True]
     assert tags["leaves_unbudded"].tolist() == [False, False, False, True]
+    flowers = fph.stages(s.assign(flowering=[False, True, False, False]))["flowering_or_leaves"]
+    assert flowers.tolist() == [False, True, True, True]                  # fruit alone is not a flower or a leaf

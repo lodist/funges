@@ -66,8 +66,8 @@
  "shipped_if": "ranks the species' stage sightings above all plant sightings better than today's season factor in more held-out years than chance (sign test p < 0.1, at least 6 years)",
  "continents": {
   "EU": {
-   "file": "models/phenology/20261016-2040/phenology_EU.npz",
-   "sha256": "ee6381198845757eed151e2c550e68eeb38a2220c8e6464238f5bc10ddcf414c",
+   "file": "models/phenology/20261017-0039/phenology_EU.npz",
+   "sha256": "fde9fdf9d46128964fe078172860b7b667cb047dbe6d65861b7a983d2f58c20e",
    "species": [
     "blackberry",
     "daisy",
@@ -80,8 +80,8 @@
    ]
   },
   "US": {
-   "file": "models/phenology/20261016-2040/phenology_US.npz",
-   "sha256": "9aa7045428a9f39a8f47af067134d769910b5cd36f3e2cf42443c412f579e0fc",
+   "file": "models/phenology/20261017-0039/phenology_US.npz",
+   "sha256": "426f427f73e7315116b2f5fdb98c03cefedfac33960707d18cc9ac9da157eb54",
    "species": [
     "elderberry",
     "elderflower",
