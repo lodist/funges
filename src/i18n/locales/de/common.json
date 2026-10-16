@@ -133,16 +133,6 @@
       "medium": "Gute Bedingungen",
       "low": "Mäßige Bedingungen"
     },
-    "layout": {
-      "label": "Ansicht",
-      "lead": "Titelseite",
-      "deck": "Kartenstapel"
-    },
-    "deck": {
-      "previous": "Vorheriger Tipp",
-      "next": "Nächster Tipp",
-      "position": "{{current}} von {{total}}"
-    },
     "lookalikeBadge": {
       "lethal": "Tödlicher Doppelgänger",
       "toxic": "Giftiger Doppelgänger"

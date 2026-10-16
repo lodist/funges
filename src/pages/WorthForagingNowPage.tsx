@@ -1,7 +1,6 @@
 import {
   useEffect,
   useMemo,
-  useRef,
   useState,
   type ComponentType,
   type ReactNode,
@@ -29,8 +28,6 @@ import {
   ArrowUpRight,
   CalendarRange,
   ChefHat,
-  ChevronLeft,
-  ChevronRight,
   MapPinned,
   Navigation,
   Sprout,
@@ -42,7 +39,6 @@ type Pick = WorthForagingNowRecommendation;
 // `band` is the landing's deep-green field (happy-900 under happy-50 text);
 // `paper` is an ordinary card.
 type Tone = 'band' | 'paper';
-type Layout = 'lead' | 'deck';
 
 const FOCUSES: readonly { value: ForagingFocus; icon: string }[] = [
   { value: 'mixed', icon: CATEGORY_ICONS.all },
@@ -60,18 +56,6 @@ const BAND = 'bg-happy-900 text-happy-50 [--ring:var(--happy-100)]';
 // the band; happy-100 holds the same stroke there.
 const BAND_OUTLINE =
   'border-happy-100 text-happy-50 hover:bg-happy-50/10 hover:text-happy-50 dark:bg-transparent dark:hover:bg-happy-50/10 dark:hover:text-happy-50';
-
-// ponytail: POC layout switch, remembered per browser; drop it and the losing
-// layout once one is chosen.
-const LAYOUT_KEY = 'worth-foraging-now:layout';
-
-function readLayout(): Layout {
-  try {
-    return localStorage.getItem(LAYOUT_KEY) === 'deck' ? 'deck' : 'lead';
-  } catch {
-    return 'lead';
-  }
-}
 
 /** "today" / "yesterday": calendar days between the scoring day and the
  *  reader's own date, so a midnight-UTC stamp never reads as yesterday. */
@@ -115,7 +99,6 @@ export default function WorthForagingNowPage() {
   const userLocation = useMapStore(state => state.userLocation);
   const getUserLocation = useMapStore(state => state.getUserLocation);
   const [focus, setFocus] = useState<ForagingFocus>('mixed');
-  const [layout, setLayout] = useState<Layout>(readLayout);
   const [recommendations, setRecommendations] = useState<Pick[]>([]);
   const [context, setContext] = useState<RecommendationContext | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -172,15 +155,6 @@ export default function WorthForagingNowPage() {
       })),
     [t]
   );
-
-  const chooseLayout = (next: Layout) => {
-    setLayout(next);
-    try {
-      localStorage.setItem(LAYOUT_KEY, next);
-    } catch {
-      // A private window keeps the choice for this visit only.
-    }
-  };
 
   // The store only learns a position from the map's locate control, so a
   // visitor who lands here first never got the nearby picks.
@@ -249,20 +223,17 @@ export default function WorthForagingNowPage() {
               </div>
             ) : null}
           </div>
-          <div className='flex flex-wrap items-center justify-between gap-3'>
-            <div role='group' aria-label={t('worthForagingNow.focus.label')}>
-              <CategoryChips
-                chips={chips}
-                value={focus}
-                onChange={value => setFocus(value as ForagingFocus)}
-                className='justify-start'
-              />
-            </div>
-            <LayoutSwitch value={layout} onChange={chooseLayout} />
+          <div role='group' aria-label={t('worthForagingNow.focus.label')}>
+            <CategoryChips
+              chips={chips}
+              value={focus}
+              onChange={value => setFocus(value as ForagingFocus)}
+              className='justify-start'
+            />
           </div>
         </header>
 
-        {isLoading ? <PicksSkeleton layout={layout} /> : null}
+        {isLoading ? <PicksSkeleton /> : null}
 
         {!isLoading && loadError ? (
           <section className='rounded-card border border-destructive/20 bg-destructive/5 p-6 text-sm text-destructive-text'>
@@ -282,11 +253,7 @@ export default function WorthForagingNowPage() {
         ) : null}
 
         {!isLoading && !loadError && recommendations.length > 0 ? (
-          layout === 'deck' ? (
-            <PickDeck picks={recommendations} />
-          ) : (
-            <FrontPage picks={recommendations} />
-          )
+          <FrontPage picks={recommendations} />
         ) : null}
 
         <p className='mt-10 flex items-start gap-2 rounded-lg bg-status-warning-background px-3 py-2 ring-2 ring-status-warning-border/60'>
@@ -300,41 +267,6 @@ export default function WorthForagingNowPage() {
   );
 }
 
-function LayoutSwitch({
-  value,
-  onChange,
-}: {
-  value: Layout;
-  onChange: (layout: Layout) => void;
-}) {
-  const { t } = useTranslation('common');
-  return (
-    <div
-      role='group'
-      aria-label={t('worthForagingNow.layout.label')}
-      className='inline-flex gap-1 rounded-full bg-muted p-1'
-    >
-      {(['lead', 'deck'] as const).map(option => (
-        <Button
-          key={option}
-          type='button'
-          variant='ghost'
-          aria-pressed={value === option}
-          onClick={() => onChange(option)}
-          className={cn(
-            'px-4 text-foreground hover:text-foreground dark:hover:text-foreground',
-            value === option
-              ? 'bg-card font-semibold elevation-raised-subtle hover:bg-card dark:hover:bg-card'
-              : 'hover:bg-card/60 dark:hover:bg-card/60'
-          )}
-        >
-          {t(`worthForagingNow.layout.${option}`)}
-        </Button>
-      ))}
-    </div>
-  );
-}
-
 /** Today's best pick as the front page; the next two and the rest follow. */
 function FrontPage({ picks }: { picks: Pick[] }) {
   const { t } = useTranslation('common');
@@ -344,11 +276,7 @@ function FrontPage({ picks }: { picks: Pick[] }) {
 
   return (
     <div className='flex flex-col gap-5'>
-      <article
-        className={cn(BAND, 'overflow-hidden rounded-card elevation-raised')}
-      >
-        <PickFeature pick={lead} tone='band' eager />
-      </article>
+      <LeadPick pick={lead} />
 
       {bench.length > 0 ? (
         <div className='grid gap-5 md:grid-cols-2'>
@@ -385,175 +313,37 @@ function FrontPage({ picks }: { picks: Pick[] }) {
   );
 }
 
-/** Every pick as one big field card, swiped or stepped through. */
-function PickDeck({ picks }: { picks: Pick[] }) {
+/** Today's best pick on the band: photo, conditions, where, look-alike,
+ *  dish and actions. */
+function LeadPick({ pick }: { pick: Pick }) {
   const { t } = useTranslation('common');
-  const trackRef = useRef<HTMLUListElement>(null);
-  const [active, setActive] = useState(0);
-  const total = picks.length;
-
-  // A new focus or location deals a new deck: start it at the top card.
-  useEffect(() => {
-    trackRef.current?.scrollTo({ left: 0 });
-    setActive(0);
-  }, [picks]);
-
-  // Slides are one width, so the slide under the left edge is a division. The
-  // last one can never scroll flush left, so the end of the track counts as it.
-  const onScroll = () => {
-    const track = trackRef.current;
-    const [first, second] = Array.from(track?.children ?? []) as HTMLElement[];
-    if (!track || !first) return;
-    const step = second ? second.offsetLeft - first.offsetLeft : 1;
-    const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
-    setActive(atEnd ? total - 1 : Math.round(track.scrollLeft / step));
-  };
-
-  const go = (index: number) => {
-    const track = trackRef.current;
-    const slides = Array.from(track?.children ?? []) as HTMLElement[];
-    if (!track || !slides[index]) return;
-    const reduce = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
-    track.scrollTo({
-      left: slides[index].offsetLeft - slides[0].offsetLeft,
-      behavior: reduce ? 'auto' : 'smooth',
-    });
-  };
-
-  return (
-    // Edge to edge on phones, the landing's band rather than a card holding
-    // cards: -mx-8 undoes this page's px-4 and the root <main>'s p-4.
-    <section
-      className={cn(
-        BAND,
-        'overflow-hidden rounded-card py-6 max-sm:-mx-8 max-sm:rounded-none sm:py-8'
-      )}
-    >
-      {/* Controls above the cards, so a tall card never pushes them off the
-          first screen. */}
-      <div className='mb-4 flex items-center justify-between gap-4 px-4 sm:mb-6 sm:px-8'>
-        <span className='text-sm font-medium tabular-nums' aria-live='polite'>
-          {t('worthForagingNow.deck.position', {
-            current: active + 1,
-            total,
-          })}
-        </span>
-        <div className='flex gap-3'>
-          <Button
-            variant='outline'
-            size='icon'
-            onClick={() => go(active - 1)}
-            disabled={active === 0}
-            aria-label={t('worthForagingNow.deck.previous')}
-          >
-            <ChevronLeft />
-          </Button>
-          <Button
-            variant='outline'
-            size='icon'
-            onClick={() => go(active + 1)}
-            disabled={active === total - 1}
-            aria-label={t('worthForagingNow.deck.next')}
-          >
-            <ChevronRight />
-          </Button>
-        </div>
-      </div>
-      {/* Start-aligned on the grid's own padding, the next card peeking in
-          from the right edge to say there is more. The gap equals the padding,
-          so the card before the current one sits exactly off-screen. */}
-      <ul
-        ref={trackRef}
-        onScroll={onScroll}
-        tabIndex={0}
-        aria-label={t('worthForagingNow.title')}
-        className='focus-ring relative flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto overscroll-x-contain px-4 [scrollbar-width:none] sm:scroll-px-8 sm:gap-8 sm:px-8'
-      >
-        {picks.map((pick, index) => (
-          <li
-            key={pick.speciesId}
-            className='w-[88%] shrink-0 snap-start overflow-hidden rounded-card bg-card text-card-foreground elevation-raised md:w-[min(56rem,80%)]'
-          >
-            <PickFeature pick={pick} tone='paper' eager={index === 0} />
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-/** The full field card: photo, conditions, where, look-alike, dish, actions. */
-function PickFeature({
-  pick,
-  tone,
-  eager = false,
-}: {
-  pick: Pick;
-  tone: Tone;
-  eager?: boolean;
-}) {
-  const { t } = useTranslation('common');
-  const band = tone === 'band';
   const where = whereLabel(pick, t);
 
   return (
-    // Rows are explicit when stacked: a stretched deck card otherwise hands its
-    // spare height to the photo row, and the photo's ratio turns that height
-    // into a width wider than the card.
-    <div className='grid h-full grid-rows-[auto_1fr] md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:grid-rows-none'>
-      {/* Square below md: the photos are square, and a crop took the dandelion's
-          flower head off. */}
-      <div
-        className={cn(
-          'relative aspect-square min-w-0 md:aspect-auto',
-          band ? 'md:min-h-[26rem]' : 'md:min-h-[22rem]'
-        )}
-      >
-        <PickPhoto
-          pick={pick}
-          eager={eager}
-          alt=''
-          className='absolute inset-0'
-        />
+    <article
+      className={cn(
+        BAND,
+        'grid overflow-hidden rounded-card elevation-raised md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]'
+      )}
+    >
+      {/* Square below md: the photos are square, and a crop took the
+          dandelion's flower head off. */}
+      <div className='relative aspect-square min-w-0 md:aspect-auto md:min-h-[26rem]'>
+        <PickPhoto pick={pick} eager alt='' className='absolute inset-0' />
       </div>
-      <div
-        className={cn(
-          'flex min-w-0 flex-col',
-          band ? 'gap-6 p-6 sm:p-8 lg:p-10' : 'gap-5 p-5 sm:p-8'
-        )}
-      >
+      <div className='flex min-w-0 flex-col gap-6 p-6 sm:p-8 lg:p-10'>
         <div>
-          <h2
-            className={cn(
-              'font-semibold leading-[1.05] text-balance hyphens-auto break-words',
-              band
-                ? 'text-4xl text-happy-50 sm:text-5xl lg:text-6xl'
-                : 'text-3xl text-foreground sm:text-4xl'
-            )}
-          >
+          <h2 className='text-4xl font-semibold leading-[1.05] text-balance hyphens-auto break-words text-happy-50 sm:text-5xl lg:text-6xl'>
             {pick.speciesName}
           </h2>
-          <p
-            className={cn(
-              'mt-2 italic',
-              band ? 'text-happy-100' : 'text-muted-foreground'
-            )}
-          >
-            {pick.scientificName}
-          </p>
+          <p className='mt-2 italic text-happy-100'>{pick.scientificName}</p>
         </div>
 
-        <ConditionsMeter pick={pick} tone={tone} />
+        <ConditionsMeter pick={pick} tone='band' />
 
         <dl className='grid gap-4 sm:grid-cols-2'>
           {where ? (
-            <Fact
-              icon={MapPinned}
-              label={t('worthForagingNow.bestPoint')}
-              tone={tone}
-            >
+            <Fact icon={MapPinned} label={t('worthForagingNow.bestPoint')}>
               <span className='inline-flex items-center gap-1.5'>
                 {pick.bearingDeg !== null &&
                 pick.distanceKm !== null &&
@@ -569,18 +359,13 @@ function PickFeature({
             </Fact>
           ) : null}
           {pick.habitatLabel ? (
-            <Fact
-              icon={Sprout}
-              label={t('worthForagingNow.lookIn')}
-              tone={tone}
-            >
+            <Fact icon={Sprout} label={t('worthForagingNow.lookIn')}>
               {pick.habitatLabel}
             </Fact>
           ) : null}
           <Fact
             icon={CalendarRange}
             label={t('worthForagingNow.bestWindow')}
-            tone={tone}
             className='sm:col-span-2'
           >
             {pick.bestWindow}
@@ -589,17 +374,11 @@ function PickFeature({
 
         {pick.lookalike ? <LookalikeNotice lookalike={pick.lookalike} /> : null}
 
-        <Kitchen recipes={pick.recipes} tone={tone} />
+        <Kitchen recipes={pick.recipes} />
 
-        {/* Deck cards share the tallest card's height; their actions stay with
-            the content and the spare height falls below them, on paper. */}
-        <PickActions
-          pick={pick}
-          tone={tone}
-          className={band ? 'mt-auto' : undefined}
-        />
+        <PickActions pick={pick} tone='band' className='mt-auto' />
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -774,45 +553,24 @@ function ConditionsMeter({
   );
 }
 
+/** A labelled fact on the band. */
 function Fact({
   icon: Icon,
   label,
-  tone,
   className,
   children,
 }: {
   icon: ComponentType<{ className?: string }>;
   label: string;
-  tone: Tone;
   className?: string;
   children: ReactNode;
 }) {
-  const band = tone === 'band';
   return (
     <div className={cn('flex gap-3', className)}>
-      <Icon
-        className={cn(
-          'mt-0.5 size-4 shrink-0',
-          band ? 'text-happy-300' : 'text-primary-text'
-        )}
-      />
+      <Icon className='mt-0.5 size-4 shrink-0 text-happy-300' />
       <div className='min-w-0'>
-        <dt
-          className={cn(
-            'type-micro',
-            band ? 'text-happy-100' : 'text-muted-foreground'
-          )}
-        >
-          {label}
-        </dt>
-        <dd
-          className={cn(
-            'mt-1 text-sm',
-            band ? 'text-happy-50' : 'text-foreground'
-          )}
-        >
-          {children}
-        </dd>
+        <dt className='type-micro text-happy-100'>{label}</dt>
+        <dd className='mt-1 text-sm text-happy-50'>{children}</dd>
       </div>
     </div>
   );
@@ -848,25 +606,15 @@ function LookalikeNotice({
   );
 }
 
-function Kitchen({ recipes, tone }: { recipes: Pick['recipes']; tone: Tone }) {
+/** The dishes a pick goes into, as photo pills on the band. */
+function Kitchen({ recipes }: { recipes: Pick['recipes'] }) {
   const { t } = useTranslation('common');
-  const band = tone === 'band';
   if (recipes.length === 0) return null;
 
   return (
     <div>
-      <p
-        className={cn(
-          'type-micro flex items-center gap-2',
-          band ? 'text-happy-100' : 'text-muted-foreground'
-        )}
-      >
-        <ChefHat
-          className={cn(
-            'size-4 shrink-0',
-            band ? 'text-happy-300' : 'text-primary-text'
-          )}
-        />
+      <p className='type-micro flex items-center gap-2 text-happy-100'>
+        <ChefHat className='size-4 shrink-0 text-happy-300' />
         {t('worthForagingNow.kitchenPayoff')}
       </p>
       <ul className='mt-2 flex flex-wrap gap-2'>
@@ -875,12 +623,7 @@ function Kitchen({ recipes, tone }: { recipes: Pick['recipes']; tone: Tone }) {
             <Link
               to='/recipes'
               search={{ q: recipe.title }}
-              className={cn(
-                'focus-ring flex min-h-12 items-center gap-3 rounded-full py-1 pl-1 pr-4 text-sm font-medium transition-colors',
-                band
-                  ? 'bg-happy-50/10 text-happy-50 hover:bg-happy-50/20 dark:bg-happy-50/10 dark:hover:bg-happy-50/20'
-                  : 'bg-muted text-foreground hover:bg-happy-50 dark:hover:bg-accent/50'
-              )}
+              className='focus-ring flex min-h-12 items-center gap-3 rounded-full bg-happy-50/10 py-1 pl-1 pr-4 text-sm font-medium text-happy-50 transition-colors hover:bg-happy-50/20 dark:bg-happy-50/10 dark:hover:bg-happy-50/20'
             >
               {recipe.image ? (
                 <img
@@ -932,37 +675,28 @@ function PickActions({
 }
 
 /** Holds the loaded footprint, so arrival does not shove the page. */
-function PicksSkeleton({ layout }: { layout: Layout }) {
+function PicksSkeleton() {
   const { t } = useTranslation('common');
-  const feature = (
-    <div className='grid overflow-hidden rounded-card bg-card elevation-raised md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]'>
-      <Skeleton className='aspect-[4/3] w-full rounded-none md:aspect-auto md:h-[30rem]' />
-      <div className='flex flex-col gap-5 p-6 sm:p-8 lg:p-10'>
-        <Skeleton className='h-12 w-2/3' />
-        <Skeleton className='h-4 w-1/3' />
-        <Skeleton className='h-2 w-44' />
-        <Skeleton className='h-16 w-full' />
-        <Skeleton className='mt-auto h-11 w-48 rounded-full' />
-      </div>
-    </div>
-  );
-
   return (
-    <SkeletonGroup label={t('worthForagingNow.loading')}>
-      {layout === 'deck' ? (
-        <div className={cn(BAND, 'rounded-card px-4 py-6 sm:px-8 sm:py-8')}>
-          <div className='w-[88%] md:w-[min(56rem,80%)]'>{feature}</div>
+    <SkeletonGroup
+      label={t('worthForagingNow.loading')}
+      className='flex flex-col gap-5'
+    >
+      <div className='grid overflow-hidden rounded-card bg-card elevation-raised md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]'>
+        <Skeleton className='aspect-square w-full rounded-none md:aspect-auto md:h-[30rem]' />
+        <div className='flex flex-col gap-5 p-6 sm:p-8 lg:p-10'>
+          <Skeleton className='h-12 w-2/3' />
+          <Skeleton className='h-4 w-1/3' />
+          <Skeleton className='h-2 w-44' />
+          <Skeleton className='h-16 w-full' />
+          <Skeleton className='mt-auto h-11 w-48 rounded-full' />
         </div>
-      ) : (
-        <div className='flex flex-col gap-5'>
-          {feature}
-          <div className='grid gap-5 md:grid-cols-2'>
-            {[0, 1].map(placeholder => (
-              <Skeleton key={placeholder} className='h-56 rounded-card' />
-            ))}
-          </div>
-        </div>
-      )}
+      </div>
+      <div className='grid gap-5 md:grid-cols-2'>
+        {[0, 1].map(placeholder => (
+          <Skeleton key={placeholder} className='h-56 rounded-card' />
+        ))}
+      </div>
     </SkeletonGroup>
   );
 }

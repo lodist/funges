@@ -133,16 +133,6 @@
       "medium": "Good conditions",
       "low": "Fair conditions"
     },
-    "layout": {
-      "label": "Layout",
-      "lead": "Front page",
-      "deck": "Deck"
-    },
-    "deck": {
-      "previous": "Previous pick",
-      "next": "Next pick",
-      "position": "{{current}} of {{total}}"
-    },
     "lookalikeBadge": {
       "lethal": "Deadly look-alike",
       "toxic": "Toxic look-alike"

@@ -133,16 +133,6 @@
       "medium": "Boas condições",
       "low": "Condições razoáveis"
     },
-    "layout": {
-      "label": "Visualização",
-      "lead": "Primeira página",
-      "deck": "Baralho"
-    },
-    "deck": {
-      "previous": "Escolha anterior",
-      "next": "Próxima escolha",
-      "position": "{{current}} de {{total}}"
-    },
     "lookalikeBadge": {
       "lethal": "Sósia mortal",
       "toxic": "Sósia tóxico"

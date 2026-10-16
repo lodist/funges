@@ -93,16 +93,6 @@
       "medium": "Buone condizioni",
       "low": "Condizioni discrete"
     },
-    "layout": {
-      "label": "Vista",
-      "lead": "Prima pagina",
-      "deck": "Mazzo"
-    },
-    "deck": {
-      "previous": "Scelta precedente",
-      "next": "Scelta successiva",
-      "position": "{{current}} di {{total}}"
-    },
     "lookalikeBadge": {
       "lethal": "Sosia mortale",
       "toxic": "Sosia tossico"

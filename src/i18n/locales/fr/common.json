@@ -133,16 +133,6 @@
       "medium": "Bonnes conditions",
       "low": "Conditions moyennes"
     },
-    "layout": {
-      "label": "Affichage",
-      "lead": "À la une",
-      "deck": "Fiches"
-    },
-    "deck": {
-      "previous": "Choix précédent",
-      "next": "Choix suivant",
-      "position": "{{current}} sur {{total}}"
-    },
     "lookalikeBadge": {
       "lethal": "Sosie mortel",
       "toxic": "Sosie toxique"

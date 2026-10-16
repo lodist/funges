@@ -133,16 +133,6 @@
       "medium": "Buenas condiciones",
       "low": "Condiciones regulares"
     },
-    "layout": {
-      "label": "Vista",
-      "lead": "Portada",
-      "deck": "Baraja"
-    },
-    "deck": {
-      "previous": "Opción anterior",
-      "next": "Opción siguiente",
-      "position": "{{current}} de {{total}}"
-    },
     "lookalikeBadge": {
       "lethal": "Parecido mortal",
       "toxic": "Parecido tóxico"
