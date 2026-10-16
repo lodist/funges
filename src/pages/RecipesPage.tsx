@@ -8,11 +8,7 @@ import { ScopeHeader } from '@/components/ScopeHeader';
 import { ConditionsMeter } from '@/components/SpeciesSignals';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import {
-  recipeSpeciesFamily,
-  useRecipesData,
-  type Recipe,
-} from '@/data/recipes';
+import { useRecipesData, type Recipe } from '@/data/recipes';
 import {
   CATEGORY_FILTERS,
   getSpeciesById,
@@ -22,62 +18,10 @@ import { useCurrentScores } from '@/hooks/use-current-scores';
 import { BAND_OUTLINE_CLASS, BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { CATEGORY_ICONS } from '@/lib/categoryIcons';
 import { ChefHat, Clock, MapPinned, Search, Users } from '@/lib/icons';
-import {
-  monthsLabel,
-  seasonOf,
-  seasonPlace,
-  speciesSeasons,
-  type Season,
-  type SeasonPlace,
-} from '@/lib/seasons';
+import { monthsLabel, seasonOf, speciesSeasons } from '@/lib/seasons';
+import { comingBack, readyBy, type ReadyBy } from '@/lib/recipe-season';
 import { cn, getSpeciesImage } from '@/lib/utils';
 import { Route as RecipesRoute } from '@/routes/recipes';
-
-/** The wild ingredient that makes a recipe cookable today. `score` is absent
- *  when the day's scores are unavailable and the calendar alone decided. */
-interface ReadyBy {
-  speciesId: string;
-  score?: number;
-}
-
-/** A recipe is ready when any of its wild ingredients, or a sibling that
- *  cooks like it, scores today; offline, when its season is today's. */
-function readyBy(
-  recipe: Recipe,
-  scores: Record<string, number> | null,
-  season: Season
-): ReadyBy | null {
-  let best: ReadyBy | null = null;
-  for (const id of recipe.species) {
-    for (const member of recipeSpeciesFamily(id)) {
-      if (scores) {
-        const score = scores[member];
-        if (score !== undefined && (best?.score ?? -1) < score) {
-          best = { speciesId: member, score };
-        }
-      } else if (
-        !best &&
-        speciesSeasons(getSpeciesById(member)?.season).includes(season)
-      ) {
-        best = { speciesId: member };
-      }
-    }
-  }
-  return best;
-}
-
-/** How soon a recipe's ingredient comes back: next season first. */
-const COMING_BACK: SeasonPlace[] = ['next', 'later', 'before', 'now'];
-
-function comingBack(recipe: Recipe, season: Season) {
-  return Math.min(
-    ...recipe.species.map(id =>
-      COMING_BACK.indexOf(
-        seasonPlace(speciesSeasons(getSpeciesById(id)?.season), season)
-      )
-    )
-  );
-}
 
 export default function RecipesPage() {
   const { t } = useTranslation(['recipes', 'species', 'common']);
@@ -198,7 +142,6 @@ export default function RecipesPage() {
                     <RecipeCard
                       recipe={recipe}
                       by={by}
-                      season={season}
                       onOpen={() => setSelectedRecipe(recipe)}
                     />
                   </li>
@@ -226,7 +169,6 @@ export default function RecipesPage() {
                 <li key={recipe.id}>
                   <RecipeCard
                     recipe={recipe}
-                    season={season}
                     compact
                     onOpen={() => setSelectedRecipe(recipe)}
                   />
@@ -349,29 +291,17 @@ function RecipeHero({
 function RecipeCard({
   recipe,
   by,
-  season,
   compact = false,
   onOpen,
 }: {
   recipe: Recipe;
   by?: ReadyBy;
-  season: Season;
   compact?: boolean;
   onOpen: () => void;
 }) {
   const { t, i18n } = useTranslation(['recipes', 'species']);
-  // Not ready: name the ingredient that comes back soonest, with its months.
-  const nextUp = by
-    ? undefined
-    : [...recipe.species].sort(
-        (a, b) =>
-          COMING_BACK.indexOf(
-            seasonPlace(speciesSeasons(getSpeciesById(a)?.season), season)
-          ) -
-          COMING_BACK.indexOf(
-            seasonPlace(speciesSeasons(getSpeciesById(b)?.season), season)
-          )
-      )[0];
+  // Not ready: name the main ingredient, with the months it comes back.
+  const nextUp = by ? undefined : recipe.species[0];
 
   return (
     <button
