@@ -116,7 +116,8 @@ def test_ripe_keeps_the_fruit_photographed_ripe_and_unbudded_leaves_drop_the_bud
     import fit_phenology as fph
     s = pd.DataFrame({"id": [1, 2, 3, 4], "fruiting": [True, True, False, False], "flowering": [False] * 4,
                       "budding": [False, False, True, False], "no_flowers": [False, False, True, True]})
-    tags = fph.stages(s, ripe=[1, 3])
+    tags = fph.stages(s, ripe=[1, 3], unripe=[2, 4])
     assert tags["ripe"].tolist() == [True, False, False, False]          # 3 is "ripe" but not fruiting
+    assert tags["leaves_to_pods"].tolist() == [False, True, True, True]  # 1 ripe seeds, 2 green pods, 3-4 leaves
     assert tags["leaves"].tolist() == [False, False, True, True]
     assert tags["leaves_unbudded"].tolist() == [False, False, False, True]
