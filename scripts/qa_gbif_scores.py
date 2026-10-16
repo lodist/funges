@@ -56,9 +56,11 @@ ZONE_CURVE_URLS = {
     "USW": f"{R2_ROOT}/USA/US_zone_season_curves.json",
 }
 _SPECIES_METADATA = get_species_metadata()
+# A composite (Boletus, Chanterelles) is the best of its members, not a taxon GBIF can match.
 SPECIES = {
     species_id: (config["name"], config["scientificName"])
     for species_id, config in _SPECIES_METADATA.items()
+    if not config["composite"]
 }
 GBIF = "https://api.gbif.org/v1"
 FUNGI = set(get_empirical_taxon_map())
@@ -147,6 +149,7 @@ def match_taxa(session: requests.Session) -> dict[str, dict]:
             "matched_name": result.get("scientificName"),
             "rank": result.get("rank"),
             "confidence": result.get("confidence"),
+            "kingdom": result.get("kingdom"),
         }
     return matches
 

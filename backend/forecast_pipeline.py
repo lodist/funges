@@ -44,6 +44,7 @@ from shapely.geometry import shape, Point
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasonality
 import era5_normals
 import era5_rain
+import hourly_weather
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
 from species_registry import get_composites, get_region_boundaries, get_species_params
@@ -1698,6 +1699,12 @@ def run_pipeline(config: RegionConfig):
     else:
         df = _merge_and_score(config, df, species_params, zone_curves, main_data_path)
         save_df_to_file(df, main_data_path)
+    # Hourly weather from free model files, for the crop forecasts to come. Last, and
+    # caught: it must never cost Earth its run.
+    try:
+        hourly_weather.run(config.region, points)
+    except Exception as e:  # noqa: BLE001
+        print(f"Hourly weather failed: {e!r}")
     print(f"Script ended at {datetime.now()}")
 
 
