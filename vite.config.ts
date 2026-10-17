@@ -62,9 +62,13 @@ export default defineConfig({
         ],
         // HEIC support is a fallback, so do not make every visitor download its
         // decoder chunk. Cache the JS + WASM after the first HEIC photo instead.
-        // The landing shows one spectacle photo per season; precaching the
-        // other three would download them for nothing.
-        globIgnores: ['**/heic-decoder-*.js', '**/landing/spectacle-*.webp'],
+        // The landing shows one hero and one spectacle photo per season;
+        // precaching the others would download them for nothing.
+        globIgnores: [
+          '**/heic-decoder-*.js',
+          '**/landing/hero-*.webp',
+          '**/landing/spectacle-*.webp',
+        ],
         runtimeCaching: [
           // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.
           {

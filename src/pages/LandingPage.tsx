@@ -25,6 +25,18 @@ const HELP_LINKS = [
   { to: '/termsuse', key: 'termsOfUse' },
 ] as const;
 
+// The first picture follows the season (meteorological, the same on both
+// continents): morel in spring, chanterelles in summer, the porcino in autumn
+// and oyster mushrooms in winter. The porcino is shared with Support.
+const HERO_PHOTOS = [
+  'hero-winter.webp',
+  'hero-spring.webp',
+  'hero-summer.webp',
+  'astra-porcini.webp',
+] as const;
+const heroPhoto = (date: Date) =>
+  HERO_PHOTOS[Math.floor(((date.getMonth() + 1) % 12) / 3)];
+
 // The walk's last two steps; the first, the spectacles, follows the season.
 const STEPS = [
   {
@@ -134,7 +146,7 @@ export default function LandingPage() {
                 ties the hero to the page instead of boxing it in. */}
             <img
               className={styles.heroPhoto}
-              src={`${base}landing/astra-porcini.webp`}
+              src={`${base}landing/${heroPhoto(new Date())}`}
               alt=''
               width='960'
               height='1200'
