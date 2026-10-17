@@ -218,7 +218,7 @@ export default function InstructionsPage() {
             >
               {t('about.title')}
             </h2>
-            <div className='mt-5 flex max-w-3xl flex-col gap-4 leading-relaxed text-happy-100'>
+            <div className='mt-5 flex flex-col gap-4 leading-relaxed text-happy-100'>
               <p>{t('about.description')}</p>
               <p>{t('about.dataCombination')}</p>
               <p>{t('about.climateChange')}</p>
