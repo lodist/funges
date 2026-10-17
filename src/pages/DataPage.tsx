@@ -111,7 +111,9 @@ function SegmentedControl<T extends string | number>({
   onChange: (value: T) => void;
 }) {
   return (
-    <div className='inline-flex items-center gap-0.5 rounded-full bg-muted/60 p-1'>
+    // The map dock's days without the dock: the chosen option a light green
+    // halo with dark green text, the others light green text, no track.
+    <div className='inline-flex items-center gap-1 rounded-full p-1'>
       {options.map(option => {
         const isActive = option.value === value;
         return (
@@ -122,12 +124,9 @@ function SegmentedControl<T extends string | number>({
             aria-pressed={isActive}
             className={cn(
               'rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors',
-              // The chosen word in green on its white chip: the map dock's light
-              // green in dark mode; on light paper that green measures under
-              // 2:1, so light mode takes the readable --primary-text step.
               isActive
-                ? 'bg-card text-primary-text shadow-[0_1px_4px_rgba(0,0,0,0.1)] dark:text-happy-300'
-                : 'text-muted-foreground hover:text-foreground'
+                ? 'bg-happy-100 text-happy-900'
+                : 'text-happy-500 hover:text-happy-600 dark:text-happy-300 dark:hover:text-happy-100'
             )}
           >
             {option.label}
