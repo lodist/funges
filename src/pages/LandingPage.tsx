@@ -1,9 +1,15 @@
+import { useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { Logo } from '@/components/Logo';
 import { Button } from '@/components/ui/button';
+import { useSpeciesData } from '@/data/species';
 import { AlertTriangle, ArrowRight, ArrowUpRight } from '@/lib/icons';
+import {
+  fetchStrongestSpeciesToday,
+  type ScoreRegionId,
+} from '@/lib/worth-foraging-now';
 import styles from './LandingPage.module.scss';
 
 const base = import.meta.env.BASE_URL;
@@ -34,27 +40,9 @@ export default function LandingPage() {
         canonicalUrl={base}
       />
       <div className={styles.page}>
-        <header className={styles.header}>
-          <Logo className='h-10 md:h-12' />
-          <Link
-            to='/worth-foraging-now'
-            className={`${styles.textLink} focus-ring`}
-          >
-            {t('home.ctaSecondary')}
-            <ArrowUpRight className='size-5' />
-          </Link>
-        </header>
+        {/* The first screen is the forest itself: the porcino full-bleed
+            under a dark gradient, and on it what is up tonight. */}
         <section className={styles.hero} aria-labelledby='landing-title'>
-          <div className={styles.heroCopy}>
-            <h1 id='landing-title'>{t('home.headline')}</h1>
-            <p className={styles.intro}>{t('home.description')}</p>
-            <Button asChild size='lg' className={styles.primaryAction}>
-              <Link to='/map'>
-                {t('home.cta')}
-                <ArrowRight className='size-5' />
-              </Link>
-            </Button>
-          </div>
           <img
             className={styles.heroPhoto}
             src={`${base}landing/astra-porcini.webp`}
@@ -63,6 +51,26 @@ export default function LandingPage() {
             height='1200'
             fetchPriority='high'
           />
+          <header className={styles.header}>
+            <Logo className='h-10 md:h-12' />
+            <Link
+              to='/worth-foraging-now'
+              className={`${styles.textLink} focus-ring`}
+            >
+              {t('home.ctaSecondary')}
+              <ArrowUpRight className='size-5' />
+            </Link>
+          </header>
+          <div className={styles.heroCopy}>
+            <h1 id='landing-title'>{t('home.headline')}</h1>
+            <LiveLine />
+            <Button asChild size='lg' className={styles.primaryAction}>
+              <Link to='/map'>
+                {t('home.cta')}
+                <ArrowRight className='size-5' />
+              </Link>
+            </Button>
+          </div>
         </section>
 
         <section className={styles.forecast} aria-labelledby='forecast-title'>
@@ -208,5 +216,63 @@ export default function LandingPage() {
         </footer>
       </div>
     </>
+  );
+}
+
+// ponytail: the continent comes from the time zone, not a location prompt;
+// a visitor abroad sees their home continent until they open the map.
+const AMERICAS = Intl.DateTimeFormat()
+  .resolvedOptions()
+  .timeZone.startsWith('America/');
+const REGIONS: ScoreRegionId[] = AMERICAS ? ['USE', 'USW'] : ['NE', 'SE'];
+
+/** What is up tonight, from the nightly forecast: the mushroom strong in the
+ *  most areas, or, when no mushroom is (mid-winter), whatever is. Until the
+ *  data arrives, or when nothing is up at all, the plain description. */
+function LiveLine() {
+  const { t, i18n } = useTranslation('common');
+  const species = useSpeciesData();
+  const [top, setTop] = useState<{ speciesId: string; areas: number } | null>(
+    null
+  );
+
+  useEffect(() => {
+    let live = true;
+    fetchStrongestSpeciesToday(REGIONS)
+      .then(ranked => {
+        const known = ranked.filter(r =>
+          species.some(s => s.id === r.speciesId)
+        );
+        const mushroom = known.find(
+          r =>
+            r.areas >= 10 &&
+            species.find(s => s.id === r.speciesId)?.category === 'mushroom'
+        );
+        if (live) setTop(mushroom ?? known[0] ?? null);
+      })
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, [species]);
+
+  const name = top
+    ? species.find(s => s.id === top.speciesId)?.name.replace(/\s*\(.*\)$/, '')
+    : null;
+
+  if (!top || !name) {
+    return <p className={styles.intro}>{t('home.description')}</p>;
+  }
+  return (
+    <p className={styles.live}>
+      <span aria-hidden='true' className={styles.liveDot} />
+      <span>
+        {t('home.live.line', {
+          species: name,
+          areas: top.areas.toLocaleString(i18n.language),
+          area: t(AMERICAS ? 'home.live.northAmerica' : 'home.live.europe'),
+        })}
+      </span>
+    </p>
   );
 }

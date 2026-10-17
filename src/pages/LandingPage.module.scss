@@ -13,13 +13,6 @@
     letter-spacing: -0.04em;
   }
 }
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  padding: 1.75rem var(--page-gutter);
-}
 .textLink {
   display: inline-flex;
   align-items: center;
@@ -34,38 +27,96 @@
     text-decoration: underline;
   }
 }
+// The first screen: the porcino full-bleed, a dark forest gradient laid over
+// it, and the header and copy on top in the band's cream. --logo turns the
+// red mark cream here, where red on the dark forest fell under 3:1.
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(2rem, 5vw, 6rem);
-  padding: 1.5rem var(--page-gutter) 4rem;
-}
-.heroCopy h1 {
-  max-width: 11ch;
-  color: var(--primary-text);
-  font-size: clamp(3.5rem, 6.6vw, 6rem);
-  line-height: 1.02;
-}
-.intro {
-  max-width: 31rem;
-  margin-top: 2rem;
-  color: var(--muted-foreground);
-  font-size: 1.125rem;
-  line-height: 1.65;
-}
-.primaryAction {
-  margin-top: 2rem;
+  --ring: var(--happy-100);
+  --logo: var(--happy-50);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: min(100svh, 62rem);
+  overflow: hidden;
+  background: var(--happy-900);
+  color: var(--happy-50);
+  // Desktop: the photo is portrait, so it takes the right side at full
+  // height, sharp, and fades into solid forest green under the copy.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(
+        90deg,
+        var(--happy-900) 0%,
+        var(--happy-900) 40%,
+        rgb(0 40 11 / 0.55) 52%,
+        rgb(0 40 11 / 0) 66%
+      ),
+      linear-gradient(180deg, rgb(0 26 8 / 0.45) 0%, rgb(0 26 8 / 0) 18%),
+      // The photo melts into the forecast band below: one forest, not two blocks.
+      linear-gradient(0deg, var(--happy-900) 0%, rgb(0 40 11 / 0) 22%);
+  }
+  .textLink {
+    color: var(--happy-100);
+  }
 }
 .heroPhoto {
-  width: 100%;
-  height: auto;
-  // The photo's own 4:5, so a narrow column never slices the porcino; the cap
-  // keeps it inside the first screen on short desktops.
-  aspect-ratio: 4 / 5;
-  max-height: min(43rem, 75svh);
+  position: absolute;
+  inset: 0 0 0 auto;
+  z-index: -2;
+  width: 62%;
+  height: 100%;
   object-fit: cover;
-  object-position: 50% 60%;
+  object-position: 50% 62%;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.75rem var(--page-gutter);
+}
+.heroCopy {
+  padding: 2rem var(--page-gutter) clamp(3rem, 8vh, 6rem);
+  h1 {
+    max-width: 10ch;
+    color: var(--happy-50);
+    font-size: clamp(3.75rem, 8.4vw, 8.5rem);
+    line-height: 0.95;
+  }
+}
+.intro,
+.live {
+  max-width: 34rem;
+  margin-top: 2rem;
+  color: var(--happy-100);
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+.live {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  color: var(--happy-50);
+  font-weight: 500;
+}
+// A still dot marks the line as tonight's data, set apart from the copy.
+.liveDot {
+  flex-shrink: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 9999px;
+  background: var(--happy-300);
+  box-shadow: 0 0 0 0.3rem rgb(134 239 172 / 0.18);
+  transform: translateY(-0.1em);
+}
+.primaryAction {
+  margin-top: 2.25rem;
 }
 .forecast {
   // --ring (--happy-700) reads 1.9:1 on this green; this step clears 3:1 on
@@ -309,26 +360,35 @@
     }
   }
   .hero {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2rem;
-    padding-top: 1.5rem;
-    padding-bottom: 2rem;
+    min-height: 88svh;
+    &::after {
+      background:
+        linear-gradient(
+          0deg,
+          rgb(0 26 8 / 0.94) 0%,
+          rgb(0 26 8 / 0.7) 38%,
+          rgb(0 26 8 / 0) 68%
+        ),
+        linear-gradient(180deg, rgb(0 26 8 / 0.5) 0%, rgb(0 26 8 / 0) 20%);
+    }
   }
-  .heroCopy h1 {
-    max-width: 12ch;
-    font-size: clamp(3rem, 10.5vw, 4.5rem);
+  .heroPhoto {
+    width: 100%;
+    object-position: 55% 40%;
   }
-  .intro {
+  .heroCopy {
+    padding-bottom: 6.5rem;
+    h1 {
+      font-size: clamp(3rem, 13vw, 4.5rem);
+    }
+  }
+  .intro,
+  .live {
     margin-top: 1.25rem;
-    font-size: 1rem;
+    font-size: 1.0625rem;
   }
   .primaryAction {
     margin-top: 1.5rem;
-  }
-  .heroPhoto {
-    aspect-ratio: 4 / 3;
-    max-height: none;
-    object-position: 50% 55%;
   }
   .forecastCopy {
     display: block;

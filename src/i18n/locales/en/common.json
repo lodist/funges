@@ -75,6 +75,11 @@
       "heading": "Natural spectacles",
       "body": "Follow the seasons from cherry blossom and bluebell woods to autumn leaves, with forecasts for nature's fleeting displays",
       "link": "Explore fall foliage"
+    },
+    "live": {
+      "line": "Worth a walk today: {{species}}, in {{areas}} areas across {{area}}",
+      "europe": "Europe",
+      "northAmerica": "North America"
     }
   },
   "worthForagingNow": {

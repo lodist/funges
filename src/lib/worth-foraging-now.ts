@@ -420,6 +420,28 @@ function buildRecommendationsFromRanked({
   }));
 }
 
+/** How many forecast cells each species is strong in tonight, across the
+ *  given regions, most first. A cell is half a degree square, so the count is
+ *  of areas, not of single spots. */
+export async function fetchStrongestSpeciesToday(
+  regionIds: ScoreRegionId[],
+  minScore = 7
+): Promise<Array<{ speciesId: string; areas: number }>> {
+  const dataset = await loadRecommendationDataset();
+  const areas = new Map<string, number>();
+  for (const point of dataset.points) {
+    if (!regionIds.includes(point.regionId)) continue;
+    for (const [speciesId, score] of Object.entries(point.scores)) {
+      if ((score ?? 0) >= minScore) {
+        areas.set(speciesId, (areas.get(speciesId) ?? 0) + 1);
+      }
+    }
+  }
+  return [...areas]
+    .map(([speciesId, count]) => ({ speciesId, areas: count }))
+    .sort((a, b) => b.areas - a.areas);
+}
+
 export function deriveWorthForagingNowRecommendations({
   dataset,
   species,

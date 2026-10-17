@@ -75,6 +75,11 @@
       "heading": "Schauspiele der Natur",
       "body": "Von Kirschblüten und Hasenglöckchenwäldern bis zum bunten Herbstlaub: Folge den Jahreszeiten und entdecke Prognosen für die vergängliche Pracht der Natur",
       "link": "Herbstlaub entdecken"
+    },
+    "live": {
+      "line": "Heute lohnt sich der Weg: {{species}}, in {{areas}} Gebieten in {{area}}",
+      "europe": "Europa",
+      "northAmerica": "Nordamerika"
     }
   },
   "worthForagingNow": {
