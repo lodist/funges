@@ -1,7 +1,8 @@
 {
-  "source": "Pexels photo 35842373 by pabnavarrete (pexels-pabnavarrete-35842373.jpg), offered by Loris 2026-10-17",
-  "licence": "Pexels licence: free to use, no credit required",
-  "subject": "A true morel (Morchella, honeycomb pits on a cap joined to a white stem) in mossy litter; cropped (894, 1609, 2814, 4009) of 3648x5472",
-  "purpose": "Spring hero (March-May); atmosphere, not species-identification evidence or a current forecast",
-  "encoding": "WebP, 960x1200, quality 75; kept out of the service-worker precache"
+  "prompt": "A candid, bright spring field photograph of two or three fresh yellow morels (Morchella esculenta group) coming up through last year's brown leaf litter on a sunlit woodland floor in April; warm, fresh and inviting, never dark or moody. Cap ovoid to bluntly conical, 5-8 cm, blond to honey-yellow, a honeycomb of deep irregular pits separated by paler ridges, joined directly to the stem at its lower edge with no free skirt; stem white to cream, slightly granular, a little swollen at the base; never brain-like folds (Gyromitra) or a free thimble cap (Verpa). Fresh green shoots, a few white wood anemones (Anemone nemorosa) and ash or beech trunks in new leaf, softly blurred; low warm morning sun, dappled light, soft rim light on the morels; natural colours, no HDR, vignette, flare or dark grading; no people, hands, baskets, text or watermark. Camera at ground level; morels roughly centred a little below the middle.",
+  "generator": "OpenAI image generation (gpt-image-2) via the Codex CLI imagegen skill, variant 3 of 3",
+  "references": "public/landing/hero-summer.webp (light and colour), public/landing/astra-porcini.webp (framing and realism), src/assets/species/morel.webp (botany)",
+  "why_generated": "Loris found the real morel photo he offered (Pexels 35842373) too dark (\"sad and scary\") for a spring hero",
+  "purpose": "Spring hero (March-May); photorealistic marketing illustration, not species-identification evidence",
+  "encoding": "WebP, 960x1200 from a 1024x1536 render cropped (0, 128, 1024, 1408), quality 75; kept out of the service-worker precache"
 }
