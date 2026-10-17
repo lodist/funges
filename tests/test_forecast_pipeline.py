@@ -483,3 +483,14 @@ def test_smoothing_writes_no_confidence_columns():
     out = fp.spatial_smooth_scores(df, ["a_score"])
     assert [c for c in out.columns if c.endswith("_confidence")] == []
     assert out["a_score"].between(2.0, 6.0).all()
+
+
+def test_smoothing_leaves_the_callers_frame_alone_and_rows_without_coordinates_as_they_were():
+    df = pd.DataFrame({"Date": pd.to_datetime(["2026-10-13"] * 3 + ["2026-10-14"]),
+                       "Latitude": [45.0, 45.01, np.nan, 45.0], "Longitude": [9.0, 9.01, 9.02, 9.0],
+                       "a_score": [2.0, 4.0, 6.0, 8.0]})
+    before = df.copy()
+    out = fp.spatial_smooth_scores(df, ["a_score"])
+    pd.testing.assert_frame_equal(df, before)                       # smoothing returns a new frame
+    assert out["a_score"].iloc[2] == 6.0 and out["a_score"].iloc[3] == 8.0   # no coordinate / alone that day
+    assert 2.0 < out["a_score"].iloc[0] < 4.0

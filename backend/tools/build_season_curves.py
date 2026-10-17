@@ -406,6 +406,8 @@ def main():
 
 
 if __name__ == "__main__":
+    from process_priority import normal_priority
+    normal_priority()   # not the scheduled task's low CPU, memory and I/O priority
     main()
     # ponytail: the scheduler exe only runs this script before scoring, so the range
     # priors (same GBIF source, same quarterly refresh) ride along. Give them their own

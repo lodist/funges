@@ -17,6 +17,7 @@ from io import StringIO, BytesIO
 from pathlib import Path
 from urllib.parse import urlparse
 import faulthandler
+import gc
 import gzip
 import hashlib
 import math
@@ -45,6 +46,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasona
 import era5_normals
 import era5_rain
 import hourly_weather
+import process_priority
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
 from species_registry import get_composites, get_region_boundaries, get_species_params
@@ -109,10 +111,19 @@ def merge_master(existing_df, new_df):
     New (fresher) forecast rows therefore overwrite overlapping existing dates,
     while frozen past rows (absent from new_df) are left untouched.
     """
-    combined = pd.concat([existing_df, new_df], ignore_index=True)
+    return _keep_last(pd.concat([existing_df, new_df], ignore_index=True))
+
+
+def _keep_last(combined):
+    """merge_master's second half: the last row per (Location_Id, Date), renumbered. The same
+    as drop_duplicates(keep="last").reset_index(drop=True) without reset_index's full copy;
+    _merge_and_score calls it after letting go of the inputs, so they are freed first."""
     combined["Date"] = pd.to_datetime(combined["Date"])
-    combined = combined.drop_duplicates(subset=["Location_Id", "Date"], keep="last")
-    return combined.reset_index(drop=True)
+    duplicated = combined.duplicated(subset=["Location_Id", "Date"], keep="last").to_numpy()
+    if duplicated.any():
+        combined = combined[~duplicated]
+    combined.index = pd.RangeIndex(len(combined))
+    return combined
 
 
 def assert_window_contiguous(df, today, forward_days=FORECAST_DAYS, lookback=21):
@@ -505,7 +516,15 @@ def _resolve_output_schema(source_path, tail):
 def _write_streaming_parquet(source_path, output_path, updated_tail, split_date,
                              cutoff_date):
     """Write frozen history batchwise, then append the rebuilt mutable tail."""
-    tail = updated_tail.sort_values(["Location_Id", "Date"]).reset_index(drop=True)
+    keys = pd.MultiIndex.from_frame(updated_tail[["Location_Id", "Date"]])
+    if keys.is_unique and keys.is_monotonic_increasing:
+        # Sorted already, as _merge_and_score leaves it: sorting and renumbering were two
+        # full copies of the tail for the same rows in the same order.
+        tail = updated_tail.copy(deep=False)
+        tail.index = pd.RangeIndex(len(tail))
+    else:
+        tail = updated_tail.sort_values(["Location_Id", "Date"]).reset_index(drop=True)
+    del keys
     schema = _resolve_output_schema(source_path, tail)
 
     with pq.ParquetWriter(output_path, schema, compression="snappy") as writer:
@@ -598,16 +617,25 @@ def compute_lag_features(df, columns, days, target=None):
     # (NaN if that day is absent). This prevents missing days in the daily history
     # from silently stretching the lookback window. Duplicate (Location_Id, Date)
     # pairs collapse to their last value so the lookup stays uniquely indexed.
-    lookups = {col: df.groupby(["Location_Id", "Date"])[col].last() for col in columns}
+    # One lookup table for every column, one position lookup per day for all of them,
+    # and the lag columns added in one go: 8 groupbys, 336 reindexes and 336 column
+    # inserts before, the same values (tests/test_lag_features_equal.py).
+    lookup = df.groupby(["Location_Id", "Date"])[columns].last()
+    values = {col: lookup[col].to_numpy() for col in columns}
     out = df if target is None else target.sort_values(
         by=["Location_Id", "Date"], ascending=[True, True]).copy()
     locs = out["Location_Id"].to_numpy()
+    lags = {}
     for day in range(1, days + 1):
-        target_idx = pd.MultiIndex.from_arrays(
+        where = lookup.index.get_indexer(pd.MultiIndex.from_arrays(
             [locs, (out["Date"] - pd.Timedelta(days=day)).to_numpy()]
-        )
+        ))
         for col in columns:
-            out[f"{col}_{day}days_ago"] = lookups[col].reindex(target_idx).to_numpy()
+            lags[f"{col}_{day}days_ago"] = pd.api.extensions.take(values[col], where, allow_fill=True)
+    if out.index.is_unique and not any(c in out.columns for c in lags):
+        return pd.concat([out, pd.DataFrame(lags, index=out.index)], axis=1)
+    for col, lagged in lags.items():   # the old one-by-one path, for frames it can't concat to
+        out[col] = lagged
     return out
 
 
@@ -628,7 +656,10 @@ def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coo
     coord_series = df.assign(_coord_key=key)[["_coord_key", "Date"] + columns]
     coord_series = (coord_series.drop_duplicates(["_coord_key", "Date"], keep="last")
                                 .rename(columns={"_coord_key": "Location_Id"}))
-    coord_lagged = compute_lag_features(coord_series, columns, days)
+    # Lagged only on the dates the target has (the forecast days): the other days of the
+    # 42-day window are looked up, never broadcast. Same values for ~1/7 of the rows.
+    coord_target = None if target is None else coord_series[coord_series["Date"].isin(target["Date"].unique())]
+    coord_lagged = compute_lag_features(coord_series, columns, days, target=coord_target)
 
     lag_cols = [f"{c}_{d}days_ago" for c in columns for d in range(1, days + 1)]
     coord_lagged = coord_lagged.rename(columns={"Location_Id": "_coord_key"})[["_coord_key", "Date"] + lag_cols]
@@ -638,8 +669,23 @@ def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coo
     else:
         dst = target
         dst_key = target[coord_lat].astype(str) + "_" + target[coord_lon].astype(str)
-    out = dst.assign(_coord_key=dst_key).merge(coord_lagged, on=["_coord_key", "Date"], how="left")
-    return out.drop(columns=["_coord_key", coord_lat, coord_lon])
+    # The left merge it replaces, by position: a merge then a drop copied the whole wide
+    # frame twice (tests/test_lag_features_equal.py holds it to the merge's result).
+    where = pd.MultiIndex.from_frame(coord_lagged[["_coord_key", "Date"]]).get_indexer(
+        pd.MultiIndex.from_arrays([dst_key.to_numpy(), dst["Date"].to_numpy()]))
+    source = coord_lagged[lag_cols]
+    if all(dtype == np.float64 for dtype in source.dtypes):
+        # Straight into one block (the weather lags are all floats): a dict of columns was
+        # consolidated into one, and concat copied it again.
+        block = source.to_numpy()[where]
+        block[where < 0] = np.nan
+        lagged = pd.DataFrame(block, columns=lag_cols, copy=False)
+    else:
+        lagged = pd.DataFrame({c: pd.api.extensions.take(source[c].to_numpy(), where, allow_fill=True)
+                               for c in lag_cols})
+    out = dst.drop(columns=[coord_lat, coord_lon])
+    out.index = pd.RangeIndex(len(out))
+    return pd.concat([out, lagged], axis=1, copy=False)
 
 
 def altitude_score(x, optimal_alt=1150, alt_sigma=600):
@@ -738,18 +784,18 @@ def _lag_matrix(df, base_col, days):
     return np.column_stack(values) if values else np.empty((len(df), 0), dtype=float)
 
 
-def _moisture_memory_score(df, *, cumulative_rain_target, rain_first, delay=0):
-    """Estimate available moisture over 7, 21 and 42-day horizons. `delay` (a species'
-    rain_delay_days) moves them all that many days back, so rain counts only once it is that old:
-    boletes fruit 14-19 days after rain, not within the week. The 42 days the lags reach stay the
-    limit, so the longest window shrinks and its rain target with it."""
-    windows = (7, 21, 42)
-    max_days = max(windows)
-    rain = np.nan_to_num(_lag_matrix(df, "TotalPrecipitation_mm", max_days), nan=0.0)
+MOISTURE_DAYS = 42
+
+
+def _moisture_inputs(df):
+    """The rain and drying matrices (rows x 42 days back) the moisture score reads. They are the
+    same for every species, so calculate_mushroom_score builds them once: built per species they
+    were ~0.7 GB of fresh memory each time on half a million rows."""
+    rain = np.nan_to_num(_lag_matrix(df, "TotalPrecipitation_mm", MOISTURE_DAYS), nan=0.0)
     rain = np.clip(rain, 0.0, None)
-    temp = _lag_matrix(df, "Temperature (C)", max_days)
-    humidity = _lag_matrix(df, "Humidity (%)", max_days)
-    wind = _lag_matrix(df, "Wind Speed (m/s)", max_days)
+    temp = _lag_matrix(df, "Temperature (C)", MOISTURE_DAYS)
+    humidity = _lag_matrix(df, "Humidity (%)", MOISTURE_DAYS)
+    wind = _lag_matrix(df, "Wind Speed (m/s)", MOISTURE_DAYS)
 
     # Missing historical weather uses neutral values rather than inventing drought.
     temp = np.where(np.isfinite(temp), temp, 10.0)
@@ -760,7 +806,18 @@ def _moisture_memory_score(df, *, cumulative_rain_target, rain_first, delay=0):
         + 0.025 * np.maximum(70.0 - humidity, 0.0)
         + 0.12 * np.maximum(wind - 3.0, 0.0)
     )
-    drying = np.clip(drying, 0.0, 4.0)
+    return rain, np.clip(drying, 0.0, 4.0)
+
+
+def _moisture_memory_score(df, *, cumulative_rain_target, rain_first, delay=0, inputs=None):
+    """Estimate available moisture over 7, 21 and 42-day horizons. `delay` (a species'
+    rain_delay_days) moves them all that many days back, so rain counts only once it is that old:
+    boletes fruit 14-19 days after rain, not within the week. The 42 days the lags reach stay the
+    limit, so the longest window shrinks and its rain target with it. `inputs` is
+    _moisture_inputs(df), when the caller has it already."""
+    windows = (7, 21, 42)
+    max_days = max(windows)
+    rain, drying = _moisture_inputs(df) if inputs is None else inputs
     rain, drying = rain[:, delay:], drying[:, delay:]
 
     target = max(float(cumulative_rain_target), 1.0)
@@ -833,22 +890,24 @@ def spatial_smooth_scores(df, score_cols, *, neighbours=5, radius_km=30.0):
     master in the nightly upload's memory.)"""
     from scipy.spatial import cKDTree
 
-    out = df.copy()
     earth_radius_km = 6371.0088
+    # The score columns, smoothed as arrays and set back whole on a shallow copy: a deep copy of
+    # the frame first was ~2.5 GB on US West, for columns that never change here.
+    scores = {c: pd.to_numeric(df[c], errors="coerce").to_numpy(float).copy() for c in score_cols}
+    lat_all = pd.to_numeric(df["Latitude"], errors="coerce").to_numpy(float)
+    lon_all = pd.to_numeric(df["Longitude"], errors="coerce").to_numpy(float)
 
-    for _, index in out.groupby(pd.to_datetime(out["Date"]).dt.normalize()).groups.items():
-        idx = np.asarray(list(index))
-        lat = pd.to_numeric(out.loc[idx, "Latitude"], errors="coerce").to_numpy(float)
-        lon = pd.to_numeric(out.loc[idx, "Longitude"], errors="coerce").to_numpy(float)
+    for rows in df.groupby(pd.to_datetime(df["Date"]).dt.normalize()).indices.values():
+        lat, lon = lat_all[rows], lon_all[rows]
         valid_coord = np.isfinite(lat) & np.isfinite(lon)
         if not valid_coord.any():
             continue
-        valid_idx = idx[valid_coord]
+        valid_rows = rows[valid_coord]
         xyz = _latlon_to_unit_xyz(lat[valid_coord], lon[valid_coord])
-        k = min(neighbours, len(valid_idx))
+        k = min(neighbours, len(valid_rows))
         chord_dist, near = cKDTree(xyz).query(xyz, k=k)
-        chord_dist = np.asarray(chord_dist).reshape(len(valid_idx), k)
-        near = np.asarray(near).reshape(len(valid_idx), k)
+        chord_dist = np.asarray(chord_dist).reshape(len(valid_rows), k)
+        near = np.asarray(near).reshape(len(valid_rows), k)
         distances = 2.0 * earth_radius_km * np.arcsin(
             np.clip(chord_dist / 2.0, 0.0, 1.0)
         )
@@ -856,9 +915,7 @@ def spatial_smooth_scores(df, score_cols, *, neighbours=5, radius_km=30.0):
         spatial_weights = np.exp(-((distances / 15.0) ** 2)) * in_radius
 
         for score_col in score_cols:
-            values = pd.to_numeric(
-                out.loc[valid_idx, score_col], errors="coerce"
-            ).to_numpy(float)
+            values = scores[score_col][valid_rows]
             neighbour_values = values[near]
             usable = in_radius & np.isfinite(neighbour_values)
             weights = spatial_weights * usable
@@ -869,34 +926,44 @@ def spatial_smooth_scores(df, score_cols, *, neighbours=5, radius_km=30.0):
                 out=values.copy(),
                 where=weight_sum > 0,
             )
-            out.loc[valid_idx, score_col] = smoothed
+            scores[score_col][valid_rows] = smoothed
+    out = df.copy(deep=False)
+    for score_col, values in scores.items():
+        out[score_col] = values
     return out
 
 
-def _weighted_lag_gaussian(df, base_col, n_days, weights, mu, sigma):
-    """Weighted-over-lags gaussian score, vectorized over all rows. Bit-identical to
-    the original `sum(w * col.fillna(base).apply(gaussian))` (same left-fold order),
-    but evaluates the gaussian on whole columns instead of per row.
-    """
+def _filled_lags(df, base_col, n_days):
+    """Each day's lag column with its gaps filled from the row's own value, as the weighted lag
+    scores read them; the same for every species, so built once per scoring run."""
     base = df[base_col]
-    score = np.zeros(len(df), dtype=float)
-    for i, d in enumerate(range(1, n_days + 1)):
+    out = []
+    for d in range(1, n_days + 1):
         col = f"{base_col}_{d}days_ago"
         series = df[col] if col in df.columns else base
-        vals = series.fillna(base).to_numpy(float)
-        score = score + weights[i] * gaussian(vals, mu, sigma)
+        out.append(series.fillna(base).to_numpy(float))
+    return out
+
+
+def _weighted_lag_gaussian(df, base_col, n_days, weights, mu, sigma, filled=None):
+    """Weighted-over-lags gaussian score, vectorized over all rows. Bit-identical to
+    the original `sum(w * col.fillna(base).apply(gaussian))` (same left-fold order),
+    but evaluates the gaussian on whole columns instead of per row. `filled` is
+    _filled_lags(df, base_col, n_days), when the caller has it already.
+    """
+    filled = _filled_lags(df, base_col, n_days) if filled is None else filled
+    score = np.zeros(len(df), dtype=float)
+    for i in range(n_days):
+        score = score + weights[i] * gaussian(filled[i], mu, sigma)
     return score
 
 
-def _weighted_lag_humidity(df, base_col, n_days, weights, saturation, sigma):
+def _weighted_lag_humidity(df, base_col, n_days, weights, saturation, sigma, filled=None):
     """Weighted lag score using the one-sided humidity deficit curve."""
-    base = df[base_col]
+    filled = _filled_lags(df, base_col, n_days) if filled is None else filled
     score = np.zeros(len(df), dtype=float)
-    for i, d in enumerate(range(1, n_days + 1)):
-        col = f"{base_col}_{d}days_ago"
-        series = df[col] if col in df.columns else base
-        vals = series.fillna(base).to_numpy(float)
-        score = score + weights[i] * humidity_suitability(vals, saturation, sigma)
+    for i in range(n_days):
+        score = score + weights[i] * humidity_suitability(filled[i], saturation, sigma)
     return score
 
 
@@ -1266,12 +1333,21 @@ def calculate_mushroom_score(df, species_params, zone_curves):
     wind_factor = _lagged_wind_factor(df)
     gbm_features = None
 
+    # What every species reads alike, built once: per species it was ~44 rebuilds of the same
+    # 42-day matrices and lag columns, the run's memory churn.
+    moisture = _moisture_inputs(df)
     for specie, params in species_params.items():
         cum_thr = float(params.get('min_cumulative_rain', 20.0))
         rain_first = bool(params.get('weather_preference', {}).get('rain_first', False))
         df[f'{specie}_Weather_Score'] = _moisture_memory_score(
             df, cumulative_rain_target=cum_thr, rain_first=rain_first,
-            delay=int(params.get('rain_delay_days', 0)))
+            delay=int(params.get('rain_delay_days', 0)), inputs=moisture)
+    del moisture
+
+    temp_days = min(12, len([c for c in df.columns if c.startswith('Temperature (C)_') and c.endswith('days_ago')]))
+    hum_days = min(21, len([c for c in df.columns if c.startswith('Humidity (%)_') and c.endswith('days_ago')]))
+    temp_lags = _filled_lags(df, 'Temperature (C)', temp_days) if temp_days > 0 else None
+    hum_lags = _filled_lags(df, 'Humidity (%)', hum_days) if hum_days > 0 else None
 
     for specie, params in species_params.items():
         optimal_temp, temp_sigma = params["optimal_temp"], params["temp_sigma"]
@@ -1281,16 +1357,12 @@ def calculate_mushroom_score(df, species_params, zone_curves):
             params["optimal_pH"], params["pH_sigma_near"], params["pH_sigma_far"], params["pH_range_near"]
         )
 
-        df[f'{specie}_Temp_Score'], df[f'{specie}_Humidity_Score'] = 0.0, 0.0
-
-        temp_days = min(12, len([c for c in df.columns if c.startswith('Temperature (C)_') and c.endswith('days_ago')]))
-        hum_days  = min(21, len([c for c in df.columns if c.startswith('Humidity (%)_') and c.endswith('days_ago')]))
-
         if temp_days > 0:
             dT = np.arange(1, temp_days + 1)
             temp_weights = 0.6 * np.exp(-0.5 * ((dT - 4) / 3.0)**2) + 0.4 * np.exp(-0.08 * dT)
             temp_weights /= temp_weights.sum()
-            temp_score = _weighted_lag_gaussian(df, 'Temperature (C)', temp_days, temp_weights, optimal_temp, temp_sigma)
+            temp_score = _weighted_lag_gaussian(df, 'Temperature (C)', temp_days, temp_weights,
+                                                optimal_temp, temp_sigma, filled=temp_lags)
         else:
             temp_score = gaussian(df['Temperature (C)'].to_numpy(float), optimal_temp, temp_sigma)
 
@@ -1299,13 +1371,16 @@ def calculate_mushroom_score(df, species_params, zone_curves):
             hum_weights = 0.6 * np.exp(-0.5 * ((dH - 9) / 5.0)**2) + 0.4 * np.exp(-0.05 * dH)
             hum_weights /= hum_weights.sum()
             humidity_score = _weighted_lag_humidity(
-                df, 'Humidity (%)', hum_days, hum_weights, optimal_humidity, humidity_sigma)
+                df, 'Humidity (%)', hum_days, hum_weights, optimal_humidity, humidity_sigma, filled=hum_lags)
         else:
             humidity_score = humidity_suitability(
                 df['Humidity (%)'].to_numpy(float), optimal_humidity, humidity_sigma)
 
-        df[f'{specie}_Temp_Score'] = np.clip(temp_score, 0, 1)
-        df[f'{specie}_Humidity_Score'] = np.clip(humidity_score, 0, 1)
+        # The parts stay arrays: as columns of this ~400-column frame, dropping them copied the
+        # whole frame once per species.
+        temp_part = np.clip(temp_score, 0, 1)
+        humidity_part = np.clip(humidity_score, 0, 1)
+        weather_part = df[f'{specie}_Weather_Score'].to_numpy(float)
         # All three weather components take the fitted part, so their weighted
         # geometric mean is that part and the static components weigh as before.
         if params.get("fruiting_gbm"):
@@ -1315,11 +1390,10 @@ def calculate_mushroom_score(df, species_params, zone_curves):
         elif params.get("fruiting"):
             fitted = fruiting_weather_part(df, params["fruiting"])
         if params.get("fruiting_gbm") or params.get("fruiting"):
-            for part in ("Temp", "Humidity", "Weather"):
-                df[f'{specie}_{part}_Score'] = fitted
-        df[f'{specie}_Alt_Score'] = np.clip(
-            altitude_score(df['Elevation (m)'].to_numpy(float), optimal_alt, alt_sigma), 0, 1)
-        df[f'{specie}_PH_Score'] = _ph_score_vectorized(
+            df[f'{specie}_Weather_Score'] = fitted
+            temp_part = humidity_part = weather_part = df[f'{specie}_Weather_Score'].to_numpy(float)
+        alt_part = np.clip(altitude_score(df['Elevation (m)'].to_numpy(float), optimal_alt, alt_sigma), 0, 1)
+        ph_part = _ph_score_vectorized(
             df['ph_level'].to_numpy(float), optimal_pH, pH_sigma_near, pH_sigma_far, pH_range_near)
 
         water_score, sea_score = 1.0, 1.0
@@ -1369,37 +1443,17 @@ def calculate_mushroom_score(df, species_params, zone_curves):
                 water_comp = np.full(n, float(np.mean(water_comp)), dtype=float)
 
         if df['ph_level'].isna().any():
-            comps_no_ph = np.vstack([
-                df[f'{specie}_Temp_Score'].to_numpy(float),
-                df[f'{specie}_Humidity_Score'].to_numpy(float),
-                df[f'{specie}_Weather_Score'].to_numpy(float),
-                df[f'{specie}_Alt_Score'].to_numpy(float),
-                water_comp
-            ])
+            comps_no_ph = np.vstack([temp_part, humidity_part, weather_part, alt_part, water_comp])
             weights_no_ph = np.array([wT, wH, wW, wA, wWater], float)
             score_no_ph = 10 * _hybrid_component_mean_rows(comps_no_ph, weights_no_ph)
 
-            comps_ph = np.vstack([
-                df[f'{specie}_Temp_Score'].to_numpy(float),
-                df[f'{specie}_Humidity_Score'].to_numpy(float),
-                df[f'{specie}_Weather_Score'].to_numpy(float),
-                df[f'{specie}_Alt_Score'].to_numpy(float),
-                df[f'{specie}_PH_Score'].to_numpy(float),
-                water_comp
-            ])
+            comps_ph = np.vstack([temp_part, humidity_part, weather_part, alt_part, ph_part, water_comp])
             weights_ph = np.array([wT, wH, wW, wA, wPH, wWater], float)
             score_ph = 10 * _hybrid_component_mean_rows(comps_ph, weights_ph)
 
             df[f'{specie}_score'] = np.where(df['ph_level'].isna(), score_no_ph, score_ph)
         else:
-            comps_ph = np.vstack([
-                df[f'{specie}_Temp_Score'].to_numpy(float),
-                df[f'{specie}_Humidity_Score'].to_numpy(float),
-                df[f'{specie}_Weather_Score'].to_numpy(float),
-                df[f'{specie}_Alt_Score'].to_numpy(float),
-                df[f'{specie}_PH_Score'].to_numpy(float),
-                water_comp
-            ])
+            comps_ph = np.vstack([temp_part, humidity_part, weather_part, alt_part, ph_part, water_comp])
             weights_ph = np.array([wT, wH, wW, wA, wPH, wWater], float)
             df[f'{specie}_score'] = 10 * _hybrid_component_mean_rows(comps_ph, weights_ph)
 
@@ -1416,13 +1470,6 @@ def calculate_mushroom_score(df, species_params, zone_curves):
         # allowed to reach zero, which is the only way the model can say "not this month".
         df[f'{specie}_score'] *= season_multiplier_for_species(df, specie, params, zone_curves)
         df[f'{specie}_score'] *= season_gate_for_species(df, specie, params, zone_curves)
-
-        df.drop(columns=[
-            f'{specie}_Temp_Score',
-            f'{specie}_Alt_Score',
-            f'{specie}_Humidity_Score',
-            f'{specie}_PH_Score'
-        ], inplace=True)
 
     return df
 
@@ -1663,6 +1710,7 @@ def log_run_to_file(region):
 def run_pipeline(config: RegionConfig):
     faulthandler.enable(log_run_to_file(config.region))   # a hard crash dumps its stack there too
     print(f"Script started at {datetime.now()}")
+    process_priority.normal_priority()   # not the scheduled task's low CPU, memory and I/O priority
     _root = Path(__file__).resolve().parent.parent
     load_dotenv(_root / ".env")
     load_dotenv(_root / ".env.secret")
@@ -1700,7 +1748,10 @@ def run_pipeline(config: RegionConfig):
         df = _merge_and_score(config, df, species_params, zone_curves, main_data_path)
         save_df_to_file(df, main_data_path)
     # Hourly weather from free model files, for the crop forecasts to come. Last, and
-    # caught: it must never cost Earth its run.
+    # caught: it must never cost Earth its run. The scores are saved: give their tables'
+    # memory back first.
+    del df, weather_long, rain, static_map
+    gc.collect()
     try:
         hourly_weather.run(config.region, points)
     except Exception as e:  # noqa: BLE001
@@ -1824,17 +1875,25 @@ def apply_forward_scores(combined_df, forward, score_cols):
     Relies on (Location_Id, Date) being unique in combined_df (guaranteed by
     merge_master's keep='last' dedup) so the MultiIndex assignment is unambiguous.
     """
-    base = combined_df.set_index(["Location_Id", "Date"])
-    assert not base.index.has_duplicates, (
+    key = ["Location_Id", "Date"]
+    index = pd.MultiIndex.from_frame(combined_df[key])
+    assert not index.has_duplicates, (
         "combined_df has duplicate (Location_Id, Date) rows; merge_master dedup did not run"
     )
-    fwd = forward.set_index(["Location_Id", "Date"])
+    where = index.get_indexer(pd.MultiIndex.from_frame(forward[key]))
+    assert (where >= 0).all(), "forward rows missing from combined_df"
+    # Written by position into fresh columns on a shallow copy: set_index/reset_index made two
+    # full copies of the 42-day tail for ~45 columns that change.
+    out = combined_df.copy(deep=False)
     for col in score_cols:
-        if col not in base.columns:
-            base[col] = pd.NA
-        if col in fwd.columns:
-            base.loc[fwd.index, col] = fwd[col].values
-    return base.reset_index()
+        if col not in out.columns:
+            out[col] = pd.NA
+        if col in forward.columns:
+            values = out[col].to_numpy(copy=True)
+            values[where] = forward[col].to_numpy()
+            out[col] = values
+    out.index = pd.RangeIndex(len(out))   # reset_index(drop=True) without its full copy
+    return out
 
 
 # What a measured (ERA5) day overwrites: rain only. Stored temperature and humidity
@@ -1895,6 +1954,12 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         col = f"{specie}_score"
         if col not in df.columns:
             df[col] = pd.NA
+    # Location_Id -> fetched coord, taken now so the new rows' frame can go after the merge.
+    loc_to_coord = None
+    if {"_coord_lat", "_coord_lon"}.issubset(df.columns):
+        loc_to_coord = (df[["Location_Id", "_coord_lat", "_coord_lon"]]
+                        .dropna(subset=["_coord_lat", "_coord_lon"])
+                        .drop_duplicates("Location_Id").set_index("Location_Id"))
 
     if existing_exists is None:
         existing_exists = remote_file_exists(main_data_path)
@@ -1910,12 +1975,14 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         df = df[existing_cols + new_cols]
         df = replace_missing_elevation_from_previous_data(df, existing_df)
         df = replace_missing_elevation_with_closest(df)
-        combined_df = merge_master(existing_df, df)
+        combined_df = pd.concat([existing_df, df], ignore_index=True)   # merge_master, in two halves
     else:
         df = replace_missing_elevation_with_closest(df)
         combined_df = df.copy()
-        combined_df["Date"] = pd.to_datetime(combined_df["Date"])
-        combined_df = combined_df.drop_duplicates(subset=["Location_Id", "Date"], keep="last").reset_index(drop=True)
+    # Both inputs are in combined_df now: let them go before deduplicating, which copies it.
+    # The master's tail is the run's largest input.
+    del existing_df, df
+    combined_df = _keep_last(combined_df)
     if len(measured):
         try:
             combined_df = apply_measured_weather(combined_df, measured)
@@ -1937,7 +2004,12 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
     # (every (loc, date-N) they reference is inside this slice), but far less data to
     # reindex when the master holds a year of history at base resolution.
     lag_start = today - pd.Timedelta(days=config.lag_days)
-    lag_slice = combined_df[pd.to_datetime(combined_df["Date"]).dt.normalize() >= lag_start].copy()
+    in_window = pd.to_datetime(combined_df["Date"]).dt.normalize() >= lag_start
+    # The lookups read only the keys and the lagged weather; only the forward rows, which are
+    # scored, need every column. A copy of the whole window at full width was the merge's
+    # largest allocation (~95 columns x 42 days x every place).
+    lag_slice = combined_df.loc[in_window, ["Location_Id", "Date", *lag_columns]].copy()
+    target = combined_df.loc[in_window & forward_window_mask(combined_df, today)].copy()
 
     # Phase 2: weather (hence its lags) is identical across the base points that share a
     # fetched coord, so lag ONCE per coord and broadcast instead of once per base point.
@@ -1945,28 +2017,23 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
     # (from the prior master) lack it, so re-derive it per base point via the current run's
     # Location_Id -> coord map. If any in-window row still has no coord key (un-baked base /
     # legacy), fall back to the per-base path, which is the original behaviour.
-    if {"_coord_lat", "_coord_lon"}.issubset(df.columns):
-        loc_to_coord = (df[["Location_Id", "_coord_lat", "_coord_lon"]]
-                        .dropna(subset=["_coord_lat", "_coord_lon"])
-                        .drop_duplicates("Location_Id").set_index("Location_Id"))
-        lag_slice["_coord_lat"] = lag_slice["Location_Id"].map(loc_to_coord["_coord_lat"])
-        lag_slice["_coord_lon"] = lag_slice["Location_Id"].map(loc_to_coord["_coord_lon"])
+    if loc_to_coord is not None:
+        for frame in (lag_slice, target):
+            frame["_coord_lat"] = frame["Location_Id"].map(loc_to_coord["_coord_lat"])
+            frame["_coord_lon"] = frame["Location_Id"].map(loc_to_coord["_coord_lon"])
         can_dedup = lag_slice["_coord_lat"].notna().all() and lag_slice["_coord_lon"].notna().all()
     else:
         can_dedup = False
 
     # Lookups span the slice; the lag columns land only on the rows rescored below.
-    fwd_mask = forward_window_mask(lag_slice, today)
     if can_dedup and len(lag_slice):
-        forward = compute_lag_features_by_coord(
-            lag_slice, lag_columns, days=config.lag_days, target=lag_slice[fwd_mask])
+        forward = compute_lag_features_by_coord(lag_slice, lag_columns, days=config.lag_days, target=target)
     else:
-        _hist = lag_slice.drop(
-            columns=[c for c in ("_coord_lat", "_coord_lon") if c in lag_slice.columns])
+        coords = [c for c in ("_coord_lat", "_coord_lon") if c in lag_slice.columns]
         forward = compute_lag_features(
-            _hist, lag_columns, days=config.lag_days, target=_hist[fwd_mask])
-        del _hist
-    del lag_slice
+            lag_slice.drop(columns=coords), lag_columns, days=config.lag_days,
+            target=target.drop(columns=[c for c in coords if c in target.columns]))
+    del lag_slice, target
     print(f"Scoring {len(forward)} forward rows (Date >= {today.date()}) "
           f"across {forward['Location_Id'].nunique()} locations")
     forward = calculate_mushroom_score(forward, species_params, zone_curves)
@@ -1983,10 +2050,13 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         forward[f"{composite}_score"] = forward[present].max(axis=1) if present else np.nan
         score_cols.append(f"{composite}_score")
     updated_df = apply_forward_scores(combined_df, forward, score_cols)
+    del forward, combined_df   # updated_df holds all that is left to write
 
     if cutoff_date is None:
         cutoff_date = datetime.now() - timedelta(days=config.cutoff_days)
-    updated_df = updated_df[updated_df["Date"] > cutoff_date]
+    in_range = updated_df["Date"] > cutoff_date
+    if not in_range.all():   # the 42-day tail always is: a filter that keeps every row is a full copy
+        updated_df = updated_df[in_range]
 
     valid_score_columns = set(score_cols)
     species_score_columns = [c for c in updated_df.columns if c.endswith("_score") and c in valid_score_columns]
@@ -2019,10 +2089,11 @@ def update_parquet_master(config, df, species_params, zone_curves, main_data_pat
     try:
         if exists:
             with _local_parquet_source(main_data_path) as source_path:
-                recent = _read_recent_parquet(source_path, split_date)
+                # Passed straight in, so only _merge_and_score holds the tail and can free it.
                 updated_tail = _merge_and_score(
                     config, df, species_params, zone_curves, main_data_path,
-                    existing_df=recent, existing_exists=True, cutoff_date=cutoff_date,
+                    existing_df=_read_recent_parquet(source_path, split_date),
+                    existing_exists=True, cutoff_date=cutoff_date,
                 )
                 _write_streaming_parquet(
                     source_path, output_path, updated_tail, split_date, cutoff_date,
