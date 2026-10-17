@@ -117,7 +117,7 @@ export default function InstructionsPage() {
               <Map className='mt-1 hidden size-8 shrink-0 text-happy-300 lg:block' />
               {t('mapDescription.intro')}
             </h2>
-            <div className='mt-5 flex max-w-3xl flex-col gap-4 leading-relaxed text-happy-100'>
+            <div className='mt-6 flex flex-col gap-4 leading-relaxed text-happy-100'>
               <p>{t('mapDescription.selection')}</p>
               <p>{t('mapDescription.colorCoding')}</p>
               {/* Caption outside the bar, bar as a pure swatch of the real ramp
