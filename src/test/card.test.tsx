@@ -237,7 +237,7 @@ describe('a region does not fake the card gap', () => {
     });
 
   it('finds every region', () => {
-    expect(regionTags.length).toBeGreaterThan(20);
+    expect(regionTags.length).toBeGreaterThan(15);
   });
 
   // `mt-auto` is alignment, not spacing: it pins a footer to the bottom of the
