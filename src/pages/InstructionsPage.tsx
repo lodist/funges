@@ -1,10 +1,15 @@
+import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 
 import { getScoreGradientCss } from '@/lib/scoreColor';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import SEO from '@/components/SEO';
 import {
   Map,
+  MapPinned,
   ScanSearch,
   Navigation,
   Palette,
@@ -25,26 +30,38 @@ import {
 } from '@/lib/icons';
 
 // Every dataset the forecast reads, in the order the page credits them.
+// Tinted by kind, in the palette's two families only (green and warm
+// neutral; no blue or pink exists here): land and forest maps moss, the
+// ground (soil, terrain, water) tan, sightings mint, weather linen.
+const LAND = 'bg-secondary';
+const GROUND = 'bg-accent';
+const SIGHTINGS = 'bg-happy-50 dark:bg-happy-900/60';
+const WEATHER = 'bg-muted';
 const KEY_DATASETS = [
-  ['corine', 'bg-muted'],
-  ['soilgrids', 'bg-secondary'],
-  ['nlcd', 'bg-status-warning-background'],
-  ['eudem', 'bg-muted'],
-  ['hydrosheds', 'bg-muted'],
-  ['treeGenus', 'bg-muted'],
-  ['forestTypes', 'bg-status-warning-background'],
-  ['gbif', 'bg-secondary'],
-  ['era5', 'bg-muted'],
+  ['corine', LAND],
+  ['soilgrids', GROUND],
+  ['nlcd', LAND],
+  ['eudem', GROUND],
+  ['hydrosheds', GROUND],
+  ['treeGenus', LAND],
+  ['forestTypes', LAND],
+  ['gbif', SIGHTINGS],
+  ['era5', WEATHER],
 ] as const;
 
+/** A heading the copy ends with a colon reads without it. */
+const withoutColon = (text: string) => text.replace(/\s*:\s*$/, '');
+
 export default function InstructionsPage() {
-  const { t } = useTranslation('instructions');
+  const { t } = useTranslation(['instructions', 'offline']);
 
   const functions = [
     { icon: ChefHat, text: t('functions.recipes') },
     { icon: Navigation, text: t('functions.location') },
     { icon: Palette, text: t('functions.theme') },
     { icon: ScanSearch, text: t('functions.identify') },
+    { icon: MapPinned, text: withoutColon(t('mapInteraction.title')) },
+    { icon: Globe, text: t('mapInteraction.maps') },
   ];
 
   const variables = [
@@ -75,13 +92,13 @@ export default function InstructionsPage() {
       <div className='instructions-page max-w-6xl mx-auto px-4 py-8'>
         <div className='space-y-8'>
           {/* Header */}
-          <div className='text-center'>
-            <h1 className='text-3xl font-bold text-foreground dark:text-white mb-2'>
+          <div>
+            <h1 className='text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
               {t('title')}
             </h1>
-            <h2 className='text-xl font-medium text-muted-foreground'>
+            <p className='mt-3 text-lg text-muted-foreground'>
               {t('subtitle')}
-            </h2>
+            </p>
           </div>
 
           {/* Map Description Section */}
@@ -125,26 +142,34 @@ export default function InstructionsPage() {
           <Card>
             <CardHeader>
               <CardTitle className='flex items-center gap-3 text-2xl'>
-                <WifiOff className='h-8 w-8 text-green-600 hidden lg:block' />
+                <WifiOff className='h-8 w-8 text-primary-text hidden lg:block' />
                 {t('offline.title')}
               </CardTitle>
             </CardHeader>
-            <CardContent className='space-y-5 text-gray-700 dark:text-gray-300'>
+            <CardContent className='space-y-5 text-foreground'>
               {(['prepare', 'available', 'unavailable'] as const).map(item => (
                 <div key={item}>
-                  <h3 className='mb-1 text-base font-semibold text-gray-900 dark:text-white'>
+                  <h3 className='mb-1 text-base font-semibold text-foreground'>
                     {t(`offline.${item}Title`)}
                   </h3>
                   <p className='leading-relaxed'>{t(`offline.${item}`)}</p>
                 </div>
               ))}
+              <Button asChild variant='outline'>
+                <Link to='/offline'>
+                  <WifiOff />
+                  {t('offline:title')}
+                </Link>
+              </Button>
             </CardContent>
           </Card>
 
           {/* Functions Section */}
           <Card className='mb-8'>
             <CardHeader>
-              <CardTitle className='text-2xl'>{t('functions.title')}</CardTitle>
+              <CardTitle className='text-2xl'>
+                {withoutColon(t('functions.title'))}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className='grid md:grid-cols-2 gap-4'>
@@ -181,62 +206,41 @@ export default function InstructionsPage() {
             </CardContent>
           </Card>
 
-          {/* Map Interaction Section */}
-          <Card className='mb-8'>
-            <CardHeader>
-              <CardTitle className='text-2xl'>
-                {t('mapInteraction.title')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className='flex items-center gap-4 p-4 rounded-lg bg-muted'>
-                <Globe className='h-6 w-6 text-primary-text' />
-                <span className='text-foreground'>
-                  {t('mapInteraction.maps')}
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* About Section */}
-          <Card className='mb-8'>
-            <CardHeader>
-              <CardTitle className='text-2xl'>{t('about.title')}</CardTitle>
-            </CardHeader>
-            <CardContent className='space-y-6'>
-              <p className='text-foreground leading-relaxed'>
-                {t('about.description')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('about.dataCombination')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('about.climateChange')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('about.currentStatus')}
-              </p>
-
-              <div>
-                <h4 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
-                  {t('about.keyFeatures.title')}
-                </h4>
-                <div className='grid md:grid-cols-2 gap-4'>
-                  {keyFeatures.map(feature => (
-                    <div
-                      key={feature.text}
-                      className='flex items-start gap-3 p-3 rounded-lg bg-muted/50'
-                    >
-                      <feature.icon className='h-5 w-5 text-primary-text mt-0.5 flex-shrink-0' />
-                      <span className='text-foreground text-sm'>
-                        {feature.text}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          {/* About Fung.es on the green band the other pages lead with. */}
+          <section
+            aria-labelledby='about-funges'
+            className={cn(
+              BAND_SURFACE_CLASS,
+              'rounded-card p-6 sm:p-8 lg:p-10'
+            )}
+          >
+            <h2
+              id='about-funges'
+              className='text-2xl leading-tight font-semibold text-happy-50 sm:text-3xl'
+            >
+              {t('about.title')}
+            </h2>
+            <div className='mt-5 flex max-w-3xl flex-col gap-4 leading-relaxed text-happy-100'>
+              <p>{t('about.description')}</p>
+              <p>{t('about.dataCombination')}</p>
+              <p>{t('about.climateChange')}</p>
+              <p>{t('about.currentStatus')}</p>
+            </div>
+            <h3 className='mt-8 mb-4 text-xl font-semibold text-happy-50'>
+              {t('about.keyFeatures.title')}
+            </h3>
+            <ul className='grid gap-3 md:grid-cols-2'>
+              {keyFeatures.map(feature => (
+                <li
+                  key={feature.text}
+                  className='flex items-start gap-3 rounded-xl bg-happy-50/10 p-3 dark:bg-happy-50/10'
+                >
+                  <feature.icon className='mt-0.5 h-5 w-5 shrink-0 text-happy-300' />
+                  <span className='text-sm text-happy-50'>{feature.text}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
 
           {/* Mission Section */}
           <Card className='mb-8'>
@@ -280,7 +284,7 @@ export default function InstructionsPage() {
               </p>
 
               <div>
-                <p className='font-semibold text-foreground dark:text-white mb-3'>
+                <p className='font-semibold text-foreground mb-3'>
                   {t('prediction.monitorTitle')}
                 </p>
                 <div className='space-y-2'>
@@ -301,7 +305,7 @@ export default function InstructionsPage() {
               </p>
 
               <div>
-                <h4 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
+                <h4 className='text-xl font-semibold text-foreground mb-4'>
                   {t('prediction.methodology.title')}
                 </h4>
                 <p className='text-foreground leading-relaxed mb-3'>
@@ -313,14 +317,14 @@ export default function InstructionsPage() {
               </div>
 
               <div>
-                <h4 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
+                <h4 className='text-xl font-semibold text-foreground mb-4'>
                   {t('prediction.keyDatasets.title')}
                 </h4>
 
-                <div className='space-y-6'>
-                  {KEY_DATASETS.map(([key, background]) => (
-                    <div key={key} className={`p-4 rounded-lg ${background}`}>
-                      <h5 className='font-semibold text-foreground dark:text-white mb-2'>
+                <div className='grid gap-4 md:grid-cols-2'>
+                  {KEY_DATASETS.map(([key, tint]) => (
+                    <div key={key} className={cn('rounded-lg p-4', tint)}>
+                      <h5 className='font-semibold text-foreground mb-2'>
                         {t(`prediction.keyDatasets.${key}.title`)}
                       </h5>
                       <p className='text-foreground text-sm mb-2'>
@@ -335,7 +339,7 @@ export default function InstructionsPage() {
                     </div>
                   ))}
 
-                  <p className='text-foreground text-sm'>
+                  <p className='text-foreground text-sm md:col-span-2'>
                     {t('prediction.keyDatasets.additional')}
                   </p>
                 </div>

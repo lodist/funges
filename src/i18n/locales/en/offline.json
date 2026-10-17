@@ -29,7 +29,14 @@
     "open": "Open map",
     "cancel": "Cancel",
     "progress": "Downloading… {{percent}}%",
-    "downloaded": "Downloaded {{date}} · version {{version}} · valid for 7 days",
-    "expired": "Expired · connect to the internet and update before using offline"
+    "expired": "Expired · connect to the internet and update before using offline",
+    "validUntil": "Valid until {{date}}"
+  },
+  "status": {
+    "ready": "Ready for offline",
+    "readyDetail": "{{regions}} · valid until {{date}}",
+    "expired": "Your offline map has expired",
+    "expiredDetail": "Connect to the internet and update it before you go",
+    "notReady": "Not ready for offline yet"
   }
 }

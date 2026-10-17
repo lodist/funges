@@ -29,7 +29,14 @@
     "open": "Karte öffnen",
     "cancel": "Abbrechen",
     "progress": "Wird heruntergeladen… {{percent}} %",
-    "downloaded": "Heruntergeladen am {{date}} · Version {{version}} · 7 Tage gültig",
-    "expired": "Abgelaufen · verbinde dich mit dem Internet und aktualisiere das Paket"
+    "expired": "Abgelaufen · verbinde dich mit dem Internet und aktualisiere das Paket",
+    "validUntil": "Gültig bis {{date}}"
+  },
+  "status": {
+    "ready": "Bereit für offline",
+    "readyDetail": "{{regions}} · gültig bis {{date}}",
+    "expired": "Deine Offline-Karte ist abgelaufen",
+    "expiredDetail": "Verbinde dich mit dem Internet und aktualisiere sie, bevor du losgehst",
+    "notReady": "Noch nicht bereit für offline"
   }
 }

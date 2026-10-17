@@ -44,6 +44,7 @@ import {
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
 import { Route as DataRoute } from '@/routes/data';
+import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
 
 const ZoneMap = lazy(() => import('@/components/ZoneMap'));
@@ -767,9 +768,10 @@ export default function DataPage() {
         ? [
             {
               label: tn('chipWettest'),
-              value: wettestPlace
-                ? `${wettest.rain_mm.toFixed(0)} mm · ${placeName(wettestPlace)}`
-                : `${wettest.rain_mm.toFixed(0)} mm`,
+              // The place goes under the figure: joined to it, the name
+              // outweighed the number it qualifies.
+              value: `${wettest.rain_mm.toFixed(0)} mm`,
+              detail: wettestPlace ? placeName(wettestPlace) : undefined,
             },
           ]
         : []),
@@ -822,8 +824,8 @@ export default function DataPage() {
 
   if (isLoading) {
     return (
-      <SkeletonGroup className='flex flex-col gap-6 p-4 md:p-6'>
-        <div className='flex flex-col items-center gap-2'>
+      <SkeletonGroup className='container mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8'>
+        <div className='flex flex-col gap-2'>
           <Skeleton className='h-10 w-40' />
           <Skeleton className='h-4 w-72 max-w-full' />
         </div>
@@ -856,15 +858,15 @@ export default function DataPage() {
   }
 
   return (
-    <div className='flex flex-col gap-6 p-4 md:p-6'>
+    <div className='container mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8'>
       <SEO title={t('sidebar:data', { defaultValue: 'Data' })} />
 
       {/* Header */}
-      <div className='text-center'>
-        <h1 className='mb-2 text-4xl font-bold text-foreground'>
+      <div>
+        <h1 className='text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
           {t('sidebar:data', { defaultValue: 'Data' })}
         </h1>
-        <p className='text-sm text-muted-foreground'>
+        <p className='mt-3 text-lg text-muted-foreground'>
           {t('common:data.subtitle', {
             defaultValue:
               'Explore the data behind the foraging recommendations.',
@@ -980,31 +982,36 @@ export default function DataPage() {
 
       {/* Dynamic narrative */}
       {narrativeInsight && (
-        <div className='rounded-lg border bg-muted/20 px-4 py-3 space-y-2.5'>
-          <div className='flex flex-wrap gap-2'>
+        // The KPI row on the green band the other pages lead with: same place,
+        // under the map, so the dashboard keeps its order.
+        <section
+          className={cn(
+            BAND_SURFACE_CLASS,
+            'flex flex-col gap-6 rounded-card p-6 sm:p-8'
+          )}
+        >
+          <dl className='grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-6'>
             {narrativeInsight.statChips.map(chip => (
-              <div
-                key={chip.label}
-                className='flex flex-col items-center rounded-md border bg-background px-3 py-1.5 text-center min-w-[72px]'
-              >
-                <span className='type-micro text-muted-foreground mb-0.5'>
-                  {chip.label}
-                </span>
-                <span className='text-sm font-medium leading-tight'>
+              <div key={chip.label} className='min-w-0'>
+                <dt className='type-micro text-happy-100'>{chip.label}</dt>
+                <dd className='mt-1 text-lg leading-tight font-semibold text-happy-50 tabular-nums'>
                   {chip.value}
-                </span>
+                </dd>
+                {chip.detail ? (
+                  <dd className='mt-0.5 text-sm break-words text-happy-100'>
+                    {chip.detail}
+                  </dd>
+                ) : null}
               </div>
             ))}
-          </div>
-          <div className='space-y-1'>
+          </dl>
+          <ul className='flex max-w-3xl flex-col gap-1.5 text-sm leading-relaxed text-happy-100'>
             {narrativeInsight.sentences.map((s, i) => (
               // eslint-disable-next-line react/no-array-index-key
-              <p key={i} className='text-sm text-muted-foreground leading-snug'>
-                {s}
-              </p>
+              <li key={i}>{s}</li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </section>
       )}
 
       {/* Charts — row 1: rainfall + temperature */}

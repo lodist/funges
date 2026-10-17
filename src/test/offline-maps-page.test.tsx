@@ -124,8 +124,12 @@ describe('OfflineMapsPage packages', () => {
     state.cached = { eu: installed('eu') };
     render(<OfflineMapsPage />);
 
-    // the cached package reports its own state instead of hiding it in a control
-    expect(screen.getByText(/Downloaded .* version 2/)).toBeTruthy();
+    // the page says whether you can leave without signal, and the cached
+    // package reports its own state instead of hiding it in a control
+    expect(
+      screen.getByRole('heading', { name: 'Ready for offline' })
+    ).toBeTruthy();
+    expect(screen.getByText(/^Valid until /)).toBeTruthy();
     expect(screen.getByRole('button', { name: /open map/i })).toBeTruthy();
     // the absent one is the only thing still offering a download
     expect(screen.getByRole('button', { name: /^download$/i })).toBeTruthy();
