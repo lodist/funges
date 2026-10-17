@@ -101,43 +101,41 @@ export default function InstructionsPage() {
             </p>
           </div>
 
-          {/* Map Description Section */}
-          <Card>
-            <CardHeader>
-              <CardTitle className='flex items-center gap-3 text-2xl'>
-                <Map className='h-8 w-8 text-primary-text hidden lg:block' />
-                {t('mapDescription.intro')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className='space-y-4'>
-              <p className='text-foreground leading-relaxed'>
-                {t('mapDescription.selection')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('mapDescription.colorCoding')}
-              </p>
-              {/* The label used to sit on top of the gradient in white, which
-                  measured 1.03:1 against its pale end — invisible for the first
-                  third of the bar. Same treatment as the map's legend now: caption
-                  outside, bar as a pure swatch, and the real ramp from the map
-                  style rather than a 2-stop approximation of it. */}
-              <div className='space-y-1.5'>
+          {/* What the map shows, on the green band like the map's own dock:
+              the page opens with the thing it explains. */}
+          <section
+            aria-labelledby='map-description'
+            className={cn(
+              BAND_SURFACE_CLASS,
+              'rounded-card p-6 sm:p-8 lg:p-10'
+            )}
+          >
+            <h2
+              id='map-description'
+              className='flex items-start gap-3 text-2xl leading-tight font-semibold text-happy-50 sm:text-3xl'
+            >
+              <Map className='mt-1 hidden size-8 shrink-0 text-happy-300 lg:block' />
+              {t('mapDescription.intro')}
+            </h2>
+            <div className='mt-6 flex flex-col gap-4 leading-relaxed text-happy-100'>
+              <p>{t('mapDescription.selection')}</p>
+              <p>{t('mapDescription.colorCoding')}</p>
+              {/* Caption outside the bar, bar as a pure swatch of the real ramp
+                  from the map style: a label on the gradient measured 1.03:1
+                  against its pale end. */}
+              <div className='flex flex-col gap-1.5'>
                 <div
                   className='h-3 rounded-full'
                   style={{ background: getScoreGradientCss() }}
                 />
-                <p className='text-xs text-muted-foreground text-center'>
+                <p className='text-center text-xs text-happy-100'>
                   {t('mapDescription.scale')}
                 </p>
               </div>
-              <p className='text-foreground leading-relaxed'>
-                {t('mapDescription.scores')}
-              </p>
-              <p className='text-foreground leading-relaxed'>
-                {t('mapDescription.polygons')}
-              </p>
-            </CardContent>
-          </Card>
+              <p>{t('mapDescription.scores')}</p>
+              <p>{t('mapDescription.polygons')}</p>
+            </div>
+          </section>
 
           <Card>
             <CardHeader>
