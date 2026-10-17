@@ -9,9 +9,14 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { setHtmlLanguage } from '@/lib/html-localization';
+import { BAND_BUTTON_CLASS } from '@/lib/band-surface';
 import { LANGUAGES, resolveLanguage } from '@/lib/languages';
+import { cn } from '@/lib/utils';
 
-const FloatingLanguageSwitcher: React.FC = () => {
+/** `onBand`: over the map the pill wears the green of the map's other chrome. */
+const FloatingLanguageSwitcher: React.FC<{ onBand?: boolean }> = ({
+  onBand = false,
+}) => {
   const { t, i18n } = useTranslation('common');
   const currentLanguage = resolveLanguage(i18n.language);
 
@@ -26,7 +31,10 @@ const FloatingLanguageSwitcher: React.FC = () => {
         <DropdownMenuTrigger asChild>
           <Button
             variant='enhanced-outline'
-            className='flex items-center gap-2'
+            className={cn(
+              'flex items-center gap-2',
+              onBand && BAND_BUTTON_CLASS
+            )}
             aria-label={`${t('common.language')}: ${currentLanguage.name}`}
           >
             <span className='type-micro'>{currentLanguage.code}</span>

@@ -75,7 +75,7 @@ function RootComponent() {
             </SidebarInset>
           </SidebarProvider>
           {isMobile && <MobileNavbar hidden={hideNavbar} />}
-          {!isMobile && <FloatingLanguageSwitcher />}
+          {!isMobile && <FloatingLanguageSwitcher onBand={isMapPage} />}
         </div>
       </TooltipProvider>
     </MotionConfig>
