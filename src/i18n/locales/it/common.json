@@ -34,7 +34,8 @@
     "spectacles": {
       "heading": "Spettacoli naturali",
       "body": "Dai ciliegi in fiore e i boschi di giacinti alle foglie autunnali: segui le stagioni ed esplora le previsioni per questi spettacoli effimeri della natura",
-      "link": "Esplora il foliage autunnale"
+      "now": "In corso: {{name}}",
+      "next": "In arrivo: {{name}}"
     },
     "live": {
       "line": "Oggi vale l'uscita: {{species}}, in {{areas}} zone in {{area}}",
@@ -43,6 +44,9 @@
     },
     "journey": {
       "heading": "Trovalo, riconoscilo, cucinalo"
+    },
+    "data": {
+      "link": "Vedi i dati"
     }
   },
   "worthForagingNow": {

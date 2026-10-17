@@ -74,7 +74,8 @@
     "spectacles": {
       "heading": "Spectacles naturels",
       "body": "Des cerisiers en fleurs aux sous-bois de jacinthes et aux feuilles d'automne : suivez les saisons et explorez les prévisions de ces spectacles éphémères",
-      "link": "Explorer les couleurs d'automne"
+      "now": "En ce moment : {{name}}",
+      "next": "Bientôt : {{name}}"
     },
     "live": {
       "line": "Aujourd'hui, la sortie vaut le coup : {{species}}, dans {{areas}} zones en {{area}}",
@@ -83,6 +84,9 @@
     },
     "journey": {
       "heading": "Trouvez, identifiez, cuisinez"
+    },
+    "data": {
+      "link": "Voir les données"
     }
   },
   "worthForagingNow": {

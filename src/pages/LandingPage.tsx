@@ -6,11 +6,13 @@ import { Logo } from '@/components/Logo';
 import { Button } from '@/components/ui/button';
 import { useSpeciesData } from '@/data/species';
 import { BAND_OUTLINE_CLASS } from '@/lib/band-surface';
+import { seasonalSpectacle } from '@/lib/bloom';
 import { AlertTriangle, ArrowRight, ArrowUpRight } from '@/lib/icons';
 import {
   fetchStrongestSpeciesToday,
   type ScoreRegionId,
 } from '@/lib/worth-foraging-now';
+import { getSpeciesImage } from '@/lib/utils';
 import styles from './LandingPage.module.scss';
 
 const base = import.meta.env.BASE_URL;
@@ -24,19 +26,11 @@ const HELP_LINKS = [
   { to: '/termsuse', key: 'termsOfUse' },
 ] as const;
 
-// The walk from forest to table, one photograph and one destination per step.
-const JOURNEY = [
-  {
-    id: 'spectacles',
-    image: 'autumn-beech-road.webp',
-    width: 1280,
-    height: 720,
-    to: '/map',
-    search: { species: 'foliage' },
-  },
+// The walk's last two steps; the first, the spectacles, follows the season.
+const STEPS = [
   {
     id: 'identify',
-    image: 'lingonberries-pine-forest.webp',
+    image: `${base}landing/lingonberries-pine-forest.webp`,
     width: 768,
     height: 576,
     to: '/map',
@@ -44,7 +38,7 @@ const JOURNEY = [
   },
   {
     id: 'cook',
-    image: 'wild-mushroom-toast.webp',
+    image: `${base}landing/wild-mushroom-toast.webp`,
     width: 768,
     height: 576,
     to: '/recipes',
@@ -61,6 +55,32 @@ const JOURNEY = [
 export default function LandingPage() {
   const { t } = useTranslation('common');
   const { t: tNav } = useTranslation('sidebar');
+  const { t: tMap } = useTranslation('map');
+
+  // The spectacle on now on the visitor's continent, else the next to start.
+  // Foliage has the landing's wide photograph; the others their catalog one.
+  const { spectacle, inSeason } = seasonalSpectacle(
+    new Date(),
+    AMERICAS ? ['use', 'usw'] : ['ne', 'se']
+  );
+  const spectacleStep = {
+    id: 'spectacles',
+    image:
+      spectacle.code === 'foliage'
+        ? `${base}landing/autumn-beech-road.webp`
+        : (getSpeciesImage(spectacle.code) ?? ''),
+    width: spectacle.code === 'foliage' ? 1280 : 512,
+    height: spectacle.code === 'foliage' ? 720 : 512,
+    to: '/map',
+    search: { species: spectacle.code },
+    link: t(inSeason ? 'home.spectacles.now' : 'home.spectacles.next', {
+      name: tMap(`${spectacle.keys}.name`),
+    }),
+  } as const;
+  const journey = [
+    spectacleStep,
+    ...STEPS.map(step => ({ ...step, link: t(`home.${step.id}.link`) })),
+  ];
 
   return (
     <>
@@ -99,9 +119,7 @@ export default function LandingPage() {
                   variant='outline'
                   className={BAND_OUTLINE_CLASS}
                 >
-                  <Link to='/map' search={{ identify: true }}>
-                    {t('home.identify.link')}
-                  </Link>
+                  <Link to='/recipes'>{t('home.cook.link')}</Link>
                 </Button>
                 <Button
                   asChild
@@ -109,7 +127,7 @@ export default function LandingPage() {
                   variant='outline'
                   className={BAND_OUTLINE_CLASS}
                 >
-                  <Link to='/recipes'>{t('home.cook.link')}</Link>
+                  <Link to='/data'>{t('home.data.link')}</Link>
                 </Button>
               </div>
             </div>
@@ -145,10 +163,10 @@ export default function LandingPage() {
           {/* One line through the three steps and a node at each, photo and
               words trading sides: the walk reads top to bottom. */}
           <ol className={styles.timeline}>
-            {JOURNEY.map(step => (
+            {journey.map(step => (
               <li key={step.id} className={styles.step}>
                 <img
-                  src={`${base}landing/${step.image}`}
+                  src={step.image}
                   alt=''
                   loading='lazy'
                   width={step.width}
@@ -163,7 +181,7 @@ export default function LandingPage() {
                     search={step.search}
                     className={`${styles.textLink} focus-ring`}
                   >
-                    {t(`home.${step.id}.link`)}
+                    {step.link}
                     <ArrowUpRight className='size-5' />
                   </Link>
                   {step.id === 'identify' ? (

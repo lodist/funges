@@ -74,7 +74,8 @@
     "spectacles": {
       "heading": "Espectáculos naturales",
       "body": "De los cerezos en flor y los bosques de jacintos a las hojas de otoño: sigue las estaciones y explora las previsiones para estos momentos fugaces de la naturaleza",
-      "link": "Explorar el follaje de otoño"
+      "now": "Ahora: {{name}}",
+      "next": "Próximamente: {{name}}"
     },
     "live": {
       "line": "Hoy merece la pena salir: {{species}}, en {{areas}} zonas de {{area}}",
@@ -83,6 +84,9 @@
     },
     "journey": {
       "heading": "Encuéntralo, conócelo, cocínalo"
+    },
+    "data": {
+      "link": "Ver los datos"
     }
   },
   "worthForagingNow": {
