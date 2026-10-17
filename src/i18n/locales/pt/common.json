@@ -80,6 +80,9 @@
       "line": "Hoje vale a saída: {{species}}, em {{areas}} áreas na {{area}}",
       "europe": "Europa",
       "northAmerica": "América do Norte"
+    },
+    "journey": {
+      "heading": "Encontre, identifique, cozinhe"
     }
   },
   "worthForagingNow": {

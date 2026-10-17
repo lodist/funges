@@ -80,6 +80,9 @@
       "line": "Heute lohnt sich der Weg: {{species}}, in {{areas}} Gebieten in {{area}}",
       "europe": "Europa",
       "northAmerica": "Nordamerika"
+    },
+    "journey": {
+      "heading": "Finden, erkennen, kochen"
     }
   },
   "worthForagingNow": {

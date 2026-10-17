@@ -80,6 +80,9 @@
       "line": "Worth a walk today: {{species}}, in {{areas}} areas across {{area}}",
       "europe": "Europe",
       "northAmerica": "North America"
+    },
+    "journey": {
+      "heading": "Find it, know it, cook it"
     }
   },
   "worthForagingNow": {

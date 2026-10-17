@@ -80,6 +80,9 @@
       "line": "Aujourd'hui, la sortie vaut le coup : {{species}}, dans {{areas}} zones en {{area}}",
       "europe": "Europe",
       "northAmerica": "Amérique du Nord"
+    },
+    "journey": {
+      "heading": "Trouvez, identifiez, cuisinez"
     }
   },
   "worthForagingNow": {

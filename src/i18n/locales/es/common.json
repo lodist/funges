@@ -80,6 +80,9 @@
       "line": "Hoy merece la pena salir: {{species}}, en {{areas}} zonas de {{area}}",
       "europe": "Europa",
       "northAmerica": "Norteamérica"
+    },
+    "journey": {
+      "heading": "Encuéntralo, conócelo, cocínalo"
     }
   },
   "worthForagingNow": {

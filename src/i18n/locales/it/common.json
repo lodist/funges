@@ -40,6 +40,9 @@
       "line": "Oggi vale l'uscita: {{species}}, in {{areas}} zone in {{area}}",
       "europe": "Europa",
       "northAmerica": "Nord America"
+    },
+    "journey": {
+      "heading": "Trovalo, riconoscilo, cucinalo"
     }
   },
   "worthForagingNow": {

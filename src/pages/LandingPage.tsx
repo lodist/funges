@@ -5,6 +5,7 @@ import SEO from '@/components/SEO';
 import { Logo } from '@/components/Logo';
 import { Button } from '@/components/ui/button';
 import { useSpeciesData } from '@/data/species';
+import { BAND_OUTLINE_CLASS } from '@/lib/band-surface';
 import { AlertTriangle, ArrowRight, ArrowUpRight } from '@/lib/icons';
 import {
   fetchStrongestSpeciesToday,
@@ -23,10 +24,39 @@ const HELP_LINKS = [
   { to: '/termsuse', key: 'termsOfUse' },
 ] as const;
 
-/* A walk into the wild: photographic atmosphere, then a real map and useful
- * paths into identification and cooking. The established palette, fonts and
- * controls stay intact. Imagery lives in public/landing; its provenance is in
- * .impeccable/surfaces/src-pages-landingpage-tsx.md.
+// The walk from forest to table, one photograph and one destination per step.
+const JOURNEY = [
+  {
+    id: 'spectacles',
+    image: 'autumn-beech-road.webp',
+    width: 1280,
+    height: 720,
+    to: '/map',
+    search: { species: 'foliage' },
+  },
+  {
+    id: 'identify',
+    image: 'lingonberries-pine-forest.webp',
+    width: 768,
+    height: 576,
+    to: '/map',
+    search: { identify: true },
+  },
+  {
+    id: 'cook',
+    image: 'wild-mushroom-toast.webp',
+    width: 768,
+    height: 576,
+    to: '/recipes',
+    search: undefined,
+  },
+] as const;
+
+/* Colour blocks, one message each, hard edges and no fades: the forest-green
+ * hero with tonight's live line and three choices, the forecast on sand under
+ * the photograph that hangs into it, the walk from forest to table on bright
+ * green, and a green close. Imagery lives in public/landing; its provenance
+ * is in .impeccable/surfaces/src-pages-landingpage-tsx.md.
  */
 export default function LandingPage() {
   const { t } = useTranslation('common');
@@ -40,38 +70,60 @@ export default function LandingPage() {
         canonicalUrl={base}
       />
       <div className={styles.page}>
-        <header className={styles.header}>
-          <Logo className='h-10 md:h-12' />
-          <Link
-            to='/worth-foraging-now'
-            className={`${styles.textLink} focus-ring`}
-          >
-            {t('home.ctaSecondary')}
-            <ArrowUpRight className='size-5' />
-          </Link>
-        </header>
-        {/* The first screen is one green band card, like the other pages lead
-            with: the copy and tonight's live line on solid forest green, the
-            porcino beside it on a hard edge. */}
         <section className={styles.hero} aria-labelledby='landing-title'>
-          <div className={styles.heroCopy}>
-            <h1 id='landing-title'>{t('home.headline')}</h1>
-            <LiveLine />
-            <Button asChild size='lg' className={styles.primaryAction}>
-              <Link to='/map'>
-                {t('home.cta')}
-                <ArrowRight className='size-5' />
-              </Link>
-            </Button>
+          <header className={styles.header}>
+            <Logo className='h-10 md:h-12' />
+            <Link
+              to='/worth-foraging-now'
+              className={`${styles.textLink} focus-ring`}
+            >
+              {t('home.ctaSecondary')}
+              <ArrowUpRight className='size-5' />
+            </Link>
+          </header>
+          <div className={styles.heroBody}>
+            <div className={styles.heroCopy}>
+              <h1 id='landing-title'>{t('home.headline')}</h1>
+              <LiveLine />
+              {/* Three doors: what the visitor came to do, said as buttons. */}
+              <div className={styles.choices}>
+                <Button asChild size='lg'>
+                  <Link to='/map'>
+                    {t('home.cta')}
+                    <ArrowRight className='size-5' />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size='lg'
+                  variant='outline'
+                  className={BAND_OUTLINE_CLASS}
+                >
+                  <Link to='/map' search={{ identify: true }}>
+                    {t('home.identify.link')}
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size='lg'
+                  variant='outline'
+                  className={BAND_OUTLINE_CLASS}
+                >
+                  <Link to='/recipes'>{t('home.cook.link')}</Link>
+                </Button>
+              </div>
+            </div>
+            {/* Hangs over the block below on a hard edge: the one move that
+                ties the hero to the page instead of boxing it in. */}
+            <img
+              className={styles.heroPhoto}
+              src={`${base}landing/astra-porcini.webp`}
+              alt=''
+              width='960'
+              height='1200'
+              fetchPriority='high'
+            />
           </div>
-          <img
-            className={styles.heroPhoto}
-            src={`${base}landing/astra-porcini.webp`}
-            alt=''
-            width='960'
-            height='1200'
-            fetchPriority='high'
-          />
         </section>
 
         <section className={styles.forecast} aria-labelledby='forecast-title'>
@@ -86,117 +138,48 @@ export default function LandingPage() {
             </Button>
             <p className={styles.coverage}>{t('home.coverage')}</p>
           </div>
-          <div className={styles.mapFigure}>
-            <Link
-              to='/map'
-              search={{
-                species: 'pine_bolete',
-                lat: 47.38,
-                lng: 10.21,
-                zoom: 8.7,
-              }}
-              className={`${styles.mapLink} focus-ring`}
-              aria-label={t('home.cta')}
-            >
-              <img
-                src={`${base}landing/alps-map.webp`}
-                alt=''
-                loading='lazy'
-                width='1280'
-                height='528'
-              />
-              <span className={styles.mapAction}>
-                {t('home.cta')}
-                <ArrowUpRight className='size-5' />
-              </span>
-            </Link>
-            <div className={styles.attribution}>
-              <a
-                href='https://www.openstreetmap.org/copyright'
-                target='_blank'
-                rel='noreferrer'
-              >
-                {'© OpenStreetMap'}
-              </a>
-              <span>{' · Terrain: Mapzen / AWS'}</span>
-            </div>
-          </div>
         </section>
 
-        <section
-          className={styles.spectacles}
-          aria-labelledby='spectacles-title'
-        >
-          <img
-            src={`${base}landing/autumn-beech-road.webp`}
-            alt=''
-            loading='lazy'
-            width='1280'
-            height='720'
-          />
-          <div className={styles.spectaclesCopy}>
-            <h2 id='spectacles-title'>{t('home.spectacles.heading')}</h2>
-            <div>
-              <p>{t('home.spectacles.body')}</p>
-              <Link
-                to='/map'
-                search={{ species: 'foliage' }}
-                className={`${styles.textLink} focus-ring`}
-              >
-                {t('home.spectacles.link')}
-                <ArrowUpRight className='size-5' />
-              </Link>
-            </div>
-          </div>
+        <section className={styles.journey} aria-labelledby='journey-title'>
+          <h2 id='journey-title'>{t('home.journey.heading')}</h2>
+          {/* One line through the three steps and a node at each, photo and
+              words trading sides: the walk reads top to bottom. */}
+          <ol className={styles.timeline}>
+            {JOURNEY.map(step => (
+              <li key={step.id} className={styles.step}>
+                <img
+                  src={`${base}landing/${step.image}`}
+                  alt=''
+                  loading='lazy'
+                  width={step.width}
+                  height={step.height}
+                />
+                <span aria-hidden='true' className={styles.node} />
+                <div className={styles.stepCopy}>
+                  <h3>{t(`home.${step.id}.heading`)}</h3>
+                  <p>{t(`home.${step.id}.body`)}</p>
+                  <Link
+                    to={step.to}
+                    search={step.search}
+                    className={`${styles.textLink} focus-ring`}
+                  >
+                    {t(`home.${step.id}.link`)}
+                    <ArrowUpRight className='size-5' />
+                  </Link>
+                  {step.id === 'identify' ? (
+                    // PRODUCT.md: safety stays unmissable in every treatment,
+                    // so this keeps IdentifyPanel's permanent-notice look.
+                    <p className={styles.safety}>
+                      <AlertTriangle className='size-4' />
+                      {t('home.identify.safety')}
+                    </p>
+                  ) : null}
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
 
-        <div className={styles.featureGrid}>
-          <section className={styles.feature} aria-labelledby='identify-title'>
-            <img
-              src={`${base}landing/lingonberries-pine-forest.webp`}
-              alt=''
-              loading='lazy'
-              width='768'
-              height='576'
-            />
-            <div className={styles.sectionCopy}>
-              <h2 id='identify-title'>{t('home.identify.heading')}</h2>
-              <p>{t('home.identify.body')}</p>
-              <Link
-                to='/map'
-                search={{ identify: true }}
-                className={`${styles.textLink} focus-ring`}
-              >
-                {t('home.identify.link')}
-                <ArrowUpRight className='size-5' />
-              </Link>
-              {/* PRODUCT.md: safety stays unmissable in every treatment, so
-                  this takes IdentifyPanel's permanent-notice look rather than
-                  a muted caption. */}
-              <p className={styles.safety}>
-                <AlertTriangle className='size-4' />
-                {t('home.identify.safety')}
-              </p>
-            </div>
-          </section>
-          <section className={styles.feature} aria-labelledby='cook-title'>
-            <img
-              src={`${base}landing/wild-mushroom-toast.webp`}
-              alt=''
-              loading='lazy'
-              width='768'
-              height='576'
-            />
-            <div className={styles.sectionCopy}>
-              <h2 id='cook-title'>{t('home.cook.heading')}</h2>
-              <p>{t('home.cook.body')}</p>
-              <Link to='/recipes' className={`${styles.textLink} focus-ring`}>
-                {t('home.cook.link')}
-                <ArrowUpRight className='size-5' />
-              </Link>
-            </div>
-          </section>
-        </div>
         <footer className={styles.closing}>
           <div className={styles.invite}>
             <h2>{t('home.closing.heading')}</h2>
