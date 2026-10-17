@@ -65,7 +65,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
     <div className={cn('relative w-fit h-fit', className)} ref={containerRef}>
       <Button
         data-slot='map-theme-trigger'
-        variant='outline'
+        variant='ghost'
         size='icon'
         onClick={() => setIsOpen(open => !open)}
         aria-label={t('themes.select')}
@@ -73,6 +73,7 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
         aria-haspopup='true'
         title={t('themes.select')}
         className={cn(
+          'text-primary-text',
           darkLayersVisible && 'text-foreground hover:text-foreground',
           isOpen && 'bg-happy-50 dark:bg-accent/50'
         )}
