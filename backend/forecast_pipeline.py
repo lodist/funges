@@ -656,7 +656,10 @@ def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coo
     coord_series = df.assign(_coord_key=key)[["_coord_key", "Date"] + columns]
     coord_series = (coord_series.drop_duplicates(["_coord_key", "Date"], keep="last")
                                 .rename(columns={"_coord_key": "Location_Id"}))
-    coord_lagged = compute_lag_features(coord_series, columns, days)
+    # Lagged only on the dates the target has (the forecast days): the other days of the
+    # 42-day window are looked up, never broadcast. Same values for ~1/7 of the rows.
+    coord_target = None if target is None else coord_series[coord_series["Date"].isin(target["Date"].unique())]
+    coord_lagged = compute_lag_features(coord_series, columns, days, target=coord_target)
 
     lag_cols = [f"{c}_{d}days_ago" for c in columns for d in range(1, days + 1)]
     coord_lagged = coord_lagged.rename(columns={"Location_Id": "_coord_key"})[["_coord_key", "Date"] + lag_cols]
@@ -670,9 +673,19 @@ def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coo
     # frame twice (tests/test_lag_features_equal.py holds it to the merge's result).
     where = pd.MultiIndex.from_frame(coord_lagged[["_coord_key", "Date"]]).get_indexer(
         pd.MultiIndex.from_arrays([dst_key.to_numpy(), dst["Date"].to_numpy()]))
-    lags = {c: pd.api.extensions.take(coord_lagged[c].to_numpy(), where, allow_fill=True) for c in lag_cols}
-    out = dst.drop(columns=[coord_lat, coord_lon]).reset_index(drop=True)
-    return pd.concat([out, pd.DataFrame(lags)], axis=1)
+    source = coord_lagged[lag_cols]
+    if all(dtype == np.float64 for dtype in source.dtypes):
+        # Straight into one block (the weather lags are all floats): a dict of columns was
+        # consolidated into one, and concat copied it again.
+        block = source.to_numpy()[where]
+        block[where < 0] = np.nan
+        lagged = pd.DataFrame(block, columns=lag_cols, copy=False)
+    else:
+        lagged = pd.DataFrame({c: pd.api.extensions.take(source[c].to_numpy(), where, allow_fill=True)
+                               for c in lag_cols})
+    out = dst.drop(columns=[coord_lat, coord_lon])
+    out.index = pd.RangeIndex(len(out))
+    return pd.concat([out, lagged], axis=1, copy=False)
 
 
 def altitude_score(x, optimal_alt=1150, alt_sigma=600):

@@ -76,3 +76,13 @@ def test_compute_lag_features_by_coord_equals_the_original():
     for t in (None, target):
         pd.testing.assert_frame_equal(fp.compute_lag_features_by_coord(df, COLUMNS, 42, target=t),
                                       _original_by_coord(df, COLUMNS, 42, target=t), check_exact=True)
+
+
+def test_compute_lag_features_by_coord_equals_the_original_on_float_weather():
+    # Weather lags are all floats in the pipeline: the one-block path.
+    df = _frame(seed=2).drop_duplicates(["Location_Id", "Date"], keep="last")
+    df["Rain Hours"] = df["Rain Hours"].astype(float)
+    target = df[df["Date"] >= "2026-10-17"]
+    for t in (None, target):
+        pd.testing.assert_frame_equal(fp.compute_lag_features_by_coord(df, COLUMNS, 42, target=t),
+                                      _original_by_coord(df, COLUMNS, 42, target=t), check_exact=True)
