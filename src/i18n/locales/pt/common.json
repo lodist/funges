@@ -74,7 +74,19 @@
     "spectacles": {
       "heading": "Espetáculos naturais",
       "body": "Das cerejeiras em flor e dos bosques de jacintos às folhas de outono: acompanhe as estações e explore as previsões para estes momentos fugazes da natureza",
-      "link": "Explorar a folhagem de outono"
+      "now": "Agora: {{name}}",
+      "next": "Em breve: {{name}}"
+    },
+    "live": {
+      "line": "Hoje vale a saída: {{species}}, em {{areas}} áreas na {{area}}",
+      "europe": "Europa",
+      "northAmerica": "América do Norte"
+    },
+    "journey": {
+      "heading": "Encontre, identifique, cozinhe"
+    },
+    "data": {
+      "link": "Ver os dados"
     }
   },
   "worthForagingNow": {

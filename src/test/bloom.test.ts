@@ -17,6 +17,7 @@ import {
   bloomWhen,
   formatBloomDate,
   isBloomLayer,
+  seasonalSpectacle,
   spectacleOfLayer,
   unixDay,
 } from '@/lib/bloom';
@@ -196,5 +197,42 @@ describe('bluebell and superbloom', () => {
     // Without levels, the species layers' opacity and the plain ramp.
     expect(bloomFillOpacity(BLUEBELL, 0.85)).toBe(0.85);
     expect((bloomFillColor(100, BLUEBELL) as unknown[])[0]).toBe('interpolate');
+  });
+});
+
+describe('seasonalSpectacle: what the landing points at', () => {
+  const europe = ['ne', 'se'] as const;
+  const america = ['use', 'usw'] as const;
+  const on = (
+    month: number,
+    regions: readonly ('ne' | 'se' | 'use' | 'usw')[]
+  ) => seasonalSpectacle(new Date(2026, month, 15), regions);
+
+  it('picks the spectacle in season', () => {
+    expect(on(9, europe)).toEqual({ spectacle: FOLIAGE, inSeason: true });
+    expect(on(7, europe).spectacle).toBe(HEATHER);
+    expect(on(0, america)).toEqual({ spectacle: SUPERBLOOM, inSeason: true });
+  });
+
+  it('of two in season, the one nearer its peak', () => {
+    expect(on(2, europe).spectacle.code).toBe(BLOOM_CODE);
+    expect(on(4, europe).spectacle).toBe(BLUEBELL);
+    // Heather is fading as foliage starts: a tie goes to the later start.
+    expect(on(8, europe).spectacle).toBe(FOLIAGE);
+  });
+
+  it('with none in season, the next to start', () => {
+    expect(on(11, europe)).toEqual({
+      spectacle: expect.objectContaining({ code: BLOOM_CODE }),
+      inSeason: false,
+    });
+    expect(on(11, america)).toEqual({ spectacle: SUPERBLOOM, inSeason: false });
+  });
+
+  it('never points at a spectacle the continent does not have', () => {
+    for (let month = 0; month < 12; month++) {
+      expect(on(month, europe).spectacle).not.toBe(SUPERBLOOM);
+      expect([BLUEBELL, HEATHER]).not.toContain(on(month, america).spectacle);
+    }
   });
 });
