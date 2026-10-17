@@ -44,7 +44,7 @@ import {
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
 import { Route as DataRoute } from '@/routes/data';
-import { BAND_ACTIVE_CLASS, BAND_SURFACE_CLASS } from '@/lib/band-surface';
+import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
 
 const ZoneMap = lazy(() => import('@/components/ZoneMap'));
@@ -111,14 +111,7 @@ function SegmentedControl<T extends string | number>({
   onChange: (value: T) => void;
 }) {
   return (
-    // Styled like the map dock's days: a dark-green track, the chosen option a
-    // cream chip, the others in light green.
-    <div
-      className={cn(
-        'inline-flex items-center gap-0.5 rounded-full p-1',
-        BAND_SURFACE_CLASS
-      )}
-    >
+    <div className='inline-flex items-center gap-0.5 rounded-full bg-muted/60 p-1'>
       {options.map(option => {
         const isActive = option.value === value;
         return (
@@ -129,9 +122,12 @@ function SegmentedControl<T extends string | number>({
             aria-pressed={isActive}
             className={cn(
               'rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors',
+              // The chosen word in green on its white chip: the map dock's light
+              // green in dark mode; on light paper that green measures under
+              // 2:1, so light mode takes the readable --primary-text step.
               isActive
-                ? BAND_ACTIVE_CLASS
-                : 'text-happy-300 hover:bg-happy-50/10 hover:text-happy-50 dark:hover:bg-happy-50/10'
+                ? 'bg-card text-primary-text shadow-[0_1px_4px_rgba(0,0,0,0.1)] dark:text-happy-300'
+                : 'text-muted-foreground hover:text-foreground'
             )}
           >
             {option.label}
