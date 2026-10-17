@@ -111,10 +111,19 @@ def merge_master(existing_df, new_df):
     New (fresher) forecast rows therefore overwrite overlapping existing dates,
     while frozen past rows (absent from new_df) are left untouched.
     """
-    combined = pd.concat([existing_df, new_df], ignore_index=True)
+    return _keep_last(pd.concat([existing_df, new_df], ignore_index=True))
+
+
+def _keep_last(combined):
+    """merge_master's second half: the last row per (Location_Id, Date), renumbered. The same
+    as drop_duplicates(keep="last").reset_index(drop=True) without reset_index's full copy;
+    _merge_and_score calls it after letting go of the inputs, so they are freed first."""
     combined["Date"] = pd.to_datetime(combined["Date"])
-    combined = combined.drop_duplicates(subset=["Location_Id", "Date"], keep="last")
-    return combined.reset_index(drop=True)
+    duplicated = combined.duplicated(subset=["Location_Id", "Date"], keep="last").to_numpy()
+    if duplicated.any():
+        combined = combined[~duplicated]
+    combined.index = pd.RangeIndex(len(combined))
+    return combined
 
 
 def assert_window_contiguous(df, today, forward_days=FORECAST_DAYS, lookback=21):
@@ -507,7 +516,15 @@ def _resolve_output_schema(source_path, tail):
 def _write_streaming_parquet(source_path, output_path, updated_tail, split_date,
                              cutoff_date):
     """Write frozen history batchwise, then append the rebuilt mutable tail."""
-    tail = updated_tail.sort_values(["Location_Id", "Date"]).reset_index(drop=True)
+    keys = pd.MultiIndex.from_frame(updated_tail[["Location_Id", "Date"]])
+    if keys.is_unique and keys.is_monotonic_increasing:
+        # Sorted already, as _merge_and_score leaves it: sorting and renumbering were two
+        # full copies of the tail for the same rows in the same order.
+        tail = updated_tail.copy(deep=False)
+        tail.index = pd.RangeIndex(len(tail))
+    else:
+        tail = updated_tail.sort_values(["Location_Id", "Date"]).reset_index(drop=True)
+    del keys
     schema = _resolve_output_schema(source_path, tail)
 
     with pq.ParquetWriter(output_path, schema, compression="snappy") as writer:
@@ -1862,7 +1879,8 @@ def apply_forward_scores(combined_df, forward, score_cols):
             values = out[col].to_numpy(copy=True)
             values[where] = forward[col].to_numpy()
             out[col] = values
-    return out.reset_index(drop=True)
+    out.index = pd.RangeIndex(len(out))   # reset_index(drop=True) without its full copy
+    return out
 
 
 # What a measured (ERA5) day overwrites: rain only. Stored temperature and humidity
@@ -1944,13 +1962,14 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         df = df[existing_cols + new_cols]
         df = replace_missing_elevation_from_previous_data(df, existing_df)
         df = replace_missing_elevation_with_closest(df)
-        combined_df = merge_master(existing_df, df)
+        combined_df = pd.concat([existing_df, df], ignore_index=True)   # merge_master, in two halves
     else:
         df = replace_missing_elevation_with_closest(df)
         combined_df = df.copy()
-        combined_df["Date"] = pd.to_datetime(combined_df["Date"])
-        combined_df = combined_df.drop_duplicates(subset=["Location_Id", "Date"], keep="last").reset_index(drop=True)
-    del existing_df, df   # both are in combined_df now; the master's tail is the run's largest input
+    # Both inputs are in combined_df now: let them go before deduplicating, which copies it.
+    # The master's tail is the run's largest input.
+    del existing_df, df
+    combined_df = _keep_last(combined_df)
     if len(measured):
         try:
             combined_df = apply_measured_weather(combined_df, measured)
@@ -2018,10 +2037,13 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         forward[f"{composite}_score"] = forward[present].max(axis=1) if present else np.nan
         score_cols.append(f"{composite}_score")
     updated_df = apply_forward_scores(combined_df, forward, score_cols)
+    del forward, combined_df   # updated_df holds all that is left to write
 
     if cutoff_date is None:
         cutoff_date = datetime.now() - timedelta(days=config.cutoff_days)
-    updated_df = updated_df[updated_df["Date"] > cutoff_date]
+    in_range = updated_df["Date"] > cutoff_date
+    if not in_range.all():   # the 42-day tail always is: a filter that keeps every row is a full copy
+        updated_df = updated_df[in_range]
 
     valid_score_columns = set(score_cols)
     species_score_columns = [c for c in updated_df.columns if c.endswith("_score") and c in valid_score_columns]
