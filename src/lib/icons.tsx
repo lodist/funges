@@ -30,6 +30,7 @@ import {
   Database as LucideDatabase,
   Download as LucideDownload,
   ExternalLink as LucideExternalLink,
+  Eye as LucideEye,
   Filter as LucideFilter,
   FlaskConical as LucideFlaskConical,
   Flower2 as LucideFlower2,
@@ -146,6 +147,7 @@ export const Copy = decorativeByDefault(LucideCopy);
 export const Database = decorativeByDefault(LucideDatabase);
 export const Download = decorativeByDefault(LucideDownload);
 export const ExternalLink = decorativeByDefault(LucideExternalLink);
+export const Eye = decorativeByDefault(LucideEye);
 export const Filter = decorativeByDefault(LucideFilter);
 export const FlaskConical = decorativeByDefault(LucideFlaskConical);
 export const Flower2 = decorativeByDefault(LucideFlower2);

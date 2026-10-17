@@ -1,9 +1,14 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from '@tanstack/react-router';
 import SEO from '@/components/SEO';
 import { CategoryChips } from '@/components/CategoryChips';
 import { ScopeHeader } from '@/components/ScopeHeader';
-import { ConditionsMeter, LookalikeTag } from '@/components/SpeciesSignals';
+import {
+  ConditionsMeter,
+  LookalikeTag,
+  LookOnlyTag,
+} from '@/components/SpeciesSignals';
 import { SpeciesSheet } from '@/components/SpeciesSheet';
 import { Button } from '@/components/ui/button';
 import {
@@ -19,6 +24,12 @@ import {
   type SpeciesWithTranslations,
 } from '@/data/species';
 import { useCurrentScores } from '@/hooks/use-current-scores';
+import {
+  BLOOM_REGION_CODES,
+  spectaclesInSeason,
+  type BloomRegion,
+  type Spectacle,
+} from '@/lib/bloom';
 import { CATEGORY_ICONS } from '@/lib/categoryIcons';
 import { AlertTriangle, ChevronDown, Search } from '@/lib/icons';
 import {
@@ -105,6 +116,7 @@ function groupSpecies(
 
 export default function SpeciesPage() {
   const { t } = useTranslation(['species', 'common']);
+  const { t: tMap } = useTranslation('map');
   const speciesData = useSpeciesData();
   const recipes = useRecipesData();
   const current = useCurrentScores();
@@ -132,6 +144,25 @@ export default function SpeciesPage() {
           species.description.toLowerCase().includes(query))
     );
   }, [speciesData, searchQuery, selectedCategory]);
+
+  // The spectacles on now in the reader's region (in every region before we
+  // know it) close "In season now". They are no species type, so a type chip
+  // hides them; the search finds them by name.
+  const spectacles = useMemo(() => {
+    if (selectedCategory !== 'all') return [];
+    const query = searchQuery.trim().toLowerCase();
+    return spectaclesInSeason(
+      today,
+      current
+        ? [current.regionId.toLowerCase() as BloomRegion]
+        : BLOOM_REGION_CODES
+    ).filter(
+      spectacle =>
+        query === '' ||
+        tMap(`${spectacle.keys}.name`).toLowerCase().includes(query) ||
+        spectacle.scientificName.toLowerCase().includes(query)
+    );
+  }, [today, current, searchQuery, selectedCategory, tMap]);
 
   // The band counts the whole catalog; the sections show what the search
   // and the type chips leave.
@@ -170,7 +201,7 @@ export default function SpeciesPage() {
     });
   };
 
-  const nothingFound = filtered.length === 0;
+  const nothingFound = filtered.length === 0 && spectacles.length === 0;
 
   return (
     <>
@@ -217,7 +248,8 @@ export default function SpeciesPage() {
 
         {SECTION_ORDER.map(place => {
           const items = shown.groups[place];
-          if (items.length === 0) return null;
+          const sights = place === 'now' ? spectacles : [];
+          if (items.length + sights.length === 0) return null;
           const placeSeason = seasonForPlace(season, place);
           return (
             <section
@@ -237,6 +269,9 @@ export default function SpeciesPage() {
                   {t(`seasons.${placeSeason}`)}
                   {' · '}
                   {t('speciesCount', { count: items.length })}
+                  {sights.length > 0
+                    ? ` · ${t('spectacleCount', { count: sights.length })}`
+                    : null}
                 </p>
               </div>
               <ul
@@ -255,6 +290,11 @@ export default function SpeciesPage() {
                       large={place === 'now'}
                       onOpen={() => setOpenId(species.id)}
                     />
+                  </li>
+                ))}
+                {sights.map(spectacle => (
+                  <li key={spectacle.code}>
+                    <SpectacleTile spectacle={spectacle} />
                   </li>
                 ))}
               </ul>
@@ -441,14 +481,72 @@ function SpeciesTile({
   const lookalike = getWorstLookalike(species.id);
   const severity = lookalike?.severity;
   const seasons = speciesSeasons(species.season);
-  const image = getSpeciesImage(species.id);
 
   return (
-    <button
-      type='button'
-      onClick={onOpen}
-      className='focus-ring flex h-full w-full flex-col overflow-hidden rounded-card bg-card text-left elevation-raised elevation-interactive'
-    >
+    <button type='button' onClick={onOpen} className={TILE_CLASS}>
+      <TileFace
+        image={getSpeciesImage(species.id)}
+        name={species.name}
+        scientificName={species.scientificName}
+        large={large}
+      >
+        {score !== undefined ? (
+          <ConditionsMeter score={score} compact />
+        ) : (
+          <span className='text-xs text-muted-foreground'>
+            {monthsLabel(seasons, i18n.language)}
+          </span>
+        )}
+        {lookalike && (severity === 'lethal' || severity === 'toxic') ? (
+          <LookalikeTag
+            scientificName={lookalike.scientificName}
+            severity={severity}
+            className='mt-auto'
+          />
+        ) : null}
+      </TileFace>
+    </button>
+  );
+}
+
+/** A spectacle on now, on a species plate. There is nothing to forage, so no
+ *  sheet: it opens the spectacle's map layer. */
+function SpectacleTile({ spectacle }: { spectacle: Spectacle }) {
+  const { t } = useTranslation('map');
+
+  return (
+    <Link to='/map' search={{ species: spectacle.code }} className={TILE_CLASS}>
+      <TileFace
+        image={getSpeciesImage(spectacle.code)}
+        name={t(`${spectacle.keys}.name`)}
+        scientificName={spectacle.scientificName}
+        large
+      >
+        <LookOnlyTag />
+      </TileFace>
+    </Link>
+  );
+}
+
+const TILE_CLASS =
+  'focus-ring flex h-full w-full flex-col overflow-hidden rounded-card bg-card text-left elevation-raised elevation-interactive';
+
+/** A plate's photo and names, over the signals its tile passes in. */
+function TileFace({
+  image,
+  name,
+  scientificName,
+  large,
+  children,
+}: {
+  image: string | null;
+  name: string;
+  scientificName: string;
+  large: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <>
       <span className='relative block aspect-square'>
         {image ? (
           <img
@@ -468,27 +566,14 @@ function SpeciesTile({
               large && 'text-lg'
             )}
           >
-            {species.name}
+            {name}
           </span>
           <span className='mt-0.5 block text-xs text-muted-foreground italic'>
-            {species.scientificName}
+            {scientificName}
           </span>
         </span>
-        {score !== undefined ? (
-          <ConditionsMeter score={score} compact />
-        ) : (
-          <span className='text-xs text-muted-foreground'>
-            {monthsLabel(seasons, i18n.language)}
-          </span>
-        )}
-        {lookalike && (severity === 'lethal' || severity === 'toxic') ? (
-          <LookalikeTag
-            scientificName={lookalike.scientificName}
-            severity={severity}
-            className='mt-auto'
-          />
-        ) : null}
+        {children}
       </span>
-    </button>
+    </>
   );
 }

@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/tanstack-react';
 
-import { ConditionsMeter, LookalikeTag } from '@/components/SpeciesSignals';
+import {
+  ConditionsMeter,
+  LookalikeTag,
+  LookOnlyTag,
+} from '@/components/SpeciesSignals';
 import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 
 /**
@@ -19,6 +23,10 @@ import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
  * **The tag names the look-alike.** A severity alone gives the reader nothing
  * to check, so the scientific name always follows it, and it wraps rather
  * than truncating in German.
+ *
+ * **A spectacle says it is there to see.** Cherry blossom, bluebells and the
+ * other spectacles share the species tiles but have no score; "Look, don't
+ * pick" stands where the meter would, in plain muted ink, not a warning.
  */
 const meta: Meta<typeof ConditionsMeter> = {
   title: 'Molecules/Species signals',
@@ -73,8 +81,12 @@ export const LookalikeTags: Story = {
   ),
 };
 
-/** Every state together: the three conditions levels on both grounds, and
- *  both warning severities. */
+export const LookOnly: Story = {
+  render: () => <LookOnlyTag />,
+};
+
+/** Every state together: the three conditions levels on both grounds, both
+ *  warning severities, and a spectacle's note. */
 export const Matrix: Story = {
   render: () => (
     <div className='flex flex-col gap-6'>
@@ -97,6 +109,7 @@ export const Matrix: Story = {
           scientificName={'Lepiota brunneoincarnata'}
           severity='lethal'
         />
+        <LookOnlyTag />
       </div>
     </div>
   ),
