@@ -40,27 +40,20 @@ export default function LandingPage() {
         canonicalUrl={base}
       />
       <div className={styles.page}>
-        {/* The first screen is the forest itself: the porcino full-bleed
-            under a dark gradient, and on it what is up tonight. */}
+        <header className={styles.header}>
+          <Logo className='h-10 md:h-12' />
+          <Link
+            to='/worth-foraging-now'
+            className={`${styles.textLink} focus-ring`}
+          >
+            {t('home.ctaSecondary')}
+            <ArrowUpRight className='size-5' />
+          </Link>
+        </header>
+        {/* The first screen is one green band card, like the other pages lead
+            with: the copy and tonight's live line on solid forest green, the
+            porcino beside it on a hard edge. */}
         <section className={styles.hero} aria-labelledby='landing-title'>
-          <img
-            className={styles.heroPhoto}
-            src={`${base}landing/astra-porcini.webp`}
-            alt=''
-            width='960'
-            height='1200'
-            fetchPriority='high'
-          />
-          <header className={styles.header}>
-            <Logo className='h-10 md:h-12' />
-            <Link
-              to='/worth-foraging-now'
-              className={`${styles.textLink} focus-ring`}
-            >
-              {t('home.ctaSecondary')}
-              <ArrowUpRight className='size-5' />
-            </Link>
-          </header>
           <div className={styles.heroCopy}>
             <h1 id='landing-title'>{t('home.headline')}</h1>
             <LiveLine />
@@ -71,6 +64,14 @@ export default function LandingPage() {
               </Link>
             </Button>
           </div>
+          <img
+            className={styles.heroPhoto}
+            src={`${base}landing/astra-porcini.webp`}
+            alt=''
+            width='960'
+            height='1200'
+            fetchPriority='high'
+          />
         </section>
 
         <section className={styles.forecast} aria-labelledby='forecast-title'>
