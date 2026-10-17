@@ -15,6 +15,12 @@ import { ConditionsMeter, LookalikeTag } from '@/components/SpeciesSignals';
 import { useSpeciesData } from '@/data/species';
 import { useRecipesData } from '@/data/recipes';
 import {
+  spectaclesInSeason,
+  type BloomRegion,
+  type Spectacle,
+} from '@/lib/bloom';
+import { monthRange } from '@/lib/seasons';
+import {
   compassPoint,
   fetchWorthForagingNowRecommendations,
   type ForagingFocus,
@@ -136,6 +142,15 @@ export default function WorthForagingNowPage() {
     [t]
   );
 
+  // The spectacles on now in the region close the page when every type is
+  // shown: nothing to forage, but the same "now".
+  const spectacles =
+    context && focus === 'mixed'
+      ? spectaclesInSeason(new Date(), [
+          context.regionId.toLowerCase() as BloomRegion,
+        ])
+      : [];
+
   const scopeLabel = context
     ? context.scope === 'radius'
       ? t('worthForagingNow.scopeRadius', { radius: context.radiusKm ?? 100 })
@@ -185,7 +200,7 @@ export default function WorthForagingNowPage() {
         ) : null}
 
         {!isLoading && !loadError && recommendations.length > 0 ? (
-          <FrontPage picks={recommendations} />
+          <FrontPage picks={recommendations} spectacles={spectacles} />
         ) : null}
 
         <p className='mt-10 flex items-start gap-2 rounded-lg bg-status-warning-background px-3 py-2 ring-2 ring-status-warning-border/60'>
@@ -199,8 +214,15 @@ export default function WorthForagingNowPage() {
   );
 }
 
-/** Today's best pick as the front page; the next two and the rest follow. */
-function FrontPage({ picks }: { picks: Pick[] }) {
+/** Today's best pick as the front page; the next two, the rest and the
+ *  spectacles on now follow. */
+function FrontPage({
+  picks,
+  spectacles,
+}: {
+  picks: Pick[];
+  spectacles: Spectacle[];
+}) {
   const { t } = useTranslation('common');
   const [lead, ...rest] = picks;
   const bench = rest.slice(0, 2);
@@ -241,7 +263,64 @@ function FrontPage({ picks }: { picks: Pick[] }) {
           </ul>
         </section>
       ) : null}
+
+      {spectacles.length > 0 ? (
+        <section aria-labelledby='worth-foraging-spectacles' className='mt-6'>
+          <h2
+            id='worth-foraging-spectacles'
+            className='mb-4 text-xl font-semibold text-foreground'
+          >
+            {t('home.spectacles.heading')}
+          </h2>
+          <ul className='grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6'>
+            {spectacles.map(spectacle => (
+              <li key={spectacle.code}>
+                <SpectacleTile spectacle={spectacle} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </div>
+  );
+}
+
+/** A spectacle on now, as a compact pick: no score, so its months, and it
+ *  opens its map layer. */
+function SpectacleTile({ spectacle }: { spectacle: Spectacle }) {
+  const { t, i18n } = useTranslation('map');
+  const src = getSpeciesImage(spectacle.code);
+  const { months } = spectacle;
+
+  return (
+    <Link
+      to='/map'
+      search={{ species: spectacle.code }}
+      className='focus-ring flex h-full flex-col overflow-hidden rounded-card bg-card elevation-raised elevation-interactive'
+    >
+      <span className='relative block aspect-square'>
+        {src ? (
+          <img
+            src={src}
+            alt=''
+            loading='lazy'
+            decoding='async'
+            className='absolute inset-0 size-full bg-muted object-cover'
+          />
+        ) : null}
+      </span>
+      <span className='flex flex-1 flex-col gap-2 p-3'>
+        <span className='flex items-start justify-between gap-2 font-semibold leading-tight text-foreground'>
+          <span className='min-w-0 hyphens-auto break-words'>
+            {t(`${spectacle.keys}.name`)}
+          </span>
+          <ArrowUpRight className='mt-0.5 size-4 shrink-0 text-primary-text' />
+        </span>
+        <span className='text-xs text-muted-foreground'>
+          {monthRange([months[0], months[months.length - 1]], i18n.language)}
+        </span>
+      </span>
+    </Link>
   );
 }
 

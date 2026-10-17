@@ -19,6 +19,7 @@ import {
   isBloomLayer,
   seasonalSpectacle,
   spectacleOfLayer,
+  spectaclesInSeason,
   unixDay,
 } from '@/lib/bloom';
 import { isMapSpecies } from '@/data/species';
@@ -197,6 +198,24 @@ describe('bluebell and superbloom', () => {
     // Without levels, the species layers' opacity and the plain ramp.
     expect(bloomFillOpacity(BLUEBELL, 0.85)).toBe(0.85);
     expect((bloomFillColor(100, BLUEBELL) as unknown[])[0]).toBe('interpolate');
+  });
+});
+
+describe('spectaclesInSeason: the Species page tiles', () => {
+  const on = (
+    month: number,
+    regions: readonly ('ne' | 'se' | 'use' | 'usw')[]
+  ) => spectaclesInSeason(new Date(2026, month, 15), regions).map(s => s.code);
+
+  it('lists what is on now in the region', () => {
+    expect(on(9, ['ne'])).toEqual(['foliage']);
+    expect(on(3, ['ne'])).toEqual([BLOOM_CODE, 'bluebell']);
+    expect(on(3, ['usw'])).toEqual([BLOOM_CODE, 'superbloom']);
+  });
+
+  it('nothing between seasons, nothing the region does not have', () => {
+    expect(on(11, ['ne', 'se', 'use', 'usw'])).toEqual([]);
+    expect(on(7, ['use', 'usw'])).toEqual([]);
   });
 });
 

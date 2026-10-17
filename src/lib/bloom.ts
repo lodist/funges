@@ -364,6 +364,17 @@ export const spectacleByCode = (
 ): Spectacle | undefined =>
   SPECTACLES.find(spectacle => spectacle.code === code);
 
+/** The spectacles built in `date`'s month in any of `regions`: on now there. */
+export const spectaclesInSeason = (
+  date: Date,
+  regions: readonly BloomRegion[]
+): Spectacle[] =>
+  SPECTACLES.filter(
+    spectacle =>
+      bloomInSeason(date, spectacle) &&
+      spectacle.regions.some(region => regions.includes(region))
+  );
+
 /**
  * The spectacle to point a visitor at on `date`, among those built in their
  * `regions`: of the ones in season, the one nearest the middle of its months,
@@ -381,13 +392,11 @@ export function seasonalSpectacle(
   const start = (spectacle: Spectacle) => spectacle.months[0];
   const middle = (spectacle: Spectacle) =>
     (start(spectacle) + spectacle.months[spectacle.months.length - 1] + 1) / 2;
-  const now = here
-    .filter(spectacle => spectacle.months.includes(month))
-    .sort(
-      (a, b) =>
-        Math.abs(middle(a) - month - 0.5) - Math.abs(middle(b) - month - 0.5) ||
-        start(b) - start(a)
-    );
+  const now = spectaclesInSeason(date, regions).sort(
+    (a, b) =>
+      Math.abs(middle(a) - month - 0.5) - Math.abs(middle(b) - month - 0.5) ||
+      start(b) - start(a)
+  );
   if (now.length > 0) return { spectacle: now[0], inSeason: true };
   const next = [...here].sort(
     (a, b) => ((start(a) - month + 12) % 12) - ((start(b) - month + 12) % 12)

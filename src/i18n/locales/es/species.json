@@ -364,6 +364,8 @@
   },
   "speciesCount_one": "{{count}} especie",
   "speciesCount_other": "{{count}} especies",
+  "spectacleCount_one": "{{count}} espectáculo",
+  "spectacleCount_other": "{{count}} espectáculos",
   "band": {
     "summary_one": "{{count}} especie de temporada · {{place}}",
     "summary_other": "{{count}} especies de temporada · {{place}}",
