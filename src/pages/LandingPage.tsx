@@ -12,7 +12,6 @@ import {
   fetchStrongestSpeciesToday,
   type ScoreRegionId,
 } from '@/lib/worth-foraging-now';
-import { getSpeciesImage } from '@/lib/utils';
 import styles from './LandingPage.module.scss';
 
 const base = import.meta.env.BASE_URL;
@@ -57,8 +56,8 @@ export default function LandingPage() {
   const { t: tNav } = useTranslation('sidebar');
   const { t: tMap } = useTranslation('map');
 
-  // The spectacle on now on the visitor's continent, else the next to start.
-  // Foliage has the landing's wide photograph; the others their catalog one.
+  // The spectacle on now on the visitor's continent, else the next to start,
+  // with its own photograph (foliage shares Support's beech road).
   const { spectacle, inSeason } = seasonalSpectacle(
     new Date(),
     AMERICAS ? ['use', 'usw'] : ['ne', 'se']
@@ -68,9 +67,9 @@ export default function LandingPage() {
     image:
       spectacle.code === 'foliage'
         ? `${base}landing/autumn-beech-road.webp`
-        : (getSpeciesImage(spectacle.code) ?? ''),
-    width: spectacle.code === 'foliage' ? 1280 : 512,
-    height: spectacle.code === 'foliage' ? 720 : 512,
+        : `${base}landing/spectacle-${spectacle.code}.webp`,
+    width: spectacle.code === 'foliage' ? 1280 : 768,
+    height: spectacle.code === 'foliage' ? 720 : 576,
     to: '/map',
     search: { species: spectacle.code },
     link: t(inSeason ? 'home.spectacles.now' : 'home.spectacles.next', {
