@@ -118,7 +118,7 @@ export default function InstructionsPage() {
               </p>
               {/* The label used to sit on top of the gradient in white, which
                   measured 1.03:1 against its pale end — invisible for the first
-                  third of the bar. Same treatment as MapInfoCard now: caption
+                  third of the bar. Same treatment as the map's legend now: caption
                   outside, bar as a pure swatch, and the real ramp from the map
                   style rather than a 2-stop approximation of it. */}
               <div className='space-y-1.5'>

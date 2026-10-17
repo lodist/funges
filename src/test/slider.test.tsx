@@ -4,7 +4,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { Slider } from '@/components/ui/slider';
 
 // The slider is the one control a forager drags with a thumb, outdoors: it
-// ships inside ForecastSlider on the map. It went out with a 16px target on a
+// ships inside MapDock on the map. It went out with a 16px target on a
 // 44px floor, a track that measured 1.32:1 light and 1.02:1 dark against the
 // card it sits on, two `disabled:` classes on a <span> that can never match,
 // and an index where a date was announced.

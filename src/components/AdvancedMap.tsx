@@ -56,7 +56,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
-import MapInfoCard from '@/components/MapInfoCard';
+import MapDock from '@/components/MapDock';
 import {
   bloomFillColor,
   bloomFillOpacity,
@@ -73,7 +73,6 @@ import { DEFAULT_MAP_SPECIES } from '@/data/species';
 import RouteToDishPanel, {
   type RouteSummary,
 } from '@/components/RouteToDishPanel';
-import ForecastSlider from '@/components/ForecastSlider';
 import { useRecipesData } from '@/data/recipes';
 import {
   queryRouteDishData,
@@ -1625,17 +1624,18 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         </div>
 
         {/* Control buttons */}
-        <div className='absolute top-2 right-4 z-20 flex flex-col gap-2'>
+        {/* One rail, not five loose circles: the tools read as a set. */}
+        <div className='absolute top-2 right-4 z-20 flex flex-col gap-1 rounded-full p-1 glass-regular elevation-raised'>
           {/* User location button */}
           <Button
-            variant='outline'
+            variant='ghost'
             size='icon'
             onClick={handleGetUserLocation}
             disabled={isLoading}
             className={
               showUserLocation && userLocation
                 ? 'bg-muted text-primary-text hover:bg-muted hover:text-foreground'
-                : undefined
+                : 'text-primary-text'
             }
             title={t('getLocation')}
           >
@@ -1651,7 +1651,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
           {isOnline && !isBloom && (
             <Button
-              variant='outline'
+              variant='ghost'
               size='icon'
               onClick={() => {
                 if (isRoutePanelOpen) {
@@ -1664,7 +1664,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               className={
                 isRoutePanelOpen
                   ? 'bg-secondary text-primary-text hover:bg-secondary hover:text-foreground'
-                  : undefined
+                  : 'text-primary-text'
               }
               title={tRecipes('routePanel.title')}
               aria-label={tRecipes('routePanel.title')}
@@ -1674,8 +1674,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           )}
 
           <Button
-            variant='outline'
+            variant='ghost'
             size='icon'
+            className='text-primary-text'
             onClick={() => setIsIdentifyOpen(true)}
             title={tIdentify('openButton')}
             aria-label={tIdentify('openButton')}
@@ -1685,8 +1686,9 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
           {/* Info button */}
           <Button
-            variant='outline'
+            variant='ghost'
             size='icon'
+            className='text-primary-text'
             onClick={() => setActiveModal('onboarding')}
             title={t('showOnboarding')}
           >
@@ -1706,8 +1708,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                   the wrapper stays: empty, its top is the nav's edge, which is
                   what the fit pads the bottom to. */}
               <div className={activeRoute ? 'hidden' : 'contents'}>
-                <ForecastSlider />
-                <MapInfoCard {...bloomLegend} />
+                <MapDock {...bloomLegend} />
               </div>
             </div>
             {/* Recedes while the route draws instead of unmounting: the
@@ -1751,8 +1752,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               ref={bottomOverlayRef}
               className='absolute bottom-2 left-2 z-10 flex flex-col gap-2 md:w-96'
             >
-              <ForecastSlider />
-              <MapInfoCard {...bloomLegend} />
+              <MapDock {...bloomLegend} />
             </div>
             {isRoutePanelOpen ? (
               <div

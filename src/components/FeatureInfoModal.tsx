@@ -179,7 +179,7 @@ export default function FeatureInfoModal({
             <button
               type='button'
               onClick={handleCopyCoordinates}
-              className='inline-flex items-center gap-2 rounded-md bg-primary px-3 py-1 font-mono text-xs text-primary-foreground shadow-xs transition-colors hover:bg-primary/90'
+              className='inline-flex items-center gap-2 rounded-md bg-muted px-3 py-1 font-mono text-xs text-foreground transition-colors hover:bg-accent'
             >
               {coordinatesLabel}
               {copyStatus === 'copied' ? (
