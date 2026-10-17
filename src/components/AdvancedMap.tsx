@@ -49,6 +49,12 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { categoryColor } from '@/lib/categoryColor';
+import {
+  BAND_ACTIVE_CLASS,
+  BAND_GHOST_CLASS,
+  BAND_SURFACE_CLASS,
+} from '@/lib/band-surface';
+import { cn } from '@/lib/utils';
 import { useUIStore } from '@/store/uiStore';
 import SpeciesSelector from './SpeciesSelector';
 import MapThemeSelector from './MapThemeSelector';
@@ -1625,7 +1631,12 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
         {/* Control buttons */}
         {/* One rail, not five loose circles: the tools read as a set. */}
-        <div className='absolute top-2 right-4 z-20 flex flex-col gap-1 rounded-full p-1 glass-regular elevation-raised'>
+        <div
+          className={cn(
+            'absolute top-2 right-4 z-20 flex flex-col gap-1 rounded-full p-1 elevation-raised',
+            BAND_SURFACE_CLASS
+          )}
+        >
           {/* User location button */}
           <Button
             variant='ghost'
@@ -1634,8 +1645,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             disabled={isLoading}
             className={
               showUserLocation && userLocation
-                ? 'bg-muted text-primary-text hover:bg-muted hover:text-foreground'
-                : 'text-primary-text'
+                ? BAND_ACTIVE_CLASS
+                : BAND_GHOST_CLASS
             }
             title={t('getLocation')}
           >
@@ -1647,7 +1658,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </Button>
 
           {/* Map theme selector (Light/Dark/White/Dark Matter/Topographic) */}
-          <MapThemeSelector isOnline={isOnline} />
+          <MapThemeSelector isOnline={isOnline} onBand />
 
           {isOnline && !isBloom && (
             <Button
@@ -1662,9 +1673,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 setIsRoutePanelOpen(true);
               }}
               className={
-                isRoutePanelOpen
-                  ? 'bg-secondary text-primary-text hover:bg-secondary hover:text-foreground'
-                  : 'text-primary-text'
+                isRoutePanelOpen ? BAND_ACTIVE_CLASS : BAND_GHOST_CLASS
               }
               title={tRecipes('routePanel.title')}
               aria-label={tRecipes('routePanel.title')}
@@ -1676,7 +1685,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           <Button
             variant='ghost'
             size='icon'
-            className='text-primary-text'
+            className={BAND_GHOST_CLASS}
             onClick={() => setIsIdentifyOpen(true)}
             title={tIdentify('openButton')}
             aria-label={tIdentify('openButton')}
@@ -1688,7 +1697,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           <Button
             variant='ghost'
             size='icon'
-            className='text-primary-text'
+            className={BAND_GHOST_CLASS}
             onClick={() => setActiveModal('onboarding')}
             title={t('showOnboarding')}
           >
