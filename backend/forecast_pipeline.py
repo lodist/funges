@@ -600,16 +600,25 @@ def compute_lag_features(df, columns, days, target=None):
     # (NaN if that day is absent). This prevents missing days in the daily history
     # from silently stretching the lookback window. Duplicate (Location_Id, Date)
     # pairs collapse to their last value so the lookup stays uniquely indexed.
-    lookups = {col: df.groupby(["Location_Id", "Date"])[col].last() for col in columns}
+    # One lookup table for every column, one position lookup per day for all of them,
+    # and the lag columns added in one go: 8 groupbys, 336 reindexes and 336 column
+    # inserts before, the same values (tests/test_lag_features_equal.py).
+    lookup = df.groupby(["Location_Id", "Date"])[columns].last()
+    values = {col: lookup[col].to_numpy() for col in columns}
     out = df if target is None else target.sort_values(
         by=["Location_Id", "Date"], ascending=[True, True]).copy()
     locs = out["Location_Id"].to_numpy()
+    lags = {}
     for day in range(1, days + 1):
-        target_idx = pd.MultiIndex.from_arrays(
+        where = lookup.index.get_indexer(pd.MultiIndex.from_arrays(
             [locs, (out["Date"] - pd.Timedelta(days=day)).to_numpy()]
-        )
+        ))
         for col in columns:
-            out[f"{col}_{day}days_ago"] = lookups[col].reindex(target_idx).to_numpy()
+            lags[f"{col}_{day}days_ago"] = pd.api.extensions.take(values[col], where, allow_fill=True)
+    if out.index.is_unique and not any(c in out.columns for c in lags):
+        return pd.concat([out, pd.DataFrame(lags, index=out.index)], axis=1)
+    for col, lagged in lags.items():   # the old one-by-one path, for frames it can't concat to
+        out[col] = lagged
     return out
 
 
@@ -640,8 +649,13 @@ def compute_lag_features_by_coord(df, columns, days, coord_lat="_coord_lat", coo
     else:
         dst = target
         dst_key = target[coord_lat].astype(str) + "_" + target[coord_lon].astype(str)
-    out = dst.assign(_coord_key=dst_key).merge(coord_lagged, on=["_coord_key", "Date"], how="left")
-    return out.drop(columns=["_coord_key", coord_lat, coord_lon])
+    # The left merge it replaces, by position: a merge then a drop copied the whole wide
+    # frame twice (tests/test_lag_features_equal.py holds it to the merge's result).
+    where = pd.MultiIndex.from_frame(coord_lagged[["_coord_key", "Date"]]).get_indexer(
+        pd.MultiIndex.from_arrays([dst_key.to_numpy(), dst["Date"].to_numpy()]))
+    lags = {c: pd.api.extensions.take(coord_lagged[c].to_numpy(), where, allow_fill=True) for c in lag_cols}
+    out = dst.drop(columns=[coord_lat, coord_lon]).reset_index(drop=True)
+    return pd.concat([out, pd.DataFrame(lags)], axis=1)
 
 
 def altitude_score(x, optimal_alt=1150, alt_sigma=600):
