@@ -413,6 +413,13 @@
     outline-offset: 2px;
   }
 
+  // Recharts makes its SVG layers focusable, so a click on a chart focused one
+  // and Chrome's SVG `:focus` outline boxed the whole plot. Keyboard focus
+  // keeps its outline.
+  .recharts-wrapper :focus:not(:focus-visible) {
+    outline: none;
+  }
+
   // Text utilities
   // No `.text-primary`: Tailwind generates it from --color-primary, and
   // redefining it as --foreground silently won — every brand-green label and

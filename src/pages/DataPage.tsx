@@ -44,6 +44,7 @@ import {
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
 import { Route as DataRoute } from '@/routes/data';
+import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
 
 const ZoneMap = lazy(() => import('@/components/ZoneMap'));
@@ -767,9 +768,10 @@ export default function DataPage() {
         ? [
             {
               label: tn('chipWettest'),
-              value: wettestPlace
-                ? `${wettest.rain_mm.toFixed(0)} mm · ${placeName(wettestPlace)}`
-                : `${wettest.rain_mm.toFixed(0)} mm`,
+              // The place goes under the figure: joined to it, the name
+              // outweighed the number it qualifies.
+              value: `${wettest.rain_mm.toFixed(0)} mm`,
+              detail: wettestPlace ? placeName(wettestPlace) : undefined,
             },
           ]
         : []),
@@ -980,29 +982,36 @@ export default function DataPage() {
 
       {/* Dynamic narrative */}
       {narrativeInsight && (
-        <Card>
-          <CardContent className='flex flex-col gap-6'>
-            {/* The headline numbers first, at the size a dashboard reads them. */}
-            <dl className='grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-6'>
-              {narrativeInsight.statChips.map(chip => (
-                <div key={chip.label} className='min-w-0'>
-                  <dt className='type-micro text-muted-foreground'>
-                    {chip.label}
-                  </dt>
-                  <dd className='mt-1 text-xl leading-tight font-semibold break-words text-foreground tabular-nums'>
-                    {chip.value}
+        // The KPI row on the green band the other pages lead with: same place,
+        // under the map, so the dashboard keeps its order.
+        <section
+          className={cn(
+            BAND_SURFACE_CLASS,
+            'flex flex-col gap-6 rounded-card p-6 sm:p-8'
+          )}
+        >
+          <dl className='grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-6'>
+            {narrativeInsight.statChips.map(chip => (
+              <div key={chip.label} className='min-w-0'>
+                <dt className='type-micro text-happy-100'>{chip.label}</dt>
+                <dd className='mt-1 text-lg leading-tight font-semibold text-happy-50 tabular-nums'>
+                  {chip.value}
+                </dd>
+                {chip.detail ? (
+                  <dd className='mt-0.5 text-sm break-words text-happy-100'>
+                    {chip.detail}
                   </dd>
-                </div>
-              ))}
-            </dl>
-            <ul className='grid gap-x-8 gap-y-1.5 text-sm leading-relaxed text-foreground md:grid-cols-2'>
-              {narrativeInsight.sentences.map((s, i) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <li key={i}>{s}</li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+                ) : null}
+              </div>
+            ))}
+          </dl>
+          <ul className='flex max-w-3xl flex-col gap-1.5 text-sm leading-relaxed text-happy-100'>
+            {narrativeInsight.sentences.map((s, i) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={i}>{s}</li>
+            ))}
+          </ul>
+        </section>
       )}
 
       {/* Charts — row 1: rainfall + temperature */}
