@@ -1,6 +1,7 @@
 {
   "title": "Instruções",
   "subtitle": "Aprenda a usar o Fung.es com segurança e eficácia",
+  "downloadDataset": "Baixar conjunto de dados diário",
   "mapDescription": {
     "intro": "O mapa destaca áreas geográficas com condições favoráveis para a coleta de cogumelos silvestres e plantas comestíveis.",
     "selection": "Selecione sua espécie preferida usando o menu suspenso no topo da página.",
@@ -19,10 +20,12 @@
     "unavailable": "A identificação por fotografia continua disponível após a transferência única do modelo. Rota para o prato, a navegação Google Maps e os dados da área ficam ocultos offline porque requerem uma ligação à Internet."
   },
   "functions": {
+    "title": "Funções:",
     "recipes": "Exibe receitas proximas e rotas para as paradas de ingredientes",
     "location": "Centraliza o mapa na localização do usuário",
     "theme": "Escolha um tema de mapa: Claro, Escuro, Branco, Dark Matter ou Topográfico",
-    "identify": "Identifica espécies possíveis a partir de uma fotografia, no teu dispositivo"
+    "identify": "Identifica espécies possíveis a partir de uma fotografia, no teu dispositivo",
+    "numbers": "Exibe classificação numérica"
   },
   "mapInteraction": {
     "title": "Clique em uma zona para ver as espécies e sua porcentagem de descoberta:",
@@ -133,6 +136,5 @@
     "onDevice": "O reconhecimento corre inteiramente no teu telemóvel. As fotografias nunca são carregadas nem guardadas pela aplicação. É por isso que na primeira vez é necessário um descarregamento único do modelo: sem ele, a identificação teria de enviar as tuas fotografias para um servidor.",
     "howTo": "Toca em ID, permite o descarregamento único por Wi-Fi e depois tira uma fotografia ou escolhe uma da galeria. Enche o enquadramento com o exemplar completo quando puderes, incluindo a base do pé, e fotografa o que realmente desenterraste ou colheste, não um grupo distante. Duas fotos do mesmo achado - a parte de cima e a parte de baixo, incluindo a base do pé - dão uma correspondência bastante melhor do que uma só.",
     "limits": "A identificação leva de cerca de cinco a vinte segundos dependendo do dispositivo, porque o trabalho acontece no teu dispositivo e não num centro de dados. Cobre as espécies desta aplicação mais cerca de duas mil e quinhentas das mesmas regiões; tudo o resto é mostrado apenas com o nome científico e sem informação de segurança. Não comas nada com base nesta aplicação - uma identificação errada pode ser fatal."
-  },
-  "controlsTitle": "No mapa"
+  }
 }

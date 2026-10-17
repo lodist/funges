@@ -1,6 +1,7 @@
 {
   "title": "Instrucciones",
   "subtitle": "Aprende a usar Fung.es de forma segura y efectiva",
+  "downloadDataset": "Descargar conjunto de datos diario",
   "mapDescription": {
     "intro": "El mapa resalta áreas geográficas con condiciones favorables para recolectar hongos silvestres y plantas comestibles.",
     "selection": "Selecciona tu especie preferida usando el menú desplegable en la parte superior de la página.",
@@ -19,10 +20,12 @@
     "unavailable": "La identificación por foto sigue disponible tras descargar el modelo una vez. Ruta al plato, la navegación de Google Maps y los datos del área se ocultan sin conexión porque necesitan acceso a Internet."
   },
   "functions": {
+    "title": "Funciones:",
     "recipes": "Muestra recetas cercanas y rutas a las paradas de ingredientes",
     "location": "Centra el mapa en la ubicación del usuario",
     "theme": "Elige un tema de mapa: Claro, Oscuro, Blanco, Dark Matter o Topográfico",
-    "identify": "Identifica especies posibles a partir de una foto, en tu dispositivo"
+    "identify": "Identifica especies posibles a partir de una foto, en tu dispositivo",
+    "numbers": "Muestra la calificación numérica"
   },
   "mapInteraction": {
     "title": "Haz clic en una zona para ver las especies y su porcentaje de hallazgo:",
@@ -133,6 +136,5 @@
     "onDevice": "El reconocimiento se ejecuta íntegramente en tu móvil. Las fotos nunca se suben ni las guarda la aplicación. Por eso la primera vez hace falta una descarga única del modelo: sin ella, la identificación tendría que enviar tus fotos a un servidor.",
     "howTo": "Toca ID, permite la descarga única con Wi-Fi y luego haz una foto o elige una de la galería. Llena el encuadre con el ejemplar completo cuando puedas, incluida la base del pie, y fotografía lo que realmente has desenterrado o recogido, no un grupo lejano. Dos fotos del mismo hallazgo - la parte superior y la inferior, incluida la base del pie - dan una coincidencia bastante mejor que una sola.",
     "limits": "La identificación tarda entre unos cinco y veinte segundos según el dispositivo, porque el trabajo ocurre en tu dispositivo y no en un centro de datos. Cubre las especies de esta aplicación más unas dos mil quinientas de las mismas regiones; cualquier otra cosa se muestra solo con el nombre científico y sin información de seguridad. No comas nada basándote en esta aplicación: una identificación errónea puede ser mortal."
-  },
-  "controlsTitle": "En el mapa"
+  }
 }

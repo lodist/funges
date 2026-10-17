@@ -44,7 +44,6 @@ import {
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
 import { Route as DataRoute } from '@/routes/data';
-import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
 
 const ZoneMap = lazy(() => import('@/components/ZoneMap'));
@@ -933,43 +932,6 @@ export default function DataPage() {
         </div>
       </div>
 
-      {/* The report: the first sentence is the verdict, the chips are its
-          numbers, the rest is the detail. On the band, like the day's lead on
-          the other pages; the zone map below is its filter. */}
-      {narrativeInsight ? (
-        <section
-          aria-labelledby='data-report'
-          className={cn(BAND_SURFACE_CLASS, 'rounded-card p-6 sm:p-8 lg:p-10')}
-        >
-          <h2
-            id='data-report'
-            className='max-w-4xl text-2xl leading-tight font-semibold text-balance text-happy-50 sm:text-3xl lg:text-4xl'
-          >
-            {narrativeInsight.sentences[0]}
-          </h2>
-          <dl className='mt-8 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-3 lg:grid-cols-6'>
-            {narrativeInsight.statChips.map(chip => (
-              <div key={chip.label} className='min-w-0'>
-                <dt className='type-micro text-happy-100'>{chip.label}</dt>
-                <dd className='mt-1 text-xl leading-tight font-semibold break-words text-happy-50 tabular-nums sm:text-2xl'>
-                  {chip.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-          {narrativeInsight.sentences.length > 1 ? (
-            <ul className='mt-8 grid gap-x-8 gap-y-2 text-happy-100 md:grid-cols-2'>
-              {narrativeInsight.sentences.slice(1).map((sentence, i) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <li key={i} className='leading-snug'>
-                  {sentence}
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </section>
-      ) : null}
-
       {/* Zone map */}
       <div className='flex flex-col gap-1.5'>
         <div
@@ -1015,6 +977,33 @@ export default function DataPage() {
           />
         </Suspense>
       </div>
+
+      {/* Dynamic narrative */}
+      {narrativeInsight && (
+        <Card>
+          <CardContent className='flex flex-col gap-6'>
+            {/* The headline numbers first, at the size a dashboard reads them. */}
+            <dl className='grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-6'>
+              {narrativeInsight.statChips.map(chip => (
+                <div key={chip.label} className='min-w-0'>
+                  <dt className='type-micro text-muted-foreground'>
+                    {chip.label}
+                  </dt>
+                  <dd className='mt-1 text-xl leading-tight font-semibold break-words text-foreground tabular-nums'>
+                    {chip.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <ul className='grid gap-x-8 gap-y-1.5 text-sm leading-relaxed text-foreground md:grid-cols-2'>
+              {narrativeInsight.sentences.map((s, i) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={i}>{s}</li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Charts — row 1: rainfall + temperature */}
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>

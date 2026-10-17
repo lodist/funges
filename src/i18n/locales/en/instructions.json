@@ -1,6 +1,7 @@
 {
   "title": "Instructions",
   "subtitle": "Learn how to use Fung.es safely and effectively",
+  "downloadDataset": "Download daily dataset",
   "mapDescription": {
     "intro": "The map highlights geographic areas with favorable conditions for foraging wild mushrooms and edible plants.",
     "selection": "Select your preferred species using the dropdown at the top of the page.",
@@ -19,10 +20,12 @@
     "unavailable": "Photo ID remains available after its one-time model download. Route to Dish, Google Maps navigation, and Area Data are hidden while offline because they require an internet connection."
   },
   "functions": {
+    "title": "Functions:",
     "recipes": "Shows nearby recipes and routes to ingredient stops",
     "location": "Centres the Map on the User's Location",
     "theme": "Pick a map theme: Light, Dark, White, Dark Matter or Topographic",
-    "identify": "Identifies possible species from a photo, on your device"
+    "identify": "Identifies possible species from a photo, on your device",
+    "numbers": "Displays Numeric Rating"
   },
   "mapInteraction": {
     "title": "Click on a zone to see species and their finding percentage:",
@@ -133,6 +136,5 @@
     "onDevice": "Recognition runs entirely on your phone. Photos are never uploaded and never stored by the app. That is why a one-time model download is needed the first time you use it: without it, identification would have to send your photos to a server instead.",
     "howTo": "Tap ID, allow the one-time download over Wi-Fi, then take a photo or pick one from your gallery. Fill the frame with the whole specimen where you can, including the stem base, and photograph what you have actually dug up or picked rather than a distant cluster. Two photos of the same find - the top and the underside including the stem base - give a noticeably better match than one.",
     "limits": "Identification takes from around five to twenty seconds depending on the device, because the work happens on your device rather than in a data centre. It covers the species in this app plus about two and a half thousand more found in the same regions; anything outside that is shown by scientific name only, with no safety information. Never eat anything based on this app - a misidentification can be fatal."
-  },
-  "controlsTitle": "On the map"
+  }
 }
