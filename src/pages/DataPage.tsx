@@ -44,7 +44,7 @@ import {
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
 import { Route as DataRoute } from '@/routes/data';
-import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
+import { BAND_ACTIVE_CLASS, BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
 
 const ZoneMap = lazy(() => import('@/components/ZoneMap'));
@@ -111,7 +111,14 @@ function SegmentedControl<T extends string | number>({
   onChange: (value: T) => void;
 }) {
   return (
-    <div className='inline-flex items-center gap-0.5 rounded-full bg-muted/60 p-1'>
+    // Styled like the map dock's days: a dark-green track, the chosen option a
+    // cream chip, the others in light green.
+    <div
+      className={cn(
+        'inline-flex items-center gap-0.5 rounded-full p-1',
+        BAND_SURFACE_CLASS
+      )}
+    >
       {options.map(option => {
         const isActive = option.value === value;
         return (
@@ -122,11 +129,9 @@ function SegmentedControl<T extends string | number>({
             aria-pressed={isActive}
             className={cn(
               'rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors',
-              // The chosen region or range in the light green the selected
-              // zone below uses: plainly picked, and plainly changeable.
               isActive
-                ? 'bg-happy-100 text-happy-900'
-                : 'text-muted-foreground hover:text-foreground'
+                ? BAND_ACTIVE_CLASS
+                : 'text-happy-300 hover:bg-happy-50/10 hover:text-happy-50 dark:hover:bg-happy-50/10'
             )}
           >
             {option.label}
