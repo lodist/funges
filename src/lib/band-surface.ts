@@ -17,9 +17,10 @@ export const BAND_SURFACE_CLASS =
 export const BAND_OUTLINE_CLASS =
   'border-happy-100 text-happy-50 hover:bg-happy-50/10 hover:text-happy-50 dark:bg-transparent dark:hover:bg-happy-50/10 dark:hover:text-happy-50';
 
-/** `ghost` on the band: a cream label, and a faint cream wash on hover. */
+/** `ghost` on the band: a cream label; on hover a faint cream wash and the
+ *  label in the map dock's light green. */
 export const BAND_GHOST_CLASS =
-  'text-happy-50 hover:bg-happy-50/10 hover:text-happy-50 dark:hover:bg-happy-50/10 dark:hover:text-happy-50';
+  'text-happy-50 hover:bg-happy-50/10 hover:text-happy-300 dark:hover:bg-happy-50/10 dark:hover:text-happy-300';
 
 /** A pressed or current control on the band: a cream chip, like the map dock's
  *  chosen day. */
