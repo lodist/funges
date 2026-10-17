@@ -17,6 +17,7 @@ from io import StringIO, BytesIO
 from pathlib import Path
 from urllib.parse import urlparse
 import faulthandler
+import gc
 import gzip
 import hashlib
 import math
@@ -45,6 +46,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasona
 import era5_normals
 import era5_rain
 import hourly_weather
+import process_priority
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
 from species_registry import get_composites, get_region_boundaries, get_species_params
@@ -1663,6 +1665,7 @@ def log_run_to_file(region):
 def run_pipeline(config: RegionConfig):
     faulthandler.enable(log_run_to_file(config.region))   # a hard crash dumps its stack there too
     print(f"Script started at {datetime.now()}")
+    process_priority.normal_priority()   # not the scheduled task's low CPU, memory and I/O priority
     _root = Path(__file__).resolve().parent.parent
     load_dotenv(_root / ".env")
     load_dotenv(_root / ".env.secret")
@@ -1700,7 +1703,10 @@ def run_pipeline(config: RegionConfig):
         df = _merge_and_score(config, df, species_params, zone_curves, main_data_path)
         save_df_to_file(df, main_data_path)
     # Hourly weather from free model files, for the crop forecasts to come. Last, and
-    # caught: it must never cost Earth its run.
+    # caught: it must never cost Earth its run. The scores are saved: give their tables'
+    # memory back first.
+    del df, weather_long, rain, static_map
+    gc.collect()
     try:
         hourly_weather.run(config.region, points)
     except Exception as e:  # noqa: BLE001
