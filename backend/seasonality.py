@@ -161,6 +161,14 @@ def season_months_ramp(dates, params):
 
 
 def _months_ramp(dates, allowed_months, factor, ramp_days=31):
+    """The ramp depends only on the date, and a nightly run scores a handful of dates on up to
+    ~10^6 rows: worked out once per distinct date. Per row it built a rows x in-season-days
+    matrix, ~1 GB per call on US West, twice per species."""
+    unique, rows = np.unique(pd.to_datetime(dates).to_numpy(), return_inverse=True)
+    return _months_ramp_rows(pd.Series(unique), allowed_months, factor, ramp_days)[rows.reshape(-1)]
+
+
+def _months_ramp_rows(dates, allowed_months, factor, ramp_days=31):
     allowed_months = set(allowed_months)
     in_season = dates.dt.month.isin(allowed_months)
     day_of_year = dates.dt.dayofyear
