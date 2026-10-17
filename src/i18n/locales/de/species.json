@@ -366,7 +366,6 @@
   "speciesCount_other": "{{count}} Arten",
   "spectacleCount_one": "{{count}} Naturschauspiel",
   "spectacleCount_other": "{{count}} Naturschauspiele",
-  "lookOnly": "Anschauen, nicht pflücken",
   "band": {
     "summary_one": "{{count}} Art in Saison · {{place}}",
     "summary_other": "{{count}} Arten in Saison · {{place}}",

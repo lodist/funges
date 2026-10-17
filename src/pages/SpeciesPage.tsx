@@ -4,11 +4,7 @@ import { Link } from '@tanstack/react-router';
 import SEO from '@/components/SEO';
 import { CategoryChips } from '@/components/CategoryChips';
 import { ScopeHeader } from '@/components/ScopeHeader';
-import {
-  ConditionsMeter,
-  LookalikeTag,
-  LookOnlyTag,
-} from '@/components/SpeciesSignals';
+import { ConditionsMeter, LookalikeTag } from '@/components/SpeciesSignals';
 import { SpeciesSheet } from '@/components/SpeciesSheet';
 import { Button } from '@/components/ui/button';
 import {
@@ -512,7 +508,8 @@ function SpeciesTile({
 /** A spectacle on now, on a species plate. There is nothing to forage, so no
  *  sheet: it opens the spectacle's map layer. */
 function SpectacleTile({ spectacle }: { spectacle: Spectacle }) {
-  const { t } = useTranslation('map');
+  const { t, i18n } = useTranslation('map');
+  const { months } = spectacle;
 
   return (
     <Link to='/map' search={{ species: spectacle.code }} className={TILE_CLASS}>
@@ -522,7 +519,10 @@ function SpectacleTile({ spectacle }: { spectacle: Spectacle }) {
         scientificName={spectacle.scientificName}
         large
       >
-        <LookOnlyTag />
+        {/* Its months, as a species shows them when it has no score. */}
+        <span className='text-xs text-muted-foreground'>
+          {monthRange([months[0], months[months.length - 1]], i18n.language)}
+        </span>
       </TileFace>
     </Link>
   );

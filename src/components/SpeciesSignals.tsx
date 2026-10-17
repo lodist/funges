@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { ToxicSeverity } from '@/data/toxic-species';
-import { AlertTriangle, Eye } from '@/lib/icons';
+import { AlertTriangle } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import { getConfidence } from '@/lib/worth-foraging-now';
 
@@ -104,19 +104,6 @@ export function LookalikeTag({
         </span>{' '}
         <i>{scientificName}</i>
       </span>
-    </span>
-  );
-}
-
-/** A spectacle tile's note where a species shows its conditions: it is there
- *  to see. Bluebells are poisonous and protected, superbloom parks forbid
- *  picking, so a list of things to forage must say so. */
-export function LookOnlyTag() {
-  const { t } = useTranslation('species');
-  return (
-    <span className='flex items-center gap-1.5 self-start rounded-lg bg-muted px-2 py-1.5 text-xs font-medium text-foreground'>
-      <Eye className='size-3 shrink-0' />
-      {t('lookOnly')}
     </span>
   );
 }

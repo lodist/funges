@@ -366,7 +366,6 @@
   "speciesCount_other": "{{count}} species",
   "spectacleCount_one": "{{count}} spectacle",
   "spectacleCount_other": "{{count}} spectacles",
-  "lookOnly": "Look, don't pick",
   "band": {
     "summary_one": "{{count}} species in season · {{place}}",
     "summary_other": "{{count}} species in season · {{place}}",

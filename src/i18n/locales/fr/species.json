@@ -366,7 +366,6 @@
   "speciesCount_other": "{{count}} espèces",
   "spectacleCount_one": "{{count}} spectacle",
   "spectacleCount_other": "{{count}} spectacles",
-  "lookOnly": "À regarder, pas à cueillir",
   "band": {
     "summary_one": "{{count}} espèce de saison · {{place}}",
     "summary_other": "{{count}} espèces de saison · {{place}}",

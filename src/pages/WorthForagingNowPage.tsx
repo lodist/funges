@@ -11,11 +11,7 @@ import type { TFunction } from 'i18next';
 import SEO from '@/components/SEO';
 import { CategoryChips } from '@/components/CategoryChips';
 import { ScopeHeader } from '@/components/ScopeHeader';
-import {
-  ConditionsMeter,
-  LookalikeTag,
-  LookOnlyTag,
-} from '@/components/SpeciesSignals';
+import { ConditionsMeter, LookalikeTag } from '@/components/SpeciesSignals';
 import { useSpeciesData } from '@/data/species';
 import { useRecipesData } from '@/data/recipes';
 import {
@@ -23,6 +19,7 @@ import {
   type BloomRegion,
   type Spectacle,
 } from '@/lib/bloom';
+import { monthRange } from '@/lib/seasons';
 import {
   compassPoint,
   fetchWorthForagingNowRecommendations,
@@ -288,11 +285,12 @@ function FrontPage({
   );
 }
 
-/** A spectacle on now, as a compact pick: no score, so it says it is there to
- *  see, and opens its map layer. */
+/** A spectacle on now, as a compact pick: no score, so its months, and it
+ *  opens its map layer. */
 function SpectacleTile({ spectacle }: { spectacle: Spectacle }) {
-  const { t } = useTranslation('map');
+  const { t, i18n } = useTranslation('map');
   const src = getSpeciesImage(spectacle.code);
+  const { months } = spectacle;
 
   return (
     <Link
@@ -318,7 +316,9 @@ function SpectacleTile({ spectacle }: { spectacle: Spectacle }) {
           </span>
           <ArrowUpRight className='mt-0.5 size-4 shrink-0 text-primary-text' />
         </span>
-        <LookOnlyTag />
+        <span className='text-xs text-muted-foreground'>
+          {monthRange([months[0], months[months.length - 1]], i18n.language)}
+        </span>
       </span>
     </Link>
   );
