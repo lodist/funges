@@ -122,8 +122,10 @@ function SegmentedControl<T extends string | number>({
             aria-pressed={isActive}
             className={cn(
               'rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors',
+              // The chosen region or range in the light green the selected
+              // zone below uses: plainly picked, and plainly changeable.
               isActive
-                ? 'bg-card text-foreground shadow-[0_1px_4px_rgba(0,0,0,0.1)]'
+                ? 'bg-happy-100 text-happy-900'
                 : 'text-muted-foreground hover:text-foreground'
             )}
           >
