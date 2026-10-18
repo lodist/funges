@@ -15,3 +15,7 @@ export function isAppleMobileDevice(): boolean {
 
   return navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
 }
+
+/** The Android app's store page (a TWA of this site, package es.fung.app). */
+export const PLAY_STORE_URL =
+  'https://play.google.com/store/apps/details?id=es.fung.app';
