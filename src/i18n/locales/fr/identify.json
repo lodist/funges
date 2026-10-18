@@ -67,7 +67,7 @@
     "why": "L'identification se fait entièrement sur ton appareil : tes photos ne le quittent jamais. Cela demande un téléchargement unique de {{size}}.",
     "provenance": "Le modèle est BioCLIP 2, un modèle de recherche ouvert de l'Imageomics Institute.",
     "notAFile": "Il est conservé dans le navigateur, pas enregistré dans tes fichiers. Rien n'est installé.",
-    "onWifi": "À faire de préférence en Wi-Fi.",
+    "onWifi": "À faire de préférence en Wi-Fi : un gros téléchargement y est plus fiable qu'en données mobiles.",
     "start": "Télécharger ({{size}})",
     "cancel": "Annuler",
     "progress": "Téléchargement… {{percent}} %",

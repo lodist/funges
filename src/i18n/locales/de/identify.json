@@ -67,7 +67,7 @@
     "why": "Die Identifizierung läuft vollständig auf deinem Gerät, deine Fotos verlassen es also nie. Dafür ist ein einmaliger Download von {{size}} nötig.",
     "provenance": "Das Modell ist BioCLIP 2, ein offenes Forschungsmodell des Imageomics Institute.",
     "notAFile": "Es wird im Browser gespeichert, nicht in deinen Dateien abgelegt. Es wird nichts installiert.",
-    "onWifi": "Am besten über WLAN.",
+    "onWifi": "Am besten über WLAN: Ein großer Download klappt dort zuverlässiger als über mobile Daten.",
     "start": "Herunterladen ({{size}})",
     "cancel": "Abbrechen",
     "progress": "Wird heruntergeladen… {{percent}} %",
