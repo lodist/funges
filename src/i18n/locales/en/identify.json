@@ -46,18 +46,21 @@
   "status": {
     "preparing": "Preparing…",
     "identifying": "Identifying…",
-    "identifyingLonger": "Comparing against {{total}} species…",
-    "identifyingLongest": "Still going - your phone is doing all the thinking, nothing leaves the device.",
-    "identifyingClosest": "Looking for the closest visual matches…",
-    "identifyingAlternatives": "Checking for other possible matches…",
-    "identifyingCandidates": "Reviewing the strongest candidates…",
-    "identifyingDetails": "Taking a closer look at the details…",
-    "identifyingWaiting": "Thanks for waiting - the analysis is still running…",
     "failed": "Identification failed",
     "unreadable": "That photo could not be read. Try another one, or pick it from your gallery instead of the camera.",
     "backendWrong": "Identification cannot run correctly on this device's graphics hardware. Switching to the slower but correct mode - if this keeps failing, remove and re-download the model.",
     "retry": "Try again",
     "unsupported": "Identification is not available on this device or browser."
+  },
+  "working": {
+    "look": "Looking…",
+    "compare": "Comparing…",
+    "sniff": "Sniffing…",
+    "peer": "Squinting…",
+    "rummage": "Rummaging…",
+    "sort": "Sorting…",
+    "weigh": "Weighing…",
+    "ponder": "Pondering…"
   },
   "download": {
     "title": "Download species recognition",

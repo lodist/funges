@@ -103,25 +103,25 @@ export interface StagedPhoto {
 export const MAX_PHOTOS = 2;
 
 /**
- * Wait messages, cycling while identification is running.
+ * Wait words, cycling while identification is running.
  *
- * On a phone without trustworthy WebGPU the forward pass takes seconds, and a
- * single unchanging "Identifying…" for that long reads as a hung app. The
- * messages include the privacy reason for the wait and cycle so slower devices
- * continue to show activity without making completion promises.
+ * On a phone the forward pass takes seconds, and a single unchanging
+ * "Identifying…" for that long reads as a hung app. One word each, because the
+ * sentences these replaced were cut off in the status pill on a phone, and
+ * none of them promises completion. Never a word about eating or tasting.
  */
 export const WORKING_MESSAGES = [
-  'status.identifying',
-  'status.identifyingLonger',
-  'status.identifyingLongest',
-  'status.identifyingClosest',
-  'status.identifyingAlternatives',
-  'status.identifyingCandidates',
-  'status.identifyingDetails',
-  'status.identifyingWaiting',
+  'working.look',
+  'working.compare',
+  'working.sniff',
+  'working.peer',
+  'working.rummage',
+  'working.sort',
+  'working.weigh',
+  'working.ponder',
 ] as const;
 
-const WORKING_MESSAGE_INTERVAL_MS = 6000;
+const WORKING_MESSAGE_INTERVAL_MS = 2500;
 
 export interface IdentifyFlow {
   phase: IdentifyPhase;
