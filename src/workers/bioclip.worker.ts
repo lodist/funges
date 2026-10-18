@@ -1,5 +1,9 @@
 /// <reference lib="webworker" />
-import * as ort from 'onnxruntime-web';
+// The `webgpu` entry, not the package root. The root still loads the JSEP build,
+// whose WebGPU kernels ORT deprecated in 1.29; this entry runs ORT's native
+// WebGPU engine, which is where MatMulNBits fixes land and which runs int4 about
+// twice as fast as JSEP did on the same GPU (0.3-0.4s vs 0.7-0.8s per photo).
+import * as ort from 'onnxruntime-web/webgpu';
 // Let Vite own the runtime URLs via `?url` asset imports rather than copying the
 // files into public/ ourselves.
 //
@@ -14,11 +18,11 @@ import * as ort from 'onnxruntime-web';
 // removes a version-numbered directory that could silently drift from the
 // installed ORT.
 //
-// The jsep build is used for BOTH execution providers: it carries WebGPU support
-// and still runs the wasm EP, so one 26.8MB pair covers both paths instead of
-// shipping two.
-import ortWasmUrl from 'onnxruntime-web/ort-wasm-simd-threaded.jsep.wasm?url';
-import ortMjsUrl from 'onnxruntime-web/ort-wasm-simd-threaded.jsep.mjs?url';
+// The asyncify build is used for BOTH execution providers: it carries the native
+// WebGPU engine and still runs the wasm EP — at the same CPU speed as the plain
+// build, measured — so one 26.8MB pair covers both paths instead of shipping two.
+import ortWasmUrl from 'onnxruntime-web/ort-wasm-simd-threaded.asyncify.wasm?url';
+import ortMjsUrl from 'onnxruntime-web/ort-wasm-simd-threaded.asyncify.mjs?url';
 
 /**
  * Owns the ONNX inference session for photo identification.
@@ -71,6 +75,11 @@ async function createSession(
   ort.env.wasm.numThreads = 1;
 
   const bytes = new Uint8Array(modelBytes);
+  // Errors only (3). ORT logs warnings through console.error, so the expected
+  // "some nodes were not assigned to the preferred execution providers" (shape
+  // ops stay on the CPU) reads as a failure to anyone debugging a phone. It is a
+  // session option because ORT-web pins the session logger at warning otherwise.
+  const logSeverityLevel = 3;
   // forceWasm exists because "WebGPU initialised" and "WebGPU computes correct
   // numbers" are different claims. An Android GPU ran this graph and returned a
   // garbage embedding; the caller detects that with a reference comparison and
@@ -82,6 +91,7 @@ async function createSession(
     try {
       session = await ort.InferenceSession.create(bytes, {
         executionProviders: ['webgpu'],
+        logSeverityLevel,
       });
       return 'webgpu';
     } catch {
@@ -93,6 +103,7 @@ async function createSession(
 
   session = await ort.InferenceSession.create(bytes, {
     executionProviders: ['wasm'],
+    logSeverityLevel,
   });
   return 'wasm';
 }

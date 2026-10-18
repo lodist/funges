@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@/i18n';
 import { IdentifyPanel } from '@/components/IdentifyPanel';
+import { BioclipSession } from '@/lib/bioclip/session';
 import { getAnyCachedModel } from '@/lib/modelCache';
 
 /**
@@ -34,6 +35,7 @@ vi.mock('@/lib/bioclip/variant', () => ({
     },
     provider: 'wasm',
   }),
+  isWebgpuUntrusted: vi.fn().mockReturnValue(false),
   markWebgpuUntrusted: vi.fn(),
   MODEL_VARIANTS: {
     int8: {
@@ -154,6 +156,32 @@ describe('IdentifyPanel photo staging', () => {
 
     expect(await screen.findAllByLabelText('Remove this photo')).toHaveLength(
       2
+    );
+  });
+});
+
+/**
+ * The session is built when the panel opens with a model on the device, not
+ * after the first photo: reading ~300 MB and building the graph takes seconds on
+ * a phone, and the camera is where that time can pass unnoticed.
+ *
+ * int8 is built on the CPU backend: WebGPU has no kernel for its matmuls, so a
+ * WebGPU session is no faster and drifts from the numbers the gate measured.
+ */
+describe('IdentifyPanel session', () => {
+  it('builds once on open, on the CPU backend for int8', async () => {
+    vi.mocked(BioclipSession.create).mockClear();
+    vi.mocked(getAnyCachedModel).mockResolvedValue({
+      blob: { arrayBuffer: () => Promise.resolve(new ArrayBuffer(4)) },
+      info: { variant: 'int8', version: 'test', bytes: 4 },
+    } as never);
+
+    render(<IdentifyPanel open onClose={() => {}} />);
+
+    await waitFor(() => expect(BioclipSession.create).toHaveBeenCalledTimes(1));
+    expect(BioclipSession.create).toHaveBeenCalledWith(
+      expect.any(ArrayBuffer),
+      { forceWasm: true }
     );
   });
 });

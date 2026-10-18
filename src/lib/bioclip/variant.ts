@@ -6,18 +6,20 @@ import { BioclipSession } from './session';
  * Which quantization of the image tower to fetch for this device.
  *
  * There is no single best artifact, which is why this file exists. Measured on
- * one machine, same worker code, median ms per photo:
+ * one machine (Intel Xe-LPG integrated GPU, ORT 1.30 native WebGPU engine, same
+ * worker setup), median ms per photo:
  *
  *              WebGPU    WASM
- *   int8        3702     4876
- *   int4         768     6829
+ *   int8        3242     2777
+ *   int4         399     5077
  *
- * int4 wins by 4.8x on WebGPU and loses by 40% on WASM. `MatMulInteger` (int8)
+ * int4 wins by 7x on WebGPU and loses by 80% on WASM. `MatMulInteger` (int8)
  * has no WebGPU kernel in onnxruntime-web at all, so the int8 graph runs its
  * matmuls on the CPU even when the session reports `webgpu` — that is why its
- * two columns are so close, and why the shipped int8 build measured 15-20s on a
- * phone. `MatMulNBits` (int4) does have a kernel, but its CPU kernel
- * dequantizes on the fly and loses to `MatMulInteger`.
+ * two columns are so close, why int8 is now always built on the CPU backend,
+ * and why the int8 build measured 15-20s on a phone. `MatMulNBits` (int4) does
+ * have a kernel, but its CPU kernel dequantizes on the fly and loses to
+ * `MatMulInteger`.
  *
  * Both artifacts are inside the safety gate: at the 1058-label shipping
  * vocabulary both measure 1.06% false-edible@1 against fp32's 0.91%.
@@ -115,28 +117,25 @@ export interface VariantChoice {
 export const PROBE_MIN_COSINE = 0.99;
 
 /**
- * int4 is published, measured, and NOT offered. Deliberately.
+ * int4 is offered again, on ORT's native WebGPU engine.
  *
- * It is 4.8x faster on a GPU that computes MatMulNBits correctly (768ms vs
- * 3702ms, measured in a real browser). But of the two real devices tested, one
- * Android GPU returns garbage for it — and the probe below, which runs a
- * MatMulNBits node at K=1024/N=64/M=8, PASSED on that device. The real model
- * runs N up to 4096 and M=257, so the fault evidently lives in a code path
- * larger shapes reach and the probe does not.
+ * It was switched off on 26 Jul (ORT 1.27, JSEP engine): one Android GPU
+ * returned garbage for it, and the probe below, which runs a MatMulNBits node at
+ * K=1024/N=64/M=8, PASSED on that device. The real model runs N up to 4096 and
+ * M=257, so the fault lived in a code path larger shapes reach and the probe
+ * does not. Two things have changed since:
  *
- * Enlarging the probe to those shapes costs ~1.5MB of bundled weights and is
- * still only a guess about which dimension matters. Until a probe exists that
- * demonstrably catches that device, offering int4 means some users download
- * 280MB and land on the slow CPU fallback — worse than never offering it.
+ *   - the worker runs ORT's native WebGPU engine instead of JSEP: different
+ *     shader code, and the engine ORT still fixes (JSEP is deprecated);
+ *   - ORT 1.29 fixed MatMulNBits wide-tile accumulation precision and 1.30 fixed
+ *     out-of-bounds loads on partial tiles — exactly the large-N, M=257 shapes
+ *     the probe never reached.
  *
- * int8 is correct everywhere by construction: its matmuls have no WebGPU kernel
- * at all, so they run on the CPU on every device. 15-20s on a mid-range phone.
- *
- * To re-enable: set this true once the probe reproduces the failure. Everything
- * else — the artifact on R2, the selection, the cache keys, the self-check — is
- * already in place and tested.
+ * Not on trust alone: the session self-check still runs the real model on every
+ * session, so a GPU that gets it wrong is caught, remembered, and rebuilt on the
+ * CPU rather than shown.
  */
-const INT4_ENABLED = false;
+const INT4_ENABLED = true;
 
 /**
  * The same integer-only recipe Python's `_probe_input` uses.
