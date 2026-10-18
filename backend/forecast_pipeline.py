@@ -451,24 +451,30 @@ def _row_group_may_overlap(parquet_file, row_group, *, after=None, before=None):
     return True
 
 
-def _read_recent_parquet(path, split_date):
+def _read_recent_parquet(path, split_date, *, before=None, columns=None):
     """Read only the mutable lag/forecast tail into pandas, pruning frozen row
-    groups by their Date statistics."""
+    groups by their Date statistics. `before` and `columns` read a narrower window:
+    the lag history, rows before the tail with only the columns read from them."""
     parquet_file = pq.ParquetFile(path)
+    if columns is not None:
+        columns = [c for c in columns if c in parquet_file.schema_arrow.names]
     pieces = []
     lower_bound = pd.Timestamp(split_date) - pd.Timedelta(nanoseconds=1)
     for row_group in range(parquet_file.num_row_groups):
         if not _row_group_may_overlap(
-                parquet_file, row_group, after=lower_bound):
+                parquet_file, row_group, after=lower_bound, before=before):
             continue
         for batch in parquet_file.iter_batches(
-                row_groups=[row_group], batch_size=131_072):
+                row_groups=[row_group], batch_size=131_072, columns=columns):
             table = pa.Table.from_batches([batch])
-            selected = table.filter(_arrow_date_mask(table, after=lower_bound))
+            selected = table.filter(_arrow_date_mask(table, after=lower_bound, before=before))
             if len(selected):
                 pieces.append(selected)
     if not pieces:
-        return parquet_file.schema_arrow.empty_table().to_pandas()
+        schema = parquet_file.schema_arrow
+        if columns is not None:
+            schema = pa.schema([schema.field(c) for c in columns])
+        return schema.empty_table().to_pandas()
     combined = pa.concat_tables(pieces)
     pieces.clear()
     return combined.to_pandas(split_blocks=True, self_destruct=True)
@@ -1006,6 +1012,11 @@ FRUITING_FEATURES = ["rain_0", "rain_1_3", "rain_4_7", "rain_8_14", "rain_15_21"
 FRUITING_GBM_BASE = ["rain_0", "rain_1_3", "rain_4_7", "rain_8_14", "rain_15_28", "rain_29_42", "dry_days",
                      "temp", "temp_sq", "tmin_drop", "frost", "humidity", "humidity_early"]
 FRUITING_LAG_COLUMNS = ["Temperature (C) Min"]
+LAG_COLUMNS = ["Temperature (C)", "TotalPrecipitation_mm", "Pressure (hPa)", "Humidity (%)", "Wind Speed (m/s)"]
+# What the lag window's older days are read for (update_parquet_master): their keys, the row
+# filter's coordinates, the elevation fill and the lagged weather.
+LAG_HISTORY_COLUMNS = ["Location_Id", "Date", "Latitude", "Longitude", "Elevation (m)",
+                       *LAG_COLUMNS, *FRUITING_LAG_COLUMNS]
 DRY_DAYS_CAP = 43          # no 5 mm day within the 42 days the lags reach
 RAIN_MAX_MM_DAY = 300.0    # the US parquets carry impossible days (2415 mm); ERA5 never does
 
@@ -1942,7 +1953,11 @@ def apply_measured_weather(master, measured):
 
 
 def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
-                     *, existing_df=None, existing_exists=None, cutoff_date=None):
+                     *, existing_df=None, existing_exists=None, cutoff_date=None, lag_history=None):
+    """The master's tail with the forecast merged in and the forward days scored. `lag_history`,
+    when given, is the lag window before existing_df's first day with only the columns read from
+    it (update_parquet_master streams those rows through unchanged): it feeds the elevation fill,
+    the row filter, the gap check and the lags as those rows did when they were in existing_df."""
     # NOTE: the Date=today override is intentionally GONE — dates are the real forecast dates.
     if "Wind Speed (m/s)" not in df.columns and "Wind Speed (kph)" in df.columns:
         df["Wind Speed (m/s)"] = df["Wind Speed (kph)"] / 3.6
@@ -1953,7 +1968,10 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
     for specie in species_params:
         col = f"{specie}_score"
         if col not in df.columns:
-            df[col] = pd.NA
+            # A float placeholder, not pd.NA: an object column stays object when the tail it
+            # meets has no rows (pandas ignores all-NA columns only for now, and warns), and
+            # round(2) skips object columns, so the scores went out unrounded.
+            df[col] = np.nan
     # Location_Id -> fetched coord, taken now so the new rows' frame can go after the merge.
     loc_to_coord = None
     if {"_coord_lat", "_coord_lon"}.issubset(df.columns):
@@ -1973,7 +1991,11 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
         existing_cols = list(existing_df.columns)
         new_cols = [c for c in df.columns if c not in existing_cols]
         df = df[existing_cols + new_cols]
-        df = replace_missing_elevation_from_previous_data(df, existing_df)
+        previous = existing_df if lag_history is None else pd.concat(
+            [lag_history[["Location_Id", "Elevation (m)"]], existing_df[["Location_Id", "Elevation (m)"]]],
+            ignore_index=True)
+        df = replace_missing_elevation_from_previous_data(df, previous)
+        del previous
         df = replace_missing_elevation_with_closest(df)
         combined_df = pd.concat([existing_df, df], ignore_index=True)   # merge_master, in two halves
     else:
@@ -1991,13 +2013,18 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
 
     combined_df = combined_df[np.isfinite(combined_df["Latitude"]) & np.isfinite(combined_df["Longitude"])]
     combined_df = combined_df[combined_df["Location_Id"] != ""]
+    keys = combined_df[["Location_Id", "Date"]]
+    if lag_history is not None:   # the same rows out of the history as out of the tail
+        lag_history = lag_history[np.isfinite(lag_history["Latitude"]) & np.isfinite(lag_history["Longitude"])
+                                  & (lag_history["Location_Id"] != "")]
+        lag_history = lag_history.assign(Date=lag_history["Date"].astype(combined_df["Date"].dtype))
+        keys = pd.concat([lag_history[["Location_Id", "Date"]], keys], ignore_index=True)
 
-    assert_window_contiguous(combined_df, today, forward_days=FORECAST_DAYS, lookback=config.lag_days)
+    assert_window_contiguous(keys, today, forward_days=FORECAST_DAYS, lookback=config.lag_days)
+    del keys
 
     combined_df = combined_df.sort_values(["Location_Id", "Date"])
-    lag_columns = ["Temperature (C)", "TotalPrecipitation_mm", "Pressure (hPa)",
-                   "Humidity (%)", "Wind Speed (m/s)",
-                   *(c for c in FRUITING_LAG_COLUMNS if c in combined_df.columns)]
+    lag_columns = [*LAG_COLUMNS, *(c for c in FRUITING_LAG_COLUMNS if c in combined_df.columns)]
     # Only the forward window (Date >= today) is rescored, and a forward row's deepest
     # lag reaches back exactly lag_days. So lag only [today - lag_days .. ]: frozen older
     # rows are never rescored and need no lag features. Bit-identical for forward rows
@@ -2009,6 +2036,12 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
     # scored, need every column. A copy of the whole window at full width was the merge's
     # largest allocation (~95 columns x 42 days x every place).
     lag_slice = combined_df.loc[in_window, ["Location_Id", "Date", *lag_columns]].copy()
+    if lag_history is not None:
+        # The window's older days ahead of the tail's, sorted as the tail is, so a coord-day
+        # keeps the same last row when the lags dedupe it (the two never share a day).
+        history = lag_history.sort_values(["Location_Id", "Date"]).reindex(columns=["Location_Id", "Date", *lag_columns])
+        lag_slice = pd.concat([history, lag_slice], ignore_index=True)
+        del history, lag_history
     target = combined_df.loc[in_window & forward_window_mask(combined_df, today)].copy()
 
     # Phase 2: weather (hence its lags) is identical across the base points that share a
@@ -2076,10 +2109,16 @@ def _merge_and_score(config, df, species_params, zone_curves, main_data_path,
 
 
 def update_parquet_master(config, df, species_params, zone_curves, main_data_path):
-    """Replace the mutable tail of a parquet master. Only ``lag_days`` of existing
-    rows enter pandas; frozen history is streamed through in Arrow batches."""
+    """Replace the mutable tail of a parquet master. Only the rows a run can change enter pandas
+    in full: from today, or from the oldest day ERA5 brought measured rain for (up to ~12 days
+    back). The rest of the ``lag_days`` window is only read, for the lags and the checks, so it
+    enters with those columns alone (LAG_HISTORY_COLUMNS) and is streamed through unchanged with
+    the frozen history in Arrow batches. Its rows were filtered when they were the tail, so
+    streaming them unfiltered writes the same rows (no master had one to filter, 17 Oct 2026)."""
     today = _first_forecast_day(df)
     split_date = today - pd.Timedelta(days=config.lag_days)
+    measured_days = pd.to_datetime(df.loc[_measured_mask(df), "Date"]).dt.normalize()
+    tail_from = max(split_date, min(today, measured_days.min()) if len(measured_days) else today)
     cutoff_date = pd.Timestamp(datetime.now() - timedelta(days=config.cutoff_days))
     exists = remote_file_exists(main_data_path)
 
@@ -2092,11 +2131,13 @@ def update_parquet_master(config, df, species_params, zone_curves, main_data_pat
                 # Passed straight in, so only _merge_and_score holds the tail and can free it.
                 updated_tail = _merge_and_score(
                     config, df, species_params, zone_curves, main_data_path,
-                    existing_df=_read_recent_parquet(source_path, split_date),
+                    existing_df=_read_recent_parquet(source_path, tail_from),
+                    lag_history=_read_recent_parquet(source_path, split_date, before=tail_from,
+                                                     columns=LAG_HISTORY_COLUMNS),
                     existing_exists=True, cutoff_date=cutoff_date,
                 )
                 _write_streaming_parquet(
-                    source_path, output_path, updated_tail, split_date, cutoff_date,
+                    source_path, output_path, updated_tail, tail_from, cutoff_date,
                 )
         else:
             updated_tail = _merge_and_score(
