@@ -67,7 +67,7 @@
     "why": "A identificação corre inteiramente no teu dispositivo, por isso as tuas fotos nunca saem dele. Para isso é preciso um descarregamento único de {{size}}.",
     "provenance": "O modelo é o BioCLIP 2, um modelo de investigação aberto do Imageomics Institute.",
     "notAFile": "Fica guardado no navegador, não é gravado nos teus ficheiros. Não se instala nada.",
-    "onWifi": "É preferível fazê-lo por Wi-Fi.",
+    "onWifi": "É preferível fazê-lo por Wi-Fi: um descarregamento grande é mais fiável do que com dados móveis.",
     "start": "Descarregar ({{size}})",
     "cancel": "Cancelar",
     "progress": "A descarregar… {{percent}} %",
