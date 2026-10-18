@@ -30,6 +30,7 @@ import {
 } from '@/lib/modelCache';
 import {
   detectVariant,
+  isWebgpuUntrusted,
   markWebgpuUntrusted,
   MODEL_VARIANTS,
   type VariantSpec,
@@ -159,9 +160,14 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
   const isMobile = useIsMobile();
   const [phase, setPhase] = useState<Phase>({ name: 'checking' });
   const [provider, setProvider] = useState<string | null>(null);
+  // How long the last photo's forward pass took, shown on the engine line.
+  const [lastMs, setLastMs] = useState<number | null>(null);
   const [workingStage, setWorkingStage] = useState(0);
 
-  const sessionRef = useRef<BioclipSession | null>(null);
+  // The build in flight or done, so the open-time build and the first photo share
+  // one session. Two concurrent builds would hold two copies of a ~300 MB graph,
+  // which is exactly where a phone runs out of memory.
+  const sessionRef = useRef<Promise<BioclipSession> | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   // The variant whose bytes are on this device. Set from the cache on open, or
   // from the download that just completed.
@@ -239,9 +245,25 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
     return () => clearInterval(timer);
   }, [phase.name]);
 
+  // Build the session as soon as there is a model to build it from — on open, or
+  // when a download finishes — instead of after the first photo arrives. Reading
+  // ~300 MB and building the graph takes seconds on a phone, and the camera is
+  // where that time can pass unnoticed. A failure resurfaces on the photo.
+  useEffect(() => {
+    if (phase.name === 'capture') ensureSession().catch(() => {});
+    // ensureSession is memoised through sessionRef; re-running on its identity
+    // would only return the same promise.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase.name]);
+
   useEffect(
     () => () => {
-      sessionRef.current?.dispose();
+      // Through the promise, so a build still in flight is disposed when it
+      // lands instead of leaking its worker and graph.
+      void sessionRef.current?.then(
+        s => s.dispose(),
+        () => {}
+      );
       sessionRef.current = null;
       abortRef.current?.abort();
       clearStaged();
@@ -278,6 +300,20 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
     }
   };
 
+  /** The one session for this panel, built on first call and shared after. */
+  const ensureSession = (): Promise<BioclipSession> => {
+    if (!sessionRef.current) {
+      const building = buildSession().catch(err => {
+        // Forget the failure, so the next photo retries instead of inheriting
+        // it — unless a newer build (after "remove model") already replaced it.
+        if (sessionRef.current === building) sessionRef.current = null;
+        throw err;
+      });
+      sessionRef.current = building;
+    }
+    return sessionRef.current;
+  };
+
   /**
    * Build a session and PROVE it computes this model before returning it.
    *
@@ -289,13 +325,12 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
    * confident is unacceptable for toxicity warnings.
    *
    * `bytes` is transferred into the worker. Do not retain an eager retry copy:
-   * for the current int8 model that would allocate another ~307 MB on every
-   * identification, including iPhones that have no WebGPU path to retry. A bad
-   * GPU is rare; re-reading IndexedDB in that exceptional path is slower but
-   * keeps the normal mobile peak low enough for Safari's web-content process.
+   * for int8 that would allocate another ~307 MB on every identification for a
+   * retry that never happens, since int8 is always built on the CPU. A bad GPU
+   * is rare; re-reading IndexedDB in that exceptional path is slower but keeps
+   * the normal mobile peak low enough for Safari's web-content process.
    */
-  const ensureSession = async (): Promise<BioclipSession> => {
-    if (sessionRef.current) return sessionRef.current;
+  const buildSession = async (): Promise<BioclipSession> => {
     const cached = await getAnyCachedModel();
     if (!cached) throw new Error(t('download.declined'));
     const spec = MODEL_VARIANTS[cached.info.variant];
@@ -303,7 +338,14 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
 
     const bytes = await cached.blob.arrayBuffer();
 
-    let { session, info } = await BioclipSession.create(bytes);
+    let { session, info } = await BioclipSession.create(bytes, {
+      // int8 gains nothing from WebGPU (its matmuls have no kernel there, see
+      // variant.ts), and its embedding drifts from the CPU one the gate was
+      // measured on: cosine 0.996 on a laptop GPU, 0.924 on an Adreno 6xx phone,
+      // where the CPU was also faster. A GPU already caught returning wrong
+      // numbers for this variant is not asked again on every session.
+      forceWasm: spec.variant === 'int8' || isWebgpuUntrusted(spec.variant),
+    });
     let check = await runSelfCheck(session, spec.variant);
 
     if (!check.ok && info.provider !== 'wasm') {
@@ -326,7 +368,6 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
       throw new Error(t('status.backendWrong'));
     }
 
-    sessionRef.current = session;
     setProvider(info.provider);
     return session;
   };
@@ -355,12 +396,14 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
         loadTextMatrix(),
       ]);
 
+      const started = performance.now();
       const embedding = await session.embed(preprocessToTensor(prepared.rgba), [
         1,
         3,
         TARGET_SIZE,
         TARGET_SIZE,
       ]);
+      setLastMs(performance.now() - started);
 
       // Each photo's own ranking is kept, not just its embedding: it is what
       // mergeToxicSightings needs to notice a warning the average washed out.
@@ -814,7 +857,10 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
                   // be whichever one is actually best for this device now.
                   void removeModel()
                     .then(async () => {
-                      sessionRef.current?.dispose();
+                      void sessionRef.current?.then(
+                        s => s.dispose(),
+                        () => {}
+                      );
                       sessionRef.current = null;
                       cachedSpecRef.current = null;
                       const { spec } = await detectVariant();
@@ -907,6 +953,7 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
               {cachedSpecRef.current
                 ? ` · model: ${cachedSpecRef.current.variant}`
                 : ''}
+              {lastMs !== null ? ` · ${(lastMs / 1000).toFixed(1)} s` : ''}
             </p>
           )}
         </div>
