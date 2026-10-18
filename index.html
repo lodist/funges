@@ -140,6 +140,35 @@
     <!-- Map data + glyph origins: DNS/TLS handshake overlaps the JS download -->
     <link rel="preconnect" href="https://data.fung.es" crossorigin />
     <link rel="preconnect" href="https://protomaps.github.io" crossorigin />
+
+    <!-- Moving into or out of /identify loads a new page (src/lib/isolation.ts).
+         The page being left stays on screen, blurred, until the new one has
+         drawn; the script in <body> ends the transition. The 3 s hold is the
+         ceiling if the app never draws.
+         ponytail: hides the new page of every view transition; scope it with
+         `types` if the app ever calls document.startViewTransition. -->
+    <style>
+      @view-transition {
+        navigation: auto;
+      }
+      ::view-transition-old(root) {
+        animation: vt-blur 0.2s forwards;
+      }
+      ::view-transition-new(root) {
+        animation: vt-hold 3s;
+      }
+      @keyframes vt-blur {
+        to {
+          filter: blur(6px);
+        }
+      }
+      @keyframes vt-hold {
+        from,
+        to {
+          opacity: 0;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Inline overlay: the app's first paint waits on the CSS + JS, so until
@@ -176,6 +205,26 @@
         "
       />
     </div>
+    <script>
+      // A load into or out of /identify (an in-app link, or the route guard's
+      // replace) comes from this site: a page change, not a launch. No splash.
+      if (document.referrer.indexOf(location.origin + '/') === 0) {
+        document.getElementById('app-splash').remove();
+      }
+      // End the view transition (see <head>) once React has drawn something.
+      addEventListener('pagereveal', function (e) {
+        var vt = e.viewTransition;
+        if (!vt) return;
+        (function wait() {
+          var root = document.getElementById('root');
+          if (root && root.firstChild) {
+            requestAnimationFrame(function () {
+              vt.skipTransition();
+            });
+          } else requestAnimationFrame(wait);
+        })();
+      });
+    </script>
     <div id="root"></div>
     <script type="module" src="src/main.tsx"></script>
   </body>
