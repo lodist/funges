@@ -12,13 +12,16 @@ import {
   Info,
   ShieldCheck,
   Gavel,
+  Smartphone,
 } from '@/lib/icons';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
+import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import MapLastUpdated from '@/components/MapLastUpdated';
 
 export default function SettingsPage() {
   const { t } = useTranslation('settings');
   const { t: tCommon } = useTranslation('common');
+  const { t: tNav } = useTranslation('sidebar');
   const links = [
     {
       url: '/instructions',
@@ -39,6 +42,15 @@ export default function SettingsPage() {
       label: t('support'),
       icon: Heart,
     },
+    ...(offersPlayStore()
+      ? [
+          {
+            url: PLAY_STORE_URL,
+            label: tNav('googlePlay'),
+            icon: Smartphone,
+          },
+        ]
+      : []),
     {
       url: '/impressum',
       label: t('impressum'),

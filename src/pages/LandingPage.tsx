@@ -8,7 +8,7 @@ import { useSpeciesData } from '@/data/species';
 import { BAND_OUTLINE_CLASS } from '@/lib/band-surface';
 import { seasonalSpectacle } from '@/lib/bloom';
 import { AlertTriangle, ArrowRight, ArrowUpRight } from '@/lib/icons';
-import { PLAY_STORE_URL } from '@/lib/platform';
+import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import {
   fetchStrongestSpeciesToday,
   type ScoreRegionId,
@@ -220,19 +220,21 @@ export default function LandingPage() {
                   <ArrowRight className='size-5' />
                 </Link>
               </Button>
-              {/* Desktop only: on a phone the visitor is already in the app or
-                  its PWA, and inside the Android app it would point at itself. */}
-              <Button
-                asChild
-                size='lg'
-                variant='outline'
-                className={`${BAND_OUTLINE_CLASS} hidden md:inline-flex`}
-              >
-                <a href={PLAY_STORE_URL} target='_blank' rel='noopener'>
-                  {tNav('googlePlay')}
-                  <ArrowUpRight className='size-5' />
-                </a>
-              </Button>
+              {/* The Play app opens on this page, so it has to know where it
+                  is: see offersPlayStore. */}
+              {offersPlayStore() ? (
+                <Button
+                  asChild
+                  size='lg'
+                  variant='outline'
+                  className={BAND_OUTLINE_CLASS}
+                >
+                  <a href={PLAY_STORE_URL} target='_blank' rel='noopener'>
+                    {tNav('googlePlay')}
+                    <ArrowUpRight className='size-5' />
+                  </a>
+                </Button>
+              ) : null}
             </div>
           </div>
           <nav className={styles.helpLinks} aria-label={tNav('help')}>
