@@ -51,9 +51,6 @@ test('production app shell reloads and switches every map style offline', async 
   await page.reload();
   await expect(page.locator('canvas.maplibregl-canvas')).toBeVisible();
   await expect(
-    page.getByRole('link', { name: 'Identify from a photo' })
-  ).toBeVisible();
-  await expect(
     page.getByRole('button', { name: 'Nearby Recipes' })
   ).toHaveCount(0);
   await expect(

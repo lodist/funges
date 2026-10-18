@@ -41,7 +41,6 @@ import {
   MapPin,
   Navigation,
   Info,
-  ScanSearch,
   WifiOff,
 } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
@@ -52,7 +51,6 @@ import {
   BAND_GHOST_CLASS,
   BAND_SURFACE_CLASS,
 } from '@/lib/band-surface';
-import { IDENTIFY_HREF } from '@/lib/isolation';
 import { cn } from '@/lib/utils';
 import { useUIStore } from '@/store/uiStore';
 import SpeciesSelector from './SpeciesSelector';
@@ -285,7 +283,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
-  const { t: tIdentify } = useTranslation('identify');
   const { setActiveModal } = useUIStore();
   const {
     center,
@@ -1666,24 +1663,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               <ChefHat className='h-4 w-4' />
             </Button>
           )}
-
-          {/* A real link and a full page load, not a dialog: photo ID has its
-              own page, the one route served cross-origin isolated so its model
-              can run on several threads (lib/isolation). */}
-          <Button
-            asChild
-            variant='ghost'
-            size='icon'
-            className={BAND_GHOST_CLASS}
-          >
-            <a
-              href={IDENTIFY_HREF}
-              title={tIdentify('openButton')}
-              aria-label={tIdentify('openButton')}
-            >
-              <ScanSearch className='h-4 w-4' />
-            </a>
-          </Button>
 
           {/* Info button */}
           <Button

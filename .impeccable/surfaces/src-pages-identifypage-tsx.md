@@ -32,7 +32,7 @@ Operate surface for the moment a forager is holding something: in the field on a
 - The page is served cross-origin isolated (COOP/COEP from a Cloudflare rule scoped to `/identify`) so ORT runs on several CPU threads: about 3× faster on a mid-range phone. Isolation is fixed per document, so every link into or out of the page is a full load (`reloadDocument`, plain `href`, and a boundary reload in the root route for back/forward).
 - Workers start from blob URLs so they inherit the page's isolation; no asset needs the headers.
 - The service worker never serves `/identify` from the precached shell (denylist) and fetches it NetworkFirst, so the headers come from the network, and offline from the last network copy.
-- Entry points: map control, sidebar (second, after Map), phone bar (centre slot; Data moved into Settings), landing step, PWA shortcut, and the old `?identify=true` link, which redirects.
+- Entry points: sidebar (second, after Map), phone bar (centre slot; Data moved into Settings), landing step, PWA shortcut, and the old `?identify=true` link, which redirects. Not the map's tool rail: the bar and the sidebar already show Identify on the map, and the rail is for tools that act on the map.
 
 ## Content rules
 
