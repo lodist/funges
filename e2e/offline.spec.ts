@@ -95,9 +95,6 @@ test('map explains itself when the device goes offline', async ({
   });
   if (await dismissOnboarding.isVisible()) await dismissOnboarding.click();
   await expect(
-    page.getByRole('button', { name: 'Identify from a photo' })
-  ).toBeVisible();
-  await expect(
     page.getByRole('button', { name: 'Nearby Recipes' })
   ).toBeVisible();
 
@@ -106,9 +103,6 @@ test('map explains itself when the device goes offline', async ({
   await expect(page.getByText(/you're offline/i)).toBeVisible();
   await expect(
     page.getByText(/no downloaded map package covers this area/i)
-  ).toBeVisible();
-  await expect(
-    page.getByRole('button', { name: 'Identify from a photo' })
   ).toBeVisible();
   await expect(
     page.getByRole('button', { name: 'Nearby Recipes' })

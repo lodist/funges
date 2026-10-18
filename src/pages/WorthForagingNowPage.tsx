@@ -520,7 +520,7 @@ function Fact({
   );
 }
 
-/** The worst toxic look-alike, in IdentifyPanel's permanent-notice treatment. */
+/** The worst toxic look-alike, in the Identify page's permanent-notice treatment. */
 function LookalikeNotice({
   lookalike,
 }: {

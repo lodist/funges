@@ -1,6 +1,28 @@
 {
   "title": "Identifizieren",
-  "openButton": "Anhand eines Fotos identifizieren",
+  "page": {
+    "title": "Fund bestimmen",
+    "lead": "Fotografiere ihn und vergleiche die nächsten Treffer mit ihren gefährlichen Doppelgängern.",
+    "seoDescription": "Wilde Pilze und Pflanzen per Foto bestimmen, direkt auf deinem Gerät. Vergleiche die nächsten Treffer mit ihren giftigen Doppelgängern.",
+    "onDevice": "Läuft auf diesem Gerät",
+    "noUpload": "Nichts wird hochgeladen",
+    "offline": "Nach dem Download auch offline"
+  },
+  "plate": {
+    "title": "Dein Fund",
+    "frameTop": "Oberseite und Hut",
+    "frameUnder": "Unterseite oder Stielbasis",
+    "optional": "Optional, verbessert die Übereinstimmung",
+    "tapToShoot": "Tippen, um ein Foto zu machen",
+    "clickToAdd": "Klicken oder Foto hierher ziehen",
+    "photoNumber": "Foto {{number}}"
+  },
+  "guide": {
+    "title": "Für einen guten Treffer",
+    "top": "Oberseite und Hut: das ganze Exemplar, formatfüllend.",
+    "under": "Unterseite oder Stielbasis: Lamellen, Röhren, Leisten oder der Stielgrund, dort unterscheiden sich Doppelgänger.",
+    "disagree": "Die Treffer sind uneins? Fang neu an, mit einem Schnitt durch die Mitte als zweitem Foto."
+  },
   "disclaimer": {
     "aboveResults": "Das sind mögliche Übereinstimmungen, keine gesicherte Identifizierung. Ein gefährlicher Doppelgänger kann auch dann richtig sein, wenn er nicht an erster Stelle steht.",
     "neverEat": "Iss nichts auf Grundlage dieser App. Eine falsche Identifizierung kann tödlich sein. Dieses Werkzeug bestätigt niemals, dass etwas sicher essbar ist."
@@ -39,7 +61,7 @@
   },
   "download": {
     "title": "Arterkennung herunterladen",
-    "why": "Die Identifizierung läuft vollständig auf deinem Gerät, deine Fotos verlassen dein Handy also nie. Dafür ist ein einmaliger Download von {{size}} nötig.",
+    "why": "Die Identifizierung läuft vollständig auf deinem Gerät, deine Fotos verlassen es also nie. Dafür ist ein einmaliger Download von {{size}} nötig.",
     "provenance": "Das Modell ist BioCLIP 2, ein offenes Forschungsmodell des Imageomics Institute.",
     "notAFile": "Es wird im Browser gespeichert, nicht in deinen Dateien abgelegt. Es wird nichts installiert.",
     "onWifi": "Am besten über WLAN.",
@@ -49,7 +71,9 @@
     "remove": "Heruntergeladenes Modell entfernen",
     "removed": "Modell entfernt. Die Identifizierung ist erst wieder möglich, wenn du es erneut herunterlädst.",
     "declined": "Für die Identifizierung muss das Modell zuerst heruntergeladen werden.",
-    "failed": "Download fehlgeschlagen. Prüfe deine Verbindung und versuche es erneut."
+    "failed": "Download fehlgeschlagen. Prüfe deine Verbindung und versuche es erneut.",
+    "engine": "Engine: {{provider}}",
+    "model": "Modell: {{variant}}"
   },
   "results": {
     "heading": "Mögliche Übereinstimmungen",
@@ -60,6 +84,7 @@
     "notInCatalog": "Nicht im Katalog dieser App - keine Sicherheitsangaben",
     "unknownSpecies": "Nicht erkannt",
     "confidence": "{{percent}} % Übereinstimmung",
+    "confidenceUnderOne": "<1 % Übereinstimmung",
     "confusedWith": "Wird häufig verwechselt mit {{species}}",
     "checkThese": "Diese Merkmale prüfen",
     "criticalHeading": "Diese beiden werden leicht verwechselt",

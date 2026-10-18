@@ -30,6 +30,9 @@ interface NavItem {
   }[];
   /** Non-interactive content pinned below this item's flyout rows. */
   flyoutFooter?: React.ReactNode;
+  /** Load a fresh document instead of a client-side route change — for the
+   *  one route served with different headers (see lib/isolation). */
+  reloadDocument?: boolean;
 }
 
 /**
@@ -173,6 +176,7 @@ export function NavMain({
                 >
                   <Link
                     to={item.url}
+                    reloadDocument={item.reloadDocument}
                     aria-current={isActive ? 'page' : undefined}
                   >
                     {item.icon && <item.icon />}

@@ -45,8 +45,11 @@ const STEPS = [
     image: `${base}landing/lingonberries-pine-forest.webp`,
     width: 768,
     height: 576,
-    to: '/map',
-    search: { identify: true },
+    // The photo ID page is served with its own headers, so the link loads a
+    // fresh document rather than routing client-side (lib/isolation).
+    to: '/identify',
+    search: undefined,
+    reloadDocument: true,
   },
   {
     id: 'cook',
@@ -55,6 +58,7 @@ const STEPS = [
     height: 576,
     to: '/recipes',
     search: undefined,
+    reloadDocument: false,
   },
 ] as const;
 
@@ -85,6 +89,7 @@ export default function LandingPage() {
     height: spectacle.code === 'foliage' ? 720 : 576,
     to: '/map',
     search: { species: spectacle.code },
+    reloadDocument: false,
     link: t(inSeason ? 'home.spectacles.now' : 'home.spectacles.next', {
       name: tMap(`${spectacle.keys}.name`),
     }),
@@ -191,6 +196,7 @@ export default function LandingPage() {
                   <Link
                     to={step.to}
                     search={step.search}
+                    reloadDocument={step.reloadDocument}
                     className={`${styles.textLink} focus-ring`}
                   >
                     {step.link}
@@ -198,7 +204,7 @@ export default function LandingPage() {
                   </Link>
                   {step.id === 'identify' ? (
                     // PRODUCT.md: safety stays unmissable in every treatment,
-                    // so this keeps IdentifyPanel's permanent-notice look.
+                    // so this keeps the Identify page's permanent-notice look.
                     <p className={styles.safety}>
                       <AlertTriangle className='size-4' />
                       {t('home.identify.safety')}

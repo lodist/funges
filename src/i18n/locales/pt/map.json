@@ -93,7 +93,6 @@
     "description": "Use o mapa para descobrir locais de coleta e espécies.",
     "features": {
       "species": "Escolha uma espécie com o seletor",
-      "identify": "Identificar a partir de uma fotografia (descarregamento único)",
       "locate": "Centralize o mapa na sua localização",
       "numbers": "Mostrar ou ocultar o índice numérico",
       "theme": "Escolha um tema de mapa: Claro, Escuro, Branco, Dark Matter ou Topográfico",

@@ -53,6 +53,33 @@ function post(msg: WorkerResponse, transfer?: Transferable[]) {
 }
 
 /**
+ * ORT's glue module, as a blob URL built once.
+ *
+ * ORT starts its CPU threads as workers from the glue's own URL. In the
+ * cross-origin-isolated /identify page a worker started from a URL needs COEP
+ * on that asset's response, and only the page carries the headers — the
+ * thread workers came back ERR_BLOCKED_BY_RESPONSE. Started from a blob, they
+ * inherit the isolation the way this worker does.
+ */
+let glue: Promise<string> | null = null;
+function glueBlobUrl(absolute: string): Promise<string> {
+  glue ??= fetch(absolute)
+    .then(response => {
+      if (!response.ok) throw new Error(`ORT glue: HTTP ${response.status}`);
+      return response.text();
+    })
+    .then(source =>
+      URL.createObjectURL(new Blob([source], { type: 'text/javascript' }))
+    )
+    .catch(err => {
+      // Not cached, so the next session retries instead of inheriting it.
+      glue = null;
+      throw err;
+    });
+  return glue;
+}
+
+/**
  * Create a session, preferring WebGPU and falling back to WASM.
  *
  * The thread count is left to ORT: one thread unless the page is
@@ -68,8 +95,12 @@ async function createSession(
 ): Promise<string> {
   // Explicit per-file URLs, not a prefix. Same-origin by construction, because
   // the default is a CDN and the point of on-device inference is working with no
-  // signal at all.
-  ort.env.wasm.wasmPaths = { wasm: ortWasmUrl, mjs: ortMjsUrl };
+  // signal at all. Absolute, because this worker runs from a blob (see
+  // lib/bioclip/session.ts), against which a root-relative path is invalid.
+  ort.env.wasm.wasmPaths = {
+    wasm: new URL(ortWasmUrl, import.meta.url).href,
+    mjs: await glueBlobUrl(new URL(ortMjsUrl, import.meta.url).href),
+  };
 
   const bytes = new Uint8Array(modelBytes);
   // Errors only (3). ORT logs warnings through console.error, so the expected

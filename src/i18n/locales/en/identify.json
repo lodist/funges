@@ -1,6 +1,28 @@
 {
   "title": "Identify",
-  "openButton": "Identify from a photo",
+  "page": {
+    "title": "Identify a find",
+    "lead": "Photograph it, then compare the closest matches with their dangerous look-alikes.",
+    "seoDescription": "Identify wild mushrooms and plants from a photo, on your own device. Compare the closest matches with their toxic look-alikes.",
+    "onDevice": "Runs on this device",
+    "noUpload": "Nothing is uploaded",
+    "offline": "Works offline once downloaded"
+  },
+  "plate": {
+    "title": "Your find",
+    "frameTop": "Top and cap",
+    "frameUnder": "Underside or stem base",
+    "optional": "Optional, improves the match",
+    "tapToShoot": "Tap to take a photo",
+    "clickToAdd": "Click or drop a photo",
+    "photoNumber": "Photo {{number}}"
+  },
+  "guide": {
+    "title": "For a good match",
+    "top": "Top and cap: the whole specimen, filling the frame.",
+    "under": "Underside or stem base: gills, pores or ridges, or the base of the stem, where look-alikes differ.",
+    "disagree": "Matches disagree? Start over with a cut through the middle as the second photo."
+  },
   "disclaimer": {
     "aboveResults": "These are possible matches, not a confirmed identification. A dangerous look-alike can be correct even when it is not the top result.",
     "neverEat": "Do not eat anything based on this app. A misidentification can be fatal. This tool never confirms that something is safe to eat."
@@ -39,7 +61,7 @@
   },
   "download": {
     "title": "Download species recognition",
-    "why": "Identification runs entirely on your device, so your photos never leave your phone. That needs a one-time {{size}} download.",
+    "why": "Identification runs entirely on your device, so your photos never leave it. That needs a one-time {{size}} download.",
     "provenance": "The model is BioCLIP 2, an open research model from the Imageomics Institute.",
     "notAFile": "This is stored in your browser, not saved to your files. Nothing is installed.",
     "onWifi": "Best done on Wi-Fi.",
@@ -49,7 +71,9 @@
     "remove": "Remove downloaded model",
     "removed": "Model removed. Identification is unavailable until you download it again.",
     "declined": "Identification needs the model downloaded before it can run.",
-    "failed": "Download failed. Check your connection and try again."
+    "failed": "Download failed. Check your connection and try again.",
+    "engine": "engine: {{provider}}",
+    "model": "model: {{variant}}"
   },
   "results": {
     "heading": "Possible matches",
@@ -60,6 +84,7 @@
     "notInCatalog": "Not in this app's catalog - no safety information",
     "unknownSpecies": "Not recognised",
     "confidence": "{{percent}}% match",
+    "confidenceUnderOne": "<1% match",
     "confusedWith": "Commonly mistaken for {{species}}",
     "checkThese": "Check these features",
     "criticalHeading": "These two are easily confused",

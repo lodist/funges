@@ -1,6 +1,28 @@
 {
   "title": "Identificar",
-  "openButton": "Identificar desde una foto",
+  "page": {
+    "title": "Identificar un hallazgo",
+    "lead": "Hazle una foto y compara las coincidencias más cercanas con sus dobles peligrosos.",
+    "seoDescription": "Identifica setas y plantas silvestres con una foto, en tu propio dispositivo. Compara las coincidencias más cercanas con sus dobles tóxicos.",
+    "onDevice": "Funciona en este dispositivo",
+    "noUpload": "No se sube nada",
+    "offline": "Funciona sin conexión tras la descarga"
+  },
+  "plate": {
+    "title": "Tu hallazgo",
+    "frameTop": "Parte superior y sombrero",
+    "frameUnder": "Parte inferior o base del pie",
+    "optional": "Opcional, mejora la coincidencia",
+    "tapToShoot": "Toca para hacer una foto",
+    "clickToAdd": "Haz clic o suelta una foto",
+    "photoNumber": "Foto {{number}}"
+  },
+  "guide": {
+    "title": "Para una buena coincidencia",
+    "top": "Parte superior y sombrero: el ejemplar entero, llenando el encuadre.",
+    "under": "Parte inferior o base del pie: láminas, poros, pliegues o la base del pie, donde los dobles se distinguen.",
+    "disagree": "¿Las coincidencias no concuerdan? Empieza de nuevo con un corte por la mitad como segunda foto."
+  },
   "disclaimer": {
     "aboveResults": "Estas son coincidencias posibles, no una identificación confirmada. Un sósia peligroso puede ser el correcto incluso cuando no aparece en primer lugar.",
     "neverEat": "No comas nada basándote en esta aplicación. Una identificación errónea puede ser mortal. Esta herramienta nunca confirma que algo sea seguro para comer."
@@ -39,7 +61,7 @@
   },
   "download": {
     "title": "Descargar el reconocimiento de especies",
-    "why": "La identificación se ejecuta por completo en tu dispositivo, así que tus fotos nunca salen del móvil. Para eso hace falta una descarga única de {{size}}.",
+    "why": "La identificación se ejecuta por completo en tu dispositivo, así que tus fotos nunca salen de él. Para eso hace falta una descarga única de {{size}}.",
     "provenance": "El modelo es BioCLIP 2, un modelo de investigación abierto del Imageomics Institute.",
     "notAFile": "Se guarda en el navegador, no en tus archivos. No se instala nada.",
     "onWifi": "Mejor con wifi.",
@@ -49,7 +71,9 @@
     "remove": "Eliminar el modelo descargado",
     "removed": "Modelo eliminado. La identificación no estará disponible hasta que lo descargues de nuevo.",
     "declined": "Para identificar hay que descargar antes el modelo.",
-    "failed": "La descarga ha fallado. Comprueba tu conexión e inténtalo de nuevo."
+    "failed": "La descarga ha fallado. Comprueba tu conexión e inténtalo de nuevo.",
+    "engine": "motor: {{provider}}",
+    "model": "modelo: {{variant}}"
   },
   "results": {
     "heading": "Coincidencias posibles",
@@ -60,6 +84,7 @@
     "notInCatalog": "No está en el catálogo de esta aplicación: sin información de seguridad",
     "unknownSpecies": "No reconocido",
     "confidence": "{{percent}} % de coincidencia",
+    "confidenceUnderOne": "<1 % de coincidencia",
     "confusedWith": "Se confunde a menudo con {{species}}",
     "checkThese": "Comprueba estos rasgos",
     "criticalHeading": "Estos dos se confunden con facilidad",

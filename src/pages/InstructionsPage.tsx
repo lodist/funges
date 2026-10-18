@@ -59,7 +59,6 @@ export default function InstructionsPage() {
     { icon: ChefHat, text: t('functions.recipes') },
     { icon: Navigation, text: t('functions.location') },
     { icon: Palette, text: t('functions.theme') },
-    { icon: ScanSearch, text: t('functions.identify') },
     { icon: MapPinned, text: withoutColon(t('mapInteraction.title')) },
     { icon: Globe, text: t('mapInteraction.maps') },
   ];

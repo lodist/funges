@@ -1,6 +1,4 @@
 import React, {
-  lazy,
-  Suspense,
   useCallback,
   useEffect,
   useMemo,
@@ -43,7 +41,6 @@ import {
   MapPin,
   Navigation,
   Info,
-  ScanSearch,
   WifiOff,
 } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
@@ -223,12 +220,6 @@ function closeRoutePanel(
   setActiveRoute(null);
 }
 
-// Lazily loaded: this panel's module graph reaches the ONNX worker, and the
-// map must not pay for that on first paint.
-const IdentifyPanel = lazy(() =>
-  import('@/components/IdentifyPanel').then(m => ({ default: m.IdentifyPanel }))
-);
-
 const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const routePanelRef = useRef<HTMLDivElement>(null);
@@ -292,9 +283,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
-  const { t: tIdentify } = useTranslation('identify');
-  const [isIdentifyOpen, setIsIdentifyOpen] = useState(false);
-  const { activeModal, setActiveModal } = useUIStore();
+  const { setActiveModal } = useUIStore();
   const {
     center,
     zoom,
@@ -847,13 +836,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     });
     arrivingRef.current = false;
   }, [center, zoom, mapLoaded]);
-
-  // Deep link from the landing page: /map?identify=true opens the panel.
-  useEffect(() => {
-    if (activeModal !== 'identify') return;
-    setIsIdentifyOpen(true);
-    setActiveModal(null);
-  }, [activeModal, setActiveModal]);
 
   // Update visible layers when species or layer visibility changes
   useEffect(() => {
@@ -1682,17 +1664,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             </Button>
           )}
 
-          <Button
-            variant='ghost'
-            size='icon'
-            className={BAND_GHOST_CLASS}
-            onClick={() => setIsIdentifyOpen(true)}
-            title={tIdentify('openButton')}
-            aria-label={tIdentify('openButton')}
-          >
-            <ScanSearch className='h-4 w-4' />
-          </Button>
-
           {/* Info button */}
           <Button
             variant='ghost'
@@ -1819,17 +1790,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         bloomDay={isBloom ? unixDay(new Date()) + activeDay : undefined}
         spectacle={spectacle}
       />
-
-      {/* Mounted only once opened, so the ONNX chunk is never fetched by a user
-          who does not use identification. */}
-      {isIdentifyOpen && (
-        <Suspense fallback={null}>
-          <IdentifyPanel
-            open={isIdentifyOpen}
-            onClose={() => setIsIdentifyOpen(false)}
-          />
-        </Suspense>
-      )}
     </>
   );
 };
