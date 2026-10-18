@@ -1038,7 +1038,7 @@ export default function DataPage() {
               </div>
             ))}
           </dl>
-          <ul className='flex max-w-3xl flex-col gap-1.5 text-sm leading-relaxed text-happy-100'>
+          <ul className='flex flex-col gap-1.5 text-sm leading-relaxed text-happy-100'>
             {narrativeInsight.sentences.map((s, i) => (
               // eslint-disable-next-line react/no-array-index-key
               <li key={i}>{s}</li>
