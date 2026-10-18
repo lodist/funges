@@ -69,6 +69,7 @@ import {
   Search as LucideSearch,
   Settings as LucideSettings,
   Share as LucideShare,
+  Smartphone as LucideSmartphone,
   ShieldCheck as LucideShieldCheck,
   Skull as LucideSkull,
   Sprout as LucideSprout,
@@ -185,6 +186,7 @@ export const ScanSearch = decorativeByDefault(LucideScanSearch);
 export const Search = decorativeByDefault(LucideSearch);
 export const Settings = decorativeByDefault(LucideSettings);
 export const Share = decorativeByDefault(LucideShare);
+export const Smartphone = decorativeByDefault(LucideSmartphone);
 export const ShieldCheck = decorativeByDefault(LucideShieldCheck);
 export const Skull = decorativeByDefault(LucideSkull);
 export const Sprout = decorativeByDefault(LucideSprout);
