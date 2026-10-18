@@ -134,6 +134,12 @@ export const PROBE_MIN_COSINE = 0.99;
  * Not on trust alone: the session self-check still runs the real model on every
  * session, so a GPU that gets it wrong is caught, remembered, and rebuilt on the
  * CPU rather than shown.
+ *
+ * Measured 18 Oct on an Adreno 6xx phone (POCO X5 Pro, Chrome 155): that GPU is
+ * still wrong on the native engine — in its subgroup MatMulNBits kernel and even
+ * in the patch-embedding Conv — and the probe now fails there, so it is refused
+ * int4 before the download and stays on int8 on the CPU. Hiding GPU features
+ * does not rescue a GPU like that; it needs the CPU.
  */
 const INT4_ENABLED = true;
 

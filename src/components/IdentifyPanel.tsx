@@ -340,9 +340,10 @@ export function IdentifyPanel({ open, onClose }: IdentifyPanelProps) {
 
     let { session, info } = await BioclipSession.create(bytes, {
       // int8 gains nothing from WebGPU (its matmuls have no kernel there, see
-      // variant.ts) and drifts from the CPU numbers the gate was measured on. A
-      // GPU already caught returning wrong numbers for this variant is not asked
-      // again on every session.
+      // variant.ts), and its embedding drifts from the CPU one the gate was
+      // measured on: cosine 0.996 on a laptop GPU, 0.924 on an Adreno 6xx phone,
+      // where the CPU was also faster. A GPU already caught returning wrong
+      // numbers for this variant is not asked again on every session.
       forceWasm: spec.variant === 'int8' || isWebgpuUntrusted(spec.variant),
     });
     let check = await runSelfCheck(session, spec.variant);
