@@ -53,16 +53,14 @@ function post(msg: WorkerResponse, transfer?: Transferable[]) {
 }
 
 /**
- * Create a session, preferring WebGPU and falling back to single-threaded WASM.
+ * Create a session, preferring WebGPU and falling back to WASM.
  *
- * `numThreads = 1` is set explicitly rather than left to auto-detection:
- * multi-threaded WASM needs SharedArrayBuffer, which needs COOP/COEP response
- * headers, which GitHub Pages cannot serve. Letting ORT probe for threads there
- * produces a slower, more confusing failure than just asking for one thread.
- *
- * Note a deployment hazard this guards against: Netlify CAN send those headers,
- * so a Netlify preview could quietly enable threading that production never
- * gets. Pinning to 1 keeps the preview representative of production.
+ * The thread count is left to ORT: one thread unless the page is
+ * cross-origin isolated (COOP/COEP headers, which Cloudflare adds in front of
+ * GitHub Pages), then half the cores, at most 4. On a Snapdragon 778G phone
+ * (4 big + 4 little cores) that is 4, and 4 measured fastest: int8 went from
+ * 13 s per photo to 4.1-4.9 s, while 6 threads spilled onto the little cores
+ * and lost (8-11 s). Same embedding at every thread count.
  */
 async function createSession(
   modelBytes: ArrayBuffer,
@@ -72,7 +70,6 @@ async function createSession(
   // the default is a CDN and the point of on-device inference is working with no
   // signal at all.
   ort.env.wasm.wasmPaths = { wasm: ortWasmUrl, mjs: ortMjsUrl };
-  ort.env.wasm.numThreads = 1;
 
   const bytes = new Uint8Array(modelBytes);
   // Errors only (3). ORT logs warnings through console.error, so the expected
