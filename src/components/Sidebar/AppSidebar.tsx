@@ -14,7 +14,9 @@ import {
   Gavel,
   BarChart2,
   LifeBuoy,
+  Smartphone,
 } from '@/lib/icons';
+import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import {
   Sidebar,
   SidebarContent,
@@ -117,6 +119,15 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
                 url: `${basePath}support`,
                 icon: Heart,
               },
+              ...(offersPlayStore()
+                ? [
+                    {
+                      title: t('googlePlay'),
+                      url: PLAY_STORE_URL,
+                      icon: Smartphone,
+                    },
+                  ]
+                : []),
               {
                 title: t('impressum'),
                 url: `${basePath}impressum`,

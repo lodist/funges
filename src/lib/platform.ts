@@ -15,3 +15,23 @@ export function isAppleMobileDevice(): boolean {
 
   return navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
 }
+
+/** The Android app's store page (a TWA of this site, package es.fung.app). */
+export const PLAY_STORE_URL =
+  'https://play.google.com/store/apps/details?id=es.fung.app';
+
+/**
+ * Whether to point the visitor at the Play listing: in any browser tab except
+ * on an iPhone or iPad, which can't install it, and never inside an installed
+ * app. The Play app run by Chrome reports standalone, as does an installed
+ * PWA; a TWA run by another browser only says so in its launch referrer.
+ */
+export function offersPlayStore(): boolean {
+  // ponytail: the referrer lasts for the first page load only; an SPA keeps
+  // it, but a non-Chrome TWA that loads a second document would show the link.
+  return !(
+    isAppleMobileDevice() ||
+    window.matchMedia('(display-mode: standalone)').matches ||
+    document.referrer.startsWith('android-app://')
+  );
+}

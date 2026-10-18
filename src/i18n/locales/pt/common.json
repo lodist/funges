@@ -74,7 +74,19 @@
     "spectacles": {
       "heading": "Espetáculos naturais",
       "body": "Das cerejeiras em flor e dos bosques de jacintos às folhas de outono: acompanhe as estações e explore as previsões para estes momentos fugazes da natureza",
-      "link": "Explorar a folhagem de outono"
+      "now": "Agora: {{name}}",
+      "next": "Em breve: {{name}}"
+    },
+    "live": {
+      "line": "Hoje vale a saída: {{species}}, em {{areas}} áreas na {{area}}",
+      "europe": "Europa",
+      "northAmerica": "América do Norte"
+    },
+    "journey": {
+      "heading": "Encontre, identifique, cozinhe"
+    },
+    "data": {
+      "link": "Ver os dados"
     }
   },
   "worthForagingNow": {
@@ -229,24 +241,24 @@
       "freezing": "{{location}}: temperaturas próximas do zero. A maioria das espécies está em repouso. Uma tendência de aquecimento mudaria tudo rapidamente.",
       "tooWarm": "{{location}}: demasiado quente para os fungos. As condições favorecem as plantas e as bagas de verão.",
       "flushPattern": "{{location}}: padrão de frutificação ativo. Chuva há 7-10 dias seguida de dias mais secos a {{temp}}°C e {{humidity}}% de humidade. Condições ideais{{catSuffix}}.",
-      "wellAligned": "{{location}}: condições bem alinhadas. {{cumRain}}mm nas últimas duas semanas, {{temp}}°C, humidade elevada. A temperatura, a humidade e a chuva estão todas a trabalhar a teu favor{{catSuffix}}.",
+      "wellAligned": "{{location}}: condições bem alinhadas. {{cumRain}}mm nas últimas duas semanas, {{temp}}°C e {{humidity}}% de humidade na última semana. A temperatura, a humidade e a chuva estão todas a trabalhar a teu favor{{catSuffix}}.",
       "rainScarce": "{{location}}: as temperaturas são adequadas, mas a chuva é o fator limitante. Apenas {{cumRain}}mm nas últimas duas semanas, muito abaixo dos 20mm que a maioria das espécies precisa.",
-      "rainOkTempWrong": "{{location}}: a chuva é suficiente ({{cumRain}}mm recentemente), mas a temperatura ({{temp}}°C) é o principal entrave.",
+      "rainOkTempWrong": "{{location}}: a chuva é suficiente ({{cumRain}}mm recentemente), mas a temperatura da última semana ({{temp}}°C) é o principal entrave.",
       "rainOkHumidLow": "{{location}}: a chuva e a temperatura são razoáveis, mas a humidade está baixa ({{humidity}}%) e está a travar bastante as pontuações neste momento.",
       "goodConditions": "{{location}}: boas condições{{catSuffix}}. {{topSpecies}} com pontuação de {{topScore}}/10.",
       "slowMissing": "{{location}}: período lento, {{missing}}. As pontuações devem melhorar quando as condições mudarem.",
       "slowSeasonal": "{{location}}: período lento. O tempo é razoável, mas as pontuações estão baixas, o que pode acontecer fora da época alta.",
-      "rainGood": "Uma média de {{totalRain}} mm de chuva {{rainDesc}} em {{rainyDaysStr}} ao longo de {{daysLabel}}.",
-      "rainBare": "Quase não choveu em {{daysLabel}}, apenas {{totalRain}} mm em média.",
+      "rainGood": "Uma média de {{totalRain}} mm de chuva {{rainDesc}} em {{rainyDaysStr}} {{daysLabel}}.",
+      "rainBare": "Quase não choveu {{daysLabel}}, apenas {{totalRain}} mm em média.",
       "tempContext": "As temperaturas tiveram uma média de {{temp}}°C ({{tempDesc}}{{trendSuffix}}){{tempRange}}{{humidSuffix}}.",
-      "scorePeakNow": "As pontuações estão no ponto mais alto em {{daysLabel}}{{climbSuffix}}.",
+      "scorePeakNow": "As pontuações estão no ponto mais alto {{daysLabel}}{{climbSuffix}}.",
       "scorePeakFalling": "As melhores condições foram {{peakStr}} e as pontuações estão agora a cair. Age depressa ou espera pelo próximo ciclo de chuva.",
-      "scorePeakPast": "A melhor janela neste período foi {{peakStr}}.",
+      "scorePeakPast": "Em média, entre todas as espécies, as pontuações foram mais altas {{peakStr}}.",
       "scoreMomentumUp": "As pontuações estão a subir. As condições podem estar a entrar numa janela mais favorável.",
-      "windStrong": "Ventos fortes (média {{wind}} m/s{{windRange}}). Tem isso em conta se fores para terrenos expostos.",
+      "windStrong": "Ventos fortes (média {{wind}} m/s{{windRange}}).",
       "windModerate": "Ventos moderados (média {{wind}} m/s{{windRange}}).",
-      "pressureFalling": "A pressão está a baixar. Pode vir chuva.",
-      "pressureRising": "A pressão está a subir. É pouco provável que chova e o céu deverá limpar.",
+      "forecastRain": "Prevê-se uma média de {{rain}} mm de chuva para {{nextDays}}.",
+      "forecastDry": "Quase não se prevê chuva para {{nextDays}}.",
       "diversityWide": "Há uma grande variedade de espécies ativas{{catSuffix}}.",
       "diversityGood": "Há um bom número de espécies que valem a pena procurar{{catSuffix}}.",
       "diversityFew": "Há algumas espécies que valem a pena procurar{{catSuffix}}.",
@@ -269,12 +281,12 @@
       "rainyDays_one": "{{count}} dia",
       "rainyDays_other": "{{count}} dias",
       "missingRain": "chuva acumulada baixa ({{cumRain}}mm, são necessários ~20mm)",
-      "missingTemp": "temperatura fora do intervalo ({{temp}}°C)",
-      "missingHumidity": "humidade baixa ({{humidity}}%)",
+      "missingTemp": "temperatura fora do intervalo ({{temp}}°C na última semana)",
+      "missingHumidity": "humidade baixa ({{humidity}}% na última semana)",
       "yesterday": "ontem",
       "daysAgo": "há {{count}} dias",
-      "daysLabel": "os últimos {{count}} dias",
-      "yearLabel": "o último ano",
+      "daysLabel": "nos últimos {{count}} dias",
+      "yearLabel": "no último ano",
       "catMushroom": "fungos",
       "catBerry": "bagas",
       "catPlant": "plantas",
@@ -284,15 +296,15 @@
       "chipLastRain": "Última chuva ≥ 8 mm",
       "chipTemp": "Temp. média",
       "chipHumidity": "Humidade",
-      "chipPressure": "Pressão",
+      "chipForecast": "Chuva prevista",
       "today": "hoje",
-      "pressureFallingShort": "a baixar",
-      "pressureRisingShort": "a subir",
-      "rainPatchy": "A chuva foi irregular ao longo de {{daysLabel}}: metade da área recebeu menos de {{p50}} mm, mas {{where}} caíram cerca de {{amount}} mm{{peakSuffix}}, sobretudo {{when}}.",
+      "nextDays_one": "amanhã",
+      "nextDays_other": "os próximos {{count}} dias",
+      "rainPatchy": "A chuva foi irregular {{daysLabel}}: metade da área recebeu menos de {{p50}} mm, mas {{where}} caíram cerca de {{amount}} mm{{peakSuffix}}, com o pico {{when}}.",
       "tempRange": ", entre {{low}} e {{high}}°C consoante a zona",
       "humidRange": " (entre {{low}} e {{high}}% consoante a zona)",
       "windRange": ", entre {{low}} e {{high}} m/s consoante a zona",
-      "rainWettest": "Onde mais choveu foi {{where}}, com cerca de {{amount}} mm{{peakSuffix}}, sobretudo {{when}}.",
+      "rainWettest": "Onde mais choveu foi {{where}}, com cerca de {{amount}} mm{{peakSuffix}} e o pico {{when}}.",
       "rainHotspotMore": "Também {{where}} caíram cerca de {{amount}} mm.",
       "rainScarceHotspot": "{{location}}: as temperaturas são adequadas, mas falta chuva na maior parte da área, com uma média de {{cumRain}}mm nas últimas duas semanas. {{where}} caíram cerca de {{amount}}mm, o suficiente para a maioria das espécies.",
       "hotspotFlush": "Aí, à chuva seguiram-se dias mais secos, o que favorece uma frutificação.",
@@ -308,7 +320,7 @@
       "whereSW": "no sudoeste",
       "whereW": "no oeste",
       "whereNW": "no noroeste",
-      "rainPatchyDry": "A chuva foi irregular ao longo de {{daysLabel}}: pelo menos metade da área ficou seca, mas {{where}} caíram cerca de {{amount}} mm{{peakSuffix}}, sobretudo {{when}}."
+      "rainPatchyDry": "A chuva foi irregular {{daysLabel}}: pelo menos metade da área ficou seca, mas {{where}} caíram cerca de {{amount}} mm{{peakSuffix}}, com o pico {{when}}."
     }
   },
   "sidebar": {

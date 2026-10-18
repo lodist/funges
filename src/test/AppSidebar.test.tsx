@@ -121,6 +121,7 @@ describe('AppSidebar', () => {
       .map(item => item.getAttribute('href'));
     expect(flyout).toEqual([
       '/support',
+      'https://play.google.com/store/apps/details?id=es.fung.app',
       '/impressum',
       '/privacy-policy',
       '/termsuse',

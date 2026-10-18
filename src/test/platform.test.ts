@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it } from 'vitest';
-import { isAppleMobileDevice } from '@/lib/platform';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { isAppleMobileDevice, offersPlayStore } from '@/lib/platform';
 
 /**
  * The Liquid Glass mobile nav treatment is gated on this function alone, so
@@ -69,5 +69,44 @@ describe('isAppleMobileDevice', () => {
       maxTouchPoints: 5,
     });
     expect(isAppleMobileDevice()).toBe(false);
+  });
+});
+
+/** The Play app opens on the landing page, so a wrong yes there points the
+ *  app at its own store page. */
+describe('offersPlayStore', () => {
+  const referrer = (value: string) =>
+    Object.defineProperty(document, 'referrer', { value, configurable: true });
+
+  afterEach(() => {
+    stub({ userAgent: '', platform: '', maxTouchPoints: 0 });
+    referrer('');
+    vi.restoreAllMocks();
+  });
+
+  it('is true in a desktop or Android browser tab', () => {
+    stub({ userAgent: MAC_DESKTOP_UA, platform: 'MacIntel' });
+    expect(offersPlayStore()).toBe(true);
+    stub({ userAgent: ANDROID_UA, platform: 'Linux armv8l' });
+    expect(offersPlayStore()).toBe(true);
+  });
+
+  it('is false on an iPhone, which cannot install it', () => {
+    stub({ userAgent: IPHONE_UA, platform: 'iPhone', maxTouchPoints: 5 });
+    expect(offersPlayStore()).toBe(false);
+  });
+
+  it('is false in the Play app run by Chrome, or an installed PWA', () => {
+    stub({ userAgent: ANDROID_UA, platform: 'Linux armv8l' });
+    vi.spyOn(window, 'matchMedia').mockReturnValue({
+      matches: true,
+    } as MediaQueryList);
+    expect(offersPlayStore()).toBe(false);
+  });
+
+  it('is false in a TWA run by another browser, from its referrer', () => {
+    stub({ userAgent: ANDROID_UA, platform: 'Linux armv8l' });
+    referrer('android-app://es.fung.app/');
+    expect(offersPlayStore()).toBe(false);
   });
 });

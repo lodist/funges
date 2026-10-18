@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDown } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 import { useMapStore } from '@/store/mapStore';
+import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
 import { getSpeciesImage } from '@/lib/utils';
 import { getSpeciesById } from '@/data/species';
@@ -87,7 +88,10 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
         // not swap its fill. Every fill tried for that hover so far has been
         // theme-blind on one side or the other.
         className={cn(
-          'elevation-raised elevation-interactive bg-card focus-ring',
+          // On the band, like the map's dock: the two things that say what the map
+          // shows wear the same green, the tools stay glass.
+          'elevation-raised elevation-interactive focus-ring',
+          BAND_SURFACE_CLASS,
           'flex h-16 items-center gap-3 rounded-card py-2 pl-2 pr-3 text-left',
           // `truncate` needs a bound to truncate against. Without one the tile
           // grew with the name and walked toward the map controls at top-right.
@@ -135,11 +139,11 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
               rule, so a 14px heading here put the display face on a label and
               opened a heading level inside a map control with no section under
               it. Label is Public Sans. */}
-          <span className='block truncate text-sm font-semibold leading-tight text-foreground'>
+          <span className='block truncate text-sm font-semibold leading-tight text-happy-50'>
             {speciesName ?? t('species.select')}
           </span>
           {selected && (
-            <span className='mt-1 block truncate text-xs italic leading-tight text-muted-foreground'>
+            <span className='mt-1 block truncate text-xs italic leading-tight text-happy-100'>
               {selected.scientificName}
             </span>
           )}
@@ -151,7 +155,7 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
         <ChevronDown
           aria-hidden='true'
           className={cn(
-            'h-4 w-4 flex-shrink-0 text-muted-foreground transition-transform duration-base',
+            'h-4 w-4 flex-shrink-0 text-happy-100 transition-transform duration-base',
             isOpen && 'rotate-180'
           )}
         />

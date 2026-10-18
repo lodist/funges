@@ -30,7 +30,7 @@ export interface RainHotspot {
   rain_mm: number;
   /** 90th percentile of the same: the "up to" figure. */
   rain_high: number;
-  /** Day most of the rain fell (YYYY-MM-DD). */
+  /** Wettest day of the window (YYYY-MM-DD). */
   peak_date: string;
   /** Rain-then-dry flush pattern active there (DataPage's rain-first check). */
   flush: boolean;
