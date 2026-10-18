@@ -24,7 +24,6 @@
     "recipes": "Zeigt Rezepte in der Nähe und Routen zu Zutatenstopps",
     "location": "Zentriert die Karte auf den Standort des Nutzers",
     "theme": "Wähle ein Kartenthema: Hell, Dunkel, Weiß, Dark Matter oder Topografisch",
-    "identify": "Identifiziert mögliche Arten anhand eines Fotos, auf deinem Gerät",
     "numbers": "Zeigt numerische Bewertung an"
   },
   "mapInteraction": {

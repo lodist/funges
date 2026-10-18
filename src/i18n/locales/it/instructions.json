@@ -24,7 +24,6 @@
     "recipes": "Mostra ricette vicine e percorsi verso le tappe degli ingredienti",
     "location": "Centra la Mappa sulla Posizione dell'Utente",
     "theme": "Scegli un tema mappa: Chiaro, Scuro, Bianco, Dark Matter o Topografico",
-    "identify": "Identifica le specie possibili da una foto, sul tuo dispositivo",
     "numbers": "Mostra Valutazione Numerica"
   },
   "mapInteraction": {

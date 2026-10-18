@@ -9,7 +9,6 @@ import {
   MousePointerClick,
   Navigation,
   Palette,
-  ScanSearch,
 } from '@/lib/icons';
 import { useUIStore } from '@/store/uiStore';
 
@@ -64,12 +63,6 @@ export default function OnboardingModal() {
           <li className='flex items-center gap-2'>
             <List className='h-4 w-4' />
             {t('onboarding.features.species')}
-          </li>
-          {/* Same ScanSearch icon as the map control it describes, so the
-              line and the button are recognisably the same feature. */}
-          <li className='flex items-center gap-2'>
-            <ScanSearch className='h-4 w-4' />
-            {t('onboarding.features.identify')}
           </li>
           <li className='flex items-center gap-2'>
             <Navigation className='h-4 w-4' />

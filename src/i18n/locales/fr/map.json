@@ -93,7 +93,6 @@
     "description": "Utilisez la carte pour découvrir des lieux de cueillette et des espèces.",
     "features": {
       "species": "Choisissez une espèce avec le sélecteur",
-      "identify": "Identifier à partir d’une photo (téléchargement unique)",
       "locate": "Centrer la carte sur votre position",
       "numbers": "Afficher ou masquer l’index numérique",
       "theme": "Choisissez un thème de carte : Clair, Sombre, Blanc, Dark Matter ou Topographique",
