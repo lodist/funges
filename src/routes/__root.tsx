@@ -1,5 +1,5 @@
 import { createRootRoute, Outlet, useLocation } from '@tanstack/react-router';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useScroll, useMotionValueEvent, MotionConfig } from 'framer-motion';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -8,15 +8,29 @@ import MobileNavbar from '@/components/Mobile/MobileNavbar';
 import FloatingLanguageSwitcher from '@/components/FloatingLanguageSwitcher';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { recordPath } from '@/lib/nav-history';
+import { crossesIsolationBoundary } from '@/lib/isolation';
 
 export const Route = createRootRoute({
   component: RootComponent,
 });
 
+// Evaluated once per document load: the route this document was served for.
+const DOCUMENT_PATH =
+  typeof window === 'undefined' ? '/' : window.location.pathname;
+
 function RootComponent() {
   const isMobile = useIsMobile();
   const location = useLocation();
   recordPath(location.pathname);
+
+  // Photo ID is served cross-origin isolated and nothing else is, and a page's
+  // isolation is fixed when it loads. A client-side move across that line —
+  // a link, the back button — becomes a fresh load of the same URL.
+  useEffect(() => {
+    if (crossesIsolationBoundary(DOCUMENT_PATH, location.pathname)) {
+      window.location.reload();
+    }
+  }, [location.pathname]);
   // The map is the one route that owns the viewport (no document scroll).
   const isMapPage =
     location.pathname.replace(/\/+$/, '') ===

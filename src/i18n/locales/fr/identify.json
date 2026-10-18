@@ -1,6 +1,29 @@
 {
   "title": "Identifier",
   "openButton": "Identifier à partir d'une photo",
+  "page": {
+    "title": "Identifier une trouvaille",
+    "lead": "Photographiez-la, puis comparez les correspondances les plus proches avec leurs sosies dangereux.",
+    "seoDescription": "Identifiez champignons et plantes sauvages à partir d’une photo, sur votre propre appareil. Comparez les correspondances les plus proches avec leurs sosies toxiques.",
+    "onDevice": "Fonctionne sur cet appareil",
+    "noUpload": "Rien n’est envoyé",
+    "offline": "Hors ligne une fois téléchargé"
+  },
+  "plate": {
+    "title": "Votre trouvaille",
+    "frameTop": "Dessus et chapeau",
+    "frameUnder": "Dessous ou base du pied",
+    "optional": "Facultatif, démasque les sosies",
+    "tapToShoot": "Touchez pour prendre une photo",
+    "clickToAdd": "Cliquez ou déposez une photo",
+    "photoNumber": "Photo {{number}}"
+  },
+  "guide": {
+    "title": "Pour une bonne correspondance",
+    "top": "Dessus et chapeau : le spécimen entier, qui remplit le cadre.",
+    "under": "Dessous : lames, pores ou plis, là où les sosies diffèrent.",
+    "base": "Base du pied, ou une coupe par le milieu, si les correspondances divergent."
+  },
   "disclaimer": {
     "aboveResults": "Ce sont des correspondances possibles, pas une identification confirmée. Un sosie dangereux peut être le bon même s'il n'arrive pas en premier.",
     "neverEat": "Ne mange rien en te fondant sur cette application. Une erreur d'identification peut être mortelle. Cet outil ne confirme jamais qu'une espèce est comestible."
@@ -39,7 +62,7 @@
   },
   "download": {
     "title": "Télécharger la reconnaissance des espèces",
-    "why": "L'identification se fait entièrement sur ton appareil : tes photos ne quittent jamais ton téléphone. Cela demande un téléchargement unique de {{size}}.",
+    "why": "L'identification se fait entièrement sur ton appareil : tes photos ne le quittent jamais. Cela demande un téléchargement unique de {{size}}.",
     "provenance": "Le modèle est BioCLIP 2, un modèle de recherche ouvert de l'Imageomics Institute.",
     "notAFile": "Il est conservé dans le navigateur, pas enregistré dans tes fichiers. Rien n'est installé.",
     "onWifi": "À faire de préférence en Wi-Fi.",
@@ -49,7 +72,9 @@
     "remove": "Supprimer le modèle téléchargé",
     "removed": "Modèle supprimé. L'identification restera indisponible jusqu'à un nouveau téléchargement.",
     "declined": "L'identification nécessite d'abord le téléchargement du modèle.",
-    "failed": "Le téléchargement a échoué. Vérifie ta connexion et réessaie."
+    "failed": "Le téléchargement a échoué. Vérifie ta connexion et réessaie.",
+    "engine": "moteur : {{provider}}",
+    "model": "modèle : {{variant}}"
   },
   "results": {
     "heading": "Correspondances possibles",
@@ -60,6 +85,7 @@
     "notInCatalog": "Absent du catalogue de cette application - aucune information de sécurité",
     "unknownSpecies": "Non reconnu",
     "confidence": "{{percent}} % de correspondance",
+    "confidenceUnderOne": "<1 % de correspondance",
     "confusedWith": "Souvent confondu avec {{species}}",
     "checkThese": "Vérifie ces critères",
     "criticalHeading": "Ces deux-là se confondent facilement",

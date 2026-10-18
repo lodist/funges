@@ -251,7 +251,7 @@ describe('framing', () => {
     // `do not eat anything based on this app` moved out of this component and
     // under the dialog title, so it is read before a photo is taken rather than
     // after a ranked list has been offered. Asserted now in
-    // src/test/IdentifyPanel.test.tsx - moved with the copy, not dropped.
+    // src/test/IdentifyPage.test.tsx - moved with the copy, not dropped.
   });
 
   it('shows both catalog names when a scientific name maps to two', () => {

@@ -11,6 +11,7 @@ const hostname = process.env.VITE_HOSTNAME || 'https://www.fung.es';
 
 const routeFullPaths = [
   '/data',
+  '/identify',
   '/impressum',
   '/instructions',
   '/map',
@@ -74,6 +75,22 @@ export default defineConfig({
           {
             urlPattern: /\.pmtiles$/i,
             handler: 'NetworkOnly',
+          },
+          // The photo ID page, kept as the network served it: with the
+          // COOP/COEP headers the edge adds to /identify alone, so the page
+          // stays cross-origin isolated (and multi-threaded) when it is opened
+          // offline. Excluded from navigateFallback for the same reason.
+          {
+            urlPattern: new RegExp(
+              `^https?://[^/]+${baseUrl}identify(?:/(?:index\\.html)?)?(?:[?#].*)?$`
+            ),
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'identify-page',
+              networkTimeoutSeconds: 4,
+              expiration: { maxEntries: 4 },
+              cacheableResponse: { statuses: [200] },
+            },
           },
           // onnxruntime-web runtime for photo identification. Emitted by Vite as
           // a content-hashed asset (~27MB), so it is deliberately NOT precached:
@@ -243,7 +260,15 @@ export default defineConfig({
         // Offline fallback
         navigateFallback: 'index.html',
         navigateFallbackAllowlist: [/^(?!\/__).*/],
-        navigateFallbackDenylist: [/\/data\/.*\.csv$/],
+        // /identify is the one page served cross-origin isolated (photo ID's
+        // threads need it), and the headers live on the network response.
+        // The precached index.html carries none, so serving it here would
+        // quietly drop the page back to one thread — see the identify-page
+        // route below, which keeps the network copy for offline use instead.
+        navigateFallbackDenylist: [
+          /\/data\/.*\.csv$/,
+          new RegExp(`^${baseUrl}identify(?:/|$)`),
+        ],
         // Skip waiting for immediate activation
         skipWaiting: true,
         clientsClaim: true,
@@ -297,6 +322,20 @@ export default defineConfig({
           },
         ],
         shortcuts: [
+          {
+            // Long-press on the installed icon: the field action, one tap
+            // from the home screen.
+            name: 'Identify a find',
+            short_name: 'Identify',
+            description: 'Identify a mushroom or plant from a photo',
+            url: `identify/`,
+            icons: [
+              {
+                src: `icons/logo_app.png`,
+                sizes: '512x512',
+              },
+            ],
+          },
           {
             name: 'View Map',
             short_name: 'Map',

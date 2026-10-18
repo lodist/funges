@@ -2,6 +2,7 @@
   "appName": "Funges",
   "appDescription": "Sammel-Guide",
   "map": "Karte",
+  "identify": "Bestimmen",
   "worthForagingNow": "Saison",
   "species": "Arten",
   "recipes": "Rezepte",

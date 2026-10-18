@@ -10,7 +10,7 @@ import { NAV_SURFACE_CLASS, NAV_SURFACE_CLASS_LIQUID } from '@/lib/nav-surface';
  * entry, so that's what's asserted here — which hrefs render, and which one
  * carries the active marker for a given route. Router hooks and `useIsMobile`
  * are mocked directly rather than wrapped in real providers, following
- * FeatureInfoModal.test.tsx / IdentifyPanel.test.tsx.
+ * FeatureInfoModal.test.tsx / IdentifyPage.test.tsx.
  */
 
 const { pathname } = vi.hoisted(() => ({ pathname: { current: '/' } }));
@@ -20,10 +20,13 @@ vi.mock('@tanstack/react-router', () => ({
   Link: ({
     to,
     children,
+    // A router option, not an attribute: kept off the anchor.
+    reloadDocument: _reloadDocument,
     ...props
   }: {
     to: string;
     children: React.ReactNode;
+    reloadDocument?: boolean;
   }) => (
     <a href={to} {...props}>
       {children}
@@ -75,16 +78,26 @@ describe('MobileNavbar', () => {
   it('renders only the six entries that fit a small screen', () => {
     render(<MobileNavbar hidden={false} />);
 
-    // Everything else (instructions, offline maps, legal pages) is reachable
-    // through Settings rather than crowding the bar.
+    // Everything else (data, instructions, offline maps, legal pages) is
+    // reachable through Settings rather than crowding the bar. Identify holds
+    // the thumb's slot: it is the field action.
     expect(navLinks()).toEqual([
       '/map',
       '/worth-foraging-now',
+      '/identify',
       '/recipes',
       '/species',
-      '/data',
       '/settings',
     ]);
+  });
+
+  it('marks Identify active with or without the trailing slash', () => {
+    // GitHub Pages serves the route as a folder, so a fresh load lands on
+    // /identify/ while links point at /identify.
+    pathname.current = '/identify/';
+    render(<MobileNavbar hidden={false} />);
+
+    expect(activeLink()).toHaveAttribute('href', '/identify');
   });
 
   it('marks the entry for the current route as active', () => {
@@ -95,11 +108,11 @@ describe('MobileNavbar', () => {
   });
 
   it('gives the active entry the accent tint and no other entry', () => {
-    pathname.current = '/data';
+    pathname.current = '/recipes';
     render(<MobileNavbar hidden={false} />);
 
     for (const link of screen.getAllByRole('link')) {
-      const isTarget = link.getAttribute('href') === '/data';
+      const isTarget = link.getAttribute('href') === '/recipes';
       for (const className of ACTIVE_ACCENT_CLASS.split(' ')) {
         // A dark-mode variant is part of the accent, so the light-mode class
         // alone passing would hide a regression in the other theme.
@@ -124,6 +137,7 @@ describe('MobileNavbar', () => {
     // for them or the user loses their place entirely.
     for (const route of [
       '/settings',
+      '/data',
       '/instructions',
       '/support',
       '/impressum',

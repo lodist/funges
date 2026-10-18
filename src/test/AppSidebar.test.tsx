@@ -22,10 +22,13 @@ vi.mock('@tanstack/react-router', () => ({
   Link: ({
     to,
     children,
+    // A router option, not an attribute: kept off the anchor.
+    reloadDocument: _reloadDocument,
     ...props
   }: {
     to: string;
     children: React.ReactNode;
+    reloadDocument?: boolean;
   }) => (
     <a href={to} {...props}>
       {children}
@@ -79,9 +82,12 @@ describe('AppSidebar', () => {
     // on an unrelated route — so they are deliberately absent here.
     renderSidebar();
 
+    // Identify sits beside the map: the product's two mechanisms, when to go
+    // and what you are holding, lead the list.
     expect(navLinks()).toEqual([
       '/',
       '/map',
+      '/identify',
       '/worth-foraging-now',
       '/species',
       '/data',
@@ -158,6 +164,7 @@ describe('AppSidebar', () => {
     expect(navLinks()).toEqual([
       '/',
       '/map',
+      '/identify',
       '/worth-foraging-now',
       '/species',
       '/data',

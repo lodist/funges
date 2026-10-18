@@ -15,8 +15,10 @@ import {
   BarChart2,
   LifeBuoy,
   Smartphone,
+  ScanSearch,
 } from '@/lib/icons';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
+import { IDENTIFY_PATH } from '@/lib/isolation';
 import {
   Sidebar,
   SidebarContent,
@@ -48,6 +50,15 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
         url: `${basePath}map`,
         icon: Map,
         isActive: true,
+      },
+      // Beside the map on purpose: the product's two mechanisms, when to go
+      // and what you are holding, as the first two rows.
+      {
+        title: t('identify'),
+        url: IDENTIFY_PATH,
+        icon: ScanSearch,
+        isActive: false,
+        reloadDocument: true,
       },
       {
         title: t('worthForagingNow'),

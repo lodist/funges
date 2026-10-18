@@ -6,15 +6,14 @@ import { Route as MapRoute } from '@/routes/map';
 import { useMapStore } from '@/store/mapStore';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
-import { useUIStore } from '@/store/uiStore';
 import OnboardingModal from '@/components/OnboardingModal';
 import { DEFAULT_MAP_SPECIES, isMapSpecies } from '@/data/species';
+import { IDENTIFY_HREF } from '@/lib/isolation';
 
 export default function MapPage() {
   const isMobile = useIsMobile();
   const navigate = useNavigate({ from: MapRoute.fullPath });
   const { species, lat, lng, zoom, identify } = MapRoute.useSearch();
-  const setActiveModal = useUIStore(state => state.setActiveModal);
   const { syncSelectedSpecies, setCenter, setZoom } = useMapStore();
   const { t } = useTranslation('map');
 
@@ -43,16 +42,11 @@ export default function MapPage() {
     syncSelectedSpecies(speciesCode);
   }, [species, navigate, syncSelectedSpecies, lat, lng, zoom]);
 
-  // /map?identify=true (from the landing page) opens the photo panel once,
-  // then drops the flag so a reload or back-navigation does not reopen it.
+  // /map?identify=true predates the photo ID page; links shared before it
+  // land there now. `replace`, so Back does not bounce through the map.
   useEffect(() => {
-    if (!identify) return;
-    setActiveModal('identify');
-    navigate({
-      search: { species, lat, lng, zoom },
-      replace: true,
-    });
-  }, [identify, setActiveModal, navigate, species, lat, lng, zoom]);
+    if (identify) window.location.replace(IDENTIFY_HREF);
+  }, [identify]);
 
   useEffect(() => {
     if (typeof lat === 'number' && typeof lng === 'number') {

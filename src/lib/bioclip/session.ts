@@ -1,4 +1,27 @@
 import type { WorkerRequest, WorkerResponse } from '@/workers/bioclip.worker';
+import bioclipWorkerUrl from '@/workers/bioclip.worker.ts?worker&url';
+
+/**
+ * Start the worker from a one-line blob that imports the real script.
+ *
+ * /identify is served cross-origin isolated, and in an isolated page a worker
+ * started from a URL loads only if its own response carries COEP too — the
+ * plain `new Worker(url)` came back ERR_BLOCKED_BY_RESPONSE when the headers
+ * covered the page alone. A blob worker inherits the page's policy instead,
+ * so no asset needs the header, and a copy the service worker cached before
+ * the header existed cannot break the page either.
+ */
+function startWorker(): Worker {
+  const script = new URL(bioclipWorkerUrl, location.href).href;
+  const blob = new Blob([`import ${JSON.stringify(script)};`], {
+    type: 'text/javascript',
+  });
+  const url = URL.createObjectURL(blob);
+  const worker = new Worker(url, { type: 'module' });
+  // The import has been read once the worker starts; the blob is not needed.
+  setTimeout(() => URL.revokeObjectURL(url), 30_000);
+  return worker;
+}
 
 /**
  * Main-thread handle for the inference worker.
@@ -26,10 +49,7 @@ export class BioclipSession {
   private readyPromise: Promise<SessionInfo>;
 
   private constructor(modelBytes: ArrayBuffer, forceWasm: boolean) {
-    this.worker = new Worker(
-      new URL('@/workers/bioclip.worker.ts', import.meta.url),
-      { type: 'module' }
-    );
+    this.worker = startWorker();
 
     this.readyPromise = new Promise<SessionInfo>((resolve, reject) => {
       const onFirst = (event: MessageEvent<WorkerResponse>) => {

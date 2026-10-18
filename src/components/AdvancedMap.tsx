@@ -1,6 +1,4 @@
 import React, {
-  lazy,
-  Suspense,
   useCallback,
   useEffect,
   useMemo,
@@ -54,6 +52,7 @@ import {
   BAND_GHOST_CLASS,
   BAND_SURFACE_CLASS,
 } from '@/lib/band-surface';
+import { IDENTIFY_HREF } from '@/lib/isolation';
 import { cn } from '@/lib/utils';
 import { useUIStore } from '@/store/uiStore';
 import SpeciesSelector from './SpeciesSelector';
@@ -223,12 +222,6 @@ function closeRoutePanel(
   setActiveRoute(null);
 }
 
-// Lazily loaded: this panel's module graph reaches the ONNX worker, and the
-// map must not pay for that on first paint.
-const IdentifyPanel = lazy(() =>
-  import('@/components/IdentifyPanel').then(m => ({ default: m.IdentifyPanel }))
-);
-
 const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const routePanelRef = useRef<HTMLDivElement>(null);
@@ -293,8 +286,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
   const { t: tIdentify } = useTranslation('identify');
-  const [isIdentifyOpen, setIsIdentifyOpen] = useState(false);
-  const { activeModal, setActiveModal } = useUIStore();
+  const { setActiveModal } = useUIStore();
   const {
     center,
     zoom,
@@ -847,13 +839,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     });
     arrivingRef.current = false;
   }, [center, zoom, mapLoaded]);
-
-  // Deep link from the landing page: /map?identify=true opens the panel.
-  useEffect(() => {
-    if (activeModal !== 'identify') return;
-    setIsIdentifyOpen(true);
-    setActiveModal(null);
-  }, [activeModal, setActiveModal]);
 
   // Update visible layers when species or layer visibility changes
   useEffect(() => {
@@ -1682,15 +1667,22 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             </Button>
           )}
 
+          {/* A real link and a full page load, not a dialog: photo ID has its
+              own page, the one route served cross-origin isolated so its model
+              can run on several threads (lib/isolation). */}
           <Button
+            asChild
             variant='ghost'
             size='icon'
             className={BAND_GHOST_CLASS}
-            onClick={() => setIsIdentifyOpen(true)}
-            title={tIdentify('openButton')}
-            aria-label={tIdentify('openButton')}
           >
-            <ScanSearch className='h-4 w-4' />
+            <a
+              href={IDENTIFY_HREF}
+              title={tIdentify('openButton')}
+              aria-label={tIdentify('openButton')}
+            >
+              <ScanSearch className='h-4 w-4' />
+            </a>
           </Button>
 
           {/* Info button */}
@@ -1819,17 +1811,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         bloomDay={isBloom ? unixDay(new Date()) + activeDay : undefined}
         spectacle={spectacle}
       />
-
-      {/* Mounted only once opened, so the ONNX chunk is never fetched by a user
-          who does not use identification. */}
-      {isIdentifyOpen && (
-        <Suspense fallback={null}>
-          <IdentifyPanel
-            open={isIdentifyOpen}
-            onClose={() => setIsIdentifyOpen(false)}
-          />
-        </Suspense>
-      )}
     </>
   );
 };

@@ -82,7 +82,7 @@ interface LookalikeTagProps {
   className?: string;
 }
 
-/** A compact tile's look-alike warning, in IdentifyPanel's notice colours.
+/** A compact tile's look-alike warning, in the Identify page's notice colours.
  *  It names the species: a severity alone tells the reader nothing to check. */
 export function LookalikeTag({
   scientificName,

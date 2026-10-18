@@ -13,6 +13,7 @@ import {
   ShieldCheck,
   Gavel,
   Smartphone,
+  BarChart2,
 } from '@/lib/icons';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
@@ -23,6 +24,13 @@ export default function SettingsPage() {
   const { t: tCommon } = useTranslation('common');
   const { t: tNav } = useTranslation('sidebar');
   const links = [
+    // On phones the bottom bar gave Data's slot to Identify, so the hub
+    // carries it; the desktop sidebar still lists it directly.
+    {
+      url: '/data',
+      label: tNav('data'),
+      icon: BarChart2,
+    },
     {
       url: '/instructions',
       label: t('instructions'),

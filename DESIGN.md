@@ -852,7 +852,7 @@ Rectangular photographic marketing imagery carries atmosphere; the landing uses 
 
 **A dark band re-points the ring.** `--ring` is `--happy-700`, which reads 1.9:1 on the forecast band's `--happy-900`, so the band sets `--ring: var(--happy-100)` and every focus ring inside it inherits a step that clears 3:1 on the green and on the map capture. The map's own ring is inset, and it only paints because the capture stays in normal flow: an absolutely positioned image covers its link's inset outline.
 
-**Safety keeps its notice on the landing too.** The identification feature's safety line uses IdentifyPanel's permanent-notice treatment — `--status-warning-background`, a 2px `--status-warning-border` ring at 60%, `--status-warning-text` and the warning glyph — not a muted caption, because a marketing page is still a treatment where safety must stay unmissable.
+**Safety keeps its notice on the landing too.** The identification feature's safety line uses the Identify page's permanent-notice treatment — `--status-warning-background`, a 2px `--status-warning-border` ring at 60%, `--status-warning-text` and the warning glyph — not a muted caption, because a marketing page is still a treatment where safety must stay unmissable.
 
 The page uses a fluid gutter and a split hero, followed by the forecast/map band, a prominent autumn-forest photograph and adjacent identification and cooking features. Sections run full-bleed and inset their content by the gutter; past 112rem the gutter grows so the content keeps a 112rem page while the forecast and closing bands still reach both edges. The hero photograph holds its own 4:5 (capped to the first screen) instead of a viewport height, so a narrow tablet column never slices the subject. The natural-spectacle section crops its photograph to 16:7 on desktop and 4:5 on mobile; two columns of heading and explanatory copy lead to the foliage map. The forecast stacks below 1024px; the hero, natural-spectacle copy and features stack below 768px, where the header drops its in-season link because the mobile nav bar already carries it. The page has no sidebar, so the closing band ends with the sidebar's Help links — Support, Legal Notice, Privacy Policy, Terms of Use — and its bottom padding clears the floating language switcher. There is no page-specific entrance animation. Asset provenance and this page's narrative sequence are recorded in `.impeccable/surfaces/src-pages-landingpage-tsx.md`; no global palette, elevation or component token is introduced.
 
@@ -864,7 +864,7 @@ Species names are Space Grotesk 600 at local sizes: 36/48/60px on the lead pick 
 
 The score reads as a ten-pill meter of one green: `--primary-text` on paper, `--happy-500` on the band. Depth is the signal and no hue is added. The conditions label and the number sit beside it.
 
-Every pick with a lethal or toxic look-alike names it in IdentifyPanel's permanent-notice treatment, compact tiles included. Photos are the 512px species squares. The lead pick and the tiles show them uncropped as squares below 768px. The runners-up crop them to 16:9 below 640px and to a 176px column above that. A strip of three or fewer tiles turns them sideways, so they fill the line without out-sizing the runners-up. Dishes appear as 40px round thumbnails in pill links. The surface brief holds the direction contract.
+Every pick with a lethal or toxic look-alike names it in the Identify page's permanent-notice treatment, compact tiles included. Photos are the 512px species squares. The lead pick and the tiles show them uncropped as squares below 768px. The runners-up crop them to 16:9 below 640px and to a 176px column above that. A strip of three or fewer tiles turns them sideways, so they fill the line without out-sizing the runners-up. Dishes appear as 40px round thumbnails in pill links. The surface brief holds the direction contract.
 
 ### Today-first pages: Species and Recipes (scoped extension)
 
@@ -880,6 +880,18 @@ Every pick with a lethal or toxic look-alike names it in IdentifyPanel's permane
 **Recipes** splits into Ready to cook now (a wild ingredient, or a sibling that cooks like it, scores today) and Later in the year, ordered by when the ingredient returns. The best recipe takes the band as a split hero. Type chips replace the filter dialog.
 
 The meter and the compact look-alike tag are `SpeciesSignals` (Storybook: Molecules/Species signals), so a score and a warning look the same on all three pages.
+
+### Identify (scoped extension)
+
+`src/pages/IdentifyPage.tsx` is photo identification as a route, set out like a field-guide plate. The title sits on `BAND_SURFACE_CLASS` with the three on-device facts. From 768px up, the band splits 7:5 with the landing's lingonberry forest photograph. Its h1 is the route-title step (`text-3xl sm:text-4xl`, as in `ScopeHeader`), and the permanent-notice safety line sits under it in every state.
+
+- **The plate** is a raised card holding two labelled frames: top and cap, then underside or stem base. Frames are square below 640px, so the plate's primary button clears the bottom bar in the first phone viewport, and 4:5 from 640px up. Captions sit under the frames like specimen labels.
+- **Frame states.** An empty frame is a Chlorophyll Tint (first) or muted (second) button. The second frame is an inert outline until the first holds a photo. On a desktop first visit, the frames show as a 3:2 outline strip above the download step. On a phone they are left out, so the download button stays in view. A photo carries a 44px dark remove disc, since a pale ghost over foliage is unreadable.
+- **Desktop layout.** The plate goes sticky at 5/11 of the width, beside the guide or the results at 6/11.
+- **Matches are equal plates.** There is no hero for the top match, because the interface never claims a certainty the model lacks. A toxic match keeps the `ring-destructive` ring with its `--destructive-border` dark twin and a muted tile, never the brand's go-green wash. A share that rounds to zero reads "<1% match", because "0%" beside a deadly badge reads as ruled out.
+- **The route is cross-origin isolated** so inference can use several CPU threads. Every way in or out is a full document load (`reloadDocument` on nav items, a plain `href` on the map control), and `lib/isolation` reloads on a client-side crossing. On the phone bar Identify takes the centre slot, and Data moves into the Settings hub, so six items stay above the 44px floor at 320px.
+
+The surface brief holds the direction contract.
 
 ## Do's and Don'ts
 

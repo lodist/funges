@@ -1,6 +1,29 @@
 {
   "title": "Identificar",
   "openButton": "Identificar a partir de uma foto",
+  "page": {
+    "title": "Identificar um achado",
+    "lead": "Fotografa-o e compara as correspondências mais próximas com os seus sósias perigosos.",
+    "seoDescription": "Identifica cogumelos e plantas silvestres a partir de uma foto, no teu próprio dispositivo. Compara as correspondências mais próximas com os seus sósias tóxicos.",
+    "onDevice": "Funciona neste dispositivo",
+    "noUpload": "Nada é enviado",
+    "offline": "Funciona offline depois de transferido"
+  },
+  "plate": {
+    "title": "O teu achado",
+    "frameTop": "Topo e chapéu",
+    "frameUnder": "Parte de baixo ou base do pé",
+    "optional": "Opcional, denuncia os sósias",
+    "tapToShoot": "Toca para tirar uma foto",
+    "clickToAdd": "Clica ou larga uma foto",
+    "photoNumber": "Foto {{number}}"
+  },
+  "guide": {
+    "title": "Para uma boa correspondência",
+    "top": "Topo e chapéu: o exemplar inteiro, a encher o enquadramento.",
+    "under": "Parte de baixo: lâminas, poros ou pregas, onde os sósias diferem.",
+    "base": "Base do pé, ou um corte ao meio, se as correspondências não coincidirem."
+  },
   "disclaimer": {
     "aboveResults": "Estas são correspondências possíveis, não uma identificação confirmada. Um sósia perigoso pode ser o correto mesmo quando não aparece em primeiro lugar.",
     "neverEat": "Não comas nada com base nesta aplicação. Uma identificação errada pode ser fatal. Esta ferramenta nunca confirma que algo é seguro para comer."
@@ -39,7 +62,7 @@
   },
   "download": {
     "title": "Descarregar o reconhecimento de espécies",
-    "why": "A identificação corre inteiramente no teu dispositivo, por isso as tuas fotos nunca saem do telefone. Para isso é preciso um descarregamento único de {{size}}.",
+    "why": "A identificação corre inteiramente no teu dispositivo, por isso as tuas fotos nunca saem dele. Para isso é preciso um descarregamento único de {{size}}.",
     "provenance": "O modelo é o BioCLIP 2, um modelo de investigação aberto do Imageomics Institute.",
     "notAFile": "Fica guardado no navegador, não é gravado nos teus ficheiros. Não se instala nada.",
     "onWifi": "É preferível fazê-lo por Wi-Fi.",
@@ -49,7 +72,9 @@
     "remove": "Remover o modelo descarregado",
     "removed": "Modelo removido. A identificação fica indisponível até o descarregares de novo.",
     "declined": "Para identificar é preciso descarregar primeiro o modelo.",
-    "failed": "O descarregamento falhou. Verifica a ligação e tenta novamente."
+    "failed": "O descarregamento falhou. Verifica a ligação e tenta novamente.",
+    "engine": "motor: {{provider}}",
+    "model": "modelo: {{variant}}"
   },
   "results": {
     "heading": "Correspondências possíveis",
@@ -60,6 +85,7 @@
     "notInCatalog": "Não consta do catálogo desta aplicação - sem informação de segurança",
     "unknownSpecies": "Não reconhecido",
     "confidence": "{{percent}} % de correspondência",
+    "confidenceUnderOne": "<1 % de correspondência",
     "confusedWith": "Frequentemente confundido com {{species}}",
     "checkThese": "Confirma estes caracteres",
     "criticalHeading": "Estes dois confundem-se com facilidade",
