@@ -21,8 +21,8 @@
   "guide": {
     "title": "For a good match",
     "top": "Top and cap: the whole specimen, filling the frame.",
-    "under": "Underside: gills, pores or ridges, where look-alikes differ.",
-    "base": "Stem base, or a cut through the middle, if the matches disagree."
+    "under": "Underside or stem base: gills, pores or ridges, or the base of the stem, where look-alikes differ.",
+    "disagree": "Matches disagree? Start over with a cut through the middle as the second photo."
   },
   "disclaimer": {
     "aboveResults": "These are possible matches, not a confirmed identification. A dangerous look-alike can be correct even when it is not the top result.",

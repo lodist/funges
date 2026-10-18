@@ -21,8 +21,8 @@
   "guide": {
     "title": "Per una buona corrispondenza",
     "top": "Parte superiore e cappello: l’esemplare intero, a pieno formato.",
-    "under": "Parte inferiore: lamelle, pori o pieghe, dove i sosia si distinguono.",
-    "base": "Base del gambo, o un taglio a metà, se le corrispondenze non concordano."
+    "under": "Parte inferiore o base del gambo: lamelle, pori, pieghe o la base del gambo, dove i sosia si distinguono.",
+    "disagree": "Le corrispondenze non concordano? Ricomincia con un taglio a metà come seconda foto."
   },
   "disclaimer": {
     "aboveResults": "Queste sono corrispondenze possibili, non un'identificazione confermata. Un sosia pericoloso può essere quello giusto anche quando non è il primo risultato.",

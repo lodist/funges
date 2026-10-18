@@ -677,11 +677,12 @@ function Working({ message }: { message: string }) {
   );
 }
 
-/** Before any result: what to photograph, in the order that pays off. The
- *  numbers carry the order, which is the point. */
+/** Before any result: what to photograph, one numbered step per frame. Two
+ *  numbers, never three: the plate takes two photos, and a third step read
+ *  as a third slot. The fallback for disagreeing matches is a plain tip. */
 function Guide() {
   const { t } = useTranslation('identify');
-  const steps = [t('guide.top'), t('guide.under'), t('guide.base')];
+  const steps = [t('guide.top'), t('guide.under')];
 
   return (
     <section aria-labelledby='identify-guide' className='lg:pt-6'>
@@ -698,6 +699,10 @@ function Guide() {
           </li>
         ))}
       </ol>
+      {/* pl-11 lines the tip up with the step text, past the number disc. */}
+      <p className='mt-4 pl-11 text-sm text-muted-foreground'>
+        {t('guide.disagree')}
+      </p>
     </section>
   );
 }

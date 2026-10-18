@@ -21,8 +21,8 @@
   "guide": {
     "title": "Pour une bonne correspondance",
     "top": "Dessus et chapeau : le spécimen entier, qui remplit le cadre.",
-    "under": "Dessous : lames, pores ou plis, là où les sosies diffèrent.",
-    "base": "Base du pied, ou une coupe par le milieu, si les correspondances divergent."
+    "under": "Dessous ou base du pied : lames, pores, plis ou la base du pied, là où les sosies diffèrent.",
+    "disagree": "Les correspondances divergent ? Recommence avec une coupe par le milieu comme deuxième photo."
   },
   "disclaimer": {
     "aboveResults": "Ce sont des correspondances possibles, pas une identification confirmée. Un sosie dangereux peut être le bon même s'il n'arrive pas en premier.",

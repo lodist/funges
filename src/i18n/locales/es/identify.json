@@ -21,8 +21,8 @@
   "guide": {
     "title": "Para una buena coincidencia",
     "top": "Parte superior y sombrero: el ejemplar entero, llenando el encuadre.",
-    "under": "Parte inferior: láminas, poros o pliegues, donde los dobles se distinguen.",
-    "base": "Base del pie, o un corte por la mitad, si las coincidencias no concuerdan."
+    "under": "Parte inferior o base del pie: láminas, poros, pliegues o la base del pie, donde los dobles se distinguen.",
+    "disagree": "¿Las coincidencias no concuerdan? Empieza de nuevo con un corte por la mitad como segunda foto."
   },
   "disclaimer": {
     "aboveResults": "Estas son coincidencias posibles, no una identificación confirmada. Un sósia peligroso puede ser el correcto incluso cuando no aparece en primer lugar.",
