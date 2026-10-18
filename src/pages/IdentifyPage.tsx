@@ -25,7 +25,6 @@ import {
   type StagedPhoto,
 } from '@/hooks/use-identify-flow';
 import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
-import { BIOCLIP_LABELS } from '@/data/bioclip-labels';
 import { cn } from '@/lib/utils';
 
 /*
@@ -260,7 +259,7 @@ function Plate({
   onOpenFrame: () => void;
   onOpenGallery: () => void;
 }) {
-  const { t, i18n } = useTranslation('identify');
+  const { t } = useTranslation('identify');
   const { phase, staged } = flow;
   const showFrames =
     phase.name === 'capture' ||
@@ -363,12 +362,7 @@ function Plate({
 
           <div className='mt-4'>
             {phase.name === 'working' ? (
-              <Working
-                // `total`, not `count`: i18next reserves `count` for plurals.
-                message={t(flow.workingMessage, {
-                  total: BIOCLIP_LABELS.length.toLocaleString(i18n.language),
-                })}
-              />
+              <Working word={t(flow.workingMessage)} />
             ) : phase.name === 'results' ? (
               <Button
                 variant='outline'
@@ -658,7 +652,8 @@ function DownloadStep({ flow }: { flow: IdentifyFlow }) {
 }
 
 /** The wait, with the squirrel the app already uses for "working". */
-function Working({ message }: { message: string }) {
+function Working({ word }: { word: string }) {
+  const { t } = useTranslation('identify');
   return (
     <div className='flex items-center gap-3 rounded-full bg-secondary px-4 py-2'>
       <img
@@ -667,11 +662,17 @@ function Working({ message }: { message: string }) {
         aria-hidden='true'
         className='size-10 shrink-0'
       />
+      {/* The word changes every few seconds, so it is hidden from screen
+          readers, which hear one steady status instead of a new word each
+          time. */}
+      <p role='status' className='sr-only'>
+        {t('status.identifying')}
+      </p>
       <p
+        aria-hidden='true'
         className='text-sm font-medium text-secondary-foreground'
-        role='status'
       >
-        {message}
+        {word}
       </p>
     </div>
   );

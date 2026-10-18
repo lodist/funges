@@ -46,18 +46,21 @@
   "status": {
     "preparing": "Vorbereiten…",
     "identifying": "Wird identifiziert…",
-    "identifyingLonger": "Vergleich mit {{total}} Arten…",
-    "identifyingLongest": "Dauert noch - dein Handy rechnet alles selbst, nichts verlässt das Gerät.",
-    "identifyingClosest": "Suche nach den ähnlichsten visuellen Treffern…",
-    "identifyingAlternatives": "Prüfe weitere mögliche Treffer…",
-    "identifyingCandidates": "Bewerte die stärksten Kandidaten…",
-    "identifyingDetails": "Sehe mir die Details genauer an…",
-    "identifyingWaiting": "Danke fürs Warten - die Analyse läuft noch…",
     "failed": "Identifizierung fehlgeschlagen",
     "unreadable": "Dieses Foto konnte nicht gelesen werden. Versuche ein anderes oder wähle es aus der Galerie statt der Kamera.",
     "backendWrong": "Die Erkennung liefert auf der Grafikhardware dieses Geräts keine korrekten Ergebnisse. Es wird auf den langsameren, aber korrekten Modus umgeschaltet - wenn das weiterhin fehlschlägt, entferne das Modell und lade es neu.",
     "retry": "Erneut versuchen",
     "unsupported": "Die Identifizierung ist auf diesem Gerät oder in diesem Browser nicht verfügbar."
+  },
+  "working": {
+    "look": "Suchen…",
+    "compare": "Vergleichen…",
+    "sniff": "Schnuppern…",
+    "peer": "Spähen…",
+    "rummage": "Stöbern…",
+    "sort": "Sortieren…",
+    "weigh": "Abwägen…",
+    "ponder": "Grübeln…"
   },
   "download": {
     "title": "Arterkennung herunterladen",
