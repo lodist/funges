@@ -145,7 +145,7 @@ Calibrated separately (`backend/tools/calibrate_foliage_eu.py`). The values wait
 
 The European MapLayer scripts hand over their land-cover pieces too (CORINE classes):
 
-- **Broadleaf and mixed woods (311, 313),** and **the larch:** coniferous pieces (312) whose middle lies in a host-cover cell where larch is at least a tenth of the trees (`backend/generated/larch_mask_EU.npz`, 1,998 cells of 0.05°, from `build_spectacle_ground.py --larch-cache`), or in the Alps (5–16.5° E, 43.5–48.2° N) where the cell's mean elevation at the middle is 1,300 m or more. The host cover alone is too thin there: larch sightings sit at a median share of 5%, the Dolomites at 2%. All of 312 would add 279,000 km² of spruce for 7 points of sightings.
+- **Broadleaf and mixed woods (311, 313),** and **the larch:** coniferous pieces (312) whose middle lies in a host-cover cell where larch is at least a tenth of the trees (`backend/generated/larch_mask_EU.npz`, 1,998 cells of 0.05°, built offline), or in the Alps (5–16.5° E, 43.5–48.2° N) where the cell's mean elevation at the middle is 1,300 m or more. The host cover alone is too thin there: larch sightings sit at a median share of 5%, the Dolomites at 2%. All of 312 would add 279,000 km² of spruce for 7 points of sightings.
 - **Sightings:** of the coloured records, 9.5% lie in a drawn piece, 17.4% within 300 m and 31.1% within 1 km (European records are urban: 31% within 1 km against the US's 58%); of the larch's, 21.5% / 33.2% / 48.4%, against 8.1% / 11.7% / 22.0% without the larch rule. The calibration read the middle's elevation from EU-DEM; production reads its cell's mean, as the US aspens do.
 
 ### Places looked at (a normal year)

@@ -18,8 +18,8 @@ TEMP_OFFSET to match it.
 Fitted on iNaturalist records of desert annuals and NASA POWER weather:
 docs/species/2026-10-10-desert-superbloom.md, from
 backend/tools/calibrate_superbloom.py. The cells are clipped to bloom ground
-(backend/generated/superbloom_ground_US.geojson, from
-backend/tools/build_spectacle_ground.py): dry, low and open desert where the
+(backend/generated/superbloom_ground_US.geojson, built
+offline): dry, low and open desert where the
 annuals are recorded.
 """
 from __future__ import annotations
