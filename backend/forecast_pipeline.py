@@ -46,6 +46,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasona
 import era5_normals
 import era5_rain
 import hourly_weather
+import huerta
 import process_priority
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
@@ -1767,9 +1768,15 @@ def run_pipeline(config: RegionConfig):
         # At every place (the base points, ~6-7 km apart), not just the ~10 km weather points:
         # a garden needs its own town's weather, and the model files cost nothing per point.
         places = read_df_from_source(base_file_path)[["Latitude", "Longitude"]].round(config.ndp)
-        hourly_weather.run(config.region, list(places.drop_duplicates().itertuples(index=False, name=None)))
+        hourly = hourly_weather.run(config.region, list(places.drop_duplicates().itertuples(index=False, name=None)))
     except Exception as e:  # noqa: BLE001
+        hourly = None
         print(f"Hourly weather failed: {e!r}")
+    if hourly is not None:
+        try:
+            huerta.publish(config.region, hourly)
+        except Exception as e:  # noqa: BLE001
+            print(f"Huerta advice failed: {e!r}")
     print(f"Script ended at {datetime.now()}")
 
 
