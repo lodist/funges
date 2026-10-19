@@ -143,24 +143,26 @@
 
     <!-- Moving into or out of /identify loads a new page (src/lib/isolation.ts).
          The page being left stays on screen, blurred, until the new one has
-         drawn; the script in <body> ends the transition. The 3 s hold is the
-         ceiling if the app never draws.
+         drawn; the script below ends the transition. The 3 s hold is the
+         ceiling if the app never draws. The browser captures the new page at
+         its first frame, which on a slow CPU comes mid-parse: the script sits
+         in <head>, and rel=expect holds that frame until #page-wait exists.
          ponytail: hides the new page of every view transition; scope it with
          `types` if the app ever calls document.startViewTransition. -->
+    <link rel="expect" href="#page-wait" blocking="render" />
     <style>
       @view-transition {
         navigation: auto;
       }
+      /* A static blur, not an animated one: Chrome steps a filter animation on
+         the main thread, which the new page's JavaScript keeps busy on a slow
+         CPU, so the blur never showed. The veil's fade-in still softens it. */
       ::view-transition-old(root) {
-        animation: vt-blur 0.2s forwards;
+        animation: none;
+        filter: blur(6px);
       }
       ::view-transition-new(root) {
         animation: vt-hold 3s;
-      }
-      @keyframes vt-blur {
-        to {
-          filter: blur(6px);
-        }
       }
       @keyframes vt-hold {
         from,
@@ -168,7 +170,53 @@
           opacity: 0;
         }
       }
+      /* An in-app page change shows the squirrel, a launch the splash. */
+      #page-wait,
+      .page-change #app-splash {
+        display: none !important;
+      }
+      .page-change #page-wait {
+        display: block !important;
+      }
     </style>
+    <script>
+      // The theme class theme-provider.tsx sets once React runs, set now so the
+      // veil and the first frame already match it.
+      try {
+        var theme = localStorage.getItem('vite-ui-theme') || 'system';
+        var dark =
+          theme === 'dark' ||
+          (theme === 'system' &&
+            matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.add(dark ? 'dark' : 'light');
+      } catch (e) {}
+      // A load into or out of /identify (an in-app link, or the route guard's
+      // replace) comes from this site: a page change, not a launch.
+      if (document.referrer.indexOf(location.origin + '/') === 0) {
+        document.documentElement.classList.add('page-change');
+      }
+      // Once React has drawn something, drop the squirrel and end the view
+      // transition in the same frame. A page React drew before the first frame
+      // (or restored from the back/forward cache) ends it at reveal.
+      var transition = null;
+      function drawn() {
+        var root = document.getElementById('root');
+        return !!(root && root.firstChild);
+      }
+      function done() {
+        var pageWait = document.getElementById('page-wait');
+        if (pageWait) pageWait.remove();
+        if (transition) transition.skipTransition();
+      }
+      addEventListener('pagereveal', function (e) {
+        transition = e.viewTransition;
+        if (drawn()) done();
+      });
+      (function poll() {
+        if (drawn()) done();
+        else requestAnimationFrame(poll);
+      })();
+    </script>
   </head>
   <body>
     <!-- Inline overlay: the app's first paint waits on the CSS + JS, so until
@@ -210,7 +258,6 @@
          it live (animating) above the old page's still snapshot. -->
     <div
       id="page-wait"
-      hidden
       style="
         position: fixed;
         inset: 0;
@@ -235,45 +282,6 @@
         "
       />
     </div>
-    <script>
-      // The theme class theme-provider.tsx sets once React runs, set now so the
-      // veil and the first frame already match it.
-      try {
-        var theme = localStorage.getItem('vite-ui-theme') || 'system';
-        var dark =
-          theme === 'dark' ||
-          (theme === 'system' &&
-            matchMedia('(prefers-color-scheme: dark)').matches);
-        document.documentElement.classList.add(dark ? 'dark' : 'light');
-      } catch (e) {}
-      // A load into or out of /identify (an in-app link, or the route guard's
-      // replace) comes from this site: a page change, not a launch. No splash,
-      // the squirrel instead.
-      var pageWait = document.getElementById('page-wait');
-      if (document.referrer.indexOf(location.origin + '/') === 0) {
-        document.getElementById('app-splash').remove();
-        pageWait.hidden = false;
-      }
-      function whenDrawn(done) {
-        (function poll() {
-          var root = document.getElementById('root');
-          if (root && root.firstChild) requestAnimationFrame(done);
-          else requestAnimationFrame(poll);
-        })();
-      }
-      // Once React has drawn something: drop the squirrel, and end the view
-      // transition (see <head>), also on a back/forward cache restore.
-      whenDrawn(function () {
-        pageWait.remove();
-      });
-      addEventListener('pagereveal', function (e) {
-        var vt = e.viewTransition;
-        if (vt)
-          whenDrawn(function () {
-            vt.skipTransition();
-          });
-      });
-    </script>
     <div id="root"></div>
     <script type="module" src="src/main.tsx"></script>
   </body>
