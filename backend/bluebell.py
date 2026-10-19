@@ -11,7 +11,7 @@ of the normals: docs/species/2026-10-10-bluebell.md, from
 backend/tools/calibrate_bluebell.py.
 
 The cells are drawn on bluebell woods (backend/generated/bluebell_woods_EU.parquet,
-from backend/tools/build_spectacle_ground.py): the broadleaf and mixed woods the
+built offline): the broadleaf and mixed woods the
 species layers are drawn on, within the bluebell's native range.
 """
 from __future__ import annotations

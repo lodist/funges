@@ -179,7 +179,10 @@
         display: block !important;
       }
     </style>
-    <script>
+    <!-- data-cfasync="false": Cloudflare's Rocket Loader otherwise defers this
+         script until after the page has loaded, long past the first frame it
+         exists for (DEPLOYMENT.md). -->
+    <script data-cfasync="false">
       // The theme class theme-provider.tsx sets once React runs, set now so the
       // veil and the first frame already match it.
       try {

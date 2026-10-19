@@ -9,8 +9,8 @@ year's degree-days above BASE since 1 March reach their normal sum at NORMAL_PEA
 
 Fitted on iNaturalist records and the German weather service's first-flowering series:
 docs/species/2026-10-11-heather.md, from backend/tools/calibrate_heather.py. Drawn on
-moors and heaths (backend/generated/heather_moors_EU.parquet, from
-backend/tools/build_spectacle_ground.py): CORINE's moors and heathland, and in Britain
+moors and heaths (backend/generated/heather_moors_EU.parquet, built
+offline): CORINE's moors and heathland, and in Britain
 and Ireland its blanket bog, inside Calluna's range.
 """
 from __future__ import annotations

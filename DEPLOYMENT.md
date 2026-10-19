@@ -35,6 +35,8 @@ dashboard for `fung.es`:
    on `/assets/*` setting `max-age=31536000, immutable` removes ~370 KB of
    revalidation per repeat visit.
 3. **Rocket Loader** — off is best. The build now emits `data-cfasync="false"`
-   on the entry script (see `cfasyncOptOut` in `vite.config.ts`), which opts the
-   one script that matters out of it, but the feature buys a Vite/React app
-   nothing.
+   on the entry script (see `cfasyncOptOut` in `vite.config.ts`), and the
+   inline script in `index.html` carries it too, because that script must run
+   before the first frame (the view transition and squirrel around
+   `/identify`). The feature buys a Vite/React app nothing, and any new inline
+   script needs the same attribute while it stays on.
