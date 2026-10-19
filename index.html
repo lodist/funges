@@ -205,24 +205,73 @@
         "
       />
     </div>
+    <!-- The map's loading overlay (squirrel on an 80% veil), over the blurred
+         page during an in-app page change. Its own view-transition-name keeps
+         it live (animating) above the old page's still snapshot. -->
+    <div
+      id="page-wait"
+      hidden
+      style="
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: color-mix(
+          in oklch,
+          var(--background, #f8f5f0) 80%,
+          transparent
+        );
+        view-transition-name: page-wait;
+      "
+    >
+      <img
+        src="/src/assets/images/loading_squirrel.gif"
+        alt=""
+        style="
+          position: absolute;
+          inset: 0;
+          width: 13.4rem;
+          height: 13.4rem;
+          margin: auto;
+        "
+      />
+    </div>
     <script>
+      // The theme class theme-provider.tsx sets once React runs, set now so the
+      // veil and the first frame already match it.
+      try {
+        var theme = localStorage.getItem('vite-ui-theme') || 'system';
+        var dark =
+          theme === 'dark' ||
+          (theme === 'system' &&
+            matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.add(dark ? 'dark' : 'light');
+      } catch (e) {}
       // A load into or out of /identify (an in-app link, or the route guard's
-      // replace) comes from this site: a page change, not a launch. No splash.
+      // replace) comes from this site: a page change, not a launch. No splash,
+      // the squirrel instead.
+      var pageWait = document.getElementById('page-wait');
       if (document.referrer.indexOf(location.origin + '/') === 0) {
         document.getElementById('app-splash').remove();
+        pageWait.hidden = false;
       }
-      // End the view transition (see <head>) once React has drawn something.
+      function whenDrawn(done) {
+        (function poll() {
+          var root = document.getElementById('root');
+          if (root && root.firstChild) requestAnimationFrame(done);
+          else requestAnimationFrame(poll);
+        })();
+      }
+      // Once React has drawn something: drop the squirrel, and end the view
+      // transition (see <head>), also on a back/forward cache restore.
+      whenDrawn(function () {
+        pageWait.remove();
+      });
       addEventListener('pagereveal', function (e) {
         var vt = e.viewTransition;
-        if (!vt) return;
-        (function wait() {
-          var root = document.getElementById('root');
-          if (root && root.firstChild) {
-            requestAnimationFrame(function () {
-              vt.skipTransition();
-            });
-          } else requestAnimationFrame(wait);
-        })();
+        if (vt)
+          whenDrawn(function () {
+            vt.skipTransition();
+          });
       });
     </script>
     <div id="root"></div>
