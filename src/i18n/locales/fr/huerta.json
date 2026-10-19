@@ -1,0 +1,78 @@
+{
+  "title": "Votre potager cette semaine",
+  "description": "Quoi semer et planter cette semaine, alertes gel et arrosage pour votre commune.",
+  "sample": "Exemple : {{place}}, {{day}}. Bientôt votre propre commune.",
+  "count_one": "{{count}} culture",
+  "count_other": "{{count}} cultures",
+  "frost": {
+    "none": "Pas de gel dans les 3 prochains jours",
+    "ground_frost": "Gelée blanche possible dans les 3 prochains jours : couvrez les plantes fragiles",
+    "frost": "Gel dans les 3 prochains jours : protégez les plantes fragiles"
+  },
+  "week": {
+    "label": "Cette semaine",
+    "soil": "Sol",
+    "nights": "Nuits",
+    "rain": "Pluie de la semaine",
+    "water": "À arroser",
+    "noWater": "Rien"
+  },
+  "units": {
+    "celsius": "{{value}} °C",
+    "mm": "{{value}} mm"
+  },
+  "now": {
+    "title": "À semer ou planter maintenant"
+  },
+  "waiting": {
+    "title": "Pas encore"
+  },
+  "over": {
+    "title": "Trop tard cette année",
+    "show": "Afficher les {{count}}"
+  },
+  "how": {
+    "sow": "Semer",
+    "plant": "Planter"
+  },
+  "status": {
+    "now": "Maintenant",
+    "wait_frost": "Gel encore probable",
+    "wait_soil": "Sol encore trop froid",
+    "wait_warm": "Nuits encore trop froides",
+    "too_warm": "Sol trop chaud pour l'instant",
+    "too_late": "Trop tard cette année",
+    "not_here": "Pas en plein air ici"
+  },
+  "crops": {
+    "garlic": "Ail",
+    "broad_beans": "Fèves",
+    "lettuce": "Laitue",
+    "spinach": "Épinard",
+    "peas": "Petits pois",
+    "radish": "Radis",
+    "carrot": "Carotte",
+    "beetroot": "Betterave",
+    "chard": "Blette",
+    "kale": "Chou kale",
+    "cabbage": "Chou",
+    "broccoli": "Brocoli",
+    "onion_sets": "Bulbilles d'oignon",
+    "potato": "Pomme de terre",
+    "tomato": "Tomate",
+    "pepper": "Poivron",
+    "aubergine": "Aubergine",
+    "cucumber": "Concombre",
+    "courgette": "Courgette",
+    "pumpkin": "Potiron",
+    "melon": "Melon",
+    "green_beans": "Haricots verts",
+    "sweetcorn": "Maïs doux",
+    "basil": "Basilic",
+    "parsley": "Persil",
+    "coriander": "Coriandre",
+    "sunflower": "Tournesol",
+    "marigold": "Œillet d'Inde",
+    "sweet_pea": "Pois de senteur"
+  }
+}

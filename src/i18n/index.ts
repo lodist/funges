@@ -16,6 +16,7 @@ import enMap from './locales/en/map.json';
 import enSettings from './locales/en/settings.json';
 import enOffline from './locales/en/offline.json';
 import enIdentify from './locales/en/identify.json';
+import enHuerta from './locales/en/huerta.json';
 import itCommon from './locales/it/common.json';
 import itSpecies from './locales/it/species.json';
 import itRecipes from './locales/it/recipes.json';
@@ -29,6 +30,7 @@ import itMap from './locales/it/map.json';
 import itSettings from './locales/it/settings.json';
 import itOffline from './locales/it/offline.json';
 import itIdentify from './locales/it/identify.json';
+import itHuerta from './locales/it/huerta.json';
 import frCommon from './locales/fr/common.json';
 import frSpecies from './locales/fr/species.json';
 import frRecipes from './locales/fr/recipes.json';
@@ -42,6 +44,7 @@ import frMap from './locales/fr/map.json';
 import frSettings from './locales/fr/settings.json';
 import frOffline from './locales/fr/offline.json';
 import frIdentify from './locales/fr/identify.json';
+import frHuerta from './locales/fr/huerta.json';
 import deCommon from './locales/de/common.json';
 import deSpecies from './locales/de/species.json';
 import deRecipes from './locales/de/recipes.json';
@@ -55,6 +58,7 @@ import deMap from './locales/de/map.json';
 import deSettings from './locales/de/settings.json';
 import deOffline from './locales/de/offline.json';
 import deIdentify from './locales/de/identify.json';
+import deHuerta from './locales/de/huerta.json';
 import esCommon from './locales/es/common.json';
 import esSpecies from './locales/es/species.json';
 import esRecipes from './locales/es/recipes.json';
@@ -68,6 +72,7 @@ import esMap from './locales/es/map.json';
 import esSettings from './locales/es/settings.json';
 import esOffline from './locales/es/offline.json';
 import esIdentify from './locales/es/identify.json';
+import esHuerta from './locales/es/huerta.json';
 import ptCommon from './locales/pt/common.json';
 import ptSpecies from './locales/pt/species.json';
 import ptRecipes from './locales/pt/recipes.json';
@@ -81,6 +86,7 @@ import ptMap from './locales/pt/map.json';
 import ptSettings from './locales/pt/settings.json';
 import ptOffline from './locales/pt/offline.json';
 import ptIdentify from './locales/pt/identify.json';
+import ptHuerta from './locales/pt/huerta.json';
 
 const resources = {
   en: {
@@ -97,6 +103,7 @@ const resources = {
     settings: enSettings,
     offline: enOffline,
     identify: enIdentify,
+    huerta: enHuerta,
   },
   it: {
     common: itCommon,
@@ -112,6 +119,7 @@ const resources = {
     settings: itSettings,
     offline: itOffline,
     identify: itIdentify,
+    huerta: itHuerta,
   },
   fr: {
     common: frCommon,
@@ -127,6 +135,7 @@ const resources = {
     settings: frSettings,
     offline: frOffline,
     identify: frIdentify,
+    huerta: frHuerta,
   },
   de: {
     common: deCommon,
@@ -142,6 +151,7 @@ const resources = {
     settings: deSettings,
     offline: deOffline,
     identify: deIdentify,
+    huerta: deHuerta,
   },
   es: {
     common: esCommon,
@@ -157,6 +167,7 @@ const resources = {
     settings: esSettings,
     offline: esOffline,
     identify: esIdentify,
+    huerta: esHuerta,
   },
   pt: {
     common: ptCommon,
@@ -172,6 +183,7 @@ const resources = {
     settings: ptSettings,
     offline: ptOffline,
     identify: ptIdentify,
+    huerta: ptHuerta,
   },
 };
 

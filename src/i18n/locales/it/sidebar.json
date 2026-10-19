@@ -15,5 +15,17 @@
   "data": "Dati",
   "settings": "Impostazioni",
   "help": "Aiuto",
-  "googlePlay": "Disponibile su Google Play"
+  "googlePlay": "Disponibile su Google Play",
+  "huertaWeek": "Il tuo orto",
+  "spaces": {
+    "switch": "Spazio: {{space}}. Cambia spazio",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Cibo selvatico vicino a te"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Il tuo orto, questa settimana"
+    }
+  }
 }

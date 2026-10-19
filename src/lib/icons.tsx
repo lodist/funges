@@ -24,11 +24,13 @@ import {
   ChevronUpIcon as LucideChevronUpIcon,
   CircleIcon as LucideCircleIcon,
   Clock as LucideClock,
+  CloudRain as LucideCloudRain,
   Coffee as LucideCoffee,
   Coins as LucideCoins,
   Copy as LucideCopy,
   Database as LucideDatabase,
   Download as LucideDownload,
+  Droplets as LucideDroplets,
   ExternalLink as LucideExternalLink,
   Filter as LucideFilter,
   FlaskConical as LucideFlaskConical,
@@ -72,6 +74,7 @@ import {
   Smartphone as LucideSmartphone,
   ShieldCheck as LucideShieldCheck,
   Skull as LucideSkull,
+  Snowflake as LucideSnowflake,
   Sprout as LucideSprout,
   Star as LucideStar,
   Sun as LucideSun,
@@ -141,11 +144,13 @@ export const ChevronRightIcon = decorativeByDefault(LucideChevronRightIcon);
 export const ChevronUpIcon = decorativeByDefault(LucideChevronUpIcon);
 export const CircleIcon = decorativeByDefault(LucideCircleIcon);
 export const Clock = decorativeByDefault(LucideClock);
+export const CloudRain = decorativeByDefault(LucideCloudRain);
 export const Coffee = decorativeByDefault(LucideCoffee);
 export const Coins = decorativeByDefault(LucideCoins);
 export const Copy = decorativeByDefault(LucideCopy);
 export const Database = decorativeByDefault(LucideDatabase);
 export const Download = decorativeByDefault(LucideDownload);
+export const Droplets = decorativeByDefault(LucideDroplets);
 export const ExternalLink = decorativeByDefault(LucideExternalLink);
 export const Filter = decorativeByDefault(LucideFilter);
 export const FlaskConical = decorativeByDefault(LucideFlaskConical);
@@ -189,6 +194,7 @@ export const Share = decorativeByDefault(LucideShare);
 export const Smartphone = decorativeByDefault(LucideSmartphone);
 export const ShieldCheck = decorativeByDefault(LucideShieldCheck);
 export const Skull = decorativeByDefault(LucideSkull);
+export const Snowflake = decorativeByDefault(LucideSnowflake);
 export const Sprout = decorativeByDefault(LucideSprout);
 export const Star = decorativeByDefault(LucideStar);
 export const Sun = decorativeByDefault(LucideSun);

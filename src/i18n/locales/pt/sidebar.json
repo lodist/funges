@@ -15,5 +15,17 @@
   "data": "Dados",
   "settings": "Configurações",
   "help": "Ajuda",
-  "googlePlay": "Disponível no Google Play"
+  "googlePlay": "Disponível no Google Play",
+  "huertaWeek": "Sua horta",
+  "spaces": {
+    "switch": "Espaço: {{space}}. Mudar de espaço",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Comida silvestre perto de você"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Sua horta, esta semana"
+    }
+  }
 }

@@ -1,0 +1,78 @@
+{
+  "title": "Sua horta esta semana",
+  "description": "O que semear e plantar esta semana, alertas de geada e rega para a sua cidade.",
+  "sample": "Exemplo: {{place}}, {{day}}. Em breve, a sua cidade.",
+  "count_one": "{{count}} cultura",
+  "count_other": "{{count}} culturas",
+  "frost": {
+    "none": "Sem geada nos próximos 3 dias",
+    "ground_frost": "Possível geada no solo nos próximos 3 dias: cubra as plantas sensíveis",
+    "frost": "Geada nos próximos 3 dias: proteja as plantas sensíveis"
+  },
+  "week": {
+    "label": "Esta semana",
+    "soil": "Solo",
+    "nights": "Noites",
+    "rain": "Chuva da semana",
+    "water": "A regar",
+    "noWater": "Nada"
+  },
+  "units": {
+    "celsius": "{{value}} °C",
+    "mm": "{{value}} mm"
+  },
+  "now": {
+    "title": "Semeie ou plante agora"
+  },
+  "waiting": {
+    "title": "Ainda não"
+  },
+  "over": {
+    "title": "Tarde demais este ano",
+    "show": "Mostrar todas as {{count}}"
+  },
+  "how": {
+    "sow": "Semear",
+    "plant": "Plantar"
+  },
+  "status": {
+    "now": "Agora",
+    "wait_frost": "Ainda pode gear",
+    "wait_soil": "Solo ainda frio demais",
+    "wait_warm": "Noites ainda frias demais",
+    "too_warm": "Solo quente demais por enquanto",
+    "too_late": "Tarde demais este ano",
+    "not_here": "Não ao ar livre aqui"
+  },
+  "crops": {
+    "garlic": "Alho",
+    "broad_beans": "Favas",
+    "lettuce": "Alface",
+    "spinach": "Espinafre",
+    "peas": "Ervilhas",
+    "radish": "Rabanete",
+    "carrot": "Cenoura",
+    "beetroot": "Beterraba",
+    "chard": "Acelga",
+    "kale": "Couve kale",
+    "cabbage": "Repolho",
+    "broccoli": "Brócolis",
+    "onion_sets": "Bulbinhos de cebola",
+    "potato": "Batata",
+    "tomato": "Tomate",
+    "pepper": "Pimentão",
+    "aubergine": "Berinjela",
+    "cucumber": "Pepino",
+    "courgette": "Abobrinha",
+    "pumpkin": "Abóbora",
+    "melon": "Melão",
+    "green_beans": "Vagem",
+    "sweetcorn": "Milho doce",
+    "basil": "Manjericão",
+    "parsley": "Salsinha",
+    "coriander": "Coentro",
+    "sunflower": "Girassol",
+    "marigold": "Cravo-de-defunto",
+    "sweet_pea": "Ervilha-de-cheiro"
+  }
+}

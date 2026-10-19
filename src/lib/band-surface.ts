@@ -3,14 +3,16 @@
  * today: Worth Foraging Now's top pick, the Species season line and the
  * Recipes hero. One constant, so the three cannot drift apart.
  *
- * `--ring` (`--happy-700`) reads 1.9:1 on happy-900, so the band re-points it
- * to the step the landing's forecast band uses. The band is happy-900 in both
- * themes, so a happy-50 wash on it is too: those washes carry `dark:` twins
- * that repeat the light value, which is what theme-blind-fill.test.ts asks a
- * call site to say.
+ * The band is `--band`: happy-900 in Terra, its own terracotta in Huerta,
+ * whose deepest step is too dark for a band (index.css, the space blocks).
+ * `--ring` (`--happy-700`) reads 1.9:1 on Terra's band, so the band re-points
+ * it to the step the landing's forecast band uses. The band is the same in
+ * both themes, so a happy-50 wash on it is too: those washes carry `dark:`
+ * twins that repeat the light value, which is what theme-blind-fill.test.ts
+ * asks a call site to say.
  */
 export const BAND_SURFACE_CLASS =
-  'bg-happy-900 text-happy-50 [--ring:var(--happy-100)]';
+  'bg-band text-band-foreground [--ring:var(--happy-100)]';
 
 /** `outline` paints its stroke and label in --primary-text, which vanishes
  *  on the band; happy-100 holds the same stroke there. */
@@ -30,4 +32,4 @@ export const BAND_ACTIVE_CLASS =
 /** A button that wears the band itself, floating over the map with the rest of
  *  its green chrome (the language pill). */
 export const BAND_BUTTON_CLASS =
-  'border-happy-900 bg-happy-900 text-happy-50 [--ring:var(--happy-100)] hover:bg-happy-700 hover:text-happy-50';
+  'border-band bg-band text-band-foreground [--ring:var(--happy-100)] hover:bg-happy-700 hover:text-happy-50';

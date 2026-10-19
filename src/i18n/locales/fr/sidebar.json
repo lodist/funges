@@ -15,5 +15,17 @@
   "data": "Données",
   "settings": "Paramètres",
   "help": "Aide",
-  "googlePlay": "Disponible sur Google Play"
+  "googlePlay": "Disponible sur Google Play",
+  "huertaWeek": "Votre potager",
+  "spaces": {
+    "switch": "Espace : {{space}}. Changer d'espace",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Cueillette sauvage près de chez vous"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Votre potager, cette semaine"
+    }
+  }
 }

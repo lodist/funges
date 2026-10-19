@@ -21,6 +21,7 @@ import { Route as MapRouteImport } from './routes/map'
 import { Route as InstructionsRouteImport } from './routes/instructions'
 import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as IdentifyRouteImport } from './routes/identify'
+import { Route as HuertaRouteImport } from './routes/huerta'
 import { Route as DataRouteImport } from './routes/data'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -84,6 +85,11 @@ const IdentifyRoute = IdentifyRouteImport.update({
   path: '/identify',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HuertaRoute = HuertaRouteImport.update({
+  id: '/huerta',
+  path: '/huerta',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DataRoute = DataRouteImport.update({
   id: '/data',
   path: '/data',
@@ -98,6 +104,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/data': typeof DataRoute
+  '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/data': typeof DataRoute
+  '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/data': typeof DataRoute
+  '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
@@ -149,6 +158,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/data'
+    | '/huerta'
     | '/identify'
     | '/impressum'
     | '/instructions'
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/data'
+    | '/huerta'
     | '/identify'
     | '/impressum'
     | '/instructions'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/data'
+    | '/huerta'
     | '/identify'
     | '/impressum'
     | '/instructions'
@@ -198,6 +210,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DataRoute: typeof DataRoute
+  HuertaRoute: typeof HuertaRoute
   IdentifyRoute: typeof IdentifyRoute
   ImpressumRoute: typeof ImpressumRoute
   InstructionsRoute: typeof InstructionsRoute
@@ -298,6 +311,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IdentifyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/huerta': {
+      id: '/huerta'
+      path: '/huerta'
+      fullPath: '/huerta'
+      preLoaderRoute: typeof HuertaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/data': {
       id: '/data'
       path: '/data'
@@ -318,6 +338,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DataRoute: DataRoute,
+  HuertaRoute: HuertaRoute,
   IdentifyRoute: IdentifyRoute,
   ImpressumRoute: ImpressumRoute,
   InstructionsRoute: InstructionsRoute,

@@ -48,6 +48,9 @@ vi.mock('@/lib/feature-flags', () => ({
   get shouldShowOfflineFeatures() {
     return offlineEnabled.current;
   },
+  // The space switcher stays out of these link lists; Huerta's own nav is
+  // pinned by the last test.
+  shouldShowHuerta: false,
 }));
 
 const renderSidebar = () =>
@@ -220,5 +223,16 @@ describe('AppSidebar', () => {
     for (const className of NAV_SURFACE_CLASS.split(' ')) {
       expect(surface).toHaveClass(className);
     }
+  });
+
+  // Last: a shared page keeps the space a visitor came from (lib/spaces), so a
+  // Huerta route here would carry into a later test's /privacy-policy.
+  it('lists only its own pages in the Huerta space', () => {
+    pathname.current = '/huerta';
+    renderSidebar();
+
+    expect(navLinks()).toContain('/huerta');
+    expect(navLinks()).not.toContain('/map');
+    expect(navLinks()).not.toContain('/species');
   });
 });

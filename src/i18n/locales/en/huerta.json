@@ -1,0 +1,78 @@
+{
+  "title": "Your garden this week",
+  "description": "What to sow and plant this week, frost warnings and watering for your town.",
+  "sample": "Sample: {{place}}, {{day}}. Your own town comes next.",
+  "count_one": "{{count}} crop",
+  "count_other": "{{count}} crops",
+  "frost": {
+    "none": "No frost in the next 3 days",
+    "ground_frost": "Ground frost possible in the next 3 days: cover tender plants",
+    "frost": "Frost in the next 3 days: protect tender plants"
+  },
+  "week": {
+    "label": "This week",
+    "soil": "Soil",
+    "nights": "Nights",
+    "rain": "Rain this week",
+    "water": "To water",
+    "noWater": "None"
+  },
+  "units": {
+    "celsius": "{{value}} °C",
+    "mm": "{{value}} mm"
+  },
+  "now": {
+    "title": "Sow or plant now"
+  },
+  "waiting": {
+    "title": "Not yet"
+  },
+  "over": {
+    "title": "Too late this year",
+    "show": "Show all {{count}}"
+  },
+  "how": {
+    "sow": "Sow",
+    "plant": "Plant"
+  },
+  "status": {
+    "now": "Now",
+    "wait_frost": "Frost still likely",
+    "wait_soil": "Soil still too cold",
+    "wait_warm": "Nights still too cold",
+    "too_warm": "Soil too warm for now",
+    "too_late": "Too late this year",
+    "not_here": "Not outdoors here"
+  },
+  "crops": {
+    "garlic": "Garlic",
+    "broad_beans": "Broad beans",
+    "lettuce": "Lettuce",
+    "spinach": "Spinach",
+    "peas": "Peas",
+    "radish": "Radish",
+    "carrot": "Carrot",
+    "beetroot": "Beetroot",
+    "chard": "Chard",
+    "kale": "Kale",
+    "cabbage": "Cabbage",
+    "broccoli": "Broccoli",
+    "onion_sets": "Onion sets",
+    "potato": "Potato",
+    "tomato": "Tomato",
+    "pepper": "Pepper",
+    "aubergine": "Aubergine",
+    "cucumber": "Cucumber",
+    "courgette": "Courgette",
+    "pumpkin": "Pumpkin",
+    "melon": "Melon",
+    "green_beans": "Green beans",
+    "sweetcorn": "Sweetcorn",
+    "basil": "Basil",
+    "parsley": "Parsley",
+    "coriander": "Coriander",
+    "sunflower": "Sunflower",
+    "marigold": "Marigold",
+    "sweet_pea": "Sweet pea"
+  }
+}

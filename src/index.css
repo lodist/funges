@@ -109,6 +109,10 @@
   --color-happy-600: var(--happy-600);
   --color-happy-700: var(--happy-700);
   --color-happy-900: var(--happy-900);
+  /* The band (BAND_SURFACE_CLASS): Terra's deepest step, its own colour in a
+     space whose deepest step is too dark to be a band (Huerta). */
+  --color-band: var(--band);
+  --color-band-foreground: var(--band-foreground);
   --color-scrim: var(--scrim);
 
   /* Motion (#200, #225). Registered here so Tailwind emits the utilities:
@@ -369,21 +373,7 @@
   --status-warning-text: #800020;
   --status-warning-border: #fb4646;
 
-  /* "Happy green" scale — #213 Trailhead atom redesign, reviewed 2026-08-22.
-     Lighter/more vivid than --primary, and used across the redesigned atoms
-     for everything except danger — severity is depth, not hue, but the
-     destructive tokens moved to hue 28 in #225 because a delete on the green
-     scale was indistinguishable from a confirm. Light-mode only: the redesign
-     wasn't reviewed in dark
-     mode, so dark-mode atom classes fall back to the pre-existing tokens
-     instead of these. Values from prototypes/atoms-213/palette.ts. */
-  --happy-50: oklch(0.97 0.03 150); /* #e8fbeb */
-  --happy-100: oklch(0.93 0.06 150); /* #ccf4d3 */
-  --happy-300: oklch(0.85 0.12 150); /* #93e4a4 */
-  --happy-500: oklch(0.74 0.17 150); /* #47c86e — fill */
-  --happy-600: oklch(0.65 0.18 150); /* #00ac4e — hover/pressed, fill only */
-  --happy-700: oklch(0.42 0.122 150); /* #005e25 — readable text/icon */
-  --happy-900: oklch(0.24 0.07 150); /* #00280b — deep, replaces red */
+  /* The brand scale (--happy-*) and the band live in the space blocks below. */
 
   /* Typography */
   --font-sans: 'Public Sans', sans-serif;
@@ -479,6 +469,57 @@
      the one directional variant in the scale, not a licence for more. */
   --elevation-floating-up: 0 -4px 20px rgba(0, 0, 0, 0.16); /* Sheet, side="bottom" */
   --elevation-overlay: 0 8px 32px rgba(0, 0, 0, 0.24); /* Dialog */
+}
+
+/* Spaces: Terra (foraging) is the default and the green scale; Huerta (the
+   garden) is the same scale in terracotta. <html data-space> sets the page's
+   space; any element can carry one to show another space's colour inside it
+   (the space switcher's dots). `@theme inline` makes the happy-* and band
+   utilities read these variables where they are used, so a scoped element
+   repaints; the tokens :root derives from them (--primary, --ring …) follow
+   the page's space. */
+:root,
+[data-space='terra'] {
+  /* "Happy green" scale — #213 Trailhead atom redesign, reviewed 2026-08-22.
+     Lighter/more vivid than --primary, and used across the redesigned atoms
+     for everything except danger — severity is depth, not hue, but the
+     destructive tokens moved to hue 28 in #225 because a delete on the green
+     scale was indistinguishable from a confirm. Light-mode only: the redesign
+     wasn't reviewed in dark
+     mode, so dark-mode atom classes fall back to the pre-existing tokens
+     instead of these. Values from prototypes/atoms-213/palette.ts. */
+  --happy-50: oklch(0.97 0.03 150); /* #e8fbeb */
+  --happy-100: oklch(0.93 0.06 150); /* #ccf4d3 */
+  --happy-300: oklch(0.85 0.12 150); /* #93e4a4 */
+  --happy-500: oklch(0.74 0.17 150); /* #47c86e — fill */
+  --happy-600: oklch(0.65 0.18 150); /* #00ac4e — hover/pressed, fill only */
+  --happy-700: oklch(0.42 0.122 150); /* #005e25 — readable text/icon */
+  --happy-900: oklch(0.24 0.07 150); /* #00280b — deep, replaces red */
+  --band: var(--happy-900);
+  --band-foreground: var(--happy-50);
+}
+
+/* Huerta: terracotta, picked over ochre, saffron and a light ochre
+   (2026-10-19). The green scale's roles at nearly its lightness steps. 700 on
+   paper 7.73:1; the 900 label on the 600 fill 4.77:1, on the hover fill
+   5.39:1. The band is lighter than the deepest step, which stays dark for
+   labels on fills and the tooltip: 50 on the band 5.96:1, the 100 ring on it
+   5.08:1, a 300 chip 3.78:1. */
+[data-space='huerta'] {
+  --happy-50: oklch(0.959 0.02 40); /* #fdeee6 */
+  --happy-100: oklch(0.908 0.042 40); /* #f9d9c9 */
+  --happy-300: oklch(0.821 0.081 40); /* #f2b49a */
+  --happy-500: oklch(0.73 0.132 40); /* #ec8a62 — fill */
+  --happy-600: oklch(0.649 0.151 40); /* #d96a40 — hover/pressed, fill only */
+  --happy-700: oklch(0.444 0.123 40); /* #8a3518 — readable text/icon */
+  --happy-900: oklch(0.247 0.068 40); /* #3b1206 — deep */
+  --band: oklch(0.486 0.13 40); /* #9a3f1f */
+  --band-foreground: var(--happy-50);
+  --primary-hover: oklch(0.679 0.142 40); /* #e07650 */
+  --secondary: oklch(0.965 0.013 40); /* #fbf1ec */
+  --secondary-foreground: oklch(
+    0.46 0.123 40
+  ); /* #8f3a1b, 6.78:1 on --secondary */
 }
 
 .dark {
@@ -655,6 +696,17 @@
     inset 0 1px 0 0 var(--glass-highlight), 0 -4px 20px rgba(0, 0, 0, 0.55);
   --elevation-overlay:
     inset 0 1px 0 0 var(--glass-highlight), 0 8px 32px rgba(0, 0, 0, 0.65);
+}
+
+/* Huerta at night: the .dark tokens above that spell hue 150, in terracotta
+   at the same lightness and chroma. */
+.dark[data-space='huerta'] {
+  --primary: oklch(0.68 0.14 40);
+  --primary-foreground: oklch(0.22 0.05 40);
+  --primary-text: oklch(0.74 0.12 40);
+  --secondary: oklch(0.39 0.03 40);
+  --secondary-foreground: oklch(0.9 0.017 40);
+  --ring: oklch(0.68 0.14 40);
 }
 
 @layer base {

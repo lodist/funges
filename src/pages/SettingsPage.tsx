@@ -18,6 +18,7 @@ import {
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import MapLastUpdated from '@/components/MapLastUpdated';
+import { SpaceSwitcher } from '@/components/SpaceSwitcher';
 
 export default function SettingsPage() {
   const { t } = useTranslation('settings');
@@ -87,6 +88,8 @@ export default function SettingsPage() {
         <h1 className='text-3xl font-bold text-foreground dark:text-white'>
           {t('title')}
         </h1>
+        {/* Phones have no sidebar: the hub is where the spaces meet. */}
+        <SpaceSwitcher className='w-full' />
 
         <div className='space-y-4'>
           {links.map(link => (

@@ -15,5 +15,17 @@
   "data": "Daten",
   "settings": "Einstellungen",
   "help": "Hilfe",
-  "googlePlay": "Jetzt bei Google Play"
+  "googlePlay": "Jetzt bei Google Play",
+  "huertaWeek": "Dein Garten",
+  "spaces": {
+    "switch": "Bereich: {{space}}. Bereich wechseln",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Wildes Essen in deiner Nähe"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Dein Garten, diese Woche"
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 import {
   Map,
   Database,
@@ -16,7 +16,10 @@ import {
   LifeBuoy,
   Smartphone,
   ScanSearch,
+  Sprout,
 } from '@/lib/icons';
+import { currentSpace } from '@/lib/spaces';
+import { SpaceSwitcher } from '@/components/SpaceSwitcher';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import { IDENTIFY_PATH } from '@/lib/isolation';
 import {
@@ -43,6 +46,16 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
   const { t: tCommon } = useTranslation('common');
   const { state, toggleSidebar } = useSidebar();
   const isMobile = useIsMobile();
+  const { pathname } = useLocation();
+  // Each space lists its own pages; Help is shared.
+  const huertaNav = [
+    {
+      title: t('huertaWeek'),
+      url: `${basePath}huerta`,
+      icon: Sprout,
+      isActive: true,
+    },
+  ];
   const data = {
     navMain: [
       {
@@ -207,10 +220,15 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             {!isMobile && <SidebarTrigger className='shrink-0' />}
           </div>
         )}
+        {(state !== 'collapsed' || isMobile) && (
+          <SpaceSwitcher className='mt-2 w-full' />
+        )}
       </SidebarHeader>
       <SidebarSeparator className='mx-2 group-data-[collapsible=icon]:mx-2' />
       <SidebarContent className='px-2 pt-4 pb-0 group-data-[collapsible=icon]:px-0'>
-        <NavMain items={data.navMain} />
+        <NavMain
+          items={currentSpace(pathname) === 'huerta' ? huertaNav : data.navMain}
+        />
         <NavMain items={data.navHelp} className='mt-auto' />
       </SidebarContent>
     </Sidebar>

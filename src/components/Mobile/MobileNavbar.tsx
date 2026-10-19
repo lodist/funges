@@ -6,7 +6,9 @@ import {
   Database,
   Settings as SettingsIcon,
   ScanSearch,
+  Sprout,
 } from '@/lib/icons';
+import { currentSpace } from '@/lib/spaces';
 import { IDENTIFY_PATH, isIsolatedPath } from '@/lib/isolation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useIsAppleMobile } from '@/hooks/use-apple-mobile';
@@ -41,6 +43,11 @@ const items = [
   { url: IDENTIFY_PATH, icon: ScanSearch, reloadDocument: true },
   { url: `${basePath}recipes`, icon: ChefHat },
   { url: `${basePath}species`, icon: Database },
+  { url: `${basePath}settings`, icon: SettingsIcon },
+];
+// Huerta's own pages; the hub (Settings) is shared and holds the switcher.
+const huertaItems: typeof items = [
+  { url: `${basePath}huerta`, icon: Sprout },
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];
 interface MobileNavbarProps {
@@ -79,7 +86,10 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
       transition={{ duration: DURATION_SLOW, ease: EASE_STANDARD }}
     >
       <ul className='flex justify-around items-center py-3 px-3'>
-        {items.map(item => {
+        {(currentSpace(location.pathname) === 'huerta'
+          ? huertaItems
+          : items
+        ).map(item => {
           const isActive =
             item.url === `${basePath}settings`
               ? location.pathname.startsWith(`${basePath}settings`) ||

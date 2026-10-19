@@ -1,5 +1,5 @@
 import { createRootRoute, Outlet, useLocation } from '@tanstack/react-router';
-import { useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useScroll, useMotionValueEvent, MotionConfig } from 'framer-motion';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -9,6 +9,7 @@ import FloatingLanguageSwitcher from '@/components/FloatingLanguageSwitcher';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { recordPath } from '@/lib/nav-history';
 import { crossesIsolationBoundary } from '@/lib/isolation';
+import { currentSpace, rememberPath } from '@/lib/spaces';
 
 // Evaluated once per document load: the route this document was served for.
 const DOCUMENT_PATH =
@@ -38,6 +39,14 @@ function RootComponent() {
   const isMobile = useIsMobile();
   const location = useLocation();
   recordPath(location.pathname);
+
+  // The space's colours hang off <html>, so dialogs and menus portalled out of
+  // the page wear them too; set before paint, so a page never flashes green.
+  const space = currentSpace(location.pathname);
+  useLayoutEffect(() => {
+    document.documentElement.dataset.space = space;
+  }, [space]);
+  useEffect(() => rememberPath(location.pathname), [location.pathname]);
 
   // The map is the one route that owns the viewport (no document scroll).
   const isMapPage =

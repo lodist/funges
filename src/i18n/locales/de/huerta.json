@@ -1,0 +1,78 @@
+{
+  "title": "Dein Garten diese Woche",
+  "description": "Was du diese Woche säen und pflanzen kannst, Frostwarnungen und Gießen für deinen Ort.",
+  "sample": "Beispiel: {{place}}, {{day}}. Bald dein eigener Ort.",
+  "count_one": "{{count}} Kultur",
+  "count_other": "{{count}} Kulturen",
+  "frost": {
+    "none": "Kein Frost in den nächsten 3 Tagen",
+    "ground_frost": "Bodenfrost möglich in den nächsten 3 Tagen: empfindliche Pflanzen abdecken",
+    "frost": "Frost in den nächsten 3 Tagen: empfindliche Pflanzen schützen"
+  },
+  "week": {
+    "label": "Diese Woche",
+    "soil": "Boden",
+    "nights": "Nächte",
+    "rain": "Regen diese Woche",
+    "water": "Zu gießen",
+    "noWater": "Nichts"
+  },
+  "units": {
+    "celsius": "{{value}} °C",
+    "mm": "{{value}} mm"
+  },
+  "now": {
+    "title": "Jetzt säen oder pflanzen"
+  },
+  "waiting": {
+    "title": "Noch nicht"
+  },
+  "over": {
+    "title": "Dieses Jahr zu spät",
+    "show": "Alle {{count}} zeigen"
+  },
+  "how": {
+    "sow": "Säen",
+    "plant": "Pflanzen"
+  },
+  "status": {
+    "now": "Jetzt",
+    "wait_frost": "Noch Frostgefahr",
+    "wait_soil": "Boden noch zu kalt",
+    "wait_warm": "Nächte noch zu kalt",
+    "too_warm": "Boden vorerst zu warm",
+    "too_late": "Dieses Jahr zu spät",
+    "not_here": "Hier nicht im Freien"
+  },
+  "crops": {
+    "garlic": "Knoblauch",
+    "broad_beans": "Dicke Bohnen",
+    "lettuce": "Salat",
+    "spinach": "Spinat",
+    "peas": "Erbsen",
+    "radish": "Radieschen",
+    "carrot": "Möhre",
+    "beetroot": "Rote Bete",
+    "chard": "Mangold",
+    "kale": "Grünkohl",
+    "cabbage": "Kohl",
+    "broccoli": "Brokkoli",
+    "onion_sets": "Steckzwiebeln",
+    "potato": "Kartoffel",
+    "tomato": "Tomate",
+    "pepper": "Paprika",
+    "aubergine": "Aubergine",
+    "cucumber": "Gurke",
+    "courgette": "Zucchini",
+    "pumpkin": "Kürbis",
+    "melon": "Melone",
+    "green_beans": "Grüne Bohnen",
+    "sweetcorn": "Zuckermais",
+    "basil": "Basilikum",
+    "parsley": "Petersilie",
+    "coriander": "Koriander",
+    "sunflower": "Sonnenblume",
+    "marigold": "Studentenblume",
+    "sweet_pea": "Duftwicke"
+  }
+}

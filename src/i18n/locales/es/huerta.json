@@ -1,0 +1,78 @@
+{
+  "title": "Tu huerto esta semana",
+  "description": "Qué sembrar y plantar esta semana, avisos de helada y riego para tu localidad.",
+  "sample": "Ejemplo: {{place}}, {{day}}. Pronto, tu propia localidad.",
+  "count_one": "{{count}} cultivo",
+  "count_other": "{{count}} cultivos",
+  "frost": {
+    "none": "Sin heladas en los próximos 3 días",
+    "ground_frost": "Posible escarcha en los próximos 3 días: cubre las plantas sensibles",
+    "frost": "Helada en los próximos 3 días: protege las plantas sensibles"
+  },
+  "week": {
+    "label": "Esta semana",
+    "soil": "Suelo",
+    "nights": "Noches",
+    "rain": "Lluvia esta semana",
+    "water": "A regar",
+    "noWater": "Nada"
+  },
+  "units": {
+    "celsius": "{{value}} °C",
+    "mm": "{{value}} mm"
+  },
+  "now": {
+    "title": "Siembra o planta ahora"
+  },
+  "waiting": {
+    "title": "Todavía no"
+  },
+  "over": {
+    "title": "Demasiado tarde este año",
+    "show": "Ver los {{count}}"
+  },
+  "how": {
+    "sow": "Sembrar",
+    "plant": "Plantar"
+  },
+  "status": {
+    "now": "Ahora",
+    "wait_frost": "Aún puede helar",
+    "wait_soil": "Suelo aún demasiado frío",
+    "wait_warm": "Noches aún demasiado frías",
+    "too_warm": "Suelo demasiado cálido por ahora",
+    "too_late": "Demasiado tarde este año",
+    "not_here": "No al aire libre aquí"
+  },
+  "crops": {
+    "garlic": "Ajo",
+    "broad_beans": "Habas",
+    "lettuce": "Lechuga",
+    "spinach": "Espinaca",
+    "peas": "Guisantes",
+    "radish": "Rábano",
+    "carrot": "Zanahoria",
+    "beetroot": "Remolacha",
+    "chard": "Acelga",
+    "kale": "Col rizada",
+    "cabbage": "Col",
+    "broccoli": "Brócoli",
+    "onion_sets": "Bulbillos de cebolla",
+    "potato": "Patata",
+    "tomato": "Tomate",
+    "pepper": "Pimiento",
+    "aubergine": "Berenjena",
+    "cucumber": "Pepino",
+    "courgette": "Calabacín",
+    "pumpkin": "Calabaza",
+    "melon": "Melón",
+    "green_beans": "Judías verdes",
+    "sweetcorn": "Maíz dulce",
+    "basil": "Albahaca",
+    "parsley": "Perejil",
+    "coriander": "Cilantro",
+    "sunflower": "Girasol",
+    "marigold": "Tagete",
+    "sweet_pea": "Guisante de olor"
+  }
+}
