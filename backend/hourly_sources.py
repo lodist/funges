@@ -54,10 +54,16 @@ def _map(fn, items):
 ICON_EU_URL = ("https://opendata.dwd.de/weather/nwp/icon-eu/grib/{init:%H}/{field}/"
                "icon-eu_europe_regular-lat-lon_single-level_{init:%Y%m%d%H}_{step:03d}_{FIELD}.grib2.bz2")
 ICON_EU_STEPS = (*range(0, 79), *range(81, 121, 3))
-ICON_EU_FIELDS = ("t_2m", "td_2m", "tot_prec", "u_10m", "v_10m", "aswdir_s", "aswdifd_s", "clct")
+ICON_EU_FIELDS = ("t_2m", "td_2m", "tot_prec", "u_10m", "v_10m", "aswdir_s", "aswdifd_s", "clct", "t_so")
+
+
+ICON_EU_SOIL_URL = ("https://opendata.dwd.de/weather/nwp/icon-eu/grib/{init:%H}/t_so/"
+                    "icon-eu_europe_regular-lat-lon_soil-level_{init:%Y%m%d%H}_{step:03d}_6_T_SO.grib2.bz2")
 
 
 def icon_eu_url(init, field, step):
+    if field == "t_so":   # soil temperature at 6 cm, where seeds sit (its file token is the depth)
+        return ICON_EU_SOIL_URL.format(init=init, step=step)
     return ICON_EU_URL.format(init=init, field=field, step=step, FIELD=field.upper())
 
 
@@ -76,6 +82,7 @@ ICON_EU = Source(
         "wind10_kmh": ("state", ("u_10m", "v_10m"), lambda u, v: np.hypot(u, v) * 3.6),
         "swdown_wm2": ("mean", ("aswdir_s", "aswdifd_s"), lambda direct, diffuse: direct + diffuse),
         "cloud_pct": ("state", ("clct",), lambda c: c),
+        "soil_c": ("state", ("t_so",), lambda t: t - K),
     },
 )
 
@@ -83,7 +90,7 @@ ICON_EU = Source(
 # requests on the night of 15-16 Oct 2026, when data.ecmwf.int served them.
 ECMWF_HOSTS = ("https://data.ecmwf.int/forecasts", "https://ecmwf-forecasts.s3.eu-central-1.amazonaws.com")
 ECMWF_STEPS = (*range(0, 145, 3), *range(150, 361, 6))
-ECMWF_FIELDS = ("2t", "2d", "tp", "10u", "10v", "ssrd", "tcc")
+ECMWF_FIELDS = ("2t", "2d", "tp", "10u", "10v", "ssrd", "tcc", "sot")
 
 
 def ecmwf_url(host, init, step):
@@ -91,11 +98,13 @@ def ecmwf_url(host, init, step):
 
 
 def ecmwf_messages(index_text):
-    """(param, first byte, last byte) of our surface fields in one step's .index."""
+    """(param, first byte, last byte) of our surface fields in one step's .index, and the top
+    soil layer's temperature (sot level 1, 0-7 cm)."""
     out = []
     for line in index_text.splitlines():
         entry = json.loads(line)
-        if entry.get("levtype") == "sfc" and entry["param"] in ECMWF_FIELDS:
+        top_soil = entry.get("levtype") == "sol" and entry.get("levelist") == "1"
+        if (entry.get("levtype") == "sfc" or top_soil) and entry["param"] in ECMWF_FIELDS:
             out.append((entry["param"], entry["_offset"], entry["_offset"] + entry["_length"] - 1))
     return out
 
@@ -129,6 +138,7 @@ ECMWF = Source(
         "wind10_kmh": ("state", ("10u", "10v"), lambda u, v: np.hypot(u, v) * 3.6),
         "swdown_wm2": ("accum", ("ssrd",), lambda r: r / 3600),    # J/m² -> W/m² over an hour
         "cloud_pct": ("state", ("tcc",), lambda c: c * 100),       # a 0-1 fraction
+        "soil_c": ("state", ("sot",), lambda t: t - K),            # 0-7 cm
     },
 )
 

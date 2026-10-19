@@ -1764,7 +1764,10 @@ def run_pipeline(config: RegionConfig):
     del df, weather_long, rain, static_map
     gc.collect()
     try:
-        hourly_weather.run(config.region, points)
+        # At every place (the base points, ~6-7 km apart), not just the ~10 km weather points:
+        # a garden needs its own town's weather, and the model files cost nothing per point.
+        places = read_df_from_source(base_file_path)[["Latitude", "Longitude"]].round(config.ndp)
+        hourly_weather.run(config.region, list(places.drop_duplicates().itertuples(index=False, name=None)))
     except Exception as e:  # noqa: BLE001
         print(f"Hourly weather failed: {e!r}")
     print(f"Script ended at {datetime.now()}")
