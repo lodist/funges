@@ -144,25 +144,25 @@
     <!-- Moving into or out of /identify loads a new page (src/lib/isolation.ts).
          The page being left stays on screen, blurred, until the new one has
          drawn; the script below ends the transition. The 3 s hold is the
-         ceiling if the app never draws. Both live in <head> because the
-         browser may draw its first frame (and fire pagereveal) before the
-         parser reaches <body>.
+         ceiling if the app never draws. The browser captures the new page at
+         its first frame, which on a slow CPU comes mid-parse: the script sits
+         in <head>, and rel=expect holds that frame until #page-wait exists.
          ponytail: hides the new page of every view transition; scope it with
          `types` if the app ever calls document.startViewTransition. -->
+    <link rel="expect" href="#page-wait" blocking="render" />
     <style>
       @view-transition {
         navigation: auto;
       }
+      /* A static blur, not an animated one: Chrome steps a filter animation on
+         the main thread, which the new page's JavaScript keeps busy on a slow
+         CPU, so the blur never showed. The veil's fade-in still softens it. */
       ::view-transition-old(root) {
-        animation: vt-blur 0.2s forwards;
+        animation: none;
+        filter: blur(6px);
       }
       ::view-transition-new(root) {
         animation: vt-hold 3s;
-      }
-      @keyframes vt-blur {
-        to {
-          filter: blur(6px);
-        }
       }
       @keyframes vt-hold {
         from,
@@ -195,26 +195,27 @@
       if (document.referrer.indexOf(location.origin + '/') === 0) {
         document.documentElement.classList.add('page-change');
       }
-      function whenDrawn(done) {
-        (function poll() {
-          var root = document.getElementById('root');
-          if (root && root.firstChild) requestAnimationFrame(done);
-          else requestAnimationFrame(poll);
-        })();
+      // Once React has drawn something, drop the squirrel and end the view
+      // transition in the same frame. A page React drew before the first frame
+      // (or restored from the back/forward cache) ends it at reveal.
+      var transition = null;
+      function drawn() {
+        var root = document.getElementById('root');
+        return !!(root && root.firstChild);
       }
-      // Once React has drawn something: drop the squirrel, and end the view
-      // transition, also on a back/forward cache restore.
-      whenDrawn(function () {
+      function done() {
         var pageWait = document.getElementById('page-wait');
         if (pageWait) pageWait.remove();
-      });
+        if (transition) transition.skipTransition();
+      }
       addEventListener('pagereveal', function (e) {
-        var vt = e.viewTransition;
-        if (vt)
-          whenDrawn(function () {
-            vt.skipTransition();
-          });
+        transition = e.viewTransition;
+        if (drawn()) done();
       });
+      (function poll() {
+        if (drawn()) done();
+        else requestAnimationFrame(poll);
+      })();
     </script>
   </head>
   <body>
