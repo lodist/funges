@@ -767,9 +767,9 @@ export interface PlaceAdvice {
   /** What the week's evaporation takes that its rain does not give back, mm. */
   water: number | null;
   /** This place's typical last spring and first autumn frost, day of the
-   *  year; null where a typical year has none. */
-  lastFrost: number | null;
-  firstFrost: number | null;
+   *  year; null where a typical year has none, absent when not known. */
+  lastFrost?: number | null;
+  firstFrost?: number | null;
   crops: Record<string, CropStatus>;
 }
 
