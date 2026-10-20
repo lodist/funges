@@ -37,7 +37,8 @@
     "mm": "{{value}} mm"
   },
   "now": {
-    "title": "Semeie ou plante agora"
+    "title": "Semeie ou plante agora",
+    "none": "Nada para semear ou plantar aqui esta semana."
   },
   "waiting": {
     "title": "Ainda não"
@@ -131,5 +132,13 @@
     "crimson_clover": "Trevo-encarnado",
     "phacelia": "Facélia",
     "white_mustard": "Mostarda-branca"
+  },
+  "kinds": {
+    "all": "Todos",
+    "vegetable": "Hortaliças",
+    "fruit": "Frutas",
+    "herb": "Ervas",
+    "flower": "Flores",
+    "cover": "Adubos verdes"
   }
 }

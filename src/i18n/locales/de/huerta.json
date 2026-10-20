@@ -37,7 +37,8 @@
     "mm": "{{value}} mm"
   },
   "now": {
-    "title": "Jetzt säen oder pflanzen"
+    "title": "Jetzt säen oder pflanzen",
+    "none": "Diese Woche gibt es hier nichts zu säen oder zu pflanzen."
   },
   "waiting": {
     "title": "Noch nicht"
@@ -131,5 +132,13 @@
     "crimson_clover": "Inkarnatklee",
     "phacelia": "Phacelia",
     "white_mustard": "Gelbsenf"
+  },
+  "kinds": {
+    "all": "Alle",
+    "vegetable": "Gemüse",
+    "fruit": "Obst",
+    "herb": "Kräuter",
+    "flower": "Blumen",
+    "cover": "Gründüngung"
   }
 }

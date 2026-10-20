@@ -1,5 +1,6 @@
 import { useEffect, useState, type ComponentType, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { CategoryChips } from '@/components/CategoryChips';
 import SEO from '@/components/SEO';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -16,6 +17,7 @@ import {
   cropsWith,
   SAMPLE_ADVICE,
   type Crop,
+  type CropKind,
   type CropStatus,
   type PlaceAdvice,
 } from '@/lib/huerta';
@@ -50,9 +52,19 @@ const WAITING: CropStatus[] = [
   'wait_spring',
 ];
 
-/** Kept out of the service worker's precache: only Huerta visitors fetch them. */
-const cropPhoto = (id: string) =>
-  `${import.meta.env.BASE_URL}huerta/crops/${id}.webp`;
+const KINDS: (CropKind | 'all')[] = [
+  'all',
+  'vegetable',
+  'fruit',
+  'herb',
+  'flower',
+  'cover',
+];
+
+/** Crop photos and type icons, kept out of the service worker's precache:
+ *  only Huerta visitors fetch them. */
+const image = (path: string) =>
+  `${import.meta.env.BASE_URL}huerta/${path}.webp`;
 
 type Load =
   | { state: 'picking' }
@@ -284,16 +296,36 @@ function PlacePicker({ onPick }: { onPick: (place: Place) => void }) {
 
 function Advice({ advice }: { advice: PlaceAdvice }) {
   const { t } = useTranslation('huerta');
-  const now = cropsWith(advice, ['now']);
-  const waiting = cropsWith(advice, WAITING);
-  const over = cropsWith(advice, ['too_late', 'not_here']);
+  const [kind, setKind] = useState<string>('all');
+  const pick = (statuses: CropStatus[]) =>
+    cropsWith(advice, statuses).filter(
+      crop => kind === 'all' || crop.kind === kind
+    );
+  const now = pick(['now']);
+  const waiting = pick(WAITING);
+  const over = pick(['too_late', 'not_here']);
   return (
     <>
       <Week advice={advice} />
 
+      <CategoryChips
+        chips={KINDS.map(value => ({
+          value,
+          label: t(`kinds.${value}`),
+          icon: image(`kinds/${value}`),
+        }))}
+        value={kind}
+        onChange={setKind}
+        className='mt-6 justify-start'
+      />
+
       <section className='mt-10'>
         <SectionTitle title={t('now.title')} count={now.length} />
-        <CropGrid crops={now} />
+        {now.length > 0 ? (
+          <CropGrid crops={now} />
+        ) : (
+          <p className='text-muted-foreground'>{t('now.none')}</p>
+        )}
       </section>
 
       {waiting.length > 0 ? (
@@ -395,15 +427,20 @@ function CropGrid({
           <li key={crop.id}>
             <Card padding='none' media className='h-full'>
               <img
-                src={cropPhoto(crop.id)}
+                src={image(`crops/${crop.id}`)}
                 alt=''
                 loading='lazy'
                 decoding='async'
                 className='aspect-square w-full bg-muted object-cover'
               />
               <span className='flex flex-1 flex-col items-start gap-2 p-3'>
-                <span className='block leading-tight font-semibold hyphens-auto break-words text-foreground'>
-                  {t(`crops.${crop.id}`)}
+                <span>
+                  <span className='block leading-tight font-semibold hyphens-auto break-words text-foreground'>
+                    {t(`crops.${crop.id}`)}
+                  </span>
+                  <span className='mt-0.5 block text-xs text-muted-foreground italic'>
+                    {crop.scientific}
+                  </span>
                 </span>
                 {line ? (
                   <span className='block text-sm text-muted-foreground'>

@@ -37,7 +37,8 @@
     "mm": "{{value}} mm"
   },
   "now": {
-    "title": "À semer ou planter maintenant"
+    "title": "À semer ou planter maintenant",
+    "none": "Rien à semer ni à planter ici cette semaine."
   },
   "waiting": {
     "title": "Pas encore"
@@ -131,5 +132,13 @@
     "crimson_clover": "Trèfle incarnat",
     "phacelia": "Phacélie",
     "white_mustard": "Moutarde blanche"
+  },
+  "kinds": {
+    "all": "Tous",
+    "vegetable": "Légumes",
+    "fruit": "Fruits",
+    "herb": "Aromatiques",
+    "flower": "Fleurs",
+    "cover": "Engrais verts"
   }
 }
