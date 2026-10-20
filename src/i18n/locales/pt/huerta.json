@@ -30,11 +30,15 @@
     "nights": "Noites",
     "rain": "Chuva da semana",
     "water": "A regar",
-    "noWater": "Nada"
+    "noWater": "Nada",
+    "lastFrost": "Última geada aqui: em geral por volta de {{date}}",
+    "firstFrost": "Primeira geada: em geral por volta de {{date}}",
+    "noFrostDates": "Aqui quase não geia"
   },
   "units": {
     "celsius": "{{value}} °C",
-    "mm": "{{value}} mm"
+    "mm": "{{value}} mm",
+    "litres": "{{value}} L/m²"
   },
   "now": {
     "title": "Semeie ou plante agora",
@@ -140,5 +144,60 @@
     "herb": "Ervas",
     "flower": "Flores",
     "cover": "Adubos verdes"
+  },
+  "sheet": {
+    "sowNow": "Semeie agora",
+    "plantNow": "Plante agora",
+    "week": "Esta semana em {{place}}",
+    "why": {
+      "soilRange": "Solo a {{soil}} °C. Vai bem entre {{min}} e {{max}} °C.",
+      "soilFrom": "Solo a {{soil}} °C. Vai bem a partir de {{min}} °C.",
+      "soilLow": "Solo a {{soil}} °C. Precisa de pelo menos {{min}} °C.",
+      "soilHigh": "Solo a {{soil}} °C. Vai bem abaixo de {{max}} °C.",
+      "nights": "Noites a {{nights}} °C. Precisa de noites acima de {{night}} °C.",
+      "frost": "Aqui ainda é provável que geie.",
+      "late": "Resta pouco tempo este ano antes das geadas ou do frio.",
+      "notHere": "Aqui os verões são frescos demais para cultivá-lo ao ar livre.",
+      "autumn": "Vai para a terra só no outono.",
+      "spring": "Vai para a terra só na primavera.",
+      "warmSeason": "As noites quentes de que precisa ainda não começaram aqui.",
+      "noFrost": "Não é provável que geie antes da colheita.",
+      "hardy": "Aguenta as geadas daqui."
+    },
+    "how": {
+      "sow": "Como semear",
+      "plant": "Como plantar"
+    },
+    "facts": {
+      "depth": "Profundidade",
+      "spacing": "Espaçamento",
+      "place": "Local",
+      "ready": "Colheita"
+    },
+    "depthCm": "A {{value}} cm",
+    "depthPot": "Na mesma profundidade do vaso",
+    "scatter": "Espalhe ralo e passe o ancinho",
+    "apart": "A {{value}} cm",
+    "apartRows": "A {{value}} cm, fileiras a {{rows}} cm",
+    "sun": {
+      "full": "Sol pleno",
+      "part": "Sol ou meia-sombra"
+    },
+    "ready": {
+      "weeks_one": "Em cerca de {{count}} semana",
+      "weeks_other": "Em cerca de {{count}} semanas",
+      "months_one": "Em cerca de {{count}} mês",
+      "months_other": "Em cerca de {{count}} meses",
+      "flowers_one": "Floresce em cerca de {{count}} semana",
+      "flowers_other": "Floresce em cerca de {{count}} semanas",
+      "cover_one": "Cobre o solo em cerca de {{count}} semana",
+      "cover_other": "Cobre o solo em cerca de {{count}} semanas",
+      "spring_flowers": "Floresce na próxima primavera",
+      "next_year": "Produz a partir do ano que vem",
+      "second_year": "Colhem-se talos a partir do segundo ano",
+      "third_year": "Cortam-se brotos a partir da terceira primavera",
+      "perennial": "Volta todo ano"
+    },
+    "source": "Dados de cultivo: RHS, UC ANR e guias de semeadura das empresas de sementes."
   }
 }

@@ -1,15 +1,10 @@
 import { useEffect, useState, type ComponentType, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
+import { CropSheet } from '@/components/CropSheet';
 import SEO from '@/components/SEO';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible';
 import { Input } from '@/components/ui/input';
 import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
@@ -31,7 +26,6 @@ import {
   type Town,
 } from '@/lib/huerta-api';
 import {
-  ChevronDown,
   CloudRain,
   Droplets,
   MapPinned,
@@ -297,6 +291,7 @@ function PlacePicker({ onPick }: { onPick: (place: Place) => void }) {
 function Advice({ advice }: { advice: PlaceAdvice }) {
   const { t } = useTranslation('huerta');
   const [kind, setKind] = useState<string>('all');
+  const [open, setOpen] = useState<Crop | null>(null);
   const pick = (statuses: CropStatus[]) =>
     cropsWith(advice, statuses).filter(
       crop => kind === 'all' || crop.kind === kind
@@ -322,7 +317,7 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
       <section className='mt-10'>
         <SectionTitle title={t('now.title')} count={now.length} />
         {now.length > 0 ? (
-          <CropGrid crops={now} />
+          <CropGrid crops={now} onOpen={setOpen} />
         ) : (
           <p className='text-muted-foreground'>{t('now.none')}</p>
         )}
@@ -333,22 +328,51 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
           <SectionTitle title={t('waiting.title')} count={waiting.length} />
           <CropGrid
             crops={waiting}
+            onOpen={setOpen}
             note={crop => t(`status.${advice.crops[crop.id]}`)}
           />
         </section>
       ) : null}
 
-      {over.length > 0 ? <TooLate crops={over} advice={advice} /> : null}
+      {over.length > 0 ? (
+        <TooLate crops={over} advice={advice} onOpen={setOpen} />
+      ) : null}
+
+      <CropSheet
+        crop={open}
+        advice={advice}
+        image={crop => image(`crops/${crop.id}`)}
+        onClose={() => setOpen(null)}
+      />
     </>
   );
 }
 
-/** The week on the band: the frost line, then soil, nights, rain, watering. */
+/** A day of the year as "22 March", in the reader's language. */
+const dayOfYear = (day: number, language: string) =>
+  new Intl.DateTimeFormat(language, { day: 'numeric', month: 'long' }).format(
+    new Date(2026, 0, day)
+  );
+
+/** The week on the band: the frost line, then soil, nights, rain, watering,
+ *  and under them this place's frost dates. */
 function Week({ advice }: { advice: PlaceAdvice }) {
-  const { t } = useTranslation('huerta');
+  const { t, i18n } = useTranslation('huerta');
   const FrostIcon = advice.frost === 'none' ? Sun : Snowflake;
-  const value = (number: number | null, unit: 'celsius' | 'mm') =>
+  const value = (number: number | null, unit: 'celsius' | 'mm' | 'litres') =>
     number === null ? '–' : t(`units.${unit}`, { value: Math.round(number) });
+  const dates = [
+    advice.lastFrost === null
+      ? null
+      : t('week.lastFrost', {
+          date: dayOfYear(advice.lastFrost, i18n.language),
+        }),
+    advice.firstFrost === null
+      ? null
+      : t('week.firstFrost', {
+          date: dayOfYear(advice.firstFrost, i18n.language),
+        }),
+  ].filter((date): date is string => date !== null);
   return (
     <section
       aria-label={t('week.label')}
@@ -369,9 +393,16 @@ function Week({ advice }: { advice: PlaceAdvice }) {
           {value(advice.rain, 'mm')}
         </Fact>
         <Fact icon={Droplets} label={t('week.water')}>
-          {advice.water === 0 ? t('week.noWater') : value(advice.water, 'mm')}
+          {advice.water === 0
+            ? t('week.noWater')
+            : value(advice.water, 'litres')}
         </Fact>
       </dl>
+      <p className='mt-6 flex flex-wrap gap-x-6 gap-y-1 border-t border-happy-100/25 pt-4 text-sm text-happy-100'>
+        {dates.length > 0
+          ? dates.map(date => <span key={date}>{date}</span>)
+          : t('week.noFrostDates')}
+      </p>
     </section>
   );
 }
@@ -410,13 +441,22 @@ function SectionTitle({ title, count }: { title: string; count: number }) {
   );
 }
 
+/** The Species page's plate, as a button that opens the crop's sheet. */
+const TILE_CLASS =
+  'focus-ring flex h-full w-full flex-col overflow-hidden rounded-card bg-card text-left elevation-raised elevation-interactive';
+
 function CropGrid({
   crops,
+  onOpen,
   note,
+  out = false,
 }: {
   crops: Crop[];
+  onOpen: (crop: Crop) => void;
   /** A line under the crop's name: why it waits, or why it is out. */
   note?: (crop: Crop) => string | undefined;
+  /** Its season is over here: the photo is greyed. */
+  out?: boolean;
 }) {
   const { t } = useTranslation('huerta');
   return (
@@ -425,13 +465,20 @@ function CropGrid({
         const line = note?.(crop);
         return (
           <li key={crop.id}>
-            <Card padding='none' media className='h-full'>
+            <button
+              type='button'
+              onClick={() => onOpen(crop)}
+              className={TILE_CLASS}
+            >
               <img
                 src={image(`crops/${crop.id}`)}
                 alt=''
                 loading='lazy'
                 decoding='async'
-                className='aspect-square w-full bg-muted object-cover'
+                className={cn(
+                  'aspect-square w-full bg-muted object-cover',
+                  out && 'opacity-80 grayscale'
+                )}
               />
               <span className='flex flex-1 flex-col items-start gap-2 p-3'>
                 <span>
@@ -447,11 +494,13 @@ function CropGrid({
                     {line}
                   </span>
                 ) : null}
-                <Badge variant='secondary' className='mt-auto'>
-                  {t(`how.${crop.how}`)}
-                </Badge>
+                {out ? null : (
+                  <Badge variant='secondary' className='mt-auto'>
+                    {t(`how.${crop.how}`)}
+                  </Badge>
+                )}
               </span>
-            </Card>
+            </button>
           </li>
         );
       })}
@@ -459,34 +508,39 @@ function CropGrid({
   );
 }
 
-/** What this year's season is over for, folded away under its names. */
-function TooLate({ crops, advice }: { crops: Crop[]; advice: PlaceAdvice }) {
+/** How many greyed plates show before "Show all": one row on a wide screen. */
+const OVER_SHOWN = 6;
+
+/** Crops whose season is over here, as greyed plates. */
+function TooLate({
+  crops,
+  advice,
+  onOpen,
+}: {
+  crops: Crop[];
+  advice: PlaceAdvice;
+  onOpen: (crop: Crop) => void;
+}) {
   const { t } = useTranslation('huerta');
+  const [all, setAll] = useState(false);
   return (
-    <Collapsible className='mt-10'>
+    <section className='mt-10'>
       <SectionTitle title={t('over.title')} count={crops.length} />
-      <CollapsibleTrigger asChild>
-        <Button
-          variant='outline'
-          className='group w-full justify-between'
-          aria-label={t('over.show', { count: crops.length })}
-        >
-          <span className='truncate'>
-            {crops.map(crop => t(`crops.${crop.id}`)).join(', ')}
-          </span>
-          <ChevronDown className='size-4 shrink-0 transition-transform group-data-[state=open]:rotate-180' />
+      <CropGrid
+        crops={all ? crops : crops.slice(0, OVER_SHOWN)}
+        onOpen={onOpen}
+        out
+        note={crop =>
+          advice.crops[crop.id] === 'not_here'
+            ? t('status.not_here')
+            : undefined
+        }
+      />
+      {!all && crops.length > OVER_SHOWN ? (
+        <Button variant='outline' className='mt-4' onClick={() => setAll(true)}>
+          {t('over.show', { count: crops.length })}
         </Button>
-      </CollapsibleTrigger>
-      <CollapsibleContent className='mt-3'>
-        <CropGrid
-          crops={crops}
-          note={crop =>
-            advice.crops[crop.id] === 'not_here'
-              ? t('status.not_here')
-              : undefined
-          }
-        />
-      </CollapsibleContent>
-    </Collapsible>
+      ) : null}
+    </section>
   );
 }
