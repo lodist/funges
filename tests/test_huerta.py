@@ -50,13 +50,21 @@ def test_area_files_group_places_by_square_with_one_letter_per_crop():
         "Latitude": [40.44, 40.30, 39.86], "Longitude": [-3.675, -3.75, -4.02],
         "frost3": [9.2, 1.5, -0.5], "soil3": [13.44, 12.0, np.nan], "night7": [8.5, 7.0, 6.0],
         "rain7": [4.0, 20.0, 1.0], "et07": [14.4, 10.0, 12.0],
+        "last0_median": [81, 0, 95], "first0_median": [361, 0, 330],
     })
     advice = pd.DataFrame({"garlic": ["now", "too_warm", "now"], "tomato": ["too_late", "too_late", "not_here"]})
     files = huerta.area_files(places, advice, "2026-10-20")
     assert sorted(files) == ["39_-5.json", "40_-4.json"]
     madrid = json.loads(files["40_-4.json"])
     assert madrid["day"] == "2026-10-20" and madrid["crops"] == ["garlic", "tomato"]
-    assert madrid["places"][0] == ["Ciudad Lineal", 40.44, -3.675, "", 13.4, 8.5, 4.0, 10.0, "nl"]
+    assert madrid["places"][0] == ["Ciudad Lineal", 40.44, -3.675, "", 13.4, 8.5, 4.0, 10.0, "nl", 81, 361]
+    assert madrid["places"][1][9:] == [None, None]                                 # no frost in a typical year
     assert madrid["places"][1][3] == "g" and madrid["places"][1][7] == 0.0       # ground frost; rain beat evaporation
     toledo = json.loads(files["39_-5.json"])["places"][0]
     assert toledo[3] == "f" and toledo[4] is None and toledo[8] == "nx"         # frost; no soil reading
+
+
+def test_crop_needs_say_what_each_crop_wants():
+    needs = json.loads(huerta.crop_needs(CROPS))
+    assert needs["tomato"] == {"frost": "tender", "soil": [16, None], "night": 10, "days": 70}
+    assert needs["garlic"] == {"frost": "hardy", "soil": [7, 15], "night": None, "days": 240}

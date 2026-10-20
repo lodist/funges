@@ -25,8 +25,11 @@ crops.csv, the crop table; FROST_ODDS_DIR (default app_operation/frost_odds) hol
 
 Output, private on R2 like the rest: one file per 1° square, huerta/advice/<REGION>/
 <lat>_<lon>.json, {day, crops, places: [[name, lat, lon, frost, soil, nights, rain, water,
-codes]]}: frost '' / 'g' (ground frost) / 'f', codes one letter per crop (CODES). The Huerta
-Worker hands one place at a time to the app.
+codes, last_frost, first_frost]]}: frost '' / 'g' (ground frost) / 'f', codes one letter per
+crop (CODES), last/first frost the place's typical day of year of its last spring and first
+autumn frost (null: none in a typical year). And huerta/crops.json, what each crop needs
+(frost class, soil range, warm nights, days to harvest), for the app to say why. The Huerta Worker hands one place at a
+time to the app.
 """
 from __future__ import annotations
 
@@ -125,6 +128,18 @@ def _number(value, digits=1):
     return None if pd.isna(value) else round(float(value), digits)
 
 
+def _day(value):
+    """A median frost day of year; 0 means no frost in a typical year."""
+    return None if pd.isna(value) or value <= 0 else int(value)
+
+
+def crop_needs(crops):
+    """huerta/crops.json: {crop: {frost, soil: [min, max], night, days}}, None where a crop has no such need."""
+    return json.dumps({c.crop: {"frost": c.frost, "soil": [_number(c.soil_min, 0), _number(c.soil_max, 0)], "night": _number(c.night, 0),
+                                "days": _number(c.days, 0)}
+                       for c in crops.itertuples(index=False)}, separators=(",", ":")).encode()
+
+
 def area_files(place, advice, day):
     """{R2 key suffix '<lat>_<lon>.json': file bytes}: every place of a 1° square, compact."""
     frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2], ["f", "g"], "")
@@ -133,10 +148,12 @@ def area_files(place, advice, day):
     rows = pd.DataFrame({
         "square": np.floor(place["Latitude"]).astype(int).astype(str) + "_"
         + np.floor(place["Longitude"]).astype(int).astype(str),
-        "row": [[name, float(la), float(lo), fr, _number(s), _number(n), _number(r), _number(w, 0), c]
-                for name, la, lo, fr, s, n, r, w, c in zip(
+        "row": [[name, float(la), float(lo), fr, _number(s), _number(n), _number(r), _number(w, 0), c,
+                 _day(last), _day(first)]
+                for name, la, lo, fr, s, n, r, w, c, last, first in zip(
                     place["Location_Id"].str.rsplit("_", n=2).str[0], place["Latitude"], place["Longitude"],
-                    frost, place["soil3"], place["night7"], place["rain7"], water, codes)],
+                    frost, place["soil3"], place["night7"], place["rain7"], water, codes,
+                    place["last0_median"], place["first0_median"])],
     })
     crops = list(advice.columns)
     return {f"{square}.json": json.dumps({"day": day, "crops": crops, "places": list(group["row"])},
@@ -158,7 +175,8 @@ def publish(region, forecast):
     for frame, (la, lo) in ((place, ("Latitude", "Longitude")), (cond, ("lat", "lon"))):
         frame["key_lat"], frame["key_lon"] = frame[la].round(4), frame[lo].round(4)
     place = place.merge(cond.drop(columns=["lat", "lon"]), on=["key_lat", "key_lon"], how="inner")
-    advice = advise(place, pd.read_csv(crops_path), day.dayofyear)
+    crops = pd.read_csv(crops_path)
+    advice = advise(place, crops, day.dayofyear)
     files = area_files(place, advice, f"{day:%Y-%m-%d}")
 
     import r2
@@ -166,6 +184,7 @@ def publish(region, forecast):
     with ThreadPoolExecutor(UPLOAD_WORKERS) as pool:
         list(pool.map(lambda kv: s3.put_object(Bucket=bucket, Key=f"huerta/advice/{region}/{kv[0]}", Body=kv[1],
                                                ContentType="application/json"), files.items()))
+    s3.put_object(Bucket=bucket, Key="huerta/crops.json", Body=crop_needs(crops), ContentType="application/json")
     print(f"Huerta: {len(place):,} places in {len(files)} area files for {day:%Y-%m-%d}, "
           f"{time.time() - started:.0f} s; sow or plant now at a typical place: "
           f"{int((advice == 'now').sum(axis=1).median())} of {advice.shape[1]} crops")
