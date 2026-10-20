@@ -64,17 +64,27 @@ function decodeHalf(h: number): number {
   return sign * 2 ** (exponent - 15) * (1 + fraction / 1024);
 }
 
-let textMatrix: Float32Array | null = null;
+let textMatrix: Promise<Float32Array> | null = null;
 
 /**
  * Fetch and cache the label matrix. Idempotent; safe to call before every
  * identification.
+ *
+ * The promise is what is cached, not the result, so the page's early start on
+ * open and the first photo share one download (11 MB the first time after the
+ * list changes). A failure clears it, so the next call tries again.
  */
-export async function loadTextMatrix(
+export function loadTextMatrix(
   fetchImpl: typeof fetch = fetch
 ): Promise<Float32Array> {
-  if (textMatrix) return textMatrix;
+  textMatrix ??= fetchTextMatrix(fetchImpl).catch(err => {
+    textMatrix = null;
+    throw err;
+  });
+  return textMatrix;
+}
 
+async function fetchTextMatrix(fetchImpl: typeof fetch): Promise<Float32Array> {
   const response = await fetchImpl(TEXT_MATRIX_URL);
   if (!response.ok) {
     throw new Error(`label matrix fetch failed: ${response.status}`);
@@ -100,8 +110,7 @@ export async function loadTextMatrix(
     BIOCLIP_LABELS.filter(l => l.kind === 'caution').map(l => l.scientificName)
   );
 
-  textMatrix = decoded;
-  return textMatrix;
+  return decoded;
 }
 
 /** Test seam. */

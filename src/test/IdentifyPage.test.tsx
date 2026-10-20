@@ -40,7 +40,8 @@ vi.mock('@/lib/bioclip/variant', () => {
   };
 });
 vi.mock('@/lib/bioclip/classify', () => ({
-  loadTextMatrix: vi.fn(),
+  // The page starts loading the list on open, so it must return a promise.
+  loadTextMatrix: vi.fn().mockResolvedValue(new Float32Array(0)),
   rankPredictions: vi.fn(),
   averageEmbeddings: vi.fn(),
 }));

@@ -104,6 +104,29 @@ describe('loadTextMatrix', () => {
     await expect(loadTextMatrix(fetchImpl)).rejects.toThrow(/404/);
   });
 
+  // The page starts the download on open and the first photo awaits it, so two
+  // callers must share one 11 MB fetch, and a failed one must not stick.
+  it('shares one download and retries after a failure', async () => {
+    const bytes = new ArrayBuffer(
+      BIOCLIP_LABELS.length * BIOCLIP_EMBEDDING_DIM * 2
+    );
+    const fetchImpl = vi
+      .fn()
+      .mockResolvedValueOnce(new Response(null, { status: 503 }))
+      .mockResolvedValue(
+        new Response(bytes, { status: 200 })
+      ) as unknown as typeof fetch;
+
+    await expect(loadTextMatrix(fetchImpl)).rejects.toThrow(/503/);
+    const [a, b] = await Promise.all([
+      loadTextMatrix(fetchImpl),
+      loadTextMatrix(fetchImpl),
+    ]);
+
+    expect(a).toBe(b);
+    expect(fetchImpl).toHaveBeenCalledTimes(2);
+  });
+
   it('registers the tier-2 vocabulary so those names are not "unknown"', async () => {
     const bytes = new ArrayBuffer(
       BIOCLIP_LABELS.length * BIOCLIP_EMBEDDING_DIM * 2
