@@ -85,6 +85,8 @@
     "lethalLabel": "Tödlich giftig - nicht essen",
     "inedibleLabel": "Nicht essbar",
     "notInCatalog": "Nicht im Katalog dieser App - keine Sicherheitsangaben",
+    "cautionLabel": "Giftige Verwandte",
+    "cautionGenus": "Nicht im Katalog dieser App - die Gattung umfasst giftige Arten",
     "unknownSpecies": "Nicht erkannt",
     "confidence": "{{percent}} % Übereinstimmung",
     "confidenceUnderOne": "<1 % Übereinstimmung",

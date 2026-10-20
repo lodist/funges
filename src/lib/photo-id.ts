@@ -12,7 +12,16 @@ import {
  * `IdentifyResolver` below.
  */
 
-export type CandidateKind = 'catalog' | 'toxic' | 'other' | 'unknown';
+/**
+ * `caution` is tier 2 in a genus with toxic members: no page and no checks,
+ * but never shown as if nothing were known.
+ */
+export type CandidateKind =
+  | 'catalog'
+  | 'toxic'
+  | 'caution'
+  | 'other'
+  | 'unknown';
 
 export interface Prediction {
   scientificName: string;
@@ -102,17 +111,26 @@ const CATALOG_BY_SCIENTIFIC_NAME: ReadonlyMap<string, Species[]> = (() => {
 /**
  * Tier 2: species the model can name but the app knows nothing else about.
  * Registered at runtime from the shipped vocabulary. Never carries an edibility
- * claim.
+ * claim. `caution` names are the tier-2 species whose genus has toxic members
+ * (decided by bioclip_export.py, which knows the toxic and danger lists): a
+ * wide vocabulary brings in hundreds of them, too many to review one by one,
+ * and a death cap named as another Amanita must still warn.
  */
 let tier2Names: ReadonlySet<string> = new Set();
+let cautionNames: ReadonlySet<string> = new Set();
 
-export function registerTier2Vocabulary(names: Iterable<string>): void {
+export function registerTier2Vocabulary(
+  names: Iterable<string>,
+  caution: Iterable<string> = []
+): void {
   tier2Names = new Set(names);
+  cautionNames = new Set(caution);
 }
 
 /** Test seam — lets a test restore a clean slate. */
 export function resetTier2Vocabulary(): void {
   tier2Names = new Set();
+  cautionNames = new Set();
 }
 
 /**
@@ -134,6 +152,12 @@ export function resolvePrediction(prediction: Prediction): Candidate {
   const catalogSpecies = CATALOG_BY_SCIENTIFIC_NAME.get(scientificName);
   if (catalogSpecies) {
     return { scientificName, score, kind: 'catalog', catalogSpecies };
+  }
+
+  // Before plain tier 2, for the same reason toxic comes first: a name in both
+  // sets must never lose its warning.
+  if (cautionNames.has(scientificName)) {
+    return { scientificName, score, kind: 'caution', catalogSpecies: [] };
   }
 
   if (tier2Names.has(scientificName)) {

@@ -146,6 +146,7 @@ function CandidateRow({
   tSpecies: (key: string) => string;
 }) {
   const isToxic = candidate.kind === 'toxic';
+  const isCaution = candidate.kind === 'caution';
   const severity = candidate.toxic?.severity;
 
   // Text, not colour alone: a small coloured pill fails for colourblind users
@@ -182,6 +183,11 @@ function CandidateRow({
           <ZoomableImage src={image} className='size-full' />
         ) : isToxic ? (
           <Skull className='size-8 text-destructive-text' aria-hidden='true' />
+        ) : isCaution ? (
+          <AlertTriangle
+            className='size-8 text-status-warning-text'
+            aria-hidden='true'
+          />
         ) : (
           <HelpCircle
             className='size-8 text-muted-foreground'
@@ -195,6 +201,12 @@ function CandidateRow({
           <Badge variant='destructive'>
             <Skull />
             {toxicLabel}
+          </Badge>
+        )}
+        {isCaution && (
+          <Badge variant='warning'>
+            <AlertTriangle />
+            {t('results.cautionLabel')}
           </Badge>
         )}
 
@@ -214,6 +226,9 @@ function CandidateRow({
           <p className='text-sm text-muted-foreground'>
             {t('results.notInCatalog')}
           </p>
+        )}
+        {isCaution && (
+          <p className='text-sm text-foreground'>{t('results.cautionGenus')}</p>
         )}
 
         {candidate.toxic && (

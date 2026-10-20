@@ -959,6 +959,25 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       },
     ],
   },
+  // Same test, same fault, when the kingdom caps brought it in (Oct 2026).
+  {
+    id: 'scleroderma-cepa',
+    scientificName: 'Scleroderma cepa',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.interiorPattern',
+      'toxicity.checks.capStructure',
+    ],
+    confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    criticalConfusions: [
+      {
+        catalogId: 'giant_puffball',
+        noteKey: 'toxicity.critical.puffballPair',
+      },
+    ],
+  },
   {
     id: 'rubroboletus-rhodoxanthus',
     scientificName: 'Rubroboletus rhodoxanthus',

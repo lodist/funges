@@ -111,6 +111,7 @@ TOXIC = [
     # depend on which member the model happens to name. ---
     ("Scleroderma areolatum", "species"),
     ("Scleroderma verrucosum", "species"),
+    ("Scleroderma cepa", "species"),         # arrived with the kingdom caps (2026-10)
     ("Rubroboletus rhodoxanthus", "species"),
     ("Kalmia procumbens", "species"),
     # --- promoted from tier 2 with the elder and violet forecasts (2026-09) ---
