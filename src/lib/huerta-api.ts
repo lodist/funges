@@ -135,7 +135,8 @@ export const plain = (text: string) =>
 
 const sections = new Map<string, Promise<Town[]>>();
 
-/** Towns whose name starts with `query`: exact names first, then shorter ones. */
+/** Towns whose name starts with `query`: exact names first, then shorter ones.
+ *  Rejects when the town list cannot be reached, which is not "no such town". */
 export async function searchTowns(query: string): Promise<Town[]> {
   const q = plain(query);
   if (q.length < 2) return [];
@@ -144,7 +145,10 @@ export async function searchTowns(query: string): Promise<Town[]> {
     sections.set(
       key,
       fetch(url('/v1/towns', { q: key }))
-        .then(r => (r.ok ? r.json() : []))
+        .then(r => {
+          if (!r.ok) throw new Error(`Huerta towns: ${r.status}`);
+          return r.json();
+        })
         .then((rows: [string, number, number, string, string?][]) =>
           rows.map(([name, lat, lon, country, province = '']) => ({
             name,
@@ -154,9 +158,9 @@ export async function searchTowns(query: string): Promise<Town[]> {
             province,
           }))
         )
-        .catch(() => {
+        .catch(error => {
           sections.delete(key); // try again next time
-          return [];
+          throw error;
         })
     );
   }

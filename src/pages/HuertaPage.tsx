@@ -175,14 +175,24 @@ function PlacePicker({ onPick }: { onPick: (place: Place) => void }) {
   const [towns, setTowns] = useState<Town[]>([]);
   // The query the shown results answer: "no town" only once its search is done.
   const [answered, setAnswered] = useState('');
+  const [searchFailed, setSearchFailed] = useState(false);
 
   useEffect(() => {
     let current = true;
-    searchTowns(query).then(found => {
-      if (!current) return;
-      setTowns(found);
-      setAnswered(query);
-    });
+    searchTowns(query).then(
+      found => {
+        if (!current) return;
+        setTowns(found);
+        setAnswered(query);
+        setSearchFailed(false);
+      },
+      () => {
+        if (!current) return;
+        setTowns([]);
+        setAnswered(query);
+        setSearchFailed(true);
+      }
+    );
     return () => {
       current = false;
     };
@@ -252,6 +262,10 @@ function PlacePicker({ onPick }: { onPick: (place: Place) => void }) {
               </li>
             ))}
           </ul>
+        ) : answered === query && searchFailed ? (
+          <p className='text-sm text-destructive-text'>
+            {t('picker.searchFailed')}
+          </p>
         ) : answered === query && query.trim().length >= 3 ? (
           <p className='text-sm text-muted-foreground'>
             {t('picker.noResults')}

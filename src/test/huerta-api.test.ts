@@ -63,4 +63,20 @@ describe('the Huerta Worker client', () => {
     });
     expect(calls).toHaveBeenCalledTimes(2); // one advice, one section ("ma")
   });
+
+  it('says the search failed, not that no town matched, and tries again', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => new Response('{"error":"origin"}', { status: 403 }))
+    );
+    await expect(searchTowns('vale')).rejects.toThrow('403');
+
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () =>
+        Response.json([['Valencia', 39.48, -0.38, 'ES', 'Valencia']])
+      )
+    );
+    expect((await searchTowns('vale')).map(t => t.name)).toEqual(['Valencia']);
+  });
 });

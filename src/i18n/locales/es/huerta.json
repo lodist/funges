@@ -14,7 +14,8 @@
     "locateFailed": "No se ha podido encontrar tu ubicación. Busca tu pueblo en su lugar.",
     "search": "Pueblo o ciudad",
     "placeholder": "Empieza a escribir un nombre",
-    "noResults": "Ningún lugar con ese nombre"
+    "noResults": "Ningún lugar con ese nombre",
+    "searchFailed": "La búsqueda de lugares no está disponible ahora. Vuelve a intentarlo en un momento o usa tu ubicación."
   },
   "count_one": "{{count}} cultivo",
   "count_other": "{{count}} cultivos",

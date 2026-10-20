@@ -14,7 +14,8 @@
     "locateFailed": "Dein Standort wurde nicht gefunden. Suche stattdessen deinen Ort.",
     "search": "Ort",
     "placeholder": "Gib einen Namen ein",
-    "noResults": "Kein Ort mit diesem Namen"
+    "noResults": "Kein Ort mit diesem Namen",
+    "searchFailed": "Die Ortssuche ist gerade nicht erreichbar. Versuch es gleich noch einmal oder nutze deinen Standort."
   },
   "count_one": "{{count}} Kultur",
   "count_other": "{{count}} Kulturen",

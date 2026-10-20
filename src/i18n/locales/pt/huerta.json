@@ -14,7 +14,8 @@
     "locateFailed": "Não foi possível encontrar a sua localização. Procure a sua cidade.",
     "search": "Cidade ou vila",
     "placeholder": "Comece a digitar um nome",
-    "noResults": "Nenhum lugar com esse nome"
+    "noResults": "Nenhum lugar com esse nome",
+    "searchFailed": "A busca de lugares não está disponível agora. Tente de novo em instantes ou use a sua localização."
   },
   "count_one": "{{count}} cultura",
   "count_other": "{{count}} culturas",
