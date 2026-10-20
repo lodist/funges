@@ -85,6 +85,8 @@
     "lethalLabel": "Mortale - non mangiare",
     "inedibleLabel": "Non commestibile",
     "notInCatalog": "Non presente nel catalogo di questa app - nessuna informazione di sicurezza",
+    "cautionLabel": "Parenti tossici",
+    "cautionGenus": "Non presente nel catalogo di questa app - il suo genere comprende specie tossiche",
     "unknownSpecies": "Non riconosciuto",
     "confidence": "{{percent}} % di corrispondenza",
     "confidenceUnderOne": "<1 % di corrispondenza",

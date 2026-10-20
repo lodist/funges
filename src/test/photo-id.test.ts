@@ -60,6 +60,20 @@ describe('vocabulary coverage', () => {
       expect(resolvePrediction(p(s.scientificName)).kind).toBe('catalog');
     }
   });
+
+  it('never lets a caution registration outrank toxic or catalog', () => {
+    registerTier2Vocabulary(
+      [],
+      [...TOXIC_SPECIES, ...SPECIES_DATA].map(s => s.scientificName)
+    );
+
+    for (const t of TOXIC_SPECIES) {
+      expect(resolvePrediction(p(t.scientificName)).kind).toBe('toxic');
+    }
+    for (const s of SPECIES_DATA) {
+      expect(resolvePrediction(p(s.scientificName)).kind).toBe('catalog');
+    }
+  });
 });
 
 describe('genus-level catalog entries', () => {
@@ -162,6 +176,12 @@ describe('tier 2 and unknown', () => {
     registerTier2Vocabulary(['Russula emetica']);
 
     expect(resolvePrediction(p('Russula emetica')).kind).toBe('other');
+  });
+
+  it('keeps the caution when a name is registered both ways', () => {
+    registerTier2Vocabulary(['Amanita citrina'], ['Amanita citrina']);
+
+    expect(resolvePrediction(p('Amanita citrina')).kind).toBe('caution');
   });
 
   it('resolves an unregistered name to unknown', () => {
@@ -337,11 +357,17 @@ describe('model vocabulary agrees with the app tables', () => {
   // toxic-species.ts. If those two ever disagree, a species the model calls
   // "catalog" could be rendered by a path expecting "other" (or worse, a toxic
   // species could arrive tagged as something else). Nothing would throw.
-  it('assigns the same kind to every label as the matcher does', async () => {
-    const { BIOCLIP_LABELS } = await import('@/data/bioclip-labels');
+  // Registered exactly as classify.ts does at runtime.
+  const registerShipped = () =>
     registerTier2Vocabulary(
-      BIOCLIP_LABELS.filter(l => l.kind === 'other').map(l => l.scientificName)
+      BIOCLIP_LABELS.filter(l => l.kind === 'other').map(l => l.scientificName),
+      BIOCLIP_LABELS.filter(l => l.kind === 'caution').map(
+        l => l.scientificName
+      )
     );
+
+  it('assigns the same kind to every label as the matcher does', () => {
+    registerShipped();
 
     const disagreements = BIOCLIP_LABELS.filter(
       l => resolvePrediction(p(l.scientificName)).kind !== l.kind
@@ -350,17 +376,31 @@ describe('model vocabulary agrees with the app tables', () => {
     expect(disagreements).toEqual([]);
   });
 
-  it('never emits a label the matcher would call unknown', async () => {
-    const { BIOCLIP_LABELS } = await import('@/data/bioclip-labels');
-    registerTier2Vocabulary(
-      BIOCLIP_LABELS.filter(l => l.kind === 'other').map(l => l.scientificName)
-    );
+  it('never emits a label the matcher would call unknown', () => {
+    registerShipped();
 
     const unknown = BIOCLIP_LABELS.filter(
       l => resolvePrediction(p(l.scientificName)).kind === 'unknown'
     );
 
     expect(unknown).toEqual([]);
+  });
+
+  // The reason the caution exists: a wide vocabulary holds dozens of relatives
+  // of the death cap, and none may read "no safety information".
+  it('gives no relative of a deadly species a neutral row', () => {
+    const deadlyGenera = new Set(
+      TOXIC_SPECIES.filter(t => t.severity === 'lethal').map(
+        t => t.scientificName.split(' ')[0]
+      )
+    );
+
+    const neutral = BIOCLIP_LABELS.filter(
+      l =>
+        l.kind === 'other' && deadlyGenera.has(l.scientificName.split(' ')[0])
+    ).map(l => l.scientificName);
+
+    expect(neutral).toEqual([]);
   });
 
   it('has one embedding row per label, at the dim the export recorded', async () => {
