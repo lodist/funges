@@ -48,10 +48,12 @@ function RootComponent() {
   }, [space]);
   useEffect(() => rememberPath(location.pathname), [location.pathname]);
 
-  // The map is the one route that owns the viewport (no document scroll).
-  const isMapPage =
-    location.pathname.replace(/\/+$/, '') ===
-    `${import.meta.env.BASE_URL}map`.replace(/\/+$/, '');
+  // The maps (Terra's and Huerta's garden map) own the viewport (no document scroll).
+  const isMapPage = ['map', 'huerta/map'].some(
+    page =>
+      location.pathname.replace(/\/+$/, '') ===
+      `${import.meta.env.BASE_URL}${page}`.replace(/\/+$/, '')
+  );
   // The landing page is the other full-bleed route: no sidebar, no padding.
   const isLandingPage =
     location.pathname.replace(/\/+$/, '') ===

@@ -55,6 +55,12 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
       icon: Sprout,
       isActive: true,
     },
+    {
+      title: t('huertaMap'),
+      url: `${basePath}huerta/map`,
+      icon: Map,
+      isActive: false,
+    },
   ];
   const data = {
     navMain: [

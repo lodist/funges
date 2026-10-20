@@ -204,3 +204,51 @@ export function fetchNeeds(): Promise<Record<string, CropNeeds>> {
     });
   return needs;
 }
+
+/** The garden map's regions, by continent. */
+export const MAP_REGIONS = { eu: ['SE', 'NE'], us: ['USE', 'USW'] } as const;
+export type MapRegion = (typeof MAP_REGIONS)[keyof typeof MAP_REGIONS][number];
+
+export interface MapNight {
+  day: string;
+  /** Layer names: frost, soil, water, then one per crop. */
+  layers: string[];
+  /** Latitude and longitude ×100, place after place. */
+  places: Int16Array;
+}
+
+const bytes = async (path: string, query: Record<string, string>) => {
+  const response = await fetch(url(path, query));
+  if (!response.ok) throw new Error(`Huerta map: ${response.status}`);
+  return response.arrayBuffer();
+};
+
+const nights = new Map<MapRegion, Promise<MapNight>>();
+
+/** A region's places for the latest night, asked once per visit. */
+export function fetchMapNight(region: MapRegion, again = false) {
+  if (again) nights.delete(region);
+  if (!nights.has(region)) {
+    const night = (async () => {
+      const response = await fetch(url('/v1/map/index', { region }));
+      if (!response.ok) throw new Error(`Huerta map: ${response.status}`);
+      const { day, layers } = (await response.json()) as MapNight;
+      const places = new Int16Array(
+        await bytes('/v1/map/places', { region, day })
+      );
+      return { day, layers, places };
+    })();
+    night.catch(() => nights.delete(region));
+    nights.set(region, night);
+  }
+  return nights.get(region)!;
+}
+
+/** One layer of one region, one byte per place, for the night `day`. */
+export async function fetchMapLayer(
+  region: MapRegion,
+  day: string,
+  layer: string
+) {
+  return new Uint8Array(await bytes('/v1/map/layer', { region, day, layer }));
+}
