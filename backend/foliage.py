@@ -20,7 +20,7 @@ clearly and a latitude + elevation line only a little, and its year-to-year skil
 weak; in Europe the year-to-year evidence comes from the station networks alone. Fitted on
 iNaturalist "colored leaves" records and NASA POWER temperatures, checked on PhenoCam
 and USA-NPN (the US) and the DWD and MeteoSwiss phenology networks (Europe):
-docs/species/2026-10-11-fall-foliage.md, from backend/tools/calibrate_foliage.py and
+funges-lab/species/2026-10-11-fall-foliage.md, from backend/tools/calibrate_foliage.py and
 calibrate_foliage_eu.py.
 
 Drawn on the deciduous and mixed forest pieces the region's species layers are drawn on
@@ -35,6 +35,7 @@ from datetime import date
 import numpy as np
 
 import bloom
+import r2
 
 START = 45  # 15 August, as an index in a season from 1 July
 BASE = 33.0  # °C, daily mean
@@ -88,7 +89,7 @@ def eu_requirement_of(lat):
 
 def larch_mask():
     """The host-cover cells where larch is at least a tenth of the trees: (lat0, lon0, step, mask)."""
-    m = np.load(bloom._BACKEND / "generated" / "larch_mask_EU.npz")
+    m = np.load(r2.generated(bloom._BACKEND / "generated" / "larch_mask_EU.npz"))
     return float(m["lat0"]), float(m["lon0"]), float(m["step"]), m["mask"].astype(bool)
 
 

@@ -538,7 +538,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--start")
     parser.add_argument("--end")
-    parser.add_argument("--output-dir", default="docs/qa/gbif-scores-2026-08-13")
+    parser.add_argument("--output-dir", default="../funges-lab/qa/gbif-scores-2026-08-13")
     args = parser.parse_args()
     end_date = date.fromisoformat(args.end) if args.end else date.today() - timedelta(days=1)
     start_date = date.fromisoformat(args.start) if args.start else end_date - timedelta(days=60)

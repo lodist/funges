@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """BioCLIP 2 accuracy spike — measure false-edible rate on toxic look-alikes.
 
-Throwaway evaluation. See docs/superpowers/specs/2026-07-25-bioclip2-accuracy-spike-design.md
+Throwaway evaluation. See funges-lab/superpowers/specs/2026-07-25-bioclip2-accuracy-spike-design.md
 Delete this file if the spike says no.
 
 Stages (disk-cached, run independently):

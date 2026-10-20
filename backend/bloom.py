@@ -12,7 +12,7 @@ Earth's built-up areas (backend/generated/bloom_towns_*.geojson, from
 backend/tools/build_bloom_towns.py): the layer shows where they are, not the land.
 
 Fitted on NASA POWER temperatures, the source of the normals as well:
-docs/species/2026-09-30-cherry-blossom.md. The map follows Prunus serrulata
+funges-lab/species/2026-09-30-cherry-blossom.md. The map follows Prunus serrulata
 ('Kanzan'); FORCING keeps the Yoshino requirement the DC fit gives as well.
 
 Called at the end of each *_MapLayer.py through build_spectacles, which builds
@@ -34,6 +34,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import pyarrow.parquet as pq
+
+import r2
 
 CHILL_BELOW = 17.0  # °C, daily mean
 CHILL_DAYS = 120
@@ -289,7 +291,7 @@ def _tippecanoe_mesh(geojson, mbtiles, layer):
 
 
 def load_normals(region_code):
-    return dict(np.load(_BACKEND / "generated" / f"bloom_normals_{NORMALS_MACRO[region_code]}.npz"))
+    return dict(np.load(r2.generated(_BACKEND / "generated" / f"bloom_normals_{NORMALS_MACRO[region_code]}.npz")))
 
 
 def load_ground(stem, region_code):
@@ -297,9 +299,10 @@ def load_ground(stem, region_code):
     import geopandas as gpd
 
     path = _BACKEND / "generated" / f"{stem}_{NORMALS_MACRO[region_code]}"
-    if path.with_suffix(".parquet").exists():
-        return gpd.read_parquet(path.with_suffix(".parquet"))
-    return gpd.read_file(path.with_suffix(".geojson"))
+    parquet = r2.generated(path.with_suffix(".parquet"))
+    if parquet.exists():
+        return gpd.read_parquet(parquet)
+    return gpd.read_file(r2.generated(path.with_suffix(".geojson")))
 
 
 def publish(features, region_code, tiles, r2_prefix, to_pmtiles, upload, build_mbtiles=_tippecanoe):

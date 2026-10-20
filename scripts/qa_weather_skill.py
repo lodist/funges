@@ -357,7 +357,7 @@ def main() -> None:
     parser.add_argument("--max-locations", type=int, default=0, help="0 = every matched location")
     parser.add_argument("--min-cases", type=int, default=20)
     parser.add_argument("--finds", default=None, help="matched-finds CSV to reuse (written on first run)")
-    parser.add_argument("--output", default="docs/qa/weather-skill")
+    parser.add_argument("--output", default="../funges-lab/qa/weather-skill")
     parser.add_argument("--cache", default=None, help="directory for weather read from R2 / Open-Meteo")
     parser.add_argument("--fruiting", default=None,
                         help="score with the fitted fruiting models in this file (generated/fruiting_fit.json)")

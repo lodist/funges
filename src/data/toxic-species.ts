@@ -10,7 +10,7 @@ import type { Species } from './species';
  *
  * The 22 entries are the toxic label set the BioCLIP spike measured its
  * false-edible gate against — see
- * docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md
+ * funges-lab/superpowers/specs/2026-07-25-bioclip2-spike-results.md
  */
 
 /**
