@@ -37,7 +37,8 @@
     "mm": "{{value}} mm"
   },
   "now": {
-    "title": "Semina o pianta ora"
+    "title": "Semina o pianta ora",
+    "none": "Questa settimana qui non c'è niente da seminare o piantare."
   },
   "waiting": {
     "title": "Non ancora"
@@ -131,5 +132,13 @@
     "crimson_clover": "Trifoglio incarnato",
     "phacelia": "Facelia",
     "white_mustard": "Senape bianca"
+  },
+  "kinds": {
+    "all": "Tutti",
+    "vegetable": "Ortaggi",
+    "fruit": "Frutta",
+    "herb": "Aromatiche",
+    "flower": "Fiori",
+    "cover": "Sovesci"
   }
 }

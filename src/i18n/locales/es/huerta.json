@@ -37,7 +37,8 @@
     "mm": "{{value}} mm"
   },
   "now": {
-    "title": "Siembra o planta ahora"
+    "title": "Siembra o planta ahora",
+    "none": "Esta semana no hay nada que sembrar ni plantar aquí."
   },
   "waiting": {
     "title": "Todavía no"
@@ -131,5 +132,13 @@
     "crimson_clover": "Trébol encarnado",
     "phacelia": "Facelia",
     "white_mustard": "Mostaza blanca"
+  },
+  "kinds": {
+    "all": "Todos",
+    "vegetable": "Hortalizas",
+    "fruit": "Frutas",
+    "herb": "Aromáticas",
+    "flower": "Flores",
+    "cover": "Abonos verdes"
   }
 }

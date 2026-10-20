@@ -37,7 +37,8 @@
     "mm": "{{value}} mm"
   },
   "now": {
-    "title": "Sow or plant now"
+    "title": "Sow or plant now",
+    "none": "Nothing to sow or plant here this week."
   },
   "waiting": {
     "title": "Not yet"
@@ -131,5 +132,13 @@
     "crimson_clover": "Crimson clover",
     "phacelia": "Phacelia",
     "white_mustard": "White mustard"
+  },
+  "kinds": {
+    "all": "All",
+    "vegetable": "Vegetables",
+    "fruit": "Fruit",
+    "herb": "Herbs",
+    "flower": "Flowers",
+    "cover": "Green manures"
   }
 }
