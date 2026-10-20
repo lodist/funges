@@ -6,7 +6,13 @@
     "seoDescription": "Wilde Pilze und Pflanzen per Foto bestimmen, direkt auf deinem Gerät. Vergleiche die nächsten Treffer mit ihren giftigen Doppelgängern.",
     "onDevice": "Läuft auf diesem Gerät",
     "noUpload": "Nichts wird hochgeladen",
-    "offline": "Nach dem Download auch offline"
+    "offline": "Nach dem Download auch offline",
+    "coverage": {
+      "species": "erkannte Arten",
+      "mushrooms": "der Pilzfunde",
+      "plants": "der Pflanzenfunde",
+      "note": "Gemessen an bestätigten Beobachtungen in Europa und den USA."
+    }
   },
   "plate": {
     "title": "Dein Fund",

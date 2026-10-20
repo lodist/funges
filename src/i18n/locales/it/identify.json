@@ -6,7 +6,13 @@
     "seoDescription": "Identifica funghi e piante selvatiche da una foto, sul tuo dispositivo. Confronta le corrispondenze più vicine con i loro sosia tossici.",
     "onDevice": "Funziona su questo dispositivo",
     "noUpload": "Non viene caricato nulla",
-    "offline": "Funziona offline dopo il download"
+    "offline": "Funziona offline dopo il download",
+    "coverage": {
+      "species": "specie riconosciute",
+      "mushrooms": "degli avvistamenti di funghi",
+      "plants": "degli avvistamenti di piante",
+      "note": "Sulle segnalazioni verificate in Europa e negli USA."
+    }
   },
   "plate": {
     "title": "Il tuo ritrovamento",

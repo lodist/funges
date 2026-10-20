@@ -48,6 +48,14 @@ import { cn } from '@/lib/utils';
  */
 
 const BASE = import.meta.env.BASE_URL;
+// ponytail: copied from the vocabulary sweep (funges-lab bioclip2 spike
+// results, addendum 4, 20 Oct 2026) rather than importing the 7K-row label
+// list into the page chunk. Update them when the vocabulary is rebuilt.
+// Coverage = share of research-grade sightings in the five scoring regions
+// whose species is in the list; not accuracy.
+const LABEL_COUNT = 7141;
+const MUSHROOM_COVERAGE = 0.922;
+const PLANT_COVERAGE = 0.888;
 const formatMb = (bytes: number) => `${Math.round(bytes / 1e6)} MB`;
 // Square on a phone, so the plate's Identify button clears the bottom bar in
 // the first viewport; the field-guide 4:5 from sm up.
@@ -213,11 +221,21 @@ export default function IdentifyPage() {
 /** The page's title on the deep-green band, with the three facts that make
  *  this identification different. The photograph joins it from md up. */
 function Band() {
-  const { t } = useTranslation('identify');
+  const { t, i18n } = useTranslation('identify');
   const facts = [
     { icon: Smartphone, label: t('page.onDevice') },
     { icon: Lock, label: t('page.noUpload') },
     { icon: WifiOff, label: t('page.offline') },
+  ];
+  const pct = (share: number) =>
+    share.toLocaleString(i18n.language, { style: 'percent' });
+  const coverage = [
+    {
+      value: LABEL_COUNT.toLocaleString(i18n.language),
+      label: t('page.coverage.species'),
+    },
+    { value: pct(MUSHROOM_COVERAGE), label: t('page.coverage.mushrooms') },
+    { value: pct(PLANT_COVERAGE), label: t('page.coverage.plants') },
   ];
 
   return (
@@ -242,6 +260,23 @@ function Band() {
             </li>
           ))}
         </ul>
+        <div className='border-t border-happy-50/20 pt-4'>
+          <dl className='grid grid-cols-3 gap-3 sm:gap-6'>
+            {coverage.map(({ value, label }) => (
+              <div key={label} className='flex min-w-0 flex-col'>
+                <dt className='order-2 text-xs text-happy-100 sm:text-sm'>
+                  {label}
+                </dt>
+                <dd className='text-lg font-semibold tabular-nums text-happy-50 sm:text-2xl'>
+                  {value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <p className='mt-3 text-xs text-happy-100'>
+            {t('page.coverage.note')}
+          </p>
+        </div>
       </div>
       <div className='relative hidden min-h-56 md:block'>
         <img

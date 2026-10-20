@@ -6,7 +6,13 @@
     "seoDescription": "Identifica setas y plantas silvestres con una foto, en tu propio dispositivo. Compara las coincidencias más cercanas con sus dobles tóxicos.",
     "onDevice": "Funciona en este dispositivo",
     "noUpload": "No se sube nada",
-    "offline": "Funciona sin conexión tras la descarga"
+    "offline": "Funciona sin conexión tras la descarga",
+    "coverage": {
+      "species": "especies reconocidas",
+      "mushrooms": "de los avistamientos de setas",
+      "plants": "de los avistamientos de plantas",
+      "note": "Sobre registros verificados en Europa y EE. UU."
+    }
   },
   "plate": {
     "title": "Tu hallazgo",

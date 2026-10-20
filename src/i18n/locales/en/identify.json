@@ -6,7 +6,13 @@
     "seoDescription": "Identify wild mushrooms and plants from a photo, on your own device. Compare the closest matches with their toxic look-alikes.",
     "onDevice": "Runs on this device",
     "noUpload": "Nothing is uploaded",
-    "offline": "Works offline once downloaded"
+    "offline": "Works offline once downloaded",
+    "coverage": {
+      "species": "species recognized",
+      "mushrooms": "of mushroom sightings",
+      "plants": "of plant sightings",
+      "note": "Across verified records in Europe and the US."
+    }
   },
   "plate": {
     "title": "Your find",
