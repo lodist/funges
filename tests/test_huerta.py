@@ -66,5 +66,5 @@ def test_area_files_group_places_by_square_with_one_letter_per_crop():
 
 def test_crop_needs_say_what_each_crop_wants():
     needs = json.loads(huerta.crop_needs(CROPS))
-    assert needs["tomato"] == {"soil": [16, None], "night": 10, "days": 70}
-    assert needs["garlic"] == {"soil": [7, 15], "night": None, "days": 240}
+    assert needs["tomato"] == {"frost": "tender", "soil": [16, None], "night": 10, "days": 70}
+    assert needs["garlic"] == {"frost": "hardy", "soil": [7, 15], "night": None, "days": 240}

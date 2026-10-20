@@ -28,7 +28,7 @@ Output, private on R2 like the rest: one file per 1° square, huerta/advice/<REG
 codes, last_frost, first_frost]]}: frost '' / 'g' (ground frost) / 'f', codes one letter per
 crop (CODES), last/first frost the place's typical day of year of its last spring and first
 autumn frost (null: none in a typical year). And huerta/crops.json, what each crop needs
-(soil range, warm nights, days to harvest), for the app to say why. The Huerta Worker hands one place at a
+(frost class, soil range, warm nights, days to harvest), for the app to say why. The Huerta Worker hands one place at a
 time to the app.
 """
 from __future__ import annotations
@@ -134,8 +134,8 @@ def _day(value):
 
 
 def crop_needs(crops):
-    """huerta/crops.json: {crop: {soil: [min, max], night, days}}, None where a crop has no such need."""
-    return json.dumps({c.crop: {"soil": [_number(c.soil_min, 0), _number(c.soil_max, 0)], "night": _number(c.night, 0),
+    """huerta/crops.json: {crop: {frost, soil: [min, max], night, days}}, None where a crop has no such need."""
+    return json.dumps({c.crop: {"frost": c.frost, "soil": [_number(c.soil_min, 0), _number(c.soil_max, 0)], "night": _number(c.night, 0),
                                 "days": _number(c.days, 0)}
                        for c in crops.itertuples(index=False)}, separators=(",", ":")).encode()
 
