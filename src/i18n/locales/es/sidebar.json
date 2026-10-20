@@ -27,5 +27,6 @@
       "name": "Huerta",
       "tagline": "Tu huerto, esta semana"
     }
-  }
+  },
+  "huertaMap": "Mapa del huerto"
 }

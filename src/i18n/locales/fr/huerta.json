@@ -199,5 +199,38 @@
       "perennial": "Revient chaque année"
     },
     "source": "Données de culture : RHS, UC ANR et guides de semis des semenciers."
+  },
+  "map": {
+    "title": "Carte du potager",
+    "description": "Où chaque culture se met en terre cette semaine, les gelées des trois prochains jours, la température du sol et l'arrosage, lieu par lieu.",
+    "crop": "Culture",
+    "layer": "Couche de la carte",
+    "place": "Autour de {{place}}",
+    "layers": {
+      "crop": "{{crop}} : semer ou planter maintenant",
+      "frost": "Gel, 3 prochains jours",
+      "soil": "Température du sol",
+      "water": "À arroser cette semaine"
+    },
+    "continents": {
+      "eu": "Europe",
+      "us": "États-Unis"
+    },
+    "legend": {
+      "now": "Semer ou planter maintenant",
+      "wait": "Pas encore",
+      "over": "Trop tard cette année",
+      "frost": "Gel, 0 °C ou moins",
+      "ground": "Gelée au sol, de 0 à 2 °C",
+      "soilLow": "0 °C",
+      "soilHigh": "26 °C",
+      "waterLow": "1 L/m²",
+      "waterHigh": "35 L/m² ou plus"
+    },
+    "use": "En faire mon potager",
+    "close": "Fermer",
+    "loadingPlace": "Recherche de ce lieu…",
+    "noPlace": "Pas de conseils Huerta ici.",
+    "failed": "La carte n'a pas pu se charger. Réessayez dans un instant."
   }
 }

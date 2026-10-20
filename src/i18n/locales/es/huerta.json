@@ -199,5 +199,38 @@
       "perennial": "Vuelve cada año"
     },
     "source": "Datos de cultivo: RHS, UC ANR y guías de siembra de casas de semillas."
+  },
+  "map": {
+    "title": "Mapa del huerto",
+    "description": "Dónde va cada cultivo esta semana, heladas en los próximos tres días, temperatura del suelo y riego, lugar a lugar.",
+    "crop": "Cultivo",
+    "layer": "Capa del mapa",
+    "place": "En {{place}}",
+    "layers": {
+      "crop": "{{crop}}: siembra o planta ahora",
+      "frost": "Heladas, próximos 3 días",
+      "soil": "Temperatura del suelo",
+      "water": "A regar esta semana"
+    },
+    "continents": {
+      "eu": "Europa",
+      "us": "Estados Unidos"
+    },
+    "legend": {
+      "now": "Siembra o planta ahora",
+      "wait": "Aún no",
+      "over": "Demasiado tarde este año",
+      "frost": "Helada, 0 °C o menos",
+      "ground": "Helada en el suelo, de 0 a 2 °C",
+      "soilLow": "0 °C",
+      "soilHigh": "26 °C",
+      "waterLow": "1 L/m²",
+      "waterHigh": "35 L/m² o más"
+    },
+    "use": "Usar como mi huerto",
+    "close": "Cerrar",
+    "loadingPlace": "Buscando este lugar…",
+    "noPlace": "Aquí no hay consejos de Huerta.",
+    "failed": "El mapa no ha cargado. Prueba de nuevo en un momento."
   }
 }

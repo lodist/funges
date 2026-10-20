@@ -199,5 +199,38 @@
       "perennial": "Comes back every year"
     },
     "source": "Growing facts: RHS, UC ANR and seed-company sowing guides."
+  },
+  "map": {
+    "title": "Garden map",
+    "description": "Where each crop goes in this week, frost in the next three days, soil temperature and watering, place by place.",
+    "crop": "Crop",
+    "layer": "Map layer",
+    "place": "Around {{place}}",
+    "layers": {
+      "crop": "{{crop}}: sow or plant now",
+      "frost": "Frost, next 3 days",
+      "soil": "Soil temperature",
+      "water": "To water this week"
+    },
+    "continents": {
+      "eu": "Europe",
+      "us": "United States"
+    },
+    "legend": {
+      "now": "Sow or plant now",
+      "wait": "Not yet",
+      "over": "Too late this year",
+      "frost": "Frost, 0 °C or colder",
+      "ground": "Ground frost, 0 to 2 °C",
+      "soilLow": "0 °C",
+      "soilHigh": "26 °C",
+      "waterLow": "1 L/m²",
+      "waterHigh": "35 L/m² or more"
+    },
+    "use": "Make this my garden",
+    "close": "Close",
+    "loadingPlace": "Looking up this place…",
+    "noPlace": "No Huerta advice here.",
+    "failed": "The map could not load. Try again in a moment."
   }
 }
