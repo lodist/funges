@@ -7,11 +7,13 @@ import pandas as pd
 import huerta
 
 CROPS = pd.DataFrame([
-    # crop, frost, soil_min, soil_max, night, days, hardy_to
-    ("tomato", "tender", 16, np.nan, 10, 70, np.nan),
-    ("garlic", "hardy", 7, 15, np.nan, 240, -20),
-    ("peas", "hardy", 4, 24, np.nan, 65, np.nan),
-], columns=["crop", "frost", "soil_min", "soil_max", "night", "days", "hardy_to"])
+    # crop, frost, soil_min, soil_max, night, days, hardy_to, season
+    ("tomato", "tender", 16, np.nan, 10, 70, np.nan, np.nan),
+    ("garlic", "hardy", 7, 15, np.nan, 240, -20, np.nan),
+    ("peas", "hardy", 4, 24, np.nan, 65, np.nan, np.nan),
+    ("tulip", "hardy", 2, 15, np.nan, 150, -35, "autumn"),
+    ("asparagus", "hardy", 10, 29, np.nan, 30, -35, "spring"),
+], columns=["crop", "frost", "soil_min", "soil_max", "night", "days", "hardy_to", "season"])
 
 
 def place(**k):
@@ -36,6 +38,10 @@ def test_rules():
     assert autumn["tomato"].tolist()[:2] == ["too_late", "too_late"]           # no October tomatoes, even frost-free
     assert autumn["garlic"].tolist()[2:] == ["now", "too_warm", "too_late"]
     assert autumn["peas"].tolist()[2] == "too_late"
+    # Bulbs go in only in autumn, asparagus crowns only in spring, whatever the soil says.
+    assert spring["tulip"].tolist() == ["wait_autumn"] and spring["asparagus"].tolist() == ["now"]
+    assert autumn["tulip"].tolist()[2:] == ["now", "too_warm", "now"]
+    assert set(autumn["asparagus"]) == {"wait_spring"}
 
 
 def test_area_files_group_places_by_square_with_one_letter_per_crop():

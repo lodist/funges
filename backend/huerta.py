@@ -5,6 +5,8 @@ Per place: the coldest hour of the next 3 days (frost3), the mean soil temperatu
 over them (soil3; NBM has none, so in the US the air's three-day mean stands in), the
 week's mean night (night7), its rain (rain7) and reference evaporation (et07, Hargreaves'
 radiation formula). Per crop, the first rule that applies:
+- a crop that goes in only in autumn (bulbs, winter rye) -> wait_autumn before July; one that
+  goes in only in spring (asparagus crowns) -> wait_spring from July;
 - tender: no warm-night season here -> not_here; an autumn frost before harvest in more
   than 1 year in 10, or harvest past the end of the warm-night season -> too_late; a frost
   (<= 2 C) in the next 3 days, or one still to come in more than 1 year in 10 ->
@@ -43,9 +45,9 @@ FROST_ODDS_DIR = Path(os.getenv("FROST_ODDS_DIR") or APP / "frost_odds")
 SAFE = 0.1      # tender crops: a frost before harvest in at most 1 year in 10
 RISKY = 0.5     # hardier crops: a hard frost before harvest in at most half the years
 EARLY = 14      # days before the warm nights normally begin that a tender crop may go out
-AUTUMN = 182    # day of year (1 July) from which soil too cold for a crop means too late
+AUTUMN = 182    # day of year (1 July): soil too cold means too late from here; autumn crops open
 CODES = {"now": "n", "wait_frost": "f", "wait_soil": "s", "wait_warm": "w", "too_warm": "h",
-         "too_late": "l", "not_here": "x"}
+         "too_late": "l", "not_here": "x", "wait_autumn": "a", "wait_spring": "p"}
 UPLOAD_WORKERS = 16
 
 
@@ -87,6 +89,10 @@ def advise(place, crops, doy):
         def mark(when, code):
             status[np.asarray(when) & (status == "")] = code
 
+        if c.season == "autumn":                                        # no season (blank): either
+            mark(doy < AUTUMN, "wait_autumn")
+        elif c.season == "spring":
+            mark(doy >= AUTUMN, "wait_spring")
         if c.frost == "tender":
             spring, autumn = frost_risk(place, "0", doy, c.days)
             nights = not np.isnan(c.night)
