@@ -8,10 +8,10 @@
     "noUpload": "Nichts wird hochgeladen",
     "offline": "Nach dem Download auch offline",
     "coverage": {
-      "species": "Arten, die es kennt",
+      "species": "erkannte Arten",
       "mushrooms": "der Pilzfunde",
       "plants": "der Pflanzenfunde",
-      "note": "Anteil der bestätigten Funde in unseren Kartenregionen in Europa und den USA, deren Art das Modell kennt."
+      "note": "Über bestätigte Funde in unseren Regionen in Europa und den USA."
     }
   },
   "plate": {

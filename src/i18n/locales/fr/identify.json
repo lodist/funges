@@ -8,10 +8,10 @@
     "noUpload": "Rien n’est envoyé",
     "offline": "Hors ligne une fois téléchargé",
     "coverage": {
-      "species": "espèces connues",
+      "species": "espèces reconnues",
       "mushrooms": "des observations de champignons",
       "plants": "des observations de plantes",
-      "note": "Part des observations validées dans nos régions de la carte en Europe et aux États-Unis dont le modèle connaît l’espèce."
+      "note": "Sur les observations validées de nos régions d’Europe et des États-Unis."
     }
   },
   "plate": {

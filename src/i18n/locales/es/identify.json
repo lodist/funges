@@ -8,10 +8,10 @@
     "noUpload": "No se sube nada",
     "offline": "Funciona sin conexión tras la descarga",
     "coverage": {
-      "species": "especies que conoce",
+      "species": "especies reconocidas",
       "mushrooms": "de los avistamientos de setas",
       "plants": "de los avistamientos de plantas",
-      "note": "Parte de los avistamientos verificados en nuestras regiones del mapa de Europa y EE. UU. cuya especie conoce el modelo."
+      "note": "Sobre avistamientos verificados en nuestras regiones de Europa y EE. UU."
     }
   },
   "plate": {

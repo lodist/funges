@@ -8,10 +8,10 @@
     "noUpload": "Nothing is uploaded",
     "offline": "Works offline once downloaded",
     "coverage": {
-      "species": "species it knows",
+      "species": "species recognized",
       "mushrooms": "of mushroom sightings",
       "plants": "of plant sightings",
-      "note": "Share of research-grade sightings in our European and US map regions that belong to a species the model knows."
+      "note": "Across verified sightings in our European and US regions."
     }
   },
   "plate": {

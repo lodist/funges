@@ -8,10 +8,10 @@
     "noUpload": "Non viene caricato nulla",
     "offline": "Funziona offline dopo il download",
     "coverage": {
-      "species": "specie che conosce",
+      "species": "specie riconosciute",
       "mushrooms": "degli avvistamenti di funghi",
       "plants": "degli avvistamenti di piante",
-      "note": "Quota degli avvistamenti verificati nelle nostre regioni della mappa in Europa e negli USA la cui specie è nota al modello."
+      "note": "Sugli avvistamenti verificati nelle nostre regioni in Europa e USA."
     }
   },
   "plate": {

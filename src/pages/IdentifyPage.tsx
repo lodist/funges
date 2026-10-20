@@ -273,7 +273,7 @@ function Band() {
               </div>
             ))}
           </dl>
-          <p className='mt-3 max-w-[60ch] text-xs text-happy-100'>
+          <p className='mt-3 text-xs text-happy-100'>
             {t('page.coverage.note')}
           </p>
         </div>

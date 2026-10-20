@@ -8,10 +8,10 @@
     "noUpload": "Nada é enviado",
     "offline": "Funciona offline depois de transferido",
     "coverage": {
-      "species": "espécies que conhece",
+      "species": "espécies reconhecidas",
       "mushrooms": "dos avistamentos de cogumelos",
       "plants": "dos avistamentos de plantas",
-      "note": "Parte dos avistamentos verificados nas nossas regiões do mapa na Europa e nos EUA cuja espécie o modelo conhece."
+      "note": "Sobre avistamentos verificados nas nossas regiões da Europa e dos EUA."
     }
   },
   "plate": {
