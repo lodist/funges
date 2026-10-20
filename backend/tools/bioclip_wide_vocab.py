@@ -13,6 +13,7 @@ compete against. So this needs lineages + text embeddings for the distractor
 species, nothing more.
 
     python backend/tools/bioclip_wide_vocab.py --stage taxa      # iNat -> wide_vocab.json
+    python backend/tools/bioclip_wide_vocab.py --stage others     # non-catalog test photos
     python backend/tools/bioclip_wide_vocab.py --stage evaluate   # re-run the gate
 
 Reuses bioclip_spike's prompt builder and metrics so the wide-vocabulary numbers
@@ -51,28 +52,53 @@ KINGDOMS = {"Fungi": 47170, "Plantae": 47126}
 # iNaturalist refuses per_page above this.
 PAGE_CAP = 500
 
-# Same bounding boxes the scoring pipeline uses (backend/tools/build_season_curves.py),
-# so the distractor set is regionally plausible rather than globally random.
+# The extents of the scoring grids (app_operation/<area>/<R>_unique_coordinates.json),
+# rounded outward, so the distractor set is what people photograph where the app
+# scores. Until Oct 2026 these were older, narrower boxes: SE started at 12E and
+# USE stopped at 37.5N, so Spain, Portugal, France, the Alps, most of Italy and
+# the US Northeast were never sampled. One box per grid rather than one per
+# continent, because ranking is per box: a big box would let the most-observed
+# corner fill the quota for the whole continent.
 REGIONS = {
-    "NE": {"lat": (49.0, 71.5), "lon": (-25.0, 32.0)},
-    "SE": {"lat": (34.0, 55.5), "lon": (12.0, 42.5)},
-    "USE": {"lat": (24.0, 37.5), "lon": (-106.5, -75.0)},
-    "USW": {"lat": (33.0, 49.5), "lon": (-125.5, -81.5)},
+    "NE": {"lat": (49.0, 71.0), "lon": (-25.0, 31.5)},
+    "WE": {"lat": (27.5, 55.0), "lon": (-18.5, 18.5)},
+    "EE": {"lat": (34.5, 55.0), "lon": (12.0, 45.0)},
+    "USE": {"lat": (25.0, 48.0), "lon": (-107.0, -67.0)},
+    "USW": {"lat": (31.0, 49.0), "lon": (-125.0, -81.5)},
 }
+
+# Every species with sightings, not just the head the vocabulary keeps. The
+# "others" test set is sampled from it, because the species a vocabulary leaves
+# out are exactly the ones that test exists to measure.
+ALL_COUNTS = CACHE / "all_species_counts.json"
+# Every lineage ever fetched, so a re-run only pays for species it has not seen.
+LINEAGE_CACHE = CACHE / "lineage_cache.json"
+OTHERS_DIR = CACHE / "others"
+OTHERS_MANIFEST = CACHE / "others_manifest.json"
+OTHERS_EMBEDDINGS = CACHE / "others_embeddings_int8.npy"
+
+# Photos per kingdom in the "others" test set. Each draw picks a species in
+# proportion to its sightings, so the set looks like what people photograph,
+# rare tail included at its real share. Fungi get twice the draws because
+# mushrooms are where a wrong name can kill.
+OTHERS_DRAWS = {"Fungi": 800, "Plantae": 400}
+OTHERS_SEED = 20261020
 
 
 def fetch_regional_species(per_region):
     """Most-observed research-grade species per region and kingdom.
 
-    Returns {taxon_id: scientific_name}. Uses /observations/species_counts, which
-    returns species ranked by observation count — i.e. what a user is actually
-    likely to be photographing, not an arbitrary slice of the taxonomy.
+    Returns ({taxon_id: name}, {name: count}, {name: kingdom}). Uses
+    /observations/species_counts, which ranks species by observation count -
+    what a user is actually likely to be photographing, not an arbitrary slice
+    of the taxonomy. `per_region=None` pages to the end of every list.
     """
     found = {}
     # taxon_id -> highest observation count seen in any region. Max rather than
     # sum: a species common in one region should not be ranked down for being
     # absent from another.
     counts = {}
+    kingdoms = {}
     for region, box in REGIONS.items():
         for kingdom, taxon_id in KINGDOMS.items():
             new = 0
@@ -82,8 +108,8 @@ def fetch_regional_species(per_region):
             # the order we want to spend label budget in.
             remaining = per_region
             page = 1
-            while remaining > 0:
-                size = min(PAGE_CAP, remaining)
+            while remaining is None or remaining > 0:
+                size = PAGE_CAP if remaining is None else min(PAGE_CAP, remaining)
                 data = _get_json(
                     "/observations/species_counts",
                     {
@@ -109,6 +135,7 @@ def fetch_regional_species(per_region):
                     seen = row.get("count") or 0
                     if seen > counts.get(name, 0):
                         counts[name] = seen
+                    kingdoms[name] = kingdom
                     if tid in found:
                         continue
                     found[tid] = name
@@ -117,10 +144,11 @@ def fetch_regional_species(per_region):
                 # just re-request the same tail.
                 if len(results) < size:
                     break
-                remaining -= size
+                if remaining is not None:
+                    remaining -= size
                 page += 1
             print(f"  {region}/{kingdom}: +{new} species (total {len(found)})")
-    return found, counts
+    return found, counts, kingdoms
 
 
 def fetch_lineages(taxon_ids, batch=30):
@@ -150,18 +178,40 @@ def fetch_lineages(taxon_ids, batch=30):
 
 
 def stage_taxa(per_region):
-    """iNat -> spike_cache/wide_vocab.json (tier-2 distractor labels)."""
+    """iNat -> spike_cache/wide_vocab.json (tier-2 distractor labels).
+
+    Lineages only for each kingdom's top `per_region` species overall, ranked by
+    their best region: that is all any per-kingdom cap up to `per_region` can
+    keep, and at ~5 s per 30-taxon call the rest would cost an hour. Lineages
+    already on disk are reused, and new ones are saved as they arrive.
+    """
     CACHE.mkdir(parents=True, exist_ok=True)
-    species, counts = fetch_regional_species(per_region)
+    species, counts, kingdoms = fetch_regional_species(per_region)
     print(f"\n{len(species)} unique species-rank taxa before exclusions")
 
     # A tier-1 name must never also be a tier-2 name — the app's matcher asserts
     # this too. Excluding here keeps the two vocabularies disjoint at the source.
     tier1 = CATALOG_NAMES | TOXIC_NAMES
-    species = {k: v for k, v in species.items() if v not in tier1}
-    print(f"{len(species)} after removing the {len(tier1)} tier-1 names")
+    ids = {name: tid for tid, name in species.items() if name not in tier1}
+    keep = set()
+    for kingdom in KINGDOMS:
+        ranked = sorted(
+            (n for n in ids if kingdoms[n] == kingdom), key=lambda n: (-counts[n], n)
+        )
+        keep |= set(ranked[:per_region])
+    print(f"{len(keep)} in each kingdom's top {per_region}, tier 1 removed")
 
-    lineages = fetch_lineages(species.keys())
+    if LINEAGE_CACHE.exists():
+        known = json.loads(LINEAGE_CACHE.read_text())
+    else:
+        known = json.loads(WIDE_VOCAB.read_text()) if WIDE_VOCAB.exists() else {}
+    todo = sorted(ids[n] for n in keep if n not in known)
+    print(f"{len(keep) - len(todo)} lineages already known, {len(todo)} to fetch")
+    for start in range(0, len(todo), 300):
+        known.update(fetch_lineages(todo[start : start + 300]))
+        LINEAGE_CACHE.write_text(json.dumps(known), encoding="utf-8")
+
+    lineages = {n: known[n] for n in sorted(keep) if n in known}
     WIDE_VOCAB.write_text(json.dumps(lineages, indent=2), encoding="utf-8")
     print(f"\nwrote {len(lineages)} tier-2 labels to {WIDE_VOCAB}")
 
@@ -172,6 +222,101 @@ def stage_taxa(per_region):
     top = sorted(kept.items(), key=lambda kv: -kv[1])[:5]
     print(f"wrote observation counts to {WIDE_COUNTS}")
     print(f"  most observed: {', '.join(f'{n} ({c})' for n, c in top)}")
+
+
+def stage_others():
+    """Photos of species that are neither catalog nor toxic, embedded as shipped.
+
+    The gate's test photos are all catalog or toxic species, so it cannot see
+    what happens to everything else people photograph. A species missing from
+    the vocabulary is forced onto its nearest label, which can be an edible
+    one. This set measures that: draws in proportion to sightings, one photo
+    per observation, embedded through the int8 graph that ships.
+    """
+    import random
+    import urllib.parse
+    from concurrent.futures import ThreadPoolExecutor
+
+    import numpy as np
+
+    from bioclip_export import ONNX_INT8, _embed_onnx
+    from bioclip_spike import CATALOG, CULTIVATED_NAMES, download
+
+    if ALL_COUNTS.exists():
+        counts = json.loads(ALL_COUNTS.read_text())
+    else:
+        found, seen, kingdoms = fetch_regional_species(None)
+        ids = {name: tid for tid, name in found.items()}
+        counts = {n: [seen[n], kingdoms[n], ids[n]] for n in seen if n in ids}
+        ALL_COUNTS.write_text(json.dumps(counts), encoding="utf-8")
+    print(f"{len(counts)} species with research-grade sightings")
+
+    # Species a catalog genus entry already answers for (any Morchella is the
+    # morel entry) would score as right and wrong at once, so they sit out.
+    genus_level = {name for name, rank in CATALOG if rank == "genus"}
+    skip = CATALOG_NAMES | TOXIC_NAMES | CULTIVATED_NAMES
+    rng = random.Random(OTHERS_SEED)
+    draws = {}
+    for kingdom, n in OTHERS_DRAWS.items():
+        pool = sorted(
+            name
+            for name, (_c, k, _t) in counts.items()
+            if k == kingdom
+            and name not in skip
+            and name.split(" ")[0] not in genus_level
+            and "'" not in name
+        )
+        for name in rng.choices(pool, weights=[counts[s][0] for s in pool], k=n):
+            draws[name] = draws.get(name, 0) + 1
+    print(f"{sum(draws.values())} draws over {len(draws)} species")
+
+    OTHERS_DIR.mkdir(parents=True, exist_ok=True)
+    rows, missing = [], 0
+    for i, (name, n) in enumerate(sorted(draws.items())):
+        # Newest first: recent sightings are the least likely to sit in the
+        # model's training data, the leak the spike already warned about.
+        data = _get_json(
+            "/observations",
+            {
+                "taxon_id": counts[name][2],
+                "quality_grade": "research",
+                "photos": "true",
+                "per_page": min(200, 2 * n + 5),
+                "order_by": "observed_on",
+                "order": "desc",
+            },
+        )
+        picked = [
+            (obs["id"], obs["photos"][0]["url"].replace("square", "medium"))
+            for obs in data.get("results", [])
+            if obs.get("photos") and obs["photos"][0].get("url")
+        ][:n]
+        missing += n - len(picked)
+        for obs_id, url in picked:
+            # Photo id is a path segment; the basename is always medium.jpg.
+            photo_id = Path(urllib.parse.urlparse(url).path).parent.name
+            rows.append(
+                {
+                    "file": f"{name.replace(' ', '_')}_{obs_id}_{photo_id}.jpg",
+                    "url": url,
+                    "label": name,
+                    "kind": "other",
+                    "kingdom": counts[name][1],
+                    "observation_id": obs_id,
+                }
+            )
+        if i % 50 == 0:
+            print(f"  observations for {i + 1}/{len(draws)} species")
+    print(f"{len(rows)} photos to fetch, {missing} draws had no photo")
+
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        ok = list(ex.map(lambda r: download(r["url"], OTHERS_DIR / r["file"]), rows))
+    rows = [r for r, good in zip(rows, ok) if good]
+
+    vectors, kept = _embed_onnx(ONNX_INT8, rows, OTHERS_DIR)
+    np.save(OTHERS_EMBEDDINGS, vectors)
+    OTHERS_MANIFEST.write_text(json.dumps({"photos": kept}, indent=2), encoding="utf-8")
+    print(f"embedded {len(kept)} others photos -> {OTHERS_EMBEDDINGS.name}")
 
 
 def stage_evaluate():
@@ -259,17 +404,22 @@ def stage_evaluate():
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--stage", choices=["taxa", "evaluate"], required=True)
+    ap.add_argument("--stage", choices=["taxa", "others", "evaluate"], required=True)
+    # A species in the overall top N (ranked by its best region) is in the top N
+    # of that region, so fetching each region's top N is enough for any
+    # per-kingdom cap up to N in bioclip_export.py.
     ap.add_argument(
         "--per-region",
         type=int,
-        default=200,
-        help="species to request per region+kingdom (default 200)",
+        default=5000,
+        help="species to request per region+kingdom (default 5000)",
     )
     args = ap.parse_args()
 
     if args.stage == "taxa":
         stage_taxa(args.per_region)
+    elif args.stage == "others":
+        stage_others()
     else:
         stage_evaluate()
 

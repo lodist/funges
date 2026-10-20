@@ -337,3 +337,126 @@ python backend/tools/bioclip_export.py --stage quantize
 python backend/tools/bioclip_export.py --stage verify
 python backend/tools/bioclip_export.py --stage text-matrix
 ```
+
+---
+
+## Addendum 4 — a vocabulary balanced by kingdom (20 Oct 2026)
+
+**Why.** The shipped list had 2,654 labels but only 273 fungi. One tier-2 cap
+ranked fungi and plants together by iNaturalist sightings, and plants get 7–19×
+more sightings, so plants took 89% of the slots. The sampling boxes were also out
+of date: SE started at 12°E and USE stopped at 37.5°N, so Spain, Portugal,
+France, the Alps, most of Italy and the US Northeast were never sampled. The
+boxes now follow the scoring grids (NE, WE, EE, USE, USW), and each kingdom has
+its own cap.
+
+**A blind spot in the gate.** Its test photos are all catalog or toxic species,
+so it cannot see what happens to the rest of what people photograph. A species
+missing from the list is forced onto its nearest label, which can be an edible
+one. A third test set now covers that: 1,200 photos of species that are neither
+catalog nor toxic (800 fungi, 400 plants), drawn in proportion to research-grade
+sightings in the five boxes, one photo per observation, newest first, embedded
+through the shipped int8 graph (`bioclip_wide_vocab.py --stage others`).
+
+**Genus caution.** A wider list brings in hundreds of species from dangerous
+genera, too many to review one by one. A tier-2 species now shows "Toxic
+relatives" and "its genus includes toxic species" instead of "no safety
+information" when its genus has a toxic entry or is a genus on `DANGER_TAXA`.
+Two exceptions: cultivated labels, so a champignon still shows no warning, and
+four Apiaceae that are on the danger list only as hemlock look-alikes. Caution
+rows count toward the 92% warning floor, because they carry a visible warning.
+
+### Sweep
+
+`bioclip_export.py --stage sweep`. The gate photos are the same 1,530 as before
+(870 catalog, 660 toxic). F = fungi labels, P = plant labels.
+
+| List                  | Labels |   MB | Edible first on a toxic photo | Catalog first | Catalog in top 3 | Warning in top 3 (toxic label only) |
+| --------------------- | -----: | ---: | ----------------------------: | ------------: | ---------------: | ----------------------------------: |
+| Shipped               |  2,654 |  4.1 |                         1.52% |         83.0% |            92.5% |                       97.7% (97.7%) |
+| Shipped + caution     |  2,654 |  4.1 |                         1.52% |         83.0% |            92.5% |                       98.3% (97.7%) |
+| 1,000 F + 5,000 P     |  6,141 |  9.4 |                         0.76% |         78.0% |            90.0% |                       96.7% (94.5%) |
+| **2,000 F + 5,000 P** |  7,141 | 11.0 |                         0.45% |         76.7% |            89.7% |                       95.6% (92.9%) |
+| 3,000 F + 5,000 P     |  8,141 | 12.5 |                         0.30% |         74.7% |            89.3% |                       95.6% (91.5%) |
+| 4,000 F + 5,000 P     |  9,141 | 14.0 |                         0.30% |         73.7% |            88.7% |                       95.6% (90.5%) |
+| 5,000 F + 5,000 P     |  9,779 | 15.0 |                         0.30% |         73.3% |            88.5% |                       95.5% (90.2%) |
+| 3,000 F + 2,500 P     |  5,654 |  8.7 |                         0.30% |         77.5% |            90.0% |                       96.1% (91.8%) |
+
+The others set, per kingdom (in the list / named first / an edible named first):
+
+| List                  | Mushroom photos (800)              | Plant photos (400)  |
+| --------------------- | ---------------------------------- | ------------------- |
+| Shipped               | 49.1% / 42.6% / **4.00%** (32)     | 66.2% / 58.2% / 0.25% |
+| 1,000 F + 5,000 P     | 84.4% / 65.0% / 0.75% (6)          | 88.8% / 73.5% / 0%  |
+| **2,000 F + 5,000 P** | 92.2% / 67.2% / **0.50%** (4)      | 88.8% / 73.5% / 0%  |
+| 3,000 F + 5,000 P     | 95.8% / 66.8% / 0.50% (4)          | 88.8% / 73.5% / 0%  |
+| 4,000 F + 5,000 P     | 97.2% / 66.1% / 0.50% (4)          | 88.8% / 73.5% / 0%  |
+| 5,000 F + 5,000 P     | 98.0% / 65.1% / 0.50% (4)          | 88.8% / 73.5% / 0%  |
+| 3,000 F + 2,500 P     | 95.8% / 66.8% / 0.50% (4)          | 72.2% / 62.7% / 0.25% |
+
+### Reading it
+
+1. **Today's list names an edible species first for 1 in 25 ordinary mushroom
+   photos** (32 of 800), a failure the gate could not see. Every balanced list
+   cuts that to 4–6 of 800, and the original gate falls from 1.52% to 0.45%.
+2. **The cost is our own species coming first less often:** 83.0% to 76.7%. Of
+   the 198 catalog photos whose first answer is a species outside the catalog,
+   97 get a species of the same genus: blackberry to _Rubus armeniacus_,
+   chanterelle to _Cantharellus enelensis_, sweet chestnut to _Castanea
+   mollissima_. Catalog top-3 moves less, 92.5% to 89.7%.
+3. **Mushroom naming peaks at 2,000 fungi.** The 2,001st–3,000th species name 15
+   of their own 28 test photos, but cost 19 photos of commoner species and push
+   18 more catalog photos out of first place (parasol to _Macrolepiota pallida_,
+   chicken of the woods to _Laetiporus huroniensis_). Past 3,000 every column
+   stays flat or gets worse.
+4. **Plants:** 5,000 rather than 2,500 names 10.8 points more plant photos for
+   2.8 points of catalog top-1.
+5. **The caution is what keeps the warning floor at a wide list.** On the
+   shipped list it adds a warning to 0.6% more toxic photos. At 2,000 fungi it
+   adds 2.7 points (92.9% to 95.6%), and at 3,000 the toxic labels alone would
+   fall under the 92% floor.
+
+### Decision
+
+**2,000 fungi + 5,000 plants** (4,987 plant names survive the drops). The
+expansion also brought in a third sibling earthball, _Scleroderma cepa_. Like _S.
+areolatum_ and _S. verrucosum_ in July, it is promoted to toxic, so every
+_Scleroderma_ stays fully flagged next to the truffle. Shipped: 7,142 labels
+(55 catalog, 81 toxic, 434 caution, 6,572 other), an 11.0 MB matrix, 22 MB once
+decoded in the browser. The decode now uses a 65,536-entry table: about 14 ms
+on a desktop, against 61 ms for the old list with the old decode. The labels
+file grows the precached `identify` chunk from 40 to 72 KB gzipped. The matrix
+itself is runtime-cached, so only people who open Identify download it.
+
+`--stage verify-shipped` on the generated artifacts:
+
+| Metric                                          | Before          | After          |
+| ----------------------------------------------- | --------------- | -------------- |
+| Edible named first on a toxic photo             | 1.52%           | **0.45%**      |
+| Warning in the top 3 of a toxic photo           | 97.7%           | 95.6%          |
+| Catalog first / in top 3                        | 83.0% / 92.5%   | 76.7% / 89.7%  |
+| Ordinary mushroom photos the list can name      | 49.1%           | 92.2%          |
+| Ordinary mushroom photos named first            | 42.6%           | 67.4%          |
+| Ordinary mushroom photo named as an edible      | **4.00%** (32)  | **0.50%** (4)  |
+| Ordinary plant photos named first               | 58.2%           | 73.5%          |
+
+### Caveats
+
+- iNaturalist is in BioCLIP 2's training data, so "named first" is a ceiling.
+  Newest-first sampling limits the leak but does not remove it. The comparison
+  between list sizes is fair; the absolute rates are not field accuracy.
+- 800 mushroom photos: one point is eight photos, so gaps under a point between
+  neighbouring sizes are noise.
+- Four species-level danger entries stay neutral, as before: _Hedera helix_,
+  _Ilex aquifolium_, _Prunus laurocerasus_ and _Russula emetica_. They need full
+  toxic entries rather than a genus caution.
+
+Reproduce:
+
+```bash
+python backend/tools/bioclip_wide_vocab.py --stage taxa      # ~25 min, lineages cached
+python backend/tools/bioclip_wide_vocab.py --stage others    # ~20 min
+python backend/tools/bioclip_export.py --stage sweep
+python backend/tools/bioclip_export.py --stage text-matrix
+python backend/tools/bioclip_export.py --stage verify-shipped
+```

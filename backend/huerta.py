@@ -5,6 +5,8 @@ Per place: the coldest hour of the next 3 days (frost3), the mean soil temperatu
 over them (soil3; NBM has none, so in the US the air's three-day mean stands in), the
 week's mean night (night7), its rain (rain7) and reference evaporation (et07, Hargreaves'
 radiation formula). Per crop, the first rule that applies:
+- a crop that goes in only in autumn (bulbs, winter rye) -> wait_autumn before July; one that
+  goes in only in spring (asparagus crowns) -> wait_spring from July;
 - tender: no warm-night season here -> not_here; an autumn frost before harvest in more
   than 1 year in 10, or harvest past the end of the warm-night season -> too_late; a frost
   (<= 2 C) in the next 3 days, or one still to come in more than 1 year in 10 ->
@@ -23,8 +25,14 @@ crops.csv, the crop table; FROST_ODDS_DIR (default app_operation/frost_odds) hol
 
 Output, private on R2 like the rest: one file per 1° square, huerta/advice/<REGION>/
 <lat>_<lon>.json, {day, crops, places: [[name, lat, lon, frost, soil, nights, rain, water,
-codes]]}: frost '' / 'g' (ground frost) / 'f', codes one letter per crop (CODES). The Huerta
-Worker hands one place at a time to the app.
+codes, last_frost, first_frost]]}: frost '' / 'g' (ground frost) / 'f', codes one letter per
+crop (CODES), last/first frost the place's typical day of year of its last spring and first
+autumn frost (null: none in a typical year). For the garden map, huerta/map/<REGION>/:
+index.json {day, n, layers}, places.bin (int16 lat x100, lon x100 per place) and layers.bin,
+one byte per place per layer, layer after layer (MAP_LAYERS, then one per crop: its letter),
+so the Worker can hand out one layer with a range read. And huerta/crops.json, what each crop needs
+(frost class, soil range, warm nights, days to harvest), for the app to say why. The Huerta Worker hands one place at a
+time to the app.
 """
 from __future__ import annotations
 
@@ -43,10 +51,13 @@ FROST_ODDS_DIR = Path(os.getenv("FROST_ODDS_DIR") or APP / "frost_odds")
 SAFE = 0.1      # tender crops: a frost before harvest in at most 1 year in 10
 RISKY = 0.5     # hardier crops: a hard frost before harvest in at most half the years
 EARLY = 14      # days before the warm nights normally begin that a tender crop may go out
-AUTUMN = 182    # day of year (1 July) from which soil too cold for a crop means too late
+AUTUMN = 182    # day of year (1 July): soil too cold means too late from here; autumn crops open
 CODES = {"now": "n", "wait_frost": "f", "wait_soil": "s", "wait_warm": "w", "too_warm": "h",
-         "too_late": "l", "not_here": "x"}
+         "too_late": "l", "not_here": "x", "wait_autumn": "a", "wait_spring": "p"}
 UPLOAD_WORKERS = 16
+# The garden map's own layers: frost in the next 3 days (0 none, 1 ground frost, 2 frost), soil
+# at 6 cm (degrees C + 40) and the week's water deficit (mm); 255 where unknown.
+MAP_LAYERS = ("frost", "soil", "water")
 
 
 def conditions(forecast):
@@ -87,6 +98,10 @@ def advise(place, crops, doy):
         def mark(when, code):
             status[np.asarray(when) & (status == "")] = code
 
+        if c.season == "autumn":                                        # no season (blank): either
+            mark(doy < AUTUMN, "wait_autumn")
+        elif c.season == "spring":
+            mark(doy >= AUTUMN, "wait_spring")
         if c.frost == "tender":
             spring, autumn = frost_risk(place, "0", doy, c.days)
             nights = not np.isnan(c.night)
@@ -119,6 +134,38 @@ def _number(value, digits=1):
     return None if pd.isna(value) else round(float(value), digits)
 
 
+def _day(value):
+    """A median frost day of year; 0 means no frost in a typical year."""
+    return None if pd.isna(value) or value <= 0 else int(value)
+
+
+def crop_needs(crops):
+    """huerta/crops.json: {crop: {frost, soil: [min, max], night, days}}, None where a crop has no such need."""
+    return json.dumps({c.crop: {"frost": c.frost, "soil": [_number(c.soil_min, 0), _number(c.soil_max, 0)], "night": _number(c.night, 0),
+                                "days": _number(c.days, 0)}
+                       for c in crops.itertuples(index=False)}, separators=(",", ":")).encode()
+
+
+def _byte(values, offset=0):
+    """Whole numbers + offset as bytes 0..254, 255 where unknown."""
+    v = np.round(np.asarray(values, float)) + offset
+    return np.where(np.isnan(v), 255, np.clip(v, 0, 254)).astype(np.uint8)
+
+
+def map_files(place, advice, day):
+    """{name under huerta/map/<REGION>/: bytes} for the garden map, layers in MAP_LAYERS + crop order."""
+    n = len(place)
+    frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2], [2, 1], 0).astype(np.uint8)
+    water = (place["et07"] - place["rain7"]).clip(lower=0)
+    columns = [frost, _byte(place["soil3"], 40), _byte(water)]
+    codes = advice.replace(CODES)
+    columns += [np.frombuffer("".join(codes[c]).encode("ascii"), np.uint8) for c in advice.columns]
+    places = np.column_stack([np.round(place["Latitude"] * 100), np.round(place["Longitude"] * 100)]).astype("<i2")
+    index = {"day": day, "n": n, "layers": [*MAP_LAYERS, *advice.columns]}
+    return {"index.json": json.dumps(index, separators=(",", ":")).encode(), "places.bin": places.tobytes(),
+            "layers.bin": np.concatenate(columns).tobytes()}
+
+
 def area_files(place, advice, day):
     """{R2 key suffix '<lat>_<lon>.json': file bytes}: every place of a 1° square, compact."""
     frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2], ["f", "g"], "")
@@ -127,10 +174,12 @@ def area_files(place, advice, day):
     rows = pd.DataFrame({
         "square": np.floor(place["Latitude"]).astype(int).astype(str) + "_"
         + np.floor(place["Longitude"]).astype(int).astype(str),
-        "row": [[name, float(la), float(lo), fr, _number(s), _number(n), _number(r), _number(w, 0), c]
-                for name, la, lo, fr, s, n, r, w, c in zip(
+        "row": [[name, float(la), float(lo), fr, _number(s), _number(n), _number(r), _number(w, 0), c,
+                 _day(last), _day(first)]
+                for name, la, lo, fr, s, n, r, w, c, last, first in zip(
                     place["Location_Id"].str.rsplit("_", n=2).str[0], place["Latitude"], place["Longitude"],
-                    frost, place["soil3"], place["night7"], place["rain7"], water, codes)],
+                    frost, place["soil3"], place["night7"], place["rain7"], water, codes,
+                    place["last0_median"], place["first0_median"])],
     })
     crops = list(advice.columns)
     return {f"{square}.json": json.dumps({"day": day, "crops": crops, "places": list(group["row"])},
@@ -152,7 +201,8 @@ def publish(region, forecast):
     for frame, (la, lo) in ((place, ("Latitude", "Longitude")), (cond, ("lat", "lon"))):
         frame["key_lat"], frame["key_lon"] = frame[la].round(4), frame[lo].round(4)
     place = place.merge(cond.drop(columns=["lat", "lon"]), on=["key_lat", "key_lon"], how="inner")
-    advice = advise(place, pd.read_csv(crops_path), day.dayofyear)
+    crops = pd.read_csv(crops_path)
+    advice = advise(place, crops, day.dayofyear)
     files = area_files(place, advice, f"{day:%Y-%m-%d}")
 
     import r2
@@ -160,6 +210,12 @@ def publish(region, forecast):
     with ThreadPoolExecutor(UPLOAD_WORKERS) as pool:
         list(pool.map(lambda kv: s3.put_object(Bucket=bucket, Key=f"huerta/advice/{region}/{kv[0]}", Body=kv[1],
                                                ContentType="application/json"), files.items()))
+    s3.put_object(Bucket=bucket, Key="huerta/crops.json", Body=crop_needs(crops), ContentType="application/json")
+    # The index last, so the map never reads an index ahead of its layers.
+    maps = map_files(place, advice, f"{day:%Y-%m-%d}")
+    for name in ("places.bin", "layers.bin", "index.json"):
+        s3.put_object(Bucket=bucket, Key=f"huerta/map/{region}/{name}", Body=maps[name],
+                      ContentType="application/json" if name.endswith(".json") else "application/octet-stream")
     print(f"Huerta: {len(place):,} places in {len(files)} area files for {day:%Y-%m-%d}, "
           f"{time.time() - started:.0f} s; sow or plant now at a typical place: "
           f"{int((advice == 'now').sum(axis=1).median())} of {advice.shape[1]} crops")

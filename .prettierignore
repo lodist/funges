@@ -95,6 +95,10 @@ Thumbs.db
 
 # Generated files
 src/routeTree.gen.ts
+# One label per line on purpose: bioclip_export.py --stage verify-shipped parses
+# it back line by line, and a long species name wrapped by Prettier would read
+# as label/matrix drift.
+src/data/bioclip-labels.ts
 
 # Dynamic data files (regenerated and auto-committed on a schedule by
 # .github/workflows/update-data.yml — not meant to be hand-formatted)

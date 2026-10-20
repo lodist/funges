@@ -226,9 +226,12 @@ export function useIdentifyFlow(): IdentifyFlow {
   // Build the session as soon as there is a model to build it from — on open, or
   // when a download finishes — instead of after the first photo arrives. Reading
   // ~300 MB and building the graph takes seconds on a phone, and the camera is
-  // where that time can pass unnoticed. A failure resurfaces on the photo.
+  // where that time can pass unnoticed. The species list starts loading too (11
+  // MB the first time after it changes). A failure resurfaces on the photo.
   useEffect(() => {
-    if (phase.name === 'capture') ensureSession().catch(() => {});
+    if (phase.name !== 'capture') return;
+    ensureSession().catch(() => {});
+    loadTextMatrix().catch(() => {});
     // ensureSession is memoised through sessionRef; re-running on its identity
     // would only return the same promise.
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -85,6 +85,8 @@
     "lethalLabel": "Deadly - do not eat",
     "inedibleLabel": "Not edible",
     "notInCatalog": "Not in this app's catalog - no safety information",
+    "cautionLabel": "Toxic relatives",
+    "cautionGenus": "Not in this app's catalog - its genus includes toxic species",
     "unknownSpecies": "Not recognised",
     "confidence": "{{percent}}% match",
     "confidenceUnderOne": "<1% match",
