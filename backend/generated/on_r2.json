@@ -1,0 +1,14 @@
+{
+  "bloom_normals_EU.npz": "8dec57155936a5890ba7f1df19ad9bcc6a6d81c019697e50eec259cb6226292a",
+  "bloom_normals_US.npz": "553efc22964744339e90a87cedb5b43e8f5da20d2bd6c2e766741108454a30ba",
+  "bloom_towns_EU.geojson": "c18df24a26a67234831d545b305703c69336311ecabc89eff6ffaf1c23de0077",
+  "bloom_towns_US.geojson": "c3a510eaea39bb21ff26f60334e71953edf7b07b99d715708ab0e0ee658d3eb2",
+  "bluebell_woods_EU.parquet": "9083b728ef8725aabc54acaaf0b840fc27091005796de693c64e4efe184f83b9",
+  "era5_normals_EU.npz": "3be1f25db5bb37d96fd6e908c851c3d97c6e0e2ec0f9566b710de02e4f828af1",
+  "era5_normals_US.npz": "99a58d821ae4f049cf0b982ae36c2501b1ce71b8c8f28a8650322376f79204a1",
+  "fruiting_fit.json": "8a018185613c036b86da5bca7eb80ad8b2cf9979a87a5627c2794374a8e9be1b",
+  "fruiting_gbm.json": "8458f173968365509438add10e4bc737bea9e9ea09882e2e4b83b5aca23f1d9f",
+  "heather_moors_EU.parquet": "653d5b42cac8ee602a607a61e46ed2454a5b02dd77851b5dafb4180522c12fea",
+  "larch_mask_EU.npz": "d72d5c0ecfe2668964f348d82de5cfaa4aceb40893daddffa6782df6b0ce695e",
+  "superbloom_ground_US.geojson": "dd29d930bc7a8c84f23a001a6d4c67a89ef9dbe234fc8e3a4c5521ff834b09a3"
+}

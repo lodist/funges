@@ -34,6 +34,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "backend"), str(ROOT / "backend" / "tools"), str(ROOT / "scripts")]
 import era5_normals  # noqa: E402
 import forecast_pipeline as fp  # noqa: E402
+import r2  # noqa: E402
 from fit_fruiting import CONTINENT, PLACEBO, find_day_rank, strata, transform  # noqa: E402
 from fit_fruiting_parts import PARTS, STORED_WITH, full_score, place_parts, places, weather, wide  # noqa: E402
 from fit_plant_settings import paired_ci, static_info  # noqa: E402
@@ -47,11 +48,13 @@ AUTUMN_YEARS, AUTUMN_PLACES, AUTUMN_STEP = (2023, 2024, 2025), 300, 3
 
 
 def shipped_default() -> Path:
-    """main's fruiting_fit.json: on a refit branch the working copy is the candidate."""
-    text = subprocess.run(["git", "show", "origin/main:backend/generated/fruiting_fit.json"], cwd=ROOT,
+    """main's fruiting_fit.json (its sha256 from main's on_r2.json, the file from R2): on a
+    refit branch the working copy is the candidate."""
+    text = subprocess.run(["git", "show", "origin/main:backend/generated/on_r2.json"], cwd=ROOT,
                           capture_output=True, text=True, encoding="utf-8", check=True).stdout
+    sha = json.loads(text)["fruiting_fit.json"]
     path = Path(tempfile.gettempdir()) / "fruiting_fit_main.json"
-    path.write_text(text, encoding="utf-8")
+    path.write_bytes(r2.fetch(f"generated/{sha}/fruiting_fit.json"))
     return path
 
 
@@ -95,7 +98,7 @@ def with_fit(params: dict, spec: dict, species: str, region: str, stored: bool) 
 
 def pairs_to_check(shipped, candidate) -> list:
     """Species-regions whose model differs between the files, GBM-shipped ones left out."""
-    gbm = json.loads((ROOT / "backend/generated/fruiting_gbm.json").read_text(encoding="utf-8"))["models"]
+    gbm = json.loads(r2.generated(ROOT / "backend/generated/fruiting_gbm.json").read_text(encoding="utf-8"))["models"]
     keys = {(s, r) for spec in (shipped, candidate) for s, regions in spec["models"].items() for r in regions}
     differ = [k for k in keys if shipped["models"].get(k[0], {}).get(k[1]) != candidate["models"].get(k[0], {}).get(k[1])]
     differ += [(s, r) for s, regions in candidate.get("settings", {}).items() for r in regions]

@@ -197,7 +197,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     # The parquet history starts 2026-04-12, so 42 full lag days first exist on 2026-05-24.
     parser.add_argument("--first-scored", default="2026-05-24")
-    parser.add_argument("--output", default="docs/qa/season-timing-2026")
+    parser.add_argument("--output", default="../funges-lab/qa/season-timing-2026")
     parser.add_argument("--regions", default="NE,SE")
     args = parser.parse_args()
     output = Path(args.output)

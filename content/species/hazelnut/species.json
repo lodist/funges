@@ -55,7 +55,7 @@
       "status": "approved",
       "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
       "references": [
-        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+        "https://github.com/lodist/funges-lab/blob/main/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
       ]
     }
   },
@@ -96,8 +96,8 @@
           "https://www.gbif.org/species/2875979",
           "https://www.gbif.org/species/2876060",
           "https://www.gbif.org/species/2876032",
-          "docs/species/2026-09-27-quick-wins.md",
-          "docs/species/2026-10-05-soil-ph.md"
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md",
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-10-05-soil-ph.md"
         ],
         "landCoverScheme": "CORINE"
       },
@@ -132,8 +132,8 @@
           "https://www.gbif.org/species/2875979",
           "https://www.gbif.org/species/2876060",
           "https://www.gbif.org/species/2876032",
-          "docs/species/2026-09-27-quick-wins.md",
-          "docs/species/2026-10-05-soil-ph.md"
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md",
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-10-05-soil-ph.md"
         ],
         "landCoverScheme": "CORINE"
       },
@@ -169,7 +169,7 @@
           "https://www.gbif.org/species/2875979",
           "https://www.gbif.org/species/2876060",
           "https://www.gbif.org/species/2876032",
-          "docs/species/2026-09-27-quick-wins.md"
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
         ],
         "landCoverScheme": "NLCD"
       },
@@ -205,7 +205,7 @@
           "https://www.gbif.org/species/2875979",
           "https://www.gbif.org/species/2876060",
           "https://www.gbif.org/species/2876032",
-          "docs/species/2026-09-27-quick-wins.md"
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
         ],
         "landCoverScheme": "NLCD"
       }

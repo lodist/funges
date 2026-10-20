@@ -45,6 +45,7 @@ sys.path[:0] = [str(ROOT / "backend" / "tools"), str(ROOT / "backend"), str(ROOT
 from fit_fruiting import (CONTINENT, MIN_TEST_STRATA, PLACEBO, SHIP_MIN_YEARS, SLOTS, find_day_rank, sign_test,  # noqa: E402
                           ships, strata, transform)
 from species_registry import get_species_params  # noqa: E402
+import r2  # noqa: E402
 
 PARTS = {"temp_weight": ("temp", 1.75), "humidity_weight": ("humidity", 1.0), "rain_weight": ("moisture", 1.5)}
 # build_training_table stored every mushroom's parts at these weights (10 Oct 2026, before #320)
@@ -398,8 +399,8 @@ def main() -> None:
     cases, _, mask = strata(table, transform(table))
     temps = daily_temps(out, table, cases) if args.optima or args.temperature or args.habitat else None
     is_placebo = (cases["species"] == PLACEBO).to_numpy()
-    fits = json.loads((ROOT / "backend" / "generated" / "fruiting_fit.json").read_text(encoding="utf-8")).get("models", {})
-    gbms = json.loads((ROOT / "backend" / "generated" / "fruiting_gbm.json").read_text(encoding="utf-8")).get("models", {})
+    fits = json.loads(r2.generated(ROOT / "backend" / "generated" / "fruiting_fit.json").read_text(encoding="utf-8")).get("models", {})
+    gbms = json.loads(r2.generated(ROOT / "backend" / "generated" / "fruiting_gbm.json").read_text(encoding="utf-8")).get("models", {})
     params = {r: get_species_params(r) for r in ("NE", "SE", "USE", "USW")}
     years_all, regions = cases["year"].to_numpy(), cases["region"].to_numpy()
     found = pd.to_datetime(cases["find_date"])

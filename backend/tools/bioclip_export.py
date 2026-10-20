@@ -65,7 +65,7 @@ OPSET = 17
 
 # Tier-2 caps, one per kingdom. Vocabulary size trades the safety gate against
 # catalog recall and warning availability; --stage sweep measures the curve and
-# these are the chosen point on it (docs/superpowers/specs/2026-07-25-bioclip2-
+# these are the chosen point on it (funges-lab/superpowers/specs/2026-07-25-bioclip2-
 # spike-results.md, addendum 4). One shared cap ranked by sightings gave plants
 # 89% of the slots, because plants get 7-19x more sightings than fungi, and
 # left the list able to name only half of mushroom photos. Fungi stop at 2,000

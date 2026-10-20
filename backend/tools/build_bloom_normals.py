@@ -28,6 +28,9 @@ MONTHS = ("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", 
 # the native grid, so neighbouring boxes share their edge points exactly.
 MACROS = {"EU": {"lat": (30, 75), "lon": (-30, 50), "params": ("T2M",)},
           "US": {"lat": (20, 50), "lon": (-130, -60), "params": ("T2M", "PRECTOTCORR")}}
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import r2  # noqa: E402
+
 OUT = Path(__file__).resolve().parents[1] / "generated"
 
 
@@ -66,6 +69,7 @@ def build(macro):
     path = OUT / f"bloom_normals_{macro}.npz"
     path.write_bytes(buf.getvalue())
     print(f"wrote {path} ({len(keys)} points, {path.stat().st_size // 1024} KB)")
+    r2.ship(path)
 
 
 if __name__ == "__main__":
