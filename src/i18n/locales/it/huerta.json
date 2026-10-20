@@ -30,11 +30,15 @@
     "nights": "Notti",
     "rain": "Pioggia della settimana",
     "water": "Da irrigare",
-    "noWater": "Niente"
+    "noWater": "Niente",
+    "lastFrost": "Ultima gelata qui di solito verso il {{date}}",
+    "firstFrost": "Prima gelata di solito verso il {{date}}",
+    "noFrostDates": "Qui gela di rado"
   },
   "units": {
     "celsius": "{{value}} °C",
-    "mm": "{{value}} mm"
+    "mm": "{{value}} mm",
+    "litres": "{{value}} L/m²"
   },
   "now": {
     "title": "Semina o pianta ora",
@@ -140,5 +144,60 @@
     "herb": "Aromatiche",
     "flower": "Fiori",
     "cover": "Sovesci"
+  },
+  "sheet": {
+    "sowNow": "Semina ora",
+    "plantNow": "Pianta ora",
+    "week": "Questa settimana a {{place}}",
+    "why": {
+      "soilRange": "Terreno a {{soil}} °C. Va bene tra {{min}} e {{max}} °C.",
+      "soilFrom": "Terreno a {{soil}} °C. Va bene da {{min}} °C.",
+      "soilLow": "Terreno a {{soil}} °C. Gli servono almeno {{min}} °C.",
+      "soilHigh": "Terreno a {{soil}} °C. Va bene sotto i {{max}} °C.",
+      "nights": "Notti a {{nights}} °C. Gli servono notti sopra i {{night}} °C.",
+      "frost": "Qui è ancora probabile una gelata.",
+      "late": "Quest'anno resta troppo poco tempo prima delle gelate o del freddo.",
+      "notHere": "Qui le estati sono troppo fresche per coltivarlo all'aperto.",
+      "autumn": "Si mette a dimora solo in autunno.",
+      "spring": "Si mette a dimora solo in primavera.",
+      "warmSeason": "Qui non sono ancora arrivate le notti calde che gli servono.",
+      "noFrost": "Non è probabile una gelata prima del raccolto.",
+      "hardy": "Regge le gelate di qui."
+    },
+    "how": {
+      "sow": "Come seminare",
+      "plant": "Come piantare"
+    },
+    "facts": {
+      "depth": "Profondità",
+      "spacing": "Distanze",
+      "place": "Posizione",
+      "ready": "Raccolto"
+    },
+    "depthCm": "A {{value}} cm",
+    "depthPot": "Alla stessa profondità del vaso",
+    "scatter": "Spargere rado e rastrellare",
+    "apart": "A {{value}} cm",
+    "apartRows": "A {{value}} cm, file a {{rows}} cm",
+    "sun": {
+      "full": "Pieno sole",
+      "part": "Sole o mezz'ombra"
+    },
+    "ready": {
+      "weeks_one": "In circa {{count}} settimana",
+      "weeks_other": "In circa {{count}} settimane",
+      "months_one": "In circa {{count}} mese",
+      "months_other": "In circa {{count}} mesi",
+      "flowers_one": "Fiorisce in circa {{count}} settimana",
+      "flowers_other": "Fiorisce in circa {{count}} settimane",
+      "cover_one": "Copre il terreno in circa {{count}} settimana",
+      "cover_other": "Copre il terreno in circa {{count}} settimane",
+      "spring_flowers": "Fiorisce la prossima primavera",
+      "next_year": "Produce dall'anno prossimo",
+      "second_year": "Si raccolgono i gambi dal secondo anno",
+      "third_year": "Si tagliano i turioni dalla terza primavera",
+      "perennial": "Ritorna ogni anno"
+    },
+    "source": "Dati di coltivazione: RHS, UC ANR e guide di semina delle ditte sementiere."
   }
 }

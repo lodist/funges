@@ -1,4 +1,9 @@
-import { CROPS, type CropStatus, type PlaceAdvice } from '@/lib/huerta';
+import {
+  CROPS,
+  type CropNeeds,
+  type CropStatus,
+  type PlaceAdvice,
+} from '@/lib/huerta';
 
 /**
  * Huerta's advice comes from the Huerta Worker, one place at a time, never as a
@@ -55,6 +60,8 @@ interface AdviceResponse {
     water: number | null;
     /** One letter per entry of `crops`. */
     statuses: string;
+    lastFrost?: number | null;
+    firstFrost?: number | null;
   };
 }
 
@@ -66,6 +73,8 @@ export const decodeAdvice = ({ day, crops, place }: AdviceResponse) => ({
   nights: place.nights,
   rain: place.rain,
   water: place.water,
+  lastFrost: place.lastFrost ?? null,
+  firstFrost: place.firstFrost ?? null,
   crops: Object.fromEntries(
     crops.map((id, i) => [id, STATUS[place.statuses[i]] ?? 'too_late'])
   ),
@@ -118,7 +127,8 @@ export async function fetchAdvice(place: Place): Promise<PlaceAdvice | null> {
     kept.lat === lat &&
     kept.lon === lon &&
     kept.advice.day >= localDay() &&
-    CROPS.every(crop => crop.id in kept.advice.crops)
+    CROPS.every(crop => crop.id in kept.advice.crops) &&
+    'lastFrost' in kept.advice
   )
     return kept.advice;
   const response = await fetch(url('/v1/advice', { lat, lon }));
@@ -177,4 +187,21 @@ export async function searchTowns(query: string): Promise<Town[]> {
         a.name.length - b.name.length
     )
     .slice(0, 8);
+}
+
+let needs: Promise<Record<string, CropNeeds>> | null = null;
+
+/** Every crop's needs, asked once per visit; rejects (and asks again next
+ *  time) when the Worker cannot be reached. */
+export function fetchNeeds(): Promise<Record<string, CropNeeds>> {
+  needs ??= fetch(url('/v1/crops', {}))
+    .then(r => {
+      if (!r.ok) throw new Error(`Huerta crops: ${r.status}`);
+      return r.json() as Promise<Record<string, CropNeeds>>;
+    })
+    .catch(error => {
+      needs = null;
+      throw error;
+    });
+  return needs;
 }

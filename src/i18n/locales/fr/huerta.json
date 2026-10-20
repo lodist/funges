@@ -30,11 +30,15 @@
     "nights": "Nuits",
     "rain": "Pluie de la semaine",
     "water": "À arroser",
-    "noWater": "Rien"
+    "noWater": "Rien",
+    "lastFrost": "Dernière gelée ici vers le {{date}} en général",
+    "firstFrost": "Première gelée vers le {{date}} en général",
+    "noFrostDates": "Il gèle rarement ici"
   },
   "units": {
     "celsius": "{{value}} °C",
-    "mm": "{{value}} mm"
+    "mm": "{{value}} mm",
+    "litres": "{{value}} L/m²"
   },
   "now": {
     "title": "À semer ou planter maintenant",
@@ -140,5 +144,60 @@
     "herb": "Aromatiques",
     "flower": "Fleurs",
     "cover": "Engrais verts"
+  },
+  "sheet": {
+    "sowNow": "Semer maintenant",
+    "plantNow": "Planter maintenant",
+    "week": "Cette semaine autour de {{place}}",
+    "why": {
+      "soilRange": "Sol à {{soil}} °C. Il se met en terre entre {{min}} et {{max}} °C.",
+      "soilFrom": "Sol à {{soil}} °C. Il se met en terre dès {{min}} °C.",
+      "soilLow": "Sol à {{soil}} °C. Il lui faut au moins {{min}} °C.",
+      "soilHigh": "Sol à {{soil}} °C. Il se met en terre sous {{max}} °C.",
+      "nights": "Nuits à {{nights}} °C. Il lui faut des nuits au-dessus de {{night}} °C.",
+      "frost": "Une gelée reste probable ici.",
+      "late": "Il reste trop peu de temps cette année avant les gelées ou le froid.",
+      "notHere": "Les étés sont trop frais ici pour le cultiver en plein air.",
+      "autumn": "Il se met en terre seulement à l'automne.",
+      "spring": "Il se met en terre seulement au printemps.",
+      "warmSeason": "Les nuits douces dont il a besoin n'ont pas encore commencé ici.",
+      "noFrost": "Aucune gelée probable avant la récolte.",
+      "hardy": "Il supporte les gelées d'ici."
+    },
+    "how": {
+      "sow": "Comment semer",
+      "plant": "Comment planter"
+    },
+    "facts": {
+      "depth": "Profondeur",
+      "spacing": "Espacement",
+      "place": "Exposition",
+      "ready": "Récolte"
+    },
+    "depthCm": "À {{value}} cm",
+    "depthPot": "À la même profondeur que dans son pot",
+    "scatter": "Semer à la volée, clair, puis ratisser",
+    "apart": "Tous les {{value}} cm",
+    "apartRows": "Tous les {{value}} cm, rangs à {{rows}} cm",
+    "sun": {
+      "full": "Plein soleil",
+      "part": "Soleil ou mi-ombre"
+    },
+    "ready": {
+      "weeks_one": "Dans {{count}} semaine environ",
+      "weeks_other": "Dans {{count}} semaines environ",
+      "months_one": "Dans {{count}} mois environ",
+      "months_other": "Dans {{count}} mois environ",
+      "flowers_one": "Fleurit dans {{count}} semaine environ",
+      "flowers_other": "Fleurit dans {{count}} semaines environ",
+      "cover_one": "Couvre le sol en {{count}} semaine environ",
+      "cover_other": "Couvre le sol en {{count}} semaines environ",
+      "spring_flowers": "Fleurit au printemps prochain",
+      "next_year": "Produit dès l'an prochain",
+      "second_year": "On récolte les tiges dès la deuxième année",
+      "third_year": "On coupe les turions dès le troisième printemps",
+      "perennial": "Revient chaque année"
+    },
+    "source": "Données de culture : RHS, UC ANR et guides de semis des semenciers."
   }
 }

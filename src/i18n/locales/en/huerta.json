@@ -30,11 +30,15 @@
     "nights": "Nights",
     "rain": "Rain this week",
     "water": "To water",
-    "noWater": "None"
+    "noWater": "None",
+    "lastFrost": "Last frost here usually around {{date}}",
+    "firstFrost": "First frost usually around {{date}}",
+    "noFrostDates": "Frost is rare here"
   },
   "units": {
     "celsius": "{{value}} °C",
-    "mm": "{{value}} mm"
+    "mm": "{{value}} mm",
+    "litres": "{{value}} L/m²"
   },
   "now": {
     "title": "Sow or plant now",
@@ -140,5 +144,60 @@
     "herb": "Herbs",
     "flower": "Flowers",
     "cover": "Green manures"
+  },
+  "sheet": {
+    "sowNow": "Sow now",
+    "plantNow": "Plant now",
+    "week": "This week around {{place}}",
+    "why": {
+      "soilRange": "Soil {{soil}} °C. It goes in between {{min}} and {{max}} °C.",
+      "soilFrom": "Soil {{soil}} °C. It goes in from {{min}} °C.",
+      "soilLow": "Soil {{soil}} °C. It needs at least {{min}} °C.",
+      "soilHigh": "Soil {{soil}} °C. It goes in below {{max}} °C.",
+      "nights": "Nights {{nights}} °C. It needs nights above {{night}} °C.",
+      "frost": "Frost is still likely here.",
+      "late": "Too little time is left this year before the frosts or the cold.",
+      "notHere": "Summers here are too cool for it outdoors.",
+      "autumn": "It goes in only in autumn.",
+      "spring": "It goes in only in spring.",
+      "warmSeason": "The warm nights it needs haven't begun here yet.",
+      "noFrost": "No frost is likely before it's ready.",
+      "hardy": "It gets through the frosts here."
+    },
+    "how": {
+      "sow": "How to sow",
+      "plant": "How to plant"
+    },
+    "facts": {
+      "depth": "Depth",
+      "spacing": "Spacing",
+      "place": "Place",
+      "ready": "Ready"
+    },
+    "depthCm": "{{value}} cm deep",
+    "depthPot": "As deep as it sat in its pot",
+    "scatter": "Scatter thinly and rake in",
+    "apart": "{{value}} cm apart",
+    "apartRows": "{{value}} cm apart, rows {{rows}} cm apart",
+    "sun": {
+      "full": "Full sun",
+      "part": "Sun or light shade"
+    },
+    "ready": {
+      "weeks_one": "In about {{count}} week",
+      "weeks_other": "In about {{count}} weeks",
+      "months_one": "In about {{count}} month",
+      "months_other": "In about {{count}} months",
+      "flowers_one": "Flowers in about {{count}} week",
+      "flowers_other": "Flowers in about {{count}} weeks",
+      "cover_one": "Covers the soil in about {{count}} week",
+      "cover_other": "Covers the soil in about {{count}} weeks",
+      "spring_flowers": "Flowers next spring",
+      "next_year": "Crops from next year",
+      "second_year": "Pull stalks from its second year",
+      "third_year": "Cut spears from its third spring",
+      "perennial": "Comes back every year"
+    },
+    "source": "Growing facts: RHS, UC ANR and seed-company sowing guides."
   }
 }

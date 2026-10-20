@@ -30,11 +30,15 @@
     "nights": "Nächte",
     "rain": "Regen diese Woche",
     "water": "Zu gießen",
-    "noWater": "Nichts"
+    "noWater": "Nichts",
+    "lastFrost": "Letzter Frost hier meist um den {{date}}",
+    "firstFrost": "Erster Frost meist um den {{date}}",
+    "noFrostDates": "Frost ist hier selten"
   },
   "units": {
     "celsius": "{{value}} °C",
-    "mm": "{{value}} mm"
+    "mm": "{{value}} mm",
+    "litres": "{{value}} L/m²"
   },
   "now": {
     "title": "Jetzt säen oder pflanzen",
@@ -140,5 +144,60 @@
     "herb": "Kräuter",
     "flower": "Blumen",
     "cover": "Gründüngung"
+  },
+  "sheet": {
+    "sowNow": "Jetzt säen",
+    "plantNow": "Jetzt pflanzen",
+    "week": "Diese Woche rund um {{place}}",
+    "why": {
+      "soilRange": "Boden {{soil}} °C. Es kommt bei {{min}} bis {{max}} °C in die Erde.",
+      "soilFrom": "Boden {{soil}} °C. Es kommt ab {{min}} °C in die Erde.",
+      "soilLow": "Boden {{soil}} °C. Es braucht mindestens {{min}} °C.",
+      "soilHigh": "Boden {{soil}} °C. Es kommt unter {{max}} °C in die Erde.",
+      "nights": "Nächte {{nights}} °C. Es braucht Nächte über {{night}} °C.",
+      "frost": "Frost ist hier noch wahrscheinlich.",
+      "late": "Dieses Jahr bleibt bis zu Frost oder Kälte zu wenig Zeit.",
+      "notHere": "Die Sommer sind hier zu kühl für den Anbau im Freien.",
+      "autumn": "Es kommt nur im Herbst in die Erde.",
+      "spring": "Es kommt nur im Frühling in die Erde.",
+      "warmSeason": "Die warmen Nächte, die es braucht, haben hier noch nicht begonnen.",
+      "noFrost": "Bis zur Ernte ist kein Frost zu erwarten.",
+      "hardy": "Es übersteht die Fröste hier."
+    },
+    "how": {
+      "sow": "So wird gesät",
+      "plant": "So wird gepflanzt"
+    },
+    "facts": {
+      "depth": "Tiefe",
+      "spacing": "Abstand",
+      "place": "Standort",
+      "ready": "Ernte"
+    },
+    "depthCm": "{{value}} cm tief",
+    "depthPot": "So tief wie im Topf",
+    "scatter": "Dünn ausstreuen und einharken",
+    "apart": "{{value}} cm Abstand",
+    "apartRows": "{{value}} cm Abstand, Reihen {{rows}} cm",
+    "sun": {
+      "full": "Volle Sonne",
+      "part": "Sonne bis Halbschatten"
+    },
+    "ready": {
+      "weeks_one": "In etwa {{count}} Woche",
+      "weeks_other": "In etwa {{count}} Wochen",
+      "months_one": "In etwa {{count}} Monat",
+      "months_other": "In etwa {{count}} Monaten",
+      "flowers_one": "Blüht in etwa {{count}} Woche",
+      "flowers_other": "Blüht in etwa {{count}} Wochen",
+      "cover_one": "Deckt den Boden in etwa {{count}} Woche",
+      "cover_other": "Deckt den Boden in etwa {{count}} Wochen",
+      "spring_flowers": "Blüht im nächsten Frühling",
+      "next_year": "Trägt ab dem nächsten Jahr",
+      "second_year": "Stiele ab dem zweiten Jahr ernten",
+      "third_year": "Stangen ab dem dritten Frühling stechen",
+      "perennial": "Kommt jedes Jahr wieder"
+    },
+    "source": "Anbaudaten: RHS, UC ANR und Aussaatanleitungen der Saatgutfirmen."
   }
 }
