@@ -362,12 +362,12 @@ function Week({ advice }: { advice: PlaceAdvice }) {
   const value = (number: number | null, unit: 'celsius' | 'mm' | 'litres') =>
     number === null ? '–' : t(`units.${unit}`, { value: Math.round(number) });
   const dates = [
-    advice.lastFrost === null
+    advice.lastFrost == null
       ? null
       : t('week.lastFrost', {
           date: dayOfYear(advice.lastFrost, i18n.language),
         }),
-    advice.firstFrost === null
+    advice.firstFrost == null
       ? null
       : t('week.firstFrost', {
           date: dayOfYear(advice.firstFrost, i18n.language),
@@ -398,11 +398,13 @@ function Week({ advice }: { advice: PlaceAdvice }) {
             : value(advice.water, 'litres')}
         </Fact>
       </dl>
-      <p className='mt-6 flex flex-wrap gap-x-6 gap-y-1 border-t border-happy-100/25 pt-4 text-sm text-happy-100'>
-        {dates.length > 0
-          ? dates.map(date => <span key={date}>{date}</span>)
-          : t('week.noFrostDates')}
-      </p>
+      {advice.lastFrost !== undefined ? (
+        <p className='mt-6 flex flex-wrap gap-x-6 gap-y-1 border-t border-happy-100/25 pt-4 text-sm text-happy-100'>
+          {dates.length > 0
+            ? dates.map(date => <span key={date}>{date}</span>)
+            : t('week.noFrostDates')}
+        </p>
+      ) : null}
     </section>
   );
 }

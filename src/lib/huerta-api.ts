@@ -73,8 +73,8 @@ export const decodeAdvice = ({ day, crops, place }: AdviceResponse) => ({
   nights: place.nights,
   rain: place.rain,
   water: place.water,
-  lastFrost: place.lastFrost ?? null,
-  firstFrost: place.firstFrost ?? null,
+  lastFrost: place.lastFrost,
+  firstFrost: place.firstFrost,
   crops: Object.fromEntries(
     crops.map((id, i) => [id, STATUS[place.statuses[i]] ?? 'too_late'])
   ),
@@ -127,8 +127,7 @@ export async function fetchAdvice(place: Place): Promise<PlaceAdvice | null> {
     kept.lat === lat &&
     kept.lon === lon &&
     kept.advice.day >= localDay() &&
-    CROPS.every(crop => crop.id in kept.advice.crops) &&
-    'lastFrost' in kept.advice
+    CROPS.every(crop => crop.id in kept.advice.crops)
   )
     return kept.advice;
   const response = await fetch(url('/v1/advice', { lat, lon }));
