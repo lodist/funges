@@ -14,7 +14,8 @@
     "locateFailed": "Non è stato possibile trovare la tua posizione. Cerca il tuo paese.",
     "search": "Paese o città",
     "placeholder": "Inizia a scrivere un nome",
-    "noResults": "Nessun luogo con questo nome"
+    "noResults": "Nessun luogo con questo nome",
+    "searchFailed": "La ricerca dei luoghi non è raggiungibile ora. Riprova tra poco o usa la tua posizione."
   },
   "count_one": "{{count}} coltura",
   "count_other": "{{count}} colture",

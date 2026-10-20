@@ -14,7 +14,8 @@
     "locateFailed": "Your location could not be found. Search for your town instead.",
     "search": "Town or village",
     "placeholder": "Start typing a name",
-    "noResults": "No town by that name"
+    "noResults": "No town by that name",
+    "searchFailed": "The town search can't be reached right now. Try again in a moment, or use your location."
   },
   "count_one": "{{count}} crop",
   "count_other": "{{count}} crops",

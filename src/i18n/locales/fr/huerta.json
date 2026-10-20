@@ -14,7 +14,8 @@
     "locateFailed": "Votre position est introuvable. Cherchez plutôt votre commune.",
     "search": "Ville ou village",
     "placeholder": "Commencez à taper un nom",
-    "noResults": "Aucun lieu de ce nom"
+    "noResults": "Aucun lieu de ce nom",
+    "searchFailed": "La recherche de lieux est indisponible pour le moment. Réessayez dans un instant ou utilisez votre position."
   },
   "count_one": "{{count}} culture",
   "count_other": "{{count}} cultures",
