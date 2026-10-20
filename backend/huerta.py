@@ -27,7 +27,10 @@ Output, private on R2 like the rest: one file per 1° square, huerta/advice/<REG
 <lat>_<lon>.json, {day, crops, places: [[name, lat, lon, frost, soil, nights, rain, water,
 codes, last_frost, first_frost]]}: frost '' / 'g' (ground frost) / 'f', codes one letter per
 crop (CODES), last/first frost the place's typical day of year of its last spring and first
-autumn frost (null: none in a typical year). And huerta/crops.json, what each crop needs
+autumn frost (null: none in a typical year). For the garden map, huerta/map/<REGION>/:
+index.json {day, n, layers}, places.bin (int16 lat x100, lon x100 per place) and layers.bin,
+one byte per place per layer, layer after layer (MAP_LAYERS, then one per crop: its letter),
+so the Worker can hand out one layer with a range read. And huerta/crops.json, what each crop needs
 (frost class, soil range, warm nights, days to harvest), for the app to say why. The Huerta Worker hands one place at a
 time to the app.
 """
@@ -52,6 +55,9 @@ AUTUMN = 182    # day of year (1 July): soil too cold means too late from here; 
 CODES = {"now": "n", "wait_frost": "f", "wait_soil": "s", "wait_warm": "w", "too_warm": "h",
          "too_late": "l", "not_here": "x", "wait_autumn": "a", "wait_spring": "p"}
 UPLOAD_WORKERS = 16
+# The garden map's own layers: frost in the next 3 days (0 none, 1 ground frost, 2 frost), soil
+# at 6 cm (degrees C + 40) and the week's water deficit (mm); 255 where unknown.
+MAP_LAYERS = ("frost", "soil", "water")
 
 
 def conditions(forecast):
@@ -140,6 +146,26 @@ def crop_needs(crops):
                        for c in crops.itertuples(index=False)}, separators=(",", ":")).encode()
 
 
+def _byte(values, offset=0):
+    """Whole numbers + offset as bytes 0..254, 255 where unknown."""
+    v = np.round(np.asarray(values, float)) + offset
+    return np.where(np.isnan(v), 255, np.clip(v, 0, 254)).astype(np.uint8)
+
+
+def map_files(place, advice, day):
+    """{name under huerta/map/<REGION>/: bytes} for the garden map, layers in MAP_LAYERS + crop order."""
+    n = len(place)
+    frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2], [2, 1], 0).astype(np.uint8)
+    water = (place["et07"] - place["rain7"]).clip(lower=0)
+    columns = [frost, _byte(place["soil3"], 40), _byte(water)]
+    codes = advice.replace(CODES)
+    columns += [np.frombuffer("".join(codes[c]).encode("ascii"), np.uint8) for c in advice.columns]
+    places = np.column_stack([np.round(place["Latitude"] * 100), np.round(place["Longitude"] * 100)]).astype("<i2")
+    index = {"day": day, "n": n, "layers": [*MAP_LAYERS, *advice.columns]}
+    return {"index.json": json.dumps(index, separators=(",", ":")).encode(), "places.bin": places.tobytes(),
+            "layers.bin": np.concatenate(columns).tobytes()}
+
+
 def area_files(place, advice, day):
     """{R2 key suffix '<lat>_<lon>.json': file bytes}: every place of a 1° square, compact."""
     frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2], ["f", "g"], "")
@@ -185,6 +211,11 @@ def publish(region, forecast):
         list(pool.map(lambda kv: s3.put_object(Bucket=bucket, Key=f"huerta/advice/{region}/{kv[0]}", Body=kv[1],
                                                ContentType="application/json"), files.items()))
     s3.put_object(Bucket=bucket, Key="huerta/crops.json", Body=crop_needs(crops), ContentType="application/json")
+    # The index last, so the map never reads an index ahead of its layers.
+    maps = map_files(place, advice, f"{day:%Y-%m-%d}")
+    for name in ("places.bin", "layers.bin", "index.json"):
+        s3.put_object(Bucket=bucket, Key=f"huerta/map/{region}/{name}", Body=maps[name],
+                      ContentType="application/json" if name.endswith(".json") else "application/octet-stream")
     print(f"Huerta: {len(place):,} places in {len(files)} area files for {day:%Y-%m-%d}, "
           f"{time.time() - started:.0f} s; sow or plant now at a typical place: "
           f"{int((advice == 'now').sum(axis=1).median())} of {advice.shape[1]} crops")
