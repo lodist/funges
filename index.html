@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="icons/logo_1.png" />
+    <link rel="icon" type="image/png" href="/icons/logo_1.png" />
     <link
       rel="preload"
       as="image"
-      href="icons/logo_funges.png"
+      href="/icons/logo_funges.png"
       type="image/png"
       fetchpriority="high"
     />
@@ -17,11 +17,10 @@
       name="description"
       content="Explore species, find recipes, and discover mushroom locations on an interactive map."
     />
-    <meta property="og:image" content="icons/logo_1.png" />
-    <meta name="twitter:image" content="icons/logo_1.png" />
+    <meta property="og:image" content="/icons/logo_1.png" />
+    <meta name="twitter:image" content="/icons/logo_1.png" />
 
-    <!-- PWA manifest -->
-    <link rel="manifest" href="manifest.webmanifest" />
+    <!-- The manifest link is injected by vite-plugin-pwa (root-relative). -->
     <meta name="theme-color" content="#f8f5f0" />
 
     <!-- Apple-specific meta tags for iOS home screen -->
@@ -31,116 +30,196 @@
     <meta name="apple-mobile-web-app-title" content="Fung.es" />
 
     <!-- Apple touch icons for different sizes -->
-    <link rel="apple-touch-icon" href="icons/logo_app.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="icons/logo_app.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/logo_app.png" />
-    <link rel="apple-touch-icon" sizes="167x167" href="icons/logo_app.png" />
+    <link rel="apple-touch-icon" href="/icons/logo_app.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/logo_app.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/logo_app.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/logo_app.png" />
 
     <!-- Apple splash screen images for different orientations and sizes -->
     <!-- iPhone 6, 7, 8, SE (2nd generation) -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
-      href="splash-screens/splash-375x667.png"
+      href="/splash-screens/splash-375x667.png"
     />
     <!-- iPhone 6, 7, 8 Plus -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)"
-      href="splash-screens/splash-414x736.png"
+      href="/splash-screens/splash-414x736.png"
     />
     <!-- iPhone X, XS, 11 Pro, 12 mini -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
-      href="splash-screens/splash-375x812.png"
+      href="/splash-screens/splash-375x812.png"
     />
     <!-- iPhone XR, 11, 12, 13, 14 -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
-      href="splash-screens/splash-414x896.png"
+      href="/splash-screens/splash-414x896.png"
     />
     <!-- iPhone XS Max, 11 Pro Max, 12 Pro Max, 13 Pro Max, 14 Plus -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
-      href="splash-screens/splash-414x896-3x.png"
+      href="/splash-screens/splash-414x896-3x.png"
     />
     <!-- iPhone 12 Pro Max, 13 Pro Max, 14 Pro Max -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)"
-      href="splash-screens/splash-428x926.png"
+      href="/splash-screens/splash-428x926.png"
     />
     <!-- iPhone 14 Pro, 15 Pro -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)"
-      href="splash-screens/splash-393x852.png"
+      href="/splash-screens/splash-393x852.png"
     />
     <!-- iPhone 14 Pro Max, 15 Pro Max -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)"
-      href="splash-screens/splash-430x932.png"
+      href="/splash-screens/splash-430x932.png"
     />
 
     <!-- iPad -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
-      href="splash-screens/splash-768x1024.png"
+      href="/splash-screens/splash-768x1024.png"
     />
     <!-- iPad Pro 10.5" -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
-      href="splash-screens/splash-834x1112.png"
+      href="/splash-screens/splash-834x1112.png"
     />
     <!-- iPad Pro 11" -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
-      href="splash-screens/splash-834x1194.png"
+      href="/splash-screens/splash-834x1194.png"
     />
     <!-- iPad Pro 12.9" -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
-      href="splash-screens/splash-1024x1366.png"
+      href="/splash-screens/splash-1024x1366.png"
     />
 
     <!-- Landscape orientations for iPad -->
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 1024px) and (device-height: 768px) and (-webkit-device-pixel-ratio: 2)"
-      href="splash-screens/splash-1024x768.png"
+      href="/splash-screens/splash-1024x768.png"
     />
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 1112px) and (device-height: 834px) and (-webkit-device-pixel-ratio: 2)"
-      href="splash-screens/splash-1112x834.png"
+      href="/splash-screens/splash-1112x834.png"
     />
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 1194px) and (device-height: 834px) and (-webkit-device-pixel-ratio: 2)"
-      href="splash-screens/splash-1194x834.png"
+      href="/splash-screens/splash-1194x834.png"
     />
     <link
       rel="apple-touch-startup-image"
       media="screen and (device-width: 1366px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
-      href="splash-screens/splash-1366x1024.png"
+      href="/splash-screens/splash-1366x1024.png"
     />
 
     <!-- Microsoft Tiles for Windows -->
     <meta name="msapplication-TileColor" content="#f8f5f0" />
-    <meta name="msapplication-TileImage" content="icons/logo_app.png" />
+    <meta name="msapplication-TileImage" content="/icons/logo_app.png" />
     <meta name="msapplication-config" content="none" />
 
     <!-- Map data + glyph origins: DNS/TLS handshake overlaps the JS download -->
     <link rel="preconnect" href="https://data.fung.es" crossorigin />
     <link rel="preconnect" href="https://protomaps.github.io" crossorigin />
+
+    <!-- Moving into or out of /identify loads a new page (src/lib/isolation.ts).
+         The page being left stays on screen, blurred, until the new one has
+         drawn; the script below ends the transition. The 3 s hold is the
+         ceiling if the app never draws. The browser captures the new page at
+         its first frame, which on a slow CPU comes mid-parse: the script sits
+         in <head>, and rel=expect holds that frame until #page-wait exists.
+         ponytail: hides the new page of every view transition; scope it with
+         `types` if the app ever calls document.startViewTransition. -->
+    <link rel="expect" href="#page-wait" blocking="render" />
+    <style>
+      @view-transition {
+        navigation: auto;
+      }
+      /* A static blur, not an animated one: Chrome steps a filter animation on
+         the main thread, which the new page's JavaScript keeps busy on a slow
+         CPU, so the blur never showed. The veil's fade-in still softens it. */
+      ::view-transition-old(root) {
+        animation: none;
+        filter: blur(6px);
+      }
+      ::view-transition-new(root) {
+        animation: vt-hold 3s;
+      }
+      @keyframes vt-hold {
+        from,
+        to {
+          opacity: 0;
+        }
+      }
+      /* An in-app page change shows the squirrel, a launch the splash. */
+      #page-wait,
+      .page-change #app-splash {
+        display: none !important;
+      }
+      .page-change #page-wait {
+        display: block !important;
+      }
+    </style>
+    <!-- data-cfasync="false": Cloudflare's Rocket Loader otherwise defers this
+         script until after the page has loaded, long past the first frame it
+         exists for (DEPLOYMENT.md). -->
+    <script data-cfasync="false">
+      // The theme class theme-provider.tsx sets once React runs, set now so the
+      // veil and the first frame already match it.
+      try {
+        var theme = localStorage.getItem('vite-ui-theme') || 'system';
+        var dark =
+          theme === 'dark' ||
+          (theme === 'system' &&
+            matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.add(dark ? 'dark' : 'light');
+      } catch (e) {}
+      // A load into or out of /identify (an in-app link, or the route guard's
+      // replace) comes from this site: a page change, not a launch.
+      if (document.referrer.indexOf(location.origin + '/') === 0) {
+        document.documentElement.classList.add('page-change');
+      }
+      // Once React has drawn something, drop the squirrel and end the view
+      // transition in the same frame. A page React drew before the first frame
+      // (or restored from the back/forward cache) ends it at reveal.
+      var transition = null;
+      function drawn() {
+        var root = document.getElementById('root');
+        return !!(root && root.firstChild);
+      }
+      function done() {
+        var pageWait = document.getElementById('page-wait');
+        if (pageWait) pageWait.remove();
+        if (transition) transition.skipTransition();
+      }
+      addEventListener('pagereveal', function (e) {
+        transition = e.viewTransition;
+        if (drawn()) done();
+      });
+      (function poll() {
+        if (drawn()) done();
+        else requestAnimationFrame(poll);
+      })();
+    </script>
   </head>
   <body>
     <!-- Inline overlay: the app's first paint waits on the CSS + JS, so until
@@ -165,7 +244,7 @@
       "
     >
       <img
-        src="icons/logo_funges.png"
+        src="/icons/logo_funges.png"
         alt="Funges"
         width="1200"
         height="504"
@@ -174,6 +253,35 @@
           width: min(80vw, 320px);
           height: auto;
           object-fit: contain;
+        "
+      />
+    </div>
+    <!-- The map's loading overlay (squirrel on an 80% veil), over the blurred
+         page during an in-app page change. Its own view-transition-name keeps
+         it live (animating) above the old page's still snapshot. -->
+    <div
+      id="page-wait"
+      style="
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: color-mix(
+          in oklch,
+          var(--background, #f8f5f0) 80%,
+          transparent
+        );
+        view-transition-name: page-wait;
+      "
+    >
+      <img
+        src="/src/assets/images/loading_squirrel.gif"
+        alt=""
+        style="
+          position: absolute;
+          inset: 0;
+          width: 13.4rem;
+          height: 13.4rem;
+          margin: auto;
         "
       />
     </div>

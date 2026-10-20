@@ -29,7 +29,14 @@
     "open": "Apri mappa",
     "cancel": "Annulla",
     "progress": "Download… {{percent}}%",
-    "downloaded": "Scaricato il {{date}} · versione {{version}} · valido per 7 giorni",
-    "expired": "Scaduto · connettiti a Internet e aggiorna il pacchetto"
+    "expired": "Scaduto · connettiti a Internet e aggiorna il pacchetto",
+    "validUntil": "Valido fino al {{date}}"
+  },
+  "status": {
+    "ready": "Pronto per l'uso offline",
+    "readyDetail": "{{regions}} · valido fino al {{date}}",
+    "expired": "La tua mappa offline è scaduta",
+    "expiredDetail": "Connettiti a internet e aggiornala prima di partire",
+    "notReady": "Non ancora pronto per l'uso offline"
   }
 }

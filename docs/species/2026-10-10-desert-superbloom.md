@@ -99,7 +99,7 @@ A day not yet measured counts as its normal, so early in the season the share le
 
 ## The map
 
-Cells are drawn on bloom ground (`backend/generated/superbloom_ground_US.geojson`, built by `backend/tools/build_spectacle_ground.py`):
+Cells are drawn on bloom ground (`backend/generated/superbloom_ground_US.geojson`, built offline):
 
 1. normal rain under 350 mm a year;
 2. ground under 1,500 m (HydroSHEDS, averaged to 0.01°);

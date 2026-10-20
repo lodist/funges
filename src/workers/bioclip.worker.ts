@@ -1,5 +1,9 @@
 /// <reference lib="webworker" />
-import * as ort from 'onnxruntime-web';
+// The `webgpu` entry, not the package root. The root still loads the JSEP build,
+// whose WebGPU kernels ORT deprecated in 1.29; this entry runs ORT's native
+// WebGPU engine, which is where MatMulNBits fixes land and which runs int4 about
+// twice as fast as JSEP did on the same GPU (0.3-0.4s vs 0.7-0.8s per photo).
+import * as ort from 'onnxruntime-web/webgpu';
 // Let Vite own the runtime URLs via `?url` asset imports rather than copying the
 // files into public/ ourselves.
 //
@@ -14,11 +18,11 @@ import * as ort from 'onnxruntime-web';
 // removes a version-numbered directory that could silently drift from the
 // installed ORT.
 //
-// The jsep build is used for BOTH execution providers: it carries WebGPU support
-// and still runs the wasm EP, so one 26.8MB pair covers both paths instead of
-// shipping two.
-import ortWasmUrl from 'onnxruntime-web/ort-wasm-simd-threaded.jsep.wasm?url';
-import ortMjsUrl from 'onnxruntime-web/ort-wasm-simd-threaded.jsep.mjs?url';
+// The asyncify build is used for BOTH execution providers: it carries the native
+// WebGPU engine and still runs the wasm EP — at the same CPU speed as the plain
+// build, measured — so one 26.8MB pair covers both paths instead of shipping two.
+import ortWasmUrl from 'onnxruntime-web/ort-wasm-simd-threaded.asyncify.wasm?url';
+import ortMjsUrl from 'onnxruntime-web/ort-wasm-simd-threaded.asyncify.mjs?url';
 
 /**
  * Owns the ONNX inference session for photo identification.
@@ -49,16 +53,41 @@ function post(msg: WorkerResponse, transfer?: Transferable[]) {
 }
 
 /**
- * Create a session, preferring WebGPU and falling back to single-threaded WASM.
+ * ORT's glue module, as a blob URL built once.
  *
- * `numThreads = 1` is set explicitly rather than left to auto-detection:
- * multi-threaded WASM needs SharedArrayBuffer, which needs COOP/COEP response
- * headers, which GitHub Pages cannot serve. Letting ORT probe for threads there
- * produces a slower, more confusing failure than just asking for one thread.
+ * ORT starts its CPU threads as workers from the glue's own URL. In the
+ * cross-origin-isolated /identify page a worker started from a URL needs COEP
+ * on that asset's response, and only the page carries the headers — the
+ * thread workers came back ERR_BLOCKED_BY_RESPONSE. Started from a blob, they
+ * inherit the isolation the way this worker does.
+ */
+let glue: Promise<string> | null = null;
+function glueBlobUrl(absolute: string): Promise<string> {
+  glue ??= fetch(absolute)
+    .then(response => {
+      if (!response.ok) throw new Error(`ORT glue: HTTP ${response.status}`);
+      return response.text();
+    })
+    .then(source =>
+      URL.createObjectURL(new Blob([source], { type: 'text/javascript' }))
+    )
+    .catch(err => {
+      // Not cached, so the next session retries instead of inheriting it.
+      glue = null;
+      throw err;
+    });
+  return glue;
+}
+
+/**
+ * Create a session, preferring WebGPU and falling back to WASM.
  *
- * Note a deployment hazard this guards against: Netlify CAN send those headers,
- * so a Netlify preview could quietly enable threading that production never
- * gets. Pinning to 1 keeps the preview representative of production.
+ * The thread count is left to ORT: one thread unless the page is
+ * cross-origin isolated (COOP/COEP headers, which Cloudflare adds in front of
+ * GitHub Pages), then half the cores, at most 4. On a Snapdragon 778G phone
+ * (4 big + 4 little cores) that is 4, and 4 measured fastest: int8 went from
+ * 13 s per photo to 4.1-4.9 s, while 6 threads spilled onto the little cores
+ * and lost (8-11 s). Same embedding at every thread count.
  */
 async function createSession(
   modelBytes: ArrayBuffer,
@@ -66,11 +95,19 @@ async function createSession(
 ): Promise<string> {
   // Explicit per-file URLs, not a prefix. Same-origin by construction, because
   // the default is a CDN and the point of on-device inference is working with no
-  // signal at all.
-  ort.env.wasm.wasmPaths = { wasm: ortWasmUrl, mjs: ortMjsUrl };
-  ort.env.wasm.numThreads = 1;
+  // signal at all. Absolute, because this worker runs from a blob (see
+  // lib/bioclip/session.ts), against which a root-relative path is invalid.
+  ort.env.wasm.wasmPaths = {
+    wasm: new URL(ortWasmUrl, import.meta.url).href,
+    mjs: await glueBlobUrl(new URL(ortMjsUrl, import.meta.url).href),
+  };
 
   const bytes = new Uint8Array(modelBytes);
+  // Errors only (3). ORT logs warnings through console.error, so the expected
+  // "some nodes were not assigned to the preferred execution providers" (shape
+  // ops stay on the CPU) reads as a failure to anyone debugging a phone. It is a
+  // session option because ORT-web pins the session logger at warning otherwise.
+  const logSeverityLevel = 3;
   // forceWasm exists because "WebGPU initialised" and "WebGPU computes correct
   // numbers" are different claims. An Android GPU ran this graph and returned a
   // garbage embedding; the caller detects that with a reference comparison and
@@ -82,6 +119,7 @@ async function createSession(
     try {
       session = await ort.InferenceSession.create(bytes, {
         executionProviders: ['webgpu'],
+        logSeverityLevel,
       });
       return 'webgpu';
     } catch {
@@ -93,6 +131,7 @@ async function createSession(
 
   session = await ort.InferenceSession.create(bytes, {
     executionProviders: ['wasm'],
+    logSeverityLevel,
   });
   return 'wasm';
 }

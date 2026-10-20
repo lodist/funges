@@ -2,6 +2,7 @@
   "appName": "Funges",
   "appDescription": "Guia de forrageamento",
   "map": "Mapa",
+  "identify": "Identificar",
   "worthForagingNow": "Da época",
   "species": "Espécies",
   "recipes": "Receitas",
@@ -13,5 +14,18 @@
   "termsOfUse": "Termos de Uso",
   "data": "Dados",
   "settings": "Configurações",
-  "help": "Ajuda"
+  "help": "Ajuda",
+  "googlePlay": "Disponível no Google Play",
+  "huertaWeek": "Sua horta",
+  "spaces": {
+    "switch": "Espaço: {{space}}. Mudar de espaço",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Comida silvestre perto de você"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Sua horta, esta semana"
+    }
+  }
 }

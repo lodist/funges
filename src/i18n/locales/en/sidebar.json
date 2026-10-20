@@ -2,6 +2,7 @@
   "appName": "Funges",
   "appDescription": "Foraging Guide",
   "map": "Map",
+  "identify": "Identify",
   "worthForagingNow": "In Season",
   "species": "Species",
   "recipes": "Recipes",
@@ -13,5 +14,18 @@
   "termsOfUse": "Terms of Use",
   "data": "Data",
   "settings": "Settings",
-  "help": "Help"
+  "help": "Help",
+  "googlePlay": "Get it on Google Play",
+  "huertaWeek": "Your garden",
+  "spaces": {
+    "switch": "Space: {{space}}. Switch space",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Wild food near you"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Your garden, this week"
+    }
+  }
 }

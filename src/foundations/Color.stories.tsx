@@ -274,6 +274,23 @@ export const BrandScale: Story = {
   ),
 };
 
+export const HuertaScale: Story = {
+  render: () => (
+    <div data-space='huerta' className='flex flex-col gap-4'>
+      <div className='grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8'>
+        {[...HAPPY_SCALE, '--band'].map(token => (
+          <BlockSwatch key={token} token={token} />
+        ))}
+      </div>
+      <p className='text-muted-foreground max-w-2xl text-sm'>
+        {
+          'Huerta, the garden space, wears the same seven steps at hue 40, terracotta. data-space="huerta" on <html>, or on any element, swaps the whole scale, so every atom repaints unchanged. 700 on paper is 7.73:1 and the 900 label on the 600 fill 4.77:1, as in Terra. The band is its own token here: the deepest step is too dark for a band, so --band is the lighter terracotta, under cream text at 5.96:1.'
+        }
+      </p>
+    </div>
+  ),
+};
+
 export const CategoryTokens: Story = {
   render: () => (
     <div className='flex flex-col gap-4'>

@@ -12,14 +12,26 @@ import {
   Info,
   ShieldCheck,
   Gavel,
+  Smartphone,
+  BarChart2,
 } from '@/lib/icons';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
+import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import MapLastUpdated from '@/components/MapLastUpdated';
+import { SpaceSwitcher } from '@/components/SpaceSwitcher';
 
 export default function SettingsPage() {
   const { t } = useTranslation('settings');
   const { t: tCommon } = useTranslation('common');
+  const { t: tNav } = useTranslation('sidebar');
   const links = [
+    // On phones the bottom bar gave Data's slot to Identify, so the hub
+    // carries it; the desktop sidebar still lists it directly.
+    {
+      url: '/data',
+      label: tNav('data'),
+      icon: BarChart2,
+    },
     {
       url: '/instructions',
       label: t('instructions'),
@@ -39,6 +51,15 @@ export default function SettingsPage() {
       label: t('support'),
       icon: Heart,
     },
+    ...(offersPlayStore()
+      ? [
+          {
+            url: PLAY_STORE_URL,
+            label: tNav('googlePlay'),
+            icon: Smartphone,
+          },
+        ]
+      : []),
     {
       url: '/impressum',
       label: t('impressum'),
@@ -67,6 +88,8 @@ export default function SettingsPage() {
         <h1 className='text-3xl font-bold text-foreground dark:text-white'>
           {t('title')}
         </h1>
+        {/* Phones have no sidebar: the hub is where the spaces meet. */}
+        <SpaceSwitcher className='w-full' />
 
         <div className='space-y-4'>
           {links.map(link => (

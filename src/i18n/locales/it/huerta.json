@@ -1,0 +1,92 @@
+{
+  "title": "Il tuo orto questa settimana",
+  "description": "Cosa seminare e piantare questa settimana, avvisi di gelo e irrigazione per il tuo comune.",
+  "sample": "Esempio: {{place}}, {{day}}. Presto il tuo comune.",
+  "around": "Dintorni di {{place}}, {{day}}",
+  "change": "Cambia luogo",
+  "noPlace": "Huerta non ha ancora consigli per questo punto: copre l'Europa e gli Stati Uniti continentali.",
+  "loadFailed": "Non è stato possibile caricare i consigli. Riprova tra poco.",
+  "picker": {
+    "title": "Dov'è il tuo orto?",
+    "help": "Usa la tua posizione oppure cerca il paese o la città più vicini. I consigli valgono per la zona intorno.",
+    "locate": "Usa la mia posizione",
+    "locating": "Ti sto cercando…",
+    "locateFailed": "Non è stato possibile trovare la tua posizione. Cerca il tuo paese.",
+    "search": "Paese o città",
+    "placeholder": "Inizia a scrivere un nome",
+    "noResults": "Nessun luogo con questo nome"
+  },
+  "count_one": "{{count}} coltura",
+  "count_other": "{{count}} colture",
+  "frost": {
+    "none": "Nessuna gelata nei prossimi 3 giorni",
+    "ground_frost": "Possibile brina nei prossimi 3 giorni: copri le piante delicate",
+    "frost": "Gelata nei prossimi 3 giorni: proteggi le piante delicate"
+  },
+  "week": {
+    "label": "Questa settimana",
+    "soil": "Terreno",
+    "nights": "Notti",
+    "rain": "Pioggia della settimana",
+    "water": "Da irrigare",
+    "noWater": "Niente"
+  },
+  "units": {
+    "celsius": "{{value}} °C",
+    "mm": "{{value}} mm"
+  },
+  "now": {
+    "title": "Semina o pianta ora"
+  },
+  "waiting": {
+    "title": "Non ancora"
+  },
+  "over": {
+    "title": "Troppo tardi quest'anno",
+    "show": "Mostra tutte le {{count}}"
+  },
+  "how": {
+    "sow": "Semina",
+    "plant": "Pianta"
+  },
+  "status": {
+    "now": "Ora",
+    "wait_frost": "Ancora rischio di gelo",
+    "wait_soil": "Terreno ancora troppo freddo",
+    "wait_warm": "Notti ancora troppo fredde",
+    "too_warm": "Terreno troppo caldo per ora",
+    "too_late": "Troppo tardi quest'anno",
+    "not_here": "Non all'aperto qui"
+  },
+  "crops": {
+    "garlic": "Aglio",
+    "broad_beans": "Fave",
+    "lettuce": "Lattuga",
+    "spinach": "Spinaci",
+    "peas": "Piselli",
+    "radish": "Ravanello",
+    "carrot": "Carota",
+    "beetroot": "Barbabietola",
+    "chard": "Bietola",
+    "kale": "Cavolo riccio",
+    "cabbage": "Cavolo",
+    "broccoli": "Broccoli",
+    "onion_sets": "Bulbilli di cipolla",
+    "potato": "Patata",
+    "tomato": "Pomodoro",
+    "pepper": "Peperone",
+    "aubergine": "Melanzana",
+    "cucumber": "Cetriolo",
+    "courgette": "Zucchina",
+    "pumpkin": "Zucca",
+    "melon": "Melone",
+    "green_beans": "Fagiolini",
+    "sweetcorn": "Mais dolce",
+    "basil": "Basilico",
+    "parsley": "Prezzemolo",
+    "coriander": "Coriandolo",
+    "sunflower": "Girasole",
+    "marigold": "Tagete",
+    "sweet_pea": "Pisello odoroso"
+  }
+}

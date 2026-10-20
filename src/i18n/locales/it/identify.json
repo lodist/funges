@@ -1,6 +1,28 @@
 {
   "title": "Identifica",
-  "openButton": "Identifica da una foto",
+  "page": {
+    "title": "Identifica un ritrovamento",
+    "lead": "Fotografalo, poi confronta le corrispondenze più vicine con i loro sosia pericolosi.",
+    "seoDescription": "Identifica funghi e piante selvatiche da una foto, sul tuo dispositivo. Confronta le corrispondenze più vicine con i loro sosia tossici.",
+    "onDevice": "Funziona su questo dispositivo",
+    "noUpload": "Non viene caricato nulla",
+    "offline": "Funziona offline dopo il download"
+  },
+  "plate": {
+    "title": "Il tuo ritrovamento",
+    "frameTop": "Parte superiore e cappello",
+    "frameUnder": "Parte inferiore o base del gambo",
+    "optional": "Facoltativa, migliora la corrispondenza",
+    "tapToShoot": "Tocca per scattare una foto",
+    "clickToAdd": "Fai clic o trascina una foto",
+    "photoNumber": "Foto {{number}}"
+  },
+  "guide": {
+    "title": "Per una buona corrispondenza",
+    "top": "Parte superiore e cappello: l’esemplare intero, a pieno formato.",
+    "under": "Parte inferiore o base del gambo: lamelle, pori, pieghe o la base del gambo, dove i sosia si distinguono.",
+    "disagree": "Le corrispondenze non concordano? Ricomincia con un taglio a metà come seconda foto."
+  },
   "disclaimer": {
     "aboveResults": "Queste sono corrispondenze possibili, non un'identificazione confermata. Un sosia pericoloso può essere quello giusto anche quando non è il primo risultato.",
     "neverEat": "Non mangiare nulla basandoti su questa app. Un'identificazione errata può essere fatale. Questo strumento non conferma mai che qualcosa sia sicuro da mangiare."
@@ -24,32 +46,37 @@
   "status": {
     "preparing": "Preparazione…",
     "identifying": "Identificazione…",
-    "identifyingLonger": "Confronto con {{total}} specie…",
-    "identifyingLongest": "Ci vuole ancora un po': è il tuo telefono a fare i calcoli, niente lascia il dispositivo.",
-    "identifyingClosest": "Ricerca delle corrispondenze visive più vicine…",
-    "identifyingAlternatives": "Verifica di altre possibili corrispondenze…",
-    "identifyingCandidates": "Esame dei candidati più probabili…",
-    "identifyingDetails": "Analisi più attenta dei dettagli…",
-    "identifyingWaiting": "Grazie per l'attesa - l'analisi è ancora in corso…",
     "failed": "Identificazione non riuscita",
     "unreadable": "Non è stato possibile leggere questa foto. Provane un'altra oppure scegliela dalla galleria invece della fotocamera.",
     "backendWrong": "Il riconoscimento non può funzionare correttamente sull'hardware grafico di questo dispositivo. Si passa alla modalità più lenta ma corretta; se continua a non funzionare, rimuovi il modello e scaricalo di nuovo.",
     "retry": "Riprova",
     "unsupported": "L'identificazione non è disponibile su questo dispositivo o browser."
   },
+  "working": {
+    "look": "Cercando…",
+    "compare": "Confrontando…",
+    "sniff": "Annusando…",
+    "peer": "Scrutando…",
+    "rummage": "Rovistando…",
+    "sort": "Smistando…",
+    "weigh": "Soppesando…",
+    "ponder": "Riflettendo…"
+  },
   "download": {
     "title": "Scarica il riconoscimento delle specie",
-    "why": "L'identificazione avviene interamente sul tuo dispositivo, quindi le tue foto non lasciano mai il telefono. Per questo serve un download una volta sola di {{size}}.",
+    "why": "L'identificazione avviene interamente sul tuo dispositivo, quindi le tue foto non lo lasciano mai. Per questo serve un download una volta sola di {{size}}.",
     "provenance": "Il modello è BioCLIP 2, un modello di ricerca aperto dell'Imageomics Institute.",
     "notAFile": "Viene conservato nel browser, non salvato tra i tuoi file. Non viene installato nulla.",
-    "onWifi": "Meglio farlo sotto Wi-Fi.",
+    "onWifi": "Meglio farlo sotto Wi-Fi: un download così grande è più affidabile che con i dati mobili.",
     "start": "Scarica ({{size}})",
     "cancel": "Annulla",
     "progress": "Download… {{percent}} %",
     "remove": "Rimuovi il modello scaricato",
     "removed": "Modello rimosso. L'identificazione non sarà disponibile finché non lo scarichi di nuovo.",
     "declined": "Per identificare bisogna prima scaricare il modello.",
-    "failed": "Download non riuscito. Controlla la connessione e riprova."
+    "failed": "Download non riuscito. Controlla la connessione e riprova.",
+    "engine": "motore: {{provider}}",
+    "model": "modello: {{variant}}"
   },
   "results": {
     "heading": "Corrispondenze possibili",
@@ -60,6 +87,7 @@
     "notInCatalog": "Non presente nel catalogo di questa app - nessuna informazione di sicurezza",
     "unknownSpecies": "Non riconosciuto",
     "confidence": "{{percent}} % di corrispondenza",
+    "confidenceUnderOne": "<1 % di corrispondenza",
     "confusedWith": "Spesso confuso con {{species}}",
     "checkThese": "Controlla questi caratteri",
     "criticalHeading": "Questi due si confondono facilmente",

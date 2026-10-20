@@ -42,13 +42,18 @@ describe('palette hues', () => {
   // 0.07 apart in lightness on a shared axis, which is not separable at a
   // 1.5px stroke. They are used only by the --chart-* tokens.
   //
+  // Hue 40 is the third: Huerta, the garden space, wears the brand scale in
+  // terracotta. A space's brand is one angle, as 150 is Terra's, and it is
+  // used only by the [data-space='huerta'] blocks. It sits 12° from the danger
+  // red, so in Huerta a delete must not lean on hue alone.
+  //
   // Six angles is where this stops being a rule. If a seventh appears, colour
   // has scattered and this test should fail.
   it('uses only the brand, neutral, danger and measurement hues', () => {
     const hues = [
       ...new Set(oklchValues.filter(v => v.chroma > 0).map(v => v.hue)),
     ].sort((a, b) => a - b);
-    expect(hues).toEqual([28, 55, 90, 150, 245]);
+    expect(hues).toEqual([28, 40, 55, 90, 150, 245]);
   });
 
   it('keeps every colour inside the sRGB gamut', () => {

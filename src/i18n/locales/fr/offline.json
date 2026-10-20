@@ -29,7 +29,14 @@
     "open": "Ouvrir la carte",
     "cancel": "Annuler",
     "progress": "Téléchargement… {{percent}} %",
-    "downloaded": "Téléchargé le {{date}} · version {{version}} · valable 7 jours",
-    "expired": "Expiré · connectez-vous à Internet et mettez le forfait à jour"
+    "expired": "Expiré · connectez-vous à Internet et mettez le forfait à jour",
+    "validUntil": "Valable jusqu'au {{date}}"
+  },
+  "status": {
+    "ready": "Prêt pour le hors ligne",
+    "readyDetail": "{{regions}} · valable jusqu'au {{date}}",
+    "expired": "Votre carte hors ligne a expiré",
+    "expiredDetail": "Connectez-vous à internet et mettez-la à jour avant de partir",
+    "notReady": "Pas encore prêt pour le hors ligne"
   }
 }

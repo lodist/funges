@@ -2,6 +2,7 @@
   "appName": "Funges",
   "appDescription": "Sammel-Guide",
   "map": "Karte",
+  "identify": "Bestimmen",
   "worthForagingNow": "Saison",
   "species": "Arten",
   "recipes": "Rezepte",
@@ -13,5 +14,18 @@
   "termsOfUse": "Nutzungsbedingungen",
   "data": "Daten",
   "settings": "Einstellungen",
-  "help": "Hilfe"
+  "help": "Hilfe",
+  "googlePlay": "Jetzt bei Google Play",
+  "huertaWeek": "Dein Garten",
+  "spaces": {
+    "switch": "Bereich: {{space}}. Bereich wechseln",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Wildes Essen in deiner Nähe"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Dein Garten, diese Woche"
+    }
+  }
 }

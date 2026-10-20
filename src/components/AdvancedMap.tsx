@@ -1,6 +1,4 @@
 import React, {
-  lazy,
-  Suspense,
   useCallback,
   useEffect,
   useMemo,
@@ -43,12 +41,17 @@ import {
   MapPin,
   Navigation,
   Info,
-  ScanSearch,
   WifiOff,
 } from '@/lib/icons';
 import { useTranslation } from 'react-i18next';
 
 import { categoryColor } from '@/lib/categoryColor';
+import {
+  BAND_ACTIVE_CLASS,
+  BAND_GHOST_CLASS,
+  BAND_SURFACE_CLASS,
+} from '@/lib/band-surface';
+import { cn } from '@/lib/utils';
 import { useUIStore } from '@/store/uiStore';
 import SpeciesSelector from './SpeciesSelector';
 import MapThemeSelector from './MapThemeSelector';
@@ -56,7 +59,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
-import MapInfoCard from '@/components/MapInfoCard';
+import MapDock from '@/components/MapDock';
 import {
   bloomFillColor,
   bloomFillOpacity,
@@ -73,7 +76,6 @@ import { DEFAULT_MAP_SPECIES } from '@/data/species';
 import RouteToDishPanel, {
   type RouteSummary,
 } from '@/components/RouteToDishPanel';
-import ForecastSlider from '@/components/ForecastSlider';
 import { useRecipesData } from '@/data/recipes';
 import {
   queryRouteDishData,
@@ -218,12 +220,6 @@ function closeRoutePanel(
   setActiveRoute(null);
 }
 
-// Lazily loaded: this panel's module graph reaches the ONNX worker, and the
-// map must not pay for that on first paint.
-const IdentifyPanel = lazy(() =>
-  import('@/components/IdentifyPanel').then(m => ({ default: m.IdentifyPanel }))
-);
-
 const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const routePanelRef = useRef<HTMLDivElement>(null);
@@ -287,9 +283,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
 
   const { t } = useTranslation('map');
   const { t: tRecipes } = useTranslation('recipes');
-  const { t: tIdentify } = useTranslation('identify');
-  const [isIdentifyOpen, setIsIdentifyOpen] = useState(false);
-  const { activeModal, setActiveModal } = useUIStore();
+  const { setActiveModal } = useUIStore();
   const {
     center,
     zoom,
@@ -842,13 +836,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     });
     arrivingRef.current = false;
   }, [center, zoom, mapLoaded]);
-
-  // Deep link from the landing page: /map?identify=true opens the panel.
-  useEffect(() => {
-    if (activeModal !== 'identify') return;
-    setIsIdentifyOpen(true);
-    setActiveModal(null);
-  }, [activeModal, setActiveModal]);
 
   // Update visible layers when species or layer visibility changes
   useEffect(() => {
@@ -1625,17 +1612,23 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         </div>
 
         {/* Control buttons */}
-        <div className='absolute top-2 right-4 z-20 flex flex-col gap-2'>
+        {/* One rail, not five loose circles: the tools read as a set. */}
+        <div
+          className={cn(
+            'absolute top-2 right-4 z-20 flex flex-col gap-1 rounded-full p-1 elevation-raised',
+            BAND_SURFACE_CLASS
+          )}
+        >
           {/* User location button */}
           <Button
-            variant='outline'
+            variant='ghost'
             size='icon'
             onClick={handleGetUserLocation}
             disabled={isLoading}
             className={
               showUserLocation && userLocation
-                ? 'bg-muted text-primary-text hover:bg-muted hover:text-foreground'
-                : undefined
+                ? BAND_ACTIVE_CLASS
+                : BAND_GHOST_CLASS
             }
             title={t('getLocation')}
           >
@@ -1647,11 +1640,11 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           </Button>
 
           {/* Map theme selector (Light/Dark/White/Dark Matter/Topographic) */}
-          <MapThemeSelector isOnline={isOnline} />
+          <MapThemeSelector isOnline={isOnline} onBand />
 
           {isOnline && !isBloom && (
             <Button
-              variant='outline'
+              variant='ghost'
               size='icon'
               onClick={() => {
                 if (isRoutePanelOpen) {
@@ -1662,9 +1655,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                 setIsRoutePanelOpen(true);
               }}
               className={
-                isRoutePanelOpen
-                  ? 'bg-secondary text-primary-text hover:bg-secondary hover:text-foreground'
-                  : undefined
+                isRoutePanelOpen ? BAND_ACTIVE_CLASS : BAND_GHOST_CLASS
               }
               title={tRecipes('routePanel.title')}
               aria-label={tRecipes('routePanel.title')}
@@ -1673,20 +1664,11 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
             </Button>
           )}
 
-          <Button
-            variant='outline'
-            size='icon'
-            onClick={() => setIsIdentifyOpen(true)}
-            title={tIdentify('openButton')}
-            aria-label={tIdentify('openButton')}
-          >
-            <ScanSearch className='h-4 w-4' />
-          </Button>
-
           {/* Info button */}
           <Button
-            variant='outline'
+            variant='ghost'
             size='icon'
+            className={BAND_GHOST_CLASS}
             onClick={() => setActiveModal('onboarding')}
             title={t('showOnboarding')}
           >
@@ -1706,8 +1688,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
                   the wrapper stays: empty, its top is the nav's edge, which is
                   what the fit pads the bottom to. */}
               <div className={activeRoute ? 'hidden' : 'contents'}>
-                <ForecastSlider />
-                <MapInfoCard {...bloomLegend} />
+                <MapDock {...bloomLegend} />
               </div>
             </div>
             {/* Recedes while the route draws instead of unmounting: the
@@ -1751,8 +1732,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
               ref={bottomOverlayRef}
               className='absolute bottom-2 left-2 z-10 flex flex-col gap-2 md:w-96'
             >
-              <ForecastSlider />
-              <MapInfoCard {...bloomLegend} />
+              <MapDock {...bloomLegend} />
             </div>
             {isRoutePanelOpen ? (
               <div
@@ -1810,17 +1790,6 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         bloomDay={isBloom ? unixDay(new Date()) + activeDay : undefined}
         spectacle={spectacle}
       />
-
-      {/* Mounted only once opened, so the ONNX chunk is never fetched by a user
-          who does not use identification. */}
-      {isIdentifyOpen && (
-        <Suspense fallback={null}>
-          <IdentifyPanel
-            open={isIdentifyOpen}
-            onClose={() => setIsIdentifyOpen(false)}
-          />
-        </Suspense>
-      )}
     </>
   );
 };

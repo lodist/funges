@@ -1,6 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from '@tanstack/react-router';
-import { AlertTriangle, ChevronRight, HelpCircle, Skull } from '@/lib/icons';
+import {
+  AlertTriangle,
+  ChevronDown,
+  ChevronRight,
+  HelpCircle,
+  Skull,
+} from '@/lib/icons';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { SPECIES_DATA } from '@/data/species';
@@ -66,7 +72,7 @@ export function IdentifyResults({
   const critical = findCriticalConfusions(candidates);
 
   return (
-    <div className='space-y-3'>
+    <div className='flex flex-col gap-4'>
       {/* Always above the rows, never inferred from rank 1. */}
       {showToxicBanner && (
         <div
@@ -89,7 +95,7 @@ export function IdentifyResults({
         <div
           key={`${toxic.id}-${catalogSpecies.id}`}
           role='alert'
-          className='border-2 border-destructive rounded-lg p-3 space-y-1'
+          className='border-2 border-destructive dark:border-destructive-border rounded-lg p-3 space-y-1'
         >
           <p className='text-sm font-semibold flex items-center gap-2'>
             <Skull className='h-4 w-4 shrink-0' />
@@ -99,14 +105,16 @@ export function IdentifyResults({
         </div>
       ))}
 
-      <p className='text-xs text-muted-foreground'>
+      <p className='text-sm text-muted-foreground'>
         {t('disclaimer.aboveResults')}
       </p>
 
       {/* Labelled so the candidate list is addressable on its own: each toxic
           row nests a "check these features" list, and an unlabelled outer list
-          is indistinguishable from those to assistive tech. */}
-      <ul className='space-y-2' aria-label={t('results.heading')}>
+          is indistinguishable from those to assistive tech.
+          Equal plates in score order, no hero for rank 1: a bigger first card
+          would claim a certainty the model does not have. */}
+      <ul className='flex flex-col gap-3' aria-label={t('results.heading')}>
         {/* Scientific name alone is a safe key: rankPredictions returns the
             top-k distinct label rows, so a name cannot repeat within one
             result set. */}
@@ -155,23 +163,34 @@ function CandidateRow({
       : undefined;
 
   return (
+    // A plate per match: borderless and lifted like every card here. A toxic
+    // match keeps its red edge as a ring, the contrast-earning stroke the
+    // design system allows (--destructive-border carries it in dark).
     <li
-      className={`flex gap-3 items-start rounded-lg border p-3 ${
-        isToxic ? 'border-destructive' : 'border-input'
+      className={`flex items-start gap-4 rounded-card bg-card p-3 elevation-raised sm:p-4 ${
+        isToxic ? 'ring-2 ring-destructive dark:ring-destructive-border' : ''
       }`}
     >
-      <div className='h-12 w-12 shrink-0 rounded-md overflow-hidden bg-secondary flex items-center justify-center'>
+      {/* A toxic row's tile is not the brand's go-green wash. */}
+      <div
+        className={`flex size-20 shrink-0 items-center justify-center overflow-hidden rounded-xl sm:size-24 ${
+          isToxic ? 'bg-muted' : 'bg-secondary'
+        }`}
+      >
         {/* Toxic and tier-2 rows have no photo asset and must still render. */}
         {image ? (
           <ZoomableImage src={image} className='size-full' />
         ) : isToxic ? (
-          <Skull className='h-6 w-6' aria-hidden='true' />
+          <Skull className='size-8 text-destructive-text' aria-hidden='true' />
         ) : (
-          <HelpCircle className='h-6 w-6 opacity-60' aria-hidden='true' />
+          <HelpCircle
+            className='size-8 text-muted-foreground'
+            aria-hidden='true'
+          />
         )}
       </div>
 
-      <div className='min-w-0 flex-1 space-y-1'>
+      <div className='min-w-0 flex-1 space-y-1.5'>
         {isToxic && (
           <Badge variant='destructive'>
             <Skull />
@@ -179,29 +198,31 @@ function CandidateRow({
           </Badge>
         )}
 
-        <p className='font-medium leading-tight'>
+        <h3 className='text-base font-semibold leading-snug text-foreground'>
           {candidate.kind === 'catalog'
             ? catalogName(candidate, tSpecies)
             : candidate.scientificName}
-        </p>
+        </h3>
 
         {candidate.kind === 'catalog' && (
-          <p className='text-xs italic text-muted-foreground'>
+          <p className='text-sm italic text-muted-foreground'>
             {candidate.scientificName}
           </p>
         )}
 
         {(candidate.kind === 'other' || candidate.kind === 'unknown') && (
-          <p className='text-xs text-muted-foreground'>
+          <p className='text-sm text-muted-foreground'>
             {t('results.notInCatalog')}
           </p>
         )}
 
         {candidate.toxic && (
           <>
-            <p className='text-xs'>{t(candidate.toxic.reasonKey)}</p>
+            <p className='text-sm text-foreground'>
+              {t(candidate.toxic.reasonKey)}
+            </p>
             {candidate.toxic.confusedWithSpeciesIds.length > 0 && (
-              <p className='text-xs text-muted-foreground'>
+              <p className='text-sm text-muted-foreground'>
                 {t('results.confusedWith', {
                   species: candidate.toxic.confusedWithSpeciesIds
                     .map(id => {
@@ -212,11 +233,14 @@ function CandidateRow({
                 })}
               </p>
             )}
-            <details className='text-xs'>
-              <summary className='cursor-pointer text-muted-foreground'>
+            {/* `flex` drops the native marker, so the chevron says this
+                opens in place rather than navigating. */}
+            <details className='group text-sm'>
+              <summary className='flex min-h-11 cursor-pointer items-center gap-1 font-medium text-primary-text'>
                 {t('results.checkThese')}
+                <ChevronDown className='size-4 transition-transform duration-base group-open:rotate-180' />
               </summary>
-              <ul className='list-disc pl-4 pt-1 space-y-0.5'>
+              <ul className='list-disc space-y-1 pl-4'>
                 {candidate.toxic.checkKeys.map(key => (
                   <li key={key}>{t(key)}</li>
                 ))}
@@ -226,10 +250,13 @@ function CandidateRow({
         )}
 
         {/* Neutral and secondary. Never colour-coded on the toxicity axis. */}
-        <p className='text-xs text-muted-foreground tabular-nums'>
-          {t('results.confidence', {
-            percent: Math.round(candidate.score * 100),
-          })}
+        <p className='text-sm text-muted-foreground tabular-nums'>
+          {/* "0% match" beside a deadly badge reads as ruled out; it is not. */}
+          {Math.round(candidate.score * 100) === 0
+            ? t('results.confidenceUnderOne')
+            : t('results.confidence', {
+                percent: Math.round(candidate.score * 100),
+              })}
         </p>
       </div>
 

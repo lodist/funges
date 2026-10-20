@@ -93,7 +93,6 @@
     "description": "Usa la mappa per scoprire luoghi di raccolta e specie.",
     "features": {
       "species": "Scegli una specie con il selettore",
-      "identify": "Identificare da una foto (download una volta sola)",
       "locate": "Centra la mappa sulla tua posizione",
       "numbers": "Mostra o nascondi l’indice numerico",
       "theme": "Scegli un tema mappa: Chiaro, Scuro, Bianco, Dark Matter o Topografico",

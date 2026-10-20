@@ -21,10 +21,10 @@ at least 6 years), and if its learned season stays shut, in each latitude band w
 under a tenth of its peak per sighting (DEAD_MONTH): fruit that hangs on for months, nuts on
 the ground and green fruit tagged as fruiting can spread a stage over half the year.
 
-The stage people pick, per plant (STAGE): fruit for berries and nuts, flowers for elderflower,
-daisy, dandelion and violets, the bud for wild artichoke, leaves before flowering for ramps,
-nettle, sorrel and asparagus, leaves to green seed pods for wild garlic, and any sighting for the plants eaten whatever
-their stage (chickweed, plantain, amaranth, masterwort, wild mint), which with dandelion
+The stage people pick, per plant (STAGE): fruit for berries and nuts, flowers for elderflower
+and dandelion, flowers, buds or leaves for daisy and violets, the bud for wild artichoke, leaves
+and flower buds for ramps, leaves before flowering for nettle, sorrel and asparagus, leaves to
+green seed pods for wild garlic, and any sighting for the plants eaten whatever their stage (chickweed, plantain, amaranth, masterwort, wild mint), which with dandelion
 keep their months (SEASON). Fiddleheads carry no tags: ferns do not flower.
 
     python backend/tools/fit_phenology.py --out ../plant_training --download   # iNaturalist, resumable
@@ -50,10 +50,12 @@ from species_registry import get_species_params, infer_region  # noqa: E402
 from tag_ripeness import RIPE  # noqa: E402
 
 STAGE = {**dict.fromkeys(("blackberry", "cloudberry", "huckleberry", "lingonb", "pawpaw", "raspberry",
-                          "rose_hips", "sea_buckthorn", "strawberry", "chestnut", "hazelnut", "walnut"), "fruiting"),
+                          "sea_buckthorn", "chestnut", "hazelnut", "walnut"), "fruiting"),
          # fruiting sightings whose photo shows ripe fruit (tools/tag_ripeness.py)
-         **dict.fromkeys(("blueberry", "elderberry", "sloes"), "ripe"),
-         **dict.fromkeys(("daisy", "dandelion", "elderflower", "violets"), "flowering"),
+         **dict.fromkeys(("blueberry", "elderberry", "sloes", "rose_hips", "strawberry"), "ripe"),
+         **dict.fromkeys(("dandelion", "elderflower"), "flowering"),
+         # their buds and young leaves are eaten as well as the flowers
+         **dict.fromkeys(("daisy", "violets"), "flowering_or_leaves"),
          **dict.fromkeys(("nettle", "sorrel", "asparagus"), "leaves"),
          # Its leaves are picked through the flowering, the flowers too, and the green seed pods
          # (fruiting sightings whose photo shows them green) until the seeds ripen black. Kept as
@@ -61,7 +63,7 @@ STAGE = {**dict.fromkeys(("blackberry", "cloudberry", "huckleberry", "lingonb", 
          # AUC 0.817 vs 0.837, 8 of 11 years) and opened February at 40-44 N in South Europe,
          # where the tags show under a tenth of the peak.
          "garlic": "leaves_to_pods",
-         "ramps": "leaves_unbudded",      # its June buds stand on bare stalks, the leaves gone
+         "ramps": "leaves",               # the spring leaves, then the June flower buds (pickled)
          "artichoke": "budding",
          **dict.fromkeys(("chickweed", "plantain", "amaranth", "masterwort", "wild-mint"), "any")}
 # A learned season only where the tagged stage is what people pick, in a window: a plant eaten
@@ -76,13 +78,20 @@ SEASON = [s for s, stage in STAGE.items() if stage != "any" and s != "dandelion"
 # months: they colour in July in the south and August in the north, but are picked from
 # September, after the first frosts, so dark is not ripe (20 August, South Europe: 41% to 90% of
 # places at 4+). Blueberry opens a June band in South Europe, and US West has under 20 ripe tags
-# a band, so its 45% on 12 October there is US East's clock. The nuts and pawpaw keep their
+# a band, so its 45% on 12 October there is US East's clock. Rose hips' green July hips opened
+# July at 44-48 N in North Europe; read ripe, nothing dead opens. The leaves strawberry and
+# blackberry are picked for tea are up all year, and the tags tell no young leaf from an old one:
+# with them, strawberry opened months its tags call dead on both continents and blackberry stayed
+# open all year at 32-48 N in Europe, so both keep their fruit. Blackberry keeps every fruiting
+# sighting: a bunch ripens berry by berry, and its photos could not be told ripe from green.
+# The nuts and pawpaw keep their
 # months: their ripest-looking photos are last year's husks, shells and seeds on winter ground.
 # US blackberries mix spring dewberries with late Pacific blackberries, and the learned season
 # kept Kansas and Nebraska at 6-7 on 12 October: blackberry ships in Europe only. Sorrel's leaves
 # stay up all winter, so its share peaks in December, when few other plants are photographed,
-# and its spring reads under half of that. (Ramps, read as "leaves", counted its June budding
-# stalks and opened on 25 June; leaves_unbudded fixed that.)
+# and its spring reads under half of that. Ramps' June buds stand on bare stalks, the leaves gone,
+# and are picked too: read with them, its season ranks its leaves and buds 0.711 against its
+# months' 0.583 and the unbudded leaves' 0.560 (held out by year); MONTHS_GUARD still shuts July.
 HELD_BACK = {"blueberry", "hazelnut", "pawpaw", "sloes", "sorrel", "walnut"}
 # Learned seasons that may open only within a month of the plant's months. Ramps' leaves are
 # picked in spring, but where the plant is rare (Minnesota, the Dakotas) the ratio to a place's
@@ -234,6 +243,7 @@ def stages(s: pd.DataFrame, ripe=(), unripe=()) -> dict:
             "ripe": s["fruiting"] & s["id"].isin(set(ripe)),
             "leaves": leaves & ~s["flowering"] & ~s["fruiting"],
             "leaves_to_pods": (leaves & ~s["fruiting"]) | s["flowering"] | green,
+            "flowering_or_leaves": (leaves & ~s["fruiting"]) | s["flowering"],
             "leaves_unbudded": s["no_flowers"] & ~s["budding"] & ~s["flowering"] & ~s["fruiting"],
             "any": pd.Series(True, index=s.index)}
 

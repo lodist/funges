@@ -22,10 +22,13 @@ vi.mock('@tanstack/react-router', () => ({
   Link: ({
     to,
     children,
+    // A router option, not an attribute: kept off the anchor.
+    reloadDocument: _reloadDocument,
     ...props
   }: {
     to: string;
     children: React.ReactNode;
+    reloadDocument?: boolean;
   }) => (
     <a href={to} {...props}>
       {children}
@@ -45,6 +48,9 @@ vi.mock('@/lib/feature-flags', () => ({
   get shouldShowOfflineFeatures() {
     return offlineEnabled.current;
   },
+  // The space switcher stays out of these link lists; Huerta's own nav is
+  // pinned by the last test.
+  shouldShowHuerta: false,
 }));
 
 const renderSidebar = () =>
@@ -79,9 +85,12 @@ describe('AppSidebar', () => {
     // on an unrelated route — so they are deliberately absent here.
     renderSidebar();
 
+    // Identify sits beside the map: the product's two mechanisms, when to go
+    // and what you are holding, lead the list.
     expect(navLinks()).toEqual([
       '/',
       '/map',
+      '/identify',
       '/worth-foraging-now',
       '/species',
       '/data',
@@ -121,6 +130,7 @@ describe('AppSidebar', () => {
       .map(item => item.getAttribute('href'));
     expect(flyout).toEqual([
       '/support',
+      'https://play.google.com/store/apps/details?id=es.fung.app',
       '/impressum',
       '/privacy-policy',
       '/termsuse',
@@ -157,6 +167,7 @@ describe('AppSidebar', () => {
     expect(navLinks()).toEqual([
       '/',
       '/map',
+      '/identify',
       '/worth-foraging-now',
       '/species',
       '/data',
@@ -212,5 +223,16 @@ describe('AppSidebar', () => {
     for (const className of NAV_SURFACE_CLASS.split(' ')) {
       expect(surface).toHaveClass(className);
     }
+  });
+
+  // Last: a shared page keeps the space a visitor came from (lib/spaces), so a
+  // Huerta route here would carry into a later test's /privacy-policy.
+  it('lists only its own pages in the Huerta space', () => {
+    pathname.current = '/huerta';
+    renderSidebar();
+
+    expect(navLinks()).toContain('/huerta');
+    expect(navLinks()).not.toContain('/map');
+    expect(navLinks()).not.toContain('/species');
   });
 });

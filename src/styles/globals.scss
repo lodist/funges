@@ -63,7 +63,7 @@
   // its `&:focus { outline: none }` stripped the focus outline from every
   // field in the app — a WCAG 2.4.7 failure the axe gate cannot see, because
   // focus appearance is not machine-checkable. The only bare fields left are
-  // the two `sr-only` file inputs in IdentifyPanel, which render nothing.
+  // the two `sr-only` file inputs on the Identify page, which render nothing.
 
   // Selection styles
   ::selection {
@@ -411,6 +411,13 @@
   .focus-ring:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
+  }
+
+  // Recharts makes its SVG layers focusable, so a click on a chart focused one
+  // and Chrome's SVG `:focus` outline boxed the whole plot. Keyboard focus
+  // keeps its outline.
+  .recharts-wrapper :focus:not(:focus-visible) {
+    outline: none;
   }
 
   // Text utilities

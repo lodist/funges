@@ -1,0 +1,8 @@
+{
+  "prompt": "A candid winter field photograph of a cluster of fresh oyster mushrooms (Pleurotus ostreatus) growing in overlapping shelves from the side of a fallen beech log in a beech wood, fresh snow along the top of the log and dusting the upper caps. Caps oyster-shell shaped, 5-12 cm, smooth, steel grey to grey-brown, wavy slightly inrolled margins; short off-centre whitish stems; white crowded gills running down onto the stem, visible on at least two caps; no ring, veil, scales, pores or other fungi. Smooth grey beech bark with a little moss. Soft overcast winter daylight, natural cool colours, shallow depth of field on a snowy beech wood; no HDR, vignette, flare, people, hands, baskets, text or watermark. Camera at log height; cluster roughly centred a little below the middle.",
+  "generator": "OpenAI image generation (gpt-image-2) via the Codex CLI imagegen skill, variant 1 of 3",
+  "references": "public/landing/astra-porcini.webp (framing and realism), src/assets/species/oyster-mushroom.webp (botany), Pexels 13898840 (realism bar)",
+  "why_generated": "Loris found no real photo of oyster mushrooms in snow; his winter options were a bracket polypore and a stemmed cap-and-gill cluster, neither an oyster",
+  "purpose": "Winter hero (December-February); photorealistic marketing illustration, not species-identification evidence",
+  "encoding": "WebP, 960x1200 from a 1024x1536 render cropped (0, 160, 1024, 1440), quality 75; kept out of the service-worker precache"
+}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 import {
   Map,
   Database,
@@ -14,7 +14,14 @@ import {
   Gavel,
   BarChart2,
   LifeBuoy,
+  Smartphone,
+  ScanSearch,
+  Sprout,
 } from '@/lib/icons';
+import { currentSpace } from '@/lib/spaces';
+import { SpaceSwitcher } from '@/components/SpaceSwitcher';
+import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
+import { IDENTIFY_PATH } from '@/lib/isolation';
 import {
   Sidebar,
   SidebarContent,
@@ -39,6 +46,16 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
   const { t: tCommon } = useTranslation('common');
   const { state, toggleSidebar } = useSidebar();
   const isMobile = useIsMobile();
+  const { pathname } = useLocation();
+  // Each space lists its own pages; Help is shared.
+  const huertaNav = [
+    {
+      title: t('huertaWeek'),
+      url: `${basePath}huerta`,
+      icon: Sprout,
+      isActive: true,
+    },
+  ];
   const data = {
     navMain: [
       {
@@ -46,6 +63,15 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
         url: `${basePath}map`,
         icon: Map,
         isActive: true,
+      },
+      // Beside the map on purpose: the product's two mechanisms, when to go
+      // and what you are holding, as the first two rows.
+      {
+        title: t('identify'),
+        url: IDENTIFY_PATH,
+        icon: ScanSearch,
+        isActive: false,
+        reloadDocument: true,
       },
       {
         title: t('worthForagingNow'),
@@ -117,6 +143,15 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
                 url: `${basePath}support`,
                 icon: Heart,
               },
+              ...(offersPlayStore()
+                ? [
+                    {
+                      title: t('googlePlay'),
+                      url: PLAY_STORE_URL,
+                      icon: Smartphone,
+                    },
+                  ]
+                : []),
               {
                 title: t('impressum'),
                 url: `${basePath}impressum`,
@@ -185,10 +220,15 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             {!isMobile && <SidebarTrigger className='shrink-0' />}
           </div>
         )}
+        {(state !== 'collapsed' || isMobile) && (
+          <SpaceSwitcher className='mt-2 w-full' />
+        )}
       </SidebarHeader>
       <SidebarSeparator className='mx-2 group-data-[collapsible=icon]:mx-2' />
       <SidebarContent className='px-2 pt-4 pb-0 group-data-[collapsible=icon]:px-0'>
-        <NavMain items={data.navMain} />
+        <NavMain
+          items={currentSpace(pathname) === 'huerta' ? huertaNav : data.navMain}
+        />
         <NavMain items={data.navHelp} className='mt-auto' />
       </SidebarContent>
     </Sidebar>

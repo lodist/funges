@@ -34,7 +34,19 @@
     "spectacles": {
       "heading": "Spettacoli naturali",
       "body": "Dai ciliegi in fiore e i boschi di giacinti alle foglie autunnali: segui le stagioni ed esplora le previsioni per questi spettacoli effimeri della natura",
-      "link": "Esplora il foliage autunnale"
+      "now": "In corso: {{name}}",
+      "next": "In arrivo: {{name}}"
+    },
+    "live": {
+      "line": "Oggi vale l'uscita: {{species}}, in {{areas}} zone in {{area}}",
+      "europe": "Europa",
+      "northAmerica": "Nord America"
+    },
+    "journey": {
+      "heading": "Trovalo, riconoscilo, cucinalo"
+    },
+    "data": {
+      "link": "Vedi i dati"
     }
   },
   "worthForagingNow": {
@@ -234,24 +246,24 @@
       "freezing": "{{location}}: temperature vicine allo zero. La maggior parte delle specie è in dormienza. Un rialzo termico cambierebbe le cose rapidamente.",
       "tooWarm": "{{location}}: troppo caldo per i funghi. Le condizioni favoriscono piante e bacche estive, che reggono meglio il calore.",
       "flushPattern": "{{location}}: schema di fioritura attivo. Periodo umido 7-10 giorni fa seguito da giorni più secchi a {{temp}}°C e {{humidity}}% di umidità. Condizioni ideali{{catSuffix}}.",
-      "wellAligned": "{{location}}: condizioni ben allineate. {{cumRain}}mm nelle ultime due settimane, {{temp}}°C, umidità elevata. Temperatura, umidità e pioggia lavorano tutte a tuo favore{{catSuffix}}.",
+      "wellAligned": "{{location}}: condizioni ben allineate. {{cumRain}}mm nelle ultime due settimane, {{temp}}°C e {{humidity}}% di umidità nell'ultima settimana. Temperatura, umidità e pioggia lavorano tutte a tuo favore{{catSuffix}}.",
       "rainScarce": "{{location}}: le temperature sono giuste ma la pioggia è il collo di bottiglia, solo {{cumRain}}mm nelle ultime due settimane. Ben al di sotto dei 20mm necessari alla maggior parte delle specie.",
-      "rainOkTempWrong": "{{location}}: la pioggia è adeguata ({{cumRain}}mm di recente) ma la temperatura ({{temp}}°C) è il principale freno.",
+      "rainOkTempWrong": "{{location}}: la pioggia è adeguata ({{cumRain}}mm di recente) ma la temperatura dell'ultima settimana ({{temp}}°C) è il principale freno.",
       "rainOkHumidLow": "{{location}}: pioggia e temperatura sono ragionevoli, ma l'umidità è bassa ({{humidity}}%) e in questo momento frena parecchio i punteggi.",
       "goodConditions": "{{location}}: buone condizioni{{catSuffix}}. {{topSpecies}} con punteggio {{topScore}}/10.",
       "slowMissing": "{{location}}: periodo lento, {{missing}}. I punteggi dovrebbero migliorare quando le condizioni cambiano.",
       "slowSeasonal": "{{location}}: periodo lento. Il meteo è ragionevole ma i punteggi sono bassi, il che può accadere fuori dalla stagione di punta.",
-      "rainGood": "In media {{totalRain}} mm di pioggia {{rainDesc}} in {{rainyDaysStr}} nel corso di {{daysLabel}}.",
-      "rainBare": "Quasi nessuna pioggia in {{daysLabel}}, solo {{totalRain}} mm in media.",
+      "rainGood": "In media {{totalRain}} mm di pioggia {{rainDesc}} in {{rainyDaysStr}} {{daysLabel}}.",
+      "rainBare": "Quasi nessuna pioggia {{daysLabel}}, solo {{totalRain}} mm in media.",
       "tempContext": "Le temperature hanno mediato {{temp}}°C ({{tempDesc}}{{trendSuffix}}){{tempRange}}{{humidSuffix}}.",
-      "scorePeakNow": "I punteggi sono al loro punto più alto in {{daysLabel}}{{climbSuffix}}.",
+      "scorePeakNow": "I punteggi sono al loro punto più alto {{daysLabel}}{{climbSuffix}}.",
       "scorePeakFalling": "Le condizioni di punta erano {{peakStr}} e i punteggi stanno ora calando. Agisci presto o aspetta il prossimo ciclo di piogge.",
-      "scorePeakPast": "La finestra migliore in questo periodo era {{peakStr}}.",
+      "scorePeakPast": "In media su tutte le specie, i punteggi erano più alti {{peakStr}}.",
       "scoreMomentumUp": "I punteggi sono in salita. Le condizioni potrebbero avviarsi verso una finestra migliore.",
-      "windStrong": "Venti forti (media {{wind}} m/s{{windRange}}). Tienilo a mente se ti addentri in terreni esposti.",
+      "windStrong": "Venti forti (media {{wind}} m/s{{windRange}}).",
       "windModerate": "Venti moderati (media {{wind}} m/s{{windRange}}).",
-      "pressureFalling": "La pressione sta calando. Potrebbe arrivare della pioggia.",
-      "pressureRising": "La pressione sta salendo. Pioggia improbabile, il cielo dovrebbe schiarirsi.",
+      "forecastRain": "Previsti in media {{rain}} mm di pioggia per {{nextDays}}.",
+      "forecastDry": "Quasi nessuna pioggia prevista per {{nextDays}}.",
       "diversityWide": "Un'ampia varietà di specie è attiva{{catSuffix}}.",
       "diversityGood": "Buona varietà di specie da scoprire{{catSuffix}}.",
       "diversityFew": "Qualche specie interessante da cercare{{catSuffix}}.",
@@ -274,12 +286,12 @@
       "rainyDays_one": "{{count}} giorno",
       "rainyDays_other": "{{count}} giorni",
       "missingRain": "pioggia cumulata bassa ({{cumRain}}mm, servono circa 20mm)",
-      "missingTemp": "temperatura fuori intervallo ({{temp}}°C)",
-      "missingHumidity": "umidità bassa ({{humidity}}%)",
+      "missingTemp": "temperatura fuori intervallo ({{temp}}°C nell'ultima settimana)",
+      "missingHumidity": "umidità bassa ({{humidity}}% nell'ultima settimana)",
       "yesterday": "ieri",
       "daysAgo": "{{count}} giorni fa",
-      "daysLabel": "gli ultimi {{count}} giorni",
-      "yearLabel": "l'ultimo anno",
+      "daysLabel": "negli ultimi {{count}} giorni",
+      "yearLabel": "nell'ultimo anno",
       "catMushroom": "i funghi",
       "catBerry": "le bacche",
       "catPlant": "le piante",
@@ -289,15 +301,15 @@
       "chipLastRain": "Ultima pioggia ≥ 8 mm",
       "chipTemp": "Temp media",
       "chipHumidity": "Umidità",
-      "chipPressure": "Pressione",
+      "chipForecast": "Pioggia prevista",
       "today": "oggi",
-      "pressureFallingShort": "in calo",
-      "pressureRisingShort": "in aumento",
-      "rainPatchy": "Pioggia a macchia di leopardo nel corso di {{daysLabel}}: metà dell'area ha ricevuto meno di {{p50}} mm, ma {{where}} sono caduti circa {{amount}} mm{{peakSuffix}}, soprattutto {{when}}.",
+      "nextDays_one": "domani",
+      "nextDays_other": "i prossimi {{count}} giorni",
+      "rainPatchy": "Pioggia a macchia di leopardo {{daysLabel}}: metà dell'area ha ricevuto meno di {{p50}} mm, ma {{where}} sono caduti circa {{amount}} mm{{peakSuffix}}, con il picco {{when}}.",
       "tempRange": ", tra {{low}} e {{high}}°C a seconda della zona",
       "humidRange": " (tra {{low}} e {{high}}% a seconda della zona)",
       "windRange": ", tra {{low}} e {{high}} m/s a seconda della zona",
-      "rainWettest": "Ha piovuto di più {{where}}, con circa {{amount}} mm{{peakSuffix}}, soprattutto {{when}}.",
+      "rainWettest": "Ha piovuto di più {{where}}, con circa {{amount}} mm{{peakSuffix}} e il picco {{when}}.",
       "rainHotspotMore": "Anche {{where}} sono caduti circa {{amount}} mm.",
       "rainScarceHotspot": "{{location}}: le temperature sono giuste ma nella maggior parte dell'area manca la pioggia, in media {{cumRain}}mm nelle ultime due settimane. {{where}} sono caduti circa {{amount}}mm, abbastanza per la maggior parte delle specie.",
       "hotspotFlush": "Lì la pioggia seguita da giorni più asciutti prepara una buttata.",
@@ -313,7 +325,7 @@
       "whereSW": "a sud-ovest",
       "whereW": "a ovest",
       "whereNW": "a nord-ovest",
-      "rainPatchyDry": "Pioggia a macchia di leopardo nel corso di {{daysLabel}}: almeno metà dell'area è rimasta asciutta, ma {{where}} sono caduti circa {{amount}} mm{{peakSuffix}}, soprattutto {{when}}."
+      "rainPatchyDry": "Pioggia a macchia di leopardo {{daysLabel}}: almeno metà dell'area è rimasta asciutta, ma {{where}} sono caduti circa {{amount}} mm{{peakSuffix}}, con il picco {{when}}."
     }
   },
   "theme": {

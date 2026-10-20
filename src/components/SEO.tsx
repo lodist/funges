@@ -37,7 +37,7 @@ export default function SEO({
   openGraph,
   twitter,
 }: SEOProps) {
-  const fullTitle = `${title} \u2014 Fung.es`;
+  const fullTitle = `${title} - Fung.es`;
 
   const keywordsContent = Array.isArray(keywords)
     ? keywords.join(', ')

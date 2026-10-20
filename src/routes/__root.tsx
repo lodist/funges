@@ -1,5 +1,5 @@
 import { createRootRoute, Outlet, useLocation } from '@tanstack/react-router';
-import { useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useScroll, useMotionValueEvent, MotionConfig } from 'framer-motion';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -8,8 +8,30 @@ import MobileNavbar from '@/components/Mobile/MobileNavbar';
 import FloatingLanguageSwitcher from '@/components/FloatingLanguageSwitcher';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { recordPath } from '@/lib/nav-history';
+import { crossesIsolationBoundary } from '@/lib/isolation';
+import { currentSpace, rememberPath } from '@/lib/spaces';
+
+// Evaluated once per document load: the route this document was served for.
+const DOCUMENT_PATH =
+  typeof window === 'undefined' ? '/' : window.location.pathname;
 
 export const Route = createRootRoute({
+  // Photo ID is served cross-origin isolated and nothing else is, and a page's
+  // isolation is fixed when it loads. A client-side move across that line —
+  // a link, the back button — becomes a fresh load of the same URL. Decided
+  // before the route renders, so the page being left stays up (blurred, by
+  // index.html's view transition) until the new one has drawn.
+  beforeLoad: ({ location, preload }) => {
+    if (preload || !crossesIsolationBoundary(DOCUMENT_PATH, location.pathname))
+      return;
+    // The router has already pushed the URL. A replace, not a reload: reloads
+    // never get a view transition. With a '#' a same-URL replace would only
+    // scroll, so that case reloads.
+    const href = window.location.href;
+    if (href.includes('#')) window.location.reload();
+    else window.location.replace(href);
+    return new Promise<never>(() => {}); // this document never renders the route
+  },
   component: RootComponent,
 });
 
@@ -17,6 +39,15 @@ function RootComponent() {
   const isMobile = useIsMobile();
   const location = useLocation();
   recordPath(location.pathname);
+
+  // The space's colours hang off <html>, so dialogs and menus portalled out of
+  // the page wear them too; set before paint, so a page never flashes green.
+  const space = currentSpace(location.pathname);
+  useLayoutEffect(() => {
+    document.documentElement.dataset.space = space;
+  }, [space]);
+  useEffect(() => rememberPath(location.pathname), [location.pathname]);
+
   // The map is the one route that owns the viewport (no document scroll).
   const isMapPage =
     location.pathname.replace(/\/+$/, '') ===
@@ -75,7 +106,7 @@ function RootComponent() {
             </SidebarInset>
           </SidebarProvider>
           {isMobile && <MobileNavbar hidden={hideNavbar} />}
-          {!isMobile && <FloatingLanguageSwitcher />}
+          {!isMobile && <FloatingLanguageSwitcher onBand={isMapPage} />}
         </div>
       </TooltipProvider>
     </MotionConfig>

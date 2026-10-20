@@ -44,6 +44,7 @@ import {
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
 import { Route as DataRoute } from '@/routes/data';
+import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
 
 const ZoneMap = lazy(() => import('@/components/ZoneMap'));
@@ -57,7 +58,9 @@ const REGIONS: { id: RegionId; label: string }[] = [
 
 const DAY_OPTIONS = [7, 14, 30, 90, 365] as const;
 
-// Hidden while the score history spans several algorithm versions; flip back to true once it is consistent
+// Hidden, with the summary's score-trend sentence, while the score history
+// spans several algorithm versions and species sets; flip back to true once
+// it is consistent
 const SHOW_SCORE_OVER_TIME = false;
 
 function dayLabel(d: number): string {
@@ -110,7 +113,10 @@ function SegmentedControl<T extends string | number>({
   onChange: (value: T) => void;
 }) {
   return (
-    <div className='inline-flex items-center gap-0.5 rounded-full bg-muted/60 p-1'>
+    // The chosen option a light green halo with dark green text, like the map
+    // dock's day; the others dark green text (the readable green in dark
+    // mode, where dark green would vanish); no track.
+    <div className='inline-flex items-center gap-1 rounded-full p-1'>
       {options.map(option => {
         const isActive = option.value === value;
         return (
@@ -122,8 +128,8 @@ function SegmentedControl<T extends string | number>({
             className={cn(
               'rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors',
               isActive
-                ? 'bg-card text-foreground shadow-[0_1px_4px_rgba(0,0,0,0.1)]'
-                : 'text-muted-foreground hover:text-foreground'
+                ? 'bg-happy-100 text-happy-900'
+                : 'text-primary-text hover:text-happy-900 dark:hover:text-happy-100'
             )}
           >
             {option.label}
@@ -205,18 +211,20 @@ export default function DataPage() {
     }
   }, [region, zones, zone]);
 
-  // Full history up to today for the selected zone, or the region-wide
-  // ALL_ZONE rows the data script computes from every weather cell once.
-  // The dataset extends 6 days into the future (rolling forecast window).
-  // The data page is retrospective (charts, narrative and "latest scores" all
-  // read the tail), so drop forward-dated rows and end the window at today.
-  const zoneHistory = useMemo(() => {
-    if (!dataset) return [];
+  // Rows for the selected zone, or the region-wide ALL_ZONE rows the data
+  // script computes from every weather cell once, split at today: the dataset
+  // extends 6 days into the future (rolling forecast window). The page is
+  // retrospective (charts, narrative and "latest scores" read the history);
+  // only the summary's forecast sentence and chip read the forward rows.
+  const [zoneHistory, zoneForecast] = useMemo(() => {
     const today = new Date().toLocaleDateString('en-CA'); // local YYYY-MM-DD
     const key = zone || ALL_ZONE;
-    return dataset.regions[region].data.filter(
-      row => row.zone === key && row.date <= today
-    );
+    const rows =
+      dataset?.regions[region].data.filter(row => row.zone === key) ?? [];
+    return [
+      rows.filter(row => row.date <= today),
+      rows.filter(row => row.date > today),
+    ] as const;
   }, [dataset, region, zone]);
 
   const zoneData = useMemo(() => zoneHistory.slice(-days), [zoneHistory, days]);
@@ -333,34 +341,29 @@ export default function DataPage() {
       .filter((v): v is number => v != null);
     const avgWind = avg(windVals);
 
-    // Pressure trend
-    const pressureVals = zoneData
-      .map(r => r.pressure_hpa)
+    // The averages above describe the selected window. The verdict and the
+    // temperature trend describe now, so they read the last 7 days whatever
+    // the window: a year's average or halves made "now" a season (90d said
+    // 22°C was the drag in October, 1y said "warming recently").
+    const last7 = zoneHistory.slice(-7);
+    const recentTemps = last7
+      .map(r => r.temp_avg)
       .filter((v): v is number => v != null);
-    const pHalf = Math.max(1, Math.floor(pressureVals.length / 2));
-    const pressureTrend =
-      pressureVals.length >= 4
-        ? (avg(pressureVals.slice(pHalf)) ?? 0) -
-            (avg(pressureVals.slice(0, pHalf)) ?? 0) >
-          2
-          ? 'rising'
-          : (avg(pressureVals.slice(pHalf)) ?? 0) -
-                (avg(pressureVals.slice(0, pHalf)) ?? 0) <
-              -2
-            ? 'falling'
-            : null
-        : null;
+    const recentTemp = avg(recentTemps);
+    const recentHumidity = avg(
+      last7.map(r => r.humidity).filter((v): v is number => v != null)
+    );
 
     // Temp trend
-    const tHalf = Math.max(1, Math.floor(tempVals.length / 2));
+    const tHalf = Math.max(1, Math.floor(recentTemps.length / 2));
     const tempTrend =
-      tempVals.length >= 4
-        ? (avg(tempVals.slice(tHalf)) ?? 0) -
-            (avg(tempVals.slice(0, tHalf)) ?? 0) >
+      recentTemps.length >= 4
+        ? (avg(recentTemps.slice(tHalf)) ?? 0) -
+            (avg(recentTemps.slice(0, tHalf)) ?? 0) >
           1.5
           ? 'warming'
-          : (avg(tempVals.slice(tHalf)) ?? 0) -
-                (avg(tempVals.slice(0, tHalf)) ?? 0) <
+          : (avg(recentTemps.slice(tHalf)) ?? 0) -
+                (avg(recentTemps.slice(0, tHalf)) ?? 0) <
               -1.5
             ? 'cooling'
             : null
@@ -407,15 +410,19 @@ export default function DataPage() {
       .filter(h => h.rain_mm >= 20)
       .sort((a, b) => b.rain_mm - a.rain_mm)[0];
 
-    const flushTempOk = avgTemp != null && avgTemp >= 6 && avgTemp <= 22;
-    const flushHumidOk = avgHumidity != null && avgHumidity >= 65;
+    const flushTempOk =
+      recentTemp != null && recentTemp >= 6 && recentTemp <= 22;
+    const flushHumidOk = recentHumidity != null && recentHumidity >= 65;
 
     // Score stats
     const topScore = topSpeciesToday[0]?.score ?? 0;
     const topSpeciesName = topSpeciesToday[0]?.name ?? null;
-    const latestScores = Object.values(
+    // Without the group layers, which would count their members twice.
+    const latestScores = Object.entries(
       zoneData[zoneData.length - 1]?.scores ?? {}
-    );
+    )
+      .filter(([id]) => !groupIds.has(id))
+      .map(([, score]) => score);
     const scoringAbove5 = latestScores.filter(s => s >= 5).length;
     const scoringAbove3 = latestScores.filter(s => s >= 3).length;
 
@@ -479,13 +486,14 @@ export default function DataPage() {
         opts as any
       ) as unknown as string;
 
-    // Translated sub-parts
+    // Translated sub-parts. The label names the days the figures cover: 1y
+    // covers fewer while less than a year of history is stored.
     const daysLabel =
-      days === 365
+      zoneData.length >= 365
         ? tn('yearLabel', { defaultValue: 'the past year' })
         : tn('daysLabel', {
-            count: days,
-            defaultValue: `the past ${days} days`,
+            count: zoneData.length,
+            defaultValue: `the past ${zoneData.length} days`,
           });
 
     const catSuffixEsp = catLabel
@@ -577,26 +585,28 @@ export default function DataPage() {
       defaultValue: `${rainyDays} day${rainyDays !== 1 ? 's' : ''}`,
     });
 
+    // Per week, so a long window's total does not read as heavy rain.
+    const rainPerWeek = (totalRain * 7) / zoneData.length;
     const rainDescT =
-      totalRain > 50
+      rainPerWeek > 50
         ? tn('rainHeavy', { defaultValue: 'heavy' })
-        : totalRain > 15
+        : rainPerWeek > 15
           ? tn('rainModerate', { defaultValue: 'moderate' })
           : tn('rainLight', { defaultValue: 'light' });
 
     const sentences: string[] = [];
 
     // === SENTENCE 1: VERDICT ===
-    if (avgTemp != null && avgTemp < 3) {
+    if (recentTemp != null && recentTemp < 3) {
       sentences.push(tn('freezing', { location }));
-    } else if (avgTemp != null && avgTemp > 25) {
+    } else if (recentTemp != null && recentTemp > 25) {
       sentences.push(tn('tooWarm', { location }));
     } else if (flushTempOk && rainFirstPattern && flushHumidOk) {
       sentences.push(
         tn('flushPattern', {
           location,
-          temp: avgTemp?.toFixed(0),
-          humidity: avgHumidity?.toFixed(0),
+          temp: recentTemp?.toFixed(0),
+          humidity: recentHumidity?.toFixed(0),
           catSuffix: catSuffixEsp,
         })
       );
@@ -605,7 +615,8 @@ export default function DataPage() {
         tn('wellAligned', {
           location,
           cumRain: cumRain14.toFixed(0),
-          temp: avgTemp?.toFixed(0),
+          temp: recentTemp?.toFixed(0),
+          humidity: recentHumidity?.toFixed(0),
           catSuffix: catSuffixLead,
         })
       );
@@ -627,12 +638,15 @@ export default function DataPage() {
         tn('rainOkTempWrong', {
           location,
           cumRain: cumRain14.toFixed(0),
-          temp: avgTemp?.toFixed(0),
+          temp: recentTemp?.toFixed(0),
         })
       );
     } else if (flushTempOk && rainSufficient && !flushHumidOk) {
       sentences.push(
-        tn('rainOkHumidLow', { location, humidity: avgHumidity?.toFixed(0) })
+        tn('rainOkHumidLow', {
+          location,
+          humidity: recentHumidity?.toFixed(0),
+        })
       );
     } else if (topScore >= 7) {
       sentences.push(
@@ -647,11 +661,11 @@ export default function DataPage() {
       const missingParts: string[] = [];
       if (rainScarce)
         missingParts.push(tn('missingRain', { cumRain: cumRain14.toFixed(0) }));
-      if (avgTemp != null && !flushTempOk)
-        missingParts.push(tn('missingTemp', { temp: avgTemp.toFixed(0) }));
-      if (avgHumidity != null && !flushHumidOk)
+      if (recentTemp != null && !flushTempOk)
+        missingParts.push(tn('missingTemp', { temp: recentTemp.toFixed(0) }));
+      if (recentHumidity != null && !flushHumidOk)
         missingParts.push(
-          tn('missingHumidity', { humidity: avgHumidity.toFixed(0) })
+          tn('missingHumidity', { humidity: recentHumidity.toFixed(0) })
         );
       sentences.push(
         missingParts.length > 0
@@ -663,10 +677,12 @@ export default function DataPage() {
     // === SENTENCE 2: RAIN + TEMP CONTEXT ===
     // Where it rained, not only how much on average. The hotspot the verdict
     // already named (the same object when the 14d window is selected) is not
-    // repeated.
-    const [topHotspot, nextHotspot] = (win?.hotspots ?? []).filter(
-      h => h !== verdictHotspot
-    );
+    // repeated. Wettest first, as the chip ranks them: the data script orders
+    // hotspots by area times rain, so "the wettest area" could be a bigger,
+    // drier one than the chip's.
+    const [topHotspot, nextHotspot] = (win?.hotspots ?? [])
+      .filter(h => h !== verdictHotspot)
+      .sort((a, b) => b.rain_mm - a.rain_mm);
     if (topHotspot && (win?.rain_p50 ?? 0) < 5) {
       sentences.push(
         // A median of 0 means at least half the zone stayed dry.
@@ -711,22 +727,27 @@ export default function DataPage() {
     }
 
     // === SENTENCE 3: SCORE PEAK + MOMENTUM ===
-    if (peakDaysAgo === 0 && topScore > 3) {
-      const climbSuffix =
-        scoreMomentum === 'improving' ? tn('climbSuffix') : '';
-      sentences.push(tn('scorePeakNow', { daysLabel, climbSuffix }));
-    } else if (peakDaysAgo > 0 && peakDay.mean > currentMeanScore + 0.4) {
-      const peakStr =
-        peakDaysAgo === 1
-          ? tn('yesterday')
-          : tn('daysAgo', { count: peakDaysAgo });
-      sentences.push(
-        scoreMomentum === 'declining'
-          ? tn('scorePeakFalling', { peakStr })
-          : tn('scorePeakPast', { peakStr })
-      );
-    } else if (scoreMomentum === 'improving') {
-      sentences.push(tn('scoreMomentumUp'));
+    // Off with the Score Over Time chart: across days the stored scores mix
+    // algorithm versions and species sets, so a "peak" was often just a day
+    // species were added (Iberia, Oct 2026: 36 → 43 species on 5 Oct).
+    if (SHOW_SCORE_OVER_TIME) {
+      if (peakDaysAgo === 0 && topScore > 3) {
+        const climbSuffix =
+          scoreMomentum === 'improving' ? tn('climbSuffix') : '';
+        sentences.push(tn('scorePeakNow', { daysLabel, climbSuffix }));
+      } else if (peakDaysAgo > 0 && peakDay.mean > currentMeanScore + 0.4) {
+        const peakStr =
+          peakDaysAgo === 1
+            ? tn('yesterday')
+            : tn('daysAgo', { count: peakDaysAgo });
+        sentences.push(
+          scoreMomentum === 'declining'
+            ? tn('scorePeakFalling', { peakStr })
+            : tn('scorePeakPast', { peakStr })
+        );
+      } else if (scoreMomentum === 'improving') {
+        sentences.push(tn('scoreMomentumUp'));
+      }
     }
 
     // === SENTENCE 4: WIND ===
@@ -740,9 +761,22 @@ export default function DataPage() {
         tn('windModerate', { wind: avgWind.toFixed(1), windRange: windRangeT })
       );
 
-    // === SENTENCE 5: PRESSURE ===
-    if (pressureTrend === 'falling') sentences.push(tn('pressureFalling'));
-    else if (pressureTrend === 'rising') sentences.push(tn('pressureRising'));
+    // === SENTENCE 5: FORECAST ===
+    // The forecast rows themselves. A pressure trend over the window's halves
+    // used to stand in, and flipped between "rain may be on the way" and
+    // "skies should clear" with the window.
+    const forecastRows = zoneForecast.filter(r => r.precip_mm != null);
+    const forecastRain = forecastRows.reduce(
+      (s, r) => s + (r.precip_mm ?? 0),
+      0
+    );
+    const nextDays = tn('nextDays', { count: forecastRows.length });
+    if (forecastRows.length > 0)
+      sentences.push(
+        forecastRain > 3
+          ? tn('forecastRain', { rain: forecastRain.toFixed(1), nextDays })
+          : tn('forecastDry', { nextDays })
+      );
 
     // === SENTENCE 6: DIVERSITY ===
     if (top5.length > 0) {
@@ -767,9 +801,10 @@ export default function DataPage() {
         ? [
             {
               label: tn('chipWettest'),
-              value: wettestPlace
-                ? `${wettest.rain_mm.toFixed(0)} mm · ${placeName(wettestPlace)}`
-                : `${wettest.rain_mm.toFixed(0)} mm`,
+              // The place goes under the figure: joined to it, the name
+              // outweighed the number it qualifies.
+              value: `${wettest.rain_mm.toFixed(0)} mm`,
+              detail: wettestPlace ? placeName(wettestPlace) : undefined,
             },
           ]
         : []),
@@ -793,14 +828,12 @@ export default function DataPage() {
       ...(avgHumidity != null
         ? [{ label: tn('chipHumidity'), value: `${avgHumidity.toFixed(0)}%` }]
         : []),
-      ...(pressureTrend
+      ...(forecastRows.length > 0
         ? [
             {
-              label: tn('chipPressure'),
-              value:
-                pressureTrend === 'falling'
-                  ? tn('pressureFallingShort')
-                  : tn('pressureRisingShort'),
+              label: tn('chipForecast'),
+              value: `${forecastRain.toFixed(1)} mm`,
+              detail: capitalise(nextDays),
             },
           ]
         : []),
@@ -810,6 +843,8 @@ export default function DataPage() {
   }, [
     zoneData,
     zoneHistory,
+    zoneForecast,
+    groupIds,
     spread,
     i18n.resolvedLanguage,
     topSpeciesToday,
@@ -822,8 +857,8 @@ export default function DataPage() {
 
   if (isLoading) {
     return (
-      <SkeletonGroup className='flex flex-col gap-6 p-4 md:p-6'>
-        <div className='flex flex-col items-center gap-2'>
+      <SkeletonGroup className='container mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8'>
+        <div className='flex flex-col gap-2'>
           <Skeleton className='h-10 w-40' />
           <Skeleton className='h-4 w-72 max-w-full' />
         </div>
@@ -856,15 +891,15 @@ export default function DataPage() {
   }
 
   return (
-    <div className='flex flex-col gap-6 p-4 md:p-6'>
+    <div className='container mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8'>
       <SEO title={t('sidebar:data', { defaultValue: 'Data' })} />
 
       {/* Header */}
-      <div className='text-center'>
-        <h1 className='mb-2 text-4xl font-bold text-foreground'>
+      <div>
+        <h1 className='text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
           {t('sidebar:data', { defaultValue: 'Data' })}
         </h1>
-        <p className='text-sm text-muted-foreground'>
+        <p className='mt-3 text-lg text-muted-foreground'>
           {t('common:data.subtitle', {
             defaultValue:
               'Explore the data behind the foraging recommendations.',
@@ -980,31 +1015,36 @@ export default function DataPage() {
 
       {/* Dynamic narrative */}
       {narrativeInsight && (
-        <div className='rounded-lg border bg-muted/20 px-4 py-3 space-y-2.5'>
-          <div className='flex flex-wrap gap-2'>
+        // The KPI row on the green band the other pages lead with: same place,
+        // under the map, so the dashboard keeps its order.
+        <section
+          className={cn(
+            BAND_SURFACE_CLASS,
+            'flex flex-col gap-6 rounded-card p-6 sm:p-8'
+          )}
+        >
+          <dl className='grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-6'>
             {narrativeInsight.statChips.map(chip => (
-              <div
-                key={chip.label}
-                className='flex flex-col items-center rounded-md border bg-background px-3 py-1.5 text-center min-w-[72px]'
-              >
-                <span className='type-micro text-muted-foreground mb-0.5'>
-                  {chip.label}
-                </span>
-                <span className='text-sm font-medium leading-tight'>
+              <div key={chip.label} className='min-w-0'>
+                <dt className='type-micro text-happy-100'>{chip.label}</dt>
+                <dd className='mt-1 text-lg leading-tight font-semibold text-happy-50 tabular-nums'>
                   {chip.value}
-                </span>
+                </dd>
+                {chip.detail ? (
+                  <dd className='mt-0.5 text-sm break-words text-happy-100'>
+                    {chip.detail}
+                  </dd>
+                ) : null}
               </div>
             ))}
-          </div>
-          <div className='space-y-1'>
+          </dl>
+          <ul className='flex flex-col gap-1.5 text-sm leading-relaxed text-happy-100'>
             {narrativeInsight.sentences.map((s, i) => (
               // eslint-disable-next-line react/no-array-index-key
-              <p key={i} className='text-sm text-muted-foreground leading-snug'>
-                {s}
-              </p>
+              <li key={i}>{s}</li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </section>
       )}
 
       {/* Charts — row 1: rainfall + temperature */}

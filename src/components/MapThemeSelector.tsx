@@ -6,6 +6,7 @@ import { DURATION_FAST, EASE_STANDARD } from '@/lib/motion';
 import { useMapStore, MAP_THEMES } from '@/store/mapStore';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
+import { BAND_ACTIVE_CLASS, BAND_GHOST_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
 
 interface MapThemeSelectorProps {
@@ -15,11 +16,14 @@ interface MapThemeSelectorProps {
    *  here: that hook imports the PWA plugin's virtual module, which does not
    *  exist under Storybook's Vite config and broke the story import. */
   isOnline?: boolean;
+  /** Sits on the map's green tool rail: cream, with a cream chip when open. */
+  onBand?: boolean;
 }
 
 const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
   className = '',
   isOnline = true,
+  onBand = false,
 }) => {
   const { t } = useTranslation('map');
   const {
@@ -65,17 +69,24 @@ const MapThemeSelector: React.FC<MapThemeSelectorProps> = ({
     <div className={cn('relative w-fit h-fit', className)} ref={containerRef}>
       <Button
         data-slot='map-theme-trigger'
-        variant='outline'
+        variant='ghost'
         size='icon'
         onClick={() => setIsOpen(open => !open)}
         aria-label={t('themes.select')}
         aria-expanded={isOpen}
         aria-haspopup='true'
         title={t('themes.select')}
-        className={cn(
-          darkLayersVisible && 'text-foreground hover:text-foreground',
-          isOpen && 'bg-happy-50 dark:bg-accent/50'
-        )}
+        className={
+          onBand
+            ? isOpen
+              ? BAND_ACTIVE_CLASS
+              : BAND_GHOST_CLASS
+            : cn(
+                'text-primary-text',
+                darkLayersVisible && 'text-foreground hover:text-foreground',
+                isOpen && 'bg-happy-50 dark:bg-accent/50'
+              )
+        }
       >
         <Palette className='size-4' />
       </Button>

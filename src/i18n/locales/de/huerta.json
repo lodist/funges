@@ -1,0 +1,92 @@
+{
+  "title": "Dein Garten diese Woche",
+  "description": "Was du diese Woche säen und pflanzen kannst, Frostwarnungen und Gießen für deinen Ort.",
+  "sample": "Beispiel: {{place}}, {{day}}. Bald dein eigener Ort.",
+  "around": "Rund um {{place}}, {{day}}",
+  "change": "Ort ändern",
+  "noPlace": "Huerta hat für diese Stelle noch keine Ratschläge: Es deckt Europa und die kontinentalen USA ab.",
+  "loadFailed": "Die Ratschläge konnten nicht geladen werden. Versuch es gleich noch einmal.",
+  "picker": {
+    "title": "Wo ist dein Garten?",
+    "help": "Nutze deinen Standort oder suche den nächsten Ort. Die Ratschläge gelten für die Umgebung.",
+    "locate": "Meinen Standort nutzen",
+    "locating": "Standort wird gesucht…",
+    "locateFailed": "Dein Standort wurde nicht gefunden. Suche stattdessen deinen Ort.",
+    "search": "Ort",
+    "placeholder": "Gib einen Namen ein",
+    "noResults": "Kein Ort mit diesem Namen"
+  },
+  "count_one": "{{count}} Kultur",
+  "count_other": "{{count}} Kulturen",
+  "frost": {
+    "none": "Kein Frost in den nächsten 3 Tagen",
+    "ground_frost": "Bodenfrost möglich in den nächsten 3 Tagen: empfindliche Pflanzen abdecken",
+    "frost": "Frost in den nächsten 3 Tagen: empfindliche Pflanzen schützen"
+  },
+  "week": {
+    "label": "Diese Woche",
+    "soil": "Boden",
+    "nights": "Nächte",
+    "rain": "Regen diese Woche",
+    "water": "Zu gießen",
+    "noWater": "Nichts"
+  },
+  "units": {
+    "celsius": "{{value}} °C",
+    "mm": "{{value}} mm"
+  },
+  "now": {
+    "title": "Jetzt säen oder pflanzen"
+  },
+  "waiting": {
+    "title": "Noch nicht"
+  },
+  "over": {
+    "title": "Dieses Jahr zu spät",
+    "show": "Alle {{count}} zeigen"
+  },
+  "how": {
+    "sow": "Säen",
+    "plant": "Pflanzen"
+  },
+  "status": {
+    "now": "Jetzt",
+    "wait_frost": "Noch Frostgefahr",
+    "wait_soil": "Boden noch zu kalt",
+    "wait_warm": "Nächte noch zu kalt",
+    "too_warm": "Boden vorerst zu warm",
+    "too_late": "Dieses Jahr zu spät",
+    "not_here": "Hier nicht im Freien"
+  },
+  "crops": {
+    "garlic": "Knoblauch",
+    "broad_beans": "Dicke Bohnen",
+    "lettuce": "Salat",
+    "spinach": "Spinat",
+    "peas": "Erbsen",
+    "radish": "Radieschen",
+    "carrot": "Möhre",
+    "beetroot": "Rote Bete",
+    "chard": "Mangold",
+    "kale": "Grünkohl",
+    "cabbage": "Kohl",
+    "broccoli": "Brokkoli",
+    "onion_sets": "Steckzwiebeln",
+    "potato": "Kartoffel",
+    "tomato": "Tomate",
+    "pepper": "Paprika",
+    "aubergine": "Aubergine",
+    "cucumber": "Gurke",
+    "courgette": "Zucchini",
+    "pumpkin": "Kürbis",
+    "melon": "Melone",
+    "green_beans": "Grüne Bohnen",
+    "sweetcorn": "Zuckermais",
+    "basil": "Basilikum",
+    "parsley": "Petersilie",
+    "coriander": "Koriander",
+    "sunflower": "Sonnenblume",
+    "marigold": "Studentenblume",
+    "sweet_pea": "Duftwicke"
+  }
+}

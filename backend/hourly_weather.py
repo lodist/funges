@@ -32,8 +32,9 @@ from hourly_sources import SOURCES, WORKERS
 
 HOURS = 168
 HOUR = pd.Timedelta(hours=1)
-VARS = ("t2m_c", "td2m_c", "precip_mm", "wind10_kmh", "swdown_wm2", "cloud_pct")
-DECIMALS = {"t2m_c": 1, "td2m_c": 1, "precip_mm": 2, "wind10_kmh": 1, "swdown_wm2": 0, "cloud_pct": 0}
+VARS = ("t2m_c", "td2m_c", "precip_mm", "wind10_kmh", "swdown_wm2", "cloud_pct", "soil_c")
+DECIMALS = {"t2m_c": 1, "td2m_c": 1, "precip_mm": 2, "wind10_kmh": 1, "swdown_wm2": 0, "cloud_pct": 0,
+            "soil_c": 1}
 OUT_DIR = Path(os.getenv("HOURLY_WEATHER_DIR") or Path(__file__).resolve().parents[2] / "hourly_weather")
 KEEP_FORECAST_DAYS, KEEP_CACHE_DAYS = 30, 2
 MAX_GAP = 6  # hours: the longest stretch between two steps we bridge; past it, the next model

@@ -33,7 +33,7 @@ def test_ecmwf_messages_take_our_surface_fields():
         '{"levtype": "sol", "param": "sot", "levelist": "1", "_offset": 15, "_length": 5}',
         '{"levtype": "sfc", "param": "2t", "_offset": 20, "_length": 5}',
     ])
-    assert hs.ecmwf_messages(text) == [("tp", 0, 9), ("2t", 20, 24)]
+    assert hs.ecmwf_messages(text) == [("tp", 0, 9), ("sot", 15, 19), ("2t", 20, 24)]  # soil: top layer only
 
 
 def test_icon_eu_url():
@@ -44,9 +44,9 @@ def test_icon_eu_url():
 
 def test_icon_eu_lists_every_field_at_every_step_it_has():
     files = hs.ICON_EU.files(None, INIT, 174)
-    assert len(files) == 8 * 93
+    assert len(files) == len(hs.ICON_EU_FIELDS) * 93
     assert files[0] == ("t_2m", hs.icon_eu_url(INIT, "t_2m", 0), None)
-    assert len(hs.ICON_EU.files(None, INIT, 2)) == 8 * 3
+    assert len(hs.ICON_EU.files(None, INIT, 2)) == len(hs.ICON_EU_FIELDS) * 3
 
 
 class _Hosts:
@@ -88,3 +88,14 @@ def test_a_run_is_ready_when_any_ecmwf_host_has_it_and_a_failing_server_means_no
     assert hs.ECMWF.ready(_Hosts({aws}), INIT)
     assert not hs.ECMWF.ready(_Hosts(set()), INIT)
     assert not hs.ICON_EU.ready(_Hosts(set()), INIT)
+
+
+def test_icon_eu_soil_temperature_is_its_6_cm_layer():
+    assert hs.icon_eu_url(INIT, "t_so", 3) == (
+        "https://opendata.dwd.de/weather/nwp/icon-eu/grib/12/t_so/"
+        "icon-eu_europe_regular-lat-lon_soil-level_2026101512_003_6_T_SO.grib2.bz2")
+
+
+def test_ecmwf_takes_only_the_top_soil_layer():
+    text = '{"levtype": "sol", "param": "sot", "levelist": "4", "_offset": 0, "_length": 5}'
+    assert hs.ecmwf_messages(text) == []

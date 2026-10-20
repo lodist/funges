@@ -5,8 +5,11 @@ import {
   ChefHat,
   Database,
   Settings as SettingsIcon,
-  BarChart2,
+  ScanSearch,
+  Sprout,
 } from '@/lib/icons';
+import { currentSpace } from '@/lib/spaces';
+import { IDENTIFY_PATH, isIsolatedPath } from '@/lib/isolation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useIsAppleMobile } from '@/hooks/use-apple-mobile';
 import { NAV_SURFACE_CLASS, NAV_SURFACE_CLASS_LIQUID } from '@/lib/nav-surface';
@@ -29,12 +32,22 @@ const basePath = import.meta.env.BASE_URL || '/';
 export const ACTIVE_ACCENT_CLASS = 'text-happy-700 dark:text-happy-500';
 const INACTIVE_ACCENT_CLASS =
   'text-muted-foreground hover:text-happy-700 dark:hover:text-happy-500';
+// Six items is the ceiling: at the 320px minimum width a seventh falls under
+// the 44px touch floor. Identify holds the thumb's slot because it is the
+// field action; Data, a planning page, lives in the Settings hub on phones.
 const items = [
   { url: `${basePath}map`, icon: Map },
   { url: `${basePath}worth-foraging-now`, icon: CalendarRange },
+  // A fresh document, not a route change: /identify is served with its own
+  // headers (lib/isolation).
+  { url: IDENTIFY_PATH, icon: ScanSearch, reloadDocument: true },
   { url: `${basePath}recipes`, icon: ChefHat },
   { url: `${basePath}species`, icon: Database },
-  { url: `${basePath}data`, icon: BarChart2 },
+  { url: `${basePath}settings`, icon: SettingsIcon },
+];
+// Huerta's own pages; the hub (Settings) is shared and holds the switcher.
+const huertaItems: typeof items = [
+  { url: `${basePath}huerta`, icon: Sprout },
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];
 interface MobileNavbarProps {
@@ -73,23 +86,30 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
       transition={{ duration: DURATION_SLOW, ease: EASE_STANDARD }}
     >
       <ul className='flex justify-around items-center py-3 px-3'>
-        {items.map(item => {
+        {(currentSpace(location.pathname) === 'huerta'
+          ? huertaItems
+          : items
+        ).map(item => {
           const isActive =
             item.url === `${basePath}settings`
               ? location.pathname.startsWith(`${basePath}settings`) ||
                 (shouldShowOfflineFeatures &&
                   location.pathname === `${basePath}offline`) ||
+                location.pathname === `${basePath}data` ||
                 location.pathname === `${basePath}instructions` ||
                 location.pathname === `${basePath}support` ||
                 location.pathname === `${basePath}impressum` ||
                 location.pathname === `${basePath}privacy-policy` ||
                 location.pathname === `${basePath}termsuse`
-              : location.pathname === item.url;
+              : item.url === IDENTIFY_PATH
+                ? isIsolatedPath(location.pathname)
+                : location.pathname === item.url;
           const Icon = item.icon;
           return (
             <li key={item.url} className='flex-1'>
               <Link
                 to={item.url}
+                reloadDocument={item.reloadDocument}
                 // Section-adaptive accent is tint + scale only, so without
                 // this the active section is conveyed by colour alone.
                 aria-current={isActive ? 'page' : undefined}
