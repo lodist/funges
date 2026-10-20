@@ -6,7 +6,13 @@
     "seoDescription": "Identifiez champignons et plantes sauvages à partir d’une photo, sur votre propre appareil. Comparez les correspondances les plus proches avec leurs sosies toxiques.",
     "onDevice": "Fonctionne sur cet appareil",
     "noUpload": "Rien n’est envoyé",
-    "offline": "Hors ligne une fois téléchargé"
+    "offline": "Hors ligne une fois téléchargé",
+    "coverage": {
+      "species": "espèces connues",
+      "mushrooms": "des observations de champignons",
+      "plants": "des observations de plantes",
+      "note": "Part des observations validées dans nos régions de la carte en Europe et aux États-Unis dont le modèle connaît l’espèce."
+    }
   },
   "plate": {
     "title": "Votre trouvaille",

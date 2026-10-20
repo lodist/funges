@@ -6,7 +6,13 @@
     "seoDescription": "Identifica cogumelos e plantas silvestres a partir de uma foto, no teu próprio dispositivo. Compara as correspondências mais próximas com os seus sósias tóxicos.",
     "onDevice": "Funciona neste dispositivo",
     "noUpload": "Nada é enviado",
-    "offline": "Funciona offline depois de transferido"
+    "offline": "Funciona offline depois de transferido",
+    "coverage": {
+      "species": "espécies que conhece",
+      "mushrooms": "dos avistamentos de cogumelos",
+      "plants": "dos avistamentos de plantas",
+      "note": "Parte dos avistamentos verificados nas nossas regiões do mapa na Europa e nos EUA cuja espécie o modelo conhece."
+    }
   },
   "plate": {
     "title": "O teu achado",
