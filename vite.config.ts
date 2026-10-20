@@ -69,6 +69,8 @@ export default defineConfig({
           '**/heic-decoder-*.js',
           '**/landing/hero-*.webp',
           '**/landing/spectacle-*.webp',
+          // Huerta's crop photos: fetched by the garden page alone.
+          '**/huerta/crops/*.webp',
         ],
         runtimeCaching: [
           // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.

@@ -6,10 +6,11 @@ import {
   plain,
   searchTowns,
 } from '@/lib/huerta-api';
+import { CROPS } from '@/lib/huerta';
 
 const ADVICE = {
   day: '9999-01-01', // never stale: kept advice is reused until a later day
-  crops: ['garlic', 'tomato'],
+  crops: ['garlic', 'tomato', 'tulip'],
   place: {
     name: 'Ciudad Lineal',
     frost: 'g',
@@ -17,8 +18,14 @@ const ADVICE = {
     nights: 8.5,
     rain: 4,
     water: 10,
-    statuses: 'nl',
+    statuses: 'nla',
   },
+};
+// Every crop the app lists, so a kept answer is complete.
+const FULL = {
+  ...ADVICE,
+  crops: CROPS.map(crop => crop.id),
+  place: { ...ADVICE.place, statuses: 'n'.repeat(CROPS.length) },
 };
 const TOWNS = [
   ['Madridejos', 39.47, -3.53, 'ES', 'Toledo'],
@@ -32,7 +39,11 @@ describe('the Huerta Worker client', () => {
 
   it('reads one letter per crop and the frost code', () => {
     const advice = decodeAdvice(ADVICE);
-    expect(advice.crops).toEqual({ garlic: 'now', tomato: 'too_late' });
+    expect(advice.crops).toEqual({
+      garlic: 'now',
+      tomato: 'too_late',
+      tulip: 'wait_autumn',
+    });
     expect(advice.frost).toBe('ground_frost');
     expect(advice.place).toBe('Ciudad Lineal');
   });
@@ -45,7 +56,7 @@ describe('the Huerta Worker client', () => {
 
   it('asks once a day per place and once per two-letter section', async () => {
     const calls = vi.fn(async (url: string) =>
-      Response.json(url.includes('/v1/towns') ? TOWNS : ADVICE)
+      Response.json(url.includes('/v1/towns') ? TOWNS : FULL)
     );
     vi.stubGlobal('fetch', calls);
 
@@ -62,6 +73,14 @@ describe('the Huerta Worker client', () => {
       province: 'Murcia',
     });
     expect(calls).toHaveBeenCalledTimes(2); // one advice, one section ("ma")
+  });
+
+  it('asks again when the app knows a crop the kept answer lacks', async () => {
+    const calls = vi.fn(async () => Response.json(ADVICE));
+    vi.stubGlobal('fetch', calls);
+    await fetchAdvice({ lat: 40.44, lon: -3.68 });
+    await fetchAdvice({ lat: 40.44, lon: -3.68 });
+    expect(calls).toHaveBeenCalledTimes(2);
   });
 
   it('says the search failed, not that no town matched, and tries again', async () => {

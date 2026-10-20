@@ -46,7 +46,13 @@ const WAITING: CropStatus[] = [
   'wait_soil',
   'wait_warm',
   'too_warm',
+  'wait_autumn',
+  'wait_spring',
 ];
+
+/** Kept out of the service worker's precache: only Huerta visitors fetch them. */
+const cropPhoto = (id: string) =>
+  `${import.meta.env.BASE_URL}huerta/crops/${id}.webp`;
 
 type Load =
   | { state: 'picking' }
@@ -382,17 +388,21 @@ function CropGrid({
 }) {
   const { t } = useTranslation('huerta');
   return (
-    <ul className='grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4'>
+    <ul className='grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6'>
       {crops.map(crop => {
         const line = note?.(crop);
         return (
           <li key={crop.id}>
-            <Card
-              padding='compact'
-              className='h-full flex-row items-center justify-between'
-            >
-              <span className='min-w-0'>
-                <span className='block font-semibold text-foreground'>
+            <Card padding='none' media className='h-full'>
+              <img
+                src={cropPhoto(crop.id)}
+                alt=''
+                loading='lazy'
+                decoding='async'
+                className='aspect-square w-full bg-muted object-cover'
+              />
+              <span className='flex flex-1 flex-col items-start gap-2 p-3'>
+                <span className='block leading-tight font-semibold hyphens-auto break-words text-foreground'>
                   {t(`crops.${crop.id}`)}
                 </span>
                 {line ? (
@@ -400,8 +410,10 @@ function CropGrid({
                     {line}
                   </span>
                 ) : null}
+                <Badge variant='secondary' className='mt-auto'>
+                  {t(`how.${crop.how}`)}
+                </Badge>
               </span>
-              <Badge variant='secondary'>{t(`how.${crop.how}`)}</Badge>
             </Card>
           </li>
         );
