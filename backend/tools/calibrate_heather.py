@@ -88,6 +88,7 @@ _TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(_TOOLS.parent))
 sys.path.insert(0, str(_TOOLS))
 import bloom  # noqa: E402
+import r2  # noqa: E402
 import calibrate_bluebell as cb  # noqa: E402  (fetching, map units and the GBIF range machinery)
 
 cb.UA = {"User-Agent": "funges-calibrate-heather/1.0 (+https://www.fung.es)"}
@@ -776,7 +777,7 @@ def main():
           f"{day_name(ym.min())} - {day_name(ym.max())}.\n")
 
     # The normal year (1991-2020, as production's normals) at each row, for the "shift" family.
-    normals = dict(np.load(ROOT / "backend" / "generated" / "bloom_normals_EU.npz"))
+    normals = dict(np.load(r2.generated(ROOT / "backend" / "generated" / "bloom_normals_EU.npz")))
     nt = bloom.daily_normals(normals, c.lat.to_numpy(), c.lon.to_numpy(),
                              (c.elev if args.no_lapse else c.ground).to_numpy(), date(2027, 1, 1), N_DAYS)
     dnt = bloom.daily_normals(normals, d.lat.to_numpy(), d.lon.to_numpy(), d.ground.to_numpy(), date(2027, 1, 1),

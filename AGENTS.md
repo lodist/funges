@@ -46,10 +46,11 @@ The repo is public, so it holds code and nothing the code was fitted or built in
 
 - **Built and fitted files** in `backend/generated/` (normals, ground layers,
   model fits) live on R2. `backend/generated/on_r2.json` records each one's
-  sha256; the loaders download a missing or outdated copy on use, and
-  `python backend/r2.py sync` fetches them all (for scripts that read the files
-  directly, in a fresh worktree). After rebuilding one, ship it with
-  `python backend/r2.py push <name>` and commit `on_r2.json`.
+  sha256, and whatever reads one goes through `r2.generated(path)`, which
+  downloads a missing or outdated copy first. The build and fit tools upload
+  what they write and update `on_r2.json`: commit that file where you used to
+  commit the build. `python backend/r2.py push <name>` does the same by hand,
+  and `python backend/r2.py sync` fetches every file at once.
 - **Findings** (QA reports, calibration notes, specs and plans) live in the
   private `lodist/funges-lab` repo, cloned next to this one
   (`app_operation/funges-lab`). `scripts/qa_*.py` write there by default.

@@ -23,6 +23,7 @@ import numpy as np
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import r2  # noqa: E402
 from era5_normals import relative_humidity  # noqa: E402
 
 API = "https://cds.climate.copernicus.eu/api/retrieve/v1"
@@ -90,6 +91,7 @@ def main() -> None:
     for name, job in jobs.items():
         grid = normals(download(key, job))
         np.savez_compressed(OUT / f"era5_normals_{name}.npz", **grid)
+        r2.ship(OUT / f"era5_normals_{name}.npz")
         print(f"{name}: {len(grid['lat'])} x {len(grid['lon'])} cells, "
               f"tmean {np.nanmin(grid['tmean']):.1f}..{np.nanmax(grid['tmean']):.1f} °C", flush=True)
 

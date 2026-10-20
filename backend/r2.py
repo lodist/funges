@@ -100,6 +100,19 @@ def generated(path):
     return path
 
 
+def ship(path):
+    """For build tools: push `path` when it was written into backend/generated. A failed
+    upload only warns, so the tool's other outputs still get written."""
+    path = Path(path)
+    if path.resolve().parent != GENERATED:
+        return
+    try:
+        push(path.name)
+        print(f"shipped {path.name} to R2; commit backend/generated/on_r2.json")
+    except Exception as error:
+        print(f"[warn] {path.name} not uploaded ({error}); later: python backend/r2.py push {path.name}")
+
+
 def push(name):
     """Upload backend/generated/<name> and record it in on_r2.json (commit that file)."""
     sha = _sha256(GENERATED / name)

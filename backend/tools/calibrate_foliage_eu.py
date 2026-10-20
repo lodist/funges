@@ -90,6 +90,7 @@ _TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(_TOOLS.parent))
 sys.path.insert(0, str(_TOOLS))
 import bloom  # noqa: E402
+import r2  # noqa: E402
 import calibrate_bluebell as cb  # noqa: E402  (map units, host cover, lookups)
 import calibrate_foliage as cf  # noqa: E402  (the model family, observed peaks, tests)
 import calibrate_heather as ch  # noqa: E402  (EU-DEM elevations, DWD's station list)
@@ -269,7 +270,7 @@ def _power(lat, lon, cache):
 
 
 def load_normals():
-    return dict(np.load(ROOT / "backend" / "generated" / "bloom_normals_EU.npz"))
+    return dict(np.load(r2.generated(ROOT / "backend" / "generated" / "bloom_normals_EU.npz")))
 
 
 def series(lat, lon, years, ground, cache, kind="t2m", lapse=True, normals=None):

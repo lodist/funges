@@ -12,6 +12,7 @@ import lightgbm as lgb  # before pandas/pyarrow: see tests/conftest.py
 import numpy as np
 
 from fit_fruiting import find_day_rank  # noqa: F401  (re-exported: the same rank test)
+import r2  # noqa: E402  (backend/ is on the path once fit_fruiting is imported)
 
 PARAMS = {"learning_rate": 0.05, "num_leaves": 15, "min_data_in_leaf": 200, "feature_fraction": 0.9,
           "bagging_fraction": 0.8, "bagging_freq": 1, "lambda_l2": 1.0, "max_bin": 63, "verbose": -1,
@@ -320,6 +321,7 @@ def export(table_rows, cases, x, mask, loyo, gate, names, out, root):
                                    for r, cols in corrections.items()},
             "models": models}
     (root / "backend" / "generated" / "fruiting_gbm.json").write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8")
+    r2.ship(root / "backend" / "generated" / "fruiting_gbm.json")
 
 
 def main() -> None:
@@ -341,7 +343,7 @@ def main() -> None:
     out = Path(args.out)
     root = Path(__file__).resolve().parents[2]
     linear = json.loads((out / "fruiting_report.json").read_text(encoding="utf-8"))
-    live = json.loads((root / "backend" / "generated" / "fruiting_fit.json").read_text(encoding="utf-8"))["models"]
+    live = json.loads(r2.generated(root / "backend" / "generated" / "fruiting_fit.json").read_text(encoding="utf-8"))["models"]
 
     table_rows, cases, x, mask, scores, names = load(out)
     log(f"{len(cases):,} strata, {x.shape[2]} features")
