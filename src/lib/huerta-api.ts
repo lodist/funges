@@ -1,4 +1,4 @@
-import type { CropStatus, PlaceAdvice } from '@/lib/huerta';
+import { CROPS, type CropStatus, type PlaceAdvice } from '@/lib/huerta';
 
 /**
  * Huerta's advice comes from the Huerta Worker, one place at a time, never as a
@@ -34,6 +34,8 @@ const STATUS: Record<string, CropStatus> = {
   h: 'too_warm',
   l: 'too_late',
   x: 'not_here',
+  a: 'wait_autumn',
+  p: 'wait_spring',
 };
 const FROST: Record<string, PlaceAdvice['frost']> = {
   '': 'none',
@@ -102,7 +104,8 @@ export const savePlace = (place: Place) =>
 /**
  * This week's advice at the place nearest `place`; null where Huerta has no
  * place (at sea, outside Europe and the US). Today's answer is kept, so a
- * second visit the same day asks nothing.
+ * second visit the same day asks nothing, unless the app now knows a crop the
+ * kept answer lacks.
  */
 export async function fetchAdvice(place: Place): Promise<PlaceAdvice | null> {
   const lat = rounded(place.lat);
@@ -114,7 +117,8 @@ export async function fetchAdvice(place: Place): Promise<PlaceAdvice | null> {
     kept &&
     kept.lat === lat &&
     kept.lon === lon &&
-    kept.advice.day >= localDay()
+    kept.advice.day >= localDay() &&
+    CROPS.every(crop => crop.id in kept.advice.crops)
   )
     return kept.advice;
   const response = await fetch(url('/v1/advice', { lat, lon }));
