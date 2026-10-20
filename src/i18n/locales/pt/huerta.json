@@ -2,6 +2,20 @@
   "title": "Sua horta esta semana",
   "description": "O que semear e plantar esta semana, alertas de geada e rega para a sua cidade.",
   "sample": "Exemplo: {{place}}, {{day}}. Em breve, a sua cidade.",
+  "around": "Arredores de {{place}}, {{day}}",
+  "change": "Mudar de lugar",
+  "noPlace": "O Huerta ainda não tem conselhos para este lugar: cobre a Europa e os Estados Unidos continentais.",
+  "loadFailed": "Não foi possível carregar os conselhos. Tente de novo em instantes.",
+  "picker": {
+    "title": "Onde fica a sua horta?",
+    "help": "Use a sua localização ou procure a cidade ou vila mais próxima. Os conselhos valem para a região ao redor.",
+    "locate": "Usar minha localização",
+    "locating": "Procurando você…",
+    "locateFailed": "Não foi possível encontrar a sua localização. Procure a sua cidade.",
+    "search": "Cidade ou vila",
+    "placeholder": "Comece a digitar um nome",
+    "noResults": "Nenhum lugar com esse nome"
+  },
   "count_one": "{{count}} cultura",
   "count_other": "{{count}} culturas",
   "frost": {

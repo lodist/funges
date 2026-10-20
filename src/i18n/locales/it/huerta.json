@@ -2,6 +2,20 @@
   "title": "Il tuo orto questa settimana",
   "description": "Cosa seminare e piantare questa settimana, avvisi di gelo e irrigazione per il tuo comune.",
   "sample": "Esempio: {{place}}, {{day}}. Presto il tuo comune.",
+  "around": "Dintorni di {{place}}, {{day}}",
+  "change": "Cambia luogo",
+  "noPlace": "Huerta non ha ancora consigli per questo punto: copre l'Europa e gli Stati Uniti continentali.",
+  "loadFailed": "Non è stato possibile caricare i consigli. Riprova tra poco.",
+  "picker": {
+    "title": "Dov'è il tuo orto?",
+    "help": "Usa la tua posizione oppure cerca il paese o la città più vicini. I consigli valgono per la zona intorno.",
+    "locate": "Usa la mia posizione",
+    "locating": "Ti sto cercando…",
+    "locateFailed": "Non è stato possibile trovare la tua posizione. Cerca il tuo paese.",
+    "search": "Paese o città",
+    "placeholder": "Inizia a scrivere un nome",
+    "noResults": "Nessun luogo con questo nome"
+  },
   "count_one": "{{count}} coltura",
   "count_other": "{{count}} colture",
   "frost": {

@@ -2,6 +2,20 @@
   "title": "Your garden this week",
   "description": "What to sow and plant this week, frost warnings and watering for your town.",
   "sample": "Sample: {{place}}, {{day}}. Your own town comes next.",
+  "around": "Around {{place}}, {{day}}",
+  "change": "Change place",
+  "noPlace": "Huerta has no advice for this spot yet: it covers Europe and the contiguous United States.",
+  "loadFailed": "The advice could not be loaded. Try again in a moment.",
+  "picker": {
+    "title": "Where is your garden?",
+    "help": "Use your location, or search for the nearest town or village. The advice is for the area around it.",
+    "locate": "Use my location",
+    "locating": "Finding you…",
+    "locateFailed": "Your location could not be found. Search for your town instead.",
+    "search": "Town or village",
+    "placeholder": "Start typing a name",
+    "noResults": "No town by that name"
+  },
   "count_one": "{{count}} crop",
   "count_other": "{{count}} crops",
   "frost": {

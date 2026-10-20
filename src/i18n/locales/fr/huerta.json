@@ -2,6 +2,20 @@
   "title": "Votre potager cette semaine",
   "description": "Quoi semer et planter cette semaine, alertes gel et arrosage pour votre commune.",
   "sample": "Exemple : {{place}}, {{day}}. Bientôt votre propre commune.",
+  "around": "Environs de {{place}}, {{day}}",
+  "change": "Changer de lieu",
+  "noPlace": "Huerta n'a pas encore de conseils pour cet endroit : il couvre l'Europe et les États-Unis continentaux.",
+  "loadFailed": "Les conseils n'ont pas pu être chargés. Réessayez dans un instant.",
+  "picker": {
+    "title": "Où est votre potager ?",
+    "help": "Utilisez votre position ou cherchez la ville ou le village le plus proche. Les conseils valent pour les environs.",
+    "locate": "Utiliser ma position",
+    "locating": "Recherche de votre position…",
+    "locateFailed": "Votre position est introuvable. Cherchez plutôt votre commune.",
+    "search": "Ville ou village",
+    "placeholder": "Commencez à taper un nom",
+    "noResults": "Aucun lieu de ce nom"
+  },
   "count_one": "{{count}} culture",
   "count_other": "{{count}} cultures",
   "frost": {

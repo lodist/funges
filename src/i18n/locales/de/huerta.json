@@ -2,6 +2,20 @@
   "title": "Dein Garten diese Woche",
   "description": "Was du diese Woche säen und pflanzen kannst, Frostwarnungen und Gießen für deinen Ort.",
   "sample": "Beispiel: {{place}}, {{day}}. Bald dein eigener Ort.",
+  "around": "Rund um {{place}}, {{day}}",
+  "change": "Ort ändern",
+  "noPlace": "Huerta hat für diese Stelle noch keine Ratschläge: Es deckt Europa und die kontinentalen USA ab.",
+  "loadFailed": "Die Ratschläge konnten nicht geladen werden. Versuch es gleich noch einmal.",
+  "picker": {
+    "title": "Wo ist dein Garten?",
+    "help": "Nutze deinen Standort oder suche den nächsten Ort. Die Ratschläge gelten für die Umgebung.",
+    "locate": "Meinen Standort nutzen",
+    "locating": "Standort wird gesucht…",
+    "locateFailed": "Dein Standort wurde nicht gefunden. Suche stattdessen deinen Ort.",
+    "search": "Ort",
+    "placeholder": "Gib einen Namen ein",
+    "noResults": "Kein Ort mit diesem Namen"
+  },
   "count_one": "{{count}} Kultur",
   "count_other": "{{count}} Kulturen",
   "frost": {

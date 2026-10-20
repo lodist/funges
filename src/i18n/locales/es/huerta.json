@@ -2,6 +2,20 @@
   "title": "Tu huerto esta semana",
   "description": "Qué sembrar y plantar esta semana, avisos de helada y riego para tu localidad.",
   "sample": "Ejemplo: {{place}}, {{day}}. Pronto, tu propia localidad.",
+  "around": "Alrededores de {{place}}, {{day}}",
+  "change": "Cambiar de lugar",
+  "noPlace": "Huerta aún no tiene consejos para este lugar: cubre Europa y los Estados Unidos continentales.",
+  "loadFailed": "No se han podido cargar los consejos. Vuelve a intentarlo en un momento.",
+  "picker": {
+    "title": "¿Dónde está tu huerto?",
+    "help": "Usa tu ubicación o busca el pueblo o la ciudad más cercanos. Los consejos son para la zona de alrededor.",
+    "locate": "Usar mi ubicación",
+    "locating": "Buscándote…",
+    "locateFailed": "No se ha podido encontrar tu ubicación. Busca tu pueblo en su lugar.",
+    "search": "Pueblo o ciudad",
+    "placeholder": "Empieza a escribir un nombre",
+    "noResults": "Ningún lugar con ese nombre"
+  },
   "count_one": "{{count}} cultivo",
   "count_other": "{{count}} cultivos",
   "frost": {

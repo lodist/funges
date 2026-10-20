@@ -63,14 +63,14 @@ export interface PlaceAdvice {
   day: string;
   /** The coldest hour of the next three days: ≤ 0 °C frost, ≤ 2 °C ground frost. */
   frost: 'none' | 'ground_frost' | 'frost';
-  /** Mean soil temperature at 6 cm over the next three days, °C. */
-  soil: number;
+  /** Mean soil temperature at 6 cm over the next three days, °C (null: no reading). */
+  soil: number | null;
   /** The week's mean night (daily minimum), °C. */
-  nights: number;
+  nights: number | null;
   /** The week's rain, mm. */
-  rain: number;
+  rain: number | null;
   /** What the week's evaporation takes that its rain does not give back, mm. */
-  water: number;
+  water: number | null;
   crops: Record<string, CropStatus>;
 }
 
