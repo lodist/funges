@@ -96,7 +96,12 @@ def generated(path):
         raise ValueError(f"{path.name}: the R2 copy fails its checksum")
     part = path.with_name(f"{path.name}.{os.getpid()}.part")  # regions may fetch at once
     part.write_bytes(data)
-    part.replace(path)
+    try:
+        part.replace(path)
+    except OSError:  # another region put it there first and has it open
+        part.unlink(missing_ok=True)
+        if not (path.exists() and _sha256(path) == sha):
+            raise
     return path
 
 
