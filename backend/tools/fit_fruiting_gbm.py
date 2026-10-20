@@ -156,6 +156,93 @@ def leave_one_year_out(cases, x, mask, species, today, rng):
     return results
 
 
+def _booster(x, mask, rows, rng, region_blind=False):
+    """A GBM on `rows` with LOYO's early stopping; region_blind hides the region feature."""
+    held = rng.random(len(rows)) < VALID_SHARE
+    xs = x[rows]
+    if region_blind:
+        xs[..., -1] = np.nan
+    return fit(xs[~held], mask[rows][~held], rounds=MAX_ROUNDS, categorical=[x.shape[2] - 1],
+               valid=(xs[held], mask[rows][held]))
+
+
+def _scored(model, x, sel, region_blind=False):
+    xs = x[sel]
+    if region_blind:
+        xs[..., -1] = np.nan
+    return predict(model, xs, model.best_iteration)
+
+
+def _net(index, days, tc, tp):
+    import fit_fruiting as ff
+    target, placebo = find_day_rank(index[tc], days[tc]), find_day_rank(index[tp], days[tp])
+    return {"net": round(float(target.mean() - placebo.mean()), 3), "net_ci": ff.bootstrap(target, placebo)}
+
+
+def region_unseen(cases, x, mask, species, today, rng):
+    """fit_fruiting.py's transfer test for the GBM. Fitted on 2016-LAST_TRAIN_YEAR, ranked on
+    each region's later strata: today's model, the GBM on every region, and a region-blind GBM
+    that never saw that region."""
+    import fit_fruiting as ff
+    years, regions = cases["year"].to_numpy(), cases["region"].to_numpy()
+    mine = (cases["species"] == species).to_numpy()
+    placebo = (cases["species"] == ff.PLACEBO).to_numpy()
+    days = mask & np.isfinite(today)
+    train = years <= ff.LAST_TRAIN_YEAR
+    seen = _booster(x, mask, np.flatnonzero(mine & train), rng)
+    results = {}
+    for region in sorted(set(regions[mine])):
+        here = regions == region
+        tc, tp = mine & ~train & here & days[:, 0], placebo & ~train & here & days[:, 0]
+        others = np.flatnonzero(mine & train & ~here)
+        if tc.sum() < ff.MIN_TEST_STRATA or tp.sum() < ff.MIN_TEST_STRATA or len(others) < ff.MIN_TRAIN_STRATA:
+            continue
+        unseen = _booster(x, mask, others, rng, region_blind=True)
+        test = tc | tp
+        gbm, blind = np.full(mask.shape, -np.inf), np.full(mask.shape, -np.inf)
+        gbm[test], blind[test] = _scored(seen, x, test), _scored(unseen, x, test, region_blind=True)
+        results[region] = {"n": int(tc.sum()), "placebo_n": int(tp.sum()),
+                           "today": _net(np.where(days, today, -np.inf), days, tc, tp),
+                           "gbm": _net(gbm, days, tc, tp), "gbm_unseen": _net(blind, days, tc, tp)}
+    return results
+
+
+def spain_unseen(cases, x, mask, where, today, rng, species="mushroom"):
+    """Spain's June porcini (#291's named case), each year by a GBM on the other years, with and
+    without Spain's finds. Brackets in Spain from May to July are the placebo."""
+    import fit_fruiting as ff
+    lat, lon = where["cell_lat"].to_numpy(), where["cell_lon"].to_numpy()
+    # ponytail: a box, not borders - counts the Roussillon and a sliver of Portugal as Spain
+    spain = ((lat >= 36.0) & (lat <= 43.8) & (lon >= -9.4) & (lon <= 4.4)
+             & ~((lat < 42.15) & (lon < -6.9)) & ~((lat > 43.35) & (lon > -1.8)) & ~((lat > 42.9) & (lon > -1.0)))
+    import pandas as pd
+    month, years = pd.to_datetime(cases["find_date"]).dt.month.to_numpy(), cases["year"].to_numpy()
+    mine = (cases["species"] == species).to_numpy()
+    days = mask & np.isfinite(today)
+    target = mine & spain & (month == 6) & days[:, 0]
+    placebo = (cases["species"] == ff.PLACEBO).to_numpy() & spain & np.isin(month, [5, 6, 7]) & days[:, 0]
+    ranks = {"today": ([], []), "gbm": ([], []), "gbm_unseen": ([], [])}
+    for year in sorted(set(years[target])):
+        tc, tp = target & (years == year), placebo & (years == year)
+        if not tp.any():
+            continue
+        test = tc | tp
+        seen = _booster(x, mask, np.flatnonzero(mine & (years != year)), rng)
+        unseen = _booster(x, mask, np.flatnonzero(mine & (years != year) & ~spain), rng)
+        for name, model in (("today", None), ("gbm", seen), ("gbm_unseen", unseen)):
+            index = np.where(days, today, -np.inf)
+            if model is not None:
+                index = np.full(mask.shape, -np.inf)
+                index[test] = _scored(model, x, test)
+            ranks[name][0].append(find_day_rank(index[tc], days[tc]))
+            ranks[name][1].append(find_day_rank(index[tp], days[tp]))
+    result = {"n": int(sum(len(a) for a in ranks["today"][0])), "placebo_n": int(sum(len(b) for b in ranks["today"][1]))}
+    for name, (a, b) in ranks.items():
+        a, b = np.concatenate(a), np.concatenate(b)
+        result[name] = {"net": round(float(a.mean() - b.mean()), 3), "net_ci": ff.bootstrap(a, b)}
+    return result
+
+
 def gbm_index(booster, region):
     """index(cell, days) for fit_fruiting.season_maps: the GBM on one cell's ERA5 days, each
     day its own anchor for normals and day of year."""
@@ -248,6 +335,8 @@ def main() -> None:
     parser.add_argument("--out", required=True)
     parser.add_argument("--export", action="store_true", help="write backend/generated/fruiting_gbm*")
     parser.add_argument("--reuse", action="store_true", help="take the year-by-year results from gbm_loyo.csv")
+    parser.add_argument("--unseen", action="store_true",
+                        help="only the transfer test: regions, and Spain's June porcini, never seen in training")
     args = parser.parse_args()
     out = Path(args.out)
     root = Path(__file__).resolve().parents[2]
@@ -257,6 +346,25 @@ def main() -> None:
     table_rows, cases, x, mask, scores, names = load(out)
     log(f"{len(cases):,} strata, {x.shape[2]} features")
     rng = np.random.default_rng(291)
+    if args.unseen:
+        report = {}
+        for species in sorted(set(cases["species"]) - {ff.PLACEBO}):
+            if (cases["species"] == species).sum() < ff.MIN_TRAIN_STRATA:
+                continue
+            report[species] = region_unseen(cases, x, mask, species, ff.baseline_index(scores, cases, species), rng)
+            for region, e in report[species].items():
+                lin = linear.get(species, {}).get(region, {})
+                log(f"{species:22s} {region:4s} n={e['n']:5d}  today {e['today']['net']:+.3f}  "
+                    f"gbm {e['gbm']['net']:+.3f}  gbm unseen {e['gbm_unseen']['net']:+.3f} {e['gbm_unseen']['net_ci']}  "
+                    f"| linear {lin.get('fitted', {}).get('net', float('nan')):+.3f} "
+                    f"unseen {lin.get('region_unseen', {}).get('net', float('nan')):+.3f}")
+            (out / "gbm_unseen.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
+        where = (table_rows[table_rows["offset"] == 0].drop_duplicates("case_id")
+                 .set_index("case_id")[["cell_lat", "cell_lon"]].reindex(cases["case_id"]))
+        report["spain_june_porcini"] = spain_unseen(cases, x, mask, where, ff.baseline_index(scores, cases, "mushroom"), rng)
+        log(f"Spain June porcini: {report['spain_june_porcini']}")
+        (out / "gbm_unseen.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
+        return
     rows = []
     species_list = [] if args.reuse else sorted(set(cases["species"]) - {ff.PLACEBO})
     for species in species_list:

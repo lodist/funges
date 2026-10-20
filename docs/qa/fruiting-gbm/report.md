@@ -66,3 +66,42 @@ Share of map points scoring 4+, the model in use vs the GBM, two weeks of stored
 Mean change near finds: +1.2 points; all points +1.4.
 
 Per-year results: `gbm_loyo.csv`; the gate: `gbm_gate.csv`.
+
+## Regions never seen in training (#359)
+
+`fit_fruiting_gbm.py --unseen`, 20 October 2026. This is the linear fit's transfer test, applied to the GBM: fit on 2016–2024, test on 2025–2026. Three models are ranked on the same days:
+
+- today's model;
+- the GBM on every region;
+- a GBM that never saw the region. The region feature is hidden; latitude and the cell's normals stay.
+
+Scores are net of the bracket placebo, as above.
+
+**Shipped species-regions:**
+
+| Species              | Region | Test cases |  Today |    GBM |                                                       GBM, region unseen |
+| -------------------- | ------ | ---------: | -----: | -----: | -----------------------------------------------------------------------: |
+| porcini              | NE     |      2,643 | +0.058 | +0.194 |                                            **+0.198** (+0.184 to +0.215) |
+| summer bolete        | NE     |        592 | +0.140 | +0.261 |                                            **+0.243** (+0.219 to +0.265) |
+| parasol              | NE     |      1,535 | +0.126 | +0.177 |                                            **+0.208** (+0.191 to +0.224) |
+| shaggy mane          | NE     |      9,818 | +0.104 | +0.145 |                                            **+0.159** (+0.149 to +0.170) |
+| St George's mushroom | NE     |        769 | +0.099 | +0.107 |                                            **+0.125** (+0.102 to +0.148) |
+| parasol              | SE     |      1,523 | +0.174 | +0.284 |                                            **+0.247** (+0.227 to +0.266) |
+| saffron milk cap     | SE     |        675 | +0.110 | +0.252 |                                            **+0.213** (+0.190 to +0.238) |
+| summer bolete        | SE     |        532 | +0.249 | +0.346 |                                            **+0.290** (+0.263 to +0.315) |
+| hen of the woods     | USE    |        742 | +0.048 | +0.127 |                                            **−0.051** (−0.080 to −0.022) |
+| pine bolete          | NE     |            |        |        | not testable: too few pine bolete finds outside North Europe to train on |
+
+- **Eight of the nine testable models transfer.** A GBM that never saw the region still beats today's model there, which is where most of their gain comes from.
+- **Hen of the woods is the exception.** Almost all of its finds are in US East, so the model that never saw US East learned from a few hundred US West finds. Its shipped GBM learns from US East itself and is unaffected. Its response just can't be carried to a region without its own finds.
+
+**Every species-region (53):**
+
+- **Mean net:** today +0.066, GBM +0.124, GBM with the region unseen +0.101.
+- **Unseen GBM vs today:** it beats today's model in 38 of 53 and is above zero beyond doubt in 42.
+- **Unseen GBM vs unseen linear fit:** on the 51 species-regions that both tests cover, the means are +0.102 and +0.100.
+- **Where the unseen GBM falls below today's model** by more than 0.02: chanterelle SE and USW, chicken of the woods SE, USE and USW, giant puffball USE and USW, hen of the woods USE, lion's mane USE, morel SE and USW, and St George's SE. None of these runs on the GBM.
+
+**Spain's June porcini (#291's named case): not testable.** GBIF has 6 June porcini finds in Spain over 2016–2026 that have controls and a same-year bracket placebo (Spain's porcini finds: 6 in June, 135 in October). Spain was a lat/lon box, scored each year by a GBM on the other years, with and without Spain.
+
+Full results: `gbm_unseen.json`.
