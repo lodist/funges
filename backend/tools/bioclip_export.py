@@ -68,8 +68,10 @@ OPSET = 17
 # these are the chosen point on it (docs/superpowers/specs/2026-07-25-bioclip2-
 # spike-results.md, addendum 4). One shared cap ranked by sightings gave plants
 # 89% of the slots, because plants get 7-19x more sightings than fungi, and
-# left the list able to name only ~6 in 10 mushroom photos.
-TIER2_LIMITS = {"Fungi": 3000, "Plantae": 5000}
+# left the list able to name only half of mushroom photos. Fungi stop at 2,000
+# because the next 1,000 named 15 of their own 28 test photos but cost 19
+# commoner ones, and pushed 18 more catalog photos out of first place.
+TIER2_LIMITS = {"Fungi": 2000, "Plantae": 5000}
 
 # Tier-2 species in these genera get the app's genus caution ("its genus
 # includes poisonous species") instead of "no safety information". A wide
