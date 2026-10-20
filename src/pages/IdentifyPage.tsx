@@ -69,10 +69,20 @@ export default function IdentifyPage() {
     const reduce = window.matchMedia?.(
       '(prefers-reduced-motion: reduce)'
     ).matches;
-    resultsRef.current?.focus({ preventScroll: true });
-    resultsRef.current?.scrollIntoView({
+    const heading = resultsRef.current;
+    heading?.focus({ preventScroll: true });
+    // Not scrollIntoView: it also scrolls the h-screen shell above the root
+    // <main>, which has no scrollbar, so the top of the page was cut off with
+    // no way back. Scroll only the root <main>, 16px clear like scroll-mt-4.
+    const scroller = heading?.closest('main');
+    if (!heading || !scroller) return;
+    scroller.scrollTo({
+      top:
+        scroller.scrollTop +
+        heading.getBoundingClientRect().top -
+        scroller.getBoundingClientRect().top -
+        16,
       behavior: reduce ? 'auto' : 'smooth',
-      block: 'start',
     });
   }, [phase.name]);
 
