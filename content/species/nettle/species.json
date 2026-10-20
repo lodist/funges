@@ -55,7 +55,7 @@
       "status": "approved",
       "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
       "references": [
-        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
+        "https://github.com/lodist/funges-lab/blob/main/superpowers/specs/2026-07-25-bioclip2-spike-results.md"
       ]
     }
   },
@@ -97,8 +97,8 @@
         },
         "scoringReferences": [
           "https://data.fung.es/EU/NE/NE_species_params.txt",
-          "docs/species/2026-09-27-quick-wins.md",
-          "docs/species/2026-10-05-soil-ph.md"
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md",
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-10-05-soil-ph.md"
         ],
         "scoringSnapshotSha256": "683b4dfa093b1f5519018f7b1042df6eab3fecd98fed425a49c59a8a6e5b7b8d",
         "landCoverScheme": "CORINE"
@@ -139,8 +139,8 @@
         },
         "scoringReferences": [
           "https://data.fung.es/EU/SE/SE_species_params.txt",
-          "docs/species/2026-09-27-quick-wins.md",
-          "docs/species/2026-10-05-soil-ph.md"
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md",
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-10-05-soil-ph.md"
         ],
         "scoringSnapshotSha256": "90abb39f7581cef8281e7e67b261a6c5992139a4e54c279688222e3698a75748",
         "landCoverScheme": "CORINE"
@@ -217,7 +217,7 @@
         },
         "scoringReferences": [
           "https://data.fung.es/USA/USW/USW_species_params.txt",
-          "docs/species/2026-09-27-quick-wins.md"
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
         ],
         "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
         "landCoverScheme": "NLCD"
