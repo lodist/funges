@@ -68,3 +68,20 @@ def test_crop_needs_say_what_each_crop_wants():
     needs = json.loads(huerta.crop_needs(CROPS))
     assert needs["tomato"] == {"frost": "tender", "soil": [16, None], "night": 10, "days": 70}
     assert needs["garlic"] == {"frost": "hardy", "soil": [7, 15], "night": None, "days": 240}
+
+
+def test_map_files_hold_one_layer_after_another():
+    places = pd.DataFrame({
+        "Latitude": [40.44, 39.86], "Longitude": [-3.675, -4.02],
+        "frost3": [9.2, -0.5], "soil3": [13.44, np.nan], "rain7": [4.0, 1.0], "et07": [14.4, 12.0],
+    })
+    advice = pd.DataFrame({"garlic": ["now", "too_warm"], "tomato": ["too_late", "not_here"]})
+    files = huerta.map_files(places, advice, "2026-10-20")
+    index = json.loads(files["index.json"])
+    assert index == {"day": "2026-10-20", "n": 2, "layers": ["frost", "soil", "water", "garlic", "tomato"]}
+    assert np.frombuffer(files["places.bin"], "<i2").tolist() == [4044, -368, 3986, -402]
+    layers = np.frombuffer(files["layers.bin"], np.uint8).reshape(5, 2)
+    assert layers[0].tolist() == [0, 2]                                   # no frost; frost
+    assert layers[1].tolist() == [53, 255]                                # 13 C + 40; no reading
+    assert layers[2].tolist() == [10, 11]                                 # mm still to water
+    assert bytes(layers[3]).decode() + bytes(layers[4]).decode() == "nhlx"
