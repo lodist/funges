@@ -62,6 +62,8 @@ interface AdviceResponse {
     statuses: string;
     lastFrost?: number | null;
     firstFrost?: number | null;
+    laterFrost?: string;
+    laterNight?: string | null;
   };
 }
 
@@ -75,6 +77,11 @@ export const decodeAdvice = ({ day, crops, place }: AdviceResponse) => ({
   water: place.water,
   lastFrost: place.lastFrost,
   firstFrost: place.firstFrost,
+  laterFrost:
+    place.laterFrost === undefined
+      ? undefined
+      : (FROST[place.laterFrost] ?? 'none'),
+  laterNight: place.laterNight ?? null,
   crops: Object.fromEntries(
     crops.map((id, i) => [id, STATUS[place.statuses[i]] ?? 'too_late'])
   ),

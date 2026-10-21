@@ -10,6 +10,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import {
   cropReasons,
+  weekday,
   type Crop,
   type CropNeeds,
   type PlaceAdvice,
@@ -41,7 +42,7 @@ function SheetBody({
   advice,
   image,
 }: Omit<CropSheetProps, 'crop' | 'onClose'> & { crop: Crop }) {
-  const { t } = useTranslation('huerta');
+  const { t, i18n } = useTranslation('huerta');
   const [need, setNeed] = useState<CropNeeds>();
   useEffect(() => {
     if (!huertaApiConfigured) return;
@@ -101,7 +102,19 @@ function SheetBody({
                           : 'text-muted-foreground'
                       )}
                     />
-                    <span>{t(`sheet.why.${reason.key}`, reason.values)}</span>
+                    <span>
+                      {t(
+                        `sheet.why.${reason.key}`,
+                        reason.key === 'frostLater'
+                          ? {
+                              night: weekday(
+                                String(reason.values?.night),
+                                i18n.language
+                              ),
+                            }
+                          : reason.values
+                      )}
+                    </span>
                   </li>
                 );
               })}

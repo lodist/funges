@@ -33,7 +33,11 @@
     "noWater": "Niente",
     "lastFrost": "Ultima gelata qui di solito verso il {{date}}",
     "firstFrost": "Prima gelata di solito verso il {{date}}",
-    "noFrostDates": "Qui gela di rado"
+    "noFrostDates": "Qui gela di rado",
+    "later": {
+      "frost": "Possibile gelata più avanti in settimana: {{night}} notte",
+      "ground_frost": "Possibile gelata al suolo più avanti in settimana: {{night}} notte"
+    }
   },
   "units": {
     "celsius": "{{value}} °C",
@@ -162,7 +166,9 @@
       "spring": "Si mette a dimora solo in primavera.",
       "warmSeason": "Qui non sono ancora arrivate le notti calde che gli servono.",
       "noFrost": "Non è probabile una gelata prima del raccolto.",
-      "hardy": "Regge le gelate di qui."
+      "hardy": "Regge le gelate di qui.",
+      "frostSoon": "Gelata nei prossimi 3 giorni.",
+      "frostLater": "Possibile gelata {{night}} notte."
     },
     "how": {
       "sow": "Come seminare",
@@ -208,7 +214,7 @@
     "place": "A {{place}}",
     "layers": {
       "crop": "{{crop}}: semina o pianta ora",
-      "frost": "Gelate, prossimi 3 giorni",
+      "frost": "Gelate questa settimana",
       "soil": "Temperatura del terreno",
       "water": "Da irrigare questa settimana"
     },
@@ -220,12 +226,13 @@
       "now": "Semina o pianta ora",
       "wait": "Non ancora",
       "over": "Troppo tardi quest'anno",
-      "frost": "Gelata, 0 °C o meno",
-      "ground": "Gelata al suolo, da 0 a 2 °C",
+      "frost": "Gelata nei prossimi 3 giorni",
+      "ground": "Gelata al suolo nei prossimi 3 giorni",
       "soilLow": "0 °C",
       "soilHigh": "26 °C",
       "waterLow": "1 L/m²",
-      "waterHigh": "35 L/m² o più"
+      "waterHigh": "35 L/m² o più",
+      "later": "Possibile gelata più avanti in settimana"
     },
     "use": "Usa come il mio orto",
     "close": "Chiudi",

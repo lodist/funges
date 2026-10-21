@@ -10,6 +10,7 @@ import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import {
   cropsWith,
+  weekday,
   SAMPLE_ADVICE,
   type Crop,
   type CropKind,
@@ -382,6 +383,15 @@ function Week({ advice }: { advice: PlaceAdvice }) {
         <FrostIcon className='size-5 shrink-0 text-happy-300' />
         {t(`frost.${advice.frost}`)}
       </p>
+      {advice.laterFrost &&
+      advice.laterFrost !== 'none' &&
+      advice.laterNight ? (
+        <p className='mt-1 pl-7 text-sm text-happy-100'>
+          {t(`week.later.${advice.laterFrost}`, {
+            night: weekday(advice.laterNight, i18n.language),
+          })}
+        </p>
+      ) : null}
       <dl className='mt-6 grid grid-cols-2 gap-6 sm:grid-cols-4'>
         <Fact icon={Thermometer} label={t('week.soil')}>
           {value(advice.soil, 'celsius')}

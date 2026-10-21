@@ -41,4 +41,33 @@ describe("a crop's reasons for this week", () => {
       { ok: false, key: 'autumn' },
     ]);
   });
+  it("names the frost the forecast has, before the place's frost climate", () => {
+    const tomato: CropNeeds = {
+      frost: 'tender',
+      soil: [16, null],
+      night: 10,
+      days: 70,
+    };
+    const soon = { ...SAMPLE_ADVICE, frost: 'frost' as const };
+    expect(cropReasons('wait_frost', soon, tomato).slice(-1)[0]).toEqual({
+      ok: false,
+      key: 'frostSoon',
+    });
+    const later = {
+      ...SAMPLE_ADVICE,
+      laterFrost: 'frost' as const,
+      laterNight: '2026-10-25',
+    };
+    expect(cropReasons('wait_frost', later, tomato).slice(-1)[0]).toEqual({
+      ok: false,
+      key: 'frostLater',
+      values: { night: '2026-10-25' },
+    });
+    expect(
+      cropReasons('wait_frost', SAMPLE_ADVICE, tomato).slice(-1)[0]
+    ).toEqual({
+      ok: false,
+      key: 'frost',
+    });
+  });
 });

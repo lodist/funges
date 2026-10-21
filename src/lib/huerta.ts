@@ -770,6 +770,11 @@ export interface PlaceAdvice {
    *  year; null where a typical year has none, absent when not known. */
   lastFrost?: number | null;
   firstFrost?: number | null;
+  /** Frost on days 4-7 of the forecast, less certain than the next 3 days;
+   *  absent when not known. */
+  laterFrost?: 'none' | 'ground_frost' | 'frost';
+  /** The first night of it, YYYY-MM-DD (the evening it begins). */
+  laterNight?: string | null;
   crops: Record<string, CropStatus>;
 }
 
@@ -821,6 +826,12 @@ export const SAMPLE_ADVICE: PlaceAdvice = {
   ),
 };
 
+/** A night's date (YYYY-MM-DD, the evening it begins) as its weekday. */
+export const weekday = (date: string, language: string) =>
+  new Intl.DateTimeFormat(language, { weekday: 'long' }).format(
+    new Date(`${date}T12:00:00`)
+  );
+
 export const cropsWith = (advice: PlaceAdvice, statuses: CropStatus[]) =>
   CROPS.filter(crop => statuses.includes(advice.crops[crop.id]));
 
@@ -840,7 +851,7 @@ export interface CropNeeds {
 export interface Reason {
   ok: boolean;
   key: string;
-  values?: Record<string, number>;
+  values?: Record<string, number | string>;
 }
 
 const STATUS_REASON: Partial<Record<CropStatus, string>> = {
@@ -879,7 +890,20 @@ export function cropReasons(
       values: { nights, night: need.night },
     });
   const said = STATUS_REASON[status];
-  if (said) out.push({ ok: false, key: said });
+  // Waiting for frost: the forecast's own frost first, then the place's frost climate.
+  if (status === 'wait_frost' && advice.frost !== 'none')
+    out.push({ ok: false, key: 'frostSoon' });
+  else if (
+    status === 'wait_frost' &&
+    advice.laterFrost === 'frost' &&
+    advice.laterNight
+  )
+    out.push({
+      ok: false,
+      key: 'frostLater',
+      values: { night: advice.laterNight },
+    });
+  else if (said) out.push({ ok: false, key: said });
   else if (status === 'wait_warm' && out.every(reason => reason.ok))
     out.push({ ok: false, key: 'warmSeason' });
   else if (status === 'now' && need)
