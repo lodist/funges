@@ -70,7 +70,63 @@
       },
       "nothing": "Questa settimana l'orto non ha bisogno di nulla.",
       "noPlan": "Pianifica l'orto e segna cosa pianti: questa pagina ti dirà cosa gli serve ogni settimana.",
-      "openPlanner": "Apri il pianificatore"
+      "openPlanner": "Apri il pianificatore",
+      "stage": {
+        "thin": {
+          "title": "{{crop}}: dirada le piantine",
+          "text": "Lasciane una ogni {{cm}} cm, così ognuna ha spazio per crescere."
+        },
+        "support": {
+          "title": "{{crop}}: metti i sostegni",
+          "text": "Canne, rete o rametti a cui arrampicarsi, prima che si affloscino. Le varietà nane possono farne a meno."
+        },
+        "tieTomato": {
+          "title": "{{crop}}: lega e sfemminella",
+          "text": "Lega il fusto alla sua canna e togli i germogli ascellari, una volta alla settimana. Le varietà a cespuglio non ne hanno bisogno."
+        },
+        "earthUp": {
+          "title": "{{crop}}: rincalza",
+          "text": "Accumula terra intorno ai fusti, lasciando fuori le cime. Le patate alla luce diventano verdi."
+        },
+        "blanch": {
+          "title": "{{crop}}: rincalza i fusti",
+          "text": "Accumula terra un po' alla volta, per fusti bianchi più lunghi."
+        },
+        "net": {
+          "title": "{{crop}}: tienilo sotto rete",
+          "text": "Una rete fine tiene lontani la cavolaia e i piccioni."
+        },
+        "pinchBeans": {
+          "title": "{{crop}}: cima le punte",
+          "text": "Ora che si formano i primi baccelli. Tiene lontano l'afide nero."
+        },
+        "pinchSweetPea": {
+          "title": "{{crop}}: cima le punte",
+          "text": "Appena sopra il terzo paio di foglie, per piante più folte e più fiori."
+        },
+        "feed": {
+          "title": "{{crop}}: concima ogni una o due settimane",
+          "text": "Ora che fiorisce e allega i frutti, un concime ricco di potassio, come quello per pomodori, mantiene il raccolto."
+        },
+        "stake": {
+          "title": "{{crop}}: metti i tutori",
+          "text": "Rassoda la terra intorno e lega i fusti alti a un tutore prima dei venti d'autunno."
+        },
+        "harvestSoon": {
+          "title_one": "{{crop}}: da raccogliere tra una settimana circa",
+          "title_other": "{{crop}}: da raccogliere tra circa {{count}} settimane",
+          "text": "Calcolato dal calore ricevuto dalla semina o dal trapianto."
+        },
+        "ripen": {
+          "title": "{{crop}}: annaffia meno",
+          "text_one": "Lascia maturare i bulbi. Si raccolgono tra una settimana circa, quando le foglie ingialliscono.",
+          "text_other": "Lascia maturare i bulbi. Si raccolgono tra circa {{count}} settimane, quando le foglie ingialliscono."
+        },
+        "harvest": {
+          "title": "{{crop}}: da raccogliere",
+          "text": "Dal calore ricevuto dalla semina o dal trapianto, è il momento di raccogliere."
+        }
+      }
     }
   },
   "units": {

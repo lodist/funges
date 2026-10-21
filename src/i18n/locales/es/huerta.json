@@ -70,7 +70,63 @@
       },
       "nothing": "Esta semana tu huerto no necesita nada de ti.",
       "noPlan": "Planifica tu huerto y marca lo que plantas, y esta página te dirá lo que necesita cada semana.",
-      "openPlanner": "Abrir el planificador"
+      "openPlanner": "Abrir el planificador",
+      "stage": {
+        "thin": {
+          "title": "{{crop}}: aclara las plántulas",
+          "text": "Deja una cada {{cm}} cm, para que cada una tenga sitio para crecer."
+        },
+        "support": {
+          "title": "{{crop}}: pon soportes",
+          "text": "Cañas, malla o ramitas para trepar, antes de que se caigan. Las variedades enanas no los necesitan."
+        },
+        "tieTomato": {
+          "title": "{{crop}}: ata y quita los chupones",
+          "text": "Ata el tallo a su caña y quita los brotes laterales, una vez por semana. Las variedades de mata baja no necesitan ninguna de las dos cosas."
+        },
+        "earthUp": {
+          "title": "{{crop}}: aporca",
+          "text": "Arrima tierra alrededor de los tallos, dejando ver las puntas. Las patatas expuestas a la luz se vuelven verdes."
+        },
+        "blanch": {
+          "title": "{{crop}}: aporca los tallos",
+          "text": "Arrima tierra poco a poco, para tener tallos blancos más largos."
+        },
+        "net": {
+          "title": "{{crop}}: mantenlo bajo malla",
+          "text": "Una malla fina aleja a la mariposa de la col y a las palomas."
+        },
+        "pinchBeans": {
+          "title": "{{crop}}: despunta",
+          "text": "Ahora que se forman las primeras vainas. Así se aleja el pulgón negro."
+        },
+        "pinchSweetPea": {
+          "title": "{{crop}}: despunta",
+          "text": "Justo por encima del tercer par de hojas, para plantas más tupidas y con más flores."
+        },
+        "feed": {
+          "title": "{{crop}}: abona cada una o dos semanas",
+          "text": "Ahora que florece y cuaja fruto, un abono rico en potasio, como el de tomates, mantiene la cosecha."
+        },
+        "stake": {
+          "title": "{{crop}}: entutora los tallos",
+          "text": "Afirma la tierra alrededor y ata los tallos altos a un tutor antes de los vientos de otoño."
+        },
+        "harvestSoon": {
+          "title_one": "{{crop}}: a punto en una semana más o menos",
+          "title_other": "{{crop}}: a punto en unas {{count}} semanas",
+          "text": "Calculado a partir del calor recibido desde la siembra o el trasplante."
+        },
+        "ripen": {
+          "title": "{{crop}}: riega menos",
+          "text_one": "Deja que maduren los bulbos. Se podrán arrancar en una semana más o menos, cuando amarilleen las hojas.",
+          "text_other": "Deja que maduren los bulbos. Se podrán arrancar en unas {{count}} semanas, cuando amarilleen las hojas."
+        },
+        "harvest": {
+          "title": "{{crop}}: a punto para cosechar",
+          "text": "Por el calor recibido desde la siembra o el trasplante, ya es momento de cosechar."
+        }
+      }
     }
   },
   "units": {

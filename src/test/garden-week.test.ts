@@ -15,6 +15,7 @@ const NEEDS = {
   courgette: need('tender'),
   lettuce: need('half_hardy'),
   garlic: need('hardy'),
+  carrot: need('half_hardy'),
 };
 const beds = layout({ width: 6, length: 4.5, shape: 'rect' });
 const plan = (...crops: [string, string?][]): Plan => ({
@@ -87,5 +88,42 @@ describe("this week's to-do list", () => {
       { kind: 'plantNow', crops: ['garlic'] },
       { kind: 'sowAgain', crop: 'lettuce', weeks: 3 },
     ]);
+  });
+
+  it("gives each planted crop this week's step, from the warmth since it went in", () => {
+    // Monthly means like Madrid's; tomatoes are picked July to October.
+    const year = {
+      place: 'Madrid',
+      temps: [6, 7, 10, 13, 17, 22, 26, 25, 21, 15, 10, 7],
+      crops: {
+        tomato: { sow: 0b10000, harvest: 0b1111000000 },
+        garlic: { sow: 0b111000000000, harvest: 0b11100000 },
+        carrot: { sow: 0b1100, harvest: 0b110000 },
+      },
+    };
+    const step = (crop: string, planted: string, today: string) =>
+      gardenWeek(plan([crop, planted]), advice, NEEDS, today, year).filter(
+        task => task.kind === 'stage'
+      );
+    expect(step('carrot', '2026-04-01', '2026-04-20')).toEqual([
+      { kind: 'stage', crop: 'carrot', step: 'thin', cm: 5 },
+    ]);
+    expect(step('tomato', '2026-05-15', '2026-06-15')[0]).toMatchObject({
+      step: 'tieTomato',
+    });
+    expect(step('tomato', '2026-05-15', '2026-06-25')[0]).toMatchObject({
+      step: 'feed',
+    });
+    expect(step('tomato', '2026-05-15', '2026-07-15')[0]).toMatchObject({
+      step: 'harvest',
+    });
+    expect(step('tomato', '2026-05-15', '2026-11-20')).toEqual([]);
+    expect(step('garlic', '2025-10-20', '2026-06-01')).toEqual([
+      { kind: 'stage', crop: 'garlic', step: 'ripen', weeks: 1 },
+    ]);
+    // Without the place's temperatures, no steps.
+    expect(
+      gardenWeek(plan(['carrot', '2026-04-01']), advice, NEEDS, '2026-04-20')
+    ).toEqual([]);
   });
 });

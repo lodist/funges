@@ -70,7 +70,63 @@
       },
       "nothing": "Nothing your garden needs from you this week.",
       "noPlan": "Plan your garden and mark what you plant, and this page will list what it needs each week.",
-      "openPlanner": "Open the garden planner"
+      "openPlanner": "Open the garden planner",
+      "stage": {
+        "thin": {
+          "title": "{{crop}}: thin the seedlings",
+          "text": "Leave one every {{cm}} cm, so each has room to grow."
+        },
+        "support": {
+          "title": "{{crop}}: put up supports",
+          "text": "Canes, netting or twiggy sticks to climb, before they flop. Dwarf kinds can do without."
+        },
+        "tieTomato": {
+          "title": "{{crop}}: tie in and pinch out",
+          "text": "Tie the stem to its cane and pinch out the side shoots, once a week. Bush kinds need neither."
+        },
+        "earthUp": {
+          "title": "{{crop}}: earth up",
+          "text": "Draw soil up around the stems, leaving the tops showing. Potatoes in the light turn green."
+        },
+        "blanch": {
+          "title": "{{crop}}: earth up the stems",
+          "text": "Draw soil up around them a little at a time, for longer white stems."
+        },
+        "net": {
+          "title": "{{crop}}: keep under netting",
+          "text": "Fine netting keeps cabbage white butterflies and pigeons off."
+        },
+        "pinchBeans": {
+          "title": "{{crop}}: pinch out the tips",
+          "text": "Now the first pods are forming. It keeps blackfly away."
+        },
+        "pinchSweetPea": {
+          "title": "{{crop}}: pinch out the tips",
+          "text": "Just above the third pair of leaves, for bushier plants and more flowers."
+        },
+        "feed": {
+          "title": "{{crop}}: feed every week or two",
+          "text": "Now it is flowering and setting fruit, a high-potash feed such as tomato feed keeps the crop coming."
+        },
+        "stake": {
+          "title": "{{crop}}: stake the stems",
+          "text": "Firm the soil around them and tie tall stems to a stake before the autumn winds."
+        },
+        "harvestSoon": {
+          "title_one": "{{crop}}: ready in about a week",
+          "title_other": "{{crop}}: ready in about {{count}} weeks",
+          "text": "Worked out from the warmth it has had since it went in."
+        },
+        "ripen": {
+          "title": "{{crop}}: water less",
+          "text_one": "Let the bulbs ripen. They are ready to lift in about a week, once the leaves turn yellow.",
+          "text_other": "Let the bulbs ripen. They are ready to lift in about {{count}} weeks, once the leaves turn yellow."
+        },
+        "harvest": {
+          "title": "{{crop}}: ready to harvest",
+          "text": "By the warmth it has had since it went in, it is time to harvest."
+        }
+      }
     }
   },
   "units": {

@@ -70,7 +70,63 @@
       },
       "nothing": "Dein Garten braucht diese Woche nichts von dir.",
       "noPlan": "Plane deinen Garten und trage ein, was du pflanzt: Diese Seite sagt dir dann jede Woche, was er braucht.",
-      "openPlanner": "Gartenplaner öffnen"
+      "openPlanner": "Gartenplaner öffnen",
+      "stage": {
+        "thin": {
+          "title": "{{crop}}: Sämlinge vereinzeln",
+          "text": "Lass alle {{cm}} cm einen stehen, damit jeder Platz zum Wachsen hat."
+        },
+        "support": {
+          "title": "{{crop}}: Rankhilfe aufstellen",
+          "text": "Stäbe, Netz oder Reisig zum Klettern, bevor sie umkippen. Niedrige Sorten kommen ohne aus."
+        },
+        "tieTomato": {
+          "title": "{{crop}}: anbinden und ausgeizen",
+          "text": "Binde den Stamm an seinen Stab und brich die Seitentriebe aus, einmal pro Woche. Buschsorten brauchen beides nicht."
+        },
+        "earthUp": {
+          "title": "{{crop}}: anhäufeln",
+          "text": "Zieh Erde um die Stängel hoch, die Spitzen bleiben frei. Knollen im Licht werden grün."
+        },
+        "blanch": {
+          "title": "{{crop}}: Schäfte anhäufeln",
+          "text": "Zieh nach und nach Erde an, für längere weiße Schäfte."
+        },
+        "net": {
+          "title": "{{crop}}: unter Netz halten",
+          "text": "Ein feines Netz hält Kohlweißlinge und Tauben fern."
+        },
+        "pinchBeans": {
+          "title": "{{crop}}: Spitzen auskneifen",
+          "text": "Jetzt, wo sich die ersten Hülsen bilden. Das hält die Schwarze Bohnenlaus fern."
+        },
+        "pinchSweetPea": {
+          "title": "{{crop}}: Spitzen auskneifen",
+          "text": "Knapp über dem dritten Blattpaar, für buschigere Pflanzen und mehr Blüten."
+        },
+        "feed": {
+          "title": "{{crop}}: alle ein bis zwei Wochen düngen",
+          "text": "Jetzt, wo Blüte und Fruchtansatz beginnen, hält ein kaliumreicher Dünger wie Tomatendünger die Ernte im Gang."
+        },
+        "stake": {
+          "title": "{{crop}}: Stängel stützen",
+          "text": "Drück die Erde rundum fest und binde hohe Stängel vor den Herbststürmen an einen Pfahl."
+        },
+        "harvestSoon": {
+          "title_one": "{{crop}}: in etwa einer Woche erntereif",
+          "title_other": "{{crop}}: in etwa {{count}} Wochen erntereif",
+          "text": "Berechnet aus der Wärme seit der Aussaat oder Pflanzung."
+        },
+        "ripen": {
+          "title": "{{crop}}: weniger gießen",
+          "text_one": "Lass sie ausreifen. In etwa einer Woche kannst du sie ernten, wenn das Laub gelb wird.",
+          "text_other": "Lass sie ausreifen. In etwa {{count}} Wochen kannst du sie ernten, wenn das Laub gelb wird."
+        },
+        "harvest": {
+          "title": "{{crop}}: erntereif",
+          "text": "Nach der Wärme seit der Aussaat oder Pflanzung ist jetzt Erntezeit."
+        }
+      }
     }
   },
   "units": {

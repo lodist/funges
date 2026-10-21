@@ -3,15 +3,12 @@ import {
   fetchYear,
   huertaApiConfigured,
   savedPlace,
-  type CropYear,
+  type PlaceYear,
 } from '@/lib/huerta-api';
 
 /** The visitor's place's year, once known; null without a place or the API. */
 export function useHuertaYear() {
-  const [year, setYear] = useState<{
-    place: string;
-    crops: Record<string, CropYear>;
-  } | null>(null);
+  const [year, setYear] = useState<PlaceYear | null>(null);
   useEffect(() => {
     const place = huertaApiConfigured ? savedPlace() : null;
     if (!place) return;

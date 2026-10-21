@@ -70,7 +70,63 @@
       },
       "nothing": "Esta semana sua horta não precisa de nada.",
       "noPlan": "Planeje sua horta e marque o que planta, e esta página dirá o que ela precisa a cada semana.",
-      "openPlanner": "Abrir o planejador"
+      "openPlanner": "Abrir o planejador",
+      "stage": {
+        "thin": {
+          "title": "{{crop}}: desbaste as mudas",
+          "text": "Deixe uma a cada {{cm}} cm, para que cada uma tenha espaço para crescer."
+        },
+        "support": {
+          "title": "{{crop}}: coloque suportes",
+          "text": "Estacas, tela ou galhos para subirem, antes que tombem. Variedades anãs dispensam."
+        },
+        "tieTomato": {
+          "title": "{{crop}}: amarre e desbrote",
+          "text": "Amarre a haste à estaca e tire os brotos laterais, uma vez por semana. Variedades de crescimento determinado não precisam de nenhum dos dois."
+        },
+        "earthUp": {
+          "title": "{{crop}}: faça a amontoa",
+          "text": "Puxe terra para junto dos caules, deixando as pontas de fora. Batatas expostas à luz ficam verdes."
+        },
+        "blanch": {
+          "title": "{{crop}}: amontoe os caules",
+          "text": "Puxe terra aos poucos, para caules brancos mais longos."
+        },
+        "net": {
+          "title": "{{crop}}: mantenha sob tela",
+          "text": "Uma tela fina afasta a borboleta-da-couve e os pombos."
+        },
+        "pinchBeans": {
+          "title": "{{crop}}: corte as pontas",
+          "text": "Agora que as primeiras vagens se formam. Isso afasta o pulgão-preto."
+        },
+        "pinchSweetPea": {
+          "title": "{{crop}}: corte as pontas",
+          "text": "Logo acima do terceiro par de folhas, para plantas mais cheias e com mais flores."
+        },
+        "feed": {
+          "title": "{{crop}}: adube a cada uma ou duas semanas",
+          "text": "Agora que floresce e forma frutos, um adubo rico em potássio, como o de tomate, mantém a colheita."
+        },
+        "stake": {
+          "title": "{{crop}}: estaqueie os caules",
+          "text": "Firme a terra em volta e amarre os caules altos a uma estaca antes dos ventos de outono."
+        },
+        "harvestSoon": {
+          "title_one": "{{crop}}: colheita em cerca de uma semana",
+          "title_other": "{{crop}}: colheita em cerca de {{count}} semanas",
+          "text": "Calculado a partir do calor recebido desde a semeadura ou o plantio."
+        },
+        "ripen": {
+          "title": "{{crop}}: regue menos",
+          "text_one": "Deixe os bulbos amadurecerem. Dá para colher em cerca de uma semana, quando as folhas amarelarem.",
+          "text_other": "Deixe os bulbos amadurecerem. Dá para colher em cerca de {{count}} semanas, quando as folhas amarelarem."
+        },
+        "harvest": {
+          "title": "{{crop}}: hora de colher",
+          "text": "Pelo calor recebido desde a semeadura ou o plantio, já é hora de colher."
+        }
+      }
     }
   },
   "units": {
