@@ -1,8 +1,10 @@
 /**
- * The garden planner: a plot of a chosen size and shape, laid out in raised
- * beds and paths, each bed in sections that hold one crop. The plan is filled
- * from what goes in at the visitor's place this week, checked for neighbours,
- * and kept on the device. Distances in metres; y runs north to south.
+ * The garden planner: a plot of a chosen size and shape, laid out in beds
+ * (raised, dug in the ground, or strips of an open plot) and paths, each bed
+ * in sections that hold one crop. The plan is filled from what goes in at the
+ * visitor's place this week, checked for neighbours, and kept on the device.
+ * Distances in metres; x runs across the plot, y down it, and the plot's top
+ * faces the bearing `north` (0, as before: north).
  */
 import { CROPS, type CropStatus } from '@/lib/huerta';
 import { PLANT_LOOK } from '@/lib/planner-data';
@@ -11,11 +13,26 @@ export const BED_WIDTH = 1.2;
 export const PATH = 0.4;
 export const BORDER = 0.35;
 export const BED_HEIGHT = 0.22;
+export const MIN_SIDE = 1;
+export const MAX_SIDE = 60;
+const ROW_STRIP = 1.5;
+const FOOTPATH = 0.3;
+const SHORTEST = 0.3;
+
+export type Rect = [number, number, number, number];
+export type Ground = 'raised' | 'ground' | 'rows';
+export type Axis = 'x' | 'y';
 
 export interface Garden {
   width: number;
   length: number;
   shape: 'rect' | 'L';
+  /** The compass bearing the plot's top edge faces, 0-315 by 45. */
+  north?: number;
+  /** Beds run across the plot (along its width) instead of along it. */
+  across?: boolean;
+  /** Raised beds (the default), beds dug in the ground, or an open plot in rows. */
+  ground?: Ground;
 }
 
 export interface Section {
@@ -30,18 +47,39 @@ export interface Section {
   crop: string | null;
   /** The day it went in, YYYY-MM-DD; absent while only planned. */
   planted?: string;
+  /** "Keep here": planning it again and resizing leave its crop alone. */
+  locked?: boolean;
 }
 
 export interface Plan {
   garden: Garden;
   sections: Section[];
+  /** Beds deleted: plain earth, which a bed can be put back on. */
+  bare?: Rect[];
 }
+
+/** Crops that stay for years: marking one planted keeps it where it is. */
+export const PERENNIAL = new Set(
+  'asparagus rhubarb artichoke strawberry chives thyme rosemary oregano sage mint lavender'.split(
+    ' '
+  )
+);
 
 const CROP = Object.fromEntries(CROPS.map(crop => [crop.id, crop]));
 
-/** The plot's rectangles: one, or two for the L (its south-east corner cut away). */
-export function regions(g: Garden): [number, number, number, number][] {
-  const all: [number, number, number, number][] =
+/** The edge around the beds: 35 cm, less on a small plot. */
+export const border = (g: Garden) =>
+  Math.min(BORDER, 0.1 * Math.min(g.width, g.length));
+
+/** The axis a bed runs along: down the plot, unless beds run across it or
+ *  the plot is in rows (whose strips run across), but not both. */
+export const axisOf = (g: Garden): Axis =>
+  (g.ground === 'rows') !== Boolean(g.across) ? 'x' : 'y';
+
+/** The plot's rectangles: one, or two for the L (its bottom-right corner cut away). */
+export function regions(g: Garden): Rect[] {
+  const b = border(g);
+  const all: Rect[] =
     g.shape === 'L'
       ? [
           [0, 0, g.width, g.length * 0.5],
@@ -49,41 +87,74 @@ export function regions(g: Garden): [number, number, number, number][] {
         ]
       : [[0, 0, g.width, g.length]];
   return all.filter(
-    ([x0, y0, x1, y1]) =>
-      x1 - x0 - 2 * BORDER >= 0.8 && y1 - y0 - 2 * BORDER >= 0.5
+    ([x0, y0, x1, y1]) => x1 - x0 - 2 * b >= 0.5 && y1 - y0 - 2 * b >= 0.5
   );
 }
 
-/** Beds running north to south, side by side, each in sections of about 1.8 m. */
-export function layout(g: Garden): Section[] {
+const flip = (s: Section): Section => ({
+  ...s,
+  x0: s.y0,
+  x1: s.y1,
+  y0: s.x0,
+  y1: s.x1,
+});
+
+/** Beds in one region, running down it side by side: 1.2 m wide with 40 cm
+ *  paths, in sections of about 1.8 m; in rows, strips of 1.5 m with 30 cm
+ *  footpaths, one crop each. */
+function bedsIn(
+  [x0, y0, x1, y1]: Rect,
+  b: number,
+  rows: boolean,
+  first: number
+): Section[] {
   const out: Section[] = [];
-  let bed = 0;
-  for (const [x0, y0, x1, y1] of regions(g)) {
-    const width = Math.min(BED_WIDTH, x1 - x0 - 2 * BORDER);
-    const n = Math.max(
-      1,
-      Math.floor((x1 - x0 - 2 * BORDER + PATH) / (width + PATH))
-    );
-    const used = n * width + (n - 1) * PATH;
-    const ya = y0 + BORDER,
-      yb = y1 - BORDER;
-    const k = Math.max(1, Math.round((yb - ya) / 1.8));
-    let x = x0 + (x1 - x0 - used) / 2;
-    for (let i = 0; i < n; i++, x += width + PATH, bed++)
-      for (let j = 0; j < k; j++)
-        out.push({
-          bed,
-          part: j,
-          parts: k,
-          x0: x,
-          x1: x + width,
-          y0: ya + ((yb - ya) * j) / k,
-          y1: ya + ((yb - ya) * (j + 1)) / k,
-          crop: null,
-        });
-  }
+  const room = x1 - x0 - 2 * b;
+  const width = Math.min(rows ? ROW_STRIP : BED_WIDTH, room);
+  const path = rows ? FOOTPATH : PATH;
+  const n = Math.max(1, Math.floor((room + path) / (width + path)));
+  const used = n * width + (n - 1) * path;
+  const ya = y0 + b,
+    yb = y1 - b;
+  const k = rows ? 1 : Math.max(1, Math.round((yb - ya) / 1.8));
+  let x = x0 + (x1 - x0 - used) / 2;
+  for (let i = 0; i < n; i++, x += width + path)
+    for (let j = 0; j < k; j++)
+      out.push({
+        bed: first + i,
+        part: j,
+        parts: k,
+        x0: x,
+        x1: x + width,
+        y0: ya + ((yb - ya) * j) / k,
+        y1: ya + ((yb - ya) * (j + 1)) / k,
+        crop: null,
+      });
   return out;
 }
+
+/** The plot in beds: a region whose beds run across is laid out turned a
+ *  quarter (x and y swapped) and turned back. */
+export function layout(g: Garden): Section[] {
+  const b = border(g),
+    rows = g.ground === 'rows',
+    turned = axisOf(g) === 'x';
+  let bed = 0;
+  return regions(g).flatMap(r => {
+    const out = bedsIn(turned ? [r[1], r[0], r[3], r[2]] : r, b, rows, bed);
+    bed += new Set(out.map(s => s.bed)).size;
+    return turned ? out.map(flip) : out;
+  });
+}
+
+/** How far north a spot lies, metres along true north, for a plot whose top
+ *  faces the bearing `north`. */
+export function northness(g: Pick<Garden, 'north'>, x: number, y: number) {
+  const r = ((g.north ?? 0) * Math.PI) / 180;
+  return -(x * Math.sin(r) + y * Math.cos(r));
+}
+const northOf = (north: number, s: Section) =>
+  northness({ north }, (s.x0 + s.x1) / 2, (s.y0 + s.y1) / 2);
 
 /** Two sections touch across a bed's length or a path (or the L's gap). */
 export function adjacent(a: Section, b: Section) {
@@ -216,10 +287,13 @@ function arrange(sections: Section[], beds: number[], groups: Group[]) {
 
 /** Fill every section from this week's statuses at the visitor's place: one
  *  family per bed, onions and garlic never beside peas and beans, the tallest
- *  crop of a bed at its north end. Planted sections keep their crop. */
+ *  crop of a bed at its north end. Planted and kept sections keep their crop,
+ *  and with `keepChosen` every section that has one. */
 export function autoPlan(
   sections: Section[],
-  status: (crop: string) => CropStatus | undefined
+  status: (crop: string) => CropStatus | undefined,
+  north = 0,
+  keepChosen = false
 ): Section[] {
   const rank = (id: string) => {
     const s = status(id);
@@ -244,8 +318,10 @@ export function autoPlan(
       (a, z) => rank(a) - rank(z) || Number(used.has(a)) - Number(used.has(z))
     );
     const parts = out
-      .filter(s => s.bed === bed && !s.planted)
-      .sort((a, z) => a.y0 - z.y0);
+      .filter(
+        s => s.bed === bed && !s.planted && !s.locked && !(keepChosen && s.crop)
+      )
+      .sort((a, z) => northOf(north, z) - northOf(north, a));
     const crops = parts
       .map((_, j) => pick[j % pick.length])
       .sort((a, z) => PLANT_LOOK[z].height - PLANT_LOOK[a].height);
@@ -257,22 +333,191 @@ export function autoPlan(
   return out;
 }
 
-/** A section cut in two along the bed, both halves with its crop. */
-export function split(sections: Section[], index: number): Section[] {
+// ---------- editing ----------
+
+const span = (s: Section, a: Axis) =>
+  a === 'y' ? ([s.y0, s.y1] as const) : ([s.x0, s.x1] as const);
+const along = (s: Section, a: Axis, lo: number, hi: number): Section =>
+  a === 'y' ? { ...s, y0: lo, y1: hi } : { ...s, x0: lo, x1: hi };
+
+/** A bed's sections numbered in order along it. */
+function renumber(out: Section[], bed: number, a: Axis): Section[] {
+  const order = out
+    .filter(t => t.bed === bed)
+    .sort((p, q) => span(p, a)[0] - span(q, a)[0]);
+  return out.map(t =>
+    t.bed === bed ? { ...t, part: order.indexOf(t), parts: order.length } : t
+  );
+}
+
+/** A section cut in two along its bed, both halves with its crop. */
+export function split(
+  sections: Section[],
+  index: number,
+  a: Axis = 'y'
+): Section[] {
   const s = sections[index];
-  const mid = (s.y0 + s.y1) / 2;
+  const [lo, hi] = span(s, a);
+  const mid = (lo + hi) / 2;
   const out = [
     ...sections.slice(0, index),
-    { ...s, y1: mid },
-    { ...s, y0: mid },
+    along(s, a, lo, mid),
+    along(s, a, mid, hi),
     ...sections.slice(index + 1),
   ];
-  const bed = out.filter(t => t.bed === s.bed).sort((a, z) => a.y0 - z.y0);
-  bed.forEach((t, j) => {
-    t.part = j;
-    t.parts = bed.length;
+  return renumber(out, s.bed, a);
+}
+
+/** A section joined with the one before (-1) or after (1) it in its bed,
+ *  keeping its own crop, planting and lock. */
+export function merge(
+  sections: Section[],
+  index: number,
+  dir: -1 | 1,
+  a: Axis = 'y'
+): Section[] {
+  const s = sections[index];
+  const other = sections.find(t => t.bed === s.bed && t.part === s.part + dir);
+  if (!other) return sections;
+  const [lo, hi] = span(s, a),
+    [olo, ohi] = span(other, a);
+  const joined = along(s, a, Math.min(lo, olo), Math.max(hi, ohi));
+  return renumber(
+    sections.filter(t => t !== other).map(t => (t === s ? joined : t)),
+    s.bed,
+    a
+  );
+}
+
+/** A section made longer (or shorter) by `delta`, the space taken from (or
+ *  given to) the next section in its bed, or the one before at the bed's end;
+ *  neither shorter than 30 cm. */
+export function lengthen(
+  sections: Section[],
+  index: number,
+  delta: number,
+  a: Axis = 'y'
+): Section[] {
+  const s = sections[index];
+  const next = sections.find(t => t.bed === s.bed && t.part === s.part + 1);
+  const other =
+    next ?? sections.find(t => t.bed === s.bed && t.part === s.part - 1);
+  if (!other) return sections;
+  const [lo, hi] = span(s, a),
+    [olo, ohi] = span(other, a);
+  const d = Math.max(
+    -(hi - lo - SHORTEST),
+    Math.min(delta, ohi - olo - SHORTEST)
+  );
+  return sections.map(t =>
+    t === s
+      ? next
+        ? along(s, a, lo, hi + d)
+        : along(s, a, lo - d, hi)
+      : t === other
+        ? next
+          ? along(t, a, olo + d, ohi)
+          : along(t, a, olo, ohi - d)
+        : t
+  );
+}
+
+/** Beds numbered 0, 1, ... in their earlier order. */
+function numberBeds(sections: Section[]): Section[] {
+  const ids = [...new Set(sections.map(s => s.bed))].sort((p, q) => p - q);
+  return sections.map(s => ({ ...s, bed: ids.indexOf(s.bed) }));
+}
+
+const rectOf = (s: Section): Rect => [s.x0, s.y0, s.x1, s.y1];
+const area = (r: Rect) => (r[2] - r[0]) * (r[3] - r[1]);
+const overlap = (p: Rect, q: Rect) =>
+  Math.max(0, Math.min(p[2], q[2]) - Math.max(p[0], q[0])) *
+  Math.max(0, Math.min(p[3], q[3]) - Math.max(p[1], q[1]));
+
+/** A bed deleted: its sections leave the plan, its ground stays plain earth. */
+export function removeBed(plan: Plan, bed: number): Plan {
+  const parts = plan.sections.filter(s => s.bed === bed);
+  if (!parts.length) return plan;
+  const box: Rect = [
+    Math.min(...parts.map(s => s.x0)),
+    Math.min(...parts.map(s => s.y0)),
+    Math.max(...parts.map(s => s.x1)),
+    Math.max(...parts.map(s => s.y1)),
+  ];
+  return {
+    ...plan,
+    sections: numberBeds(plan.sections.filter(s => s.bed !== bed)),
+    bare: [...(plan.bare ?? []), box],
+  };
+}
+
+/** A bed put back on a patch of plain earth, in sections of about 1.8 m. */
+export function restoreBed(plan: Plan, i: number): Plan {
+  const r = plan.bare?.[i];
+  if (!r) return plan;
+  const a = axisOf(plan.garden);
+  const [lo, hi] = a === 'y' ? [r[1], r[3]] : [r[0], r[2]];
+  const k =
+    plan.garden.ground === 'rows'
+      ? 1
+      : Math.max(1, Math.round((hi - lo) / 1.8));
+  const bed = plan.sections.reduce((m, s) => Math.max(m, s.bed), -1) + 1;
+  const base: Section = {
+    bed,
+    part: 0,
+    parts: k,
+    x0: r[0],
+    y0: r[1],
+    x1: r[2],
+    y1: r[3],
+    crop: null,
+  };
+  const parts = Array.from({ length: k }, (_, j) =>
+    along(
+      { ...base, part: j },
+      a,
+      lo + ((hi - lo) * j) / k,
+      lo + ((hi - lo) * (j + 1)) / k
+    )
+  );
+  return {
+    ...plan,
+    sections: [...plan.sections, ...parts],
+    bare: plan.bare!.filter((_, j) => j !== i),
+  };
+}
+
+/** The plan on a new size, shape, north, bed direction or way of growing:
+ *  each new section keeps the crop, planting and lock of the old one it
+ *  mostly lies on, deleted beds stay deleted, and the rest is planned. */
+export function reshape(
+  plan: Plan,
+  garden: Garden,
+  status: (crop: string) => CropStatus | undefined
+): Plan {
+  const plot = regions(garden);
+  const bare = (plan.bare ?? []).filter(r =>
+    plot.some(q => overlap(r, q) >= area(r) / 2)
+  );
+  const fresh = layout(garden).filter(
+    s => !bare.some(r => overlap(rectOf(s), r) >= area(rectOf(s)) / 2)
+  );
+  const kept = fresh.map(s => {
+    let best: Section | undefined,
+      most = 0;
+    for (const o of plan.sections) {
+      const v = overlap(rectOf(s), rectOf(o));
+      if (v > most) [best, most] = [o, v];
+    }
+    return best && most >= area(rectOf(s)) / 2
+      ? { ...s, crop: best.crop, planted: best.planted, locked: best.locked }
+      : s;
   });
-  return out;
+  return {
+    garden,
+    sections: autoPlan(numberBeds(kept), status, garden.north, true),
+    bare,
+  };
 }
 
 // ---------- neighbours ----------
@@ -358,8 +603,8 @@ export interface Note {
 }
 
 /** What to watch next to one section: good pairs, pairs to keep apart, and a
- *  tall crop south of a low one in the same bed. */
-export function notes(sections: Section[], index: number): Note[] {
+ *  tall crop south of a low one in the same bed (by true north). */
+export function notes(sections: Section[], index: number, north = 0): Note[] {
   const s = sections[index];
   const out: Note[] = [];
   const seen = new Set<string>();
@@ -380,18 +625,15 @@ export function notes(sections: Section[], index: number): Note[] {
       )
         add({ bad: r.bad, with: t.crop, key: r.key, basis: r.basis });
     if (s.bed === t.bed && s.crop !== t.crop) {
-      const [north, south] = s.y0 < t.y0 ? [s, t] : [t, s];
-      if (
-        PLANT_LOOK[south.crop!].height >= 1 &&
-        PLANT_LOOK[north.crop!].height < 0.6
-      )
+      const [n, so] = northOf(north, s) > northOf(north, t) ? [s, t] : [t, s];
+      if (PLANT_LOOK[so.crop!].height >= 1 && PLANT_LOOK[n.crop!].height < 0.6)
         add({
           bad: true,
           with: t.crop,
           key: 'shade',
           basis: 'sun',
-          tall: south.crop!,
-          short: north.crop!,
+          tall: so.crop!,
+          short: n.crop!,
         });
     }
   }
@@ -399,12 +641,12 @@ export function notes(sections: Section[], index: number): Note[] {
 }
 
 /** Good pairs and notes to fix over the whole garden, each pair once. */
-export function summary(sections: Section[]) {
+export function summary(sections: Section[], north = 0) {
   let good = 0;
   const bad: Note[] = [];
   const seen = new Set<string>();
   sections.forEach((s, i) =>
-    notes(sections, i).forEach(n => {
+    notes(sections, i, north).forEach(n => {
       const k = [s.crop, n.with].sort().join() + n.key;
       if (seen.has(k)) return;
       seen.add(k);

@@ -4,15 +4,24 @@ import type { CropStatus } from '@/lib/huerta';
 import {
   adjacent,
   autoPlan,
+  axisOf,
   fit,
   layout,
+  lengthen,
+  merge,
   nextYear,
+  northness,
   notes,
   ready,
+  removeBed,
+  reshape,
+  restoreBed,
   split,
   summary,
+  type Garden,
   type Section,
 } from '@/lib/planner';
+import { PLANT_LOOK } from '@/lib/planner-data';
 
 const NOW = new Set([
   'broad_beans',
@@ -81,7 +90,7 @@ describe('the garden planner', () => {
   });
 
   it('counts what fits at the crop spacing', () => {
-    const [s] = layout({ width: 2, length: 2.2, shape: 'rect' }); // a 1.2 x 1.5 m bed
+    const [s] = layout({ width: 2, length: 1.9, shape: 'rect' }); // a 1.2 x 1.5 m bed
     expect(fit({ ...s, crop: 'garlic' })?.count).toBe(8 * 10); // 15 cm each way
     expect(fit({ ...s, crop: 'pumpkin' })?.count).toBe(1);
     expect(fit({ ...s, crop: 'winter_rye' })).toBeNull(); // scattered
@@ -106,5 +115,118 @@ describe('the garden planner', () => {
     expect(nextYear('broad_beans')).toBe('cabbage');
     expect(nextYear('asparagus')).toBe('stays');
     expect(nextYear('tulip')).toBe('any');
+  });
+
+  it('lays out a 1 m plot as one bed and a 60 m plot in many', () => {
+    const tiny = layout({ width: 1, length: 1, shape: 'rect' });
+    expect(tiny).toHaveLength(1);
+    expect(tiny[0].x1 - tiny[0].x0).toBeCloseTo(0.8);
+    const big = layout({ width: 60, length: 60, shape: 'rect' });
+    expect(new Set(big.map(s => s.bed)).size).toBe(37); // (60 - 0.7 + 0.4) / 1.6
+  });
+
+  it('runs beds across the plot, or lays an open plot in strips of rows', () => {
+    const across = layout({
+      width: 4.5,
+      length: 6,
+      shape: 'rect',
+      across: true,
+    });
+    expect(new Set(across.map(s => s.bed)).size).toBe(3);
+    expect(across[0].y1 - across[0].y0).toBeCloseTo(1.2);
+    const rowsGarden: Garden = {
+      width: 6,
+      length: 4.5,
+      shape: 'rect',
+      ground: 'rows',
+    };
+    const rows = layout(rowsGarden);
+    expect(rows.every(s => s.parts === 1)).toBe(true);
+    expect(rows[0].x1 - rows[0].x0).toBeCloseTo(6 - 0.7);
+    expect(rows[0].y1 - rows[0].y0).toBeCloseTo(1.5);
+    expect(axisOf(rowsGarden)).toBe('x');
+    expect(axisOf({ ...rowsGarden, ground: 'raised', across: true })).toBe('x');
+    expect(axisOf({ ...rowsGarden, ground: 'raised' })).toBe('y');
+    expect(axisOf({ ...rowsGarden, across: true })).toBe('y');
+  });
+
+  it('puts the tallest crop at the true north end, whichever way the plot faces', () => {
+    expect(northness({}, 0, 1)).toBeCloseTo(-1);
+    expect(northness({ north: 90 }, 1, 0)).toBeCloseTo(-1); // top faces east: north is left
+    expect(northness({ north: 180 }, 0, 1)).toBeCloseTo(1); // top faces south
+    const g: Garden = { width: 2, length: 4.5, shape: 'rect', north: 180 };
+    const plan = autoPlan(layout(g), status, g.north);
+    const [south, north] = plan.sort((a, z) => a.y0 - z.y0);
+    expect(PLANT_LOOK[north.crop!].height).toBeGreaterThanOrEqual(
+      PLANT_LOOK[south.crop!].height
+    );
+    // The shade note follows true north too: with the top facing south, the
+    // sweetcorn at the top is on the sunny side of the lettuce, and shades it.
+    const pair: Section[] = [
+      { ...plan[0], crop: 'sweetcorn' },
+      { ...plan[1], crop: 'lettuce' },
+    ];
+    expect(notes(pair, 1, 180).map(n => n.key)).toEqual(['shade']);
+    expect(notes(pair, 1, 0).map(n => n.key)).toEqual([]);
+  });
+
+  it('merges a section with its neighbour and changes its length', () => {
+    const g: Garden = { width: 2, length: 4.5, shape: 'rect' };
+    const beds = layout(g).map((s, i) => ({
+      ...s,
+      crop: i ? 'kale' : 'lettuce',
+    }));
+    const one = merge(beds, 0, 1, 'y');
+    expect(one).toHaveLength(1);
+    expect(one[0]).toMatchObject({
+      crop: 'lettuce',
+      part: 0,
+      parts: 1,
+      y0: beds[0].y0,
+      y1: beds[1].y1,
+    });
+    const longer = lengthen(beds, 0, 0.3, 'y');
+    expect(longer[0].y1 - longer[0].y0).toBeCloseTo(
+      beds[0].y1 - beds[0].y0 + 0.3
+    );
+    expect(longer[1].y0).toBeCloseTo(longer[0].y1);
+    const most = lengthen(beds, 0, 5, 'y');
+    expect(most[1].y1 - most[1].y0).toBeCloseTo(0.3); // never shorter than 30 cm
+    const last = lengthen(beds, 1, 0.2, 'y'); // the last section takes from the one before
+    expect(last[1].y0).toBeCloseTo(beds[1].y0 - 0.2);
+    const across = layout({
+      width: 4.5,
+      length: 2,
+      shape: 'rect',
+      across: true,
+    });
+    const halves = split(across, 0, 'x');
+    expect(halves[0].x1).toBeCloseTo((across[0].x0 + across[0].x1) / 2);
+    expect(halves[0].y0).toBeCloseTo(across[0].y0);
+  });
+
+  it('deletes a bed to plain earth, puts it back, and keeps the plan through a resize', () => {
+    const g: Garden = { width: 6, length: 4.5, shape: 'rect' };
+    const plan = { garden: g, sections: autoPlan(layout(g), status) };
+    const cut = removeBed(plan, 1);
+    expect(new Set(cut.sections.map(s => s.bed))).toEqual(new Set([0, 1]));
+    expect(cut.bare).toHaveLength(1);
+    const back = restoreBed(cut, 0);
+    expect(back.bare).toHaveLength(0);
+    expect(new Set(back.sections.map(s => s.bed)).size).toBe(3);
+    const locked = {
+      ...plan,
+      sections: plan.sections.map((s, i) =>
+        i === 0 ? { ...s, crop: 'asparagus', locked: true } : s
+      ),
+    };
+    expect(autoPlan(locked.sections, status)[0].crop).toBe('asparagus');
+    const wider = reshape(locked, { ...g, width: 7.5 }, status);
+    expect(wider.sections.find(s => s.locked)?.crop).toBe('asparagus');
+    expect(wider.sections.every(s => s.crop)).toBe(true);
+    // A deleted bed stays deleted through a resize.
+    const after = reshape(cut, { ...g, length: 5 }, status);
+    expect(after.bare).toHaveLength(1);
+    expect(new Set(after.sections.map(s => s.bed)).size).toBe(2);
   });
 });
