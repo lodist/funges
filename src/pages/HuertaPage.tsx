@@ -1,4 +1,5 @@
 import { useEffect, useState, type ComponentType, type ReactNode } from 'react';
+import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
 import { CropSheet } from '@/components/CropSheet';
@@ -14,11 +15,14 @@ import {
   SAMPLE_ADVICE,
   type Crop,
   type CropKind,
+  type CropNeeds,
   type CropStatus,
   type PlaceAdvice,
 } from '@/lib/huerta';
+import { gardenWeek } from '@/lib/garden-week';
 import {
   fetchAdvice,
+  fetchNeeds,
   huertaApiConfigured,
   savedPlace,
   savePlace,
@@ -33,9 +37,11 @@ import {
   Moon,
   Navigation,
   Snowflake,
+  Sprout,
   Sun,
   Thermometer,
 } from '@/lib/icons';
+import { loadPlan } from '@/lib/planner';
 import { cn } from '@/lib/utils';
 
 const WAITING: CropStatus[] = [
@@ -304,6 +310,8 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
     <>
       <Week advice={advice} />
 
+      <ToDo advice={advice} />
+
       <CategoryChips
         chips={KINDS.map(value => ({
           value,
@@ -354,6 +362,138 @@ const dayOfYear = (day: number, language: string) =>
   new Intl.DateTimeFormat(language, { day: 'numeric', month: 'long' }).format(
     new Date(2026, 0, day)
   );
+
+/** "To do this week": what the visitor's planted crops need, from the
+ *  forecast and their plan. Without a plan, a pointer to the planner. */
+function ToDo({ advice }: { advice: PlaceAdvice }) {
+  const { t, i18n } = useTranslation('huerta');
+  const [plan] = useState(() => loadPlan());
+  const [needs, setNeeds] = useState<Record<string, CropNeeds>>({});
+  useEffect(() => {
+    if (!huertaApiConfigured || !plan) return;
+    let live = true;
+    fetchNeeds()
+      .then(n => live && setNeeds(n))
+      .catch(() => {}); // frost reminders wait for the crops' frost classes
+    return () => {
+      live = false;
+    };
+  }, [plan]);
+
+  if (!plan)
+    return (
+      <p className='mt-6 text-sm text-muted-foreground'>
+        {t('week.todo.noPlan')}{' '}
+        <Link
+          to='/huerta/planner'
+          className='font-medium text-primary-text underline underline-offset-4'
+        >
+          {t('week.todo.openPlanner')}
+        </Link>
+      </p>
+    );
+
+  const tasks = gardenWeek(
+    plan,
+    advice,
+    needs,
+    new Date().toLocaleDateString('sv')
+  );
+  const names = (ids: string[]) => ids.map(id => t(`crops.${id}`)).join(', ');
+  return (
+    <section className='mt-10'>
+      <h2 className='mb-4 text-xl font-semibold'>{t('week.todo.title')}</h2>
+      {tasks.length === 0 ? (
+        <p className='text-muted-foreground'>{t('week.todo.nothing')}</p>
+      ) : (
+        <ul className='flex flex-col gap-3'>
+          {tasks.map(task => {
+            const [Icon, title, text, from] =
+              task.kind === 'frost'
+                ? [
+                    Snowflake,
+                    t(`week.todo.frost.${task.level}`),
+                    t('week.todo.frost.text', { crops: names(task.crops) }),
+                    'forecast',
+                  ]
+                : task.kind === 'laterFrost'
+                  ? [
+                      Snowflake,
+                      t('week.todo.laterFrost.title', {
+                        night: weekday(task.night, i18n.language),
+                      }),
+                      t('week.todo.laterFrost.text', {
+                        crops: names(task.crops),
+                      }),
+                      'forecast',
+                    ]
+                  : task.kind === 'water'
+                    ? [
+                        Droplets,
+                        t('week.todo.water.title', { mm: task.mm }),
+                        t('week.todo.water.text'),
+                        'forecast',
+                      ]
+                    : task.kind === 'rain'
+                      ? [
+                          CloudRain,
+                          t('week.todo.rain.title', { mm: task.mm }),
+                          t('week.todo.rain.text'),
+                          'forecast',
+                        ]
+                      : task.kind === 'plantNow'
+                        ? [
+                            Sprout,
+                            t('week.todo.plantNow.title'),
+                            names(task.crops),
+                            'plan',
+                          ]
+                        : [
+                            null,
+                            t('week.todo.sowAgain.title', {
+                              crop: t(`crops.${task.crop}`),
+                            }),
+                            t('week.todo.sowAgain.text', { weeks: task.weeks }),
+                            'plan',
+                          ];
+            return (
+              <li
+                key={task.kind + ('crop' in task ? task.crop : '')}
+                className='grid grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-4 rounded-card bg-card p-3 elevation-raised sm:grid-cols-[2.75rem_minmax(0,1fr)_auto]'
+              >
+                {Icon ? (
+                  <span className='grid size-11 place-items-center rounded-lg bg-muted text-primary-text'>
+                    <Icon className='size-5' />
+                  </span>
+                ) : (
+                  <img
+                    src={image(`crops/${'crop' in task ? task.crop : ''}`)}
+                    alt=''
+                    className='size-11 rounded-lg object-cover'
+                  />
+                )}
+                <span className='min-w-0'>
+                  <span className='block font-semibold text-foreground'>
+                    {title}
+                  </span>
+                  <span className='block text-sm text-muted-foreground'>
+                    {text}
+                  </span>
+                </span>
+                <Badge
+                  variant='secondary'
+                  className='col-start-2 justify-self-start sm:col-start-auto'
+                >
+                  {t(`week.todo.from.${from}`)}
+                </Badge>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </section>
+  );
+}
 
 /** The week on the band: the frost line, then soil, nights, rain, watering,
  *  and under them this place's frost dates. */

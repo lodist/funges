@@ -37,6 +37,40 @@
     "later": {
       "frost": "Frost possible later this week: {{night}} night",
       "ground_frost": "Ground frost possible later this week: {{night}} night"
+    },
+    "todo": {
+      "title": "To do this week",
+      "frost": {
+        "frost": "Frost in the next 3 days",
+        "ground_frost": "Ground frost in the next 3 days",
+        "text": "Cover {{crops}} on the cold nights."
+      },
+      "laterFrost": {
+        "text": "Have covers ready for {{crops}}.",
+        "title": "Frost possible {{night}} night"
+      },
+      "water": {
+        "title": "Water about {{mm}} L/m² this week",
+        "text": "The rain won't make up for what sun and wind take. Two good soakings beat a daily sprinkle."
+      },
+      "rain": {
+        "title": "Rain this week, about {{mm}} mm",
+        "text": "No need to water the beds."
+      },
+      "plantNow": {
+        "title": "From your plan, ready to go in"
+      },
+      "sowAgain": {
+        "title": "{{crop}}: sow another row",
+        "text": "The last went in {{weeks}} weeks ago. Sowing again keeps the harvest coming."
+      },
+      "from": {
+        "forecast": "From the forecast",
+        "plan": "From your plan"
+      },
+      "nothing": "Nothing your garden needs from you this week.",
+      "noPlan": "Plan your garden and mark what you plant, and this page will list what it needs each week.",
+      "openPlanner": "Open the garden planner"
     }
   },
   "units": {

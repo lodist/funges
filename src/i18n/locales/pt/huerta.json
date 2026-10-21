@@ -37,6 +37,40 @@
     "later": {
       "frost": "Possível geada mais adiante na semana: na noite de {{night}}",
       "ground_frost": "Possível geada no solo mais adiante na semana: na noite de {{night}}"
+    },
+    "todo": {
+      "title": "Para fazer esta semana",
+      "frost": {
+        "frost": "Geada nos próximos 3 dias",
+        "ground_frost": "Geada no solo nos próximos 3 dias",
+        "text": "Cubra {{crops}} nas noites frias."
+      },
+      "laterFrost": {
+        "text": "Tenha cobertura à mão para {{crops}}.",
+        "title": "Possível geada na noite de {{night}}"
+      },
+      "water": {
+        "title": "Regue cerca de {{mm}} L/m² esta semana",
+        "text": "A chuva não repõe o que o sol e o vento levam. Duas boas regas valem mais que um pouco todo dia."
+      },
+      "rain": {
+        "title": "Chuva esta semana, cerca de {{mm}} mm",
+        "text": "Não precisa regar os canteiros."
+      },
+      "plantNow": {
+        "title": "Do seu plano, prontos para ir para a terra"
+      },
+      "sowAgain": {
+        "title": "{{crop}}: semeie outra fileira",
+        "text": "A última foi há {{weeks}} semanas. Semear de novo mantém a colheita."
+      },
+      "from": {
+        "forecast": "Pela previsão",
+        "plan": "Pelo seu plano"
+      },
+      "nothing": "Esta semana sua horta não precisa de nada.",
+      "noPlan": "Planeje sua horta e marque o que planta, e esta página dirá o que ela precisa a cada semana.",
+      "openPlanner": "Abrir o planejador"
     }
   },
   "units": {
