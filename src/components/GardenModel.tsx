@@ -41,6 +41,13 @@ const GROUND = (name: string) => huertaImage(`ground/${name}`);
 const STAGED: Record<string, number> = { tomato: 1.5, cabbage: 1, lettuce: 1 };
 /** Real-world size of one texture tile, metres. */
 const TILE = { soil: 0.8, gravel: 0.6 };
+/** A bed's boards (thickness) and its soil (height, under the rim), and the
+ *  block of earth the plot is cut from (depth, and its sides' colours under
+ *  the texture), metres. */
+const BOARD = 0.04;
+const SOIL_Z = BED_HEIGHT - 0.03;
+const EARTH = 0.3;
+const EARTH_SIDE = ['#5c4636', '#6b5443'];
 
 export type Stage = 'seedling' | 'young' | 'grown';
 
@@ -168,9 +175,52 @@ export function GardenModel({
       </g>
     );
   };
-  // The textures laid on the model's planes: the ground, and a bed's two
-  // visible sides (each its own tiling, so the boards meet the bed's foot).
+  // The textures laid on the model's planes. A wall is a vertical face at
+  // a = c (running along b) or b = c (along a), its texture tiled from z = 0,
+  // so boards meet the bed's foot and the earth's gravel the ground; a tile
+  // is `long` times as long as it is high.
   const flat = `matrix(${COS} ${SIN} ${-COS} ${SIN} 0 0)`;
+  const along = `matrix(${-COS} ${SIN} ${COS} ${SIN} 0 0)`;
+  const wall = (
+    key: string,
+    on: 'a' | 'b',
+    c: number,
+    [from, to]: [number, number],
+    [z0, z1]: [number, number],
+    name: string,
+    tile: number,
+    shade: number,
+    long = 2
+  ) => {
+    const face =
+      on === 'a'
+        ? pts([V(c, from, z0), V(c, to, z0), V(c, to, z1), V(c, from, z1)])
+        : pts([V(from, c, z0), V(to, c, z0), V(to, c, z1), V(from, c, z1)]);
+    const transform =
+      on === 'a'
+        ? `matrix(${-COS} ${SIN} 0 1 ${c * COS * S} ${c * SIN * S})`
+        : `matrix(${COS} ${SIN} 0 1 ${-c * COS * S} ${c * SIN * S})`;
+    return [
+      <defs key={`${key}-d`}>
+        <Texture
+          id={key}
+          name={name}
+          size={tile * S}
+          width={long * tile * S}
+          transform={transform}
+        />
+      </defs>,
+      <polygon key={key} points={face} fill={`url(#${key})`} />,
+      <polygon
+        key={`${key}-s`}
+        points={face}
+        fill={`rgba(40,26,14,${shade})`}
+      />,
+    ];
+  };
+  // A raised bed: boards BOARD thick, the soil at SOIL_Z inside them, the far
+  // boards' inner faces and their shadow on the soil; sun from the upper left,
+  // as in the plants' photos.
   const skin = (
     x0: number,
     y0: number,
@@ -184,38 +234,108 @@ export function GardenModel({
       A1 = Math.max(a0, a1),
       B0 = Math.min(b0, b1),
       B1 = Math.max(b0, b1);
-    const h = BED_HEIGHT;
-    const right = pts([V(A1, B0, 0), V(A1, B1, 0), V(A1, B1, h), V(A1, B0, h)]);
+    const h = BED_HEIGHT,
+      t = BOARD,
+      g = SOIL_Z;
+    const quad = (k: string, fill: string, ps: [number, number][]) => (
+      <polygon key={k} points={pts(ps)} fill={fill} />
+    );
     return (
       <g key={key} pointerEvents='none'>
-        <defs>
-          <Texture
-            id={`${key}-r`}
-            name='timber'
-            size={h * S}
-            transform={`matrix(${-COS} ${SIN} 0 1 ${A1 * COS * S} ${A1 * SIN * S})`}
-          />
-          <Texture
-            id={`${key}-l`}
-            name='timber'
-            size={h * S}
-            transform={`matrix(${COS} ${SIN} 0 1 ${-B1 * COS * S} ${B1 * SIN * S})`}
-          />
-        </defs>
-        <polygon points={right} fill={`url(#${key}-r)`} />
-        <polygon points={right} fill='rgba(50,32,18,0.2)' />
-        <polygon
-          points={pts([V(A0, B1, 0), V(A1, B1, 0), V(A1, B1, h), V(A0, B1, h)])}
-          fill={`url(#${key}-l)`}
-        />
-        <polygon
-          points={pts([V(A0, B0, h), V(A1, B0, h), V(A1, B1, h), V(A0, B1, h)])}
-          fill='url(#iso-soil)'
-          stroke={TIMBER[2]}
-          strokeWidth={3}
-          strokeLinejoin='round'
-        />
+        {wall(`${key}-r`, 'a', A1, [B0, B1], [0, h], 'boards', h, 0.3, 4)}
+        {wall(`${key}-l`, 'b', B1, [A0, A1], [0, h], 'boards', h, 0.04, 4)}
+        {quad('soil', 'url(#iso-soil)', [
+          V(A0 + t, B0 + t, g),
+          V(A1 - t, B0 + t, g),
+          V(A1 - t, B1 - t, g),
+          V(A0 + t, B1 - t, g),
+        ])}
+        {wall(
+          `${key}-ia`,
+          'a',
+          A0 + t,
+          [B0 + t, B1 - t],
+          [g, h],
+          'boards',
+          h,
+          0.45,
+          4
+        )}
+        {wall(
+          `${key}-ib`,
+          'b',
+          B0 + t,
+          [A0 + t, A1 - t],
+          [g, h],
+          'boards',
+          h,
+          0.2,
+          4
+        )}
+        {quad('wall-shadow', 'rgba(20,12,6,0.35)', [
+          V(A0 + t, B0 + t, g),
+          V(A0 + t + 0.06, B0 + t + 0.06, g),
+          V(A0 + t + 0.06, B1 - t, g),
+          V(A0 + t, B1 - t, g),
+        ])}
+        {quad('top-n', 'url(#iso-board-a)', [
+          V(A0, B0, h),
+          V(A1, B0, h),
+          V(A1, B0 + t, h),
+          V(A0, B0 + t, h),
+        ])}
+        {quad('top-s', 'url(#iso-board-a)', [
+          V(A0, B1 - t, h),
+          V(A1, B1 - t, h),
+          V(A1, B1, h),
+          V(A0, B1, h),
+        ])}
+        {quad('top-w', 'url(#iso-board-b)', [
+          V(A0, B0 + t, h),
+          V(A0 + t, B0 + t, h),
+          V(A0 + t, B1 - t, h),
+          V(A0, B1 - t, h),
+        ])}
+        {quad('top-e', 'url(#iso-board-b)', [
+          V(A1 - t, B0 + t, h),
+          V(A1, B0 + t, h),
+          V(A1, B1 - t, h),
+          V(A1 - t, B1 - t, h),
+        ])}
       </g>
+    );
+  };
+  // A bed's soft shadow on the gravel, away from the sun.
+  const shadow = (
+    x0: number,
+    y0: number,
+    x1: number,
+    y1: number,
+    key: string
+  ) => {
+    const [a0, b0] = turn(x0, y0),
+      [a1, b1] = turn(x1, y1);
+    const A0 = Math.min(a0, a1),
+      A1 = Math.max(a0, a1),
+      B0 = Math.min(b0, b1),
+      B1 = Math.max(b0, b1);
+    const da = BED_HEIGHT * 1.6,
+      db = BED_HEIGHT * 0.45;
+    return (
+      <polygon
+        key={key}
+        points={pts([
+          V(A0, B0, 0),
+          V(A1, B0, 0),
+          V(A1 + da, B0 + db, 0),
+          V(A1 + da, B1 + db, 0),
+          V(A0 + da, B1 + db, 0),
+          V(A0, B1, 0),
+        ])}
+        fill='rgba(30,20,10,0.42)'
+        filter='url(#iso-blur)'
+        pointerEvents='none'
+      />
     );
   };
   const top = (s: Section) =>
@@ -245,24 +365,66 @@ export function GardenModel({
         size={TILE.gravel * S}
         transform={flat}
       />
+      <Texture
+        id='iso-board-a'
+        name='timber'
+        size={BOARD * 3 * S}
+        transform={flat}
+      />
+      <Texture
+        id='iso-board-b'
+        name='timber'
+        size={BOARD * 3 * S}
+        transform={along}
+      />
+      <filter id='iso-blur' x='-10%' y='-10%' width='120%' height='120%'>
+        <feGaussianBlur stdDeviation={3} />
+      </filter>
     </defs>,
   ];
-  regs.forEach((r, i) =>
+  // The plot as a block of earth cut out of the ground.
+  regs.forEach((r, i) => {
+    const [a0, b0] = turn(r[0], r[1]),
+      [a1, b1] = turn(r[2], r[3]);
+    const A0 = Math.min(a0, a1),
+      A1 = Math.max(a0, a1),
+      B0 = Math.min(b0, b1),
+      B1 = Math.max(b0, b1);
     drawn.push(
       box(
         r[0],
         r[1],
         r[2],
         r[3],
-        -0.12,
+        -EARTH,
         0,
         PLOT,
-        '#ddd4c7',
-        '#d0c6b7',
+        EARTH_SIDE[0],
+        EARTH_SIDE[1],
         `slab${i}`
+      ),
+      ...wall(
+        `earth${i}-r`,
+        'a',
+        A1,
+        [B0, B1],
+        [-EARTH, 0],
+        'earth',
+        EARTH,
+        0.3
+      ),
+      ...wall(
+        `earth${i}-l`,
+        'b',
+        B1,
+        [A0, A1],
+        [-EARTH, 0],
+        'earth',
+        EARTH,
+        0.05
       )
-    )
-  );
+    );
+  });
   regs.forEach(r => {
     const ground = pts([
       P(r[0], r[1]),
@@ -279,6 +441,9 @@ export function GardenModel({
       />
     );
   });
+  beds.forEach((bed, bi) =>
+    drawn.push(shadow(bed.x0, bed.y0, bed.x1, bed.y1, `shadow${bi}`))
+  );
   let tallest = 0;
   beds
     .sort(
@@ -298,8 +463,7 @@ export function GardenModel({
           SOIL,
           TIMBER[0],
           TIMBER[1],
-          `bed${bi}`,
-          TIMBER[2]
+          `bed${bi}`
         ),
         skin(bed.x0, bed.y0, bed.x1, bed.y1, `skin${bi}`)
       );
@@ -323,7 +487,7 @@ export function GardenModel({
         const opacity = s.planted ? 1 : 0.6;
         if (!f)
           carpet(s, i, look).forEach(([x, y, h, flower]) => {
-            const [bx, by] = P(x, y, BED_HEIGHT);
+            const [bx, by] = P(x, y, SOIL_Z);
             plants.push({
               d: depth(x, y),
               node: (
@@ -368,20 +532,20 @@ export function GardenModel({
                     <Staged
                       id={crop}
                       stage={s.planted && stage ? stage(s) : 'grown'}
-                      at={P(x, y, BED_HEIGHT)}
+                      at={P(x, y, SOIL_Z)}
                       seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
                       pop={fresh === i ? k : null}
                     />
                   ) : PHOTO.has(crop) ? (
                     <Photo
                       id={crop}
-                      at={P(x, y, BED_HEIGHT)}
+                      at={P(x, y, SOIL_Z)}
                       d={Math.min(f.spacing, f.across)}
                     />
                   ) : (
                     <Plant
                       look={look}
-                      at={P(x, y, BED_HEIGHT)}
+                      at={P(x, y, SOIL_Z)}
                       r={Math.min(f.spacing, f.across) / 2}
                     />
                   )}
@@ -515,22 +679,29 @@ function Texture({
   id,
   name,
   size,
+  width = size,
   transform,
 }: {
   id: string;
   name: string;
   size: number;
+  width?: number;
   transform?: string;
 }) {
   return (
     <pattern
       id={id}
       patternUnits='userSpaceOnUse'
-      width={size}
+      width={width}
       height={size}
       patternTransform={transform}
     >
-      <image href={GROUND(name)} width={size} height={size} />
+      <image
+        href={GROUND(name)}
+        width={width}
+        height={size}
+        preserveAspectRatio='none'
+      />
     </pattern>
   );
 }
