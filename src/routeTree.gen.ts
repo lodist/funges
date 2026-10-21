@@ -24,6 +24,7 @@ import { Route as IdentifyRouteImport } from './routes/identify'
 import { Route as HuertaRouteImport } from './routes/huerta'
 import { Route as DataRouteImport } from './routes/data'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HuertaPlannerRouteImport } from './routes/huerta_.planner'
 import { Route as HuertaMapRouteImport } from './routes/huerta_.map'
 
 const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
@@ -101,6 +102,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HuertaPlannerRoute = HuertaPlannerRouteImport.update({
+  id: '/huerta_/planner',
+  path: '/huerta/planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HuertaMapRoute = HuertaMapRouteImport.update({
   id: '/huerta_/map',
   path: '/huerta/map',
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/termsuse': typeof TermsuseRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/huerta/map': typeof HuertaMapRoute
+  '/huerta/planner': typeof HuertaPlannerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/termsuse': typeof TermsuseRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/huerta/map': typeof HuertaMapRoute
+  '/huerta/planner': typeof HuertaPlannerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -161,6 +169,7 @@ export interface FileRoutesById {
   '/termsuse': typeof TermsuseRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/huerta_/map': typeof HuertaMapRoute
+  '/huerta_/planner': typeof HuertaPlannerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -181,6 +190,7 @@ export interface FileRouteTypes {
     | '/termsuse'
     | '/worth-foraging-now'
     | '/huerta/map'
+    | '/huerta/planner'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -199,6 +209,7 @@ export interface FileRouteTypes {
     | '/termsuse'
     | '/worth-foraging-now'
     | '/huerta/map'
+    | '/huerta/planner'
   id:
     | '__root__'
     | '/'
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/termsuse'
     | '/worth-foraging-now'
     | '/huerta_/map'
+    | '/huerta_/planner'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -236,6 +248,7 @@ export interface RootRouteChildren {
   TermsuseRoute: typeof TermsuseRoute
   WorthForagingNowRoute: typeof WorthForagingNowRoute
   HuertaMapRoute: typeof HuertaMapRoute
+  HuertaPlannerRoute: typeof HuertaPlannerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -345,6 +358,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/huerta_/planner': {
+      id: '/huerta_/planner'
+      path: '/huerta/planner'
+      fullPath: '/huerta/planner'
+      preLoaderRoute: typeof HuertaPlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/huerta_/map': {
       id: '/huerta_/map'
       path: '/huerta/map'
@@ -372,6 +392,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsuseRoute: TermsuseRoute,
   WorthForagingNowRoute: WorthForagingNowRoute,
   HuertaMapRoute: HuertaMapRoute,
+  HuertaPlannerRoute: HuertaPlannerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

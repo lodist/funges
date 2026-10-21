@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link, useLocation } from '@tanstack/react-router';
 import {
+  LayoutGrid,
   Map,
   Database,
   ChefHat,
@@ -54,6 +55,12 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
       url: `${basePath}huerta`,
       icon: Sprout,
       isActive: true,
+    },
+    {
+      title: t('huertaPlanner'),
+      url: `${basePath}huerta/planner`,
+      icon: LayoutGrid,
+      isActive: false,
     },
     {
       title: t('huertaMap'),

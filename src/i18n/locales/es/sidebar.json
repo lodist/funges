@@ -28,5 +28,6 @@
       "tagline": "Tu huerto, esta semana"
     }
   },
-  "huertaMap": "Mapa del huerto"
+  "huertaMap": "Mapa del huerto",
+  "huertaPlanner": "Planificador del huerto"
 }

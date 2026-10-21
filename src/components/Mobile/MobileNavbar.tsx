@@ -1,5 +1,6 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import {
+  LayoutGrid,
   Map,
   CalendarRange,
   ChefHat,
@@ -48,6 +49,7 @@ const items = [
 // Huerta's own pages; the hub (Settings) is shared and holds the switcher.
 const huertaItems: typeof items = [
   { url: `${basePath}huerta`, icon: Sprout },
+  { url: `${basePath}huerta/planner`, icon: LayoutGrid },
   { url: `${basePath}huerta/map`, icon: Map },
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];
