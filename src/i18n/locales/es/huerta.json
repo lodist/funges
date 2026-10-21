@@ -238,7 +238,8 @@
       "third_year": "Se cortan turiones desde la tercera primavera",
       "perennial": "Vuelve cada año"
     },
-    "source": "Datos de cultivo: RHS, UC ANR y guías de siembra de casas de semillas."
+    "source": "Datos de cultivo: RHS, UC ANR y guías de siembra de casas de semillas.",
+    "year": "Su año en {{place}}"
   },
   "map": {
     "title": "Mapa del huerto",
@@ -383,5 +384,18 @@
     "split": "Dividir esta parte en dos",
     "footnote": "Siembra y plantación a {{date}}. Tu plan se guarda en este dispositivo.",
     "sownOn": "Sembrado el {{date}}"
+  },
+  "year": {
+    "title": "Tu año",
+    "description": "Cuándo se siembra, se planta y se cosecha cada cultivo en tu zona, a partir de su clima.",
+    "around": "En {{place}}, en un año normal.",
+    "noPlace": "Elige tu lugar para ver su año.",
+    "crop": "Cultivo",
+    "sow": "Siembra o plantación",
+    "harvest": "Cosecha o flor",
+    "thisMonth": "Este mes ({{month}})",
+    "notHere": "No al aire libre aquí: {{crops}}.",
+    "backIn": "Vuelve en {{month}}",
+    "note": "Los meses de siembra siguen las mismas reglas que el consejo de cada semana, en un año normal en tu zona. Los meses de cosecha son aproximados."
   }
 }

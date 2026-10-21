@@ -238,7 +238,8 @@
       "third_year": "Cut spears from its third spring",
       "perennial": "Comes back every year"
     },
-    "source": "Growing facts: RHS, UC ANR and seed-company sowing guides."
+    "source": "Growing facts: RHS, UC ANR and seed-company sowing guides.",
+    "year": "Its year around {{place}}"
   },
   "map": {
     "title": "Garden map",
@@ -383,5 +384,18 @@
     "split": "Split this section in two",
     "footnote": "Sowing and planting as of {{date}}. Your plan stays on this device.",
     "sownOn": "Sown on {{date}}"
+  },
+  "year": {
+    "title": "Your year",
+    "description": "When each crop is sown, planted and harvested at your own place, worked out from its climate.",
+    "around": "Around {{place}}, in a typical year.",
+    "noPlace": "Choose your place to see its year.",
+    "crop": "Crop",
+    "sow": "Sow or plant",
+    "harvest": "Harvest or flowers",
+    "thisMonth": "This month ({{month}})",
+    "notHere": "Not outdoors here: {{crops}}.",
+    "backIn": "Back in {{month}}",
+    "note": "Sowing months follow the same rules as each week's advice, over a typical year at your place. Harvest months are approximate."
   }
 }

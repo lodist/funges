@@ -46,6 +46,7 @@ import {
   type Section,
 } from '@/lib/planner';
 import { cn } from '@/lib/utils';
+import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
 
 const START: Garden = { width: 6, length: 4.5, shape: 'rect' };
 const CROP = Object.fromEntries(CROPS.map(crop => [crop.id, crop]));
@@ -71,6 +72,7 @@ export default function HuertaPlannerPage() {
   const [plan, setPlan] = useState<Plan | null>(() => loadPlan());
   const [view, setView] = useState<ModelView>({ mode: '3d', turn: 0 });
   const [sel, setSel] = useState(0);
+  const year = useHuertaYear();
   // The visitor's own advice, when they chose a place; else the sample at once.
   const [settled, setSettled] = useState(
     () => !(huertaApiConfigured && savedPlace())
@@ -308,6 +310,7 @@ export default function HuertaPlannerPage() {
                   index={plan.sections.indexOf(s)}
                   sections={plan.sections}
                   advice={advice}
+                  harvest={s.crop ? year?.crops[s.crop]?.harvest : undefined}
                   need={s.crop ? needs[s.crop] : undefined}
                   count={count}
                   onSwap={crop =>
@@ -425,6 +428,7 @@ function SectionPanel({
   sections,
   advice,
   need,
+  harvest,
   count,
   onSwap,
   onPlanted,
@@ -435,6 +439,8 @@ function SectionPanel({
   sections: Section[];
   advice: PlaceAdvice;
   need?: CropNeeds;
+  /** The crop's harvest months at the place (bit 0 = January), when known. */
+  harvest?: number;
   count: (s: Section) => string;
   onSwap: (crop: string) => void;
   onPlanted: (day: string | undefined) => void;
@@ -515,11 +521,17 @@ function SectionPanel({
             <dd className='text-foreground'>
               {crop.note
                 ? t(`sheet.ready.${crop.note}`)
-                : due?.key === 'readyNextSpring'
-                  ? t('planner.readyNextSpring')
-                  : due
-                    ? t('planner.readyAround', { month: month(due.month) })
-                    : '–'}
+                : harvest
+                  ? t('planner.readyAround', {
+                      month: month(
+                        nextMonth(harvest, new Date().getMonth()) ?? 0
+                      ),
+                    })
+                  : due?.key === 'readyNextSpring'
+                    ? t('planner.readyNextSpring')
+                    : due
+                      ? t('planner.readyAround', { month: month(due.month) })
+                      : '–'}
             </dd>
             <dt className='text-muted-foreground'>{t('planner.nextYear')}</dt>
             <dd className='text-foreground'>

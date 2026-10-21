@@ -238,7 +238,8 @@
       "third_year": "Cortam-se brotos a partir da terceira primavera",
       "perennial": "Volta todo ano"
     },
-    "source": "Dados de cultivo: RHS, UC ANR e guias de semeadura das empresas de sementes."
+    "source": "Dados de cultivo: RHS, UC ANR e guias de semeadura das empresas de sementes.",
+    "year": "O ano dele em {{place}}"
   },
   "map": {
     "title": "Mapa da horta",
@@ -383,5 +384,18 @@
     "split": "Dividir esta parte em duas",
     "footnote": "Semeadura e plantio em {{date}}. Seu plano fica neste dispositivo.",
     "sownOn": "Semeado em {{date}}"
+  },
+  "year": {
+    "title": "Seu ano",
+    "description": "Quando cada cultura é semeada, plantada e colhida no seu lugar, calculado a partir do seu clima.",
+    "around": "Em {{place}}, num ano típico.",
+    "noPlace": "Escolha seu lugar para ver o ano dele.",
+    "crop": "Cultura",
+    "sow": "Semear ou plantar",
+    "harvest": "Colheita ou flor",
+    "thisMonth": "Este mês ({{month}})",
+    "notHere": "Não ao ar livre aqui: {{crops}}.",
+    "backIn": "Volta em {{month}}",
+    "note": "Os meses de semeadura seguem as mesmas regras do conselho de cada semana, num ano típico no seu lugar. Os meses de colheita são aproximados."
   }
 }

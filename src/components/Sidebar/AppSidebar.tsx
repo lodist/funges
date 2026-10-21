@@ -57,6 +57,12 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
       isActive: true,
     },
     {
+      title: t('huertaYear'),
+      url: `${basePath}huerta/year`,
+      icon: CalendarRange,
+      isActive: false,
+    },
+    {
       title: t('huertaPlanner'),
       url: `${basePath}huerta/planner`,
       icon: LayoutGrid,

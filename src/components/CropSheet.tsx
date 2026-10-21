@@ -18,10 +18,14 @@ import {
 import { fetchNeeds, huertaApiConfigured } from '@/lib/huerta-api';
 import { Check, Clock } from '@/lib/icons';
 import { cn } from '@/lib/utils';
+import { MonthCell } from '@/components/MonthCell';
+import type { CropYear } from '@/lib/huerta-api';
 
 interface CropSheetProps {
   crop: Crop | null;
   advice: PlaceAdvice;
+  /** Its months at the place, when known. */
+  year?: CropYear;
   /** The crop's photo, as the card shows it. */
   image: (crop: Crop) => string;
   onClose: () => void;
@@ -29,10 +33,18 @@ interface CropSheetProps {
 
 /** One crop at this place: why it is or isn't for this week, and how to grow
  *  it. Opened from its card, like a species sheet in Terra. */
-export function CropSheet({ crop, advice, image, onClose }: CropSheetProps) {
+export function CropSheet({
+  crop,
+  advice,
+  year,
+  image,
+  onClose,
+}: CropSheetProps) {
   return (
     <Dialog open={crop !== null} onOpenChange={open => !open && onClose()}>
-      {crop ? <SheetBody crop={crop} advice={advice} image={image} /> : null}
+      {crop ? (
+        <SheetBody crop={crop} advice={advice} year={year} image={image} />
+      ) : null}
     </Dialog>
   );
 }
@@ -40,6 +52,7 @@ export function CropSheet({ crop, advice, image, onClose }: CropSheetProps) {
 function SheetBody({
   crop,
   advice,
+  year,
   image,
 }: Omit<CropSheetProps, 'crop' | 'onClose'> & { crop: Crop }) {
   const { t, i18n } = useTranslation('huerta');
@@ -122,9 +135,80 @@ function SheetBody({
           </section>
         </div>
       </div>
+      {year ? <YearStrip year={year} place={advice.place} /> : null}
       <Facts crop={crop} need={need} />
       <p className='text-xs text-muted-foreground'>{t('sheet.source')}</p>
     </DialogContent>
+  );
+}
+
+/** Its year at the place: the species sheet's month strip, sowing dark,
+ *  harvest light, this month ringed. */
+function YearStrip({ year, place }: { year: CropYear; place: string }) {
+  const { t, i18n } = useTranslation('huerta');
+  const thisMonth = new Date().getMonth();
+  const letter = new Intl.DateTimeFormat(i18n.language, { month: 'narrow' });
+  const name = new Intl.DateTimeFormat(i18n.language, { month: 'long' });
+  const said = (mask: number) =>
+    Array.from({ length: 12 }, (_, m) => m)
+      .filter(m => (mask >> m) & 1)
+      .map(m => name.format(new Date(2026, m, 1)))
+      .join(', ');
+  return (
+    <section className='flex flex-col gap-2'>
+      <p className='type-micro text-muted-foreground'>
+        {t('sheet.year', { place })}
+      </p>
+      <ol aria-hidden='true' className='grid grid-cols-12 gap-1'>
+        {Array.from({ length: 12 }, (_, m) => (
+          <li key={m} className='flex flex-col items-center gap-1.5'>
+            <MonthCell
+              sow={Boolean((year.sow >> m) & 1)}
+              harvest={Boolean((year.harvest >> m) & 1)}
+              now={m === thisMonth}
+              className='h-2 rounded-full'
+            />
+            <span
+              className={cn(
+                'text-xs',
+                m === thisMonth
+                  ? 'font-semibold text-foreground'
+                  : 'text-muted-foreground'
+              )}
+            >
+              {letter.format(new Date(2026, m, 1))}
+            </span>
+          </li>
+        ))}
+      </ol>
+      <p className='flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground'>
+        <span className='flex items-center gap-1.5'>
+          <MonthCell
+            sow
+            harvest={false}
+            now={false}
+            className='h-2 w-4 rounded-full'
+          />
+          {t('year.sow')}
+        </span>
+        {year.harvest ? (
+          <span className='flex items-center gap-1.5'>
+            <MonthCell
+              sow={false}
+              harvest
+              now={false}
+              className='h-2 w-4 rounded-full'
+            />
+            {t('year.harvest')}
+          </span>
+        ) : null}
+      </p>
+      {/* The strip is drawn for the eye; the months are said in words. */}
+      <p className='sr-only'>
+        {t('year.sow')}: {said(year.sow)}.{' '}
+        {year.harvest ? `${t('year.harvest')}: ${said(year.harvest)}.` : ''}
+      </p>
+    </section>
   );
 }
 

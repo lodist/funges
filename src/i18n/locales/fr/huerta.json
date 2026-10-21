@@ -238,7 +238,8 @@
       "third_year": "On coupe les turions dès le troisième printemps",
       "perennial": "Revient chaque année"
     },
-    "source": "Données de culture : RHS, UC ANR et guides de semis des semenciers."
+    "source": "Données de culture : RHS, UC ANR et guides de semis des semenciers.",
+    "year": "Son année autour de {{place}}"
   },
   "map": {
     "title": "Carte du potager",
@@ -383,5 +384,18 @@
     "split": "Couper cette partie en deux",
     "footnote": "Semis et plantations au {{date}}. Votre plan reste sur cet appareil.",
     "sownOn": "Semé le {{date}}"
+  },
+  "year": {
+    "title": "Votre année",
+    "description": "Quand chaque culture se sème, se plante et se récolte chez vous, d'après votre climat.",
+    "around": "Autour de {{place}}, une année ordinaire.",
+    "noPlace": "Choisissez votre lieu pour voir son année.",
+    "crop": "Culture",
+    "sow": "Semis ou plantation",
+    "harvest": "Récolte ou floraison",
+    "thisMonth": "Ce mois-ci ({{month}})",
+    "notHere": "Pas en plein air ici : {{crops}}.",
+    "backIn": "De retour en {{month}}",
+    "note": "Les mois de semis suivent les mêmes règles que le conseil de chaque semaine, sur une année ordinaire chez vous. Les mois de récolte sont approximatifs."
   }
 }

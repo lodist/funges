@@ -238,7 +238,8 @@
       "third_year": "Stangen ab dem dritten Frühling stechen",
       "perennial": "Kommt jedes Jahr wieder"
     },
-    "source": "Anbaudaten: RHS, UC ANR und Aussaatanleitungen der Saatgutfirmen."
+    "source": "Anbaudaten: RHS, UC ANR und Aussaatanleitungen der Saatgutfirmen.",
+    "year": "Sein Jahr rund um {{place}}"
   },
   "map": {
     "title": "Gartenkarte",
@@ -383,5 +384,18 @@
     "split": "Diesen Teil zweiteilen",
     "footnote": "Säen und Pflanzen mit Stand {{date}}. Dein Plan bleibt auf diesem Gerät.",
     "sownOn": "Gesät am {{date}}"
+  },
+  "year": {
+    "title": "Dein Jahr",
+    "description": "Wann jede Kultur bei dir gesät, gepflanzt und geerntet wird, berechnet aus deinem Klima.",
+    "around": "Rund um {{place}}, in einem typischen Jahr.",
+    "noPlace": "Wähle deinen Ort, um sein Jahr zu sehen.",
+    "crop": "Kultur",
+    "sow": "Säen oder pflanzen",
+    "harvest": "Ernte oder Blüte",
+    "thisMonth": "Dieser Monat ({{month}})",
+    "notHere": "Hier nicht im Freien: {{crops}}.",
+    "backIn": "Wieder im {{month}}",
+    "note": "Die Saatmonate folgen denselben Regeln wie der Rat jeder Woche, über ein typisches Jahr an deinem Ort. Die Erntemonate sind ungefähr."
   }
 }
