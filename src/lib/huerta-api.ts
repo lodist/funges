@@ -269,25 +269,32 @@ export interface CropYear {
 const YEAR_KEY = 'huerta-year';
 const YEAR_DAYS = 30; // the year only changes when it is rebuilt
 
-/** The nearest place's year: each crop's sowing and harvest months. Kept on
- *  the device for a month; null where Huerta has no place. */
-export async function fetchYear(
-  place: Place
-): Promise<{ place: string; crops: Record<string, CropYear> } | null> {
+/** A place's year: each crop's months, and the 12 monthly mean air
+ *  temperatures (C, January first). */
+export interface PlaceYear {
+  place: string;
+  crops: Record<string, CropYear>;
+  temps?: number[];
+}
+
+/** The nearest place's year. Kept on the device for a month; null where
+ *  Huerta has no place. */
+export async function fetchYear(place: Place): Promise<PlaceYear | null> {
   const lat = rounded(place.lat);
   const lon = rounded(place.lon);
   const kept = read<{
     lat: number;
     lon: number;
     at: number;
-    year: { place: string; crops: Record<string, CropYear> };
+    year: PlaceYear;
   }>(YEAR_KEY);
   if (
     kept &&
     kept.lat === lat &&
     kept.lon === lon &&
     Date.now() - kept.at < YEAR_DAYS * 864e5 &&
-    CROPS.every(crop => crop.id in kept.year.crops)
+    CROPS.every(crop => crop.id in kept.year.crops) &&
+    kept.year.temps
   )
     return kept.year;
   const response = await fetch(url('/v1/year', { lat, lon }));
@@ -295,10 +302,11 @@ export async function fetchYear(
   if (!response.ok) throw new Error(`Huerta year: ${response.status}`);
   const body = (await response.json()) as {
     crops: string[];
-    place: { name: string; months: string };
+    place: { name: string; months: string; temps?: number[] };
   };
-  const year = {
+  const year: PlaceYear = {
     place: body.place.name,
+    temps: body.place.temps,
     crops: Object.fromEntries(
       body.crops.map((id, i) => {
         const code = body.place.months.slice(i * 6, i * 6 + 6);

@@ -299,7 +299,7 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
     <>
       <Week advice={advice} />
 
-      <ToDo advice={advice} />
+      <ToDo advice={advice} year={year} />
 
       <CategoryChips
         chips={KINDS.map(value => ({
@@ -354,8 +354,15 @@ const dayOfYear = (day: number, language: string) =>
   );
 
 /** "To do this week": what the visitor's planted crops need, from the
- *  forecast and their plan. Without a plan, a pointer to the planner. */
-function ToDo({ advice }: { advice: PlaceAdvice }) {
+ *  forecast, their plan and how far each crop has grown. Without a plan, a
+ *  pointer to the planner. */
+function ToDo({
+  advice,
+  year,
+}: {
+  advice: PlaceAdvice;
+  year: ReturnType<typeof useHuertaYear>;
+}) {
   const { t, i18n } = useTranslation('huerta');
   const [plan] = useState(() => loadPlan());
   const [needs, setNeeds] = useState<Record<string, CropNeeds>>({});
@@ -387,7 +394,8 @@ function ToDo({ advice }: { advice: PlaceAdvice }) {
     plan,
     advice,
     needs,
-    new Date().toLocaleDateString('sv')
+    new Date().toLocaleDateString('sv'),
+    year
   );
   const names = (ids: string[]) => ids.map(id => t(`crops.${id}`)).join(', ');
   return (
@@ -438,17 +446,36 @@ function ToDo({ advice }: { advice: PlaceAdvice }) {
                             names(task.crops),
                             'plan',
                           ]
-                        : [
-                            null,
-                            t('week.todo.sowAgain.title', {
-                              crop: t(`crops.${task.crop}`),
-                            }),
-                            t('week.todo.sowAgain.text', { weeks: task.weeks }),
-                            'plan',
-                          ];
+                        : task.kind === 'stage'
+                          ? [
+                              null,
+                              t(`week.todo.stage.${task.step}.title`, {
+                                crop: t(`crops.${task.crop}`),
+                                count: task.weeks,
+                              }),
+                              t(`week.todo.stage.${task.step}.text`, {
+                                count: task.weeks,
+                                cm: task.cm,
+                              }),
+                              'plan',
+                            ]
+                          : [
+                              null,
+                              t('week.todo.sowAgain.title', {
+                                crop: t(`crops.${task.crop}`),
+                              }),
+                              t('week.todo.sowAgain.text', {
+                                weeks: task.weeks,
+                              }),
+                              'plan',
+                            ];
             return (
               <li
-                key={task.kind + ('crop' in task ? task.crop : '')}
+                key={
+                  task.kind +
+                  ('crop' in task ? task.crop : '') +
+                  ('step' in task ? task.step : '')
+                }
                 className='grid grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-4 rounded-card bg-card p-3 elevation-raised sm:grid-cols-[2.75rem_minmax(0,1fr)_auto]'
               >
                 {Icon ? (

@@ -70,7 +70,63 @@
       },
       "nothing": "Votre potager n'a besoin de rien cette semaine.",
       "noPlan": "Planifiez votre potager et notez ce que vous plantez : cette page dira ce qu'il lui faut chaque semaine.",
-      "openPlanner": "Ouvrir le plan du potager"
+      "openPlanner": "Ouvrir le plan du potager",
+      "stage": {
+        "thin": {
+          "title": "{{crop}} : éclaircissez les semis",
+          "text": "Gardez-en un tous les {{cm}} cm, pour que chacun ait la place de pousser."
+        },
+        "support": {
+          "title": "{{crop}} : installez des tuteurs",
+          "text": "Des tuteurs, un filet ou des rames où grimper, avant que les tiges ne s'affaissent. Les variétés naines s'en passent."
+        },
+        "tieTomato": {
+          "title": "{{crop}} : attachez et ébourgeonnez",
+          "text": "Attachez la tige à son tuteur et pincez les gourmands, une fois par semaine. Les variétés buissonnantes n'en ont pas besoin."
+        },
+        "earthUp": {
+          "title": "{{crop}} : buttez",
+          "text": "Ramenez la terre autour des tiges en laissant dépasser le feuillage. À la lumière, les tubercules verdissent."
+        },
+        "blanch": {
+          "title": "{{crop}} : buttez les fûts",
+          "text": "Ramenez la terre peu à peu, pour des fûts blancs plus longs."
+        },
+        "net": {
+          "title": "{{crop}} : gardez sous filet",
+          "text": "Un filet fin éloigne la piéride du chou et les pigeons."
+        },
+        "pinchBeans": {
+          "title": "{{crop}} : pincez les têtes",
+          "text": "Maintenant que les premières gousses se forment. Cela éloigne le puceron noir."
+        },
+        "pinchSweetPea": {
+          "title": "{{crop}} : pincez les têtes",
+          "text": "Juste au-dessus de la troisième paire de feuilles, pour des plantes plus touffues et plus de fleurs."
+        },
+        "feed": {
+          "title": "{{crop}} : fertilisez toutes les une à deux semaines",
+          "text": "Maintenant que la floraison et la nouaison commencent, un engrais riche en potasse, comme l'engrais tomates, entretient la récolte."
+        },
+        "stake": {
+          "title": "{{crop}} : tuteurez les tiges",
+          "text": "Tassez la terre autour et attachez les hautes tiges à un tuteur avant les vents d'automne."
+        },
+        "harvestSoon": {
+          "title_one": "{{crop}} : à récolter dans une semaine environ",
+          "title_other": "{{crop}} : à récolter dans {{count}} semaines environ",
+          "text": "D'après la chaleur reçue depuis le semis ou la plantation."
+        },
+        "ripen": {
+          "title": "{{crop}} : arrosez moins",
+          "text_one": "Laissez les bulbes mûrir. Ils seront à arracher dans une semaine environ, quand les feuilles jauniront.",
+          "text_other": "Laissez les bulbes mûrir. Ils seront à arracher dans {{count}} semaines environ, quand les feuilles jauniront."
+        },
+        "harvest": {
+          "title": "{{crop}} : à récolter",
+          "text": "Depuis le semis ou la plantation, la chaleur reçue suffit."
+        }
+      }
     }
   },
   "units": {
