@@ -6,6 +6,7 @@ import {
   type Garden,
   type Section,
 } from '@/lib/planner';
+import { huertaImage } from '@/lib/huerta';
 import { PLANT_LOOK, type PlantLook } from '@/lib/planner-data';
 
 /**
@@ -23,6 +24,19 @@ const SOIL = '#6c5544';
 const TIMBER = ['#e5d5bb', '#cfba98', '#eadcc5'];
 const MARK = '#c9603a';
 const HI = 'rgba(255,255,255,0.3)';
+/** Crops drawn as photographed plants: seen from the model's angle
+ *  (huerta/iso) and from above (huerta/top). The rest keep their forms. */
+const PHOTO = new Set([
+  'garlic',
+  'broad_beans',
+  'peas',
+  'cabbage',
+  'lettuce',
+  'tomato',
+]);
+const GROUND = (name: string) => huertaImage(`ground/${name}`);
+/** Real-world size of one texture tile, metres. */
+const TILE = { soil: 0.8, gravel: 0.6 };
 
 export type ModelView = { mode: '3d' | 'plan'; turn: number };
 
@@ -112,18 +126,34 @@ export function GardenModel({
         viewBox={`-50 -30 ${VW * S + 80} ${VL * S + 60}`}
         className='block h-auto w-full'
       >
+        <defs>
+          <Texture id='plan-soil' name='soil' size={TILE.soil * S} />
+          <Texture id='plan-gravel' name='gravel' size={TILE.gravel * S} />
+          <Texture id='plan-timber' name='timber' size={BED_HEIGHT * S} />
+        </defs>
         {regions(garden).map(r => (
-          <rect key={r.join()} {...rect(...r)} fill={PLOT} />
+          <g key={r.join()}>
+            <rect {...rect(...r)} fill={PLOT} />
+            <rect {...rect(...r)} fill='url(#plan-gravel)' />
+          </g>
         ))}
         {beds.map(b => (
-          <rect
-            key={b.parts[0].bed}
-            {...rect(b.x0, b.y0, b.x1, b.y1)}
-            fill={SOIL}
-            stroke={TIMBER[0]}
-            strokeWidth={5}
-            rx={3}
-          />
+          <g key={b.parts[0].bed}>
+            <rect
+              {...rect(b.x0, b.y0, b.x1, b.y1)}
+              fill={SOIL}
+              stroke={TIMBER[0]}
+              strokeWidth={5}
+              rx={3}
+            />
+            <rect
+              {...rect(b.x0, b.y0, b.x1, b.y1)}
+              fill='url(#plan-soil)'
+              stroke='url(#plan-timber)'
+              strokeWidth={5}
+              rx={3}
+            />
+          </g>
         ))}
         {sections.map((s, i) => {
           const look = s.crop ? PLANT_LOOK[s.crop] : null;
@@ -137,28 +167,48 @@ export function GardenModel({
               opacity={s.planted ? 1 : 0.6}
             >
               <rect {...rect(s.x0, s.y0, s.x1, s.y1)} fill='transparent' />
-              {look && f
+              {look && f && PHOTO.has(s.crop!)
                 ? thin(f.points).map(([x, y]) => {
                     const [a, b] = turn(x, y);
-                    const r = Math.max(
-                      (Math.min(f.spacing, f.across) / 2) * S * 0.85,
-                      2.5
-                    );
+                    const w = Math.min(f.spacing, f.across) * S * 1.15;
                     return (
-                      <g key={`${x}-${y}`}>
-                        <circle cx={a * S} cy={b * S} r={r} fill={look.leaf} />
-                        {look.accent ? (
+                      <image
+                        key={`${x}-${y}`}
+                        href={huertaImage(`top/${s.crop}`)}
+                        x={a * S - w / 2}
+                        y={b * S - w / 2}
+                        width={w}
+                        height={w}
+                      />
+                    );
+                  })
+                : look && f
+                  ? thin(f.points).map(([x, y]) => {
+                      const [a, b] = turn(x, y);
+                      const r = Math.max(
+                        (Math.min(f.spacing, f.across) / 2) * S * 0.85,
+                        2.5
+                      );
+                      return (
+                        <g key={`${x}-${y}`}>
                           <circle
                             cx={a * S}
                             cy={b * S}
-                            r={r * 0.45}
-                            fill={look.accent}
+                            r={r}
+                            fill={look.leaf}
                           />
-                        ) : null}
-                      </g>
-                    );
-                  })
-                : null}
+                          {look.accent ? (
+                            <circle
+                              cx={a * S}
+                              cy={b * S}
+                              r={r * 0.45}
+                              fill={look.accent}
+                            />
+                          ) : null}
+                        </g>
+                      );
+                    })
+                  : null}
               {look && !f ? (
                 <rect
                   {...rect(s.x0 + 0.05, s.y0 + 0.05, s.x1 - 0.05, s.y1 - 0.05)}
@@ -260,6 +310,56 @@ export function GardenModel({
       </g>
     );
   };
+  // The textures laid on the model's planes: the ground, and a bed's two
+  // visible sides (each its own tiling, so the boards meet the bed's foot).
+  const flat = `matrix(${COS} ${SIN} ${-COS} ${SIN} 0 0)`;
+  const skin = (
+    x0: number,
+    y0: number,
+    x1: number,
+    y1: number,
+    key: string
+  ) => {
+    const [a0, b0] = turn(x0, y0),
+      [a1, b1] = turn(x1, y1);
+    const A0 = Math.min(a0, a1),
+      A1 = Math.max(a0, a1),
+      B0 = Math.min(b0, b1),
+      B1 = Math.max(b0, b1);
+    const h = BED_HEIGHT;
+    const right = pts([V(A1, B0, 0), V(A1, B1, 0), V(A1, B1, h), V(A1, B0, h)]);
+    return (
+      <g key={key} pointerEvents='none'>
+        <defs>
+          <Texture
+            id={`${key}-r`}
+            name='timber'
+            size={h * S}
+            transform={`matrix(${-COS} ${SIN} 0 1 ${A1 * COS * S} ${A1 * SIN * S})`}
+          />
+          <Texture
+            id={`${key}-l`}
+            name='timber'
+            size={h * S}
+            transform={`matrix(${COS} ${SIN} 0 1 ${-B1 * COS * S} ${B1 * SIN * S})`}
+          />
+        </defs>
+        <polygon points={right} fill={`url(#${key}-r)`} />
+        <polygon points={right} fill='rgba(50,32,18,0.2)' />
+        <polygon
+          points={pts([V(A0, B1, 0), V(A1, B1, 0), V(A1, B1, h), V(A0, B1, h)])}
+          fill={`url(#${key}-l)`}
+        />
+        <polygon
+          points={pts([V(A0, B0, h), V(A1, B0, h), V(A1, B1, h), V(A0, B1, h)])}
+          fill='url(#iso-soil)'
+          stroke={TIMBER[2]}
+          strokeWidth={3}
+          strokeLinejoin='round'
+        />
+      </g>
+    );
+  };
   const top = (s: Section) =>
     pts([
       P(s.x0, s.y0, BED_HEIGHT),
@@ -273,7 +373,22 @@ export function GardenModel({
       depth((a[0] + a[2]) / 2, (a[1] + a[3]) / 2) -
       depth((z[0] + z[2]) / 2, (z[1] + z[3]) / 2)
   );
-  const drawn: ReactNode[] = [];
+  const drawn: ReactNode[] = [
+    <defs key='textures'>
+      <Texture
+        id='iso-soil'
+        name='soil'
+        size={TILE.soil * S}
+        transform={flat}
+      />
+      <Texture
+        id='iso-gravel'
+        name='gravel'
+        size={TILE.gravel * S}
+        transform={flat}
+      />
+    </defs>,
+  ];
   regs.forEach((r, i) =>
     drawn.push(
       box(
@@ -290,20 +405,22 @@ export function GardenModel({
       )
     )
   );
-  regs.forEach(r =>
+  regs.forEach(r => {
+    const ground = pts([
+      P(r[0], r[1]),
+      P(r[2], r[1]),
+      P(r[2], r[3]),
+      P(r[0], r[3]),
+    ]);
     drawn.push(
+      <polygon key={`plot${r.join()}`} points={ground} fill={PLOT} />,
       <polygon
-        key={`plot${r.join()}`}
-        points={pts([
-          P(r[0], r[1]),
-          P(r[2], r[1]),
-          P(r[2], r[3]),
-          P(r[0], r[3]),
-        ])}
-        fill={PLOT}
+        key={`gravel${r.join()}`}
+        points={ground}
+        fill='url(#iso-gravel)'
       />
-    )
-  );
+    );
+  });
   let tallest = 0;
   beds
     .sort(
@@ -325,7 +442,8 @@ export function GardenModel({
           TIMBER[1],
           `bed${bi}`,
           TIMBER[2]
-        )
+        ),
+        skin(bed.x0, bed.y0, bed.x1, bed.y1, `skin${bi}`)
       );
       const plants: { d: number; node: ReactNode }[] = [];
       for (const s of bed.parts) {
@@ -340,7 +458,8 @@ export function GardenModel({
           />
         );
         if (!s.crop) continue;
-        const look = PLANT_LOOK[s.crop];
+        const crop = s.crop;
+        const look = PLANT_LOOK[crop];
         tallest = Math.max(tallest, look.height);
         const f = fit(s);
         const opacity = s.planted ? 1 : 0.6;
@@ -387,11 +506,19 @@ export function GardenModel({
                   onClick={select(i)}
                   className='cursor-pointer'
                 >
-                  <Plant
-                    look={look}
-                    at={P(x, y, BED_HEIGHT)}
-                    r={Math.min(f.spacing, f.across) / 2}
-                  />
+                  {PHOTO.has(crop) ? (
+                    <Photo
+                      id={crop}
+                      at={P(x, y, BED_HEIGHT)}
+                      d={Math.min(f.spacing, f.across)}
+                    />
+                  ) : (
+                    <Plant
+                      look={look}
+                      at={P(x, y, BED_HEIGHT)}
+                      r={Math.min(f.spacing, f.across) / 2}
+                    />
+                  )}
                 </g>
               ),
             })
@@ -514,6 +641,55 @@ function North({ x, y, d }: { x: number; y: number; d: [number, number] }) {
         N
       </text>
     </g>
+  );
+}
+
+/** A texture tiled over a surface; `transform` lays it on a plane of the model. */
+function Texture({
+  id,
+  name,
+  size,
+  transform,
+}: {
+  id: string;
+  name: string;
+  size: number;
+  transform?: string;
+}) {
+  return (
+    <pattern
+      id={id}
+      patternUnits='userSpaceOnUse'
+      width={size}
+      height={size}
+      patternTransform={transform}
+    >
+      <image href={GROUND(name)} width={size} height={size} />
+    </pattern>
+  );
+}
+
+/** A photographed plant standing on its spot, about as wide as its spacing:
+ *  the photo's foot (its shadow) sits just in front of the spot. */
+function Photo({
+  id,
+  at: [bx, by],
+  d,
+}: {
+  id: string;
+  at: [number, number];
+  d: number;
+}) {
+  const w = d * S * 1.35;
+  return (
+    <image
+      href={huertaImage(`iso/${id}`)}
+      x={bx - w / 2}
+      y={by + d * S * 0.3 - 4 * w}
+      width={w}
+      height={4 * w}
+      preserveAspectRatio='xMidYMax meet'
+    />
   );
 }
 
