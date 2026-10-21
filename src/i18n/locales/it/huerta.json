@@ -124,7 +124,7 @@
         },
         "harvest": {
           "title": "{{crop}}: da raccogliere",
-          "text": "Dal calore ricevuto dalla semina o dal trapianto, è il momento di raccogliere."
+          "text": "Ha ricevuto il calore necessario dalla semina o dal trapianto."
         }
       }
     }

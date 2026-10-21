@@ -124,7 +124,7 @@
         },
         "harvest": {
           "title": "{{crop}}: ready to harvest",
-          "text": "By the warmth it has had since it went in, it is time to harvest."
+          "text": "It has had the warmth it needs since it went in."
         }
       }
     }

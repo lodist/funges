@@ -124,7 +124,7 @@
         },
         "harvest": {
           "title": "{{crop}}: hora de colher",
-          "text": "Pelo calor recebido desde a semeadura ou o plantio, já é hora de colher."
+          "text": "Recebeu o calor necessário desde a semeadura ou o plantio."
         }
       }
     }

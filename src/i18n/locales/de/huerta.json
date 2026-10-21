@@ -124,7 +124,7 @@
         },
         "harvest": {
           "title": "{{crop}}: erntereif",
-          "text": "Nach der Wärme seit der Aussaat oder Pflanzung ist jetzt Erntezeit."
+          "text": "Seit der Aussaat oder Pflanzung gab es genug Wärme."
         }
       }
     }

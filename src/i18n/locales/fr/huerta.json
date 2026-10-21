@@ -124,7 +124,7 @@
         },
         "harvest": {
           "title": "{{crop}} : à récolter",
-          "text": "D'après la chaleur reçue depuis le semis ou la plantation, c'est le moment de récolter."
+          "text": "Depuis le semis ou la plantation, la chaleur reçue suffit."
         }
       }
     }

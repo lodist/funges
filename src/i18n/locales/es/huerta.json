@@ -124,7 +124,7 @@
         },
         "harvest": {
           "title": "{{crop}}: a punto para cosechar",
-          "text": "Por el calor recibido desde la siembra o el trasplante, ya es momento de cosechar."
+          "text": "Ha recibido el calor que necesita desde la siembra o el trasplante."
         }
       }
     }
