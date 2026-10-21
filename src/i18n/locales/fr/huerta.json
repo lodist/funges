@@ -367,7 +367,11 @@
       "southHalf": "moitié sud",
       "northEnd": "bout nord",
       "southEnd": "bout sud",
-      "middle": "milieu"
+      "middle": "milieu",
+      "eastHalf": "moitié est",
+      "westHalf": "moitié ouest",
+      "eastEnd": "bout est",
+      "westEnd": "bout ouest"
     },
     "unit": {
       "plants_one": "{{count}} plant",
@@ -434,7 +438,44 @@
     "later": "Plus tard",
     "split": "Couper cette partie en deux",
     "footnote": "Semis et plantations au {{date}}. Votre plan reste sur cet appareil.",
-    "sownOn": "Semé le {{date}}"
+    "sownOn": "Semé le {{date}}",
+    "faces": "Le haut du terrain fait face au",
+    "groundLabel": "Votre façon de cultiver",
+    "ground": {
+      "raised": "Carrés surélevés",
+      "ground": "Planches en pleine terre",
+      "rows": "Rangs en plein champ"
+    },
+    "runLabel": "Planches",
+    "run": {
+      "along": "En long",
+      "across": "En large"
+    },
+    "undo": "Annuler",
+    "mergePrev": "Réunir avec la précédente",
+    "mergeNext": "Réunir avec la suivante",
+    "shorter": "Plus courte",
+    "longer": "Plus longue",
+    "lengthValue": "{{value}} m",
+    "keep": "Garder ici",
+    "kept": "Reste ici",
+    "keptHint": "« Planifier pour moi » et les changements de taille la laissent en place.",
+    "deleteBed": "Supprimer cette planche",
+    "deleteStrip": "Supprimer cette bande",
+    "bare": "Terre nue",
+    "bareText": "Il y avait une planche ici. Remettez-en une, ou laissez la terre nue.",
+    "putBed": "Remettre une planche",
+    "strip": "Bande {{n}}",
+    "bearing": {
+      "0": "Nord",
+      "45": "Nord-est",
+      "90": "Est",
+      "135": "Sud-est",
+      "180": "Sud",
+      "225": "Sud-ouest",
+      "270": "Ouest",
+      "315": "Nord-ouest"
+    }
   },
   "year": {
     "title": "Votre année",

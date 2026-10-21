@@ -4,6 +4,7 @@ import {
   fit,
   regions,
   type Garden,
+  type Rect,
   type Section,
 } from '@/lib/planner';
 import { huertaImage } from '@/lib/huerta';
@@ -19,6 +20,10 @@ const COS = Math.cos(Math.PI / 6);
 const SIN = 0.5;
 const S = 64; // pixels per metre
 const MAX_GLYPHS = 180;
+/** Plants drawn in the whole model at most: a big plot is thinned evenly. */
+const MAX_DRAWN = 1500;
+/** The narrowest view, in model units (64 a metre). */
+const MIN_VIEW = 560;
 const PLOT = '#ece5db';
 const SOIL = '#6c5544';
 const TIMBER = ['#e5d5bb', '#cfba98', '#eadcc5'];
@@ -26,19 +31,38 @@ const MARK = '#c9603a';
 const HI = 'rgba(255,255,255,0.3)';
 /** Crops drawn as photographed plants seen from the model's angle
  *  (huerta/iso/<id>.webp). The rest keep their forms. */
-const PHOTO = new Set([
-  'garlic',
-  'broad_beans',
-  'peas',
-  'cabbage',
-  'lettuce',
-  'tomato',
-]);
+const PHOTO = new Set(['garlic', 'peas']);
 const GROUND = (name: string) => huertaImage(`ground/${name}`);
 /** Crops photographed at each stage, on a frame of this many metres of real
  *  height, the plant's foot at the middle, 8% above the bottom:
  *  huerta/iso/<id>-seedling, -young, and three grown plants -1, -2, -3. */
-const STAGED: Record<string, number> = { tomato: 1.5, cabbage: 1, lettuce: 1 };
+const STAGED: Record<string, number> = {
+  artichoke: 2.0,
+  asparagus: 1.5,
+  aubergine: 1.0,
+  basil: 0.5,
+  beetroot: 0.5,
+  broad_beans: 1.5,
+  broccoli: 1.0,
+  brussels_sprouts: 1.5,
+  cabbage: 1.0,
+  calendula: 0.75,
+  carrot: 0.5,
+  cauliflower: 1.0,
+  celery: 1.0,
+  chard: 1.0,
+  chervil: 0.5,
+  chicory: 0.75,
+  chilli: 1.0,
+  chives: 0.5,
+  coriander: 0.75,
+  cosmos: 1.5,
+  courgette: 1.5,
+  crimson_clover: 0.75,
+  crocus: 0.5,
+  lettuce: 1.0,
+  tomato: 1.5,
+};
 /** Real-world size of one texture tile, metres. */
 const TILE = { soil: 0.8, gravel: 0.6 };
 /** A bed's boards (thickness) and its soil (height, under the rim), and the
@@ -64,13 +88,20 @@ interface GardenModelProps {
   stage?: (s: Section) => Stage;
   /** The section just planted: its plants come up out of the soil. */
   fresh?: number | null;
+  /** Beds deleted: plain earth, which can be tapped to put a bed back. */
+  bare?: Rect[];
+  onBare?: (index: number) => void;
   title: string;
 }
 
-const thin = <T,>(points: T[]) =>
-  points.length <= MAX_GLYPHS
+/** A section's plants, thinned to its share (`share`, 0-1) and at most
+ *  MAX_GLYPHS. */
+const thin = <T,>(points: T[], share = 1) => {
+  const n = Math.min(MAX_GLYPHS, Math.max(6, Math.ceil(points.length * share)));
+  return points.length <= n
     ? points
-    : points.filter((_, k) => k % Math.ceil(points.length / MAX_GLYPHS) === 0);
+    : points.filter((_, k) => k % Math.ceil(points.length / n) === 0);
+};
 
 export function GardenModel({
   garden,
@@ -81,9 +112,17 @@ export function GardenModel({
   label,
   stage,
   fresh,
+  bare = [],
+  onBare,
   title,
 }: GardenModelProps) {
   const { width: W, length: L } = garden;
+  const ground = garden.ground ?? 'raised';
+  const raised = ground === 'raised';
+  // The soil the plants stand in: inside raised beds, or a little mounded.
+  const soilZ = raised ? SOIL_Z : ground === 'ground' ? 0.04 : 0.03;
+  const total = sections.reduce((n, s) => n + (fit(s)?.points.length ?? 0), 0);
+  const share = Math.min(1, MAX_DRAWN / Math.max(total, 1));
   const turn = (x: number, y: number): [number, number] => {
     switch (quarter % 4) {
       case 1:
@@ -113,8 +152,8 @@ export function GardenModel({
     const parts = sections.filter(s => s.bed === bed);
     return {
       parts,
-      x0: parts[0].x0,
-      x1: parts[0].x1,
+      x0: Math.min(...parts.map(s => s.x0)),
+      x1: Math.max(...parts.map(s => s.x1)),
       y0: Math.min(...parts.map(s => s.y0)),
       y1: Math.max(...parts.map(s => s.y1)),
     };
@@ -305,6 +344,33 @@ export function GardenModel({
       </g>
     );
   };
+  // A bed dug in the ground, or a strip of an open plot: worked soil a few
+  // centimetres proud of the path.
+  const mound = (
+    x0: number,
+    y0: number,
+    x1: number,
+    y1: number,
+    key: string
+  ) => {
+    const [a0, b0] = turn(x0, y0),
+      [a1, b1] = turn(x1, y1);
+    const A0 = Math.min(a0, a1),
+      A1 = Math.max(a0, a1),
+      B0 = Math.min(b0, b1),
+      B1 = Math.max(b0, b1);
+    const z = soilZ;
+    return (
+      <g key={key} pointerEvents='none'>
+        {wall(`${key}-r`, 'a', A1, [B0, B1], [0, z], 'soil', z * 4, 0.35, 1)}
+        {wall(`${key}-l`, 'b', B1, [A0, A1], [0, z], 'soil', z * 4, 0.12, 1)}
+        <polygon
+          points={pts([V(A0, B0, z), V(A1, B0, z), V(A1, B1, z), V(A0, B1, z)])}
+          fill='url(#iso-soil)'
+        />
+      </g>
+    );
+  };
   // A bed's soft shadow on the gravel, away from the sun.
   const shadow = (
     x0: number,
@@ -338,12 +404,13 @@ export function GardenModel({
       />
     );
   };
+  const rim = raised ? BED_HEIGHT : soilZ;
   const top = (s: Section) =>
     pts([
-      P(s.x0, s.y0, BED_HEIGHT),
-      P(s.x1, s.y0, BED_HEIGHT),
-      P(s.x1, s.y1, BED_HEIGHT),
-      P(s.x0, s.y1, BED_HEIGHT),
+      P(s.x0, s.y0, rim),
+      P(s.x1, s.y0, rim),
+      P(s.x1, s.y1, rim),
+      P(s.x0, s.y1, rim),
     ]);
 
   const regs = regions(garden).sort(
@@ -361,8 +428,14 @@ export function GardenModel({
       />
       <Texture
         id='iso-gravel'
-        name='gravel'
+        name={raised ? 'gravel' : ground === 'ground' ? 'woodchip' : 'trodden'}
         size={TILE.gravel * S}
+        transform={flat}
+      />
+      <Texture
+        id='iso-bare'
+        name='trodden'
+        size={TILE.soil * S}
         transform={flat}
       />
       <Texture
@@ -441,9 +514,27 @@ export function GardenModel({
       />
     );
   });
-  beds.forEach((bed, bi) =>
-    drawn.push(shadow(bed.x0, bed.y0, bed.x1, bed.y1, `shadow${bi}`))
+  // Deleted beds: plain earth, tapped to put a bed back.
+  bare.forEach((r, i) =>
+    drawn.push(
+      <polygon
+        key={`bare${r.join()}`}
+        points={pts([
+          P(r[0], r[1], 0.005),
+          P(r[2], r[1], 0.005),
+          P(r[2], r[3], 0.005),
+          P(r[0], r[3], 0.005),
+        ])}
+        fill='url(#iso-bare)'
+        className={onBare ? 'cursor-pointer' : undefined}
+        onClick={onBare ? () => onBare(i) : undefined}
+      />
+    )
   );
+  if (raised)
+    beds.forEach((bed, bi) =>
+      drawn.push(shadow(bed.x0, bed.y0, bed.x1, bed.y1, `shadow${bi}`))
+    );
   let tallest = 0;
   beds
     .sort(
@@ -453,19 +544,23 @@ export function GardenModel({
     )
     .forEach((bed, bi) => {
       drawn.push(
-        box(
-          bed.x0,
-          bed.y0,
-          bed.x1,
-          bed.y1,
-          0,
-          BED_HEIGHT,
-          SOIL,
-          TIMBER[0],
-          TIMBER[1],
-          `bed${bi}`
-        ),
-        skin(bed.x0, bed.y0, bed.x1, bed.y1, `skin${bi}`)
+        ...(raised
+          ? [
+              box(
+                bed.x0,
+                bed.y0,
+                bed.x1,
+                bed.y1,
+                0,
+                BED_HEIGHT,
+                SOIL,
+                TIMBER[0],
+                TIMBER[1],
+                `bed${bi}`
+              ),
+              skin(bed.x0, bed.y0, bed.x1, bed.y1, `skin${bi}`),
+            ]
+          : [mound(bed.x0, bed.y0, bed.x1, bed.y1, `mound${bi}`)])
       );
       const plants: { d: number; node: ReactNode }[] = [];
       for (const s of bed.parts) {
@@ -485,9 +580,35 @@ export function GardenModel({
         tallest = Math.max(tallest, look.height);
         const f = fit(s);
         const opacity = s.planted ? 1 : 0.6;
-        if (!f)
+        if (!f && STAGED[crop])
+          // A green manure sown thick: its photographed patches over the
+          // section, one for every sixth blade.
+          carpet(s, i, look)
+            .filter((_, k) => k % 6 === 0)
+            .forEach(([x, y], k) =>
+              plants.push({
+                d: depth(x, y),
+                node: (
+                  <g
+                    key={`c${i}-${x}-${y}`}
+                    opacity={opacity}
+                    onClick={select(i)}
+                    className='cursor-pointer'
+                  >
+                    <Staged
+                      id={crop}
+                      stage={s.planted && stage ? stage(s) : 'grown'}
+                      at={P(x, y, soilZ)}
+                      seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
+                      pop={fresh === i ? k : null}
+                    />
+                  </g>
+                ),
+              })
+            );
+        else if (!f)
           carpet(s, i, look).forEach(([x, y, h, flower]) => {
-            const [bx, by] = P(x, y, SOIL_Z);
+            const [bx, by] = P(x, y, soilZ);
             plants.push({
               d: depth(x, y),
               node: (
@@ -518,7 +639,7 @@ export function GardenModel({
             });
           });
         else
-          thin(f.points).forEach(([x, y], k) =>
+          thin(f.points, share).forEach(([x, y], k) =>
             plants.push({
               d: depth(x, y),
               node: (
@@ -532,20 +653,20 @@ export function GardenModel({
                     <Staged
                       id={crop}
                       stage={s.planted && stage ? stage(s) : 'grown'}
-                      at={P(x, y, SOIL_Z)}
+                      at={P(x, y, soilZ)}
                       seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
                       pop={fresh === i ? k : null}
                     />
                   ) : PHOTO.has(crop) ? (
                     <Photo
                       id={crop}
-                      at={P(x, y, SOIL_Z)}
+                      at={P(x, y, soilZ)}
                       d={Math.min(f.spacing, f.across)}
                     />
                   ) : (
                     <Plant
                       look={look}
-                      at={P(x, y, SOIL_Z)}
+                      at={P(x, y, soilZ)}
                       r={Math.min(f.spacing, f.across) / 2}
                     />
                   )}
@@ -573,7 +694,7 @@ export function GardenModel({
       const [lx, ly] = P(
         (sel.x0 + sel.x1) / 2,
         (sel.y0 + sel.y1) / 2,
-        BED_HEIGHT + PLANT_LOOK[sel.crop].height + 0.35
+        rim + PLANT_LOOK[sel.crop].height + 0.35
       );
       const w = Math.max(label.name.length, label.count.length) * 6.6 + 20;
       drawn.push(
@@ -629,12 +750,18 @@ export function GardenModel({
       xs.push(px);
       ys.push(py);
     }
-  const minX = Math.min(...xs) - 30,
-    maxX = Math.max(...xs) + 30,
-    minY = Math.min(...ys) - 10,
-    maxY = Math.max(...ys) + 24;
+  // A small plot is not blown up: the view is at least MIN_VIEW wide.
+  const padX = Math.max(0, MIN_VIEW - (Math.max(...xs) - Math.min(...xs))) / 2,
+    padY =
+      Math.max(0, MIN_VIEW * 0.6 - (Math.max(...ys) - Math.min(...ys))) / 2;
+  const minX = Math.min(...xs) - 30 - padX,
+    maxX = Math.max(...xs) + 30 + padX,
+    minY = Math.min(...ys) - 10 - padY,
+    maxY = Math.max(...ys) + 24 + padY;
+  // The needle points to true north: the plot's top faces `garden.north`.
+  const bearing = ((garden.north ?? 0) * Math.PI) / 180;
   const n0 = P(0, 0),
-    n1 = P(0, -1);
+    n1 = P(-Math.sin(bearing), -Math.cos(bearing));
   return (
     <svg
       role='img'
@@ -643,7 +770,7 @@ export function GardenModel({
       className='block h-auto max-h-[38rem] w-full'
     >
       {drawn}
-      <North x={minX + 30} y={minY + 34} d={[n1[0] - n0[0], n1[1] - n0[1]]} />
+      <North x={minX + 58} y={minY + 46} d={[n1[0] - n0[0], n1[1] - n0[1]]} />
     </svg>
   );
 }

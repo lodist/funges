@@ -367,7 +367,11 @@
       "southHalf": "south half",
       "northEnd": "north end",
       "southEnd": "south end",
-      "middle": "middle"
+      "middle": "middle",
+      "eastHalf": "east half",
+      "westHalf": "west half",
+      "eastEnd": "east end",
+      "westEnd": "west end"
     },
     "unit": {
       "plants_one": "{{count}} plant",
@@ -434,7 +438,44 @@
     "later": "Later",
     "split": "Split this section in two",
     "footnote": "Sowing and planting as of {{date}}. Your plan stays on this device.",
-    "sownOn": "Sown on {{date}}"
+    "sownOn": "Sown on {{date}}",
+    "faces": "Top of the plot faces",
+    "groundLabel": "How you grow",
+    "ground": {
+      "raised": "Raised beds",
+      "ground": "Beds in the ground",
+      "rows": "Open rows"
+    },
+    "runLabel": "Beds run",
+    "run": {
+      "along": "Along",
+      "across": "Across"
+    },
+    "undo": "Undo",
+    "mergePrev": "Join with the one before",
+    "mergeNext": "Join with the one after",
+    "shorter": "Shorter",
+    "longer": "Longer",
+    "lengthValue": "{{value}} m",
+    "keep": "Keep here",
+    "kept": "Kept here",
+    "keptHint": "“Plan it for me” and resizing leave it where it is.",
+    "deleteBed": "Delete this bed",
+    "deleteStrip": "Delete this strip",
+    "bare": "Plain earth",
+    "bareText": "A bed was here. Put one back, or leave the earth bare.",
+    "putBed": "Put a bed back",
+    "strip": "Strip {{n}}",
+    "bearing": {
+      "0": "North",
+      "45": "North-east",
+      "90": "East",
+      "135": "South-east",
+      "180": "South",
+      "225": "South-west",
+      "270": "West",
+      "315": "North-west"
+    }
   },
   "year": {
     "title": "Your year",

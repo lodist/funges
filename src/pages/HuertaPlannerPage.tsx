@@ -28,20 +28,40 @@ import {
   huertaApiConfigured,
   savedPlace,
 } from '@/lib/huerta-api';
-import { Check, RotateCcw, RotateCw } from '@/lib/icons';
+import {
+  Check,
+  Lock,
+  Minus,
+  Plus,
+  RotateCcw,
+  RotateCw,
+  Trash2,
+  Undo2,
+} from '@/lib/icons';
 import {
   autoPlan,
+  axisOf,
   fit,
   layout,
+  lengthen,
   loadPlan,
+  MAX_SIDE,
+  merge,
+  MIN_SIDE,
   nextYear,
   notes,
+  PERENNIAL,
   ready,
+  removeBed,
+  reshape,
+  restoreBed,
   savePlan,
   split,
   summary,
   UNIT,
+  type Axis,
   type Garden,
+  type Ground,
   type Plan,
   type Section,
 } from '@/lib/planner';
@@ -54,6 +74,9 @@ const CROP = Object.fromEntries(CROPS.map(crop => [crop.id, crop]));
 const photo = (id: string) =>
   `${import.meta.env.BASE_URL}huerta/crops/${id}.webp`;
 const today = () => new Date().toLocaleDateString('sv');
+const BEARINGS = [0, 45, 90, 135, 180, 225, 270, 315];
+const GROUNDS: Ground[] = ['raised', 'ground', 'rows'];
+const UNDO_STEPS = 20;
 
 /** The chips' look (CategoryChips), for the planner's own choices. */
 const chip = (on: boolean) =>
@@ -75,6 +98,10 @@ export default function HuertaPlannerPage() {
   // The section just planted, while its plants come up.
   const [fresh, setFresh] = useState<number | null>(null);
   const [sel, setSel] = useState(0);
+  // A deleted bed's patch of earth, when one is picked instead of a section.
+  const [patch, setPatch] = useState<number | null>(null);
+  // Earlier plans, for Undo; kept while the page is open.
+  const [past, setPast] = useState<Plan[]>([]);
   const year = useHuertaYear();
   // The visitor's own advice, when they chose a place; else the sample at once.
   const [settled, setSettled] = useState(
@@ -115,12 +142,28 @@ export default function HuertaPlannerPage() {
   }, [settled]);
 
   const update = (next: Plan) => {
+    if (plan) setPast(p => [...p.slice(1 - UNDO_STEPS), plan]);
     setPlan(next);
     savePlan(next);
   };
+  const undo = () => {
+    const last = past[past.length - 1];
+    if (!last) return;
+    setPast(p => p.slice(0, -1));
+    setPlan(last);
+    savePlan(last);
+    setPatch(null);
+  };
+  // A new size, shape, direction or way of growing keeps what it can.
   const resize = (garden: Garden) => {
-    update({ garden, sections: autoPlan(layout(garden), status) });
+    if (!plan) return;
+    update(reshape(plan, garden, status));
     setSel(0);
+    setPatch(null);
+  };
+  const pick = (i: number) => {
+    setSel(i);
+    setPatch(null);
   };
   const name = (id: string) => t(`crops.${id}`);
   // A planted crop's stage, from the warmth it has had at the place since.
@@ -148,8 +191,11 @@ export default function HuertaPlannerPage() {
         </SkeletonGroup>
       </div>
     );
-  const s = plan.sections[sel] ?? plan.sections[0];
-  const totals = summary(plan.sections);
+  const s =
+    patch === null ? (plan.sections[sel] ?? plan.sections[0]) : undefined;
+  const north = plan.garden.north ?? 0;
+  const axis = axisOf(plan.garden);
+  const totals = summary(plan.sections, north);
   const plants = plan.sections.reduce((n, x) => n + (fit(x)?.count ?? 0), 0);
   const beds = new Set(plan.sections.map(x => x.bed)).size;
 
@@ -193,16 +239,19 @@ export default function HuertaPlannerPage() {
                 <Input
                   id={`planner-${key}`}
                   type='number'
-                  min={2}
-                  max={12}
+                  min={MIN_SIDE}
+                  max={MAX_SIDE}
                   step={0.5}
                   defaultValue={plan.garden[key]}
                   key={`${key}-${plan.garden[key]}`}
                   className='h-9 w-20'
                   onBlur={e => {
                     const v = Math.min(
-                      12,
-                      Math.max(2, Number(e.target.value) || plan.garden[key])
+                      MAX_SIDE,
+                      Math.max(
+                        MIN_SIDE,
+                        Number(e.target.value) || plan.garden[key]
+                      )
                     );
                     if (v !== plan.garden[key])
                       resize({ ...plan.garden, [key]: v });
@@ -228,12 +277,85 @@ export default function HuertaPlannerPage() {
                 </Button>
               ))}
             </div>
+            <Select
+              value={String(plan.garden.north ?? 0)}
+              onValueChange={v =>
+                update({
+                  ...plan,
+                  garden: { ...plan.garden, north: Number(v) },
+                })
+              }
+            >
+              <SelectTrigger
+                aria-label={t('planner.faces')}
+                className='h-9 w-auto gap-2'
+              >
+                <span className='text-muted-foreground'>
+                  {t('planner.faces')}
+                </span>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {BEARINGS.map(b => (
+                  <SelectItem key={b} value={String(b)}>
+                    {t(`planner.bearing.${b}`)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select
+              value={plan.garden.ground ?? 'raised'}
+              onValueChange={v =>
+                resize({ ...plan.garden, ground: v as Ground })
+              }
+            >
+              <SelectTrigger
+                aria-label={t('planner.groundLabel')}
+                className='h-9 w-auto'
+              >
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {GROUNDS.map(g => (
+                  <SelectItem key={g} value={g}>
+                    {t(`planner.ground.${g}`)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <div
+              className='flex items-center gap-2'
+              role='group'
+              aria-label={t('planner.runLabel')}
+            >
+              <span className='text-sm text-muted-foreground'>
+                {t('planner.runLabel')}
+              </span>
+              {([false, true] as const).map(across => (
+                <Button
+                  key={String(across)}
+                  variant='ghost'
+                  aria-pressed={Boolean(plan.garden.across) === across}
+                  className={chip(Boolean(plan.garden.across) === across)}
+                  onClick={() => resize({ ...plan.garden, across })}
+                >
+                  {t(`planner.run.${across ? 'across' : 'along'}`)}
+                </Button>
+              ))}
+            </div>
             <Button
               onClick={() =>
-                update({ ...plan, sections: autoPlan(plan.sections, status) })
+                update({
+                  ...plan,
+                  sections: autoPlan(plan.sections, status, plan.garden.north),
+                })
               }
             >
               {t('planner.auto')}
+            </Button>
+            <Button variant='outline' onClick={undo} disabled={!past.length}>
+              <Undo2 className='size-4' />
+              {t('planner.undo')}
             </Button>
             <div className='ml-auto flex items-center gap-2'>
               <Button
@@ -263,9 +385,11 @@ export default function HuertaPlannerPage() {
                   sections={plan.sections}
                   selected={sel}
                   turn={turn}
-                  onSelect={setSel}
+                  onSelect={pick}
                   stage={stageOf}
                   fresh={fresh}
+                  bare={plan.bare}
+                  onBare={setPatch}
                   label={
                     s?.crop
                       ? { name: name(s.crop), count: count(s) }
@@ -297,43 +421,125 @@ export default function HuertaPlannerPage() {
               </p>
             </div>
 
-            {s ? (
+            {s || patch !== null ? (
               <aside className='flex flex-col gap-5 border-t border-border p-4 lg:border-t-0 lg:border-l'>
-                <SectionPanel
-                  section={s}
-                  index={plan.sections.indexOf(s)}
-                  sections={plan.sections}
-                  advice={advice}
-                  harvest={s.crop ? year?.crops[s.crop]?.harvest : undefined}
-                  need={s.crop ? needs[s.crop] : undefined}
-                  count={count}
-                  onSwap={crop =>
-                    update({
-                      ...plan,
-                      sections: plan.sections.map(x =>
-                        x === s ? { ...x, crop, planted: undefined } : x
-                      ),
-                    })
-                  }
-                  onPlanted={planted => {
-                    update({
-                      ...plan,
-                      sections: plan.sections.map(x =>
-                        x === s ? { ...x, planted } : x
-                      ),
-                    });
-                    if (planted) {
-                      setFresh(plan.sections.indexOf(s));
-                      setTimeout(() => setFresh(null), 2500);
+                {patch !== null ? (
+                  <div className='flex flex-col gap-3'>
+                    <h2 className='type-micro text-muted-foreground'>
+                      {t('planner.bare')}
+                    </h2>
+                    <p className='text-sm text-muted-foreground'>
+                      {t('planner.bareText')}
+                    </p>
+                    <Button
+                      className='self-start'
+                      onClick={() => {
+                        const first = plan.sections.length;
+                        const back = restoreBed(plan, patch);
+                        update({
+                          ...back,
+                          sections: autoPlan(
+                            back.sections,
+                            status,
+                            north,
+                            true
+                          ),
+                        });
+                        pick(first);
+                      }}
+                    >
+                      {t('planner.putBed')}
+                    </Button>
+                  </div>
+                ) : null}
+                {s ? (
+                  <SectionPanel
+                    section={s}
+                    index={plan.sections.indexOf(s)}
+                    sections={plan.sections}
+                    garden={plan.garden}
+                    advice={advice}
+                    harvest={s.crop ? year?.crops[s.crop]?.harvest : undefined}
+                    need={s.crop ? needs[s.crop] : undefined}
+                    count={count}
+                    onSwap={crop =>
+                      update({
+                        ...plan,
+                        sections: plan.sections.map(x =>
+                          x === s ? { ...x, crop, planted: undefined } : x
+                        ),
+                      })
                     }
-                  }}
-                  onSplit={() =>
-                    update({
-                      ...plan,
-                      sections: split(plan.sections, plan.sections.indexOf(s)),
-                    })
-                  }
-                />
+                    onPlanted={planted => {
+                      update({
+                        ...plan,
+                        sections: plan.sections.map(x =>
+                          x === s
+                            ? {
+                                ...x,
+                                planted,
+                                // A perennial planted stays where it is.
+                                locked:
+                                  x.locked ||
+                                  Boolean(
+                                    planted && x.crop && PERENNIAL.has(x.crop)
+                                  ),
+                              }
+                            : x
+                        ),
+                      });
+                      if (planted) {
+                        setFresh(plan.sections.indexOf(s));
+                        setTimeout(() => setFresh(null), 2500);
+                      }
+                    }}
+                    onSplit={() =>
+                      update({
+                        ...plan,
+                        sections: split(
+                          plan.sections,
+                          plan.sections.indexOf(s),
+                          axis
+                        ),
+                      })
+                    }
+                    onMerge={dir => {
+                      const i = plan.sections.indexOf(s);
+                      const next = merge(plan.sections, i, dir, axis);
+                      update({ ...plan, sections: next });
+                      pick(
+                        next.findIndex(
+                          x =>
+                            x.bed === s.bed &&
+                            x.part === Math.max(0, s.part + Math.min(0, dir))
+                        )
+                      );
+                    }}
+                    onLength={delta =>
+                      update({
+                        ...plan,
+                        sections: lengthen(
+                          plan.sections,
+                          plan.sections.indexOf(s),
+                          delta,
+                          axis
+                        ),
+                      })
+                    }
+                    onKeep={() =>
+                      update({
+                        ...plan,
+                        sections: plan.sections.map(x =>
+                          x === s ? { ...x, locked: !x.locked } : x
+                        ),
+                      })
+                    }
+                    onDeleteBed={() => {
+                      update(removeBed(plan, s.bed));
+                      pick(0);
+                    }}
+                  />
+                ) : null}
                 <div>
                   <h2 className='type-micro mb-2 text-muted-foreground'>
                     {t('planner.allBeds')}
@@ -341,11 +547,11 @@ export default function HuertaPlannerPage() {
                   <ul className='flex flex-col gap-1'>
                     {plan.sections.map((x, i) =>
                       x.crop ? (
-                        <li key={`${x.bed}-${x.y0}`}>
+                        <li key={`${x.bed}-${x.x0}-${x.y0}`}>
                           <button
                             type='button'
-                            aria-current={i === sel}
-                            onClick={() => setSel(i)}
+                            aria-current={patch === null && i === sel}
+                            onClick={() => pick(i)}
                             className='focus-ring grid w-full grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-3 rounded-lg px-2 py-1.5 text-left text-sm hover:bg-muted aria-[current=true]:bg-muted'
                           >
                             <img
@@ -356,14 +562,16 @@ export default function HuertaPlannerPage() {
                             <span className='min-w-0'>
                               <span className='block truncate font-medium text-foreground'>
                                 {name(x.crop)}
-                                {notes(plan.sections, i).some(n => n.bad) ? (
+                                {notes(plan.sections, i, north).some(
+                                  n => n.bad
+                                ) ? (
                                   <span className='ml-1 font-bold text-destructive-text'>
                                     !
                                   </span>
                                 ) : null}
                               </span>
                               <span className='block text-xs text-muted-foreground'>
-                                {placeName(t, x)}
+                                {placeName(t, x, plan.garden)}
                               </span>
                             </span>
                             <span className='flex items-center gap-1 text-xs text-muted-foreground tabular-nums'>
@@ -397,33 +605,43 @@ export default function HuertaPlannerPage() {
 
 type T = ReturnType<typeof useTranslation>['t'];
 
-/** "Bed 2, north half". */
-const placeName = (t: T, s: Section) =>
-  [
-    t('planner.bed', { n: s.bed + 1 }),
+const COMPASS = ['north', 'east', 'south', 'west'] as const;
+/** The compass side of a bed's first section: its top end, or its left end
+ *  when beds run across. */
+function firstEnd(g: Garden) {
+  const bearing = (g.north ?? 0) + (axisOf(g) === 'y' ? 0 : 270);
+  return Math.round((((bearing % 360) + 360) % 360) / 90) % 4;
+}
+
+/** "Bed 2, north half" (or "Strip 2" in an open plot). */
+const placeName = (t: T, s: Section, g: Garden) => {
+  const first = COMPASS[firstEnd(g)],
+    last = COMPASS[(firstEnd(g) + 2) % 4];
+  return [
+    t(g.ground === 'rows' ? 'planner.strip' : 'planner.bed', { n: s.bed + 1 }),
     s.parts === 1
       ? null
       : t(
           `planner.part.${
             s.parts === 2
-              ? s.part
-                ? 'southHalf'
-                : 'northHalf'
+              ? `${s.part ? last : first}Half`
               : s.part === 0
-                ? 'northEnd'
+                ? `${first}End`
                 : s.part === s.parts - 1
-                  ? 'southEnd'
+                  ? `${last}End`
                   : 'middle'
           }`
         ),
   ]
     .filter(Boolean)
     .join(', ');
+};
 
 function SectionPanel({
   section: s,
   index,
   sections,
+  garden,
   advice,
   need,
   harvest,
@@ -431,10 +649,15 @@ function SectionPanel({
   onSwap,
   onPlanted,
   onSplit,
+  onMerge,
+  onLength,
+  onKeep,
+  onDeleteBed,
 }: {
   section: Section;
   index: number;
   sections: Section[];
+  garden: Garden;
   advice: PlaceAdvice;
   need?: CropNeeds;
   /** The crop's harvest months at the place (bit 0 = January), when known. */
@@ -443,6 +666,10 @@ function SectionPanel({
   onSwap: (crop: string) => void;
   onPlanted: (day: string | undefined) => void;
   onSplit: () => void;
+  onMerge: (dir: -1 | 1) => void;
+  onLength: (delta: number) => void;
+  onKeep: () => void;
+  onDeleteBed: () => void;
 }) {
   const { t, i18n } = useTranslation('huerta');
   const crop = s.crop ? CROP[s.crop] : null;
@@ -469,11 +696,15 @@ function SectionPanel({
       later: sorted.filter(c => advice.crops[c.id] !== 'now'),
     };
   }, [advice, t]);
-  const near = notes(sections, index);
+  const near = notes(sections, index, garden.north ?? 0);
+  const axis: Axis = axisOf(garden);
+  const length = axis === 'y' ? s.y1 - s.y0 : s.x1 - s.x0;
 
   return (
     <div className='flex flex-col gap-4'>
-      <h2 className='type-micro text-muted-foreground'>{placeName(t, s)}</h2>
+      <h2 className='type-micro text-muted-foreground'>
+        {placeName(t, s, garden)}
+      </h2>
       {crop ? (
         <>
           <div className='grid grid-cols-[4rem_minmax(0,1fr)] items-center gap-3'>
@@ -643,12 +874,77 @@ function SectionPanel({
             </SelectGroup>
           </SelectContent>
         </Select>
+        <div className='flex flex-wrap gap-2'>
+          <Button variant='outline' disabled={length < 0.6} onClick={onSplit}>
+            {t('planner.split')}
+          </Button>
+          <Button
+            variant='outline'
+            disabled={s.part === 0}
+            onClick={() => onMerge(-1)}
+          >
+            {t('planner.mergePrev')}
+          </Button>
+          <Button
+            variant='outline'
+            disabled={s.part === s.parts - 1}
+            onClick={() => onMerge(1)}
+          >
+            {t('planner.mergeNext')}
+          </Button>
+        </div>
+        <div className='flex items-center gap-2 text-sm'>
+          <span className='text-muted-foreground'>{t('planner.length')}</span>
+          <Button
+            variant='outline'
+            size='icon'
+            aria-label={t('planner.shorter')}
+            disabled={s.parts < 2 || length <= 0.31}
+            onClick={() => onLength(-0.1)}
+          >
+            <Minus className='size-4' />
+          </Button>
+          <span className='min-w-14 text-center text-foreground tabular-nums'>
+            {t('planner.lengthValue', { value: length.toFixed(1) })}
+          </span>
+          <Button
+            variant='outline'
+            size='icon'
+            aria-label={t('planner.longer')}
+            disabled={s.parts < 2}
+            onClick={() => onLength(0.1)}
+          >
+            <Plus className='size-4' />
+          </Button>
+        </div>
         <Button
           variant='outline'
-          disabled={s.y1 - s.y0 < 0.6}
-          onClick={onSplit}
+          aria-pressed={Boolean(s.locked)}
+          className={cn(
+            'self-start',
+            s.locked && 'border-primary text-primary-text'
+          )}
+          onClick={onKeep}
         >
-          {t('planner.split')}
+          <Lock className='size-4' />
+          {t(s.locked ? 'planner.kept' : 'planner.keep')}
+        </Button>
+        {s.locked ? (
+          <p className='text-xs text-muted-foreground'>
+            {t('planner.keptHint')}
+          </p>
+        ) : null}
+        <Button
+          variant='ghost'
+          className='self-start text-destructive-text'
+          onClick={onDeleteBed}
+        >
+          <Trash2 className='size-4' />
+          {t(
+            garden.ground === 'rows'
+              ? 'planner.deleteStrip'
+              : 'planner.deleteBed'
+          )}
         </Button>
       </div>
     </div>

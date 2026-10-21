@@ -367,7 +367,11 @@
       "southHalf": "metà sud",
       "northEnd": "estremità nord",
       "southEnd": "estremità sud",
-      "middle": "centro"
+      "middle": "centro",
+      "eastHalf": "metà est",
+      "westHalf": "metà ovest",
+      "eastEnd": "estremità est",
+      "westEnd": "estremità ovest"
     },
     "unit": {
       "plants_one": "{{count}} pianta",
@@ -434,7 +438,44 @@
     "later": "Più avanti",
     "split": "Dividi questa parte in due",
     "footnote": "Semina e trapianto al {{date}}. Il tuo piano resta su questo dispositivo.",
-    "sownOn": "Seminato il {{date}}"
+    "sownOn": "Seminato il {{date}}",
+    "faces": "Il lato in alto guarda a",
+    "groundLabel": "Come coltivi",
+    "ground": {
+      "raised": "Aiuole rialzate",
+      "ground": "Aiuole a terra",
+      "rows": "File in campo aperto"
+    },
+    "runLabel": "Aiuole",
+    "run": {
+      "along": "Per lungo",
+      "across": "Per largo"
+    },
+    "undo": "Annulla",
+    "mergePrev": "Unisci alla precedente",
+    "mergeNext": "Unisci alla successiva",
+    "shorter": "Più corta",
+    "longer": "Più lunga",
+    "lengthValue": "{{value}} m",
+    "keep": "Tieni qui",
+    "kept": "Resta qui",
+    "keptHint": "«Pianifica per me» e i cambi di misura la lasciano dov'è.",
+    "deleteBed": "Togli questa aiuola",
+    "deleteStrip": "Togli questa striscia",
+    "bare": "Terra nuda",
+    "bareText": "Qui c'era un'aiuola. Rimettila, o lascia la terra libera.",
+    "putBed": "Rimetti l'aiuola",
+    "strip": "Striscia {{n}}",
+    "bearing": {
+      "0": "Nord",
+      "45": "Nord-est",
+      "90": "Est",
+      "135": "Sud-est",
+      "180": "Sud",
+      "225": "Sud-ovest",
+      "270": "Ovest",
+      "315": "Nord-ovest"
+    }
   },
   "year": {
     "title": "Il tuo anno",
