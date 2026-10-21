@@ -43,6 +43,7 @@ import {
   HelpCircle as LucideHelpCircle,
   ImageIcon as LucideImageIcon,
   Info as LucideInfo,
+  LayoutGrid as LucideLayoutGrid,
   Leaf as LucideLeaf,
   LifeBuoy as LucideLifeBuoy,
   Lightbulb as LucideLightbulb,
@@ -65,6 +66,8 @@ import {
   Plus as LucidePlus,
   QrCode as LucideQrCode,
   RefreshCw as LucideRefreshCw,
+  RotateCcw as LucideRotateCcw,
+  RotateCw as LucideRotateCw,
   RouteIcon as LucideRouteIcon,
   RouteOff as LucideRouteOff,
   ScanSearch as LucideScanSearch,
@@ -163,6 +166,7 @@ export const Heart = decorativeByDefault(LucideHeart);
 export const HelpCircle = decorativeByDefault(LucideHelpCircle);
 export const ImageIcon = decorativeByDefault(LucideImageIcon);
 export const Info = decorativeByDefault(LucideInfo);
+export const LayoutGrid = decorativeByDefault(LucideLayoutGrid);
 export const Leaf = decorativeByDefault(LucideLeaf);
 export const LifeBuoy = decorativeByDefault(LucideLifeBuoy);
 export const Lightbulb = decorativeByDefault(LucideLightbulb);
@@ -185,6 +189,8 @@ export const PanelLeftIcon = decorativeByDefault(LucidePanelLeftIcon);
 export const Plus = decorativeByDefault(LucidePlus);
 export const QrCode = decorativeByDefault(LucideQrCode);
 export const RefreshCw = decorativeByDefault(LucideRefreshCw);
+export const RotateCcw = decorativeByDefault(LucideRotateCcw);
+export const RotateCw = decorativeByDefault(LucideRotateCw);
 export const RouteIcon = decorativeByDefault(LucideRouteIcon);
 export const RouteOff = decorativeByDefault(LucideRouteOff);
 export const ScanSearch = decorativeByDefault(LucideScanSearch);

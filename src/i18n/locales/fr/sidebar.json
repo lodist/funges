@@ -28,5 +28,6 @@
       "tagline": "Votre potager, cette semaine"
     }
   },
-  "huertaMap": "Carte du potager"
+  "huertaMap": "Carte du potager",
+  "huertaPlanner": "Plan du potager"
 }
