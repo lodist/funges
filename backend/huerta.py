@@ -1,16 +1,17 @@
 """Huerta, the garden space: this week's advice at every place, from the night's hourly
 forecast, each place's frost climate and the crop table, published for the app.
 
-Per place: the coldest hour of the next 3 days (frost3), the mean soil temperature at 6 cm
-over them (soil3; NBM has none, so in the US the air's three-day mean stands in), the
-week's mean night (night7), its rain (rain7) and reference evaporation (et07, Hargreaves'
-radiation formula). Per crop, the first rule that applies:
+Per place: the coldest hour of the next 3 days (frost3) and of the rest of the week, days
+4-7 (frostw, with the night it comes: frostw_night), the mean soil temperature at 6 cm
+over the next 3 days (soil3; NBM has none, so in the US the air's three-day mean stands
+in), the week's mean night (night7), its rain (rain7) and reference evaporation (et07,
+Hargreaves' radiation formula). Per crop, the first rule that applies:
 - a crop that goes in only in autumn (bulbs, winter rye) -> wait_autumn before July; one that
   goes in only in spring (asparagus crowns) -> wait_spring from July;
 - tender: no warm-night season here -> not_here; an autumn frost before harvest in more
   than 1 year in 10, or harvest past the end of the warm-night season -> too_late; a frost
-  (<= 2 C) in the next 3 days, or one still to come in more than 1 year in 10 ->
-  wait_frost; over two weeks before the warm nights normally begin, or this week's nights
+  (<= 2 C) in the next 3 days, a frost (<= 0 C) later in the week, or one still to come in
+  more than 1 year in 10 -> wait_frost; over two weeks before the warm nights normally begin, or this week's nights
   below its need -> wait_warm; soil below its need -> wait_soil (too_late from July on: the
   soil only cools);
 - hardier crops: soil below or above its range -> wait_soil (too_late from July on) /
@@ -25,9 +26,11 @@ crops.csv, the crop table; FROST_ODDS_DIR (default app_operation/frost_odds) hol
 
 Output, private on R2 like the rest: one file per 1° square, huerta/advice/<REGION>/
 <lat>_<lon>.json, {day, crops, places: [[name, lat, lon, frost, soil, nights, rain, water,
-codes, last_frost, first_frost]]}: frost '' / 'g' (ground frost) / 'f', codes one letter per
-crop (CODES), last/first frost the place's typical day of year of its last spring and first
-autumn frost (null: none in a typical year). For the garden map, huerta/map/<REGION>/:
+codes, last_frost, first_frost, later_frost, later_night]]}: frost '' / 'g' (ground frost) /
+'f' in the next 3 days, codes one letter per crop (CODES), last/first frost the place's
+typical day of year of its last spring and first autumn frost (null: none in a typical
+year), later_frost the same '' / 'g' / 'f' for days 4-7 and later_night the date of its
+first such night (null: none). For the garden map, huerta/map/<REGION>/:
 index.json {day, n, layers}, places.bin (int16 lat x100, lon x100 per place) and layers.bin,
 one byte per place per layer, layer after layer (MAP_LAYERS, then one per crop: its letter),
 so the Worker can hand out one layer with a range read. And huerta/crops.json, what each crop needs
@@ -55,7 +58,8 @@ AUTUMN = 182    # day of year (1 July): soil too cold means too late from here; 
 CODES = {"now": "n", "wait_frost": "f", "wait_soil": "s", "wait_warm": "w", "too_warm": "h",
          "too_late": "l", "not_here": "x", "wait_autumn": "a", "wait_spring": "p"}
 UPLOAD_WORKERS = 16
-# The garden map's own layers: frost in the next 3 days (0 none, 1 ground frost, 2 frost), soil
+# The garden map's own layers: frost (0 none; in the next 3 days 1 ground frost, 2 frost; 3 either
+# later in the week), soil
 # at 6 cm (degrees C + 40) and the week's water deficit (mm); 255 where unknown.
 MAP_LAYERS = ("frost", "soil", "water")
 
@@ -73,8 +77,15 @@ def conditions(forecast):
     days["et0"] = 0.0135 * (days["tmean"] + 17.8) * days["sun"] * 3600e-6 * 0.408
     week = days.groupby(level=keys, sort=False).agg(night7=("tmin", "mean"), rain7=("rain", "sum"),
                                                     et07=("et0", "sum"))
+    # The rest of the week, days 4-7: its coldest night, and the first night as cold as that.
+    late = days.loc[days.index.get_level_values("day") >= 3, "tmin"]
+    week["frostw"] = late.groupby(level=keys, sort=False).min()
+    for limit, col in ((0, "first_f"), (2, "first_g")):
+        week[col] = late[late <= limit].reset_index(level="day")["day"].groupby(level=keys, sort=False).min()
     out = soon.join(week).reset_index()
     out["soil3"] = out["soil3"].fillna(out.pop("air3"))
+    night = np.where(out["frostw"] <= 0, out.pop("first_f"), out.pop("first_g"))
+    out["frostw_night"] = [None if np.isnan(d) else f"{start + pd.Timedelta(days=int(d)):%Y-%m-%d}" for d in night]
     return out, start
 
 
@@ -89,7 +100,7 @@ def frost_risk(place, name, doy, days):
 
 def advise(place, crops, doy):
     """One status per crop and place, by the rules in the module docstring."""
-    soil, frost3, night7 = (place[c].to_numpy() for c in ("soil3", "frost3", "night7"))
+    soil, frost3, frostw, night7 = (place[c].to_numpy() for c in ("soil3", "frost3", "frostw", "night7"))
     cold_soil = "too_late" if doy >= AUTUMN else "wait_soil"
     out = {}
     for c in crops.itertuples(index=False):
@@ -111,6 +122,7 @@ def advise(place, crops, doy):
                 mark((end < 365) & (doy + c.days > end) & (doy >= start - EARLY), "too_late")
             mark(autumn > SAFE, "too_late")
             mark(frost3 <= 2, "wait_frost")
+            mark(frostw <= 0, "wait_frost")                             # a frost later in the week
             mark(spring > SAFE, "wait_frost")
             if nights:
                 mark(doy < start - EARLY, "wait_warm")
@@ -155,7 +167,7 @@ def _byte(values, offset=0):
 def map_files(place, advice, day):
     """{name under huerta/map/<REGION>/: bytes} for the garden map, layers in MAP_LAYERS + crop order."""
     n = len(place)
-    frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2], [2, 1], 0).astype(np.uint8)
+    frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2, place["frostw"] <= 2], [2, 1, 3], 0).astype(np.uint8)
     water = (place["et07"] - place["rain7"]).clip(lower=0)
     columns = [frost, _byte(place["soil3"], 40), _byte(water)]
     codes = advice.replace(CODES)
@@ -169,17 +181,18 @@ def map_files(place, advice, day):
 def area_files(place, advice, day):
     """{R2 key suffix '<lat>_<lon>.json': file bytes}: every place of a 1° square, compact."""
     frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2], ["f", "g"], "")
+    later = np.select([place["frostw"] <= 0, place["frostw"] <= 2], ["f", "g"], "")
     water = (place["et07"] - place["rain7"]).clip(lower=0)
     codes = advice.replace(CODES).agg("".join, axis=1)
     rows = pd.DataFrame({
         "square": np.floor(place["Latitude"]).astype(int).astype(str) + "_"
         + np.floor(place["Longitude"]).astype(int).astype(str),
         "row": [[name, float(la), float(lo), fr, _number(s), _number(n), _number(r), _number(w, 0), c,
-                 _day(last), _day(first)]
-                for name, la, lo, fr, s, n, r, w, c, last, first in zip(
+                 _day(last), _day(first), lf, ln if lf else None]
+                for name, la, lo, fr, s, n, r, w, c, last, first, lf, ln in zip(
                     place["Location_Id"].str.rsplit("_", n=2).str[0], place["Latitude"], place["Longitude"],
                     frost, place["soil3"], place["night7"], place["rain7"], water, codes,
-                    place["last0_median"], place["first0_median"])],
+                    place["last0_median"], place["first0_median"], later, place["frostw_night"])],
     })
     crops = list(advice.columns)
     return {f"{square}.json": json.dumps({"day": day, "crops": crops, "places": list(group["row"])},

@@ -17,7 +17,7 @@ CROPS = pd.DataFrame([
 
 
 def place(**k):
-    row = dict(frost3=10.0, soil3=10.0, night7=12.0, last0_2016=0, first0_2016=0, lastm3_2016=0,
+    row = dict(frost3=10.0, frostw=10.0, soil3=10.0, night7=12.0, last0_2016=0, first0_2016=0, lastm3_2016=0,
                firstm3_2016=0, warm10_start=120, warm10_end=280, winter_low=-2.0)
     row.update(k)
     return row
@@ -38,6 +38,10 @@ def test_rules():
     assert autumn["tomato"].tolist()[:2] == ["too_late", "too_late"]           # no October tomatoes, even frost-free
     assert autumn["garlic"].tolist()[2:] == ["now", "too_warm", "too_late"]
     assert autumn["peas"].tolist()[2] == "too_late"
+    # A frost later in the week holds back tender crops, not hardy ones.
+    warm = pd.DataFrame([place(warm10_start=100, warm10_end=300, soil3=20, night7=14, frostw=-1.0)])
+    week = huerta.advise(warm, CROPS, 160)
+    assert week["tomato"].tolist() == ["wait_frost"] and week["peas"].tolist() == ["now"]
     # Bulbs go in only in autumn, asparagus crowns only in spring, whatever the soil says.
     assert spring["tulip"].tolist() == ["wait_autumn"] and spring["asparagus"].tolist() == ["now"]
     assert autumn["tulip"].tolist()[2:] == ["now", "too_warm", "now"]
@@ -51,14 +55,15 @@ def test_area_files_group_places_by_square_with_one_letter_per_crop():
         "frost3": [9.2, 1.5, -0.5], "soil3": [13.44, 12.0, np.nan], "night7": [8.5, 7.0, 6.0],
         "rain7": [4.0, 20.0, 1.0], "et07": [14.4, 10.0, 12.0],
         "last0_median": [81, 0, 95], "first0_median": [361, 0, 330],
+        "frostw": [5.0, 1.5, -2.0], "frostw_night": [None, "2026-10-24", "2026-10-25"],
     })
     advice = pd.DataFrame({"garlic": ["now", "too_warm", "now"], "tomato": ["too_late", "too_late", "not_here"]})
     files = huerta.area_files(places, advice, "2026-10-20")
     assert sorted(files) == ["39_-5.json", "40_-4.json"]
     madrid = json.loads(files["40_-4.json"])
     assert madrid["day"] == "2026-10-20" and madrid["crops"] == ["garlic", "tomato"]
-    assert madrid["places"][0] == ["Ciudad Lineal", 40.44, -3.675, "", 13.4, 8.5, 4.0, 10.0, "nl", 81, 361]
-    assert madrid["places"][1][9:] == [None, None]                                 # no frost in a typical year
+    assert madrid["places"][0] == ["Ciudad Lineal", 40.44, -3.675, "", 13.4, 8.5, 4.0, 10.0, "nl", 81, 361, "", None]
+    assert madrid["places"][1][9:] == [None, None, "g", "2026-10-24"]             # no frost in a typical year; ground frost Saturday
     assert madrid["places"][1][3] == "g" and madrid["places"][1][7] == 0.0       # ground frost; rain beat evaporation
     toledo = json.loads(files["39_-5.json"])["places"][0]
     assert toledo[3] == "f" and toledo[4] is None and toledo[8] == "nx"         # frost; no soil reading
@@ -73,7 +78,7 @@ def test_crop_needs_say_what_each_crop_wants():
 def test_map_files_hold_one_layer_after_another():
     places = pd.DataFrame({
         "Latitude": [40.44, 39.86], "Longitude": [-3.675, -4.02],
-        "frost3": [9.2, -0.5], "soil3": [13.44, np.nan], "rain7": [4.0, 1.0], "et07": [14.4, 12.0],
+        "frost3": [9.2, -0.5], "frostw": [1.0, 5.0], "soil3": [13.44, np.nan], "rain7": [4.0, 1.0], "et07": [14.4, 12.0],
     })
     advice = pd.DataFrame({"garlic": ["now", "too_warm"], "tomato": ["too_late", "not_here"]})
     files = huerta.map_files(places, advice, "2026-10-20")
@@ -81,7 +86,20 @@ def test_map_files_hold_one_layer_after_another():
     assert index == {"day": "2026-10-20", "n": 2, "layers": ["frost", "soil", "water", "garlic", "tomato"]}
     assert np.frombuffer(files["places.bin"], "<i2").tolist() == [4044, -368, 3986, -402]
     layers = np.frombuffer(files["layers.bin"], np.uint8).reshape(5, 2)
-    assert layers[0].tolist() == [0, 2]                                   # no frost; frost
+    assert layers[0].tolist() == [3, 2]                                   # ground frost later in the week; frost now
     assert layers[1].tolist() == [53, 255]                                # 13 C + 40; no reading
     assert layers[2].tolist() == [10, 11]                                 # mm still to water
     assert bytes(layers[3]).decode() + bytes(layers[4]).decode() == "nhlx"
+
+
+def test_conditions_find_the_first_frost_night_later_in_the_week():
+    hours = pd.date_range("2026-10-20 19:00", periods=7 * 24, freq="h", tz="UTC")
+    temp = np.full(len(hours), 8.0)
+    temp[4 * 24 + 10] = -1.0                       # day 5 (the night of 24 Oct): a frost
+    temp[3 * 24 + 10] = 1.5                        # day 4: only a ground frost
+    forecast = pd.DataFrame({"time": hours, "lat": 40.0, "lon": -3.7, "t2m_c": temp, "soil_c": 12.0,
+                             "precip_mm": 0.0, "swdown_wm2": 100.0})
+    cond, _ = huerta.conditions(forecast)
+    row = cond.iloc[0]
+    assert row["frost3"] == 8.0 and row["frostw"] == -1.0
+    assert row["frostw_night"] == "2026-10-24"      # the frost night, not the earlier ground frost
