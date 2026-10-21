@@ -26,19 +26,23 @@ const MARK = '#c9603a';
 const HI = 'rgba(255,255,255,0.3)';
 /** Crops drawn as photographed plants seen from the model's angle
  *  (huerta/iso/<id>.webp). The rest keep their forms. */
-const PHOTO = new Set([
-  'garlic',
-  'broad_beans',
-  'peas',
-  'cabbage',
-  'lettuce',
-  'tomato',
-]);
+const PHOTO = new Set(['garlic', 'peas']);
 const GROUND = (name: string) => huertaImage(`ground/${name}`);
 /** Crops photographed at each stage, on a frame of this many metres of real
  *  height, the plant's foot at the middle, 8% above the bottom:
  *  huerta/iso/<id>-seedling, -young, and three grown plants -1, -2, -3. */
-const STAGED: Record<string, number> = { tomato: 1.5, cabbage: 1, lettuce: 1 };
+const STAGED: Record<string, number> = {
+  artichoke: 2.0,
+  asparagus: 1.5,
+  aubergine: 1.0,
+  basil: 0.5,
+  beetroot: 0.5,
+  broad_beans: 1.5,
+  broccoli: 1.0,
+  cabbage: 1.0,
+  lettuce: 1.0,
+  tomato: 1.5,
+};
 /** Real-world size of one texture tile, metres. */
 const TILE = { soil: 0.8, gravel: 0.6 };
 /** A bed's boards (thickness) and its soil (height, under the rim), and the
@@ -485,7 +489,33 @@ export function GardenModel({
         tallest = Math.max(tallest, look.height);
         const f = fit(s);
         const opacity = s.planted ? 1 : 0.6;
-        if (!f)
+        if (!f && STAGED[crop])
+          // A green manure sown thick: its photographed patches over the
+          // section, one for every sixth blade.
+          carpet(s, i, look)
+            .filter((_, k) => k % 6 === 0)
+            .forEach(([x, y], k) =>
+              plants.push({
+                d: depth(x, y),
+                node: (
+                  <g
+                    key={`c${i}-${x}-${y}`}
+                    opacity={opacity}
+                    onClick={select(i)}
+                    className='cursor-pointer'
+                  >
+                    <Staged
+                      id={crop}
+                      stage={s.planted && stage ? stage(s) : 'grown'}
+                      at={P(x, y, SOIL_Z)}
+                      seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
+                      pop={fresh === i ? k : null}
+                    />
+                  </g>
+                ),
+              })
+            );
+        else if (!f)
           carpet(s, i, look).forEach(([x, y, h, flower]) => {
             const [bx, by] = P(x, y, SOIL_Z);
             plants.push({
