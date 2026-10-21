@@ -367,7 +367,11 @@
       "southHalf": "mitad sur",
       "northEnd": "extremo norte",
       "southEnd": "extremo sur",
-      "middle": "centro"
+      "middle": "centro",
+      "eastHalf": "mitad este",
+      "westHalf": "mitad oeste",
+      "eastEnd": "extremo este",
+      "westEnd": "extremo oeste"
     },
     "unit": {
       "plants_one": "{{count}} planta",
@@ -434,7 +438,44 @@
     "later": "Más adelante",
     "split": "Dividir esta parte en dos",
     "footnote": "Siembra y plantación a {{date}}. Tu plan se guarda en este dispositivo.",
-    "sownOn": "Sembrado el {{date}}"
+    "sownOn": "Sembrado el {{date}}",
+    "faces": "El lado superior mira al",
+    "groundLabel": "Cómo cultivas",
+    "ground": {
+      "raised": "Bancales elevados",
+      "ground": "Bancales en el suelo",
+      "rows": "Surcos en campo abierto"
+    },
+    "runLabel": "Bancales",
+    "run": {
+      "along": "A lo largo",
+      "across": "A lo ancho"
+    },
+    "undo": "Deshacer",
+    "mergePrev": "Unir con la anterior",
+    "mergeNext": "Unir con la siguiente",
+    "shorter": "Más corta",
+    "longer": "Más larga",
+    "lengthValue": "{{value}} m",
+    "keep": "Dejar aquí",
+    "kept": "Se queda aquí",
+    "keptHint": "«Planifícalo por mí» y los cambios de tamaño la dejan donde está.",
+    "deleteBed": "Quitar este bancal",
+    "deleteStrip": "Quitar esta franja",
+    "bare": "Tierra sin cultivar",
+    "bareText": "Aquí había un bancal. Vuelve a ponerlo o deja la tierra libre.",
+    "putBed": "Volver a poner el bancal",
+    "strip": "Franja {{n}}",
+    "bearing": {
+      "0": "Norte",
+      "45": "Noreste",
+      "90": "Este",
+      "135": "Sureste",
+      "180": "Sur",
+      "225": "Suroeste",
+      "270": "Oeste",
+      "315": "Noroeste"
+    }
   },
   "year": {
     "title": "Tu año",

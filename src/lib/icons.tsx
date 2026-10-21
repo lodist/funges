@@ -83,6 +83,8 @@ import {
   Sun as LucideSun,
   Target as LucideTarget,
   Thermometer as LucideThermometer,
+  Trash2 as LucideTrash2,
+  Undo2 as LucideUndo2,
   User as LucideUser,
   Users as LucideUsers,
   WifiOff as LucideWifiOff,
@@ -206,6 +208,8 @@ export const Star = decorativeByDefault(LucideStar);
 export const Sun = decorativeByDefault(LucideSun);
 export const Target = decorativeByDefault(LucideTarget);
 export const Thermometer = decorativeByDefault(LucideThermometer);
+export const Trash2 = decorativeByDefault(LucideTrash2);
+export const Undo2 = decorativeByDefault(LucideUndo2);
 export const User = decorativeByDefault(LucideUser);
 export const Users = decorativeByDefault(LucideUsers);
 export const WifiOff = decorativeByDefault(LucideWifiOff);

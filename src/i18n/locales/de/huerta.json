@@ -367,7 +367,11 @@
       "southHalf": "Südhälfte",
       "northEnd": "Nordende",
       "southEnd": "Südende",
-      "middle": "Mitte"
+      "middle": "Mitte",
+      "eastHalf": "Osthälfte",
+      "westHalf": "Westhälfte",
+      "eastEnd": "Ostende",
+      "westEnd": "Westende"
     },
     "unit": {
       "plants_one": "{{count}} Pflanze",
@@ -434,7 +438,44 @@
     "later": "Später",
     "split": "Diesen Teil zweiteilen",
     "footnote": "Säen und Pflanzen mit Stand {{date}}. Dein Plan bleibt auf diesem Gerät.",
-    "sownOn": "Gesät am {{date}}"
+    "sownOn": "Gesät am {{date}}",
+    "faces": "Oberer Rand zeigt nach",
+    "groundLabel": "So gärtnerst du",
+    "ground": {
+      "raised": "Hochbeete",
+      "ground": "Beete im Boden",
+      "rows": "Reihen im offenen Feld"
+    },
+    "runLabel": "Beete",
+    "run": {
+      "along": "Längs",
+      "across": "Quer"
+    },
+    "undo": "Rückgängig",
+    "mergePrev": "Mit dem vorigen verbinden",
+    "mergeNext": "Mit dem nächsten verbinden",
+    "shorter": "Kürzer",
+    "longer": "Länger",
+    "lengthValue": "{{value}} m",
+    "keep": "Hier lassen",
+    "kept": "Bleibt hier",
+    "keptHint": "„Für mich planen“ und neue Maße lassen ihn, wo er ist.",
+    "deleteBed": "Dieses Beet entfernen",
+    "deleteStrip": "Diesen Streifen entfernen",
+    "bare": "Freie Erde",
+    "bareText": "Hier war ein Beet. Leg es wieder an oder lass die Erde frei.",
+    "putBed": "Beet wieder anlegen",
+    "strip": "Streifen {{n}}",
+    "bearing": {
+      "0": "Norden",
+      "45": "Nordosten",
+      "90": "Osten",
+      "135": "Südosten",
+      "180": "Süden",
+      "225": "Südwesten",
+      "270": "Westen",
+      "315": "Nordwesten"
+    }
   },
   "year": {
     "title": "Dein Jahr",

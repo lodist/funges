@@ -367,7 +367,11 @@
       "southHalf": "metade sul",
       "northEnd": "ponta norte",
       "southEnd": "ponta sul",
-      "middle": "meio"
+      "middle": "meio",
+      "eastHalf": "metade leste",
+      "westHalf": "metade oeste",
+      "eastEnd": "ponta leste",
+      "westEnd": "ponta oeste"
     },
     "unit": {
       "plants_one": "{{count}} planta",
@@ -434,7 +438,44 @@
     "later": "Mais tarde",
     "split": "Dividir esta parte em duas",
     "footnote": "Semeadura e plantio em {{date}}. Seu plano fica neste dispositivo.",
-    "sownOn": "Semeado em {{date}}"
+    "sownOn": "Semeado em {{date}}",
+    "faces": "O lado de cima fica para o",
+    "groundLabel": "Como você cultiva",
+    "ground": {
+      "raised": "Canteiros elevados",
+      "ground": "Canteiros no chão",
+      "rows": "Fileiras em campo aberto"
+    },
+    "runLabel": "Canteiros",
+    "run": {
+      "along": "No comprimento",
+      "across": "Na largura"
+    },
+    "undo": "Desfazer",
+    "mergePrev": "Juntar com a anterior",
+    "mergeNext": "Juntar com a seguinte",
+    "shorter": "Mais curta",
+    "longer": "Mais longa",
+    "lengthValue": "{{value}} m",
+    "keep": "Manter aqui",
+    "kept": "Fica aqui",
+    "keptHint": "“Planejar para mim” e mudanças de tamanho a deixam onde está.",
+    "deleteBed": "Remover este canteiro",
+    "deleteStrip": "Remover esta faixa",
+    "bare": "Terra livre",
+    "bareText": "Aqui havia um canteiro. Coloque-o de volta ou deixe a terra livre.",
+    "putBed": "Colocar o canteiro de volta",
+    "strip": "Faixa {{n}}",
+    "bearing": {
+      "0": "Norte",
+      "45": "Nordeste",
+      "90": "Leste",
+      "135": "Sudeste",
+      "180": "Sul",
+      "225": "Sudoeste",
+      "270": "Oeste",
+      "315": "Noroeste"
+    }
   },
   "year": {
     "title": "Seu ano",
