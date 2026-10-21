@@ -179,6 +179,30 @@
   --color-rose-*: initial;
 }
 
+/* The garden planner: a plant just planted comes up out of the soil. */
+@keyframes plant-up {
+  from {
+    transform: scale(0.15);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .plant-up {
+    animation: plant-up var(--transition-duration-slow) var(--ease-standard)
+      both;
+    transform-box: fill-box;
+    transform-origin: 50% 92%;
+  }
+}
+
 @keyframes collapsible-down {
   from {
     height: 0;

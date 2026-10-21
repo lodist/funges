@@ -346,11 +346,6 @@
       "L": "L-shape"
     },
     "auto": "Plan it for me",
-    "viewLabel": "View",
-    "view": {
-      "3d": "3D",
-      "plan": "Plan"
-    },
     "turnLeft": "Turn left",
     "turnRight": "Turn right",
     "model": "Your garden, drawn",

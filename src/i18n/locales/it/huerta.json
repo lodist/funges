@@ -346,11 +346,6 @@
       "L": "A L"
     },
     "auto": "Pianificalo per me",
-    "viewLabel": "Vista",
-    "view": {
-      "3d": "3D",
-      "plan": "Pianta"
-    },
     "turnLeft": "Ruota a sinistra",
     "turnRight": "Ruota a destra",
     "model": "Il tuo orto, disegnato",

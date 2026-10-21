@@ -346,11 +346,6 @@
       "L": "En L"
     },
     "auto": "Planifiez pour moi",
-    "viewLabel": "Vue",
-    "view": {
-      "3d": "3D",
-      "plan": "Plan"
-    },
     "turnLeft": "Tourner à gauche",
     "turnRight": "Tourner à droite",
     "model": "Votre potager, dessiné",
