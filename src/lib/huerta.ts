@@ -832,6 +832,21 @@ export const weekday = (date: string, language: string) =>
     new Date(`${date}T12:00:00`)
   );
 
+/** The kind filter's chips, in order. */
+export const KINDS: (CropKind | 'all')[] = [
+  'all',
+  'vegetable',
+  'fruit',
+  'herb',
+  'flower',
+  'cover',
+];
+
+/** Crop photos and type icons, kept out of the service worker's precache:
+ *  only Huerta visitors fetch them. */
+export const huertaImage = (path: string) =>
+  `${import.meta.env.BASE_URL}huerta/${path}.webp`;
+
 export const cropsWith = (advice: PlaceAdvice, statuses: CropStatus[]) =>
   CROPS.filter(crop => statuses.includes(advice.crops[crop.id]));
 

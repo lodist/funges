@@ -11,10 +11,11 @@ import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import {
   cropsWith,
+  huertaImage as image,
+  KINDS,
   weekday,
   SAMPLE_ADVICE,
   type Crop,
-  type CropKind,
   type CropNeeds,
   type CropStatus,
   type PlaceAdvice,
@@ -42,6 +43,7 @@ import {
   Thermometer,
 } from '@/lib/icons';
 import { loadPlan } from '@/lib/planner';
+import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
 import { cn } from '@/lib/utils';
 
 const WAITING: CropStatus[] = [
@@ -52,20 +54,6 @@ const WAITING: CropStatus[] = [
   'wait_autumn',
   'wait_spring',
 ];
-
-const KINDS: (CropKind | 'all')[] = [
-  'all',
-  'vegetable',
-  'fruit',
-  'herb',
-  'flower',
-  'cover',
-];
-
-/** Crop photos and type icons, kept out of the service worker's precache:
- *  only Huerta visitors fetch them. */
-const image = (path: string) =>
-  `${import.meta.env.BASE_URL}huerta/${path}.webp`;
 
 type Load =
   | { state: 'picking' }
@@ -297,6 +285,7 @@ function PlacePicker({ onPick }: { onPick: (place: Place) => void }) {
 
 function Advice({ advice }: { advice: PlaceAdvice }) {
   const { t } = useTranslation('huerta');
+  const year = useHuertaYear();
   const [kind, setKind] = useState<string>('all');
   const [open, setOpen] = useState<Crop | null>(null);
   const pick = (statuses: CropStatus[]) =>
@@ -344,12 +333,13 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
       ) : null}
 
       {over.length > 0 ? (
-        <TooLate crops={over} advice={advice} onOpen={setOpen} />
+        <TooLate crops={over} advice={advice} onOpen={setOpen} year={year} />
       ) : null}
 
       <CropSheet
         crop={open}
         advice={advice}
+        year={open && year ? year.crops[open.id] : undefined}
         image={crop => image(`crops/${crop.id}`)}
         onClose={() => setOpen(null)}
       />
@@ -668,12 +658,26 @@ function TooLate({
   crops,
   advice,
   onOpen,
+  year,
 }: {
   crops: Crop[];
   advice: PlaceAdvice;
   onOpen: (crop: Crop) => void;
+  year: ReturnType<typeof useHuertaYear>;
 }) {
-  const { t } = useTranslation('huerta');
+  const { t, i18n } = useTranslation('huerta');
+  // When its time comes back here, from the place's year.
+  const backIn = (crop: Crop) => {
+    const mask = year?.crops[crop.id]?.sow;
+    const m = mask ? nextMonth(mask, new Date().getMonth()) : null;
+    return m === null
+      ? undefined
+      : t('year.backIn', {
+          month: new Intl.DateTimeFormat(i18n.language, {
+            month: 'long',
+          }).format(new Date(2026, m, 1)),
+        });
+  };
   const [all, setAll] = useState(false);
   return (
     <section className='mt-10'>
@@ -685,7 +689,7 @@ function TooLate({
         note={crop =>
           advice.crops[crop.id] === 'not_here'
             ? t('status.not_here')
-            : undefined
+            : backIn(crop)
         }
       />
       {!all && crops.length > OVER_SHOWN ? (

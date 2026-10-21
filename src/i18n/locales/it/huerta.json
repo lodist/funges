@@ -238,7 +238,8 @@
       "third_year": "Si tagliano i turioni dalla terza primavera",
       "perennial": "Ritorna ogni anno"
     },
-    "source": "Dati di coltivazione: RHS, UC ANR e guide di semina delle ditte sementiere."
+    "source": "Dati di coltivazione: RHS, UC ANR e guide di semina delle ditte sementiere.",
+    "year": "Il suo anno a {{place}}"
   },
   "map": {
     "title": "Mappa dell'orto",
@@ -383,5 +384,18 @@
     "split": "Dividi questa parte in due",
     "footnote": "Semina e trapianto al {{date}}. Il tuo piano resta su questo dispositivo.",
     "sownOn": "Seminato il {{date}}"
+  },
+  "year": {
+    "title": "Il tuo anno",
+    "description": "Quando si semina, si pianta e si raccoglie ogni coltura da te, calcolato dal tuo clima.",
+    "around": "A {{place}}, in un anno tipico.",
+    "noPlace": "Scegli il tuo luogo per vederne l'anno.",
+    "crop": "Coltura",
+    "sow": "Semina o trapianto",
+    "harvest": "Raccolto o fioritura",
+    "thisMonth": "Questo mese ({{month}})",
+    "notHere": "Non all'aperto qui: {{crops}}.",
+    "backIn": "Di nuovo a {{month}}",
+    "note": "I mesi di semina seguono le stesse regole dei consigli di ogni settimana, su un anno tipico da te. I mesi di raccolto sono approssimativi."
   }
 }
