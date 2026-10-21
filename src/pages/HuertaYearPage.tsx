@@ -102,7 +102,7 @@ export default function HuertaYearPage() {
               <table className='w-full min-w-[40rem] border-separate border-spacing-x-1 border-spacing-y-2'>
                 <thead>
                   <tr>
-                    <th className='w-44 text-left'>
+                    <th className='sticky left-0 z-10 w-32 bg-card text-left sm:w-44'>
                       <span className='sr-only'>{t('year.crop')}</span>
                     </th>
                     {Array.from({ length: 12 }, (_, m) => (
@@ -131,7 +131,10 @@ export default function HuertaYearPage() {
                     const { sow, harvest } = year.crops[crop.id];
                     return (
                       <tr key={crop.id}>
-                        <th scope='row' className='text-left font-normal'>
+                        <th
+                          scope='row'
+                          className='sticky left-0 z-10 bg-card pr-2 text-left font-normal'
+                        >
                           <span className='flex items-center gap-3'>
                             <img
                               src={huertaImage(`crops/${crop.id}`)}
@@ -139,7 +142,7 @@ export default function HuertaYearPage() {
                               loading='lazy'
                               className='size-8 rounded-lg object-cover'
                             />
-                            <span className='text-sm font-semibold text-foreground'>
+                            <span className='text-sm leading-tight font-semibold text-foreground'>
                               {t(`crops.${crop.id}`)}
                             </span>
                           </span>
