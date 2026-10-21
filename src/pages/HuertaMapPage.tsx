@@ -349,6 +349,7 @@ function Legend({ layer, failed }: { layer: MapLayer; failed: boolean }) {
         ? [
             ['rgb(63,107,154)', t('map.legend.frost')],
             ['rgb(169,193,220)', t('map.legend.ground')],
+            ['rgb(214,224,236)', t('map.legend.later')],
           ]
         : [];
   return (

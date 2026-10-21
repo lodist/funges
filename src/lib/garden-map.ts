@@ -67,7 +67,9 @@ export function colour(layer: MapLayer, value: number): RGBA | null {
       ? [63, 107, 154, 225]
       : value === 1
         ? [169, 193, 220, 210]
-        : null;
+        : value === 3 // frost or ground frost later in the week
+          ? [214, 224, 236, 200]
+          : null;
   if (value === 255) return null;
   if (layer === 'soil') return ramp(SOIL, value - 40);
   return value === 0 ? null : ramp(WATER, value);
