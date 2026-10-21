@@ -37,6 +37,40 @@
     "later": {
       "frost": "Gel possible plus tard dans la semaine : dans la nuit de {{night}}",
       "ground_frost": "Gelée au sol possible plus tard dans la semaine : dans la nuit de {{night}}"
+    },
+    "todo": {
+      "title": "À faire cette semaine",
+      "frost": {
+        "frost": "Gel dans les 3 prochains jours",
+        "ground_frost": "Gelée au sol dans les 3 prochains jours",
+        "text": "Couvrez {{crops}} les nuits froides."
+      },
+      "laterFrost": {
+        "text": "Gardez de quoi couvrir {{crops}}.",
+        "title": "Gel possible dans la nuit de {{night}}"
+      },
+      "water": {
+        "title": "Arrosez environ {{mm}} L/m² cette semaine",
+        "text": "La pluie ne compense pas ce que prennent le soleil et le vent. Deux bons arrosages valent mieux qu'un peu chaque jour."
+      },
+      "rain": {
+        "title": "Pluie cette semaine, environ {{mm}} mm",
+        "text": "Pas besoin d'arroser les planches."
+      },
+      "plantNow": {
+        "title": "De votre plan, prêts à mettre en terre"
+      },
+      "sowAgain": {
+        "title": "{{crop}} : semez un autre rang",
+        "text": "Le dernier date de {{weeks}} semaines. Semer à nouveau prolonge la récolte."
+      },
+      "from": {
+        "forecast": "Selon la prévision",
+        "plan": "Selon votre plan"
+      },
+      "nothing": "Votre potager n'a besoin de rien cette semaine.",
+      "noPlan": "Planifiez votre potager et notez ce que vous plantez : cette page dira ce qu'il lui faut chaque semaine.",
+      "openPlanner": "Ouvrir le plan du potager"
     }
   },
   "units": {

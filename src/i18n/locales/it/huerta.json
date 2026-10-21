@@ -37,6 +37,40 @@
     "later": {
       "frost": "Possibile gelata più avanti in settimana: {{night}} notte",
       "ground_frost": "Possibile gelata al suolo più avanti in settimana: {{night}} notte"
+    },
+    "todo": {
+      "title": "Da fare questa settimana",
+      "frost": {
+        "frost": "Gelata nei prossimi 3 giorni",
+        "ground_frost": "Gelata al suolo nei prossimi 3 giorni",
+        "text": "Copri {{crops}} nelle notti fredde."
+      },
+      "laterFrost": {
+        "text": "Tieni pronte le coperture per {{crops}}.",
+        "title": "Possibile gelata {{night}} notte"
+      },
+      "water": {
+        "title": "Annaffia circa {{mm}} L/m² questa settimana",
+        "text": "La pioggia non rende ciò che sole e vento si portano via. Due buone bagnature valgono più di una spruzzata al giorno."
+      },
+      "rain": {
+        "title": "Pioggia questa settimana, circa {{mm}} mm",
+        "text": "Non serve annaffiare le aiuole."
+      },
+      "plantNow": {
+        "title": "Dal tuo piano, pronti da mettere a dimora"
+      },
+      "sowAgain": {
+        "title": "{{crop}}: semina un'altra fila",
+        "text": "L'ultima è di {{weeks}} settimane fa. Seminare di nuovo tiene vivo il raccolto."
+      },
+      "from": {
+        "forecast": "Dalle previsioni",
+        "plan": "Dal tuo piano"
+      },
+      "nothing": "Questa settimana l'orto non ha bisogno di nulla.",
+      "noPlan": "Pianifica l'orto e segna cosa pianti: questa pagina ti dirà cosa gli serve ogni settimana.",
+      "openPlanner": "Apri il pianificatore"
     }
   },
   "units": {

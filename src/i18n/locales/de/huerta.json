@@ -37,6 +37,40 @@
     "later": {
       "frost": "Später in der Woche Frost möglich: {{night}}nacht",
       "ground_frost": "Später in der Woche Bodenfrost möglich: {{night}}nacht"
+    },
+    "todo": {
+      "title": "Diese Woche zu tun",
+      "frost": {
+        "frost": "Frost in den nächsten 3 Tagen",
+        "ground_frost": "Bodenfrost in den nächsten 3 Tagen",
+        "text": "Decke {{crops}} in den kalten Nächten ab."
+      },
+      "laterFrost": {
+        "text": "Halte Abdeckungen für {{crops}} bereit.",
+        "title": "Frost möglich: {{night}}nacht"
+      },
+      "water": {
+        "title": "Diese Woche etwa {{mm}} L/m² gießen",
+        "text": "Der Regen ersetzt nicht, was Sonne und Wind nehmen. Zweimal gründlich gießen ist besser als täglich ein bisschen."
+      },
+      "rain": {
+        "title": "Regen diese Woche, etwa {{mm}} mm",
+        "text": "Die Beete brauchen kein Gießen."
+      },
+      "plantNow": {
+        "title": "Aus deinem Plan, bereit für die Erde"
+      },
+      "sowAgain": {
+        "title": "{{crop}}: noch eine Reihe säen",
+        "text": "Die letzte ist {{weeks}} Wochen her. Neu säen hält die Ernte am Laufen."
+      },
+      "from": {
+        "forecast": "Laut Vorhersage",
+        "plan": "Laut deinem Plan"
+      },
+      "nothing": "Dein Garten braucht diese Woche nichts von dir.",
+      "noPlan": "Plane deinen Garten und trage ein, was du pflanzt: Diese Seite sagt dir dann jede Woche, was er braucht.",
+      "openPlanner": "Gartenplaner öffnen"
     }
   },
   "units": {
