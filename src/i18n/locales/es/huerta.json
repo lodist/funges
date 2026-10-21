@@ -346,11 +346,6 @@
       "L": "En L"
     },
     "auto": "Planifícalo por mí",
-    "viewLabel": "Vista",
-    "view": {
-      "3d": "3D",
-      "plan": "Plano"
-    },
     "turnLeft": "Girar a la izquierda",
     "turnRight": "Girar a la derecha",
     "model": "Tu huerto, dibujado",

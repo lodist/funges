@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import { GardenModel, type ModelView } from '@/components/GardenModel';
+import { GardenModel, type Stage } from '@/components/GardenModel';
 import SEO from '@/components/SEO';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -45,6 +45,7 @@ import {
   type Plan,
   type Section,
 } from '@/lib/planner';
+import { growth } from '@/lib/garden-week';
 import { cn } from '@/lib/utils';
 import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
 
@@ -63,14 +64,16 @@ const chip = (on: boolean) =>
   );
 
 /** Huerta's garden planner: your plot in beds, filled for this season at your
- *  place, drawn as a model or a plan, and what you planted when. */
+ *  place, drawn as a model, and what you planted when. */
 export default function HuertaPlannerPage() {
   const { t, i18n } = useTranslation('huerta');
   const [advice, setAdvice] = useState<PlaceAdvice>(SAMPLE_ADVICE);
   const [sample, setSample] = useState(true);
   const [needs, setNeeds] = useState<Record<string, CropNeeds>>({});
   const [plan, setPlan] = useState<Plan | null>(() => loadPlan());
-  const [view, setView] = useState<ModelView>({ mode: '3d', turn: 0 });
+  const [turn, setTurn] = useState(0);
+  // The section just planted, while its plants come up.
+  const [fresh, setFresh] = useState<number | null>(null);
   const [sel, setSel] = useState(0);
   const year = useHuertaYear();
   // The visitor's own advice, when they chose a place; else the sample at once.
@@ -120,6 +123,13 @@ export default function HuertaPlannerPage() {
     setSel(0);
   };
   const name = (id: string) => t(`crops.${id}`);
+  // A planted crop's stage, from the warmth it has had at the place since.
+  const stageOf = (s: Section): Stage => {
+    const need = s.crop ? needs[s.crop] : undefined;
+    if (!s.crop || !s.planted || !need?.days || !year?.temps) return 'grown';
+    const done = growth(s.crop, need, year.temps, s.planted, today());
+    return done < 0.3 ? 'seedling' : done < 0.75 ? 'young' : 'grown';
+  };
   const count = (s: Section) => {
     const f = fit(s);
     return f
@@ -226,28 +236,11 @@ export default function HuertaPlannerPage() {
               {t('planner.auto')}
             </Button>
             <div className='ml-auto flex items-center gap-2'>
-              <div
-                className='flex gap-2'
-                role='group'
-                aria-label={t('planner.viewLabel')}
-              >
-                {(['3d', 'plan'] as const).map(mode => (
-                  <Button
-                    key={mode}
-                    variant='ghost'
-                    aria-pressed={view.mode === mode}
-                    className={chip(view.mode === mode)}
-                    onClick={() => setView({ ...view, mode })}
-                  >
-                    {t(`planner.view.${mode}`)}
-                  </Button>
-                ))}
-              </div>
               <Button
                 variant='outline'
                 size='icon'
                 aria-label={t('planner.turnLeft')}
-                onClick={() => setView({ ...view, turn: (view.turn + 3) % 4 })}
+                onClick={() => setTurn((turn + 3) % 4)}
               >
                 <RotateCcw className='size-4' />
               </Button>
@@ -255,7 +248,7 @@ export default function HuertaPlannerPage() {
                 variant='outline'
                 size='icon'
                 aria-label={t('planner.turnRight')}
-                onClick={() => setView({ ...view, turn: (view.turn + 1) % 4 })}
+                onClick={() => setTurn((turn + 1) % 4)}
               >
                 <RotateCw className='size-4' />
               </Button>
@@ -269,9 +262,10 @@ export default function HuertaPlannerPage() {
                   garden={plan.garden}
                   sections={plan.sections}
                   selected={sel}
-                  view={view}
+                  turn={turn}
                   onSelect={setSel}
-                  cropName={name}
+                  stage={stageOf}
+                  fresh={fresh}
                   label={
                     s?.crop
                       ? { name: name(s.crop), count: count(s) }
@@ -321,14 +315,18 @@ export default function HuertaPlannerPage() {
                       ),
                     })
                   }
-                  onPlanted={planted =>
+                  onPlanted={planted => {
                     update({
                       ...plan,
                       sections: plan.sections.map(x =>
                         x === s ? { ...x, planted } : x
                       ),
-                    })
-                  }
+                    });
+                    if (planted) {
+                      setFresh(plan.sections.indexOf(s));
+                      setTimeout(() => setFresh(null), 2500);
+                    }
+                  }}
                   onSplit={() =>
                     update({
                       ...plan,

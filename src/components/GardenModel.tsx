@@ -11,9 +11,9 @@ import { PLANT_LOOK, type PlantLook } from '@/lib/planner-data';
 
 /**
  * The garden drawn as an architect's model (axonometric, turned a quarter at
- * a time) or as a flat plan: raised beds, and every plant as a simple form
- * at its real spacing. A planned crop is drawn pale; a planted one solid.
- * Colours are the model's own: it reads as a white model in either theme.
+ * a time): raised beds, and every plant at its real spacing. A planned crop
+ * is drawn pale and grown; a planted one solid, at the stage it has reached.
+ * Colours are the model's own: it reads the same in either theme.
  */
 const COS = Math.cos(Math.PI / 6);
 const SIN = 0.5;
@@ -24,8 +24,8 @@ const SOIL = '#6c5544';
 const TIMBER = ['#e5d5bb', '#cfba98', '#eadcc5'];
 const MARK = '#c9603a';
 const HI = 'rgba(255,255,255,0.3)';
-/** Crops drawn as photographed plants: seen from the model's angle
- *  (huerta/iso) and from above (huerta/top). The rest keep their forms. */
+/** Crops drawn as photographed plants seen from the model's angle
+ *  (huerta/iso/<id>.webp). The rest keep their forms. */
 const PHOTO = new Set([
   'garlic',
   'broad_beans',
@@ -35,21 +35,28 @@ const PHOTO = new Set([
   'tomato',
 ]);
 const GROUND = (name: string) => huertaImage(`ground/${name}`);
+/** Crops photographed at each stage, on a frame of this many metres of real
+ *  height, the plant's foot at the middle, 8% above the bottom:
+ *  huerta/iso/<id>-seedling, -young, and three grown plants -1, -2, -3. */
+const STAGED: Record<string, number> = { tomato: 1.5, cabbage: 1, lettuce: 1 };
 /** Real-world size of one texture tile, metres. */
 const TILE = { soil: 0.8, gravel: 0.6 };
 
-export type ModelView = { mode: '3d' | 'plan'; turn: number };
+export type Stage = 'seedling' | 'young' | 'grown';
 
 interface GardenModelProps {
   garden: Garden;
   sections: Section[];
   selected: number;
-  view: ModelView;
+  /** Quarter turns from north up the left. */
+  turn: number;
   onSelect: (index: number) => void;
   /** The label over the selected section: its crop and count. */
   label?: { name: string; count: string };
-  /** A crop's name in the reader's language, for the plan's labels. */
-  cropName: (id: string) => string;
+  /** How far a planted section has grown; planned ones are drawn grown. */
+  stage?: (s: Section) => Stage;
+  /** The section just planted: its plants come up out of the soil. */
+  fresh?: number | null;
   title: string;
 }
 
@@ -62,15 +69,16 @@ export function GardenModel({
   garden,
   sections,
   selected,
-  view,
+  turn: quarter,
   onSelect,
   label,
-  cropName,
+  stage,
+  fresh,
   title,
 }: GardenModelProps) {
   const { width: W, length: L } = garden;
   const turn = (x: number, y: number): [number, number] => {
-    switch (view.turn % 4) {
+    switch (quarter % 4) {
       case 1:
         return [L - y, x];
       case 2:
@@ -104,156 +112,6 @@ export function GardenModel({
       y1: Math.max(...parts.map(s => s.y1)),
     };
   });
-
-  if (view.mode === 'plan') {
-    const rect = (x0: number, y0: number, x1: number, y1: number) => {
-      const [a0, b0] = turn(x0, y0),
-        [a1, b1] = turn(x1, y1);
-      return {
-        x: Math.min(a0, a1) * S,
-        y: Math.min(b0, b1) * S,
-        width: Math.abs(a1 - a0) * S,
-        height: Math.abs(b1 - b0) * S,
-      };
-    };
-    const [VW, VL] = view.turn % 2 ? [L, W] : [W, L];
-    const n0 = turn(0, 0),
-      n1 = turn(0, -1);
-    return (
-      <svg
-        role='img'
-        aria-label={title}
-        viewBox={`-50 -30 ${VW * S + 80} ${VL * S + 60}`}
-        className='block h-auto w-full'
-      >
-        <defs>
-          <Texture id='plan-soil' name='soil' size={TILE.soil * S} />
-          <Texture id='plan-gravel' name='gravel' size={TILE.gravel * S} />
-          <Texture id='plan-timber' name='timber' size={BED_HEIGHT * S} />
-        </defs>
-        {regions(garden).map(r => (
-          <g key={r.join()}>
-            <rect {...rect(...r)} fill={PLOT} />
-            <rect {...rect(...r)} fill='url(#plan-gravel)' />
-          </g>
-        ))}
-        {beds.map(b => (
-          <g key={b.parts[0].bed}>
-            <rect
-              {...rect(b.x0, b.y0, b.x1, b.y1)}
-              fill={SOIL}
-              stroke={TIMBER[0]}
-              strokeWidth={5}
-              rx={3}
-            />
-            <rect
-              {...rect(b.x0, b.y0, b.x1, b.y1)}
-              fill='url(#plan-soil)'
-              stroke='url(#plan-timber)'
-              strokeWidth={5}
-              rx={3}
-            />
-          </g>
-        ))}
-        {sections.map((s, i) => {
-          const look = s.crop ? PLANT_LOOK[s.crop] : null;
-          const f = fit(s);
-          const [ca, cb] = turn((s.x0 + s.x1) / 2, (s.y0 + s.y1) / 2);
-          return (
-            <g
-              key={`${s.bed}-${s.y0}`}
-              onClick={select(i)}
-              className='cursor-pointer'
-              opacity={s.planted ? 1 : 0.6}
-            >
-              <rect {...rect(s.x0, s.y0, s.x1, s.y1)} fill='transparent' />
-              {look && f && PHOTO.has(s.crop!)
-                ? thin(f.points).map(([x, y]) => {
-                    const [a, b] = turn(x, y);
-                    const w = Math.min(f.spacing, f.across) * S * 1.15;
-                    return (
-                      <image
-                        key={`${x}-${y}`}
-                        href={huertaImage(`top/${s.crop}`)}
-                        x={a * S - w / 2}
-                        y={b * S - w / 2}
-                        width={w}
-                        height={w}
-                      />
-                    );
-                  })
-                : look && f
-                  ? thin(f.points).map(([x, y]) => {
-                      const [a, b] = turn(x, y);
-                      const r = Math.max(
-                        (Math.min(f.spacing, f.across) / 2) * S * 0.85,
-                        2.5
-                      );
-                      return (
-                        <g key={`${x}-${y}`}>
-                          <circle
-                            cx={a * S}
-                            cy={b * S}
-                            r={r}
-                            fill={look.leaf}
-                          />
-                          {look.accent ? (
-                            <circle
-                              cx={a * S}
-                              cy={b * S}
-                              r={r * 0.45}
-                              fill={look.accent}
-                            />
-                          ) : null}
-                        </g>
-                      );
-                    })
-                  : null}
-              {look && !f ? (
-                <rect
-                  {...rect(s.x0 + 0.05, s.y0 + 0.05, s.x1 - 0.05, s.y1 - 0.05)}
-                  fill={look.leaf}
-                  opacity={0.85}
-                />
-              ) : null}
-              {s.crop ? (
-                <text
-                  x={ca * S}
-                  y={cb * S + 4}
-                  textAnchor='middle'
-                  className='pointer-events-none'
-                  style={{
-                    font: '600 11px var(--font-sans)',
-                    fill: '#fff',
-                    paintOrder: 'stroke',
-                    stroke: 'rgba(40,28,20,.55)',
-                    strokeWidth: 3,
-                  }}
-                >
-                  {cropName(s.crop)}
-                </text>
-              ) : null}
-            </g>
-          );
-        })}
-        {sections[selected] ? (
-          <rect
-            {...rect(
-              sections[selected].x0,
-              sections[selected].y0,
-              sections[selected].x1,
-              sections[selected].y1
-            )}
-            fill='none'
-            stroke={MARK}
-            strokeWidth={2.5}
-            pointerEvents='none'
-          />
-        ) : null}
-        <North x={-26} y={30} d={[n1[0] - n0[0], n1[1] - n0[1]]} />
-      </svg>
-    );
-  }
 
   // ---------- the model ----------
   const box = (
@@ -496,7 +354,7 @@ export function GardenModel({
             });
           });
         else
-          thin(f.points).forEach(([x, y]) =>
+          thin(f.points).forEach(([x, y], k) =>
             plants.push({
               d: depth(x, y),
               node: (
@@ -506,7 +364,15 @@ export function GardenModel({
                   onClick={select(i)}
                   className='cursor-pointer'
                 >
-                  {PHOTO.has(crop) ? (
+                  {STAGED[crop] ? (
+                    <Staged
+                      id={crop}
+                      stage={s.planted && stage ? stage(s) : 'grown'}
+                      at={P(x, y, BED_HEIGHT)}
+                      seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
+                      pop={fresh === i ? k : null}
+                    />
+                  ) : PHOTO.has(crop) ? (
                     <Photo
                       id={crop}
                       at={P(x, y, BED_HEIGHT)}
@@ -666,6 +532,42 @@ function Texture({
     >
       <image href={GROUND(name)} width={size} height={size} />
     </pattern>
+  );
+}
+
+/** A plant photographed at its stage, at its true size. Which of the three
+ *  grown photos, and a few per cent of size, vary from plant to plant as in a
+ *  real row. `pop`, its place in the row, makes it come up out of the soil. */
+function Staged({
+  id,
+  stage,
+  at: [bx, by],
+  seed,
+  pop,
+}: {
+  id: string;
+  stage: Stage;
+  at: [number, number];
+  seed: number;
+  pop: number | null;
+}) {
+  const h = STAGED[id] * S * (0.94 + (seed % 13) / 100);
+  return (
+    <image
+      href={huertaImage(
+        `iso/${id}-${stage === 'grown' ? 1 + (seed % 3) : stage}`
+      )}
+      x={bx - h / 2}
+      y={by - h * 0.92}
+      width={h}
+      height={h}
+      className={pop === null ? undefined : 'plant-up'}
+      style={
+        pop === null
+          ? undefined
+          : { animationDelay: `${Math.min(pop * 14, 1400)}ms` }
+      }
+    />
   );
 }
 
