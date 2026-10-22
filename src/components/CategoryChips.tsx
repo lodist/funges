@@ -17,11 +17,16 @@ interface CategoryChipsProps {
   className?: string;
 }
 
-/** The species-type filter: one chip per type, the selected one marked by
- * weight and a soft lift only, never a colour swap (Trailhead #213). Shared by
- * the map species panel, the area species list and the Species page, so the
- * three cannot drift apart again. Labels hide below `sm:`, which is why each
- * chip also carries its label as `aria-label`. */
+/** A chosen filter chip: the band's deep green, the same in both themes.
+ *  Weight and a soft lift alone left every chip white over the map's glass,
+ *  so the choice could not be seen. */
+export const SELECTED_CHIP_CLASS =
+  'bg-happy-900 font-semibold text-happy-50 shadow-[0_1px_4px_rgba(0,0,0,0.08)] hover:bg-happy-900 hover:text-happy-50 dark:bg-happy-900 dark:hover:bg-happy-900 dark:hover:text-happy-50';
+
+/** The species-type filter: one chip per type, the selected one on the band's
+ * green. Shared by the map species panel, the area species list and the
+ * Species page, so the three cannot drift apart again. Labels hide below
+ * `sm:`, which is why each chip also carries its label as `aria-label`. */
 export function CategoryChips({
   chips,
   value,
@@ -46,14 +51,15 @@ export function CategoryChips({
             // Default size: 44px is the touch floor (touch-target.test.ts);
             // only the side padding is trimmed to chip width.
             className={cn(
-              'px-4 text-foreground hover:text-foreground dark:hover:text-foreground',
-              tone === 'glass'
-                ? 'backdrop-blur-sm hover:bg-card dark:hover:bg-card'
-                : 'bg-muted hover:bg-muted/80 dark:hover:bg-muted/80',
-              tone === 'glass' && (selected ? 'bg-card' : 'bg-card/90'),
+              'px-4',
               selected
-                ? 'font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
-                : 'font-medium'
+                ? SELECTED_CHIP_CLASS
+                : cn(
+                    'font-medium text-foreground hover:text-foreground dark:hover:text-foreground',
+                    tone === 'glass'
+                      ? 'bg-card/90 backdrop-blur-sm hover:bg-card dark:hover:bg-card'
+                      : 'bg-muted hover:bg-muted/80 dark:hover:bg-muted/80'
+                  )
             )}
           >
             <img src={chip.icon} alt='' className='size-6' />
