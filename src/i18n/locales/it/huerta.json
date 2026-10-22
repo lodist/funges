@@ -1,5 +1,5 @@
 {
-  "title": "Questa settimana",
+  "title": "Di stagione",
   "description": "Cosa seminare e piantare questa settimana, avvisi di gelo e irrigazione per il tuo comune.",
   "sample": "Esempio: {{place}}, {{day}}. Presto il tuo comune.",
   "around": "Dintorni di {{place}}, {{day}}",
@@ -132,7 +132,9 @@
       "soil": "Suolo",
       "nights": "Notti",
       "rain": "Pioggia",
-      "water": "Da annaffiare"
+      "water": "Da annaffiare",
+      "lastFrost": "Ultima gelata ~{{date}}",
+      "firstFrost": "Prima gelata ~{{date}}"
     }
   },
   "units": {
@@ -497,7 +499,9 @@
       "toSelected_other": "Tocca una coltura per metterla nelle {{count}} parti selezionate."
     },
     "strips_one": "{{count}} striscia",
-    "strips_other": "{{count}} strisce"
+    "strips_other": "{{count}} strisce",
+    "setup": "{{width}} × {{length}} m · {{ground}}",
+    "clear": "Togli"
   },
   "year": {
     "title": "Calendario",

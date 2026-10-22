@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
 import { CropSheet } from '@/components/CropSheet';
 import { HuertaWeek } from '@/components/HuertaWeek';
+import { ScopeHeader } from '@/components/ScopeHeader';
 import SEO from '@/components/SEO';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -53,7 +54,18 @@ type Load =
 
 /** Huerta's home: this week in the garden at the visitor's place. */
 export default function HuertaPage() {
-  const { t } = useTranslation('huerta');
+  const { t, i18n } = useTranslation('huerta');
+  // The place the advice is for and its day, under the title as Terra's
+  // pages put their scope.
+  const placeLine = (advice: PlaceAdvice) => {
+    const day = new Intl.DateTimeFormat(i18n.language, {
+      day: 'numeric',
+      month: 'long',
+    }).format(new Date(`${advice.day}T12:00:00`));
+    return huertaApiConfigured
+      ? t('around', { place: advice.place, day })
+      : t('sample', { place: advice.place, day });
+  };
   const [place, setPlace] = useState<Place | null>(() =>
     huertaApiConfigured ? savedPlace() : null
   );
@@ -93,20 +105,24 @@ export default function HuertaPage() {
         canonicalUrl={`${import.meta.env.BASE_URL}huerta`}
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
-        <header className='mb-8'>
-          <h1 className='text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
-            {t('title')}
-          </h1>
-          {load.state === 'ready' ? (
-            <PlaceLine
-              advice={load.advice}
-              onChange={
-                huertaApiConfigured
-                  ? () => setLoad({ state: 'picking' })
-                  : undefined
-              }
-            />
-          ) : null}
+        <header className='mb-8 flex flex-col gap-6'>
+          <ScopeHeader
+            title={t('title')}
+            scopeLabel={
+              load.state === 'ready' ? placeLine(load.advice) : undefined
+            }
+            action={
+              load.state === 'ready' && huertaApiConfigured ? (
+                <Button
+                  variant='outline'
+                  onClick={() => setLoad({ state: 'picking' })}
+                >
+                  <MapPinned />
+                  {t('change')}
+                </Button>
+              ) : null
+            }
+          />
         </header>
 
         {load.state === 'picking' ? <PlacePicker onPick={pick} /> : null}
@@ -131,34 +147,6 @@ export default function HuertaPage() {
         {load.state === 'ready' ? <Advice advice={load.advice} /> : null}
       </div>
     </>
-  );
-}
-
-/** The place the advice is for, the day, and the way to another place. */
-function PlaceLine({
-  advice,
-  onChange,
-}: {
-  advice: PlaceAdvice;
-  onChange?: () => void;
-}) {
-  const { t, i18n } = useTranslation('huerta');
-  const day = new Intl.DateTimeFormat(i18n.language, {
-    day: 'numeric',
-    month: 'long',
-  }).format(new Date(`${advice.day}T12:00:00`));
-  return (
-    <p className='mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium text-foreground'>
-      <MapPinned className='size-4 shrink-0 text-primary-text' />
-      {onChange
-        ? t('around', { place: advice.place, day })
-        : t('sample', { place: advice.place, day })}
-      {onChange ? (
-        <Button variant='link' className='h-auto p-0' onClick={onChange}>
-          {t('change')}
-        </Button>
-      ) : null}
-    </p>
   );
 }
 

@@ -1,5 +1,5 @@
 {
-  "title": "Diese Woche",
+  "title": "Saison",
   "description": "Was du diese Woche säen und pflanzen kannst, Frostwarnungen und Gießen für deinen Ort.",
   "sample": "Beispiel: {{place}}, {{day}}. Bald dein eigener Ort.",
   "around": "Rund um {{place}}, {{day}}",
@@ -132,7 +132,9 @@
       "soil": "Boden",
       "nights": "Nächte",
       "rain": "Regen",
-      "water": "Gießen"
+      "water": "Gießen",
+      "lastFrost": "Letzter Frost ~{{date}}",
+      "firstFrost": "Erster Frost ~{{date}}"
     }
   },
   "units": {
@@ -497,7 +499,9 @@
       "toSelected_other": "Tippe eine Kultur an, um sie in die {{count}} ausgewählten Teile zu setzen."
     },
     "strips_one": "{{count}} Streifen",
-    "strips_other": "{{count}} Streifen"
+    "strips_other": "{{count}} Streifen",
+    "setup": "{{width}} × {{length}} m · {{ground}}",
+    "clear": "Aufheben"
   },
   "year": {
     "title": "Kalender",

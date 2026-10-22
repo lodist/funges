@@ -1,5 +1,5 @@
 {
-  "title": "Esta semana",
+  "title": "En temporada",
   "description": "Qué sembrar y plantar esta semana, avisos de helada y riego para tu localidad.",
   "sample": "Ejemplo: {{place}}, {{day}}. Pronto, tu propia localidad.",
   "around": "Alrededores de {{place}}, {{day}}",
@@ -132,7 +132,9 @@
       "soil": "Suelo",
       "nights": "Noches",
       "rain": "Lluvia",
-      "water": "Riego"
+      "water": "Riego",
+      "lastFrost": "Última helada ~{{date}}",
+      "firstFrost": "Primera helada ~{{date}}"
     }
   },
   "units": {
@@ -497,7 +499,9 @@
       "toSelected_other": "Toca un cultivo para ponerlo en las {{count}} partes seleccionadas."
     },
     "strips_one": "{{count}} franja",
-    "strips_other": "{{count}} franjas"
+    "strips_other": "{{count}} franjas",
+    "setup": "{{width}} × {{length}} m · {{ground}}",
+    "clear": "Quitar"
   },
   "year": {
     "title": "Calendario",

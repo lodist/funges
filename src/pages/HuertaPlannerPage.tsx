@@ -4,6 +4,7 @@ import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
 import { CROP_DRAG, GardenModel, type Stage } from '@/components/GardenModel';
+import { ScopeHeader } from '@/components/ScopeHeader';
 import SEO from '@/components/SEO';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -45,6 +46,7 @@ import {
   Lock,
   Minus,
   Plus,
+  SlidersHorizontal,
   Trash2,
   Undo2,
 } from '@/lib/icons';
@@ -78,6 +80,7 @@ import {
 } from '@/lib/planner';
 import { growth } from '@/lib/garden-week';
 import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
 
 const START: Garden = { width: 6, length: 4.5, shape: 'rect' };
@@ -117,6 +120,9 @@ export default function HuertaPlannerPage() {
   const [sel, setSel] = useState<number[]>([0]);
   // A deleted bed's patch of earth, when one is picked instead of a section.
   const [patch, setPatch] = useState<number | null>(null);
+  const isMobile = useIsMobile();
+  // The garden's setup on a phone: folded until opened.
+  const [setupOpen, setSetupOpen] = useState(false);
   // The section a crop dragged by touch is over.
   const [touchOver, setTouchOver] = useState<number | null>(null);
   // Earlier plans, for Undo; kept while the page is open.
@@ -266,116 +272,144 @@ export default function HuertaPlannerPage() {
         canonicalUrl={`${import.meta.env.BASE_URL}huerta/planner`}
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
-        <header className='mb-6 flex flex-col gap-2'>
-          <h1 className='text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
-            {t('planner.title')}
-          </h1>
-          <p className='text-muted-foreground'>
-            {sample ? (
-              <>
-                {t('planner.sample', { place: advice.place })}{' '}
-                <Link
-                  to='/huerta'
-                  className='font-medium text-primary-text underline underline-offset-4'
-                >
-                  {t('planner.choosePlace')}
-                </Link>
-              </>
-            ) : (
-              t('planner.for', { place: advice.place })
-            )}
-          </p>
+        <header className='mb-8 flex flex-col gap-6'>
+          <ScopeHeader
+            title={t('planner.title')}
+            scopeLabel={
+              sample
+                ? t('planner.sample', { place: advice.place })
+                : t('planner.for', { place: advice.place })
+            }
+            action={
+              sample ? (
+                <Button variant='outline' asChild>
+                  <Link to='/huerta'>{t('planner.choosePlace')}</Link>
+                </Button>
+              ) : null
+            }
+          />
         </header>
 
         <section className='overflow-hidden rounded-card bg-card elevation-raised'>
           <div className='flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-border p-3 max-sm:text-sm sm:gap-x-4 sm:gap-y-3 sm:p-4'>
-            {(['width', 'length'] as const).map(key => (
-              <label
-                key={key}
-                className='flex items-center gap-2 text-sm text-muted-foreground'
+            {/* On a phone the setup folds into one line that says what it is,
+                so the garden comes first. */}
+            {isMobile ? (
+              <Button
+                variant='ghost'
+                aria-expanded={setupOpen}
+                onClick={() => setSetupOpen(open => !open)}
+                className={cn(chip(setupOpen), 'max-w-full')}
               >
-                {t(`planner.${key}`)}
-                <Input
-                  id={`planner-${key}`}
-                  type='number'
-                  min={MIN_SIDE}
-                  max={MAX_SIDE}
-                  step={0.5}
-                  defaultValue={plan.garden[key]}
-                  key={`${key}-${plan.garden[key]}`}
-                  className='h-9 w-16 max-sm:text-sm sm:w-20'
-                  onBlur={e => {
-                    const v = Math.min(
-                      MAX_SIDE,
-                      Math.max(
-                        MIN_SIDE,
-                        Number(e.target.value) || plan.garden[key]
-                      )
-                    );
-                    if (v !== plan.garden[key])
-                      resize({ ...plan.garden, [key]: v });
-                  }}
+                <SlidersHorizontal className='size-4' />
+                <span className='truncate'>
+                  {t('planner.setup', {
+                    width: plan.garden.width,
+                    length: plan.garden.length,
+                    ground: t(
+                      `planner.ground.${plan.garden.ground ?? 'raised'}`
+                    ),
+                  })}
+                </span>
+                <ChevronDown
+                  className={cn(
+                    'size-4 transition-transform duration-base',
+                    setupOpen && 'rotate-180'
+                  )}
                 />
-                {t('planner.metres')}
-              </label>
-            ))}
-            <div
-              className='flex gap-2'
-              role='group'
-              aria-label={t('planner.shapeLabel')}
-            >
-              {(['rect', 'L'] as const).map(shape => (
-                <Button
-                  key={shape}
-                  variant='ghost'
-                  aria-pressed={plan.garden.shape === shape}
-                  className={chip(plan.garden.shape === shape)}
-                  onClick={() => resize({ ...plan.garden, shape })}
-                >
-                  {t(`planner.shape.${shape}`)}
-                </Button>
-              ))}
-            </div>
-            <Select
-              value={plan.garden.ground ?? 'raised'}
-              onValueChange={v =>
-                resize({ ...plan.garden, ground: v as Ground })
-              }
-            >
-              <SelectTrigger
-                aria-label={t('planner.groundLabel')}
-                className='h-9 w-auto max-sm:text-sm'
-              >
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {GROUNDS.map(g => (
-                  <SelectItem key={g} value={g}>
-                    {t(`planner.ground.${g}`)}
-                  </SelectItem>
+              </Button>
+            ) : null}
+            {!isMobile || setupOpen ? (
+              <>
+                {(['width', 'length'] as const).map(key => (
+                  <label
+                    key={key}
+                    className='flex items-center gap-2 text-sm text-muted-foreground'
+                  >
+                    {t(`planner.${key}`)}
+                    <Input
+                      id={`planner-${key}`}
+                      type='number'
+                      min={MIN_SIDE}
+                      max={MAX_SIDE}
+                      step={0.5}
+                      defaultValue={plan.garden[key]}
+                      key={`${key}-${plan.garden[key]}`}
+                      className='h-9 w-16 max-sm:text-sm sm:w-20'
+                      onBlur={e => {
+                        const v = Math.min(
+                          MAX_SIDE,
+                          Math.max(
+                            MIN_SIDE,
+                            Number(e.target.value) || plan.garden[key]
+                          )
+                        );
+                        if (v !== plan.garden[key])
+                          resize({ ...plan.garden, [key]: v });
+                      }}
+                    />
+                    {t('planner.metres')}
+                  </label>
                 ))}
-              </SelectContent>
-            </Select>
-            <div
-              className='flex items-center gap-2'
-              role='group'
-              aria-label={t('planner.runLabel')}
-            >
-              <span className='text-sm text-muted-foreground'>
-                {t('planner.runLabel')}
-              </span>
-              {([false, true] as const).map(across => (
-                <Button
-                  key={String(across)}
-                  variant='ghost'
-                  aria-pressed={Boolean(plan.garden.across) === across}
-                  className={chip(Boolean(plan.garden.across) === across)}
-                  onClick={() => resize({ ...plan.garden, across })}
+                <div
+                  className='flex gap-2'
+                  role='group'
+                  aria-label={t('planner.shapeLabel')}
                 >
-                  {t(`planner.run.${across ? 'across' : 'along'}`)}
-                </Button>
-              ))}
-            </div>
+                  {(['rect', 'L'] as const).map(shape => (
+                    <Button
+                      key={shape}
+                      variant='ghost'
+                      aria-pressed={plan.garden.shape === shape}
+                      className={chip(plan.garden.shape === shape)}
+                      onClick={() => resize({ ...plan.garden, shape })}
+                    >
+                      {t(`planner.shape.${shape}`)}
+                    </Button>
+                  ))}
+                </div>
+                <Select
+                  value={plan.garden.ground ?? 'raised'}
+                  onValueChange={v =>
+                    resize({ ...plan.garden, ground: v as Ground })
+                  }
+                >
+                  <SelectTrigger
+                    aria-label={t('planner.groundLabel')}
+                    className='h-9 w-auto max-sm:text-sm'
+                  >
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {GROUNDS.map(g => (
+                      <SelectItem key={g} value={g}>
+                        {t(`planner.ground.${g}`)}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <div
+                  className='flex items-center gap-2'
+                  role='group'
+                  aria-label={t('planner.runLabel')}
+                >
+                  <span className='text-sm text-muted-foreground'>
+                    {t('planner.runLabel')}
+                  </span>
+                  {([false, true] as const).map(across => (
+                    <Button
+                      key={String(across)}
+                      variant='ghost'
+                      aria-pressed={Boolean(plan.garden.across) === across}
+                      className={chip(Boolean(plan.garden.across) === across)}
+                      onClick={() => resize({ ...plan.garden, across })}
+                    >
+                      {t(`planner.run.${across ? 'across' : 'along'}`)}
+                    </Button>
+                  ))}
+                </div>
+              </>
+            ) : null}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button className='max-sm:px-4 max-sm:text-sm'>
@@ -418,9 +452,10 @@ export default function HuertaPlannerPage() {
               onClick={undo}
               disabled={!past.length}
               className='max-sm:px-4 max-sm:text-sm'
+              aria-label={t('planner.undo')}
             >
               <Undo2 className='size-4' />
-              {t('planner.undo')}
+              <span className='max-sm:sr-only'>{t('planner.undo')}</span>
             </Button>
           </div>
 

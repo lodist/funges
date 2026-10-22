@@ -12,11 +12,12 @@ import {
 } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 
-/** A day of the year as "22 March", in the reader's language. */
-const dayOfYear = (day: number, language: string) =>
-  new Intl.DateTimeFormat(language, { day: 'numeric', month: 'long' }).format(
-    new Date(2026, 0, day)
-  );
+/** A day of the year as "22 March" ("22 Mar" short), in the reader's language. */
+const dayOfYear = (day: number, language: string, short = false) =>
+  new Intl.DateTimeFormat(language, {
+    day: 'numeric',
+    month: short ? 'short' : 'long',
+  }).format(new Date(2026, 0, day));
 
 type Tone = 'band' | 'card';
 /** Each fact's icon on a card: warmth in the chart's warm, water in its cool. */
@@ -57,13 +58,13 @@ export function HuertaWeek({
   const dates = [
     advice.lastFrost == null
       ? null
-      : t('week.lastFrost', {
-          date: dayOfYear(advice.lastFrost, i18n.language),
+      : t(small ? 'week.short.lastFrost' : 'week.lastFrost', {
+          date: dayOfYear(advice.lastFrost, i18n.language, small),
         }),
     advice.firstFrost == null
       ? null
-      : t('week.firstFrost', {
-          date: dayOfYear(advice.firstFrost, i18n.language),
+      : t(small ? 'week.short.firstFrost' : 'week.firstFrost', {
+          date: dayOfYear(advice.firstFrost, i18n.language, small),
         }),
   ].filter((date): date is string => date !== null);
   const head = (
@@ -101,7 +102,9 @@ export function HuertaWeek({
       <dl
         className={cn(
           'grid',
-          small ? 'grid-cols-4 gap-2' : 'grid-cols-2 gap-6 @lg:grid-cols-4',
+          small
+            ? 'grid-cols-4 gap-2'
+            : 'grid-cols-2 gap-x-4 gap-y-5 sm:gap-6 @lg:grid-cols-4',
           !card && 'mt-6'
         )}
       >
@@ -179,7 +182,7 @@ export function HuertaWeek({
     <section
       aria-label={t('week.label')}
       className={cn(
-        '@container rounded-card p-6 sm:p-8',
+        '@container rounded-card p-5 sm:p-8',
         BAND_SURFACE_CLASS,
         className
       )}
@@ -236,7 +239,7 @@ function Fact({
         </dt>
         <dd
           className={cn(
-            'mt-1 font-display text-2xl font-semibold',
+            'mt-1 font-display text-xl font-semibold whitespace-nowrap sm:text-2xl',
             card ? 'text-foreground' : 'text-band-foreground'
           )}
         >

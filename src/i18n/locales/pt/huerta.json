@@ -1,5 +1,5 @@
 {
-  "title": "Esta semana",
+  "title": "Da época",
   "description": "O que semear e plantar esta semana, alertas de geada e rega para a sua cidade.",
   "sample": "Exemplo: {{place}}, {{day}}. Em breve, a sua cidade.",
   "around": "Arredores de {{place}}, {{day}}",
@@ -132,7 +132,9 @@
       "soil": "Solo",
       "nights": "Noites",
       "rain": "Chuva",
-      "water": "Rega"
+      "water": "Rega",
+      "lastFrost": "Última geada ~{{date}}",
+      "firstFrost": "Primeira geada ~{{date}}"
     }
   },
   "units": {
@@ -497,7 +499,9 @@
       "toSelected_other": "Toque numa cultura para colocá-la nas {{count}} partes selecionadas."
     },
     "strips_one": "{{count}} faixa",
-    "strips_other": "{{count}} faixas"
+    "strips_other": "{{count}} faixas",
+    "setup": "{{width}} × {{length}} m · {{ground}}",
+    "clear": "Limpar"
   },
   "year": {
     "title": "Calendário",
