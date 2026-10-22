@@ -28,16 +28,16 @@ import { cn } from '@/lib/utils';
 export const SpaceSwitcher = ({ className }: { className?: string }) =>
   visibleSpaces().length > 1 ? <SpaceMenu className={className} /> : null;
 
-/** The same menu on phones: the Funges mark on the current space's colour,
- *  a round badge on the bottom bar's edge (the bar's six slots are full). */
-export const SpaceBadge = ({ className }: { className?: string }) =>
-  visibleSpaces().length > 1 ? <SpaceMenu badge className={className} /> : null;
+/** The same menu on phones: the bottom bar's first slot, a grey squirrel like
+ *  the bar's other icons; the colour is in the tiles it opens. */
+export const SpaceNavButton = ({ className }: { className?: string }) =>
+  visibleSpaces().length > 1 ? <SpaceMenu nav className={className} /> : null;
 
 function SpaceMenu({
-  badge = false,
+  nav = false,
   className,
 }: {
-  badge?: boolean;
+  nav?: boolean;
   className?: string;
 }) {
   const { t } = useTranslation('sidebar');
@@ -49,19 +49,14 @@ function SpaceMenu({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        {badge ? (
-          <Button
-            variant='ghost'
-            size='icon'
-            data-space={current}
-            className={cn(
-              'rounded-full bg-band elevation-raised hover:bg-band hover:brightness-110 dark:bg-band dark:hover:bg-band',
-              className
-            )}
+        {nav ? (
+          <button
+            type='button'
+            className={className}
             aria-label={t('spaces.switch', { space: name(current) })}
           >
-            <LogoMark className='h-7 bg-band-foreground' />
-          </Button>
+            <LogoMark className='size-6 bg-current' />
+          </button>
         ) : (
           <Button
             variant='ghost'
@@ -79,7 +74,7 @@ function SpaceMenu({
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align='start'
-        side={badge ? 'top' : 'bottom'}
+        side={nav ? 'top' : 'bottom'}
         className='flex w-72 flex-col gap-1.5 p-1.5'
       >
         <DropdownMenuRadioGroup

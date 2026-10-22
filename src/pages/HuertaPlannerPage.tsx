@@ -752,15 +752,17 @@ function Palette({
         }))}
         value={kind}
         onChange={setKind}
-        // One row on a phone, scrolled sideways, so the crops stay near the garden.
-        className='flex-nowrap justify-start overflow-x-auto sm:flex-wrap [&>*]:shrink-0'
+        // One row on a phone, scrolled sideways, narrower chips and no bar, so
+        // the crops stay near the garden.
+        className='flex-nowrap justify-start gap-1.5 overflow-x-auto sm:flex-wrap sm:gap-2 [&>*]:shrink-0 max-sm:[&>button]:px-3 max-sm:[&_img]:size-5 max-sm:[scrollbar-width:none] max-sm:[&::-webkit-scrollbar]:hidden'
       />
       <ul
         ref={lifted.list}
-        className='mt-3 flex gap-2 overflow-x-auto p-0.5 sm:grid sm:max-h-[22rem] sm:grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))] sm:overflow-x-visible sm:overflow-y-auto'
+        // Two rows scrolled sideways on a phone; a grid that scrolls down above.
+        className='mt-3 grid auto-cols-[9.5rem] grid-flow-col grid-rows-2 gap-2 overflow-x-auto p-0.5 max-sm:[scrollbar-width:none] max-sm:[&::-webkit-scrollbar]:hidden sm:max-h-[22rem] sm:auto-cols-auto sm:grid-flow-row sm:grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))] sm:grid-rows-none sm:overflow-x-visible sm:overflow-y-auto'
       >
         {crops.map(c => (
-          <li key={c.id} className='w-40 shrink-0 sm:w-auto'>
+          <li key={c.id} className='min-w-0'>
             <button
               type='button'
               data-crop={c.id}
