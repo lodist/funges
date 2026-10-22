@@ -309,10 +309,6 @@
       "soil": "Soil temperature",
       "water": "To water this week"
     },
-    "continents": {
-      "eu": "Europe",
-      "us": "United States"
-    },
     "legend": {
       "now": "Sow or plant now",
       "wait": "Not yet",
@@ -329,7 +325,10 @@
     "close": "Close",
     "loadingPlace": "Looking up this place…",
     "noPlace": "No Huerta advice here.",
-    "failed": "The map could not load. Try again in a moment."
+    "failed": "The map could not load. Try again in a moment.",
+    "search": "Search crops",
+    "noResults": "No crop matches",
+    "clearFilters": "Clear filters"
   },
   "planner": {
     "title": "Garden planner",

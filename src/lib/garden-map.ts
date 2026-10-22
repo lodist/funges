@@ -9,6 +9,9 @@
 const LON_STEP = 0.075;
 /** Pixels per grid step: crisp cells, a small canvas. */
 const CELL_PX = 2;
+/** How far a cell reaches east and west, and north and south, of its place. */
+const REACH_X = 0.06;
+const REACH_Y = 0.04;
 
 export type MapLayer = 'crop' | 'frost' | 'soil' | 'water';
 type RGBA = [number, number, number, number];
@@ -111,27 +114,29 @@ export function paint(
   const perDegree = width / (bounds[2] - bounds[0]);
   const perRadian = (perDegree * 180) / Math.PI;
   const top = mercator(bounds[3]);
-  const half = Math.ceil(CELL_PX / 2);
   for (let p = 0; p < values.length; p++) {
     const rgba = colour(layer, values[p]);
     if (!rgba) continue;
-    const lat = places[2 * p] / 100;
-    const x = Math.round((places[2 * p + 1] / 100 - bounds[0]) * perDegree);
-    const y = Math.round((top - mercator(lat)) * perRadian);
-    // A cell reaches half a row up and down: rows are ~0.04-0.06° apart.
-    const rows = Math.max(
-      half,
-      Math.ceil((0.03 * perDegree) / Math.cos((lat * Math.PI) / 180))
+    const lat = places[2 * p] / 100,
+      lon = places[2 * p + 1] / 100;
+    // A cell runs edge to edge, a little past half the way to its neighbours:
+    // kept to 0.01°, places sit 0.07 or 0.08° apart, and where two parts of
+    // the grid meet a row can skip up to 0.12°; rows are 0.02-0.06° apart.
+    const x0 = Math.max(0, Math.floor((lon - REACH_X - bounds[0]) * perDegree));
+    const x1 = Math.min(
+      width,
+      Math.ceil((lon + REACH_X - bounds[0]) * perDegree)
     );
-    for (let dy = -rows; dy < rows; dy++) {
-      const yy = y + dy;
-      if (yy < 0 || yy >= height) continue;
-      for (let dx = -half; dx < half; dx++) {
-        const xx = x + dx;
-        if (xx < 0 || xx >= width) continue;
-        pixels.set(rgba, (yy * width + xx) * 4);
-      }
-    }
+    const y0 = Math.max(
+      0,
+      Math.floor((top - mercator(lat + REACH_Y)) * perRadian)
+    );
+    const y1 = Math.min(
+      height,
+      Math.ceil((top - mercator(lat - REACH_Y)) * perRadian)
+    );
+    for (let y = y0; y < y1; y++)
+      for (let x = x0; x < x1; x++) pixels.set(rgba, (y * width + x) * 4);
   }
   return pixels;
 }

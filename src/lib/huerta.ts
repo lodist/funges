@@ -847,6 +847,22 @@ export const KINDS: (CropKind | 'all')[] = [
 export const huertaImage = (path: string) =>
   `${import.meta.env.BASE_URL}huerta/${path}.webp`;
 
+/** A crop's status in three groups, as the garden page lists them and the map
+ *  colours them: in now, not yet, too late this year (or not outdoors here). */
+export const STATUS_GROUPS = {
+  now: ['now'],
+  wait: [
+    'wait_frost',
+    'wait_soil',
+    'wait_warm',
+    'too_warm',
+    'wait_autumn',
+    'wait_spring',
+  ],
+  over: ['too_late', 'not_here'],
+} satisfies Record<string, CropStatus[]>;
+export type StatusGroup = keyof typeof STATUS_GROUPS;
+
 export const cropsWith = (advice: PlaceAdvice, statuses: CropStatus[]) =>
   CROPS.filter(crop => statuses.includes(advice.crops[crop.id]));
 

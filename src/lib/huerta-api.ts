@@ -96,6 +96,7 @@ const rounded = (value: number) => Math.round(value * 100) / 100;
 const localDay = () => new Date().toLocaleDateString('sv'); // YYYY-MM-DD, local
 const ADVICE_KEY = 'huerta-advice';
 const PLACE_KEY = 'huerta-place';
+const MAP_VIEW_KEY = 'huerta-map-view';
 
 const read = <T>(key: string): T | null => {
   try {
@@ -117,13 +118,32 @@ export const savedPlace = () => read<Place>(PLACE_KEY);
 export const savePlace = (place: Place) =>
   write(PLACE_KEY, { lat: rounded(place.lat), lon: rounded(place.lon) });
 
+export interface MapView {
+  center: [number, number];
+  zoom: number;
+}
+/** Where the garden map was left, to open there again. */
+export const savedMapView = () => {
+  const view = read<MapView>(MAP_VIEW_KEY);
+  return Array.isArray(view?.center) &&
+    view.center.length === 2 &&
+    [...view.center, view.zoom].every(Number.isFinite)
+    ? view
+    : null;
+};
+export const saveMapView = (view: MapView) => write(MAP_VIEW_KEY, view);
+
 /**
  * This week's advice at the place nearest `place`; null where Huerta has no
  * place (at sea, outside Europe and the US). Today's answer is kept, so a
  * second visit the same day asks nothing, unless the app now knows a crop the
- * kept answer lacks.
+ * kept answer lacks. A spot looked at on the map is not kept (`keep` false):
+ * the kept answer is the garden's, for offline.
  */
-export async function fetchAdvice(place: Place): Promise<PlaceAdvice | null> {
+export async function fetchAdvice(
+  place: Place,
+  keep = true
+): Promise<PlaceAdvice | null> {
   const lat = rounded(place.lat);
   const lon = rounded(place.lon);
   const kept = read<{ lat: number; lon: number; advice: PlaceAdvice }>(
@@ -141,7 +161,7 @@ export async function fetchAdvice(place: Place): Promise<PlaceAdvice | null> {
   if (response.status === 404) return null;
   if (!response.ok) throw new Error(`Huerta advice: ${response.status}`);
   const advice = decodeAdvice((await response.json()) as AdviceResponse);
-  write(ADVICE_KEY, { lat, lon, advice });
+  if (keep) write(ADVICE_KEY, { lat, lon, advice });
   return advice;
 }
 

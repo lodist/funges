@@ -309,10 +309,6 @@
       "soil": "Bodentemperatur",
       "water": "Diese Woche gießen"
     },
-    "continents": {
-      "eu": "Europa",
-      "us": "USA"
-    },
     "legend": {
       "now": "Jetzt säen oder pflanzen",
       "wait": "Noch nicht",
@@ -329,7 +325,10 @@
     "close": "Schließen",
     "loadingPlace": "Ort wird gesucht…",
     "noPlace": "Hier gibt es keine Huerta-Ratschläge.",
-    "failed": "Die Karte konnte nicht laden. Versuch es gleich noch einmal."
+    "failed": "Die Karte konnte nicht laden. Versuch es gleich noch einmal.",
+    "search": "Kulturen suchen",
+    "noResults": "Keine Kultur passt",
+    "clearFilters": "Filter zurücksetzen"
   },
   "planner": {
     "title": "Gartenplaner",
