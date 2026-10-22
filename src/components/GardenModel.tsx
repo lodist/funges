@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactNode } from 'react';
+import { useRef, useState, type DragEvent, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import {
@@ -86,25 +86,30 @@ const EARTH = 0.3;
 const EARTH_SIDE = ['#5c4636', '#6b5443'];
 
 export type Stage = 'seedling' | 'young' | 'grown';
+/** The drag data type of a crop dragged from the planner's palette. */
+export const CROP_DRAG = 'application/x-huerta-crop';
 
 interface GardenModelProps {
   garden: Garden;
   sections: Section[];
-  selected: number;
+  /** The sections selected (one or several). */
+  selected: number[];
   /** Quarter turns from north up the left. */
-  turn: number;
+  turn?: number;
   onSelect: (index: number) => void;
   /** The label over the selected section: its crop and count. */
   label?: { name: string; count: string };
   /** How far a planted section has grown; planned ones are drawn grown. */
   stage?: (s: Section) => Stage;
-  /** The section just planted: its plants come up out of the soil. */
-  fresh?: number | null;
+  /** The sections just planted: their plants come up out of the soil. */
+  fresh?: number[];
   /** Beds deleted: plain earth, which can be tapped to put a bed back. */
   bare?: Rect[];
   onBare?: (index: number) => void;
   /** Turn north on the drawing by `delta` degrees (counter-clockwise: +). */
   onTurnNorth?: (delta: number) => void;
+  /** A crop dropped on a section. */
+  onDropCrop?: (index: number, crop: string) => void;
   title: string;
 }
 
@@ -121,7 +126,7 @@ export function GardenModel({
   garden,
   sections,
   selected,
-  turn: quarter,
+  turn: quarter = 0,
   onSelect,
   label,
   stage,
@@ -129,9 +134,16 @@ export function GardenModel({
   bare = [],
   onBare,
   onTurnNorth,
+  onDropCrop,
   title,
 }: GardenModelProps) {
   const { t } = useTranslation('huerta');
+  // The section a crop is being dragged over.
+  const [over, setOver] = useState<number | null>(null);
+  const sectionAt = (e: DragEvent) => {
+    const el = (e.target as Element).closest('[data-sec]');
+    return el ? Number(el.getAttribute('data-sec')) : null;
+  };
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState<[number, number]>([0, 0]);
   // A drag in progress: where it began, and whether it has moved (then the
@@ -144,10 +156,14 @@ export function GardenModel({
   } | null>(null);
   const { width: W, length: L } = garden;
   const ground = garden.ground ?? 'raised';
+  const open = ground === 'rows';
   const raised = ground === 'raised';
   // The soil the plants stand in: inside raised beds, or a little mounded.
   const soilZ = raised ? SOIL_Z : ground === 'ground' ? 0.04 : 0.03;
-  const total = sections.reduce((n, s) => n + (fit(s)?.points.length ?? 0), 0);
+  const total = sections.reduce(
+    (n, s) => n + (fit(s, open)?.points.length ?? 0),
+    0
+  );
   const share = Math.min(1, MAX_DRAWN / Math.max(total, 1));
   const turn = (x: number, y: number): [number, number] => {
     switch (quarter % 4) {
@@ -597,6 +613,7 @@ export function GardenModel({
             points={top(s)}
             fill='transparent'
             className='cursor-pointer'
+            data-sec={i}
             onClick={select(i)}
           />
         );
@@ -604,7 +621,7 @@ export function GardenModel({
         const crop = s.crop;
         const look = PLANT_LOOK[crop];
         tallest = Math.max(tallest, look.height);
-        const f = fit(s);
+        const f = fit(s, open);
         const opacity = s.planted ? 1 : 0.6;
         if (!f && STAGED[crop])
           // A green manure sown thick: its photographed patches over the
@@ -618,6 +635,7 @@ export function GardenModel({
                   <g
                     key={`c${i}-${x}-${y}`}
                     opacity={opacity}
+                    data-sec={i}
                     onClick={select(i)}
                     className='cursor-pointer'
                   >
@@ -626,7 +644,7 @@ export function GardenModel({
                       stage={s.planted && stage ? stage(s) : 'grown'}
                       at={P(x, y, soilZ)}
                       seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
-                      pop={fresh === i ? k : null}
+                      pop={fresh?.includes(i) ? k : null}
                     />
                   </g>
                 ),
@@ -641,6 +659,7 @@ export function GardenModel({
                 <g
                   key={`c${i}-${x}-${y}`}
                   opacity={opacity}
+                  data-sec={i}
                   onClick={select(i)}
                 >
                   <line
@@ -672,6 +691,7 @@ export function GardenModel({
                 <g
                   key={`p${i}-${x}-${y}`}
                   opacity={opacity}
+                  data-sec={i}
                   onClick={select(i)}
                   className='cursor-pointer'
                 >
@@ -681,7 +701,7 @@ export function GardenModel({
                       stage={s.planted && stage ? stage(s) : 'grown'}
                       at={P(x, y, soilZ)}
                       seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
-                      pop={fresh === i ? k : null}
+                      pop={fresh?.includes(i) ? k : null}
                     />
                   ) : PHOTO.has(crop) ? (
                     <Photo
@@ -704,18 +724,32 @@ export function GardenModel({
       plants.sort((a, z) => a.d - z.d).forEach(p => drawn.push(p.node));
     });
 
-  const sel = sections[selected];
-  if (sel) {
+  for (const k of selected)
+    if (sections[k])
+      drawn.push(
+        <polygon
+          key={`mark${k}`}
+          points={top(sections[k])}
+          fill='none'
+          stroke={MARK}
+          strokeWidth={2.5}
+          pointerEvents='none'
+        />
+      );
+  if (over !== null && sections[over])
     drawn.push(
       <polygon
-        key='mark'
-        points={top(sel)}
-        fill='none'
+        key='over'
+        points={top(sections[over])}
+        fill='rgba(154,63,31,0.18)'
         stroke={MARK}
-        strokeWidth={2.5}
+        strokeWidth={2}
+        strokeDasharray='6 4'
         pointerEvents='none'
       />
     );
+  const sel = selected.length === 1 ? sections[selected[0]] : undefined;
+  if (sel) {
     if (sel.crop && label) {
       const [lx, ly] = P(
         (sel.x0 + sel.x1) / 2,
@@ -837,10 +871,32 @@ export function GardenModel({
         onClickCapture={e => {
           if (drag.current?.moved) e.stopPropagation();
         }}
+        onDragOver={e => {
+          if (!onDropCrop || !e.dataTransfer.types.includes(CROP_DRAG)) return;
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'copy';
+          const k = sectionAt(e);
+          if (k !== over) setOver(k);
+        }}
+        onDragLeave={e => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node)) setOver(null);
+        }}
+        onDrop={e => {
+          e.preventDefault();
+          setOver(null);
+          const k = sectionAt(e);
+          const crop = e.dataTransfer.getData(CROP_DRAG);
+          if (k !== null && crop) onDropCrop?.(k, crop);
+        }}
       >
         {drawn}
       </svg>
-      <div className='absolute top-2 left-2 flex items-center gap-0.5 rounded-lg bg-card/90 p-1 elevation-raised'>
+      <div
+        role='group'
+        aria-label={t('planner.whereNorth')}
+        title={t('planner.whereNorth')}
+        className='absolute top-2 left-2 flex items-center gap-0.5 rounded-lg bg-card/90 p-1 elevation-raised'
+      >
         {onTurnNorth ? (
           <Button
             variant='ghost'
@@ -862,9 +918,6 @@ export function GardenModel({
             <RotateCw className='size-4' />
           </Button>
         ) : null}
-        <span className='pr-2 text-xs text-muted-foreground'>
-          {t('planner.whereNorth')}
-        </span>
       </div>
       <div className='absolute right-2 bottom-2 flex flex-col gap-0.5 rounded-lg bg-card/90 p-1 elevation-raised'>
         <Button
@@ -899,27 +952,24 @@ export function GardenModel({
   );
 }
 
-/** The north needle, pointing where north lies on the drawing. */
+/** The north needle, as on a compass: its red half points where north lies
+ *  on the drawing, and an N stands past its tip. */
 function Needle({ d }: { d: [number, number] }) {
   const len = Math.hypot(d[0], d[1]) || 1;
   const ux = d[0] / len,
     uy = d[1] / len;
+  const half = (sign: number) =>
+    `${sign * ux * 11},${sign * uy * 11} ${-uy * 3.4},${ux * 3.4} ${uy * 3.4},${-ux * 3.4}`;
   return (
-    <svg viewBox='-16 -16 32 32' className='size-9' aria-hidden='true'>
-      <line
-        x1={-ux * 8}
-        y1={-uy * 8}
-        x2={ux * 8}
-        y2={uy * 8}
-        stroke='#776c64'
-        strokeWidth={1.6}
-      />
-      <circle cx={ux * 8} cy={uy * 8} r={2.6} fill='#9a3f1f' />
+    <svg viewBox='-19 -19 38 38' className='size-10' aria-hidden='true'>
+      <polygon points={half(1)} fill='#c0391b' />
+      <polygon points={half(-1)} fill='#a39890' />
+      <circle r={1.7} fill='#fff' />
       <text
-        x={ux * 12.5}
-        y={uy * 12.5 + 3.2}
+        x={ux * 15.5}
+        y={uy * 15.5 + 3.6}
         textAnchor='middle'
-        style={{ font: '700 9px var(--font-sans)', fill: '#776c64' }}
+        style={{ font: '800 10px var(--font-sans)', fill: '#c0391b' }}
       >
         N
       </text>

@@ -346,20 +346,12 @@
       "L": "Em L"
     },
     "auto": "Planejar por mim",
-    "turnLeft": "Girar para a esquerda",
-    "turnRight": "Girar para a direita",
     "model": "Sua horta, desenhada",
     "noRoom": "Neste tamanho não cabe nenhum canteiro.",
     "beds_one": "{{count}} canteiro",
     "beds_other": "{{count}} canteiros",
     "plants_one": "{{count}} planta",
     "plants_other": "{{count}} plantas",
-    "good_one": "✓ {{count}} boa parceria",
-    "good_other": "✓ {{count}} boas parcerias",
-    "toFix_one": "! {{count}} para corrigir",
-    "toFix_other": "! {{count}} para corrigir",
-    "nothingToFix": "Nada para corrigir",
-    "paleSolid": "Claro: planejado · forte: plantado",
     "allBeds": "Todos os canteiros",
     "bed": "Canteiro {{n}}",
     "part": {
@@ -478,7 +470,28 @@
       "vegFlowers": "Hortaliças, com flores no fim de cada canteiro",
       "fruit": "Fruta primeiro: morangos, melões, tomates, abóboras",
       "herbsFlowers": "Ervas e flores"
-    }
+    },
+    "goodPairs_one": "✓ 1 par de bons vizinhos",
+    "goodPairs_other": "✓ {{count}} pares de bons vizinhos",
+    "badPairs_one": "! 1 par para separar",
+    "badPairs_other": "! {{count}} pares para separar",
+    "noBadPairs": "Nenhum vizinho para separar",
+    "goodHint": "Culturas que se ajudam lado a lado, como manjericão junto aos tomates ou flores junto às culturas de fruto. Toque para selecioná-las.",
+    "badHint": "Culturas que não devem ficar lado a lado, como cebola e feijão ou batata e tomate, ou uma cultura alta que faz sombra a uma baixa. Toque para selecioná-las.",
+    "faded": "Plantas claras estão planejadas, ainda não plantadas",
+    "selected_one": "{{count}} parte selecionada",
+    "selected_other": "{{count}} partes selecionadas",
+    "keepAll": "Manter aqui",
+    "clearSelection": "Limpar a seleção",
+    "noneSelected": "Toque num canteiro para vê-lo. Toque em mais para mudá-los juntos.",
+    "palette": {
+      "title": "Culturas",
+      "hint": "Arraste uma cultura para um canteiro, ou selecione canteiros e toque numa cultura.",
+      "toSelected_one": "Toque numa cultura para colocá-la na parte selecionada.",
+      "toSelected_other": "Toque numa cultura para colocá-la nas {{count}} partes selecionadas."
+    },
+    "strips_one": "{{count}} faixa",
+    "strips_other": "{{count}} faixas"
   },
   "year": {
     "title": "Seu ano",

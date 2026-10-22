@@ -346,20 +346,12 @@
       "L": "En L"
     },
     "auto": "Planifícalo por mí",
-    "turnLeft": "Girar a la izquierda",
-    "turnRight": "Girar a la derecha",
     "model": "Tu huerto, dibujado",
     "noRoom": "Con este tamaño no cabe ningún bancal.",
     "beds_one": "{{count}} bancal",
     "beds_other": "{{count}} bancales",
     "plants_one": "{{count}} planta",
     "plants_other": "{{count}} plantas",
-    "good_one": "✓ {{count}} buena pareja",
-    "good_other": "✓ {{count}} buenas parejas",
-    "toFix_one": "! {{count}} a corregir",
-    "toFix_other": "! {{count}} a corregir",
-    "nothingToFix": "Nada que corregir",
-    "paleSolid": "Claro: planificado · intenso: plantado",
     "allBeds": "Todos los bancales",
     "bed": "Bancal {{n}}",
     "part": {
@@ -478,7 +470,28 @@
       "vegFlowers": "Hortalizas, con flores al final de cada bancal",
       "fruit": "Primero fruta: fresas, melones, tomates, calabazas",
       "herbsFlowers": "Aromáticas y flores"
-    }
+    },
+    "goodPairs_one": "✓ 1 pareja de buenos vecinos",
+    "goodPairs_other": "✓ {{count}} parejas de buenos vecinos",
+    "badPairs_one": "! 1 pareja que separar",
+    "badPairs_other": "! {{count}} parejas que separar",
+    "noBadPairs": "Ningún vecino que separar",
+    "goodHint": "Cultivos que se ayudan juntos, como la albahaca junto a los tomates o las flores junto a los de fruto. Toca para seleccionarlos.",
+    "badHint": "Cultivos que no deben ir juntos, como cebollas y judías o patatas y tomates, o uno alto que da sombra a uno bajo. Toca para seleccionarlos.",
+    "faded": "Las plantas claras están planificadas, aún no plantadas",
+    "selected_one": "{{count}} parte seleccionada",
+    "selected_other": "{{count}} partes seleccionadas",
+    "keepAll": "Dejarlas aquí",
+    "clearSelection": "Quitar la selección",
+    "noneSelected": "Toca un bancal para verlo. Toca más para cambiarlos a la vez.",
+    "palette": {
+      "title": "Cultivos",
+      "hint": "Arrastra un cultivo a un bancal, o selecciona bancales y toca un cultivo.",
+      "toSelected_one": "Toca un cultivo para ponerlo en la parte seleccionada.",
+      "toSelected_other": "Toca un cultivo para ponerlo en las {{count}} partes seleccionadas."
+    },
+    "strips_one": "{{count}} franja",
+    "strips_other": "{{count}} franjas"
   },
   "year": {
     "title": "Tu año",

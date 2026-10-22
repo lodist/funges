@@ -346,20 +346,12 @@
       "L": "L-Form"
     },
     "auto": "Für mich planen",
-    "turnLeft": "Nach links drehen",
-    "turnRight": "Nach rechts drehen",
     "model": "Dein Garten, gezeichnet",
     "noRoom": "Bei dieser Größe passt kein Beet hinein.",
     "beds_one": "{{count}} Beet",
     "beds_other": "{{count}} Beete",
     "plants_one": "{{count}} Pflanze",
     "plants_other": "{{count}} Pflanzen",
-    "good_one": "✓ {{count}} gute Nachbarschaft",
-    "good_other": "✓ {{count}} gute Nachbarschaften",
-    "toFix_one": "! {{count}} zu ändern",
-    "toFix_other": "! {{count}} zu ändern",
-    "nothingToFix": "Nichts zu ändern",
-    "paleSolid": "Blass: geplant · kräftig: gepflanzt",
     "allBeds": "Alle Beete",
     "bed": "Beet {{n}}",
     "part": {
@@ -478,7 +470,28 @@
       "vegFlowers": "Gemüse, mit Blumen am Ende jedes Beets",
       "fruit": "Obst zuerst: Erdbeeren, Melonen, Tomaten, Kürbisse",
       "herbsFlowers": "Kräuter und Blumen"
-    }
+    },
+    "goodPairs_one": "✓ 1 Paar gute Nachbarn",
+    "goodPairs_other": "✓ {{count}} Paare gute Nachbarn",
+    "badPairs_one": "! 1 Paar zu trennen",
+    "badPairs_other": "! {{count}} Paare zu trennen",
+    "noBadPairs": "Keine Nachbarn zu trennen",
+    "goodHint": "Kulturen, die sich nebeneinander helfen, wie Basilikum bei Tomaten oder Blumen bei Fruchtgemüse. Tippen, um sie auszuwählen.",
+    "badHint": "Kulturen, die nicht nebeneinander gehören, wie Zwiebeln und Bohnen oder Kartoffeln und Tomaten, oder eine hohe Kultur, die eine niedrige beschattet. Tippen, um sie auszuwählen.",
+    "faded": "Blasse Pflanzen sind geplant, noch nicht gepflanzt",
+    "selected_one": "{{count}} Teil ausgewählt",
+    "selected_other": "{{count}} Teile ausgewählt",
+    "keepAll": "Hier lassen",
+    "clearSelection": "Auswahl aufheben",
+    "noneSelected": "Tippe auf ein Beet, um es zu sehen. Tippe weitere an, um sie gemeinsam zu ändern.",
+    "palette": {
+      "title": "Kulturen",
+      "hint": "Zieh eine Kultur auf ein Beet, oder wähle Beete aus und tippe eine Kultur an.",
+      "toSelected_one": "Tippe eine Kultur an, um sie in den ausgewählten Teil zu setzen.",
+      "toSelected_other": "Tippe eine Kultur an, um sie in die {{count}} ausgewählten Teile zu setzen."
+    },
+    "strips_one": "{{count}} Streifen",
+    "strips_other": "{{count}} Streifen"
   },
   "year": {
     "title": "Dein Jahr",

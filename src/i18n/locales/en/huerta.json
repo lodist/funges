@@ -346,20 +346,12 @@
       "L": "L-shape"
     },
     "auto": "Plan it for me",
-    "turnLeft": "Turn left",
-    "turnRight": "Turn right",
     "model": "Your garden, drawn",
     "noRoom": "This size leaves no room for a bed.",
     "beds_one": "{{count}} bed",
     "beds_other": "{{count}} beds",
     "plants_one": "{{count}} plant",
     "plants_other": "{{count}} plants",
-    "good_one": "✓ {{count}} good pair",
-    "good_other": "✓ {{count}} good pairs",
-    "toFix_one": "! {{count}} to fix",
-    "toFix_other": "! {{count}} to fix",
-    "nothingToFix": "Nothing to fix",
-    "paleSolid": "Pale: planned · solid: planted",
     "allBeds": "All beds",
     "bed": "Bed {{n}}",
     "part": {
@@ -478,7 +470,28 @@
       "vegFlowers": "Vegetables, with flowers at each bed's end",
       "fruit": "Fruit first: strawberries, melons, tomatoes, squash",
       "herbsFlowers": "Herbs and flowers"
-    }
+    },
+    "goodPairs_one": "✓ 1 pair of good neighbours",
+    "goodPairs_other": "✓ {{count}} pairs of good neighbours",
+    "badPairs_one": "! 1 pair to keep apart",
+    "badPairs_other": "! {{count}} pairs to keep apart",
+    "noBadPairs": "No neighbours to keep apart",
+    "goodHint": "Crops that help each other side by side, like basil by tomatoes or flowers by fruiting crops. Tap to select them.",
+    "badHint": "Crops that should not grow side by side, like onions by beans or potatoes by tomatoes, or a tall crop shading a low one. Tap to select them.",
+    "faded": "Faded plants are planned, not planted yet",
+    "selected_one": "{{count}} section selected",
+    "selected_other": "{{count}} sections selected",
+    "keepAll": "Keep these here",
+    "clearSelection": "Clear selection",
+    "noneSelected": "Tap a bed to see it. Tap more beds to change them together.",
+    "palette": {
+      "title": "Crops",
+      "hint": "Drag a crop onto a bed, or select beds and tap a crop.",
+      "toSelected_one": "Tap a crop to put it in the selected section.",
+      "toSelected_other": "Tap a crop to put it in the {{count}} selected sections."
+    },
+    "strips_one": "{{count}} strip",
+    "strips_other": "{{count}} strips"
   },
   "year": {
     "title": "Your year",
