@@ -4,6 +4,8 @@ import {
   decodeAdvice,
   fetchAdvice,
   plain,
+  saveMapView,
+  savedMapView,
   searchTowns,
 } from '@/lib/huerta-api';
 import { CROPS } from '@/lib/huerta';
@@ -73,6 +75,21 @@ describe('the Huerta Worker client', () => {
       province: 'Murcia',
     });
     expect(calls).toHaveBeenCalledTimes(2); // one advice, one section ("ma")
+  });
+
+  it('keeps the garden’s answer when the map looks somewhere else', async () => {
+    const calls = vi.fn(async () => Response.json(FULL));
+    vi.stubGlobal('fetch', calls);
+    await fetchAdvice({ lat: 40.44, lon: -3.68 });
+    await fetchAdvice({ lat: 48.85, lon: 2.35 }, false); // a spot on the map
+    await fetchAdvice({ lat: 40.44, lon: -3.68 });
+    expect(calls).toHaveBeenCalledTimes(2);
+  });
+
+  it('remembers where the map was left', () => {
+    expect(savedMapView()).toBeNull();
+    saveMapView({ center: [2.35, 48.85], zoom: 6 });
+    expect(savedMapView()).toEqual({ center: [2.35, 48.85], zoom: 6 });
   });
 
   it('asks again when the app knows a crop the kept answer lacks', async () => {

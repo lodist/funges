@@ -309,10 +309,6 @@
       "soil": "Temperatura del suelo",
       "water": "A regar esta semana"
     },
-    "continents": {
-      "eu": "Europa",
-      "us": "Estados Unidos"
-    },
     "legend": {
       "now": "Siembra o planta ahora",
       "wait": "Aún no",
@@ -329,7 +325,10 @@
     "close": "Cerrar",
     "loadingPlace": "Buscando este lugar…",
     "noPlace": "Aquí no hay consejos de Huerta.",
-    "failed": "El mapa no ha cargado. Prueba de nuevo en un momento."
+    "failed": "El mapa no ha cargado. Prueba de nuevo en un momento.",
+    "search": "Buscar cultivos",
+    "noResults": "Ningún cultivo coincide",
+    "clearFilters": "Quitar los filtros"
   },
   "planner": {
     "title": "Planificador del huerto",

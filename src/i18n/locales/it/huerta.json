@@ -309,10 +309,6 @@
       "soil": "Temperatura del terreno",
       "water": "Da irrigare questa settimana"
     },
-    "continents": {
-      "eu": "Europa",
-      "us": "Stati Uniti"
-    },
     "legend": {
       "now": "Semina o pianta ora",
       "wait": "Non ancora",
@@ -329,7 +325,10 @@
     "close": "Chiudi",
     "loadingPlace": "Cerco questo luogo…",
     "noPlace": "Qui non ci sono consigli di Huerta.",
-    "failed": "La mappa non si è caricata. Riprova tra un momento."
+    "failed": "La mappa non si è caricata. Riprova tra un momento.",
+    "search": "Cerca colture",
+    "noResults": "Nessuna coltura corrisponde",
+    "clearFilters": "Togli i filtri"
   },
   "planner": {
     "title": "Pianificatore dell'orto",

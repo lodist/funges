@@ -309,10 +309,6 @@
       "soil": "Température du sol",
       "water": "À arroser cette semaine"
     },
-    "continents": {
-      "eu": "Europe",
-      "us": "États-Unis"
-    },
     "legend": {
       "now": "Semer ou planter maintenant",
       "wait": "Pas encore",
@@ -329,7 +325,10 @@
     "close": "Fermer",
     "loadingPlace": "Recherche de ce lieu…",
     "noPlace": "Pas de conseils Huerta ici.",
-    "failed": "La carte n'a pas pu se charger. Réessayez dans un instant."
+    "failed": "La carte n'a pas pu se charger. Réessayez dans un instant.",
+    "search": "Rechercher une culture",
+    "noResults": "Aucune culture ne correspond",
+    "clearFilters": "Effacer les filtres"
   },
   "planner": {
     "title": "Plan du potager",

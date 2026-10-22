@@ -4,8 +4,9 @@ import { cn } from '@/lib/utils';
 export interface CategoryChip {
   value: string;
   label: string;
-  /** URL of the type icon, from `CATEGORY_ICONS`. */
-  icon: string;
+  /** URL of the type icon, from `CATEGORY_ICONS`; a chip without one always
+   *  shows its label. */
+  icon?: string;
 }
 
 interface CategoryChipsProps {
@@ -56,8 +57,12 @@ export function CategoryChips({
                 : 'font-medium'
             )}
           >
-            <img src={chip.icon} alt='' className='size-6' />
-            <span className='hidden sm:inline'>{chip.label}</span>
+            {chip.icon ? (
+              <img src={chip.icon} alt='' className='size-6' />
+            ) : null}
+            <span className={cn(chip.icon && 'hidden sm:inline')}>
+              {chip.label}
+            </span>
           </Button>
         );
       })}

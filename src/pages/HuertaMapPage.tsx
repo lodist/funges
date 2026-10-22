@@ -1,19 +1,15 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
+import { HuertaCropPicker } from '@/components/HuertaCropPicker';
+import { HuertaWeek } from '@/components/HuertaWeek';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { BAND_GHOST_CLASS, BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { grid, paint, type MapLayer } from '@/lib/garden-map';
 import { CROPS, type PlaceAdvice } from '@/lib/huerta';
 import {
@@ -22,23 +18,52 @@ import {
   fetchMapNight,
   huertaApiConfigured,
   MAP_REGIONS,
+  saveMapView,
+  savedMapView,
   savedPlace,
   savePlace,
   type MapRegion,
+  type MapView,
   type Place,
 } from '@/lib/huerta-api';
+import { MapPinned, X } from '@/lib/icons';
 import { protocol } from '@/lib/pmtiles-protocol';
 import { cn } from '@/lib/utils';
+import { useMapStore } from '@/store/mapStore';
 
 maplibregl.setWorkerUrl(maplibreWorkerUrl);
 maplibregl.addProtocol('pmtiles', protocol.tile);
 
 type Continent = keyof typeof MAP_REGIONS;
 const LAYERS: MapLayer[] = ['crop', 'frost', 'soil', 'water'];
-const VIEW: Record<Continent, { center: [number, number]; zoom: number }> = {
-  eu: { center: [8, 48], zoom: 3.3 },
-  us: { center: [-97, 39], zoom: 3.2 },
+/** Roughly where each continent's places are: its layer loads once in view. */
+const BOX: Record<Continent, [number, number, number, number]> = {
+  eu: [-25, 34, 45, 72],
+  us: [-125, 24, -66, 50],
 };
+const inView = (m: maplibregl.Map) => {
+  const b = m.getBounds();
+  return (Object.keys(BOX) as Continent[]).filter(c => {
+    const [w, s, e, n] = BOX[c];
+    return (
+      b.getWest() < e && b.getEast() > w && b.getSouth() < n && b.getNorth() > s
+    );
+  });
+};
+
+/** The spot's card and its margin, from the map's left edge (desktop). */
+const CARD_PX = 480;
+
+/** Where the map opens: where it was left, else the garden, else where
+ *  Terra's map was left. */
+function startView(): MapView {
+  const saved = savedMapView();
+  if (saved) return saved;
+  const home = savedPlace();
+  if (home) return { center: [home.lon, home.lat], zoom: 6 };
+  const { center, zoom } = useMapStore.getState();
+  return { center, zoom };
+}
 /** Terra's basemap style without its species layers, its sprite and glyph
  *  paths made absolute (the files give them relative to the site). */
 async function basemapStyle(): Promise<maplibregl.StyleSpecification> {
@@ -60,16 +85,50 @@ async function basemapStyle(): Promise<maplibregl.StyleSpecification> {
   return style;
 }
 
+/** A continent's drawing on the map, under the basemap's labels. */
+function show(
+  m: maplibregl.Map,
+  continent: Continent,
+  url: string,
+  [w, s, e, n]: [number, number, number, number]
+) {
+  const coordinates: [
+    [number, number],
+    [number, number],
+    [number, number],
+    [number, number],
+  ] = [
+    [w, n],
+    [e, n],
+    [e, s],
+    [w, s],
+  ];
+  const id = `garden-${continent}`;
+  const source = m.getSource(id) as maplibregl.ImageSource | undefined;
+  if (source) return source.updateImage({ url, coordinates });
+  m.addSource(id, { type: 'image', url, coordinates });
+  const firstLabel = m.getStyle().layers.find(l => l.type === 'symbol')?.id;
+  m.addLayer(
+    {
+      id,
+      type: 'raster',
+      source: id,
+      paint: { 'raster-opacity': 0.85, 'raster-resampling': 'nearest' },
+    },
+    firstLabel
+  );
+}
+
 /** The canvas a region's layer is drawn on, as a URL MapLibre can show. */
-async function drawRegion(
-  region: MapRegion,
+async function drawContinent(
+  continent: Continent,
   layer: MapLayer,
   crop: string
 ): Promise<{ url: string; bounds: [number, number, number, number] }> {
-  const load = async (again: boolean) => {
+  const load = async (region: MapRegion, again: boolean) => {
     const night = await fetchMapNight(region, again);
     return {
-      night,
+      places: night.places,
       values: await fetchMapLayer(
         region,
         night.day,
@@ -78,8 +137,22 @@ async function drawRegion(
     };
   };
   // A 409 means the night run moved on since the index was read.
-  const { night, values } = await load(false).catch(() => load(true));
-  const area = grid(night.places);
+  const parts = await Promise.all(
+    MAP_REGIONS[continent].map(region =>
+      load(region, false).catch(() => load(region, true))
+    )
+  );
+  // One canvas for the continent's regions: where they meet, a cell replaces
+  // its neighbour's instead of darkening it.
+  const places = new Int16Array(parts.reduce((n, p) => n + p.places.length, 0));
+  const values = new Uint8Array(places.length / 2);
+  let at = 0;
+  for (const part of parts) {
+    places.set(part.places, 2 * at);
+    values.set(part.values, at);
+    at += part.values.length;
+  }
+  const area = grid(places);
   const canvas = document.createElement('canvas');
   canvas.width = area.width;
   canvas.height = area.height;
@@ -99,14 +172,19 @@ async function drawRegion(
 export default function HuertaMapPage() {
   const { t } = useTranslation('huerta');
   const isMobile = useIsMobile();
+  const phone = useRef(isMobile);
+  phone.current = isMobile;
   const navigate = useNavigate();
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
   const marker = useRef<maplibregl.Marker | null>(null);
-  const home = useMemo(() => savedPlace(), []);
-  const [continent, setContinent] = useState<Continent>(
-    home && home.lon < -25 ? 'us' : 'eu'
-  );
+  // The continents looked at so far: their layers stay drawn.
+  const [shown, setShown] = useState<Continent[]>([]);
+  // Per continent, the drawing asked for last (layer:crop) and the one on show.
+  const wanted = useRef(new Map<Continent, string>());
+  const urls = useRef(new Map<Continent, string>());
+  // The advice at the map's centre, for the crop panel's status filter.
+  const [centre, setCentre] = useState<PlaceAdvice | null | undefined>();
   const [crop, setCrop] = useState('garlic');
   const [layer, setLayer] = useState<MapLayer>('crop');
   const [ready, setReady] = useState(false);
@@ -116,40 +194,57 @@ export default function HuertaMapPage() {
     place: Place;
     advice?: PlaceAdvice | null;
   } | null>(null);
-  const crops = useMemo(
-    () =>
-      [...CROPS].sort((a, b) =>
-        t(`crops.${a.id}`).localeCompare(t(`crops.${b.id}`))
-      ),
-    [t]
-  );
 
   // The map itself, once, on Terra's basemap.
   useEffect(() => {
     let live = true;
     let m: maplibregl.Map | null = null;
-    const view = home
-      ? { center: [home.lon, home.lat] as [number, number], zoom: 6 }
-      : VIEW[continent];
+    const drawings = urls.current;
     basemapStyle()
       .then(style => {
         if (!live || !container.current) return;
         m = new maplibregl.Map({
           container: container.current,
           style,
-          ...view,
+          ...startView(),
           minZoom: 2.5,
           maxZoom: 12,
           attributionControl: false,
         });
         m.dragRotate.disable();
         m.touchZoomRotate.disableRotation();
-        m.on('load', () => setReady(true));
-        m.on('click', event =>
+        const look = () => {
+          const here = m!.getCenter();
+          saveMapView({ center: [here.lng, here.lat], zoom: m!.getZoom() });
+          const seen = inView(m!);
+          setShown(prev =>
+            seen.every(c => prev.includes(c))
+              ? prev
+              : [...new Set([...prev, ...seen])]
+          );
+        };
+        m.on('load', () => {
+          setReady(true);
+          look();
+        });
+        m.on('moveend', look);
+        m.on('click', event => {
           setPicked({
             place: { lat: event.lngLat.lat, lon: event.lngLat.lng },
-          })
-        );
+          });
+          // The card opens bottom left (the lower half, on a phone): a spot it
+          // would hide moves into the open part of the map.
+          const { x, y } = event.point;
+          const h = m!.getContainer().clientHeight;
+          const hidden = phone.current
+            ? y > h * 0.4
+            : x < CARD_PX && y > h - 520;
+          if (hidden)
+            m!.easeTo({
+              center: event.lngLat,
+              offset: phone.current ? [0, -h / 4] : [CARD_PX / 2, 0],
+            });
+        });
         map.current = m;
       })
       .catch(() => live && setFailed(true));
@@ -157,61 +252,37 @@ export default function HuertaMapPage() {
       live = false;
       m?.remove();
       map.current = null;
+      drawings.forEach(url => URL.revokeObjectURL(url));
     };
-    // The view only seeds the map; later choices move it themselves.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // The chosen layer, drawn for every region of the continent.
+  // The chosen layer, drawn for every continent looked at; one already
+  // showing it is left alone.
   useEffect(() => {
     const m = map.current;
     if (!ready || !m || !huertaApiConfigured) return;
-    let live = true;
-    const urls: string[] = [];
+    const key = `${layer}:${crop}`;
     setFailed(false);
-    Promise.all(
-      MAP_REGIONS[continent].map(async region => {
-        const { url, bounds } = await drawRegion(region, layer, crop);
-        urls.push(url);
-        if (!live) return;
-        const [w, s, e, n] = bounds;
-        const coordinates: [
-          [number, number],
-          [number, number],
-          [number, number],
-          [number, number],
-        ] = [
-          [w, n],
-          [e, n],
-          [e, s],
-          [w, s],
-        ];
-        const id = `garden-${region}`;
-        const source = m.getSource(id) as maplibregl.ImageSource | undefined;
-        if (source) source.updateImage({ url, coordinates });
-        else {
-          m.addSource(id, { type: 'image', url, coordinates });
-          const firstLabel = m
-            .getStyle()
-            .layers.find(l => l.type === 'symbol')?.id;
-          m.addLayer(
-            {
-              id,
-              type: 'raster',
-              source: id,
-              paint: { 'raster-opacity': 0.85, 'raster-resampling': 'nearest' },
-            },
-            firstLabel
-          );
-        }
-      })
-    ).catch(() => live && setFailed(true));
-    return () => {
-      live = false;
-      // Let MapLibre finish reading the images before they go.
-      setTimeout(() => urls.forEach(url => URL.revokeObjectURL(url)), 5000);
-    };
-  }, [ready, continent, layer, crop]);
+    for (const continent of shown) {
+      if (wanted.current.get(continent) === key) continue;
+      wanted.current.set(continent, key);
+      drawContinent(continent, layer, crop)
+        .then(({ url, bounds }) => {
+          if (wanted.current.get(continent) !== key || map.current !== m)
+            return URL.revokeObjectURL(url);
+          show(m, continent, url, bounds);
+          const old = urls.current.get(continent);
+          urls.current.set(continent, url);
+          // Let MapLibre finish reading the old image before it goes.
+          if (old) setTimeout(() => URL.revokeObjectURL(old), 5000);
+        })
+        .catch(() => {
+          if (wanted.current.get(continent) !== key) return;
+          wanted.current.delete(continent); // the next change tries again
+          setFailed(true);
+        });
+    }
+  }, [ready, shown, layer, crop]);
 
   // The place tapped: a marker, and its own advice for the card.
   useEffect(() => {
@@ -223,7 +294,7 @@ export default function HuertaMapPage() {
       .addTo(m);
     if (picked.advice !== undefined || !huertaApiConfigured) return;
     let live = true;
-    fetchAdvice(picked.place)
+    fetchAdvice(picked.place, false)
       .then(advice => live && setPicked(p => (p ? { ...p, advice } : p)))
       .catch(() => live && setPicked(p => (p ? { ...p, advice: null } : p)));
     return () => {
@@ -231,10 +302,16 @@ export default function HuertaMapPage() {
     };
   }, [picked]);
 
-  const moveTo = (next: Continent) => {
-    setContinent(next);
-    setPicked(null);
-    map.current?.flyTo({ ...VIEW[next], essential: true });
+  // The crop panel opened: its status filter is for the spot picked, else
+  // for the map's centre.
+  const lookAround = () => {
+    const m = map.current;
+    if (picked || !m || !huertaApiConfigured) return;
+    const { lat, lng } = m.getCenter();
+    setCentre(undefined);
+    fetchAdvice({ lat, lon: lng }, false)
+      .then(setCentre)
+      .catch(() => setCentre(null));
   };
 
   return (
@@ -247,40 +324,16 @@ export default function HuertaMapPage() {
       <div className={cn('relative', isMobile ? 'h-full' : '-m-4 h-screen')}>
         <div ref={container} className='h-full w-full' />
         <div className='pointer-events-none absolute inset-x-0 top-0 flex flex-col gap-2 p-3 sm:p-4'>
-          <div className='pointer-events-auto flex flex-wrap items-center gap-2'>
-            <Select
-              value={crop}
-              onValueChange={value => {
+          <div className='pointer-events-auto self-start'>
+            <HuertaCropPicker
+              crop={crop}
+              onPick={value => {
                 setCrop(value);
                 setLayer('crop');
               }}
-            >
-              <SelectTrigger
-                aria-label={t('map.crop')}
-                className='w-44 bg-card sm:w-56'
-              >
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {crops.map(c => (
-                  <SelectItem key={c.id} value={c.id}>
-                    {t(`crops.${c.id}`)}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {(['eu', 'us'] as Continent[]).map(c => (
-              <Button
-                key={c}
-                type='button'
-                variant='ghost'
-                aria-pressed={continent === c}
-                onClick={() => moveTo(c)}
-                className={chipClass(continent === c)}
-              >
-                {t(`map.continents.${c}`)}
-              </Button>
-            ))}
+              advice={picked ? picked.advice : centre}
+              onOpen={lookAround}
+            />
           </div>
           <div
             role='group'
@@ -320,7 +373,7 @@ export default function HuertaMapPage() {
               onClose={() => setPicked(null)}
             />
           ) : null}
-          <Legend layer={layer} failed={failed} />
+          {picked && isMobile ? null : <Legend layer={layer} failed={failed} />}
         </div>
       </div>
     </>
@@ -389,6 +442,8 @@ function Legend({ layer, failed }: { layer: MapLayer; failed: boolean }) {
   );
 }
 
+/** The spot tapped: its week on the band, as on the garden page, and the
+ *  crop's status there; making it the garden is an option under that. */
 function PlaceCard({
   advice,
   crop,
@@ -403,35 +458,62 @@ function PlaceCard({
   const { t } = useTranslation('huerta');
   const how = CROPS.find(c => c.id === crop)?.how ?? 'sow';
   const status = advice?.crops[crop];
+  const close = (
+    <Button
+      variant='ghost'
+      size='icon'
+      onClick={onClose}
+      aria-label={t('map.close')}
+      className={cn('-mr-2 -mt-2 shrink-0', BAND_GHOST_CLASS)}
+    >
+      <X className='size-5' />
+    </Button>
+  );
+  if (!advice)
+    return (
+      <div
+        className={cn(
+          'pointer-events-auto flex w-full max-w-md items-start justify-between gap-3 rounded-card p-4 elevation-raised',
+          BAND_SURFACE_CLASS
+        )}
+      >
+        <p className='pt-1 text-sm text-happy-100'>
+          {advice === null ? t('map.noPlace') : t('map.loadingPlace')}
+        </p>
+        {close}
+      </div>
+    );
   return (
-    <div className='pointer-events-auto flex w-full max-w-sm flex-col gap-3 rounded-card bg-card p-4 shadow-md'>
-      {advice === null ? (
-        <p className='text-sm text-muted-foreground'>{t('map.noPlace')}</p>
-      ) : advice ? (
-        <>
-          <div>
-            <p className='font-semibold text-foreground'>
-              {t('map.place', { place: advice.place })}
-            </p>
-            <p className='text-sm text-muted-foreground'>
-              {t(`crops.${crop}`)}:{' '}
-              {status === 'now'
-                ? t(`sheet.${how}Now`)
-                : status
-                  ? t(`status.${status}`)
-                  : '–'}
-            </p>
-          </div>
-          <div className='flex gap-2'>
-            <Button onClick={onUse}>{t('map.use')}</Button>
-            <Button variant='ghost' onClick={onClose}>
-              {t('map.close')}
-            </Button>
-          </div>
-        </>
-      ) : (
-        <p className='text-sm text-muted-foreground'>{t('map.loadingPlace')}</p>
-      )}
-    </div>
+    <HuertaWeek
+      advice={advice}
+      className='pointer-events-auto w-full max-w-md p-4 elevation-raised sm:p-5'
+      title={
+        <div className='mb-3 flex items-start justify-between gap-3'>
+          <p className='pt-1 font-semibold'>
+            {t('map.place', { place: advice.place })}
+          </p>
+          {close}
+        </div>
+      }
+    >
+      <div className='mt-4 border-t border-happy-100/25 pt-4'>
+        <p className='text-sm'>
+          <span className='font-semibold'>{t(`crops.${crop}`)}:</span>{' '}
+          {status === 'now'
+            ? t(`sheet.${how}Now`)
+            : status
+              ? t(`status.${status}`)
+              : '–'}
+        </p>
+        <Button
+          variant='ghost'
+          onClick={onUse}
+          className={cn('-ml-4 mt-1', BAND_GHOST_CLASS)}
+        >
+          <MapPinned className='size-4' />
+          {t('map.use')}
+        </Button>
+      </div>
+    </HuertaWeek>
   );
 }

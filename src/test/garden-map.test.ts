@@ -17,6 +17,22 @@ describe('the garden map drawing', () => {
     expect(at(area.width - 2, 1)).toEqual([0, 0, 0, 0]); // no place there
   });
 
+  it('leaves no gaps along a row, though places are kept to 0.01°', () => {
+    // A row 0.075° apart, rounded to hundredths as places.bin keeps them: the
+    // gaps fall 0.07 and 0.08 apart, which left one-pixel stripes.
+    const row = Array.from({ length: 60 }, (_, i) => [
+      4200,
+      Math.round((-104.95 + i * 0.075) * 100),
+    ]).flat();
+    const area = grid(new Int16Array(row));
+    const pixels = paint(area, 'crop', new Uint8Array(60).fill(110));
+    const y = Math.floor(area.height / 2);
+    const empty = Array.from({ length: area.width }, (_, x) => x).filter(
+      x => pixels[(y * area.width + x) * 4 + 3] === 0
+    );
+    expect(empty).toEqual([]);
+  });
+
   it('leaves out places with no frost, no reading, or nothing to water', () => {
     expect(colour('frost', 0)).toBeNull();
     expect(colour('soil', 255)).toBeNull();
