@@ -1,5 +1,5 @@
 {
-  "title": "Il tuo orto questa settimana",
+  "title": "Questa settimana",
   "description": "Cosa seminare e piantare questa settimana, avvisi di gelo e irrigazione per il tuo comune.",
   "sample": "Esempio: {{place}}, {{day}}. Presto il tuo comune.",
   "around": "Dintorni di {{place}}, {{day}}",
@@ -298,7 +298,7 @@
     "year": "Il suo anno a {{place}}"
   },
   "map": {
-    "title": "Mappa dell'orto",
+    "title": "Mappa",
     "description": "Dove va ogni coltura questa settimana, gelate nei prossimi tre giorni, temperatura del terreno e irrigazione, luogo per luogo.",
     "crop": "Coltura",
     "layer": "Livello della mappa",
@@ -493,7 +493,7 @@
     "strips_other": "{{count}} strisce"
   },
   "year": {
-    "title": "Il tuo anno",
+    "title": "Calendario",
     "description": "Quando si semina, si pianta e si raccoglie ogni coltura da te, calcolato dal tuo clima.",
     "around": "A {{place}}, in un anno tipico.",
     "noPlace": "Scegli il tuo luogo per vederne l'anno.",

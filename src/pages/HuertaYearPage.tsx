@@ -10,7 +10,7 @@ import { huertaApiConfigured, savedPlace } from '@/lib/huerta-api';
 import { cn } from '@/lib/utils';
 import { MonthCell } from '@/components/MonthCell';
 
-/** "Your year": every crop's sowing and harvest months at the visitor's place,
+/** The calendar: every crop's sowing and harvest months at the visitor's place,
  *  like the back of a seed packet, but for this climate. */
 export default function HuertaYearPage() {
   const { t, i18n } = useTranslation('huerta');

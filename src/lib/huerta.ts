@@ -862,6 +862,12 @@ export const STATUS_GROUPS = {
   over: ['too_late', 'not_here'],
 } satisfies Record<string, CropStatus[]>;
 export type StatusGroup = keyof typeof STATUS_GROUPS;
+export const statusGroup = (status?: CropStatus): StatusGroup =>
+  status === 'now'
+    ? 'now'
+    : status && (STATUS_GROUPS.wait as CropStatus[]).includes(status)
+      ? 'wait'
+      : 'over';
 
 export const cropsWith = (advice: PlaceAdvice, statuses: CropStatus[]) =>
   CROPS.filter(crop => statuses.includes(advice.crops[crop.id]));

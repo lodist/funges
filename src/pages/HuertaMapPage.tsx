@@ -4,14 +4,15 @@ import { useTranslation } from 'react-i18next';
 import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
+import { SELECTED_CHIP_CLASS } from '@/components/CategoryChips';
 import { HuertaCropPicker } from '@/components/HuertaCropPicker';
 import { HuertaWeek } from '@/components/HuertaWeek';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { BAND_GHOST_CLASS, BAND_SURFACE_CLASS } from '@/lib/band-surface';
-import { grid, paint, type MapLayer } from '@/lib/garden-map';
-import { CROPS, type PlaceAdvice } from '@/lib/huerta';
+import { grid, paint, STATUS_RGB, type MapLayer } from '@/lib/garden-map';
+import { CROPS, statusGroup, type PlaceAdvice } from '@/lib/huerta';
 import {
   fetchAdvice,
   fetchMapLayer,
@@ -174,6 +175,7 @@ export default function HuertaMapPage() {
   const isMobile = useIsMobile();
   const phone = useRef(isMobile);
   phone.current = isMobile;
+  const open = useRef(false);
   const navigate = useNavigate();
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
@@ -229,6 +231,8 @@ export default function HuertaMapPage() {
         });
         m.on('moveend', look);
         m.on('click', event => {
+          // With a card open, a click elsewhere only closes it.
+          if (open.current) return setPicked(null);
           setPicked({
             place: { lat: event.lngLat.lat, lon: event.lngLat.lng },
           });
@@ -286,6 +290,7 @@ export default function HuertaMapPage() {
 
   // The place tapped: a marker, and its own advice for the card.
   useEffect(() => {
+    open.current = picked !== null;
     const m = map.current;
     marker.current?.remove();
     if (!picked || !m) return;
@@ -383,10 +388,10 @@ export default function HuertaMapPage() {
 /** The filter chips' look over the map (CategoryChips, glass tone). */
 const chipClass = (selected: boolean) =>
   cn(
-    'px-4 text-foreground backdrop-blur-sm hover:bg-card hover:text-foreground dark:hover:bg-card dark:hover:text-foreground',
+    'px-4',
     selected
-      ? 'bg-card font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
-      : 'bg-card/90 font-medium'
+      ? SELECTED_CHIP_CLASS
+      : 'bg-card/90 font-medium text-foreground backdrop-blur-sm hover:bg-card hover:text-foreground dark:hover:bg-card dark:hover:text-foreground'
   );
 
 function Legend({ layer, failed }: { layer: MapLayer; failed: boolean }) {
@@ -394,9 +399,9 @@ function Legend({ layer, failed }: { layer: MapLayer; failed: boolean }) {
   const keys: [string, string][] =
     layer === 'crop'
       ? [
-          ['rgb(201,96,58)', t('map.legend.now')],
-          ['rgb(245,174,144)', t('map.legend.wait')],
-          ['rgb(207,198,189)', t('map.legend.over')],
+          [`rgb(${STATUS_RGB.now})`, t('map.legend.now')],
+          [`rgb(${STATUS_RGB.wait})`, t('map.legend.wait')],
+          [`rgb(${STATUS_RGB.over})`, t('map.legend.over')],
         ]
       : layer === 'frost'
         ? [
@@ -486,7 +491,8 @@ function PlaceCard({
   return (
     <HuertaWeek
       advice={advice}
-      className='pointer-events-auto w-full max-w-md p-4 elevation-raised sm:p-5'
+      tone='card'
+      className='pointer-events-auto w-full max-w-md elevation-raised'
       title={
         <div className='mb-3 flex items-start justify-between gap-3'>
           <p className='pt-1 font-semibold'>
@@ -496,20 +502,23 @@ function PlaceCard({
         </div>
       }
     >
-      <div className='mt-4 border-t border-happy-100/25 pt-4'>
-        <p className='text-sm'>
-          <span className='font-semibold'>{t(`crops.${crop}`)}:</span>{' '}
-          {status === 'now'
-            ? t(`sheet.${how}Now`)
-            : status
-              ? t(`status.${status}`)
-              : '–'}
+      <div className='mt-4 border-t border-border pt-4'>
+        <p className='flex items-center gap-2 text-sm'>
+          <span
+            aria-hidden='true'
+            className='size-3 shrink-0 rounded-full'
+            style={{ background: `rgb(${STATUS_RGB[statusGroup(status)]})` }}
+          />
+          <span>
+            <span className='font-semibold'>{t(`crops.${crop}`)}:</span>{' '}
+            {status === 'now'
+              ? t(`sheet.${how}Now`)
+              : status
+                ? t(`status.${status}`)
+                : '–'}
+          </span>
         </p>
-        <Button
-          variant='ghost'
-          onClick={onUse}
-          className={cn('-ml-4 mt-1', BAND_GHOST_CLASS)}
-        >
+        <Button variant='outline' onClick={onUse} className='mt-3'>
           <MapPinned className='size-4' />
           {t('map.use')}
         </Button>
