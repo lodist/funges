@@ -848,7 +848,7 @@ function Palette({
               ref={lifted.ghost}
               src={photo(lifted.lifted)}
               alt=''
-              className='pointer-events-none fixed top-0 left-0 z-50 -mt-[4.25rem] -ml-7 size-14 rounded-lg object-cover shadow-lg ring-2 ring-primary will-change-transform'
+              className='pointer-events-none fixed top-0 left-0 z-50 -mt-17 -ml-7 size-14 rounded-lg object-cover shadow-lg ring-2 ring-primary will-change-transform'
               style={{
                 transform: `translate(${lifted.at.current[0]}px, ${lifted.at.current[1]}px)`,
               }}
