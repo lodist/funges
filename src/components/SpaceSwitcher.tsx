@@ -8,7 +8,7 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { SpaceMark } from '@/components/Logo';
+import { LogoMark, SpaceMark } from '@/components/Logo';
 import { Check, ChevronDown } from '@/lib/icons';
 import {
   currentSpace,
@@ -28,7 +28,18 @@ import { cn } from '@/lib/utils';
 export const SpaceSwitcher = ({ className }: { className?: string }) =>
   visibleSpaces().length > 1 ? <SpaceMenu className={className} /> : null;
 
-function SpaceMenu({ className }: { className?: string }) {
+/** The same menu on phones: the Funges mark on the current space's colour,
+ *  a round badge on the bottom bar's edge (the bar's six slots are full). */
+export const SpaceBadge = ({ className }: { className?: string }) =>
+  visibleSpaces().length > 1 ? <SpaceMenu badge className={className} /> : null;
+
+function SpaceMenu({
+  badge = false,
+  className,
+}: {
+  badge?: boolean;
+  className?: string;
+}) {
   const { t } = useTranslation('sidebar');
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -38,21 +49,37 @@ function SpaceMenu({ className }: { className?: string }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant='ghost'
-          data-space={current}
-          className={cn(
-            'justify-start gap-2 rounded-full bg-band pl-4 pr-3 font-display text-lg font-semibold text-band-foreground hover:bg-band hover:text-band-foreground hover:brightness-110 dark:bg-band dark:hover:bg-band dark:hover:text-band-foreground',
-            className
-          )}
-          aria-label={t('spaces.switch', { space: name(current) })}
-        >
-          <span>{name(current)}</span>
-          <ChevronDown className='size-4' />
-        </Button>
+        {badge ? (
+          <Button
+            variant='ghost'
+            size='icon'
+            data-space={current}
+            className={cn(
+              'rounded-full bg-band elevation-raised hover:bg-band hover:brightness-110 dark:bg-band dark:hover:bg-band',
+              className
+            )}
+            aria-label={t('spaces.switch', { space: name(current) })}
+          >
+            <LogoMark className='h-7 bg-band-foreground' />
+          </Button>
+        ) : (
+          <Button
+            variant='ghost'
+            data-space={current}
+            className={cn(
+              'justify-start gap-2 rounded-full bg-band pl-4 pr-3 font-display text-lg font-semibold text-band-foreground hover:bg-band hover:text-band-foreground hover:brightness-110 dark:bg-band dark:hover:bg-band dark:hover:text-band-foreground',
+              className
+            )}
+            aria-label={t('spaces.switch', { space: name(current) })}
+          >
+            <span>{name(current)}</span>
+            <ChevronDown className='size-4' />
+          </Button>
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align='start'
+        side={badge ? 'top' : 'bottom'}
         className='flex w-72 flex-col gap-1.5 p-1.5'
       >
         <DropdownMenuRadioGroup

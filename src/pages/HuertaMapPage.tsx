@@ -390,11 +390,12 @@ export default function HuertaMapPage() {
         <div
           className={cn(
             'pointer-events-none absolute inset-x-0 flex flex-col items-start gap-2 p-3 sm:p-4',
-            isMobile ? 'bottom-24' : 'bottom-0'
+            isMobile ? 'bottom-28' : 'bottom-0'
           )}
         >
           {picked ? (
             <PlaceCard
+              compact={isMobile}
               advice={picked.advice}
               crop={crop}
               onUse={() => {
@@ -482,11 +483,14 @@ function Legend({
 /** The spot tapped: its week on the band, as on the garden page, and the
  *  crop's status there; making it the garden is an option under that. */
 function PlaceCard({
+  compact,
   advice,
   crop,
   onUse,
   onClose,
 }: {
+  /** A phone: the short card, so the map stays in view. */
+  compact: boolean;
   advice?: PlaceAdvice | null;
   crop: string;
   onUse: () => void;
@@ -524,17 +528,30 @@ function PlaceCard({
     <HuertaWeek
       advice={advice}
       tone='card'
+      compact={compact}
       className='pointer-events-auto w-full max-w-md elevation-raised'
       title={
-        <div className='mb-3 flex items-start justify-between gap-3'>
-          <p className='pt-1 font-semibold'>
+        <div
+          className={cn(
+            'flex items-start justify-between gap-3',
+            compact ? 'mb-1' : 'mb-3'
+          )}
+        >
+          <p className={cn('pt-1 font-semibold', compact && 'text-sm')}>
             {t('map.place', { place: advice.place })}
           </p>
           {close}
         </div>
       }
     >
-      <div className='mt-4 border-t border-border pt-4'>
+      <div
+        className={cn(
+          'border-t border-border',
+          compact
+            ? 'mt-3 flex items-center justify-between gap-2 pt-2'
+            : 'mt-4 pt-4'
+        )}
+      >
         <p className='flex items-center gap-2 text-sm'>
           <span
             aria-hidden='true'
@@ -550,9 +567,14 @@ function PlaceCard({
                 : '–'}
           </span>
         </p>
-        <Button variant='outline' onClick={onUse} className='mt-3'>
+        <Button
+          variant='outline'
+          onClick={onUse}
+          className={compact ? 'shrink-0 px-3' : 'mt-3'}
+          aria-label={t('map.use')}
+        >
           <MapPinned className='size-4' />
-          {t('map.use')}
+          {compact ? t('map.useShort') : t('map.use')}
         </Button>
       </div>
     </HuertaWeek>

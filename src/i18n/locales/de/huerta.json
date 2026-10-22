@@ -127,6 +127,12 @@
           "text": "Seit der Aussaat oder Pflanzung gab es genug Wärme."
         }
       }
+    },
+    "short": {
+      "soil": "Boden",
+      "nights": "Nächte",
+      "rain": "Regen",
+      "water": "Gießen"
     }
   },
   "units": {
@@ -328,7 +334,8 @@
     "failed": "Die Karte konnte nicht laden. Versuch es gleich noch einmal.",
     "search": "Kulturen suchen",
     "noResults": "Keine Kultur passt",
-    "clearFilters": "Filter zurücksetzen"
+    "clearFilters": "Filter zurücksetzen",
+    "useShort": "Mein Garten"
   },
   "planner": {
     "title": "Gartenplaner",

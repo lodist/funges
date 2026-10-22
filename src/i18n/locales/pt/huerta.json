@@ -127,6 +127,12 @@
           "text": "Recebeu o calor necessário desde a semeadura ou o plantio."
         }
       }
+    },
+    "short": {
+      "soil": "Solo",
+      "nights": "Noites",
+      "rain": "Chuva",
+      "water": "Rega"
     }
   },
   "units": {
@@ -328,7 +334,8 @@
     "failed": "O mapa não carregou. Tente de novo daqui a pouco.",
     "search": "Pesquisar culturas",
     "noResults": "Nenhuma cultura corresponde",
-    "clearFilters": "Limpar os filtros"
+    "clearFilters": "Limpar os filtros",
+    "useShort": "Minha horta"
   },
   "planner": {
     "title": "Planejador da horta",

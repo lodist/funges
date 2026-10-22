@@ -127,6 +127,12 @@
           "text": "Ha recibido el calor que necesita desde la siembra o el trasplante."
         }
       }
+    },
+    "short": {
+      "soil": "Suelo",
+      "nights": "Noches",
+      "rain": "Lluvia",
+      "water": "Riego"
     }
   },
   "units": {
@@ -328,7 +334,8 @@
     "failed": "El mapa no ha cargado. Prueba de nuevo en un momento.",
     "search": "Buscar cultivos",
     "noResults": "Ningún cultivo coincide",
-    "clearFilters": "Quitar los filtros"
+    "clearFilters": "Quitar los filtros",
+    "useShort": "Mi huerto"
   },
   "planner": {
     "title": "Planificador del huerto",

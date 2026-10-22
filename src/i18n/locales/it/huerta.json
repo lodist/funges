@@ -127,6 +127,12 @@
           "text": "Ha ricevuto il calore necessario dalla semina o dal trapianto."
         }
       }
+    },
+    "short": {
+      "soil": "Suolo",
+      "nights": "Notti",
+      "rain": "Pioggia",
+      "water": "Da annaffiare"
     }
   },
   "units": {
@@ -328,7 +334,8 @@
     "failed": "La mappa non si è caricata. Riprova tra un momento.",
     "search": "Cerca colture",
     "noResults": "Nessuna coltura corrisponde",
-    "clearFilters": "Togli i filtri"
+    "clearFilters": "Togli i filtri",
+    "useShort": "Il mio orto"
   },
   "planner": {
     "title": "Pianificatore dell'orto",

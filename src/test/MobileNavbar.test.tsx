@@ -34,6 +34,10 @@ vi.mock('@tanstack/react-router', () => ({
   ),
 }));
 
+// The space badge on the bar's edge is the space menu's own (SpaceSwitcher),
+// with its router hooks; the bar's contract here is its six links.
+vi.mock('@/components/SpaceSwitcher', () => ({ SpaceBadge: () => null }));
+
 const { isMobile } = vi.hoisted(() => ({ isMobile: { current: true } }));
 vi.mock('@/hooks/use-mobile', () => ({
   useIsMobile: () => isMobile.current,

@@ -127,6 +127,12 @@
           "text": "It has had the warmth it needs since it went in."
         }
       }
+    },
+    "short": {
+      "soil": "Soil",
+      "nights": "Nights",
+      "rain": "Rain",
+      "water": "To water"
     }
   },
   "units": {
@@ -328,7 +334,8 @@
     "failed": "The map could not load. Try again in a moment.",
     "search": "Search crops",
     "noResults": "No crop matches",
-    "clearFilters": "Clear filters"
+    "clearFilters": "Clear filters",
+    "useShort": "My garden"
   },
   "planner": {
     "title": "Garden planner",

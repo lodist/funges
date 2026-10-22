@@ -10,6 +10,7 @@ import {
   Sprout,
 } from '@/lib/icons';
 import { currentSpace } from '@/lib/spaces';
+import { SpaceBadge } from '@/components/SpaceSwitcher';
 import { IDENTIFY_PATH, isIsolatedPath } from '@/lib/isolation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useIsAppleMobile } from '@/hooks/use-apple-mobile';
@@ -89,6 +90,9 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
       // is what actually rides --transition-duration-slow.
       transition={{ duration: DURATION_SLOW, ease: EASE_STANDARD }}
     >
+      {/* The space switch rides the bar's top edge, left: the bar's slots are
+          full, and it hides with the bar. */}
+      <SpaceBadge className='absolute -top-5 left-3' />
       <ul className='flex justify-around items-center py-3 px-3'>
         {(currentSpace(location.pathname) === 'huerta'
           ? huertaItems
