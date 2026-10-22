@@ -317,15 +317,6 @@ const STYLES: Record<
   },
 };
 
-const WAITING = new Set<CropStatus>([
-  'wait_frost',
-  'wait_soil',
-  'wait_warm',
-  'too_warm',
-  'wait_autumn',
-  'wait_spring',
-]);
-
 /** The order of bed groups in which onions and garlic never sit beside peas
  *  and beans: Heap's permutations, up to 7 beds. */
 function arrange(sections: Section[], beds: number[], groups: Group[]) {
@@ -362,7 +353,8 @@ function arrange(sections: Section[], beds: number[], groups: Group[]) {
   return groups;
 }
 
-/** Fill every section from this week's statuses at the visitor's place: one
+/** Fill every section with crops that go in this week at the visitor's
+ *  place (a bed with none stays empty): one
  *  family per bed (of those the style grows), onions and garlic never beside
  *  peas and beans, the tallest crop of a bed at its north end. Planted
  *  sections keep their crop, and with `keepChosen` every section that has one;
@@ -384,11 +376,10 @@ export function autoPlan(
     axis?: Axis;
   } = {}
 ): Section[] {
-  const rank = (id: string) => {
-    const s = status(id);
-    return s === 'now' ? 0 : s && WAITING.has(s) ? 1 : 2;
-  };
+  // Only what goes in this week: a crop that must wait, or whose time is
+  // over, is never planned.
   const how = STYLES[style];
+  const now = (id: string) => how.allow(id) && status(id) === 'now';
   let out = sections.map(s => ({ ...s }));
   const open = new Set(only ? only.map(i => out[i]) : out);
   const beds = [...new Set(out.map(s => s.bed))];
@@ -399,20 +390,17 @@ export function autoPlan(
       beds.map((_, i) => how.cycle[i % how.cycle.length])
   );
   const used = new Set<string>();
-  const best = (ids: readonly string[]) =>
-    ids
-      .filter(how.allow)
-      .sort(
-        (a, z) => rank(a) - rank(z) || Number(used.has(a)) - Number(used.has(z))
-      );
   beds.forEach((bed, i) => {
-    let group = groups[i];
-    if (!GROUPS[group].some(id => how.allow(id) && rank(id) < 2))
-      group =
-        how.fallback.find(k =>
-          GROUPS[k].some(id => how.allow(id) && rank(id) === 0)
-        ) ?? group;
-    const pick = best(GROUPS[group]);
+    // The bed's family, else the first of the style's with a crop going in
+    // now; with none, the bed is left empty.
+    const group = [groups[i], ...how.fallback, ...how.cycle].find(k =>
+      GROUPS[k].some(now)
+    );
+    const pick = group
+      ? GROUPS[group]
+          .filter(now)
+          .sort((a, z) => Number(used.has(a)) - Number(used.has(z)))
+      : [];
     const parts = out
       .filter(
         s =>
@@ -421,8 +409,8 @@ export function autoPlan(
       .sort((a, z) => northOf(north, z) - northOf(north, a));
     // Vegetables with flowers: a strip of a low companion flower across the
     // bed's sunny end, cut from its last section (unless that is a strip).
-    if (style === 'vegFlowers' && parts.length) {
-      const flower = [...COMPANIONS].sort((a, z) => rank(a) - rank(z))[0];
+    const flower = COMPANIONS.find(id => status(id) === 'now');
+    if (style === 'vegFlowers' && parts.length && flower) {
       const last = parts[parts.length - 1];
       const [lo, hi] = span(last, axis);
       if (hi - lo < 2 * FLOWER_STRIP + 0.3) parts.pop()!.crop = flower;
@@ -438,7 +426,10 @@ export function autoPlan(
         out.push({ ...(loSouth ? atLo : atHi), crop: flower });
       }
     }
-    if (!pick.length) return;
+    if (!pick.length) {
+      parts.forEach(s => (s.crop = null)); // nothing goes in now
+      return;
+    }
     const crops = parts
       .map((_, j) => pick[j % pick.length])
       .sort((a, z) => PLANT_LOOK[z].height - PLANT_LOOK[a].height);

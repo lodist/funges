@@ -281,6 +281,18 @@ describe('the garden planner', () => {
     const again = autoPlan(mixed, all, { style: 'vegFlowers' });
     expect(again).toHaveLength(mixed.length);
   });
+
+  it('plans only what goes in this week', () => {
+    const g: Garden = { width: 4, length: 3, shape: 'rect', ground: 'ground' };
+    // Fruit first in autumn: strawberries go in, melons are too late.
+    const autumn = (id: string): CropStatus =>
+      id === 'strawberry' ? 'now' : 'too_late';
+    const fruit = autoPlan(layout(g), autumn, { style: 'fruit' });
+    expect(fruit.every(s => s.crop === 'strawberry')).toBe(true);
+    // Nothing goes in: the beds stay empty, also where a crop was planned.
+    const none = (_: string): CropStatus => 'wait_spring';
+    expect(autoPlan(fruit, none).every(s => s.crop === null)).toBe(true);
+  });
 });
 
 describe('the garden model', () => {
