@@ -6,7 +6,7 @@
  "shipped_if": "score x habitat ranks held-out finds better than the score alone: on the training table's held-out years (hand-set weather), better beyond doubt against that day's bracket finds or other fungi's places and not worse beyond doubt on the other; otherwise 2026's finds above the places searched that week (other fungi's finds), and no worse against bracket fungi",
  "regions": {
   "NE": {
-   "file": "models/habitat/20261015-1311/habitat_NE.npz",
+   "file": "models/habitat/20261022-1124/habitat_NE.npz",
    "sha256": "6a4dc59f7d860b746461d76403a2d95a98fc21bf43389cc123c1bf0a8226fd68",
    "species": [
     "black_chant",
@@ -27,7 +27,7 @@
    ]
   },
   "SE": {
-   "file": "models/habitat/20261015-1311/habitat_SE.npz",
+   "file": "models/habitat/20261022-1124/habitat_SE.npz",
    "sha256": "76138e81f509b6618930d2637386095377ce4f7f70abde3ed5dbef4ec5615c56",
    "species": [
     "black_chant",
@@ -49,8 +49,8 @@
    ]
   },
   "USE": {
-   "file": "models/habitat/20261015-1311/habitat_USE.npz",
-   "sha256": "ab5d0bcece95a47aad6675387c60973995cf8fbd207a2bafe81c7fa83dc214d8",
+   "file": "models/habitat/20261022-1124/habitat_USE.npz",
+   "sha256": "fff0d53aa599ccc69c3cbf86096a42ceece190ac9430a9dfec590bfc05f68b2e",
    "species": [
     "black_chant",
     "chicken-of-the-woods",
@@ -64,8 +64,8 @@
    ]
   },
   "USW": {
-   "file": "models/habitat/20261015-1311/habitat_USW.npz",
-   "sha256": "358dfe829f5725377a54ea5c6a5618de498f4d878fd78eb1e92011b4f2b10854",
+   "file": "models/habitat/20261022-1124/habitat_USW.npz",
+   "sha256": "d72890695754a56a642639b6447283ca4121d9d16bad54a198bf38c44e417dff",
    "species": [
     "chicken-of-the-woods",
     "lions_mane",
